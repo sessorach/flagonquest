@@ -1,0 +1,681 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans, system-ui); color: var(--text-primary); background: var(--surface-0); }
+  input[type=text], input[type=search] {
+    background: var(--surface-2); border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius, 8px); padding: 6px 10px;
+    color: var(--text-primary); font-size: 13px; outline: none;
+  }
+  input[type=text]:focus, input[type=search]:focus { border-color: var(--border-accent); }
+  input[type=range] { accent-color: var(--fill-accent, #378ADD); }
+  button { font-family: inherit; cursor: pointer; }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const { useState, useMemo, useEffect, useRef } = React;
+
+/* ═══════════════════════════════════════════════════════════════
+   FLAGONQUEST — Technique Browser & Character Builder  v0.1
+   ═══════════════════════════════════════════════════════════════
+
+   HOW THIS WORKS (the plain-English tour):
+
+   DATA: The TECHNIQUES array is your spreadsheet in JS form.
+   In production, this app will fetch() that data from a JSON
+   file on GitHub Pages instead of having it baked in here.
+
+   STATE: React "state" is just variables that cause the screen
+   to update when they change. We track:
+     • view       — which tab (browse / build / sheet)
+     • search     — text in the search box
+     • catFilter  — which category chip is selected
+     • levelMin/Max — the two level-range sliders
+     • showDrafts — whether to show unassigned techniques
+     • build      — array of technique IDs the player picked
+     • charName   — character name the player typed in
+
+   FILTERING: visibleTechs recalculates via useMemo() whenever
+   a filter changes. It's just TECHNIQUES.filter(...) — no magic.
+
+   BUILD: Adding a technique appends its ID to the build array.
+   The build panel looks up each ID to show full details.
+   Removing splices the ID back out.
+
+   SHARE: Export = JSON file download. Share Link = build IDs
+   encoded as base64 in the URL hash (#build=...). On load,
+   if that hash is present, the build is auto-populated.
+═══════════════════════════════════════════════════════════════ */
+
+// ── Category accent colors ────────────────────────────────────
+// These color the left border and category label on each card.
+// Using the CDS palette mid-tones; they work in light + dark mode.
+const CAT_COLOR = {
+  Discipline:  "#7F77DD",
+  Expertise:   "#1D9E75",
+  Martial:     "#D85A30",
+  Personality: "#D4537E",
+  Power:       "#BA7517",
+  Spell:       "#378ADD",
+  Stance:      "#888780",
+};
+
+const CATEGORIES = ["All", ...Object.keys(CAT_COLOR)];
+
+// ── Technique data ────────────────────────────────────────────
+// Compact row format: [id, name, lMin, lMax, category, skills, action, note]
+// lMin/lMax = null means unassigned (draft). skills is comma-separated.
+const RAW = [
+  // LEVEL 1 ──────────────────────────────────────────────────────────────
+  ["T001","Shugen Style - Spirit Bolt",1,1,"Discipline","Meditation","",""],
+  ["T002","Animal Companion: Trick",1,1,"Expertise","Survival","Passive","Survival tree"],
+  ["T003","Artisinal Training",1,1,"Expertise","[Creation]","Passive","Creation tree"],
+  ["T004","Extensive Background",1,1,"Expertise","","Passive","Backgrounds"],
+  ["T005","Practiced Persona",1,1,"Expertise","Masquerade","Passive","Masquerade tree"],
+  ["T006","Profession",1,1,"Expertise","","Passive","Backgrounds"],
+  ["T007","Bladeslinging",1,1,"Martial","Might","Passive",""],
+  ["T008","Feint",1,1,"Martial","Insight","One",""],
+  ["T009","Magehunter",1,1,"Martial","Academics","One","Martial Interrupts"],
+  ["T010","Parting Shot",1,1,"Martial","Acrobatics","One","Martial Interrupts"],
+  ["T011","Challenge",1,1,"Personality","Presence","","Personality Attack"],
+  ["T012","Follower",1,1,"Personality","Rapport","","Misc"],
+  ["T013","Follower: Knack",1,1,"Personality","Presence","","Misc"],
+  ["T014","Brace",1,1,"Power","Resilience","One","Protect tree"],
+  ["T015","Soulblade",1,1,"Power","Composure","Passive","Misc"],
+  ["T016","Vow of Poverty",1,1,"Power","Composure","Passive","Misc"],
+  ["T017","Conjure Armament",1,1,"Spell","[Spellcasting]","",""],
+  ["T018","Force Missiles",1,1,"Spell","Sorcery","",""],
+  ["T019","From the Brink of Death",1,1,"Spell","Theurgy","",""],
+  ["T020","Gainsay",1,1,"Spell","Sorcery","",""],
+  ["T021","Gust of Wind",1,1,"Spell","Theurgy","",""],
+  ["T022","Placeholder's Tender Telekinesis",1,1,"Spell","[Spellcasting]","",""],
+  ["T023","Placeholder's Wizardly Witchlight",1,1,"Spell","[Spellcasting]","",""],
+  ["T024","Shadow Jaunt",1,1,"Spell","[Spellcasting]","",""],
+  // LEVEL 1–4 (range techniques — available across multiple levels)
+  ["T025","Battle Maneuver",1,4,"Martial","[Martial]","Two","Battle Maneuver"],
+  ["T026","Social Maneuver",1,4,"Personality","[Social]","1 Minute","Social Contest"],
+  ["T027","Healing Magic",1,4,"Spell","Theurgy","Two","Healing Magic"],
+  ["T028","Spirit Blessing",1,4,"Spell","Theurgy","Two","Spirit Blessing"],
+  ["T029","War Magic",1,4,"Spell","Sorcery","Two","War Magic"],
+  // LEVEL 1–5
+  ["T030","Temper Soulblade",1,5,"Power","Composure","Passive","Misc"],
+  // LEVEL 2 ──────────────────────────────────────────────────────────────
+  ["T031","Channel Ki",2,2,"Discipline","Meditation","",""],
+  ["T032","Ignore Pain",2,2,"Discipline","Meditation","Zero",""],
+  ["T033","Pranic Nourishment",2,2,"Discipline","Meditation","",""],
+  ["T034","Shugen Style - Iron Skin",2,2,"Discipline","Meditation","",""],
+  ["T035","Shugen Style - Through the Void",2,2,"Discipline","Meditation","",""],
+  ["T036","Air of Mystery",2,2,"Expertise","Masquerade","Passive","Masquerade tree"],
+  ["T037","Animal Companion",2,2,"Expertise","Survival","Passive","Survival tree"],
+  ["T038","Awaken Armament",2,2,"Expertise","Craft","One","Craft tree"],
+  ["T039","Hand of the Chirurgeon",2,2,"Expertise","Medicine","Two","Medicine tree"],
+  ["T040","Legerdemain",2,2,"Expertise","Stealth","Passive","Rogue tree"],
+  ["T041","Mighty Mixologist",2,2,"Expertise","Mixology","Passive","Mixology tree"],
+  ["T042","One Eye Behind You",2,2,"Expertise","Insight","Passive","Insight tree"],
+  ["T043","Patch Up",2,2,"Expertise","Medicine","10 Minutes","Medicine tree"],
+  ["T044","Placeholder's Alacritous Adaptation",2,2,"Expertise","Academics","Zero","Misc"],
+  ["T045","Practical Necromancy",2,2,"Expertise","[Spellcasting]","Passive","Craft tree"],
+  ["T046","Quick Draw",2,2,"Expertise","Acrobatics","Passive","Misc"],
+  ["T047","Re-purpose Materials",2,2,"Expertise","[Creation]","Passive","Creation tree"],
+  ["T048","Scrapcraft",2,2,"Expertise","Craft","Three","Craft tree"],
+  ["T049","Shadow's Path",2,2,"Expertise","Stealth","Passive","Stealth tree"],
+  ["T050","Street Runner",2,2,"Expertise","Streetwise","Passive","Streetwise tree"],
+  ["T051","Wisdom of the Woods",2,2,"Expertise","Survival","Passive","Survival tree"],
+  ["T052","Blinkstep",2,2,"Martial","Acrobatics","Zero",""],
+  ["T053","Perfect Strike",2,2,"Martial","[Martial]","",""],
+  ["T054","A Perfectly Good Explanation",2,2,"Personality","Persuasion","","Social Contest"],
+  ["T055","Cry of Victory",2,2,"Personality","Presence","","Personality Attack"],
+  ["T056","Favorite Face",2,2,"Personality","Rapport","","Rapport tree"],
+  ["T057","Heroic Inspiration",2,2,"Personality","Performance","","Personality Buff"],
+  ["T058","Rumormonger",2,2,"Personality","Streetwise","Passive","Persuasion tree"],
+  ["T059","Blindsight",2,2,"Power","Awareness","Passive","Awareness tree"],
+  ["T060","Blood-Powered Spirit",2,2,"Power","Resilience","",""],
+  ["T061","Bound Across Mountains",2,2,"Power","Athletics","Passive","Athletics tree"],
+  ["T062","Canopy Creeper",2,2,"Power","Athletics","Passive","Athletics tree"],
+  ["T063","Falling Tumble",2,2,"Power","Acrobatics","Passive","Acrobatics tree"],
+  ["T064","Grim Resolve",2,2,"Power","Resilience","Zero","Card manipulation"],
+  ["T065","Second Wind",2,2,"Power","Resilience","One","Heal self"],
+  ["T066","Solemn Pact",2,2,"Power","Integrity","Zero","Pact tree"],
+  ["T067","Toughened Body",2,2,"Power","Resilience","Passive","Max health tree"],
+  ["T068","Trout Seeming",2,2,"Power","Athletics","Passive","Athletics tree"],
+  ["T069","Beast Venom",2,2,"Spell","Theurgy","",""],
+  ["T070","Land's Bounty",2,2,"Spell","Theurgy","",""],
+  ["T071","Lifeline",2,2,"Spell","Theurgy","",""],
+  ["T072","Rackoning",2,2,"Spell","Theurgy","",""],
+  ["T073","Raise Corpse",2,2,"Spell","[Spellcasting]","",""],
+  ["T074","Sculpt Stone",2,2,"Spell","Theurgy","",""],
+  ["T075","Spectral Spiderwebs",2,2,"Spell","Theurgy","",""],
+  ["T076","Spellblade",2,2,"Spell","[Martial]","",""],
+  ["T077","Telepathic Link",2,2,"Spell","[Spellcasting]","",""],
+  ["T078","Wall of Shadows",2,2,"Spell","Sorcery","",""],
+  ["T079","Warmage's Reserves",2,2,"Spell","Sorcery","",""],
+  ["T080","Weatherworking",2,2,"Spell","Theurgy","",""],
+  ["T081","Disciple of the Flowing Hand",2,2,"Stance","Acrobatics","Passive","Unarmored"],
+  ["T082","Furious Rage",2,2,"Stance","Might","Passive",""],
+  ["T083","Hand of Chaos",2,2,"Stance","Insight","Passive",""],
+  ["T084","Indomitable Phalanx",2,2,"Stance","Acrobatics","Passive",""],
+  ["T085","Lion Style - Eternal Riposte",2,2,"Stance","Brawl","Passive","Dueling"],
+  ["T086","Placeholder's Lengthy Ley-weaving",2,2,"Stance","[Spellcasting]","Passive",""],
+  ["T087","Shugen Style - Spirit Hands",2,2,"Stance","Brawl","Passive","Unarmed"],
+  ["T088","Tiger Style - Storm of Blades",2,2,"Stance","[Martial]","Passive","Dual-wielding"],
+  // LEVEL 3 ──────────────────────────────────────────────────────────────
+  ["T089","Corrupted Blood",3,3,"Discipline","Meditation","",""],
+  ["T090","Shugen Style - Fist of the Third Dragon",3,3,"Discipline","Meditation","",""],
+  ["T091","Analyze Stance",3,3,"Expertise","Academics","Passive","Academics tree"],
+  ["T092","Artisan's Eye",3,3,"Expertise","[Creation]","One","Creation tree"],
+  ["T093","Bespoke Masterpieces",3,3,"Expertise","Craft","Passive","Craft tree"],
+  ["T094","Environmental Esoterica",3,3,"Expertise","Survival","Passive","Survival tree"],
+  ["T095","Preparation",3,3,"Expertise","Streetwise","Zero","Streetwise tree"],
+  ["T096","Vanish",3,3,"Expertise","Stealth","One","Stealth tree"],
+  ["T097","Cloak and Dagger",3,3,"Martial","Stealth","",""],
+  ["T098","Bolstering Refrain",3,3,"Personality","Performance","","Personality Buff"],
+  ["T099","Exert Pressure",3,3,"Personality","Presence","","Personality Attack"],
+  ["T100","Skin of Stone",3,3,"Power","Resilience","One","Protect tree"],
+  ["T101","Solemn Perseverance",3,3,"Power","Resilience","Zero","Pact tree"],
+  ["T102","Strength from the Slain",3,3,"Power","Might","Two","Misc"],
+  ["T103","Toughened Resolve",3,3,"Power","Resilience","Passive","Max health tree"],
+  ["T104","Cloak of Awe",3,3,"Spell","Theurgy","",""],
+  ["T105","Cloak of Command",3,3,"Spell","Theurgy","",""],
+  ["T106","Wall of Ice",3,3,"Spell","Sorcery","",""],
+  ["T107","Eagle Eyes",3,3,"Stance","Acrobatics","Passive","Ranged"],
+  ["T108","Follow Through",3,3,"Stance","Brawl","Passive","Two-hander"],
+  ["T109","Inexhaustible Guardian",3,3,"Stance","Melee","Passive",""],
+  ["T110","Overchanneling",3,3,"Stance","[Spellcasting]","Passive",""],
+  // LEVEL 4 ──────────────────────────────────────────────────────────────
+  ["T111","Harmonious Mending",4,4,"Discipline","Meditation","",""],
+  ["T112","Bottomless Bottles",4,4,"Expertise","Mixology","10 Minutes","Mixology tree"],
+  ["T113","Gather the Evidence",4,4,"Expertise","Academics","10 Minutes","Academics tree"],
+  ["T114","One of Many Faces",4,4,"Expertise","Masquerade","Four","Masquerade tree"],
+  ["T115","Pressure Point Revitalization",4,4,"Expertise","Medicine","Two","Medicine tree"],
+  ["T116","Dominate Mind",4,4,"Personality","[Spellcasting]","","Social Contest"],
+  ["T117","Raise Spirits",4,4,"Personality","Performance","","Keystone"],
+  ["T118","Rally to Victory",4,4,"Personality","Performance","","Personality Buff"],
+  ["T119","Lay On Hands",4,4,"Power","Composure","One","Keystone"],
+  ["T120","Mind and Body Unbroken",4,4,"Power","Resilience","Zero","Misc"],
+  ["T121","Solemn Covenant",4,4,"Power","","Zero","Pact tree"],
+  ["T122","Toughened Spirit",4,4,"Power","Resilience","Passive","Max health tree"],
+  ["T123","Earthquake",4,4,"Spell","Theurgy","",""],
+  ["T124","Wall of Fire",4,4,"Spell","Sorcery","",""],
+  // LEVEL 5 ──────────────────────────────────────────────────────────────
+  ["T125","Preternatural Reflexes",5,5,"Expertise","Insight","Passive","Misc"],
+  ["T126","The Gatekeeper",5,5,"Personality","Presence","","Personality Attack"],
+  ["T127","Spiritual Intervention",5,5,"Spell","Theurgy","",""],
+  // UNASSIGNED (draft — level not yet set) ───────────────────────────────
+  ["T128","Shugen Style - Empowered Blood",null,null,"Discipline","Meditation","",""],
+  ["T129","Analyze Spirit",null,null,"Expertise","Academics","Passive","Academics tree"],
+  ["T130","Supportive Treatment",null,null,"Expertise","Medicine","1 Minute","Medicine tree"],
+  ["T131","Take Aim",null,null,"Expertise","Insight","One",""],
+  ["T132","Drifting Form",null,null,"Martial","Acrobatics","Zero",""],
+  ["T133","Body of the Immortal",null,null,"Power","Resilience","Passive","Max health tree"],
+  ["T134","Find Center",null,null,"Power","Insight","One",""],
+  ["T135","Instantaneous Observation",null,null,"Power","Awareness","Two","Awareness tree"],
+  ["T136","Lightning Stride",null,null,"Power","Acrobatics","Passive","Misc"],
+  ["T137","Overbear",null,null,"Power","Might","Passive","Might tree"],
+  ["T138","Roll the Bones",null,null,"Power","Awareness","","Card manipulation"],
+  ["T139","Unbreakable Stone Anchor",null,null,"Power","Might","Zero","Protect tree"],
+  ["T140","Force Barrier",null,null,"Spell","Sorcery","",""],
+  ["T141","Swordsoul",null,null,"Spell","[Spellcasting]","",""],
+  ["T142","Ventriloquy",1,null,"Expertise","","","Masquerade tree"],
+];
+
+// Convert compact rows to objects. All parsing happens once here
+// so the rest of the app can just do t.name, t.skills, etc.
+const TECHNIQUES = RAW.map(([id,name,lMin,lMax,cat,skillsStr,action,note]) => ({
+  id, name, lMin, lMax, cat,
+  // split "Meditation,Athletics" → ["Meditation", "Athletics"]
+  skills: skillsStr ? skillsStr.split(",").map(s=>s.trim()).filter(Boolean) : [],
+  action, note,
+  cost: 1, // PLACEHOLDER: all 1 pt until you add a cost column to your sheet
+}));
+
+// ── Helper functions ──────────────────────────────────────────
+
+// Format level range for display: lMin=1, lMax=4 → "Lv 1–4"
+function lvlLabel(lMin, lMax) {
+  if (lMin == null) return "Draft";
+  const hi = lMax ?? lMin;
+  return lMin === hi ? `Lv ${lMin}` : `Lv ${lMin}–${hi}`;
+}
+
+// Check if a technique falls within the current level filter range.
+// Two ranges overlap if: techMin <= filterMax AND techMax >= filterMin.
+function matchesLevel(t, fMin, fMax, showDrafts) {
+  if (t.lMin == null) return showDrafts;
+  const hi = t.lMax ?? t.lMin;
+  return t.lMin <= fMax && hi >= fMin;
+}
+
+// Encode build state as a base64 string for URL sharing
+function encBuild(ids, name) {
+  return btoa(JSON.stringify({ ids, name }));
+}
+function decBuild(str) {
+  try { return JSON.parse(atob(str)); } catch { return null; }
+}
+
+// ── Technique card (shown in the browse grid) ─────────────────
+function TechCard({ t, inBuild, onAdd, onRemove }) {
+  const c = CAT_COLOR[t.cat] || "var(--border-strong)";
+  return React.createElement("div", {
+    style: {
+      background: "var(--surface-2)",
+      border: "0.5px solid var(--border)",
+      // Left border color-codes the category at a glance
+      borderLeft: `3px solid ${c}`,
+      borderRadius: "0 8px 8px 0",
+      padding: "10px 12px",
+      display: "flex", flexDirection: "column", gap: 6,
+    }
+  },
+    // Name + level badge row
+    React.createElement("div", { style: { display:"flex", alignItems:"baseline", gap:8, flexWrap:"wrap" } },
+      React.createElement("span", {
+        style: {
+          fontFamily: "Georgia, 'Times New Roman', serif",
+          fontWeight: "bold", fontSize: 14,
+          color: "var(--text-primary)", flex: 1, lineHeight: 1.3,
+        }
+      }, t.name),
+      React.createElement("span", {
+        style: {
+          fontSize: 11, fontWeight: 500,
+          color: "var(--text-accent)",
+          background: "var(--bg-accent)",
+          border: "0.5px solid var(--border-accent)",
+          borderRadius: 4, padding: "1px 6px", whiteSpace: "nowrap", flexShrink: 0,
+        }
+      }, lvlLabel(t.lMin, t.lMax))
+    ),
+    // Category + action time + tree note
+    React.createElement("div", { style: { display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" } },
+      React.createElement("span", { style: { fontSize:11, fontWeight:500, color:c } }, t.cat),
+      t.action && React.createElement("span", { style: { fontSize:11, color:"var(--text-secondary)" } }, `· ${t.action}`),
+      t.note && React.createElement("span", { style: { fontSize:10, color:"var(--text-muted)", fontStyle:"italic" } }, t.note)
+    ),
+    // Skill tags (e.g. "Meditation", "[Spellcasting]")
+    t.skills.length > 0 && React.createElement("div", { style: { display:"flex", gap:4, flexWrap:"wrap" } },
+      t.skills.map(s => React.createElement("span", {
+        key: s,
+        style: {
+          fontSize: 10, color: "var(--text-secondary)",
+          background: "var(--surface-1)",
+          border: "0.5px solid var(--border)",
+          borderRadius: 4, padding: "1px 6px",
+        }
+      }, s))
+    ),
+    // Add / Remove button
+    React.createElement("div", null,
+      inBuild
+        ? React.createElement("button", {
+            onClick: () => onRemove(t.id),
+            style: { fontSize:11, color:"var(--text-danger)", background:"transparent", border:"0.5px solid var(--border-danger)", borderRadius:4, padding:"2px 10px" }
+          }, "Remove")
+        : React.createElement("button", {
+            onClick: () => onAdd(t.id),
+            style: { fontSize:11, color:"var(--text-accent)", background:"transparent", border:"0.5px solid var(--border-accent)", borderRadius:4, padding:"2px 10px" }
+          }, "+ Add to build")
+    )
+  );
+}
+
+// ── Single entry on the character sheet ───────────────────────
+function SheetEntry({ t }) {
+  const c = CAT_COLOR[t.cat] || "var(--border)";
+  return React.createElement("div", {
+    style: { borderLeft: `2px solid ${c}`, paddingLeft: 12, marginBottom: 14 }
+  },
+    // Name + level + category on one line
+    React.createElement("div", { style: { display:"flex", gap:8, alignItems:"baseline", flexWrap:"wrap" } },
+      React.createElement("span", {
+        style: { fontFamily:"Georgia, 'Times New Roman', serif", fontWeight:"bold", fontSize:15, color:"var(--text-primary)" }
+      }, t.name),
+      React.createElement("span", { style: { fontSize:11, color:"var(--text-accent)" } }, lvlLabel(t.lMin, t.lMax)),
+      React.createElement("span", { style: { fontSize:11, color:c, fontStyle:"italic" } }, t.cat)
+    ),
+    // Mechanical details — will be richer once display_ columns are filled in
+    t.action && React.createElement("div", { style: { fontSize:13, color:"var(--text-secondary)", marginTop:2 } },
+      React.createElement("span", { style: { color:"var(--text-muted)" } }, "Action: "),
+      t.action
+    ),
+    t.skills.length > 0 && React.createElement("div", { style: { fontSize:13, color:"var(--text-secondary)", marginTop:1 } },
+      React.createElement("span", { style: { color:"var(--text-muted)" } }, "Skills: "),
+      t.skills.join(", ")
+    ),
+    // Effect placeholder — swap this with t.display_effect once that column is filled
+    React.createElement("div", { style: { fontSize:12, color:"var(--text-muted)", fontStyle:"italic", marginTop:3 } },
+      "Effect: (not yet entered)"
+    )
+  );
+}
+
+// ── Main App ──────────────────────────────────────────────────
+function App() {
+  // All the state variables that drive the UI
+  const [view,       setView]       = useState("browse");
+  const [search,     setSearch]     = useState("");
+  const [catFilter,  setCatFilter]  = useState("All");
+  const [levelMin,   setLevelMin]   = useState(1);
+  const [levelMax,   setLevelMax]   = useState(5);
+  const [showDrafts, setShowDrafts] = useState(false);
+  const [build,      setBuild]      = useState([]);   // array of technique IDs
+  const [charName,   setCharName]   = useState("");
+  const [shareMsg,   setShareMsg]   = useState("");
+  const importRef = useRef();
+
+  // On first load: check if there's a share link in the URL hash
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.startsWith("#build=")) {
+      const decoded = decBuild(hash.slice(7));
+      if (decoded) {
+        if (decoded.ids)  setBuild(decoded.ids);
+        if (decoded.name) setCharName(decoded.name);
+      }
+    }
+  }, []);
+
+  // Filtered technique list — recalculates only when filters change
+  const visible = useMemo(() => TECHNIQUES.filter(t => {
+    if (catFilter !== "All" && t.cat !== catFilter) return false;
+    if (!matchesLevel(t, levelMin, levelMax, showDrafts)) return false;
+    if (search) {
+      const q = search.toLowerCase();
+      if (![t.name, t.cat, t.note, ...t.skills].join(" ").toLowerCase().includes(q)) return false;
+    }
+    return true;
+  }), [search, catFilter, levelMin, levelMax, showDrafts]);
+
+  // Full technique objects for everything in the build
+  const buildTechs = useMemo(() =>
+    build.map(id => TECHNIQUES.find(t => t.id === id)).filter(Boolean),
+  [build]);
+
+  // Running point total (placeholder: all cost 1 until you add a cost column)
+  const totalCost = buildTechs.reduce((n, t) => n + t.cost, 0);
+
+  // Build actions
+  const addT   = id => setBuild(b => b.includes(id) ? b : [...b, id]);
+  const removeT = id => setBuild(b => b.filter(x => x !== id));
+  const clearB  = () => { if (confirm("Clear the current build?")) setBuild([]); };
+
+  // Export build as a downloadable JSON file
+  function doExport() {
+    const payload = {
+      charName,
+      exportedAt: new Date().toISOString(),
+      techniques: buildTechs.map(t => ({ id:t.id, name:t.name, level:lvlLabel(t.lMin,t.lMax), cat:t.cat })),
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type:"application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `${(charName || "build").replace(/\s+/g,"-")}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  // Import a previously exported JSON file
+  function doImport(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        setBuild(data.techniques.map(t => t.id));
+        if (data.charName) setCharName(data.charName);
+      } catch { alert("Couldn't read that file — make sure it's a FlagonQuest build export."); }
+    };
+    reader.readAsText(file);
+    e.target.value = "";
+  }
+
+  // Generate a share link (build IDs encoded into the URL hash)
+  function doShare() {
+    const encoded = encBuild(build, charName);
+    const url = window.location.href.split("#")[0] + "#build=" + encoded;
+    (navigator.clipboard?.writeText(url) ?? Promise.reject())
+      .then(() => setShareMsg("Link copied!"))
+      .catch(() => setShareMsg("Couldn't auto-copy — grab the URL from your address bar"));
+    setTimeout(() => setShareMsg(""), 3500);
+  }
+
+  // Reusable button style helpers
+  const tabStyle = (key) => ({
+    padding: "6px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+    background: view===key ? "var(--fill-primary)" : "transparent",
+    color: view===key ? "var(--on-primary)" : "var(--text-secondary)",
+    border: "0.5px solid " + (view===key ? "var(--fill-primary)" : "var(--border-strong)"),
+  });
+  const chipStyle = (cat) => {
+    const active = catFilter === cat;
+    const c = CAT_COLOR[cat];
+    return {
+      padding: "4px 12px", fontSize: 12, borderRadius: 20,
+      fontWeight: active ? 500 : 400, whiteSpace: "nowrap",
+      background: active ? (c||"var(--fill-accent)")+"22" : "transparent",
+      color: active ? (c||"var(--text-accent)") : "var(--text-secondary)",
+      border: "0.5px solid " + (active ? (c||"var(--border-accent)") : "var(--border)"),
+    };
+  };
+  const actStyle = (danger) => ({
+    padding: "6px 14px", fontSize: 12, fontWeight: 500, borderRadius: 6,
+    background: "transparent",
+    color: danger ? "var(--text-danger)" : "var(--text-secondary)",
+    border: "0.5px solid " + (danger ? "var(--border-danger)" : "var(--border-strong)"),
+    display: "flex", alignItems: "center", gap: 5,
+  });
+
+  return React.createElement("div", { style: { fontFamily:"var(--font-sans, system-ui)", color:"var(--text-primary)" } },
+
+    // ── HEADER ─────────────────────────────────────────────────
+    React.createElement("div", {
+      style: {
+        padding: "12px 16px", borderBottom: "0.5px solid var(--border)",
+        display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap",
+        background: "var(--surface-2)",
+      }
+    },
+      React.createElement("div", null,
+        React.createElement("div", {
+          style: { fontFamily:"Georgia, serif", fontSize:18, fontWeight:"bold", color:"var(--text-primary)" }
+        }, "FlagonQuest"),
+        React.createElement("div", { style: { fontSize:11, color:"var(--text-muted)", marginTop:1 } },
+          "Technique browser · Character builder")
+      ),
+      // Nav tabs
+      React.createElement("div", { style: { display:"flex", gap:6, marginLeft:"auto", flexWrap:"wrap" } },
+        React.createElement("button", { onClick:()=>setView("browse"), style:tabStyle("browse") }, "Browse"),
+        React.createElement("button", { onClick:()=>setView("build"),  style:tabStyle("build")  },
+          build.length > 0 ? `My build (${build.length})` : "My build"),
+        React.createElement("button", { onClick:()=>setView("sheet"),  style:tabStyle("sheet")  }, "Character sheet")
+      )
+    ),
+
+    // ── BROWSE VIEW ────────────────────────────────────────────
+    view === "browse" && React.createElement("div", { style: { padding: 16 } },
+      // Search + level controls row
+      React.createElement("div", {
+        style: { display:"flex", gap:10, marginBottom:12, flexWrap:"wrap", alignItems:"center" }
+      },
+        React.createElement("input", {
+          type: "text", placeholder: "Search name, skill, tree…",
+          value: search, onChange: e=>setSearch(e.target.value),
+          style: { flex:"1 1 200px", minWidth:140 }
+        }),
+        React.createElement("div", {
+          style: { display:"flex", alignItems:"center", gap:8, fontSize:12, color:"var(--text-secondary)", flexShrink:0 }
+        },
+          React.createElement("span", null, `Lv ${levelMin}–${levelMax}`),
+          React.createElement("input", { type:"range", min:1, max:5, value:levelMin, style:{width:56},
+            onChange: e=>setLevelMin(Math.min(+e.target.value, levelMax)) }),
+          React.createElement("input", { type:"range", min:1, max:5, value:levelMax, style:{width:56},
+            onChange: e=>setLevelMax(Math.max(+e.target.value, levelMin)) }),
+          React.createElement("label", { style:{display:"flex",alignItems:"center",gap:4,cursor:"pointer"} },
+            React.createElement("input", { type:"checkbox", checked:showDrafts,
+              onChange: e=>setShowDrafts(e.target.checked) }),
+            "Drafts"
+          )
+        )
+      ),
+      // Category filter chips
+      React.createElement("div", { style: { display:"flex", gap:6, flexWrap:"wrap", marginBottom:12 } },
+        CATEGORIES.map(cat =>
+          React.createElement("button", { key:cat, onClick:()=>setCatFilter(cat), style:chipStyle(cat) }, cat)
+        )
+      ),
+      // Result count
+      React.createElement("div", { style: { fontSize:11, color:"var(--text-muted)", marginBottom:12 } },
+        `${visible.length} technique${visible.length !== 1 ? "s" : ""}`
+      ),
+      // Card grid — auto-fill fills as many columns as fit
+      React.createElement("div", {
+        style: { display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(230px, 1fr))", gap:10 }
+      },
+        visible.length === 0
+          ? React.createElement("div", {
+              style: { gridColumn:"1/-1", textAlign:"center", padding:"48px 20px",
+                color:"var(--text-muted)", fontSize:14 }
+            }, "No techniques match those filters.")
+          : visible.map(t => React.createElement(TechCard, {
+              key:t.id, t, inBuild:build.includes(t.id), onAdd:addT, onRemove:removeT
+            }))
+      )
+    ),
+
+    // ── MY BUILD VIEW ─────────────────────────────────────────
+    view === "build" && React.createElement("div", {
+      style: { maxWidth:620, margin:"0 auto", padding:20 }
+    },
+      // Character name input
+      React.createElement("div", { style:{marginBottom:20} },
+        React.createElement("div", {
+          style:{fontSize:11,color:"var(--text-muted)",marginBottom:6,textTransform:"uppercase",letterSpacing:"0.06em"}
+        }, "Character name"),
+        React.createElement("input", {
+          type:"text", placeholder:"Enter a name…", value:charName,
+          onChange:e=>setCharName(e.target.value),
+          style:{width:"100%",maxWidth:320,fontFamily:"Georgia,serif",fontSize:16}
+        })
+      ),
+      // Stats cards row
+      React.createElement("div", { style:{display:"flex",gap:12,marginBottom:20,flexWrap:"wrap"} },
+        [
+          { label:"Techniques", value:build.length },
+          { label:"Build points", value:`${totalCost} / ?` },
+        ].map(({label,value}) =>
+          React.createElement("div", {
+            key:label,
+            style:{background:"var(--surface-1)",borderRadius:8,padding:"10px 16px",minWidth:120}
+          },
+            React.createElement("div", { style:{fontSize:11,color:"var(--text-muted)",marginBottom:4} }, label),
+            React.createElement("div", { style:{fontSize:22,fontWeight:500} }, value)
+          )
+        ),
+        React.createElement("div", {
+          style:{fontSize:11,color:"var(--text-muted)",alignSelf:"flex-end",paddingBottom:12,fontStyle:"italic",flex:1}
+        }, "Point costs are placeholder (1 each) — real totals once cost column is added.")
+      ),
+      // Action buttons
+      React.createElement("div", { style:{display:"flex",gap:8,marginBottom:20,flexWrap:"wrap",alignItems:"center"} },
+        React.createElement("button", { onClick:doExport, style:actStyle(false) },
+          React.createElement("i", {className:"ti ti-download","aria-hidden":"true"}), "Export build"),
+        React.createElement("button", { onClick:()=>importRef.current.click(), style:actStyle(false) },
+          React.createElement("i", {className:"ti ti-upload","aria-hidden":"true"}), "Import build"),
+        React.createElement("input", { ref:importRef, type:"file", accept:".json", onChange:doImport, style:{display:"none"} }),
+        React.createElement("button", { onClick:doShare, style:actStyle(false) },
+          React.createElement("i", {className:"ti ti-link","aria-hidden":"true"}), "Copy share link"),
+        build.length > 0 && React.createElement("button", { onClick:clearB, style:actStyle(true) }, "Clear build"),
+        shareMsg && React.createElement("span", { style:{fontSize:12,color:"var(--text-accent)"} }, shareMsg)
+      ),
+      // Build list
+      buildTechs.length === 0
+        ? React.createElement("div", {
+            style:{textAlign:"center",padding:"40px 20px",color:"var(--text-muted)",fontSize:14}
+          }, "No techniques added yet — head to Browse to pick some.")
+        : React.createElement("div", { style:{display:"flex",flexDirection:"column",gap:6} },
+            buildTechs.map(t => {
+              const c = CAT_COLOR[t.cat] || "var(--border)";
+              return React.createElement("div", {
+                key:t.id,
+                style:{
+                  display:"flex",alignItems:"center",gap:12,
+                  background:"var(--surface-2)",border:"0.5px solid var(--border)",
+                  borderLeft:`3px solid ${c}`,borderRadius:"0 8px 8px 0",padding:"8px 12px"
+                }
+              },
+                React.createElement("div", { style:{flex:1} },
+                  React.createElement("span", {
+                    style:{fontFamily:"Georgia,serif",fontWeight:"bold",fontSize:13}
+                  }, t.name),
+                  React.createElement("span", { style:{fontSize:11,color:"var(--text-accent)",marginLeft:8} },
+                    lvlLabel(t.lMin, t.lMax)),
+                  React.createElement("span", { style:{fontSize:11,color:c,marginLeft:6} }, t.cat)
+                ),
+                React.createElement("button", {
+                  onClick:()=>removeT(t.id),
+                  "aria-label":`Remove ${t.name}`,
+                  style:{background:"transparent",border:"none",color:"var(--text-muted)",fontSize:16,lineHeight:1,padding:"2px 4px"}
+                }, "✕")
+              );
+            })
+          )
+    ),
+
+    // ── CHARACTER SHEET VIEW ──────────────────────────────────
+    view === "sheet" && React.createElement("div", {
+      style:{ maxWidth:620, margin:"0 auto", padding:20 }
+    },
+      buildTechs.length === 0
+        ? React.createElement("div", {
+            style:{textAlign:"center",padding:"40px 20px",color:"var(--text-muted)",fontSize:14}
+          }, "Add techniques in Browse, then see them formatted here.")
+        : React.createElement("div", null,
+            // Character header
+            React.createElement("div", {
+              style:{borderBottom:"0.5px solid var(--border-strong)",paddingBottom:12,marginBottom:24}
+            },
+              React.createElement("div", {
+                style:{fontFamily:"Georgia,serif",fontSize:24,fontWeight:"bold",color:"var(--text-primary)"}
+              }, charName || "Unnamed hero"),
+              React.createElement("div", { style:{fontSize:13,color:"var(--text-muted)",marginTop:4} },
+                `${buildTechs.length} technique${buildTechs.length!==1?"s":""} · ${totalCost} build points`)
+            ),
+            // Sections grouped by category
+            Object.keys(CAT_COLOR)
+              .filter(cat => buildTechs.some(t => t.cat===cat))
+              .map(cat => React.createElement("div", { key:cat, style:{marginBottom:28} },
+                // Category header
+                React.createElement("div", {
+                  style:{
+                    fontSize:11,fontWeight:500,textTransform:"uppercase",
+                    letterSpacing:"0.1em",color:CAT_COLOR[cat],
+                    borderBottom:"0.5px solid var(--border)",paddingBottom:6,marginBottom:14
+                  }
+                }, cat),
+                // Technique entries
+                buildTechs.filter(t=>t.cat===cat).map(t =>
+                  React.createElement(SheetEntry, { key:t.id, t })
+                )
+              ))
+          )
+    )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
+</script>
+</body>
+</html>
