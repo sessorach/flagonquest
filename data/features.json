@@ -1,802 +1,802 @@
 [
   {
-    "ID": "F001",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Lunging",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "Up to X times, you may Shift up to 2 meters in a single direction, each either before or after the attack. You can declare the use of this Technique before being in range, but cannot make the attack unless you end up in range at some point.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F002",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Wind Slash",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "For the attack the chosen weapon's range is increased by [4 times X].",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F003",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Turn Elements",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + 1 + [Hearts] stacks of [chosen Element] Ward.",
-    "Additional Prereq": "(Academics, Sorcery, or Theurgy) 2"
-  },
-  {
-    "ID": "F004",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Distracting",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits or is Parried, you Taunt the target X + [Hearts] times.",
-    "Additional Prereq": "Presence 2"
-  },
-  {
-    "ID": "F005",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Battering",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits or is Parried, the target gains X stacks of Bleeding + [Clubs] stacks.",
-    "Additional Prereq": "Might 2"
-  },
-  {
-    "ID": "F006",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Wing Clip",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits, the target is Crippled X + [Clubs] times.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F007",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Harrying",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits or is Parried, the target is Harried X + [Diamonds] times.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F008",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Hamstring",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits, the target is Slowed X + [Spades] times.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F009",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Backfoot",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits, you may adjust the target's position in turn order by up to X + [Spades] times.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F010",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Lodestone",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits or is Parried, you Push the target (2 × [X + Spades]) meters.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F011",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Half Guard",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits, you gain X + 1 + [Spades] stacks of Protected.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F012",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Blade of Four Fates",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "Sift X cards, adding each of their suits to the suit pool for all attacks made.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F013",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Victorious",
-    "Tier": "Basic",
-    "Point Cost": 2,
-    "Description": "If the attack Downs the target, draw a card. You may only apply one copy of this feature, and cannot draw more than one card this way.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F014",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Elemental",
-    "Tier": "Basic",
-    "Point Cost": 3,
-    "Description": "When you choose this feature, choose Fire, Frost, or Shadow — the attack deals its damage as that type instead.",
-    "Additional Prereq": "Sorcery 2"
-  },
-  {
-    "ID": "F015",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Viper's Sting",
-    "Tier": "Basic",
-    "Point Cost": 3,
-    "Description": "The Technique takes 1 less AP to use. You may only apply one copy of this feature.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F016",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Calculated",
-    "Tier": "Basic",
-    "Point Cost": 3,
-    "Description": "You have Good Luck on the attack.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F017",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Ascended Blade",
-    "Tier": "Advanced",
-    "Point Cost": 3,
-    "Description": "You may have the attack deal its damage as Brilliant damage.",
-    "Additional Prereq": "Composure, Meditation, or Theurgy 3"
-  },
-  {
-    "ID": "F018",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Whirlwind",
-    "Tier": "Advanced",
-    "Point Cost": 6,
-    "Description": "If your chosen weapon is a close-range weapon, the attack may target an additional target.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F019",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Piercing Shot",
-    "Tier": "Advanced",
-    "Point Cost": 6,
-    "Description": "If your chosen weapon is a ranged weapon, the attack may target an additional target as long as all targets are in a line from you.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F020",
-    "Technique ID": "T072",
-    "Technique": "Battle Maneuver",
-    "Feature Name": "Flurry",
-    "Tier": "Advanced",
-    "Point Cost": 6,
-    "Description": "You make an extra weapon attack against each target, which benefits from all features.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F021",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Brawn over Banter",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "(Style) Use Might for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",
-    "Additional Prereq": "Might 2"
-  },
-  {
-    "ID": "F022",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Unpleasant Insinuation",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "(Style) Use Streetwise for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",
-    "Additional Prereq": "Streetwise 2"
-  },
-  {
-    "ID": "F023",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "\"Well, Actually...\"",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "(Style) Use Academics for the statement, and if successful gain [Spades] extra successes. You may only apply one Style feature at a time.",
-    "Additional Prereq": "Academics 2"
-  },
-  {
-    "ID": "F024",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Witty Quote",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "(Style) Use Performance for the statement, and if successful gain [Hearts] extra successes. You may only apply one Style feature at a time.",
-    "Additional Prereq": "Performance 2"
-  },
-  {
-    "ID": "F025",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Emotional Appeal",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "(Style) Instead make a Charismatic statement, and if successful you gain an extra success.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F026",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Careful Delivery",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "You have Good Luck on the statement.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F027",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Airtight Argument",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the statement is successful and its suit pool has at least one of each suit, you gain 4 extra successes.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F028",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Edgy Remark",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the statement succeeds, you may have each party gain any number of Concessions up to your total successes on the statement.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F029",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Friendly-Faced",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the statement succeeds, instead of its normal effect, for each success your party ignores the next Concession they would gain this encounter.",
-    "Additional Prereq": "Rapport 2"
-  },
-  {
-    "ID": "F030",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Single Out",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the statement succeeds, the target must stay in the front on their next turn.",
-    "Additional Prereq": "Persuasion 2"
-  },
-  {
-    "ID": "F031",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Upstage",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the statement succeeds, choose Strategic or Charismatic statements. On the other party's next turn, any members who make that type of statement have Bad Luck on them.",
-    "Additional Prereq": "Presence 2"
-  },
-  {
-    "ID": "F032",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Setup & Follow",
-    "Tier": "Advanced",
-    "Point Cost": 1,
-    "Description": "If this statement is made to support someone, that person has Good Luck on the statement you're supporting.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F033",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Word for Word",
-    "Tier": "Advanced",
-    "Point Cost": 2,
-    "Description": "If the statement succeeds, the other party may only make social statements of the same type as this statement for the rest of the social contest. This effect ends if any of your party members make a statement of a different type.",
-    "Additional Prereq": "Persuasion 3"
-  },
-  {
-    "ID": "F034",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Practiced Comeback",
-    "Tier": "Advanced",
-    "Point Cost": 4,
-    "Description": "You instead make two social statements, and apply all features to each. You may only apply one copy of this feature.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F035",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Bully into Submission",
-    "Tier": "Advanced",
-    "Point Cost": 2,
-    "Description": "(Succession) If the statement succeeds, choose one member of the other party. If you win the social contest, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Succession feature at a time.",
-    "Additional Prereq": "Presence 3"
-  },
-  {
-    "ID": "F036",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "Leading Question",
-    "Tier": "Advanced",
-    "Point Cost": 2,
-    "Description": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social contest, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Succession feature at a time.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F037",
-    "Technique ID": "T057",
-    "Technique": "Social Maneuver",
-    "Feature Name": "New Best Friend",
-    "Tier": "Advanced",
-    "Point Cost": 2,
-    "Description": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social contest and chooses Win Over, the shift in the target's opinion will be permanent — they will treat you with a favorable attitude as though you are a friend. You may only apply one Succession feature at a time.",
-    "Additional Prereq": "Rapport 3"
-  },
-  {
-    "ID": "F038",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Reach",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "Increase the Range of the Spell by [Theurgy Skill Total] meters.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F039",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Step of Air",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "The target is Hasted X + 1 times.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F040",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Shielding",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "The target is Protected X + 1 times.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F041",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Turn Elements",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. The target gains X + 1 stacks of [chosen Element] Ward.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F042",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Steady",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "Remove a stack of either Slowed or Crippled from the target.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F043",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Embolden",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "Remove a stack of either Taunted or Frightened from the target.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F044",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Retribution",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "The next X times this encounter that a damaging attack hits the target, the attacker gains a stack of Bleeding.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F045",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "River's Might",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "For the next X damaging attacks the target hits with this encounter, the creature hit is Pushed back 3 meters.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F046",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Touch of Chaos",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "For the next [2 times X] flips the target makes this encounter, they Sift a card and add its suit to the pool for that flip.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F047",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Quickened",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "The Spell only takes 1 AP to cast.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F048",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Elemental Enhancement",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. The next X damaging attacks the target hits with this encounter may deal their damage as the chosen type.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F049",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Mass Blessing",
-    "Tier": "Advanced",
-    "Point Cost": 2,
-    "Description": "The Spell may target an additional target.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F050",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Alacrity",
-    "Tier": "Advanced",
-    "Point Cost": 2,
-    "Description": "The target may adjust their position in turn order by up to 2.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F051",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Steal Fate",
-    "Tier": "Advanced",
-    "Point Cost": 2,
-    "Description": "For the next X weapon attacks the target makes this encounter, if the attack Downs a creature the target may draw a card. They may only draw 1 card per casting of this Spell.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F052",
-    "Technique ID": "T104",
-    "Technique": "Spirit Blessing",
-    "Feature Name": "Guided Hand",
-    "Tier": "Advanced",
-    "Point Cost": 2,
-    "Description": "The target has Good Luck on the next X attacks they make.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F053",
-    "Technique ID": "T105",
-    "Technique": "Healing Magic",
-    "Feature Name": "Reach",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "Increase the Range of the Spell by [Theurgy Skill Total] meters.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F054",
-    "Technique ID": "T105",
-    "Technique": "Healing Magic",
-    "Feature Name": "Purify",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "Remove 1 stack of Bleeding from the target. Reduce the effects of each poison afflicting the target as though an hour had passed.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F055",
-    "Technique ID": "T105",
-    "Technique": "Healing Magic",
-    "Feature Name": "Rejuvenate",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "Instead of healing immediately, the target heals 1 Shallow Health at the start of each of their turns for [Spell's healing amount] rounds.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F056",
-    "Technique ID": "T105",
-    "Technique": "Healing Magic",
-    "Feature Name": "Guardian Angel",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "The next time this scene the target would be Downed, instead they are reduced to X Deep Health.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F057",
-    "Technique ID": "T105",
-    "Technique": "Healing Magic",
-    "Feature Name": "Vitality",
-    "Tier": "Basic",
-    "Point Cost": 2,
-    "Description": "The Spell's healing is increased by 1.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F058",
-    "Technique ID": "T105",
-    "Technique": "Healing Magic",
-    "Feature Name": "Triage",
-    "Tier": "Basic",
-    "Point Cost": 3,
-    "Description": "The Spell's healing for each target is increased by 2 if that target is Wounded.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F059",
-    "Technique ID": "T105",
-    "Technique": "Healing Magic",
-    "Feature Name": "Deep Mending",
-    "Tier": "Advanced",
-    "Point Cost": 2,
-    "Description": "Any healing from the Spell may apply to Deep or Shallow Health.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F060",
-    "Technique ID": "T105",
-    "Technique": "Healing Magic",
-    "Feature Name": "Healing Pact",
-    "Tier": "Advanced",
-    "Point Cost": 5,
-    "Description": "The Spell may target an additional target.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F061",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Tormenting Curse",
-    "Tier": "Basic",
-    "Point Cost": 0,
-    "Description": "The spell attack deals no damage. When you learn this Spell, you may choose 3 additional points worth of features. You may only apply one copy of this feature.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F062",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Destructive",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "The spell attack deals an extra X damage.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F063",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Arcane Chant",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "When you declare the Spell, you may spend any amount of extra AP. For each AP spent, choose 2 points' worth of features from among those the Spell already has, and apply them in addition to the existing ones.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F064",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Lance",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "Increase the Range of the spell attack by [Sorcery Skill Total] meters.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F065",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Abjuring",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "After the spell attack is resolved, you gain X + 1 stacks of [attack's damage type] Ward + [Hearts] stacks. X is the number of copies of this feature.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F066",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Barraging",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits, or if the target Dodges the attack, they are Harried X + [Hearts] stacks.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F067",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Sanguine",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "The spell attack deals an extra 3 damage. If it would cause the target to lose Health, instead they gain that many stacks of Bleeding + [Clubs] stacks. You may only apply one copy of this feature.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F068",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Corrupting",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits, the target gains [twice X] + [Diamonds] stacks of Vulnerable. You may change the attack's damage type to Shadow.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F069",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Necrotic",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits, before damage or other effects, the target gains [twice X] + [Diamonds] stacks of Necrotic. You may change the attack's damage type to Shadow.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F070",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Kinetic",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the spell attack hits, the target is Pushed up to [four times X] + Spades meters in a direction of your choice.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F071",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Frigid",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the attack hits, the target is Slowed [twice X] + [Spades] times. You may change the attack's damage type to Frost.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F072",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Glacier",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "After the attack, every space occupied by or adjacent to any targeted creature gains [twice X] + [Spades] levels of Difficult Terrain, lasting for the encounter. You may change the attack's damage type to Frost.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F073",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Reign of Blood",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "If the spell attack hits, remove up to [twice X] + [Clubs] stacks of Bleeding from the target, and they lose that much Health.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F074",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Wild Magic",
-    "Tier": "Basic",
-    "Point Cost": 1,
-    "Description": "Sift [three times X] cards, adding each of their suits to the suit pool for all attacks made.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F075",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Piercing Elements",
-    "Tier": "Advanced",
-    "Point Cost": 1,
-    "Description": "You have Good Luck on the spell attack.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F076",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Draw Power",
-    "Tier": "Advanced",
-    "Point Cost": 1,
-    "Description": "If the attack Downs the target, they are instantly killed and you draw a card. You may only draw one card per casting. You may change the attack's damage type to Shadow.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F077",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Furrow (Shape)",
-    "Tier": "Advanced",
-    "Point Cost": 3,
-    "Description": "The spell attack instead targets all creatures in a line [half your Sorcery Skill Total] meters long, from your space. You may only apply one Shape feature to the Spell.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F078",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Funnel (Shape)",
-    "Tier": "Advanced",
-    "Point Cost": 3,
-    "Description": "The spell attack instead targets all creatures within a 2-meter-long cone. You may only apply one Shape feature to the Spell.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F079",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Nova (Shape)",
-    "Tier": "Advanced",
-    "Point Cost": 3,
-    "Description": "The spell attack instead targets all adjacent creatures. You may only apply one Shape feature to the Spell.",
-    "Additional Prereq": null
-  },
-  {
-    "ID": "F080",
-    "Technique ID": "T120",
-    "Technique": "War Magic",
-    "Feature Name": "Channel (Shape)",
-    "Tier": "Advanced",
-    "Point Cost": 3,
-    "Description": "Each time the spell attack hits, on your next turn you may spend the AP used to cast the Spell to make a spell attack with all the same features against one of the targets. You may only apply one Shape feature to the Spell.",
-    "Additional Prereq": null
+    "id": "F001",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Lunging",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "Up to X times, you may Shift up to 2 meters in a single direction, each either before or after the attack. You can declare the use of this Technique before being in range, but cannot make the attack unless you end up in range at some point.",
+    "prereq": null
+  },
+  {
+    "id": "F002",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Wind Slash",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "For the attack the chosen weapon's range is increased by [4 times X].",
+    "prereq": null
+  },
+  {
+    "id": "F003",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Turn Elements",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + 1 + [Hearts] stacks of [chosen Element] Ward.",
+    "prereq": "(Academics, Sorcery, or Theurgy) 2"
+  },
+  {
+    "id": "F004",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Distracting",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits or is Parried, you Taunt the target X + [Hearts] times.",
+    "prereq": "Presence 2"
+  },
+  {
+    "id": "F005",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Battering",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits or is Parried, the target gains X stacks of Bleeding + [Clubs] stacks.",
+    "prereq": "Might 2"
+  },
+  {
+    "id": "F006",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Wing Clip",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits, the target is Crippled X + [Clubs] times.",
+    "prereq": null
+  },
+  {
+    "id": "F007",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Harrying",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits or is Parried, the target is Harried X + [Diamonds] times.",
+    "prereq": null
+  },
+  {
+    "id": "F008",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Hamstring",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits, the target is Slowed X + [Spades] times.",
+    "prereq": null
+  },
+  {
+    "id": "F009",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Backfoot",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits, you may adjust the target's position in turn order by up to X + [Spades] times.",
+    "prereq": null
+  },
+  {
+    "id": "F010",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Lodestone",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits or is Parried, you Push the target (2 × [X + Spades]) meters.",
+    "prereq": null
+  },
+  {
+    "id": "F011",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Half Guard",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits, you gain X + 1 + [Spades] stacks of Protected.",
+    "prereq": null
+  },
+  {
+    "id": "F012",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Blade of Four Fates",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "Sift X cards, adding each of their suits to the suit pool for all attacks made.",
+    "prereq": null
+  },
+  {
+    "id": "F013",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Victorious",
+    "tier": "Basic",
+    "point_cost": 2,
+    "description": "If the attack Downs the target, draw a card. You may only apply one copy of this feature, and cannot draw more than one card this way.",
+    "prereq": null
+  },
+  {
+    "id": "F014",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Elemental",
+    "tier": "Basic",
+    "point_cost": 3,
+    "description": "When you choose this feature, choose Fire, Frost, or Shadow — the attack deals its damage as that type instead.",
+    "prereq": "Sorcery 2"
+  },
+  {
+    "id": "F015",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Viper's Sting",
+    "tier": "Basic",
+    "point_cost": 3,
+    "description": "The Technique takes 1 less AP to use. You may only apply one copy of this feature.",
+    "prereq": null
+  },
+  {
+    "id": "F016",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Calculated",
+    "tier": "Basic",
+    "point_cost": 3,
+    "description": "You have Good Luck on the attack.",
+    "prereq": null
+  },
+  {
+    "id": "F017",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Ascended Blade",
+    "tier": "Advanced",
+    "point_cost": 3,
+    "description": "You may have the attack deal its damage as Brilliant damage.",
+    "prereq": "Composure, Meditation, or Theurgy 3"
+  },
+  {
+    "id": "F018",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Whirlwind",
+    "tier": "Advanced",
+    "point_cost": 6,
+    "description": "If your chosen weapon is a close-range weapon, the attack may target an additional target.",
+    "prereq": null
+  },
+  {
+    "id": "F019",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Piercing Shot",
+    "tier": "Advanced",
+    "point_cost": 6,
+    "description": "If your chosen weapon is a ranged weapon, the attack may target an additional target as long as all targets are in a line from you.",
+    "prereq": null
+  },
+  {
+    "id": "F020",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Flurry",
+    "tier": "Advanced",
+    "point_cost": 6,
+    "description": "You make an extra weapon attack against each target, which benefits from all features.",
+    "prereq": null
+  },
+  {
+    "id": "F021",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Brawn over Banter",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "(Style) Use Might for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",
+    "prereq": "Might 2"
+  },
+  {
+    "id": "F022",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Unpleasant Insinuation",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "(Style) Use Streetwise for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",
+    "prereq": "Streetwise 2"
+  },
+  {
+    "id": "F023",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "\"Well, Actually...\"",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "(Style) Use Academics for the statement, and if successful gain [Spades] extra successes. You may only apply one Style feature at a time.",
+    "prereq": "Academics 2"
+  },
+  {
+    "id": "F024",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Witty Quote",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "(Style) Use Performance for the statement, and if successful gain [Hearts] extra successes. You may only apply one Style feature at a time.",
+    "prereq": "Performance 2"
+  },
+  {
+    "id": "F025",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Emotional Appeal",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "(Style) Instead make a Charismatic statement, and if successful you gain an extra success.",
+    "prereq": null
+  },
+  {
+    "id": "F026",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Careful Delivery",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "You have Good Luck on the statement.",
+    "prereq": null
+  },
+  {
+    "id": "F027",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Airtight Argument",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the statement is successful and its suit pool has at least one of each suit, you gain 4 extra successes.",
+    "prereq": null
+  },
+  {
+    "id": "F028",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Edgy Remark",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the statement succeeds, you may have each party gain any number of Concessions up to your total successes on the statement.",
+    "prereq": null
+  },
+  {
+    "id": "F029",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Friendly-Faced",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the statement succeeds, instead of its normal effect, for each success your party ignores the next Concession they would gain this encounter.",
+    "prereq": "Rapport 2"
+  },
+  {
+    "id": "F030",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Single Out",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the statement succeeds, the target must stay in the front on their next turn.",
+    "prereq": "Persuasion 2"
+  },
+  {
+    "id": "F031",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Upstage",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the statement succeeds, choose Strategic or Charismatic statements. On the other party's next turn, any members who make that type of statement have Bad Luck on them.",
+    "prereq": "Presence 2"
+  },
+  {
+    "id": "F032",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Setup & Follow",
+    "tier": "Advanced",
+    "point_cost": 1,
+    "description": "If this statement is made to support someone, that person has Good Luck on the statement you're supporting.",
+    "prereq": null
+  },
+  {
+    "id": "F033",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Word for Word",
+    "tier": "Advanced",
+    "point_cost": 2,
+    "description": "If the statement succeeds, the other party may only make social statements of the same type as this statement for the rest of the social contest. This effect ends if any of your party members make a statement of a different type.",
+    "prereq": "Persuasion 3"
+  },
+  {
+    "id": "F034",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Practiced Comeback",
+    "tier": "Advanced",
+    "point_cost": 4,
+    "description": "You instead make two social statements, and apply all features to each. You may only apply one copy of this feature.",
+    "prereq": null
+  },
+  {
+    "id": "F035",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Bully into Submission",
+    "tier": "Advanced",
+    "point_cost": 2,
+    "description": "(Succession) If the statement succeeds, choose one member of the other party. If you win the social contest, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Succession feature at a time.",
+    "prereq": "Presence 3"
+  },
+  {
+    "id": "F036",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Leading Question",
+    "tier": "Advanced",
+    "point_cost": 2,
+    "description": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social contest, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Succession feature at a time.",
+    "prereq": null
+  },
+  {
+    "id": "F037",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "New Best Friend",
+    "tier": "Advanced",
+    "point_cost": 2,
+    "description": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social contest and chooses Win Over, the shift in the target's opinion will be permanent — they will treat you with a favorable attitude as though you are a friend. You may only apply one Succession feature at a time.",
+    "prereq": "Rapport 3"
+  },
+  {
+    "id": "F038",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Reach",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "Increase the Range of the Spell by [Theurgy Skill Total] meters.",
+    "prereq": null
+  },
+  {
+    "id": "F039",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Step of Air",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "The target is Hasted X + 1 times.",
+    "prereq": null
+  },
+  {
+    "id": "F040",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Shielding",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "The target is Protected X + 1 times.",
+    "prereq": null
+  },
+  {
+    "id": "F041",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Turn Elements",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. The target gains X + 1 stacks of [chosen Element] Ward.",
+    "prereq": null
+  },
+  {
+    "id": "F042",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Steady",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "Remove a stack of either Slowed or Crippled from the target.",
+    "prereq": null
+  },
+  {
+    "id": "F043",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Embolden",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "Remove a stack of either Taunted or Frightened from the target.",
+    "prereq": null
+  },
+  {
+    "id": "F044",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Retribution",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "The next X times this encounter that a damaging attack hits the target, the attacker gains a stack of Bleeding.",
+    "prereq": null
+  },
+  {
+    "id": "F045",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "River's Might",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "For the next X damaging attacks the target hits with this encounter, the creature hit is Pushed back 3 meters.",
+    "prereq": null
+  },
+  {
+    "id": "F046",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Touch of Chaos",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "For the next [2 times X] flips the target makes this encounter, they Sift a card and add its suit to the pool for that flip.",
+    "prereq": null
+  },
+  {
+    "id": "F047",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Quickened",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "The Spell only takes 1 AP to cast.",
+    "prereq": null
+  },
+  {
+    "id": "F048",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Elemental Enhancement",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. The next X damaging attacks the target hits with this encounter may deal their damage as the chosen type.",
+    "prereq": null
+  },
+  {
+    "id": "F049",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Mass Blessing",
+    "tier": "Advanced",
+    "point_cost": 2,
+    "description": "The Spell may target an additional target.",
+    "prereq": null
+  },
+  {
+    "id": "F050",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Alacrity",
+    "tier": "Advanced",
+    "point_cost": 2,
+    "description": "The target may adjust their position in turn order by up to 2.",
+    "prereq": null
+  },
+  {
+    "id": "F051",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Steal Fate",
+    "tier": "Advanced",
+    "point_cost": 2,
+    "description": "For the next X weapon attacks the target makes this encounter, if the attack Downs a creature the target may draw a card. They may only draw 1 card per casting of this Spell.",
+    "prereq": null
+  },
+  {
+    "id": "F052",
+    "technique_id": "T104",
+    "technique_name": "Spirit Blessing",
+    "feature_name": "Guided Hand",
+    "tier": "Advanced",
+    "point_cost": 2,
+    "description": "The target has Good Luck on the next X attacks they make.",
+    "prereq": null
+  },
+  {
+    "id": "F053",
+    "technique_id": "T105",
+    "technique_name": "Healing Magic",
+    "feature_name": "Reach",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "Increase the Range of the Spell by [Theurgy Skill Total] meters.",
+    "prereq": null
+  },
+  {
+    "id": "F054",
+    "technique_id": "T105",
+    "technique_name": "Healing Magic",
+    "feature_name": "Purify",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "Remove 1 stack of Bleeding from the target. Reduce the effects of each poison afflicting the target as though an hour had passed.",
+    "prereq": null
+  },
+  {
+    "id": "F055",
+    "technique_id": "T105",
+    "technique_name": "Healing Magic",
+    "feature_name": "Rejuvenate",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "Instead of healing immediately, the target heals 1 Shallow Health at the start of each of their turns for [Spell's healing amount] rounds.",
+    "prereq": null
+  },
+  {
+    "id": "F056",
+    "technique_id": "T105",
+    "technique_name": "Healing Magic",
+    "feature_name": "Guardian Angel",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "The next time this scene the target would be Downed, instead they are reduced to X Deep Health.",
+    "prereq": null
+  },
+  {
+    "id": "F057",
+    "technique_id": "T105",
+    "technique_name": "Healing Magic",
+    "feature_name": "Vitality",
+    "tier": "Basic",
+    "point_cost": 2,
+    "description": "The Spell's healing is increased by 1.",
+    "prereq": null
+  },
+  {
+    "id": "F058",
+    "technique_id": "T105",
+    "technique_name": "Healing Magic",
+    "feature_name": "Triage",
+    "tier": "Basic",
+    "point_cost": 3,
+    "description": "The Spell's healing for each target is increased by 2 if that target is Wounded.",
+    "prereq": null
+  },
+  {
+    "id": "F059",
+    "technique_id": "T105",
+    "technique_name": "Healing Magic",
+    "feature_name": "Deep Mending",
+    "tier": "Advanced",
+    "point_cost": 2,
+    "description": "Any healing from the Spell may apply to Deep or Shallow Health.",
+    "prereq": null
+  },
+  {
+    "id": "F060",
+    "technique_id": "T105",
+    "technique_name": "Healing Magic",
+    "feature_name": "Healing Pact",
+    "tier": "Advanced",
+    "point_cost": 5,
+    "description": "The Spell may target an additional target.",
+    "prereq": null
+  },
+  {
+    "id": "F061",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Tormenting Curse",
+    "tier": "Basic",
+    "point_cost": 0,
+    "description": "The spell attack deals no damage. When you learn this Spell, you may choose 3 additional points worth of features. You may only apply one copy of this feature.",
+    "prereq": null
+  },
+  {
+    "id": "F062",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Destructive",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "The spell attack deals an extra X damage.",
+    "prereq": null
+  },
+  {
+    "id": "F063",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Arcane Chant",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "When you declare the Spell, you may spend any amount of extra AP. For each AP spent, choose 2 points' worth of features from among those the Spell already has, and apply them in addition to the existing ones.",
+    "prereq": null
+  },
+  {
+    "id": "F064",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Lance",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "Increase the Range of the spell attack by [Sorcery Skill Total] meters.",
+    "prereq": null
+  },
+  {
+    "id": "F065",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Abjuring",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "After the spell attack is resolved, you gain X + 1 stacks of [attack's damage type] Ward + [Hearts] stacks. X is the number of copies of this feature.",
+    "prereq": null
+  },
+  {
+    "id": "F066",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Barraging",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits, or if the target Dodges the attack, they are Harried X + [Hearts] stacks.",
+    "prereq": null
+  },
+  {
+    "id": "F067",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Sanguine",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "The spell attack deals an extra 3 damage. If it would cause the target to lose Health, instead they gain that many stacks of Bleeding + [Clubs] stacks. You may only apply one copy of this feature.",
+    "prereq": null
+  },
+  {
+    "id": "F068",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Corrupting",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits, the target gains [twice X] + [Diamonds] stacks of Vulnerable. You may change the attack's damage type to Shadow.",
+    "prereq": null
+  },
+  {
+    "id": "F069",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Necrotic",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits, before damage or other effects, the target gains [twice X] + [Diamonds] stacks of Necrotic. You may change the attack's damage type to Shadow.",
+    "prereq": null
+  },
+  {
+    "id": "F070",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Kinetic",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the spell attack hits, the target is Pushed up to [four times X] + Spades meters in a direction of your choice.",
+    "prereq": null
+  },
+  {
+    "id": "F071",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Frigid",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the attack hits, the target is Slowed [twice X] + [Spades] times. You may change the attack's damage type to Frost.",
+    "prereq": null
+  },
+  {
+    "id": "F072",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Glacier",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "After the attack, every space occupied by or adjacent to any targeted creature gains [twice X] + [Spades] levels of Difficult Terrain, lasting for the encounter. You may change the attack's damage type to Frost.",
+    "prereq": null
+  },
+  {
+    "id": "F073",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Reign of Blood",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "If the spell attack hits, remove up to [twice X] + [Clubs] stacks of Bleeding from the target, and they lose that much Health.",
+    "prereq": null
+  },
+  {
+    "id": "F074",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Wild Magic",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": "Sift [three times X] cards, adding each of their suits to the suit pool for all attacks made.",
+    "prereq": null
+  },
+  {
+    "id": "F075",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Piercing Elements",
+    "tier": "Advanced",
+    "point_cost": 1,
+    "description": "You have Good Luck on the spell attack.",
+    "prereq": null
+  },
+  {
+    "id": "F076",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Draw Power",
+    "tier": "Advanced",
+    "point_cost": 1,
+    "description": "If the attack Downs the target, they are instantly killed and you draw a card. You may only draw one card per casting. You may change the attack's damage type to Shadow.",
+    "prereq": null
+  },
+  {
+    "id": "F077",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Furrow (Shape)",
+    "tier": "Advanced",
+    "point_cost": 3,
+    "description": "The spell attack instead targets all creatures in a line [half your Sorcery Skill Total] meters long, from your space. You may only apply one Shape feature to the Spell.",
+    "prereq": null
+  },
+  {
+    "id": "F078",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Funnel (Shape)",
+    "tier": "Advanced",
+    "point_cost": 3,
+    "description": "The spell attack instead targets all creatures within a 2-meter-long cone. You may only apply one Shape feature to the Spell.",
+    "prereq": null
+  },
+  {
+    "id": "F079",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Nova (Shape)",
+    "tier": "Advanced",
+    "point_cost": 3,
+    "description": "The spell attack instead targets all adjacent creatures. You may only apply one Shape feature to the Spell.",
+    "prereq": null
+  },
+  {
+    "id": "F080",
+    "technique_id": "T120",
+    "technique_name": "War Magic",
+    "feature_name": "Channel (Shape)",
+    "tier": "Advanced",
+    "point_cost": 3,
+    "description": "Each time the spell attack hits, on your next turn you may spend the AP used to cast the Spell to make a spell attack with all the same features against one of the targets. You may only apply one Shape feature to the Spell.",
+    "prereq": null
   }
 ]
