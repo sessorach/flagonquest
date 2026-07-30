@@ -238,6 +238,52 @@ function parsePointBudget(effectsText) {
   return Object.keys(map).length > 0 ? map : null;
 }
 
+// Word/digit → number, for resolving phrases like "twice" or "four times".
+const MULTIPLIER_WORDS = {
+  once: 1, twice: 2, thrice: 3,
+  one: 1, two: 2, three: 3, four: 4, five: 5,
+  six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
+};
+function wordOrDigitToNumber(tok) {
+  const t = tok.toLowerCase();
+  if (/^\d+$/.test(t)) return parseInt(t, 10);
+  return MULTIPLIER_WORDS[t] ?? null;
+}
+
+// Substitutes every "X" in a Feature's description with how many copies of
+// that Feature were chosen (per F065 Abjuring: "X is the number of copies
+// of this feature"), collapsing simple arithmetic like "X + 1" or "twice X"
+// into one number. Terms that mix X with a card-suit placeholder (e.g.
+// "X + [Hearts]") are left partly symbolic — we substitute X but can't
+// resolve the suit, so both remain in the text.
+function applyFeatureCount(text, count) {
+  if (!text || count == null || !/\bX\b/.test(text)) return text;
+  let out = text;
+
+  // "N times X" / "<word> times X" → a single computed number
+  out = out.replace(
+    /\b(\d+|once|twice|thrice|one|two|three|four|five|six|seven|eight|nine|ten)\s+times?\s+X\b/gi,
+    (m, tok) => {
+      const n = wordOrDigitToNumber(tok);
+      return n != null ? String(n * count) : m;
+    }
+  );
+
+  // "twice X" / "thrice X" with no "times" in between
+  out = out.replace(/\b(twice|thrice)\s+X\b/gi, (m, tok) => String(wordOrDigitToNumber(tok) * count));
+
+  // Any remaining bare X
+  out = out.replace(/\bX\b/g, String(count));
+
+  // Collapse pure-number addition chains ("4 + 1" → "5"); leaves
+  // "4 + [Hearts]" alone since [Hearts] isn't a plain number.
+  out = out.replace(/\b\d+(?:\s*\+\s*\d+)+\b/g, m =>
+    String(m.split("+").reduce((sum, part) => sum + parseInt(part.trim(), 10), 0))
+  );
+
+  return out;
+}
+
 
 // ══════════════════════════════════════════════════════════════════
 // FEATURE BUILDER — pick a level and a set of Features within that
@@ -251,49 +297,64 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
     if (!budgetMap || budgetMap[lv]) availableLevels.push(lv);
   }
 
-  const [level, setLevel]           = useState(initial?.level ?? availableLevels[0] ?? tech.level_min);
-  const [featureIds, setFeatureIds] = useState(initial?.featureIds ?? []);
+  const [level, setLevel]   = useState(initial?.level ?? availableLevels[0] ?? tech.level_min);
+  // Changing `level` never touches `counts` — picking a higher level (an
+  // "upgrade") keeps every previously chosen Feature and its count intact,
+  // it just opens up more budget to add to them.
+  const [counts, setCounts] = useState(() => ({ ...(initial?.picks ?? {}) }));
 
   const budget           = budgetMap ? budgetMap[level] : null;
-  const points           = budget ? budget.points : null;
+  const points            = budget ? budget.points : null;
   const advancedUnlocked = budget ? budget.advanced : true;
 
   const basicFeatures    = features.filter(f => f.tier === "Basic");
   const advancedFeatures = features.filter(f => f.tier === "Advanced");
 
-  const spent     = featureIds.reduce((sum, id) => sum + (features.find(f => f.id === id)?.point_cost ?? 0), 0);
-  const remaining = points != null ? points - spent : null;
+  const spent      = Object.entries(counts).reduce((sum, [id, n]) =>
+    sum + n * (features.find(f => f.id === id)?.point_cost ?? 0), 0);
+  const remaining  = points != null ? points - spent : null;
   const overBudget = remaining != null && remaining < 0;
 
-  const toggleFeature = f => setFeatureIds(ids =>
-    ids.includes(f.id) ? ids.filter(id => id !== f.id) : [...ids, f.id]
-  );
+  const incFeature = f => {
+    if (remaining != null && f.point_cost > remaining) return;
+    setCounts(c => ({ ...c, [f.id]: (c[f.id] || 0) + 1 }));
+  };
+  const decFeature = f => setCounts(c => {
+    const next = (c[f.id] || 0) - 1;
+    const copy = { ...c };
+    if (next <= 0) delete copy[f.id]; else copy[f.id] = next;
+    return copy;
+  });
+
+  const stepBtnStyle = {
+    width: 20, height: 20, lineHeight: "18px", padding: 0,
+    fontSize: 13, color: TEXT.muted, background: "transparent",
+    border: "0.5px solid #2d3555", borderRadius: 4,
+  };
 
   const featureRow = f => {
-    const checked  = featureIds.includes(f.id);
-    const disabled = !checked && remaining != null && f.point_cost > remaining;
+    const count    = counts[f.id] || 0;
+    const disabled = remaining != null && f.point_cost > remaining;
     return (
-      <label key={f.id} style={{
-        display: "flex", gap: 8, alignItems: "flex-start",
-        opacity: disabled ? 0.45 : 1,
-        cursor: disabled ? "not-allowed" : "pointer",
-      }}>
-        <input
-          type="checkbox" checked={checked} disabled={disabled}
-          onChange={() => toggleFeature(f)}
-          style={{ marginTop: 4, flexShrink: 0 }}
-        />
+      <div key={f.id} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0, marginTop: 2 }}>
+          <button onClick={() => decFeature(f)} disabled={count === 0} style={stepBtnStyle}>−</button>
+          <span style={{ width: 16, textAlign: "center", fontSize: 13, color: TEXT.body }}>{count}</span>
+          <button onClick={() => incFeature(f)} disabled={disabled} style={stepBtnStyle}>+</button>
+        </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 13, color: TEXT.body }}>
             <strong>{f.feature_name}</strong>
-            <span style={{ color: TEXT.faint }}> ({f.point_cost} pt{f.point_cost !== 1 ? "s" : ""})</span>
+            <span style={{ color: TEXT.faint }}> ({f.point_cost} pt{f.point_cost !== 1 ? "s" : ""} each)</span>
           </div>
-          <div style={{ fontSize: 13, color: TEXT.muted, lineHeight: 1.4 }}>{f.description}</div>
+          <div style={{ fontSize: 13, color: TEXT.muted, lineHeight: 1.4 }}>
+            {count > 0 ? applyFeatureCount(f.description, count) : f.description}
+          </div>
           {f.prereq && (
             <div style={{ fontSize: 12, color: TEXT.faint }}>Requires: {f.prereq}</div>
           )}
         </div>
-      </label>
+      </div>
     );
   };
 
@@ -354,7 +415,7 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
 
       <div style={{ display: "flex", gap: 8 }}>
         <button
-          onClick={() => onSave({ level, featureIds })}
+          onClick={() => onSave({ level, picks: counts })}
           disabled={overBudget}
           style={{
             fontSize: 13, color: overBudget ? TEXT.faint : "#d4a843",
@@ -388,8 +449,10 @@ function FeaturesSection({
   tech, features, instances, configs, repeatable,
   onSaveConfig, onDuplicateInstance, onRemoveInstance,
 }) {
-  const [builderFor, setBuilderFor] = useState(null); // null | "new" | a uid
+  const [builderFor, setBuilderFor]   = useState(null); // null | "new" | a uid
+  const [builderSeed, setBuilderSeed] = useState(null); // the {level, picks} to open the builder with
   const budgetMap = useMemo(() => parsePointBudget(tech.effects), [tech.effects]);
+  const maxLevel = tech.level_max ?? tech.level_min;
 
   const smallBtn = {
     fontSize: 12, color: TEXT.muted, background: "transparent",
@@ -400,7 +463,19 @@ function FeaturesSection({
     border: "0.5px solid #c0392b", borderRadius: 4, padding: "2px 8px",
   };
 
-  const featureName = id => features.find(f => f.id === id)?.feature_name;
+  const openNew     = () => { setBuilderFor("new"); setBuilderSeed(null); };
+  const openEdit    = uid => { setBuilderFor(uid); setBuilderSeed(configs[uid] ?? null); };
+  // "Upgrade" jumps straight to the next level up, keeping every Feature
+  // (and its count) already chosen — the increased budget just leaves
+  // room to add more, per the "buildable techniques can be upgraded but
+  // must keep all previous options" rule.
+  const openUpgrade = uid => {
+    const cfg = configs[uid];
+    const nextLevel = Math.min((cfg?.level ?? tech.level_min) + 1, maxLevel);
+    setBuilderFor(uid);
+    setBuilderSeed({ level: nextLevel, picks: cfg?.picks ?? {} });
+  };
+  const closeBuilder = () => { setBuilderFor(null); setBuilderSeed(null); };
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -414,18 +489,18 @@ function FeaturesSection({
         if (builderFor === uid) {
           return (
             <FeatureBuilder
-              key={uid}
+              key={`${uid}-${builderSeed?.level}`}
               tech={tech}
               features={features}
               budgetMap={budgetMap}
-              initial={cfg}
+              initial={builderSeed}
               saveLabel="Save changes"
-              onCancel={() => setBuilderFor(null)}
-              onSave={next => { onSaveConfig(tech.id, uid, next); setBuilderFor(null); }}
+              onCancel={closeBuilder}
+              onSave={next => { onSaveConfig(tech.id, uid, next); closeBuilder(); }}
             />
           );
         }
-        const names = cfg ? cfg.featureIds.map(featureName).filter(Boolean) : [];
+        const picks = cfg ? Object.entries(cfg.picks) : [];
         return (
           <div key={uid} style={{
             background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 6,
@@ -436,16 +511,30 @@ function FeaturesSection({
                 {instances.length > 1 ? `Copy ${i + 1} — ` : ""}
                 {cfg ? `Level ${cfg.level}` : "Not configured"}
               </span>
-              <div style={{ display: "flex", gap: 6 }}>
+              <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                 {repeatable && cfg && (
                   <button onClick={() => onDuplicateInstance(uid)} style={smallBtn}>Duplicate</button>
                 )}
-                <button onClick={() => setBuilderFor(uid)} style={smallBtn}>Edit</button>
+                {cfg && cfg.level < maxLevel && (
+                  <button onClick={() => openUpgrade(uid)} style={smallBtn}>Upgrade</button>
+                )}
+                <button onClick={() => openEdit(uid)} style={smallBtn}>Edit</button>
                 <button onClick={() => onRemoveInstance(uid)} style={smallDangerBtn}>Remove</button>
               </div>
             </div>
-            {names.length > 0 && (
-              <div style={{ fontSize: 12, color: TEXT.muted }}>{names.join(", ")}</div>
+            {picks.length > 0 && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                {picks.map(([fid, n]) => {
+                  const f = features.find(x => x.id === fid);
+                  if (!f) return null;
+                  return (
+                    <div key={fid} style={{ fontSize: 12, color: TEXT.muted, lineHeight: 1.4 }}>
+                      <strong style={{ color: TEXT.body }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
+                      {" — "}{applyFeatureCount(f.description, n)}
+                    </div>
+                  );
+                })}
+              </div>
             )}
           </div>
         );
@@ -458,14 +547,14 @@ function FeaturesSection({
           tech={tech}
           features={features}
           budgetMap={budgetMap}
-          initial={null}
+          initial={builderSeed}
           saveLabel="Add to build"
-          onCancel={() => setBuilderFor(null)}
-          onSave={next => { onSaveConfig(tech.id, null, next); setBuilderFor(null); }}
+          onCancel={closeBuilder}
+          onSave={next => { onSaveConfig(tech.id, null, next); closeBuilder(); }}
         />
       ) : (instances.length === 0 || repeatable) && (
         <button
-          onClick={() => setBuilderFor("new")}
+          onClick={openNew}
           style={{
             fontSize: 13, color: "#d4a843", background: "transparent",
             border: "0.5px solid #a07c2e", borderRadius: 4,
@@ -759,127 +848,6 @@ function TechCard({
 
 
 // ══════════════════════════════════════════════════════════════════
-// SHEET ENTRY — shown on the Character Sheet tab
-// Full detail: description, all mechanical fields, effects, prereqs,
-// plus this copy's notes or Feature-builder choices, if any.
-// ══════════════════════════════════════════════════════════════════
-function SheetEntry({ tech, count = 1, note, config, techFeatures }) {
-  const tags = splitCSV(tech.tags);
-  const configFeatures = config
-    ? config.featureIds.map(id => techFeatures.find(f => f.id === id)).filter(Boolean)
-    : [];
-
-  return (
-    <div style={{
-      borderLeft: "2px solid #2d3555",
-      paddingLeft: 14,
-      marginBottom: 22,
-    }}>
-
-      {/* Name + level badge + quantity + tag list */}
-      <div style={{ display:"flex", gap:8, alignItems:"baseline", flexWrap:"wrap", marginBottom:5 }}>
-        <span style={{
-          fontFamily: "'MedievalSharp', Georgia, serif",
-          fontWeight: "bold",
-          fontSize: 17,
-          color: TEXT.name,
-        }}>
-          {tech.name}
-        </span>
-        <span style={{ fontSize:13, color:TEXT.name }}>
-          {config ? `Level ${config.level}` : lvlLabel(tech.level_min, tech.level_max)}
-        </span>
-        {count > 1 && (
-          <span style={{ fontSize:13, color:TEXT.muted }}>×{count}</span>
-        )}
-        {tags.map(tag => (
-          <span key={tag} style={{ fontSize:12, color:TEXT.faint }}>[{tag}]</span>
-        ))}
-      </div>
-
-      {/* Fluff description — italic and muted */}
-      {tech.description && (
-        <div style={{
-          fontSize: 14,
-          color: TEXT.muted,
-          fontStyle: "italic",
-          lineHeight: 1.5,
-          marginBottom: 7,
-        }}>
-          {tech.description}
-        </div>
-      )}
-
-      {/* Mechanical fields — only render the ones that have a value */}
-      {[
-        ["Condition", tech.condition],
-        ["Action",    tech.action],
-        ["Cost",      tech.cost],
-        ["Target",    tech.target],
-      ].filter(([, v]) => v).map(([label, val]) => (
-        <div key={label} style={{ fontSize:15, color:TEXT.body, marginBottom:2, lineHeight:1.4 }}>
-          <span style={{ color:TEXT.label, fontWeight:500 }}>{label}: </span>
-          {val}
-        </div>
-      ))}
-
-      {/* Effects — the main rules text */}
-      {tech.effects && (
-        <div style={{
-          fontSize: 15,
-          color: TEXT.body,
-          lineHeight: 1.6,
-          marginTop: 5,
-          marginBottom: 4,
-          whiteSpace: "pre-wrap",  // preserves any line breaks in the text
-        }}>
-          {tech.effects}
-        </div>
-      )}
-
-      {/* Features chosen for this copy, if it's Feature-built */}
-      {configFeatures.length > 0 && (
-        <div style={{ marginTop:6 }}>
-          <div style={{ fontSize:15, color:TEXT.label, fontWeight:500, marginBottom:3 }}>
-            Features (Level {config.level}):
-          </div>
-          {configFeatures.map(f => (
-            <div key={f.id} style={{ fontSize:14, color:TEXT.body, lineHeight:1.5, marginBottom:4 }}>
-              <strong>{f.feature_name}</strong> ({f.point_cost} pt{f.point_cost !== 1 ? "s" : ""}) — {f.description}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* This copy's notes */}
-      {note && (
-        <div style={{ fontSize:15, color:TEXT.body, marginTop:4, lineHeight:1.5 }}>
-          <span style={{ color:TEXT.label, fontWeight:500 }}>Notes: </span>
-          {note}
-        </div>
-      )}
-
-      {/* Special rules text */}
-      {tech.special && (
-        <div style={{ fontSize:15, color:TEXT.body, marginTop:4, lineHeight:1.5 }}>
-          <span style={{ color:TEXT.label, fontWeight:500 }}>Special: </span>
-          {tech.special}
-        </div>
-      )}
-
-      {/* Prerequisites */}
-      {tech.prereqs && (
-        <div style={{ fontSize:13, color:TEXT.faint, marginTop:7 }}>
-          <span style={{ fontWeight:500 }}>Prereqs: </span>
-          {tech.prereqs}
-        </div>
-      )}
-    </div>
-  );
-}
-
-
-// ══════════════════════════════════════════════════════════════════
 // BUILD PANEL — character name, stats, export/import/share, and the
 // build list. Rendered both on the standalone "My build" tab and in
 // the sticky sidebar next to the technique list on wide screens.
@@ -980,7 +948,12 @@ function BuildPanel({
             } else if (t.features) {
               if (cfg) {
                 const feats = techFeaturesById[t.id] || [];
-                const names = cfg.featureIds.map(id => feats.find(f => f.id === id)?.feature_name).filter(Boolean);
+                const names = Object.entries(cfg.picks)
+                  .map(([id, n]) => {
+                    const name = feats.find(f => f.id === id)?.feature_name;
+                    return name ? (n > 1 ? `${name} ×${n}` : name) : null;
+                  })
+                  .filter(Boolean);
                 subtitle = names.length > 0 ? names.join(", ") : null;
               } else {
                 subtitle = "Not configured yet";
@@ -1081,8 +1054,8 @@ function App() {
     try { return JSON.parse(localStorage.getItem("flagonquest-notes") || "{}"); }
     catch { return {}; }
   });
-  // Per-copy Feature-builder choices ({ level, featureIds }), keyed by
-  // build-entry uid. Also persisted to localStorage.
+  // Per-copy Feature-builder choices ({ level, picks: { featureId: count } }),
+  // keyed by build-entry uid. Also persisted to localStorage.
   const [configs, setConfigs] = useState(() => {
     try { return JSON.parse(localStorage.getItem("flagonquest-configs") || "{}"); }
     catch { return {}; }
@@ -1286,7 +1259,7 @@ function App() {
     const newUid = makeUid();
     setBuild(b => [...b, { uid: newUid, id: entry.id }]);
     if (cfg) {
-      setConfigs(c => ({ ...c, [newUid]: { level: cfg.level, featureIds: [...cfg.featureIds] } }));
+      setConfigs(c => ({ ...c, [newUid]: { level: cfg.level, picks: { ...cfg.picks } } }));
     }
   };
 
@@ -1321,8 +1294,11 @@ function App() {
         const out = { id: e.tech.id, name: e.tech.name, xp: entryXP(e) };
         if (cfg) {
           out.level    = cfg.level;
-          out.features = cfg.featureIds
-            .map(fid => (techFeaturesById[e.tech.id] || []).find(f => f.id === fid)?.feature_name)
+          out.features = Object.entries(cfg.picks)
+            .map(([fid, count]) => {
+              const name = (techFeaturesById[e.tech.id] || []).find(f => f.id === fid)?.feature_name;
+              return name ? { name, count } : null;
+            })
             .filter(Boolean);
         } else {
           out.level = lvlLabel(e.tech.level_min, e.tech.level_max);
@@ -1356,11 +1332,17 @@ function App() {
           newBuild.push({ uid, id: t.id });
           if (t.note) newNotes[uid] = t.note;
           if (Array.isArray(t.features) && typeof t.level === "number") {
+            // Supports both the current export shape ({name, count}) and
+            // the older one (plain name strings, implicitly count 1).
             const techFeats = techFeaturesById[t.id] || [];
-            const featureIds = t.features
-              .map(name => techFeats.find(f => f.feature_name === name)?.id)
-              .filter(Boolean);
-            newConfigs[uid] = { level: t.level, featureIds };
+            const picks = {};
+            t.features.forEach(entry => {
+              const name  = typeof entry === "string" ? entry : entry.name;
+              const count = typeof entry === "string" ? 1 : (entry.count || 1);
+              const feat  = techFeats.find(f => f.feature_name === name);
+              if (feat) picks[feat.id] = count;
+            });
+            newConfigs[uid] = { level: t.level, picks };
           }
         });
         setBuild(newBuild);
@@ -1414,6 +1396,44 @@ function App() {
     border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
     display: "flex", alignItems: "center", gap: 5,
   });
+
+  // Renders one TechCard, wired up to the live build/notes/configs state.
+  // Shared by Browse (every matching technique) and the Character Sheet
+  // (only techniques you actually know) so both stay pixel-for-pixel
+  // the same card, with the same Add/Edit/Notes/Feature-builder controls.
+  const renderTechCard = t => {
+    const instanceUids = build.filter(e => e.id === t.id).map(e => e.uid);
+    return (
+      <TechCard
+        key={t.id}
+        tech={t}
+        instances={instanceUids}
+        techFeatures={techFeaturesById[t.id] || []}
+        notes={notes}
+        onNoteChange={setNote}
+        configs={configs}
+        onSaveConfig={saveConfig}
+        onDuplicateInstance={duplicateInstance}
+        onAdd={addTech}
+        onRemove={removeTech}
+        onRemoveInstance={removeInstance}
+      />
+    );
+  };
+
+  // Every technique currently in the build, deduped, in the order each
+  // was first added — what the Character Sheet renders.
+  const knownTechs = useMemo(() => {
+    const seen = new Set();
+    const list = [];
+    build.forEach(({ id }) => {
+      if (seen.has(id)) return;
+      seen.add(id);
+      const t = techniques.find(tt => tt.id === id);
+      if (t) list.push(t);
+    });
+    return list;
+  }, [build, techniques]);
 
   // ── Loading and error screens ──────────────────────────────────
   if (loading) return (
@@ -1617,25 +1637,7 @@ function App() {
                 }}>
                   No techniques match those filters.
                 </div>
-              ) : visible.map(t => {
-                const instanceUids = build.filter(e => e.id === t.id).map(e => e.uid);
-                return (
-                  <TechCard
-                    key={t.id}
-                    tech={t}
-                    instances={instanceUids}
-                    techFeatures={techFeaturesById[t.id] || []}
-                    notes={notes}
-                    onNoteChange={setNote}
-                    configs={configs}
-                    onSaveConfig={saveConfig}
-                    onDuplicateInstance={duplicateInstance}
-                    onAdd={addTech}
-                    onRemove={removeTech}
-                    onRemoveInstance={removeInstance}
-                  />
-                );
-              })}
+              ) : visible.map(renderTechCard)}
             </div>
 
             <div className="browse-build-panel">
@@ -1674,19 +1676,23 @@ function App() {
       )}
 
 
-      {/* ════════ CHARACTER SHEET VIEW ══════════════════════════ */}
+      {/* ════════ CHARACTER SHEET VIEW ══════════════════════════
+          The most complete view of everything you know: the same
+          tiles as Browse — same styling, same Add/Edit/Notes/
+          Feature-builder controls — filtered down to just the
+          techniques currently in your build. */}
       {view === "sheet" && (
-        <div style={{ maxWidth:680, margin:"0 auto", padding:20 }}>
+        <div style={{ maxWidth:760, margin:"0 auto", padding:16 }}>
           {buildEntries.length === 0 ? (
             <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
-              Add techniques in Browse, then see them formatted here.
+              Add techniques in Browse, then see them here.
             </div>
           ) : (
             <>
               {/* Character name + summary header */}
               <div style={{
                 borderBottom: "0.5px solid #2d3555",
-                paddingBottom: 14, marginBottom: 28,
+                paddingBottom: 14, marginBottom: 20,
               }}>
                 <div style={{
                   fontFamily: "'MedievalSharp', Georgia, serif",
@@ -1696,31 +1702,18 @@ function App() {
                 </div>
                 <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
                   {buildEntries.length} technique{buildEntries.length !== 1 ? "s" : ""}
+                  {" ("}{knownTechs.length} distinct{")"}
                   {" · "}
                   {unknownCount === 0
                     ? `${knownXP} XP`
-                    : `${knownXP}+ XP (${unknownCount} variable)`
+                    : `${knownXP}+ XP (${unknownCount} not fully configured)`
                   }
                 </div>
               </div>
 
-              {/* Techniques in the order they were added to the build —
-                  Duplicate/Encounter techniques with no per-copy data
-                  collapse into a single entry with a ×N count */}
-              {buildRows.map(({ tech: t, uids }) => {
-                const isDistinct = t.free_text || t.features;
-                const uid = uids[0];
-                return (
-                  <SheetEntry
-                    key={isDistinct ? uid : t.id}
-                    tech={t}
-                    count={uids.length}
-                    note={t.free_text ? notes[uid] : null}
-                    config={t.features ? configs[uid] : null}
-                    techFeatures={techFeaturesById[t.id] || []}
-                  />
-                );
-              })}
+              <div className="tech-list">
+                {knownTechs.map(renderTechCard)}
+              </div>
             </>
           )}
         </div>
