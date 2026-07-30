@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlagonQuest</title>
+
+  <!-- Tabler Icons webfont — used for the button icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+  <!-- React 18 (the UI framework) and ReactDOM (renders it to the page) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Babel standalone: lets us write JSX (the HTML-in-JS syntax) directly
+       in this file without a build step. Fine for a small group tool. -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    /* ── Reset & base ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0d1117;
+      color: #e8dfc8;
+      min-height: 100vh;
+    }
+
+    /* ── Inputs ────────────────────────────────────────────────── */
+    input[type=text], input[type=search] {
+      background: #1e2435;
+      border: 0.5px solid #2d3555;
+      border-radius: 6px;
+      padding: 7px 11px;
+      color: #e8dfc8;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input[type=text]:focus,
+    input[type=search]:focus { border-color: #d4a843; }
+
+    input[type=range]    { accent-color: #d4a843; cursor: pointer; }
+    input[type=checkbox] { accent-color: #d4a843; cursor: pointer; }
+
+    /* ── Scrollbar ─────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #2d3555; border-radius: 4px; }
+
+    /* ── Buttons ───────────────────────────────────────────────── */
+    button { font-family: inherit; cursor: pointer; }
+    button:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useMemo, useRef } = React;
+
+/*
+ ╔═══════════════════════════════════════════════════════════════════╗
+ ║  FLAGONQUEST — Technique Browser & Character Builder             ║
+ ║  index.html · Phase 1                                            ║
+ ╠═══════════════════════════════════════════════════════════════════╣
+ ║  HOW THIS FILE WORKS                                             ║
+ ║                                                                   ║
+ ║  DATA: On page load, the app fetches two JSON files from the     ║
+ ║  data/ folder sitting next to this index.html. Those files are   ║
+ ║  generated from your spreadsheet by running scripts/convert.py.  ║
+ ║                                                                   ║
+ ║  LOCAL TESTING: Browsers block fetch() on file:// URLs. To test  ║
+ ║  locally, open a terminal in your repo folder and run:           ║
+ ║    python -m http.server 8000                                    ║
+ ║  Then visit localhost:8000 in your browser.                      ║
+ ║                                                                   ║
+ ║  STATE: React "state" is variables that update the UI when they  ║
+ ║  change. Main pieces:                                             ║
+ ║    · techniques / features  — loaded from JSON                   ║
+ ║    · view                   — which tab is active                ║
+ ║    · search, catFilter, levelMin/Max — browse filters            ║
+ ║    · build                  — array of technique IDs picked      ║
+ ║    · charName               — character name                     ║
+ ║                                                                   ║
+ ║  FILTERING: visibleTechs is TECHNIQUES.filter(...), recomputed   ║
+ ║  by useMemo() only when a filter changes.                        ║
+ ║                                                                   ║
+ ║  BUILD: Adding a technique appends its ID to the build array.    ║
+ ║  Export = JSON download. Share = base64 build in URL hash.       ║
+ ╚═══════════════════════════════════════════════════════════════════╝
+*/
+
+// ── Category accent colors ─────────────────────────────────────────
+// Change these hex values to restyle all category coloring at once.
+const CAT_COLOR = {
+  Power:       "#e6943a",
+  Expertise:   "#1D9E75",
+  Personality: "#D4537E",
+  Martial:     "#D85A30",
+  Discipline:  "#7F77DD",
+  Spell:       "#378ADD",
+  Stance:      "#888780",
+};
+
+// Spell school sub-tints (used on cards when a technique has a school)
+const SCHOOL_COLOR = {
+  General: "#5BA3E8",
+  Theurgy: "#48B5C4",
+  Sorcery: "#378ADD",
+};
+
+const CATEGORIES = ["All", "Power", "Expertise", "Personality", "Martial", "Discipline", "Spell", "Stance"];
+
+// ── Helpers ────────────────────────────────────────────────────────
+
+// Format level range for display.
+// e.g. level_min=1, level_max=4 → "Lv 1–4"  |  level_min=null → "Draft"
+function lvlLabel(lMin, lMax) {
+  if (lMin == null) return "Draft";
+  const hi = lMax ?? lMin;
+  return lMin === hi ? `Lv ${lMin}` : `Lv ${lMin}–${hi}`;
+}
+
+// Does this technique fall within the current level filter range?
+// Two ranges overlap when: techMin <= filterMax AND techMax >= filterMin.
+function matchesLevel(t, fMin, fMax, showDrafts) {
+  if (t.level_min == null) return showDrafts;
+  const hi = t.level_max ?? t.level_min;
+  return t.level_min <= fMax && hi >= fMin;
+}
+
+// XP cost of a technique: level × 3.
+// Returns null for drafts or range techniques (e.g. Lv 1–4) because
+// we'd need to know which specific level was purchased.
+function techXP(t) {
+  if (t.level_min == null) return null;
+  if (t.level_min !== t.level_max && t.level_max != null) return null;
+  return t.level_min * 3;
+}
+
+// Encode/decode build state for shareable URL hash
+function encBuild(ids, name) {
+  return btoa(JSON.stringify({ ids, name }));
+}
+function decBuild(str) {
+  try { return JSON.parse(atob(str)); } catch { return null; }
+}
+
+// Split a comma-separated string into a trimmed array
+function splitCSV(str) {
+  if (!str) return [];
+  return str.split(",").map(s => s.trim()).filter(Boolean);
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// TECHNIQUE CARD — shown in the browse grid
+// Compact display: name, level, category, action, tags, skills,
+// a short effects preview, and an Add/Remove button.
+// ══════════════════════════════════════════════════════════════════
+function TechCard({ tech, inBuild, onAdd, onRemove }) {
+  const c      = CAT_COLOR[tech.category] || "#666";
+  const tags   = splitCSV(tech.tags);
+  const skills = splitCSV(tech.prereq_skills);
+
+  // Truncate effects for the card — full text appears on the sheet view
+  const preview = tech.effects
+    ? (tech.effects.length > 120 ? tech.effects.slice(0, 118) + "…" : tech.effects)
+    : null;
+
+  return (
+    <div style={{
+      background: "#161b27",
+      border: "0.5px solid #2d3555",
+      borderLeft: `3px solid ${c}`,   // color-coded by category
+      borderRadius: "0 8px 8px 0",
+      padding: "10px 12px",
+      display: "flex",
+      flexDirection: "column",
+      gap: 6,
+    }}>
+
+      {/* Name + level badge */}
+      <div style={{ display:"flex", alignItems:"baseline", gap:8, flexWrap:"wrap" }}>
+        <span style={{
+          fontFamily: "Georgia, 'Times New Roman', serif",
+          fontWeight: "bold",
+          fontSize: 14,
+          color: "#e8dfc8",
+          flex: 1,
+          lineHeight: 1.3,
+        }}>
+          {tech.name}
+        </span>
+        <span style={{
+          fontSize: 11, fontWeight: 500,
+          color: "#d4a843",
+          background: "#2a2000",
+          border: "0.5px solid #a07c2e",
+          borderRadius: 4,
+          padding: "1px 6px",
+          whiteSpace: "nowrap",
+          flexShrink: 0,
+        }}>
+          {lvlLabel(tech.level_min, tech.level_max)}
+        </span>
+      </div>
+
+      {/* Category · spell school · action cost */}
+      <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
+        <span style={{ fontSize:11, fontWeight:500, color:c }}>
+          {tech.category}
+        </span>
+        {tech.spell_school && (
+          <span style={{ fontSize:10, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD" }}>
+            {tech.spell_school}
+          </span>
+        )}
+        {tech.action && (
+          <span style={{ fontSize:11, color:"#7a8299" }}>· {tech.action}</span>
+        )}
+        {tech.cost && (
+          <span style={{ fontSize:10, color:"#5a6280", fontStyle:"italic" }}>
+            Cost: {tech.cost}
+          </span>
+        )}
+      </div>
+
+      {/* Tags (Encounter, Duplicate, Buildable, etc.) */}
+      {tags.length > 0 && (
+        <div style={{ display:"flex", gap:4, flexWrap:"wrap" }}>
+          {tags.map(tag => (
+            <span key={tag} style={{
+              fontSize: 10,
+              // Give certain tags a distinctive color so they're easy to spot
+              color: tag === "Encounter"  ? "#e6943a"
+                   : tag === "Buildable"  ? "#7F77DD"
+                   : tag === "Duplicate"  ? "#1D9E75"
+                   : "#7a8299",
+              background: "#0d1117",
+              border: "0.5px solid #2d3555",
+              borderRadius: 3,
+              padding: "1px 5px",
+            }}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Prereq skill tags (for filtering reference) */}
+      {skills.length > 0 && (
+        <div style={{ display:"flex", gap:4, flexWrap:"wrap" }}>
+          {skills.map(s => (
+            <span key={s} style={{
+              fontSize: 10,
+              color: "#4a5270",
+              border: "0.5px solid #1e2535",
+              borderRadius: 3,
+              padding: "1px 5px",
+            }}>
+              {s}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Short effects preview */}
+      {preview && (
+        <div style={{ fontSize:11, color:"#5a6280", lineHeight:1.4, marginTop:2 }}>
+          {preview}
+        </div>
+      )}
+
+      {/* Add / Remove button */}
+      <div style={{ marginTop:2 }}>
+        {inBuild ? (
+          <button
+            onClick={() => onRemove(tech.id)}
+            style={{
+              fontSize: 11, color: "#c0392b",
+              background: "transparent",
+              border: "0.5px solid #c0392b",
+              borderRadius: 4, padding: "2px 10px",
+            }}
+          >
+            Remove
+          </button>
+        ) : (
+          <button
+            onClick={() => onAdd(tech.id)}
+            style={{
+              fontSize: 11, color: "#d4a843",
+              background: "transparent",
+              border: "0.5px solid #a07c2e",
+              borderRadius: 4, padding: "2px 10px",
+            }}
+          >
+            + Add to build
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// SHEET ENTRY — shown on the Character Sheet tab
+// Full detail: description, all mechanical fields, effects, prereqs.
+// ══════════════════════════════════════════════════════════════════
+function SheetEntry({ tech }) {
+  const c    = CAT_COLOR[tech.category] || "#666";
+  const tags = splitCSV(tech.tags);
+
+  return (
+    <div style={{
+      borderLeft: `2px solid ${c}`,
+      paddingLeft: 14,
+      marginBottom: 22,
+    }}>
+
+      {/* Name + level badge + category label + tag list */}
+      <div style={{ display:"flex", gap:8, alignItems:"baseline", flexWrap:"wrap", marginBottom:5 }}>
+        <span style={{
+          fontFamily: "Georgia, 'Times New Roman', serif",
+          fontWeight: "bold",
+          fontSize: 15,
+          color: "#e8dfc8",
+        }}>
+          {tech.name}
+        </span>
+        <span style={{ fontSize:11, color:"#d4a843" }}>
+          {lvlLabel(tech.level_min, tech.level_max)}
+        </span>
+        <span style={{ fontSize:11, color:c, fontStyle:"italic" }}>
+          {tech.category}{tech.spell_school ? ` · ${tech.spell_school}` : ""}
+        </span>
+        {tags.map(tag => (
+          <span key={tag} style={{ fontSize:10, color:"#3a4260" }}>[{tag}]</span>
+        ))}
+      </div>
+
+      {/* Fluff description — italic and muted */}
+      {tech.description && (
+        <div style={{
+          fontSize: 12,
+          color: "#5a6480",
+          fontStyle: "italic",
+          lineHeight: 1.5,
+          marginBottom: 7,
+        }}>
+          {tech.description}
+        </div>
+      )}
+
+      {/* Mechanical fields — only render the ones that have a value */}
+      {[
+        ["Condition", tech.condition],
+        ["Action",    tech.action],
+        ["Cost",      tech.cost],
+        ["Target",    tech.target],
+      ].filter(([, v]) => v).map(([label, val]) => (
+        <div key={label} style={{ fontSize:13, color:"#a8b0c8", marginBottom:2, lineHeight:1.4 }}>
+          <span style={{ color:"#4a5270", fontWeight:500 }}>{label}: </span>
+          {val}
+        </div>
+      ))}
+
+      {/* Effects — the main rules text */}
+      {tech.effects && (
+        <div style={{
+          fontSize: 13,
+          color: "#c8d0e0",
+          lineHeight: 1.6,
+          marginTop: 5,
+          marginBottom: 4,
+          whiteSpace: "pre-wrap",  // preserves any line breaks in the text
+        }}>
+          {tech.effects}
+        </div>
+      )}
+
+      {/* Special rules text */}
+      {tech.special && (
+        <div style={{ fontSize:13, color:"#a8b0c8", marginTop:4, lineHeight:1.5 }}>
+          <span style={{ color:"#4a5270", fontWeight:500 }}>Special: </span>
+          {tech.special}
+        </div>
+      )}
+
+      {/* Prerequisites */}
+      {tech.prereqs && (
+        <div style={{ fontSize:11, color:"#3a4260", marginTop:7 }}>
+          <span style={{ fontWeight:500 }}>Prereqs: </span>
+          {tech.prereqs}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// MAIN APP COMPONENT
+// Holds all state and renders the three views.
+// ══════════════════════════════════════════════════════════════════
+function App() {
+
+  // ── Loaded data ────────────────────────────────────────────────
+  const [techniques, setTechniques] = useState([]);
+  const [features,   setFeatures]   = useState([]);   // loaded for future use
+  const [loading,    setLoading]    = useState(true);
+  const [loadError,  setLoadError]  = useState(null);
+
+  // ── UI state ───────────────────────────────────────────────────
+  const [view,       setView]       = useState("browse"); // browse | build | sheet
+  const [search,     setSearch]     = useState("");
+  const [catFilter,  setCatFilter]  = useState("All");
+  const [levelMin,   setLevelMin]   = useState(1);
+  const [levelMax,   setLevelMax]   = useState(5);
+  const [showDrafts, setShowDrafts] = useState(false);
+  const [build,      setBuild]      = useState([]);       // array of technique IDs
+  const [charName,   setCharName]   = useState("");
+  const [shareMsg,   setShareMsg]   = useState("");
+  const importRef = useRef();
+
+  // ── Fetch JSON data on first load ──────────────────────────────
+  // Promise.all fetches both files simultaneously so we only wait once.
+  // Paths are relative to index.html, so "data/techniques.json" works
+  // on GitHub Pages and on localhost:8000 equally.
+  useEffect(() => {
+    Promise.all([
+      fetch("data/techniques.json").then(r => {
+        if (!r.ok) throw new Error(`techniques.json returned ${r.status}`);
+        return r.json();
+      }),
+      fetch("data/features.json").then(r => {
+        if (!r.ok) throw new Error(`features.json returned ${r.status}`);
+        return r.json();
+      }),
+    ])
+    .then(([techData, featData]) => {
+      setTechniques(techData);
+      setFeatures(featData);
+      setLoading(false);
+    })
+    .catch(err => {
+      setLoadError(err.message);
+      setLoading(false);
+    });
+  }, []); // empty [] = run once on mount only
+
+  // ── Load a shared build from the URL hash ──────────────────────
+  // If someone opens a share link like index.html#build=abc123,
+  // this decodes and restores their build automatically.
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.startsWith("#build=")) {
+      const decoded = decBuild(hash.slice(7));
+      if (decoded) {
+        if (decoded.ids)  setBuild(decoded.ids);
+        if (decoded.name) setCharName(decoded.name);
+      }
+    }
+  }, []);
+
+  // ── Filtered technique list ────────────────────────────────────
+  // useMemo = only recalculate when one of the listed deps changes.
+  const visible = useMemo(() => techniques.filter(t => {
+    if (catFilter !== "All" && t.category !== catFilter) return false;
+    if (!matchesLevel(t, levelMin, levelMax, showDrafts)) return false;
+    if (search) {
+      const q = search.toLowerCase();
+      const hay = [t.name, t.category, t.spell_school, t.tags,
+                   t.prereq_skills, t.action, t.effects]
+        .filter(Boolean).join(" ").toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  }), [techniques, search, catFilter, levelMin, levelMax, showDrafts]);
+
+  // ── Full technique objects for the build list ──────────────────
+  const buildTechs = useMemo(() =>
+    build.map(id => techniques.find(t => t.id === id)).filter(Boolean),
+  [build, techniques]);
+
+  // ── XP totals ──────────────────────────────────────────────────
+  // knownXP = sum of all fixed-level technique costs (level × 3)
+  // unknownCount = number of range/draft techniques where we can't
+  //   auto-calculate without knowing which level was purchased
+  const knownXP      = buildTechs.reduce((sum, t) => sum + (techXP(t) ?? 0), 0);
+  const unknownCount = buildTechs.filter(t => techXP(t) == null).length;
+
+  // ── Build mutations ────────────────────────────────────────────
+  const addTech    = id => setBuild(b => b.includes(id) ? b : [...b, id]);
+  const removeTech = id => setBuild(b => b.filter(x => x !== id));
+  const clearBuild = ()  => { if (confirm("Clear the current build?")) setBuild([]); };
+
+  // ── Export build as a .json file download ─────────────────────
+  function doExport() {
+    const payload = {
+      charName,
+      exportedAt: new Date().toISOString(),
+      techniques: buildTechs.map(t => ({
+        id:       t.id,
+        name:     t.name,
+        level:    lvlLabel(t.level_min, t.level_max),
+        category: t.category,
+        xp:       techXP(t),
+      })),
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const a    = Object.assign(document.createElement("a"), {
+      href:     URL.createObjectURL(blob),
+      download: `${(charName || "build").replace(/\s+/g, "-")}.json`,
+    });
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  // ── Import a previously exported .json file ────────────────────
+  function doImport(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        setBuild(data.techniques.map(t => t.id));
+        if (data.charName) setCharName(data.charName);
+      } catch {
+        alert("Couldn't read that file — make sure it's a FlagonQuest build export.");
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = ""; // reset so the same file can be imported again
+  }
+
+  // ── Generate a shareable URL ───────────────────────────────────
+  // Encodes the build IDs and character name into the URL hash.
+  // Recipient opens the link and the build auto-loads.
+  function doShare() {
+    const encoded = encBuild(build, charName);
+    const url = window.location.href.split("#")[0] + "#build=" + encoded;
+    (navigator.clipboard?.writeText(url) ?? Promise.reject())
+      .then(() => setShareMsg("Link copied!"))
+      .catch(() => setShareMsg("Couldn't auto-copy — grab the URL from your address bar"));
+    setTimeout(() => setShareMsg(""), 3500);
+  }
+
+  // ── Style helpers ──────────────────────────────────────────────
+  const tabStyle = key => ({
+    padding: "6px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+    background:  view === key ? "#d4a843" : "transparent",
+    color:       view === key ? "#0a0e18" : "#7a8299",
+    border: `0.5px solid ${view === key ? "#d4a843" : "#2d3555"}`,
+    transition: "all 0.15s",
+  });
+
+  const chipStyle = cat => {
+    const active = catFilter === cat;
+    const c = CAT_COLOR[cat];
+    return {
+      padding: "4px 12px", fontSize: 12, borderRadius: 20,
+      fontWeight: active ? 500 : 400,
+      whiteSpace: "nowrap",
+      background: active ? (c || "#d4a843") + "22" : "transparent",
+      color:      active ? (c || "#d4a843") : "#7a8299",
+      border: `0.5px solid ${active ? (c || "#d4a843") : "#2d3555"}`,
+    };
+  };
+
+  const actionBtn = (danger = false) => ({
+    padding: "6px 14px", fontSize: 12, fontWeight: 500, borderRadius: 6,
+    background: "transparent",
+    color:  danger ? "#c0392b" : "#7a8299",
+    border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
+    display: "flex", alignItems: "center", gap: 5,
+  });
+
+  // ── Loading and error screens ──────────────────────────────────
+  if (loading) return (
+    <div style={{
+      minHeight: "100vh", display:"flex", alignItems:"center",
+      justifyContent: "center", background: "#0d1117",
+      color: "#4a5270", fontFamily: "Georgia, serif", fontSize: 16,
+    }}>
+      Loading FlagonQuest data…
+    </div>
+  );
+
+  if (loadError) return (
+    <div style={{
+      minHeight: "100vh", padding: 40, background: "#0d1117",
+      color: "#c0392b", fontFamily: "system-ui, sans-serif",
+      fontSize: 14, lineHeight: 1.6, maxWidth: 620,
+    }}>
+      <strong>Couldn't load data files</strong>
+      <p style={{ marginTop: 10, color: "#7a8299" }}>
+        Error: {loadError}
+      </p>
+      <p style={{ marginTop: 10, color: "#4a5270" }}>
+        If you're testing locally, open a terminal in your repo folder and run:
+        <br />
+        <code style={{ color:"#d4a843" }}>python -m http.server 8000</code>
+        <br />
+        Then visit <code style={{ color:"#d4a843" }}>localhost:8000</code> instead of
+        opening the HTML file directly.
+      </p>
+    </div>
+  );
+
+  // ── Main render ────────────────────────────────────────────────
+  return (
+    <div style={{ fontFamily:"system-ui, -apple-system, sans-serif", color:"#e8dfc8" }}>
+
+      {/* ════════ HEADER ════════════════════════════════════════ */}
+      <div style={{
+        padding: "12px 20px",
+        borderBottom: "0.5px solid #2d3555",
+        display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap",
+        background: "#0a0e18",
+        position: "sticky", top: 0, zIndex: 100,
+      }}>
+        <div>
+          <div style={{
+            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontSize: 20, fontWeight: "bold",
+            color: "#d4a843", letterSpacing: "0.04em",
+          }}>
+            FlagonQuest
+          </div>
+          <div style={{ fontSize:11, color:"#4a5270", marginTop:1 }}>
+            Technique browser · Character builder
+          </div>
+        </div>
+
+        {/* Tab navigation */}
+        <div style={{ display:"flex", gap:6, marginLeft:"auto", flexWrap:"wrap" }}>
+          <button onClick={() => setView("browse")} style={tabStyle("browse")}>
+            Browse
+          </button>
+          <button onClick={() => setView("build")} style={tabStyle("build")}>
+            My build{build.length > 0 ? ` (${build.length})` : ""}
+          </button>
+          <button onClick={() => setView("sheet")} style={tabStyle("sheet")}>
+            Character sheet
+          </button>
+        </div>
+      </div>
+
+
+      {/* ════════ BROWSE VIEW ═══════════════════════════════════ */}
+      {view === "browse" && (
+        <div style={{ padding: 16 }}>
+
+          {/* Search bar + level sliders */}
+          <div style={{
+            display: "flex", gap: 10, marginBottom: 12,
+            flexWrap: "wrap", alignItems: "center",
+          }}>
+            <input
+              type="text"
+              placeholder="Search name, skill, effect…"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              style={{ flex:"1 1 200px", minWidth:150 }}
+            />
+
+            {/* Level range controls */}
+            <div style={{
+              display: "flex", alignItems: "center", gap: 8,
+              fontSize: 12, color: "#7a8299", flexShrink: 0,
+            }}>
+              <span style={{ color:"#d4a843", fontWeight:500 }}>
+                Lv {levelMin}–{levelMax}
+              </span>
+              <input
+                type="range" min={1} max={5} value={levelMin}
+                onChange={e => setLevelMin(Math.min(+e.target.value, levelMax))}
+                style={{ width: 60 }}
+              />
+              <input
+                type="range" min={1} max={5} value={levelMax}
+                onChange={e => setLevelMax(Math.max(+e.target.value, levelMin))}
+                style={{ width: 60 }}
+              />
+              <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
+                <input
+                  type="checkbox"
+                  checked={showDrafts}
+                  onChange={e => setShowDrafts(e.target.checked)}
+                />
+                Drafts
+              </label>
+            </div>
+          </div>
+
+          {/* Category filter chips */}
+          <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:12 }}>
+            {CATEGORIES.map(cat => (
+              <button key={cat} onClick={() => setCatFilter(cat)} style={chipStyle(cat)}>
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Result count */}
+          <div style={{ fontSize:11, color:"#4a5270", marginBottom:12 }}>
+            {visible.length} technique{visible.length !== 1 ? "s" : ""}
+            {catFilter !== "All" || search ? " matching filters" : " total"}
+          </div>
+
+          {/* Card grid — auto-fills columns based on available width */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+            gap: 10,
+          }}>
+            {visible.length === 0 ? (
+              <div style={{
+                gridColumn: "1/-1", textAlign:"center",
+                padding: "60px 20px", color:"#4a5270", fontSize:14,
+              }}>
+                No techniques match those filters.
+              </div>
+            ) : visible.map(t => (
+              <TechCard
+                key={t.id}
+                tech={t}
+                inBuild={build.includes(t.id)}
+                onAdd={addTech}
+                onRemove={removeTech}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+
+      {/* ════════ MY BUILD VIEW ═════════════════════════════════ */}
+      {view === "build" && (
+        <div style={{ maxWidth:640, margin:"0 auto", padding:20 }}>
+
+          {/* Character name input */}
+          <div style={{ marginBottom:20 }}>
+            <div style={{
+              fontSize: 11, color: "#4a5270", marginBottom: 6,
+              textTransform: "uppercase", letterSpacing: "0.07em",
+            }}>
+              Character name
+            </div>
+            <input
+              type="text"
+              placeholder="Enter a name…"
+              value={charName}
+              onChange={e => setCharName(e.target.value)}
+              style={{ width:"100%", maxWidth:320, fontFamily:"Georgia, serif", fontSize:16 }}
+            />
+          </div>
+
+          {/* Stats row */}
+          <div style={{ display:"flex", gap:12, marginBottom:20, flexWrap:"wrap" }}>
+            <div style={{
+              background:"#161b27", border:"0.5px solid #2d3555",
+              borderRadius:8, padding:"10px 18px", minWidth:110,
+            }}>
+              <div style={{ fontSize:11, color:"#4a5270", marginBottom:4 }}>Techniques</div>
+              <div style={{ fontSize:22, fontWeight:500 }}>{build.length}</div>
+            </div>
+            <div style={{
+              background:"#161b27", border:"0.5px solid #2d3555",
+              borderRadius:8, padding:"10px 18px", minWidth:140,
+            }}>
+              <div style={{ fontSize:11, color:"#4a5270", marginBottom:4 }}>Technique XP</div>
+              <div style={{ fontSize:22, fontWeight:500 }}>
+                {unknownCount > 0 ? `${knownXP}+` : `${knownXP}`}
+                <span style={{ fontSize:12, color:"#4a5270", marginLeft:4 }}>XP</span>
+              </div>
+            </div>
+            {unknownCount > 0 && (
+              <div style={{ fontSize:11, color:"#4a5270", fontStyle:"italic", alignSelf:"flex-end", paddingBottom:12 }}>
+                {unknownCount} range-level technique{unknownCount > 1 ? "s" : ""} — XP varies by level purchased.
+              </div>
+            )}
+          </div>
+
+          {/* Action buttons */}
+          <div style={{ display:"flex", gap:8, marginBottom:20, flexWrap:"wrap", alignItems:"center" }}>
+            <button onClick={doExport} style={actionBtn()}>
+              <i className="ti ti-download" aria-hidden="true" /> Export build
+            </button>
+            <button onClick={() => importRef.current.click()} style={actionBtn()}>
+              <i className="ti ti-upload" aria-hidden="true" /> Import build
+            </button>
+            <input ref={importRef} type="file" accept=".json" onChange={doImport} style={{ display:"none" }} />
+            <button onClick={doShare} style={actionBtn()}>
+              <i className="ti ti-link" aria-hidden="true" /> Copy share link
+            </button>
+            {build.length > 0 && (
+              <button onClick={clearBuild} style={actionBtn(true)}>Clear build</button>
+            )}
+            {shareMsg && (
+              <span style={{ fontSize:12, color:"#d4a843" }}>{shareMsg}</span>
+            )}
+          </div>
+
+          {/* Build list */}
+          {buildTechs.length === 0 ? (
+            <div style={{ textAlign:"center", padding:"48px 20px", color:"#4a5270", fontSize:14 }}>
+              No techniques added yet — head to Browse to pick some.
+            </div>
+          ) : (
+            <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+              {buildTechs.map(t => {
+                const c  = CAT_COLOR[t.category] || "#666";
+                const xp = techXP(t);
+                return (
+                  <div key={t.id} style={{
+                    display:"flex", alignItems:"center", gap:10,
+                    background:"#161b27",
+                    border:"0.5px solid #2d3555",
+                    borderLeft:`3px solid ${c}`,
+                    borderRadius:"0 8px 8px 0",
+                    padding:"8px 12px",
+                  }}>
+                    <div style={{ flex:1 }}>
+                      <span style={{
+                        fontFamily:"Georgia, serif", fontWeight:"bold",
+                        fontSize:13, color:"#e8dfc8",
+                      }}>
+                        {t.name}
+                      </span>
+                      <span style={{ fontSize:11, color:"#d4a843", marginLeft:8 }}>
+                        {lvlLabel(t.level_min, t.level_max)}
+                      </span>
+                      <span style={{ fontSize:11, color:c, marginLeft:6 }}>
+                        {t.category}
+                      </span>
+                    </div>
+                    <span style={{ fontSize:11, color:"#3a4260", flexShrink:0 }}>
+                      {xp != null ? `${xp} XP` : "? XP"}
+                    </span>
+                    <button
+                      onClick={() => removeTech(t.id)}
+                      aria-label={`Remove ${t.name}`}
+                      style={{
+                        background:"transparent", border:"none",
+                        color:"#3a4260", fontSize:16, lineHeight:1, padding:"2px 4px", flexShrink:0,
+                      }}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+
+
+      {/* ════════ CHARACTER SHEET VIEW ══════════════════════════ */}
+      {view === "sheet" && (
+        <div style={{ maxWidth:680, margin:"0 auto", padding:20 }}>
+          {buildTechs.length === 0 ? (
+            <div style={{ textAlign:"center", padding:"48px 20px", color:"#4a5270", fontSize:14 }}>
+              Add techniques in Browse, then see them formatted here.
+            </div>
+          ) : (
+            <>
+              {/* Character name + summary header */}
+              <div style={{
+                borderBottom: "0.5px solid #2d3555",
+                paddingBottom: 14, marginBottom: 28,
+              }}>
+                <div style={{
+                  fontFamily: "Georgia, 'Times New Roman', serif",
+                  fontSize: 26, fontWeight: "bold", color: "#d4a843",
+                }}>
+                  {charName || "Unnamed hero"}
+                </div>
+                <div style={{ fontSize:13, color:"#4a5270", marginTop:5 }}>
+                  {buildTechs.length} technique{buildTechs.length !== 1 ? "s" : ""}
+                  {" · "}
+                  {unknownCount === 0
+                    ? `${knownXP} XP`
+                    : `${knownXP}+ XP (${unknownCount} variable)`
+                  }
+                </div>
+              </div>
+
+              {/* Techniques grouped by category — only shows categories in use */}
+              {Object.keys(CAT_COLOR)
+                .filter(cat => buildTechs.some(t => t.category === cat))
+                .map(cat => (
+                  <div key={cat} style={{ marginBottom:32 }}>
+                    {/* Section header */}
+                    <div style={{
+                      fontSize: 11, fontWeight: 600,
+                      textTransform: "uppercase", letterSpacing: "0.1em",
+                      color: CAT_COLOR[cat],
+                      borderBottom: "0.5px solid #2d3555",
+                      paddingBottom: 6, marginBottom: 16,
+                    }}>
+                      {cat}
+                    </div>
+                    {buildTechs
+                      .filter(t => t.category === cat)
+                      .map(t => <SheetEntry key={t.id} tech={t} />)
+                    }
+                  </div>
+                ))
+              }
+            </>
+          )}
+        </div>
+      )}
+
+    </div>
+  );
+}
+
+// Mount the React app onto the <div id="root"> in the HTML above
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>
+</body>
+</html>
