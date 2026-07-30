@@ -33,7 +33,7 @@
     }
 
     /* ── Inputs ────────────────────────────────────────────────── */
-    input[type=text], input[type=search] {
+    input[type=text], input[type=search], textarea {
       background: #1e2435;
       border: 0.5px solid #2d3555;
       border-radius: 6px;
@@ -45,7 +45,8 @@
       transition: border-color 0.15s;
     }
     input[type=text]:focus,
-    input[type=search]:focus { border-color: #d4a843; }
+    input[type=search]:focus,
+    textarea:focus { border-color: #d4a843; }
 
     input[type=range]    { accent-color: #d4a843; cursor: pointer; }
     input[type=checkbox] { accent-color: #d4a843; cursor: pointer; }
@@ -141,13 +142,6 @@ const { useState, useEffect, useMemo, useRef } = React;
  ╚═══════════════════════════════════════════════════════════════════╝
 */
 
-// Spell school sub-tints (used on cards when a technique has a school)
-const SCHOOL_COLOR = {
-  General: "#5BA3E8",
-  Theurgy: "#48B5C4",
-  Sorcery: "#378ADD",
-};
-
 // ── Text color scale ────────────────────────────────────────────────
 // Warm off-white/tan tones instead of blue-grey, so body text stands
 // out against the dark blue background instead of blending into it.
@@ -171,9 +165,10 @@ function lvlLabel(lMin, lMax) {
 }
 
 // Does this technique fall within the current level filter range?
+// Drafts (no level yet) always pass — there's no toggle to hide them.
 // Two ranges overlap when: techMin <= filterMax AND techMax >= filterMin.
-function matchesLevel(t, fMin, fMax, showDrafts) {
-  if (t.level_min == null) return showDrafts;
+function matchesLevel(t, fMin, fMax) {
+  if (t.level_min == null) return true;
   const hi = t.level_max ?? t.level_min;
   return t.level_min <= fMax && hi >= fMin;
 }
@@ -207,7 +202,7 @@ function splitCSV(str) {
 // Full detail: tags, description, all mechanical fields, complete
 // effects/special text, prereqs, and related skills at the bottom.
 // ══════════════════════════════════════════════════════════════════
-function TechCard({ tech, inBuild, onAdd, onRemove }) {
+function TechCard({ tech, count, onAdd, onRemove, note, onNoteChange }) {
   const tags   = splitCSV(tech.tags);
   const skills = splitCSV(tech.related_skills);
 
@@ -215,6 +210,11 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
   // badge — everything else stays in the tags line.
   const hasEncounter = tags.includes("Encounter");
   const otherTags     = tags.filter(t => t !== "Encounter");
+
+  // Duplicate/Encounter techniques can be learned more than once —
+  // each purchase is its own build entry, so "Add to build" stays
+  // available instead of flipping straight to "Remove".
+  const repeatable = tags.includes("Duplicate") || tags.includes("Encounter");
 
   return (
     <div style={{
@@ -243,24 +243,24 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
         <div style={{ display:"flex", flexDirection:"row", alignItems:"center", gap:4, flexShrink:0 }}>
           {hasEncounter && (
             <span style={{
-              fontSize: 12, fontWeight: 500,
+              fontSize: 17, fontWeight: 500,
               color: "#e6943a",
               background: "#2a1a00",
               border: "0.5px solid #a0672e",
               borderRadius: 4,
-              padding: "1px 6px",
+              padding: "1px 8px",
               whiteSpace: "nowrap",
             }}>
               Encounter
             </span>
           )}
           <span style={{
-            fontSize: 13, fontWeight: 500,
+            fontSize: 17, fontWeight: 500,
             color: TEXT.name,
             background: "#24221a",
             border: "0.5px solid #5b5540",
             borderRadius: 4,
-            padding: "1px 6px",
+            padding: "1px 8px",
             whiteSpace: "nowrap",
           }}>
             {lvlLabel(tech.level_min, tech.level_max)}
@@ -268,14 +268,9 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
         </div>
       </div>
 
-      {/* Spell school · remaining tags — all in one line */}
-      {(tech.spell_school || otherTags.length > 0) && (
+      {/* Remaining tags — all in one line */}
+      {otherTags.length > 0 && (
         <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
-          {tech.spell_school && (
-            <span style={{ fontSize:13, fontWeight:500, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD" }}>
-              {tech.spell_school}
-            </span>
-          )}
           {otherTags.map(tag => (
             <span key={tag} style={{
               fontSize: 12,
@@ -323,6 +318,22 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
         </div>
       )}
 
+      {/* Free-text notes — only for techniques flagged in the data */}
+      {tech.free_text && (
+        <div>
+          <div style={{ fontSize:12, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
+            Notes
+          </div>
+          <textarea
+            value={note}
+            onChange={e => onNoteChange(tech.id, e.target.value)}
+            placeholder="Add your notes…"
+            rows={2}
+            style={{ width:"100%", fontSize:13 }}
+          />
+        </div>
+      )}
+
       {/* Special rules text */}
       {tech.special && (
         <div style={{ fontSize:14, color:TEXT.body, lineHeight:1.5 }}>
@@ -356,9 +367,40 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
         </div>
       )}
 
-      {/* Add / Remove button */}
-      <div style={{ marginTop:2 }}>
-        {inBuild ? (
+      {/* Add / Remove button(s) — repeatable techniques keep "Add" available
+          and show how many copies are in the build; others just toggle */}
+      <div style={{ marginTop:2, display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}>
+        {repeatable ? (
+          <>
+            <button
+              onClick={() => onAdd(tech.id)}
+              style={{
+                fontSize: 13, color: "#d4a843",
+                background: "transparent",
+                border: "0.5px solid #a07c2e",
+                borderRadius: 4, padding: "2px 10px",
+              }}
+            >
+              + Add to build
+            </button>
+            {count > 0 && (
+              <>
+                <span style={{ fontSize:13, color:TEXT.muted }}>Known ×{count}</span>
+                <button
+                  onClick={() => onRemove(tech.id)}
+                  style={{
+                    fontSize: 13, color: "#c0392b",
+                    background: "transparent",
+                    border: "0.5px solid #c0392b",
+                    borderRadius: 4, padding: "2px 10px",
+                  }}
+                >
+                  Remove one
+                </button>
+              </>
+            )}
+          </>
+        ) : count > 0 ? (
           <button
             onClick={() => onRemove(tech.id)}
             style={{
@@ -393,7 +435,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
 // SHEET ENTRY — shown on the Character Sheet tab
 // Full detail: description, all mechanical fields, effects, prereqs.
 // ══════════════════════════════════════════════════════════════════
-function SheetEntry({ tech }) {
+function SheetEntry({ tech, count = 1 }) {
   const tags = splitCSV(tech.tags);
 
   return (
@@ -403,7 +445,7 @@ function SheetEntry({ tech }) {
       marginBottom: 22,
     }}>
 
-      {/* Name + level badge + spell school + tag list */}
+      {/* Name + level badge + quantity + tag list */}
       <div style={{ display:"flex", gap:8, alignItems:"baseline", flexWrap:"wrap", marginBottom:5 }}>
         <span style={{
           fontFamily: "'MedievalSharp', Georgia, serif",
@@ -416,10 +458,8 @@ function SheetEntry({ tech }) {
         <span style={{ fontSize:13, color:TEXT.name }}>
           {lvlLabel(tech.level_min, tech.level_max)}
         </span>
-        {tech.spell_school && (
-          <span style={{ fontSize:13, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD", fontStyle:"italic" }}>
-            {tech.spell_school}
-          </span>
+        {count > 1 && (
+          <span style={{ fontSize:13, color:TEXT.muted }}>×{count}</span>
         )}
         {tags.map(tag => (
           <span key={tag} style={{ fontSize:12, color:TEXT.faint }}>[{tag}]</span>
@@ -492,9 +532,9 @@ function SheetEntry({ tech }) {
 // the sticky sidebar next to the technique list on wide screens.
 // ══════════════════════════════════════════════════════════════════
 function BuildPanel({
-  charName, setCharName, build, buildTechs, knownXP, unknownCount,
+  charName, setCharName, build, buildRows, knownXP, unknownCount,
   doExport, doImport, importRef, doShare, clearBuild, shareMsg,
-  removeTech, actionBtn,
+  addTech, removeTech, actionBtn,
 }) {
   return (
     <>
@@ -561,15 +601,18 @@ function BuildPanel({
         )}
       </div>
 
-      {/* Build list */}
-      {buildTechs.length === 0 ? (
+      {/* Build list — one row per distinct technique. Duplicate/Encounter
+          techniques known more than once show a ×N count and a "+" to
+          learn another, since they can be added to the build repeatedly. */}
+      {buildRows.length === 0 ? (
         <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:15 }}>
           No techniques added yet — head to Browse to pick some.
         </div>
       ) : (
         <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
-          {buildTechs.map(t => {
-            const xp = techXP(t);
+          {buildRows.map(({ tech: t, count }) => {
+            const xpEach = techXP(t);
+            const repeatable = splitCSV(t.tags).some(tag => tag === "Duplicate" || tag === "Encounter");
             return (
               <div key={t.id} style={{
                 display:"flex", alignItems:"center", gap:8,
@@ -584,15 +627,27 @@ function BuildPanel({
                     fontSize:15, color:TEXT.name,
                     overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap",
                   }}>
-                    {t.name}
+                    {t.name}{count > 1 ? ` ×${count}` : ""}
                   </div>
                   <span style={{ fontSize:13, color:"#d4a843" }}>
                     {lvlLabel(t.level_min, t.level_max)}
                   </span>
                 </div>
                 <span style={{ fontSize:13, color:TEXT.faint, flexShrink:0 }}>
-                  {xp != null ? `${xp} XP` : "? XP"}
+                  {xpEach != null ? `${xpEach * count} XP` : "? XP"}
                 </span>
+                {repeatable && (
+                  <button
+                    onClick={() => addTech(t.id)}
+                    aria-label={`Add another ${t.name}`}
+                    style={{
+                      background:"transparent", border:"0.5px solid #2d3555", borderRadius:4,
+                      color:TEXT.muted, fontSize:15, lineHeight:1, padding:"2px 7px", flexShrink:0,
+                    }}
+                  >
+                    +
+                  </button>
+                )}
                 <button
                   onClick={() => removeTech(t.id)}
                   aria-label={`Remove ${t.name}`}
@@ -632,13 +687,19 @@ function App() {
   const [tagFilter,  setTagFilter]  = useState([]);     // selected "tags" chips
   const [levelMin,   setLevelMin]   = useState(1);
   const [levelMax,   setLevelMax]   = useState(5);
-  const [showDrafts, setShowDrafts] = useState(false);
   const [healingOnly, setHealingOnly] = useState(false);
   const [cardsOnly,   setCardsOnly]   = useState(false);
   const [advancedOpen, setAdvancedOpen] = useState(false);
-  const [build,      setBuild]      = useState([]);       // array of technique IDs
+  const [build,      setBuild]      = useState([]);       // array of technique IDs (Duplicate/Encounter techniques may repeat)
   const [charName,   setCharName]   = useState("");
   const [shareMsg,   setShareMsg]   = useState("");
+  // Free-text notes, keyed by technique ID, for techniques flagged
+  // free_text in the data. Persisted to localStorage since there's
+  // no backend — notes survive a reload but stay on this device.
+  const [notes, setNotes] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("flagonquest-notes") || "{}"); }
+    catch { return {}; }
+  });
   const importRef = useRef();
 
   // ── Fetch JSON data on first load ──────────────────────────────
@@ -681,6 +742,13 @@ function App() {
     }
   }, []);
 
+  // ── Persist free-text notes to localStorage whenever they change ─
+  useEffect(() => {
+    localStorage.setItem("flagonquest-notes", JSON.stringify(notes));
+  }, [notes]);
+
+  const setNote = (id, text) => setNotes(n => ({ ...n, [id]: text }));
+
   // ── Every related skill / tag seen across the loaded techniques ─
   // Powers the "Related skills" and "Tags" multiselects in Advanced filters.
   const allSkills = useMemo(() => {
@@ -705,7 +773,7 @@ function App() {
   // ── Filtered technique list ────────────────────────────────────
   // useMemo = only recalculate when one of the listed deps changes.
   const visible = useMemo(() => techniques.filter(t => {
-    if (!matchesLevel(t, levelMin, levelMax, showDrafts)) return false;
+    if (!matchesLevel(t, levelMin, levelMax)) return false;
     if (healingOnly && !t.healing) return false;
     if (cardsOnly && !t.use_cards) return false;
     if (skillFilter.length > 0) {
@@ -721,19 +789,43 @@ function App() {
       // Search the technique's full text — every field a player might
       // type a fragment of, not just name/effects.
       const hay = [
-        t.name, t.spell_school, t.tags, t.related_skills,
+        t.name, t.tags, t.related_skills,
         t.description, t.condition, t.action, t.cost, t.target,
         t.effects, t.special, t.prereqs,
       ].filter(Boolean).join(" ").toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
-  }), [techniques, search, skillFilter, tagFilter, levelMin, levelMax, showDrafts, healingOnly, cardsOnly]);
+  }), [techniques, search, skillFilter, tagFilter, levelMin, levelMax, healingOnly, cardsOnly]);
 
   // ── Full technique objects for the build list ──────────────────
+  // build can contain the same ID more than once — Duplicate/Encounter
+  // techniques can be learned multiple times, and each copy counts
+  // toward XP separately, so this stays a flat (non-deduped) list.
   const buildTechs = useMemo(() =>
     build.map(id => techniques.find(t => t.id === id)).filter(Boolean),
   [build, techniques]);
+
+  // One row per distinct technique, with how many copies are known —
+  // powers the build list and character sheet so repeats collapse
+  // into a single "×N" row instead of repeating the whole card.
+  const buildRows = useMemo(() => {
+    const order = [];
+    const counts = {};
+    build.forEach(id => {
+      if (!(id in counts)) order.push(id);
+      counts[id] = (counts[id] || 0) + 1;
+    });
+    return order
+      .map(id => ({ tech: techniques.find(t => t.id === id), count: counts[id] }))
+      .filter(row => row.tech);
+  }, [build, techniques]);
+
+  const buildCounts = useMemo(() => {
+    const counts = {};
+    build.forEach(id => { counts[id] = (counts[id] || 0) + 1; });
+    return counts;
+  }, [build]);
 
   // ── XP totals ──────────────────────────────────────────────────
   // knownXP = sum of all fixed-level technique costs (level × 3)
@@ -743,8 +835,22 @@ function App() {
   const unknownCount = buildTechs.filter(t => techXP(t) == null).length;
 
   // ── Build mutations ────────────────────────────────────────────
-  const addTech    = id => setBuild(b => b.includes(id) ? b : [...b, id]);
-  const removeTech = id => setBuild(b => b.filter(x => x !== id));
+  // Duplicate/Encounter techniques can be added more than once; every
+  // other technique still only ever has one copy in the build.
+  const addTech = id => setBuild(b => {
+    const tech = techniques.find(t => t.id === id);
+    const repeatable = tech && splitCSV(tech.tags).some(tag => tag === "Duplicate" || tag === "Encounter");
+    if (!repeatable && b.includes(id)) return b;
+    return [...b, id];
+  });
+  // Removes a single copy (the "Remove"/"Remove one" buttons and the
+  // build list's ✕ all call this — for a non-repeatable technique
+  // that's its only copy, so it behaves like a full removal).
+  const removeTech = id => setBuild(b => {
+    const idx = b.indexOf(id);
+    if (idx === -1) return b;
+    return [...b.slice(0, idx), ...b.slice(idx + 1)];
+  });
   const clearBuild = ()  => { if (confirm("Clear the current build?")) setBuild([]); };
 
   // ── Export build as a .json file download ─────────────────────
@@ -947,14 +1053,6 @@ function App() {
                 <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
                   <input
                     type="checkbox"
-                    checked={showDrafts}
-                    onChange={e => setShowDrafts(e.target.checked)}
-                  />
-                  Drafts
-                </label>
-                <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
-                  <input
-                    type="checkbox"
                     checked={healingOnly}
                     onChange={e => setHealingOnly(e.target.checked)}
                   />
@@ -1040,9 +1138,11 @@ function App() {
                 <TechCard
                   key={t.id}
                   tech={t}
-                  inBuild={build.includes(t.id)}
+                  count={buildCounts[t.id] || 0}
                   onAdd={addTech}
                   onRemove={removeTech}
+                  note={notes[t.id] || ""}
+                  onNoteChange={setNote}
                 />
               ))}
             </div>
@@ -1050,11 +1150,11 @@ function App() {
             <div className="browse-build-panel">
               <BuildPanel
                 charName={charName} setCharName={setCharName}
-                build={build} buildTechs={buildTechs}
+                build={build} buildRows={buildRows}
                 knownXP={knownXP} unknownCount={unknownCount}
                 doExport={doExport} doImport={doImport} importRef={importRef}
                 doShare={doShare} clearBuild={clearBuild} shareMsg={shareMsg}
-                removeTech={removeTech} actionBtn={actionBtn}
+                addTech={addTech} removeTech={removeTech} actionBtn={actionBtn}
               />
             </div>
           </div>
@@ -1067,11 +1167,11 @@ function App() {
         <div style={{ maxWidth:640, margin:"0 auto", padding:20 }}>
           <BuildPanel
             charName={charName} setCharName={setCharName}
-            build={build} buildTechs={buildTechs}
+            build={build} buildRows={buildRows}
             knownXP={knownXP} unknownCount={unknownCount}
             doExport={doExport} doImport={doImport} importRef={importRef}
             doShare={doShare} clearBuild={clearBuild} shareMsg={shareMsg}
-            removeTech={removeTech} actionBtn={actionBtn}
+            addTech={addTech} removeTech={removeTech} actionBtn={actionBtn}
           />
         </div>
       )}
@@ -1107,8 +1207,10 @@ function App() {
                 </div>
               </div>
 
-              {/* Techniques in the order they were added to the build */}
-              {buildTechs.map(t => <SheetEntry key={t.id} tech={t} />)}
+              {/* Techniques in the order they were added to the build —
+                  Duplicate/Encounter techniques known more than once
+                  collapse into a single entry with a ×N count */}
+              {buildRows.map(({ tech: t, count }) => <SheetEntry key={t.id} tech={t} count={count} />)}
             </>
           )}
         </div>

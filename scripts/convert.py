@@ -18,8 +18,6 @@ TECHNIQUE_MAP = {
     "Name":                 "name",
     "Level Min":            "level_min",
     "Level Max":            "level_max",
-    "Category":             "category",
-    "Spell School":         "spell_school",
     "Tags":                 "tags",
     "Description (Fluff)":  "description",
     "Condition":            "condition",
@@ -29,10 +27,11 @@ TECHNIQUE_MAP = {
     "Effects":              "effects",
     "Special":              "special",
     "Prereqs (Full)":       "prereqs",
-    "Prereq Skills":        "related_skills",
+    "Relevant Skills":      "related_skills",
     "Uses Cards":           "use_cards",
     "Healing":              "healing",
-    "Buildable":            "buildable",
+    "Features":             "features",
+    "Free Text":            "free_text",
 }
 
 FEATURE_MAP = {

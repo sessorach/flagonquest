@@ -4,8 +4,6 @@
     "name": "Brace",
     "level_min": 1,
     "level_max": 1,
-    "category": "Power",
-    "spell_school": null,
     "tags": "Encounter",
     "description": "You draw a deep breath, steeling yourself for the struggle ahead.",
     "condition": null,
@@ -18,15 +16,14 @@
     "related_skills": "Resilience",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T002",
     "name": "Soulblade",
     "level_min": 1,
     "level_max": 1,
-    "category": "Power",
-    "spell_school": null,
     "tags": "Duplicate",
     "description": "Through mystical training, force of will, or some other mental regimen you have unlocked the ability to forge your spiritual force into a solid weapon.",
     "condition": null,
@@ -39,36 +36,34 @@
     "related_skills": "Composure, Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": true
   },
   {
     "id": "T003",
     "name": "Temper Soulblade",
-    "level_min": null,
-    "level_max": null,
-    "category": "Power",
-    "spell_school": null,
+    "level_min": 1,
+    "level_max": 5,
     "tags": "Buildable, Duplicate",
     "description": "As you learn lessons they are etched into your soul, and as you express your spiritual weaponry its form changes to reflect your newfound wisdom.",
     "condition": null,
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "When you learn this, choose a Masterwork power (GM approval). This Technique's Level equals the chosen Masterwork's Level. When you create a weapon with Soulblade, you may choose one Masterwork power from this Technique that could apply; the weapon is created with it. Can be 're-purchased' at a higher Level by paying the XP difference.",
+    "effects": "When you learn this, choose a Masterwork power (GM approval). This Technique's Level equals the chosen Masterwork's Level. When you create a weapon with Soulblade, you may choose one Masterwork power from this Technique that could apply; the weapon is created with it. A power can be 're-purchased' at a higher Level by paying the XP difference.",
     "special": null,
     "prereqs": "(Composure or Meditation) [this Technique's Level]",
     "related_skills": "Composure, Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": true
+    "features": null,
+    "free_text": true
   },
   {
     "id": "T004",
     "name": "Vow of Poverty",
     "level_min": 1,
     "level_max": 1,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "You have forsworn all forms of material excess and wealth, and vowed to give all you can to the needy.",
     "condition": null,
@@ -81,15 +76,14 @@
     "related_skills": "Composure",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T005",
     "name": "Blindsight",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "By learning to effectively use echolocation, feel the motion of air against your skin, or honing multiple senses, you are capable of navigating in total darkness.",
     "condition": null,
@@ -102,15 +96,14 @@
     "related_skills": "Awareness",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T006",
     "name": "Blood-Powered Spirit",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": "Discipline, General Spell",
     "description": "Mastering the power within your own blood, you can draw it forth to power your spirit when your energy begins to wane.",
     "condition": null,
@@ -123,15 +116,14 @@
     "related_skills": "Resilience",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T007",
     "name": "Bound Across Mountains",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "Extensive practice in leaping and bounding has trained you to hurl yourself over truly vast obstacles.",
     "condition": null,
@@ -144,15 +136,14 @@
     "related_skills": "Athletics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T008",
     "name": "Canopy Creeper",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "Your limbs are strong and agile enough that you can traverse vertical distances as easily as you do horizontal ones.",
     "condition": null,
@@ -165,15 +156,14 @@
     "related_skills": "Athletics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T009",
     "name": "Falling Tumble",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "With perfect balance you can easily turn the momentum from a fall into a nimble roll.",
     "condition": null,
@@ -186,15 +176,14 @@
     "related_skills": "Acrobatics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T010",
     "name": "Grim Resolve",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "When you get backed into a corner, you push yourself to your absolute limits to do what needs to be done.",
     "condition": null,
@@ -207,15 +196,14 @@
     "related_skills": "Resilience, Composure",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T011",
     "name": "One Eye Behind You",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "It's not paranoia if you're actually being followed... and even if you're not, it's good to keep an eye out.",
     "condition": null,
@@ -228,15 +216,14 @@
     "related_skills": "Insight",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T012",
     "name": "Second Wind",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "Even when you've been battered and bruised, you catch your breath and keep pushing forward.",
     "condition": null,
@@ -249,15 +236,14 @@
     "related_skills": "Resilience, Composure",
     "use_cards": true,
     "healing": true,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T013",
     "name": "Solemn Pact",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": "Encounter",
     "description": "You have sworn a pact — a pledge of fealty to a mysterious entity, or a dedication to a set of ideals.",
     "condition": null,
@@ -270,15 +256,14 @@
     "related_skills": "Composure, Academics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T014",
     "name": "Toughened Body",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": "Duplicate",
     "description": "Through physical prowess or sheer determination, you have trained your body to withstand more abuse than most.",
     "condition": null,
@@ -291,15 +276,14 @@
     "related_skills": "Resilience, Composure",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T015",
     "name": "Trout Seeming",
     "level_min": 2,
     "level_max": 2,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "You were born to swim, taking to the water like a natural.",
     "condition": null,
@@ -312,15 +296,14 @@
     "related_skills": "Athletics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T016",
     "name": "Skin of Stone",
     "level_min": 3,
     "level_max": 3,
-    "category": "Power",
-    "spell_school": null,
     "tags": "Encounter",
     "description": "You briefly strengthen your body, allowing your extremely sturdy physical form to take a tremendous assault with almost no harm.",
     "condition": null,
@@ -333,15 +316,14 @@
     "related_skills": "Resilience",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T017",
     "name": "Solemn Perseverance",
     "level_min": 3,
     "level_max": 3,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "\"I am your loyal servant, my master. Failure is not an option...\"",
     "condition": null,
@@ -354,15 +336,14 @@
     "related_skills": "Resilience, Presence",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T018",
     "name": "Strength from the Slain",
     "level_min": 3,
     "level_max": 3,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "Many barbarian tribes practice the ritual of eating the hearts of enemy warriors slain in combat.",
     "condition": null,
@@ -375,15 +356,14 @@
     "related_skills": "Might, Resilience",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T019",
     "name": "Toughened Resolve",
     "level_min": 3,
     "level_max": 3,
-    "category": "Power",
-    "spell_school": null,
     "tags": "Duplicate",
     "description": "Pushing yourself to your physical limits, when victory rests on a knife's edge you refuse to falter.",
     "condition": null,
@@ -396,15 +376,14 @@
     "related_skills": "Resilience, Composure",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T020",
     "name": "Lay On Hands",
     "level_min": 4,
     "level_max": 4,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": null,
     "condition": null,
@@ -417,15 +396,14 @@
     "related_skills": "Composure, Presence",
     "use_cards": true,
     "healing": true,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T021",
     "name": "Mind and Body Unbroken",
     "level_min": 4,
     "level_max": 4,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": null,
     "condition": null,
@@ -438,15 +416,14 @@
     "related_skills": "Resilience, Composure, Meditation",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T022",
     "name": "Solemn Covenant",
     "level_min": 4,
     "level_max": 4,
-    "category": "Power",
-    "spell_school": null,
     "tags": null,
     "description": "(Extended oath: to be kind, to be strong, to be good — see full rules text)",
     "condition": null,
@@ -459,15 +436,14 @@
     "related_skills": null,
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T023",
     "name": "Toughened Spirit",
     "level_min": 4,
     "level_max": 4,
-    "category": "Power",
-    "spell_school": null,
     "tags": "Duplicate",
     "description": "Your resilience is legendary, a silhouette moving tirelessly through the fires of adversity and emerging unscathed.",
     "condition": null,
@@ -480,15 +456,14 @@
     "related_skills": "Resilience, Composure",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T024",
     "name": "Artisanal Training",
     "level_min": 1,
     "level_max": 1,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": "Duplicate",
     "description": "Through a formal apprenticeship or independent study, you have refined your craft enough to produce finished goods.",
     "condition": null,
@@ -501,15 +476,14 @@
     "related_skills": "Craft, Mixology, Survival",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T025",
     "name": "Extensive Background",
     "level_min": 1,
     "level_max": 1,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": "Duplicate",
     "description": "You benefit from a wealth of training and practice early in life, steeping you in the culture and skills of your upbringing.",
     "condition": null,
@@ -522,15 +496,14 @@
     "related_skills": null,
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T026",
     "name": "Practiced Persona",
     "level_min": 1,
     "level_max": 1,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": "Duplicate",
     "description": "After some time adopting disguises and alternate identities, you have constructed a favorite persona for certain situations.",
     "condition": null,
@@ -543,15 +516,14 @@
     "related_skills": "Masquerade",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T027",
     "name": "Profession",
     "level_min": 1,
     "level_max": 1,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": "Duplicate",
     "description": "You benefit from basic training in a practice or profession, giving you solid fundamentals in a valuable skill.",
     "condition": null,
@@ -564,15 +536,14 @@
     "related_skills": "Varies",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T028",
     "name": "Ventriloquy",
     "level_min": 1,
     "level_max": 1,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": "Subtle",
     "description": "The art of disguise is less about how you look, but rather how others hear and see you.",
     "condition": null,
@@ -585,15 +556,14 @@
     "related_skills": "Masquerade, Insight",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T029",
     "name": "Air of Mystery",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "People find it hard to remember exactly who you were or what you were doing just a bit ago.",
     "condition": null,
@@ -606,15 +576,14 @@
     "related_skills": "Masquerade",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T030",
     "name": "Animal Companion",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "\"This old girl? Found her hurt in the woods a few seasons back, nursed her back to health.\"",
     "condition": null,
@@ -627,15 +596,14 @@
     "related_skills": "Survival",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T031",
     "name": "Animal Companion: Trick",
     "level_min": 1,
     "level_max": 1,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": "Duplicate",
     "description": "\"You know, I really wish your wolf would stop slobbering into our mugs.\"",
     "condition": null,
@@ -648,15 +616,14 @@
     "related_skills": null,
     "use_cards": null,
     "healing": true,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T032",
     "name": "Awaken Armament",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "The weapons and armor that you craft hold secrets and potential that you can unlock.",
     "condition": null,
@@ -669,15 +636,14 @@
     "related_skills": "Craft",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T033",
     "name": "Hand of the Chirurgeon",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "With a great amount of practice and knowledge you have learned the fundamentals of medicine.",
     "condition": null,
@@ -690,15 +656,14 @@
     "related_skills": "Medicine",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T034",
     "name": "Legerdemain",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "As a practiced thief and tinkerer, you have trained in manual dexterity enough that you can bypass locks and swipe valuables easily and without a trace.",
     "condition": null,
@@ -711,15 +676,14 @@
     "related_skills": "Stealth, Craft",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T035",
     "name": "Mighty Mixologist",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "Familiar with the principles and practical applications of your alchemical creations, you know how to maximize their effectiveness.",
     "condition": null,
@@ -732,15 +696,14 @@
     "related_skills": "Mixology",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T036",
     "name": "Patch Up",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "With a strong foundation of practical medicine, your tender care and efficient bandaging ensure that your traveling companions are kept in good shape.",
     "condition": null,
@@ -753,15 +716,14 @@
     "related_skills": "Medicine",
     "use_cards": true,
     "healing": true,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T037",
     "name": "Placeholder's Alacritous Adaptation",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "(Extended literary quote from Arcanists of Myth and Legend, Vol. IV)",
     "condition": null,
@@ -774,15 +736,14 @@
     "related_skills": "Academics, Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T038",
     "name": "Practical Necromancy",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "Well-learned in practical applications of your magic, you have learned to do more than simply raise corpses.",
     "condition": null,
@@ -795,15 +756,14 @@
     "related_skills": "Craft",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T039",
     "name": "Quick Draw",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "You have an uncanny knack for always having just what you need right at hand and having quick fingers readying your equipment.",
     "condition": null,
@@ -816,15 +776,14 @@
     "related_skills": "Acrobatics, Insight",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T040",
     "name": "Re-purpose Materials",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "While many craftsmen can work with prepared materials you have a more pragmatic approach and are a deft hand at rendering finished products into serviceable materials.",
     "condition": null,
@@ -837,15 +796,14 @@
     "related_skills": "Craft, Mixology, Survival",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T041",
     "name": "Scrapcraft",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": "Encounter",
     "description": "You are in the habit of keeping a variety of half-completed spare parts in your pack, and in the practice of making common items from various odds and ends.",
     "condition": null,
@@ -858,15 +816,14 @@
     "related_skills": "Craft",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T042",
     "name": "Shadow's Path",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "A phantom in the shadows, the art of stealth comes so naturally to you that you can easily guide your allies while remaining hidden.",
     "condition": null,
@@ -879,15 +836,14 @@
     "related_skills": "Stealth",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T043",
     "name": "Street Runner",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "With a keen eye for the layout of alleys, tunnels, and bakeries, you know how to move through a city both unfettered and well-fed.",
     "condition": null,
@@ -900,15 +856,14 @@
     "related_skills": "Streetwise",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T044",
     "name": "Wisdom of the Woods",
     "level_min": 2,
     "level_max": 2,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "\"Tryin' to make the trek north to Rivera?...\"",
     "condition": null,
@@ -921,15 +876,14 @@
     "related_skills": "Survival",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T045",
     "name": "Analyze Stance",
     "level_min": 3,
     "level_max": 3,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "\"Based on how far down the handle he's holding his sword...\"",
     "condition": null,
@@ -942,15 +896,14 @@
     "related_skills": "Academics, Acrobatics, Archery, Melee, Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T046",
     "name": "Artisan's Eye",
     "level_min": 3,
     "level_max": 3,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "Your discerning eye sees all when it comes to your craft.",
     "condition": null,
@@ -963,15 +916,14 @@
     "related_skills": "Craft, Mixology, Survival, Academics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T047",
     "name": "Bespoke Masterpieces",
     "level_min": 3,
     "level_max": 3,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "While other artisans make impressive accessories and armaments, they're all cast from the same mold.",
     "condition": null,
@@ -984,15 +936,14 @@
     "related_skills": "Craft",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T048",
     "name": "Environmental Esoterica",
     "level_min": 3,
     "level_max": 3,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "\"How on earth did you find a sealed bottle of rum in the desert?...\"",
     "condition": null,
@@ -1005,15 +956,14 @@
     "related_skills": "Survival",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T049",
     "name": "Gather the Evidence",
     "level_min": 3,
     "level_max": 3,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "\"We're clearly missing something here...\"",
     "condition": null,
@@ -1026,15 +976,14 @@
     "related_skills": "Academics",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T050",
     "name": "Optimize Blood",
     "level_min": 3,
     "level_max": 3,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "By assessing the patient's pulse, bloodflow, and overall bodily state, you can determine how best to improve their short-term health and promote functions like clotting.",
     "condition": null,
@@ -1047,15 +996,14 @@
     "related_skills": "Medicine",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T051",
     "name": "Preparation",
     "level_min": 3,
     "level_max": 3,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "The old saying goes \"an ounce of prevention is worth a pound of cure\".",
     "condition": null,
@@ -1068,15 +1016,14 @@
     "related_skills": "Streetwise",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T052",
     "name": "Vanish",
     "level_min": 3,
     "level_max": 3,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": "Encounter",
     "description": "With a smoke bomb, great wave of a cloak, or some other obscuring act, you vanish from sight.",
     "condition": null,
@@ -1089,15 +1036,14 @@
     "related_skills": "Stealth",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T053",
     "name": "Bottomless Bottles",
     "level_min": 4,
     "level_max": 4,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "Each week your fingers are stained a different color from different alchemical reagents.",
     "condition": null,
@@ -1110,15 +1056,14 @@
     "related_skills": "Mixology, Resilience, Streetwise, Academics, Medicine",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T054",
     "name": "One of Many Faces",
     "level_min": 4,
     "level_max": 4,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "You have mastered the art of infiltration and imitation.",
     "condition": "You are not being observed by anyone",
@@ -1131,15 +1076,14 @@
     "related_skills": "Masquerade",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T055",
     "name": "Pressure Point Revitalization",
     "level_min": 4,
     "level_max": 4,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "Thanks to your almost encyclopedic knowledge of the human(oid) body, you can tell at a glance where someone's life force pools.",
     "condition": null,
@@ -1152,15 +1096,14 @@
     "related_skills": "Medicine",
     "use_cards": true,
     "healing": true,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T056",
     "name": "Preternatural Reflexes",
     "level_min": 5,
     "level_max": 5,
-    "category": "Expertise",
-    "spell_school": null,
     "tags": null,
     "description": "You keep your razor sharp wits about you at all times, and you react to danger the instant it presents itself.",
     "condition": null,
@@ -1173,15 +1116,14 @@
     "related_skills": "Awareness, Insight, Composure",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T057",
     "name": "Social Maneuver",
     "level_min": 1,
     "level_max": 4,
-    "category": "Personality",
-    "spell_school": null,
     "tags": "Social, Buildable, Encounter",
     "description": null,
     "condition": null,
@@ -1194,15 +1136,14 @@
     "related_skills": "Insight",
     "use_cards": null,
     "healing": null,
-    "buildable": true
+    "features": true,
+    "free_text": null
   },
   {
     "id": "T058",
     "name": "Challenge",
     "level_min": 1,
     "level_max": 1,
-    "category": "Personality",
-    "spell_school": null,
     "tags": "Encounter, Social",
     "description": "You bellow out a challenge to an enemy, drawing their attention away from your allies and forcing them to face you.",
     "condition": null,
@@ -1215,15 +1156,14 @@
     "related_skills": "Presence",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T059",
     "name": "Follower",
     "level_min": 1,
     "level_max": 1,
-    "category": "Personality",
-    "spell_school": null,
     "tags": null,
     "description": "You have gained the trust and loyalty of a squire, apprentice, familiar, or other follower who helps you on your adventures.",
     "condition": null,
@@ -1236,15 +1176,14 @@
     "related_skills": "Presence, Rapport",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T060",
     "name": "Follower: Knack",
     "level_min": 1,
     "level_max": 1,
-    "category": "Personality",
-    "spell_school": null,
     "tags": "Duplicate",
     "description": "Your heroics and expertise have pushed your follower to follow in your footsteps, developing their own abilities.",
     "condition": null,
@@ -1257,15 +1196,14 @@
     "related_skills": null,
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T061",
     "name": "A Perfectly Good Explanation",
     "level_min": 2,
     "level_max": 2,
-    "category": "Personality",
-    "spell_school": null,
     "tags": "Social",
     "description": "\"You understand that taking anything without permission is thievery, and punishable by law, yes?\"",
     "condition": null,
@@ -1278,15 +1216,14 @@
     "related_skills": "Persuasion, Rapport",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T062",
     "name": "Cry of Victory",
     "level_min": 2,
     "level_max": 2,
-    "category": "Personality",
-    "spell_school": null,
     "tags": null,
     "description": "As you strike down an enemy you bellow out, shaking your foes to their bones and causing them to briefly hesitate.",
     "condition": null,
@@ -1299,15 +1236,14 @@
     "related_skills": "Presence",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T063",
     "name": "Favorite Face",
     "level_min": 2,
     "level_max": 2,
-    "category": "Personality",
-    "spell_school": null,
     "tags": null,
     "description": "Whether it's your good looks, winning smile, or overall pleasant demeanor, people always seem to view you in a better light.",
     "condition": null,
@@ -1320,15 +1256,14 @@
     "related_skills": "Rapport",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T064",
     "name": "Heroic Inspiration",
     "level_min": 2,
     "level_max": 2,
-    "category": "Personality",
-    "spell_school": null,
     "tags": "Encounter",
     "description": "Invoking tales of great warriors, you wash away your comrades' worries and concern and push them to battle.",
     "condition": null,
@@ -1341,15 +1276,14 @@
     "related_skills": "Performance",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T065",
     "name": "Rumormonger",
     "level_min": 2,
     "level_max": 2,
-    "category": "Personality",
-    "spell_school": null,
     "tags": "Social",
     "description": "You have a knack for gossip that borders on concerning, but which proves very useful whenever you need to gently fan the winds of a social situation.",
     "condition": null,
@@ -1362,15 +1296,14 @@
     "related_skills": "Streetwise",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T066",
     "name": "Bolstering Refrain",
     "level_min": 3,
     "level_max": 3,
-    "category": "Personality",
-    "spell_school": null,
     "tags": null,
     "description": "Your words and songs uplift your allies, pushing away their weariness and straightening their backs to fight anew.",
     "condition": null,
@@ -1383,15 +1316,14 @@
     "related_skills": "Performance",
     "use_cards": true,
     "healing": true,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T067",
     "name": "Exert Pressure",
     "level_min": 3,
     "level_max": 3,
-    "category": "Personality",
-    "spell_school": null,
     "tags": "Encounter",
     "description": "Standing strong, looming over your foes in combat, your presence in a pitched melee is impossible to ignore.",
     "condition": null,
@@ -1404,15 +1336,14 @@
     "related_skills": "Presence",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T068",
     "name": "Dominate Mind",
     "level_min": 4,
     "level_max": 4,
-    "category": "Personality",
-    "spell_school": "Theurgy",
     "tags": "Social, Theurgy Spell, Encounter, Subtle",
     "description": "A seemingly innocuous argument or remark serves as the vehicle for a powerful enchantment.",
     "condition": null,
@@ -1425,15 +1356,14 @@
     "related_skills": "Theurgy, Insight",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T069",
     "name": "Raise Spirits",
     "level_min": 4,
     "level_max": 4,
-    "category": "Personality",
-    "spell_school": null,
     "tags": null,
     "description": "No one person can do everything, but if you believe in your friends then you can accomplish anything.",
     "condition": null,
@@ -1446,15 +1376,14 @@
     "related_skills": "Performance, Presence",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T070",
     "name": "Rally to Victory",
     "level_min": 4,
     "level_max": 4,
-    "category": "Personality",
-    "spell_school": null,
     "tags": null,
     "description": "In every great war story, when the battle is grim and the army is on the brink of defeat a hero will rise above the masses and inspire them to victory.",
     "condition": null,
@@ -1467,15 +1396,14 @@
     "related_skills": "Performance",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T071",
     "name": "The Gatekeeper",
     "level_min": 5,
     "level_max": 5,
-    "category": "Personality",
-    "spell_school": null,
     "tags": "Encounter",
     "description": "\"Your entire division was defeated by that band of rebels?...\"",
     "condition": null,
@@ -1488,15 +1416,14 @@
     "related_skills": "Presence, Composure, Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T072",
     "name": "Battle Maneuver",
     "level_min": 1,
     "level_max": 4,
-    "category": "Martial",
-    "spell_school": null,
     "tags": "Martial, Buildable, Encounter",
     "description": "The foundation of martial training, every military recruit and self-taught fighter learns how to attack in many strategic ways, knocking opponents off-guard and carving the way for victory.",
     "condition": null,
@@ -1509,15 +1436,14 @@
     "related_skills": "Acrobatics, Archery, Brawl, Melee",
     "use_cards": null,
     "healing": null,
-    "buildable": true
+    "features": true,
+    "free_text": null
   },
   {
     "id": "T073",
     "name": "Bladeslinging",
     "level_min": 1,
     "level_max": 1,
-    "category": "Martial",
-    "spell_school": null,
     "tags": "Martial",
     "description": "By adopting an unorthodox grip on your weapon, you can balance it in a way that allows you to leverage a greatsword with only one arm or throw the entire weight of your body behind a small blade.",
     "condition": null,
@@ -1530,15 +1456,14 @@
     "related_skills": "Might, Academics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T074",
     "name": "Feint",
     "level_min": 1,
     "level_max": 1,
-    "category": "Martial",
-    "spell_school": null,
     "tags": "Martial, Encounter",
     "description": null,
     "condition": null,
@@ -1551,15 +1476,14 @@
     "related_skills": "Insight",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T075",
     "name": "Magehunter",
     "level_min": 1,
     "level_max": 1,
-    "category": "Martial",
-    "spell_school": null,
     "tags": "Martial, Encounter",
     "description": "Through multi-disciplinary training in magical practice, you have learned when spellcasters leave gaps in their defenses and how to exploit those weaknesses.",
     "condition": null,
@@ -1572,15 +1496,14 @@
     "related_skills": "Academics, Sorcery, Theurgy",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T076",
     "name": "Parting Shot",
     "level_min": 1,
     "level_max": 1,
-    "category": "Martial",
-    "spell_school": null,
     "tags": "Martial, Encounter",
     "description": "By keeping a keen eye on the flow of battle, you can punish enemies who try to disengage from you.",
     "condition": null,
@@ -1593,15 +1516,14 @@
     "related_skills": "Acrobatics, Insight",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T077",
     "name": "Blinkstep",
     "level_min": 2,
     "level_max": 2,
-    "category": "Martial",
-    "spell_school": null,
     "tags": "Martial, Encounter",
     "description": "With a quick, fluid motion you dance around your enemies.",
     "condition": null,
@@ -1614,15 +1536,14 @@
     "related_skills": "Acrobatics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T078",
     "name": "Perfect Strike",
     "level_min": 2,
     "level_max": 2,
-    "category": "Martial",
-    "spell_school": null,
     "tags": "Martial",
     "description": null,
     "condition": null,
@@ -1635,15 +1556,14 @@
     "related_skills": "Acrobatics, Archery, Brawl, Melee",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T079",
     "name": "Cloak and Dagger",
     "level_min": 3,
     "level_max": 3,
-    "category": "Martial",
-    "spell_school": null,
     "tags": "Martial",
     "description": "\"Lord Radcliffe! How did you manage to convince the boss of that criminal gang to stop interfering in our trade routes?...\"",
     "condition": null,
@@ -1656,15 +1576,14 @@
     "related_skills": "Stealth",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T080",
     "name": "Shugen Style - Spirit Bolt",
     "level_min": 1,
     "level_max": 1,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Discipline, Encounter",
     "description": "An initiate of the spiritual arts learns to direct their energy into tangible bolts directed at their enemies.",
     "condition": null,
@@ -1677,15 +1596,14 @@
     "related_skills": "Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T081",
     "name": "Bear Style - Boulder Toss",
     "level_min": 2,
     "level_max": 2,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Martial, Encounter",
     "description": null,
     "condition": "Your hands are empty",
@@ -1698,15 +1616,14 @@
     "related_skills": "Brawl, Might",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T082",
     "name": "Channel Ki",
     "level_min": 2,
     "level_max": 2,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Discipline",
     "description": "(Extended quote from Arcanists of Myth and Legend, Vol. I about the ancient master Kodai)",
     "condition": null,
@@ -1719,15 +1636,14 @@
     "related_skills": "Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T083",
     "name": "Demon Style - Plague Fist",
     "level_min": 2,
     "level_max": 2,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Discipline, Martial, Encounter",
     "description": "A corruption of traditional hand-to-hand ki maneuvers, you twist your victim's spirit and desecrate their life force.",
     "condition": null,
@@ -1740,15 +1656,14 @@
     "related_skills": "Brawl, Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T084",
     "name": "Ignore Pain",
     "level_min": 2,
     "level_max": 2,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Discipline, Encounter",
     "description": "Fighting styles and magics that induce weakness in the body frequently rely on exploiting simple yet effective pressure points.",
     "condition": null,
@@ -1761,15 +1676,14 @@
     "related_skills": "Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T085",
     "name": "Pranic Nourishment",
     "level_min": 2,
     "level_max": 2,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Discipline",
     "description": "You can tune your body into the metaphysical weave of your surroundings, sustaining yourself off of the energy of the world around you.",
     "condition": null,
@@ -1782,15 +1696,14 @@
     "related_skills": "Meditation",
     "use_cards": null,
     "healing": true,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T086",
     "name": "Shugen Style - Iron Skin",
     "level_min": 2,
     "level_max": 2,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Discipline, Encounter",
     "description": "As an attack weaves its way past your guard, you concentrate your energy into your skin to deflect the force of the blow.",
     "condition": null,
@@ -1803,15 +1716,14 @@
     "related_skills": "Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T087",
     "name": "Shugen Style - Through the Void",
     "level_min": 2,
     "level_max": 2,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Discipline, Encounter",
     "description": "Just as water rushes to fill an empty vessel, by regulating the flow of your ki you can pull your physical being through space to another's.",
     "condition": null,
@@ -1824,15 +1736,14 @@
     "related_skills": "Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T088",
     "name": "Snake Style - Heelbiter",
     "level_min": 2,
     "level_max": 2,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Martial, Encounter",
     "description": "When an enemy tries to disengage from combat you creep around them and trip up their movement, steadily constricting them.",
     "condition": "Your hands are empty, and you are unarmored",
@@ -1845,15 +1756,14 @@
     "related_skills": "Brawl, Acrobatics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T089",
     "name": "Snake Style - Chainbreaker",
     "level_min": 2,
     "level_max": 2,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Martial, Encounter",
     "description": "(Extended quote about Master Raha who freed a labor camp using his chains as weapons)",
     "condition": "Your hands are empty, and you are unarmored",
@@ -1866,15 +1776,14 @@
     "related_skills": "Brawl, Acrobatics, Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T090",
     "name": "Corrupted Blood",
     "level_min": 3,
     "level_max": 3,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Discipline",
     "description": "One belief that many civilizations across the land share is that, for a variety of reasons, they consider blood to be important, even sacred.",
     "condition": null,
@@ -1887,15 +1796,14 @@
     "related_skills": "Meditation, Resilience",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T091",
     "name": "Shugen Style - Fist of the Third Dragon",
     "level_min": 3,
     "level_max": 3,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Discipline, Encounter",
     "description": "By studying the wisdom and technique of the dragons, acolytes have learned how to channel power in unusual and impressive ways.",
     "condition": null,
@@ -1908,15 +1816,14 @@
     "related_skills": "Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T092",
     "name": "Snake Style - Turn the Tables",
     "level_min": 3,
     "level_max": 3,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Martial, Encounter",
     "description": "With a certain limb-lock you can twist a creature you are grappling in the way of oncoming blows.",
     "condition": "Your hands are empty, and you are unarmored",
@@ -1929,15 +1836,14 @@
     "related_skills": "Brawl, Acrobatics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T093",
     "name": "Harmonious Mending",
     "level_min": 4,
     "level_max": 4,
-    "category": "Discipline",
-    "spell_school": null,
     "tags": "Discipline",
     "description": "Bringing your physical and spiritual being into alignment, you restore harmony to your body as well as re-balance your energies.",
     "condition": null,
@@ -1950,15 +1856,14 @@
     "related_skills": "Meditation",
     "use_cards": true,
     "healing": true,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T094",
     "name": "Conjure Armament",
     "level_min": 1,
     "level_max": 1,
-    "category": "Spell",
-    "spell_school": "General",
     "tags": "Duplicate",
     "description": "You conjure a weapon. Or maybe a suit of armor. You know, whatever you're feeling at the time.",
     "condition": null,
@@ -1971,15 +1876,14 @@
     "related_skills": "Sorcery, Theurgy, Craft",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T095",
     "name": "Placeholder's Tender Telekinesis",
     "level_min": 1,
     "level_max": 1,
-    "category": "Spell",
-    "spell_school": "General",
     "tags": "Duplicate",
     "description": "One of the most prominent of Placeholder's legendary incantations — a favorite of practical magicians and magical instructors alike.",
     "condition": null,
@@ -1992,15 +1896,14 @@
     "related_skills": "Sorcery, Theurgy, Might",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T096",
     "name": "Placeholder's Wizardly Witchlight",
     "level_min": 1,
     "level_max": 1,
-    "category": "Spell",
-    "spell_school": "General",
     "tags": null,
     "description": "Another classic spell attributed to the arcanist pseudonym Placeholder — a staple of the practical arcanist.",
     "condition": null,
@@ -2013,15 +1916,14 @@
     "related_skills": "Sorcery, Theurgy, Awareness",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T097",
     "name": "Shadow Jaunt",
     "level_min": 1,
     "level_max": 1,
-    "category": "Spell",
-    "spell_school": "General",
     "tags": "Encounter",
     "description": "Your form flickers into absolute darkness, and in the blink of an eye you fade from view and reappear somewhere else.",
     "condition": null,
@@ -2034,15 +1936,14 @@
     "related_skills": "Sorcery, Theurgy",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T098",
     "name": "Raise Corpse",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "General",
     "tags": null,
     "description": "The cornerstone of popular necromancy and a timeless classic, this spell binds magical power into a dead body to animate it under your command.",
     "condition": null,
@@ -2055,15 +1956,14 @@
     "related_skills": "Sorcery, Theurgy, Medicine",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T099",
     "name": "Ritual Magic",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "General",
     "tags": null,
     "description": "An ancient practice from times of less refined spellcasting — certain magical techniques allow multiple casters to pool their energies to empower a single ritual.",
     "condition": null,
@@ -2076,15 +1976,14 @@
     "related_skills": "Sorcery, Theurgy, Meditation, Rapport",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T100",
     "name": "Spellblade",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "General",
     "tags": "Martial",
     "description": "Your practice with both sorcery and martial combat has given you the ability to seamlessly integrate magic with your swordplay.",
     "condition": null,
@@ -2097,15 +1996,14 @@
     "related_skills": "Acrobatics, Archery, Melee, Sorcery, Theurgy",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T101",
     "name": "Summon Slime",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "General",
     "tags": "Encounter",
     "description": "You meld residual matter with ambient spiritual or elemental energies, creating a mindless animated blob you can guide with your magic.",
     "condition": null,
@@ -2118,15 +2016,14 @@
     "related_skills": "Sorcery, Theurgy, Resilience",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T102",
     "name": "Telepathic Link",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "General",
     "tags": "Duplicate",
     "description": "\"What does this weird spell do again?...\"",
     "condition": null,
@@ -2139,15 +2036,14 @@
     "related_skills": "Sorcery, Theurgy, Rapport",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T103",
     "name": "Summon Earthen Golem",
     "level_min": 4,
     "level_max": 4,
-    "category": "Spell",
-    "spell_school": "General",
     "tags": "Encounter",
     "description": "You cause the earth itself to form a golem and fight by your side.",
     "condition": null,
@@ -2160,15 +2056,14 @@
     "related_skills": "Sorcery, Theurgy, Survival",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T104",
     "name": "Spirit Blessing",
     "level_min": 1,
     "level_max": 4,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Buildable, Encounter",
     "description": null,
     "condition": null,
@@ -2181,15 +2076,14 @@
     "related_skills": "Theurgy",
     "use_cards": null,
     "healing": null,
-    "buildable": true
+    "features": true,
+    "free_text": null
   },
   {
     "id": "T105",
     "name": "Healing Magic",
     "level_min": 1,
     "level_max": 4,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Buildable",
     "description": null,
     "condition": null,
@@ -2202,15 +2096,14 @@
     "related_skills": "Theurgy",
     "use_cards": true,
     "healing": true,
-    "buildable": true
+    "features": true,
+    "free_text": null
   },
   {
     "id": "T106",
     "name": "From the Brink of Death",
     "level_min": 1,
     "level_max": 1,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell",
     "description": "With small threads of power you stitch together someone's wounds just enough to stabilize them.",
     "condition": null,
@@ -2223,15 +2116,14 @@
     "related_skills": "Theurgy",
     "use_cards": null,
     "healing": true,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T107",
     "name": "Gust of Wind",
     "level_min": 1,
     "level_max": 1,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": null,
     "condition": null,
@@ -2244,15 +2136,14 @@
     "related_skills": "Theurgy, Survival",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T108",
     "name": "Beast Venom",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": null,
     "condition": null,
@@ -2265,15 +2156,14 @@
     "related_skills": "Theurgy, Survival",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T109",
     "name": "Land's Bounty",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": "A staple of druids living in small towns and communes, this incantation allows a druid to stoke the energy of the land and cause it to bear fruit in a heartbeat.",
     "condition": null,
@@ -2286,15 +2176,14 @@
     "related_skills": "Theurgy, Survival",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T110",
     "name": "Lifeline",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": "Extending your life force out to encompass a friend, you protect them from harm while taking the brunt of any attacks made against them.",
     "condition": null,
@@ -2307,15 +2196,14 @@
     "related_skills": "Theurgy",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T111",
     "name": "Reckoning",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": null,
     "condition": null,
@@ -2328,15 +2216,14 @@
     "related_skills": "Theurgy",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T112",
     "name": "Sculpt Stone",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": "You manipulate and shape the earth around you, allowing you to quickly break the earth to create barriers — or tear them down.",
     "condition": null,
@@ -2349,15 +2236,14 @@
     "related_skills": "Theurgy, Survival",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T113",
     "name": "Spectral Spiderwebs",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": null,
     "condition": null,
@@ -2370,15 +2256,14 @@
     "related_skills": "Theurgy, Survival",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T114",
     "name": "Summon Spectre",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": "You summon a low-level shade, either bringing one from the Otherlands or forming one from ambient shadow energy.",
     "condition": null,
@@ -2391,15 +2276,14 @@
     "related_skills": "Theurgy, Academics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T115",
     "name": "Weatherworking",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": "Speaking to the earth, wind, and sky, you can wield the power of the weather itself.",
     "condition": null,
@@ -2412,15 +2296,14 @@
     "related_skills": "Theurgy, Survival",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T116",
     "name": "Cloak of Awe",
     "level_min": 3,
     "level_max": 3,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": "Laying a mantle of flaring light over an ally, you stagger and shake enemies, driving them away from your friends.",
     "condition": null,
@@ -2433,15 +2316,14 @@
     "related_skills": "Theurgy",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T117",
     "name": "Cloak of Command",
     "level_min": 3,
     "level_max": 3,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": "Wrapping an ally with bands of compelling power, you draw your enemies' attention away from others and towards them instead.",
     "condition": null,
@@ -2454,15 +2336,14 @@
     "related_skills": "Theurgy",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T118",
     "name": "Earthquake",
     "level_min": 4,
     "level_max": 4,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": "Reaching into the depths of the earth with your power, you agitate the ground into a state of turmoil and uproar.",
     "condition": null,
@@ -2475,15 +2356,14 @@
     "related_skills": "Theurgy, Survival",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T119",
     "name": "Spiritual Intervention",
     "level_min": 5,
     "level_max": 5,
-    "category": "Spell",
-    "spell_school": "Theurgy",
     "tags": "Theurgy Spell, Encounter",
     "description": "As a sturdy boulder in the frantic storm of the world, you extend your magic to bend the fabric of existence itself.",
     "condition": null,
@@ -2496,15 +2376,14 @@
     "related_skills": "Theurgy, Sorcery",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T120",
     "name": "War Magic",
     "level_min": 1,
     "level_max": 4,
-    "category": "Spell",
-    "spell_school": "Sorcery",
     "tags": "Sorcery Spell, Buildable, Encounter",
     "description": null,
     "condition": null,
@@ -2517,15 +2396,14 @@
     "related_skills": "Sorcery",
     "use_cards": null,
     "healing": null,
-    "buildable": true
+    "features": true,
+    "free_text": null
   },
   {
     "id": "T121",
     "name": "Force Missiles",
     "level_min": 1,
     "level_max": 1,
-    "category": "Spell",
-    "spell_school": "Sorcery",
     "tags": "Sorcery Spell, Encounter",
     "description": "Even a basic understanding of the elemental arts allows a warmage to quickly barrage a foe with explosions of force.",
     "condition": null,
@@ -2538,15 +2416,14 @@
     "related_skills": "Sorcery",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T122",
     "name": "Gainsay",
     "level_min": 1,
     "level_max": 1,
-    "category": "Spell",
-    "spell_school": "Sorcery",
     "tags": "Sorcery Spell, Encounter",
     "description": "\"Here we are at last, Conflagrator. We shall finally see, once and for all, whether my blade or your magic shall prove more nimble!\"",
     "condition": null,
@@ -2559,15 +2436,14 @@
     "related_skills": "Sorcery, Insight",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T123",
     "name": "Wall of Shadows",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "Sorcery",
     "tags": "Sorcery Spell, Encounter",
     "description": "You conjure a wave of swirling, opaque shadow to obscure an area from sight.",
     "condition": null,
@@ -2580,15 +2456,14 @@
     "related_skills": "Sorcery, Resilience",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T124",
     "name": "Warmage's Reserves",
     "level_min": 2,
     "level_max": 2,
-    "category": "Spell",
-    "spell_school": "Sorcery",
     "tags": "Sorcery Spell",
     "description": "At the Warmage's Garrison in the cosmopolitan City of Five Ports, multidisciplinary study of elemental magic has led to impressive advancements.",
     "condition": null,
@@ -2601,15 +2476,14 @@
     "related_skills": "Sorcery, Academics",
     "use_cards": true,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T125",
     "name": "Summon Elemental Warrior",
     "level_min": 3,
     "level_max": 3,
-    "category": "Spell",
-    "spell_school": "Sorcery",
     "tags": "Sorcery Spell, Encounter",
     "description": "Twisting elemental magic into solid form, you bring an elemental into being — a creature of energy and magic that you can command to destroy your enemies.",
     "condition": null,
@@ -2622,15 +2496,14 @@
     "related_skills": "Sorcery",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T126",
     "name": "Wall of Ice",
     "level_min": 3,
     "level_max": 3,
-    "category": "Spell",
-    "spell_school": "Sorcery",
     "tags": "Sorcery Spell, Encounter",
     "description": "With a wave of your arms you raise a cliff of solid ice, splitting a skirmish in two, or boxing in an unfortunate enemy.",
     "condition": null,
@@ -2643,15 +2516,14 @@
     "related_skills": "Sorcery",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T127",
     "name": "Wall of Fire",
     "level_min": 4,
     "level_max": 4,
-    "category": "Spell",
-    "spell_school": "Sorcery",
     "tags": "Sorcery Spell, Encounter",
     "description": "You conjure a curtain of burning fire, threatening to incinerate anyone who passes through it.",
     "condition": null,
@@ -2664,15 +2536,14 @@
     "related_skills": "Sorcery",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T128",
     "name": "Lawman's Hand",
     "level_min": 1,
     "level_max": 1,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "With some basic anatomic knowledge you know how to reliably incapacitate a foe instead of killing them.",
     "condition": null,
@@ -2685,15 +2556,14 @@
     "related_skills": "Medicine",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T129",
     "name": "Disciple of the Flowing Hand",
     "level_min": 2,
     "level_max": 2,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "Thanks to your training in the style of unarmored fighting, you easily flow like water around your weighed-down opponents.",
     "condition": "You are not wearing armor",
@@ -2706,15 +2576,14 @@
     "related_skills": "Acrobatics, Brawl",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T130",
     "name": "Furious Rage",
     "level_min": 2,
     "level_max": 2,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "You keep your bloodrage on a short leash, and at a moment's notice you can let loose and become a fearsome but reckless warrior.",
     "condition": null,
@@ -2727,15 +2596,14 @@
     "related_skills": "Might, Resilience",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T131",
     "name": "Hand of Chaos",
     "level_min": 2,
     "level_max": 2,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "Allowing your hand to be guided by the subtle winds of fate, your fighting sometimes turns up surprising results.",
     "condition": null,
@@ -2748,15 +2616,14 @@
     "related_skills": "Insight",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T132",
     "name": "Indomitable Phalanx",
     "level_min": 2,
     "level_max": 2,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "With a wide guard and intense focus, you can account for attacks from an entire squad of soldiers.",
     "condition": null,
@@ -2769,15 +2636,14 @@
     "related_skills": "Acrobatics, Brawl, Insight",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T133",
     "name": "Placeholder's Lengthy Ley-weaving",
     "level_min": 2,
     "level_max": 2,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "\"...the mighty Placeholder was so in-tune with the flow of magic that he could grasp the very lines of power that lie within the earth...\"",
     "condition": null,
@@ -2790,15 +2656,14 @@
     "related_skills": "Sorcery, Meditation, Theurgy",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T134",
     "name": "Lion Style - Eternal Riposte",
     "level_min": 2,
     "level_max": 2,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "\"Our pirates boarded the ship to find the crew hiding belowdecks, and a single woman standing before us...\"",
     "condition": "You are wielding a non-shield weapon in one hand, and the other is empty",
@@ -2811,15 +2676,14 @@
     "related_skills": "Brawl, Melee, Insight",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T135",
     "name": "Shugen Style - Spirit Hands",
     "level_min": 2,
     "level_max": 2,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "A fundamental practice of the spiritual arts, you actively circulate your energy throughout your body to deliver powerful blows backed by spiritual power.",
     "condition": "Your hands are empty",
@@ -2832,15 +2696,14 @@
     "related_skills": "Brawl, Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T136",
     "name": "Tiger Style - Storm of Blades",
     "level_min": 2,
     "level_max": 2,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "As a fighter perfects the art of two-weapon fighting, their style takes on a certain beauty.",
     "condition": "You are wielding two non-shield weapons",
@@ -2853,15 +2716,14 @@
     "related_skills": "Acrobatics, Brawl, Melee",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T137",
     "name": "Eagle Eyes",
     "level_min": 3,
     "level_max": 3,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "Sharpening your focus for a moment, you guide each shot to your target with unerring precision.",
     "condition": null,
@@ -2874,15 +2736,14 @@
     "related_skills": "Acrobatics, Archery",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T138",
     "name": "Follow Through",
     "level_min": 3,
     "level_max": 3,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "When your blows fell an enemy you can carry the force from the attack forward, striking another foe down.",
     "condition": "You are wielding a two-handed close-range weapon",
@@ -2895,15 +2756,14 @@
     "related_skills": "Brawl, Melee, Might",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T139",
     "name": "Inexhaustible Guardian",
     "level_min": 3,
     "level_max": 3,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "As a pillar of courage and resilience on the battlefield, you never tire or falter under duress.",
     "condition": "You are wielding a shield",
@@ -2916,15 +2776,14 @@
     "related_skills": "Melee, Athletics",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   },
   {
     "id": "T140",
     "name": "Overchanneling",
     "level_min": 3,
     "level_max": 3,
-    "category": "Stance",
-    "spell_school": null,
     "tags": "Stance",
     "description": "Many styles of warmage training focus on overwhelming power and raw eldritch offense over all else.",
     "condition": null,
@@ -2937,6 +2796,7 @@
     "related_skills": "Sorcery, Meditation",
     "use_cards": null,
     "healing": null,
-    "buildable": null
+    "features": null,
+    "free_text": null
   }
 ]
