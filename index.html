@@ -8,6 +8,11 @@
   <!-- Tabler Icons webfont — used for the button icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
+  <!-- MedievalSharp — fantasy display font for names/headings (free, OFL license) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+
   <!-- React 18 (the UI framework) and ReactDOM (renders it to the page) -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -34,7 +39,7 @@
       border-radius: 6px;
       padding: 7px 11px;
       color: #e8dfc8;
-      font-size: 13px;
+      font-size: 15px;
       font-family: inherit;
       outline: none;
       transition: border-color 0.15s;
@@ -226,9 +231,9 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
           Level always stays pinned in the far corner */}
       <div style={{ display:"flex", alignItems:"flex-start", gap:8 }}>
         <span style={{
-          fontFamily: "Georgia, 'Times New Roman', serif",
+          fontFamily: "'MedievalSharp', Georgia, serif",
           fontWeight: "bold",
-          fontSize: 15,
+          fontSize: 17,
           color: TEXT.name,
           flex: 1,
           lineHeight: 1.3,
@@ -238,7 +243,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
         <div style={{ display:"flex", flexDirection:"row", alignItems:"center", gap:4, flexShrink:0 }}>
           {hasEncounter && (
             <span style={{
-              fontSize: 10, fontWeight: 500,
+              fontSize: 12, fontWeight: 500,
               color: "#e6943a",
               background: "#2a1a00",
               border: "0.5px solid #a0672e",
@@ -250,7 +255,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
             </span>
           )}
           <span style={{
-            fontSize: 11, fontWeight: 500,
+            fontSize: 13, fontWeight: 500,
             color: TEXT.name,
             background: "#24221a",
             border: "0.5px solid #5b5540",
@@ -267,13 +272,13 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
       {(tech.spell_school || otherTags.length > 0) && (
         <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
           {tech.spell_school && (
-            <span style={{ fontSize:11, fontWeight:500, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD" }}>
+            <span style={{ fontSize:13, fontWeight:500, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD" }}>
               {tech.spell_school}
             </span>
           )}
           {otherTags.map(tag => (
             <span key={tag} style={{
-              fontSize: 10,
+              fontSize: 12,
               color: tag === "Buildable" ? "#7F77DD"
                    : tag === "Duplicate" ? "#1D9E75"
                    : TEXT.muted,
@@ -290,7 +295,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
 
       {/* Fluff description — italic and muted */}
       {tech.description && (
-        <div style={{ fontSize:12, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5 }}>
+        <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5 }}>
           {tech.description}
         </div>
       )}
@@ -302,7 +307,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
         ["Cost",      tech.cost],
         ["Target",    tech.target],
       ].filter(([, v]) => v).map(([label, val]) => (
-        <div key={label} style={{ fontSize:12, color:TEXT.body, lineHeight:1.4 }}>
+        <div key={label} style={{ fontSize:14, color:TEXT.body, lineHeight:1.4 }}>
           <span style={{ color:TEXT.label, fontWeight:500 }}>{label}: </span>
           {val}
         </div>
@@ -311,7 +316,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
       {/* Effects — the main rules text, shown in full */}
       {tech.effects && (
         <div style={{
-          fontSize: 12, color: TEXT.body, lineHeight: 1.6,
+          fontSize: 14, color: TEXT.body, lineHeight: 1.6,
           whiteSpace: "pre-wrap",  // preserves any line breaks in the text
         }}>
           {tech.effects}
@@ -320,7 +325,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
 
       {/* Special rules text */}
       {tech.special && (
-        <div style={{ fontSize:12, color:TEXT.body, lineHeight:1.5 }}>
+        <div style={{ fontSize:14, color:TEXT.body, lineHeight:1.5 }}>
           <span style={{ color:TEXT.label, fontWeight:500 }}>Special: </span>
           {tech.special}
         </div>
@@ -328,17 +333,26 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
 
       {/* Prerequisites */}
       {tech.prereqs && (
-        <div style={{ fontSize:11, color:TEXT.faint, lineHeight:1.4 }}>
+        <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4 }}>
           <span style={{ fontWeight:500 }}>Prereqs: </span>
           {tech.prereqs}
         </div>
       )}
 
-      {/* Related skills — plain list at the very bottom, under prereqs */}
+      {/* Related skills — faint chips at the very bottom, under prereqs */}
       {skills.length > 0 && (
-        <div style={{ fontSize:11, color:TEXT.faint, lineHeight:1.4 }}>
-          <span style={{ fontWeight:500 }}>Related skills: </span>
-          {skills.join(" · ")}
+        <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
+          {skills.map(skill => (
+            <span key={skill} style={{
+              fontSize: 12,
+              color: TEXT.faint,
+              border: "0.5px solid #232a3d",
+              borderRadius: 3,
+              padding: "1px 5px",
+            }}>
+              {skill}
+            </span>
+          ))}
         </div>
       )}
 
@@ -348,7 +362,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
           <button
             onClick={() => onRemove(tech.id)}
             style={{
-              fontSize: 11, color: "#c0392b",
+              fontSize: 13, color: "#c0392b",
               background: "transparent",
               border: "0.5px solid #c0392b",
               borderRadius: 4, padding: "2px 10px",
@@ -360,7 +374,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
           <button
             onClick={() => onAdd(tech.id)}
             style={{
-              fontSize: 11, color: "#d4a843",
+              fontSize: 13, color: "#d4a843",
               background: "transparent",
               border: "0.5px solid #a07c2e",
               borderRadius: 4, padding: "2px 10px",
@@ -392,30 +406,30 @@ function SheetEntry({ tech }) {
       {/* Name + level badge + spell school + tag list */}
       <div style={{ display:"flex", gap:8, alignItems:"baseline", flexWrap:"wrap", marginBottom:5 }}>
         <span style={{
-          fontFamily: "Georgia, 'Times New Roman', serif",
+          fontFamily: "'MedievalSharp', Georgia, serif",
           fontWeight: "bold",
-          fontSize: 15,
+          fontSize: 17,
           color: TEXT.name,
         }}>
           {tech.name}
         </span>
-        <span style={{ fontSize:11, color:TEXT.name }}>
+        <span style={{ fontSize:13, color:TEXT.name }}>
           {lvlLabel(tech.level_min, tech.level_max)}
         </span>
         {tech.spell_school && (
-          <span style={{ fontSize:11, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD", fontStyle:"italic" }}>
+          <span style={{ fontSize:13, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD", fontStyle:"italic" }}>
             {tech.spell_school}
           </span>
         )}
         {tags.map(tag => (
-          <span key={tag} style={{ fontSize:10, color:TEXT.faint }}>[{tag}]</span>
+          <span key={tag} style={{ fontSize:12, color:TEXT.faint }}>[{tag}]</span>
         ))}
       </div>
 
       {/* Fluff description — italic and muted */}
       {tech.description && (
         <div style={{
-          fontSize: 12,
+          fontSize: 14,
           color: TEXT.muted,
           fontStyle: "italic",
           lineHeight: 1.5,
@@ -432,7 +446,7 @@ function SheetEntry({ tech }) {
         ["Cost",      tech.cost],
         ["Target",    tech.target],
       ].filter(([, v]) => v).map(([label, val]) => (
-        <div key={label} style={{ fontSize:13, color:TEXT.body, marginBottom:2, lineHeight:1.4 }}>
+        <div key={label} style={{ fontSize:15, color:TEXT.body, marginBottom:2, lineHeight:1.4 }}>
           <span style={{ color:TEXT.label, fontWeight:500 }}>{label}: </span>
           {val}
         </div>
@@ -441,7 +455,7 @@ function SheetEntry({ tech }) {
       {/* Effects — the main rules text */}
       {tech.effects && (
         <div style={{
-          fontSize: 13,
+          fontSize: 15,
           color: TEXT.body,
           lineHeight: 1.6,
           marginTop: 5,
@@ -454,7 +468,7 @@ function SheetEntry({ tech }) {
 
       {/* Special rules text */}
       {tech.special && (
-        <div style={{ fontSize:13, color:TEXT.body, marginTop:4, lineHeight:1.5 }}>
+        <div style={{ fontSize:15, color:TEXT.body, marginTop:4, lineHeight:1.5 }}>
           <span style={{ color:TEXT.label, fontWeight:500 }}>Special: </span>
           {tech.special}
         </div>
@@ -462,7 +476,7 @@ function SheetEntry({ tech }) {
 
       {/* Prerequisites */}
       {tech.prereqs && (
-        <div style={{ fontSize:11, color:TEXT.faint, marginTop:7 }}>
+        <div style={{ fontSize:13, color:TEXT.faint, marginTop:7 }}>
           <span style={{ fontWeight:500 }}>Prereqs: </span>
           {tech.prereqs}
         </div>
@@ -487,7 +501,7 @@ function BuildPanel({
       {/* Character name input */}
       <div style={{ marginBottom:18 }}>
         <div style={{
-          fontSize: 11, color: TEXT.faint, marginBottom: 6,
+          fontSize: 13, color: TEXT.faint, marginBottom: 6,
           textTransform: "uppercase", letterSpacing: "0.07em",
         }}>
           Character name
@@ -497,7 +511,7 @@ function BuildPanel({
           placeholder="Enter a name…"
           value={charName}
           onChange={e => setCharName(e.target.value)}
-          style={{ width:"100%", fontFamily:"Georgia, serif", fontSize:15 }}
+          style={{ width:"100%", fontFamily:"'MedievalSharp', Georgia, serif", fontSize:17 }}
         />
       </div>
 
@@ -507,22 +521,22 @@ function BuildPanel({
           background:"#161b27", border:"0.5px solid #2d3555",
           borderRadius:8, padding:"8px 14px", minWidth:90,
         }}>
-          <div style={{ fontSize:11, color:TEXT.faint, marginBottom:4 }}>Techniques</div>
-          <div style={{ fontSize:20, fontWeight:500 }}>{build.length}</div>
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:4 }}>Techniques</div>
+          <div style={{ fontSize:22, fontWeight:500 }}>{build.length}</div>
         </div>
         <div style={{
           background:"#161b27", border:"0.5px solid #2d3555",
           borderRadius:8, padding:"8px 14px", minWidth:110,
         }}>
-          <div style={{ fontSize:11, color:TEXT.faint, marginBottom:4 }}>Technique XP</div>
-          <div style={{ fontSize:20, fontWeight:500 }}>
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:4 }}>Technique XP</div>
+          <div style={{ fontSize:22, fontWeight:500 }}>
             {unknownCount > 0 ? `${knownXP}+` : `${knownXP}`}
-            <span style={{ fontSize:11, color:TEXT.faint, marginLeft:4 }}>XP</span>
+            <span style={{ fontSize:13, color:TEXT.faint, marginLeft:4 }}>XP</span>
           </div>
         </div>
       </div>
       {unknownCount > 0 && (
-        <div style={{ fontSize:11, color:TEXT.faint, fontStyle:"italic", marginTop:-8, marginBottom:16 }}>
+        <div style={{ fontSize:13, color:TEXT.faint, fontStyle:"italic", marginTop:-8, marginBottom:16 }}>
           {unknownCount} range-level technique{unknownCount > 1 ? "s" : ""} — XP varies by level purchased.
         </div>
       )}
@@ -543,13 +557,13 @@ function BuildPanel({
           <button onClick={clearBuild} style={actionBtn(true)}>Clear build</button>
         )}
         {shareMsg && (
-          <span style={{ fontSize:12, color:"#d4a843" }}>{shareMsg}</span>
+          <span style={{ fontSize:14, color:"#d4a843" }}>{shareMsg}</span>
         )}
       </div>
 
       {/* Build list */}
       {buildTechs.length === 0 ? (
-        <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:13 }}>
+        <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:15 }}>
           No techniques added yet — head to Browse to pick some.
         </div>
       ) : (
@@ -566,17 +580,17 @@ function BuildPanel({
               }}>
                 <div style={{ flex:1, minWidth:0 }}>
                   <div style={{
-                    fontFamily:"Georgia, serif", fontWeight:"bold",
-                    fontSize:13, color:TEXT.name,
+                    fontFamily:"'MedievalSharp', Georgia, serif", fontWeight:"bold",
+                    fontSize:15, color:TEXT.name,
                     overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap",
                   }}>
                     {t.name}
                   </div>
-                  <span style={{ fontSize:11, color:"#d4a843" }}>
+                  <span style={{ fontSize:13, color:"#d4a843" }}>
                     {lvlLabel(t.level_min, t.level_max)}
                   </span>
                 </div>
-                <span style={{ fontSize:11, color:TEXT.faint, flexShrink:0 }}>
+                <span style={{ fontSize:13, color:TEXT.faint, flexShrink:0 }}>
                   {xp != null ? `${xp} XP` : "? XP"}
                 </span>
                 <button
@@ -584,7 +598,7 @@ function BuildPanel({
                   aria-label={`Remove ${t.name}`}
                   style={{
                     background:"transparent", border:"none",
-                    color:TEXT.faint, fontSize:16, lineHeight:1, padding:"2px 4px", flexShrink:0,
+                    color:TEXT.faint, fontSize:18, lineHeight:1, padding:"2px 4px", flexShrink:0,
                   }}
                 >
                   ✕
@@ -615,6 +629,7 @@ function App() {
   const [view,       setView]       = useState("browse"); // browse | build | sheet
   const [search,     setSearch]     = useState("");
   const [skillFilter, setSkillFilter] = useState([]);   // selected "related skills" chips
+  const [tagFilter,  setTagFilter]  = useState([]);     // selected "tags" chips
   const [levelMin,   setLevelMin]   = useState(1);
   const [levelMax,   setLevelMax]   = useState(5);
   const [showDrafts, setShowDrafts] = useState(false);
@@ -666,16 +681,25 @@ function App() {
     }
   }, []);
 
-  // ── Every related skill seen across the loaded techniques ──────
-  // Powers the "Related skills" multiselect in Advanced filters.
+  // ── Every related skill / tag seen across the loaded techniques ─
+  // Powers the "Related skills" and "Tags" multiselects in Advanced filters.
   const allSkills = useMemo(() => {
     const set = new Set();
     techniques.forEach(t => splitCSV(t.related_skills).forEach(s => set.add(s)));
     return [...set].sort();
   }, [techniques]);
 
+  const allTags = useMemo(() => {
+    const set = new Set();
+    techniques.forEach(t => splitCSV(t.tags).forEach(tag => set.add(tag)));
+    return [...set].sort();
+  }, [techniques]);
+
   const toggleSkill = skill => setSkillFilter(cur =>
     cur.includes(skill) ? cur.filter(s => s !== skill) : [...cur, skill]
+  );
+  const toggleTag = tag => setTagFilter(cur =>
+    cur.includes(tag) ? cur.filter(t => t !== tag) : [...cur, tag]
   );
 
   // ── Filtered technique list ────────────────────────────────────
@@ -687,6 +711,10 @@ function App() {
     if (skillFilter.length > 0) {
       const techSkills = splitCSV(t.related_skills);
       if (!skillFilter.some(s => techSkills.includes(s))) return false;
+    }
+    if (tagFilter.length > 0) {
+      const techTags = splitCSV(t.tags);
+      if (!tagFilter.some(tag => techTags.includes(tag))) return false;
     }
     if (search) {
       const q = search.toLowerCase();
@@ -700,7 +728,7 @@ function App() {
       if (!hay.includes(q)) return false;
     }
     return true;
-  }), [techniques, search, skillFilter, levelMin, levelMax, showDrafts, healingOnly, cardsOnly]);
+  }), [techniques, search, skillFilter, tagFilter, levelMin, levelMax, showDrafts, healingOnly, cardsOnly]);
 
   // ── Full technique objects for the build list ──────────────────
   const buildTechs = useMemo(() =>
@@ -772,27 +800,26 @@ function App() {
 
   // ── Style helpers ──────────────────────────────────────────────
   const tabStyle = key => ({
-    padding: "6px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+    padding: "6px 14px", fontSize: 15, fontWeight: 500, borderRadius: 6,
     background:  view === key ? "#d4a843" : "transparent",
     color:       view === key ? "#0a0e18" : TEXT.muted,
     border: `0.5px solid ${view === key ? "#d4a843" : "#2d3555"}`,
     transition: "all 0.15s",
   });
 
-  const skillChipStyle = skill => {
-    const active = skillFilter.includes(skill);
-    return {
-      padding: "3px 10px", fontSize: 11, borderRadius: 20,
-      fontWeight: active ? 500 : 400,
-      whiteSpace: "nowrap",
-      background: active ? "#d4a84322" : "transparent",
-      color:      active ? "#d4a843" : TEXT.muted,
-      border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
-    };
-  };
+  // Shared look for the toggle-able chip buttons in Advanced filters
+  // (Related skills, Tags) — active chips light up gold.
+  const filterChipStyle = active => ({
+    padding: "3px 10px", fontSize: 13, borderRadius: 20,
+    fontWeight: active ? 500 : 400,
+    whiteSpace: "nowrap",
+    background: active ? "#d4a84322" : "transparent",
+    color:      active ? "#d4a843" : TEXT.muted,
+    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
+  });
 
   const actionBtn = (danger = false) => ({
-    padding: "6px 14px", fontSize: 12, fontWeight: 500, borderRadius: 6,
+    padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
     background: "transparent",
     color:  danger ? "#c0392b" : TEXT.muted,
     border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
@@ -804,7 +831,7 @@ function App() {
     <div style={{
       minHeight: "100vh", display:"flex", alignItems:"center",
       justifyContent: "center", background: "#0d1117",
-      color: TEXT.faint, fontFamily: "Georgia, serif", fontSize: 16,
+      color: TEXT.faint, fontFamily: "'MedievalSharp', Georgia, serif", fontSize: 18,
     }}>
       Loading FlagonQuest data…
     </div>
@@ -814,7 +841,7 @@ function App() {
     <div style={{
       minHeight: "100vh", padding: 40, background: "#0d1117",
       color: "#c0392b", fontFamily: "system-ui, sans-serif",
-      fontSize: 14, lineHeight: 1.6, maxWidth: 620,
+      fontSize: 16, lineHeight: 1.6, maxWidth: 620,
     }}>
       <strong>Couldn't load data files</strong>
       <p style={{ marginTop: 10, color: TEXT.muted }}>
@@ -845,13 +872,13 @@ function App() {
       }}>
         <div>
           <div style={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
-            fontSize: 20, fontWeight: "bold",
+            fontFamily: "'MedievalSharp', Georgia, serif",
+            fontSize: 22, fontWeight: "bold",
             color: "#d4a843", letterSpacing: "0.04em",
           }}>
             FlagonQuest
           </div>
-          <div style={{ fontSize:11, color:TEXT.faint, marginTop:1 }}>
+          <div style={{ fontSize:13, color:TEXT.faint, marginTop:1 }}>
             Technique browser · Character builder
           </div>
         </div>
@@ -896,7 +923,7 @@ function App() {
           {advancedOpen && (
             <div style={{
               display: "flex", flexDirection: "column", gap: 12,
-              fontSize: 12, color: TEXT.muted,
+              fontSize: 14, color: TEXT.muted,
               background: "#12161f", border: "0.5px solid #2d3555",
               borderRadius: 8, padding: "10px 14px", marginBottom: 12,
             }}>
@@ -951,7 +978,7 @@ function App() {
                     {skillFilter.length > 0 && (
                       <button
                         onClick={() => setSkillFilter([])}
-                        style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:11, padding:0 }}
+                        style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:13, padding:0 }}
                       >
                         Clear
                       </button>
@@ -959,8 +986,32 @@ function App() {
                   </div>
                   <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
                     {allSkills.map(skill => (
-                      <button key={skill} onClick={() => toggleSkill(skill)} style={skillChipStyle(skill)}>
+                      <button key={skill} onClick={() => toggleSkill(skill)} style={filterChipStyle(skillFilter.includes(skill))}>
                         {skill}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Tags — click to toggle; matches techniques with ANY selected tag */}
+              {allTags.length > 0 && (
+                <div>
+                  <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
+                    <span style={{ color:TEXT.faint }}>Tags</span>
+                    {tagFilter.length > 0 && (
+                      <button
+                        onClick={() => setTagFilter([])}
+                        style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:13, padding:0 }}
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                  <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
+                    {allTags.map(tag => (
+                      <button key={tag} onClick={() => toggleTag(tag)} style={filterChipStyle(tagFilter.includes(tag))}>
+                        {tag}
                       </button>
                     ))}
                   </div>
@@ -970,9 +1021,9 @@ function App() {
           )}
 
           {/* Result count */}
-          <div style={{ fontSize:11, color:TEXT.faint, marginBottom:12 }}>
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:12 }}>
             {visible.length} technique{visible.length !== 1 ? "s" : ""}
-            {search || skillFilter.length > 0 ? " matching filters" : " total"}
+            {search || skillFilter.length > 0 || tagFilter.length > 0 ? " matching filters" : " total"}
           </div>
 
           {/* List (left) + sticky build panel (right on wide screens) */}
@@ -981,7 +1032,7 @@ function App() {
               {visible.length === 0 ? (
                 <div style={{
                   textAlign:"center",
-                  padding: "60px 20px", color:TEXT.faint, fontSize:14,
+                  padding: "60px 20px", color:TEXT.faint, fontSize:16,
                 }}>
                   No techniques match those filters.
                 </div>
@@ -1030,7 +1081,7 @@ function App() {
       {view === "sheet" && (
         <div style={{ maxWidth:680, margin:"0 auto", padding:20 }}>
           {buildTechs.length === 0 ? (
-            <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:14 }}>
+            <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
               Add techniques in Browse, then see them formatted here.
             </div>
           ) : (
@@ -1041,12 +1092,12 @@ function App() {
                 paddingBottom: 14, marginBottom: 28,
               }}>
                 <div style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                  fontSize: 26, fontWeight: "bold", color: "#d4a843",
+                  fontFamily: "'MedievalSharp', Georgia, serif",
+                  fontSize: 28, fontWeight: "bold", color: "#d4a843",
                 }}>
                   {charName || "Unnamed hero"}
                 </div>
-                <div style={{ fontSize:13, color:TEXT.faint, marginTop:5 }}>
+                <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
                   {buildTechs.length} technique{buildTechs.length !== 1 ? "s" : ""}
                   {" · "}
                   {unknownCount === 0
