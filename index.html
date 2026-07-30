@@ -45,6 +45,21 @@
     input[type=range]    { accent-color: #d4a843; cursor: pointer; }
     input[type=checkbox] { accent-color: #d4a843; cursor: pointer; }
 
+    /* ── Technique card grid ───────────────────────────────────── */
+    /* One column on mobile; steps up to 2, then 3, on wider screens
+       so cards stay wide enough to read without feeling packed in. */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 640px) {
+      .tech-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1000px) {
+      .tech-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
     /* ── Scrollbar ─────────────────────────────────────────────── */
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -110,6 +125,18 @@ const SCHOOL_COLOR = {
   General: "#5BA3E8",
   Theurgy: "#48B5C4",
   Sorcery: "#378ADD",
+};
+
+// ── Text color scale ────────────────────────────────────────────────
+// Warm off-white/tan tones instead of blue-grey, so body text stands
+// out against the dark blue background instead of blending into it.
+// Ordered brightest → dimmest; nothing outranks `name`.
+const TEXT = {
+  name:  "#e8dfc8",  // technique names — brightest text on the page
+  body:  "#d3c9a3",  // readable content: field values, effects text
+  label: "#a68f52",  // field labels ("Action:", "Cost:", etc.)
+  muted: "#9c9576",  // secondary text: tags, skills, inactive nav
+  faint: "#726c58",  // least prominent: prereqs, counts, hints
 };
 
 const CATEGORIES = ["All", "Power", "Expertise", "Personality", "Martial", "Discipline", "Spell", "Stance"];
@@ -188,7 +215,8 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
       gap: 6,
     }}>
 
-      {/* Name + corner badges (level, and Encounter if present) */}
+      {/* Name + corner badges — Encounter (if present) sits left of Level,
+          Level always stays pinned in the far corner */}
       <div style={{ display:"flex", alignItems:"flex-start", gap:8 }}>
         <span style={{
           fontFamily: "Georgia, 'Times New Roman', serif",
@@ -201,17 +229,6 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
           {tech.name}
         </span>
         <div style={{ display:"flex", flexDirection:"row", alignItems:"center", gap:4, flexShrink:0 }}>
-          <span style={{
-            fontSize: 11, fontWeight: 500,
-            color: "#d4a843",
-            background: "#2a2000",
-            border: "0.5px solid #a07c2e",
-            borderRadius: 4,
-            padding: "1px 6px",
-            whiteSpace: "nowrap",
-          }}>
-            {lvlLabel(tech.level_min, tech.level_max)}
-          </span>
           {hasEncounter && (
             <span style={{
               fontSize: 10, fontWeight: 500,
@@ -225,6 +242,17 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
               Encounter
             </span>
           )}
+          <span style={{
+            fontSize: 11, fontWeight: 500,
+            color: TEXT.name,
+            background: "#24221a",
+            border: "0.5px solid #5b5540",
+            borderRadius: 4,
+            padding: "1px 6px",
+            whiteSpace: "nowrap",
+          }}>
+            {lvlLabel(tech.level_min, tech.level_max)}
+          </span>
         </div>
       </div>
 
@@ -243,7 +271,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
             fontSize: 10,
             color: tag === "Buildable" ? "#7F77DD"
                  : tag === "Duplicate" ? "#1D9E75"
-                 : "#7a8299",
+                 : TEXT.muted,
             background: "#0d1117",
             border: "0.5px solid #2d3555",
             borderRadius: 3,
@@ -256,7 +284,7 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
 
       {/* Prereq skills — plain list, no boxes, so they don't compete visually with tags */}
       {skills.length > 0 && (
-        <div style={{ fontSize: 10, color: "#7a8299" }}>
+        <div style={{ fontSize: 10, color: TEXT.muted }}>
           {skills.join(" · ")}
         </div>
       )}
@@ -268,15 +296,15 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
         ["Target",    tech.target],
         ["Condition", tech.condition],
       ].filter(([, v]) => v).map(([label, val]) => (
-        <div key={label} style={{ fontSize:11, color:"#a8b0c8", lineHeight:1.4 }}>
-          <span style={{ color:"#4a5270", fontWeight:500 }}>{label}: </span>
+        <div key={label} style={{ fontSize:11, color:TEXT.body, lineHeight:1.4 }}>
+          <span style={{ color:TEXT.label, fontWeight:500 }}>{label}: </span>
           {val}
         </div>
       ))}
 
       {/* Short effects preview */}
       {preview && (
-        <div style={{ fontSize:11, color:"#5a6280", lineHeight:1.4, marginTop:2 }}>
+        <div style={{ fontSize:11, color:TEXT.muted, lineHeight:1.4, marginTop:2 }}>
           {preview}
         </div>
       )}
@@ -339,14 +367,14 @@ function SheetEntry({ tech }) {
         }}>
           {tech.name}
         </span>
-        <span style={{ fontSize:11, color:"#d4a843" }}>
+        <span style={{ fontSize:11, color:TEXT.name }}>
           {lvlLabel(tech.level_min, tech.level_max)}
         </span>
         <span style={{ fontSize:11, color:c, fontStyle:"italic" }}>
           {tech.category}{tech.spell_school ? ` · ${tech.spell_school}` : ""}
         </span>
         {tags.map(tag => (
-          <span key={tag} style={{ fontSize:10, color:"#3a4260" }}>[{tag}]</span>
+          <span key={tag} style={{ fontSize:10, color:TEXT.faint }}>[{tag}]</span>
         ))}
       </div>
 
@@ -354,7 +382,7 @@ function SheetEntry({ tech }) {
       {tech.description && (
         <div style={{
           fontSize: 12,
-          color: "#5a6480",
+          color: TEXT.muted,
           fontStyle: "italic",
           lineHeight: 1.5,
           marginBottom: 7,
@@ -370,8 +398,8 @@ function SheetEntry({ tech }) {
         ["Cost",      tech.cost],
         ["Target",    tech.target],
       ].filter(([, v]) => v).map(([label, val]) => (
-        <div key={label} style={{ fontSize:13, color:"#a8b0c8", marginBottom:2, lineHeight:1.4 }}>
-          <span style={{ color:"#4a5270", fontWeight:500 }}>{label}: </span>
+        <div key={label} style={{ fontSize:13, color:TEXT.body, marginBottom:2, lineHeight:1.4 }}>
+          <span style={{ color:TEXT.label, fontWeight:500 }}>{label}: </span>
           {val}
         </div>
       ))}
@@ -380,7 +408,7 @@ function SheetEntry({ tech }) {
       {tech.effects && (
         <div style={{
           fontSize: 13,
-          color: "#c8d0e0",
+          color: TEXT.body,
           lineHeight: 1.6,
           marginTop: 5,
           marginBottom: 4,
@@ -392,15 +420,15 @@ function SheetEntry({ tech }) {
 
       {/* Special rules text */}
       {tech.special && (
-        <div style={{ fontSize:13, color:"#a8b0c8", marginTop:4, lineHeight:1.5 }}>
-          <span style={{ color:"#4a5270", fontWeight:500 }}>Special: </span>
+        <div style={{ fontSize:13, color:TEXT.body, marginTop:4, lineHeight:1.5 }}>
+          <span style={{ color:TEXT.label, fontWeight:500 }}>Special: </span>
           {tech.special}
         </div>
       )}
 
       {/* Prerequisites */}
       {tech.prereqs && (
-        <div style={{ fontSize:11, color:"#3a4260", marginTop:7 }}>
+        <div style={{ fontSize:11, color:TEXT.faint, marginTop:7 }}>
           <span style={{ fontWeight:500 }}>Prereqs: </span>
           {tech.prereqs}
         </div>
@@ -571,7 +599,7 @@ function App() {
   const tabStyle = key => ({
     padding: "6px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
     background:  view === key ? "#d4a843" : "transparent",
-    color:       view === key ? "#0a0e18" : "#7a8299",
+    color:       view === key ? "#0a0e18" : TEXT.muted,
     border: `0.5px solid ${view === key ? "#d4a843" : "#2d3555"}`,
     transition: "all 0.15s",
   });
@@ -584,7 +612,7 @@ function App() {
       fontWeight: active ? 500 : 400,
       whiteSpace: "nowrap",
       background: active ? (c || "#d4a843") + "22" : "transparent",
-      color:      active ? (c || "#d4a843") : "#7a8299",
+      color:      active ? (c || "#d4a843") : TEXT.muted,
       border: `0.5px solid ${active ? (c || "#d4a843") : "#2d3555"}`,
     };
   };
@@ -592,7 +620,7 @@ function App() {
   const actionBtn = (danger = false) => ({
     padding: "6px 14px", fontSize: 12, fontWeight: 500, borderRadius: 6,
     background: "transparent",
-    color:  danger ? "#c0392b" : "#7a8299",
+    color:  danger ? "#c0392b" : TEXT.muted,
     border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
     display: "flex", alignItems: "center", gap: 5,
   });
@@ -602,7 +630,7 @@ function App() {
     <div style={{
       minHeight: "100vh", display:"flex", alignItems:"center",
       justifyContent: "center", background: "#0d1117",
-      color: "#4a5270", fontFamily: "Georgia, serif", fontSize: 16,
+      color: TEXT.faint, fontFamily: "Georgia, serif", fontSize: 16,
     }}>
       Loading FlagonQuest data…
     </div>
@@ -615,10 +643,10 @@ function App() {
       fontSize: 14, lineHeight: 1.6, maxWidth: 620,
     }}>
       <strong>Couldn't load data files</strong>
-      <p style={{ marginTop: 10, color: "#7a8299" }}>
+      <p style={{ marginTop: 10, color: TEXT.muted }}>
         Error: {loadError}
       </p>
-      <p style={{ marginTop: 10, color: "#4a5270" }}>
+      <p style={{ marginTop: 10, color: TEXT.faint }}>
         If you're testing locally, open a terminal in your repo folder and run:
         <br />
         <code style={{ color:"#d4a843" }}>python -m http.server 8000</code>
@@ -649,7 +677,7 @@ function App() {
           }}>
             FlagonQuest
           </div>
-          <div style={{ fontSize:11, color:"#4a5270", marginTop:1 }}>
+          <div style={{ fontSize:11, color:TEXT.faint, marginTop:1 }}>
             Technique browser · Character builder
           </div>
         </div>
@@ -694,7 +722,7 @@ function App() {
           {advancedOpen && (
             <div style={{
               display: "flex", alignItems: "center", gap: 18,
-              flexWrap: "wrap", fontSize: 12, color: "#7a8299",
+              flexWrap: "wrap", fontSize: 12, color: TEXT.muted,
               background: "#12161f", border: "0.5px solid #2d3555",
               borderRadius: 8, padding: "10px 14px", marginBottom: 12,
             }}>
@@ -751,21 +779,17 @@ function App() {
           </div>
 
           {/* Result count */}
-          <div style={{ fontSize:11, color:"#4a5270", marginBottom:12 }}>
+          <div style={{ fontSize:11, color:TEXT.faint, marginBottom:12 }}>
             {visible.length} technique{visible.length !== 1 ? "s" : ""}
             {catFilter !== "All" || search ? " matching filters" : " total"}
           </div>
 
-          {/* Card grid — auto-fills columns based on available width */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-            gap: 10,
-          }}>
+          {/* Card grid — 1 column on mobile, up to 3 on wide screens (.tech-grid, in <style>) */}
+          <div className="tech-grid">
             {visible.length === 0 ? (
               <div style={{
                 gridColumn: "1/-1", textAlign:"center",
-                padding: "60px 20px", color:"#4a5270", fontSize:14,
+                padding: "60px 20px", color:TEXT.faint, fontSize:14,
               }}>
                 No techniques match those filters.
               </div>
@@ -790,7 +814,7 @@ function App() {
           {/* Character name input */}
           <div style={{ marginBottom:20 }}>
             <div style={{
-              fontSize: 11, color: "#4a5270", marginBottom: 6,
+              fontSize: 11, color: TEXT.faint, marginBottom: 6,
               textTransform: "uppercase", letterSpacing: "0.07em",
             }}>
               Character name
@@ -810,21 +834,21 @@ function App() {
               background:"#161b27", border:"0.5px solid #2d3555",
               borderRadius:8, padding:"10px 18px", minWidth:110,
             }}>
-              <div style={{ fontSize:11, color:"#4a5270", marginBottom:4 }}>Techniques</div>
+              <div style={{ fontSize:11, color:TEXT.faint, marginBottom:4 }}>Techniques</div>
               <div style={{ fontSize:22, fontWeight:500 }}>{build.length}</div>
             </div>
             <div style={{
               background:"#161b27", border:"0.5px solid #2d3555",
               borderRadius:8, padding:"10px 18px", minWidth:140,
             }}>
-              <div style={{ fontSize:11, color:"#4a5270", marginBottom:4 }}>Technique XP</div>
+              <div style={{ fontSize:11, color:TEXT.faint, marginBottom:4 }}>Technique XP</div>
               <div style={{ fontSize:22, fontWeight:500 }}>
                 {unknownCount > 0 ? `${knownXP}+` : `${knownXP}`}
-                <span style={{ fontSize:12, color:"#4a5270", marginLeft:4 }}>XP</span>
+                <span style={{ fontSize:12, color:TEXT.faint, marginLeft:4 }}>XP</span>
               </div>
             </div>
             {unknownCount > 0 && (
-              <div style={{ fontSize:11, color:"#4a5270", fontStyle:"italic", alignSelf:"flex-end", paddingBottom:12 }}>
+              <div style={{ fontSize:11, color:TEXT.faint, fontStyle:"italic", alignSelf:"flex-end", paddingBottom:12 }}>
                 {unknownCount} range-level technique{unknownCount > 1 ? "s" : ""} — XP varies by level purchased.
               </div>
             )}
@@ -852,7 +876,7 @@ function App() {
 
           {/* Build list */}
           {buildTechs.length === 0 ? (
-            <div style={{ textAlign:"center", padding:"48px 20px", color:"#4a5270", fontSize:14 }}>
+            <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:14 }}>
               No techniques added yet — head to Browse to pick some.
             </div>
           ) : (
@@ -883,7 +907,7 @@ function App() {
                         {t.category}
                       </span>
                     </div>
-                    <span style={{ fontSize:11, color:"#3a4260", flexShrink:0 }}>
+                    <span style={{ fontSize:11, color:TEXT.faint, flexShrink:0 }}>
                       {xp != null ? `${xp} XP` : "? XP"}
                     </span>
                     <button
@@ -891,7 +915,7 @@ function App() {
                       aria-label={`Remove ${t.name}`}
                       style={{
                         background:"transparent", border:"none",
-                        color:"#3a4260", fontSize:16, lineHeight:1, padding:"2px 4px", flexShrink:0,
+                        color:TEXT.faint, fontSize:16, lineHeight:1, padding:"2px 4px", flexShrink:0,
                       }}
                     >
                       ✕
@@ -909,7 +933,7 @@ function App() {
       {view === "sheet" && (
         <div style={{ maxWidth:680, margin:"0 auto", padding:20 }}>
           {buildTechs.length === 0 ? (
-            <div style={{ textAlign:"center", padding:"48px 20px", color:"#4a5270", fontSize:14 }}>
+            <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:14 }}>
               Add techniques in Browse, then see them formatted here.
             </div>
           ) : (
@@ -925,7 +949,7 @@ function App() {
                 }}>
                   {charName || "Unnamed hero"}
                 </div>
-                <div style={{ fontSize:13, color:"#4a5270", marginTop:5 }}>
+                <div style={{ fontSize:13, color:TEXT.faint, marginTop:5 }}>
                   {buildTechs.length} technique{buildTechs.length !== 1 ? "s" : ""}
                   {" · "}
                   {unknownCount === 0
