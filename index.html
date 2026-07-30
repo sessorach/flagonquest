@@ -166,6 +166,11 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
   const tags   = splitCSV(tech.tags);
   const skills = splitCSV(tech.prereq_skills);
 
+  // "Encounter" is important enough to live in the corner with the level
+  // badge — everything else stays in the categories/tags line.
+  const hasEncounter = tags.includes("Encounter");
+  const otherTags     = tags.filter(t => t !== "Encounter");
+
   // Truncate effects for the card — full text appears on the sheet view
   const preview = tech.effects
     ? (tech.effects.length > 120 ? tech.effects.slice(0, 118) + "…" : tech.effects)
@@ -183,8 +188,8 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
       gap: 6,
     }}>
 
-      {/* Name + level badge */}
-      <div style={{ display:"flex", alignItems:"baseline", gap:8, flexWrap:"wrap" }}>
+      {/* Name + corner badges (level, and Encounter if present) */}
+      <div style={{ display:"flex", alignItems:"flex-start", gap:8 }}>
         <span style={{
           fontFamily: "Georgia, 'Times New Roman', serif",
           fontWeight: "bold",
@@ -195,21 +200,35 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
         }}>
           {tech.name}
         </span>
-        <span style={{
-          fontSize: 11, fontWeight: 500,
-          color: "#d4a843",
-          background: "#2a2000",
-          border: "0.5px solid #a07c2e",
-          borderRadius: 4,
-          padding: "1px 6px",
-          whiteSpace: "nowrap",
-          flexShrink: 0,
-        }}>
-          {lvlLabel(tech.level_min, tech.level_max)}
-        </span>
+        <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:3, flexShrink:0 }}>
+          <span style={{
+            fontSize: 11, fontWeight: 500,
+            color: "#d4a843",
+            background: "#2a2000",
+            border: "0.5px solid #a07c2e",
+            borderRadius: 4,
+            padding: "1px 6px",
+            whiteSpace: "nowrap",
+          }}>
+            {lvlLabel(tech.level_min, tech.level_max)}
+          </span>
+          {hasEncounter && (
+            <span style={{
+              fontSize: 10, fontWeight: 500,
+              color: "#e6943a",
+              background: "#2a1a00",
+              border: "0.5px solid #a0672e",
+              borderRadius: 4,
+              padding: "1px 6px",
+              whiteSpace: "nowrap",
+            }}>
+              Encounter
+            </span>
+          )}
+        </div>
       </div>
 
-      {/* Category · spell school · action cost */}
+      {/* Category · spell school · remaining tags — all in one line */}
       <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
         <span style={{ fontSize:11, fontWeight:500, color:c }}>
           {tech.category}
@@ -219,37 +238,21 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
             {tech.spell_school}
           </span>
         )}
-        {tech.action && (
-          <span style={{ fontSize:11, color:"#7a8299" }}>· {tech.action}</span>
-        )}
-        {tech.cost && (
-          <span style={{ fontSize:10, color:"#5a6280", fontStyle:"italic" }}>
-            Cost: {tech.cost}
+        {otherTags.map(tag => (
+          <span key={tag} style={{
+            fontSize: 10,
+            color: tag === "Buildable" ? "#7F77DD"
+                 : tag === "Duplicate" ? "#1D9E75"
+                 : "#7a8299",
+            background: "#0d1117",
+            border: "0.5px solid #2d3555",
+            borderRadius: 3,
+            padding: "1px 5px",
+          }}>
+            {tag}
           </span>
-        )}
+        ))}
       </div>
-
-      {/* Tags (Encounter, Duplicate, Buildable, etc.) */}
-      {tags.length > 0 && (
-        <div style={{ display:"flex", gap:4, flexWrap:"wrap" }}>
-          {tags.map(tag => (
-            <span key={tag} style={{
-              fontSize: 10,
-              // Give certain tags a distinctive color so they're easy to spot
-              color: tag === "Encounter"  ? "#e6943a"
-                   : tag === "Buildable"  ? "#7F77DD"
-                   : tag === "Duplicate"  ? "#1D9E75"
-                   : "#7a8299",
-              background: "#0d1117",
-              border: "0.5px solid #2d3555",
-              borderRadius: 3,
-              padding: "1px 5px",
-            }}>
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
 
       {/* Prereq skill tags (for filtering reference) */}
       {skills.length > 0 && (
@@ -267,6 +270,19 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
           ))}
         </div>
       )}
+
+      {/* Mechanical fields — action, cost, target, condition — each its own line */}
+      {[
+        ["Action",    tech.action],
+        ["Cost",      tech.cost],
+        ["Target",    tech.target],
+        ["Condition", tech.condition],
+      ].filter(([, v]) => v).map(([label, val]) => (
+        <div key={label} style={{ fontSize:11, color:"#a8b0c8", lineHeight:1.4 }}>
+          <span style={{ color:"#4a5270", fontWeight:500 }}>{label}: </span>
+          {val}
+        </div>
+      ))}
 
       {/* Short effects preview */}
       {preview && (
@@ -423,6 +439,9 @@ function App() {
   const [levelMin,   setLevelMin]   = useState(1);
   const [levelMax,   setLevelMax]   = useState(5);
   const [showDrafts, setShowDrafts] = useState(false);
+  const [healingOnly, setHealingOnly] = useState(false);
+  const [cardsOnly,   setCardsOnly]   = useState(false);
+  const [advancedOpen, setAdvancedOpen] = useState(false);
   const [build,      setBuild]      = useState([]);       // array of technique IDs
   const [charName,   setCharName]   = useState("");
   const [shareMsg,   setShareMsg]   = useState("");
@@ -473,15 +492,21 @@ function App() {
   const visible = useMemo(() => techniques.filter(t => {
     if (catFilter !== "All" && t.category !== catFilter) return false;
     if (!matchesLevel(t, levelMin, levelMax, showDrafts)) return false;
+    if (healingOnly && !t.healing) return false;
+    if (cardsOnly && !t.use_cards) return false;
     if (search) {
       const q = search.toLowerCase();
-      const hay = [t.name, t.category, t.spell_school, t.tags,
-                   t.prereq_skills, t.action, t.effects]
-        .filter(Boolean).join(" ").toLowerCase();
+      // Search the technique's full text — every field a player might
+      // type a fragment of, not just name/category/effects.
+      const hay = [
+        t.name, t.category, t.spell_school, t.tags, t.prereq_skills,
+        t.description, t.condition, t.action, t.cost, t.target,
+        t.effects, t.special, t.prereqs,
+      ].filter(Boolean).join(" ").toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
-  }), [techniques, search, catFilter, levelMin, levelMax, showDrafts]);
+  }), [techniques, search, catFilter, levelMin, levelMax, showDrafts, healingOnly, cardsOnly]);
 
   // ── Full technique objects for the build list ──────────────────
   const buildTechs = useMemo(() =>
@@ -658,37 +683,47 @@ function App() {
       {view === "browse" && (
         <div style={{ padding: 16 }}>
 
-          {/* Search bar + level sliders */}
+          {/* Search bar + advanced filters toggle */}
           <div style={{
-            display: "flex", gap: 10, marginBottom: 12,
+            display: "flex", gap: 10, marginBottom: 10,
             flexWrap: "wrap", alignItems: "center",
           }}>
             <input
               type="text"
-              placeholder="Search name, skill, effect…"
+              placeholder="Search everything — name, tags, cost, effects…"
               value={search}
               onChange={e => setSearch(e.target.value)}
               style={{ flex:"1 1 200px", minWidth:150 }}
             />
+            <button onClick={() => setAdvancedOpen(o => !o)} style={actionBtn()}>
+              {advancedOpen ? "▲" : "▼"} Advanced
+            </button>
+          </div>
 
-            {/* Level range controls */}
+          {/* Advanced filters — level range, drafts, healing, card use */}
+          {advancedOpen && (
             <div style={{
-              display: "flex", alignItems: "center", gap: 8,
-              fontSize: 12, color: "#7a8299", flexShrink: 0,
+              display: "flex", alignItems: "center", gap: 18,
+              flexWrap: "wrap", fontSize: 12, color: "#7a8299",
+              background: "#12161f", border: "0.5px solid #2d3555",
+              borderRadius: 8, padding: "10px 14px", marginBottom: 12,
             }}>
-              <span style={{ color:"#d4a843", fontWeight:500 }}>
-                Lv {levelMin}–{levelMax}
-              </span>
-              <input
-                type="range" min={1} max={5} value={levelMin}
-                onChange={e => setLevelMin(Math.min(+e.target.value, levelMax))}
-                style={{ width: 60 }}
-              />
-              <input
-                type="range" min={1} max={5} value={levelMax}
-                onChange={e => setLevelMax(Math.max(+e.target.value, levelMin))}
-                style={{ width: 60 }}
-              />
+              {/* Level range controls */}
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ color:"#d4a843", fontWeight:500 }}>
+                  Lv {levelMin}–{levelMax}
+                </span>
+                <input
+                  type="range" min={1} max={5} value={levelMin}
+                  onChange={e => setLevelMin(Math.min(+e.target.value, levelMax))}
+                  style={{ width: 60 }}
+                />
+                <input
+                  type="range" min={1} max={5} value={levelMax}
+                  onChange={e => setLevelMax(Math.max(+e.target.value, levelMin))}
+                  style={{ width: 60 }}
+                />
+              </div>
               <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
                 <input
                   type="checkbox"
@@ -697,8 +732,24 @@ function App() {
                 />
                 Drafts
               </label>
+              <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
+                <input
+                  type="checkbox"
+                  checked={healingOnly}
+                  onChange={e => setHealingOnly(e.target.checked)}
+                />
+                Healing only
+              </label>
+              <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
+                <input
+                  type="checkbox"
+                  checked={cardsOnly}
+                  onChange={e => setCardsOnly(e.target.checked)}
+                />
+                Uses cards
+              </label>
             </div>
-          </div>
+          )}
 
           {/* Category filter chips */}
           <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:12 }}>
