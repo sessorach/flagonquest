@@ -45,19 +45,41 @@
     input[type=range]    { accent-color: #d4a843; cursor: pointer; }
     input[type=checkbox] { accent-color: #d4a843; cursor: pointer; }
 
-    /* ── Technique card grid ───────────────────────────────────── */
-    /* One column on mobile; steps up to 2, then 3, on wider screens
-       so cards stay wide enough to read without feeling packed in. */
-    .tech-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+    /* ── Technique list (Browse) ──────────────────────────────────
+       Always a single column — cards show full technique text now,
+       so multiple columns made them too narrow to read comfortably. */
+    .tech-list {
+      display: flex;
+      flex-direction: column;
       gap: 12px;
     }
-    @media (min-width: 640px) {
-      .tech-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+
+    /* ── Browse layout: list + build sidebar ────────────────────────
+       Mobile/narrow: just the list. The build panel lives on its own
+       "My build" tab, same as before.
+       Wide screens: list on the left, a sticky build sidebar on the
+       right so you can pick techniques and watch your build fill in
+       without switching tabs. */
+    .browse-layout { display: block; }
+    .browse-build-panel { display: none; }
     @media (min-width: 1000px) {
-      .tech-grid { grid-template-columns: repeat(3, 1fr); }
+      .browse-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 340px;
+        gap: 20px;
+        align-items: start;
+      }
+      .browse-build-panel {
+        display: block;
+        position: sticky;
+        top: 78px;
+        max-height: calc(100vh - 96px);
+        overflow-y: auto;
+        background: #12161f;
+        border: 0.5px solid #2d3555;
+        border-radius: 8px;
+        padding: 16px;
+      }
     }
 
     /* ── Scrollbar ─────────────────────────────────────────────── */
@@ -96,7 +118,7 @@ const { useState, useEffect, useMemo, useRef } = React;
  ║  change. Main pieces:                                             ║
  ║    · techniques / features  — loaded from JSON                   ║
  ║    · view                   — which tab is active                ║
- ║    · search, catFilter, levelMin/Max — browse filters            ║
+ ║    · search, skillFilter, levelMin/Max — browse filters          ║
  ║    · build                  — array of technique IDs picked      ║
  ║    · charName               — character name                     ║
  ║                                                                   ║
@@ -105,20 +127,14 @@ const { useState, useEffect, useMemo, useRef } = React;
  ║                                                                   ║
  ║  BUILD: Adding a technique appends its ID to the build array.    ║
  ║  Export = JSON download. Share = base64 build in URL hash.       ║
+ ║                                                                   ║
+ ║  LAYOUT: on wide screens the Browse tab shows the technique list  ║
+ ║  and the build panel side by side (see .browse-layout in the     ║
+ ║  <style> block). On narrow screens the build panel is reached     ║
+ ║  through its own "My build" tab instead. Both places render the  ║
+ ║  same <BuildPanel> component so they never drift apart.          ║
  ╚═══════════════════════════════════════════════════════════════════╝
 */
-
-// ── Category accent colors ─────────────────────────────────────────
-// Change these hex values to restyle all category coloring at once.
-const CAT_COLOR = {
-  Power:       "#e6943a",
-  Expertise:   "#1D9E75",
-  Personality: "#D4537E",
-  Martial:     "#D85A30",
-  Discipline:  "#7F77DD",
-  Spell:       "#378ADD",
-  Stance:      "#888780",
-};
 
 // Spell school sub-tints (used on cards when a technique has a school)
 const SCHOOL_COLOR = {
@@ -138,8 +154,6 @@ const TEXT = {
   muted: "#9c9576",  // secondary text: tags, skills, inactive nav
   faint: "#726c58",  // least prominent: prereqs, counts, hints
 };
-
-const CATEGORIES = ["All", "Power", "Expertise", "Personality", "Martial", "Discipline", "Spell", "Stance"];
 
 // ── Helpers ────────────────────────────────────────────────────────
 
@@ -184,35 +198,28 @@ function splitCSV(str) {
 
 
 // ══════════════════════════════════════════════════════════════════
-// TECHNIQUE CARD — shown in the browse grid
-// Compact display: name, level, category, action, tags, skills,
-// a short effects preview, and an Add/Remove button.
+// TECHNIQUE CARD — shown in the browse list
+// Full detail: tags, description, all mechanical fields, complete
+// effects/special text, prereqs, and related skills at the bottom.
 // ══════════════════════════════════════════════════════════════════
 function TechCard({ tech, inBuild, onAdd, onRemove }) {
-  const c      = CAT_COLOR[tech.category] || "#666";
   const tags   = splitCSV(tech.tags);
-  const skills = splitCSV(tech.prereq_skills);
+  const skills = splitCSV(tech.related_skills);
 
   // "Encounter" is important enough to live in the corner with the level
-  // badge — everything else stays in the categories/tags line.
+  // badge — everything else stays in the tags line.
   const hasEncounter = tags.includes("Encounter");
   const otherTags     = tags.filter(t => t !== "Encounter");
-
-  // Truncate effects for the card — full text appears on the sheet view
-  const preview = tech.effects
-    ? (tech.effects.length > 120 ? tech.effects.slice(0, 118) + "…" : tech.effects)
-    : null;
 
   return (
     <div style={{
       background: "#161b27",
       border: "0.5px solid #2d3555",
-      borderLeft: `3px solid ${c}`,   // color-coded by category
-      borderRadius: "0 8px 8px 0",
-      padding: "10px 12px",
+      borderRadius: 8,
+      padding: "12px 14px",
       display: "flex",
       flexDirection: "column",
-      gap: 6,
+      gap: 7,
     }}>
 
       {/* Name + corner badges — Encounter (if present) sits left of Level,
@@ -221,8 +228,8 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
         <span style={{
           fontFamily: "Georgia, 'Times New Roman', serif",
           fontWeight: "bold",
-          fontSize: 14,
-          color: "#e8dfc8",
+          fontSize: 15,
+          color: TEXT.name,
           flex: 1,
           lineHeight: 1.3,
         }}>
@@ -256,56 +263,82 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
         </div>
       </div>
 
-      {/* Category · spell school · remaining tags — all in one line */}
-      <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
-        <span style={{ fontSize:11, fontWeight:500, color:c }}>
-          {tech.category}
-        </span>
-        {tech.spell_school && (
-          <span style={{ fontSize:10, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD" }}>
-            {tech.spell_school}
-          </span>
-        )}
-        {otherTags.map(tag => (
-          <span key={tag} style={{
-            fontSize: 10,
-            color: tag === "Buildable" ? "#7F77DD"
-                 : tag === "Duplicate" ? "#1D9E75"
-                 : TEXT.muted,
-            background: "#0d1117",
-            border: "0.5px solid #2d3555",
-            borderRadius: 3,
-            padding: "1px 5px",
-          }}>
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* Prereq skills — plain list, no boxes, so they don't compete visually with tags */}
-      {skills.length > 0 && (
-        <div style={{ fontSize: 10, color: TEXT.muted }}>
-          {skills.join(" · ")}
+      {/* Spell school · remaining tags — all in one line */}
+      {(tech.spell_school || otherTags.length > 0) && (
+        <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
+          {tech.spell_school && (
+            <span style={{ fontSize:11, fontWeight:500, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD" }}>
+              {tech.spell_school}
+            </span>
+          )}
+          {otherTags.map(tag => (
+            <span key={tag} style={{
+              fontSize: 10,
+              color: tag === "Buildable" ? "#7F77DD"
+                   : tag === "Duplicate" ? "#1D9E75"
+                   : TEXT.muted,
+              background: "#0d1117",
+              border: "0.5px solid #2d3555",
+              borderRadius: 3,
+              padding: "1px 5px",
+            }}>
+              {tag}
+            </span>
+          ))}
         </div>
       )}
 
-      {/* Mechanical fields — action, cost, target, condition — each its own line */}
+      {/* Fluff description — italic and muted */}
+      {tech.description && (
+        <div style={{ fontSize:12, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5 }}>
+          {tech.description}
+        </div>
+      )}
+
+      {/* Mechanical fields — condition, action, cost, target — each its own line */}
       {[
+        ["Condition", tech.condition],
         ["Action",    tech.action],
         ["Cost",      tech.cost],
         ["Target",    tech.target],
-        ["Condition", tech.condition],
       ].filter(([, v]) => v).map(([label, val]) => (
-        <div key={label} style={{ fontSize:11, color:TEXT.body, lineHeight:1.4 }}>
+        <div key={label} style={{ fontSize:12, color:TEXT.body, lineHeight:1.4 }}>
           <span style={{ color:TEXT.label, fontWeight:500 }}>{label}: </span>
           {val}
         </div>
       ))}
 
-      {/* Short effects preview */}
-      {preview && (
-        <div style={{ fontSize:11, color:TEXT.muted, lineHeight:1.4, marginTop:2 }}>
-          {preview}
+      {/* Effects — the main rules text, shown in full */}
+      {tech.effects && (
+        <div style={{
+          fontSize: 12, color: TEXT.body, lineHeight: 1.6,
+          whiteSpace: "pre-wrap",  // preserves any line breaks in the text
+        }}>
+          {tech.effects}
+        </div>
+      )}
+
+      {/* Special rules text */}
+      {tech.special && (
+        <div style={{ fontSize:12, color:TEXT.body, lineHeight:1.5 }}>
+          <span style={{ color:TEXT.label, fontWeight:500 }}>Special: </span>
+          {tech.special}
+        </div>
+      )}
+
+      {/* Prerequisites */}
+      {tech.prereqs && (
+        <div style={{ fontSize:11, color:TEXT.faint, lineHeight:1.4 }}>
+          <span style={{ fontWeight:500 }}>Prereqs: </span>
+          {tech.prereqs}
+        </div>
+      )}
+
+      {/* Related skills — plain list at the very bottom, under prereqs */}
+      {skills.length > 0 && (
+        <div style={{ fontSize:11, color:TEXT.faint, lineHeight:1.4 }}>
+          <span style={{ fontWeight:500 }}>Related skills: </span>
+          {skills.join(" · ")}
         </div>
       )}
 
@@ -347,32 +380,33 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
 // Full detail: description, all mechanical fields, effects, prereqs.
 // ══════════════════════════════════════════════════════════════════
 function SheetEntry({ tech }) {
-  const c    = CAT_COLOR[tech.category] || "#666";
   const tags = splitCSV(tech.tags);
 
   return (
     <div style={{
-      borderLeft: `2px solid ${c}`,
+      borderLeft: "2px solid #2d3555",
       paddingLeft: 14,
       marginBottom: 22,
     }}>
 
-      {/* Name + level badge + category label + tag list */}
+      {/* Name + level badge + spell school + tag list */}
       <div style={{ display:"flex", gap:8, alignItems:"baseline", flexWrap:"wrap", marginBottom:5 }}>
         <span style={{
           fontFamily: "Georgia, 'Times New Roman', serif",
           fontWeight: "bold",
           fontSize: 15,
-          color: "#e8dfc8",
+          color: TEXT.name,
         }}>
           {tech.name}
         </span>
         <span style={{ fontSize:11, color:TEXT.name }}>
           {lvlLabel(tech.level_min, tech.level_max)}
         </span>
-        <span style={{ fontSize:11, color:c, fontStyle:"italic" }}>
-          {tech.category}{tech.spell_school ? ` · ${tech.spell_school}` : ""}
-        </span>
+        {tech.spell_school && (
+          <span style={{ fontSize:11, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD", fontStyle:"italic" }}>
+            {tech.spell_school}
+          </span>
+        )}
         {tags.map(tag => (
           <span key={tag} style={{ fontSize:10, color:TEXT.faint }}>[{tag}]</span>
         ))}
@@ -439,6 +473,133 @@ function SheetEntry({ tech }) {
 
 
 // ══════════════════════════════════════════════════════════════════
+// BUILD PANEL — character name, stats, export/import/share, and the
+// build list. Rendered both on the standalone "My build" tab and in
+// the sticky sidebar next to the technique list on wide screens.
+// ══════════════════════════════════════════════════════════════════
+function BuildPanel({
+  charName, setCharName, build, buildTechs, knownXP, unknownCount,
+  doExport, doImport, importRef, doShare, clearBuild, shareMsg,
+  removeTech, actionBtn,
+}) {
+  return (
+    <>
+      {/* Character name input */}
+      <div style={{ marginBottom:18 }}>
+        <div style={{
+          fontSize: 11, color: TEXT.faint, marginBottom: 6,
+          textTransform: "uppercase", letterSpacing: "0.07em",
+        }}>
+          Character name
+        </div>
+        <input
+          type="text"
+          placeholder="Enter a name…"
+          value={charName}
+          onChange={e => setCharName(e.target.value)}
+          style={{ width:"100%", fontFamily:"Georgia, serif", fontSize:15 }}
+        />
+      </div>
+
+      {/* Stats row */}
+      <div style={{ display:"flex", gap:10, marginBottom:16, flexWrap:"wrap" }}>
+        <div style={{
+          background:"#161b27", border:"0.5px solid #2d3555",
+          borderRadius:8, padding:"8px 14px", minWidth:90,
+        }}>
+          <div style={{ fontSize:11, color:TEXT.faint, marginBottom:4 }}>Techniques</div>
+          <div style={{ fontSize:20, fontWeight:500 }}>{build.length}</div>
+        </div>
+        <div style={{
+          background:"#161b27", border:"0.5px solid #2d3555",
+          borderRadius:8, padding:"8px 14px", minWidth:110,
+        }}>
+          <div style={{ fontSize:11, color:TEXT.faint, marginBottom:4 }}>Technique XP</div>
+          <div style={{ fontSize:20, fontWeight:500 }}>
+            {unknownCount > 0 ? `${knownXP}+` : `${knownXP}`}
+            <span style={{ fontSize:11, color:TEXT.faint, marginLeft:4 }}>XP</span>
+          </div>
+        </div>
+      </div>
+      {unknownCount > 0 && (
+        <div style={{ fontSize:11, color:TEXT.faint, fontStyle:"italic", marginTop:-8, marginBottom:16 }}>
+          {unknownCount} range-level technique{unknownCount > 1 ? "s" : ""} — XP varies by level purchased.
+        </div>
+      )}
+
+      {/* Action buttons */}
+      <div style={{ display:"flex", gap:8, marginBottom:18, flexWrap:"wrap", alignItems:"center" }}>
+        <button onClick={doExport} style={actionBtn()}>
+          <i className="ti ti-download" aria-hidden="true" /> Export build
+        </button>
+        <button onClick={() => importRef.current.click()} style={actionBtn()}>
+          <i className="ti ti-upload" aria-hidden="true" /> Import build
+        </button>
+        <input ref={importRef} type="file" accept=".json" onChange={doImport} style={{ display:"none" }} />
+        <button onClick={doShare} style={actionBtn()}>
+          <i className="ti ti-link" aria-hidden="true" /> Copy share link
+        </button>
+        {build.length > 0 && (
+          <button onClick={clearBuild} style={actionBtn(true)}>Clear build</button>
+        )}
+        {shareMsg && (
+          <span style={{ fontSize:12, color:"#d4a843" }}>{shareMsg}</span>
+        )}
+      </div>
+
+      {/* Build list */}
+      {buildTechs.length === 0 ? (
+        <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:13 }}>
+          No techniques added yet — head to Browse to pick some.
+        </div>
+      ) : (
+        <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+          {buildTechs.map(t => {
+            const xp = techXP(t);
+            return (
+              <div key={t.id} style={{
+                display:"flex", alignItems:"center", gap:8,
+                background:"#161b27",
+                border:"0.5px solid #2d3555",
+                borderRadius:8,
+                padding:"8px 10px",
+              }}>
+                <div style={{ flex:1, minWidth:0 }}>
+                  <div style={{
+                    fontFamily:"Georgia, serif", fontWeight:"bold",
+                    fontSize:13, color:TEXT.name,
+                    overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap",
+                  }}>
+                    {t.name}
+                  </div>
+                  <span style={{ fontSize:11, color:"#d4a843" }}>
+                    {lvlLabel(t.level_min, t.level_max)}
+                  </span>
+                </div>
+                <span style={{ fontSize:11, color:TEXT.faint, flexShrink:0 }}>
+                  {xp != null ? `${xp} XP` : "? XP"}
+                </span>
+                <button
+                  onClick={() => removeTech(t.id)}
+                  aria-label={`Remove ${t.name}`}
+                  style={{
+                    background:"transparent", border:"none",
+                    color:TEXT.faint, fontSize:16, lineHeight:1, padding:"2px 4px", flexShrink:0,
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
 // MAIN APP COMPONENT
 // Holds all state and renders the three views.
 // ══════════════════════════════════════════════════════════════════
@@ -453,7 +614,7 @@ function App() {
   // ── UI state ───────────────────────────────────────────────────
   const [view,       setView]       = useState("browse"); // browse | build | sheet
   const [search,     setSearch]     = useState("");
-  const [catFilter,  setCatFilter]  = useState("All");
+  const [skillFilter, setSkillFilter] = useState([]);   // selected "related skills" chips
   const [levelMin,   setLevelMin]   = useState(1);
   const [levelMax,   setLevelMax]   = useState(5);
   const [showDrafts, setShowDrafts] = useState(false);
@@ -505,26 +666,41 @@ function App() {
     }
   }, []);
 
+  // ── Every related skill seen across the loaded techniques ──────
+  // Powers the "Related skills" multiselect in Advanced filters.
+  const allSkills = useMemo(() => {
+    const set = new Set();
+    techniques.forEach(t => splitCSV(t.related_skills).forEach(s => set.add(s)));
+    return [...set].sort();
+  }, [techniques]);
+
+  const toggleSkill = skill => setSkillFilter(cur =>
+    cur.includes(skill) ? cur.filter(s => s !== skill) : [...cur, skill]
+  );
+
   // ── Filtered technique list ────────────────────────────────────
   // useMemo = only recalculate when one of the listed deps changes.
   const visible = useMemo(() => techniques.filter(t => {
-    if (catFilter !== "All" && t.category !== catFilter) return false;
     if (!matchesLevel(t, levelMin, levelMax, showDrafts)) return false;
     if (healingOnly && !t.healing) return false;
     if (cardsOnly && !t.use_cards) return false;
+    if (skillFilter.length > 0) {
+      const techSkills = splitCSV(t.related_skills);
+      if (!skillFilter.some(s => techSkills.includes(s))) return false;
+    }
     if (search) {
       const q = search.toLowerCase();
       // Search the technique's full text — every field a player might
-      // type a fragment of, not just name/category/effects.
+      // type a fragment of, not just name/effects.
       const hay = [
-        t.name, t.category, t.spell_school, t.tags, t.prereq_skills,
+        t.name, t.spell_school, t.tags, t.related_skills,
         t.description, t.condition, t.action, t.cost, t.target,
         t.effects, t.special, t.prereqs,
       ].filter(Boolean).join(" ").toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
-  }), [techniques, search, catFilter, levelMin, levelMax, showDrafts, healingOnly, cardsOnly]);
+  }), [techniques, search, skillFilter, levelMin, levelMax, showDrafts, healingOnly, cardsOnly]);
 
   // ── Full technique objects for the build list ──────────────────
   const buildTechs = useMemo(() =>
@@ -552,7 +728,6 @@ function App() {
         id:       t.id,
         name:     t.name,
         level:    lvlLabel(t.level_min, t.level_max),
-        category: t.category,
         xp:       techXP(t),
       })),
     };
@@ -604,16 +779,15 @@ function App() {
     transition: "all 0.15s",
   });
 
-  const chipStyle = cat => {
-    const active = catFilter === cat;
-    const c = CAT_COLOR[cat];
+  const skillChipStyle = skill => {
+    const active = skillFilter.includes(skill);
     return {
-      padding: "4px 12px", fontSize: 12, borderRadius: 20,
+      padding: "3px 10px", fontSize: 11, borderRadius: 20,
       fontWeight: active ? 500 : 400,
       whiteSpace: "nowrap",
-      background: active ? (c || "#d4a843") + "22" : "transparent",
-      color:      active ? (c || "#d4a843") : TEXT.muted,
-      border: `0.5px solid ${active ? (c || "#d4a843") : "#2d3555"}`,
+      background: active ? "#d4a84322" : "transparent",
+      color:      active ? "#d4a843" : TEXT.muted,
+      border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
     };
   };
 
@@ -718,90 +892,120 @@ function App() {
             </button>
           </div>
 
-          {/* Advanced filters — level range, drafts, healing, card use */}
+          {/* Advanced filters — level range, drafts, healing, card use, related skills */}
           {advancedOpen && (
             <div style={{
-              display: "flex", alignItems: "center", gap: 18,
-              flexWrap: "wrap", fontSize: 12, color: TEXT.muted,
+              display: "flex", flexDirection: "column", gap: 12,
+              fontSize: 12, color: TEXT.muted,
               background: "#12161f", border: "0.5px solid #2d3555",
               borderRadius: 8, padding: "10px 14px", marginBottom: 12,
             }}>
-              {/* Level range controls */}
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ color:"#d4a843", fontWeight:500 }}>
-                  Lv {levelMin}–{levelMax}
-                </span>
-                <input
-                  type="range" min={1} max={5} value={levelMin}
-                  onChange={e => setLevelMin(Math.min(+e.target.value, levelMax))}
-                  style={{ width: 60 }}
-                />
-                <input
-                  type="range" min={1} max={5} value={levelMax}
-                  onChange={e => setLevelMax(Math.max(+e.target.value, levelMin))}
-                  style={{ width: 60 }}
-                />
+              <div style={{ display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
+                {/* Level range controls */}
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ color:"#d4a843", fontWeight:500 }}>
+                    Lv {levelMin}–{levelMax}
+                  </span>
+                  <input
+                    type="range" min={1} max={5} value={levelMin}
+                    onChange={e => setLevelMin(Math.min(+e.target.value, levelMax))}
+                    style={{ width: 60 }}
+                  />
+                  <input
+                    type="range" min={1} max={5} value={levelMax}
+                    onChange={e => setLevelMax(Math.max(+e.target.value, levelMin))}
+                    style={{ width: 60 }}
+                  />
+                </div>
+                <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={showDrafts}
+                    onChange={e => setShowDrafts(e.target.checked)}
+                  />
+                  Drafts
+                </label>
+                <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={healingOnly}
+                    onChange={e => setHealingOnly(e.target.checked)}
+                  />
+                  Healing only
+                </label>
+                <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={cardsOnly}
+                    onChange={e => setCardsOnly(e.target.checked)}
+                  />
+                  Uses cards
+                </label>
               </div>
-              <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
-                <input
-                  type="checkbox"
-                  checked={showDrafts}
-                  onChange={e => setShowDrafts(e.target.checked)}
-                />
-                Drafts
-              </label>
-              <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
-                <input
-                  type="checkbox"
-                  checked={healingOnly}
-                  onChange={e => setHealingOnly(e.target.checked)}
-                />
-                Healing only
-              </label>
-              <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
-                <input
-                  type="checkbox"
-                  checked={cardsOnly}
-                  onChange={e => setCardsOnly(e.target.checked)}
-                />
-                Uses cards
-              </label>
+
+              {/* Related skills — click to toggle; matches techniques with ANY selected skill */}
+              {allSkills.length > 0 && (
+                <div>
+                  <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
+                    <span style={{ color:TEXT.faint }}>Related skills</span>
+                    {skillFilter.length > 0 && (
+                      <button
+                        onClick={() => setSkillFilter([])}
+                        style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:11, padding:0 }}
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                  <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
+                    {allSkills.map(skill => (
+                      <button key={skill} onClick={() => toggleSkill(skill)} style={skillChipStyle(skill)}>
+                        {skill}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
-
-          {/* Category filter chips */}
-          <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:12 }}>
-            {CATEGORIES.map(cat => (
-              <button key={cat} onClick={() => setCatFilter(cat)} style={chipStyle(cat)}>
-                {cat}
-              </button>
-            ))}
-          </div>
 
           {/* Result count */}
           <div style={{ fontSize:11, color:TEXT.faint, marginBottom:12 }}>
             {visible.length} technique{visible.length !== 1 ? "s" : ""}
-            {catFilter !== "All" || search ? " matching filters" : " total"}
+            {search || skillFilter.length > 0 ? " matching filters" : " total"}
           </div>
 
-          {/* Card grid — 1 column on mobile, up to 3 on wide screens (.tech-grid, in <style>) */}
-          <div className="tech-grid">
-            {visible.length === 0 ? (
-              <div style={{
-                gridColumn: "1/-1", textAlign:"center",
-                padding: "60px 20px", color:TEXT.faint, fontSize:14,
-              }}>
-                No techniques match those filters.
-              </div>
-            ) : visible.map(t => (
-              <TechCard
-                key={t.id}
-                tech={t}
-                inBuild={build.includes(t.id)}
-                onAdd={addTech}
-                onRemove={removeTech}
+          {/* List (left) + sticky build panel (right on wide screens) */}
+          <div className="browse-layout">
+            <div className="tech-list">
+              {visible.length === 0 ? (
+                <div style={{
+                  textAlign:"center",
+                  padding: "60px 20px", color:TEXT.faint, fontSize:14,
+                }}>
+                  No techniques match those filters.
+                </div>
+              ) : visible.map(t => (
+                <TechCard
+                  key={t.id}
+                  tech={t}
+                  inBuild={build.includes(t.id)}
+                  onAdd={addTech}
+                  onRemove={removeTech}
+                />
+              ))}
+            </div>
+
+            <div className="browse-build-panel">
+              <BuildPanel
+                charName={charName} setCharName={setCharName}
+                build={build} buildTechs={buildTechs}
+                knownXP={knownXP} unknownCount={unknownCount}
+                doExport={doExport} doImport={doImport} importRef={importRef}
+                doShare={doShare} clearBuild={clearBuild} shareMsg={shareMsg}
+                removeTech={removeTech} actionBtn={actionBtn}
               />
-            ))}
+            </div>
           </div>
         </div>
       )}
@@ -810,121 +1014,14 @@ function App() {
       {/* ════════ MY BUILD VIEW ═════════════════════════════════ */}
       {view === "build" && (
         <div style={{ maxWidth:640, margin:"0 auto", padding:20 }}>
-
-          {/* Character name input */}
-          <div style={{ marginBottom:20 }}>
-            <div style={{
-              fontSize: 11, color: TEXT.faint, marginBottom: 6,
-              textTransform: "uppercase", letterSpacing: "0.07em",
-            }}>
-              Character name
-            </div>
-            <input
-              type="text"
-              placeholder="Enter a name…"
-              value={charName}
-              onChange={e => setCharName(e.target.value)}
-              style={{ width:"100%", maxWidth:320, fontFamily:"Georgia, serif", fontSize:16 }}
-            />
-          </div>
-
-          {/* Stats row */}
-          <div style={{ display:"flex", gap:12, marginBottom:20, flexWrap:"wrap" }}>
-            <div style={{
-              background:"#161b27", border:"0.5px solid #2d3555",
-              borderRadius:8, padding:"10px 18px", minWidth:110,
-            }}>
-              <div style={{ fontSize:11, color:TEXT.faint, marginBottom:4 }}>Techniques</div>
-              <div style={{ fontSize:22, fontWeight:500 }}>{build.length}</div>
-            </div>
-            <div style={{
-              background:"#161b27", border:"0.5px solid #2d3555",
-              borderRadius:8, padding:"10px 18px", minWidth:140,
-            }}>
-              <div style={{ fontSize:11, color:TEXT.faint, marginBottom:4 }}>Technique XP</div>
-              <div style={{ fontSize:22, fontWeight:500 }}>
-                {unknownCount > 0 ? `${knownXP}+` : `${knownXP}`}
-                <span style={{ fontSize:12, color:TEXT.faint, marginLeft:4 }}>XP</span>
-              </div>
-            </div>
-            {unknownCount > 0 && (
-              <div style={{ fontSize:11, color:TEXT.faint, fontStyle:"italic", alignSelf:"flex-end", paddingBottom:12 }}>
-                {unknownCount} range-level technique{unknownCount > 1 ? "s" : ""} — XP varies by level purchased.
-              </div>
-            )}
-          </div>
-
-          {/* Action buttons */}
-          <div style={{ display:"flex", gap:8, marginBottom:20, flexWrap:"wrap", alignItems:"center" }}>
-            <button onClick={doExport} style={actionBtn()}>
-              <i className="ti ti-download" aria-hidden="true" /> Export build
-            </button>
-            <button onClick={() => importRef.current.click()} style={actionBtn()}>
-              <i className="ti ti-upload" aria-hidden="true" /> Import build
-            </button>
-            <input ref={importRef} type="file" accept=".json" onChange={doImport} style={{ display:"none" }} />
-            <button onClick={doShare} style={actionBtn()}>
-              <i className="ti ti-link" aria-hidden="true" /> Copy share link
-            </button>
-            {build.length > 0 && (
-              <button onClick={clearBuild} style={actionBtn(true)}>Clear build</button>
-            )}
-            {shareMsg && (
-              <span style={{ fontSize:12, color:"#d4a843" }}>{shareMsg}</span>
-            )}
-          </div>
-
-          {/* Build list */}
-          {buildTechs.length === 0 ? (
-            <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:14 }}>
-              No techniques added yet — head to Browse to pick some.
-            </div>
-          ) : (
-            <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
-              {buildTechs.map(t => {
-                const c  = CAT_COLOR[t.category] || "#666";
-                const xp = techXP(t);
-                return (
-                  <div key={t.id} style={{
-                    display:"flex", alignItems:"center", gap:10,
-                    background:"#161b27",
-                    border:"0.5px solid #2d3555",
-                    borderLeft:`3px solid ${c}`,
-                    borderRadius:"0 8px 8px 0",
-                    padding:"8px 12px",
-                  }}>
-                    <div style={{ flex:1 }}>
-                      <span style={{
-                        fontFamily:"Georgia, serif", fontWeight:"bold",
-                        fontSize:13, color:"#e8dfc8",
-                      }}>
-                        {t.name}
-                      </span>
-                      <span style={{ fontSize:11, color:"#d4a843", marginLeft:8 }}>
-                        {lvlLabel(t.level_min, t.level_max)}
-                      </span>
-                      <span style={{ fontSize:11, color:c, marginLeft:6 }}>
-                        {t.category}
-                      </span>
-                    </div>
-                    <span style={{ fontSize:11, color:TEXT.faint, flexShrink:0 }}>
-                      {xp != null ? `${xp} XP` : "? XP"}
-                    </span>
-                    <button
-                      onClick={() => removeTech(t.id)}
-                      aria-label={`Remove ${t.name}`}
-                      style={{
-                        background:"transparent", border:"none",
-                        color:TEXT.faint, fontSize:16, lineHeight:1, padding:"2px 4px", flexShrink:0,
-                      }}
-                    >
-                      ✕
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          <BuildPanel
+            charName={charName} setCharName={setCharName}
+            build={build} buildTechs={buildTechs}
+            knownXP={knownXP} unknownCount={unknownCount}
+            doExport={doExport} doImport={doImport} importRef={importRef}
+            doShare={doShare} clearBuild={clearBuild} shareMsg={shareMsg}
+            removeTech={removeTech} actionBtn={actionBtn}
+          />
         </div>
       )}
 
@@ -959,28 +1056,8 @@ function App() {
                 </div>
               </div>
 
-              {/* Techniques grouped by category — only shows categories in use */}
-              {Object.keys(CAT_COLOR)
-                .filter(cat => buildTechs.some(t => t.category === cat))
-                .map(cat => (
-                  <div key={cat} style={{ marginBottom:32 }}>
-                    {/* Section header */}
-                    <div style={{
-                      fontSize: 11, fontWeight: 600,
-                      textTransform: "uppercase", letterSpacing: "0.1em",
-                      color: CAT_COLOR[cat],
-                      borderBottom: "0.5px solid #2d3555",
-                      paddingBottom: 6, marginBottom: 16,
-                    }}>
-                      {cat}
-                    </div>
-                    {buildTechs
-                      .filter(t => t.category === cat)
-                      .map(t => <SheetEntry key={t.id} tech={t} />)
-                    }
-                  </div>
-                ))
-              }
+              {/* Techniques in the order they were added to the build */}
+              {buildTechs.map(t => <SheetEntry key={t.id} tech={t} />)}
             </>
           )}
         </div>

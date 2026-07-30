@@ -29,7 +29,7 @@ TECHNIQUE_MAP = {
     "Effects":              "effects",
     "Special":              "special",
     "Prereqs (Full)":       "prereqs",
-    "Prereq Skills":        "prereq_skills",
+    "Prereq Skills":        "related_skills",
     "Uses Cards":           "use_cards",
     "Healing":              "healing",
     "Buildable":            "buildable",
