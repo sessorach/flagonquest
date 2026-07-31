@@ -112,6 +112,7 @@
     button:hover { opacity: 0.85; }
     button:disabled { cursor: not-allowed; opacity: 0.5; }
     button:disabled:hover { opacity: 0.5; }
+    .rulebook-link:hover { opacity: 0.85; }
 
     /* ── Print / "Save as PDF" (Character Sheet only) ─────────────
        Flattens the dark theme to plain black-on-white, hides the
@@ -1956,6 +1957,17 @@ function App() {
     transition: "all 0.15s",
   });
 
+  // A cooler, book-ish blue instead of the app's amber tab color, and set
+  // off from the other tabs by a divider — it leaves the app (opens the
+  // rulebook in a new tab), so it reads as a different kind of link.
+  const rulebookLinkStyle = {
+    padding: "6px 14px", fontSize: 15, fontWeight: 500, borderRadius: 6,
+    background: "#0f2230", color: "#7fb8d9",
+    border: "0.5px solid #3d6a8a",
+    textDecoration: "none", display: "inline-flex", alignItems: "center",
+    transition: "all 0.15s",
+  };
+
   // Shared look for the toggle-able chip buttons in Advanced filters
   // (Related skills, Tags) — active chips light up gold.
   const filterChipStyle = active => ({
@@ -2128,21 +2140,24 @@ function App() {
         background: "#0a0e18",
         position: "sticky", top: 0, zIndex: 100,
       }}>
-        <div>
-          <div style={{
-            fontFamily: "'MedievalSharp', Georgia, serif",
-            fontSize: 22, fontWeight: "bold",
-            color: "#d4a843", letterSpacing: "0.04em",
-          }}>
-            FlagonQuest
-          </div>
-          <div style={{ fontSize:13, color:TEXT.faint, marginTop:1 }}>
-            A beer and pretzels TTRPG for the modern gamer
+        <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+          <img src="assets/mug-icon.png" alt="" style={{ height:38, width:"auto", flexShrink:0 }} />
+          <div>
+            <div style={{
+              fontFamily: "'MedievalSharp', Georgia, serif",
+              fontSize: 22, fontWeight: "bold",
+              color: "#d4a843", letterSpacing: "0.04em",
+            }}>
+              FlagonQuest
+            </div>
+            <div style={{ fontSize:13, color:TEXT.faint, marginTop:1 }}>
+              A beer and pretzels TTRPG for the modern gamer
+            </div>
           </div>
         </div>
 
         {/* Tab navigation */}
-        <div style={{ display:"flex", gap:6, marginLeft:"auto", flexWrap:"wrap" }}>
+        <div style={{ display:"flex", alignItems:"center", gap:6, marginLeft:"auto", flexWrap:"wrap" }}>
           <button onClick={() => setView("build")} style={tabStyle("build")}>
             Builder
           </button>
@@ -2158,9 +2173,17 @@ function App() {
           <button onClick={() => setView("notes")} style={tabStyle("notes")}>
             Notes
           </button>
+
+          <div style={{ width:56, display:"flex", justifyContent:"center", alignItems:"center", flexShrink:0 }} aria-hidden="true">
+            <div style={{ width:1, height:22, background:"#2d3555" }} />
+          </div>
+
           <a
             href="rulebook.html"
-            style={{ ...tabStyle(null), textDecoration: "none", display: "inline-flex", alignItems: "center" }}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rulebook-link"
+            style={rulebookLinkStyle}
           >
             Rulebook
           </a>
