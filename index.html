@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlagonQuest</title>
+  <link rel="icon" href="assets/mug-icon.png">
 
   <!-- Tabler Icons webfont — used for the button icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -346,6 +347,26 @@ function applyFeatureCount(text, count) {
   return out;
 }
 
+// Wraps every whole-word, case-sensitive match of a glossary term in
+// `text` with a hoverable <GlossaryTerm> — e.g. "Slowed" inside a
+// technique's Effects text becomes moused-over-able. Terms are matched
+// longest-first so multi-word entries ("Good Luck") win over any
+// single-word one that happens to be a substring. Returns `text`
+// untouched when there's nothing to link, so callers can render the
+// result directly either way.
+function withGlossary(text, glossary) {
+  if (!text || !glossary || glossary.length === 0) return text;
+  const terms = [...glossary].sort((a, b) => b.term.length - a.term.length);
+  const escaped = terms.map(g => g.term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const re = new RegExp(`\\b(${escaped.join("|")})\\b`, "g");
+  const byTerm = Object.fromEntries(glossary.map(g => [g.term, g.description]));
+  const parts = text.split(re);
+  if (parts.length === 1) return text;
+  return parts.map((part, i) =>
+    byTerm[part] ? <GlossaryTerm key={i} term={part} description={byTerm[part]} /> : part
+  );
+}
+
 // ── Stats & Skills ────────────────────────────────────────────────
 // 5 stats, 5 skills each. A skill's "Skill Total" — used all over the
 // character sheet's derived numbers — is the stat's points plus the
@@ -537,7 +558,7 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
 function FeaturesSection({
   tech, features, instances, configs, repeatable,
   onSaveConfig, onDuplicateInstance, onRemoveInstance,
-  renames, onRenameChange,
+  renames, onRenameChange, glossary,
 }) {
   const [builderFor, setBuilderFor]   = useState(null); // null | "new" | a uid
   const [builderSeed, setBuilderSeed] = useState(null); // the {level, picks} to open the builder with
@@ -627,7 +648,7 @@ function FeaturesSection({
                   return (
                     <div key={fid} style={{ fontSize: 12, color: TEXT.muted, lineHeight: 1.4 }}>
                       <strong style={{ color: TEXT.body }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
-                      {" — "}{applyFeatureCount(f.description, n)}
+                      {" — "}{withGlossary(applyFeatureCount(f.description, n), glossary)}
                     </div>
                   );
                 })}
@@ -677,6 +698,7 @@ function TechCard({
   configs, onSaveConfig, onDuplicateInstance,
   onAdd, onRemove, onRemoveInstance,
   renames, onRenameChange, expended, onExpendedChange,
+  glossary,
   readOnly = false,
   // Set only by the read-only Character Sheet, which gives every distinct
   // build of a Feature-built technique its own card instead of nesting
@@ -800,7 +822,7 @@ function TechCard({
           Character Sheet, which is meant to be a lean reference. */}
       {!readOnly && tech.description && (
         <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5 }}>
-          {tech.description}
+          {withGlossary(tech.description, glossary)}
         </div>
       )}
 
@@ -823,7 +845,7 @@ function TechCard({
           fontSize: 14, color: TEXT.body, lineHeight: 1.6,
           whiteSpace: "pre-wrap",  // preserves any line breaks in the text
         }}>
-          {tech.effects}
+          {withGlossary(tech.effects, glossary)}
         </div>
       )}
 
@@ -841,7 +863,7 @@ function TechCard({
               return (
                 <div key={fid} style={{ fontSize:13, color:TEXT.body, lineHeight:1.5 }}>
                   <strong style={{ color:TEXT.name }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
-                  {" — "}{applyFeatureCount(f.description, n)}
+                  {" — "}{withGlossary(applyFeatureCount(f.description, n), glossary)}
                 </div>
               );
             })}
@@ -859,6 +881,7 @@ function TechCard({
           onRemoveInstance={onRemoveInstance}
           renames={renames}
           onRenameChange={onRenameChange}
+          glossary={glossary}
         />
       ))}
 
@@ -928,7 +951,7 @@ function TechCard({
       {tech.special && (
         <div style={{ fontSize:14, color:TEXT.body, lineHeight:1.5 }}>
           <span style={{ color:TEXT.label, fontWeight:500 }}>Special: </span>
-          {tech.special}
+          {withGlossary(tech.special, glossary)}
         </div>
       )}
 
@@ -1021,6 +1044,40 @@ function TechCard({
         </div>
       )}
     </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// GLOSSARY TERM — a capitalized game term (e.g. "Slowed") found inside
+// technique/Feature text, shown with a dotted underline; hover (or tap,
+// for touch devices) reveals its short definition. Click also toggles it
+// so it works without a mouse.
+// ══════════════════════════════════════════════════════════════════
+function GlossaryTerm({ term, description }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <span
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onClick={e => { e.stopPropagation(); setOpen(o => !o); }}
+      style={{ position: "relative", borderBottom: "1px dotted #a68f52", cursor: "help" }}
+    >
+      {term}
+      {open && (
+        <span className="no-print" style={{
+          position: "absolute", left: 0, top: "100%", marginTop: 4, zIndex: 50,
+          display: "block", width: 220,
+          background: "#12161f", border: "0.5px solid #d4a843", borderRadius: 6,
+          padding: "6px 10px", fontSize: 12, lineHeight: 1.4,
+          color: TEXT.body, fontStyle: "normal", fontWeight: 400,
+          fontFamily: "system-ui, -apple-system, sans-serif",
+          boxShadow: "0 4px 14px rgba(0,0,0,0.45)",
+        }}>
+          <strong style={{ color: "#d4a843" }}>{term}</strong>: {description}
+        </span>
+      )}
+    </span>
   );
 }
 
@@ -1371,6 +1428,7 @@ function App() {
   // ── Loaded data ────────────────────────────────────────────────
   const [techniques, setTechniques] = useState([]);
   const [features,   setFeatures]   = useState([]);   // features.json — Feature-builder options
+  const [glossary,   setGlossary]   = useState([]);   // glossary.json — capitalized game terms
   const [loading,    setLoading]    = useState(true);
   const [loadError,  setLoadError]  = useState(null);
 
@@ -1456,10 +1514,14 @@ function App() {
         if (!r.ok) throw new Error(`features.json returned ${r.status}`);
         return r.json();
       }),
+      // Glossary is a nice-to-have, not core data — a missing/broken file
+      // just means no term gets a tooltip, not a load error for the app.
+      fetch("data/glossary.json").then(r => r.ok ? r.json() : []).catch(() => []),
     ])
-    .then(([techData, featData]) => {
+    .then(([techData, featData, glossaryData]) => {
       setTechniques(techData);
       setFeatures(featData);
+      setGlossary(Array.isArray(glossaryData) ? glossaryData : []);
       setLoading(false);
     })
     .catch(err => {
@@ -1937,6 +1999,7 @@ function App() {
         onRenameChange={setRename}
         expended={expended}
         onExpendedChange={setExpendedFor}
+        glossary={glossary}
         readOnly={readOnly}
       />
     );
@@ -2015,6 +2078,7 @@ function App() {
       onRenameChange={setRename}
       expended={expended}
       onExpendedChange={setExpendedFor}
+      glossary={glossary}
       readOnly
       group={card.tech.features ? { name: card.name, cfg: card.cfg, uids: card.uids } : null}
     />
@@ -2073,7 +2137,7 @@ function App() {
             FlagonQuest
           </div>
           <div style={{ fontSize:13, color:TEXT.faint, marginTop:1 }}>
-            Technique browser · Character builder
+            A beer and pretzels TTRPG for the modern gamer
           </div>
         </div>
 
@@ -2094,6 +2158,12 @@ function App() {
           <button onClick={() => setView("notes")} style={tabStyle("notes")}>
             Notes
           </button>
+          <a
+            href="rulebook.html"
+            style={{ ...tabStyle(null), textDecoration: "none", display: "inline-flex", alignItems: "center" }}
+          >
+            Rulebook
+          </a>
         </div>
       </div>
 
@@ -2362,23 +2432,30 @@ function App() {
             borderBottom: "0.5px solid #2d3555",
             paddingBottom: 14, marginBottom: 20,
           }}>
-            <div>
-              <div style={{
-                fontFamily: "'MedievalSharp', Georgia, serif",
-                fontSize: 28, fontWeight: "bold", color: "#d4a843",
-              }}>
-                {charName || "Unnamed hero"}
+            <div style={{ display:"flex", alignItems:"flex-start", gap:12 }}>
+              <img
+                src="assets/mug-icon.png"
+                alt=""
+                style={{ height:54, width:"auto", flexShrink:0 }}
+              />
+              <div>
+                <div style={{
+                  fontFamily: "'MedievalSharp', Georgia, serif",
+                  fontSize: 28, fontWeight: "bold", color: "#d4a843",
+                }}>
+                  {charName || "Unnamed hero"}
+                </div>
+                {charConcept && (
+                  <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", marginTop:3 }}>
+                    {charConcept}
+                  </div>
+                )}
+                {unknownCount > 0 && (
+                  <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
+                    {unknownCount} technique{unknownCount > 1 ? "s" : ""} not fully configured
+                  </div>
+                )}
               </div>
-              {charConcept && (
-                <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", marginTop:3 }}>
-                  {charConcept}
-                </div>
-              )}
-              {unknownCount > 0 && (
-                <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
-                  {unknownCount} technique{unknownCount > 1 ? "s" : ""} not fully configured
-                </div>
-              )}
             </div>
             <div className="no-print" style={{ display:"flex", gap:8, flexShrink:0, flexWrap:"wrap" }}>
               <button
@@ -2470,6 +2547,12 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Attribution — shown on every tab, and (since it's not marked
+          no-print) at the bottom of the printed Character Sheet too. */}
+      <div style={{ textAlign: "center", padding: "26px 16px 18px", fontSize: 12, color: TEXT.faint }}>
+        FlagonQuest is a project by Friendly Flagon Games.
+      </div>
 
     </div>
   );

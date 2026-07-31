@@ -1,0 +1,122 @@
+[
+  {
+    "id": "introduction",
+    "level": 1,
+    "title": "Introduction",
+    "body": "Placeholder text. This section introduces FlagonQuest — what kind of game it is, what a session looks like, and what players need to get started.\n\nReplace this with the real introduction once it's ready."
+  },
+  {
+    "id": "core-mechanics",
+    "level": 1,
+    "title": "Core Mechanics",
+    "body": "Placeholder text. This section covers the core resolution system players use at the table."
+  },
+  {
+    "id": "the-deck",
+    "level": 2,
+    "title": "The Card Deck & Suits",
+    "body": "Placeholder text describing how the playing-card deck is used, what the four suits (Hearts, Diamonds, Clubs, Spades) represent mechanically, and how cards get drawn, discarded, and reshuffled."
+  },
+  {
+    "id": "skill-checks",
+    "level": 2,
+    "title": "Skill Checks",
+    "body": "Placeholder text describing how a Skill Total is used to make checks, what counts as success or failure, and how difficulty is set."
+  },
+  {
+    "id": "luck",
+    "level": 2,
+    "title": "Good Luck & Bad Luck",
+    "body": "Placeholder text describing Good Luck and Bad Luck — when they're gained, how they're spent, and what they do mechanically."
+  },
+  {
+    "id": "character-creation",
+    "level": 1,
+    "title": "Character Creation",
+    "body": "Placeholder text. This section walks through building a new character from a blank sheet."
+  },
+  {
+    "id": "stats-and-skills",
+    "level": 2,
+    "title": "Stats & Skills",
+    "body": "Placeholder text describing the five Stats (Agility, Body, Cunning, Mind, Essence) and their Skills, how points are bought with Experience, and how Skill Total is calculated."
+  },
+  {
+    "id": "starting-experience",
+    "level": 2,
+    "title": "Starting Experience",
+    "body": "Placeholder text describing how much starting Experience a new character gets and general guidance for spending it."
+  },
+  {
+    "id": "combat",
+    "level": 1,
+    "title": "Combat",
+    "body": "Placeholder text. This section covers how combat encounters play out at the table."
+  },
+  {
+    "id": "action-points",
+    "level": 2,
+    "title": "Action Points & Turn Order",
+    "body": "Placeholder text describing Action Points, how turn order is determined, and what actions cost."
+  },
+  {
+    "id": "health-and-wounds",
+    "level": 2,
+    "title": "Health & Wounds",
+    "body": "Placeholder text describing Shallow Health and Deep Health, what happens when a character is Downed, and how healing works."
+  },
+  {
+    "id": "defenses",
+    "level": 2,
+    "title": "Defenses",
+    "body": "Placeholder text describing Parry, Dodge, Bodily, Mental, and Instinct Defense, and when each one applies."
+  },
+  {
+    "id": "conditions",
+    "level": 2,
+    "title": "Conditions",
+    "body": "Placeholder text describing common conditions characters can inflict or suffer, such as Slowed, Bleeding, Crippled, Protected, Vulnerable, Harried, and being Pushed. See the Glossary for short definitions of each."
+  },
+  {
+    "id": "techniques",
+    "level": 1,
+    "title": "Techniques",
+    "body": "Placeholder text. This section explains how Techniques work — the abilities characters learn and spend Experience on."
+  },
+  {
+    "id": "learning-techniques",
+    "level": 2,
+    "title": "Learning Techniques",
+    "body": "Placeholder text describing how a Technique's level and Experience cost work, and prerequisites."
+  },
+  {
+    "id": "duplicate-encounter",
+    "level": 2,
+    "title": "Duplicate & Encounter Techniques",
+    "body": "Placeholder text describing Techniques that can be learned more than once, and Encounter Techniques that get Expended and refresh between encounters."
+  },
+  {
+    "id": "feature-built",
+    "level": 2,
+    "title": "Feature-Built Techniques",
+    "body": "Placeholder text describing Techniques like Battle Maneuver and Healing Magic that are assembled from a menu of Features within a point budget that scales with level."
+  },
+  {
+    "id": "magic",
+    "level": 1,
+    "title": "Magic & Spells",
+    "body": "Placeholder text. This section covers spellcasting Techniques and the Schools of magic."
+  },
+  {
+    "id": "items",
+    "level": 1,
+    "title": "Items & Equipment",
+    "body": "Placeholder text. This section covers gear, weapons, and gold."
+  },
+  {
+    "id": "running-the-game",
+    "level": 1,
+    "title": "Running the Game",
+    "body": "Placeholder text for Game Masters — advice on pacing, difficulty, and building encounters."
+  }
+]

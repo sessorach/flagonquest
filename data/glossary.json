@@ -1,0 +1,13 @@
+[
+  { "term": "Slowed", "description": "Placeholder — replace with the real rules text for the Slowed condition." },
+  { "term": "Bleeding", "description": "Placeholder — replace with the real rules text for the Bleeding condition." },
+  { "term": "Crippled", "description": "Placeholder — replace with the real rules text for the Crippled condition." },
+  { "term": "Protected", "description": "Placeholder — replace with the real rules text for the Protected condition." },
+  { "term": "Vulnerable", "description": "Placeholder — replace with the real rules text for the Vulnerable condition." },
+  { "term": "Harried", "description": "Placeholder — replace with the real rules text for the Harried condition." },
+  { "term": "Pushed", "description": "Placeholder — replace with the real rules text for being Pushed." },
+  { "term": "Downed", "description": "Placeholder — replace with the real rules text for being Downed." },
+  { "term": "Good Luck", "description": "Placeholder — replace with the real rules text for Good Luck." },
+  { "term": "Bad Luck", "description": "Placeholder — replace with the real rules text for Bad Luck." },
+  { "term": "Necrotic", "description": "Placeholder — replace with the real rules text for Necrotic damage." }
+]
