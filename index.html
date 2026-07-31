@@ -315,6 +315,15 @@ function isRepeatable(tech) {
   return tags.includes("Duplicate") || tags.includes("Encounter");
 }
 
+// Does this technique need the level-picker/build flow instead of a plain
+// Add/Remove button? True for Feature-built techniques (obviously), but
+// also for anything with a variable level range even without Features —
+// e.g. Temper Soulblade, which just needs a fixed level chosen for XP
+// cost/display purposes, with the rest handled by its free-text notes.
+function needsLevelPicker(tech) {
+  return !!tech.features || (tech.level_min != null && tech.level_max != null && tech.level_min !== tech.level_max);
+}
+
 // Parses the "Points: Level 1: 3 basic; Level 2: 6 basic; Level 3: 9
 // basic/advanced; ..." sentence that Feature-built techniques carry
 // in their Effects text, into { [level]: { points, advanced } }.
@@ -718,7 +727,7 @@ function FeaturesSection({
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500 }}>
-        Built from Features
+        {features.length > 0 ? "Built from Features" : "Level"}
       </div>
 
       {/* Copies already learned */}
@@ -981,7 +990,7 @@ function TechCard({
           build, so its picks render directly with no editing chrome;
           everywhere else FeaturesSection handles listing/editing every
           copy of the technique still in one card. */}
-      {tech.features && (group ? (
+      {needsLevelPicker(tech) && (group ? (
         group.cfg && Object.keys(group.cfg.picks).length > 0 && (
           <div style={{ display:"flex", flexDirection:"column", gap:3 }}>
             {Object.entries(group.cfg.picks).map(([fid, n]) => {
@@ -1111,7 +1120,7 @@ function TechCard({
       {/* Add / Remove button(s) — skipped entirely on the read-only
           Character Sheet, and Features-built techniques manage this
           themselves above so it's skipped for those too */}
-      {!readOnly && !tech.features && (
+      {!readOnly && !needsLevelPicker(tech) && (
         <div style={{ marginTop:2, display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}>
           {repeatable ? (
             <>
@@ -1473,16 +1482,16 @@ function BuildPanel({
           {buildRows.map(({ tech: t, uids }) => {
             const count      = uids.length;
             const uid        = uids[0];
-            const isDistinct = t.free_text || t.features;
+            const isDistinct = t.free_text || needsLevelPicker(t);
             const repeatable = isRepeatable(t);
-            const cfg        = t.features ? configs[uid] : null;
+            const cfg        = needsLevelPicker(t) ? configs[uid] : null;
             const xpEach     = cfg ? cfg.level * 3 : techXP(t);
             const totalXP    = xpEach != null ? xpEach * count : null;
 
             let subtitle = null;
             if (t.free_text) {
               if (notes[uid]) subtitle = notes[uid];
-            } else if (t.features) {
+            } else if (needsLevelPicker(t)) {
               if (cfg) {
                 const feats = techFeaturesById[t.id] || [];
                 const names = Object.entries(cfg.picks)
@@ -1530,8 +1539,8 @@ function BuildPanel({
                 </span>
                 {repeatable && (
                   <button
-                    onClick={() => t.features ? duplicateInstance(uid) : addTech(t.id)}
-                    aria-label={t.features ? `Add another copy of ${t.name} with the same features` : `Add another ${t.name}`}
+                    onClick={() => needsLevelPicker(t) ? duplicateInstance(uid) : addTech(t.id)}
+                    aria-label={needsLevelPicker(t) ? `Add another copy of ${t.name} with the same features` : `Add another ${t.name}`}
                     style={{
                       background:"transparent", border:"0.5px solid #2d3555", borderRadius:4,
                       color:TEXT.muted, fontSize:15, lineHeight:1, padding:"2px 7px", flexShrink:0,
@@ -1899,7 +1908,7 @@ function App() {
     build.forEach(({ uid, id }) => {
       const tech = techniques.find(t => t.id === id);
       if (!tech) return;
-      if (tech.free_text || tech.features) {
+      if (tech.free_text || needsLevelPicker(tech)) {
         rows.push({ tech, uids: [uid] });
       } else if (id in groupIndex) {
         rows[groupIndex[id]].uids.push(uid);
@@ -2249,7 +2258,7 @@ function App() {
       const tech = techniques.find(t => t.id === id);
       if (!tech) return;
       let key, cfg = null;
-      if (tech.features) {
+      if (needsLevelPicker(tech)) {
         cfg = configs[uid] ?? null;
         // Grouping is always by the actual build (level + picks, order-
         // independent so click order doesn't matter) — a rename is just a
@@ -2266,7 +2275,7 @@ function App() {
         card.uids.push(uid);
         if (!card.name && renames[uid]) card.name = renames[uid].trim() || null;
       } else {
-        const rn = tech.features ? (renames[uid] || "").trim() : "";
+        const rn = needsLevelPicker(tech) ? (renames[uid] || "").trim() : "";
         index[key] = cards.length;
         cards.push({ tech, name: rn || null, cfg, uids: [uid] });
       }
@@ -2294,7 +2303,7 @@ function App() {
       onExpendedChange={setExpendedFor}
       glossary={glossary}
       readOnly
-      group={card.tech.features ? { name: card.name, cfg: card.cfg, uids: card.uids } : null}
+      group={needsLevelPicker(card.tech) ? { name: card.name, cfg: card.cfg, uids: card.uids } : null}
     />
   );
 
