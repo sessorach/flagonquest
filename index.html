@@ -111,6 +111,21 @@
     button:hover { opacity: 0.85; }
     button:disabled { cursor: not-allowed; opacity: 0.5; }
     button:disabled:hover { opacity: 0.5; }
+
+    /* ── Print / "Save as PDF" (Character Sheet only) ─────────────
+       Flattens the dark theme to plain black-on-white and hides the
+       header/tabs, since !important in a stylesheet beats inline
+       styles — the whole app is styled inline otherwise. */
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #fff !important; }
+      * {
+        background: #fff !important;
+        color: #111 !important;
+        border-color: #ccc !important;
+        box-shadow: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -488,6 +503,7 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
 function FeaturesSection({
   tech, features, instances, configs, repeatable,
   onSaveConfig, onDuplicateInstance, onRemoveInstance,
+  readOnly = false,
 }) {
   const [builderFor, setBuilderFor]   = useState(null); // null | "new" | a uid
   const [builderSeed, setBuilderSeed] = useState(null); // the {level, picks} to open the builder with
@@ -526,7 +542,7 @@ function FeaturesSection({
       {/* Copies already learned */}
       {instances.map((uid, i) => {
         const cfg = configs[uid];
-        if (builderFor === uid) {
+        if (!readOnly && builderFor === uid) {
           return (
             <FeatureBuilder
               key={`${uid}-${builderSeed?.level}`}
@@ -551,16 +567,18 @@ function FeaturesSection({
                 {instances.length > 1 ? `Copy ${i + 1} — ` : ""}
                 {cfg ? `Level ${cfg.level}` : "Not configured"}
               </span>
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                {repeatable && cfg && (
-                  <button onClick={() => onDuplicateInstance(uid)} style={smallBtn}>Duplicate</button>
-                )}
-                {cfg && cfg.level < maxLevel && (
-                  <button onClick={() => openUpgrade(uid)} style={smallBtn}>Upgrade</button>
-                )}
-                <button onClick={() => openEdit(uid)} style={smallBtn}>Edit</button>
-                <button onClick={() => onRemoveInstance(uid)} style={smallDangerBtn}>Remove</button>
-              </div>
+              {!readOnly && (
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  {repeatable && cfg && (
+                    <button onClick={() => onDuplicateInstance(uid)} style={smallBtn}>Duplicate</button>
+                  )}
+                  {cfg && cfg.level < maxLevel && (
+                    <button onClick={() => openUpgrade(uid)} style={smallBtn}>Upgrade</button>
+                  )}
+                  <button onClick={() => openEdit(uid)} style={smallBtn}>Edit</button>
+                  <button onClick={() => onRemoveInstance(uid)} style={smallDangerBtn}>Remove</button>
+                </div>
+              )}
             </div>
             {picks.length > 0 && (
               <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
@@ -581,28 +599,30 @@ function FeaturesSection({
       })}
 
       {/* Build the first copy, or another one with different features */}
-      {builderFor === "new" ? (
-        <FeatureBuilder
-          key="new"
-          tech={tech}
-          features={features}
-          budgetMap={budgetMap}
-          initial={builderSeed}
-          saveLabel="Add to build"
-          onCancel={closeBuilder}
-          onSave={next => { onSaveConfig(tech.id, null, next); closeBuilder(); }}
-        />
-      ) : (instances.length === 0 || repeatable) && (
-        <button
-          onClick={openNew}
-          style={{
-            fontSize: 13, color: "#d4a843", background: "transparent",
-            border: "0.5px solid #a07c2e", borderRadius: 4,
-            padding: "4px 10px", alignSelf: "flex-start",
-          }}
-        >
-          + Build {instances.length > 0 ? "another copy" : "this technique"}
-        </button>
+      {!readOnly && (
+        builderFor === "new" ? (
+          <FeatureBuilder
+            key="new"
+            tech={tech}
+            features={features}
+            budgetMap={budgetMap}
+            initial={builderSeed}
+            saveLabel="Add to build"
+            onCancel={closeBuilder}
+            onSave={next => { onSaveConfig(tech.id, null, next); closeBuilder(); }}
+          />
+        ) : (instances.length === 0 || repeatable) && (
+          <button
+            onClick={openNew}
+            style={{
+              fontSize: 13, color: "#d4a843", background: "transparent",
+              border: "0.5px solid #a07c2e", borderRadius: 4,
+              padding: "4px 10px", alignSelf: "flex-start",
+            }}
+          >
+            + Build {instances.length > 0 ? "another copy" : "this technique"}
+          </button>
+        )
       )}
     </div>
   );
@@ -619,6 +639,7 @@ function TechCard({
   notes, onNoteChange,
   configs, onSaveConfig, onDuplicateInstance,
   onAdd, onRemove, onRemoveInstance,
+  readOnly = false,
 }) {
   const tags   = splitCSV(tech.tags);
   const skills = splitCSV(tech.related_skills);
@@ -747,12 +768,37 @@ function TechCard({
           onSaveConfig={onSaveConfig}
           onDuplicateInstance={onDuplicateInstance}
           onRemoveInstance={onRemoveInstance}
+          readOnly={readOnly}
         />
       )}
 
       {/* Free-text notes — one box per copy in the build, since e.g. each
-          Soulblade you learn can choose a different weapon type */}
-      {tech.free_text && (
+          Soulblade you learn can choose a different weapon type. Editable
+          everywhere except the read-only Character Sheet, where it's just
+          a static record of what was already written. */}
+      {tech.free_text && (readOnly ? (
+        instances.length > 0 && (
+          <div>
+            <div style={{ fontSize:12, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
+              Notes
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+              {instances.map((uid, i) => (
+                <div key={uid} style={{
+                  fontSize:13, color: notes[uid] ? TEXT.body : TEXT.faint, lineHeight:1.5,
+                  fontStyle: notes[uid] ? "normal" : "italic",
+                  background:"#0d1117", border:"0.5px solid #2d3555", borderRadius:6, padding:"6px 10px",
+                }}>
+                  {instances.length > 1 && (
+                    <span style={{ color:TEXT.faint, fontStyle:"normal" }}>Copy {i + 1}: </span>
+                  )}
+                  {notes[uid] || "No notes"}
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      ) : (
         <div>
           <div style={{ fontSize:12, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
             Notes
@@ -786,7 +832,7 @@ function TechCard({
             </div>
           )}
         </div>
-      )}
+      ))}
 
       {/* Special rules text */}
       {tech.special && (
@@ -821,9 +867,10 @@ function TechCard({
         </div>
       )}
 
-      {/* Add / Remove button(s) — Features-built techniques manage this
-          themselves above, so this row is skipped for those */}
-      {!tech.features && (
+      {/* Add / Remove button(s) — skipped entirely on the read-only
+          Character Sheet, and Features-built techniques manage this
+          themselves above so it's skipped for those too */}
+      {!readOnly && !tech.features && (
         <div style={{ marginTop:2, display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}>
           {repeatable ? (
             <>
@@ -947,12 +994,16 @@ function StatsPanel({
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ fontSize: 13, color: TEXT.faint }}>Experience Total</span>
-            <input
-              type="text" inputMode="numeric" placeholder="—"
-              value={xpBudget}
-              onChange={e => onBudgetChange(e.target.value.replace(/[^\d]/g, ""))}
-              style={{ width: 70, fontSize: 14, textAlign: "right" }}
-            />
+            {readOnly ? (
+              <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{xpBudget || "—"}</span>
+            ) : (
+              <input
+                type="text" inputMode="numeric" placeholder="—"
+                value={xpBudget}
+                onChange={e => onBudgetChange(e.target.value.replace(/[^\d]/g, ""))}
+                style={{ width: 70, fontSize: 14, textAlign: "right" }}
+              />
+            )}
           </div>
           {remaining != null && (
             <span style={{ fontSize: 14, fontWeight: 500, color: remaining < 0 ? "#c0392b" : "#d4a843" }}>
@@ -1076,14 +1127,9 @@ function DerivedStats({ statPoints, skillPoints }) {
 // build list. Rendered both on the standalone "My build" tab and in
 // the sticky sidebar next to the technique list on wide screens.
 // ══════════════════════════════════════════════════════════════════
-function BuildPanel({
-  buildRows, knownXP, unknownCount, totalXP,
-  notes, configs, techFeaturesById,
-  addTech, removeTech, removeInstance, duplicateInstance,
-}) {
+function XPTiles({ knownXP, unknownCount, totalXP }) {
   return (
     <>
-      {/* XP tiles */}
       <div style={{ display:"flex", gap:10, marginBottom:16, flexWrap:"wrap" }}>
         <div style={{
           background:"#161b27", border:"0.5px solid #2d3555",
@@ -1111,6 +1157,19 @@ function BuildPanel({
           {unknownCount} technique{unknownCount > 1 ? "s" : ""} not fully configured yet — XP varies by level.
         </div>
       )}
+    </>
+  );
+}
+
+
+function BuildPanel({
+  buildRows, knownXP, unknownCount, totalXP,
+  notes, configs, techFeaturesById,
+  addTech, removeTech, removeInstance, duplicateInstance,
+}) {
+  return (
+    <>
+      <XPTiles knownXP={knownXP} unknownCount={unknownCount} totalXP={totalXP} />
 
       {/* Build list — one row per distinct technique. Plain repeats
           (no per-copy data) collapse into a ×N row; techniques with
@@ -1118,7 +1177,7 @@ function BuildPanel({
           since those copies aren't interchangeable. */}
       {buildRows.length === 0 ? (
         <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:15 }}>
-          No techniques added yet — head to Browse to pick some.
+          No techniques added yet — head to Techniques to pick some.
         </div>
       ) : (
         <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
@@ -1675,7 +1734,7 @@ function App() {
   // Shared by Browse (every matching technique) and the Character Sheet
   // (only techniques you actually know) so both stay pixel-for-pixel
   // the same card, with the same Add/Edit/Notes/Feature-builder controls.
-  const renderTechCard = t => {
+  const renderTechCard = (t, readOnly = false) => {
     const instanceUids = build.filter(e => e.id === t.id).map(e => e.uid);
     return (
       <TechCard
@@ -1691,6 +1750,7 @@ function App() {
         onAdd={addTech}
         onRemove={removeTech}
         onRemoveInstance={removeInstance}
+        readOnly={readOnly}
       />
     );
   };
@@ -1746,7 +1806,7 @@ function App() {
     <div style={{ fontFamily:"system-ui, -apple-system, sans-serif", color:"#e8dfc8" }}>
 
       {/* ════════ HEADER ════════════════════════════════════════ */}
-      <div style={{
+      <div className="no-print" style={{
         padding: "12px 20px",
         borderBottom: "0.5px solid #2d3555",
         display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap",
@@ -1917,7 +1977,7 @@ function App() {
                 }}>
                   No techniques match those filters.
                 </div>
-              ) : visible.map(renderTechCard)}
+              ) : visible.map(t => renderTechCard(t))}
             </div>
 
             <div className="browse-build-panel">
@@ -1986,13 +2046,20 @@ function App() {
             techniqueXP={knownXP} techniqueXPUnknown={unknownCount > 0}
           />
           <div style={{ height:24 }} />
-          <BuildPanel
-            buildRows={buildRows}
-            knownXP={knownXP} unknownCount={unknownCount} totalXP={totalXP}
-            notes={notes} configs={configs} techFeaturesById={techFeaturesById}
-            addTech={addTech} removeTech={removeTech}
-            removeInstance={removeInstance} duplicateInstance={duplicateInstance}
-          />
+
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Techniques
+          </div>
+          <XPTiles knownXP={knownXP} unknownCount={unknownCount} totalXP={totalXP} />
+          {knownTechs.length === 0 ? (
+            <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:15 }}>
+              No techniques added yet — head to Techniques to pick some.
+            </div>
+          ) : (
+            <div className="tech-list">
+              {knownTechs.map(t => renderTechCard(t))}
+            </div>
+          )}
         </div>
       )}
 
@@ -2015,28 +2082,35 @@ function App() {
 
 
       {/* ════════ CHARACTER SHEET VIEW ══════════════════════════
-          The most complete view of everything you know: Stats &
-          Skills, derived combat numbers, and the same technique
-          tiles as Browse — same styling, same Add/Edit/Notes/
-          Feature-builder controls — filtered to your build. */}
+          A flat, read-only record of everything picked on the
+          Builder: Stats & Skills, derived combat numbers, and the
+          same technique tiles as everywhere else, but with every
+          editable control (notes, Feature-builder, Add/Remove)
+          stripped out — nothing on this page changes anything. */}
       {view === "sheet" && (
         <div style={{ maxWidth:1160, margin:"0 auto", padding:16 }}>
           {/* Character name + summary header */}
           <div style={{
+            display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12,
             borderBottom: "0.5px solid #2d3555",
             paddingBottom: 14, marginBottom: 20,
           }}>
-            <div style={{
-              fontFamily: "'MedievalSharp', Georgia, serif",
-              fontSize: 28, fontWeight: "bold", color: "#d4a843",
-            }}>
-              {charName || "Unnamed hero"}
+            <div>
+              <div style={{
+                fontFamily: "'MedievalSharp', Georgia, serif",
+                fontSize: 28, fontWeight: "bold", color: "#d4a843",
+              }}>
+                {charName || "Unnamed hero"}
+              </div>
+              <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
+                {buildEntries.length} technique{buildEntries.length !== 1 ? "s" : ""}
+                {" ("}{knownTechs.length} distinct{")"}
+                {unknownCount > 0 && ` · ${unknownCount} not fully configured`}
+              </div>
             </div>
-            <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
-              {buildEntries.length} technique{buildEntries.length !== 1 ? "s" : ""}
-              {" ("}{knownTechs.length} distinct{")"}
-              {unknownCount > 0 && ` · ${unknownCount} not fully configured`}
-            </div>
+            <button onClick={() => window.print()} style={{ ...actionBtn(), flexShrink:0 }} className="no-print">
+              <i className="ti ti-printer" aria-hidden="true" /> Print / Save as PDF
+            </button>
           </div>
 
           <StatsPanel
@@ -2051,11 +2125,11 @@ function App() {
 
           {buildEntries.length === 0 ? (
             <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
-              Add techniques in Browse, then see them here.
+              Add techniques on the Techniques tab, then see them here.
             </div>
           ) : (
             <div className="tech-list">
-              {knownTechs.map(renderTechCard)}
+              {knownTechs.map(t => renderTechCard(t, true))}
             </div>
           )}
         </div>
