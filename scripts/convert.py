@@ -215,6 +215,18 @@ for csv_file, (json_file, col_map) in TABLES.items():
                 print(f"   {e}")
             print()
 
+        # The site's rename field only shows up for Feature-built techniques
+        # (see needsLevelPicker/features.length in index.html) — a technique
+        # with Features data but no "Buildable" tag would look like it's
+        # missing that field's reason for existing. Every features=True
+        # technique should carry the "Buildable" tag.
+        untagged = [r for r in rows if r.get("features") and "Buildable" not in [t.strip() for t in (r.get("tags") or "").split(",")]]
+        if untagged:
+            print(f"\n⚠ {len(untagged)} technique(s) have Features but aren't tagged \"Buildable\" in {csv_file}:")
+            for r in untagged:
+                print(f"   {r.get('id')} {r.get('name')!r}")
+            print()
+
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(rows, f, indent=2, ensure_ascii=False)
 

@@ -769,13 +769,15 @@ function FeaturesSection({
                 <button onClick={() => onRemoveInstance(uid)} style={smallDangerBtn}>Remove</button>
               </div>
             </div>
-            <input
-              type="text"
-              value={renames[uid] || ""}
-              onChange={e => onRenameChange(uid, e.target.value)}
-              placeholder="Rename this build (optional)…"
-              style={{ fontSize: 12, padding: "3px 6px" }}
-            />
+            {features.length > 0 && (
+              <input
+                type="text"
+                value={renames[uid] || ""}
+                onChange={e => onRenameChange(uid, e.target.value)}
+                placeholder="Rename this build (optional)…"
+                style={{ fontSize: 12, padding: "3px 6px" }}
+              />
+            )}
             {picks.length > 0 && (
               <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
                 {picks.map(([fid, n]) => {
