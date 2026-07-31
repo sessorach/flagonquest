@@ -67,6 +67,20 @@ the real source of truth for the Feature-builder's level picker.
 
   scripts/draft_feature_budget.py will attempt to auto-fill this column
   from the existing Effects text, same idea as draft_prereq_check.py.
+
+BUILDING — techniques.csv can also have an optional "Building" column:
+free text, just like Effects, but specifically for "how you build this"
+instructions ("When you learn this, choose features that apply... Points:
+...") that would otherwise repeat near-verbatim across every Feature-built
+technique's Effects text. It's shown alongside the Feature-builder on the
+Techniques/Builder tabs, but — like Prereqs and Related Skills — left off
+the read-only Character Sheet, which only needs to show what the
+technique actually *does*, not how it was built.
+
+  scripts/split_building_text.py will draft this column (and a trimmed
+  Effects to go with it) by splitting each Feature-built technique's
+  Effects text at "When you learn this...", same idea as the other
+  draft scripts.
 """
 
 import csv
@@ -88,6 +102,7 @@ TECHNIQUE_MAP = {
     "Cost":                 "cost",
     "Target":               "target",
     "Effects":              "effects",
+    "Building":             "building",   # how to build it — kept off the read-only sheet, see index.html
     "Special":              "special",
     "Prereqs (Full)":       "prereqs",
     "Prereq Check":         "prereq_check_raw",     # parsed below, not passed through as-is

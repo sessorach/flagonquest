@@ -1044,6 +1044,17 @@ function TechCard({
         </div>
       )}
 
+      {/* Building — how to build this Feature-based technique ("When you
+          learn this, choose features that apply..."). Reference text for
+          whoever's building it, right above the picker it explains;
+          skipped on the read-only Character Sheet, which only needs to
+          show what the technique actually does, not how it was built. */}
+      {!readOnly && tech.building && (
+        <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4, fontStyle:"italic" }}>
+          {withGlossary(tech.building, glossary)}
+        </div>
+      )}
+
       {/* Built from Features — replaces the plain Add/Remove flow below.
           On the read-only sheet (`group` set) this card IS one specific
           build, so its picks render directly with no editing chrome;
