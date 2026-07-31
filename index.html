@@ -1056,12 +1056,16 @@ function TechCard({
       )}
 
       {/* Built from Features — replaces the plain Add/Remove flow below.
-          On the read-only sheet (`group` set) this card IS one specific
-          build, so its picks render directly with no editing chrome;
-          everywhere else FeaturesSection handles listing/editing every
-          copy of the technique still in one card. */}
-      {needsLevelPicker(tech) && (group ? (
-        group.cfg && Object.keys(group.cfg.picks).length > 0 && (
+          On the read-only sheet this card either IS one specific Feature
+          build (`group` set — its picks render directly, no editing
+          chrome) or, for a non-Feature Buildable/Duplicate technique like
+          Temper Soulblade, has nothing to show here at all (its level
+          badge already went generic and its distinguishing info lives in
+          the per-copy Notes below); everywhere else FeaturesSection
+          handles listing/editing every copy of the technique in one
+          card. */}
+      {needsLevelPicker(tech) && (readOnly ? (
+        group && group.cfg && Object.keys(group.cfg.picks).length > 0 && (
           <div style={{ display:"flex", flexDirection:"column", gap:3 }}>
             {Object.entries(group.cfg.picks).map(([fid, n]) => {
               const f = techFeatures.find(x => x.id === fid);
@@ -2314,13 +2318,17 @@ function App() {
   }, [build, techniques]);
 
   // What the read-only Character Sheet renders: one card per *distinct
-  // build*, not per technique. A plain repeatable technique's copies all
-  // share one card (nothing to distinguish them); each Feature-built
-  // technique copy is grouped with any others sharing its rename (or,
-  // unnamed, an identical level+picks) into its own card — so a
-  // Battle Maneuver built two different ways shows up as two separate
-  // technique-shaped tiles, per the "generates copies of all kinds of
-  // techniques" mental model. Order follows first appearance in `build`.
+  // build*, not per technique — but only for genuinely Feature-built
+  // techniques (tech.features). Those get the full treatment: renamed,
+  // split into their own card per distinct level+picks, so a Battle
+  // Maneuver built two different ways shows up as two separate
+  // technique-shaped tiles. Everything else that just needs the level
+  // picker without Features data — a Buildable/Duplicate technique like
+  // Temper Soulblade — stays a single merged card like any other plain
+  // repeatable technique: one "(known N×)" badge, no rename, no per-copy
+  // level shown (that distinction lives in each copy's own Notes entry
+  // instead, same as it always has). Order follows first appearance in
+  // `build`.
   const sheetCards = useMemo(() => {
     const cards = [];
     const index = {};
@@ -2328,7 +2336,7 @@ function App() {
       const tech = techniques.find(t => t.id === id);
       if (!tech) return;
       let key, cfg = null;
-      if (needsLevelPicker(tech)) {
+      if (tech.features) {
         cfg = configs[uid] ?? null;
         // Grouping is always by the actual build (level + picks, order-
         // independent so click order doesn't matter) — a rename is just a
@@ -2345,7 +2353,7 @@ function App() {
         card.uids.push(uid);
         if (!card.name && renames[uid]) card.name = renames[uid].trim() || null;
       } else {
-        const rn = needsLevelPicker(tech) ? (renames[uid] || "").trim() : "";
+        const rn = tech.features ? (renames[uid] || "").trim() : "";
         index[key] = cards.length;
         cards.push({ tech, name: rn || null, cfg, uids: [uid] });
       }
@@ -2373,7 +2381,7 @@ function App() {
       onExpendedChange={setExpendedFor}
       glossary={glossary}
       readOnly
-      group={needsLevelPicker(card.tech) ? { name: card.name, cfg: card.cfg, uids: card.uids } : null}
+      group={card.tech.features ? { name: card.name, cfg: card.cfg, uids: card.uids } : null}
       skillTotals={{ statPoints, skillPoints }}
     />
   );
