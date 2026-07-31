@@ -1,0 +1,141 @@
+ID,Name,Prereqs (Full),Prereq Check (draft),Status
+T001,Brace,Resilience 2,Resilience:2,OK
+T002,Soulblade,(Composure or Meditation) 2,(Composure|Meditation):2,OK
+T003,Temper Soulblade,(Composure or Meditation) [this Technique's Level],,"NEEDS REVIEW — couldn't convert ""(Composure or Meditation) [this Technique's Level]"""
+T004,Vow of Poverty,Composure 3,Composure:3,OK
+T005,Blindsight,Awareness 3,Awareness:3,OK
+T006,Blood-Powered Spirit,Resilience 3,Resilience:3,OK
+T007,Bound Across Mountains,Athletics 3,Athletics:3,OK
+T008,Canopy Creeper,Athletics 3,Athletics:3,OK
+T009,Falling Tumble,Acrobatics 3,Acrobatics:3,OK
+T010,Grim Resolve,"Resilience 2, Composure 2","Resilience:2,Composure:2",OK
+T011,One Eye Behind You,Insight 3,Insight:3,OK
+T012,Second Wind,(Resilience or Composure) 3,(Resilience|Composure):3,OK
+T013,Solemn Pact,(Composure or Academics) 3,(Composure|Academics):3,OK
+T014,Toughened Body,(Resilience or Composure) 3,(Resilience|Composure):3,OK
+T015,Trout Seeming,Athletics 3,Athletics:3,OK
+T016,Skin of Stone,Resilience 4,Resilience:4,OK
+T017,Solemn Perseverance,"Solemn Pact, (Resilience or Presence) 3","Technique:Solemn Pact,(Resilience|Presence):3",OK
+T018,Strength from the Slain,"Might 3, Resilience 3","Might:3,Resilience:3",OK
+T019,Toughened Resolve,(Resilience or Composure) 4,(Resilience|Composure):4,OK
+T020,Lay On Hands,"Composure 3, Presence 3","Composure:3,Presence:3",OK
+T021,Mind and Body Unbroken,"(Resilience, Composure, or Meditation) 5",(Resilience|Composure|Meditation):5,OK
+T022,Solemn Covenant,"Solemn Perseverance, (Any Skill) 5","Technique:Solemn Perseverance,AnySkill:5",OK
+T023,Toughened Spirit,(Resilience or Composure) 5,(Resilience|Composure):5,OK
+T024,Artisanal Training,Craft 2 (if Smithing/Carving/Tailoring/Jewelrymaking) or Mixology 2 (if Alchemy/Cooking) or Survival 2 (if Cooking),,NEEDS REVIEW — couldn't convert 'Craft 2 (if Smithing/Carving/Tailoring/Jewelrymaking) or Mixology 2 (if Alchemy/Cooking) or Survival 2 (if Cooking)'
+T025,Extensive Background,None,,NO CHECK NEEDED
+T026,Practiced Persona,Masquerade 2,Masquerade:2,OK
+T027,Profession,(Based on option chosen),,NEEDS REVIEW — couldn't convert '(Based on option chosen)'
+T028,Ventriloquy,"Masquerade 2, Insight 1","Masquerade:2,Insight:1",OK
+T029,Air of Mystery,Masquerade 3,Masquerade:3,OK
+T030,Animal Companion,Survival 3,Survival:3,OK
+T031,Animal Companion: Trick,Animal Companion,Technique:Animal Companion,OK
+T032,Awaken Armament,Craft 3,Craft:3,OK
+T033,Hand of the Chirurgeon,Medicine 3,Medicine:3,OK
+T034,Legerdemain,"Stealth 2, Craft 2","Stealth:2,Craft:2",OK
+T035,Mighty Mixologist,Mixology 3,Mixology:3,OK
+T036,Patch Up,Medicine 3,Medicine:3,OK
+T037,Placeholder's Alacritous Adaptation,"Academics 2, Meditation 2","Academics:2,Meditation:2",OK
+T038,Practical Necromancy,Craft 3,Craft:3,OK
+T039,Quick Draw,"Acrobatics 3, Insight 2","Acrobatics:3,Insight:2",OK
+T040,Re-purpose Materials,"(Craft, Mixology, or Survival) 3",(Craft|Mixology|Survival):3,OK
+T041,Scrapcraft,Craft 3,Craft:3,OK
+T042,Shadow's Path,Stealth 3,Stealth:3,OK
+T043,Street Runner,Streetwise 3,Streetwise:3,OK
+T044,Wisdom of the Woods,Survival 3,Survival:3,OK
+T045,Analyze Stance,"Academics 3, (Acrobatics, Archery, Melee, or Meditation) 2","Academics:3,(Acrobatics|Archery|Melee|Meditation):2",OK
+T046,Artisan's Eye,"(Craft, Mixology, or Survival) 4, Academics 2","(Craft|Mixology|Survival):4,Academics:2",OK
+T047,Bespoke Masterpieces,Craft 4,Craft:4,OK
+T048,Environmental Esoterica,Survival 4,Survival:4,OK
+T049,Gather the Evidence,Academics 4,Academics:4,OK
+T050,Optimize Blood,Medicine 4,Medicine:4,OK
+T051,Preparation,Streetwise 4,Streetwise:4,OK
+T052,Vanish,Stealth 4,Stealth:4,OK
+T053,Bottomless Bottles,"Mixology 3, Resilience 2, (Streetwise, Academics, or Medicine) 2","Mixology:3,Resilience:2,(Streetwise|Academics|Medicine):2",OK
+T054,One of Many Faces,Masquerade 5,Masquerade:5,OK
+T055,Pressure Point Revitalization,Medicine 5,Medicine:5,OK
+T056,Preternatural Reflexes,"Awareness 5, Insight 5, Composure 5","Awareness:5,Insight:5,Composure:5",OK
+T057,Social Maneuver,Insight [Level],Insight:[Level],OK
+T058,Challenge,Presence 2,Presence:2,OK
+T059,Follower,(Presence or Rapport) 2,(Presence|Rapport):2,OK
+T060,Follower: Knack,Follower,Technique:Follower,OK
+T061,A Perfectly Good Explanation,(Persuasion or Rapport) 3,(Persuasion|Rapport):3,OK
+T062,Cry of Victory,Presence 3,Presence:3,OK
+T063,Favorite Face,Rapport 3,Rapport:3,OK
+T064,Heroic Inspiration,Performance 3,Performance:3,OK
+T065,Rumormonger,Streetwise 3,Streetwise:3,OK
+T066,Bolstering Refrain,Performance 4,Performance:4,OK
+T067,Exert Pressure,Presence 4,Presence:4,OK
+T068,Dominate Mind,"Theurgy 5, Insight 4","Theurgy:5,Insight:4",OK
+T069,Raise Spirits,"Performance 3, Presence 3","Performance:3,Presence:3",OK
+T070,Rally to Victory,Performance 5,Performance:5,OK
+T071,The Gatekeeper,"Presence 5, (Composure or Meditation) 5","Presence:5,(Composure|Meditation):5",OK
+T072,Battle Maneuver,"(Acrobatics, Archery, Brawl, or Melee) [Level + 1]",(Acrobatics|Archery|Brawl|Melee):[Level]+1,OK
+T073,Bladeslinging,"Might 2, Academics 1","Might:2,Academics:1",OK
+T074,Feint,Insight 2,Insight:2,OK
+T075,Magehunter,"Academics 2, (Sorcery or Theurgy) 1","Academics:2,(Sorcery|Theurgy):1",OK
+T076,Parting Shot,(Acrobatics or Insight) 2,(Acrobatics|Insight):2,OK
+T077,Blinkstep,Acrobatics 3,Acrobatics:3,OK
+T078,Perfect Strike,"(Acrobatics, Archery, Brawl, or Melee) 3",(Acrobatics|Archery|Brawl|Melee):3,OK
+T079,Cloak and Dagger,Stealth 4,Stealth:4,OK
+T080,Shugen Style - Spirit Bolt,Meditation 2,Meditation:2,OK
+T081,Bear Style - Boulder Toss,"Brawl 3, Might 2","Brawl:3,Might:2",OK
+T082,Channel Ki,Meditation 2,Meditation:2,OK
+T083,Demon Style - Plague Fist,"Brawl 3, Meditation 2","Brawl:3,Meditation:2",OK
+T084,Ignore Pain,Meditation 3,Meditation:3,OK
+T085,Pranic Nourishment,Meditation 3,Meditation:3,OK
+T086,Shugen Style - Iron Skin,Meditation 3,Meditation:3,OK
+T087,Shugen Style - Through the Void,Meditation 3,Meditation:3,OK
+T088,Snake Style - Heelbiter,"Brawl 3, Acrobatics 2","Brawl:3,Acrobatics:2",OK
+T089,Snake Style - Chainbreaker,"Brawl 3, Acrobatics 2, Meditation 2","Brawl:3,Acrobatics:2,Meditation:2",OK
+T090,Corrupted Blood,"Meditation 4, Resilience 3","Meditation:4,Resilience:3",OK
+T091,Shugen Style - Fist of the Third Dragon,Meditation 4,Meditation:4,OK
+T092,Snake Style - Turn the Tables,"Brawl 4, Acrobatics 3","Brawl:4,Acrobatics:3",OK
+T093,Harmonious Mending,Meditation 5,Meditation:5,OK
+T094,Conjure Armament,"(Sorcery or Theurgy) 2, Craft 1","(Sorcery|Theurgy):2,Craft:1",OK
+T095,Placeholder's Tender Telekinesis,"(Sorcery or Theurgy) 2, Might 1","(Sorcery|Theurgy):2,Might:1",OK
+T096,Placeholder's Wizardly Witchlight,"(Sorcery or Theurgy) 2, Awareness 1","(Sorcery|Theurgy):2,Awareness:1",OK
+T097,Shadow Jaunt,(Sorcery or Theurgy) 2,(Sorcery|Theurgy):2,OK
+T098,Raise Corpse,"(Sorcery or Theurgy) 3, Medicine 2","(Sorcery|Theurgy):3,Medicine:2",OK
+T099,Ritual Magic,"(Sorcery or Theurgy) 3, (Meditation or Rapport) 2","(Sorcery|Theurgy):3,(Meditation|Rapport):2",OK
+T100,Spellblade,"(Acrobatics, Archery, or Melee) 3, (Sorcery or Theurgy) 3","(Acrobatics|Archery|Melee):3,(Sorcery|Theurgy):3",OK
+T101,Summon Slime,"(Sorcery or Theurgy) 3, Resilience 2","(Sorcery|Theurgy):3,Resilience:2",OK
+T102,Telepathic Link,"(Sorcery or Theurgy) 3, Rapport 2","(Sorcery|Theurgy):3,Rapport:2",OK
+T103,Summon Earthen Golem,"(Sorcery or Theurgy) 5, Survival 4","(Sorcery|Theurgy):5,Survival:4",OK
+T104,Spirit Blessing,Theurgy [Level] + 1,Theurgy:[Level]+1,OK
+T105,Healing Magic,Theurgy [Level] + 1,Theurgy:[Level]+1,OK
+T106,From the Brink of Death,Theurgy 2,Theurgy:2,OK
+T107,Gust of Wind,"Theurgy 2, Survival 1","Theurgy:2,Survival:1",OK
+T108,Beast Venom,"Theurgy 3, Survival 2","Theurgy:3,Survival:2",OK
+T109,Land's Bounty,"Theurgy 3, Survival 2","Theurgy:3,Survival:2",OK
+T110,Lifeline,Theurgy 3,Theurgy:3,OK
+T111,Reckoning,Theurgy 3,Theurgy:3,OK
+T112,Sculpt Stone,"Theurgy 3, Survival 2","Theurgy:3,Survival:2",OK
+T113,Spectral Spiderwebs,"Theurgy 3, Survival 2","Theurgy:3,Survival:2",OK
+T114,Summon Spectre,"Theurgy 3, Academics 2","Theurgy:3,Academics:2",OK
+T115,Weatherworking,"Theurgy 3, Survival 2","Theurgy:3,Survival:2",OK
+T116,Cloak of Awe,Theurgy 4,Theurgy:4,OK
+T117,Cloak of Command,Theurgy 4,Theurgy:4,OK
+T118,Earthquake,"Theurgy 5, Survival 4","Theurgy:5,Survival:4",OK
+T119,Spiritual Intervention,"Theurgy 5, Sorcery 5","Theurgy:5,Sorcery:5",OK
+T120,War Magic,Sorcery [Level + 1],Sorcery:[Level]+1,OK
+T121,Force Missiles,Sorcery 2,Sorcery:2,OK
+T122,Gainsay,"Sorcery 2, Insight 2","Sorcery:2,Insight:2",OK
+T123,Wall of Shadows,"Sorcery 3, Resilience 2","Sorcery:3,Resilience:2",OK
+T124,Warmage's Reserves,"Sorcery 3, Academics 2","Sorcery:3,Academics:2",OK
+T125,Summon Elemental Warrior,Sorcery 4,Sorcery:4,OK
+T126,Wall of Ice,Sorcery 4,Sorcery:4,OK
+T127,Wall of Fire,Sorcery 5,Sorcery:5,OK
+T128,Lawman's Hand,Medicine 2,Medicine:2,OK
+T129,Disciple of the Flowing Hand,(Acrobatics or Brawl) 3,(Acrobatics|Brawl):3,OK
+T130,Furious Rage,"Might 3, Resilience 2","Might:3,Resilience:2",OK
+T131,Hand of Chaos,Insight 3,Insight:3,OK
+T132,Indomitable Phalanx,"(Acrobatics or Brawl) 3, Insight 2","(Acrobatics|Brawl):3,Insight:2",OK
+T133,Placeholder's Lengthy Ley-weaving,"(Sorcery, Meditation, or Theurgy) 3",(Sorcery|Meditation|Theurgy):3,OK
+T134,Lion Style - Eternal Riposte,"(Brawl or Melee) 3, Insight 2","(Brawl|Melee):3,Insight:2",OK
+T135,Shugen Style - Spirit Hands,"Brawl 3, Meditation 2","Brawl:3,Meditation:2",OK
+T136,Tiger Style - Storm of Blades,"(Acrobatics, Brawl, or Melee) 3, Acrobatics 2","(Acrobatics|Brawl|Melee):3,Acrobatics:2",OK
+T137,Eagle Eyes,(Acrobatics or Archery) 4,(Acrobatics|Archery):4,OK
+T138,Follow Through,"(Brawl or Melee) 4, Might 3","(Brawl|Melee):4,Might:3",OK
+T139,Inexhaustible Guardian,"Melee 4, Athletics 3","Melee:4,Athletics:3",OK
+T140,Overchanneling,(Sorcery or Meditation) 4,(Sorcery|Meditation):4,OK
