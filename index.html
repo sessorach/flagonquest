@@ -49,6 +49,9 @@
     input[type=search]:focus,
     textarea:focus { border-color: #d4a843; }
 
+    select { cursor: pointer; outline: none; transition: border-color 0.15s; }
+    select:focus { border-color: #d4a843; }
+
     input[type=range]    { accent-color: #d4a843; cursor: pointer; }
     input[type=checkbox] { accent-color: #d4a843; cursor: pointer; }
 
@@ -198,13 +201,24 @@ const { useState, useEffect, useMemo, useRef } = React;
  ║  choices. SHARE LINK: technique list + character name only, to   ║
  ║  keep the URL short — notes/Feature choices don't round-trip.    ║
  ║                                                                   ║
- ║  RETAIN ACROSS REFRESH: `build` and `charName` are persisted to  ║
- ║  localStorage like everything else. The address bar also mirrors ║
- ║  the current build live in the same #build= format "Copy share   ║
- ║  link" uses (see the sync effect near the top of App()) — so the ║
- ║  page is always sitting on a current, copy-pasteable link, and a ║
- ║  plain refresh can tell that hash apart from an actual shared    ║
- ║  link someone opened and skip re-decoding its own echo.          ║
+ ║  RETAIN ACROSS REFRESH: the whole block of state above (build     ║
+ ║  through noteRows) is persisted to localStorage like everything   ║
+ ║  else. The address bar also mirrors the active character's build  ║
+ ║  live in the same #build= format "Copy share link" uses (see the  ║
+ ║  sync effect near the top of App()) — so the page is always       ║
+ ║  sitting on a current, copy-pasteable link, and a plain refresh   ║
+ ║  can tell that hash apart from an actual shared link someone      ║
+ ║  opened and skip re-decoding its own echo.                        ║
+ ║                                                                   ║
+ ║  CHARACTER SLOTS: localStorage can hold more than one character   ║
+ ║  (see the CHARACTER SLOTS helpers just above App()) — each one's  ║
+ ║  full data lives under its own `flagonquest-char-<id>` key, with  ║
+ ║  a small [{id, name}] registry and an active-id pointer alongside ║
+ ║  it. Opening a share link or importing a file always adds a new   ║
+ ║  slot and switches to it (addCharacterSlot) rather than touching  ║
+ ║  whichever character was already open, so neither can overwrite   ║
+ ║  work in progress. A one-time migration folds any pre-slots       ║
+ ║  install's flat `flagonquest-*` keys into a first character.      ║
  ║                                                                   ║
  ║  LAYOUT: on wide screens the Browse tab shows the technique list  ║
  ║  and the build panel side by side (see .browse-layout in the     ║
@@ -393,6 +407,103 @@ function statTotalCost(n)  { return n * (n + 1); }
 
 function skillTotalValue(statPoints, skillPoints, skill) {
   return (statPoints[SKILL_STAT[skill]] || 0) + (skillPoints[skill] || 0);
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// CHARACTER SLOTS — localStorage holds any number of characters, each
+// under its own `flagonquest-char-<id>` key, plus a small registry
+// (`flagonquest-characters`, an [{id, name}] list) so the switcher can
+// list them without loading every one, and `flagonquest-active-character`
+// for which one is currently open. This is all still per-device/browser
+// storage, same as before — slots just mean it can hold more than one
+// character instead of exactly one.
+// ══════════════════════════════════════════════════════════════════
+
+// A brand-new character's blank data — also the fallback shape used to
+// backfill any fields missing from an older/partial saved blob.
+function emptyCharacterData() {
+  return {
+    build: [], notes: {}, configs: {}, renames: {}, expended: {},
+    statPoints:  Object.fromEntries(STATS.map(s => [s, 0])),
+    skillPoints: Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])),
+    xpBudget: "75", charName: "", charConcept: "", charNotes: "", noteRows: [],
+  };
+}
+
+function loadCharacterData(id) {
+  try {
+    const raw = JSON.parse(localStorage.getItem(`flagonquest-char-${id}`) || "null");
+    return { ...emptyCharacterData(), ...raw };
+  } catch { return emptyCharacterData(); }
+}
+
+function saveCharacterData(id, data) {
+  localStorage.setItem(`flagonquest-char-${id}`, JSON.stringify(data));
+}
+
+// One-time upgrade path: before slots existed, a character's fields
+// lived directly under flat `flagonquest-*` keys. If those are present
+// and no slot registry exists yet, fold them into a single character
+// so nobody's existing work disappears when this ships. The old flat
+// keys are left in place afterward (unused, but harmless) rather than
+// deleted, so a migration bug can't destroy data — only fail to migrate it.
+function migrateLegacyCharacter() {
+  if (localStorage.getItem("flagonquest-build") === null && localStorage.getItem("flagonquest-char-name") === null) {
+    return null;
+  }
+  const readJSON = (key, fallback) => {
+    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+    catch { return fallback; }
+  };
+  const data = {
+    ...emptyCharacterData(),
+    build:       readJSON("flagonquest-build", []),
+    notes:       readJSON("flagonquest-notes", {}),
+    configs:     readJSON("flagonquest-configs", {}),
+    renames:     readJSON("flagonquest-renames", {}),
+    expended:    readJSON("flagonquest-expended", {}),
+    statPoints:  { ...emptyCharacterData().statPoints,  ...readJSON("flagonquest-stat-points", {}) },
+    skillPoints: { ...emptyCharacterData().skillPoints, ...readJSON("flagonquest-skill-points", {}) },
+    xpBudget:    localStorage.getItem("flagonquest-xp-budget") ?? "75",
+    charName:    localStorage.getItem("flagonquest-char-name") || "",
+    charConcept: localStorage.getItem("flagonquest-char-concept") || "",
+    charNotes:   localStorage.getItem("flagonquest-char-notes") || "",
+    noteRows:    readJSON("flagonquest-note-rows", []),
+  };
+  const id = makeUid();
+  saveCharacterData(id, data);
+  return { id, name: data.charName || "Unnamed hero" };
+}
+
+// Resolves which character is active and its data, on first load only
+// (see the useRef guard where this is called) — handles the legacy
+// migration above, and creating a first character on a totally fresh
+// install, so the app always has at least one valid active character.
+function loadActiveCharacterState() {
+  let characters = [];
+  try { characters = JSON.parse(localStorage.getItem("flagonquest-characters")) || []; } catch {}
+  let activeId = localStorage.getItem("flagonquest-active-character");
+
+  if (characters.length === 0) {
+    const migrated = migrateLegacyCharacter();
+    if (migrated) {
+      characters = [migrated];
+      activeId = migrated.id;
+    } else {
+      const id = makeUid();
+      saveCharacterData(id, emptyCharacterData());
+      characters = [{ id, name: "" }];
+      activeId = id;
+    }
+    localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
+    localStorage.setItem("flagonquest-active-character", activeId);
+  }
+  if (!activeId || !characters.some(c => c.id === activeId)) {
+    activeId = characters[0].id;
+    localStorage.setItem("flagonquest-active-character", activeId);
+  }
+  return { activeId, characters, data: loadCharacterData(activeId) };
 }
 
 
@@ -1443,63 +1554,109 @@ function App() {
   const [healingOnly, setHealingOnly] = useState(false);
   const [cardsOnly,   setCardsOnly]   = useState(false);
   const [advancedOpen, setAdvancedOpen] = useState(false);
-  // The build itself, and the character name, are persisted to
-  // localStorage like everything else below, so refreshing the page
-  // doesn't lose your work — see the "Retain across refresh" note
-  // further down for how this plays with the URL hash.
-  const [build,      setBuild]      = useState(() => {       // array of { uid, id } — see file-header note
-    try { return JSON.parse(localStorage.getItem("flagonquest-build") || "[]"); }
-    catch { return []; }
-  });
-  const [charName,   setCharName]   = useState(() => localStorage.getItem("flagonquest-char-name") || "");
-  const [charConcept, setCharConcept] = useState(() => localStorage.getItem("flagonquest-char-concept") || "");
+
+  // ── Character slots ────────────────────────────────────────────
+  // localStorage can hold several characters (see the CHARACTER SLOTS
+  // helpers above App()) — `activeId` is which one is currently open,
+  // `characters` is the [{id, name}] list the switcher shows. This
+  // whole block of state (build through noteRows) is just "whatever
+  // the active character's data is" — switching characters means
+  // reloading every one of these from the new slot; see switchCharacter/
+  // addCharacterSlot below.
+  //
+  // `initialCharacterRef` computes the starting slot exactly once (it
+  // does localStorage reads and possibly a one-time migration — see
+  // loadActiveCharacterState — so it must not re-run on every render).
+  const initialCharacterRef = useRef(null);
+  if (initialCharacterRef.current === null) {
+    initialCharacterRef.current = loadActiveCharacterState();
+  }
+  const initialCharacter = initialCharacterRef.current;
+
+  const [activeId, setActiveId] = useState(initialCharacter.activeId);
+  const [characters, setCharacters] = useState(initialCharacter.characters);
+  const [build,      setBuild]      = useState(initialCharacter.data.build); // array of { uid, id } — see file-header note
+  const [charName,   setCharName]   = useState(initialCharacter.data.charName);
+  const [charConcept, setCharConcept] = useState(initialCharacter.data.charConcept);
   const [shareMsg,   setShareMsg]   = useState("");
-  // Per-copy free-text notes, keyed by build-entry uid. Persisted to
-  // localStorage since there's no backend.
-  const [notes, setNotes] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("flagonquest-notes") || "{}"); }
-    catch { return {}; }
-  });
+  // Per-copy free-text notes, keyed by build-entry uid.
+  const [notes, setNotes] = useState(initialCharacter.data.notes);
   // Per-copy Feature-builder choices ({ level, picks: { featureId: count } }),
-  // keyed by build-entry uid. Also persisted to localStorage.
-  const [configs, setConfigs] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("flagonquest-configs") || "{}"); }
-    catch { return {}; }
-  });
+  // keyed by build-entry uid.
+  const [configs, setConfigs] = useState(initialCharacter.data.configs);
   // Per-copy custom name for a Feature-built build (e.g. naming an
   // all-Wing-Clip Battle Maneuver "Wing Clip"), keyed by uid like notes/configs.
-  const [renames, setRenames] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("flagonquest-renames") || "{}"); }
-    catch { return {}; }
-  });
+  const [renames, setRenames] = useState(initialCharacter.data.renames);
   // Per-copy "expended this encounter" checkbox state, shown only on the
-  // Character Sheet for Encounter techniques. Session-tracking, not part
-  // of the build itself, so it's persisted locally but left out of
-  // Export/Import/Share — see doExport().
-  const [expended, setExpended] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("flagonquest-expended") || "{}"); }
-    catch { return {}; }
-  });
+  // Character Sheet for Encounter techniques.
+  const [expended, setExpended] = useState(initialCharacter.data.expended);
   // Stats & Skills point-buy: { Agility: 2, ... } / { Acrobatics: 1, ... }.
-  // Single character, so these (and the XP budget) persist to localStorage
-  // the same way notes/configs do.
-  const [statPoints, setStatPoints] = useState(() => {
-    try { return { ...Object.fromEntries(STATS.map(s => [s, 0])), ...JSON.parse(localStorage.getItem("flagonquest-stat-points") || "{}") }; }
-    catch { return Object.fromEntries(STATS.map(s => [s, 0])); }
-  });
-  const [skillPoints, setSkillPoints] = useState(() => {
-    try { return { ...Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])), ...JSON.parse(localStorage.getItem("flagonquest-skill-points") || "{}") }; }
-    catch { return Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])); }
-  });
-  const [xpBudget, setXpBudget] = useState(() => localStorage.getItem("flagonquest-xp-budget") ?? "75");
+  const [statPoints, setStatPoints] = useState(initialCharacter.data.statPoints);
+  const [skillPoints, setSkillPoints] = useState(initialCharacter.data.skillPoints);
+  const [xpBudget, setXpBudget] = useState(initialCharacter.data.xpBudget);
   // Freeform scratchpad — a big text box plus a short quick-note list,
   // both saved with the character like everything else.
-  const [charNotes, setCharNotes] = useState(() => localStorage.getItem("flagonquest-char-notes") || "");
-  const [noteRows, setNoteRows] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("flagonquest-note-rows") || "[]"); }
-    catch { return []; }
-  });
+  const [charNotes, setCharNotes] = useState(initialCharacter.data.charNotes);
+  const [noteRows, setNoteRows] = useState(initialCharacter.data.noteRows);
   const importRef = useRef();
+
+  // Loads one character's data into all of the state above — used by
+  // switchCharacter (an existing slot) and addCharacterSlot (a brand
+  // new one, already holding the data in memory so it skips straight
+  // back out to localStorage and back in).
+  const applyCharacterData = data => {
+    setBuild(data.build);
+    setNotes(data.notes);
+    setConfigs(data.configs);
+    setRenames(data.renames);
+    setExpended(data.expended);
+    setStatPoints(data.statPoints);
+    setSkillPoints(data.skillPoints);
+    setXpBudget(data.xpBudget);
+    setCharName(data.charName);
+    setCharConcept(data.charConcept);
+    setCharNotes(data.charNotes);
+    setNoteRows(data.noteRows);
+  };
+
+  // Switches to an existing character slot.
+  const switchCharacter = id => {
+    if (id === activeId) return;
+    setActiveId(id);
+    applyCharacterData(loadCharacterData(id));
+  };
+
+  // Creates a new character slot from `data` (defaults fill in anything
+  // missing) and switches to it — used by "+ New character", importing
+  // a build file, and opening a share link for a build that isn't
+  // already open here. None of these ever touch the character you were
+  // already on; they just add a slot and switch, so nothing you're
+  // working on can be overwritten by someone else's link or file.
+  const addCharacterSlot = (data = {}, { switchView } = {}) => {
+    const id = makeUid();
+    const full = { ...emptyCharacterData(), ...data };
+    saveCharacterData(id, full);
+    setCharacters(cs => [...cs, { id, name: full.charName || "" }]);
+    setActiveId(id);
+    applyCharacterData(full);
+    if (switchView) setView(switchView);
+    return id;
+  };
+
+  // Deletes a character slot — always leaves at least one behind, and
+  // switches to the first remaining one if the active slot was deleted.
+  const deleteCharacter = id => {
+    if (characters.length <= 1) return;
+    localStorage.removeItem(`flagonquest-char-${id}`);
+    setCharacters(cs => {
+      const next = cs.filter(c => c.id !== id);
+      if (id === activeId) {
+        setActiveId(next[0].id);
+        applyCharacterData(loadCharacterData(next[0].id));
+      }
+      return next;
+    });
+  };
 
   // ── Fetch JSON data on first load ──────────────────────────────
   // Promise.all fetches both files simultaneously so we only wait once.
@@ -1533,23 +1690,24 @@ function App() {
 
   // ── Load a shared build from the URL hash ──────────────────────
   // If someone opens a share link like index.html#build=abc123, this
-  // decodes and restores their build automatically. Each restored
-  // technique gets a fresh uid — share links carry the technique list,
-  // character name, and Stats & Skills, but not notes/Feature choices
-  // (kept out to keep the URL short).
+  // decodes it and adds it as a brand-new character slot rather than
+  // touching whatever's currently active — opening a link should never
+  // be able to overwrite a character you're already working on. Each
+  // restored technique gets a fresh uid; share links carry the technique
+  // list, character name, and Stats & Skills, but not notes/Feature
+  // choices (kept out to keep the URL short), so those come back blank.
   //
-  // Because the address bar now mirrors the current build live (see the
-  // sync effect below), most hash values we ever see are just an echo
-  // of what localStorage already has — decoding those again would hand
-  // every technique a fresh uid and orphan its notes/Feature choices.
-  // So: only decode when the hash's technique list actually differs
-  // from the current build, i.e. someone opened a link this browser
-  // didn't just write itself. `buildRef` sidesteps the stale-closure
-  // problem of reading `build` from a listener that's only attached
-  // once — a URL differing only in its fragment (e.g. pasting a
-  // different share link into an already-open tab) doesn't reload the
-  // page, it only fires "hashchange", so this needs to keep working
-  // long after mount, not just once at the start.
+  // Because the address bar mirrors the active character's build live
+  // (see the sync effect below), most hash values we ever see are just
+  // an echo of what's already open — adding a new slot for those too
+  // would spawn a fresh duplicate character on every refresh. So: only
+  // act when the hash's technique list actually differs from the active
+  // build, i.e. someone opened a link this browser didn't just write
+  // itself. `buildRef` sidesteps the stale-closure problem of reading
+  // `build` from a listener that's only attached once — a URL differing
+  // only in its fragment (e.g. pasting a different share link into an
+  // already-open tab) doesn't reload the page, it only fires
+  // "hashchange", so this needs to keep working long after mount.
   const buildRef = useRef(build);
   useEffect(() => { buildRef.current = build; }, [build]);
   useEffect(() => {
@@ -1560,10 +1718,12 @@ function App() {
       if (!decoded) return;
       const isEcho = decoded.ids && JSON.stringify(decoded.ids) === JSON.stringify(buildRef.current.map(e => e.id));
       if (isEcho) return;
-      if (decoded.ids)    setBuild(decoded.ids.map(id => ({ uid: makeUid(), id })));
-      if (decoded.name)   setCharName(decoded.name);
-      if (decoded.stats)  setStatPoints(p => ({ ...p, ...decoded.stats }));
-      if (decoded.skills) setSkillPoints(p => ({ ...p, ...decoded.skills }));
+      addCharacterSlot({
+        build: (decoded.ids || []).map(id => ({ uid: makeUid(), id })),
+        charName: decoded.name || "",
+        statPoints:  { ...emptyCharacterData().statPoints,  ...(decoded.stats  || {}) },
+        skillPoints: { ...emptyCharacterData().skillPoints, ...(decoded.skills || {}) },
+      }, { switchView: "sheet" });
     };
     applyHash();
     window.addEventListener("hashchange", applyHash);
@@ -1577,50 +1737,34 @@ function App() {
   // the address bar is always a current, copy-pasteable link to this
   // exact build, and — since the hash-loading effect above only acts on
   // hashes it didn't itself write — a plain refresh just re-reads the
-  // build straight back out of localStorage instead.
+  // active character straight back out of localStorage instead.
   useEffect(() => {
     const encoded = encBuild({ ids: build.map(e => e.id), name: charName, stats: statPoints, skills: skillPoints });
     const url = window.location.href.split("#")[0] + "#build=" + encoded;
     window.history.replaceState(null, "", url);
   }, [build, charName, statPoints, skillPoints]);
 
-  // ── Persist per-copy notes/configs, and Stats & Skills, on change ─
+  // ── Persist the active character, and keep the switcher list synced ─
   useEffect(() => {
-    localStorage.setItem("flagonquest-build", JSON.stringify(build));
-  }, [build]);
+    saveCharacterData(activeId, {
+      build, notes, configs, renames, expended,
+      statPoints, skillPoints, xpBudget,
+      charName, charConcept, charNotes, noteRows,
+    });
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows]);
   useEffect(() => {
-    localStorage.setItem("flagonquest-char-name", charName);
-  }, [charName]);
+    localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
+  }, [characters]);
   useEffect(() => {
-    localStorage.setItem("flagonquest-notes", JSON.stringify(notes));
-  }, [notes]);
+    localStorage.setItem("flagonquest-active-character", activeId);
+  }, [activeId]);
+  // Keeps the switcher's label for the active character following
+  // whatever's currently typed into "Character name."
   useEffect(() => {
-    localStorage.setItem("flagonquest-configs", JSON.stringify(configs));
-  }, [configs]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-renames", JSON.stringify(renames));
-  }, [renames]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-expended", JSON.stringify(expended));
-  }, [expended]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-char-concept", charConcept);
-  }, [charConcept]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-stat-points", JSON.stringify(statPoints));
-  }, [statPoints]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-skill-points", JSON.stringify(skillPoints));
-  }, [skillPoints]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-xp-budget", xpBudget);
-  }, [xpBudget]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-char-notes", charNotes);
-  }, [charNotes]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-note-rows", JSON.stringify(noteRows));
-  }, [noteRows]);
+    setCharacters(cs => cs.some(c => c.id === activeId && c.name === charName)
+      ? cs
+      : cs.map(c => c.id === activeId ? { ...c, name: charName } : c));
+  }, [charName, activeId]);
 
   const setNote = (uid, text) => setNotes(n => ({ ...n, [uid]: text }));
   const setRename = (uid, text) => setRenames(r => ({ ...r, [uid]: text }));
@@ -1866,6 +2010,9 @@ function App() {
   }
 
   // ── Import a previously exported .json file ────────────────────
+  // Lands in a brand-new character slot and switches to it, same as
+  // opening a share link — never overwrites whichever character you
+  // had open when you clicked "Import build."
   function doImport(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -1896,17 +2043,19 @@ function App() {
             if (t.customName) newRenames[uid] = t.customName;
           }
         });
-        setBuild(newBuild);
-        setNotes(n => ({ ...n, ...newNotes }));
-        setConfigs(c => ({ ...c, ...newConfigs }));
-        setRenames(r => ({ ...r, ...newRenames }));
-        if (data.charName) setCharName(data.charName);
-        if (typeof data.charConcept === "string") setCharConcept(data.charConcept);
-        if (typeof data.xpBudget === "string") setXpBudget(data.xpBudget);
-        if (data.statPoints)  setStatPoints(p => ({ ...p, ...data.statPoints }));
-        if (data.skillPoints) setSkillPoints(p => ({ ...p, ...data.skillPoints }));
-        if (typeof data.charNotes === "string") setCharNotes(data.charNotes);
-        if (Array.isArray(data.noteRows)) setNoteRows(data.noteRows.map(r => ({ id: makeUid(), text: r.text ?? "" })));
+        addCharacterSlot({
+          build: newBuild,
+          notes: newNotes,
+          configs: newConfigs,
+          renames: newRenames,
+          charName:    typeof data.charName === "string" ? data.charName : "",
+          charConcept: typeof data.charConcept === "string" ? data.charConcept : "",
+          xpBudget:    typeof data.xpBudget === "string" ? data.xpBudget : "75",
+          statPoints:  { ...emptyCharacterData().statPoints,  ...(data.statPoints  || {}) },
+          skillPoints: { ...emptyCharacterData().skillPoints, ...(data.skillPoints || {}) },
+          charNotes:   typeof data.charNotes === "string" ? data.charNotes : "",
+          noteRows:    Array.isArray(data.noteRows) ? data.noteRows.map(r => ({ id: makeUid(), text: r.text ?? "" })) : [],
+        });
       } catch {
         alert("Couldn't read that file — make sure it's a FlagonQuest build export.");
       }
@@ -2154,6 +2303,43 @@ function App() {
               A beer and pretzels TTRPG for the modern gamer
             </div>
           </div>
+        </div>
+
+        {/* Character switcher — localStorage can hold more than one
+            character (see CHARACTER SLOTS above App()); this picks
+            which one is active. New/imported/shared characters always
+            land in a fresh slot, never overwrite whichever one is open
+            here. */}
+        <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+          <select
+            value={activeId}
+            onChange={e => switchCharacter(e.target.value)}
+            style={{
+              background: "#1e2435", border: "0.5px solid #2d3555", borderRadius: 6,
+              color: TEXT.body, fontSize: 14, padding: "6px 8px", fontFamily: "inherit",
+              maxWidth: 160,
+            }}
+          >
+            {characters.map(c => (
+              <option key={c.id} value={c.id}>{c.name || "Unnamed hero"}</option>
+            ))}
+          </select>
+          <button
+            onClick={() => addCharacterSlot({}, { switchView: "build" })}
+            title="New character"
+            style={actionBtn()}
+          >
+            + New
+          </button>
+          {characters.length > 1 && (
+            <button
+              onClick={() => { if (confirm(`Delete "${charName || "Unnamed hero"}"? This can't be undone.`)) deleteCharacter(activeId); }}
+              title="Delete this character"
+              style={actionBtn(true)}
+            >
+              Delete
+            </button>
+          )}
         </div>
 
         {/* Tab navigation */}
