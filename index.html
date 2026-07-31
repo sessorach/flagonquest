@@ -738,8 +738,9 @@ function TechCard({
 
       {/* Name (+ purchase count on the read-only sheet) and corner badges
           — Encounter (if present) sits left of Level, Level always stays
-          pinned in the far corner, with Expended checkboxes (if any)
-          stacked underneath it. */}
+          pinned in the far corner. Expended checkboxes (if any) share the
+          tags line below instead of stacking under the badges here, so
+          there's no gap between the header and the card body. */}
       <div style={{ display:"flex", alignItems:"flex-start", gap:8 }}>
         <span style={{
           fontFamily: "'MedievalSharp', Georgia, serif",
@@ -756,32 +757,53 @@ function TechCard({
             </span>
           )}
         </span>
-        <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:5, flexShrink:0 }}>
-          <div style={{ display:"flex", flexDirection:"row", alignItems:"center", gap:4 }}>
-            {hasEncounter && (
-              <span style={{
-                fontSize: 17, fontWeight: 500,
-                color: "#e6943a",
-                background: "#2a1a00",
-                border: "0.5px solid #a0672e",
-                borderRadius: 4,
-                padding: "1px 8px",
-                whiteSpace: "nowrap",
-              }}>
-                Encounter
-              </span>
-            )}
+        <div style={{ display:"flex", flexDirection:"row", alignItems:"center", gap:4, flexShrink:0 }}>
+          {hasEncounter && (
             <span style={{
               fontSize: 17, fontWeight: 500,
-              color: TEXT.name,
-              background: "#24221a",
-              border: "0.5px solid #5b5540",
+              color: "#e6943a",
+              background: "#2a1a00",
+              border: "0.5px solid #a0672e",
               borderRadius: 4,
               padding: "1px 8px",
               whiteSpace: "nowrap",
             }}>
-              {displayLevel}
+              Encounter
             </span>
+          )}
+          <span style={{
+            fontSize: 17, fontWeight: 500,
+            color: TEXT.name,
+            background: "#24221a",
+            border: "0.5px solid #5b5540",
+            borderRadius: 4,
+            padding: "1px 8px",
+            whiteSpace: "nowrap",
+          }}>
+            {displayLevel}
+          </span>
+        </div>
+      </div>
+
+      {/* Remaining tags (left) and Expended checkboxes (right), sharing
+          one line — this row shows up whenever either side has content. */}
+      {(otherTags.length > 0 || (readOnly && hasEncounter && expendedUids.length > 0)) && (
+        <div style={{ display:"flex", gap:10, flexWrap:"wrap", alignItems:"center", justifyContent:"space-between" }}>
+          <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
+            {otherTags.map(tag => (
+              <span key={tag} style={{
+                fontSize: 12,
+                color: tag === "Buildable" ? "#7F77DD"
+                     : tag === "Duplicate" ? "#1D9E75"
+                     : TEXT.muted,
+                background: "#0d1117",
+                border: "0.5px solid #2d3555",
+                borderRadius: 3,
+                padding: "1px 5px",
+              }}>
+                {tag}
+              </span>
+            ))}
           </div>
           {readOnly && hasEncounter && expendedUids.length > 0 && (
             <div style={{ display:"flex", gap:6, alignItems:"center" }}>
@@ -795,26 +817,6 @@ function TechCard({
               ))}
             </div>
           )}
-        </div>
-      </div>
-
-      {/* Remaining tags — all in one line */}
-      {otherTags.length > 0 && (
-        <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
-          {otherTags.map(tag => (
-            <span key={tag} style={{
-              fontSize: 12,
-              color: tag === "Buildable" ? "#7F77DD"
-                   : tag === "Duplicate" ? "#1D9E75"
-                   : TEXT.muted,
-              background: "#0d1117",
-              border: "0.5px solid #2d3555",
-              borderRadius: 3,
-              padding: "1px 5px",
-            }}>
-              {tag}
-            </span>
-          ))}
         </div>
       )}
 
