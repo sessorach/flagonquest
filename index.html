@@ -55,6 +55,21 @@
     input[type=range]    { accent-color: #d4a843; cursor: pointer; }
     input[type=checkbox] { accent-color: #d4a843; cursor: pointer; }
 
+    /* ── Site header ───────────────────────────────────────────────
+       Narrow screens: just a wrapping flex row, DOM order = brand,
+       switcher, nav — so the logo still reads first on mobile.
+       Wide screens: a 3-column grid (switcher / brand / nav) with the
+       brand truly centered regardless of how wide the other two are;
+       `order` puts the switcher first and nav last without changing
+       the DOM order the narrow layout relies on. */
+    .site-header { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    @media (min-width: 900px) {
+      .site-header { display: grid; grid-template-columns: 1fr auto 1fr; }
+      .site-header .site-header-left  { order: 1; justify-self: start; }
+      .site-header .site-header-brand { order: 2; justify-self: center; }
+      .site-header .site-header-nav   { order: 3; justify-self: end; }
+    }
+
     /* ── Technique list (Browse) ──────────────────────────────────
        Always a single column — cards show full technique text now,
        so multiple columns made them too narrow to read comfortably. */
@@ -1291,9 +1306,18 @@ function StatsPanel({
                 <PointStepper value={statPoints[stat] || 0} max={5} onChange={n => onStatChange(stat, n)} />
               )}
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              {STAT_SKILLS[stat].map(skill => (
-                <div key={skill} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {/* Skill Total (right) is what actually gets used at the table —
+                  Stat/Skill points underneath it are just how you got there —
+                  so it gets a bigger, badge-styled, glowing number to draw the
+                  eye, and rows alternate a faint tint so a long list of five
+                  stays easy to scan across. */}
+              {STAT_SKILLS[stat].map((skill, i) => (
+                <div key={skill} style={{
+                  display: "flex", alignItems: "center", gap: 6,
+                  padding: "2px 4px", borderRadius: 4,
+                  background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
+                }}>
                   <span style={{ fontSize: 13, color: TEXT.body, flex: 1 }}>{skill}</span>
                   {readOnly ? (
                     <span style={{ fontSize: 13, color: TEXT.body, width: 16, textAlign: "center" }}>
@@ -1302,7 +1326,12 @@ function StatsPanel({
                   ) : (
                     <PointStepper value={skillPoints[skill] || 0} max={5} onChange={n => onSkillChange(skill, n)} />
                   )}
-                  <span style={{ fontSize: 13, color: TEXT.faint, width: 18, textAlign: "right", flexShrink: 0 }}>
+                  <span style={{
+                    fontSize: 15, fontWeight: 700, color: "#e8c46a",
+                    minWidth: 24, textAlign: "center", flexShrink: 0,
+                    background: "#20180a", border: "0.5px solid #6b5423", borderRadius: 5,
+                    padding: "1px 4px", textShadow: "0 0 6px rgba(212,168,67,0.45)",
+                  }}>
                     {skillTotalValue(statPoints, skillPoints, skill)}
                   </span>
                 </div>
@@ -1967,6 +1996,30 @@ function App() {
     setSkillPoints(Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])));
   };
 
+  // Drag-to-reorder on the Builder tab — moves every copy of `draggedId`
+  // (as a block, keeping their own relative order) to sit right before
+  // `targetId`. Only reorders which distinct technique comes first;
+  // never touches per-copy data, since it's just rearranging the same
+  // entries, not adding/removing any.
+  const [dragId, setDragId] = useState(null);
+  const moveTechniqueGroup = (draggedId, targetId) => {
+    if (draggedId === targetId) return;
+    setBuild(b => {
+      const order  = [];
+      const groups = {};
+      b.forEach(entry => {
+        if (!(entry.id in groups)) { groups[entry.id] = []; order.push(entry.id); }
+        groups[entry.id].push(entry);
+      });
+      const fromIdx = order.indexOf(draggedId);
+      const toIdx   = order.indexOf(targetId);
+      if (fromIdx === -1 || toIdx === -1) return b;
+      order.splice(fromIdx, 1);
+      order.splice(toIdx, 0, draggedId);
+      return order.flatMap(id => groups[id]);
+    });
+  };
+
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
   // so the file stays readable and survives future data updates), plus
@@ -2282,26 +2335,22 @@ function App() {
     <div style={{ fontFamily:"system-ui, -apple-system, sans-serif", color:"#e8dfc8" }}>
 
       {/* ════════ HEADER ════════════════════════════════════════ */}
-      <div className="no-print" style={{
+      <div className="no-print site-header" style={{
         padding: "12px 20px",
         borderBottom: "0.5px solid #2d3555",
-        display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap",
         background: "#0a0e18",
         position: "sticky", top: 0, zIndex: 100,
       }}>
-        <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-          <img src="assets/mug-icon.png" alt="" style={{ height:38, width:"auto", flexShrink:0 }} />
-          <div>
-            <div style={{
-              fontFamily: "'MedievalSharp', Georgia, serif",
-              fontSize: 22, fontWeight: "bold",
-              color: "#d4a843", letterSpacing: "0.04em",
-            }}>
-              FlagonQuest
-            </div>
-            <div style={{ fontSize:13, color:TEXT.faint, marginTop:1 }}>
-              A beer and pretzels TTRPG for the modern gamer
-            </div>
+        <div className="site-header-brand">
+          <div style={{
+            fontFamily: "'MedievalSharp', Georgia, serif",
+            fontSize: 22, fontWeight: "bold",
+            color: "#d4a843", letterSpacing: "0.04em",
+          }}>
+            FlagonQuest
+          </div>
+          <div style={{ fontSize:13, color:TEXT.faint, marginTop:1 }}>
+            A beer-and-pretzels TTRPG for the modern gamer
           </div>
         </div>
 
@@ -2310,7 +2359,7 @@ function App() {
             which one is active. New/imported/shared characters always
             land in a fresh slot, never overwrite whichever one is open
             here. */}
-        <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+        <div className="site-header-left" style={{ display:"flex", alignItems:"center", gap:6 }}>
           <select
             value={activeId}
             onChange={e => switchCharacter(e.target.value)}
@@ -2343,7 +2392,7 @@ function App() {
         </div>
 
         {/* Tab navigation */}
-        <div style={{ display:"flex", alignItems:"center", gap:6, marginLeft:"auto", flexWrap:"wrap" }}>
+        <div className="site-header-nav" style={{ display:"flex", alignItems:"center", gap:6, flexWrap:"wrap" }}>
           <button onClick={() => setView("build")} style={tabStyle("build")}>
             Builder
           </button>
@@ -2602,7 +2651,36 @@ function App() {
             </div>
           ) : (
             <div className="tech-list">
-              {knownTechs.map(t => renderTechCard(t))}
+              {/* Drag the grip to reorder — the handle is the only
+                  draggable bit, so it doesn't fight with buttons/inputs
+                  inside the card itself. Dropping anywhere on a card
+                  (not just its handle) works, to make targeting easier. */}
+              {knownTechs.map(t => (
+                <div
+                  key={t.id}
+                  onDragOver={e => { if (dragId) e.preventDefault(); }}
+                  onDrop={e => { e.preventDefault(); if (dragId) moveTechniqueGroup(dragId, t.id); setDragId(null); }}
+                  style={{ display:"flex", gap:6, alignItems:"stretch", opacity: dragId === t.id ? 0.5 : 1 }}
+                >
+                  <div
+                    draggable
+                    onDragStart={e => { e.dataTransfer.effectAllowed = "move"; setDragId(t.id); }}
+                    onDragEnd={() => setDragId(null)}
+                    title="Drag to reorder"
+                    aria-label={`Drag to reorder ${t.name}`}
+                    style={{
+                      display:"flex", alignItems:"center", justifyContent:"center",
+                      width:22, flexShrink:0, cursor:"grab", color:TEXT.faint, fontSize:16,
+                      userSelect:"none",
+                    }}
+                  >
+                    ⠿
+                  </div>
+                  <div style={{ flex:1, minWidth:0 }}>
+                    {renderTechCard(t)}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
