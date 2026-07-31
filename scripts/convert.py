@@ -40,6 +40,33 @@ checked by a machine at all.
   scripts/draft_prereq_check.py will attempt to auto-fill this column
   from the existing "Prereqs (Full)" text and flag whatever it can't
   confidently convert, so you don't have to type all ~140 by hand.
+
+FEATURE BUDGET — techniques.csv can also have an optional "Feature Budget"
+column for Feature-built techniques (Battle Maneuver, Healing Magic, etc).
+It replaces the site having to regex the point budget back out of the
+"Points: Level 1: 3 basic; Level 2: 6 basic; ..." sentence buried in the
+Effects text — that sentence can now just be prose, and this column is
+the real source of truth for the Feature-builder's level picker.
+
+  Comma-separated Level:Points entries, one per level the technique can
+  be bought at. Append "/adv" to a level to mark that Advanced-tier
+  Features unlock starting at that level (and every level after it —
+  advanced never turns back off at a higher level).
+
+    "1:3, 2:6, 3:9/adv, 4:12/adv"
+      → Level 1: 3 points, Basic only
+        Level 2: 6 points, Basic only
+        Level 3: 9 points, Basic + Advanced
+        Level 4: 12 points, Basic + Advanced
+
+  A level left out of the column just won't be offered in the picker, so
+  normally every level from "Level Min" to "Level Max" should appear.
+  Leave the whole cell blank for a technique that doesn't use a point
+  budget (including non-Feature "Buildable" techniques like Temper
+  Soulblade, which only need the level picker itself, not a budget).
+
+  scripts/draft_feature_budget.py will attempt to auto-fill this column
+  from the existing Effects text, same idea as draft_prereq_check.py.
 """
 
 import csv
@@ -63,7 +90,8 @@ TECHNIQUE_MAP = {
     "Effects":              "effects",
     "Special":              "special",
     "Prereqs (Full)":       "prereqs",
-    "Prereq Check":         "prereq_check_raw",  # parsed below, not passed through as-is
+    "Prereq Check":         "prereq_check_raw",     # parsed below, not passed through as-is
+    "Feature Budget":       "feature_budget_raw",   # parsed below, not passed through as-is
     "Relevant Skills":      "related_skills",
     "Uses Cards":           "use_cards",
     "Healing":              "healing",
@@ -174,6 +202,36 @@ def parse_prereq_check(raw, technique_names, errors, context):
     return clauses
 
 
+def parse_feature_budget(raw, level_min, level_max, errors, context):
+    """Parses one 'Feature Budget' cell into { level: {points, advanced} } —
+    see the mini-syntax documented in the file header above TECHNIQUE_MAP."""
+    budget = {}
+    for part in raw.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        m = re.fullmatch(r"(\d+)\s*:\s*(\d+)\s*(/\s*adv)?", part, re.IGNORECASE)
+        if not m:
+            errors.append(f"{context}: couldn't parse entry {part!r}")
+            continue
+        level = int(m.group(1))
+        budget[level] = {"points": int(m.group(2)), "advanced": bool(m.group(3))}
+
+    if level_min is not None and level_max is not None:
+        missing = [lv for lv in range(level_min, level_max + 1) if lv not in budget]
+        if missing:
+            errors.append(f"{context}: no budget for level(s) {missing} — those levels won't be pickable")
+
+    advanced_seen = False
+    for level in sorted(budget):
+        if budget[level]["advanced"]:
+            advanced_seen = True
+        elif advanced_seen:
+            errors.append(f"{context}: level {level} isn't marked /adv but an earlier level was — advanced should stay unlocked once it appears")
+
+    return budget
+
+
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(os.path.join(script_dir, "../data"), exist_ok=True)
 
@@ -201,17 +259,30 @@ for csv_file, (json_file, col_map) in TABLES.items():
     if csv_file == "techniques.csv":
         technique_names = {r["name"] for r in rows if r.get("name")}
         errors = []
+        budget_errors = []
         for r in rows:
             raw = r.pop("prereq_check_raw", None)
+            context = f"{r.get('id')} {r.get('name')!r}"
             if raw:
-                context = f"{r.get('id')} {r.get('name')!r}"
                 clauses = parse_prereq_check(raw, technique_names, errors, context)
                 r["prereq_check"] = clauses if clauses else None
             else:
                 r["prereq_check"] = None
+
+            budget_raw = r.pop("feature_budget_raw", None)
+            if budget_raw:
+                budget = parse_feature_budget(budget_raw, r.get("level_min"), r.get("level_max"), budget_errors, context)
+                r["feature_budget"] = budget if budget else None
+            else:
+                r["feature_budget"] = None
         if errors:
             print(f"\n⚠ {len(errors)} Prereq Check issue(s) in {csv_file} — these techniques won't get a checkable prereq:")
             for e in errors:
+                print(f"   {e}")
+            print()
+        if budget_errors:
+            print(f"\n⚠ {len(budget_errors)} Feature Budget issue(s) in {csv_file}:")
+            for e in budget_errors:
                 print(f"   {e}")
             print()
 
@@ -225,6 +296,30 @@ for csv_file, (json_file, col_map) in TABLES.items():
             print(f"\n⚠ {len(untagged)} technique(s) have Features but aren't tagged \"Buildable\" in {csv_file}:")
             for r in untagged:
                 print(f"   {r.get('id')} {r.get('name')!r}")
+            print()
+
+    if csv_file == "features.csv":
+        technique_ids = set()
+        # Populated below once techniques.csv has been read in this same
+        # run; if features.csv is processed first this stays empty and the
+        # check is skipped rather than false-flagging everything.
+        tech_csv_path = os.path.join(script_dir, "techniques.csv")
+        if os.path.exists(tech_csv_path):
+            with open(tech_csv_path, newline="", encoding="utf-8-sig") as tf:
+                technique_ids = {row.get("ID", "").strip() for row in csv.DictReader(tf)}
+
+        feature_errors = []
+        for r in rows:
+            tier = r.get("tier")
+            if tier not in ("Basic", "Advanced"):
+                feature_errors.append(f"{r.get('id')}: Tier is {tier!r}, expected exactly \"Basic\" or \"Advanced\"")
+            tid = r.get("technique_id")
+            if technique_ids and tid not in technique_ids:
+                feature_errors.append(f"{r.get('id')}: Technique ID {tid!r} doesn't match any row in techniques.csv")
+        if feature_errors:
+            print(f"\n⚠ {len(feature_errors)} issue(s) in {csv_file}:")
+            for e in feature_errors:
+                print(f"   {e}")
             print()
 
     with open(json_path, "w", encoding="utf-8") as f:
