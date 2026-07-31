@@ -153,9 +153,12 @@ const { useState, useEffect, useMemo, useRef } = React;
  ║  BUILD ENTRIES: `build` is an array of { uid, id } — id is the   ║
  ║  technique ID, uid is a unique ID for that specific *copy* (so   ║
  ║  Duplicate/Encounter techniques can be learned more than once).  ║
- ║  Per-copy data — free-text notes and Feature-builder choices —   ║
- ║  are keyed by uid, not by technique id, in the `notes` /         ║
- ║  `configs` state and persisted to localStorage.                  ║
+ ║  Per-copy data — free-text notes, Feature-builder choices, an    ║
+ ║  optional rename, and Character-Sheet "expended" checkbox state  ║
+ ║  — are keyed by uid, not by technique id, in the `notes` /       ║
+ ║  `configs` / `renames` / `expended` state and persisted to       ║
+ ║  localStorage (`expended` is session-tracking only, so it's left ║
+ ║  out of Export/Import — see doExport()).                         ║
  ║                                                                   ║
  ║  FILTERING: `visible` is techniques.filter(...), recomputed by   ║
  ║  useMemo() only when a filter changes.                           ║
@@ -503,12 +506,30 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
 function FeaturesSection({
   tech, features, instances, configs, repeatable,
   onSaveConfig, onDuplicateInstance, onRemoveInstance,
+  renames, onRenameChange, expended, onExpendedChange,
   readOnly = false,
 }) {
   const [builderFor, setBuilderFor]   = useState(null); // null | "new" | a uid
   const [builderSeed, setBuilderSeed] = useState(null); // the {level, picks} to open the builder with
   const budgetMap = useMemo(() => parsePointBudget(tech.effects), [tech.effects]);
   const maxLevel = tech.level_max ?? tech.level_min;
+  const hasEncounter = splitCSV(tech.tags).includes("Encounter");
+
+  // For the read-only Character Sheet: copies that share a rename (or,
+  // unnamed, an identical level+picks) collapse into one tile with N
+  // "expended" checkboxes — differently-built copies of the same
+  // technique still get their own tile, per the "Wing Clip" example.
+  const groups = useMemo(() => {
+    const map = new Map();
+    instances.forEach(uid => {
+      const cfg = configs[uid];
+      const rn  = (renames[uid] || "").trim();
+      const key = rn ? `name:${rn}` : `cfg:${cfg ? cfg.level + "|" + JSON.stringify(cfg.picks) : uid}`;
+      if (!map.has(key)) map.set(key, { key, name: rn || null, cfg, uids: [] });
+      map.get(key).uids.push(uid);
+    });
+    return [...map.values()];
+  }, [instances, configs, renames]);
 
   const smallBtn = {
     fontSize: 12, color: TEXT.muted, background: "transparent",
@@ -540,34 +561,86 @@ function FeaturesSection({
       </div>
 
       {/* Copies already learned */}
-      {instances.map((uid, i) => {
-        const cfg = configs[uid];
-        if (!readOnly && builderFor === uid) {
+      {readOnly ? (
+        groups.map(g => {
+          const cfg   = g.cfg;
+          const picks = cfg ? Object.entries(cfg.picks) : [];
+          const n     = g.uids.length;
           return (
-            <FeatureBuilder
-              key={`${uid}-${builderSeed?.level}`}
-              tech={tech}
-              features={features}
-              budgetMap={budgetMap}
-              initial={builderSeed}
-              saveLabel="Save changes"
-              onCancel={closeBuilder}
-              onSave={next => { onSaveConfig(tech.id, uid, next); closeBuilder(); }}
-            />
+            <div key={g.key} style={{
+              background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 6,
+              padding: "8px 10px", display: "flex", flexDirection: "column", gap: 4,
+            }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                <span style={{ fontSize: 13, color: TEXT.body }}>
+                  {g.name && <strong style={{ color: TEXT.name }}>{g.name}</strong>}
+                  {g.name && cfg && " — "}
+                  {cfg ? `Level ${cfg.level}` : (g.name ? "" : "Not configured")}
+                  {n > 1 ? ` ×${n}` : ""}
+                </span>
+                {hasEncounter && (
+                  <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                    {g.uids.map((uid, i) => (
+                      <label key={uid} title={n > 1 ? `Copy ${i + 1} expended` : "Expended"} style={{
+                        display: "flex", alignItems: "center", gap: 3,
+                        fontSize: 12, color: TEXT.faint, cursor: "pointer",
+                      }}>
+                        <input
+                          type="checkbox"
+                          checked={!!expended[uid]}
+                          onChange={e => onExpendedChange(uid, e.target.checked)}
+                        />
+                        {n > 1 ? i + 1 : "Expended"}
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+              {picks.length > 0 && (
+                <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                  {picks.map(([fid, n2]) => {
+                    const f = features.find(x => x.id === fid);
+                    if (!f) return null;
+                    return (
+                      <div key={fid} style={{ fontSize: 12, color: TEXT.muted, lineHeight: 1.4 }}>
+                        <strong style={{ color: TEXT.body }}>{f.feature_name}{n2 > 1 ? ` ×${n2}` : ""}</strong>
+                        {" — "}{applyFeatureCount(f.description, n2)}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           );
-        }
-        const picks = cfg ? Object.entries(cfg.picks) : [];
-        return (
-          <div key={uid} style={{
-            background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 6,
-            padding: "8px 10px", display: "flex", flexDirection: "column", gap: 4,
-          }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-              <span style={{ fontSize: 13, color: TEXT.body }}>
-                {instances.length > 1 ? `Copy ${i + 1} — ` : ""}
-                {cfg ? `Level ${cfg.level}` : "Not configured"}
-              </span>
-              {!readOnly && (
+        })
+      ) : (
+        instances.map((uid, i) => {
+          const cfg = configs[uid];
+          if (builderFor === uid) {
+            return (
+              <FeatureBuilder
+                key={`${uid}-${builderSeed?.level}`}
+                tech={tech}
+                features={features}
+                budgetMap={budgetMap}
+                initial={builderSeed}
+                saveLabel="Save changes"
+                onCancel={closeBuilder}
+                onSave={next => { onSaveConfig(tech.id, uid, next); closeBuilder(); }}
+              />
+            );
+          }
+          const picks = cfg ? Object.entries(cfg.picks) : [];
+          return (
+            <div key={uid} style={{
+              background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 6,
+              padding: "8px 10px", display: "flex", flexDirection: "column", gap: 4,
+            }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                <span style={{ fontSize: 13, color: TEXT.body }}>
+                  {instances.length > 1 ? `Copy ${i + 1} — ` : ""}
+                  {cfg ? `Level ${cfg.level}` : "Not configured"}
+                </span>
                 <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                   {repeatable && cfg && (
                     <button onClick={() => onDuplicateInstance(uid)} style={smallBtn}>Duplicate</button>
@@ -578,25 +651,32 @@ function FeaturesSection({
                   <button onClick={() => openEdit(uid)} style={smallBtn}>Edit</button>
                   <button onClick={() => onRemoveInstance(uid)} style={smallDangerBtn}>Remove</button>
                 </div>
+              </div>
+              <input
+                type="text"
+                value={renames[uid] || ""}
+                onChange={e => onRenameChange(uid, e.target.value)}
+                placeholder="Rename this build (optional)…"
+                style={{ fontSize: 12, padding: "3px 6px" }}
+              />
+              {picks.length > 0 && (
+                <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                  {picks.map(([fid, n]) => {
+                    const f = features.find(x => x.id === fid);
+                    if (!f) return null;
+                    return (
+                      <div key={fid} style={{ fontSize: 12, color: TEXT.muted, lineHeight: 1.4 }}>
+                        <strong style={{ color: TEXT.body }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
+                        {" — "}{applyFeatureCount(f.description, n)}
+                      </div>
+                    );
+                  })}
+                </div>
               )}
             </div>
-            {picks.length > 0 && (
-              <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                {picks.map(([fid, n]) => {
-                  const f = features.find(x => x.id === fid);
-                  if (!f) return null;
-                  return (
-                    <div key={fid} style={{ fontSize: 12, color: TEXT.muted, lineHeight: 1.4 }}>
-                      <strong style={{ color: TEXT.body }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
-                      {" — "}{applyFeatureCount(f.description, n)}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        );
-      })}
+          );
+        })
+      )}
 
       {/* Build the first copy, or another one with different features */}
       {!readOnly && (
@@ -639,6 +719,7 @@ function TechCard({
   notes, onNoteChange,
   configs, onSaveConfig, onDuplicateInstance,
   onAdd, onRemove, onRemoveInstance,
+  renames, onRenameChange, expended, onExpendedChange,
   readOnly = false,
 }) {
   const tags   = splitCSV(tech.tags);
@@ -707,6 +788,24 @@ function TechCard({
         </div>
       </div>
 
+      {/* Expended tracking for simple (non-Feature-built) Encounter
+          techniques, on the read-only Character Sheet only — Feature-built
+          ones get their checkboxes per build-group inside FeaturesSection
+          instead, so this is skipped for those to avoid showing it twice. */}
+      {readOnly && hasEncounter && !tech.features && instances.length > 0 && (
+        <div style={{ display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}>
+          <span style={{ fontSize:12, color:TEXT.label, fontWeight:500 }}>Expended</span>
+          {instances.map((uid, i) => (
+            <label key={uid} title={instances.length > 1 ? `Copy ${i + 1} expended` : "Expended"} style={{
+              display:"flex", alignItems:"center", gap:4, fontSize:13, color:TEXT.muted, cursor:"pointer",
+            }}>
+              <input type="checkbox" checked={!!expended[uid]} onChange={e => onExpendedChange(uid, e.target.checked)} />
+              {instances.length > 1 ? `#${i + 1}` : ""}
+            </label>
+          ))}
+        </div>
+      )}
+
       {/* Remaining tags — all in one line */}
       {otherTags.length > 0 && (
         <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
@@ -768,6 +867,10 @@ function TechCard({
           onSaveConfig={onSaveConfig}
           onDuplicateInstance={onDuplicateInstance}
           onRemoveInstance={onRemoveInstance}
+          renames={renames}
+          onRenameChange={onRenameChange}
+          expended={expended}
+          onExpendedChange={onExpendedChange}
           readOnly={readOnly}
         />
       )}
@@ -1295,6 +1398,7 @@ function App() {
   const [advancedOpen, setAdvancedOpen] = useState(false);
   const [build,      setBuild]      = useState([]);       // array of { uid, id } — see file-header note
   const [charName,   setCharName]   = useState("");
+  const [charConcept, setCharConcept] = useState(() => localStorage.getItem("flagonquest-char-concept") || "");
   const [shareMsg,   setShareMsg]   = useState("");
   // Per-copy free-text notes, keyed by build-entry uid. Persisted to
   // localStorage since there's no backend.
@@ -1306,6 +1410,20 @@ function App() {
   // keyed by build-entry uid. Also persisted to localStorage.
   const [configs, setConfigs] = useState(() => {
     try { return JSON.parse(localStorage.getItem("flagonquest-configs") || "{}"); }
+    catch { return {}; }
+  });
+  // Per-copy custom name for a Feature-built build (e.g. naming an
+  // all-Wing-Clip Battle Maneuver "Wing Clip"), keyed by uid like notes/configs.
+  const [renames, setRenames] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("flagonquest-renames") || "{}"); }
+    catch { return {}; }
+  });
+  // Per-copy "expended this encounter" checkbox state, shown only on the
+  // Character Sheet for Encounter techniques. Session-tracking, not part
+  // of the build itself, so it's persisted locally but left out of
+  // Export/Import/Share — see doExport().
+  const [expended, setExpended] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("flagonquest-expended") || "{}"); }
     catch { return {}; }
   });
   // Stats & Skills point-buy: { Agility: 2, ... } / { Acrobatics: 1, ... }.
@@ -1382,6 +1500,15 @@ function App() {
     localStorage.setItem("flagonquest-configs", JSON.stringify(configs));
   }, [configs]);
   useEffect(() => {
+    localStorage.setItem("flagonquest-renames", JSON.stringify(renames));
+  }, [renames]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-expended", JSON.stringify(expended));
+  }, [expended]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-char-concept", charConcept);
+  }, [charConcept]);
+  useEffect(() => {
     localStorage.setItem("flagonquest-stat-points", JSON.stringify(statPoints));
   }, [statPoints]);
   useEffect(() => {
@@ -1398,6 +1525,8 @@ function App() {
   }, [noteRows]);
 
   const setNote = (uid, text) => setNotes(n => ({ ...n, [uid]: text }));
+  const setRename = (uid, text) => setRenames(r => ({ ...r, [uid]: text }));
+  const setExpendedFor = (uid, val) => setExpended(x => ({ ...x, [uid]: val }));
   const addNoteRow    = () => setNoteRows(r => [...r, { id: makeUid(), text: "" }]);
   const updateNoteRow = (id, text) => setNoteRows(r => r.map(row => row.id === id ? { ...row, text } : row));
   const removeNoteRow = id => setNoteRows(r => r.filter(row => row.id !== id));
@@ -1536,6 +1665,8 @@ function App() {
     if (removedUid) {
       setNotes(n => { if (!(removedUid in n)) return n; const c = { ...n }; delete c[removedUid]; return c; });
       setConfigs(c => { if (!(removedUid in c)) return c; const cc = { ...c }; delete cc[removedUid]; return cc; });
+      setRenames(r => { if (!(removedUid in r)) return r; const c = { ...r }; delete c[removedUid]; return c; });
+      setExpended(x => { if (!(removedUid in x)) return x; const c = { ...x }; delete c[removedUid]; return c; });
     }
   };
 
@@ -1546,6 +1677,8 @@ function App() {
     setBuild(b => b.filter(e => e.uid !== uid));
     setNotes(n => { if (!(uid in n)) return n; const c = { ...n }; delete c[uid]; return c; });
     setConfigs(c => { if (!(uid in c)) return c; const cc = { ...c }; delete cc[uid]; return cc; });
+    setRenames(r => { if (!(uid in r)) return r; const c = { ...r }; delete c[uid]; return c; });
+    setExpended(x => { if (!(uid in x)) return x; const c = { ...x }; delete c[uid]; return c; });
   };
 
   // Creates a new copy with the same Feature-builder config as an
@@ -1559,6 +1692,9 @@ function App() {
     setBuild(b => [...b, { uid: newUid, id: entry.id }]);
     if (cfg) {
       setConfigs(c => ({ ...c, [newUid]: { level: cfg.level, picks: { ...cfg.picks } } }));
+    }
+    if (renames[uid]) {
+      setRenames(r => ({ ...r, [newUid]: renames[uid] }));
     }
   };
 
@@ -1579,6 +1715,8 @@ function App() {
     setBuild([]);
     setNotes({});
     setConfigs({});
+    setRenames({});
+    setExpended({});
     setStatPoints(Object.fromEntries(STATS.map(s => [s, 0])));
     setSkillPoints(Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])));
   };
@@ -1590,6 +1728,7 @@ function App() {
   function doExport() {
     const payload = {
       charName,
+      charConcept,
       xpBudget,
       statPoints,
       skillPoints,
@@ -1607,6 +1746,7 @@ function App() {
               return name ? { name, count } : null;
             })
             .filter(Boolean);
+          if (renames[e.uid]) out.customName = renames[e.uid];
         } else {
           out.level = lvlLabel(e.tech.level_min, e.tech.level_max);
         }
@@ -1634,6 +1774,7 @@ function App() {
         const newBuild   = [];
         const newNotes   = {};
         const newConfigs = {};
+        const newRenames = {};
         data.techniques.forEach(t => {
           const uid = makeUid();
           newBuild.push({ uid, id: t.id });
@@ -1650,12 +1791,15 @@ function App() {
               if (feat) picks[feat.id] = count;
             });
             newConfigs[uid] = { level: t.level, picks };
+            if (t.customName) newRenames[uid] = t.customName;
           }
         });
         setBuild(newBuild);
         setNotes(n => ({ ...n, ...newNotes }));
         setConfigs(c => ({ ...c, ...newConfigs }));
+        setRenames(r => ({ ...r, ...newRenames }));
         if (data.charName) setCharName(data.charName);
+        if (typeof data.charConcept === "string") setCharConcept(data.charConcept);
         if (typeof data.xpBudget === "string") setXpBudget(data.xpBudget);
         if (data.statPoints)  setStatPoints(p => ({ ...p, ...data.statPoints }));
         if (data.skillPoints) setSkillPoints(p => ({ ...p, ...data.skillPoints }));
@@ -1750,6 +1894,10 @@ function App() {
         onAdd={addTech}
         onRemove={removeTech}
         onRemoveInstance={removeInstance}
+        renames={renames}
+        onRenameChange={setRename}
+        expended={expended}
+        onExpendedChange={setExpendedFor}
         readOnly={readOnly}
       />
     );
@@ -2015,6 +2163,21 @@ function App() {
             />
           </div>
 
+          {/* Character concept — a short line shown in smaller text under
+              the name, on this tab and on the Character Sheet */}
+          <div style={{ marginBottom:14 }}>
+            <div style={{ fontSize: 12, color: TEXT.faint, marginBottom: 5 }}>
+              Concept
+            </div>
+            <input
+              type="text"
+              placeholder="A one-line concept — “disgraced knight turned bartender”…"
+              value={charConcept}
+              onChange={e => setCharConcept(e.target.value)}
+              style={{ width:"100%", maxWidth:360, fontSize:13 }}
+            />
+          </div>
+
           {/* Whole-build actions */}
           <div style={{ display:"flex", gap:8, marginBottom:24, flexWrap:"wrap", alignItems:"center" }}>
             <button onClick={doExport} style={actionBtn()}>
@@ -2092,6 +2255,7 @@ function App() {
           {/* Character name + summary header */}
           <div style={{
             display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12,
+            flexWrap: "wrap",
             borderBottom: "0.5px solid #2d3555",
             paddingBottom: 14, marginBottom: 20,
           }}>
@@ -2102,15 +2266,28 @@ function App() {
               }}>
                 {charName || "Unnamed hero"}
               </div>
+              {charConcept && (
+                <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", marginTop:3 }}>
+                  {charConcept}
+                </div>
+              )}
               <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
                 {buildEntries.length} technique{buildEntries.length !== 1 ? "s" : ""}
                 {" ("}{knownTechs.length} distinct{")"}
                 {unknownCount > 0 && ` · ${unknownCount} not fully configured`}
               </div>
             </div>
-            <button onClick={() => window.print()} style={{ ...actionBtn(), flexShrink:0 }} className="no-print">
-              <i className="ti ti-printer" aria-hidden="true" /> Print / Save as PDF
-            </button>
+            <div className="no-print" style={{ display:"flex", gap:8, flexShrink:0, flexWrap:"wrap" }}>
+              <button
+                onClick={() => { if (confirm("Uncheck all expended techniques for a new encounter?")) setExpended({}); }}
+                style={actionBtn()}
+              >
+                Reset expended
+              </button>
+              <button onClick={() => window.print()} style={actionBtn()}>
+                <i className="ti ti-printer" aria-hidden="true" /> Print / Save as PDF
+              </button>
+            </div>
           </div>
 
           <StatsPanel
