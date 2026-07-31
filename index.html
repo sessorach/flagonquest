@@ -346,30 +346,6 @@ function applyFeatureCount(text, count) {
   return out;
 }
 
-// Substitutes a bracketed "[Level + 1]" / "[this Technique's Level]" clause
-// in a Feature-built technique's prereqs text with the composite number for
-// one specific build's chosen level — e.g. "[Level + 1]" at Level 3 becomes
-// "4". Only meaningful once a level has actually been picked (a single
-// build-group on the Character Sheet), so callers pass `level == null` to
-// leave the text untouched everywhere else.
-function applyPrereqLevel(text, level) {
-  if (!text || level == null) return text;
-  let out = text.replace(/\[([^\]]*)\]/g, (whole, inner) => {
-    const normalized = inner.replace(/(this\s+technique'?s\s+)?level/i, String(level));
-    if (!/^[\d\s+-]+$/.test(normalized)) return whole;
-    let value;
-    try { value = Function(`"use strict"; return (${normalized});`)(); } catch { return whole; }
-    return Number.isFinite(value) ? String(value) : whole;
-  });
-  // Some prereqs put the arithmetic outside the bracket, e.g.
-  // "Theurgy [Level] + 1" — collapse what's left into one number too,
-  // same as applyFeatureCount does for Feature descriptions.
-  out = out.replace(/\b\d+(?:\s*\+\s*\d+)+\b/g, m =>
-    String(m.split("+").reduce((sum, part) => sum + parseInt(part.trim(), 10), 0))
-  );
-  return out;
-}
-
 // ── Stats & Skills ────────────────────────────────────────────────
 // 5 stats, 5 skills each. A skill's "Skill Total" — used all over the
 // character sheet's derived numbers — is the stat's points plus the
@@ -820,8 +796,9 @@ function TechCard({
         </div>
       )}
 
-      {/* Fluff description — italic and muted */}
-      {tech.description && (
+      {/* Fluff description — italic and muted. Skipped on the read-only
+          Character Sheet, which is meant to be a lean reference. */}
+      {!readOnly && tech.description && (
         <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5 }}>
           {tech.description}
         </div>
@@ -955,20 +932,17 @@ function TechCard({
         </div>
       )}
 
-      {/* Prerequisites — a bracketed clause like "[Level + 1]" resolves to
-          the composite number once this specific build's level is known
-          (group mode on the sheet); everywhere else it stays literal text,
-          since a card with multiple differently-leveled copies has no
-          single "the" level to substitute. */}
-      {tech.prereqs && (
+      {/* Prerequisites and related skills — skipped on the read-only
+          Character Sheet to keep it lean; still shown everywhere you're
+          actually picking/reviewing techniques. */}
+      {!readOnly && tech.prereqs && (
         <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4 }}>
           <span style={{ fontWeight:500 }}>Prereqs: </span>
-          {group && group.cfg ? applyPrereqLevel(tech.prereqs, group.cfg.level) : tech.prereqs}
+          {tech.prereqs}
         </div>
       )}
 
-      {/* Related skills — faint chips at the very bottom, under prereqs */}
-      {skills.length > 0 && (
+      {!readOnly && skills.length > 0 && (
         <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
           {skills.map(skill => (
             <span key={skill} style={{
@@ -1458,7 +1432,7 @@ function App() {
     try { return { ...Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])), ...JSON.parse(localStorage.getItem("flagonquest-skill-points") || "{}") }; }
     catch { return Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])); }
   });
-  const [xpBudget, setXpBudget] = useState(() => localStorage.getItem("flagonquest-xp-budget") || "");
+  const [xpBudget, setXpBudget] = useState(() => localStorage.getItem("flagonquest-xp-budget") ?? "75");
   // Freeform scratchpad — a big text box plus a short quick-note list,
   // both saved with the character like everything else.
   const [charNotes, setCharNotes] = useState(() => localStorage.getItem("flagonquest-char-notes") || "");
@@ -1649,11 +1623,15 @@ function App() {
     if (search) {
       const q = search.toLowerCase();
       // Search the technique's full text — every field a player might
-      // type a fragment of, not just name/effects.
+      // type a fragment of, not just name/effects. The literal word
+      // "Special" is added whenever a technique has one, since that's the
+      // label shown on its card — searching "special" should surface every
+      // technique that has one, not just ones whose special text happens
+      // to contain that word.
       const hay = [
         t.name, t.tags, t.related_skills,
         t.description, t.condition, t.action, t.cost, t.target,
-        t.effects, t.special, t.prereqs,
+        t.effects, t.special, t.prereqs, t.special ? "Special" : null,
       ].filter(Boolean).join(" ").toLowerCase();
       if (!hay.includes(q)) return false;
     }
@@ -2102,7 +2080,7 @@ function App() {
         {/* Tab navigation */}
         <div style={{ display:"flex", gap:6, marginLeft:"auto", flexWrap:"wrap" }}>
           <button onClick={() => setView("build")} style={tabStyle("build")}>
-            Builder{build.length > 0 ? ` (${build.length})` : ""}
+            Builder
           </button>
           <button onClick={() => setView("browse")} style={tabStyle("browse")}>
             Techniques
@@ -2396,11 +2374,11 @@ function App() {
                   {charConcept}
                 </div>
               )}
-              <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
-                {buildEntries.length} technique{buildEntries.length !== 1 ? "s" : ""}
-                {" ("}{sheetCards.length} distinct{")"}
-                {unknownCount > 0 && ` · ${unknownCount} not fully configured`}
-              </div>
+              {unknownCount > 0 && (
+                <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
+                  {unknownCount} technique{unknownCount > 1 ? "s" : ""} not fully configured
+                </div>
+              )}
             </div>
             <div className="no-print" style={{ display:"flex", gap:8, flexShrink:0, flexWrap:"wrap" }}>
               <button
