@@ -8,6 +8,11 @@
   <!-- Tabler Icons webfont — used for the button icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
+  <!-- MedievalSharp — fantasy display font for names/headings (free, OFL license) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+
   <!-- React 18 (the UI framework) and ReactDOM (renders it to the page) -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -28,22 +33,73 @@
     }
 
     /* ── Inputs ────────────────────────────────────────────────── */
-    input[type=text], input[type=search] {
+    input[type=text], input[type=search], textarea {
       background: #1e2435;
       border: 0.5px solid #2d3555;
       border-radius: 6px;
       padding: 7px 11px;
       color: #e8dfc8;
-      font-size: 13px;
+      font-size: 15px;
       font-family: inherit;
       outline: none;
       transition: border-color 0.15s;
     }
     input[type=text]:focus,
-    input[type=search]:focus { border-color: #d4a843; }
+    input[type=search]:focus,
+    textarea:focus { border-color: #d4a843; }
 
     input[type=range]    { accent-color: #d4a843; cursor: pointer; }
     input[type=checkbox] { accent-color: #d4a843; cursor: pointer; }
+
+    /* ── Technique list (Browse) ──────────────────────────────────
+       Always a single column — cards show full technique text now,
+       so multiple columns made them too narrow to read comfortably. */
+    .tech-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* ── Browse layout: list + build sidebar ────────────────────────
+       Mobile/narrow: just the list. The build panel lives on its own
+       "My build" tab, same as before.
+       Wide screens: list on the left, a sticky build sidebar on the
+       right so you can pick techniques and watch your build fill in
+       without switching tabs. */
+    .browse-layout { display: block; }
+    .browse-build-panel { display: none; }
+    @media (min-width: 1000px) {
+      .browse-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 340px;
+        gap: 20px;
+        align-items: start;
+      }
+      .browse-build-panel {
+        display: block;
+        position: sticky;
+        top: 78px;
+        max-height: calc(100vh - 96px);
+        overflow-y: auto;
+        background: #12161f;
+        border: 0.5px solid #2d3555;
+        border-radius: 8px;
+        padding: 16px;
+      }
+    }
+
+    /* ── Stats & Skills grid ───────────────────────────────────────
+       5 stat blocks — one column on narrow screens, stepping up as
+       space allows, capped at 5-across (never more, even on very
+       wide screens) since there are exactly 5 stats. */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 560px)  { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 840px)  { .stat-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1100px) { .stat-grid { grid-template-columns: repeat(5, 1fr); } }
 
     /* ── Scrollbar ─────────────────────────────────────────────── */
     ::-webkit-scrollbar { width: 5px; height: 5px; }
@@ -53,6 +109,46 @@
     /* ── Buttons ───────────────────────────────────────────────── */
     button { font-family: inherit; cursor: pointer; }
     button:hover { opacity: 0.85; }
+    button:disabled { cursor: not-allowed; opacity: 0.5; }
+    button:disabled:hover { opacity: 0.5; }
+
+    /* ── Print / "Save as PDF" (Character Sheet only) ─────────────
+       Flattens the dark theme to plain black-on-white, hides the
+       header/tabs, and reshapes the boxes into solid-bordered, tightly
+       packed blocks closer to a paper character sheet — small type is
+       fine here, this is a reference printout, not a screen. !important
+       throughout since the whole app is otherwise styled inline. */
+    @media print {
+      @page { margin: 0.4in; }
+      .no-print { display: none !important; }
+      body { background: #fff !important; }
+      * {
+        background: #fff !important;
+        color: #111 !important;
+        border-color: #000 !important;
+        box-shadow: none !important;
+      }
+
+      .sheet-page { max-width: none !important; padding: 0 !important; }
+
+      /* Solid black boxes instead of the screen's faint hairlines —
+         Stats & Skills, Vitals/Defenses/Health, and each technique all
+         get this treatment, and none of them split across a page break. */
+      .sheet-header, .sheet-box, .tech-card {
+        border-width: 1px !important;
+        border-style: solid !important;
+        border-radius: 2px !important;
+        break-inside: avoid;
+      }
+      .sheet-box { padding: 5px 8px !important; zoom: 0.85; }
+      .tech-card { padding: 6px 9px !important; gap: 4px !important; zoom: 0.68; }
+
+      /* Stats & Skills stays 5-across regardless of the page's physical
+         width — the .stat-grid breakpoints are viewport-width media
+         queries tuned for screens, and a printed page is narrower. */
+      .stat-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 5px !important; }
+      .tech-list { gap: 5px !important; }
+    }
   </style>
 </head>
 <body>
@@ -77,42 +173,56 @@ const { useState, useEffect, useMemo, useRef } = React;
  ║    python -m http.server 8000                                    ║
  ║  Then visit localhost:8000 in your browser.                      ║
  ║                                                                   ║
- ║  STATE: React "state" is variables that update the UI when they  ║
- ║  change. Main pieces:                                             ║
- ║    · techniques / features  — loaded from JSON                   ║
- ║    · view                   — which tab is active                ║
- ║    · search, catFilter, levelMin/Max — browse filters            ║
- ║    · build                  — array of technique IDs picked      ║
- ║    · charName               — character name                     ║
+ ║  BUILD ENTRIES: `build` is an array of { uid, id } — id is the   ║
+ ║  technique ID, uid is a unique ID for that specific *copy* (so   ║
+ ║  Duplicate/Encounter techniques can be learned more than once).  ║
+ ║  Per-copy data — free-text notes, Feature-builder choices, an    ║
+ ║  optional rename, and Character-Sheet "expended" checkbox state  ║
+ ║  — are keyed by uid, not by technique id, in the `notes` /       ║
+ ║  `configs` / `renames` / `expended` state and persisted to       ║
+ ║  localStorage (`expended` is session-tracking only, so it's left ║
+ ║  out of Export/Import — see doExport()).                         ║
  ║                                                                   ║
- ║  FILTERING: visibleTechs is TECHNIQUES.filter(...), recomputed   ║
- ║  by useMemo() only when a filter changes.                        ║
+ ║  FILTERING: `visible` is techniques.filter(...), recomputed by   ║
+ ║  useMemo() only when a filter changes.                           ║
  ║                                                                   ║
- ║  BUILD: Adding a technique appends its ID to the build array.    ║
- ║  Export = JSON download. Share = base64 build in URL hash.       ║
+ ║  BUILD ROWS: `buildRows` groups build entries for display — a    ║
+ ║  plain repeatable technique collapses into one "×N" row, but a   ║
+ ║  technique with its own notes or Feature-builder choices per     ║
+ ║  copy (free_text / features) always gets one row per copy, since ║
+ ║  those copies aren't interchangeable.                            ║
+ ║                                                                   ║
+ ║  EXPORT/IMPORT: full fidelity, including notes and Feature        ║
+ ║  choices. SHARE LINK: technique list + character name only, to   ║
+ ║  keep the URL short — notes/Feature choices don't round-trip.    ║
+ ║                                                                   ║
+ ║  RETAIN ACROSS REFRESH: `build` and `charName` are persisted to  ║
+ ║  localStorage like everything else. The address bar also mirrors ║
+ ║  the current build live in the same #build= format "Copy share   ║
+ ║  link" uses (see the sync effect near the top of App()) — so the ║
+ ║  page is always sitting on a current, copy-pasteable link, and a ║
+ ║  plain refresh can tell that hash apart from an actual shared    ║
+ ║  link someone opened and skip re-decoding its own echo.          ║
+ ║                                                                   ║
+ ║  LAYOUT: on wide screens the Browse tab shows the technique list  ║
+ ║  and the build panel side by side (see .browse-layout in the     ║
+ ║  <style> block). On narrow screens the build panel is reached     ║
+ ║  through its own "My build" tab instead. Both places render the  ║
+ ║  same <BuildPanel> component so they never drift apart.          ║
  ╚═══════════════════════════════════════════════════════════════════╝
 */
 
-// ── Category accent colors ─────────────────────────────────────────
-// Change these hex values to restyle all category coloring at once.
-const CAT_COLOR = {
-  Power:       "#e6943a",
-  Expertise:   "#1D9E75",
-  Personality: "#D4537E",
-  Martial:     "#D85A30",
-  Discipline:  "#7F77DD",
-  Spell:       "#378ADD",
-  Stance:      "#888780",
+// ── Text color scale ────────────────────────────────────────────────
+// Warm off-white/tan tones instead of blue-grey, so body text stands
+// out against the dark blue background instead of blending into it.
+// Ordered brightest → dimmest; nothing outranks `name`.
+const TEXT = {
+  name:  "#e8dfc8",  // technique names — brightest text on the page
+  body:  "#d3c9a3",  // readable content: field values, effects text
+  label: "#a68f52",  // field labels ("Action:", "Cost:", etc.)
+  muted: "#9c9576",  // secondary text: tags, skills, inactive nav
+  faint: "#726c58",  // least prominent: prereqs, counts, hints
 };
-
-// Spell school sub-tints (used on cards when a technique has a school)
-const SCHOOL_COLOR = {
-  General: "#5BA3E8",
-  Theurgy: "#48B5C4",
-  Sorcery: "#378ADD",
-};
-
-const CATEGORIES = ["All", "Power", "Expertise", "Personality", "Martial", "Discipline", "Spell", "Stance"];
 
 // ── Helpers ────────────────────────────────────────────────────────
 
@@ -125,25 +235,30 @@ function lvlLabel(lMin, lMax) {
 }
 
 // Does this technique fall within the current level filter range?
+// Drafts (no level yet) always pass — there's no toggle to hide them.
 // Two ranges overlap when: techMin <= filterMax AND techMax >= filterMin.
-function matchesLevel(t, fMin, fMax, showDrafts) {
-  if (t.level_min == null) return showDrafts;
+function matchesLevel(t, fMin, fMax) {
+  if (t.level_min == null) return true;
   const hi = t.level_max ?? t.level_min;
   return t.level_min <= fMax && hi >= fMin;
 }
 
-// XP cost of a technique: level × 3.
-// Returns null for drafts or range techniques (e.g. Lv 1–4) because
-// we'd need to know which specific level was purchased.
+// XP cost of a technique at a fixed level: level × 3.
+// Returns null for drafts or range techniques (e.g. Lv 1–4) where we
+// don't know which level was purchased — callers that DO know (a
+// Feature-built technique's chosen level) compute level × 3 directly
+// instead of calling this.
 function techXP(t) {
   if (t.level_min == null) return null;
   if (t.level_min !== t.level_max && t.level_max != null) return null;
   return t.level_min * 3;
 }
 
-// Encode/decode build state for shareable URL hash
-function encBuild(ids, name) {
-  return btoa(JSON.stringify({ ids, name }));
+// Encode/decode build state for shareable URL hash.
+// Only the technique ID list + character name — see the file-header
+// note on why notes/Feature choices are left out of share links.
+function encBuild(payload) {
+  return btoa(JSON.stringify(payload));
 }
 function decBuild(str) {
   try { return JSON.parse(atob(str)); } catch { return null; }
@@ -155,153 +270,281 @@ function splitCSV(str) {
   return str.split(",").map(s => s.trim()).filter(Boolean);
 }
 
+// A unique ID for one *copy* of a technique in the build, so repeated
+// purchases (Duplicate/Encounter) can each carry their own notes or
+// Feature-builder choices instead of sharing one blob of data.
+function makeUid() {
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+// Is this a Duplicate/Encounter technique — one that can be learned
+// (and added to the build) more than once?
+function isRepeatable(tech) {
+  const tags = splitCSV(tech.tags);
+  return tags.includes("Duplicate") || tags.includes("Encounter");
+}
+
+// Parses the "Points: Level 1: 3 basic; Level 2: 6 basic; Level 3: 9
+// basic/advanced; ..." sentence that Feature-built techniques carry
+// in their Effects text, into { [level]: { points, advanced } }.
+// Returns null if the text doesn't match that pattern (so callers can
+// fall back to an unlimited/unstructured picker instead of guessing).
+function parsePointBudget(effectsText) {
+  if (!effectsText) return null;
+  const re = /Level\s*(\d+):\s*(\d+)\s*basic(\/advanced)?/gi;
+  const map = {};
+  let m;
+  while ((m = re.exec(effectsText))) {
+    map[+m[1]] = { points: +m[2], advanced: !!m[3] };
+  }
+  return Object.keys(map).length > 0 ? map : null;
+}
+
+// Word/digit → number, for resolving phrases like "twice" or "four times".
+const MULTIPLIER_WORDS = {
+  once: 1, twice: 2, thrice: 3,
+  one: 1, two: 2, three: 3, four: 4, five: 5,
+  six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
+};
+function wordOrDigitToNumber(tok) {
+  const t = tok.toLowerCase();
+  if (/^\d+$/.test(t)) return parseInt(t, 10);
+  return MULTIPLIER_WORDS[t] ?? null;
+}
+
+// Substitutes every "X" in a Feature's description with how many copies of
+// that Feature were chosen (per F065 Abjuring: "X is the number of copies
+// of this feature"), collapsing simple arithmetic like "X + 1" or "twice X"
+// into one number. Terms that mix X with a card-suit placeholder (e.g.
+// "X + [Hearts]") are left partly symbolic — we substitute X but can't
+// resolve the suit, so both remain in the text.
+function applyFeatureCount(text, count) {
+  if (!text || count == null || !/\bX\b/.test(text)) return text;
+  let out = text;
+
+  // "N times X" / "<word> times X" → a single computed number
+  out = out.replace(
+    /\b(\d+|once|twice|thrice|one|two|three|four|five|six|seven|eight|nine|ten)\s+times?\s+X\b/gi,
+    (m, tok) => {
+      const n = wordOrDigitToNumber(tok);
+      return n != null ? String(n * count) : m;
+    }
+  );
+
+  // "twice X" / "thrice X" with no "times" in between
+  out = out.replace(/\b(twice|thrice)\s+X\b/gi, (m, tok) => String(wordOrDigitToNumber(tok) * count));
+
+  // Any remaining bare X
+  out = out.replace(/\bX\b/g, String(count));
+
+  // Collapse pure-number addition chains ("4 + 1" → "5"); leaves
+  // "4 + [Hearts]" alone since [Hearts] isn't a plain number.
+  out = out.replace(/\b\d+(?:\s*\+\s*\d+)+\b/g, m =>
+    String(m.split("+").reduce((sum, part) => sum + parseInt(part.trim(), 10), 0))
+  );
+
+  return out;
+}
+
+// Substitutes a bracketed "[Level + 1]" / "[this Technique's Level]" clause
+// in a Feature-built technique's prereqs text with the composite number for
+// one specific build's chosen level — e.g. "[Level + 1]" at Level 3 becomes
+// "4". Only meaningful once a level has actually been picked (a single
+// build-group on the Character Sheet), so callers pass `level == null` to
+// leave the text untouched everywhere else.
+function applyPrereqLevel(text, level) {
+  if (!text || level == null) return text;
+  let out = text.replace(/\[([^\]]*)\]/g, (whole, inner) => {
+    const normalized = inner.replace(/(this\s+technique'?s\s+)?level/i, String(level));
+    if (!/^[\d\s+-]+$/.test(normalized)) return whole;
+    let value;
+    try { value = Function(`"use strict"; return (${normalized});`)(); } catch { return whole; }
+    return Number.isFinite(value) ? String(value) : whole;
+  });
+  // Some prereqs put the arithmetic outside the bracket, e.g.
+  // "Theurgy [Level] + 1" — collapse what's left into one number too,
+  // same as applyFeatureCount does for Feature descriptions.
+  out = out.replace(/\b\d+(?:\s*\+\s*\d+)+\b/g, m =>
+    String(m.split("+").reduce((sum, part) => sum + parseInt(part.trim(), 10), 0))
+  );
+  return out;
+}
+
+// ── Stats & Skills ────────────────────────────────────────────────
+// 5 stats, 5 skills each. A skill's "Skill Total" — used all over the
+// character sheet's derived numbers — is the stat's points plus the
+// skill's own points.
+const STAT_SKILLS = {
+  Agility: ["Acrobatics", "Archery", "Brawl", "Melee", "Stealth"],
+  Body:    ["Athletics", "Awareness", "Might", "Presence", "Resilience"],
+  Cunning: ["Insight", "Masquerade", "Persuasion", "Streetwise", "Survival"],
+  Mind:    ["Academics", "Composure", "Craft", "Medicine", "Mixology"],
+  Essence: ["Meditation", "Performance", "Rapport", "Sorcery", "Theurgy"],
+};
+const STATS = Object.keys(STAT_SKILLS);
+const SKILL_STAT = {};
+STATS.forEach(stat => STAT_SKILLS[stat].forEach(skill => { SKILL_STAT[skill] = stat; }));
+const ALL_STAT_SKILLS = Object.keys(SKILL_STAT);
+
+// Points are bought one at a time starting from 0: a skill point at
+// level N costs N XP, a stat point costs double that (2N). The total
+// cost to reach level N is the triangular-number sum of 1..N (doubled
+// for stats) — e.g. a skill bought up to 3 costs 1+2+3 = 6 total.
+function skillTotalCost(n) { return (n * (n + 1)) / 2; }
+function statTotalCost(n)  { return n * (n + 1); }
+
+function skillTotalValue(statPoints, skillPoints, skill) {
+  return (statPoints[SKILL_STAT[skill]] || 0) + (skillPoints[skill] || 0);
+}
+
 
 // ══════════════════════════════════════════════════════════════════
-// TECHNIQUE CARD — shown in the browse grid
-// Compact display: name, level, category, action, tags, skills,
-// a short effects preview, and an Add/Remove button.
+// FEATURE BUILDER — pick a level and a set of Features within that
+// level's point budget, for Buildable techniques (Battle Maneuver,
+// Healing Magic, etc.) that are assembled from the Features sheet
+// instead of having fixed effects.
 // ══════════════════════════════════════════════════════════════════
-function TechCard({ tech, inBuild, onAdd, onRemove }) {
-  const c      = CAT_COLOR[tech.category] || "#666";
-  const tags   = splitCSV(tech.tags);
-  const skills = splitCSV(tech.prereq_skills);
+function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave, onCancel }) {
+  const availableLevels = [];
+  for (let lv = tech.level_min; lv <= (tech.level_max ?? tech.level_min); lv++) {
+    if (!budgetMap || budgetMap[lv]) availableLevels.push(lv);
+  }
 
-  // Truncate effects for the card — full text appears on the sheet view
-  const preview = tech.effects
-    ? (tech.effects.length > 120 ? tech.effects.slice(0, 118) + "…" : tech.effects)
-    : null;
+  const [level, setLevel]   = useState(initial?.level ?? availableLevels[0] ?? tech.level_min);
+  // Changing `level` never touches `counts` — picking a higher level (an
+  // "upgrade") keeps every previously chosen Feature and its count intact,
+  // it just opens up more budget to add to them.
+  const [counts, setCounts] = useState(() => ({ ...(initial?.picks ?? {}) }));
+
+  const budget           = budgetMap ? budgetMap[level] : null;
+  const points            = budget ? budget.points : null;
+  const advancedUnlocked = budget ? budget.advanced : true;
+
+  const basicFeatures    = features.filter(f => f.tier === "Basic");
+  const advancedFeatures = features.filter(f => f.tier === "Advanced");
+
+  const spent      = Object.entries(counts).reduce((sum, [id, n]) =>
+    sum + n * (features.find(f => f.id === id)?.point_cost ?? 0), 0);
+  const remaining  = points != null ? points - spent : null;
+  const overBudget = remaining != null && remaining < 0;
+
+  const incFeature = f => {
+    if (remaining != null && f.point_cost > remaining) return;
+    setCounts(c => ({ ...c, [f.id]: (c[f.id] || 0) + 1 }));
+  };
+  const decFeature = f => setCounts(c => {
+    const next = (c[f.id] || 0) - 1;
+    const copy = { ...c };
+    if (next <= 0) delete copy[f.id]; else copy[f.id] = next;
+    return copy;
+  });
+
+  const stepBtnStyle = {
+    width: 20, height: 20, lineHeight: "18px", padding: 0,
+    fontSize: 13, color: TEXT.muted, background: "transparent",
+    border: "0.5px solid #2d3555", borderRadius: 4,
+  };
+
+  const featureRow = f => {
+    const count    = counts[f.id] || 0;
+    const disabled = remaining != null && f.point_cost > remaining;
+    return (
+      <div key={f.id} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0, marginTop: 2 }}>
+          <button onClick={() => decFeature(f)} disabled={count === 0} style={stepBtnStyle}>−</button>
+          <span style={{ width: 16, textAlign: "center", fontSize: 13, color: TEXT.body }}>{count}</span>
+          <button onClick={() => incFeature(f)} disabled={disabled} style={stepBtnStyle}>+</button>
+        </div>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 13, color: TEXT.body }}>
+            <strong>{f.feature_name}</strong>
+            <span style={{ color: TEXT.faint }}> ({f.point_cost} pt{f.point_cost !== 1 ? "s" : ""} each)</span>
+          </div>
+          <div style={{ fontSize: 13, color: TEXT.muted, lineHeight: 1.4 }}>
+            {count > 0 ? applyFeatureCount(f.description, count) : f.description}
+          </div>
+          {f.prereq && (
+            <div style={{ fontSize: 12, color: TEXT.faint }}>Requires: {f.prereq}</div>
+          )}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div style={{
-      background: "#161b27",
-      border: "0.5px solid #2d3555",
-      borderLeft: `3px solid ${c}`,   // color-coded by category
-      borderRadius: "0 8px 8px 0",
-      padding: "10px 12px",
-      display: "flex",
-      flexDirection: "column",
-      gap: 6,
+      background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 6,
+      padding: "10px 12px", display: "flex", flexDirection: "column", gap: 10,
     }}>
-
-      {/* Name + level badge */}
-      <div style={{ display:"flex", alignItems:"baseline", gap:8, flexWrap:"wrap" }}>
-        <span style={{
-          fontFamily: "Georgia, 'Times New Roman', serif",
-          fontWeight: "bold",
-          fontSize: 14,
-          color: "#e8dfc8",
-          flex: 1,
-          lineHeight: 1.3,
-        }}>
-          {tech.name}
-        </span>
-        <span style={{
-          fontSize: 11, fontWeight: 500,
-          color: "#d4a843",
-          background: "#2a2000",
-          border: "0.5px solid #a07c2e",
-          borderRadius: 4,
-          padding: "1px 6px",
-          whiteSpace: "nowrap",
-          flexShrink: 0,
-        }}>
-          {lvlLabel(tech.level_min, tech.level_max)}
-        </span>
-      </div>
-
-      {/* Category · spell school · action cost */}
-      <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
-        <span style={{ fontSize:11, fontWeight:500, color:c }}>
-          {tech.category}
-        </span>
-        {tech.spell_school && (
-          <span style={{ fontSize:10, color: SCHOOL_COLOR[tech.spell_school] || "#378ADD" }}>
-            {tech.spell_school}
-          </span>
-        )}
-        {tech.action && (
-          <span style={{ fontSize:11, color:"#7a8299" }}>· {tech.action}</span>
-        )}
-        {tech.cost && (
-          <span style={{ fontSize:10, color:"#5a6280", fontStyle:"italic" }}>
-            Cost: {tech.cost}
-          </span>
-        )}
-      </div>
-
-      {/* Tags (Encounter, Duplicate, Buildable, etc.) */}
-      {tags.length > 0 && (
-        <div style={{ display:"flex", gap:4, flexWrap:"wrap" }}>
-          {tags.map(tag => (
-            <span key={tag} style={{
-              fontSize: 10,
-              // Give certain tags a distinctive color so they're easy to spot
-              color: tag === "Encounter"  ? "#e6943a"
-                   : tag === "Buildable"  ? "#7F77DD"
-                   : tag === "Duplicate"  ? "#1D9E75"
-                   : "#7a8299",
-              background: "#0d1117",
-              border: "0.5px solid #2d3555",
-              borderRadius: 3,
-              padding: "1px 5px",
-            }}>
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* Prereq skill tags (for filtering reference) */}
-      {skills.length > 0 && (
-        <div style={{ display:"flex", gap:4, flexWrap:"wrap" }}>
-          {skills.map(s => (
-            <span key={s} style={{
-              fontSize: 10,
-              color: "#4a5270",
-              border: "0.5px solid #1e2535",
-              borderRadius: 3,
-              padding: "1px 5px",
-            }}>
-              {s}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* Short effects preview */}
-      {preview && (
-        <div style={{ fontSize:11, color:"#5a6280", lineHeight:1.4, marginTop:2 }}>
-          {preview}
-        </div>
-      )}
-
-      {/* Add / Remove button */}
-      <div style={{ marginTop:2 }}>
-        {inBuild ? (
+      {/* Level picker + point budget */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+        <span style={{ fontSize: 12, color: TEXT.label, fontWeight: 500 }}>Level</span>
+        {availableLevels.map(lv => (
           <button
-            onClick={() => onRemove(tech.id)}
+            key={lv}
+            onClick={() => setLevel(lv)}
             style={{
-              fontSize: 11, color: "#c0392b",
-              background: "transparent",
-              border: "0.5px solid #c0392b",
-              borderRadius: 4, padding: "2px 10px",
+              padding: "2px 10px", fontSize: 13, borderRadius: 4,
+              background: lv === level ? "#d4a84322" : "transparent",
+              color:      lv === level ? "#d4a843" : TEXT.muted,
+              border: `0.5px solid ${lv === level ? "#d4a843" : "#2d3555"}`,
             }}
           >
-            Remove
+            {lv}
           </button>
+        ))}
+        {points != null && (
+          <span style={{ fontSize: 13, color: overBudget ? "#c0392b" : TEXT.muted, marginLeft: "auto" }}>
+            {spent} / {points} pts{overBudget ? ` — over by ${-remaining}` : ""}
+          </span>
+        )}
+      </div>
+
+      {/* Basic-tier features */}
+      {basicFeatures.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <div style={{ fontSize: 12, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+            Basic
+          </div>
+          {basicFeatures.map(featureRow)}
+        </div>
+      )}
+
+      {/* Advanced-tier features — only once the chosen level unlocks them */}
+      {advancedFeatures.length > 0 && (
+        advancedUnlocked ? (
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <div style={{ fontSize: 12, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+              Advanced
+            </div>
+            {advancedFeatures.map(featureRow)}
+          </div>
         ) : (
-          <button
-            onClick={() => onAdd(tech.id)}
-            style={{
-              fontSize: 11, color: "#d4a843",
-              background: "transparent",
-              border: "0.5px solid #a07c2e",
-              borderRadius: 4, padding: "2px 10px",
-            }}
-          >
-            + Add to build
-          </button>
-        )}
+          <div style={{ fontSize: 12, color: TEXT.faint, fontStyle: "italic" }}>
+            Advanced features unlock at a higher level.
+          </div>
+        )
+      )}
+
+      <div style={{ display: "flex", gap: 8 }}>
+        <button
+          onClick={() => onSave({ level, picks: counts })}
+          disabled={overBudget}
+          style={{
+            fontSize: 13, color: overBudget ? TEXT.faint : "#d4a843",
+            background: "transparent",
+            border: `0.5px solid ${overBudget ? "#2d3555" : "#a07c2e"}`,
+            borderRadius: 4, padding: "4px 12px",
+          }}
+        >
+          {saveLabel}
+        </button>
+        <button onClick={onCancel} style={{
+          fontSize: 13, color: TEXT.muted, background: "transparent",
+          border: "0.5px solid #2d3555", borderRadius: 4, padding: "4px 12px",
+        }}>
+          Cancel
+        </button>
       </div>
     </div>
   );
@@ -309,97 +552,838 @@ function TechCard({ tech, inBuild, onAdd, onRemove }) {
 
 
 // ══════════════════════════════════════════════════════════════════
-// SHEET ENTRY — shown on the Character Sheet tab
-// Full detail: description, all mechanical fields, effects, prereqs.
+// FEATURES SECTION — shown on a TechCard instead of the usual Add
+// button when the technique is Buildable-from-Features. Lists any
+// copies already built (level + chosen features), with Edit/Remove
+// and — for repeatable techniques — Duplicate (same features again)
+// alongside "+ Build another copy" (pick different features).
 // ══════════════════════════════════════════════════════════════════
-function SheetEntry({ tech }) {
-  const c    = CAT_COLOR[tech.category] || "#666";
-  const tags = splitCSV(tech.tags);
+function FeaturesSection({
+  tech, features, instances, configs, repeatable,
+  onSaveConfig, onDuplicateInstance, onRemoveInstance,
+  renames, onRenameChange,
+}) {
+  const [builderFor, setBuilderFor]   = useState(null); // null | "new" | a uid
+  const [builderSeed, setBuilderSeed] = useState(null); // the {level, picks} to open the builder with
+  const budgetMap = useMemo(() => parsePointBudget(tech.effects), [tech.effects]);
+  const maxLevel = tech.level_max ?? tech.level_min;
+
+  const smallBtn = {
+    fontSize: 12, color: TEXT.muted, background: "transparent",
+    border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 8px",
+  };
+  const smallDangerBtn = {
+    fontSize: 12, color: "#c0392b", background: "transparent",
+    border: "0.5px solid #c0392b", borderRadius: 4, padding: "2px 8px",
+  };
+
+  const openNew     = () => { setBuilderFor("new"); setBuilderSeed(null); };
+  const openEdit    = uid => { setBuilderFor(uid); setBuilderSeed(configs[uid] ?? null); };
+  // "Upgrade" jumps straight to the next level up, keeping every Feature
+  // (and its count) already chosen — the increased budget just leaves
+  // room to add more, per the "buildable techniques can be upgraded but
+  // must keep all previous options" rule.
+  const openUpgrade = uid => {
+    const cfg = configs[uid];
+    const nextLevel = Math.min((cfg?.level ?? tech.level_min) + 1, maxLevel);
+    setBuilderFor(uid);
+    setBuilderSeed({ level: nextLevel, picks: cfg?.picks ?? {} });
+  };
+  const closeBuilder = () => { setBuilderFor(null); setBuilderSeed(null); };
 
   return (
-    <div style={{
-      borderLeft: `2px solid ${c}`,
-      paddingLeft: 14,
-      marginBottom: 22,
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500 }}>
+        Built from Features
+      </div>
+
+      {/* Copies already learned */}
+      {instances.map((uid, i) => {
+        const cfg = configs[uid];
+        if (builderFor === uid) {
+          return (
+            <FeatureBuilder
+              key={`${uid}-${builderSeed?.level}`}
+              tech={tech}
+              features={features}
+              budgetMap={budgetMap}
+              initial={builderSeed}
+              saveLabel="Save changes"
+              onCancel={closeBuilder}
+              onSave={next => { onSaveConfig(tech.id, uid, next); closeBuilder(); }}
+            />
+          );
+        }
+        const picks = cfg ? Object.entries(cfg.picks) : [];
+        return (
+          <div key={uid} style={{
+            background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 6,
+            padding: "8px 10px", display: "flex", flexDirection: "column", gap: 4,
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+              <span style={{ fontSize: 13, color: TEXT.body }}>
+                {instances.length > 1 ? `Copy ${i + 1} — ` : ""}
+                {cfg ? `Level ${cfg.level}` : "Not configured"}
+              </span>
+              <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                {repeatable && cfg && (
+                  <button onClick={() => onDuplicateInstance(uid)} style={smallBtn}>Duplicate</button>
+                )}
+                {cfg && cfg.level < maxLevel && (
+                  <button onClick={() => openUpgrade(uid)} style={smallBtn}>Upgrade</button>
+                )}
+                <button onClick={() => openEdit(uid)} style={smallBtn}>Edit</button>
+                <button onClick={() => onRemoveInstance(uid)} style={smallDangerBtn}>Remove</button>
+              </div>
+            </div>
+            <input
+              type="text"
+              value={renames[uid] || ""}
+              onChange={e => onRenameChange(uid, e.target.value)}
+              placeholder="Rename this build (optional)…"
+              style={{ fontSize: 12, padding: "3px 6px" }}
+            />
+            {picks.length > 0 && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                {picks.map(([fid, n]) => {
+                  const f = features.find(x => x.id === fid);
+                  if (!f) return null;
+                  return (
+                    <div key={fid} style={{ fontSize: 12, color: TEXT.muted, lineHeight: 1.4 }}>
+                      <strong style={{ color: TEXT.body }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
+                      {" — "}{applyFeatureCount(f.description, n)}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
+
+      {/* Build the first copy, or another one with different features */}
+      {builderFor === "new" ? (
+        <FeatureBuilder
+          key="new"
+          tech={tech}
+          features={features}
+          budgetMap={budgetMap}
+          initial={builderSeed}
+          saveLabel="Add to build"
+          onCancel={closeBuilder}
+          onSave={next => { onSaveConfig(tech.id, null, next); closeBuilder(); }}
+        />
+      ) : (instances.length === 0 || repeatable) && (
+        <button
+          onClick={openNew}
+          style={{
+            fontSize: 13, color: "#d4a843", background: "transparent",
+            border: "0.5px solid #a07c2e", borderRadius: 4,
+            padding: "4px 10px", alignSelf: "flex-start",
+          }}
+        >
+          + Build {instances.length > 0 ? "another copy" : "this technique"}
+        </button>
+      )}
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// TECHNIQUE CARD — shown in the browse list
+// Full detail: tags, description, all mechanical fields, complete
+// effects/special text, prereqs, and related skills at the bottom.
+// ══════════════════════════════════════════════════════════════════
+function TechCard({
+  tech, instances, techFeatures,
+  notes, onNoteChange,
+  configs, onSaveConfig, onDuplicateInstance,
+  onAdd, onRemove, onRemoveInstance,
+  renames, onRenameChange, expended, onExpendedChange,
+  readOnly = false,
+  // Set only by the read-only Character Sheet, which gives every distinct
+  // build of a Feature-built technique its own card instead of nesting
+  // them all under one — see the sheetCards note in App(). When present,
+  // this card represents exactly this one build: { name, cfg, uids }.
+  group = null,
+}) {
+  const tags   = splitCSV(tech.tags);
+  const skills = splitCSV(tech.related_skills);
+
+  // "Encounter" is important enough to live in the corner with the level
+  // badge — everything else stays in the tags line.
+  const hasEncounter = tags.includes("Encounter");
+  const otherTags     = tags.filter(t => t !== "Encounter");
+
+  // Duplicate/Encounter techniques can be learned more than once —
+  // each purchase is its own build entry, so "Add to build" stays
+  // available instead of flipping straight to "Remove".
+  const repeatable = isRepeatable(tech);
+  const count        = group ? group.uids.length : instances.length;
+  const expendedUids = group ? group.uids : instances;
+  const displayName  = group ? (group.name || tech.name) : tech.name;
+  const displayLevel = group && group.cfg ? `Lv ${group.cfg.level}` : lvlLabel(tech.level_min, tech.level_max);
+
+  return (
+    <div className="tech-card" style={{
+      background: "#161b27",
+      border: "0.5px solid #2d3555",
+      borderRadius: 8,
+      padding: "12px 14px",
+      display: "flex",
+      flexDirection: "column",
+      gap: 7,
     }}>
 
-      {/* Name + level badge + category label + tag list */}
-      <div style={{ display:"flex", gap:8, alignItems:"baseline", flexWrap:"wrap", marginBottom:5 }}>
+      {/* Name (+ purchase count on the read-only sheet) and corner badges
+          — Encounter (if present) sits left of Level, Level always stays
+          pinned in the far corner. Expended checkboxes (if any) share the
+          tags line below instead of stacking under the badges here, so
+          there's no gap between the header and the card body. */}
+      <div style={{ display:"flex", alignItems:"flex-start", gap:8 }}>
         <span style={{
-          fontFamily: "Georgia, 'Times New Roman', serif",
+          fontFamily: "'MedievalSharp', Georgia, serif",
           fontWeight: "bold",
-          fontSize: 15,
-          color: "#e8dfc8",
+          fontSize: 17,
+          color: TEXT.name,
+          flex: 1,
+          lineHeight: 1.3,
         }}>
-          {tech.name}
+          {displayName}
+          {readOnly && count > 1 && (
+            <span style={{ fontFamily:"system-ui, sans-serif", fontStyle:"italic", fontWeight:400, fontSize:13, color:TEXT.faint, marginLeft:8 }}>
+              (known {count}×)
+            </span>
+          )}
         </span>
-        <span style={{ fontSize:11, color:"#d4a843" }}>
-          {lvlLabel(tech.level_min, tech.level_max)}
-        </span>
-        <span style={{ fontSize:11, color:c, fontStyle:"italic" }}>
-          {tech.category}{tech.spell_school ? ` · ${tech.spell_school}` : ""}
-        </span>
-        {tags.map(tag => (
-          <span key={tag} style={{ fontSize:10, color:"#3a4260" }}>[{tag}]</span>
-        ))}
+        <div style={{ display:"flex", flexDirection:"row", alignItems:"center", gap:4, flexShrink:0 }}>
+          {hasEncounter && (
+            <span style={{
+              fontSize: 17, fontWeight: 500,
+              color: "#e6943a",
+              background: "#2a1a00",
+              border: "0.5px solid #a0672e",
+              borderRadius: 4,
+              padding: "1px 8px",
+              whiteSpace: "nowrap",
+            }}>
+              Encounter
+            </span>
+          )}
+          <span style={{
+            fontSize: 17, fontWeight: 500,
+            color: TEXT.name,
+            background: "#24221a",
+            border: "0.5px solid #5b5540",
+            borderRadius: 4,
+            padding: "1px 8px",
+            whiteSpace: "nowrap",
+          }}>
+            {displayLevel}
+          </span>
+        </div>
       </div>
+
+      {/* Remaining tags (left) and Expended checkboxes (right), sharing
+          one line — this row shows up whenever either side has content. */}
+      {(otherTags.length > 0 || (readOnly && hasEncounter && expendedUids.length > 0)) && (
+        <div style={{ display:"flex", gap:10, flexWrap:"wrap", alignItems:"center", justifyContent:"space-between" }}>
+          <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
+            {otherTags.map(tag => (
+              <span key={tag} style={{
+                fontSize: 12,
+                color: tag === "Buildable" ? "#7F77DD"
+                     : tag === "Duplicate" ? "#1D9E75"
+                     : TEXT.muted,
+                background: "#0d1117",
+                border: "0.5px solid #2d3555",
+                borderRadius: 3,
+                padding: "1px 5px",
+              }}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          {readOnly && hasEncounter && expendedUids.length > 0 && (
+            <div style={{ display:"flex", gap:6, alignItems:"center" }}>
+              {expendedUids.map((uid, i) => (
+                <label key={uid} title={expendedUids.length > 1 ? `Copy ${i + 1} expended` : "Expended"} style={{
+                  display:"flex", alignItems:"center", gap:3, fontSize:12, color:TEXT.faint, cursor:"pointer",
+                }}>
+                  <input type="checkbox" checked={!!expended[uid]} onChange={e => onExpendedChange(uid, e.target.checked)} />
+                  {expendedUids.length > 1 ? i + 1 : "Expended"}
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Fluff description — italic and muted */}
       {tech.description && (
-        <div style={{
-          fontSize: 12,
-          color: "#5a6480",
-          fontStyle: "italic",
-          lineHeight: 1.5,
-          marginBottom: 7,
-        }}>
+        <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5 }}>
           {tech.description}
         </div>
       )}
 
-      {/* Mechanical fields — only render the ones that have a value */}
+      {/* Mechanical fields — condition, action, cost, target — each its own line */}
       {[
         ["Condition", tech.condition],
         ["Action",    tech.action],
         ["Cost",      tech.cost],
         ["Target",    tech.target],
       ].filter(([, v]) => v).map(([label, val]) => (
-        <div key={label} style={{ fontSize:13, color:"#a8b0c8", marginBottom:2, lineHeight:1.4 }}>
-          <span style={{ color:"#4a5270", fontWeight:500 }}>{label}: </span>
+        <div key={label} style={{ fontSize:14, color:TEXT.body, lineHeight:1.4 }}>
+          <span style={{ color:TEXT.label, fontWeight:500 }}>{label}: </span>
           {val}
         </div>
       ))}
 
-      {/* Effects — the main rules text */}
+      {/* Effects — the main rules text, shown in full */}
       {tech.effects && (
         <div style={{
-          fontSize: 13,
-          color: "#c8d0e0",
-          lineHeight: 1.6,
-          marginTop: 5,
-          marginBottom: 4,
+          fontSize: 14, color: TEXT.body, lineHeight: 1.6,
           whiteSpace: "pre-wrap",  // preserves any line breaks in the text
         }}>
           {tech.effects}
         </div>
       )}
 
+      {/* Built from Features — replaces the plain Add/Remove flow below.
+          On the read-only sheet (`group` set) this card IS one specific
+          build, so its picks render directly with no editing chrome;
+          everywhere else FeaturesSection handles listing/editing every
+          copy of the technique still in one card. */}
+      {tech.features && (group ? (
+        group.cfg && Object.keys(group.cfg.picks).length > 0 && (
+          <div style={{ display:"flex", flexDirection:"column", gap:3 }}>
+            {Object.entries(group.cfg.picks).map(([fid, n]) => {
+              const f = techFeatures.find(x => x.id === fid);
+              if (!f) return null;
+              return (
+                <div key={fid} style={{ fontSize:13, color:TEXT.body, lineHeight:1.5 }}>
+                  <strong style={{ color:TEXT.name }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
+                  {" — "}{applyFeatureCount(f.description, n)}
+                </div>
+              );
+            })}
+          </div>
+        )
+      ) : (
+        <FeaturesSection
+          tech={tech}
+          features={techFeatures}
+          instances={instances}
+          configs={configs}
+          repeatable={repeatable}
+          onSaveConfig={onSaveConfig}
+          onDuplicateInstance={onDuplicateInstance}
+          onRemoveInstance={onRemoveInstance}
+          renames={renames}
+          onRenameChange={onRenameChange}
+        />
+      ))}
+
+      {/* Free-text notes — one box per copy in the build, since e.g. each
+          Soulblade you learn can choose a different weapon type. Editable
+          everywhere except the read-only Character Sheet, where it's just
+          a static record of what was already written. */}
+      {tech.free_text && (readOnly ? (
+        instances.length > 0 && (
+          <div>
+            <div style={{ fontSize:12, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
+              Notes
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+              {instances.map((uid, i) => (
+                <div key={uid} style={{
+                  fontSize:13, color: notes[uid] ? TEXT.body : TEXT.faint, lineHeight:1.5,
+                  fontStyle: notes[uid] ? "normal" : "italic",
+                  background:"#0d1117", border:"0.5px solid #2d3555", borderRadius:6, padding:"6px 10px",
+                }}>
+                  {instances.length > 1 && (
+                    <span style={{ color:TEXT.faint, fontStyle:"normal" }}>Copy {i + 1}: </span>
+                  )}
+                  {notes[uid] || "No notes"}
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      ) : (
+        <div>
+          <div style={{ fontSize:12, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
+            Notes
+          </div>
+          {instances.length === 0 ? (
+            <div style={{ fontSize:13, color:TEXT.faint, fontStyle:"italic" }}>
+              Add this to your build, then note your choices for each copy you learn.
+            </div>
+          ) : (
+            <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+              {instances.map((uid, i) => (
+                <div key={uid} style={{ display:"flex", gap:6, alignItems:"flex-start" }}>
+                  <textarea
+                    value={notes[uid] || ""}
+                    onChange={e => onNoteChange(uid, e.target.value)}
+                    placeholder={instances.length > 1 ? `Copy ${i + 1} notes…` : "Add your notes…"}
+                    rows={2}
+                    style={{ flex:1, fontSize:13 }}
+                  />
+                  {instances.length > 1 && (
+                    <button
+                      onClick={() => onRemoveInstance(uid)}
+                      aria-label={`Remove copy ${i + 1}`}
+                      style={{ background:"transparent", border:"none", color:TEXT.faint, fontSize:16, lineHeight:1, padding:"2px 4px" }}
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+
       {/* Special rules text */}
       {tech.special && (
-        <div style={{ fontSize:13, color:"#a8b0c8", marginTop:4, lineHeight:1.5 }}>
-          <span style={{ color:"#4a5270", fontWeight:500 }}>Special: </span>
+        <div style={{ fontSize:14, color:TEXT.body, lineHeight:1.5 }}>
+          <span style={{ color:TEXT.label, fontWeight:500 }}>Special: </span>
           {tech.special}
         </div>
       )}
 
-      {/* Prerequisites */}
+      {/* Prerequisites — a bracketed clause like "[Level + 1]" resolves to
+          the composite number once this specific build's level is known
+          (group mode on the sheet); everywhere else it stays literal text,
+          since a card with multiple differently-leveled copies has no
+          single "the" level to substitute. */}
       {tech.prereqs && (
-        <div style={{ fontSize:11, color:"#3a4260", marginTop:7 }}>
+        <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4 }}>
           <span style={{ fontWeight:500 }}>Prereqs: </span>
-          {tech.prereqs}
+          {group && group.cfg ? applyPrereqLevel(tech.prereqs, group.cfg.level) : tech.prereqs}
+        </div>
+      )}
+
+      {/* Related skills — faint chips at the very bottom, under prereqs */}
+      {skills.length > 0 && (
+        <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
+          {skills.map(skill => (
+            <span key={skill} style={{
+              fontSize: 12,
+              color: TEXT.faint,
+              border: "0.5px solid #232a3d",
+              borderRadius: 3,
+              padding: "1px 5px",
+            }}>
+              {skill}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Add / Remove button(s) — skipped entirely on the read-only
+          Character Sheet, and Features-built techniques manage this
+          themselves above so it's skipped for those too */}
+      {!readOnly && !tech.features && (
+        <div style={{ marginTop:2, display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}>
+          {repeatable ? (
+            <>
+              <button
+                onClick={() => onAdd(tech.id)}
+                style={{
+                  fontSize: 13, color: "#d4a843",
+                  background: "transparent",
+                  border: "0.5px solid #a07c2e",
+                  borderRadius: 4, padding: "2px 10px",
+                }}
+              >
+                + Add to build
+              </button>
+              {count > 0 && (
+                <>
+                  <span style={{ fontSize:13, color:TEXT.muted }}>Known ×{count}</span>
+                  <button
+                    onClick={() => onRemove(tech.id)}
+                    style={{
+                      fontSize: 13, color: "#c0392b",
+                      background: "transparent",
+                      border: "0.5px solid #c0392b",
+                      borderRadius: 4, padding: "2px 10px",
+                    }}
+                  >
+                    Remove one
+                  </button>
+                </>
+              )}
+            </>
+          ) : count > 0 ? (
+            <button
+              onClick={() => onRemove(tech.id)}
+              style={{
+                fontSize: 13, color: "#c0392b",
+                background: "transparent",
+                border: "0.5px solid #c0392b",
+                borderRadius: 4, padding: "2px 10px",
+              }}
+            >
+              Remove
+            </button>
+          ) : (
+            <button
+              onClick={() => onAdd(tech.id)}
+              style={{
+                fontSize: 13, color: "#d4a843",
+                background: "transparent",
+                border: "0.5px solid #a07c2e",
+                borderRadius: 4, padding: "2px 10px",
+              }}
+            >
+              + Add to build
+            </button>
+          )}
         </div>
       )}
     </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// POINT STEPPER — the small "− N +" control shared by every stat and
+// skill row in the Stats & Skills panel.
+// ══════════════════════════════════════════════════════════════════
+function PointStepper({ value, onChange, max = 5 }) {
+  const btnStyle = {
+    width: 20, height: 20, lineHeight: "18px", padding: 0,
+    fontSize: 13, color: TEXT.muted, background: "transparent",
+    border: "0.5px solid #2d3555", borderRadius: 4,
+  };
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
+      <button onClick={() => onChange(Math.max(0, value - 1))} disabled={value <= 0} style={btnStyle}>−</button>
+      <span style={{ width: 16, textAlign: "center", fontSize: 13, color: TEXT.body }}>{value}</span>
+      <button onClick={() => onChange(Math.min(max, value + 1))} disabled={value >= max} style={btnStyle}>+</button>
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// STATS PANEL — the 5-stat/5-skill-each point-buy grid, plus the XP
+// spent on it and an optional total-XP budget. Interactive; rendered
+// both on the "My build" tab and the Character Sheet so adjusting a
+// stat is never more than one click away from either place.
+// ══════════════════════════════════════════════════════════════════
+function StatsPanel({
+  statPoints, skillPoints, onStatChange, onSkillChange,
+  xpBudget, onBudgetChange, statSkillXP,
+  techniqueXP = 0, techniqueXPUnknown = false,
+  readOnly = false,
+}) {
+  const totalSpent = statSkillXP + techniqueXP;
+  const budgetNum  = xpBudget !== "" ? parseInt(xpBudget, 10) : null;
+  const remaining  = budgetNum != null && !isNaN(budgetNum) ? budgetNum - totalSpent : null;
+
+  return (
+    <div>
+      <div className="sheet-box" style={{
+        display: "flex", alignItems: "center", gap: 22, flexWrap: "wrap",
+        marginBottom: 14, padding: "10px 14px", background: "#12161f",
+        border: "0.5px solid #2d3555", borderRadius: 8,
+      }}>
+        <div>
+          <div style={{ fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+            Stats &amp; Skills XP
+          </div>
+          <div style={{ fontSize: 20, fontWeight: 500 }}>{statSkillXP}</div>
+        </div>
+        <div>
+          <div style={{ fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+            Total XP Spent
+          </div>
+          <div style={{ fontSize: 20, fontWeight: 500 }}>
+            {totalSpent}{techniqueXPUnknown ? "+" : ""}
+          </div>
+        </div>
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 13, color: TEXT.faint }}>Experience Total</span>
+            {readOnly ? (
+              <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{xpBudget || "—"}</span>
+            ) : (
+              <input
+                type="text" inputMode="numeric" placeholder="—"
+                value={xpBudget}
+                onChange={e => onBudgetChange(e.target.value.replace(/[^\d]/g, ""))}
+                style={{ width: 70, fontSize: 14, textAlign: "right" }}
+              />
+            )}
+          </div>
+          {remaining != null && (
+            <span style={{ fontSize: 14, fontWeight: 500, color: remaining < 0 ? "#c0392b" : "#d4a843" }}>
+              {remaining < 0 ? `${-remaining} over budget` : `${remaining} remaining`}
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="stat-grid">
+        {STATS.map(stat => (
+          <div key={stat} className="sheet-box" style={{
+            background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+              <span style={{
+                fontFamily: "'MedievalSharp', Georgia, serif", fontSize: 15,
+                fontWeight: "bold", color: TEXT.name,
+              }}>
+                {stat}
+              </span>
+              {readOnly ? (
+                <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{statPoints[stat] || 0}</span>
+              ) : (
+                <PointStepper value={statPoints[stat] || 0} max={5} onChange={n => onStatChange(stat, n)} />
+              )}
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {STAT_SKILLS[stat].map(skill => (
+                <div key={skill} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <span style={{ fontSize: 13, color: TEXT.body, flex: 1 }}>{skill}</span>
+                  {readOnly ? (
+                    <span style={{ fontSize: 13, color: TEXT.body, width: 16, textAlign: "center" }}>
+                      {skillPoints[skill] || 0}
+                    </span>
+                  ) : (
+                    <PointStepper value={skillPoints[skill] || 0} max={5} onChange={n => onSkillChange(skill, n)} />
+                  )}
+                  <span style={{ fontSize: 13, color: TEXT.faint, width: 18, textAlign: "right", flexShrink: 0 }}>
+                    {skillTotalValue(statPoints, skillPoints, skill)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// DERIVED STATS — the read-only combat numbers the sheet computes
+// from Stats & Skills (Speed, Defenses, etc.), matching the formulas
+// printed on the paper character sheet.
+// ══════════════════════════════════════════════════════════════════
+function DerivedStats({ statPoints, skillPoints }) {
+  const st = skill => skillTotalValue(statPoints, skillPoints, skill);
+
+  const block = (title, rows) => (
+    <div className="sheet-box" style={{
+      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+      display: "flex", flexDirection: "column", gap: 6, flex: "1 1 220px",
+    }}>
+      <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+        {title}
+      </div>
+      {rows.map(([label, value, formula]) => (
+        <div key={label} style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
+          <span style={{ fontSize: 13, color: TEXT.body }}>
+            {label} <span style={{ fontSize: 11, color: TEXT.faint }}>({formula})</span>
+          </span>
+          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>{value}</span>
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 14 }}>
+      {block("Vitals", [
+        ["Speed",          1 + (statPoints.Agility || 0), "1 + Agility"],
+        ["Resting Health", statPoints.Body || 0, "Body"],
+        ["Reflex",         st("Insight"), "Insight"],
+        ["Cards Per Day",  2 * ((statPoints.Cunning || 0) + (statPoints.Mind || 0)), "2 × (Cunning + Mind)"],
+      ])}
+      {block("Defenses", [
+        ["Parry Defense",    8 + Math.max(st("Melee"), st("Brawl")), "8 + Melee or Brawl"],
+        ["Dodge Defense",    8 + Math.max(st("Acrobatics"), st("Brawl")), "8 + Acrobatics or Brawl"],
+        ["Bodily Defense",   8 + st("Resilience"), "8 + Resilience"],
+        ["Mental Defense",   8 + st("Composure"), "8 + Composure"],
+        ["Instinct Defense", 8 + st("Insight"), "8 + Insight"],
+      ])}
+      <div className="sheet-box" style={{
+        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+        flex: "1 1 220px", display: "flex", flexDirection: "column", gap: 6,
+      }}>
+        <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+          Health
+        </div>
+        <div style={{ fontSize: 13, color: TEXT.body, display: "flex", justifyContent: "space-between" }}>
+          <span>Shallow Health <span style={{ fontSize: 11, color: TEXT.faint }}>(base)</span></span>
+          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>5</span>
+        </div>
+        <div style={{ fontSize: 13, color: TEXT.body, display: "flex", justifyContent: "space-between" }}>
+          <span>Deep Health <span style={{ fontSize: 11, color: TEXT.faint }}>(base)</span></span>
+          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>5</span>
+        </div>
+        <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic", marginTop: 4 }}>
+          Resistances, and Feature/technique bonuses to these numbers, aren't tracked yet.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// BUILD PANEL — character name, stats, export/import/share, and the
+// build list. Rendered both on the standalone "My build" tab and in
+// the sticky sidebar next to the technique list on wide screens.
+// ══════════════════════════════════════════════════════════════════
+function XPTiles({ knownXP, unknownCount, totalXP }) {
+  return (
+    <>
+      <div style={{ display:"flex", gap:10, marginBottom:16, flexWrap:"wrap" }}>
+        <div style={{
+          background:"#161b27", border:"0.5px solid #2d3555",
+          borderRadius:8, padding:"8px 14px", minWidth:110,
+        }}>
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:4 }}>Technique XP</div>
+          <div style={{ fontSize:22, fontWeight:500 }}>
+            {unknownCount > 0 ? `${knownXP}+` : `${knownXP}`}
+            <span style={{ fontSize:13, color:TEXT.faint, marginLeft:4 }}>XP</span>
+          </div>
+        </div>
+        <div style={{
+          background:"#161b27", border:"0.5px solid #2d3555",
+          borderRadius:8, padding:"8px 14px", minWidth:110,
+        }}>
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:4 }}>Total XP</div>
+          <div style={{ fontSize:22, fontWeight:500 }}>
+            {unknownCount > 0 ? `${totalXP}+` : `${totalXP}`}
+            <span style={{ fontSize:13, color:TEXT.faint, marginLeft:4 }}>XP</span>
+          </div>
+        </div>
+      </div>
+      {unknownCount > 0 && (
+        <div style={{ fontSize:13, color:TEXT.faint, fontStyle:"italic", marginTop:-8, marginBottom:16 }}>
+          {unknownCount} technique{unknownCount > 1 ? "s" : ""} not fully configured yet — XP varies by level.
+        </div>
+      )}
+    </>
+  );
+}
+
+
+function BuildPanel({
+  buildRows, knownXP, unknownCount, totalXP,
+  notes, configs, techFeaturesById,
+  addTech, removeTech, removeInstance, duplicateInstance,
+}) {
+  return (
+    <>
+      <XPTiles knownXP={knownXP} unknownCount={unknownCount} totalXP={totalXP} />
+
+      {/* Build list — one row per distinct technique. Plain repeats
+          (no per-copy data) collapse into a ×N row; techniques with
+          notes or Feature-builder choices per copy get one row each,
+          since those copies aren't interchangeable. */}
+      {buildRows.length === 0 ? (
+        <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:15 }}>
+          No techniques added yet — head to Techniques to pick some.
+        </div>
+      ) : (
+        <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
+          {buildRows.map(({ tech: t, uids }) => {
+            const count      = uids.length;
+            const uid        = uids[0];
+            const isDistinct = t.free_text || t.features;
+            const repeatable = isRepeatable(t);
+            const cfg        = t.features ? configs[uid] : null;
+            const xpEach     = cfg ? cfg.level * 3 : techXP(t);
+            const totalXP    = xpEach != null ? xpEach * count : null;
+
+            let subtitle = null;
+            if (t.free_text) {
+              if (notes[uid]) subtitle = notes[uid];
+            } else if (t.features) {
+              if (cfg) {
+                const feats = techFeaturesById[t.id] || [];
+                const names = Object.entries(cfg.picks)
+                  .map(([id, n]) => {
+                    const name = feats.find(f => f.id === id)?.feature_name;
+                    return name ? (n > 1 ? `${name} ×${n}` : name) : null;
+                  })
+                  .filter(Boolean);
+                subtitle = names.length > 0 ? names.join(", ") : null;
+              } else {
+                subtitle = "Not configured yet";
+              }
+            }
+
+            return (
+              <div key={isDistinct ? uid : t.id} style={{
+                display:"flex", alignItems:"center", gap:8,
+                background:"#161b27",
+                border:"0.5px solid #2d3555",
+                borderRadius:8,
+                padding:"8px 10px",
+              }}>
+                <div style={{ flex:1, minWidth:0 }}>
+                  <div style={{
+                    fontFamily:"'MedievalSharp', Georgia, serif", fontWeight:"bold",
+                    fontSize:15, color:TEXT.name,
+                    overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap",
+                  }}>
+                    {t.name}{!isDistinct && count > 1 ? ` ×${count}` : ""}
+                  </div>
+                  <span style={{ fontSize:13, color:"#d4a843" }}>
+                    {cfg ? `Level ${cfg.level}` : lvlLabel(t.level_min, t.level_max)}
+                  </span>
+                  {subtitle && (
+                    <div style={{
+                      fontSize:12, color:TEXT.faint, marginTop:2,
+                      overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap",
+                    }}>
+                      {subtitle}
+                    </div>
+                  )}
+                </div>
+                <span style={{ fontSize:13, color:TEXT.faint, flexShrink:0 }}>
+                  {totalXP != null ? `${totalXP} XP` : "? XP"}
+                </span>
+                {repeatable && (
+                  <button
+                    onClick={() => t.features ? duplicateInstance(uid) : addTech(t.id)}
+                    aria-label={t.features ? `Add another copy of ${t.name} with the same features` : `Add another ${t.name}`}
+                    style={{
+                      background:"transparent", border:"0.5px solid #2d3555", borderRadius:4,
+                      color:TEXT.muted, fontSize:15, lineHeight:1, padding:"2px 7px", flexShrink:0,
+                    }}
+                  >
+                    +
+                  </button>
+                )}
+                <button
+                  onClick={() => isDistinct ? removeInstance(uid) : removeTech(t.id)}
+                  aria-label={`Remove ${t.name}`}
+                  style={{
+                    background:"transparent", border:"none",
+                    color:TEXT.faint, fontSize:18, lineHeight:1, padding:"2px 4px", flexShrink:0,
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 }
 
@@ -412,20 +1396,76 @@ function App() {
 
   // ── Loaded data ────────────────────────────────────────────────
   const [techniques, setTechniques] = useState([]);
-  const [features,   setFeatures]   = useState([]);   // loaded for future use
+  const [features,   setFeatures]   = useState([]);   // features.json — Feature-builder options
   const [loading,    setLoading]    = useState(true);
   const [loadError,  setLoadError]  = useState(null);
 
   // ── UI state ───────────────────────────────────────────────────
-  const [view,       setView]       = useState("browse"); // browse | build | sheet
+  const [view,       setView]       = useState("build"); // browse | build | sheet
   const [search,     setSearch]     = useState("");
-  const [catFilter,  setCatFilter]  = useState("All");
+  const [skillFilter, setSkillFilter] = useState([]);   // selected "related skills" chips
+  const [tagFilter,  setTagFilter]  = useState([]);     // selected "tags" chips
   const [levelMin,   setLevelMin]   = useState(1);
   const [levelMax,   setLevelMax]   = useState(5);
-  const [showDrafts, setShowDrafts] = useState(false);
-  const [build,      setBuild]      = useState([]);       // array of technique IDs
-  const [charName,   setCharName]   = useState("");
+  const [healingOnly, setHealingOnly] = useState(false);
+  const [cardsOnly,   setCardsOnly]   = useState(false);
+  const [advancedOpen, setAdvancedOpen] = useState(false);
+  // The build itself, and the character name, are persisted to
+  // localStorage like everything else below, so refreshing the page
+  // doesn't lose your work — see the "Retain across refresh" note
+  // further down for how this plays with the URL hash.
+  const [build,      setBuild]      = useState(() => {       // array of { uid, id } — see file-header note
+    try { return JSON.parse(localStorage.getItem("flagonquest-build") || "[]"); }
+    catch { return []; }
+  });
+  const [charName,   setCharName]   = useState(() => localStorage.getItem("flagonquest-char-name") || "");
+  const [charConcept, setCharConcept] = useState(() => localStorage.getItem("flagonquest-char-concept") || "");
   const [shareMsg,   setShareMsg]   = useState("");
+  // Per-copy free-text notes, keyed by build-entry uid. Persisted to
+  // localStorage since there's no backend.
+  const [notes, setNotes] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("flagonquest-notes") || "{}"); }
+    catch { return {}; }
+  });
+  // Per-copy Feature-builder choices ({ level, picks: { featureId: count } }),
+  // keyed by build-entry uid. Also persisted to localStorage.
+  const [configs, setConfigs] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("flagonquest-configs") || "{}"); }
+    catch { return {}; }
+  });
+  // Per-copy custom name for a Feature-built build (e.g. naming an
+  // all-Wing-Clip Battle Maneuver "Wing Clip"), keyed by uid like notes/configs.
+  const [renames, setRenames] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("flagonquest-renames") || "{}"); }
+    catch { return {}; }
+  });
+  // Per-copy "expended this encounter" checkbox state, shown only on the
+  // Character Sheet for Encounter techniques. Session-tracking, not part
+  // of the build itself, so it's persisted locally but left out of
+  // Export/Import/Share — see doExport().
+  const [expended, setExpended] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("flagonquest-expended") || "{}"); }
+    catch { return {}; }
+  });
+  // Stats & Skills point-buy: { Agility: 2, ... } / { Acrobatics: 1, ... }.
+  // Single character, so these (and the XP budget) persist to localStorage
+  // the same way notes/configs do.
+  const [statPoints, setStatPoints] = useState(() => {
+    try { return { ...Object.fromEntries(STATS.map(s => [s, 0])), ...JSON.parse(localStorage.getItem("flagonquest-stat-points") || "{}") }; }
+    catch { return Object.fromEntries(STATS.map(s => [s, 0])); }
+  });
+  const [skillPoints, setSkillPoints] = useState(() => {
+    try { return { ...Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])), ...JSON.parse(localStorage.getItem("flagonquest-skill-points") || "{}") }; }
+    catch { return Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])); }
+  });
+  const [xpBudget, setXpBudget] = useState(() => localStorage.getItem("flagonquest-xp-budget") || "");
+  // Freeform scratchpad — a big text box plus a short quick-note list,
+  // both saved with the character like everything else.
+  const [charNotes, setCharNotes] = useState(() => localStorage.getItem("flagonquest-char-notes") || "");
+  const [noteRows, setNoteRows] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("flagonquest-note-rows") || "[]"); }
+    catch { return []; }
+  });
   const importRef = useRef();
 
   // ── Fetch JSON data on first load ──────────────────────────────
@@ -455,63 +1495,325 @@ function App() {
   }, []); // empty [] = run once on mount only
 
   // ── Load a shared build from the URL hash ──────────────────────
-  // If someone opens a share link like index.html#build=abc123,
-  // this decodes and restores their build automatically.
+  // If someone opens a share link like index.html#build=abc123, this
+  // decodes and restores their build automatically. Each restored
+  // technique gets a fresh uid — share links carry the technique list,
+  // character name, and Stats & Skills, but not notes/Feature choices
+  // (kept out to keep the URL short).
+  //
+  // Because the address bar now mirrors the current build live (see the
+  // sync effect below), most hash values we ever see are just an echo
+  // of what localStorage already has — decoding those again would hand
+  // every technique a fresh uid and orphan its notes/Feature choices.
+  // So: only decode when the hash's technique list actually differs
+  // from the current build, i.e. someone opened a link this browser
+  // didn't just write itself. `buildRef` sidesteps the stale-closure
+  // problem of reading `build` from a listener that's only attached
+  // once — a URL differing only in its fragment (e.g. pasting a
+  // different share link into an already-open tab) doesn't reload the
+  // page, it only fires "hashchange", so this needs to keep working
+  // long after mount, not just once at the start.
+  const buildRef = useRef(build);
+  useEffect(() => { buildRef.current = build; }, [build]);
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash.startsWith("#build=")) {
+    const applyHash = () => {
+      const hash = window.location.hash;
+      if (!hash.startsWith("#build=")) return;
       const decoded = decBuild(hash.slice(7));
-      if (decoded) {
-        if (decoded.ids)  setBuild(decoded.ids);
-        if (decoded.name) setCharName(decoded.name);
-      }
-    }
+      if (!decoded) return;
+      const isEcho = decoded.ids && JSON.stringify(decoded.ids) === JSON.stringify(buildRef.current.map(e => e.id));
+      if (isEcho) return;
+      if (decoded.ids)    setBuild(decoded.ids.map(id => ({ uid: makeUid(), id })));
+      if (decoded.name)   setCharName(decoded.name);
+      if (decoded.stats)  setStatPoints(p => ({ ...p, ...decoded.stats }));
+      if (decoded.skills) setSkillPoints(p => ({ ...p, ...decoded.skills }));
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
   }, []);
+
+  // ── Retain across refresh: keep the address bar live ────────────
+  // Writes the same {ids, name, stats, skills} encoding "Copy share
+  // link" uses into the URL hash on every change, via replaceState (no
+  // new history entries, no navigation). Two things fall out of this:
+  // the address bar is always a current, copy-pasteable link to this
+  // exact build, and — since the hash-loading effect above only acts on
+  // hashes it didn't itself write — a plain refresh just re-reads the
+  // build straight back out of localStorage instead.
+  useEffect(() => {
+    const encoded = encBuild({ ids: build.map(e => e.id), name: charName, stats: statPoints, skills: skillPoints });
+    const url = window.location.href.split("#")[0] + "#build=" + encoded;
+    window.history.replaceState(null, "", url);
+  }, [build, charName, statPoints, skillPoints]);
+
+  // ── Persist per-copy notes/configs, and Stats & Skills, on change ─
+  useEffect(() => {
+    localStorage.setItem("flagonquest-build", JSON.stringify(build));
+  }, [build]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-char-name", charName);
+  }, [charName]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-notes", JSON.stringify(notes));
+  }, [notes]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-configs", JSON.stringify(configs));
+  }, [configs]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-renames", JSON.stringify(renames));
+  }, [renames]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-expended", JSON.stringify(expended));
+  }, [expended]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-char-concept", charConcept);
+  }, [charConcept]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-stat-points", JSON.stringify(statPoints));
+  }, [statPoints]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-skill-points", JSON.stringify(skillPoints));
+  }, [skillPoints]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-xp-budget", xpBudget);
+  }, [xpBudget]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-char-notes", charNotes);
+  }, [charNotes]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-note-rows", JSON.stringify(noteRows));
+  }, [noteRows]);
+
+  const setNote = (uid, text) => setNotes(n => ({ ...n, [uid]: text }));
+  const setRename = (uid, text) => setRenames(r => ({ ...r, [uid]: text }));
+  const setExpendedFor = (uid, val) => setExpended(x => ({ ...x, [uid]: val }));
+  const addNoteRow    = () => setNoteRows(r => [...r, { id: makeUid(), text: "" }]);
+  const updateNoteRow = (id, text) => setNoteRows(r => r.map(row => row.id === id ? { ...row, text } : row));
+  const removeNoteRow = id => setNoteRows(r => r.filter(row => row.id !== id));
+  const setStat  = (stat, n)  => setStatPoints(p => ({ ...p, [stat]: Math.min(5, Math.max(0, n)) }));
+  const setSkill = (skill, n) => setSkillPoints(p => ({ ...p, [skill]: Math.min(5, Math.max(0, n)) }));
+
+  // Total XP spent on Stats & Skills (triangular cost, doubled for stats).
+  const statSkillXP = useMemo(() => {
+    let total = 0;
+    STATS.forEach(s => { total += statTotalCost(statPoints[s] || 0); });
+    ALL_STAT_SKILLS.forEach(s => { total += skillTotalCost(skillPoints[s] || 0); });
+    return total;
+  }, [statPoints, skillPoints]);
+
+  // ── Features grouped by the technique they belong to ────────────
+  const techFeaturesById = useMemo(() => {
+    const map = {};
+    features.forEach(f => {
+      (map[f.technique_id] ??= []).push(f);
+    });
+    return map;
+  }, [features]);
+
+  // ── Every related skill / tag seen across the loaded techniques ─
+  // Powers the "Related skills" and "Tags" multiselects in Advanced filters.
+  const allSkills = useMemo(() => {
+    const set = new Set();
+    techniques.forEach(t => splitCSV(t.related_skills).forEach(s => set.add(s)));
+    return [...set].sort();
+  }, [techniques]);
+
+  const allTags = useMemo(() => {
+    const set = new Set();
+    techniques.forEach(t => splitCSV(t.tags).forEach(tag => set.add(tag)));
+    return [...set].sort();
+  }, [techniques]);
+
+  const toggleSkill = skill => setSkillFilter(cur =>
+    cur.includes(skill) ? cur.filter(s => s !== skill) : [...cur, skill]
+  );
+  const toggleTag = tag => setTagFilter(cur =>
+    cur.includes(tag) ? cur.filter(t => t !== tag) : [...cur, tag]
+  );
 
   // ── Filtered technique list ────────────────────────────────────
   // useMemo = only recalculate when one of the listed deps changes.
   const visible = useMemo(() => techniques.filter(t => {
-    if (catFilter !== "All" && t.category !== catFilter) return false;
-    if (!matchesLevel(t, levelMin, levelMax, showDrafts)) return false;
+    if (!matchesLevel(t, levelMin, levelMax)) return false;
+    if (healingOnly && !t.healing) return false;
+    if (cardsOnly && !t.use_cards) return false;
+    if (skillFilter.length > 0) {
+      const techSkills = splitCSV(t.related_skills);
+      if (!skillFilter.some(s => techSkills.includes(s))) return false;
+    }
+    if (tagFilter.length > 0) {
+      const techTags = splitCSV(t.tags);
+      if (!tagFilter.some(tag => techTags.includes(tag))) return false;
+    }
     if (search) {
       const q = search.toLowerCase();
-      const hay = [t.name, t.category, t.spell_school, t.tags,
-                   t.prereq_skills, t.action, t.effects]
-        .filter(Boolean).join(" ").toLowerCase();
+      // Search the technique's full text — every field a player might
+      // type a fragment of, not just name/effects.
+      const hay = [
+        t.name, t.tags, t.related_skills,
+        t.description, t.condition, t.action, t.cost, t.target,
+        t.effects, t.special, t.prereqs,
+      ].filter(Boolean).join(" ").toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
-  }), [techniques, search, catFilter, levelMin, levelMax, showDrafts]);
+  }), [techniques, search, skillFilter, tagFilter, levelMin, levelMax, healingOnly, cardsOnly]);
 
-  // ── Full technique objects for the build list ──────────────────
-  const buildTechs = useMemo(() =>
-    build.map(id => techniques.find(t => t.id === id)).filter(Boolean),
+  // ── Build entries paired with their technique object ────────────
+  const buildEntries = useMemo(() =>
+    build.map(e => ({ ...e, tech: techniques.find(t => t.id === e.id) })).filter(e => e.tech),
   [build, techniques]);
 
+  // XP for one build entry: a Feature-built copy uses its *chosen*
+  // level (level × 3), since we actually know it; everything else
+  // falls back to the technique's fixed level, or null if it's a
+  // range/draft technique we can't auto-price.
+  function entryXP(e) {
+    const cfg = configs[e.uid];
+    if (cfg && cfg.level != null) return cfg.level * 3;
+    return techXP(e.tech);
+  }
+
+  // One row per distinct technique for display — a plain repeatable
+  // technique (no per-copy data) collapses into a "×N" row, but a
+  // technique with its own notes or Feature-builder choices per copy
+  // always gets one row per copy, since those copies differ.
+  const buildRows = useMemo(() => {
+    const rows = [];
+    const groupIndex = {};
+    build.forEach(({ uid, id }) => {
+      const tech = techniques.find(t => t.id === id);
+      if (!tech) return;
+      if (tech.free_text || tech.features) {
+        rows.push({ tech, uids: [uid] });
+      } else if (id in groupIndex) {
+        rows[groupIndex[id]].uids.push(uid);
+      } else {
+        groupIndex[id] = rows.length;
+        rows.push({ tech, uids: [uid] });
+      }
+    });
+    return rows;
+  }, [build, techniques]);
+
   // ── XP totals ──────────────────────────────────────────────────
-  // knownXP = sum of all fixed-level technique costs (level × 3)
-  // unknownCount = number of range/draft techniques where we can't
-  //   auto-calculate without knowing which level was purchased
-  const knownXP      = buildTechs.reduce((sum, t) => sum + (techXP(t) ?? 0), 0);
-  const unknownCount = buildTechs.filter(t => techXP(t) == null).length;
+  const knownXP      = buildEntries.reduce((sum, e) => sum + (entryXP(e) ?? 0), 0);
+  const unknownCount = buildEntries.filter(e => entryXP(e) == null).length;
+  const totalXP      = knownXP + statSkillXP;
 
   // ── Build mutations ────────────────────────────────────────────
-  const addTech    = id => setBuild(b => b.includes(id) ? b : [...b, id]);
-  const removeTech = id => setBuild(b => b.filter(x => x !== id));
-  const clearBuild = ()  => { if (confirm("Clear the current build?")) setBuild([]); };
+  // Duplicate/Encounter techniques can be added more than once; every
+  // other technique still only ever has one copy in the build.
+  const addTech = id => setBuild(b => {
+    const tech = techniques.find(t => t.id === id);
+    if (tech && !isRepeatable(tech) && b.some(e => e.id === id)) return b;
+    return [...b, { uid: makeUid(), id }];
+  });
+
+  // Removes one copy (whichever was added most recently) — used by the
+  // simple "Remove"/"Remove one" buttons and the build list's ✕ for
+  // techniques with no per-copy data. For a non-repeatable technique
+  // that's its only copy, so it behaves like a full removal.
+  const removeTech = id => {
+    let removedUid = null;
+    setBuild(b => {
+      const idx = b.map(e => e.id).lastIndexOf(id);
+      if (idx === -1) return b;
+      removedUid = b[idx].uid;
+      return [...b.slice(0, idx), ...b.slice(idx + 1)];
+    });
+    if (removedUid) {
+      setNotes(n => { if (!(removedUid in n)) return n; const c = { ...n }; delete c[removedUid]; return c; });
+      setConfigs(c => { if (!(removedUid in c)) return c; const cc = { ...c }; delete cc[removedUid]; return cc; });
+      setRenames(r => { if (!(removedUid in r)) return r; const c = { ...r }; delete c[removedUid]; return c; });
+      setExpended(x => { if (!(removedUid in x)) return x; const c = { ...x }; delete c[removedUid]; return c; });
+    }
+  };
+
+  // Removes one specific copy by its uid — used for free_text/Feature
+  // rows, where each copy carries its own notes/config that a plain
+  // "remove the last one" wouldn't target correctly.
+  const removeInstance = uid => {
+    setBuild(b => b.filter(e => e.uid !== uid));
+    setNotes(n => { if (!(uid in n)) return n; const c = { ...n }; delete c[uid]; return c; });
+    setConfigs(c => { if (!(uid in c)) return c; const cc = { ...c }; delete cc[uid]; return cc; });
+    setRenames(r => { if (!(uid in r)) return r; const c = { ...r }; delete c[uid]; return c; });
+    setExpended(x => { if (!(uid in x)) return x; const c = { ...x }; delete c[uid]; return c; });
+  };
+
+  // Creates a new copy with the same Feature-builder config as an
+  // existing one — the "purchase another copy with the same features"
+  // option, alongside "+ Build another copy" for different features.
+  const duplicateInstance = uid => {
+    const entry = build.find(e => e.uid === uid);
+    const cfg   = configs[uid];
+    if (!entry) return;
+    const newUid = makeUid();
+    setBuild(b => [...b, { uid: newUid, id: entry.id }]);
+    if (cfg) {
+      setConfigs(c => ({ ...c, [newUid]: { level: cfg.level, picks: { ...cfg.picks } } }));
+    }
+    if (renames[uid]) {
+      setRenames(r => ({ ...r, [newUid]: renames[uid] }));
+    }
+  };
+
+  // Saves a Feature-builder configuration: pass an existing uid to
+  // edit that copy in place, or null to add a brand-new copy.
+  const saveConfig = (techId, uid, cfg) => {
+    if (uid) {
+      setConfigs(c => ({ ...c, [uid]: cfg }));
+    } else {
+      const newUid = makeUid();
+      setBuild(b => [...b, { uid: newUid, id: techId }]);
+      setConfigs(c => ({ ...c, [newUid]: cfg }));
+    }
+  };
+
+  const clearBuild = () => {
+    if (!confirm("Clear the current build, including Stats & Skills?")) return;
+    setBuild([]);
+    setNotes({});
+    setConfigs({});
+    setRenames({});
+    setExpended({});
+    setStatPoints(Object.fromEntries(STATS.map(s => [s, 0])));
+    setSkillPoints(Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])));
+  };
 
   // ── Export build as a .json file download ─────────────────────
+  // Includes each copy's notes and Feature-builder choices (by name,
+  // so the file stays readable and survives future data updates), plus
+  // Stats & Skills and the XP budget.
   function doExport() {
     const payload = {
       charName,
+      charConcept,
+      xpBudget,
+      statPoints,
+      skillPoints,
+      charNotes,
+      noteRows,
       exportedAt: new Date().toISOString(),
-      techniques: buildTechs.map(t => ({
-        id:       t.id,
-        name:     t.name,
-        level:    lvlLabel(t.level_min, t.level_max),
-        category: t.category,
-        xp:       techXP(t),
-      })),
+      techniques: buildEntries.map(e => {
+        const cfg = configs[e.uid];
+        const out = { id: e.tech.id, name: e.tech.name, xp: entryXP(e) };
+        if (cfg) {
+          out.level    = cfg.level;
+          out.features = Object.entries(cfg.picks)
+            .map(([fid, count]) => {
+              const name = (techFeaturesById[e.tech.id] || []).find(f => f.id === fid)?.feature_name;
+              return name ? { name, count } : null;
+            })
+            .filter(Boolean);
+          if (renames[e.uid]) out.customName = renames[e.uid];
+        } else {
+          out.level = lvlLabel(e.tech.level_min, e.tech.level_max);
+        }
+        if (notes[e.uid]) out.note = notes[e.uid];
+        return out;
+      }),
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const a    = Object.assign(document.createElement("a"), {
@@ -530,8 +1832,40 @@ function App() {
     reader.onload = ev => {
       try {
         const data = JSON.parse(ev.target.result);
-        setBuild(data.techniques.map(t => t.id));
+        const newBuild   = [];
+        const newNotes   = {};
+        const newConfigs = {};
+        const newRenames = {};
+        data.techniques.forEach(t => {
+          const uid = makeUid();
+          newBuild.push({ uid, id: t.id });
+          if (t.note) newNotes[uid] = t.note;
+          if (Array.isArray(t.features) && typeof t.level === "number") {
+            // Supports both the current export shape ({name, count}) and
+            // the older one (plain name strings, implicitly count 1).
+            const techFeats = techFeaturesById[t.id] || [];
+            const picks = {};
+            t.features.forEach(entry => {
+              const name  = typeof entry === "string" ? entry : entry.name;
+              const count = typeof entry === "string" ? 1 : (entry.count || 1);
+              const feat  = techFeats.find(f => f.feature_name === name);
+              if (feat) picks[feat.id] = count;
+            });
+            newConfigs[uid] = { level: t.level, picks };
+            if (t.customName) newRenames[uid] = t.customName;
+          }
+        });
+        setBuild(newBuild);
+        setNotes(n => ({ ...n, ...newNotes }));
+        setConfigs(c => ({ ...c, ...newConfigs }));
+        setRenames(r => ({ ...r, ...newRenames }));
         if (data.charName) setCharName(data.charName);
+        if (typeof data.charConcept === "string") setCharConcept(data.charConcept);
+        if (typeof data.xpBudget === "string") setXpBudget(data.xpBudget);
+        if (data.statPoints)  setStatPoints(p => ({ ...p, ...data.statPoints }));
+        if (data.skillPoints) setSkillPoints(p => ({ ...p, ...data.skillPoints }));
+        if (typeof data.charNotes === "string") setCharNotes(data.charNotes);
+        if (Array.isArray(data.noteRows)) setNoteRows(data.noteRows.map(r => ({ id: makeUid(), text: r.text ?? "" })));
       } catch {
         alert("Couldn't read that file — make sure it's a FlagonQuest build export.");
       }
@@ -541,53 +1875,179 @@ function App() {
   }
 
   // ── Generate a shareable URL ───────────────────────────────────
-  // Encodes the build IDs and character name into the URL hash.
-  // Recipient opens the link and the build auto-loads.
+  // Encodes the build's technique IDs, character name, and Stats &
+  // Skills into the URL hash — notes/Feature choices are left out to
+  // keep the link short.
   function doShare() {
-    const encoded = encBuild(build, charName);
+    const encoded = encBuild({ ids: build.map(e => e.id), name: charName, stats: statPoints, skills: skillPoints });
     const url = window.location.href.split("#")[0] + "#build=" + encoded;
+    // Put the link in the address bar first — this always succeeds, so the
+    // fallback message below is guaranteed true even if clipboard access
+    // is blocked (common on non-secure origins or restrictive browsers).
+    window.history.replaceState(null, "", url);
+
+    const legacyCopy = () => {
+      const ta = document.createElement("textarea");
+      ta.value = url;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand("copy"); } catch { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    };
+
     (navigator.clipboard?.writeText(url) ?? Promise.reject())
+      .catch(() => { if (!legacyCopy()) throw new Error("copy failed"); })
       .then(() => setShareMsg("Link copied!"))
-      .catch(() => setShareMsg("Couldn't auto-copy — grab the URL from your address bar"));
-    setTimeout(() => setShareMsg(""), 3500);
+      .catch(() => setShareMsg("Link ready in your address bar — copy it from there"));
+    setTimeout(() => setShareMsg(""), 4500);
   }
 
   // ── Style helpers ──────────────────────────────────────────────
   const tabStyle = key => ({
-    padding: "6px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+    padding: "6px 14px", fontSize: 15, fontWeight: 500, borderRadius: 6,
     background:  view === key ? "#d4a843" : "transparent",
-    color:       view === key ? "#0a0e18" : "#7a8299",
+    color:       view === key ? "#0a0e18" : TEXT.muted,
     border: `0.5px solid ${view === key ? "#d4a843" : "#2d3555"}`,
     transition: "all 0.15s",
   });
 
-  const chipStyle = cat => {
-    const active = catFilter === cat;
-    const c = CAT_COLOR[cat];
-    return {
-      padding: "4px 12px", fontSize: 12, borderRadius: 20,
-      fontWeight: active ? 500 : 400,
-      whiteSpace: "nowrap",
-      background: active ? (c || "#d4a843") + "22" : "transparent",
-      color:      active ? (c || "#d4a843") : "#7a8299",
-      border: `0.5px solid ${active ? (c || "#d4a843") : "#2d3555"}`,
-    };
-  };
+  // Shared look for the toggle-able chip buttons in Advanced filters
+  // (Related skills, Tags) — active chips light up gold.
+  const filterChipStyle = active => ({
+    padding: "3px 10px", fontSize: 13, borderRadius: 20,
+    fontWeight: active ? 500 : 400,
+    whiteSpace: "nowrap",
+    background: active ? "#d4a84322" : "transparent",
+    color:      active ? "#d4a843" : TEXT.muted,
+    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
+  });
 
   const actionBtn = (danger = false) => ({
-    padding: "6px 14px", fontSize: 12, fontWeight: 500, borderRadius: 6,
+    padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
     background: "transparent",
-    color:  danger ? "#c0392b" : "#7a8299",
+    color:  danger ? "#c0392b" : TEXT.muted,
     border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
     display: "flex", alignItems: "center", gap: 5,
   });
+
+  // Renders one TechCard, wired up to the live build/notes/configs state.
+  // Shared by Browse (every matching technique) and the Character Sheet
+  // (only techniques you actually know) so both stay pixel-for-pixel
+  // the same card, with the same Add/Edit/Notes/Feature-builder controls.
+  const renderTechCard = (t, readOnly = false) => {
+    const instanceUids = build.filter(e => e.id === t.id).map(e => e.uid);
+    return (
+      <TechCard
+        key={t.id}
+        tech={t}
+        instances={instanceUids}
+        techFeatures={techFeaturesById[t.id] || []}
+        notes={notes}
+        onNoteChange={setNote}
+        configs={configs}
+        onSaveConfig={saveConfig}
+        onDuplicateInstance={duplicateInstance}
+        onAdd={addTech}
+        onRemove={removeTech}
+        onRemoveInstance={removeInstance}
+        renames={renames}
+        onRenameChange={setRename}
+        expended={expended}
+        onExpendedChange={setExpendedFor}
+        readOnly={readOnly}
+      />
+    );
+  };
+
+  // Every technique currently in the build, deduped, in the order each
+  // was first added — what the Builder tab renders (one merged card per
+  // technique, so every build of it can be reviewed/edited together).
+  const knownTechs = useMemo(() => {
+    const seen = new Set();
+    const list = [];
+    build.forEach(({ id }) => {
+      if (seen.has(id)) return;
+      seen.add(id);
+      const t = techniques.find(tt => tt.id === id);
+      if (t) list.push(t);
+    });
+    return list;
+  }, [build, techniques]);
+
+  // What the read-only Character Sheet renders: one card per *distinct
+  // build*, not per technique. A plain repeatable technique's copies all
+  // share one card (nothing to distinguish them); each Feature-built
+  // technique copy is grouped with any others sharing its rename (or,
+  // unnamed, an identical level+picks) into its own card — so a
+  // Battle Maneuver built two different ways shows up as two separate
+  // technique-shaped tiles, per the "generates copies of all kinds of
+  // techniques" mental model. Order follows first appearance in `build`.
+  const sheetCards = useMemo(() => {
+    const cards = [];
+    const index = {};
+    build.forEach(({ uid, id }) => {
+      const tech = techniques.find(t => t.id === id);
+      if (!tech) return;
+      let key, cfg = null;
+      if (tech.features) {
+        cfg = configs[uid] ?? null;
+        // Grouping is always by the actual build (level + picks, order-
+        // independent so click order doesn't matter) — a rename is just a
+        // cosmetic label for that group, never the grouping key itself.
+        // Otherwise renaming a copy right before an Upgrade (which keeps
+        // the same rename but changes the level) would wrongly merge two
+        // genuinely different builds under one badge/level/prereqs.
+        key = `${id}::${cfg ? cfg.level + "|" + JSON.stringify(Object.entries(cfg.picks).sort()) : uid}`;
+      } else {
+        key = id;
+      }
+      if (key in index) {
+        const card = cards[index[key]];
+        card.uids.push(uid);
+        if (!card.name && renames[uid]) card.name = renames[uid].trim() || null;
+      } else {
+        const rn = tech.features ? (renames[uid] || "").trim() : "";
+        index[key] = cards.length;
+        cards.push({ tech, name: rn || null, cfg, uids: [uid] });
+      }
+    });
+    return cards;
+  }, [build, techniques, configs, renames]);
+
+  const renderSheetCard = card => (
+    <TechCard
+      key={`${card.tech.id}-${card.uids[0]}`}
+      tech={card.tech}
+      instances={card.uids}
+      techFeatures={techFeaturesById[card.tech.id] || []}
+      notes={notes}
+      onNoteChange={setNote}
+      configs={configs}
+      onSaveConfig={saveConfig}
+      onDuplicateInstance={duplicateInstance}
+      onAdd={addTech}
+      onRemove={removeTech}
+      onRemoveInstance={removeInstance}
+      renames={renames}
+      onRenameChange={setRename}
+      expended={expended}
+      onExpendedChange={setExpendedFor}
+      readOnly
+      group={card.tech.features ? { name: card.name, cfg: card.cfg, uids: card.uids } : null}
+    />
+  );
 
   // ── Loading and error screens ──────────────────────────────────
   if (loading) return (
     <div style={{
       minHeight: "100vh", display:"flex", alignItems:"center",
       justifyContent: "center", background: "#0d1117",
-      color: "#4a5270", fontFamily: "Georgia, serif", fontSize: 16,
+      color: TEXT.faint, fontFamily: "'MedievalSharp', Georgia, serif", fontSize: 18,
     }}>
       Loading FlagonQuest data…
     </div>
@@ -597,13 +2057,13 @@ function App() {
     <div style={{
       minHeight: "100vh", padding: 40, background: "#0d1117",
       color: "#c0392b", fontFamily: "system-ui, sans-serif",
-      fontSize: 14, lineHeight: 1.6, maxWidth: 620,
+      fontSize: 16, lineHeight: 1.6, maxWidth: 620,
     }}>
       <strong>Couldn't load data files</strong>
-      <p style={{ marginTop: 10, color: "#7a8299" }}>
+      <p style={{ marginTop: 10, color: TEXT.muted }}>
         Error: {loadError}
       </p>
-      <p style={{ marginTop: 10, color: "#4a5270" }}>
+      <p style={{ marginTop: 10, color: TEXT.faint }}>
         If you're testing locally, open a terminal in your repo folder and run:
         <br />
         <code style={{ color:"#d4a843" }}>python -m http.server 8000</code>
@@ -619,7 +2079,7 @@ function App() {
     <div style={{ fontFamily:"system-ui, -apple-system, sans-serif", color:"#e8dfc8" }}>
 
       {/* ════════ HEADER ════════════════════════════════════════ */}
-      <div style={{
+      <div className="no-print" style={{
         padding: "12px 20px",
         borderBottom: "0.5px solid #2d3555",
         display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap",
@@ -628,27 +2088,33 @@ function App() {
       }}>
         <div>
           <div style={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
-            fontSize: 20, fontWeight: "bold",
+            fontFamily: "'MedievalSharp', Georgia, serif",
+            fontSize: 22, fontWeight: "bold",
             color: "#d4a843", letterSpacing: "0.04em",
           }}>
             FlagonQuest
           </div>
-          <div style={{ fontSize:11, color:"#4a5270", marginTop:1 }}>
+          <div style={{ fontSize:13, color:TEXT.faint, marginTop:1 }}>
             Technique browser · Character builder
           </div>
         </div>
 
         {/* Tab navigation */}
         <div style={{ display:"flex", gap:6, marginLeft:"auto", flexWrap:"wrap" }}>
-          <button onClick={() => setView("browse")} style={tabStyle("browse")}>
-            Browse
-          </button>
           <button onClick={() => setView("build")} style={tabStyle("build")}>
-            My build{build.length > 0 ? ` (${build.length})` : ""}
+            Builder{build.length > 0 ? ` (${build.length})` : ""}
+          </button>
+          <button onClick={() => setView("browse")} style={tabStyle("browse")}>
+            Techniques
+          </button>
+          <button onClick={() => setView("items")} style={tabStyle("items")}>
+            Items
           </button>
           <button onClick={() => setView("sheet")} style={tabStyle("sheet")}>
             Character sheet
+          </button>
+          <button onClick={() => setView("notes")} style={tabStyle("notes")}>
+            Notes
           </button>
         </div>
       </div>
@@ -658,98 +2124,157 @@ function App() {
       {view === "browse" && (
         <div style={{ padding: 16 }}>
 
-          {/* Search bar + level sliders */}
+          {/* Search bar + advanced filters toggle */}
           <div style={{
-            display: "flex", gap: 10, marginBottom: 12,
+            display: "flex", gap: 10, marginBottom: 10,
             flexWrap: "wrap", alignItems: "center",
           }}>
             <input
               type="text"
-              placeholder="Search name, skill, effect…"
+              placeholder="Search everything — name, tags, cost, effects…"
               value={search}
               onChange={e => setSearch(e.target.value)}
               style={{ flex:"1 1 200px", minWidth:150 }}
             />
+            <button onClick={() => setAdvancedOpen(o => !o)} style={actionBtn()}>
+              {advancedOpen ? "▲" : "▼"} Advanced
+            </button>
+          </div>
 
-            {/* Level range controls */}
+          {/* Advanced filters — level range, healing, card use, related skills, tags */}
+          {advancedOpen && (
             <div style={{
-              display: "flex", alignItems: "center", gap: 8,
-              fontSize: 12, color: "#7a8299", flexShrink: 0,
+              display: "flex", flexDirection: "column", gap: 12,
+              fontSize: 14, color: TEXT.muted,
+              background: "#12161f", border: "0.5px solid #2d3555",
+              borderRadius: 8, padding: "10px 14px", marginBottom: 12,
             }}>
-              <span style={{ color:"#d4a843", fontWeight:500 }}>
-                Lv {levelMin}–{levelMax}
-              </span>
-              <input
-                type="range" min={1} max={5} value={levelMin}
-                onChange={e => setLevelMin(Math.min(+e.target.value, levelMax))}
-                style={{ width: 60 }}
-              />
-              <input
-                type="range" min={1} max={5} value={levelMax}
-                onChange={e => setLevelMax(Math.max(+e.target.value, levelMin))}
-                style={{ width: 60 }}
-              />
-              <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
-                <input
-                  type="checkbox"
-                  checked={showDrafts}
-                  onChange={e => setShowDrafts(e.target.checked)}
-                />
-                Drafts
-              </label>
-            </div>
-          </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
+                {/* Level range controls */}
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ color:"#d4a843", fontWeight:500 }}>
+                    Lv {levelMin}–{levelMax}
+                  </span>
+                  <input
+                    type="range" min={1} max={5} value={levelMin}
+                    onChange={e => setLevelMin(Math.min(+e.target.value, levelMax))}
+                    style={{ width: 60 }}
+                  />
+                  <input
+                    type="range" min={1} max={5} value={levelMax}
+                    onChange={e => setLevelMax(Math.max(+e.target.value, levelMin))}
+                    style={{ width: 60 }}
+                  />
+                </div>
+                <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={healingOnly}
+                    onChange={e => setHealingOnly(e.target.checked)}
+                  />
+                  Healing
+                </label>
+                <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={cardsOnly}
+                    onChange={e => setCardsOnly(e.target.checked)}
+                  />
+                  Uses cards
+                </label>
+              </div>
 
-          {/* Category filter chips */}
-          <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:12 }}>
-            {CATEGORIES.map(cat => (
-              <button key={cat} onClick={() => setCatFilter(cat)} style={chipStyle(cat)}>
-                {cat}
-              </button>
-            ))}
-          </div>
+              {/* Related skills — click to toggle; matches techniques with ANY selected skill */}
+              {allSkills.length > 0 && (
+                <div>
+                  <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
+                    <span style={{ color:TEXT.faint }}>Related skills</span>
+                    {skillFilter.length > 0 && (
+                      <button
+                        onClick={() => setSkillFilter([])}
+                        style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:13, padding:0 }}
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                  <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
+                    {allSkills.map(skill => (
+                      <button key={skill} onClick={() => toggleSkill(skill)} style={filterChipStyle(skillFilter.includes(skill))}>
+                        {skill}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Tags — click to toggle; matches techniques with ANY selected tag */}
+              {allTags.length > 0 && (
+                <div>
+                  <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
+                    <span style={{ color:TEXT.faint }}>Tags</span>
+                    {tagFilter.length > 0 && (
+                      <button
+                        onClick={() => setTagFilter([])}
+                        style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:13, padding:0 }}
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                  <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
+                    {allTags.map(tag => (
+                      <button key={tag} onClick={() => toggleTag(tag)} style={filterChipStyle(tagFilter.includes(tag))}>
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Result count */}
-          <div style={{ fontSize:11, color:"#4a5270", marginBottom:12 }}>
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:12 }}>
             {visible.length} technique{visible.length !== 1 ? "s" : ""}
-            {catFilter !== "All" || search ? " matching filters" : " total"}
+            {search || skillFilter.length > 0 || tagFilter.length > 0 ? " matching filters" : " total"}
           </div>
 
-          {/* Card grid — auto-fills columns based on available width */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-            gap: 10,
-          }}>
-            {visible.length === 0 ? (
-              <div style={{
-                gridColumn: "1/-1", textAlign:"center",
-                padding: "60px 20px", color:"#4a5270", fontSize:14,
-              }}>
-                No techniques match those filters.
-              </div>
-            ) : visible.map(t => (
-              <TechCard
-                key={t.id}
-                tech={t}
-                inBuild={build.includes(t.id)}
-                onAdd={addTech}
-                onRemove={removeTech}
+          {/* List (left) + sticky build panel (right on wide screens) */}
+          <div className="browse-layout">
+            <div className="tech-list">
+              {visible.length === 0 ? (
+                <div style={{
+                  textAlign:"center",
+                  padding: "60px 20px", color:TEXT.faint, fontSize:16,
+                }}>
+                  No techniques match those filters.
+                </div>
+              ) : visible.map(t => renderTechCard(t))}
+            </div>
+
+            <div className="browse-build-panel">
+              <BuildPanel
+                buildRows={buildRows}
+                knownXP={knownXP} unknownCount={unknownCount} totalXP={totalXP}
+                notes={notes} configs={configs} techFeaturesById={techFeaturesById}
+                addTech={addTech} removeTech={removeTech}
+                removeInstance={removeInstance} duplicateInstance={duplicateInstance}
               />
-            ))}
+            </div>
           </div>
         </div>
       )}
 
 
-      {/* ════════ MY BUILD VIEW ═════════════════════════════════ */}
+      {/* ════════ BUILDER VIEW ══════════════════════════════════ */}
       {view === "build" && (
-        <div style={{ maxWidth:640, margin:"0 auto", padding:20 }}>
+        <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
 
-          {/* Character name input */}
-          <div style={{ marginBottom:20 }}>
+          {/* Character name */}
+          <div style={{ marginBottom:14 }}>
             <div style={{
-              fontSize: 11, color: "#4a5270", marginBottom: 6,
+              fontSize: 13, color: TEXT.faint, marginBottom: 6,
               textTransform: "uppercase", letterSpacing: "0.07em",
             }}>
               Character name
@@ -759,38 +2284,27 @@ function App() {
               placeholder="Enter a name…"
               value={charName}
               onChange={e => setCharName(e.target.value)}
-              style={{ width:"100%", maxWidth:320, fontFamily:"Georgia, serif", fontSize:16 }}
+              style={{ width:"100%", maxWidth:360, fontFamily:"'MedievalSharp', Georgia, serif", fontSize:17 }}
             />
           </div>
 
-          {/* Stats row */}
-          <div style={{ display:"flex", gap:12, marginBottom:20, flexWrap:"wrap" }}>
-            <div style={{
-              background:"#161b27", border:"0.5px solid #2d3555",
-              borderRadius:8, padding:"10px 18px", minWidth:110,
-            }}>
-              <div style={{ fontSize:11, color:"#4a5270", marginBottom:4 }}>Techniques</div>
-              <div style={{ fontSize:22, fontWeight:500 }}>{build.length}</div>
+          {/* Character concept — a short line shown in smaller text under
+              the name, on this tab and on the Character Sheet */}
+          <div style={{ marginBottom:14 }}>
+            <div style={{ fontSize: 12, color: TEXT.faint, marginBottom: 5 }}>
+              Concept
             </div>
-            <div style={{
-              background:"#161b27", border:"0.5px solid #2d3555",
-              borderRadius:8, padding:"10px 18px", minWidth:140,
-            }}>
-              <div style={{ fontSize:11, color:"#4a5270", marginBottom:4 }}>Technique XP</div>
-              <div style={{ fontSize:22, fontWeight:500 }}>
-                {unknownCount > 0 ? `${knownXP}+` : `${knownXP}`}
-                <span style={{ fontSize:12, color:"#4a5270", marginLeft:4 }}>XP</span>
-              </div>
-            </div>
-            {unknownCount > 0 && (
-              <div style={{ fontSize:11, color:"#4a5270", fontStyle:"italic", alignSelf:"flex-end", paddingBottom:12 }}>
-                {unknownCount} range-level technique{unknownCount > 1 ? "s" : ""} — XP varies by level purchased.
-              </div>
-            )}
+            <input
+              type="text"
+              placeholder="A one-line concept — “disgraced knight turned bartender”…"
+              value={charConcept}
+              onChange={e => setCharConcept(e.target.value)}
+              style={{ width:"100%", maxWidth:360, fontSize:13 }}
+            />
           </div>
 
-          {/* Action buttons */}
-          <div style={{ display:"flex", gap:8, marginBottom:20, flexWrap:"wrap", alignItems:"center" }}>
+          {/* Whole-build actions */}
+          <div style={{ display:"flex", gap:8, marginBottom:24, flexWrap:"wrap", alignItems:"center" }}>
             <button onClick={doExport} style={actionBtn()}>
               <i className="ti ti-download" aria-hidden="true" /> Export build
             </button>
@@ -805,119 +2319,177 @@ function App() {
               <button onClick={clearBuild} style={actionBtn(true)}>Clear build</button>
             )}
             {shareMsg && (
-              <span style={{ fontSize:12, color:"#d4a843" }}>{shareMsg}</span>
+              <span style={{ fontSize:14, color:"#d4a843" }}>{shareMsg}</span>
             )}
           </div>
 
-          {/* Build list */}
-          {buildTechs.length === 0 ? (
-            <div style={{ textAlign:"center", padding:"48px 20px", color:"#4a5270", fontSize:14 }}>
-              No techniques added yet — head to Browse to pick some.
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Stats &amp; Skills
+          </div>
+          <StatsPanel
+            statPoints={statPoints} skillPoints={skillPoints}
+            onStatChange={setStat} onSkillChange={setSkill}
+            xpBudget={xpBudget} onBudgetChange={setXpBudget}
+            statSkillXP={statSkillXP}
+            techniqueXP={knownXP} techniqueXPUnknown={unknownCount > 0}
+          />
+          <div style={{ height:24 }} />
+
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Techniques
+          </div>
+          <XPTiles knownXP={knownXP} unknownCount={unknownCount} totalXP={totalXP} />
+          {knownTechs.length === 0 ? (
+            <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:15 }}>
+              No techniques added yet — head to Techniques to pick some.
             </div>
           ) : (
-            <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
-              {buildTechs.map(t => {
-                const c  = CAT_COLOR[t.category] || "#666";
-                const xp = techXP(t);
-                return (
-                  <div key={t.id} style={{
-                    display:"flex", alignItems:"center", gap:10,
-                    background:"#161b27",
-                    border:"0.5px solid #2d3555",
-                    borderLeft:`3px solid ${c}`,
-                    borderRadius:"0 8px 8px 0",
-                    padding:"8px 12px",
-                  }}>
-                    <div style={{ flex:1 }}>
-                      <span style={{
-                        fontFamily:"Georgia, serif", fontWeight:"bold",
-                        fontSize:13, color:"#e8dfc8",
-                      }}>
-                        {t.name}
-                      </span>
-                      <span style={{ fontSize:11, color:"#d4a843", marginLeft:8 }}>
-                        {lvlLabel(t.level_min, t.level_max)}
-                      </span>
-                      <span style={{ fontSize:11, color:c, marginLeft:6 }}>
-                        {t.category}
-                      </span>
-                    </div>
-                    <span style={{ fontSize:11, color:"#3a4260", flexShrink:0 }}>
-                      {xp != null ? `${xp} XP` : "? XP"}
-                    </span>
-                    <button
-                      onClick={() => removeTech(t.id)}
-                      aria-label={`Remove ${t.name}`}
-                      style={{
-                        background:"transparent", border:"none",
-                        color:"#3a4260", fontSize:16, lineHeight:1, padding:"2px 4px", flexShrink:0,
-                      }}
-                    >
-                      ✕
-                    </button>
-                  </div>
-                );
-              })}
+            <div className="tech-list">
+              {knownTechs.map(t => renderTechCard(t))}
             </div>
           )}
         </div>
       )}
 
 
-      {/* ════════ CHARACTER SHEET VIEW ══════════════════════════ */}
+      {/* ════════ ITEMS VIEW ════════════════════════════════════
+          Placeholder — gear, weapons, and gold will live here. */}
+      {view === "items" && (
+        <div style={{ maxWidth:600, margin:"60px auto", padding:20, textAlign:"center" }}>
+          <div style={{
+            fontFamily: "'MedievalSharp', Georgia, serif",
+            fontSize: 24, fontWeight: "bold", color: "#d4a843", marginBottom: 8,
+          }}>
+            Items &amp; Equipment
+          </div>
+          <div style={{ fontSize:15, color:TEXT.faint }}>
+            Coming soon.
+          </div>
+        </div>
+      )}
+
+
+      {/* ════════ CHARACTER SHEET VIEW ══════════════════════════
+          A flat, read-only record of everything picked on the
+          Builder: Stats & Skills, derived combat numbers, and the
+          same technique tiles as everywhere else, but with every
+          editable control (notes, Feature-builder, Add/Remove)
+          stripped out — nothing on this page changes anything. */}
       {view === "sheet" && (
-        <div style={{ maxWidth:680, margin:"0 auto", padding:20 }}>
-          {buildTechs.length === 0 ? (
-            <div style={{ textAlign:"center", padding:"48px 20px", color:"#4a5270", fontSize:14 }}>
-              Add techniques in Browse, then see them formatted here.
+        <div className="sheet-page" style={{ maxWidth:1160, margin:"0 auto", padding:16 }}>
+          {/* Character name + summary header */}
+          <div className="sheet-header" style={{
+            display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12,
+            flexWrap: "wrap",
+            borderBottom: "0.5px solid #2d3555",
+            paddingBottom: 14, marginBottom: 20,
+          }}>
+            <div>
+              <div style={{
+                fontFamily: "'MedievalSharp', Georgia, serif",
+                fontSize: 28, fontWeight: "bold", color: "#d4a843",
+              }}>
+                {charName || "Unnamed hero"}
+              </div>
+              {charConcept && (
+                <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", marginTop:3 }}>
+                  {charConcept}
+                </div>
+              )}
+              <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
+                {buildEntries.length} technique{buildEntries.length !== 1 ? "s" : ""}
+                {" ("}{sheetCards.length} distinct{")"}
+                {unknownCount > 0 && ` · ${unknownCount} not fully configured`}
+              </div>
+            </div>
+            <div className="no-print" style={{ display:"flex", gap:8, flexShrink:0, flexWrap:"wrap" }}>
+              <button
+                onClick={() => { if (confirm("Uncheck all expended techniques for a new encounter?")) setExpended({}); }}
+                style={actionBtn()}
+              >
+                Reset expended
+              </button>
+              <button onClick={() => window.print()} style={actionBtn()}>
+                <i className="ti ti-printer" aria-hidden="true" /> Print / Save as PDF
+              </button>
+            </div>
+          </div>
+
+          <StatsPanel
+            statPoints={statPoints} skillPoints={skillPoints}
+            xpBudget={xpBudget} onBudgetChange={setXpBudget}
+            statSkillXP={statSkillXP}
+            techniqueXP={knownXP} techniqueXPUnknown={unknownCount > 0}
+            readOnly
+          />
+          <div style={{ height:14 }} />
+          <DerivedStats statPoints={statPoints} skillPoints={skillPoints} />
+
+          {buildEntries.length === 0 ? (
+            <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
+              Add techniques on the Techniques tab, then see them here.
             </div>
           ) : (
-            <>
-              {/* Character name + summary header */}
-              <div style={{
-                borderBottom: "0.5px solid #2d3555",
-                paddingBottom: 14, marginBottom: 28,
-              }}>
-                <div style={{
-                  fontFamily: "Georgia, 'Times New Roman', serif",
-                  fontSize: 26, fontWeight: "bold", color: "#d4a843",
-                }}>
-                  {charName || "Unnamed hero"}
-                </div>
-                <div style={{ fontSize:13, color:"#4a5270", marginTop:5 }}>
-                  {buildTechs.length} technique{buildTechs.length !== 1 ? "s" : ""}
-                  {" · "}
-                  {unknownCount === 0
-                    ? `${knownXP} XP`
-                    : `${knownXP}+ XP (${unknownCount} variable)`
-                  }
-                </div>
-              </div>
-
-              {/* Techniques grouped by category — only shows categories in use */}
-              {Object.keys(CAT_COLOR)
-                .filter(cat => buildTechs.some(t => t.category === cat))
-                .map(cat => (
-                  <div key={cat} style={{ marginBottom:32 }}>
-                    {/* Section header */}
-                    <div style={{
-                      fontSize: 11, fontWeight: 600,
-                      textTransform: "uppercase", letterSpacing: "0.1em",
-                      color: CAT_COLOR[cat],
-                      borderBottom: "0.5px solid #2d3555",
-                      paddingBottom: 6, marginBottom: 16,
-                    }}>
-                      {cat}
-                    </div>
-                    {buildTechs
-                      .filter(t => t.category === cat)
-                      .map(t => <SheetEntry key={t.id} tech={t} />)
-                    }
-                  </div>
-                ))
-              }
-            </>
+            <div className="tech-list">
+              {sheetCards.map(renderSheetCard)}
+            </div>
           )}
+        </div>
+      )}
+
+
+      {/* ════════ NOTES VIEW ═══════════════════════════════════
+          A freeform scratchpad that saves with the character — a
+          big text box plus a short quick-note list. */}
+      {view === "notes" && (
+        <div style={{ maxWidth:900, margin:"0 auto", padding:20 }}>
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Notes
+          </div>
+          <textarea
+            value={charNotes}
+            onChange={e => setCharNotes(e.target.value)}
+            placeholder="Freeform notes about your character, campaign, plans…"
+            rows={10}
+            style={{ width:"100%", fontSize:14, lineHeight:1.5, marginBottom:28 }}
+          />
+
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Quick List
+          </div>
+          <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+            {noteRows.map(row => (
+              <div key={row.id} style={{ display:"flex", gap:8, alignItems:"center" }}>
+                <input
+                  type="text"
+                  value={row.text}
+                  onChange={e => updateNoteRow(row.id, e.target.value)}
+                  placeholder="Note…"
+                  style={{ flex:1, fontSize:14 }}
+                />
+                <button
+                  onClick={() => removeNoteRow(row.id)}
+                  aria-label="Remove note"
+                  style={{
+                    background:"transparent", border:"none",
+                    color:TEXT.faint, fontSize:18, lineHeight:1, padding:"2px 4px", flexShrink:0,
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={addNoteRow}
+              style={{
+                fontSize: 13, color: "#d4a843", background: "transparent",
+                border: "0.5px solid #a07c2e", borderRadius: 4,
+                padding: "4px 10px", alignSelf: "flex-start",
+              }}
+            >
+              + Add row
+            </button>
+          </div>
         </div>
       )}
 
