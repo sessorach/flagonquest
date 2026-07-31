@@ -195,8 +195,8 @@ function techXP(t) {
 // Encode/decode build state for shareable URL hash.
 // Only the technique ID list + character name — see the file-header
 // note on why notes/Feature choices are left out of share links.
-function encBuild(ids, name) {
-  return btoa(JSON.stringify({ ids, name }));
+function encBuild(payload) {
+  return btoa(JSON.stringify(payload));
 }
 function decBuild(str) {
   try { return JSON.parse(atob(str)); } catch { return null; }
@@ -282,6 +282,33 @@ function applyFeatureCount(text, count) {
   );
 
   return out;
+}
+
+// ── Stats & Skills ────────────────────────────────────────────────
+// 5 stats, 5 skills each. A skill's "Skill Total" — used all over the
+// character sheet's derived numbers — is the stat's points plus the
+// skill's own points.
+const STAT_SKILLS = {
+  Agility: ["Acrobatics", "Archery", "Brawl", "Melee", "Stealth"],
+  Body:    ["Athletics", "Awareness", "Might", "Presence", "Resilience"],
+  Cunning: ["Insight", "Masquerade", "Persuasion", "Streetwise", "Survival"],
+  Mind:    ["Academics", "Composure", "Craft", "Medicine", "Mixology"],
+  Essence: ["Meditation", "Performance", "Rapport", "Sorcery", "Theurgy"],
+};
+const STATS = Object.keys(STAT_SKILLS);
+const SKILL_STAT = {};
+STATS.forEach(stat => STAT_SKILLS[stat].forEach(skill => { SKILL_STAT[skill] = stat; }));
+const ALL_STAT_SKILLS = Object.keys(SKILL_STAT);
+
+// Points are bought one at a time starting from 0: a skill point at
+// level N costs N XP, a stat point costs double that (2N). The total
+// cost to reach level N is the triangular-number sum of 1..N (doubled
+// for stats) — e.g. a skill bought up to 3 costs 1+2+3 = 6 total.
+function skillTotalCost(n) { return (n * (n + 1)) / 2; }
+function statTotalCost(n)  { return n * (n + 1); }
+
+function skillTotalValue(statPoints, skillPoints, skill) {
+  return (statPoints[SKILL_STAT[skill]] || 0) + (skillPoints[skill] || 0);
 }
 
 
@@ -848,6 +875,179 @@ function TechCard({
 
 
 // ══════════════════════════════════════════════════════════════════
+// POINT STEPPER — the small "− N +" control shared by every stat and
+// skill row in the Stats & Skills panel.
+// ══════════════════════════════════════════════════════════════════
+function PointStepper({ value, onChange }) {
+  const btnStyle = {
+    width: 20, height: 20, lineHeight: "18px", padding: 0,
+    fontSize: 13, color: TEXT.muted, background: "transparent",
+    border: "0.5px solid #2d3555", borderRadius: 4,
+  };
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
+      <button onClick={() => onChange(Math.max(0, value - 1))} disabled={value <= 0} style={btnStyle}>−</button>
+      <span style={{ width: 16, textAlign: "center", fontSize: 13, color: TEXT.body }}>{value}</span>
+      <button onClick={() => onChange(value + 1)} style={btnStyle}>+</button>
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// STATS PANEL — the 5-stat/5-skill-each point-buy grid, plus the XP
+// spent on it and an optional total-XP budget. Interactive; rendered
+// both on the "My build" tab and the Character Sheet so adjusting a
+// stat is never more than one click away from either place.
+// ══════════════════════════════════════════════════════════════════
+function StatsPanel({
+  statPoints, skillPoints, onStatChange, onSkillChange,
+  xpBudget, onBudgetChange, statSkillXP,
+  techniqueXP = 0, techniqueXPUnknown = false,
+}) {
+  const totalSpent = statSkillXP + techniqueXP;
+  const budgetNum  = xpBudget !== "" ? parseInt(xpBudget, 10) : null;
+  const remaining  = budgetNum != null && !isNaN(budgetNum) ? budgetNum - totalSpent : null;
+
+  return (
+    <div>
+      <div style={{
+        display: "flex", alignItems: "center", gap: 22, flexWrap: "wrap",
+        marginBottom: 14, padding: "10px 14px", background: "#12161f",
+        border: "0.5px solid #2d3555", borderRadius: 8,
+      }}>
+        <div>
+          <div style={{ fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+            Stats &amp; Skills XP
+          </div>
+          <div style={{ fontSize: 20, fontWeight: 500 }}>{statSkillXP}</div>
+        </div>
+        <div>
+          <div style={{ fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+            Total XP Spent
+          </div>
+          <div style={{ fontSize: 20, fontWeight: 500 }}>
+            {totalSpent}{techniqueXPUnknown ? "+" : ""}
+          </div>
+        </div>
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 13, color: TEXT.faint }}>Experience Total</span>
+            <input
+              type="text" inputMode="numeric" placeholder="—"
+              value={xpBudget}
+              onChange={e => onBudgetChange(e.target.value.replace(/[^\d]/g, ""))}
+              style={{ width: 70, fontSize: 14, textAlign: "right" }}
+            />
+          </div>
+          {remaining != null && (
+            <span style={{ fontSize: 14, fontWeight: 500, color: remaining < 0 ? "#c0392b" : "#d4a843" }}>
+              {remaining < 0 ? `${-remaining} over budget` : `${remaining} remaining`}
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))" }}>
+        {STATS.map(stat => (
+          <div key={stat} style={{
+            background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+              <span style={{
+                fontFamily: "'MedievalSharp', Georgia, serif", fontSize: 15,
+                fontWeight: "bold", color: TEXT.name,
+              }}>
+                {stat}
+              </span>
+              <PointStepper value={statPoints[stat] || 0} onChange={n => onStatChange(stat, n)} />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {STAT_SKILLS[stat].map(skill => (
+                <div key={skill} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <span style={{ fontSize: 13, color: TEXT.body, flex: 1 }}>{skill}</span>
+                  <PointStepper value={skillPoints[skill] || 0} onChange={n => onSkillChange(skill, n)} />
+                  <span style={{ fontSize: 13, color: TEXT.faint, width: 18, textAlign: "right", flexShrink: 0 }}>
+                    {skillTotalValue(statPoints, skillPoints, skill)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// DERIVED STATS — the read-only combat numbers the sheet computes
+// from Stats & Skills (Speed, Defenses, etc.), matching the formulas
+// printed on the paper character sheet.
+// ══════════════════════════════════════════════════════════════════
+function DerivedStats({ statPoints, skillPoints }) {
+  const st = skill => skillTotalValue(statPoints, skillPoints, skill);
+
+  const block = (title, rows) => (
+    <div style={{
+      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+      display: "flex", flexDirection: "column", gap: 6, flex: "1 1 220px",
+    }}>
+      <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+        {title}
+      </div>
+      {rows.map(([label, value, formula]) => (
+        <div key={label} style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
+          <span style={{ fontSize: 13, color: TEXT.body }}>
+            {label} <span style={{ fontSize: 11, color: TEXT.faint }}>({formula})</span>
+          </span>
+          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>{value}</span>
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 14 }}>
+      {block("Vitals", [
+        ["Speed",          1 + (statPoints.Agility || 0), "1 + Agility"],
+        ["Resting Health", statPoints.Body || 0, "Body"],
+        ["Reflex",         st("Insight"), "Insight"],
+        ["Cards Per Day",  2 * ((statPoints.Cunning || 0) + (statPoints.Mind || 0)), "2 × (Cunning + Mind)"],
+      ])}
+      {block("Defenses", [
+        ["Parry Defense",    8 + Math.max(st("Melee"), st("Brawl")), "8 + Melee or Brawl"],
+        ["Dodge Defense",    8 + Math.max(st("Acrobatics"), st("Brawl")), "8 + Acrobatics or Brawl"],
+        ["Bodily Defense",   8 + st("Resilience"), "8 + Resilience"],
+        ["Mental Defense",   8 + st("Composure"), "8 + Composure"],
+        ["Instinct Defense", 8 + st("Insight"), "8 + Insight"],
+      ])}
+      <div style={{
+        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+        flex: "1 1 220px", display: "flex", flexDirection: "column", gap: 6,
+      }}>
+        <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+          Health
+        </div>
+        <div style={{ fontSize: 13, color: TEXT.body, display: "flex", justifyContent: "space-between" }}>
+          <span>Shallow Health <span style={{ fontSize: 11, color: TEXT.faint }}>(base)</span></span>
+          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>5</span>
+        </div>
+        <div style={{ fontSize: 13, color: TEXT.body, display: "flex", justifyContent: "space-between" }}>
+          <span>Deep Health <span style={{ fontSize: 11, color: TEXT.faint }}>(base)</span></span>
+          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>5</span>
+        </div>
+        <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic", marginTop: 4 }}>
+          Resistances, and Feature/technique bonuses to these numbers, aren't tracked yet.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
 // BUILD PANEL — character name, stats, export/import/share, and the
 // build list. Rendered both on the standalone "My build" tab and in
 // the sticky sidebar next to the technique list on wide screens.
@@ -1060,6 +1260,18 @@ function App() {
     try { return JSON.parse(localStorage.getItem("flagonquest-configs") || "{}"); }
     catch { return {}; }
   });
+  // Stats & Skills point-buy: { Agility: 2, ... } / { Acrobatics: 1, ... }.
+  // Single character, so these (and the XP budget) persist to localStorage
+  // the same way notes/configs do.
+  const [statPoints, setStatPoints] = useState(() => {
+    try { return { ...Object.fromEntries(STATS.map(s => [s, 0])), ...JSON.parse(localStorage.getItem("flagonquest-stat-points") || "{}") }; }
+    catch { return Object.fromEntries(STATS.map(s => [s, 0])); }
+  });
+  const [skillPoints, setSkillPoints] = useState(() => {
+    try { return { ...Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])), ...JSON.parse(localStorage.getItem("flagonquest-skill-points") || "{}") }; }
+    catch { return Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])); }
+  });
+  const [xpBudget, setXpBudget] = useState(() => localStorage.getItem("flagonquest-xp-budget") || "");
   const importRef = useRef();
 
   // ── Fetch JSON data on first load ──────────────────────────────
@@ -1091,28 +1303,50 @@ function App() {
   // ── Load a shared build from the URL hash ──────────────────────
   // If someone opens a share link like index.html#build=abc123, this
   // decodes and restores their build automatically. Each restored
-  // technique gets a fresh uid — share links don't carry notes/Feature
-  // choices, only which techniques are known and the character name.
+  // technique gets a fresh uid — share links carry the technique list,
+  // character name, and Stats & Skills, but not notes/Feature choices
+  // (kept out to keep the URL short).
   useEffect(() => {
     const hash = window.location.hash;
     if (hash.startsWith("#build=")) {
       const decoded = decBuild(hash.slice(7));
       if (decoded) {
-        if (decoded.ids)  setBuild(decoded.ids.map(id => ({ uid: makeUid(), id })));
-        if (decoded.name) setCharName(decoded.name);
+        if (decoded.ids)    setBuild(decoded.ids.map(id => ({ uid: makeUid(), id })));
+        if (decoded.name)   setCharName(decoded.name);
+        if (decoded.stats)  setStatPoints(p => ({ ...p, ...decoded.stats }));
+        if (decoded.skills) setSkillPoints(p => ({ ...p, ...decoded.skills }));
       }
     }
   }, []);
 
-  // ── Persist per-copy notes/configs to localStorage on change ────
+  // ── Persist per-copy notes/configs, and Stats & Skills, on change ─
   useEffect(() => {
     localStorage.setItem("flagonquest-notes", JSON.stringify(notes));
   }, [notes]);
   useEffect(() => {
     localStorage.setItem("flagonquest-configs", JSON.stringify(configs));
   }, [configs]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-stat-points", JSON.stringify(statPoints));
+  }, [statPoints]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-skill-points", JSON.stringify(skillPoints));
+  }, [skillPoints]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-xp-budget", xpBudget);
+  }, [xpBudget]);
 
   const setNote = (uid, text) => setNotes(n => ({ ...n, [uid]: text }));
+  const setStat  = (stat, n)  => setStatPoints(p => ({ ...p, [stat]: Math.max(0, n) }));
+  const setSkill = (skill, n) => setSkillPoints(p => ({ ...p, [skill]: Math.max(0, n) }));
+
+  // Total XP spent on Stats & Skills (triangular cost, doubled for stats).
+  const statSkillXP = useMemo(() => {
+    let total = 0;
+    STATS.forEach(s => { total += statTotalCost(statPoints[s] || 0); });
+    ALL_STAT_SKILLS.forEach(s => { total += skillTotalCost(skillPoints[s] || 0); });
+    return total;
+  }, [statPoints, skillPoints]);
 
   // ── Features grouped by the technique they belong to ────────────
   const techFeaturesById = useMemo(() => {
@@ -1276,18 +1510,24 @@ function App() {
   };
 
   const clearBuild = () => {
-    if (!confirm("Clear the current build?")) return;
+    if (!confirm("Clear the current build, including Stats & Skills?")) return;
     setBuild([]);
     setNotes({});
     setConfigs({});
+    setStatPoints(Object.fromEntries(STATS.map(s => [s, 0])));
+    setSkillPoints(Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])));
   };
 
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
-  // so the file stays readable and survives future data updates).
+  // so the file stays readable and survives future data updates), plus
+  // Stats & Skills and the XP budget.
   function doExport() {
     const payload = {
       charName,
+      xpBudget,
+      statPoints,
+      skillPoints,
       exportedAt: new Date().toISOString(),
       techniques: buildEntries.map(e => {
         const cfg = configs[e.uid];
@@ -1349,6 +1589,9 @@ function App() {
         setNotes(n => ({ ...n, ...newNotes }));
         setConfigs(c => ({ ...c, ...newConfigs }));
         if (data.charName) setCharName(data.charName);
+        if (typeof data.xpBudget === "string") setXpBudget(data.xpBudget);
+        if (data.statPoints)  setStatPoints(p => ({ ...p, ...data.statPoints }));
+        if (data.skillPoints) setSkillPoints(p => ({ ...p, ...data.skillPoints }));
       } catch {
         alert("Couldn't read that file — make sure it's a FlagonQuest build export.");
       }
@@ -1358,10 +1601,11 @@ function App() {
   }
 
   // ── Generate a shareable URL ───────────────────────────────────
-  // Encodes the build's technique IDs and character name into the URL
-  // hash — notes/Feature choices are left out to keep the link short.
+  // Encodes the build's technique IDs, character name, and Stats &
+  // Skills into the URL hash — notes/Feature choices are left out to
+  // keep the link short.
   function doShare() {
-    const encoded = encBuild(build.map(e => e.id), charName);
+    const encoded = encBuild({ ids: build.map(e => e.id), name: charName, stats: statPoints, skills: skillPoints });
     const url = window.location.href.split("#")[0] + "#build=" + encoded;
     (navigator.clipboard?.writeText(url) ?? Promise.reject())
       .then(() => setShareMsg("Link copied!"))
@@ -1660,7 +1904,18 @@ function App() {
 
       {/* ════════ MY BUILD VIEW ═════════════════════════════════ */}
       {view === "build" && (
-        <div style={{ maxWidth:640, margin:"0 auto", padding:20 }}>
+        <div style={{ maxWidth:900, margin:"0 auto", padding:20 }}>
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Stats &amp; Skills
+          </div>
+          <StatsPanel
+            statPoints={statPoints} skillPoints={skillPoints}
+            onStatChange={setStat} onSkillChange={setSkill}
+            xpBudget={xpBudget} onBudgetChange={setXpBudget}
+            statSkillXP={statSkillXP}
+            techniqueXP={knownXP} techniqueXPUnknown={unknownCount > 0}
+          />
+          <div style={{ height:24 }} />
           <BuildPanel
             charName={charName} setCharName={setCharName}
             build={build} buildRows={buildRows}
@@ -1677,44 +1932,48 @@ function App() {
 
 
       {/* ════════ CHARACTER SHEET VIEW ══════════════════════════
-          The most complete view of everything you know: the same
+          The most complete view of everything you know: Stats &
+          Skills, derived combat numbers, and the same technique
           tiles as Browse — same styling, same Add/Edit/Notes/
-          Feature-builder controls — filtered down to just the
-          techniques currently in your build. */}
+          Feature-builder controls — filtered to your build. */}
       {view === "sheet" && (
-        <div style={{ maxWidth:760, margin:"0 auto", padding:16 }}>
+        <div style={{ maxWidth:900, margin:"0 auto", padding:16 }}>
+          {/* Character name + summary header */}
+          <div style={{
+            borderBottom: "0.5px solid #2d3555",
+            paddingBottom: 14, marginBottom: 20,
+          }}>
+            <div style={{
+              fontFamily: "'MedievalSharp', Georgia, serif",
+              fontSize: 28, fontWeight: "bold", color: "#d4a843",
+            }}>
+              {charName || "Unnamed hero"}
+            </div>
+            <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
+              {buildEntries.length} technique{buildEntries.length !== 1 ? "s" : ""}
+              {" ("}{knownTechs.length} distinct{")"}
+              {unknownCount > 0 && ` · ${unknownCount} not fully configured`}
+            </div>
+          </div>
+
+          <StatsPanel
+            statPoints={statPoints} skillPoints={skillPoints}
+            onStatChange={setStat} onSkillChange={setSkill}
+            xpBudget={xpBudget} onBudgetChange={setXpBudget}
+            statSkillXP={statSkillXP}
+            techniqueXP={knownXP} techniqueXPUnknown={unknownCount > 0}
+          />
+          <div style={{ height:14 }} />
+          <DerivedStats statPoints={statPoints} skillPoints={skillPoints} />
+
           {buildEntries.length === 0 ? (
             <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
               Add techniques in Browse, then see them here.
             </div>
           ) : (
-            <>
-              {/* Character name + summary header */}
-              <div style={{
-                borderBottom: "0.5px solid #2d3555",
-                paddingBottom: 14, marginBottom: 20,
-              }}>
-                <div style={{
-                  fontFamily: "'MedievalSharp', Georgia, serif",
-                  fontSize: 28, fontWeight: "bold", color: "#d4a843",
-                }}>
-                  {charName || "Unnamed hero"}
-                </div>
-                <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
-                  {buildEntries.length} technique{buildEntries.length !== 1 ? "s" : ""}
-                  {" ("}{knownTechs.length} distinct{")"}
-                  {" · "}
-                  {unknownCount === 0
-                    ? `${knownXP} XP`
-                    : `${knownXP}+ XP (${unknownCount} not fully configured)`
-                  }
-                </div>
-              </div>
-
-              <div className="tech-list">
-                {knownTechs.map(renderTechCard)}
-              </div>
-            </>
+            <div className="tech-list">
+              {knownTechs.map(renderTechCard)}
+            </div>
           )}
         </div>
       )}
