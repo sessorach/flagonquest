@@ -173,6 +173,14 @@ const { useState, useEffect, useMemo, useRef } = React;
  ║  choices. SHARE LINK: technique list + character name only, to   ║
  ║  keep the URL short — notes/Feature choices don't round-trip.    ║
  ║                                                                   ║
+ ║  RETAIN ACROSS REFRESH: `build` and `charName` are persisted to  ║
+ ║  localStorage like everything else. The address bar also mirrors ║
+ ║  the current build live in the same #build= format "Copy share   ║
+ ║  link" uses (see the sync effect near the top of App()) — so the ║
+ ║  page is always sitting on a current, copy-pasteable link, and a ║
+ ║  plain refresh can tell that hash apart from an actual shared    ║
+ ║  link someone opened and skip re-decoding its own echo.          ║
+ ║                                                                   ║
  ║  LAYOUT: on wide screens the Browse tab shows the technique list  ║
  ║  and the build panel side by side (see .browse-layout in the     ║
  ║  <style> block). On narrow screens the build panel is reached     ║
@@ -1387,7 +1395,7 @@ function App() {
   const [loadError,  setLoadError]  = useState(null);
 
   // ── UI state ───────────────────────────────────────────────────
-  const [view,       setView]       = useState("browse"); // browse | build | sheet
+  const [view,       setView]       = useState("build"); // browse | build | sheet
   const [search,     setSearch]     = useState("");
   const [skillFilter, setSkillFilter] = useState([]);   // selected "related skills" chips
   const [tagFilter,  setTagFilter]  = useState([]);     // selected "tags" chips
@@ -1396,8 +1404,15 @@ function App() {
   const [healingOnly, setHealingOnly] = useState(false);
   const [cardsOnly,   setCardsOnly]   = useState(false);
   const [advancedOpen, setAdvancedOpen] = useState(false);
-  const [build,      setBuild]      = useState([]);       // array of { uid, id } — see file-header note
-  const [charName,   setCharName]   = useState("");
+  // The build itself, and the character name, are persisted to
+  // localStorage like everything else below, so refreshing the page
+  // doesn't lose your work — see the "Retain across refresh" note
+  // further down for how this plays with the URL hash.
+  const [build,      setBuild]      = useState(() => {       // array of { uid, id } — see file-header note
+    try { return JSON.parse(localStorage.getItem("flagonquest-build") || "[]"); }
+    catch { return []; }
+  });
+  const [charName,   setCharName]   = useState(() => localStorage.getItem("flagonquest-char-name") || "");
   const [charConcept, setCharConcept] = useState(() => localStorage.getItem("flagonquest-char-concept") || "");
   const [shareMsg,   setShareMsg]   = useState("");
   // Per-copy free-text notes, keyed by build-entry uid. Persisted to
@@ -1479,20 +1494,60 @@ function App() {
   // technique gets a fresh uid — share links carry the technique list,
   // character name, and Stats & Skills, but not notes/Feature choices
   // (kept out to keep the URL short).
+  //
+  // Because the address bar now mirrors the current build live (see the
+  // sync effect below), most hash values we ever see are just an echo
+  // of what localStorage already has — decoding those again would hand
+  // every technique a fresh uid and orphan its notes/Feature choices.
+  // So: only decode when the hash's technique list actually differs
+  // from the current build, i.e. someone opened a link this browser
+  // didn't just write itself. `buildRef` sidesteps the stale-closure
+  // problem of reading `build` from a listener that's only attached
+  // once — a URL differing only in its fragment (e.g. pasting a
+  // different share link into an already-open tab) doesn't reload the
+  // page, it only fires "hashchange", so this needs to keep working
+  // long after mount, not just once at the start.
+  const buildRef = useRef(build);
+  useEffect(() => { buildRef.current = build; }, [build]);
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash.startsWith("#build=")) {
+    const applyHash = () => {
+      const hash = window.location.hash;
+      if (!hash.startsWith("#build=")) return;
       const decoded = decBuild(hash.slice(7));
-      if (decoded) {
-        if (decoded.ids)    setBuild(decoded.ids.map(id => ({ uid: makeUid(), id })));
-        if (decoded.name)   setCharName(decoded.name);
-        if (decoded.stats)  setStatPoints(p => ({ ...p, ...decoded.stats }));
-        if (decoded.skills) setSkillPoints(p => ({ ...p, ...decoded.skills }));
-      }
-    }
+      if (!decoded) return;
+      const isEcho = decoded.ids && JSON.stringify(decoded.ids) === JSON.stringify(buildRef.current.map(e => e.id));
+      if (isEcho) return;
+      if (decoded.ids)    setBuild(decoded.ids.map(id => ({ uid: makeUid(), id })));
+      if (decoded.name)   setCharName(decoded.name);
+      if (decoded.stats)  setStatPoints(p => ({ ...p, ...decoded.stats }));
+      if (decoded.skills) setSkillPoints(p => ({ ...p, ...decoded.skills }));
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
   }, []);
 
+  // ── Retain across refresh: keep the address bar live ────────────
+  // Writes the same {ids, name, stats, skills} encoding "Copy share
+  // link" uses into the URL hash on every change, via replaceState (no
+  // new history entries, no navigation). Two things fall out of this:
+  // the address bar is always a current, copy-pasteable link to this
+  // exact build, and — since the hash-loading effect above only acts on
+  // hashes it didn't itself write — a plain refresh just re-reads the
+  // build straight back out of localStorage instead.
+  useEffect(() => {
+    const encoded = encBuild({ ids: build.map(e => e.id), name: charName, stats: statPoints, skills: skillPoints });
+    const url = window.location.href.split("#")[0] + "#build=" + encoded;
+    window.history.replaceState(null, "", url);
+  }, [build, charName, statPoints, skillPoints]);
+
   // ── Persist per-copy notes/configs, and Stats & Skills, on change ─
+  useEffect(() => {
+    localStorage.setItem("flagonquest-build", JSON.stringify(build));
+  }, [build]);
+  useEffect(() => {
+    localStorage.setItem("flagonquest-char-name", charName);
+  }, [charName]);
   useEffect(() => {
     localStorage.setItem("flagonquest-notes", JSON.stringify(notes));
   }, [notes]);
