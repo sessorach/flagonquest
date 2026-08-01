@@ -149,12 +149,15 @@
         box-shadow: none !important;
       }
 
-      .sheet-page { max-width: none !important; padding: 0 !important; }
+      .sheet-page { max-width: none !important; padding: 0 !important; padding-bottom: 26px !important; }
 
-      /* Solid black boxes instead of the screen's faint hairlines —
-         Stats & Skills, Vitals/Defenses/Health, and each technique all
-         get this treatment, and none of them split across a page break. */
-      .sheet-header, .sheet-box, .tech-card {
+      /* Solid black boxes instead of the screen's faint hairlines — the
+         name/concept box, the print-only Total XP box, Stats & Skills,
+         Vitals/Defenses/Health/Resists, and each technique all get this
+         treatment, and none of them split across a page break. The
+         header row itself (.sheet-header) stays unboxed — its two
+         children are the boxes, not the row around them. */
+      .sheet-box, .tech-card {
         border-width: 1px !important;
         border-style: solid !important;
         border-radius: 2px !important;
@@ -163,11 +166,24 @@
       .sheet-box { padding: 5px 8px !important; zoom: 0.85; }
       .tech-card { padding: 6px 9px !important; gap: 4px !important; zoom: 0.68; }
 
+      /* Hidden on screen (the StatsPanel's own XP summary bar, marked
+         no-print below, covers this there); shown only here, as its own
+         small box in the header. */
+      .print-only { display: flex !important; }
+
       /* Stats & Skills stays 5-across regardless of the page's physical
          width — the .stat-grid breakpoints are viewport-width media
          queries tuned for screens, and a printed page is narrower. */
       .stat-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 5px !important; }
       .tech-list { gap: 5px !important; }
+
+      /* Attribution — repeats at the bottom of every printed page
+         instead of trailing wherever the last card happens to end. */
+      .attribution-footer {
+        position: fixed !important;
+        left: 0; right: 0; bottom: 0;
+        padding: 4px 16px !important;
+      }
     }
   </style>
 </head>
@@ -1330,7 +1346,11 @@ function StatsPanel({
 
   return (
     <div>
-      <div className="sheet-box" style={{
+      {/* The Character Sheet shows this same "Total XP Spent" number
+          again, alone, in its own small box in the print header (see
+          the print-only box in the view === "sheet" JSX) — so this
+          fuller breakdown is print-hidden to avoid saying it twice. */}
+      <div className="sheet-box no-print" style={{
         display: "flex", alignItems: "center", gap: 22, flexWrap: "wrap",
         marginBottom: 14, padding: "10px 14px", background: "#12161f",
         border: "0.5px solid #2d3555", borderRadius: 8,
@@ -1435,60 +1455,63 @@ function StatsPanel({
 // ══════════════════════════════════════════════════════════════════
 function DerivedStats({ statPoints, skillPoints }) {
   const st = skill => skillTotalValue(statPoints, skillPoints, skill);
+  const essence = statPoints.Essence || 0;
 
-  const block = (title, rows) => (
+  // Each row's name is bold with its calculation in italics underneath —
+  // matching the paper character sheet — instead of both crammed onto
+  // one line, so the number the player actually reads stays the clear
+  // focal point on the right.
+  const block = (title, rows, footer) => (
     <div className="sheet-box" style={{
       background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
-      display: "flex", flexDirection: "column", gap: 6, flex: "1 1 220px",
+      display: "flex", flexDirection: "column", gap: 7, flex: "1 1 220px",
     }}>
       <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
         {title}
       </div>
       {rows.map(([label, value, formula]) => (
-        <div key={label} style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
-          <span style={{ fontSize: 13, color: TEXT.body }}>
-            {label} <span style={{ fontSize: 11, color: TEXT.faint }}>({formula})</span>
-          </span>
-          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>{value}</span>
+        <div key={label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</div>
+            {formula && <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic" }}>{formula}</div>}
+          </div>
+          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name, flexShrink: 0 }}>{value}</span>
         </div>
       ))}
+      {footer && (
+        <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic", marginTop: 4 }}>
+          {footer}
+        </div>
+      )}
     </div>
   );
 
   return (
     <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 14 }}>
       {block("Vitals", [
-        ["Speed",          1 + (statPoints.Agility || 0), "1 + Agility"],
-        ["Resting Health", statPoints.Body || 0, "Body"],
-        ["Reflex",         st("Insight"), "Insight"],
-        ["Cards Per Day",  2 * ((statPoints.Cunning || 0) + (statPoints.Mind || 0)), "2 × (Cunning + Mind)"],
+        ["Speed",          1 + (statPoints.Agility || 0), "= 1 + Agility"],
+        ["Resting Health", statPoints.Body || 0, "= Body"],
+        ["Reflex",         st("Insight"), "= Insight"],
+        ["Cards Per Day",  2 * ((statPoints.Cunning || 0) + (statPoints.Mind || 0)), "= 2 × (Cunning + Mind)"],
       ])}
       {block("Defenses", [
-        ["Parry Defense",    8 + Math.max(st("Melee"), st("Brawl")), "8 + Melee or Brawl"],
-        ["Dodge Defense",    8 + Math.max(st("Acrobatics"), st("Brawl")), "8 + Acrobatics or Brawl"],
-        ["Bodily Defense",   8 + st("Resilience"), "8 + Resilience"],
-        ["Mental Defense",   8 + st("Composure"), "8 + Composure"],
-        ["Instinct Defense", 8 + st("Insight"), "8 + Insight"],
+        ["Parry Defense",    8 + Math.max(st("Melee"), st("Brawl")), "= 8 + Melee or Brawl"],
+        ["Dodge Defense",    8 + Math.max(st("Acrobatics"), st("Brawl")), "= 8 + Acrobatics or Brawl"],
+        ["Bodily Defense",   8 + st("Resilience"), "= 8 + Resilience"],
+        ["Mental Defense",   8 + st("Composure"), "= 8 + Composure"],
+        ["Instinct Defense", 8 + st("Insight"), "= 8 + Insight"],
       ])}
-      <div className="sheet-box" style={{
-        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
-        flex: "1 1 220px", display: "flex", flexDirection: "column", gap: 6,
-      }}>
-        <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
-          Health
-        </div>
-        <div style={{ fontSize: 13, color: TEXT.body, display: "flex", justifyContent: "space-between" }}>
-          <span>Shallow Health <span style={{ fontSize: 11, color: TEXT.faint }}>(base)</span></span>
-          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>5</span>
-        </div>
-        <div style={{ fontSize: 13, color: TEXT.body, display: "flex", justifyContent: "space-between" }}>
-          <span>Deep Health <span style={{ fontSize: 11, color: TEXT.faint }}>(base)</span></span>
-          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>5</span>
-        </div>
-        <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic", marginTop: 4 }}>
-          Resistances, and Feature/technique bonuses to these numbers, aren't tracked yet.
-        </div>
-      </div>
+      {block("Health", [
+        ["Shallow Health", 5, "(base)"],
+        ["Deep Health",    5, "(base)"],
+      ], "Feature/technique bonuses to these aren't tracked yet.")}
+      {block("Resists", [
+        ["Physical Resist",  essence, "= Essence"],
+        ["Fire Resist",      essence, "= Essence"],
+        ["Frost Resist",     essence, "= Essence"],
+        ["Brilliant Resist", essence, "= Essence"],
+        ["Shadow Resist",    essence, "= Essence"],
+      ], "Essence adds to each Resist — equipment/effect bonuses aren't tracked yet.")}
     </div>
   );
 }
@@ -2807,7 +2830,12 @@ function App() {
             borderBottom: "0.5px solid #2d3555",
             paddingBottom: 14, marginBottom: 20,
           }}>
-            <div style={{ display:"flex", alignItems:"flex-start", gap:12 }}>
+            {/* On screen this is just a plain flex group, same as always —
+                the "sheet-box" class only picks up a border in print (see
+                the @media print rules), so the name/icon/concept reads as
+                its own boxed block on the printed page without changing
+                anything here on screen. */}
+            <div className="sheet-box" style={{ display:"flex", alignItems:"flex-start", gap:12 }}>
               <img
                 src="assets/mug-icon.png"
                 alt=""
@@ -2832,6 +2860,23 @@ function App() {
                 )}
               </div>
             </div>
+
+            {/* Print-only — hidden on screen (the StatsPanel bar below
+                already shows this number there); on the printed page it's
+                the compact stand-in for that whole bar, boxed on its own
+                to the right of the name/concept box. */}
+            <div className="sheet-box print-only" style={{
+              display: "none", flexDirection: "column", alignItems: "center", justifyContent: "center",
+              minWidth: 90, textAlign: "center", flexShrink: 0, gap: 2,
+            }}>
+              <div style={{ fontSize:11, color:TEXT.faint, textTransform:"uppercase", letterSpacing:"0.06em" }}>
+                Total XP
+              </div>
+              <div style={{ fontSize:24, fontWeight:700, color:TEXT.name }}>
+                {statSkillXP + knownXP}{unknownCount > 0 ? "+" : ""}
+              </div>
+            </div>
+
             <div className="no-print" style={{ display:"flex", gap:8, flexShrink:0, flexWrap:"wrap" }}>
               <button
                 onClick={() => { if (confirm("Uncheck all expended techniques for a new encounter?")) setExpended({}); }}
@@ -2924,8 +2969,10 @@ function App() {
       )}
 
       {/* Attribution — shown on every tab, and (since it's not marked
-          no-print) at the bottom of the printed Character Sheet too. */}
-      <div style={{ textAlign: "center", padding: "26px 16px 18px", fontSize: 12, color: TEXT.faint }}>
+          no-print) at the bottom of the printed Character Sheet too,
+          pinned to the physical page bottom there (see .attribution-footer
+          in the print CSS) instead of trailing after the last card. */}
+      <div className="attribution-footer" style={{ textAlign: "center", padding: "26px 16px 18px", fontSize: 12, color: TEXT.faint }}>
         FlagonQuest is a project by Friendly Flagon Games.
       </div>
 
