@@ -177,6 +177,15 @@
       .stat-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 5px !important; }
       .tech-list { gap: 5px !important; }
 
+      /* Vitals/Defenses/Health/Resists likewise stays 4-across — on
+         screen this row's flex-wrap only kicks in on a narrow window, so
+         it never wraps there, but a printed page is narrower than most
+         screens and would otherwise push the 4th box (Resists) onto its
+         own nearly-empty line. Forcing nowrap here just lets the boxes'
+         existing flex-shrink narrow them to fit one line instead. */
+      .derived-stats-row { flex-wrap: nowrap !important; gap: 6px !important; }
+      .derived-stats-row .sheet-box { padding: 4px 6px !important; }
+
       /* Attribution — repeats at the bottom of every printed page
          instead of trailing wherever the last card happens to end. */
       .attribution-footer {
@@ -1487,7 +1496,7 @@ function DerivedStats({ statPoints, skillPoints }) {
   );
 
   return (
-    <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 14 }}>
+    <div className="derived-stats-row" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 14 }}>
       {block("Vitals", [
         ["Speed",          1 + (statPoints.Agility || 0), "= 1 + Agility"],
         ["Resting Health", statPoints.Body || 0, "= Body"],
