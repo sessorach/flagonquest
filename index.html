@@ -552,6 +552,10 @@ function emptyCharacterData() {
     statPoints:  Object.fromEntries(STATS.map(s => [s, 0])),
     skillPoints: Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])),
     xpBudget: "75", charName: "", charConcept: "", charNotes: "", noteRows: [],
+    // Freeform, non-XP techniques the player writes in themselves — a
+    // one-off ability granted by the GM that doesn't come from the data
+    // file. Just { id, title, text }, no level/tags/prereqs/anything else.
+    customTechniques: [],
   };
 }
 
@@ -1556,6 +1560,72 @@ function DerivedStats({ statPoints, skillPoints }) {
 
 
 // ══════════════════════════════════════════════════════════════════
+// CUSTOM TECHNIQUE CARD — a freeform tile for a GM-granted ability that
+// doesn't come from the data file: just a title and rules text, no
+// level/tags/prereqs, and never counted toward XP. Same card look as a
+// real TechCard so it reads as "one more technique," editable on the
+// Builder tab and read-only (title + text only) on the Character Sheet.
+// ══════════════════════════════════════════════════════════════════
+function CustomTechniqueCard({ tech, onTitleChange, onTextChange, onRemove, readOnly = false }) {
+  const cardStyle = {
+    background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+    padding: "12px 14px", display: "flex", flexDirection: "column", gap: 7,
+  };
+
+  if (readOnly) {
+    // Nothing to show for a copy the player added but never filled in.
+    if (!tech.title.trim() && !tech.text.trim()) return null;
+    return (
+      <div className="tech-card" style={cardStyle}>
+        <span style={{
+          fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+          fontSize: 17, color: TEXT.name, lineHeight: 1.3,
+        }}>
+          {tech.title.trim() || "Untitled technique"}
+        </span>
+        {tech.text && (
+          <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
+            {tech.text}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="tech-card" style={cardStyle}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <input
+          type="text"
+          value={tech.title}
+          onChange={e => onTitleChange(e.target.value)}
+          placeholder="Technique name…"
+          style={{
+            flex: 1, fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+            fontSize: 16, padding: "4px 8px",
+          }}
+        />
+        <button
+          onClick={onRemove}
+          aria-label="Remove custom technique"
+          style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 18, lineHeight: 1, padding: "2px 4px", flexShrink: 0 }}
+        >
+          ✕
+        </button>
+      </div>
+      <textarea
+        value={tech.text}
+        onChange={e => onTextChange(e.target.value)}
+        placeholder="Rules text…"
+        rows={3}
+        style={{ fontSize: 13 }}
+      />
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
 // BUILD PANEL — character name, stats, export/import/share, and the
 // build list. Rendered both on the standalone "My build" tab and in
 // the sticky sidebar next to the technique list on wide screens.
@@ -1771,6 +1841,9 @@ function App() {
   // both saved with the character like everything else.
   const [charNotes, setCharNotes] = useState(initialCharacter.data.charNotes);
   const [noteRows, setNoteRows] = useState(initialCharacter.data.noteRows);
+  // Freeform GM-granted abilities the player writes in themselves — see
+  // emptyCharacterData. Never touches XP math anywhere.
+  const [customTechniques, setCustomTechniques] = useState(initialCharacter.data.customTechniques);
   const importRef = useRef();
 
   // Loads one character's data into all of the state above — used by
@@ -1790,6 +1863,7 @@ function App() {
     setCharConcept(data.charConcept);
     setCharNotes(data.charNotes);
     setNoteRows(data.noteRows);
+    setCustomTechniques(data.customTechniques);
   };
 
   // Switches to an existing character slot.
@@ -1922,9 +1996,9 @@ function App() {
     saveCharacterData(activeId, {
       build, notes, configs, renames, expended,
       statPoints, skillPoints, xpBudget,
-      charName, charConcept, charNotes, noteRows,
+      charName, charConcept, charNotes, noteRows, customTechniques,
     });
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -2164,6 +2238,17 @@ function App() {
     });
   };
 
+  // ── Custom techniques — freeform, no XP, no data-file entry ─────
+  const addCustomTechnique = () => {
+    setCustomTechniques(cs => [...cs, { id: makeUid(), title: "", text: "" }]);
+  };
+  const updateCustomTechnique = (id, field, value) => {
+    setCustomTechniques(cs => cs.map(c => c.id === id ? { ...c, [field]: value } : c));
+  };
+  const removeCustomTechnique = id => {
+    setCustomTechniques(cs => cs.filter(c => c.id !== id));
+  };
+
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
   // so the file stays readable and survives future data updates), plus
@@ -2177,6 +2262,7 @@ function App() {
       skillPoints,
       charNotes,
       noteRows,
+      customTechniques: customTechniques.map(c => ({ title: c.title, text: c.text })),
       exportedAt: new Date().toISOString(),
       techniques: buildEntries.map(e => {
         const cfg = configs[e.uid];
@@ -2252,6 +2338,9 @@ function App() {
           skillPoints: { ...emptyCharacterData().skillPoints, ...(data.skillPoints || {}) },
           charNotes:   typeof data.charNotes === "string" ? data.charNotes : "",
           noteRows:    Array.isArray(data.noteRows) ? data.noteRows.map(r => ({ id: makeUid(), text: r.text ?? "" })) : [],
+          customTechniques: Array.isArray(data.customTechniques)
+            ? data.customTechniques.map(c => ({ id: makeUid(), title: c.title ?? "", text: c.text ?? "" }))
+            : [],
         });
       } catch {
         alert("Couldn't read that file — make sure it's a FlagonQuest build export.");
@@ -2832,6 +2921,29 @@ function App() {
               ))}
             </div>
           )}
+
+          {/* Custom techniques — freeform GM-granted abilities, kept
+              separate from knownTechs/build since they're not real
+              data-file techniques and never cost XP. */}
+          {customTechniques.length > 0 && (
+            <div className="tech-list" style={{ marginTop: 10 }}>
+              {customTechniques.map(c => (
+                <CustomTechniqueCard
+                  key={c.id}
+                  tech={c}
+                  onTitleChange={v => updateCustomTechnique(c.id, "title", v)}
+                  onTextChange={v => updateCustomTechnique(c.id, "text", v)}
+                  onRemove={() => removeCustomTechnique(c.id)}
+                />
+              ))}
+            </div>
+          )}
+          <button
+            onClick={addCustomTechnique}
+            style={{ marginTop: 10, ...actionBtn() }}
+          >
+            + Add custom technique
+          </button>
         </div>
       )}
 
@@ -2938,13 +3050,16 @@ function App() {
           <div style={{ height:14 }} />
           <DerivedStats statPoints={statPoints} skillPoints={skillPoints} />
 
-          {buildEntries.length === 0 ? (
+          {buildEntries.length === 0 && customTechniques.every(c => !c.title.trim() && !c.text.trim()) ? (
             <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
               Add techniques on the Techniques tab, then see them here.
             </div>
           ) : (
             <div className="tech-list">
               {sheetCards.map(renderSheetCard)}
+              {customTechniques.map(c => (
+                <CustomTechniqueCard key={c.id} tech={c} readOnly />
+              ))}
             </div>
           )}
         </div>

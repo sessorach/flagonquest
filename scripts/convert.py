@@ -125,9 +125,77 @@ FEATURE_MAP = {
     "Additional Prereq":    "prereq",
 }
 
+# Items — everything from Other Equipment through Masterwork Items, since
+# they share the same shape (a name, level, description, and the crafting
+# fields for whichever apply). Category distinguishes what kind of item a
+# row is (Equipment, Pack/Gear, Tool/Kit, Food, Grenade, Potion, Poison,
+# Masterwork); Slot only applies to Masterwork items.
+ITEM_MAP = {
+    "ID":               "id",
+    "Name":             "name",
+    "Category":         "category",
+    "Slot":             "slot",
+    "Tags":             "tags",
+    "Level":            "level",
+    "Description":      "description",
+    "Cost":             "cost",
+    "School":           "school",
+    "Skill Total":      "skill_total",
+    "Total Materials":  "total_materials",
+    "Base Materials":   "base_materials",
+    "Extra Materials":  "extra_materials",
+    "Base Item":        "base_item",
+}
+
+BACKGROUND_MAP = {
+    "ID":           "id",
+    "Name":         "name",
+    "Category":     "category",
+    "Description":  "description",
+}
+
+# Basic Items' crafting recipes (Weapons, Armor, Basic Clothing, etc.) —
+# what School/Skill Total/materials it takes to make each equipment
+# category, as opposed to items.csv's specific named items.
+CRAFTING_RECIPE_MAP = {
+    "ID":               "id",
+    "Name":             "name",
+    "Description":      "description",
+    "School":           "school",
+    "Skill Total":      "skill_total",
+    "Total Materials":  "total_materials",
+    "Base Materials":   "base_materials",
+    "Extra Materials":  "extra_materials",
+}
+
+WEAPON_CATEGORY_MAP = {
+    "ID":         "id",
+    "Weapon":     "name",
+    "Accuracy":   "accuracy",
+    "Damage":     "damage",
+    "Defense":    "defense",
+    "Range":      "range",
+    "Skill":      "skill",
+    "Might STR":  "might_str",
+}
+
+ARMOR_CATEGORY_MAP = {
+    "ID":                       "id",
+    "Armor":                    "name",
+    "Physical Resist":          "physical_resist",
+    "Dodge Penalty":            "dodge_penalty",
+    "Speed Penalty":            "speed_penalty",
+    "Might Skill Total Req.":   "might_str",
+}
+
 TABLES = {
-    "techniques.csv": ("../data/techniques.json", TECHNIQUE_MAP),
-    "features.csv":   ("../data/features.json",   FEATURE_MAP),
+    "techniques.csv":         ("../data/techniques.json",         TECHNIQUE_MAP),
+    "features.csv":           ("../data/features.json",           FEATURE_MAP),
+    "items.csv":              ("../data/items.json",              ITEM_MAP),
+    "backgrounds.csv":        ("../data/backgrounds.json",        BACKGROUND_MAP),
+    "crafting_recipes.csv":   ("../data/crafting_recipes.json",   CRAFTING_RECIPE_MAP),
+    "weapon_categories.csv":  ("../data/weapon_categories.json",  WEAPON_CATEGORY_MAP),
+    "armor_categories.csv":   ("../data/armor_categories.json",   ARMOR_CATEGORY_MAP),
 }
 
 # Must stay in sync with STAT_SKILLS in index.html.
@@ -334,6 +402,25 @@ for csv_file, (json_file, col_map) in TABLES.items():
         if feature_errors:
             print(f"\n⚠ {len(feature_errors)} issue(s) in {csv_file}:")
             for e in feature_errors:
+                print(f"   {e}")
+            print()
+
+    if csv_file == "items.csv":
+        known_categories = {"Equipment", "Pack/Gear", "Tool/Kit", "Food", "Grenade", "Potion", "Poison", "Masterwork"}
+        known_slots = {"Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"}
+        item_errors = []
+        for r in rows:
+            category = r.get("category")
+            if category not in known_categories:
+                item_errors.append(f"{r.get('id')} {r.get('name')!r}: unknown Category {category!r}")
+            slot = r.get("slot")
+            if slot and category != "Masterwork":
+                item_errors.append(f"{r.get('id')} {r.get('name')!r}: has a Slot but Category isn't Masterwork")
+            if category == "Masterwork" and slot not in known_slots:
+                item_errors.append(f"{r.get('id')} {r.get('name')!r}: unknown Slot {slot!r}")
+        if item_errors:
+            print(f"\n⚠ {len(item_errors)} issue(s) in {csv_file}:")
+            for e in item_errors:
                 print(f"   {e}")
             print()
 

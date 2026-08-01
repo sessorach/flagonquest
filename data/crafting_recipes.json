@@ -1,0 +1,72 @@
+[
+  {
+    "id": "CR001",
+    "name": "Weapons",
+    "description": "Includes all standard weapons.\nBows can only be made using Carving.",
+    "school": "Carving or Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": "[Item’s base price in Gold]",
+    "base_materials": "Wood or Bone (if Carving), Metal (if Smithing)",
+    "extra_materials": "Cloth, Leather"
+  },
+  {
+    "id": "CR002",
+    "name": "Armor",
+    "description": "Includes all standard armors.\nHeavy armor can only be made using Smithing.",
+    "school": "Carving, Tailoring, or Smithing",
+    "skill_total": "Craft 3 (Light), Craft 5 (Heavy)",
+    "total_materials": "[Item’s base price in Gold]",
+    "base_materials": "Cloth or Leather (if Tailoring), Wood or Bone (if Carving), Metal (if Smithing)",
+    "extra_materials": "Cloth, Leather, Metal"
+  },
+  {
+    "id": "CR003",
+    "name": "Unarmed Enhancers",
+    "description": "Generally base item for Masterwork items, for unarmed attacks.",
+    "school": "Tailoring or Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": 3,
+    "base_materials": "Cloth or Leather (if Tailoring), Metal (if Smithing)",
+    "extra_materials": "Cloth, Leather, Metal"
+  },
+  {
+    "id": "CR004",
+    "name": "Basic Clothing",
+    "description": "For any applicable slot.",
+    "school": "Tailoring",
+    "skill_total": "Craft 3",
+    "total_materials": 3,
+    "base_materials": "Cloth",
+    "extra_materials": "Bone, Leather, Metal, Precious"
+  },
+  {
+    "id": "CR005",
+    "name": "Basic Jewelry",
+    "description": "For any applicable slot.",
+    "school": "Jewelrymaking",
+    "skill_total": "Craft 3",
+    "total_materials": 3,
+    "base_materials": "Precious",
+    "extra_materials": "Metal"
+  },
+  {
+    "id": "CR006",
+    "name": "Medicinal Supply",
+    "description": "Used in place of cards for certain Medicine-related Techniques and similar uses.",
+    "school": "Alchemy",
+    "skill_total": "Mixology 3",
+    "total_materials": 2,
+    "base_materials": "Medicinal",
+    "extra_materials": "Cloth"
+  },
+  {
+    "id": "CR007",
+    "name": "Other Items",
+    "description": "For various skill kits, adventuring goods, and other items that a character might want to create. Use",
+    "school": "Varies",
+    "skill_total": "Craft 3-5",
+    "total_materials": "[Item’s base price in Gold]",
+    "base_materials": "Varies",
+    "extra_materials": "Varies"
+  }
+]

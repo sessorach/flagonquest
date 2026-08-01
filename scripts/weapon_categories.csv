@@ -1,0 +1,12 @@
+ID,Weapon,Accuracy,Damage,Defense,Range,Skill,Might STR
+WC001,1H Light Melee,+1,3 + [Body or Cunning],+1,Close,Melee,-
+WC002,1H Heavy Melee,+0,4 + [Body],+0,Close,Melee,4
+WC003,2H Light Melee,+1,4 + [Body or Cunning],+1,Close,Melee,-
+WC004,2H Heavy Melee,+0,5 + [Body],+0,Close,Melee,6
+WC005,Light Thrown*,+1,3 + [Cunning],N/A,"Close, or 3 × Body",Acrobatics or Melee,-
+WC006,Heavy Thrown*,+0,4 + [Body],N/A,"Close, or 3 × Body",Acrobatics or Melee,4
+WC007,Light Bow,+1,3 + [Cunning],N/A,15,Archery,-
+WC008,Heavy Bow,+0,4 + [Cunning],N/A,20,Archery,6
+WC009,Unarmed,+2,2 + [Body or Cunning],+1,Close,Brawl,N/A
+WC010,Shield,+0,2 + [Body],+2,Close,Melee,-
+WC011,Improvised **,-1,+0,-1,"Close, or half of normal",Varies,Varies
