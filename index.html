@@ -147,6 +147,14 @@
         color: #111 !important;
         border-color: #000 !important;
         box-shadow: none !important;
+        /* Most browsers' print dialogs default "Background graphics" to
+           OFF, silently dropping every background color (including the
+           row-alt shading below) unless the page opts back in — this is
+           that opt-in. Without it, the shading only ever showed up when
+           printing through an automated tool that forces backgrounds on,
+           never for an actual person clicking Print. */
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
 
       .sheet-page { max-width: none !important; padding: 0 !important; padding-bottom: 26px !important; }
