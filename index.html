@@ -186,6 +186,20 @@
       .derived-stats-row { flex-wrap: nowrap !important; gap: 6px !important; }
       .derived-stats-row .sheet-box { padding: 4px 6px !important; }
 
+      /* Alternating row tint — screen uses a faint white overlay (fine on
+         the dark theme), but that's invisible once print flattens every
+         background to white, so it needs its own rule here. A light gray
+         band reads clearly and costs barely any ink; specific enough to
+         win over the "background: #fff" rule above despite both being
+         !important (that's decided by selector specificity, not just
+         source order — .row-alt beats the bare * selector). The row's
+         own children (label, formula, value, the skill-total badge) also
+         got forced to solid white by that same "*" rule, which punched
+         opaque holes in the band wherever a nested element sat — so
+         those need clearing back to transparent too. */
+      .row-alt { background: #ececec !important; }
+      .row-alt * { background: transparent !important; }
+
       /* Attribution — repeats at the bottom of every printed page
          instead of trailing wherever the last card happens to end. */
       .attribution-footer {
@@ -1425,7 +1439,7 @@ function StatsPanel({
                   eye, and rows alternate a faint tint so a long list of five
                   stays easy to scan across. */}
               {STAT_SKILLS[stat].map((skill, i) => (
-                <div key={skill} style={{
+                <div key={skill} className={i % 2 === 1 ? "row-alt" : undefined} style={{
                   display: "flex", alignItems: "center", gap: 6,
                   padding: "2px 4px", borderRadius: 4,
                   background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
@@ -1469,17 +1483,24 @@ function DerivedStats({ statPoints, skillPoints }) {
   // Each row's name is bold with its calculation in italics underneath —
   // matching the paper character sheet — instead of both crammed onto
   // one line, so the number the player actually reads stays the clear
-  // focal point on the right.
+  // focal point on the right. Rows alternate a faint tint (row-alt),
+  // same idea and class as the Stats & Skills rows above, so a five-row
+  // box stays easy to scan across — see the "row-alt" print rule for how
+  // this survives print's flattened-to-white color override.
   const block = (title, rows, footer) => (
     <div className="sheet-box" style={{
       background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
-      display: "flex", flexDirection: "column", gap: 7, flex: "1 1 220px",
+      display: "flex", flexDirection: "column", gap: 2, flex: "1 1 220px",
     }}>
-      <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+      <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 5 }}>
         {title}
       </div>
-      {rows.map(([label, value, formula]) => (
-        <div key={label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+      {rows.map(([label, value, formula], i) => (
+        <div key={label} className={i % 2 === 1 ? "row-alt" : undefined} style={{
+          display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
+          padding: "2px 4px", borderRadius: 4,
+          background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
+        }}>
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</div>
             {formula && <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic" }}>{formula}</div>}
