@@ -1780,9 +1780,9 @@ function AttackWorkspace({
             {r.mightRequirement != null && (
               <span style={{
                 marginLeft: 6, fontSize: 10, fontWeight: 500, padding: "1px 5px", borderRadius: 3,
-                border: `0.5px solid ${r.mightMet ? "#5b5540" : "#7a2e2e"}`,
-                color: r.mightMet ? TEXT.faint : "#e0645f",
-                background: r.mightMet ? "transparent" : "rgba(224,100,95,0.12)",
+                border: `0.5px solid ${r.mightMet ? "#3e5a34" : "#7a2e2e"}`,
+                color: r.mightMet ? "#6fae5a" : "#e0645f",
+                background: r.mightMet ? "rgba(111,174,90,0.12)" : "rgba(224,100,95,0.12)",
               }}>
                 Might {r.mightRequirement}
               </span>
@@ -2149,7 +2149,10 @@ function InventoryTile({
           {mightReq != null && (
             <>
               {"  ·  "}
-              <span style={{ color: mightMet ? "inherit" : "#e0645f", fontWeight: mightMet ? "inherit" : 600 }}>
+              <span style={{
+                color: !showEquip ? "inherit" : (mightMet ? "#6fae5a" : "#e0645f"),
+                fontWeight: !showEquip ? "inherit" : 600,
+              }}>
                 Might Req {mightReq}
               </span>
             </>
