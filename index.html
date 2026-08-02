@@ -139,7 +139,16 @@
        fine here, this is a reference printout, not a screen. !important
        throughout since the whole app is otherwise styled inline. */
     @media print {
-      @page { margin: 0.4in; }
+      /* Extra bottom margin (beyond the normal 0.4in) reserves room for
+         the fixed-position attribution footer below on EVERY page, not
+         just the last one — @page margins are a true per-page boundary,
+         unlike .sheet-page's padding-bottom, which only ever affected
+         the very end of the whole document flow. On any page before the
+         last, real content (the last thing that happened to land near
+         the bottom of that page — Gold, an item tile, a technique)
+         could otherwise land inside the same strip of the page the
+         fixed footer repeats into and get visually clipped/overlapped. */
+      @page { margin: 0.4in 0.4in 0.7in 0.4in; }
       .no-print { display: none !important; }
       body { background: #fff !important; }
       * {
@@ -157,7 +166,7 @@
         print-color-adjust: exact !important;
       }
 
-      .sheet-page { max-width: none !important; padding: 0 !important; padding-bottom: 26px !important; }
+      .sheet-page { max-width: none !important; padding: 0 !important; }
 
       /* Solid black boxes instead of the screen's faint hairlines — the
          name/concept box, the print-only Total XP box, Stats & Skills,
@@ -1856,6 +1865,7 @@ function BackgroundsSection({
   selectedIds, onToggle, onMove, dragId, setDragId,
   readOnly = false,
 }) {
+  const [collapsed, setCollapsed] = useState(false);
   const selected = selectedIds.map(id => backgrounds.find(b => b.id === id)).filter(Boolean);
 
   if (readOnly) {
@@ -1863,6 +1873,24 @@ function BackgroundsSection({
     return (
       <div className="tech-list">
         {selected.map(bg => <BackgroundCard key={bg.id} bg={bg} readOnly />)}
+      </div>
+    );
+  }
+
+  const collapseBtnStyle = {
+    fontSize: 12, color: TEXT.muted, background: "transparent",
+    border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
+  };
+
+  // Tucked out of the way — just the picks (if any), plus a button to
+  // bring the toggle/picker grid back.
+  if (collapsed) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ fontSize: 13, color: selected.length > 0 ? TEXT.body : TEXT.faint }}>
+          {selected.length > 0 ? selected.map(bg => bg.name).join(", ") : "No backgrounds selected"}
+        </div>
+        <button onClick={() => setCollapsed(false)} style={collapseBtnStyle}>Show</button>
       </div>
     );
   }
@@ -1878,9 +1906,12 @@ function BackgroundsSection({
 
   return (
     <div>
-      <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
-        <button onClick={() => onBackgroundTypeChange("Settler")} style={toggleBtnStyle(backgroundType === "Settler")}>Settler</button>
-        <button onClick={() => onBackgroundTypeChange("Wildfolk")} style={toggleBtnStyle(backgroundType === "Wildfolk")}>Wildfolk</button>
+      <div style={{ display: "flex", gap: 6, marginBottom: 12, alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 6 }}>
+          <button onClick={() => onBackgroundTypeChange("Settler")} style={toggleBtnStyle(backgroundType === "Settler")}>Settler</button>
+          <button onClick={() => onBackgroundTypeChange("Wildfolk")} style={toggleBtnStyle(backgroundType === "Wildfolk")}>Wildfolk</button>
+        </div>
+        <button onClick={() => setCollapsed(true)} style={collapseBtnStyle}>Hide</button>
       </div>
 
       {selected.length > 0 && (
@@ -1934,10 +1965,11 @@ function BackgroundsSection({
 // Read-only on the Character Sheet: just Gold + the carried grid, no
 // picker, no Cost on the tiles.
 // ══════════════════════════════════════════════════════════════════
-// How much of a slot's capacity is spent — 2 for the Held slot (two
-// hands), 1 for everything else. A 2H weapon/bow takes both Held slots
-// at once (its own held_slots column), everything else takes 1.
-const SLOT_CAPACITY = { Held: 2 };
+// How much of a slot's capacity is spent — 2 for Held (two hands) and
+// Ring (one per hand), 1 for everything else. A 2H weapon/bow takes
+// both Held slots at once (its own held_slots column); everything else,
+// including rings, takes 1.
+const SLOT_CAPACITY = { Held: 2, Ring: 2 };
 function slotCost(item) {
   return item.slot === "Held" ? (item.held_slots || 1) : 1;
 }
