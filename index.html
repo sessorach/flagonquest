@@ -539,6 +539,39 @@ function resolveDamage(raw, statPoints) {
   return `${base + bonus} Physical`;
 }
 
+// Resolves a Range formula like "3 × Body" (the game's convention for
+// "3 times your Body Stat" — written with a multiplication sign since it
+// stood out better than "x" in the source doc) against the character's
+// actual Stat points into a plain number of meters. Anything else — a
+// flat number, or text with no stat multiplier — is returned unresolved,
+// exactly as stored.
+function resolveRange(raw, statPoints) {
+  if (raw == null) return null;
+  const text = String(raw).trim();
+  const m = text.match(/^(-?\d+)\s*×\s*(\w+)$/);
+  if (!m) return text;
+  const stat = m[2];
+  if (!STATS.includes(stat)) return text;
+  return String(parseInt(m[1], 10) * (statPoints[stat] || 0));
+}
+
+// A weapon usable both up close and at range — currently just Thrown
+// weapons — lists two Skills joined by "or" (Melee, for a close-range
+// swing, plus whichever Skill it's thrown with) and a Range of the form
+// "Close, or <formula>". Detected off that shape rather than hardcoded to
+// specific items, so any future weapon built the same way picks it up
+// too. Returns null for anything that doesn't match, so the caller falls
+// back to the normal single-value display.
+function parseDualModeWeapon(range, relevantSkill) {
+  if (!range || !relevantSkill) return null;
+  const rangeMatch = String(range).match(/^Close,\s*or\s*(.+)$/i);
+  if (!rangeMatch) return null;
+  const skills = String(relevantSkill).split(/\s+or\s+/i).map(s => s.trim()).filter(Boolean);
+  if (skills.length !== 2 || !skills.includes("Melee")) return null;
+  const rangedSkill = skills.find(s => s !== "Melee");
+  return { meleeRange: "Close", rangedRange: rangeMatch[1].trim(), meleeSkill: "Melee", rangedSkill };
+}
+
 // Like withGlossary, but also — when `skillTotals` is given ({ statPoints,
 // skillPoints }) — finds every "[... Skill Total]" bracket in `text` and
 // prepends the character's actual computed value in the same bold/glow
@@ -1557,8 +1590,9 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
   //
   // A row can optionally carry a 4th element — the ITEM_STAT_FIELDS key
   // for its equipment bonus (Speed, the five Resists, four of the five
-  // Defenses — Parry gets its bonus from the chosen Parry weapon
-  // instead, handled the same way by App's equipmentBonuses). When
+  // Defenses — Parry gets its bonus from the best Weapon Defense among
+  // equipped weapons instead, handled the same way by App's
+  // equipmentBonuses). When
   // that bonus is nonzero it's added to the shown value and called out
   // in the formula line, e.g. "= Essence (+2 equipped)".
   const block = (title, rows, footer) => (
@@ -1622,7 +1656,7 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
         ["Frost Resist",     essence, "= Essence", "frost_resist"],
         ["Brilliant Resist", essence, "= Essence", "brilliant_resist"],
         ["Shadow Resist",    essence, "= Essence", "shadow_resist"],
-      ], "Essence adds to each Resist. Parry Defense only counts the one weapon marked \"Parry\" — see Inventory below.")}
+      ], "Essence adds to each Resist. Parry Defense auto-uses the best Weapon Defense among your equipped weapons — see Inventory below.")}
     </div>
   );
 }
@@ -1642,6 +1676,23 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
 // available as a fillable blank, on screen and on the printed page,
 // not just a summary of already-picked stuff like the rest of the sheet.
 // ══════════════════════════════════════════════════════════════════
+// A Thrown weapon's Accuracy/Range/Skill cells each carry two values (one
+// for a close-range Melee swing, one for the thrown attack) instead of
+// one — see parseDualModeWeapon. Swords/bow emoji tag each line so it
+// reads at a glance without needing a legend.
+function isDualValue(v) { return v != null && typeof v === "object"; }
+function AttackDualCell({ melee, ranged, format = v => v ?? "—" }) {
+  return (
+    <span style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+      <span>⚔️ {format(melee)}</span>
+      <span>🏹 {format(ranged)}</span>
+    </span>
+  );
+}
+function formatAccuracyValue(v) {
+  return v != null ? `${v >= 0 ? "+" : ""}${v}` : "—";
+}
+
 function AttackWorkspace({
   weaponRows, customAttacks, onAddCustomAttack, onUpdateCustomAttack, onRemoveCustomAttack,
   onWeaponNoteChange,
@@ -1677,10 +1728,22 @@ function AttackWorkspace({
       {weaponRows.map(r => (
         <div key={r.key} style={{ display: "grid", gridTemplateColumns: colTemplate, gap: 6, alignItems: "center" }}>
           <span style={{ fontSize: 13, color: TEXT.name, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis" }}>{r.name}</span>
-          <span style={{ fontSize: 13, color: TEXT.body }}>{r.accuracy != null ? `${r.accuracy >= 0 ? "+" : ""}${r.accuracy}` : "—"}</span>
+          <span style={{ fontSize: 13, color: TEXT.body }}>
+            {isDualValue(r.accuracy)
+              ? <AttackDualCell melee={r.accuracy.melee} ranged={r.accuracy.ranged} format={formatAccuracyValue} />
+              : formatAccuracyValue(r.accuracy)}
+          </span>
           <span style={{ fontSize: 13, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis" }}>{r.damage ?? "—"}</span>
-          <span style={{ fontSize: 13, color: TEXT.body }}>{r.range ?? "—"}</span>
-          <span style={{ fontSize: 13, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis" }}>{r.skill ?? "—"}</span>
+          <span style={{ fontSize: 13, color: TEXT.body }}>
+            {isDualValue(r.range)
+              ? <AttackDualCell melee={r.range.melee} ranged={r.range.ranged} />
+              : (r.range ?? "—")}
+          </span>
+          <span style={{ fontSize: 13, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis" }}>
+            {isDualValue(r.skill)
+              ? <AttackDualCell melee={r.skill.melee} ranged={r.skill.ranged} />
+              : (r.skill ?? "—")}
+          </span>
           <input
             type="text" value={r.notes} onChange={e => onWeaponNoteChange(r.key, e.target.value)}
             placeholder="Reminder…" style={inputStyle}
@@ -1877,8 +1940,10 @@ function statBadge(label, v) {
 // a quantity stepper. Cost only shows up when editable (the Items tab)
 // — the Character Sheet doesn't need it. On the Character Sheet
 // specifically (readOnly + showEquip), it also gets an Equipped
-// checkbox — disabled when equipping it would overflow its Slot's
-// capacity — and, for a Weapon that can Parry, a Parry radio. A
+// checkbox — disabled when equipping it would overflow its (effective —
+// see effectiveSlot) Slot's capacity. Weapon Defense for Parry is shown
+// as an info badge but no longer picked by hand — see equipmentBonuses,
+// which auto-uses the best Weapon Defense among everything equipped. A
 // Masterwork item with base_item_options also gets a base-item picker
 // (e.g. Dauntless Wrap built onto Light or Heavy Armor) — but only on
 // the Items tab, where the rest of an item's build config lives; the
@@ -1894,7 +1959,8 @@ function statBadge(label, v) {
 function InventoryTile({
   entry, item, allItems = [], onQtyChange, onRemove, readOnly = false,
   showEquip = false, onToggleEquipped, equipDisabled = false,
-  onToggleParry, onBaseItemChange, onLevelChange,
+  onBaseItemChange, onLevelChange,
+  onDragStart, onDragEnd, onDragOver, onDrop, isDragging = false,
 }) {
   if (!item) return null; // stale reference to a removed/renamed data row
   const baseItemOptions = (item.base_item_options || [])
@@ -1924,13 +1990,35 @@ function InventoryTile({
     : item.cost;
 
   return (
-    <div className="tech-card" style={{
-      background: "#161b27",
-      border: entry.equipped ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
-      borderRadius: 8,
-      padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
-    }}>
+    <div
+      className="tech-card"
+      onDragOver={onDragOver}
+      onDrop={onDrop}
+      style={{
+        background: "#161b27",
+        border: entry.equipped ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
+        borderRadius: 8,
+        padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+        opacity: isDragging ? 0.5 : 1,
+      }}
+    >
       <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+        {onDragStart && (
+          <div
+            draggable
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
+            title="Drag to reorder"
+            aria-label={`Drag to reorder ${item.name}`}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: 16, flexShrink: 0, cursor: "grab", color: TEXT.faint, fontSize: 16,
+              userSelect: "none",
+            }}
+          >
+            ⠿
+          </div>
+        )}
         <span style={{
           fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
           fontSize: 15, color: TEXT.name, flex: 1, lineHeight: 1.3,
@@ -2009,10 +2097,10 @@ function InventoryTile({
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
       </div>
-      {showEquip && item.slot && (
+      {showEquip && effectiveSlot(item) && (
         <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 4, borderTop: "0.5px solid #2d3555" }}>
           <label
-            title={equipDisabled ? `No room left in the ${item.slot} slot` : undefined}
+            title={equipDisabled ? `No room left in the ${effectiveSlot(item)} slot` : undefined}
             style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: equipDisabled ? TEXT.faint : TEXT.body, cursor: equipDisabled ? "not-allowed" : "pointer" }}
           >
             <input
@@ -2023,12 +2111,6 @@ function InventoryTile({
             />
             Equipped
           </label>
-          {entry.equipped && canParry && (
-            <label style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: TEXT.body, cursor: "pointer" }}>
-              <input type="checkbox" checked={!!entry.isParryWeapon} onChange={onToggleParry} />
-              Parry
-            </label>
-          )}
         </div>
       )}
       {!readOnly && baseItemOptions.length > 0 && (
@@ -2069,6 +2151,7 @@ function CustomItemTile({
   entry, allItems = [], onNameChange, onTextChange, onQtyChange, onRemove, readOnly = false,
   onSlotChange, showEquip = false, onToggleEquipped, equipDisabled = false,
   onAddStat, onStatChange, onRemoveStat, onAddPower, onPowerLevelChange, onRemovePower,
+  onDragStart, onDragEnd, onDragOver, onDrop, isDragging = false,
 }) {
   if (readOnly && !entry.name.trim() && !entry.text.trim()) return null; // nothing to show
 
@@ -2095,13 +2178,35 @@ function CustomItemTile({
   const selectStyle = { fontSize: 12, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" };
 
   return (
-    <div className="tech-card" style={{
-      background: "#161b27",
-      border: entry.equipped ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
-      borderRadius: 8,
-      padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
-    }}>
+    <div
+      className="tech-card"
+      onDragOver={onDragOver}
+      onDrop={onDrop}
+      style={{
+        background: "#161b27",
+        border: entry.equipped ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
+        borderRadius: 8,
+        padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+        opacity: isDragging ? 0.5 : 1,
+      }}
+    >
       <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+        {onDragStart && (
+          <div
+            draggable
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
+            title="Drag to reorder"
+            aria-label={`Drag to reorder ${entry.name || "custom item"}`}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: 16, flexShrink: 0, cursor: "grab", color: TEXT.faint, fontSize: 16,
+              userSelect: "none",
+            }}
+          >
+            ⠿
+          </div>
+        )}
         {readOnly ? (
           <span style={{
             fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
@@ -2409,16 +2514,26 @@ function BackgroundsSection({
 // concept for freeform gear).
 const ITEM_SLOTS = ["Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"];
 const SLOT_CAPACITY = { Held: 2, Ring: 2 };
+// "Unarmed" (fighting bare-handed) is a Weapon with no Slot in the data —
+// you're empty-handed, so it doesn't occupy a Held slot — but it should
+// still be equippable and show up in Attack Workspace/Parry calculations
+// exactly like a one-handed Held weapon. Treated as a virtual, zero-cost
+// Held item everywhere slot capacity and equip eligibility are checked.
+function effectiveSlot(item) {
+  return item.slot || (item.category === "Weapon" ? "Held" : null);
+}
 function slotCost(item) {
+  if (!item.slot && item.category === "Weapon") return 0;
   return item.slot === "Held" ? (item.held_slots || 1) : 1;
 }
 
 function InventorySection({
   items, inventory, gold, onGoldChange, onAdd, onQtyChange, onRemove, readOnly = false,
-  showEquip = false, onToggleEquipped, onToggleParry, onBaseItemChange, onLevelChange,
+  showEquip = false, onToggleEquipped, onBaseItemChange, onLevelChange,
   customItems = [], onAddCustomItem, onUpdateCustomItem, onRemoveCustomItem,
   onToggleCustomItemEquipped, onAddCustomItemStat, onCustomItemStatChange, onRemoveCustomItemStat,
   onAddCustomItemPower, onCustomItemPowerLevelChange, onRemoveCustomItemPower,
+  dragId, setDragId, onMoveInventoryItem, onMoveCustomItem,
 }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
@@ -2442,9 +2557,10 @@ function InventorySection({
     inventory.forEach(e => {
       if (!e.equipped) return;
       const item = items.find(i => i.id === e.itemId);
-      if (!item || !item.slot) return;
+      const slot = item && effectiveSlot(item);
+      if (!slot) return;
       const name = item.name + (e.level && item.levels?.length > 1 ? ` (Lv ${e.level})` : "");
-      (map[item.slot] ??= []).push({ name, cost: slotCost(item) });
+      (map[slot] ??= []).push({ name, cost: slotCost(item) });
     });
     customItems.forEach(c => {
       if (!c.equipped || !c.slot) return;
@@ -2453,6 +2569,18 @@ function InventorySection({
     return map;
   }, [inventory, items, customItems, showEquip]);
 
+  // On the Character Sheet (showEquip, always readOnly), equipped items
+  // float to the top of the grid so what's actually being worn/wielded
+  // reads first — the Items tab keeps whatever order the player dragged
+  // things into (see the drag handles below), since reordering there
+  // would be pointless if the Sheet just re-sorted it anyway.
+  const displayInventory = showEquip
+    ? [...inventory].sort((a, b) => (b.equipped ? 1 : 0) - (a.equipped ? 1 : 0))
+    : inventory;
+  const displayCustomItems = showEquip
+    ? [...customItems].sort((a, b) => (b.equipped ? 1 : 0) - (a.equipped ? 1 : 0))
+    : customItems;
+
   const grid = (
     inventory.length === 0 && customItems.length === 0 ? (
       <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
@@ -2460,12 +2588,13 @@ function InventorySection({
       </div>
     ) : (
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 10 }}>
-        {inventory.map(entry => {
+        {displayInventory.map(entry => {
           const item = items.find(i => i.id === entry.itemId);
+          const slot = item && effectiveSlot(item);
           let equipDisabled = false;
-          if (showEquip && item && item.slot && !entry.equipped) {
-            const capacity = SLOT_CAPACITY[item.slot] || 1;
-            const used = (bySlot[item.slot] || []).reduce((sum, x) => sum + x.cost, 0);
+          if (showEquip && slot && !entry.equipped) {
+            const capacity = SLOT_CAPACITY[slot] || 1;
+            const used = (bySlot[slot] || []).reduce((sum, x) => sum + x.cost, 0);
             equipDisabled = used + slotCost(item) > capacity;
           }
           return (
@@ -2480,13 +2609,17 @@ function InventorySection({
               showEquip={showEquip}
               equipDisabled={equipDisabled}
               onToggleEquipped={() => onToggleEquipped(entry.uid)}
-              onToggleParry={() => onToggleParry(entry.uid)}
               onBaseItemChange={v => onBaseItemChange(entry.uid, v)}
               onLevelChange={readOnly ? undefined : (lv => onLevelChange(entry.uid, lv))}
+              onDragStart={readOnly ? undefined : (e => { e.dataTransfer.effectAllowed = "move"; setDragId(entry.uid); })}
+              onDragEnd={readOnly ? undefined : (() => setDragId(null))}
+              onDragOver={readOnly ? undefined : (e => { if (dragId) e.preventDefault(); })}
+              onDrop={readOnly ? undefined : (e => { e.preventDefault(); if (dragId) onMoveInventoryItem(dragId, entry.uid); setDragId(null); })}
+              isDragging={dragId === entry.uid}
             />
           );
         })}
-        {customItems.map(entry => {
+        {displayCustomItems.map(entry => {
           let equipDisabled = false;
           if (showEquip && entry.slot && !entry.equipped) {
             const capacity = SLOT_CAPACITY[entry.slot] || 1;
@@ -2513,6 +2646,11 @@ function InventorySection({
               onAddPower={itemId => onAddCustomItemPower(entry.id, itemId)}
               onPowerLevelChange={(powerId, lv) => onCustomItemPowerLevelChange(entry.id, powerId, lv)}
               onRemovePower={powerId => onRemoveCustomItemPower(entry.id, powerId)}
+              onDragStart={readOnly ? undefined : (e => { e.dataTransfer.effectAllowed = "move"; setDragId(entry.id); })}
+              onDragEnd={readOnly ? undefined : (() => setDragId(null))}
+              onDragOver={readOnly ? undefined : (e => { if (dragId) e.preventDefault(); })}
+              onDrop={readOnly ? undefined : (e => { e.preventDefault(); if (dragId) onMoveCustomItem(dragId, entry.id); setDragId(null); })}
+              isDragging={dragId === entry.id}
             />
           );
         })}
@@ -3295,6 +3433,18 @@ function App() {
   const removeCustomItem = id => {
     setCustomItems(cs => cs.filter(c => c.id !== id));
   };
+  const moveCustomItem = (draggedId, targetId) => {
+    if (draggedId === targetId) return;
+    setCustomItems(cs => {
+      const from = cs.findIndex(c => c.id === draggedId);
+      const to   = cs.findIndex(c => c.id === targetId);
+      if (from === -1 || to === -1) return cs;
+      const next = [...cs];
+      const [moved] = next.splice(from, 1);
+      next.splice(to, 0, moved);
+      return next;
+    });
+  };
   // Equipped — Character Sheet only, same slot-capacity rule as real
   // items (toggleEquipped below), just checked against inventory AND
   // customItems together since they share the same body slots.
@@ -3424,6 +3574,21 @@ function App() {
   const removeInventoryItem = uid => {
     setInventory(inv => inv.filter(e => e.uid !== uid));
   };
+  // Manual reordering via the Items tab's drag handles — same splice
+  // pattern as moveBackground/moveCustomTechnique, reusing the same
+  // shared dragId/setDragId state.
+  const moveInventoryItem = (draggedUid, targetUid) => {
+    if (draggedUid === targetUid) return;
+    setInventory(inv => {
+      const from = inv.findIndex(e => e.uid === draggedUid);
+      const to   = inv.findIndex(e => e.uid === targetUid);
+      if (from === -1 || to === -1) return inv;
+      const next = [...inv];
+      const [moved] = next.splice(from, 1);
+      next.splice(to, 0, moved);
+      return next;
+    });
+  };
   // A Masterwork item's power is built onto a base item (e.g. a Torso
   // enchantment onto Light or Heavy Armor) — see item.base_item_options.
   // Only meaningful for items that have options to pick from; harmless
@@ -3440,61 +3605,84 @@ function App() {
   };
 
   // Equipped — Character Sheet only (see InventorySection's showEquip).
-  // Unequipping also clears the Parry flag, since a weapon that's not
-  // equipped obviously isn't the one you're parrying with. Equipping is
-  // blocked by the disabled checkbox in the UI when it would overflow
-  // the item's slot (InventorySection computes that), but this function
-  // re-checks the same rule itself rather than trusting the UI alone.
+  // Equipped items are treated as physically distinct from the rest of a
+  // stack: equipping one copy out of a qty > 1 stack splits a single
+  // qty-1 equipped copy off into its own entry, leaving the rest behind
+  // as a separate unequipped stack — "10 swords, equip one" becomes an
+  // equipped sword card plus an unworn stack of 9, rather than the whole
+  // stack of 10 reading as equipped. Unequipping folds back into a
+  // matching unequipped stack (same item/level/base item) if one exists,
+  // rather than leaving two same-item cards sitting side by side.
+  // Equipping is blocked when it would overflow the item's (effective)
+  // slot capacity — InventorySection disables the checkbox for this, but
+  // this function re-checks the same rule itself rather than trusting
+  // the UI alone.
   const toggleEquipped = uid => {
     setInventory(inv => {
       const entry = inv.find(e => e.uid === uid);
       if (!entry) return inv;
       if (entry.equipped) {
-        return inv.map(e => e.uid === uid ? { ...e, equipped: false, isParryWeapon: false } : e);
+        const twin = inv.find(e => e.uid !== uid && !e.equipped && e.itemId === entry.itemId
+          && e.level === entry.level && e.baseItemId === entry.baseItemId);
+        if (twin) {
+          return inv
+            .map(e => e.uid === twin.uid ? { ...e, qty: e.qty + entry.qty } : e)
+            .filter(e => e.uid !== uid);
+        }
+        return inv.map(e => e.uid === uid ? { ...e, equipped: false } : e);
       }
       const item = items.find(i => i.id === entry.itemId);
-      if (item && item.slot) {
-        const capacity = SLOT_CAPACITY[item.slot] || 1;
-        const used = inv.reduce((sum, e) => {
-          if (e.uid === uid || !e.equipped) return sum;
-          const it = items.find(i => i.id === e.itemId);
-          return (it && it.slot === item.slot) ? sum + slotCost(it) : sum;
-        }, 0);
-        if (used + slotCost(item) > capacity) return inv;
+      if (item) {
+        const slot = effectiveSlot(item);
+        if (slot) {
+          const capacity = SLOT_CAPACITY[slot] || 1;
+          const used = inv.reduce((sum, e) => {
+            if (e.uid === uid || !e.equipped) return sum;
+            const it = items.find(i => i.id === e.itemId);
+            return (it && effectiveSlot(it) === slot) ? sum + slotCost(it) : sum;
+          }, 0);
+          if (used + slotCost(item) > capacity) return inv;
+        }
+      }
+      if (entry.qty > 1) {
+        const rest = { ...entry, qty: entry.qty - 1 };
+        const equippedCopy = { ...entry, uid: makeUid(), qty: 1, equipped: true };
+        return inv.flatMap(e => e.uid === uid ? [rest, equippedCopy] : [e]);
       }
       return inv.map(e => e.uid === uid ? { ...e, equipped: true } : e);
     });
   };
-  // Only one equipped weapon can be the one you Parry with — picking a
-  // new one replaces the old; picking the current one again clears it.
-  const toggleParryWeapon = uid => {
-    setInventory(inv => inv.map(e => ({ ...e, isParryWeapon: e.uid === uid ? !e.isParryWeapon : false })));
-  };
 
   // Sums every equipped item's flat stat bonuses (ITEM_STAT_FIELDS) into
   // one { key: total } object DerivedStats adds onto its usual formulas
-  // — Parry Defense is the one exception, since only the single chosen
-  // Parry weapon's Weapon Defense counts, not every equipped weapon's.
-  // Non-numeric stat values (e.g. Lightfoot Shoes' "[Level]" Speed) are
-  // skipped — those still need a human to apply them. A Masterwork item
-  // built onto a chosen base item (see base_item_options) also adds the
-  // base item's own stats — e.g. Dauntless Wrap on Heavy Armor gets both
-  // the enchantment's bonus and Heavy Armor's Physical Resist/penalties.
+  // — Parry Defense is the one exception: rather than a single manually-
+  // designated Parry weapon, it auto-uses the best (highest) Weapon
+  // Defense among every currently equipped weapon, floored at 0 so a
+  // weapon with a Weapon Defense penalty (e.g. Improvised Weapon) never
+  // makes you worse off than parrying bare-handed. Non-numeric stat
+  // values (e.g. Lightfoot Shoes' "[Level]" Speed) are skipped — those
+  // still need a human to apply them. A Masterwork item built onto a
+  // chosen base item (see base_item_options) also adds the base item's
+  // own stats — e.g. Dauntless Wrap on Heavy Armor gets both the
+  // enchantment's bonus and Heavy Armor's Physical Resist/penalties —
+  // and a weapon enchantment's Weapon Defense falls back to its base
+  // weapon's the same way.
   const equipmentBonuses = useMemo(() => {
     const totals = {};
     const addStats = it => ITEM_STAT_FIELDS.forEach(([key]) => {
       const v = it[key];
       if (typeof v === "number") totals[key] = (totals[key] || 0) + v;
     });
+    const parryValues = [];
     inventory.forEach(e => {
       if (!e.equipped) return;
       const item = items.find(i => i.id === e.itemId);
       if (!item) return;
       addStats(item);
-      if (e.baseItemId) {
-        const baseItem = items.find(i => i.id === e.baseItemId);
-        if (baseItem) addStats(baseItem);
-      }
+      const baseItem = e.baseItemId ? items.find(i => i.id === e.baseItemId) : null;
+      if (baseItem) addStats(baseItem);
+      const wd = item.weapon_defense ?? baseItem?.weapon_defense;
+      if (typeof wd === "number") parryValues.push(wd);
     });
     // Custom items — their own manually-entered stats, plus every
     // attached Masterwork power's own stats (see CustomItemTile).
@@ -3509,33 +3697,43 @@ function App() {
         if (power) addStats(power);
       });
     });
-    const parryEntry = inventory.find(e => e.equipped && e.isParryWeapon);
-    const parryItem = parryEntry && items.find(i => i.id === parryEntry.itemId);
-    const weaponDefense = typeof parryItem?.weapon_defense === "number" ? parryItem.weapon_defense : 0;
-    totals.parry_defense = (totals.parry_defense || 0) + weaponDefense;
+    totals.parry_defense = (totals.parry_defense || 0) + Math.max(0, ...parryValues);
     return totals;
   }, [inventory, items, customItems]);
 
-  // Auto-listed rows for the Attack Workspace — every equipped Held-slot
-  // item that actually has an offensive profile (Accuracy/Damage/Range).
-  // A Masterwork weapon enchantment doesn't carry these itself; they come
+  // Auto-listed rows for the Attack Workspace — every equipped weapon
+  // (Held-slot, or Unarmed's virtual Held slot — see effectiveSlot) that
+  // actually has an offensive profile (Accuracy/Damage/Range). A
+  // Masterwork weapon enchantment doesn't carry these itself; they come
   // from whichever base weapon it's built onto (see onBaseItemChange),
   // same fallback as InventoryTile's own weaponInfo line. A Shield or a
   // still-unset enchantment has neither and is left off the list.
+  // A Thrown weapon (or anything shaped the same way — see
+  // parseDualModeWeapon) gets its Accuracy/Range/Skill as a { melee,
+  // ranged } pair instead of a single value, since it can attack either
+  // way; Damage doesn't change with mode, so it stays a single value.
   const equippedWeaponAttacks = useMemo(() => {
     const rows = [];
     inventory.forEach(e => {
       if (!e.equipped) return;
       const item = items.find(i => i.id === e.itemId);
-      if (!item || item.slot !== "Held") return;
+      if (!item || effectiveSlot(item) !== "Held") return;
       const baseItem = e.baseItemId ? items.find(i => i.id === e.baseItemId) : null;
       const accuracy = item.accuracy ?? baseItem?.accuracy;
       const rawDamage = item.damage ?? baseItem?.damage;
       const range = item.range ?? baseItem?.range;
+      const skill = item.relevant_skill ?? baseItem?.relevant_skill;
       if (accuracy == null && rawDamage == null && range == null) return;
+      const dual = parseDualModeWeapon(range, skill);
       rows.push({
-        key: e.uid, name: item.name, accuracy, damage: resolveDamage(rawDamage, statPoints), range,
-        skill: item.relevant_skill ?? baseItem?.relevant_skill,
+        key: e.uid,
+        name: item.name,
+        accuracy: dual ? { melee: accuracy, ranged: accuracy } : accuracy,
+        damage: resolveDamage(rawDamage, statPoints),
+        range: dual
+          ? { melee: dual.meleeRange, ranged: resolveRange(dual.rangedRange, statPoints) }
+          : resolveRange(range, statPoints),
+        skill: dual ? { melee: dual.meleeSkill, ranged: dual.rangedSkill } : skill,
         notes: e.attackNote || "",
       });
     });
@@ -4342,8 +4540,10 @@ function App() {
 
       {/* ════════ ITEMS VIEW ════════════════════════════════════
           Gold and the item picker/inventory live here, not the Builder
-          — the Character Sheet shows the same inventory read-only,
-          plus Equipped/Parry controls (see the Sheet view below). */}
+          — the Character Sheet shows the same inventory read-only, plus
+          Equipped controls (see the Sheet view below). Parry Defense is
+          computed automatically from whatever's equipped there, no
+          manual picker needed. */}
       {view === "items" && (
         <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
           <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
@@ -4358,6 +4558,8 @@ function App() {
             onAddCustomItemStat={addCustomItemStat} onCustomItemStatChange={customItemStatChange}
             onRemoveCustomItemStat={removeCustomItemStat} onAddCustomItemPower={addCustomItemPower}
             onCustomItemPowerLevelChange={customItemPowerLevelChange} onRemoveCustomItemPower={removeCustomItemPower}
+            dragId={dragId} setDragId={setDragId}
+            onMoveInventoryItem={moveInventoryItem} onMoveCustomItem={moveCustomItem}
           />
         </div>
       )}
@@ -4482,7 +4684,7 @@ function App() {
               <div style={{ height:14 }} />
               <InventorySection
                 items={items} inventory={inventory} gold={gold} readOnly showEquip
-                onToggleEquipped={toggleEquipped} onToggleParry={toggleParryWeapon}
+                onToggleEquipped={toggleEquipped}
                 customItems={customItems} onToggleCustomItemEquipped={toggleCustomItemEquipped}
               />
             </>
