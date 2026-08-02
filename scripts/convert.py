@@ -145,6 +145,26 @@ ITEM_MAP = {
     "Base Materials":   "base_materials",
     "Extra Materials":  "extra_materials",
     "Base Item":        "base_item",
+    # Flat stat bonuses an equipped/carried item grants, one column per
+    # number the Character Sheet's Vitals/Defenses/Health/Resists boxes
+    # track — so an item that grants one can feed it in directly instead
+    # of only living as unstructured Description prose. Most Masterwork
+    # items grant a unique ability rather than a flat number, or let you
+    # choose among several stats, so these are blank far more often than
+    # not — that's expected, not a gap to fill in.
+    "Physical Resist":   "physical_resist",
+    "Fire Resist":        "fire_resist",
+    "Frost Resist":       "frost_resist",
+    "Brilliant Resist":   "brilliant_resist",
+    "Shadow Resist":      "shadow_resist",
+    "Speed":              "speed",
+    "Parry Defense":      "parry_defense",
+    "Dodge Defense":      "dodge_defense",
+    "Bodily Defense":     "bodily_defense",
+    "Mental Defense":     "mental_defense",
+    "Instinct Defense":   "instinct_defense",
+    "Shallow Health":     "shallow_health",
+    "Deep Health":        "deep_health",
 }
 
 BACKGROUND_MAP = {

@@ -556,6 +556,16 @@ function emptyCharacterData() {
     // one-off ability granted by the GM that doesn't come from the data
     // file. Just { id, title, text }, no level/tags/prereqs/anything else.
     customTechniques: [],
+    // Backgrounds: at most one General pick, and one Settler-or-Wildfolk
+    // pick depending on backgroundType — just a list of background IDs,
+    // in the order chosen (so it can be drag-reordered like techniques).
+    selectedBackgrounds: [],
+    backgroundType: "Settler",
+    // Inventory: { uid, itemId, qty } per distinct item carried — a
+    // separate uid per row (not id-keyed) just so rows never collide,
+    // even though items don't have per-copy config like techniques do.
+    inventory: [],
+    gold: "",
   };
 }
 
@@ -1626,6 +1636,317 @@ function CustomTechniqueCard({ tech, onTitleChange, onTextChange, onRemove, read
 
 
 // ══════════════════════════════════════════════════════════════════
+// BACKGROUND CARD — one Background tile, shared by the picker grid
+// (with a Select/Remove toggle) and the read-only Character Sheet.
+// ══════════════════════════════════════════════════════════════════
+function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
+  return (
+    <div className="tech-card" style={{
+      background: "#161b27",
+      border: selected ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
+      borderRadius: 8, padding: "12px 14px",
+      display: "flex", flexDirection: "column", gap: 7,
+    }}>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+        <span style={{
+          fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+          fontSize: 17, color: TEXT.name, flex: 1, lineHeight: 1.3,
+        }}>
+          {bg.name}
+        </span>
+        <span style={{
+          fontSize: 12, color: TEXT.muted, background: "#0d1117",
+          border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 6px", flexShrink: 0,
+        }}>
+          {bg.category}
+        </span>
+      </div>
+      <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.5 }}>
+        {bg.description}
+      </div>
+      {!readOnly && (
+        <button
+          onClick={() => onToggle(bg)}
+          style={{
+            alignSelf: "flex-start", fontSize: 13,
+            color: selected ? "#c0392b" : "#d4a843",
+            background: "transparent",
+            border: `0.5px solid ${selected ? "#c0392b" : "#a07c2e"}`,
+            borderRadius: 4, padding: "2px 10px",
+          }}
+        >
+          {selected ? "− Remove" : "+ Select"}
+        </button>
+      )}
+    </div>
+  );
+}
+
+
+// Flat stat-bonus columns an item can carry — see ITEM_MAP in convert.py.
+// [data key, short display label]
+const ITEM_STAT_FIELDS = [
+  ["physical_resist", "Physical Resist"], ["fire_resist", "Fire Resist"],
+  ["frost_resist", "Frost Resist"], ["brilliant_resist", "Brilliant Resist"],
+  ["shadow_resist", "Shadow Resist"], ["speed", "Speed"],
+  ["parry_defense", "Parry Defense"], ["dodge_defense", "Dodge Defense"],
+  ["bodily_defense", "Bodily Defense"], ["mental_defense", "Mental Defense"],
+  ["instinct_defense", "Instinct Defense"],
+  ["shallow_health", "Shallow Health"], ["deep_health", "Deep Health"],
+];
+
+// ══════════════════════════════════════════════════════════════════
+// INVENTORY TILE — one owned item: name, category/slot, any flat stat
+// bonuses it carries, and a quantity stepper. Cost only shows up when
+// editable (the Builder) — the Character Sheet doesn't need it.
+// ══════════════════════════════════════════════════════════════════
+function InventoryTile({ entry, item, onQtyChange, onRemove, readOnly = false }) {
+  if (!item) return null; // stale reference to a removed/renamed data row
+  const statBadges = ITEM_STAT_FIELDS
+    .map(([key, label]) => [label, item[key]])
+    .filter(([, v]) => v != null && v !== "");
+
+  return (
+    <div className="tech-card" style={{
+      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+      padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+    }}>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+        <span style={{
+          fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+          fontSize: 15, color: TEXT.name, flex: 1, lineHeight: 1.3,
+        }}>
+          {item.name}
+        </span>
+        {!readOnly && (
+          <button
+            onClick={onRemove}
+            aria-label={`Remove ${item.name}`}
+            style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 16, lineHeight: 1, padding: "2px 4px", flexShrink: 0 }}
+          >
+            ✕
+          </button>
+        )}
+      </div>
+      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
+        <span style={{ fontSize: 11, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px" }}>
+          {item.category}{item.slot ? ` · ${item.slot}` : ""}
+        </span>
+        {!readOnly && item.cost && (
+          <span style={{ fontSize: 12, color: TEXT.faint }}>{item.cost}</span>
+        )}
+      </div>
+      {statBadges.length > 0 && (
+        <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+          {statBadges.map(([label, v]) => (
+            <span key={label} style={{
+              fontSize: 11, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
+              borderRadius: 4, padding: "1px 6px",
+            }}>
+              {label} +{v}
+            </span>
+          ))}
+        </div>
+      )}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
+        <span style={{ fontSize: 12, color: TEXT.faint }}>Qty</span>
+        {readOnly ? (
+          <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+        ) : (
+          <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// BACKGROUNDS SECTION — a Settler/Wildfolk toggle, the selected
+// background(s) as a drag-reorderable list (same handle as techniques),
+// and a picker grid of everything still eligible to pick. Selecting a
+// background already picked in the same category (General, or whichever
+// of Settler/Wildfolk the toggle is on) replaces it, like a radio
+// button — matching "one General pick, one Settler-or-Wildfolk pick."
+// Read-only on the Character Sheet: just the picks, no toggle/picker.
+// ══════════════════════════════════════════════════════════════════
+function BackgroundsSection({
+  backgrounds, backgroundType, onBackgroundTypeChange,
+  selectedIds, onToggle, onMove, dragId, setDragId,
+  readOnly = false,
+}) {
+  const selected = selectedIds.map(id => backgrounds.find(b => b.id === id)).filter(Boolean);
+
+  if (readOnly) {
+    if (selected.length === 0) return null;
+    return (
+      <div className="tech-list">
+        {selected.map(bg => <BackgroundCard key={bg.id} bg={bg} readOnly />)}
+      </div>
+    );
+  }
+
+  const eligible  = backgrounds.filter(b => b.category === "General" || b.category === backgroundType);
+  const available = eligible.filter(b => !selectedIds.includes(b.id));
+  const toggleBtnStyle = active => ({
+    padding: "4px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+    background: active ? "#d4a843" : "transparent",
+    color: active ? "#0a0e18" : TEXT.muted,
+    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
+  });
+
+  return (
+    <div>
+      <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
+        <button onClick={() => onBackgroundTypeChange("Settler")} style={toggleBtnStyle(backgroundType === "Settler")}>Settler</button>
+        <button onClick={() => onBackgroundTypeChange("Wildfolk")} style={toggleBtnStyle(backgroundType === "Wildfolk")}>Wildfolk</button>
+      </div>
+
+      {selected.length > 0 && (
+        <div className="tech-list" style={{ marginBottom: 12 }}>
+          {selected.map(bg => (
+            <div
+              key={bg.id}
+              onDragOver={e => { if (dragId) e.preventDefault(); }}
+              onDrop={e => { e.preventDefault(); if (dragId) onMove(dragId, bg.id); setDragId(null); }}
+              style={{ display: "flex", gap: 6, alignItems: "stretch", opacity: dragId === bg.id ? 0.5 : 1 }}
+            >
+              <div
+                draggable
+                onDragStart={e => { e.dataTransfer.effectAllowed = "move"; setDragId(bg.id); }}
+                onDragEnd={() => setDragId(null)}
+                title="Drag to reorder"
+                aria-label={`Drag to reorder ${bg.name}`}
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  width: 22, flexShrink: 0, cursor: "grab", color: TEXT.faint, fontSize: 16,
+                  userSelect: "none",
+                }}
+              >
+                ⠿
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <BackgroundCard bg={bg} selected onToggle={onToggle} />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {available.length > 0 && (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 10 }}>
+          {available.map(bg => <BackgroundCard key={bg.id} bg={bg} onToggle={onToggle} />)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// INVENTORY SECTION — a Gold field, a search+category picker to add
+// items (items.json has 116 rows, so results only show once you search
+// or pick a category rather than always listing all of them), and a
+// multi-column grid of what's actually carried — wider tiles than the
+// single-column technique list, since items are meant to read as a
+// visually distinct "shelf" rather than another technique-shaped list.
+// Read-only on the Character Sheet: just Gold + the carried grid, no
+// picker, no Cost on the tiles.
+// ══════════════════════════════════════════════════════════════════
+function InventorySection({ items, inventory, gold, onGoldChange, onAdd, onQtyChange, onRemove, readOnly = false }) {
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const categories = useMemo(() => [...new Set(items.map(i => i.category))].sort(), [items]);
+
+  const results = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q && !category) return [];
+    return items
+      .filter(it => (!category || it.category === category) && (!q || it.name.toLowerCase().includes(q)))
+      .slice(0, 40);
+  }, [items, search, category]);
+
+  const grid = (
+    inventory.length === 0 ? (
+      <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
+        {readOnly ? "No items carried." : "No items carried yet — search below to add some."}
+      </div>
+    ) : (
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 10 }}>
+        {inventory.map(entry => (
+          <InventoryTile
+            key={entry.uid}
+            entry={entry}
+            item={items.find(i => i.id === entry.itemId)}
+            onQtyChange={readOnly ? undefined : (q => onQtyChange(entry.uid, q))}
+            onRemove={readOnly ? undefined : (() => onRemove(entry.uid))}
+            readOnly={readOnly}
+          />
+        ))}
+      </div>
+    )
+  );
+
+  return (
+    <div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
+        <span style={{ fontSize: 13, color: TEXT.faint }}>Gold</span>
+        {readOnly ? (
+          <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{gold || "0"}</span>
+        ) : (
+          <input
+            type="text" inputMode="numeric" placeholder="0"
+            value={gold}
+            onChange={e => onGoldChange(e.target.value.replace(/[^\d]/g, ""))}
+            style={{ width: 70, fontSize: 14, textAlign: "right" }}
+          />
+        )}
+      </div>
+
+      {!readOnly && (
+        <>
+          <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
+            <input
+              type="text" placeholder="Search items to add…"
+              value={search} onChange={e => setSearch(e.target.value)}
+              style={{ flex: "1 1 220px", fontSize: 13 }}
+            />
+            <select value={category} onChange={e => setCategory(e.target.value)} style={{ fontSize: 13 }}>
+              <option value="">All categories</option>
+              {categories.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+          {results.length > 0 && (
+            <div style={{
+              display: "flex", flexDirection: "column", gap: 4, marginBottom: 14,
+              maxHeight: 220, overflowY: "auto",
+              border: "0.5px solid #2d3555", borderRadius: 6, padding: 8,
+            }}>
+              {results.map(it => (
+                <div key={it.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "3px 4px" }}>
+                  <span style={{ fontSize: 13, color: TEXT.body }}>
+                    {it.name} <span style={{ fontSize: 11, color: TEXT.faint }}>({it.category}{it.slot ? ` · ${it.slot}` : ""})</span>
+                  </span>
+                  <button
+                    onClick={() => onAdd(it.id)}
+                    style={{ fontSize: 12, color: "#d4a843", background: "transparent", border: "0.5px solid #a07c2e", borderRadius: 4, padding: "2px 8px", flexShrink: 0 }}
+                  >
+                    + Add
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+
+      {grid}
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
 // BUILD PANEL — character name, stats, export/import/share, and the
 // build list. Rendered both on the standalone "My build" tab and in
 // the sticky sidebar next to the technique list on wide screens.
@@ -1784,6 +2105,8 @@ function App() {
   const [techniques, setTechniques] = useState([]);
   const [features,   setFeatures]   = useState([]);   // features.json — Feature-builder options
   const [glossary,   setGlossary]   = useState([]);   // glossary.json — capitalized game terms
+  const [items,       setItems]       = useState([]); // items.json — Inventory picker
+  const [backgrounds, setBackgrounds] = useState([]); // backgrounds.json
   const [loading,    setLoading]    = useState(true);
   const [loadError,  setLoadError]  = useState(null);
 
@@ -1844,6 +2167,12 @@ function App() {
   // Freeform GM-granted abilities the player writes in themselves — see
   // emptyCharacterData. Never touches XP math anywhere.
   const [customTechniques, setCustomTechniques] = useState(initialCharacter.data.customTechniques);
+  // Background picks — see emptyCharacterData for the shape.
+  const [selectedBackgrounds, setSelectedBackgrounds] = useState(initialCharacter.data.selectedBackgrounds);
+  const [backgroundType, setBackgroundType] = useState(initialCharacter.data.backgroundType);
+  // Inventory — see emptyCharacterData for the shape.
+  const [inventory, setInventory] = useState(initialCharacter.data.inventory);
+  const [gold, setGold] = useState(initialCharacter.data.gold);
   const importRef = useRef();
 
   // Loads one character's data into all of the state above — used by
@@ -1864,6 +2193,10 @@ function App() {
     setCharNotes(data.charNotes);
     setNoteRows(data.noteRows);
     setCustomTechniques(data.customTechniques);
+    setSelectedBackgrounds(data.selectedBackgrounds);
+    setBackgroundType(data.backgroundType);
+    setInventory(data.inventory);
+    setGold(data.gold);
   };
 
   // Switches to an existing character slot.
@@ -1919,13 +2252,23 @@ function App() {
         if (!r.ok) throw new Error(`features.json returned ${r.status}`);
         return r.json();
       }),
+      fetch("data/items.json").then(r => {
+        if (!r.ok) throw new Error(`items.json returned ${r.status}`);
+        return r.json();
+      }),
+      fetch("data/backgrounds.json").then(r => {
+        if (!r.ok) throw new Error(`backgrounds.json returned ${r.status}`);
+        return r.json();
+      }),
       // Glossary is a nice-to-have, not core data — a missing/broken file
       // just means no term gets a tooltip, not a load error for the app.
       fetch("data/glossary.json").then(r => r.ok ? r.json() : []).catch(() => []),
     ])
-    .then(([techData, featData, glossaryData]) => {
+    .then(([techData, featData, itemData, backgroundData, glossaryData]) => {
       setTechniques(techData);
       setFeatures(featData);
+      setItems(itemData);
+      setBackgrounds(backgroundData);
       setGlossary(Array.isArray(glossaryData) ? glossaryData : []);
       setLoading(false);
     })
@@ -1997,8 +2340,9 @@ function App() {
       build, notes, configs, renames, expended,
       statPoints, skillPoints, xpBudget,
       charName, charConcept, charNotes, noteRows, customTechniques,
+      selectedBackgrounds, backgroundType, inventory, gold,
     });
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -2248,6 +2592,65 @@ function App() {
   const removeCustomTechnique = id => {
     setCustomTechniques(cs => cs.filter(c => c.id !== id));
   };
+  const moveCustomTechnique = (draggedId, targetId) => {
+    if (draggedId === targetId) return;
+    setCustomTechniques(cs => {
+      const from = cs.findIndex(c => c.id === draggedId);
+      const to   = cs.findIndex(c => c.id === targetId);
+      if (from === -1 || to === -1) return cs;
+      const next = [...cs];
+      const [moved] = next.splice(from, 1);
+      next.splice(to, 0, moved);
+      return next;
+    });
+  };
+
+  // ── Backgrounds — pick at most one General, and one Settler-or-
+  // Wildfolk. Clicking a background swaps it in for whichever one was
+  // picked before in the same *slot* — General is its own slot, but
+  // Settler and Wildfolk share one slot (mutually exclusive with each
+  // other, not just within themselves), since a character is one or the
+  // other regardless of which the toggle happens to be showing. Clicking
+  // the selected one again deselects it. Order is drag-reorderable, same
+  // as techniques.
+  const backgroundSlot = category => category === "General" ? "General" : "Type";
+  const toggleBackground = bg => {
+    setSelectedBackgrounds(ids => {
+      if (ids.includes(bg.id)) return ids.filter(id => id !== bg.id);
+      const slot = backgroundSlot(bg.category);
+      const sameSlotIds = new Set(backgrounds.filter(b => backgroundSlot(b.category) === slot).map(b => b.id));
+      return [...ids.filter(id => !sameSlotIds.has(id)), bg.id];
+    });
+  };
+  const moveBackground = (draggedId, targetId) => {
+    if (draggedId === targetId) return;
+    setSelectedBackgrounds(ids => {
+      const from = ids.indexOf(draggedId);
+      const to   = ids.indexOf(targetId);
+      if (from === -1 || to === -1) return ids;
+      const next = [...ids];
+      next.splice(from, 1);
+      next.splice(to, 0, draggedId);
+      return next;
+    });
+  };
+
+  // ── Inventory — quantity per distinct item, no per-copy config.
+  // Adding an item already carried just bumps its quantity instead of
+  // making a second row.
+  const addInventoryItem = itemId => {
+    setInventory(inv => {
+      const existing = inv.find(e => e.itemId === itemId);
+      if (existing) return inv.map(e => e === existing ? { ...e, qty: e.qty + 1 } : e);
+      return [...inv, { uid: makeUid(), itemId, qty: 1 }];
+    });
+  };
+  const setInventoryQty = (uid, qty) => {
+    setInventory(inv => inv.map(e => e.uid === uid ? { ...e, qty: Math.max(1, qty) } : e));
+  };
+  const removeInventoryItem = uid => {
+    setInventory(inv => inv.filter(e => e.uid !== uid));
+  };
 
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
@@ -2263,6 +2666,10 @@ function App() {
       charNotes,
       noteRows,
       customTechniques: customTechniques.map(c => ({ title: c.title, text: c.text })),
+      backgroundType,
+      backgrounds: selectedBackgrounds,
+      gold,
+      inventory: inventory.map(e => ({ id: e.itemId, qty: e.qty })),
       exportedAt: new Date().toISOString(),
       techniques: buildEntries.map(e => {
         const cfg = configs[e.uid];
@@ -2340,6 +2747,12 @@ function App() {
           noteRows:    Array.isArray(data.noteRows) ? data.noteRows.map(r => ({ id: makeUid(), text: r.text ?? "" })) : [],
           customTechniques: Array.isArray(data.customTechniques)
             ? data.customTechniques.map(c => ({ id: makeUid(), title: c.title ?? "", text: c.text ?? "" }))
+            : [],
+          backgroundType: data.backgroundType === "Wildfolk" ? "Wildfolk" : "Settler",
+          selectedBackgrounds: Array.isArray(data.backgrounds) ? data.backgrounds.filter(id => typeof id === "string") : [],
+          gold: typeof data.gold === "string" ? data.gold : "",
+          inventory: Array.isArray(data.inventory)
+            ? data.inventory.filter(e => e && typeof e.id === "string").map(e => ({ uid: makeUid(), itemId: e.id, qty: Number(e.qty) > 0 ? Number(e.qty) : 1 }))
             : [],
         });
       } catch {
@@ -2880,6 +3293,17 @@ function App() {
           <div style={{ height:24 }} />
 
           <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Background
+          </div>
+          <BackgroundsSection
+            backgrounds={backgrounds}
+            backgroundType={backgroundType} onBackgroundTypeChange={setBackgroundType}
+            selectedIds={selectedBackgrounds} onToggle={toggleBackground} onMove={moveBackground}
+            dragId={dragId} setDragId={setDragId}
+          />
+          <div style={{ height:24 }} />
+
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Techniques
           </div>
           <XPTiles knownXP={knownXP} unknownCount={unknownCount} totalXP={totalXP} />
@@ -2924,17 +3348,41 @@ function App() {
 
           {/* Custom techniques — freeform GM-granted abilities, kept
               separate from knownTechs/build since they're not real
-              data-file techniques and never cost XP. */}
+              data-file techniques and never cost XP. Same drag-to-reorder
+              handle as real techniques above, just reordering their own
+              separate list instead of build. */}
           {customTechniques.length > 0 && (
             <div className="tech-list" style={{ marginTop: 10 }}>
               {customTechniques.map(c => (
-                <CustomTechniqueCard
+                <div
                   key={c.id}
-                  tech={c}
-                  onTitleChange={v => updateCustomTechnique(c.id, "title", v)}
-                  onTextChange={v => updateCustomTechnique(c.id, "text", v)}
-                  onRemove={() => removeCustomTechnique(c.id)}
-                />
+                  onDragOver={e => { if (dragId) e.preventDefault(); }}
+                  onDrop={e => { e.preventDefault(); if (dragId) moveCustomTechnique(dragId, c.id); setDragId(null); }}
+                  style={{ display:"flex", gap:6, alignItems:"stretch", opacity: dragId === c.id ? 0.5 : 1 }}
+                >
+                  <div
+                    draggable
+                    onDragStart={e => { e.dataTransfer.effectAllowed = "move"; setDragId(c.id); }}
+                    onDragEnd={() => setDragId(null)}
+                    title="Drag to reorder"
+                    aria-label={`Drag to reorder ${c.title || "custom technique"}`}
+                    style={{
+                      display:"flex", alignItems:"center", justifyContent:"center",
+                      width:22, flexShrink:0, cursor:"grab", color:TEXT.faint, fontSize:16,
+                      userSelect:"none",
+                    }}
+                  >
+                    ⠿
+                  </div>
+                  <div style={{ flex:1, minWidth:0 }}>
+                    <CustomTechniqueCard
+                      tech={c}
+                      onTitleChange={v => updateCustomTechnique(c.id, "title", v)}
+                      onTextChange={v => updateCustomTechnique(c.id, "text", v)}
+                      onRemove={() => removeCustomTechnique(c.id)}
+                    />
+                  </div>
+                </div>
               ))}
             </div>
           )}
@@ -2944,6 +3392,15 @@ function App() {
           >
             + Add custom technique
           </button>
+
+          <div style={{ height:24 }} />
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Inventory
+          </div>
+          <InventorySection
+            items={items} inventory={inventory} gold={gold} onGoldChange={setGold}
+            onAdd={addInventoryItem} onQtyChange={setInventoryQty} onRemove={removeInventoryItem}
+          />
         </div>
       )}
 
@@ -3050,6 +3507,13 @@ function App() {
           <div style={{ height:14 }} />
           <DerivedStats statPoints={statPoints} skillPoints={skillPoints} />
 
+          {selectedBackgrounds.length > 0 && (
+            <>
+              <div style={{ height:14 }} />
+              <BackgroundsSection backgrounds={backgrounds} selectedIds={selectedBackgrounds} readOnly />
+            </>
+          )}
+
           {buildEntries.length === 0 && customTechniques.every(c => !c.title.trim() && !c.text.trim()) ? (
             <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
               Add techniques on the Techniques tab, then see them here.
@@ -3061,6 +3525,13 @@ function App() {
                 <CustomTechniqueCard key={c.id} tech={c} readOnly />
               ))}
             </div>
+          )}
+
+          {(inventory.length > 0 || gold) && (
+            <>
+              <div style={{ height:14 }} />
+              <InventorySection items={items} inventory={inventory} gold={gold} readOnly />
+            </>
           )}
         </div>
       )}
