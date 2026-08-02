@@ -26,7 +26,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I002",
@@ -55,7 +62,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I003",
@@ -84,7 +98,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I004",
@@ -113,7 +134,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I005",
@@ -142,7 +170,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I006",
@@ -171,7 +206,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I007",
@@ -200,7 +242,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I008",
@@ -229,7 +278,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I009",
@@ -258,7 +314,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I010",
@@ -287,7 +350,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I011",
@@ -316,7 +386,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I012",
@@ -345,7 +422,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I013",
@@ -374,7 +458,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I014",
@@ -403,7 +494,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I015",
@@ -432,7 +530,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I016",
@@ -461,7 +566,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I017",
@@ -490,7 +602,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I018",
@@ -519,7 +638,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I019",
@@ -548,7 +674,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I020",
@@ -577,7 +710,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I021",
@@ -606,7 +746,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I022",
@@ -635,7 +782,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I023",
@@ -664,7 +818,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I024",
@@ -693,7 +854,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I025",
@@ -722,7 +890,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I026",
@@ -751,7 +926,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I027",
@@ -780,7 +962,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I028",
@@ -809,7 +998,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I029",
@@ -838,7 +1034,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I030",
@@ -867,7 +1070,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I031",
@@ -896,7 +1106,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I032",
@@ -925,7 +1142,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I033",
@@ -954,7 +1178,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I034",
@@ -983,7 +1214,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I035",
@@ -1012,7 +1250,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I036",
@@ -1041,7 +1286,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I037",
@@ -1070,7 +1322,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I038",
@@ -1099,7 +1358,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I039",
@@ -1128,7 +1394,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I040",
@@ -1157,7 +1430,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I041",
@@ -1186,7 +1466,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I042",
@@ -1215,7 +1502,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I043",
@@ -1244,7 +1538,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I044",
@@ -1273,7 +1574,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I045",
@@ -1302,7 +1610,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I046",
@@ -1331,7 +1646,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I047",
@@ -1360,7 +1682,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I048",
@@ -1389,7 +1718,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I049",
@@ -1418,7 +1754,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I050",
@@ -1447,7 +1790,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I051",
@@ -1476,7 +1826,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I052",
@@ -1505,7 +1862,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I053",
@@ -1534,7 +1898,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I054",
@@ -1563,7 +1934,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I055",
@@ -1592,7 +1970,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I056",
@@ -1621,7 +2006,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I057",
@@ -1650,7 +2042,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I058",
@@ -1679,7 +2078,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I059",
@@ -1708,7 +2114,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I060",
@@ -1737,7 +2150,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I061",
@@ -1766,7 +2186,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I062",
@@ -1795,7 +2222,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I063",
@@ -1824,7 +2258,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I064",
@@ -1853,7 +2294,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I065",
@@ -1882,7 +2330,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I066",
@@ -1911,7 +2366,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I067",
@@ -1940,7 +2402,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I068",
@@ -1969,7 +2438,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I069",
@@ -1998,7 +2474,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I070",
@@ -2027,7 +2510,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I071",
@@ -2056,7 +2546,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I072",
@@ -2085,7 +2582,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I073",
@@ -2114,7 +2618,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I074",
@@ -2143,7 +2654,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I075",
@@ -2172,7 +2690,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I076",
@@ -2201,7 +2726,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I077",
@@ -2230,7 +2762,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I078",
@@ -2259,7 +2798,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I079",
@@ -2288,7 +2834,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I080",
@@ -2317,7 +2870,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I081",
@@ -2346,7 +2906,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I082",
@@ -2375,7 +2942,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I083",
@@ -2404,7 +2978,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I084",
@@ -2433,7 +3014,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I085",
@@ -2462,7 +3050,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I086",
@@ -2491,7 +3086,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I087",
@@ -2520,7 +3122,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I088",
@@ -2549,7 +3158,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I089",
@@ -2578,7 +3194,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I090",
@@ -2607,7 +3230,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I091",
@@ -2636,7 +3266,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I092",
@@ -2665,7 +3302,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I093",
@@ -2694,7 +3338,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I094",
@@ -2723,7 +3374,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I095",
@@ -2752,7 +3410,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I096",
@@ -2781,7 +3446,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I097",
@@ -2810,7 +3482,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I098",
@@ -2839,7 +3518,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I099",
@@ -2868,7 +3554,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I100",
@@ -2897,7 +3590,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I101",
@@ -2926,7 +3626,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I102",
@@ -2955,7 +3662,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I103",
@@ -2984,7 +3698,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I104",
@@ -3013,7 +3734,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I105",
@@ -3042,7 +3770,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I106",
@@ -3071,7 +3806,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I107",
@@ -3100,7 +3842,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I108",
@@ -3129,7 +3878,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I109",
@@ -3158,7 +3914,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I110",
@@ -3187,7 +3950,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I111",
@@ -3216,7 +3986,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I112",
@@ -3245,7 +4022,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I113",
@@ -3274,7 +4058,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I114",
@@ -3303,7 +4094,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I115",
@@ -3332,7 +4130,14 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
   },
   {
     "id": "I116",
@@ -3361,6 +4166,481 @@
     "mental_defense": null,
     "instinct_defense": null,
     "shallow_health": null,
-    "deep_health": null
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": null,
+    "held_slots": null
+  },
+  {
+    "id": "I117",
+    "name": "Light One-Handed Melee Weapon",
+    "category": "Weapon",
+    "slot": "Held",
+    "tags": null,
+    "level": null,
+    "description": "A light, one-handed melee weapon — a dagger, hand axe, rapier, or similar; pick whatever fits your character.",
+    "cost": "3 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": 1,
+    "damage": "3 + [Body or Cunning]",
+    "weapon_defense": 1,
+    "range": "Close",
+    "relevant_skill": "Melee",
+    "might_requirement": null,
+    "held_slots": 1
+  },
+  {
+    "id": "I118",
+    "name": "Heavy One-Handed Melee Weapon",
+    "category": "Weapon",
+    "slot": "Held",
+    "tags": null,
+    "level": null,
+    "description": "A heavier one-handed melee weapon — a mace, shortsword, or similar; pick whatever fits your character.",
+    "cost": "3 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": 0,
+    "damage": "4 + [Body]",
+    "weapon_defense": 0,
+    "range": "Close",
+    "relevant_skill": "Melee",
+    "might_requirement": 4,
+    "held_slots": 1
+  },
+  {
+    "id": "I119",
+    "name": "Light Two-Handed Melee Weapon",
+    "category": "Weapon",
+    "slot": "Held",
+    "tags": null,
+    "level": null,
+    "description": "A light, two-handed melee weapon — a spear, quarterstaff, or similar; pick whatever fits your character.",
+    "cost": "6 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": 1,
+    "damage": "4 + [Body or Cunning]",
+    "weapon_defense": 1,
+    "range": "Close",
+    "relevant_skill": "Melee",
+    "might_requirement": null,
+    "held_slots": 2
+  },
+  {
+    "id": "I120",
+    "name": "Heavy Two-Handed Melee Weapon",
+    "category": "Weapon",
+    "slot": "Held",
+    "tags": null,
+    "level": null,
+    "description": "A heavy two-handed melee weapon — a greatsword, war hammer, or similar; pick whatever fits your character.",
+    "cost": "6 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": 0,
+    "damage": "5 + [Body]",
+    "weapon_defense": 0,
+    "range": "Close",
+    "relevant_skill": "Melee",
+    "might_requirement": 6,
+    "held_slots": 2
+  },
+  {
+    "id": "I121",
+    "name": "Light Thrown Weapon",
+    "category": "Weapon",
+    "slot": "Held",
+    "tags": null,
+    "level": null,
+    "description": "A light thrown weapon — throwing knives, darts, or similar. Only has a Range of Close when used with Melee.",
+    "cost": "5 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": 1,
+    "damage": "3 + [Cunning]",
+    "weapon_defense": null,
+    "range": "Close, or 3 × Body",
+    "relevant_skill": "Acrobatics or Melee",
+    "might_requirement": null,
+    "held_slots": 1
+  },
+  {
+    "id": "I122",
+    "name": "Heavy Thrown Weapon",
+    "category": "Weapon",
+    "slot": "Held",
+    "tags": null,
+    "level": null,
+    "description": "A heavy thrown weapon — a javelin, hand axe meant for throwing, or similar. Only has a Range of Close when used with Melee.",
+    "cost": "5 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": 0,
+    "damage": "4 + [Body]",
+    "weapon_defense": null,
+    "range": "Close, or 3 × Body",
+    "relevant_skill": "Acrobatics or Melee",
+    "might_requirement": 4,
+    "held_slots": 1
+  },
+  {
+    "id": "I123",
+    "name": "Light Bow",
+    "category": "Weapon",
+    "slot": "Held",
+    "tags": null,
+    "level": null,
+    "description": "A light bow, requiring two hands to wield.",
+    "cost": "6 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": 1,
+    "damage": "3 + [Cunning]",
+    "weapon_defense": null,
+    "range": 15,
+    "relevant_skill": "Archery",
+    "might_requirement": null,
+    "held_slots": 2
+  },
+  {
+    "id": "I124",
+    "name": "Heavy Bow",
+    "category": "Weapon",
+    "slot": "Held",
+    "tags": null,
+    "level": null,
+    "description": "A heavy bow, requiring two hands to wield.",
+    "cost": "6 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": 0,
+    "damage": "4 + [Cunning]",
+    "weapon_defense": null,
+    "range": 20,
+    "relevant_skill": "Archery",
+    "might_requirement": 6,
+    "held_slots": 2
+  },
+  {
+    "id": "I125",
+    "name": "Unarmed",
+    "category": "Weapon",
+    "slot": null,
+    "tags": null,
+    "level": null,
+    "description": "Fighting with fists, claws, or whatever's on hand — no weapon required, and doesn't occupy a Held slot.",
+    "cost": null,
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": 2,
+    "damage": "2 + [Body or Cunning]",
+    "weapon_defense": 1,
+    "range": "Close",
+    "relevant_skill": "Brawl",
+    "might_requirement": null,
+    "held_slots": null
+  },
+  {
+    "id": "I126",
+    "name": "Shield",
+    "category": "Weapon",
+    "slot": "Held",
+    "tags": null,
+    "level": null,
+    "description": "A shield, occupying one Held slot — used for its high Defense bonus rather than to deal damage.",
+    "cost": "3 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": 0,
+    "damage": "2 + [Body]",
+    "weapon_defense": 2,
+    "range": "Close",
+    "relevant_skill": "Melee",
+    "might_requirement": null,
+    "held_slots": 1
+  },
+  {
+    "id": "I127",
+    "name": "Improvised Weapon",
+    "category": "Weapon",
+    "slot": "Held",
+    "tags": null,
+    "level": null,
+    "description": "Whatever's within reach, used as a weapon. Counts as the closest type of weapon that fits its size and construction, with the listed modifications.",
+    "cost": null,
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": -1,
+    "damage": 0,
+    "weapon_defense": -1,
+    "range": "Close, or half of normal",
+    "relevant_skill": "Varies",
+    "might_requirement": null,
+    "held_slots": 1
+  },
+  {
+    "id": "I128",
+    "name": "Light Armor",
+    "category": "Armor",
+    "slot": "Torso",
+    "tags": null,
+    "level": null,
+    "description": "Light armor — a gambeson or jacket reinforced with small pieces of wood, or similar.",
+    "cost": "4 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": 1,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": 0,
+    "parry_defense": null,
+    "dodge_defense": 0,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": 3,
+    "held_slots": null
+  },
+  {
+    "id": "I129",
+    "name": "Heavy Armor",
+    "category": "Armor",
+    "slot": "Torso",
+    "tags": null,
+    "level": null,
+    "description": "Heavy armor — made from plate or heavy chains of metal, or similar.",
+    "cost": "8 Gold",
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "base_materials": null,
+    "extra_materials": null,
+    "base_item": null,
+    "physical_resist": 2,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": -1,
+    "parry_defense": null,
+    "dodge_defense": -1,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skill": null,
+    "might_requirement": 6,
+    "held_slots": null
   }
 ]

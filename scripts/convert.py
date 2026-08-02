@@ -165,6 +165,19 @@ ITEM_MAP = {
     "Instinct Defense":   "instinct_defense",
     "Shallow Health":     "shallow_health",
     "Deep Health":        "deep_health",
+    # Weapon/Armor-category items (Category = "Weapon"/"Armor") — their
+    # own combat stats, mirroring weapon_categories.csv/armor_categories.csv
+    # (which stay as the small reference tables they were, unchanged).
+    # Armor's Dodge Penalty/Speed Penalty reuse the dodge_defense/speed
+    # columns above (as negative numbers) rather than getting their own —
+    # a penalty is just a negative bonus to the same stat.
+    "Accuracy":           "accuracy",
+    "Damage":             "damage",
+    "Weapon Defense":     "weapon_defense",   # only applies to Parry Defense when this weapon is chosen to parry with — see index.html
+    "Range":              "range",
+    "Relevant Skill":     "relevant_skill",
+    "Might Requirement":  "might_requirement",
+    "Held Slots":         "held_slots",       # how much of the 2-slot Held capacity this weapon takes (1 or 2)
 }
 
 BACKGROUND_MAP = {
@@ -426,18 +439,21 @@ for csv_file, (json_file, col_map) in TABLES.items():
             print()
 
     if csv_file == "items.csv":
-        known_categories = {"Equipment", "Pack/Gear", "Tool/Kit", "Food", "Grenade", "Potion", "Poison", "Masterwork"}
+        known_categories = {"Equipment", "Pack/Gear", "Tool/Kit", "Food", "Grenade", "Potion", "Poison", "Masterwork", "Weapon", "Armor"}
         known_slots = {"Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"}
+        slotted_categories = {"Masterwork", "Weapon", "Armor"}
         item_errors = []
         for r in rows:
             category = r.get("category")
             if category not in known_categories:
                 item_errors.append(f"{r.get('id')} {r.get('name')!r}: unknown Category {category!r}")
             slot = r.get("slot")
-            if slot and category != "Masterwork":
-                item_errors.append(f"{r.get('id')} {r.get('name')!r}: has a Slot but Category isn't Masterwork")
-            if category == "Masterwork" and slot not in known_slots:
+            if slot and category not in slotted_categories:
+                item_errors.append(f"{r.get('id')} {r.get('name')!r}: has a Slot but Category isn't Masterwork/Weapon/Armor")
+            if slot and slot not in known_slots:
                 item_errors.append(f"{r.get('id')} {r.get('name')!r}: unknown Slot {slot!r}")
+            if r.get("held_slots") is not None and category != "Weapon":
+                item_errors.append(f"{r.get('id')} {r.get('name')!r}: has Held Slots but Category isn't Weapon")
         if item_errors:
             print(f"\n⚠ {len(item_errors)} issue(s) in {csv_file}:")
             for e in item_errors:

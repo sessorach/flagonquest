@@ -1498,9 +1498,10 @@ function StatsPanel({
 // from Stats & Skills (Speed, Defenses, etc.), matching the formulas
 // printed on the paper character sheet.
 // ══════════════════════════════════════════════════════════════════
-function DerivedStats({ statPoints, skillPoints }) {
+function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
   const st = skill => skillTotalValue(statPoints, skillPoints, skill);
   const essence = statPoints.Essence || 0;
+  const bonus = key => equipmentBonuses[key] || 0;
 
   // Each row's name is bold with its calculation in italics underneath —
   // matching the paper character sheet — instead of both crammed onto
@@ -1509,6 +1510,13 @@ function DerivedStats({ statPoints, skillPoints }) {
   // same idea and class as the Stats & Skills rows above, so a five-row
   // box stays easy to scan across — see the "row-alt" print rule for how
   // this survives print's flattened-to-white color override.
+  //
+  // A row can optionally carry a 4th element — the ITEM_STAT_FIELDS key
+  // for its equipment bonus (Speed, the five Resists, four of the five
+  // Defenses — Parry gets its bonus from the chosen Parry weapon
+  // instead, handled the same way by App's equipmentBonuses). When
+  // that bonus is nonzero it's added to the shown value and called out
+  // in the formula line, e.g. "= Essence (+2 equipped)".
   const block = (title, rows, footer) => (
     <div className="sheet-box" style={{
       background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
@@ -1517,19 +1525,26 @@ function DerivedStats({ statPoints, skillPoints }) {
       <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 5 }}>
         {title}
       </div>
-      {rows.map(([label, value, formula], i) => (
-        <div key={label} className={i % 2 === 1 ? "row-alt" : undefined} style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
-          padding: "2px 4px", borderRadius: 4,
-          background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
-        }}>
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</div>
-            {formula && <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic" }}>{formula}</div>}
+      {rows.map(([label, base, formula, statKey], i) => {
+        const eq = statKey ? bonus(statKey) : 0;
+        return (
+          <div key={label} className={i % 2 === 1 ? "row-alt" : undefined} style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
+            padding: "2px 4px", borderRadius: 4,
+            background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
+          }}>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</div>
+              {formula && (
+                <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic" }}>
+                  {formula}{eq !== 0 && ` (${eq > 0 ? "+" : "−"}${Math.abs(eq)} equipped)`}
+                </div>
+              )}
+            </div>
+            <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name, flexShrink: 0 }}>{base + eq}</span>
           </div>
-          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name, flexShrink: 0 }}>{value}</span>
-        </div>
-      ))}
+        );
+      })}
       {footer && (
         <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic", marginTop: 4 }}>
           {footer}
@@ -1541,29 +1556,29 @@ function DerivedStats({ statPoints, skillPoints }) {
   return (
     <div className="derived-stats-row" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 14 }}>
       {block("Vitals", [
-        ["Speed",          1 + (statPoints.Agility || 0), "= 1 + Agility"],
+        ["Speed",          1 + (statPoints.Agility || 0), "= 1 + Agility", "speed"],
         ["Resting Health", statPoints.Body || 0, "= Body"],
         ["Reflex",         st("Insight"), "= Insight"],
         ["Cards Per Day",  2 * ((statPoints.Cunning || 0) + (statPoints.Mind || 0)), "= 2 × (Cunning + Mind)"],
       ])}
       {block("Defenses", [
-        ["Parry Defense",    8 + Math.max(st("Melee"), st("Brawl")), "= 8 + Melee or Brawl"],
-        ["Dodge Defense",    8 + Math.max(st("Acrobatics"), st("Brawl")), "= 8 + Acrobatics or Brawl"],
-        ["Bodily Defense",   8 + st("Resilience"), "= 8 + Resilience"],
-        ["Mental Defense",   8 + st("Composure"), "= 8 + Composure"],
-        ["Instinct Defense", 8 + st("Insight"), "= 8 + Insight"],
+        ["Parry Defense",    8 + Math.max(st("Melee"), st("Brawl")), "= 8 + Melee or Brawl", "parry_defense"],
+        ["Dodge Defense",    8 + Math.max(st("Acrobatics"), st("Brawl")), "= 8 + Acrobatics or Brawl", "dodge_defense"],
+        ["Bodily Defense",   8 + st("Resilience"), "= 8 + Resilience", "bodily_defense"],
+        ["Mental Defense",   8 + st("Composure"), "= 8 + Composure", "mental_defense"],
+        ["Instinct Defense", 8 + st("Insight"), "= 8 + Insight", "instinct_defense"],
       ])}
       {block("Health", [
-        ["Shallow Health", 5, "(base)"],
-        ["Deep Health",    5, "(base)"],
+        ["Shallow Health", 5, "(base)", "shallow_health"],
+        ["Deep Health",    5, "(base)", "deep_health"],
       ], "Feature/technique bonuses to these aren't tracked yet.")}
       {block("Resists", [
-        ["Physical Resist",  essence, "= Essence"],
-        ["Fire Resist",      essence, "= Essence"],
-        ["Frost Resist",     essence, "= Essence"],
-        ["Brilliant Resist", essence, "= Essence"],
-        ["Shadow Resist",    essence, "= Essence"],
-      ], "Essence adds to each Resist — equipment/effect bonuses aren't tracked yet.")}
+        ["Physical Resist",  essence, "= Essence", "physical_resist"],
+        ["Fire Resist",      essence, "= Essence", "fire_resist"],
+        ["Frost Resist",     essence, "= Essence", "frost_resist"],
+        ["Brilliant Resist", essence, "= Essence", "brilliant_resist"],
+        ["Shadow Resist",    essence, "= Essence", "shadow_resist"],
+      ], "Essence adds to each Resist. Parry Defense only counts the one weapon marked \"Parry\" — see Inventory below.")}
     </div>
   );
 }
@@ -1695,20 +1710,53 @@ const ITEM_STAT_FIELDS = [
   ["shallow_health", "Shallow Health"], ["deep_health", "Deep Health"],
 ];
 
+// Weapon-only fields, shown as a compact info line rather than "+N" stat
+// badges — Accuracy/Damage/Range/etc. aren't bonuses that sum into a
+// derived stat the way ITEM_STAT_FIELDS entries are, they're the
+// weapon's own intrinsic profile.
+const WEAPON_INFO_FIELDS = [
+  ["accuracy", "Accuracy", v => `${v >= 0 ? "+" : ""}${v}`],
+  ["damage", "Damage", v => v],
+  ["range", "Range", v => v],
+  ["relevant_skill", "Skill", v => v],
+  ["might_requirement", "Might Req", v => v],
+];
+
+// A "+N"/"−N" badge for one flat stat bonus — shared by the equipment
+// summary badges and the per-item tile badges, so a negative value (an
+// armor penalty) reads as "−1", not the "+-1" naive interpolation would give.
+function statBadge(label, v) {
+  return `${label} ${v >= 0 ? "+" : "−"}${Math.abs(v)}`;
+}
+
 // ══════════════════════════════════════════════════════════════════
-// INVENTORY TILE — one owned item: name, category/slot, any flat stat
-// bonuses it carries, and a quantity stepper. Cost only shows up when
-// editable (the Builder) — the Character Sheet doesn't need it.
+// INVENTORY TILE — one owned item: name, category/slot, description/
+// effects text, any flat stat bonuses or weapon profile it carries, and
+// a quantity stepper. Cost only shows up when editable (the Items tab)
+// — the Character Sheet doesn't need it. On the Character Sheet
+// specifically (readOnly + showEquip), it also gets an Equipped
+// checkbox — disabled when equipping it would overflow its Slot's
+// capacity — and, for a Weapon that can Parry, a Parry radio.
 // ══════════════════════════════════════════════════════════════════
-function InventoryTile({ entry, item, onQtyChange, onRemove, readOnly = false }) {
+function InventoryTile({
+  entry, item, onQtyChange, onRemove, readOnly = false,
+  showEquip = false, onToggleEquipped, equipDisabled = false,
+  onToggleParry,
+}) {
   if (!item) return null; // stale reference to a removed/renamed data row
   const statBadges = ITEM_STAT_FIELDS
     .map(([key, label]) => [label, item[key]])
-    .filter(([, v]) => v != null && v !== "");
+    .filter(([, v]) => typeof v === "number" && v !== 0);
+  const weaponInfo = item.category === "Weapon"
+    ? WEAPON_INFO_FIELDS.map(([key, label, fmt]) => [label, item[key], fmt]).filter(([, v]) => v != null && v !== "")
+    : [];
+  const canParry = item.category === "Weapon" && typeof item.weapon_defense === "number";
 
   return (
     <div className="tech-card" style={{
-      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+      background: "#161b27",
+      border: entry.equipped ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
+      borderRadius: 8,
       padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
     }}>
       <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
@@ -1736,6 +1784,17 @@ function InventoryTile({ entry, item, onQtyChange, onRemove, readOnly = false })
           <span style={{ fontSize: 12, color: TEXT.faint }}>{item.cost}</span>
         )}
       </div>
+      {item.description && (
+        <div style={{ fontSize: 13, color: TEXT.body, lineHeight: 1.5 }}>
+          {item.description}
+        </div>
+      )}
+      {weaponInfo.length > 0 && (
+        <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
+          {weaponInfo.map(([label, v, fmt]) => `${label} ${fmt(v)}`).join("  ·  ")}
+          {canParry && `  ·  Parry ${item.weapon_defense >= 0 ? "+" : ""}${item.weapon_defense}`}
+        </div>
+      )}
       {statBadges.length > 0 && (
         <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
           {statBadges.map(([label, v]) => (
@@ -1743,7 +1802,7 @@ function InventoryTile({ entry, item, onQtyChange, onRemove, readOnly = false })
               fontSize: 11, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
               borderRadius: 4, padding: "1px 6px",
             }}>
-              {label} +{v}
+              {statBadge(label, v)}
             </span>
           ))}
         </div>
@@ -1756,6 +1815,28 @@ function InventoryTile({ entry, item, onQtyChange, onRemove, readOnly = false })
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
       </div>
+      {showEquip && item.slot && (
+        <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 4, borderTop: "0.5px solid #2d3555" }}>
+          <label
+            title={equipDisabled ? `No room left in the ${item.slot} slot` : undefined}
+            style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: equipDisabled ? TEXT.faint : TEXT.body, cursor: equipDisabled ? "not-allowed" : "pointer" }}
+          >
+            <input
+              type="checkbox"
+              checked={!!entry.equipped}
+              disabled={equipDisabled}
+              onChange={onToggleEquipped}
+            />
+            Equipped
+          </label>
+          {entry.equipped && canParry && (
+            <label style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: TEXT.body, cursor: "pointer" }}>
+              <input type="checkbox" checked={!!entry.isParryWeapon} onChange={onToggleParry} />
+              Parry
+            </label>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -1853,7 +1934,18 @@ function BackgroundsSection({
 // Read-only on the Character Sheet: just Gold + the carried grid, no
 // picker, no Cost on the tiles.
 // ══════════════════════════════════════════════════════════════════
-function InventorySection({ items, inventory, gold, onGoldChange, onAdd, onQtyChange, onRemove, readOnly = false }) {
+// How much of a slot's capacity is spent — 2 for the Held slot (two
+// hands), 1 for everything else. A 2H weapon/bow takes both Held slots
+// at once (its own held_slots column), everything else takes 1.
+const SLOT_CAPACITY = { Held: 2 };
+function slotCost(item) {
+  return item.slot === "Held" ? (item.held_slots || 1) : 1;
+}
+
+function InventorySection({
+  items, inventory, gold, onGoldChange, onAdd, onQtyChange, onRemove, readOnly = false,
+  showEquip = false, onToggleEquipped, onToggleParry,
+}) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const categories = useMemo(() => [...new Set(items.map(i => i.category))].sort(), [items]);
@@ -1866,6 +1958,21 @@ function InventorySection({ items, inventory, gold, onGoldChange, onAdd, onQtyCh
       .slice(0, 40);
   }, [items, search, category]);
 
+  // Slot capacity used by everything currently equipped, for the
+  // Equipped-by-slot summary and for disabling a checkbox that would
+  // overflow its slot.
+  const bySlot = useMemo(() => {
+    const map = {};
+    if (!showEquip) return map;
+    inventory.forEach(e => {
+      if (!e.equipped) return;
+      const item = items.find(i => i.id === e.itemId);
+      if (!item || !item.slot) return;
+      (map[item.slot] ??= []).push({ item, cost: slotCost(item) });
+    });
+    return map;
+  }, [inventory, items, showEquip]);
+
   const grid = (
     inventory.length === 0 ? (
       <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
@@ -1873,16 +1980,29 @@ function InventorySection({ items, inventory, gold, onGoldChange, onAdd, onQtyCh
       </div>
     ) : (
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 10 }}>
-        {inventory.map(entry => (
-          <InventoryTile
-            key={entry.uid}
-            entry={entry}
-            item={items.find(i => i.id === entry.itemId)}
-            onQtyChange={readOnly ? undefined : (q => onQtyChange(entry.uid, q))}
-            onRemove={readOnly ? undefined : (() => onRemove(entry.uid))}
-            readOnly={readOnly}
-          />
-        ))}
+        {inventory.map(entry => {
+          const item = items.find(i => i.id === entry.itemId);
+          let equipDisabled = false;
+          if (showEquip && item && item.slot && !entry.equipped) {
+            const capacity = SLOT_CAPACITY[item.slot] || 1;
+            const used = (bySlot[item.slot] || []).reduce((sum, x) => sum + x.cost, 0);
+            equipDisabled = used + slotCost(item) > capacity;
+          }
+          return (
+            <InventoryTile
+              key={entry.uid}
+              entry={entry}
+              item={item}
+              onQtyChange={readOnly ? undefined : (q => onQtyChange(entry.uid, q))}
+              onRemove={readOnly ? undefined : (() => onRemove(entry.uid))}
+              readOnly={readOnly}
+              showEquip={showEquip}
+              equipDisabled={equipDisabled}
+              onToggleEquipped={() => onToggleEquipped(entry.uid)}
+              onToggleParry={() => onToggleParry(entry.uid)}
+            />
+          );
+        })}
       </div>
     )
   );
@@ -1902,6 +2022,26 @@ function InventorySection({ items, inventory, gold, onGoldChange, onAdd, onQtyCh
           />
         )}
       </div>
+
+      {showEquip && (
+        <div className="sheet-box" style={{
+          background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+          padding: "10px 12px", marginBottom: 14,
+          display: "flex", flexDirection: "column", gap: 4,
+        }}>
+          <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 2 }}>
+            Equipped
+          </div>
+          {["Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"].map(slot => (
+            <div key={slot} style={{ display: "flex", gap: 8, fontSize: 13 }}>
+              <span style={{ color: TEXT.faint, minWidth: 46, flexShrink: 0 }}>{slot}</span>
+              <span style={{ color: (bySlot[slot] || []).length ? TEXT.body : TEXT.faint }}>
+                {(bySlot[slot] || []).length ? bySlot[slot].map(x => x.item.name).join(", ") : "—"}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
 
       {!readOnly && (
         <>
@@ -2652,6 +2792,62 @@ function App() {
     setInventory(inv => inv.filter(e => e.uid !== uid));
   };
 
+  // Equipped — Character Sheet only (see InventorySection's showEquip).
+  // Unequipping also clears the Parry flag, since a weapon that's not
+  // equipped obviously isn't the one you're parrying with. Equipping is
+  // blocked by the disabled checkbox in the UI when it would overflow
+  // the item's slot (InventorySection computes that), but this function
+  // re-checks the same rule itself rather than trusting the UI alone.
+  const toggleEquipped = uid => {
+    setInventory(inv => {
+      const entry = inv.find(e => e.uid === uid);
+      if (!entry) return inv;
+      if (entry.equipped) {
+        return inv.map(e => e.uid === uid ? { ...e, equipped: false, isParryWeapon: false } : e);
+      }
+      const item = items.find(i => i.id === entry.itemId);
+      if (item && item.slot) {
+        const capacity = SLOT_CAPACITY[item.slot] || 1;
+        const used = inv.reduce((sum, e) => {
+          if (e.uid === uid || !e.equipped) return sum;
+          const it = items.find(i => i.id === e.itemId);
+          return (it && it.slot === item.slot) ? sum + slotCost(it) : sum;
+        }, 0);
+        if (used + slotCost(item) > capacity) return inv;
+      }
+      return inv.map(e => e.uid === uid ? { ...e, equipped: true } : e);
+    });
+  };
+  // Only one equipped weapon can be the one you Parry with — picking a
+  // new one replaces the old; picking the current one again clears it.
+  const toggleParryWeapon = uid => {
+    setInventory(inv => inv.map(e => ({ ...e, isParryWeapon: e.uid === uid ? !e.isParryWeapon : false })));
+  };
+
+  // Sums every equipped item's flat stat bonuses (ITEM_STAT_FIELDS) into
+  // one { key: total } object DerivedStats adds onto its usual formulas
+  // — Parry Defense is the one exception, since only the single chosen
+  // Parry weapon's Weapon Defense counts, not every equipped weapon's.
+  // Non-numeric stat values (e.g. Lightfoot Shoes' "[Level]" Speed) are
+  // skipped — those still need a human to apply them.
+  const equipmentBonuses = useMemo(() => {
+    const totals = {};
+    inventory.forEach(e => {
+      if (!e.equipped) return;
+      const item = items.find(i => i.id === e.itemId);
+      if (!item) return;
+      ITEM_STAT_FIELDS.forEach(([key]) => {
+        const v = item[key];
+        if (typeof v === "number") totals[key] = (totals[key] || 0) + v;
+      });
+    });
+    const parryEntry = inventory.find(e => e.equipped && e.isParryWeapon);
+    const parryItem = parryEntry && items.find(i => i.id === parryEntry.itemId);
+    const weaponDefense = typeof parryItem?.weapon_defense === "number" ? parryItem.weapon_defense : 0;
+    totals.parry_defense = (totals.parry_defense || 0) + weaponDefense;
+    return totals;
+  }, [inventory, items]);
+
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
   // so the file stays readable and survives future data updates), plus
@@ -3392,8 +3588,16 @@ function App() {
           >
             + Add custom technique
           </button>
+        </div>
+      )}
 
-          <div style={{ height:24 }} />
+
+      {/* ════════ ITEMS VIEW ════════════════════════════════════
+          Gold and the item picker/inventory live here, not the Builder
+          — the Character Sheet shows the same inventory read-only,
+          plus Equipped/Parry controls (see the Sheet view below). */}
+      {view === "items" && (
+        <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
           <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Inventory
           </div>
@@ -3401,23 +3605,6 @@ function App() {
             items={items} inventory={inventory} gold={gold} onGoldChange={setGold}
             onAdd={addInventoryItem} onQtyChange={setInventoryQty} onRemove={removeInventoryItem}
           />
-        </div>
-      )}
-
-
-      {/* ════════ ITEMS VIEW ════════════════════════════════════
-          Placeholder — gear, weapons, and gold will live here. */}
-      {view === "items" && (
-        <div style={{ maxWidth:600, margin:"60px auto", padding:20, textAlign:"center" }}>
-          <div style={{
-            fontFamily: "'MedievalSharp', Georgia, serif",
-            fontSize: 24, fontWeight: "bold", color: "#d4a843", marginBottom: 8,
-          }}>
-            Items &amp; Equipment
-          </div>
-          <div style={{ fontSize:15, color:TEXT.faint }}>
-            Coming soon.
-          </div>
         </div>
       )}
 
@@ -3505,7 +3692,7 @@ function App() {
             readOnly
           />
           <div style={{ height:14 }} />
-          <DerivedStats statPoints={statPoints} skillPoints={skillPoints} />
+          <DerivedStats statPoints={statPoints} skillPoints={skillPoints} equipmentBonuses={equipmentBonuses} />
 
           {selectedBackgrounds.length > 0 && (
             <>
@@ -3530,7 +3717,10 @@ function App() {
           {(inventory.length > 0 || gold) && (
             <>
               <div style={{ height:14 }} />
-              <InventorySection items={items} inventory={inventory} gold={gold} readOnly />
+              <InventorySection
+                items={items} inventory={inventory} gold={gold} readOnly showEquip
+                onToggleEquipped={toggleEquipped} onToggleParry={toggleParryWeapon}
+              />
             </>
           )}
         </div>
