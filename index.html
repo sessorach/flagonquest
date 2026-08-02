@@ -539,6 +539,23 @@ function resolveDamage(raw, statPoints) {
   return `${base + bonus} Physical`;
 }
 
+// Resolves a weapon's Accuracy into the full attack-roll modifier: the
+// character's Skill Total for whatever Skill the weapon uses, plus the
+// weapon's own flat Accuracy bonus/penalty — matching how every other
+// skill-based number on the sheet works (Defenses are "8 + Skill
+// Total", Reflex is "= Insight" i.e. its Skill Total); a bare skill
+// *value* only matters for technique prerequisites, never for a
+// computed number like this. Returns just the flat bonus, unresolved,
+// if the Skill name isn't one of the five Stats' real Skills (an empty
+// Skill, or freeform custom-item text that doesn't match one).
+function resolveAccuracy(flat, skillName, statPoints, skillPoints) {
+  if (flat == null) return null;
+  const total = skillName && ALL_STAT_SKILLS.includes(skillName)
+    ? skillTotalValue(statPoints, skillPoints, skillName)
+    : 0;
+  return flat + total;
+}
+
 // Resolves a Range formula like "3 × Body" (the game's convention for
 // "3 times your Body Stat" — written with a multiplication sign since it
 // stood out better than "x" in the source doc) against the character's
@@ -1758,7 +1775,19 @@ function AttackWorkspace({
       )}
       {weaponRows.map(r => (
         <div key={r.key} style={{ display: "grid", gridTemplateColumns: colTemplate, gap: 6, alignItems: "center" }}>
-          <span style={{ fontSize: 13, color: TEXT.name, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis" }}>{r.name}</span>
+          <span style={{ fontSize: 13, color: TEXT.name, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis" }}>
+            {r.name}
+            {r.mightRequirement != null && (
+              <span style={{
+                marginLeft: 6, fontSize: 10, fontWeight: 500, padding: "1px 5px", borderRadius: 3,
+                border: `0.5px solid ${r.mightMet ? "#5b5540" : "#7a2e2e"}`,
+                color: r.mightMet ? TEXT.faint : "#e0645f",
+                background: r.mightMet ? "transparent" : "rgba(224,100,95,0.12)",
+              }}>
+                Might {r.mightRequirement}
+              </span>
+            )}
+          </span>
           <span style={{ fontSize: 13, color: TEXT.body }}>
             {isDualValue(r.accuracy)
               ? <AttackDualCell melee={r.accuracy.melee} ranged={r.accuracy.ranged} format={formatAccuracyValue} />
@@ -1992,6 +2021,7 @@ function InventoryTile({
   showEquip = false, onToggleEquipped, equipDisabled = false,
   onBaseItemChange, onLevelChange,
   onDragStart, onDragEnd, onDragOver, onDrop, isDragging = false,
+  statPoints = {}, skillPoints = {},
 }) {
   if (!item) return null; // stale reference to a removed/renamed data row
   const baseItemOptions = (item.base_item_options || [])
@@ -2010,9 +2040,19 @@ function InventoryTile({
     })
     .filter(([, v]) => v !== 0);
   const weaponInfo = item.category === "Weapon"
-    ? WEAPON_INFO_FIELDS.map(([key, label, fmt]) => [label, item[key], fmt]).filter(([, v]) => v != null && v !== "")
+    ? WEAPON_INFO_FIELDS
+        .filter(([key]) => key !== "might_requirement")
+        .map(([key, label, fmt]) => [label, item[key], fmt])
+        .filter(([, v]) => v != null && v !== "")
     : [];
   const canParry = item.category === "Weapon" && typeof item.weapon_defense === "number";
+  // Might Requirement gets its own conditionally-colored badge instead
+  // of joining the plain weaponInfo line, so it can flag red — only on
+  // the Character Sheet (showEquip), where "does this character
+  // currently qualify" is a meaningful question; on the Items tab it's
+  // just reference info about the item, not tied to any character yet.
+  const mightReq = typeof item.might_requirement === "number" ? item.might_requirement : null;
+  const mightMet = mightReq == null || !showEquip || skillTotalValue(statPoints, skillPoints, "Might") >= mightReq;
   // A Masterwork item priced per-level (e.g. "20 Gold per level") has no
   // flat Cost of its own — its price depends on which level you build it
   // at, so compute it from the picked level instead.
@@ -2102,10 +2142,18 @@ function InventoryTile({
           {item.effects}
         </div>
       )}
-      {weaponInfo.length > 0 && (
+      {(weaponInfo.length > 0 || mightReq != null) && (
         <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
           {weaponInfo.map(([label, v, fmt]) => `${label} ${fmt(v)}`).join("  ·  ")}
           {canParry && `  ·  Parry ${item.weapon_defense >= 0 ? "+" : ""}${item.weapon_defense}`}
+          {mightReq != null && (
+            <>
+              {"  ·  "}
+              <span style={{ color: mightMet ? "inherit" : "#e0645f", fontWeight: mightMet ? "inherit" : 600 }}>
+                Might Req {mightReq}
+              </span>
+            </>
+          )}
         </div>
       )}
       {statBadges.length > 0 && (
@@ -2668,17 +2716,19 @@ function BackgroundsSection({
 // concept for freeform gear).
 const ITEM_SLOTS = ["Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"];
 const SLOT_CAPACITY = { Held: 2, Ring: 2 };
-// "Unarmed" (fighting bare-handed) is a Weapon with no Slot in the data —
-// you're empty-handed, so it doesn't occupy a Held slot — but it should
-// still be equippable and show up in Attack Workspace/Parry calculations
-// exactly like a one-handed Held weapon. Treated as a virtual, zero-cost
-// Held item everywhere slot capacity and equip eligibility are checked.
+// "Unarmed" (fighting bare-handed) is a Weapon with no Slot in the data
+// — no weapon item is required — but it still needs an empty hand to
+// throw a punch with, so it's treated as an ordinary one-handed Held
+// item everywhere slot capacity and equip eligibility are checked
+// (effectiveSlot falls it back to "Held"; slotCost's default of 1
+// applies since it has no held_slots of its own to override that). It
+// can't be equipped, same as any other Held item, if both hands are
+// already full — e.g. with a Heavy Two-Handed weapon.
 function effectiveSlot(item) {
   return item.slot || (item.category === "Weapon" ? "Held" : null);
 }
 function slotCost(item) {
-  if (!item.slot && item.category === "Weapon") return 0;
-  return item.slot === "Held" ? (item.held_slots || 1) : 1;
+  return effectiveSlot(item) === "Held" ? (item.held_slots || 1) : 1;
 }
 
 function InventorySection({
@@ -2687,7 +2737,7 @@ function InventorySection({
   customItems = [], onAddCustomItem, onUpdateCustomItem, onRemoveCustomItem,
   onToggleCustomItemEquipped, onAddCustomItemStat, onCustomItemStatChange, onRemoveCustomItemStat,
   onAddCustomItemPower, onCustomItemPowerLevelChange, onRemoveCustomItemPower,
-  onAddCustomItemWeapon, onRemoveCustomItemWeapon, onCustomItemWeaponChange, statPoints,
+  onAddCustomItemWeapon, onRemoveCustomItemWeapon, onCustomItemWeaponChange, statPoints, skillPoints,
   dragId, setDragId, onMoveInventoryItem, onMoveCustomItem,
 }) {
   const [search, setSearch] = useState("");
@@ -2766,6 +2816,7 @@ function InventorySection({
               onToggleEquipped={() => onToggleEquipped(entry.uid)}
               onBaseItemChange={v => onBaseItemChange(entry.uid, v)}
               onLevelChange={readOnly ? undefined : (lv => onLevelChange(entry.uid, lv))}
+              statPoints={statPoints} skillPoints={skillPoints}
               onDragStart={readOnly ? undefined : (e => { e.dataTransfer.effectAllowed = "move"; setDragId(entry.uid); })}
               onDragEnd={readOnly ? undefined : (() => setDragId(null))}
               onDragOver={readOnly ? undefined : (e => { if (dragId) e.preventDefault(); })}
@@ -3899,12 +3950,19 @@ function App() {
   // parseDualModeWeapon) gets its Accuracy/Range/Skill as a { melee,
   // ranged } pair instead of a single value, since it can attack either
   // way; Damage doesn't change with mode, so it stays a single value.
+  // Accuracy is the full attack-roll modifier (relevant Skill Total +
+  // the weapon's own flat bonus — see resolveAccuracy), not just the
+  // weapon's flat number, same reasoning as Damage's Stat bonus. A
+  // weapon with a Might Requirement carries whether the character's
+  // Might Skill Total currently meets it, for AttackWorkspace to flag.
   // A custom item with weapon stats (see CustomItemTile) shows up the
   // same way as a real weapon, just resolved through customWeapon* —
   // that's the whole point of building an Improvised Weapon there now
-  // instead of picking a dedicated data-file item.
+  // instead of picking a dedicated data-file item. Custom items have no
+  // Might Requirement concept, so that's always left unset for them.
   const equippedWeaponAttacks = useMemo(() => {
     const rows = [];
+    const mightTotal = skillTotalValue(statPoints, skillPoints, "Might");
     inventory.forEach(e => {
       if (!e.equipped) return;
       const item = items.find(i => i.id === e.itemId);
@@ -3914,17 +3972,25 @@ function App() {
       const rawDamage = item.damage ?? baseItem?.damage;
       const range = item.range ?? baseItem?.range;
       const skill = item.relevant_skill ?? baseItem?.relevant_skill;
+      const mightRequirement = item.might_requirement ?? baseItem?.might_requirement ?? null;
       if (accuracy == null && rawDamage == null && range == null) return;
       const dual = parseDualModeWeapon(range, skill);
       rows.push({
         key: e.uid,
         name: item.name,
-        accuracy: dual ? { melee: accuracy, ranged: accuracy } : accuracy,
+        accuracy: dual
+          ? {
+              melee: resolveAccuracy(accuracy, dual.meleeSkill, statPoints, skillPoints),
+              ranged: resolveAccuracy(accuracy, dual.rangedSkill, statPoints, skillPoints),
+            }
+          : resolveAccuracy(accuracy, skill, statPoints, skillPoints),
         damage: resolveDamage(rawDamage, statPoints),
         range: dual
           ? { melee: dual.meleeRange, ranged: resolveRange(dual.rangedRange, statPoints) }
           : resolveRange(range, statPoints),
         skill: dual ? { melee: dual.meleeSkill, ranged: dual.rangedSkill } : skill,
+        mightRequirement,
+        mightMet: mightRequirement == null || mightTotal >= mightRequirement,
         notes: e.attackNote || "",
       });
     });
@@ -3935,15 +4001,17 @@ function App() {
       rows.push({
         key: c.id,
         name: c.name.trim() || "Custom item",
-        accuracy: customWeaponAccuracy(w),
+        accuracy: resolveAccuracy(customWeaponAccuracy(w), w.skill, statPoints, skillPoints),
         damage: customWeaponDamage(w, statPoints),
         range: customWeaponRange(w),
         skill: w.skill || null,
+        mightRequirement: null,
+        mightMet: true,
         notes: c.attackNote || "",
       });
     });
     return rows;
-  }, [inventory, items, customItems, statPoints]);
+  }, [inventory, items, customItems, statPoints, skillPoints]);
 
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
@@ -4777,7 +4845,7 @@ function App() {
             onRemoveCustomItemStat={removeCustomItemStat} onAddCustomItemPower={addCustomItemPower}
             onCustomItemPowerLevelChange={customItemPowerLevelChange} onRemoveCustomItemPower={removeCustomItemPower}
             onAddCustomItemWeapon={addCustomItemWeapon} onRemoveCustomItemWeapon={removeCustomItemWeapon}
-            onCustomItemWeaponChange={customItemWeaponChange} statPoints={statPoints}
+            onCustomItemWeaponChange={customItemWeaponChange} statPoints={statPoints} skillPoints={skillPoints}
             dragId={dragId} setDragId={setDragId}
             onMoveInventoryItem={moveInventoryItem} onMoveCustomItem={moveCustomItem}
           />
@@ -4906,7 +4974,7 @@ function App() {
                 items={items} inventory={inventory} gold={gold} readOnly showEquip
                 onToggleEquipped={toggleEquipped}
                 customItems={customItems} onToggleCustomItemEquipped={toggleCustomItemEquipped}
-                statPoints={statPoints}
+                statPoints={statPoints} skillPoints={skillPoints}
               />
             </>
           )}
