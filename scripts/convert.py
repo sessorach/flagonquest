@@ -94,6 +94,42 @@ Masterwork item's own when it's equipped.
   rulebook's per-slot default, e.g. "basic clothing or basic jewelry")
   doesn't carry any stats of its own — there's nothing useful to pick
   between, so no selector is needed.
+
+MARKDOWN SOURCES — the Rulebook and Glossary tabs aren't spreadsheets,
+they're just hand-edited Markdown: scripts/rulebook.md and
+scripts/glossary.md, straight text files you can open and edit in
+anything. This script parses them into data/rulebook.json and
+data/glossary-page.json (the two tab pages) — and data/glossary.json,
+the mouseover-tooltip term list used site-wide, is generated from
+glossary.md too, so there's exactly one place to add or correct a term
+rather than two that can drift out of sync.
+
+  # / ## / ### / #### — heading levels 1-4. Level 1 is a chapter (big
+  gold heading, own line in the sidebar Contents); level 2 a section
+  (also in Contents); level 3 a subsection (in the page, not the
+  Contents list); level 4 a compact "term: definition" entry (a Skill
+  under its Stat, a Rules Tag, a Glossary term) — several of these can
+  follow each other tightly without each needing its own big heading.
+
+  Blank lines separate paragraphs/blocks, same as a normal document.
+
+  **bold** — inline emphasis, anywhere in a line.
+
+  - bullet — a line starting with "- " is a list item; a run of
+    consecutive "- " lines becomes one bullet list. Indent a line two
+    extra spaces ("  - ") to nest it as a sub-item under the bullet
+    above it — only one level of nesting is supported.
+
+  Glossary.md's own heading text can include the bracket/tag styling
+  used elsewhere ("[Encounter]", "Bleeding [Fleeting]", "Sift (X
+  cards)") — the mouseover list strips that down to the actual word
+  that'll appear (capitalized) in real item/technique text, e.g.
+  "[Encounter]" becomes the term "Encounter". A heading that isn't a
+  literal word on its own, like "(Level X)", is skipped for the
+  mouseover list (but still renders fine as a heading on the page).
+
+  There's no draft-and-review script for these the way items/techniques
+  have — Markdown is already meant to be hand-edited directly.
 """
 
 import csv
@@ -401,6 +437,85 @@ def parse_feature_budget(raw, level_min, level_max, errors, context):
     return budget
 
 
+def slugify(title, used_ids):
+    """Turns a heading's text into a URL-safe #id, deduping against ids
+    already handed out (two headings with the same text, e.g. the "Okay,
+    is there a quick way..." pattern, still need distinct anchors)."""
+    s = re.sub(r"[^\w\s-]", "", title.lower()).strip()
+    s = re.sub(r"[\s_]+", "-", s).strip("-") or "section"
+    base, n = s, 2
+    while s in used_ids:
+        s = f"{base}-{n}"
+        n += 1
+    used_ids.add(s)
+    return s
+
+
+def parse_markdown_sections(text):
+    """Parses rulebook.md/glossary.md into the same flat
+    {id, level, title, body} shape the site already expects — see the
+    MARKDOWN SOURCES doc below for the syntax. Consecutive non-blank
+    lines form one block (blank lines separate blocks, matching how the
+    site already splits a section's body on blank lines); the site's
+    renderer decides at display time whether a block is a bullet list or
+    a plain paragraph, based on whether its lines start with "- "."""
+    used_ids = set()
+    sections = []
+    current = None
+    block_lines = []
+
+    def flush_block():
+        if block_lines:
+            block = "\n".join(block_lines).rstrip()
+            if block:
+                current["body_blocks"].append(block)
+            block_lines.clear()
+
+    for raw_line in text.split("\n"):
+        line = raw_line.rstrip()
+        m = re.match(r"^(#{1,4})\s+(.*)$", line)
+        if m:
+            flush_block()
+            level, title = len(m.group(1)), m.group(2).strip()
+            current = {"id": slugify(title, used_ids), "level": level, "title": title, "body_blocks": []}
+            sections.append(current)
+        elif not line.strip():
+            flush_block()
+        elif current is not None:
+            block_lines.append(raw_line)
+    flush_block()
+
+    for s in sections:
+        s["body"] = "\n\n".join(s.pop("body_blocks"))
+    return sections
+
+
+# Rules Tags / Type Tags / Common Effects entries in glossary.md are
+# headed things like "[Encounter]", "Bleeding [Fleeting]", "Sift (X
+# cards)", or "(Fire/Frost/Brilliant/Shadow) Ward [Fleeting]" — useful as
+# a heading, but not the literal word that'll actually appear (capitalized)
+# in running item/technique text for the mouseover glossary to match
+# against. This trims a glossary.md heading down to the term(s) it
+# actually stands for; returns a list since the Ward entry stands for 4
+# separate terms sharing one description.
+def glossary_terms_from_heading(title):
+    if title == "(Fire/Frost/Brilliant/Shadow) Ward [Fleeting]":
+        return [f"{element} Ward" for element in ["Fire", "Frost", "Brilliant", "Shadow"]]
+    t = title.strip()
+    stripped = re.sub(r"\s*\[Fleeting\]\s*$", "", t)
+    if stripped.strip():
+        t = stripped
+    t = re.sub(r"\s*\(.*?\)\s*$", "", t).strip()  # "Sift (X cards)" -> "Sift"
+    m = re.fullmatch(r"\[(.+)\]", t)
+    if m:
+        t = m.group(1)
+    if not t or t == "Level X":
+        return []  # not a literal word that would appear in running prose
+    if t == "Pushing":
+        t = "Pushed"  # matches how item/technique text actually uses it
+    return [t]
+
+
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(os.path.join(script_dir, "../data"), exist_ok=True)
 
@@ -547,5 +662,45 @@ for csv_file, (json_file, col_map) in TABLES.items():
         json.dump(rows, f, indent=2, ensure_ascii=False)
 
     print(f"✓ {csv_file} → {json_file}  ({len(rows)} rows)")
+
+# ── Rulebook & Glossary — hand-edited Markdown, not spreadsheets. See
+# the MARKDOWN SOURCES doc at the top of this file for the syntax.
+rulebook_md_path = os.path.join(script_dir, "rulebook.md")
+if os.path.exists(rulebook_md_path):
+    with open(rulebook_md_path, encoding="utf-8") as f:
+        rulebook_sections = parse_markdown_sections(f.read())
+    with open(os.path.join(script_dir, "../data/rulebook.json"), "w", encoding="utf-8") as f:
+        json.dump(rulebook_sections, f, indent=2, ensure_ascii=False)
+    print(f"✓ rulebook.md → ../data/rulebook.json  ({len(rulebook_sections)} sections)")
+else:
+    print("⚠ Not found, skipping: rulebook.md")
+
+glossary_md_path = os.path.join(script_dir, "glossary.md")
+if os.path.exists(glossary_md_path):
+    with open(glossary_md_path, encoding="utf-8") as f:
+        glossary_sections = parse_markdown_sections(f.read())
+    with open(os.path.join(script_dir, "../data/glossary-page.json"), "w", encoding="utf-8") as f:
+        json.dump(glossary_sections, f, indent=2, ensure_ascii=False)
+    print(f"✓ glossary.md → ../data/glossary-page.json  ({len(glossary_sections)} sections)")
+
+    # The mouseover glossary (data/glossary.json) is derived from this
+    # same file's level-4 term entries — one source, so the tooltip and
+    # the Glossary tab's own page can never drift apart the way they did
+    # when glossary.json was hand-curated separately.
+    glossary_entries = []
+    seen_terms = set()
+    for s in glossary_sections:
+        if s["level"] != 4 or not s["body"]:
+            continue
+        for term in glossary_terms_from_heading(s["title"]):
+            if term in seen_terms:
+                continue
+            seen_terms.add(term)
+            glossary_entries.append({"term": term, "description": s["body"]})
+    with open(os.path.join(script_dir, "../data/glossary.json"), "w", encoding="utf-8") as f:
+        json.dump(glossary_entries, f, indent=2, ensure_ascii=False)
+    print(f"✓ glossary.md → ../data/glossary.json  ({len(glossary_entries)} mouseover terms)")
+else:
+    print("⚠ Not found, skipping: glossary.md")
 
 print("\nDone. Commit and push the data/ folder to update the live site.")

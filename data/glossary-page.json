@@ -262,5 +262,71 @@
     "level": 4,
     "title": "[Spell]",
     "body": "Spells are magical incantations that shoot fire, heal wounds, and do all kinds of things. All Spells also have a more specific type, including Elementalism Spells, Theurgy Spells, and General Spells.\n\nSpells require you to speak at a slightly loud volume and move your arms in order to cast. This means that others will notice and hear you doing so, and you cannot cast Spells if you are manacled, tied up, or otherwise restrained, although holding/carrying items does not restrict this in any way."
+  },
+  {
+    "id": "common-terms",
+    "level": 1,
+    "title": "Common Terms",
+    "body": "These terms come up constantly but are defined out in the main rules text rather than here — repeated as their own entries so there's one place to look them all up."
+  },
+  {
+    "id": "good-luck",
+    "level": 4,
+    "title": "Good Luck",
+    "body": "For each time you have Good Luck on a flip, you get to flip an extra card and then choose which one you want to use for the result."
+  },
+  {
+    "id": "bad-luck",
+    "level": 4,
+    "title": "Bad Luck",
+    "body": "Bad Luck works the same as Good Luck, except once all cards are flipped you must use the card with the lowest value (on a tie, the GM picks the card)."
+  },
+  {
+    "id": "wounded",
+    "level": 4,
+    "title": "Wounded",
+    "body": "While you are missing all of your Shallow Health, you are Wounded — you suffer Bad Luck to all flips, and -2 to all Defenses and Speed."
+  },
+  {
+    "id": "downed",
+    "level": 4,
+    "title": "Downed",
+    "body": "When you run out of Deep Health you have become Downed. While Downed, you cannot take any actions or do anything, and cannot lose any further Health."
+  },
+  {
+    "id": "action-points",
+    "level": 4,
+    "title": "Action Points",
+    "body": "The time and effort you have to take actions on your turn, spent to do things like attack or move — usually shortened to AP."
+  },
+  {
+    "id": "ap",
+    "level": 4,
+    "title": "AP",
+    "body": "Short for Action Points — the time and effort you have to take actions on your turn, spent to do things like attack or move."
+  },
+  {
+    "id": "interrupt",
+    "level": 4,
+    "title": "Interrupt",
+    "body": "Some abilities let you act on other turns, interrupting their actions with your own. These are listed as Interrupts, and will list a triggering action — when that action is declared, but before any of its effects happen, you may use the Interrupt ability, which resolves before the triggering action."
+  },
+  {
+    "id": "gambling",
+    "level": 4,
+    "title": "Gambling",
+    "body": "Before making a flip, a character may Gamble on it, taking a -2 penalty per Gamble to increase the amount they accomplish if the flip still succeeds — each Gamble grants an Extra Success on a successful result."
+  },
+  {
+    "id": "extra-success",
+    "level": 4,
+    "title": "Extra Success",
+    "body": "A bonus success gained from Gambling or other sources, on top of the 1 success a flip already grants when it succeeds — only counts if the flip succeeds in the first place."
+  },
+  {
+    "id": "concession",
+    "level": 4,
+    "title": "Concession",
+    "body": "A successful social statement causes the target's group to suffer 1 Concession, plus 1 Concession for each Extra Success. A group that reaches 10 Concessions loses the social contest."
   }
 ]

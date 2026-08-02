@@ -111,6 +111,7 @@ function GlossaryTerm({ term, description }) {
           padding: "6px 10px", fontSize: 12, lineHeight: 1.4,
           color: TEXT.body, fontStyle: "normal", fontWeight: 400,
           fontFamily: "system-ui, -apple-system, sans-serif",
+          whiteSpace: "pre-wrap",
           boxShadow: "0 4px 14px rgba(0,0,0,0.45)",
         }}>
           <strong style={{ color: "#d4a843" }}>{term}</strong>: {description}
@@ -118,6 +119,68 @@ function GlossaryTerm({ term, description }) {
       )}
     </span>
   );
+}
+
+// ── Inline Markdown — just **bold**, applied on top of glossary term
+// linking (a bold word can still be a glossary term, and vice versa).
+// See the MARKDOWN SOURCES doc in scripts/convert.py for the full syntax.
+function renderInline(text, glossary) {
+  if (!text) return text;
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  if (parts.length === 1) return withGlossary(text, glossary);
+  return parts.map((part, i) =>
+    i % 2 === 1
+      ? <strong key={i} style={{ color: TEXT.name }}>{withGlossary(part, glossary)}</strong>
+      : <React.Fragment key={i}>{withGlossary(part, glossary)}</React.Fragment>
+  );
+}
+
+// ── Body renderer — a section's body is blank-line-separated blocks;
+// a block whose lines all start with "- " renders as a bullet list
+// (a "  - " line nests as a sub-item of the bullet above it), anything
+// else as a plain paragraph. See the MARKDOWN SOURCES doc in
+// scripts/convert.py for the full syntax.
+function renderBody(body, glossary) {
+  const blocks = (body || "").split(/\n\n+/).map(b => b.trim()).filter(Boolean);
+  return blocks.map((block, bi) => {
+    const lines = block.split("\n").map(l => l.trimEnd()).filter(l => l.trim());
+    const isList = lines.length > 0 && lines.every(l => /^\s*-\s+/.test(l));
+    if (!isList) {
+      return (
+        <p key={bi} style={{ fontSize:15, color:TEXT.body, lineHeight:1.7, marginBottom:10 }}>
+          {renderInline(lines.join(" "), glossary)}
+        </p>
+      );
+    }
+    const items = [];
+    lines.forEach(l => {
+      const m = l.match(/^(\s*)-\s+(.*)$/);
+      const indented = m[1].length >= 2;
+      if (indented && items.length > 0) {
+        (items[items.length - 1].sub ??= []).push(m[2]);
+      } else {
+        items.push({ text: m[2], sub: null });
+      }
+    });
+    return (
+      <ul key={bi} style={{ margin: "0 0 10px 0", paddingLeft: 22 }}>
+        {items.map((it, ii) => (
+          <li key={ii} style={{ fontSize:15, color:TEXT.body, lineHeight:1.7, marginBottom:4 }}>
+            {renderInline(it.text, glossary)}
+            {it.sub && (
+              <ul style={{ margin: "4px 0 0 0", paddingLeft: 20 }}>
+                {it.sub.map((sub, si) => (
+                  <li key={si} style={{ fontSize:14, color:TEXT.body, lineHeight:1.6, marginBottom:3 }}>
+                    {renderInline(sub, glossary)}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    );
+  });
 }
 
 function App() {
@@ -268,12 +331,14 @@ function App() {
                 No rulebook content yet.
               </div>
             ) : sections.map(s => {
-              const paras = (s.body || "").split(/\n\n+/).filter(Boolean);
               // Level 4 — a glossary-style term definition (e.g. a Skill
               // under its Stat, a Rules Tag under its section) — reads as
               // a compact run-in entry, term bold inline with its first
-              // paragraph, rather than another full heading block.
+              // paragraph, rather than another full heading block. These
+              // are always short prose, no bullets, so just the inline
+              // (bold/glossary) pass rather than the full block renderer.
               if (s.level === 4) {
+                const paras = (s.body || "").split(/\n\n+/).map(p => p.trim()).filter(Boolean);
                 return (
                   <div key={s.id} id={s.id} style={{ marginBottom:14, marginLeft:20 }}>
                     {paras.length === 0 ? (
@@ -281,7 +346,7 @@ function App() {
                     ) : paras.map((para, i) => (
                       <p key={i} style={{ fontSize:14, color:TEXT.body, lineHeight:1.6, marginBottom:6 }}>
                         {i === 0 && <strong style={{ color:TEXT.name }}>{s.title}: </strong>}
-                        {withGlossary(para, glossary)}
+                        {renderInline(para, glossary)}
                       </p>
                     ))}
                   </div>
@@ -306,11 +371,7 @@ function App() {
                   }}>
                     {s.title}
                   </div>
-                  {paras.map((para, i) => (
-                    <p key={i} style={{ fontSize:15, color:TEXT.body, lineHeight:1.7, marginBottom:10 }}>
-                      {withGlossary(para, glossary)}
-                    </p>
-                  ))}
+                  {renderBody(s.body, glossary)}
                 </div>
               );
             })}

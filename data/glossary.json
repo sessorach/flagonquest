@@ -165,7 +165,7 @@
   },
   {
     "term": "Good Luck",
-    "description": "Sometimes you get Good Luck or Bad Luck on a flip. For each time you have Good Luck on a flip, you get to flip an extra card and then choose which one you want to use for the result."
+    "description": "For each time you have Good Luck on a flip, you get to flip an extra card and then choose which one you want to use for the result."
   },
   {
     "term": "Bad Luck",
@@ -189,11 +189,11 @@
   },
   {
     "term": "Interrupt",
-    "description": "Some abilities let you act on other turns, and interrupt their actions with your own. These are listed as Interrupts, and will list a triggering action - when such an action is declared, but before any if its effects happen, you may use the Interrupt ability."
+    "description": "Some abilities let you act on other turns, interrupting their actions with your own. These are listed as Interrupts, and will list a triggering action — when that action is declared, but before any of its effects happen, you may use the Interrupt ability, which resolves before the triggering action."
   },
   {
     "term": "Gambling",
-    "description": "In many cases, a character might easily succeed at an action, but require multiple successes to accomplish their goals. When this happens, the GM may allow a character to Gamble on a flip, taking a penalty to increase the amount they accomplish if successful."
+    "description": "Before making a flip, a character may Gamble on it, taking a -2 penalty per Gamble to increase the amount they accomplish if the flip still succeeds — each Gamble grants an Extra Success on a successful result."
   },
   {
     "term": "Extra Success",
