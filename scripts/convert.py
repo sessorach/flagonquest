@@ -259,6 +259,12 @@ BACKGROUND_MAP = {
     "Name":         "name",
     "Category":     "category",
     "Description":  "description",
+    # Which book this is from — see the matching note on ITEM_MAP's
+    # Supplement column. A Goblin clan background's Category is the
+    # clan's own name (e.g. "Rockbiters") rather than "General"/
+    # "Settler"/"Wildfolk" — see index.html's backgroundSlot for how
+    # that keeps clan picks freely combinable instead of exclusive.
+    "Supplement":   "supplement",
 }
 
 # Basic Items' crafting recipes (Weapons, Armor, Basic Clothing, etc.) —

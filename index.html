@@ -691,6 +691,11 @@ function emptyCharacterData() {
     // { id, name, accuracy, damage, range, skill, notes }, all plain
     // text since these are meant to be quick, fillable blanks.
     customAttacks: [],
+    // Character Sheet only — which order the Backgrounds and Techniques
+    // blocks print in, drag-reorderable the same way as everything else
+    // (see moveSheetSection). Backgrounds first by default; some players
+    // want it at the bottom instead.
+    sheetSectionOrder: ["backgrounds", "techniques"],
   };
 }
 
@@ -1944,7 +1949,7 @@ function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
           {bg.category}
         </span>
       </div>
-      <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.5 }}>
+      <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
         {bg.description}
       </div>
       {!readOnly && (
@@ -2601,14 +2606,37 @@ function CustomItemTile({
 }
 
 
+// A background's exclusivity group: General is its own slot, Settler
+// and Wildfolk share one slot (mutually exclusive with each other, not
+// just within themselves — see toggleBackground), and anything else
+// (a Goblin clan background, Category = the clan's own name) gets a
+// slot unique to that one background, i.e. no exclusivity with
+// anything at all, not even its own clan's other bonus — clan
+// membership grants every one of its bonuses at once, not a choice
+// among them.
+function backgroundSlot(bg) {
+  if (bg.category === "Settler" || bg.category === "Wildfolk") return "Type";
+  if (bg.category === "General") return "General";
+  return `free:${bg.id}`;
+}
+// Which backgrounds show up regardless of the Settler/Wildfolk toggle —
+// true General ones, plus anything not on that axis at all (a Goblin
+// clan background), matching how clan membership isn't itself a
+// Settler-or-Wildfolk choice. Settler/Wildfolk backgrounds only show
+// while their own toggle is active.
+function isAlwaysAvailableBackground(category) {
+  return category !== "Settler" && category !== "Wildfolk";
+}
+
 // ══════════════════════════════════════════════════════════════════
 // BACKGROUNDS SECTION — a Settler/Wildfolk toggle, the selected
 // background(s) as a drag-reorderable list (same handle as techniques),
 // and a picker grid of everything still eligible to pick. Selecting a
-// background already picked in the same category (General, or whichever
-// of Settler/Wildfolk the toggle is on) replaces it, like a radio
-// button — matching "one General pick, one Settler-or-Wildfolk pick."
-// Read-only on the Character Sheet: just the picks, no toggle/picker.
+// background already picked in the same slot (General, whichever of
+// Settler/Wildfolk the toggle is on, or — freely, no exclusivity at
+// all — a Goblin clan background) replaces it, like a radio button —
+// see backgroundSlot. Read-only on the Character Sheet: just the
+// picks, no toggle/picker.
 // ══════════════════════════════════════════════════════════════════
 function BackgroundsSection({
   backgrounds, backgroundType, onBackgroundTypeChange,
@@ -2645,7 +2673,7 @@ function BackgroundsSection({
     );
   }
 
-  const eligible  = backgrounds.filter(b => b.category === "General" || b.category === backgroundType);
+  const eligible  = backgrounds.filter(b => isAlwaysAvailableBackground(b.category) || b.category === backgroundType);
   const available = eligible.filter(b => !selectedIds.includes(b.id));
   const toggleBtnStyle = active => ({
     padding: "4px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
@@ -3194,6 +3222,8 @@ function App() {
   // Background picks — see emptyCharacterData for the shape.
   const [selectedBackgrounds, setSelectedBackgrounds] = useState(initialCharacter.data.selectedBackgrounds);
   const [backgroundType, setBackgroundType] = useState(initialCharacter.data.backgroundType);
+  // Order of the Backgrounds/Techniques blocks on the Character Sheet.
+  const [sheetSectionOrder, setSheetSectionOrder] = useState(initialCharacter.data.sheetSectionOrder);
   // Inventory — see emptyCharacterData for the shape.
   const [inventory, setInventory] = useState(initialCharacter.data.inventory);
   const [gold, setGold] = useState(initialCharacter.data.gold);
@@ -3226,6 +3256,7 @@ function App() {
     setGold(data.gold);
     setCustomItems(data.customItems);
     setCustomAttacks(data.customAttacks);
+    setSheetSectionOrder(data.sheetSectionOrder);
   };
 
   // Switches to an existing character slot.
@@ -3370,9 +3401,9 @@ function App() {
       statPoints, skillPoints, xpBudget,
       charName, charConcept, charNotes, noteRows, customTechniques,
       selectedBackgrounds, backgroundType, inventory, gold, customItems,
-      customAttacks,
+      customAttacks, sheetSectionOrder,
     });
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customAttacks]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customAttacks, sheetSectionOrder]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -3765,15 +3796,18 @@ function App() {
   // picked before in the same *slot* — General is its own slot, but
   // Settler and Wildfolk share one slot (mutually exclusive with each
   // other, not just within themselves), since a character is one or the
-  // other regardless of which the toggle happens to be showing. Clicking
-  // the selected one again deselects it. Order is drag-reorderable, same
-  // as techniques.
-  const backgroundSlot = category => category === "General" ? "General" : "Type";
+  // other regardless of which the toggle happens to be showing. A
+  // Goblin clan background (Category = the clan's own name, not
+  // General/Settler/Wildfolk) has no exclusivity at all — see
+  // backgroundSlot — so both of a clan's tribal bonuses, or bonuses
+  // from different clans, can all be picked together freely. Clicking
+  // the selected one again deselects it. Order is drag-reorderable,
+  // same as techniques.
   const toggleBackground = bg => {
     setSelectedBackgrounds(ids => {
       if (ids.includes(bg.id)) return ids.filter(id => id !== bg.id);
-      const slot = backgroundSlot(bg.category);
-      const sameSlotIds = new Set(backgrounds.filter(b => backgroundSlot(b.category) === slot).map(b => b.id));
+      const slot = backgroundSlot(bg);
+      const sameSlotIds = new Set(backgrounds.filter(b => backgroundSlot(b) === slot).map(b => b.id));
       return [...ids.filter(id => !sameSlotIds.has(id)), bg.id];
     });
   };
@@ -3786,6 +3820,23 @@ function App() {
       const next = [...ids];
       next.splice(from, 1);
       next.splice(to, 0, draggedId);
+      return next;
+    });
+  };
+  // Character Sheet only — swaps which of Backgrounds/Techniques prints
+  // first, same drag-reorder pattern (and shared dragId) as everything
+  // else. Only two keys ever exist, so this is really just a toggle,
+  // but it reuses the general splice-based move rather than a bespoke
+  // swap function.
+  const moveSheetSection = (draggedKey, targetKey) => {
+    if (draggedKey === targetKey) return;
+    setSheetSectionOrder(order => {
+      const from = order.indexOf(draggedKey);
+      const to   = order.indexOf(targetKey);
+      if (from === -1 || to === -1) return order;
+      const next = [...order];
+      next.splice(from, 1);
+      next.splice(to, 0, draggedKey);
       return next;
     });
   };
@@ -4045,6 +4096,7 @@ function App() {
       customTechniques: customTechniques.map(c => ({ title: c.title, text: c.text })),
       backgroundType,
       backgrounds: selectedBackgrounds,
+      sheetSectionOrder,
       gold,
       inventory: inventory.map(e => ({
         id: e.itemId, qty: e.qty,
@@ -4139,6 +4191,11 @@ function App() {
             : [],
           backgroundType: data.backgroundType === "Wildfolk" ? "Wildfolk" : "Settler",
           selectedBackgrounds: Array.isArray(data.backgrounds) ? data.backgrounds.filter(id => typeof id === "string") : [],
+          sheetSectionOrder: Array.isArray(data.sheetSectionOrder)
+              && data.sheetSectionOrder.length === 2
+              && ["backgrounds", "techniques"].every(k => data.sheetSectionOrder.includes(k))
+            ? data.sheetSectionOrder
+            : ["backgrounds", "techniques"],
           gold: typeof data.gold === "string" ? data.gold : "",
           inventory: Array.isArray(data.inventory)
             ? data.inventory.filter(e => e && typeof e.id === "string").map(e => ({
@@ -4963,25 +5020,62 @@ function App() {
             onWeaponNoteChange={setWeaponAttackNote}
           />
 
-          {selectedBackgrounds.length > 0 && (
-            <>
-              <div style={{ height:14 }} />
-              <BackgroundsSection backgrounds={backgrounds} selectedIds={selectedBackgrounds} readOnly />
-            </>
-          )}
-
-          {buildEntries.length === 0 && customTechniques.every(c => !c.title.trim() && !c.text.trim()) ? (
-            <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
-              Add techniques on the Techniques tab, then see them here.
-            </div>
-          ) : (
-            <div className="tech-list">
-              {sheetCards.map(renderSheetCard)}
-              {customTechniques.map(c => (
-                <CustomTechniqueCard key={c.id} tech={c} readOnly />
-              ))}
-            </div>
-          )}
+          {(() => {
+            // Backgrounds and Techniques print in whichever order
+            // sheetSectionOrder says — drag-reorderable (same dragId
+            // used everywhere else) since some players want Backgrounds
+            // at the bottom instead of right under the Attack Workspace.
+            // Backgrounds drops out entirely (no handle, nothing to
+            // drag) when nothing's selected, same as before.
+            const sectionLabel = { backgrounds: "Backgrounds", techniques: "Techniques" };
+            const sectionContent = {
+              backgrounds: selectedBackgrounds.length > 0
+                ? <BackgroundsSection backgrounds={backgrounds} selectedIds={selectedBackgrounds} readOnly />
+                : null,
+              techniques: buildEntries.length === 0 && customTechniques.every(c => !c.title.trim() && !c.text.trim()) ? (
+                <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
+                  Add techniques on the Techniques tab, then see them here.
+                </div>
+              ) : (
+                <div className="tech-list">
+                  {sheetCards.map(renderSheetCard)}
+                  {customTechniques.map(c => (
+                    <CustomTechniqueCard key={c.id} tech={c} readOnly />
+                  ))}
+                </div>
+              ),
+            };
+            const orderedKeys = sheetSectionOrder.filter(key => sectionContent[key] != null);
+            return orderedKeys.map(key => (
+              <div
+                key={key}
+                onDragOver={e => { if (dragId) e.preventDefault(); }}
+                onDrop={e => { e.preventDefault(); if (dragId) moveSheetSection(dragId, key); setDragId(null); }}
+                style={{ display: "flex", gap: 6, alignItems: "stretch", opacity: dragId === key ? 0.5 : 1, marginTop: 14 }}
+              >
+                {orderedKeys.length > 1 && (
+                  <div
+                    draggable
+                    onDragStart={e => { e.dataTransfer.effectAllowed = "move"; setDragId(key); }}
+                    onDragEnd={() => setDragId(null)}
+                    title="Drag to reorder"
+                    aria-label={`Drag to reorder ${sectionLabel[key]}`}
+                    className="no-print"
+                    style={{
+                      display: "flex", alignItems: "flex-start", justifyContent: "center",
+                      width: 22, flexShrink: 0, cursor: "grab", color: TEXT.faint, fontSize: 16,
+                      userSelect: "none", paddingTop: 8,
+                    }}
+                  >
+                    ⠿
+                  </div>
+                )}
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  {sectionContent[key]}
+                </div>
+              </div>
+            ));
+          })()}
 
           {(inventory.length > 0 || gold || customItems.length > 0) && (
             <>
