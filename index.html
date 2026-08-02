@@ -1623,10 +1623,11 @@ function StatsPanel({
 // from Stats & Skills (Speed, Defenses, etc.), matching the formulas
 // printed on the paper character sheet.
 // ══════════════════════════════════════════════════════════════════
-function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
+function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {}, techniqueBonuses = {} }) {
   const st = skill => skillTotalValue(statPoints, skillPoints, skill);
   const essence = statPoints.Essence || 0;
   const bonus = key => equipmentBonuses[key] || 0;
+  const techBonus = key => techniqueBonuses[key] || 0;
 
   // Each row's name is bold with its calculation in italics underneath —
   // matching the paper character sheet — instead of both crammed onto
@@ -1640,9 +1641,11 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
   // for its equipment bonus (Speed, the five Resists, four of the five
   // Defenses — Parry gets its bonus from the best Weapon Defense among
   // equipped weapons instead, handled the same way by App's
-  // equipmentBonuses). When
-  // that bonus is nonzero it's added to the shown value and called out
-  // in the formula line, e.g. "= Essence (+2 equipped)".
+  // equipmentBonuses) and/or a known-technique bonus (currently just
+  // Shallow/Deep Health, from Toughened Body/Resolve/Spirit — see
+  // techniqueBonuses). Either source, when nonzero, is added to the
+  // shown value and called out separately in the formula line, e.g.
+  // "= Essence (+2 equipped)" or "= Body (+3 known)".
   const block = (title, rows, footer) => (
     <div className="sheet-box" style={{
       background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
@@ -1653,6 +1656,10 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
       </div>
       {rows.map(([label, base, formula, statKey], i) => {
         const eq = statKey ? bonus(statKey) : 0;
+        const tq = statKey ? techBonus(statKey) : 0;
+        const parts = [];
+        if (eq !== 0) parts.push(`${eq > 0 ? "+" : "−"}${Math.abs(eq)} equipped`);
+        if (tq !== 0) parts.push(`${tq > 0 ? "+" : "−"}${Math.abs(tq)} known`);
         return (
           <div key={label} className={i % 2 === 1 ? "row-alt" : undefined} style={{
             display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
@@ -1663,11 +1670,11 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
               <div style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</div>
               {formula && (
                 <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic" }}>
-                  {formula}{eq !== 0 && ` (${eq > 0 ? "+" : "−"}${Math.abs(eq)} equipped)`}
+                  {formula}{parts.length > 0 && ` (${parts.join(", ")})`}
                 </div>
               )}
             </div>
-            <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name, flexShrink: 0 }}>{base + eq}</span>
+            <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name, flexShrink: 0 }}>{base + eq + tq}</span>
           </div>
         );
       })}
@@ -1697,7 +1704,7 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
       {block("Health", [
         ["Shallow Health", 5, "(base)", "shallow_health"],
         ["Deep Health",    5, "(base)", "deep_health"],
-      ], "Feature/technique bonuses to these aren't tracked yet.")}
+      ])}
       {block("Resists", [
         ["Physical Resist",  essence, "= Essence", "physical_resist"],
         ["Fire Resist",      essence, "= Essence", "fire_resist"],
@@ -3938,6 +3945,24 @@ function App() {
     return totals;
   }, [inventory, items, customItems]);
 
+  // Sums every known technique's max-Health bonus (Toughened Body/
+  // Resolve/Spirit currently) into the same { shallow_health,
+  // deep_health } shape DerivedStats' Health block expects — a
+  // Duplicate-tagged technique learned more than once naturally counts
+  // each copy, since buildEntries already has one entry per copy. Only
+  // permanent increases to the *maximum* belong here; techniques that
+  // just heal Health during play (Second Wind, Healing Magic, etc. —
+  // see the unrelated "Healing" filter flag) aren't tracked as a sheet
+  // number at all, since they're one-time effects, not a standing bonus.
+  const techniqueHealthBonuses = useMemo(() => {
+    const totals = { shallow_health: 0, deep_health: 0 };
+    buildEntries.forEach(e => {
+      if (typeof e.tech.shallow_health_bonus === "number") totals.shallow_health += e.tech.shallow_health_bonus;
+      if (typeof e.tech.deep_health_bonus === "number") totals.deep_health += e.tech.deep_health_bonus;
+    });
+    return totals;
+  }, [buildEntries]);
+
   // Auto-listed rows for the Attack Workspace — every equipped weapon
   // (Held-slot, or Unarmed's virtual Held slot — see effectiveSlot) that
   // actually has an offensive profile (Accuracy/Damage/Range). A
@@ -4927,7 +4952,7 @@ function App() {
             readOnly
           />
           <div style={{ height:14 }} />
-          <DerivedStats statPoints={statPoints} skillPoints={skillPoints} equipmentBonuses={equipmentBonuses} />
+          <DerivedStats statPoints={statPoints} skillPoints={skillPoints} equipmentBonuses={equipmentBonuses} techniqueBonuses={techniqueHealthBonuses} />
           <div style={{ height:14 }} />
           <AttackWorkspace
             weaponRows={equippedWeaponAttacks}

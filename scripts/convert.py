@@ -161,6 +161,13 @@ TECHNIQUE_MAP = {
     "Healing":              "healing",
     "Features":             "features",
     "Free Text":            "free_text",
+    # A permanent increase to the character's *maximum* Health while
+    # this technique is known (Toughened Body/Resolve/Spirit) — not a
+    # one-time heal like "Healing" above marks. Learning a Duplicate-
+    # tagged one more than once counts each copy — see
+    # techniqueHealthBonuses in index.html.
+    "Shallow Health Bonus": "shallow_health_bonus",
+    "Deep Health Bonus":    "deep_health_bonus",
 }
 
 FEATURE_MAP = {
