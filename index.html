@@ -1841,9 +1841,17 @@ function InventoryTile({
           <span style={{ fontSize: 12, color: TEXT.faint }}>{displayCost}</span>
         )}
       </div>
-      {item.description && (
-        <div style={{ fontSize: 13, color: TEXT.body, lineHeight: 1.5 }}>
+      {/* Fluff description — italic and muted, skipped on the read-only
+          Character Sheet, same treatment as a technique's Description. */}
+      {!readOnly && item.description && (
+        <div style={{ fontSize: 13, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.5 }}>
           {item.description}
+        </div>
+      )}
+      {/* Effects — the actual rules text, shown everywhere */}
+      {item.effects && (
+        <div style={{ fontSize: 13, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
+          {item.effects}
         </div>
       )}
       {weaponInfo.length > 0 && (
@@ -1914,17 +1922,54 @@ function InventoryTile({
 
 // ══════════════════════════════════════════════════════════════════
 // CUSTOM ITEM TILE — a freeform item the player writes in themselves,
-// same idea as CustomTechniqueCard: just a name, description, and (since
-// most items are worth tracking a count of) a quantity stepper. No
-// data-file entry, no stats, no equip/parry/base-item — those only make
-// sense for real catalog items. Sits in the same grid as InventoryTile.
+// same idea as CustomTechniqueCard: a name, description, and quantity.
+// It can also carry: a Slot (so it shares SLOT_CAPACITY/Equipped with
+// real items — a custom Ring still only leaves room for one more Ring),
+// manually-entered flat stats (for homebrew gear that isn't in the data
+// file at all), and any number of attached Masterwork powers (for the
+// one in-game ability that lets you stack more than one Masterwork
+// enchantment on an item) — each with its own level, and its Effects
+// text shown in full since that's the actual rules text for the power.
+// Slot/Stats/Powers are edited on the Items tab; the Character Sheet
+// only shows the composite result — combined stat badges (manual stats
+// + every attached power's own stats) and each power's effect text —
+// plus the Equipped checkbox, same split as InventoryTile's base-item
+// picker vs. its composite badges.
 // ══════════════════════════════════════════════════════════════════
-function CustomItemTile({ entry, onNameChange, onTextChange, onQtyChange, onRemove, readOnly = false }) {
+function CustomItemTile({
+  entry, allItems = [], onNameChange, onTextChange, onQtyChange, onRemove, readOnly = false,
+  onSlotChange, showEquip = false, onToggleEquipped, equipDisabled = false,
+  onAddStat, onStatChange, onRemoveStat, onAddPower, onPowerLevelChange, onRemovePower,
+}) {
   if (readOnly && !entry.name.trim() && !entry.text.trim()) return null; // nothing to show
+
+  const stats = entry.stats || {};
+  const statKeysUsed = new Set(Object.keys(stats));
+  const availableStats = ITEM_STAT_FIELDS.filter(([key]) => !statKeysUsed.has(key));
+  const masterworkOptions = allItems.filter(i => i.category === "Masterwork");
+  const powers = (entry.powers || [])
+    .map(p => ({ ...p, item: allItems.find(i => i.id === p.itemId) }))
+    .filter(p => p.item);
+
+  // Combined stat badges — manual stats plus every attached power's own
+  // flat stats, summed per key (mirrors InventoryTile's own-item +
+  // base-item combine, and equipmentBonuses' version of the same math).
+  const combinedStats = {};
+  ITEM_STAT_FIELDS.forEach(([key, label]) => {
+    let v = 0, any = false;
+    if (typeof stats[key] === "number") { v += stats[key]; any = true; }
+    powers.forEach(p => { if (typeof p.item[key] === "number") { v += p.item[key]; any = true; } });
+    if (any && v !== 0) combinedStats[key] = [label, v];
+  });
+  const statBadges = Object.values(combinedStats);
+
+  const selectStyle = { fontSize: 12, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" };
 
   return (
     <div className="tech-card" style={{
-      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+      background: "#161b27",
+      border: entry.equipped ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
+      borderRadius: 8,
       padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
     }}>
       <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
@@ -1957,6 +2002,20 @@ function CustomItemTile({ entry, onNameChange, onTextChange, onQtyChange, onRemo
           </button>
         )}
       </div>
+      {!readOnly && (
+        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: TEXT.body }}>
+          <span style={{ color: TEXT.faint, flexShrink: 0 }}>Slot</span>
+          <select value={entry.slot || ""} onChange={e => onSlotChange(e.target.value)} style={{ fontSize: 12, flex: 1, minWidth: 0 }}>
+            <option value="">No slot</option>
+            {ITEM_SLOTS.map(s => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </div>
+      )}
+      {readOnly && entry.slot && (
+        <span style={{ fontSize: 11, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px", alignSelf: "flex-start" }}>
+          Custom · {entry.slot}
+        </span>
+      )}
       {readOnly ? (
         entry.text && (
           <div style={{ fontSize: 13, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
@@ -1972,6 +2031,110 @@ function CustomItemTile({ entry, onNameChange, onTextChange, onQtyChange, onRemo
           style={{ fontSize: 13 }}
         />
       )}
+
+      {statBadges.length > 0 && (
+        <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+          {statBadges.map(([label, v]) => (
+            <span key={label} style={{
+              fontSize: 11, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
+              borderRadius: 4, padding: "1px 6px",
+            }}>
+              {statBadge(label, v)}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {!readOnly && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          {Object.entries(stats).map(([key, v]) => {
+            const label = (ITEM_STAT_FIELDS.find(([k]) => k === key) || [key, key])[1];
+            return (
+              <div key={key} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+                <span style={{ color: TEXT.faint, flex: 1 }}>{label}</span>
+                <input
+                  type="number"
+                  value={v}
+                  onChange={e => onStatChange(key, Number(e.target.value) || 0)}
+                  style={{ width: 56, fontSize: 12, textAlign: "right" }}
+                />
+                <button
+                  onClick={() => onRemoveStat(key)}
+                  aria-label={`Remove ${label}`}
+                  style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 14, lineHeight: 1, padding: "0 2px" }}
+                >
+                  ✕
+                </button>
+              </div>
+            );
+          })}
+          {availableStats.length > 0 && (
+            <select
+              value=""
+              onChange={e => { if (e.target.value) onAddStat(e.target.value); e.target.selectedIndex = 0; }}
+              style={{ fontSize: 12 }}
+            >
+              <option value="">+ Add stat…</option>
+              {availableStats.map(([key, label]) => <option key={key} value={key}>{label}</option>)}
+            </select>
+          )}
+        </div>
+      )}
+
+      {/* Attached Masterwork powers — for the one ability that lets you
+          stack more than one on an item. Effects text always shows, on
+          both the Items tab and the read-only Sheet, since that's the
+          actual rules text a player needs to use the power. */}
+      {powers.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          {powers.map(p => {
+            const levels = p.item.levels || [];
+            const variableLevel = levels.length > 1;
+            const displayLevel = p.level ?? levels[0];
+            return (
+              <div key={p.id} style={{ border: "0.5px solid #2d3555", borderRadius: 6, padding: "6px 8px", display: "flex", flexDirection: "column", gap: 3 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <span style={{ fontSize: 13, fontWeight: 500, color: TEXT.name, flex: 1 }}>{p.item.name}</span>
+                  {levels.length > 0 && (
+                    variableLevel && !readOnly ? (
+                      <select value={displayLevel} onChange={e => onPowerLevelChange(p.id, Number(e.target.value))} style={selectStyle}>
+                        {levels.map(lv => <option key={lv} value={lv}>Lv {lv}</option>)}
+                      </select>
+                    ) : (
+                      <span style={selectStyle}>Lv {displayLevel}</span>
+                    )
+                  )}
+                  {!readOnly && (
+                    <button
+                      onClick={() => onRemovePower(p.id)}
+                      aria-label={`Remove ${p.item.name}`}
+                      style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 14, lineHeight: 1, padding: "0 2px" }}
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+                {p.item.effects && (
+                  <div style={{ fontSize: 12, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
+                    {p.item.effects}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {!readOnly && (
+        <select
+          value=""
+          onChange={e => { if (e.target.value) onAddPower(e.target.value); e.target.selectedIndex = 0; }}
+          style={{ fontSize: 12 }}
+        >
+          <option value="">+ Add Masterwork power…</option>
+          {masterworkOptions.map(mw => <option key={mw.id} value={mw.id}>{mw.name}</option>)}
+        </select>
+      )}
+
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
         <span style={{ fontSize: 12, color: TEXT.faint }}>Qty</span>
         {readOnly ? (
@@ -1980,6 +2143,17 @@ function CustomItemTile({ entry, onNameChange, onTextChange, onQtyChange, onRemo
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
       </div>
+      {showEquip && entry.slot && (
+        <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 4, borderTop: "0.5px solid #2d3555" }}>
+          <label
+            title={equipDisabled ? `No room left in the ${entry.slot} slot` : undefined}
+            style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: equipDisabled ? TEXT.faint : TEXT.body, cursor: equipDisabled ? "not-allowed" : "pointer" }}
+          >
+            <input type="checkbox" checked={!!entry.equipped} disabled={equipDisabled} onChange={onToggleEquipped} />
+            Equipped
+          </label>
+        </div>
+      )}
     </div>
   );
 }
@@ -2102,7 +2276,9 @@ function BackgroundsSection({
 // How much of a slot's capacity is spent — 2 for Held (two hands) and
 // Ring (one per hand), 1 for everything else. A 2H weapon/bow takes
 // both Held slots at once (its own held_slots column); everything else,
-// including rings, takes 1.
+// including rings, takes 1. A custom item always costs 1 (no held_slots
+// concept for freeform gear).
+const ITEM_SLOTS = ["Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"];
 const SLOT_CAPACITY = { Held: 2, Ring: 2 };
 function slotCost(item) {
   return item.slot === "Held" ? (item.held_slots || 1) : 1;
@@ -2112,6 +2288,8 @@ function InventorySection({
   items, inventory, gold, onGoldChange, onAdd, onQtyChange, onRemove, readOnly = false,
   showEquip = false, onToggleEquipped, onToggleParry, onBaseItemChange, onLevelChange,
   customItems = [], onAddCustomItem, onUpdateCustomItem, onRemoveCustomItem,
+  onToggleCustomItemEquipped, onAddCustomItemStat, onCustomItemStatChange, onRemoveCustomItemStat,
+  onAddCustomItemPower, onCustomItemPowerLevelChange, onRemoveCustomItemPower,
 }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
@@ -2125,9 +2303,10 @@ function InventorySection({
       .slice(0, 40);
   }, [items, search, category]);
 
-  // Slot capacity used by everything currently equipped, for the
-  // Equipped-by-slot summary and for disabling a checkbox that would
-  // overflow its slot.
+  // Slot capacity used by everything currently equipped — real items and
+  // custom items share the same per-slot capacity, since a custom Ring
+  // still only leaves room for one more Ring. Used for the Equipped-by-
+  // slot summary and for disabling a checkbox that would overflow a slot.
   const bySlot = useMemo(() => {
     const map = {};
     if (!showEquip) return map;
@@ -2135,10 +2314,15 @@ function InventorySection({
       if (!e.equipped) return;
       const item = items.find(i => i.id === e.itemId);
       if (!item || !item.slot) return;
-      (map[item.slot] ??= []).push({ item, cost: slotCost(item), level: e.level });
+      const name = item.name + (e.level && item.levels?.length > 1 ? ` (Lv ${e.level})` : "");
+      (map[item.slot] ??= []).push({ name, cost: slotCost(item) });
+    });
+    customItems.forEach(c => {
+      if (!c.equipped || !c.slot) return;
+      (map[c.slot] ??= []).push({ name: c.name.trim() || "Custom item", cost: 1 });
     });
     return map;
-  }, [inventory, items, showEquip]);
+  }, [inventory, items, customItems, showEquip]);
 
   const grid = (
     inventory.length === 0 && customItems.length === 0 ? (
@@ -2173,17 +2357,36 @@ function InventorySection({
             />
           );
         })}
-        {customItems.map(entry => (
-          <CustomItemTile
-            key={entry.id}
-            entry={entry}
-            readOnly={readOnly}
-            onNameChange={readOnly ? undefined : (v => onUpdateCustomItem(entry.id, "name", v))}
-            onTextChange={readOnly ? undefined : (v => onUpdateCustomItem(entry.id, "text", v))}
-            onQtyChange={readOnly ? undefined : (q => onUpdateCustomItem(entry.id, "qty", q))}
-            onRemove={readOnly ? undefined : (() => onRemoveCustomItem(entry.id))}
-          />
-        ))}
+        {customItems.map(entry => {
+          let equipDisabled = false;
+          if (showEquip && entry.slot && !entry.equipped) {
+            const capacity = SLOT_CAPACITY[entry.slot] || 1;
+            const used = (bySlot[entry.slot] || []).reduce((sum, x) => sum + x.cost, 0);
+            equipDisabled = used + 1 > capacity;
+          }
+          return (
+            <CustomItemTile
+              key={entry.id}
+              entry={entry}
+              allItems={items}
+              readOnly={readOnly}
+              showEquip={showEquip}
+              equipDisabled={equipDisabled}
+              onNameChange={readOnly ? undefined : (v => onUpdateCustomItem(entry.id, "name", v))}
+              onTextChange={readOnly ? undefined : (v => onUpdateCustomItem(entry.id, "text", v))}
+              onQtyChange={readOnly ? undefined : (q => onUpdateCustomItem(entry.id, "qty", q))}
+              onSlotChange={readOnly ? undefined : (v => onUpdateCustomItem(entry.id, "slot", v))}
+              onRemove={readOnly ? undefined : (() => onRemoveCustomItem(entry.id))}
+              onToggleEquipped={() => onToggleCustomItemEquipped(entry.id)}
+              onAddStat={key => onAddCustomItemStat(entry.id, key)}
+              onStatChange={(key, v) => onCustomItemStatChange(entry.id, key, v)}
+              onRemoveStat={key => onRemoveCustomItemStat(entry.id, key)}
+              onAddPower={itemId => onAddCustomItemPower(entry.id, itemId)}
+              onPowerLevelChange={(powerId, lv) => onCustomItemPowerLevelChange(entry.id, powerId, lv)}
+              onRemovePower={powerId => onRemoveCustomItemPower(entry.id, powerId)}
+            />
+          );
+        })}
       </div>
     )
   );
@@ -2217,13 +2420,11 @@ function InventorySection({
           <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 2 }}>
             Equipped
           </div>
-          {["Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"].map(slot => (
+          {ITEM_SLOTS.map(slot => (
             <div key={slot} style={{ display: "flex", gap: 8, fontSize: 13 }}>
               <span style={{ color: TEXT.faint, minWidth: 46, flexShrink: 0 }}>{slot}</span>
               <span style={{ color: (bySlot[slot] || []).length ? TEXT.body : TEXT.faint }}>
-                {(bySlot[slot] || []).length
-                  ? bySlot[slot].map(x => x.item.name + (x.item.levels?.length > 1 ? ` (Lv ${x.level})` : "")).join(", ")
-                  : "—"}
+                {(bySlot[slot] || []).length ? bySlot[slot].map(x => x.name).join(", ") : "—"}
               </span>
             </div>
           ))}
@@ -2947,15 +3148,74 @@ function App() {
     });
   };
 
-  // ── Custom items — freeform, no data-file entry, no stats ──────
+  // ── Custom items — freeform, no data-file entry. Can still carry a
+  // Slot (sharing SLOT_CAPACITY with real items), manually-entered flat
+  // stats, and any number of attached Masterwork powers (for the one
+  // in-game ability that stacks more than one on an item) — see
+  // CustomItemTile for how those combine into its stat badges.
   const addCustomItem = () => {
-    setCustomItems(cs => [...cs, { id: makeUid(), name: "", text: "", qty: 1 }]);
+    setCustomItems(cs => [...cs, { id: makeUid(), name: "", text: "", qty: 1, slot: "", equipped: false, stats: {}, powers: [] }]);
   };
   const updateCustomItem = (id, field, value) => {
     setCustomItems(cs => cs.map(c => c.id === id ? { ...c, [field]: value } : c));
   };
   const removeCustomItem = id => {
     setCustomItems(cs => cs.filter(c => c.id !== id));
+  };
+  // Equipped — Character Sheet only, same slot-capacity rule as real
+  // items (toggleEquipped below), just checked against inventory AND
+  // customItems together since they share the same body slots.
+  const toggleCustomItemEquipped = id => {
+    setCustomItems(cs => {
+      const entry = cs.find(c => c.id === id);
+      if (!entry) return cs;
+      if (entry.equipped) {
+        return cs.map(c => c.id === id ? { ...c, equipped: false } : c);
+      }
+      if (entry.slot) {
+        const capacity = SLOT_CAPACITY[entry.slot] || 1;
+        const usedByInventory = inventory.reduce((sum, e) => {
+          if (!e.equipped) return sum;
+          const it = items.find(i => i.id === e.itemId);
+          return (it && it.slot === entry.slot) ? sum + slotCost(it) : sum;
+        }, 0);
+        const usedByCustom = cs.reduce((sum, c) => (c.id !== id && c.equipped && c.slot === entry.slot) ? sum + 1 : sum, 0);
+        if (usedByInventory + usedByCustom + 1 > capacity) return cs;
+      }
+      return cs.map(c => c.id === id ? { ...c, equipped: true } : c);
+    });
+  };
+  const addCustomItemStat = (id, key) => {
+    setCustomItems(cs => cs.map(c => c.id === id ? { ...c, stats: { ...c.stats, [key]: 0 } } : c));
+  };
+  const customItemStatChange = (id, key, value) => {
+    setCustomItems(cs => cs.map(c => c.id === id ? { ...c, stats: { ...c.stats, [key]: value } } : c));
+  };
+  const removeCustomItemStat = (id, key) => {
+    setCustomItems(cs => cs.map(c => {
+      if (c.id !== id) return c;
+      const stats = { ...c.stats };
+      delete stats[key];
+      return { ...c, stats };
+    }));
+  };
+  const addCustomItemPower = (id, itemId) => {
+    setCustomItems(cs => cs.map(c => {
+      if (c.id !== id) return c;
+      const power = items.find(i => i.id === itemId);
+      const level = power?.levels?.[0];
+      return { ...c, powers: [...(c.powers || []), { id: makeUid(), itemId, ...(level != null ? { level } : {}) }] };
+    }));
+  };
+  const customItemPowerLevelChange = (id, powerId, level) => {
+    setCustomItems(cs => cs.map(c => c.id === id
+      ? { ...c, powers: (c.powers || []).map(p => p.id === powerId ? { ...p, level } : p) }
+      : c));
+  };
+  const removeCustomItemPower = (id, powerId) => {
+    setCustomItems(cs => cs.map(c => c.id === id
+      ? { ...c, powers: (c.powers || []).filter(p => p.id !== powerId) }
+      : c));
   };
 
   // ── Backgrounds — pick at most one General, and one Settler-or-
@@ -3084,12 +3344,25 @@ function App() {
         if (baseItem) addStats(baseItem);
       }
     });
+    // Custom items — their own manually-entered stats, plus every
+    // attached Masterwork power's own stats (see CustomItemTile).
+    customItems.forEach(c => {
+      if (!c.equipped) return;
+      ITEM_STAT_FIELDS.forEach(([key]) => {
+        const v = c.stats?.[key];
+        if (typeof v === "number") totals[key] = (totals[key] || 0) + v;
+      });
+      (c.powers || []).forEach(p => {
+        const power = items.find(i => i.id === p.itemId);
+        if (power) addStats(power);
+      });
+    });
     const parryEntry = inventory.find(e => e.equipped && e.isParryWeapon);
     const parryItem = parryEntry && items.find(i => i.id === parryEntry.itemId);
     const weaponDefense = typeof parryItem?.weapon_defense === "number" ? parryItem.weapon_defense : 0;
     totals.parry_defense = (totals.parry_defense || 0) + weaponDefense;
     return totals;
-  }, [inventory, items]);
+  }, [inventory, items, customItems]);
 
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
@@ -3109,7 +3382,11 @@ function App() {
       backgrounds: selectedBackgrounds,
       gold,
       inventory: inventory.map(e => ({ id: e.itemId, qty: e.qty, ...(typeof e.level === "number" ? { level: e.level } : {}) })),
-      customItems: customItems.map(c => ({ name: c.name, text: c.text, qty: c.qty })),
+      customItems: customItems.map(c => ({
+        name: c.name, text: c.text, qty: c.qty, slot: c.slot || "",
+        stats: c.stats || {},
+        powers: (c.powers || []).map(p => ({ id: p.itemId, ...(p.level != null ? { level: p.level } : {}) })),
+      })),
       exportedAt: new Date().toISOString(),
       techniques: buildEntries.map(e => {
         const cfg = configs[e.uid];
@@ -3198,7 +3475,24 @@ function App() {
               }))
             : [],
           customItems: Array.isArray(data.customItems)
-            ? data.customItems.map(c => ({ id: makeUid(), name: c.name ?? "", text: c.text ?? "", qty: Number(c.qty) > 0 ? Number(c.qty) : 1 }))
+            ? data.customItems.map(c => {
+                const stats = {};
+                if (c.stats && typeof c.stats === "object") {
+                  ITEM_STAT_FIELDS.forEach(([key]) => {
+                    if (typeof c.stats[key] === "number") stats[key] = c.stats[key];
+                  });
+                }
+                const powers = Array.isArray(c.powers)
+                  ? c.powers
+                      .filter(p => p && typeof p.id === "string" && items.some(i => i.id === p.id))
+                      .map(p => ({ id: makeUid(), itemId: p.id, ...(typeof p.level === "number" ? { level: p.level } : {}) }))
+                  : [];
+                return {
+                  id: makeUid(), name: c.name ?? "", text: c.text ?? "", qty: Number(c.qty) > 0 ? Number(c.qty) : 1,
+                  slot: typeof c.slot === "string" && ITEM_SLOTS.includes(c.slot) ? c.slot : "",
+                  equipped: false, stats, powers,
+                };
+              })
             : [],
         });
       } catch {
@@ -3857,6 +4151,9 @@ function App() {
             onLevelChange={setInventoryLevel} onBaseItemChange={setInventoryBaseItem}
             customItems={customItems} onAddCustomItem={addCustomItem}
             onUpdateCustomItem={updateCustomItem} onRemoveCustomItem={removeCustomItem}
+            onAddCustomItemStat={addCustomItemStat} onCustomItemStatChange={customItemStatChange}
+            onRemoveCustomItemStat={removeCustomItemStat} onAddCustomItemPower={addCustomItemPower}
+            onCustomItemPowerLevelChange={customItemPowerLevelChange} onRemoveCustomItemPower={removeCustomItemPower}
           />
         </div>
       )}
@@ -3973,7 +4270,7 @@ function App() {
               <InventorySection
                 items={items} inventory={inventory} gold={gold} readOnly showEquip
                 onToggleEquipped={toggleEquipped} onToggleParry={toggleParryWeapon}
-                customItems={customItems}
+                customItems={customItems} onToggleCustomItemEquipped={toggleCustomItemEquipped}
               />
             </>
           )}

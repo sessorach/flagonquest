@@ -150,7 +150,13 @@ ITEM_MAP = {
     "Slot":             "slot",
     "Tags":             "tags",
     "Level":            "level",
-    "Description":      "description",
+    # Flavor text and rules text, split the same way techniques.csv splits
+    # Description/Effects — Description (Fluff) is italicized and skipped
+    # on the read-only Character Sheet; Effects is the actual rules text,
+    # always shown. Not every item has fluff (some data-file entries are
+    # purely mechanical), but every item that does anything has Effects.
+    "Description (Fluff)": "description",
+    "Effects":              "effects",
     "Cost":             "cost",
     # Masterwork items are priced per level (20 Gold/level) rather than a
     # flat Cost — set for a Masterwork item with more than one valid
