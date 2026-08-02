@@ -517,6 +517,28 @@ function resolveSkillTotalToken(inner, statPoints, skillPoints) {
   return value;
 }
 
+// Resolves a weapon's damage formula (e.g. "3 + [Body or Cunning]") against
+// the character's actual Stat points into a single composite number, with
+// the higher of multiple listed Stats used when more than one is given
+// (e.g. a Thrown weapon that can add either). Normal weapons always deal
+// Physical damage equal to this total (per the rulebook's "Making an
+// Attack" section), so a successful resolution has " Physical" appended;
+// anything that doesn't match the "N + [Stat(s)]" (or bare "N") shape is
+// returned unresolved and unlabeled, exactly as stored.
+function resolveDamage(raw, statPoints) {
+  if (raw == null) return null;
+  const text = String(raw).trim();
+  const m = text.match(/^(-?\d+)(?:\s*\+\s*\[([^\[\]]+)\])?$/);
+  if (!m) return text;
+  const base = parseInt(m[1], 10);
+  if (!m[2]) return `${base} Physical`;
+  const statNames = m[2].split(/\s+or\s+/i).map(s => s.trim()).filter(Boolean);
+  const validStats = statNames.filter(s => STATS.includes(s));
+  if (validStats.length === 0) return text;
+  const bonus = Math.max(...validStats.map(s => statPoints[s] || 0));
+  return `${base + bonus} Physical`;
+}
+
 // Like withGlossary, but also — when `skillTotals` is given ({ statPoints,
 // skillPoints }) — finds every "[... Skill Total]" bracket in `text` and
 // prepends the character's actual computed value in the same bold/glow
@@ -3508,17 +3530,17 @@ function App() {
       if (!item || item.slot !== "Held") return;
       const baseItem = e.baseItemId ? items.find(i => i.id === e.baseItemId) : null;
       const accuracy = item.accuracy ?? baseItem?.accuracy;
-      const damage = item.damage ?? baseItem?.damage;
+      const rawDamage = item.damage ?? baseItem?.damage;
       const range = item.range ?? baseItem?.range;
-      if (accuracy == null && damage == null && range == null) return;
+      if (accuracy == null && rawDamage == null && range == null) return;
       rows.push({
-        key: e.uid, name: item.name, accuracy, damage, range,
+        key: e.uid, name: item.name, accuracy, damage: resolveDamage(rawDamage, statPoints), range,
         skill: item.relevant_skill ?? baseItem?.relevant_skill,
         notes: e.attackNote || "",
       });
     });
     return rows;
-  }, [inventory, items]);
+  }, [inventory, items, statPoints]);
 
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
