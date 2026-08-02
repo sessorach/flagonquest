@@ -1752,18 +1752,27 @@ function statBadge(label, v) {
 // capacity — and, for a Weapon that can Parry, a Parry radio. A
 // Masterwork item with base_item_options also gets a base-item picker
 // there (e.g. Dauntless Wrap built onto Light or Heavy Armor); its
-// stats fold into the badges shown below and into equipmentBonuses.
+// stats fold into the badges shown below and into equipmentBonuses. A
+// Masterwork item is also "buildable" like a Feature technique — fixed-
+// level ones (item.levels has one entry) just get a "Lv N" badge, and
+// ones with a choice of levels (item.levels has more than one) get a
+// picker instead, editable wherever Qty is (Items tab, plain badge on
+// the read-only Sheet).
 // ══════════════════════════════════════════════════════════════════
 function InventoryTile({
   entry, item, allItems = [], onQtyChange, onRemove, readOnly = false,
   showEquip = false, onToggleEquipped, equipDisabled = false,
-  onToggleParry, onBaseItemChange,
+  onToggleParry, onBaseItemChange, onLevelChange,
 }) {
   if (!item) return null; // stale reference to a removed/renamed data row
   const baseItemOptions = (item.base_item_options || [])
     .map(id => allItems.find(i => i.id === id))
     .filter(Boolean);
   const baseItem = entry.baseItemId ? allItems.find(i => i.id === entry.baseItemId) : null;
+  const levels = item.category === "Masterwork" ? (item.levels || []) : [];
+  const hasLevel = levels.length > 0;
+  const variableLevel = levels.length > 1;
+  const displayLevel = entry.level ?? levels[0];
   const statBadges = ITEM_STAT_FIELDS
     .map(([key, label]) => {
       const own  = typeof item[key] === "number" ? item[key] : 0;
@@ -1804,6 +1813,21 @@ function InventoryTile({
         <span style={{ fontSize: 11, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px" }}>
           {item.category}{item.slot ? ` · ${item.slot}` : ""}
         </span>
+        {hasLevel && (
+          variableLevel && !readOnly ? (
+            <select
+              value={displayLevel}
+              onChange={e => onLevelChange(Number(e.target.value))}
+              style={{ fontSize: 11, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" }}
+            >
+              {levels.map(lv => <option key={lv} value={lv}>Lv {lv}</option>)}
+            </select>
+          ) : (
+            <span style={{ fontSize: 11, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 6px" }}>
+              Lv {displayLevel}
+            </span>
+          )
+        )}
         {!readOnly && item.cost && (
           <span style={{ fontSize: 12, color: TEXT.faint }}>{item.cost}</span>
         )}
@@ -2077,7 +2101,7 @@ function slotCost(item) {
 
 function InventorySection({
   items, inventory, gold, onGoldChange, onAdd, onQtyChange, onRemove, readOnly = false,
-  showEquip = false, onToggleEquipped, onToggleParry, onBaseItemChange,
+  showEquip = false, onToggleEquipped, onToggleParry, onBaseItemChange, onLevelChange,
   customItems = [], onAddCustomItem, onUpdateCustomItem, onRemoveCustomItem,
 }) {
   const [search, setSearch] = useState("");
@@ -2102,7 +2126,7 @@ function InventorySection({
       if (!e.equipped) return;
       const item = items.find(i => i.id === e.itemId);
       if (!item || !item.slot) return;
-      (map[item.slot] ??= []).push({ item, cost: slotCost(item) });
+      (map[item.slot] ??= []).push({ item, cost: slotCost(item), level: e.level });
     });
     return map;
   }, [inventory, items, showEquip]);
@@ -2136,6 +2160,7 @@ function InventorySection({
               onToggleEquipped={() => onToggleEquipped(entry.uid)}
               onToggleParry={() => onToggleParry(entry.uid)}
               onBaseItemChange={v => onBaseItemChange(entry.uid, v)}
+              onLevelChange={readOnly ? undefined : (lv => onLevelChange(entry.uid, lv))}
             />
           );
         })}
@@ -2187,7 +2212,9 @@ function InventorySection({
             <div key={slot} style={{ display: "flex", gap: 8, fontSize: 13 }}>
               <span style={{ color: TEXT.faint, minWidth: 46, flexShrink: 0 }}>{slot}</span>
               <span style={{ color: (bySlot[slot] || []).length ? TEXT.body : TEXT.faint }}>
-                {(bySlot[slot] || []).length ? bySlot[slot].map(x => x.item.name).join(", ") : "—"}
+                {(bySlot[slot] || []).length
+                  ? bySlot[slot].map(x => x.item.name + (x.item.levels?.length > 1 ? ` (Lv ${x.level})` : "")).join(", ")
+                  : "—"}
               </span>
             </div>
           ))}
@@ -2952,14 +2979,22 @@ function App() {
     });
   };
 
-  // ── Inventory — quantity per distinct item, no per-copy config.
-  // Adding an item already carried just bumps its quantity instead of
-  // making a second row.
+  // ── Inventory — quantity per distinct item, no per-copy config —
+  // except for a Masterwork item with more than one valid build level
+  // (item.levels), where the *level* also distinguishes copies: adding
+  // an item already carried at that same level just bumps its quantity,
+  // but a different level gets its own row so e.g. a level-1 and a
+  // level-3 Cowl of Tranquility show as two separate tiles instead of
+  // one "qty 2" tile that can't say which level either copy actually is.
   const addInventoryItem = itemId => {
     setInventory(inv => {
-      const existing = inv.find(e => e.itemId === itemId);
+      const item = items.find(i => i.id === itemId);
+      const levels = (item && item.levels) || [];
+      const hasLevel = levels.length > 0;
+      const defaultLevel = hasLevel ? levels[0] : undefined;
+      const existing = inv.find(e => e.itemId === itemId && (!hasLevel || e.level === defaultLevel));
       if (existing) return inv.map(e => e === existing ? { ...e, qty: e.qty + 1 } : e);
-      return [...inv, { uid: makeUid(), itemId, qty: 1 }];
+      return [...inv, { uid: makeUid(), itemId, qty: 1, ...(hasLevel ? { level: defaultLevel } : {}) }];
     });
   };
   const setInventoryQty = (uid, qty) => {
@@ -2974,6 +3009,13 @@ function App() {
   // no-op to set it on anything else.
   const setInventoryBaseItem = (uid, baseItemId) => {
     setInventory(inv => inv.map(e => e.uid === uid ? { ...e, baseItemId: baseItemId || null } : e));
+  };
+  // Which of a Masterwork item's valid levels this particular copy was
+  // built at — see item.levels. Doesn't merge with any other row already
+  // at that level; two copies you deliberately set to the same level
+  // just stay as two separate tiles until you remove one.
+  const setInventoryLevel = (uid, level) => {
+    setInventory(inv => inv.map(e => e.uid === uid ? { ...e, level } : e));
   };
 
   // Equipped — Character Sheet only (see InventorySection's showEquip).
@@ -3057,7 +3099,7 @@ function App() {
       backgroundType,
       backgrounds: selectedBackgrounds,
       gold,
-      inventory: inventory.map(e => ({ id: e.itemId, qty: e.qty })),
+      inventory: inventory.map(e => ({ id: e.itemId, qty: e.qty, ...(typeof e.level === "number" ? { level: e.level } : {}) })),
       customItems: customItems.map(c => ({ name: c.name, text: c.text, qty: c.qty })),
       exportedAt: new Date().toISOString(),
       techniques: buildEntries.map(e => {
@@ -3141,7 +3183,10 @@ function App() {
           selectedBackgrounds: Array.isArray(data.backgrounds) ? data.backgrounds.filter(id => typeof id === "string") : [],
           gold: typeof data.gold === "string" ? data.gold : "",
           inventory: Array.isArray(data.inventory)
-            ? data.inventory.filter(e => e && typeof e.id === "string").map(e => ({ uid: makeUid(), itemId: e.id, qty: Number(e.qty) > 0 ? Number(e.qty) : 1 }))
+            ? data.inventory.filter(e => e && typeof e.id === "string").map(e => ({
+                uid: makeUid(), itemId: e.id, qty: Number(e.qty) > 0 ? Number(e.qty) : 1,
+                ...(typeof e.level === "number" ? { level: e.level } : {}),
+              }))
             : [],
           customItems: Array.isArray(data.customItems)
             ? data.customItems.map(c => ({ id: makeUid(), name: c.name ?? "", text: c.text ?? "", qty: Number(c.qty) > 0 ? Number(c.qty) : 1 }))
@@ -3800,6 +3845,7 @@ function App() {
           <InventorySection
             items={items} inventory={inventory} gold={gold} onGoldChange={setGold}
             onAdd={addInventoryItem} onQtyChange={setInventoryQty} onRemove={removeInventoryItem}
+            onLevelChange={setInventoryLevel}
             customItems={customItems} onAddCustomItem={addCustomItem}
             onUpdateCustomItem={updateCustomItem} onRemoveCustomItem={removeCustomItem}
           />

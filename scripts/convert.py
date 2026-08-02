@@ -271,6 +271,33 @@ def clean(val):
     return val
 
 
+def parse_item_levels(raw):
+    """Parses an items.csv "Level" cell — "3", "1-5", "1, 2", or "3 or 4"
+    — into a sorted list of the specific levels it can be built at, e.g.
+    [1,2,3,4,5] or [3,4]. A single-entry result means the level is fixed
+    (Masterwork items just get a "Lv N" badge); more than one means it's
+    buildable at a choice of levels (Masterwork items get a level picker
+    on the Character Sheet instead). Returns [] if unparseable.
+    clean() already turns a plain-digit cell like "3" into an int, so a
+    bare int (already a single valid level) is accepted as-is too."""
+    if isinstance(raw, int):
+        return [raw]
+    text = raw.replace(" or ", ",")
+    levels = set()
+    for part in text.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        m = re.fullmatch(r"(\d+)\s*-\s*(\d+)", part)
+        if m:
+            levels.update(range(int(m.group(1)), int(m.group(2)) + 1))
+        elif part.isdigit():
+            levels.add(int(part))
+        else:
+            return []
+    return sorted(levels)
+
+
 def parse_threshold(text, errors, context):
     """A plain integer, or [Level] / [Level]+N / [Level]-N."""
     text = text.strip()
@@ -480,6 +507,11 @@ for csv_file, (json_file, col_map) in TABLES.items():
                 elif base.get("slot") != slot:
                     item_errors.append(f"{r.get('id')} {r.get('name')!r}: Base Item Options item {bid!r} has Slot {base.get('slot')!r}, expected {slot!r}")
             r["base_item_options"] = ids
+
+            raw_level = r.get("level")
+            r["levels"] = parse_item_levels(raw_level) if raw_level else []
+            if raw_level and not r["levels"]:
+                item_errors.append(f"{r.get('id')} {r.get('name')!r}: couldn't parse Level {raw_level!r}")
         if item_errors:
             print(f"\n⚠ {len(item_errors)} issue(s) in {csv_file}:")
             for e in item_errors:

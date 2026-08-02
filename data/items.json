@@ -33,7 +33,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I002",
@@ -69,7 +72,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I003",
@@ -105,7 +111,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I004",
@@ -141,7 +150,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I005",
@@ -177,7 +189,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I006",
@@ -213,7 +228,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I007",
@@ -249,7 +267,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I008",
@@ -285,7 +306,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I009",
@@ -321,7 +345,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I010",
@@ -357,7 +384,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I011",
@@ -393,7 +423,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I012",
@@ -429,7 +462,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I013",
@@ -465,7 +501,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I014",
@@ -501,7 +540,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I015",
@@ -537,7 +579,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I016",
@@ -573,7 +618,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I017",
@@ -609,7 +657,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I018",
@@ -645,7 +696,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I019",
@@ -681,7 +735,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I020",
@@ -717,7 +774,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I021",
@@ -753,7 +813,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I022",
@@ -789,7 +852,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I023",
@@ -825,7 +891,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I024",
@@ -861,7 +934,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I025",
@@ -897,7 +977,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I026",
@@ -933,7 +1020,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I027",
@@ -969,7 +1063,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I028",
@@ -1005,7 +1106,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I029",
@@ -1041,7 +1145,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I030",
@@ -1077,7 +1184,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I031",
@@ -1113,7 +1223,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I032",
@@ -1149,7 +1262,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I033",
@@ -1185,7 +1301,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I034",
@@ -1221,7 +1340,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      4
+    ]
   },
   {
     "id": "I035",
@@ -1257,7 +1379,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      4
+    ]
   },
   {
     "id": "I036",
@@ -1293,7 +1418,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      5
+    ]
   },
   {
     "id": "I037",
@@ -1329,7 +1457,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I038",
@@ -1365,7 +1496,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I039",
@@ -1401,7 +1535,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I040",
@@ -1437,7 +1574,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I041",
@@ -1473,7 +1613,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I042",
@@ -1509,7 +1652,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I043",
@@ -1545,7 +1691,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I044",
@@ -1581,7 +1730,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I045",
@@ -1617,7 +1769,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      4
+    ]
   },
   {
     "id": "I046",
@@ -1653,7 +1808,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      4
+    ]
   },
   {
     "id": "I047",
@@ -1689,7 +1847,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      4
+    ]
   },
   {
     "id": "I048",
@@ -1725,7 +1886,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      5
+    ]
   },
   {
     "id": "I049",
@@ -1761,7 +1925,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I050",
@@ -1797,7 +1968,8 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I051",
@@ -1833,7 +2005,8 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I052",
@@ -1869,7 +2042,8 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I053",
@@ -1905,7 +2079,8 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I054",
@@ -1941,7 +2116,8 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I055",
@@ -1977,7 +2153,8 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I056",
@@ -2013,7 +2190,8 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I057",
@@ -2049,7 +2227,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I058",
@@ -2085,7 +2270,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I059",
@@ -2121,7 +2309,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I060",
@@ -2157,7 +2348,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I061",
@@ -2193,7 +2387,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      5
+    ]
   },
   {
     "id": "I062",
@@ -2229,7 +2426,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I063",
@@ -2265,7 +2465,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I064",
@@ -2301,7 +2504,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I065",
@@ -2337,7 +2543,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I066",
@@ -2373,7 +2586,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I067",
@@ -2412,6 +2628,10 @@
     "base_item_options": [
       "I128",
       "I129"
+    ],
+    "levels": [
+      1,
+      2
     ]
   },
   {
@@ -2451,6 +2671,13 @@
     "base_item_options": [
       "I128",
       "I129"
+    ],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
     ]
   },
   {
@@ -2490,6 +2717,9 @@
     "base_item_options": [
       "I128",
       "I129"
+    ],
+    "levels": [
+      2
     ]
   },
   {
@@ -2529,6 +2759,10 @@
     "base_item_options": [
       "I128",
       "I129"
+    ],
+    "levels": [
+      2,
+      4
     ]
   },
   {
@@ -2568,6 +2802,9 @@
     "base_item_options": [
       "I128",
       "I129"
+    ],
+    "levels": [
+      3
     ]
   },
   {
@@ -2607,6 +2844,10 @@
     "base_item_options": [
       "I128",
       "I129"
+    ],
+    "levels": [
+      3,
+      5
     ]
   },
   {
@@ -2643,7 +2884,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I074",
@@ -2679,7 +2923,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      5
+    ]
   },
   {
     "id": "I075",
@@ -2715,7 +2962,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I076",
@@ -2751,7 +3001,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I077",
@@ -2787,7 +3040,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I078",
@@ -2823,7 +3079,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I079",
@@ -2859,7 +3118,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I080",
@@ -2895,7 +3161,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I081",
@@ -2931,7 +3204,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I082",
@@ -2967,7 +3243,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I083",
@@ -3003,7 +3282,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I084",
@@ -3039,7 +3321,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I085",
@@ -3075,7 +3360,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I086",
@@ -3111,7 +3399,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      4
+    ]
   },
   {
     "id": "I087",
@@ -3147,7 +3438,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      4
+    ]
   },
   {
     "id": "I088",
@@ -3193,6 +3487,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      1
     ]
   },
   {
@@ -3239,6 +3536,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      1
     ]
   },
   {
@@ -3285,6 +3585,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      1
     ]
   },
   {
@@ -3331,6 +3634,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      1
     ]
   },
   {
@@ -3377,6 +3683,13 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
     ]
   },
   {
@@ -3423,6 +3736,13 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
     ]
   },
   {
@@ -3469,6 +3789,13 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
     ]
   },
   {
@@ -3515,6 +3842,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      2
     ]
   },
   {
@@ -3561,6 +3891,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      2
     ]
   },
   {
@@ -3607,6 +3940,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      2
     ]
   },
   {
@@ -3653,6 +3989,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      3
     ]
   },
   {
@@ -3699,6 +4038,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      3
     ]
   },
   {
@@ -3745,6 +4087,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      3
     ]
   },
   {
@@ -3791,6 +4136,10 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      3,
+      4
     ]
   },
   {
@@ -3837,6 +4186,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      3
     ]
   },
   {
@@ -3883,6 +4235,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      4
     ]
   },
   {
@@ -3929,6 +4284,9 @@
       "I123",
       "I124",
       "I126"
+    ],
+    "levels": [
+      5
     ]
   },
   {
@@ -3965,7 +4323,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I106",
@@ -4001,7 +4362,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I107",
@@ -4037,7 +4401,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I108",
@@ -4073,7 +4440,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I109",
@@ -4109,7 +4479,14 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   {
     "id": "I110",
@@ -4145,7 +4522,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I111",
@@ -4181,7 +4561,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I112",
@@ -4217,7 +4600,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      5
+    ]
   },
   {
     "id": "I113",
@@ -4253,7 +4639,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      1
+    ]
   },
   {
     "id": "I114",
@@ -4289,7 +4678,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   },
   {
     "id": "I115",
@@ -4325,7 +4717,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I116",
@@ -4361,7 +4756,10 @@
     "relevant_skill": null,
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   },
   {
     "id": "I117",
@@ -4397,7 +4795,8 @@
     "relevant_skill": "Melee",
     "might_requirement": null,
     "held_slots": 1,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I118",
@@ -4433,7 +4832,8 @@
     "relevant_skill": "Melee",
     "might_requirement": 4,
     "held_slots": 1,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I119",
@@ -4469,7 +4869,8 @@
     "relevant_skill": "Melee",
     "might_requirement": null,
     "held_slots": 2,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I120",
@@ -4505,7 +4906,8 @@
     "relevant_skill": "Melee",
     "might_requirement": 6,
     "held_slots": 2,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I121",
@@ -4541,7 +4943,8 @@
     "relevant_skill": "Acrobatics or Melee",
     "might_requirement": null,
     "held_slots": 1,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I122",
@@ -4577,7 +4980,8 @@
     "relevant_skill": "Acrobatics or Melee",
     "might_requirement": 4,
     "held_slots": 1,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I123",
@@ -4613,7 +5017,8 @@
     "relevant_skill": "Archery",
     "might_requirement": null,
     "held_slots": 2,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I124",
@@ -4649,7 +5054,8 @@
     "relevant_skill": "Archery",
     "might_requirement": 6,
     "held_slots": 2,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I125",
@@ -4685,7 +5091,8 @@
     "relevant_skill": "Brawl",
     "might_requirement": null,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I126",
@@ -4721,7 +5128,8 @@
     "relevant_skill": "Melee",
     "might_requirement": null,
     "held_slots": 1,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I127",
@@ -4757,7 +5165,8 @@
     "relevant_skill": "Varies",
     "might_requirement": null,
     "held_slots": 1,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I128",
@@ -4793,7 +5202,8 @@
     "relevant_skill": null,
     "might_requirement": 3,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   },
   {
     "id": "I129",
@@ -4829,6 +5239,7 @@
     "relevant_skill": null,
     "might_requirement": 6,
     "held_slots": null,
-    "base_item_options": []
+    "base_item_options": [],
+    "levels": []
   }
 ]
