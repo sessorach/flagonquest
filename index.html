@@ -1704,7 +1704,7 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
         ["Frost Resist",     essence, "= Essence", "frost_resist"],
         ["Brilliant Resist", essence, "= Essence", "brilliant_resist"],
         ["Shadow Resist",    essence, "= Essence", "shadow_resist"],
-      ], "Essence adds to each Resist. Parry Defense auto-uses the best Weapon Defense among your equipped weapons — see Inventory below.")}
+      ], "Essence adds to each Resist.")}
     </div>
   );
 }
@@ -1713,21 +1713,24 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
 // ══════════════════════════════════════════════════════════════════
 // ATTACK WORKSPACE — Character Sheet only, right under Derived Stats.
 // Every equipped Held-slot weapon, auto-listed with its Accuracy/Damage/
-// Range/Skill (computed, not stored — see equippedWeaponAttacks), plus
-// any number of freeform custom rows for anything the auto-list can't
-// see (a spell attack, whose numbers live in a Technique's prose rather
-// than a structured data field). A Notes column on every row — auto or
-// custom — is a fillable reminder for that specific attack (a weapon's
-// on-hit effect, a note about when to use a spell), rather than one
-// catch-all scratchpad for the whole workspace.
+// Range (computed, not stored — see equippedWeaponAttacks), plus any
+// number of freeform custom rows for anything the auto-list can't see
+// (a spell attack, whose numbers live in a Technique's prose rather
+// than a structured data field). No Skill or Might Requirement column
+// — both stay on the item's own card instead (weaponInfo in
+// InventoryTile), keeping this table to just the numbers that change
+// attack-to-attack. A Notes column on every row — auto or custom — is a
+// fillable reminder for that specific attack (a weapon's on-hit effect,
+// a note about when to use a spell), rather than one catch-all
+// scratchpad for the whole workspace.
 // Always shown, even with nothing equipped yet — it's meant to stay
 // available as a fillable blank, on screen and on the printed page,
 // not just a summary of already-picked stuff like the rest of the sheet.
 // ══════════════════════════════════════════════════════════════════
-// A Thrown weapon's Accuracy/Range/Skill cells each carry two values (one
-// for a close-range Melee swing, one for the thrown attack) instead of
-// one — see parseDualModeWeapon. Swords/bow emoji tag each line so it
-// reads at a glance without needing a legend.
+// A Thrown weapon's Accuracy/Range cells each carry two values (one for
+// a close-range Melee swing, one for the thrown attack) instead of one
+// — see parseDualModeWeapon. Swords/bow emoji tag each line so it reads
+// at a glance without needing a legend.
 function isDualValue(v) { return v != null && typeof v === "object"; }
 function AttackDualCell({ melee, ranged, format = v => v ?? "—" }) {
   return (
@@ -1749,10 +1752,20 @@ function AttackWorkspace({
   // minmax(0, ...) — plain fr tracks still respect each cell's content
   // min-width by default, which would force this box wider than the
   // page; minmax(0, ...) lets a track shrink below that (the input's own
-  // overflow/ellipsis styling covers the rest).
-  const colTemplate = "minmax(0,1fr) minmax(0,0.5fr) minmax(0,0.9fr) minmax(0,0.5fr) minmax(0,0.6fr) minmax(0,1.8fr) 20px";
+  // overflow/ellipsis styling covers the rest). No Skill column — see
+  // the header comment above.
+  const colTemplate = "minmax(0,1fr) minmax(0,0.5fr) minmax(0,0.9fr) minmax(0,0.5fr) minmax(0,2.4fr) 20px";
   const headerStyle = { fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.04em" };
   const inputStyle = { fontSize: 13, padding: "3px 6px", width: "100%", minWidth: 0, boxSizing: "border-box" };
+  // Same alternating-tint idea as Stats & Skills/Derived Stats (row-alt)
+  // — a running index across both weaponRows and customAttacks so the
+  // stripe pattern stays continuous across the boundary between them,
+  // rather than each list restarting its own odd/even count from 0.
+  const rowStyle = i => ({
+    display: "grid", gridTemplateColumns: colTemplate, gap: 6, alignItems: "center",
+    padding: "2px 4px", borderRadius: 4,
+    background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
+  });
 
   return (
     <div className="sheet-box" style={{
@@ -1768,25 +1781,14 @@ function AttackWorkspace({
           <span style={headerStyle}>Accuracy</span>
           <span style={headerStyle}>Damage</span>
           <span style={headerStyle}>Range</span>
-          <span style={headerStyle}>Skill</span>
           <span style={headerStyle}>Notes</span>
           <span />
         </div>
       )}
-      {weaponRows.map(r => (
-        <div key={r.key} style={{ display: "grid", gridTemplateColumns: colTemplate, gap: 6, alignItems: "center" }}>
+      {weaponRows.map((r, i) => (
+        <div key={r.key} className={i % 2 === 1 ? "row-alt" : undefined} style={rowStyle(i)}>
           <span style={{ fontSize: 13, color: TEXT.name, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis" }}>
             {r.name}
-            {r.mightRequirement != null && (
-              <span style={{
-                marginLeft: 6, fontSize: 10, fontWeight: 500, padding: "1px 5px", borderRadius: 3,
-                border: `0.5px solid ${r.mightMet ? "#3e5a34" : "#7a2e2e"}`,
-                color: r.mightMet ? "#6fae5a" : "#e0645f",
-                background: r.mightMet ? "rgba(111,174,90,0.12)" : "rgba(224,100,95,0.12)",
-              }}>
-                Might {r.mightRequirement}
-              </span>
-            )}
           </span>
           <span style={{ fontSize: 13, color: TEXT.body }}>
             {isDualValue(r.accuracy)
@@ -1799,11 +1801,6 @@ function AttackWorkspace({
               ? <AttackDualCell melee={r.range.melee} ranged={r.range.ranged} />
               : (r.range ?? "—")}
           </span>
-          <span style={{ fontSize: 13, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis" }}>
-            {isDualValue(r.skill)
-              ? <AttackDualCell melee={r.skill.melee} ranged={r.skill.ranged} />
-              : (r.skill ?? "—")}
-          </span>
           <input
             type="text" value={r.notes} onChange={e => onWeaponNoteChange(r.key, e.target.value)}
             placeholder="Reminder…" style={inputStyle}
@@ -1811,13 +1808,12 @@ function AttackWorkspace({
           <span />
         </div>
       ))}
-      {customAttacks.map(r => (
-        <div key={r.id} style={{ display: "grid", gridTemplateColumns: colTemplate, gap: 6, alignItems: "center" }}>
+      {customAttacks.map((r, i) => (
+        <div key={r.id} className={(i + weaponRows.length) % 2 === 1 ? "row-alt" : undefined} style={rowStyle(i + weaponRows.length)}>
           <input type="text" value={r.name} onChange={e => onUpdateCustomAttack(r.id, "name", e.target.value)} placeholder="Name…" style={inputStyle} />
           <input type="text" value={r.accuracy} onChange={e => onUpdateCustomAttack(r.id, "accuracy", e.target.value)} placeholder="+0" style={inputStyle} />
           <input type="text" value={r.damage} onChange={e => onUpdateCustomAttack(r.id, "damage", e.target.value)} placeholder="—" style={inputStyle} />
           <input type="text" value={r.range} onChange={e => onUpdateCustomAttack(r.id, "range", e.target.value)} placeholder="—" style={inputStyle} />
-          <input type="text" value={r.skill} onChange={e => onUpdateCustomAttack(r.id, "skill", e.target.value)} placeholder="—" style={inputStyle} />
           <input type="text" value={r.notes} onChange={e => onUpdateCustomAttack(r.id, "notes", e.target.value)} placeholder="Reminder…" style={inputStyle} />
           <button
             onClick={() => onRemoveCustomAttack(r.id)}
@@ -3950,22 +3946,21 @@ function App() {
   // same fallback as InventoryTile's own weaponInfo line. A Shield or a
   // still-unset enchantment has neither and is left off the list.
   // A Thrown weapon (or anything shaped the same way — see
-  // parseDualModeWeapon) gets its Accuracy/Range/Skill as a { melee,
-  // ranged } pair instead of a single value, since it can attack either
-  // way; Damage doesn't change with mode, so it stays a single value.
+  // parseDualModeWeapon) gets its Accuracy/Range as a { melee, ranged }
+  // pair instead of a single value, since it can attack either way;
+  // Damage doesn't change with mode, so it stays a single value. Skill
+  // isn't shown here (see the Might Requirement/Skill note above
+  // AttackWorkspace) — it's still used internally to resolve dual mode
+  // and Accuracy's Skill Total, just not carried into the row output.
   // Accuracy is the full attack-roll modifier (relevant Skill Total +
   // the weapon's own flat bonus — see resolveAccuracy), not just the
-  // weapon's flat number, same reasoning as Damage's Stat bonus. A
-  // weapon with a Might Requirement carries whether the character's
-  // Might Skill Total currently meets it, for AttackWorkspace to flag.
+  // weapon's flat number, same reasoning as Damage's Stat bonus.
   // A custom item with weapon stats (see CustomItemTile) shows up the
   // same way as a real weapon, just resolved through customWeapon* —
   // that's the whole point of building an Improvised Weapon there now
-  // instead of picking a dedicated data-file item. Custom items have no
-  // Might Requirement concept, so that's always left unset for them.
+  // instead of picking a dedicated data-file item.
   const equippedWeaponAttacks = useMemo(() => {
     const rows = [];
-    const mightTotal = skillTotalValue(statPoints, skillPoints, "Might");
     inventory.forEach(e => {
       if (!e.equipped) return;
       const item = items.find(i => i.id === e.itemId);
@@ -3975,7 +3970,6 @@ function App() {
       const rawDamage = item.damage ?? baseItem?.damage;
       const range = item.range ?? baseItem?.range;
       const skill = item.relevant_skill ?? baseItem?.relevant_skill;
-      const mightRequirement = item.might_requirement ?? baseItem?.might_requirement ?? null;
       if (accuracy == null && rawDamage == null && range == null) return;
       const dual = parseDualModeWeapon(range, skill);
       rows.push({
@@ -3991,9 +3985,6 @@ function App() {
         range: dual
           ? { melee: dual.meleeRange, ranged: resolveRange(dual.rangedRange, statPoints) }
           : resolveRange(range, statPoints),
-        skill: dual ? { melee: dual.meleeSkill, ranged: dual.rangedSkill } : skill,
-        mightRequirement,
-        mightMet: mightRequirement == null || mightTotal >= mightRequirement,
         notes: e.attackNote || "",
       });
     });
@@ -4007,9 +3998,6 @@ function App() {
         accuracy: resolveAccuracy(customWeaponAccuracy(w), w.skill, statPoints, skillPoints),
         damage: customWeaponDamage(w, statPoints),
         range: customWeaponRange(w),
-        skill: w.skill || null,
-        mightRequirement: null,
-        mightMet: true,
         notes: c.attackNote || "",
       });
     });
