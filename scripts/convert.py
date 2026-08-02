@@ -240,6 +240,11 @@ ITEM_MAP = {
     "Relevant Skill":     "relevant_skill",
     "Might Requirement":  "might_requirement",
     "Held Slots":         "held_slots",       # how much of the 2-slot Held capacity this weapon takes (1 or 2)
+    # Which book this item is from — "Base Game" for everything in the
+    # core rules, or a supplement's own name (e.g. "Goblin Game") for
+    # anything added later. Not used for any calculation yet, just
+    # tracked so a future supplement filter has something to key off of.
+    "Supplement":         "supplement",
 }
 
 BACKGROUND_MAP = {

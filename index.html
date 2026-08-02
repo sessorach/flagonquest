@@ -572,6 +572,37 @@ function parseDualModeWeapon(range, relevantSkill) {
   return { meleeRange: "Close", rangedRange: rangeMatch[1].trim(), meleeSkill: "Melee", rangedSkill };
 }
 
+// A custom item's own weapon stats (see CustomItemTile's "+ Add weapon
+// stats") — the same kind of Accuracy/Damage/Range/Skill/Weapon Defense
+// profile a real data-file Weapon carries, but entered directly rather
+// than parsed from a formula, since a homebrew item's numbers are
+// whatever the player/GM decided rather than something derivable from a
+// Stat formula. shape: { accuracy, damageBase, damageStat, damageType,
+// range, skill, weaponDefense, improvised }. The Improvised Weapon
+// toggle applies the same -1 Accuracy / -1 Weapon Defense / half Range
+// modifiers the old built-in Improvised Weapon item used to carry, so a
+// makeshift weapon doesn't need its own dedicated data row — just an
+// ordinary custom item with this box checked.
+function customWeaponAccuracy(w) {
+  if (!w || w.accuracy == null) return null;
+  return w.accuracy - (w.improvised ? 1 : 0);
+}
+function customWeaponParry(w) {
+  if (!w || w.weaponDefense == null) return null;
+  return w.weaponDefense - (w.improvised ? 1 : 0);
+}
+function customWeaponRange(w) {
+  if (!w || w.range == null || w.range === "") return null;
+  if (!w.improvised) return w.range;
+  const n = Number(w.range);
+  return Number.isFinite(n) ? String(Math.floor(n / 2)) : w.range;
+}
+function customWeaponDamage(w, statPoints) {
+  if (!w || w.damageBase == null) return null;
+  const bonus = w.damageStat ? (statPoints[w.damageStat] || 0) : 0;
+  return `${w.damageBase + bonus} ${w.damageType || "Physical"}`;
+}
+
 // Like withGlossary, but also — when `skillTotals` is given ({ statPoints,
 // skillPoints }) — finds every "[... Skill Total]" bracket in `text` and
 // prepends the character's actual computed value in the same bold/glow
@@ -2152,6 +2183,7 @@ function CustomItemTile({
   onSlotChange, showEquip = false, onToggleEquipped, equipDisabled = false,
   onAddStat, onStatChange, onRemoveStat, onAddPower, onPowerLevelChange, onRemovePower,
   onDragStart, onDragEnd, onDragOver, onDrop, isDragging = false,
+  onAddWeapon, onRemoveWeapon, onWeaponChange, statPoints = {},
 }) {
   if (readOnly && !entry.name.trim() && !entry.text.trim()) return null; // nothing to show
 
@@ -2313,6 +2345,128 @@ function CustomItemTile({
             </select>
           )}
         </div>
+      )}
+
+      {/* Weapon stats — opt-in, so a non-weapon custom item (a trinket, a
+          piece of armor) never shows an irrelevant Accuracy/Damage/Range
+          form. Once added, the item behaves just like a real Weapon for
+          the Attack Workspace and Parry Defense — see
+          customWeapon{Accuracy,Parry,Range,Damage} and
+          equippedWeaponAttacks/equipmentBonuses. The Improvised Weapon
+          checkbox is how a makeshift weapon (a chair leg, a broken
+          bottle) gets built now, instead of a dedicated data-file item —
+          build its normal profile, then toggle the box to apply the
+          same -1 Accuracy/-1 Parry/half Range the old built-in
+          Improvised Weapon item used to carry. */}
+      {readOnly && entry.weapon && (() => {
+        const w = entry.weapon;
+        const parts = [];
+        const acc = customWeaponAccuracy(w);
+        if (acc != null) parts.push(`Accuracy ${acc >= 0 ? "+" : ""}${acc}`);
+        const dmg = customWeaponDamage(w, statPoints);
+        if (dmg != null) parts.push(`Damage ${dmg}`);
+        const rng = customWeaponRange(w);
+        if (rng != null) parts.push(`Range ${rng}`);
+        if (w.skill) parts.push(`Skill ${w.skill}`);
+        const parry = customWeaponParry(w);
+        if (parry != null) parts.push(`Parry ${parry >= 0 ? "+" : ""}${parry}`);
+        if (parts.length === 0) return null;
+        return (
+          <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
+            {parts.join("  ·  ")}{w.improvised && "  ·  Improvised"}
+          </div>
+        );
+      })()}
+      {!readOnly && (
+        entry.weapon ? (
+          <div style={{ display: "flex", flexDirection: "column", gap: 5, border: "0.5px solid #2d3555", borderRadius: 6, padding: "6px 8px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ fontSize: 11, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.04em", flex: 1 }}>
+                Weapon Stats
+              </span>
+              <button
+                onClick={onRemoveWeapon}
+                aria-label="Remove weapon stats"
+                style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 14, lineHeight: 1, padding: "0 2px" }}
+              >
+                ✕
+              </button>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+              <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Accuracy</span>
+              <input
+                type="number" value={entry.weapon.accuracy ?? ""}
+                onChange={e => onWeaponChange("accuracy", e.target.value === "" ? null : Number(e.target.value))}
+                placeholder="0" style={{ width: 56, fontSize: 12, textAlign: "right" }}
+              />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+              <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Damage</span>
+              <input
+                type="number" value={entry.weapon.damageBase ?? ""}
+                onChange={e => onWeaponChange("damageBase", e.target.value === "" ? null : Number(e.target.value))}
+                placeholder="0" style={{ width: 56, fontSize: 12, textAlign: "right" }}
+              />
+              <select
+                value={entry.weapon.damageStat || ""}
+                onChange={e => onWeaponChange("damageStat", e.target.value || null)}
+                style={{ fontSize: 12, flex: 1, minWidth: 0 }}
+              >
+                <option value="">No Stat bonus</option>
+                {STATS.map(s => <option key={s} value={s}>+ {s}</option>)}
+              </select>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+              <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Damage Type</span>
+              <input
+                type="text" value={entry.weapon.damageType}
+                onChange={e => onWeaponChange("damageType", e.target.value)}
+                placeholder="Physical" style={{ flex: 1, minWidth: 0, fontSize: 12 }}
+              />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+              <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Range</span>
+              <input
+                type="text" value={entry.weapon.range}
+                onChange={e => onWeaponChange("range", e.target.value)}
+                placeholder="Close" style={{ flex: 1, minWidth: 0, fontSize: 12 }}
+              />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+              <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Skill</span>
+              <input
+                type="text" value={entry.weapon.skill}
+                onChange={e => onWeaponChange("skill", e.target.value)}
+                placeholder="Melee" style={{ flex: 1, minWidth: 0, fontSize: 12 }}
+              />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+              <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Parry</span>
+              <input
+                type="number" value={entry.weapon.weaponDefense ?? ""}
+                onChange={e => onWeaponChange("weaponDefense", e.target.value === "" ? null : Number(e.target.value))}
+                placeholder="—" style={{ width: 56, fontSize: 12, textAlign: "right" }}
+              />
+            </div>
+            <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: TEXT.body, cursor: "pointer" }}>
+              <input
+                type="checkbox" checked={!!entry.weapon.improvised}
+                onChange={e => onWeaponChange("improvised", e.target.checked)}
+              />
+              Improvised Weapon (−1 Accuracy, −1 Parry, half Range)
+            </label>
+          </div>
+        ) : (
+          <button
+            onClick={onAddWeapon}
+            style={{
+              fontSize: 12, color: TEXT.muted, background: "transparent", border: "0.5px solid #2d3555",
+              borderRadius: 4, padding: "4px 8px", alignSelf: "flex-start",
+            }}
+          >
+            + Add weapon stats
+          </button>
+        )
       )}
 
       {/* Attached Masterwork powers — for the one ability that lets you
@@ -2533,6 +2687,7 @@ function InventorySection({
   customItems = [], onAddCustomItem, onUpdateCustomItem, onRemoveCustomItem,
   onToggleCustomItemEquipped, onAddCustomItemStat, onCustomItemStatChange, onRemoveCustomItemStat,
   onAddCustomItemPower, onCustomItemPowerLevelChange, onRemoveCustomItemPower,
+  onAddCustomItemWeapon, onRemoveCustomItemWeapon, onCustomItemWeaponChange, statPoints,
   dragId, setDragId, onMoveInventoryItem, onMoveCustomItem,
 }) {
   const [search, setSearch] = useState("");
@@ -2646,6 +2801,10 @@ function InventorySection({
               onAddPower={itemId => onAddCustomItemPower(entry.id, itemId)}
               onPowerLevelChange={(powerId, lv) => onCustomItemPowerLevelChange(entry.id, powerId, lv)}
               onRemovePower={powerId => onRemoveCustomItemPower(entry.id, powerId)}
+              onAddWeapon={() => onAddCustomItemWeapon(entry.id)}
+              onRemoveWeapon={() => onRemoveCustomItemWeapon(entry.id)}
+              onWeaponChange={(field, v) => onCustomItemWeaponChange(entry.id, field, v)}
+              statPoints={statPoints}
               onDragStart={readOnly ? undefined : (e => { e.dataTransfer.effectAllowed = "move"; setDragId(entry.id); })}
               onDragEnd={readOnly ? undefined : (() => setDragId(null))}
               onDragOver={readOnly ? undefined : (e => { if (dragId) e.preventDefault(); })}
@@ -3482,6 +3641,25 @@ function App() {
       return { ...c, stats };
     }));
   };
+  // Weapon stats — opt-in (see CustomItemTile's "+ Add weapon stats");
+  // this is also how an Improvised Weapon gets built now, instead of a
+  // dedicated data-file item — see customWeapon{Accuracy,Parry,Range,
+  // Damage} and their "improvised" modifier.
+  const addCustomItemWeapon = id => {
+    setCustomItems(cs => cs.map(c => c.id === id ? {
+      ...c,
+      weapon: {
+        accuracy: null, damageBase: null, damageStat: null, damageType: "Physical",
+        range: "", skill: "", weaponDefense: null, improvised: false,
+      },
+    } : c));
+  };
+  const removeCustomItemWeapon = id => {
+    setCustomItems(cs => cs.map(c => c.id === id ? { ...c, weapon: null } : c));
+  };
+  const customItemWeaponChange = (id, field, value) => {
+    setCustomItems(cs => cs.map(c => c.id === id ? { ...c, weapon: { ...c.weapon, [field]: value } } : c));
+  };
   const addCustomItemPower = (id, itemId) => {
     setCustomItems(cs => cs.map(c => {
       if (c.id !== id) return c;
@@ -3513,11 +3691,16 @@ function App() {
   const removeCustomAttack = id => {
     setCustomAttacks(a => a.filter(r => r.id !== id));
   };
-  // An auto-listed weapon row's Notes lives on its inventory entry
-  // (attackNote) rather than in customAttacks, since the row itself is
-  // computed fresh from what's equipped, not stored.
-  const setInventoryAttackNote = (uid, note) => {
-    setInventory(inv => inv.map(e => e.uid === uid ? { ...e, attackNote: note } : e));
+  // An auto-listed weapon row's Notes lives on its inventory entry or
+  // custom item (attackNote) rather than in customAttacks, since the row
+  // itself is computed fresh from what's equipped, not stored. A row's
+  // key is either an inventory uid or a custom item id (both from the
+  // same makeUid() pool), so only one of these two ever actually
+  // contains it — the other bails out to the same array reference,
+  // rather than mapping over everything for nothing.
+  const setWeaponAttackNote = (key, note) => {
+    setInventory(inv => inv.some(e => e.uid === key) ? inv.map(e => e.uid === key ? { ...e, attackNote: note } : e) : inv);
+    setCustomItems(cs => cs.some(c => c.id === key) ? cs.map(c => c.id === key ? { ...c, attackNote: note } : c) : cs);
   };
 
   // ── Backgrounds — pick at most one General, and one Settler-or-
@@ -3658,8 +3841,9 @@ function App() {
   // — Parry Defense is the one exception: rather than a single manually-
   // designated Parry weapon, it auto-uses the best (highest) Weapon
   // Defense among every currently equipped weapon, floored at 0 so a
-  // weapon with a Weapon Defense penalty (e.g. Improvised Weapon) never
-  // makes you worse off than parrying bare-handed. Non-numeric stat
+  // weapon with a Weapon Defense penalty (e.g. an Improvised Weapon —
+  // see customWeaponParry) never makes you worse off than parrying
+  // bare-handed. Non-numeric stat
   // values (e.g. Lightfoot Shoes' "[Level]" Speed) are skipped — those
   // still need a human to apply them. A Masterwork item built onto a
   // chosen base item (see base_item_options) also adds the base item's
@@ -3685,7 +3869,8 @@ function App() {
       if (typeof wd === "number") parryValues.push(wd);
     });
     // Custom items — their own manually-entered stats, plus every
-    // attached Masterwork power's own stats (see CustomItemTile).
+    // attached Masterwork power's own stats (see CustomItemTile), plus
+    // its own weapon stats' Weapon Defense (customWeaponParry) if any.
     customItems.forEach(c => {
       if (!c.equipped) return;
       ITEM_STAT_FIELDS.forEach(([key]) => {
@@ -3696,6 +3881,8 @@ function App() {
         const power = items.find(i => i.id === p.itemId);
         if (power) addStats(power);
       });
+      const wd = customWeaponParry(c.weapon);
+      if (typeof wd === "number") parryValues.push(wd);
     });
     totals.parry_defense = (totals.parry_defense || 0) + Math.max(0, ...parryValues);
     return totals;
@@ -3712,6 +3899,10 @@ function App() {
   // parseDualModeWeapon) gets its Accuracy/Range/Skill as a { melee,
   // ranged } pair instead of a single value, since it can attack either
   // way; Damage doesn't change with mode, so it stays a single value.
+  // A custom item with weapon stats (see CustomItemTile) shows up the
+  // same way as a real weapon, just resolved through customWeapon* —
+  // that's the whole point of building an Improvised Weapon there now
+  // instead of picking a dedicated data-file item.
   const equippedWeaponAttacks = useMemo(() => {
     const rows = [];
     inventory.forEach(e => {
@@ -3737,8 +3928,22 @@ function App() {
         notes: e.attackNote || "",
       });
     });
+    customItems.forEach(c => {
+      if (!c.equipped || !c.weapon) return;
+      const w = c.weapon;
+      if (w.accuracy == null && w.damageBase == null && (!w.range)) return;
+      rows.push({
+        key: c.id,
+        name: c.name.trim() || "Custom item",
+        accuracy: customWeaponAccuracy(w),
+        damage: customWeaponDamage(w, statPoints),
+        range: customWeaponRange(w),
+        skill: w.skill || null,
+        notes: c.attackNote || "",
+      });
+    });
     return rows;
-  }, [inventory, items, statPoints]);
+  }, [inventory, items, customItems, statPoints]);
 
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
@@ -3766,6 +3971,8 @@ function App() {
         name: c.name, text: c.text, qty: c.qty, slot: c.slot || "",
         stats: c.stats || {},
         powers: (c.powers || []).map(p => ({ id: p.itemId, ...(p.level != null ? { level: p.level } : {}) })),
+        ...(c.weapon ? { weapon: c.weapon } : {}),
+        ...(c.attackNote ? { attackNote: c.attackNote } : {}),
       })),
       customAttacks: customAttacks.map(r => ({ name: r.name, accuracy: r.accuracy, damage: r.damage, range: r.range, skill: r.skill, notes: r.notes })),
       exportedAt: new Date().toISOString(),
@@ -3869,10 +4076,21 @@ function App() {
                       .filter(p => p && typeof p.id === "string" && items.some(i => i.id === p.id))
                       .map(p => ({ id: makeUid(), itemId: p.id, ...(typeof p.level === "number" ? { level: p.level } : {}) }))
                   : [];
+                const weapon = (c.weapon && typeof c.weapon === "object") ? {
+                  accuracy: typeof c.weapon.accuracy === "number" ? c.weapon.accuracy : null,
+                  damageBase: typeof c.weapon.damageBase === "number" ? c.weapon.damageBase : null,
+                  damageStat: STATS.includes(c.weapon.damageStat) ? c.weapon.damageStat : null,
+                  damageType: typeof c.weapon.damageType === "string" ? c.weapon.damageType : "Physical",
+                  range: typeof c.weapon.range === "string" ? c.weapon.range : "",
+                  skill: typeof c.weapon.skill === "string" ? c.weapon.skill : "",
+                  weaponDefense: typeof c.weapon.weaponDefense === "number" ? c.weapon.weaponDefense : null,
+                  improvised: !!c.weapon.improvised,
+                } : null;
                 return {
                   id: makeUid(), name: c.name ?? "", text: c.text ?? "", qty: Number(c.qty) > 0 ? Number(c.qty) : 1,
                   slot: typeof c.slot === "string" && ITEM_SLOTS.includes(c.slot) ? c.slot : "",
-                  equipped: false, stats, powers,
+                  equipped: false, stats, powers, weapon,
+                  ...(typeof c.attackNote === "string" ? { attackNote: c.attackNote } : {}),
                 };
               })
             : [],
@@ -4558,6 +4776,8 @@ function App() {
             onAddCustomItemStat={addCustomItemStat} onCustomItemStatChange={customItemStatChange}
             onRemoveCustomItemStat={removeCustomItemStat} onAddCustomItemPower={addCustomItemPower}
             onCustomItemPowerLevelChange={customItemPowerLevelChange} onRemoveCustomItemPower={removeCustomItemPower}
+            onAddCustomItemWeapon={addCustomItemWeapon} onRemoveCustomItemWeapon={removeCustomItemWeapon}
+            onCustomItemWeaponChange={customItemWeaponChange} statPoints={statPoints}
             dragId={dragId} setDragId={setDragId}
             onMoveInventoryItem={moveInventoryItem} onMoveCustomItem={moveCustomItem}
           />
@@ -4656,7 +4876,7 @@ function App() {
             onAddCustomAttack={addCustomAttack}
             onUpdateCustomAttack={updateCustomAttack}
             onRemoveCustomAttack={removeCustomAttack}
-            onWeaponNoteChange={setInventoryAttackNote}
+            onWeaponNoteChange={setWeaponAttackNote}
           />
 
           {selectedBackgrounds.length > 0 && (
@@ -4686,6 +4906,7 @@ function App() {
                 items={items} inventory={inventory} gold={gold} readOnly showEquip
                 onToggleEquipped={toggleEquipped}
                 customItems={customItems} onToggleCustomItemEquipped={toggleCustomItemEquipped}
+                statPoints={statPoints}
               />
             </>
           )}
