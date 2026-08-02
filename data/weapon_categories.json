@@ -1,0 +1,112 @@
+[
+  {
+    "id": "WC001",
+    "name": "1H Light Melee",
+    "accuracy": 1,
+    "damage": "3 + [Body or Cunning]",
+    "defense": 1,
+    "range": "Close",
+    "skill": "Melee",
+    "might_str": "-"
+  },
+  {
+    "id": "WC002",
+    "name": "1H Heavy Melee",
+    "accuracy": 0,
+    "damage": "4 + [Body]",
+    "defense": 0,
+    "range": "Close",
+    "skill": "Melee",
+    "might_str": 4
+  },
+  {
+    "id": "WC003",
+    "name": "2H Light Melee",
+    "accuracy": 1,
+    "damage": "4 + [Body or Cunning]",
+    "defense": 1,
+    "range": "Close",
+    "skill": "Melee",
+    "might_str": "-"
+  },
+  {
+    "id": "WC004",
+    "name": "2H Heavy Melee",
+    "accuracy": 0,
+    "damage": "5 + [Body]",
+    "defense": 0,
+    "range": "Close",
+    "skill": "Melee",
+    "might_str": 6
+  },
+  {
+    "id": "WC005",
+    "name": "Light Thrown*",
+    "accuracy": 1,
+    "damage": "3 + [Cunning]",
+    "defense": "N/A",
+    "range": "Close, or 3 × Body",
+    "skill": "Acrobatics or Melee",
+    "might_str": "-"
+  },
+  {
+    "id": "WC006",
+    "name": "Heavy Thrown*",
+    "accuracy": 0,
+    "damage": "4 + [Body]",
+    "defense": "N/A",
+    "range": "Close, or 3 × Body",
+    "skill": "Acrobatics or Melee",
+    "might_str": 4
+  },
+  {
+    "id": "WC007",
+    "name": "Light Bow",
+    "accuracy": 1,
+    "damage": "3 + [Cunning]",
+    "defense": "N/A",
+    "range": 15,
+    "skill": "Archery",
+    "might_str": "-"
+  },
+  {
+    "id": "WC008",
+    "name": "Heavy Bow",
+    "accuracy": 0,
+    "damage": "4 + [Cunning]",
+    "defense": "N/A",
+    "range": 20,
+    "skill": "Archery",
+    "might_str": 6
+  },
+  {
+    "id": "WC009",
+    "name": "Unarmed",
+    "accuracy": 2,
+    "damage": "2 + [Body or Cunning]",
+    "defense": 1,
+    "range": "Close",
+    "skill": "Brawl",
+    "might_str": "N/A"
+  },
+  {
+    "id": "WC010",
+    "name": "Shield",
+    "accuracy": 0,
+    "damage": "2 + [Body]",
+    "defense": 2,
+    "range": "Close",
+    "skill": "Melee",
+    "might_str": "-"
+  },
+  {
+    "id": "WC011",
+    "name": "Improvised **",
+    "accuracy": -1,
+    "damage": 0,
+    "defense": -1,
+    "range": "Close, or half of normal",
+    "skill": "Varies",
+    "might_str": "Varies"
+  }
+]

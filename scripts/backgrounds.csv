@@ -1,0 +1,25 @@
+ID,Name,Category,Description
+B001,Creator,General,You learn the Artisanal Training Technique. You must meet its prerequisites.
+B002,Discoverer,General,"You start the game with a Climber’s Kit, Adventurer’s Belt, and 2 Medicinal Supplies."
+B003,Dilettante,General,"You start the game with a Disguise Kit, Tinker’s Kit, and two sets of Basic Clothing in a style or outfit of your choice."
+B004,Journeyman,General,"You start the game with a Crafting Toolset and a total of 9 Level 1 Wood, Leather, Cloth, and/or Metal raw materials."
+B005,Herbalist,General,You start the game with a Mixology Set and 9 Level 1 Medicinal raw materials.
+B006,Entertainer,General,"You start the game with a Musical Instrument of your choice, 2 bottles of Level 1 Alcohol, and 5 Gold."
+B007,Fisher,General,"You start the game with a Fishing Kit, 2 bottles of Level 1 Alcohol, and 3 large fish."
+B008,Traveler,General,You start the game with a Small Cart and 2 Gold.
+B009,Wanderer,General,You start the game with 2 bottles of Level 1 Alcohol and 8 Gold.
+B010,Heirloom,General,"You start the game with an heirloom weapon or suit of armor of a type of your choice. The heirloom may be used as a base item for a Masterwork Enhancement, and requires 1 fewer raw material to enhance in this way. The heirloom has no value to anyone else but you, and any Masterwork Enhancements on it only function when wielded or worn by you."
+B011,Professional,Settler,You learn the Profession Technique. You must meet its prerequisites.
+B012,Storied,Settler,Common folk are likely to give you the benefit of the doubt and offer you simple supplies. Your drinks are often on the house.
+B013,Rank and Title,Settler,"As a member in an organization, you have a small amount of clout and resources you can tap into. You usually have to perform some service to the organization in exchange, depending on your request."
+B014,Well-Read,Settler,"When you play a card for any Academics flip, you may treat its suit as being a Spade instead of its normal suit."
+B015,Magic Trick,Settler,"You can use simple magic to warm or chill a small object you’re holding, create a small light the size of a candle's flame, and/or produce a small shower of sparks in the color(s) of your choice."
+B016,Gritty,Settler,You heal an extra 1 Shallow Health from getting a full night's rest.
+B017,Forethought,Settler,"After you get a full night's rest, you may draw two extra cards. If you do, discard two cards."
+B018,Run On All Fours,Wildfolk,For 2 AP you may move 2 + [twice your Speed] meters.
+B019,Prehensile,Wildfolk,"You have a tail or other appendage that can be used to hold, retrieve, store, or manipulate objects as well as a hand, although it does not count as a hand or function as a Held item slot."
+B020,Amphibious,Wildfolk,You can breathe underwater without penalty.
+B021,Night Vision,Wildfolk,"You can see even in total darkness, although this doesn't help against anything that physically obscures vision such as smoke or fog."
+B022,Scavenger,Wildfolk,"You may eat any organic matter, regardless of how fresh or cooked it is, at no penalty. This does not protect you from any kind of Poison."
+B023,Aerial Balance,Wildfolk,"When you fall, you treat the distance as being 3 meters shorter."
+B024,Predator,Wildfolk,"You have claws or some other feature that makes your natural attacks more deadly. When your hands are empty, you may attack as though you were wielding a Two-Handed Light Melee weapon. This benefits from any Hands slot item that improves your Unarmed attacks, but does not otherwise count as an Unarmed weapon."

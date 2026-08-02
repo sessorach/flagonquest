@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlagonQuest</title>
+  <link rel="icon" href="assets/mug-icon.png">
 
   <!-- Tabler Icons webfont — used for the button icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
@@ -48,8 +49,26 @@
     input[type=search]:focus,
     textarea:focus { border-color: #d4a843; }
 
+    select { cursor: pointer; outline: none; transition: border-color 0.15s; }
+    select:focus { border-color: #d4a843; }
+
     input[type=range]    { accent-color: #d4a843; cursor: pointer; }
     input[type=checkbox] { accent-color: #d4a843; cursor: pointer; }
+
+    /* ── Site header ───────────────────────────────────────────────
+       Narrow screens: just a wrapping flex row, DOM order = brand,
+       switcher, nav — so the logo still reads first on mobile.
+       Wide screens: a 3-column grid (switcher / brand / nav) with the
+       brand truly centered regardless of how wide the other two are;
+       `order` puts the switcher first and nav last without changing
+       the DOM order the narrow layout relies on. */
+    .site-header { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    @media (min-width: 900px) {
+      .site-header { display: grid; grid-template-columns: 1fr auto 1fr; }
+      .site-header .site-header-left  { order: 1; justify-self: start; }
+      .site-header .site-header-brand { order: 2; justify-self: center; }
+      .site-header .site-header-nav   { order: 3; justify-self: end; }
+    }
 
     /* ── Technique list (Browse) ──────────────────────────────────
        Always a single column — cards show full technique text now,
@@ -111,6 +130,7 @@
     button:hover { opacity: 0.85; }
     button:disabled { cursor: not-allowed; opacity: 0.5; }
     button:disabled:hover { opacity: 0.5; }
+    .rulebook-link:hover { opacity: 0.85; }
 
     /* ── Print / "Save as PDF" (Character Sheet only) ─────────────
        Flattens the dark theme to plain black-on-white, hides the
@@ -119,7 +139,16 @@
        fine here, this is a reference printout, not a screen. !important
        throughout since the whole app is otherwise styled inline. */
     @media print {
-      @page { margin: 0.4in; }
+      /* Extra bottom margin (beyond the normal 0.4in) reserves room for
+         the fixed-position attribution footer below on EVERY page, not
+         just the last one — @page margins are a true per-page boundary,
+         unlike .sheet-page's padding-bottom, which only ever affected
+         the very end of the whole document flow. On any page before the
+         last, real content (the last thing that happened to land near
+         the bottom of that page — Gold, an item tile, a technique)
+         could otherwise land inside the same strip of the page the
+         fixed footer repeats into and get visually clipped/overlapped. */
+      @page { margin: 0.4in 0.4in 0.7in 0.4in; }
       .no-print { display: none !important; }
       body { background: #fff !important; }
       * {
@@ -127,14 +156,25 @@
         color: #111 !important;
         border-color: #000 !important;
         box-shadow: none !important;
+        /* Most browsers' print dialogs default "Background graphics" to
+           OFF, silently dropping every background color (including the
+           row-alt shading below) unless the page opts back in — this is
+           that opt-in. Without it, the shading only ever showed up when
+           printing through an automated tool that forces backgrounds on,
+           never for an actual person clicking Print. */
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
 
       .sheet-page { max-width: none !important; padding: 0 !important; }
 
-      /* Solid black boxes instead of the screen's faint hairlines —
-         Stats & Skills, Vitals/Defenses/Health, and each technique all
-         get this treatment, and none of them split across a page break. */
-      .sheet-header, .sheet-box, .tech-card {
+      /* Solid black boxes instead of the screen's faint hairlines — the
+         name/concept box, the print-only Total XP box, Stats & Skills,
+         Vitals/Defenses/Health/Resists, and each technique all get this
+         treatment, and none of them split across a page break. The
+         header row itself (.sheet-header) stays unboxed — its two
+         children are the boxes, not the row around them. */
+      .sheet-box, .tech-card {
         border-width: 1px !important;
         border-style: solid !important;
         border-radius: 2px !important;
@@ -143,11 +183,47 @@
       .sheet-box { padding: 5px 8px !important; zoom: 0.85; }
       .tech-card { padding: 6px 9px !important; gap: 4px !important; zoom: 0.68; }
 
+      /* Hidden on screen (the StatsPanel's own XP summary bar, marked
+         no-print below, covers this there); shown only here, as its own
+         small box in the header. */
+      .print-only { display: flex !important; }
+
       /* Stats & Skills stays 5-across regardless of the page's physical
          width — the .stat-grid breakpoints are viewport-width media
          queries tuned for screens, and a printed page is narrower. */
       .stat-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 5px !important; }
       .tech-list { gap: 5px !important; }
+
+      /* Vitals/Defenses/Health/Resists likewise stays 4-across — on
+         screen this row's flex-wrap only kicks in on a narrow window, so
+         it never wraps there, but a printed page is narrower than most
+         screens and would otherwise push the 4th box (Resists) onto its
+         own nearly-empty line. Forcing nowrap here just lets the boxes'
+         existing flex-shrink narrow them to fit one line instead. */
+      .derived-stats-row { flex-wrap: nowrap !important; gap: 6px !important; }
+      .derived-stats-row .sheet-box { padding: 4px 6px !important; }
+
+      /* Alternating row tint — screen uses a faint white overlay (fine on
+         the dark theme), but that's invisible once print flattens every
+         background to white, so it needs its own rule here. A light gray
+         band reads clearly and costs barely any ink; specific enough to
+         win over the "background: #fff" rule above despite both being
+         !important (that's decided by selector specificity, not just
+         source order — .row-alt beats the bare * selector). The row's
+         own children (label, formula, value, the skill-total badge) also
+         got forced to solid white by that same "*" rule, which punched
+         opaque holes in the band wherever a nested element sat — so
+         those need clearing back to transparent too. */
+      .row-alt { background: #ececec !important; }
+      .row-alt * { background: transparent !important; }
+
+      /* Attribution — repeats at the bottom of every printed page
+         instead of trailing wherever the last card happens to end. */
+      .attribution-footer {
+        position: fixed !important;
+        left: 0; right: 0; bottom: 0;
+        padding: 4px 16px !important;
+      }
     }
   </style>
 </head>
@@ -196,13 +272,24 @@ const { useState, useEffect, useMemo, useRef } = React;
  ║  choices. SHARE LINK: technique list + character name only, to   ║
  ║  keep the URL short — notes/Feature choices don't round-trip.    ║
  ║                                                                   ║
- ║  RETAIN ACROSS REFRESH: `build` and `charName` are persisted to  ║
- ║  localStorage like everything else. The address bar also mirrors ║
- ║  the current build live in the same #build= format "Copy share   ║
- ║  link" uses (see the sync effect near the top of App()) — so the ║
- ║  page is always sitting on a current, copy-pasteable link, and a ║
- ║  plain refresh can tell that hash apart from an actual shared    ║
- ║  link someone opened and skip re-decoding its own echo.          ║
+ ║  RETAIN ACROSS REFRESH: the whole block of state above (build     ║
+ ║  through noteRows) is persisted to localStorage like everything   ║
+ ║  else. The address bar also mirrors the active character's build  ║
+ ║  live in the same #build= format "Copy share link" uses (see the  ║
+ ║  sync effect near the top of App()) — so the page is always       ║
+ ║  sitting on a current, copy-pasteable link, and a plain refresh   ║
+ ║  can tell that hash apart from an actual shared link someone      ║
+ ║  opened and skip re-decoding its own echo.                        ║
+ ║                                                                   ║
+ ║  CHARACTER SLOTS: localStorage can hold more than one character   ║
+ ║  (see the CHARACTER SLOTS helpers just above App()) — each one's  ║
+ ║  full data lives under its own `flagonquest-char-<id>` key, with  ║
+ ║  a small [{id, name}] registry and an active-id pointer alongside ║
+ ║  it. Opening a share link or importing a file always adds a new   ║
+ ║  slot and switches to it (addCharacterSlot) rather than touching  ║
+ ║  whichever character was already open, so neither can overwrite   ║
+ ║  work in progress. A one-time migration folds any pre-slots       ║
+ ║  install's flat `flagonquest-*` keys into a first character.      ║
  ║                                                                   ║
  ║  LAYOUT: on wide screens the Browse tab shows the technique list  ║
  ║  and the build panel side by side (see .browse-layout in the     ║
@@ -284,12 +371,25 @@ function isRepeatable(tech) {
   return tags.includes("Duplicate") || tags.includes("Encounter");
 }
 
-// Parses the "Points: Level 1: 3 basic; Level 2: 6 basic; Level 3: 9
-// basic/advanced; ..." sentence that Feature-built techniques carry
-// in their Effects text, into { [level]: { points, advanced } }.
-// Returns null if the text doesn't match that pattern (so callers can
-// fall back to an unlimited/unstructured picker instead of guessing).
-function parsePointBudget(effectsText) {
+// Does this technique need the level-picker/build flow instead of a plain
+// Add/Remove button? True for Feature-built techniques (obviously), but
+// also for anything with a variable level range even without Features —
+// e.g. Temper Soulblade, which just needs a fixed level chosen for XP
+// cost/display purposes, with the rest handled by its free-text notes.
+function needsLevelPicker(tech) {
+  return !!tech.features || (tech.level_min != null && tech.level_max != null && tech.level_min !== tech.level_max);
+}
+
+// A technique's point budget per level, as { [level]: { points, advanced } }.
+// Prefers the structured "Feature Budget" data column (convert.py parses
+// it into tech.feature_budget) — falls back to regexing the "Points:
+// Level 1: 3 basic; Level 2: 6 basic; ..." sentence out of the Effects
+// text for any technique whose spreadsheet row hasn't been given that
+// column yet. Returns null if neither is present, so callers fall back
+// to an unlimited/unstructured picker instead of guessing.
+function parsePointBudget(tech) {
+  if (tech.feature_budget) return tech.feature_budget;
+  const effectsText = tech.effects;
   if (!effectsText) return null;
   const re = /Level\s*(\d+):\s*(\d+)\s*basic(\/advanced)?/gi;
   const map = {};
@@ -346,28 +446,24 @@ function applyFeatureCount(text, count) {
   return out;
 }
 
-// Substitutes a bracketed "[Level + 1]" / "[this Technique's Level]" clause
-// in a Feature-built technique's prereqs text with the composite number for
-// one specific build's chosen level — e.g. "[Level + 1]" at Level 3 becomes
-// "4". Only meaningful once a level has actually been picked (a single
-// build-group on the Character Sheet), so callers pass `level == null` to
-// leave the text untouched everywhere else.
-function applyPrereqLevel(text, level) {
-  if (!text || level == null) return text;
-  let out = text.replace(/\[([^\]]*)\]/g, (whole, inner) => {
-    const normalized = inner.replace(/(this\s+technique'?s\s+)?level/i, String(level));
-    if (!/^[\d\s+-]+$/.test(normalized)) return whole;
-    let value;
-    try { value = Function(`"use strict"; return (${normalized});`)(); } catch { return whole; }
-    return Number.isFinite(value) ? String(value) : whole;
-  });
-  // Some prereqs put the arithmetic outside the bracket, e.g.
-  // "Theurgy [Level] + 1" — collapse what's left into one number too,
-  // same as applyFeatureCount does for Feature descriptions.
-  out = out.replace(/\b\d+(?:\s*\+\s*\d+)+\b/g, m =>
-    String(m.split("+").reduce((sum, part) => sum + parseInt(part.trim(), 10), 0))
+// Wraps every whole-word, case-sensitive match of a glossary term in
+// `text` with a hoverable <GlossaryTerm> — e.g. "Slowed" inside a
+// technique's Effects text becomes moused-over-able. Terms are matched
+// longest-first so multi-word entries ("Good Luck") win over any
+// single-word one that happens to be a substring. Returns `text`
+// untouched when there's nothing to link, so callers can render the
+// result directly either way.
+function withGlossary(text, glossary) {
+  if (!text || !glossary || glossary.length === 0) return text;
+  const terms = [...glossary].sort((a, b) => b.term.length - a.term.length);
+  const escaped = terms.map(g => g.term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const re = new RegExp(`\\b(${escaped.join("|")})\\b`, "g");
+  const byTerm = Object.fromEntries(glossary.map(g => [g.term, g.description]));
+  const parts = text.split(re);
+  if (parts.length === 1) return text;
+  return parts.map((part, i) =>
+    byTerm[part] ? <GlossaryTerm key={i} term={part} description={byTerm[part]} /> : part
   );
-  return out;
 }
 
 // ── Stats & Skills ────────────────────────────────────────────────
@@ -395,6 +491,170 @@ function statTotalCost(n)  { return n * (n + 1); }
 
 function skillTotalValue(statPoints, skillPoints, skill) {
   return (statPoints[SKILL_STAT[skill]] || 0) + (skillPoints[skill] || 0);
+}
+
+// Resolves one "[... Skill Total]" bracket's inner text (with the trailing
+// "Skill Total" already stripped by the caller) to a number, for the
+// modifiers actually used in the data: "half your X", "twice X", and
+// "X or Y" (uses whichever of the two is higher). Returns null for
+// anything it can't confidently resolve (unrecognized skill name), so the
+// caller can just leave the original bracket text untouched.
+function resolveSkillTotalToken(inner, statPoints, skillPoints) {
+  let text = inner.trim();
+  const mods = [];
+  const modRe = /^(half|your|twice)\s+/i;
+  let m;
+  while ((m = modRe.exec(text))) {
+    mods.push(m[1].toLowerCase());
+    text = text.slice(m[0].length);
+  }
+  const skillNames = text.split(/\s+or\s+/i).map(s => s.trim()).filter(Boolean);
+  const validSkills = skillNames.filter(s => ALL_STAT_SKILLS.includes(s));
+  if (validSkills.length === 0) return null;
+  let value = Math.max(...validSkills.map(s => skillTotalValue(statPoints, skillPoints, s)));
+  if (mods.includes("half"))  value = Math.floor(value / 2);
+  if (mods.includes("twice")) value = value * 2;
+  return value;
+}
+
+// Like withGlossary, but also — when `skillTotals` is given ({ statPoints,
+// skillPoints }) — finds every "[... Skill Total]" bracket in `text` and
+// prepends the character's actual computed value in the same bold/glow
+// style as the Stats & Skills panel, so e.g. "[Might Skill Total]" reads
+// as "5 [Might Skill Total]" without the player cross-referencing their
+// sheet. Used only on the read-only Character Sheet — everywhere else
+// `skillTotals` is left null and this behaves exactly like withGlossary.
+function withSkillTotals(text, glossary, skillTotals) {
+  if (!text || !skillTotals) return withGlossary(text, glossary);
+  const re = /\[([^\[\]]*Skill Total)\]/gi;
+  const parts = text.split(re);
+  if (parts.length === 1) return withGlossary(text, glossary);
+  return parts.map((part, i) => {
+    if (i % 2 === 0) return withGlossary(part, glossary);
+    const value = resolveSkillTotalToken(part.replace(/\s*Skill Total\s*$/i, ""), skillTotals.statPoints, skillTotals.skillPoints);
+    if (value == null) return `[${part}]`;
+    return (
+      <React.Fragment key={i}>
+        <span style={{ fontWeight:700, color:"#e8c46a", textShadow:"0 0 6px rgba(212,168,67,0.45)" }}>{value}</span>
+        {" "}[{part}]
+      </React.Fragment>
+    );
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// CHARACTER SLOTS — localStorage holds any number of characters, each
+// under its own `flagonquest-char-<id>` key, plus a small registry
+// (`flagonquest-characters`, an [{id, name}] list) so the switcher can
+// list them without loading every one, and `flagonquest-active-character`
+// for which one is currently open. This is all still per-device/browser
+// storage, same as before — slots just mean it can hold more than one
+// character instead of exactly one.
+// ══════════════════════════════════════════════════════════════════
+
+// A brand-new character's blank data — also the fallback shape used to
+// backfill any fields missing from an older/partial saved blob.
+function emptyCharacterData() {
+  return {
+    build: [], notes: {}, configs: {}, renames: {}, expended: {},
+    statPoints:  Object.fromEntries(STATS.map(s => [s, 0])),
+    skillPoints: Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])),
+    xpBudget: "75", charName: "", charConcept: "", charNotes: "", noteRows: [],
+    // Freeform, non-XP techniques the player writes in themselves — a
+    // one-off ability granted by the GM that doesn't come from the data
+    // file. Just { id, title, text }, no level/tags/prereqs/anything else.
+    customTechniques: [],
+    // Backgrounds: at most one General pick, and one Settler-or-Wildfolk
+    // pick depending on backgroundType — just a list of background IDs,
+    // in the order chosen (so it can be drag-reordered like techniques).
+    selectedBackgrounds: [],
+    backgroundType: "Settler",
+    // Inventory: { uid, itemId, qty } per distinct item carried — a
+    // separate uid per row (not id-keyed) just so rows never collide,
+    // even though items don't have per-copy config like techniques do.
+    inventory: [],
+    gold: "",
+    // Freeform items the player writes in themselves, same idea as
+    // customTechniques — { id, name, text, qty }, no data-file entry,
+    // no stats, just a name/description/quantity.
+    customItems: [],
+  };
+}
+
+function loadCharacterData(id) {
+  try {
+    const raw = JSON.parse(localStorage.getItem(`flagonquest-char-${id}`) || "null");
+    return { ...emptyCharacterData(), ...raw };
+  } catch { return emptyCharacterData(); }
+}
+
+function saveCharacterData(id, data) {
+  localStorage.setItem(`flagonquest-char-${id}`, JSON.stringify(data));
+}
+
+// One-time upgrade path: before slots existed, a character's fields
+// lived directly under flat `flagonquest-*` keys. If those are present
+// and no slot registry exists yet, fold them into a single character
+// so nobody's existing work disappears when this ships. The old flat
+// keys are left in place afterward (unused, but harmless) rather than
+// deleted, so a migration bug can't destroy data — only fail to migrate it.
+function migrateLegacyCharacter() {
+  if (localStorage.getItem("flagonquest-build") === null && localStorage.getItem("flagonquest-char-name") === null) {
+    return null;
+  }
+  const readJSON = (key, fallback) => {
+    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+    catch { return fallback; }
+  };
+  const data = {
+    ...emptyCharacterData(),
+    build:       readJSON("flagonquest-build", []),
+    notes:       readJSON("flagonquest-notes", {}),
+    configs:     readJSON("flagonquest-configs", {}),
+    renames:     readJSON("flagonquest-renames", {}),
+    expended:    readJSON("flagonquest-expended", {}),
+    statPoints:  { ...emptyCharacterData().statPoints,  ...readJSON("flagonquest-stat-points", {}) },
+    skillPoints: { ...emptyCharacterData().skillPoints, ...readJSON("flagonquest-skill-points", {}) },
+    xpBudget:    localStorage.getItem("flagonquest-xp-budget") ?? "75",
+    charName:    localStorage.getItem("flagonquest-char-name") || "",
+    charConcept: localStorage.getItem("flagonquest-char-concept") || "",
+    charNotes:   localStorage.getItem("flagonquest-char-notes") || "",
+    noteRows:    readJSON("flagonquest-note-rows", []),
+  };
+  const id = makeUid();
+  saveCharacterData(id, data);
+  return { id, name: data.charName || "Unnamed hero" };
+}
+
+// Resolves which character is active and its data, on first load only
+// (see the useRef guard where this is called) — handles the legacy
+// migration above, and creating a first character on a totally fresh
+// install, so the app always has at least one valid active character.
+function loadActiveCharacterState() {
+  let characters = [];
+  try { characters = JSON.parse(localStorage.getItem("flagonquest-characters")) || []; } catch {}
+  let activeId = localStorage.getItem("flagonquest-active-character");
+
+  if (characters.length === 0) {
+    const migrated = migrateLegacyCharacter();
+    if (migrated) {
+      characters = [migrated];
+      activeId = migrated.id;
+    } else {
+      const id = makeUid();
+      saveCharacterData(id, emptyCharacterData());
+      characters = [{ id, name: "" }];
+      activeId = id;
+    }
+    localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
+    localStorage.setItem("flagonquest-active-character", activeId);
+  }
+  if (!activeId || !characters.some(c => c.id === activeId)) {
+    activeId = characters[0].id;
+    localStorage.setItem("flagonquest-active-character", activeId);
+  }
+  return { activeId, characters, data: loadCharacterData(activeId) };
 }
 
 
@@ -561,11 +821,11 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
 function FeaturesSection({
   tech, features, instances, configs, repeatable,
   onSaveConfig, onDuplicateInstance, onRemoveInstance,
-  renames, onRenameChange,
+  renames, onRenameChange, glossary,
 }) {
   const [builderFor, setBuilderFor]   = useState(null); // null | "new" | a uid
   const [builderSeed, setBuilderSeed] = useState(null); // the {level, picks} to open the builder with
-  const budgetMap = useMemo(() => parsePointBudget(tech.effects), [tech.effects]);
+  const budgetMap = useMemo(() => parsePointBudget(tech), [tech]);
   const maxLevel = tech.level_max ?? tech.level_min;
 
   const smallBtn = {
@@ -594,7 +854,7 @@ function FeaturesSection({
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500 }}>
-        Built from Features
+        {features.length > 0 ? "Built from Features" : "Level"}
       </div>
 
       {/* Copies already learned */}
@@ -636,13 +896,15 @@ function FeaturesSection({
                 <button onClick={() => onRemoveInstance(uid)} style={smallDangerBtn}>Remove</button>
               </div>
             </div>
-            <input
-              type="text"
-              value={renames[uid] || ""}
-              onChange={e => onRenameChange(uid, e.target.value)}
-              placeholder="Rename this build (optional)…"
-              style={{ fontSize: 12, padding: "3px 6px" }}
-            />
+            {features.length > 0 && (
+              <input
+                type="text"
+                value={renames[uid] || ""}
+                onChange={e => onRenameChange(uid, e.target.value)}
+                placeholder="Rename this build (optional)…"
+                style={{ fontSize: 12, padding: "3px 6px" }}
+              />
+            )}
             {picks.length > 0 && (
               <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
                 {picks.map(([fid, n]) => {
@@ -651,7 +913,7 @@ function FeaturesSection({
                   return (
                     <div key={fid} style={{ fontSize: 12, color: TEXT.muted, lineHeight: 1.4 }}>
                       <strong style={{ color: TEXT.body }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
-                      {" — "}{applyFeatureCount(f.description, n)}
+                      {" — "}{withGlossary(applyFeatureCount(f.description, n), glossary)}
                     </div>
                   );
                 })}
@@ -701,12 +963,17 @@ function TechCard({
   configs, onSaveConfig, onDuplicateInstance,
   onAdd, onRemove, onRemoveInstance,
   renames, onRenameChange, expended, onExpendedChange,
+  glossary,
   readOnly = false,
   // Set only by the read-only Character Sheet, which gives every distinct
   // build of a Feature-built technique its own card instead of nesting
   // them all under one — see the sheetCards note in App(). When present,
   // this card represents exactly this one build: { name, cfg, uids }.
   group = null,
+  // { statPoints, skillPoints } — set only by the read-only Character
+  // Sheet, so it can resolve "[X Skill Total]" brackets in gameplay text
+  // to the character's actual numbers. See withSkillTotals.
+  skillTotals = null,
 }) {
   const tags   = splitCSV(tech.tags);
   const skills = splitCSV(tech.related_skills);
@@ -820,10 +1087,11 @@ function TechCard({
         </div>
       )}
 
-      {/* Fluff description — italic and muted */}
-      {tech.description && (
+      {/* Fluff description — italic and muted. Skipped on the read-only
+          Character Sheet, which is meant to be a lean reference. */}
+      {!readOnly && tech.description && (
         <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5 }}>
-          {tech.description}
+          {withGlossary(tech.description, glossary)}
         </div>
       )}
 
@@ -836,7 +1104,7 @@ function TechCard({
       ].filter(([, v]) => v).map(([label, val]) => (
         <div key={label} style={{ fontSize:14, color:TEXT.body, lineHeight:1.4 }}>
           <span style={{ color:TEXT.label, fontWeight:500 }}>{label}: </span>
-          {val}
+          {withSkillTotals(val, glossary, skillTotals)}
         </div>
       ))}
 
@@ -846,17 +1114,32 @@ function TechCard({
           fontSize: 14, color: TEXT.body, lineHeight: 1.6,
           whiteSpace: "pre-wrap",  // preserves any line breaks in the text
         }}>
-          {tech.effects}
+          {withSkillTotals(tech.effects, glossary, skillTotals)}
+        </div>
+      )}
+
+      {/* Building — how to build this Feature-based technique ("When you
+          learn this, choose features that apply..."). Reference text for
+          whoever's building it, right above the picker it explains;
+          skipped on the read-only Character Sheet, which only needs to
+          show what the technique actually does, not how it was built. */}
+      {!readOnly && tech.building && (
+        <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4, fontStyle:"italic" }}>
+          {withGlossary(tech.building, glossary)}
         </div>
       )}
 
       {/* Built from Features — replaces the plain Add/Remove flow below.
-          On the read-only sheet (`group` set) this card IS one specific
-          build, so its picks render directly with no editing chrome;
-          everywhere else FeaturesSection handles listing/editing every
-          copy of the technique still in one card. */}
-      {tech.features && (group ? (
-        group.cfg && Object.keys(group.cfg.picks).length > 0 && (
+          On the read-only sheet this card either IS one specific Feature
+          build (`group` set — its picks render directly, no editing
+          chrome) or, for a non-Feature Buildable/Duplicate technique like
+          Temper Soulblade, has nothing to show here at all (its level
+          badge already went generic and its distinguishing info lives in
+          the per-copy Notes below); everywhere else FeaturesSection
+          handles listing/editing every copy of the technique in one
+          card. */}
+      {needsLevelPicker(tech) && (readOnly ? (
+        group && group.cfg && Object.keys(group.cfg.picks).length > 0 && (
           <div style={{ display:"flex", flexDirection:"column", gap:3 }}>
             {Object.entries(group.cfg.picks).map(([fid, n]) => {
               const f = techFeatures.find(x => x.id === fid);
@@ -864,7 +1147,7 @@ function TechCard({
               return (
                 <div key={fid} style={{ fontSize:13, color:TEXT.body, lineHeight:1.5 }}>
                   <strong style={{ color:TEXT.name }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
-                  {" — "}{applyFeatureCount(f.description, n)}
+                  {" — "}{withSkillTotals(applyFeatureCount(f.description, n), glossary, skillTotals)}
                 </div>
               );
             })}
@@ -882,6 +1165,7 @@ function TechCard({
           onRemoveInstance={onRemoveInstance}
           renames={renames}
           onRenameChange={onRenameChange}
+          glossary={glossary}
         />
       ))}
 
@@ -951,24 +1235,21 @@ function TechCard({
       {tech.special && (
         <div style={{ fontSize:14, color:TEXT.body, lineHeight:1.5 }}>
           <span style={{ color:TEXT.label, fontWeight:500 }}>Special: </span>
-          {tech.special}
+          {withSkillTotals(tech.special, glossary, skillTotals)}
         </div>
       )}
 
-      {/* Prerequisites — a bracketed clause like "[Level + 1]" resolves to
-          the composite number once this specific build's level is known
-          (group mode on the sheet); everywhere else it stays literal text,
-          since a card with multiple differently-leveled copies has no
-          single "the" level to substitute. */}
-      {tech.prereqs && (
+      {/* Prerequisites and related skills — skipped on the read-only
+          Character Sheet to keep it lean; still shown everywhere you're
+          actually picking/reviewing techniques. */}
+      {!readOnly && tech.prereqs && (
         <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4 }}>
           <span style={{ fontWeight:500 }}>Prereqs: </span>
-          {group && group.cfg ? applyPrereqLevel(tech.prereqs, group.cfg.level) : tech.prereqs}
+          {tech.prereqs}
         </div>
       )}
 
-      {/* Related skills — faint chips at the very bottom, under prereqs */}
-      {skills.length > 0 && (
+      {!readOnly && skills.length > 0 && (
         <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
           {skills.map(skill => (
             <span key={skill} style={{
@@ -987,7 +1268,7 @@ function TechCard({
       {/* Add / Remove button(s) — skipped entirely on the read-only
           Character Sheet, and Features-built techniques manage this
           themselves above so it's skipped for those too */}
-      {!readOnly && !tech.features && (
+      {!readOnly && !needsLevelPicker(tech) && (
         <div style={{ marginTop:2, display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}>
           {repeatable ? (
             <>
@@ -1052,6 +1333,40 @@ function TechCard({
 
 
 // ══════════════════════════════════════════════════════════════════
+// GLOSSARY TERM — a capitalized game term (e.g. "Slowed") found inside
+// technique/Feature text, shown with a dotted underline; hover (or tap,
+// for touch devices) reveals its short definition. Click also toggles it
+// so it works without a mouse.
+// ══════════════════════════════════════════════════════════════════
+function GlossaryTerm({ term, description }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <span
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onClick={e => { e.stopPropagation(); setOpen(o => !o); }}
+      style={{ position: "relative", borderBottom: "1px dotted #a68f52", cursor: "help" }}
+    >
+      {term}
+      {open && (
+        <span className="no-print" style={{
+          position: "absolute", left: 0, top: "100%", marginTop: 4, zIndex: 50,
+          display: "block", width: 220,
+          background: "#12161f", border: "0.5px solid #d4a843", borderRadius: 6,
+          padding: "6px 10px", fontSize: 12, lineHeight: 1.4,
+          color: TEXT.body, fontStyle: "normal", fontWeight: 400,
+          fontFamily: "system-ui, -apple-system, sans-serif",
+          boxShadow: "0 4px 14px rgba(0,0,0,0.45)",
+        }}>
+          <strong style={{ color: "#d4a843" }}>{term}</strong>: {description}
+        </span>
+      )}
+    </span>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
 // POINT STEPPER — the small "− N +" control shared by every stat and
 // skill row in the Stats & Skills panel.
 // ══════════════════════════════════════════════════════════════════
@@ -1089,7 +1404,11 @@ function StatsPanel({
 
   return (
     <div>
-      <div className="sheet-box" style={{
+      {/* The Character Sheet shows this same "Total XP Spent" number
+          again, alone, in its own small box in the print header (see
+          the print-only box in the view === "sheet" JSX) — so this
+          fuller breakdown is print-hidden to avoid saying it twice. */}
+      <div className="sheet-box no-print" style={{
         display: "flex", alignItems: "center", gap: 22, flexWrap: "wrap",
         marginBottom: 14, padding: "10px 14px", background: "#12161f",
         border: "0.5px solid #2d3555", borderRadius: 8,
@@ -1148,9 +1467,18 @@ function StatsPanel({
                 <PointStepper value={statPoints[stat] || 0} max={5} onChange={n => onStatChange(stat, n)} />
               )}
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              {STAT_SKILLS[stat].map(skill => (
-                <div key={skill} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {/* Skill Total (right) is what actually gets used at the table —
+                  Stat/Skill points underneath it are just how you got there —
+                  so it gets a bigger, badge-styled, glowing number to draw the
+                  eye, and rows alternate a faint tint so a long list of five
+                  stays easy to scan across. */}
+              {STAT_SKILLS[stat].map((skill, i) => (
+                <div key={skill} className={i % 2 === 1 ? "row-alt" : undefined} style={{
+                  display: "flex", alignItems: "center", gap: 6,
+                  padding: "2px 4px", borderRadius: 4,
+                  background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
+                }}>
                   <span style={{ fontSize: 13, color: TEXT.body, flex: 1 }}>{skill}</span>
                   {readOnly ? (
                     <span style={{ fontSize: 13, color: TEXT.body, width: 16, textAlign: "center" }}>
@@ -1159,7 +1487,12 @@ function StatsPanel({
                   ) : (
                     <PointStepper value={skillPoints[skill] || 0} max={5} onChange={n => onSkillChange(skill, n)} />
                   )}
-                  <span style={{ fontSize: 13, color: TEXT.faint, width: 18, textAlign: "right", flexShrink: 0 }}>
+                  <span style={{
+                    fontSize: 15, fontWeight: 700, color: "#e8c46a",
+                    minWidth: 24, textAlign: "center", flexShrink: 0,
+                    background: "#20180a", border: "0.5px solid #6b5423", borderRadius: 5,
+                    padding: "1px 4px", textShadow: "0 0 6px rgba(212,168,67,0.45)",
+                  }}>
                     {skillTotalValue(statPoints, skillPoints, skill)}
                   </span>
                 </div>
@@ -1178,62 +1511,776 @@ function StatsPanel({
 // from Stats & Skills (Speed, Defenses, etc.), matching the formulas
 // printed on the paper character sheet.
 // ══════════════════════════════════════════════════════════════════
-function DerivedStats({ statPoints, skillPoints }) {
+function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
   const st = skill => skillTotalValue(statPoints, skillPoints, skill);
+  const essence = statPoints.Essence || 0;
+  const bonus = key => equipmentBonuses[key] || 0;
 
-  const block = (title, rows) => (
+  // Each row's name is bold with its calculation in italics underneath —
+  // matching the paper character sheet — instead of both crammed onto
+  // one line, so the number the player actually reads stays the clear
+  // focal point on the right. Rows alternate a faint tint (row-alt),
+  // same idea and class as the Stats & Skills rows above, so a five-row
+  // box stays easy to scan across — see the "row-alt" print rule for how
+  // this survives print's flattened-to-white color override.
+  //
+  // A row can optionally carry a 4th element — the ITEM_STAT_FIELDS key
+  // for its equipment bonus (Speed, the five Resists, four of the five
+  // Defenses — Parry gets its bonus from the chosen Parry weapon
+  // instead, handled the same way by App's equipmentBonuses). When
+  // that bonus is nonzero it's added to the shown value and called out
+  // in the formula line, e.g. "= Essence (+2 equipped)".
+  const block = (title, rows, footer) => (
     <div className="sheet-box" style={{
       background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
-      display: "flex", flexDirection: "column", gap: 6, flex: "1 1 220px",
+      display: "flex", flexDirection: "column", gap: 2, flex: "1 1 220px",
     }}>
-      <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+      <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 5 }}>
         {title}
       </div>
-      {rows.map(([label, value, formula]) => (
-        <div key={label} style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
-          <span style={{ fontSize: 13, color: TEXT.body }}>
-            {label} <span style={{ fontSize: 11, color: TEXT.faint }}>({formula})</span>
-          </span>
-          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>{value}</span>
+      {rows.map(([label, base, formula, statKey], i) => {
+        const eq = statKey ? bonus(statKey) : 0;
+        return (
+          <div key={label} className={i % 2 === 1 ? "row-alt" : undefined} style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
+            padding: "2px 4px", borderRadius: 4,
+            background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
+          }}>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</div>
+              {formula && (
+                <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic" }}>
+                  {formula}{eq !== 0 && ` (${eq > 0 ? "+" : "−"}${Math.abs(eq)} equipped)`}
+                </div>
+              )}
+            </div>
+            <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name, flexShrink: 0 }}>{base + eq}</span>
+          </div>
+        );
+      })}
+      {footer && (
+        <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic", marginTop: 4 }}>
+          {footer}
         </div>
-      ))}
+      )}
     </div>
   );
 
   return (
-    <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 14 }}>
+    <div className="derived-stats-row" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 14 }}>
       {block("Vitals", [
-        ["Speed",          1 + (statPoints.Agility || 0), "1 + Agility"],
-        ["Resting Health", statPoints.Body || 0, "Body"],
-        ["Reflex",         st("Insight"), "Insight"],
-        ["Cards Per Day",  2 * ((statPoints.Cunning || 0) + (statPoints.Mind || 0)), "2 × (Cunning + Mind)"],
+        ["Speed",          1 + (statPoints.Agility || 0), "= 1 + Agility", "speed"],
+        ["Resting Health", statPoints.Body || 0, "= Body"],
+        ["Reflex",         st("Insight"), "= Insight"],
+        ["Cards Per Day",  2 * ((statPoints.Cunning || 0) + (statPoints.Mind || 0)), "= 2 × (Cunning + Mind)"],
       ])}
       {block("Defenses", [
-        ["Parry Defense",    8 + Math.max(st("Melee"), st("Brawl")), "8 + Melee or Brawl"],
-        ["Dodge Defense",    8 + Math.max(st("Acrobatics"), st("Brawl")), "8 + Acrobatics or Brawl"],
-        ["Bodily Defense",   8 + st("Resilience"), "8 + Resilience"],
-        ["Mental Defense",   8 + st("Composure"), "8 + Composure"],
-        ["Instinct Defense", 8 + st("Insight"), "8 + Insight"],
+        ["Parry Defense",    8 + Math.max(st("Melee"), st("Brawl")), "= 8 + Melee or Brawl", "parry_defense"],
+        ["Dodge Defense",    8 + Math.max(st("Acrobatics"), st("Brawl")), "= 8 + Acrobatics or Brawl", "dodge_defense"],
+        ["Bodily Defense",   8 + st("Resilience"), "= 8 + Resilience", "bodily_defense"],
+        ["Mental Defense",   8 + st("Composure"), "= 8 + Composure", "mental_defense"],
+        ["Instinct Defense", 8 + st("Insight"), "= 8 + Insight", "instinct_defense"],
       ])}
-      <div className="sheet-box" style={{
-        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
-        flex: "1 1 220px", display: "flex", flexDirection: "column", gap: 6,
-      }}>
-        <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
-          Health
-        </div>
-        <div style={{ fontSize: 13, color: TEXT.body, display: "flex", justifyContent: "space-between" }}>
-          <span>Shallow Health <span style={{ fontSize: 11, color: TEXT.faint }}>(base)</span></span>
-          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>5</span>
-        </div>
-        <div style={{ fontSize: 13, color: TEXT.body, display: "flex", justifyContent: "space-between" }}>
-          <span>Deep Health <span style={{ fontSize: 11, color: TEXT.faint }}>(base)</span></span>
-          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>5</span>
-        </div>
-        <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic", marginTop: 4 }}>
-          Resistances, and Feature/technique bonuses to these numbers, aren't tracked yet.
-        </div>
+      {block("Health", [
+        ["Shallow Health", 5, "(base)", "shallow_health"],
+        ["Deep Health",    5, "(base)", "deep_health"],
+      ], "Feature/technique bonuses to these aren't tracked yet.")}
+      {block("Resists", [
+        ["Physical Resist",  essence, "= Essence", "physical_resist"],
+        ["Fire Resist",      essence, "= Essence", "fire_resist"],
+        ["Frost Resist",     essence, "= Essence", "frost_resist"],
+        ["Brilliant Resist", essence, "= Essence", "brilliant_resist"],
+        ["Shadow Resist",    essence, "= Essence", "shadow_resist"],
+      ], "Essence adds to each Resist. Parry Defense only counts the one weapon marked \"Parry\" — see Inventory below.")}
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// CUSTOM TECHNIQUE CARD — a freeform tile for a GM-granted ability that
+// doesn't come from the data file: just a title and rules text, no
+// level/tags/prereqs, and never counted toward XP. Same card look as a
+// real TechCard so it reads as "one more technique," editable on the
+// Builder tab and read-only (title + text only) on the Character Sheet.
+// ══════════════════════════════════════════════════════════════════
+function CustomTechniqueCard({ tech, onTitleChange, onTextChange, onRemove, readOnly = false }) {
+  const cardStyle = {
+    background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+    padding: "12px 14px", display: "flex", flexDirection: "column", gap: 7,
+  };
+
+  if (readOnly) {
+    // Nothing to show for a copy the player added but never filled in.
+    if (!tech.title.trim() && !tech.text.trim()) return null;
+    return (
+      <div className="tech-card" style={cardStyle}>
+        <span style={{
+          fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+          fontSize: 17, color: TEXT.name, lineHeight: 1.3,
+        }}>
+          {tech.title.trim() || "Untitled technique"}
+        </span>
+        {tech.text && (
+          <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
+            {tech.text}
+          </div>
+        )}
       </div>
+    );
+  }
+
+  return (
+    <div className="tech-card" style={cardStyle}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <input
+          type="text"
+          value={tech.title}
+          onChange={e => onTitleChange(e.target.value)}
+          placeholder="Technique name…"
+          style={{
+            flex: 1, fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+            fontSize: 16, padding: "4px 8px",
+          }}
+        />
+        <button
+          onClick={onRemove}
+          aria-label="Remove custom technique"
+          style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 18, lineHeight: 1, padding: "2px 4px", flexShrink: 0 }}
+        >
+          ✕
+        </button>
+      </div>
+      <textarea
+        value={tech.text}
+        onChange={e => onTextChange(e.target.value)}
+        placeholder="Rules text…"
+        rows={3}
+        style={{ fontSize: 13 }}
+      />
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// BACKGROUND CARD — one Background tile, shared by the picker grid
+// (with a Select/Remove toggle) and the read-only Character Sheet.
+// ══════════════════════════════════════════════════════════════════
+function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
+  return (
+    <div className="tech-card" style={{
+      background: "#161b27",
+      border: selected ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
+      borderRadius: 8, padding: "12px 14px",
+      display: "flex", flexDirection: "column", gap: 7,
+    }}>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+        <span style={{
+          fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+          fontSize: 17, color: TEXT.name, flex: 1, lineHeight: 1.3,
+        }}>
+          {bg.name}
+        </span>
+        <span style={{
+          fontSize: 12, color: TEXT.muted, background: "#0d1117",
+          border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 6px", flexShrink: 0,
+        }}>
+          {bg.category}
+        </span>
+      </div>
+      <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.5 }}>
+        {bg.description}
+      </div>
+      {!readOnly && (
+        <button
+          onClick={() => onToggle(bg)}
+          style={{
+            alignSelf: "flex-start", fontSize: 13,
+            color: selected ? "#c0392b" : "#d4a843",
+            background: "transparent",
+            border: `0.5px solid ${selected ? "#c0392b" : "#a07c2e"}`,
+            borderRadius: 4, padding: "2px 10px",
+          }}
+        >
+          {selected ? "− Remove" : "+ Select"}
+        </button>
+      )}
+    </div>
+  );
+}
+
+
+// Flat stat-bonus columns an item can carry — see ITEM_MAP in convert.py.
+// [data key, short display label]
+const ITEM_STAT_FIELDS = [
+  ["physical_resist", "Physical Resist"], ["fire_resist", "Fire Resist"],
+  ["frost_resist", "Frost Resist"], ["brilliant_resist", "Brilliant Resist"],
+  ["shadow_resist", "Shadow Resist"], ["speed", "Speed"],
+  ["parry_defense", "Parry Defense"], ["dodge_defense", "Dodge Defense"],
+  ["bodily_defense", "Bodily Defense"], ["mental_defense", "Mental Defense"],
+  ["instinct_defense", "Instinct Defense"],
+  ["shallow_health", "Shallow Health"], ["deep_health", "Deep Health"],
+];
+
+// Weapon-only fields, shown as a compact info line rather than "+N" stat
+// badges — Accuracy/Damage/Range/etc. aren't bonuses that sum into a
+// derived stat the way ITEM_STAT_FIELDS entries are, they're the
+// weapon's own intrinsic profile.
+const WEAPON_INFO_FIELDS = [
+  ["accuracy", "Accuracy", v => `${v >= 0 ? "+" : ""}${v}`],
+  ["damage", "Damage", v => v],
+  ["range", "Range", v => v],
+  ["relevant_skill", "Skill", v => v],
+  ["might_requirement", "Might Req", v => v],
+];
+
+// A "+N"/"−N" badge for one flat stat bonus — shared by the equipment
+// summary badges and the per-item tile badges, so a negative value (an
+// armor penalty) reads as "−1", not the "+-1" naive interpolation would give.
+function statBadge(label, v) {
+  return `${label} ${v >= 0 ? "+" : "−"}${Math.abs(v)}`;
+}
+
+// ══════════════════════════════════════════════════════════════════
+// INVENTORY TILE — one owned item: name, category/slot, description/
+// effects text, any flat stat bonuses or weapon profile it carries, and
+// a quantity stepper. Cost only shows up when editable (the Items tab)
+// — the Character Sheet doesn't need it. On the Character Sheet
+// specifically (readOnly + showEquip), it also gets an Equipped
+// checkbox — disabled when equipping it would overflow its Slot's
+// capacity — and, for a Weapon that can Parry, a Parry radio. A
+// Masterwork item with base_item_options also gets a base-item picker
+// (e.g. Dauntless Wrap built onto Light or Heavy Armor) — but only on
+// the Items tab, where the rest of an item's build config lives; the
+// Character Sheet only shows the resulting composite stat badges (own
+// stats + the chosen base item's), same as equipmentBonuses uses. A
+// Masterwork item is also "buildable" like a Feature technique — fixed-
+// level ones (item.levels has one entry) just get a "Lv N" badge, and
+// ones with a choice of levels (item.levels has more than one) get a
+// picker instead, editable wherever Qty is (Items tab, plain badge on
+// the read-only Sheet). Its Cost badge scales with the picked level for
+// a Masterwork item priced per-level (item.value_per_level).
+// ══════════════════════════════════════════════════════════════════
+function InventoryTile({
+  entry, item, allItems = [], onQtyChange, onRemove, readOnly = false,
+  showEquip = false, onToggleEquipped, equipDisabled = false,
+  onToggleParry, onBaseItemChange, onLevelChange,
+}) {
+  if (!item) return null; // stale reference to a removed/renamed data row
+  const baseItemOptions = (item.base_item_options || [])
+    .map(id => allItems.find(i => i.id === id))
+    .filter(Boolean);
+  const baseItem = entry.baseItemId ? allItems.find(i => i.id === entry.baseItemId) : null;
+  const levels = item.category === "Masterwork" ? (item.levels || []) : [];
+  const hasLevel = levels.length > 0;
+  const variableLevel = levels.length > 1;
+  const displayLevel = entry.level ?? levels[0];
+  const statBadges = ITEM_STAT_FIELDS
+    .map(([key, label]) => {
+      const own  = typeof item[key] === "number" ? item[key] : 0;
+      const base = baseItem && typeof baseItem[key] === "number" ? baseItem[key] : 0;
+      return [label, own + base];
+    })
+    .filter(([, v]) => v !== 0);
+  const weaponInfo = item.category === "Weapon"
+    ? WEAPON_INFO_FIELDS.map(([key, label, fmt]) => [label, item[key], fmt]).filter(([, v]) => v != null && v !== "")
+    : [];
+  const canParry = item.category === "Weapon" && typeof item.weapon_defense === "number";
+  // A Masterwork item priced per-level (e.g. "20 Gold per level") has no
+  // flat Cost of its own — its price depends on which level you build it
+  // at, so compute it from the picked level instead.
+  const displayCost = item.value_per_level && hasLevel
+    ? `${displayLevel * item.value_per_level} Gold`
+    : item.cost;
+
+  return (
+    <div className="tech-card" style={{
+      background: "#161b27",
+      border: entry.equipped ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
+      borderRadius: 8,
+      padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+    }}>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+        <span style={{
+          fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+          fontSize: 15, color: TEXT.name, flex: 1, lineHeight: 1.3,
+        }}>
+          {item.name}
+        </span>
+        {!readOnly && (
+          <button
+            onClick={onRemove}
+            aria-label={`Remove ${item.name}`}
+            style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 16, lineHeight: 1, padding: "2px 4px", flexShrink: 0 }}
+          >
+            ✕
+          </button>
+        )}
+      </div>
+      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
+        <span style={{ fontSize: 11, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px" }}>
+          {item.category}{item.slot ? ` · ${item.slot}` : ""}
+        </span>
+        {hasLevel && (
+          variableLevel && !readOnly ? (
+            <select
+              value={displayLevel}
+              onChange={e => onLevelChange(Number(e.target.value))}
+              style={{ fontSize: 11, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" }}
+            >
+              {levels.map(lv => <option key={lv} value={lv}>Lv {lv}</option>)}
+            </select>
+          ) : (
+            <span style={{ fontSize: 11, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 6px" }}>
+              Lv {displayLevel}
+            </span>
+          )
+        )}
+        {!readOnly && displayCost && (
+          <span style={{ fontSize: 12, color: TEXT.faint }}>{displayCost}</span>
+        )}
+      </div>
+      {item.description && (
+        <div style={{ fontSize: 13, color: TEXT.body, lineHeight: 1.5 }}>
+          {item.description}
+        </div>
+      )}
+      {weaponInfo.length > 0 && (
+        <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
+          {weaponInfo.map(([label, v, fmt]) => `${label} ${fmt(v)}`).join("  ·  ")}
+          {canParry && `  ·  Parry ${item.weapon_defense >= 0 ? "+" : ""}${item.weapon_defense}`}
+        </div>
+      )}
+      {statBadges.length > 0 && (
+        <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+          {statBadges.map(([label, v]) => (
+            <span key={label} style={{
+              fontSize: 11, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
+              borderRadius: 4, padding: "1px 6px",
+            }}>
+              {statBadge(label, v)}
+            </span>
+          ))}
+        </div>
+      )}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
+        <span style={{ fontSize: 12, color: TEXT.faint }}>Qty</span>
+        {readOnly ? (
+          <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+        ) : (
+          <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
+        )}
+      </div>
+      {showEquip && item.slot && (
+        <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 4, borderTop: "0.5px solid #2d3555" }}>
+          <label
+            title={equipDisabled ? `No room left in the ${item.slot} slot` : undefined}
+            style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: equipDisabled ? TEXT.faint : TEXT.body, cursor: equipDisabled ? "not-allowed" : "pointer" }}
+          >
+            <input
+              type="checkbox"
+              checked={!!entry.equipped}
+              disabled={equipDisabled}
+              onChange={onToggleEquipped}
+            />
+            Equipped
+          </label>
+          {entry.equipped && canParry && (
+            <label style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: TEXT.body, cursor: "pointer" }}>
+              <input type="checkbox" checked={!!entry.isParryWeapon} onChange={onToggleParry} />
+              Parry
+            </label>
+          )}
+        </div>
+      )}
+      {!readOnly && baseItemOptions.length > 0 && (
+        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: TEXT.body }}>
+          <span style={{ color: TEXT.faint, flexShrink: 0 }}>Base item</span>
+          <select
+            value={entry.baseItemId || ""}
+            onChange={e => onBaseItemChange(e.target.value)}
+            style={{ fontSize: 12, flex: 1, minWidth: 0 }}
+          >
+            <option value="">None (no bonus)</option>
+            {baseItemOptions.map(bi => <option key={bi.id} value={bi.id}>{bi.name}</option>)}
+          </select>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// CUSTOM ITEM TILE — a freeform item the player writes in themselves,
+// same idea as CustomTechniqueCard: just a name, description, and (since
+// most items are worth tracking a count of) a quantity stepper. No
+// data-file entry, no stats, no equip/parry/base-item — those only make
+// sense for real catalog items. Sits in the same grid as InventoryTile.
+// ══════════════════════════════════════════════════════════════════
+function CustomItemTile({ entry, onNameChange, onTextChange, onQtyChange, onRemove, readOnly = false }) {
+  if (readOnly && !entry.name.trim() && !entry.text.trim()) return null; // nothing to show
+
+  return (
+    <div className="tech-card" style={{
+      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+      padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+    }}>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+        {readOnly ? (
+          <span style={{
+            fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+            fontSize: 15, color: TEXT.name, flex: 1, lineHeight: 1.3,
+          }}>
+            {entry.name.trim() || "Untitled item"}
+          </span>
+        ) : (
+          <input
+            type="text"
+            value={entry.name}
+            onChange={e => onNameChange(e.target.value)}
+            placeholder="Item name…"
+            style={{
+              flex: 1, minWidth: 0, fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+              fontSize: 14, padding: "4px 8px",
+            }}
+          />
+        )}
+        {!readOnly && (
+          <button
+            onClick={onRemove}
+            aria-label={`Remove ${entry.name || "custom item"}`}
+            style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 16, lineHeight: 1, padding: "2px 4px", flexShrink: 0 }}
+          >
+            ✕
+          </button>
+        )}
+      </div>
+      {readOnly ? (
+        entry.text && (
+          <div style={{ fontSize: 13, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
+            {entry.text}
+          </div>
+        )
+      ) : (
+        <textarea
+          value={entry.text}
+          onChange={e => onTextChange(e.target.value)}
+          placeholder="Description…"
+          rows={2}
+          style={{ fontSize: 13 }}
+        />
+      )}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
+        <span style={{ fontSize: 12, color: TEXT.faint }}>Qty</span>
+        {readOnly ? (
+          <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+        ) : (
+          <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// BACKGROUNDS SECTION — a Settler/Wildfolk toggle, the selected
+// background(s) as a drag-reorderable list (same handle as techniques),
+// and a picker grid of everything still eligible to pick. Selecting a
+// background already picked in the same category (General, or whichever
+// of Settler/Wildfolk the toggle is on) replaces it, like a radio
+// button — matching "one General pick, one Settler-or-Wildfolk pick."
+// Read-only on the Character Sheet: just the picks, no toggle/picker.
+// ══════════════════════════════════════════════════════════════════
+function BackgroundsSection({
+  backgrounds, backgroundType, onBackgroundTypeChange,
+  selectedIds, onToggle, onMove, dragId, setDragId,
+  readOnly = false,
+}) {
+  const [collapsed, setCollapsed] = useState(false);
+  const selected = selectedIds.map(id => backgrounds.find(b => b.id === id)).filter(Boolean);
+
+  if (readOnly) {
+    if (selected.length === 0) return null;
+    return (
+      <div className="tech-list">
+        {selected.map(bg => <BackgroundCard key={bg.id} bg={bg} readOnly />)}
+      </div>
+    );
+  }
+
+  const collapseBtnStyle = {
+    fontSize: 12, color: TEXT.muted, background: "transparent",
+    border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
+  };
+
+  // Tucked out of the way — just the picks (if any), plus a button to
+  // bring the toggle/picker grid back.
+  if (collapsed) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ fontSize: 13, color: selected.length > 0 ? TEXT.body : TEXT.faint }}>
+          {selected.length > 0 ? selected.map(bg => bg.name).join(", ") : "No backgrounds selected"}
+        </div>
+        <button onClick={() => setCollapsed(false)} style={collapseBtnStyle}>Show</button>
+      </div>
+    );
+  }
+
+  const eligible  = backgrounds.filter(b => b.category === "General" || b.category === backgroundType);
+  const available = eligible.filter(b => !selectedIds.includes(b.id));
+  const toggleBtnStyle = active => ({
+    padding: "4px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+    background: active ? "#d4a843" : "transparent",
+    color: active ? "#0a0e18" : TEXT.muted,
+    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
+  });
+
+  return (
+    <div>
+      <div style={{ display: "flex", gap: 6, marginBottom: 12, alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 6 }}>
+          <button onClick={() => onBackgroundTypeChange("Settler")} style={toggleBtnStyle(backgroundType === "Settler")}>Settler</button>
+          <button onClick={() => onBackgroundTypeChange("Wildfolk")} style={toggleBtnStyle(backgroundType === "Wildfolk")}>Wildfolk</button>
+        </div>
+        <button onClick={() => setCollapsed(true)} style={collapseBtnStyle}>Hide</button>
+      </div>
+
+      {selected.length > 0 && (
+        <div className="tech-list" style={{ marginBottom: 12 }}>
+          {selected.map(bg => (
+            <div
+              key={bg.id}
+              onDragOver={e => { if (dragId) e.preventDefault(); }}
+              onDrop={e => { e.preventDefault(); if (dragId) onMove(dragId, bg.id); setDragId(null); }}
+              style={{ display: "flex", gap: 6, alignItems: "stretch", opacity: dragId === bg.id ? 0.5 : 1 }}
+            >
+              <div
+                draggable
+                onDragStart={e => { e.dataTransfer.effectAllowed = "move"; setDragId(bg.id); }}
+                onDragEnd={() => setDragId(null)}
+                title="Drag to reorder"
+                aria-label={`Drag to reorder ${bg.name}`}
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  width: 22, flexShrink: 0, cursor: "grab", color: TEXT.faint, fontSize: 16,
+                  userSelect: "none",
+                }}
+              >
+                ⠿
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <BackgroundCard bg={bg} selected onToggle={onToggle} />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {available.length > 0 && (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 10 }}>
+          {available.map(bg => <BackgroundCard key={bg.id} bg={bg} onToggle={onToggle} />)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// INVENTORY SECTION — a Gold field, a search+category picker to add
+// items (items.json has 116 rows, so results only show once you search
+// or pick a category rather than always listing all of them), and a
+// multi-column grid of what's actually carried — wider tiles than the
+// single-column technique list, since items are meant to read as a
+// visually distinct "shelf" rather than another technique-shaped list.
+// Read-only on the Character Sheet: just Gold + the carried grid, no
+// picker, no Cost on the tiles.
+// ══════════════════════════════════════════════════════════════════
+// How much of a slot's capacity is spent — 2 for Held (two hands) and
+// Ring (one per hand), 1 for everything else. A 2H weapon/bow takes
+// both Held slots at once (its own held_slots column); everything else,
+// including rings, takes 1.
+const SLOT_CAPACITY = { Held: 2, Ring: 2 };
+function slotCost(item) {
+  return item.slot === "Held" ? (item.held_slots || 1) : 1;
+}
+
+function InventorySection({
+  items, inventory, gold, onGoldChange, onAdd, onQtyChange, onRemove, readOnly = false,
+  showEquip = false, onToggleEquipped, onToggleParry, onBaseItemChange, onLevelChange,
+  customItems = [], onAddCustomItem, onUpdateCustomItem, onRemoveCustomItem,
+}) {
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const categories = useMemo(() => [...new Set(items.map(i => i.category))].sort(), [items]);
+
+  const results = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q && !category) return [];
+    return items
+      .filter(it => (!category || it.category === category) && (!q || it.name.toLowerCase().includes(q)))
+      .slice(0, 40);
+  }, [items, search, category]);
+
+  // Slot capacity used by everything currently equipped, for the
+  // Equipped-by-slot summary and for disabling a checkbox that would
+  // overflow its slot.
+  const bySlot = useMemo(() => {
+    const map = {};
+    if (!showEquip) return map;
+    inventory.forEach(e => {
+      if (!e.equipped) return;
+      const item = items.find(i => i.id === e.itemId);
+      if (!item || !item.slot) return;
+      (map[item.slot] ??= []).push({ item, cost: slotCost(item), level: e.level });
+    });
+    return map;
+  }, [inventory, items, showEquip]);
+
+  const grid = (
+    inventory.length === 0 && customItems.length === 0 ? (
+      <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
+        {readOnly ? "No items carried." : "No items carried yet — search below to add some."}
+      </div>
+    ) : (
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 10 }}>
+        {inventory.map(entry => {
+          const item = items.find(i => i.id === entry.itemId);
+          let equipDisabled = false;
+          if (showEquip && item && item.slot && !entry.equipped) {
+            const capacity = SLOT_CAPACITY[item.slot] || 1;
+            const used = (bySlot[item.slot] || []).reduce((sum, x) => sum + x.cost, 0);
+            equipDisabled = used + slotCost(item) > capacity;
+          }
+          return (
+            <InventoryTile
+              key={entry.uid}
+              entry={entry}
+              item={item}
+              allItems={items}
+              onQtyChange={readOnly ? undefined : (q => onQtyChange(entry.uid, q))}
+              onRemove={readOnly ? undefined : (() => onRemove(entry.uid))}
+              readOnly={readOnly}
+              showEquip={showEquip}
+              equipDisabled={equipDisabled}
+              onToggleEquipped={() => onToggleEquipped(entry.uid)}
+              onToggleParry={() => onToggleParry(entry.uid)}
+              onBaseItemChange={v => onBaseItemChange(entry.uid, v)}
+              onLevelChange={readOnly ? undefined : (lv => onLevelChange(entry.uid, lv))}
+            />
+          );
+        })}
+        {customItems.map(entry => (
+          <CustomItemTile
+            key={entry.id}
+            entry={entry}
+            readOnly={readOnly}
+            onNameChange={readOnly ? undefined : (v => onUpdateCustomItem(entry.id, "name", v))}
+            onTextChange={readOnly ? undefined : (v => onUpdateCustomItem(entry.id, "text", v))}
+            onQtyChange={readOnly ? undefined : (q => onUpdateCustomItem(entry.id, "qty", q))}
+            onRemove={readOnly ? undefined : (() => onRemoveCustomItem(entry.id))}
+          />
+        ))}
+      </div>
+    )
+  );
+
+  return (
+    <div>
+      <div className="sheet-box" style={{
+        display: "inline-flex", alignItems: "center", gap: 8,
+        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+        padding: "8px 12px", marginBottom: 14,
+      }}>
+        <span style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>Gold</span>
+        {readOnly ? (
+          <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{gold || "0"}</span>
+        ) : (
+          <input
+            type="text" inputMode="numeric" placeholder="0"
+            value={gold}
+            onChange={e => onGoldChange(e.target.value.replace(/[^\d]/g, ""))}
+            style={{ width: 70, fontSize: 14, textAlign: "right" }}
+          />
+        )}
+      </div>
+
+      {showEquip && (
+        <div className="sheet-box" style={{
+          background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+          padding: "10px 12px", marginBottom: 14,
+          display: "flex", flexDirection: "column", gap: 4,
+        }}>
+          <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 2 }}>
+            Equipped
+          </div>
+          {["Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"].map(slot => (
+            <div key={slot} style={{ display: "flex", gap: 8, fontSize: 13 }}>
+              <span style={{ color: TEXT.faint, minWidth: 46, flexShrink: 0 }}>{slot}</span>
+              <span style={{ color: (bySlot[slot] || []).length ? TEXT.body : TEXT.faint }}>
+                {(bySlot[slot] || []).length
+                  ? bySlot[slot].map(x => x.item.name + (x.item.levels?.length > 1 ? ` (Lv ${x.level})` : "")).join(", ")
+                  : "—"}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {!readOnly && (
+        <>
+          <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
+            <input
+              type="text" placeholder="Search items to add…"
+              value={search} onChange={e => setSearch(e.target.value)}
+              style={{ flex: "1 1 220px", fontSize: 13 }}
+            />
+            <select value={category} onChange={e => setCategory(e.target.value)} style={{ fontSize: 13 }}>
+              <option value="">All categories</option>
+              {categories.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+          {results.length > 0 && (
+            <div style={{
+              display: "flex", flexDirection: "column", gap: 4, marginBottom: 14,
+              maxHeight: 220, overflowY: "auto",
+              border: "0.5px solid #2d3555", borderRadius: 6, padding: 8,
+            }}>
+              {results.map(it => (
+                <div key={it.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "3px 4px" }}>
+                  <span style={{ fontSize: 13, color: TEXT.body }}>
+                    {it.name} <span style={{ fontSize: 11, color: TEXT.faint }}>({it.category}{it.slot ? ` · ${it.slot}` : ""})</span>
+                  </span>
+                  <button
+                    onClick={() => onAdd(it.id)}
+                    style={{ fontSize: 12, color: "#d4a843", background: "transparent", border: "0.5px solid #a07c2e", borderRadius: 4, padding: "2px 8px", flexShrink: 0 }}
+                  >
+                    + Add
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+
+      {grid}
+
+      {!readOnly && (
+        <button
+          onClick={onAddCustomItem}
+          style={{
+            marginTop: 10, padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
+            background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
+            display: "flex", alignItems: "center", gap: 5,
+          }}
+        >
+          + Add custom item
+        </button>
+      )}
     </div>
   );
 }
@@ -1301,16 +2348,16 @@ function BuildPanel({
           {buildRows.map(({ tech: t, uids }) => {
             const count      = uids.length;
             const uid        = uids[0];
-            const isDistinct = t.free_text || t.features;
+            const isDistinct = t.free_text || needsLevelPicker(t);
             const repeatable = isRepeatable(t);
-            const cfg        = t.features ? configs[uid] : null;
+            const cfg        = needsLevelPicker(t) ? configs[uid] : null;
             const xpEach     = cfg ? cfg.level * 3 : techXP(t);
             const totalXP    = xpEach != null ? xpEach * count : null;
 
             let subtitle = null;
             if (t.free_text) {
               if (notes[uid]) subtitle = notes[uid];
-            } else if (t.features) {
+            } else if (needsLevelPicker(t)) {
               if (cfg) {
                 const feats = techFeaturesById[t.id] || [];
                 const names = Object.entries(cfg.picks)
@@ -1358,8 +2405,8 @@ function BuildPanel({
                 </span>
                 {repeatable && (
                   <button
-                    onClick={() => t.features ? duplicateInstance(uid) : addTech(t.id)}
-                    aria-label={t.features ? `Add another copy of ${t.name} with the same features` : `Add another ${t.name}`}
+                    onClick={() => needsLevelPicker(t) ? duplicateInstance(uid) : addTech(t.id)}
+                    aria-label={needsLevelPicker(t) ? `Add another copy of ${t.name} with the same features` : `Add another ${t.name}`}
                     style={{
                       background:"transparent", border:"0.5px solid #2d3555", borderRadius:4,
                       color:TEXT.muted, fontSize:15, lineHeight:1, padding:"2px 7px", flexShrink:0,
@@ -1397,6 +2444,9 @@ function App() {
   // ── Loaded data ────────────────────────────────────────────────
   const [techniques, setTechniques] = useState([]);
   const [features,   setFeatures]   = useState([]);   // features.json — Feature-builder options
+  const [glossary,   setGlossary]   = useState([]);   // glossary.json — capitalized game terms
+  const [items,       setItems]       = useState([]); // items.json — Inventory picker
+  const [backgrounds, setBackgrounds] = useState([]); // backgrounds.json
   const [loading,    setLoading]    = useState(true);
   const [loadError,  setLoadError]  = useState(null);
 
@@ -1410,63 +2460,125 @@ function App() {
   const [healingOnly, setHealingOnly] = useState(false);
   const [cardsOnly,   setCardsOnly]   = useState(false);
   const [advancedOpen, setAdvancedOpen] = useState(false);
-  // The build itself, and the character name, are persisted to
-  // localStorage like everything else below, so refreshing the page
-  // doesn't lose your work — see the "Retain across refresh" note
-  // further down for how this plays with the URL hash.
-  const [build,      setBuild]      = useState(() => {       // array of { uid, id } — see file-header note
-    try { return JSON.parse(localStorage.getItem("flagonquest-build") || "[]"); }
-    catch { return []; }
-  });
-  const [charName,   setCharName]   = useState(() => localStorage.getItem("flagonquest-char-name") || "");
-  const [charConcept, setCharConcept] = useState(() => localStorage.getItem("flagonquest-char-concept") || "");
+
+  // ── Character slots ────────────────────────────────────────────
+  // localStorage can hold several characters (see the CHARACTER SLOTS
+  // helpers above App()) — `activeId` is which one is currently open,
+  // `characters` is the [{id, name}] list the switcher shows. This
+  // whole block of state (build through noteRows) is just "whatever
+  // the active character's data is" — switching characters means
+  // reloading every one of these from the new slot; see switchCharacter/
+  // addCharacterSlot below.
+  //
+  // `initialCharacterRef` computes the starting slot exactly once (it
+  // does localStorage reads and possibly a one-time migration — see
+  // loadActiveCharacterState — so it must not re-run on every render).
+  const initialCharacterRef = useRef(null);
+  if (initialCharacterRef.current === null) {
+    initialCharacterRef.current = loadActiveCharacterState();
+  }
+  const initialCharacter = initialCharacterRef.current;
+
+  const [activeId, setActiveId] = useState(initialCharacter.activeId);
+  const [characters, setCharacters] = useState(initialCharacter.characters);
+  const [build,      setBuild]      = useState(initialCharacter.data.build); // array of { uid, id } — see file-header note
+  const [charName,   setCharName]   = useState(initialCharacter.data.charName);
+  const [charConcept, setCharConcept] = useState(initialCharacter.data.charConcept);
   const [shareMsg,   setShareMsg]   = useState("");
-  // Per-copy free-text notes, keyed by build-entry uid. Persisted to
-  // localStorage since there's no backend.
-  const [notes, setNotes] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("flagonquest-notes") || "{}"); }
-    catch { return {}; }
-  });
+  // Per-copy free-text notes, keyed by build-entry uid.
+  const [notes, setNotes] = useState(initialCharacter.data.notes);
   // Per-copy Feature-builder choices ({ level, picks: { featureId: count } }),
-  // keyed by build-entry uid. Also persisted to localStorage.
-  const [configs, setConfigs] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("flagonquest-configs") || "{}"); }
-    catch { return {}; }
-  });
+  // keyed by build-entry uid.
+  const [configs, setConfigs] = useState(initialCharacter.data.configs);
   // Per-copy custom name for a Feature-built build (e.g. naming an
   // all-Wing-Clip Battle Maneuver "Wing Clip"), keyed by uid like notes/configs.
-  const [renames, setRenames] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("flagonquest-renames") || "{}"); }
-    catch { return {}; }
-  });
+  const [renames, setRenames] = useState(initialCharacter.data.renames);
   // Per-copy "expended this encounter" checkbox state, shown only on the
-  // Character Sheet for Encounter techniques. Session-tracking, not part
-  // of the build itself, so it's persisted locally but left out of
-  // Export/Import/Share — see doExport().
-  const [expended, setExpended] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("flagonquest-expended") || "{}"); }
-    catch { return {}; }
-  });
+  // Character Sheet for Encounter techniques.
+  const [expended, setExpended] = useState(initialCharacter.data.expended);
   // Stats & Skills point-buy: { Agility: 2, ... } / { Acrobatics: 1, ... }.
-  // Single character, so these (and the XP budget) persist to localStorage
-  // the same way notes/configs do.
-  const [statPoints, setStatPoints] = useState(() => {
-    try { return { ...Object.fromEntries(STATS.map(s => [s, 0])), ...JSON.parse(localStorage.getItem("flagonquest-stat-points") || "{}") }; }
-    catch { return Object.fromEntries(STATS.map(s => [s, 0])); }
-  });
-  const [skillPoints, setSkillPoints] = useState(() => {
-    try { return { ...Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])), ...JSON.parse(localStorage.getItem("flagonquest-skill-points") || "{}") }; }
-    catch { return Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])); }
-  });
-  const [xpBudget, setXpBudget] = useState(() => localStorage.getItem("flagonquest-xp-budget") || "");
+  const [statPoints, setStatPoints] = useState(initialCharacter.data.statPoints);
+  const [skillPoints, setSkillPoints] = useState(initialCharacter.data.skillPoints);
+  const [xpBudget, setXpBudget] = useState(initialCharacter.data.xpBudget);
   // Freeform scratchpad — a big text box plus a short quick-note list,
   // both saved with the character like everything else.
-  const [charNotes, setCharNotes] = useState(() => localStorage.getItem("flagonquest-char-notes") || "");
-  const [noteRows, setNoteRows] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("flagonquest-note-rows") || "[]"); }
-    catch { return []; }
-  });
+  const [charNotes, setCharNotes] = useState(initialCharacter.data.charNotes);
+  const [noteRows, setNoteRows] = useState(initialCharacter.data.noteRows);
+  // Freeform GM-granted abilities the player writes in themselves — see
+  // emptyCharacterData. Never touches XP math anywhere.
+  const [customTechniques, setCustomTechniques] = useState(initialCharacter.data.customTechniques);
+  // Background picks — see emptyCharacterData for the shape.
+  const [selectedBackgrounds, setSelectedBackgrounds] = useState(initialCharacter.data.selectedBackgrounds);
+  const [backgroundType, setBackgroundType] = useState(initialCharacter.data.backgroundType);
+  // Inventory — see emptyCharacterData for the shape.
+  const [inventory, setInventory] = useState(initialCharacter.data.inventory);
+  const [gold, setGold] = useState(initialCharacter.data.gold);
+  const [customItems, setCustomItems] = useState(initialCharacter.data.customItems);
   const importRef = useRef();
+
+  // Loads one character's data into all of the state above — used by
+  // switchCharacter (an existing slot) and addCharacterSlot (a brand
+  // new one, already holding the data in memory so it skips straight
+  // back out to localStorage and back in).
+  const applyCharacterData = data => {
+    setBuild(data.build);
+    setNotes(data.notes);
+    setConfigs(data.configs);
+    setRenames(data.renames);
+    setExpended(data.expended);
+    setStatPoints(data.statPoints);
+    setSkillPoints(data.skillPoints);
+    setXpBudget(data.xpBudget);
+    setCharName(data.charName);
+    setCharConcept(data.charConcept);
+    setCharNotes(data.charNotes);
+    setNoteRows(data.noteRows);
+    setCustomTechniques(data.customTechniques);
+    setSelectedBackgrounds(data.selectedBackgrounds);
+    setBackgroundType(data.backgroundType);
+    setInventory(data.inventory);
+    setGold(data.gold);
+    setCustomItems(data.customItems);
+  };
+
+  // Switches to an existing character slot.
+  const switchCharacter = id => {
+    if (id === activeId) return;
+    setActiveId(id);
+    applyCharacterData(loadCharacterData(id));
+  };
+
+  // Creates a new character slot from `data` (defaults fill in anything
+  // missing) and switches to it — used by "+ New character", importing
+  // a build file, and opening a share link for a build that isn't
+  // already open here. None of these ever touch the character you were
+  // already on; they just add a slot and switch, so nothing you're
+  // working on can be overwritten by someone else's link or file.
+  const addCharacterSlot = (data = {}, { switchView } = {}) => {
+    const id = makeUid();
+    const full = { ...emptyCharacterData(), ...data };
+    saveCharacterData(id, full);
+    setCharacters(cs => [...cs, { id, name: full.charName || "" }]);
+    setActiveId(id);
+    applyCharacterData(full);
+    if (switchView) setView(switchView);
+    return id;
+  };
+
+  // Deletes a character slot — always leaves at least one behind, and
+  // switches to the first remaining one if the active slot was deleted.
+  const deleteCharacter = id => {
+    if (characters.length <= 1) return;
+    localStorage.removeItem(`flagonquest-char-${id}`);
+    setCharacters(cs => {
+      const next = cs.filter(c => c.id !== id);
+      if (id === activeId) {
+        setActiveId(next[0].id);
+        applyCharacterData(loadCharacterData(next[0].id));
+      }
+      return next;
+    });
+  };
 
   // ── Fetch JSON data on first load ──────────────────────────────
   // Promise.all fetches both files simultaneously so we only wait once.
@@ -1482,10 +2594,24 @@ function App() {
         if (!r.ok) throw new Error(`features.json returned ${r.status}`);
         return r.json();
       }),
+      fetch("data/items.json").then(r => {
+        if (!r.ok) throw new Error(`items.json returned ${r.status}`);
+        return r.json();
+      }),
+      fetch("data/backgrounds.json").then(r => {
+        if (!r.ok) throw new Error(`backgrounds.json returned ${r.status}`);
+        return r.json();
+      }),
+      // Glossary is a nice-to-have, not core data — a missing/broken file
+      // just means no term gets a tooltip, not a load error for the app.
+      fetch("data/glossary.json").then(r => r.ok ? r.json() : []).catch(() => []),
     ])
-    .then(([techData, featData]) => {
+    .then(([techData, featData, itemData, backgroundData, glossaryData]) => {
       setTechniques(techData);
       setFeatures(featData);
+      setItems(itemData);
+      setBackgrounds(backgroundData);
+      setGlossary(Array.isArray(glossaryData) ? glossaryData : []);
       setLoading(false);
     })
     .catch(err => {
@@ -1496,23 +2622,24 @@ function App() {
 
   // ── Load a shared build from the URL hash ──────────────────────
   // If someone opens a share link like index.html#build=abc123, this
-  // decodes and restores their build automatically. Each restored
-  // technique gets a fresh uid — share links carry the technique list,
-  // character name, and Stats & Skills, but not notes/Feature choices
-  // (kept out to keep the URL short).
+  // decodes it and adds it as a brand-new character slot rather than
+  // touching whatever's currently active — opening a link should never
+  // be able to overwrite a character you're already working on. Each
+  // restored technique gets a fresh uid; share links carry the technique
+  // list, character name, and Stats & Skills, but not notes/Feature
+  // choices (kept out to keep the URL short), so those come back blank.
   //
-  // Because the address bar now mirrors the current build live (see the
-  // sync effect below), most hash values we ever see are just an echo
-  // of what localStorage already has — decoding those again would hand
-  // every technique a fresh uid and orphan its notes/Feature choices.
-  // So: only decode when the hash's technique list actually differs
-  // from the current build, i.e. someone opened a link this browser
-  // didn't just write itself. `buildRef` sidesteps the stale-closure
-  // problem of reading `build` from a listener that's only attached
-  // once — a URL differing only in its fragment (e.g. pasting a
-  // different share link into an already-open tab) doesn't reload the
-  // page, it only fires "hashchange", so this needs to keep working
-  // long after mount, not just once at the start.
+  // Because the address bar mirrors the active character's build live
+  // (see the sync effect below), most hash values we ever see are just
+  // an echo of what's already open — adding a new slot for those too
+  // would spawn a fresh duplicate character on every refresh. So: only
+  // act when the hash's technique list actually differs from the active
+  // build, i.e. someone opened a link this browser didn't just write
+  // itself. `buildRef` sidesteps the stale-closure problem of reading
+  // `build` from a listener that's only attached once — a URL differing
+  // only in its fragment (e.g. pasting a different share link into an
+  // already-open tab) doesn't reload the page, it only fires
+  // "hashchange", so this needs to keep working long after mount.
   const buildRef = useRef(build);
   useEffect(() => { buildRef.current = build; }, [build]);
   useEffect(() => {
@@ -1523,10 +2650,12 @@ function App() {
       if (!decoded) return;
       const isEcho = decoded.ids && JSON.stringify(decoded.ids) === JSON.stringify(buildRef.current.map(e => e.id));
       if (isEcho) return;
-      if (decoded.ids)    setBuild(decoded.ids.map(id => ({ uid: makeUid(), id })));
-      if (decoded.name)   setCharName(decoded.name);
-      if (decoded.stats)  setStatPoints(p => ({ ...p, ...decoded.stats }));
-      if (decoded.skills) setSkillPoints(p => ({ ...p, ...decoded.skills }));
+      addCharacterSlot({
+        build: (decoded.ids || []).map(id => ({ uid: makeUid(), id })),
+        charName: decoded.name || "",
+        statPoints:  { ...emptyCharacterData().statPoints,  ...(decoded.stats  || {}) },
+        skillPoints: { ...emptyCharacterData().skillPoints, ...(decoded.skills || {}) },
+      }, { switchView: "sheet" });
     };
     applyHash();
     window.addEventListener("hashchange", applyHash);
@@ -1540,50 +2669,35 @@ function App() {
   // the address bar is always a current, copy-pasteable link to this
   // exact build, and — since the hash-loading effect above only acts on
   // hashes it didn't itself write — a plain refresh just re-reads the
-  // build straight back out of localStorage instead.
+  // active character straight back out of localStorage instead.
   useEffect(() => {
     const encoded = encBuild({ ids: build.map(e => e.id), name: charName, stats: statPoints, skills: skillPoints });
     const url = window.location.href.split("#")[0] + "#build=" + encoded;
     window.history.replaceState(null, "", url);
   }, [build, charName, statPoints, skillPoints]);
 
-  // ── Persist per-copy notes/configs, and Stats & Skills, on change ─
+  // ── Persist the active character, and keep the switcher list synced ─
   useEffect(() => {
-    localStorage.setItem("flagonquest-build", JSON.stringify(build));
-  }, [build]);
+    saveCharacterData(activeId, {
+      build, notes, configs, renames, expended,
+      statPoints, skillPoints, xpBudget,
+      charName, charConcept, charNotes, noteRows, customTechniques,
+      selectedBackgrounds, backgroundType, inventory, gold, customItems,
+    });
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems]);
   useEffect(() => {
-    localStorage.setItem("flagonquest-char-name", charName);
-  }, [charName]);
+    localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
+  }, [characters]);
   useEffect(() => {
-    localStorage.setItem("flagonquest-notes", JSON.stringify(notes));
-  }, [notes]);
+    localStorage.setItem("flagonquest-active-character", activeId);
+  }, [activeId]);
+  // Keeps the switcher's label for the active character following
+  // whatever's currently typed into "Character name."
   useEffect(() => {
-    localStorage.setItem("flagonquest-configs", JSON.stringify(configs));
-  }, [configs]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-renames", JSON.stringify(renames));
-  }, [renames]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-expended", JSON.stringify(expended));
-  }, [expended]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-char-concept", charConcept);
-  }, [charConcept]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-stat-points", JSON.stringify(statPoints));
-  }, [statPoints]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-skill-points", JSON.stringify(skillPoints));
-  }, [skillPoints]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-xp-budget", xpBudget);
-  }, [xpBudget]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-char-notes", charNotes);
-  }, [charNotes]);
-  useEffect(() => {
-    localStorage.setItem("flagonquest-note-rows", JSON.stringify(noteRows));
-  }, [noteRows]);
+    setCharacters(cs => cs.some(c => c.id === activeId && c.name === charName)
+      ? cs
+      : cs.map(c => c.id === activeId ? { ...c, name: charName } : c));
+  }, [charName, activeId]);
 
   const setNote = (uid, text) => setNotes(n => ({ ...n, [uid]: text }));
   const setRename = (uid, text) => setRenames(r => ({ ...r, [uid]: text }));
@@ -1649,11 +2763,15 @@ function App() {
     if (search) {
       const q = search.toLowerCase();
       // Search the technique's full text — every field a player might
-      // type a fragment of, not just name/effects.
+      // type a fragment of, not just name/effects. The literal word
+      // "Special" is added whenever a technique has one, since that's the
+      // label shown on its card — searching "special" should surface every
+      // technique that has one, not just ones whose special text happens
+      // to contain that word.
       const hay = [
         t.name, t.tags, t.related_skills,
         t.description, t.condition, t.action, t.cost, t.target,
-        t.effects, t.special, t.prereqs,
+        t.effects, t.special, t.prereqs, t.special ? "Special" : null,
       ].filter(Boolean).join(" ").toLowerCase();
       if (!hay.includes(q)) return false;
     }
@@ -1685,7 +2803,7 @@ function App() {
     build.forEach(({ uid, id }) => {
       const tech = techniques.find(t => t.id === id);
       if (!tech) return;
-      if (tech.free_text || tech.features) {
+      if (tech.free_text || needsLevelPicker(tech)) {
         rows.push({ tech, uids: [uid] });
       } else if (id in groupIndex) {
         rows[groupIndex[id]].uids.push(uid);
@@ -1782,6 +2900,197 @@ function App() {
     setSkillPoints(Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])));
   };
 
+  // Drag-to-reorder on the Builder tab — moves every copy of `draggedId`
+  // (as a block, keeping their own relative order) to sit right before
+  // `targetId`. Only reorders which distinct technique comes first;
+  // never touches per-copy data, since it's just rearranging the same
+  // entries, not adding/removing any.
+  const [dragId, setDragId] = useState(null);
+  const moveTechniqueGroup = (draggedId, targetId) => {
+    if (draggedId === targetId) return;
+    setBuild(b => {
+      const order  = [];
+      const groups = {};
+      b.forEach(entry => {
+        if (!(entry.id in groups)) { groups[entry.id] = []; order.push(entry.id); }
+        groups[entry.id].push(entry);
+      });
+      const fromIdx = order.indexOf(draggedId);
+      const toIdx   = order.indexOf(targetId);
+      if (fromIdx === -1 || toIdx === -1) return b;
+      order.splice(fromIdx, 1);
+      order.splice(toIdx, 0, draggedId);
+      return order.flatMap(id => groups[id]);
+    });
+  };
+
+  // ── Custom techniques — freeform, no XP, no data-file entry ─────
+  const addCustomTechnique = () => {
+    setCustomTechniques(cs => [...cs, { id: makeUid(), title: "", text: "" }]);
+  };
+  const updateCustomTechnique = (id, field, value) => {
+    setCustomTechniques(cs => cs.map(c => c.id === id ? { ...c, [field]: value } : c));
+  };
+  const removeCustomTechnique = id => {
+    setCustomTechniques(cs => cs.filter(c => c.id !== id));
+  };
+  const moveCustomTechnique = (draggedId, targetId) => {
+    if (draggedId === targetId) return;
+    setCustomTechniques(cs => {
+      const from = cs.findIndex(c => c.id === draggedId);
+      const to   = cs.findIndex(c => c.id === targetId);
+      if (from === -1 || to === -1) return cs;
+      const next = [...cs];
+      const [moved] = next.splice(from, 1);
+      next.splice(to, 0, moved);
+      return next;
+    });
+  };
+
+  // ── Custom items — freeform, no data-file entry, no stats ──────
+  const addCustomItem = () => {
+    setCustomItems(cs => [...cs, { id: makeUid(), name: "", text: "", qty: 1 }]);
+  };
+  const updateCustomItem = (id, field, value) => {
+    setCustomItems(cs => cs.map(c => c.id === id ? { ...c, [field]: value } : c));
+  };
+  const removeCustomItem = id => {
+    setCustomItems(cs => cs.filter(c => c.id !== id));
+  };
+
+  // ── Backgrounds — pick at most one General, and one Settler-or-
+  // Wildfolk. Clicking a background swaps it in for whichever one was
+  // picked before in the same *slot* — General is its own slot, but
+  // Settler and Wildfolk share one slot (mutually exclusive with each
+  // other, not just within themselves), since a character is one or the
+  // other regardless of which the toggle happens to be showing. Clicking
+  // the selected one again deselects it. Order is drag-reorderable, same
+  // as techniques.
+  const backgroundSlot = category => category === "General" ? "General" : "Type";
+  const toggleBackground = bg => {
+    setSelectedBackgrounds(ids => {
+      if (ids.includes(bg.id)) return ids.filter(id => id !== bg.id);
+      const slot = backgroundSlot(bg.category);
+      const sameSlotIds = new Set(backgrounds.filter(b => backgroundSlot(b.category) === slot).map(b => b.id));
+      return [...ids.filter(id => !sameSlotIds.has(id)), bg.id];
+    });
+  };
+  const moveBackground = (draggedId, targetId) => {
+    if (draggedId === targetId) return;
+    setSelectedBackgrounds(ids => {
+      const from = ids.indexOf(draggedId);
+      const to   = ids.indexOf(targetId);
+      if (from === -1 || to === -1) return ids;
+      const next = [...ids];
+      next.splice(from, 1);
+      next.splice(to, 0, draggedId);
+      return next;
+    });
+  };
+
+  // ── Inventory — quantity per distinct item, no per-copy config —
+  // except for a Masterwork item with more than one valid build level
+  // (item.levels), where the *level* also distinguishes copies: adding
+  // an item already carried at that same level just bumps its quantity,
+  // but a different level gets its own row so e.g. a level-1 and a
+  // level-3 Cowl of Tranquility show as two separate tiles instead of
+  // one "qty 2" tile that can't say which level either copy actually is.
+  const addInventoryItem = itemId => {
+    setInventory(inv => {
+      const item = items.find(i => i.id === itemId);
+      const levels = (item && item.levels) || [];
+      const hasLevel = levels.length > 0;
+      const defaultLevel = hasLevel ? levels[0] : undefined;
+      const existing = inv.find(e => e.itemId === itemId && (!hasLevel || e.level === defaultLevel));
+      if (existing) return inv.map(e => e === existing ? { ...e, qty: e.qty + 1 } : e);
+      return [...inv, { uid: makeUid(), itemId, qty: 1, ...(hasLevel ? { level: defaultLevel } : {}) }];
+    });
+  };
+  const setInventoryQty = (uid, qty) => {
+    setInventory(inv => inv.map(e => e.uid === uid ? { ...e, qty: Math.max(1, qty) } : e));
+  };
+  const removeInventoryItem = uid => {
+    setInventory(inv => inv.filter(e => e.uid !== uid));
+  };
+  // A Masterwork item's power is built onto a base item (e.g. a Torso
+  // enchantment onto Light or Heavy Armor) — see item.base_item_options.
+  // Only meaningful for items that have options to pick from; harmless
+  // no-op to set it on anything else.
+  const setInventoryBaseItem = (uid, baseItemId) => {
+    setInventory(inv => inv.map(e => e.uid === uid ? { ...e, baseItemId: baseItemId || null } : e));
+  };
+  // Which of a Masterwork item's valid levels this particular copy was
+  // built at — see item.levels. Doesn't merge with any other row already
+  // at that level; two copies you deliberately set to the same level
+  // just stay as two separate tiles until you remove one.
+  const setInventoryLevel = (uid, level) => {
+    setInventory(inv => inv.map(e => e.uid === uid ? { ...e, level } : e));
+  };
+
+  // Equipped — Character Sheet only (see InventorySection's showEquip).
+  // Unequipping also clears the Parry flag, since a weapon that's not
+  // equipped obviously isn't the one you're parrying with. Equipping is
+  // blocked by the disabled checkbox in the UI when it would overflow
+  // the item's slot (InventorySection computes that), but this function
+  // re-checks the same rule itself rather than trusting the UI alone.
+  const toggleEquipped = uid => {
+    setInventory(inv => {
+      const entry = inv.find(e => e.uid === uid);
+      if (!entry) return inv;
+      if (entry.equipped) {
+        return inv.map(e => e.uid === uid ? { ...e, equipped: false, isParryWeapon: false } : e);
+      }
+      const item = items.find(i => i.id === entry.itemId);
+      if (item && item.slot) {
+        const capacity = SLOT_CAPACITY[item.slot] || 1;
+        const used = inv.reduce((sum, e) => {
+          if (e.uid === uid || !e.equipped) return sum;
+          const it = items.find(i => i.id === e.itemId);
+          return (it && it.slot === item.slot) ? sum + slotCost(it) : sum;
+        }, 0);
+        if (used + slotCost(item) > capacity) return inv;
+      }
+      return inv.map(e => e.uid === uid ? { ...e, equipped: true } : e);
+    });
+  };
+  // Only one equipped weapon can be the one you Parry with — picking a
+  // new one replaces the old; picking the current one again clears it.
+  const toggleParryWeapon = uid => {
+    setInventory(inv => inv.map(e => ({ ...e, isParryWeapon: e.uid === uid ? !e.isParryWeapon : false })));
+  };
+
+  // Sums every equipped item's flat stat bonuses (ITEM_STAT_FIELDS) into
+  // one { key: total } object DerivedStats adds onto its usual formulas
+  // — Parry Defense is the one exception, since only the single chosen
+  // Parry weapon's Weapon Defense counts, not every equipped weapon's.
+  // Non-numeric stat values (e.g. Lightfoot Shoes' "[Level]" Speed) are
+  // skipped — those still need a human to apply them. A Masterwork item
+  // built onto a chosen base item (see base_item_options) also adds the
+  // base item's own stats — e.g. Dauntless Wrap on Heavy Armor gets both
+  // the enchantment's bonus and Heavy Armor's Physical Resist/penalties.
+  const equipmentBonuses = useMemo(() => {
+    const totals = {};
+    const addStats = it => ITEM_STAT_FIELDS.forEach(([key]) => {
+      const v = it[key];
+      if (typeof v === "number") totals[key] = (totals[key] || 0) + v;
+    });
+    inventory.forEach(e => {
+      if (!e.equipped) return;
+      const item = items.find(i => i.id === e.itemId);
+      if (!item) return;
+      addStats(item);
+      if (e.baseItemId) {
+        const baseItem = items.find(i => i.id === e.baseItemId);
+        if (baseItem) addStats(baseItem);
+      }
+    });
+    const parryEntry = inventory.find(e => e.equipped && e.isParryWeapon);
+    const parryItem = parryEntry && items.find(i => i.id === parryEntry.itemId);
+    const weaponDefense = typeof parryItem?.weapon_defense === "number" ? parryItem.weapon_defense : 0;
+    totals.parry_defense = (totals.parry_defense || 0) + weaponDefense;
+    return totals;
+  }, [inventory, items]);
+
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
   // so the file stays readable and survives future data updates), plus
@@ -1795,6 +3104,12 @@ function App() {
       skillPoints,
       charNotes,
       noteRows,
+      customTechniques: customTechniques.map(c => ({ title: c.title, text: c.text })),
+      backgroundType,
+      backgrounds: selectedBackgrounds,
+      gold,
+      inventory: inventory.map(e => ({ id: e.itemId, qty: e.qty, ...(typeof e.level === "number" ? { level: e.level } : {}) })),
+      customItems: customItems.map(c => ({ name: c.name, text: c.text, qty: c.qty })),
       exportedAt: new Date().toISOString(),
       techniques: buildEntries.map(e => {
         const cfg = configs[e.uid];
@@ -1825,6 +3140,9 @@ function App() {
   }
 
   // ── Import a previously exported .json file ────────────────────
+  // Lands in a brand-new character slot and switches to it, same as
+  // opening a share link — never overwrites whichever character you
+  // had open when you clicked "Import build."
   function doImport(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -1855,17 +3173,34 @@ function App() {
             if (t.customName) newRenames[uid] = t.customName;
           }
         });
-        setBuild(newBuild);
-        setNotes(n => ({ ...n, ...newNotes }));
-        setConfigs(c => ({ ...c, ...newConfigs }));
-        setRenames(r => ({ ...r, ...newRenames }));
-        if (data.charName) setCharName(data.charName);
-        if (typeof data.charConcept === "string") setCharConcept(data.charConcept);
-        if (typeof data.xpBudget === "string") setXpBudget(data.xpBudget);
-        if (data.statPoints)  setStatPoints(p => ({ ...p, ...data.statPoints }));
-        if (data.skillPoints) setSkillPoints(p => ({ ...p, ...data.skillPoints }));
-        if (typeof data.charNotes === "string") setCharNotes(data.charNotes);
-        if (Array.isArray(data.noteRows)) setNoteRows(data.noteRows.map(r => ({ id: makeUid(), text: r.text ?? "" })));
+        addCharacterSlot({
+          build: newBuild,
+          notes: newNotes,
+          configs: newConfigs,
+          renames: newRenames,
+          charName:    typeof data.charName === "string" ? data.charName : "",
+          charConcept: typeof data.charConcept === "string" ? data.charConcept : "",
+          xpBudget:    typeof data.xpBudget === "string" ? data.xpBudget : "75",
+          statPoints:  { ...emptyCharacterData().statPoints,  ...(data.statPoints  || {}) },
+          skillPoints: { ...emptyCharacterData().skillPoints, ...(data.skillPoints || {}) },
+          charNotes:   typeof data.charNotes === "string" ? data.charNotes : "",
+          noteRows:    Array.isArray(data.noteRows) ? data.noteRows.map(r => ({ id: makeUid(), text: r.text ?? "" })) : [],
+          customTechniques: Array.isArray(data.customTechniques)
+            ? data.customTechniques.map(c => ({ id: makeUid(), title: c.title ?? "", text: c.text ?? "" }))
+            : [],
+          backgroundType: data.backgroundType === "Wildfolk" ? "Wildfolk" : "Settler",
+          selectedBackgrounds: Array.isArray(data.backgrounds) ? data.backgrounds.filter(id => typeof id === "string") : [],
+          gold: typeof data.gold === "string" ? data.gold : "",
+          inventory: Array.isArray(data.inventory)
+            ? data.inventory.filter(e => e && typeof e.id === "string").map(e => ({
+                uid: makeUid(), itemId: e.id, qty: Number(e.qty) > 0 ? Number(e.qty) : 1,
+                ...(typeof e.level === "number" ? { level: e.level } : {}),
+              }))
+            : [],
+          customItems: Array.isArray(data.customItems)
+            ? data.customItems.map(c => ({ id: makeUid(), name: c.name ?? "", text: c.text ?? "", qty: Number(c.qty) > 0 ? Number(c.qty) : 1 }))
+            : [],
+        });
       } catch {
         alert("Couldn't read that file — make sure it's a FlagonQuest build export.");
       }
@@ -1916,6 +3251,17 @@ function App() {
     transition: "all 0.15s",
   });
 
+  // A cooler, book-ish blue instead of the app's amber tab color, and set
+  // off from the other tabs by a divider — it leaves the app (opens the
+  // rulebook in a new tab), so it reads as a different kind of link.
+  const rulebookLinkStyle = {
+    padding: "6px 14px", fontSize: 15, fontWeight: 500, borderRadius: 6,
+    background: "#0f2230", color: "#7fb8d9",
+    border: "0.5px solid #3d6a8a",
+    textDecoration: "none", display: "inline-flex", alignItems: "center",
+    transition: "all 0.15s",
+  };
+
   // Shared look for the toggle-able chip buttons in Advanced filters
   // (Related skills, Tags) — active chips light up gold.
   const filterChipStyle = active => ({
@@ -1959,6 +3305,7 @@ function App() {
         onRenameChange={setRename}
         expended={expended}
         onExpendedChange={setExpendedFor}
+        glossary={glossary}
         readOnly={readOnly}
       />
     );
@@ -1980,13 +3327,17 @@ function App() {
   }, [build, techniques]);
 
   // What the read-only Character Sheet renders: one card per *distinct
-  // build*, not per technique. A plain repeatable technique's copies all
-  // share one card (nothing to distinguish them); each Feature-built
-  // technique copy is grouped with any others sharing its rename (or,
-  // unnamed, an identical level+picks) into its own card — so a
-  // Battle Maneuver built two different ways shows up as two separate
-  // technique-shaped tiles, per the "generates copies of all kinds of
-  // techniques" mental model. Order follows first appearance in `build`.
+  // build*, not per technique — but only for genuinely Feature-built
+  // techniques (tech.features). Those get the full treatment: renamed,
+  // split into their own card per distinct level+picks, so a Battle
+  // Maneuver built two different ways shows up as two separate
+  // technique-shaped tiles. Everything else that just needs the level
+  // picker without Features data — a Buildable/Duplicate technique like
+  // Temper Soulblade — stays a single merged card like any other plain
+  // repeatable technique: one "(known N×)" badge, no rename, no per-copy
+  // level shown (that distinction lives in each copy's own Notes entry
+  // instead, same as it always has). Order follows first appearance in
+  // `build`.
   const sheetCards = useMemo(() => {
     const cards = [];
     const index = {};
@@ -2037,8 +3388,10 @@ function App() {
       onRenameChange={setRename}
       expended={expended}
       onExpendedChange={setExpendedFor}
+      glossary={glossary}
       readOnly
       group={card.tech.features ? { name: card.name, cfg: card.cfg, uids: card.uids } : null}
+      skillTotals={{ statPoints, skillPoints }}
     />
   );
 
@@ -2079,14 +3432,13 @@ function App() {
     <div style={{ fontFamily:"system-ui, -apple-system, sans-serif", color:"#e8dfc8" }}>
 
       {/* ════════ HEADER ════════════════════════════════════════ */}
-      <div className="no-print" style={{
+      <div className="no-print site-header" style={{
         padding: "12px 20px",
         borderBottom: "0.5px solid #2d3555",
-        display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap",
         background: "#0a0e18",
         position: "sticky", top: 0, zIndex: 100,
       }}>
-        <div>
+        <div className="site-header-brand" style={{ textAlign: "center" }}>
           <div style={{
             fontFamily: "'MedievalSharp', Georgia, serif",
             fontSize: 22, fontWeight: "bold",
@@ -2095,14 +3447,51 @@ function App() {
             FlagonQuest
           </div>
           <div style={{ fontSize:13, color:TEXT.faint, marginTop:1 }}>
-            Technique browser · Character builder
+            A beer-and-pretzels TTRPG for the modern gamer
           </div>
         </div>
 
+        {/* Character switcher — localStorage can hold more than one
+            character (see CHARACTER SLOTS above App()); this picks
+            which one is active. New/imported/shared characters always
+            land in a fresh slot, never overwrite whichever one is open
+            here. */}
+        <div className="site-header-left" style={{ display:"flex", alignItems:"center", gap:6 }}>
+          <select
+            value={activeId}
+            onChange={e => switchCharacter(e.target.value)}
+            style={{
+              background: "#1e2435", border: "0.5px solid #2d3555", borderRadius: 6,
+              color: TEXT.body, fontSize: 14, padding: "6px 8px", fontFamily: "inherit",
+              maxWidth: 160,
+            }}
+          >
+            {characters.map(c => (
+              <option key={c.id} value={c.id}>{c.name || "Unnamed hero"}</option>
+            ))}
+          </select>
+          <button
+            onClick={() => addCharacterSlot({}, { switchView: "build" })}
+            title="New character"
+            style={actionBtn()}
+          >
+            + New
+          </button>
+          {characters.length > 1 && (
+            <button
+              onClick={() => { if (confirm(`Delete "${charName || "Unnamed hero"}"? This can't be undone.`)) deleteCharacter(activeId); }}
+              title="Delete this character"
+              style={actionBtn(true)}
+            >
+              Delete
+            </button>
+          )}
+        </div>
+
         {/* Tab navigation */}
-        <div style={{ display:"flex", gap:6, marginLeft:"auto", flexWrap:"wrap" }}>
+        <div className="site-header-nav" style={{ display:"flex", alignItems:"center", gap:6, flexWrap:"wrap" }}>
           <button onClick={() => setView("build")} style={tabStyle("build")}>
-            Builder{build.length > 0 ? ` (${build.length})` : ""}
+            Builder
           </button>
           <button onClick={() => setView("browse")} style={tabStyle("browse")}>
             Techniques
@@ -2116,6 +3505,20 @@ function App() {
           <button onClick={() => setView("notes")} style={tabStyle("notes")}>
             Notes
           </button>
+
+          <div style={{ width:56, display:"flex", justifyContent:"center", alignItems:"center", flexShrink:0 }} aria-hidden="true">
+            <div style={{ width:1, height:22, background:"#2d3555" }} />
+          </div>
+
+          <a
+            href="rulebook.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rulebook-link"
+            style={rulebookLinkStyle}
+          >
+            Rulebook
+          </a>
         </div>
       </div>
 
@@ -2336,6 +3739,17 @@ function App() {
           <div style={{ height:24 }} />
 
           <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Background
+          </div>
+          <BackgroundsSection
+            backgrounds={backgrounds}
+            backgroundType={backgroundType} onBackgroundTypeChange={setBackgroundType}
+            selectedIds={selectedBackgrounds} onToggle={toggleBackground} onMove={moveBackground}
+            dragId={dragId} setDragId={setDragId}
+          />
+          <div style={{ height:24 }} />
+
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Techniques
           </div>
           <XPTiles knownXP={knownXP} unknownCount={unknownCount} totalXP={totalXP} />
@@ -2345,26 +3759,105 @@ function App() {
             </div>
           ) : (
             <div className="tech-list">
-              {knownTechs.map(t => renderTechCard(t))}
+              {/* Drag the grip to reorder — the handle is the only
+                  draggable bit, so it doesn't fight with buttons/inputs
+                  inside the card itself. Dropping anywhere on a card
+                  (not just its handle) works, to make targeting easier. */}
+              {knownTechs.map(t => (
+                <div
+                  key={t.id}
+                  onDragOver={e => { if (dragId) e.preventDefault(); }}
+                  onDrop={e => { e.preventDefault(); if (dragId) moveTechniqueGroup(dragId, t.id); setDragId(null); }}
+                  style={{ display:"flex", gap:6, alignItems:"stretch", opacity: dragId === t.id ? 0.5 : 1 }}
+                >
+                  <div
+                    draggable
+                    onDragStart={e => { e.dataTransfer.effectAllowed = "move"; setDragId(t.id); }}
+                    onDragEnd={() => setDragId(null)}
+                    title="Drag to reorder"
+                    aria-label={`Drag to reorder ${t.name}`}
+                    style={{
+                      display:"flex", alignItems:"center", justifyContent:"center",
+                      width:22, flexShrink:0, cursor:"grab", color:TEXT.faint, fontSize:16,
+                      userSelect:"none",
+                    }}
+                  >
+                    ⠿
+                  </div>
+                  <div style={{ flex:1, minWidth:0 }}>
+                    {renderTechCard(t)}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
+
+          {/* Custom techniques — freeform GM-granted abilities, kept
+              separate from knownTechs/build since they're not real
+              data-file techniques and never cost XP. Same drag-to-reorder
+              handle as real techniques above, just reordering their own
+              separate list instead of build. */}
+          {customTechniques.length > 0 && (
+            <div className="tech-list" style={{ marginTop: 10 }}>
+              {customTechniques.map(c => (
+                <div
+                  key={c.id}
+                  onDragOver={e => { if (dragId) e.preventDefault(); }}
+                  onDrop={e => { e.preventDefault(); if (dragId) moveCustomTechnique(dragId, c.id); setDragId(null); }}
+                  style={{ display:"flex", gap:6, alignItems:"stretch", opacity: dragId === c.id ? 0.5 : 1 }}
+                >
+                  <div
+                    draggable
+                    onDragStart={e => { e.dataTransfer.effectAllowed = "move"; setDragId(c.id); }}
+                    onDragEnd={() => setDragId(null)}
+                    title="Drag to reorder"
+                    aria-label={`Drag to reorder ${c.title || "custom technique"}`}
+                    style={{
+                      display:"flex", alignItems:"center", justifyContent:"center",
+                      width:22, flexShrink:0, cursor:"grab", color:TEXT.faint, fontSize:16,
+                      userSelect:"none",
+                    }}
+                  >
+                    ⠿
+                  </div>
+                  <div style={{ flex:1, minWidth:0 }}>
+                    <CustomTechniqueCard
+                      tech={c}
+                      onTitleChange={v => updateCustomTechnique(c.id, "title", v)}
+                      onTextChange={v => updateCustomTechnique(c.id, "text", v)}
+                      onRemove={() => removeCustomTechnique(c.id)}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          <button
+            onClick={addCustomTechnique}
+            style={{ marginTop: 10, ...actionBtn() }}
+          >
+            + Add custom technique
+          </button>
         </div>
       )}
 
 
       {/* ════════ ITEMS VIEW ════════════════════════════════════
-          Placeholder — gear, weapons, and gold will live here. */}
+          Gold and the item picker/inventory live here, not the Builder
+          — the Character Sheet shows the same inventory read-only,
+          plus Equipped/Parry controls (see the Sheet view below). */}
       {view === "items" && (
-        <div style={{ maxWidth:600, margin:"60px auto", padding:20, textAlign:"center" }}>
-          <div style={{
-            fontFamily: "'MedievalSharp', Georgia, serif",
-            fontSize: 24, fontWeight: "bold", color: "#d4a843", marginBottom: 8,
-          }}>
-            Items &amp; Equipment
+        <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Inventory
           </div>
-          <div style={{ fontSize:15, color:TEXT.faint }}>
-            Coming soon.
-          </div>
+          <InventorySection
+            items={items} inventory={inventory} gold={gold} onGoldChange={setGold}
+            onAdd={addInventoryItem} onQtyChange={setInventoryQty} onRemove={removeInventoryItem}
+            onLevelChange={setInventoryLevel} onBaseItemChange={setInventoryBaseItem}
+            customItems={customItems} onAddCustomItem={addCustomItem}
+            onUpdateCustomItem={updateCustomItem} onRemoveCustomItem={removeCustomItem}
+          />
         </div>
       )}
 
@@ -2384,24 +3877,53 @@ function App() {
             borderBottom: "0.5px solid #2d3555",
             paddingBottom: 14, marginBottom: 20,
           }}>
-            <div>
-              <div style={{
-                fontFamily: "'MedievalSharp', Georgia, serif",
-                fontSize: 28, fontWeight: "bold", color: "#d4a843",
-              }}>
-                {charName || "Unnamed hero"}
-              </div>
-              {charConcept && (
-                <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", marginTop:3 }}>
-                  {charConcept}
+            {/* On screen this is just a plain flex group, same as always —
+                the "sheet-box" class only picks up a border in print (see
+                the @media print rules), so the name/icon/concept reads as
+                its own boxed block on the printed page without changing
+                anything here on screen. */}
+            <div className="sheet-box" style={{ display:"flex", alignItems:"flex-start", gap:12 }}>
+              <img
+                src="assets/mug-icon.png"
+                alt=""
+                style={{ height:54, width:"auto", flexShrink:0 }}
+              />
+              <div>
+                <div style={{
+                  fontFamily: "'MedievalSharp', Georgia, serif",
+                  fontSize: 28, fontWeight: "bold", color: "#d4a843",
+                }}>
+                  {charName || "Unnamed hero"}
                 </div>
-              )}
-              <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
-                {buildEntries.length} technique{buildEntries.length !== 1 ? "s" : ""}
-                {" ("}{sheetCards.length} distinct{")"}
-                {unknownCount > 0 && ` · ${unknownCount} not fully configured`}
+                {charConcept && (
+                  <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", marginTop:3 }}>
+                    {charConcept}
+                  </div>
+                )}
+                {unknownCount > 0 && (
+                  <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
+                    {unknownCount} technique{unknownCount > 1 ? "s" : ""} not fully configured
+                  </div>
+                )}
               </div>
             </div>
+
+            {/* Print-only — hidden on screen (the StatsPanel bar below
+                already shows this number there); on the printed page it's
+                the compact stand-in for that whole bar, boxed on its own
+                to the right of the name/concept box. */}
+            <div className="sheet-box print-only" style={{
+              display: "none", flexDirection: "column", alignItems: "center", justifyContent: "center",
+              minWidth: 90, textAlign: "center", flexShrink: 0, gap: 2,
+            }}>
+              <div style={{ fontSize:11, color:TEXT.faint, textTransform:"uppercase", letterSpacing:"0.06em" }}>
+                Total XP
+              </div>
+              <div style={{ fontSize:24, fontWeight:700, color:TEXT.name }}>
+                {statSkillXP + knownXP}{unknownCount > 0 ? "+" : ""}
+              </div>
+            </div>
+
             <div className="no-print" style={{ display:"flex", gap:8, flexShrink:0, flexWrap:"wrap" }}>
               <button
                 onClick={() => { if (confirm("Uncheck all expended techniques for a new encounter?")) setExpended({}); }}
@@ -2423,16 +3945,37 @@ function App() {
             readOnly
           />
           <div style={{ height:14 }} />
-          <DerivedStats statPoints={statPoints} skillPoints={skillPoints} />
+          <DerivedStats statPoints={statPoints} skillPoints={skillPoints} equipmentBonuses={equipmentBonuses} />
 
-          {buildEntries.length === 0 ? (
+          {selectedBackgrounds.length > 0 && (
+            <>
+              <div style={{ height:14 }} />
+              <BackgroundsSection backgrounds={backgrounds} selectedIds={selectedBackgrounds} readOnly />
+            </>
+          )}
+
+          {buildEntries.length === 0 && customTechniques.every(c => !c.title.trim() && !c.text.trim()) ? (
             <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
               Add techniques on the Techniques tab, then see them here.
             </div>
           ) : (
             <div className="tech-list">
               {sheetCards.map(renderSheetCard)}
+              {customTechniques.map(c => (
+                <CustomTechniqueCard key={c.id} tech={c} readOnly />
+              ))}
             </div>
+          )}
+
+          {(inventory.length > 0 || gold || customItems.length > 0) && (
+            <>
+              <div style={{ height:14 }} />
+              <InventorySection
+                items={items} inventory={inventory} gold={gold} readOnly showEquip
+                onToggleEquipped={toggleEquipped} onToggleParry={toggleParryWeapon}
+                customItems={customItems}
+              />
+            </>
           )}
         </div>
       )}
@@ -2492,6 +4035,14 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Attribution — shown on every tab, and (since it's not marked
+          no-print) at the bottom of the printed Character Sheet too,
+          pinned to the physical page bottom there (see .attribution-footer
+          in the print CSS) instead of trailing after the last card. */}
+      <div className="attribution-footer" style={{ textAlign: "center", padding: "26px 16px 18px", fontSize: 12, color: TEXT.faint }}>
+        FlagonQuest is a project by Friendly Flagon Games.
+      </div>
 
     </div>
   );

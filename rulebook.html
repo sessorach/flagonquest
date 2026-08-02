@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlagonQuest — Rulebook</title>
+  <link rel="icon" href="assets/mug-icon.png">
+
+  <!-- MedievalSharp — fantasy display font for names/headings (free, OFL license) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+
+  <!-- React 18 (the UI framework) and ReactDOM (renders it to the page) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Babel standalone: lets us write JSX (the HTML-in-JS syntax) directly
+       in this file without a build step, same as index.html. -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    /* ── Reset & base — matches index.html's theme so this reads as the
+       same site, not a bolted-on page. ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0d1117;
+      color: #e8dfc8;
+      min-height: 100vh;
+    }
+
+    button { font-family: inherit; cursor: pointer; }
+    .rulebook-link:hover { opacity: 0.85; }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #2d3555; border-radius: 4px; }
+
+    /* ── Rulebook layout: TOC sidebar + content ─────────────────────
+       Narrow screens: TOC sits above the content, not beside it.
+       Wide screens: sticky TOC on the left, content on the right. */
+    .rulebook-layout { display: block; }
+    .rulebook-toc { margin-bottom: 24px; }
+    @media (min-width: 900px) {
+      .rulebook-layout {
+        display: grid;
+        grid-template-columns: 260px minmax(0, 1fr);
+        gap: 28px;
+        align-items: start;
+      }
+      .rulebook-toc {
+        position: sticky;
+        top: 78px;
+        max-height: calc(100vh - 96px);
+        overflow-y: auto;
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+// Same warm off-white/tan text scale as index.html, so this page reads
+// as the same site rather than a bolted-on one.
+const TEXT = {
+  name:  "#e8dfc8",
+  body:  "#d3c9a3",
+  label: "#a68f52",
+  muted: "#9c9576",
+  faint: "#726c58",
+};
+
+// ── Glossary tooltip — duplicated from index.html ───────────────────
+// This is a separate static page (no shared build step between files),
+// so the glossary helper/component are kept in sync by hand; they're
+// small and change rarely.
+function withGlossary(text, glossary) {
+  if (!text || !glossary || glossary.length === 0) return text;
+  const terms = [...glossary].sort((a, b) => b.term.length - a.term.length);
+  const escaped = terms.map(g => g.term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const re = new RegExp(`\\b(${escaped.join("|")})\\b`, "g");
+  const byTerm = Object.fromEntries(glossary.map(g => [g.term, g.description]));
+  const parts = text.split(re);
+  if (parts.length === 1) return text;
+  return parts.map((part, i) =>
+    byTerm[part] ? <GlossaryTerm key={i} term={part} description={byTerm[part]} /> : part
+  );
+}
+
+function GlossaryTerm({ term, description }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <span
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onClick={e => { e.stopPropagation(); setOpen(o => !o); }}
+      style={{ position: "relative", borderBottom: "1px dotted #a68f52", cursor: "help" }}
+    >
+      {term}
+      {open && (
+        <span style={{
+          position: "absolute", left: 0, top: "100%", marginTop: 4, zIndex: 50,
+          display: "block", width: 220,
+          background: "#12161f", border: "0.5px solid #d4a843", borderRadius: 6,
+          padding: "6px 10px", fontSize: 12, lineHeight: 1.4,
+          color: TEXT.body, fontStyle: "normal", fontWeight: 400,
+          fontFamily: "system-ui, -apple-system, sans-serif",
+          boxShadow: "0 4px 14px rgba(0,0,0,0.45)",
+        }}>
+          <strong style={{ color: "#d4a843" }}>{term}</strong>: {description}
+        </span>
+      )}
+    </span>
+  );
+}
+
+function App() {
+  const [sections, setSections] = useState([]);
+  const [glossary, setGlossary] = useState([]);
+  const [loading,  setLoading]  = useState(true);
+  const [loadError, setLoadError] = useState(null);
+
+  useEffect(() => {
+    Promise.all([
+      fetch("data/rulebook.json").then(r => {
+        if (!r.ok) throw new Error(`rulebook.json returned ${r.status}`);
+        return r.json();
+      }),
+      fetch("data/glossary.json").then(r => r.ok ? r.json() : []).catch(() => []),
+    ])
+    .then(([sectionData, glossaryData]) => {
+      setSections(sectionData);
+      setGlossary(Array.isArray(glossaryData) ? glossaryData : []);
+      setLoading(false);
+    })
+    .catch(err => {
+      setLoadError(err.message);
+      setLoading(false);
+    });
+  }, []);
+
+  const tabStyle = active => ({
+    padding: "6px 14px", fontSize: 15, fontWeight: 500, borderRadius: 6,
+    background:  active ? "#d4a843" : "transparent",
+    color:       active ? "#0a0e18" : TEXT.muted,
+    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
+    textDecoration: "none", display: "inline-flex", alignItems: "center",
+  });
+
+  // Same cooler blue as index.html's nav — the Rulebook link always looks
+  // like a different kind of link, not just "the active tab."
+  const rulebookLinkStyle = {
+    padding: "6px 14px", fontSize: 15, fontWeight: 500, borderRadius: 6,
+    background: "#0f2230", color: "#7fb8d9",
+    border: "0.5px solid #3d6a8a",
+    textDecoration: "none", display: "inline-flex", alignItems: "center",
+  };
+
+  if (loading) return (
+    <div style={{
+      minHeight: "100vh", display:"flex", alignItems:"center",
+      justifyContent: "center", color: TEXT.faint,
+      fontFamily: "'MedievalSharp', Georgia, serif", fontSize: 18,
+    }}>
+      Loading the rulebook…
+    </div>
+  );
+
+  if (loadError) return (
+    <div style={{ minHeight:"100vh", padding:40, color:"#c0392b", fontSize:16, lineHeight:1.6, maxWidth:620 }}>
+      <strong>Couldn't load the rulebook</strong>
+      <p style={{ marginTop:10, color:TEXT.muted }}>Error: {loadError}</p>
+    </div>
+  );
+
+  return (
+    <div style={{ fontFamily:"system-ui, -apple-system, sans-serif" }}>
+
+      {/* ════════ HEADER — same branding/nav as index.html, with
+          "Rulebook" as the active tab and everything else linking back. ═══ */}
+      <div style={{
+        padding: "12px 20px",
+        borderBottom: "0.5px solid #2d3555",
+        display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap",
+        background: "#0a0e18",
+        position: "sticky", top: 0, zIndex: 100,
+      }}>
+        <a href="index.html" style={{ textDecoration:"none", color:"inherit", display:"flex", alignItems:"center", gap:10 }}>
+          <img src="assets/mug-icon.png" alt="" style={{ height:38, width:"auto", flexShrink:0 }} />
+          <div style={{ textAlign: "center" }}>
+            <div style={{
+              fontFamily: "'MedievalSharp', Georgia, serif",
+              fontSize: 22, fontWeight: "bold",
+              color: "#d4a843", letterSpacing: "0.04em",
+            }}>
+              FlagonQuest
+            </div>
+            <div style={{ fontSize:13, color:TEXT.faint, marginTop:1 }}>
+              A beer-and-pretzels TTRPG for the modern gamer
+            </div>
+          </div>
+        </a>
+
+        <div style={{ display:"flex", alignItems:"center", gap:6, marginLeft:"auto", flexWrap:"wrap" }}>
+          <a href="index.html" style={tabStyle(false)}>Builder</a>
+          <a href="index.html" style={tabStyle(false)}>Techniques</a>
+          <a href="index.html" style={tabStyle(false)}>Items</a>
+          <a href="index.html" style={tabStyle(false)}>Character sheet</a>
+          <a href="index.html" style={tabStyle(false)}>Notes</a>
+
+          <div style={{ width:56, display:"flex", justifyContent:"center", alignItems:"center", flexShrink:0 }} aria-hidden="true">
+            <div style={{ width:1, height:22, background:"#2d3555" }} />
+          </div>
+
+          <a href="rulebook.html" target="_blank" rel="noopener noreferrer" className="rulebook-link" style={rulebookLinkStyle}>
+            Rulebook
+          </a>
+        </div>
+      </div>
+
+      {/* ════════ RULEBOOK CONTENT ═══════════════════════════════ */}
+      <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
+        <div className="rulebook-layout">
+
+          {/* Table of contents */}
+          <nav className="rulebook-toc">
+            <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+              Contents
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:2 }}>
+              {sections.map(s => (
+                <a
+                  key={s.id}
+                  href={`#${s.id}`}
+                  style={{
+                    fontSize: s.level >= 2 ? 13 : 14,
+                    fontWeight: s.level >= 2 ? 400 : 600,
+                    color: s.level >= 2 ? TEXT.muted : TEXT.body,
+                    paddingLeft: s.level >= 2 ? 14 : 0,
+                    textDecoration: "none",
+                    lineHeight: 1.9,
+                  }}
+                >
+                  {s.title}
+                </a>
+              ))}
+            </div>
+          </nav>
+
+          {/* Sections */}
+          <div>
+            {sections.length === 0 ? (
+              <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
+                No rulebook content yet.
+              </div>
+            ) : sections.map(s => (
+              <div key={s.id} id={s.id} style={{
+                marginBottom: 28,
+                paddingTop: s.level === 1 ? 10 : 0,
+                borderTop: s.level === 1 ? "0.5px solid #2d3555" : "none",
+              }}>
+                <div style={{
+                  fontFamily: "'MedievalSharp', Georgia, serif",
+                  fontWeight: "bold",
+                  fontSize: s.level === 1 ? 24 : 18,
+                  color: s.level === 1 ? "#d4a843" : TEXT.name,
+                  marginTop: s.level === 1 ? 14 : 4,
+                  marginBottom: 10,
+                }}>
+                  {s.title}
+                </div>
+                {(s.body || "").split(/\n\n+/).map((para, i) => (
+                  <p key={i} style={{ fontSize:15, color:TEXT.body, lineHeight:1.7, marginBottom:10 }}>
+                    {withGlossary(para, glossary)}
+                  </p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ════════ FOOTER ═══════════════════════════════════════ */}
+      <div style={{ textAlign: "center", padding: "26px 16px 18px", fontSize: 12, color: TEXT.faint }}>
+        FlagonQuest is a project by Friendly Flagon Games.
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>
+</body>
+</html>

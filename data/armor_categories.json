@@ -1,0 +1,18 @@
+[
+  {
+    "id": "AC001",
+    "name": "Light Armor",
+    "physical_resist": 1,
+    "dodge_penalty": 0,
+    "speed_penalty": 0,
+    "might_str": 3
+  },
+  {
+    "id": "AC002",
+    "name": "Heavy Armor",
+    "physical_resist": 2,
+    "dodge_penalty": -1,
+    "speed_penalty": -1,
+    "might_str": 6
+  }
+]
