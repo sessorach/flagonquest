@@ -2615,7 +2615,7 @@ function BackgroundsSection({
   selectedIds, onToggle, onMove, dragId, setDragId,
   readOnly = false,
 }) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const selected = selectedIds.map(id => backgrounds.find(b => b.id === id)).filter(Boolean);
 
   if (readOnly) {
@@ -3135,7 +3135,7 @@ function App() {
   const [loadError,  setLoadError]  = useState(null);
 
   // ── UI state ───────────────────────────────────────────────────
-  const [view,       setView]       = useState("build"); // browse | build | sheet
+  const [view,       setView]       = useState("sheet"); // build | browse | items | sheet | notes
   const [search,     setSearch]     = useState("");
   const [skillFilter, setSkillFilter] = useState([]);   // selected "related skills" chips
   const [tagFilter,  setTagFilter]  = useState([]);     // selected "tags" chips
