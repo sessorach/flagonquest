@@ -575,6 +575,10 @@ function emptyCharacterData() {
     // even though items don't have per-copy config like techniques do.
     inventory: [],
     gold: "",
+    // Freeform items the player writes in themselves, same idea as
+    // customTechniques — { id, name, text, qty }, no data-file entry,
+    // no stats, just a name/description/quantity.
+    customItems: [],
   };
 }
 
@@ -1745,17 +1749,28 @@ function statBadge(label, v) {
 // — the Character Sheet doesn't need it. On the Character Sheet
 // specifically (readOnly + showEquip), it also gets an Equipped
 // checkbox — disabled when equipping it would overflow its Slot's
-// capacity — and, for a Weapon that can Parry, a Parry radio.
+// capacity — and, for a Weapon that can Parry, a Parry radio. A
+// Masterwork item with base_item_options also gets a base-item picker
+// there (e.g. Dauntless Wrap built onto Light or Heavy Armor); its
+// stats fold into the badges shown below and into equipmentBonuses.
 // ══════════════════════════════════════════════════════════════════
 function InventoryTile({
-  entry, item, onQtyChange, onRemove, readOnly = false,
+  entry, item, allItems = [], onQtyChange, onRemove, readOnly = false,
   showEquip = false, onToggleEquipped, equipDisabled = false,
-  onToggleParry,
+  onToggleParry, onBaseItemChange,
 }) {
   if (!item) return null; // stale reference to a removed/renamed data row
+  const baseItemOptions = (item.base_item_options || [])
+    .map(id => allItems.find(i => i.id === id))
+    .filter(Boolean);
+  const baseItem = entry.baseItemId ? allItems.find(i => i.id === entry.baseItemId) : null;
   const statBadges = ITEM_STAT_FIELDS
-    .map(([key, label]) => [label, item[key]])
-    .filter(([, v]) => typeof v === "number" && v !== 0);
+    .map(([key, label]) => {
+      const own  = typeof item[key] === "number" ? item[key] : 0;
+      const base = baseItem && typeof baseItem[key] === "number" ? baseItem[key] : 0;
+      return [label, own + base];
+    })
+    .filter(([, v]) => v !== 0);
   const weaponInfo = item.category === "Weapon"
     ? WEAPON_INFO_FIELDS.map(([key, label, fmt]) => [label, item[key], fmt]).filter(([, v]) => v != null && v !== "")
     : [];
@@ -1846,6 +1861,92 @@ function InventoryTile({
           )}
         </div>
       )}
+      {showEquip && baseItemOptions.length > 0 && (
+        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: TEXT.body }}>
+          <span style={{ color: TEXT.faint, flexShrink: 0 }}>Base item</span>
+          <select
+            value={entry.baseItemId || ""}
+            onChange={e => onBaseItemChange(e.target.value)}
+            style={{ fontSize: 12, flex: 1, minWidth: 0 }}
+          >
+            <option value="">None (no bonus)</option>
+            {baseItemOptions.map(bi => <option key={bi.id} value={bi.id}>{bi.name}</option>)}
+          </select>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// CUSTOM ITEM TILE — a freeform item the player writes in themselves,
+// same idea as CustomTechniqueCard: just a name, description, and (since
+// most items are worth tracking a count of) a quantity stepper. No
+// data-file entry, no stats, no equip/parry/base-item — those only make
+// sense for real catalog items. Sits in the same grid as InventoryTile.
+// ══════════════════════════════════════════════════════════════════
+function CustomItemTile({ entry, onNameChange, onTextChange, onQtyChange, onRemove, readOnly = false }) {
+  if (readOnly && !entry.name.trim() && !entry.text.trim()) return null; // nothing to show
+
+  return (
+    <div className="tech-card" style={{
+      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+      padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+    }}>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+        {readOnly ? (
+          <span style={{
+            fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+            fontSize: 15, color: TEXT.name, flex: 1, lineHeight: 1.3,
+          }}>
+            {entry.name.trim() || "Untitled item"}
+          </span>
+        ) : (
+          <input
+            type="text"
+            value={entry.name}
+            onChange={e => onNameChange(e.target.value)}
+            placeholder="Item name…"
+            style={{
+              flex: 1, minWidth: 0, fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
+              fontSize: 14, padding: "4px 8px",
+            }}
+          />
+        )}
+        {!readOnly && (
+          <button
+            onClick={onRemove}
+            aria-label={`Remove ${entry.name || "custom item"}`}
+            style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 16, lineHeight: 1, padding: "2px 4px", flexShrink: 0 }}
+          >
+            ✕
+          </button>
+        )}
+      </div>
+      {readOnly ? (
+        entry.text && (
+          <div style={{ fontSize: 13, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
+            {entry.text}
+          </div>
+        )
+      ) : (
+        <textarea
+          value={entry.text}
+          onChange={e => onTextChange(e.target.value)}
+          placeholder="Description…"
+          rows={2}
+          style={{ fontSize: 13 }}
+        />
+      )}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
+        <span style={{ fontSize: 12, color: TEXT.faint }}>Qty</span>
+        {readOnly ? (
+          <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+        ) : (
+          <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
+        )}
+      </div>
     </div>
   );
 }
@@ -1976,7 +2077,8 @@ function slotCost(item) {
 
 function InventorySection({
   items, inventory, gold, onGoldChange, onAdd, onQtyChange, onRemove, readOnly = false,
-  showEquip = false, onToggleEquipped, onToggleParry,
+  showEquip = false, onToggleEquipped, onToggleParry, onBaseItemChange,
+  customItems = [], onAddCustomItem, onUpdateCustomItem, onRemoveCustomItem,
 }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
@@ -2006,7 +2108,7 @@ function InventorySection({
   }, [inventory, items, showEquip]);
 
   const grid = (
-    inventory.length === 0 ? (
+    inventory.length === 0 && customItems.length === 0 ? (
       <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
         {readOnly ? "No items carried." : "No items carried yet — search below to add some."}
       </div>
@@ -2025,6 +2127,7 @@ function InventorySection({
               key={entry.uid}
               entry={entry}
               item={item}
+              allItems={items}
               onQtyChange={readOnly ? undefined : (q => onQtyChange(entry.uid, q))}
               onRemove={readOnly ? undefined : (() => onRemove(entry.uid))}
               readOnly={readOnly}
@@ -2032,19 +2135,35 @@ function InventorySection({
               equipDisabled={equipDisabled}
               onToggleEquipped={() => onToggleEquipped(entry.uid)}
               onToggleParry={() => onToggleParry(entry.uid)}
+              onBaseItemChange={v => onBaseItemChange(entry.uid, v)}
             />
           );
         })}
+        {customItems.map(entry => (
+          <CustomItemTile
+            key={entry.id}
+            entry={entry}
+            readOnly={readOnly}
+            onNameChange={readOnly ? undefined : (v => onUpdateCustomItem(entry.id, "name", v))}
+            onTextChange={readOnly ? undefined : (v => onUpdateCustomItem(entry.id, "text", v))}
+            onQtyChange={readOnly ? undefined : (q => onUpdateCustomItem(entry.id, "qty", q))}
+            onRemove={readOnly ? undefined : (() => onRemoveCustomItem(entry.id))}
+          />
+        ))}
       </div>
     )
   );
 
   return (
     <div>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
-        <span style={{ fontSize: 13, color: TEXT.faint }}>Gold</span>
+      <div className="sheet-box" style={{
+        display: "inline-flex", alignItems: "center", gap: 8,
+        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+        padding: "8px 12px", marginBottom: 14,
+      }}>
+        <span style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>Gold</span>
         {readOnly ? (
-          <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{gold || "0"}</span>
+          <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{gold || "0"}</span>
         ) : (
           <input
             type="text" inputMode="numeric" placeholder="0"
@@ -2113,6 +2232,19 @@ function InventorySection({
       )}
 
       {grid}
+
+      {!readOnly && (
+        <button
+          onClick={onAddCustomItem}
+          style={{
+            marginTop: 10, padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
+            background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
+            display: "flex", alignItems: "center", gap: 5,
+          }}
+        >
+          + Add custom item
+        </button>
+      )}
     </div>
   );
 }
@@ -2345,6 +2477,7 @@ function App() {
   // Inventory — see emptyCharacterData for the shape.
   const [inventory, setInventory] = useState(initialCharacter.data.inventory);
   const [gold, setGold] = useState(initialCharacter.data.gold);
+  const [customItems, setCustomItems] = useState(initialCharacter.data.customItems);
   const importRef = useRef();
 
   // Loads one character's data into all of the state above — used by
@@ -2369,6 +2502,7 @@ function App() {
     setBackgroundType(data.backgroundType);
     setInventory(data.inventory);
     setGold(data.gold);
+    setCustomItems(data.customItems);
   };
 
   // Switches to an existing character slot.
@@ -2512,9 +2646,9 @@ function App() {
       build, notes, configs, renames, expended,
       statPoints, skillPoints, xpBudget,
       charName, charConcept, charNotes, noteRows, customTechniques,
-      selectedBackgrounds, backgroundType, inventory, gold,
+      selectedBackgrounds, backgroundType, inventory, gold, customItems,
     });
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -2777,6 +2911,17 @@ function App() {
     });
   };
 
+  // ── Custom items — freeform, no data-file entry, no stats ──────
+  const addCustomItem = () => {
+    setCustomItems(cs => [...cs, { id: makeUid(), name: "", text: "", qty: 1 }]);
+  };
+  const updateCustomItem = (id, field, value) => {
+    setCustomItems(cs => cs.map(c => c.id === id ? { ...c, [field]: value } : c));
+  };
+  const removeCustomItem = id => {
+    setCustomItems(cs => cs.filter(c => c.id !== id));
+  };
+
   // ── Backgrounds — pick at most one General, and one Settler-or-
   // Wildfolk. Clicking a background swaps it in for whichever one was
   // picked before in the same *slot* — General is its own slot, but
@@ -2823,6 +2968,13 @@ function App() {
   const removeInventoryItem = uid => {
     setInventory(inv => inv.filter(e => e.uid !== uid));
   };
+  // A Masterwork item's power is built onto a base item (e.g. a Torso
+  // enchantment onto Light or Heavy Armor) — see item.base_item_options.
+  // Only meaningful for items that have options to pick from; harmless
+  // no-op to set it on anything else.
+  const setInventoryBaseItem = (uid, baseItemId) => {
+    setInventory(inv => inv.map(e => e.uid === uid ? { ...e, baseItemId: baseItemId || null } : e));
+  };
 
   // Equipped — Character Sheet only (see InventorySection's showEquip).
   // Unequipping also clears the Parry flag, since a weapon that's not
@@ -2861,17 +3013,25 @@ function App() {
   // — Parry Defense is the one exception, since only the single chosen
   // Parry weapon's Weapon Defense counts, not every equipped weapon's.
   // Non-numeric stat values (e.g. Lightfoot Shoes' "[Level]" Speed) are
-  // skipped — those still need a human to apply them.
+  // skipped — those still need a human to apply them. A Masterwork item
+  // built onto a chosen base item (see base_item_options) also adds the
+  // base item's own stats — e.g. Dauntless Wrap on Heavy Armor gets both
+  // the enchantment's bonus and Heavy Armor's Physical Resist/penalties.
   const equipmentBonuses = useMemo(() => {
     const totals = {};
+    const addStats = it => ITEM_STAT_FIELDS.forEach(([key]) => {
+      const v = it[key];
+      if (typeof v === "number") totals[key] = (totals[key] || 0) + v;
+    });
     inventory.forEach(e => {
       if (!e.equipped) return;
       const item = items.find(i => i.id === e.itemId);
       if (!item) return;
-      ITEM_STAT_FIELDS.forEach(([key]) => {
-        const v = item[key];
-        if (typeof v === "number") totals[key] = (totals[key] || 0) + v;
-      });
+      addStats(item);
+      if (e.baseItemId) {
+        const baseItem = items.find(i => i.id === e.baseItemId);
+        if (baseItem) addStats(baseItem);
+      }
     });
     const parryEntry = inventory.find(e => e.equipped && e.isParryWeapon);
     const parryItem = parryEntry && items.find(i => i.id === parryEntry.itemId);
@@ -2898,6 +3058,7 @@ function App() {
       backgrounds: selectedBackgrounds,
       gold,
       inventory: inventory.map(e => ({ id: e.itemId, qty: e.qty })),
+      customItems: customItems.map(c => ({ name: c.name, text: c.text, qty: c.qty })),
       exportedAt: new Date().toISOString(),
       techniques: buildEntries.map(e => {
         const cfg = configs[e.uid];
@@ -2981,6 +3142,9 @@ function App() {
           gold: typeof data.gold === "string" ? data.gold : "",
           inventory: Array.isArray(data.inventory)
             ? data.inventory.filter(e => e && typeof e.id === "string").map(e => ({ uid: makeUid(), itemId: e.id, qty: Number(e.qty) > 0 ? Number(e.qty) : 1 }))
+            : [],
+          customItems: Array.isArray(data.customItems)
+            ? data.customItems.map(c => ({ id: makeUid(), name: c.name ?? "", text: c.text ?? "", qty: Number(c.qty) > 0 ? Number(c.qty) : 1 }))
             : [],
         });
       } catch {
@@ -3636,6 +3800,8 @@ function App() {
           <InventorySection
             items={items} inventory={inventory} gold={gold} onGoldChange={setGold}
             onAdd={addInventoryItem} onQtyChange={setInventoryQty} onRemove={removeInventoryItem}
+            customItems={customItems} onAddCustomItem={addCustomItem}
+            onUpdateCustomItem={updateCustomItem} onRemoveCustomItem={removeCustomItem}
           />
         </div>
       )}
@@ -3746,12 +3912,14 @@ function App() {
             </div>
           )}
 
-          {(inventory.length > 0 || gold) && (
+          {(inventory.length > 0 || gold || customItems.length > 0) && (
             <>
               <div style={{ height:14 }} />
               <InventorySection
                 items={items} inventory={inventory} gold={gold} readOnly showEquip
                 onToggleEquipped={toggleEquipped} onToggleParry={toggleParryWeapon}
+                onBaseItemChange={setInventoryBaseItem}
+                customItems={customItems}
               />
             </>
           )}

@@ -13,7 +13,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -33,7 +32,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I002",
@@ -49,7 +49,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -69,7 +68,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I003",
@@ -85,7 +85,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -105,7 +104,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I004",
@@ -121,7 +121,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -141,7 +140,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I005",
@@ -157,7 +157,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -177,7 +176,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I006",
@@ -193,7 +193,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -213,7 +212,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I007",
@@ -229,7 +229,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -249,7 +248,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I008",
@@ -265,7 +265,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -285,7 +284,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I009",
@@ -301,7 +301,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -321,7 +320,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I010",
@@ -337,7 +337,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -357,7 +356,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I011",
@@ -373,7 +373,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -393,7 +392,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I012",
@@ -409,7 +409,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -429,7 +428,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I013",
@@ -445,7 +445,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -465,7 +464,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I014",
@@ -481,7 +481,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -501,7 +500,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I015",
@@ -517,7 +517,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -537,7 +536,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I016",
@@ -553,7 +553,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -573,7 +572,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I017",
@@ -589,7 +589,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -609,7 +608,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I018",
@@ -625,7 +625,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -645,7 +644,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I019",
@@ -661,7 +661,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -681,7 +680,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I020",
@@ -697,7 +697,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -717,7 +716,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I021",
@@ -733,7 +733,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -753,7 +752,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I022",
@@ -769,7 +769,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -789,7 +788,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I023",
@@ -805,7 +805,6 @@
     "total_materials": 1,
     "base_materials": null,
     "extra_materials": "None",
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -825,7 +824,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I024",
@@ -841,7 +841,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -861,7 +860,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I025",
@@ -877,7 +877,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -897,7 +896,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I026",
@@ -913,7 +913,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -933,7 +932,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I027",
@@ -949,7 +949,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -969,7 +968,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I028",
@@ -985,7 +985,6 @@
     "total_materials": null,
     "base_materials": "Brilliant, Fire, Frost, or Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1005,7 +1004,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I029",
@@ -1021,7 +1021,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1041,7 +1040,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I030",
@@ -1057,7 +1057,6 @@
     "total_materials": null,
     "base_materials": "Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1077,7 +1076,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I031",
@@ -1093,7 +1093,6 @@
     "total_materials": null,
     "base_materials": "Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1113,7 +1112,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I032",
@@ -1129,7 +1129,6 @@
     "total_materials": null,
     "base_materials": "Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1149,7 +1148,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I033",
@@ -1165,7 +1165,6 @@
     "total_materials": null,
     "base_materials": "Frost",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1185,7 +1184,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I034",
@@ -1201,7 +1201,6 @@
     "total_materials": null,
     "base_materials": "Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1221,7 +1220,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I035",
@@ -1237,7 +1237,6 @@
     "total_materials": null,
     "base_materials": "Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1257,7 +1256,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I036",
@@ -1273,7 +1273,6 @@
     "total_materials": null,
     "base_materials": "Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1293,7 +1292,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I037",
@@ -1309,7 +1309,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1329,7 +1328,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I038",
@@ -1345,7 +1345,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1365,7 +1364,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I039",
@@ -1381,7 +1381,6 @@
     "total_materials": null,
     "base_materials": "The opposite of the chosen element - Fire for Frost, Brilliant for Shadow, and vice versa",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1401,7 +1400,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I040",
@@ -1417,7 +1417,6 @@
     "total_materials": null,
     "base_materials": "Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1437,7 +1436,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I041",
@@ -1453,7 +1453,6 @@
     "total_materials": null,
     "base_materials": "Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1473,7 +1472,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I042",
@@ -1489,7 +1489,6 @@
     "total_materials": null,
     "base_materials": "Frost",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1509,7 +1508,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I043",
@@ -1525,7 +1525,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1545,7 +1544,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I044",
@@ -1561,7 +1561,6 @@
     "total_materials": null,
     "base_materials": "Precious",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1581,7 +1580,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I045",
@@ -1597,7 +1597,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1617,7 +1616,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I046",
@@ -1633,7 +1633,6 @@
     "total_materials": null,
     "base_materials": "Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1653,7 +1652,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I047",
@@ -1669,7 +1669,6 @@
     "total_materials": null,
     "base_materials": "Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1689,7 +1688,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I048",
@@ -1705,7 +1705,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1725,7 +1724,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I049",
@@ -1741,7 +1741,6 @@
     "total_materials": null,
     "base_materials": "Medicinal",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1761,7 +1760,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I050",
@@ -1777,7 +1777,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1797,7 +1796,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I051",
@@ -1813,7 +1813,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1833,7 +1832,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I052",
@@ -1849,7 +1849,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1869,7 +1868,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I053",
@@ -1885,7 +1885,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1905,7 +1904,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I054",
@@ -1921,7 +1921,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1941,7 +1940,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I055",
@@ -1957,7 +1957,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -1977,7 +1976,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I056",
@@ -1993,7 +1993,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2013,7 +2012,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I057",
@@ -2029,7 +2029,6 @@
     "total_materials": null,
     "base_materials": "Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2049,7 +2048,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I058",
@@ -2065,7 +2065,6 @@
     "total_materials": null,
     "base_materials": "Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2085,7 +2084,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I059",
@@ -2101,7 +2101,6 @@
     "total_materials": null,
     "base_materials": "Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2121,7 +2120,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I060",
@@ -2137,7 +2137,6 @@
     "total_materials": null,
     "base_materials": "Precious",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2157,7 +2156,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I061",
@@ -2173,7 +2173,6 @@
     "total_materials": null,
     "base_materials": "Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2193,7 +2192,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I062",
@@ -2209,7 +2209,6 @@
     "total_materials": null,
     "base_materials": "Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2229,7 +2228,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I063",
@@ -2245,7 +2245,6 @@
     "total_materials": null,
     "base_materials": "Bone, Metal, Wood, Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2265,7 +2264,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I064",
@@ -2281,7 +2281,6 @@
     "total_materials": null,
     "base_materials": "Wood",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2301,7 +2300,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I065",
@@ -2317,7 +2317,6 @@
     "total_materials": null,
     "base_materials": "Frost",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2337,7 +2336,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I066",
@@ -2353,7 +2353,6 @@
     "total_materials": null,
     "base_materials": "The opposite of the chosen element - Fire for Frost, Brilliant for Shadow, and vice versa",
     "extra_materials": null,
-    "base_item": "Basic Clothing",
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2373,7 +2372,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I067",
@@ -2389,7 +2389,6 @@
     "total_materials": null,
     "base_materials": "The opposite of the chosen element - Fire for Frost, Brilliant for Shadow, and vice versa",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2409,7 +2408,11 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I128",
+      "I129"
+    ]
   },
   {
     "id": "I068",
@@ -2425,7 +2428,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2445,7 +2447,11 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I128",
+      "I129"
+    ]
   },
   {
     "id": "I069",
@@ -2461,7 +2467,6 @@
     "total_materials": null,
     "base_materials": "Medicinal",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2481,7 +2486,11 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I128",
+      "I129"
+    ]
   },
   {
     "id": "I070",
@@ -2497,7 +2506,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2517,7 +2525,11 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I128",
+      "I129"
+    ]
   },
   {
     "id": "I071",
@@ -2533,7 +2545,6 @@
     "total_materials": null,
     "base_materials": "Bone, Metal",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2553,7 +2564,11 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I128",
+      "I129"
+    ]
   },
   {
     "id": "I072",
@@ -2569,7 +2584,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2589,7 +2603,11 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I128",
+      "I129"
+    ]
   },
   {
     "id": "I073",
@@ -2605,7 +2623,6 @@
     "total_materials": null,
     "base_materials": "Metal, Bone, Fire, Frost, Shadow, Brilliant",
     "extra_materials": null,
-    "base_item": "Basic Clothing",
     "physical_resist": 1,
     "fire_resist": 1,
     "frost_resist": 1,
@@ -2625,7 +2642,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I074",
@@ -2641,7 +2659,6 @@
     "total_materials": null,
     "base_materials": "Fire, Frost, Brilliant",
     "extra_materials": null,
-    "base_item": "Basic Clothing",
     "physical_resist": null,
     "fire_resist": 3,
     "frost_resist": 3,
@@ -2661,7 +2678,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I075",
@@ -2677,7 +2695,6 @@
     "total_materials": null,
     "base_materials": "Bone, Metal, Wood",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2697,7 +2714,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I076",
@@ -2713,7 +2731,6 @@
     "total_materials": null,
     "base_materials": "Metal, Precious",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2733,7 +2750,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I077",
@@ -2749,7 +2767,6 @@
     "total_materials": null,
     "base_materials": "Fire, Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2769,7 +2786,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I078",
@@ -2785,7 +2803,6 @@
     "total_materials": null,
     "base_materials": "Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2805,7 +2822,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I079",
@@ -2821,7 +2839,6 @@
     "total_materials": null,
     "base_materials": "Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2841,7 +2858,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I080",
@@ -2857,7 +2875,6 @@
     "total_materials": null,
     "base_materials": "Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2877,7 +2894,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I081",
@@ -2893,7 +2911,6 @@
     "total_materials": null,
     "base_materials": "Bone, Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2913,7 +2930,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I082",
@@ -2929,7 +2947,6 @@
     "total_materials": null,
     "base_materials": "Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2949,7 +2966,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I083",
@@ -2965,7 +2983,6 @@
     "total_materials": null,
     "base_materials": "Wood",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -2985,7 +3002,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I084",
@@ -3001,7 +3019,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3021,7 +3038,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I085",
@@ -3037,7 +3055,6 @@
     "total_materials": null,
     "base_materials": "Medicinal",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3057,7 +3074,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I086",
@@ -3073,7 +3091,6 @@
     "total_materials": null,
     "base_materials": "Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3093,7 +3110,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I087",
@@ -3109,7 +3127,6 @@
     "total_materials": null,
     "base_materials": "Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3129,7 +3146,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I088",
@@ -3145,7 +3163,6 @@
     "total_materials": null,
     "base_materials": "Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3165,7 +3182,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I089",
@@ -3181,7 +3209,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3201,7 +3228,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I090",
@@ -3217,7 +3255,6 @@
     "total_materials": null,
     "base_materials": "Metal",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3237,7 +3274,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I091",
@@ -3253,7 +3301,6 @@
     "total_materials": null,
     "base_materials": "Wood",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3273,7 +3320,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I092",
@@ -3289,7 +3347,6 @@
     "total_materials": null,
     "base_materials": "Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3309,7 +3366,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I093",
@@ -3325,7 +3393,6 @@
     "total_materials": null,
     "base_materials": "Wood",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3345,7 +3412,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I094",
@@ -3361,7 +3439,6 @@
     "total_materials": null,
     "base_materials": "Medicinal",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3381,7 +3458,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I095",
@@ -3397,7 +3485,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3417,7 +3504,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I096",
@@ -3433,7 +3531,6 @@
     "total_materials": null,
     "base_materials": "Fire, Frost, Brilliant, or Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3453,7 +3550,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I097",
@@ -3469,7 +3577,6 @@
     "total_materials": null,
     "base_materials": "Wood",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3489,7 +3596,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I098",
@@ -3505,7 +3623,6 @@
     "total_materials": null,
     "base_materials": "Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3525,7 +3642,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I099",
@@ -3541,7 +3669,6 @@
     "total_materials": null,
     "base_materials": "Frost",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3561,7 +3688,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I100",
@@ -3577,7 +3715,6 @@
     "total_materials": null,
     "base_materials": "Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3597,7 +3734,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I101",
@@ -3613,7 +3761,6 @@
     "total_materials": null,
     "base_materials": "[Chosen element type]",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3633,7 +3780,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I102",
@@ -3649,7 +3807,6 @@
     "total_materials": null,
     "base_materials": "Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3669,7 +3826,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I103",
@@ -3685,7 +3853,6 @@
     "total_materials": null,
     "base_materials": "Brilliant",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3705,7 +3872,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I104",
@@ -3721,7 +3899,6 @@
     "total_materials": null,
     "base_materials": "Fire, Frost, and Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3741,7 +3918,18 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": [
+      "I117",
+      "I118",
+      "I119",
+      "I120",
+      "I121",
+      "I122",
+      "I123",
+      "I124",
+      "I126"
+    ]
   },
   {
     "id": "I105",
@@ -3757,7 +3945,6 @@
     "total_materials": null,
     "base_materials": "Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3777,7 +3964,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I106",
@@ -3793,7 +3981,6 @@
     "total_materials": null,
     "base_materials": "Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3813,7 +4000,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I107",
@@ -3829,7 +4017,6 @@
     "total_materials": null,
     "base_materials": "Metal",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3849,7 +4036,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I108",
@@ -3865,7 +4053,6 @@
     "total_materials": null,
     "base_materials": "Wood",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3885,7 +4072,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I109",
@@ -3901,7 +4089,6 @@
     "total_materials": null,
     "base_materials": "Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3921,7 +4108,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I110",
@@ -3937,7 +4125,6 @@
     "total_materials": null,
     "base_materials": "Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3957,7 +4144,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I111",
@@ -3973,7 +4161,6 @@
     "total_materials": null,
     "base_materials": "Wood",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -3993,7 +4180,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I112",
@@ -4009,7 +4197,6 @@
     "total_materials": null,
     "base_materials": "Metal and Bone",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4029,7 +4216,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I113",
@@ -4045,7 +4233,6 @@
     "total_materials": null,
     "base_materials": "Shadow, Precious, Medicinal, Fire",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4065,7 +4252,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I114",
@@ -4081,7 +4269,6 @@
     "total_materials": null,
     "base_materials": "Wood or Bone, Leather, Shadow",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4101,7 +4288,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I115",
@@ -4117,7 +4305,6 @@
     "total_materials": null,
     "base_materials": "Cloth or Leather, Shadow",
     "extra_materials": "Metal, Precious",
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4137,7 +4324,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I116",
@@ -4153,7 +4341,6 @@
     "total_materials": 15,
     "base_materials": "Brilliant, Shadow, Medicinal",
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4173,7 +4360,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I117",
@@ -4189,7 +4377,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4209,7 +4396,8 @@
     "range": "Close",
     "relevant_skill": "Melee",
     "might_requirement": null,
-    "held_slots": 1
+    "held_slots": 1,
+    "base_item_options": []
   },
   {
     "id": "I118",
@@ -4225,7 +4413,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4245,7 +4432,8 @@
     "range": "Close",
     "relevant_skill": "Melee",
     "might_requirement": 4,
-    "held_slots": 1
+    "held_slots": 1,
+    "base_item_options": []
   },
   {
     "id": "I119",
@@ -4261,7 +4449,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4281,7 +4468,8 @@
     "range": "Close",
     "relevant_skill": "Melee",
     "might_requirement": null,
-    "held_slots": 2
+    "held_slots": 2,
+    "base_item_options": []
   },
   {
     "id": "I120",
@@ -4297,7 +4485,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4317,7 +4504,8 @@
     "range": "Close",
     "relevant_skill": "Melee",
     "might_requirement": 6,
-    "held_slots": 2
+    "held_slots": 2,
+    "base_item_options": []
   },
   {
     "id": "I121",
@@ -4333,7 +4521,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4353,7 +4540,8 @@
     "range": "Close, or 3 × Body",
     "relevant_skill": "Acrobatics or Melee",
     "might_requirement": null,
-    "held_slots": 1
+    "held_slots": 1,
+    "base_item_options": []
   },
   {
     "id": "I122",
@@ -4369,7 +4557,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4389,7 +4576,8 @@
     "range": "Close, or 3 × Body",
     "relevant_skill": "Acrobatics or Melee",
     "might_requirement": 4,
-    "held_slots": 1
+    "held_slots": 1,
+    "base_item_options": []
   },
   {
     "id": "I123",
@@ -4405,7 +4593,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4425,7 +4612,8 @@
     "range": 15,
     "relevant_skill": "Archery",
     "might_requirement": null,
-    "held_slots": 2
+    "held_slots": 2,
+    "base_item_options": []
   },
   {
     "id": "I124",
@@ -4441,7 +4629,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4461,7 +4648,8 @@
     "range": 20,
     "relevant_skill": "Archery",
     "might_requirement": 6,
-    "held_slots": 2
+    "held_slots": 2,
+    "base_item_options": []
   },
   {
     "id": "I125",
@@ -4477,7 +4665,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4497,7 +4684,8 @@
     "range": "Close",
     "relevant_skill": "Brawl",
     "might_requirement": null,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I126",
@@ -4513,7 +4701,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4533,7 +4720,8 @@
     "range": "Close",
     "relevant_skill": "Melee",
     "might_requirement": null,
-    "held_slots": 1
+    "held_slots": 1,
+    "base_item_options": []
   },
   {
     "id": "I127",
@@ -4549,7 +4737,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
@@ -4569,7 +4756,8 @@
     "range": "Close, or half of normal",
     "relevant_skill": "Varies",
     "might_requirement": null,
-    "held_slots": 1
+    "held_slots": 1,
+    "base_item_options": []
   },
   {
     "id": "I128",
@@ -4585,7 +4773,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": 1,
     "fire_resist": null,
     "frost_resist": null,
@@ -4605,7 +4792,8 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": 3,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   },
   {
     "id": "I129",
@@ -4621,7 +4809,6 @@
     "total_materials": null,
     "base_materials": null,
     "extra_materials": null,
-    "base_item": null,
     "physical_resist": 2,
     "fire_resist": null,
     "frost_resist": null,
@@ -4641,6 +4828,7 @@
     "range": null,
     "relevant_skill": null,
     "might_requirement": 6,
-    "held_slots": null
+    "held_slots": null,
+    "base_item_options": []
   }
 ]

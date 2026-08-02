@@ -81,6 +81,19 @@ technique actually *does*, not how it was built.
   Effects to go with it) by splitting each Feature-built technique's
   Effects text at "When you learn this...", same idea as the other
   draft scripts.
+
+BASE ITEM OPTIONS — items.csv can have an optional "Base Item Options"
+column, for Masterwork items only: a comma-separated list of item IDs
+that a Masterwork power can be built onto (e.g. a Torso enchantment that
+works on either Light or Heavy Armor). The site shows a base-item picker
+on the Character Sheet for any Masterwork item that has this filled in,
+and adds the chosen base item's own flat stat bonuses on top of the
+Masterwork item's own when it's equipped.
+
+  Leave the cell blank when a Masterwork item's only valid base (per the
+  rulebook's per-slot default, e.g. "basic clothing or basic jewelry")
+  doesn't carry any stats of its own — there's nothing useful to pick
+  between, so no selector is needed.
 """
 
 import csv
@@ -144,7 +157,7 @@ ITEM_MAP = {
     "Total Materials":  "total_materials",
     "Base Materials":   "base_materials",
     "Extra Materials":  "extra_materials",
-    "Base Item":        "base_item",
+    "Base Item Options": "base_item_options_raw",  # parsed below into a list of item IDs
     # Flat stat bonuses an equipped/carried item grants, one column per
     # number the Character Sheet's Vitals/Defenses/Health/Resists boxes
     # track — so an item that grants one can feed it in directly instead
@@ -443,6 +456,7 @@ for csv_file, (json_file, col_map) in TABLES.items():
         known_slots = {"Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"}
         slotted_categories = {"Masterwork", "Weapon", "Armor"}
         item_errors = []
+        items_by_id = {r.get("id"): r for r in rows}
         for r in rows:
             category = r.get("category")
             if category not in known_categories:
@@ -454,6 +468,18 @@ for csv_file, (json_file, col_map) in TABLES.items():
                 item_errors.append(f"{r.get('id')} {r.get('name')!r}: unknown Slot {slot!r}")
             if r.get("held_slots") is not None and category != "Weapon":
                 item_errors.append(f"{r.get('id')} {r.get('name')!r}: has Held Slots but Category isn't Weapon")
+
+            raw_base_opts = r.pop("base_item_options_raw", None)
+            ids = [s.strip() for s in raw_base_opts.split(",") if s.strip()] if raw_base_opts else []
+            if ids and category != "Masterwork":
+                item_errors.append(f"{r.get('id')} {r.get('name')!r}: has Base Item Options but Category isn't Masterwork")
+            for bid in ids:
+                base = items_by_id.get(bid)
+                if not base:
+                    item_errors.append(f"{r.get('id')} {r.get('name')!r}: Base Item Options references unknown item {bid!r}")
+                elif base.get("slot") != slot:
+                    item_errors.append(f"{r.get('id')} {r.get('name')!r}: Base Item Options item {bid!r} has Slot {base.get('slot')!r}, expected {slot!r}")
+            r["base_item_options"] = ids
         if item_errors:
             print(f"\n⚠ {len(item_errors)} issue(s) in {csv_file}:")
             for e in item_errors:
