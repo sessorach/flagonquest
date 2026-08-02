@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlagonQuest — Rulebook</title>
+  <title>FlagonQuest — Glossary</title>
   <link rel="icon" href="assets/mug-icon.png">
 
   <!-- MedievalSharp — fantasy display font for names/headings (free, OFL license) -->
@@ -38,7 +38,7 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #2d3555; border-radius: 4px; }
 
-    /* ── Rulebook layout: TOC sidebar + content ─────────────────────
+    /* ── Same layout as rulebook.html: TOC sidebar + content ─────────
        Narrow screens: TOC sits above the content, not beside it.
        Wide screens: sticky TOC on the left, content on the right. */
     .rulebook-layout { display: block; }
@@ -76,10 +76,12 @@ const TEXT = {
   faint: "#726c58",
 };
 
-// ── Glossary tooltip — duplicated from index.html ───────────────────
+// ── Glossary tooltip — duplicated from index.html/rulebook.html ────
 // This is a separate static page (no shared build step between files),
 // so the glossary helper/component are kept in sync by hand; they're
-// small and change rarely.
+// small and change rarely. Kept here too so a term mentioned inside one
+// glossary entry's own text (e.g. "Interrupt" inside the Fleeting entry)
+// still gets a live tooltip, same as everywhere else on the site.
 function withGlossary(text, glossary) {
   if (!text || !glossary || glossary.length === 0) return text;
   const terms = [...glossary].sort((a, b) => b.term.length - a.term.length);
@@ -128,8 +130,8 @@ function App() {
 
   useEffect(() => {
     Promise.all([
-      fetch("data/rulebook.json").then(r => {
-        if (!r.ok) throw new Error(`rulebook.json returned ${r.status}`);
+      fetch("data/glossary-page.json").then(r => {
+        if (!r.ok) throw new Error(`glossary-page.json returned ${r.status}`);
         return r.json();
       }),
       fetch("data/glossary.json").then(r => r.ok ? r.json() : []).catch(() => []),
@@ -153,8 +155,8 @@ function App() {
     textDecoration: "none", display: "inline-flex", alignItems: "center",
   });
 
-  // Same cooler blue as index.html's nav — the Rulebook link always looks
-  // like a different kind of link, not just "the active tab."
+  // Same cooler blue as index.html's nav — the Rulebook/Glossary links
+  // always look like a different kind of link, not just "the active tab."
   const rulebookLinkStyle = {
     padding: "6px 14px", fontSize: 15, fontWeight: 500, borderRadius: 6,
     background: "#0f2230", color: "#7fb8d9",
@@ -168,13 +170,13 @@ function App() {
       justifyContent: "center", color: TEXT.faint,
       fontFamily: "'MedievalSharp', Georgia, serif", fontSize: 18,
     }}>
-      Loading the rulebook…
+      Loading the glossary…
     </div>
   );
 
   if (loadError) return (
     <div style={{ minHeight:"100vh", padding:40, color:"#c0392b", fontSize:16, lineHeight:1.6, maxWidth:620 }}>
-      <strong>Couldn't load the rulebook</strong>
+      <strong>Couldn't load the glossary</strong>
       <p style={{ marginTop:10, color:TEXT.muted }}>Error: {loadError}</p>
     </div>
   );
@@ -182,8 +184,8 @@ function App() {
   return (
     <div style={{ fontFamily:"system-ui, -apple-system, sans-serif" }}>
 
-      {/* ════════ HEADER — same branding/nav as index.html, with
-          "Rulebook" as the active tab and everything else linking back. ═══ */}
+      {/* ════════ HEADER — same branding/nav as index.html/rulebook.html,
+          with everything linking back to where it belongs. ═══════════ */}
       <div style={{
         padding: "12px 20px",
         borderBottom: "0.5px solid #2d3555",
@@ -227,7 +229,7 @@ function App() {
         </div>
       </div>
 
-      {/* ════════ RULEBOOK CONTENT ═══════════════════════════════ */}
+      {/* ════════ GLOSSARY CONTENT ═══════════════════════════════ */}
       <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
         <div className="rulebook-layout">
 
@@ -237,11 +239,11 @@ function App() {
               Contents
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:2 }}>
-              {/* Only chapters (level 1) and sections (level 2) get a TOC
-                  entry — subsections (3) and glossary-style term entries
-                  (4) still exist in the page and can be linked to
-                  directly, but listing every one would make the TOC
-                  longer than the content it's supposed to summarize. */}
+              {/* Only chapters (level 1, e.g. "Card Terms") get a TOC
+                  entry — the individual term entries (level 4) still
+                  exist in the page and can be linked to directly, but
+                  listing every one would make the TOC longer than the
+                  content it's supposed to summarize. */}
               {sections.filter(s => s.level <= 2).map(s => (
                 <a
                   key={s.id}
@@ -265,14 +267,14 @@ function App() {
           <div>
             {sections.length === 0 ? (
               <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
-                No rulebook content yet.
+                No glossary content yet.
               </div>
             ) : sections.map(s => {
               const paras = (s.body || "").split(/\n\n+/).filter(Boolean);
-              // Level 4 — a glossary-style term definition (e.g. a Skill
-              // under its Stat, a Rules Tag under its section) — reads as
-              // a compact run-in entry, term bold inline with its first
-              // paragraph, rather than another full heading block.
+              // Level 4 — one glossary term — reads as a compact run-in
+              // entry, term bold inline with its first paragraph, rather
+              // than another full heading block. Most of this page is
+              // entries like this.
               if (s.level === 4) {
                 return (
                   <div key={s.id} id={s.id} style={{ marginBottom:14, marginLeft:20 }}>

@@ -1,0 +1,266 @@
+[
+  {
+    "id": "card-terms",
+    "level": 1,
+    "title": "Card Terms",
+    "body": ""
+  },
+  {
+    "id": "draw",
+    "level": 4,
+    "title": "Draw",
+    "body": "Take the top card of your deck, put it into your hand"
+  },
+  {
+    "id": "play",
+    "level": 4,
+    "title": "Play",
+    "body": "Pitch a card from your hand to add its suit to the pool for a flip you’re aware of, or add +1 to that flip’s card. Specific to the default use of cards from hand."
+  },
+  {
+    "id": "sift-x-cards",
+    "level": 4,
+    "title": "Sift (X cards)",
+    "body": "Look at the top X cards of your deck, and for each one choose to put it on the bottom of your deck or in your discard, then shuffle your deck.\n\nCan have extra mechanics tacked in, like “Sift X cards, and add their suits to the suit pool [for a flip]”.\n\nIf you would Sift more cards than are left in your deck, shuffle your discard back into your deck, then Sift that many cards."
+  },
+  {
+    "id": "keywords",
+    "level": 1,
+    "title": "Keywords",
+    "body": "These are specific terms used in many items and abilities, used to consistently refer to a mechanic."
+  },
+  {
+    "id": "countered",
+    "level": 4,
+    "title": "Countered",
+    "body": "A Technique, attack, or other ability that is Countered is still expended as normal, as are any other resources spent to use it, but otherwise has no effect as though it were never used."
+  },
+  {
+    "id": "difficult-terrain",
+    "level": 4,
+    "title": "Difficult Terrain",
+    "body": "Sometimes conditions or features of terrain can give it degrees of Difficult Terrain. To cross a meter of space that has Difficult Terrain, a character takes an extra meter of Speed for each degree of Difficult Terrain on it. A character can still move at least 1 space in this way, no matter how many degrees of Difficult Terrain there are."
+  },
+  {
+    "id": "pushing",
+    "level": 4,
+    "title": "Pushing",
+    "body": "When you are pushed you are forcibly moved a certain distance, although this does not count as \"moving\". If a creature or object is in your way you are pushed through their space, and if the Push would result in you being in an occupied space you end up in the nearest unoccupied space instead. If the creature or object is particularly big you may instead be pushed against them, with various consequences."
+  },
+  {
+    "id": "range",
+    "level": 4,
+    "title": "Range",
+    "body": "If something increases an effect's Range by X, you may choose any point within X meters to be your location for the purposes of determining area of effects and targets; you must still be able to see or otherwise target the new location. For most (non-area) effects, this simply lets you target creatures that are X meters farther away than usual.\n\nIf something decreases an effect's Range by X, it reduces the distance the effect could target something by X meters, to a minimum of 1 meter / close range.\n\nIf the same effect has its Range both increased and decreased, 1 meter of each effect cancels out until only one remains."
+  },
+  {
+    "id": "shift",
+    "level": 4,
+    "title": "Shift",
+    "body": "Shifting is like moving, with two exceptions. Nobody may take any Interrupt actions to the movement, and when you Shift you ignore Difficult Terrain."
+  },
+  {
+    "id": "summon",
+    "level": 4,
+    "title": "Summon",
+    "body": "A Summoned creature is under the command of the character who Summons it, has its own stats, acts on the turn of its summoner, and the summoner makes any flips for it. The Summoned creature does not gain AP as normal, but once per round the summoner may spend 2 AP at any time to grant the Summoned creature 4 AP. Once the summoner does this, they may not do so again for that creature until the end of their turn.\n\nA Summoned creature may only make a normal attack once during its turn."
+  },
+  {
+    "id": "teleport",
+    "level": 4,
+    "title": "Teleport",
+    "body": "When you teleport you disappear from your current location and reappear at your destination without moving through any other spaces. To Teleport you must be able to clearly see your destination, but don’t otherwise need a clear path to get there."
+  },
+  {
+    "id": "rules-tags",
+    "level": 1,
+    "title": "Rules Tags",
+    "body": "These tags designate items and abilities that work a certain way. Each tag has its own rules and, usually, some unique function."
+  },
+  {
+    "id": "buildable",
+    "level": 4,
+    "title": "[Buildable]",
+    "body": "This Technique does not have a fixed effect, and instead each time you learn it you choose features that determine what effects it has.\n\nBased on the Level at which you learn it, you get a number of points to spend on basic features, as well as advanced features if the Level is high enough\n\nEach feature is worth a certain number of points, and the total of all features cannot exceed the limit for that Level of the Technique\n\nUnless otherwise stated, you can choose a feature as many times as you like. For features with an X value, X is the number of times the feature is applied.\n\nSome features have their own requirements to choose for a Technique; these work like Technique prereqs do\n\nThis Technique may also be upgraded to a higher-Level version of itself. To do so, pay 3 Experience for each Level you want to increase the Technique by. Then you build the new version as normal, except that it must have all of the features that the previous version had. This new Technique replaces the old one, and you no longer know the old one."
+  },
+  {
+    "id": "encounter",
+    "level": 4,
+    "title": "[Encounter]",
+    "body": "Encounter abilities are expended when you use them, and you regain their use when the encounter ends and a new one begins. Encounter Techniques can be learned multiple times, and each time you learn it you gain an additional use of it."
+  },
+  {
+    "id": "fleeting",
+    "level": 4,
+    "title": "[Fleeting]",
+    "body": "At the end of your turn in combat encounters, remove one stack of each Fleeting effect you have. Outside of combat encounters, remove one stack roughly every 6 seconds."
+  },
+  {
+    "id": "food",
+    "level": 4,
+    "title": "[Food]",
+    "body": "Food items can be eaten for sustenance. Food materials will spoil and become useless a week after being gathered, and Food created items will spoil a full day after being created. You only gain the benefits or effects of the first Food item you eat each day."
+  },
+  {
+    "id": "grenade",
+    "level": 4,
+    "title": "[Grenade]",
+    "body": "Grenades are Acrobatics ranged weapons with a range of 3 × [Body], attacks using them are against the target's Dodge Defense, you may not Gamble on attacks with them, and they are consumed after the attack is made."
+  },
+  {
+    "id": "implement",
+    "level": 4,
+    "title": "[Implement]",
+    "body": "When you cast a Spell or use a Discipline ability, you may choose one of your Implements to channel the ability through, applying the Implement's effects to it. If the Implement is a weapon, the Spell or Discipline counts as an attack with that weapon for any additional effects (such as Masterwork enhancements).\n\nTo use a weapon or other item as an Implement, you must be holding or wearing it as appropriate."
+  },
+  {
+    "id": "poison",
+    "level": 4,
+    "title": "[Poison]",
+    "body": "If an attack with a poisoned weapon successfully causes a creature to lose Health, that creature is exposed to the Poison. Make an attack, adding the Poison's Concentration, against the target's Vital Defense. If it hits, the target suffers the Poison's effects. This is known as a poison attack, which occasionally has special interactions with some abilities and items.\n\nA Poison takes 2 AP to apply to a weapon or piece of ammunition. Weapons and ammunition remain poisoned for 1 hour or until they expose a creature to the Poison, and can only have one Poison at a time.\n\nEffects applied by Poisons do not expire normally. Instead, every hour 1 stack of each Poison effect is removed, and these stacks may not be removed any other way."
+  },
+  {
+    "id": "potion",
+    "level": 4,
+    "title": "[Potion]",
+    "body": "A Potion can be consumed to provide the imbiber with an effect. It takes 1 AP to use a Potion, and it must be in your hand to use."
+  },
+  {
+    "id": "duplicate",
+    "level": 4,
+    "title": "[Duplicate]",
+    "body": "Abilities with this tag can be learned more than once, and generally have special features based on how many times you learn them. (Noun, not the verb)"
+  },
+  {
+    "id": "stance",
+    "level": 4,
+    "title": "[Stance]",
+    "body": "You may enter or leave a Stance at the start of your turn, before anything else happens. You may only be in one Stance at a time, and entering a Stance will cause you to leave any other Stance you are in. If the Stance lists a condition, you may only enter the Stance while you meet the condition, and if you don't meet it at any time then you immediately leave the Stance."
+  },
+  {
+    "id": "subtle",
+    "level": 4,
+    "title": "[Subtle]",
+    "body": "Others cannot tell when this ability is being used, discern its effects, or take Interrupt actions in response to it, regardless of success or failure. This does not extend to immediate results of the ability, such as damage or effects suffered by a person after the fact, but their source or cause might not be obvious. Effectively, a Subtle version of an action, such as a weapon attack or social statement, will appear in every way to be a generic action of that kind until its results happen."
+  },
+  {
+    "id": "common-effects",
+    "level": 1,
+    "title": "Common Effects",
+    "body": ""
+  },
+  {
+    "id": "bleeding-fleeting",
+    "level": 4,
+    "title": "Bleeding [Fleeting]",
+    "body": "When you remove a stack of Bleeding at the end of your turn, lose 1 Health."
+  },
+  {
+    "id": "crippled-fleeting",
+    "level": 4,
+    "title": "Crippled [Fleeting]",
+    "body": "For each stack of this, you suffer a -1 penalty to attacks."
+  },
+  {
+    "id": "frightened-fleeting",
+    "level": 4,
+    "title": "Frightened [Fleeting]",
+    "body": "While you have any stacks of this, you have Bad Luck on any actions targeting the creature who Frightened you.\n\nIf you are Frightened of a creature who has also Taunted you, remove those stacks of Taunted."
+  },
+  {
+    "id": "harried-fleeting",
+    "level": 4,
+    "title": "Harried [Fleeting]",
+    "body": "For each stack of this, you suffer a -1 penalty to Dodge and Parry Defense. At the end of your turn, remove all stacks of Harried you have."
+  },
+  {
+    "id": "hasted-fleeting",
+    "level": 4,
+    "title": "Hasted [Fleeting]",
+    "body": "For each stack of this, you gain a +1 bonus to Speed."
+  },
+  {
+    "id": "necrotic-fleeting",
+    "level": 4,
+    "title": "Necrotic [Fleeting]",
+    "body": "If you would heal any Health, instead for each stack of Necrotic you have you reduce that amount by 1 and remove a stack of Necrotic.\n\nAt any time if you have stacks of both Necrotic and Protected, remove 1 stack of each until one effect is gone."
+  },
+  {
+    "id": "protected-fleeting",
+    "level": 4,
+    "title": "Protected [Fleeting]",
+    "body": "Whenever you would lose Health, prevent 1 Health loss for each stack of Protected you have, then remove that many stacks of Protected.\n\nThis does not apply to Health paid as a cost."
+  },
+  {
+    "id": "slowed-fleeting",
+    "level": 4,
+    "title": "Slowed [Fleeting]",
+    "body": "For each stack of this, you suffer a -1 penalty to Speed."
+  },
+  {
+    "id": "taunted-fleeting",
+    "level": 4,
+    "title": "Taunted [Fleeting]",
+    "body": "While you have any stacks of this, you have Bad Luck on any non-friendly actions which do not target the creature who Taunted you.\n\nIf you are already Taunted by another creature, remove those stacks of Taunted. If you are already Frightened of the creature who Taunted you, remove those stacks of Frightened.\n\nIf the creature who Taunted you is incapacitated or otherwise removed from combat, remove all stacks of Taunted from yourself."
+  },
+  {
+    "id": "vulnerable-fleeting",
+    "level": 4,
+    "title": "Vulnerable [Fleeting]",
+    "body": "For each stack of this, you suffer a -1 penalty to Vital, Mental, and Instinct Defenses."
+  },
+  {
+    "id": "firefrostbrilliantshadow-ward-fleeting",
+    "level": 4,
+    "title": "(Fire/Frost/Brilliant/Shadow) Ward [Fleeting]",
+    "body": "While you have any stacks of this, you have +1 Resist against the specified type of damage."
+  },
+  {
+    "id": "type-tags",
+    "level": 1,
+    "title": "Type Tags",
+    "body": "These are tags that appear on many items and abilities. They do not have any rules associated with them, but indicate that an item or creature belongs to a group that some things interact specifically with."
+  },
+  {
+    "id": "alcohol",
+    "level": 4,
+    "title": "[Alcohol]",
+    "body": "Alcohol, for the purposes of items and abilities, refers to full drinks such as the entries under Alchemical Items."
+  },
+  {
+    "id": "animal",
+    "level": 4,
+    "title": "[Animal]",
+    "body": "Animals are completely normal, non-human creatures."
+  },
+  {
+    "id": "discipline",
+    "level": 4,
+    "title": "[Discipline]",
+    "body": "Disciplines are mystical and meditative effects, the result of harnessing one's own energy to enhance their body.\n\nSome Disciplines allow you to make discipline attacks, which have special interactions with some abilities and items."
+  },
+  {
+    "id": "level-x",
+    "level": 4,
+    "title": "(Level X)",
+    "body": "Indicates that the item or ability is of X Level. If multiple Levels are listed then the item or ability can be found or learned as any of the listed Levels, with effects depending on the Level."
+  },
+  {
+    "id": "martial",
+    "level": 4,
+    "title": "[Martial]",
+    "body": "Martial abilities include swordsmanship, karate, and every kind of fighting with a weapon."
+  },
+  {
+    "id": "social",
+    "level": 4,
+    "title": "[Social]",
+    "body": "Social abilities are specific conversational tactics, usually used in social contests."
+  },
+  {
+    "id": "spell",
+    "level": 4,
+    "title": "[Spell]",
+    "body": "Spells are magical incantations that shoot fire, heal wounds, and do all kinds of things. All Spells also have a more specific type, including Elementalism Spells, Theurgy Spells, and General Spells.\n\nSpells require you to speak at a slightly loud volume and move your arms in order to cast. This means that others will notice and hear you doing so, and you cannot cast Spells if you are manacled, tied up, or otherwise restrained, although holding/carrying items does not restrict this in any way."
+  }
+]
