@@ -152,6 +152,13 @@ ITEM_MAP = {
     "Level":            "level",
     "Description":      "description",
     "Cost":             "cost",
+    # Masterwork items are priced per level (20 Gold/level) rather than a
+    # flat Cost — set for a Masterwork item with more than one valid
+    # build level, where Cost is left blank since it depends on which
+    # level you build it at. The site multiplies this by the level
+    # you've picked (see index.html). Fixed-level Masterwork items just
+    # get a flat Cost like any other item, and leave this blank.
+    "Value Per Level":  "value_per_level",
     "School":           "school",
     "Skill Total":      "skill_total",
     "Total Materials":  "total_materials",
@@ -512,6 +519,18 @@ for csv_file, (json_file, col_map) in TABLES.items():
             r["levels"] = parse_item_levels(raw_level) if raw_level else []
             if raw_level and not r["levels"]:
                 item_errors.append(f"{r.get('id')} {r.get('name')!r}: couldn't parse Level {raw_level!r}")
+            out_of_range = [lv for lv in r["levels"] if lv < 1 or lv > 5]
+            if out_of_range:
+                item_errors.append(f"{r.get('id')} {r.get('name')!r}: Level {raw_level!r} includes level(s) {out_of_range} outside 1-5")
+
+            value_per_level = r.get("value_per_level")
+            if value_per_level is not None:
+                if category != "Masterwork":
+                    item_errors.append(f"{r.get('id')} {r.get('name')!r}: has Value Per Level but Category isn't Masterwork")
+                elif len(r["levels"]) <= 1:
+                    item_errors.append(f"{r.get('id')} {r.get('name')!r}: has Value Per Level but only one valid Level — give it a flat Cost instead")
+                if r.get("cost"):
+                    item_errors.append(f"{r.get('id')} {r.get('name')!r}: has both a flat Cost and a Value Per Level — pick one")
         if item_errors:
             print(f"\n⚠ {len(item_errors)} issue(s) in {csv_file}:")
             for e in item_errors:

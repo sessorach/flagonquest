@@ -1751,13 +1751,16 @@ function statBadge(label, v) {
 // checkbox — disabled when equipping it would overflow its Slot's
 // capacity — and, for a Weapon that can Parry, a Parry radio. A
 // Masterwork item with base_item_options also gets a base-item picker
-// there (e.g. Dauntless Wrap built onto Light or Heavy Armor); its
-// stats fold into the badges shown below and into equipmentBonuses. A
+// (e.g. Dauntless Wrap built onto Light or Heavy Armor) — but only on
+// the Items tab, where the rest of an item's build config lives; the
+// Character Sheet only shows the resulting composite stat badges (own
+// stats + the chosen base item's), same as equipmentBonuses uses. A
 // Masterwork item is also "buildable" like a Feature technique — fixed-
 // level ones (item.levels has one entry) just get a "Lv N" badge, and
 // ones with a choice of levels (item.levels has more than one) get a
 // picker instead, editable wherever Qty is (Items tab, plain badge on
-// the read-only Sheet).
+// the read-only Sheet). Its Cost badge scales with the picked level for
+// a Masterwork item priced per-level (item.value_per_level).
 // ══════════════════════════════════════════════════════════════════
 function InventoryTile({
   entry, item, allItems = [], onQtyChange, onRemove, readOnly = false,
@@ -1784,6 +1787,12 @@ function InventoryTile({
     ? WEAPON_INFO_FIELDS.map(([key, label, fmt]) => [label, item[key], fmt]).filter(([, v]) => v != null && v !== "")
     : [];
   const canParry = item.category === "Weapon" && typeof item.weapon_defense === "number";
+  // A Masterwork item priced per-level (e.g. "20 Gold per level") has no
+  // flat Cost of its own — its price depends on which level you build it
+  // at, so compute it from the picked level instead.
+  const displayCost = item.value_per_level && hasLevel
+    ? `${displayLevel * item.value_per_level} Gold`
+    : item.cost;
 
   return (
     <div className="tech-card" style={{
@@ -1828,8 +1837,8 @@ function InventoryTile({
             </span>
           )
         )}
-        {!readOnly && item.cost && (
-          <span style={{ fontSize: 12, color: TEXT.faint }}>{item.cost}</span>
+        {!readOnly && displayCost && (
+          <span style={{ fontSize: 12, color: TEXT.faint }}>{displayCost}</span>
         )}
       </div>
       {item.description && (
@@ -1885,7 +1894,7 @@ function InventoryTile({
           )}
         </div>
       )}
-      {showEquip && baseItemOptions.length > 0 && (
+      {!readOnly && baseItemOptions.length > 0 && (
         <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: TEXT.body }}>
           <span style={{ color: TEXT.faint, flexShrink: 0 }}>Base item</span>
           <select
@@ -3845,7 +3854,7 @@ function App() {
           <InventorySection
             items={items} inventory={inventory} gold={gold} onGoldChange={setGold}
             onAdd={addInventoryItem} onQtyChange={setInventoryQty} onRemove={removeInventoryItem}
-            onLevelChange={setInventoryLevel}
+            onLevelChange={setInventoryLevel} onBaseItemChange={setInventoryBaseItem}
             customItems={customItems} onAddCustomItem={addCustomItem}
             onUpdateCustomItem={updateCustomItem} onRemoveCustomItem={removeCustomItem}
           />
@@ -3964,7 +3973,6 @@ function App() {
               <InventorySection
                 items={items} inventory={inventory} gold={gold} readOnly showEquip
                 onToggleEquipped={toggleEquipped} onToggleParry={toggleParryWeapon}
-                onBaseItemChange={setInventoryBaseItem}
                 customItems={customItems}
               />
             </>
