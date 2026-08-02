@@ -2776,15 +2776,37 @@ function InventorySection({
 }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
+  // Advanced filters — Slot, Tags (freeform keywords like "Implement"
+  // or "Grenade"), and Supplement (Base Game vs. a supplement like
+  // Goblin Game) — a cross-section of the item-data columns that
+  // aren't already covered by the name search or the Category picker.
+  const [advancedOpen, setAdvancedOpen] = useState(false);
+  const [slotFilter, setSlotFilter] = useState("");
+  const [tagFilter, setTagFilter] = useState("");
+  const [supplementFilter, setSupplementFilter] = useState("");
+  const NO_SLOT = "__none__";
   const categories = useMemo(() => [...new Set(items.map(i => i.category))].sort(), [items]);
+  const slots = useMemo(() => [...new Set(items.map(i => i.slot).filter(Boolean))].sort(), [items]);
+  const tagOptions = useMemo(() => {
+    const set = new Set();
+    items.forEach(it => splitCSV(it.tags).forEach(t => set.add(t)));
+    return [...set].sort();
+  }, [items]);
+  const supplements = useMemo(() => [...new Set(items.map(i => i.supplement).filter(Boolean))].sort(), [items]);
 
   const results = useMemo(() => {
     const q = search.trim().toLowerCase();
-    if (!q && !category) return [];
+    if (!q && !category && !slotFilter && !tagFilter && !supplementFilter) return [];
     return items
-      .filter(it => (!category || it.category === category) && (!q || it.name.toLowerCase().includes(q)))
+      .filter(it =>
+        (!category || it.category === category) &&
+        (!slotFilter || (slotFilter === NO_SLOT ? !it.slot : it.slot === slotFilter)) &&
+        (!tagFilter || splitCSV(it.tags).includes(tagFilter)) &&
+        (!supplementFilter || it.supplement === supplementFilter) &&
+        (!q || it.name.toLowerCase().includes(q))
+      )
       .slice(0, 40);
-  }, [items, search, category]);
+  }, [items, search, category, slotFilter, tagFilter, supplementFilter]);
 
   // Slot capacity used by everything currently equipped — real items and
   // custom items share the same per-slot capacity, since a custom Ring
@@ -2954,7 +2976,39 @@ function InventorySection({
               <option value="">All categories</option>
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
+            <button
+              onClick={() => setAdvancedOpen(o => !o)}
+              style={{
+                padding: "6px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+                background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
+                display: "flex", alignItems: "center", gap: 5,
+              }}
+            >
+              {advancedOpen ? "▲" : "▼"} Advanced
+            </button>
           </div>
+          {advancedOpen && (
+            <div style={{
+              display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
+              fontSize: 13, color: TEXT.muted,
+              background: "#12161f", border: "0.5px solid #2d3555",
+              borderRadius: 8, padding: "10px 14px", marginBottom: 10,
+            }}>
+              <select value={slotFilter} onChange={e => setSlotFilter(e.target.value)} style={{ fontSize: 13 }}>
+                <option value="">Any slot</option>
+                {slots.map(s => <option key={s} value={s}>{s}</option>)}
+                <option value={NO_SLOT}>No slot</option>
+              </select>
+              <select value={tagFilter} onChange={e => setTagFilter(e.target.value)} style={{ fontSize: 13 }}>
+                <option value="">Any keyword</option>
+                {tagOptions.map(t => <option key={t} value={t}>{t}</option>)}
+              </select>
+              <select value={supplementFilter} onChange={e => setSupplementFilter(e.target.value)} style={{ fontSize: 13 }}>
+                <option value="">Any supplement</option>
+                {supplements.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </div>
+          )}
           {results.length > 0 && (
             <div style={{
               display: "flex", flexDirection: "column", gap: 4, marginBottom: 14,
@@ -3495,6 +3549,13 @@ function App() {
       if (!hay.includes(q)) return false;
     }
     return true;
+  // Default sort: Level first (a Draft's null level_min sorts last, via
+  // Infinity, since there's nothing to rank it against), then
+  // alphabetically within the same Level — no UI control to change
+  // this, just a stable, predictable default browsing order.
+  }).sort((a, b) => {
+    const diff = (a.level_min ?? Infinity) - (b.level_min ?? Infinity);
+    return diff !== 0 ? diff : a.name.localeCompare(b.name);
   }), [techniques, search, skillFilter, tagFilter, levelMin, levelMax, healingOnly, cardsOnly]);
 
   // ── Build entries paired with their technique object ────────────
