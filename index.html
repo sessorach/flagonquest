@@ -579,6 +579,16 @@ function emptyCharacterData() {
     // customTechniques — { id, name, text, qty }, no data-file entry,
     // no stats, just a name/description/quantity.
     customItems: [],
+    // Attack Workspace, on the Character Sheet — freeform rows the
+    // player fills in by hand (a spell attack, say, since its numbers
+    // live in a Technique's prose rather than any structured data field)
+    // alongside the auto-listed equipped-weapon rows (computed, not
+    // stored). { id, name, accuracy, damage, range, skill }, all plain
+    // text since these are meant to be quick, fillable blanks.
+    customAttacks: [],
+    // A small freeform scratchpad next to the Attack Workspace — meant
+    // for quick combat notes, separate from the full Notes tab/charNotes.
+    attackNotes: "",
   };
 }
 
@@ -1592,6 +1602,113 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {} }) {
         ["Brilliant Resist", essence, "= Essence", "brilliant_resist"],
         ["Shadow Resist",    essence, "= Essence", "shadow_resist"],
       ], "Essence adds to each Resist. Parry Defense only counts the one weapon marked \"Parry\" — see Inventory below.")}
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
+// ATTACK WORKSPACE — Character Sheet only, right under Derived Stats.
+// Left: every equipped Held-slot weapon, auto-listed with its Accuracy/
+// Damage/Range/Skill (computed, not stored — see equippedWeaponAttacks),
+// plus any number of freeform custom rows for anything the auto-list
+// can't see (a spell attack, whose numbers live in a Technique's prose
+// rather than a structured data field). Right: a small notes scratchpad.
+// Always shown, even with nothing equipped yet — it's meant to stay
+// available as a fillable blank, on screen and on the printed page,
+// not just a summary of already-picked stuff like the rest of the sheet.
+// ══════════════════════════════════════════════════════════════════
+function AttackWorkspace({
+  weaponRows, customAttacks, onAddCustomAttack, onUpdateCustomAttack, onRemoveCustomAttack,
+  notes, onNotesChange,
+}) {
+  const hasRows = weaponRows.length > 0 || customAttacks.length > 0;
+  // minmax(0, ...) — plain fr tracks still respect each cell's content
+  // min-width by default, which would force this whole box to stay wide
+  // enough for 5 uncollapsed text inputs and break the side-by-side
+  // layout with the Notes box; minmax(0, ...) lets a track shrink below
+  // that (the input's own overflow/ellipsis styling covers the rest).
+  const colTemplate = "minmax(0,1.4fr) minmax(0,0.7fr) minmax(0,1.3fr) minmax(0,0.6fr) minmax(0,0.8fr) 20px";
+  const headerStyle = { fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.04em" };
+
+  return (
+    <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "flex-start" }}>
+      <div className="sheet-box" style={{
+        flex: "2 1 420px", minWidth: 0, background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+        padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+      }}>
+        <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+          Attacks
+        </div>
+        {hasRows && (
+          <div style={{ display: "grid", gridTemplateColumns: colTemplate, gap: 6 }}>
+            <span style={headerStyle}>Name</span>
+            <span style={headerStyle}>Accuracy</span>
+            <span style={headerStyle}>Damage</span>
+            <span style={headerStyle}>Range</span>
+            <span style={headerStyle}>Skill</span>
+            <span />
+          </div>
+        )}
+        {weaponRows.map(r => (
+          <div key={r.key} style={{ display: "grid", gridTemplateColumns: colTemplate, gap: 6, alignItems: "center" }}>
+            <span style={{ fontSize: 13, color: TEXT.name, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis" }}>{r.name}</span>
+            <span style={{ fontSize: 13, color: TEXT.body }}>{r.accuracy != null ? `${r.accuracy >= 0 ? "+" : ""}${r.accuracy}` : "—"}</span>
+            <span style={{ fontSize: 13, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis" }}>{r.damage ?? "—"}</span>
+            <span style={{ fontSize: 13, color: TEXT.body }}>{r.range ?? "—"}</span>
+            <span style={{ fontSize: 13, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis" }}>{r.skill ?? "—"}</span>
+            <span />
+          </div>
+        ))}
+        {customAttacks.map(r => (
+          <div key={r.id} style={{ display: "grid", gridTemplateColumns: colTemplate, gap: 6, alignItems: "center" }}>
+            <input type="text" value={r.name} onChange={e => onUpdateCustomAttack(r.id, "name", e.target.value)} placeholder="Name…" style={{ fontSize: 13, padding: "3px 6px", width: "100%", minWidth: 0, boxSizing: "border-box" }} />
+            <input type="text" value={r.accuracy} onChange={e => onUpdateCustomAttack(r.id, "accuracy", e.target.value)} placeholder="+0" style={{ fontSize: 13, padding: "3px 6px", width: "100%", minWidth: 0, boxSizing: "border-box" }} />
+            <input type="text" value={r.damage} onChange={e => onUpdateCustomAttack(r.id, "damage", e.target.value)} placeholder="—" style={{ fontSize: 13, padding: "3px 6px", width: "100%", minWidth: 0, boxSizing: "border-box" }} />
+            <input type="text" value={r.range} onChange={e => onUpdateCustomAttack(r.id, "range", e.target.value)} placeholder="—" style={{ fontSize: 13, padding: "3px 6px", width: "100%", minWidth: 0, boxSizing: "border-box" }} />
+            <input type="text" value={r.skill} onChange={e => onUpdateCustomAttack(r.id, "skill", e.target.value)} placeholder="—" style={{ fontSize: 13, padding: "3px 6px", width: "100%", minWidth: 0, boxSizing: "border-box" }} />
+            <button
+              onClick={() => onRemoveCustomAttack(r.id)}
+              aria-label={`Remove ${r.name || "attack row"}`}
+              className="no-print"
+              style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 14, lineHeight: 1, padding: 0 }}
+            >
+              ✕
+            </button>
+          </div>
+        ))}
+        {!hasRows && (
+          <div style={{ fontSize: 13, color: TEXT.faint, textAlign: "center", padding: "4px 0" }}>
+            No weapons equipped yet.
+          </div>
+        )}
+        <button
+          onClick={onAddCustomAttack}
+          className="no-print"
+          style={{
+            marginTop: 4, alignSelf: "flex-start", padding: "4px 10px", fontSize: 12, fontWeight: 500, borderRadius: 6,
+            background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
+          }}
+        >
+          + Add custom row
+        </button>
+      </div>
+
+      <div className="sheet-box" style={{
+        flex: "1 1 200px", background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+        padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+      }}>
+        <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+          Notes
+        </div>
+        <textarea
+          value={notes}
+          onChange={e => onNotesChange(e.target.value)}
+          placeholder="Combat notes, conditions, initiative…"
+          rows={6}
+          style={{ fontSize: 13, flex: 1, resize: "vertical" }}
+        />
+      </div>
     </div>
   );
 }
@@ -2715,6 +2832,9 @@ function App() {
   const [inventory, setInventory] = useState(initialCharacter.data.inventory);
   const [gold, setGold] = useState(initialCharacter.data.gold);
   const [customItems, setCustomItems] = useState(initialCharacter.data.customItems);
+  // Attack Workspace — see emptyCharacterData for the shape.
+  const [customAttacks, setCustomAttacks] = useState(initialCharacter.data.customAttacks);
+  const [attackNotes, setAttackNotes] = useState(initialCharacter.data.attackNotes);
   const importRef = useRef();
 
   // Loads one character's data into all of the state above — used by
@@ -2740,6 +2860,8 @@ function App() {
     setInventory(data.inventory);
     setGold(data.gold);
     setCustomItems(data.customItems);
+    setCustomAttacks(data.customAttacks);
+    setAttackNotes(data.attackNotes);
   };
 
   // Switches to an existing character slot.
@@ -2884,8 +3006,9 @@ function App() {
       statPoints, skillPoints, xpBudget,
       charName, charConcept, charNotes, noteRows, customTechniques,
       selectedBackgrounds, backgroundType, inventory, gold, customItems,
+      customAttacks, attackNotes,
     });
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customAttacks, attackNotes]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -3218,6 +3341,19 @@ function App() {
       : c));
   };
 
+  // ── Attack Workspace — freeform rows the player fills in (a spell
+  // attack, an equipped weapon the auto-list can't see, etc.) alongside
+  // the auto-listed equipped-weapon rows below.
+  const addCustomAttack = () => {
+    setCustomAttacks(a => [...a, { id: makeUid(), name: "", accuracy: "", damage: "", range: "", skill: "" }]);
+  };
+  const updateCustomAttack = (id, field, value) => {
+    setCustomAttacks(a => a.map(r => r.id === id ? { ...r, [field]: value } : r));
+  };
+  const removeCustomAttack = id => {
+    setCustomAttacks(a => a.filter(r => r.id !== id));
+  };
+
   // ── Backgrounds — pick at most one General, and one Settler-or-
   // Wildfolk. Clicking a background swaps it in for whichever one was
   // picked before in the same *slot* — General is its own slot, but
@@ -3364,6 +3500,31 @@ function App() {
     return totals;
   }, [inventory, items, customItems]);
 
+  // Auto-listed rows for the Attack Workspace — every equipped Held-slot
+  // item that actually has an offensive profile (Accuracy/Damage/Range).
+  // A Masterwork weapon enchantment doesn't carry these itself; they come
+  // from whichever base weapon it's built onto (see onBaseItemChange),
+  // same fallback as InventoryTile's own weaponInfo line. A Shield or a
+  // still-unset enchantment has neither and is left off the list.
+  const equippedWeaponAttacks = useMemo(() => {
+    const rows = [];
+    inventory.forEach(e => {
+      if (!e.equipped) return;
+      const item = items.find(i => i.id === e.itemId);
+      if (!item || item.slot !== "Held") return;
+      const baseItem = e.baseItemId ? items.find(i => i.id === e.baseItemId) : null;
+      const accuracy = item.accuracy ?? baseItem?.accuracy;
+      const damage = item.damage ?? baseItem?.damage;
+      const range = item.range ?? baseItem?.range;
+      if (accuracy == null && damage == null && range == null) return;
+      rows.push({
+        key: e.uid, name: item.name, accuracy, damage, range,
+        skill: item.relevant_skill ?? baseItem?.relevant_skill,
+      });
+    });
+    return rows;
+  }, [inventory, items]);
+
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
   // so the file stays readable and survives future data updates), plus
@@ -3387,6 +3548,8 @@ function App() {
         stats: c.stats || {},
         powers: (c.powers || []).map(p => ({ id: p.itemId, ...(p.level != null ? { level: p.level } : {}) })),
       })),
+      customAttacks: customAttacks.map(r => ({ name: r.name, accuracy: r.accuracy, damage: r.damage, range: r.range, skill: r.skill })),
+      attackNotes,
       exportedAt: new Date().toISOString(),
       techniques: buildEntries.map(e => {
         const cfg = configs[e.uid];
@@ -3494,6 +3657,17 @@ function App() {
                 };
               })
             : [],
+          customAttacks: Array.isArray(data.customAttacks)
+            ? data.customAttacks.map(r => ({
+                id: makeUid(),
+                name: typeof r.name === "string" ? r.name : "",
+                accuracy: typeof r.accuracy === "string" ? r.accuracy : "",
+                damage: typeof r.damage === "string" ? r.damage : "",
+                range: typeof r.range === "string" ? r.range : "",
+                skill: typeof r.skill === "string" ? r.skill : "",
+              }))
+            : [],
+          attackNotes: typeof data.attackNotes === "string" ? data.attackNotes : "",
         });
       } catch {
         alert("Couldn't read that file — make sure it's a FlagonQuest build export.");
@@ -4243,6 +4417,16 @@ function App() {
           />
           <div style={{ height:14 }} />
           <DerivedStats statPoints={statPoints} skillPoints={skillPoints} equipmentBonuses={equipmentBonuses} />
+          <div style={{ height:14 }} />
+          <AttackWorkspace
+            weaponRows={equippedWeaponAttacks}
+            customAttacks={customAttacks}
+            onAddCustomAttack={addCustomAttack}
+            onUpdateCustomAttack={updateCustomAttack}
+            onRemoveCustomAttack={removeCustomAttack}
+            notes={attackNotes}
+            onNotesChange={setAttackNotes}
+          />
 
           {selectedBackgrounds.length > 0 && (
             <>
