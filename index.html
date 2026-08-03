@@ -1212,9 +1212,13 @@ function TechCard({
       )}
 
       {/* Fluff description — italic and muted. Skipped on the read-only
-          Character Sheet, which is meant to be a lean reference. */}
+          Character Sheet, which is meant to be a lean reference. A few
+          entries are multi-line dialogue (blank-line-separated in the
+          source data), so whiteSpace:pre-line renders those as separate
+          paragraphs instead of the browser collapsing the newlines away;
+          single-paragraph descriptions are unaffected. */}
       {!readOnly && tech.description && (
-        <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5 }}>
+        <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5, whiteSpace:"pre-line" }}>
           {withGlossary(tech.description, glossary)}
         </div>
       )}
