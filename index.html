@@ -3170,6 +3170,11 @@ function XPTiles({ knownXP, unknownCount, totalXP }) {
 }
 
 
+// Builder tab's "My Build" sidebar — the compact, editable mirror of
+// whatever's shown in TechCard on the Techniques tab. `buildRows` is
+// already grouped one row per distinct technique (see the App-level
+// useMemo that builds it), so this just renders that list plus the XP
+// summary tiles; the actual add/remove/duplicate logic all lives in App.
 function BuildPanel({
   buildRows, knownXP, unknownCount, totalXP,
   notes, configs, techFeaturesById,
@@ -3281,7 +3286,10 @@ function BuildPanel({
 
 // ══════════════════════════════════════════════════════════════════
 // MAIN APP COMPONENT
-// Holds all state and renders the three views.
+// Holds all state (the active character's data, plus the fetched
+// techniques/features/items/backgrounds/glossary) and renders whichever
+// of the five tabs `view` currently points at: build, browse
+// (Techniques), items, sheet (Character sheet), notes.
 // ══════════════════════════════════════════════════════════════════
 function App() {
 
