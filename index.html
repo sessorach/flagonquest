@@ -3361,6 +3361,7 @@ function App() {
   // Attack Workspace — see emptyCharacterData for the shape.
   const [customAttacks, setCustomAttacks] = useState(initialCharacter.data.customAttacks);
   const importRef = useRef();
+  const importAllRef = useRef();
 
   // Loads one character's data into all of the state above — used by
   // switchCharacter (an existing slot) and addCharacterSlot (a brand
@@ -3390,6 +3391,18 @@ function App() {
     setEnabledSupplements(data.enabledSupplements);
   };
 
+  // The active character's data, in the same shape emptyCharacterData/
+  // applyCharacterData use — the single source of truth for "what does
+  // this character's save file look like right now," shared by the
+  // persist effect, duplicateCharacter, and doExportAll below.
+  const currentCharacterData = () => ({
+    build, notes, configs, renames, expended,
+    statPoints, skillPoints, xpBudget,
+    charName, charConcept, charNotes, noteRows, customTechniques,
+    selectedBackgrounds, backgroundType, inventory, gold, customItems,
+    customAttacks, sheetSectionOrder, enabledSupplements,
+  });
+
   // Switches to an existing character slot.
   const switchCharacter = id => {
     if (id === activeId) return;
@@ -3412,6 +3425,17 @@ function App() {
     applyCharacterData(full);
     if (switchView) setView(switchView);
     return id;
+  };
+
+  // Copies the active character into a brand-new slot — everything
+  // (build, stats, inventory, notes, the works) via the same JSON
+  // round-trip used for backup/restore, so the copy shares no object
+  // references with the original. Handy for branching off a variant
+  // build without losing the original or re-entering it by hand.
+  const duplicateCharacter = () => {
+    const data = JSON.parse(JSON.stringify(currentCharacterData()));
+    data.charName = data.charName ? `${data.charName} (Copy)` : "";
+    addCharacterSlot(data);
   };
 
   // Deletes a character slot — always leaves at least one behind, and
@@ -3527,13 +3551,7 @@ function App() {
 
   // ── Persist the active character, and keep the switcher list synced ─
   useEffect(() => {
-    saveCharacterData(activeId, {
-      build, notes, configs, renames, expended,
-      statPoints, skillPoints, xpBudget,
-      charName, charConcept, charNotes, noteRows, customTechniques,
-      selectedBackgrounds, backgroundType, inventory, gold, customItems,
-      customAttacks, sheetSectionOrder, enabledSupplements,
-    });
+    saveCharacterData(activeId, currentCharacterData());
   }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customAttacks, sheetSectionOrder, enabledSupplements]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
@@ -3686,35 +3704,70 @@ function App() {
     return [...b, { uid: makeUid(), id }];
   });
 
+  // ── Undo toast for accidental removals ───────────────────────────
+  // Remembers only the single most recent removal — a new one just
+  // replaces whatever was pending — and auto-dismisses after a few
+  // seconds so it doesn't linger. Scoped to techniques and items (both
+  // built-in and custom), the removals that cost real XP/gold to redo;
+  // small per-field removals (a stat row, a note line) aren't covered.
+  const undoTimerRef = useRef(null);
+  const [undoInfo, setUndoInfo] = useState(null); // { message, restore }
+  const offerUndo = (message, restore) => {
+    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+    setUndoInfo({ message, restore });
+    undoTimerRef.current = setTimeout(() => setUndoInfo(null), 8000);
+  };
+  const performUndo = () => {
+    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+    if (undoInfo) undoInfo.restore();
+    setUndoInfo(null);
+  };
+
   // Removes one copy (whichever was added most recently) — used by the
   // simple "Remove"/"Remove one" buttons and the build list's ✕ for
   // techniques with no per-copy data. For a non-repeatable technique
   // that's its only copy, so it behaves like a full removal.
   const removeTech = id => {
-    let removedUid = null;
-    setBuild(b => {
-      const idx = b.map(e => e.id).lastIndexOf(id);
-      if (idx === -1) return b;
-      removedUid = b[idx].uid;
-      return [...b.slice(0, idx), ...b.slice(idx + 1)];
+    const idx = build.map(e => e.id).lastIndexOf(id);
+    if (idx === -1) return;
+    const uid = build[idx].uid;
+    const savedNote = notes[uid], savedConfig = configs[uid], savedRename = renames[uid], savedExpended = expended[uid];
+    setBuild(b => [...b.slice(0, idx), ...b.slice(idx + 1)]);
+    setNotes(n => { if (!(uid in n)) return n; const c = { ...n }; delete c[uid]; return c; });
+    setConfigs(c => { if (!(uid in c)) return c; const cc = { ...c }; delete cc[uid]; return cc; });
+    setRenames(r => { if (!(uid in r)) return r; const c = { ...r }; delete c[uid]; return c; });
+    setExpended(x => { if (!(uid in x)) return x; const c = { ...x }; delete c[uid]; return c; });
+    const techName = (techniques.find(t => t.id === id) || {}).name || "technique";
+    offerUndo(`Removed ${techName}`, () => {
+      setBuild(b => [...b.slice(0, idx), { uid, id }, ...b.slice(idx)]);
+      if (savedNote !== undefined) setNotes(n => ({ ...n, [uid]: savedNote }));
+      if (savedConfig !== undefined) setConfigs(c => ({ ...c, [uid]: savedConfig }));
+      if (savedRename !== undefined) setRenames(r => ({ ...r, [uid]: savedRename }));
+      if (savedExpended !== undefined) setExpended(x => ({ ...x, [uid]: savedExpended }));
     });
-    if (removedUid) {
-      setNotes(n => { if (!(removedUid in n)) return n; const c = { ...n }; delete c[removedUid]; return c; });
-      setConfigs(c => { if (!(removedUid in c)) return c; const cc = { ...c }; delete cc[removedUid]; return cc; });
-      setRenames(r => { if (!(removedUid in r)) return r; const c = { ...r }; delete c[removedUid]; return c; });
-      setExpended(x => { if (!(removedUid in x)) return x; const c = { ...x }; delete c[removedUid]; return c; });
-    }
   };
 
   // Removes one specific copy by its uid — used for free_text/Feature
   // rows, where each copy carries its own notes/config that a plain
   // "remove the last one" wouldn't target correctly.
   const removeInstance = uid => {
+    const idx = build.findIndex(e => e.uid === uid);
+    if (idx === -1) return;
+    const id = build[idx].id;
+    const savedNote = notes[uid], savedConfig = configs[uid], savedRename = renames[uid], savedExpended = expended[uid];
     setBuild(b => b.filter(e => e.uid !== uid));
     setNotes(n => { if (!(uid in n)) return n; const c = { ...n }; delete c[uid]; return c; });
     setConfigs(c => { if (!(uid in c)) return c; const cc = { ...c }; delete cc[uid]; return cc; });
     setRenames(r => { if (!(uid in r)) return r; const c = { ...r }; delete c[uid]; return c; });
     setExpended(x => { if (!(uid in x)) return x; const c = { ...x }; delete c[uid]; return c; });
+    const techName = (techniques.find(t => t.id === id) || {}).name || "technique";
+    offerUndo(`Removed ${techName}`, () => {
+      setBuild(b => [...b.slice(0, idx), { uid, id }, ...b.slice(idx)]);
+      if (savedNote !== undefined) setNotes(n => ({ ...n, [uid]: savedNote }));
+      if (savedConfig !== undefined) setConfigs(c => ({ ...c, [uid]: savedConfig }));
+      if (savedRename !== undefined) setRenames(r => ({ ...r, [uid]: savedRename }));
+      if (savedExpended !== undefined) setExpended(x => ({ ...x, [uid]: savedExpended }));
+    });
   };
 
   // Creates a new copy with the same Feature-builder config as an
@@ -3789,7 +3842,13 @@ function App() {
     setCustomTechniques(cs => cs.map(c => c.id === id ? { ...c, [field]: value } : c));
   };
   const removeCustomTechnique = id => {
+    const idx = customTechniques.findIndex(c => c.id === id);
+    if (idx === -1) return;
+    const removed = customTechniques[idx];
     setCustomTechniques(cs => cs.filter(c => c.id !== id));
+    offerUndo(`Removed ${removed.title || "custom technique"}`, () => {
+      setCustomTechniques(cs => [...cs.slice(0, idx), removed, ...cs.slice(idx)]);
+    });
   };
   const moveCustomTechnique = (draggedId, targetId) => {
     if (draggedId === targetId) return;
@@ -3816,7 +3875,13 @@ function App() {
     setCustomItems(cs => cs.map(c => c.id === id ? { ...c, [field]: value } : c));
   };
   const removeCustomItem = id => {
+    const idx = customItems.findIndex(c => c.id === id);
+    if (idx === -1) return;
+    const removed = customItems[idx];
     setCustomItems(cs => cs.filter(c => c.id !== id));
+    offerUndo(`Removed ${removed.name || "custom item"}`, () => {
+      setCustomItems(cs => [...cs.slice(0, idx), removed, ...cs.slice(idx)]);
+    });
   };
   const moveCustomItem = (draggedId, targetId) => {
     if (draggedId === targetId) return;
@@ -4018,7 +4083,14 @@ function App() {
     setInventory(inv => inv.map(e => e.uid === uid ? { ...e, qty: Math.max(1, qty) } : e));
   };
   const removeInventoryItem = uid => {
+    const idx = inventory.findIndex(e => e.uid === uid);
+    if (idx === -1) return;
+    const removed = inventory[idx];
+    const itemName = (items.find(i => i.id === removed.itemId) || {}).name || "item";
     setInventory(inv => inv.filter(e => e.uid !== uid));
+    offerUndo(`Removed ${itemName}`, () => {
+      setInventory(inv => [...inv.slice(0, idx), removed, ...inv.slice(idx)]);
+    });
   };
   // Manual reordering via the Items tab's drag handles — same splice
   // pattern as moveBackground/moveCustomTechnique, reusing the same
@@ -4414,6 +4486,55 @@ function App() {
     e.target.value = ""; // reset so the same file can be imported again
   }
 
+  // ── Backup / restore every character slot at once ───────────────
+  // Everything lives in localStorage only — there's no account or
+  // server copy — so clearing browser data or switching devices would
+  // otherwise lose every character with no way back. This is a raw
+  // round-trip of each slot's save data (not the human-readable single-
+  // character export above), meant only for restoring into this same
+  // app, so it skips all the field-by-field validation doImport does.
+  function doExportAll() {
+    const payload = {
+      flagonquestBackup: true,
+      exportedAt: new Date().toISOString(),
+      characters: characters.map(c => ({
+        name: c.name,
+        data: c.id === activeId ? currentCharacterData() : loadCharacterData(c.id),
+      })),
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const a    = Object.assign(document.createElement("a"), {
+      href:     URL.createObjectURL(blob),
+      download: "flagonquest-all-characters.json",
+    });
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  // Restores every character from a doExportAll() file — each one lands
+  // in its own brand-new slot (never overwriting what's currently open),
+  // same "always additive" rule as a single-character import.
+  function doImportAll(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const parsed = JSON.parse(ev.target.result);
+        const list = Array.isArray(parsed.characters) ? parsed.characters : null;
+        if (!list || list.length === 0) throw new Error("no characters in file");
+        list.forEach(entry => {
+          const data = { ...emptyCharacterData(), ...(entry && entry.data) };
+          addCharacterSlot(data);
+        });
+      } catch {
+        alert("Couldn't read that file — make sure it's a FlagonQuest \"backup all\" file.");
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = "";
+  }
+
   // ── Generate a shareable URL ───────────────────────────────────
   // Encodes the build's technique IDs, character name, and Stats &
   // Skills into the URL hash — notes/Feature choices are left out to
@@ -4681,6 +4802,13 @@ function App() {
           >
             + New
           </button>
+          <button
+            onClick={duplicateCharacter}
+            title="Duplicate this character into a new slot"
+            style={actionBtn()}
+          >
+            Duplicate
+          </button>
           {characters.length > 1 && (
             <button
               onClick={() => { if (confirm(`Delete "${charName || "Unnamed hero"}"? This can't be undone.`)) deleteCharacter(activeId); }}
@@ -4943,6 +5071,29 @@ function App() {
             {shareMsg && (
               <span style={{ fontSize:14, color:"#d4a843" }}>{shareMsg}</span>
             )}
+          </div>
+
+          {/* All-characters backup — everything lives in this browser's
+              localStorage only, so clearing browser data or switching
+              devices loses every character with no way back unless it's
+              backed up like this first. Separate from Export/Import
+              build above, which is just the one active character. */}
+          <div style={{ marginBottom:24 }}>
+            <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+              All characters
+            </div>
+            <div style={{ display:"flex", gap:8, flexWrap:"wrap", alignItems:"center" }}>
+              <button onClick={doExportAll} style={actionBtn()}>
+                <i className="ti ti-download" aria-hidden="true" /> Backup all characters
+              </button>
+              <button onClick={() => importAllRef.current.click()} style={actionBtn()}>
+                <i className="ti ti-upload" aria-hidden="true" /> Restore all characters
+              </button>
+              <input ref={importAllRef} type="file" accept=".json" onChange={doImportAll} style={{ display:"none" }} />
+            </div>
+            <div style={{ fontSize:12, color:TEXT.faint, marginTop:6 }}>
+              Every character is stored only in this browser — back them all up to a file before clearing browser data or switching devices. Restoring adds each one as a new character rather than overwriting anything.
+            </div>
           </div>
 
           <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
@@ -5330,6 +5481,30 @@ function App() {
       <div className="attribution-footer" style={{ textAlign: "center", padding: "26px 16px 18px", fontSize: 12, color: TEXT.faint }}>
         FlagonQuest is a project by Friendly Flagon Games.
       </div>
+
+      {/* Undo toast — see offerUndo/performUndo above App's remove*
+          handlers. Fixed to the viewport so it stays visible regardless
+          of scroll position or which tab is open. */}
+      {undoInfo && (
+        <div className="no-print" style={{
+          position: "fixed", left: "50%", bottom: 20, transform: "translateX(-50%)",
+          display: "flex", alignItems: "center", gap: 14,
+          background: "#1e2435", border: "0.5px solid #2d3555", borderRadius: 8,
+          padding: "10px 16px", boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+          zIndex: 200, fontSize: 14,
+        }}>
+          <span>{undoInfo.message}</span>
+          <button
+            onClick={performUndo}
+            style={{
+              background: "none", border: "none", color: "#d4a843",
+              fontSize: 14, fontWeight: "bold", cursor: "pointer", padding: 0,
+            }}
+          >
+            Undo
+          </button>
+        </div>
+      )}
 
     </div>
   );
