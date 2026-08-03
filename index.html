@@ -696,6 +696,13 @@ function emptyCharacterData() {
     // (see moveSheetSection). Backgrounds first by default; some players
     // want it at the bottom instead.
     sheetSectionOrder: ["backgrounds", "techniques"],
+    // Which supplements' items/backgrounds show up as pickable on the
+    // Builder/Items tabs — see the Sources panel on Builder. Base Game
+    // only by default; a supplement (e.g. "Goblin Game") stays hidden
+    // from search/pick lists until its box is checked. Doesn't touch
+    // anything already picked before it was unchecked — this only
+    // gates what's offered going forward, see enabledSupplements' uses.
+    enabledSupplements: ["Base Game"],
   };
 }
 
@@ -2243,13 +2250,20 @@ function CustomItemTile({
   onAddStat, onStatChange, onRemoveStat, onAddPower, onPowerLevelChange, onRemovePower,
   onDragStart, onDragEnd, onDragOver, onDrop, isDragging = false,
   onAddWeapon, onRemoveWeapon, onWeaponChange, statPoints = {},
+  enabledSupplements = null,
 }) {
   if (readOnly && !entry.name.trim() && !entry.text.trim()) return null; // nothing to show
 
   const stats = entry.stats || {};
   const statKeysUsed = new Set(Object.keys(stats));
   const availableStats = ITEM_STAT_FIELDS.filter(([key]) => !statKeysUsed.has(key));
-  const masterworkOptions = allItems.filter(i => i.category === "Masterwork");
+  // Only offer a new power to attach from an enabled supplement (see
+  // the Sources panel on Builder) — a power already attached before
+  // its supplement was disabled still resolves normally below (powers
+  // looks it up in the full allItems, not this filtered list).
+  const masterworkOptions = allItems.filter(i =>
+    i.category === "Masterwork" && (!enabledSupplements || enabledSupplements.includes(i.supplement))
+  );
   const powers = (entry.powers || [])
     .map(p => ({ ...p, item: allItems.find(i => i.id === p.itemId) }))
     .filter(p => p.item);
@@ -2606,6 +2620,51 @@ function CustomItemTile({
 }
 
 
+// ══════════════════════════════════════════════════════════════════
+// SOURCES SECTION — Builder tab only. Collapsed by default; expands to
+// a checkbox per known supplement (Base Game, Goblin Game, …), letting
+// a player enable or disable which supplements' items/backgrounds show
+// up as pickable — see the App-level enabledSupplements/toggleSupplement
+// and where InventorySection/BackgroundsSection filter their search
+// results by it. Unchecking a supplement only hides it from those
+// picker lists going forward; anything already added to the build
+// stays exactly as it was.
+// ══════════════════════════════════════════════════════════════════
+function SourcesSection({ supplements, enabledSupplements, onToggle }) {
+  const [collapsed, setCollapsed] = useState(true);
+  const collapseBtnStyle = {
+    fontSize: 12, color: TEXT.muted, background: "transparent",
+    border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
+  };
+
+  if (collapsed) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ fontSize: 13, color: TEXT.body }}>
+          {enabledSupplements.length > 0 ? enabledSupplements.join(", ") : "None enabled"}
+        </div>
+        <button onClick={() => setCollapsed(false)} style={collapseBtnStyle}>Show</button>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
+        <button onClick={() => setCollapsed(true)} style={collapseBtnStyle}>Hide</button>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {supplements.map(s => (
+          <label key={s} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: TEXT.body, cursor: "pointer" }}>
+            <input type="checkbox" checked={enabledSupplements.includes(s)} onChange={() => onToggle(s)} />
+            {s}
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // A background's exclusivity group: General is its own slot, Settler
 // and Wildfolk share one slot (mutually exclusive with each other, not
 // just within themselves — see toggleBackground), and anything else
@@ -2641,6 +2700,7 @@ function isAlwaysAvailableBackground(category) {
 function BackgroundsSection({
   backgrounds, backgroundType, onBackgroundTypeChange,
   selectedIds, onToggle, onMove, dragId, setDragId,
+  enabledSupplements = null,
   readOnly = false,
 }) {
   const [collapsed, setCollapsed] = useState(true);
@@ -2673,7 +2733,10 @@ function BackgroundsSection({
     );
   }
 
-  const eligible  = backgrounds.filter(b => isAlwaysAvailableBackground(b.category) || b.category === backgroundType);
+  const eligible  = backgrounds.filter(b =>
+    (!enabledSupplements || enabledSupplements.includes(b.supplement)) &&
+    (isAlwaysAvailableBackground(b.category) || b.category === backgroundType)
+  );
   const available = eligible.filter(b => !selectedIds.includes(b.id));
   const toggleBtnStyle = active => ({
     padding: "4px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
@@ -2772,6 +2835,7 @@ function InventorySection({
   onToggleCustomItemEquipped, onAddCustomItemStat, onCustomItemStatChange, onRemoveCustomItemStat,
   onAddCustomItemPower, onCustomItemPowerLevelChange, onRemoveCustomItemPower,
   onAddCustomItemWeapon, onRemoveCustomItemWeapon, onCustomItemWeaponChange, statPoints, skillPoints,
+  enabledSupplements = null,
   dragId, setDragId, onMoveInventoryItem, onMoveCustomItem,
 }) {
   const [search, setSearch] = useState("");
@@ -2785,19 +2849,28 @@ function InventorySection({
   const [tagFilter, setTagFilter] = useState("");
   const [supplementFilter, setSupplementFilter] = useState("");
   const NO_SLOT = "__none__";
-  const categories = useMemo(() => [...new Set(items.map(i => i.category))].sort(), [items]);
-  const slots = useMemo(() => [...new Set(items.map(i => i.slot).filter(Boolean))].sort(), [items]);
+  // Items from a disabled supplement (see the Sources panel on
+  // Builder) never show up as something new to add — but `items`
+  // itself stays the full list, since a copy already carried from a
+  // since-disabled supplement still needs to render normally (base-item
+  // lookups, Masterwork power resolution, etc.) rather than vanishing.
+  const visibleItems = useMemo(
+    () => enabledSupplements ? items.filter(it => enabledSupplements.includes(it.supplement)) : items,
+    [items, enabledSupplements]
+  );
+  const categories = useMemo(() => [...new Set(visibleItems.map(i => i.category))].sort(), [visibleItems]);
+  const slots = useMemo(() => [...new Set(visibleItems.map(i => i.slot).filter(Boolean))].sort(), [visibleItems]);
   const tagOptions = useMemo(() => {
     const set = new Set();
-    items.forEach(it => splitCSV(it.tags).forEach(t => set.add(t)));
+    visibleItems.forEach(it => splitCSV(it.tags).forEach(t => set.add(t)));
     return [...set].sort();
-  }, [items]);
-  const supplements = useMemo(() => [...new Set(items.map(i => i.supplement).filter(Boolean))].sort(), [items]);
+  }, [visibleItems]);
+  const supplements = useMemo(() => [...new Set(visibleItems.map(i => i.supplement).filter(Boolean))].sort(), [visibleItems]);
 
   const results = useMemo(() => {
     const q = search.trim().toLowerCase();
     if (!q && !category && !slotFilter && !tagFilter && !supplementFilter) return [];
-    return items
+    return visibleItems
       .filter(it =>
         (!category || it.category === category) &&
         (!slotFilter || (slotFilter === NO_SLOT ? !it.slot : it.slot === slotFilter)) &&
@@ -2806,7 +2879,7 @@ function InventorySection({
         (!q || it.name.toLowerCase().includes(q))
       )
       .slice(0, 40);
-  }, [items, search, category, slotFilter, tagFilter, supplementFilter]);
+  }, [visibleItems, search, category, slotFilter, tagFilter, supplementFilter]);
 
   // Slot capacity used by everything currently equipped — real items and
   // custom items share the same per-slot capacity, since a custom Ring
@@ -2912,6 +2985,7 @@ function InventorySection({
               onRemoveWeapon={() => onRemoveCustomItemWeapon(entry.id)}
               onWeaponChange={(field, v) => onCustomItemWeaponChange(entry.id, field, v)}
               statPoints={statPoints}
+              enabledSupplements={enabledSupplements}
               onDragStart={readOnly ? undefined : (e => { e.dataTransfer.effectAllowed = "move"; setDragId(entry.id); })}
               onDragEnd={readOnly ? undefined : (() => setDragId(null))}
               onDragOver={readOnly ? undefined : (e => { if (dragId) e.preventDefault(); })}
@@ -3278,6 +3352,8 @@ function App() {
   const [backgroundType, setBackgroundType] = useState(initialCharacter.data.backgroundType);
   // Order of the Backgrounds/Techniques blocks on the Character Sheet.
   const [sheetSectionOrder, setSheetSectionOrder] = useState(initialCharacter.data.sheetSectionOrder);
+  // Which supplements are enabled — see emptyCharacterData/Sources panel.
+  const [enabledSupplements, setEnabledSupplements] = useState(initialCharacter.data.enabledSupplements);
   // Inventory — see emptyCharacterData for the shape.
   const [inventory, setInventory] = useState(initialCharacter.data.inventory);
   const [gold, setGold] = useState(initialCharacter.data.gold);
@@ -3311,6 +3387,7 @@ function App() {
     setCustomItems(data.customItems);
     setCustomAttacks(data.customAttacks);
     setSheetSectionOrder(data.sheetSectionOrder);
+    setEnabledSupplements(data.enabledSupplements);
   };
 
   // Switches to an existing character slot.
@@ -3455,9 +3532,9 @@ function App() {
       statPoints, skillPoints, xpBudget,
       charName, charConcept, charNotes, noteRows, customTechniques,
       selectedBackgrounds, backgroundType, inventory, gold, customItems,
-      customAttacks, sheetSectionOrder,
+      customAttacks, sheetSectionOrder, enabledSupplements,
     });
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customAttacks, sheetSectionOrder]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customAttacks, sheetSectionOrder, enabledSupplements]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -3852,6 +3929,23 @@ function App() {
     setCustomItems(cs => cs.some(c => c.id === key) ? cs.map(c => c.id === key ? { ...c, attackNote: note } : c) : cs);
   };
 
+  // ── Sources — which supplements' items/backgrounds are offered for
+  // picking (Items tab search, Backgrounds picker) — see the Sources
+  // panel on Builder and emptyCharacterData. The list of known
+  // supplements is derived from the data itself (every distinct
+  // `supplement` value across items and backgrounds) rather than
+  // hardcoded, so a future supplement just needs the data tagged —
+  // no code change to show up here.
+  const allSupplements = useMemo(() => {
+    const set = new Set();
+    items.forEach(i => { if (i.supplement) set.add(i.supplement); });
+    backgrounds.forEach(b => { if (b.supplement) set.add(b.supplement); });
+    return [...set].sort();
+  }, [items, backgrounds]);
+  const toggleSupplement = name => {
+    setEnabledSupplements(list => list.includes(name) ? list.filter(s => s !== name) : [...list, name]);
+  };
+
   // ── Backgrounds — pick at most one General, and one Settler-or-
   // Wildfolk. Clicking a background swaps it in for whichever one was
   // picked before in the same *slot* — General is its own slot, but
@@ -4158,6 +4252,7 @@ function App() {
       backgroundType,
       backgrounds: selectedBackgrounds,
       sheetSectionOrder,
+      enabledSupplements,
       gold,
       inventory: inventory.map(e => ({
         id: e.itemId, qty: e.qty,
@@ -4257,6 +4352,9 @@ function App() {
               && ["backgrounds", "techniques"].every(k => data.sheetSectionOrder.includes(k))
             ? data.sheetSectionOrder
             : ["backgrounds", "techniques"],
+          enabledSupplements: Array.isArray(data.enabledSupplements)
+            ? data.enabledSupplements.filter(s => typeof s === "string")
+            : ["Base Game"],
           gold: typeof data.gold === "string" ? data.gold : "",
           inventory: Array.isArray(data.inventory)
             ? data.inventory.filter(e => e && typeof e.id === "string").map(e => ({
@@ -4842,6 +4940,16 @@ function App() {
           </div>
 
           <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+            Sources
+          </div>
+          <SourcesSection
+            supplements={allSupplements}
+            enabledSupplements={enabledSupplements}
+            onToggle={toggleSupplement}
+          />
+          <div style={{ height:24 }} />
+
+          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Stats &amp; Skills
           </div>
           <StatsPanel
@@ -4861,6 +4969,7 @@ function App() {
             backgroundType={backgroundType} onBackgroundTypeChange={setBackgroundType}
             selectedIds={selectedBackgrounds} onToggle={toggleBackground} onMove={moveBackground}
             dragId={dragId} setDragId={setDragId}
+            enabledSupplements={enabledSupplements}
           />
           <div style={{ height:24 }} />
 
@@ -4979,6 +5088,7 @@ function App() {
             onCustomItemPowerLevelChange={customItemPowerLevelChange} onRemoveCustomItemPower={removeCustomItemPower}
             onAddCustomItemWeapon={addCustomItemWeapon} onRemoveCustomItemWeapon={removeCustomItemWeapon}
             onCustomItemWeaponChange={customItemWeaponChange} statPoints={statPoints} skillPoints={skillPoints}
+            enabledSupplements={enabledSupplements}
             dragId={dragId} setDragId={setDragId}
             onMoveInventoryItem={moveInventoryItem} onMoveCustomItem={moveCustomItem}
           />
