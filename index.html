@@ -4710,28 +4710,34 @@ function App() {
             Notes
           </button>
 
-          <div style={{ width:56, display:"flex", justifyContent:"center", alignItems:"center", flexShrink:0 }} aria-hidden="true">
-            <div style={{ width:1, height:22, background:"#2d3555" }} />
-          </div>
+          {/* Divider + Rulebook + Glossary grouped into their own flex
+              item, so the pair wraps to the next line as a unit instead
+              of splitting — Glossary alone left stranded on its own
+              line if there wasn't quite enough room for both. */}
+          <div style={{ display:"flex", alignItems:"center", gap:6, flexShrink:0 }}>
+            <div style={{ width:56, display:"flex", justifyContent:"center", alignItems:"center", flexShrink:0 }} aria-hidden="true">
+              <div style={{ width:1, height:22, background:"#2d3555" }} />
+            </div>
 
-          <a
-            href="rulebook.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rulebook-link"
-            style={rulebookLinkStyle}
-          >
-            Rulebook
-          </a>
-          <a
-            href="glossary.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rulebook-link"
-            style={rulebookLinkStyle}
-          >
-            Glossary
-          </a>
+            <a
+              href="rulebook.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rulebook-link"
+              style={rulebookLinkStyle}
+            >
+              Rulebook
+            </a>
+            <a
+              href="glossary.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rulebook-link"
+              style={rulebookLinkStyle}
+            >
+              Glossary
+            </a>
+          </div>
         </div>
       </div>
 
