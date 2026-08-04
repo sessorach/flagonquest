@@ -1536,13 +1536,21 @@ function PointStepper({ value, onChange, max = 5 }) {
 // visible in print as a snapshot of current health, or blank-ish
 // boxes to fill by hand on a fresh printout.
 // ══════════════════════════════════════════════════════════════════
-function HealthTrack({ label, max, current, onChange }) {
+function HealthTrack({ label, max, current, onChange, badge }) {
   const value = Math.max(0, Math.min(current, max));
   return (
     <div>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 3 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 2 }}>
         <span style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</span>
-        <span style={{ fontSize: 12, color: TEXT.faint }}>{value} / {max}</span>
+        {badge}
+      </div>
+      {/* Bigger and more spaced out than a typical formula-row number
+          (see block() in DerivedStats) — this is the number a player
+          glances at mid-combat, not a background calculation. On its
+          own line below the label so the Wounded badge never crowds it
+          into wrapping awkwardly. */}
+      <div style={{ fontSize: 26, fontWeight: 700, color: TEXT.name, letterSpacing: "0.02em", marginBottom: 4 }}>
+        {value}<span style={{ color: TEXT.faint, fontWeight: 400, margin: "0 6px" }}>/</span>{max}
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
         <span className="no-print">
@@ -1694,7 +1702,7 @@ function StatsPanel({
 // ══════════════════════════════════════════════════════════════════
 function DerivedStats({
   statPoints, skillPoints, equipmentBonuses = {}, techniqueBonuses = {},
-  currentHealth = { shallow: null, deep: null }, onHealthChange,
+  currentHealth = { shallow: null, deep: null }, onHealthChange, glossary = [],
 }) {
   const st = skill => skillTotalValue(statPoints, skillPoints, skill);
   const essence = statPoints.Essence || 0;
@@ -1702,6 +1710,19 @@ function DerivedStats({
   const techBonus = key => techniqueBonuses[key] || 0;
   const shallowMax = 5 + bonus("shallow_health") + techBonus("shallow_health");
   const deepMax     = 5 + bonus("deep_health")    + techBonus("deep_health");
+
+  // Wounded — missing all Shallow Health (see the glossary entry below)
+  // — auto-applies its -2 to Speed and the five Defenses rather than
+  // leaving the player to remember it; WOUND_PENALTY_KEYS is exactly
+  // those six ITEM_STAT_FIELDS keys. Bad Luck on flips can't be
+  // "applied" the same way (there's no dice/card engine here), so that
+  // half of the rule is called out in plain text instead — see the
+  // caption under the Shallow Health track below.
+  const shallowCurrent = Math.max(0, Math.min(currentHealth.shallow ?? shallowMax, shallowMax));
+  const wounded = shallowCurrent <= 0;
+  const WOUND_PENALTY_KEYS = new Set(["speed", "parry_defense", "dodge_defense", "bodily_defense", "mental_defense", "instinct_defense"]);
+  const woundedDesc = (glossary.find(g => g.term === "Wounded") || {}).description
+    || "Missing all Shallow Health — Bad Luck on all flips, and -2 to all Defenses and Speed.";
 
   // Each row's name is bold with its calculation in italics underneath —
   // matching the paper character sheet — instead of both crammed onto
@@ -1731,6 +1752,7 @@ function DerivedStats({
       {rows.map(([label, base, formula, statKey], i) => {
         const eq = statKey ? bonus(statKey) : 0;
         const tq = statKey ? techBonus(statKey) : 0;
+        const wound = wounded && statKey && WOUND_PENALTY_KEYS.has(statKey) ? -2 : 0;
         const parts = [];
         if (eq !== 0) parts.push(`${eq > 0 ? "+" : "−"}${Math.abs(eq)} equipped`);
         if (tq !== 0) parts.push(`${tq > 0 ? "+" : "−"}${Math.abs(tq)} known`);
@@ -1742,13 +1764,16 @@ function DerivedStats({
           }}>
             <div>
               <div style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</div>
-              {formula && (
+              {(formula || wound !== 0) && (
                 <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic" }}>
                   {formula}{parts.length > 0 && ` (${parts.join(", ")})`}
+                  {wound !== 0 && (
+                    <span style={{ color: "#e0645f", fontWeight: 700, fontStyle: "normal" }}> · Wounded {wound}</span>
+                  )}
                 </div>
               )}
             </div>
-            <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name, flexShrink: 0 }}>{base + eq + tq}</span>
+            <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name, flexShrink: 0 }}>{base + eq + tq + wound}</span>
           </div>
         );
       })}
@@ -1799,7 +1824,25 @@ function DerivedStats({
           label="Shallow Health" max={shallowMax}
           current={currentHealth.shallow ?? shallowMax}
           onChange={v => onHealthChange && onHealthChange("shallow", v)}
+          badge={wounded && (
+            <span style={{
+              fontSize: 11, fontWeight: 700, color: "#e0645f",
+              border: "0.5px solid #e0645f", borderRadius: 4, padding: "1px 6px",
+              textTransform: "uppercase", letterSpacing: "0.04em",
+            }}>
+              <GlossaryTerm term="Wounded" description={woundedDesc} />
+            </span>
+          )}
         />
+        {/* Bad Luck on flips can't be auto-applied (no dice/card engine
+            here), unlike the -2 to Speed/Defenses above — called out in
+            plain text, not hidden behind the badge's hover tooltip, so
+            it's just as hard to miss as the numbers that did change. */}
+        {wounded && (
+          <div style={{ fontSize: 11, color: "#e0645f", lineHeight: 1.4, marginTop: -4 }}>
+            Wounded: −2 Defenses/Speed applied above. Also apply Bad Luck to all flips.
+          </div>
+        )}
         <HealthTrack
           label="Deep Health" max={deepMax}
           current={currentHealth.deep ?? deepMax}
@@ -5435,6 +5478,7 @@ function App() {
             statPoints={statPoints} skillPoints={skillPoints}
             equipmentBonuses={equipmentBonuses} techniqueBonuses={techniqueHealthBonuses}
             currentHealth={currentHealth} onHealthChange={setHealthTrack}
+            glossary={glossary}
           />
           <div style={{ height:14 }} />
           <AttackWorkspace
