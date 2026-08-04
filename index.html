@@ -703,6 +703,14 @@ function emptyCharacterData() {
     // anything already picked before it was unchecked — this only
     // gates what's offered going forward, see enabledSupplements' uses.
     enabledSupplements: ["Base Game"],
+    // Character Sheet only — current Shallow/Deep Health, tracked
+    // against whatever the max currently computes to (see HealthTrack/
+    // DerivedStats). null means "untouched, so treat as full" rather
+    // than baking in a specific number that Equipment/technique bonuses
+    // could immediately make wrong. Session-tracking state like
+    // `expended` above — deliberately left out of doExport() so sharing
+    // or duplicating a build doesn't hand off someone else's wounds.
+    currentHealth: { shallow: null, deep: null },
   };
 }
 
@@ -1515,6 +1523,51 @@ function PointStepper({ value, onChange, max = 5 }) {
 
 
 // ══════════════════════════════════════════════════════════════════
+// HEALTH TRACK — Shallow/Deep Health's "how much do I have left"
+// widget, underneath the max-Health numbers in DerivedStats. The pips
+// are a pure visual readout (❤️ filled, 🤍 empty) driven two ways: the
+// same PointStepper used everywhere else, for one-at-a-time changes
+// (most of actual play — took a hit, healed 1), or clicking any pip to
+// jump straight to that count (faster for bigger swings — a multi-
+// point hit, or resetting to full after a rest). Clicking the
+// currently-last-filled pip again clears it, so the same pip toggles
+// rather than being a one-way ratchet.
+// The stepper is no-print (meaningless on paper); the pips stay
+// visible in print as a snapshot of current health, or blank-ish
+// boxes to fill by hand on a fresh printout.
+// ══════════════════════════════════════════════════════════════════
+function HealthTrack({ label, max, current, onChange }) {
+  const value = Math.max(0, Math.min(current, max));
+  return (
+    <div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 3 }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</span>
+        <span style={{ fontSize: 12, color: TEXT.faint }}>{value} / {max}</span>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+        <span className="no-print">
+          <PointStepper value={value} onChange={onChange} max={max} />
+        </span>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+          {Array.from({ length: max }, (_, i) => (
+            <span
+              key={i}
+              onClick={() => onChange(value === i + 1 ? i : i + 1)}
+              title={`Set ${label} to ${i + 1}`}
+              aria-label={`Set ${label} to ${i + 1}`}
+              style={{ cursor: "pointer", fontSize: 15, lineHeight: 1, userSelect: "none" }}
+            >
+              {i < value ? "❤️" : "🤍"}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+// ══════════════════════════════════════════════════════════════════
 // STATS PANEL — the 5-stat/5-skill-each point-buy grid, plus the XP
 // spent on it and an optional total-XP budget. Interactive; rendered
 // both on the "My build" tab and the Character Sheet so adjusting a
@@ -1639,11 +1692,16 @@ function StatsPanel({
 // from Stats & Skills (Speed, Defenses, etc.), matching the formulas
 // printed on the paper character sheet.
 // ══════════════════════════════════════════════════════════════════
-function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {}, techniqueBonuses = {} }) {
+function DerivedStats({
+  statPoints, skillPoints, equipmentBonuses = {}, techniqueBonuses = {},
+  currentHealth = { shallow: null, deep: null }, onHealthChange,
+}) {
   const st = skill => skillTotalValue(statPoints, skillPoints, skill);
   const essence = statPoints.Essence || 0;
   const bonus = key => equipmentBonuses[key] || 0;
   const techBonus = key => techniqueBonuses[key] || 0;
+  const shallowMax = 5 + bonus("shallow_health") + techBonus("shallow_health");
+  const deepMax     = 5 + bonus("deep_health")    + techBonus("deep_health");
 
   // Each row's name is bold with its calculation in italics underneath —
   // matching the paper character sheet — instead of both crammed onto
@@ -1717,10 +1775,6 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {}, techniqu
         ["Mental Defense",   8 + st("Composure"), "= 8 + Composure", "mental_defense"],
         ["Instinct Defense", 8 + st("Insight"), "= 8 + Insight", "instinct_defense"],
       ])}
-      {block("Health", [
-        ["Shallow Health", 5, "(base)", "shallow_health"],
-        ["Deep Health",    5, "(base)", "deep_health"],
-      ])}
       {block("Resists", [
         ["Physical Resist",  essence, "= Essence", "physical_resist"],
         ["Fire Resist",      essence, "= Essence", "fire_resist"],
@@ -1728,6 +1782,30 @@ function DerivedStats({ statPoints, skillPoints, equipmentBonuses = {}, techniqu
         ["Brilliant Resist", essence, "= Essence", "brilliant_resist"],
         ["Shadow Resist",    essence, "= Essence", "shadow_resist"],
       ], "Essence adds to each Resist.")}
+      {/* Health — the only box with live, clickable widgets instead of
+          just computed numbers, so it gets its own layout rather than
+          going through the generic block() row renderer above. Current
+          health is session-tracking state (like the Character Sheet's
+          Expended checkboxes), not part of the build — see App's
+          currentHealth/setHealthTrack and its exclusion from doExport. */}
+      <div className="sheet-box" style={{
+        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+        display: "flex", flexDirection: "column", gap: 8, flex: "1 1 220px",
+      }}>
+        <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+          Health
+        </div>
+        <HealthTrack
+          label="Shallow Health" max={shallowMax}
+          current={currentHealth.shallow ?? shallowMax}
+          onChange={v => onHealthChange && onHealthChange("shallow", v)}
+        />
+        <HealthTrack
+          label="Deep Health" max={deepMax}
+          current={currentHealth.deep ?? deepMax}
+          onChange={v => onHealthChange && onHealthChange("deep", v)}
+        />
+      </div>
     </div>
   );
 }
@@ -3372,6 +3450,9 @@ function App() {
   const [customItems, setCustomItems] = useState(initialCharacter.data.customItems);
   // Attack Workspace — see emptyCharacterData for the shape.
   const [customAttacks, setCustomAttacks] = useState(initialCharacter.data.customAttacks);
+  // Current Shallow/Deep Health — see emptyCharacterData for why this
+  // is session state, not part of the build proper.
+  const [currentHealth, setCurrentHealth] = useState(initialCharacter.data.currentHealth);
   const importRef = useRef();
   const importAllRef = useRef();
 
@@ -3401,6 +3482,7 @@ function App() {
     setCustomAttacks(data.customAttacks);
     setSheetSectionOrder(data.sheetSectionOrder);
     setEnabledSupplements(data.enabledSupplements);
+    setCurrentHealth(data.currentHealth);
   };
 
   // The active character's data, in the same shape emptyCharacterData/
@@ -3412,7 +3494,7 @@ function App() {
     statPoints, skillPoints, xpBudget,
     charName, charConcept, charNotes, noteRows, customTechniques,
     selectedBackgrounds, backgroundType, inventory, gold, customItems,
-    customAttacks, sheetSectionOrder, enabledSupplements,
+    customAttacks, sheetSectionOrder, enabledSupplements, currentHealth,
   });
 
   // Switches to an existing character slot.
@@ -3564,7 +3646,7 @@ function App() {
   // ── Persist the active character, and keep the switcher list synced ─
   useEffect(() => {
     saveCharacterData(activeId, currentCharacterData());
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customAttacks, sheetSectionOrder, enabledSupplements]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customAttacks, sheetSectionOrder, enabledSupplements, currentHealth]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -3582,6 +3664,7 @@ function App() {
   const setNote = (uid, text) => setNotes(n => ({ ...n, [uid]: text }));
   const setRename = (uid, text) => setRenames(r => ({ ...r, [uid]: text }));
   const setExpendedFor = (uid, val) => setExpended(x => ({ ...x, [uid]: val }));
+  const setHealthTrack = (track, value) => setCurrentHealth(h => ({ ...h, [track]: value }));
   const addNoteRow    = () => setNoteRows(r => [...r, { id: makeUid(), text: "" }]);
   const updateNoteRow = (id, text) => setNoteRows(r => r.map(row => row.id === id ? { ...row, text } : row));
   const removeNoteRow = id => setNoteRows(r => r.filter(row => row.id !== id));
@@ -5348,7 +5431,11 @@ function App() {
             readOnly
           />
           <div style={{ height:14 }} />
-          <DerivedStats statPoints={statPoints} skillPoints={skillPoints} equipmentBonuses={equipmentBonuses} techniqueBonuses={techniqueHealthBonuses} />
+          <DerivedStats
+            statPoints={statPoints} skillPoints={skillPoints}
+            equipmentBonuses={equipmentBonuses} techniqueBonuses={techniqueHealthBonuses}
+            currentHealth={currentHealth} onHealthChange={setHealthTrack}
+          />
           <div style={{ height:14 }} />
           <AttackWorkspace
             weaponRows={equippedWeaponAttacks}
