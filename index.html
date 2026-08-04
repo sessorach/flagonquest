@@ -1819,25 +1819,25 @@ function DerivedStats({
           <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
             Health
           </div>
-          {wounded && (
-            <span style={{
-              fontSize: 11, fontWeight: 700, color: "#e0645f",
-              border: "0.5px solid #e0645f", borderRadius: 4, padding: "1px 6px",
-              textTransform: "uppercase", letterSpacing: "0.04em",
-            }}>
-              <GlossaryTerm term="Wounded" description={woundedDesc} />
-            </span>
-          )}
+          {/* Always rendered (just hidden, not unmounted) so the Health
+              rows below never shift position when Wounded toggles on or
+              off — same idea for the caption underneath. */}
+          <span style={{
+            visibility: wounded ? "visible" : "hidden",
+            fontSize: 11, fontWeight: 700, color: "#e0645f",
+            border: "0.5px solid #e0645f", borderRadius: 4, padding: "1px 6px",
+            textTransform: "uppercase", letterSpacing: "0.04em",
+          }}>
+            <GlossaryTerm term="Wounded" description={woundedDesc} />
+          </span>
         </div>
         {/* Bad Luck on flips can't be auto-applied (no dice/card engine
-            here), unlike the -2 to Speed/Defenses above — called out in
-            plain text, not hidden behind the badge's hover tooltip, so
-            it's just as hard to miss as the numbers that did change. */}
-        {wounded && (
-          <div style={{ fontSize: 11, color: "#e0645f", lineHeight: 1.4, marginTop: -4 }}>
-            Wounded: −2 Defenses/Speed applied above. Also apply Bad Luck to all flips.
-          </div>
-        )}
+            here), unlike the -2 to Speed/Defenses, which is — called out
+            in plain text, not hidden behind the badge's hover tooltip,
+            so it's just as hard to miss as the numbers that did change. */}
+        <div style={{ visibility: wounded ? "visible" : "hidden", fontSize: 11, color: "#e0645f", lineHeight: 1.4, marginTop: -4 }}>
+          Wounded: −2 Defenses/Speed applied. Also apply Bad Luck to all flips.
+        </div>
         <HealthTrack
           label="Shallow Health" max={shallowMax}
           current={currentHealth.shallow ?? shallowMax}
