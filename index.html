@@ -1536,21 +1536,19 @@ function PointStepper({ value, onChange, max = 5 }) {
 // visible in print as a snapshot of current health, or blank-ish
 // boxes to fill by hand on a fresh printout.
 // ══════════════════════════════════════════════════════════════════
-function HealthTrack({ label, max, current, onChange, badge }) {
+function HealthTrack({ label, max, current, onChange }) {
   const value = Math.max(0, Math.min(current, max));
   return (
     <div>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 2 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 3 }}>
         <span style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</span>
-        {badge}
-      </div>
-      {/* Bigger and more spaced out than a typical formula-row number
-          (see block() in DerivedStats) — this is the number a player
-          glances at mid-combat, not a background calculation. On its
-          own line below the label so the Wounded badge never crowds it
-          into wrapping awkwardly. */}
-      <div style={{ fontSize: 26, fontWeight: 700, color: TEXT.name, letterSpacing: "0.02em", marginBottom: 4 }}>
-        {value}<span style={{ color: TEXT.faint, fontWeight: 400, margin: "0 6px" }}>/</span>{max}
+        {/* Bigger than a typical formula-row number (see block() in
+            DerivedStats) — this is the number a player glances at
+            mid-combat, not a background calculation — but still on the
+            same line as the label rather than its own row. */}
+        <span style={{ fontSize: 17, fontWeight: 700, color: TEXT.name, flexShrink: 0 }}>
+          {value}<span style={{ color: TEXT.faint, fontWeight: 400, margin: "0 3px" }}>/</span>{max}
+        </span>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
         <span className="no-print">
@@ -1817,14 +1815,11 @@ function DerivedStats({
         background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
         display: "flex", flexDirection: "column", gap: 8, flex: "1 1 220px",
       }}>
-        <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
-          Health
-        </div>
-        <HealthTrack
-          label="Shallow Health" max={shallowMax}
-          current={currentHealth.shallow ?? shallowMax}
-          onChange={v => onHealthChange && onHealthChange("shallow", v)}
-          badge={wounded && (
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+          <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+            Health
+          </div>
+          {wounded && (
             <span style={{
               fontSize: 11, fontWeight: 700, color: "#e0645f",
               border: "0.5px solid #e0645f", borderRadius: 4, padding: "1px 6px",
@@ -1833,7 +1828,7 @@ function DerivedStats({
               <GlossaryTerm term="Wounded" description={woundedDesc} />
             </span>
           )}
-        />
+        </div>
         {/* Bad Luck on flips can't be auto-applied (no dice/card engine
             here), unlike the -2 to Speed/Defenses above — called out in
             plain text, not hidden behind the badge's hover tooltip, so
@@ -1843,6 +1838,11 @@ function DerivedStats({
             Wounded: −2 Defenses/Speed applied above. Also apply Bad Luck to all flips.
           </div>
         )}
+        <HealthTrack
+          label="Shallow Health" max={shallowMax}
+          current={currentHealth.shallow ?? shallowMax}
+          onChange={v => onHealthChange && onHealthChange("shallow", v)}
+        />
         <HealthTrack
           label="Deep Health" max={deepMax}
           current={currentHealth.deep ?? deepMax}
