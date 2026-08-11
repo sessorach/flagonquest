@@ -252,6 +252,15 @@ ITEM_MAP = {
     # anything added later. Not used for any calculation yet, just
     # tracked so a future supplement filter has something to key off of.
     "Supplement":         "supplement",
+    # Category = "Material" only. Comma-separated Material Types (Metal,
+    # Wood, Bone, Cloth, Leather, Food, Medicinal, Precious, Brilliant,
+    # Fire, Frost, Shadow — see "Material Types" in the rulebook's
+    # Creating Items chapter) this material counts as for crafting recipe
+    # requirements. A material can list more than one Type (e.g. a
+    # special GM-granted material that's both Metal and Fire) — stays a
+    # raw string, split client-side the same way Tags is (splitCSV), not
+    # parsed into a list here.
+    "Material Types":     "material_types",
 }
 
 BACKGROUND_MAP = {
@@ -625,7 +634,7 @@ for csv_file, (json_file, col_map) in TABLES.items():
             print()
 
     if csv_file == "items.csv":
-        known_categories = {"Equipment", "Pack/Gear", "Tool/Kit", "Food", "Grenade", "Potion", "Poison", "Masterwork", "Weapon", "Armor"}
+        known_categories = {"Equipment", "Pack/Gear", "Tool/Kit", "Food", "Grenade", "Potion", "Poison", "Masterwork", "Weapon", "Armor", "Material"}
         known_slots = {"Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"}
         slotted_categories = {"Masterwork", "Weapon", "Armor"}
         item_errors = []
@@ -641,6 +650,10 @@ for csv_file, (json_file, col_map) in TABLES.items():
                 item_errors.append(f"{r.get('id')} {r.get('name')!r}: unknown Slot {slot!r}")
             if r.get("held_slots") is not None and category != "Weapon":
                 item_errors.append(f"{r.get('id')} {r.get('name')!r}: has Held Slots but Category isn't Weapon")
+            if r.get("material_types") and category != "Material":
+                item_errors.append(f"{r.get('id')} {r.get('name')!r}: has Material Types but Category isn't Material")
+            if category == "Material" and not r.get("material_types"):
+                item_errors.append(f"{r.get('id')} {r.get('name')!r}: Category is Material but Material Types is blank")
 
             raw_base_opts = r.pop("base_item_options_raw", None)
             ids = [s.strip() for s in raw_base_opts.split(",") if s.strip()] if raw_base_opts else []

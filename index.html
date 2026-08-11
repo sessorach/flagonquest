@@ -682,6 +682,12 @@ function emptyCharacterData() {
     // customTechniques — { id, name, text, qty }, no data-file entry,
     // no stats, just a name/description/quantity.
     customItems: [],
+    // GM-granted crafting materials that don't come from the data file
+    // (e.g. a special one-off that's both Metal and Fire) — see
+    // MATERIAL_TYPES/CustomMaterialTile. { id, name, level, types, qty }.
+    // Part of the build (unlike currentHealth below), so this does
+    // travel with Export/Share/Duplicate/Backup-all.
+    customMaterials: [],
     // Attack Workspace, on the Character Sheet — freeform rows the
     // player fills in by hand (a spell attack, say, since its numbers
     // live in a Technique's prose rather than any structured data field)
@@ -2179,6 +2185,9 @@ function InventoryTile({
       return [label, own + base];
     })
     .filter(([, v]) => v !== 0);
+  // Category = "Material" items (see MATERIAL_TYPES) — the Types a
+  // crafting recipe would check this material against.
+  const materialTypes = splitCSV(item.material_types);
   const weaponInfo = item.category === "Weapon"
     ? WEAPON_INFO_FIELDS
         .filter(([key]) => key !== "might_requirement")
@@ -2307,6 +2316,18 @@ function InventoryTile({
               borderRadius: 4, padding: "1px 6px",
             }}>
               {statBadge(label, v)}
+            </span>
+          ))}
+        </div>
+      )}
+      {materialTypes.length > 0 && (
+        <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+          {materialTypes.map(t => (
+            <span key={t} style={{
+              fontSize: 11, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
+              borderRadius: 4, padding: "1px 6px",
+            }}>
+              {t}
             </span>
           ))}
         </div>
@@ -2936,6 +2957,96 @@ function BackgroundsSection({
 // both Held slots at once (its own held_slots column); everything else,
 // including rings, takes 1. A custom item always costs 1 (no held_slots
 // concept for freeform gear).
+// The 12 canonical crafting Material Types from the rulebook's Creating
+// Items chapter — shared by the Material item category (see items.csv's
+// Material Types column) and custom materials below, so a future
+// crafting-recipe checker can treat either source the same way.
+const MATERIAL_TYPES = ["Bone", "Cloth", "Leather", "Metal", "Wood", "Food",
+  "Medicinal", "Precious", "Brilliant", "Fire", "Frost", "Shadow"];
+
+// ══════════════════════════════════════════════════════════════════
+// CUSTOM MATERIAL TILE — a GM-granted crafting material that doesn't
+// come from the data file, e.g. a special one that counts as both Metal
+// and Fire. Deliberately much lighter than CustomItemTile (no slot,
+// equip, stats, or powers — materials aren't worn) since the whole
+// point is this should take a few clicks, not a form: a name, a Level
+// (capped at 5 like every data-file item), and any number of Types
+// toggled on. Read-only view only lists the Types that are actually on,
+// not the full picker.
+// ══════════════════════════════════════════════════════════════════
+function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, onToggleType, onRemove, readOnly = false }) {
+  return (
+    <div className="tech-card" style={{
+      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+      padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        {readOnly ? (
+          <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 15, color: TEXT.name, flex: 1 }}>
+            {entry.name || "Custom material"}
+          </span>
+        ) : (
+          <input
+            type="text" placeholder="Material name…"
+            value={entry.name} onChange={e => onNameChange(e.target.value)}
+            style={{ flex: 1, fontSize: 14, fontFamily: "'MedievalSharp', Georgia, serif" }}
+          />
+        )}
+        {!readOnly && (
+          <button
+            onClick={onRemove}
+            aria-label={`Remove ${entry.name || "custom material"}`}
+            style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 16, lineHeight: 1, padding: "2px 4px", flexShrink: 0 }}
+          >
+            ✕
+          </button>
+        )}
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <span style={{ fontSize: 12, color: TEXT.faint }}>Level</span>
+        {readOnly ? (
+          <span style={{ fontSize: 13, color: TEXT.name }}>{entry.level}</span>
+        ) : (
+          <PointStepper value={entry.level} max={5} onChange={onLevelChange} />
+        )}
+      </div>
+      <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+        {MATERIAL_TYPES.filter(t => !readOnly || entry.types.includes(t)).map(t => {
+          const active = entry.types.includes(t);
+          return (
+            <button
+              key={t}
+              onClick={readOnly ? undefined : () => onToggleType(t)}
+              disabled={readOnly}
+              style={{
+                fontSize: 11, padding: "1px 7px", borderRadius: 4,
+                background: active ? "#20180a" : "transparent",
+                color: active ? "#e8c46a" : TEXT.faint,
+                border: `0.5px solid ${active ? "#6b5423" : "#2d3555"}`,
+                cursor: readOnly ? "default" : "pointer",
+              }}
+            >
+              {t}
+            </button>
+          );
+        })}
+        {readOnly && entry.types.length === 0 && (
+          <span style={{ fontSize: 12, color: TEXT.faint, fontStyle: "italic" }}>No types set</span>
+        )}
+      </div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
+        <span style={{ fontSize: 12, color: TEXT.faint }}>Qty</span>
+        {readOnly ? (
+          <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+        ) : (
+          <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+
 const ITEM_SLOTS = ["Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"];
 const SLOT_CAPACITY = { Held: 2, Ring: 2 };
 // "Unarmed" (fighting bare-handed) is a Weapon with no Slot in the data
@@ -2962,6 +3073,7 @@ function InventorySection({
   onAddCustomItemWeapon, onRemoveCustomItemWeapon, onCustomItemWeaponChange, statPoints, skillPoints,
   enabledSupplements = null,
   dragId, setDragId, onMoveInventoryItem, onMoveCustomItem,
+  customMaterials = [], onAddCustomMaterial, onUpdateCustomMaterial, onToggleCustomMaterialType, onRemoveCustomMaterial,
 }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
@@ -3028,20 +3140,27 @@ function InventorySection({
     return map;
   }, [inventory, items, customItems, showEquip]);
 
+  // Crafting materials (Category = "Material") never get equipped, so
+  // they'd just be dead weight in the Equipped-sorted gear grid below —
+  // pulled out into their own list, shown alongside custom materials in
+  // the Materials box near the bottom instead.
+  const materialInventory = inventory.filter(e => items.find(i => i.id === e.itemId)?.category === "Material");
+  const gearInventory = inventory.filter(e => items.find(i => i.id === e.itemId)?.category !== "Material");
+
   // On the Character Sheet (showEquip, always readOnly), equipped items
   // float to the top of the grid so what's actually being worn/wielded
   // reads first — the Items tab keeps whatever order the player dragged
   // things into (see the drag handles below), since reordering there
   // would be pointless if the Sheet just re-sorted it anyway.
   const displayInventory = showEquip
-    ? [...inventory].sort((a, b) => (b.equipped ? 1 : 0) - (a.equipped ? 1 : 0))
-    : inventory;
+    ? [...gearInventory].sort((a, b) => (b.equipped ? 1 : 0) - (a.equipped ? 1 : 0))
+    : gearInventory;
   const displayCustomItems = showEquip
     ? [...customItems].sort((a, b) => (b.equipped ? 1 : 0) - (a.equipped ? 1 : 0))
     : customItems;
 
   const grid = (
-    inventory.length === 0 && customItems.length === 0 ? (
+    gearInventory.length === 0 && customItems.length === 0 ? (
       <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
         {readOnly ? "No items carried." : "No items carried yet — search below to add some."}
       </div>
@@ -3245,6 +3364,68 @@ function InventorySection({
         >
           + Add custom item
         </button>
+      )}
+
+      {/* Materials — kept visually separate from the gear grid above
+          since they're resources to spend (crafting), not things worn
+          or wielded. Catalog materials (Category = "Material", added via
+          the search above like any other item) and custom materials
+          (GM-granted, arbitrary Type combinations — see
+          CustomMaterialTile) render side by side here since a future
+          crafting-recipe check needs to treat them the same way. */}
+      {(materialInventory.length > 0 || customMaterials.length > 0 || !readOnly) && (
+        <div style={{ marginTop: 20 }}>
+          <div style={{ fontSize: 13, color: TEXT.faint, marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+            Materials
+          </div>
+          {materialInventory.length === 0 && customMaterials.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "16px", color: TEXT.faint, fontSize: 14 }}>
+              {readOnly ? "No materials carried." : "No materials carried yet — search above (Category: Material) or add a custom one below."}
+            </div>
+          ) : (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 10 }}>
+              {materialInventory.map(entry => {
+                const item = items.find(i => i.id === entry.itemId);
+                return (
+                  <InventoryTile
+                    key={entry.uid}
+                    entry={entry}
+                    item={item}
+                    allItems={items}
+                    onQtyChange={readOnly ? undefined : (q => onQtyChange(entry.uid, q))}
+                    onRemove={readOnly ? undefined : (() => onRemove(entry.uid))}
+                    readOnly={readOnly}
+                    statPoints={statPoints} skillPoints={skillPoints}
+                  />
+                );
+              })}
+              {customMaterials.map(entry => (
+                <CustomMaterialTile
+                  key={entry.id}
+                  entry={entry}
+                  readOnly={readOnly}
+                  onNameChange={readOnly ? undefined : (v => onUpdateCustomMaterial(entry.id, "name", v))}
+                  onLevelChange={readOnly ? undefined : (v => onUpdateCustomMaterial(entry.id, "level", v))}
+                  onQtyChange={readOnly ? undefined : (v => onUpdateCustomMaterial(entry.id, "qty", v))}
+                  onToggleType={readOnly ? undefined : (t => onToggleCustomMaterialType(entry.id, t))}
+                  onRemove={readOnly ? undefined : (() => onRemoveCustomMaterial(entry.id))}
+                />
+              ))}
+            </div>
+          )}
+          {!readOnly && (
+            <button
+              onClick={onAddCustomMaterial}
+              style={{
+                marginTop: 10, padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
+                background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
+                display: "flex", alignItems: "center", gap: 5,
+              }}
+            >
+              + Add custom material
+            </button>
+          )}
+        </div>
       )}
     </div>
   );
@@ -3491,6 +3672,8 @@ function App() {
   const [inventory, setInventory] = useState(initialCharacter.data.inventory);
   const [gold, setGold] = useState(initialCharacter.data.gold);
   const [customItems, setCustomItems] = useState(initialCharacter.data.customItems);
+  // GM-granted custom crafting materials — see emptyCharacterData.
+  const [customMaterials, setCustomMaterials] = useState(initialCharacter.data.customMaterials);
   // Attack Workspace — see emptyCharacterData for the shape.
   const [customAttacks, setCustomAttacks] = useState(initialCharacter.data.customAttacks);
   // Current Shallow/Deep Health — see emptyCharacterData for why this
@@ -3522,6 +3705,7 @@ function App() {
     setInventory(data.inventory);
     setGold(data.gold);
     setCustomItems(data.customItems);
+    setCustomMaterials(data.customMaterials);
     setCustomAttacks(data.customAttacks);
     setSheetSectionOrder(data.sheetSectionOrder);
     setEnabledSupplements(data.enabledSupplements);
@@ -3536,7 +3720,7 @@ function App() {
     build, notes, configs, renames, expended,
     statPoints, skillPoints, xpBudget,
     charName, charConcept, charNotes, noteRows, customTechniques,
-    selectedBackgrounds, backgroundType, inventory, gold, customItems,
+    selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials,
     customAttacks, sheetSectionOrder, enabledSupplements, currentHealth,
   });
 
@@ -3689,7 +3873,7 @@ function App() {
   // ── Persist the active character, and keep the switcher list synced ─
   useEffect(() => {
     saveCharacterData(activeId, currentCharacterData());
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customAttacks, sheetSectionOrder, enabledSupplements, currentHealth]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials, customAttacks, sheetSectionOrder, enabledSupplements, currentHealth]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -4033,6 +4217,31 @@ function App() {
       return next;
     });
   };
+
+  // ── Custom materials — GM-granted crafting materials, no data-file
+  // entry (see CustomMaterialTile). Same shape of handlers as custom
+  // items above, minus anything equip-related since materials aren't worn.
+  const addCustomMaterial = () => {
+    setCustomMaterials(cs => [...cs, { id: makeUid(), name: "", level: 1, types: [], qty: 1 }]);
+  };
+  const updateCustomMaterial = (id, field, value) => {
+    setCustomMaterials(cs => cs.map(c => c.id === id ? { ...c, [field]: value } : c));
+  };
+  const toggleCustomMaterialType = (id, type) => {
+    setCustomMaterials(cs => cs.map(c => c.id === id
+      ? { ...c, types: c.types.includes(type) ? c.types.filter(t => t !== type) : [...c.types, type] }
+      : c));
+  };
+  const removeCustomMaterial = id => {
+    const idx = customMaterials.findIndex(c => c.id === id);
+    if (idx === -1) return;
+    const removed = customMaterials[idx];
+    setCustomMaterials(cs => cs.filter(c => c.id !== id));
+    offerUndo(`Removed ${removed.name || "custom material"}`, () => {
+      setCustomMaterials(cs => [...cs.slice(0, idx), removed, ...cs.slice(idx)]);
+    });
+  };
+
   // Equipped — Character Sheet only, same slot-capacity rule as real
   // items (toggleEquipped below), just checked against inventory AND
   // customItems together since they share the same body slots.
@@ -4476,6 +4685,7 @@ function App() {
         ...(c.weapon ? { weapon: c.weapon } : {}),
         ...(c.attackNote ? { attackNote: c.attackNote } : {}),
       })),
+      customMaterials: customMaterials.map(c => ({ name: c.name, level: c.level, types: c.types, qty: c.qty })),
       customAttacks: customAttacks.map(r => ({ name: r.name, accuracy: r.accuracy, damage: r.damage, range: r.range, skill: r.skill, notes: r.notes })),
       exportedAt: new Date().toISOString(),
       techniques: buildEntries.map(e => {
@@ -4603,6 +4813,14 @@ function App() {
                   ...(typeof c.attackNote === "string" ? { attackNote: c.attackNote } : {}),
                 };
               })
+            : [],
+          customMaterials: Array.isArray(data.customMaterials)
+            ? data.customMaterials.map(c => ({
+                id: makeUid(), name: c.name ?? "",
+                level: Math.min(5, Math.max(1, Number(c.level) > 0 ? Number(c.level) : 1)),
+                types: Array.isArray(c.types) ? c.types.filter(t => MATERIAL_TYPES.includes(t)) : [],
+                qty: Number(c.qty) > 0 ? Number(c.qty) : 1,
+              }))
             : [],
           customAttacks: Array.isArray(data.customAttacks)
             ? data.customAttacks.map(r => ({
@@ -5386,6 +5604,9 @@ function App() {
             enabledSupplements={enabledSupplements}
             dragId={dragId} setDragId={setDragId}
             onMoveInventoryItem={moveInventoryItem} onMoveCustomItem={moveCustomItem}
+            customMaterials={customMaterials} onAddCustomMaterial={addCustomMaterial}
+            onUpdateCustomMaterial={updateCustomMaterial} onToggleCustomMaterialType={toggleCustomMaterialType}
+            onRemoveCustomMaterial={removeCustomMaterial}
           />
         </div>
       )}
@@ -5547,13 +5768,14 @@ function App() {
             ));
           })()}
 
-          {(inventory.length > 0 || gold || customItems.length > 0) && (
+          {(inventory.length > 0 || gold || customItems.length > 0 || customMaterials.length > 0) && (
             <>
               <div style={{ height:14 }} />
               <InventorySection
                 items={items} inventory={inventory} gold={gold} readOnly showEquip
                 onToggleEquipped={toggleEquipped}
                 customItems={customItems} onToggleCustomItemEquipped={toggleCustomItemEquipped}
+                customMaterials={customMaterials}
                 statPoints={statPoints} skillPoints={skillPoints}
               />
             </>
