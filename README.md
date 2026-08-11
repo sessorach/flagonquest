@@ -13,6 +13,18 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-11 — Crafting materials framework
+
+- New **Material** item category for crafting resources, tagged with one
+  or more Material Types (Metal, Wood, Fire, and so on) — seeded a
+  starter catalog of the 12 canonical Types.
+- **Custom materials**: a lightweight builder (name, Level, toggle any
+  number of Types) for GM-granted special materials that aren't in the
+  data file, e.g. one that's both Metal and Fire.
+- Materials get their own section on the Items tab and Character Sheet,
+  separate from the gear grid. Foundation for an upcoming crafting-recipe
+  browser and craft action — not built yet.
+
 ### 2026-08-04 — Health tracking
 
 - Character Sheet's Health box now tracks current Shallow/Deep Health, not
