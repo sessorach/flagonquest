@@ -283,11 +283,29 @@ CRAFTING_RECIPE_MAP = {
     "ID":               "id",
     "Name":             "name",
     "Description":      "description",
+    # One School per row — a recipe covering more than one School (e.g.
+    # a Weapon can be made via Carving or Smithing) is now one row per
+    # School instead of one row with a "(if School)" conditional, so
+    # every field here is a flat, unconditional value. See CR001/CR002
+    # for the Weapon example.
     "School":           "school",
     "Skill Total":      "skill_total",
-    "Total Materials":  "total_materials",
-    "Base Materials":   "base_materials",
-    "Extra Materials":  "extra_materials",
+    # Primary/Leeway replace the old Total-Materials-as-Gold-cost model
+    # for this fixed, hand-authored set of recipes (Weapons, Armor,
+    # Tools) — a small fixed count of material "slots" instead of a
+    # count tied to the item's price. Primary is the type(s) that must
+    # fill most of the slots; Leeway is a broader, more forgiving list
+    # for the rest. E.g. Weapon (Smithing): 2 Primary slots needing
+    # Metal, 1 Leeway slot accepting Cloth or Leather too.
+    # Masterwork/Alchemy items don't use this table at all — they keep
+    # the old Gold-value-based model on the item's own row (see
+    # ITEM_MAP's Total Materials/Base Materials/Extra Materials) since
+    # that set is large and open-ended, where a formula scales and a
+    # hand-authored template doesn't.
+    "Primary Types":    "primary_types",
+    "Primary Count":    "primary_count",
+    "Leeway Types":     "leeway_types",
+    "Leeway Count":     "leeway_count",
     # Which items.csv rows this recipe covers, so index.html can resolve
     # "what does it take to craft this item" without guessing from name/
     # description text. Comma-separated clauses, ALL must match (AND):
@@ -296,6 +314,8 @@ CRAFTING_RECIPE_MAP = {
     #   NameContains:X    — item.name includes X (case-insensitive)
     # Blank means "reference only" (see Other Items) — too variable to
     # auto-match, not shown as a specific item's recipe in the browser.
+    # Multiple rows can share the same Applies To (one per School) —
+    # the browser shows each as its own way to craft the same item.
     # A Masterwork item's own School/Skill Total/Total Materials/*
     # Materials columns (on the item itself, see ITEM_MAP) always take
     # priority over anything here — "special items require you to find

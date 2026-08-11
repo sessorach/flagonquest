@@ -31,6 +31,19 @@ the full commit-by-commit detail behind any of these.
   column) instead of relying on eyeballing text, and Masterwork items'
   base-item requirement (if any) is shown for reference. No craft action
   yet — this is the eligibility browser, not the spend-materials step.
+- Weapons/Armor/Tools recipes rebuilt around fixed **Primary/Leeway
+  material slots** (e.g. 2 Metal + 1 Cloth/Leather) instead of the
+  Gold-derived Base/Extra percentage split, with a separate recipe row
+  per crafting School (Carving vs. Smithing, etc.) so the browser shows
+  each way to make an item on its own line. Masterwork/Alchemy items
+  keep the original Gold-value formula, since materials being worth
+  their Level in Gold is what lets that side scale without hand-authored
+  recipes.
+- Items tab: **Keyword** and **Supplement** filters are checkbox
+  multi-selects now, so you can show e.g. both Base Game and Goblin Game
+  at once instead of picking one at a time; the custom item and material
+  builders moved to sit side by side under the search bar, above the
+  inventory grid.
 
 ### 2026-08-04 — Health tracking
 

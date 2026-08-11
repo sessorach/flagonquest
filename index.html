@@ -3133,48 +3133,67 @@ function matchesRecipeApplies(item, appliesToRaw) {
   });
 }
 
-// Which recipe (if any) covers crafting this item. A populated
-// per-item override (item.school etc. — see ITEM_MAP in convert.py)
-// always wins over the generic category table: "special items require
-// you to find a specific recipe for them" per the rulebook, so once an
-// item has its own crafting columns filled in, the category-level
-// recipe doesn't apply to it at all.
-function recipeForItem(item, recipes) {
+// Which recipe(s) cover crafting this item. A populated per-item
+// override (item.school etc. — see ITEM_MAP in convert.py) always wins
+// over the generic category table: "special items require you to find
+// a specific recipe for them" per the rulebook, so once an item has
+// its own crafting columns filled in, the category-level table doesn't
+// apply to it at all — returns just that one recipe. Otherwise returns
+// every crafting_recipes.json row that applies (usually one per School
+// the item can be made with — see CR001/CR002 for Weapons) so the
+// browser can show each as its own way to craft the same item, rather
+// than picking one School arbitrarily or merging them back together.
+function recipesForItem(item, recipes) {
   if (item.school || item.skill_total || item.total_materials) {
-    return {
-      id: `item:${item.id}`,
+    return [{
+      id: `item:${item.id}`, source: "item",
       school: item.school, skill_total: item.skill_total,
       total_materials: item.total_materials,
       base_materials: item.base_materials, extra_materials: item.extra_materials,
-    };
+    }];
   }
-  return recipes.find(r => matchesRecipeApplies(item, r.applies_to)) || null;
+  return recipes.filter(r => matchesRecipeApplies(item, r.applies_to));
 }
 
-// Turns a recipe's raw text fields into the concrete values Skill/
-// Materials eligibility actually check against, resolved for one
-// specific item (needed for the "[Item's base price in Gold]" token).
+// Turns a recipe's raw text/number fields into the concrete values
+// Skill/Materials eligibility actually check against, resolved for one
+// specific item. Two shapes, matching the two crafting models — see the
+// comment on CRAFTING_RECIPE_MAP in convert.py for why they're
+// separate: "value" for Masterwork/Alchemy's per-item override (Total
+// Materials tied to the item's Gold cost — needed for the "[Item's
+// base price in Gold]" token), "slots" for the hand-authored Weapon/
+// Armor/Tools table (a small fixed Primary/Leeway slot count instead).
 function resolveRecipeRequirements(recipe, item) {
   const skillParsed = parseSkillTotalText(recipe.skill_total);
-  // convert.py's clean() turns a pure-digit CSV cell into a real number
-  // (e.g. Total Materials = 3), so this can arrive as either a number
-  // or text like "[Item's base price in Gold]" — never assume a string.
-  let totalMaterials = null;
-  if (typeof recipe.total_materials === "number") {
-    totalMaterials = recipe.total_materials;
-  } else if (typeof recipe.total_materials === "string") {
-    const rawTotal = recipe.total_materials.trim();
-    if (/^\d+$/.test(rawTotal)) totalMaterials = Number(rawTotal);
-    else if (/base price in Gold/i.test(rawTotal)) totalMaterials = parseGoldNumber(item.cost);
+  const schools = parseSchoolList(recipe.school);
+  const skillName = skillParsed ? skillParsed.skill : null;
+  const skillValue = skillParsed ? skillParsed.value : null;
+
+  if (recipe.source === "item") {
+    // convert.py's clean() turns a pure-digit CSV cell into a real
+    // number (e.g. Total Materials = 3), so this can arrive as either
+    // a number or text like "[Item's base price in Gold]" — never
+    // assume a string.
+    let totalMaterials = null;
+    if (typeof recipe.total_materials === "number") {
+      totalMaterials = recipe.total_materials;
+    } else if (typeof recipe.total_materials === "string") {
+      const rawTotal = recipe.total_materials.trim();
+      if (/^\d+$/.test(rawTotal)) totalMaterials = Number(rawTotal);
+      else if (/base price in Gold/i.test(rawTotal)) totalMaterials = parseGoldNumber(item.cost);
+    }
+    return {
+      kind: "value", schools, skillName, skillValue, totalMaterials,
+      baseTypes: parseTypesList(recipe.base_materials),
+      extraTypes: parseTypesList(recipe.extra_materials),
+    };
   }
-  return {
-    schools: parseSchoolList(recipe.school),
-    skillName: skillParsed ? skillParsed.skill : null,
-    skillValue: skillParsed ? skillParsed.value : null,
-    totalMaterials,
-    baseTypes: parseTypesList(recipe.base_materials),
-    extraTypes: parseTypesList(recipe.extra_materials),
-  };
+
+  const slots = [
+    { types: parseTypesList(recipe.primary_types), count: Number(recipe.primary_count) || 0 },
+    { types: parseTypesList(recipe.leeway_types), count: Number(recipe.leeway_count) || 0 },
+  ].filter(s => s.count > 0 && s.types);
+  return { kind: "slots", schools, skillName, skillValue, slots };
 }
 
 // null = can't tell (no School resolved, e.g. "Varies"); a School with
@@ -3212,17 +3231,28 @@ function gatherOwnedMaterials(inventory, items, customMaterials) {
   return owned;
 }
 
-// See the KNOWN SIMPLIFICATION note at the top of this section — this
-// checks "at least 1 owned material of any listed Base Type" (not one
-// of *each* — a recipe's Base Types are usually alternatives tied to
-// which School you use, e.g. "Wood or Bone if Carving, Metal if
-// Smithing," and parseTypesList already stripped the "(if School)"
-// part, so treating them as an ALL requirement would make almost
-// nothing craftable) and "enough total qualifying quantity" — not the
-// precise per-slot/Extra-cap assignment.
 function craftingMaterialsEligibility(req, ownedMaterials, itemLevel) {
-  if (req.totalMaterials == null || !req.baseTypes) return null;
   const usable = ownedMaterials.filter(m => m.level >= itemLevel);
+  if (req.kind === "slots") {
+    // Each slot group just needs enough qualifying quantity on its own
+    // — small fixed counts (see Primary/Leeway Count in
+    // crafting_recipes.csv), no percentage math. KNOWN SIMPLIFICATION:
+    // a material matching more than one group's Types (e.g. one that's
+    // both Wood and Cloth) can count toward each group at once here,
+    // rather than being spent once — same "flags clearly-not-ready
+    // reliably, not a precise transaction" spirit as the value model.
+    if (req.slots.length === 0) return null;
+    return req.slots.every(slot => {
+      const qty = usable.reduce((sum, m) => sum + (m.types.some(t => slot.types.includes(t)) ? m.qty : 0), 0);
+      return qty >= slot.count;
+    });
+  }
+  // "value" kind — see the KNOWN SIMPLIFICATION note at the top of this
+  // section: checks "at least 1 owned material of any listed Base
+  // Type" (not one of *each* — Base Types are usually alternatives
+  // tied to which School you use) and "enough total qualifying
+  // quantity," not the precise per-slot/Extra-cap assignment.
+  if (req.totalMaterials == null || !req.baseTypes) return null;
   const hasABaseType = req.baseTypes.some(t => usable.some(m => m.types.includes(t)));
   if (!hasABaseType) return false;
   const allowedTypes = new Set([...req.baseTypes, ...(req.extraTypes || [])]);
@@ -3260,7 +3290,7 @@ function slotCost(item) {
 // ══════════════════════════════════════════════════════════════════
 // CRAFTING SECTION — Items tab only, collapsed by default (same
 // Show/Hide pattern as SourcesSection). Lists every item with a
-// resolvable recipe (see recipeForItem) alongside whether the current
+// resolvable recipe (see recipesForItem) alongside whether the current
 // character is set up to craft it — Skill (Skill Total + right Tool/
 // Kit) and Materials (enough of the right Types on hand) shown as
 // separate badges, since "you can learn to" and "you have the stuff"
@@ -3282,10 +3312,12 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
   );
 
   const rows = useMemo(() => {
+    // Tier 1 items can now match multiple recipe rows (one per School —
+    // e.g. Weapon via Carving or via Smithing), so this flattens to one
+    // row per (item, recipe) pair instead of one row per item.
     return items
-      .map(item => {
-        const recipe = recipeForItem(item, craftingRecipes);
-        if (!recipe) return null;
+      .flatMap(item => recipesForItem(item, craftingRecipes).map(recipe => ({ item, recipe })))
+      .map(({ item, recipe }) => {
         const req = resolveRecipeRequirements(recipe, item);
         const itemLevel = (item.levels && item.levels.length) ? item.levels[0] : (Number(item.level) || 1);
         const trained = hasSchoolTraining(req.schools, inventory, items);
@@ -3303,14 +3335,13 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
           .filter(Boolean);
         return { item, recipe, req, skillReady, materialsReady, baseItemNames, bothReady: andTri(skillReady, materialsReady) };
       })
-      .filter(Boolean)
       .filter(r => {
         if (filter === "skill") return r.skillReady === true;
         if (filter === "materials") return r.materialsReady === true;
         if (filter === "both") return r.bothReady === true;
         return true;
       })
-      .sort((a, b) => a.item.name.localeCompare(b.item.name));
+      .sort((a, b) => a.item.name.localeCompare(b.item.name) || (a.recipe.school || "").localeCompare(b.recipe.school || ""));
   }, [items, craftingRecipes, inventory, ownedMaterials, statPoints, skillPoints, filter]);
 
   const readyBadge = (label, state) => (
@@ -3353,13 +3384,21 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {rows.map(({ item, recipe, req, skillReady, materialsReady, baseItemNames }) => (
-            <div key={item.id} className="tech-card" style={{
+            <div key={`${item.id}:${recipe.id}`} className="tech-card" style={{
               background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
               padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
             }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
                 <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 15, color: TEXT.name }}>
                   {item.name}
+                  {/* Table-sourced recipes can have more than one row per
+                      item (one per School) — tag the School here so those
+                      rows are distinguishable at a glance. */}
+                  {recipe.source !== "item" && recipe.school && (
+                    <span style={{ fontFamily: "inherit", fontWeight: 400, fontSize: 12, color: TEXT.faint, marginLeft: 6 }}>
+                      via {recipe.school}
+                    </span>
+                  )}
                 </span>
                 <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                   {readyBadge("Skill", skillReady)}
@@ -3369,9 +3408,18 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
               <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
                 {req.skillName && req.skillValue != null ? `${req.skillName} ${req.skillValue}` : (recipe.skill_total || "—")}
                 {"  ·  "}School: {recipe.school || "—"}
-                {"  ·  "}Materials: {recipe.total_materials || "—"}
-                {req.baseTypes && (
-                  <> ({req.baseTypes.join(", ")}{req.extraTypes ? `, or up to half ${req.extraTypes.join(", ")}` : ""})</>
+                {"  ·  "}Materials:{" "}
+                {req.kind === "slots" ? (
+                  req.slots.length > 0
+                    ? req.slots.map(s => `${s.count}× ${s.types.join("/")}`).join(" + ")
+                    : "—"
+                ) : (
+                  <>
+                    {recipe.total_materials || "—"}
+                    {req.baseTypes && (
+                      <> ({req.baseTypes.join(", ")}{req.extraTypes ? `, or up to half ${req.extraTypes.join(", ")}` : ""})</>
+                    )}
+                  </>
                 )}
               </div>
               {/* Base item — a separate requirement from materials (see
@@ -3409,11 +3457,28 @@ function InventorySection({
   // or "Grenade"), and Supplement (Base Game vs. a supplement like
   // Goblin Game) — a cross-section of the item-data columns that
   // aren't already covered by the name search or the Category picker.
+  // Tags/Supplement are checkbox multi-selects (OR within each group,
+  // same semantics as the Techniques tab's Related skills/Tags chips)
+  // so a player can e.g. show both "Implement" and "Grenade" items, or
+  // both Base Game and Goblin Game, at once.
   const [advancedOpen, setAdvancedOpen] = useState(false);
   const [slotFilter, setSlotFilter] = useState("");
-  const [tagFilter, setTagFilter] = useState("");
-  const [supplementFilter, setSupplementFilter] = useState("");
+  const [tagFilters, setTagFilters] = useState([]);
+  const [supplementFilters, setSupplementFilters] = useState([]);
   const NO_SLOT = "__none__";
+  const toggleTagFilter = tag => setTagFilters(f => f.includes(tag) ? f.filter(x => x !== tag) : [...f, tag]);
+  const toggleSupplementFilter = s => setSupplementFilters(f => f.includes(s) ? f.filter(x => x !== s) : [...f, s]);
+  // Same look as the Techniques tab's toggle-able filter chips (see
+  // filterChipStyle in App) — duplicated here since InventorySection
+  // has no shared style import to pull it from.
+  const filterChipStyle = active => ({
+    padding: "3px 10px", fontSize: 13, borderRadius: 20,
+    fontWeight: active ? 500 : 400,
+    whiteSpace: "nowrap",
+    background: active ? "#d4a84322" : "transparent",
+    color:      active ? "#d4a843" : TEXT.muted,
+    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
+  });
   // Items from a disabled supplement (see the Sources panel on
   // Builder) never show up as something new to add — but `items`
   // itself stays the full list, since a copy already carried from a
@@ -3434,17 +3499,17 @@ function InventorySection({
 
   const results = useMemo(() => {
     const q = search.trim().toLowerCase();
-    if (!q && !category && !slotFilter && !tagFilter && !supplementFilter) return [];
+    if (!q && !category && !slotFilter && tagFilters.length === 0 && supplementFilters.length === 0) return [];
     return visibleItems
       .filter(it =>
         (!category || it.category === category) &&
         (!slotFilter || (slotFilter === NO_SLOT ? !it.slot : it.slot === slotFilter)) &&
-        (!tagFilter || splitCSV(it.tags).includes(tagFilter)) &&
-        (!supplementFilter || it.supplement === supplementFilter) &&
+        (tagFilters.length === 0 || splitCSV(it.tags).some(t => tagFilters.includes(t))) &&
+        (supplementFilters.length === 0 || supplementFilters.includes(it.supplement)) &&
         (!q || it.name.toLowerCase().includes(q))
       )
       .slice(0, 40);
-  }, [visibleItems, search, category, slotFilter, tagFilter, supplementFilter]);
+  }, [visibleItems, search, category, slotFilter, tagFilters, supplementFilters]);
 
   // Slot capacity used by everything currently equipped — real items and
   // custom items share the same per-slot capacity, since a custom Ring
@@ -3490,7 +3555,7 @@ function InventorySection({
   const grid = (
     gearInventory.length === 0 && customItems.length === 0 ? (
       <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
-        {readOnly ? "No items carried." : "No items carried yet — search below to add some."}
+        {readOnly ? "No items carried." : "No items carried yet — search above to add some."}
       </div>
     ) : (
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 10 }}>
@@ -3635,24 +3700,54 @@ function InventorySection({
           </div>
           {advancedOpen && (
             <div style={{
-              display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
+              display: "flex", flexDirection: "column", gap: 10,
               fontSize: 13, color: TEXT.muted,
               background: "#12161f", border: "0.5px solid #2d3555",
               borderRadius: 8, padding: "10px 14px", marginBottom: 10,
             }}>
-              <select value={slotFilter} onChange={e => setSlotFilter(e.target.value)} style={{ fontSize: 13 }}>
+              <select value={slotFilter} onChange={e => setSlotFilter(e.target.value)} style={{ fontSize: 13, alignSelf: "flex-start" }}>
                 <option value="">Any slot</option>
                 {slots.map(s => <option key={s} value={s}>{s}</option>)}
                 <option value={NO_SLOT}>No slot</option>
               </select>
-              <select value={tagFilter} onChange={e => setTagFilter(e.target.value)} style={{ fontSize: 13 }}>
-                <option value="">Any keyword</option>
-                {tagOptions.map(t => <option key={t} value={t}>{t}</option>)}
-              </select>
-              <select value={supplementFilter} onChange={e => setSupplementFilter(e.target.value)} style={{ fontSize: 13 }}>
-                <option value="">Any supplement</option>
-                {supplements.map(s => <option key={s} value={s}>{s}</option>)}
-              </select>
+              {tagOptions.length > 0 && (
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                    <span style={{ color: TEXT.faint }}>Keyword</span>
+                    {tagFilters.length > 0 && (
+                      <button onClick={() => setTagFilters([])} style={{ background: "transparent", border: "none", color: "#c0392b", fontSize: 13, padding: 0 }}>
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    {tagOptions.map(t => (
+                      <button key={t} onClick={() => toggleTagFilter(t)} style={filterChipStyle(tagFilters.includes(t))}>
+                        {t}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {supplements.length > 0 && (
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                    <span style={{ color: TEXT.faint }}>Supplement</span>
+                    {supplementFilters.length > 0 && (
+                      <button onClick={() => setSupplementFilters([])} style={{ background: "transparent", border: "none", color: "#c0392b", fontSize: 13, padding: 0 }}>
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    {supplements.map(s => (
+                      <button key={s} onClick={() => toggleSupplementFilter(s)} style={filterChipStyle(supplementFilters.includes(s))}>
+                        {s}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
           {results.length > 0 && (
@@ -3679,20 +3774,36 @@ function InventorySection({
         </>
       )}
 
-      {grid}
-
+      {/* Custom item/material builders — side by side, underneath search
+          and above the actual inventory below, so they read as one pair
+          of "make something new" entry points rather than being scattered
+          next to their respective grids. */}
       {!readOnly && (
-        <button
-          onClick={onAddCustomItem}
-          style={{
-            marginTop: 10, padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
-            background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
-            display: "flex", alignItems: "center", gap: 5,
-          }}
-        >
-          + Add custom item
-        </button>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
+          <button
+            onClick={onAddCustomItem}
+            style={{
+              padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
+              background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
+              display: "flex", alignItems: "center", gap: 5,
+            }}
+          >
+            + Add custom item
+          </button>
+          <button
+            onClick={onAddCustomMaterial}
+            style={{
+              padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
+              background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
+              display: "flex", alignItems: "center", gap: 5,
+            }}
+          >
+            + Add custom material
+          </button>
+        </div>
       )}
+
+      {grid}
 
       {/* Materials — kept visually separate from the gear grid above
           since they're resources to spend (crafting), not things worn
@@ -3708,7 +3819,7 @@ function InventorySection({
           </div>
           {materialInventory.length === 0 && customMaterials.length === 0 ? (
             <div style={{ textAlign: "center", padding: "16px", color: TEXT.faint, fontSize: 14 }}>
-              {readOnly ? "No materials carried." : "No materials carried yet — search above (Category: Material) or add a custom one below."}
+              {readOnly ? "No materials carried." : "No materials carried yet — search above (Category: Material) or add a custom one above."}
             </div>
           ) : (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 10 }}>
@@ -3740,18 +3851,6 @@ function InventorySection({
                 />
               ))}
             </div>
-          )}
-          {!readOnly && (
-            <button
-              onClick={onAddCustomMaterial}
-              style={{
-                marginTop: 10, padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
-                background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
-                display: "flex", alignItems: "center", gap: 5,
-              }}
-            >
-              + Add custom material
-            </button>
           )}
         </div>
       )}
