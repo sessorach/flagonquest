@@ -3292,7 +3292,16 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
         const skillMet = craftingSkillEligibility(req, statPoints, skillPoints);
         const skillReady = andTri(trained, skillMet);
         const materialsReady = craftingMaterialsEligibility(req, ownedMaterials, itemLevel);
-        return { item, recipe, req, skillReady, materialsReady, bothReady: andTri(skillReady, materialsReady) };
+        // Masterwork enhancements need a base item made/owned first (see
+        // the rulebook's "base item" rules) — base_item_options is the
+        // same list already used for the equip-time base-item picker
+        // (InventoryTile), reused here just to surface the requirement.
+        // Not factored into skillReady/materialsReady yet, and there's
+        // no check here for whether the character actually owns one.
+        const baseItemNames = (item.base_item_options || [])
+          .map(id => items.find(i => i.id === id)?.name)
+          .filter(Boolean);
+        return { item, recipe, req, skillReady, materialsReady, baseItemNames, bothReady: andTri(skillReady, materialsReady) };
       })
       .filter(Boolean)
       .filter(r => {
@@ -3343,7 +3352,7 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {rows.map(({ item, recipe, req, skillReady, materialsReady }) => (
+          {rows.map(({ item, recipe, req, skillReady, materialsReady, baseItemNames }) => (
             <div key={item.id} className="tech-card" style={{
               background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
               padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
@@ -3365,6 +3374,15 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
                   <> ({req.baseTypes.join(", ")}{req.extraTypes ? `, or up to half ${req.extraTypes.join(", ")}` : ""})</>
                 )}
               </div>
+              {/* Base item — a separate requirement from materials (see
+                  the rulebook's "base item" rules), reference-only for
+                  now: not checked against what's in inventory yet, and
+                  crafting one onto the other isn't wired up either. */}
+              {baseItemNames.length > 0 && (
+                <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
+                  Base item: {baseItemNames.join(" or ")}
+                </div>
+              )}
             </div>
           ))}
         </div>
