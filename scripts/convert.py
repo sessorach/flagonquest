@@ -288,6 +288,20 @@ CRAFTING_RECIPE_MAP = {
     "Total Materials":  "total_materials",
     "Base Materials":   "base_materials",
     "Extra Materials":  "extra_materials",
+    # Which items.csv rows this recipe covers, so index.html can resolve
+    # "what does it take to craft this item" without guessing from name/
+    # description text. Comma-separated clauses, ALL must match (AND):
+    #   Category:X       — item.category === X
+    #   Name:X            — item.name === X (exact)
+    #   NameContains:X    — item.name includes X (case-insensitive)
+    # Blank means "reference only" (see Other Items) — too variable to
+    # auto-match, not shown as a specific item's recipe in the browser.
+    # A Masterwork item's own School/Skill Total/Total Materials/*
+    # Materials columns (on the item itself, see ITEM_MAP) always take
+    # priority over anything here — "special items require you to find
+    # a specific recipe for them" per the rulebook, so a populated
+    # per-item override means this generic table doesn't apply at all.
+    "Applies To":       "applies_to",
 }
 
 WEAPON_CATEGORY_MAP = {

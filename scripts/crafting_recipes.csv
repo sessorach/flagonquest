@@ -1,10 +1,10 @@
-ID,Name,Description,School,Skill Total,Total Materials,Base Materials,Extra Materials
+ID,Name,Description,School,Skill Total,Total Materials,Base Materials,Extra Materials,Applies To
 CR001,Weapons,"Includes all standard weapons.
-Bows can only be made using Carving.",Carving or Smithing,Craft 3,[Item’s base price in Gold],"Wood or Bone (if Carving), Metal (if Smithing)","Cloth, Leather"
-CR002,Armor,"Includes all standard armors.
-Heavy armor can only be made using Smithing.","Carving, Tailoring, or Smithing","Craft 3 (Light), Craft 5 (Heavy)",[Item’s base price in Gold],"Cloth or Leather (if Tailoring), Wood or Bone (if Carving), Metal (if Smithing)","Cloth, Leather, Metal"
-CR003,Unarmed Enhancers,"Generally base item for Masterwork items, for unarmed attacks.",Tailoring or Smithing,Craft 3,3,"Cloth or Leather (if Tailoring), Metal (if Smithing)","Cloth, Leather, Metal"
-CR004,Basic Clothing,For any applicable slot.,Tailoring,Craft 3,3,Cloth,"Bone, Leather, Metal, Precious"
-CR005,Basic Jewelry,For any applicable slot.,Jewelrymaking,Craft 3,3,Precious,Metal
-CR006,Medicinal Supply,Used in place of cards for certain Medicine-related Techniques and similar uses.,Alchemy,Mixology 3,2,Medicinal,Cloth
-CR007,Other Items,"For various skill kits, adventuring goods, and other items that a character might want to create. Use",Varies,Craft 3-5,[Item’s base price in Gold],Varies,Varies
+Bows can only be made using Carving.",Carving or Smithing,Craft 3,[Item's base price in Gold],"Wood or Bone (if Carving), Metal (if Smithing)","Cloth, Leather",Category:Weapon
+CR002,Armor (Light),Includes all standard light armor.,"Carving, Tailoring, or Smithing",Craft 3,[Item's base price in Gold],"Cloth or Leather (if Tailoring), Wood or Bone (if Carving), Metal (if Smithing)","Cloth, Leather, Metal","Category:Armor,NameContains:Light"
+CR008,Armor (Heavy),Includes all standard heavy armor. Can only be made using Smithing.,Smithing,Craft 5,[Item's base price in Gold],Metal,"Cloth, Leather, Metal","Category:Armor,NameContains:Heavy"
+CR003,Unarmed Enhancers,"Generally base item for Masterwork items, for unarmed attacks.",Tailoring or Smithing,Craft 3,3,"Cloth or Leather (if Tailoring), Metal (if Smithing)","Cloth, Leather, Metal",Name:Unarmed Enhancer
+CR004,Basic Clothing,For any applicable slot.,Tailoring,Craft 3,3,Cloth,"Bone, Leather, Metal, Precious",Name:Basic Clothing
+CR005,Basic Jewelry,For any applicable slot.,Jewelrymaking,Craft 3,3,Precious,Metal,Name:Basic Jewelry
+CR006,Medicinal Supply,Used in place of cards for certain Medicine-related Techniques and similar uses.,Alchemy,Mixology 3,2,Medicinal,Cloth,Name:Medicinal Supply
+CR007,Other Items,"For various skill kits, adventuring goods, and other items that a character might want to create. Use whichever School/Skill Total fits the specific item — too variable to auto-match against a character's build, so this one's for reference only.",Varies,Craft 3-5,[Item's base price in Gold],Varies,Varies,

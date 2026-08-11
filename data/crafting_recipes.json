@@ -5,19 +5,32 @@
     "description": "Includes all standard weapons.\nBows can only be made using Carving.",
     "school": "Carving or Smithing",
     "skill_total": "Craft 3",
-    "total_materials": "[Item’s base price in Gold]",
+    "total_materials": "[Item's base price in Gold]",
     "base_materials": "Wood or Bone (if Carving), Metal (if Smithing)",
-    "extra_materials": "Cloth, Leather"
+    "extra_materials": "Cloth, Leather",
+    "applies_to": "Category:Weapon"
   },
   {
     "id": "CR002",
-    "name": "Armor",
-    "description": "Includes all standard armors.\nHeavy armor can only be made using Smithing.",
+    "name": "Armor (Light)",
+    "description": "Includes all standard light armor.",
     "school": "Carving, Tailoring, or Smithing",
-    "skill_total": "Craft 3 (Light), Craft 5 (Heavy)",
-    "total_materials": "[Item’s base price in Gold]",
+    "skill_total": "Craft 3",
+    "total_materials": "[Item's base price in Gold]",
     "base_materials": "Cloth or Leather (if Tailoring), Wood or Bone (if Carving), Metal (if Smithing)",
-    "extra_materials": "Cloth, Leather, Metal"
+    "extra_materials": "Cloth, Leather, Metal",
+    "applies_to": "Category:Armor,NameContains:Light"
+  },
+  {
+    "id": "CR008",
+    "name": "Armor (Heavy)",
+    "description": "Includes all standard heavy armor. Can only be made using Smithing.",
+    "school": "Smithing",
+    "skill_total": "Craft 5",
+    "total_materials": "[Item's base price in Gold]",
+    "base_materials": "Metal",
+    "extra_materials": "Cloth, Leather, Metal",
+    "applies_to": "Category:Armor,NameContains:Heavy"
   },
   {
     "id": "CR003",
@@ -27,7 +40,8 @@
     "skill_total": "Craft 3",
     "total_materials": 3,
     "base_materials": "Cloth or Leather (if Tailoring), Metal (if Smithing)",
-    "extra_materials": "Cloth, Leather, Metal"
+    "extra_materials": "Cloth, Leather, Metal",
+    "applies_to": "Name:Unarmed Enhancer"
   },
   {
     "id": "CR004",
@@ -37,7 +51,8 @@
     "skill_total": "Craft 3",
     "total_materials": 3,
     "base_materials": "Cloth",
-    "extra_materials": "Bone, Leather, Metal, Precious"
+    "extra_materials": "Bone, Leather, Metal, Precious",
+    "applies_to": "Name:Basic Clothing"
   },
   {
     "id": "CR005",
@@ -47,7 +62,8 @@
     "skill_total": "Craft 3",
     "total_materials": 3,
     "base_materials": "Precious",
-    "extra_materials": "Metal"
+    "extra_materials": "Metal",
+    "applies_to": "Name:Basic Jewelry"
   },
   {
     "id": "CR006",
@@ -57,16 +73,18 @@
     "skill_total": "Mixology 3",
     "total_materials": 2,
     "base_materials": "Medicinal",
-    "extra_materials": "Cloth"
+    "extra_materials": "Cloth",
+    "applies_to": "Name:Medicinal Supply"
   },
   {
     "id": "CR007",
     "name": "Other Items",
-    "description": "For various skill kits, adventuring goods, and other items that a character might want to create. Use",
+    "description": "For various skill kits, adventuring goods, and other items that a character might want to create. Use whichever School/Skill Total fits the specific item — too variable to auto-match against a character's build, so this one's for reference only.",
     "school": "Varies",
     "skill_total": "Craft 3-5",
-    "total_materials": "[Item’s base price in Gold]",
+    "total_materials": "[Item's base price in Gold]",
     "base_materials": "Varies",
-    "extra_materials": "Varies"
+    "extra_materials": "Varies",
+    "applies_to": null
   }
 ]

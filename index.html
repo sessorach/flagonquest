@@ -3047,6 +3047,199 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
 }
 
 
+// ══════════════════════════════════════════════════════════════════
+// CRAFTING — resolving what it takes to craft a given item and
+// whether the current character is set up for it. See the "Creating
+// Items" chapter in scripts/rulebook.md for the full rules this
+// approximates, and the "Applies To" comment on CRAFTING_RECIPE_MAP
+// in convert.py for the recipe-matching mini-syntax.
+//
+// Two eligibility halves, kept deliberately separate since they're
+// different kinds of "ready": Skill (Skill Total + owning the right
+// School's Tool/Kit) and Materials (having enough of the right Types
+// on hand). Either can resolve to null instead of true/false when the
+// underlying recipe text is too vague to check mechanically (Other
+// Items' "Craft 3-5"/"Varies") — the UI shows that as a neutral
+// "can't tell" state rather than guessing.
+//
+// KNOWN SIMPLIFICATION: the real rule lets a material's Type
+// requirement vary by which School you use (e.g. a Weapon needs Wood
+// or Bone "if Carving" but Metal "if Smithing") and caps Extra-Type
+// materials at half of Total Materials. Checking that precisely is a
+// real constraint-satisfaction problem; this instead (a) requires at
+// least one owned material of *any* listed Base Type, regardless of
+// which School that type is actually tied to, and (b) just checks
+// total qualifying quantity meets Total Materials without enforcing
+// the Extra-Type cap. Correct enough to flag "you're clearly not
+// ready" or "you're probably fine," not precise enough to replace
+// reading the recipe text before actually crafting.
+// ══════════════════════════════════════════════════════════════════
+
+// Which Tool/Kit item (by name) counts as being trained in a School —
+// per the rulebook, each Tool/Kit "fulfills the tool requirement" and
+// "includes recipes" for its School. Schools with no matching Kit item
+// yet (Cooking has none in the data) just never resolve as trained.
+const SCHOOL_TOOL_MAP = {
+  Smithing: "Smithing Kit", Carving: "Carving Kit", Tailoring: "Tailor's Kit",
+  Jewelrymaking: "Jeweler's Kit", Alchemy: "Mixology Set",
+};
+
+// "Carving, Tailoring, or Smithing" → ["Carving","Tailoring","Smithing"].
+// "Varies" (Other Items) intentionally falls through as a single
+// unresolvable entry — treated as unresolvable wherever it's used.
+function parseSchoolList(text) {
+  return (text || "").split(/,|\bor\b|\band\b/i).map(s => s.trim()).filter(Boolean);
+}
+
+// "Craft 3" → { skill: "Craft", value: 3 }. Doesn't match "Craft 3-5"
+// or "Varies" — those stay null (unresolvable), on purpose.
+function parseSkillTotalText(text) {
+  const m = /^(\w+)\s+(\d+)$/.exec((text || "").trim());
+  return m ? { skill: m[1], value: Number(m[2]) } : null;
+}
+
+// A dollar-figure-style "N Gold" cost string → N. Used to resolve a
+// recipe's "[Item's base price in Gold]" Total Materials token against
+// the specific item being priced.
+function parseGoldNumber(costStr) {
+  const m = /(\d+)/.exec(costStr || "");
+  return m ? Number(m[1]) : null;
+}
+
+// "Wood or Bone (if Carving), Metal (if Smithing)" → ["Wood","Bone","Metal"]
+// — strips the "(if School)" qualifier (see the KNOWN SIMPLIFICATION
+// above) and flattens "X or Y" into separate entries. "Varies" resolves
+// to null, same idea as parseSchoolList/parseSkillTotalText.
+function parseTypesList(text) {
+  const stripped = (text || "").replace(/\(if [^)]*\)/gi, "");
+  const parts = stripped.split(/,|\bor\b|\band\b/i).map(s => s.trim()).filter(Boolean);
+  if (parts.length === 0 || parts.every(p => /^varies$/i.test(p))) return null;
+  return [...new Set(parts)];
+}
+
+// Parses one "Applies To" clause list against an item — see the
+// mini-syntax comment on CRAFTING_RECIPE_MAP in convert.py.
+function matchesRecipeApplies(item, appliesToRaw) {
+  if (!appliesToRaw) return false;
+  return splitCSV(appliesToRaw).every(clause => {
+    const i = clause.indexOf(":");
+    if (i === -1) return false;
+    const key = clause.slice(0, i).trim();
+    const val = clause.slice(i + 1).trim();
+    if (key === "Category") return item.category === val;
+    if (key === "Name") return item.name === val;
+    if (key === "NameContains") return item.name.toLowerCase().includes(val.toLowerCase());
+    return false;
+  });
+}
+
+// Which recipe (if any) covers crafting this item. A populated
+// per-item override (item.school etc. — see ITEM_MAP in convert.py)
+// always wins over the generic category table: "special items require
+// you to find a specific recipe for them" per the rulebook, so once an
+// item has its own crafting columns filled in, the category-level
+// recipe doesn't apply to it at all.
+function recipeForItem(item, recipes) {
+  if (item.school || item.skill_total || item.total_materials) {
+    return {
+      id: `item:${item.id}`,
+      school: item.school, skill_total: item.skill_total,
+      total_materials: item.total_materials,
+      base_materials: item.base_materials, extra_materials: item.extra_materials,
+    };
+  }
+  return recipes.find(r => matchesRecipeApplies(item, r.applies_to)) || null;
+}
+
+// Turns a recipe's raw text fields into the concrete values Skill/
+// Materials eligibility actually check against, resolved for one
+// specific item (needed for the "[Item's base price in Gold]" token).
+function resolveRecipeRequirements(recipe, item) {
+  const skillParsed = parseSkillTotalText(recipe.skill_total);
+  // convert.py's clean() turns a pure-digit CSV cell into a real number
+  // (e.g. Total Materials = 3), so this can arrive as either a number
+  // or text like "[Item's base price in Gold]" — never assume a string.
+  let totalMaterials = null;
+  if (typeof recipe.total_materials === "number") {
+    totalMaterials = recipe.total_materials;
+  } else if (typeof recipe.total_materials === "string") {
+    const rawTotal = recipe.total_materials.trim();
+    if (/^\d+$/.test(rawTotal)) totalMaterials = Number(rawTotal);
+    else if (/base price in Gold/i.test(rawTotal)) totalMaterials = parseGoldNumber(item.cost);
+  }
+  return {
+    schools: parseSchoolList(recipe.school),
+    skillName: skillParsed ? skillParsed.skill : null,
+    skillValue: skillParsed ? skillParsed.value : null,
+    totalMaterials,
+    baseTypes: parseTypesList(recipe.base_materials),
+    extraTypes: parseTypesList(recipe.extra_materials),
+  };
+}
+
+// null = can't tell (no School resolved, e.g. "Varies"); a School with
+// no known Tool/Kit (SCHOOL_TOOL_MAP) just never counts as trained,
+// same as not owning any qualifying tool.
+function hasSchoolTraining(schools, inventory, items) {
+  if (!schools || schools.length === 0) return null;
+  return schools.some(school => {
+    const toolName = SCHOOL_TOOL_MAP[school];
+    if (!toolName) return false;
+    return inventory.some(e => {
+      const it = items.find(i => i.id === e.itemId);
+      return it && it.name === toolName;
+    });
+  });
+}
+
+function craftingSkillEligibility(req, statPoints, skillPoints) {
+  if (req.skillValue == null || !req.skillName) return null;
+  return skillTotalValue(statPoints, skillPoints, req.skillName) >= req.skillValue;
+}
+
+// Flattens both material sources (catalog inventory + custom) into one
+// list of { level, types, qty } — see MATERIAL_TYPES for why these two
+// sources need to resolve to the same shape.
+function gatherOwnedMaterials(inventory, items, customMaterials) {
+  const owned = [];
+  inventory.forEach(e => {
+    const it = items.find(i => i.id === e.itemId);
+    if (it && it.category === "Material") {
+      owned.push({ level: it.level || 1, types: splitCSV(it.material_types), qty: e.qty });
+    }
+  });
+  customMaterials.forEach(c => owned.push({ level: c.level, types: c.types, qty: c.qty }));
+  return owned;
+}
+
+// See the KNOWN SIMPLIFICATION note at the top of this section — this
+// checks "at least 1 owned material of any listed Base Type" (not one
+// of *each* — a recipe's Base Types are usually alternatives tied to
+// which School you use, e.g. "Wood or Bone if Carving, Metal if
+// Smithing," and parseTypesList already stripped the "(if School)"
+// part, so treating them as an ALL requirement would make almost
+// nothing craftable) and "enough total qualifying quantity" — not the
+// precise per-slot/Extra-cap assignment.
+function craftingMaterialsEligibility(req, ownedMaterials, itemLevel) {
+  if (req.totalMaterials == null || !req.baseTypes) return null;
+  const usable = ownedMaterials.filter(m => m.level >= itemLevel);
+  const hasABaseType = req.baseTypes.some(t => usable.some(m => m.types.includes(t)));
+  if (!hasABaseType) return false;
+  const allowedTypes = new Set([...req.baseTypes, ...(req.extraTypes || [])]);
+  const totalQty = usable.reduce((sum, m) => sum + (m.types.some(t => allowedTypes.has(t)) ? m.qty : 0), 0);
+  return totalQty >= req.totalMaterials;
+}
+
+// Three-valued AND — null ("can't tell") propagates unless something's
+// already definitely false, so "unknown + true" reads as "can't tell,"
+// not a false negative.
+function andTri(...vals) {
+  if (vals.some(v => v === false)) return false;
+  if (vals.some(v => v == null)) return null;
+  return true;
+}
+
+
 const ITEM_SLOTS = ["Head", "Neck", "Torso", "Hands", "Ring", "Held", "Belt", "Feet", "Other"];
 const SLOT_CAPACITY = { Held: 2, Ring: 2 };
 // "Unarmed" (fighting bare-handed) is a Weapon with no Slot in the data
@@ -3063,6 +3256,123 @@ function effectiveSlot(item) {
 function slotCost(item) {
   return effectiveSlot(item) === "Held" ? (item.held_slots || 1) : 1;
 }
+
+// ══════════════════════════════════════════════════════════════════
+// CRAFTING SECTION — Items tab only, collapsed by default (same
+// Show/Hide pattern as SourcesSection). Lists every item with a
+// resolvable recipe (see recipeForItem) alongside whether the current
+// character is set up to craft it — Skill (Skill Total + right Tool/
+// Kit) and Materials (enough of the right Types on hand) shown as
+// separate badges, since "you can learn to" and "you have the stuff"
+// are different kinds of ready. No craft action yet — this is a
+// browser to check eligibility against, not a way to actually spend
+// materials and produce the item (that's the next step).
+// ══════════════════════════════════════════════════════════════════
+function CraftingSection({ items, craftingRecipes, inventory, customMaterials, statPoints, skillPoints }) {
+  const [collapsed, setCollapsed] = useState(true);
+  const [filter, setFilter] = useState("");
+  const collapseBtnStyle = {
+    fontSize: 12, color: TEXT.muted, background: "transparent",
+    border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
+  };
+
+  const ownedMaterials = useMemo(
+    () => gatherOwnedMaterials(inventory, items, customMaterials),
+    [inventory, items, customMaterials]
+  );
+
+  const rows = useMemo(() => {
+    return items
+      .map(item => {
+        const recipe = recipeForItem(item, craftingRecipes);
+        if (!recipe) return null;
+        const req = resolveRecipeRequirements(recipe, item);
+        const itemLevel = (item.levels && item.levels.length) ? item.levels[0] : (Number(item.level) || 1);
+        const trained = hasSchoolTraining(req.schools, inventory, items);
+        const skillMet = craftingSkillEligibility(req, statPoints, skillPoints);
+        const skillReady = andTri(trained, skillMet);
+        const materialsReady = craftingMaterialsEligibility(req, ownedMaterials, itemLevel);
+        return { item, recipe, req, skillReady, materialsReady, bothReady: andTri(skillReady, materialsReady) };
+      })
+      .filter(Boolean)
+      .filter(r => {
+        if (filter === "skill") return r.skillReady === true;
+        if (filter === "materials") return r.materialsReady === true;
+        if (filter === "both") return r.bothReady === true;
+        return true;
+      })
+      .sort((a, b) => a.item.name.localeCompare(b.item.name));
+  }, [items, craftingRecipes, inventory, ownedMaterials, statPoints, skillPoints, filter]);
+
+  const readyBadge = (label, state) => (
+    <span style={{
+      fontSize: 11, fontWeight: 600, padding: "1px 7px", borderRadius: 4,
+      color: state == null ? TEXT.faint : (state ? "#6fae5a" : "#e0645f"),
+      border: `0.5px solid ${state == null ? "#2d3555" : (state ? "#6fae5a" : "#e0645f")}`,
+    }}>
+      {label}: {state == null ? "?" : (state ? "Yes" : "No")}
+    </span>
+  );
+
+  if (collapsed) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 14 }}>
+        <div style={{ fontSize: 13, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>Crafting</div>
+        <button onClick={() => setCollapsed(false)} style={collapseBtnStyle}>Show</button>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ marginBottom: 14 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 10, flexWrap: "wrap" }}>
+        <div style={{ fontSize: 13, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>Crafting</div>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+          <select value={filter} onChange={e => setFilter(e.target.value)} style={{ fontSize: 13 }}>
+            <option value="">All craftable items</option>
+            <option value="skill">You're trained &amp; skilled enough</option>
+            <option value="materials">You have the materials</option>
+            <option value="both">Both — ready to craft</option>
+          </select>
+          <button onClick={() => setCollapsed(true)} style={collapseBtnStyle}>Hide</button>
+        </div>
+      </div>
+      {rows.length === 0 ? (
+        <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
+          No matching recipes.
+        </div>
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {rows.map(({ item, recipe, req, skillReady, materialsReady }) => (
+            <div key={item.id} className="tech-card" style={{
+              background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+              padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+            }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
+                <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 15, color: TEXT.name }}>
+                  {item.name}
+                </span>
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  {readyBadge("Skill", skillReady)}
+                  {readyBadge("Materials", materialsReady)}
+                </div>
+              </div>
+              <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
+                {req.skillName && req.skillValue != null ? `${req.skillName} ${req.skillValue}` : (recipe.skill_total || "—")}
+                {"  ·  "}School: {recipe.school || "—"}
+                {"  ·  "}Materials: {recipe.total_materials || "—"}
+                {req.baseTypes && (
+                  <> ({req.baseTypes.join(", ")}{req.extraTypes ? `, or up to half ${req.extraTypes.join(", ")}` : ""})</>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 
 function InventorySection({
   items, inventory, gold, onGoldChange, onAdd, onQtyChange, onRemove, readOnly = false,
@@ -3599,6 +3909,7 @@ function App() {
   const [techniques, setTechniques] = useState([]);
   const [features,   setFeatures]   = useState([]);   // features.json — Feature-builder options
   const [glossary,   setGlossary]   = useState([]);   // glossary.json — capitalized game terms
+  const [craftingRecipes, setCraftingRecipes] = useState([]); // crafting_recipes.json
   const [items,       setItems]       = useState([]); // items.json — Inventory picker
   const [backgrounds, setBackgrounds] = useState([]); // backgrounds.json
   const [loading,    setLoading]    = useState(true);
@@ -3799,13 +4110,17 @@ function App() {
       // Glossary is a nice-to-have, not core data — a missing/broken file
       // just means no term gets a tooltip, not a load error for the app.
       fetch("data/glossary.json").then(r => r.ok ? r.json() : []).catch(() => []),
+      // Same treatment as glossary — the Crafting section just shows
+      // nothing resolvable if this fails, not a load error for the app.
+      fetch("data/crafting_recipes.json").then(r => r.ok ? r.json() : []).catch(() => []),
     ])
-    .then(([techData, featData, itemData, backgroundData, glossaryData]) => {
+    .then(([techData, featData, itemData, backgroundData, glossaryData, craftingRecipeData]) => {
       setTechniques(techData);
       setFeatures(featData);
       setItems(itemData);
       setBackgrounds(backgroundData);
       setGlossary(Array.isArray(glossaryData) ? glossaryData : []);
+      setCraftingRecipes(Array.isArray(craftingRecipeData) ? craftingRecipeData : []);
       setLoading(false);
     })
     .catch(err => {
@@ -5607,6 +5922,12 @@ function App() {
             customMaterials={customMaterials} onAddCustomMaterial={addCustomMaterial}
             onUpdateCustomMaterial={updateCustomMaterial} onToggleCustomMaterialType={toggleCustomMaterialType}
             onRemoveCustomMaterial={removeCustomMaterial}
+          />
+
+          <div style={{ height:20 }} />
+          <CraftingSection
+            items={items} craftingRecipes={craftingRecipes} inventory={inventory}
+            customMaterials={customMaterials} statPoints={statPoints} skillPoints={skillPoints}
           />
         </div>
       )}
