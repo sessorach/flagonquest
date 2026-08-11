@@ -22,8 +22,15 @@ the full commit-by-commit detail behind any of these.
   number of Types) for GM-granted special materials that aren't in the
   data file, e.g. one that's both Metal and Fire.
 - Materials get their own section on the Items tab and Character Sheet,
-  separate from the gear grid. Foundation for an upcoming crafting-recipe
-  browser and craft action — not built yet.
+  separate from the gear grid.
+- **Crafting browser** (draft): a collapsible section on the Items tab
+  listing every item with a resolvable recipe, showing whether the
+  current character is trained/skilled enough and has the materials for
+  it, with a filter for either or both. Recipes now explicitly declare
+  which items they cover (`crafting_recipes.csv`'s new "Applies To"
+  column) instead of relying on eyeballing text, and Masterwork items'
+  base-item requirement (if any) is shown for reference. No craft action
+  yet — this is the eligibility browser, not the spend-materials step.
 
 ### 2026-08-04 — Health tracking
 
