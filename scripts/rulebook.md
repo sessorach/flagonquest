@@ -251,7 +251,7 @@ This is how the core of the system works.
 
 [Insert intro paragraph explaining what a TTRPG is]
 
-You use a deck of cards, 54 cards with two jokers included.
+You use a deck of cards, a standard 52-card deck of playing cards.
 
 Capitalized Words are terms used consistently to refer to a game element, as are most terms put in brackets to label things. When in doubt, check the Glossary.
 
@@ -291,9 +291,9 @@ Example: Carrick is infiltrating a noble’s inn room while the party keeps him 
 
 ## So How Does the Card Deck Work?
 
-Each player uses their own 54-card deck of playing cards, as does the GM. To make a flip (such as for a skill check), a player puts the top card of their deck face-up in front of them and adds the card’s value to the Skill Total and any other modifiers, and the total is the result for their check.
+Each player uses their own 52-card deck of playing cards, as does the GM. To make a flip (such as for a skill check), a player puts the top card of their deck face-up in front of them and adds the card’s value to the Skill Total and any other modifiers, and the total is the result for their check.
 
-A card’s value is represented by the number on it. Aces count as 1s, Jacks are 11s, Queens are 12s, and Kings are 13s; this means the deck has cards numbering from 1 to 13, one of each suit. Jokers are special “wild” cards, and count as though they were any other card in the deck (a suit, and a value from 1-13) of your choice.
+A card’s value is represented by the number on it. Aces count as 1s, Jacks are 11s, Queens are 12s, and Kings are 13s; this means the deck has cards numbering from 1 to 13, one of each suit.
 
 Once you’re finished determining the result of a flip, you put all the cards used for that flip into your discard pile. If you need to flip or draw a card, but your deck of cards is empty, shuffle your discard pile back into your (empty) deck.
 
