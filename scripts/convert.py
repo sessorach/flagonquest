@@ -206,7 +206,12 @@ ITEM_MAP = {
     # build level, where Cost is left blank since it depends on which
     # level you build it at. The site multiplies this by the level
     # you've picked (see index.html). Fixed-level Masterwork items just
-    # get a flat Cost like any other item, and leave this blank.
+    # get a flat Cost like any other item, and leave this blank. Every
+    # catalog Material also uses this (always 1) rather than a flat Cost,
+    # since a material is baseline worth its Level in Gold by rule — see
+    # the "Crafting materials framework" changelog entry for why that
+    # rule matters (Alchemy/Masterwork's Total Materials formula ties to
+    # an item's Gold cost).
     "Value Per Level":  "value_per_level",
     "School":           "school",
     "Skill Total":      "skill_total",
@@ -711,8 +716,13 @@ for csv_file, (json_file, col_map) in TABLES.items():
 
             value_per_level = r.get("value_per_level")
             if value_per_level is not None:
-                if category != "Masterwork":
-                    item_errors.append(f"{r.get('id')} {r.get('name')!r}: has Value Per Level but Category isn't Masterwork")
+                # Masterwork items are priced per level by design choice
+                # (build cost scales with power). Materials are priced per
+                # level by rule — a material is baseline worth its Level in
+                # Gold — which is why every catalog material's Value Per
+                # Level is a flat 1 rather than something authored per item.
+                if category not in ("Masterwork", "Material"):
+                    item_errors.append(f"{r.get('id')} {r.get('name')!r}: has Value Per Level but Category isn't Masterwork or Material")
                 elif len(r["levels"]) <= 1:
                     item_errors.append(f"{r.get('id')} {r.get('name')!r}: has Value Per Level but only one valid Level — give it a flat Cost instead")
                 if r.get("cost"):

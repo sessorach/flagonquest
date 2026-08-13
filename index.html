@@ -3045,6 +3045,14 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
             {[1, 2, 3, 4, 5].map(lv => <option key={lv} value={lv}>Lv {lv}</option>)}
           </select>
         )}
+        {/* A material is baseline worth its Level in Gold by rule (see
+            the "Value Per Level" comment on ITEM_MAP in convert.py) —
+            shown for reference on the Items tab, same as a catalog
+            material's Cost badge, and skipped on the read-only Sheet
+            the same way that badge is. */}
+        {!readOnly && (
+          <span style={{ fontSize: 12, color: TEXT.faint }}>{entry.level} Gold</span>
+        )}
       </div>
       <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
         {MATERIAL_TYPES.filter(t => editing || entry.types.includes(t)).map(t => {

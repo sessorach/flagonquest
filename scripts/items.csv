@@ -179,15 +179,15 @@ I132,Musket,Weapon,Held,,,"A firearm with a long, straight barrel that fires a s
 I133,Bomb,Weapon,Held,Grenade,2,"The standard bomb, if anything Goblins make can have a standard, is a hollow rigid object filled with gunpowder. Most are very crudely made.","A Level 2 alchemical Grenade, requiring Fire material to craft. Deals its Damage to the target and any adjacent squares. Follows the [Grenade] rules when thrown — targets the foe's Dodge Defense, cannot Gamble on the attack, and is consumed after use. Bombs are prone to mishap: if a diamond is kept as the result of the Throwing flip to use one on a Card Value of 1, the wielder also takes 6 Physical damage.",,,,,,,,,,,,,,,,,,,,,,-1,6,,3 × Body,Acrobatics,,1,Goblin Game,
 I134,Rockbiter's Bomb,Weapon,Held,Grenade,2,"The Rockbiter tribe's sole technological improvement on the standard bomb has been using hollowed-out, stalactite-shaped crustacean shells as the container, which greatly improves its accuracy when thrown — and lets a particularly stupid or brave Goblin use it as a Light melee weapon that explodes on hit.","A Level 2 alchemical Grenade, requiring Fire material to craft. Deals its Damage to the target and any adjacent squares. Can be used as a Light melee weapon that explodes on hit. When thrown, follows the [Grenade] rules — targets the foe's Dodge Defense, cannot Gamble on the attack, and is consumed after use. Bombs are prone to mishap: if a diamond is kept as the result of the Throwing flip to use one on a Card Value of 1, the wielder also takes 6 Physical damage.",,,,,,,,,,,,,,,,,,,,,,0,6,,"Close, or 3 × Body",Acrobatics or Melee,,1,Goblin Game,
 I135,Smoking Hills Bomb,Weapon,Held,Grenade,2,"Smoking Hills tribes have further improved the bomb's design, using the shells of metallic thermophile snails as the container. These well-made bombs do not have an accuracy penalty, but cannot be used effectively as a melee weapon.","A Level 2 alchemical Grenade, requiring Fire material to craft. Deals its Damage to the target and any adjacent squares. Follows the [Grenade] rules when thrown — targets the foe's Dodge Defense, cannot Gamble on the attack, and is consumed after use. Bombs are prone to mishap: if a diamond is kept as the result of the Throwing flip to use one on a Card Value of 1, the wielder also takes 6 Physical damage.",,,,,,,,,,,,,,,,,,,,,,0,6,,3 × Body,Acrobatics,,1,Goblin Game,
-I136,Bone,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Bone
-I137,Cloth,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Cloth
-I138,Leather,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Leather
-I139,Metal,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Metal
-I140,Wood,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Wood
-I141,Food,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Food
-I142,Medicinal,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Medicinal
-I143,Precious,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Precious
-I144,Brilliant,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Brilliant
-I145,Fire,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Fire
-I146,Frost,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Frost
-I147,Shadow,Material,,,1-5,,,1 Gold,,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Shadow
+I136,Bone,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Bone
+I137,Cloth,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Cloth
+I138,Leather,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Leather
+I139,Metal,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Metal
+I140,Wood,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Wood
+I141,Food,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Food
+I142,Medicinal,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Medicinal
+I143,Precious,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Precious
+I144,Brilliant,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Brilliant
+I145,Fire,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Fire
+I146,Frost,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Frost
+I147,Shadow,Material,,,1-5,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,Base Game,Shadow
