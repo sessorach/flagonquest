@@ -44,6 +44,16 @@ the full commit-by-commit detail behind any of these.
   at once instead of picking one at a time; the custom item and material
   builders moved to sit side by side under the search bar, above the
   inventory grid.
+- Catalog materials now carry a **Level** (1–5), editable per stack —
+  picking a different Level splits a unit off into its own stack instead
+  of reclassifying the whole pile, so you can hold e.g. both Level 1 and
+  Level 3 Metal at once; crafting eligibility checks each stack's Level
+  against the item being made.
+- Custom material builder reworked to match the buildable-technique
+  pattern: a fresh one opens straight into the name/Level/Type form, and
+  "Done" collapses it down to look like a stock material tile (name, Lv
+  badge, only the Types you turned on) — "Edit" reopens the form. Also
+  fixes the name field clipping outside the tile.
 
 ### 2026-08-04 — Health tracking
 

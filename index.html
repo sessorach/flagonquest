@@ -2160,7 +2160,10 @@ function statBadge(label, v) {
 // ones with a choice of levels (item.levels has more than one) get a
 // picker instead, editable wherever Qty is (Items tab, plain badge on
 // the read-only Sheet). Its Cost badge scales with the picked level for
-// a Masterwork item priced per-level (item.value_per_level).
+// a Masterwork item priced per-level (item.value_per_level). Category =
+// "Material" items get the same Lv badge/picker (crafting eligibility
+// gates on a material's Level — see gatherOwnedMaterials) but changing
+// it behaves differently: see setInventoryLevel's Material branch.
 // ══════════════════════════════════════════════════════════════════
 function InventoryTile({
   entry, item, allItems = [], onQtyChange, onRemove, readOnly = false,
@@ -2174,7 +2177,7 @@ function InventoryTile({
     .map(id => allItems.find(i => i.id === id))
     .filter(Boolean);
   const baseItem = entry.baseItemId ? allItems.find(i => i.id === entry.baseItemId) : null;
-  const levels = item.category === "Masterwork" ? (item.levels || []) : [];
+  const levels = (item.category === "Masterwork" || item.category === "Material") ? (item.levels || []) : [];
   const hasLevel = levels.length > 0;
   const variableLevel = levels.length > 1;
   const displayLevel = entry.level ?? levels[0];
@@ -2971,26 +2974,46 @@ const MATERIAL_TYPES = ["Bone", "Cloth", "Leather", "Metal", "Wood", "Food",
 // equip, stats, or powers — materials aren't worn) since the whole
 // point is this should take a few clicks, not a form: a name, a Level
 // (capped at 5 like every data-file item), and any number of Types
-// toggled on. Read-only view only lists the Types that are actually on,
-// not the full picker.
+// toggled on.
+//
+// Mirrors the "buildable technique" pattern (see FeaturesSection/
+// FeatureBuilder) at tile scale: a fresh material with no name yet opens
+// straight into build mode so the fields to fill in are immediately
+// visible; a "Done" button then collapses it down to look like a stock
+// catalog material tile (name, Lv badge, only the Types actually turned
+// on, Qty) instead of showing all 12 untoggled Type buttons. "Edit"
+// reopens the full picker later. Purely a display toggle — every field
+// already writes straight to the live character data either way, there's
+// no separate save/draft step to commit.
 // ══════════════════════════════════════════════════════════════════
 function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, onToggleType, onRemove, readOnly = false }) {
+  const [building, setBuilding] = useState(!readOnly && !entry.name.trim());
+  const editing = !readOnly && building;
+
+  const smallBtn = {
+    fontSize: 11, color: TEXT.muted, background: "transparent",
+    border: "0.5px solid #2d3555", borderRadius: 4, padding: "1px 8px", flexShrink: 0,
+  };
+
   return (
     <div className="tech-card" style={{
       background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
       padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        {readOnly ? (
-          <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 15, color: TEXT.name, flex: 1 }}>
-            {entry.name || "Custom material"}
-          </span>
-        ) : (
+        {editing ? (
           <input
             type="text" placeholder="Material name…"
             value={entry.name} onChange={e => onNameChange(e.target.value)}
-            style={{ flex: 1, fontSize: 14, fontFamily: "'MedievalSharp', Georgia, serif" }}
+            style={{ flex: 1, minWidth: 0, fontSize: 14, fontFamily: "'MedievalSharp', Georgia, serif" }}
           />
+        ) : (
+          <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 15, color: TEXT.name, flex: 1 }}>
+            {entry.name || "Custom material"}
+          </span>
+        )}
+        {!readOnly && !building && (
+          <button onClick={() => setBuilding(true)} style={smallBtn}>Edit</button>
         )}
         {!readOnly && (
           <button
@@ -3004,33 +3027,43 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         <span style={{ fontSize: 12, color: TEXT.faint }}>Level</span>
-        {readOnly ? (
-          <span style={{ fontSize: 13, color: TEXT.name }}>{entry.level}</span>
-        ) : (
+        {editing ? (
           <PointStepper value={entry.level} max={5} onChange={onLevelChange} />
+        ) : readOnly ? (
+          <span style={{ fontSize: 11, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 6px" }}>
+            Lv {entry.level}
+          </span>
+        ) : (
+          <select
+            value={entry.level}
+            onChange={e => onLevelChange(Number(e.target.value))}
+            style={{ fontSize: 11, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" }}
+          >
+            {[1, 2, 3, 4, 5].map(lv => <option key={lv} value={lv}>Lv {lv}</option>)}
+          </select>
         )}
       </div>
       <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-        {MATERIAL_TYPES.filter(t => !readOnly || entry.types.includes(t)).map(t => {
+        {MATERIAL_TYPES.filter(t => editing || entry.types.includes(t)).map(t => {
           const active = entry.types.includes(t);
           return (
             <button
               key={t}
-              onClick={readOnly ? undefined : () => onToggleType(t)}
-              disabled={readOnly}
+              onClick={editing ? () => onToggleType(t) : undefined}
+              disabled={!editing}
               style={{
                 fontSize: 11, padding: "1px 7px", borderRadius: 4,
                 background: active ? "#20180a" : "transparent",
                 color: active ? "#e8c46a" : TEXT.faint,
                 border: `0.5px solid ${active ? "#6b5423" : "#2d3555"}`,
-                cursor: readOnly ? "default" : "pointer",
+                cursor: editing ? "pointer" : "default",
               }}
             >
               {t}
             </button>
           );
         })}
-        {readOnly && entry.types.length === 0 && (
+        {!editing && entry.types.length === 0 && (
           <span style={{ fontSize: 12, color: TEXT.faint, fontStyle: "italic" }}>No types set</span>
         )}
       </div>
@@ -3042,6 +3075,18 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
       </div>
+      {editing && (
+        <button
+          onClick={() => setBuilding(false)}
+          style={{
+            fontSize: 13, color: "#d4a843", background: "transparent",
+            border: "0.5px solid #a07c2e", borderRadius: 4,
+            padding: "4px 10px", alignSelf: "flex-start",
+          }}
+        >
+          Done
+        </button>
+      )}
     </div>
   );
 }
@@ -3218,13 +3263,16 @@ function craftingSkillEligibility(req, statPoints, skillPoints) {
 
 // Flattens both material sources (catalog inventory + custom) into one
 // list of { level, types, qty } — see MATERIAL_TYPES for why these two
-// sources need to resolve to the same shape.
+// sources need to resolve to the same shape. Uses the inventory entry's
+// own Level (e.level — per-stack, see setInventoryLevel's Material
+// branch), not the catalog item's static Level, since a player can own
+// the same material at more than one grade at once.
 function gatherOwnedMaterials(inventory, items, customMaterials) {
   const owned = [];
   inventory.forEach(e => {
     const it = items.find(i => i.id === e.itemId);
     if (it && it.category === "Material") {
-      owned.push({ level: it.level || 1, types: splitCSV(it.material_types), qty: e.qty });
+      owned.push({ level: e.level || 1, types: splitCSV(it.material_types), qty: e.qty });
     }
   });
   customMaterials.forEach(c => owned.push({ level: c.level, types: c.types, qty: c.qty }));
@@ -3833,6 +3881,7 @@ function InventorySection({
                     allItems={items}
                     onQtyChange={readOnly ? undefined : (q => onQtyChange(entry.uid, q))}
                     onRemove={readOnly ? undefined : (() => onRemove(entry.uid))}
+                    onLevelChange={readOnly ? undefined : (lv => onLevelChange(entry.uid, lv))}
                     readOnly={readOnly}
                     statPoints={statPoints} skillPoints={skillPoints}
                   />
@@ -4897,8 +4946,32 @@ function App() {
   // built at — see item.levels. Doesn't merge with any other row already
   // at that level; two copies you deliberately set to the same level
   // just stay as two separate tiles until you remove one.
+  //
+  // Category = "Material" items behave differently: a material is a
+  // stack of interchangeable units, not one distinct "copy" the way a
+  // Masterwork build is, and a player can plausibly hold the same
+  // material at more than one grade at once (some Level 1 Metal *and*
+  // some Level 3 Metal). So picking a new Level here doesn't reclassify
+  // the whole stack — it peels one unit off into a separate stack at
+  // the new Level (merging into an existing one there if present),
+  // leaving the rest of the original stack at its old Level.
   const setInventoryLevel = (uid, level) => {
-    setInventory(inv => inv.map(e => e.uid === uid ? { ...e, level } : e));
+    setInventory(inv => {
+      const entry = inv.find(e => e.uid === uid);
+      if (!entry || entry.level === level) return inv;
+      const item = items.find(i => i.id === entry.itemId);
+      if (item && item.category === "Material") {
+        const twin = inv.find(e => e.uid !== uid && e.itemId === entry.itemId && e.level === level);
+        let next = entry.qty > 1
+          ? inv.map(e => e.uid === uid ? { ...e, qty: e.qty - 1 } : e)
+          : inv.filter(e => e.uid !== uid);
+        next = twin
+          ? next.map(e => e.uid === twin.uid ? { ...e, qty: e.qty + 1 } : e)
+          : [...next, { uid: makeUid(), itemId: entry.itemId, qty: 1, level }];
+        return next;
+      }
+      return inv.map(e => e.uid === uid ? { ...e, level } : e);
+    });
   };
 
   // Equipped — Character Sheet only (see InventorySection's showEquip).
