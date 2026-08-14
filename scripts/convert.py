@@ -285,36 +285,52 @@ BACKGROUND_MAP = {
     "Supplement":   "supplement",
 }
 
-# Basic Items' crafting recipes (Weapons, Armor, Basic Clothing, etc.) —
-# what School/Skill Total/materials it takes to make each equipment
-# category, as opposed to items.csv's specific named items.
+# Recipes for what it takes to craft an item — covers both the fixed,
+# hand-authored set (Weapons, Armor, Basic Clothing, etc.) and generic
+# fallback recipes for large open-ended categories (Masterwork, Potions,
+# Poisons, Grenades, Food) that would be impractical to hand-author one
+# row per item for. items.csv's specific named items still take priority
+# over anything here — see the Applies To comment below.
 CRAFTING_RECIPE_MAP = {
     "ID":               "id",
     "Name":             "name",
     "Description":      "description",
     # One School per row — a recipe covering more than one School (e.g.
-    # a Weapon can be made via Carving or Smithing) is now one row per
+    # a Weapon can be made via Carving or Smithing) is one row per
     # School instead of one row with a "(if School)" conditional, so
     # every field here is a flat, unconditional value. See CR001/CR002
-    # for the Weapon example.
+    # for the Weapon example. Leave blank ("Varies") for a fallback
+    # recipe that's genuinely different per item (e.g. Masterwork).
     "School":           "school",
     "Skill Total":      "skill_total",
-    # Primary/Leeway replace the old Total-Materials-as-Gold-cost model
-    # for this fixed, hand-authored set of recipes (Weapons, Armor,
-    # Tools) — a small fixed count of material "slots" instead of a
-    # count tied to the item's price. Primary is the type(s) that must
-    # fill most of the slots; Leeway is a broader, more forgiving list
-    # for the rest. E.g. Weapon (Smithing): 2 Primary slots needing
-    # Metal, 1 Leeway slot accepting Cloth or Leather too.
-    # Masterwork/Alchemy items don't use this table at all — they keep
-    # the old Gold-value-based model on the item's own row (see
-    # ITEM_MAP's Total Materials/Base Materials/Extra Materials) since
-    # that set is large and open-ended, where a formula scales and a
-    # hand-authored template doesn't.
+    # Kind picks which of the two material-requirement shapes the rest
+    # of this row uses — "Slots" (Primary/Leeway Types below) or "Value"
+    # (Total/Base/Extra Materials below). Blank defaults to Slots, since
+    # that's what every recipe used before Kind existed.
+    "Kind":             "kind_raw",
+    # Primary/Leeway ("Slots" kind) — a small fixed count of material
+    # "slots" instead of a count tied to the item's price. Primary is
+    # the type(s) that must fill most of the slots; Leeway is a
+    # broader, more forgiving list for the rest. E.g. Weapon (Smithing):
+    # 2 Primary slots needing Metal, 1 Leeway slot accepting Cloth or
+    # Leather too. Used for the fixed, hand-authored set (Weapons,
+    # Armor, Tools) where the small roster makes hand-authoring
+    # practical.
     "Primary Types":    "primary_types",
     "Primary Count":    "primary_count",
     "Leeway Types":     "leeway_types",
     "Leeway Count":     "leeway_count",
+    # Total/Base/Extra Materials ("Value" kind) — the same Gold-value
+    # model items.csv's ITEM_MAP uses for a per-item override (see its
+    # Total Materials/Base Materials/Extra Materials comment), just
+    # expressed as a table row instead of columns on one specific item.
+    # Used for large, open-ended categories (Masterwork, Potions,
+    # Poisons, Grenades, Food) where a formula scales and a hand-
+    # authored template per item doesn't. Total Materials can be a flat
+    # number or the "[Item's base price in Gold]" token.
+    "Total Materials":  "total_materials",
+    "Base Materials":   "base_materials",
+    "Extra Materials":  "extra_materials",
     # Which items.csv rows this recipe covers, so index.html can resolve
     # "what does it take to craft this item" without guessing from name/
     # description text. Comma-separated clauses, ALL must match (AND):
@@ -325,7 +341,7 @@ CRAFTING_RECIPE_MAP = {
     # auto-match, not shown as a specific item's recipe in the browser.
     # Multiple rows can share the same Applies To (one per School) —
     # the browser shows each as its own way to craft the same item.
-    # A Masterwork item's own School/Skill Total/Total Materials/*
+    # A specific item's own School/Skill Total/Total Materials/*
     # Materials columns (on the item itself, see ITEM_MAP) always take
     # priority over anything here — "special items require you to find
     # a specific recipe for them" per the rulebook, so a populated
@@ -734,6 +750,25 @@ for csv_file, (json_file, col_map) in TABLES.items():
         if item_errors:
             print(f"\n⚠ {len(item_errors)} issue(s) in {csv_file}:")
             for e in item_errors:
+                print(f"   {e}")
+            print()
+
+    if csv_file == "crafting_recipes.csv":
+        recipe_errors = []
+        slots_cols  = ("primary_types", "primary_count", "leeway_types", "leeway_count")
+        value_cols  = ("total_materials", "base_materials", "extra_materials")
+        for r in rows:
+            kind = r.get("kind_raw") or "Slots"
+            if kind not in ("Slots", "Value"):
+                recipe_errors.append(f"{r.get('id')} {r.get('name')!r}: unknown Kind {kind!r}, expected \"Slots\" or \"Value\"")
+            other_cols = value_cols if kind == "Slots" else slots_cols
+            populated = [c for c in other_cols if r.get(c) is not None]
+            if populated:
+                recipe_errors.append(f"{r.get('id')} {r.get('name')!r}: Kind is {kind!r} but has {', '.join(populated)} filled in — pick one shape")
+            r["kind_raw"] = kind
+        if recipe_errors:
+            print(f"\n⚠ {len(recipe_errors)} issue(s) in {csv_file}:")
+            for e in recipe_errors:
                 print(f"   {e}")
             print()
 

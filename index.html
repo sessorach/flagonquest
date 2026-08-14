@@ -3143,6 +3143,11 @@ const SCHOOL_TOOL_MAP = {
   Smithing: "Smithing Kit", Carving: "Carving Kit", Tailoring: "Tailor's Kit",
   Jewelrymaking: "Jeweler's Kit", Alchemy: "Mixology Set",
 };
+// The six creation Schools Artisanal Training lets a player choose from
+// (see its Effects text) — used to read a School back out of that
+// technique's free-text note, since there's no structured "pick one of
+// these" mechanism for technique choices yet, just a text box per copy.
+const CREATION_SCHOOLS = ["Smithing", "Carving", "Tailoring", "Jewelrymaking", "Alchemy", "Cooking"];
 
 // "Carving, Tailoring, or Smithing" → ["Carving","Tailoring","Smithing"].
 // "Varies" (Other Items) intentionally falls through as a single
@@ -3158,12 +3163,25 @@ function parseSkillTotalText(text) {
   return m ? { skill: m[1], value: Number(m[2]) } : null;
 }
 
-// A dollar-figure-style "N Gold" cost string → N. Used to resolve a
-// recipe's "[Item's base price in Gold]" Total Materials token against
-// the specific item being priced.
+// A dollar-figure-style "N Gold" cost string → N.
 function parseGoldNumber(costStr) {
   const m = /(\d+)/.exec(costStr || "");
   return m ? Number(m[1]) : null;
+}
+
+// An item's Gold price, for resolving a recipe's "[Item's base price in
+// Gold]" Total Materials token — either a flat Cost, or (for a
+// Masterwork item priced per level, see InventoryTile's displayCost)
+// its Value Per Level × its lowest buildable Level, as a stand-in
+// baseline price since this is a browsing/reference view with no
+// specific level picked. null if neither is set — some items (mostly
+// still-unpriced Masterwork/Alchemy entries) just don't have a price
+// in the data yet.
+function itemGoldValue(item) {
+  if (item.value_per_level && item.levels && item.levels.length) {
+    return item.levels[0] * item.value_per_level;
+  }
+  return parseGoldNumber(item.cost);
 }
 
 // "Wood or Bone (if Carving), Metal (if Smithing)" → ["Wood","Bone","Metal"]
@@ -3219,17 +3237,19 @@ function recipesForItem(item, recipes) {
 // Skill/Materials eligibility actually check against, resolved for one
 // specific item. Two shapes, matching the two crafting models — see the
 // comment on CRAFTING_RECIPE_MAP in convert.py for why they're
-// separate: "value" for Masterwork/Alchemy's per-item override (Total
-// Materials tied to the item's Gold cost — needed for the "[Item's
-// base price in Gold]" token), "slots" for the hand-authored Weapon/
-// Armor/Tools table (a small fixed Primary/Leeway slot count instead).
+// separate: "value" (Total Materials tied to the item's Gold cost —
+// needed for the "[Item's base price in Gold]" token) for Masterwork/
+// Alchemy-style open-ended categories, "slots" (a small fixed Primary/
+// Leeway slot count) for the hand-authored Weapon/Armor/Tools table.
+// A per-item override (recipe.source === "item") is always "value";
+// a table-sourced recipe picks based on its own Kind column.
 function resolveRecipeRequirements(recipe, item) {
   const skillParsed = parseSkillTotalText(recipe.skill_total);
   const schools = parseSchoolList(recipe.school);
   const skillName = skillParsed ? skillParsed.skill : null;
   const skillValue = skillParsed ? skillParsed.value : null;
 
-  if (recipe.source === "item") {
+  if (recipe.source === "item" || recipe.kind_raw === "Value") {
     // convert.py's clean() turns a pure-digit CSV cell into a real
     // number (e.g. Total Materials = 3), so this can arrive as either
     // a number or text like "[Item's base price in Gold]" — never
@@ -3240,7 +3260,7 @@ function resolveRecipeRequirements(recipe, item) {
     } else if (typeof recipe.total_materials === "string") {
       const rawTotal = recipe.total_materials.trim();
       if (/^\d+$/.test(rawTotal)) totalMaterials = Number(rawTotal);
-      else if (/base price in Gold/i.test(rawTotal)) totalMaterials = parseGoldNumber(item.cost);
+      else if (/base price in Gold/i.test(rawTotal)) totalMaterials = itemGoldValue(item);
     }
     return {
       kind: "value", schools, skillName, skillValue, totalMaterials,
@@ -3256,12 +3276,32 @@ function resolveRecipeRequirements(recipe, item) {
   return { kind: "slots", schools, skillName, skillValue, slots };
 }
 
+// Artisanal Training (Duplicate) lets a player choose a creation School
+// each time they learn a copy, tracked as a free-text note per copy
+// (see CREATION_SCHOOLS) rather than a structured pick — so this just
+// reads whichever known School name(s) appear in each copy's note.
+// KNOWN SIMPLIFICATION: substring text matching, not a real dropdown —
+// a note that doesn't clearly name a School (or misspells one) won't
+// resolve, same "flag readiness, don't guess" spirit as the rest of
+// this section.
+function trainedSchoolsFromArtisanalTraining(build, notes, techniques) {
+  const tech = techniques.find(t => t.name === "Artisanal Training");
+  if (!tech) return [];
+  return build
+    .filter(e => e.id === tech.id)
+    .map(e => (notes[e.uid] || "").toLowerCase())
+    .flatMap(text => CREATION_SCHOOLS.filter(school => text.includes(school.toLowerCase())));
+}
+
 // null = can't tell (no School resolved, e.g. "Varies"); a School with
-// no known Tool/Kit (SCHOOL_TOOL_MAP) just never counts as trained,
-// same as not owning any qualifying tool.
-function hasSchoolTraining(schools, inventory, items) {
+// no known Tool/Kit (SCHOOL_TOOL_MAP) and no Artisanal Training note
+// naming it just never counts as trained, same as not owning any
+// qualifying tool.
+function hasSchoolTraining(schools, inventory, items, build, notes, techniques) {
   if (!schools || schools.length === 0) return null;
+  const trainedViaTechnique = trainedSchoolsFromArtisanalTraining(build, notes, techniques);
   return schools.some(school => {
+    if (trainedViaTechnique.includes(school)) return true;
     const toolName = SCHOOL_TOOL_MAP[school];
     if (!toolName) return false;
     return inventory.some(e => {
@@ -3350,24 +3390,56 @@ function slotCost(item) {
   return effectiveSlot(item) === "Held" ? (item.held_slots || 1) : 1;
 }
 
+// Which filter checkbox an item's row falls under — a browsing aid
+// derived from item.category (and req.kind for the hand-authored
+// Weapon/Armor/Tools set, which doesn't share one Category), not a new
+// data column, so it stays in sync with whatever's already in
+// items.csv/crafting_recipes.csv automatically instead of needing its
+// own tag maintained by hand.
+function craftingGroup(item, req) {
+  if (item.category === "Masterwork") return "Masterwork";
+  if (item.category === "Food") return "Food";
+  if (["Potion", "Poison", "Grenade"].includes(item.category)) return "Alchemy";
+  if (req.kind === "slots") return "Base";
+  return "Other";
+}
+const CRAFTING_GROUPS = ["Base", "Masterwork", "Alchemy", "Food"];
+
 // ══════════════════════════════════════════════════════════════════
 // CRAFTING SECTION — Items tab only, collapsed by default (same
-// Show/Hide pattern as SourcesSection). Lists every item with a
-// resolvable recipe (see recipesForItem) alongside whether the current
-// character is set up to craft it — Skill (Skill Total + right Tool/
-// Kit) and Materials (enough of the right Types on hand) shown as
-// separate badges, since "you can learn to" and "you have the stuff"
-// are different kinds of ready. No craft action yet — this is a
-// browser to check eligibility against, not a way to actually spend
-// materials and produce the item (that's the next step).
+// Show/Hide pattern as SourcesSection). One row per item with a
+// resolvable recipe (see recipesForItem) — an item with more than one
+// way to make it (e.g. a Weapon via Carving or Smithing) gets a School
+// picker instead of a separate row per School, so the same item never
+// shows up twice. Skill (Skill Total + right Tool/Kit, or an Artisanal
+// Training note naming the School — see hasSchoolTraining) and
+// Materials (enough of the right Types on hand) show as separate
+// badges, since "you can learn to" and "you have the stuff" are
+// different kinds of ready. No craft action yet — this is a browser to
+// check eligibility against, not a way to actually spend materials and
+// produce the item (that's the next step).
 // ══════════════════════════════════════════════════════════════════
-function CraftingSection({ items, craftingRecipes, inventory, customMaterials, statPoints, skillPoints }) {
+function CraftingSection({ items, craftingRecipes, inventory, customMaterials, statPoints, skillPoints, build, notes, techniques }) {
   const [collapsed, setCollapsed] = useState(true);
-  const [filter, setFilter] = useState("");
+  const [skillFilter, setSkillFilter] = useState(false);
+  const [materialsFilter, setMaterialsFilter] = useState(false);
+  const [groupFilters, setGroupFilters] = useState([]);
+  const [selectedRecipe, setSelectedRecipe] = useState({});   // itemId -> recipeId
+  const [selectedBaseItem, setSelectedBaseItem] = useState({}); // itemId -> baseItemId
   const collapseBtnStyle = {
     fontSize: 12, color: TEXT.muted, background: "transparent",
     border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
   };
+  const toggleGroupFilter = g => setGroupFilters(f => f.includes(g) ? f.filter(x => x !== g) : [...f, g]);
+  // Same look as the Items tab's Keyword/Supplement filter chips.
+  const groupChipStyle = active => ({
+    padding: "3px 10px", fontSize: 13, borderRadius: 20,
+    fontWeight: active ? 500 : 400,
+    whiteSpace: "nowrap",
+    background: active ? "#d4a84322" : "transparent",
+    color:      active ? "#d4a843" : TEXT.muted,
+    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
+  });
 
   const ownedMaterials = useMemo(
     () => gatherOwnedMaterials(inventory, items, customMaterials),
@@ -3375,37 +3447,38 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
   );
 
   const rows = useMemo(() => {
-    // Tier 1 items can now match multiple recipe rows (one per School —
-    // e.g. Weapon via Carving or via Smithing), so this flattens to one
-    // row per (item, recipe) pair instead of one row per item.
     return items
-      .flatMap(item => recipesForItem(item, craftingRecipes).map(recipe => ({ item, recipe })))
-      .map(({ item, recipe }) => {
-        const req = resolveRecipeRequirements(recipe, item);
+      .map(item => {
+        const recipes = recipesForItem(item, craftingRecipes);
+        if (recipes.length === 0) return null;
         const itemLevel = (item.levels && item.levels.length) ? item.levels[0] : (Number(item.level) || 1);
-        const trained = hasSchoolTraining(req.schools, inventory, items);
-        const skillMet = craftingSkillEligibility(req, statPoints, skillPoints);
-        const skillReady = andTri(trained, skillMet);
-        const materialsReady = craftingMaterialsEligibility(req, ownedMaterials, itemLevel);
-        // Masterwork enhancements need a base item made/owned first (see
-        // the rulebook's "base item" rules) — base_item_options is the
-        // same list already used for the equip-time base-item picker
-        // (InventoryTile), reused here just to surface the requirement.
-        // Not factored into skillReady/materialsReady yet, and there's
-        // no check here for whether the character actually owns one.
-        const baseItemNames = (item.base_item_options || [])
-          .map(id => items.find(i => i.id === id)?.name)
+        const variants = recipes.map(recipe => {
+          const req = resolveRecipeRequirements(recipe, item);
+          const trained = hasSchoolTraining(req.schools, inventory, items, build, notes, techniques);
+          const skillMet = craftingSkillEligibility(req, statPoints, skillPoints);
+          const skillReady = andTri(trained, skillMet);
+          const materialsReady = craftingMaterialsEligibility(req, ownedMaterials, itemLevel);
+          return { recipe, req, skillReady, materialsReady, bothReady: andTri(skillReady, materialsReady) };
+        });
+        // Default to whichever variant is picked in the School selector
+        // below; failing that, one the character's already trained in
+        // (so the picker opens on a useful choice, not just the first
+        // School listed); failing that, just the first.
+        const pickedId = selectedRecipe[item.id];
+        const picked = variants.find(v => v.recipe.id === pickedId)
+          || variants.find(v => v.skillReady === true)
+          || variants[0];
+        const baseItemOptions = (item.base_item_options || [])
+          .map(id => items.find(i => i.id === id))
           .filter(Boolean);
-        return { item, recipe, req, skillReady, materialsReady, baseItemNames, bothReady: andTri(skillReady, materialsReady) };
+        return { item, variants, picked, baseItemOptions, group: craftingGroup(item, picked.req) };
       })
-      .filter(r => {
-        if (filter === "skill") return r.skillReady === true;
-        if (filter === "materials") return r.materialsReady === true;
-        if (filter === "both") return r.bothReady === true;
-        return true;
-      })
-      .sort((a, b) => a.item.name.localeCompare(b.item.name) || (a.recipe.school || "").localeCompare(b.recipe.school || ""));
-  }, [items, craftingRecipes, inventory, ownedMaterials, statPoints, skillPoints, filter]);
+      .filter(Boolean)
+      .filter(r => !skillFilter || r.picked.skillReady === true)
+      .filter(r => !materialsFilter || r.picked.materialsReady === true)
+      .filter(r => groupFilters.length === 0 || groupFilters.includes(r.group))
+      .sort((a, b) => a.item.name.localeCompare(b.item.name));
+  }, [items, craftingRecipes, inventory, ownedMaterials, statPoints, skillPoints, build, notes, techniques, selectedRecipe, skillFilter, materialsFilter, groupFilters]);
 
   const readyBadge = (label, state) => (
     <span style={{
@@ -3430,72 +3503,120 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
     <div style={{ marginBottom: 14 }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 10, flexWrap: "wrap" }}>
         <div style={{ fontSize: 13, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>Crafting</div>
-        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-          <select value={filter} onChange={e => setFilter(e.target.value)} style={{ fontSize: 13 }}>
-            <option value="">All craftable items</option>
-            <option value="skill">You're trained &amp; skilled enough</option>
-            <option value="materials">You have the materials</option>
-            <option value="both">Both — ready to craft</option>
-          </select>
-          <button onClick={() => setCollapsed(true)} style={collapseBtnStyle}>Hide</button>
+        <button onClick={() => setCollapsed(true)} style={collapseBtnStyle}>Hide</button>
+      </div>
+
+      <div style={{
+        display: "flex", flexDirection: "column", gap: 10,
+        fontSize: 13, color: TEXT.muted,
+        background: "#12161f", border: "0.5px solid #2d3555",
+        borderRadius: 8, padding: "10px 14px", marginBottom: 10,
+      }}>
+        <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+          <label style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer" }}>
+            <input type="checkbox" checked={skillFilter} onChange={e => setSkillFilter(e.target.checked)} />
+            Have the skill
+          </label>
+          <label style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer" }}>
+            <input type="checkbox" checked={materialsFilter} onChange={e => setMaterialsFilter(e.target.checked)} />
+            Have the materials
+          </label>
+        </div>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+          {CRAFTING_GROUPS.map(g => (
+            <button key={g} onClick={() => toggleGroupFilter(g)} style={groupChipStyle(groupFilters.includes(g))}>
+              {g}
+            </button>
+          ))}
         </div>
       </div>
+
       {rows.length === 0 ? (
         <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
           No matching recipes.
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {rows.map(({ item, recipe, req, skillReady, materialsReady, baseItemNames }) => (
-            <div key={`${item.id}:${recipe.id}`} className="tech-card" style={{
-              background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
-              padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
-            }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
-                <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 15, color: TEXT.name }}>
-                  {item.name}
-                  {/* Table-sourced recipes can have more than one row per
-                      item (one per School) — tag the School here so those
-                      rows are distinguishable at a glance. */}
-                  {recipe.source !== "item" && recipe.school && (
-                    <span style={{ fontFamily: "inherit", fontWeight: 400, fontSize: 12, color: TEXT.faint, marginLeft: 6 }}>
-                      via {recipe.school}
-                    </span>
-                  )}
-                </span>
-                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                  {readyBadge("Skill", skillReady)}
-                  {readyBadge("Materials", materialsReady)}
+          {rows.map(({ item, variants, picked, baseItemOptions }) => {
+            const { recipe, req, skillReady, materialsReady } = picked;
+            const selectedBaseId = selectedBaseItem[item.id] ?? baseItemOptions[0]?.id;
+            return (
+              <div key={item.id} className="tech-card" style={{
+                background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+                padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
+              }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
+                  <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 15, color: TEXT.name }}>
+                    {item.name}
+                  </span>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    {readyBadge("Skill", skillReady)}
+                    {readyBadge("Materials", materialsReady)}
+                  </div>
                 </div>
-              </div>
-              <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
-                {req.skillName && req.skillValue != null ? `${req.skillName} ${req.skillValue}` : (recipe.skill_total || "—")}
-                {"  ·  "}School: {recipe.school || "—"}
-                {"  ·  "}Materials:{" "}
-                {req.kind === "slots" ? (
-                  req.slots.length > 0
-                    ? req.slots.map(s => `${s.count}× ${s.types.join("/")}`).join(" + ")
-                    : "—"
-                ) : (
-                  <>
-                    {recipe.total_materials || "—"}
-                    {req.baseTypes && (
-                      <> ({req.baseTypes.join(", ")}{req.extraTypes ? `, or up to half ${req.extraTypes.join(", ")}` : ""})</>
+                {/* More than one way to make this item (one recipe row
+                    per School) — a picker instead of a separate card per
+                    School, so the item only shows up once. */}
+                {variants.length > 1 && (
+                  <select
+                    value={recipe.id}
+                    onChange={e => setSelectedRecipe(s => ({ ...s, [item.id]: e.target.value }))}
+                    style={{ fontSize: 12, alignSelf: "flex-start" }}
+                  >
+                    {variants.map(v => (
+                      <option key={v.recipe.id} value={v.recipe.id}>
+                        via {v.recipe.school || v.recipe.name}
+                      </option>
+                    ))}
+                  </select>
+                )}
+                <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
+                  {req.skillName && req.skillValue != null ? `${req.skillName} ${req.skillValue}` : (recipe.skill_total || "—")}
+                  {"  ·  "}School: {recipe.school || "—"}
+                  {"  ·  "}Materials:{" "}
+                  {req.kind === "slots" ? (
+                    req.slots.length > 0
+                      ? req.slots.map(s => `${s.count}× ${s.types.join("/")}`).join(" + ")
+                      : "—"
+                  ) : (
+                    <>
+                      {/* req.totalMaterials is the resolved number (the
+                          "[Item's base price in Gold]" token already
+                          turned into a real count) — showing the raw
+                          recipe.total_materials text here would print
+                          the token itself instead of what it resolved to. */}
+                      {req.totalMaterials != null ? req.totalMaterials : "—"}
+                      {req.baseTypes && (
+                        <> ({req.baseTypes.join(", ")}{req.extraTypes ? `, or up to half ${req.extraTypes.join(", ")}` : ""})</>
+                      )}
+                    </>
+                  )}
+                </div>
+                {/* Base item — a separate requirement from materials (see
+                    the rulebook's "base item" rules): crafted on its own,
+                    separately, before the enhancement. Reference-only for
+                    now — picking one here doesn't check inventory or
+                    consume anything, it's just previewing which base item
+                    this power would go on. */}
+                {baseItemOptions.length > 0 && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+                    <span style={{ fontSize: 12, color: TEXT.faint }}>Base item:</span>
+                    {baseItemOptions.length > 1 ? (
+                      <select
+                        value={selectedBaseId}
+                        onChange={e => setSelectedBaseItem(s => ({ ...s, [item.id]: e.target.value }))}
+                        style={{ fontSize: 12 }}
+                      >
+                        {baseItemOptions.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
+                      </select>
+                    ) : (
+                      <span style={{ fontSize: 12, color: TEXT.faint }}>{baseItemOptions[0].name}</span>
                     )}
-                  </>
+                  </div>
                 )}
               </div>
-              {/* Base item — a separate requirement from materials (see
-                  the rulebook's "base item" rules), reference-only for
-                  now: not checked against what's in inventory yet, and
-                  crafting one onto the other isn't wired up either. */}
-              {baseItemNames.length > 0 && (
-                <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
-                  Base item: {baseItemNames.join(" or ")}
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>
@@ -6133,6 +6254,7 @@ function App() {
           <CraftingSection
             items={items} craftingRecipes={craftingRecipes} inventory={inventory}
             customMaterials={customMaterials} statPoints={statPoints} skillPoints={skillPoints}
+            build={build} notes={notes} techniques={techniques}
           />
         </div>
       )}

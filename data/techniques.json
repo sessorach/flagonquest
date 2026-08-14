@@ -593,7 +593,7 @@
     "use_cards": null,
     "healing": null,
     "features": null,
-    "free_text": null,
+    "free_text": true,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
     "prereq_check": null,

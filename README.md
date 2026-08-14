@@ -29,6 +29,20 @@ the full commit-by-commit detail behind any of these.
 - The header's brand and tab nav now stay centered on mobile once they
   wrap onto their own line, instead of sitting flush against the left
   edge.
+- **Crafting browser overhaul**: each item now shows once, with a School
+  picker if it can be made more than one way (a Weapon via Carving or
+  Smithing), instead of a separate row per School. Recipes gained a
+  **Kind** switch (Slots or Value) so the Gold-value model isn't
+  Masterwork/Alchemy-only anymore — generic fallback recipes now cover
+  Potions, Poisons, Grenades, Food, and Masterwork items that don't have
+  their own hand-authored recipe yet, so browsing shows the full catalog
+  instead of only the handful of items with detailed data. Masterwork
+  items with a base-item choice get an actual picker instead of static
+  "X or Y" text (reference only — it doesn't check inventory yet).
+  Artisanal Training can now grant School training too, read from its
+  free-text note. Filters are checkboxes/chips now: Skill ready and
+  Materials ready independently, plus Base/Masterwork/Alchemy/Food type
+  toggles.
 
 ### 2026-08-11 — Crafting materials framework
 
