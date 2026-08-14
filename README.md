@@ -26,6 +26,9 @@ the full commit-by-commit detail behind any of these.
   reading as a run of one-line paragraphs, and worked examples render
   italicized and indented to set them apart from the surrounding rules
   text.
+- The header's brand and tab nav now stay centered on mobile once they
+  wrap onto their own line, instead of sitting flush against the left
+  edge.
 
 ### 2026-08-11 — Crafting materials framework
 
