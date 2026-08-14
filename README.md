@@ -13,6 +13,20 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-14 — Rulebook cleanup, material pricing
+
+- Removed Jokers from the rulebook — the deck is now a standard 52-card
+  deck of playing cards throughout.
+- Materials (catalog and custom) are now priced at their Level in Gold
+  rather than a flat 1 Gold regardless of grade, matching the rule that
+  a material is baseline worth its Level.
+- Light formatting pass on the Rulebook, from "The Basics" onward:
+  clusters of short parallel sentences (difficulty factors, creation
+  Schools, Material Types, and others) are now bulleted instead of
+  reading as a run of one-line paragraphs, and worked examples render
+  italicized and indented to set them apart from the surrounding rules
+  text.
+
 ### 2026-08-11 — Crafting materials framework
 
 - New **Material** item category for crafting resources, tagged with one
