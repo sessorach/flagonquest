@@ -137,52 +137,70 @@ function renderInline(text, glossary) {
   );
 }
 
-// ── Body renderer — a section's body is blank-line-separated blocks;
-// a block whose lines all start with "- " renders as a bullet list
-// (a "  - " line nests as a sub-item of the bullet above it), anything
-// else as a plain paragraph. See the MARKDOWN SOURCES doc in
-// scripts/convert.py for the full syntax.
+// ── Block renderer — one blank-line-separated block, shared by the
+// normal section body (renderBody, below) and level-4 "term:
+// definition" entries (see the level === 4 branch further down, which
+// reuses this with compact=true so a bullet list inside one of those
+// stays the same small type scale as its prose instead of jumping back
+// up to full body size). A block whose lines all start with "- "
+// renders as a bullet list (a "  - " line nests as a sub-item of the
+// bullet above it). A paragraph block starting with "Example:" renders
+// italicized and indented, to set worked examples apart from the
+// surrounding rules text at a glance. Anything else is a plain
+// paragraph. See the MARKDOWN SOURCES doc in scripts/convert.py for the
+// full syntax.
+function renderBlock(block, key, glossary, compact = false) {
+  const lines = block.split("\n").map(l => l.trimEnd()).filter(l => l.trim());
+  const isList = lines.length > 0 && lines.every(l => /^\s*-\s+/.test(l));
+  const size = compact ? 14 : 15;
+  const lineHeight = compact ? 1.6 : 1.7;
+  const gap = compact ? 6 : 10;
+  if (!isList) {
+    const joined = lines.join(" ");
+    const isExample = /^Example:/.test(joined);
+    return (
+      <p key={key} style={{
+        fontSize: size, color: isExample ? TEXT.muted : TEXT.body, lineHeight, marginBottom: gap,
+        fontStyle: isExample ? "italic" : "normal",
+        marginLeft: isExample ? 18 : 0,
+      }}>
+        {renderInline(joined, glossary)}
+      </p>
+    );
+  }
+  const items = [];
+  lines.forEach(l => {
+    const m = l.match(/^(\s*)-\s+(.*)$/);
+    const indented = m[1].length >= 2;
+    if (indented && items.length > 0) {
+      (items[items.length - 1].sub ??= []).push(m[2]);
+    } else {
+      items.push({ text: m[2], sub: null });
+    }
+  });
+  return (
+    <ul key={key} style={{ margin: `0 0 ${gap}px 0`, paddingLeft: 22 }}>
+      {items.map((it, ii) => (
+        <li key={ii} style={{ fontSize: size, color:TEXT.body, lineHeight, marginBottom: 4 }}>
+          {renderInline(it.text, glossary)}
+          {it.sub && (
+            <ul style={{ margin: "4px 0 0 0", paddingLeft: 20 }}>
+              {it.sub.map((sub, si) => (
+                <li key={si} style={{ fontSize: compact ? 13 : 14, color:TEXT.body, lineHeight:1.6, marginBottom:3 }}>
+                  {renderInline(sub, glossary)}
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function renderBody(body, glossary) {
   const blocks = (body || "").split(/\n\n+/).map(b => b.trim()).filter(Boolean);
-  return blocks.map((block, bi) => {
-    const lines = block.split("\n").map(l => l.trimEnd()).filter(l => l.trim());
-    const isList = lines.length > 0 && lines.every(l => /^\s*-\s+/.test(l));
-    if (!isList) {
-      return (
-        <p key={bi} style={{ fontSize:15, color:TEXT.body, lineHeight:1.7, marginBottom:10 }}>
-          {renderInline(lines.join(" "), glossary)}
-        </p>
-      );
-    }
-    const items = [];
-    lines.forEach(l => {
-      const m = l.match(/^(\s*)-\s+(.*)$/);
-      const indented = m[1].length >= 2;
-      if (indented && items.length > 0) {
-        (items[items.length - 1].sub ??= []).push(m[2]);
-      } else {
-        items.push({ text: m[2], sub: null });
-      }
-    });
-    return (
-      <ul key={bi} style={{ margin: "0 0 10px 0", paddingLeft: 22 }}>
-        {items.map((it, ii) => (
-          <li key={ii} style={{ fontSize:15, color:TEXT.body, lineHeight:1.7, marginBottom:4 }}>
-            {renderInline(it.text, glossary)}
-            {it.sub && (
-              <ul style={{ margin: "4px 0 0 0", paddingLeft: 20 }}>
-                {it.sub.map((sub, si) => (
-                  <li key={si} style={{ fontSize:14, color:TEXT.body, lineHeight:1.6, marginBottom:3 }}>
-                    {renderInline(sub, glossary)}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
-    );
-  });
+  return blocks.map((block, bi) => renderBlock(block, bi, glossary));
 }
 
 function App() {
@@ -340,20 +358,27 @@ function App() {
               // Level 4 — one glossary term — reads as a compact run-in
               // entry, term bold inline with its first paragraph, rather
               // than another full heading block. Most of this page is
-              // entries like this, always short prose with no bullets,
-              // so just the inline (bold/glossary) pass.
+              // entries like this, short prose with no bullets — but the
+              // first block is the only one that's guaranteed to be plain
+              // prose; later blocks go through the same compact
+              // renderBlock as everything else, so an entry can still
+              // have a bullet list after its opening sentence.
               if (s.level === 4) {
-                const paras = (s.body || "").split(/\n\n+/).map(p => p.trim()).filter(Boolean);
+                const blocks = (s.body || "").split(/\n\n+/).map(b => b.trim()).filter(Boolean);
                 return (
                   <div key={s.id} id={s.id} style={{ marginBottom:14, marginLeft:20 }}>
-                    {paras.length === 0 ? (
+                    {blocks.length === 0 ? (
                       <div style={{ fontSize:14, color:TEXT.name, fontWeight:600 }}>{s.title}</div>
-                    ) : paras.map((para, i) => (
-                      <p key={i} style={{ fontSize:14, color:TEXT.body, lineHeight:1.6, marginBottom:6 }}>
-                        {i === 0 && <strong style={{ color:TEXT.name }}>{s.title}: </strong>}
-                        {renderInline(para, glossary)}
-                      </p>
-                    ))}
+                    ) : blocks.map((block, i) => {
+                      if (i > 0) return renderBlock(block, i, glossary, true);
+                      const firstLine = block.split("\n").map(l => l.trim()).filter(Boolean).join(" ");
+                      return (
+                        <p key={i} style={{ fontSize:14, color:TEXT.body, lineHeight:1.6, marginBottom:6 }}>
+                          <strong style={{ color:TEXT.name }}>{s.title}: </strong>
+                          {renderInline(firstLine, glossary)}
+                        </p>
+                      );
+                    })}
                   </div>
                 );
               }

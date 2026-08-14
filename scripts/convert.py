@@ -120,6 +120,10 @@ rather than two that can drift out of sync.
     extra spaces ("  - ") to nest it as a sub-item under the bullet
     above it — only one level of nesting is supported.
 
+  A paragraph block starting with "Example:" renders italicized and
+  indented (see renderBody in rulebook.html/glossary.html) — no special
+  syntax needed, just start the block with the literal word "Example:".
+
   Glossary.md's own heading text can include the bracket/tag styling
   used elsewhere ("[Encounter]", "Bleeding [Fleeting]", "Sift (X
   cards)") — the mouseover list strips that down to the actual word

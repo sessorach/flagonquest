@@ -71,6 +71,17 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   restating *what* the code does — a hidden constraint, a workaround, a
   non-obvious tradeoff. Match that when adding code; don't pad with
   comments that just narrate the next line.
+- Keep design consistent across similar objects rather than styling each
+  one from scratch. Text pages (Rulebook, Glossary) share the same prose
+  formatting conventions — e.g. `renderBlock`'s bullet-list detection and
+  "Example:" italics are duplicated by hand across `rulebook.html` and
+  `glossary.html` (same reasoning as the shared-helper note under
+  Architecture) so a Markdown convention added to one reads the same way
+  on the other. Tiles for items/techniques/materials/etc. share look and
+  feel (card background/border, badge shapes, the red/green pass-fail
+  colors above) rather than each inventing its own. When adding a new
+  convention to one of these families, check whether its siblings should
+  pick it up too instead of only fixing the one spot that prompted it.
 
 ## Verifying UI changes before committing
 

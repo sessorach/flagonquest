@@ -271,11 +271,9 @@ Frequently, the GM will determine the outcome of a character’s action by askin
 
 Difficulty can be based on a number of factors, such as:
 
-The difficulty of picking a lock is based on the quality and condition of the lock, determined by the GM
-
-The difficulty of an attack is the appropriate Defense of its target
-
-The difficulty of an arm wrestling contest might be the result of the other person’s skill check - these are usually referred to as “opposed checks”, where two (or more) characters make checks and the highest wins
+- The difficulty of picking a lock is based on the quality and condition of the lock, determined by the GM
+- The difficulty of an attack is the appropriate Defense of its target
+- The difficulty of an arm wrestling contest might be the result of the other person’s skill check - these are usually referred to as “opposed checks”, where two (or more) characters make checks and the highest wins
 
 Example: Browndog wants to jump off of a building and land on top of a criminal suspect. The GM declares this is an Athletics check, which has Body as its corresponding Stat. Browndog has 3 Body and 3 Athletics, for a total of 6; their player flips a Jack, which has a value of 11, so their result is 6 + 11 = 17.
 
@@ -341,11 +339,9 @@ A full night's rest is a full 8 hours of rest, which may include up to 2 hours s
 
 After you get a full night's rest, you do the following in order:
 
-Discard any cards in your hand
-
-Heal an amount of Health equal to your Body, split as you choose between Shallow and Deep
-
-Draw a number of cards equal to twice the total of your Cunning plus Mind
+- Discard any cards in your hand
+- Heal an amount of Health equal to your Body, split as you choose between Shallow and Deep
+- Draw a number of cards equal to twice the total of your Cunning plus Mind
 
 ## Costs and Commitment
 
@@ -425,9 +421,8 @@ Example: Hilde is running after the bandit across city rooftops, but he throws a
 
 You can Support someone on a check lol
 
-Make a flat check against DC 11
-
-If you succeed, you give 1 Good Luck, +1 Good Luck per Extra Success
+- Make a flat check against DC 11
+- If you succeed, you give 1 Good Luck, +1 Good Luck per Extra Success
 
 ### Making an Attack
 
@@ -497,17 +492,12 @@ Make an Unarmed weapon attack against your target's Dodge or Parry Defense. If t
 
 While grappling, the following apply to both you and your target:
 
-You may not move normally; your Speed is reduced to 0, and it cannot be raised above 0 by any means.
-
-If an effect would Push you, instead you and the creature are both Pushed half the distance.
-
-If an effect Teleports you away, the grapple ends automatically.
-
-Creatures have Good Luck on any attacks against your Dodge or Parry Defense.
-
-You may not take any actions that require two hands, including weapon attacks or Parrying with two-handed weapons.
-
-You may spend 2 AP and attempt to end the grapple. The other creature may allow the grapple to end, or contest it. If they contest it, they make an Unarmed weapon attack against your Parry or Dodge Defense, and if it hits the grapple doesn't end.
+- You may not move normally; your Speed is reduced to 0, and it cannot be raised above 0 by any means.
+- If an effect would Push you, instead you and the creature are both Pushed half the distance.
+- If an effect Teleports you away, the grapple ends automatically.
+- Creatures have Good Luck on any attacks against your Dodge or Parry Defense.
+- You may not take any actions that require two hands, including weapon attacks or Parrying with two-handed weapons.
+- You may spend 2 AP and attempt to end the grapple. The other creature may allow the grapple to end, or contest it. If they contest it, they make an Unarmed weapon attack against your Parry or Dodge Defense, and if it hits the grapple doesn't end.
 
 ## Traveling and Exploration
 
@@ -519,25 +509,18 @@ The party takes turns declaring actions, resolve movement last?
 
 List of actions:
 
-Move: 1 AP, you move
-
-Stealth: 2 AP, you sneak while moving, considered to be group stealth check but anyone not stealthing automatically fails
-
-Scout: 2 AP, make a check to reveal information about surrounding spaces
-
-Uh flat difficulty of 11, for each success you get a clue about a surrounding hex
-
-Search: 2 AP, search for cool stuff
+- Move: 1 AP, you move
+- Stealth: 2 AP, you sneak while moving, considered to be group stealth check but anyone not stealthing automatically fails
+- Scout: 2 AP, make a check to reveal information about surrounding spaces
+  - Uh flat difficulty of 11, for each success you get a clue about a surrounding hex
+- Search: 2 AP, search for cool stuff
 
 Choose one of the following to search for:
 
-Food (game or plants) and water
-
-Raw materials (Medicinal, Wood, etc.)
-
-Tracks, either looking for new ones or following ones you have already found
-
-A particular object, landmark, or other specific objective
+- Food (game or plants) and water
+- Raw materials (Medicinal, Wood, etc.)
+- Tracks, either looking for new ones or following ones you have already found
+- A particular object, landmark, or other specific objective
 
 If successful, you will find something. Water is usually in the form of a source that allows the party to drink and fill any containers they might have. Food or materials will generally yield a single unit. Other things vary, but you will either find something; if you would usually succeed but fail due to unusual circumstances, you will get a clue as to why you failed.
 
@@ -563,17 +546,15 @@ Social contests are effectively a “team check”, with each group accruing con
 
 Social statements take 2 AP to make. There are two kinds:
 
-Charismatic statements are made against Mental or Instinct Defense. A character can use Presence or Rapport to make one.
-
-Strategic statements are made against your choice of either Mental or Instinct Defense. A character can use Persuasion to make one.
+- Charismatic statements are made against Mental or Instinct Defense. A character can use Presence or Rapport to make one.
+- Strategic statements are made against your choice of either Mental or Instinct Defense. A character can use Persuasion to make one.
 
 A successful statement causes the target’s group to suffer 1 Concession, plus 1 Concession for each Extra Success. Once the party is at 10 Concessions, they lose and the other group isn’t willing to hear them out anymore. Once the other group hits their limit of Concessions, the party wins (per the ‘One Party Wins’ outcome below).
 
 Characters can be in front or back, 1 AP to move between them.
 
-In front, you can make statements against the other party. You must choose a target in the front, if there are any.
-
-In back, you can only support members of your party.
+- In front, you can make statements against the other party. You must choose a target in the front, if there are any.
+- In back, you can only support members of your party.
 
 ### Ending the Contest
 
@@ -621,17 +602,12 @@ To create an item you require a certain level of skill. Your relevant Skill Tota
 
 The standard creation Schools are:
 
-Smithing (Craft): Working with Metal materials
-
-Carving (Craft): Working with Wood and Bone materials
-
-Tailoring (Craft): Working with Cloth and Leather materials
-
-Jewelrymaking (Craft): Working with Precious materials
-
-Alchemy (Mixology): Working with Medicinal and various other materials
-
-Cooking (Mixology or Survival): Working with Food and occasionally Medicinal materials
+- Smithing (Craft): Working with Metal materials
+- Carving (Craft): Working with Wood and Bone materials
+- Tailoring (Craft): Working with Cloth and Leather materials
+- Jewelrymaking (Craft): Working with Precious materials
+- Alchemy (Mixology): Working with Medicinal and various other materials
+- Cooking (Mixology or Survival): Working with Food and occasionally Medicinal materials
 
 #### Materials
 
@@ -653,11 +629,9 @@ In some rare cases, heirlooms, sacred objects, and other special items can be us
 
 In order to work the materials into an item you need three things:
 
-Tools: Tools required depend on the creation School, but usually just means a standard set of tools for that School.
-
-Workspace: All Schools of items require you at least have a small table to work at. Anything created using the Smithing school requires a forge, anvil, and other features found in a smithy.
-
-Recipe: You need a recipe in order to make the item. Most standard tools include common books of recipes, but special items (like Masterwork creations) require you to find a specific recipe for them.
+- Tools: Tools required depend on the creation School, but usually just means a standard set of tools for that School.
+- Workspace: All Schools of items require you at least have a small table to work at. Anything created using the Smithing school requires a forge, anvil, and other features found in a smithy.
+- Recipe: You need a recipe in order to make the item. Most standard tools include common books of recipes, but special items (like Masterwork creations) require you to find a specific recipe for them.
 
 #### Time
 
@@ -677,29 +651,18 @@ Many items have a range of Levels listed for their entries. This indicates that 
 
 A material has a Level as well as one or more Types, which represent its makeup and affinity. The Material Types are:
 
-Bone: Bones, fangs, claws, scales, and similar tough materials from a creature.
-
-Cloth: Cotton, wool, linen, and other fabrics.
-
-Leather: Fur, hide, skin, and similar materials harvested from creatures.
-
-Metal: Iron, steel, copper, etc. Can include some kinds of stone, if they can be properly worked into a new form.
-
-Wood: Maple, oak, cedar, pine, and other material harvested from trees and similar plants.
-
-Food: Meat, fruit, grains, and similar raw foods. Food materials spoil one week after being gathered, and cannot be used.
-
-Medicinal: Herbs, venom, fungus, and other natural materials harvested from plants and animals. Used in medicines, poisons, and everything in between.
-
-Precious: Gold, silver, silk, and any other material primarily known for being valuable. Precious materials can usually be sold for full value to merchants and others.
-
-Brilliant: Material aligned in a spiritually positive way.
-
-Fire: Material aligned with fire, lightning, and other energetic elements.
-
-Frost: Material aligned with ice, cold, and other elements of stasis and stillness.
-
-Shadow: Material aligned in a spiritually negative way.
+- Bone: Bones, fangs, claws, scales, and similar tough materials from a creature.
+- Cloth: Cotton, wool, linen, and other fabrics.
+- Leather: Fur, hide, skin, and similar materials harvested from creatures.
+- Metal: Iron, steel, copper, etc. Can include some kinds of stone, if they can be properly worked into a new form.
+- Wood: Maple, oak, cedar, pine, and other material harvested from trees and similar plants.
+- Food: Meat, fruit, grains, and similar raw foods. Food materials spoil one week after being gathered, and cannot be used.
+- Medicinal: Herbs, venom, fungus, and other natural materials harvested from plants and animals. Used in medicines, poisons, and everything in between.
+- Precious: Gold, silver, silk, and any other material primarily known for being valuable. Precious materials can usually be sold for full value to merchants and others.
+- Brilliant: Material aligned in a spiritually positive way.
+- Fire: Material aligned with fire, lightning, and other energetic elements.
+- Frost: Material aligned with ice, cold, and other elements of stasis and stillness.
+- Shadow: Material aligned in a spiritually negative way.
 
 In general, Materials are worth Gold equal to their Level. However, most Materials will sell for much less except to specific tradespeople, and even they are unlikely to pay full value. Also given that higher-quality materials can be hard to find both buyers and sellers for, buying and selling Materials economically can be challenging.
 
