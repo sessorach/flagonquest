@@ -58,11 +58,15 @@
     /* ── Site header ───────────────────────────────────────────────
        Narrow screens: just a wrapping flex row, DOM order = brand,
        switcher, nav — so the logo still reads first on mobile.
+       `justify-content: center` centers each wrapped row (brand on its
+       own line, switcher/nav on theirs) instead of leaving them pinned
+       to the left edge; harmless on wide screens too, since the grid
+       below takes over there regardless.
        Wide screens: a 3-column grid (switcher / brand / nav) with the
        brand truly centered regardless of how wide the other two are;
        `order` puts the switcher first and nav last without changing
        the DOM order the narrow layout relies on. */
-    .site-header { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .site-header { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
     @media (min-width: 900px) {
       .site-header { display: grid; grid-template-columns: 1fr auto 1fr; }
       .site-header .site-header-left  { order: 1; justify-self: start; }
@@ -5693,7 +5697,7 @@ function App() {
         </div>
 
         {/* Tab navigation */}
-        <div className="site-header-nav" style={{ display:"flex", alignItems:"center", gap:6, flexWrap:"wrap" }}>
+        <div className="site-header-nav" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6, flexWrap:"wrap" }}>
           <button onClick={() => setView("build")} style={tabStyle("build")}>
             Builder
           </button>

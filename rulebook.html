@@ -38,6 +38,18 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #2d3555; border-radius: 4px; }
 
+    /* ── Site header ───────────────────────────────────────────────
+       Same "centered when wrapped" convention as index.html's
+       .site-header: narrow screens wrap the brand and nav onto their
+       own centered rows (instead of pinned left), each wide enough to
+       overflow onto extra centered rows below. On wide screens the
+       nav's margin-left: auto pins it to the right of the brand on a
+       single row, same as it always has. */
+    .site-header { justify-content: center; }
+    @media (min-width: 900px) {
+      .site-header-nav { margin-left: auto; }
+    }
+
     /* ── Rulebook layout: TOC sidebar + content ─────────────────────
        Narrow screens: TOC sits above the content, not beside it.
        Wide screens: sticky TOC on the left, content on the right. */
@@ -265,7 +277,7 @@ function App() {
 
       {/* ════════ HEADER — same branding/nav as index.html, with
           "Rulebook" as the active tab and everything else linking back. ═══ */}
-      <div style={{
+      <div className="site-header" style={{
         padding: "12px 20px",
         borderBottom: "0.5px solid #2d3555",
         display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap",
@@ -287,7 +299,7 @@ function App() {
           </div>
         </a>
 
-        <div style={{ display:"flex", alignItems:"center", gap:6, marginLeft:"auto", flexWrap:"wrap" }}>
+        <div className="site-header-nav" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6, flexWrap:"wrap" }}>
           <a href="index.html" style={tabStyle(false)}>Builder</a>
           <a href="index.html" style={tabStyle(false)}>Techniques</a>
           <a href="index.html" style={tabStyle(false)}>Items</a>
