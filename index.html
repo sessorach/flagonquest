@@ -68,7 +68,18 @@
        the DOM order the narrow layout relies on. */
     .site-header { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
     @media (min-width: 900px) {
-      .site-header { display: grid; grid-template-columns: 1fr auto 1fr; }
+      .site-header {
+        display: grid; grid-template-columns: 1fr auto 1fr;
+        /* Pinned on desktop only, where the header is always a single
+           compact row — on narrow screens it can wrap onto 2-4 rows
+           (see the centering comment above), and pinning that much
+           height would eat too much of a small screen permanently.
+           This is why it was un-stuck in the first place (see the
+           2026-08-03 changelog entry); z-index keeps it above the
+           sticky TOC/build-sidebar below, which re-offset themselves
+           for exactly this header height. */
+        position: sticky; top: 0; z-index: 100;
+      }
       .site-header .site-header-left  { order: 1; justify-self: start; }
       .site-header .site-header-brand { order: 2; justify-self: center; }
       .site-header .site-header-nav   { order: 3; justify-self: end; }
@@ -101,8 +112,10 @@
       .browse-build-panel {
         display: block;
         position: sticky;
-        top: 12px;
-        max-height: calc(100vh - 24px);
+        /* Offset below the pinned header (see .site-header) — matches
+           its height at this width plus a little breathing room. */
+        top: 78px;
+        max-height: calc(100vh - 96px);
         overflow-y: auto;
         background: #12161f;
         border: 0.5px solid #2d3555;

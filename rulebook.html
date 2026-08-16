@@ -44,9 +44,17 @@
        own centered rows (instead of pinned left), each wide enough to
        overflow onto extra centered rows below. On wide screens the
        nav's margin-left: auto pins it to the right of the brand on a
-       single row, same as it always has. */
+       single row, same as it always has, and the header is pinned to
+       the top of the viewport — only at this width, where it's always
+       a single compact row; on narrow screens it can wrap onto several
+       rows, and pinning that much height would eat too much of a small
+       screen permanently (see the 2026-08-03 changelog entry, which
+       un-stuck it for exactly this reason). z-index keeps it above the
+       sticky TOC below, which re-offsets itself for this header's
+       height. */
     .site-header { justify-content: center; }
     @media (min-width: 900px) {
+      .site-header { position: sticky; top: 0; z-index: 100; }
       .site-header-nav { margin-left: auto; }
     }
 
@@ -64,8 +72,8 @@
       }
       .rulebook-toc {
         position: sticky;
-        top: 12px;
-        max-height: calc(100vh - 24px);
+        top: 78px;
+        max-height: calc(100vh - 96px);
         overflow-y: auto;
         margin-bottom: 0;
       }

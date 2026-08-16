@@ -75,6 +75,12 @@ the full commit-by-commit detail behind any of these.
   Game's food economy) and to swap the standard Street Runner for a new
   Goblin Game-supplement version that grants Food Material instead of a
   day's nutrition, once Goblin Game is enabled in Sources.
+- The header is pinned to the top of the screen again on desktop, so
+  the nav and character switcher stay reachable while scrolling — but
+  only at the width where it's a single compact row; on narrow screens
+  where it can wrap onto several rows it still scrolls away normally,
+  same as before, so it can't eat a large chunk of a small screen
+  permanently.
 
 ### 2026-08-11 — Crafting materials framework
 
