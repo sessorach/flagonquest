@@ -5322,6 +5322,12 @@ function App() {
     return rows;
   }, [inventory, items, customItems, statPoints, skillPoints]);
 
+  // Shared date shorthand for export filenames, e.g. "2026-08-16".
+  function exportDateStamp() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }
+
   // ── Export build as a .json file download ─────────────────────
   // Includes each copy's notes and Feature-builder choices (by name,
   // so the file stays readable and survives future data updates), plus
@@ -5378,7 +5384,7 @@ function App() {
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const a    = Object.assign(document.createElement("a"), {
       href:     URL.createObjectURL(blob),
-      download: `${(charName || "build").replace(/\s+/g, "-")}.json`,
+      download: `${(charName || "build").replace(/\s+/g, "-")}-${exportDateStamp()}.json`,
     });
     a.click();
     URL.revokeObjectURL(a.href);
@@ -5529,7 +5535,7 @@ function App() {
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const a    = Object.assign(document.createElement("a"), {
       href:     URL.createObjectURL(blob),
-      download: "flagonquest-all-characters.json",
+      download: `FlagonQuest-export-${exportDateStamp()}.json`,
     });
     a.click();
     URL.revokeObjectURL(a.href);

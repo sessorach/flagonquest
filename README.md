@@ -81,6 +81,10 @@ the full commit-by-commit detail behind any of these.
   where it can wrap onto several rows it still scrolls away normally,
   same as before, so it can't eat a large chunk of a small screen
   permanently.
+- Exported files are named after their contents now instead of generic
+  `build.json`/`flagonquest-all-characters.json`: a single character's
+  export is `<character name>-<date>.json`, and Backup all characters
+  is `FlagonQuest-export-<date>.json`.
 
 ### 2026-08-11 — Crafting materials framework
 
