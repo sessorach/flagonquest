@@ -68,6 +68,13 @@ the full commit-by-commit detail behind any of these.
   Gorger's Prereqs now include Spacious Gut, matching the source doc.
 - The Rulebook and Glossary links in the header no longer open in a new
   tab — they navigate in place, like every other nav link.
+- Techniques gained an **Excluded By** column for the case where an
+  enabled supplement makes a *different* technique nonsensical even
+  though that technique's own supplement is still on — used to hide
+  Pranic Nourishment and Land's Bounty (not available in the Goblin
+  Game's food economy) and to swap the standard Street Runner for a new
+  Goblin Game-supplement version that grants Food Material instead of a
+  day's nutrition, once Goblin Game is enabled in Sources.
 
 ### 2026-08-11 — Crafting materials framework
 

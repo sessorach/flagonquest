@@ -186,6 +186,17 @@ TECHNIQUE_MAP = {
     # Supplement column. Gates what's offered in the Techniques browse
     # list via the Sources panel, same as items/backgrounds.
     "Supplement":           "supplement",
+    # Comma-separated supplement name(s) that, when enabled, hide this
+    # specific technique from the browse list even though its own
+    # Supplement is otherwise on — for a technique a supplement
+    # replaces outright rather than just adding alongside. E.g. Goblin
+    # Game's food rules make the standard Street Runner/Pranic
+    # Nourishment/Land's Bounty not make sense, so those rows are tagged
+    # "Excluded By: Goblin Game" while a separate Goblin Game-supplement
+    # Street Runner row (its own Supplement, no Excluded By) takes its
+    # place. A technique already in a build is unaffected either way —
+    # same non-retroactive rule as Supplement itself.
+    "Excluded By":          "excluded_by",
 }
 
 FEATURE_MAP = {

@@ -4560,8 +4560,15 @@ function App() {
     // list, same as items/backgrounds — but never out of buildEntries
     // below, which looks techniques up directly instead of filtering
     // this list, so a technique already in the build stays known even
-    // if its supplement gets turned off later.
-    if (enabledSupplements && !enabledSupplements.includes(t.supplement)) return false;
+    // if its supplement gets turned off later. Excluded By works the
+    // same way in reverse: a technique otherwise offered (its own
+    // Supplement is on) still drops out if an *enabled* supplement
+    // appears in its Excluded By list — see the comment on
+    // TECHNIQUE_MAP's Excluded By in convert.py.
+    if (enabledSupplements) {
+      if (!enabledSupplements.includes(t.supplement)) return false;
+      if (splitCSV(t.excluded_by).some(s => enabledSupplements.includes(s))) return false;
+    }
     if (!matchesLevel(t, levelMin, levelMax)) return false;
     if (healingOnly && !t.healing) return false;
     if (cardsOnly && !t.use_cards) return false;

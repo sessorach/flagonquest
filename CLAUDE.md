@@ -41,6 +41,15 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   Game") on items/backgrounds/techniques. `enabledSupplements` (the
   Builder tab's Sources panel) gates what's *offered* for new picks —
   it must never retroactively hide or remove content already in a build.
+- Techniques also have `Excluded By` (comma-separated supplement names)
+  for the reverse case — a technique whose own Supplement is enabled but
+  that a *different* enabled supplement makes obsolete or nonsensical.
+  Used when a supplement replaces a Base Game technique outright: tag
+  the original "Excluded By: Goblin Game" and add a same-named
+  Goblin-Game-supplement row with the replacement text, rather than
+  building conditional per-supplement effect text on one row. Same
+  non-retroactive rule as Supplement — only gates the browse list, never
+  a build already holding the excluded technique.
 - The Rulebook/Glossary get the same idea via Markdown: a level-1
   heading can end with `{Supplement Name}` (e.g. `# Goblin Game {Goblin
   Game}`) to tag that whole chapter — untagged chapters default to
