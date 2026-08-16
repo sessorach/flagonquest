@@ -651,6 +651,20 @@
     "body": "Rules and mechanics specific to the Goblin Game supplement — everything else in this book still applies unless a rule here says otherwise."
   },
   {
+    "id": "goblin-traits",
+    "level": 2,
+    "title": "Goblin Traits",
+    "supplement": "Goblin Game",
+    "body": "Some things hold true for every Goblin, regardless of tribe:\n\n- Illiteracy: Goblins cannot, and usually will not, read — human-style writing is believed to be a dangerous magic that steals thoughts from the mind. Goblin “writing” is a much rougher, personal system of pictographs (see Deeds, below), and a Goblin can’t learn Common without dedicated study.\n- Loving Fire: Goblins love a good fire, especially something that burns well, and view destruction as one of the best forms of entertainment — so long as it isn’t their own tribe’s belongings going up in smoke.\n- Fear of Horses: Goblins won’t ride a horse, or willingly get close enough to one that they couldn’t flee or attack it instead.\n- Cannibalism: Goblins regularly eat slain foes, and their own dead at need, without much sentimentality (see Food Variety, below, for eating Goblin remains specifically).\n- Hate Sunlight: Goblins are crepuscular, most active from dusk into the early hours before dawn, and avoid broad daylight except when they have good reason to brave it. All Goblins have 60 meters of Darkvision or better — the ability to see in the dark up to that range.\n- Hungry: Goblins need 3-5 times the food of another creature their size, and risk starvation penalties after skipping just a single day's worth (see Food System, below, for the exact numbers)."
+  },
+  {
+    "id": "gems",
+    "level": 2,
+    "title": "Gems",
+    "supplement": "Goblin Game",
+    "body": "Where the core rules use Gold, Goblins use Gems instead — small polished stones, worth the same and spent the same way for prices and rewards, just called something a Goblin actually values over human coin. Treat every other mention of Gold in this book as Gems for a Goblin Game character."
+  },
+  {
     "id": "food-system",
     "level": 2,
     "title": "Food System",
@@ -670,5 +684,26 @@
     "title": "Meal Cooking",
     "supplement": "Goblin Game",
     "body": "- Meals require one different type of Food Material per level of the Meal to be created.\n- Meals no longer grant a full day’s nutrition, and instead only give Fullness equal to the level of the Meal — Meals of Level 3 or higher grant an extra Fullness.\n\nExample: Toad Grabber’s party has assembled a decent pile of Food after a night of scavenging and fighting, and he wants to celebrate by cooking it properly. Toad Grabber opts to make a Hearty Meal, because his party has a lot of injuries. He has a Survival pool of 7, so he is able to make up to Level 3 Meals. Since his party has gathered Meat (Goblin), enough berries for a unit of Sweet, and some Bone, he combines one Meat (Goblin), one Sweet, and two Bone to make a Level 3 Hearty Meal. Because the Meal is at least Level 3, it grants 4 Fullness instead of the 3 that the sources would have granted if eaten on their own. Good job, Toad Grabber!"
+  },
+  {
+    "id": "bingus-and-golden-bingus",
+    "level": 2,
+    "title": "Bingus and Golden Bingus",
+    "supplement": "Goblin Game",
+    "body": "A **Bingus** is a small reward for good roleplay, a successful (or successfully foiled) scheme, or accomplishing a significant goal — spend one to gain Good Luck on a single flip. A **Golden Bingus** is the same, but grants Good Luck on every flip for the rest of your turn, or for the rest of the scene outside of combat.\n\nOnce per session, a player may Press Their Luck: they immediately gain the benefit of a Bingus, but the GM also gains a Bingus of their own to spend against the party later."
+  },
+  {
+    "id": "the-great-game",
+    "level": 2,
+    "title": "The Great Game",
+    "supplement": "Goblin Game",
+    "body": "Goblins are naturally quarrelsome and devious, and the party’s shared cause doesn’t erase personal ambition or tribal loyalty. Unlike most games, hostile actions between players — theft, lying, betrayal, even outright murder — are allowed, and can be profitable if the acting player gets away with them: pulling off a scheme that advances a Goblin’s own goals earns a Bingus on top of whatever the scheme itself gained.\n\nGetting caught is a different story. A clumsy scheme risks apologizing, groveling, making amends, or open hostility once it’s found out, scaling with how much harm it caused — keep any resulting ill will to the fiction, not the table. A player who calls out, tattles on, or gets revenge against a bumbling scheme earns a Bingus of their own.\n\nGoblins don’t live long. Every player should keep a backup character ready, though a replacement built specifically to avenge a fallen character isn’t allowed — this isn’t a deathmatch game. A dead Goblin’s belongings (and probably their remains) get divided among the survivors; their replacement arrives shortly after, sent late by their tribe to help with the human problem, aware of most of what the party’s been up to but missing the details — especially any scheme that never came to light. A new character starts with a few Bingii of their own and useful information the party hasn’t learned yet, but only the standard starting gear for the first stretch of sessions."
+  },
+  {
+    "id": "deeds",
+    "level": 2,
+    "title": "Deeds",
+    "supplement": "Goblin Game",
+    "body": "As a mostly illiterate people (see Goblin Traits, above), Goblins track their history through stories and reputation rather than dates — a death might be remembered as happening “before the raid on the Crags” rather than by a year. Spellcasters are usually organized enough to track years, seasons, and moon phases, but rarely anything more precise.\n\nGoblins can write, after a fashion: their pictograph “writing” is closer to drawing than a formal alphabet, and a proud Goblin will scratch a scene of their victory onto a cave wall, a scrap of leather, or a slate if they’re feeling fancy. Older surfaces end up layered with generations of these doodles and the occasional bit of vandalism. A talented Goblin can even get paid in food to record another’s deeds — a skill that leans heavily on flattering caricatures of whoever they’re recording, and on cockney-rhyme-style pictograph tricks for a name too plain to draw directly (Gark, drawn as guts and bark, reads as “Gutsbark” unless Gark is well known enough that everyone already gets the joke).\n\nA Goblin’s name travels with whatever deeds and stories precede them — a Goblin with famous relatives is known by that association until a deed of their own outshines it, and a Goblin who dies without any deeds to their name is usually forgotten quickly. Powerful Goblins protect their own stories from being drawn over or defaced; a player who defaces a rival’s story and isn’t caught earns a Bingus. Deeds work like face in a human honor culture: a Goblin with notable deeds gets asked their opinion more often and finds lesser Goblins doing them favors, hoping to attach themselves to that reputation. A serious defeat or embarrassment earns a period of mockery instead, lifted only by a new deed that overshadows it — and if that new deed directly undoes the cause of the earlier shame, it earns a Golden Bingus instead of an ordinary one."
   }
 ]

@@ -3679,7 +3679,7 @@
     "effects": "Your maximum Fullness increases from 20 to 25. You can have Good Luck rather than Bad Luck from being Too Full on a flip a number of times per day equal to your Body score. Additionally, when you take a full night’s rest with 20 or more Fullness, you can spend extra Fullness in two ways. Once after you draw your hand from resting, you may pay 5 additional Fullness to discard and redraw any number of those cards. You may also pay 3 Fullness, any number of times, to heal 1 Shallow or Deep Health.",
     "building": null,
     "special": null,
-    "prereqs": "Body 3",
+    "prereqs": "Body 3, Spacious Gut",
     "related_skills": null,
     "use_cards": true,
     "healing": true,

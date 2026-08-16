@@ -57,6 +57,17 @@ the full commit-by-commit detail behind any of these.
   heading like `# Goblin Game {Goblin Game}` tags that whole chapter,
   and both pages show a supplement tab row (All / Base Game / Goblin
   Game) above the table of contents whenever more than one exists.
+- More Goblin Game rules content, pulled from the full player doc:
+  Goblin Traits (Illiteracy, Loving Fire, Fear of Horses, Cannibalism,
+  Hate Sunlight/Darkvision, Hungry), Gems as the Goblin equivalent of
+  Gold, **Bingus and Golden Bingus** (a small Good-Luck reward for good
+  roleplay or a successful/foiled scheme), The Great Game (sanctioned
+  PvP scheming, character death and replacement), and Deeds (Goblins'
+  reputation-by-story system in place of literacy). **Bingus**,
+  **Golden Bingus**, and **Fullness** are now in the Glossary too.
+  Gorger's Prereqs now include Spacious Gut, matching the source doc.
+- The Rulebook and Glossary links in the header no longer open in a new
+  tab — they navigate in place, like every other nav link.
 
 ### 2026-08-11 — Crafting materials framework
 

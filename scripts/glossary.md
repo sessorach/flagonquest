@@ -255,7 +255,19 @@ A successful social statement causes the target's group to suffer 1 Concession, 
 
 # Goblin Game Terms {Goblin Game}
 
-Terms specific to the Goblin Game supplement's rules — see Food System in the Rulebook.
+Terms specific to the Goblin Game supplement's rules — see Food System, Bingus and Golden Bingus, and The Great Game in the Rulebook.
+
+#### Bingus
+
+A small reward for good roleplay, a successful (or successfully foiled) scheme, or a significant accomplishment — spend one for Good Luck on a single flip.
+
+#### Golden Bingus
+
+Like a Bingus, but grants Good Luck on every flip for the rest of your turn, or the rest of the scene outside of combat.
+
+#### Fullness
+
+A Goblin's hunger resource, gained by eating Food Material. Up to 15 can be stored (more with some Techniques); 10 is spent taking a full night's rest properly. Going without doesn't hurt until -10 Fullness, when a Goblin gets Bad Luck on any flip that won't immediately get them a meal, worsening to starving to death at -30. Going over 10 makes a Goblin Too Full instead.
 
 #### Too Full
 
