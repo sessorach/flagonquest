@@ -21,6 +21,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -46,6 +47,7 @@
     "free_text": true,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -71,6 +73,7 @@
     "free_text": true,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -96,6 +99,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -121,6 +125,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -146,6 +151,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -171,6 +177,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -196,6 +203,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -221,6 +229,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -246,6 +255,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -271,6 +281,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -296,6 +307,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -321,6 +333,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -346,6 +359,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": 3,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -371,6 +385,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -396,6 +411,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -421,6 +437,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -446,6 +463,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -471,6 +489,7 @@
     "free_text": null,
     "shallow_health_bonus": 2,
     "deep_health_bonus": 2,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -496,6 +515,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -521,6 +541,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -546,6 +567,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -571,6 +593,7 @@
     "free_text": null,
     "shallow_health_bonus": 5,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -596,6 +619,7 @@
     "free_text": true,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -621,6 +645,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -646,6 +671,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -671,6 +697,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -696,6 +723,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -721,6 +749,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -746,6 +775,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -771,6 +801,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -796,6 +827,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -821,6 +853,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -846,6 +879,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -871,6 +905,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -896,6 +931,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -921,6 +957,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -946,6 +983,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -971,6 +1009,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -996,6 +1035,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1021,6 +1061,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1046,6 +1087,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1071,6 +1113,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1096,6 +1139,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1121,6 +1165,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1146,6 +1191,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1171,6 +1217,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1196,6 +1243,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1221,6 +1269,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1246,6 +1295,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1271,6 +1321,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1296,6 +1347,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1321,6 +1373,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1346,6 +1399,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1371,6 +1425,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1396,6 +1451,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1421,6 +1477,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1446,6 +1503,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1471,6 +1529,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1496,6 +1555,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1521,6 +1581,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1546,6 +1607,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1571,6 +1633,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1596,6 +1659,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1621,6 +1685,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1646,6 +1711,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1671,6 +1737,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1696,6 +1763,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1721,6 +1789,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1746,6 +1815,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1771,6 +1841,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1796,6 +1867,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1821,6 +1893,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1846,6 +1919,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1871,6 +1945,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1896,6 +1971,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1921,6 +1997,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1946,6 +2023,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1971,6 +2049,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -1996,6 +2075,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2021,6 +2101,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2046,6 +2127,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2071,6 +2153,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2096,6 +2179,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2121,6 +2205,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2146,6 +2231,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2171,6 +2257,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2196,6 +2283,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2221,6 +2309,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2246,6 +2335,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2271,6 +2361,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2296,6 +2387,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2321,6 +2413,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2346,6 +2439,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2371,6 +2465,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2396,6 +2491,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2421,6 +2517,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2446,6 +2543,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2471,6 +2569,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2496,6 +2595,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2521,6 +2621,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2546,6 +2647,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2571,6 +2673,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2596,6 +2699,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2621,6 +2725,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2646,6 +2751,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2671,6 +2777,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2696,6 +2803,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2721,6 +2829,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2746,6 +2855,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2771,6 +2881,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2796,6 +2907,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2821,6 +2933,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2846,6 +2959,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2871,6 +2985,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2896,6 +3011,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2921,6 +3037,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2946,6 +3063,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2971,6 +3089,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -2996,6 +3115,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3021,6 +3141,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3046,6 +3167,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3071,6 +3193,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3096,6 +3219,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3121,6 +3245,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3146,6 +3271,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3171,6 +3297,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3196,6 +3323,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3221,6 +3349,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3246,6 +3375,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3271,6 +3401,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3296,6 +3427,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3321,6 +3453,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3346,6 +3479,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3371,6 +3505,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3396,6 +3531,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3421,6 +3557,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3446,6 +3583,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3471,6 +3609,7 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
     "prereq_check": null,
     "feature_budget": null
   },
@@ -3496,6 +3635,59 @@
     "free_text": null,
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
+    "supplement": "Base Game",
+    "prereq_check": null,
+    "feature_budget": null
+  },
+  {
+    "id": "T141",
+    "name": "Spacious Gut",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": null,
+    "description": "Perhaps adapted to a chronic lack of pockets or a travelling lifestyle, some Goblins are born with an extra large stomach. While this doesn’t actually speed up digestion in any way, it lets a Goblin cram that much more into his belly for later.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "Your maximum Fullness increases from 15 to 20. You suffer the effects of being Too Full above 15 Fullness rather than above 10.",
+    "building": null,
+    "special": null,
+    "prereqs": "Body 2",
+    "related_skills": null,
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "supplement": "Goblin Game",
+    "prereq_check": null,
+    "feature_budget": null
+  },
+  {
+    "id": "T142",
+    "name": "Gorger",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": null,
+    "description": "Glurk looked on, vaguely impressed, as his companion gobbled down an entire wolf’s remains, but what happened after truly amazed him. A bear arrived, drawn to the scent of meat, and surely would have caught a Goblin with an overstuffed belly. Instead, he bolted past Glurk as fast as a Goblin could scurry.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "Your maximum Fullness increases from 20 to 25. You can have Good Luck rather than Bad Luck from being Too Full on a flip a number of times per day equal to your Body score. Additionally, when you take a full night’s rest with 20 or more Fullness, you can spend extra Fullness in two ways. Once after you draw your hand from resting, you may pay 5 additional Fullness to discard and redraw any number of those cards. You may also pay 3 Fullness, any number of times, to heal 1 Shallow or Deep Health.",
+    "building": null,
+    "special": null,
+    "prereqs": "Body 3",
+    "related_skills": null,
+    "use_cards": true,
+    "healing": true,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "supplement": "Goblin Game",
     "prereq_check": null,
     "feature_budget": null
   }

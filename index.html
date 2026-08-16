@@ -4556,6 +4556,12 @@ function App() {
   // ── Filtered technique list ────────────────────────────────────
   // useMemo = only recalculate when one of the listed deps changes.
   const visible = useMemo(() => techniques.filter(t => {
+    // A disabled supplement's techniques drop out of the browse/search
+    // list, same as items/backgrounds — but never out of buildEntries
+    // below, which looks techniques up directly instead of filtering
+    // this list, so a technique already in the build stays known even
+    // if its supplement gets turned off later.
+    if (enabledSupplements && !enabledSupplements.includes(t.supplement)) return false;
     if (!matchesLevel(t, levelMin, levelMax)) return false;
     if (healingOnly && !t.healing) return false;
     if (cardsOnly && !t.use_cards) return false;
@@ -4590,7 +4596,7 @@ function App() {
   }).sort((a, b) => {
     const diff = (a.level_min ?? Infinity) - (b.level_min ?? Infinity);
     return diff !== 0 ? diff : a.name.localeCompare(b.name);
-  }), [techniques, search, skillFilter, tagFilter, levelMin, levelMax, healingOnly, cardsOnly]);
+  }), [techniques, search, skillFilter, tagFilter, levelMin, levelMax, healingOnly, cardsOnly, enabledSupplements]);
 
   // ── Build entries paired with their technique object ────────────
   const buildEntries = useMemo(() =>
@@ -4962,15 +4968,16 @@ function App() {
   // picking (Items tab search, Backgrounds picker) — see the Sources
   // panel on Builder and emptyCharacterData. The list of known
   // supplements is derived from the data itself (every distinct
-  // `supplement` value across items and backgrounds) rather than
-  // hardcoded, so a future supplement just needs the data tagged —
-  // no code change to show up here.
+  // `supplement` value across items, backgrounds, and techniques)
+  // rather than hardcoded, so a future supplement just needs the data
+  // tagged — no code change to show up here.
   const allSupplements = useMemo(() => {
     const set = new Set();
     items.forEach(i => { if (i.supplement) set.add(i.supplement); });
     backgrounds.forEach(b => { if (b.supplement) set.add(b.supplement); });
+    techniques.forEach(t => { if (t.supplement) set.add(t.supplement); });
     return [...set].sort();
-  }, [items, backgrounds]);
+  }, [items, backgrounds, techniques]);
   const toggleSupplement = name => {
     setEnabledSupplements(list => list.includes(name) ? list.filter(s => s !== name) : [...list, name]);
   };

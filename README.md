@@ -43,6 +43,11 @@ the full commit-by-commit detail behind any of these.
   free-text note. Filters are checkboxes/chips now: Skill ready and
   Materials ready independently, plus Base/Masterwork/Alchemy/Food type
   toggles.
+- Two new Goblin Game techniques: **Spacious Gut** and **Gorger**,
+  raising a Goblin's maximum Fullness and changing what happens when
+  they're Too Full. Techniques now have a **Supplement** column (like
+  items/backgrounds already did) so the Sources panel gates which ones
+  show up to pick, rather than every technique always being available.
 
 ### 2026-08-11 — Crafting materials framework
 

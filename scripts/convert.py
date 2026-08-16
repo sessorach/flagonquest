@@ -172,6 +172,10 @@ TECHNIQUE_MAP = {
     # techniqueHealthBonuses in index.html.
     "Shallow Health Bonus": "shallow_health_bonus",
     "Deep Health Bonus":    "deep_health_bonus",
+    # Which book this is from — see the matching note on ITEM_MAP's
+    # Supplement column. Gates what's offered in the Techniques browse
+    # list via the Sources panel, same as items/backgrounds.
+    "Supplement":           "supplement",
 }
 
 FEATURE_MAP = {
