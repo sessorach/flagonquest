@@ -124,6 +124,16 @@ rather than two that can drift out of sync.
   indented (see renderBody in rulebook.html/glossary.html) — no special
   syntax needed, just start the block with the literal word "Example:".
 
+  A level-1 heading may end with "{Supplement Name}" (e.g. "# Goblin
+  Game {Goblin Game}") to tag that chapter — and every section nested
+  under it, down through level 4, until the next level-1 heading — as
+  belonging to that supplement. The brace tag is stripped from the
+  displayed title. A level-1 heading with no tag (i.e. everything
+  today) defaults to "Base Game", same as an untagged items.csv/
+  techniques.csv/backgrounds.csv row. The Rulebook/Glossary pages use
+  this to offer a per-supplement view — see the supplement tabs in
+  rulebook.html/glossary.html.
+
   Glossary.md's own heading text can include the bracket/tag styling
   used elsewhere ("[Encounter]", "Bleeding [Fleeting]", "Sift (X
   cards)") — the mouseover list strips that down to the actual word
@@ -543,16 +553,18 @@ def slugify(title, used_ids):
 
 def parse_markdown_sections(text):
     """Parses rulebook.md/glossary.md into the same flat
-    {id, level, title, body} shape the site already expects — see the
-    MARKDOWN SOURCES doc below for the syntax. Consecutive non-blank
-    lines form one block (blank lines separate blocks, matching how the
-    site already splits a section's body on blank lines); the site's
-    renderer decides at display time whether a block is a bullet list or
-    a plain paragraph, based on whether its lines start with "- "."""
+    {id, level, title, body, supplement} shape the site already expects
+    — see the MARKDOWN SOURCES doc below for the syntax. Consecutive
+    non-blank lines form one block (blank lines separate blocks,
+    matching how the site already splits a section's body on blank
+    lines); the site's renderer decides at display time whether a block
+    is a bullet list or a plain paragraph, based on whether its lines
+    start with "- "."""
     used_ids = set()
     sections = []
     current = None
     block_lines = []
+    current_supplement = "Base Game"
 
     def flush_block():
         if block_lines:
@@ -567,7 +579,12 @@ def parse_markdown_sections(text):
         if m:
             flush_block()
             level, title = len(m.group(1)), m.group(2).strip()
-            current = {"id": slugify(title, used_ids), "level": level, "title": title, "body_blocks": []}
+            if level == 1:
+                tag = re.search(r"\{([^{}]+)\}\s*$", title)
+                current_supplement = tag.group(1).strip() if tag else "Base Game"
+                if tag:
+                    title = title[:tag.start()].rstrip()
+            current = {"id": slugify(title, used_ids), "level": level, "title": title, "supplement": current_supplement, "body_blocks": []}
             sections.append(current)
         elif not line.strip():
             flush_block()

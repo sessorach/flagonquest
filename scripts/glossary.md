@@ -252,3 +252,11 @@ A bonus success gained from Gambling or other sources, on top of the 1 success a
 #### Concession
 
 A successful social statement causes the target's group to suffer 1 Concession, plus 1 Concession for each Extra Success. A group that reaches 10 Concessions loses the social contest.
+
+# Goblin Game Terms {Goblin Game}
+
+Terms specific to the Goblin Game supplement's rules — see Food System in the Rulebook.
+
+#### Too Full
+
+Goblins who are over 10 Fullness are Too Full — they have Bad Luck on Reflex and Awareness flips until their Fullness is less than 10.

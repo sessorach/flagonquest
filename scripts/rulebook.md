@@ -673,3 +673,36 @@ The exception to this is Precious Materials, which are almost always bought and 
 OK let’s look at the whole process:
 
 Enith wants to create a shadow blade. She has the recipe for it, which states that it requires
+
+# Goblin Game {Goblin Game}
+
+Rules and mechanics specific to the Goblin Game supplement — everything else in this book still applies unless a rule here says otherwise.
+
+## Food System
+
+Cooking and food requirements have been overhauled. Cooked meals require a different Food Material per level of the meal to be produced. They no longer grant a full day’s nutrition, and instead give their level in Fullness.
+
+Goblins are unnaturally hungry and require much more food than another humanoid of similar size. This would make staying fed difficult, but fortunately they are opportunistic, omnivorous, cannibal scavengers. They have a robust digestive system like that of a vulture, and can safely chow down on all but the most vile food sources. They are immune to non-magical parasites and diseases one could catch from eating spoiled food, though most are not immune to eating poisonous things. Goblins can gain the benefit of eating food up until it decays into rotten, moldy sludge, so players can expect any Food they have on hand to last until they need to eat it (which probably won’t be long). Goblins often trade excess food with their tribe, getting valuables from those who aren’t slick enough to get enough on their own.
+
+**Fullness**: This ravenous hunger is represented in-game with a requirement of 10 food items per day. When Food Material is eaten, it grants Fullness. Goblins need 10 Fullness in order to take a full night’s rest properly, subtracting 10 Fullness whenever they do. A Goblin who fails to eat enough can still rest and is safe from penalties until they hit -10 Fullness; after that they have Bad Luck on all flips unless that flip will immediately secure them a meal (such as running down a rodent, scavenging in the forest, or begging for a piece of someone else’s kill). Although unlikely, a Goblin at -30 Fullness will starve to death.
+
+Goblins can stuff themselves with more food per day than is strictly needed, and are able to store a maximum of 15 Fullness. Goblins who are over 10 Fullness are Too Full — they have Bad Luck on Reflex and Awareness flips until their Fullness is less than 10.
+
+**Note on Necromancy**: Meat and Bone material from creatures that have been reanimated with Necromancy are inedible and cannot be eaten or used in crafting; the dark magicks used not only rot and spoil the body, they drain it of any nutrition, leaving a bad, ashen taste that even Goblins find gross. A Goblin can still safely eat it if they need to make a point or lose a bet, but they will get no normal benefit.
+
+### Food Variety
+
+Food Material represents a single unit of food, broken down by type as follows:
+
+- Meat: A portion of any non-Goblin carcass. Rodents, fish, birds, and fistfuls of insects amount to at least a single Food. Larger kills have many more units, depending on their size.
+- Meat (Goblin): An adult Goblin that is more or less intact has 5 Food worth of meat, with smaller yields proportional to the amount of remains missing. Goblins often prize this, especially if it came from a foe they killed personally.
+- Veggie: Any edible, non-sugary plant material. Root vegetables and mushrooms are most common, but gourds and starchy plants are also tolerated. Goblins are not especially fond of Veggies, but sometimes accidentally get a serving from the stomach contents of a dead herbivore.
+- Sweet: Goblins relish Sweets. Berries, honey, and a rare and wonderful sort of ant are the most common forms.
+- Bone: While not a proper food source, two Bone Material can be used as a single unit of Bone food. It is usually used in meals as filler, but tolerated on its own.
+
+### Meal Cooking
+
+- Meals require one different type of Food Material per level of the Meal to be created.
+- Meals no longer grant a full day’s nutrition, and instead only give Fullness equal to the level of the Meal — Meals of Level 3 or higher grant an extra Fullness.
+
+Example: Toad Grabber’s party has assembled a decent pile of Food after a night of scavenging and fighting, and he wants to celebrate by cooking it properly. Toad Grabber opts to make a Hearty Meal, because his party has a lot of injuries. He has a Survival pool of 7, so he is able to make up to Level 3 Meals. Since his party has gathered Meat (Goblin), enough berries for a unit of Sweet, and some Bone, he combines one Meat (Goblin), one Sweet, and two Bone to make a Level 3 Hearty Meal. Because the Meal is at least Level 3, it grants 4 Fullness instead of the 3 that the sources would have granted if eaten on their own. Good job, Toad Grabber!

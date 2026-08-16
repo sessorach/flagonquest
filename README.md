@@ -48,6 +48,15 @@ the full commit-by-commit detail behind any of these.
   they're Too Full. Techniques now have a **Supplement** column (like
   items/backgrounds already did) so the Sources panel gates which ones
   show up to pick, rather than every technique always being available.
+- **Goblin Game Food System**: a new Rulebook chapter overhauling
+  cooking and food for Goblins around a Fullness resource — how much
+  food they need per day, what happens when they don't get it or eat
+  too much (**Too Full**, new in the Glossary), the five Food Material
+  varieties, and the updated Meal-crafting recipe. The Rulebook and
+  Glossary can now be tagged and filtered by supplement — a level-1
+  heading like `# Goblin Game {Goblin Game}` tags that whole chapter,
+  and both pages show a supplement tab row (All / Base Game / Goblin
+  Game) above the table of contents whenever more than one exists.
 
 ### 2026-08-11 — Crafting materials framework
 

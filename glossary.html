@@ -73,7 +73,7 @@
 <div id="root"></div>
 
 <script type="text/babel">
-const { useState, useEffect } = React;
+const { useState, useEffect, useMemo } = React;
 
 // Same warm off-white/tan text scale as index.html, so this page reads
 // as the same site rather than a bolted-on one.
@@ -217,6 +217,18 @@ function App() {
   const [glossary, setGlossary] = useState([]);
   const [loading,  setLoading]  = useState(true);
   const [loadError, setLoadError] = useState(null);
+  // Which supplement's terms to show — "" means all of them together,
+  // same as the whole glossary read before supplement tags existed. See
+  // the matching state in rulebook.html for the full reasoning.
+  const [supplementFilter, setSupplementFilter] = useState("");
+  const allSupplements = useMemo(
+    () => [...new Set(sections.map(s => s.supplement).filter(Boolean))].sort(),
+    [sections]
+  );
+  const visibleSections = useMemo(
+    () => supplementFilter ? sections.filter(s => s.supplement === supplementFilter) : sections,
+    [sections, supplementFilter]
+  );
 
   useEffect(() => {
     Promise.all([
@@ -325,6 +337,22 @@ function App() {
 
       {/* ════════ GLOSSARY CONTENT ═══════════════════════════════ */}
       <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
+        {/* Supplement tabs — only worth showing once there's more than
+            one supplement's worth of terms to pick between. "All"
+            (empty filter) reads as the whole glossary, same as before
+            these existed. */}
+        {allSupplements.length > 1 && (
+          <div style={{ display:"flex", gap:8, flexWrap:"wrap", marginBottom:18 }}>
+            <button onClick={() => setSupplementFilter("")} style={tabStyle(supplementFilter === "")}>
+              All
+            </button>
+            {allSupplements.map(s => (
+              <button key={s} onClick={() => setSupplementFilter(s)} style={tabStyle(supplementFilter === s)}>
+                {s}
+              </button>
+            ))}
+          </div>
+        )}
         <div className="rulebook-layout">
 
           {/* Table of contents */}
@@ -338,7 +366,7 @@ function App() {
                   exist in the page and can be linked to directly, but
                   listing every one would make the TOC longer than the
                   content it's supposed to summarize. */}
-              {sections.filter(s => s.level <= 2).map(s => (
+              {visibleSections.filter(s => s.level <= 2).map(s => (
                 <a
                   key={s.id}
                   href={`#${s.id}`}
@@ -359,11 +387,11 @@ function App() {
 
           {/* Sections */}
           <div>
-            {sections.length === 0 ? (
+            {visibleSections.length === 0 ? (
               <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>
                 No glossary content yet.
               </div>
-            ) : sections.map(s => {
+            ) : visibleSections.map(s => {
               // Level 4 — one glossary term — reads as a compact run-in
               // entry, term bold inline with its first paragraph, rather
               // than another full heading block. Most of this page is

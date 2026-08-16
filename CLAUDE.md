@@ -41,6 +41,17 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   Game") on items/backgrounds/techniques. `enabledSupplements` (the
   Builder tab's Sources panel) gates what's *offered* for new picks —
   it must never retroactively hide or remove content already in a build.
+- The Rulebook/Glossary get the same idea via Markdown: a level-1
+  heading can end with `{Supplement Name}` (e.g. `# Goblin Game {Goblin
+  Game}`) to tag that whole chapter — untagged chapters default to
+  "Base Game". `rulebook.html`/`glossary.html` show a supplement tab row
+  (All / one per distinct tag) above the Contents sidebar when there's
+  more than one; see the MARKDOWN SOURCES doc in `convert.py` for the
+  exact syntax. Put a new supplement's rules content in its own tagged
+  chapter (or a tagged subsection within an existing chapter, for a rule
+  that specifically overrides a Base Game one) rather than scattering it
+  untagged — otherwise it silently reads as Base Game and never shows up
+  under its own tab.
 
 ## Design conventions established so far
 
