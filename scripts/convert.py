@@ -21,9 +21,18 @@ checked by a machine at all.
     (Skill1|Skill2|...):N      an OR of skills, e.g. (Composure|Meditation):2
     AnySkill:N                 any one skill at N — for "(Any Skill) 5"
     Technique:Exact Name       the character must know that technique
+    ChoiceField{...}           branches by the technique's own Free Text
+                                pick for this copy — see CHOICE CLAUSES below
 
   N (the threshold) is either a plain integer, or scales with the
   technique's own level: [Level], [Level]+1, [Level]-1.
+
+  The literal cell value "None" (nothing else in it) means an explicit,
+  checked "no prerequisite" — the site shows a green "✓ Met" badge next
+  to "Prereqs: None" instead of no badge at all. Leave the cell
+  genuinely blank instead for anything that can't be mechanically
+  checked (vague text, a choice the sheet doesn't track) — that still
+  shows no badge, same as today.
 
   Examples, matching real "Prereqs (Full)" text:
     "Resilience 2"                              → Resilience:2
@@ -35,18 +44,45 @@ checked by a machine at all.
     "Animal Companion"                          → Technique:Animal Companion
     "Solemn Pact, (Resilience or Presence) 3"   → Technique:Solemn Pact,(Resilience|Presence):3
     "Body 2"                                    → Body:2
+    "None"                                      → (explicit, always-met empty check)
 
   Same as "Prereqs (Full)" itself, this checks raw Skill/Stat *points*,
   never Skill Total — matching the rule that prereqs are the one place
   in the game where you care about the points themselves.
 
-  Leave the cell blank for anything that can't be mechanically checked
-  (vague text, a choice the sheet doesn't track, "None", etc.) — the
-  site just won't show a check for those, same as today.
+  CHOICE CLAUSES — for a technique whose real prerequisite depends on
+  which option its own Free Text picker (School, Weapon, ...) was set
+  to for that specific copy, instead of being the same for every copy
+  (Artisanal Training needs Craft for some creation Schools and
+  Mixology for others, depending which one you picked when you learned
+  it). One clause, branching on that pick:
+
+    ChoiceField{value1|value2=<Skill:N or (Skill1|Skill2):N>; value3=...}
+
+  "ChoiceField" is whatever name the technique's own Free Text column
+  uses (e.g. "School") — not validated against the option list here,
+  since that list (CREATION_SCHOOLS, item names, ...) is client-side
+  data this script doesn't see. Branches are ";"-separated (not ","),
+  since the cell-wide comma-split that separates top-level AND clauses
+  would otherwise cut a branch list in half. Each branch's right side
+  is the exact same Skill:N / (Skill1|Skill2):N shape a plain clause
+  uses. Example, matching Artisanal Training's real prereq text
+  ("Craft 2 (if Smithing/Carving/Tailoring/Jewelrymaking) or Mixology 2
+  (if Alchemy) or Mixology 2 or Survival 2 (if Cooking)"):
+
+    School{Smithing|Carving|Tailoring|Jewelrymaking=Craft:2;
+           Alchemy=Mixology:2; Cooking=(Mixology|Survival):2}
+
+  Before that copy's choice is made (still browsing, or the choice
+  hasn't been picked yet), the site shows no badge for it rather than
+  guessing — same "flag readiness, don't guess" rule level-scaling
+  thresholds already follow.
 
   scripts/draft_prereq_check.py will attempt to auto-fill this column
   from the existing "Prereqs (Full)" text and flag whatever it can't
-  confidently convert, so you don't have to type all ~140 by hand.
+  confidently convert, so you don't have to type all ~140 by hand. It
+  doesn't know about Choice clauses — those still need to be typed in
+  by hand.
 
 FEATURE BUDGET — techniques.csv can also have an optional "Feature Budget"
 column for Feature-built techniques (Battle Maneuver, Healing Magic, etc).
@@ -328,6 +364,12 @@ BACKGROUND_MAP = {
     # split out the same way.
     "Description (Fluff)": "description",
     "Effects":              "effects",
+    # A technique ID this background automatically grants when selected
+    # (Creator -> Artisanal Training, Professional -> Profession) — free
+    # of XP, and not manually removable on its own, since it only exists
+    # because the background does. Blank for every other background.
+    # See index.html's granted-technique sync effect.
+    "Grants Technique":     "grants_technique",
     # Which book this is from — see the matching note on ITEM_MAP's
     # Supplement column. A Goblin clan background's Category is the
     # clan's own name (e.g. "Rockbiters") rather than "General"/
@@ -502,9 +544,45 @@ def parse_threshold(text, errors, context):
     return None
 
 
+def parse_skill_or_any_clause(text, errors, context):
+    """Parses one Skill:N / (Skill1|Skill2):N / AnySkill:N fragment into a
+    clause dict, or None on failure (with an error appended). Shared by
+    top-level Prereq Check clauses and the branches of a Choice clause
+    (see parse_prereq_check) — a branch is just this same shape."""
+    text = text.strip()
+
+    if text.startswith("AnySkill:"):
+        threshold = parse_threshold(text[len("AnySkill:"):], errors, context)
+        return {"type": "any_skill", "threshold": threshold} if threshold else None
+
+    m = re.fullmatch(r"\(([^)]+)\)\s*:\s*(.+)", text)
+    if m:
+        skills = [s.strip() for s in m.group(1).split("|") if s.strip()]
+        threshold_text = m.group(2)
+    else:
+        m2 = re.fullmatch(r"([A-Za-z]+)\s*:\s*(.+)", text)
+        if not m2:
+            errors.append(f"{context}: couldn't parse clause {text!r}")
+            return None
+        skills = [m2.group(1).strip()]
+        threshold_text = m2.group(2)
+
+    bad_skills = [s for s in skills if s not in KNOWN_SKILLS and s not in KNOWN_STATS]
+    if bad_skills:
+        errors.append(f"{context}: unknown skill/stat name(s) {bad_skills} in {text!r}")
+        return None
+
+    threshold = parse_threshold(threshold_text, errors, context)
+    if not threshold:
+        return None
+    return {"type": "skill", "options": skills, "threshold": threshold}
+
+
 def parse_prereq_check(raw, technique_names, errors, context):
     """Parses one 'Prereq Check' cell into a list of clause dicts — see the
-    mini-syntax documented in the file header above TECHNIQUE_MAP."""
+    mini-syntax documented in the file header above TECHNIQUE_MAP. The
+    caller handles the cell being the literal word "None" (see below) —
+    this only ever runs on cells with real clauses to parse."""
     clauses = []
     for part in raw.split(","):
         part = part.strip()
@@ -519,32 +597,40 @@ def parse_prereq_check(raw, technique_names, errors, context):
             clauses.append({"type": "technique", "name": name})
             continue
 
-        if part.startswith("AnySkill:"):
-            threshold = parse_threshold(part[len("AnySkill:"):], errors, context)
-            if threshold:
-                clauses.append({"type": "any_skill", "threshold": threshold})
-            continue
-
-        m = re.fullmatch(r"\(([^)]+)\)\s*:\s*(.+)", part)
+        # ChoiceFieldName{value1|value2=Skill:N; value3=(Skill1|Skill2):N; ...}
+        # — a prereq that depends on which option the technique's own
+        # Free Text picker (School, Weapon, ...) was set to for this
+        # specific copy, e.g. Artisanal Training needing Craft for some
+        # Schools and Mixology for others. Branches use ";"/"=" rather
+        # than "," so the cell-wide comma-split above can't cut one in
+        # half. "ChoiceFieldName" is whatever the technique's own Free
+        # Text column names (see TECHNIQUE_MAP) — not cross-checked here
+        # since the option lists themselves are client-side data
+        # (CREATION_SCHOOLS, item names, ...), not visible to this script.
+        m = re.fullmatch(r"([A-Za-z]+)\{(.+)\}", part)
         if m:
-            skills = [s.strip() for s in m.group(1).split("|") if s.strip()]
-            threshold_text = m.group(2)
-        else:
-            m2 = re.fullmatch(r"([A-Za-z]+)\s*:\s*(.+)", part)
-            if not m2:
-                errors.append(f"{context}: couldn't parse clause {part!r}")
-                continue
-            skills = [m2.group(1).strip()]
-            threshold_text = m2.group(2)
-
-        bad_skills = [s for s in skills if s not in KNOWN_SKILLS and s not in KNOWN_STATS]
-        if bad_skills:
-            errors.append(f"{context}: unknown skill/stat name(s) {bad_skills} in {part!r}")
+            by = m.group(1)
+            branches = []
+            for branch_text in m.group(2).split(";"):
+                branch_text = branch_text.strip()
+                if not branch_text:
+                    continue
+                bm = re.fullmatch(r"([^=]+)=(.+)", branch_text)
+                if not bm:
+                    errors.append(f"{context}: couldn't parse {by} branch {branch_text!r}")
+                    continue
+                when = [v.strip() for v in bm.group(1).split("|") if v.strip()]
+                sub = parse_skill_or_any_clause(bm.group(2), errors, context)
+                if sub:
+                    sub["when"] = when
+                    branches.append(sub)
+            if branches:
+                clauses.append({"type": "choice", "by": by, "branches": branches})
             continue
 
-        threshold = parse_threshold(threshold_text, errors, context)
-        if threshold:
-            clauses.append({"type": "skill", "options": skills, "threshold": threshold})
+        clause = parse_skill_or_any_clause(part, errors, context)
+        if clause:
+            clauses.append(clause)
 
     return clauses
 
@@ -696,7 +782,13 @@ for csv_file, (json_file, col_map) in TABLES.items():
         for r in rows:
             raw = r.pop("prereq_check_raw", None)
             context = f"{r.get('id')} {r.get('name')!r}"
-            if raw:
+            if raw and raw.strip().lower() == "none":
+                # Explicitly no prerequisite (Extensive Background, e.g.) —
+                # an empty-but-present clause list, so the site shows a
+                # trivially-met green badge instead of no badge at all
+                # (which is what a genuinely blank cell still means).
+                r["prereq_check"] = []
+            elif raw:
                 clauses = parse_prereq_check(raw, technique_names, errors, context)
                 r["prereq_check"] = clauses if clauses else None
             else:

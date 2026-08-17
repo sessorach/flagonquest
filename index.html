@@ -608,9 +608,18 @@ function resolvePrereqThreshold(threshold, fixedLevel) {
 // Whether the character's current Stats/Skills/known Techniques satisfy
 // one parsed Prereq Check clause (see PREREQ CHECK in convert.py for the
 // clause shapes). Returns null when the clause can't be evaluated yet
-// (an ambiguous level-scaling threshold), true/false otherwise.
-function meetsPrereqClause(clause, statPoints, skillPoints, knownTechNames, fixedLevel) {
+// (an ambiguous level-scaling threshold, or a Choice clause whose pick
+// isn't made yet), true/false otherwise. `choice` is the build-copy's
+// own Free Text value (e.g. which School was picked) — only Choice
+// clauses use it, everything else ignores it.
+function meetsPrereqClause(clause, statPoints, skillPoints, knownTechNames, fixedLevel, choice) {
   if (clause.type === "technique") return knownTechNames.has(clause.name);
+  if (clause.type === "choice") {
+    if (choice == null) return null;
+    const branch = clause.branches.find(b => b.when.includes(choice));
+    if (!branch) return null;
+    return meetsPrereqClause(branch, statPoints, skillPoints, knownTechNames, fixedLevel, choice);
+  }
   if (clause.type === "any_skill") {
     const threshold = resolvePrereqThreshold(clause.threshold, fixedLevel);
     if (threshold == null) return null;
@@ -623,14 +632,18 @@ function meetsPrereqClause(clause, statPoints, skillPoints, knownTechNames, fixe
 
 // Whether the character's current build meets ALL of a technique's
 // Prereq Check clauses (AND). Returns null when there's nothing
-// checkable — no structured Prereq Check for this technique at all, or
-// any one clause coming back ambiguous — so the caller can fall back to
-// just showing the plain "Prereqs (Full)" text with no badge, same as a
-// technique that never had one.
-function meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames) {
-  if (!tech.prereq_check || tech.prereq_check.length === 0) return null;
+// checkable — no structured Prereq Check for this technique at all
+// (an empty-but-present [] from an explicit "None" cell is NOT this
+// case — it trivially passes every()), or any one clause coming back
+// ambiguous — so the caller can fall back to just showing the plain
+// "Prereqs (Full)" text with no badge, same as a technique that never
+// had one. `choice` is the specific copy's own Free Text pick, for
+// resolving any Choice clause — omit it (or pass null) for a technique
+// with no per-copy choice, or while browsing before one's been made.
+function meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames, choice = null) {
+  if (!tech.prereq_check) return null;
   const fixedLevel = tech.level_min === tech.level_max ? tech.level_min : null;
-  const results = tech.prereq_check.map(c => meetsPrereqClause(c, statPoints, skillPoints, knownTechNames, fixedLevel));
+  const results = tech.prereq_check.map(c => meetsPrereqClause(c, statPoints, skillPoints, knownTechNames, fixedLevel, choice));
   if (results.some(r => r == null)) return null;
   return results.every(Boolean);
 }
@@ -645,14 +658,23 @@ function meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames) {
 // against that specific copy's own chosen Level (configs[uid].level for
 // anything needing a level picker, tech.level_min otherwise), same as
 // meetsPrereqCheck — a clause whose Level isn't chosen yet is skipped
-// for that copy rather than guessed.
-function summarizeBuildPrereqs(build, techniques, configs, statPoints, skillPoints, knownTechNames) {
+// for that copy rather than guessed. A Choice clause resolves the same
+// way — against that copy's own notes[uid] pick — before falling into
+// the same skill/any_skill merge logic every other clause uses, since a
+// resolved branch has that exact shape; a copy whose choice isn't made
+// yet just contributes nothing for that clause, same "skip, don't
+// guess" rule.
+function summarizeBuildPrereqs(build, techniques, configs, notes, statPoints, skillPoints, knownTechNames) {
   const merged = new Map();
   build.forEach(({ uid, id }) => {
     const tech = techniques.find(t => t.id === id);
     if (!tech || !tech.prereq_check) return;
     const fixedLevel = needsLevelPicker(tech) ? (configs[uid]?.level ?? null) : tech.level_min;
-    tech.prereq_check.forEach(clause => {
+    tech.prereq_check.forEach(rawClause => {
+      const clause = rawClause.type === "choice"
+        ? rawClause.branches.find(b => b.when.includes(notes[uid]))
+        : rawClause;
+      if (!clause) return;
       if (clause.type === "technique") {
         const key = `technique:${clause.name}`;
         if (!merged.has(key)) {
@@ -1306,10 +1328,28 @@ function TechCard({
   // Full item catalog, for the "Weapon" choice-type dropdown's options
   // (see choiceOptions below) — unused for anything else.
   items = [],
+  // Full background catalog + the same eligibility inputs
+  // BackgroundsSection uses, for the "Background" choice-type dropdown's
+  // options (Extensive Background) — unused for anything else.
+  backgrounds = [], backgroundType = "Settler", enabledSupplements = null,
+  // uids that exist only because a selected background grants this
+  // technique for free (Creator/Artisanal Training, Professional/
+  // Profession — see the sync effect near toggleBackground in App()).
+  // Those copies keep their own choice dropdown but lose every
+  // remove/duplicate control — they're not manually removable, and
+  // don't count toward XP (see App()'s knownXP/totalXP).
+  grantedUids = EMPTY_SET,
 }) {
   const tags   = splitCSV(tech.tags);
   const skills = splitCSV(tech.relevant_skills);
-  const prereqMet = knownTechNames ? meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames) : null;
+  // For a Choice-clause prereq (see meetsPrereqCheck), the badge can only
+  // reflect one pick — the first copy's, since that's the only one this
+  // single card-level badge has room to show. Multiple copies with
+  // different picks (e.g. Artisanal Training taken for two Schools) each
+  // still get their own correct Met/Not-met in the Builder's prereq
+  // summary panel, which resolves per copy — see summarizeBuildPrereqs.
+  const firstChoice = instances.length > 0 ? notes[instances[0]] : null;
+  const prereqMet = knownTechNames ? meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames, firstChoice) : null;
 
   // A technique's Free Text column is either TRUE (a plain free-text
   // note — Temper Soulblade) or a specific value naming a structured
@@ -1326,6 +1366,8 @@ function TechCard({
   const choiceOptions =
     tech.free_text === "School" ? CREATION_SCHOOLS :
     tech.free_text === "Weapon" ? items.filter(i => i.category === "Weapon" && i.supplement === "Base Game").map(i => i.name) :
+    tech.free_text === "Profession" ? PROFESSIONS :
+    tech.free_text === "Background" ? eligibleBackgrounds(backgrounds, backgroundType, enabledSupplements).map(b => b.name) :
     null;
 
   // "Encounter" is important enough to live in the corner with the level
@@ -1338,6 +1380,12 @@ function TechCard({
   // available instead of flipping straight to "Remove".
   const repeatable = isRepeatable(tech);
   const count        = group ? group.uids.length : instances.length;
+  // How many of those copies are actually removable — excludes granted
+  // ones (see grantedUids above). Gates the Remove/Remove one button
+  // separately from `count`, so a card that's only ever shown a granted
+  // copy (or, in principle, a mix) doesn't offer a Remove that can't
+  // find anything removable to act on.
+  const removableCount = (group ? group.uids : instances).filter(uid => !grantedUids.has(uid)).length;
   const expendedUids = group ? group.uids : instances;
   const displayName  = group ? (group.name || tech.name) : tech.name;
   const displayLevel = group && group.cfg ? `Lv ${group.cfg.level}` : lvlLabel(tech.level_min, tech.level_max);
@@ -1587,7 +1635,7 @@ function TechCard({
                       style={{ flex:1, fontSize:13 }}
                     />
                   )}
-                  {instances.length > 1 && (
+                  {instances.length > 1 && !grantedUids.has(uid) && (
                     <button
                       onClick={() => onRemoveInstance(uid)}
                       aria-label={`Remove copy ${i + 1}`}
@@ -1663,21 +1711,23 @@ function TechCard({
               {count > 0 && (
                 <>
                   <span style={{ fontSize:13, color:TEXT.muted }}>Known ×{count}</span>
-                  <button
-                    onClick={() => onRemove(tech.id)}
-                    style={{
-                      fontSize: 13, color: "#c0392b",
-                      background: "transparent",
-                      border: "0.5px solid #c0392b",
-                      borderRadius: 4, padding: "2px 10px",
-                    }}
-                  >
-                    Remove one
-                  </button>
+                  {removableCount > 0 && (
+                    <button
+                      onClick={() => onRemove(tech.id)}
+                      style={{
+                        fontSize: 13, color: "#c0392b",
+                        background: "transparent",
+                        border: "0.5px solid #c0392b",
+                        borderRadius: 4, padding: "2px 10px",
+                      }}
+                    >
+                      Remove one
+                    </button>
+                  )}
                 </>
               )}
             </>
-          ) : count > 0 ? (
+          ) : removableCount > 0 ? (
             <button
               onClick={() => onRemove(tech.id)}
               style={{
@@ -1689,7 +1739,7 @@ function TechCard({
             >
               Remove
             </button>
-          ) : (
+          ) : count === 0 ? (
             <button
               onClick={() => onAdd(tech.id)}
               style={{
@@ -1701,6 +1751,11 @@ function TechCard({
             >
               + Add to build
             </button>
+          ) : (
+            // Non-repeatable, already known, and that one copy is
+            // granted (not removable) — nothing to add (already have
+            // it) or remove (not manually), so no button at all.
+            null
           )}
         </div>
       )}
@@ -2448,6 +2503,11 @@ const modalCloseBtnStyle = {
   fontSize: 22, lineHeight: 1, cursor: "pointer", padding: 4,
 };
 
+// A stable shared empty Set for a "granted uids" prop default (TechCard)
+// — avoids allocating a fresh one every render just to satisfy `.has()`
+// calls when there's nothing granted.
+const EMPTY_SET = new Set();
+
 // ══════════════════════════════════════════════════════════════════
 // INVENTORY TILE — one owned item: name, category/slot, description/
 // effects text, any flat stat bonuses or weapon profile it carries, and
@@ -3140,6 +3200,19 @@ function isAlwaysAvailableBackground(category) {
   return category !== "Settler" && category !== "Wildfolk";
 }
 
+// Which backgrounds are pickable right now — enabled by Sources, and
+// either always-available or matching the current Settler/Wildfolk
+// toggle. Shared by BackgroundsSection's own picker grid and Extensive
+// Background's "Background" Free Text dropdown (see TechCard) — both
+// mean "what could this character take," so they use the same filter
+// rather than each keeping its own copy in sync.
+function eligibleBackgrounds(backgrounds, backgroundType, enabledSupplements) {
+  return backgrounds.filter(b =>
+    (!enabledSupplements || enabledSupplements.includes(b.supplement)) &&
+    (isAlwaysAvailableBackground(b.category) || b.category === backgroundType)
+  );
+}
+
 // ══════════════════════════════════════════════════════════════════
 // BACKGROUNDS SECTION — a Settler/Wildfolk toggle, the selected
 // background(s) as a drag-reorderable list (same handle as techniques),
@@ -3181,10 +3254,7 @@ function BackgroundsSection({
     );
   }
 
-  const eligible  = backgrounds.filter(b =>
-    (!enabledSupplements || enabledSupplements.includes(b.supplement)) &&
-    (isAlwaysAvailableBackground(b.category) || b.category === backgroundType)
-  );
+  const eligible  = eligibleBackgrounds(backgrounds, backgroundType, enabledSupplements);
   const available = eligible.filter(b => !selectedIds.includes(b.id));
   const toggleBtnStyle = active => ({
     padding: "4px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
@@ -3439,10 +3509,12 @@ const SCHOOL_TOOL_MAP = {
   Jewelrymaking: "Jeweler's Kit", Alchemy: "Mixology Set",
 };
 // The six creation Schools Artisanal Training lets a player choose from
-// (see its Effects text) — used to read a School back out of that
-// technique's free-text note, since there's no structured "pick one of
-// these" mechanism for technique choices yet, just a text box per copy.
+// (see its Effects text) — populates its "School" Free Text dropdown,
+// same idea as PROFESSIONS below.
 const CREATION_SCHOOLS = ["Smithing", "Carving", "Tailoring", "Jewelrymaking", "Alchemy", "Cooking"];
+// The ten professions Profession lets a player choose from (see its
+// Effects text) — populates its "Profession" Free Text dropdown.
+const PROFESSIONS = ["Apothecary", "Artisan", "Busker", "Fisher", "Gatherer", "Grifter", "Merchant", "Sailor", "Tactician", "Theologian"];
 
 // "Carving, Tailoring, or Smithing" → ["Carving","Tailoring","Smithing"].
 // "Varies" (Other Items) intentionally falls through as a single
@@ -4375,7 +4447,7 @@ function BuildPanel({
         </div>
       ) : (
         <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
-          {buildRows.map(({ tech: t, uids }) => {
+          {buildRows.map(({ tech: t, uids, granted }) => {
             const count      = uids.length;
             const uid        = uids[0];
             const isDistinct = t.free_text || needsLevelPicker(t);
@@ -4431,9 +4503,9 @@ function BuildPanel({
                   )}
                 </div>
                 <span style={{ fontSize:13, color:TEXT.faint, flexShrink:0 }}>
-                  {totalXP != null ? `${totalXP} XP` : "? XP"}
+                  {granted ? "Free" : totalXP != null ? `${totalXP} XP` : "? XP"}
                 </span>
-                {repeatable && (
+                {repeatable && !granted && (
                   <button
                     onClick={() => needsLevelPicker(t) ? duplicateInstance(uid) : addTech(t.id)}
                     aria-label={needsLevelPicker(t) ? `Add another copy of ${t.name} with the same features` : `Add another ${t.name}`}
@@ -4445,16 +4517,22 @@ function BuildPanel({
                     +
                   </button>
                 )}
-                <button
-                  onClick={() => isDistinct ? removeInstance(uid) : removeTech(t.id)}
-                  aria-label={`Remove ${t.name}`}
-                  style={{
-                    background:"transparent", border:"none",
-                    color:TEXT.faint, fontSize:18, lineHeight:1, padding:"2px 4px", flexShrink:0,
-                  }}
-                >
-                  ✕
-                </button>
+                {/* No remove button — a granted entry only exists because
+                    its background is selected; drop the background (on
+                    the Builder tab) to lose it, matching how it appeared
+                    in the first place with no XP spent. */}
+                {!granted && (
+                  <button
+                    onClick={() => isDistinct ? removeInstance(uid) : removeTech(t.id)}
+                    aria-label={`Remove ${t.name}`}
+                    style={{
+                      background:"transparent", border:"none",
+                      color:TEXT.faint, fontSize:18, lineHeight:1, padding:"2px 4px", flexShrink:0,
+                    }}
+                  >
+                    ✕
+                  </button>
+                )}
               </div>
             );
           })}
@@ -5115,28 +5193,40 @@ function App() {
   // One row per distinct technique for display — a plain repeatable
   // technique (no per-copy data) collapses into a "×N" row, but a
   // technique with its own notes or Feature-builder choices per copy
-  // always gets one row per copy, since those copies differ.
+  // always gets one row per copy, since those copies differ. `granted`
+  // is true only when every uid in the row came from a background's
+  // grants_technique (see the sync effect near toggleBackground) — in
+  // practice that's always a lone, free-text-driven row (Artisanal
+  // Training, Profession both are), never mixed with a manually-added
+  // copy of the same technique, but checked with .every() rather than
+  // assumed, so BuildPanel's +/✕ buttons hide correctly either way.
   const buildRows = useMemo(() => {
     const rows = [];
     const groupIndex = {};
-    build.forEach(({ uid, id }) => {
+    build.forEach(({ uid, id, granted }) => {
       const tech = techniques.find(t => t.id === id);
       if (!tech) return;
       if (tech.free_text || needsLevelPicker(tech)) {
-        rows.push({ tech, uids: [uid] });
+        rows.push({ tech, uids: [uid], granted: !!granted });
       } else if (id in groupIndex) {
-        rows[groupIndex[id]].uids.push(uid);
+        const row = rows[groupIndex[id]];
+        row.uids.push(uid);
+        row.granted = row.granted && !!granted;
       } else {
         groupIndex[id] = rows.length;
-        rows.push({ tech, uids: [uid] });
+        rows.push({ tech, uids: [uid], granted: !!granted });
       }
     });
     return rows;
   }, [build, techniques]);
 
   // ── XP totals ──────────────────────────────────────────────────
-  const knownXP      = buildEntries.reduce((sum, e) => sum + (entryXP(e) ?? 0), 0);
-  const unknownCount = buildEntries.filter(e => entryXP(e) == null).length;
+  // Granted entries (Creator/Professional's free technique — see the
+  // sync effect near toggleBackground) never cost XP, so they're
+  // excluded from both totals here.
+  const chargeable   = buildEntries.filter(e => !e.granted);
+  const knownXP      = chargeable.reduce((sum, e) => sum + (entryXP(e) ?? 0), 0);
+  const unknownCount = chargeable.filter(e => entryXP(e) == null).length;
   const totalXP      = knownXP + statSkillXP;
 
   // ── Build mutations ────────────────────────────────────────────
@@ -5170,9 +5260,17 @@ function App() {
   // Removes one copy (whichever was added most recently) — used by the
   // simple "Remove"/"Remove one" buttons and the build list's ✕ for
   // techniques with no per-copy data. For a non-repeatable technique
-  // that's its only copy, so it behaves like a full removal.
+  // that's its only copy, so it behaves like a full removal. Skips
+  // granted copies (see the sync effect near toggleBackground) even if
+  // one's the most recent — they're not manually removable, and the
+  // sync effect only reacts to selectedBackgrounds/backgrounds changing,
+  // not to build changes, so it wouldn't notice and re-add one removed
+  // this way.
   const removeTech = id => {
-    const idx = build.map(e => e.id).lastIndexOf(id);
+    let idx = -1;
+    for (let i = build.length - 1; i >= 0; i--) {
+      if (build[i].id === id && !build[i].granted) { idx = i; break; }
+    }
     if (idx === -1) return;
     const uid = build[idx].uid;
     const savedNote = notes[uid], savedConfig = configs[uid], savedRename = renames[uid], savedExpended = expended[uid];
@@ -5503,6 +5601,34 @@ function App() {
       return next;
     });
   };
+
+  // Keeps exactly one granted build entry per currently-selected
+  // background that has a grants_technique (Creator -> Artisanal
+  // Training, Professional -> Profession) — added when the background
+  // is picked, removed when it's dropped. A deterministic uid
+  // (`granted-<background id>`, not makeUid()) rather than a fresh one
+  // each time means the granted entry's own notes[uid]/configs[uid]
+  // (the School/Profession choice) survive re-renders and refreshes
+  // exactly like a normal entry's would, and re-selecting the same
+  // background after deselecting it lands back on the same choice
+  // instead of a blank slate. `granted: true` on the entry is what
+  // TechCard reads to hide its Remove/Duplicate controls, and what the
+  // XP totals skip — see knownXP/totalXP below.
+  useEffect(() => {
+    const wanted = new Map();
+    selectedBackgrounds.forEach(bgId => {
+      const bg = backgrounds.find(b => b.id === bgId);
+      if (bg?.grants_technique) wanted.set(`granted-${bgId}`, bg.grants_technique);
+    });
+    setBuild(b => {
+      const have = new Set(b.filter(e => e.granted).map(e => e.uid));
+      const stale = b.filter(e => e.granted && !wanted.has(e.uid));
+      const toAdd = [...wanted].filter(([uid]) => !have.has(uid)).map(([uid, id]) => ({ uid, id, granted: true }));
+      if (stale.length === 0 && toAdd.length === 0) return b;
+      const staleUids = new Set(stale.map(e => e.uid));
+      return [...b.filter(e => !staleUids.has(e.uid)), ...toAdd];
+    });
+  }, [selectedBackgrounds, backgrounds]);
   // Character Sheet only — swaps which of Backgrounds/Techniques prints
   // first, same drag-reorder pattern (and shared dragId) as everything
   // else. Only two keys ever exist, so this is really just a toggle,
@@ -5831,7 +5957,13 @@ function App() {
       customMaterials: customMaterials.map(c => ({ name: c.name, level: c.level, types: c.types, qty: c.qty })),
       customAttacks: customAttacks.map(r => ({ name: r.name, accuracy: r.accuracy, damage: r.damage, range: r.range, skill: r.skill, notes: r.notes })),
       exportedAt: new Date().toISOString(),
-      techniques: buildEntries.map(e => {
+      // Granted entries (see the sync effect near toggleBackground) are
+      // excluded here — they're re-derived automatically from the
+      // exported "backgrounds" list on import, via that same effect.
+      // Exporting them too would import as a second, independent
+      // (non-granted, so removable and XP-counted) copy on top of the
+      // one the effect re-adds.
+      techniques: buildEntries.filter(e => !e.granted).map(e => {
         const cfg = configs[e.uid];
         const out = { id: e.tech.id, name: e.tech.name, xp: entryXP(e) };
         if (cfg) {
@@ -6098,6 +6230,12 @@ function App() {
     display: "flex", alignItems: "center", gap: 5,
   });
 
+  // uids that exist only because a selected background grants that
+  // technique for free — see the sync effect near toggleBackground.
+  // Passed to every TechCard so it can lock down remove/duplicate
+  // controls on exactly those copies.
+  const grantedUids = useMemo(() => new Set(build.filter(e => e.granted).map(e => e.uid)), [build]);
+
   // Renders one TechCard, wired up to the live build/notes/configs state.
   // Shared by Browse (every matching technique) and the Character Sheet
   // (only techniques you actually know) so both stay pixel-for-pixel
@@ -6125,10 +6263,33 @@ function App() {
         glossary={glossary}
         readOnly={readOnly}
         items={items}
+        grantedUids={grantedUids}
+        backgrounds={backgrounds} backgroundType={backgroundType} enabledSupplements={enabledSupplements}
         {...(readOnly ? {} : { statPoints, skillPoints, knownTechNames })}
       />
     );
   };
+
+  // Extra backgrounds granted via a technique's own "Background" Free
+  // Text pick (Extensive Background) — not part of the normal General/
+  // Settler-or-Wildfolk slots (see toggleBackground/backgroundSlot), so
+  // they're added on top here rather than fed through that slot-
+  // exclusivity logic. Matched generically by free_text === "Background"
+  // rather than hardcoding Extensive Background's id, so any future
+  // technique with the same shape picks this up for free. Feeds the
+  // Character Sheet's background display — the Builder tab's own
+  // picker grid still shows only the two normal slots, since this extra
+  // pick is made on Extensive Background's own card, not there.
+  const effectiveBackgroundIds = useMemo(() => {
+    const extra = [];
+    build.forEach(({ uid, id }) => {
+      const tech = techniques.find(t => t.id === id);
+      if (tech?.free_text !== "Background") return;
+      const bg = backgrounds.find(b => b.name === notes[uid]);
+      if (bg && !extra.includes(bg.id)) extra.push(bg.id);
+    });
+    return [...selectedBackgrounds, ...extra.filter(id => !selectedBackgrounds.includes(id))];
+  }, [build, techniques, notes, backgrounds, selectedBackgrounds]);
 
   // Every technique currently in the build, deduped, in the order each
   // was first added — what the Builder tab renders (one merged card per
@@ -6151,8 +6312,8 @@ function App() {
 
   // The Builder's prereq summary panel — see summarizeBuildPrereqs.
   const prereqSummary = useMemo(
-    () => summarizeBuildPrereqs(build, techniques, configs, statPoints, skillPoints, knownTechNames),
-    [build, techniques, configs, statPoints, skillPoints, knownTechNames]
+    () => summarizeBuildPrereqs(build, techniques, configs, notes, statPoints, skillPoints, knownTechNames),
+    [build, techniques, configs, notes, statPoints, skillPoints, knownTechNames]
   );
 
   // What the read-only Character Sheet renders: one card per *distinct
@@ -6222,6 +6383,8 @@ function App() {
       group={card.tech.features ? { name: card.name, cfg: card.cfg, uids: card.uids } : null}
       skillTotals={{ statPoints, skillPoints }}
       items={items}
+      backgrounds={backgrounds} backgroundType={backgroundType} enabledSupplements={enabledSupplements}
+      grantedUids={grantedUids}
     />
   );
 
@@ -6846,8 +7009,8 @@ function App() {
             // drag) when nothing's selected, same as before.
             const sectionLabel = { backgrounds: "Backgrounds", techniques: "Techniques" };
             const sectionContent = {
-              backgrounds: selectedBackgrounds.length > 0
-                ? <BackgroundsSection backgrounds={backgrounds} selectedIds={selectedBackgrounds} readOnly />
+              backgrounds: effectiveBackgroundIds.length > 0
+                ? <BackgroundsSection backgrounds={backgrounds} selectedIds={effectiveBackgroundIds} readOnly />
                 : null,
               techniques: buildEntries.length === 0 && customTechniques.every(c => !c.title.trim() && !c.text.trim()) ? (
                 <div style={{ textAlign:"center", padding:"48px 20px", color:TEXT.faint, fontSize:16 }}>

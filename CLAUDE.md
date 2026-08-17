@@ -149,10 +149,11 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   `index.html` evaluates it against the current build and renders a
   red/green "✓ Met"/"✗ Not met" badge next to the Prereqs line, same
   colors as the Might Requirement badge. Not every technique has one —
-  `Craft 2 (if Smithing/Carving/...)`-style School-conditional text and
-  "(Based on option chosen)" genuinely can't be expressed in the syntax,
-  so those stay blank and just show the plain text with no badge, same
-  as before this existed. A level-scaling threshold (`[Level]`,
+  "(Based on option chosen)"-style prereqs genuinely can't be expressed
+  in the syntax, so those stay blank and just show the plain text with
+  no badge. `Craft 2 (if Smithing/Carving/...)`-style School-conditional
+  text *can* now be expressed, via Choice clauses — see below. A
+  level-scaling threshold (`[Level]`,
   `[Level]+1`) only evaluates when the technique itself has one fixed
   Level — for a Buildable technique with a Level range, which Level
   you'd build it at isn't chosen yet while just browsing, so
@@ -186,11 +187,67 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   Masterwork power), or a specific value (`"School"`, `"Weapon"`)
   naming which dropdown to render and which existing data to populate
   it from — `CREATION_SCHOOLS` for School, Base Game `Category:
-  "Weapon"` items for Weapon. No new state, no new storage — a
-  dropdown is just a pickier textarea. When a technique needs a new
-  kind of structured pick, prefer this pattern (reuse `notes[uid]`,
-  add one more `Free Text` value, source the options from data that
-  already exists) over inventing a parallel per-technique state map.
+  "Weapon"` items for Weapon, `PROFESSIONS` for Profession,
+  `eligibleBackgrounds(...)` for Background. No new state, no new
+  storage — a dropdown is just a pickier textarea. When a technique
+  needs a new kind of structured pick, prefer this pattern (reuse
+  `notes[uid]`, add one more `Free Text` value, source the options from
+  data that already exists) over inventing a parallel per-technique
+  state map.
+- `Prereq Check` also supports a literal `None` cell — parses to `[]`
+  (an empty-but-present clause list, trivially met, distinct from a
+  genuinely blank cell which parses to `null`/no badge) — for a
+  technique whose Prereqs text really is "None" and should still show
+  a green "✓ Met" badge rather than no badge at all.
+- `Prereq Check` also supports Choice clauses —
+  `ChoiceField{value1|value2=Skill:N; value3=OtherSkill:N}` — for a
+  technique whose actual prereq depends on its own `Free Text` pick
+  (Artisanal Training's School decides whether it's Craft 2 or Mixology
+  2). `ChoiceField` matches the technique's `Free Text` column value
+  (e.g. `School`); branches are `;`-separated (not `,`, so the syntax
+  survives the top-level comma-split), each `when-values=subclause`
+  reusing the plain Skill:N/(Skill1|Skill2):N/AnySkill:N grammar.
+  `meetsPrereqClause`/`meetsPrereqCheck` take a `choice` param (the
+  build-copy's own picked value) to resolve which branch applies,
+  returning `null` (no badge) if the choice hasn't been made yet — same
+  "flag readiness, don't guess" rule as level-scaling thresholds.
+  TechCard's single aggregate badge only reflects the *first* instance's
+  choice (a known, accepted simplification); the Builder's Prereq
+  Checker summary panel (`summarizeBuildPrereqs`, which already takes a
+  `notes` param) resolves each build entry's choice correctly since it
+  iterates per-instance anyway.
+- **Grants Technique**: a background can auto-grant a technique the
+  moment it's selected — `grants_technique` on `backgrounds.json`
+  (Creator → Artisanal Training, Professional → Profession) — free of
+  XP, not manually removable, but its own choice dropdown (School,
+  Profession, ...) still works normally. A `useEffect` in `App()` near
+  `toggleBackground` syncs `build` to match `selectedBackgrounds`,
+  materializing/removing entries with `granted: true`. It uses a
+  **deterministic uid** (`granted-${backgroundId}`, not `makeUid()`) so
+  the existing uid-keyed `notes`/`configs` state transparently preserves
+  the chosen School/Profession across refreshes and re-selecting the
+  same background — no separate persistence needed. `granted: true` is
+  threaded through: excluded from XP (`knownXP`/`unknownCount`/
+  `totalXP` filter to `chargeable = buildEntries.filter(e => !e.granted)`
+  first), excluded from single-character `doExport()`'s techniques list
+  (re-derived automatically on import via the same sync effect — including
+  it would double-add on `doImport()`), and passed down as a `grantedUids`
+  Set so `TechCard`/`BuildPanel` lock the Remove/Duplicate controls on a
+  granted copy while leaving its choice dropdown editable. Whole-browser
+  Backup/Restore-all and Duplicate-character round-trip raw state
+  directly and don't need this special-casing.
+- A technique can also let a player pick an *additional* background
+  beyond their normal two Builder-tab slots (Extensive Background, via
+  `Free Text: "Background"`) — the pick lives in the same per-copy
+  `notes[uid]` as any other choice dropdown, sourced from
+  `eligibleBackgrounds(backgrounds, backgroundType, enabledSupplements)`
+  (a shared helper, also used by `BackgroundsSection`'s own picker grid,
+  following the chipStyle/collapseBtnStyle "reach for the shared helper"
+  precedent). It only feeds the read-only Character Sheet's background
+  display, via `effectiveBackgroundIds` in `App()` (`selectedBackgrounds`
+  plus any Background-type Free Text picks, deduped) — the editable
+  Builder-tab picker grid still shows only the normal two slots, since
+  the extra pick's own UI lives on the granting technique's card.
 - Pass/fail badges are red `#e0645f` (unmet/bad) and green `#6fae5a`
   (met/good) — established by the Might Requirement badge, reused for
   Wounded. Keep using these two colors for any future met/unmet indicator

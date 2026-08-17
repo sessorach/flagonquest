@@ -916,7 +916,54 @@
     "deep_health_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "prereq_check": null,
+    "prereq_check": [
+      {
+        "type": "choice",
+        "by": "School",
+        "branches": [
+          {
+            "type": "skill",
+            "options": [
+              "Craft"
+            ],
+            "threshold": {
+              "base": 2
+            },
+            "when": [
+              "Smithing",
+              "Carving",
+              "Tailoring",
+              "Jewelrymaking"
+            ]
+          },
+          {
+            "type": "skill",
+            "options": [
+              "Mixology"
+            ],
+            "threshold": {
+              "base": 2
+            },
+            "when": [
+              "Alchemy"
+            ]
+          },
+          {
+            "type": "skill",
+            "options": [
+              "Mixology",
+              "Survival"
+            ],
+            "threshold": {
+              "base": 2
+            },
+            "when": [
+              "Cooking"
+            ]
+          }
+        ]
+      }
+    ],
     "feature_budget": null
   },
   {
@@ -938,12 +985,12 @@
     "use_cards": null,
     "healing": null,
     "features": null,
-    "free_text": null,
+    "free_text": "Background",
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "prereq_check": null,
+    "prereq_check": [],
     "feature_budget": null
   },
   {
@@ -1002,7 +1049,7 @@
     "use_cards": null,
     "healing": null,
     "features": null,
-    "free_text": null,
+    "free_text": "Profession",
     "shallow_health_bonus": null,
     "deep_health_bonus": null,
     "supplement": "Base Game",

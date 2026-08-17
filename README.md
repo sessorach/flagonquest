@@ -13,6 +13,26 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-17 — Choice-based prereqs, Grants Technique
+
+- **Artisanal Training** and **Profession** now use a real dropdown to
+  pick their School/Profession when you learn them, instead of a plain
+  free-text note — the same mechanism as Soulblade's weapon-type picker.
+  Artisanal Training's prereq badge now correctly checks Craft/Mixology/
+  Survival based on which School you picked, instead of showing no
+  badge at all.
+- **Extensive Background** now has its own dropdown to pick an
+  additional Background you qualify for, and correctly shows a green
+  "Prereqs: None — ✓ Met" badge instead of no badge. The extra
+  Background you pick shows up on the Character Sheet alongside your
+  normal two.
+- **Creator** and **Professional** backgrounds now automatically grant
+  you Artisanal Training / Profession the moment you select them — free
+  of XP, with their own School/Profession dropdown, but not manually
+  removable (deselect the background to remove the granted technique
+  instead). The Builder's XP totals, and single-character Export/
+  Import, correctly treat these as free and don't double them up.
+
 ### 2026-08-17 — Prereq summary panel, share-link cleanup
 
 - The Builder's prereq summary panel is now labeled "Prereq Checker."
