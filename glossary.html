@@ -317,11 +317,11 @@ function App() {
         </a>
 
         <div className="site-header-nav" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6, flexWrap:"wrap" }}>
-          <a href="index.html" style={tabStyle(false)}>Builder</a>
-          <a href="index.html" style={tabStyle(false)}>Techniques</a>
-          <a href="index.html" style={tabStyle(false)}>Items</a>
-          <a href="index.html" style={tabStyle(false)}>Character sheet</a>
-          <a href="index.html" style={tabStyle(false)}>Notes</a>
+          <a href="index.html?tab=build" style={tabStyle(false)}>Builder</a>
+          <a href="index.html?tab=browse" style={tabStyle(false)}>Techniques</a>
+          <a href="index.html?tab=items" style={tabStyle(false)}>Items</a>
+          <a href="index.html?tab=sheet" style={tabStyle(false)}>Character sheet</a>
+          <a href="index.html?tab=notes" style={tabStyle(false)}>Notes</a>
 
           {/* Divider + Rulebook + Glossary grouped into their own flex
               item, so the pair wraps to the next line as a unit instead

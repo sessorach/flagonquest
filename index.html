@@ -4279,6 +4279,17 @@ function BuildPanel({
 }
 
 
+// A same-page link (rulebook.html/glossary.html's header nav) can jump
+// straight to a specific tab via index.html?tab=<key> — one of the same
+// five keys `view` itself uses. Anything else (missing, misspelled,
+// plain index.html with no query string at all) falls back to the
+// Character Sheet, same as before this existed.
+const VALID_VIEWS = ["build", "browse", "items", "sheet", "notes"];
+function initialViewFromUrl() {
+  const tab = new URLSearchParams(window.location.search).get("tab");
+  return VALID_VIEWS.includes(tab) ? tab : "sheet";
+}
+
 // ══════════════════════════════════════════════════════════════════
 // MAIN APP COMPONENT
 // Holds all state (the active character's data, plus the fetched
@@ -4299,7 +4310,7 @@ function App() {
   const [loadError,  setLoadError]  = useState(null);
 
   // ── UI state ───────────────────────────────────────────────────
-  const [view,       setView]       = useState("sheet"); // build | browse | items | sheet | notes
+  const [view,       setView]       = useState(initialViewFromUrl); // build | browse | items | sheet | notes
   const [search,     setSearch]     = useState("");
   const [skillFilters, setSkillFilters] = useState([]);   // selected "related skills" chips
   const [tagFilters,  setTagFilters]  = useState([]);     // selected "tags" chips

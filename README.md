@@ -170,6 +170,10 @@ the full commit-by-commit detail behind any of these.
   than patched. Data now driving something the site used to derive from
   prose is the new standing rule here; see the "source of truth" note
   added to CLAUDE.md.
+- The Rulebook/Glossary header nav can now jump straight to a specific
+  tab (`index.html?tab=items`, etc.) instead of always landing on the
+  Character Sheet — clicking "Items" from the Rulebook actually takes
+  you to Items now.
 
 ### 2026-08-11 — Crafting materials framework
 
