@@ -37,6 +37,11 @@ the full commit-by-commit detail behind any of these.
   techniques' behind-the-scenes build instructions) has been renamed to
   the more general "Builder Notes" and picked up a short explainer on
   Profession/Artisanal Training's cards about how this narrowing works.
+  Profession's "each time you learn this, choose one of the following"
+  line moved into that same Builder Notes explainer, so the read-only
+  Character Sheet — where the choice is already made — no longer shows
+  a leftover "choose one of the following" ahead of the one option you
+  actually picked.
 - **Extensive Background** now has its own dropdown to pick an
   additional Background you qualify for, and correctly shows a green
   "Prereqs: None — ✓ Met" badge instead of no badge. The extra
