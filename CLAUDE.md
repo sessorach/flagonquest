@@ -78,7 +78,9 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   large block. Don't reach for bullet-point summaries mid-prose the way
   a fresh-start explanation might — the book's rule sections are written
   as continuous paragraphs, with bullets reserved for actual enumerated
-  lists (steps, options, factors).
+  lists (steps, options, factors). Good Luck/Bad Luck are never written
+  as "1 Good Luck" — a single instance is just "Good Luck", and multiple
+  is "Good Luck twice"/"Good Luck two times", not "2 Good Luck".
 
 ## Design conventions established so far
 

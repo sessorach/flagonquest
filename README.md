@@ -88,11 +88,11 @@ the full commit-by-commit detail behind any of these.
 - Land's Bounty's Difficult Terrain now scales with Mind ("up to [Mind]
   levels") instead of a flat single level.
 - **Supporting** now has real rules instead of a placeholder: a flat
-  difficulty 11 check that grants the target Good Luck (plus more per
-  Extra Success), with prose on when to reach for it — using a Skill
-  you do have to back up an ally using one you don't. Moved up next to
-  Skill Checks and Gambling, where the rest of "how a check gets
-  resolved" already lives, instead of sitting alone in Adventuring.
+  difficulty 11 check that grants the target Good Luck on success, with
+  prose on when to reach for it — using a Skill you do have to back up
+  an ally using one you don't. Moved up next to Skill Checks and
+  Gambling, where the rest of "how a check gets resolved" already
+  lives, instead of sitting alone in Adventuring.
 - Character Creation moved to the end of the Rulebook's chapter list,
   after Creating Items — it only really makes sense once you've read
   the rest of the book anyway.

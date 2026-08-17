@@ -228,7 +228,7 @@ Example: Carrick is infiltrating a noble’s inn room while the party keeps him 
 
 Not every character is going to have a good Skill for every check that comes up, but odds are somebody in the party does. Rather than take a check you have no business making, or just stand there while someone else struggles, you can Support them instead - lending a hand with a Skill of your own, even one that has nothing to do with the Skill they’re actually using.
 
-To Support a check, declare that you’re helping before the check is made, along with which of your Skills you’re using to do it - the GM has final say on whether your chosen Skill makes sense for what you’re doing. You then make a flip against a flat difficulty of 11. If it succeeds, the character you’re Supporting gets 1 Good Luck on their check, plus 1 Good Luck per Extra Success.
+To Support a check, declare that you’re helping before the check is made, along with which of your Skills you’re using to do it - the GM has final say on whether your chosen Skill makes sense for what you’re doing. You then make a flip against a flat difficulty of 11. If it succeeds, the character you’re Supporting gets Good Luck on their check.
 
 Supporting exists for the moments where you don’t have a good Skill of your own for the job in front of you, but can still make yourself useful - a character with poor Survival can still keep watch with Awareness while someone else forages, or steady the rope with Might while someone else does the actual climbing. Between Supporting and your allies’ own Skills, the party has access to a much wider range of them than any one of you could build alone.
 
