@@ -1,66 +1,3 @@
-# Character Creation
-
-This section is first so people don’t ask me where it is. It will make less sense until you read the rest of the rules (or get someone to summarize them for you).
-
-## Character Creation
-
-The basics of making a character are simple:
-
-- Choose whether your character is a **Settler** or a **Wildfolk**. Choose two backgrounds from the General list and/or the list you chose.
-- Spend **75 Experience** to build your character. All your Stats and Skills start at 0, and at this point no Stat or Skill can be raised above 3 ranks.
-- You start with an **Adventurer's Kit** and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
-
-## Calculated Statistics
-
-Below are the calculations for various statistics that your character has, that are determined from your Stats and Skills.
-
-- **Health**: Each character begins with a maximum of five (5) Shallow and Deep Health (10 total).
-- **Speed**: Your Speed is equal to 1 + your Agility.
-- **Reflex**: Your Reflex is equal to your Insight Skill Total.
-- **Cards Per Day**: You draw cards after a full night's rest equal to twice your total Cunning + Mind.
-- **Rest Health**: You heal Health after a full night's rest equal to your Body.
-- **Parry Defense**: When you apply your Parry Defense, you pick a weapon you are wielding and then your Defense is equal to 8 + [Weapon's relevant Skill Total] + Weapon's Defense.
-- **Dodge Defense**: When you apply your Dodge Defense, you choose Acrobatics or Brawl and then your Defense is equal to 8 + [Acrobatics or Brawl Skill Total].
-- **Vital Defense**: Your Vital Defense is equal to 8 + your Resilience Skill Total.
-- **Mental Defense**: Your Mental Defense is equal to 8 + your Composure Skill Total.
-- **Instinct Defense**: Your Instinct Defense is equal to 8 + your Insight Skill Total.
-- **Damage Resist**: Your Natural Resist is equal to your Spirit. Bonuses to other Resists are given from equipment and other effects.
-
-### Quick Creation References
-
-Each point separately — **Skill**: 1/2/3/4/5 (rank 1-5); **Stat**: 2/4/6/8/10; **Technique**: 3/6/9/12/15 (× Level).
-
-Total cost, from 0 — **Skill**: 1/3/6/10/15 (to reach rank 1-5); **Stat**: 2/6/12/20/30 (to reach rank 1-5).
-
-### “Okay, is there a quick way to make a character for now?”
-
-Yes! Just follow this handy guide:
-
-- Take a minute to think about your character idea, if you haven’t already. What kind of cool abilities would be fun for them to use? What kind of equipment and tools?
-- Skim through the Adventuring Gear and Techniques sections, noting what Stats and Skills those use, both for how effective they are and for any prerequisites to use them in the first place.
-- **Skills**: Time to pick out the Skills that your character will rely on
-  - Choose 2 Skills to have 3 ranks each; these should be your character’s primary focus
-  - Choose 5 Skills to have 2 ranks each; other useful things you want to be able to do, perhaps including Skills that determine your various Defenses
-  - Choose 2 Skills to have 1 rank each; anything you may have considered before, but didn’t make the cut yet
-- **Stats**: Choose how to arrange your Stats
-  - Choose 1 Stat to have 3 ranks; this is pretty important, pick one that boosts your damage, most of your Skills, or otherwise ties into your Favorite Thing to Do
-  - Choose 2 Stats to have 2 ranks each; pick ones to round out your character, peek back at Calculated Statistics for ideas
-  - Put 1 rank in each of the last 2 Stats; on the plus side, they’re easy to buy up higher with Experience in the future
-- **Techniques**: choose 6 total Levels’ worth of Techniques, making sure that you meet the prerequisites for them.
-- **Equipment**: You get an Adventurer’s Kit with all the basics, and then 20 Gold to buy what you want. A bag of some kind is important - a Knapsack if you’re not very strong - plus some weapons, armor, and anything else that looks fun.
-- Verify that everything looks good, you can use all of your Techniques and equipment, and that you didn’t accidentally leave a Defense lower than you meant to.
-
-### “Okay that was helpful, but I’m having trouble making sure I did it right…”
-
-- 2 Skills at 3 ranks each, 5 Skills at 2 ranks, 2 Skills at 1 rank
-- 1 Stat at 3 ranks, 2 Stats at 2 ranks, the last 2 Stats at 1 rank each
-- Pick 6 total Levels’ worth of Techniques; make sure you meet the prereqs
-- Pick the two Backgrounds that fit best and/or look the funniest; anyone can have General ones, but you have to pick ONLY Settler OR Wildfolk options to choose from, on top of that.
-- You have an Adventurer’s Kit, plus 20 Gold to buy some kind of bag, weapon and armor, and anything else you want. Keep the rest to buy drinks with.
-- Make sure you can actually use all of your stuff, and that you didn’t pick the wrong Stats or Skills for anything
-- Double-check Calculated Statistics to make sure you didn’t accidentally end up with something too low for your tastes
-- Give your character a nice name :)
-
 # Your Character
 
 A character is mainly composed of two halves: statistics, derived from your Stats and Skills, and abilities such as Techniques.
@@ -287,6 +224,16 @@ Example: Hilde is dispatching some knights from a petty tyrant’s army. They ar
 
 Example: Carrick is infiltrating a noble’s inn room while the party keeps him distracted downstairs. She needs to pick the lock to get in, and knows both that this upscale inn has well-oiled locks that are easy to pick open and that she doesn’t have a lot of time. She Gambles three times on the flip, and thankfully gets a 17 total, so even with the -6 she’s left with a result of 11. This is just enough to pick the lock with 4 total successes, and although normally she would require multiple successful attempts to get the lock all the way open, the GM says that her risky attempt got the lock open in one try.
 
+### Supporting
+
+Not every character is going to have a good Skill for every check that comes up, but odds are somebody in the party does. Rather than take a check you have no business making, or just stand there while someone else struggles, you can Support them instead - lending a hand with a Skill of your own, even one that has nothing to do with the Skill they’re actually using.
+
+To Support a check, declare that you’re helping before the check is made, along with which of your Skills you’re using to do it - the GM has final say on whether your chosen Skill makes sense for what you’re doing. You then make a flip against a flat difficulty of 11. If it succeeds, the character you’re Supporting gets 1 Good Luck on their check, plus 1 Good Luck per Extra Success.
+
+Supporting exists for the moments where you don’t have a good Skill of your own for the job in front of you, but can still make yourself useful - a character with poor Survival can still keep watch with Awareness while someone else forages, or steady the rope with Might while someone else does the actual climbing. Between Supporting and your allies’ own Skills, the party has access to a much wider range of them than any one of you could build alone.
+
+Example: The party is foraging for herbs before a long trek, and Jackal takes the lead with her Survival. Carrick doesn’t have much Survival to speak of, but she’s got a sharp eye, so instead she Supports with Awareness, watching for anything Jackal might walk past. She flips a 9 against her Awareness Skill Total of 5, for a result of 14, clearing the difficulty of 11 with room to spare, and Jackal gets Good Luck on her check.
+
 ## So How Does the Card Deck Work?
 
 Each player uses their own 52-card deck of playing cards, as does the GM. To make a flip (such as for a skill check), a player puts the top card of their deck face-up in front of them and adds the card’s value to the Skill Total and any other modifiers, and the total is the result for their check.
@@ -416,13 +363,6 @@ Example: Hilde wants to run across a wooden floor then jump across a hole that�
 Example: Hilde needs to climb up the side of a building to chase a bandit. The building is a bit tall, so it’s 4 spaces tall. Since the last example, Hilde upped her Athletics Skill Total to 8, which even quartered is a 2, so combined with her default vertical reach is 4. With a single move, she manages to climb a bit then pull herself up onto the top of the roof, and pursue the bandit!
 
 Example: Hilde is running after the bandit across city rooftops, but he throws a bottle of grease behind him. The GM says she needs to make an Acrobatics check to avoid slipping if she wants to jump across buildings after him. Hilde could easily make the jump with her Athletics, but unfortunately has bad Acrobatics and fails the skill flip for it. Instead of easily jumping across, she tumbles over the side and the bandit runs away. Better luck next time!
-
-### Supporting
-
-You can Support someone on a check lol
-
-- Make a flat check against DC 11
-- If you succeed, you give 1 Good Luck, +1 Good Luck per Extra Success
 
 ### Making an Attack
 
@@ -673,6 +613,69 @@ The exception to this is Precious Materials, which are almost always bought and 
 OK let’s look at the whole process:
 
 Enith wants to create a shadow blade. She has the recipe for it, which states that it requires
+
+# Character Creation
+
+This section comes last since it leans on terms and mechanics explained throughout the rest of the book — skim ahead (or get someone to summarize it for you) if something here doesn’t make sense yet.
+
+## Character Creation
+
+The basics of making a character are simple:
+
+- Choose whether your character is a **Settler** or a **Wildfolk**. Choose two backgrounds from the General list and/or the list you chose.
+- Spend **75 Experience** to build your character. All your Stats and Skills start at 0, and at this point no Stat or Skill can be raised above 3 ranks.
+- You start with an **Adventurer's Kit** and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
+
+## Calculated Statistics
+
+Below are the calculations for various statistics that your character has, that are determined from your Stats and Skills.
+
+- **Health**: Each character begins with a maximum of five (5) Shallow and Deep Health (10 total).
+- **Speed**: Your Speed is equal to 1 + your Agility.
+- **Reflex**: Your Reflex is equal to your Insight Skill Total.
+- **Cards Per Day**: You draw cards after a full night's rest equal to twice your total Cunning + Mind.
+- **Rest Health**: You heal Health after a full night's rest equal to your Body.
+- **Parry Defense**: When you apply your Parry Defense, you pick a weapon you are wielding and then your Defense is equal to 8 + [Weapon's relevant Skill Total] + Weapon's Defense.
+- **Dodge Defense**: When you apply your Dodge Defense, you choose Acrobatics or Brawl and then your Defense is equal to 8 + [Acrobatics or Brawl Skill Total].
+- **Vital Defense**: Your Vital Defense is equal to 8 + your Resilience Skill Total.
+- **Mental Defense**: Your Mental Defense is equal to 8 + your Composure Skill Total.
+- **Instinct Defense**: Your Instinct Defense is equal to 8 + your Insight Skill Total.
+- **Damage Resist**: Your Natural Resist is equal to your Spirit. Bonuses to other Resists are given from equipment and other effects.
+
+### Quick Creation References
+
+Each point separately — **Skill**: 1/2/3/4/5 (rank 1-5); **Stat**: 2/4/6/8/10; **Technique**: 3/6/9/12/15 (× Level).
+
+Total cost, from 0 — **Skill**: 1/3/6/10/15 (to reach rank 1-5); **Stat**: 2/6/12/20/30 (to reach rank 1-5).
+
+### “Okay, is there a quick way to make a character for now?”
+
+Yes! Just follow this handy guide:
+
+- Take a minute to think about your character idea, if you haven’t already. What kind of cool abilities would be fun for them to use? What kind of equipment and tools?
+- Skim through the Adventuring Gear and Techniques sections, noting what Stats and Skills those use, both for how effective they are and for any prerequisites to use them in the first place.
+- **Skills**: Time to pick out the Skills that your character will rely on
+  - Choose 2 Skills to have 3 ranks each; these should be your character’s primary focus
+  - Choose 5 Skills to have 2 ranks each; other useful things you want to be able to do, perhaps including Skills that determine your various Defenses
+  - Choose 2 Skills to have 1 rank each; anything you may have considered before, but didn’t make the cut yet
+- **Stats**: Choose how to arrange your Stats
+  - Choose 1 Stat to have 3 ranks; this is pretty important, pick one that boosts your damage, most of your Skills, or otherwise ties into your Favorite Thing to Do
+  - Choose 2 Stats to have 2 ranks each; pick ones to round out your character, peek back at Calculated Statistics for ideas
+  - Put 1 rank in each of the last 2 Stats; on the plus side, they’re easy to buy up higher with Experience in the future
+- **Techniques**: choose 6 total Levels’ worth of Techniques, making sure that you meet the prerequisites for them.
+- **Equipment**: You get an Adventurer’s Kit with all the basics, and then 20 Gold to buy what you want. A bag of some kind is important - a Knapsack if you’re not very strong - plus some weapons, armor, and anything else that looks fun.
+- Verify that everything looks good, you can use all of your Techniques and equipment, and that you didn’t accidentally leave a Defense lower than you meant to.
+
+### “Okay that was helpful, but I’m having trouble making sure I did it right…”
+
+- 2 Skills at 3 ranks each, 5 Skills at 2 ranks, 2 Skills at 1 rank
+- 1 Stat at 3 ranks, 2 Stats at 2 ranks, the last 2 Stats at 1 rank each
+- Pick 6 total Levels’ worth of Techniques; make sure you meet the prereqs
+- Pick the two Backgrounds that fit best and/or look the funniest; anyone can have General ones, but you have to pick ONLY Settler OR Wildfolk options to choose from, on top of that.
+- You have an Adventurer’s Kit, plus 20 Gold to buy some kind of bag, weapon and armor, and anything else you want. Keep the rest to buy drinks with.
+- Make sure you can actually use all of your stuff, and that you didn’t pick the wrong Stats or Skills for anything
+- Double-check Calculated Statistics to make sure you didn’t accidentally end up with something too low for your tastes
+- Give your character a nice name :)
 
 # Goblin Game {Goblin Game}
 

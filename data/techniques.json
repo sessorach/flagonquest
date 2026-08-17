@@ -2926,7 +2926,7 @@
     "action": "2 AP",
     "cost": null,
     "target": "A circular area 2 meters in radius, centered on a space within [Theurgy Skill Total] meters",
-    "effects": "All plant life in target spaces grows as though for an entire season. In most climates, affected terrain has [Mind] level of Difficult Terrain and additional effects may apply.",
+    "effects": "All plant life in target spaces grows as though for an entire season. In most climates, affected terrain has up to [Mind] levels of Difficult Terrain and additional effects may apply.",
     "building": null,
     "special": null,
     "prereqs": "Theurgy 3, Survival 2",

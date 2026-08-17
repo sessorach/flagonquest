@@ -61,6 +61,24 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   that specifically overrides a Base Game one) rather than scattering it
   untagged — otherwise it silently reads as Base Game and never shows up
   under its own tab.
+- Writing new Rulebook/Glossary prose (not just fleshing out a stub, but
+  a section that has to sound like the rest of the book): read a few
+  neighboring sections first and match their shape sentence-by-sentence,
+  not just topically. What's been consistent across the existing text:
+  a rule paragraph opens with the in-fiction "why would this come up"
+  framing before the mechanical rule itself; asides get tacked onto a
+  sentence with `- ` rather than parenthesized or split into a separate
+  sentence; a worked "Example:" paragraph follows, reusing the existing
+  cast of named characters (Browndog, Hilde, Carrick, Jackal, Felix,
+  Beornhard...) rather than inventing new ones, and walks through actual
+  numbers the way the surrounding examples do (Skill Total + card value
+  = result, compared to the difficulty). Apostrophes/quotes in this file
+  are curly (’, “ ”), not straight — check with `grep -o "[a-zA-Z][''][a-zA-Z]"`
+  if unsure which is more common in the surrounding text before adding a
+  large block. Don't reach for bullet-point summaries mid-prose the way
+  a fresh-start explanation might — the book's rule sections are written
+  as continuous paragraphs, with bullets reserved for actual enumerated
+  lists (steps, options, factors).
 
 ## Design conventions established so far
 
