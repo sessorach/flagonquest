@@ -922,43 +922,55 @@
         "by": "School",
         "branches": [
           {
-            "type": "skill",
-            "options": [
-              "Craft"
-            ],
-            "threshold": {
-              "base": 2
-            },
             "when": [
               "Smithing",
               "Carving",
               "Tailoring",
               "Jewelrymaking"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Craft"
+                ],
+                "threshold": {
+                  "base": 2
+                }
+              }
             ]
           },
           {
-            "type": "skill",
-            "options": [
-              "Mixology"
-            ],
-            "threshold": {
-              "base": 2
-            },
             "when": [
               "Alchemy"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Mixology"
+                ],
+                "threshold": {
+                  "base": 2
+                }
+              }
             ]
           },
           {
-            "type": "skill",
-            "options": [
-              "Mixology",
-              "Survival"
-            ],
-            "threshold": {
-              "base": 2
-            },
             "when": [
               "Cooking"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Mixology",
+                  "Survival"
+                ],
+                "threshold": {
+                  "base": 2
+                }
+              }
             ]
           }
         ]
@@ -1041,7 +1053,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "Each time you learn this, choose one profession: Apothecary, Artisan, Busker, Fisher, Gatherer, Grifter, Merchant, Sailor, Tactician, or Theologian. Each grants Good Luck on relevant flips. See rules for each option's specific benefit and prereq.",
+    "effects": "Each time you learn this Technique, choose one of the following:\n\nApothecary: You have Good Luck on flips to identify or recall basic facts about herbs, medicines, and common ailments. (Prereq: Survival 1, Medicine 1, Mixology 1)\nArtisan: You have Good Luck on any flip to establish or manage your craft in an official, professional sense, such as dealing with a local guild or other legal entity. (Prereq: Streetwise 1, Craft 1)\nBusker: You have Good Luck on flips to put on small street-side or tavern performances, such as playing in exchange for room and board. (Prereq: Performance 2)\nFisher: You have Good Luck on flips to fish, wait calmly and patiently, and resist the harmful effects of alcohol. (Prereq: Resilience 1, Survival 1)\nGatherer: You have Good Luck on flips when exploring and searching for food and water. (Prereq: Survival 2)\nGrifter: You have Good Luck on flips to run grifts or confidence games, as well as flips to escape legal or other consequences of doing so. (Prereq: Persuasion 2)\nMerchant: You have Good Luck on flips to negotiate transactions, locate a buyer or seller for rare goods, and understand basic economic forces. (Prereq: Persuasion 1, Streetwise 1, Academics 1)\nSailor: You have Good Luck on flips to swim, use rope, and operate a ship. (Prereq: Athletics 1, Survival 1)\nTactician: You have Good Luck on any flip related to military strategy, tactics, and organization. This applies even to small, ragtag groups like bandits. (Prereq: Academics 2)\nTheologian: You have Good Luck on flips to recall or understand religious elements, as well as to explain or preach them to others. (Prereq: Academics 2)",
     "building": null,
     "special": null,
     "prereqs": "(Based on option chosen)",
@@ -1054,7 +1066,237 @@
     "deep_health_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "prereq_check": null,
+    "prereq_check": [
+      {
+        "type": "choice",
+        "by": "Profession",
+        "branches": [
+          {
+            "when": [
+              "Apothecary"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Survival"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              },
+              {
+                "type": "skill",
+                "options": [
+                  "Medicine"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              },
+              {
+                "type": "skill",
+                "options": [
+                  "Mixology"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              }
+            ]
+          },
+          {
+            "when": [
+              "Artisan"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Streetwise"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              },
+              {
+                "type": "skill",
+                "options": [
+                  "Craft"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              }
+            ]
+          },
+          {
+            "when": [
+              "Busker"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Performance"
+                ],
+                "threshold": {
+                  "base": 2
+                }
+              }
+            ]
+          },
+          {
+            "when": [
+              "Fisher"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Resilience"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              },
+              {
+                "type": "skill",
+                "options": [
+                  "Survival"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              }
+            ]
+          },
+          {
+            "when": [
+              "Gatherer"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Survival"
+                ],
+                "threshold": {
+                  "base": 2
+                }
+              }
+            ]
+          },
+          {
+            "when": [
+              "Grifter"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Persuasion"
+                ],
+                "threshold": {
+                  "base": 2
+                }
+              }
+            ]
+          },
+          {
+            "when": [
+              "Merchant"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Persuasion"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              },
+              {
+                "type": "skill",
+                "options": [
+                  "Streetwise"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              },
+              {
+                "type": "skill",
+                "options": [
+                  "Academics"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              }
+            ]
+          },
+          {
+            "when": [
+              "Sailor"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Athletics"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              },
+              {
+                "type": "skill",
+                "options": [
+                  "Survival"
+                ],
+                "threshold": {
+                  "base": 1
+                }
+              }
+            ]
+          },
+          {
+            "when": [
+              "Tactician"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Academics"
+                ],
+                "threshold": {
+                  "base": 2
+                }
+              }
+            ]
+          },
+          {
+            "when": [
+              "Theologian"
+            ],
+            "clauses": [
+              {
+                "type": "skill",
+                "options": [
+                  "Academics"
+                ],
+                "threshold": {
+                  "base": 2
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "feature_budget": null
   },
   {

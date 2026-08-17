@@ -200,15 +200,25 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   technique whose Prereqs text really is "None" and should still show
   a green "✓ Met" badge rather than no badge at all.
 - `Prereq Check` also supports Choice clauses —
-  `ChoiceField{value1|value2=Skill:N; value3=OtherSkill:N}` — for a
-  technique whose actual prereq depends on its own `Free Text` pick
-  (Artisanal Training's School decides whether it's Craft 2 or Mixology
-  2). `ChoiceField` matches the technique's `Free Text` column value
-  (e.g. `School`); branches are `;`-separated (not `,`, so the syntax
-  survives the top-level comma-split), each `when-values=subclause`
-  reusing the plain Skill:N/(Skill1|Skill2):N/AnySkill:N grammar.
-  `meetsPrereqClause`/`meetsPrereqCheck` take a `choice` param (the
-  build-copy's own picked value) to resolve which branch applies,
+  `ChoiceField{value1|value2=Skill:N; value3=Skill:N&OtherSkill:N}` —
+  for a technique whose actual prereq depends on its own `Free Text`
+  pick (Artisanal Training's School decides whether it's Craft 2 or
+  Mixology 2; Profession's ten options each carry their own prereq,
+  several of them multiple ANDed skills — Apothecary needs Survival 1
+  *and* Medicine 1 *and* Mixology 1). `ChoiceField` matches the
+  technique's `Free Text` column value (e.g. `School`); branches are
+  `;`-separated (not `,`, so the syntax survives the top-level
+  comma-split), each `when-values=<clauses>` — one or more
+  Skill:N/(Skill1|Skill2):N/AnySkill:N clauses, `&`-separated (not `,`,
+  same reason) if there's more than one, ANDed within that branch.
+  Parsed branch shape is `{when, clauses}` (always a list, even for a
+  single clause) — `meetsPrereqClause`'s choice-type branch resolves
+  all of a branch's clauses and ANDs the results the same three-state
+  way `meetsPrereqCheck` ANDs top-level clauses (`null` if any clause is
+  ambiguous, otherwise `every(Boolean)`); `summarizeBuildPrereqs`
+  flattens a resolved branch's `clauses` array the same way it iterates
+  top-level ones. `meetsPrereqClause`/`meetsPrereqCheck` take a `choice`
+  param (the build-copy's own picked value) to resolve which branch applies,
   returning `null` (no badge) if the choice hasn't been made yet — same
   "flag readiness, don't guess" rule as level-scaling thresholds.
   TechCard's single aggregate badge only reflects the *first* instance's

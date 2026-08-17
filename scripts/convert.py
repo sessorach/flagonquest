@@ -57,21 +57,30 @@ checked by a machine at all.
   Mixology for others, depending which one you picked when you learned
   it). One clause, branching on that pick:
 
-    ChoiceField{value1|value2=<Skill:N or (Skill1|Skill2):N>; value3=...}
+    ChoiceField{value1|value2=<branch clauses>; value3=...}
 
   "ChoiceField" is whatever name the technique's own Free Text column
   uses (e.g. "School") — not validated against the option list here,
   since that list (CREATION_SCHOOLS, item names, ...) is client-side
   data this script doesn't see. Branches are ";"-separated (not ","),
   since the cell-wide comma-split that separates top-level AND clauses
-  would otherwise cut a branch list in half. Each branch's right side
-  is the exact same Skill:N / (Skill1|Skill2):N shape a plain clause
-  uses. Example, matching Artisanal Training's real prereq text
-  ("Craft 2 (if Smithing/Carving/Tailoring/Jewelrymaking) or Mixology 2
-  (if Alchemy) or Mixology 2 or Survival 2 (if Cooking)"):
+  would otherwise cut a branch list in half. A branch's own right side
+  is one or more Skill:N / (Skill1|Skill2):N / AnySkill:N clauses,
+  "&"-separated (not ",", for the same reason) if there's more than
+  one — ANDed together, same as top-level clauses but scoped to that
+  one branch. (Technique: clauses aren't supported inside a branch —
+  no real prereq has needed one yet.) Example, matching Artisanal
+  Training's real prereq text ("Craft 2 (if Smithing/Carving/
+  Tailoring/Jewelrymaking) or Mixology 2 (if Alchemy) or Mixology 2 or
+  Survival 2 (if Cooking)"):
 
     School{Smithing|Carving|Tailoring|Jewelrymaking=Craft:2;
            Alchemy=Mixology:2; Cooking=(Mixology|Survival):2}
+
+  And one with multiple ANDed skills in a branch, matching Profession's
+  Apothecary option ("Survival 1, Medicine 1, Mixology 1"):
+
+    Profession{Apothecary=Survival:1&Medicine:1&Mixology:1; ...}
 
   Before that copy's choice is made (still browsing, or the choice
   hasn't been picked yet), the site shows no badge for it rather than
@@ -597,16 +606,19 @@ def parse_prereq_check(raw, technique_names, errors, context):
             clauses.append({"type": "technique", "name": name})
             continue
 
-        # ChoiceFieldName{value1|value2=Skill:N; value3=(Skill1|Skill2):N; ...}
+        # ChoiceFieldName{value1|value2=Skill:N; value3=Skill:N&Skill2:N; ...}
         # — a prereq that depends on which option the technique's own
         # Free Text picker (School, Weapon, ...) was set to for this
         # specific copy, e.g. Artisanal Training needing Craft for some
-        # Schools and Mixology for others. Branches use ";"/"=" rather
-        # than "," so the cell-wide comma-split above can't cut one in
-        # half. "ChoiceFieldName" is whatever the technique's own Free
-        # Text column names (see TECHNIQUE_MAP) — not cross-checked here
-        # since the option lists themselves are client-side data
-        # (CREATION_SCHOOLS, item names, ...), not visible to this script.
+        # Schools and Mixology for others, or Profession needing several
+        # ANDed skills for one option (Apothecary). Branches use ";"/"="
+        # rather than "," so the cell-wide comma-split above can't cut
+        # one in half, and a branch's own clauses use "&" rather than ","
+        # for the same reason. "ChoiceFieldName" is whatever the
+        # technique's own Free Text column names (see TECHNIQUE_MAP) —
+        # not cross-checked here since the option lists themselves are
+        # client-side data (CREATION_SCHOOLS, item names, ...), not
+        # visible to this script.
         m = re.fullmatch(r"([A-Za-z]+)\{(.+)\}", part)
         if m:
             by = m.group(1)
@@ -620,10 +632,16 @@ def parse_prereq_check(raw, technique_names, errors, context):
                     errors.append(f"{context}: couldn't parse {by} branch {branch_text!r}")
                     continue
                 when = [v.strip() for v in bm.group(1).split("|") if v.strip()]
-                sub = parse_skill_or_any_clause(bm.group(2), errors, context)
-                if sub:
-                    sub["when"] = when
-                    branches.append(sub)
+                sub_clauses = []
+                for sub_text in bm.group(2).split("&"):
+                    sub_text = sub_text.strip()
+                    if not sub_text:
+                        continue
+                    sub = parse_skill_or_any_clause(sub_text, errors, context)
+                    if sub:
+                        sub_clauses.append(sub)
+                if sub_clauses:
+                    branches.append({"when": when, "clauses": sub_clauses})
             if branches:
                 clauses.append({"type": "choice", "by": by, "branches": branches})
             continue

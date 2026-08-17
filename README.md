@@ -21,6 +21,14 @@ the full commit-by-commit detail behind any of these.
   Artisanal Training's prereq badge now correctly checks Craft/Mixology/
   Survival based on which School you picked, instead of showing no
   badge at all.
+- **Profession**'s full original text — each of the ten options'
+  specific Good Luck benefit and prereq (Apothecary, Artisan, Busker,
+  Fisher, Gatherer, Grifter, Merchant, Sailor, Tactician, Theologian) —
+  had gone missing from the data at some point; restored it, and wired
+  up its prereq badge the same way as Artisanal Training's. Several
+  options (Apothecary, Artisan, Fisher, Merchant, Sailor) need more than
+  one skill at once, which needed a small extension to the Prereq Check
+  syntax to express.
 - **Extensive Background** now has its own dropdown to pick an
   additional Background you qualify for, and correctly shows a green
   "Prereqs: None — ✓ Met" badge instead of no badge. The extra

@@ -618,7 +618,9 @@ function meetsPrereqClause(clause, statPoints, skillPoints, knownTechNames, fixe
     if (choice == null) return null;
     const branch = clause.branches.find(b => b.when.includes(choice));
     if (!branch) return null;
-    return meetsPrereqClause(branch, statPoints, skillPoints, knownTechNames, fixedLevel, choice);
+    const results = branch.clauses.map(c => meetsPrereqClause(c, statPoints, skillPoints, knownTechNames, fixedLevel, choice));
+    if (results.some(r => r == null)) return null;
+    return results.every(Boolean);
   }
   if (clause.type === "any_skill") {
     const threshold = resolvePrereqThreshold(clause.threshold, fixedLevel);
@@ -671,26 +673,27 @@ function summarizeBuildPrereqs(build, techniques, configs, notes, statPoints, sk
     if (!tech || !tech.prereq_check) return;
     const fixedLevel = needsLevelPicker(tech) ? (configs[uid]?.level ?? null) : tech.level_min;
     tech.prereq_check.forEach(rawClause => {
-      const clause = rawClause.type === "choice"
-        ? rawClause.branches.find(b => b.when.includes(notes[uid]))
-        : rawClause;
-      if (!clause) return;
-      if (clause.type === "technique") {
-        const key = `technique:${clause.name}`;
-        if (!merged.has(key)) {
-          merged.set(key, { key, label: clause.name, met: knownTechNames.has(clause.name) });
+      const clauses = rawClause.type === "choice"
+        ? (rawClause.branches.find(b => b.when.includes(notes[uid]))?.clauses ?? [])
+        : [rawClause];
+      clauses.forEach(clause => {
+        if (clause.type === "technique") {
+          const key = `technique:${clause.name}`;
+          if (!merged.has(key)) {
+            merged.set(key, { key, label: clause.name, met: knownTechNames.has(clause.name) });
+          }
+          return;
         }
-        return;
-      }
-      const threshold = resolvePrereqThreshold(clause.threshold, fixedLevel);
-      if (threshold == null) return;
-      const key   = clause.type === "any_skill" ? "any_skill" : `skill:${clause.options.join("|")}`;
-      const label = (clause.type === "any_skill" ? "Any Skill" : clause.options.join(" or ")) + ` ${threshold}`;
-      if (merged.has(key) && merged.get(key).threshold >= threshold) return;
-      const met = clause.type === "any_skill"
-        ? ALL_STAT_SKILLS.some(skill => (skillPoints[skill] || 0) >= threshold)
-        : clause.options.some(name => pointsFor(name, statPoints, skillPoints) >= threshold);
-      merged.set(key, { key, label, threshold, met });
+        const threshold = resolvePrereqThreshold(clause.threshold, fixedLevel);
+        if (threshold == null) return;
+        const key   = clause.type === "any_skill" ? "any_skill" : `skill:${clause.options.join("|")}`;
+        const label = (clause.type === "any_skill" ? "Any Skill" : clause.options.join(" or ")) + ` ${threshold}`;
+        if (merged.has(key) && merged.get(key).threshold >= threshold) return;
+        const met = clause.type === "any_skill"
+          ? ALL_STAT_SKILLS.some(skill => (skillPoints[skill] || 0) >= threshold)
+          : clause.options.some(name => pointsFor(name, statPoints, skillPoints) >= threshold);
+        merged.set(key, { key, label, threshold, met });
+      });
     });
   });
   return [...merged.values()];
