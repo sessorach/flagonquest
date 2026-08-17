@@ -202,7 +202,17 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   (`flagonquest-characters` registry + `flagonquest-char-<id>` per
   character). Opening a share link, importing a file, or duplicating
   always lands in a **new** slot and switches to it — never overwrites
-  whichever character was already open.
+  whichever character was already open. The header's "Manage
+  Characters" button (`CharacterManagerOverlay`) is the one place that
+  lists every slot at once — switch/duplicate/delete/reorder, plus "New
+  Character" as the last row in the same list rather than a separate
+  toolbar button, so it reads as "the next slot." Reordering
+  (`moveCharacter`) just splices the `characters` array itself, same
+  drag-and-drop pattern as `moveTechniqueGroup`/`moveSheetSection`
+  elsewhere in the file — there's no separate order field to keep in
+  sync. `duplicateCharacter`/`deleteCharacter` both take an explicit id
+  (not just "the active one") so the overlay can act on any row, not
+  only whichever character happens to be open.
 - Comment style throughout the codebase leans on explaining *why*, not
   restating *what* the code does — a hidden constraint, a workaround, a
   non-obvious tradeoff. Match that when adding code; don't pad with
@@ -244,6 +254,13 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   the code as plain SVG `<rect>`s from the module grid rather than a
   canvas/image, so it's just more React output — themable, no extra
   asset-loading step, no library dependency beyond the tiny CDN encoder.
+- Full-screen modals (`QRCodeOverlay`, `CharacterManagerOverlay`) all
+  share the same chrome: a `position: fixed; inset: 0` backdrop that
+  closes on click, a centered card that stops that click from bubbling
+  (`e.stopPropagation()`), an `aria-label="Close"` × button, and an
+  `Escape`-key listener. Match this shape for any future modal instead
+  of inventing new dismiss behavior — the goal is that every popup in
+  the app closes the same three ways (backdrop, ×, Escape).
 
 ## Verifying UI changes before committing
 

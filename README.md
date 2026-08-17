@@ -28,6 +28,13 @@ the full commit-by-commit detail behind any of these.
 - "Copy share link" no longer puts the link in the address bar either —
   it only ever copies to the clipboard now (falling back to a native
   copy-this-text prompt if that's blocked).
+- **Character switching overhauled**: the header's character dropdown
+  plus separate "+ New"/"Duplicate" buttons are now one "Manage
+  Characters" button that opens a list of every character with
+  Switch/Duplicate/Delete on each, drag-to-reorder, and a "New
+  Character" row at the end of the list. Also removed "Clear build"
+  from the Builder tab — Delete (or just starting a new character)
+  covers that now.
 
 ### 2026-08-14 — Rulebook cleanup, material pricing
 

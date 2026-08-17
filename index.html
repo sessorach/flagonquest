@@ -4492,6 +4492,122 @@ function QRCodeOverlay({ url, onClose }) {
   );
 }
 
+// The header's "Manage Characters" overlay — replaces the old plain
+// dropdown + New/Duplicate/Delete buttons with one list covering
+// switch/duplicate/delete/reorder for every character slot at once.
+// `characters` is already the full [{id,name}] registry from App(), in
+// display order — dragging just reorders that same array (see
+// moveCharacter), so there's no separate order to keep in sync. Same
+// overlay chrome (backdrop/card/×/Escape) as QRCodeOverlay, so the two
+// modals in this app look and behave the same way.
+function CharacterManagerOverlay({
+  characters, activeId, onSwitch, onDuplicate, onDelete, onNew, onReorder, onClose,
+  dragId, setDragId,
+}) {
+  useEffect(() => {
+    const onKey = e => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  const rowBtn = danger => ({
+    padding: "5px 10px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+    background: "transparent",
+    color:  danger ? "#c0392b" : TEXT.muted,
+    border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
+    cursor: "pointer", whiteSpace: "nowrap",
+  });
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 1000, padding: 20,
+        background: "rgba(10,14,24,0.85)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}
+    >
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 12,
+          padding: 20, width: "min(92vw, 420px)", maxHeight: "min(80vh, 560px)",
+          display: "flex", flexDirection: "column",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+          <span style={{ fontSize: 15, fontWeight: 600 }}>Manage Characters</span>
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            style={{
+              background: "transparent", border: "none", color: TEXT.faint,
+              fontSize: 22, lineHeight: 1, cursor: "pointer", padding: 4,
+            }}
+          >
+            ×
+          </button>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 6, overflowY: "auto" }}>
+          {characters.map(c => (
+            <div
+              key={c.id}
+              onDragOver={e => { if (dragId) e.preventDefault(); }}
+              onDrop={e => { e.preventDefault(); if (dragId) onReorder(dragId, c.id); setDragId(null); }}
+              style={{
+                display: "flex", alignItems: "center", gap: 8,
+                background: "#1e2435", border: "0.5px solid #2d3555", borderRadius: 8,
+                padding: "8px 10px", opacity: dragId === c.id ? 0.5 : 1,
+              }}
+            >
+              <span
+                draggable
+                onDragStart={e => { e.dataTransfer.effectAllowed = "move"; setDragId(c.id); }}
+                title="Drag to reorder"
+                style={{ color: TEXT.faint, cursor: "grab", display: "flex" }}
+              >
+                <i className="ti ti-grip-vertical" aria-hidden="true" />
+              </span>
+              <span style={{ flex: 1, fontSize: 14, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                {c.name || "Unnamed hero"}
+              </span>
+              {c.id === activeId ? (
+                <span style={{ fontSize: 12, color: "#6fae5a", fontWeight: 600 }}>Active</span>
+              ) : (
+                <button onClick={() => onSwitch(c.id)} style={rowBtn(false)}>Switch</button>
+              )}
+              <button onClick={() => onDuplicate(c.id)} style={rowBtn(false)}>Duplicate</button>
+              {characters.length > 1 && (
+                <button
+                  onClick={() => { if (confirm(`Delete "${c.name || "Unnamed hero"}"? This can't be undone.`)) onDelete(c.id); }}
+                  style={rowBtn(true)}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
+          ))}
+
+          {/* Sits as the next row in the same list, not a separate action
+              area, so it reads as "the next character slot" rather than
+              a toolbar button bolted onto the list. */}
+          <button
+            onClick={onNew}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+              background: "transparent", border: "1px dashed #3d4566", borderRadius: 8,
+              padding: "10px", color: TEXT.muted, fontSize: 14, fontWeight: 500, cursor: "pointer",
+            }}
+          >
+            <i className="ti ti-plus" aria-hidden="true" /> New Character
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // A same-page link (rulebook.html/glossary.html's header nav) can jump
 // straight to a specific tab via index.html?tab=<key> — one of the same
 // five keys `view` itself uses. Anything else (missing, misspelled,
@@ -4558,6 +4674,8 @@ function App() {
   const [charConcept, setCharConcept] = useState(initialCharacter.data.charConcept);
   const [shareMsg,   setShareMsg]   = useState("");
   const [showQR,     setShowQR]     = useState(false); // "Show QR code" overlay, Builder tab only
+  const [showCharManager, setShowCharManager] = useState(false); // "Manage Characters" overlay
+  const [charDragId, setCharDragId] = useState(null); // drag-reorder within that overlay
   // Per-copy free-text notes, keyed by build-entry uid.
   const [notes, setNotes] = useState(initialCharacter.data.notes);
   // Per-copy Feature-builder choices ({ level, picks: { featureId: count } }),
@@ -4667,13 +4785,14 @@ function App() {
     return id;
   };
 
-  // Copies the active character into a brand-new slot — everything
+  // Copies a character (the active one by default, or any other slot —
+  // see the Manage Characters overlay) into a brand-new slot — everything
   // (build, stats, inventory, notes, the works) via the same JSON
   // round-trip used for backup/restore, so the copy shares no object
   // references with the original. Handy for branching off a variant
   // build without losing the original or re-entering it by hand.
-  const duplicateCharacter = () => {
-    const data = JSON.parse(JSON.stringify(currentCharacterData()));
+  const duplicateCharacter = (id = activeId) => {
+    const data = JSON.parse(JSON.stringify(id === activeId ? currentCharacterData() : loadCharacterData(id)));
     data.charName = data.charName ? `${data.charName} (Copy)` : "";
     addCharacterSlot(data);
   };
@@ -4690,6 +4809,22 @@ function App() {
         applyCharacterData(loadCharacterData(next[0].id));
       }
       return next;
+    });
+  };
+
+  // Drag-to-reorder in the Manage Characters overlay — moves the dragged
+  // character to sit right before the drop target, same splice-and-
+  // reinsert pattern as moveTechniqueGroup/moveSheetSection elsewhere in
+  // this file. `characters`' array order is what's persisted (see the
+  // localStorage-sync effect below), so this is the whole of "reorder."
+  const moveCharacter = (draggedId, targetId) => {
+    if (draggedId === targetId) return;
+    setCharacters(cs => {
+      const dragged = cs.find(c => c.id === draggedId);
+      const without = cs.filter(c => c.id !== draggedId);
+      const targetIdx = without.findIndex(c => c.id === targetId);
+      if (!dragged || targetIdx === -1) return cs;
+      return [...without.slice(0, targetIdx), dragged, ...without.slice(targetIdx)];
     });
   };
 
@@ -5040,16 +5175,6 @@ function App() {
     }
   };
 
-  const clearBuild = () => {
-    if (!confirm("Clear the current build, including Stats & Skills?")) return;
-    setBuild([]);
-    setNotes({});
-    setConfigs({});
-    setRenames({});
-    setExpended({});
-    setStatPoints(Object.fromEntries(STATS.map(s => [s, 0])));
-    setSkillPoints(Object.fromEntries(ALL_STAT_SKILLS.map(s => [s, 0])));
-  };
 
   // Drag-to-reorder on the Builder tab — moves every copy of `draggedId`
   // (as a block, keeping their own relative order) to sit right before
@@ -6088,46 +6213,28 @@ function App() {
         </div>
 
         {/* Character switcher — localStorage can hold more than one
-            character (see CHARACTER SLOTS above App()); this picks
-            which one is active. New/imported/shared characters always
-            land in a fresh slot, never overwrite whichever one is open
-            here. */}
+            character (see CHARACTER SLOTS above App()); this opens the
+            Manage Characters overlay (switch/duplicate/delete/reorder/
+            new), rather than a plain dropdown. New/imported/shared
+            characters always land in a fresh slot, never overwrite
+            whichever one is open here. */}
         <div className="site-header-left" style={{ display:"flex", alignItems:"center", gap:6 }}>
-          <select
-            value={activeId}
-            onChange={e => switchCharacter(e.target.value)}
-            style={{
-              background: "#1e2435", border: "0.5px solid #2d3555", borderRadius: 6,
-              color: TEXT.body, fontSize: 14, padding: "6px 8px", fontFamily: "inherit",
-              maxWidth: 160,
-            }}
-          >
-            {characters.map(c => (
-              <option key={c.id} value={c.id}>{c.name || "Unnamed hero"}</option>
-            ))}
-          </select>
-          <button
-            onClick={() => addCharacterSlot({}, { switchView: "build" })}
-            title="New character"
-            style={actionBtn()}
-          >
-            + New
+          <button onClick={() => setShowCharManager(true)} style={actionBtn()}>
+            <i className="ti ti-users" aria-hidden="true" /> Manage Characters
           </button>
-          <button
-            onClick={duplicateCharacter}
-            title="Duplicate this character into a new slot"
-            style={actionBtn()}
-          >
-            Duplicate
-          </button>
-          {characters.length > 1 && (
-            <button
-              onClick={() => { if (confirm(`Delete "${charName || "Unnamed hero"}"? This can't be undone.`)) deleteCharacter(activeId); }}
-              title="Delete this character"
-              style={actionBtn(true)}
-            >
-              Delete
-            </button>
+          {showCharManager && (
+            <CharacterManagerOverlay
+              characters={characters}
+              activeId={activeId}
+              onSwitch={id => { switchCharacter(id); setShowCharManager(false); }}
+              onDuplicate={duplicateCharacter}
+              onDelete={deleteCharacter}
+              onNew={() => { addCharacterSlot({}, { switchView: "build" }); setShowCharManager(false); }}
+              onReorder={moveCharacter}
+              onClose={() => setShowCharManager(false)}
+              dragId={charDragId}
+              setDragId={setCharDragId}
+            />
           )}
         </div>
 
@@ -6375,9 +6482,6 @@ function App() {
             <button onClick={() => setShowQR(true)} style={actionBtn()}>
               <i className="ti ti-qrcode" aria-hidden="true" /> Show QR code
             </button>
-            {build.length > 0 && (
-              <button onClick={clearBuild} style={actionBtn(true)}>Clear build</button>
-            )}
             {shareMsg && (
               <span style={{ fontSize:14, color:"#d4a843" }}>{shareMsg}</span>
             )}
