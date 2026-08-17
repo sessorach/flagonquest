@@ -18,14 +18,20 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   `qrcode-generator` from CDN (the "Show QR code" share overlay) — same
   pattern as React/ReactDOM/Babel, a plain `<script>` tag exposing a
   global, no bundler involved.
-- `index.html`'s tab is deep-linkable via a `?tab=<build|browse|items|
-  sheet|notes>` query param, read once by a lazy `useState` initializer
-  (`initialViewFromUrl`/`VALID_VIEWS`) — deliberately the query string,
-  not the URL hash, since the hash is already reserved for share-link
-  `#build=<encoded>` character data. `rulebook.html`/`glossary.html`'s
-  header nav links point at `index.html?tab=...` so "back to the
-  Builder/Techniques/Items/..." from another page lands on the right
-  tab instead of always defaulting to the Character Sheet.
+- `index.html`'s tab is deep-linkable via a `?tab=<build|techniques|
+  items|sheet|notes>` query param, read once by a lazy `useState`
+  initializer (`initialViewFromUrl`/`VALID_VIEWS`) — deliberately the
+  query string, not the URL hash, since the hash is already reserved for
+  share-link `#build=<encoded>` character data. `rulebook.html`/
+  `glossary.html`'s header nav links point at `index.html?tab=...` so
+  "back to the Builder/Techniques/Items/..." from another page lands on
+  the right tab instead of always defaulting to the Character Sheet. The
+  query param's own naming matches the tab labels users see
+  ("techniques", not the `view` state's old internal "browse") — a
+  second effect strips `?tab=...` back off the URL right after that
+  initial render consumes it, since it's a one-time landing instruction,
+  not a live mirror of which tab is open (same reasoning as dropping the
+  live `#build=` mirroring below).
 - Game content lives in `scripts/*.csv` (plus `scripts/rulebook.md` and
   `scripts/glossary.md` for hand-written prose) and is compiled to
   `data/*.json` by `scripts/convert.py`. **Never hand-edit `data/*.json`**

@@ -35,6 +35,12 @@ the full commit-by-commit detail behind any of these.
   Character" row at the end of the list. Also removed "Clear build"
   from the Builder tab — Delete (or just starting a new character)
   covers that now.
+- The Rulebook/Glossary header's Techniques link now says `?tab=
+  techniques` when you hover it, matching the tab's actual name
+  (it used to read `?tab=browse`, an old internal name). The `?tab=`
+  query string also disappears from the address bar right after it
+  lands you on the right tab, instead of sitting there — stale — once
+  you switch to a different one.
 
 ### 2026-08-14 — Rulebook cleanup, material pricing
 

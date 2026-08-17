@@ -4613,7 +4613,7 @@ function CharacterManagerOverlay({
 // five keys `view` itself uses. Anything else (missing, misspelled,
 // plain index.html with no query string at all) falls back to the
 // Character Sheet, same as before this existed.
-const VALID_VIEWS = ["build", "browse", "items", "sheet", "notes"];
+const VALID_VIEWS = ["build", "techniques", "items", "sheet", "notes"];
 function initialViewFromUrl() {
   const tab = new URLSearchParams(window.location.search).get("tab");
   return VALID_VIEWS.includes(tab) ? tab : "sheet";
@@ -4623,8 +4623,8 @@ function initialViewFromUrl() {
 // MAIN APP COMPONENT
 // Holds all state (the active character's data, plus the fetched
 // techniques/features/items/backgrounds/glossary) and renders whichever
-// of the five tabs `view` currently points at: build, browse
-// (Techniques), items, sheet (Character sheet), notes.
+// of the five tabs `view` currently points at: build, techniques, items,
+// sheet (Character sheet), notes.
 // ══════════════════════════════════════════════════════════════════
 function App() {
 
@@ -4639,7 +4639,7 @@ function App() {
   const [loadError,  setLoadError]  = useState(null);
 
   // ── UI state ───────────────────────────────────────────────────
-  const [view,       setView]       = useState(initialViewFromUrl); // build | browse | items | sheet | notes
+  const [view,       setView]       = useState(initialViewFromUrl); // build | techniques | items | sheet | notes
   const [search,     setSearch]     = useState("");
   const [skillFilters, setSkillFilters] = useState([]);   // selected "related skills" chips
   const [tagFilters,  setTagFilters]  = useState([]);     // selected "tags" chips
@@ -4871,6 +4871,21 @@ function App() {
       setLoading(false);
     });
   }, []); // empty [] = run once on mount only
+
+  // ── Clean up ?tab= once it's done its job ───────────────────────
+  // initialViewFromUrl already read this into `view` during the very
+  // first render (see the lazy useState above) — its only purpose is
+  // getting a Rulebook/Glossary link to land on the right tab, not
+  // tracking which tab is open afterward. Left in place, it would just
+  // sit there going stale the moment the user switches tabs in-app, the
+  // same "URL says something no longer true" problem the old #build=
+  // mirroring had. Strips only the query string, leaving any hash
+  // (e.g. a share link opened at the same time) untouched.
+  useEffect(() => {
+    if (window.location.search) {
+      window.history.replaceState(null, "", window.location.pathname + window.location.hash);
+    }
+  }, []);
 
   // ── Load a shared build from the URL hash ──────────────────────
   // If someone opens a share link like index.html#build=abc123, this
@@ -6243,7 +6258,7 @@ function App() {
           <button onClick={() => setView("build")} style={tabStyle("build")}>
             Builder
           </button>
-          <button onClick={() => setView("browse")} style={tabStyle("browse")}>
+          <button onClick={() => setView("techniques")} style={tabStyle("techniques")}>
             Techniques
           </button>
           <button onClick={() => setView("items")} style={tabStyle("items")}>
@@ -6285,7 +6300,7 @@ function App() {
 
 
       {/* ════════ BROWSE VIEW ═══════════════════════════════════ */}
-      {view === "browse" && (
+      {view === "techniques" && (
         <div style={{ padding: 16 }}>
 
           {/* Search bar + advanced filters toggle */}
