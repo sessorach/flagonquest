@@ -13,6 +13,14 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-17 — Prereq summary panel, share-link cleanup
+
+- The Builder's prereq summary panel is now labeled "Prereq Checker."
+- The URL no longer mirrors the current build in a `#build=...` hash
+  during normal use — that only ever served refresh persistence, which
+  character slots/localStorage already handle. "Copy share link" still
+  builds one on demand.
+
 ### 2026-08-14 — Rulebook cleanup, material pricing
 
 - Removed Jokers from the rulebook — the deck is now a standard 52-card

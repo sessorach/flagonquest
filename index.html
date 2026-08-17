@@ -290,13 +290,11 @@ const { useState, useEffect, useMemo, useRef } = React;
  ║  keep the URL short — notes/Feature choices don't round-trip.    ║
  ║                                                                   ║
  ║  RETAIN ACROSS REFRESH: the whole block of state above (build     ║
- ║  through noteRows) is persisted to localStorage like everything   ║
- ║  else. The address bar also mirrors the active character's build  ║
- ║  live in the same #build= format "Copy share link" uses (see the  ║
- ║  sync effect near the top of App()) — so the page is always       ║
- ║  sitting on a current, copy-pasteable link, and a plain refresh   ║
- ║  can tell that hash apart from an actual shared link someone      ║
- ║  opened and skip re-decoding its own echo.                        ║
+ ║  through noteRows) persists to localStorage on every change,      ║
+ ║  keyed by the active character slot (see CHARACTER SLOTS below) — ║
+ ║  a plain refresh just reads it straight back out. The URL doesn't ║
+ ║  carry any of that live; only "Copy share link" writes a one-off  ║
+ ║  #build= hash, on demand.                                         ║
  ║                                                                   ║
  ║  CHARACTER SLOTS: localStorage can hold more than one character   ║
  ║  (see the CHARACTER SLOTS helpers just above App()) — each one's  ║
@@ -1808,10 +1806,13 @@ function StatsPanel({
           than once — see summarizeBuildPrereqs. */}
       {prereqSummary && prereqSummary.length > 0 && (
         <div className="no-print" style={{
-          display: "flex", flexWrap: "wrap", gap: "6px 16px",
           marginBottom: 14, padding: "10px 14px", background: "#12161f",
           border: "0.5px solid #2d3555", borderRadius: 8,
         }}>
+          <div style={{ fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 6 }}>
+            Prereq Checker
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 16px" }}>
           {prereqSummary.map(req => (
             <span key={req.key} style={{ fontSize: 13, color: TEXT.faint }}>
               {req.label}{" "}
@@ -1820,6 +1821,7 @@ function StatsPanel({
               </span>
             </span>
           ))}
+          </div>
         </div>
       )}
 
@@ -4628,13 +4630,14 @@ function App() {
   // list, character name, and Stats & Skills, but not notes/Feature
   // choices (kept out to keep the URL short), so those come back blank.
   //
-  // Because the address bar mirrors the active character's build live
-  // (see the sync effect below), most hash values we ever see are just
-  // an echo of what's already open — adding a new slot for those too
-  // would spawn a fresh duplicate character on every refresh. So: only
-  // act when the hash's technique list actually differs from the active
-  // build, i.e. someone opened a link this browser didn't just write
-  // itself. `buildRef` sidesteps the stale-closure problem of reading
+  // The URL doesn't otherwise carry a hash during normal use (Stats &
+  // Skills/build changes just persist straight to localStorage — see
+  // CHARACTER SLOTS), so the only time this fires for real is opening an
+  // actual share link. The one exception is "Copy share link" itself,
+  // which writes this build's own encoding into the address bar as a
+  // copy-paste fallback — the isEcho check below skips that case too,
+  // so it can't spawn a duplicate character if the page gets refreshed
+  // afterward. `buildRef` sidesteps the stale-closure problem of reading
   // `build` from a listener that's only attached once — a URL differing
   // only in its fragment (e.g. pasting a different share link into an
   // already-open tab) doesn't reload the page, it only fires
@@ -4660,20 +4663,6 @@ function App() {
     window.addEventListener("hashchange", applyHash);
     return () => window.removeEventListener("hashchange", applyHash);
   }, []);
-
-  // ── Retain across refresh: keep the address bar live ────────────
-  // Writes the same {ids, name, stats, skills} encoding "Copy share
-  // link" uses into the URL hash on every change, via replaceState (no
-  // new history entries, no navigation). Two things fall out of this:
-  // the address bar is always a current, copy-pasteable link to this
-  // exact build, and — since the hash-loading effect above only acts on
-  // hashes it didn't itself write — a plain refresh just re-reads the
-  // active character straight back out of localStorage instead.
-  useEffect(() => {
-    const encoded = encBuild({ ids: build.map(e => e.id), name: charName, stats: statPoints, skills: skillPoints });
-    const url = window.location.href.split("#")[0] + "#build=" + encoded;
-    window.history.replaceState(null, "", url);
-  }, [build, charName, statPoints, skillPoints]);
 
   // ── Persist the active character, and keep the switcher list synced ─
   useEffect(() => {
