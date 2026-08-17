@@ -49,6 +49,18 @@ the full commit-by-commit detail behind any of these.
   every character in the browser, not just the one open here. The
   Sources header is bolder and brighter than its neighbors now, since
   it's the one section that starts collapsed.
+- Fixed wrapped header/Builder-row elements landing off-center on
+  narrow-but-not-mobile screens (roughly 500-900px) — a real
+  double-checked layout issue, not just an eyeballing quirk: two items
+  sharing a line and then centered as a *pair* still reads as lopsided
+  when one of them (the page title) is a much wider box than its
+  visible text. Each piece now gets its own row below the breakpoint
+  where they'd otherwise unevenly pair up.
+- Code cleanup pass after this stretch of changes: pulled the QR/
+  Manage-Characters overlays' identical backdrop, Escape-key handling,
+  and × button styling into shared helpers instead of two copies drifting
+  apart, and swept for dead code/stale docs left over from the changes
+  above. No visible behavior change.
 
 ### 2026-08-14 — Rulebook cleanup, material pricing
 

@@ -265,13 +265,15 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   the code as plain SVG `<rect>`s from the module grid rather than a
   canvas/image, so it's just more React output — themable, no extra
   asset-loading step, no library dependency beyond the tiny CDN encoder.
-- Full-screen modals (`QRCodeOverlay`, `CharacterManagerOverlay`) all
-  share the same chrome: a `position: fixed; inset: 0` backdrop that
-  closes on click, a centered card that stops that click from bubbling
-  (`e.stopPropagation()`), an `aria-label="Close"` × button, and an
-  `Escape`-key listener. Match this shape for any future modal instead
-  of inventing new dismiss behavior — the goal is that every popup in
-  the app closes the same three ways (backdrop, ×, Escape).
+- Full-screen modals (`QRCodeOverlay`, `CharacterManagerOverlay`) share
+  actual code, not just a matching look: `ModalBackdrop` renders the
+  `position: fixed; inset: 0` backdrop and the click-swallowing card
+  wrapper (`e.stopPropagation()`) that every modal's content goes
+  inside; `useEscapeToClose(onClose)` wires up the Escape-key listener;
+  `modalCloseBtnStyle` is the × button's style. A future modal should
+  reuse these three instead of copy-pasting the pattern again — that's
+  exactly how QRCodeOverlay and CharacterManagerOverlay ended up with
+  byte-identical backdrop/Escape/× code before this got pulled out.
 
 ## Verifying UI changes before committing
 
@@ -279,9 +281,10 @@ There's no CI here, so every UI change gets manually verified in a
 sandboxed copy before it's committed:
 
 1. Copy the changed file(s) into a scratchpad `testsite/` directory that
-   already has React/ReactDOM/Babel vendored locally (avoids depending on
-   CDN access in the sandbox) and `sed`-replace the CDN `<script>` tags
-   with the local copies.
+   already has React/ReactDOM/Babel (and, for `index.html`, qrcode-
+   generator — the "Show QR code" overlay's dependency) vendored locally
+   (avoids depending on CDN access in the sandbox) and `sed`-replace the
+   CDN `<script>` tags with the local copies.
 2. Serve it with `python3 -m http.server 8123` in the background.
 3. Drive it with Playwright (`chromium.launch({ executablePath:
    '/opt/pw-browsers/chromium' })`), screenshot the relevant states, and

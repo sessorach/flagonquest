@@ -67,12 +67,21 @@
        `justify-content: center` centers each wrapped row (brand on its
        own line, switcher/nav on theirs) instead of leaving them pinned
        to the left edge; harmless on wide screens too, since the grid
-       below takes over there regardless.
+       below takes over there regardless. Each piece gets `flex-basis:
+       100%` so it always lands alone on its own row below the desktop
+       breakpoint — without it, brand and the switcher were narrow
+       enough to sometimes share a line at in-between widths (roughly
+       500-900px), and while `justify-content: center` genuinely does
+       center that pair as a unit, it reads to the eye as "brand stuck
+       left, switcher stuck right" rather than centered, since brand's
+       own box is much wider than its visible title text. Forcing one
+       piece per row sidesteps that instead of trying to rebalance it.
        Wide screens: a 3-column grid (switcher / brand / nav) with the
        brand truly centered regardless of how wide the other two are;
        `order` puts the switcher first and nav last without changing
        the DOM order the narrow layout relies on. */
     .site-header { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .site-header-brand, .site-header-left, .site-header-nav { flex-basis: 100%; }
     @media (min-width: 900px) {
       .site-header {
         display: grid; grid-template-columns: 1fr auto 1fr;
@@ -89,6 +98,20 @@
       .site-header .site-header-left  { order: 1; justify-self: start; }
       .site-header .site-header-brand { order: 2; justify-self: center; }
       .site-header .site-header-nav   { order: 3; justify-self: end; }
+    }
+
+    /* ── Builder top row: name/concept + whole-build action grid ────
+       The action grid sits at the right of the fields via margin-left:
+       auto (flex auto-margins absorb the leftover space on one side,
+       pushing the item to the far end of its line) as long as they
+       share a row. Below 640px — measured as this row's actual
+       flex-wrap breakpoint — the grid drops to its own full-width line
+       instead, where a lone margin-left: auto still pins it flush
+       right; adding margin-right: auto too splits the leftover space
+       on both sides instead, centering it, same trick as the two
+       combined would do on any flex item alone on its line. */
+    @media (max-width: 639px) {
+      .builder-action-grid { margin-right: auto; }
     }
 
     /* ── Technique list (Browse) ──────────────────────────────────
@@ -2417,6 +2440,14 @@ const collapseBtnStyle = {
   border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
 };
 
+// Shared look for a full-screen modal's × close button (QRCodeOverlay,
+// CharacterManagerOverlay) — see the "full-screen modals" note in
+// CLAUDE.md for the rest of the chrome these two intentionally share.
+const modalCloseBtnStyle = {
+  background: "transparent", border: "none", color: TEXT.faint,
+  fontSize: 22, lineHeight: 1, cursor: "pointer", padding: 4,
+};
+
 // ══════════════════════════════════════════════════════════════════
 // INVENTORY TILE — one owned item: name, category/slot, description/
 // effects text, any flat stat bonuses or weapon profile it carries, and
@@ -4434,25 +4465,23 @@ function BuildPanel({
 }
 
 
-// Full-screen "scan this to open the build on your phone" overlay for
-// the Builder's "Show QR code" button — lets the table pass a build
-// around without anyone typing a URL. Renders the QR as plain SVG rects
-// from qrModuleGrid's module grid rather than a canvas/image, so it's
-// just React output like everything else here (themable, no extra
-// image-loading step). Dismisses on backdrop click, the × button, or Esc.
-function QRCodeOverlay({ url, onClose }) {
-  const modules = useMemo(() => qrModuleGrid(url), [url]);
+// Closes a full-screen modal on Escape — QRCodeOverlay and
+// CharacterManagerOverlay both want this, identically.
+function useEscapeToClose(onClose) {
   useEffect(() => {
     const onKey = e => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+}
 
-  if (!modules) return null;
-  const count = modules.length;
-  const quiet = 2; // quiet-zone modules around the edge — scanners expect one
-  const size = count + quiet * 2;
-
+// Shared full-screen modal backdrop — fixed inset, semi-transparent,
+// closes on click. The card itself is just whatever's passed as
+// children; stopPropagation here is what keeps a click *inside* the
+// card from also triggering the backdrop's close. Pulled out once both
+// QRCodeOverlay and CharacterManagerOverlay needed the exact same
+// wrapper, rather than each keeping its own copy in sync by hand.
+function ModalBackdrop({ onClose, children }) {
   return (
     <div
       onClick={onClose}
@@ -4462,22 +4491,38 @@ function QRCodeOverlay({ url, onClose }) {
         display: "flex", alignItems: "center", justifyContent: "center",
       }}
     >
-      <div
-        onClick={e => e.stopPropagation()}
-        style={{
-          background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 12,
-          padding: 20, width: "min(92vw, 340px)", textAlign: "center",
-        }}
-      >
+      <div onClick={e => e.stopPropagation()}>{children}</div>
+    </div>
+  );
+}
+
+// Full-screen "scan this to open the build on your phone" overlay for
+// the Builder's "Show QR code" button — lets the table pass a build
+// around without anyone typing a URL. Renders the QR as plain SVG rects
+// from qrModuleGrid's module grid rather than a canvas/image, so it's
+// just React output like everything else here (themable, no extra
+// image-loading step). Dismisses on backdrop click, the × button, or Esc.
+function QRCodeOverlay({ url, onClose }) {
+  const modules = useMemo(() => qrModuleGrid(url), [url]);
+  useEscapeToClose(onClose);
+
+  if (!modules) return null;
+  const count = modules.length;
+  const quiet = 2; // quiet-zone modules around the edge — scanners expect one
+  const size = count + quiet * 2;
+
+  return (
+    <ModalBackdrop onClose={onClose}>
+      <div style={{
+        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 12,
+        padding: 20, width: "min(92vw, 340px)", textAlign: "center",
+      }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
           <span style={{ fontSize: 15, fontWeight: 600 }}>Scan to open this build</span>
           <button
             onClick={onClose}
             aria-label="Close"
-            style={{
-              background: "transparent", border: "none", color: TEXT.faint,
-              fontSize: 22, lineHeight: 1, cursor: "pointer", padding: 4,
-            }}
+            style={modalCloseBtnStyle}
           >
             ×
           </button>
@@ -4488,7 +4533,7 @@ function QRCodeOverlay({ url, onClose }) {
           )))}
         </svg>
       </div>
-    </div>
+    </ModalBackdrop>
   );
 }
 
@@ -4507,11 +4552,7 @@ function CharacterManagerOverlay({
   characters, activeId, onSwitch, onDuplicate, onDelete, onNew, onReorder, onClose,
   dragId, setDragId, onExportAll, onImportAll,
 }) {
-  useEffect(() => {
-    const onKey = e => { if (e.key === "Escape") onClose(); };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  useEscapeToClose(onClose);
 
   const importAllRef = useRef();
 
@@ -4525,31 +4566,18 @@ function CharacterManagerOverlay({
   });
 
   return (
-    <div
-      onClick={onClose}
-      style={{
-        position: "fixed", inset: 0, zIndex: 1000, padding: 20,
-        background: "rgba(10,14,24,0.85)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-      }}
-    >
-      <div
-        onClick={e => e.stopPropagation()}
-        style={{
-          background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 12,
-          padding: 20, width: "min(92vw, 420px)", maxHeight: "min(80vh, 560px)",
-          display: "flex", flexDirection: "column",
-        }}
-      >
+    <ModalBackdrop onClose={onClose}>
+      <div style={{
+        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 12,
+        padding: 20, width: "min(92vw, 420px)", maxHeight: "min(80vh, 560px)",
+        display: "flex", flexDirection: "column",
+      }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
           <span style={{ fontSize: 15, fontWeight: 600 }}>Manage Characters</span>
           <button
             onClick={onClose}
             aria-label="Close"
-            style={{
-              background: "transparent", border: "none", color: TEXT.faint,
-              fontSize: 22, lineHeight: 1, cursor: "pointer", padding: 4,
-            }}
+            style={modalCloseBtnStyle}
           >
             ×
           </button>
@@ -4630,7 +4658,7 @@ function CharacterManagerOverlay({
           </div>
         </div>
       </div>
-    </div>
+    </ModalBackdrop>
   );
 }
 
@@ -6258,7 +6286,7 @@ function App() {
             new), rather than a plain dropdown. New/imported/shared
             characters always land in a fresh slot, never overwrite
             whichever one is open here. */}
-        <div className="site-header-left" style={{ display:"flex", alignItems:"center", gap:6 }}>
+        <div className="site-header-left" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6 }}>
           <button onClick={() => setShowCharManager(true)} style={actionBtn()}>
             <i className="ti ti-users" aria-hidden="true" /> Manage Characters
           </button>
@@ -6515,7 +6543,7 @@ function App() {
               </div>
             </div>
 
-            <div style={{ marginLeft:"auto", flexShrink:0 }}>
+            <div className="builder-action-grid" style={{ marginLeft:"auto", flexShrink:0 }}>
               <div style={{ display:"grid", gridTemplateColumns:"repeat(2, auto)", gap:8 }}>
                 <button onClick={doExport} style={actionBtn()}>
                   <i className="ti ti-download" aria-hidden="true" /> Export build
