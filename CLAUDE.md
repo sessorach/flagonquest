@@ -78,9 +78,13 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   large block. Don't reach for bullet-point summaries mid-prose the way
   a fresh-start explanation might — the book's rule sections are written
   as continuous paragraphs, with bullets reserved for actual enumerated
-  lists (steps, options, factors). Good Luck/Bad Luck are never written
-  as "1 Good Luck" — a single instance is just "Good Luck", and multiple
-  is "Good Luck twice"/"Good Luck two times", not "2 Good Luck".
+  lists (steps, options, factors). Repeated-count phrasing is always
+  spelled out as a word, never a numeral, and never "N times" for small
+  N: once (or just the bare effect — "Good Luck", not "1 Good Luck"),
+  twice, thrice, then "four times"/"five times"/... from there on. This
+  applies both to stacking an effect (Good Luck twice, Protected thrice)
+  and to multiplying a value in a formula, bracketed or not (twice your
+  Speed, thrice the Level, [four times X]) — same convention either way.
 
 ## Design conventions established so far
 

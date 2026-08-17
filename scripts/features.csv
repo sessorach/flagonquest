@@ -1,6 +1,6 @@
 ID,Technique ID,Technique,Feature Name,Tier,Point Cost,Description,Additional Prereq
 F001,T072,Battle Maneuver,Lunging,Basic,1,"Up to X times, you may Shift up to 2 meters in a single direction, each either before or after the attack. You can declare the use of this Technique before being in range, but cannot make the attack unless you end up in range at some point.",
-F002,T072,Battle Maneuver,Wind Slash,Basic,1,For the attack the chosen weapon's range is increased by [4 times X].,
+F002,T072,Battle Maneuver,Wind Slash,Basic,1,For the attack the chosen weapon's range is increased by [four times X].,
 F003,T072,Battle Maneuver,Turn Elements,Basic,1,"When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + 1 + [Hearts] stacks of [chosen Element] Ward.","(Academics, Sorcery, or Theurgy) 2"
 F004,T072,Battle Maneuver,Distracting,Basic,1,"If the attack hits or is Parried, you Taunt the target X + [Hearts] times.",Presence 2
 F005,T072,Battle Maneuver,Battering,Basic,1,"If the attack hits or is Parried, the target gains X stacks of Bleeding + [Clubs] stacks.",Might 2
@@ -44,7 +44,7 @@ F042,T104,Spirit Blessing,Steady,Basic,1,Remove a stack of either Slowed or Crip
 F043,T104,Spirit Blessing,Embolden,Basic,1,Remove a stack of either Taunted or Frightened from the target.,
 F044,T104,Spirit Blessing,Retribution,Basic,1,"The next X times this encounter that a damaging attack hits the target, the attacker gains a stack of Bleeding.",
 F045,T104,Spirit Blessing,River's Might,Basic,1,"For the next X damaging attacks the target hits with this encounter, the creature hit is Pushed back 3 meters.",
-F046,T104,Spirit Blessing,Touch of Chaos,Basic,1,"For the next [2 times X] flips the target makes this encounter, they Sift a card and add its suit to the pool for that flip.",
+F046,T104,Spirit Blessing,Touch of Chaos,Basic,1,"For the next [twice X] flips the target makes this encounter, they Sift a card and add its suit to the pool for that flip.",
 F047,T104,Spirit Blessing,Quickened,Basic,1,The Spell only takes 1 AP to cast.,
 F048,T104,Spirit Blessing,Elemental Enhancement,Basic,1,"When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. The next X damaging attacks the target hits with this encounter may deal their damage as the chosen type.",
 F049,T104,Spirit Blessing,Mass Blessing,Advanced,2,The Spell may target an additional target.,
@@ -72,7 +72,7 @@ F070,T120,War Magic,Kinetic,Basic,1,"If the spell attack hits, the target is Pus
 F071,T120,War Magic,Frigid,Basic,1,"If the attack hits, the target is Slowed [twice X] + [Spades] times. You may change the attack's damage type to Frost.",
 F072,T120,War Magic,Glacier,Basic,1,"After the attack, every space occupied by or adjacent to any targeted creature gains [twice X] + [Spades] levels of Difficult Terrain, lasting for the encounter. You may change the attack's damage type to Frost.",
 F073,T120,War Magic,Reign of Blood,Basic,1,"If the spell attack hits, remove up to [twice X] + [Clubs] stacks of Bleeding from the target, and they lose that much Health.",
-F074,T120,War Magic,Wild Magic,Basic,1,"Sift [three times X] cards, adding each of their suits to the suit pool for all attacks made.",
+F074,T120,War Magic,Wild Magic,Basic,1,"Sift [thrice X] cards, adding each of their suits to the suit pool for all attacks made.",
 F075,T120,War Magic,Piercing Elements,Advanced,1,You have Good Luck on the spell attack.,
 F076,T120,War Magic,Draw Power,Advanced,1,"If the attack Downs the target, they are instantly killed and you draw a card. You may only draw one card per casting. You may change the attack's damage type to Shadow.",
 F077,T120,War Magic,Furrow (Shape),Advanced,3,"The spell attack instead targets all creatures in a line [half your Sorcery Skill Total] meters long, from your space. You may only apply one Shape feature to the Spell.",

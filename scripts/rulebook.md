@@ -166,7 +166,7 @@ A Skill point costs Experience equal to the new point total (you buy each point 
 
 A Stat point costs Experience equal to twice the new point total (same)
 
-Learning a Technique costs Experience equal to three times the Level of the Technique
+Learning a Technique costs Experience equal to thrice the Level of the Technique
 
 Example: Beornhard just got some Experience, and wants to round out his stats. He decided that 1 Body is too low, so he buys a second point in that Stat. It costs 2 Experience times the new point total, so 2 x 2 = 4 Experience for that point.
 
@@ -222,7 +222,7 @@ In many cases, a character might easily succeed at an action, but require multip
 
 Example: Hilde is dispatching some knights from a petty tyrant’s army. They aren’t good combatants, so she knows she can easily hit them with her axe, but they are heavily armored and will take many blows to defeat. Based on past fights, she thinks and decides to attack and Gamble twice on it. She flips a total of a 15 on the attack, -4 for Gambling twice, for a final result of 11. This still hits, and deals an extra 1 damage for each time she Gambled; +2 in total!
 
-Example: Carrick is infiltrating a noble’s inn room while the party keeps him distracted downstairs. She needs to pick the lock to get in, and knows both that this upscale inn has well-oiled locks that are easy to pick open and that she doesn’t have a lot of time. She Gambles three times on the flip, and thankfully gets a 17 total, so even with the -6 she’s left with a result of 11. This is just enough to pick the lock with 4 total successes, and although normally she would require multiple successful attempts to get the lock all the way open, the GM says that her risky attempt got the lock open in one try.
+Example: Carrick is infiltrating a noble’s inn room while the party keeps him distracted downstairs. She needs to pick the lock to get in, and knows both that this upscale inn has well-oiled locks that are easy to pick open and that she doesn’t have a lot of time. She Gambles thrice on the flip, and thankfully gets a 17 total, so even with the -6 she’s left with a result of 11. This is just enough to pick the lock with 4 total successes, and although normally she would require multiple successful attempts to get the lock all the way open, the GM says that her risky attempt got the lock open in one try.
 
 ### Supporting
 
@@ -258,7 +258,7 @@ Each flip also has a suit pool, made up of the suits of cards flipped for that a
 
 Example: Browndog makes an attack with her sword against a bandit, and it does extra damage for every Heart in her suit pool. She flips a 10 of Hearts, and the attack hits, so the attack deals an extra +1 damage.
 
-Example: Browndog is facing a tough foe, so she uses a special attack that Slows a target down extra times for every Club she gets. She also applies a bonus to give it Good Luck two times. She flips a Heart, Club, and a Spade, and also plays a Club from her hand. The attack hits, and deals +1 damage (from the Heart), as well as Slows the target two extra times (from the two Clubs). Wow!
+Example: Browndog is facing a tough foe, so she uses a special attack that Slows a target down extra times for every Club she gets. She also applies a bonus to give it Good Luck twice. She flips a Heart, Club, and a Spade, and also plays a Club from her hand. The attack hits, and deals +1 damage (from the Heart), as well as Slows the target two extra times (from the two Clubs). Wow!
 
 # Health and Resources
 

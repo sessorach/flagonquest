@@ -16,7 +16,7 @@
     "feature_name": "Wind Slash",
     "tier": "Basic",
     "point_cost": 1,
-    "description": "For the attack the chosen weapon's range is increased by [4 times X].",
+    "description": "For the attack the chosen weapon's range is increased by [four times X].",
     "prereq": null
   },
   {
@@ -456,7 +456,7 @@
     "feature_name": "Touch of Chaos",
     "tier": "Basic",
     "point_cost": 1,
-    "description": "For the next [2 times X] flips the target makes this encounter, they Sift a card and add its suit to the pool for that flip.",
+    "description": "For the next [twice X] flips the target makes this encounter, they Sift a card and add its suit to the pool for that flip.",
     "prereq": null
   },
   {
@@ -736,7 +736,7 @@
     "feature_name": "Wild Magic",
     "tier": "Basic",
     "point_cost": 1,
-    "description": "Sift [three times X] cards, adding each of their suits to the suit pool for all attacks made.",
+    "description": "Sift [thrice X] cards, adding each of their suits to the suit pool for all attacks made.",
     "prereq": null
   },
   {

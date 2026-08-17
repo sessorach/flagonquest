@@ -96,6 +96,10 @@ the full commit-by-commit detail behind any of these.
 - Character Creation moved to the end of the Rulebook's chapter list,
   after Creating Items — it only really makes sense once you've read
   the rest of the book anyway.
+- Standardized repeated-count phrasing across the Rulebook, techniques,
+  items, and features: "twice"/"thrice"/"four times" etc. instead of the
+  mix of numerals ("Slowed 4 times", "[3 times X]") and inconsistent
+  spelled-out forms ("Good Luck two times") that had crept in.
 
 ### 2026-08-11 — Crafting materials framework
 
