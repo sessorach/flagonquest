@@ -174,6 +174,17 @@ the full commit-by-commit detail behind any of these.
   tab (`index.html?tab=items`, etc.) instead of always landing on the
   Character Sheet — clicking "Items" from the Rulebook actually takes
   you to Items now.
+- **Artisanal Training and Soulblade get real pickers** instead of a
+  free-text box to type your choice into: Artisanal Training's School
+  is a dropdown of the six creation Schools, and Soulblade's weapon
+  type is a dropdown of the ten Base Game weapon types (Goblin Game's
+  named firearms and single-use bombs are specific items, not weapon
+  types, so they're left out). Both write into the same per-copy note
+  a textarea would have, so nothing about how a build's data looks or
+  exports has changed — School training for crafting just resolves off
+  a real pick now instead of pattern-matching whatever was typed into
+  the box. Temper Soulblade's "choose a Masterwork power (GM approval)"
+  is still free text — too open-ended for a fixed dropdown.
 
 ### 2026-08-11 — Crafting materials framework
 

@@ -144,6 +144,21 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   already follows. When adding a new technique, fill in `Prereq Check`
   whenever the Prereqs text is expressible in the syntax; don't leave it
   blank just because it's extra work.
+- A technique that makes you choose something when you learn it
+  (Artisanal Training's School, Soulblade's weapon type) uses the same
+  per-copy `notes[uid]` a plain free-text note would, just with a
+  `<select>` swapped in for the `<textarea>` — see `Free Text` in
+  `convert.py`'s `TECHNIQUE_MAP` comment and `choiceOptions` in
+  `TechCard`. `Free Text` is `TRUE` for a genuinely open-ended pick
+  that doesn't fit a fixed list (Temper Soulblade's GM-approved
+  Masterwork power), or a specific value (`"School"`, `"Weapon"`)
+  naming which dropdown to render and which existing data to populate
+  it from — `CREATION_SCHOOLS` for School, Base Game `Category:
+  "Weapon"` items for Weapon. No new state, no new storage — a
+  dropdown is just a pickier textarea. When a technique needs a new
+  kind of structured pick, prefer this pattern (reuse `notes[uid]`,
+  add one more `Free Text` value, source the options from data that
+  already exists) over inventing a parallel per-technique state map.
 - Pass/fail badges are red `#e0645f` (unmet/bad) and green `#6fae5a`
   (met/good) — established by the Might Requirement badge, reused for
   Wounded. Keep using these two colors for any future met/unmet indicator

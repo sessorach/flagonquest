@@ -1186,10 +1186,30 @@ function TechCard({
   // Skills and a Set of currently-known technique names, for the
   // Prereqs-met badge. See meetsPrereqCheck.
   statPoints = {}, skillPoints = {}, knownTechNames = null,
+  // Full item catalog, for the "Weapon" choice-type dropdown's options
+  // (see choiceOptions below) — unused for anything else.
+  items = [],
 }) {
   const tags   = splitCSV(tech.tags);
   const skills = splitCSV(tech.relevant_skills);
   const prereqMet = knownTechNames ? meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames) : null;
+
+  // A technique's Free Text column is either TRUE (a plain free-text
+  // note — Temper Soulblade) or a specific value naming a structured
+  // dropdown to show instead — same per-copy notes[uid] string either
+  // way, just picked from a fixed list instead of typed. null means
+  // "render the plain textarea", matching today's only other case.
+  //
+  // The "Weapon" list is Base Game Weapon items specifically (not just
+  // Category === "Weapon") — Soulblade conjures "a specific type of
+  // weapon," which is what the ten generic Light/Heavy Melee/Thrown/Bow/
+  // Unarmed/Shield items represent; Goblin Game's named firearms and
+  // single-use bombs are specific items, not weapon types, and conjuring
+  // gunpowder weaponry out of spiritual force doesn't fit the fluff.
+  const choiceOptions =
+    tech.free_text === "School" ? CREATION_SCHOOLS :
+    tech.free_text === "Weapon" ? items.filter(i => i.category === "Weapon" && i.supplement === "Base Game").map(i => i.name) :
+    null;
 
   // "Encounter" is important enough to live in the corner with the level
   // badge — everything else stays in the tags line.
@@ -1386,15 +1406,18 @@ function TechCard({
         />
       ))}
 
-      {/* Free-text notes — one box per copy in the build, since e.g. each
-          Soulblade you learn can choose a different weapon type. Editable
-          everywhere except the read-only Character Sheet, where it's just
-          a static record of what was already written. */}
+      {/* Per-copy choice — one box per copy in the build, since e.g. each
+          Soulblade you learn can choose a different weapon type. A
+          structured pick (choiceOptions set) renders as a dropdown; a
+          genuinely open-ended one (Temper Soulblade) stays free text —
+          either way it's the same notes[uid] string underneath. Editable
+          everywhere except the read-only Character Sheet, where it's
+          just a static record of what was already chosen/written. */}
       {tech.free_text && (readOnly ? (
         instances.length > 0 && (
           <div>
             <div style={{ fontSize:12, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
-              Notes
+              {choiceOptions ? tech.free_text : "Notes"}
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
               {instances.map((uid, i) => (
@@ -1406,7 +1429,7 @@ function TechCard({
                   {instances.length > 1 && (
                     <span style={{ color:TEXT.faint, fontStyle:"normal" }}>Copy {i + 1}: </span>
                   )}
-                  {notes[uid] || "No notes"}
+                  {notes[uid] || (choiceOptions ? "Not chosen yet" : "No notes")}
                 </div>
               ))}
             </div>
@@ -1415,23 +1438,38 @@ function TechCard({
       ) : (
         <div>
           <div style={{ fontSize:12, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
-            Notes
+            {choiceOptions ? tech.free_text : "Notes"}
           </div>
           {instances.length === 0 ? (
             <div style={{ fontSize:13, color:TEXT.faint, fontStyle:"italic" }}>
-              Add this to your build, then note your choices for each copy you learn.
+              {choiceOptions
+                ? `Add this to your build, then choose a ${tech.free_text.toLowerCase()} for each copy you learn.`
+                : "Add this to your build, then note your choices for each copy you learn."}
             </div>
           ) : (
             <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
               {instances.map((uid, i) => (
                 <div key={uid} style={{ display:"flex", gap:6, alignItems:"flex-start" }}>
-                  <textarea
-                    value={notes[uid] || ""}
-                    onChange={e => onNoteChange(uid, e.target.value)}
-                    placeholder={instances.length > 1 ? `Copy ${i + 1} notes…` : "Add your notes…"}
-                    rows={2}
-                    style={{ flex:1, fontSize:13 }}
-                  />
+                  {choiceOptions ? (
+                    <select
+                      value={notes[uid] || ""}
+                      onChange={e => onNoteChange(uid, e.target.value)}
+                      style={{ flex:1, fontSize:13 }}
+                    >
+                      <option value="">
+                        {instances.length > 1 ? `Copy ${i + 1} — choose a ${tech.free_text.toLowerCase()}…` : `Choose a ${tech.free_text.toLowerCase()}…`}
+                      </option>
+                      {choiceOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                    </select>
+                  ) : (
+                    <textarea
+                      value={notes[uid] || ""}
+                      onChange={e => onNoteChange(uid, e.target.value)}
+                      placeholder={instances.length > 1 ? `Copy ${i + 1} notes…` : "Add your notes…"}
+                      rows={2}
+                      style={{ flex:1, fontSize:13 }}
+                    />
+                  )}
                   {instances.length > 1 && (
                     <button
                       onClick={() => onRemoveInstance(uid)}
@@ -3382,24 +3420,20 @@ function resolveRecipeRequirements(recipe, item) {
 }
 
 // Artisanal Training (Duplicate) lets a player choose a creation School
-// each time they learn a copy, tracked as a free-text note per copy
-// (see CREATION_SCHOOLS) rather than a structured pick — so this just
-// reads whichever known School name(s) appear in each copy's note.
-// KNOWN SIMPLIFICATION: substring text matching, not a real dropdown —
-// a note that doesn't clearly name a School (or misspells one) won't
-// resolve, same "flag readiness, don't guess" spirit as the rest of
-// this section.
+// each time they learn a copy — a real dropdown (see TechCard's
+// choiceOptions), so each copy's notes[uid] is always exactly one of
+// CREATION_SCHOOLS or empty (not yet chosen), no text-matching needed.
 function trainedSchoolsFromArtisanalTraining(build, notes, techniques) {
   const tech = techniques.find(t => t.name === "Artisanal Training");
   if (!tech) return [];
   return build
     .filter(e => e.id === tech.id)
-    .map(e => (notes[e.uid] || "").toLowerCase())
-    .flatMap(text => CREATION_SCHOOLS.filter(school => text.includes(school.toLowerCase())));
+    .map(e => notes[e.uid])
+    .filter(school => CREATION_SCHOOLS.includes(school));
 }
 
 // null = can't tell (no School resolved, e.g. "Varies"); a School with
-// no known Tool/Kit (SCHOOL_TOOL_MAP) and no Artisanal Training note
+// no known Tool/Kit (SCHOOL_TOOL_MAP) and no Artisanal Training pick
 // naming it just never counts as trained, same as not owning any
 // qualifying tool.
 function hasSchoolTraining(schools, inventory, items, build, notes, techniques) {
@@ -5727,6 +5761,7 @@ function App() {
         onExpendedChange={setExpendedFor}
         glossary={glossary}
         readOnly={readOnly}
+        items={items}
         {...(readOnly ? {} : { statPoints, skillPoints, knownTechNames })}
       />
     );
@@ -5817,6 +5852,7 @@ function App() {
       readOnly
       group={card.tech.features ? { name: card.name, cfg: card.cfg, uids: card.uids } : null}
       skillTotals={{ statPoints, skillPoints }}
+      items={items}
     />
   );
 
