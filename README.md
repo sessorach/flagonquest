@@ -16,183 +16,80 @@ the full commit-by-commit detail behind any of these.
 ### 2026-08-14 — Rulebook cleanup, material pricing
 
 - Removed Jokers from the rulebook — the deck is now a standard 52-card
-  deck of playing cards throughout.
-- Materials (catalog and custom) are now priced at their Level in Gold
-  rather than a flat 1 Gold regardless of grade, matching the rule that
-  a material is baseline worth its Level.
-- Light formatting pass on the Rulebook, from "The Basics" onward:
-  clusters of short parallel sentences (difficulty factors, creation
-  Schools, Material Types, and others) are now bulleted instead of
-  reading as a run of one-line paragraphs, and worked examples render
-  italicized and indented to set them apart from the surrounding rules
-  text.
-- The header's brand and tab nav now stay centered on mobile once they
-  wrap onto their own line, instead of sitting flush against the left
-  edge.
-- **Crafting browser overhaul**: each item now shows once, with a School
-  picker if it can be made more than one way (a Weapon via Carving or
-  Smithing), instead of a separate row per School. Recipes gained a
-  **Kind** switch (Slots or Value) so the Gold-value model isn't
-  Masterwork/Alchemy-only anymore — generic fallback recipes now cover
-  Potions, Poisons, Grenades, Food, and Masterwork items that don't have
-  their own hand-authored recipe yet, so browsing shows the full catalog
-  instead of only the handful of items with detailed data. Masterwork
-  items with a base-item choice get an actual picker instead of static
-  "X or Y" text (reference only — it doesn't check inventory yet).
-  Artisanal Training can now grant School training too, read from its
-  free-text note. Filters are checkboxes/chips now: Skill ready and
-  Materials ready independently, plus Base/Masterwork/Alchemy/Food type
-  toggles.
-- Two new Goblin Game techniques: **Spacious Gut** and **Gorger**,
-  raising a Goblin's maximum Fullness and changing what happens when
-  they're Too Full. Techniques now have a **Supplement** column (like
-  items/backgrounds already did) so the Sources panel gates which ones
-  show up to pick, rather than every technique always being available.
-- **Goblin Game Food System**: a new Rulebook chapter overhauling
-  cooking and food for Goblins around a Fullness resource — how much
-  food they need per day, what happens when they don't get it or eat
-  too much (**Too Full**, new in the Glossary), the five Food Material
-  varieties, and the updated Meal-crafting recipe. The Rulebook and
-  Glossary can now be tagged and filtered by supplement — a level-1
-  heading like `# Goblin Game {Goblin Game}` tags that whole chapter,
-  and both pages show a supplement tab row (All / Base Game / Goblin
-  Game) above the table of contents whenever more than one exists.
-- More Goblin Game rules content, pulled from the full player doc:
-  Goblin Traits (Illiteracy, Loving Fire, Fear of Horses, Cannibalism,
-  Hate Sunlight/Darkvision, Hungry), Gems as the Goblin equivalent of
-  Gold, **Bingus and Golden Bingus** (a small Good-Luck reward for good
-  roleplay or a successful/foiled scheme), The Great Game (sanctioned
-  PvP scheming, character death and replacement), and Deeds (Goblins'
-  reputation-by-story system in place of literacy). **Bingus**,
-  **Golden Bingus**, and **Fullness** are now in the Glossary too.
-  Gorger's Prereqs now include Spacious Gut, matching the source doc.
-- The Rulebook and Glossary links in the header no longer open in a new
-  tab — they navigate in place, like every other nav link.
-- Techniques gained an **Excluded By** column for the case where an
-  enabled supplement makes a *different* technique nonsensical even
-  though that technique's own supplement is still on — used to hide
-  Pranic Nourishment and Land's Bounty (not available in the Goblin
-  Game's food economy) and to swap the standard Street Runner for a new
-  Goblin Game-supplement version that grants Food Material instead of a
-  day's nutrition, once Goblin Game is enabled in Sources.
-- The header is pinned to the top of the screen again on desktop, so
-  the nav and character switcher stay reachable while scrolling — but
-  only at the width where it's a single compact row; on narrow screens
-  where it can wrap onto several rows it still scrolls away normally,
-  same as before, so it can't eat a large chunk of a small screen
-  permanently.
-- Exported files are named after their contents now instead of generic
-  `build.json`/`flagonquest-all-characters.json`: a single character's
-  export is `<character name>-<date>.json`, and Backup all characters
-  is `FlagonQuest-export-<date>.json`.
-- Land's Bounty's Difficult Terrain now scales with Mind ("up to [Mind]
-  levels") instead of a flat single level.
-- **Supporting** now has real rules instead of a placeholder: a flat
-  difficulty 11 check that grants the target Good Luck on success, with
-  prose on when to reach for it — using a Skill you do have to back up
-  an ally using one you don't. Moved up next to Skill Checks and
-  Gambling, where the rest of "how a check gets resolved" already
-  lives, instead of sitting alone in Adventuring.
-- Character Creation moved to the end of the Rulebook's chapter list,
-  after Creating Items — it only really makes sense once you've read
-  the rest of the book anyway.
-- Standardized repeated-count phrasing across the Rulebook, techniques,
-  items, and features: "twice"/"thrice"/"four times" etc. instead of the
-  mix of numerals ("Slowed 4 times", "[3 times X]") and inconsistent
-  spelled-out forms ("Good Luck two times") that had crept in.
-- Food created items (cooked meals, etc.) now spoil a week after being
-  made, matching how long raw Food materials already last — they used
-  to spoil after just a day, which didn't make sense next to a week for
-  the raw ingredients that went into them.
-- **Site-wide consistency pass**, mostly invisible but a bunch of small
-  fixes: a glossary tooltip bug where multi-paragraph entries rendered
-  as one run-on block on the main app (worked fine on the Rulebook/
-  Glossary pages, which is how it went unnoticed); a broken item price
-  (Travel Rations) that couldn't resolve a Gold value; several
-  unfinished/cut-off Rulebook sentences (Persuasion's skill blurb, the
-  Adventuring chapter's intro, a stale rule referencing "Spirit" from
-  before it was renamed to Essence); straight quotes/apostrophes
-  standardized to curly throughout the Rulebook and Glossary; a handful
-  of missed spots from the repeated-count and Food-spoilage passes.
-  Also some code-only cleanup with no visible effect: several
-  copy-pasted style objects and one-line helpers (filter chip styling,
-  collapsible-section buttons, array-toggle logic) that had drifted
-  slightly out of sync across the Items/Techniques/Crafting sections
-  are now single shared definitions.
-- **Consistency pass, round two** — the judgment calls from round one:
-  - Split the Pack/Gear "Travel Rations" out from the craftable Food
-    one — it's now **Basic Travel Ration**, a plain store-bought staple
-    distinct from the Level 1-5 version you cook yourself.
-  - Rapport's Rulebook blurb no longer cites specific Social Contest
-    terms that are about to be reworked; it's just about making people
-    like you now.
-  - `techniques.csv`'s `Relevant Skills`/`related_skills` and
-    `items.csv`'s `Relevant Skill`/`relevant_skill` — same concept,
-    different names — are now both `Relevant Skills`/`relevant_skills`.
-  - `backgrounds.csv` and `features.csv` now split flavor text from
-    rules text into `Description (Fluff)`/`Effects` columns, matching
-    `techniques.csv`/`items.csv` — a handful of backgrounds with a real
-    flavor lead-in (Predator, Numb, Sacred Flame, Masters of Safety,
-    Scrap Trap) got split out; the rest were already all-mechanics, so
-    Fluff is blank for them (and for every Feature, which don't really
-    have room for flavor text by design) the same way it already was
-    for some Techniques/Items.
-  - Filled in three stub/unfinished Rulebook spots: an intro paragraph
-    for "The Basics," a full worked example of crafting a Masterwork
-    weapon enhancement (Enith's shadow blade) under Creating Items, and
-    a resolution for an Example in Damage and Health that set up a
-    scenario (a firebolt at Beornhard) but never finished it.
-  - The Character Creation chapter's first section no longer repeats
-    the chapter's own name — it's "Building a Character" now, matching
-    how every other chapter's opening section has its own distinct
-    title.
+  deck throughout.
+- Materials are now priced at their Level in Gold instead of a flat 1
+  Gold regardless of grade.
+- Formatting pass on the Rulebook: parallel-sentence clusters bulleted,
+  worked examples italicized/indented.
+- Header brand and tab nav stay centered on mobile once wrapped.
+- **Crafting browser overhaul**: one row per item with a School picker
+  instead of a duplicate row per School; recipes gained a Kind switch
+  (Slots or Value) so generic fallback recipes now cover Potions,
+  Poisons, Grenades, Food, and un-authored Masterwork items; Masterwork
+  base-item choices get a real picker; Artisanal Training can grant
+  School training; filters are now independent checkboxes/chips.
+- Two new Goblin Game techniques, **Spacious Gut** and **Gorger**
+  (raise max Fullness, change what happens when Too Full; Gorger
+  requires Spacious Gut). Techniques gained a **Supplement** column,
+  gated by Sources like items/backgrounds already were.
+- **Goblin Game Food System**: new Rulebook chapter on Fullness, daily
+  food needs, **Too Full**, the five Food Material varieties, and the
+  Meal recipe. Rulebook/Glossary chapters can now be supplement-tagged
+  and filtered via a tab row when more than one supplement exists.
+- More Goblin Game content from the full player doc: Goblin Traits,
+  Gems, **Bingus**/**Golden Bingus**, The Great Game, Deeds — added to
+  the Glossary where relevant.
+- Rulebook/Glossary header links navigate in place instead of opening a
+  new tab.
+- Techniques gained an **Excluded By** column for when a different
+  enabled supplement makes a technique nonsensical — hides Pranic
+  Nourishment and Land's Bounty and swaps in a Goblin Game version of
+  Street Runner once Goblin Game is enabled.
+- Header is pinned again on desktop at the compact single-row width;
+  still scrolls away normally on narrower/wrapped layouts.
+- Exported files are named after their contents (`<character
+  name>-<date>.json`, `FlagonQuest-export-<date>.json`) instead of
+  generic filenames.
+- Land's Bounty's Difficult Terrain now scales with Mind ("up to
+  [Mind] levels") instead of a flat single level.
+- **Supporting** now has real rules: a flat difficulty 11 check that
+  grants Good Luck on success, moved next to Skill Checks and Gambling.
+- Character Creation moved to the end of the Rulebook's chapter list.
+- Standardized repeated-count phrasing ("twice"/"thrice"/"four times")
+  across the Rulebook, techniques, items, and features.
+- Food-created items now spoil a week after being made, matching raw
+  Food materials (previously just a day).
+- **Site-wide consistency pass**: fixed a glossary tooltip bug with
+  multi-paragraph entries, a broken Travel Rations price, several
+  unfinished Rulebook sentences, and straight quotes/apostrophes
+  standardized to curly; deduped a few copy-pasted style helpers in
+  the code with no visible effect.
+- **Consistency pass, round two**: split out **Basic Travel Ration** as
+  a plain store-bought Pack/Gear item, distinct from the craftable
+  Food-category version; rewrote Rapport's blurb ahead of the Social
+  rework; unified `Relevant Skills`/`relevant_skills` naming across
+  techniques and items; split `backgrounds.csv`/`features.csv` into
+  `Description (Fluff)`/`Effects` columns; filled in three stub
+  Rulebook spots; renamed Character Creation's opening section to
+  "Building a Character."
 - **Automatic prereq checking**: techniques with a machine-checkable
-  `Prereq Check` (Skill/Stat-and-threshold or known-Technique clauses,
-  matching most of what "Prereqs (Full)" already says in prose) now show
-  a red/green "✓ Met"/"✗ Not met" badge next to their Prereqs line while
-  browsing, evaluated against the current build — 140 of 143 techniques
-  got one; the 3 that didn't have Prereqs text the syntax genuinely
-  can't express (a choice, "None", or a School-conditional OR) and just
-  show the plain text with no badge, same as before. A technique whose
-  prereq scales with its own Level (`[Level]`, `[Level]+1`) and can be
-  learned across a range of Levels doesn't get a badge either, since
-  which Level you'd build it at isn't chosen yet while just browsing —
-  same "don't guess" spirit as the crafting School-matching.
-- **Fixed a live bug**: the Feature-builder (Battle Maneuver, War Magic,
-  Healing Magic, Spirit Blessing, Social Maneuver) has been silently
-  ignoring its own point budgets — the "Points: Level 1: 3 basic; ..."
-  text its fallback regexed out of Effects had moved to the Building
-  column at some point, so the regex quietly matched nothing and the
-  Feature-builder let you pick unlimited Features with unlimited points
-  at any Level. All five now have a real `Feature Budget` data column
-  instead (matching Prereq Check's approach), and the fallback regex —
-  the thing that broke silently in the first place — is gone rather
-  than patched. Data now driving something the site used to derive from
-  prose is the new standing rule here; see the "source of truth" note
-  added to CLAUDE.md.
-- The Rulebook/Glossary header nav can now jump straight to a specific
+  `Prereq Check` show a red/green "✓ Met"/"✗ Not met" badge on their
+  Prereqs line while browsing, evaluated against the current build
+  (140 of 143 techniques; the rest stay plain text where the syntax
+  can't express them).
+- **Fixed a live bug**: the Feature-builder (Battle Maneuver, War
+  Magic, Healing Magic, Spirit Blessing, Social Maneuver) was silently
+  ignoring its own point budgets after its prose-scraping fallback
+  broke; now driven by a real `Feature Budget` data column instead.
+- Rulebook/Glossary header nav can jump straight to a specific Builder
   tab (`index.html?tab=items`, etc.) instead of always landing on the
-  Character Sheet — clicking "Items" from the Rulebook actually takes
-  you to Items now.
-- **Artisanal Training and Soulblade get real pickers** instead of a
-  free-text box to type your choice into: Artisanal Training's School
-  is a dropdown of the six creation Schools, and Soulblade's weapon
-  type is a dropdown of the ten Base Game weapon types (Goblin Game's
-  named firearms and single-use bombs are specific items, not weapon
-  types, so they're left out). Both write into the same per-copy note
-  a textarea would have, so nothing about how a build's data looks or
-  exports has changed — School training for crafting just resolves off
-  a real pick now instead of pattern-matching whatever was typed into
-  the box. Temper Soulblade's "choose a Masterwork power (GM approval)"
-  is still free text — too open-ended for a fixed dropdown.
-- **Builder prereq summary panel**: a new box between the XP tracker and
-  the Stats & Skills grid lists every Skill/Stat/Technique your current
-  build's techniques require, collapsed to the highest threshold when
-  more than one asks for the same thing (Might 2 and Might 3 both
-  needed shows as just "Might 3"), each with the same red/green
-  "✓ Met"/"✗ Not met" badge as the per-technique Prereq Check line —
-  built on the same `Prereq Check` data, just rolled up across the
-  whole build instead of one technique at a time.
+  Character Sheet.
+- **Artisanal Training and Soulblade get real pickers**: School and
+  weapon type are now dropdowns instead of free text.
+- **Builder prereq summary panel**: a new panel between the XP tracker
+  and Stats & Skills grid lists every Skill/Stat/Technique the current
+  build requires, collapsed to the highest threshold, with the same
+  red/green Met badge as the per-technique Prereq Check line.
 
 ### 2026-08-11 — Crafting materials framework
 
