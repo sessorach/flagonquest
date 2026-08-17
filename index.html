@@ -397,24 +397,22 @@ function needsLevelPicker(tech) {
   return !!tech.features || (tech.level_min != null && tech.level_max != null && tech.level_min !== tech.level_max);
 }
 
-// A technique's point budget per level, as { [level]: { points, advanced } }.
-// Prefers the structured "Feature Budget" data column (convert.py parses
-// it into tech.feature_budget) — falls back to regexing the "Points:
-// Level 1: 3 basic; Level 2: 6 basic; ..." sentence out of the Effects
-// text for any technique whose spreadsheet row hasn't been given that
-// column yet. Returns null if neither is present, so callers fall back
-// to an unlimited/unstructured picker instead of guessing.
+// A technique's point budget per level, as { [level]: { points, advanced } }
+// — straight from the structured "Feature Budget" data column (convert.py
+// parses it into tech.feature_budget). Returns null if the technique
+// doesn't have one, so FeatureBuilder falls back to an unrestricted
+// picker instead of guessing at a budget.
+//
+// This used to also regex a "Points: Level 1: 3 basic; ..." sentence out
+// of the Effects text for any row that hadn't been given a real Feature
+// Budget yet — removed once every Buildable-via-Features technique had
+// one, since a prose-derived fallback like that fails silently the
+// moment the prose moves (it did: that sentence lives in the Building
+// column now, not Effects, and the regex quietly matched nothing for
+// months with the point budget completely unenforced as a result). See
+// the "data should be the source of truth" note in CLAUDE.md.
 function parsePointBudget(tech) {
-  if (tech.feature_budget) return tech.feature_budget;
-  const effectsText = tech.effects;
-  if (!effectsText) return null;
-  const re = /Level\s*(\d+):\s*(\d+)\s*basic(\/advanced)?/gi;
-  const map = {};
-  let m;
-  while ((m = re.exec(effectsText))) {
-    map[+m[1]] = { points: +m[2], advanced: !!m[3] };
-  }
-  return Object.keys(map).length > 0 ? map : null;
+  return tech.feature_budget || null;
 }
 
 // Word/digit → number, for resolving phrases like "twice" or "four times".

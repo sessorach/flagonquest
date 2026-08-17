@@ -2212,7 +2212,24 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": {
+      "1": {
+        "points": 2,
+        "advanced": false
+      },
+      "2": {
+        "points": 4,
+        "advanced": false
+      },
+      "3": {
+        "points": 6,
+        "advanced": true
+      },
+      "4": {
+        "points": 8,
+        "advanced": true
+      }
+    }
   },
   {
     "id": "T058",
@@ -2795,7 +2812,24 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": {
+      "1": {
+        "points": 3,
+        "advanced": false
+      },
+      "2": {
+        "points": 6,
+        "advanced": false
+      },
+      "3": {
+        "points": 9,
+        "advanced": true
+      },
+      "4": {
+        "points": 12,
+        "advanced": true
+      }
+    }
   },
   {
     "id": "T073",
@@ -4159,7 +4193,24 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": {
+      "1": {
+        "points": 3,
+        "advanced": false
+      },
+      "2": {
+        "points": 4,
+        "advanced": false
+      },
+      "3": {
+        "points": 5,
+        "advanced": true
+      },
+      "4": {
+        "points": 6,
+        "advanced": true
+      }
+    }
   },
   {
     "id": "T105",
@@ -4196,7 +4247,24 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": {
+      "1": {
+        "points": 1,
+        "advanced": false
+      },
+      "2": {
+        "points": 4,
+        "advanced": false
+      },
+      "3": {
+        "points": 8,
+        "advanced": true
+      },
+      "4": {
+        "points": 11,
+        "advanced": true
+      }
+    }
   },
   {
     "id": "T106",
@@ -4832,7 +4900,24 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": {
+      "1": {
+        "points": 1,
+        "advanced": false
+      },
+      "2": {
+        "points": 3,
+        "advanced": false
+      },
+      "3": {
+        "points": 4,
+        "advanced": true
+      },
+      "4": {
+        "points": 6,
+        "advanced": true
+      }
+    }
   },
   {
     "id": "T121",

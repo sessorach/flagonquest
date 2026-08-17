@@ -22,6 +22,24 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   someone runs the converter. Run `python scripts/convert.py` from
   anywhere (it resolves paths off its own file location) after any CSV
   change, and commit the regenerated JSON alongside the CSV.
+- **The data should be the source of truth, not prose.** Whenever the
+  site needs a fact at runtime that could reasonably live as a real CSV
+  column/JSON field, put it there instead of deriving it by
+  regex-scraping free text. A prose-derived shortcut looks like it works
+  right up until the prose it depends on gets reworded, moved to a
+  different column, or just doesn't quite match the pattern anymore —
+  and then it tends to fail *silently*, not loudly. (This is exactly how
+  Feature Budget broke: `parsePointBudget()`'s fallback regexed the
+  "Points: Level 1: 3 basic; ..." sentence out of `Effects`, but that
+  sentence had since moved into the `Building` column — the regex kept
+  matching nothing, `budgetMap` came back `null`, and the Feature-builder
+  quietly stopped enforcing point limits at all, for months, with no
+  error anywhere.) When adding something that could be derived from
+  prose, prefer a real column from the start. When you come across an
+  existing derive-from-prose shortcut, prefer migrating it to real data
+  over patching the derivation — see `Prereq Check` and `Feature Budget`
+  in `scripts/convert.py`'s docstring for the two this project has
+  already done this for.
 - `archive/` holds genuinely dead files — an old prototype, stale one-off
   outputs from completed migrations. Nothing in it is read by the site or
   by `convert.py`.

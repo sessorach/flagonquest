@@ -158,6 +158,18 @@ the full commit-by-commit detail behind any of these.
   learned across a range of Levels doesn't get a badge either, since
   which Level you'd build it at isn't chosen yet while just browsing —
   same "don't guess" spirit as the crafting School-matching.
+- **Fixed a live bug**: the Feature-builder (Battle Maneuver, War Magic,
+  Healing Magic, Spirit Blessing, Social Maneuver) has been silently
+  ignoring its own point budgets — the "Points: Level 1: 3 basic; ..."
+  text its fallback regexed out of Effects had moved to the Building
+  column at some point, so the regex quietly matched nothing and the
+  Feature-builder let you pick unlimited Features with unlimited points
+  at any Level. All five now have a real `Feature Budget` data column
+  instead (matching Prereq Check's approach), and the fallback regex —
+  the thing that broke silently in the first place — is gone rather
+  than patched. Data now driving something the site used to derive from
+  prose is the new standing rule here; see the "source of truth" note
+  added to CLAUDE.md.
 
 ### 2026-08-11 — Crafting materials framework
 
