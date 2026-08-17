@@ -557,6 +557,45 @@ function meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames) {
   return results.every(Boolean);
 }
 
+// Rolls up the Prereq Check clauses of every technique currently in the
+// build into one "what does my build need to keep satisfying" list —
+// the Builder's prereq summary panel. Two clauses that name the same
+// Skill/Stat (or the same OR-group of them) collapse into one entry at
+// the higher threshold, since meeting the higher one always satisfies
+// the lower — e.g. Might:2 from one technique and Might:3 from another
+// both show as just "Might 3". A level-scaling threshold resolves
+// against that specific copy's own chosen Level (configs[uid].level for
+// anything needing a level picker, tech.level_min otherwise), same as
+// meetsPrereqCheck — a clause whose Level isn't chosen yet is skipped
+// for that copy rather than guessed.
+function summarizeBuildPrereqs(build, techniques, configs, statPoints, skillPoints, knownTechNames) {
+  const merged = new Map();
+  build.forEach(({ uid, id }) => {
+    const tech = techniques.find(t => t.id === id);
+    if (!tech || !tech.prereq_check) return;
+    const fixedLevel = needsLevelPicker(tech) ? (configs[uid]?.level ?? null) : tech.level_min;
+    tech.prereq_check.forEach(clause => {
+      if (clause.type === "technique") {
+        const key = `technique:${clause.name}`;
+        if (!merged.has(key)) {
+          merged.set(key, { key, label: clause.name, met: knownTechNames.has(clause.name) });
+        }
+        return;
+      }
+      const threshold = resolvePrereqThreshold(clause.threshold, fixedLevel);
+      if (threshold == null) return;
+      const key   = clause.type === "any_skill" ? "any_skill" : `skill:${clause.options.join("|")}`;
+      const label = (clause.type === "any_skill" ? "Any Skill" : clause.options.join(" or ")) + ` ${threshold}`;
+      if (merged.has(key) && merged.get(key).threshold >= threshold) return;
+      const met = clause.type === "any_skill"
+        ? ALL_STAT_SKILLS.some(skill => (skillPoints[skill] || 0) >= threshold)
+        : clause.options.some(name => pointsFor(name, statPoints, skillPoints) >= threshold);
+      merged.set(key, { key, label, threshold, met });
+    });
+  });
+  return [...merged.values()];
+}
+
 // Resolves one "[... Skill Total]" bracket's inner text (with the trailing
 // "Skill Total" already stripped by the caller) to a number, for the
 // modifiers actually used in the data: "half your X", "twice X", and
@@ -1709,6 +1748,9 @@ function StatsPanel({
   xpBudget, onBudgetChange, statSkillXP,
   techniqueXP = 0, techniqueXPUnknown = false,
   readOnly = false,
+  // The Builder's prereq summary panel (see summarizeBuildPrereqs) —
+  // only passed on the Builder tab, not the read-only Character Sheet.
+  prereqSummary = null,
 }) {
   const totalSpent = statSkillXP + techniqueXP;
   const budgetNum  = xpBudget !== "" ? parseInt(xpBudget, 10) : null;
@@ -1760,6 +1802,26 @@ function StatsPanel({
           )}
         </div>
       </div>
+
+      {/* What your current build needs to keep satisfying, collapsed to
+          the highest threshold of each Skill/Stat/Technique named more
+          than once — see summarizeBuildPrereqs. */}
+      {prereqSummary && prereqSummary.length > 0 && (
+        <div className="no-print" style={{
+          display: "flex", flexWrap: "wrap", gap: "6px 16px",
+          marginBottom: 14, padding: "10px 14px", background: "#12161f",
+          border: "0.5px solid #2d3555", borderRadius: 8,
+        }}>
+          {prereqSummary.map(req => (
+            <span key={req.key} style={{ fontSize: 13, color: TEXT.faint }}>
+              {req.label}{" "}
+              <span style={{ fontWeight: 600, color: req.met ? "#6fae5a" : "#e0645f" }}>
+                {req.met ? "✓ Met" : "✗ Not met"}
+              </span>
+            </span>
+          ))}
+        </div>
+      )}
 
       <div className="stat-grid">
         {STATS.map(stat => (
@@ -5786,6 +5848,12 @@ function App() {
   // "technique" clauses reference a technique by name, not id.
   const knownTechNames = useMemo(() => new Set(knownTechs.map(t => t.name)), [knownTechs]);
 
+  // The Builder's prereq summary panel — see summarizeBuildPrereqs.
+  const prereqSummary = useMemo(
+    () => summarizeBuildPrereqs(build, techniques, configs, statPoints, skillPoints, knownTechNames),
+    [build, techniques, configs, statPoints, skillPoints, knownTechNames]
+  );
+
   // What the read-only Character Sheet renders: one card per *distinct
   // build*, not per technique — but only for genuinely Feature-built
   // techniques (tech.features). Those get the full treatment: renamed,
@@ -6246,6 +6314,7 @@ function App() {
             xpBudget={xpBudget} onBudgetChange={setXpBudget}
             statSkillXP={statSkillXP}
             techniqueXP={knownXP} techniqueXPUnknown={unknownCount > 0}
+            prereqSummary={prereqSummary}
           />
           <div style={{ height:24 }} />
 

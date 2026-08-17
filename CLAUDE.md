@@ -15,6 +15,14 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   shared helpers (`withGlossary`, `GlossaryTerm`, the header nav) are
   duplicated by hand across them and kept in sync manually — there's no
   build step to share code through.
+- `index.html`'s tab is deep-linkable via a `?tab=<build|browse|items|
+  sheet|notes>` query param, read once by a lazy `useState` initializer
+  (`initialViewFromUrl`/`VALID_VIEWS`) — deliberately the query string,
+  not the URL hash, since the hash is already reserved for share-link
+  `#build=<encoded>` character data. `rulebook.html`/`glossary.html`'s
+  header nav links point at `index.html?tab=...` so "back to the
+  Builder/Techniques/Items/..." from another page lands on the right
+  tab instead of always defaulting to the Character Sheet.
 - Game content lives in `scripts/*.csv` (plus `scripts/rulebook.md` and
   `scripts/glossary.md` for hand-written prose) and is compiled to
   `data/*.json` by `scripts/convert.py`. **Never hand-edit `data/*.json`**
@@ -144,6 +152,21 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   already follows. When adding a new technique, fill in `Prereq Check`
   whenever the Prereqs text is expressible in the syntax; don't leave it
   blank just because it's extra work.
+- The Builder tab has a prereq summary panel (between the XP tracker and
+  the Stats & Skills grid, `StatsPanel`'s `prereqSummary` prop) that
+  rolls up every technique currently in the build's `Prereq Check`
+  clauses into one deduplicated list — two clauses naming the same
+  Skill/Stat/OR-group collapse to a single entry at the higher
+  threshold, since meeting the higher one always satisfies the lower.
+  `summarizeBuildPrereqs` (`index.html`) does the merge; `App()` memoes
+  it and passes it down, following the same "computed value lives in
+  `App()`, component just renders what it's given" split as `knownXP`/
+  `unknownCount`. It reuses `configs[uid].level` to resolve a
+  level-scaling threshold per build-instance (the same lookup
+  `needsLevelPicker` already gates elsewhere) rather than adding new
+  tracking, and only the Builder's `<StatsPanel>` call site gets the
+  prop — the read-only Character Sheet's does not, since "what does my
+  build still need" is a build-time concern, not a reference one.
 - A technique that makes you choose something when you learn it
   (Artisanal Training's School, Soulblade's weapon type) uses the same
   per-copy `notes[uid]` a plain free-text note would, just with a

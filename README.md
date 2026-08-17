@@ -185,6 +185,14 @@ the full commit-by-commit detail behind any of these.
   a real pick now instead of pattern-matching whatever was typed into
   the box. Temper Soulblade's "choose a Masterwork power (GM approval)"
   is still free text — too open-ended for a fixed dropdown.
+- **Builder prereq summary panel**: a new box between the XP tracker and
+  the Stats & Skills grid lists every Skill/Stat/Technique your current
+  build's techniques require, collapsed to the highest threshold when
+  more than one asks for the same thing (Might 2 and Might 3 both
+  needed shows as just "Might 3"), each with the same red/green
+  "✓ Met"/"✗ Not met" badge as the per-technique Prereq Check line —
+  built on the same `Prereq Check` data, just rolled up across the
+  whole build instead of one technique at a time.
 
 ### 2026-08-11 — Crafting materials framework
 
