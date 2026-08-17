@@ -218,7 +218,12 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   elsewhere in the file — there's no separate order field to keep in
   sync. `duplicateCharacter`/`deleteCharacter` both take an explicit id
   (not just "the active one") so the overlay can act on any row, not
-  only whichever character happens to be open.
+  only whichever character happens to be open. Backup/Restore-all (and
+  their localStorage-only warning note) live in this overlay too, below
+  a divider under the character list — they act on every character in
+  the browser at once, not the one open on the Builder tab, so they
+  belong with the other whole-browser actions instead of competing for
+  space with the single-character Export/Import buttons there.
 - Comment style throughout the codebase leans on explaining *why*, not
   restating *what* the code does — a hidden constraint, a workaround, a
   non-obvious tradeoff. Match that when adding code; don't pad with

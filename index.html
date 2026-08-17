@@ -4494,7 +4494,10 @@ function QRCodeOverlay({ url, onClose }) {
 
 // The header's "Manage Characters" overlay — replaces the old plain
 // dropdown + New/Duplicate/Delete buttons with one list covering
-// switch/duplicate/delete/reorder for every character slot at once.
+// switch/duplicate/delete/reorder for every character slot at once,
+// plus the Backup/Restore-all buttons and their localStorage note
+// (moved here from the Builder tab — a whole-browser action, not
+// something the currently-open character needs front and center).
 // `characters` is already the full [{id,name}] registry from App(), in
 // display order — dragging just reorders that same array (see
 // moveCharacter), so there's no separate order to keep in sync. Same
@@ -4502,7 +4505,7 @@ function QRCodeOverlay({ url, onClose }) {
 // modals in this app look and behave the same way.
 function CharacterManagerOverlay({
   characters, activeId, onSwitch, onDuplicate, onDelete, onNew, onReorder, onClose,
-  dragId, setDragId,
+  dragId, setDragId, onExportAll, onImportAll,
 }) {
   useEffect(() => {
     const onKey = e => { if (e.key === "Escape") onClose(); };
@@ -4510,12 +4513,15 @@ function CharacterManagerOverlay({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  const importAllRef = useRef();
+
   const rowBtn = danger => ({
     padding: "5px 10px", fontSize: 13, fontWeight: 500, borderRadius: 6,
     background: "transparent",
     color:  danger ? "#c0392b" : TEXT.muted,
     border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
     cursor: "pointer", whiteSpace: "nowrap",
+    display: "flex", alignItems: "center", gap: 5,
   });
 
   return (
@@ -4549,7 +4555,7 @@ function CharacterManagerOverlay({
           </button>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 6, overflowY: "auto" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6, overflowY: "auto", minHeight: 0 }}>
           {characters.map(c => (
             <div
               key={c.id}
@@ -4602,6 +4608,26 @@ function CharacterManagerOverlay({
           >
             <i className="ti ti-plus" aria-hidden="true" /> New Character
           </button>
+        </div>
+
+        {/* All-characters backup — everything lives in this browser's
+            localStorage only, so clearing browser data or switching
+            devices loses every character with no way back unless it's
+            backed up like this first. Separate from Export/Import build
+            on the Builder tab, which is just the one active character. */}
+        <div style={{ marginTop: 14, paddingTop: 14, borderTop: "0.5px solid #2d3555", flexShrink: 0 }}>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            <button onClick={onExportAll} style={rowBtn(false)}>
+              <i className="ti ti-download" aria-hidden="true" /> Backup all characters
+            </button>
+            <button onClick={() => importAllRef.current.click()} style={rowBtn(false)}>
+              <i className="ti ti-upload" aria-hidden="true" /> Restore all characters
+            </button>
+            <input ref={importAllRef} type="file" accept=".json" onChange={onImportAll} style={{ display: "none" }} />
+          </div>
+          <div style={{ fontSize: 12, color: TEXT.faint, marginTop: 8 }}>
+            Every character is stored only in this browser — back them all up to a file before clearing browser data or switching devices. Restoring adds each one as a new character rather than overwriting anything.
+          </div>
         </div>
       </div>
     </div>
@@ -4717,7 +4743,6 @@ function App() {
   // is session state, not part of the build proper.
   const [currentHealth, setCurrentHealth] = useState(initialCharacter.data.currentHealth);
   const importRef = useRef();
-  const importAllRef = useRef();
 
   // Loads one character's data into all of the state above — used by
   // switchCharacter (an existing slot) and addCharacterSlot (a brand
@@ -6249,6 +6274,8 @@ function App() {
               onClose={() => setShowCharManager(false)}
               dragId={charDragId}
               setDragId={setCharDragId}
+              onExportAll={doExportAll}
+              onImportAll={doImportAll}
             />
           )}
         </div>
@@ -6450,83 +6477,72 @@ function App() {
       {view === "build" && (
         <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
 
-          {/* Character name */}
-          <div style={{ marginBottom:14 }}>
-            <div style={{
-              fontSize: 13, color: TEXT.faint, marginBottom: 6,
-              textTransform: "uppercase", letterSpacing: "0.07em",
-            }}>
-              Character name
-            </div>
-            <input
-              type="text"
-              placeholder="Enter a name…"
-              value={charName}
-              onChange={e => setCharName(e.target.value)}
-              style={{ width:"100%", maxWidth:360, fontFamily:"'MedievalSharp', Georgia, serif", fontSize:17 }}
-            />
-          </div>
+          {/* Name/Concept on the left, the whole-build action buttons in a
+              small grid on the right — wraps below the fields on narrow
+              screens (flex-wrap, no separate mobile layout to maintain). */}
+          <div style={{ display:"flex", gap:24, flexWrap:"wrap", alignItems:"flex-start", marginBottom:24 }}>
+            <div style={{ flex:"1 1 280px" }}>
+              {/* Character name */}
+              <div style={{ marginBottom:14 }}>
+                <div style={{
+                  fontSize: 13, color: TEXT.faint, marginBottom: 6,
+                  textTransform: "uppercase", letterSpacing: "0.07em",
+                }}>
+                  Character name
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter a name…"
+                  value={charName}
+                  onChange={e => setCharName(e.target.value)}
+                  style={{ width:"100%", maxWidth:360, fontFamily:"'MedievalSharp', Georgia, serif", fontSize:17 }}
+                />
+              </div>
 
-          {/* Character concept — a short line shown in smaller text under
-              the name, on this tab and on the Character Sheet */}
-          <div style={{ marginBottom:14 }}>
-            <div style={{ fontSize: 12, color: TEXT.faint, marginBottom: 5 }}>
-              Concept
+              {/* Character concept — a short line shown in smaller text under
+                  the name, on this tab and on the Character Sheet */}
+              <div>
+                <div style={{ fontSize: 12, color: TEXT.faint, marginBottom: 5 }}>
+                  Concept
+                </div>
+                <input
+                  type="text"
+                  placeholder="A one-line concept — “disgraced knight turned bartender”…"
+                  value={charConcept}
+                  onChange={e => setCharConcept(e.target.value)}
+                  style={{ width:"100%", maxWidth:360, fontSize:13 }}
+                />
+              </div>
             </div>
-            <input
-              type="text"
-              placeholder="A one-line concept — “disgraced knight turned bartender”…"
-              value={charConcept}
-              onChange={e => setCharConcept(e.target.value)}
-              style={{ width:"100%", maxWidth:360, fontSize:13 }}
-            />
-          </div>
 
-          {/* Whole-build actions */}
-          <div style={{ display:"flex", gap:8, marginBottom:24, flexWrap:"wrap", alignItems:"center" }}>
-            <button onClick={doExport} style={actionBtn()}>
-              <i className="ti ti-download" aria-hidden="true" /> Export build
-            </button>
-            <button onClick={() => importRef.current.click()} style={actionBtn()}>
-              <i className="ti ti-upload" aria-hidden="true" /> Import build
-            </button>
-            <input ref={importRef} type="file" accept=".json" onChange={doImport} style={{ display:"none" }} />
-            <button onClick={doShare} style={actionBtn()}>
-              <i className="ti ti-link" aria-hidden="true" /> Copy share link
-            </button>
-            <button onClick={() => setShowQR(true)} style={actionBtn()}>
-              <i className="ti ti-qrcode" aria-hidden="true" /> Show QR code
-            </button>
-            {shareMsg && (
-              <span style={{ fontSize:14, color:"#d4a843" }}>{shareMsg}</span>
-            )}
+            <div style={{ marginLeft:"auto", flexShrink:0 }}>
+              <div style={{ display:"grid", gridTemplateColumns:"repeat(2, auto)", gap:8 }}>
+                <button onClick={doExport} style={actionBtn()}>
+                  <i className="ti ti-download" aria-hidden="true" /> Export build
+                </button>
+                <button onClick={() => importRef.current.click()} style={actionBtn()}>
+                  <i className="ti ti-upload" aria-hidden="true" /> Import build
+                </button>
+                <input ref={importRef} type="file" accept=".json" onChange={doImport} style={{ display:"none" }} />
+                <button onClick={doShare} style={actionBtn()}>
+                  <i className="ti ti-link" aria-hidden="true" /> Copy share link
+                </button>
+                <button onClick={() => setShowQR(true)} style={actionBtn()}>
+                  <i className="ti ti-qrcode" aria-hidden="true" /> Show QR code
+                </button>
+              </div>
+              {shareMsg && (
+                <div style={{ fontSize:14, color:"#d4a843", marginTop:8, textAlign:"right" }}>{shareMsg}</div>
+              )}
+            </div>
           </div>
           {showQR && <QRCodeOverlay url={buildShareUrl()} onClose={() => setShowQR(false)} />}
 
-          {/* All-characters backup — everything lives in this browser's
-              localStorage only, so clearing browser data or switching
-              devices loses every character with no way back unless it's
-              backed up like this first. Separate from Export/Import
-              build above, which is just the one active character. */}
-          <div style={{ marginBottom:24 }}>
-            <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
-              All characters
-            </div>
-            <div style={{ display:"flex", gap:8, flexWrap:"wrap", alignItems:"center" }}>
-              <button onClick={doExportAll} style={actionBtn()}>
-                <i className="ti ti-download" aria-hidden="true" /> Backup all characters
-              </button>
-              <button onClick={() => importAllRef.current.click()} style={actionBtn()}>
-                <i className="ti ti-upload" aria-hidden="true" /> Restore all characters
-              </button>
-              <input ref={importAllRef} type="file" accept=".json" onChange={doImportAll} style={{ display:"none" }} />
-            </div>
-            <div style={{ fontSize:12, color:TEXT.faint, marginTop:6 }}>
-              Every character is stored only in this browser — back them all up to a file before clearing browser data or switching devices. Restoring adds each one as a new character rather than overwriting anything.
-            </div>
-          </div>
-
-          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+          {/* Bolder/brighter than the other section headers below on
+              purpose — this is the one section that's collapsed by
+              default, so its header is all there is to notice unless
+              you already know to look for it. */}
+          <div style={{ fontSize:15, fontWeight:700, color:TEXT.body, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Sources
           </div>
           <SourcesSection

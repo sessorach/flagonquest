@@ -41,6 +41,14 @@ the full commit-by-commit detail behind any of these.
   query string also disappears from the address bar right after it
   lands you on the right tab, instead of sitting there — stale — once
   you switch to a different one.
+- **Builder tab tidy-up**: Export/Import/Share/QR code are now a small
+  button grid to the right of the Character name/Concept fields
+  (wrapping below them on narrow screens) instead of a full-width row
+  underneath. Backup/Restore all characters, and the localStorage
+  warning note, moved into the Manage Characters overlay — they act on
+  every character in the browser, not just the one open here. The
+  Sources header is bolder and brighter than its neighbors now, since
+  it's the one section that starts collapsed.
 
 ### 2026-08-14 — Rulebook cleanup, material pricing
 
