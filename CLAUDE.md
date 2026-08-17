@@ -14,7 +14,10 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   browser, no build step, no shared imports between the three files. Small
   shared helpers (`withGlossary`, `GlossaryTerm`, the header nav) are
   duplicated by hand across them and kept in sync manually — there's no
-  build step to share code through.
+  build step to share code through. `index.html` also pulls in
+  `qrcode-generator` from CDN (the "Show QR code" share overlay) — same
+  pattern as React/ReactDOM/Babel, a plain `<script>` tag exposing a
+  global, no bundler involved.
 - `index.html`'s tab is deep-linkable via a `?tab=<build|browse|items|
   sheet|notes>` query param, read once by a lazy `useState` initializer
   (`initialViewFromUrl`/`VALID_VIEWS`) — deliberately the query string,
@@ -227,6 +230,20 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   three-plus times each, one per component that needed them, some
   acknowledged in a comment ("same look as X's chips") and some not;
   reach for the shared one before writing a new local copy.
+- Share links (`encBuild`/`decBuild`) encode as a positional array —
+  `[ids, name, stats, skills]` with technique IDs as bare integers and
+  Stats/Skills as fixed-order arrays keyed off `STATS`/`ALL_STAT_SKILLS`
+  — instead of a `{ids, name, stats, skills}` object with quoted keys,
+  since the quoted keys were most of a link's length, not the actual
+  data. `decBuild` still accepts the old object shape too (checks
+  `Array.isArray`), so links generated before this existed keep working
+  — encode compact, decode both. `buildShareUrl()` is the one place that
+  turns the current build into a URL; both "Copy share link" and the
+  "Show QR code" overlay call it, so they can never encode two different
+  things. The QR overlay itself (`qrModuleGrid` + `QRCodeOverlay`) draws
+  the code as plain SVG `<rect>`s from the module grid rather than a
+  canvas/image, so it's just more React output — themable, no extra
+  asset-loading step, no library dependency beyond the tiny CDN encoder.
 
 ## Verifying UI changes before committing
 

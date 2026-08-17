@@ -20,6 +20,12 @@ the full commit-by-commit detail behind any of these.
   during normal use — that only ever served refresh persistence, which
   character slots/localStorage already handle. "Copy share link" still
   builds one on demand.
+- Share links are now much shorter (a typical build's link is roughly a
+  third of its old length) — same data, just packed more efficiently
+  instead of as a quoted-key JSON object. Older links still open fine.
+- Added a **"Show QR code"** button next to Copy share link — pops up
+  the current build's share link as a scannable code, so someone else
+  at the table can open it on their phone without typing a URL.
 
 ### 2026-08-14 — Rulebook cleanup, material pricing
 

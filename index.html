@@ -22,6 +22,12 @@
        in this file without a build step. Fine for a small group tool. -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+  <!-- qrcode-generator: tiny, dependency-free QR encoder exposing a global
+       `qrcode()` factory — used to render the "Show QR code" overlay's
+       module grid ourselves (see qrModuleGrid/QRCodeOverlay below) rather
+       than pulling in a full canvas/image-rendering QR library. -->
+  <script src="https://unpkg.com/qrcode-generator@1.4.4/qrcode.js"></script>
+
   <style>
     /* ── Reset & base ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -356,14 +362,63 @@ function techXP(t) {
   return t.level_min * 3;
 }
 
-// Encode/decode build state for shareable URL hash.
-// Only the technique ID list + character name — see the file-header
-// note on why notes/Feature choices are left out of share links.
+// Encode/decode build state for shareable URL hash. Only the technique
+// ID list + character name — see the file-header note on why notes/
+// Feature choices are left out of share links.
+//
+// Encoded as a positional array, not an {ids,name,stats,skills} object:
+// technique IDs are always "T" + digits, so they pack as plain integers,
+// and Stats/Skills pack as fixed-order arrays (STATS/ALL_STAT_SKILLS)
+// instead of a full keyed object — quoted object keys were most of a
+// share link's length, not the actual data. decBuild still recognizes
+// the old object shape so share links generated before this change keep
+// working.
 function encBuild(payload) {
-  return btoa(JSON.stringify(payload));
+  const ids    = (payload.ids || []).map(id => parseInt(id.slice(1), 10));
+  const stats  = STATS.map(s => payload.stats?.[s] || 0);
+  const skills = ALL_STAT_SKILLS.map(s => payload.skills?.[s] || 0);
+  return btoa(JSON.stringify([ids, payload.name || "", stats, skills]));
 }
 function decBuild(str) {
-  try { return JSON.parse(atob(str)); } catch { return null; }
+  try {
+    const parsed = JSON.parse(atob(str));
+    if (!Array.isArray(parsed)) return parsed; // pre-compaction object format
+    const [ids, name, stats, skills] = parsed;
+    return {
+      ids: (ids || []).map(n => `T${String(n).padStart(3, "0")}`),
+      name,
+      stats:  Object.fromEntries(STATS.map((s, i) => [s, stats?.[i] || 0])),
+      skills: Object.fromEntries(ALL_STAT_SKILLS.map((s, i) => [s, skills?.[i] || 0])),
+    };
+  } catch { return null; }
+}
+
+// Builds a QR code's module grid for `text` using the qrcode-generator
+// library (loaded from CDN as the global `qrcode`, see <head>) — for the
+// "Show QR code" share overlay. That library needs a fixed QR version
+// ("type", 1-40) picked upfront rather than auto-sizing to the data, and
+// throws when the data doesn't fit, so this just tries increasingly
+// larger types until one succeeds. Returns a 2D array of booleans (dark/
+// light per module) for the caller to render however it likes.
+function qrModuleGrid(text) {
+  for (let type = 1; type <= 40; type++) {
+    try {
+      const qr = qrcode(type, "M");
+      qr.addData(text);
+      qr.make();
+      const count = qr.getModuleCount();
+      const modules = [];
+      for (let r = 0; r < count; r++) {
+        const row = [];
+        for (let c = 0; c < count; c++) row.push(qr.isDark(r, c));
+        modules.push(row);
+      }
+      return modules;
+    } catch {
+      // "code length overflow" at this type — try the next one up.
+    }
+  }
+  return null; // shouldn't happen at share-link lengths; caller no-ops on null
 }
 
 // Split a comma-separated string into a trimmed array
@@ -4377,6 +4432,64 @@ function BuildPanel({
 }
 
 
+// Full-screen "scan this to open the build on your phone" overlay for
+// the Builder's "Show QR code" button — lets the table pass a build
+// around without anyone typing a URL. Renders the QR as plain SVG rects
+// from qrModuleGrid's module grid rather than a canvas/image, so it's
+// just React output like everything else here (themable, no extra
+// image-loading step). Dismisses on backdrop click, the × button, or Esc.
+function QRCodeOverlay({ url, onClose }) {
+  const modules = useMemo(() => qrModuleGrid(url), [url]);
+  useEffect(() => {
+    const onKey = e => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  if (!modules) return null;
+  const count = modules.length;
+  const quiet = 2; // quiet-zone modules around the edge — scanners expect one
+  const size = count + quiet * 2;
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 1000, padding: 20,
+        background: "rgba(10,14,24,0.85)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}
+    >
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 12,
+          padding: 20, width: "min(92vw, 340px)", textAlign: "center",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+          <span style={{ fontSize: 15, fontWeight: 600 }}>Scan to open this build</span>
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            style={{
+              background: "transparent", border: "none", color: TEXT.faint,
+              fontSize: 22, lineHeight: 1, cursor: "pointer", padding: 4,
+            }}
+          >
+            ×
+          </button>
+        </div>
+        <svg viewBox={`0 0 ${size} ${size}`} style={{ width: "100%", height: "auto", background: "#fff", borderRadius: 6, display: "block" }}>
+          {modules.map((row, r) => row.map((dark, c) => dark && (
+            <rect key={`${r}-${c}`} x={c + quiet} y={r + quiet} width={1} height={1} fill="#0a0e18" />
+          )))}
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 // A same-page link (rulebook.html/glossary.html's header nav) can jump
 // straight to a specific tab via index.html?tab=<key> — one of the same
 // five keys `view` itself uses. Anything else (missing, misspelled,
@@ -4442,6 +4555,7 @@ function App() {
   const [charName,   setCharName]   = useState(initialCharacter.data.charName);
   const [charConcept, setCharConcept] = useState(initialCharacter.data.charConcept);
   const [shareMsg,   setShareMsg]   = useState("");
+  const [showQR,     setShowQR]     = useState(false); // "Show QR code" overlay, Builder tab only
   // Per-copy free-text notes, keyed by build-entry uid.
   const [notes, setNotes] = useState(initialCharacter.data.notes);
   // Per-copy Feature-builder choices ({ level, picks: { featureId: count } }),
@@ -5728,10 +5842,14 @@ function App() {
   // ── Generate a shareable URL ───────────────────────────────────
   // Encodes the build's technique IDs, character name, and Stats &
   // Skills into the URL hash — notes/Feature choices are left out to
-  // keep the link short.
-  function doShare() {
+  // keep the link short. Shared by "Copy share link" and the QR overlay
+  // so both always encode the exact same thing.
+  function buildShareUrl() {
     const encoded = encBuild({ ids: build.map(e => e.id), name: charName, stats: statPoints, skills: skillPoints });
-    const url = window.location.href.split("#")[0] + "#build=" + encoded;
+    return window.location.href.split("#")[0] + "#build=" + encoded;
+  }
+  function doShare() {
+    const url = buildShareUrl();
     // Put the link in the address bar first — this always succeeds, so the
     // fallback message below is guaranteed true even if clipboard access
     // is blocked (common on non-secure origins or restrictive browsers).
@@ -6253,6 +6371,9 @@ function App() {
             <button onClick={doShare} style={actionBtn()}>
               <i className="ti ti-link" aria-hidden="true" /> Copy share link
             </button>
+            <button onClick={() => setShowQR(true)} style={actionBtn()}>
+              <i className="ti ti-qrcode" aria-hidden="true" /> Show QR code
+            </button>
             {build.length > 0 && (
               <button onClick={clearBuild} style={actionBtn(true)}>Clear build</button>
             )}
@@ -6260,6 +6381,7 @@ function App() {
               <span style={{ fontSize:14, color:"#d4a843" }}>{shareMsg}</span>
             )}
           </div>
+          {showQR && <QRCodeOverlay url={buildShareUrl()} onClose={() => setShowQR(false)} />}
 
           {/* All-characters backup — everything lives in this browser's
               localStorage only, so clearing browser data or switching
