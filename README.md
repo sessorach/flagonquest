@@ -146,6 +146,18 @@ the full commit-by-commit detail behind any of these.
     the chapter's own name — it's "Building a Character" now, matching
     how every other chapter's opening section has its own distinct
     title.
+- **Automatic prereq checking**: techniques with a machine-checkable
+  `Prereq Check` (Skill/Stat-and-threshold or known-Technique clauses,
+  matching most of what "Prereqs (Full)" already says in prose) now show
+  a red/green "✓ Met"/"✗ Not met" badge next to their Prereqs line while
+  browsing, evaluated against the current build — 140 of 143 techniques
+  got one; the 3 that didn't have Prereqs text the syntax genuinely
+  can't express (a choice, "None", or a School-conditional OR) and just
+  show the plain text with no badge, same as before. A technique whose
+  prereq scales with its own Level (`[Level]`, `[Level]+1`) and can be
+  learned across a range of Levels doesn't get a badge either, since
+  which Level you'd build it at isn't chosen yet while just browsing —
+  same "don't guess" spirit as the crafting School-matching.
 
 ### 2026-08-11 — Crafting materials framework
 

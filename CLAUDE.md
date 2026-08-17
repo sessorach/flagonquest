@@ -107,6 +107,25 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   Requirement checks. `skillTotalValue(statPoints, skillPoints, skill)` is
   the one formula for this. The raw skill *value* (skill points alone) is
   used only for technique prerequisites.
+- Techniques can carry a machine-checkable `Prereq Check` column (see the
+  PREREQ CHECK doc in `convert.py`) alongside the free-text `Prereqs
+  (Full)` — a small mini-syntax of Skill/Stat-and-threshold and
+  Technique-name clauses, ANDed together. `meetsPrereqCheck` in
+  `index.html` evaluates it against the current build and renders a
+  red/green "✓ Met"/"✗ Not met" badge next to the Prereqs line, same
+  colors as the Might Requirement badge. Not every technique has one —
+  `Craft 2 (if Smithing/Carving/...)`-style School-conditional text and
+  "(Based on option chosen)" genuinely can't be expressed in the syntax,
+  so those stay blank and just show the plain text with no badge, same
+  as before this existed. A level-scaling threshold (`[Level]`,
+  `[Level]+1`) only evaluates when the technique itself has one fixed
+  Level — for a Buildable technique with a Level range, which Level
+  you'd build it at isn't chosen yet while just browsing, so
+  `meetsPrereqCheck` returns `null` (no badge) rather than guessing —
+  same "flag readiness, don't guess" rule the crafting School-matching
+  already follows. When adding a new technique, fill in `Prereq Check`
+  whenever the Prereqs text is expressible in the syntax; don't leave it
+  blank just because it's extra work.
 - Pass/fail badges are red `#e0645f` (unmet/bad) and green `#6fae5a`
   (met/good) — established by the Might Requirement badge, reused for
   Wounded. Keep using these two colors for any future met/unmet indicator

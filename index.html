@@ -510,6 +510,55 @@ function skillTotalValue(statPoints, skillPoints, skill) {
   return (statPoints[SKILL_STAT[skill]] || 0) + (skillPoints[skill] || 0);
 }
 
+// Prereqs check raw Skill/Stat *points*, never Skill Total — the one
+// place in the game where that distinction matters (see the Learning
+// Techniques rule). A clause's "skill" name can be either.
+function pointsFor(name, statPoints, skillPoints) {
+  return STATS.includes(name) ? (statPoints[name] || 0) : (skillPoints[name] || 0);
+}
+
+// A level-scaling threshold ([Level]/[Level]+N) only has one well-defined
+// value when the technique itself has a single fixed Level — for a
+// Buildable technique with a Level range, "do you meet the prereq"
+// depends on which Level you'd build it at, which isn't chosen yet while
+// just browsing. Returns null in that case rather than guessing, same
+// "flag readiness, don't guess" spirit as the crafting School-matching.
+function resolvePrereqThreshold(threshold, fixedLevel) {
+  if (threshold.base != null) return threshold.base;
+  if (fixedLevel == null) return null;
+  return fixedLevel + threshold.level_offset;
+}
+
+// Whether the character's current Stats/Skills/known Techniques satisfy
+// one parsed Prereq Check clause (see PREREQ CHECK in convert.py for the
+// clause shapes). Returns null when the clause can't be evaluated yet
+// (an ambiguous level-scaling threshold), true/false otherwise.
+function meetsPrereqClause(clause, statPoints, skillPoints, knownTechNames, fixedLevel) {
+  if (clause.type === "technique") return knownTechNames.has(clause.name);
+  if (clause.type === "any_skill") {
+    const threshold = resolvePrereqThreshold(clause.threshold, fixedLevel);
+    if (threshold == null) return null;
+    return ALL_STAT_SKILLS.some(skill => (skillPoints[skill] || 0) >= threshold);
+  }
+  const threshold = resolvePrereqThreshold(clause.threshold, fixedLevel);
+  if (threshold == null) return null;
+  return clause.options.some(name => pointsFor(name, statPoints, skillPoints) >= threshold);
+}
+
+// Whether the character's current build meets ALL of a technique's
+// Prereq Check clauses (AND). Returns null when there's nothing
+// checkable — no structured Prereq Check for this technique at all, or
+// any one clause coming back ambiguous — so the caller can fall back to
+// just showing the plain "Prereqs (Full)" text with no badge, same as a
+// technique that never had one.
+function meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames) {
+  if (!tech.prereq_check || tech.prereq_check.length === 0) return null;
+  const fixedLevel = tech.level_min === tech.level_max ? tech.level_min : null;
+  const results = tech.prereq_check.map(c => meetsPrereqClause(c, statPoints, skillPoints, knownTechNames, fixedLevel));
+  if (results.some(r => r == null)) return null;
+  return results.every(Boolean);
+}
+
 // Resolves one "[... Skill Total]" bracket's inner text (with the trailing
 // "Skill Total" already stripped by the caller) to a number, for the
 // modifiers actually used in the data: "half your X", "twice X", and
@@ -1134,9 +1183,15 @@ function TechCard({
   // Sheet, so it can resolve "[X Skill Total]" brackets in gameplay text
   // to the character's actual numbers. See withSkillTotals.
   skillTotals = null,
+  // Set only when browsing (not readOnly — Prereqs are hidden on the
+  // read-only Character Sheet anyway) — the character's current Stats/
+  // Skills and a Set of currently-known technique names, for the
+  // Prereqs-met badge. See meetsPrereqCheck.
+  statPoints = {}, skillPoints = {}, knownTechNames = null,
 }) {
   const tags   = splitCSV(tech.tags);
   const skills = splitCSV(tech.relevant_skills);
+  const prereqMet = knownTechNames ? meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames) : null;
 
   // "Encounter" is important enough to live in the corner with the level
   // badge — everything else stays in the tags line.
@@ -1410,6 +1465,11 @@ function TechCard({
         <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4 }}>
           <span style={{ fontWeight:500 }}>Prereqs: </span>
           {tech.prereqs}
+          {prereqMet != null && (
+            <span style={{ marginLeft:8, fontWeight:600, color: prereqMet ? "#6fae5a" : "#e0645f" }}>
+              {prereqMet ? "✓ Met" : "✗ Not met"}
+            </span>
+          )}
         </div>
       )}
 
@@ -5658,6 +5718,7 @@ function App() {
         onExpendedChange={setExpendedFor}
         glossary={glossary}
         readOnly={readOnly}
+        {...(readOnly ? {} : { statPoints, skillPoints, knownTechNames })}
       />
     );
   };
@@ -5676,6 +5737,10 @@ function App() {
     });
     return list;
   }, [build, techniques]);
+
+  // Names of every technique currently known — Prereq Check's
+  // "technique" clauses reference a technique by name, not id.
+  const knownTechNames = useMemo(() => new Set(knownTechs.map(t => t.name)), [knownTechs]);
 
   // What the read-only Character Sheet renders: one card per *distinct
   // build*, not per technique — but only for genuinely Feature-built

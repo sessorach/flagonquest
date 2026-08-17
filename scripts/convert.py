@@ -15,7 +15,9 @@ display) since prose like "Craft 2 (if Smithing/Carving/...)" can't be
 checked by a machine at all.
 
   Clauses are comma-separated — ALL of them must be true (AND):
-    Skill:N                    e.g. Resilience:3
+    Skill:N                    e.g. Resilience:3 — also takes a Stat
+                                name (Body, Mind, etc.), checked against
+                                that Stat's own points the same way
     (Skill1|Skill2|...):N      an OR of skills, e.g. (Composure|Meditation):2
     AnySkill:N                 any one skill at N — for "(Any Skill) 5"
     Technique:Exact Name       the character must know that technique
@@ -32,6 +34,11 @@ checked by a machine at all.
     "Theurgy [Level] + 1"                       → Theurgy:[Level]+1
     "Animal Companion"                          → Technique:Animal Companion
     "Solemn Pact, (Resilience or Presence) 3"   → Technique:Solemn Pact,(Resilience|Presence):3
+    "Body 2"                                    → Body:2
+
+  Same as "Prereqs (Full)" itself, this checks raw Skill/Stat *points*,
+  never Skill Total — matching the rule that prereqs are the one place
+  in the game where you care about the points themselves.
 
   Leave the cell blank for anything that can't be mechanically checked
   (vague text, a choice the sheet doesn't track, "None", etc.) — the
@@ -424,6 +431,11 @@ KNOWN_SKILLS = {
     "Meditation", "Performance", "Rapport", "Sorcery", "Theurgy",
 }
 
+# Must stay in sync with STATS in index.html. A Prereq Check clause's
+# skill name can be one of these instead — checked against that Stat's
+# own points the same way a Skill clause checks Skill points.
+KNOWN_STATS = {"Agility", "Body", "Cunning", "Mind", "Essence"}
+
 def clean(val):
     """Normalize cell values: strip whitespace, convert TRUE/FALSE, integers."""
     if val is None:
@@ -517,9 +529,9 @@ def parse_prereq_check(raw, technique_names, errors, context):
             skills = [m2.group(1).strip()]
             threshold_text = m2.group(2)
 
-        bad_skills = [s for s in skills if s not in KNOWN_SKILLS]
+        bad_skills = [s for s in skills if s not in KNOWN_SKILLS and s not in KNOWN_STATS]
         if bad_skills:
-            errors.append(f"{context}: unknown skill(s) {bad_skills} in {part!r}")
+            errors.append(f"{context}: unknown skill/stat name(s) {bad_skills} in {part!r}")
             continue
 
         threshold = parse_threshold(threshold_text, errors, context)
