@@ -120,19 +120,45 @@ the real source of truth for the Feature-builder's level picker.
   scripts/draft_feature_budget.py will attempt to auto-fill this column
   from the existing Effects text, same idea as draft_prereq_check.py.
 
-BUILDING — techniques.csv can also have an optional "Building" column:
-free text, just like Effects, but specifically for "how you build this"
-instructions ("When you learn this, choose features that apply... Points:
-...") that would otherwise repeat near-verbatim across every Feature-built
-technique's Effects text. It's shown alongside the Feature-builder on the
-Techniques/Builder tabs, but — like Prereqs and Related Skills — left off
-the read-only Character Sheet, which only needs to show what the
-technique actually *does*, not how it was built.
+BUILDER NOTES — techniques.csv can also have an optional "Builder Notes"
+column: free text, just like Effects, but for reference notes about how
+a technique works mechanically rather than what it does — originally
+just "how you build this" instructions for Feature-built techniques
+("When you learn this, choose features that apply... Points: ...") that
+would otherwise repeat near-verbatim across every one's Effects text,
+now also used for a short explainer on any technique whose Effects (or
+Choice Effects — see below) rendering does something non-obvious, like
+Profession/Artisanal Training narrowing down to just the chosen
+option once picked. It's shown alongside the Feature-builder/choice
+picker on the Techniques/Builder tabs, but — like Prereqs and Related
+Skills — left off the read-only Character Sheet, which only needs to
+show what the technique actually *does*, not how it was built or how
+its own card behaves.
 
   scripts/split_building_text.py will draft this column (and a trimmed
   Effects to go with it) by splitting each Feature-built technique's
   Effects text at "When you learn this...", same idea as the other
-  draft scripts.
+  draft scripts. (Predates the column's rename — still refers to it as
+  "Building" internally.)
+
+CHOICE EFFECTS — techniques.csv can also have an optional "Choice
+Effects" column, for a technique whose Free Text picker (see below)
+offers several options that each do something different (Profession's
+ten options each grant a different Good Luck benefit) rather than the
+same effect worded once regardless of pick (Artisanal Training's
+Schools all just say "you're trained in crafting using the chosen
+School" — no Choice Effects needed there). One "Option Name: effect
+text" line per option — the exact same shape those options already
+read as inline in older Effects text, just split into its own column
+instead of one block of prose, so the site can show just the chosen
+option's line instead of the full list once a pick is made (falling
+back to the full list while still browsing/unset — see TechCard in
+index.html). "Option Name" matches the technique's own Free Text
+options (PROFESSIONS, CREATION_SCHOOLS, ...) the same way a Prereq
+Check Choice clause's branch "when" values do. Leave Effects itself as
+just the technique's own intro sentence ("Each time you learn this,
+choose one of the following.") when using this column, rather than
+repeating the full per-option list there too.
 
 BASE ITEM OPTIONS — items.csv can have an optional "Base Item Options"
 column, for Masterwork items only: a comma-separated list of item IDs
@@ -217,7 +243,8 @@ TECHNIQUE_MAP = {
     "Cost":                 "cost",
     "Target":               "target",
     "Effects":              "effects",
-    "Building":             "building",   # how to build it — kept off the read-only sheet, see index.html
+    "Choice Effects":       "choice_effects_raw",    # parsed below, not passed through as-is
+    "Builder Notes":        "builder_notes",   # reference notes on how this card/technique works — kept off the read-only sheet, see index.html
     "Special":              "special",
     "Prereqs (Full)":       "prereqs",
     "Prereq Check":         "prereq_check_raw",     # parsed below, not passed through as-is
@@ -653,6 +680,23 @@ def parse_prereq_check(raw, technique_names, errors, context):
     return clauses
 
 
+def parse_choice_effects(raw, errors, context):
+    """Parses one 'Choice Effects' cell into { option_name: text } — see
+    the CHOICE EFFECTS mini-syntax documented in the file header above
+    TECHNIQUE_MAP. One 'Option Name: effect text' line per option."""
+    result = {}
+    for line in raw.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        m = re.match(r"^([^:]+):\s*(.+)$", line)
+        if not m:
+            errors.append(f"{context}: couldn't parse Choice Effects line {line!r}")
+            continue
+        result[m.group(1).strip()] = m.group(2).strip()
+    return result
+
+
 def parse_feature_budget(raw, level_min, level_max, errors, context):
     """Parses one 'Feature Budget' cell into { level: {points, advanced} } —
     see the mini-syntax documented in the file header above TECHNIQUE_MAP."""
@@ -818,8 +862,15 @@ for csv_file, (json_file, col_map) in TABLES.items():
                 r["feature_budget"] = budget if budget else None
             else:
                 r["feature_budget"] = None
+
+            choice_effects_raw = r.pop("choice_effects_raw", None)
+            if choice_effects_raw:
+                effects_map = parse_choice_effects(choice_effects_raw, errors, context)
+                r["choice_effects"] = effects_map if effects_map else None
+            else:
+                r["choice_effects"] = None
         if errors:
-            print(f"\n⚠ {len(errors)} Prereq Check issue(s) in {csv_file} — these techniques won't get a checkable prereq:")
+            print(f"\n⚠ {len(errors)} Prereq Check/Choice Effects issue(s) in {csv_file}:")
             for e in errors:
                 print(f"   {e}")
             print()

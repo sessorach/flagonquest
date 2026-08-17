@@ -3,9 +3,10 @@
 Conventions and practices for maintaining this site — read this at the
 start of a session to pick the workflow back up without re-deriving it.
 For what the project *is* and what's shipped, see `README.md`. For the
-data-format mini-syntaxes (Prereq Check, Feature Budget, Building text,
-Base Item Options), see the docstring at the top of `scripts/convert.py`
-— that documentation is authoritative and shouldn't be duplicated here.
+data-format mini-syntaxes (Prereq Check, Feature Budget, Builder Notes,
+Choice Effects, Base Item Options), see the docstring at the top of
+`scripts/convert.py` — that documentation is authoritative and
+shouldn't be duplicated here.
 
 ## Architecture
 
@@ -48,7 +49,8 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   and then it tends to fail *silently*, not loudly. (This is exactly how
   Feature Budget broke: `parsePointBudget()`'s fallback regexed the
   "Points: Level 1: 3 basic; ..." sentence out of `Effects`, but that
-  sentence had since moved into the `Building` column — the regex kept
+  sentence had since moved into the `Building` column (since renamed to
+  `Builder Notes` — see Design conventions below) — the regex kept
   matching nothing, `budgetMap` came back `null`, and the Feature-builder
   quietly stopped enforcing point limits at all, for months, with no
   error anywhere.) When adding something that could be derived from
@@ -226,6 +228,33 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   Checker summary panel (`summarizeBuildPrereqs`, which already takes a
   `notes` param) resolves each build entry's choice correctly since it
   iterates per-instance anyway.
+- **Choice Effects**: for a technique whose Free Text options each do
+  something genuinely different (Profession's ten options each grant a
+  distinct Good Luck benefit) rather than the same effect worded once
+  regardless of pick (Artisanal Training's Schools all just say "you're
+  trained in crafting using the chosen School"), an optional `Choice
+  Effects` column holds one "Option Name: effect text" line per option
+  — real structured data (`choice_effects` in the JSON), not a regex
+  slice of the shared Effects prose, per the data-over-prose principle
+  above. TechCard collapses its Effects display down to only the
+  option(s) actually picked once at least one copy has a choice made —
+  every *distinct* pick across every instance (`madeChoices`), not just
+  the first, so a repeatable technique learned twice for two different
+  options (Profession for both Sailor and Apothecary) shows both lines,
+  not only whichever was learned first. Falls back to showing every
+  option (the full unfiltered list) while browsing/unset, same "don't
+  guess" rule as everywhere else this pattern shows up. The Prereqs
+  *line* stays tied to `firstChoice` like the badge next to it always
+  has been (not `madeChoices`) so the text and the badge on that one
+  line never describe two different picks — `formatResolvedChoicePrereq`
+  swaps a vague "(Based on option chosen)" Prereqs text for the concrete
+  resolved one ("Survival 1, Medicine 1, Mixology 1") once a choice is
+  made, built straight from the same Prereq Check data the badge
+  already resolves against rather than a second hand-typed copy of the
+  same facts. Choice Effects (unlike the Prereqs line) still shows on
+  the read-only Character Sheet, since it IS the technique's actual
+  effect, just picked — Prereqs/the badge stay hidden there like they
+  always have, a build-time concern rather than a reference one.
 - **Grants Technique**: a background can auto-grant a technique the
   moment it's selected — `grants_technique` on `backgrounds.json`
   (Creator → Artisanal Training, Professional → Profession) — free of
@@ -341,6 +370,18 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   reuse these three instead of copy-pasting the pattern again — that's
   exactly how QRCodeOverlay and CharacterManagerOverlay ended up with
   byte-identical backdrop/Escape/× code before this got pulled out.
+- The `Building` column (Feature-built techniques' "When you learn
+  this, choose features that apply..." reference text) was renamed to
+  `Builder Notes` and generalized — it's now the place for any short
+  reference note on how a technique's own card behaves mechanically,
+  not just Feature-building instructions (e.g. Profession/Artisanal
+  Training's note that the card narrows down once a choice is picked —
+  see Choice Effects above). Still free text, still shown alongside
+  whatever picker it explains on the Techniques/Builder tabs, still
+  left off the read-only Character Sheet. Use it going forward for
+  this kind of "how this card works" note on any technique whose
+  behavior isn't obvious from Effects text alone, not just Buildable
+  ones — that's the whole point of the more general name.
 
 ## Verifying UI changes before committing
 

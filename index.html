@@ -650,6 +650,32 @@ function meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames, choice 
   return results.every(Boolean);
 }
 
+// A technique whose Prereqs text is just "(Based on option chosen)"
+// (Artisanal Training, Profession) reads as pretty unhelpful once a
+// choice has actually been made — the reader wants to know what THIS
+// pick needs, not that it varies. Builds that concrete text straight
+// from the same Prereq Check data the badge already resolves against
+// (Survival 1, Medicine 1, Mixology 1, say), rather than a second copy
+// of the same facts as hand-typed prose that could drift out of sync.
+// Returns null (falls back to the plain Prereqs text) for anything that
+// isn't a single top-level Choice clause, or when no choice is made yet.
+function formatResolvedChoicePrereq(tech, choice) {
+  if (choice == null || !tech.prereq_check || tech.prereq_check.length !== 1) return null;
+  const clause = tech.prereq_check[0];
+  if (clause.type !== "choice") return null;
+  const branch = clause.branches.find(b => b.when.includes(choice));
+  if (!branch) return null;
+  const fixedLevel = tech.level_min === tech.level_max ? tech.level_min : null;
+  const parts = branch.clauses.map(c => {
+    if (c.type === "technique") return c.name;
+    const threshold = resolvePrereqThreshold(c.threshold, fixedLevel);
+    if (threshold == null) return null;
+    const label = c.type === "any_skill" ? "Any Skill" : c.options.join(" or ");
+    return `${label} ${threshold}`;
+  });
+  return parts.every(p => p != null) ? parts.join(", ") : null;
+}
+
 // Rolls up the Prereq Check clauses of every technique currently in the
 // build into one "what does my build need to keep satisfying" list —
 // the Builder's prereq summary panel. Two clauses that name the same
@@ -1353,6 +1379,12 @@ function TechCard({
   // summary panel, which resolves per copy — see summarizeBuildPrereqs.
   const firstChoice = instances.length > 0 ? notes[instances[0]] : null;
   const prereqMet = knownTechNames ? meetsPrereqCheck(tech, statPoints, skillPoints, knownTechNames, firstChoice) : null;
+  // Choice Effects (below) doesn't have that one-badge ceiling — a
+  // repeatable technique's card can just list every distinct pick's
+  // line, so someone who's learned Profession for both Sailor and
+  // Apothecary sees both benefits, not only whichever was learned
+  // first. Empty when no copy has a choice made yet, same as browsing.
+  const madeChoices = [...new Set(instances.map(uid => notes[uid]).filter(Boolean))];
 
   // A technique's Free Text column is either TRUE (a plain free-text
   // note — Temper Soulblade) or a specific value naming a structured
@@ -1523,14 +1555,42 @@ function TechCard({
         </div>
       )}
 
-      {/* Building — how to build this Feature-based technique ("When you
-          learn this, choose features that apply..."). Reference text for
-          whoever's building it, right above the picker it explains;
-          skipped on the read-only Character Sheet, which only needs to
-          show what the technique actually does, not how it was built. */}
-      {!readOnly && tech.building && (
+      {/* Choice Effects — a technique whose Free Text options each do
+          something different (Profession) rather than the same thing
+          worded once (Artisanal Training's Schools). Once at least one
+          copy has a choice made (see madeChoices above), collapses down
+          to just those option(s)' lines instead of every option in the
+          data — every *distinct* pick across every copy, not only the
+          first, so learning Profession for both Sailor and Apothecary
+          shows both. Still shows the full list while browsing/unset,
+          same as the Prereq badge's "don't guess" rule. Shown on the
+          read-only sheet too (unlike Builder Notes below) since this IS
+          the technique's actual effect, just picked. */}
+      {tech.choice_effects && (
+        <div style={{
+          fontSize: 14, color: TEXT.body, lineHeight: 1.6,
+          whiteSpace: "pre-wrap",
+        }}>
+          {(madeChoices.length > 0
+            ? madeChoices.filter(name => tech.choice_effects[name]).map(name => [name, tech.choice_effects[name]])
+            : Object.entries(tech.choice_effects)
+          ).map(([name, text]) => (
+            <div key={name}>{withSkillTotals(`${name}: ${text}`, glossary, skillTotals)}</div>
+          ))}
+        </div>
+      )}
+
+      {/* Builder Notes — reference notes on how this card/technique works
+          mechanically (originally just "how to build" instructions for
+          Feature-based techniques — "When you learn this, choose
+          features that apply..." — now also covers things like "this
+          card narrows down once you pick a Profession below"). Shown
+          right above whatever picker it explains; skipped on the
+          read-only Character Sheet, which only needs to show what the
+          technique actually does, not how its own card behaves. */}
+      {!readOnly && tech.builder_notes && (
         <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4, fontStyle:"italic" }}>
-          {withGlossary(tech.building, glossary)}
+          {withGlossary(tech.builder_notes, glossary)}
         </div>
       )}
 
@@ -1664,11 +1724,17 @@ function TechCard({
 
       {/* Prerequisites and related skills — skipped on the read-only
           Character Sheet to keep it lean; still shown everywhere you're
-          actually picking/reviewing techniques. */}
+          actually picking/reviewing techniques. Once a choice is made,
+          a vague "(Based on option chosen)" Prereqs text is swapped for
+          the concrete resolved text (e.g. "Survival 1, Medicine 1,
+          Mixology 1") — see formatResolvedChoicePrereq. Tied to the
+          same firstChoice as the badge, not the full madeChoices list
+          above, so the text and the badge never describe two different
+          picks on one line. */}
       {!readOnly && tech.prereqs && (
         <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4 }}>
           <span style={{ fontWeight:500 }}>Prereqs: </span>
-          {tech.prereqs}
+          {formatResolvedChoicePrereq(tech, firstChoice) ?? tech.prereqs}
           {prereqMet != null && (
             <span style={{ marginLeft:8, fontWeight:600, color: prereqMet ? "#6fae5a" : "#e0645f" }}>
               {prereqMet ? "✓ Met" : "✗ Not met"}

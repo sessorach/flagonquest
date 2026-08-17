@@ -1,21 +1,24 @@
 """
-Drafts a "Building" column (and the trimmed Effects text to go with it)
-by splitting each Feature-built technique's Effects text at "When you
+Drafts a "Builder Notes" column (and the trimmed Effects text to go with
+it) by splitting each Feature-built technique's Effects text at "When you
 learn this...", so the "how to build it" instructions stop repeating
 near-verbatim across every Feature-built technique's Effects text and
 showing up in front of players on the Character Sheet. One-time helper —
-not part of the normal convert.py pipeline.
+not part of the normal convert.py pipeline. (Predates the column's
+rename from "Building" to the more general "Builder Notes" — this script
+and its variable/column names still say "Building" throughout.)
 
 Usage: python scripts/split_building_text.py
 
 Reads techniques.csv, looks at every row with Features = TRUE, and skips
-any that already have a "Building" value. For the rest, splits Effects at
-the first "When you learn this" and writes scripts/building_text_draft.csv
-with the trimmed Effects and the split-off Building text, plus a Status
-column: OK, or NEEDS REVIEW (Features is TRUE but Effects doesn't contain
-that phrase — split it by hand). Copy "Effects (trimmed draft)" over your
-existing Effects column and "Building (draft)" into a new Building column,
-skim the NEEDS REVIEW rows, then run convert.py.
+any that already have a "Builder Notes" value. For the rest, splits
+Effects at the first "When you learn this" and writes
+scripts/building_text_draft.csv with the trimmed Effects and the
+split-off Building text, plus a Status column: OK, or NEEDS REVIEW
+(Features is TRUE but Effects doesn't contain that phrase — split it by
+hand). Copy "Effects (trimmed draft)" over your existing Effects column
+and "Building (draft)" into the "Builder Notes" column, skim the NEEDS
+REVIEW rows, then run convert.py.
 """
 
 import csv
@@ -50,7 +53,7 @@ for r in rows:
     if (r.get("Features") or "").strip().upper() != "TRUE":
         counts["NOT BUILDABLE"] += 1
         continue
-    existing = (r.get("Building") or "").strip()
+    existing = (r.get("Builder Notes") or "").strip()
     if existing:
         out_rows.append([r["ID"], r["Name"], r.get("Effects", ""), r.get("Effects", ""), existing, "SKIPPED (already filled in)"])
         counts["SKIPPED (already filled in)"] += 1

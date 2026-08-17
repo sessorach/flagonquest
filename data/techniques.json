@@ -11,7 +11,7 @@
     "cost": null,
     "target": null,
     "effects": "You gain 3 stacks of Protected.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Resilience 2",
     "relevant_skills": "Resilience",
@@ -34,7 +34,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T002",
@@ -48,7 +49,7 @@
     "cost": null,
     "target": null,
     "effects": "When you learn this, choose a specific type of weapon. For 0 AP at any time you can create a weapon of the chosen type, appearing in your hand(s). If the weapon leaves your hands it disappears; if thrown it disappears after striking its target.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Composure or Meditation) 2",
     "relevant_skills": "Composure, Meditation",
@@ -72,7 +73,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T003",
@@ -86,7 +88,7 @@
     "cost": null,
     "target": null,
     "effects": "When you learn this, choose a Masterwork power (GM approval). This Technique's Level equals the chosen Masterwork's Level. When you create a weapon with Soulblade, you may choose one Masterwork power from this Technique that could apply; the weapon is created with it. A power can be 're-purchased' at a higher Level by paying the XP difference.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Composure or Meditation) [this Technique's Level]",
     "relevant_skills": "Composure, Meditation",
@@ -110,7 +112,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T004",
@@ -124,7 +127,7 @@
     "cost": null,
     "target": null,
     "effects": "You may not own luxury items or keep more than 10 Gold. When you donate to a worthy cause, gain 1 XP per 7 Gold donated. Breaking the vow gives Bad Luck on Presence/Persuasion/Rapport flips and prevents donation XP until you atone by donating 30 Gold worth.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Composure 3",
     "relevant_skills": "Composure",
@@ -147,7 +150,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T005",
@@ -161,7 +165,7 @@
     "cost": null,
     "target": null,
     "effects": "You are aware of everything within [Awareness Skill Total] meters as though you could see it (color and facial features are difficult). Does not require an action. Reduced through solid objects but you still sense basic details.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Awareness 3",
     "relevant_skills": "Awareness",
@@ -184,7 +188,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T006",
@@ -198,7 +203,7 @@
     "cost": "X Health (minimum 1)",
     "target": null,
     "effects": "Choose one: (a) Any attack from the Technique deals extra X damage if it hits, or [twice X] if single-target; if damage type is Fire/Frost/Brilliant you may change it to Shadow. (b) If the Technique's Level is [twice X] or lower, you may cast it without expending a use, even if already expended.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Resilience 3",
     "relevant_skills": "Resilience",
@@ -221,7 +226,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T007",
@@ -235,7 +241,7 @@
     "cost": null,
     "target": null,
     "effects": "Your maximum jump distance is doubled in both directions. When falling, you may reduce damage taken by your Athletics Skill Total instead of another stat.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Athletics 3",
     "relevant_skills": "Athletics",
@@ -258,7 +264,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T008",
@@ -272,7 +279,7 @@
     "cost": null,
     "target": null,
     "effects": "You may move at your full Speed while climbing without flips, as long as your hands are free. You may climb across any surface with some texture. While not moving you may hold your position on such a surface with only your feet.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Athletics 3",
     "relevant_skills": "Athletics",
@@ -295,7 +302,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T009",
@@ -309,7 +317,7 @@
     "cost": null,
     "target": null,
     "effects": "When falling, you may reduce damage taken by your Acrobatics Skill Total instead of another stat. At the end of such a fall, you may Shift up to [the fall's height] meters.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Acrobatics 3",
     "relevant_skills": "Acrobatics",
@@ -332,7 +340,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T010",
@@ -346,7 +355,7 @@
     "cost": "1 Health (committed until full rest)",
     "target": null,
     "effects": "You draw a card.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Resilience 2, Composure 2",
     "relevant_skills": "Resilience, Composure",
@@ -378,7 +387,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T011",
@@ -392,7 +402,7 @@
     "cost": null,
     "target": null,
     "effects": "You have Good Luck on Reflex flips. At any time, you may discard a card to adjust your position in turn order by up to [half your Insight Skill Total] places.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Insight 3",
     "relevant_skills": "Insight",
@@ -415,7 +425,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T012",
@@ -429,7 +440,7 @@
     "cost": "Discard a card",
     "target": null,
     "effects": "You heal 1 Shallow Health, or 2 if the discarded card was a Heart.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Resilience or Composure) 3",
     "relevant_skills": "Resilience, Composure",
@@ -453,7 +464,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T013",
@@ -467,7 +479,7 @@
     "cost": null,
     "target": null,
     "effects": "When you learn this, choose a Skill and either attack or non-attack flips (e.g. 'Melee attack flips'). You gain Good Luck twice on the flip. If you break your pact (GM's discretion), you lose benefits until you atone or find a new pact.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Composure or Academics) 3",
     "relevant_skills": "Composure, Academics",
@@ -491,7 +503,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T014",
@@ -505,7 +518,7 @@
     "cost": null,
     "target": null,
     "effects": "Increase your maximum Deep Health by 3.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Resilience or Composure) 3",
     "relevant_skills": "Resilience, Composure",
@@ -529,7 +542,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T015",
@@ -543,7 +557,7 @@
     "cost": null,
     "target": null,
     "effects": "You may swim or move through water at your full Speed. While swimming, you may jump out of water as though it were solid ground. You have Good Luck twice on flips to hold your breath.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Athletics 3",
     "relevant_skills": "Athletics",
@@ -566,7 +580,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T016",
@@ -580,7 +595,7 @@
     "cost": null,
     "target": null,
     "effects": "You gain 1 + [half your Resilience Skill Total] stacks of Protected.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Resilience 4",
     "relevant_skills": "Resilience",
@@ -603,7 +618,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T017",
@@ -617,7 +633,7 @@
     "cost": null,
     "target": null,
     "effects": "After the first time you lose Health each encounter, you gain: Protected thrice; remove up to 2 total stacks of your choice of Bleeding/Crippled/Frightened/Slowed/Taunted/Vulnerable from yourself. Breaking your pact removes these benefits until atonement.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Solemn Pact, (Resilience or Presence) 3",
     "relevant_skills": "Resilience, Presence",
@@ -645,7 +661,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T018",
@@ -659,7 +676,7 @@
     "cost": null,
     "target": "An adjacent humanoid Downed this encounter by you or an ally",
     "effects": "You remove and eat the target's heart (usually killing them instantly if still alive). You gain: sustained as from a full meal; Hasted and Protected thrice each; once this encounter Good Luck on one Athletics/Brawl/Melee/Might/Presence/Resilience flip.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Might 3, Resilience 3",
     "relevant_skills": "Might, Resilience",
@@ -691,7 +708,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T019",
@@ -705,7 +723,7 @@
     "cost": null,
     "target": null,
     "effects": "Increase your maximum Shallow and Deep Health each by 2.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Resilience or Composure) 4",
     "relevant_skills": "Resilience, Composure",
@@ -729,7 +747,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T020",
@@ -743,7 +762,7 @@
     "cost": "Discard a card",
     "target": "Yourself or an adjacent willing creature",
     "effects": "Do each in order: 1. Reduce effects of each Poison as though an hour passed. 2. Remove up to 2 stacks of Bleeding. 3. Target heals 1 Health, or 2 if the discarded card was a Heart.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Composure 3, Presence 3",
     "relevant_skills": "Composure, Presence",
@@ -775,7 +794,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T021",
@@ -789,7 +809,7 @@
     "cost": "Discard a card",
     "target": null,
     "effects": "You are not Downed. Instead you have 1 Shallow and 1 Deep Health remaining.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Resilience, Composure, or Meditation) 5",
     "relevant_skills": "Resilience, Composure, Meditation",
@@ -814,7 +834,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T022",
@@ -828,7 +849,7 @@
     "cost": null,
     "target": null,
     "effects": "At the start of each encounter, you gain 4 Covenant points. When you use an Encounter Technique, you may pay [that Technique's Level] Covenant points to not expend a use of it. Breaking your pact removes these benefits until atonement.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Solemn Perseverance, (Any Skill) 5",
     "relevant_skills": null,
@@ -852,7 +873,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T023",
@@ -866,7 +888,7 @@
     "cost": null,
     "target": null,
     "effects": "Increase your maximum Shallow Health by 5.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Resilience or Composure) 5",
     "relevant_skills": "Resilience, Composure",
@@ -890,7 +912,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T024",
@@ -904,7 +927,7 @@
     "cost": null,
     "target": null,
     "effects": "Each time you learn this, choose a creation School: Smithing, Carving, Tailoring, Jewelrymaking, Alchemy, or Cooking. You are trained in crafting using the chosen School.",
-    "building": null,
+    "builder_notes": "The Prereq badge below reflects whichever School is picked; a different School may need a different Skill to meet it.",
     "special": null,
     "prereqs": "Craft 2 (if Smithing/Carving/Tailoring/Jewelrymaking) or Mixology 2 (if Alchemy/Cooking) or Survival 2 (if Cooking)",
     "relevant_skills": "Craft, Mixology, Survival",
@@ -976,7 +999,8 @@
         ]
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T025",
@@ -990,7 +1014,7 @@
     "cost": null,
     "target": null,
     "effects": "Each time you learn this, choose a new background from either the General list or your specific list (Settler or Wildfolk).",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "None",
     "relevant_skills": null,
@@ -1003,7 +1027,8 @@
     "supplement": "Base Game",
     "excluded_by": null,
     "prereq_check": [],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T026",
@@ -1017,7 +1042,7 @@
     "cost": null,
     "target": null,
     "effects": "Each time you learn this, choose a new persona (fake identity; may not be a real person; must have standard appearance, occupation, habits, and background). You have Good Luck on flips to disguise yourself or act as your persona.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Masquerade 2",
     "relevant_skills": "Masquerade",
@@ -1040,7 +1065,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T027",
@@ -1053,8 +1079,8 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "Each time you learn this Technique, choose one of the following:\n\nApothecary: You have Good Luck on flips to identify or recall basic facts about herbs, medicines, and common ailments. (Prereq: Survival 1, Medicine 1, Mixology 1)\nArtisan: You have Good Luck on any flip to establish or manage your craft in an official, professional sense, such as dealing with a local guild or other legal entity. (Prereq: Streetwise 1, Craft 1)\nBusker: You have Good Luck on flips to put on small street-side or tavern performances, such as playing in exchange for room and board. (Prereq: Performance 2)\nFisher: You have Good Luck on flips to fish, wait calmly and patiently, and resist the harmful effects of alcohol. (Prereq: Resilience 1, Survival 1)\nGatherer: You have Good Luck on flips when exploring and searching for food and water. (Prereq: Survival 2)\nGrifter: You have Good Luck on flips to run grifts or confidence games, as well as flips to escape legal or other consequences of doing so. (Prereq: Persuasion 2)\nMerchant: You have Good Luck on flips to negotiate transactions, locate a buyer or seller for rare goods, and understand basic economic forces. (Prereq: Persuasion 1, Streetwise 1, Academics 1)\nSailor: You have Good Luck on flips to swim, use rope, and operate a ship. (Prereq: Athletics 1, Survival 1)\nTactician: You have Good Luck on any flip related to military strategy, tactics, and organization. This applies even to small, ragtag groups like bandits. (Prereq: Academics 2)\nTheologian: You have Good Luck on flips to recall or understand religious elements, as well as to explain or preach them to others. (Prereq: Academics 2)",
-    "building": null,
+    "effects": "Each time you learn this Technique, choose one of the following.",
+    "builder_notes": "Picking a profession below narrows this card down to just that profession's benefit and prereq; the full list stays visible until a pick is made, for comparing options.",
     "special": null,
     "prereqs": "(Based on option chosen)",
     "relevant_skills": "Varies",
@@ -1297,7 +1323,19 @@
         ]
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": {
+      "Apothecary": "You have Good Luck on flips to identify or recall basic facts about herbs, medicines, and common ailments.",
+      "Artisan": "You have Good Luck on any flip to establish or manage your craft in an official, professional sense, such as dealing with a local guild or other legal entity.",
+      "Busker": "You have Good Luck on flips to put on small street-side or tavern performances, such as playing in exchange for room and board.",
+      "Fisher": "You have Good Luck on flips to fish, wait calmly and patiently, and resist the harmful effects of alcohol.",
+      "Gatherer": "You have Good Luck on flips when exploring and searching for food and water.",
+      "Grifter": "You have Good Luck on flips to run grifts or confidence games, as well as flips to escape legal or other consequences of doing so.",
+      "Merchant": "You have Good Luck on flips to negotiate transactions, locate a buyer or seller for rare goods, and understand basic economic forces.",
+      "Sailor": "You have Good Luck on flips to swim, use rope, and operate a ship.",
+      "Tactician": "You have Good Luck on any flip related to military strategy, tactics, and organization. This applies even to small, ragtag groups like bandits.",
+      "Theologian": "You have Good Luck on flips to recall or understand religious elements, as well as to explain or preach them to others."
+    }
   },
   {
     "id": "T028",
@@ -1311,7 +1349,7 @@
     "cost": null,
     "target": null,
     "effects": "When using Masquerade to disguise your voice, you may instead make the flip as a Masquerade attack against the Insight Defense of all onlookers. Each target hit falls for the vocal disguise and believes it came from an object or space within twice [your Masquerade Skill Total] spaces. On a miss, target recognizes the inauthenticity but is unsure of its source.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Masquerade 2, Insight 1",
     "relevant_skills": "Masquerade, Insight",
@@ -1343,7 +1381,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T029",
@@ -1357,7 +1396,7 @@
     "cost": null,
     "target": null,
     "effects": "While disguised, if someone sees through your disguise they cannot determine your actual identity, just that you're an imposter. Onlookers will not remember your involvement in any event unless you directly interacted with them memorably; even then they have Bad Luck on flips to draw conclusions.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Masquerade 3",
     "relevant_skills": "Masquerade",
@@ -1380,7 +1419,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T030",
@@ -1394,7 +1434,7 @@
     "cost": null,
     "target": null,
     "effects": "You train an animal, making it your Animal Companion. The animal must be willing/tamed; training usually takes a full day. Once official, it behaves as Summoned. You can only have one animal companion at a time; training a new one breaks the bond with the old.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Survival 3",
     "relevant_skills": "Survival",
@@ -1417,7 +1457,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T031",
@@ -1431,7 +1472,7 @@
     "cost": null,
     "target": null,
     "effects": "Your companion learns one trick: Civilized (manipulate objects like a small child), Determination (+1 max Shallow and Deep Health each), Trained (one Skill Total = [your Survival ST] - 2), Quick (+2 Speed, once only), Martial Training (learn a Level 1 Battle Maneuver), or Beast Feast [Encounter] (eat heart of downed enemy, heal 2 Health). Apply to whichever animal is your companion.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Animal Companion",
     "relevant_skills": null,
@@ -1449,7 +1490,8 @@
         "name": "Animal Companion"
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T032",
@@ -1463,7 +1505,7 @@
     "cost": "Discard X cards (minimum 1)",
     "target": "An item you personally crafted, which you are touching",
     "effects": "Choose a Masterwork enhancement you know of Level X or lower. The target item gains that enhancement until you get a full night's rest. The enhancement must be one you could normally create.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Craft 3",
     "relevant_skills": "Craft",
@@ -1486,7 +1528,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T033",
@@ -1500,7 +1543,7 @@
     "cost": null,
     "target": "Yourself or a willing humanoid patient adjacent to you",
     "effects": "Remove up to [half your Medicine Skill Total] stacks of Bleeding from the target.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Medicine 3",
     "relevant_skills": "Medicine",
@@ -1523,7 +1566,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T034",
@@ -1537,7 +1581,7 @@
     "cost": null,
     "target": null,
     "effects": "Picking a lock never takes more than 4 AP. You may treat any rigid object that fits in the keyhole as a lockpick. When you successfully steal through sleight of hand, onlookers have Bad Luck on flips to notice its absence for the encounter. When you fail to pick a pocket, neither victim nor onlookers know who is responsible.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Stealth 2, Craft 2",
     "relevant_skills": "Stealth, Craft",
@@ -1569,7 +1613,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T035",
@@ -1583,7 +1628,7 @@
     "cost": null,
     "target": null,
     "effects": "When you attack with a damaging Grenade item of Level 3 or lower, it deals +1 damage. If your Body is lower than 5, you may treat it as 1 higher for Grenade attack range. Whenever you use a Poison created with Mixology, its Concentration becomes +[your Mixology Skill Total] if it would be lower.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Mixology 3",
     "relevant_skills": "Mixology",
@@ -1606,7 +1651,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T036",
@@ -1620,7 +1666,7 @@
     "cost": "Discard a card or use 1 Medicinal Supply",
     "target": "Up to [half your Medicine Skill Total] humanoid patients",
     "effects": "All targets who get a full night's rest immediately after being treated heal an extra Health. A creature can only benefit from this Technique once per rest.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Medicine 3",
     "relevant_skills": "Medicine",
@@ -1643,7 +1689,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T037",
@@ -1657,7 +1704,7 @@
     "cost": "Expend the use of any number of Discipline/Martial/Spell Encounter Techniques",
     "target": null,
     "effects": "You regain the use of one Discipline, Martial, or Spell Encounter Technique. The regained Technique's Level must be lower than the total Levels of Techniques you expended as a cost.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Academics 2, Meditation 2",
     "relevant_skills": "Academics, Meditation",
@@ -1689,7 +1736,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T038",
@@ -1703,7 +1751,7 @@
     "cost": null,
     "target": null,
     "effects": "When creating an item, you may replace any Metal or Wood in its Base Materials with Bone; for such items you may use Carving instead of Smithing. If you know Raise Corpse, items you create this way may be animated as a Reanimated Corpse substitute, powered by your magic.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Craft 3",
     "relevant_skills": "Craft",
@@ -1726,7 +1774,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T039",
@@ -1740,7 +1789,7 @@
     "cost": null,
     "target": null,
     "effects": "It takes you 0 AP to retrieve or store an item, regardless of location, although it must still be within reach.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Acrobatics 3, Insight 2",
     "relevant_skills": "Acrobatics, Insight",
@@ -1772,7 +1821,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T040",
@@ -1786,7 +1836,7 @@
     "cost": null,
     "target": null,
     "effects": "You may break down existing items into raw materials. Produces materials of Types matching the Base and Extra Materials of the item, split evenly (GM decides). If you created the item, you receive those exact material Types. All materials produced are of the item's Level.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Craft, Mixology, or Survival) 3",
     "relevant_skills": "Craft, Mixology, Survival",
@@ -1811,7 +1861,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T041",
@@ -1825,7 +1876,7 @@
     "cost": null,
     "target": null,
     "effects": "You create a non-Masterwork item with Craft as its relevant Skill, whose School/Skill/recipe requirements you meet. All required materials must be within reach. The item stays together as long as you keep this Technique committed, then falls apart into the materials used.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Craft 3",
     "relevant_skills": "Craft",
@@ -1848,7 +1899,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T042",
@@ -1862,7 +1914,7 @@
     "cost": null,
     "target": null,
     "effects": "You have Good Luck on Stealth checks to sneak into or out of places. In a group Stealth check, you may flip first; you may Gamble, gaining [Spades] extra successes. For each success, you may give an ally Good Luck on their Stealth flip. You may not benefit someone also using this Technique.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Stealth 3",
     "relevant_skills": "Stealth",
@@ -1885,7 +1937,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T043",
@@ -1899,7 +1952,7 @@
     "cost": null,
     "target": null,
     "effects": "You have Good Luck on Streetwise flips to navigate and travel through settlements at least as large as a town. Once per day in an urban environment, you automatically find water for the party and food for [half your Streetwise Skill Total] people (must be consumed immediately; Level 1 Food equivalent).",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Streetwise 3",
     "relevant_skills": "Streetwise",
@@ -1922,7 +1975,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T044",
@@ -1936,7 +1990,7 @@
     "cost": null,
     "target": null,
     "effects": "You have Good Luck when using Survival to Scout or Search outdoors, or when Assisting others with Survival. Others have Good Luck when Assisting on your Survival flips. If your Survival flip has at least one Heart in the pool, you recall an interesting fact relevant to the flip.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Survival 3",
     "relevant_skills": "Survival",
@@ -1959,7 +2013,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T045",
@@ -1973,7 +2028,7 @@
     "cost": null,
     "target": "A creature you can see",
     "effects": "The next attack against the target's Dodge or Parry Defense made by you or someone you choose has Good Luck. Then, make an Academics attack against the target's Instinct Defense. If it hits, gain [Spades] Extra Successes, then learn one of the following per success: Parry/Dodge Defense and Harried stacks; Accuracy and Damage with wielded weapons; Physical Resist; Fire/Frost/Brilliant/Shadow Resists; Vital/Mental/Instinct Defenses and Vulnerable stacks.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Academics 3, (Acrobatics, Archery, Melee, or Meditation) 2",
     "relevant_skills": "Academics, Acrobatics, Archery, Melee, Meditation",
@@ -2008,7 +2063,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T046",
@@ -2022,7 +2078,7 @@
     "cost": null,
     "target": "A created/crafted item, or a schematic/recipe",
     "effects": "You understand all of the target item's statistics as though you had flipped a 13 to analyze it, including materials. If you meet the skill requirements to create the item, you permanently learn it as a recipe.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Craft, Mixology, or Survival) 4, Academics 2",
     "relevant_skills": "Craft, Mixology, Survival, Academics",
@@ -2056,7 +2112,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T047",
@@ -2070,7 +2127,7 @@
     "cost": null,
     "target": null,
     "effects": "You can use Masterwork items you personally created as base items when creating new Masterwork items. The item retains previous enhancements and gains the new one in addition. This increases the item's Level by that of the new enhancement; you may not raise an item's Level past 6 this way. You cannot give an item an enhancement it already has.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Craft 4",
     "relevant_skills": "Craft",
@@ -2093,7 +2150,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T048",
@@ -2107,7 +2165,7 @@
     "cost": null,
     "target": null,
     "effects": "When using Survival to Scout or Search in the outdoors, you may treat your [NOTE: effects text is incomplete in source document — to be completed].",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Survival 4",
     "relevant_skills": "Survival",
@@ -2130,7 +2188,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T049",
@@ -2144,7 +2203,7 @@
     "cost": "Discard a card (if used on the same subject before)",
     "target": null,
     "effects": "Choose a subject to gain knowledge about. Make an Academics flip with Good Luck against a hidden difficulty. On success, you learn something useful about the subject. If something prevents you from gaining the information, you learn exactly what that obstacle is and how it relates to the topic.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Academics 4",
     "relevant_skills": "Academics",
@@ -2167,7 +2226,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T050",
@@ -2181,7 +2241,7 @@
     "cost": "Discard a card or use 1 Medicinal Supply",
     "target": "Yourself or a willing humanoid patient adjacent to you",
     "effects": "For the next [half your Medicine Skill Total] Health the target would lose, instead they gain that many stacks of Bleeding. This effect lasts until the target gets a full night's rest.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Medicine 4",
     "relevant_skills": "Medicine",
@@ -2204,7 +2264,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T051",
@@ -2218,7 +2279,7 @@
     "cost": "Discard a card",
     "target": null,
     "effects": "You retroactively reveal that you had made preparations useful in your current situation. These must be ordinary steps you could have plausibly taken previously. Examples: stashing supplies in a hidden cache, having sent a letter, having researched a topic. Preparations that cost Gold require you to pay that Gold now. GM decides validity.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Streetwise 4",
     "relevant_skills": "Streetwise",
@@ -2241,7 +2302,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T052",
@@ -2255,7 +2317,7 @@
     "cost": null,
     "target": "All onlookers who can see you",
     "effects": "Make a Stealth attack against the Instinct Defense of each target. If it hits, the target cannot see you for 1 round or until you declare an attack against them. After this time you may hide as normal, with targets alerted to your likely presence.",
-    "building": null,
+    "builder_notes": null,
     "special": "You may discard a card at any time to regain a use of this Technique.",
     "prereqs": "Stealth 4",
     "relevant_skills": "Stealth",
@@ -2278,7 +2340,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T053",
@@ -2292,7 +2355,7 @@
     "cost": "Discard X cards",
     "target": null,
     "effects": "You create items with a total Gold cost of no more than [four times X], requiring no materials. Items must have Mixology as their Relevant Skill and you must meet all creation requirements. These items last until you get a full night's rest, then fade away.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Mixology 3, Resilience 2, (Streetwise, Academics, or Medicine) 2",
     "relevant_skills": "Mixology, Resilience, Streetwise, Academics, Medicine",
@@ -2335,7 +2398,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T054",
@@ -2349,7 +2413,7 @@
     "cost": null,
     "target": null,
     "effects": "Instantly assume a disguise with Masquerade as though you flipped a 13, but as a generic nondescript person. While in this disguise, you have Good Luck on Masquerade flips, and for 2 AP in a social contest you may make a Strategic statement using Masquerade.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Masquerade 5",
     "relevant_skills": "Masquerade",
@@ -2372,7 +2436,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T055",
@@ -2386,7 +2451,7 @@
     "cost": "Discard a card",
     "target": "A willing humanoid patient adjacent to you",
     "effects": "Make a Medicine flip with difficulty 11. If you succeed, gain 1 extra success for each 2 you beat the difficulty by; X = total successes. Your target may discard up to X cards, then heals 1 Health for each card discarded, plus 1 Health for each unique suit among cards discarded.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Medicine 5",
     "relevant_skills": "Medicine",
@@ -2409,7 +2474,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T056",
@@ -2423,7 +2489,7 @@
     "cost": null,
     "target": null,
     "effects": "When a combat begins, if there would not normally be a surprise round (or you would not be included in one), instead there is a surprise round and you are part of it (3 AP only). You are always aware of attacks against your Dodge or Parry Defense.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Awareness 5, Insight 5, Composure 5",
     "relevant_skills": "Awareness, Insight, Composure",
@@ -2464,7 +2530,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T057",
@@ -2478,7 +2545,7 @@
     "cost": null,
     "target": null,
     "effects": "Make a Strategic statement using Presence, Persuasion, or Rapport against a target in the social contest.",
-    "building": "When you learn this, choose features that apply (see Features sheet). Points: Level 1: 2 basic; Level 2: 4 basic; Level 3: 6 basic/advanced; Level 4: 8 basic/advanced.",
+    "builder_notes": "When you learn this, choose features that apply (see Features sheet). Points: Level 1: 2 basic; Level 2: 4 basic; Level 3: 6 basic/advanced; Level 4: 8 basic/advanced.",
     "special": null,
     "prereqs": "Insight [Level]",
     "relevant_skills": "Insight",
@@ -2518,7 +2585,8 @@
         "points": 8,
         "advanced": true
       }
-    }
+    },
+    "choice_effects": null
   },
   {
     "id": "T058",
@@ -2532,7 +2600,7 @@
     "cost": null,
     "target": "A hostile creature within [Presence Skill Total] meters",
     "effects": "Make a Presence attack against the target's Mental Defense. If the attack hits, you Taunt the target 5 + [Hearts] times.",
-    "building": null,
+    "builder_notes": null,
     "special": "You may expend this during a social contest (while in the front, when you succeed on a Charismatic statement) to Taunt the target once.",
     "prereqs": "Presence 2",
     "relevant_skills": "Presence",
@@ -2555,7 +2623,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T059",
@@ -2569,7 +2638,7 @@
     "cost": null,
     "target": null,
     "effects": "You gain a follower (GM-controlled but loyal). They: are trustworthy and communicate with you; have Skill Total 0 for all actions but can carry a small pack; cannot participate in combat and will flee from danger. If you part ways, you may gain a similar or new follower.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Presence or Rapport) 2",
     "relevant_skills": "Presence, Rapport",
@@ -2593,7 +2662,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T060",
@@ -2607,7 +2677,7 @@
     "cost": null,
     "target": null,
     "effects": "Choose one knack for your follower: Contraband Handler (hide small objects), Strong Shoulders (carry heavy loads), Medical Training (+1 Health healed per rest while tending), Squire (hand weapon to ally for 1 AP), Magical Adept (minor magic, once/encounter extend your Spell range by 5), Scavenger (find Level 1 material per day), Performer (earn info or social benefit while in civilization), Guild Member (do official business on your behalf).",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Follower",
     "relevant_skills": null,
@@ -2625,7 +2695,8 @@
         "name": "Follower"
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T061",
@@ -2639,7 +2710,7 @@
     "cost": null,
     "target": null,
     "effects": "Whenever your party would gain Concessions in a social contest, as many times as you like you may discard a card and reduce those Concessions by 3 (or 4 if you discarded a Heart).",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Persuasion or Rapport) 3",
     "relevant_skills": "Persuasion, Rapport",
@@ -2663,7 +2734,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T062",
@@ -2677,7 +2749,7 @@
     "cost": null,
     "target": "Any number of hostile creatures within [Presence Skill Total] meters",
     "effects": "Make a Presence attack against the Mental Defense of each target. You Frighten each target hit 2 + [Hearts] times.",
-    "building": null,
+    "builder_notes": null,
     "special": "You may expend this during a social contest (while in front, when you succeed on a Charismatic statement) to Frighten the target once.",
     "prereqs": "Presence 3",
     "relevant_skills": "Presence",
@@ -2700,7 +2772,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T063",
@@ -2714,7 +2787,7 @@
     "cost": null,
     "target": null,
     "effects": "You never suffer penalties for being a new or unfamiliar face in social situations. If your first statement in a social contest uses Rapport, it has Good Luck. If your party wins a social contest and chooses Disrespect, neither the other party nor onlookers will view your party poorly — they view you with sympathy and may grant Good Luck.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Rapport 3",
     "relevant_skills": "Rapport",
@@ -2737,7 +2810,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T064",
@@ -2751,7 +2825,7 @@
     "cost": null,
     "target": "Any number of allies who can see or hear you",
     "effects": "Choose one of the following, [half your Performance Skill Total] times: a target is Protected twice (plus once per extra time targeted); remove a stack of Taunted or Frightened from a target; a target may adjust their position in turn order by 1.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Performance 3",
     "relevant_skills": "Performance",
@@ -2774,7 +2848,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T065",
@@ -2788,7 +2863,7 @@
     "cost": null,
     "target": null,
     "effects": "You have Good Luck on Streetwise flips to spread rumors and change opinions. Successful rumors spread to the immediate venue within an hour, then spread further each day. You also have Good Luck on flips to gather information about the rumor after the fact. Once per social contest, you can leverage the rumor for Good Luck twice on a social statement (if relevant and believed).",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Streetwise 3",
     "relevant_skills": "Streetwise",
@@ -2811,7 +2886,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T066",
@@ -2825,7 +2901,7 @@
     "cost": "Pitch 2 cards",
     "target": "Up to [half your Performance Skill Total] allies who can see or hear you",
     "effects": "Each target heals 1 Shallow Health.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Performance 4",
     "relevant_skills": "Performance",
@@ -2848,7 +2924,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T067",
@@ -2862,7 +2939,7 @@
     "cost": null,
     "target": "Any number of creatures within 2 meters of you",
     "effects": "Make a Presence attack against the Mental Defense of each target. You taunt each target hit 3 + [Hearts] times.",
-    "building": null,
+    "builder_notes": null,
     "special": "You may expend this during a social contest (while in front, when you succeed on a Charismatic statement) to Taunt every member of the other party once.",
     "prereqs": "Presence 4",
     "relevant_skills": "Presence",
@@ -2885,7 +2962,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T068",
@@ -2899,7 +2977,7 @@
     "cost": null,
     "target": null,
     "effects": "Make a Strategic statement using Theurgy instead of the usual Skill. If the statement succeeds and your party ultimately wins the social contest, that person is dominated for the rest of the current encounter. At the start of each subsequent encounter you may Pitch a card to extend the effect. While dominated, the person treats anything you say as from a close trusted friend and will follow reasonable requests. Once the effect ends, they believe they acted of their own free will.",
-    "building": null,
+    "builder_notes": null,
     "special": "Pitch a card at start of each encounter to extend the domination effect.",
     "prereqs": "Theurgy 5, Insight 4",
     "relevant_skills": "Theurgy, Insight",
@@ -2931,7 +3009,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T069",
@@ -2945,7 +3024,7 @@
     "cost": null,
     "target": null,
     "effects": "You may always use Performance to Assist an ally (even when it makes little sense), with Good Luck on the flip. For 1 AP as an interrupt when an ally within [Performance Skill Total] meters declares an attack, you may give them Good Luck on the attack.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Performance 3, Presence 3",
     "relevant_skills": "Performance, Presence",
@@ -2977,7 +3056,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T070",
@@ -2991,7 +3071,7 @@
     "cost": "Discard a card for each target",
     "target": "Any number of willing allies who can see or hear you",
     "effects": "Each target Sifts X cards (X = [half your Performance Skill Total]), then discards up to X cards, then draws a card for each one discarded.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Performance 5",
     "relevant_skills": "Performance",
@@ -3014,7 +3094,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T071",
@@ -3028,7 +3109,7 @@
     "cost": null,
     "target": "Any number of creatures who can see or hear you",
     "effects": "Make a Presence attack against the Mental Defense of each target. You Taunt each target hit an infinite number of times. These stacks are removed at the end of the encounter.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Presence 5, (Composure or Meditation) 5",
     "relevant_skills": "Presence, Composure, Meditation",
@@ -3061,7 +3142,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T072",
@@ -3075,7 +3157,7 @@
     "cost": null,
     "target": null,
     "effects": "Make a weapon attack.",
-    "building": "When you learn this, choose features that apply to the attack (see Features sheet). Points: Level 1: 3 basic; Level 2: 6 basic; Level 3: 9 basic/advanced; Level 4: 12 basic/advanced.",
+    "builder_notes": "When you learn this, choose features that apply to the attack (see Features sheet). Points: Level 1: 3 basic; Level 2: 6 basic; Level 3: 9 basic/advanced; Level 4: 12 basic/advanced.",
     "special": null,
     "prereqs": "(Acrobatics, Archery, Brawl, or Melee) [Level + 1]",
     "relevant_skills": "Acrobatics, Archery, Brawl, Melee",
@@ -3118,7 +3200,8 @@
         "points": 12,
         "advanced": true
       }
-    }
+    },
+    "choice_effects": null
   },
   {
     "id": "T073",
@@ -3132,7 +3215,7 @@
     "cost": null,
     "target": null,
     "effects": "You may change how you wield a close-range weapon (0 AP, like drawing/sheathing). Wielding a one-handed weapon with two hands makes it two-handed (+1 damage). Wielding a two-handed weapon one-handed makes it one-handed (-1 damage).",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Might 2, Academics 1",
     "relevant_skills": "Might, Academics",
@@ -3164,7 +3247,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T074",
@@ -3178,7 +3262,7 @@
     "cost": null,
     "target": null,
     "effects": "Make a weapon attack against the target's Instinct Defense. Instead of normal effects, if it hits then the target is Harried 3 + [Diamonds] times.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Insight 2",
     "relevant_skills": "Insight",
@@ -3201,7 +3285,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T075",
@@ -3215,7 +3300,7 @@
     "cost": null,
     "target": "The creature trying to cast a Spell",
     "effects": "Make a weapon attack against the target. You may use a Technique instead, as long as it has you make a weapon attack against the target and takes no more than 2 AP to use.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Academics 2, (Sorcery or Theurgy) 1",
     "relevant_skills": "Academics, Sorcery, Theurgy",
@@ -3248,7 +3333,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T076",
@@ -3262,7 +3348,7 @@
     "cost": null,
     "target": "The creature trying to move or being Pushed",
     "effects": "Make an attack with a close-range weapon against the target. You may use a Technique instead, as long as it has you make a weapon attack with a close-range weapon against the target and takes no more than 2 AP.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics or Insight) 2",
     "relevant_skills": "Acrobatics, Insight",
@@ -3286,7 +3372,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T077",
@@ -3300,7 +3387,7 @@
     "cost": null,
     "target": null,
     "effects": "Shift up to [half your Acrobatics Skill Total] meters.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Acrobatics 3",
     "relevant_skills": "Acrobatics",
@@ -3323,7 +3410,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T078",
@@ -3337,7 +3425,7 @@
     "cost": "Discard a card",
     "target": null,
     "effects": "You have Good Luck on the weapon attack, then choose one: have Good Luck a second time on the attack; or add the discarded card to the attack's suit pool.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics, Archery, Brawl, or Melee) 3",
     "relevant_skills": "Acrobatics, Archery, Brawl, Melee",
@@ -3363,7 +3451,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T079",
@@ -3377,7 +3466,7 @@
     "cost": "Discard a card",
     "target": null,
     "effects": "Make a Stealth attack against the Instinct Defense of a target of the weapon attack (Good Luck if you discarded a Spade). If it hits, that target is unaware of the attack. You may not use this against a target more than once per attack.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Stealth 4",
     "relevant_skills": "Stealth",
@@ -3400,7 +3489,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T080",
@@ -3414,7 +3504,7 @@
     "cost": null,
     "target": "A creature within [Meditation Skill Total] meters",
     "effects": "Make a Meditation attack against the target's Dodge Defense. If the attack hits, it deals 3 + [Mind] Brilliant damage.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 2",
     "relevant_skills": "Meditation",
@@ -3437,7 +3527,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T081",
@@ -3451,7 +3542,7 @@
     "cost": null,
     "target": "The creature you grappled",
     "effects": "End the grapple and throw the target up to [half your Might Skill Total] meters in a straight line. If thrown into a sturdy object, the target strikes it (3 + [your Body] Physical damage to both). If thrown through a creature's space, make a Might attack against that creature's Dodge; if it hits they are struck for the same damage. Target lands in front of the obstacle.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 3, Might 2",
     "relevant_skills": "Brawl, Might",
@@ -3483,7 +3574,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T082",
@@ -3497,7 +3589,7 @@
     "cost": null,
     "target": null,
     "effects": "Regain the use of an Encounter Technique with a Level of X or less.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 2",
     "relevant_skills": "Meditation",
@@ -3520,7 +3612,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T083",
@@ -3534,7 +3627,7 @@
     "cost": null,
     "target": null,
     "effects": "Make an Unarmed weapon attack which deals its damage as Shadow. If the attack hits, before damage is dealt, the target gains [half your Meditation Skill Total] + [Spades] stacks of Necrotic, then [half your Meditation Skill Total] + [Diamonds] stacks of Vulnerable.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 3, Meditation 2",
     "relevant_skills": "Brawl, Meditation",
@@ -3566,7 +3659,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T084",
@@ -3580,7 +3674,7 @@
     "cost": null,
     "target": null,
     "effects": "Remove up to [half your Meditation Skill Total] total stacks of Crippled and/or Slowed from yourself.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 3",
     "relevant_skills": "Meditation",
@@ -3603,7 +3697,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T085",
@@ -3617,7 +3712,7 @@
     "cost": null,
     "target": null,
     "effects": "You only need to meditate for half an hour to get a full night's rest, and heal an extra 1 Health per rest. You do not need to eat or drink. You may eat almost anything safely. Effectively immune to ingested poisons; does not prevent intoxication but prevents extreme harmful effects like alcohol poisoning.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 3",
     "relevant_skills": "Meditation",
@@ -3640,7 +3735,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T086",
@@ -3654,7 +3750,7 @@
     "cost": null,
     "target": null,
     "effects": "You gain [half your Meditation Skill Total] stacks of Protected.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 3",
     "relevant_skills": "Meditation",
@@ -3677,7 +3773,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T087",
@@ -3691,7 +3788,7 @@
     "cost": null,
     "target": "A creature within [Meditation Skill Total] meters",
     "effects": "Teleport to any empty space adjacent to the target. You may then make a Meditation attack against the target's Mental Defense; if it hits, the target Teleports into the space you were originally in.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 3",
     "relevant_skills": "Meditation",
@@ -3714,7 +3811,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T088",
@@ -3728,7 +3826,7 @@
     "cost": null,
     "target": "The creature trying to move or being Pushed",
     "effects": "Make an Unarmed weapon attack against that creature. If it hits, the creature does not move or is not Pushed; their movement for that action or effect is Countered.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 3, Acrobatics 2",
     "relevant_skills": "Brawl, Acrobatics",
@@ -3760,7 +3858,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T089",
@@ -3774,7 +3873,7 @@
     "cost": null,
     "target": "A creature within range of the attack, or the attacker",
     "effects": "Make an Unarmed weapon attack flip; its result becomes X. Your Parry Defense against the attack becomes X. If you Parry it, the attack is instead made against the target you chose as though it had a flip result of X, then resolved normally.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 3, Acrobatics 2, Meditation 2",
     "relevant_skills": "Brawl, Acrobatics, Meditation",
@@ -3815,7 +3914,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T090",
@@ -3829,7 +3929,7 @@
     "cost": "1 Health, discard a card",
     "target": null,
     "effects": "Choose Bloody, Necrotic, Vulnerability, or Psychosis Poison; create a fresh dose with Concentration +X and Potency [half X] (X = your Meditation Skill Total). Extra +1 Potency if matching suit was Pitched (Clubs/Bloody, Spades/Necrotic, Diamonds/Vulnerability, Hearts/Psychosis). Spend 1 AP to coat a weapon instead. You are immune to this poison. After a full rest, the poison loses potency.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 4, Resilience 3",
     "relevant_skills": "Meditation, Resilience",
@@ -3861,7 +3961,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T091",
@@ -3875,7 +3976,7 @@
     "cost": null,
     "target": "All creatures in a 3-meter-cone from you",
     "effects": "Make a Meditation attack against each target's Mental Defense. The attack deals 1 + [Mind] Brilliant damage. If it hits, you Frighten the target 3 + [Hearts] times and Slow the target 3 + [Spades] times.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 4",
     "relevant_skills": "Meditation",
@@ -3898,7 +3999,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T092",
@@ -3912,7 +4014,7 @@
     "cost": null,
     "target": "The creature you grappled",
     "effects": "You use the target as a shield until the grapple ends. You may Parry with them as a Brawl weapon (Defense +0). If you successfully Parry an attack with the target, the attack instead targets their Parry Defense and is resolved accordingly.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 4, Acrobatics 3",
     "relevant_skills": "Brawl, Acrobatics",
@@ -3944,7 +4046,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T093",
@@ -3958,7 +4061,7 @@
     "cost": "Discard X cards (maximum [half your Meditation Skill Total])",
     "target": null,
     "effects": "Do each in order: 1. Reduce effects of each poison as though X hours passed. 2. Heal X + [Hearts discarded] Health. 3. Remove a stack of Bleeding per Club discarded, Necrotic per Spade, Vulnerable per Diamond, and Frightened or Taunted per Heart discarded.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 5",
     "relevant_skills": "Meditation",
@@ -3981,7 +4084,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T094",
@@ -3995,7 +4099,7 @@
     "cost": null,
     "target": "Yourself, an ally, or a space within [Sorcery or Theurgy Skill Total] meters",
     "effects": "Conjure up to X weapons, armor, or ammunition of a type you choose. Functions as regular equipment; lasts until dismissed. You may have no more than X conjured (X = times you know this Spell). When declaring an attack, you may cast this as part of that action (0 extra AP) to conjure a weapon for that attack only.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Theurgy) 2, Craft 1",
     "relevant_skills": "Sorcery, Theurgy, Craft",
@@ -4028,7 +4132,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T095",
@@ -4042,7 +4147,7 @@
     "cost": null,
     "target": "An object no heavier than 5 kg or up to 1 liter of liquid, within [Sorcery or Theurgy Skill Total] meters. One target per time you know this Spell.",
     "effects": "Conjure a magical force to move the target object(s), allowing manipulation up to [your Sorcery or Theurgy Skill Total] meters. Complex use costs 1 extra AP and requires relevant Skill flips. May not be used to attack. If you stop casting or spend a turn without casting, objects fall.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Theurgy) 2, Might 1",
     "relevant_skills": "Sorcery, Theurgy, Might",
@@ -4075,7 +4180,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T096",
@@ -4089,7 +4195,7 @@
     "cost": null,
     "target": null,
     "effects": "Create a flame that fits in your empty hand, casting up to torchlight in any color you choose. Gently warm to your touch; affects others as a normal flame. Lasts until you use the hand, lose consciousness, or dismiss it. You may make it ethereal (only you see it) at will; spend 1 AP to toggle.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Theurgy) 2, Awareness 1",
     "relevant_skills": "Sorcery, Theurgy, Awareness",
@@ -4122,7 +4228,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T097",
@@ -4136,7 +4243,7 @@
     "cost": null,
     "target": null,
     "effects": "You Teleport up to [Sorcery or Theurgy Skill Total] meters.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Theurgy) 2",
     "relevant_skills": "Sorcery, Theurgy",
@@ -4160,7 +4267,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T098",
@@ -4174,7 +4282,7 @@
     "cost": null,
     "target": "A pile of humanoid remains within [Sorcery or Theurgy Skill Total] meters",
     "effects": "You Summon the target remains as a Reanimated Corpse. You may control up to [Mind] corpses at a time; if you exceed this limit, the oldest corpse is de-animated. Larger/smaller corpses count proportionally toward your limit.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Theurgy) 3, Medicine 2",
     "relevant_skills": "Sorcery, Theurgy, Medicine",
@@ -4207,7 +4315,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T099",
@@ -4221,7 +4330,7 @@
     "cost": null,
     "target": null,
     "effects": "Whenever you could discard cards for a cost or effect of one of your Spells, a willing ally within [Sorcery or Theurgy Skill Total] meters may discard any number of those cards instead of you. Treat those cards as though you had discarded them yourself.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Theurgy) 3, (Meditation or Rapport) 2",
     "relevant_skills": "Sorcery, Theurgy, Meditation, Rapport",
@@ -4255,7 +4364,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T100",
@@ -4269,7 +4379,7 @@
     "cost": "Expend the use of a Spell Encounter Technique; X is its Level",
     "target": null,
     "effects": "Choose one option then make a weapon attack. General options: range +[6×X] meters; Push [6×X]+[Spades] meters; target gains [3×X]+[Clubs] Bleeding; you gain [3×X]+1+[Hearts] Fire/Frost/Shadow Ward. Sorcery options: target Slowed [3×X]+[Spades]; Vulnerable [3×X]+[Diamonds]; Necrotic [3×X]+[Diamonds]. Theurgy options: Shift [6×X]+[Clubs] meters; Protected [3×X]+1+[Spades]; target Crippled [3×X]+[Clubs].",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics, Archery, or Melee) 3, (Sorcery or Theurgy) 3",
     "relevant_skills": "Acrobatics, Archery, Melee, Sorcery, Theurgy",
@@ -4304,7 +4414,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T101",
@@ -4318,7 +4429,7 @@
     "cost": null,
     "target": "An empty space within [Sorcery or Theurgy Skill Total] meters",
     "effects": "You create a Summoned Slime in the target space, lasting for the encounter. When cast, you may commit this Spell; if you do, the Slime lasts as long as you keep this Spell committed after the scene ends.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Theurgy) 3, Resilience 2",
     "relevant_skills": "Sorcery, Theurgy, Resilience",
@@ -4351,7 +4462,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T102",
@@ -4365,7 +4477,7 @@
     "cost": null,
     "target": "Yourself and/or any number of allies you touch, up to [Sorcery or Theurgy Skill Total] creatures per time you know this Spell",
     "effects": "All targets are linked and may communicate mentally at the speed of thought. Allies farther than [Mind] km from you cannot hear or speak through the link. You can maintain up to X different links (X = times you know this Spell). Each link lasts until dismissed or you fall unconscious.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Theurgy) 3, Rapport 2",
     "relevant_skills": "Sorcery, Theurgy, Rapport",
@@ -4398,7 +4510,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T103",
@@ -4412,7 +4525,7 @@
     "cost": "Discard a card",
     "target": "An empty space within [Sorcery or Theurgy Skill Total] meters",
     "effects": "You Summon an Earthen Golem in the target space, lasting for the encounter. When cast, you may commit this Spell; if you do, the Golem lasts as long as you keep this Spell committed or until you get a full night's rest.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Theurgy) 5, Survival 4",
     "relevant_skills": "Sorcery, Theurgy, Survival",
@@ -4445,7 +4558,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T104",
@@ -4459,7 +4573,7 @@
     "cost": null,
     "target": "Yourself or an adjacent ally",
     "effects": null,
-    "building": "When you learn this, choose features that apply to the Spell (see Features sheet). Points: Level 1: 3 basic; Level 2: 4 basic; Level 3: 5 basic/advanced; Level 4: 6 basic/advanced.",
+    "builder_notes": "When you learn this, choose features that apply to the Spell (see Features sheet). Points: Level 1: 3 basic; Level 2: 4 basic; Level 3: 5 basic/advanced; Level 4: 6 basic/advanced.",
     "special": null,
     "prereqs": "Theurgy [Level] + 1",
     "relevant_skills": "Theurgy",
@@ -4499,7 +4613,8 @@
         "points": 6,
         "advanced": true
       }
-    }
+    },
+    "choice_effects": null
   },
   {
     "id": "T105",
@@ -4513,7 +4628,7 @@
     "cost": "Discard [this Spell's Level] cards",
     "target": "Yourself or an adjacent ally",
     "effects": "The target heals 1 Shallow Health, plus an extra Shallow Health for each Heart discarded.",
-    "building": "When you learn this, choose features that apply to the Spell (see Features sheet). Points: Level 1: 1 basic; Level 2: 4 basic; Level 3: 8 basic/advanced; Level 4: 11 basic/advanced.",
+    "builder_notes": "When you learn this, choose features that apply to the Spell (see Features sheet). Points: Level 1: 1 basic; Level 2: 4 basic; Level 3: 8 basic/advanced; Level 4: 11 basic/advanced.",
     "special": null,
     "prereqs": "Theurgy [Level] + 1",
     "relevant_skills": "Theurgy",
@@ -4553,7 +4668,8 @@
         "points": 11,
         "advanced": true
       }
-    }
+    },
+    "choice_effects": null
   },
   {
     "id": "T106",
@@ -4567,7 +4683,7 @@
     "cost": null,
     "target": "An adjacent ally who is Downed",
     "effects": "Your target heals 1 Deep Health.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 2",
     "relevant_skills": "Theurgy",
@@ -4590,7 +4706,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T107",
@@ -4604,7 +4721,7 @@
     "cost": null,
     "target": "All creatures within a 3-meter-long cone",
     "effects": "Make a Theurgy spell attack against the Dodge Defense of each target. Each target hit is Pushed back [twice your Mind] + [Spades] meters.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 2, Survival 1",
     "relevant_skills": "Theurgy, Survival",
@@ -4636,7 +4753,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T108",
@@ -4650,7 +4768,7 @@
     "cost": null,
     "target": "A creature within [Theurgy Skill Total] meters",
     "effects": "Choose Crippling, Slowing, or Psychosis Poison. Make a Theurgy spell attack against the target's Vital Defense. If it hits, the target is affected by that Poison with Potency 3. Crippling gains +[Clubs] Potency, Slowing +[Spades], Psychosis +[Hearts].",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 3, Survival 2",
     "relevant_skills": "Theurgy, Survival",
@@ -4682,7 +4800,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T109",
@@ -4696,7 +4815,7 @@
     "cost": null,
     "target": "A circular area 2 meters in radius, centered on a space within [Theurgy Skill Total] meters",
     "effects": "All plant life in target spaces grows as though for an entire season. In most climates, affected terrain has up to [Mind] levels of Difficult Terrain and additional effects may apply.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 3, Survival 2",
     "relevant_skills": "Theurgy, Survival",
@@ -4728,7 +4847,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T110",
@@ -4742,7 +4862,7 @@
     "cost": null,
     "target": "An ally within [Theurgy Skill Total] meters",
     "effects": "The target is linked to you for the rest of the encounter. While linked, if the target would lose Health, instead you lose that much Health (target still suffers other effects). You may end the link at any time; it ends if you become Downed/incapacitated. When cast, you may commit it to make the link last until you uncommit.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 3",
     "relevant_skills": "Theurgy",
@@ -4765,7 +4885,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T111",
@@ -4779,7 +4900,7 @@
     "cost": null,
     "target": "A creature within [Theurgy Skill Total] meters",
     "effects": "Make a Theurgy spell attack against the target's Mental Defense. If it hits, they are Crippled 5 + [Clubs] times.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 3",
     "relevant_skills": "Theurgy",
@@ -4802,7 +4923,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T112",
@@ -4816,7 +4938,7 @@
     "cost": null,
     "target": "Up to [twice your Mind] square meters within [Theurgy Skill Total] meters (each space must be adjacent to earth or stone)",
     "effects": "You move earth into or out of the target spaces. A 1-meter barricade provides Light Cover; 2 meters provides Heavy or Total Cover. If you spend 10 minutes casting, it is not expended and you can shape the earth into walls, pillars, sculptures, or other structures (limited by Craft Skill Total for complex shapes).",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 3, Survival 2",
     "relevant_skills": "Theurgy, Survival",
@@ -4848,7 +4970,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T113",
@@ -4862,7 +4985,7 @@
     "cost": "Discard X cards (X may be 0)",
     "target": "Up to X + 1 creatures within [Theurgy Skill Total] meters",
     "effects": "Make a Theurgy spell attack against each target's Dodge Defense. If the attack hits, the target is Slowed 4 + [Spades] times. Discarded cards are counted in the attack's suit pool.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 3, Survival 2",
     "relevant_skills": "Theurgy, Survival",
@@ -4894,7 +5017,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T114",
@@ -4908,7 +5032,7 @@
     "cost": null,
     "target": "An empty space within [Theurgy Skill Total] meters",
     "effects": "You Summon a Spectre in the target space, lasting for the encounter. When cast, you may commit this Spell; if you do, the Spectre lasts as long as you keep this Spell committed.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 3, Academics 2",
     "relevant_skills": "Theurgy, Academics",
@@ -4940,7 +5064,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T115",
@@ -4954,7 +5079,7 @@
     "cost": "Discard a card (to cast in 2 AP instead of 10 minutes)",
     "target": "An area [Mind] km in radius centered on you",
     "effects": "Change weather of the target area starting 3 rounds later, lasting for the encounter. Make a Theurgy flip; difficulty based on desired power: Minor (Diff 9): light rain/wind; Moderate (Diff 13): fog, thick clouds, Light Cover; Major (Diff 17): extreme effects, Heavy Cover, terrain alteration. Each Extra Success: expand area by [Mind] km or extend duration by 1 hour.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 3, Survival 2",
     "relevant_skills": "Theurgy, Survival",
@@ -4986,7 +5111,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T116",
@@ -5000,7 +5126,7 @@
     "cost": null,
     "target": "Yourself or an ally within [Theurgy Skill Total] meters",
     "effects": "Make a Theurgy spell attack against the Mental Defense of each enemy within 3 meters of the target. The target Frightens each creature hit 3 + [Hearts] times.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 4",
     "relevant_skills": "Theurgy",
@@ -5023,7 +5149,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T117",
@@ -5037,7 +5164,7 @@
     "cost": null,
     "target": "Yourself or an ally within [Theurgy Skill Total] meters",
     "effects": "Make a Theurgy spell attack against the Mental Defense of each enemy within 3 meters of the target. The target Taunts each creature hit 3 + [Hearts] times.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 4",
     "relevant_skills": "Theurgy",
@@ -5060,7 +5187,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T118",
@@ -5074,7 +5202,7 @@
     "cost": null,
     "target": "An area [Theurgy Skill Total] meters in radius, centered on a point within [twice Theurgy Skill Total] meters (no line of sight required)",
     "effects": "Create powerful tremors lasting for the encounter. All affected terrain has 1 level of Difficult Terrain. Any creature in the area when the Spell begins, moves/is Pushed into it, or ends their turn there is Crippled twice and Harried twice. At encounter's end, structures and terrain may suffer permanent damage.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 5, Survival 4",
     "relevant_skills": "Theurgy, Survival",
@@ -5106,7 +5234,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T119",
@@ -5120,7 +5249,7 @@
     "cost": "Discard a card",
     "target": null,
     "effects": "Choose another Theurgy Spell you know with Level no greater than 4 and taking no more than 2 AP to cast. This Spell has the same effects as that Spell; if that Spell has costs you must also pay them; that Spell is not expended.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 5, Sorcery 5",
     "relevant_skills": "Theurgy, Sorcery",
@@ -5152,7 +5281,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T120",
@@ -5166,7 +5296,7 @@
     "cost": null,
     "target": "An adjacent creature",
     "effects": "Make a Sorcery spell attack against the target's Defense (Dodge or Vital, chosen when you learn this). If it hits, it deals 2 + [your Mind] Fire damage.",
-    "building": "When you learn this, choose features that apply (see Features sheet). Points: Level 1: 1 basic; Level 2: 3 basic; Level 3: 4 basic/advanced; Level 4: 6 basic/advanced.",
+    "builder_notes": "When you learn this, choose features that apply (see Features sheet). Points: Level 1: 1 basic; Level 2: 3 basic; Level 3: 4 basic/advanced; Level 4: 6 basic/advanced.",
     "special": null,
     "prereqs": "Sorcery [Level + 1]",
     "relevant_skills": "Sorcery",
@@ -5206,7 +5336,8 @@
         "points": 6,
         "advanced": true
       }
-    }
+    },
+    "choice_effects": null
   },
   {
     "id": "T121",
@@ -5220,7 +5351,7 @@
     "cost": null,
     "target": "A creature within [Sorcery Skill Total] meters",
     "effects": "Make a Sorcery spell attack against the target's Dodge or Parry Defense. The spell attack deals 3 + [Mind] Physical damage.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Sorcery 2",
     "relevant_skills": "Sorcery",
@@ -5243,7 +5374,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T122",
@@ -5257,7 +5389,7 @@
     "cost": null,
     "target": "The creature attacking you",
     "effects": "Cast a Sorcery Spell against the target. The Spell cannot take more than 2 AP to cast.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Sorcery 2, Insight 2",
     "relevant_skills": "Sorcery, Insight",
@@ -5289,7 +5421,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T123",
@@ -5303,7 +5436,7 @@
     "cost": null,
     "target": "Up to [Sorcery Skill Total] connected spaces, each within [Sorcery Skill Total] meters; each 3 meters tall",
     "effects": "You summon a wall of swirling shadows for the scene. Creatures cannot see through the wall or anything within it, but it is not solid. Attacks into or through the wall treat it as Heavy Cover.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Sorcery 3, Resilience 2",
     "relevant_skills": "Sorcery, Resilience",
@@ -5335,7 +5468,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T124",
@@ -5349,7 +5483,7 @@
     "cost": "Discard X cards",
     "target": null,
     "effects": "Regain the use of a Sorcery Spell Encounter Technique with Level [X + 1] or less. X is increased by 1 for each Club discarded to this Technique.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Sorcery 3, Academics 2",
     "relevant_skills": "Sorcery, Academics",
@@ -5381,7 +5515,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T125",
@@ -5395,7 +5530,7 @@
     "cost": null,
     "target": "An empty space within [Sorcery Skill Total] meters",
     "effects": "You Summon an Elemental Warrior in the target space, lasting for the encounter. When cast, you may commit this Spell; if you do, the Elemental lasts as long as you keep this Spell committed.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Sorcery 4",
     "relevant_skills": "Sorcery",
@@ -5418,7 +5553,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T126",
@@ -5432,7 +5568,7 @@
     "cost": null,
     "target": "Up to [Sorcery Skill Total] connected spaces within [Sorcery Skill Total] meters; each 3 meters tall",
     "effects": "You summon a wall of ice that lasts for the encounter. Creatures that would be in a space the wall occupies are moved to the nearest unoccupied adjacent space. Each space of wall has 4 Health and [Mind] Soak against all damage except Fire. When a space loses all Health, that section is destroyed.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Sorcery 4",
     "relevant_skills": "Sorcery",
@@ -5455,7 +5591,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T127",
@@ -5469,7 +5606,7 @@
     "cost": null,
     "target": "Up to [Sorcery Skill Total] connected spaces within [Sorcery Skill Total] meters; each 3 meters tall",
     "effects": "You summon a wall of fire lasting for the scene. Creatures in the area when it begins may spend 1 AP (interrupt) to Shift 1 meter. Anyone in the area when the wall appears, moves/is Pushed into the area, or ends their turn there takes 3 + [your Mind] Fire damage.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Sorcery 5",
     "relevant_skills": "Sorcery",
@@ -5492,7 +5629,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T128",
@@ -5506,7 +5644,7 @@
     "cost": null,
     "target": null,
     "effects": "You do not suffer Bad Luck as usual for making non-lethal attacks.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Medicine 2",
     "relevant_skills": "Medicine",
@@ -5529,7 +5667,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T129",
@@ -5543,7 +5682,7 @@
     "cost": null,
     "target": null,
     "effects": "Attacks against your Dodge or Parry Defense have Bad Luck.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics or Brawl) 3",
     "relevant_skills": "Acrobatics, Brawl",
@@ -5567,7 +5706,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T130",
@@ -5581,7 +5721,7 @@
     "cost": null,
     "target": null,
     "effects": "While in this Stance: You may not Parry. If a target Parries or is hit by one of your attacks, they gain a stack of Bleeding. Ignore any stacks of Taunted or Frightened you have. Ignore any penalties from being Wounded.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Might 3, Resilience 2",
     "relevant_skills": "Might, Resilience",
@@ -5613,7 +5753,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T131",
@@ -5627,7 +5768,7 @@
     "cost": null,
     "target": null,
     "effects": "Whenever you make an attack, Sift 1 card and add its suit to the pool.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Insight 3",
     "relevant_skills": "Insight",
@@ -5650,7 +5791,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T132",
@@ -5664,7 +5806,7 @@
     "cost": null,
     "target": null,
     "effects": "At all times, you may ignore up to 2 stacks of Harried you have.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics or Brawl) 3, Insight 2",
     "relevant_skills": "Acrobatics, Brawl, Insight",
@@ -5697,7 +5839,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T133",
@@ -5711,7 +5854,7 @@
     "cost": null,
     "target": null,
     "effects": "Your Spells and non-weapon-attack Disciplines have their Ranges increased by 3 meters.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery, Meditation, or Theurgy) 3",
     "relevant_skills": "Sorcery, Meditation, Theurgy",
@@ -5736,7 +5879,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T134",
@@ -5750,7 +5894,7 @@
     "cost": null,
     "target": null,
     "effects": "As an Interrupt when you Parry an attack, choose one: (a) For 0 AP, make a weapon attack against the attacker. (b) For 1 AP, use a Technique that takes no more than 2 AP and has you make a weapon attack against the attacker but no other targets.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Brawl or Melee) 3, Insight 2",
     "relevant_skills": "Brawl, Melee, Insight",
@@ -5783,7 +5927,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T135",
@@ -5797,7 +5942,7 @@
     "cost": null,
     "target": null,
     "effects": "If your Unarmed weapon attacks would deal Physical damage, they instead deal it as Brilliant damage.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 3, Meditation 2",
     "relevant_skills": "Brawl, Meditation",
@@ -5829,7 +5974,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T136",
@@ -5843,7 +5989,7 @@
     "cost": null,
     "target": null,
     "effects": "Once per round immediately after you make an attack with one of your weapons (before anything else), you may spend 1 AP to make an identical attack with your other weapon, applying any ability (but not weapon) effects from the initial attack.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics, Brawl, or Melee) 3, Acrobatics 2",
     "relevant_skills": "Acrobatics, Brawl, Melee",
@@ -5877,7 +6023,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T137",
@@ -5891,7 +6038,7 @@
     "cost": null,
     "target": null,
     "effects": "Whenever you take an action involving one or more attacks with a ranged weapon, you may spend an extra 1 AP. If you do, those attacks have Good Luck twice.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics or Archery) 4",
     "relevant_skills": "Acrobatics, Archery",
@@ -5915,7 +6062,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T138",
@@ -5929,7 +6077,7 @@
     "cost": null,
     "target": null,
     "effects": "When one of your weapon attacks with a two-handed close-range weapon Downs a creature, you may immediately make an attack with that weapon against another creature next to the initial target.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Brawl or Melee) 4, Might 3",
     "relevant_skills": "Brawl, Melee, Might",
@@ -5962,7 +6110,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T139",
@@ -5976,7 +6125,7 @@
     "cost": null,
     "target": null,
     "effects": "Whenever you Parry an enemy's attack, gain 1 stack of Protected.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Melee 4, Athletics 3",
     "relevant_skills": "Melee, Athletics",
@@ -6008,7 +6157,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T140",
@@ -6022,7 +6172,7 @@
     "cost": null,
     "target": null,
     "effects": "Your damaging spell attacks and non-weapon discipline attacks deal +1 damage. You may not Parry.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Meditation) 4",
     "relevant_skills": "Sorcery, Meditation",
@@ -6046,7 +6196,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T141",
@@ -6060,7 +6211,7 @@
     "cost": null,
     "target": null,
     "effects": "Your maximum Fullness increases from 15 to 20. You suffer the effects of being Too Full above 15 Fullness rather than above 10.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Body 2",
     "relevant_skills": null,
@@ -6083,7 +6234,8 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T142",
@@ -6097,7 +6249,7 @@
     "cost": null,
     "target": null,
     "effects": "Your maximum Fullness increases from 20 to 25. You can have Good Luck rather than Bad Luck from being Too Full on a flip a number of times per day equal to your Body score. Additionally, when you take a full night’s rest with 20 or more Fullness, you can spend extra Fullness in two ways. Once after you draw your hand from resting, you may pay 5 additional Fullness to discard and redraw any number of those cards. You may also pay 3 Fullness, any number of times, to heal 1 Shallow or Deep Health.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Body 3, Spacious Gut",
     "relevant_skills": null,
@@ -6124,7 +6276,8 @@
         "name": "Spacious Gut"
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   },
   {
     "id": "T143",
@@ -6138,7 +6291,7 @@
     "cost": null,
     "target": null,
     "effects": "You have Good Luck on Streetwise flips to navigate and travel through settlements at least as large as a town. Once per day in an urban environment, you automatically find water for the party, and one Food Material each for up to [half your Streetwise Skill Total] Goblins.",
-    "building": null,
+    "builder_notes": null,
     "special": null,
     "prereqs": "Streetwise 3",
     "relevant_skills": "Streetwise",
@@ -6161,6 +6314,7 @@
         }
       }
     ],
-    "feature_budget": null
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
