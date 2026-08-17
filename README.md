@@ -119,6 +119,33 @@ the full commit-by-commit detail behind any of these.
   collapsible-section buttons, array-toggle logic) that had drifted
   slightly out of sync across the Items/Techniques/Crafting sections
   are now single shared definitions.
+- **Consistency pass, round two** — the judgment calls from round one:
+  - Split the Pack/Gear "Travel Rations" out from the craftable Food
+    one — it's now **Basic Travel Ration**, a plain store-bought staple
+    distinct from the Level 1-5 version you cook yourself.
+  - Rapport's Rulebook blurb no longer cites specific Social Contest
+    terms that are about to be reworked; it's just about making people
+    like you now.
+  - `techniques.csv`'s `Relevant Skills`/`related_skills` and
+    `items.csv`'s `Relevant Skill`/`relevant_skill` — same concept,
+    different names — are now both `Relevant Skills`/`relevant_skills`.
+  - `backgrounds.csv` and `features.csv` now split flavor text from
+    rules text into `Description (Fluff)`/`Effects` columns, matching
+    `techniques.csv`/`items.csv` — a handful of backgrounds with a real
+    flavor lead-in (Predator, Numb, Sacred Flame, Masters of Safety,
+    Scrap Trap) got split out; the rest were already all-mechanics, so
+    Fluff is blank for them (and for every Feature, which don't really
+    have room for flavor text by design) the same way it already was
+    for some Techniques/Items.
+  - Filled in three stub/unfinished Rulebook spots: an intro paragraph
+    for "The Basics," a full worked example of crafting a Masterwork
+    weapon enhancement (Enith's shadow blade) under Creating Items, and
+    a resolution for an Example in Damage and Health that set up a
+    scenario (a firebolt at Beornhard) but never finished it.
+  - The Character Creation chapter's first section no longer repeats
+    the chapter's own name — it's "Building a Character" now, matching
+    how every other chapter's opening section has its own distinct
+    title.
 
 ### 2026-08-11 — Crafting materials framework
 

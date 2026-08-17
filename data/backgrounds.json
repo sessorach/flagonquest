@@ -3,266 +3,304 @@
     "id": "B001",
     "name": "Creator",
     "category": "General",
-    "description": "You learn the Artisanal Training Technique. You must meet its prerequisites.",
+    "description": null,
+    "effects": "You learn the Artisanal Training Technique. You must meet its prerequisites.",
     "supplement": "Base Game"
   },
   {
     "id": "B002",
     "name": "Discoverer",
     "category": "General",
-    "description": "You start the game with a Climber’s Kit, Adventurer’s Belt, and 2 Medicinal Supplies.",
+    "description": null,
+    "effects": "You start the game with a Climber’s Kit, Adventurer’s Belt, and 2 Medicinal Supplies.",
     "supplement": "Base Game"
   },
   {
     "id": "B003",
     "name": "Dilettante",
     "category": "General",
-    "description": "You start the game with a Disguise Kit, Tinker’s Kit, and two sets of Basic Clothing in a style or outfit of your choice.",
+    "description": null,
+    "effects": "You start the game with a Disguise Kit, Tinker’s Kit, and two sets of Basic Clothing in a style or outfit of your choice.",
     "supplement": "Base Game"
   },
   {
     "id": "B004",
     "name": "Journeyman",
     "category": "General",
-    "description": "You start the game with a Crafting Toolset and a total of 9 Level 1 Wood, Leather, Cloth, and/or Metal raw materials.",
+    "description": null,
+    "effects": "You start the game with a Crafting Toolset and a total of 9 Level 1 Wood, Leather, Cloth, and/or Metal raw materials.",
     "supplement": "Base Game"
   },
   {
     "id": "B005",
     "name": "Herbalist",
     "category": "General",
-    "description": "You start the game with a Mixology Set and 9 Level 1 Medicinal raw materials.",
+    "description": null,
+    "effects": "You start the game with a Mixology Set and 9 Level 1 Medicinal raw materials.",
     "supplement": "Base Game"
   },
   {
     "id": "B006",
     "name": "Entertainer",
     "category": "General",
-    "description": "You start the game with a Musical Instrument of your choice, 2 bottles of Level 1 Alcohol, and 5 Gold.",
+    "description": null,
+    "effects": "You start the game with a Musical Instrument of your choice, 2 bottles of Level 1 Alcohol, and 5 Gold.",
     "supplement": "Base Game"
   },
   {
     "id": "B007",
     "name": "Fisher",
     "category": "General",
-    "description": "You start the game with a Fishing Kit, 2 bottles of Level 1 Alcohol, and 3 large fish.",
+    "description": null,
+    "effects": "You start the game with a Fishing Kit, 2 bottles of Level 1 Alcohol, and 3 large fish.",
     "supplement": "Base Game"
   },
   {
     "id": "B008",
     "name": "Traveler",
     "category": "General",
-    "description": "You start the game with a Small Cart and 2 Gold.",
+    "description": null,
+    "effects": "You start the game with a Small Cart and 2 Gold.",
     "supplement": "Base Game"
   },
   {
     "id": "B009",
     "name": "Wanderer",
     "category": "General",
-    "description": "You start the game with 2 bottles of Level 1 Alcohol and 8 Gold.",
+    "description": null,
+    "effects": "You start the game with 2 bottles of Level 1 Alcohol and 8 Gold.",
     "supplement": "Base Game"
   },
   {
     "id": "B010",
     "name": "Heirloom",
     "category": "General",
-    "description": "You start the game with an heirloom weapon or suit of armor of a type of your choice. The heirloom may be used as a base item for a Masterwork Enhancement, and requires 1 fewer raw material to enhance in this way. The heirloom has no value to anyone else but you, and any Masterwork Enhancements on it only function when wielded or worn by you.",
+    "description": null,
+    "effects": "You start the game with an heirloom weapon or suit of armor of a type of your choice. The heirloom may be used as a base item for a Masterwork Enhancement, and requires 1 fewer raw material to enhance in this way. The heirloom has no value to anyone else but you, and any Masterwork Enhancements on it only function when wielded or worn by you.",
     "supplement": "Base Game"
   },
   {
     "id": "B011",
     "name": "Professional",
     "category": "Settler",
-    "description": "You learn the Profession Technique. You must meet its prerequisites.",
+    "description": null,
+    "effects": "You learn the Profession Technique. You must meet its prerequisites.",
     "supplement": "Base Game"
   },
   {
     "id": "B012",
     "name": "Storied",
     "category": "Settler",
-    "description": "Common folk are likely to give you the benefit of the doubt and offer you simple supplies. Your drinks are often on the house.",
+    "description": null,
+    "effects": "Common folk are likely to give you the benefit of the doubt and offer you simple supplies. Your drinks are often on the house.",
     "supplement": "Base Game"
   },
   {
     "id": "B013",
     "name": "Rank and Title",
     "category": "Settler",
-    "description": "As a member in an organization, you have a small amount of clout and resources you can tap into. You usually have to perform some service to the organization in exchange, depending on your request.",
+    "description": null,
+    "effects": "As a member in an organization, you have a small amount of clout and resources you can tap into. You usually have to perform some service to the organization in exchange, depending on your request.",
     "supplement": "Base Game"
   },
   {
     "id": "B014",
     "name": "Well-Read",
     "category": "Settler",
-    "description": "When you play a card for any Academics flip, you may treat its suit as being a Spade instead of its normal suit.",
+    "description": null,
+    "effects": "When you play a card for any Academics flip, you may treat its suit as being a Spade instead of its normal suit.",
     "supplement": "Base Game"
   },
   {
     "id": "B015",
     "name": "Magic Trick",
     "category": "Settler",
-    "description": "You can use simple magic to warm or chill a small object you’re holding, create a small light the size of a candle's flame, and/or produce a small shower of sparks in the color(s) of your choice.",
+    "description": null,
+    "effects": "You can use simple magic to warm or chill a small object you’re holding, create a small light the size of a candle's flame, and/or produce a small shower of sparks in the color(s) of your choice.",
     "supplement": "Base Game"
   },
   {
     "id": "B016",
     "name": "Gritty",
     "category": "Settler",
-    "description": "You heal an extra 1 Shallow Health from getting a full night's rest.",
+    "description": null,
+    "effects": "You heal an extra 1 Shallow Health from getting a full night's rest.",
     "supplement": "Base Game"
   },
   {
     "id": "B017",
     "name": "Forethought",
     "category": "Settler",
-    "description": "After you get a full night's rest, you may draw two extra cards. If you do, discard two cards.",
+    "description": null,
+    "effects": "After you get a full night's rest, you may draw two extra cards. If you do, discard two cards.",
     "supplement": "Base Game"
   },
   {
     "id": "B018",
     "name": "Run On All Fours",
     "category": "Wildfolk",
-    "description": "For 2 AP you may move 2 + [twice your Speed] meters.",
+    "description": null,
+    "effects": "For 2 AP you may move 2 + [twice your Speed] meters.",
     "supplement": "Base Game"
   },
   {
     "id": "B019",
     "name": "Prehensile",
     "category": "Wildfolk",
-    "description": "You have a tail or other appendage that can be used to hold, retrieve, store, or manipulate objects as well as a hand, although it does not count as a hand or function as a Held item slot.",
+    "description": null,
+    "effects": "You have a tail or other appendage that can be used to hold, retrieve, store, or manipulate objects as well as a hand, although it does not count as a hand or function as a Held item slot.",
     "supplement": "Base Game"
   },
   {
     "id": "B020",
     "name": "Amphibious",
     "category": "Wildfolk",
-    "description": "You can breathe underwater without penalty.",
+    "description": null,
+    "effects": "You can breathe underwater without penalty.",
     "supplement": "Base Game"
   },
   {
     "id": "B021",
     "name": "Night Vision",
     "category": "Wildfolk",
-    "description": "You can see even in total darkness, although this doesn't help against anything that physically obscures vision such as smoke or fog.",
+    "description": null,
+    "effects": "You can see even in total darkness, although this doesn't help against anything that physically obscures vision such as smoke or fog.",
     "supplement": "Base Game"
   },
   {
     "id": "B022",
     "name": "Scavenger",
     "category": "Wildfolk",
-    "description": "You may eat any organic matter, regardless of how fresh or cooked it is, at no penalty. This does not protect you from any kind of Poison.",
+    "description": null,
+    "effects": "You may eat any organic matter, regardless of how fresh or cooked it is, at no penalty. This does not protect you from any kind of Poison.",
     "supplement": "Base Game"
   },
   {
     "id": "B023",
     "name": "Aerial Balance",
     "category": "Wildfolk",
-    "description": "When you fall, you treat the distance as being 3 meters shorter.",
+    "description": null,
+    "effects": "When you fall, you treat the distance as being 3 meters shorter.",
     "supplement": "Base Game"
   },
   {
     "id": "B024",
     "name": "Predator",
     "category": "Wildfolk",
-    "description": "You have claws or some other feature that makes your natural attacks more deadly. When your hands are empty, you may attack as though you were wielding a Two-Handed Light Melee weapon. This benefits from any Hands slot item that improves your Unarmed attacks, but does not otherwise count as an Unarmed weapon.",
+    "description": "You have claws or some other feature that makes your natural attacks more deadly.",
+    "effects": "When your hands are empty, you may attack as though you were wielding a Two-Handed Light Melee weapon. This benefits from any Hands slot item that improves your Unarmed attacks, but does not otherwise count as an Unarmed weapon.",
     "supplement": "Base Game"
   },
   {
     "id": "B025",
     "name": "Bloody Divination",
     "category": "Bloody Banner",
-    "description": "Once per scene, a Bloody Banner Goblin who slays a foe with discernible anatomy can spend 10 minutes searching through the viscera and roll for the resulting benefit:\n1. Sift 3 cards.\n2. Discard a card and draw one. If the discarded card was a Heart, instead draw 2 cards.\n3. Gain 2 stacks of Protected; these do not tick down over time as normal until either the next combat or you rest.\n4. You have Good Luck on your next flip.",
+    "description": null,
+    "effects": "Once per scene, a Bloody Banner Goblin who slays a foe with discernible anatomy can spend 10 minutes searching through the viscera and roll for the resulting benefit:\n1. Sift 3 cards.\n2. Discard a card and draw one. If the discarded card was a Heart, instead draw 2 cards.\n3. Gain 2 stacks of Protected; these do not tick down over time as normal until either the next combat or you rest.\n4. You have Good Luck on your next flip.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B026",
     "name": "Masters of Safety",
     "category": "Bloody Banner",
-    "description": "The better nutrition, safer conditions, and tradition of good training helps keep Bloody Banner Goblins (only slightly-disputed) lords of the area. Once per day, regain the use of an encounter technique that is up to the highest level you have purchased.",
+    "description": "The better nutrition, safer conditions, and tradition of good training helps keep Bloody Banner Goblins (only slightly-disputed) lords of the area.",
+    "effects": "Once per day, regain the use of an encounter technique that is up to the highest level you have purchased.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B027",
     "name": "Improved Bite",
     "category": "Rockbiters",
-    "description": "Rockbiters have a natural bite attack that counts as either a Heavy or Light 1H Melee Weapon (chosen at character creation). Incredibly, they can even use it to try and parry attacks like any held weapon. Their bite ignores 1 point of Physical Soak from armor, and deals double damage against inanimate objects.",
+    "description": null,
+    "effects": "Rockbiters have a natural bite attack that counts as either a Heavy or Light 1H Melee Weapon (chosen at character creation). Incredibly, they can even use it to try and parry attacks like any held weapon. Their bite ignores 1 point of Physical Soak from armor, and deals double damage against inanimate objects.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B028",
     "name": "Hardy",
     "category": "Rockbiters",
-    "description": "Rockbiter get an additional Deep Health and don't get Bad Luck on flips from being Wounded.",
+    "description": null,
+    "effects": "Rockbiter get an additional Deep Health and don't get Bad Luck on flips from being Wounded.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B029",
     "name": "Cruelty",
     "category": "Black-Ear",
-    "description": "Black-Ear have Good Luck on flips against enemies that are Wounded.",
+    "description": null,
+    "effects": "Black-Ear have Good Luck on flips against enemies that are Wounded.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B030",
     "name": "Numb",
     "category": "Black-Ear",
-    "description": "Black-Ear feel less emotions, except for rage, fear, and joy at the misfortune of others. While still capable of positive feelings and cultivating relationships, they have Bad Luck on Masquerade, Performance, and Rapport flips and tend to be awkward at gatherings. The plus side is that they are harder to trick or provoke, so Flips against their Mental or Instinct Defense have Bad Luck.",
+    "description": "Black-Ear feel less emotions, except for rage, fear, and joy at the misfortune of others.",
+    "effects": "While still capable of positive feelings and cultivating relationships, they have Bad Luck on Masquerade, Performance, and Rapport flips and tend to be awkward at gatherings. The plus side is that they are harder to trick or provoke, so Flips against their Mental or Instinct Defense have Bad Luck.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B031",
     "name": "Poison Adaptation",
     "category": "Dampfoot",
-    "description": "Dampfoot are immune to natural poisons and non-magical diseases. Any non-Goblin creature that bites or swallows a Dampfoot gets a Resilience flip made against their Body Defense by that Dampfoot. Failure means they must let go or spit out their victim, and receive that Dampfoot's Body score in stacks of Harried and Crippled. On a successful save they are merely Harried and Crippled once at the start of every round until they let go (or successfully eat their target). Dampfoot may use their saliva as poison on a weapon they are holding a number of times per day equal to their Body as part of an attack flip. It counts as Bloody Poison with a Potency of their Body score and Concentration of their Resilience pool.",
+    "description": null,
+    "effects": "Dampfoot are immune to natural poisons and non-magical diseases. Any non-Goblin creature that bites or swallows a Dampfoot gets a Resilience flip made against their Body Defense by that Dampfoot. Failure means they must let go or spit out their victim, and receive that Dampfoot's Body score in stacks of Harried and Crippled. On a successful save they are merely Harried and Crippled once at the start of every round until they let go (or successfully eat their target). Dampfoot may use their saliva as poison on a weapon they are holding a number of times per day equal to their Body as part of an attack flip. It counts as Bloody Poison with a Potency of their Body score and Concentration of their Resilience pool.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B032",
     "name": "Expert Swimmer",
     "category": "Dampfoot",
-    "description": "Dampfoot have a swim speed equal to 1/2 their movement (rounded up) and have Good Luck on Athletics flips related to swimming. They can open their eyes safely and painlessly in water, can see through cloudy water, and can hold their breath in it for 3x as long as other Goblins. Additionally Dampfoot get Good Luck when using Survival and Stealth in swamps.",
+    "description": null,
+    "effects": "Dampfoot have a swim speed equal to 1/2 their movement (rounded up) and have Good Luck on Athletics flips related to swimming. They can open their eyes safely and painlessly in water, can see through cloudy water, and can hold their breath in it for 3x as long as other Goblins. Additionally Dampfoot get Good Luck when using Survival and Stealth in swamps.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B033",
     "name": "Blessed Fire",
     "category": "Firebug",
-    "description": "Firebug using natural methods are able to start fires in all but the most difficult situations (intense blizzard, a flood) and succeed automatically on Survival Flips to start fires. Once per day a Firebug can regain the use of an Encounter Technique that deals Fire damage.",
+    "description": null,
+    "effects": "Firebug using natural methods are able to start fires in all but the most difficult situations (intense blizzard, a flood) and succeed automatically on Survival Flips to start fires. Once per day a Firebug can regain the use of an Encounter Technique that deals Fire damage.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B034",
     "name": "Sacred Flame",
     "category": "Firebug",
-    "description": "Firebug worship fire and their dark God who blesses it, and only the most insane outcast would willingly extinguish a blaze without good cause. They cannot conjure water unless they seek out the knowledge after character creation, a decision not to be made lightly. Firebug who maintain this covenant against extinguishing fires can have a damaging technique do fire damage instead of its original type, plus one point, once per day for each point of Essence. If they knowingly extinguish a fire, they lose the Blessed Fire ability and instead deal one less damage with Fire attacks for at least a day. They may regain their previous bonus if they atone, a deeply personal ritual that usually involves setting a fire somewhere else. Extinguishing themselves does not count against them, and they gain +1 to Dodge Defense against Fire attacks.",
+    "description": "Firebug worship fire and their dark God who blesses it, and only the most insane outcast would willingly extinguish a blaze without good cause.",
+    "effects": "They cannot conjure water unless they seek out the knowledge after character creation, a decision not to be made lightly. Firebug who maintain this covenant against extinguishing fires can have a damaging technique do fire damage instead of its original type, plus one point, once per day for each point of Essence. If they knowingly extinguish a fire, they lose the Blessed Fire ability and instead deal one less damage with Fire attacks for at least a day. They may regain their previous bonus if they atone, a deeply personal ritual that usually involves setting a fire somewhere else. Extinguishing themselves does not count against them, and they gain +1 to Dodge Defense against Fire attacks.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B035",
     "name": "Cave Adaption",
     "category": "Fardown",
-    "description": "Fardown have perfect Darkvision with no range limit, but in bright daylight are blind outside a 20-tile range and get -1 to sight-based Flips. They can squeeze through spaces as tight as a foot across, and have a climb speed of half their movement (rounded up) on underground surfaces. They have Good Luck on Flips to Athletics (climbing) and Survival in caves. When in a cave, they are always able to discern north and how far down they are.",
+    "description": null,
+    "effects": "Fardown have perfect Darkvision with no range limit, but in bright daylight are blind outside a 20-tile range and get -1 to sight-based Flips. They can squeeze through spaces as tight as a foot across, and have a climb speed of half their movement (rounded up) on underground surfaces. They have Good Luck on Flips to Athletics (climbing) and Survival in caves. When in a cave, they are always able to discern north and how far down they are.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B036",
     "name": "Scent",
     "category": "Fardown",
-    "description": "Fardown start with the Blindsight technique. This is an innate, natural ability. A Fardown can purchase this technique one more time and triple its effective range.",
+    "description": null,
+    "effects": "Fardown start with the Blindsight technique. This is an innate, natural ability. A Fardown can purchase this technique one more time and triple its effective range.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B037",
     "name": "Tree Scaling",
     "category": "Troll-Food",
-    "description": "Troll-Food have a climb speed of half their move speed (rounded up) when scaling trees or natural foliage. They have Good Luck on Athletics Flips related to climbing vegetation. Up in a tree or in dense foliage they gain Good Luck on Sneak Flips. They also have Good Luck on survival flips in woodlands.",
+    "description": null,
+    "effects": "Troll-Food have a climb speed of half their move speed (rounded up) when scaling trees or natural foliage. They have Good Luck on Athletics Flips related to climbing vegetation. Up in a tree or in dense foliage they gain Good Luck on Sneak Flips. They also have Good Luck on survival flips in woodlands.",
     "supplement": "Goblin Game"
   },
   {
     "id": "B038",
     "name": "Scrap Trap",
     "category": "Troll-Food",
-    "description": "Troll-Food goblins have to learn to make defenses with whatever is at hand to survive. They can use just about anything to craft crude defenses, and are assumed to have enough useful junk on hand to make them. They can create a trap that deals 1 Slowed per 2 points of Cunning (rounded up) and 1 Bleed to living enemies passing over them. These traps are visible to anyone and not hidden unless prepared and obscured beforehand. These traps are good for a single use and take a full round to craft, they may make a number of these per scene equal to 1 + the higher of their Cunning or Mind score.",
+    "description": "Troll-Food goblins have to learn to make defenses with whatever is at hand to survive.",
+    "effects": "They can use just about anything to craft crude defenses, and are assumed to have enough useful junk on hand to make them. They can create a trap that deals 1 Slowed per 2 points of Cunning (rounded up) and 1 Bleed to living enemies passing over them. These traps are visible to anyone and not hidden unless prepared and obscured beforehand. These traps are good for a single use and take a full round to craft, they may make a number of these per scene equal to 1 + the higher of their Cunning or Mind score.",
     "supplement": "Goblin Game"
   }
 ]

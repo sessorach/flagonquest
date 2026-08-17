@@ -37,6 +37,20 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   with embedded commas, quotes, or multi-line dialogue (several technique
   descriptions are two or three paragraphs) are easy to corrupt outside a
   tool that understands CSV quoting.
+- Every content table (`techniques.csv`, `items.csv`, `backgrounds.csv`,
+  `features.csv`) splits flavor text from rules text into two columns —
+  `Description (Fluff)` (italicized, hidden on the read-only Character
+  Sheet) and `Effects` (always shown). This is a schema-level rule, not
+  a per-row judgment call: every table gets both columns even if a
+  given row's Fluff ends up blank (most `features.csv` rows will, since
+  a Feature is a small modular snippet with little room for its own
+  flavor — that's fine, blank Fluff is a normal, common state, not a
+  gap to fill in). When adding a new row, if the text has a genuine
+  flavor lead-in (scene-setting, in-fiction "why," no rules content) put
+  that in Fluff and the actual rule in Effects, rather than leaving the
+  two blended into one column. If existing rows still have them blended
+  when you're touching that content for another reason, split them out
+  while you're in there instead of leaving the exception in place.
 - New content packs get tagged by `Supplement` (e.g. "Base Game", "Goblin
   Game") on items/backgrounds/techniques. `enabledSupplements` (the
   Builder tab's Sources panel) gates what's *offered* for new picks —

@@ -140,7 +140,7 @@ Put on any sort of entertaining or inspiring performance, both with instruments 
 
 #### Rapport
 
-Interact with people amicably, endear yourself to others, and generally be likable and friendly. It is used to make Maneuvering and Forceful arguments in social contests.
+Interact with people amicably, endear yourself to others, and generally be likable and friendly. Whether you’re smoothing over a tense negotiation or simply making a good first impression, you’re building Rapport.
 
 #### Sorcery
 
@@ -186,7 +186,7 @@ Duplicate Techniques are able to be learned multiple times. Unless otherwise sta
 
 This is how the core of the system works.
 
-[Insert intro paragraph explaining what a TTRPG is]
+A tabletop roleplaying game (TTRPG) is a story a group tells together out loud, with each player controlling a character while one player, the GM, runs the world and everyone else in it. The rules exist for the moments where what happens next isn’t obvious - they’re how you find out.
 
 You use a deck of cards, a standard 52-card deck of playing cards.
 
@@ -278,7 +278,7 @@ If the entire party is Downed, their fate is left to the GM. Depending on the si
 
 Example: Beornhard tries to avoid melee combat, but wears some armor just in case. Unfortunately, a bandit with a sword manages to hit him with an attack that deals 5 Physical damage. Beornhard has 2 Essence, and a suit of light armor that provides +1 Physical Resist, for a total of 3 Physical Resist. 5 - 3 = 2, so he loses 2 Health from the attack hitting.
 
-Example: To insult him further, an enemy warmage decides to take advantage of this to launch a firebolt at Beornhard.
+Example: To insult him further, an enemy warmage decides to take advantage of this and launches a firebolt at Beornhard. His light armor only helps against Physical damage, so this time he only has his 2 Essence to Resist it. The firebolt hits for 6 Fire damage, so 6 - 2 = 4, and he loses 4 Health instead. Poor Beornhard.
 
 ## A Full Night’s Rest
 
@@ -610,15 +610,19 @@ The exception to this is Precious Materials, which are almost always bought and 
 
 ## Examples
 
-OK let’s look at the whole process:
+Let’s walk through the whole process, start to finish.
 
-Enith wants to create a shadow blade. She has the recipe for it, which states that it requires
+Example: Enith wants to forge a blade wreathed in shadow. She settles on Elemental-Forged Weaponry - a Level 3 Masterwork enhancement, costing 20 Gold per Level - with Shadow chosen as its element, built onto a Light One-Handed Melee Weapon as the base item.
+
+First, the base item. A Light One-Handed Melee Weapon is a Weapon, and Enith has a Craft Skill Total of 4 and is trained in Carving (from her Artisanal Training), so she uses the Weapon (Carving) recipe: 2 materials of Wood or Bone, plus 1 of Cloth or Leather. She spends 2 Bone and 1 Leather, all Level 1, along with her carving tools, a workbench, and the recipe itself, and puts in the full 8 hours weapons require.
+
+Then the enhancement. At Level 3, Elemental-Forged Weaponry costs 3 × 20 = 60 Gold, so Enith needs 60 Gold worth of materials, at least one of which must be Shadow. She still has a Level 5 Shadow-aligned material saved from a shade she put down last week, and rounds the rest out with what else she has on hand until she reaches 60. Another 8 hours at the workbench, and the enhancement is done - the finished weapon deals Shadow damage instead of Physical with every attack she makes with it.
 
 # Character Creation
 
 This section comes last since it leans on terms and mechanics explained throughout the rest of the book — skim ahead (or get someone to summarize it for you) if something here doesn’t make sense yet.
 
-## Character Creation
+## Building a Character
 
 The basics of making a character are simple:
 

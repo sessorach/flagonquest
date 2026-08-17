@@ -875,8 +875,13 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
             <strong>{f.feature_name}</strong>
             <span style={{ color: TEXT.faint }}> ({f.point_cost} pt{f.point_cost !== 1 ? "s" : ""} each)</span>
           </div>
+          {f.description && (
+            <div style={{ fontSize: 13, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.4 }}>
+              {f.description}
+            </div>
+          )}
           <div style={{ fontSize: 13, color: TEXT.muted, lineHeight: 1.4 }}>
-            {count > 0 ? applyFeatureCount(f.description, count) : f.description}
+            {count > 0 ? applyFeatureCount(f.effects, count) : f.effects}
           </div>
           {f.prereq && (
             <div style={{ fontSize: 12, color: TEXT.faint }}>Requires: {f.prereq}</div>
@@ -1068,7 +1073,7 @@ function FeaturesSection({
                   return (
                     <div key={fid} style={{ fontSize: 12, color: TEXT.muted, lineHeight: 1.4 }}>
                       <strong style={{ color: TEXT.body }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
-                      {" — "}{withGlossary(applyFeatureCount(f.description, n), glossary)}
+                      {" — "}{withGlossary(applyFeatureCount(f.effects, n), glossary)}
                     </div>
                   );
                 })}
@@ -1131,7 +1136,7 @@ function TechCard({
   skillTotals = null,
 }) {
   const tags   = splitCSV(tech.tags);
-  const skills = splitCSV(tech.related_skills);
+  const skills = splitCSV(tech.relevant_skills);
 
   // "Encounter" is important enough to live in the corner with the level
   // badge — everything else stays in the tags line.
@@ -1306,7 +1311,7 @@ function TechCard({
               return (
                 <div key={fid} style={{ fontSize:13, color:TEXT.body, lineHeight:1.5 }}>
                   <strong style={{ color:TEXT.name }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
-                  {" — "}{withSkillTotals(applyFeatureCount(f.description, n), glossary, skillTotals)}
+                  {" — "}{withSkillTotals(applyFeatureCount(f.effects, n), glossary, skillTotals)}
                 </div>
               );
             })}
@@ -2105,9 +2110,17 @@ function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
           {bg.category}
         </span>
       </div>
-      <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
-        {bg.description}
-      </div>
+      {/* Fluff/Effects split, same treatment as a technique's or item's. */}
+      {!readOnly && bg.description && (
+        <div style={{ fontSize: 13, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.5 }}>
+          {bg.description}
+        </div>
+      )}
+      {bg.effects && (
+        <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
+          {bg.effects}
+        </div>
+      )}
       {!readOnly && (
         <button
           onClick={() => onToggle(bg)}
@@ -2147,7 +2160,7 @@ const WEAPON_INFO_FIELDS = [
   ["accuracy", "Accuracy", v => `${v >= 0 ? "+" : ""}${v}`],
   ["damage", "Damage", v => v],
   ["range", "Range", v => v],
-  ["relevant_skill", "Skill", v => v],
+  ["relevant_skills", "Skill", v => v],
   ["might_requirement", "Might Req", v => v],
 ];
 
@@ -4546,7 +4559,7 @@ function App() {
   // Powers the "Related skills" and "Tags" multiselects in Advanced filters.
   const allSkills = useMemo(() => {
     const set = new Set();
-    techniques.forEach(t => splitCSV(t.related_skills).forEach(s => set.add(s)));
+    techniques.forEach(t => splitCSV(t.relevant_skills).forEach(s => set.add(s)));
     return [...set].sort();
   }, [techniques]);
 
@@ -4579,7 +4592,7 @@ function App() {
     if (healingOnly && !t.healing) return false;
     if (cardsOnly && !t.use_cards) return false;
     if (skillFilters.length > 0) {
-      const techSkills = splitCSV(t.related_skills);
+      const techSkills = splitCSV(t.relevant_skills);
       if (!skillFilters.some(s => techSkills.includes(s))) return false;
     }
     if (tagFilters.length > 0) {
@@ -4595,7 +4608,7 @@ function App() {
       // technique that has one, not just ones whose special text happens
       // to contain that word.
       const hay = [
-        t.name, t.tags, t.related_skills,
+        t.name, t.tags, t.relevant_skills,
         t.description, t.condition, t.action, t.cost, t.target,
         t.effects, t.special, t.prereqs, t.special ? "Special" : null,
       ].filter(Boolean).join(" ").toLowerCase();
@@ -5280,7 +5293,7 @@ function App() {
       const accuracy = item.accuracy ?? baseItem?.accuracy;
       const rawDamage = item.damage ?? baseItem?.damage;
       const range = item.range ?? baseItem?.range;
-      const skill = item.relevant_skill ?? baseItem?.relevant_skill;
+      const skill = item.relevant_skills ?? baseItem?.relevant_skills;
       if (accuracy == null && rawDamage == null && range == null) return;
       const dual = parseDualModeWeapon(range, skill);
       rows.push({

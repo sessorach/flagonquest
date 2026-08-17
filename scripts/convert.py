@@ -170,7 +170,7 @@ TECHNIQUE_MAP = {
     "Prereqs (Full)":       "prereqs",
     "Prereq Check":         "prereq_check_raw",     # parsed below, not passed through as-is
     "Feature Budget":       "feature_budget_raw",   # parsed below, not passed through as-is
-    "Relevant Skills":      "related_skills",
+    "Relevant Skills":      "relevant_skills",
     "Uses Cards":           "use_cards",
     "Healing":              "healing",
     "Features":             "features",
@@ -206,7 +206,12 @@ FEATURE_MAP = {
     "Feature Name":         "feature_name",
     "Tier":                 "tier",
     "Point Cost":           "point_cost",
-    "Description":          "description",
+    # Flavor/rules split, same as ITEM_MAP/TECHNIQUE_MAP — usually blank
+    # in practice, since a Feature is a small modular rule snippet with
+    # little room for its own flavor text, but the column exists so one
+    # can be added without a schema change if a Feature ever wants one.
+    "Description (Fluff)": "description",
+    "Effects":              "effects",
     "Additional Prereq":    "prereq",
 }
 
@@ -278,7 +283,7 @@ ITEM_MAP = {
     "Damage":             "damage",
     "Weapon Defense":     "weapon_defense",   # only applies to Parry Defense when this weapon is chosen to parry with — see index.html
     "Range":              "range",
-    "Relevant Skill":     "relevant_skill",
+    "Relevant Skills":    "relevant_skills",
     "Might Requirement":  "might_requirement",
     "Held Slots":         "held_slots",       # how much of the 2-slot Held capacity this weapon takes (1 or 2)
     # Which book this item is from — "Base Game" for everything in the
@@ -301,7 +306,13 @@ BACKGROUND_MAP = {
     "ID":           "id",
     "Name":         "name",
     "Category":     "category",
-    "Description":  "description",
+    # Flavor/rules split, same as ITEM_MAP/TECHNIQUE_MAP — most
+    # backgrounds are short enough that this is blank and the whole
+    # thing is Effects, but a background with a real flavor lead-in
+    # (e.g. explaining a Goblin clan trait before the mechanic) gets it
+    # split out the same way.
+    "Description (Fluff)": "description",
+    "Effects":              "effects",
     # Which book this is from — see the matching note on ITEM_MAP's
     # Supplement column. A Goblin clan background's Category is the
     # clan's own name (e.g. "Rockbiters") rather than "General"/
