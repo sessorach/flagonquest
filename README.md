@@ -100,6 +100,10 @@ the full commit-by-commit detail behind any of these.
   items, and features: "twice"/"thrice"/"four times" etc. instead of the
   mix of numerals ("Slowed 4 times", "[3 times X]") and inconsistent
   spelled-out forms ("Good Luck two times") that had crept in.
+- Food created items (cooked meals, etc.) now spoil a week after being
+  made, matching how long raw Food materials already last — they used
+  to spoil after just a day, which didn't make sense next to a week for
+  the raw ingredients that went into them.
 
 ### 2026-08-11 — Crafting materials framework
 

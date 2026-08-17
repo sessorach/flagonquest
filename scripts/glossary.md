@@ -82,7 +82,7 @@ At the end of your turn in combat encounters, remove one stack of each Fleeting 
 
 #### [Food]
 
-Food items can be eaten for sustenance. Food materials will spoil and become useless a week after being gathered, and Food created items will spoil a full day after being created. You only gain the benefits or effects of the first Food item you eat each day.
+Food items can be eaten for sustenance. Whether it's a raw Food material or a Food item made by cooking, it spoils and becomes useless a week after being gathered or created. You only gain the benefits or effects of the first Food item you eat each day.
 
 #### [Grenade]
 
