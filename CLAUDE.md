@@ -126,6 +126,18 @@ Base Item Options), see the docstring at the top of `scripts/convert.py`
   colors above) rather than each inventing its own. When adding a new
   convention to one of these families, check whether its siblings should
   pick it up too instead of only fixing the one spot that prompted it.
+- Within `index.html` specifically (one file, so no import to share
+  through — everything just has to live at top level), a few small
+  helpers exist precisely so per-tab code doesn't reinvent them:
+  `chipStyle(active)` for any toggle-able filter chip button (Items'
+  Keyword/Supplement, Techniques' Related skills/Tags, Crafting's type
+  filters all use it), `collapseBtnStyle` for a collapsible section's
+  Show/Hide button (Sources, Backgrounds, Crafting), and
+  `toggleInArray(setter, value)` for flipping a value in/out of an
+  array-backed multiselect filter's state. These used to be copy-pasted
+  three-plus times each, one per component that needed them, some
+  acknowledged in a comment ("same look as X's chips") and some not;
+  reach for the shared one before writing a new local copy.
 
 ## Verifying UI changes before committing
 

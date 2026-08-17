@@ -1515,6 +1515,7 @@ function GlossaryTerm({ term, description }) {
           padding: "6px 10px", fontSize: 12, lineHeight: 1.4,
           color: TEXT.body, fontStyle: "normal", fontWeight: 400,
           fontFamily: "system-ui, -apple-system, sans-serif",
+          whiteSpace: "pre-wrap",
           boxShadow: "0 4px 14px rgba(0,0,0,0.45)",
         }}>
           <strong style={{ color: "#d4a843" }}>{term}</strong>: {description}
@@ -2157,6 +2158,35 @@ function statBadge(label, v) {
   return `${label} ${v >= 0 ? "+" : "−"}${Math.abs(v)}`;
 }
 
+// Flips a value's membership in an array-backed multiselect filter's
+// state — the Items/Techniques/Crafting tabs' chip filters all work
+// this way. Call as toggleInArray(setFoo, value) from a per-filter
+// wrapper (e.g. const toggleSkill = skill => toggleInArray(setSkillFilters, skill)).
+function toggleInArray(setter, value) {
+  setter(cur => cur.includes(value) ? cur.filter(x => x !== value) : [...cur, value]);
+}
+
+// Shared look for a toggle-able filter chip button — Items' Keyword/
+// Supplement filters, Techniques' Related skills/Tags filters, and
+// Crafting's type-group filters all use this. Active chips light up gold.
+function chipStyle(active) {
+  return {
+    padding: "3px 10px", fontSize: 13, borderRadius: 20,
+    fontWeight: active ? 500 : 400,
+    whiteSpace: "nowrap",
+    background: active ? "#d4a84322" : "transparent",
+    color:      active ? "#d4a843" : TEXT.muted,
+    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
+  };
+}
+
+// Shared look for a collapsible section's toggle button (Sources,
+// Backgrounds, Crafting).
+const collapseBtnStyle = {
+  fontSize: 12, color: TEXT.muted, background: "transparent",
+  border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
+};
+
 // ══════════════════════════════════════════════════════════════════
 // INVENTORY TILE — one owned item: name, category/slot, description/
 // effects text, any flat stat bonuses or weapon profile it carries, and
@@ -2798,10 +2828,6 @@ function CustomItemTile({
 // ══════════════════════════════════════════════════════════════════
 function SourcesSection({ supplements, enabledSupplements, onToggle }) {
   const [collapsed, setCollapsed] = useState(true);
-  const collapseBtnStyle = {
-    fontSize: 12, color: TEXT.muted, background: "transparent",
-    border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
-  };
 
   if (collapsed) {
     return (
@@ -2880,11 +2906,6 @@ function BackgroundsSection({
       </div>
     );
   }
-
-  const collapseBtnStyle = {
-    fontSize: 12, color: TEXT.muted, background: "transparent",
-    border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
-  };
 
   // Tucked out of the way — just the picks (if any), plus a button to
   // bring the toggle/picker grid back.
@@ -3434,25 +3455,12 @@ const CRAFTING_GROUPS = ["Base", "Masterwork", "Alchemy", "Food"];
 // ══════════════════════════════════════════════════════════════════
 function CraftingSection({ items, craftingRecipes, inventory, customMaterials, statPoints, skillPoints, build, notes, techniques }) {
   const [collapsed, setCollapsed] = useState(true);
-  const [skillFilter, setSkillFilter] = useState(false);
+  const [skillReadyFilter, setSkillReadyFilter] = useState(false);
   const [materialsFilter, setMaterialsFilter] = useState(false);
   const [groupFilters, setGroupFilters] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState({});   // itemId -> recipeId
   const [selectedBaseItem, setSelectedBaseItem] = useState({}); // itemId -> baseItemId
-  const collapseBtnStyle = {
-    fontSize: 12, color: TEXT.muted, background: "transparent",
-    border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
-  };
-  const toggleGroupFilter = g => setGroupFilters(f => f.includes(g) ? f.filter(x => x !== g) : [...f, g]);
-  // Same look as the Items tab's Keyword/Supplement filter chips.
-  const groupChipStyle = active => ({
-    padding: "3px 10px", fontSize: 13, borderRadius: 20,
-    fontWeight: active ? 500 : 400,
-    whiteSpace: "nowrap",
-    background: active ? "#d4a84322" : "transparent",
-    color:      active ? "#d4a843" : TEXT.muted,
-    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
-  });
+  const toggleGroupFilter = g => toggleInArray(setGroupFilters, g);
 
   const ownedMaterials = useMemo(
     () => gatherOwnedMaterials(inventory, items, customMaterials),
@@ -3487,11 +3495,11 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
         return { item, variants, picked, baseItemOptions, group: craftingGroup(item, picked.req) };
       })
       .filter(Boolean)
-      .filter(r => !skillFilter || r.picked.skillReady === true)
+      .filter(r => !skillReadyFilter || r.picked.skillReady === true)
       .filter(r => !materialsFilter || r.picked.materialsReady === true)
       .filter(r => groupFilters.length === 0 || groupFilters.includes(r.group))
       .sort((a, b) => a.item.name.localeCompare(b.item.name));
-  }, [items, craftingRecipes, inventory, ownedMaterials, statPoints, skillPoints, build, notes, techniques, selectedRecipe, skillFilter, materialsFilter, groupFilters]);
+  }, [items, craftingRecipes, inventory, ownedMaterials, statPoints, skillPoints, build, notes, techniques, selectedRecipe, skillReadyFilter, materialsFilter, groupFilters]);
 
   const readyBadge = (label, state) => (
     <span style={{
@@ -3527,7 +3535,7 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
       }}>
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
           <label style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer" }}>
-            <input type="checkbox" checked={skillFilter} onChange={e => setSkillFilter(e.target.checked)} />
+            <input type="checkbox" checked={skillReadyFilter} onChange={e => setSkillReadyFilter(e.target.checked)} />
             Have the skill
           </label>
           <label style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer" }}>
@@ -3537,7 +3545,7 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
         </div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
           {CRAFTING_GROUPS.map(g => (
-            <button key={g} onClick={() => toggleGroupFilter(g)} style={groupChipStyle(groupFilters.includes(g))}>
+            <button key={g} onClick={() => toggleGroupFilter(g)} style={chipStyle(groupFilters.includes(g))}>
               {g}
             </button>
           ))}
@@ -3663,19 +3671,8 @@ function InventorySection({
   const [tagFilters, setTagFilters] = useState([]);
   const [supplementFilters, setSupplementFilters] = useState([]);
   const NO_SLOT = "__none__";
-  const toggleTagFilter = tag => setTagFilters(f => f.includes(tag) ? f.filter(x => x !== tag) : [...f, tag]);
-  const toggleSupplementFilter = s => setSupplementFilters(f => f.includes(s) ? f.filter(x => x !== s) : [...f, s]);
-  // Same look as the Techniques tab's toggle-able filter chips (see
-  // filterChipStyle in App) — duplicated here since InventorySection
-  // has no shared style import to pull it from.
-  const filterChipStyle = active => ({
-    padding: "3px 10px", fontSize: 13, borderRadius: 20,
-    fontWeight: active ? 500 : 400,
-    whiteSpace: "nowrap",
-    background: active ? "#d4a84322" : "transparent",
-    color:      active ? "#d4a843" : TEXT.muted,
-    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
-  });
+  const toggleTagFilter = tag => toggleInArray(setTagFilters, tag);
+  const toggleSupplementFilter = s => toggleInArray(setSupplementFilters, s);
   // Items from a disabled supplement (see the Sources panel on
   // Builder) never show up as something new to add — but `items`
   // itself stays the full list, since a copy already carried from a
@@ -3919,7 +3916,7 @@ function InventorySection({
                   </div>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                     {tagOptions.map(t => (
-                      <button key={t} onClick={() => toggleTagFilter(t)} style={filterChipStyle(tagFilters.includes(t))}>
+                      <button key={t} onClick={() => toggleTagFilter(t)} style={chipStyle(tagFilters.includes(t))}>
                         {t}
                       </button>
                     ))}
@@ -3938,7 +3935,7 @@ function InventorySection({
                   </div>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                     {supplements.map(s => (
-                      <button key={s} onClick={() => toggleSupplementFilter(s)} style={filterChipStyle(supplementFilters.includes(s))}>
+                      <button key={s} onClick={() => toggleSupplementFilter(s)} style={chipStyle(supplementFilters.includes(s))}>
                         {s}
                       </button>
                     ))}
@@ -4233,8 +4230,8 @@ function App() {
   // ── UI state ───────────────────────────────────────────────────
   const [view,       setView]       = useState("sheet"); // build | browse | items | sheet | notes
   const [search,     setSearch]     = useState("");
-  const [skillFilter, setSkillFilter] = useState([]);   // selected "related skills" chips
-  const [tagFilter,  setTagFilter]  = useState([]);     // selected "tags" chips
+  const [skillFilters, setSkillFilters] = useState([]);   // selected "related skills" chips
+  const [tagFilters,  setTagFilters]  = useState([]);     // selected "tags" chips
   const [levelMin,   setLevelMin]   = useState(1);
   const [levelMax,   setLevelMax]   = useState(5);
   const [healingOnly, setHealingOnly] = useState(false);
@@ -4559,12 +4556,8 @@ function App() {
     return [...set].sort();
   }, [techniques]);
 
-  const toggleSkill = skill => setSkillFilter(cur =>
-    cur.includes(skill) ? cur.filter(s => s !== skill) : [...cur, skill]
-  );
-  const toggleTag = tag => setTagFilter(cur =>
-    cur.includes(tag) ? cur.filter(t => t !== tag) : [...cur, tag]
-  );
+  const toggleSkill = skill => toggleInArray(setSkillFilters, skill);
+  const toggleTag = tag => toggleInArray(setTagFilters, tag);
 
   // ── Filtered technique list ────────────────────────────────────
   // useMemo = only recalculate when one of the listed deps changes.
@@ -4585,13 +4578,13 @@ function App() {
     if (!matchesLevel(t, levelMin, levelMax)) return false;
     if (healingOnly && !t.healing) return false;
     if (cardsOnly && !t.use_cards) return false;
-    if (skillFilter.length > 0) {
+    if (skillFilters.length > 0) {
       const techSkills = splitCSV(t.related_skills);
-      if (!skillFilter.some(s => techSkills.includes(s))) return false;
+      if (!skillFilters.some(s => techSkills.includes(s))) return false;
     }
-    if (tagFilter.length > 0) {
+    if (tagFilters.length > 0) {
       const techTags = splitCSV(t.tags);
-      if (!tagFilter.some(tag => techTags.includes(tag))) return false;
+      if (!tagFilters.some(tag => techTags.includes(tag))) return false;
     }
     if (search) {
       const q = search.toLowerCase();
@@ -4616,7 +4609,7 @@ function App() {
   }).sort((a, b) => {
     const diff = (a.level_min ?? Infinity) - (b.level_min ?? Infinity);
     return diff !== 0 ? diff : a.name.localeCompare(b.name);
-  }), [techniques, search, skillFilter, tagFilter, levelMin, levelMax, healingOnly, cardsOnly, enabledSupplements]);
+  }), [techniques, search, skillFilters, tagFilters, levelMin, levelMax, healingOnly, cardsOnly, enabledSupplements]);
 
   // ── Build entries paired with their technique object ────────────
   const buildEntries = useMemo(() =>
@@ -5608,8 +5601,8 @@ function App() {
   });
 
   // A cooler, book-ish blue instead of the app's amber tab color, and set
-  // off from the other tabs by a divider — it leaves the app (opens the
-  // rulebook in a new tab), so it reads as a different kind of link.
+  // off from the other tabs by a divider — it leaves the app for the
+  // Rulebook/Glossary pages, so it reads as a different kind of link.
   const rulebookLinkStyle = {
     padding: "6px 14px", fontSize: 15, fontWeight: 500, borderRadius: 6,
     background: "#0f2230", color: "#7fb8d9",
@@ -5617,17 +5610,6 @@ function App() {
     textDecoration: "none", display: "inline-flex", alignItems: "center",
     transition: "all 0.15s",
   };
-
-  // Shared look for the toggle-able chip buttons in Advanced filters
-  // (Related skills, Tags) — active chips light up gold.
-  const filterChipStyle = active => ({
-    padding: "3px 10px", fontSize: 13, borderRadius: 20,
-    fontWeight: active ? 500 : 400,
-    whiteSpace: "nowrap",
-    background: active ? "#d4a84322" : "transparent",
-    color:      active ? "#d4a843" : TEXT.muted,
-    border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
-  });
 
   const actionBtn = (danger = false) => ({
     padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
@@ -5965,9 +5947,9 @@ function App() {
                 <div>
                   <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
                     <span style={{ color:TEXT.faint }}>Related skills</span>
-                    {skillFilter.length > 0 && (
+                    {skillFilters.length > 0 && (
                       <button
-                        onClick={() => setSkillFilter([])}
+                        onClick={() => setSkillFilters([])}
                         style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:13, padding:0 }}
                       >
                         Clear
@@ -5976,7 +5958,7 @@ function App() {
                   </div>
                   <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
                     {allSkills.map(skill => (
-                      <button key={skill} onClick={() => toggleSkill(skill)} style={filterChipStyle(skillFilter.includes(skill))}>
+                      <button key={skill} onClick={() => toggleSkill(skill)} style={chipStyle(skillFilters.includes(skill))}>
                         {skill}
                       </button>
                     ))}
@@ -5989,9 +5971,9 @@ function App() {
                 <div>
                   <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
                     <span style={{ color:TEXT.faint }}>Tags</span>
-                    {tagFilter.length > 0 && (
+                    {tagFilters.length > 0 && (
                       <button
-                        onClick={() => setTagFilter([])}
+                        onClick={() => setTagFilters([])}
                         style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:13, padding:0 }}
                       >
                         Clear
@@ -6000,7 +5982,7 @@ function App() {
                   </div>
                   <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
                     {allTags.map(tag => (
-                      <button key={tag} onClick={() => toggleTag(tag)} style={filterChipStyle(tagFilter.includes(tag))}>
+                      <button key={tag} onClick={() => toggleTag(tag)} style={chipStyle(tagFilters.includes(tag))}>
                         {tag}
                       </button>
                     ))}
@@ -6013,7 +5995,7 @@ function App() {
           {/* Result count */}
           <div style={{ fontSize:13, color:TEXT.faint, marginBottom:12 }}>
             {visible.length} technique{visible.length !== 1 ? "s" : ""}
-            {search || skillFilter.length > 0 || tagFilter.length > 0 ? " matching filters" : " total"}
+            {search || skillFilters.length > 0 || tagFilters.length > 0 ? " matching filters" : " total"}
           </div>
 
           {/* List (left) + sticky build panel (right on wide screens) */}

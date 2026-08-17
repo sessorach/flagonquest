@@ -11,7 +11,7 @@
     "level": 4,
     "title": "Draw",
     "supplement": "Base Game",
-    "body": "Take the top card of your deck, put it into your hand"
+    "body": "Take the top card of your deck, put it into your hand."
   },
   {
     "id": "play",
@@ -53,14 +53,14 @@
     "level": 4,
     "title": "Pushing",
     "supplement": "Base Game",
-    "body": "When you are pushed you are forcibly moved a certain distance, although this does not count as \"moving\". If a creature or object is in your way you are pushed through their space, and if the Push would result in you being in an occupied space you end up in the nearest unoccupied space instead. If the creature or object is particularly big you may instead be pushed against them, with various consequences."
+    "body": "When you are pushed you are forcibly moved a certain distance, although this does not count as “moving”. If a creature or object is in your way you are pushed through their space, and if the Push would result in you being in an occupied space you end up in the nearest unoccupied space instead. If the creature or object is particularly big you may instead be pushed against them, with various consequences."
   },
   {
     "id": "range",
     "level": 4,
     "title": "Range",
     "supplement": "Base Game",
-    "body": "If something increases an effect's Range by X, you may choose any point within X meters to be your location for the purposes of determining area of effects and targets; you must still be able to see or otherwise target the new location. For most (non-area) effects, this simply lets you target creatures that are X meters farther away than usual.\n\nIf something decreases an effect's Range by X, it reduces the distance the effect could target something by X meters, to a minimum of 1 meter / close range.\n\nIf the same effect has its Range both increased and decreased, 1 meter of each effect cancels out until only one remains."
+    "body": "If something increases an effect’s Range by X, you may choose any point within X meters to be your location for the purposes of determining area of effects and targets; you must still be able to see or otherwise target the new location. For most (non-area) effects, this simply lets you target creatures that are X meters farther away than usual.\n\nIf something decreases an effect’s Range by X, it reduces the distance the effect could target something by X meters, to a minimum of 1 meter / close range.\n\nIf the same effect has its Range both increased and decreased, 1 meter of each effect cancels out until only one remains."
   },
   {
     "id": "shift",
@@ -95,7 +95,7 @@
     "level": 4,
     "title": "[Buildable]",
     "supplement": "Base Game",
-    "body": "This Technique does not have a fixed effect, and instead each time you learn it you choose features that determine what effects it has.\n\nBased on the Level at which you learn it, you get a number of points to spend on basic features, as well as advanced features if the Level is high enough\n\nEach feature is worth a certain number of points, and the total of all features cannot exceed the limit for that Level of the Technique\n\nUnless otherwise stated, you can choose a feature as many times as you like. For features with an X value, X is the number of times the feature is applied.\n\nSome features have their own requirements to choose for a Technique; these work like Technique prereqs do\n\nThis Technique may also be upgraded to a higher-Level version of itself. To do so, pay 3 Experience for each Level you want to increase the Technique by. Then you build the new version as normal, except that it must have all of the features that the previous version had. This new Technique replaces the old one, and you no longer know the old one."
+    "body": "This Technique does not have a fixed effect, and instead each time you learn it you choose features that determine what effects it has.\n\nBased on the Level at which you learn it, you get a number of points to spend on basic features, as well as advanced features if the Level is high enough.\n\nEach feature is worth a certain number of points, and the total of all features cannot exceed the limit for that Level of the Technique.\n\nUnless otherwise stated, you can choose a feature as many times as you like. For features with an X value, X is the number of times the feature is applied.\n\nSome features have their own requirements to choose for a Technique; these work like Technique prereqs do.\n\nThis Technique may also be upgraded to a higher-Level version of itself. To do so, pay 3 Experience for each Level you want to increase the Technique by. Then you build the new version as normal, except that it must have all of the features that the previous version had. This new Technique replaces the old one, and you no longer know the old one."
   },
   {
     "id": "encounter",
@@ -109,35 +109,35 @@
     "level": 4,
     "title": "[Fleeting]",
     "supplement": "Base Game",
-    "body": "At the end of your turn in combat encounters, remove one stack of each Fleeting effect you have. Outside of combat encounters, remove one stack roughly every 6 seconds."
+    "body": "At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. Outside of combat encounters, remove 1 stack roughly every 6 seconds."
   },
   {
     "id": "food",
     "level": 4,
     "title": "[Food]",
     "supplement": "Base Game",
-    "body": "Food items can be eaten for sustenance. Whether it's a raw Food material or a Food item made by cooking, it spoils and becomes useless a week after being gathered or created. You only gain the benefits or effects of the first Food item you eat each day."
+    "body": "Food items can be eaten for sustenance. Whether it’s a raw Food material or a Food item made by cooking, it spoils and becomes useless a week after being gathered or created. You only gain the benefits or effects of the first Food item you eat each day."
   },
   {
     "id": "grenade",
     "level": 4,
     "title": "[Grenade]",
     "supplement": "Base Game",
-    "body": "Grenades are Acrobatics ranged weapons with a range of 3 × [Body], attacks using them are against the target's Dodge Defense, you may not Gamble on attacks with them, and they are consumed after the attack is made."
+    "body": "Grenades are Acrobatics ranged weapons with a range of 3 × [Body], attacks using them are against the target’s Dodge Defense, you may not Gamble on attacks with them, and they are consumed after the attack is made."
   },
   {
     "id": "implement",
     "level": 4,
     "title": "[Implement]",
     "supplement": "Base Game",
-    "body": "When you cast a Spell or use a Discipline ability, you may choose one of your Implements to channel the ability through, applying the Implement's effects to it. If the Implement is a weapon, the Spell or Discipline counts as an attack with that weapon for any additional effects (such as Masterwork enhancements).\n\nTo use a weapon or other item as an Implement, you must be holding or wearing it as appropriate."
+    "body": "When you cast a Spell or use a Discipline ability, you may choose one of your Implements to channel the ability through, applying the Implement’s effects to it. If the Implement is a weapon, the Spell or Discipline counts as an attack with that weapon for any additional effects (such as Masterwork enhancements).\n\nTo use a weapon or other item as an Implement, you must be holding or wearing it as appropriate."
   },
   {
     "id": "poison",
     "level": 4,
     "title": "[Poison]",
     "supplement": "Base Game",
-    "body": "If an attack with a poisoned weapon successfully causes a creature to lose Health, that creature is exposed to the Poison. Make an attack, adding the Poison's Concentration, against the target's Vital Defense. If it hits, the target suffers the Poison's effects. This is known as a poison attack, which occasionally has special interactions with some abilities and items.\n\nA Poison takes 2 AP to apply to a weapon or piece of ammunition. Weapons and ammunition remain poisoned for 1 hour or until they expose a creature to the Poison, and can only have one Poison at a time.\n\nEffects applied by Poisons do not expire normally. Instead, every hour 1 stack of each Poison effect is removed, and these stacks may not be removed any other way."
+    "body": "If an attack with a poisoned weapon successfully causes a creature to lose Health, that creature is exposed to the Poison. Make an attack, adding the Poison’s Concentration, against the target’s Vital Defense. If it hits, the target suffers the Poison’s effects. This is known as a poison attack, which occasionally has special interactions with some abilities and items.\n\nA Poison takes 2 AP to apply to a weapon or piece of ammunition. Weapons and ammunition remain poisoned for 1 hour or until they expose a creature to the Poison, and can only have one Poison at a time.\n\nEffects applied by Poisons do not expire normally. Instead, every hour 1 stack of each Poison effect is removed, and these stacks may not be removed any other way."
   },
   {
     "id": "potion",
@@ -158,7 +158,7 @@
     "level": 4,
     "title": "[Stance]",
     "supplement": "Base Game",
-    "body": "You may enter or leave a Stance at the start of your turn, before anything else happens. You may only be in one Stance at a time, and entering a Stance will cause you to leave any other Stance you are in. If the Stance lists a condition, you may only enter the Stance while you meet the condition, and if you don't meet it at any time then you immediately leave the Stance."
+    "body": "You may enter or leave a Stance at the start of your turn, before anything else happens. You may only be in one Stance at a time, and entering a Stance will cause you to leave any other Stance you are in. If the Stance lists a condition, you may only enter the Stance while you meet the condition, and if you don’t meet it at any time then you immediately leave the Stance."
   },
   {
     "id": "subtle",
@@ -277,7 +277,7 @@
     "level": 4,
     "title": "[Discipline]",
     "supplement": "Base Game",
-    "body": "Disciplines are mystical and meditative effects, the result of harnessing one's own energy to enhance their body.\n\nSome Disciplines allow you to make discipline attacks, which have special interactions with some abilities and items."
+    "body": "Disciplines are mystical and meditative effects, the result of harnessing one’s own energy to enhance their body.\n\nSome Disciplines allow you to make discipline attacks, which have special interactions with some abilities and items."
   },
   {
     "id": "level-x",
@@ -312,7 +312,7 @@
     "level": 1,
     "title": "Common Terms",
     "supplement": "Base Game",
-    "body": "These terms come up constantly but are defined out in the main rules text rather than here — repeated as their own entries so there's one place to look them all up."
+    "body": "These terms come up constantly but are defined out in the main rules text rather than here — repeated as their own entries so there’s one place to look them all up."
   },
   {
     "id": "good-luck",
@@ -382,14 +382,14 @@
     "level": 4,
     "title": "Concession",
     "supplement": "Base Game",
-    "body": "A successful social statement causes the target's group to suffer 1 Concession, plus 1 Concession for each Extra Success. A group that reaches 10 Concessions loses the social contest."
+    "body": "A successful social statement causes the target’s group to suffer 1 Concession, plus 1 Concession for each Extra Success. A group that reaches 10 Concessions loses the social contest."
   },
   {
     "id": "goblin-game-terms",
     "level": 1,
     "title": "Goblin Game Terms",
     "supplement": "Goblin Game",
-    "body": "Terms specific to the Goblin Game supplement's rules — see Food System, Bingus and Golden Bingus, and The Great Game in the Rulebook."
+    "body": "Terms specific to the Goblin Game supplement’s rules — see Food System, Bingus and Golden Bingus, and The Great Game in the Rulebook."
   },
   {
     "id": "bingus",
@@ -410,7 +410,7 @@
     "level": 4,
     "title": "Fullness",
     "supplement": "Goblin Game",
-    "body": "A Goblin's hunger resource, gained by eating Food Material. Up to 15 can be stored (more with some Techniques); 10 is spent taking a full night's rest properly. Going without doesn't hurt until -10 Fullness, when a Goblin gets Bad Luck on any flip that won't immediately get them a meal, worsening to starving to death at -30. Going over 10 makes a Goblin Too Full instead."
+    "body": "A Goblin’s hunger resource, gained by eating Food Material. Up to 15 can be stored (more with some Techniques); 10 is spent taking a full night’s rest properly. Going without doesn’t hurt until -10 Fullness, when a Goblin gets Bad Luck on any flip that won’t immediately get them a meal, worsening to starving to death at -30. Going over 10 makes a Goblin Too Full instead."
   },
   {
     "id": "too-full",

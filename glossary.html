@@ -259,6 +259,7 @@ function App() {
     color:       active ? "#0a0e18" : TEXT.muted,
     border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
     textDecoration: "none", display: "inline-flex", alignItems: "center",
+    transition: "all 0.15s",
   });
 
   // Same cooler blue as index.html's nav — the Rulebook/Glossary links
@@ -268,6 +269,7 @@ function App() {
     background: "#0f2230", color: "#7fb8d9",
     border: "0.5px solid #3d6a8a",
     textDecoration: "none", display: "inline-flex", alignItems: "center",
+    transition: "all 0.15s",
   };
 
   if (loading) return (

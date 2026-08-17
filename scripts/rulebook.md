@@ -12,9 +12,9 @@ Below is a list of the 5 Stats, and the 5 Skills that each corresponds to.
 
 ### Agility
 
-Agility measures a character's flexibility, quickness, and manual dexterity.
+Agility measures a character’s flexibility, quickness, and manual dexterity.
 
-It impacts a character's ability to dodge and strike, balance and move nimbly, act silently and undetected.
+It impacts a character’s ability to dodge and strike, balance and move nimbly, act silently and undetected.
 
 Agility determines your Speed, and governs the Skills that determine your Dodge and Parry Defenses, as well as ability to hit with weapon attacks.
 
@@ -42,7 +42,7 @@ Sneaking, hiding, and generally avoiding notice. Whenever you are trying to keep
 
 Body represents the quality of your physical self, in many ways.
 
-Anything that involves raw brawn or resilience will be impacted by a character's Body, as well as your physical senses and stature.
+Anything that involves raw brawn or resilience will be impacted by a character’s Body, as well as your physical senses and stature.
 
 Body determines your damage with heavier weapons, how fast you heal when resting, and governs the Skills that determine your Vital Defense and ability to use heavier equipment.
 
@@ -68,15 +68,15 @@ Resisting the adverse effects of poison, disease, exhaustion, and many other har
 
 ### Cunning
 
-Cunning is the sum of a character's subconscious senses and mental reaction time.
+Cunning is the sum of a character’s subconscious senses and mental reaction time.
 
-It affects a character's gut feeling, interactions with others that involve reading their reactions, and knowledge that requires a feeling for the situation.
+It affects a character’s gut feeling, interactions with others that involve reading their reactions, and knowledge that requires a feeling for the situation.
 
 Cunning determines how many cards you draw each morning, the damage of lighter weapons and bows, and governs a variety of more specialized Skills.
 
 #### Insight
 
-Sensing the motives of others, looming danger, and other things that are insubstantial or not directly perceivable. It represents a sort of "sixth sense", and also determines your Reflex bonus and Instinct Defense.
+Sensing the motives of others, looming danger, and other things that are insubstantial or not directly perceivable. It represents a sort of “sixth sense”, and also determines your Reflex bonus and Instinct Defense.
 
 #### Masquerade
 
@@ -84,11 +84,11 @@ Disguising yourself and acting in character, no matter who you might be imperson
 
 #### Persuasion
 
-Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and determines your
+Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and determines your Strategic statements in a social contest.
 
 #### Streetwise
 
-Knowledge of cities and their various social structures as well as your ability to exploit it in any given situation. Whether in a seedy Thieves' Guild tavern or a high nobility ballroom, your Streetwise allows you to stay on top of the shifting power hierarchies and know who to talk to in order to get things done.
+Knowledge of cities and their various social structures as well as your ability to exploit it in any given situation. Whether in a seedy Thieves’ Guild tavern or a high nobility ballroom, your Streetwise allows you to stay on top of the shifting power hierarchies and know who to talk to in order to get things done.
 
 #### Survival
 
@@ -96,7 +96,7 @@ Knowledge of nature and survival as well as your ability to apply that knowledge
 
 ### Mind
 
-Mind is a character's ability to learn, retain, and apply information in both academic and practical settings.
+Mind is a character’s ability to learn, retain, and apply information in both academic and practical settings.
 
 It reflects the amount of knowledge a character has absorbed from a variety of disciplines, as well as the extent to which a character can apply that information in a range of situations.
 
@@ -104,7 +104,7 @@ Mind determines how many cards you draw each morning, the damage and power of ma
 
 #### Academics
 
-Knowledge of history, mathematics, literature, and other subjects frequently thought of as "book learning". Generally, Academics is used to recall most knowledge that is not covered by other Skills.
+Knowledge of history, mathematics, literature, and other subjects frequently thought of as “book learning”. Generally, Academics is used to recall most knowledge that is not covered by other Skills.
 
 #### Craft
 
@@ -124,9 +124,9 @@ Understanding of chemical and alchemical principles and how to combine reagents 
 
 ### Essence
 
-Essence is the measure of a character's connection to metaphysical energies.
+Essence is the measure of a character’s connection to metaphysical energies.
 
-This manifests in the character's ability to manage their own body’s energy, ambient forces around them, and connect spiritually with other people.
+This manifests in the character’s ability to manage their own body’s energy, ambient forces around them, and connect spiritually with other people.
 
 Essence determines how well you can ignore damage, and governs Skills used for magical, supernatural, and social arts.
 
@@ -154,7 +154,7 @@ Manipulate spiritual energy to cast indirect magic, bolstering vital energy and 
 
 Techniques are special abilities and powers that characters learn and develop over time. Special weapon maneuvers, impressive magical spells, a knack for talking your way past anyone; all of these and many more are Techniques that characters can learn.
 
-A Technique's entry will have its name, Level, any tags for the Technique (such as [Encounter], [Martial], or [Spell], refer to the Glossary) that apply to it, a short description with no rules impact, and then the rules for how to use it and what it does.
+A Technique’s entry will have its name, Level, any tags for the Technique (such as [Encounter], [Martial], or [Spell], refer to the Glossary) that apply to it, a short description with no rules impact, and then the rules for how to use it and what it does.
 
 To learn a Technique, must have everything listed under its Prerequisites. You must know any Techniques listed, and have at least as many ranks as are listed for any Skills or Stats - this is the one place in the game where you care about the Skill points themselves, don’t use the Skill Total or include any other effects.
 
@@ -162,11 +162,11 @@ To learn a Technique, must have everything listed under its Prerequisites. You m
 
 As you reach goals and milestones, you will gain Experience which lets you grow stronger. You can spend Experience to improve your Skills and Stats, as well as learn new Techniques.
 
-A Skill point costs Experience equal to the new point total (you buy each point one at a time, though)
+A Skill point costs Experience equal to the new point total (you buy each point one at a time, though).
 
-A Stat point costs Experience equal to twice the new point total (same)
+A Stat point costs Experience equal to twice the new point total (same).
 
-Learning a Technique costs Experience equal to thrice the Level of the Technique
+Learning a Technique costs Experience equal to thrice the Level of the Technique.
 
 Example: Beornhard just got some Experience, and wants to round out his stats. He decided that 1 Body is too low, so he buys a second point in that Stat. It costs 2 Experience times the new point total, so 2 x 2 = 4 Experience for that point.
 
@@ -196,9 +196,9 @@ The most specific rule always wins.
 
 Numbers don’t go negative, things can only be reduced to 0.
 
-If you have multiple effects that would happen because of one of your actions, you can choose what order you apply each effect in. (For example, if you have multiple abilities that do things when you hit with a weapon attack, you can choose what order each ability happens in)
+If you have multiple effects that would happen because of one of your actions, you can choose what order you apply each effect in - for instance, if several of your abilities do something when you hit with a weapon attack.
 
-A benefit attached to one of your abilities only applies if it’s used for something with actual narrative relevance. (An obvious example would be an attack that does something when you Down the target; these don’t trigger if you’re using it to kill something totally non-threatening like a rat or an orphan).
+A benefit attached to one of your abilities only applies if it’s used for something with actual narrative relevance - an attack that does something when you Down the target, for example, doesn’t trigger if you’re using it to kill something totally non-threatening like a rat or an orphan.
 
 Abilities can be used in ways that don’t exactly match their mechanics, if the players and GM agree that it makes sense. For example, a character who has a fireball attack could use it to start a campfire, even though that technically doesn’t involve an attack. Players are encouraged to think of creative solutions to their problems, although as always the GM has final say on what is allowed.
 
@@ -258,7 +258,7 @@ Each flip also has a suit pool, made up of the suits of cards flipped for that a
 
 Example: Browndog makes an attack with her sword against a bandit, and it does extra damage for every Heart in her suit pool. She flips a 10 of Hearts, and the attack hits, so the attack deals an extra +1 damage.
 
-Example: Browndog is facing a tough foe, so she uses a special attack that Slows a target down extra times for every Club she gets. She also applies a bonus to give it Good Luck twice. She flips a Heart, Club, and a Spade, and also plays a Club from her hand. The attack hits, and deals +1 damage (from the Heart), as well as Slows the target two extra times (from the two Clubs). Wow!
+Example: Browndog is facing a tough foe, so she uses a special attack that Slows a target down extra times for every Club she gets. She also applies a bonus to give it Good Luck twice. She flips a Heart, Club, and a Spade, and also plays a Club from her hand. The attack hits, and deals +1 damage (from the Heart), as well as Slows the target twice (from the two Clubs). Wow!
 
 # Health and Resources
 
@@ -266,7 +266,7 @@ In your adventures, you have a few important resources to rely on. Health is the
 
 ## Damage and Health
 
-When an attack or other effect deals damage to you, you reduce that damage by any Resist you have for that type of damage, then you lose Health equal to the damage that's left. There are five types of damage - Physical, Fire, Frost, Brilliant, and Shadow - resisted by equipment and effects, with your Essence increasing all types of Resist as well.
+When an attack or other effect deals damage to you, you reduce that damage by any Resist you have for that type of damage, then you lose Health equal to the damage that’s left. There are five types of damage - Physical, Fire, Frost, Brilliant, and Shadow - resisted by equipment and effects, with your Essence increasing all types of Resist as well.
 
 You have two types of Health - Shallow Health and Deep Health. Whenever you lose Health, you lose Shallow first and then subtract from your Deep Health. Whenever you heal Health, for each Health restored you may choose which type to recover, unless the effect specifies one type.
 
@@ -282,9 +282,9 @@ Example: To insult him further, an enemy warmage decides to take advantage of th
 
 ## A Full Night’s Rest
 
-A full night's rest is a full 8 hours of rest, which may include up to 2 hours spent performing non-strenuous activities such as reading, maintaining equipment, and/or watching over a campsite. You may only get a full night's rest once in a 24-hour period.
+A full night’s rest is a full 8 hours of rest, which may include up to 2 hours spent performing non-strenuous activities such as reading, maintaining equipment, and/or watching over a campsite. You may only get a full night’s rest once in a 24-hour period.
 
-After you get a full night's rest, you do the following in order:
+After you get a full night’s rest, you do the following in order:
 
 - Discard any cards in your hand
 - Heal an amount of Health equal to your Body, split as you choose between Shallow and Deep
@@ -302,7 +302,7 @@ Most items you wear will occupy one of the item slots on your body: Head, Neck, 
 
 You may only wear one item in each slot, except for Ring and Held. You may wear any number of rings, but if you wear more than one Masterwork ring on a single hand then none of them provide any benefits.
 
-You may also hold one Held item in each hand. If that item is listed as 'two-handed', it instead occupies two of your hands (and thus two Held slots), but only while actively making an attack or otherwise using it. A standard character has two hands.
+You may also hold one Held item in each hand. If that item is listed as ‘two-handed’, it instead occupies two of your hands (and thus two Held slots), but only while actively making an attack or otherwise using it. A standard character has two hands.
 
 Many items are tools, instruments, or otherwise aid in various Skill checks, if not outright being necessary to perform those checks. In cases where a check requires certain tools, you may be able to substitute a makeshift tool (e.g. picking a lock with a hairpin), but will likely suffer Bad Luck on the check.
 
@@ -310,11 +310,11 @@ Some items have special properties, such as Masterwork enhancements. These often
 
 ## Gold
 
-Rather than listing money in specific amounts for prices and other purposes, instead 'Gold' is used as a general unit of money. One Gold might be something like a handful of coins, a lump of precious metal, or a few valuable gemstones that can be used as payment and which represents a notable amount of money. At the GM's discretion, smaller purchases might not cost any Gold (a single drink for yourself at a tavern), but something that gives the party a benefit usually does (a round of drinks for some townsfolk you want to impress).
+Rather than listing money in specific amounts for prices and other purposes, instead ‘Gold’ is used as a general unit of money. One Gold might be something like a handful of coins, a lump of precious metal, or a few valuable gemstones that can be used as payment and which represents a notable amount of money. At the GM’s discretion, smaller purchases might not cost any Gold (a single drink for yourself at a tavern), but something that gives the party a benefit usually does (a round of drinks for some townsfolk you want to impress).
 
 # Adventuring
 
-Adventures are more or less divided up into separate encounters, which can involve all kinds of different challenges and
+Adventures are more or less divided up into separate encounters, which can involve all kinds of different challenges and situations - combat, exploration, and social intrigue all share the same basic structure of taking turns and spending Action Points, even as the specifics of each vary.
 
 ## Encounter Basics
 
@@ -368,7 +368,7 @@ Example: Hilde is running after the bandit across city rooftops, but he throws a
 
 An attack is a flip made against a difficulty of the target’s Defense, causing damage or other ill effects to the target if it hits. The Defense they use depends on the attack you’re making. An attack has 3 steps: declaring the attack, making the flip, and resolving the effects.
 
-When you declare an attack, determine which creature(s) the attack targets - you must be aware of a creature to target it. Abilities and items will state what they target, and a normal weapon attack targets a single creature within the weapon's range. You also determine how many times, if any, you are Gambling on the attack at this stage.
+When you declare an attack, determine which creature(s) the attack targets - you must be aware of a creature to target it. Abilities and items will state what they target, and a normal weapon attack targets a single creature within the weapon’s range. You also determine how many times, if any, you are Gambling on the attack at this stage.
 
 The Skill (or other number) used for the flip will be stated by the ability or item in question, with regular weapon attacks using one of the weapon’s relevant Skills of your choice. The source of the attack also states the Defense the target used, with weapon attacks using the target’s Dodge or Parry Defense. If multiple Defenses are stated, the target chooses which to use. The target may choose not (or be unable) to apply any Defenses against an attack, in which case it is considered to be 8. If there are multiple targets for an attack, make separate flips for each target.
 
@@ -376,11 +376,11 @@ Regardless of the attack’s result, a target who applied their Parry or Dodge D
 
 If the flip fails, the attack misses. In this case, a target who used Parry Defense is considered to have Parried the attack, and a target who used Dodge Defense is considered to have Dodged the attack.
 
-If the flip succeeds, the attack hits. Abilities and items will state what happens when they hit. Normal weapon attacks deal Physical damage equal to the weapon's Damage. All damaging attacks (attacks that deal damage) also have their damage increased by [Hearts], and weapon attacks that hit also deal +1 damage for each Extra Success.
+If the flip succeeds, the attack hits. Abilities and items will state what happens when they hit. Normal weapon attacks deal Physical damage equal to the weapon’s Damage. All damaging attacks (attacks that deal damage) also have their damage increased by [Hearts], and weapon attacks that hit also deal +1 damage for each Extra Success.
 
 ### Retrieving Items
 
-Retrieving items, such as drawing a weapon or grabbing a potion, takes AP depending where the item is. If it's in an easy location, like a weapon sheath, belt pouch, or the ground, it only takes 1 AP. If it's in a harder to reach location, like your backpack, it takes 2 AP. Storing items works the same. Dropping an item takes 0 AP and can be done any time. When you retrieve an object you can use each of your hands either together or separately, allowing you to use one action to either draw one item with both hands or two items that each only require one hand.
+Retrieving items, such as drawing a weapon or grabbing a potion, takes AP depending where the item is. If it’s in an easy location, like a weapon sheath, belt pouch, or the ground, it only takes 1 AP. If it’s in a harder to reach location, like your backpack, it takes 2 AP. Storing items works the same. Dropping an item takes 0 AP and can be done any time. When you retrieve an object you can use each of your hands either together or separately, allowing you to use one action to either draw one item with both hands or two items that each only require one hand.
 
 Example: A fight breaks out, and Carrick needs her knives. They are both sheathed on her belt, so she spends 1 AP to draw one knife with each hand.
 
@@ -390,9 +390,9 @@ Example: Jackal needs a healing potion, but she didn’t put those on her belt, 
 
 Big objects, smoke clouds, and other effects can make it harder to affect you. These are referred to broadly as cover. There are three categories of cover - Light, Heavy, and Total - depending on how much of an obstacle the cover or concealment is.
 
-The level of cover provided depends on how much the obstacle covers you from whatever is affecting you. When you're behind an obstacle it provides cover to attackers on the other side of it. When you're in the middle of something obscuring (smoke cloud, fog, etc.) it provides cover to you, as well as to anyone you are trying to affect.
+The level of cover provided depends on how much the obstacle covers you from whatever is affecting you. When you’re behind an obstacle it provides cover to attackers on the other side of it. When you’re in the middle of something obscuring (smoke cloud, fog, etc.) it provides cover to you, as well as to anyone you are trying to affect.
 
-You don't suffer penalties for cover from an object you're right next to, unless your target is taking cover behind the same object; in some weird cases, this might change.
+You don’t suffer penalties for cover from an object you’re right next to, unless your target is taking cover behind the same object; in some weird cases, this might change.
 
 #### Light Cover
 
@@ -424,11 +424,11 @@ If you want to attack a creature but avoid the risk of killing it, you can opt t
 
 #### Shove
 
-Make a Might attack against your target's Dodge or Parry Defense. If the attack hits, you may Push them up to 2 meters away from you.
+Make a Might attack against your target’s Dodge or Parry Defense. If the attack hits, you may Push them up to 2 meters away from you.
 
 #### Grapple
 
-Make an Unarmed weapon attack against your target's Dodge or Parry Defense. If the attack hits, then you successfully grapple the creature and both you and that creature are grappling with each other.
+Make an Unarmed weapon attack against your target’s Dodge or Parry Defense. If the attack hits, then you successfully grapple the creature and both you and that creature are grappling with each other.
 
 While grappling, the following apply to both you and your target:
 
@@ -437,7 +437,7 @@ While grappling, the following apply to both you and your target:
 - If an effect Teleports you away, the grapple ends automatically.
 - Creatures have Good Luck on any attacks against your Dodge or Parry Defense.
 - You may not take any actions that require two hands, including weapon attacks or Parrying with two-handed weapons.
-- You may spend 2 AP and attempt to end the grapple. The other creature may allow the grapple to end, or contest it. If they contest it, they make an Unarmed weapon attack against your Parry or Dodge Defense, and if it hits the grapple doesn't end.
+- You may spend 2 AP and attempt to end the grapple. The other creature may allow the grapple to end, or contest it. If they contest it, they make an Unarmed weapon attack against your Parry or Dodge Defense, and if it hits the grapple doesn’t end.
 
 ## Traveling and Exploration
 
@@ -468,9 +468,9 @@ The item you turn up will not have a higher Level than the number of successes y
 
 ### Food and Exhaustion
 
-Usually, while staying in town, exhaustion isn't much of a concern. However, while traveling the wilderness it can threaten even the hardiest of adventurers.
+Usually, while staying in town, exhaustion isn’t much of a concern. However, while traveling the wilderness it can threaten even the hardiest of adventurers.
 
-If you go longer than 24 hours without getting a full night's rest, you become exhausted. This lasts until you get a full night's rest.
+If you go longer than 24 hours without getting a full night’s rest, you become exhausted. This lasts until you get a full night’s rest.
 
 If you go a full day without enough food and water, you become exhausted. This lasts until you eat or drink for the day, plus for each day you missed. A single Food item, either raw material or cooked, will count as enough food, and four liters of water is enough for a day.
 
@@ -512,13 +512,13 @@ If one side deliberately interrupts and ends the social contest, violently or ot
 
 When both sides agree to end the social contest, or when some outside event interrupts the social contest, then the social contest ends and neither side suffers any consequences as a result. This may occur if the sides decide to reach an Agreement, as per the result.
 
-In some situations, this ending can occur when the contest no longer represents interest from both sides - if one side no longer has a stake in the discussion, or a side begins acting ridiculously or unreasonably, they might choose to simply end the conversation. This represents a dramatic case, such as one side in a negotiation suddenly demanding twice their previous suggested offer, where the other side wouldn't lose face by just shrugging and leaving.
+In some situations, this ending can occur when the contest no longer represents interest from both sides - if one side no longer has a stake in the discussion, or a side begins acting ridiculously or unreasonably, they might choose to simply end the conversation. This represents a dramatic case, such as one side in a negotiation suddenly demanding twice their previous suggested offer, where the other side wouldn’t lose face by just shrugging and leaving.
 
 ### Results of a Social Contest
 
 #### Win Over
 
-The winning side has earned the respect of the other side for the rest of the day, give or take. As long as nothing happens to upset them, then during this time the other side will give the winning side the bulk of their attention and might go out of their way to help them. They will not take more than a small risk on behalf of the winning side, however, and while they might risk upsetting someone else they usually won't do anything illegal or dangerous if there's a chance they will be caught.
+The winning side has earned the respect of the other side for the rest of the day, give or take. As long as nothing happens to upset them, then during this time the other side will give the winning side the bulk of their attention and might go out of their way to help them. They will not take more than a small risk on behalf of the winning side, however, and while they might risk upsetting someone else they usually won’t do anything illegal or dangerous if there’s a chance they will be caught.
 
 #### Disrespect
 
@@ -538,7 +538,7 @@ In order to make an item, there are four things that you need: skill, materials,
 
 #### Skill
 
-To create an item you require a certain level of skill. Your relevant Skill Total must be at least as high as the item's Required Skill, and you must also be trained in the item's creation School (usually acquired from the Artisanal Training Technique).
+To create an item you require a certain level of skill. Your relevant Skill Total must be at least as high as the item’s Required Skill, and you must also be trained in the item’s creation School (usually acquired from the Artisanal Training Technique).
 
 The standard creation Schools are:
 
@@ -555,9 +555,9 @@ To create an item you must use a number of materials equal to the Total Material
 
 For each Base Material Type an item lists, you must include at least 1 material that matches that type.
 
-If Extra Material Types are listed, you may use materials of these Types for up to half of the item's Total Materials.
+If Extra Material Types are listed, you may use materials of these Types for up to half of the item’s Total Materials.
 
-If a series of materials is listed that only requires one of the types (such as 'either Metal, Wood, or Bone'), you may use any of those types. If a School requirement is included, you must fulfill that for any material type you would use - if the listing says ‘Metal (if using Smithing)’, you would need to have Smithing if you wanted to use Metal Materials to create the item.
+If a series of materials is listed that only requires one of the types (such as ‘either Metal, Wood, or Bone’), you may use any of those types. If a School requirement is included, you must fulfill that for any material type you would use - if the listing says ‘Metal (if using Smithing)’, you would need to have Smithing if you wanted to use Metal Materials to create the item.
 
 For each material with multiple Types, choose one of their Types to determine how to use them.
 
@@ -624,7 +624,7 @@ The basics of making a character are simple:
 
 - Choose whether your character is a **Settler** or a **Wildfolk**. Choose two backgrounds from the General list and/or the list you chose.
 - Spend **75 Experience** to build your character. All your Stats and Skills start at 0, and at this point no Stat or Skill can be raised above 3 ranks.
-- You start with an **Adventurer's Kit** and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
+- You start with an **Adventurer’s Kit** and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
 
 ## Calculated Statistics
 
@@ -633,14 +633,14 @@ Below are the calculations for various statistics that your character has, that 
 - **Health**: Each character begins with a maximum of five (5) Shallow and Deep Health (10 total).
 - **Speed**: Your Speed is equal to 1 + your Agility.
 - **Reflex**: Your Reflex is equal to your Insight Skill Total.
-- **Cards Per Day**: You draw cards after a full night's rest equal to twice your total Cunning + Mind.
-- **Rest Health**: You heal Health after a full night's rest equal to your Body.
-- **Parry Defense**: When you apply your Parry Defense, you pick a weapon you are wielding and then your Defense is equal to 8 + [Weapon's relevant Skill Total] + Weapon's Defense.
+- **Cards Per Day**: You draw cards after a full night’s rest equal to twice your total Cunning + Mind.
+- **Rest Health**: You heal Health after a full night’s rest equal to your Body.
+- **Parry Defense**: When you apply your Parry Defense, you pick a weapon you are wielding and then your Defense is equal to 8 + [Weapon’s relevant Skill Total] + Weapon’s Defense.
 - **Dodge Defense**: When you apply your Dodge Defense, you choose Acrobatics or Brawl and then your Defense is equal to 8 + [Acrobatics or Brawl Skill Total].
 - **Vital Defense**: Your Vital Defense is equal to 8 + your Resilience Skill Total.
 - **Mental Defense**: Your Mental Defense is equal to 8 + your Composure Skill Total.
 - **Instinct Defense**: Your Instinct Defense is equal to 8 + your Insight Skill Total.
-- **Damage Resist**: Your Natural Resist is equal to your Spirit. Bonuses to other Resists are given from equipment and other effects.
+- **Resists**: Each of the five types of Resist (Physical, Fire, Frost, Brilliant, Shadow) starts equal to your Essence. Bonuses to any of them come from equipment and other effects.
 
 ### Quick Creation References
 
@@ -690,7 +690,7 @@ Some things hold true for every Goblin, regardless of tribe:
 - Fear of Horses: Goblins won’t ride a horse, or willingly get close enough to one that they couldn’t flee or attack it instead.
 - Cannibalism: Goblins regularly eat slain foes, and their own dead at need, without much sentimentality (see Food Variety, below, for eating Goblin remains specifically).
 - Hate Sunlight: Goblins are crepuscular, most active from dusk into the early hours before dawn, and avoid broad daylight except when they have good reason to brave it. All Goblins have 60 meters of Darkvision or better — the ability to see in the dark up to that range.
-- Hungry: Goblins need 3-5 times the food of another creature their size, and risk starvation penalties after skipping just a single day's worth (see Food System, below, for the exact numbers).
+- Hungry: Goblins need 3-5 times the food of another creature their size, and risk starvation penalties after skipping just a single day’s worth (see Food System, below, for the exact numbers).
 
 ## Gems
 

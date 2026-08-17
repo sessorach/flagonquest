@@ -104,6 +104,21 @@ the full commit-by-commit detail behind any of these.
   made, matching how long raw Food materials already last — they used
   to spoil after just a day, which didn't make sense next to a week for
   the raw ingredients that went into them.
+- **Site-wide consistency pass**, mostly invisible but a bunch of small
+  fixes: a glossary tooltip bug where multi-paragraph entries rendered
+  as one run-on block on the main app (worked fine on the Rulebook/
+  Glossary pages, which is how it went unnoticed); a broken item price
+  (Travel Rations) that couldn't resolve a Gold value; several
+  unfinished/cut-off Rulebook sentences (Persuasion's skill blurb, the
+  Adventuring chapter's intro, a stale rule referencing "Spirit" from
+  before it was renamed to Essence); straight quotes/apostrophes
+  standardized to curly throughout the Rulebook and Glossary; a handful
+  of missed spots from the repeated-count and Food-spoilage passes.
+  Also some code-only cleanup with no visible effect: several
+  copy-pasted style objects and one-line helpers (filter chip styling,
+  collapsible-section buttons, array-toggle logic) that had drifted
+  slightly out of sync across the Items/Techniques/Crafting sections
+  are now single shared definitions.
 
 ### 2026-08-11 — Crafting materials framework
 
