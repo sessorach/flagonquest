@@ -18,14 +18,16 @@ the full commit-by-commit detail behind any of these.
 - The Builder's prereq summary panel is now labeled "Prereq Checker."
 - The URL no longer mirrors the current build in a `#build=...` hash
   during normal use — that only ever served refresh persistence, which
-  character slots/localStorage already handle. "Copy share link" still
-  builds one on demand.
+  character slots/localStorage already handle.
 - Share links are now much shorter (a typical build's link is roughly a
   third of its old length) — same data, just packed more efficiently
   instead of as a quoted-key JSON object. Older links still open fine.
 - Added a **"Show QR code"** button next to Copy share link — pops up
   the current build's share link as a scannable code, so someone else
   at the table can open it on their phone without typing a URL.
+- "Copy share link" no longer puts the link in the address bar either —
+  it only ever copies to the clipboard now (falling back to a native
+  copy-this-text prompt if that's blocked).
 
 ### 2026-08-14 — Rulebook cleanup, material pricing
 

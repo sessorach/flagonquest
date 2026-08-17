@@ -298,9 +298,11 @@ const { useState, useEffect, useMemo, useRef } = React;
  ║  RETAIN ACROSS REFRESH: the whole block of state above (build     ║
  ║  through noteRows) persists to localStorage on every change,      ║
  ║  keyed by the active character slot (see CHARACTER SLOTS below) — ║
- ║  a plain refresh just reads it straight back out. The URL doesn't ║
- ║  carry any of that live; only "Copy share link" writes a one-off  ║
- ║  #build= hash, on demand.                                         ║
+ ║  a plain refresh just reads it straight back out. The URL never   ║
+ ║  carries any of this on its own — "Copy share link" and the QR    ║
+ ║  overlay both just encode a #build= link without touching the     ║
+ ║  address bar; only actually opening one changes it (see the       ║
+ ║  share-link loader below).                                        ║
  ║                                                                   ║
  ║  CHARACTER SLOTS: localStorage can hold more than one character   ║
  ║  (see the CHARACTER SLOTS helpers just above App()) — each one's  ║
@@ -4744,14 +4746,14 @@ function App() {
   // list, character name, and Stats & Skills, but not notes/Feature
   // choices (kept out to keep the URL short), so those come back blank.
   //
-  // The URL doesn't otherwise carry a hash during normal use (Stats &
-  // Skills/build changes just persist straight to localStorage — see
-  // CHARACTER SLOTS), so the only time this fires for real is opening an
-  // actual share link. The one exception is "Copy share link" itself,
-  // which writes this build's own encoding into the address bar as a
-  // copy-paste fallback — the isEcho check below skips that case too,
-  // so it can't spawn a duplicate character if the page gets refreshed
-  // afterward. `buildRef` sidesteps the stale-closure problem of reading
+  // The URL doesn't otherwise carry a hash during normal use — Stats &
+  // Skills/build changes just persist straight to localStorage (see
+  // CHARACTER SLOTS), and neither "Copy share link" nor the QR overlay
+  // touch the address bar — so the only time this fires for real is
+  // actually opening a share link. The isEcho check below is just a
+  // defensive no-op if a hash matching the current build ever shows up
+  // some other way (e.g. this browser's own previous share link, pasted
+  // back in). `buildRef` sidesteps the stale-closure problem of reading
   // `build` from a listener that's only attached once — a URL differing
   // only in its fragment (e.g. pasting a different share link into an
   // already-open tab) doesn't reload the page, it only fires
@@ -5850,10 +5852,6 @@ function App() {
   }
   function doShare() {
     const url = buildShareUrl();
-    // Put the link in the address bar first — this always succeeds, so the
-    // fallback message below is guaranteed true even if clipboard access
-    // is blocked (common on non-secure origins or restrictive browsers).
-    window.history.replaceState(null, "", url);
 
     const legacyCopy = () => {
       const ta = document.createElement("textarea");
@@ -5872,7 +5870,10 @@ function App() {
     (navigator.clipboard?.writeText(url) ?? Promise.reject())
       .catch(() => { if (!legacyCopy()) throw new Error("copy failed"); })
       .then(() => setShareMsg("Link copied!"))
-      .catch(() => setShareMsg("Link ready in your address bar — copy it from there"));
+      // Last resort when clipboard access is blocked entirely (common on
+      // non-secure origins or restrictive browsers): a native prompt()
+      // shows the link pre-selected so it can still be copied by hand.
+      .catch(() => window.prompt("Couldn't copy automatically — copy this link:", url));
     setTimeout(() => setShareMsg(""), 4500);
   }
 
