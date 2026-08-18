@@ -3644,7 +3644,7 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
         <span style={{ fontSize: 12, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px" }}>
           Material
         </span>
-        <span style={{ fontSize: 13, color: TEXT.faint }}>Level</span>
+        {editing && <span style={{ fontSize: 13, color: TEXT.faint }}>Level</span>}
         {editing ? (
           <PointStepper value={entry.level} max={5} onChange={onLevelChange} />
         ) : readOnly ? (
