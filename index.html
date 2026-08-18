@@ -942,13 +942,19 @@ function emptyCharacterData() {
     // gates what's offered going forward, see enabledSupplements' uses.
     enabledSupplements: ["Base Game"],
     // Character Sheet only — current Shallow/Deep Health, tracked
-    // against whatever the max currently computes to (see HealthTrack/
+    // against whatever the max currently computes to (see PipTrack/
     // DerivedStats). null means "untouched, so treat as full" rather
     // than baking in a specific number that Equipment/technique bonuses
     // could immediately make wrong. Session-tracking state like
     // `expended` above — deliberately left out of doExport() so sharing
     // or duplicating a build doesn't hand off someone else's wounds.
     currentHealth: { shallow: null, deep: null },
+    // Goblin Game only — current Fullness, a single signed number (0
+    // means "untouched, so treat as not-yet-eaten" rather than full,
+    // unlike Health — a fresh character hasn't had a meal yet, they
+    // haven't just topped out). Same session-tracking exclusion from
+    // doExport() as currentHealth, for the same reason.
+    currentFullness: null,
   };
 }
 
@@ -1899,20 +1905,25 @@ function PointStepper({ value, onChange, max = 5 }) {
 
 
 // ══════════════════════════════════════════════════════════════════
-// HEALTH TRACK — Shallow/Deep Health's "how much do I have left"
-// widget, underneath the max-Health numbers in DerivedStats. The pips
-// are a pure visual readout (❤️ filled, 🤍 empty) driven two ways: the
-// same PointStepper used everywhere else, for one-at-a-time changes
-// (most of actual play — took a hit, healed 1), or clicking any pip to
-// jump straight to that count (faster for bigger swings — a multi-
-// point hit, or resetting to full after a rest). Clicking the
-// currently-last-filled pip again clears it, so the same pip toggles
-// rather than being a one-way ratchet.
+// PIP TRACK — a "how much do I have left, out of some max" widget,
+// underneath the max number in DerivedStats. Originally just Shallow/
+// Deep Health (hence the ❤️/🤍 default icons); Fullness reuses it with
+// 🍖/🦴 instead — see fullIcon/emptyIcon below — same reasoning as
+// generalizing the Building column once a second real use came up. The
+// pips are a pure visual readout driven two ways: the same PointStepper
+// used everywhere else, for one-at-a-time changes (most of actual play
+// — took a hit, healed 1), or clicking any pip to jump straight to that
+// count (faster for bigger swings — a multi-point hit, or resetting to
+// full after a rest). Clicking the currently-last-filled pip again
+// clears it, so the same pip toggles rather than being a one-way
+// ratchet. Always a 0..max readout — a value that can also go negative
+// (Fullness's Hunger Debt) is a separate, differently-shaped control;
+// see the Fullness box in DerivedStats.
 // The stepper is no-print (meaningless on paper); the pips stay
-// visible in print as a snapshot of current health, or blank-ish
+// visible in print as a snapshot of the current value, or blank-ish
 // boxes to fill by hand on a fresh printout.
 // ══════════════════════════════════════════════════════════════════
-function HealthTrack({ label, max, current, onChange }) {
+function PipTrack({ label, max, current, onChange, fullIcon = "❤️", emptyIcon = "🤍" }) {
   const value = Math.max(0, Math.min(current, max));
   return (
     <div>
@@ -1939,7 +1950,7 @@ function HealthTrack({ label, max, current, onChange }) {
               aria-label={`Set ${label} to ${i + 1}`}
               style={{ cursor: "pointer", fontSize: 15, lineHeight: 1, userSelect: "none" }}
             >
-              {i < value ? "❤️" : "🤍"}
+              {i < value ? fullIcon : emptyIcon}
             </span>
           ))}
         </div>
@@ -2104,6 +2115,10 @@ function StatsPanel({
 function DerivedStats({
   statPoints, skillPoints, equipmentBonuses = {}, techniqueBonuses = {},
   currentHealth = { shallow: null, deep: null }, onHealthChange, glossary = [],
+  // Goblin Game only — see the Fullness box below. currentFullness is a
+  // single signed number (not a {shallow,deep}-style pair like Health),
+  // same session-tracking-state treatment as currentHealth otherwise.
+  enabledSupplements = [], currentFullness = null, onFullnessChange,
 }) {
   const st = skill => skillTotalValue(statPoints, skillPoints, skill);
   const essence = statPoints.Essence || 0;
@@ -2111,6 +2126,21 @@ function DerivedStats({
   const techBonus = key => techniqueBonuses[key] || 0;
   const shallowMax = 5 + bonus("shallow_health") + techBonus("shallow_health");
   const deepMax     = 5 + bonus("deep_health")    + techBonus("deep_health");
+
+  // Goblin Game's Fullness — base 15 max / Too Full above 10 per the
+  // rulebook, raised by Spacious Gut/Gorger the same known-technique-
+  // bonus way Shallow/Deep Health Bonus works (no equipment source
+  // exists for this one, so no bonus() half). currentFullness is a
+  // single signed number, not clamped to 0 here — it can go negative
+  // for Hunger Debt (down to -30, starving to death) as well as
+  // positive up to fullnessMax; see the Fullness box below for how the
+  // two directions get two different controls on one shared value.
+  const goblinGame   = enabledSupplements.includes("Goblin Game");
+  const fullnessMax       = 15 + techBonus("fullness");
+  const fullnessThreshold = 10 + techBonus("fullness_threshold");
+  const fullnessValue     = currentFullness ?? 0;
+  const tooFull  = fullnessValue > fullnessThreshold;
+  const starving = fullnessValue <= -10;
 
   // Wounded — missing all Shallow Health (see the glossary entry below)
   // — auto-applies its -2 to Speed and the five Defenses rather than
@@ -2241,17 +2271,81 @@ function DerivedStats({
         <div style={{ visibility: wounded ? "visible" : "hidden", fontSize: 11, color: "#e0645f", lineHeight: 1.4, marginTop: -4 }}>
           Wounded: −2 Defenses/Speed applied. Also apply Bad Luck to all flips.
         </div>
-        <HealthTrack
+        <PipTrack
           label="Shallow Health" max={shallowMax}
           current={currentHealth.shallow ?? shallowMax}
           onChange={v => onHealthChange && onHealthChange("shallow", v)}
         />
-        <HealthTrack
+        <PipTrack
           label="Deep Health" max={deepMax}
           current={currentHealth.deep ?? deepMax}
           onChange={v => onHealthChange && onHealthChange("deep", v)}
         />
       </div>
+      {/* Fullness — Goblin Game only, same box shape as Health above
+          (live widgets, so it skips the generic block() row renderer
+          too), placed after it and gated on enabledSupplements so it
+          only ever appears for a table actually running that
+          supplement. Same "1 1 220px" flex sizing as every other box in
+          this row, so it wraps to its own line exactly like the others
+          once the row gets too narrow — nothing extra needed for that.
+          Fullness itself (0..max, "how fed am I") gets the pip track,
+          same as Health; Hunger Debt (0..30, negative territory on the
+          same underlying signed number) is rare enough in play that it
+          gets a plain compact stepper instead of 30 more pips. */}
+      {goblinGame && (
+        <div className="sheet-box" style={{
+          background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+          display: "flex", flexDirection: "column", gap: 8, flex: "1 1 220px",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+            <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+              Fullness
+            </div>
+            {/* Always rendered (just hidden, not unmounted) so nothing
+                below shifts position when Too Full/Starving toggle on
+                or off — same visibility trick as Wounded above. Too
+                Full and Starving can never both be true at once (one
+                needs fullnessValue above a positive threshold, the
+                other needs it at or below -10), so one badge slot is
+                enough. */}
+            <span style={{
+              visibility: (tooFull || starving) ? "visible" : "hidden",
+              fontSize: 11, fontWeight: 700, color: "#e0645f",
+              border: "0.5px solid #e0645f", borderRadius: 4, padding: "1px 6px",
+              textTransform: "uppercase", letterSpacing: "0.04em",
+            }}>
+              {starving ? "Starving" : "Too Full"}
+            </span>
+          </div>
+          <div style={{ visibility: (tooFull || starving) ? "visible" : "hidden", fontSize: 11, color: "#e0645f", lineHeight: 1.4, marginTop: -4 }}>
+            {starving
+              ? "Starving: Bad Luck on any flip that won't immediately secure a meal. Starves to death at -30 Fullness."
+              : "Too Full: Bad Luck on Reflex and Awareness flips."}
+          </div>
+          <PipTrack
+            label="Fullness" max={fullnessMax}
+            current={Math.max(0, fullnessValue)}
+            onChange={v => onFullnessChange && onFullnessChange(v)}
+            fullIcon="🍖" emptyIcon="🦴"
+          />
+          <div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 3 }}>
+              <span style={{ fontSize: 12, color: TEXT.faint }}>Hunger Debt</span>
+              <span style={{ fontSize: 13, fontWeight: 500, color: TEXT.faint, flexShrink: 0 }}>
+                {Math.max(0, -fullnessValue)}<span style={{ margin: "0 3px" }}>/</span>30
+              </span>
+            </div>
+            <span className="no-print">
+              <PointStepper
+                value={Math.max(0, -fullnessValue)}
+                onChange={v => onFullnessChange && onFullnessChange(-v)}
+                max={30}
+              />
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -4927,6 +5021,8 @@ function App() {
   // Current Shallow/Deep Health — see emptyCharacterData for why this
   // is session state, not part of the build proper.
   const [currentHealth, setCurrentHealth] = useState(initialCharacter.data.currentHealth);
+  // Current Fullness (Goblin Game) — same session-state reasoning.
+  const [currentFullness, setCurrentFullness] = useState(initialCharacter.data.currentFullness);
   const importRef = useRef();
 
   // Loads one character's data into all of the state above — used by
@@ -4957,6 +5053,7 @@ function App() {
     setSheetSectionOrder(data.sheetSectionOrder);
     setEnabledSupplements(data.enabledSupplements);
     setCurrentHealth(data.currentHealth);
+    setCurrentFullness(data.currentFullness);
   };
 
   // The active character's data, in the same shape emptyCharacterData/
@@ -4968,7 +5065,7 @@ function App() {
     statPoints, skillPoints, xpBudget,
     charName, charConcept, charNotes, noteRows, customTechniques,
     selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials,
-    customAttacks, sheetSectionOrder, enabledSupplements, currentHealth,
+    customAttacks, sheetSectionOrder, enabledSupplements, currentHealth, currentFullness,
   });
 
   // Switches to an existing character slot.
@@ -5143,7 +5240,7 @@ function App() {
   // ── Persist the active character, and keep the switcher list synced ─
   useEffect(() => {
     saveCharacterData(activeId, currentCharacterData());
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials, customAttacks, sheetSectionOrder, enabledSupplements, currentHealth]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials, customAttacks, sheetSectionOrder, enabledSupplements, currentHealth, currentFullness]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -5913,19 +6010,23 @@ function App() {
   }, [inventory, items, customItems]);
 
   // Sums every known technique's max-Health bonus (Toughened Body/
-  // Resolve/Spirit currently) into the same { shallow_health,
-  // deep_health } shape DerivedStats' Health block expects — a
-  // Duplicate-tagged technique learned more than once naturally counts
-  // each copy, since buildEntries already has one entry per copy. Only
-  // permanent increases to the *maximum* belong here; techniques that
-  // just heal Health during play (Second Wind, Healing Magic, etc. —
-  // see the unrelated "Healing" filter flag) aren't tracked as a sheet
-  // number at all, since they're one-time effects, not a standing bonus.
-  const techniqueHealthBonuses = useMemo(() => {
-    const totals = { shallow_health: 0, deep_health: 0 };
+  // Resolve/Spirit currently), and Goblin Game's Fullness/Too-Full-
+  // threshold bonus (Spacious Gut/Gorger), into the { shallow_health,
+  // deep_health, fullness, fullness_threshold } shape DerivedStats'
+  // Health/Fullness blocks expect — a Duplicate-tagged technique
+  // learned more than once naturally counts each copy, since
+  // buildEntries already has one entry per copy. Only permanent
+  // increases to the *maximum* belong here; techniques that just heal
+  // Health during play (Second Wind, Healing Magic, etc. — see the
+  // unrelated "Healing" filter flag) aren't tracked as a sheet number
+  // at all, since they're one-time effects, not a standing bonus.
+  const techniqueMaxBonuses = useMemo(() => {
+    const totals = { shallow_health: 0, deep_health: 0, fullness: 0, fullness_threshold: 0 };
     buildEntries.forEach(e => {
       if (typeof e.tech.shallow_health_bonus === "number") totals.shallow_health += e.tech.shallow_health_bonus;
       if (typeof e.tech.deep_health_bonus === "number") totals.deep_health += e.tech.deep_health_bonus;
+      if (typeof e.tech.fullness_bonus === "number") totals.fullness += e.tech.fullness_bonus;
+      if (typeof e.tech.fullness_threshold_bonus === "number") totals.fullness_threshold += e.tech.fullness_threshold_bonus;
     });
     return totals;
   }, [buildEntries]);
@@ -7065,8 +7166,10 @@ function App() {
           <div style={{ height:14 }} />
           <DerivedStats
             statPoints={statPoints} skillPoints={skillPoints}
-            equipmentBonuses={equipmentBonuses} techniqueBonuses={techniqueHealthBonuses}
+            equipmentBonuses={equipmentBonuses} techniqueBonuses={techniqueMaxBonuses}
             currentHealth={currentHealth} onHealthChange={setHealthTrack}
+            enabledSupplements={enabledSupplements}
+            currentFullness={currentFullness} onFullnessChange={setCurrentFullness}
             glossary={glossary}
           />
           <div style={{ height:14 }} />

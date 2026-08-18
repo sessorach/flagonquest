@@ -269,6 +269,13 @@ TECHNIQUE_MAP = {
     # techniqueHealthBonuses in index.html.
     "Shallow Health Bonus": "shallow_health_bonus",
     "Deep Health Bonus":    "deep_health_bonus",
+    # Goblin Game only — a permanent increase to max Fullness (Spacious
+    # Gut, Gorger) and/or to the Too Full threshold (Spacious Gut only —
+    # Gorger's own Fullness increase doesn't also raise it further), same
+    # "known techniques sum their bonus" pattern as Shallow/Deep Health
+    # Bonus above — see techniqueMaxBonuses in index.html.
+    "Fullness Bonus":           "fullness_bonus",
+    "Fullness Threshold Bonus": "fullness_threshold_bonus",
     # Which book this is from — see the matching note on ITEM_MAP's
     # Supplement column. Gates what's offered in the Techniques browse
     # list via the Sources panel, same as items/backgrounds.

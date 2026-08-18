@@ -386,6 +386,33 @@ shouldn't be duplicated here.
   this kind of "how this card works" note on any technique whose
   behavior isn't obvious from Effects text alone, not just Buildable
   ones — that's the whole point of the more general name.
+- **Fullness** (Goblin Game): a supplement-gated tracker on the
+  Character Sheet's Derived Stats row, alongside Health — the first
+  case of a whole sheet section (not just which items/techniques/
+  backgrounds are offered) being gated by `enabledSupplements`, so if a
+  second supplement-specific mechanic like this comes up, check whether
+  it should follow the same `{enabledSupplements.includes("X") && (...)}`
+  pattern rather than inventing a new one. Base 15 max / Too Full above
+  10 per the rulebook, raised by Spacious Gut/Gorger's `Fullness Bonus`/
+  `Fullness Threshold Bonus` technique columns — same known-technique-
+  sum pattern as Shallow/Deep Health Bonus, all four now summed by one
+  renamed `techniqueMaxBonuses` (was `techniqueHealthBonuses`) since it
+  covers more than Health now. `HealthTrack` (the ❤️/🤍 pip widget) is
+  now the generalized `PipTrack`, taking `fullIcon`/`emptyIcon` props
+  (🍖/🦴 for Fullness) — same "generalize once a second real use shows
+  up" reasoning as the Building/Builder Notes rename above. Fullness can
+  go negative too (Hunger Debt, down to -30, a starvation mechanic
+  distinct from Too Full) — rather than stretch `PipTrack` to render up
+  to 45 pips for that whole span, `currentFullness` stays one signed
+  number but gets two different controls: the pip track for its 0..max
+  span (clamped to 0 for display, same as Health), and a plain
+  `PointStepper` (no pips) for the 0..30 debt span below it, writing the
+  negated value back to the same `currentFullness` state. Same session-
+  tracking-state treatment as `currentHealth` (persists to localStorage,
+  excluded from single-character Export/Import, included in Duplicate/
+  Backup-all) — `currentFullness: null` in `emptyCharacterData` means
+  "hasn't eaten yet" (0), not "full," the opposite default logic from
+  Health's null-means-max, since a fresh character hasn't had a meal.
 
 ## Verifying UI changes before committing
 
