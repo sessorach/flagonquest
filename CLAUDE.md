@@ -463,6 +463,24 @@ shouldn't be duplicated here.
   also already how this file's print stylesheet shrinks `.sheet-box`/
   `.tech-card`, so this isn't a new technique, just the same one aimed
   at the opposite end (narrow screens, scaling up) instead of print.
+- Three more shared style constants, same "reach for the shared one"
+  precedent as `chipStyle`/`collapseBtnStyle`/`toggleInArray`:
+  `cardBoxStyle` (`background:"#161b27", border:"0.5px solid
+  #2d3555", borderRadius:8` — the base look for a technique/item/
+  background card, a Stats & Skills or Derived Stats block, an XP
+  tile, and similar boxed sections; was retyped at over a dozen call
+  sites), `modalCardStyle` (the same colors at `borderRadius:12`, for
+  a full-screen modal's own inner card — QRCodeOverlay/
+  CharacterManagerOverlay), and `statBadgeStyle` (the amber `#e8c46a`/
+  `#20180a`/`#6b5423` "granted bonus" badge — an item's flat stat
+  bonus, a material's type tags). Spread into each call site's own
+  style object (`{ ...cardBoxStyle, padding: "10px 12px" }`) rather
+  than replacing it outright, since padding/layout still varies per
+  use — only the shared visual identity (color/border/radius) moved.
+  `className="sheet-box"` stays on top of `cardBoxStyle` wherever it
+  was already there — that class is a separate, print-only concern
+  (see the `.sheet-box` print rule), not something this constant
+  replaces.
 
 ## Verifying UI changes before committing
 

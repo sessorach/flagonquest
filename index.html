@@ -2108,7 +2108,7 @@ function StatsPanel({
       <div className="stat-grid">
         {STATS.map(stat => (
           <div key={stat} className="sheet-box" style={{
-            background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+            ...cardBoxStyle, padding: "10px 12px",
           }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
               <span style={{
@@ -2229,7 +2229,7 @@ function DerivedStats({
   // "= Essence (+2 equipped)" or "= Body (+3 known)".
   const block = (title, rows, footer) => (
     <div className="sheet-box" style={{
-      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+      ...cardBoxStyle, padding: "10px 12px",
       display: "flex", flexDirection: "column", gap: 2, flex: "1 1 220px",
     }}>
       <div style={{ fontSize: 13, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 5 }}>
@@ -2300,7 +2300,7 @@ function DerivedStats({
           Expended checkboxes), not part of the build — see App's
           currentHealth/setHealthTrack and its exclusion from doExport. */}
       <div className="sheet-box" style={{
-        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+        ...cardBoxStyle, padding: "10px 12px",
         display: "flex", flexDirection: "column", gap: 8, flex: "1 1 220px",
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
@@ -2355,7 +2355,7 @@ function DerivedStats({
           would trigger. */}
       {goblinGame && (
         <div className="sheet-box" style={{
-          background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
+          ...cardBoxStyle, padding: "10px 12px",
           display: "flex", flexDirection: "column", gap: 8, flex: "1 1 220px",
         }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
@@ -2463,7 +2463,7 @@ function AttackWorkspace({
 
   return (
     <div className="sheet-box" style={{
-      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+      ...cardBoxStyle,
       padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
     }}>
       <div style={{ fontSize: 13, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
@@ -2548,7 +2548,7 @@ function AttackWorkspace({
 // ══════════════════════════════════════════════════════════════════
 function CustomTechniqueCard({ tech, onTitleChange, onTextChange, onRemove, readOnly = false }) {
   const cardStyle = {
-    background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+    ...cardBoxStyle,
     padding: "12px 14px", display: "flex", flexDirection: "column", gap: 7,
   };
 
@@ -2727,6 +2727,35 @@ const collapseBtnStyle = {
 const modalCloseBtnStyle = {
   background: "transparent", border: "none", color: TEXT.faint,
   fontSize: 22, lineHeight: 1, cursor: "pointer", padding: 4,
+};
+
+// Shared look for a "boxed section" — a technique/background card, a
+// Stats & Skills or Derived Stats block, an XP tile, and similar —
+// used site-wide via `style={{ ...cardBoxStyle, <whatever this one's
+// own padding/layout needs> }}`. Was independently retyped at over a
+// dozen call sites before this got pulled out (same story as chipStyle/
+// collapseBtnStyle above); reach for this instead of a fresh literal.
+// `className="sheet-box"` is a separate, print-only concern (see the
+// `.sheet-box` print rule) — keep using both together, this constant
+// doesn't replace it.
+const cardBoxStyle = {
+  background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+};
+
+// Same idea, for a full-screen modal's own inner card (QRCodeOverlay,
+// CharacterManagerOverlay) — a bigger radius than cardBoxStyle since a
+// modal reads as a distinct floating surface, not another list tile.
+const modalCardStyle = {
+  background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 12,
+};
+
+// Shared look for an amber "granted bonus" badge — an item's flat stat
+// bonus (+2 Body), a material's type tags, and similar small callouts
+// naming a specific mechanical effect. Distinct from chipStyle's gold
+// filter-chip look (interactive/toggleable) — this one's always-on,
+// read-only information.
+const statBadgeStyle = {
+  color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
 };
 
 // A stable shared empty Set for a "granted uids" prop default (TechCard)
@@ -2909,7 +2938,7 @@ function InventoryTile({
         <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
           {statBadges.map(([label, v]) => (
             <span key={label} style={{
-              fontSize: 13, fontWeight: 600, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
+              fontSize: 13, fontWeight: 600, ...statBadgeStyle,
               borderRadius: 4, padding: "1px 6px",
             }}>
               {statBadge(label, v)}
@@ -2921,7 +2950,7 @@ function InventoryTile({
         <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
           {materialTypes.map(t => (
             <span key={t} style={{
-              fontSize: 13, fontWeight: 600, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
+              fontSize: 13, fontWeight: 600, ...statBadgeStyle,
               borderRadius: 4, padding: "1px 6px",
             }}>
               {t}
@@ -3118,7 +3147,7 @@ function CustomItemTile({
         <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
           {statBadges.map(([label, v]) => (
             <span key={label} style={{
-              fontSize: 13, fontWeight: 600, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
+              fontSize: 13, fontWeight: 600, ...statBadgeStyle,
               borderRadius: 4, padding: "1px 6px",
             }}>
               {statBadge(label, v)}
@@ -3592,7 +3621,7 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
 
   return (
     <div className="tech-card" style={{
-      background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+      ...cardBoxStyle,
       padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -4118,7 +4147,7 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
             const selectedBaseId = selectedBaseItem[item.id] ?? baseItemOptions[0]?.id;
             return (
               <div key={item.id} className="tech-card" style={{
-                background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+                ...cardBoxStyle,
                 padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
               }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
@@ -4388,7 +4417,7 @@ function InventorySection({
     <div>
       <div className="sheet-box" style={{
         display: "inline-flex", alignItems: "center", gap: 8,
-        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+        ...cardBoxStyle,
         padding: "8px 12px", marginBottom: 14,
       }}>
         <span style={{ fontSize: 13, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>Gold</span>
@@ -4406,7 +4435,7 @@ function InventorySection({
 
       {showEquip && (
         <div className="sheet-box" style={{
-          background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
+          ...cardBoxStyle,
           padding: "10px 12px", marginBottom: 14,
           display: "flex", flexDirection: "column", gap: 4,
         }}>
@@ -4619,8 +4648,8 @@ function XPTiles({ knownXP, unknownCount, totalXP }) {
     <>
       <div style={{ display:"flex", gap:10, marginBottom:16, flexWrap:"wrap" }}>
         <div style={{
-          background:"#161b27", border:"0.5px solid #2d3555",
-          borderRadius:8, padding:"8px 14px", minWidth:110,
+          ...cardBoxStyle,
+          padding:"8px 14px", minWidth:110,
         }}>
           <div style={{ fontSize:14, color:TEXT.faint, marginBottom:4 }}>Technique XP</div>
           <div style={{ fontSize:22, fontWeight:500 }}>
@@ -4629,8 +4658,8 @@ function XPTiles({ knownXP, unknownCount, totalXP }) {
           </div>
         </div>
         <div style={{
-          background:"#161b27", border:"0.5px solid #2d3555",
-          borderRadius:8, padding:"8px 14px", minWidth:110,
+          ...cardBoxStyle,
+          padding:"8px 14px", minWidth:110,
         }}>
           <div style={{ fontSize:14, color:TEXT.faint, marginBottom:4 }}>Total XP</div>
           <div style={{ fontSize:22, fontWeight:500 }}>
@@ -4818,7 +4847,7 @@ function QRCodeOverlay({ url, onClose }) {
   return (
     <ModalBackdrop onClose={onClose}>
       <div style={{
-        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 12,
+        ...modalCardStyle,
         padding: 20, width: "min(92vw, 340px)", textAlign: "center",
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
@@ -4872,7 +4901,7 @@ function CharacterManagerOverlay({
   return (
     <ModalBackdrop onClose={onClose}>
       <div style={{
-        background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 12,
+        ...modalCardStyle,
         padding: 20, width: "min(92vw, 420px)", maxHeight: "min(80vh, 560px)",
         display: "flex", flexDirection: "column",
       }}>

@@ -32,6 +32,14 @@ the full commit-by-commit detail behind any of these.
 - On top of all that, narrow screens (phones) now get one more small
   proportional bump, so mobile reads noticeably easier without needing
   a completely separate mobile layout.
+- Same idea for colors, not just text: the card/box background+border
+  look used everywhere (technique/item/background cards, Stats & Skills
+  and Derived Stats blocks, XP tiles, both full-screen modals) and the
+  amber "granted bonus" badge look (an item's flat stat bonus, a
+  material's type tags) had each been retyped by hand at a dozen-plus
+  spots, occasionally drifting slightly. Pulled into shared constants
+  so they can't drift apart again — no visual change, just one
+  definition instead of many.
 
 ### 2026-08-18 — Fullness tracker
 
