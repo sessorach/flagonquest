@@ -423,6 +423,46 @@ shouldn't be duplicated here.
   `emptyCharacterData` means "hasn't eaten yet" (0), not "full," the
   opposite default logic from Health's null-means-max, since a fresh
   character hasn't had a meal.
+- **Type scale** (`index.html`): text runs in a few consistent px tiers
+  rather than one-off sizes per component — 12 (formula lines, table
+  headers, captions), 13 (buttons, Prereqs line, notes, tag/skill-chip
+  text — bolded a touch heavier than the tier around it, since those
+  chips are meant to read as "important rules info" someone's scanning
+  for, not filler), 14 (the main reading tier — Effects/Special/Fluff
+  text, most body copy), 16 (secondary UI chrome one notch above body
+  text — nav tabs, modal titles, gold/XP-adjacent readouts, the Sources
+  header), and 17 bold (the "this is the number/name that matters" tier
+  — Skill Total's glowing badge, Derived Stats' computed values,
+  Health/Fullness's own pip-track readout, and every MedievalSharp card
+  title — technique/item/background/material names — unified into one
+  size rather than each drifting to whatever felt right at the time).
+  When adding a new piece of UI text, reach for the closest existing
+  tier instead of picking a fresh number — that's what keeps a "bump
+  the base sizes" pass like this one from being needed again piecemeal
+  later. Two fixed-width elements (`PointStepper`'s inline count box,
+  the read-only Skill grid's point-value box) had their `width` bumped
+  alongside their tier's font so a 2-digit number still fits; the ⠿
+  drag-handle icon and single-glyph ×/+/− buttons were deliberately left
+  alone, since they're icons, not reading text, and don't need to scale
+  with it. `overflow-wrap: break-word` on `body` is a new, low-risk
+  safety net alongside this — larger text (and the mobile zoom below)
+  means a long unbroken run in some technique's Effects text is more
+  likely to actually exceed a narrow card's width than it used to,
+  even though the surrounding paragraph wraps fine at spaces.
+  A **mobile bump** on top of all this lives at `@media (max-width:
+  639px) { .app-root { zoom: 1.08; } }` (reset to 1 under `@media
+  print`, so it can't compound with the print stylesheet's own existing
+  `.sheet-box`/`.tech-card` zoom values). `zoom` — not a font-size
+  rule — is deliberate: every size above is a literal px number in an
+  inline `style` object (no build step here to route them through
+  rem/CSS custom properties), and a stylesheet `font-size` cascade
+  rule only reaches elements that don't set their own — which is
+  almost everything in this file. `zoom` sidesteps inheritance
+  entirely and uniformly multiplies an element's already-computed
+  render size, reaching inline styles a cascading rule couldn't; it's
+  also already how this file's print stylesheet shrinks `.sheet-box`/
+  `.tech-card`, so this isn't a new technique, just the same one aimed
+  at the opposite end (narrow screens, scaling up) instead of print.
 
 ## Verifying UI changes before committing
 

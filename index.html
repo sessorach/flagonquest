@@ -37,6 +37,14 @@
       background: #0d1117;
       color: #e8dfc8;
       min-height: 100vh;
+      /* A long unbroken run in a technique/item's Effects text (or
+         anything else reading text) can be wider than a narrow card
+         column even though the surrounding text wraps fine at spaces —
+         more likely to actually bite now that text runs bigger and the
+         mobile zoom below shrinks the effective column further. This
+         is a pure safety net: it only ever engages for a word that's
+         already failing to fit, so it changes nothing for normal text. */
+      overflow-wrap: break-word;
     }
 
     /* ── Inputs ────────────────────────────────────────────────── */
@@ -112,6 +120,27 @@
        combined would do on any flex item alone on its line. */
     @media (max-width: 639px) {
       .builder-action-grid { margin-right: auto; }
+    }
+
+    /* ── Small mobile text bump ───────────────────────────────────
+       Everything above is sized in fixed px inline styles (no build
+       step here to route them through rem/CSS variables), so a plain
+       @media rule can't rescale them the normal way — a stylesheet
+       font-size only cascades to elements that don't set their own,
+       and virtually everything here does. `zoom` sidesteps that: it's
+       not inheritance-based, it uniformly multiplies the rendered size
+       (and layout) of an element and everything inside it, on top of
+       whatever font-size each one already computed for itself — so it
+       reaches the inline styles a cascading rule couldn't. Small and
+       screen-only (no-print already exists for that split elsewhere,
+       but this rule's already narrow-width-gated and print output
+       measures its own page, not a screen viewport, so it's excluded
+       here too for clarity). */
+    @media (max-width: 639px) {
+      .app-root { zoom: 1.08; }
+    }
+    @media print {
+      .app-root { zoom: 1; }
     }
 
     /* ── Technique list (Browse) ──────────────────────────────────
@@ -1077,7 +1106,7 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
 
   const stepBtnStyle = {
     width: 20, height: 20, lineHeight: "18px", padding: 0,
-    fontSize: 13, color: TEXT.muted, background: "transparent",
+    fontSize: 14, color: TEXT.muted, background: "transparent",
     border: "0.5px solid #2d3555", borderRadius: 4,
   };
 
@@ -1088,24 +1117,24 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
       <div key={f.id} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0, marginTop: 2 }}>
           <button onClick={() => decFeature(f)} disabled={count === 0} style={stepBtnStyle}>−</button>
-          <span style={{ width: 16, textAlign: "center", fontSize: 13, color: TEXT.body }}>{count}</span>
+          <span style={{ width: 20, textAlign: "center", fontSize: 14, color: TEXT.body }}>{count}</span>
           <button onClick={() => incFeature(f)} disabled={disabled} style={stepBtnStyle}>+</button>
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 13, color: TEXT.body }}>
+          <div style={{ fontSize: 14, color: TEXT.body }}>
             <strong>{f.feature_name}</strong>
             <span style={{ color: TEXT.faint }}> ({f.point_cost} pt{f.point_cost !== 1 ? "s" : ""} each)</span>
           </div>
           {f.description && (
-            <div style={{ fontSize: 13, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.4 }}>
+            <div style={{ fontSize: 14, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.4 }}>
               {f.description}
             </div>
           )}
-          <div style={{ fontSize: 13, color: TEXT.muted, lineHeight: 1.4 }}>
+          <div style={{ fontSize: 14, color: TEXT.muted, lineHeight: 1.4 }}>
             {count > 0 ? applyFeatureCount(f.effects, count) : f.effects}
           </div>
           {f.prereq && (
-            <div style={{ fontSize: 12, color: TEXT.faint }}>Requires: {f.prereq}</div>
+            <div style={{ fontSize: 13, color: TEXT.faint }}>Requires: {f.prereq}</div>
           )}
         </div>
       </div>
@@ -1119,13 +1148,13 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
     }}>
       {/* Level picker + point budget */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-        <span style={{ fontSize: 12, color: TEXT.label, fontWeight: 500 }}>Level</span>
+        <span style={{ fontSize: 13, color: TEXT.label, fontWeight: 500 }}>Level</span>
         {availableLevels.map(lv => (
           <button
             key={lv}
             onClick={() => setLevel(lv)}
             style={{
-              padding: "2px 10px", fontSize: 13, borderRadius: 4,
+              padding: "2px 10px", fontSize: 14, borderRadius: 4,
               background: lv === level ? "#d4a84322" : "transparent",
               color:      lv === level ? "#d4a843" : TEXT.muted,
               border: `0.5px solid ${lv === level ? "#d4a843" : "#2d3555"}`,
@@ -1135,7 +1164,7 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
           </button>
         ))}
         {points != null && (
-          <span style={{ fontSize: 13, color: overBudget ? "#c0392b" : TEXT.muted, marginLeft: "auto" }}>
+          <span style={{ fontSize: 14, color: overBudget ? "#c0392b" : TEXT.muted, marginLeft: "auto" }}>
             {spent} / {points} pts{overBudget ? ` — over by ${-remaining}` : ""}
           </span>
         )}
@@ -1144,7 +1173,7 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
       {/* Basic-tier features */}
       {basicFeatures.length > 0 && (
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          <div style={{ fontSize: 12, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+          <div style={{ fontSize: 13, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.06em" }}>
             Basic
           </div>
           {basicFeatures.map(featureRow)}
@@ -1155,13 +1184,13 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
       {advancedFeatures.length > 0 && (
         advancedUnlocked ? (
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div style={{ fontSize: 12, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+            <div style={{ fontSize: 13, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.06em" }}>
               Advanced
             </div>
             {advancedFeatures.map(featureRow)}
           </div>
         ) : (
-          <div style={{ fontSize: 12, color: TEXT.faint, fontStyle: "italic" }}>
+          <div style={{ fontSize: 13, color: TEXT.faint, fontStyle: "italic" }}>
             Advanced features unlock at a higher level.
           </div>
         )
@@ -1172,7 +1201,7 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
           onClick={() => onSave({ level, picks: counts })}
           disabled={overBudget}
           style={{
-            fontSize: 13, color: overBudget ? TEXT.faint : "#d4a843",
+            fontSize: 14, color: overBudget ? TEXT.faint : "#d4a843",
             background: "transparent",
             border: `0.5px solid ${overBudget ? "#2d3555" : "#a07c2e"}`,
             borderRadius: 4, padding: "4px 12px",
@@ -1181,7 +1210,7 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
           {saveLabel}
         </button>
         <button onClick={onCancel} style={{
-          fontSize: 13, color: TEXT.muted, background: "transparent",
+          fontSize: 14, color: TEXT.muted, background: "transparent",
           border: "0.5px solid #2d3555", borderRadius: 4, padding: "4px 12px",
         }}>
           Cancel
@@ -1210,11 +1239,11 @@ function FeaturesSection({
   const maxLevel = tech.level_max ?? tech.level_min;
 
   const smallBtn = {
-    fontSize: 12, color: TEXT.muted, background: "transparent",
+    fontSize: 13, color: TEXT.muted, background: "transparent",
     border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 8px",
   };
   const smallDangerBtn = {
-    fontSize: 12, color: "#c0392b", background: "transparent",
+    fontSize: 13, color: "#c0392b", background: "transparent",
     border: "0.5px solid #c0392b", borderRadius: 4, padding: "2px 8px",
   };
 
@@ -1234,7 +1263,7 @@ function FeaturesSection({
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500 }}>
+      <div style={{ fontSize: 13, color: TEXT.label, fontWeight: 500 }}>
         {features.length > 0 ? "Built from Features" : "Level"}
       </div>
 
@@ -1262,7 +1291,7 @@ function FeaturesSection({
             padding: "8px 10px", display: "flex", flexDirection: "column", gap: 4,
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-              <span style={{ fontSize: 13, color: TEXT.body }}>
+              <span style={{ fontSize: 14, color: TEXT.body }}>
                 {instances.length > 1 ? `Copy ${i + 1} — ` : ""}
                 {cfg ? `Level ${cfg.level}` : "Not configured"}
               </span>
@@ -1283,7 +1312,7 @@ function FeaturesSection({
                 value={renames[uid] || ""}
                 onChange={e => onRenameChange(uid, e.target.value)}
                 placeholder="Rename this build (optional)…"
-                style={{ fontSize: 12, padding: "3px 6px" }}
+                style={{ fontSize: 13, padding: "3px 6px" }}
               />
             )}
             {picks.length > 0 && (
@@ -1292,7 +1321,7 @@ function FeaturesSection({
                   const f = features.find(x => x.id === fid);
                   if (!f) return null;
                   return (
-                    <div key={fid} style={{ fontSize: 12, color: TEXT.muted, lineHeight: 1.4 }}>
+                    <div key={fid} style={{ fontSize: 13, color: TEXT.muted, lineHeight: 1.4 }}>
                       <strong style={{ color: TEXT.body }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
                       {" — "}{withGlossary(applyFeatureCount(f.effects, n), glossary)}
                     </div>
@@ -1320,7 +1349,7 @@ function FeaturesSection({
         <button
           onClick={openNew}
           style={{
-            fontSize: 13, color: "#d4a843", background: "transparent",
+            fontSize: 14, color: "#d4a843", background: "transparent",
             border: "0.5px solid #a07c2e", borderRadius: 4,
             padding: "4px 10px", alignSelf: "flex-start",
           }}
@@ -1463,7 +1492,7 @@ function TechCard({
         }}>
           {displayName}
           {readOnly && count > 1 && (
-            <span style={{ fontFamily:"system-ui, sans-serif", fontStyle:"italic", fontWeight:400, fontSize:13, color:TEXT.faint, marginLeft:8 }}>
+            <span style={{ fontFamily:"system-ui, sans-serif", fontStyle:"italic", fontWeight:400, fontSize:14, color:TEXT.faint, marginLeft:8 }}>
               (known {count}×)
             </span>
           )}
@@ -1503,14 +1532,15 @@ function TechCard({
           <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
             {otherTags.map(tag => (
               <span key={tag} style={{
-                fontSize: 12,
+                fontSize: 13,
+                fontWeight: 600,
                 color: tag === "Buildable" ? "#7F77DD"
                      : tag === "Duplicate" ? "#1D9E75"
                      : TEXT.muted,
                 background: "#0d1117",
                 border: "0.5px solid #2d3555",
                 borderRadius: 3,
-                padding: "1px 5px",
+                padding: "1px 6px",
               }}>
                 {tag}
               </span>
@@ -1520,7 +1550,7 @@ function TechCard({
             <div style={{ display:"flex", gap:6, alignItems:"center" }}>
               {expendedUids.map((uid, i) => (
                 <label key={uid} title={expendedUids.length > 1 ? `Copy ${i + 1} expended` : "Expended"} style={{
-                  display:"flex", alignItems:"center", gap:3, fontSize:12, color:TEXT.faint, cursor:"pointer",
+                  display:"flex", alignItems:"center", gap:3, fontSize:13, color:TEXT.faint, cursor:"pointer",
                 }}>
                   <input type="checkbox" checked={!!expended[uid]} onChange={e => onExpendedChange(uid, e.target.checked)} />
                   {expendedUids.length > 1 ? i + 1 : "Expended"}
@@ -1538,7 +1568,7 @@ function TechCard({
           paragraphs instead of the browser collapsing the newlines away;
           single-paragraph descriptions are unaffected. */}
       {!readOnly && tech.description && (
-        <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5, whiteSpace:"pre-line" }}>
+        <div style={{ fontSize:15, color:TEXT.muted, fontStyle:"italic", lineHeight:1.5, whiteSpace:"pre-line" }}>
           {withGlossary(tech.description, glossary)}
         </div>
       )}
@@ -1550,7 +1580,7 @@ function TechCard({
         ["Cost",      tech.cost],
         ["Target",    tech.target],
       ].filter(([, v]) => v).map(([label, val]) => (
-        <div key={label} style={{ fontSize:14, color:TEXT.body, lineHeight:1.4 }}>
+        <div key={label} style={{ fontSize:15, color:TEXT.body, lineHeight:1.4 }}>
           <span style={{ color:TEXT.label, fontWeight:500 }}>{label}: </span>
           {withSkillTotals(val, glossary, skillTotals)}
         </div>
@@ -1559,7 +1589,7 @@ function TechCard({
       {/* Effects — the main rules text, shown in full */}
       {tech.effects && (
         <div style={{
-          fontSize: 14, color: TEXT.body, lineHeight: 1.6,
+          fontSize: 15, color: TEXT.body, lineHeight: 1.6,
           whiteSpace: "pre-wrap",  // preserves any line breaks in the text
         }}>
           {withSkillTotals(tech.effects, glossary, skillTotals)}
@@ -1584,7 +1614,7 @@ function TechCard({
           there, so anyChoicePending is never true on that path. */}
       {tech.choice_effects && (
         <div style={{
-          fontSize: 14, color: TEXT.body, lineHeight: 1.6,
+          fontSize: 15, color: TEXT.body, lineHeight: 1.6,
           whiteSpace: "pre-wrap",
         }}>
           {(anyChoicePending
@@ -1605,7 +1635,7 @@ function TechCard({
           read-only Character Sheet, which only needs to show what the
           technique actually does, not how its own card behaves. */}
       {!readOnly && tech.builder_notes && (
-        <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4, fontStyle:"italic" }}>
+        <div style={{ fontSize:14, color:TEXT.faint, lineHeight:1.4, fontStyle:"italic" }}>
           {withGlossary(tech.builder_notes, glossary)}
         </div>
       )}
@@ -1626,7 +1656,7 @@ function TechCard({
               const f = techFeatures.find(x => x.id === fid);
               if (!f) return null;
               return (
-                <div key={fid} style={{ fontSize:13, color:TEXT.body, lineHeight:1.5 }}>
+                <div key={fid} style={{ fontSize:14, color:TEXT.body, lineHeight:1.5 }}>
                   <strong style={{ color:TEXT.name }}>{f.feature_name}{n > 1 ? ` ×${n}` : ""}</strong>
                   {" — "}{withSkillTotals(applyFeatureCount(f.effects, n), glossary, skillTotals)}
                 </div>
@@ -1660,13 +1690,13 @@ function TechCard({
       {tech.free_text && (readOnly ? (
         instances.length > 0 && (
           <div>
-            <div style={{ fontSize:12, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
+            <div style={{ fontSize:13, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
               {choiceOptions ? tech.free_text : "Notes"}
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
               {instances.map((uid, i) => (
                 <div key={uid} style={{
-                  fontSize:13, color: notes[uid] ? TEXT.body : TEXT.faint, lineHeight:1.5,
+                  fontSize:14, color: notes[uid] ? TEXT.body : TEXT.faint, lineHeight:1.5,
                   fontStyle: notes[uid] ? "normal" : "italic",
                   background:"#0d1117", border:"0.5px solid #2d3555", borderRadius:6, padding:"6px 10px",
                 }}>
@@ -1681,11 +1711,11 @@ function TechCard({
         )
       ) : (
         <div>
-          <div style={{ fontSize:12, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
+          <div style={{ fontSize:13, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
             {choiceOptions ? tech.free_text : "Notes"}
           </div>
           {instances.length === 0 ? (
-            <div style={{ fontSize:13, color:TEXT.faint, fontStyle:"italic" }}>
+            <div style={{ fontSize:14, color:TEXT.faint, fontStyle:"italic" }}>
               {choiceOptions
                 ? `Add this to your build, then choose a ${tech.free_text.toLowerCase()} for each copy you learn.`
                 : "Add this to your build, then note your choices for each copy you learn."}
@@ -1698,7 +1728,7 @@ function TechCard({
                     <select
                       value={notes[uid] || ""}
                       onChange={e => onNoteChange(uid, e.target.value)}
-                      style={{ flex:1, fontSize:13 }}
+                      style={{ flex:1, fontSize:14 }}
                     >
                       <option value="">
                         {instances.length > 1 ? `Copy ${i + 1} — choose a ${tech.free_text.toLowerCase()}…` : `Choose a ${tech.free_text.toLowerCase()}…`}
@@ -1711,7 +1741,7 @@ function TechCard({
                       onChange={e => onNoteChange(uid, e.target.value)}
                       placeholder={instances.length > 1 ? `Copy ${i + 1} notes…` : "Add your notes…"}
                       rows={2}
-                      style={{ flex:1, fontSize:13 }}
+                      style={{ flex:1, fontSize:14 }}
                     />
                   )}
                   {instances.length > 1 && !grantedUids.has(uid) && (
@@ -1732,7 +1762,7 @@ function TechCard({
 
       {/* Special rules text */}
       {tech.special && (
-        <div style={{ fontSize:14, color:TEXT.body, lineHeight:1.5 }}>
+        <div style={{ fontSize:15, color:TEXT.body, lineHeight:1.5 }}>
           <span style={{ color:TEXT.label, fontWeight:500 }}>Special: </span>
           {withSkillTotals(tech.special, glossary, skillTotals)}
         </div>
@@ -1748,7 +1778,7 @@ function TechCard({
           above, so the text and the badge never describe two different
           picks on one line. */}
       {!readOnly && tech.prereqs && (
-        <div style={{ fontSize:13, color:TEXT.faint, lineHeight:1.4 }}>
+        <div style={{ fontSize:14, color:TEXT.faint, lineHeight:1.4 }}>
           <span style={{ fontWeight:500 }}>Prereqs: </span>
           {formatResolvedChoicePrereq(tech, firstChoice) ?? tech.prereqs}
           {prereqMet != null && (
@@ -1763,11 +1793,12 @@ function TechCard({
         <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
           {skills.map(skill => (
             <span key={skill} style={{
-              fontSize: 12,
-              color: TEXT.faint,
-              border: "0.5px solid #232a3d",
+              fontSize: 14,
+              fontWeight: 500,
+              color: TEXT.body,
+              border: "0.5px solid #2d3555",
               borderRadius: 3,
-              padding: "1px 5px",
+              padding: "1px 6px",
             }}>
               {skill}
             </span>
@@ -1785,7 +1816,7 @@ function TechCard({
               <button
                 onClick={() => onAdd(tech.id)}
                 style={{
-                  fontSize: 13, color: "#d4a843",
+                  fontSize: 14, color: "#d4a843",
                   background: "transparent",
                   border: "0.5px solid #a07c2e",
                   borderRadius: 4, padding: "2px 10px",
@@ -1795,12 +1826,12 @@ function TechCard({
               </button>
               {count > 0 && (
                 <>
-                  <span style={{ fontSize:13, color:TEXT.muted }}>Known ×{count}</span>
+                  <span style={{ fontSize:14, color:TEXT.muted }}>Known ×{count}</span>
                   {removableCount > 0 && (
                     <button
                       onClick={() => onRemove(tech.id)}
                       style={{
-                        fontSize: 13, color: "#c0392b",
+                        fontSize: 14, color: "#c0392b",
                         background: "transparent",
                         border: "0.5px solid #c0392b",
                         borderRadius: 4, padding: "2px 10px",
@@ -1816,7 +1847,7 @@ function TechCard({
             <button
               onClick={() => onRemove(tech.id)}
               style={{
-                fontSize: 13, color: "#c0392b",
+                fontSize: 14, color: "#c0392b",
                 background: "transparent",
                 border: "0.5px solid #c0392b",
                 borderRadius: 4, padding: "2px 10px",
@@ -1828,7 +1859,7 @@ function TechCard({
             <button
               onClick={() => onAdd(tech.id)}
               style={{
-                fontSize: 13, color: "#d4a843",
+                fontSize: 14, color: "#d4a843",
                 background: "transparent",
                 border: "0.5px solid #a07c2e",
                 borderRadius: 4, padding: "2px 10px",
@@ -1870,7 +1901,7 @@ function GlossaryTerm({ term, description }) {
           position: "absolute", left: 0, top: "100%", marginTop: 4, zIndex: 50,
           display: "block", width: 220,
           background: "#12161f", border: "0.5px solid #d4a843", borderRadius: 6,
-          padding: "6px 10px", fontSize: 12, lineHeight: 1.4,
+          padding: "6px 10px", fontSize: 13, lineHeight: 1.4,
           color: TEXT.body, fontStyle: "normal", fontWeight: 400,
           fontFamily: "system-ui, -apple-system, sans-serif",
           whiteSpace: "pre-wrap",
@@ -1891,13 +1922,13 @@ function GlossaryTerm({ term, description }) {
 function PointStepper({ value, onChange, max = 5 }) {
   const btnStyle = {
     width: 20, height: 20, lineHeight: "18px", padding: 0,
-    fontSize: 13, color: TEXT.muted, background: "transparent",
+    fontSize: 14, color: TEXT.muted, background: "transparent",
     border: "0.5px solid #2d3555", borderRadius: 4,
   };
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
       <button onClick={() => onChange(Math.max(0, value - 1))} disabled={value <= 0} style={btnStyle}>−</button>
-      <span style={{ width: 16, textAlign: "center", fontSize: 13, color: TEXT.body }}>{value}</span>
+      <span style={{ width: 20, textAlign: "center", fontSize: 14, color: TEXT.body }}>{value}</span>
       <button onClick={() => onChange(Math.min(max, value + 1))} disabled={value >= max} style={btnStyle}>+</button>
     </div>
   );
@@ -1939,7 +1970,7 @@ function PipTrack({ label, max, current, onChange, fullIcon = "❤️", emptyIco
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 3 }}>
-        <span style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</span>
+        <span style={{ fontSize: 14, fontWeight: 700, color: TEXT.name }}>{label}</span>
         {/* Bigger than a typical formula-row number (see block() in
             DerivedStats) — this is the number a player glances at
             mid-combat, not a background calculation — but still on the
@@ -1961,7 +1992,7 @@ function PipTrack({ label, max, current, onChange, fullIcon = "❤️", emptyIco
                   onClick={() => onChange(value === pipValue ? pipValue - step : pipValue)}
                   title={`Set ${label} to ${pipValue}`}
                   aria-label={`Set ${label} to ${pipValue}`}
-                  style={{ cursor: "pointer", fontSize: 15, lineHeight: 1, userSelect: "none" }}
+                  style={{ cursor: "pointer", fontSize: 16, lineHeight: 1, userSelect: "none" }}
                 >
                   {value >= pipValue ? fullIcon : emptyIcon}
                 </span>
@@ -1969,7 +2000,7 @@ function PipTrack({ label, max, current, onChange, fullIcon = "❤️", emptyIco
                   <span
                     title={`${label}: threshold at ${markAfter}`}
                     aria-hidden="true"
-                    style={{ color: "#e0645f", fontWeight: 700, fontSize: 14, lineHeight: 1 }}
+                    style={{ color: "#e0645f", fontWeight: 700, fontSize: 15, lineHeight: 1 }}
                   >
                     ┃
                   </span>
@@ -2015,35 +2046,35 @@ function StatsPanel({
         border: "0.5px solid #2d3555", borderRadius: 8,
       }}>
         <div>
-          <div style={{ fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+          <div style={{ fontSize: 12, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>
             Stats &amp; Skills XP
           </div>
-          <div style={{ fontSize: 20, fontWeight: 500 }}>{statSkillXP}</div>
+          <div style={{ fontSize: 22, fontWeight: 500 }}>{statSkillXP}</div>
         </div>
         <div>
-          <div style={{ fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+          <div style={{ fontSize: 12, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>
             Total XP Spent
           </div>
-          <div style={{ fontSize: 20, fontWeight: 500 }}>
+          <div style={{ fontSize: 22, fontWeight: 500 }}>
             {totalSpent}{techniqueXPUnknown ? "+" : ""}
           </div>
         </div>
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: 13, color: TEXT.faint }}>Experience Total</span>
+            <span style={{ fontSize: 14, color: TEXT.faint }}>Experience Total</span>
             {readOnly ? (
-              <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{xpBudget || "—"}</span>
+              <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{xpBudget || "—"}</span>
             ) : (
               <input
                 type="text" inputMode="numeric" placeholder="—"
                 value={xpBudget}
                 onChange={e => onBudgetChange(e.target.value.replace(/[^\d]/g, ""))}
-                style={{ width: 70, fontSize: 14, textAlign: "right" }}
+                style={{ width: 70, fontSize: 15, textAlign: "right" }}
               />
             )}
           </div>
           {remaining != null && (
-            <span style={{ fontSize: 14, fontWeight: 500, color: remaining < 0 ? "#c0392b" : "#d4a843" }}>
+            <span style={{ fontSize: 15, fontWeight: 500, color: remaining < 0 ? "#c0392b" : "#d4a843" }}>
               {remaining < 0 ? `${-remaining} over budget` : `${remaining} remaining`}
             </span>
           )}
@@ -2058,12 +2089,12 @@ function StatsPanel({
           marginBottom: 14, padding: "10px 14px", background: "#12161f",
           border: "0.5px solid #2d3555", borderRadius: 8,
         }}>
-          <div style={{ fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 6 }}>
+          <div style={{ fontSize: 12, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 6 }}>
             Prereq Checker
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 16px" }}>
           {prereqSummary.map(req => (
-            <span key={req.key} style={{ fontSize: 13, color: TEXT.faint }}>
+            <span key={req.key} style={{ fontSize: 14, color: TEXT.faint }}>
               {req.label}{" "}
               <span style={{ fontWeight: 600, color: req.met ? "#6fae5a" : "#e0645f" }}>
                 {req.met ? "✓ Met" : "✗ Not met"}
@@ -2081,13 +2112,13 @@ function StatsPanel({
           }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
               <span style={{
-                fontFamily: "'MedievalSharp', Georgia, serif", fontSize: 15,
+                fontFamily: "'MedievalSharp', Georgia, serif", fontSize: 17,
                 fontWeight: "bold", color: TEXT.name,
               }}>
                 {stat}
               </span>
               {readOnly ? (
-                <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{statPoints[stat] || 0}</span>
+                <span style={{ fontSize: 17, fontWeight: 500, color: TEXT.name }}>{statPoints[stat] || 0}</span>
               ) : (
                 <PointStepper value={statPoints[stat] || 0} max={5} onChange={n => onStatChange(stat, n)} />
               )}
@@ -2104,16 +2135,16 @@ function StatsPanel({
                   padding: "2px 4px", borderRadius: 4,
                   background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
                 }}>
-                  <span style={{ fontSize: 13, color: TEXT.body, flex: 1 }}>{skill}</span>
+                  <span style={{ fontSize: 14, color: TEXT.body, flex: 1 }}>{skill}</span>
                   {readOnly ? (
-                    <span style={{ fontSize: 13, color: TEXT.body, width: 16, textAlign: "center" }}>
+                    <span style={{ fontSize: 14, color: TEXT.body, width: 20, textAlign: "center" }}>
                       {skillPoints[skill] || 0}
                     </span>
                   ) : (
                     <PointStepper value={skillPoints[skill] || 0} max={5} onChange={n => onSkillChange(skill, n)} />
                   )}
                   <span style={{
-                    fontSize: 15, fontWeight: 700, color: "#e8c46a",
+                    fontSize: 17, fontWeight: 700, color: "#e8c46a",
                     minWidth: 24, textAlign: "center", flexShrink: 0,
                     background: "#20180a", border: "0.5px solid #6b5423", borderRadius: 5,
                     padding: "1px 4px", textShadow: "0 0 6px rgba(212,168,67,0.45)",
@@ -2201,7 +2232,7 @@ function DerivedStats({
       background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
       display: "flex", flexDirection: "column", gap: 2, flex: "1 1 220px",
     }}>
-      <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 5 }}>
+      <div style={{ fontSize: 13, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 5 }}>
         {title}
       </div>
       {rows.map(([label, base, formula, statKey], i) => {
@@ -2218,9 +2249,9 @@ function DerivedStats({
             background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
           }}>
             <div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: TEXT.name }}>{label}</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: TEXT.name }}>{label}</div>
               {(formula || wound !== 0) && (
-                <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic" }}>
+                <div style={{ fontSize: 12, color: TEXT.faint, fontStyle: "italic" }}>
                   {formula}{parts.length > 0 && ` (${parts.join(", ")})`}
                   {wound !== 0 && (
                     <span style={{ color: "#e0645f", fontWeight: 700, fontStyle: "normal" }}> · Wounded {wound}</span>
@@ -2228,12 +2259,12 @@ function DerivedStats({
                 </div>
               )}
             </div>
-            <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name, flexShrink: 0 }}>{base + eq + tq + wound}</span>
+            <span style={{ fontSize: 17, fontWeight: 700, color: TEXT.name, flexShrink: 0 }}>{base + eq + tq + wound}</span>
           </div>
         );
       })}
       {footer && (
-        <div style={{ fontSize: 11, color: TEXT.faint, fontStyle: "italic", marginTop: 4 }}>
+        <div style={{ fontSize: 12, color: TEXT.faint, fontStyle: "italic", marginTop: 4 }}>
           {footer}
         </div>
       )}
@@ -2273,7 +2304,7 @@ function DerivedStats({
         display: "flex", flexDirection: "column", gap: 8, flex: "1 1 220px",
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-          <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+          <div style={{ fontSize: 13, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
             Health
           </div>
           {/* Always rendered (just hidden, not unmounted) so the Health
@@ -2281,7 +2312,7 @@ function DerivedStats({
               off — same idea for the caption underneath. */}
           <span style={{
             visibility: wounded ? "visible" : "hidden",
-            fontSize: 11, fontWeight: 700, color: "#e0645f",
+            fontSize: 12, fontWeight: 700, color: "#e0645f",
             border: "0.5px solid #e0645f", borderRadius: 4, padding: "1px 6px",
             textTransform: "uppercase", letterSpacing: "0.04em",
           }}>
@@ -2292,7 +2323,7 @@ function DerivedStats({
             here), unlike the -2 to Speed/Defenses, which is — called out
             in plain text, not hidden behind the badge's hover tooltip,
             so it's just as hard to miss as the numbers that did change. */}
-        <div style={{ visibility: wounded ? "visible" : "hidden", fontSize: 11, color: "#e0645f", lineHeight: 1.4, marginTop: -4 }}>
+        <div style={{ visibility: wounded ? "visible" : "hidden", fontSize: 12, color: "#e0645f", lineHeight: 1.4, marginTop: -4 }}>
           Wounded: −2 Defenses/Speed applied. Also apply Bad Luck to all flips.
         </div>
         <PipTrack
@@ -2328,7 +2359,7 @@ function DerivedStats({
           display: "flex", flexDirection: "column", gap: 8, flex: "1 1 220px",
         }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-            <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+            <div style={{ fontSize: 13, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
               Fullness
             </div>
             {/* Always rendered (just hidden, not unmounted) so nothing
@@ -2340,14 +2371,14 @@ function DerivedStats({
                 enough. */}
             <span style={{
               visibility: (tooFull || starving) ? "visible" : "hidden",
-              fontSize: 11, fontWeight: 700, color: "#e0645f",
+              fontSize: 12, fontWeight: 700, color: "#e0645f",
               border: "0.5px solid #e0645f", borderRadius: 4, padding: "1px 6px",
               textTransform: "uppercase", letterSpacing: "0.04em",
             }}>
               {starving ? "Starving" : "Too Full"}
             </span>
           </div>
-          <div style={{ visibility: (tooFull || starving) ? "visible" : "hidden", fontSize: 11, color: "#e0645f", lineHeight: 1.4, marginTop: -4 }}>
+          <div style={{ visibility: (tooFull || starving) ? "visible" : "hidden", fontSize: 12, color: "#e0645f", lineHeight: 1.4, marginTop: -4 }}>
             {starving
               ? "Starving: Bad Luck on any flip that won't immediately secure a meal. Starves to death at -30 Fullness."
               : "Too Full: Bad Luck on Reflex and Awareness flips."}
@@ -2418,8 +2449,8 @@ function AttackWorkspace({
   // overflow/ellipsis styling covers the rest). No Skill column — see
   // the header comment above.
   const colTemplate = "minmax(0,1fr) minmax(0,0.5fr) minmax(0,0.9fr) minmax(0,0.5fr) minmax(0,2.4fr) 20px";
-  const headerStyle = { fontSize: 11, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.04em" };
-  const inputStyle = { fontSize: 13, padding: "3px 6px", width: "100%", minWidth: 0, boxSizing: "border-box" };
+  const headerStyle = { fontSize: 12, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.04em" };
+  const inputStyle = { fontSize: 14, padding: "3px 6px", width: "100%", minWidth: 0, boxSizing: "border-box" };
   // Same alternating-tint idea as Stats & Skills/Derived Stats (row-alt)
   // — a running index across both weaponRows and customAttacks so the
   // stripe pattern stays continuous across the boundary between them,
@@ -2435,7 +2466,7 @@ function AttackWorkspace({
       background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
       padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
     }}>
-      <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+      <div style={{ fontSize: 13, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
         Attacks
       </div>
       {hasRows && (
@@ -2450,16 +2481,16 @@ function AttackWorkspace({
       )}
       {weaponRows.map((r, i) => (
         <div key={r.key} className={i % 2 === 1 ? "row-alt" : undefined} style={rowStyle(i)}>
-          <span style={{ fontSize: 13, color: TEXT.name, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis" }}>
+          <span style={{ fontSize: 14, color: TEXT.name, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis" }}>
             {r.name}
           </span>
-          <span style={{ fontSize: 13, color: TEXT.body }}>
+          <span style={{ fontSize: 14, color: TEXT.body }}>
             {isDualValue(r.accuracy)
               ? <AttackDualCell melee={r.accuracy.melee} ranged={r.accuracy.ranged} format={formatAccuracyValue} />
               : formatAccuracyValue(r.accuracy)}
           </span>
-          <span style={{ fontSize: 13, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis" }}>{r.damage ?? "—"}</span>
-          <span style={{ fontSize: 13, color: TEXT.body }}>
+          <span style={{ fontSize: 14, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis" }}>{r.damage ?? "—"}</span>
+          <span style={{ fontSize: 14, color: TEXT.body }}>
             {isDualValue(r.range)
               ? <AttackDualCell melee={r.range.melee} ranged={r.range.ranged} />
               : (r.range ?? "—")}
@@ -2482,14 +2513,14 @@ function AttackWorkspace({
             onClick={() => onRemoveCustomAttack(r.id)}
             aria-label={`Remove ${r.name || "attack row"}`}
             className="no-print"
-            style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 14, lineHeight: 1, padding: 0 }}
+            style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 15, lineHeight: 1, padding: 0 }}
           >
             ✕
           </button>
         </div>
       ))}
       {!hasRows && (
-        <div style={{ fontSize: 13, color: TEXT.faint, textAlign: "center", padding: "4px 0" }}>
+        <div style={{ fontSize: 14, color: TEXT.faint, textAlign: "center", padding: "4px 0" }}>
           No weapons equipped yet.
         </div>
       )}
@@ -2497,7 +2528,7 @@ function AttackWorkspace({
         onClick={onAddCustomAttack}
         className="no-print"
         style={{
-          marginTop: 4, alignSelf: "flex-start", padding: "4px 10px", fontSize: 12, fontWeight: 500, borderRadius: 6,
+          marginTop: 4, alignSelf: "flex-start", padding: "4px 10px", fontSize: 13, fontWeight: 500, borderRadius: 6,
           background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
         }}
       >
@@ -2533,7 +2564,7 @@ function CustomTechniqueCard({ tech, onTitleChange, onTextChange, onRemove, read
           {tech.title.trim() || "Untitled technique"}
         </span>
         {tech.text && (
-          <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
+          <div style={{ fontSize: 15, color: TEXT.body, lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
             {tech.text}
           </div>
         )}
@@ -2567,7 +2598,7 @@ function CustomTechniqueCard({ tech, onTitleChange, onTextChange, onRemove, read
         onChange={e => onTextChange(e.target.value)}
         placeholder="Rules text…"
         rows={3}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: 14 }}
       />
     </div>
   );
@@ -2594,7 +2625,7 @@ function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
           {bg.name}
         </span>
         <span style={{
-          fontSize: 12, color: TEXT.muted, background: "#0d1117",
+          fontSize: 13, color: TEXT.muted, background: "#0d1117",
           border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 6px", flexShrink: 0,
         }}>
           {bg.category}
@@ -2602,12 +2633,12 @@ function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
       </div>
       {/* Fluff/Effects split, same treatment as a technique's or item's. */}
       {!readOnly && bg.description && (
-        <div style={{ fontSize: 13, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.5 }}>
+        <div style={{ fontSize: 14, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.5 }}>
           {bg.description}
         </div>
       )}
       {bg.effects && (
-        <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
+        <div style={{ fontSize: 15, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
           {bg.effects}
         </div>
       )}
@@ -2615,7 +2646,7 @@ function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
         <button
           onClick={() => onToggle(bg)}
           style={{
-            alignSelf: "flex-start", fontSize: 13,
+            alignSelf: "flex-start", fontSize: 14,
             color: selected ? "#c0392b" : "#d4a843",
             background: "transparent",
             border: `0.5px solid ${selected ? "#c0392b" : "#a07c2e"}`,
@@ -2674,7 +2705,7 @@ function toggleInArray(setter, value) {
 // Crafting's type-group filters all use this. Active chips light up gold.
 function chipStyle(active) {
   return {
-    padding: "3px 10px", fontSize: 13, borderRadius: 20,
+    padding: "3px 10px", fontSize: 14, borderRadius: 20,
     fontWeight: active ? 500 : 400,
     whiteSpace: "nowrap",
     background: active ? "#d4a84322" : "transparent",
@@ -2686,7 +2717,7 @@ function chipStyle(active) {
 // Shared look for a collapsible section's toggle button (Sources,
 // Backgrounds, Crafting).
 const collapseBtnStyle = {
-  fontSize: 12, color: TEXT.muted, background: "transparent",
+  fontSize: 13, color: TEXT.muted, background: "transparent",
   border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 10px", flexShrink: 0,
 };
 
@@ -2807,7 +2838,7 @@ function InventoryTile({
         )}
         <span style={{
           fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
-          fontSize: 15, color: TEXT.name, flex: 1, lineHeight: 1.3,
+          fontSize: 17, color: TEXT.name, flex: 1, lineHeight: 1.3,
         }}>
           {item.name}
         </span>
@@ -2822,7 +2853,7 @@ function InventoryTile({
         )}
       </div>
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
-        <span style={{ fontSize: 11, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px" }}>
+        <span style={{ fontSize: 12, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px" }}>
           {item.category}{item.slot ? ` · ${item.slot}` : ""}
         </span>
         {hasLevel && (
@@ -2830,35 +2861,35 @@ function InventoryTile({
             <select
               value={displayLevel}
               onChange={e => onLevelChange(Number(e.target.value))}
-              style={{ fontSize: 11, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" }}
+              style={{ fontSize: 12, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" }}
             >
               {levels.map(lv => <option key={lv} value={lv}>Lv {lv}</option>)}
             </select>
           ) : (
-            <span style={{ fontSize: 11, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 6px" }}>
+            <span style={{ fontSize: 12, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 6px" }}>
               Lv {displayLevel}
             </span>
           )
         )}
         {!readOnly && displayCost && (
-          <span style={{ fontSize: 12, color: TEXT.faint }}>{displayCost}</span>
+          <span style={{ fontSize: 13, color: TEXT.faint }}>{displayCost}</span>
         )}
       </div>
       {/* Fluff description — italic and muted, skipped on the read-only
           Character Sheet, same treatment as a technique's Description. */}
       {!readOnly && item.description && (
-        <div style={{ fontSize: 13, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.5 }}>
+        <div style={{ fontSize: 14, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.5 }}>
           {item.description}
         </div>
       )}
       {/* Effects — the actual rules text, shown everywhere */}
       {item.effects && (
-        <div style={{ fontSize: 13, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
+        <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
           {item.effects}
         </div>
       )}
       {(weaponInfo.length > 0 || mightReq != null) && (
-        <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
+        <div style={{ fontSize: 13, color: TEXT.faint, lineHeight: 1.5 }}>
           {weaponInfo.map(([label, v, fmt]) => `${label} ${fmt(v)}`).join("  ·  ")}
           {canParry && `  ·  Parry ${item.weapon_defense >= 0 ? "+" : ""}${item.weapon_defense}`}
           {mightReq != null && (
@@ -2878,7 +2909,7 @@ function InventoryTile({
         <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
           {statBadges.map(([label, v]) => (
             <span key={label} style={{
-              fontSize: 11, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
+              fontSize: 13, fontWeight: 600, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
               borderRadius: 4, padding: "1px 6px",
             }}>
               {statBadge(label, v)}
@@ -2890,7 +2921,7 @@ function InventoryTile({
         <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
           {materialTypes.map(t => (
             <span key={t} style={{
-              fontSize: 11, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
+              fontSize: 13, fontWeight: 600, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
               borderRadius: 4, padding: "1px 6px",
             }}>
               {t}
@@ -2899,9 +2930,9 @@ function InventoryTile({
         </div>
       )}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
-        <span style={{ fontSize: 12, color: TEXT.faint }}>Qty</span>
+        <span style={{ fontSize: 13, color: TEXT.faint }}>Qty</span>
         {readOnly ? (
-          <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+          <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
         ) : (
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
@@ -2910,7 +2941,7 @@ function InventoryTile({
         <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 4, borderTop: "0.5px solid #2d3555" }}>
           <label
             title={equipDisabled ? `No room left in the ${effectiveSlot(item)} slot` : undefined}
-            style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: equipDisabled ? TEXT.faint : TEXT.body, cursor: equipDisabled ? "not-allowed" : "pointer" }}
+            style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 13, color: equipDisabled ? TEXT.faint : TEXT.body, cursor: equipDisabled ? "not-allowed" : "pointer" }}
           >
             <input
               type="checkbox"
@@ -2923,12 +2954,12 @@ function InventoryTile({
         </div>
       )}
       {!readOnly && baseItemOptions.length > 0 && (
-        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: TEXT.body }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: TEXT.body }}>
           <span style={{ color: TEXT.faint, flexShrink: 0 }}>Base item</span>
           <select
             value={entry.baseItemId || ""}
             onChange={e => onBaseItemChange(e.target.value)}
-            style={{ fontSize: 12, flex: 1, minWidth: 0 }}
+            style={{ fontSize: 13, flex: 1, minWidth: 0 }}
           >
             <option value="">None (no bonus)</option>
             {baseItemOptions.map(bi => <option key={bi.id} value={bi.id}>{bi.name}</option>)}
@@ -2992,7 +3023,7 @@ function CustomItemTile({
   });
   const statBadges = Object.values(combinedStats);
 
-  const selectStyle = { fontSize: 12, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" };
+  const selectStyle = { fontSize: 13, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" };
 
   return (
     <div
@@ -3027,7 +3058,7 @@ function CustomItemTile({
         {readOnly ? (
           <span style={{
             fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
-            fontSize: 15, color: TEXT.name, flex: 1, lineHeight: 1.3,
+            fontSize: 17, color: TEXT.name, flex: 1, lineHeight: 1.3,
           }}>
             {entry.name.trim() || "Untitled item"}
           </span>
@@ -3039,7 +3070,7 @@ function CustomItemTile({
             placeholder="Item name…"
             style={{
               flex: 1, minWidth: 0, fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold",
-              fontSize: 14, padding: "4px 8px",
+              fontSize: 15, padding: "4px 8px",
             }}
           />
         )}
@@ -3054,22 +3085,22 @@ function CustomItemTile({
         )}
       </div>
       {!readOnly && (
-        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: TEXT.body }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: TEXT.body }}>
           <span style={{ color: TEXT.faint, flexShrink: 0 }}>Slot</span>
-          <select value={entry.slot || ""} onChange={e => onSlotChange(e.target.value)} style={{ fontSize: 12, flex: 1, minWidth: 0 }}>
+          <select value={entry.slot || ""} onChange={e => onSlotChange(e.target.value)} style={{ fontSize: 13, flex: 1, minWidth: 0 }}>
             <option value="">No slot</option>
             {ITEM_SLOTS.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
         </div>
       )}
       {readOnly && entry.slot && (
-        <span style={{ fontSize: 11, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px", alignSelf: "flex-start" }}>
+        <span style={{ fontSize: 12, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px", alignSelf: "flex-start" }}>
           Custom · {entry.slot}
         </span>
       )}
       {readOnly ? (
         entry.text && (
-          <div style={{ fontSize: 13, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
+          <div style={{ fontSize: 14, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
             {entry.text}
           </div>
         )
@@ -3079,7 +3110,7 @@ function CustomItemTile({
           onChange={e => onTextChange(e.target.value)}
           placeholder="Description…"
           rows={2}
-          style={{ fontSize: 13 }}
+          style={{ fontSize: 14 }}
         />
       )}
 
@@ -3087,7 +3118,7 @@ function CustomItemTile({
         <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
           {statBadges.map(([label, v]) => (
             <span key={label} style={{
-              fontSize: 11, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
+              fontSize: 13, fontWeight: 600, color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
               borderRadius: 4, padding: "1px 6px",
             }}>
               {statBadge(label, v)}
@@ -3101,18 +3132,18 @@ function CustomItemTile({
           {Object.entries(stats).map(([key, v]) => {
             const label = (ITEM_STAT_FIELDS.find(([k]) => k === key) || [key, key])[1];
             return (
-              <div key={key} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+              <div key={key} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13 }}>
                 <span style={{ color: TEXT.faint, flex: 1 }}>{label}</span>
                 <input
                   type="number"
                   value={v}
                   onChange={e => onStatChange(key, Number(e.target.value) || 0)}
-                  style={{ width: 56, fontSize: 12, textAlign: "right" }}
+                  style={{ width: 56, fontSize: 13, textAlign: "right" }}
                 />
                 <button
                   onClick={() => onRemoveStat(key)}
                   aria-label={`Remove ${label}`}
-                  style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 14, lineHeight: 1, padding: "0 2px" }}
+                  style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 15, lineHeight: 1, padding: "0 2px" }}
                 >
                   ✕
                 </button>
@@ -3123,7 +3154,7 @@ function CustomItemTile({
             <select
               value=""
               onChange={e => { if (e.target.value) onAddStat(e.target.value); e.target.selectedIndex = 0; }}
-              style={{ fontSize: 12 }}
+              style={{ fontSize: 13 }}
             >
               <option value="">+ Add stat…</option>
               {availableStats.map(([key, label]) => <option key={key} value={key}>{label}</option>)}
@@ -3157,7 +3188,7 @@ function CustomItemTile({
         if (parry != null) parts.push(`Parry ${parry >= 0 ? "+" : ""}${parry}`);
         if (parts.length === 0) return null;
         return (
-          <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
+          <div style={{ fontSize: 13, color: TEXT.faint, lineHeight: 1.5 }}>
             {parts.join("  ·  ")}{w.improvised && "  ·  Improvised"}
           </div>
         );
@@ -3166,74 +3197,74 @@ function CustomItemTile({
         entry.weapon ? (
           <div style={{ display: "flex", flexDirection: "column", gap: 5, border: "0.5px solid #2d3555", borderRadius: 6, padding: "6px 8px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <span style={{ fontSize: 11, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.04em", flex: 1 }}>
+              <span style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.04em", flex: 1 }}>
                 Weapon Stats
               </span>
               <button
                 onClick={onRemoveWeapon}
                 aria-label="Remove weapon stats"
-                style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 14, lineHeight: 1, padding: "0 2px" }}
+                style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 15, lineHeight: 1, padding: "0 2px" }}
               >
                 ✕
               </button>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13 }}>
               <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Accuracy</span>
               <input
                 type="number" value={entry.weapon.accuracy ?? ""}
                 onChange={e => onWeaponChange("accuracy", e.target.value === "" ? null : Number(e.target.value))}
-                placeholder="0" style={{ width: 56, fontSize: 12, textAlign: "right" }}
+                placeholder="0" style={{ width: 56, fontSize: 13, textAlign: "right" }}
               />
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13 }}>
               <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Damage</span>
               <input
                 type="number" value={entry.weapon.damageBase ?? ""}
                 onChange={e => onWeaponChange("damageBase", e.target.value === "" ? null : Number(e.target.value))}
-                placeholder="0" style={{ width: 56, fontSize: 12, textAlign: "right" }}
+                placeholder="0" style={{ width: 56, fontSize: 13, textAlign: "right" }}
               />
               <select
                 value={entry.weapon.damageStat || ""}
                 onChange={e => onWeaponChange("damageStat", e.target.value || null)}
-                style={{ fontSize: 12, flex: 1, minWidth: 0 }}
+                style={{ fontSize: 13, flex: 1, minWidth: 0 }}
               >
                 <option value="">No Stat bonus</option>
                 {STATS.map(s => <option key={s} value={s}>+ {s}</option>)}
               </select>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13 }}>
               <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Damage Type</span>
               <input
                 type="text" value={entry.weapon.damageType}
                 onChange={e => onWeaponChange("damageType", e.target.value)}
-                placeholder="Physical" style={{ flex: 1, minWidth: 0, fontSize: 12 }}
+                placeholder="Physical" style={{ flex: 1, minWidth: 0, fontSize: 13 }}
               />
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13 }}>
               <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Range</span>
               <input
                 type="text" value={entry.weapon.range}
                 onChange={e => onWeaponChange("range", e.target.value)}
-                placeholder="Close" style={{ flex: 1, minWidth: 0, fontSize: 12 }}
+                placeholder="Close" style={{ flex: 1, minWidth: 0, fontSize: 13 }}
               />
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13 }}>
               <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Skill</span>
               <input
                 type="text" value={entry.weapon.skill}
                 onChange={e => onWeaponChange("skill", e.target.value)}
-                placeholder="Melee" style={{ flex: 1, minWidth: 0, fontSize: 12 }}
+                placeholder="Melee" style={{ flex: 1, minWidth: 0, fontSize: 13 }}
               />
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13 }}>
               <span style={{ color: TEXT.faint, width: 78, flexShrink: 0 }}>Parry</span>
               <input
                 type="number" value={entry.weapon.weaponDefense ?? ""}
                 onChange={e => onWeaponChange("weaponDefense", e.target.value === "" ? null : Number(e.target.value))}
-                placeholder="—" style={{ width: 56, fontSize: 12, textAlign: "right" }}
+                placeholder="—" style={{ width: 56, fontSize: 13, textAlign: "right" }}
               />
             </div>
-            <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: TEXT.body, cursor: "pointer" }}>
+            <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: TEXT.body, cursor: "pointer" }}>
               <input
                 type="checkbox" checked={!!entry.weapon.improvised}
                 onChange={e => onWeaponChange("improvised", e.target.checked)}
@@ -3245,7 +3276,7 @@ function CustomItemTile({
           <button
             onClick={onAddWeapon}
             style={{
-              fontSize: 12, color: TEXT.muted, background: "transparent", border: "0.5px solid #2d3555",
+              fontSize: 13, color: TEXT.muted, background: "transparent", border: "0.5px solid #2d3555",
               borderRadius: 4, padding: "4px 8px", alignSelf: "flex-start",
             }}
           >
@@ -3267,7 +3298,7 @@ function CustomItemTile({
             return (
               <div key={p.id} style={{ border: "0.5px solid #2d3555", borderRadius: 6, padding: "6px 8px", display: "flex", flexDirection: "column", gap: 3 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <span style={{ fontSize: 13, fontWeight: 500, color: TEXT.name, flex: 1 }}>{p.item.name}</span>
+                  <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name, flex: 1 }}>{p.item.name}</span>
                   {levels.length > 0 && (
                     variableLevel && !readOnly ? (
                       <select value={displayLevel} onChange={e => onPowerLevelChange(p.id, Number(e.target.value))} style={selectStyle}>
@@ -3281,14 +3312,14 @@ function CustomItemTile({
                     <button
                       onClick={() => onRemovePower(p.id)}
                       aria-label={`Remove ${p.item.name}`}
-                      style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 14, lineHeight: 1, padding: "0 2px" }}
+                      style={{ background: "transparent", border: "none", color: TEXT.faint, fontSize: 15, lineHeight: 1, padding: "0 2px" }}
                     >
                       ✕
                     </button>
                   )}
                 </div>
                 {p.item.effects && (
-                  <div style={{ fontSize: 12, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
+                  <div style={{ fontSize: 13, color: TEXT.body, lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
                     {p.item.effects}
                   </div>
                 )}
@@ -3301,7 +3332,7 @@ function CustomItemTile({
         <select
           value=""
           onChange={e => { if (e.target.value) onAddPower(e.target.value); e.target.selectedIndex = 0; }}
-          style={{ fontSize: 12 }}
+          style={{ fontSize: 13 }}
         >
           <option value="">+ Add Masterwork power…</option>
           {masterworkOptions.map(mw => <option key={mw.id} value={mw.id}>{mw.name}</option>)}
@@ -3309,9 +3340,9 @@ function CustomItemTile({
       )}
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
-        <span style={{ fontSize: 12, color: TEXT.faint }}>Qty</span>
+        <span style={{ fontSize: 13, color: TEXT.faint }}>Qty</span>
         {readOnly ? (
-          <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+          <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
         ) : (
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
@@ -3320,7 +3351,7 @@ function CustomItemTile({
         <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 4, borderTop: "0.5px solid #2d3555" }}>
           <label
             title={equipDisabled ? `No room left in the ${entry.slot} slot` : undefined}
-            style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: equipDisabled ? TEXT.faint : TEXT.body, cursor: equipDisabled ? "not-allowed" : "pointer" }}
+            style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 13, color: equipDisabled ? TEXT.faint : TEXT.body, cursor: equipDisabled ? "not-allowed" : "pointer" }}
           >
             <input type="checkbox" checked={!!entry.equipped} disabled={equipDisabled} onChange={onToggleEquipped} />
             Equipped
@@ -3348,7 +3379,7 @@ function SourcesSection({ supplements, enabledSupplements, onToggle }) {
   if (collapsed) {
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
-        <div style={{ fontSize: 13, color: TEXT.body }}>
+        <div style={{ fontSize: 14, color: TEXT.body }}>
           {enabledSupplements.length > 0 ? enabledSupplements.join(", ") : "None enabled"}
         </div>
         <button onClick={() => setCollapsed(false)} style={collapseBtnStyle}>Show</button>
@@ -3363,7 +3394,7 @@ function SourcesSection({ supplements, enabledSupplements, onToggle }) {
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {supplements.map(s => (
-          <label key={s} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: TEXT.body, cursor: "pointer" }}>
+          <label key={s} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 15, color: TEXT.body, cursor: "pointer" }}>
             <input type="checkbox" checked={enabledSupplements.includes(s)} onChange={() => onToggle(s)} />
             {s}
           </label>
@@ -3441,7 +3472,7 @@ function BackgroundsSection({
   if (collapsed) {
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
-        <div style={{ fontSize: 13, color: selected.length > 0 ? TEXT.body : TEXT.faint }}>
+        <div style={{ fontSize: 14, color: selected.length > 0 ? TEXT.body : TEXT.faint }}>
           {selected.length > 0 ? selected.map(bg => bg.name).join(", ") : "No backgrounds selected"}
         </div>
         <button onClick={() => setCollapsed(false)} style={collapseBtnStyle}>Show</button>
@@ -3452,7 +3483,7 @@ function BackgroundsSection({
   const eligible  = eligibleBackgrounds(backgrounds, backgroundType, enabledSupplements);
   const available = eligible.filter(b => !selectedIds.includes(b.id));
   const toggleBtnStyle = active => ({
-    padding: "4px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+    padding: "4px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
     background: active ? "#d4a843" : "transparent",
     color: active ? "#0a0e18" : TEXT.muted,
     border: `0.5px solid ${active ? "#d4a843" : "#2d3555"}`,
@@ -3555,7 +3586,7 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
   const editing = !readOnly && building;
 
   const smallBtn = {
-    fontSize: 11, color: TEXT.muted, background: "transparent",
+    fontSize: 12, color: TEXT.muted, background: "transparent",
     border: "0.5px solid #2d3555", borderRadius: 4, padding: "1px 8px", flexShrink: 0,
   };
 
@@ -3569,10 +3600,10 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
           <input
             type="text" placeholder="Material name…"
             value={entry.name} onChange={e => onNameChange(e.target.value)}
-            style={{ flex: 1, minWidth: 0, fontSize: 14, fontFamily: "'MedievalSharp', Georgia, serif" }}
+            style={{ flex: 1, minWidth: 0, fontSize: 17, fontFamily: "'MedievalSharp', Georgia, serif" }}
           />
         ) : (
-          <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 15, color: TEXT.name, flex: 1 }}>
+          <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 17, color: TEXT.name, flex: 1 }}>
             {entry.name || "Custom material"}
           </span>
         )}
@@ -3590,21 +3621,21 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
         )}
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <span style={{ fontSize: 11, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px" }}>
+        <span style={{ fontSize: 12, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px" }}>
           Material
         </span>
-        <span style={{ fontSize: 12, color: TEXT.faint }}>Level</span>
+        <span style={{ fontSize: 13, color: TEXT.faint }}>Level</span>
         {editing ? (
           <PointStepper value={entry.level} max={5} onChange={onLevelChange} />
         ) : readOnly ? (
-          <span style={{ fontSize: 11, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 6px" }}>
+          <span style={{ fontSize: 12, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 6px" }}>
             Lv {entry.level}
           </span>
         ) : (
           <select
             value={entry.level}
             onChange={e => onLevelChange(Number(e.target.value))}
-            style={{ fontSize: 11, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" }}
+            style={{ fontSize: 12, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 4px" }}
           >
             {[1, 2, 3, 4, 5].map(lv => <option key={lv} value={lv}>Lv {lv}</option>)}
           </select>
@@ -3615,7 +3646,7 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
             material's Cost badge, and skipped on the read-only Sheet
             the same way that badge is. */}
         {!readOnly && (
-          <span style={{ fontSize: 12, color: TEXT.faint }}>{entry.level} Gold</span>
+          <span style={{ fontSize: 13, color: TEXT.faint }}>{entry.level} Gold</span>
         )}
       </div>
       <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
@@ -3627,7 +3658,7 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
               onClick={editing ? () => onToggleType(t) : undefined}
               disabled={!editing}
               style={{
-                fontSize: 11, padding: "1px 7px", borderRadius: 4,
+                fontSize: 12, padding: "1px 7px", borderRadius: 4,
                 background: active ? "#20180a" : "transparent",
                 color: active ? "#e8c46a" : TEXT.faint,
                 border: `0.5px solid ${active ? "#6b5423" : "#2d3555"}`,
@@ -3639,13 +3670,13 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
           );
         })}
         {!editing && entry.types.length === 0 && (
-          <span style={{ fontSize: 12, color: TEXT.faint, fontStyle: "italic" }}>No types set</span>
+          <span style={{ fontSize: 13, color: TEXT.faint, fontStyle: "italic" }}>No types set</span>
         )}
       </div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
-        <span style={{ fontSize: 12, color: TEXT.faint }}>Qty</span>
+        <span style={{ fontSize: 13, color: TEXT.faint }}>Qty</span>
         {readOnly ? (
-          <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+          <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
         ) : (
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
@@ -3654,7 +3685,7 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
         <button
           onClick={() => setBuilding(false)}
           style={{
-            fontSize: 13, color: "#d4a843", background: "transparent",
+            fontSize: 14, color: "#d4a843", background: "transparent",
             border: "0.5px solid #a07c2e", borderRadius: 4,
             padding: "4px 10px", alignSelf: "flex-start",
           }}
@@ -4027,7 +4058,7 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
 
   const readyBadge = (label, state) => (
     <span style={{
-      fontSize: 11, fontWeight: 600, padding: "1px 7px", borderRadius: 4,
+      fontSize: 12, fontWeight: 600, padding: "1px 7px", borderRadius: 4,
       color: state == null ? TEXT.faint : (state ? "#6fae5a" : "#e0645f"),
       border: `0.5px solid ${state == null ? "#2d3555" : (state ? "#6fae5a" : "#e0645f")}`,
     }}>
@@ -4038,7 +4069,7 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
   if (collapsed) {
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 14 }}>
-        <div style={{ fontSize: 13, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>Crafting</div>
+        <div style={{ fontSize: 14, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>Crafting</div>
         <button onClick={() => setCollapsed(false)} style={collapseBtnStyle}>Show</button>
       </div>
     );
@@ -4047,13 +4078,13 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
   return (
     <div style={{ marginBottom: 14 }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 10, flexWrap: "wrap" }}>
-        <div style={{ fontSize: 13, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>Crafting</div>
+        <div style={{ fontSize: 14, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>Crafting</div>
         <button onClick={() => setCollapsed(true)} style={collapseBtnStyle}>Hide</button>
       </div>
 
       <div style={{
         display: "flex", flexDirection: "column", gap: 10,
-        fontSize: 13, color: TEXT.muted,
+        fontSize: 14, color: TEXT.muted,
         background: "#12161f", border: "0.5px solid #2d3555",
         borderRadius: 8, padding: "10px 14px", marginBottom: 10,
       }}>
@@ -4077,7 +4108,7 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
       </div>
 
       {rows.length === 0 ? (
-        <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
+        <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 15 }}>
           No matching recipes.
         </div>
       ) : (
@@ -4091,7 +4122,7 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
                 padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
               }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
-                  <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 15, color: TEXT.name }}>
+                  <span style={{ fontFamily: "'MedievalSharp', Georgia, serif", fontWeight: "bold", fontSize: 17, color: TEXT.name }}>
                     {item.name}
                   </span>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
@@ -4106,7 +4137,7 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
                   <select
                     value={recipe.id}
                     onChange={e => setSelectedRecipe(s => ({ ...s, [item.id]: e.target.value }))}
-                    style={{ fontSize: 12, alignSelf: "flex-start" }}
+                    style={{ fontSize: 13, alignSelf: "flex-start" }}
                   >
                     {variants.map(v => (
                       <option key={v.recipe.id} value={v.recipe.id}>
@@ -4115,7 +4146,7 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
                     ))}
                   </select>
                 )}
-                <div style={{ fontSize: 12, color: TEXT.faint, lineHeight: 1.5 }}>
+                <div style={{ fontSize: 13, color: TEXT.faint, lineHeight: 1.5 }}>
                   {req.skillName && req.skillValue != null ? `${req.skillName} ${req.skillValue}` : (recipe.skill_total || "—")}
                   {"  ·  "}School: {recipe.school || "—"}
                   {"  ·  "}Materials:{" "}
@@ -4145,17 +4176,17 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
                     this power would go on. */}
                 {baseItemOptions.length > 0 && (
                   <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
-                    <span style={{ fontSize: 12, color: TEXT.faint }}>Base item:</span>
+                    <span style={{ fontSize: 13, color: TEXT.faint }}>Base item:</span>
                     {baseItemOptions.length > 1 ? (
                       <select
                         value={selectedBaseId}
                         onChange={e => setSelectedBaseItem(s => ({ ...s, [item.id]: e.target.value }))}
-                        style={{ fontSize: 12 }}
+                        style={{ fontSize: 13 }}
                       >
                         {baseItemOptions.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
                       </select>
                     ) : (
-                      <span style={{ fontSize: 12, color: TEXT.faint }}>{baseItemOptions[0].name}</span>
+                      <span style={{ fontSize: 13, color: TEXT.faint }}>{baseItemOptions[0].name}</span>
                     )}
                   </div>
                 )}
@@ -4272,7 +4303,7 @@ function InventorySection({
 
   const grid = (
     gearInventory.length === 0 && customItems.length === 0 ? (
-      <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 14 }}>
+      <div style={{ textAlign: "center", padding: "20px 16px", color: TEXT.faint, fontSize: 15 }}>
         {readOnly ? "No items carried." : "No items carried yet — search above to add some."}
       </div>
     ) : (
@@ -4360,15 +4391,15 @@ function InventorySection({
         background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8,
         padding: "8px 12px", marginBottom: 14,
       }}>
-        <span style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>Gold</span>
+        <span style={{ fontSize: 13, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>Gold</span>
         {readOnly ? (
-          <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{gold || "0"}</span>
+          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>{gold || "0"}</span>
         ) : (
           <input
             type="text" inputMode="numeric" placeholder="0"
             value={gold}
             onChange={e => onGoldChange(e.target.value.replace(/[^\d]/g, ""))}
-            style={{ width: 70, fontSize: 14, textAlign: "right" }}
+            style={{ width: 70, fontSize: 15, textAlign: "right" }}
           />
         )}
       </div>
@@ -4379,11 +4410,11 @@ function InventorySection({
           padding: "10px 12px", marginBottom: 14,
           display: "flex", flexDirection: "column", gap: 4,
         }}>
-          <div style={{ fontSize: 12, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 2 }}>
+          <div style={{ fontSize: 13, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 2 }}>
             Equipped
           </div>
           {ITEM_SLOTS.map(slot => (
-            <div key={slot} style={{ display: "flex", gap: 8, fontSize: 13 }}>
+            <div key={slot} style={{ display: "flex", gap: 8, fontSize: 14 }}>
               <span style={{ color: TEXT.faint, minWidth: 46, flexShrink: 0 }}>{slot}</span>
               <span style={{ color: (bySlot[slot] || []).length ? TEXT.body : TEXT.faint }}>
                 {(bySlot[slot] || []).length ? bySlot[slot].map(x => x.name).join(", ") : "—"}
@@ -4399,16 +4430,16 @@ function InventorySection({
             <input
               type="text" placeholder="Search items to add…"
               value={search} onChange={e => setSearch(e.target.value)}
-              style={{ flex: "1 1 220px", fontSize: 13 }}
+              style={{ flex: "1 1 220px", fontSize: 14 }}
             />
-            <select value={category} onChange={e => setCategory(e.target.value)} style={{ fontSize: 13 }}>
+            <select value={category} onChange={e => setCategory(e.target.value)} style={{ fontSize: 14 }}>
               <option value="">All categories</option>
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
             <button
               onClick={() => setAdvancedOpen(o => !o)}
               style={{
-                padding: "6px 14px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+                padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
                 background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
                 display: "flex", alignItems: "center", gap: 5,
               }}
@@ -4419,11 +4450,11 @@ function InventorySection({
           {advancedOpen && (
             <div style={{
               display: "flex", flexDirection: "column", gap: 10,
-              fontSize: 13, color: TEXT.muted,
+              fontSize: 14, color: TEXT.muted,
               background: "#12161f", border: "0.5px solid #2d3555",
               borderRadius: 8, padding: "10px 14px", marginBottom: 10,
             }}>
-              <select value={slotFilter} onChange={e => setSlotFilter(e.target.value)} style={{ fontSize: 13, alignSelf: "flex-start" }}>
+              <select value={slotFilter} onChange={e => setSlotFilter(e.target.value)} style={{ fontSize: 14, alignSelf: "flex-start" }}>
                 <option value="">Any slot</option>
                 {slots.map(s => <option key={s} value={s}>{s}</option>)}
                 <option value={NO_SLOT}>No slot</option>
@@ -4433,7 +4464,7 @@ function InventorySection({
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                     <span style={{ color: TEXT.faint }}>Keyword</span>
                     {tagFilters.length > 0 && (
-                      <button onClick={() => setTagFilters([])} style={{ background: "transparent", border: "none", color: "#c0392b", fontSize: 13, padding: 0 }}>
+                      <button onClick={() => setTagFilters([])} style={{ background: "transparent", border: "none", color: "#c0392b", fontSize: 14, padding: 0 }}>
                         Clear
                       </button>
                     )}
@@ -4452,7 +4483,7 @@ function InventorySection({
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                     <span style={{ color: TEXT.faint }}>Supplement</span>
                     {supplementFilters.length > 0 && (
-                      <button onClick={() => setSupplementFilters([])} style={{ background: "transparent", border: "none", color: "#c0392b", fontSize: 13, padding: 0 }}>
+                      <button onClick={() => setSupplementFilters([])} style={{ background: "transparent", border: "none", color: "#c0392b", fontSize: 14, padding: 0 }}>
                         Clear
                       </button>
                     )}
@@ -4476,12 +4507,12 @@ function InventorySection({
             }}>
               {results.map(it => (
                 <div key={it.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "3px 4px" }}>
-                  <span style={{ fontSize: 13, color: TEXT.body }}>
-                    {it.name} <span style={{ fontSize: 11, color: TEXT.faint }}>({it.category}{it.slot ? ` · ${it.slot}` : ""})</span>
+                  <span style={{ fontSize: 14, color: TEXT.body }}>
+                    {it.name} <span style={{ fontSize: 12, color: TEXT.faint }}>({it.category}{it.slot ? ` · ${it.slot}` : ""})</span>
                   </span>
                   <button
                     onClick={() => onAdd(it.id)}
-                    style={{ fontSize: 12, color: "#d4a843", background: "transparent", border: "0.5px solid #a07c2e", borderRadius: 4, padding: "2px 8px", flexShrink: 0 }}
+                    style={{ fontSize: 13, color: "#d4a843", background: "transparent", border: "0.5px solid #a07c2e", borderRadius: 4, padding: "2px 8px", flexShrink: 0 }}
                   >
                     + Add
                   </button>
@@ -4501,7 +4532,7 @@ function InventorySection({
           <button
             onClick={onAddCustomItem}
             style={{
-              padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
+              padding: "6px 14px", fontSize: 16, fontWeight: 500, borderRadius: 6,
               background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
               display: "flex", alignItems: "center", gap: 5,
             }}
@@ -4511,7 +4542,7 @@ function InventorySection({
           <button
             onClick={onAddCustomMaterial}
             style={{
-              padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
+              padding: "6px 14px", fontSize: 16, fontWeight: 500, borderRadius: 6,
               background: "transparent", color: TEXT.muted, border: "0.5px solid #2d3555",
               display: "flex", alignItems: "center", gap: 5,
             }}
@@ -4532,11 +4563,11 @@ function InventorySection({
           crafting-recipe check needs to treat them the same way. */}
       {(materialInventory.length > 0 || customMaterials.length > 0 || !readOnly) && (
         <div style={{ marginTop: 20 }}>
-          <div style={{ fontSize: 13, color: TEXT.faint, marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+          <div style={{ fontSize: 14, color: TEXT.faint, marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.07em" }}>
             Materials
           </div>
           {materialInventory.length === 0 && customMaterials.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "16px", color: TEXT.faint, fontSize: 14 }}>
+            <div style={{ textAlign: "center", padding: "16px", color: TEXT.faint, fontSize: 15 }}>
               {readOnly ? "No materials carried." : "No materials carried yet — search above (Category: Material) or add a custom one above."}
             </div>
           ) : (
@@ -4591,25 +4622,25 @@ function XPTiles({ knownXP, unknownCount, totalXP }) {
           background:"#161b27", border:"0.5px solid #2d3555",
           borderRadius:8, padding:"8px 14px", minWidth:110,
         }}>
-          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:4 }}>Technique XP</div>
+          <div style={{ fontSize:14, color:TEXT.faint, marginBottom:4 }}>Technique XP</div>
           <div style={{ fontSize:22, fontWeight:500 }}>
             {unknownCount > 0 ? `${knownXP}+` : `${knownXP}`}
-            <span style={{ fontSize:13, color:TEXT.faint, marginLeft:4 }}>XP</span>
+            <span style={{ fontSize:14, color:TEXT.faint, marginLeft:4 }}>XP</span>
           </div>
         </div>
         <div style={{
           background:"#161b27", border:"0.5px solid #2d3555",
           borderRadius:8, padding:"8px 14px", minWidth:110,
         }}>
-          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:4 }}>Total XP</div>
+          <div style={{ fontSize:14, color:TEXT.faint, marginBottom:4 }}>Total XP</div>
           <div style={{ fontSize:22, fontWeight:500 }}>
             {unknownCount > 0 ? `${totalXP}+` : `${totalXP}`}
-            <span style={{ fontSize:13, color:TEXT.faint, marginLeft:4 }}>XP</span>
+            <span style={{ fontSize:14, color:TEXT.faint, marginLeft:4 }}>XP</span>
           </div>
         </div>
       </div>
       {unknownCount > 0 && (
-        <div style={{ fontSize:13, color:TEXT.faint, fontStyle:"italic", marginTop:-8, marginBottom:16 }}>
+        <div style={{ fontSize:14, color:TEXT.faint, fontStyle:"italic", marginTop:-8, marginBottom:16 }}>
           {unknownCount} technique{unknownCount > 1 ? "s" : ""} not fully configured yet — XP varies by level.
         </div>
       )}
@@ -4637,7 +4668,7 @@ function BuildPanel({
           notes or Feature-builder choices per copy get one row each,
           since those copies aren't interchangeable. */}
       {buildRows.length === 0 ? (
-        <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:15 }}>
+        <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:16 }}>
           No techniques added yet — head to Techniques to pick some.
         </div>
       ) : (
@@ -4680,24 +4711,24 @@ function BuildPanel({
                 <div style={{ flex:1, minWidth:0 }}>
                   <div style={{
                     fontFamily:"'MedievalSharp', Georgia, serif", fontWeight:"bold",
-                    fontSize:15, color:TEXT.name,
+                    fontSize:17, color:TEXT.name,
                     overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap",
                   }}>
                     {t.name}{!isDistinct && count > 1 ? ` ×${count}` : ""}
                   </div>
-                  <span style={{ fontSize:13, color:"#d4a843" }}>
+                  <span style={{ fontSize:14, color:"#d4a843" }}>
                     {cfg ? `Level ${cfg.level}` : lvlLabel(t.level_min, t.level_max)}
                   </span>
                   {subtitle && (
                     <div style={{
-                      fontSize:12, color:TEXT.faint, marginTop:2,
+                      fontSize:13, color:TEXT.faint, marginTop:2,
                       overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap",
                     }}>
                       {subtitle}
                     </div>
                   )}
                 </div>
-                <span style={{ fontSize:13, color:TEXT.faint, flexShrink:0 }}>
+                <span style={{ fontSize:14, color:TEXT.faint, flexShrink:0 }}>
                   {granted ? "Free" : totalXP != null ? `${totalXP} XP` : "? XP"}
                 </span>
                 {repeatable && !granted && (
@@ -4791,7 +4822,7 @@ function QRCodeOverlay({ url, onClose }) {
         padding: 20, width: "min(92vw, 340px)", textAlign: "center",
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <span style={{ fontSize: 15, fontWeight: 600 }}>Scan to open this build</span>
+          <span style={{ fontSize: 16, fontWeight: 600 }}>Scan to open this build</span>
           <button
             onClick={onClose}
             aria-label="Close"
@@ -4830,7 +4861,7 @@ function CharacterManagerOverlay({
   const importAllRef = useRef();
 
   const rowBtn = danger => ({
-    padding: "5px 10px", fontSize: 13, fontWeight: 500, borderRadius: 6,
+    padding: "5px 10px", fontSize: 14, fontWeight: 500, borderRadius: 6,
     background: "transparent",
     color:  danger ? "#c0392b" : TEXT.muted,
     border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
@@ -4846,7 +4877,7 @@ function CharacterManagerOverlay({
         display: "flex", flexDirection: "column",
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <span style={{ fontSize: 15, fontWeight: 600 }}>Manage Characters</span>
+          <span style={{ fontSize: 16, fontWeight: 600 }}>Manage Characters</span>
           <button
             onClick={onClose}
             aria-label="Close"
@@ -4876,11 +4907,11 @@ function CharacterManagerOverlay({
               >
                 <i className="ti ti-grip-vertical" aria-hidden="true" />
               </span>
-              <span style={{ flex: 1, fontSize: 14, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              <span style={{ flex: 1, fontSize: 15, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                 {c.name || "Unnamed hero"}
               </span>
               {c.id === activeId ? (
-                <span style={{ fontSize: 12, color: "#6fae5a", fontWeight: 600 }}>Active</span>
+                <span style={{ fontSize: 13, color: "#6fae5a", fontWeight: 600 }}>Active</span>
               ) : (
                 <button onClick={() => onSwitch(c.id)} style={rowBtn(false)}>Switch</button>
               )}
@@ -4904,7 +4935,7 @@ function CharacterManagerOverlay({
             style={{
               display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
               background: "transparent", border: "1px dashed #3d4566", borderRadius: 8,
-              padding: "10px", color: TEXT.muted, fontSize: 14, fontWeight: 500, cursor: "pointer",
+              padding: "10px", color: TEXT.muted, fontSize: 15, fontWeight: 500, cursor: "pointer",
             }}
           >
             <i className="ti ti-plus" aria-hidden="true" /> New Character
@@ -4926,7 +4957,7 @@ function CharacterManagerOverlay({
             </button>
             <input ref={importAllRef} type="file" accept=".json" onChange={onImportAll} style={{ display: "none" }} />
           </div>
-          <div style={{ fontSize: 12, color: TEXT.faint, marginTop: 8 }}>
+          <div style={{ fontSize: 13, color: TEXT.faint, marginTop: 8 }}>
             Every character is stored only in this browser — back them all up to a file before clearing browser data or switching devices. Restoring adds each one as a new character rather than overwriting anything.
           </div>
         </div>
@@ -6406,7 +6437,7 @@ function App() {
 
   // ── Style helpers ──────────────────────────────────────────────
   const tabStyle = key => ({
-    padding: "6px 14px", fontSize: 15, fontWeight: 500, borderRadius: 6,
+    padding: "6px 14px", fontSize: 16, fontWeight: 500, borderRadius: 6,
     background:  view === key ? "#d4a843" : "transparent",
     color:       view === key ? "#0a0e18" : TEXT.muted,
     border: `0.5px solid ${view === key ? "#d4a843" : "#2d3555"}`,
@@ -6417,7 +6448,7 @@ function App() {
   // off from the other tabs by a divider — it leaves the app for the
   // Rulebook/Glossary pages, so it reads as a different kind of link.
   const rulebookLinkStyle = {
-    padding: "6px 14px", fontSize: 15, fontWeight: 500, borderRadius: 6,
+    padding: "6px 14px", fontSize: 16, fontWeight: 500, borderRadius: 6,
     background: "#0f2230", color: "#7fb8d9",
     border: "0.5px solid #3d6a8a",
     textDecoration: "none", display: "inline-flex", alignItems: "center",
@@ -6425,7 +6456,7 @@ function App() {
   };
 
   const actionBtn = (danger = false) => ({
-    padding: "6px 14px", fontSize: 14, fontWeight: 500, borderRadius: 6,
+    padding: "6px 14px", fontSize: 16, fontWeight: 500, borderRadius: 6,
     background: "transparent",
     color:  danger ? "#c0392b" : TEXT.muted,
     border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
@@ -6624,7 +6655,7 @@ function App() {
 
   // ── Main render ────────────────────────────────────────────────
   return (
-    <div style={{ fontFamily:"system-ui, -apple-system, sans-serif", color:"#e8dfc8" }}>
+    <div className="app-root" style={{ fontFamily:"system-ui, -apple-system, sans-serif", color:"#e8dfc8" }}>
 
       {/* ════════ HEADER ════════════════════════════════════════ */}
       <div className="no-print site-header" style={{
@@ -6640,7 +6671,7 @@ function App() {
           }}>
             FlagonQuest
           </div>
-          <div style={{ fontSize:13, color:TEXT.faint, marginTop:1 }}>
+          <div style={{ fontSize:14, color:TEXT.faint, marginTop:1 }}>
             A beer-and-pretzels TTRPG for the modern gamer
           </div>
         </div>
@@ -6744,7 +6775,7 @@ function App() {
           {advancedOpen && (
             <div style={{
               display: "flex", flexDirection: "column", gap: 12,
-              fontSize: 14, color: TEXT.muted,
+              fontSize: 15, color: TEXT.muted,
               background: "#12161f", border: "0.5px solid #2d3555",
               borderRadius: 8, padding: "10px 14px", marginBottom: 12,
             }}>
@@ -6791,7 +6822,7 @@ function App() {
                     {skillFilters.length > 0 && (
                       <button
                         onClick={() => setSkillFilters([])}
-                        style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:13, padding:0 }}
+                        style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:14, padding:0 }}
                       >
                         Clear
                       </button>
@@ -6815,7 +6846,7 @@ function App() {
                     {tagFilters.length > 0 && (
                       <button
                         onClick={() => setTagFilters([])}
-                        style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:13, padding:0 }}
+                        style={{ background:"transparent", border:"none", color:"#c0392b", fontSize:14, padding:0 }}
                       >
                         Clear
                       </button>
@@ -6834,7 +6865,7 @@ function App() {
           )}
 
           {/* Result count */}
-          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:12 }}>
+          <div style={{ fontSize:14, color:TEXT.faint, marginBottom:12 }}>
             {visible.length} technique{visible.length !== 1 ? "s" : ""}
             {search || skillFilters.length > 0 || tagFilters.length > 0 ? " matching filters" : " total"}
           </div>
@@ -6878,7 +6909,7 @@ function App() {
               {/* Character name */}
               <div style={{ marginBottom:14 }}>
                 <div style={{
-                  fontSize: 13, color: TEXT.faint, marginBottom: 6,
+                  fontSize: 14, color: TEXT.faint, marginBottom: 6,
                   textTransform: "uppercase", letterSpacing: "0.07em",
                 }}>
                   Character name
@@ -6895,7 +6926,7 @@ function App() {
               {/* Character concept — a short line shown in smaller text under
                   the name, on this tab and on the Character Sheet */}
               <div>
-                <div style={{ fontSize: 12, color: TEXT.faint, marginBottom: 5 }}>
+                <div style={{ fontSize: 13, color: TEXT.faint, marginBottom: 5 }}>
                   Concept
                 </div>
                 <input
@@ -6903,7 +6934,7 @@ function App() {
                   placeholder="A one-line concept — “disgraced knight turned bartender”…"
                   value={charConcept}
                   onChange={e => setCharConcept(e.target.value)}
-                  style={{ width:"100%", maxWidth:360, fontSize:13 }}
+                  style={{ width:"100%", maxWidth:360, fontSize:14 }}
                 />
               </div>
             </div>
@@ -6925,7 +6956,7 @@ function App() {
                 </button>
               </div>
               {shareMsg && (
-                <div style={{ fontSize:14, color:"#d4a843", marginTop:8, textAlign:"right" }}>{shareMsg}</div>
+                <div style={{ fontSize:15, color:"#d4a843", marginTop:8, textAlign:"right" }}>{shareMsg}</div>
               )}
             </div>
           </div>
@@ -6935,7 +6966,7 @@ function App() {
               purpose — this is the one section that's collapsed by
               default, so its header is all there is to notice unless
               you already know to look for it. */}
-          <div style={{ fontSize:15, fontWeight:700, color:TEXT.body, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+          <div style={{ fontSize:16, fontWeight:700, color:TEXT.body, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Sources
           </div>
           <SourcesSection
@@ -6945,7 +6976,7 @@ function App() {
           />
           <div style={{ height:24 }} />
 
-          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+          <div style={{ fontSize:14, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Stats &amp; Skills
           </div>
           <StatsPanel
@@ -6958,7 +6989,7 @@ function App() {
           />
           <div style={{ height:24 }} />
 
-          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+          <div style={{ fontSize:14, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Background
           </div>
           <BackgroundsSection
@@ -6970,12 +7001,12 @@ function App() {
           />
           <div style={{ height:24 }} />
 
-          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+          <div style={{ fontSize:14, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Techniques
           </div>
           <XPTiles knownXP={knownXP} unknownCount={unknownCount} totalXP={totalXP} />
           {knownTechs.length === 0 ? (
-            <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:15 }}>
+            <div style={{ textAlign:"center", padding:"32px 16px", color:TEXT.faint, fontSize:16 }}>
               No techniques added yet — head to Techniques to pick some.
             </div>
           ) : (
@@ -7071,7 +7102,7 @@ function App() {
           manual picker needed. */}
       {view === "items" && (
         <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
-          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+          <div style={{ fontSize:14, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Inventory
           </div>
           <InventorySection
@@ -7137,12 +7168,12 @@ function App() {
                   {charName || "Unnamed hero"}
                 </div>
                 {charConcept && (
-                  <div style={{ fontSize:14, color:TEXT.muted, fontStyle:"italic", marginTop:3 }}>
+                  <div style={{ fontSize:15, color:TEXT.muted, fontStyle:"italic", marginTop:3 }}>
                     {charConcept}
                   </div>
                 )}
                 {unknownCount > 0 && (
-                  <div style={{ fontSize:15, color:TEXT.faint, marginTop:5 }}>
+                  <div style={{ fontSize:16, color:TEXT.faint, marginTop:5 }}>
                     {unknownCount} technique{unknownCount > 1 ? "s" : ""} not fully configured
                   </div>
                 )}
@@ -7157,7 +7188,7 @@ function App() {
               display: "none", flexDirection: "column", alignItems: "center", justifyContent: "center",
               minWidth: 90, textAlign: "center", flexShrink: 0, gap: 2,
             }}>
-              <div style={{ fontSize:11, color:TEXT.faint, textTransform:"uppercase", letterSpacing:"0.06em" }}>
+              <div style={{ fontSize:12, color:TEXT.faint, textTransform:"uppercase", letterSpacing:"0.06em" }}>
                 Total XP
               </div>
               <div style={{ fontSize:24, fontWeight:700, color:TEXT.name }}>
@@ -7282,7 +7313,7 @@ function App() {
           big text box plus a short quick-note list. */}
       {view === "notes" && (
         <div style={{ maxWidth:900, margin:"0 auto", padding:20 }}>
-          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+          <div style={{ fontSize:14, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Notes
           </div>
           <textarea
@@ -7290,10 +7321,10 @@ function App() {
             onChange={e => setCharNotes(e.target.value)}
             placeholder="Freeform notes about your character, campaign, plans…"
             rows={10}
-            style={{ width:"100%", fontSize:14, lineHeight:1.5, marginBottom:28 }}
+            style={{ width:"100%", fontSize:15, lineHeight:1.5, marginBottom:28 }}
           />
 
-          <div style={{ fontSize:13, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
+          <div style={{ fontSize:14, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Quick List
           </div>
           <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -7304,7 +7335,7 @@ function App() {
                   value={row.text}
                   onChange={e => updateNoteRow(row.id, e.target.value)}
                   placeholder="Note…"
-                  style={{ flex:1, fontSize:14 }}
+                  style={{ flex:1, fontSize:15 }}
                 />
                 <button
                   onClick={() => removeNoteRow(row.id)}
@@ -7321,7 +7352,7 @@ function App() {
             <button
               onClick={addNoteRow}
               style={{
-                fontSize: 13, color: "#d4a843", background: "transparent",
+                fontSize: 14, color: "#d4a843", background: "transparent",
                 border: "0.5px solid #a07c2e", borderRadius: 4,
                 padding: "4px 10px", alignSelf: "flex-start",
               }}
@@ -7336,7 +7367,7 @@ function App() {
           no-print) at the bottom of the printed Character Sheet too,
           pinned to the physical page bottom there (see .attribution-footer
           in the print CSS) instead of trailing after the last card. */}
-      <div className="attribution-footer" style={{ textAlign: "center", padding: "26px 16px 18px", fontSize: 12, color: TEXT.faint }}>
+      <div className="attribution-footer" style={{ textAlign: "center", padding: "26px 16px 18px", fontSize: 13, color: TEXT.faint }}>
         FlagonQuest is a project by Friendly Flagon Games.
       </div>
 
@@ -7349,14 +7380,14 @@ function App() {
           display: "flex", alignItems: "center", gap: 14,
           background: "#1e2435", border: "0.5px solid #2d3555", borderRadius: 8,
           padding: "10px 16px", boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
-          zIndex: 200, fontSize: 14,
+          zIndex: 200, fontSize: 15,
         }}>
           <span>{undoInfo.message}</span>
           <button
             onClick={performUndo}
             style={{
               background: "none", border: "none", color: "#d4a843",
-              fontSize: 14, fontWeight: "bold", cursor: "pointer", padding: 0,
+              fontSize: 15, fontWeight: "bold", cursor: "pointer", padding: 0,
             }}
           >
             Undo

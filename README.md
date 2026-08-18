@@ -13,6 +13,26 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-18 — Bigger, more consistent text; small mobile bump
+
+- Bumped the site's base text sizes up a notch across the board —
+  Effects/Special/Fluff text, buttons, notes, labels — since everything
+  read a bit small, especially on a phone.
+- Stat numbers now stand out more: Skill Total's glowing badge, the
+  Derived Stats numbers (Speed, Defenses, Resists, ...), and every
+  technique/item/background/material's own name are all a consistent,
+  more prominent size now, instead of each having drifted to its own
+  slightly-different one over time.
+- Tags and Relevant Skills chips (the quick-glance rules info on a
+  technique's card) are bigger and a bit bolder too, so they read as
+  the "important, scannable" info they are instead of blending into
+  the background.
+- Unified two spots that showed the same "big bold XP total" number at
+  different sizes depending on which tab you were on.
+- On top of all that, narrow screens (phones) now get one more small
+  proportional bump, so mobile reads noticeably easier without needing
+  a completely separate mobile layout.
+
 ### 2026-08-18 — Fullness tracker
 
 - **Fullness** (Goblin Game) now has its own tracker on the Character
