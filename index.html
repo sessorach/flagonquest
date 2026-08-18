@@ -1385,6 +1385,11 @@ function TechCard({
   // Apothecary sees both benefits, not only whichever was learned
   // first. Empty when no copy has a choice made yet, same as browsing.
   const madeChoices = [...new Set(instances.map(uid => notes[uid]).filter(Boolean))];
+  // Still shows every option, not just madeChoices, as long as ANY copy
+  // is sitting on its default "Choose a ___…" — otherwise there'd be no
+  // way to compare the remaining options while adding a second copy of
+  // an already-picked repeatable technique like Profession.
+  const anyChoicePending = instances.length === 0 || instances.some(uid => !notes[uid]);
 
   // A technique's Free Text column is either TRUE (a plain free-text
   // note — Temper Soulblade) or a specific value naming a structured
@@ -1557,23 +1562,28 @@ function TechCard({
 
       {/* Choice Effects — a technique whose Free Text options each do
           something different (Profession) rather than the same thing
-          worded once (Artisanal Training's Schools). Once at least one
-          copy has a choice made (see madeChoices above), collapses down
-          to just those option(s)' lines instead of every option in the
-          data — every *distinct* pick across every copy, not only the
-          first, so learning Profession for both Sailor and Apothecary
-          shows both. Still shows the full list while browsing/unset,
-          same as the Prereq badge's "don't guess" rule. Shown on the
-          read-only sheet too (unlike Builder Notes below) since this IS
-          the technique's actual effect, just picked. */}
+          worded once (Artisanal Training's Schools). Once every copy
+          has a choice made (see madeChoices/anyChoicePending above),
+          collapses down to just those option(s)' lines instead of every
+          option in the data — every *distinct* pick across every copy,
+          not only the first, so learning Profession for both Sailor and
+          Apothecary shows both. Still shows the full list while
+          browsing, or while ANY copy is still sitting on its default
+          "Choose a ___…" — e.g. adding a second copy of an
+          already-picked repeatable technique — so there's always a way
+          to compare the remaining options instead of the list vanishing
+          the moment one copy is picked. Shown on the read-only sheet
+          too (unlike Builder Notes below) since this IS the technique's
+          actual effect, just picked — and every copy is always resolved
+          there, so anyChoicePending is never true on that path. */}
       {tech.choice_effects && (
         <div style={{
           fontSize: 14, color: TEXT.body, lineHeight: 1.6,
           whiteSpace: "pre-wrap",
         }}>
-          {(madeChoices.length > 0
-            ? madeChoices.filter(name => tech.choice_effects[name]).map(name => [name, tech.choice_effects[name]])
-            : Object.entries(tech.choice_effects)
+          {(anyChoicePending
+            ? Object.entries(tech.choice_effects)
+            : madeChoices.filter(name => tech.choice_effects[name]).map(name => [name, tech.choice_effects[name]])
           ).map(([name, text]) => (
             <div key={name}>{withSkillTotals(`${name}: ${text}`, glossary, skillTotals)}</div>
           ))}

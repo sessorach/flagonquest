@@ -33,7 +33,11 @@ the full commit-by-commit detail behind any of these.
   narrows down to just the option(s) you've actually picked instead of
   always showing the full list — pick Apothecary and only its benefit
   and prereq show, learn a second copy for Sailor too and both show,
-  side by side. The old catch-all "Building" column (Feature-built
+  side by side — but that list reappears in full while any copy is
+  still sitting on its default "Choose a ___…" (e.g. adding a second
+  copy), so there's always a way to compare the remaining options
+  instead of them vanishing the moment the first copy is picked. The
+  old catch-all "Building" column (Feature-built
   techniques' behind-the-scenes build instructions) has been renamed to
   the more general "Builder Notes" and picked up a short explainer on
   Profession/Artisanal Training's cards about how this narrowing works.

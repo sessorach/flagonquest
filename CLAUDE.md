@@ -237,13 +237,17 @@ shouldn't be duplicated here.
   — real structured data (`choice_effects` in the JSON), not a regex
   slice of the shared Effects prose, per the data-over-prose principle
   above. TechCard collapses its Effects display down to only the
-  option(s) actually picked once at least one copy has a choice made —
+  option(s) actually picked once *every* copy has a choice made —
   every *distinct* pick across every instance (`madeChoices`), not just
   the first, so a repeatable technique learned twice for two different
   options (Profession for both Sailor and Apothecary) shows both lines,
   not only whichever was learned first. Falls back to showing every
-  option (the full unfiltered list) while browsing/unset, same "don't
-  guess" rule as everywhere else this pattern shows up. The Prereqs
+  option (the full unfiltered list) while browsing, or while *any* copy
+  is still sitting on its default "Choose a ___…" (`anyChoicePending`)
+  — e.g. adding a second copy of an already-picked repeatable technique
+  — so there's always a way to compare the remaining options instead of
+  the list vanishing the moment one copy is picked; same "don't guess"
+  rule as everywhere else this pattern shows up. The Prereqs
   *line* stays tied to `firstChoice` like the badge next to it always
   has been (not `madeChoices`) so the text and the badge on that one
   line never describe two different picks — `formatResolvedChoicePrereq`
