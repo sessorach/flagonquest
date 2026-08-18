@@ -1467,9 +1467,7 @@ function TechCard({
 
   return (
     <div className="tech-card" style={{
-      background: "#161b27",
-      border: "0.5px solid #2d3555",
-      borderRadius: 8,
+      ...cardBoxStyle,
       padding: "12px 14px",
       display: "flex",
       flexDirection: "column",
@@ -1940,8 +1938,8 @@ function PointStepper({ value, onChange, max = 5 }) {
 // underneath the max number in DerivedStats. Originally just Shallow/
 // Deep Health (hence the ❤️/🤍 default icons); Fullness reuses it with
 // 🍖/🍽️ instead, and its Hunger Debt with 🦴/⚪ — see fullIcon/emptyIcon
-// below — same reasoning as generalizing the Building column once a
-// second real use came up. The pips are a pure visual readout driven
+// below — same reasoning as generalizing Builder Notes once a second
+// real use came up. The pips are a pure visual readout driven
 // two ways: the same PointStepper used everywhere else, for one-at-a-
 // time changes (most of actual play — took a hit, healed 1), or
 // clicking any pip to jump straight to that count (faster for bigger
@@ -2612,9 +2610,9 @@ function CustomTechniqueCard({ tech, onTitleChange, onTextChange, onRemove, read
 function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
   return (
     <div className="tech-card" style={{
-      background: "#161b27",
-      border: selected ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
-      borderRadius: 8, padding: "12px 14px",
+      ...cardBoxStyle,
+      border: selected ? "0.5px solid #a07c2e" : cardBoxStyle.border,
+      padding: "12px 14px",
       display: "flex", flexDirection: "column", gap: 7,
     }}>
       <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
@@ -2841,9 +2839,8 @@ function InventoryTile({
       onDragOver={onDragOver}
       onDrop={onDrop}
       style={{
-        background: "#161b27",
-        border: entry.equipped ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
-        borderRadius: 8,
+        ...cardBoxStyle,
+        border: entry.equipped ? "0.5px solid #a07c2e" : cardBoxStyle.border,
         padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
         opacity: isDragging ? 0.5 : 1,
       }}
@@ -3060,9 +3057,8 @@ function CustomItemTile({
       onDragOver={onDragOver}
       onDrop={onDrop}
       style={{
-        background: "#161b27",
-        border: entry.equipped ? "0.5px solid #a07c2e" : "0.5px solid #2d3555",
-        borderRadius: 8,
+        ...cardBoxStyle,
+        border: entry.equipped ? "0.5px solid #a07c2e" : cardBoxStyle.border,
         padding: "10px 12px", display: "flex", flexDirection: "column", gap: 6,
         opacity: isDragging ? 0.5 : 1,
       }}
@@ -3579,11 +3575,6 @@ function BackgroundsSection({
 // Read-only on the Character Sheet: just Gold + the carried grid, no
 // picker, no Cost on the tiles.
 // ══════════════════════════════════════════════════════════════════
-// How much of a slot's capacity is spent — 2 for Held (two hands) and
-// Ring (one per hand), 1 for everything else. A 2H weapon/bow takes
-// both Held slots at once (its own held_slots column); everything else,
-// including rings, takes 1. A custom item always costs 1 (no held_slots
-// concept for freeform gear).
 // The 12 canonical crafting Material Types from the rulebook's Creating
 // Items chapter — shared by the Material item category (see items.csv's
 // Material Types column) and custom materials below, so a future
@@ -4732,9 +4723,7 @@ function BuildPanel({
             return (
               <div key={isDistinct ? uid : t.id} style={{
                 display:"flex", alignItems:"center", gap:8,
-                background:"#161b27",
-                border:"0.5px solid #2d3555",
-                borderRadius:8,
+                ...cardBoxStyle,
                 padding:"8px 10px",
               }}>
                 <div style={{ flex:1, minWidth:0 }}>
