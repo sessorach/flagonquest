@@ -1908,23 +1908,34 @@ function PointStepper({ value, onChange, max = 5 }) {
 // PIP TRACK — a "how much do I have left, out of some max" widget,
 // underneath the max number in DerivedStats. Originally just Shallow/
 // Deep Health (hence the ❤️/🤍 default icons); Fullness reuses it with
-// 🍖/🦴 instead — see fullIcon/emptyIcon below — same reasoning as
-// generalizing the Building column once a second real use came up. The
-// pips are a pure visual readout driven two ways: the same PointStepper
-// used everywhere else, for one-at-a-time changes (most of actual play
-// — took a hit, healed 1), or clicking any pip to jump straight to that
-// count (faster for bigger swings — a multi-point hit, or resetting to
-// full after a rest). Clicking the currently-last-filled pip again
-// clears it, so the same pip toggles rather than being a one-way
-// ratchet. Always a 0..max readout — a value that can also go negative
-// (Fullness's Hunger Debt) is a separate, differently-shaped control;
-// see the Fullness box in DerivedStats.
+// 🍖/🍽️ instead, and its Hunger Debt with 🦴/⚪ — see fullIcon/emptyIcon
+// below — same reasoning as generalizing the Building column once a
+// second real use came up. The pips are a pure visual readout driven
+// two ways: the same PointStepper used everywhere else, for one-at-a-
+// time changes (most of actual play — took a hit, healed 1), or
+// clicking any pip to jump straight to that count (faster for bigger
+// swings — a multi-point hit, or resetting to full after a rest).
+// Clicking the currently-last-filled pip again clears it, so the same
+// pip toggles rather than being a one-way ratchet. Always a 0..max
+// readout — a value that can also go negative (Fullness's Hunger Debt)
+// still uses this same component for its own 0..max span (max=30,
+// step=5 there — see below), just fed the negated value; see the
+// Fullness box in DerivedStats for how the two directions share one
+// signed number.
+// `step` groups multiple points per pip (Hunger Debt's 30-point span
+// as 6 pips of 5, rather than 30 individual ones — the "don't render 30
+// empty icons for a state that's rare in play" concession) — defaults
+// to 1 (Health/Fullness itself, one pip per point). `markAfter` draws a
+// thin divider right after the pip reaching that value, regardless of
+// the current value, so a threshold (Too Full, Starving) stays visible
+// at a glance instead of only showing up as a badge once crossed.
 // The stepper is no-print (meaningless on paper); the pips stay
 // visible in print as a snapshot of the current value, or blank-ish
 // boxes to fill by hand on a fresh printout.
 // ══════════════════════════════════════════════════════════════════
-function PipTrack({ label, max, current, onChange, fullIcon = "❤️", emptyIcon = "🤍" }) {
+function PipTrack({ label, max, current, onChange, fullIcon = "❤️", emptyIcon = "🤍", step = 1, markAfter = null }) {
   const value = Math.max(0, Math.min(current, max));
+  const pipCount = Math.round(max / step);
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 3 }}>
@@ -1941,18 +1952,31 @@ function PipTrack({ label, max, current, onChange, fullIcon = "❤️", emptyIco
         <span className="no-print">
           <PointStepper value={value} onChange={onChange} max={max} />
         </span>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
-          {Array.from({ length: max }, (_, i) => (
-            <span
-              key={i}
-              onClick={() => onChange(value === i + 1 ? i : i + 1)}
-              title={`Set ${label} to ${i + 1}`}
-              aria-label={`Set ${label} to ${i + 1}`}
-              style={{ cursor: "pointer", fontSize: 15, lineHeight: 1, userSelect: "none" }}
-            >
-              {i < value ? fullIcon : emptyIcon}
-            </span>
-          ))}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+          {Array.from({ length: pipCount }, (_, i) => {
+            const pipValue = (i + 1) * step;
+            return (
+              <React.Fragment key={i}>
+                <span
+                  onClick={() => onChange(value === pipValue ? pipValue - step : pipValue)}
+                  title={`Set ${label} to ${pipValue}`}
+                  aria-label={`Set ${label} to ${pipValue}`}
+                  style={{ cursor: "pointer", fontSize: 15, lineHeight: 1, userSelect: "none" }}
+                >
+                  {value >= pipValue ? fullIcon : emptyIcon}
+                </span>
+                {markAfter != null && pipValue === markAfter && pipValue < max && (
+                  <span
+                    title={`${label}: threshold at ${markAfter}`}
+                    aria-hidden="true"
+                    style={{ color: "#e0645f", fontWeight: 700, fontSize: 14, lineHeight: 1 }}
+                  >
+                    ┃
+                  </span>
+                )}
+              </React.Fragment>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -2289,10 +2313,15 @@ function DerivedStats({
           supplement. Same "1 1 220px" flex sizing as every other box in
           this row, so it wraps to its own line exactly like the others
           once the row gets too narrow — nothing extra needed for that.
-          Fullness itself (0..max, "how fed am I") gets the pip track,
-          same as Health; Hunger Debt (0..30, negative territory on the
-          same underlying signed number) is rare enough in play that it
-          gets a plain compact stepper instead of 30 more pips. */}
+          Fullness itself (0..max, "how fed am I") and Hunger Debt
+          (0..30, negative territory on the same underlying signed
+          number) both get a PipTrack — Hunger Debt at step=5 instead of
+          1, so its rarely-touched wider range still gets a "click to
+          jump to a value" pip row without rendering 30 individual
+          icons. markAfter draws each one's own rule threshold (Too Full
+          above 10/15/etc., Starving at -10) as a divider right in the
+          pip row, so it reads at a glance even before the badge above
+          would trigger. */}
       {goblinGame && (
         <div className="sheet-box" style={{
           background: "#161b27", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 12px",
@@ -2327,23 +2356,16 @@ function DerivedStats({
             label="Fullness" max={fullnessMax}
             current={Math.max(0, fullnessValue)}
             onChange={v => onFullnessChange && onFullnessChange(v)}
-            fullIcon="🍖" emptyIcon="🦴"
+            fullIcon="🍖" emptyIcon="🍽️"
+            markAfter={fullnessThreshold}
           />
-          <div>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 3 }}>
-              <span style={{ fontSize: 12, color: TEXT.faint }}>Hunger Debt</span>
-              <span style={{ fontSize: 13, fontWeight: 500, color: TEXT.faint, flexShrink: 0 }}>
-                {Math.max(0, -fullnessValue)}<span style={{ margin: "0 3px" }}>/</span>30
-              </span>
-            </div>
-            <span className="no-print">
-              <PointStepper
-                value={Math.max(0, -fullnessValue)}
-                onChange={v => onFullnessChange && onFullnessChange(-v)}
-                max={30}
-              />
-            </span>
-          </div>
+          <PipTrack
+            label="Hunger Debt" max={30} step={5}
+            current={Math.max(0, -fullnessValue)}
+            onChange={v => onFullnessChange && onFullnessChange(-v)}
+            fullIcon="🦴" emptyIcon="⚪"
+            markAfter={10}
+          />
         </div>
       )}
     </div>

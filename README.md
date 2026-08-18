@@ -16,13 +16,16 @@ the full commit-by-commit detail behind any of these.
 ### 2026-08-18 — Fullness tracker
 
 - **Fullness** (Goblin Game) now has its own tracker on the Character
-  Sheet, right next to Health — 🍖/🦴 pips instead of hearts, only shown
-  when the Goblin Game supplement is enabled. Spacious Gut and Gorger
-  correctly raise the max (15 → 20 → 25) and, for Spacious Gut, the Too
-  Full threshold (10 → 15) too, with a "Too Full" badge (Bad Luck on
-  Reflex/Awareness) when you're over it. Fullness can also go negative
-  from missing meals — a compact "Hunger Debt" stepper below the pips
-  tracks that down to -30, with a "Starving" badge past -10.
+  Sheet, right next to Health — 🍖/🍽️ pips instead of hearts, only shown
+  when the Goblin Game supplement is enabled, with a small divider on
+  the pip row itself marking where Too Full starts. Spacious Gut and
+  Gorger correctly raise the max (15 → 20 → 25) and, for Spacious Gut,
+  the Too Full threshold (10 → 15) too, with a "Too Full" badge (Bad
+  Luck on Reflex/Awareness) when you're over it. Fullness can also go
+  negative from missing meals — a "Hunger Debt" pip row below tracks
+  that down to -30 (in steps of 5, so it stays a handful of clickable
+  icons instead of thirty), with its own divider and "Starving" badge
+  at -10.
 
 ### 2026-08-17 — Choice-based prereqs, Grants Technique
 

@@ -399,20 +399,30 @@ shouldn't be duplicated here.
   renamed `techniqueMaxBonuses` (was `techniqueHealthBonuses`) since it
   covers more than Health now. `HealthTrack` (the ❤️/🤍 pip widget) is
   now the generalized `PipTrack`, taking `fullIcon`/`emptyIcon` props
-  (🍖/🦴 for Fullness) — same "generalize once a second real use shows
-  up" reasoning as the Building/Builder Notes rename above. Fullness can
-  go negative too (Hunger Debt, down to -30, a starvation mechanic
-  distinct from Too Full) — rather than stretch `PipTrack` to render up
-  to 45 pips for that whole span, `currentFullness` stays one signed
-  number but gets two different controls: the pip track for its 0..max
-  span (clamped to 0 for display, same as Health), and a plain
-  `PointStepper` (no pips) for the 0..30 debt span below it, writing the
-  negated value back to the same `currentFullness` state. Same session-
-  tracking-state treatment as `currentHealth` (persists to localStorage,
-  excluded from single-character Export/Import, included in Duplicate/
-  Backup-all) — `currentFullness: null` in `emptyCharacterData` means
-  "hasn't eaten yet" (0), not "full," the opposite default logic from
-  Health's null-means-max, since a fresh character hasn't had a meal.
+  (🍖/🍽️ for Fullness) — same "generalize once a second real use shows
+  up" reasoning as the Building/Builder Notes rename above — plus two
+  more props for Fullness's own needs: `step` (pip granularity — Hunger
+  Debt below is `step={5}`, so its 30-point span is 6 clickable pips
+  instead of 30) and `markAfter` (draws a small `┃` divider right after
+  the pip reaching that value, so a threshold like Too Full or Starving
+  reads at a glance on the track itself, not just from the badge once
+  actually crossed). Fullness can go negative too (Hunger Debt, down to
+  -30, a starvation mechanic distinct from Too Full, badged/captioned
+  the same visibility-reserved way as Too Full/Wounded) — rather than
+  stretch `PipTrack` to one-pip-per-point for that whole span (30 empty
+  icons sitting there for a state that's rare in play), Hunger Debt is
+  its own `PipTrack` at `step={5}`/`markAfter={10}` (10 being its own
+  Starving threshold), fed the negated value. `currentFullness` stays
+  one signed number under the hood; the two PipTracks are just two
+  differently-scaled views/controls onto it, split at zero (Fullness
+  clamps display to `Math.max(0, ...)`, Hunger Debt to
+  `Math.max(0, -...)`, and each writes back through its own sign). Same
+  session-tracking-state treatment as `currentHealth` (persists to
+  localStorage, excluded from single-character Export/Import, included
+  in Duplicate/Backup-all) — `currentFullness: null` in
+  `emptyCharacterData` means "hasn't eaten yet" (0), not "full," the
+  opposite default logic from Health's null-means-max, since a fresh
+  character hasn't had a meal.
 
 ## Verifying UI changes before committing
 
