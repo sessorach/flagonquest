@@ -3627,9 +3627,6 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
             {entry.name || "Custom material"}
           </span>
         )}
-        {!readOnly && !building && (
-          <button onClick={() => setBuilding(true)} style={smallBtn}>Edit</button>
-        )}
         {!readOnly && (
           <button
             onClick={onRemove}
@@ -3701,16 +3698,20 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
       </div>
-      {editing && (
+      {/* Edit/Done as one toggle in a fixed spot (bottom-left), rather
+          than Edit living in the header next to ✕ (a misclick-prone
+          neighbor) and Done appearing across the tile in the opposite
+          corner once editing starts. */}
+      {!readOnly && (
         <button
-          onClick={() => setBuilding(false)}
-          style={{
+          onClick={() => setBuilding(b => !b)}
+          style={editing ? {
             fontSize: 14, color: "#d4a843", background: "transparent",
             border: "0.5px solid #a07c2e", borderRadius: 4,
             padding: "4px 10px", alignSelf: "flex-start",
-          }}
+          } : { ...smallBtn, alignSelf: "flex-start" }}
         >
-          Done
+          {editing ? "Done" : "Edit"}
         </button>
       )}
     </div>
