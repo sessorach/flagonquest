@@ -13,6 +13,19 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-19 — Hand-editable printed Character Sheet
+
+- Printed Stats & Skills now show filled/empty dots (●●●○○) instead of
+  a plain number — raising a Stat or Skill later just means filling in
+  one more dot with a pen, instead of erasing and rewriting a digit.
+- Printed Derived Stats (Speed, the five Defenses, the five Resists,
+  Reflex, Cards Per Day, Resting Health) and the Skill Total badge now
+  print in a light gray, thin weight instead of solid black — since
+  those are computed from Stats & Skills, a pencil correction after
+  raising a dot reads clearly against the faint original instead of
+  fighting a bold printed digit for the same visual weight. Screen
+  view is unaffected either way — both are print-only.
+
 ### 2026-08-19 — Mobile design tokens, print fix, Choice Effects fix
 
 - Mobile gets its own small set of design tokens now (separate from,

@@ -421,6 +421,22 @@
       .row-alt { background: #ececec !important; }
       .row-alt * { background: transparent !important; }
 
+      /* Derived Stats' own numbers (Speed, the five Defenses, the five
+         Resists, Reflex, Cards Per Day, Resting Health) and the Skill
+         Total badge are all *computed* — they only change because a
+         Stat/Skill underneath them changed, which on paper means
+         penciling in a new number over the old one. Printed light and
+         thin instead of the screen's bold near-black lets a pencil mark
+         read clearly against it while the baseline stays legible as a
+         reference, rather than fighting a heavy printed digit for the
+         same visual weight. Stats & Skills' own dot ratings (see
+         dotRating in StatsPanel) don't need this — filling in one more
+         dot is already easy to add to without erasing anything first. */
+      .derived-value, .skill-badge {
+        color: #999 !important;
+        font-weight: 300 !important;
+      }
+
       /* Attribution — repeats at the bottom of every printed page
          instead of trailing wherever the last card happens to end. */
       .attribution-footer {
@@ -2059,6 +2075,16 @@ function GlossaryTerm({ term, description }) {
 }
 
 
+// Print-only stand-in for a 0..max point-buy number (Stats & Skills,
+// always max 5) — filled/empty dots instead of a printed digit, so
+// raising a Stat/Skill later means filling in one more dot with a pen
+// instead of erasing and rewriting a number. Plain "●"/"○" glyphs, not
+// emoji — ordinary BMP characters print reliably everywhere, unlike
+// the color emoji PipTrack's own print fallback had to route around.
+function dotRating(value, max = 5) {
+  return "●".repeat(Math.max(0, value)) + "○".repeat(Math.max(0, max - value));
+}
+
 // ══════════════════════════════════════════════════════════════════
 // POINT STEPPER — the small "− N +" control shared by every stat and
 // skill row in the Stats & Skills panel.
@@ -2284,7 +2310,10 @@ function StatsPanel({
                 {stat}
               </span>
               {readOnly ? (
-                <span className="stat-value" style={{ fontSize: "var(--fq-text-important)", fontWeight: 500, color: TEXT.name }}>{statPoints[stat] || 0}</span>
+                <>
+                  <span className="stat-value no-print" style={{ fontSize: "var(--fq-text-important)", fontWeight: 500, color: TEXT.name }}>{statPoints[stat] || 0}</span>
+                  <span className="print-only" style={{ display: "none", fontSize: 14, letterSpacing: 1, color: TEXT.name }}>{dotRating(statPoints[stat] || 0)}</span>
+                </>
               ) : (
                 <PointStepper value={statPoints[stat] || 0} max={5} onChange={n => onStatChange(stat, n)} />
               )}
@@ -2309,9 +2338,14 @@ function StatsPanel({
                       not 0. */}
                   <span style={{ fontSize: 14, color: TEXT.body, flex: 1, minWidth: 0 }}>{skill}</span>
                   {readOnly ? (
-                    <span className="skill-number" style={{ fontSize: 14, color: TEXT.body, width: 20, textAlign: "center" }}>
-                      {skillPoints[skill] || 0}
-                    </span>
+                    <>
+                      <span className="skill-number no-print" style={{ fontSize: 14, color: TEXT.body, width: 20, textAlign: "center" }}>
+                        {skillPoints[skill] || 0}
+                      </span>
+                      <span className="print-only" style={{ display: "none", fontSize: 11, letterSpacing: 0.5, color: TEXT.body, flexShrink: 0 }}>
+                        {dotRating(skillPoints[skill] || 0)}
+                      </span>
+                    </>
                   ) : (
                     <PointStepper value={skillPoints[skill] || 0} max={5} onChange={n => onSkillChange(skill, n)} />
                   )}
@@ -2431,7 +2465,7 @@ function DerivedStats({
                 </div>
               )}
             </div>
-            <span style={{ fontSize: 17, fontWeight: 700, color: TEXT.name, flexShrink: 0 }}>{base + eq + tq + wound}</span>
+            <span className="derived-value" style={{ fontSize: 17, fontWeight: 700, color: TEXT.name, flexShrink: 0 }}>{base + eq + tq + wound}</span>
           </div>
         );
       })}
