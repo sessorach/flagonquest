@@ -32,6 +32,12 @@ the full commit-by-commit detail behind any of these.
   what's actually been chosen. The Builder still shows the full list
   while a pick is pending, since that's still useful there for
   comparing options.
+- Techniques with Choice Effects data (like Profession) no longer show
+  a redundant "Copy 1: Sailor" line under the effect text on the
+  Character Sheet — the effect text already says what was picked.
+  Techniques whose choice doesn't carry its own effect text (like
+  Artisanal Training's School) still show that line, since it's the
+  only record of the pick.
 
 ### 2026-08-19 — Two-column stat grid on wider phones; small UI polish
 

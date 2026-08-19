@@ -1822,9 +1822,17 @@ function TechCard({
           genuinely open-ended one (Temper Soulblade) stays free text —
           either way it's the same notes[uid] string underneath. Editable
           everywhere except the read-only Character Sheet, where it's
-          just a static record of what was already chosen/written. */}
+          just a static record of what was already chosen/written — and
+          skipped there entirely when the technique has Choice Effects
+          (tech.choice_effects), since that block above already states
+          what was picked in actual prose ("Sailor: You have Good
+          Luck..."); a flat "Copy 1: Sailor" list underneath it would
+          just repeat the same fact in a plainer form. A choiceOptions
+          technique with no Choice Effects data (Artisanal Training's
+          School, Soulblade's Weapon type) still needs this block on the
+          Sheet — it's the only place that records the pick at all. */}
       {tech.free_text && (readOnly ? (
-        instances.length > 0 && (
+        instances.length > 0 && !tech.choice_effects && (
           <div>
             <div style={{ fontSize:13, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
               {choiceOptions ? tech.free_text : "Notes"}

@@ -277,7 +277,15 @@ shouldn't be duplicated here.
   same facts. Choice Effects (unlike the Prereqs line) still shows on
   the read-only Character Sheet, since it IS the technique's actual
   effect, just picked — Prereqs/the badge stay hidden there like they
-  always have, a build-time concern rather than a reference one.
+  always have, a build-time concern rather than a reference one. The
+  per-copy Free Text block (the "Copy 1: Sailor" / "School: Smithing"
+  static record under Effects) is hidden on the Sheet specifically when
+  the technique has Choice Effects — that prose already says what was
+  picked, so a flat "Copy 1: Sailor" underneath would just repeat it in
+  a plainer form. A `choiceOptions` technique with no Choice Effects
+  data (Artisanal Training's School, Soulblade's Weapon type) still
+  shows this block on the Sheet, since it's the only record of the pick
+  that exists there.
 - **Grants Technique**: a background can auto-grant a technique the
   moment it's selected — `grants_technique` on `backgrounds.json`
   (Creator → Artisanal Training, Professional → Profession) — free of
