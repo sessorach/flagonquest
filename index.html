@@ -421,18 +421,22 @@
       .row-alt { background: #ececec !important; }
       .row-alt * { background: transparent !important; }
 
-      /* Derived Stats' own numbers (Speed, the five Defenses, the five
-         Resists, Reflex, Cards Per Day, Resting Health) and the Skill
-         Total badge are all *computed* — they only change because a
-         Stat/Skill underneath them changed, which on paper means
-         penciling in a new number over the old one. Printed light and
-         thin instead of the screen's bold near-black lets a pencil mark
-         read clearly against it while the baseline stays legible as a
-         reference, rather than fighting a heavy printed digit for the
-         same visual weight. Stats & Skills' own dot ratings (see
-         dotRating in StatsPanel) don't need this — filling in one more
-         dot is already easy to add to without erasing anything first. */
-      .derived-value, .skill-badge {
+      /* Shared marker for any printed number that's likely to go stale
+         and needs a pencil update rather than a fresh printout —
+         Derived Stats (Speed, the five Defenses, the five Resists,
+         Reflex, Cards Per Day, Resting Health), the Skill Total badge,
+         Spent/Total XP, the Attack Workspace's auto-listed weapon
+         Accuracy/Damage/Range, carried-item Qty, and Gold. All of these
+         are *computed or counted*, not a one-time character-creation
+         choice — they drift as equipment changes, XP gets spent, or
+         items get used/found. Printed light and thin instead of the
+         screen's bold near-black lets a pencil mark read clearly
+         against it while the baseline stays legible as a reference,
+         rather than fighting a heavy printed digit for the same visual
+         weight. Stats & Skills' own dot ratings (see dotRating in
+         StatsPanel) don't need this — filling in one more dot is
+         already easy to add to without erasing anything first. */
+      .print-editable {
         color: #999 !important;
         font-weight: 300 !important;
       }
@@ -2356,7 +2360,7 @@ function StatsPanel({
                   ) : (
                     <PointStepper value={skillPoints[skill] || 0} max={5} onChange={n => onSkillChange(skill, n)} />
                   )}
-                  <span className="skill-badge" style={{
+                  <span className="skill-badge print-editable" style={{
                     fontSize: "var(--fq-text-important)", fontWeight: 700, color: "#e8c46a",
                     minWidth: 24, textAlign: "center", flexShrink: 0,
                     background: "#20180a", border: "0.5px solid #6b5423", borderRadius: 5,
@@ -2472,7 +2476,7 @@ function DerivedStats({
                 </div>
               )}
             </div>
-            <span className="derived-value" style={{ fontSize: 17, fontWeight: 700, color: TEXT.name, flexShrink: 0 }}>{base + eq + tq + wound}</span>
+            <span className="print-editable" style={{ fontSize: 17, fontWeight: 700, color: TEXT.name, flexShrink: 0 }}>{base + eq + tq + wound}</span>
           </div>
         );
       })}
@@ -2697,13 +2701,13 @@ function AttackWorkspace({
           <span style={{ fontSize: 14, color: TEXT.name, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis" }}>
             {r.name}
           </span>
-          <span style={{ fontSize: 14, color: TEXT.body }}>
+          <span className="print-editable" style={{ fontSize: 14, color: TEXT.body }}>
             {isDualValue(r.accuracy)
               ? <AttackDualCell melee={r.accuracy.melee} ranged={r.accuracy.ranged} format={formatAccuracyValue} />
               : formatAccuracyValue(r.accuracy)}
           </span>
-          <span style={{ fontSize: 14, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis" }}>{r.damage ?? "—"}</span>
-          <span style={{ fontSize: 14, color: TEXT.body }}>
+          <span className="print-editable" style={{ fontSize: 14, color: TEXT.body, overflow: "hidden", textOverflow: "ellipsis" }}>{r.damage ?? "—"}</span>
+          <span className="print-editable" style={{ fontSize: 14, color: TEXT.body }}>
             {isDualValue(r.range)
               ? <AttackDualCell melee={r.range.melee} ranged={r.range.ranged} />
               : (r.range ?? "—")}
@@ -3173,7 +3177,7 @@ function InventoryTile({
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
         <span style={{ fontSize: 13, color: TEXT.faint }}>Qty</span>
         {readOnly ? (
-          <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+          <span className="print-editable" style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
         ) : (
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
@@ -3582,7 +3586,7 @@ function CustomItemTile({
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
         <span style={{ fontSize: 13, color: TEXT.faint }}>Qty</span>
         {readOnly ? (
-          <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+          <span className="print-editable" style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
         ) : (
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
@@ -3908,7 +3912,7 @@ function CustomMaterialTile({ entry, onNameChange, onLevelChange, onQtyChange, o
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
         <span style={{ fontSize: 13, color: TEXT.faint }}>Qty</span>
         {readOnly ? (
-          <span style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+          <span className="print-editable" style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
         ) : (
           <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
         )}
@@ -4629,7 +4633,7 @@ function InventorySection({
       }}>
         <span style={{ fontSize: 13, color: TEXT.label, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>Gold</span>
         {readOnly ? (
-          <span style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>{gold || "0"}</span>
+          <span className="print-editable" style={{ fontSize: 16, fontWeight: 500, color: TEXT.name }}>{gold || "0"}</span>
         ) : (
           <input
             type="text" inputMode="numeric" placeholder="0"
@@ -7429,18 +7433,32 @@ function App() {
             </div>
 
             {/* Print-only — hidden on screen (the StatsPanel bar below
-                already shows this number there); on the printed page it's
-                the compact stand-in for that whole bar, boxed on its own
-                to the right of the name/concept box. */}
+                already shows both these numbers there); on the printed
+                page it's the compact stand-in for that whole bar, boxed
+                on its own to the right of the name/concept box. Spent
+                and Total (the XP budget) are both print-editable — Spent
+                climbs as techniques/Stats & Skills get bought, and Total
+                can rise too if a GM awards more XP later — so both need
+                to survive a pencil update, not just one of them. */}
             <div className="sheet-box print-only" style={{
-              display: "none", flexDirection: "column", alignItems: "center", justifyContent: "center",
-              minWidth: 90, textAlign: "center", flexShrink: 0, gap: 2,
+              display: "none", flexDirection: "row", alignItems: "center", justifyContent: "center",
+              minWidth: 90, textAlign: "center", flexShrink: 0, gap: 14,
             }}>
-              <div style={{ fontSize:12, color:TEXT.faint, textTransform:"uppercase", letterSpacing:"0.06em" }}>
-                Total XP
+              <div>
+                <div style={{ fontSize:12, color:TEXT.faint, textTransform:"uppercase", letterSpacing:"0.06em" }}>
+                  Spent XP
+                </div>
+                <div className="print-editable" style={{ fontSize:22, fontWeight:700, color:TEXT.name }}>
+                  {statSkillXP + knownXP}{unknownCount > 0 ? "+" : ""}
+                </div>
               </div>
-              <div style={{ fontSize:24, fontWeight:700, color:TEXT.name }}>
-                {statSkillXP + knownXP}{unknownCount > 0 ? "+" : ""}
+              <div>
+                <div style={{ fontSize:12, color:TEXT.faint, textTransform:"uppercase", letterSpacing:"0.06em" }}>
+                  Total XP
+                </div>
+                <div className="print-editable" style={{ fontSize:22, fontWeight:700, color:TEXT.name }}>
+                  {xpBudget || "—"}
+                </div>
               </div>
             </div>
 
