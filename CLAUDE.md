@@ -481,6 +481,36 @@ shouldn't be duplicated here.
   was already there — that class is a separate, print-only concern
   (see the `.sheet-box` print rule), not something this constant
   replaces.
+- **`sheet-stat-grid`**: below the `.stat-grid` breakpoints' 560px
+  cutoff, the read-only Character Sheet's Stats & Skills grid (not the
+  editable Builder one — `StatsPanel` only adds this second class
+  alongside `stat-grid` when `readOnly`) can still fit more than one
+  box per row on a wide-enough phone, since there's no `PointStepper`
+  eating column width there, just a name and a couple of plain
+  numbers. Rather than a hand-picked "2 columns below Xpx" breakpoint
+  (which either overflows or forces a skill name like "Performance"/
+  "Masquerade" to wrap mid-letter the moment real content doesn't
+  quite fit that guess), it uses `grid-template-columns: repeat(auto-fit,
+  minmax(min(188px, 100%), 1fr))` — 188px is a measured worst case
+  (longest skill name + its Skill Total badge + its point number +
+  this rule's own padding, all at once), not a guess, so the grid
+  itself decides the column count from what actually fits at any given
+  width rather than a fixed rule risking overflow at some width nobody
+  tested. In practice this means most phones in portrait (~375-430px)
+  still render one column here, same as before this existed; only
+  wider phones/phablets/small tablets actually clear two — verified by
+  screenshotting both the just-under and just-over side of that
+  transition (~430px vs ~480px) rather than assuming the math holds.
+  Two more pieces make the safeguard actually hold: `min-width: 0` on
+  the box (grid items default to a `min-width: auto` floor of their
+  own min-content, which would silently override the track size above)
+  and the skill-name span's own `minWidth: 0` (same idea one level
+  down inside the row's flex layout) as a last-resort wrap if some
+  future skill name ends up longer than the 188px measurement assumed
+  — better a rare wrapped line than a silent reintroduction of the
+  overflow this exists to prevent. Both of the box's overrides need
+  `!important` — its padding is otherwise set inline via `cardBoxStyle`,
+  and a plain stylesheet rule can't outrank that on its own.
 
 ## Verifying UI changes before committing
 

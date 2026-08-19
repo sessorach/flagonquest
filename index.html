@@ -195,6 +195,43 @@
     @media (min-width: 840px)  { .stat-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 1100px) { .stat-grid { grid-template-columns: repeat(5, 1fr); } }
 
+    /* Read-only Character Sheet only (StatsPanel adds this class
+       alongside stat-grid when readOnly) — below the 560px breakpoint
+       above, one box per row wastes a lot of vertical scroll on a
+       phone since there's no stepper eating column width here, just a
+       name and a couple of numbers. auto-fit + minmax(min(...)) picks
+       its own column count from what actually fits rather than a fixed
+       "2 columns" rule forcing a fit at every width down to 0 — a
+       genuinely narrow view (or a zoomed-in phone) drops back to one
+       column on its own instead of overflowing or word-wrapping a
+       skill name mid-letter. 188px is the measured worst case
+       (longest skill name "Performance"/"Masquerade" + the Skill
+       Total badge + the point number + this rule's own padding, all
+       at once) plus a few px of headroom — not a guess, since guessing
+       too low is exactly what produces the mid-word wrap this rule
+       exists to prevent. That floor means most phones in portrait
+       (~375-414px) still render one column here, same as production
+       today; only wider phones/phablets/small tablets actually clear
+       two. min-width: 0 on the box overrides grid's default per-item
+       floor (auto, i.e. the item's own min-content) so the track size
+       above actually wins, and both here need !important since the
+       box's padding is otherwise set inline (see cardBoxStyle) — a
+       plain stylesheet rule can't outrank that on its own. The
+       skill-name span's own minWidth: 0 (see StatsPanel) is the same
+       idea one level down — a last-resort wrap if a future skill name
+       ends up longer than this measurement assumed, rather than
+       silently overflowing again. */
+    @media (max-width: 559px) {
+      .stat-grid.sheet-stat-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(188px, 100%), 1fr));
+        gap: 8px;
+      }
+      .stat-grid.sheet-stat-grid > .sheet-box {
+        padding: 8px 10px !important;
+        min-width: 0 !important;
+      }
+    }
+
     /* ── Scrollbar ─────────────────────────────────────────────── */
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -2103,7 +2140,7 @@ function StatsPanel({
         </div>
       )}
 
-      <div className="stat-grid">
+      <div className={readOnly ? "stat-grid sheet-stat-grid" : "stat-grid"}>
         {STATS.map(stat => (
           <div key={stat} className="sheet-box" style={{
             ...cardBoxStyle, padding: "10px 12px",
@@ -2133,7 +2170,13 @@ function StatsPanel({
                   padding: "2px 4px", borderRadius: 4,
                   background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
                 }}>
-                  <span style={{ fontSize: 14, color: TEXT.body, flex: 1 }}>{skill}</span>
+                  {/* minWidth: 0 lets this wrap onto a second line under
+                      real pressure (the narrow sheet-stat-grid columns
+                      below 560px — see that media query) instead of
+                      forcing the row wider than its column, since a flex
+                      item's default min-width is its own content size,
+                      not 0. */}
+                  <span style={{ fontSize: 14, color: TEXT.body, flex: 1, minWidth: 0 }}>{skill}</span>
                   {readOnly ? (
                     <span style={{ fontSize: 14, color: TEXT.body, width: 20, textAlign: "center" }}>
                       {skillPoints[skill] || 0}

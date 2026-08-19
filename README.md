@@ -13,6 +13,24 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-19 — Two-column stat grid on wider phones; small UI polish
+
+- The Character Sheet's Stats & Skills grid can now show two boxes per
+  row on a wide-enough phone or phablet instead of always stacking one
+  per row — the read-only view doesn't need the extra width the
+  editable Builder version's steppers do, so it can afford to fit more.
+  It self-adjusts to whatever actually fits rather than a fixed
+  breakpoint, so a narrower phone still gets the familiar single column
+  instead of anything overflowing or a skill name getting squeezed.
+- A custom material's "Level" label no longer sits next to its own
+  "Lv N" badge once it's collapsed — that was saying the same thing
+  twice; it still shows while actively editing, next to the bare
+  +/− stepper, where it's the only thing saying what the number means.
+- A custom material's Edit and Done buttons are now one toggle in a
+  fixed spot (bottom-left) instead of Edit sitting in the header right
+  next to the delete (✕) button and Done appearing across the tile in
+  the opposite corner once editing started.
+
 ### 2026-08-18 — Bigger, more consistent text; small mobile bump
 
 - Bumped the site's base text sizes up a notch across the board —
