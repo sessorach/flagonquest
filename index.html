@@ -29,6 +29,40 @@
   <script src="https://unpkg.com/qrcode-generator@1.4.4/qrcode.js"></script>
 
   <style>
+    /* ── Design tokens ─────────────────────────────────────────────
+       Named CSS custom properties for the text-size tiers described
+       below the mobile-zoom rule further down — formalizes what was
+       previously just prose convention ("reach for the closest
+       existing tier") into something a style object can actually
+       reference (`fontSize: "var(--fq-text-body)"`) instead of
+       retyping a literal number. `:root`'s values are the desktop
+       defaults (unchanged from what every existing literal-px call
+       site already used); a component that needs a *different* value
+       on mobile redefines the specific token(s) it needs on its own
+       subtree (see .sheet-stat-grid below for the first real example)
+       rather than here, so this block only ever states one set of
+       numbers, not two interleaved by breakpoint.
+       This exists specifically so mobile-only layout work (increasingly
+       the priority here — see the mobile-zoom comment below for why
+       zoom alone stops being enough once a component needs its own
+       precise pixel budget, not just "everything a bit bigger") has
+       somewhere real to hook in, rather than each new case reinventing
+       a `!important` override block fighting inline styles from
+       scratch. Adopted incrementally, the same "generalize once a
+       second real case shows up" way as every other shared constant in
+       this file (cardBoxStyle, chipStyle, ...) — nothing sitewide gets
+       retrofitted onto these just because they now exist; a call site
+       only switches from a literal number to `var(--fq-text-*)` once
+       it actually needs to read differently somewhere. */
+    :root {
+      --fq-text-caption:   12px; /* formula lines, table headers, captions */
+      --fq-text-chip:      13px; /* buttons, Prereqs line, notes, tag/skill chips */
+      --fq-text-body:      14px; /* main reading tier — Effects/Special/Fluff, most body copy */
+      --fq-text-ui:        16px; /* secondary UI chrome — nav tabs, modal titles, gold/XP readouts */
+      --fq-text-important: 17px; /* "the number/name that matters" — Skill Total badge, Derived
+                                     Stats values, Health/Fullness readout, every card title */
+    }
+
     /* ── Reset & base ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -135,7 +169,36 @@
        screen-only (no-print already exists for that split elsewhere,
        but this rule's already narrow-width-gated and print output
        measures its own page, not a screen viewport, so it's excluded
-       here too for clarity). */
+       here too for clarity).
+
+       This is still the right tool for "everything reads a bit bigger
+       on a phone" as a blanket effect, and stays in place for that —
+       it's a multiplier, not a rewrite, so it needs nothing from any
+       given component to keep working on it. But mobile has become a
+       priority in its own right here, not just a scaled-down desktop
+       (this is a tabletop companion app — a lot of players are running
+       it from a phone at the actual table), and that means components
+       that need their own deliberate mobile *layout* — not just bigger
+       text, but a different grid, different spacing, a size genuinely
+       chosen for mobile rather than desktop's number times 1.08 — are
+       only going to come up more from here. A multiplier can't give a
+       component a size that isn't some fixed ratio of its desktop
+       value, and fighting it with `!important` overrides re-derives
+       the math from scratch every time (this is exactly what the first
+       pass at .sheet-stat-grid below had to do, before this comment was
+       rewritten). The design tokens above exist for that harder case:
+       a component opts out of the ambient zoom on its own subtree
+       (`zoom: 1`, same "reset so it can't compound" trick the print
+       rule below already uses) and redefines whichever `--fq-text-*`
+       tokens it needs a different value for, scoped to itself via
+       plain CSS custom-property inheritance — no specificity fight,
+       and every inline style already written against `var(--fq-text-*)`
+       just picks up the right number for free. Zoom for "everything,
+       uniformly, cheaply"; tokens for "this one component, precisely,
+       because it actually needs to differ" — reach for zoom by default,
+       and only build out a component's own token overrides once it
+       hits a real wall zoom can't solve, the same "second real case"
+       bar as every other shared pattern in this file. */
     @media (max-width: 639px) {
       .app-root { zoom: 1.08; }
     }
@@ -202,33 +265,62 @@
        name and a couple of numbers. auto-fit + minmax(min(...)) picks
        its own column count from what actually fits rather than a fixed
        "2 columns" rule forcing a fit at every width down to 0 — a
-       genuinely narrow view (or a zoomed-in phone) drops back to one
-       column on its own instead of overflowing or word-wrapping a
-       skill name mid-letter. 188px is the measured worst case
-       (longest skill name "Performance"/"Masquerade" + the Skill
-       Total badge + the point number + this rule's own padding, all
-       at once) plus a few px of headroom — not a guess, since guessing
-       too low is exactly what produces the mid-word wrap this rule
-       exists to prevent. That floor means most phones in portrait
-       (~375-414px) still render one column here, same as production
-       today; only wider phones/phablets/small tablets actually clear
-       two. min-width: 0 on the box overrides grid's default per-item
-       floor (auto, i.e. the item's own min-content) so the track size
-       above actually wins, and both here need !important since the
-       box's padding is otherwise set inline (see cardBoxStyle) — a
-       plain stylesheet rule can't outrank that on its own. The
+       genuinely narrow view drops back to one column on its own
+       instead of overflowing or word-wrapping a skill name mid-letter.
+
+       This is the first real component built against the design
+       tokens above rather than the ambient mobile zoom (see the
+       comment on that rule for why): `zoom: 1` opts this grid's own
+       subtree out of the sitewide 1.08x bump, and --fq-text-important
+       is redefined locally to the size this grid actually wants —
+       every skill-badge/stat-name/stat-value span already renders
+       `fontSize: "var(--fq-text-important)"` (see StatsPanel), so they
+       just pick up 15px here via plain CSS inheritance, no
+       !important needed for font-size at all. The remaining
+       !important overrides below are pure spacing (padding, gaps,
+       fixed widths) — not part of the token system, since those don't
+       have a documented desktop "tier" the way text does — and still
+       need !important because the box's own padding is set inline via
+       cardBoxStyle; a plain stylesheet rule can't outrank that alone.
+       174px is the measured worst case with the zoom reset and token
+       size both applied (longest skill name "Performance"/"Masquerade"
+       + the shrunk Skill Total badge + the point number + this rule's
+       own tightened padding, all at once) plus a few px of headroom —
+       not a guess, since guessing too low is exactly what produces the
+       mid-word wrap this rule exists to prevent. That floor means most
+       phones in portrait (~375-414px) still render one column here;
+       only wider phones/phablets/small tablets actually clear two —
+       verified by screenshotting both the just-under and just-over
+       side of that transition rather than assuming the math holds,
+       same discipline as sheet-stat-grid's original (zoom-inflated)
+       floor before this rewrite. min-width: 0 on the box overrides
+       grid's default per-item floor (auto, i.e. the item's own
+       min-content) so the track size above actually wins. The
        skill-name span's own minWidth: 0 (see StatsPanel) is the same
        idea one level down — a last-resort wrap if a future skill name
        ends up longer than this measurement assumed, rather than
        silently overflowing again. */
     @media (max-width: 559px) {
       .stat-grid.sheet-stat-grid {
-        grid-template-columns: repeat(auto-fit, minmax(min(188px, 100%), 1fr));
+        zoom: 1;
+        --fq-text-important: 15px;
+        grid-template-columns: repeat(auto-fit, minmax(min(174px, 100%), 1fr));
         gap: 8px;
       }
       .stat-grid.sheet-stat-grid > .sheet-box {
-        padding: 8px 10px !important;
+        padding: 6px 8px !important;
         min-width: 0 !important;
+      }
+      .stat-grid.sheet-stat-grid .skill-row {
+        gap: 4px !important;
+        padding: 2px 3px !important;
+      }
+      .stat-grid.sheet-stat-grid .skill-number {
+        width: 18px !important;
+      }
+      .stat-grid.sheet-stat-grid .skill-badge {
+        padding: 1px 3px !important;
+        min-width: 20px !important;
       }
     }
 
@@ -1460,8 +1552,12 @@ function TechCard({
   // Still shows every option, not just madeChoices, as long as ANY copy
   // is sitting on its default "Choose a ___…" — otherwise there'd be no
   // way to compare the remaining options while adding a second copy of
-  // an already-picked repeatable technique like Profession.
-  const anyChoicePending = instances.length === 0 || instances.some(uid => !notes[uid]);
+  // an already-picked repeatable technique like Profession. Builder-only:
+  // the read-only Sheet always uses madeChoices alone (see the Choice
+  // Effects block below) — a Sheet is a reference for what's actually
+  // been picked, not a picker, so a still-pending copy there should
+  // just show nothing for that copy rather than every option.
+  const anyChoicePending = !readOnly && (instances.length === 0 || instances.some(uid => !notes[uid]));
 
   // A technique's Free Text column is either TRUE (a plain free-text
   // note — Temper Soulblade) or a specific value naming a structured
@@ -1633,33 +1729,38 @@ function TechCard({
 
       {/* Choice Effects — a technique whose Free Text options each do
           something different (Profession) rather than the same thing
-          worded once (Artisanal Training's Schools). Once every copy
-          has a choice made (see madeChoices/anyChoicePending above),
-          collapses down to just those option(s)' lines instead of every
-          option in the data — every *distinct* pick across every copy,
-          not only the first, so learning Profession for both Sailor and
-          Apothecary shows both. Still shows the full list while
-          browsing, or while ANY copy is still sitting on its default
-          "Choose a ___…" — e.g. adding a second copy of an
-          already-picked repeatable technique — so there's always a way
-          to compare the remaining options instead of the list vanishing
-          the moment one copy is picked. Shown on the read-only sheet
-          too (unlike Builder Notes below) since this IS the technique's
-          actual effect, just picked — and every copy is always resolved
-          there, so anyChoicePending is never true on that path. */}
-      {tech.choice_effects && (
-        <div style={{
-          fontSize: 15, color: TEXT.body, lineHeight: 1.6,
-          whiteSpace: "pre-wrap",
-        }}>
-          {(anyChoicePending
-            ? Object.entries(tech.choice_effects)
-            : madeChoices.filter(name => tech.choice_effects[name]).map(name => [name, tech.choice_effects[name]])
-          ).map(([name, text]) => (
-            <div key={name}>{withSkillTotals(`${name}: ${text}`, glossary, skillTotals)}</div>
-          ))}
-        </div>
-      )}
+          worded once (Artisanal Training's Schools). On the Builder,
+          once every copy has a choice made (see madeChoices/
+          anyChoicePending above), collapses down to just those
+          option(s)' lines instead of every option in the data — every
+          *distinct* pick across every copy, not only the first, so
+          learning Profession for both Sailor and Apothecary shows both.
+          Still shows the full list while browsing, or while ANY copy is
+          still sitting on its default "Choose a ___…" there — e.g.
+          adding a second copy of an already-picked repeatable technique
+          — so there's always a way to compare the remaining options
+          instead of the list vanishing the moment one copy is picked.
+          The read-only Sheet skips that "show everything while pending"
+          fallback entirely (anyChoicePending is forced false for it
+          above) — it's a reference for what's actually been picked, not
+          a picker, so a copy that hasn't been assigned a choice yet
+          should show nothing there rather than the full unfiltered list;
+          the block drops out completely once madeChoices is empty. */}
+      {tech.choice_effects && (() => {
+        const entries = anyChoicePending
+          ? Object.entries(tech.choice_effects)
+          : madeChoices.filter(name => tech.choice_effects[name]).map(name => [name, tech.choice_effects[name]]);
+        return entries.length > 0 && (
+          <div style={{
+            fontSize: 15, color: TEXT.body, lineHeight: 1.6,
+            whiteSpace: "pre-wrap",
+          }}>
+            {entries.map(([name, text]) => (
+              <div key={name}>{withSkillTotals(`${name}: ${text}`, glossary, skillTotals)}</div>
+            ))}
+          </div>
+        );
+      })()}
 
       {/* Builder Notes — reference notes on how this card/technique works
           mechanically (originally just "how to build" instructions for
@@ -1995,9 +2096,13 @@ function PointStepper({ value, onChange, max = 5 }) {
 // thin divider right after the pip reaching that value, regardless of
 // the current value, so a threshold (Too Full, Starving) stays visible
 // at a glance instead of only showing up as a badge once crossed.
-// The stepper is no-print (meaningless on paper); the pips stay
-// visible in print as a snapshot of the current value, or blank-ish
-// boxes to fill by hand on a fresh printout.
+// The stepper is no-print (meaningless on paper). The emoji pip row is
+// no-print too — color emoji don't render reliably across print
+// engines/OSes (this is what was clipping) — swapped for a print-only
+// row of plain bordered boxes instead: blank, not reflecting current
+// value, since the "value/max" text above already states the number
+// and a fresh printout is meant to be checked off by hand as play
+// happens, the same as the boxes on a paper character sheet.
 // ══════════════════════════════════════════════════════════════════
 function PipTrack({ label, max, current, onChange, fullIcon = "❤️", emptyIcon = "🤍", step = 1, markAfter = null }) {
   const value = Math.max(0, Math.min(current, max));
@@ -2018,7 +2123,7 @@ function PipTrack({ label, max, current, onChange, fullIcon = "❤️", emptyIco
         <span className="no-print">
           <PointStepper value={value} onChange={onChange} max={max} />
         </span>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
+        <div className="no-print" style={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}>
           {Array.from({ length: pipCount }, (_, i) => {
             const pipValue = (i + 1) * step;
             return (
@@ -2037,6 +2142,24 @@ function PipTrack({ label, max, current, onChange, fullIcon = "❤️", emptyIco
                     aria-hidden="true"
                     style={{ color: "#e0645f", fontWeight: 700, fontSize: 15, lineHeight: 1 }}
                   >
+                    ┃
+                  </span>
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+        <div className="print-only" style={{ display: "none", flexWrap: "wrap", gap: 3, alignItems: "center" }}>
+          {Array.from({ length: pipCount }, (_, i) => {
+            const pipValue = (i + 1) * step;
+            return (
+              <React.Fragment key={i}>
+                <span
+                  aria-hidden="true"
+                  style={{ display: "inline-block", width: 9, height: 9, border: "1px solid #000" }}
+                />
+                {markAfter != null && pipValue === markAfter && pipValue < max && (
+                  <span aria-hidden="true" style={{ color: "#000", fontWeight: 700, fontSize: 12, lineHeight: 1 }}>
                     ┃
                   </span>
                 )}
@@ -2146,14 +2269,14 @@ function StatsPanel({
             ...cardBoxStyle, padding: "10px 12px",
           }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-              <span style={{
-                fontFamily: "'MedievalSharp', Georgia, serif", fontSize: 17,
+              <span className="stat-name" style={{
+                fontFamily: "'MedievalSharp', Georgia, serif", fontSize: "var(--fq-text-important)",
                 fontWeight: "bold", color: TEXT.name,
               }}>
                 {stat}
               </span>
               {readOnly ? (
-                <span style={{ fontSize: 17, fontWeight: 500, color: TEXT.name }}>{statPoints[stat] || 0}</span>
+                <span className="stat-value" style={{ fontSize: "var(--fq-text-important)", fontWeight: 500, color: TEXT.name }}>{statPoints[stat] || 0}</span>
               ) : (
                 <PointStepper value={statPoints[stat] || 0} max={5} onChange={n => onStatChange(stat, n)} />
               )}
@@ -2165,7 +2288,7 @@ function StatsPanel({
                   eye, and rows alternate a faint tint so a long list of five
                   stays easy to scan across. */}
               {STAT_SKILLS[stat].map((skill, i) => (
-                <div key={skill} className={i % 2 === 1 ? "row-alt" : undefined} style={{
+                <div key={skill} className={`skill-row${i % 2 === 1 ? " row-alt" : ""}`} style={{
                   display: "flex", alignItems: "center", gap: 6,
                   padding: "2px 4px", borderRadius: 4,
                   background: i % 2 === 1 ? "rgba(255,255,255,0.03)" : "transparent",
@@ -2178,14 +2301,14 @@ function StatsPanel({
                       not 0. */}
                   <span style={{ fontSize: 14, color: TEXT.body, flex: 1, minWidth: 0 }}>{skill}</span>
                   {readOnly ? (
-                    <span style={{ fontSize: 14, color: TEXT.body, width: 20, textAlign: "center" }}>
+                    <span className="skill-number" style={{ fontSize: 14, color: TEXT.body, width: 20, textAlign: "center" }}>
                       {skillPoints[skill] || 0}
                     </span>
                   ) : (
                     <PointStepper value={skillPoints[skill] || 0} max={5} onChange={n => onSkillChange(skill, n)} />
                   )}
-                  <span style={{
-                    fontSize: 17, fontWeight: 700, color: "#e8c46a",
+                  <span className="skill-badge" style={{
+                    fontSize: "var(--fq-text-important)", fontWeight: 700, color: "#e8c46a",
                     minWidth: 24, textAlign: "center", flexShrink: 0,
                     background: "#20180a", border: "0.5px solid #6b5423", borderRadius: 5,
                     padding: "1px 4px", textShadow: "0 0 6px rgba(212,168,67,0.45)",

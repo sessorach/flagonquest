@@ -13,6 +13,26 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-19 — Mobile design tokens, print fix, Choice Effects fix
+
+- Mobile gets its own small set of design tokens now (separate from,
+  but matching, the desktop text sizes) — the foundation for handling
+  mobile-specific layout going forward, since this is a tabletop
+  companion app a lot of players run from a phone at the table, not
+  just a smaller desktop. The two-column Stats & Skills grid added
+  earlier today is the first thing built against it, and its own
+  numbers were tightened a bit further as part of that.
+- Fixed the Character Sheet's Health/Fullness/Hunger Debt trackers
+  clipping when printed — the heart/food/bone icons don't render
+  reliably across print engines. A printed sheet now shows the current
+  number plus a row of blank boxes to check off by hand instead.
+- A technique with per-copy options (like Profession) no longer shows
+  every possible option on the Character Sheet just because one copy
+  hasn't had its option picked yet — the Sheet now only ever shows
+  what's actually been chosen. The Builder still shows the full list
+  while a pick is pending, since that's still useful there for
+  comparing options.
+
 ### 2026-08-19 — Two-column stat grid on wider phones; small UI polish
 
 - The Character Sheet's Stats & Skills grid can now show two boxes per

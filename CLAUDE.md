@@ -139,6 +139,19 @@ shouldn't be duplicated here.
 
 ## Design conventions established so far
 
+- **Mobile is a first-class target, not a scaled-down desktop.** This is
+  a tabletop companion app, and a lot of players run it from a phone at
+  the actual table, not a desk — a component that reads fine on desktop
+  but cramps, overflows, or wastes space on a phone is a real gap to
+  close, not optional polish to get to eventually. The sitewide mobile
+  zoom bump (see Type scale below) covers "everything reads a bit
+  bigger" for free, but a component with real mobile-specific needs —
+  its own layout, its own spacing, a size that isn't just desktop's
+  number times a fixed ratio — should reach for the design tokens (see
+  below) instead of fighting zoom with one-off `!important` overrides.
+  Expect more of these over time, not fewer; build new mobile-aware
+  components against the token pattern from the start rather than
+  bolting a workaround on after the fact.
 - **Skill Total**, not the raw skill value, is used for every calculation
   that references a skill — Accuracy, all Defenses, Reflex, Might
   Requirement checks. `skillTotalValue(statPoints, skillPoints, skill)` is
@@ -241,13 +254,19 @@ shouldn't be duplicated here.
   every *distinct* pick across every instance (`madeChoices`), not just
   the first, so a repeatable technique learned twice for two different
   options (Profession for both Sailor and Apothecary) shows both lines,
-  not only whichever was learned first. Falls back to showing every
-  option (the full unfiltered list) while browsing, or while *any* copy
-  is still sitting on its default "Choose a ___…" (`anyChoicePending`)
-  — e.g. adding a second copy of an already-picked repeatable technique
-  — so there's always a way to compare the remaining options instead of
-  the list vanishing the moment one copy is picked; same "don't guess"
-  rule as everywhere else this pattern shows up. The Prereqs
+  not only whichever was learned first. On the Builder, falls back to
+  showing every option (the full unfiltered list) while browsing, or
+  while *any* copy is still sitting on its default "Choose a ___…"
+  (`anyChoicePending`) — e.g. adding a second copy of an already-picked
+  repeatable technique — so there's always a way to compare the
+  remaining options instead of the list vanishing the moment one copy
+  is picked; same "don't guess" rule as everywhere else this pattern
+  shows up. The read-only Character Sheet skips that fallback entirely
+  (`anyChoicePending` is forced `false` there) — it's a reference for
+  what's actually been picked, not a picker, so a copy that hasn't been
+  assigned a choice yet shows nothing for that copy instead of the full
+  list, and the block drops out completely once `madeChoices` is empty.
+  The Prereqs
   *line* stays tied to `firstChoice` like the badge next to it always
   has been (not `madeChoices`) so the text and the badge on that one
   line never describe two different picks — `formatResolvedChoicePrereq`
@@ -422,7 +441,13 @@ shouldn't be duplicated here.
   in Duplicate/Backup-all) — `currentFullness: null` in
   `emptyCharacterData` means "hasn't eaten yet" (0), not "full," the
   opposite default logic from Health's null-means-max, since a fresh
-  character hasn't had a meal.
+  character hasn't had a meal. `PipTrack`'s pips are `no-print` — color
+  emoji don't render reliably across print engines/OSes and were
+  clipping — with a `print-only` row of plain bordered boxes standing
+  in instead, blank rather than reflecting current fill state, since
+  the value/max text above already states the number and a fresh
+  printout is meant to be checked off by hand as play happens, same as
+  the boxes on a paper character sheet.
 - **Type scale** (`index.html`): text runs in a few consistent px tiers
   rather than one-off sizes per component — 12 (formula lines, table
   headers, captions), 13 (buttons, Prereqs line, notes, tag/skill-chip
@@ -463,6 +488,29 @@ shouldn't be duplicated here.
   also already how this file's print stylesheet shrinks `.sheet-box`/
   `.tech-card`, so this isn't a new technique, just the same one aimed
   at the opposite end (narrow screens, scaling up) instead of print.
+  Zoom is a blanket multiplier, though — it can't give one component a
+  size that isn't some fixed ratio of its desktop value. A component
+  that needs a genuinely different mobile size (not just "the same
+  number, bigger") reaches for the design tokens below instead.
+- **Design tokens (`--fq-text-*`)**: five CSS custom properties at
+  `:root`, one per Type scale tier above (`--fq-text-caption` 12,
+  `--fq-text-chip` 13, `--fq-text-body` 14, `--fq-text-ui` 16,
+  `--fq-text-important` 17) — the tier system given a name a style
+  object can actually reference (`fontSize: "var(--fq-text-body)"`)
+  instead of retyping a literal number. This is the escape hatch the
+  mobile-zoom bullet above points to: a component with real
+  mobile-specific sizing needs opts its own subtree out of the ambient
+  zoom (`zoom: 1`, same "reset so it can't compound" trick the print
+  rule already uses) and redefines whichever token(s) it needs a
+  different value for, scoped to itself via plain CSS custom-property
+  inheritance rather than a `!important` override block re-deriving
+  every number from scratch. See `sheet-stat-grid` below for the first
+  real adopter. Adopted incrementally, same "generalize once a second
+  real case shows up" bar as every other shared pattern here (see the
+  first bullet in this section on why mobile work specifically should
+  expect to keep needing this) — nothing sitewide gets retrofitted onto
+  these just because they exist; a call site only switches from a
+  literal number to `var(--fq-text-*)` once it actually needs to.
 - Three more shared style constants, same "reach for the shared one"
   precedent as `chipStyle`/`collapseBtnStyle`/`toggleInArray`:
   `cardBoxStyle` (`background:"#161b27", border:"0.5px solid
@@ -491,26 +539,38 @@ shouldn't be duplicated here.
   (which either overflows or forces a skill name like "Performance"/
   "Masquerade" to wrap mid-letter the moment real content doesn't
   quite fit that guess), it uses `grid-template-columns: repeat(auto-fit,
-  minmax(min(188px, 100%), 1fr))` — 188px is a measured worst case
-  (longest skill name + its Skill Total badge + its point number +
-  this rule's own padding, all at once), not a guess, so the grid
-  itself decides the column count from what actually fits at any given
-  width rather than a fixed rule risking overflow at some width nobody
-  tested. In practice this means most phones in portrait (~375-430px)
-  still render one column here, same as before this existed; only
-  wider phones/phablets/small tablets actually clear two — verified by
-  screenshotting both the just-under and just-over side of that
-  transition (~430px vs ~480px) rather than assuming the math holds.
-  Two more pieces make the safeguard actually hold: `min-width: 0` on
-  the box (grid items default to a `min-width: auto` floor of their
-  own min-content, which would silently override the track size above)
-  and the skill-name span's own `minWidth: 0` (same idea one level
-  down inside the row's flex layout) as a last-resort wrap if some
-  future skill name ends up longer than the 188px measurement assumed
-  — better a rare wrapped line than a silent reintroduction of the
-  overflow this exists to prevent. Both of the box's overrides need
-  `!important` — its padding is otherwise set inline via `cardBoxStyle`,
-  and a plain stylesheet rule can't outrank that on its own.
+  minmax(min(174px, 100%), 1fr))` — 174px is a measured worst case
+  (longest skill name + the Skill Total badge + the point number + this
+  rule's own tightened padding, all at once) plus a few px of headroom,
+  not a guess, so the grid itself decides the column count from what
+  actually fits at any given width rather than a fixed rule risking
+  overflow at some width nobody tested. This is also the first real
+  adopter of the design tokens above: the grid opts out of the ambient
+  mobile zoom (`zoom: 1`) and redefines `--fq-text-important` to 15px
+  on its own subtree, so `skill-badge`/`stat-name`/`stat-value` (all
+  three already written as `fontSize: "var(--fq-text-important)"` in
+  StatsPanel) just pick up the smaller size for free — no `!important`
+  font-size override needed, unlike the padding/gap/width trims below
+  it, which stay direct `!important` overrides since spacing isn't
+  part of the token system (only text tiers are). In practice this
+  means most phones in portrait (~375-414px) still render one column
+  here; only wider phones/phablets/small tablets clear two — verified
+  by screenshotting both the just-under and just-over side of that
+  transition (~414px vs ~430px) rather than assuming the math holds.
+  Worth noting since it was a genuine surprise during development: the
+  `zoom: 1` reset did *not* move that crossover further down (measured
+  identically before and after, both at a true content-need of 170px)
+  — resetting zoom bought cleaner, `!important`-free font-size handling
+  and the reusable token pattern, not extra room on top of what the
+  padding/gap/width trims already gained. Two more pieces make the
+  safeguard actually hold: `min-width: 0` on the box (grid items
+  default to a `min-width: auto` floor of their own min-content, which
+  would silently override the track size above) and the skill-name
+  span's own `minWidth: 0` (same idea one level down inside the row's
+  flex layout) as a last-resort wrap if some future skill name ends up
+  longer than the 174px measurement assumed — better a rare wrapped
+  line than a silent reintroduction of the overflow this exists to
+  prevent.
 
 ## Verifying UI changes before committing
 
