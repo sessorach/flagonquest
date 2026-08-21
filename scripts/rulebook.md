@@ -20,23 +20,23 @@ Agility determines your Speed, and governs the Skills that determine your Dodge 
 
 #### Acrobatics
 
-Balancing, gymnastics, and other finesse-based exercises. It can be used to determine Dodge Defense and attack with thrown weapons.
+Balancing, gymnastics, and other finesse-based exercises. It can be used to determine Dodge Defense and attack with thrown weapons. Acrobatics is governed by Diamonds.
 
 #### Archery
 
-Marksmanship with bows and similar ranged weaponry. It can be used to attack with these weapons.
+Marksmanship with bows and similar ranged weaponry. It can be used to attack with these weapons. Archery is governed by Spades.
 
 #### Brawl
 
-All forms of unarmed combat, including grappling and wrestling, as well as the use of some special weapons. It can be used to determine Dodge and Parry Defense, and to attack with unarmed attacks and some other weapons.
+All forms of unarmed combat, including grappling and wrestling, as well as the use of some special weapons. It can be used to determine Dodge and Parry Defense, and to attack with unarmed attacks and some other weapons. Brawl is governed by Clubs.
 
 #### Melee
 
-Close-quarters combat with melee weapons. It can be used to determine Parry Defense, and to attack with melee weapons.
+Close-quarters combat with melee weapons. It can be used to determine Parry Defense, and to attack with melee weapons. Melee is governed by Spades.
 
 #### Stealth
 
-Sneaking, hiding, and generally avoiding notice. Whenever you are trying to keep silent, stay out of sight, or do something without someone seeing or hearing you, Stealth comes into play.
+Sneaking, hiding, and generally avoiding notice. Whenever you are trying to keep silent, stay out of sight, or do something without someone seeing or hearing you, Stealth comes into play. Stealth is governed by Diamonds.
 
 ### Body
 
@@ -48,23 +48,23 @@ Body determines your damage with heavier weapons, how fast you heal when resting
 
 #### Athletics
 
-Climbing, jumping, swimming, and other strength-based exercises. Whenever you are engaged in a physical feat that relies on your raw strength, Athletics is what you use.
+Climbing, jumping, swimming, and other strength-based exercises. Whenever you are engaged in a physical feat that relies on your raw strength, Athletics is what you use. Athletics is governed by Clubs.
 
 #### Awareness
 
-Sensing details and objects that might not be immediately apparent, using vision, hearing, and other senses. Whenever you are trying to spot someone who is hiding from you, you are searching through a room for clues, or otherwise trying to find or notice something physical, Awareness determines how well you do.
+Sensing details and objects that might not be immediately apparent, using vision, hearing, and other senses. Whenever you are trying to spot someone who is hiding from you, you are searching through a room for clues, or otherwise trying to find or notice something physical, Awareness determines how well you do. Awareness is governed by Spades.
 
 #### Might
 
-Being very strong and carrying a lot of weight. It is required to use certain armaments and determines how much you can carry.
+Being very strong and carrying a lot of weight. It is required to use certain armaments and determines how much you can carry. Might is governed by Clubs.
 
 #### Presence
 
-Impressing others with your bearing, stature, and conviction, for both intimidating them and commanding them. It can be used in both polite and impolite situations, social and otherwise, making it rather flexible.
+Impressing others with your bearing, stature, and conviction, for both intimidating them and commanding them. It can be used in both polite and impolite situations, social and otherwise, making it rather flexible. Presence is governed by Hearts.
 
 #### Resilience
 
-Resisting the adverse effects of poison, disease, exhaustion, and many other harmful bodily threats. It is used to determine Vital Defense.
+Resisting the adverse effects of poison, disease, exhaustion, and many other harmful bodily threats. It is used to determine Vital Defense. Resilience is governed by Clubs.
 
 ### Cunning
 
@@ -76,23 +76,23 @@ Cunning determines how many cards you draw each morning, the damage of lighter w
 
 #### Insight
 
-Sensing the motives of others, looming danger, and other things that are insubstantial or not directly perceivable. It represents a sort of “sixth sense”, and also determines your Reflex bonus and Instinct Defense.
+Sensing the motives of others, looming danger, and other things that are insubstantial or not directly perceivable. It represents a sort of “sixth sense”, and also determines your Reflex bonus and Instinct Defense. Insight is governed by Spades.
 
 #### Masquerade
 
-Disguising yourself and acting in character, no matter who you might be impersonating. Whenever you are trying to specifically change your behavior or appearance to seem to be a different person, blend in with a crowd, or change your mannerisms in any way, you adopt a Masquerade.
+Disguising yourself and acting in character, no matter who you might be impersonating. Whenever you are trying to specifically change your behavior or appearance to seem to be a different person, blend in with a crowd, or change your mannerisms in any way, you adopt a Masquerade. Masquerade is governed by Diamonds.
 
 #### Persuasion
 
-Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and determines your Strategic statements in a social contest.
+Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and determines your Strategic statements in a social contest. Persuasion is governed by Spades.
 
 #### Streetwise
 
-Knowledge of cities and their various social structures as well as your ability to exploit it in any given situation. Whether in a seedy Thieves’ Guild tavern or a high nobility ballroom, your Streetwise allows you to stay on top of the shifting power hierarchies and know who to talk to in order to get things done.
+Knowledge of cities and their various social structures as well as your ability to exploit it in any given situation. Whether in a seedy Thieves’ Guild tavern or a high nobility ballroom, your Streetwise allows you to stay on top of the shifting power hierarchies and know who to talk to in order to get things done. Streetwise is governed by Diamonds.
 
 #### Survival
 
-Knowledge of nature and survival as well as your ability to apply that knowledge in the middle of the wilderness. More than just knowing which plants are edible, it allows you to read the land like a book and learn all about it.
+Knowledge of nature and survival as well as your ability to apply that knowledge in the middle of the wilderness. More than just knowing which plants are edible, it allows you to read the land like a book and learn all about it. Survival is governed by Hearts.
 
 ### Mind
 
@@ -104,23 +104,23 @@ Mind determines how many cards you draw each morning, the damage and power of ma
 
 #### Academics
 
-Knowledge of history, mathematics, literature, and other subjects frequently thought of as “book learning”. Generally, Academics is used to recall most knowledge that is not covered by other Skills.
+Knowledge of history, mathematics, literature, and other subjects frequently thought of as “book learning”. Generally, Academics is used to recall most knowledge that is not covered by other Skills. Academics is governed by Spades.
 
 #### Craft
 
-Understanding of woodworking, metalworking, and other disciplines by which you create armaments and other objects. It is used both to create these items yourself and to better manipulate existing objects, such as disabling a tripwire or picking a lock.
+Understanding of woodworking, metalworking, and other disciplines by which you create armaments and other objects. It is used both to create these items yourself and to better manipulate existing objects, such as disabling a tripwire or picking a lock. Craft is governed by Diamonds.
 
 #### Composure
 
-Resist fear, compulsion, and other mental manipulations both mundane and magical. It is used to determine Mental Defense, as well as your staying power in social situations.
+Resist fear, compulsion, and other mental manipulations both mundane and magical. It is used to determine Mental Defense, as well as your staying power in social situations. Composure is governed by Diamonds.
 
 #### Medicine
 
-Understanding of the body and how certain treatments can heal or harm it. It is mostly used to care for others and tend to their injuries and maladies, including poison and disease, although there are more mercenary uses for this knowledge as well.
+Understanding of the body and how certain treatments can heal or harm it. It is mostly used to care for others and tend to their injuries and maladies, including poison and disease, although there are more mercenary uses for this knowledge as well. Medicine is governed by Spades.
 
 #### Mixology
 
-Understanding of chemical and alchemical principles and how to combine reagents to produce a variety of potions, grenades, and other goods. It is used primarily for the creation and identification of alchemical goods.
+Understanding of chemical and alchemical principles and how to combine reagents to produce a variety of potions, grenades, and other goods. It is used primarily for the creation and identification of alchemical goods. Mixology is governed by Diamonds.
 
 ### Essence
 
@@ -132,23 +132,23 @@ Essence determines how well you can ignore damage, and governs Skills used for m
 
 #### Meditation
 
-Tap into your spiritual energies to reinforce your vitality and strike out at your enemies. Many formal martial arts make use of Meditation, in small or large ways, and some dramatic uses of it can allow you to fire bursts of energy to defeat your foes.
+Tap into your spiritual energies to reinforce your vitality and strike out at your enemies. Many formal martial arts make use of Meditation, in small or large ways, and some dramatic uses of it can allow you to fire bursts of energy to defeat your foes. Meditation is governed by Clubs.
 
 #### Performance
 
-Put on any sort of entertaining or inspiring performance, both with instruments and spoken words. Whether you are giving an encouraging speech to a crowd or breathing life into a tavern party with your lute music, you are putting on a Performance.
+Put on any sort of entertaining or inspiring performance, both with instruments and spoken words. Whether you are giving an encouraging speech to a crowd or breathing life into a tavern party with your lute music, you are putting on a Performance. Performance is governed by Hearts.
 
 #### Rapport
 
-Interact with people amicably, endear yourself to others, and generally be likable and friendly. Whether you’re smoothing over a tense negotiation or simply making a good first impression, you’re building Rapport.
+Interact with people amicably, endear yourself to others, and generally be likable and friendly. Whether you’re smoothing over a tense negotiation or simply making a good first impression, you’re building Rapport. Rapport is governed by Hearts.
 
 #### Sorcery
 
-Manipulate ambient magical power to cast direct magic, shooting fireballs and teleporting through shadows. It also represents your knowledge of certain magic use and can help you identify those magical effects.
+Manipulate ambient magical power to cast direct magic, shooting fireballs and teleporting through shadows. It also represents your knowledge of certain magic use and can help you identify those magical effects. Sorcery is governed by Clubs.
 
 #### Theurgy
 
-Manipulate spiritual energy to cast indirect magic, bolstering vital energy and communing with natural forces. It also represents your knowledge of certain magic use and can help you identify those magical effects.
+Manipulate spiritual energy to cast indirect magic, bolstering vital energy and communing with natural forces. It also represents your knowledge of certain magic use and can help you identify those magical effects. Theurgy is governed by Hearts.
 
 ## Techniques
 
@@ -216,9 +216,15 @@ Example: Browndog wants to jump off of a building and land on top of a criminal 
 
 Example: Browndog is trying to win an arm-wrestling contest in her favorite tavern, which is an opposed Might check. She has 3 Body and 3 Might, for a Skill Total of +6, and her opponent has 2 Body and 1 Might, +3 in total. She flips a 6, and her opponent flips an 8; her result is 6 +6 = 12, against 8 + 3 = 11, and since her 12 is greater than the opponent’s 11, she wins!
 
-### Gambling and Extra Successes
+### Successes
 
-In many cases, a character might easily succeed at an action, but require multiple successes to accomplish their goals. When this happens, the GM may allow a character to Gamble on a flip, taking a penalty to increase the amount they accomplish if successful. Before making the flip, the player declares how many times they want to Gamble - each applies a -2 penalty to the result of the flip, but grants an Extra Success on a successful result. In short, the number of successes for a flip is 1 if it is successful, plus the number of Extra Successes from Gambling or other sources, but only if the flip succeeds in the first place. The effects of this vary, depending on the situation, but are generally predictable for the characters and the GM should give an idea of what “succeeding harder” might look like in a case where Gambling is an option.
+Some checks are simple pass or fail. Others are measured in successes, rewarding doing better than the bare minimum. A flip that meets or beats its difficulty earns 1 success, and you can earn Extra Successes to represent accomplishing your goal faster, more cleanly, or more impressively - Gambling and matching suits in your suit pool can earn these (see relevant rules below). Most checks only need that first success; some ask for more than one before you’re done - forcing open a heavy vault door bit by bit, for instance - and how that works is explained wherever it comes up. Extra Successes’ effects vary by situation, but should be predictable for the characters - the GM should give a sense of what a stronger result looks like. On a damaging attack that hits, for instance, each Extra Success deals +1 damage.
+
+Example: Browndog tries to force open a stuck door with her Might, governed by Clubs. The difficulty is 11, and her Skill Total is +6. She flips a 9 of Clubs for a result of 15 - comfortably clearing the difficulty, and since the card’s suit matches Might’s, she earns 2 successes: 1 for succeeding, 1 Extra Success for the match. The door doesn’t just open, it swings wide with a satisfying crack of old wood.
+
+### Gambling
+
+Before making a flip, you may Gamble on it, once or more, declaring how many times before the card is flipped. Each Gamble applies a -2 penalty to the result, but grants an Extra Success if the flip still succeeds - it’s a bet, since you’re wagering on a card you haven’t seen yet. A character with plenty of Skill Total to spare is making a safe bet and can usually Gamble freely; one working at the edge of their ability risks the whole flip to push for more.
 
 Example: Hilde is dispatching some knights from a petty tyrant’s army. They aren’t good combatants, so she knows she can easily hit them with her axe, but they are heavily armored and will take many blows to defeat. Based on past fights, she thinks and decides to attack and Gamble twice on it. She flips a total of a 15 on the attack, -4 for Gambling twice, for a final result of 11. This still hits, and deals an extra 1 damage for each time she Gambled; +2 in total!
 
@@ -255,6 +261,15 @@ Cards may be played without replacing an existing card, and simply added to the 
 ### The Suit Pool
 
 Each flip also has a suit pool, made up of the suits of cards flipped for that action, which may add extra results to the action. Any cards flipped for Good or Bad Luck (even if later replaced with a card played from hand), any cards played for the flip, and other effects that add suits all combine to determine the total suit pool. Some actions and many special abilities will get bonuses from specific suits - this will be listed as something like ‘if the flip succeeds, you gain [Clubs] bonus’.
+
+Each Skill is governed by one of the four suits, matching the suit’s temperament and talents. That’s the suit that matters for Extra Successes when you flip using that Skill. Some Techniques and items call out a suit directly no matter what Skill you’re using - Slowed always scales with Spades, for instance - but otherwise, matching suit means matching your Skill’s.
+
+- ♥ Hearts: Presence, Rapport, Performance, Survival, Theurgy
+- ♣ Clubs: Brawl, Athletics, Resilience, Might, Meditation, Sorcery
+- ◆ Diamonds: Acrobatics, Craft, Composure, Masquerade, Streetwise, Mixology, Stealth
+- ♠ Spades: Melee, Archery, Awareness, Insight, Persuasion, Academics, Medicine
+
+Example: Hilde swings her axe at a bandit - a Melee attack, so Spades matters here. She flips a 10 of Spades and hits: 2 successes, 1 Extra Success from the match, for +1 damage on top of her axe’s Damage.
 
 Example: Browndog makes an attack with her sword against a bandit, and it does extra damage for every Heart in her suit pool. She flips a 10 of Hearts, and the attack hits, so the attack deals an extra +1 damage.
 

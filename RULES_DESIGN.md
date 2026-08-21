@@ -188,6 +188,25 @@ just Spells, and possibly turn it into a Stance-equivalent (see below) so
 it can't freely stack with other similarly strong always-on enablers if
 its scope broadens. Not yet decided how far the scope extends.
 
+## Applied so far
+
+- `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
+  (base success + suit-match Extra Successes only — the margin-based
+  "+1 per full 2 points over the difficulty" idea was considered and
+  explicitly cut, so Gambling and suit-matching are the *only* sources
+  of Extra Success) and `### Gambling` (reframed as a bet declared
+  before the flip, not a GM-gated option). `### The Suit Pool` got the
+  Skill→Suit bullet list plus a matching-suit example. Every Skill's
+  `#### ` description in "Stats and Skills" got a trailing sentence
+  naming its governing suit, for redundancy alongside the Suit Pool list.
+- Style note from this pass, apply going forward: keep explanations
+  concise, frame rules positively (state what a thing *is*/*does* rather
+  than what it isn't), and lean on the site's existing formatting tools —
+  bullets for real enumerated lists, more headers for navigability, and
+  break a mechanic's illustration into its own "Example:" paragraph
+  (the site auto-italicizes text that starts with "Example:" via
+  `renderBlock`, so no manual emphasis markup is needed in the source).
+
 ## Open questions / TODO
 
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.
