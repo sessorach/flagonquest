@@ -1,5 +1,68 @@
 [
   {
+    "id": "the-basics",
+    "level": 1,
+    "title": "The Basics",
+    "supplement": "Base Game",
+    "body": "This is how the core of the system works.\n\nA tabletop roleplaying game (TTRPG) is a story a group tells together out loud, with each player controlling a character while one player, the GM, runs the world and everyone else in it. The rules exist for the moments where what happens next isn’t obvious - they’re how you find out.\n\nCharacters are built around five Stats and the Skills tied to them. Stats are broad natural traits, and Skills are specific trained abilities. A Skill’s points combine with its Stat’s points to make that Skill’s Skill Total, the number used for almost every check you make. The “Your Character” section, later in this book, covers Stats and Skills in full detail - this is just enough to make sense of the checks below.\n\nYou use a deck of cards, a standard 52-card deck of playing cards split evenly across 4 suits: Hearts, Clubs, Diamonds, and Spades. How the deck is used to make a flip is covered in detail below.\n\nCapitalized Words are terms used consistently to refer to a game element, as are most terms put in brackets to label things. When in doubt, check the Glossary.\n\nThe most specific rule always wins.\n\nNumbers don’t go negative, things can only be reduced to 0.\n\nIf you have multiple effects that would happen because of one of your actions, you can choose what order you apply each effect in - for instance, if several of your abilities do something when you hit with a weapon attack.\n\nA benefit attached to one of your abilities only applies if it’s used for something with actual narrative relevance - an attack that does something when you Down the target, for example, doesn’t trigger if you’re using it to kill something totally non-threatening like a rat or an orphan.\n\nAbilities can be used in ways that don’t exactly match their mechanics, if the players and GM agree that it makes sense. For example, a character who has a fireball attack could use it to start a campfire, even though that technically doesn’t involve an attack. Players are encouraged to think of creative solutions to their problems, although as always the GM has final say on what is allowed."
+  },
+  {
+    "id": "skill-checks",
+    "level": 2,
+    "title": "Skill Checks",
+    "supplement": "Base Game",
+    "body": "Frequently, the GM will determine the outcome of a character’s action by asking for a skill check to be made. The character’s player flips a card (explained below), and adds their Skill Total to the card’s value, along with any other modifiers that might apply. If the result of these is equal to or higher than the check’s difficulty then it succeeds, otherwise it fails.\n\nDifficulty can be based on a number of factors, such as:\n\n- The difficulty of picking a lock is based on the quality and condition of the lock, determined by the GM\n- The difficulty of an attack is the appropriate Defense of its target\n- The difficulty of an arm wrestling contest might be the result of the other person’s skill check - these are usually referred to as “opposed checks”, where two (or more) characters make checks and the highest wins\n\nExample: Browndog wants to jump off of a building and land on top of a criminal suspect. The GM declares this is an Athletics check, which has Body as its corresponding Stat. Browndog has 3 Body and 3 Athletics, for a total of 6; their player flips a Jack, which has a value of 11, so their result is 6 + 11 = 17.\n\nExample: Browndog is trying to win an arm-wrestling contest in her favorite tavern, which is an opposed Might check. She has 3 Body and 3 Might, for a Skill Total of +6, and her opponent has 2 Body and 1 Might, +3 in total. She flips a 6, and her opponent flips an 8; her result is 6 +6 = 12, against 8 + 3 = 11, and since her 12 is greater than the opponent’s 11, she wins!"
+  },
+  {
+    "id": "successes",
+    "level": 3,
+    "title": "Successes",
+    "supplement": "Base Game",
+    "body": "Some checks are simple pass or fail. Others are measured in successes, rewarding doing better than the bare minimum. A flip that meets or beats its difficulty earns 1 success, and you can earn Extra Successes to represent accomplishing your goal faster, more cleanly, or more impressively - Gambling and matching suits in your suit pool can earn these (see relevant rules below). Most checks only need that first success; some ask for more than one before you’re done - forcing open a heavy vault door bit by bit, for instance - and how that works is explained wherever it comes up. Extra Successes’ effects vary by situation, but should be predictable for the characters - the GM should give a sense of what a stronger result looks like. On a damaging attack that hits, for instance, each Extra Success deals +1 damage.\n\nExample: Browndog tries to force open a stuck door with her Might, governed by Clubs. The difficulty is 11, and her Skill Total is +6. She flips a 9 of Clubs for a result of 15 - comfortably clearing the difficulty, and since the card’s suit matches Might’s, she earns 2 successes: 1 for succeeding, 1 Extra Success for the match. The door doesn’t just open, it swings wide with a satisfying crack of old wood."
+  },
+  {
+    "id": "gambling",
+    "level": 3,
+    "title": "Gambling",
+    "supplement": "Base Game",
+    "body": "Before making a flip, you may Gamble on it, once or more, declaring how many times before the card is flipped. Each Gamble applies a -2 penalty to the result, but grants an Extra Success if the flip still succeeds - it’s a bet, since you’re wagering on a card you haven’t seen yet. A character with plenty of Skill Total to spare is making a safe bet and can usually Gamble freely; one working at the edge of their ability risks the whole flip to push for more.\n\nExample: Hilde is dispatching some knights from a petty tyrant’s army. They aren’t good combatants, so she knows she can easily hit them with her axe, but they are heavily armored and will take many blows to defeat. Based on past fights, she thinks and decides to attack and Gamble twice on it. She flips a total of a 15 on the attack, -4 for Gambling twice, for a final result of 11. This still hits, and deals an extra 1 damage for each time she Gambled; +2 in total!\n\nExample: Carrick is infiltrating a noble’s inn room while the party keeps him distracted downstairs. She needs to pick the lock to get in, and knows both that this upscale inn has well-oiled locks that are easy to pick open and that she doesn’t have a lot of time. She Gambles thrice on the flip, and thankfully gets a 17 total, so even with the -6 she’s left with a result of 11. This is just enough to pick the lock with 4 total successes, and although normally she would require multiple successful attempts to get the lock all the way open, the GM says that her risky attempt got the lock open in one try."
+  },
+  {
+    "id": "supporting",
+    "level": 3,
+    "title": "Supporting",
+    "supplement": "Base Game",
+    "body": "A check might come down to one character’s Skill, but that doesn’t mean the rest of the party has to sit it out. Supporting lets you lend a hand with a Skill of your own, even one that has nothing to do with the Skill actually being used. This way a scene can involve everyone, not just whoever happens to have the best Skill for the moment. When you don’t have something else going on, Supporting is something you’re encouraged to reach for rather than just watching.\n\nTo Support a check, declare that you’re helping and name the Skill you’re using before the check is made. The GM has final say on whether it makes sense for what you’re doing. Support has to happen before that check: once the flip’s already been made, it’s too late to add Support to it. You then make a flip of your own against a flat difficulty of 11, and if it succeeds the character you’re Supporting gets Good Luck on their check.\n\nBetween Supporting and your allies’ own Skills, the party has access to a much wider range of them than any one of you could build alone. While one character leads a check with Survival, another can keep watch with Awareness at the same time. Someone else might steady the rope with Might while a different character does the actual climbing.\n\nExample: The party is foraging for herbs before a long trek, and Jackal takes the lead with her Survival. Carrick doesn’t have much Survival to speak of, but she’s got a sharp eye, so instead she Supports with Awareness, watching for anything Jackal might walk past. She flips a 9 against her Awareness Skill Total of 5, for a result of 14, clearing the difficulty of 11 with room to spare, and Jackal gets Good Luck on her check."
+  },
+  {
+    "id": "so-how-does-the-card-deck-work",
+    "level": 2,
+    "title": "So How Does the Card Deck Work?",
+    "supplement": "Base Game",
+    "body": "Each player uses their own 52-card deck of playing cards, as does the GM. To make a flip (such as for a skill check), a player puts the top card of their deck face-up in front of them and adds the card’s value to the Skill Total and any other modifiers, and the total is the result for their check.\n\nA card’s value is represented by the number on it. Aces count as 1s, Jacks are 11s, Queens are 12s, and Kings are 13s; this means the deck has cards numbering from 1 to 13, one of each suit.\n\nOnce you’re finished determining the result of a flip, you put all the cards used for that flip into your discard pile. If you need to flip or draw a card, but your deck of cards is empty, shuffle your discard pile back into your (empty) deck."
+  },
+  {
+    "id": "good-and-bad-luck",
+    "level": 3,
+    "title": "Good and Bad Luck",
+    "supplement": "Base Game",
+    "body": "Sometimes you get Good Luck or Bad Luck on a flip. For each time you have Good Luck on a flip, you get to flip an extra card and then choose which one you want to use for the result. Bad Luck works the same, except once all cards are flipped you must use the card with the lowest value (on a tie, the GM picks the card). If you would ever get both kinds of Luck on a flip, you remove one of each Luck until you only have one kind left."
+  },
+  {
+    "id": "your-hand-and-playing-cards",
+    "level": 3,
+    "title": "Your Hand and Playing Cards",
+    "supplement": "Base Game",
+    "body": "As you play, you will have a hand of cards. These are used for a number of special abilities, but can also be played to affect any flip made by you or one of your allies, if they allow it. After all cards are flipped, before the result is decided, you may play any number of cards from your hand, each of which may replace one card already flipped. After this is done, if there was Good or Bad Luck for the flip, the new highest or lowest card is chosen as usual.\n\nCards may be played without replacing an existing card, and simply added to the suit pool for the flip (explained below)."
+  },
+  {
+    "id": "the-suit-pool",
+    "level": 3,
+    "title": "The Suit Pool",
+    "supplement": "Base Game",
+    "body": "Each flip also has a suit pool, made up of the suits of cards flipped for that action, which may add extra results to the action. Any cards flipped for Good or Bad Luck (even if later replaced with a card played from hand), any cards played for the flip, and other effects that add suits all combine to determine the total suit pool. Some actions and many special abilities will get bonuses from specific suits - this will be listed as something like ‘if the flip succeeds, you gain [Clubs] bonus’.\n\nEach Skill is governed by one of the four suits, matching the suit’s temperament and talents. That’s the suit that matters for Extra Successes when you flip using that Skill. Some Techniques and items call out a suit directly no matter what Skill you’re using - Slowed always scales with Spades, for instance - but otherwise, matching suit means matching your Skill’s.\n\n- ♥ Hearts: Presence, Rapport, Performance, Survival, Theurgy\n- ♣ Clubs: Brawl, Athletics, Resilience, Might, Meditation, Sorcery\n- ◆ Diamonds: Acrobatics, Craft, Composure, Masquerade, Streetwise, Mixology, Stealth\n- ♠ Spades: Melee, Archery, Awareness, Insight, Persuasion, Academics, Medicine\n\nExample: Hilde swings her axe at a bandit - a Melee attack, so Spades matters here. She flips a 10 of Spades and hits: 2 successes, 1 Extra Success from the match, for +1 damage on top of her axe’s Damage.\n\nExample: Browndog is facing a tough foe, so she uses a special attack that Slows a target down extra times for every Club she gets. She also applies a bonus to give it Good Luck twice. She flips a Heart, Club, and a Spade, and also plays a Club from her hand. The attack hits, and Slows the target twice (from the two Clubs). Wow!"
+  },
+  {
     "id": "your-character",
     "level": 1,
     "title": "Your Character",
@@ -243,69 +306,6 @@
     "title": "Learning Techniques",
     "supplement": "Base Game",
     "body": "You can only learn a Technique once, unless it is an Encounter or Duplicate Technique.\n\nEncounter Techniques can only be used once per encounter, you can learn them as many times as you want, and you effectively have as many uses of that Technique as the number of times you know it, expending each independently.\n\nDuplicate Techniques are able to be learned multiple times. Unless otherwise stated, each copy applies its effects again, although many of these will instead include a special note that describes what benefits you get from each extra time you learn it."
-  },
-  {
-    "id": "the-basics",
-    "level": 1,
-    "title": "The Basics",
-    "supplement": "Base Game",
-    "body": "This is how the core of the system works.\n\nA tabletop roleplaying game (TTRPG) is a story a group tells together out loud, with each player controlling a character while one player, the GM, runs the world and everyone else in it. The rules exist for the moments where what happens next isn’t obvious - they’re how you find out.\n\nYou use a deck of cards, a standard 52-card deck of playing cards.\n\nCapitalized Words are terms used consistently to refer to a game element, as are most terms put in brackets to label things. When in doubt, check the Glossary.\n\nThe most specific rule always wins.\n\nNumbers don’t go negative, things can only be reduced to 0.\n\nIf you have multiple effects that would happen because of one of your actions, you can choose what order you apply each effect in - for instance, if several of your abilities do something when you hit with a weapon attack.\n\nA benefit attached to one of your abilities only applies if it’s used for something with actual narrative relevance - an attack that does something when you Down the target, for example, doesn’t trigger if you’re using it to kill something totally non-threatening like a rat or an orphan.\n\nAbilities can be used in ways that don’t exactly match their mechanics, if the players and GM agree that it makes sense. For example, a character who has a fireball attack could use it to start a campfire, even though that technically doesn’t involve an attack. Players are encouraged to think of creative solutions to their problems, although as always the GM has final say on what is allowed."
-  },
-  {
-    "id": "skill-checks",
-    "level": 2,
-    "title": "Skill Checks",
-    "supplement": "Base Game",
-    "body": "Frequently, the GM will determine the outcome of a character’s action by asking for a skill check to be made. The character’s player flips a card (explained below), and adds their Skill Total to the card’s value, along with any other modifiers that might apply. If the result of these is equal to or higher than the check’s difficulty then it succeeds, otherwise it fails.\n\nDifficulty can be based on a number of factors, such as:\n\n- The difficulty of picking a lock is based on the quality and condition of the lock, determined by the GM\n- The difficulty of an attack is the appropriate Defense of its target\n- The difficulty of an arm wrestling contest might be the result of the other person’s skill check - these are usually referred to as “opposed checks”, where two (or more) characters make checks and the highest wins\n\nExample: Browndog wants to jump off of a building and land on top of a criminal suspect. The GM declares this is an Athletics check, which has Body as its corresponding Stat. Browndog has 3 Body and 3 Athletics, for a total of 6; their player flips a Jack, which has a value of 11, so their result is 6 + 11 = 17.\n\nExample: Browndog is trying to win an arm-wrestling contest in her favorite tavern, which is an opposed Might check. She has 3 Body and 3 Might, for a Skill Total of +6, and her opponent has 2 Body and 1 Might, +3 in total. She flips a 6, and her opponent flips an 8; her result is 6 +6 = 12, against 8 + 3 = 11, and since her 12 is greater than the opponent’s 11, she wins!"
-  },
-  {
-    "id": "successes",
-    "level": 3,
-    "title": "Successes",
-    "supplement": "Base Game",
-    "body": "Some checks are simple pass or fail. Others are measured in successes, rewarding doing better than the bare minimum. A flip that meets or beats its difficulty earns 1 success, and you can earn Extra Successes to represent accomplishing your goal faster, more cleanly, or more impressively - Gambling and matching suits in your suit pool can earn these (see relevant rules below). Most checks only need that first success; some ask for more than one before you’re done - forcing open a heavy vault door bit by bit, for instance - and how that works is explained wherever it comes up. Extra Successes’ effects vary by situation, but should be predictable for the characters - the GM should give a sense of what a stronger result looks like. On a damaging attack that hits, for instance, each Extra Success deals +1 damage.\n\nExample: Browndog tries to force open a stuck door with her Might, governed by Clubs. The difficulty is 11, and her Skill Total is +6. She flips a 9 of Clubs for a result of 15 - comfortably clearing the difficulty, and since the card’s suit matches Might’s, she earns 2 successes: 1 for succeeding, 1 Extra Success for the match. The door doesn’t just open, it swings wide with a satisfying crack of old wood."
-  },
-  {
-    "id": "gambling",
-    "level": 3,
-    "title": "Gambling",
-    "supplement": "Base Game",
-    "body": "Before making a flip, you may Gamble on it, once or more, declaring how many times before the card is flipped. Each Gamble applies a -2 penalty to the result, but grants an Extra Success if the flip still succeeds - it’s a bet, since you’re wagering on a card you haven’t seen yet. A character with plenty of Skill Total to spare is making a safe bet and can usually Gamble freely; one working at the edge of their ability risks the whole flip to push for more.\n\nExample: Hilde is dispatching some knights from a petty tyrant’s army. They aren’t good combatants, so she knows she can easily hit them with her axe, but they are heavily armored and will take many blows to defeat. Based on past fights, she thinks and decides to attack and Gamble twice on it. She flips a total of a 15 on the attack, -4 for Gambling twice, for a final result of 11. This still hits, and deals an extra 1 damage for each time she Gambled; +2 in total!\n\nExample: Carrick is infiltrating a noble’s inn room while the party keeps him distracted downstairs. She needs to pick the lock to get in, and knows both that this upscale inn has well-oiled locks that are easy to pick open and that she doesn’t have a lot of time. She Gambles thrice on the flip, and thankfully gets a 17 total, so even with the -6 she’s left with a result of 11. This is just enough to pick the lock with 4 total successes, and although normally she would require multiple successful attempts to get the lock all the way open, the GM says that her risky attempt got the lock open in one try."
-  },
-  {
-    "id": "supporting",
-    "level": 3,
-    "title": "Supporting",
-    "supplement": "Base Game",
-    "body": "A check might come down to one character’s Skill, but that doesn’t mean the rest of the party has to sit it out. Supporting lets you lend a hand with a Skill of your own, even one that has nothing to do with the Skill actually being used. This way a scene can involve everyone, not just whoever happens to have the best Skill for the moment. When you don’t have something else going on, Supporting is something you’re encouraged to reach for rather than just watching.\n\nTo Support a check, declare that you’re helping and name the Skill you’re using before the check is made. The GM has final say on whether it makes sense for what you’re doing. Support has to happen before that check: once the flip’s already been made, it’s too late to add Support to it. You then make a flip of your own against a flat difficulty of 11, and if it succeeds the character you’re Supporting gets Good Luck on their check.\n\nBetween Supporting and your allies’ own Skills, the party has access to a much wider range of them than any one of you could build alone. While one character leads a check with Survival, another can keep watch with Awareness at the same time. Someone else might steady the rope with Might while a different character does the actual climbing.\n\nExample: The party is foraging for herbs before a long trek, and Jackal takes the lead with her Survival. Carrick doesn’t have much Survival to speak of, but she’s got a sharp eye, so instead she Supports with Awareness, watching for anything Jackal might walk past. She flips a 9 against her Awareness Skill Total of 5, for a result of 14, clearing the difficulty of 11 with room to spare, and Jackal gets Good Luck on her check."
-  },
-  {
-    "id": "so-how-does-the-card-deck-work",
-    "level": 2,
-    "title": "So How Does the Card Deck Work?",
-    "supplement": "Base Game",
-    "body": "Each player uses their own 52-card deck of playing cards, as does the GM. To make a flip (such as for a skill check), a player puts the top card of their deck face-up in front of them and adds the card’s value to the Skill Total and any other modifiers, and the total is the result for their check.\n\nA card’s value is represented by the number on it. Aces count as 1s, Jacks are 11s, Queens are 12s, and Kings are 13s; this means the deck has cards numbering from 1 to 13, one of each suit.\n\nOnce you’re finished determining the result of a flip, you put all the cards used for that flip into your discard pile. If you need to flip or draw a card, but your deck of cards is empty, shuffle your discard pile back into your (empty) deck."
-  },
-  {
-    "id": "good-and-bad-luck",
-    "level": 3,
-    "title": "Good and Bad Luck",
-    "supplement": "Base Game",
-    "body": "Sometimes you get Good Luck or Bad Luck on a flip. For each time you have Good Luck on a flip, you get to flip an extra card and then choose which one you want to use for the result. Bad Luck works the same, except once all cards are flipped you must use the card with the lowest value (on a tie, the GM picks the card). If you would ever get both kinds of Luck on a flip, you remove one of each Luck until you only have one kind left."
-  },
-  {
-    "id": "your-hand-and-playing-cards",
-    "level": 3,
-    "title": "Your Hand and Playing Cards",
-    "supplement": "Base Game",
-    "body": "As you play, you will have a hand of cards. These are used for a number of special abilities, but can also be played to affect any flip made by you or one of your allies, if they allow it. After all cards are flipped, before the result is decided, you may play any number of cards from your hand, each of which may replace one card already flipped. After this is done, if there was Good or Bad Luck for the flip, the new highest or lowest card is chosen as usual.\n\nCards may be played without replacing an existing card, and simply added to the suit pool for the flip (explained below)."
-  },
-  {
-    "id": "the-suit-pool",
-    "level": 3,
-    "title": "The Suit Pool",
-    "supplement": "Base Game",
-    "body": "Each flip also has a suit pool, made up of the suits of cards flipped for that action, which may add extra results to the action. Any cards flipped for Good or Bad Luck (even if later replaced with a card played from hand), any cards played for the flip, and other effects that add suits all combine to determine the total suit pool. Some actions and many special abilities will get bonuses from specific suits - this will be listed as something like ‘if the flip succeeds, you gain [Clubs] bonus’.\n\nEach Skill is governed by one of the four suits, matching the suit’s temperament and talents. That’s the suit that matters for Extra Successes when you flip using that Skill. Some Techniques and items call out a suit directly no matter what Skill you’re using - Slowed always scales with Spades, for instance - but otherwise, matching suit means matching your Skill’s.\n\n- ♥ Hearts: Presence, Rapport, Performance, Survival, Theurgy\n- ♣ Clubs: Brawl, Athletics, Resilience, Might, Meditation, Sorcery\n- ◆ Diamonds: Acrobatics, Craft, Composure, Masquerade, Streetwise, Mixology, Stealth\n- ♠ Spades: Melee, Archery, Awareness, Insight, Persuasion, Academics, Medicine\n\nExample: Hilde swings her axe at a bandit - a Melee attack, so Spades matters here. She flips a 10 of Spades and hits: 2 successes, 1 Extra Success from the match, for +1 damage on top of her axe’s Damage.\n\nExample: Browndog is facing a tough foe, so she uses a special attack that Slows a target down extra times for every Club she gets. She also applies a bonus to give it Good Luck twice. She flips a Heart, Club, and a Spade, and also plays a Club from her hand. The attack hits, and Slows the target twice (from the two Clubs). Wow!"
   },
   {
     "id": "health-and-resources",

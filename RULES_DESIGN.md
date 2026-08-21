@@ -243,6 +243,22 @@ its scope broadens. Not yet decided how far the scope extends.
   otherwise it falls under the general "most miscellaneous actions are
   2 AP" guidance plus GM judgment.
 
+- `rulebook.md`'s top-level chapter order changed: `# The Basics` now
+  comes first (was second, after `# Your Character`), so a new reader
+  hits core mechanics before character-building detail. Two short
+  primer paragraphs were added to Basics' intro, right after the "what
+  is a TTRPG" paragraph, so Skill Checks doesn't presuppose knowledge
+  of Skill Total or the card deck that used to come from reading
+  Character first: a minimal Stats+Skills-combine-into-Skill-Total
+  blurb (explicitly deferring full detail to "the 'Your Character'
+  section, later in this book" — named in quotes so it doesn't read as
+  literally addressing the player's own character), and an expanded
+  version of the existing one-line card-deck mention that now also
+  states the 4 suits by name. `# Your Character` (Stats and Skills,
+  Techniques, Spending Experience) moved as a whole, unchanged block,
+  to sit right after Basics and before `# Health and Resources`.
+  Nothing else in the book's order changed.
+
 ## Open questions / TODO
 
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.
