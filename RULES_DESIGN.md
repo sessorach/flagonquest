@@ -210,13 +210,23 @@ its scope broadens. Not yet decided how far the scope extends.
   Hearts a damage-relevant suit match. Also generalized the Extra-Success
   damage bonus to "all damaging attacks" rather than "weapon attacks"
   only, clearing up an inconsistency the old rule had.
-- Style note from this pass, apply going forward: keep explanations
+- Style notes from this pass, apply going forward: keep explanations
   concise, frame rules positively (state what a thing *is*/*does* rather
   than what it isn't), and lean on the site's existing formatting tools —
   bullets for real enumerated lists, more headers for navigability, and
   break a mechanic's illustration into its own "Example:" paragraph
   (the site auto-italicizes text that starts with "Example:" via
   `renderBlock`, so no manual emphasis markup is needed in the source).
+  Also avoid leaning on semicolons or dash-set-off asides — plain
+  sentences (or a comma, or "and"/"but") read easier than the
+  `- ` aside style `CLAUDE.md` documents as the existing book's
+  convention. **This is a deliberate departure from that documented
+  convention for new/edited prose going forward**, not a restatement of
+  it — flag the discrepancy if it ever matters which one a given passage
+  should match, and check whether already-applied sections from this
+  overhaul (Successes, Gambling, The Suit Pool) should be retrofitted to
+  match once the new style is settled, rather than silently assuming
+  either way.
 
 ## Open questions / TODO
 
