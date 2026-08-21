@@ -199,6 +199,17 @@ its scope broadens. Not yet decided how far the scope extends.
   Skill→Suit bullet list plus a matching-suit example. Every Skill's
   `#### ` description in "Stats and Skills" got a trailing sentence
   naming its governing suit, for redundancy alongside the Suit Pool list.
+- Resolved the "does Hearts keep a universal attack-damage bonus" fork from
+  earlier: no. The flat `[Hearts]` damage rule is fully removed from
+  `Making an Attack` — attack damage now comes only from the general
+  Successes rule (base success, Gambling, and whichever suit governs the
+  Skill/weapon used), same as any other flip. This is a deliberate choice
+  to let Hearts' combat role stay minimal in favor of its healing/support
+  identity, made with full awareness that (per the technique audit
+  earlier) only one technique in the game (`Earthquake`) will ever grant
+  Hearts a damage-relevant suit match. Also generalized the Extra-Success
+  damage bonus to "all damaging attacks" rather than "weapon attacks"
+  only, clearing up an inconsistency the old rule had.
 - Style note from this pass, apply going forward: keep explanations
   concise, frame rules positively (state what a thing *is*/*does* rather
   than what it isn't), and lean on the site's existing formatting tools —
@@ -212,9 +223,8 @@ its scope broadens. Not yet decided how far the scope extends.
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.
 - Diamonds still has no defensive keyword/mechanic identity.
 - The "bad fail" trigger for accumulating multi-attempt checks (lockpicking-style) isn't defined.
-- Whether attacks should draw margin-based successes automatically (balance-numbers work, deferred to the data chat).
 - Scope of the generalized `Ritual Magic`-style card-contribution mechanic, and whether/how it becomes Stance-gated.
-- Renaming "Stance" — see below, in progress.
+- Renaming "Stance" — leaning toward "Form" (over "Style", which is also live in the data as flavor text for several existing Stances, e.g. "Shugen Style"), not yet applied anywhere.
 - Social Mechanics portfolio row and the social/exploration rules overhaul generally — explicitly deferred until the core successes/suit fundamentals are done.
 
 ## Things considered and deliberately not done

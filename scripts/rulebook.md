@@ -271,9 +271,7 @@ Each Skill is governed by one of the four suits, matching the suit’s temperame
 
 Example: Hilde swings her axe at a bandit - a Melee attack, so Spades matters here. She flips a 10 of Spades and hits: 2 successes, 1 Extra Success from the match, for +1 damage on top of her axe’s Damage.
 
-Example: Browndog makes an attack with her sword against a bandit, and it does extra damage for every Heart in her suit pool. She flips a 10 of Hearts, and the attack hits, so the attack deals an extra +1 damage.
-
-Example: Browndog is facing a tough foe, so she uses a special attack that Slows a target down extra times for every Club she gets. She also applies a bonus to give it Good Luck twice. She flips a Heart, Club, and a Spade, and also plays a Club from her hand. The attack hits, and deals +1 damage (from the Heart), as well as Slows the target twice (from the two Clubs). Wow!
+Example: Browndog is facing a tough foe, so she uses a special attack that Slows a target down extra times for every Club she gets. She also applies a bonus to give it Good Luck twice. She flips a Heart, Club, and a Spade, and also plays a Club from her hand. The attack hits, and Slows the target twice (from the two Clubs). Wow!
 
 # Health and Resources
 
@@ -391,7 +389,7 @@ Regardless of the attack’s result, a target who applied their Parry or Dodge D
 
 If the flip fails, the attack misses. In this case, a target who used Parry Defense is considered to have Parried the attack, and a target who used Dodge Defense is considered to have Dodged the attack.
 
-If the flip succeeds, the attack hits. Abilities and items will state what happens when they hit. Normal weapon attacks deal Physical damage equal to the weapon’s Damage. All damaging attacks (attacks that deal damage) also have their damage increased by [Hearts], and weapon attacks that hit also deal +1 damage for each Extra Success.
+If the flip succeeds, the attack hits. Abilities and items will state what happens when they hit. Normal weapon attacks deal Physical damage equal to the weapon’s Damage, and all damaging attacks deal +1 damage for each Extra Success (see Successes, above).
 
 ### Retrieving Items
 
