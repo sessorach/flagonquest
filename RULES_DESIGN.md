@@ -217,16 +217,20 @@ its scope broadens. Not yet decided how far the scope extends.
   break a mechanic's illustration into its own "Example:" paragraph
   (the site auto-italicizes text that starts with "Example:" via
   `renderBlock`, so no manual emphasis markup is needed in the source).
-  Also avoid leaning on semicolons or dash-set-off asides — plain
-  sentences (or a comma, or "and"/"but") read easier than the
-  `- ` aside style `CLAUDE.md` documents as the existing book's
-  convention. **This is a deliberate departure from that documented
-  convention for new/edited prose going forward**, not a restatement of
-  it — flag the discrepancy if it ever matters which one a given passage
-  should match, and check whether already-applied sections from this
-  overhaul (Successes, Gambling, The Suit Pool) should be retrofitted to
-  match once the new style is settled, rather than silently assuming
-  either way.
+  Also don't reach for a semicolon or a dash-set-off aside as a
+  reflex. This supplements CLAUDE.md's existing `- ` aside convention
+  rather than overriding it: a dash is still the right call when a
+  passage genuinely calls for one, and semicolons and other varied
+  punctuation are fine too when they're doing real work, not something
+  to avoid outright. Sentences don't need to stay short and
+  comma-joined either — natural variety in sentence length and
+  structure is good. The actual bar is whether a passage reads
+  naturally or feels jarring, not a hard rule against any specific
+  mark. When unsure, default to the plainer phrasing and only reach
+  for a dash/semicolon if it's clearly the better fit. Given that, the
+  already-applied sections (Successes, Gambling, The Suit Pool)
+  probably don't need a wholesale retrofit — revisit a specific line
+  only if it actually reads awkwardly, not just because it uses a dash.
 
 ## Open questions / TODO
 
