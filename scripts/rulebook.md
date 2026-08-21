@@ -232,11 +232,11 @@ Example: Carrick is infiltrating a noble’s inn room while the party keeps him 
 
 ### Supporting
 
-Not every character is going to have a good Skill for every check that comes up, but odds are somebody in the party does. Rather than take a check you have no business making, or just stand there while someone else struggles, you can Support them instead - lending a hand with a Skill of your own, even one that has nothing to do with the Skill they’re actually using.
+A check might come down to one character’s Skill, but that doesn’t mean the rest of the party has to sit it out. Supporting lets you lend a hand with a Skill of your own, even one that has nothing to do with the Skill actually being used. This way a scene can involve everyone, not just whoever happens to have the best Skill for the moment. When you don’t have something else going on, Supporting is something you’re encouraged to reach for rather than just watching.
 
-To Support a check, declare that you’re helping before the check is made, along with which of your Skills you’re using to do it - the GM has final say on whether your chosen Skill makes sense for what you’re doing. You then make a flip against a flat difficulty of 11. If it succeeds, the character you’re Supporting gets Good Luck on their check.
+To Support a check, declare that you’re helping and name the Skill you’re using before the check is made. The GM has final say on whether it makes sense for what you’re doing. Support has to happen before that check: once the flip’s already been made, it’s too late to add Support to it. You then make a flip of your own against a flat difficulty of 11, and if it succeeds the character you’re Supporting gets Good Luck on their check.
 
-Supporting exists for the moments where you don’t have a good Skill of your own for the job in front of you, but can still make yourself useful - a character with poor Survival can still keep watch with Awareness while someone else forages, or steady the rope with Might while someone else does the actual climbing. Between Supporting and your allies’ own Skills, the party has access to a much wider range of them than any one of you could build alone.
+Between Supporting and your allies’ own Skills, the party has access to a much wider range of them than any one of you could build alone. While one character leads a check with Survival, another can keep watch with Awareness at the same time. Someone else might steady the rope with Might while a different character does the actual climbing.
 
 Example: The party is foraging for herbs before a long trek, and Jackal takes the lead with her Survival. Carrick doesn’t have much Survival to speak of, but she’s got a sharp eye, so instead she Supports with Awareness, watching for anything Jackal might walk past. She flips a 9 against her Awareness Skill Total of 5, for a result of 14, clearing the difficulty of 11 with room to spare, and Jackal gets Good Luck on her check.
 

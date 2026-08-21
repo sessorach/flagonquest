@@ -232,6 +232,17 @@ its scope broadens. Not yet decided how far the scope extends.
   probably don't need a wholesale retrofit — revisit a specific line
   only if it actually reads awkwardly, not just because it uses a dash.
 
+- `rulebook.md`'s `### Supporting` section was reframed: it used to
+  read as a fallback for characters who "don't have a good Skill,"
+  which came across as dismissive. It's now framed as how the whole
+  party stays engaged in a scene together, and explicitly encourages
+  reaching for Support whenever you don't have something else going
+  on, rather than sitting out. No AP cost is mentioned deliberately —
+  Supporting isn't meant to be a formal combat action; Techniques that
+  need to interact with it that way spell out their own AP cost, and
+  otherwise it falls under the general "most miscellaneous actions are
+  2 AP" guidance plus GM judgment.
+
 ## Open questions / TODO
 
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.
