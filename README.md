@@ -13,6 +13,199 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-19 — Hand-editable printed Character Sheet
+
+- Printed Stats & Skills now show filled/empty dots (●●●○○) instead of
+  a plain number — raising a Stat or Skill later just means filling in
+  one more dot with a pen, instead of erasing and rewriting a digit.
+- Printed Derived Stats (Speed, the five Defenses, the five Resists,
+  Reflex, Cards Per Day, Resting Health) and the Skill Total badge now
+  print in a light gray, thin weight instead of solid black — since
+  those are computed from Stats & Skills, a pencil correction after
+  raising a dot reads clearly against the faint original instead of
+  fighting a bold printed digit for the same visual weight. Screen
+  view is unaffected either way — both are print-only.
+
+### 2026-08-19 — Mobile design tokens, print fix, Choice Effects fix
+
+- Mobile gets its own small set of design tokens now (separate from,
+  but matching, the desktop text sizes) — the foundation for handling
+  mobile-specific layout going forward, since this is a tabletop
+  companion app a lot of players run from a phone at the table, not
+  just a smaller desktop. The two-column Stats & Skills grid added
+  earlier today is the first thing built against it, and its own
+  numbers were tightened a bit further as part of that.
+- Fixed the Character Sheet's Health/Fullness/Hunger Debt trackers
+  clipping when printed — the heart/food/bone icons don't render
+  reliably across print engines. A printed sheet now shows the current
+  number plus a row of blank boxes to check off by hand instead.
+- A technique with per-copy options (like Profession) no longer shows
+  every possible option on the Character Sheet just because one copy
+  hasn't had its option picked yet — the Sheet now only ever shows
+  what's actually been chosen. The Builder still shows the full list
+  while a pick is pending, since that's still useful there for
+  comparing options.
+- Techniques with Choice Effects data (like Profession) no longer show
+  a redundant "Copy 1: Sailor" line under the effect text on the
+  Character Sheet — the effect text already says what was picked.
+  Techniques whose choice doesn't carry its own effect text (like
+  Artisanal Training's School) still show that line, since it's the
+  only record of the pick.
+
+### 2026-08-19 — Two-column stat grid on wider phones; small UI polish
+
+- The Character Sheet's Stats & Skills grid can now show two boxes per
+  row on a wide-enough phone or phablet instead of always stacking one
+  per row — the read-only view doesn't need the extra width the
+  editable Builder version's steppers do, so it can afford to fit more.
+  It self-adjusts to whatever actually fits rather than a fixed
+  breakpoint, so a narrower phone still gets the familiar single column
+  instead of anything overflowing or a skill name getting squeezed.
+- A custom material's "Level" label no longer sits next to its own
+  "Lv N" badge once it's collapsed — that was saying the same thing
+  twice; it still shows while actively editing, next to the bare
+  +/− stepper, where it's the only thing saying what the number means.
+- A custom material's Edit and Done buttons are now one toggle in a
+  fixed spot (bottom-left) instead of Edit sitting in the header right
+  next to the delete (✕) button and Done appearing across the tile in
+  the opposite corner once editing started.
+
+### 2026-08-18 — Bigger, more consistent text; small mobile bump
+
+- Bumped the site's base text sizes up a notch across the board —
+  Effects/Special/Fluff text, buttons, notes, labels — since everything
+  read a bit small, especially on a phone.
+- Stat numbers now stand out more: Skill Total's glowing badge, the
+  Derived Stats numbers (Speed, Defenses, Resists, ...), and every
+  technique/item/background/material's own name are all a consistent,
+  more prominent size now, instead of each having drifted to its own
+  slightly-different one over time.
+- Tags and Relevant Skills chips (the quick-glance rules info on a
+  technique's card) are bigger and a bit bolder too, so they read as
+  the "important, scannable" info they are instead of blending into
+  the background.
+- Unified two spots that showed the same "big bold XP total" number at
+  different sizes depending on which tab you were on.
+- On top of all that, narrow screens (phones) now get one more small
+  proportional bump, so mobile reads noticeably easier without needing
+  a completely separate mobile layout.
+- Same idea for colors, not just text: the card/box background+border
+  look used everywhere (technique/item/background cards, Stats & Skills
+  and Derived Stats blocks, XP tiles, both full-screen modals) and the
+  amber "granted bonus" badge look (an item's flat stat bonus, a
+  material's type tags) had each been retyped by hand at a dozen-plus
+  spots, occasionally drifting slightly. Pulled into shared constants
+  so they can't drift apart again — no visual change, just one
+  definition instead of many.
+
+### 2026-08-18 — Fullness tracker
+
+- **Fullness** (Goblin Game) now has its own tracker on the Character
+  Sheet, right next to Health — 🍖/🍽️ pips instead of hearts, only shown
+  when the Goblin Game supplement is enabled, with a small divider on
+  the pip row itself marking where Too Full starts. Spacious Gut and
+  Gorger correctly raise the max (15 → 20 → 25) and, for Spacious Gut,
+  the Too Full threshold (10 → 15) too, with a "Too Full" badge (Bad
+  Luck on Reflex/Awareness) when you're over it. Fullness can also go
+  negative from missing meals — a "Hunger Debt" pip row below tracks
+  that down to -30 (in steps of 5, so it stays a handful of clickable
+  icons instead of thirty), with its own divider and "Starving" badge
+  at -10.
+
+### 2026-08-17 — Choice-based prereqs, Grants Technique
+
+- **Artisanal Training** and **Profession** now use a real dropdown to
+  pick their School/Profession when you learn them, instead of a plain
+  free-text note — the same mechanism as Soulblade's weapon-type picker.
+  Artisanal Training's prereq badge now correctly checks Craft/Mixology/
+  Survival based on which School you picked, instead of showing no
+  badge at all.
+- **Profession**'s full original text — each of the ten options'
+  specific Good Luck benefit and prereq (Apothecary, Artisan, Busker,
+  Fisher, Gatherer, Grifter, Merchant, Sailor, Tactician, Theologian) —
+  had gone missing from the data at some point; restored it, and wired
+  up its prereq badge the same way as Artisanal Training's. Several
+  options (Apothecary, Artisan, Fisher, Merchant, Sailor) need more than
+  one skill at once, which needed a small extension to the Prereq Check
+  syntax to express.
+- **Profession**'s and (going forward) any similar technique's card now
+  narrows down to just the option(s) you've actually picked instead of
+  always showing the full list — pick Apothecary and only its benefit
+  and prereq show, learn a second copy for Sailor too and both show,
+  side by side — but that list reappears in full while any copy is
+  still sitting on its default "Choose a ___…" (e.g. adding a second
+  copy), so there's always a way to compare the remaining options
+  instead of them vanishing the moment the first copy is picked. The
+  old catch-all "Building" column (Feature-built
+  techniques' behind-the-scenes build instructions) has been renamed to
+  the more general "Builder Notes" and picked up a short explainer on
+  Profession/Artisanal Training's cards about how this narrowing works.
+  Profession's "each time you learn this, choose one of the following"
+  line moved into that same Builder Notes explainer, so the read-only
+  Character Sheet — where the choice is already made — no longer shows
+  a leftover "choose one of the following" ahead of the one option you
+  actually picked.
+- **Extensive Background** now has its own dropdown to pick an
+  additional Background you qualify for, and correctly shows a green
+  "Prereqs: None — ✓ Met" badge instead of no badge. The extra
+  Background you pick shows up on the Character Sheet alongside your
+  normal two.
+- **Creator** and **Professional** backgrounds now automatically grant
+  you Artisanal Training / Profession the moment you select them — free
+  of XP, with their own School/Profession dropdown, but not manually
+  removable (deselect the background to remove the granted technique
+  instead). The Builder's XP totals, and single-character Export/
+  Import, correctly treat these as free and don't double them up.
+
+### 2026-08-17 — Prereq summary panel, share-link cleanup
+
+- The Builder's prereq summary panel is now labeled "Prereq Checker."
+- The URL no longer mirrors the current build in a `#build=...` hash
+  during normal use — that only ever served refresh persistence, which
+  character slots/localStorage already handle.
+- Share links are now much shorter (a typical build's link is roughly a
+  third of its old length) — same data, just packed more efficiently
+  instead of as a quoted-key JSON object. Older links still open fine.
+- Added a **"Show QR code"** button next to Copy share link — pops up
+  the current build's share link as a scannable code, so someone else
+  at the table can open it on their phone without typing a URL.
+- "Copy share link" no longer puts the link in the address bar either —
+  it only ever copies to the clipboard now (falling back to a native
+  copy-this-text prompt if that's blocked).
+- **Character switching overhauled**: the header's character dropdown
+  plus separate "+ New"/"Duplicate" buttons are now one "Manage
+  Characters" button that opens a list of every character with
+  Switch/Duplicate/Delete on each, drag-to-reorder, and a "New
+  Character" row at the end of the list. Also removed "Clear build"
+  from the Builder tab — Delete (or just starting a new character)
+  covers that now.
+- The Rulebook/Glossary header's Techniques link now says `?tab=
+  techniques` when you hover it, matching the tab's actual name
+  (it used to read `?tab=browse`, an old internal name). The `?tab=`
+  query string also disappears from the address bar right after it
+  lands you on the right tab, instead of sitting there — stale — once
+  you switch to a different one.
+- **Builder tab tidy-up**: Export/Import/Share/QR code are now a small
+  button grid to the right of the Character name/Concept fields
+  (wrapping below them on narrow screens) instead of a full-width row
+  underneath. Backup/Restore all characters, and the localStorage
+  warning note, moved into the Manage Characters overlay — they act on
+  every character in the browser, not just the one open here. The
+  Sources header is bolder and brighter than its neighbors now, since
+  it's the one section that starts collapsed.
+- Fixed wrapped header/Builder-row elements landing off-center on
+  narrow-but-not-mobile screens (roughly 500-900px) — a real
+  double-checked layout issue, not just an eyeballing quirk: two items
+  sharing a line and then centered as a *pair* still reads as lopsided
+  when one of them (the page title) is a much wider box than its
+  visible text. Each piece now gets its own row below the breakpoint
+  where they'd otherwise unevenly pair up.
+- Code cleanup pass after this stretch of changes: pulled the QR/
+  Manage-Characters overlays' identical backdrop, Escape-key handling,
+  and × button styling into shared helpers instead of two copies drifting
+  apart, and swept for dead code/stale docs left over from the changes
+  above. No visible behavior change.
+
 ### 2026-08-14 — Rulebook cleanup, material pricing
 
 - Removed Jokers from the rulebook — the deck is now a standard 52-card
