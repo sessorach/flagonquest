@@ -329,9 +329,22 @@ its scope broadens. Not yet decided how far the scope extends.
 
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.
 - Diamonds still has no defensive keyword/mechanic identity.
-- The "bad fail" trigger for accumulating multi-attempt checks (lockpicking-style) isn't defined.
+- ~~The "bad fail" trigger for accumulating multi-attempt checks~~ —
+  resolved: this is deliberately left to GM fiat, not a formula. Fits
+  the player-facing-only scoping note above; no rules text needed.
 - Scope of the generalized `Ritual Magic`-style card-contribution mechanic, and whether/how it becomes Stance-gated.
-- Renaming "Stance" — leaning toward "Form" (over "Style", which is also live in the data as flavor text for several existing Stances, e.g. "Shugen Style"), not yet applied anywhere.
+- "Stance" → "Form" applied in `glossary.md` (the `[Stance]` → `[Form]`
+  Rules Tag entry, mechanic text unchanged). **Not yet applied to the
+  technique data** — `techniques.csv`'s `Tags` column still says
+  "Stance" on ~8 existing techniques, and the `Action` column still
+  says things like "Passive (Stance)". That's out of this session's
+  scope (data/CSV lives in the sibling chat), but it means the
+  glossary's `[Form]` mouseover term has nothing live to link to on
+  the site until the CSV catches up — worth raising in the other chat
+  soon so the two don't stay out of sync for long. Converting `Ritual
+  Magic` (T099) to a Form specifically, with its own Tags/Action/
+  Effects wording, is the same kind of CSV edit and is on hold for the
+  same reason.
 - Social Mechanics portfolio row and the social/exploration rules overhaul generally — explicitly deferred until the core successes/suit fundamentals are done.
 
 ## Things considered and deliberately not done
