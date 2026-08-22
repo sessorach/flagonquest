@@ -110,9 +110,9 @@ A Potion can be consumed to provide the imbiber with an effect. It takes 1 AP to
 
 Abilities with this tag can be learned more than once, and generally have special features based on how many times you learn them. (Noun, not the verb)
 
-#### [Stance]
+#### [Form]
 
-You may enter or leave a Stance at the start of your turn, before anything else happens. You may only be in one Stance at a time, and entering a Stance will cause you to leave any other Stance you are in. If the Stance lists a condition, you may only enter the Stance while you meet the condition, and if you don’t meet it at any time then you immediately leave the Stance.
+You may enter or leave a Form at the start of your turn, before anything else happens. You may only be in one Form at a time, and entering a Form will cause you to leave any other Form you are in. If the Form lists a condition, you may only enter the Form while you meet the condition, and if you don’t meet it at any time then you immediately leave the Form.
 
 #### [Subtle]
 
