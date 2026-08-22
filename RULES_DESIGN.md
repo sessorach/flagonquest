@@ -259,6 +259,26 @@ its scope broadens. Not yet decided how far the scope extends.
   to sit right after Basics and before `# Health and Resources`.
   Nothing else in the book's order changed.
 
+- Fixed the "does the 75 starting Experience cover Techniques too"
+  ambiguity found in the "just for fun" gap review: `## Spending
+  Experience` (with its `### Learning Techniques` child) moved from
+  `# Your Character` to sit directly above `## Building a Character`
+  in `# Character Creation`, and that section's XP bullet now reads
+  "Spend 75 Experience to buy Stats, Skills, and Techniques for your
+  character" instead of only mentioning Stats and Skills. Also
+  confirmed via the Quick Creation walkthrough's own numbers (29 for
+  Skills + 28 for Stats + 18 for 6 Technique Levels = 75 exactly) that
+  Techniques coming out of the same pool was always the intent, just
+  previously unstated.
+- Scoping note from the same review: this rulebook is player-facing
+  only, not a GM's guide. A GM-side difficulty or ruling being left
+  vague (e.g. the group Stealth check's difficulty) isn't a gap by
+  itself, the same way "the GM determines the difficulty" already
+  works everywhere else — only flag something as a real gap if it's
+  about a player's own choices (character building, an action they
+  take themselves) rather than GM adjudication this book was never
+  going to spell out.
+
 ## Open questions / TODO
 
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.

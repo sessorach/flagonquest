@@ -251,30 +251,6 @@ A Technique’s entry will have its name, Level, any tags for the Technique (suc
 
 To learn a Technique, must have everything listed under its Prerequisites. You must know any Techniques listed, and have at least as many ranks as are listed for any Skills or Stats - this is the one place in the game where you care about the Skill points themselves, don’t use the Skill Total or include any other effects.
 
-## Spending Experience
-
-As you reach goals and milestones, you will gain Experience which lets you grow stronger. You can spend Experience to improve your Skills and Stats, as well as learn new Techniques.
-
-A Skill point costs Experience equal to the new point total (you buy each point one at a time, though).
-
-A Stat point costs Experience equal to twice the new point total (same).
-
-Learning a Technique costs Experience equal to thrice the Level of the Technique.
-
-Example: Beornhard just got some Experience, and wants to round out his stats. He decided that 1 Body is too low, so he buys a second point in that Stat. It costs 2 Experience times the new point total, so 2 x 2 = 4 Experience for that point.
-
-Example: Beornhard has two points in Academics, and wants to buy two more points with Experience. The first point he buys brings him to 3 Academics, so it costs 3 Experience. He then buys a fourth point, which costs 4 Experience, for a total of 7 Experience to go from 2 to 4 Academics.
-
-Example: Beornhard wants to buy another copy of Flame Lance, his favorite spell. It’s a Level 2 Technique, so it costs 2 x 3 = 6 Experience.
-
-### Learning Techniques
-
-You can only learn a Technique once, unless it is an Encounter or Duplicate Technique.
-
-Encounter Techniques can only be used once per encounter, you can learn them as many times as you want, and you effectively have as many uses of that Technique as the number of times you know it, expending each independently.
-
-Duplicate Techniques are able to be learned multiple times. Unless otherwise stated, each copy applies its effects again, although many of these will instead include a special note that describes what benefits you get from each extra time you learn it.
-
 # Health and Resources
 
 In your adventures, you have a few important resources to rely on. Health is the most urgent one - without it, you’re in trouble - but cards in your hand, your Techniques, and your equipment are also resources you may use in various ways to win the day.
@@ -637,12 +613,36 @@ Then the enhancement. At Level 3, Elemental-Forged Weaponry costs 3 × 20 = 60 G
 
 This section comes last since it leans on terms and mechanics explained throughout the rest of the book — skim ahead (or get someone to summarize it for you) if something here doesn’t make sense yet.
 
+## Spending Experience
+
+As you reach goals and milestones, you will gain Experience which lets you grow stronger. You can spend Experience to improve your Skills and Stats, as well as learn new Techniques.
+
+A Skill point costs Experience equal to the new point total (you buy each point one at a time, though).
+
+A Stat point costs Experience equal to twice the new point total (same).
+
+Learning a Technique costs Experience equal to thrice the Level of the Technique.
+
+Example: Beornhard just got some Experience, and wants to round out his stats. He decided that 1 Body is too low, so he buys a second point in that Stat. It costs 2 Experience times the new point total, so 2 x 2 = 4 Experience for that point.
+
+Example: Beornhard has two points in Academics, and wants to buy two more points with Experience. The first point he buys brings him to 3 Academics, so it costs 3 Experience. He then buys a fourth point, which costs 4 Experience, for a total of 7 Experience to go from 2 to 4 Academics.
+
+Example: Beornhard wants to buy another copy of Flame Lance, his favorite spell. It’s a Level 2 Technique, so it costs 2 x 3 = 6 Experience.
+
+### Learning Techniques
+
+You can only learn a Technique once, unless it is an Encounter or Duplicate Technique.
+
+Encounter Techniques can only be used once per encounter, you can learn them as many times as you want, and you effectively have as many uses of that Technique as the number of times you know it, expending each independently.
+
+Duplicate Techniques are able to be learned multiple times. Unless otherwise stated, each copy applies its effects again, although many of these will instead include a special note that describes what benefits you get from each extra time you learn it.
+
 ## Building a Character
 
 The basics of making a character are simple:
 
 - Choose whether your character is a **Settler** or a **Wildfolk**. Choose two backgrounds from the General list and/or the list you chose.
-- Spend **75 Experience** to build your character. All your Stats and Skills start at 0, and at this point no Stat or Skill can be raised above 3 ranks.
+- Spend **75 Experience** to buy Stats, Skills, and Techniques for your character. All your Stats and Skills start at 0, and at this point no Stat or Skill can be raised above 3 ranks.
 - You start with an **Adventurer’s Kit** and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
 
 ## Calculated Statistics
