@@ -279,8 +279,39 @@ its scope broadens. Not yet decided how far the scope extends.
   take themselves) rather than GM adjudication this book was never
   going to spell out.
 
+- Major reorder from the "new reader" pacing review: `rulebook.md` now
+  opens with a new `# Quick Start Guide` (one-sentence-each bullets
+  covering Stats/Skills/Skill Total, flips, suits, Extra Successes at
+  a glance, Techniques, Health, Action Points), then `# Character
+  Creation` moved to sit right after it (previously last in the whole
+  book), then `# The Basics` and everything else in their prior
+  order. The idea: worst case, a brand-new player reads the Quick
+  Start Guide for the gist, builds a character right away since
+  Character Creation is now impossible to miss, and picks up the full
+  rules for everything else as they go rather than needing to read
+  linearly before playing. Character Creation's own intro sentence was
+  flipped to match ("comes first so it's easy to find," rest of the
+  book explains everything else in detail) — it used to say the
+  opposite ("comes last since it leans on... the rest of the book").
+- As part of the same pass, `### Successes` in The Basics was cut way
+  down: dropped the exact formula and its worked example, kept only
+  "some flips need more than a bare pass, usually for extended effort
+  like a tough attack, here's the two ways to earn Extra Successes,
+  Adventuring covers exactly how." `### Gambling` kept its rule
+  paragraph as-is but dropped Hilde's combat example (which
+  presupposes Making an Attack, not yet covered this early) — Carrick's
+  lockpicking example stayed since it's a self-contained skill check.
+  **Follow-up not yet done:** Adventuring (`Making an Attack`) needs to
+  actually gain the fuller Successes treatment this trim promised —
+  right now the full mechanical detail that used to live in The Basics
+  isn't duplicated anywhere else yet, just referenced as "covered
+  later."
+
 ## Open questions / TODO
 
+- Adventuring's `Making an Attack` needs the full Successes formula
+  written out — The Basics now only teases it ("Adventuring covers
+  exactly how"), so this is a promise still owed, not optional polish.
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.
 - Diamonds still has no defensive keyword/mechanic identity.
 - The "bad fail" trigger for accumulating multi-attempt checks (lockpicking-style) isn't defined.

@@ -1,3 +1,103 @@
+# Quick Start Guide
+
+This is a quick overview of the game, meant to give you the basic idea of how things work before you read through the full rules. If you only have time for one section before you sit down to play, make it this one.
+
+- You play a character in a fantasy world, working with the rest of your party while the GM runs everyone and everything else.
+- Five Stats and five Skills each define what your character can do. A Skill’s points plus its Stat’s points make that Skill’s Skill Total.
+- To make a check, flip a card and add your Skill Total to it. Beat the difficulty and you succeed.
+- Cards come in 4 suits, and a Skill’s suit can add to what a flip accomplishes.
+- Some flips call for more than a bare pass. Those earn Extra Successes, mostly for things that take extended effort, like a tough attack or a task you’re pushing hard on.
+- Techniques are the special abilities, spells, and maneuvers your character learns over time.
+- Health has two types, Shallow and Deep, and running out of Shallow first is what makes a fight dangerous.
+- Encounters use Action Points to structure combat and other tense scenes.
+
+# Character Creation
+
+This section comes first so it’s easy to find right away. Build a character now, and the rest of the book explains everything else - Stats, Skills, Techniques, and how it all plays out - in full detail as you go.
+
+## Spending Experience
+
+As you reach goals and milestones, you will gain Experience which lets you grow stronger. You can spend Experience to improve your Skills and Stats, as well as learn new Techniques.
+
+A Skill point costs Experience equal to the new point total (you buy each point one at a time, though).
+
+A Stat point costs Experience equal to twice the new point total (same).
+
+Learning a Technique costs Experience equal to thrice the Level of the Technique.
+
+Example: Beornhard just got some Experience, and wants to round out his stats. He decided that 1 Body is too low, so he buys a second point in that Stat. It costs 2 Experience times the new point total, so 2 x 2 = 4 Experience for that point.
+
+Example: Beornhard has two points in Academics, and wants to buy two more points with Experience. The first point he buys brings him to 3 Academics, so it costs 3 Experience. He then buys a fourth point, which costs 4 Experience, for a total of 7 Experience to go from 2 to 4 Academics.
+
+Example: Beornhard wants to buy another copy of Flame Lance, his favorite spell. It’s a Level 2 Technique, so it costs 2 x 3 = 6 Experience.
+
+### Learning Techniques
+
+You can only learn a Technique once, unless it is an Encounter or Duplicate Technique.
+
+Encounter Techniques can only be used once per encounter, you can learn them as many times as you want, and you effectively have as many uses of that Technique as the number of times you know it, expending each independently.
+
+Duplicate Techniques are able to be learned multiple times. Unless otherwise stated, each copy applies its effects again, although many of these will instead include a special note that describes what benefits you get from each extra time you learn it.
+
+## Building a Character
+
+The basics of making a character are simple:
+
+- Choose whether your character is a **Settler** or a **Wildfolk**. Choose two backgrounds from the General list and/or the list you chose.
+- Spend **75 Experience** to buy Stats, Skills, and Techniques for your character. All your Stats and Skills start at 0, and at this point no Stat or Skill can be raised above 3 ranks.
+- You start with an **Adventurer’s Kit** and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
+
+## Calculated Statistics
+
+Below are the calculations for various statistics that your character has, that are determined from your Stats and Skills.
+
+- **Health**: Each character begins with a maximum of five (5) Shallow and Deep Health (10 total).
+- **Speed**: Your Speed is equal to 1 + your Agility.
+- **Reflex**: Your Reflex is equal to your Insight Skill Total.
+- **Cards Per Day**: You draw cards after a full night’s rest equal to twice your total Cunning + Mind.
+- **Rest Health**: You heal Health after a full night’s rest equal to your Body.
+- **Parry Defense**: When you apply your Parry Defense, you pick a weapon you are wielding and then your Defense is equal to 8 + [Weapon’s relevant Skill Total] + Weapon’s Defense.
+- **Dodge Defense**: When you apply your Dodge Defense, you choose Acrobatics or Brawl and then your Defense is equal to 8 + [Acrobatics or Brawl Skill Total].
+- **Vital Defense**: Your Vital Defense is equal to 8 + your Resilience Skill Total.
+- **Mental Defense**: Your Mental Defense is equal to 8 + your Composure Skill Total.
+- **Instinct Defense**: Your Instinct Defense is equal to 8 + your Insight Skill Total.
+- **Resists**: Each of the five types of Resist (Physical, Fire, Frost, Brilliant, Shadow) starts equal to your Essence. Bonuses to any of them come from equipment and other effects.
+
+### Quick Creation References
+
+Each point separately — **Skill**: 1/2/3/4/5 (rank 1-5); **Stat**: 2/4/6/8/10; **Technique**: 3/6/9/12/15 (× Level).
+
+Total cost, from 0 — **Skill**: 1/3/6/10/15 (to reach rank 1-5); **Stat**: 2/6/12/20/30 (to reach rank 1-5).
+
+### “Okay, is there a quick way to make a character for now?”
+
+Yes! Just follow this handy guide:
+
+- Take a minute to think about your character idea, if you haven’t already. What kind of cool abilities would be fun for them to use? What kind of equipment and tools?
+- Skim through the Adventuring Gear and Techniques sections, noting what Stats and Skills those use, both for how effective they are and for any prerequisites to use them in the first place.
+- **Skills**: Time to pick out the Skills that your character will rely on
+  - Choose 2 Skills to have 3 ranks each; these should be your character’s primary focus
+  - Choose 5 Skills to have 2 ranks each; other useful things you want to be able to do, perhaps including Skills that determine your various Defenses
+  - Choose 2 Skills to have 1 rank each; anything you may have considered before, but didn’t make the cut yet
+- **Stats**: Choose how to arrange your Stats
+  - Choose 1 Stat to have 3 ranks; this is pretty important, pick one that boosts your damage, most of your Skills, or otherwise ties into your Favorite Thing to Do
+  - Choose 2 Stats to have 2 ranks each; pick ones to round out your character, peek back at Calculated Statistics for ideas
+  - Put 1 rank in each of the last 2 Stats; on the plus side, they’re easy to buy up higher with Experience in the future
+- **Techniques**: choose 6 total Levels’ worth of Techniques, making sure that you meet the prerequisites for them.
+- **Equipment**: You get an Adventurer’s Kit with all the basics, and then 20 Gold to buy what you want. A bag of some kind is important - a Knapsack if you’re not very strong - plus some weapons, armor, and anything else that looks fun.
+- Verify that everything looks good, you can use all of your Techniques and equipment, and that you didn’t accidentally leave a Defense lower than you meant to.
+
+### “Okay that was helpful, but I’m having trouble making sure I did it right…”
+
+- 2 Skills at 3 ranks each, 5 Skills at 2 ranks, 2 Skills at 1 rank
+- 1 Stat at 3 ranks, 2 Stats at 2 ranks, the last 2 Stats at 1 rank each
+- Pick 6 total Levels’ worth of Techniques; make sure you meet the prereqs
+- Pick the two Backgrounds that fit best and/or look the funniest; anyone can have General ones, but you have to pick ONLY Settler OR Wildfolk options to choose from, on top of that.
+- You have an Adventurer’s Kit, plus 20 Gold to buy some kind of bag, weapon and armor, and anything else you want. Keep the rest to buy drinks with.
+- Make sure you can actually use all of your stuff, and that you didn’t pick the wrong Stats or Skills for anything
+- Double-check Calculated Statistics to make sure you didn’t accidentally end up with something too low for your tastes
+- Give your character a nice name :)
+
 # The Basics
 
 This is how the core of the system works.
@@ -36,15 +136,11 @@ Example: Browndog is trying to win an arm-wrestling contest in her favorite tave
 
 ### Successes
 
-Some checks are simple pass or fail. Others are measured in successes, rewarding doing better than the bare minimum. A flip that meets or beats its difficulty earns 1 success, and you can earn Extra Successes to represent accomplishing your goal faster, more cleanly, or more impressively - Gambling and matching suits in your suit pool can earn these (see relevant rules below). Most checks only need that first success; some ask for more than one before you’re done - forcing open a heavy vault door bit by bit, for instance - and how that works is explained wherever it comes up. Extra Successes’ effects vary by situation, but should be predictable for the characters - the GM should give a sense of what a stronger result looks like. On a damaging attack that hits, for instance, each Extra Success deals +1 damage.
-
-Example: Browndog tries to force open a stuck door with her Might, governed by Clubs. The difficulty is 11, and her Skill Total is +6. She flips a 9 of Clubs for a result of 15 - comfortably clearing the difficulty, and since the card’s suit matches Might’s, she earns 2 successes: 1 for succeeding, 1 Extra Success for the match. The door doesn’t just open, it swings wide with a satisfying crack of old wood.
+Some flips only need a bare pass to succeed. Others call for more, usually because they represent extended effort, like a tough attack or a task you’re pushing hard on, and for those a flip can earn Extra Successes on top of succeeding at all. Gambling and a matching suit in your suit pool are the two ways to earn them. Adventuring covers exactly how Extra Successes get used once you’re ready for it.
 
 ### Gambling
 
 Before making a flip, you may Gamble on it, once or more, declaring how many times before the card is flipped. Each Gamble applies a -2 penalty to the result, but grants an Extra Success if the flip still succeeds - it’s a bet, since you’re wagering on a card you haven’t seen yet. A character with plenty of Skill Total to spare is making a safe bet and can usually Gamble freely; one working at the edge of their ability risks the whole flip to push for more.
-
-Example: Hilde is dispatching some knights from a petty tyrant’s army. They aren’t good combatants, so she knows she can easily hit them with her axe, but they are heavily armored and will take many blows to defeat. Based on past fights, she thinks and decides to attack and Gamble twice on it. She flips a total of a 15 on the attack, -4 for Gambling twice, for a final result of 11. This still hits, and deals an extra 1 damage for each time she Gambled; +2 in total!
 
 Example: Carrick is infiltrating a noble’s inn room while the party keeps him distracted downstairs. She needs to pick the lock to get in, and knows both that this upscale inn has well-oiled locks that are easy to pick open and that she doesn’t have a lot of time. She Gambles thrice on the flip, and thankfully gets a 17 total, so even with the -6 she’s left with a result of 11. This is just enough to pick the lock with 4 total successes, and although normally she would require multiple successful attempts to get the lock all the way open, the GM says that her risky attempt got the lock open in one try.
 
@@ -608,93 +704,6 @@ Example: Enith wants to forge a blade wreathed in shadow. She settles on Element
 First, the base item. A Light One-Handed Melee Weapon is a Weapon, and Enith has a Craft Skill Total of 4 and is trained in Carving (from her Artisanal Training), so she uses the Weapon (Carving) recipe: 2 materials of Wood or Bone, plus 1 of Cloth or Leather. She spends 2 Bone and 1 Leather, all Level 1, along with her carving tools, a workbench, and the recipe itself, and puts in the full 8 hours weapons require.
 
 Then the enhancement. At Level 3, Elemental-Forged Weaponry costs 3 × 20 = 60 Gold, so Enith needs 60 Gold worth of materials, at least one of which must be Shadow. She still has a Level 5 Shadow-aligned material saved from a shade she put down last week, and rounds the rest out with what else she has on hand until she reaches 60. Another 8 hours at the workbench, and the enhancement is done - the finished weapon deals Shadow damage instead of Physical with every attack she makes with it.
-
-# Character Creation
-
-This section comes last since it leans on terms and mechanics explained throughout the rest of the book — skim ahead (or get someone to summarize it for you) if something here doesn’t make sense yet.
-
-## Spending Experience
-
-As you reach goals and milestones, you will gain Experience which lets you grow stronger. You can spend Experience to improve your Skills and Stats, as well as learn new Techniques.
-
-A Skill point costs Experience equal to the new point total (you buy each point one at a time, though).
-
-A Stat point costs Experience equal to twice the new point total (same).
-
-Learning a Technique costs Experience equal to thrice the Level of the Technique.
-
-Example: Beornhard just got some Experience, and wants to round out his stats. He decided that 1 Body is too low, so he buys a second point in that Stat. It costs 2 Experience times the new point total, so 2 x 2 = 4 Experience for that point.
-
-Example: Beornhard has two points in Academics, and wants to buy two more points with Experience. The first point he buys brings him to 3 Academics, so it costs 3 Experience. He then buys a fourth point, which costs 4 Experience, for a total of 7 Experience to go from 2 to 4 Academics.
-
-Example: Beornhard wants to buy another copy of Flame Lance, his favorite spell. It’s a Level 2 Technique, so it costs 2 x 3 = 6 Experience.
-
-### Learning Techniques
-
-You can only learn a Technique once, unless it is an Encounter or Duplicate Technique.
-
-Encounter Techniques can only be used once per encounter, you can learn them as many times as you want, and you effectively have as many uses of that Technique as the number of times you know it, expending each independently.
-
-Duplicate Techniques are able to be learned multiple times. Unless otherwise stated, each copy applies its effects again, although many of these will instead include a special note that describes what benefits you get from each extra time you learn it.
-
-## Building a Character
-
-The basics of making a character are simple:
-
-- Choose whether your character is a **Settler** or a **Wildfolk**. Choose two backgrounds from the General list and/or the list you chose.
-- Spend **75 Experience** to buy Stats, Skills, and Techniques for your character. All your Stats and Skills start at 0, and at this point no Stat or Skill can be raised above 3 ranks.
-- You start with an **Adventurer’s Kit** and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
-
-## Calculated Statistics
-
-Below are the calculations for various statistics that your character has, that are determined from your Stats and Skills.
-
-- **Health**: Each character begins with a maximum of five (5) Shallow and Deep Health (10 total).
-- **Speed**: Your Speed is equal to 1 + your Agility.
-- **Reflex**: Your Reflex is equal to your Insight Skill Total.
-- **Cards Per Day**: You draw cards after a full night’s rest equal to twice your total Cunning + Mind.
-- **Rest Health**: You heal Health after a full night’s rest equal to your Body.
-- **Parry Defense**: When you apply your Parry Defense, you pick a weapon you are wielding and then your Defense is equal to 8 + [Weapon’s relevant Skill Total] + Weapon’s Defense.
-- **Dodge Defense**: When you apply your Dodge Defense, you choose Acrobatics or Brawl and then your Defense is equal to 8 + [Acrobatics or Brawl Skill Total].
-- **Vital Defense**: Your Vital Defense is equal to 8 + your Resilience Skill Total.
-- **Mental Defense**: Your Mental Defense is equal to 8 + your Composure Skill Total.
-- **Instinct Defense**: Your Instinct Defense is equal to 8 + your Insight Skill Total.
-- **Resists**: Each of the five types of Resist (Physical, Fire, Frost, Brilliant, Shadow) starts equal to your Essence. Bonuses to any of them come from equipment and other effects.
-
-### Quick Creation References
-
-Each point separately — **Skill**: 1/2/3/4/5 (rank 1-5); **Stat**: 2/4/6/8/10; **Technique**: 3/6/9/12/15 (× Level).
-
-Total cost, from 0 — **Skill**: 1/3/6/10/15 (to reach rank 1-5); **Stat**: 2/6/12/20/30 (to reach rank 1-5).
-
-### “Okay, is there a quick way to make a character for now?”
-
-Yes! Just follow this handy guide:
-
-- Take a minute to think about your character idea, if you haven’t already. What kind of cool abilities would be fun for them to use? What kind of equipment and tools?
-- Skim through the Adventuring Gear and Techniques sections, noting what Stats and Skills those use, both for how effective they are and for any prerequisites to use them in the first place.
-- **Skills**: Time to pick out the Skills that your character will rely on
-  - Choose 2 Skills to have 3 ranks each; these should be your character’s primary focus
-  - Choose 5 Skills to have 2 ranks each; other useful things you want to be able to do, perhaps including Skills that determine your various Defenses
-  - Choose 2 Skills to have 1 rank each; anything you may have considered before, but didn’t make the cut yet
-- **Stats**: Choose how to arrange your Stats
-  - Choose 1 Stat to have 3 ranks; this is pretty important, pick one that boosts your damage, most of your Skills, or otherwise ties into your Favorite Thing to Do
-  - Choose 2 Stats to have 2 ranks each; pick ones to round out your character, peek back at Calculated Statistics for ideas
-  - Put 1 rank in each of the last 2 Stats; on the plus side, they’re easy to buy up higher with Experience in the future
-- **Techniques**: choose 6 total Levels’ worth of Techniques, making sure that you meet the prerequisites for them.
-- **Equipment**: You get an Adventurer’s Kit with all the basics, and then 20 Gold to buy what you want. A bag of some kind is important - a Knapsack if you’re not very strong - plus some weapons, armor, and anything else that looks fun.
-- Verify that everything looks good, you can use all of your Techniques and equipment, and that you didn’t accidentally leave a Defense lower than you meant to.
-
-### “Okay that was helpful, but I’m having trouble making sure I did it right…”
-
-- 2 Skills at 3 ranks each, 5 Skills at 2 ranks, 2 Skills at 1 rank
-- 1 Stat at 3 ranks, 2 Stats at 2 ranks, the last 2 Stats at 1 rank each
-- Pick 6 total Levels’ worth of Techniques; make sure you meet the prereqs
-- Pick the two Backgrounds that fit best and/or look the funniest; anyone can have General ones, but you have to pick ONLY Settler OR Wildfolk options to choose from, on top of that.
-- You have an Adventurer’s Kit, plus 20 Gold to buy some kind of bag, weapon and armor, and anything else you want. Keep the rest to buy drinks with.
-- Make sure you can actually use all of your stuff, and that you didn’t pick the wrong Stats or Skills for anything
-- Double-check Calculated Statistics to make sure you didn’t accidentally end up with something too low for your tastes
-- Give your character a nice name :)
 
 # Goblin Game {Goblin Game}
 
