@@ -307,11 +307,26 @@ its scope broadens. Not yet decided how far the scope extends.
   isn't duplicated anywhere else yet, just referenced as "covered
   later."
 
+- `Making an Attack` now pays off the promise The Basics makes:
+  explicitly calls an attack "a check" using the same vocabulary as
+  Skill Checks/Successes ("flip a card, add your Skill Total, compare
+  to the difficulty"), spells out the full success math inline (1 for
+  hitting, +1 Extra Success per Gamble, +1 per matching-suit card)
+  instead of a bare cross-reference, and adds a worked example (Jackal,
+  spear attack, Gambling once). The explicit design point behind this:
+  combat has its own pacing bolted on (AP costs, turn order, the
+  declare/flip/resolve steps) but the actual resolution mechanic
+  underneath an attack is identical to any other check, not a separate
+  minigame the way attack rolls/saves can feel bolted onto a different
+  d20 subsystem in something like D&D. Combat Maneuvers (Shove,
+  Grapple, Non-Lethal) didn't need their own edits since they already
+  just say "make a [Skill] attack" and inherit this automatically.
+  Checked for other stale "(see X, above/below)" cross-references left
+  over from the various reorders this session — none found outside
+  Goblin Game, where they were already valid.
+
 ## Open questions / TODO
 
-- Adventuring's `Making an Attack` needs the full Successes formula
-  written out — The Basics now only teases it ("Adventuring covers
-  exactly how"), so this is a promise still owed, not optional polish.
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.
 - Diamonds still has no defensive keyword/mechanic identity.
 - The "bad fail" trigger for accumulating multi-attempt checks (lockpicking-style) isn't defined.
