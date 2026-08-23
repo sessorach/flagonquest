@@ -249,7 +249,7 @@
     "level": 4,
     "title": "Persuasion",
     "supplement": "Base Game",
-    "body": "Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and determines your Strategic statements in a social contest. Persuasion is governed by Spades."
+    "body": "Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets Instinct Defense in a social contest. Persuasion is governed by Spades."
   },
   {
     "id": "streetwise",
@@ -529,14 +529,21 @@
     "level": 2,
     "title": "Social Challenges",
     "supplement": "Base Game",
-    "body": "In many cases, social interactions to convince, impress, or trick someone are resolved with a single Rapport, Presence, or Persuasion check, and the GM determines a difficulty for the check as normal. However, sometimes a lengthy negotiation will unfold into its own encounter, where characters take turns and more specific stats are used."
+    "body": "In many cases, social interactions to convince, impress, or trick someone are resolved with a single Rapport, Presence, or Persuasion check, and the GM determines a difficulty for the check as normal. However, sometimes convincing someone takes more than one check."
   },
   {
     "id": "social-contests",
     "level": 3,
     "title": "Social Contests",
     "supplement": "Base Game",
-    "body": "Social contests are effectively a “team check”, with each group accruing concessions until one loses.\n\nSocial statements take 2 AP to make. There are two kinds:\n\n- Charismatic statements are made against Mental or Instinct Defense. A character can use Presence or Rapport to make one.\n- Strategic statements are made against your choice of either Mental or Instinct Defense. A character can use Persuasion to make one.\n\nA successful statement causes the target’s group to suffer 1 Concession, plus 1 Concession for each Extra Success. Once the party is at 10 Concessions, they lose and the other group isn’t willing to hear them out anymore. Once the other group hits their limit of Concessions, the party wins (per the ‘One Party Wins’ outcome below).\n\nCharacters can be in front or back, 1 AP to move between them.\n\n- In front, you can make statements against the other party. You must choose a target in the front, if there are any.\n- In back, you can only support members of your party."
+    "body": "Some social goals take more than one Statement to pull off - winning someone over, talking your way past a guard, negotiating a good price. These work as an extended check, the same as any other: the GM sets a number of successes needed, and the party earns successes toward it with Statements.\n\nA Statement is a flip using Presence, Rapport, or Persuasion, made against the target’s Mental or Instinct Defense. Persuasion targets Instinct Defense; Presence and Rapport both target Mental Defense."
+  },
+  {
+    "id": "pressure",
+    "level": 3,
+    "title": "Pressure",
+    "supplement": "Base Game",
+    "body": "The GM can track Pressure over a social contest - circumstances piling up against the party, like a mismatched disguise, a story straining under scrutiny, or simply taking too long. The party has Bad Luck on Statements equal to their current Pressure, added for things like:\n\n- A rough starting circumstance, such as impersonating a guard without the uniform.\n- An NPC actively working against the party: a check of their own (any fitting Skill) against the party’s Mental or Instinct Defense, adding Pressure on a hit.\n- Simply taking too long - Pressure may build up the longer a scene drags on.\n\nOnce Pressure stacks high enough, the GM may end the check in failure outright."
   },
   {
     "id": "ending-the-contest",

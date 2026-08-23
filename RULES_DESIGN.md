@@ -231,6 +231,14 @@ its scope broadens. Not yet decided how far the scope extends.
   already-applied sections (Successes, Gambling, The Suit Pool)
   probably don't need a wholesale retrofit — revisit a specific line
   only if it actually reads awkwardly, not just because it uses a dash.
+  Sharpened further during the social contest rewrite: don't write a
+  rule to explain what *doesn't* happen just to set up a design note
+  about what a future Technique might do. Techniques already
+  implicitly can do anything the base rule doesn't cover — stating
+  that out loud (an early Social Contests draft had "Extra Successes
+  don't reduce Pressure on their own - that's Technique territory")
+  is filler, not information. If a design note is worth preserving,
+  it belongs here in this file, not in the rulebook prose.
 
 - `rulebook.md`'s `### Supporting` section was reframed: it used to
   read as a fallback for characters who "don't have a good Skill,"
@@ -344,7 +352,48 @@ its scope broadens. Not yet decided how far the scope extends.
 - Scope of the generalized `Ritual Magic`-style card-contribution
   mechanic beyond Spells (still open — the Form conversion above is
   just the mechanical piece, not this broader design question).
-- Social Mechanics portfolio row and the social/exploration rules overhaul generally — explicitly deferred until the core successes/suit fundamentals are done.
+- Social contests reworked: no longer a separate team-check subsystem
+  with Concessions, front/back positioning, and Charismatic/Strategic
+  statement types. A social contest is now just an extended check like
+  any other — the GM sets a target number of successes, and a
+  Statement (Presence/Rapport/Persuasion, 2 AP implied rather than
+  stated since AP only matters in combat) is a normal check against
+  the target's Mental or Instinct Defense. **New fixed Defense mapping,
+  not a player choice:** Persuasion targets Instinct Defense, Presence
+  and Rapport both target Mental Defense — justified by the Suit
+  assignments already locked in (Persuasion is the lone Spades skill
+  among the three; Presence/Rapport are both Hearts), and by each
+  Skill's own rulebook description (Persuasion explicitly covers
+  lying, matching Instinct/Insight's "sixth sense" for something being
+  off; Presence/Rapport both work on a target's resolve, matching
+  Mental/Composure's "staying power in social situations"). Intent is
+  a simple baseline players can read NPCs against, with Techniques
+  later adding the ability to target the other Defense for a specific
+  character build — not built into the base rule.
+
+  Introduced **Pressure**, replacing Concessions: a GM-tracked value
+  representing circumstances stacking against the party during a
+  contest (a bad disguise, a story straining under scrutiny, simply
+  taking too long), applied as Bad Luck on Statements equal to the
+  current total. Deliberately not tied to a strict per-round formula —
+  "taking too long" only "may" add Pressure, at the GM's pace, matching
+  the same GM-fiat treatment as the accumulating-check "bad fail"
+  trigger. High enough Pressure is the GM's cue to end the check in
+  failure outright. This is also where social-specialist Techniques
+  are meant to live down the line (mitigating Pressure, ignoring it
+  from specific circumstances) — deliberately not previewed in the
+  rulebook text itself, per the style note above.
+
+  `Ending the Contest` and `Results of a Social Contest` (Win Over /
+  Disrespect / Agreement) were left almost untouched — they describe
+  outcomes, which don't depend on how the party got there. Also fixed
+  a stale cross-reference this surfaced: Persuasion's own Skill
+  description used to say it "determines your Strategic statements,"
+  a term that no longer exists — now says it "targets Instinct Defense
+  in a social contest." `glossary.md`'s `Concession` entry was swapped
+  for a `Pressure` one.
+
+  Traveling and Exploration remains fully untouched and still deferred.
 
 ## Things considered and deliberately not done
 

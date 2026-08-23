@@ -249,9 +249,9 @@ Before making a flip, a character may Gamble on it, taking a -2 penalty per Gamb
 
 A bonus success gained from Gambling or other sources, on top of the 1 success a flip already grants when it succeeds — only counts if the flip succeeds in the first place.
 
-#### Concession
+#### Pressure
 
-A successful social statement causes the target’s group to suffer 1 Concession, plus 1 Concession for each Extra Success. A group that reaches 10 Concessions loses the social contest.
+Circumstances piling up against the party during a social contest, adding Bad Luck on Statements equal to the current total. If it climbs high enough, the GM may end the check in failure outright.
 
 # Goblin Game Terms {Goblin Game}
 

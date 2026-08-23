@@ -273,7 +273,7 @@ Disguising yourself and acting in character, no matter who you might be imperson
 
 #### Persuasion
 
-Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and determines your Strategic statements in a social contest. Persuasion is governed by Spades.
+Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets Instinct Defense in a social contest. Persuasion is governed by Spades.
 
 #### Streetwise
 
@@ -567,23 +567,23 @@ While exhausted, suffer a -2 penalty to all flips, Speed, Defenses. If you remai
 
 ## Social Challenges
 
-In many cases, social interactions to convince, impress, or trick someone are resolved with a single Rapport, Presence, or Persuasion check, and the GM determines a difficulty for the check as normal. However, sometimes a lengthy negotiation will unfold into its own encounter, where characters take turns and more specific stats are used.
+In many cases, social interactions to convince, impress, or trick someone are resolved with a single Rapport, Presence, or Persuasion check, and the GM determines a difficulty for the check as normal. However, sometimes convincing someone takes more than one check.
 
 ### Social Contests
 
-Social contests are effectively a “team check”, with each group accruing concessions until one loses.
+Some social goals take more than one Statement to pull off - winning someone over, talking your way past a guard, negotiating a good price. These work as an extended check, the same as any other: the GM sets a number of successes needed, and the party earns successes toward it with Statements.
 
-Social statements take 2 AP to make. There are two kinds:
+A Statement is a flip using Presence, Rapport, or Persuasion, made against the target’s Mental or Instinct Defense. Persuasion targets Instinct Defense; Presence and Rapport both target Mental Defense.
 
-- Charismatic statements are made against Mental or Instinct Defense. A character can use Presence or Rapport to make one.
-- Strategic statements are made against your choice of either Mental or Instinct Defense. A character can use Persuasion to make one.
+### Pressure
 
-A successful statement causes the target’s group to suffer 1 Concession, plus 1 Concession for each Extra Success. Once the party is at 10 Concessions, they lose and the other group isn’t willing to hear them out anymore. Once the other group hits their limit of Concessions, the party wins (per the ‘One Party Wins’ outcome below).
+The GM can track Pressure over a social contest - circumstances piling up against the party, like a mismatched disguise, a story straining under scrutiny, or simply taking too long. The party has Bad Luck on Statements equal to their current Pressure, added for things like:
 
-Characters can be in front or back, 1 AP to move between them.
+- A rough starting circumstance, such as impersonating a guard without the uniform.
+- An NPC actively working against the party: a check of their own (any fitting Skill) against the party’s Mental or Instinct Defense, adding Pressure on a hit.
+- Simply taking too long - Pressure may build up the longer a scene drags on.
 
-- In front, you can make statements against the other party. You must choose a target in the front, if there are any.
-- In back, you can only support members of your party.
+Once Pressure stacks high enough, the GM may end the check in failure outright.
 
 ### Ending the Contest
 
