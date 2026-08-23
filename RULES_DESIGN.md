@@ -332,19 +332,18 @@ its scope broadens. Not yet decided how far the scope extends.
 - ~~The "bad fail" trigger for accumulating multi-attempt checks~~ —
   resolved: this is deliberately left to GM fiat, not a formula. Fits
   the player-facing-only scoping note above; no rules text needed.
-- Scope of the generalized `Ritual Magic`-style card-contribution mechanic, and whether/how it becomes Stance-gated.
-- "Stance" → "Form" applied in `glossary.md` (the `[Stance]` → `[Form]`
-  Rules Tag entry, mechanic text unchanged). **Not yet applied to the
-  technique data** — `techniques.csv`'s `Tags` column still says
-  "Stance" on ~8 existing techniques, and the `Action` column still
-  says things like "Passive (Stance)". That's out of this session's
-  scope (data/CSV lives in the sibling chat), but it means the
-  glossary's `[Form]` mouseover term has nothing live to link to on
-  the site until the CSV catches up — worth raising in the other chat
-  soon so the two don't stay out of sync for long. Converting `Ritual
-  Magic` (T099) to a Form specifically, with its own Tags/Action/
-  Effects wording, is the same kind of CSV edit and is on hold for the
-  same reason.
+- ~~"Stance" → "Form" data-layer gap~~ — resolved: renamed across all
+  14 Form-tagged techniques in `techniques.csv` (Tags, Action, plus
+  the two in-text mentions — Furious Rage's "While in this Stance:",
+  Overchanneling's flavor text), matching the `glossary.md` rename.
+  Also converted `Ritual Magic` (T099) itself to a Form (added the
+  tag, changed Action to "Passive (Form)"). This crossed the
+  data/CSV boundary that was otherwise reserved for the sibling
+  chat — the user explicitly asked for it here since it was a
+  mechanical rename/tagging change, not new design.
+- Scope of the generalized `Ritual Magic`-style card-contribution
+  mechanic beyond Spells (still open — the Form conversion above is
+  just the mechanical piece, not this broader design question).
 - Social Mechanics portfolio row and the social/exploration rules overhaul generally — explicitly deferred until the core successes/suit fundamentals are done.
 
 ## Things considered and deliberately not done
