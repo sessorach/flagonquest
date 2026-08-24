@@ -377,6 +377,16 @@ After you get a full night’s rest, you do the following in order:
 - Heal an amount of Health equal to your Body, split as you choose between Shallow and Deep
 - Draw a number of cards equal to twice the total of your Cunning plus Mind
 
+## Food and Exhaustion
+
+Between fights and difficult checks, your character also needs food, water, and rest to keep going. This rarely comes up in town, where all three are easy to come by, but it matters anywhere they’re not.
+
+If you go longer than 24 hours without getting a full night’s rest, you become exhausted. This lasts until you get a full night’s rest.
+
+If you go a full day without enough food and water, you become exhausted. This lasts until you eat or drink for the day, plus for each day you missed. A single Food item, either raw material or cooked, counts as enough food, and four liters of water is enough for a day.
+
+While exhausted, you suffer a -2 penalty to all flips, Speed, and Defenses. If you remain exhausted for a prolonged amount of time - subject to GM approval, and usually over a week’s time - eventually you will die.
+
 ## Costs and Commitment
 
 Some abilities and items have costs such as spending Health, expending Encounter Techniques, or discarding cards from your hand. If something has a cost, you have to pay the cost in order to use it. If a variable cost is listed, like ‘Discard X cards’, then X must be at least 1. If you pay Health, you choose how much Shallow and/or Deep to make up the total.
@@ -557,16 +567,6 @@ If the party wants to avoid drawing attention while exploring, this uses the gro
 ### Pushing the Pace
 
 If the whole party agrees, they can push the pace to close more ground than a leg would normally cover. Nobody takes a Scout, Search, or Stealth action that leg — everyone’s focus is on speed, not on reading the terrain — and any complication the GM has building simply catches up to the party, with nothing done to soften it.
-
-### Food and Exhaustion
-
-Usually, while staying in town, exhaustion isn’t much of a concern. However, while traveling the wilderness it can threaten even the hardiest of adventurers.
-
-If you go longer than 24 hours without getting a full night’s rest, you become exhausted. This lasts until you get a full night’s rest.
-
-If you go a full day without enough food and water, you become exhausted. This lasts until you eat or drink for the day, plus for each day you missed. A single Food item, either raw material or cooked, will count as enough food, and four liters of water is enough for a day.
-
-While exhausted, suffer a -2 penalty to all flips, Speed, Defenses. If you remain exhausted for a prolonged amount of time - subject to GM approval, and usually over a week’s time - eventually you will die.
 
 ## Social Challenges
 
