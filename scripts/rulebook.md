@@ -349,7 +349,7 @@ A Technique’s rules text can do things the rest of the game doesn’t - jump f
 
 A Technique’s entry will have its name, Level, any tags for the Technique (such as [Encounter], [Martial], or [Spell], refer to the Glossary) that apply to it, a short description with no rules impact, and then the rules for how to use it and what it does.
 
-To learn a Technique, must have everything listed under its Prerequisites. You must know any Techniques listed, and have at least as many ranks as are listed for any Skills or Stats - this is the one place in the game where you care about the Skill points themselves, don’t use the Skill Total or include any other effects.
+To learn a Technique, you must have everything listed under its Prerequisites. You must know any Techniques listed, and have at least as many ranks as are listed for any Skills or Stats - this is the one place in the game where you care about the Skill points themselves, don’t use the Skill Total or include any other effects.
 
 # Health and Resources
 
@@ -415,7 +415,7 @@ Rather than listing money in specific amounts for prices and other purposes, ins
 
 # Adventuring
 
-Adventures are more or less divided up into separate encounters, which can involve all kinds of different challenges and situations - combat, exploration, and social intrigue all share the same basic structure of taking turns and spending Action Points, even as the specifics of each vary.
+Adventures are more or less divided up into separate encounters, which can involve all kinds of different challenges and situations - combat, exploration, and social intrigue among them. Combat runs on turns and Action Points, covered first since it’s the most detailed; Exploration and Social Challenges each have their own pacing, explained where they come up.
 
 ## Encounter Basics
 
@@ -620,7 +620,7 @@ The winning side has earned the respect of the other side for the rest of the da
 
 #### Disrespect
 
-The winning side has made the other side look foolish, unrefined, or otherwise at odds with the overall social fabric of the surroundings for the next hour. All members of the other side have Bad Luck on any Persuasion, Diplomacy, or Intimidate flips during this time, and may suffer additional consequences. They will also likely avoid all members of the winning side, and depending on how the contest ended might be Frightened of the winning side.
+The winning side has made the other side look foolish, unrefined, or otherwise at odds with the overall social fabric of the surroundings for the next hour. All members of the other side have Bad Luck on any Persuasion, Presence, or Rapport flips during this time, and may suffer additional consequences. They will also likely avoid all members of the winning side, and depending on how the contest ended might be Frightened of the winning side.
 
 #### Agreement
 
