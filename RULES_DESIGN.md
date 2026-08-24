@@ -393,79 +393,50 @@ its scope broadens. Not yet decided how far the scope extends.
   in a social contest." `glossary.md`'s `Concession` entry was swapped
   for a `Pressure` one.
 
-  Traveling and Exploration remains fully untouched and still deferred.
+  Traveling and Exploration reworked: see below.
 
-- Traveling and Exploration: drafted in chat (not yet applied to
-  `rulebook.md`), following the same lighter, non-AP-gated pacing as
-  Social Contests, per explicit direction ("Lighter pacing for sure,
-  closer to how we have social checks than the old exploration draft.
-  Still with the same ideas for actions that we have now... Timing
-  probably gets more narrative too."). The section being replaced is
-  genuinely unfinished draft text (literal placeholder fragments like
-  "resolve movement last?", "Uh flat difficulty of 11...") that also
-  contradicts the new AP-only-in-combat rule by describing hour-long
-  AP-based travel rounds.
+- **Traveling and Exploration** rewritten from genuinely unfinished
+  draft text (literal placeholder fragments like "resolve movement
+  last?", "Uh flat difficulty of 11...") that also contradicted the new
+  AP-only-in-combat rule by describing hour-long AP-based travel rounds.
+  Landed on a leg-based structure after reviewing parallels from other
+  systems (point-crawl/leg abstraction generally, Forbidden Lands'
+  per-watch concurrent actions, Blades in the Dark's montage-scene
+  instinct, PbtA's multi-track failure consequences) — closest model is
+  Forbidden Lands' watch: one check per character per leg, no retries
+  until the next leg, no fixed real-time round length (GM paces legs the
+  same way Pressure isn't tied to a strict per-round formula).
 
-  Current draft:
-
-  ```
-  ## Traveling and Exploration
-
-  While the party is traveling through settled, familiar territory, this
-  can usually be handwaved - they get where they're going, and only stop
-  for something worth stopping for. This more detailed approach is for
-  uncharted territory, where the party is actively scouting their
-  surroundings as they go. There's no fixed round length here - the GM
-  paces how much time passes based on what the party's actually doing,
-  the same way a social contest doesn't tick on a strict clock either.
-
-  While exploring, characters can:
-
-  ### Scout
-
-  Make a check - Survival outdoors, Streetwise in a settlement - against
-  a flat difficulty of 11. Each success reveals a clue about a nearby
-  area, such as what's in a neighboring hex or room.
-
-  ### Search
-
-  Choose what you're looking for: food or water, raw materials, tracks
-  (new ones, or following ones you've already found), or a specific
-  object or landmark. Make a check the same way as Scouting, with a
-  difficulty the GM sets based on the circumstances. If you succeed, you
-  find something - food or materials yield a single unit, water is
-  generally a source you can drink from and refill containers at, and
-  other results vary with the situation. What you find is capped at a
-  Level equal to your successes. If you would normally succeed but
-  something's gone wrong, you instead learn why you failed.
-
-  ### Stealth
-
-  If the party wants to avoid drawing attention while exploring, this
-  uses the group Stealth check described under Stealth and Being Aware.
-  Anyone who isn't making an effort to stay quiet automatically counts
-  as a failure in that group check.
-
-  ### Food and Exhaustion
-
-  (unchanged - already uses real hours/days rather than AP, so it didn't
-  need touching)
-  ```
-
-  Editorial reasoning behind the draft: "Move" dropped entirely as a
-  discrete action, since it only existed to be AP-gated before and
-  nothing here needs AP tracking anymore. Scout keeps a flat difficulty
-  11, matching Support's precedent as a reliably-usable baseline; Search
-  stays GM-set since it varies more by context (what's being searched
-  for, terrain, danger). Neither restates Extra Success/Gambling/
-  suit-matching inline, per the established "don't restate what's
-  already implied" trimming discipline (see the Social Contests style
-  note above). Stealth just points at the existing group-check rule
-  under Encounter Basics rather than inventing a new one.
-
-  User then asked for parallels from other systems before finalizing —
-  same pattern as the earlier Successes and Social Contests design
-  passes. **Not yet applied to `rulebook.md`.**
+  New structure: `### Legs of a Journey` (GM sets how much ground a leg
+  covers based on terrain/danger; one action + one check per character
+  per leg, no retries; failed checks are GM-adjudicated as either
+  "nothing happens" or "the party fails to avoid a brewing
+  complication" — deliberately not a formula, same GM-fiat treatment as
+  the "bad fail" trigger and Pressure), `### Scout` (flat difficulty 11,
+  matching Support's precedent as a reliably-usable baseline — reveals
+  info about *both* the leg currently being traveled and a clue about
+  the next one, per explicit correction: "would make more sense if it
+  revealed information about the next stretch of journey, including the
+  one being traveled... tips players off about anything they might run
+  into as they travel"), `### Search` (GM-set difficulty, varies more
+  by context; dropped the old "learn why you failed" retry-flavored
+  line since it assumed a retry loop that no longer exists), `### Stealth`
+  (unchanged in substance, just points at the existing group-check rule
+  under Encounter Basics rather than inventing a new one), and a new
+  `### Pushing the Pace` (the whole party must agree; trades away every
+  character's leg action — no Scout/Search/Stealth that leg — in
+  exchange for covering more ground, and removes the "nothing happens"
+  half of the failure spread: any brewing complication lands unmitigated
+  with no roll). `Move` dropped entirely as a discrete action, since it
+  only existed to be AP-gated before. `### Food and Exhaustion` left
+  untouched (already uses real hours/days, not AP). Applied to
+  `rulebook.md` (commit `a08b24e`); `Pushing the Pace` came from
+  directly answering "what would be some good rules... that would allow
+  for the party to move faster at some sort of drawback," picking the
+  option (narrowing the existing nothing-happens/complication split,
+  combined with the lost-action opportunity cost) that added no new
+  mechanic rather than a Bad-Luck-flavored or Exhaustion-cost
+  alternative also considered.
 
 ## Things considered and deliberately not done
 
