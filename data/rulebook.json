@@ -515,7 +515,42 @@
     "level": 2,
     "title": "Traveling and Exploration",
     "supplement": "Base Game",
-    "body": "While the party is traveling, they each get turns and action points and all that, although a round is about an hour instead of the usual. In many cases where the party is only moving and not doing anything else, such as simply moving along the road at a full traveling pace, this can be handwaved. Instead, this more elaborate framework is for situations such as those where the party is moving through uncharted territory and scouting for information about their surroundings.\n\nuses Survival outdoors, Streetwise in urban environments\n\nThe party takes turns declaring actions, resolve movement last?\n\nList of actions:\n\n- Move: 1 AP, you move\n- Stealth: 2 AP, you sneak while moving, considered to be group stealth check but anyone not stealthing automatically fails\n- Scout: 2 AP, make a check to reveal information about surrounding spaces\n  - Uh flat difficulty of 11, for each success you get a clue about a surrounding hex\n- Search: 2 AP, search for cool stuff\n\nChoose one of the following to search for:\n\n- Food (game or plants) and water\n- Raw materials (Medicinal, Wood, etc.)\n- Tracks, either looking for new ones or following ones you have already found\n- A particular object, landmark, or other specific objective\n\nIf successful, you will find something. Water is usually in the form of a source that allows the party to drink and fill any containers they might have. Food or materials will generally yield a single unit. Other things vary, but you will either find something; if you would usually succeed but fail due to unusual circumstances, you will get a clue as to why you failed.\n\nThe item you turn up will not have a higher Level than the number of successes you get on the check."
+    "body": "While the party is traveling through settled, familiar territory, this can usually be handwaved — they get where they’re going, and only stop for something worth stopping for. This more detailed approach is for uncharted territory, where the party breaks the journey into legs and actively scouts as they go."
+  },
+  {
+    "id": "legs-of-a-journey",
+    "level": 3,
+    "title": "Legs of a Journey",
+    "supplement": "Base Game",
+    "body": "The GM breaks travel into legs. How much ground a leg covers depends on the terrain and how dangerous it is, anywhere from a couple of hours in hostile territory to a full day somewhere calmer. At the start of each leg, every character picks one action below and makes a single check for it. Once that check is made, it’s done for the leg, for better or worse — there’s no retrying until the next one.\n\nOn a failed check, the GM decides what that looks like. Most of the time, nothing happens — you just come away without whatever the action was for. Other times, the party fails to avoid a complication that was already brewing: a random encounter, lost time, spent supplies, or something specific to the region.\n\n*Example: The party pushes into unmapped forest, and the GM calls for a leg covering the next half-day. Felix chooses to Scout, flipping well enough on Survival to beat the difficulty of 11 — the GM warns him about a washed-out ravine on the stretch they’re already crossing, plus a hint of what’s waiting on the leg after it. Beornhard chooses to Search for food and comes up short on his check. The GM decides nothing comes of it this time — just no meal to show for the effort.*\n\nWhile exploring, each character can:"
+  },
+  {
+    "id": "scout",
+    "level": 3,
+    "title": "Scout",
+    "supplement": "Base Game",
+    "body": "Make a check — Survival outdoors, Streetwise in a settlement — against a flat difficulty of 11. Each success warns the party about anything worth noticing on the stretch they’re currently traveling, plus a clue about what’s coming up next."
+  },
+  {
+    "id": "search",
+    "level": 3,
+    "title": "Search",
+    "supplement": "Base Game",
+    "body": "Choose what you’re looking for: food or water, raw materials, tracks, or a specific object or landmark. Make a check the same way as Scouting, with a difficulty the GM sets based on the circumstances. On success, food or materials yield a single unit, water is generally a source you can drink from and refill containers at, and other results vary with the situation — capped at a Level equal to your successes."
+  },
+  {
+    "id": "stealth-2",
+    "level": 3,
+    "title": "Stealth",
+    "supplement": "Base Game",
+    "body": "If the party wants to avoid drawing attention while exploring, this uses the group Stealth check described under Stealth and Being Aware. Anyone who isn’t making an effort to stay quiet automatically counts as a failure in that group check."
+  },
+  {
+    "id": "pushing-the-pace",
+    "level": 3,
+    "title": "Pushing the Pace",
+    "supplement": "Base Game",
+    "body": "If the whole party agrees, they can push the pace to close more ground than a leg would normally cover. Nobody takes a Scout, Search, or Stealth action that leg — everyone’s focus is on speed, not on reading the terrain — and any complication the GM has building simply catches up to the party, with nothing done to soften it."
   },
   {
     "id": "food-and-exhaustion",
