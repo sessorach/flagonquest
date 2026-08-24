@@ -49,7 +49,7 @@ The basics of making a character are simple:
 
 ## Calculated Statistics
 
-Below are the calculations for various statistics that your character has, that are determined from your Stats and Skills.
+Below are the calculations for various statistics that your character has, that are determined from your Stats and Skills. Whenever a calculation leaves you with a fraction, round down.
 
 - **Health**: Each character begins with a maximum of five (5) Shallow and Deep Health (10 total).
 - **Speed**: Your Speed is equal to 1 + your Agility.
@@ -443,23 +443,25 @@ Example: Enith is being attacked by a wolf, and needs to defend herself. Her Sou
 
 ### Moving
 
-Moving takes 1 AP, although the exact nature depends on the encounter. In combat or another fast-paced encounter, each action moves you up to your Speed in meters. In other situations, this represents a small but notable movement around the area in question. In any case, you can take other actions while moving, and you can always end a move action early.
+A move action takes 1 AP to make, representing a small but notable movement. In combat or other fast-paced encounters, this moves you up to your Speed in meters. You can always end a move action early.
 
-When climbing, jumping, or swimming as part of a move, you become limited by your Athletics Skill Total, and can only spend a certain amount of your movement for the action on it. You can continue moving across multiple actions this way by ending one move and starting another, spending AP appropriately, although for jumps this requires landing in between actions. In cases where a surface is not easy to move across, an Acrobatics or Athletics check may be required to avoid wasting the movement.
+A standing character occupies two vertical spaces, roughly their own height, and can reach into whatever’s in the space right next to their head without any special effort — pulling a lever, grabbing something off a shelf, or catching a hold to start a climb. Actually climbing up to stand somewhere, even somewhere already within reach, still takes movement.
 
-When moving horizontally - swimming or jumping - this is half your Athletics Skill Total. For jumping, this just applies against the total spaces that would be otherwise uncrossable, not the total movement required to go from one space to another.
+Climbing, jumping, and swimming all draw from the same budget: half your Athletics Skill Total. This is the most you can spend on climbing, jumping, or swimming in a single move action, or in one longer jump built from several combined actions (see below). Moving one space horizontally, such as swimming or jumping across a gap, costs 1 from that budget. Moving one space vertically, such as climbing or jumping upward, costs 2. A jump that combines both directions, like leaping up and across a gap, spends from the same budget for every space it covers, horizontal and vertical alike.
 
-When moving vertically - climbing or jumping - this is one fourth of your Athletics Skill Total, plus 2 meters for your vertical reach.
+This budget only applies against spaces that would otherwise be uncrossable, not your whole move - the rest of your movement still comes out of your Speed as normal. If covering that distance takes more Speed than a single move action gives you, you can spend another move action and add its Speed toward the same climb, jump, or swim, taking a running start across multiple actions. The budget itself stays fixed either way, so combining actions only helps when Speed, not the budget, is what’s holding you back.
 
-When jumping in both directions, count any spaces vertically as two spaces moved horizontally, and combine the two.
+In cases where a surface is not easy to move across, an Acrobatics or Athletics check may be required to avoid wasting the movement.
 
 If you fall from a height, reduce the distance by either your Essence or half your Acrobatics Skill Total, then lose Health equal to the rest.
 
-Example: Hilde wants to run across a wooden floor then jump across a hole that’s been broken into it. She needs to get 5 spaces over to go where she wants, and the hole is 3 spaces wide. Thankfully, her Speed is 5, and her Athletics Skill Total is 7, which halved (rounded down) is 3, so she can use 3 of her movement to jump across the hole, getting where she needs in a single move action.
+Example: Hilde wants to run across a wooden floor then jump across a hole that’s been broken into it. She needs to get 5 spaces over to go where she wants, and the hole is 3 spaces wide. Her Speed is 5, and her Athletics Skill Total is 7, giving her a budget of 3. Since the hole only costs 3 from that budget, and her Speed of 5 covers the whole distance, she crosses it in a single move action.
 
-Example: Hilde needs to climb up the side of a building to chase a bandit. The building is a bit tall, so it’s 4 spaces tall. Since the last example, Hilde upped her Athletics Skill Total to 8, which even quartered is a 2, so combined with her default vertical reach is 4. With a single move, she manages to climb a bit then pull herself up onto the top of the roof, and pursue the bandit!
+Example: Hilde needs to climb up the side of a building to chase a bandit. The building is short, just 2 spaces tall. Her Athletics Skill Total is 8, giving her a budget of 4 - plenty, since each space costs 2. She scrambles up and over the edge in a single move action, and continues the chase across the rooftops.
 
 Example: Hilde is running after the bandit across city rooftops, but he throws a bottle of grease behind him. The GM says she needs to make an Acrobatics check to avoid slipping if she wants to jump across buildings after him. Hilde could easily make the jump with her Athletics, but unfortunately has bad Acrobatics and fails the skill flip for it. Instead of easily jumping across, she tumbles over the side and the bandit runs away. Better luck next time!
+
+Example: Felix needs to leap across a wide chasm, six spaces across. His Athletics Skill Total is 12, giving him a budget of 6 - just enough - but his Speed is only 3, so a single move action can’t cover that much ground. He spends a second move action, adding its Speed to the first, giving him 6 meters of movement between the two and clearing the chasm in one running leap.
 
 ### Making an Attack
 
