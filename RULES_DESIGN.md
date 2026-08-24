@@ -438,6 +438,32 @@ its scope broadens. Not yet decided how far the scope extends.
   mechanic rather than a Bad-Luck-flavored or Exhaustion-cost
   alternative also considered.
 
+  A comparison pass afterward ("how is the exploration looking?") flagged
+  one seam: `### Food and Exhaustion` was still nested inside Traveling
+  and Exploration, running on a literal 24-hour clock while legs are a
+  GM-paced, variable-length abstraction — every comparison system ties
+  its consequence-clock to its travel-pacing unit directly, and this
+  didn't. Resolved by generalizing it rather than reconciling the two
+  clocks: it's not wilderness-specific in the first place (1 Food item
+  covers a day, applies whether the party's in a dungeon, a city, or on
+  the road), so it moved out of Exploration entirely and became its own
+  `## Food and Exhaustion` section in `# Health and Resources`, right
+  after `## A Full Night's Rest` (thematically adjacent — both are about
+  what happens if you skip a night's sleep) and before `## Costs and
+  Commitment`. Reworded only the opening framing sentence ("usually,
+  while staying in town, exhaustion isn't much of a concern... while
+  traveling the wilderness" → "this rarely comes up in town... but it
+  matters anywhere they're not") to stop scoping the *rule* to
+  wilderness travel while keeping the same in-practice implication that
+  it mainly bites away from easy supply access; the actual mechanics
+  (24-hour rest window, 1 Food/4L water per day, -2 penalty, GM-judged
+  death after a prolonged stretch) are untouched. Checked Goblin Game's
+  `## Food System` (its override of "a full day's nutrition") for a
+  stale reference to the old location — it doesn't name one, so no
+  follow-up needed there. Exploration's own scope is now just the leg
+  structure and its four actions (Scout/Search/Stealth/Pushing the
+  Pace), with no resource-tracking mixed in. Applied in commit `14930ef`.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).
