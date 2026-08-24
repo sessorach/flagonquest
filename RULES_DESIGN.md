@@ -493,6 +493,45 @@ its scope broadens. Not yet decided how far the scope extends.
   structure and its four actions (Scout/Search/Stealth/Pushing the
   Pace), with no resource-tracking mixed in. Applied in commit `14930ef`.
 
+- **Full-book broad review** (base game only — Goblin Game and Creating
+  Items were explicitly excluded from scope: Creating Items' complexity is
+  a known, deferred simplification project, not a bug hunt target, and
+  Goblin Game is a supplement, not part of "the base game" this review
+  covered). Read the whole of `rulebook.md` fresh and found two real,
+  concrete issues plus a small grammar slip, all fixed in commit `6eb02a5`:
+  - The `# Adventuring` intro sentence still claimed combat, exploration,
+    and social intrigue "all share the same basic structure of taking
+    turns and spending Action Points" — stale from before this session's
+    AP-only-in-combat principle landed (Legs of a Journey has no turns/AP
+    at all; Social Contests explicitly dropped its AP mention). Reworded
+    to correctly scope turns/AP to combat and note the other two have
+    their own pacing, without re-claiming a shared structure that no
+    longer exists.
+  - `#### Disrespect` (Results of a Social Contest) referenced "Persuasion,
+    Diplomacy, or Intimidate flips" — Diplomacy and Intimidate aren't
+    Skills in this game at all, a leftover from some earlier, more
+    D&D-flavored draft that predates the finalized 25-Skill list. Fixed
+    to the three actual social Skills: Persuasion, Presence, or Rapport.
+    This section was explicitly left untouched during the Social
+    Contests rework ("describe outcomes, which don't depend on how the
+    party got there"), so it's an old bug the rework didn't introduce or
+    catch, only this later full-read did.
+  - `## Techniques`'s Prerequisites sentence was missing its subject
+    ("To learn a Technique, must have..." → "...you must have...").
+  - Verified clean (no changes needed): all 25 Skills' inline "governed
+    by [Suit]" sentences cross-checked against The Suit Pool's table —
+    fully consistent, no drift. Exploration and Social Contests read
+    cleanly with no stray AP/old-mechanic references beyond the intro
+    sentence above.
+  - Noted but explicitly out of scope per user instruction: Goblin
+    Game's Food System never states outright that it *replaces* the base
+    game's Food-and-Exhaustion penalty for Goblins (only that it
+    "overhauls" food requirements) — Goblin Traits' "Hungry" bullet
+    implies replacement but nothing says so explicitly, unlike Gems'
+    explicit "treat every mention of Gold as Gems" override. Left alone
+    since Goblin Game is out of scope for this pass; worth revisiting
+    whenever Goblin Game content is back in scope.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).
