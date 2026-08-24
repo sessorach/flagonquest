@@ -25,6 +25,8 @@ A Stat point costs Experience equal to twice the new point total (same).
 
 Learning a Technique costs Experience equal to thrice the Level of the Technique.
 
+Stats and Skills each cap at 5 ranks baseline - Techniques, items, and other effects can push you higher, but you can't spend Experience past that on your own.
+
 Example: Beornhard just got some Experience, and wants to round out his stats. He decided that 1 Body is too low, so he buys a second point in that Stat. It costs 2 Experience times the new point total, so 2 x 2 = 4 Experience for that point.
 
 Example: Beornhard has two points in Academics, and wants to buy two more points with Experience. The first point he buys brings him to 3 Academics, so it costs 3 Experience. He then buys a fourth point, which costs 4 Experience, for a total of 7 Experience to go from 2 to 4 Academics.
