@@ -17,6 +17,35 @@ last update, before the compaction happens.
 
 ## Design philosophy established so far
 
+### STANDING RULE — Techniques and items are assumed to break the baseline, and that's fine
+
+This applies to every section of the book, not just one, and should shape how
+all future rules text gets written: **the base rules describe the default
+case, and Techniques/items are the explicitly-sanctioned place for
+exceptions.** Once that's stated up front, it never needs restating at each
+individual rule. A movement rule doesn't need "...unless a Technique lets you
+jump farther" tacked on; a damage rule doesn't need "...unless an item grants
+more" — a reasonable player already infers this once, the same way they infer
+that a locked door can be picked without every mention of "door" repeating
+that fact. Over-qualifying every base rule with this caveat would make the
+book harder to read, not more precise, and is the same "don't write a rule to
+explain what doesn't happen" style principle already established below (see
+the Social Contests entry), just generalized from one example to the whole
+book, per explicit user instruction to "note and double-underline" it as
+standing guidance.
+
+Landed by stating it exactly once, where Techniques are first properly
+introduced (`## Techniques` in `rulebook.md`, "Your Character" chapter):
+"A Technique's rules text can do things the rest of the game doesn't - jump
+farther than normal, grant a bigger bonus, override a limitation entirely -
+simply by saying so. The rest of this book describes the baseline; Techniques
+are what's meant to go beyond it." Applied in commit `ffe0aff`. Practical
+effect going forward: don't add hedging caveats to base rules anticipating
+what a Technique might override (the Moving section, Social Contests, Pressure
+etc. were already written this way without realizing it was a named
+principle) — this is now the explicit, citable reason why, not just a
+case-by-case style call.
+
 ### Successes as the universal resolution currency
 
 The game is moving toward one unified idea of "success" behind every flip
