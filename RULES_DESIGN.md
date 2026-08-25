@@ -417,6 +417,32 @@ above: Total Materials is never computed from Cost at rule-time, so
 there's no division that could round to a degenerate 0. Noting this so
 a future pass doesn't waste time re-chasing it.
 
+**Follow-on: `#### Time` simplified to two flat baselines.** A fresh
+review of Tools/Time (after Materials landed) surfaced two things: the
+old intro sentence claimed Time varied by "item type, relevant Skill,
+materials, and creation School" when the actual rule only ever varied
+by two of those, and Food/Cooking had no stated crafting time at
+all — neither the "Alchemy items" 1-hour bucket nor the Craft-School
+8/4-hour bucket covered it, a gap that predates this session, not
+something the Materials migration introduced. Separately, that
+migration itself introduced a live inconsistency worth naming even
+though it wasn't the thing being fixed: Materials now differentiates
+by weapon/armor size (Light 1H needs 3, Heavy 2H needs 6) where it
+didn't before, but Time stayed one flat 8-hour bucket for all of
+them — before, both were flat, so at least they agreed with each
+other; now only one scales with size.
+
+Resolved by collapsing to two categories, explicitly framed as a
+baseline rather than a precise rule: clothing/armor/weapons/similar
+equipment (including Masterwork, no longer needing its own separate
+sentence) take 8 hours; Alchemy and Food consumables take 1 hour and
+can be batched (any number of the same item at once). This directly
+answers the Food gap (now explicitly in the consumable bucket) and the
+overclaim (two buckets, not four factors) — and sidesteps the
+weapon-size-vs-Time mismatch by making the numbers openly GM-adjustable
+rather than pretending a fixed rule already accounts for it. Applied
+in commit `0799328`.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
