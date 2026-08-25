@@ -13,6 +13,31 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-25 — Unified crafting recipes onto one Materials formula
+
+- Crafting recipes used to come in two incompatible shapes — a fixed
+  Primary/Leeway slot count for Weapons/Armor/Tools, and a Gold-price-
+  derived Total/Base/Extra Materials formula for Masterwork/Alchemy/
+  Potions/Poisons/Grenades/Food — and the rulebook only ever documented
+  the second one, so it never actually explained how the majority of
+  real recipes worked. Replaced both with a single rule: every recipe
+  states its own Total Materials directly, at least half must be a Main
+  Type, up to half can be an Optional Type instead.
+- Restored the original numbers from the project's original design
+  document (now archived at `archive/flagonquest_content_original.docx`
+  for reference): Masterwork a flat 20 materials at the item's own
+  Level, Alchemy and Food a flat 2, Weapons/Armor/Tools mirroring their
+  own Gold Cost directly (they're Level 1 by default).
+- Masterwork items now name only their own Main Type — their Optional
+  Type comes from whichever base item is chosen at craft time, so the
+  same enhancement works whether it's built onto a Metal sword or a
+  Wood bow without needing to state every possible material by hand.
+  The Crafting tab's base-item picker went from a reference-only
+  preview to something that actually feeds into the materials check.
+- If you already own a suitable item to enhance, you can skip gathering
+  its Optional-Type materials and enhance that item directly instead of
+  crafting a fresh one just to sacrifice into the enhancement.
+
 ### 2026-08-19 — Hand-editable printed Character Sheet
 
 - Printed Stats & Skills now show filled/empty dots (●●●○○) instead of

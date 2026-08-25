@@ -217,7 +217,7 @@ just Spells, and possibly turn it into a Stance-equivalent (see below) so
 it can't freely stack with other similarly strong always-on enablers if
 its scope broadens. Not yet decided how far the scope extends.
 
-### Crafting simplification (in progress — decided, not yet written into `rulebook.md` or the CSVs)
+### Crafting simplification (applied)
 
 **Deliberately no check for crafting itself, and this is settled, not
 open.** No failure consequence for a crafting check makes sense: losing
@@ -301,27 +301,86 @@ two-shape split.**
   on the Character Sheet), not a crafting-time material concern. No
   conflict between the two, they answer different questions.
 
-**Explicitly not yet done, by user instruction ("let's just make notes
-... then we can bulk update those later"):**
-- `rulebook.md`'s `#### Materials` section still describes the old
-  Base/Extra framing and needs a full rewrite once this is finalized.
-- The "base item" paragraph drafted earlier in this file (fold
-  Materials/Tools/Time into one pass, skip it if you already own a
-  suitable item) needs revising to match the Main/Optional model instead
-  of a "combine two lists" framing, per the point above.
-- `crafting_recipes.csv` (all 17 rows, especially CR001–CR011's Slots
-  shape) and every Masterwork/Weapon/Armor/etc. item in `items.csv` with
-  its own Total/Base/Extra Materials override still need migrating to
-  the new formula — a bulk data-layer pass, explicitly deferred, likely
-  belongs in the sibling data-focused chat unless raised here again with
-  explicit authorization (same boundary as the Stance→Form rename).
-- Not yet touched at all: Tools (Tools/Workspace/Recipe) and Time — no
-  indication either needs to change under this model, but not
-  re-verified against it either.
+**Original numbers restored from `archive/flagonquest_content_original.docx`**
+(saved into the repo per explicit user request, "it would be nice to
+maintain copies of the original work to reference" — the first
+Word-doc source added to `archive/`, alongside its existing CSV/HTML
+drafts). The doc's own pricing table and per-category recipe stats
+confirmed: Masterwork flat 20 materials at the item's own Level
+(20 Gold/Level pricing × 1 Gold/Level material value cancels out to a
+constant 20, never scaling with Level), Alchemy (Potions/Poisons/
+Grenades) flat 2 (2 Gold/Level, same cancellation), Food flat 2 (its
+own entry, same 2×Level pricing despite being Cooking School not
+Alchemy), Medicinal Supply/Basic Clothing/Basic Jewelry unchanged from
+current data (already matched the doc exactly). Weapons/Armor/Tools
+were **not** reverted to the doc's own Gold-derived approach for those
+categories — that was superseded by a later, deliberate redesign (the
+Primary/Leeway fixed-slot system, per README's own "Crafting materials
+framework" changelog entry) that's kept, just reformatted into Total/
+Main/Optional terms with the same numbers.
 
-**Concise baseline recipe format, drafted per explicit request ("draft up
-what a concise version of these creation rules as a baseline might look
-like") — still just a draft, not applied to `rulebook.md`:**
+**Final correction to "Total Materials = Cost ÷ Level" as a live
+formula: it isn't one, anywhere, not even for Weapons/Armor.** Every
+craftable item just states its own Total Materials directly — "we'll
+likely just make new recipes for everything... it'll just be their
+base price in gold, but we can standardize it." For Weapons/Armor/
+Tools this meant literally copying each item's own Cost (Gold, minus
+the word "Gold") into its own Total Materials column — verified
+against real `items.csv` data first, and every existing Cost already
+matched the user's stated category costs exactly (1H melee/bow-adjacent
+3, 2H melee 6, thrown 5, bows 6 as two-handed, shields 3, light armor
+4, heavy armor 8) — so this was a mechanical copy, not new authoring.
+Unarmed and Improvised are confirmed not craftable (no recipe at all);
+Unarmed Enhancer keeps its own flat 3.
+
+**Applied across every layer, in order, each verified before the
+next:**
+1. `convert.py` — `CRAFTING_RECIPE_MAP`/`ITEM_MAP` dropped Kind/
+   Primary/Leeway entirely, renamed Base/Extra Materials to Main/
+   Optional Materials; removed the now-obsolete Kind-shape validation
+   block. Ran clean, zero validation errors.
+2. `crafting_recipes.csv` — all 17 rows rebuilt on the new columns;
+   Weapon/Armor/Tools recipes leave Total Materials blank on purpose
+   (it's always item-overridden now) but keep their Main/Optional Types.
+3. `items.csv` — Weapon/Armor Total Materials set from each item's own
+   Cost (14 rows, mechanical script, matched expectations exactly);
+   Masterwork items' Optional Materials cleared (1 row had a stray
+   value) since it's now derived from the chosen base item, not stated
+   per-item.
+4. `index.html`'s Crafting tab — `resolveRecipeRequirements`/
+   `craftingMaterialsEligibility`/`craftingGroup`/the render ternary all
+   collapsed from two branches to one. `recipesForItem` fixed to merge
+   an item's own overrides with the matching recipe row(s) *field by
+   field* rather than all-or-nothing — a latent pre-existing bug found
+   during the survey (an item with only some columns overridden was
+   silently losing the rest). The base-item picker went from
+   reference-only to actually functional: picking a base item now feeds
+   its own Main Type in as the Masterwork item's Optional Type, via a
+   new `resolveBaseItemMainTypes` helper — needed because a base item
+   like Light Armor doesn't have one fixed Type of its own, it's
+   craftable via three different Schools each with a different material,
+   so the helper takes the union across all of them. Caught and fixed a
+   real bug here too: my first pass tried to read `baseItem.main_materials`
+   directly, which is blank for anything (like Armor) whose Type lives
+   on the recipe table, not the item — the Playwright screenshot showed
+   the Optional Type missing before this was caught. Removed
+   `itemGoldValue`/`parseGoldNumber` as dead code once the Gold-derived
+   token was gone entirely.
+5. Verified via the CLAUDE.md-documented Playwright sandbox workflow
+   (local testsite/, React/ReactDOM/Babel/qrcode-generator vendored via
+   `npm install` since the CDN proxy blocks unpkg.com directly but
+   allows the npm registry) across a Weapon (item-override + recipe
+   merge), a Masterwork item (base-item-driven Optional Type, including
+   live-switching between two base items and watching the Materials
+   line update), a Potion, and a Food item with a pre-existing per-item
+   override — all rendered correctly, no new console errors.
+6. `rulebook.md`'s `#### Materials`/`#### Time`/Examples rewritten to
+   match (the "base item" paragraph drafted earlier in this file turned
+   out not to need revision — the Main/Optional model was already
+   compatible with it once written).
+
+**Concise baseline recipe format** (this is what actually shipped, in
+both `rulebook.md` and the data):
 
 > Gather a number of materials equal to the item's Total Materials. Every
 > material used must be at least the item's Level.
