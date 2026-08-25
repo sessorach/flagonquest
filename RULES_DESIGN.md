@@ -480,6 +480,40 @@ was just to drop the stale "Bows can only be made this way" sentence
 from CR001's description; no `Applies To`/schema/index.html change
 needed, since both rows were already unrestricted in practice.
 
+Then Armor: the doc's *"Heavy armor can only be made using Smithing"*
+restriction turned out to already be correctly enforced — CR006 is the
+only Heavy Armor recipe, no Carving/Tailoring variant exists for it —
+so nothing needed fixing there, unlike Bows. But comparing the three
+Light Armor variants' Optional Materials against the doc surfaced a
+real inconsistency: CR003 (Carving) and CR004 (Tailoring) both list
+all three non-Main material categories as Optional (e.g. CR004: Main
+Cloth/Leather, Optional Wood/Bone/Metal), but CR005 (Smithing) had
+been trimmed to only `Cloth, Leather` during the Basic Gear pass —
+dropping Wood/Bone. At the time that trim looked like a reasonable
+"tighten an overly-long Optional list" cleanup (see above), but
+revisiting it here against Armor specifically as a set, it broke the
+3-way symmetry the other two rows already had. Asked the user whether
+Wood/Bone belonged there; the design intent turned out to be that
+Cloth/Leather and Wood/Bone are treated as full material analogues in
+this system — both are "harvested from creatures" style materials
+that are broadly interchangeable in crafting — so the correct shape is
+full 3-way symmetry (every School's Optional list includes the other
+two Schools' Main types) rather than the shorter list. Reverted CR005
+back to `Cloth, Leather, Wood, Bone`, and extended the same fix to
+CR006 (Armor - Heavy (Smithing)) for consistency — it shares the same
+Main (Metal) and the same Smithing School as CR005, so there's no
+reason for it to have a shorter Optional list just because it's the
+Heavy variant.
+
+Worth revisiting once Weapons come back up: CR001/CR002 currently only
+grant `Cloth, Leather` as Optional (per the doc's literal wording,
+which never mentions Metal or Wood/Bone as Weapon extras), but the
+same Cloth/Leather-and-Wood/Bone-are-analogues principle established
+here could argue for Wood/Bone showing up as an Optional option on
+CR002 (Smithing) too. Not changed yet — flagged, not applied, since
+Weapons was already reviewed and closed out before this principle was
+articulated; raise it with the user rather than assuming.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
