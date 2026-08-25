@@ -676,7 +676,7 @@
     "level": 4,
     "title": "Time",
     "supplement": "Base Game",
-    "body": "Creating an item takes time, depending on the item type, relevant Skill, materials, and creation School used.\n\nMost Alchemy items take an hour to make, and multiple items can be prepared simultaneously.\n\nItems from the Schools related to the Craft Skill - Smithing, Carving, Tailoring, and Jewelrymaking - require more time. Larger items, including weapons and armor, take 8 hours of work to prepare; smaller items such as tools and jewelry take 4 hours of work.\n\nMasterwork enhancements require a full 8 hours of work to create."
+    "body": "Creating an item takes time. Unless a specific item says otherwise, everything falls into one of two categories:\n\n- Clothing, armor, weapons, and similar equipment take 8 hours of work to prepare.\n- Alchemy and Food items are consumables, and take 1 hour - any number of the same item can be prepared together in that time.\n\nThese are baseline expectations, not fixed rules - the GM is welcome to adjust them for a specific item if it makes more sense to."
   },
   {
     "id": "levels",
