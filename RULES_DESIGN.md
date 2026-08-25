@@ -217,6 +217,101 @@ just Spells, and possibly turn it into a Stance-equivalent (see below) so
 it can't freely stack with other similarly strong always-on enablers if
 its scope broadens. Not yet decided how far the scope extends.
 
+### Crafting simplification (in progress — decided, not yet written into `rulebook.md` or the CSVs)
+
+**Deliberately no check for crafting itself, and this is settled, not
+open.** No failure consequence for a crafting check makes sense: losing
+time just drags out an already-slow, low-stakes activity, losing
+materials is too punishing for something this deliberate, and given how
+long crafting already takes, Gambling/spending cards would make a check
+close to a formality anyway. More importantly, the actual uncertainty
+in getting an item already happened upstream — the checks to find the
+materials, survive the fight that dropped them, or talk your way into a
+recipe. Materials are essentially loot; crafting is what turns loot into
+targeted value. Gating that behind its own roll would be re-rolling dice
+on something the fiction already resolved — the same "don't stack
+redundant risk on something already resolved" instinct behind not
+double-dipping Pressure with Extra Successes, or cutting the old flat
+Hearts damage bonus once suit-matching covered the same ground.
+
+**The actual problem is that the book currently documents the wrong
+formula for how Materials work, and there isn't just one formula to
+begin with.** `crafting_recipes.csv` has two incompatible shapes:
+"Slots" (a small fixed count split into Primary/Leeway, e.g. a Carving
+weapon's "2 Wood/Bone, 1 Cloth/Leather") governs Weapons, Armor, Basic
+Clothing, Basic Jewelry, and Medicinal Supply — the items players craft
+most — while "Value" (Total Materials count, Base Material Type ≥1,
+Extra Material Type capped at half) governs only the five generic
+fallback recipes for open-ended, Level-scaling categories (Masterwork,
+Potions, Poisons, Grenades, Food). The rulebook's `#### Materials`
+section only documents Value, meaning it never actually explains the
+mechanic behind the majority of real recipes, including the book's own
+worked example (Enith's blade uses Slots-shape numbers the prose never
+introduces). Separately, `convert.py`'s docstring references "the
+rulebook's per-slot default" base item (e.g. "basic clothing or basic
+jewelry") for when `Base Item Options` is left blank — that default is
+never actually stated anywhere in `rulebook.md`, just assumed to exist.
+
+**Decided replacement: one universal formula, everywhere, no more
+two-shape split.**
+- **Total Materials = Cost (in Gold) ÷ Level** of the specific build
+  being crafted. This is the corrected form of the original intent
+  (a Masterwork item needs a flat 20 materials at its own Level, which
+  at 1 Gold per Level of material value naturally produces the "20 Gold
+  per Level" price) — restated as a formula instead of a hardcoded 20,
+  so it works for anything, not just Masterwork.
+- **Basic (non-Masterwork) items use the exact same formula**, not a
+  separate system — they just default to being crafted at Level 1, so
+  Total Materials collapses to roughly their raw Gold Cost at that
+  Level. This is the piece that fully unifies things: mundane gear and
+  Masterwork enhancements were never actually different systems, one
+  just defaults to a low Level.
+- **Main Type must be at least half of Total Materials, rounded down
+  per the global rounding rule; Optional Type can fill the rest, up to
+  half.** This is mathematically identical to the old Base
+  (≥1)/Extra (≤half) framing — same rule, restated as a symmetric floor
+  instead of an awkward floor-of-1-plus-a-cap. Directly matches the
+  worked "fire sword: 20 total, at least 10 Fire, up to 10 Metal, so 14
+  Fire + 6 Metal is fine" framing.
+- **This also quietly resolves the base-item flexibility problem**
+  without needing a separate "combine two material lists" mechanic (the
+  fold-it-into-one-crafting-pass idea from the base-item discussion
+  above is now superseded by this): an enhancement just names its own
+  Main Type, and the underlying item's normal Type serves as the
+  Optional Type, inside the same shared Total Materials pool — a fire
+  sword and a fire bow are the same enhancement recipe, just with
+  Optional satisfied by Metal vs. Wood respectively. No union of two
+  separate lists needed.
+- Converting the existing fixed-slot recipes (Weapons/Armor/Clothing/
+  Jewelry) to this shape loosens them slightly (e.g. a Carving weapon
+  could go all-Wood/Bone instead of being forced into exactly 1
+  Cloth/Leather) — a deliberate, welcome side effect of "let players mix
+  and match based on what they have," not a bug to guard against.
+- `Base Item Options` (specific item IDs, e.g. `I128,I129` reused across
+  several Torso Masterwork items) stays a separate, complementary
+  mechanic from Main/Optional Types — it's an equip-time concern (which
+  specific already-owned item can carry this enhancement's stat bonuses
+  on the Character Sheet), not a crafting-time material concern. No
+  conflict between the two, they answer different questions.
+
+**Explicitly not yet done, by user instruction ("let's just make notes
+... then we can bulk update those later"):**
+- `rulebook.md`'s `#### Materials` section still describes the old
+  Base/Extra framing and needs a full rewrite once this is finalized.
+- The "base item" paragraph drafted earlier in this file (fold
+  Materials/Tools/Time into one pass, skip it if you already own a
+  suitable item) needs revising to match the Main/Optional model instead
+  of a "combine two lists" framing, per the point above.
+- `crafting_recipes.csv` (all 17 rows, especially CR001–CR011's Slots
+  shape) and every Masterwork/Weapon/Armor/etc. item in `items.csv` with
+  its own Total/Base/Extra Materials override still need migrating to
+  the new formula — a bulk data-layer pass, explicitly deferred, likely
+  belongs in the sibling data-focused chat unless raised here again with
+  explicit authorization (same boundary as the Stance→Form rename).
+- Not yet touched at all: Tools (Tools/Workspace/Recipe) and Time — no
+  indication either needs to change under this model, but not
+  re-verified against it either.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
