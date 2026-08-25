@@ -312,6 +312,40 @@ two-shape split.**
   indication either needs to change under this model, but not
   re-verified against it either.
 
+**Concise baseline recipe format, drafted per explicit request ("draft up
+what a concise version of these creation rules as a baseline might look
+like") — still just a draft, not applied to `rulebook.md`:**
+
+> Gather a number of materials equal to the item's Total Materials — its
+> Cost in Gold divided by its Level, rounded down. Every material used
+> must be at least the item's Level.
+>
+> A recipe lists Main material Types and, if it has any, Optional
+> material Types. At least half your materials (rounded down) must be
+> Main Types; the rest can be Optional Types instead, up to half.
+>
+> Masterwork items are built onto a base item (see "base item," above).
+> Rather than listing their own Optional Types, a Masterwork entry lists
+> only its own Main Type — usually just one — and the chosen base item's
+> own Main Type becomes this item's Optional Type instead. A
+> Fire-aligned weapon enhancement always lists Fire as its Main Type;
+> built onto a Metal-based sword, Metal becomes its Optional Type, or
+> Wood if it's built onto a Carving-based bow instead.
+
+Verified against a worked example (Enith's blade, Level 3 Elemental-Forged
+Weaponry, base = Metal sword): Cost 60 ÷ Level 3 = Total 20, half = 10,
+so at least 10 Shadow (Main) + up to 10 Metal (Optional) = 20. Checked
+with an actual calculation, not asserted — see the standing note below
+on why that matters here specifically.
+
+**Flagged, unresolved risk — do not treat this formula as final until
+checked:** Total Materials = Cost ÷ Level rounds to 0 for any item where
+Cost < Level, which is clearly wrong (0 materials to craft something).
+Haven't verified whether any real Level 1 item in `items.csv` actually
+has Cost below its own Level — needs checking against real Cost numbers
+before this ships, and probably wants an explicit "minimum 1" floor
+stated in the rule regardless, as a safety net.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
@@ -634,6 +668,18 @@ two-shape split.**
 
 ## Notes to self (compaction aid)
 
+- **Verify, don't assert, on crafting math specifically** — user
+  instruction, in response to the Materials-formula work: "don't make
+  any mistakes... add a note to yourself to not make any mistakes in the
+  future." When a worked example involves arithmetic (Total Materials =
+  Cost ÷ Level, the Main-floor/Optional-cap split, or anything similar),
+  actually compute it and check the result is internally consistent
+  (Main ≥ half, Optional ≤ half, they sum to Total, nothing rounds to a
+  degenerate 0) before presenting it as an example — don't write
+  plausible-looking numbers and trust they work out. Crafting's Materials
+  formula still has an open, unverified risk (Cost < Level rounding to 0
+  materials) flagged in the Crafting section below — don't let that kind
+  of gap slip through unflagged again.
 - Full 25-skill list with governing Stat lives in `index.html`'s
   `STAT_SKILLS` (~line 488), not in the rulebook prose itself as a single
   table — cross-check there, not from memory, if the skill list ever
