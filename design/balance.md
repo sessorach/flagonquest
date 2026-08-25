@@ -88,10 +88,14 @@ actual effect may need adjusting, not just its raw Value-model number.
 
 ## Open balance work
 
-- **The 18 newly-drafted Masterwork items** (`items.csv` `I148`-`I167`,
-  see `RULES_DESIGN.md`'s "Old-docs review" entry) need to be run through
-  the value model to get properly statted and leveled — this is the next
-  planned pass.
+- **The newly-drafted Masterwork items** (`items.csv` `I148`-`I167` from
+  the old-docs review, plus `I168`-`I189` from the later site-export
+  gap-fill — see `RULES_DESIGN.md`'s "Old-docs review" and "Site-export
+  item gap-fill" entries) need to be run through the value model to get
+  properly statted and leveled — this is the next planned pass. The
+  site-export batch also added 18 non-Masterwork items (`I190`-`I207`)
+  that don't need value-model leveling but should get a normal
+  price/rarity sanity check alongside the rest.
 
 ## Passes completed
 

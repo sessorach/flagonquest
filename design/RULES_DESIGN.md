@@ -874,6 +874,112 @@ School-override item showing "Smithing" instead of "—") — all correct,
 zero page errors, and the one comma-containing name (Ring of Charming,
 Assertive, or Bold Statements) round-tripped through CSV quoting fine.
 
+**Site export gap-fill — 22 more Masterwork items, 18 non-Masterwork
+items, `I168`-`I207`.** Same idea as the docx-derived batch above, but
+sourced from `archive/flagonquest_site_items.md` (the old Google Sites
+export) instead — two background agents cross-referenced its
+Masterwork sections and everything else against the then-current
+206-row `items.csv`. One of the two agents got interrupted mid-run by
+the user; resuming it via a fresh `Agent` call (rather than properly
+`SendMessage`-continuing the original) accidentally left two parallel
+agents running the same Masterwork extraction — turned out to be a
+lucky mistake, since the original had actually finished successfully
+in the background (its result just hadn't landed yet) and the
+duplicate surfaced 6 additional genuine gaps the first pass missed
+(Cape of Many Pockets, Periapt of Constitutional Integrity, Jerkin of
+the Land, Returning Knives, Spiritlink Scepter, Scepter of Evocation),
+so both results got merged rather than the duplicate being wasted
+work. Note for next time: use `SendMessage` to resume a specific
+agent, not a fresh `Agent` call — this worked out, but was luck, not
+the right mechanism.
+
+Real, recurring old-design pattern worth naming: several of the new
+gaps are the *same power offered on an alternate slot's base item* —
+Jerkin of the Land (Torso) duplicates the already-drafted Shawl of the
+Land (Neck)'s no-food/water effect; Periapt of Constitutional
+Integrity (Neck) duplicates the existing Armor of Constitutional
+Integrity (Torso, `I069`); Cape of Many Pockets (Neck) duplicates the
+existing Sash of Deep Pockets (Belt, `I105`). The old site apparently
+offered players a slot choice for some powers rather than fixing them
+to one slot. Kept all of these as separate items rather than treating
+them as pure duplicates, since the old design intent was clearly "same
+power, pick your preferred slot" — worth deciding explicitly in the
+balance pass whether that's a pattern to keep going forward or a
+one-off relic to consolidate.
+
+Scope trimmed from what the agents found: dropped Wand, Orb of the
+Weave, Signet of Technical Prowess (+ its Tactician's Band
+Power-boost variant), and Mitts of the Great Beast. The first three
+depend on mechanics that don't exist in the current rules at all
+(a generic Technique "Power score," a spell-emulation-via-fixed-stats
+subsystem, a "commit" resource) — real redesign work, not a
+translation job, so left as a future design question rather than
+force-drafted. Mitts of the Great Beast was flagged by its own
+finding agent as likely just an early draft of the already-existing
+Mighty Mitts (`I077`, same Hands/Level 3 slot, same "Good Luck on
+Might" idea) — excluded as a probable duplicate rather than drafted
+alongside it. Also excluded, from the non-Masterwork side: the 7
+"reflip cards" tier-6/8 Potions from the older "Alchemical Goods" page
+(Bottled Wit, Extra Heartbeat, Placeholder's Profound Potion, Steady
+Heart, Strongbrew, Coursing River, Quickmend Potion) — the newer
+"Alchemical Items" page's own potion list already dropped every one of
+these, meaning the designer had already deliberately cut them in a
+later revision, not merely never gotten around to porting them; and
+the entire dice-based/Mana-resource "Items" page sub-list (Mana
+Potion, Elixir of Might, Dragon Rum, Shockwave Jar, Inferno Jar,
+Bottled Sunlight, plus a ~25-item batch of charm/ring items) — a
+structurally distinct older ruleset predating the current card system,
+flagged by its own finding agent as not straightforwardly portable.
+
+Terminology translations applied while drafting (old Stat/Skill/Defense
+names don't match current ones — checked `index.html`'s `STAT_SKILLS`
+and `rulebook.md` directly rather than guess): old "Elementalism"
+Skill → current **Sorcery**; old "Argument Defense"/"Suspicion
+Defense" (no current equivalent) → **Instinct Defense**/**Mental
+Defense against Statements** respectively, matching how Persuasion
+targets Instinct and Presence/Rapport target Mental; old "Willpower"/
+"Focus"/"Mana" spends → dropped entirely, no current equivalent
+resource; old "Off-Balance" effect (Quartz Tincture) → substituted
+**Harried** (an existing debuff), not a literal port. Also caught and
+fixed a **real pre-existing bug** from the earlier docx-derived batch
+while doing this: `Ring of Charming, Assertive, or Bold Statements`
+(`I157`) referenced fictional "Maneuvering/Debate/Forceful Statement"
+subtypes that never existed in the current rules (Statements are just
+a flip using Presence, Rapport, or Persuasion, no further subtyping) —
+fixed to gate on those three Skills directly instead.
+
+**A second redundancy sweep, and a clarified scope for the standing
+rule.** Verifying the new batch in Playwright surfaced the same
+Main/Optional-redundancy pattern from the Alchemy/Consumables pass
+(`Kiss of the Earth`, `Predator's Cry`, `Revivification Draught` all
+had `Medicinal` in both their own Main and CR013's inherited Optional;
+`Windrider's Loop` and `Placeholder's Bottomless Belt` likewise
+duplicated their single base item's own resolved Optional Type) — all
+five trimmed. Running the same check retroactively across *all*
+existing Masterwork rows turned up two more, both pre-existing bugs
+from the earlier docx batch (`Choker of Defiance` and the just-fixed
+`Ring of Charming...`, both placeholder-Main'd as `Precious`, which
+collided with Ring/Neck's own resolved Optional of `Precious` via
+Basic Jewelry) — reassigned both to `Metal` instead.
+
+Doing this sweep clarified the standing rule's actual scope, which
+hadn't been made explicit before: it applies cleanly to **single-base-
+item slots** (Neck/Ring resolve to Basic Jewelry's `Precious` only;
+Hands/Feet/Belt resolve to Basic Clothing's `Cloth` only — one fixed
+Optional, no player choice involved, so an overlap is unconditionally
+redundant). It does **not** apply the same way to **multi-base-item
+slots** (Head chooses between Basic Clothing/Basic Jewelry; Torso
+between Light Armor/Heavy Armor/Basic Clothing; Held between 9 weapon
+types) — there, Optional is resolved *per whichever base the player
+actually picks*, so a Main Type overlapping with the *union* only
+overlaps for some picks, not all. Several already-shipped Torso items
+already have this shape (Dauntless Wrap, Coat of Knit Flesh, Fortified
+Armor, Robes of Resilience) and weren't touched — Jerkin of the Land
+and Fitted Armor (both Torso, both new) and Headband of Telepathy
+(Head, new) have the same overlap-with-the-union shape and were left
+alone too, matching that established precedent rather than
+retroactively "fixing" something that was never actually broken.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
