@@ -3,7 +3,7 @@ CR001,Weapon (Carving),"Standard weapons made from wood, bone, or similar worked
 CR002,Weapon (Smithing),Standard weapons forged from metal.,Smithing,Craft 3,,Metal,"Cloth, Leather",Category:Weapon
 CR003,Armor - Light (Carving),Light armor built from wood or bone reinforcement.,Carving,Craft 3,,"Wood, Bone","Cloth, Leather, Metal","Category:Armor,NameContains:Light"
 CR004,Armor - Light (Tailoring),Light armor sewn from cloth and leather.,Tailoring,Craft 3,,"Cloth, Leather","Wood, Bone, Metal","Category:Armor,NameContains:Light"
-CR005,Armor - Light (Smithing),Light armor with metal fittings and plating.,Smithing,Craft 3,,Metal,"Cloth, Leather, Wood, Bone","Category:Armor,NameContains:Light"
+CR005,Armor - Light (Smithing),Light armor with metal fittings and plating.,Smithing,Craft 3,,Metal,"Cloth, Leather","Category:Armor,NameContains:Light"
 CR006,Armor - Heavy (Smithing),Heavy armor. Can only be made using Smithing.,Smithing,Craft 5,,Metal,"Cloth, Leather","Category:Armor,NameContains:Heavy"
 CR007,Unarmed Enhancer (Tailoring),"Generally a base item for Masterwork items, for unarmed attacks.",Tailoring,Craft 3,3,"Cloth, Leather",Metal,Name:Unarmed Enhancer
 CR008,Unarmed Enhancer (Smithing),"Generally a base item for Masterwork items, for unarmed attacks.",Smithing,Craft 3,3,Metal,"Cloth, Leather",Name:Unarmed Enhancer

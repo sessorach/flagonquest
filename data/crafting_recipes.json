@@ -51,7 +51,7 @@
     "skill_total": "Craft 3",
     "total_materials": null,
     "main_materials": "Metal",
-    "optional_materials": "Cloth, Leather, Wood, Bone",
+    "optional_materials": "Cloth, Leather",
     "applies_to": "Category:Armor,NameContains:Light"
   },
   {
