@@ -505,14 +505,16 @@ Main (Metal) and the same Smithing School as CR005, so there's no
 reason for it to have a shorter Optional list just because it's the
 Heavy variant.
 
-Worth revisiting once Weapons come back up: CR001/CR002 currently only
-grant `Cloth, Leather` as Optional (per the doc's literal wording,
-which never mentions Metal or Wood/Bone as Weapon extras), but the
-same Cloth/Leather-and-Wood/Bone-are-analogues principle established
-here could argue for Wood/Bone showing up as an Optional option on
-CR002 (Smithing) too. Not changed yet — flagged, not applied, since
-Weapons was already reviewed and closed out before this principle was
-articulated; raise it with the user rather than assuming.
+Circled back to Weapons with that same principle: CR001/CR002 only
+granted `Cloth, Leather` as Optional (per the doc's literal wording,
+which never mentions Metal or Wood/Bone as Weapon extras). Explicit
+design direction from the user: err toward more material flexibility
+generally, since a player already has to invest in a Craft skill and a
+small technique just to unlock a creation School in the first place —
+the recipes themselves can afford to be permissive. Applied full
+symmetry to match Armor's shape: CR001 (Carving, Main Wood/Bone) now
+lists Optional `Cloth, Leather, Metal`; CR002 (Smithing, Main Metal)
+now lists Optional `Cloth, Leather, Wood, Bone`.
 
 ## Applied so far
 
