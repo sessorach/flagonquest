@@ -254,18 +254,25 @@ never actually stated anywhere in `rulebook.md`, just assumed to exist.
 
 **Decided replacement: one universal formula, everywhere, no more
 two-shape split.**
-- **Total Materials = Cost (in Gold) ÷ Level** of the specific build
-  being crafted. This is the corrected form of the original intent
-  (a Masterwork item needs a flat 20 materials at its own Level, which
-  at 1 Gold per Level of material value naturally produces the "20 Gold
-  per Level" price) — restated as a formula instead of a hardcoded 20,
-  so it works for anything, not just Masterwork.
-- **Basic (non-Masterwork) items use the exact same formula**, not a
-  separate system — they just default to being crafted at Level 1, so
-  Total Materials collapses to roughly their raw Gold Cost at that
-  Level. This is the piece that fully unifies things: mundane gear and
-  Masterwork enhancements were never actually different systems, one
-  just defaults to a low Level.
+- **Correction from the previous entry: Cost ÷ Level is a design-time
+  authoring guideline, not a live rule the book states or players
+  compute.** Total Materials is just a plain number a recipe states
+  outright, the same way it already states Level and School — nothing
+  in the rulebook derives it from Cost at read-time. Cost ÷ Level (at 1
+  Gold per Level of material value) is only *why* Masterwork recipes
+  land on a flat 20 when authoring them (Level × 20 Gold pricing was
+  chosen specifically so 20 materials at the item's own Level produces
+  that price) — it's the reasoning behind picking Masterwork's number,
+  not something every recipe follows. Basic items (weapons, armor, etc.)
+  get their own directly-authored Total Materials number based on other
+  factors entirely (one-handed vs. two-handed, etc.), unrelated to this
+  formula. This resolves the Cost-vs-Level edge case flagged below —
+  there's no live division happening, so nothing can round to 0.
+- **Every recipe just states Total Materials as a number.** Masterwork
+  recipes will typically land on 20 (per the design principle above);
+  basic items get whatever number fits their own design factors. The
+  rulebook's job is explaining how to *use* that number (Main/Optional
+  split below), not where it came from.
 - **Main Type must be at least half of Total Materials, rounded down
   per the global rounding rule; Optional Type can fill the rest, up to
   half.** This is mathematically identical to the old Base
@@ -316,9 +323,8 @@ two-shape split.**
 what a concise version of these creation rules as a baseline might look
 like") — still just a draft, not applied to `rulebook.md`:**
 
-> Gather a number of materials equal to the item's Total Materials — its
-> Cost in Gold divided by its Level, rounded down. Every material used
-> must be at least the item's Level.
+> Gather a number of materials equal to the item's Total Materials. Every
+> material used must be at least the item's Level.
 >
 > A recipe lists Main material Types and, if it has any, Optional
 > material Types. At least half your materials (rounded down) must be
@@ -331,20 +337,26 @@ like") — still just a draft, not applied to `rulebook.md`:**
 > Fire-aligned weapon enhancement always lists Fire as its Main Type;
 > built onto a Metal-based sword, Metal becomes its Optional Type, or
 > Wood if it's built onto a Carving-based bow instead.
+>
+> Example: Enith wants to forge a blade wreathed in shadow. She settles
+> on Elemental-Forged Weaponry, a Level 3 Masterwork enhancement (Main
+> Type: Shadow, Total Materials 20), built onto a Metal-based sword as
+> her base item, giving Metal as her Optional Type. She needs at least
+> 10 Shadow-aligned materials, and can round out the rest with up to 10
+> Metal — she spends 10 Shadow-aligned scraps (including a Level 5 one
+> saved from a shade she put down last week) and 10 Level 3 Metal
+> ingots, all Level 3 or higher.
 
-Verified against a worked example (Enith's blade, Level 3 Elemental-Forged
-Weaponry, base = Metal sword): Cost 60 ÷ Level 3 = Total 20, half = 10,
-so at least 10 Shadow (Main) + up to 10 Metal (Optional) = 20. Checked
-with an actual calculation, not asserted — see the standing note below
-on why that matters here specifically.
+Verified against that worked example: Total 20, half = 10, 10 Shadow
+(Main) + 10 Metal (Optional) = 20. Checked with an actual calculation,
+not asserted — see the standing note below on why that matters here
+specifically.
 
-**Flagged, unresolved risk — do not treat this formula as final until
-checked:** Total Materials = Cost ÷ Level rounds to 0 for any item where
-Cost < Level, which is clearly wrong (0 materials to craft something).
-Haven't verified whether any real Level 1 item in `items.csv` actually
-has Cost below its own Level — needs checking against real Cost numbers
-before this ships, and probably wants an explicit "minimum 1" floor
-stated in the rule regardless, as a safety net.
+**Previously flagged risk (Cost ÷ Level rounding to 0 for low-Cost
+items) is now moot, not just unresolved** — resolved by the correction
+above: Total Materials is never computed from Cost at rule-time, so
+there's no division that could round to a degenerate 0. Noting this so
+a future pass doesn't waste time re-chasing it.
 
 ## Applied so far
 
@@ -671,15 +683,19 @@ stated in the rule regardless, as a safety net.
 - **Verify, don't assert, on crafting math specifically** — user
   instruction, in response to the Materials-formula work: "don't make
   any mistakes... add a note to yourself to not make any mistakes in the
-  future." When a worked example involves arithmetic (Total Materials =
-  Cost ÷ Level, the Main-floor/Optional-cap split, or anything similar),
-  actually compute it and check the result is internally consistent
-  (Main ≥ half, Optional ≤ half, they sum to Total, nothing rounds to a
-  degenerate 0) before presenting it as an example — don't write
-  plausible-looking numbers and trust they work out. Crafting's Materials
-  formula still has an open, unverified risk (Cost < Level rounding to 0
-  materials) flagged in the Crafting section below — don't let that kind
-  of gap slip through unflagged again.
+  future." When a worked example involves arithmetic (the Main-floor/
+  Optional-cap split, or anything similar), actually compute it and
+  check the result is internally consistent (Main ≥ half, Optional ≤
+  half, they sum to Total) before presenting it as an example — don't
+  write plausible-looking numbers and trust they work out. (The
+  Cost ÷ Level-rounds-to-0 risk this note originally pointed at turned
+  out to be based on a misunderstanding — Cost ÷ Level is a design-time
+  authoring guideline, not something the live rule computes — so it's
+  resolved, not just flagged. Leaving that correction in the Crafting
+  section as the example of exactly the kind of thing this note exists
+  to catch: I stated a mechanic with more confidence than I'd actually
+  verified it, and it took the user's correction to catch it, not my own
+  check.)
 - Full 25-skill list with governing Stat lives in `index.html`'s
   `STAT_SKILLS` (~line 488), not in the rulebook prose itself as a single
   table — cross-check there, not from memory, if the skill list ever
