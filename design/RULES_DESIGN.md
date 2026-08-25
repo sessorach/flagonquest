@@ -1194,51 +1194,8 @@ Assertive, or Bold Statements) round-tripped through CSV quoting fine.
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).
 - Letting the *target* of a healing effect spend their own cards as a general pattern (only `Pressure Point Revitalization` does this, deliberately kept unique).
 
-## Notes to self (compaction aid)
-
-- **Verify, don't assert, on crafting math specifically** — user
-  instruction, in response to the Materials-formula work: "don't make
-  any mistakes... add a note to yourself to not make any mistakes in the
-  future." When a worked example involves arithmetic (the Main-floor/
-  Optional-cap split, or anything similar), actually compute it and
-  check the result is internally consistent (Main ≥ half, Optional ≤
-  half, they sum to Total) before presenting it as an example — don't
-  write plausible-looking numbers and trust they work out. (The
-  Cost ÷ Level-rounds-to-0 risk this note originally pointed at turned
-  out to be based on a misunderstanding — Cost ÷ Level is a design-time
-  authoring guideline, not something the live rule computes — so it's
-  resolved, not just flagged. Leaving that correction in the Crafting
-  section as the example of exactly the kind of thing this note exists
-  to catch: I stated a mechanic with more confidence than I'd actually
-  verified it, and it took the user's correction to catch it, not my own
-  check.)
-- Full 25-skill list with governing Stat lives in `index.html`'s
-  `STAT_SKILLS` (~line 488), not in the rulebook prose itself as a single
-  table — cross-check there, not from memory, if the skill list ever
-  seems off.
-- Skill descriptions (flavor + mechanical blurb) are `####` headers under
-  each Stat's `###` section in `rulebook.md`, roughly lines 13–151.
-- "The Suit Pool" section (`rulebook.md` ~line 255) and "Gambling and
-  Extra Successes" (~line 219) are the two sections that will need the
-  heaviest rewrite once the successes formula is finalized.
-- Common Effects keyword definitions (Bleeding, Crippled, Frightened,
-  Harried, Hasted, Necrotic, Protected, Slowed, Taunted, Vulnerable,
-  Ward) are in `glossary.md` under "# Common Effects", ~line 121–176.
-  `[Stance]` rules tag is ~line 113.
-- `parse_markdown_sections` in `convert.py` (~line 596) treats every
-  non-blank, non-heading line in `rulebook.md`/`glossary.md` as literal
-  rendered body text — no HTML-comment stripping exists. Never leave
-  draft/review markers inside those files; draft in chat first, commit
-  clean.
-- Workflow established this session: draft rules prose in chat, matching
-  voice per `CLAUDE.md`'s Rulebook/Glossary prose guidance, get
-  confirmation, then commit — one focused commit per section. No
-  in-file review markers. Git diffs/commits are the review record.
-- Data-layer changes (CSV edits, technique rebalancing, new keyword
-  mechanics with real numbers) are explicitly out of scope for this
-  branch/chat — handled in a sibling chat. This session sticks to
-  `rulebook.md`, `glossary.md`, and `convert.py`'s mini-syntaxes if the
-  overhaul touches those.
-- Branch: `claude/flagonquest-rules-overhaul`, deliberately separate from
-  the concurrent site/UI branch (`claude/flagonquest-webpage-579utb`) —
-  the two merge once both are ready.
+*(Session workflow notes, file-location facts, and standing verification
+habits used to live in a "Notes to self" section here — moved to
+`CLAUDE.md` instead, since this file is meant to stay a clean decision
+record rather than mixing in process notes. See `CLAUDE.md`'s "Quick
+reference" section and Git workflow.)*

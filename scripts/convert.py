@@ -459,7 +459,7 @@ CRAFTING_RECIPE_MAP = {
     # varies item to item; for the open-ended fallback categories
     # (Masterwork, Potions, Poisons, Grenades, Food) it's a single flat
     # number that covers every item in that category regardless of
-    # Level, by design (see RULES_DESIGN.md's Crafting section for why
+    # Level, by design (see design/RULES_DESIGN.md's Crafting section for why
     # a flat count works — Masterwork's 20-Gold-per-Level pricing and a
     # material's Level-equals-Gold-value rule are chosen so 20 materials
     # at the item's own Level always produces the right price, so the

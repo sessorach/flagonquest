@@ -6,7 +6,15 @@ For what the project *is* and what's shipped, see `README.md`. For the
 data-format mini-syntaxes (Prereq Check, Feature Budget, Builder Notes,
 Choice Effects, Base Item Options), see the docstring at the top of
 `scripts/convert.py` — that documentation is authoritative and
-shouldn't be duplicated here.
+shouldn't be duplicated here. For the *why* behind a specific rules or
+balance decision, see `design/RULES_DESIGN.md` (a human-readable log of
+design reasoning as decisions get made — rules content, not workflow
+notes) and `design/balance.md` (aggregate balance-approach notes,
+building on the value-economy model explained in
+`design/flagonquest_balance_notes_model.md`). This file (`CLAUDE.md`) is
+where *my own* working notes belong instead — file-location facts,
+standing verification habits, session workflow — not `RULES_DESIGN.md`,
+which should stay a clean decision record.
 
 ## Architecture
 
@@ -60,8 +68,43 @@ shouldn't be duplicated here.
   in `scripts/convert.py`'s docstring for the two this project has
   already done this for.
 - `archive/` holds genuinely dead files — an old prototype, stale one-off
-  outputs from completed migrations. Nothing in it is read by the site or
-  by `convert.py`.
+  outputs from completed migrations, and historical source documents
+  (old design docs, the designer's balance-notes spreadsheet) kept for
+  reference. Nothing in it is read by the site or by `convert.py`.
+- `design/` holds living design documentation — `RULES_DESIGN.md` (a
+  human-readable log of rules-design reasoning, growing as decisions get
+  made) and `balance.md` (aggregate balance-approach notes), plus
+  derivative reference docs for things archived elsewhere (e.g.
+  `flagonquest_balance_notes_model.md` explains the value-economy model
+  in the spreadsheet under `archive/`). Unlike `archive/`, this is meant
+  to be read and extended, not just kept for the record.
+
+## Quick reference
+
+- The full 25-skill list with its governing Stat lives in `index.html`'s
+  `STAT_SKILLS` constant (~line 488), not as a single table anywhere in
+  the rulebook prose — cross-check there, not from memory, if the skill
+  list ever seems off.
+- Skill descriptions (flavor + mechanical blurb) are `####` headers
+  under each Stat's `###` section in `rulebook.md`, roughly lines
+  13–151.
+- Common Effects keyword definitions (Bleeding, Crippled, Frightened,
+  Harried, Hasted, Necrotic, Protected, Slowed, Taunted, Vulnerable,
+  Ward) are in `glossary.md` under "# Common Effects", ~line 121–176.
+  The `[Stance]` rules tag is ~line 113.
+- `parse_markdown_sections` in `convert.py` (~line 596) treats every
+  non-blank, non-heading line in `rulebook.md`/`glossary.md` as literal
+  rendered body text — no HTML-comment stripping exists. Never leave
+  draft/review markers inside those files; draft in chat first, commit
+  clean.
+- **Verify, don't assert, especially on any math** (crafting formulas,
+  worked examples, balance-model calculations) — standing instruction
+  from an explicit correction earlier in this project's history: a
+  worked example was presented with more confidence than had actually
+  been verified, and it took the user's correction to catch it, not a
+  self-check. When a claim involves arithmetic, actually compute it and
+  check the result is internally consistent before presenting it — don't
+  write plausible-looking numbers and trust they work out.
 
 ## Editing content
 
@@ -630,6 +673,10 @@ Two recurring environment quirks worth knowing:
 - Before committing, always check `git status`/`git diff --stat`, and
   fetch + compare against `origin/<branch>` to confirm nothing else
   changed the remote branch since the last push.
+- For rules/design prose specifically: draft in chat, matching voice per
+  this file's Rulebook/Glossary prose guidance, get confirmation, then
+  commit — one focused commit per section. No in-file review markers;
+  git diffs/commits are the review record.
 
 ## Things considered and deliberately not done
 
