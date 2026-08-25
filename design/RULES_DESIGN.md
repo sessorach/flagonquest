@@ -980,6 +980,96 @@ and Fitted Armor (both Torso, both new) and Headband of Telepathy
 alone too, matching that established precedent rather than
 retroactively "fixing" something that was never actually broken.
 
+**Final Masterwork completeness/dedup sweep — 4 more items, `I208`-`I211`,
+plus 3 pre-existing bugs surfaced along the way.** Before starting the
+Masterwork balance pass, ran a dedicated agent to cross-check the full
+99-item Masterwork list (59 pre-existing + the 22 docx-derived + the 18
+site-export-derived) against every archived source doc one more time,
+specifically hunting for (a) items still genuinely missing and (b)
+accidental duplicates between the docx-derived and site-export-derived
+batches, since those were drafted by different agents in different
+sessions with no way to see each other's work.
+
+Found 5 candidate-missing items, all buried in a scrap-dump section
+titled "MASTEROWKRK ITEMS OF WONDER AND MYSTERY" in `site_other.md`/
+`site_techniques.md` — a lower-priority file the original site-export
+pass hadn't fully mined. 4 were portable and got drafted:
+- **Elemental Warding Amulet** (`I208`, Ring, Level 1-2) — a Ring version
+  of `I067` Elemental-Resistant Armor's exact mechanic (+1/+2 Resist to
+  a chosen element, scaling with Level). Straight "same power, different
+  slot" port, no new numbers invented.
+- **Mendicant's Cord** (`I209`, Belt, Level 2) — touch yourself or a
+  willing adjacent creature and shift up to 2 points from one Defense to
+  another (can't push the raised one above the lowered one's new value).
+  A genuinely novel mechanic, no current analogue.
+- **Scaraculpi's Gleaming Justice** (`I210`, Held, Level 5) — unconditional
+  Good Luck on all attacks with the weapon, no action cost. Stronger than
+  `I103` Thrumming Focus's AP-gated version of the same benefit, but the
+  old doc places it at Level 5 (this system's top tier) and other Level 5
+  items are similarly strong (`I104` Apocalyptic Staff gives a free
+  Level-4 spell once per encounter) — ported at face value, flagged here
+  as a first candidate to sanity-check once the balance pass actually runs.
+- **Worry Token** (`I211`, Neck, Level 2) — a 3-charge daily trinket with
+  a GM-secret random-effect table (mostly "nothing happens," occasionally
+  a minor heal/flip bonus/Defense bonus/Resist-ignore/card draw). Ported
+  close to verbatim; it's an unusual mechanic for this catalog (no other
+  item hides its effect from the player) but nothing about it needed
+  redesigning, just translating "Armor Soak" → "Physical Resist."
+
+**Shield of Supplies excluded** — its own source text is just "U" (an
+unfilled placeholder marker) followed by two open questions ("Holds like
+an Adventurer's Kit? Can dismiss items and they can be re-grabbed from
+the shield?"). Unlike the other 4, this was never actually a decided
+mechanic to translate, just a stub idea — same exclusion basis as Wand/
+Orb of the Weave/Signet of Technical Prowess from the earlier pass
+(needs real design work, not translation). Elemental Staff and Invoker's
+Scepter, also in the same scrap dump, were confirmed to fall under the
+already-documented Willpower/spell-commit incompatibility that justified
+excluding Wand/Orb, plus Invoker's Scepter has no effect ever written
+for it at all.
+
+**Bugs found and fixed while cross-checking:**
+- `I169` Stoic Skullcap and `I170` Sympathetic Hat (both Head, Level 2)
+  had ended up with byte-identical Effects text ("+1 bonus to Mental
+  Defense against Statements"). Root cause: the two old items used
+  different old Defense names — Stoic Skullcap's source already said
+  "Mental Defense during social contests" (no translation needed);
+  Sympathetic Hat's said "Suspicion Defense," which the established
+  Argument/Suspicion → Instinct/Mental translation rule (see the
+  terminology-translations note above) correctly maps to "Mental
+  Defense against Statements" too. The two old Defenses genuinely
+  collapse onto the same current one — this isn't a translation error,
+  it's current rules being simpler than old ones (old had a 3-way
+  Defense split for Statement subtypes; current only has 2). Since a
+  same-slot, mechanically-identical pair is still redundant as a
+  catalog entry regardless of why, re-differentiated Sympathetic Hat
+  instead of leaving the collision: its own fluff text ("attune the
+  emotions of the wearer with those around them... helps them
+  understand the feelings that drive others") is about reading other
+  people, not resisting persuasion — and a different old-era source
+  line (an Insight Skill blurb: "determines your Reflex bonus as well
+  as your Suspicion Defense") independently backs Insight, i.e. current
+  **Instinct Defense**, as the better-fitting translation for this
+  specific item. Changed to "+1 bonus to Instinct Defense."
+- `I073` Robes of Resilience used the old term "Soak" instead of
+  current "Resist" in its Effects text (bonus value itself, +1, was
+  already correct against source) — fixed the wording only.
+- `I074` Robes of the Elemental Lord read "+3 bonus to Fire, Frost, and
+  Shadow Resists" — checked against its own source
+  (`site_items.md` line 2254, the more-current-looking of two listings,
+  since it already used "Resist"/"Brilliant" rather than the other
+  listing's older "Soak"/"Spirit"), which says "+2 bonus to Fire,
+  Frost, **Brilliant**, and Shadow Resists." Current data had both an
+  inflated bonus (+3 vs +2) and a missing element (no Brilliant) —
+  fixed to match source. Predates this project's two item-gap-fill
+  sessions, so it's an older transcription slip, not something either
+  drafting pass introduced.
+
+Total Masterwork count is now 103 (`I057`-`I115`, `I148`-`I165`,
+`I168`-`I189`, `I208`-`I211`), confirmed no ID gaps/typos and
+`Base Item Options` internally consistent across all of them. This is
+the full list going into the balance pass.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`

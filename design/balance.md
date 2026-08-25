@@ -88,12 +88,18 @@ actual effect may need adjusting, not just its raw Value-model number.
 
 ## Open balance work
 
-- **The newly-drafted Masterwork items** (`items.csv` `I148`-`I167` from
-  the old-docs review, plus `I168`-`I189` from the later site-export
-  gap-fill — see `RULES_DESIGN.md`'s "Old-docs review" and "Site-export
-  item gap-fill" entries) need to be run through the value model to get
-  properly statted and leveled — this is the next planned pass. The
-  site-export batch also added 18 non-Masterwork items (`I190`-`I207`)
+- **The full Masterwork list, 103 items total** (`items.csv` `I057`-`I115`
+  pre-existing, plus `I148`-`I165`, `I168`-`I189`, and `I208`-`I211`
+  newly drafted across three gap-fill passes — see `RULES_DESIGN.md`'s
+  "Old-docs review," "Site export gap-fill," and "Final Masterwork
+  completeness/dedup sweep" entries) needs to be run through the value
+  model to get properly statted and leveled — this is the next planned
+  pass, and the gap-fill work feeding it is now done. `I210` Scaraculpi's
+  Gleaming Justice (unconditional Good Luck on all attacks, no action
+  cost) is flagged in RULES_DESIGN.md as a first candidate worth
+  sanity-checking, since it's stronger than `I103` Thrumming Focus's
+  otherwise-similar AP-gated version.
+- The site-export batch also added 18 non-Masterwork items (`I190`-`I207`)
   that don't need value-model leveling but should get a normal
   price/rarity sanity check alongside the rest.
 
