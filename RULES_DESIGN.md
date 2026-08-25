@@ -623,13 +623,26 @@ union logic that this is a display-only cleanup for both, not a
 behavior change (Basic Poison's craftable pool was always "100%
 Medicinal" either way).
 
-The Grenade Fire redundancy (4 of 9 items) is not yet resolved — a
-table was shown to the user for a fuller review of that recipe first,
-since a fix there is less clean-cut: Fire is a fixed Main for those
-four items but only one branch of an OR-choice Main
-(`Brilliant, Fire, Frost, or Shadow`) for Acidic Flask, so a
-blanket "remove Fire from CR015's Optional" would also remove it as a
-legitimate padding option for the five non-Fire-Main grenades.
+**Resolved.** Shown the Grenade table above, the user reconsidered
+keeping Fire as a blanket Optional at all — on reflection, "Alchemy
+has Medicinal as a glue type" (i.e. the one shared padding material
+across every Alchemy/Consumable recipe), Acidic Flask should keep its
+own unique flexibility as a cheap-materials outlet via its Main
+OR-list rather than needing Fire in Optional too, and any real
+elemental-material variety belongs in future Masterwork/Alchemy
+additions rather than being baked into Grenade's Optional list. So
+rather than the narrower per-item fix considered above (dropping Fire
+only from the four Fire-Main items' own Optional), simplified further:
+dropped Fire from CR015's Optional Materials entirely, leaving just
+`Medicinal` — now identical in shape to Potion (CR013) and Poison
+(CR014). No per-item overrides needed anywhere, since the redundancy
+this whole sub-thread started from no longer exists at the source.
+Alchemy/Consumables recipes are now uniform: every one of Potion,
+Poison, and Grenade has `Medicinal` as its sole Optional padding
+material, and Food alone keeps a second Optional Type (`Bone`)
+alongside Medicinal, deliberately, since Food is meant to be more
+flexible than the others (managing it is expected to be a lighter
+concern for most parties than needing a broad Alchemy stockpile).
 
 ## Applied so far
 
