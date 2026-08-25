@@ -4019,9 +4019,15 @@ function parseSkillTotalText(text, itemLevels) {
 // "Wood or Bone (if Carving), Metal (if Smithing)" → ["Wood","Bone","Metal"]
 // — strips the "(if School)" qualifier (see the KNOWN SIMPLIFICATION
 // above) and flattens "X or Y" into separate entries. "Varies" resolves
-// to null, same idea as parseSchoolList/parseSkillTotalText.
+// to null, same idea as parseSchoolList/parseSkillTotalText. So does
+// the literal "None" (Travel Rations, Basic Poison, Energizing Brew,
+// Spirit Quest Ointment all use it for "no Optional Materials at all")
+// — without this, "None" would parse as one literal Type named "None"
+// and show up as "or up to half None" in the Crafting tab instead of
+// just omitting the Optional clause.
 function parseTypesList(text) {
   const stripped = (text || "").replace(/\(if [^)]*\)/gi, "");
+  if (/^none$/i.test(stripped.trim())) return null;
   const parts = stripped.split(/,|\bor\b|\band\b/i).map(s => s.trim()).filter(Boolean);
   if (parts.length === 0 || parts.every(p => /^varies$/i.test(p))) return null;
   return [...new Set(parts)];

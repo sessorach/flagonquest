@@ -707,6 +707,40 @@ Hands/Feet/Belt following the doc's clean rule; fix Torso's missing 3
 items and add the missing Basic Clothing option to all 9), then the 4
 bespoke "Other" items individually last.
 
+**Spirit Quest Ointment moved out of Masterwork entirely.** Before
+even reaching the "Other" items in that sequencing, the user decided
+it was never really a Masterwork enhancement to begin with — a
+one-time-use ritual item (spend 24 hours, reassign all Experience),
+not a permanent worn/held upgrade like the rest of the category — and
+reclassified it as a Potion instead, explicitly accepting it as "a
+special-rule consumable that breaks the pattern" going forward rather
+than trying to force it to fit either category's mold. Category
+Masterwork → Potion, Slot cleared (Potions don't have one), School and
+Skill Total cleared so it now inherits CR013's standard Alchemy
+School and `Mixology [twice the item's Level]` formula (resolves to
+Mixology 6 at its Level 3, down from the Masterwork-formula Mixology 8
+it had for about one commit) — its outlier Total Materials (15, not
+Potion's flat 2) and three-Type Main (`Brilliant, Shadow, Medicinal`)
+both stay, since those are exactly the "breaks the pattern"
+specialness the user wants kept. Gave it an explicit Optional
+Materials override of `None`, since Medicinal — CR013's blanket
+Optional — is already one of its own Main Types (the same
+redundancy-avoidance standing rule from the Alchemy/Consumables pass).
+
+That surfaced a real, separate bug while verifying: `parseTypesList`
+in `index.html` didn't special-case the literal text `"None"` the way
+`parseSkillTotalText`/`parseSchoolList` already special-case `"Varies"`
+— so an explicit `None` Optional override parsed as one literal Type
+named `"None"` instead of resolving to no Optional Types at all,
+rendering as a stray "or up to half None" in the Crafting tab. This
+silently affected every existing `None` user (Travel Rations, Basic
+Poison, Energizing Brew — all from this same session) too, not just
+Spirit Quest Ointment; fixed by making `parseTypesList` resolve `None`
+to `null`, same as a blank cell. Re-verified all four in the
+Playwright sandbox — none show the stray text anymore, and Spirit
+Quest Ointment now correctly groups under the Alchemy filter chip
+(confirmed absent from Masterwork's).
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
