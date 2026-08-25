@@ -589,6 +589,48 @@ came out of this pass instead:
    Level'd craftable items, so the missing badge there is arguably more
    correct than the flat "Mixology 3" badge they used to show.
 
+**STANDING RULE — Optional Materials shouldn't repeat an item's own
+Main Type.** Asked the user to sanity-check that most Alchemy/Food
+items really do reduce to "one Main ingredient + a blanket Optional
+list to pad with." Mostly true, with two real findings: Energizing
+Brew (a Potion) had no Main Type at all — a plain data gap, unlike the
+Poison sub-types' *intentional* absence — and several Grenades whose
+own Main is Fire (Bottled Fire, Smokejar, Hellfire Bomb,
+Thunderclap-in-a-Jar) sit under CR015, whose recipe-level Optional
+list is `Medicinal, Fire` — meaning Fire is redundantly listed on both
+sides for those four. User's ruling, stated as a general principle
+going forward: **if an Optional entry duplicates something already in
+an item's own Main, drop it from Optional — it does nothing there.**
+The Main≥half/Optional≤half split already lets a player use up to
+100% Main-Type materials on their own, so re-listing a Main Type under
+Optional never unlocks anything extra; it's purely a cosmetic
+redundancy, confirmed by how `craftingMaterialsEligibility` in
+`index.html` already unions `mainTypes` and `optionalTypes` into one
+allowed set — dropping the duplicate doesn't change what's craftable,
+only how the requirement reads.
+
+Applied immediately: gave Energizing Brew (`I037`) a Main Type of
+`Medicinal` (per the user's #1 answer), and since that now duplicates
+CR013's recipe-level Optional (`Medicinal`), added a per-item Optional
+override of `None` (the same "explicit empty" convention Travel
+Rations already uses) to drop the redundancy the fix itself created.
+Noticed Basic Poison (`I049`) already had this exact same redundancy
+independently (its own Main is `Medicinal`, same as CR014's Optional)
+— pre-existing, not something either fix introduced — and applied the
+identical `None` override there too, since it's the same pattern the
+user just ruled on. Confirmed via `craftingMaterialsEligibility`'s
+union logic that this is a display-only cleanup for both, not a
+behavior change (Basic Poison's craftable pool was always "100%
+Medicinal" either way).
+
+The Grenade Fire redundancy (4 of 9 items) is not yet resolved — a
+table was shown to the user for a fuller review of that recipe first,
+since a fix there is less clean-cut: Fire is a fixed Main for those
+four items but only one branch of an OR-choice Main
+(`Brilliant, Fire, Frost, or Shadow`) for Acidic Flask, so a
+blanket "remove Fire from CR015's Optional" would also remove it as a
+legitimate padding option for the five non-Fire-Main grenades.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
