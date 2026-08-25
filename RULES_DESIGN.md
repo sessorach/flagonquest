@@ -443,6 +443,43 @@ weapon-size-vs-Time mismatch by making the numbers openly GM-adjustable
 rather than pretending a fixed rule already accounts for it. Applied
 in commit `0799328`.
 
+**Follow-on: per-recipe-type review, starting with Basic Gear and
+Weapons.** With the unified Total/Main/Optional shape in place, went
+through the recipes type-by-type checking each one's Main/Optional
+lists are reasonably standardized (roughly 1-2 Main alternatives, 2-3
+Optional alternatives, per the user's own Masterwork-fire-sword
+example of what counts as "plenty of flexibility while staying
+simple"). Flagged Medicinal Supply as a categorization outlier (Alchemy
+School, flat Total 2, single-use "spend it" item — reads more like a
+Consumable than Basic Gear) and recommended folding it into a later
+Alchemy/Consumables pass rather than acting on it now — not yet done.
+Flagged two Basic Gear rows exceeding the 2-3-Optional guideline:
+Armor - Light (Smithing) (4 Optional Types) and Basic Clothing (4
+Optional Types, but deliberately kept as-is — it's the maximally
+generic catch-all slot item, an intentional exception). Trimmed CR005
+(Armor - Light (Smithing))'s Optional Materials from `Cloth, Leather,
+Wood, Bone` down to `Cloth, Leather`, matching its Carving/Tailoring
+siblings. Applied in commit `6cb6066`.
+
+Then reviewed Weapons specifically: asked whether Carving vs. Smithing
+were ever restricted to different weapon subtypes. The original design
+doc (`archive/flagonquest_content_original.docx`) said Bows could only
+be made via Carving, not Smithing — but the *current* `crafting_recipes.csv`
+never actually enforced that: CR001 (Carving)'s description carried
+the restriction as prose ("Bows can only be made this way"), while
+both CR001 and CR002 (Smithing) used the identical unrestricted
+`Applies To: Category:Weapon`, and the `Applies To` mini-syntax
+(`matchesRecipeApplies` in `index.html`) only supports ANDed inclusion
+clauses (`Category:X`/`Name:X`/`NameContains:X`) — no exclusion/NOT
+operator exists, so the restriction couldn't have been enforced as
+written even if intended. Rather than adding a NOT-clause to fix the
+mismatch, the user decided the restriction itself isn't worth keeping
+— there's enough fantasy justification for a metal bow/crossbow, and
+no balance reason to keep Smithing from making every weapon type. Fix
+was just to drop the stale "Bows can only be made this way" sentence
+from CR001's description; no `Applies To`/schema/index.html change
+needed, since both rows were already unrestricted in practice.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`

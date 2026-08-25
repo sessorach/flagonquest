@@ -2,7 +2,7 @@
   {
     "id": "CR001",
     "name": "Weapon (Carving)",
-    "description": "Standard weapons made from wood, bone, or similar worked materials. Bows can only be made this way.",
+    "description": "Standard weapons made from wood, bone, or similar worked materials.",
     "school": "Carving",
     "skill_total": "Craft 3",
     "total_materials": null,

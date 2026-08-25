@@ -1,5 +1,5 @@
 ID,Name,Description,School,Skill Total,Total Materials,Main Materials,Optional Materials,Applies To
-CR001,Weapon (Carving),"Standard weapons made from wood, bone, or similar worked materials. Bows can only be made this way.",Carving,Craft 3,,"Wood, Bone","Cloth, Leather",Category:Weapon
+CR001,Weapon (Carving),"Standard weapons made from wood, bone, or similar worked materials.",Carving,Craft 3,,"Wood, Bone","Cloth, Leather",Category:Weapon
 CR002,Weapon (Smithing),Standard weapons forged from metal.,Smithing,Craft 3,,Metal,"Cloth, Leather",Category:Weapon
 CR003,Armor - Light (Carving),Light armor built from wood or bone reinforcement.,Carving,Craft 3,,"Wood, Bone","Cloth, Leather, Metal","Category:Armor,NameContains:Light"
 CR004,Armor - Light (Tailoring),Light armor sewn from cloth and leather.,Tailoring,Craft 3,,"Cloth, Leather","Wood, Bone, Metal","Category:Armor,NameContains:Light"
