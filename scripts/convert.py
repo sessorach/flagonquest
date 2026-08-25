@@ -954,7 +954,13 @@ for csv_file, (json_file, col_map) in TABLES.items():
                 base = items_by_id.get(bid)
                 if not base:
                     item_errors.append(f"{r.get('id')} {r.get('name')!r}: Base Item Options references unknown item {bid!r}")
-                elif base.get("slot") != slot:
+                # A base item with no Slot of its own (Basic Clothing,
+                # Basic Jewelry) is a wildcard — it's meant to cover
+                # several slots at once, not tied to one — so only
+                # items that DO carry their own fixed Slot (actual
+                # Weapon/Armor pieces) need to match the referencing
+                # item's Slot exactly.
+                elif base.get("slot") and base.get("slot") != slot:
                     item_errors.append(f"{r.get('id')} {r.get('name')!r}: Base Item Options item {bid!r} has Slot {base.get('slot')!r}, expected {slot!r}")
             r["base_item_options"] = ids
 

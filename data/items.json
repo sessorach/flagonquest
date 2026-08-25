@@ -2455,7 +2455,10 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002",
+      "I003"
+    ],
     "levels": [
       1,
       2,
@@ -2502,7 +2505,10 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002",
+      "I003"
+    ],
     "levels": [
       1
     ]
@@ -2545,7 +2551,10 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002",
+      "I003"
+    ],
     "levels": [
       2
     ]
@@ -2588,7 +2597,10 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002",
+      "I003"
+    ],
     "levels": [
       3
     ]
@@ -2631,7 +2643,10 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002",
+      "I003"
+    ],
     "levels": [
       5
     ]
@@ -2674,7 +2689,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       1
     ]
@@ -2717,7 +2734,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       1
     ]
@@ -2760,7 +2779,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       1
     ]
@@ -2803,7 +2824,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       1,
       2,
@@ -2850,7 +2873,11 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I128",
+      "I129",
+      "I002"
+    ],
     "levels": [
       1
     ]
@@ -2895,7 +2922,8 @@
     "material_types": null,
     "base_item_options": [
       "I128",
-      "I129"
+      "I129",
+      "I002"
     ],
     "levels": [
       1,
@@ -2942,7 +2970,8 @@
     "material_types": null,
     "base_item_options": [
       "I128",
-      "I129"
+      "I129",
+      "I002"
     ],
     "levels": [
       1,
@@ -2992,7 +3021,8 @@
     "material_types": null,
     "base_item_options": [
       "I128",
-      "I129"
+      "I129",
+      "I002"
     ],
     "levels": [
       2
@@ -3038,7 +3068,8 @@
     "material_types": null,
     "base_item_options": [
       "I128",
-      "I129"
+      "I129",
+      "I002"
     ],
     "levels": [
       2,
@@ -3085,7 +3116,8 @@
     "material_types": null,
     "base_item_options": [
       "I128",
-      "I129"
+      "I129",
+      "I002"
     ],
     "levels": [
       3
@@ -3131,7 +3163,8 @@
     "material_types": null,
     "base_item_options": [
       "I128",
-      "I129"
+      "I129",
+      "I002"
     ],
     "levels": [
       3,
@@ -3176,7 +3209,11 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I128",
+      "I129",
+      "I002"
+    ],
     "levels": [
       3
     ]
@@ -3219,7 +3256,11 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I128",
+      "I129",
+      "I002"
+    ],
     "levels": [
       5
     ]
@@ -3262,7 +3303,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       1
     ]
@@ -3305,7 +3348,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       2
     ]
@@ -3348,7 +3393,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       3
     ]
@@ -3391,7 +3438,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       1
     ]
@@ -3434,7 +3483,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       1,
       2,
@@ -3481,7 +3532,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       1,
       2,
@@ -3528,7 +3581,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       2
     ]
@@ -3571,7 +3626,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       2
     ]
@@ -3614,7 +3671,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       1
     ]
@@ -3657,7 +3716,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       2
     ]
@@ -3700,7 +3761,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       3
     ]
@@ -3743,7 +3806,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       4
     ]
@@ -3786,7 +3851,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I003"
+    ],
     "levels": [
       4
     ]
@@ -4743,7 +4810,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       2
     ]
@@ -4786,7 +4855,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       2
     ]
@@ -4829,7 +4900,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       1
     ]
@@ -4872,7 +4945,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       1
     ]
@@ -4915,7 +4990,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       1,
       2,
@@ -4962,7 +5039,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       2
     ]
@@ -5005,7 +5084,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       3
     ]
@@ -5048,7 +5129,9 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "base_item_options": [],
+    "base_item_options": [
+      "I002"
+    ],
     "levels": [
       5
     ]

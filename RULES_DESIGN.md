@@ -741,6 +741,42 @@ Playwright sandbox — none show the stray text anymore, and Spirit
 Quest Ointment now correctly groups under the Alchemy filter chip
 (confirmed absent from Masterwork's).
 
+**Base Item Options filled in, by Slot, following the doc's rules.**
+Before filling anything in, found the validation would have blocked
+most of it: `convert.py`'s Base Item Options check required an *exact*
+Slot match between a base item and the item referencing it, but Basic
+Clothing (`I002`) and Basic Jewelry (`I003`) both have a blank Slot of
+their own (deliberately — they're meant to cover several slots, not
+tied to one), so referencing either from a Head/Ring/Neck/Feet/Hands/
+Belt item would have failed that check. Fixed the validation first: a
+base item with no Slot of its own is now treated as a wildcard (skips
+the match check); an item that *does* carry a real Slot (actual
+Weapon/Armor pieces) still has to match exactly, preserving the
+existing Held/Torso behavior.
+
+With that fixed, filled in Base Item Options for every Masterwork item
+outside Held (already complete) and the 3 "Other" bespoke items (still
+deferred), straight from the doc's per-slot rule: Head → Basic
+Clothing or Basic Jewelry (`I002,I003`); Neck and Ring → Basic Jewelry
+only (`I003`); Hands, Feet, and Belt → Basic Clothing only (`I002`);
+Torso → armor or basic clothing (`I128,I129,I002`) — this also fixed
+Torso's two outstanding gaps at once, since it both filled in the 3
+items that had nothing (Attuned Shroud, Robes of Resilience, Robes of
+the Elemental Lord) and added the missing Basic Clothing option to the
+6 that already had Light/Heavy Armor. 39 rows touched in total, `python3
+convert.py` came back with zero validation warnings, and spot-checked
+one item per slot in the Playwright sandbox (Mask of Night, Bloodshard
+Ring, Cobblestone Boots, Smuggler's Belt, Elemental-Resistant Armor,
+Attuned Shroud) — every base-item picker and its resolved Optional
+Type show correctly, no page errors.
+
+Base Item Options coverage across Masterwork is now complete except
+the 3 "Other" items, which the doc never defines a slot rule for and
+still need individual review. School's dynamic resolution (the doc's
+"same as base item" rule, never built the way Optional Type's
+`resolveBaseItemMainTypes` was) remains the one open structural gap
+from the original overview.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
