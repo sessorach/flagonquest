@@ -777,6 +777,103 @@ still need individual review. School's dynamic resolution (the doc's
 `resolveBaseItemMainTypes` was) remains the one open structural gap
 from the original overview.
 
+**Old-docs review, drafted into the current data (pending the user's
+balance-pass review).** The user pulled four more old design documents
+(`archive/flagonquest_manifesto_2k19.md`, `flagonquest_manifesto_v5.md`,
+`flagonquest_items_2k20.md`, `flagonquest_items_2k22.md` — converted
+from `.docx` via `mammoth`, which preserves headings/lists/bold far
+better than the earlier XML-regex fallback) specifically to check for
+old Techniques and Masterwork items that never made it into the
+current data. Two background research agents cross-referenced both
+doc pairs against `techniques.csv`/`items.csv`/`rulebook.md`/this file
+and found: 8 old Techniques with no current analogue (mostly one
+connected idea — a card-discard resource loop built around the
+now-defunct Focus resource, which predates the current card economy),
+18 candidate Masterwork items with no current analogue, and a handful
+of still-open rules ideas (a GM difficulty-by-Level table, enemy/
+encounter design guidance, and an Adventuring Goods gap above the
+current "Cart, Small"). The Techniques and general rules ideas are
+left for the user to decide on — only the Masterwork items and the
+Adventuring Goods gap were actionable data work, so those got drafted
+in now, at the user's request, as `I148`-`I167`.
+
+All 18 Masterwork items follow the just-established per-slot Base Item
+Options rule rather than what each old write-up individually stated —
+several of the old Neck items said "Base Item: Basic clothing," but
+Neck items now uniformly resolve to Basic Jewelry only (`I003`) per
+the doc-derived rule applied in the previous pass, and that took
+priority over the old per-item text. The 3 "Other"-slot items
+(Immaculate Spice Rack, Unmovable Bar, Placeholder's Indelible
+Instrument, Placeholder's Wondrous Workspace — actually 4, see below)
+get no Base Item Options at all, matching the existing 3 "Other" items
+that still need their own individual review.
+
+A few explicit judgment calls the user should check in the balance
+pass:
+- **Cloak of Faces** was sitting in the old doc's "THE BIN" section (a
+  rejected-ideas dump), not the main item list — drafted in per "draft
+  up entries for all of those items," but flagged here as possibly
+  intentionally shelved rather than overlooked.
+- **Ring of Pure Elements** merges two versions of the same idea: 2k20's
+  fuller "Signet of the Elementalist King" (choose Fire/Frost/Brilliant/
+  Shadow/Physical once per encounter, plus a since-defunct "spend Focus
+  to bypass the limit" clause) and 2k22's simpler, later "Ring of Pure
+  Elements" (fixed to Brilliant only, no choice). Drafted as the fuller
+  4-element choice mechanic (dropping Physical and the Focus clause) at
+  2k22's more conservative Level 3, rather than either version verbatim
+  — a real synthesis call, not a straight port.
+- **Greaves of the Warlock King** (free Teleport twice Speed, 1 AP,
+  once/turn) is notably stronger than the current Slipstream Sandals
+  (flat 3m, once/encounter) — already flagged in the original summary,
+  carried through into the draft as-is rather than pre-nerfed, since
+  that's exactly the kind of thing to catch in a balance pass rather
+  than silently soften before the user even sees it.
+- **Placeholder's Wondrous Workspace**'s old mechanic ("counts as any
+  item creation toolkit, each counting as two Level 2 materials of any
+  type") referenced the old Gold-token materials system this project
+  already moved away from. Simplified to "fulfills the tool or Skill
+  Kit requirement for any creation School" — same intent, no live
+  formula. Given School: Smithing explicitly (matching what the old doc
+  stated) rather than inheriting CR017's "same as base item," since it
+  has no Base Item at all to inherit from.
+- **Choker of Defiance**, **Ring of Charming/Assertive/Bold Statements**,
+  and **Placeholder's Speedy Scepter** had no stated Material Type in
+  the old docs at all — assigned Precious to all three as a reasonable
+  generic "worked magic item" material, purely a placeholder judgment
+  call pending the user's own preference.
+- The 4 "Other"-slot items got a slightly wider Main Materials list
+  than their old-doc "Material Types" line, specifically because they
+  have no Base Item Options and therefore no Optional Type ever
+  resolves for them (same situation as the pre-existing 3 "Other"
+  items) — a single narrow Main Type would leave them with no
+  crafting flexibility at all.
+
+**Cart, Medium / Wagon, Large — added, with a real balance catch.**
+The old doc priced Cart, Medium at 12 Gold and Wagon, Large at 24 —
+but the *current* "Cart, Small" (`I012`) already costs 12 Gold flat,
+meaning importing the old numbers verbatim would have made "Medium"
+cost the same as "Small," with no progression at all. Rescaled using
+the same doubling-per-tier convention already established elsewhere
+in this project (Light/Heavy Armor: 4/8 Gold; 1H/2H Weapons: 3/6 Gold)
+— Small stays 12, Medium becomes 24, Large becomes 48 — which also
+happens to preserve the old doc's own internal Medium:Large ratio
+(12:24 = 1:2, same as the new 24:48). Added in the same blank-
+Materials-fields style as the existing Cart, Small (no School/Skill
+Total/Total Materials/Main Materials populated — matches how Small
+Cart isn't hooked into the Crafting tab's auto-matching at all, and
+presumably falls under CR011 "Other Items"' reference-only guidance
+at the table instead).
+
+All 20 new rows (`I148`-`I167`) verified in the Playwright sandbox —
+spot-checked a range of cases (a fixed-Level Neck item resolving
+Craft+Level and its Optional Type from Basic Jewelry, a Level-range
+item correctly showing unresolved Skill Total text, a Held item
+correctly listing every weapon base-item option, an "Other"-slot item
+with no Optional Type suffix since it has no base item, and the
+School-override item showing "Smithing" instead of "—") — all correct,
+zero page errors, and the one comma-containing name (Ring of Charming,
+Assertive, or Bold Statements) round-tripped through CSV quoting fine.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
