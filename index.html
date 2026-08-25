@@ -3991,9 +3991,24 @@ function parseSchoolList(text) {
 
 // "Craft 3" → { skill: "Craft", value: 3 }. Doesn't match "Craft 3-5"
 // or "Varies" — those stay null (unresolvable), on purpose.
-function parseSkillTotalText(text) {
-  const m = /^(\w+)\s+(\d+)$/.exec((text || "").trim());
-  return m ? { skill: m[1], value: Number(m[2]) } : null;
+// "Mixology [twice the item's Level]" resolves the same way, but only
+// once the item has exactly one fixed Level to resolve against — a
+// buildable range like Travel Rations' "Level 1-5" can't produce one
+// number here any more than a level-scaling Prereq Check threshold can
+// for an unchosen technique Level (same "flag readiness, don't guess"
+// rule), so it falls through to null (no badge, raw text still shows).
+// Doesn't attempt "Mixology or Survival [...]" (Food's two-skill OR) —
+// that was already unparseable before Level-scaling existed, not a
+// regression this introduces.
+function parseSkillTotalText(text, itemLevels) {
+  const raw = (text || "").trim();
+  const flat = /^(\w+)\s+(\d+)$/.exec(raw);
+  if (flat) return { skill: flat[1], value: Number(flat[2]) };
+  const scaling = /^(\w+)\s+\[twice the item's Level\]$/.exec(raw);
+  if (scaling && itemLevels && itemLevels.length === 1) {
+    return { skill: scaling[1], value: itemLevels[0] * 2 };
+  }
+  return null;
 }
 
 // "Wood or Bone (if Carving), Metal (if Smithing)" → ["Wood","Bone","Metal"]
@@ -4081,7 +4096,7 @@ function recipesForItem(item, recipes) {
 // once per item rather than this function reaching back into the full
 // recipe table for every variant.
 function resolveRecipeRequirements(recipe, item, baseItemMainTypes) {
-  const skillParsed = parseSkillTotalText(recipe.skill_total);
+  const skillParsed = parseSkillTotalText(recipe.skill_total, item.levels);
   const schools = parseSchoolList(recipe.school);
   const skillName = skillParsed ? skillParsed.skill : null;
   const skillValue = skillParsed ? skillParsed.value : null;
@@ -4213,11 +4228,17 @@ function slotCost(item) {
 // instead of needing its own tag maintained by hand. Everything that
 // isn't Masterwork/Food/Potion/Poison/Grenade (Weapons, Armor, and the
 // Equipment-category hand-authored set — Basic Clothing, Basic
-// Jewelry, Unarmed Enhancer, Medicinal Supply) falls into "Base."
+// Jewelry, Unarmed Enhancer) falls into "Base." Medicinal Supply is a
+// deliberate name-based exception to that category rule: its own
+// item.category is "Pack/Gear" (it's a real inventory slot item, not a
+// Potion/Poison/Grenade), but it's crafted via the Alchemy School under
+// Alchemy's own flat-2-materials rule, same as the rest of the
+// Consumables — so it groups with them here rather than with Base Gear.
 function craftingGroup(item) {
   if (item.category === "Masterwork") return "Masterwork";
   if (item.category === "Food") return "Food";
   if (["Potion", "Poison", "Grenade"].includes(item.category)) return "Alchemy";
+  if (item.name === "Medicinal Supply") return "Alchemy";
   return "Base";
 }
 const CRAFTING_GROUPS = ["Base", "Masterwork", "Alchemy", "Food"];

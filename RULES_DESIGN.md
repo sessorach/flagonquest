@@ -516,6 +516,79 @@ symmetry to match Armor's shape: CR001 (Carving, Main Wood/Bone) now
 lists Optional `Cloth, Leather, Metal`; CR002 (Smithing, Main Metal)
 now lists Optional `Cloth, Leather, Wood, Bone`.
 
+**Alchemy and Consumables pass.** Checked Medicinal Supply against the
+doc's own dedicated entry for it — School Alchemy, Skill Total
+Mixology 3, Total Materials 2, Main Medicinal, Optional Cloth — and
+CR012 already matched exactly, no fix needed there. Two real changes
+came out of this pass instead:
+
+1. **Medicinal Supply reclassified as a Consumable.** Its
+   `item.category` is `Pack/Gear` (a real inventory-slot distinction,
+   left alone), but `craftingGroup()` in `index.html` — the Crafting
+   tab's group-filter chips (Base/Masterwork/Alchemy/Food) — was purely
+   `item.category`-driven, so it fell into "Base" alongside Weapons/
+   Armor/Clothing despite being crafted via the Alchemy School under
+   Alchemy's own flat-2 rule. Added a name-based exception (`item.name
+   === "Medicinal Supply"` → `"Alchemy"`) so it now filters correctly
+   alongside Potions/Poisons/Grenades — confirmed by toggling the
+   Alchemy filter chip and checking Medicinal Supply appears while
+   Basic Clothing (Base) and Travel Rations (Food) don't. Also
+   physically reordered it in `crafting_recipes.csv` to sit right
+   before the Alchemical Potion/Poison/Grenade/Food block (swapped
+   with "Other Items," which stayed with Basic Gear since it isn't
+   itself a consumable) — the two rows just traded IDs (CR011 ↔ CR012)
+   and file position; nothing outside the CSV/JSON referenced the old
+   numbering (checked — only a stale index.html comment mentioned
+   `CR001`/`CR002` by name, unrelated to these two).
+
+2. **Restored the doc's level-scaling Skill Total for Alchemy/Food.**
+   The doc states `Skill Total: Mixology [twice the item's Level]` for
+   Alchemy (Potions/Poisons/Grenades) and `Mixology or Survival [twice
+   the item's Level]` for Food — a genuine, deliberate scaling formula,
+   not a typo (Masterwork's own doc entry uses the same idea in a
+   different form: `Craft 5 + [the item's Level]`). The live recipes
+   had flattened this to `Mixology 3` / `Mixology or Survival 3` at
+   some point before this session, with no record of why — most likely
+   folded in during the same earlier "similar kind of review" pass that
+   produced the Kind/Value-vs-Slots split this whole Crafting overhaul
+   replaced. User confirmed: restore the doc's scaling, it looks like
+   it got flattened by mistake in that bulk update.
+
+   Unlike the Cost/Materials formulas (a *design-time-only* principle,
+   deliberately never written as a live rule — see above), this is a
+   genuine live gameplay requirement that scales with which Level the
+   item is actually being built at, the same category of thing as a
+   Prereq Check's `[Level]` threshold or a Technique's `[Level]`-bracket
+   effect text — so it's written as live bracket text
+   (`Mixology [twice the item's Level]`) and resolved in `index.html`,
+   not pre-flattened into per-item numbers. Extended `parseSkillTotalText`
+   to recognize that exact bracket pattern and resolve it against
+   `item.levels` — but only when the item has exactly one fixed Level;
+   a Level-range item (Travel Rations' "Level 1-5," Basic Poison's
+   "Level 1-5") can't produce one number here any more than an
+   unresolved technique Level can for a Prereq Check threshold, so it
+   falls back to `null` (no computed badge, the raw bracket text still
+   displays) rather than guessing — same "flag readiness, don't guess"
+   rule used everywhere else this pattern shows up. Didn't attempt to
+   parse Food's two-skill `"Mixology or Survival [...]"` form — that
+   was already unparseable under the old flat `"Mixology or Survival 3"`
+   text too (the regex only ever matched a single `\w+`), so leaving it
+   as display-only text is the existing baseline, not a new regression.
+
+   Verified in the Playwright sandbox: Healing Potion (Level 3) shows
+   `Mixology 6`, Insanity Potion and Thunderclap-in-a-Jar (Level 5) both
+   show `Mixology 10`, Bottled Fire (Level 2) shows `Mixology 4` — all
+   correctly `2 × Level`. Basic Poison and the seven named Poison
+   sub-types (Bloody/Crippling/Necrotic/Vulnerability/Harrying/
+   Psychosis/Slowing) correctly show the raw unresolved bracket text
+   with no Skill badge, since they either have a Level range or (the
+   seven sub-types) no Level at all — worth noting that gap predates
+   this change and isn't something this pass introduced: those seven
+   are really just flavor options under "Basic Poison" (per the doc,
+   "Choose a Basic Poison" from that list) rather than independently
+   Level'd craftable items, so the missing badge there is arguably more
+   correct than the flat "Mixology 3" badge they used to show.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`
