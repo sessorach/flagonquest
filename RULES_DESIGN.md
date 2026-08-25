@@ -644,6 +644,69 @@ alongside Medicinal, deliberately, since Food is meant to be more
 flexible than the others (managing it is expected to be a lighter
 concern for most parties than needing a broad Alchemy stockpile).
 
+**Masterwork overview pass.** By far the least-finished recipe type —
+much bigger gaps than anything found in Weapons/Armor/Alchemy/Food.
+Surveyed all 60 Masterwork items against the doc's own Masterwork
+section and found three real structural holes, one of which is now
+fixed:
+
+1. **Skill Total: 0/60 items had one stated — now fixed.** The doc's
+   rule, `Craft 5 + [the item's Level]`, had genuinely never been
+   applied anywhere (not at the CR017 recipe level, not per-item).
+   User confirmed it's intentional and just never made it into the
+   CSV. Applied it to CR017 as live bracket text (same "genuine
+   gameplay formula, not a design-time-only Cost/Materials thing"
+   reasoning as Alchemy/Food's Level-scaling Skill Total) and extended
+   `parseSkillTotalText` with a third pattern —
+   `^(\w+)\s+(\d+)\s*\+\s*\[the item's Level\]$` — resolved the same
+   "only when the item has exactly one fixed Level" way as the
+   `[twice the item's Level]` pattern. Also gave Spirit Quest Ointment
+   (`I116`) its own `Mixology 5 + [the item's Level]` override, since
+   it's the one Masterwork item with a non-Craft School (Alchemy) —
+   Jewelrymaking (the other three School-overridden items use
+   Carving/Tailoring/Jewelrymaking) is Craft-governed same as
+   Smithing/Carving/Tailoring, per the existing Artisanal Training
+   Prereqs mapping, so it didn't need an exception; only Alchemy/
+   Cooking Schools use Mixology/Survival instead. Verified in the
+   Playwright sandbox: Mask of Night (Lv1) → Craft 6, Confident Cap
+   (Lv3) → Craft 8, Crown of Glory (Lv5) → Craft 10, Spirit Quest
+   Ointment (Lv3) → Mixology 8 (correctly Mixology, not Craft), and
+   Level-range items (Cowl of Tranquility, Lifeforce Plate, Tactician's
+   Band, Dauntless Wrap) correctly show the raw unresolved formula text
+   with no badge rather than guessing.
+
+2. **Base Item Options: only 23/60 (38%) have any set — not yet
+   fixed.** Not randomly missing — maps cleanly by Slot. Held
+   (weapons, 17/17) is complete. Torso (armor) is 6/9, and even those
+   6 only reference Light/Heavy Armor, missing the doc's "or basic
+   clothing" half. Every other Slot — Head (0/5), Neck (0/4), Ring
+   (0/10), Hands (0/3), Feet (0/6), Belt (0/2) — has never had Base
+   Item Options touched at all, despite the doc stating a clean,
+   simple per-slot rule for every one of them (Head: clothing or
+   jewelry; Neck/Ring: jewelry; Hands/Feet/Belt: clothing). The 4
+   "Other"-slot items (Evertoking Bottle, Distant Scroll Cases,
+   Placeholder's Spacious Satchel, Spirit Quest Ointment) fall outside
+   any doc-defined slot section entirely — bespoke items that need
+   individual review rather than a blanket per-slot rule.
+
+3. **School: only 4/60 stated (the same 4 "Other" items) — not yet
+   fixed.** The doc's rule ("same as base item") was never built as a
+   dynamic resolution the way Optional Type was
+   (`resolveBaseItemMainTypes`) — so even the 23 items with a working
+   base-item picker still show no School.
+
+Also noted: Total Materials is solid (flat 20 across 59/60 items,
+matching the established design principle), with Spirit Quest
+Ointment's 15 as the one outlier — not yet asked about, flagged for a
+later pass. Every one of the 60 items does have its own Main Type
+stated (no Energizing-Brew-style gap there).
+
+Sequencing agreed with the user: Skill Total first (done, above), then
+Base Item Options by Slot (mechanical fill-in for Head/Neck/Ring/
+Hands/Feet/Belt following the doc's clean rule; fix Torso's missing 3
+items and add the missing Basic Clothing option to all 9), then the 4
+bespoke "Other" items individually last.
+
 ## Applied so far
 
 - `rulebook.md`: `### Gambling and Extra Successes` split into `### Successes`

@@ -178,9 +178,9 @@
   {
     "id": "CR017",
     "name": "Masterwork Enhancement",
-    "description": "Generic fallback for Masterwork items without their own specific recipe. School and Skill Total vary per power — check the item's own text. Each Masterwork item's entry states its own Main Type; its Optional Type comes from whichever base item is chosen (see the rulebook's \"base item\" rules).",
+    "description": "Generic fallback for Masterwork items without their own specific recipe. School varies per power — check the item's own text (same as base item, unless otherwise stated). Each Masterwork item's entry states its own Main Type; its Optional Type comes from whichever base item is chosen (see the rulebook's \"base item\" rules).",
     "school": null,
-    "skill_total": null,
+    "skill_total": "Craft 5 + [the item's Level]",
     "total_materials": 20,
     "main_materials": null,
     "optional_materials": null,

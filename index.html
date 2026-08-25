@@ -3991,22 +3991,27 @@ function parseSchoolList(text) {
 
 // "Craft 3" → { skill: "Craft", value: 3 }. Doesn't match "Craft 3-5"
 // or "Varies" — those stay null (unresolvable), on purpose.
-// "Mixology [twice the item's Level]" resolves the same way, but only
-// once the item has exactly one fixed Level to resolve against — a
-// buildable range like Travel Rations' "Level 1-5" can't produce one
-// number here any more than a level-scaling Prereq Check threshold can
-// for an unchosen technique Level (same "flag readiness, don't guess"
-// rule), so it falls through to null (no badge, raw text still shows).
-// Doesn't attempt "Mixology or Survival [...]" (Food's two-skill OR) —
-// that was already unparseable before Level-scaling existed, not a
-// regression this introduces.
+// "Mixology [twice the item's Level]" and "Craft 5 + [the item's Level]"
+// resolve the same way, but only once the item has exactly one fixed
+// Level to resolve against — a buildable range like Travel Rations'
+// "Level 1-5" can't produce one number here any more than a
+// level-scaling Prereq Check threshold can for an unchosen technique
+// Level (same "flag readiness, don't guess" rule), so it falls through
+// to null (no badge, raw text still shows). Doesn't attempt "Mixology
+// or Survival [...]" (Food's two-skill OR) — that was already
+// unparseable before Level-scaling existed, not a regression this
+// introduces.
 function parseSkillTotalText(text, itemLevels) {
   const raw = (text || "").trim();
   const flat = /^(\w+)\s+(\d+)$/.exec(raw);
   if (flat) return { skill: flat[1], value: Number(flat[2]) };
-  const scaling = /^(\w+)\s+\[twice the item's Level\]$/.exec(raw);
-  if (scaling && itemLevels && itemLevels.length === 1) {
-    return { skill: scaling[1], value: itemLevels[0] * 2 };
+  const twice = /^(\w+)\s+\[twice the item's Level\]$/.exec(raw);
+  if (twice && itemLevels && itemLevels.length === 1) {
+    return { skill: twice[1], value: itemLevels[0] * 2 };
+  }
+  const plusLevel = /^(\w+)\s+(\d+)\s*\+\s*\[the item's Level\]$/.exec(raw);
+  if (plusLevel && itemLevels && itemLevels.length === 1) {
+    return { skill: plusLevel[1], value: Number(plusLevel[2]) + itemLevels[0] };
   }
   return null;
 }

@@ -5194,7 +5194,7 @@
     "cost": "60 Gold",
     "value_per_level": null,
     "school": "Alchemy",
-    "skill_total": null,
+    "skill_total": "Mixology 5 + [the item's Level]",
     "total_materials": 15,
     "main_materials": "Brilliant, Shadow, Medicinal",
     "optional_materials": null,
