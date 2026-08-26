@@ -46,6 +46,36 @@ etc. were already written this way without realizing it was a named
 principle) — this is now the explicit, citable reason why, not just a
 case-by-case style call.
 
+### STANDING RULE — Fire is the deliberately common element
+
+Among the four elemental damage types (Fire, Frost, Brilliant, Shadow),
+Fire is intentionally the most common one to encounter — not because
+Fire is meant to be mechanically *better*, but specifically so a player
+who wants to invest in countering elemental damage has an obvious,
+reliable choice to make. This shows up in several places already:
+Battle Magic uses Fire as its baseline element, Masterwork items that
+deal Fire damage are built one Level lower than the equivalent for
+another element, and the actual damage-dealing Grenades default to Fire
+at the lower Levels. None of this was written down as an explicit
+principle before — surfaced while deriving Resist's balance weight (see
+`design/balance_weights_notes.md`), where the designer gave a concrete
+rule of thumb: **3 in 4 enemies deal Physical damage only; of the
+remaining 1 in 4 that deal an element, Fire is about twice as common as
+Frost, Brilliant, or Shadow individually** (working out to roughly
+Fire 10%, each other element 5%, of all enemies) — likely trending
+higher as characters reach higher Levels and face tougher, more varied
+threats.
+
+The explicit intent, stated directly: there should be real room to
+build toward resisting a *specific* element for a known upcoming fight
+(a consumable prepared once the party knows what they're up against,
+not necessarily a permanent character build), but Fire is the one
+worth defaulting to or building around broadly, since it's the one
+you're actually likely to run into. Worth keeping in mind for future
+content — a new elemental enemy, spell, or Masterwork item should
+default to Fire unless there's a specific reason (theme, a Frost-heavy
+dungeon, a Shadow-aligned villain) to reach for one of the other three.
+
 ### Successes as the universal resolution currency
 
 The game is moving toward one unified idea of "success" behind every flip

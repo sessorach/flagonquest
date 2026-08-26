@@ -62,8 +62,11 @@ effects, matching Baseline's average hit chance.
 |---|---|---|---|
 | Fudge Value | 1 | Yes | The anchor itself, by definition — 1 value ≈ +1 to a flip. |
 | Accuracy / Defense | 1 | Yes | Same as Fudge Value by definition — a flat Accuracy/Defense bonus *is* a flip bonus. |
-| Damage | 2 | No | Matches Baseline's own "weapons deal ~2 over resist" assumption. *(Plausible, not fully confirmed.)* |
+| Damage | 2 | No | Confirmed: Health(4) × average hit chance(0.5), pricing a *contingent* point of harm (an attack that has to land) before Resist, which is a separate reduction applied later. A guaranteed point of harm that skips the attack roll uses Health's full rate (4) instead, not this one. |
 | Debuff | 1 | No | Calibrated to Baseline's own "Harried value" (~1) — the generic bucket every stacking status effect (Crippled, Slowed, Vulnerable, Bleeding, Necrotic...) gets lumped into. |
+| Resist (Physical) | 2.8/point | Yes | New row — never had one, despite 7 current Masterwork items granting Resist. `Damage's weight (2) × expected hits of that type absorbed per encounter`, using Baseline's own combat math (~1.875 hits/player/encounter, any type) and the designer's stated enemy mix (3 in 4 enemies are Physical-only). |
+| Resist (Fire) | 0.375/point | Yes | Same formula as Physical Resist, at Fire's share of enemies (1 in 10, since Fire is the deliberately-common element — see the design note on Fire being the default/likely element). |
+| Resist (Frost / Brilliant / Shadow, each) | 0.19/point | Yes | Same formula, at each of the other three elements' share (1 in 20 each) — about half Fire's rate and ~1/15th of Physical's. |
 | Health | 4 | Yes | Baseline formula: Damage(2) ÷ average hit chance(0.5). |
 | Shallow HP (max pool) | 5 | Yes | Worth *more* than Deep as a pool increase, since it's easier to top back up at rest. |
 | Deep HP (max pool) | 4 | Yes | The baseline "effective healing" rate — doesn't need healing to already count. |

@@ -98,12 +98,16 @@ below, for the actual results):**
   value back out of it. A clean trick, but it assumes the player actually
   has a good Technique of that Level sitting unused to refund — its real
   value swings a lot with what's actually in the build.
-- **Model gaps** — THE TABEL has no weight for Resist bonuses (Elemental-
-  Attuned Tincture, Elemental Warding Amulet-style effects), Hasted
-  (Swiftblade Vial), or granting Cover/terrain control at anything but a
-  flat per-unit rate (Smokejar, Immaculate Adhesive). Items that lean on
-  these got a flagged, rougher approximation rather than a clean
-  translation — see each row's own `Notes`.
+- **Model gaps** — THE TABEL has no weight for Cover/terrain control at
+  anything but a flat per-unit rate (Smokejar, Immaculate Adhesive).
+  Items that lean on this got a flagged, rougher approximation rather
+  than a clean translation — see each row's own `Notes`. Resist and
+  Hasted were also gaps when this pass ran (Elemental-Attuned Tincture,
+  Elemental Warding Amulet, Swiftblade Vial all used rough guesses) but
+  have since been properly derived — see `balance_weights_notes.md`.
+  Elemental-Attuned Tincture's Value in this ledger still reflects the
+  old guess (1 Protected-equivalent) and hasn't been recomputed against
+  the real Resist weight yet.
 - **AoE multiplier (×1.5)**, for any Grenade that hits more than one
   creature (Hellfire Bomb, Thunderclap-in-a-Jar) — a genuine guess at the
   average number of effective targets, with no anchor anywhere in THE
@@ -198,7 +202,15 @@ actual effect may need adjusting, not just its raw Value-model number.
   Gleaming Justice (unconditional Good Luck on all attacks, no action
   cost) is flagged in RULES_DESIGN.md as a first candidate worth
   sanity-checking, since it's stronger than `I103` Thrumming Focus's
-  otherwise-similar AP-gated version.
+  otherwise-similar AP-gated version. **Expect Resist-granting items to
+  read as underpowered across the board** — Physical Resist and a single
+  element's Resist aren't remotely the same value (~15× apart, see
+  `balance_weights_notes.md`), and every existing Resist item already
+  checked against the derived weight comes back meaningfully negative
+  (Attuned Shroud, Elemental-Resistant Armor, Robes of Resilience, Robes
+  of the Elemental Lord). Decide deliberately whether that means these
+  items need real numeric buffs/Level cuts, not just each one
+  individually — this is a systemic pattern, not isolated undertuning.
 - The site-export batch also added 18 non-Masterwork items (`I190`-`I207`)
   that don't need value-model leveling but should get a normal
   price/rarity sanity check alongside the rest — the 4 that are

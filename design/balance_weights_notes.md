@@ -47,6 +47,18 @@ numbers without ever checking where they came from.
   pushes the question back one level: nothing in the workbook explains
   where 2/3 itself comes from either. Locked as "internally consistent,"
   not as "independently justified from first principles."
+- **Damage = 2.** Confirmed directly: it's Health(4) × average hit
+  chance(0.5) exactly — the same formula that derives Health, just run
+  in reverse. Also confirmed on intent, not just arithmetic: Damage
+  prices a *contingent* point of harm (an attack that has to land, ~50%
+  baseline), always **before** Resist — Resist is a separate, later
+  reduction applied at the point damage resolves, not something baked
+  into the granting item's own value. **A guaranteed point of harm that
+  bypasses the attack roll entirely prices at the full Health rate (4),
+  not Damage's discounted rate (2)** — same idea as pricing it as
+  negative Shallow Health. Two different weights for "a point of harm,"
+  depending on whether a roll stands between it and the target; picking
+  the wrong one is the most likely way to mis-score a new item.
 
 ## Shallow/Deep HP and Heal — Locked, but easy to get backwards
 
@@ -164,6 +176,45 @@ under pressure mid-pass the way the alchemy ledger almost did.
   can affect more than one creature crossing it, inheriting the same
   AoE-estimation uncertainty flagged for Hellfire Bomb/Thunderclap in
   the alchemy ledger, on top of the per-degree rate itself.
+- **Resist — a different value per damage type, not one shared rate.**
+  THE TABEL never had a Resist row at all, despite 7 current Masterwork
+  items granting it. This is explicitly out of scope for base weapon/armor
+  Resist — those are "designed to fit the assumptions" directly and don't
+  get run through this model — it's only for *bonus* Resist a Masterwork
+  item or consumable grants on top of that.
+
+  Resist prevents 1 point of damage on *every* future hit of that type
+  for as long as it's active (not a one-shot like Protected), so its
+  value is `Damage's own weight (2, mirroring granting vs. preventing a
+  contingent point of harm) × how many hits of that type actually land`.
+  "How many hits of that type land" needed two inputs with no existing
+  derivation, both taken directly from the designer's own stated rule of
+  thumb rather than derived: **enemy type mix** — 3 in 4 enemies are
+  Physical-only, 1 in 4 deal an element, and among those, Fire is twice
+  as common as Frost, Brilliant, or Shadow individually (Fire 10% of all
+  enemies, each other element 5%) — and **total hits landed per player
+  per encounter**, worked out from Baseline's own existing combat math
+  (10 enemy-rounds/fight × 1.5 attacks/round, split across a 4-player
+  party, at 50% hit chance ≈ **1.875 hits/player/encounter, any type**)
+  rather than a new guess.
+
+  Combining those: **Physical Resist ≈ 2.8/point**, **Fire Resist ≈
+  0.375/point**, **Frost/Brilliant/Shadow Resist ≈ 0.19/point each** —
+  Physical is worth roughly **15×** a single element, confirming the
+  designer's own intuition sharply, not just directionally. Checked
+  against the 4 existing chosen-element/elemental Resist items already
+  in the catalog (assuming Fire is chosen where there's a choice, since
+  a rational player would): **every one reads meaningfully underpowered
+  for its Level** — Attuned Shroud −2.25, Elemental-Resistant Armor
+  −2.6 to −5.25 depending on Level, Robes of Resilience −5.25, Robes of
+  the Elemental Lord −13.1. This is a real, consistent pattern, not
+  noise from one bad row — flagging it for the actual Masterwork pass
+  rather than fixing it here, same as the alchemy pass did with Poisons:
+  it might mean these items are genuinely overpriced/over-leveled for
+  what they deliver, or it might mean a pure expected-hits model is
+  missing something real about Resist's value (burst/spike protection
+  in a single big hit, not just average damage over time) — worth
+  deciding deliberately rather than defaulting to "buff everything."
 
 ## Plausible, not confirmed — the numbers line up with something real,
 ## but the workbook never says so
@@ -181,14 +232,6 @@ under pressure mid-pass the way the alchemy ledger almost did.
   finding doesn't change that call, it just explains where 5.5 itself
   would have come from if it were ever needed again for something that
   genuinely does auto-hit.
-- **Damage = 2.** Matches `Baseline!C4`'s stated assumption almost
-  exactly: "Average weapons deal 2 over soak of equivalent type." Reads
-  as a direct, if slightly informal, translation — "the typical weapon's
-  damage-over-resist is about 2, so let's set the per-point Damage weight
-  to 2" — which technically conflates a per-unit rate with one example's
-  observed total, but the two numbers happen to coincide since typical
-  weapon Damage values are small (single digits), so the conflation
-  doesn't obviously break anything in practice.
 - **1 AP = 3.** Two independent paths from Baseline both land on
   **2.75**, not 3: (a) per-attack value (5.5, see Autoswing above) ÷ 2 AP
   per attack = 2.75; (b) baseline turn value (8.25) ÷ AP actually spent
@@ -210,8 +253,8 @@ under pressure mid-pass the way the alchemy ledger almost did.
 ## What's still open
 
 Every weight that started this audit unresolved (Sift, Push, Difficult
-Terrain) now has a Pencil derivation. What's left, if anyone wants to
-push further:
+Terrain, Resist) now has a Pencil derivation, and Damage is fully
+Locked. What's left, if anyone wants to push further:
 - Sift's ~0.60/card figure is calibrated to a once-per-day window
   specifically — a Technique that grants Sift on a different trigger
   (e.g. a combat-conditional one, which is how the design intentionally
@@ -222,7 +265,14 @@ push further:
 - Difficult Terrain's AoE/zone-effect scope is still an open estimation
   question the same way Grenade AoE is, independent of the per-degree
   rate now being resolved.
-- Protected's 75% discount and Autoswing/Damage/1 AP's "plausible, not
+- The Resist finding — every existing elemental-Resist item reading
+  underpowered — is a real pattern to act on during the Masterwork pass,
+  not a loose end in the weight itself. The weight's own derivation is
+  solid (built entirely from already-Locked/confirmed pieces: Damage's
+  weight, Baseline's own combat-frequency math, and the designer's
+  directly-stated enemy-type mix); what's undecided is what to *do*
+  about the items it exposes as under-tuned.
+- Protected's 75% discount and Autoswing/1 AP's "plausible, not
   confirmed" reconstructions above are still just that — reconstructions,
   not settled the way Good Luck/Card/Pressure/Sift/Push/Difficult
-  Terrain now are.
+  Terrain/Damage/Resist now are.
