@@ -233,36 +233,40 @@ were each evaluated at a representative Level 3 (Potency 3), since their
 actual Level is inherited from whichever Level of `I049` Basic Poison
 they're crafted onto rather than being fixed.
 
-**Findings worth acting on, not just noting:**
+**Findings worth acting on, not just noting** *(Net figures below are
+current as of the 1 AP / AoE-multiplier corrections above — updated from
+the values first reported when this pass landed)*:
 - **`I206` Revivification Draught reads as significantly overpowered**
-  for its Level — Net +15, sharply higher than every other Level-5 item
-  in the batch (Insanity Potion ≈ −19, Swiftblade Vial ≈ −11, and the
-  strongest Grenade, Thunderclap-in-a-Jar, only +9). Healing Potion's own
-  Level 3 / 2 Health baseline implies roughly 0.67 Health per Level as
-  this model's going rate; Revivification's 9 total Health implies ~1.8
-  Health per Level, well over double. Worth revisiting the healing
-  amount directly, not just the Level.
+  for its Level — Net +15.5, sharply higher than every other Level-5
+  item in the batch (Insanity Potion ≈ −18.5, Swiftblade Vial ≈ −10, and
+  the strongest Grenade, Thunderclap-in-a-Jar, +19.5 — though that one's
+  now its own flagged AoE finding, see below, not a fair comparison
+  point anymore). Healing Potion's own Level 3 / 2 Health baseline
+  implies roughly 0.67 Health per Level as this model's going rate;
+  Revivification's 9 total Health implies ~1.8 Health per Level, well
+  over double. Worth revisiting the healing amount directly, not just
+  the Level.
 - **`I043` Healing Potion itself reads as underpowered** for its Level
-  (Net −7, one of the weaker Level 3 entries) — worth a look in the
+  (Net −6.5, one of the weaker Level 3 entries) — worth a look in the
   opposite direction from Revivification, and possibly the two should be
   reconciled against each other directly rather than independently.
 - **Poisons read as systematically weak across the board** (Net ranging
-  −12 to −14 at a representative Level 3, the worst of any category) —
-  this comes from a real structural cost the model doesn't apply to
-  anything else: a poison's payoff is contingent on *two* separate rolls
-  succeeding (the weapon attack landing, then the poison's own
-  Concentration-vs-Vital-Defense flip), where every other consumable
-  here only has one contingency layer (or none). This might mean Poisons
-  are correctly priced as a niche, situational tool rather than a
-  straight damage/debuff item and shouldn't be pushed to hit the same
-  Net-≈-0 bar as everything else — or it might mean the double-
+  roughly −11.5 to −13.75 at a representative Level 3, the worst of any
+  category) — this comes from a real structural cost the model doesn't
+  apply to anything else: a poison's payoff is contingent on *two*
+  separate rolls succeeding (the weapon attack landing, then the
+  poison's own Concentration-vs-Vital-Defense flip), where every other
+  consumable here only has one contingency layer (or none). This might
+  mean Poisons are correctly priced as a niche, situational tool rather
+  than a straight damage/debuff item and shouldn't be pushed to hit the
+  same Net-≈-0 bar as everything else — or it might mean the double-
   contingency discount is too harsh, or that Poison effects (Potency
   scaling) need a real numbers bump. Flagging the pattern rather than
   picking an answer.
 - **`I207` Quartz Tincture** (one of our own newly-drafted items) is
-  notably weaker than its Level 4 single-target peer Sunbeam (Net −6 vs.
-  +2) — worth a look alongside the Masterwork pass as the same drafting
-  batch.
+  notably weaker than its Level 4 single-target peer Sunbeam (Net −5.5
+  vs. +2.5) — worth a look alongside the Masterwork pass as the same
+  drafting batch.
 - **Food's Target formula was fixed after this pass first landed** — the
   original version mixed a per-encounter `Target = Level × 3` with a
   separately-discounted per-day `Rate`, double-counting the infrequency
@@ -289,9 +293,9 @@ they're crafted onto rather than being fixed.
 - **The AoE multiplier is now confirmed at ×2 (the designer balances
   area Grenades assuming 2 enemies hit), and applying it honestly
   exposes a real problem, not just a corrected guess.** Hellfire Bomb
-  and Thunderclap-in-a-Jar jump to Net +14 and +19 — far above every
+  and Thunderclap-in-a-Jar jump to Net +14.5 and +19.5 — far above every
   other item in the batch, including same-Level single-target Grenades
-  (Sunbeam +2). Both use the *same* raw per-target Damage as their
+  (Sunbeam +2.5). Both use the *same* raw per-target Damage as their
   single-target peers, then get doubled on top for the AoE credit —
   which is very likely the actual issue: **an AoE item's raw per-target
   numbers should probably be set lower than a same-Level single-target
@@ -299,6 +303,17 @@ they're crafted onto rather than being fixed.
   it's meant to be priced. Worth trimming the raw Damage/Debuff numbers
   on these two specifically during the real pass, not re-litigating the
   multiplier itself.
+- **1 AP locked at 2.75 (down from the old sheet's 3), and the whole
+  ledger recomputed against it** — every AP-costed row (all 32 Potions/
+  Grenades/Poisons, each at `AP:-2`) shifts by a uniform +0.5 to both
+  Value and Net, since only the AP term changed. Confirmed on real
+  reasoning, not just Baseline's arithmetic: 1 AP's value is priced as
+  the opportunity cost of *not* spending it on an attack instead — AP is
+  deliberately scarce (very few things grant it directly) and quantized
+  (an attack always costs a full 2 AP, never a fraction), so `(value of
+  one attack) ÷ 2` is the direct, correct reading of what any other
+  AP-costed effect needs to beat. See `balance_weights_notes.md` for the
+  full reasoning.
 
 **Lower-confidence spots, flagged in the ledger but not necessarily
 wrong:** the Cover/Difficult-Terrain approximation on Smokejar/

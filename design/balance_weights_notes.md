@@ -73,6 +73,23 @@ numbers without ever checking where they came from.
   to drop this credit from current Grenades (they don't grant a *bundled
   extra* attack, the Grenade *is* the attack, already priced through
   Damage directly).
+- **1 AP = 2.75** (down from the old sheet's unexplained 3). Confirmed
+  on the underlying logic, not just the arithmetic: "AP is a restriction
+  on everything you can do in combat... very few things grant AP
+  directly, as is intended; so this value is used to basically just say,
+  how valuable does this need to be considering I could just attack" —
+  in the designer's own words. That's a direct statement of the
+  opportunity-cost framing: 1 AP's value is what you gave up by *not*
+  spending it toward another attack. Attacks come in whole 2-AP chunks
+  (you can't attack a fraction of a time — a turn free of movement needs
+  can go all-in on 2 attacks, which is exactly why ranged characters who
+  don't need to close distance can be so consistent), so the rate is
+  `(value of one attack, 5.5) ÷ (its AP cost, 2) = 2.75` — the most
+  direct reading of "what does 1 AP cost me if I spend it elsewhere
+  instead of attacking." The whole alchemy ledger (every Potion/
+  Grenade/Poison, all costed at `AP:-2`) has been recomputed under this
+  — a uniform +0.5 Value/Net shift across 32 rows, since only the AP
+  term changed.
 
 ## Shallow/Deep HP and Heal — Locked, but easy to get backwards
 
@@ -233,14 +250,6 @@ under pressure mid-pass the way the alchemy ledger almost did.
 ## Plausible, not confirmed — the numbers line up with something real,
 ## but the workbook never says so
 
-- **1 AP = 3.** Two independent paths from Baseline both land on
-  **2.75**, not 3: (a) per-attack value (5.5, see Autoswing above) ÷ 2 AP
-  per attack = 2.75; (b) baseline turn value (8.25) ÷ AP actually spent
-  attacking in a turn (1.5 attacks × 2 AP = 3 AP) = 2.75. 3 reads as a
-  modest round-up from that ~2.75 figure — the same "nudge slightly
-  generous over the derived number" pattern as Good Luck's old 2.5 over
-  its real ~2.2, just smaller here (3 vs 2.75 is a ~9% bump, not the ~14%
-  bump 2.5-over-2.2 would have been).
 - **Protected = 3** (`=4×75%` in the sheet). Health's own value is 4, and
   Protected's current rule prevents exactly 1 Health loss per stack,
   fully guaranteed once it actually triggers — so a naive read would
@@ -254,8 +263,8 @@ under pressure mid-pass the way the alchemy ledger almost did.
 ## What's still open
 
 Every weight that started this audit unresolved (Sift, Push, Difficult
-Terrain, Resist) now has a Pencil derivation, and Damage and Autoswing
-are fully Locked. The AoE multiplier used on area-effect Grenades
+Terrain, Resist) now has a Pencil derivation, and Damage, Autoswing, and
+1 AP are fully Locked. The AoE multiplier used on area-effect Grenades
 (Hellfire Bomb, Thunderclap-in-a-Jar) is also confirmed — the designer
 balances these assuming **2 enemies hit** (deliberately bad value
 against 1, above-rate against 3+) — but plugging that in surfaces a real
@@ -280,8 +289,7 @@ entry. What's left, if anyone wants to push further:
   weight, Baseline's own combat-frequency math, and the designer's
   directly-stated enemy-type mix); what's undecided is what to *do*
   about the items it exposes as under-tuned.
-- Protected's 75% discount and 1 AP's "plausible, not confirmed"
-  reconstruction (2.75 vs. the sheet's 3 — still an open decision, not
-  yet locked either way) are still open, not settled the way Good Luck/
-  Card/Pressure/Sift/Push/Difficult Terrain/Damage/Resist/Autoswing now
-  are.
+- Protected's 75% discount is the one weight left with no confirmed
+  reasoning behind its specific number — everything else in THE TABEL
+  now has either a real derivation, a confirmed designer intent, or a
+  fresh Pencil one built and reasoned through this pass.

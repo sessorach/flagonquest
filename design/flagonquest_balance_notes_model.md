@@ -72,7 +72,7 @@ effects, matching Baseline's average hit chance.
 | Deep HP (max pool) | 4 | Yes | The baseline "effective healing" rate — doesn't need healing to already count. |
 | Shallow Heal | 4 | Yes | Healing the *less*-restricted resource — the inverse ranking from the max-pool rows above. |
 | Deep Heal | 5 | Yes | Healing the scarcer, more-restricted resource. |
-| 1 AP | 3 | Yes | Baseline's own combat math gives ~2.75 two independent ways; 3 is a modest round-up. *(Plausible, not fully confirmed.)* |
+| 1 AP | 2.75 *(was 3)* | Yes | Confirmed: priced as opportunity cost against attacking instead — "how valuable does this need to be considering I could just attack" — `(value of one attack, 5.5) ÷ (its AP cost, 2)`. AP is deliberately scarce (very few things grant it directly) and quantized (attacks cost a full 2 AP each, no fractional attacks), which is exactly why this ratio is the right anchor. |
 | Card (drawn / from hand) | 2.7 *(was ~3.05)* | Yes | Floor = Good Luck's own marginal (2.2 — playing a hand card to replace a flip is the same math as Good Luck); a premium above that for timing/targeting/Suit Pool flexibility, which is a judgment call, not a computed number. |
 | Good Luck | 2.2 *(was 2.5)* | Yes | Exact expectation of flip-2-take-highest from a real 52-card deck (9.196) minus the 1-card baseline (7). |
 | Pressure *(was "Concession," 2.5)* | 2.2 | Yes | Exactly mirrors Good Luck — Pressure literally *is* imposed Bad Luck under current rules, and the underlying card math is symmetric (harm from worst-of-2 = benefit from best-of-2). |
