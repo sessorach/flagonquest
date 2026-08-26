@@ -322,6 +322,8 @@ assumption, but not double-checked the way Hellfire Bomb/Thunderclap
 were); the Resist-mechanic gap on Elemental-Attuned Tincture (the
 weight itself is now derived, see above, but this row hasn't been
 recomputed against it yet); the Hasted-mechanic gap on Swiftblade Vial
-(same — Hasted is now known to just be Speed, 0.6/stack, not yet
-applied to this row); and Insanity Potion's multi-effect
-translation overall (the single messiest item in the batch to price).
+(same — Hasted now has its own compounding curve in
+`balance_weights_notes.md`, 0.55/stack base rising toward ~2.2/stack
+under a 4-turn window, not yet applied to this row); and Insanity
+Potion's multi-effect translation overall (the single messiest item in
+the batch to price).

@@ -218,17 +218,21 @@ under pressure mid-pass the way the alchemy ledger almost did.
   gated to a specific in-combat condition) would need this same
   simulation re-run for whatever window applies to it instead — this
   isn't a universal constant the way Damage or Health are.
-- **Speed = 0.6/point** (Agility 3, i.e. Speed 4, agreed as the
+- **Speed = 0.55/point** (Agility 3, i.e. Speed 4, agreed as the
   representative baseline for most movement). Not a mechanic THE TABEL
   currently has a row for at all, despite real items granting flat Speed
   (Feathered Sandals, Slipstream Sandals, and others) — added here since
   Push and Difficult Terrain both turn out to be priced off of it.
   Derivation: 1 Move action costs 1 AP and covers up to Speed meters, so
   the value of +1 Speed is the AP saved covering the same ground —
-  `(1 AP's value) ÷ (Speed + 1) = 3 ÷ 5 = 0.6`.
-- **Push = 0.6/meter.** Directly Speed's own per-point rate — a Push is
+  `(1 AP's value) ÷ (Speed + 1) = 2.75 ÷ 5 = 0.55`. (Corrected from an
+  earlier pass's 0.6 — that used 1 AP's *old*, pre-correction value of 3;
+  nobody re-ran this formula after 1 AP itself got Locked at 2.75. Caught
+  during the buff/debuff review below, since Hasted/Slowed both mirror
+  this rate.)
+- **Push = 0.55/meter.** Directly Speed's own per-point rate — a Push is
   forced movement, priced the same as any other meter of movement.
-- **Difficult Terrain = 0.6/degree.** Same rate as Push and Speed: 1
+- **Difficult Terrain = 0.55/degree.** Same rate as Push and Speed: 1
   degree costs exactly 1 extra meter of Speed to cross 1 meter of the
   terrain, so it's priced in the same currency. Difficult Terrain still
   carries an extra wrinkle Push doesn't, though — it's usually granted as
@@ -516,16 +520,63 @@ trigger to matter. Baseline's own 5-round encounter length is the
 natural ceiling to check a big grant against, same as it was for the
 survival-window keywords above.
 
+### Hasted = 0.55/stack base, rising toward ~2.2/stack; Slowed = 0.55/stack base, rising toward ~1.1/stack
+
+A late catch during review: both were originally waved off as "flat
+continuously-active modifiers, no decay event to make them non-linear" —
+that reasoning was wrong. They *are* continuously-active with the same
+generic 1/turn Fleeting decay Crippled/Vulnerable use, applying full
+current magnitude to Speed every turn they're up. That's exactly the
+shape that made Crippled/Vulnerable compound, not the shape that keeps
+Harried/Ward flat (Harried clears *all* stacks at end of turn instead of
+decaying 1-at-a-time; Ward's "+1 Resist while any stacks" is boolean the
+same way Taunted/Frightened are, not magnitude-scaling). Same formula as
+Crippled/Vulnerable — `value(n) = rate × Σ(stacks remaining each turn of
+the survival window)` — with the base rate corrected alongside Speed's
+own fix above (0.55/point, not the stale 0.6).
+
+The two get *different* windows, though, because what caps them is
+different:
+- **Slowed** (debuff, applied to an enemy) reuses Crippled/Vulnerable's
+  2-turn window directly — same focus-fire logic, the target's realistic
+  survival caps it:
+
+  | Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 |
+  |---|---|---|---|---|---|---|---|---|
+  | Value | 0.55 | 1.65 | 2.75 | 3.85 | 4.95 | 6.05 | 8.25 | 10.45 |
+  | Per-stack | 0.55 | 0.83 | 0.92 | 0.96 | 0.99 | 1.01 | 1.03 | 1.05 |
+
+  Converges toward 1.10/stack. Worth a caveat Crippled/Vulnerable didn't
+  need: Slowed's realization also depends on whether movement is
+  actually contested in a given fight — an enemy that just stands and
+  swings never feels it, unlike an Accuracy/Defense penalty that bites on
+  every attack roll regardless of scenario.
+- **Hasted** (buff, applied to your own side) doesn't have a "target
+  might die" cap — the party doesn't get whittled down like enemies do
+  in the Baseline model, so the real limit is just how much of the fight
+  is left when it's cast. Per the designer: "sometimes longer,
+  realistically you're using it early on into a fight and getting a good
+  3-4 turns out of it if you apply enough" — a 4-turn window:
+
+  | Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 |
+  |---|---|---|---|---|---|---|---|---|
+  | Value | 0.55 | 1.65 | 3.3 | 5.5 | 7.7 | 9.9 | 14.3 | 18.7 |
+  | Per-stack | 0.55 | 0.83 | 1.1 | 1.375 | 1.54 | 1.65 | 1.79 | 1.87 |
+
+  Converges toward 2.2/stack (4 × 0.55) — exactly double Slowed's
+  ceiling, reflecting that a big Hasted grant realistically gets twice as
+  many turns to run as a big Slowed grant does.
+
 ### Still to go
 
-Nothing — Bleeding, Crippled, Vulnerable, Necrotic, and Taunted/
-Frightened are all resolved above; Protected turned out to be a real
-confirmed Locked derivation rather than a judgment-call curve, so it
-lives in the Locked section instead of this bucket. Harried (1, the
-original Baseline-confirmed anchor) and Hasted/Slowed/Ward
-(0.6/0.6/0.375-0.19, direct mirrors of already-Locked Speed and Resist)
-never needed this treatment in the first place, since they're flat
-continuously-active modifiers with no decay-driven event to make
-non-linear the way Bleeding/Necrotic are, and aren't calibrated against
-a narrower incoming-threat rate the way Crippled/Vulnerable are. That's
-every keyword in the Common Effects glossary accounted for.
+Nothing — every keyword in the Common Effects glossary is now resolved.
+Bleeding, Crippled, Vulnerable, Necrotic, Taunted/Frightened, and now
+Hasted/Slowed all have reasoned per-stack curves above; Protected turned
+out to be a real confirmed Locked derivation rather than a judgment-call
+curve, so it lives in the Locked section instead of this bucket. Only
+Harried (1, the original Baseline-confirmed anchor — clears *all*
+stacks at end of turn, not a 1/turn decay) and Ward (0.375/0.19, a
+direct mirror of already-Locked Resist, boolean "any stacks" the same
+way Taunted/Frightened are) stay genuinely flat — both for structural
+reasons specific to their own mechanic, not because they were never
+checked.

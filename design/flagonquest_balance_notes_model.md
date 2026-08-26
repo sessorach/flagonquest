@@ -79,9 +79,9 @@ effects, matching Baseline's average hit chance.
 | Gold | 1.5 | Yes | Reciprocal of Baseline's own "Value / Gold ratio" (2/3). |
 | Protected | 3 | Yes | Confirmed: Health's value (4) × the real (bank-partial, not burn-all) mechanic, simulated across a full encounter at the designer's stated "takes more hits than average" targeting assumption — lands at ~75-84% of full value realized for a realistic 1-4 stack grant, matching the ~25% `[Fleeting]`-driven discount. |
 | Sift | 0.6/card *(was 0.64)* | Yes | Simulated the real mechanic (discard low cards, let the rest reshuffle back in) — ~0.60/card is what lands within one adventuring day's worth of draws; the true long-run value is ~1.62/card. |
-| Speed | 0.6/point | Yes | New row — THE TABEL never had one, despite real items granting flat Speed. `(1 AP's value) ÷ (baseline Speed + 1)`, at an agreed baseline of Agility 3 (Speed 4). |
-| Push | 0.6/meter *(was 0.5)* | No | Directly Speed's own per-meter rate — still priced as an on-hit-style rider, same reasoning as Damage/Debuff above. |
-| Difficult Terrain | 0.6/degree *(was 1)* | Yes | Same per-meter-of-Speed rate as Push, but usually granted as a standalone zone effect rather than an attack rider — still carries its own AoE/zone-size uncertainty on top of this rate. |
+| Speed | 0.55/point | Yes | New row — THE TABEL never had one, despite real items granting flat Speed. `(1 AP's value) ÷ (baseline Speed + 1)` = `2.75 ÷ 5`, at an agreed baseline of Agility 3 (Speed 4). Corrected from an earlier pass's 0.6, which used 1 AP's stale pre-correction value (3). |
+| Push | 0.55/meter *(was 0.5)* | No | Directly Speed's own per-meter rate — still priced as an on-hit-style rider, same reasoning as Damage/Debuff above. |
+| Difficult Terrain | 0.55/degree *(was 1)* | Yes | Same per-meter-of-Speed rate as Push, but usually granted as a standalone zone effect rather than an attack rider — still carries its own AoE/zone-size uncertainty on top of this rate. |
 | Autoswing | 5.5 | Yes | Confirmed: the bundled credit for a Technique/item that grants an attack as part of a larger effect (Battle Maneuver's base "make a weapon attack" is the live example) — value of one typical attack (damage, hit-chance discounted) plus the Harried stack any attack applies. Not a "guaranteed hit" mechanic. |
 
 ## BALANCE tab — every Technique/Item, audited
