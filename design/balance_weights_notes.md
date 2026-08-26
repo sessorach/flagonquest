@@ -393,9 +393,56 @@ more conservative than Crippled's curve since it's anchored to Harried's
 narrower incoming-threat rate rather than the target's own full attack
 output.
 
+### Necrotic = 3/stack when it actually resolves, but priced through Rate of Use, not a stacking curve
+
+Necrotic doesn't fit the same non-linear-stacking treatment as the other
+three, because its two real uses in play aren't gated by focus-fire
+survival or decay compounding — they're gated by whether the target ever
+does the one specific thing Necrotic punishes at all. Per the designer:
+
+- **Player-applied, vs. an enemy that heals or shields itself.** "Either
+  tank characters or heal/support ones will apply Protected to people
+  likely to be focused by attacks, and the point is that Necrotic
+  cancels those out before the attack deals damage." That cancellation
+  ("at any time if you have stacks of both Necrotic and Protected,
+  remove 1 stack of each") is unconditional — no attack roll, no hit
+  chance, it just fires the instant both are present. So *when it
+  resolves*, 1 stack of Necrotic is worth exactly what the Protected
+  stack it deletes was worth: **3** (Protected's own Locked value).
+  Same logic against a straight self-heal: it blocks 1 point of
+  whatever Heal weight applies (4 Shallow / 5 Deep), landing in the same
+  ballpark. Call it **3/stack**, Protected's rate, as the representative
+  number for this role.
+- **Enemy-applied, vs. a player's own healing.** Here the designer's
+  framing is different: "players will know they have Necrotic, so it's
+  more of a hedge against them healing until it goes away." A player who
+  sees the stacks won't feed a heal into them and eat the block — they
+  wait the (generic 1/turn Fleeting) decay out. So the mechanical
+  "block 1 Health of a heal" clause rarely actually fires; what actually
+  happens is closer to a **stacks-count-many turns of denied access to
+  healing** (can't clear Wounded penalties, can't top back up) — a
+  tempo-denial effect, not a Health-point-denial one. Nothing else in
+  THE TABEL prices "delay X for N turns" directly, so this role doesn't
+  reduce to a clean per-stack number the way the other three did.
+
+The honest way to handle this: price Necrotic at **3/stack for when it
+resolves** (Guaranteed: Yes — no attack-roll gate, unlike Damage/Push),
+same as Bleeding, but don't try to build a stacking curve for it — its
+contingency isn't "does the target survive/keep attacking," it's "does
+the target's specific trigger condition ever come up at all," which
+varies per use case (every-few-fights for the anti-Protected/anti-heal
+role, per the designer's own estimate) rather than following a
+mechanical decay shape. That belongs in each Necrotic-granting item's
+own **Rate of Use** column in `balance_ledger.csv` — same place Sift's
+and Food's own realistic-cadence discount already lives — not in a
+second universal weight. If a Necrotic item's computed Net reads low
+under a conservative "every few fights" rate, the designer's own
+preferred fix is bumping how often enemy Protected-users/healers show
+up in encounter design, not inflating the per-stack weight.
+
 ### Still to go
 
-Necrotic, Protected, Taunted, Frightened — Harried (1, the original
+Protected, Taunted, Frightened — Harried (1, the original
 Baseline-confirmed anchor) and Hasted/Slowed/Ward (0.6/0.6/0.375-0.19,
 direct mirrors of already-Locked Speed and Resist) don't need this same
 treatment, since they're flat continuously-active modifiers with no
