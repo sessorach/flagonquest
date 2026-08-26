@@ -572,7 +572,7 @@ trigger to matter. Baseline's own 5-round encounter length is the
 natural ceiling to check a big grant against, same as it was for the
 survival-window keywords above.
 
-### Hasted = 0.55/stack base, rising toward ~2.2/stack; Slowed = 0.55/stack base, rising toward ~1.1/stack
+### Hasted = 0.55/stack base, rising toward ~2.2/stack; Slowed = 1.1/stack base, hard-capped at 17.6
 
 A late catch during review: both were originally waved off as "flat
 continuously-active modifiers, no decay event to make them non-linear" —
@@ -595,23 +595,36 @@ different:
   purpose" case, same logic as Crippled), and a hard cap, since Speed
   saturates too — zero is zero, a creature that already can't move
   doesn't get more immobile. Capped at **4 stacks**, matching the
-  session's own baseline Speed (Agility 3 → Speed 4):
+  session's own baseline Speed (Agility 3 → Speed 4).
 
-  | Stacks | 1 | 2 | 3 | 4 | 5 | 6+ |
-  |---|---|---|---|---|---|---|
-  | Value | 0.55 | 1.65 | 3.3 | 5.5 | 7.15 | 8.8 |
-  | Per-stack | 0.55 | 0.83 | 1.1 | 1.375 | 1.43 | falling |
+  A third revision doubled the base rate itself. Speed's own 0.55/point
+  is priced against *one* movement need per turn — but a Slowed
+  creature realistically needs to cover ground twice in a typical turn
+  (reposition, then act, or simply that a single Move action's worth of
+  distance rarely covers everything a turn wants), and both movement
+  needs get hit by the exact same flat -1 penalty. That's a direct
+  doubling at the rate level, not a change to the window or the cap —
+  those are about how long the effect stays relevant and where Speed
+  physically bottoms out, neither of which depends on how many times
+  per turn the penalty actually bites: **1.1/stack**, not 0.55/stack.
 
-  Hard ceiling at 8.8, peak per-stack right at the cap (n=4, 1.375/
-  stack) — same shape as Crippled/Vulnerable's saturation curves, just
-  scaled to Speed instead of the flip mechanic. A target with higher
-  Agility needs proportionally more stacks to zero out (the cap is
-  target-Speed-dependent, same "representative baseline" caveat as
-  everywhere else Agility 3 gets used), and the same caveat as before
-  still applies on top: realization also depends on whether movement is
-  actually contested in a given fight — an enemy that just stands and
-  swings never feels it, unlike an Accuracy/Defense penalty that bites
-  on every attack roll regardless of scenario.
+  | Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 8+ |
+  |---|---|---|---|---|---|---|---|
+  | Value | 1.1 | 3.3 | 6.6 | 11 | 14.3 | 16.5 | 17.6 |
+  | Per-stack | 1.1 | 1.65 | 2.2 | 2.75 | 2.86 | 2.75 | falling |
+
+  Hard ceiling at 17.6 (double the pre-revision 8.8), now in the same
+  ballpark as Vulnerable's own ceiling (24) rather than sitting well
+  below it — matching the read that Slowed had been underrated relative
+  to the other three. Peak per-stack still lands right at the cap
+  (n=4, 2.75/stack). A target with higher Agility needs proportionally
+  more stacks to zero out (the cap is target-Speed-dependent, same
+  "representative baseline" caveat as everywhere else Agility 3 gets
+  used), and the same caveat as before still applies on top: realization
+  also depends on whether movement is actually contested in a given
+  fight — an enemy that just stands and swings never feels it, unlike
+  an Accuracy/Defense penalty that bites on every attack roll regardless
+  of scenario.
 - **Hasted** (buff, applied to your own side) doesn't have a "target
   might die" cap — the party doesn't get whittled down like enemies do
   in the Baseline model, so the real limit is just how much of the fight
@@ -624,9 +637,11 @@ different:
   | Value | 0.55 | 1.65 | 3.3 | 5.5 | 7.7 | 9.9 | 14.3 | 18.7 |
   | Per-stack | 0.55 | 0.83 | 1.1 | 1.375 | 1.54 | 1.65 | 1.79 | 1.87 |
 
-  Converges toward 2.2/stack (4 × 0.55) — exactly double Slowed's
-  ceiling, reflecting that a big Hasted grant realistically gets twice as
-  many turns to run as a big Slowed grant does.
+  Converges toward 2.2/stack (4 × 0.55), unbounded — unlike Slowed,
+  Hasted has no saturation point to cap against (Speed climbing has no
+  probabilistic ceiling the way hit chance does), so it keeps this
+  smooth per-stack convergence rather than the hard wall Slowed's own
+  revision added.
 
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
