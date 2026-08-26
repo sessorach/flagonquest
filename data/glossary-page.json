@@ -249,7 +249,7 @@
     "level": 4,
     "title": "(Fire/Frost/Brilliant/Shadow) Ward [Fleeting]",
     "supplement": "Base Game",
-    "body": "While you have any stacks of this, you have +1 Resist against the specified type of damage."
+    "body": "While you have any stacks of this, you have +2 Resist against the specified type of damage."
   },
   {
     "id": "type-tags",

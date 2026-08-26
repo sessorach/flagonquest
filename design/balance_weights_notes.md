@@ -302,22 +302,14 @@ under pressure mid-pass the way the alchemy ledger almost did.
   something real about Resist's value (burst/spike protection in a
   single big hit, not just average damage over time).
 
-  This same correction directly raises **Ward** (Fire/Frost/Brilliant/
-  Shadow Ward, `+1 Resist against the specified type while any stacks
-  remain`) — Ward mirrors Resist's own per-point rate, so Fire Ward and
-  Frost/Brilliant/Shadow Ward both go up by the same ratio Resist did.
-  Two things about Ward are still open past this fix, from a design
-  conversation about making Ward more powerful generally: (1) Ward's
-  actual rule text is *boolean* ("any stacks" → flat +1, not scaling per
-  stack) — closer to Taunted/Frightened's shape than to Hasted/Slowed's,
-  meaning it should get the same linear-per-turn-of-duration treatment
-  those two got rather than being priced as one flat number, and/or the
-  rule itself could change to scale with stacks the way Hasted does,
-  which would need this same Resist-rate fix layered on top either way;
-  (2) the burst/spike-protection blind spot flagged just above applies
-  to Ward too, since it inherits Resist's rate directly. Neither is
-  resolved yet — flagged here so the Ward writeup doesn't get finalized
-  without them.
+  This same correction feeds directly into **Ward** (Fire/Frost/
+  Brilliant/Shadow Ward) — see its own writeup below in the Debuff
+  bucket section for the full derivation, including a rule change (the
+  flat bonus doubled from +1 to +2 Resist) made alongside this fix. The
+  burst/spike-protection blind spot flagged just above applies to Ward
+  too, since it inherits Resist's rate directly — still genuinely open,
+  unlike Ward's other two questions (magnitude scaling, per-application
+  value) which are now resolved.
 
 ## What's still open
 
@@ -606,23 +598,65 @@ different:
   ceiling, reflecting that a big Hasted grant realistically gets twice as
   many turns to run as a big Slowed grant does.
 
-### Still to go
+### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
-Bleeding, Crippled, Vulnerable, Necrotic, Taunted/Frightened, and
-Hasted/Slowed all have reasoned per-stack curves above; Protected turned
-out to be a real confirmed Locked derivation rather than a judgment-call
-curve, so it lives in the Locked section instead of this bucket. Harried
-(1, the original Baseline-confirmed anchor — clears *all* stacks at end
-of turn, not a 1/turn decay) stays genuinely flat for a structural
-reason specific to its own mechanic, not because it was never checked.
+Two questions were open here: should Ward scale magnitude per stack
+(mirroring Hasted), and what should its actual per-application value be.
+Both are now resolved.
 
-**Ward is the one still genuinely open**, on purpose — see the Resist
-entry above (Ward's rate just moved to 0.5/0.25, mirroring Resist's own
-correction) for the full context: it's currently priced as flat, but its
-actual rule ("any stacks" → flat +1) is boolean like Taunted/Frightened,
-not scaling like Hasted/Slowed, so by the same logic that fixed
-Hasted/Slowed it should get a real per-turn-of-duration derivation
-instead of one flat number — and there's a live design conversation
-about whether to change the underlying rule to scale per stack instead
-(mirroring Hasted's shape) as part of making Ward hit harder generally.
-Both are pending a decision, not yet resolved into a number here.
+**The rule itself changed.** Scaling magnitude per stack (Hasted's
+shape) was considered and rejected: Resist reduces damage 1-for-1 per
+point with no upper bound, so an unbounded per-stack scale would let a
+character with enough Ward stacks become functionally immune to a
+damage type for as long as the buff lasts — several existing effects
+already grant enough stacks to make that a real risk, and trivializing
+a fight built around a specific element is exactly the failure mode to
+avoid. Instead, per the designer: **Ward's flat bonus doubles, from +1
+to +2 Resist**, keeping the boolean "any stacks → this flat bonus"
+shape — stacks still only ever buy *duration*, never a growing wall.
+`scripts/glossary.md` and the regenerated `data/*.json` now say +2.
+
+**The value derivation**, now that the magnitude is fixed: unlike
+Taunted/Frightened's flat 2.2/turn (a per-flip penalty with no
+encounter-timing dependency), Ward's payoff rides on Resist's own
+already-derived rate, which is an *encounter-aggregate* built from
+Baseline's round-by-round taper (enemies active, and therefore hits
+landing, are front-loaded — round 1 sees roughly 9× round 5's hit
+volume). Ward decaying 1/turn while covering the *early*, hit-dense
+rounds is worth a lot more per stack than the same stack count spent
+covering the quiet tail — the opposite shape from Hasted/Slowed's
+compounding, and different again from Taunted/Frightened's flat
+linear rate. Assuming (same logic as Hasted, a proactive buff on your
+own side) it's applied at the start of a fight against a known or
+suspected threat, so stack 1 covers round 1, stack 2 extends into
+round 2, and so on:
+
+| Stacks (rounds covered) | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| Fire — Value | 0.36 | 0.64 | 0.84 | 0.96 | 1.00 |
+| Fire — Per-stack | 0.36 | 0.32 | 0.28 | 0.24 | 0.20 |
+| Frost/Brilliant/Shadow — Value | 0.18 | 0.32 | 0.42 | 0.48 | 0.50 |
+| Frost/Brilliant/Shadow — Per-stack | 0.18 | 0.16 | 0.14 | 0.12 | 0.10 |
+
+Both cap at exactly `2 × Resist's own per-point rate` (1.0 Fire, 0.5
+others) at 5 stacks — a full Baseline encounter's worth of coverage,
+matching the same realistic-window cap every other keyword in this
+bucket uses. Genuinely **diminishing** returns per stack, the third
+distinct shape in this whole bucket (alongside Bleeding/Necrotic's
+capped taper and Crippled/Vulnerable/Hasted/Slowed's compounding) —
+worth stacking up to cover a fight's opening, but each additional
+stack buys less than the last, exactly the opposite incentive from the
+immunity-risk shape that got rejected.
+
+Checked against the only two things in the catalog that currently grant
+Ward: **Spellblade** (`[3×X]+1+[Hearts]` stacks — 4 to 17 at Level 1
+depending on the card flip) massively over-grants relative to the
+5-stack realistic ceiling, so most of a typical cast is already wasted
+overkill under this model, independent of the rule change — a real
+finding for whenever Spellblade itself gets balanced. **Elemental-
+Attuned Tincture** grants Ward "that lasts for 1 hour" instead of a
+stack count — a full hour comfortably outlasts a single 5-round
+encounter, so that item doesn't decay mid-fight the way a normal
+stacked grant does; it should just be priced at the flat full-encounter
+rate (1.0 Fire / 0.5 others) with no duration discount, not run through
+the stacking table above.

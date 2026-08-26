@@ -13,6 +13,17 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-26 — Ward's Resist bonus doubled
+
+- Fire/Frost/Brilliant/Shadow Ward now grants **+2 Resist** against its
+  specified damage type while any stacks remain (up from +1). Surfaced
+  during a balance audit that found Ward underpriced relative to Resist;
+  a per-stack scaling version (like Hasted's +1 Speed/stack) was
+  considered and rejected since Resist has no upper bound, and letting
+  Ward stack toward it would risk a character becoming immune to a
+  damage type mid-fight — doubling the flat bonus keeps that ceiling in
+  place while making a single application meaningfully stronger.
+
 ### 2026-08-25 — Unified crafting recipes onto one Materials formula
 
 - Crafting recipes used to come in two incompatible shapes — a fixed

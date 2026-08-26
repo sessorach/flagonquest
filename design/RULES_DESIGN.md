@@ -1262,6 +1262,23 @@ the full list going into the balance pass.
   over from the various reorders this session — none found outside
   Goblin Game, where they were already valid.
 
+- **Ward's flat bonus doubled, +1 → +2 Resist** (`glossary.md`'s Common
+  Effects entry for Fire/Frost/Brilliant/Shadow Ward). Surfaced from a
+  balance pass that found Ward underpriced (see
+  `design/balance_weights_notes.md`'s Ward writeup) and a design goal to
+  make it hit harder. Considered making it scale magnitude per stack the
+  way Hasted does (+1 Resist *per stack* instead of a flat bonus while
+  any stacks remain) and explicitly rejected it: Resist has no upper
+  bound on how much damage it can prevent, so unbounded per-stack
+  scaling would let a character who stacks enough Ward become
+  functionally immune to a damage type for as long as the buff lasts —
+  several existing effects already grant enough stacks to make that a
+  real risk, and trivializing a fight built around a specific element is
+  exactly the failure mode to avoid. Doubling the flat bonus instead
+  keeps the existing "any stacks → this bonus" shape (stacks still only
+  ever buy duration, never a growing wall) while making a single
+  application meaningfully stronger.
+
 ## Open questions / TODO
 
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.

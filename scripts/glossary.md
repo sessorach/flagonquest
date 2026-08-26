@@ -172,7 +172,7 @@ For each stack of this, you suffer a -1 penalty to Vital, Mental, and Instinct D
 
 #### (Fire/Frost/Brilliant/Shadow) Ward [Fleeting]
 
-While you have any stacks of this, you have +1 Resist against the specified type of damage.
+While you have any stacks of this, you have +2 Resist against the specified type of damage.
 
 # Type Tags
 
