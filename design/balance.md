@@ -24,6 +24,90 @@ clean `Level × 3` Target formula, so balancing them is more about relative
 comparison against similarly-priced existing entries than a hard
 pass/fail number.
 
+## The balance ledger (`design/balance_ledger.csv`)
+
+A running, human-readable record of every item/Technique that's actually
+been run through the value model — one row per entry, columns `ID, Name,
+Category, Level, Value, Rate of Use/Encounter, Target, Net, Grants,
+Notes`. `Grants` is the plain-text breakdown of which THE TABEL mechanics
+(and how many units of each) the entry was scored as granting — written
+out instead of left implicit, so a later pass can see exactly what fed
+the `Value` number without re-deriving it. `Notes` is the important
+column: a sentence or two on *how* each estimate was made — which THE
+TABEL mechanic an effect got mapped to, any discount applied and why, and
+an explicit flag whenever a number is a rough guess rather than a clean
+1:1 translation. The `BALANCE` tab in `archive/flagonquest_balance_notes.xlsx`
+is this ledger's ancestor and works the same way mechanically (same
+`Value`/`Target`/`Net` formulas, see `flagonquest_balance_notes_model.md`)
+but has no equivalent "why" column — recovering that reasoning after the
+fact was most of the work behind this file's Historical Pricing Logic
+section above, which is exactly the gap this ledger exists to stop
+recreating.
+
+**Methodology established during the first pass (see Passes completed,
+below, for the actual results):**
+- **AP cost of using an item** is charged as a negative `1 AP` grant
+  (weight 3), not folded into a discount elsewhere. A Potion costs 2 AP
+  total to use in combat (1 AP to draw it per the Retrieving Items rule,
+  1 AP to drink it per the `[Potion]` tag) — a Grenade costs 2 AP as a
+  normal attack action (`Making an Attack` — the model does not also
+  charge a separate 1 AP draw cost for Grenades, matching how the
+  existing reference rows in the old sheet already priced them). A
+  Poison's 2 AP application cost is charged **once**, not once per
+  encounter, since a poisoned weapon stays poisoned for up to an hour or
+  until it lands a hit — see the Poison note below for why this still
+  nets out to `Rate of Use/Encounter = 1`.
+- **`Rate of Use/Encounter` for anything that's naturally a per-day
+  resource, not a per-fight one** (Food, and anything else whose real
+  cadence is "once an adventuring day" or rarer) is derived from the
+  **2.5-encounters-per-adventuring-day** assumption (roughly 2 combat
+  encounters plus enough skill-check/social spend to count as half an
+  encounter): a once/day item gets `Rate = 1 / 2.5 = 0.4`; an
+  every-other-day item would get `Rate = 1 / 5 = 0.2`. This is a new
+  piece of methodology this pass established, not something the old
+  sheet's single Food row (Power Snack) used — see the Passes Completed
+  entry below for how that changes Power Snack's own number.
+- **"Does the threat even show up" discount (×0.5)**, for any item whose
+  whole effect is *preventing* a debuff rather than granting something
+  directly (Calming Brew, Kiss of the Earth, Predator's Cry, Muscular
+  Feast) — a prevention effect only pays off if the enemy was actually
+  about to inflict that debuff, which won't happen every single
+  encounter it's carried into, unlike a Grenade's own effect which pays
+  off the moment it's used.
+- **The "refund a Technique use" trick**, for items whose whole effect is
+  handing back the use of an Encounter Technique (Soldier's Salts,
+  Fighter's Friend, Soul Soup) — THE TABEL has no mechanic for this, so
+  a refund is priced at the refunded Technique's own `Target` budget
+  (`Level × 3`), on the assumption the player gets that Technique's full
+  value back out of it. A clean trick, but it assumes the player actually
+  has a good Technique of that Level sitting unused to refund — its real
+  value swings a lot with what's actually in the build.
+- **Model gaps** — THE TABEL has no weight for Resist bonuses (Elemental-
+  Attuned Tincture, Elemental Warding Amulet-style effects), Hasted
+  (Swiftblade Vial), or granting Cover/terrain control at anything but a
+  flat per-unit rate (Smokejar, Immaculate Adhesive). Items that lean on
+  these got a flagged, rougher approximation rather than a clean
+  translation — see each row's own `Notes`.
+- **AoE multiplier (×1.5)**, for any Grenade that hits more than one
+  creature (Hellfire Bomb, Thunderclap-in-a-Jar) — a genuine guess at the
+  average number of effective targets, with no anchor anywhere in THE
+  TABEL or the old sheet. This is the single least-confident number-type
+  in the whole methodology and worth a gut-check before trusting it on
+  a new AoE item.
+- **Dropped the old sheet's "Autoswing" credit on Grenades.** The 4
+  existing reference rows (Bottled Fire, Bonemelter, Sunbeam, Hellfire
+  Bomb) each carried a flat Autoswing bonus (a 💯-tagged mechanic worth
+  5.5, meant for genuinely guaranteed-hit effects — see the "Elementalism
+  can't autoswing" line in `flagonquest_manifesto_v5.md`, implying other
+  attack types *can*). Current rules text is explicit that Grenades still
+  roll a normal attack against Dodge Defense (`Making an Attack`, the
+  `[Grenade]` glossary tag) — nothing about them auto-hits. This reads as
+  a stale holdover from an older draft where Grenades may genuinely have
+  auto-hit, not something that still applies, so it was **not** carried
+  forward for any row in this pass, including recomputing the 4 existing
+  reference items fresh without it (see Passes Completed for how their
+  numbers shifted).
+
 ## Historical Masterwork/magic-item pricing logic (from the old site)
 
 Pulled from `archive/flagonquest_site_other.md` (the old Google Sites
@@ -101,8 +185,70 @@ actual effect may need adjusting, not just its raw Value-model number.
   otherwise-similar AP-gated version.
 - The site-export batch also added 18 non-Masterwork items (`I190`-`I207`)
   that don't need value-model leveling but should get a normal
-  price/rarity sanity check alongside the rest.
+  price/rarity sanity check alongside the rest — the 4 that are
+  Potions/a Grenade (`I204`-`I207`) got that check as part of the
+  alchemy pass below; the other 14 (Pack/Gear, Tool/Kit) are flavor/
+  utility goods with no combat mechanic to price and don't need one.
 
 ## Passes completed
 
-*(none yet — entries land here as balance passes actually happen)*
+### Alchemy-craftable set — Potions, Grenades, Poisons, Food (38 items)
+
+First real pass through the value model, run as a smaller test case
+before tackling the much larger and more varied Masterwork list — every
+`Category: Potion/Grenade/Poison/Food` row in `items.csv`. Full row-by-
+row results, including every `Grants` breakdown and `Notes` estimate, are
+in `design/balance_ledger.csv`; methodology (AP costs, the 2.5-encounter
+conversion, the prevention discount, the refund trick, the AoE
+multiplier, and dropping "Autoswing") is above. Poisons `I050`-`I056`
+were each evaluated at a representative Level 3 (Potency 3), since their
+actual Level is inherited from whichever Level of `I049` Basic Poison
+they're crafted onto rather than being fixed.
+
+**Findings worth acting on, not just noting:**
+- **`I206` Revivification Draught reads as significantly overpowered**
+  for its Level — Net +15, sharply higher than every other Level-5 item
+  in the batch (Insanity Potion ≈ −19, Swiftblade Vial ≈ −11, and the
+  strongest Grenade, Thunderclap-in-a-Jar, only +9). Healing Potion's own
+  Level 3 / 2 Health baseline implies roughly 0.67 Health per Level as
+  this model's going rate; Revivification's 9 total Health implies ~1.8
+  Health per Level, well over double. Worth revisiting the healing
+  amount directly, not just the Level.
+- **`I043` Healing Potion itself reads as underpowered** for its Level
+  (Net −7, one of the weaker Level 3 entries) — worth a look in the
+  opposite direction from Revivification, and possibly the two should be
+  reconciled against each other directly rather than independently.
+- **Poisons read as systematically weak across the board** (Net ranging
+  −12 to −14 at a representative Level 3, the worst of any category) —
+  this comes from a real structural cost the model doesn't apply to
+  anything else: a poison's payoff is contingent on *two* separate rolls
+  succeeding (the weapon attack landing, then the poison's own
+  Concentration-vs-Vital-Defense flip), where every other consumable
+  here only has one contingency layer (or none). This might mean Poisons
+  are correctly priced as a niche, situational tool rather than a
+  straight damage/debuff item and shouldn't be pushed to hit the same
+  Net-≈-0 bar as everything else — or it might mean the double-
+  contingency discount is too harsh, or that Poison effects (Potency
+  scaling) need a real numbers bump. Flagging the pattern rather than
+  picking an answer.
+- **`I207` Quartz Tincture** (one of our own newly-drafted items) is
+  notably weaker than its Level 4 Grenade peers (Net −6 vs. Sunbeam's +2
+  and Hellfire Bomb's +6) — worth a look alongside the Masterwork pass
+  as the same drafting batch.
+- **Food doesn't fit the shared `Target = Level × 3` formula well at
+  all** — every Food item lands solidly negative (−1.4 to −3) purely
+  because Food is capped to once/day by rule (`[Food]` tag) and gets
+  discounted to `Rate = 0.4` accordingly, not because any of them are
+  actually undertuned. The old sheet's own Power Snack row sidestepped
+  this by using `Target = 0` and charging the item's Gold cost directly
+  instead — worth deciding whether Food should get its own Target
+  convention (e.g. `Target = 0`, judged only on whether `Value` clears
+  its own Gold cost) rather than being squeezed through the combat-
+  encounter formula the rest of the ledger uses.
+
+**Lower-confidence spots, flagged in the ledger but not necessarily
+wrong:** the AoE multiplier on Hellfire Bomb/Thunderclap-in-a-Jar; the
+Cover/Difficult-Terrain approximation on Smokejar/Immaculate Adhesive;
+the Resist-mechanic gap on Elemental-Attuned Tincture; the Hasted-
+mechanic gap on Swiftblade Vial; and Insanity Potion's multi-effect
+translation overall (the single messiest item in the batch to price).
