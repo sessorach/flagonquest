@@ -113,6 +113,57 @@ under pressure mid-pass the way the alchemy ledger almost did.
   `=5/2` (2.5) was close but had no stated reasoning; this pass replaces
   it with the same number as Good Luck, on a real derivation rather than
   a coincidence of proximity.
+- **Sift = 0.60/card** (down from a naive first pass at 1.62 — see
+  below for why the two differ). Sift's rule ("look at X cards, send
+  each to the bottom of your deck or the discard, then shuffle") looked
+  like it shouldn't do anything at first — you're not choosing to keep a
+  good card on top, every viewed card gets moved. The key detail: "then
+  shuffle your deck" means a card sent to the bottom doesn't stay there,
+  it gets reshuffled randomly back in. So the real choice per card is
+  binary — discard it (removed until the discard pile eventually
+  reshuffles back in) or let it rejoin the deck at random — which is
+  exactly the "stack the deck" mechanism: discard the low cards
+  (confirmed by simulation that "discard ≤ 7" is within noise of
+  optimal, matching the stated player heuristic exactly), keep the high
+  ones circulating. Simulating that (500k trials, discarding ≤7 and
+  reshuffling the rest) gives a **true long-run value of ~1.62/card** —
+  the total bonus delivered across every future draw until the
+  post-Sift deck is fully exhausted, which holds constant (1.61–1.62)
+  regardless of how deep into the deck you already are, and only decays
+  gently under repeated back-to-back use (1.62 → 1.42/card by the 5th
+  consecutive application, thanks to each rank having 4 copies in a real
+  deck — much gentler than Good Luck's stacking curve).
+
+  But 1.62 is a *lifetime-of-the-deck* number, and THE TABEL's default
+  scoping is per-encounter (or per-day for daily-cadence effects, see
+  `balance.md`'s corrected Target convention) — not "eventually, however
+  many days that takes." Rescoping to what actually lands within one
+  adventuring day (~18 draws — 1.5 attacks/turn × 5 rounds × ~1.55
+  combats/day from Baseline, plus Reflex/defensive/misc flips) gives
+  **~0.60/card**, verified by simulation rather than estimated. That's
+  the number to actually use in the ledger for anything gated to a
+  daily cadence; a Sift effect with a different natural window (e.g.
+  gated to a specific in-combat condition) would need this same
+  simulation re-run for whatever window applies to it instead — this
+  isn't a universal constant the way Damage or Health are.
+- **Speed = 0.6/point** (Agility 3, i.e. Speed 4, agreed as the
+  representative baseline for most movement). Not a mechanic THE TABEL
+  currently has a row for at all, despite real items granting flat Speed
+  (Feathered Sandals, Slipstream Sandals, and others) — added here since
+  Push and Difficult Terrain both turn out to be priced off of it.
+  Derivation: 1 Move action costs 1 AP and covers up to Speed meters, so
+  the value of +1 Speed is the AP saved covering the same ground —
+  `(1 AP's value) ÷ (Speed + 1) = 3 ÷ 5 = 0.6`.
+- **Push = 0.6/meter.** Directly Speed's own per-point rate — a Push is
+  forced movement, priced the same as any other meter of movement.
+- **Difficult Terrain = 0.6/degree.** Same rate as Push and Speed: 1
+  degree costs exactly 1 extra meter of Speed to cross 1 meter of the
+  terrain, so it's priced in the same currency. Difficult Terrain still
+  carries an extra wrinkle Push doesn't, though — it's usually granted as
+  a *zone* effect ("the space gains N levels of Difficult Terrain") that
+  can affect more than one creature crossing it, inheriting the same
+  AoE-estimation uncertainty flagged for Hellfire Bomb/Thunderclap in
+  the alchemy ledger, on top of the per-degree rate itself.
 
 ## Plausible, not confirmed — the numbers line up with something real,
 ## but the workbook never says so
@@ -156,41 +207,22 @@ under pressure mid-pass the way the alchemy ledger almost did.
   reason a discount belongs here — but the *specific* 75%/25% split isn't
   computed or stated anywhere, just asserted.
 
-## Unexplained — no formula, no reasoning, lowest priority to chase further
-
-- **Sift = 0.64.** The hardest of the three to reconstruct, for a real
-  reason: Sift's current rule (look at X cards, send *each one* to the
-  bottom or discard, then shuffle) doesn't actually improve your very
-  next draw's expected value at all — you're not choosing to keep a good
-  card on top, you're removing all X viewed cards from the near-term
-  draw order regardless, and whatever was card X+1 becomes your new next
-  draw, which is just as random as before. Its real value has to come
-  from second-order effects (routing bad cards to the bottom vs. the
-  discard pile changes *when* they cycle back into play), which is
-  genuinely harder to price with a flat per-unit rate than anything else
-  in the table. 0.64 might be nothing more than "clearly worth less than
-  a full card, pick a small number" — no evidence either way. Would need
-  an actual deck-cycling simulation to pin down properly, not just
-  algebra.
-- **Push = 0.5.** Current rule just says "forcibly moved a certain
-  distance" — no fixed magnitude, that's set per-effect. One guess: a
-  Push is usually a one-time repositioning rather than a persistent
-  per-turn hindrance the way a Debuff stack or a degree of Difficult
-  Terrain is, so valuing it at half of those (which both sit at 1) could
-  reflect that it doesn't keep paying out turn after turn. Unconfirmed.
-- **Difficult Terrain = 1.** Same weight as generic Debuff, no stated
-  reason why they should match. Plausibly just "another generic
-  battlefield hindrance, treat it the same as Debuff by default" rather
-  than an independent derivation.
-
 ## What's still open
 
-Sift, Push, and Difficult Terrain are the three genuinely unresolved
-weights left — everything else in THE TABEL now has either a real
-derivation, a plausible reconstruction, or (for Good Luck/Card/
-Pressure) a fresh one built this pass. None of the three above are
-urgent: they show up rarely in the alchemy ledger (only Smokejar and
-Immaculate Adhesive leaned on Difficult Terrain, both already flagged as
-low-confidence translations) and none look likely to swing a Net verdict
-on their own. Worth a real pass if a future balance run leans on them
-more, but not blocking anything right now.
+Every weight that started this audit unresolved (Sift, Push, Difficult
+Terrain) now has a Pencil derivation. What's left, if anyone wants to
+push further:
+- Sift's ~0.60/card figure is calibrated to a once-per-day window
+  specifically — a Technique that grants Sift on a different trigger
+  (e.g. a combat-conditional one, which is how the design intentionally
+  keeps Sift from being freely spammable — an unconditional, on-demand
+  Sift really would be strong, given how gently its value decays under
+  repeated use) would need the same simulation re-run for its own actual
+  window, not a reused constant.
+- Difficult Terrain's AoE/zone-effect scope is still an open estimation
+  question the same way Grenade AoE is, independent of the per-degree
+  rate now being resolved.
+- Protected's 75% discount and Autoswing/Damage/1 AP's "plausible, not
+  confirmed" reconstructions above are still just that — reconstructions,
+  not settled the way Good Luck/Card/Pressure/Sift/Push/Difficult
+  Terrain now are.

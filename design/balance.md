@@ -60,16 +60,29 @@ below, for the actual results):**
   encounter, since a poisoned weapon stays poisoned for up to an hour or
   until it lands a hit — see the Poison note below for why this still
   nets out to `Rate of Use/Encounter = 1`.
-- **`Rate of Use/Encounter` for anything that's naturally a per-day
-  resource, not a per-fight one** (Food, and anything else whose real
-  cadence is "once an adventuring day" or rarer) is derived from the
-  **2.5-encounters-per-adventuring-day** assumption (roughly 2 combat
-  encounters plus enough skill-check/social spend to count as half an
-  encounter): a once/day item gets `Rate = 1 / 2.5 = 0.4`; an
-  every-other-day item would get `Rate = 1 / 5 = 0.2`. This is a new
-  piece of methodology this pass established, not something the old
-  sheet's single Food row (Power Snack) used — see the Passes Completed
-  entry below for how that changes Power Snack's own number.
+- **Scoping window: `Rate` and `Target` have to match, not fight each
+  other.** THE TABEL's default is per-*encounter* (`Target = Level × 3`,
+  most Techniques/items assumed usable once an encounter). Corrected
+  convention for anything that's naturally a per-*day* resource instead
+  (Food, and anything else whose real cadence is "once an adventuring
+  day" or rarer): **rescope the whole row to a one-day window** —
+  `Rate = 1` (it triggers once, within its own one-day window, not a
+  fraction of an encounter), and `Target = Level × 2 × (2 / times used
+  per day)` — for a once/day item that's `Level × 4`; an every-other-day
+  item would use `times per day = 0.5`, giving `Level × 8`. The earlier
+  version of this pass mixed scopes (a per-encounter `Target = Level × 3`
+  left untouched, with `Rate` separately discounted by a
+  2.5-encounters-per-day conversion) — that double-counts the
+  infrequency penalty once on each side of the formula, since the
+  point of the wider Target is specifically to *compensate* for not
+  getting to use the effect every encounter, not to be discounted again
+  on top of that by a shrunken Rate. All 5 Food rows in the ledger were
+  re-scored under the corrected version — see Passes Completed below for
+  how that changed Power Snack, Hearty Meal, Muscular Feast, and Soul
+  Soup's numbers. Sift's own weight (see `balance_weights_notes.md`) is
+  *separately* scoped to "how much value actually lands within a
+  one-day window" for the same reason — a different question from how
+  often the granting item itself can be re-triggered.
 - **"Does the threat even show up" discount (×0.5)**, for any item whose
   whole effect is *preventing* a debuff rather than granting something
   directly (Calming Brew, Kiss of the Earth, Predator's Cry, Muscular
@@ -238,16 +251,29 @@ they're crafted onto rather than being fixed.
   notably weaker than its Level 4 Grenade peers (Net −6 vs. Sunbeam's +2
   and Hellfire Bomb's +6) — worth a look alongside the Masterwork pass
   as the same drafting batch.
-- **Food doesn't fit the shared `Target = Level × 3` formula well at
-  all** — every Food item lands solidly negative (−1.4 to −3) purely
-  because Food is capped to once/day by rule (`[Food]` tag) and gets
-  discounted to `Rate = 0.4` accordingly, not because any of them are
-  actually undertuned. The old sheet's own Power Snack row sidestepped
-  this by using `Target = 0` and charging the item's Gold cost directly
-  instead — worth deciding whether Food should get its own Target
-  convention (e.g. `Target = 0`, judged only on whether `Value` clears
-  its own Gold cost) rather than being squeezed through the combat-
-  encounter formula the rest of the ledger uses.
+- **Food's Target formula was fixed after this pass first landed** — the
+  original version mixed a per-encounter `Target = Level × 3` with a
+  separately-discounted per-day `Rate`, double-counting the infrequency
+  penalty (see the corrected methodology above). Re-scored under
+  `Rate = 1` / `Target = Level × 4` (the once-per-day convention), the
+  category reads much healthier: **Hearty Meal lands exactly at Net 0**,
+  **Power Snack at −0.39** (using Sift's own corrected weight, see
+  below), **Soul Soup at −1**, and only **Muscular Feast stays notably
+  weak at −3** (likely more about the prevention-contingency discount
+  than the day/encounter scoping this time). Travel Rations remains
+  out-of-model (no combat mechanic to price).
+- **Sift was undervalued in the old sheet, but not for the reason it
+  first looked like.** THE TABEL's 0.64 turned out to have no traceable
+  derivation at all (see `balance_weights_notes.md`); simulating the
+  actual mechanic (Sift lets you discard cards ≤7 and reshuffle the rest
+  back in — verified that "sent to the bottom" cards actually get
+  reshuffled randomly, not kept in a fixed low-priority spot) gives a
+  **true long-run value of ~1.62/card**, but only ~0.60/card actually
+  lands within a single adventuring day (~18 draws, estimated from
+  Baseline's own attack-frequency numbers) — which is the correct window
+  to use for something like Power Snack that resets daily. The old
+  0.64 turns out to be close to the *right* per-day number almost by
+  coincidence, not by the reasoning that produced it.
 
 **Lower-confidence spots, flagged in the ledger but not necessarily
 wrong:** the AoE multiplier on Hellfire Bomb/Thunderclap-in-a-Jar; the
