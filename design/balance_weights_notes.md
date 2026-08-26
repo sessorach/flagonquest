@@ -459,14 +459,73 @@ under a conservative "every few fights" rate, the designer's own
 preferred fix is bumping how often enemy Protected-users/healers show
 up in encounter design, not inflating the per-stack weight.
 
+### Taunted / Frightened = 2.2/stack, linear — not a taper or a compound
+
+Structurally different from all four keywords above: both gate on
+"**while you have any stacks**" — the compulsion (Bad Luck on some set
+of actions) doesn't get stronger with more stacks, it's a flat on/off
+switch. Extra stacks buy nothing but *duration* against the generic
+1/turn Fleeting decay both use unconditionally (no "if unused" carve-out
+the way Protected has). So unlike Bleeding/Necrotic's taper or
+Crippled/Vulnerable's compounding, this one is genuinely **linear**:
+`value(n) = n × (per-turn value)`.
+
+Pricing the per-turn value: both effects are a compulsion with a
+built-in escape hatch — comply with the redirect, or eat Bad Luck on
+the disallowed action. Bad Luck's own card math is already Locked at
+**2.2**, exactly mirroring Good Luck/Pressure (worst-of-2 is symmetric
+to best-of-2). That sets a hard **ceiling**, not just a floor: a
+rational target never accepts an outcome that costs more than 2.2 in
+expected value, since eating the Bad Luck penalty is always sitting
+right there as the cheaper alternative once things get worse than that.
+So whichever an enemy actually picks, the value the party extracts per
+turn can't exceed ~2.2 — the mechanic's own escape hatch caps itself.
+
+Both land at the same **2.2/stack, linear** number, but the two clauses
+differ in how *tight* that ceiling actually is in practice — a real
+usage distinction worth keeping straight even though the value is
+identical:
+- **Taunted** restricts *any non-friendly action that doesn't target
+  the taunter* — there's no free escape route, so complying (attack the
+  taunter) or defying (eat Bad Luck on literally anything else hostile)
+  are the only two options. The 2.2 ceiling is usually actually
+  realized. This is genuine whole-field control: every attacker who
+  complies gets funneled onto one target, protecting the rest of the
+  party at once — matching the designer's read of Taunted as a
+  foundational tanking tool. Realizing the full value still needs the
+  taunter to actually be a viable target to attack (no worse than
+  eating Bad Luck) — a squishy character self-Taunting to bait a
+  killing blow wouldn't realize this the same way a real tank build
+  would.
+- **Frightened** only restricts *actions targeting the frightener
+  specifically* — attacking anyone else costs the enemy nothing at all.
+  So its 2.2 ceiling is loose and often *not* realized outside a
+  1-enemy-remaining fight or a genuinely no-good-alternate-target
+  situation; most of the time a Frightened creature just walks away and
+  attacks someone else for free. It's a narrower tool — protects one
+  specific relationship (usually yourself, or whoever cast it), not the
+  field — even though the underlying per-turn math is identical to
+  Taunted's.
+
+Same realistic-window caveat as Bleeding/Crippled applies to the
+*linear* stacking itself, just aimed at a different failure mode:
+stacks beyond however many rounds the fight (or the taunter, if it's
+the Taunted creature's own survival that matters) realistically has
+left are wasted, since there's no more time left for the "any stacks"
+trigger to matter. Baseline's own 5-round encounter length is the
+natural ceiling to check a big grant against, same as it was for the
+survival-window keywords above.
+
 ### Still to go
 
-Taunted, Frightened — Protected is resolved above, promoted to Locked
-rather than living in this bucket, since it turned out to be a real
-confirmed derivation, not a judgment-call curve. Harried (1, the original
-Baseline-confirmed anchor) and Hasted/Slowed/Ward (0.6/0.6/0.375-0.19,
-direct mirrors of already-Locked Speed and Resist) don't need this same
-treatment, since they're flat continuously-active modifiers with no
-decay-driven event to make non-linear the way Bleeding/Necrotic are, and
-aren't calibrated against a narrower incoming-threat rate the way
-Crippled/Vulnerable are.
+Nothing — Bleeding, Crippled, Vulnerable, Necrotic, and Taunted/
+Frightened are all resolved above; Protected turned out to be a real
+confirmed Locked derivation rather than a judgment-call curve, so it
+lives in the Locked section instead of this bucket. Harried (1, the
+original Baseline-confirmed anchor) and Hasted/Slowed/Ward
+(0.6/0.6/0.375-0.19, direct mirrors of already-Locked Speed and Resist)
+never needed this treatment in the first place, since they're flat
+continuously-active modifiers with no decay-driven event to make
+non-linear the way Bleeding/Necrotic are, and aren't calibrated against
+a narrower incoming-threat rate the way Crippled/Vulnerable are. That's
+every keyword in the Common Effects glossary accounted for.
