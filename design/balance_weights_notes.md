@@ -405,46 +405,67 @@ has been scored at the generic Debuff rate (1) everywhere in the current
 data (16 mentions across items/techniques) — a 4× miss even before the
 stacking cap is applied.
 
-### Crippled = 1.5/stack base, rising toward ~2.85/stack
+### Crippled = 1.5/stack base, 4-turn window, hard-capped at 42
 
 "-1 to your own attacks" per stack — reduces the *afflicted creature's
 own* future attack rolls, all current stacks apply to every attack made
 while any remain (not one discrete event per stack, unlike Bleeding).
 At Baseline's 1.5 attacks/turn, a single stack is worth 1.5 (not 1 —
-the earlier "same as Harried" guess undercounted this). Concentrating
-stacks compounds: applying N at once hits every attack made before full
-decay, so it's worth roughly double the same N stacks applied one at a
-time. Under the 2-turn survival window:
+the earlier "same as Harried" guess undercounted this).
 
-| Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 |
+Revised twice more this session. First, the survival window widened
+from 2 turns to **4**, matching a second real tactical pattern besides
+simple focus-fire death: a creature Crippled hard enough stops being a
+threat and gets *left alive on purpose* while the party deals with
+bigger problems first, so the debuff keeps paying off for longer than
+"it dies in 2 turns" assumes — the same "establish it turn 1, it runs
+the remaining 4 of a 5-round Baseline encounter" logic used everywhere
+else in this pass now.
+
+Second, and more importantly: the curve needed an actual **ceiling**,
+not just a wide window. A flat -N penalty against the flip mechanic
+(baseline ~53.8% hit chance, uniform 1-13 flip) hits **0% at exactly 7
+stacks** — the attack mathematically cannot land past that, so a stack
+count beyond 7 is pure waste on whichever turn already has 7+ up.
+Capping each turn's contribution at 7 (not the *starting* stack count,
+the *current* one that turn, since decay still runs 1/turn) gives a
+real hard ceiling instead of the old formula's smooth-but-unbounded
+convergence:
+
+| Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 | 12+ |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Value | 1.5 | 4.5 | 9 | 15 | 21 | 27 | 33 | 37.5 | 42 | 42 |
+| Per-stack | 1.5 | 2.25 | 3 | 3.75 | 4.2 | 4.5 | 4.71 | 4.69 | 4.2 | falling |
+
+Per-stack value actually *peaks* right at the saturation point (n=7,
+~4.71/stack) and *declines* past it, since extra stacks just get wasted
+on turns where the cap's already hit — a genuinely different shape from
+every other keyword in this bucket, and a clean, mechanically-grounded
+one: the formula's own ceiling lines up exactly with the point the game
+mechanics themselves stop caring about more stacks, not an arbitrary
+survival-window guess.
+
+### Vulnerable = 1/stack base, 4-turn window, hard-capped at 24
+
+"-1 to Vital/Mental/Instinct Defense" per stack — same shape as
+Crippled (continuously-active, 1/turn Fleeting decay), calibrated to a
+different base rate: these three Defenses see real use but are
+individually rarer than Dodge/Parry, which is explicitly *why*
+Vulnerable hits all three at once, to land on par with Harried's
+single-Defense relevance. Same two revisions as Crippled, mirrored on
+the *defender's* side of the same flip mechanic: 4-turn window, and a
+hard cap at exactly **6 stacks** — that's where a baseline ~53.8%
+attacker's hit chance against this target reaches 100%, so nothing past
+6 makes an attack any more likely to land:
+
+| Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10+ |
 |---|---|---|---|---|---|---|---|---|
-| Value | 1.5 | 4.5 | 7.5 | 10.5 | 13.5 | 16.5 | 22.5 | 28.5 |
-| Per-stack | 1.5 | 2.25 | 2.5 | 2.625 | 2.7 | 2.75 | 2.81 | 2.85 |
+| Value | 1 | 3 | 6 | 10 | 14 | 18 | 23 | 24 |
+| Per-stack | 1 | 1.5 | 2 | 2.5 | 2.8 | 3 | 2.875 | falling |
 
-Converges toward 3/stack as n grows (the 2-turn ceiling: 1.5
-attacks/turn × 2 turns), never runs away unbounded.
-
-### Vulnerable = 1/stack base, rising toward ~1.9/stack
-
-"-1 to Vital/Mental/Instinct Defense" per stack — same decay/compounding
-shape as Crippled (generic 1/turn Fleeting decay), but calibrated to a
-different base rate: these three Defenses see real use (spells and
-abilities that specifically target them, enemy Taunt/Frighten effects
-against Mental, planned future "feint"-style Instinct-targeting
-abilities) but are individually rarer than Dodge/Parry — which is
-explicitly *why* Vulnerable hits all three at once, to land on par with
-Harried's single-Defense relevance rather than under- or over-shoot it.
-Calibrated to Harried's own confirmed value (1) as the single-stack
-base, same 2-turn survival window:
-
-| Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 |
-|---|---|---|---|---|---|---|---|---|
-| Value | 1 | 3 | 5 | 7 | 9 | 11 | 15 | 19 |
-| Per-stack | 1 | 1.5 | 1.67 | 1.75 | 1.8 | 1.83 | 1.875 | 1.9 |
-
-Converges toward 2/stack (the 2-turn ceiling at a rate of 1), noticeably
-more conservative than Crippled's curve since it's anchored to Harried's
-narrower incoming-threat rate rather than the target's own full attack
+Same peak-then-decline shape as Crippled, just at a lower absolute
+ceiling (24 vs. 42) since Vulnerable's base rate (1) is Harried's own
+narrower incoming-threat rate rather than the target's full attack
 output.
 
 ### Necrotic = 3/stack when it actually resolves, but priced through Rate of Use, not a stacking curve
@@ -568,20 +589,29 @@ own fix above (0.55/point, not the stale 0.6).
 
 The two get *different* windows, though, because what caps them is
 different:
-- **Slowed** (debuff, applied to an enemy) reuses Crippled/Vulnerable's
-  2-turn window directly — same focus-fire logic, the target's realistic
-  survival caps it:
+- **Slowed** (debuff, applied to an enemy) got the same second revision
+  Crippled/Vulnerable did: a 4-turn window (not 2 — a heavily-Slowed
+  creature that can't reposition or flee is also a "left alive on
+  purpose" case, same logic as Crippled), and a hard cap, since Speed
+  saturates too — zero is zero, a creature that already can't move
+  doesn't get more immobile. Capped at **4 stacks**, matching the
+  session's own baseline Speed (Agility 3 → Speed 4):
 
-  | Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 |
-  |---|---|---|---|---|---|---|---|---|
-  | Value | 0.55 | 1.65 | 2.75 | 3.85 | 4.95 | 6.05 | 8.25 | 10.45 |
-  | Per-stack | 0.55 | 0.83 | 0.92 | 0.96 | 0.99 | 1.01 | 1.03 | 1.05 |
+  | Stacks | 1 | 2 | 3 | 4 | 5 | 6+ |
+  |---|---|---|---|---|---|---|
+  | Value | 0.55 | 1.65 | 3.3 | 5.5 | 7.15 | 8.8 |
+  | Per-stack | 0.55 | 0.83 | 1.1 | 1.375 | 1.43 | falling |
 
-  Converges toward 1.10/stack. Worth a caveat Crippled/Vulnerable didn't
-  need: Slowed's realization also depends on whether movement is
+  Hard ceiling at 8.8, peak per-stack right at the cap (n=4, 1.375/
+  stack) — same shape as Crippled/Vulnerable's saturation curves, just
+  scaled to Speed instead of the flip mechanic. A target with higher
+  Agility needs proportionally more stacks to zero out (the cap is
+  target-Speed-dependent, same "representative baseline" caveat as
+  everywhere else Agility 3 gets used), and the same caveat as before
+  still applies on top: realization also depends on whether movement is
   actually contested in a given fight — an enemy that just stands and
-  swings never feels it, unlike an Accuracy/Defense penalty that bites on
-  every attack roll regardless of scenario.
+  swings never feels it, unlike an Accuracy/Defense penalty that bites
+  on every attack roll regardless of scenario.
 - **Hasted** (buff, applied to your own side) doesn't have a "target
   might die" cap — the party doesn't get whittled down like enemies do
   in the Baseline model, so the real limit is just how much of the fight
