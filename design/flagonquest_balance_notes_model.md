@@ -82,7 +82,7 @@ effects, matching Baseline's average hit chance.
 | Speed | 0.6/point | Yes | New row — THE TABEL never had one, despite real items granting flat Speed. `(1 AP's value) ÷ (baseline Speed + 1)`, at an agreed baseline of Agility 3 (Speed 4). |
 | Push | 0.6/meter *(was 0.5)* | No | Directly Speed's own per-meter rate — still priced as an on-hit-style rider, same reasoning as Damage/Debuff above. |
 | Difficult Terrain | 0.6/degree *(was 1)* | Yes | Same per-meter-of-Speed rate as Push, but usually granted as a standalone zone effect rather than an attack rider — still carries its own AoE/zone-size uncertainty on top of this rate. |
-| Autoswing | 5.5 | Yes | Equals Baseline's *full* average attack value (damage-value + Harried-value) — prices "this attack's whole payoff is now guaranteed," not just the removed hit-chance discount. *(Plausible, not fully confirmed.)* |
+| Autoswing | 5.5 | Yes | Confirmed: the bundled credit for a Technique/item that grants an attack as part of a larger effect (Battle Maneuver's base "make a weapon attack" is the live example) — value of one typical attack (damage, hit-chance discounted) plus the Harried stack any attack applies. Not a "guaranteed hit" mechanic. |
 
 ## BALANCE tab — every Technique/Item, audited
 

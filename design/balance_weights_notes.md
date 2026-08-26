@@ -59,6 +59,20 @@ numbers without ever checking where they came from.
   negative Shallow Health. Two different weights for "a point of harm,"
   depending on whether a roll stands between it and the target; picking
   the wrong one is the most likely way to mis-score a new item.
+- **Autoswing = 5.5.** Confirmed directly: not a "hit-chance discount
+  removed" mechanic at all (the earlier "guaranteed hit" reading was
+  wrong) — it's the bundled credit for a Technique or item that *grants
+  an attack as part of a larger effect* (Battle Maneuver's base "make a
+  weapon attack," before any chosen Features add more on top, is the
+  live example — this weight is not a leftover with nothing depending
+  on it). Equals `Baseline!C16 + C17` exactly: the value of one typical
+  attack (damage, discounted for the normal ~50% hit chance) plus the
+  Harried stack any attack applies against a target who Parries or
+  Dodges it — "basically just the value of an attack... plus a stack of
+  Harried," in the designer's own words. Doesn't change the earlier call
+  to drop this credit from current Grenades (they don't grant a *bundled
+  extra* attack, the Grenade *is* the attack, already priced through
+  Damage directly).
 
 ## Shallow/Deep HP and Heal — Locked, but easy to get backwards
 
@@ -219,19 +233,6 @@ under pressure mid-pass the way the alchemy ledger almost did.
 ## Plausible, not confirmed — the numbers line up with something real,
 ## but the workbook never says so
 
-- **Autoswing = 5.5.** Exactly equals `Baseline!C16 + C17` (4.5 + 1.0),
-  i.e. "value of character attack damage" + "Harried value" — the *full*
-  average value of one typical attack, hit-chance discount and all.
-  Reads as pricing Autoswing not as "remove the ~50% hit-chance discount"
-  (which would only add back the discounted half, ~4.5) but as "this
-  attack's entire payoff, as if from scratch, is now guaranteed" — closer
-  to granting a whole extra guaranteed attack's worth of value than to a
-  smaller "convert existing attack to always-hit" adjustment. Also see
-  `balance.md`'s note on dropping Autoswing credit from current Grenades
-  entirely, since current rules confirm they still roll to hit — this
-  finding doesn't change that call, it just explains where 5.5 itself
-  would have come from if it were ever needed again for something that
-  genuinely does auto-hit.
 - **1 AP = 3.** Two independent paths from Baseline both land on
   **2.75**, not 3: (a) per-attack value (5.5, see Autoswing above) ÷ 2 AP
   per attack = 2.75; (b) baseline turn value (8.25) ÷ AP actually spent
@@ -253,8 +254,13 @@ under pressure mid-pass the way the alchemy ledger almost did.
 ## What's still open
 
 Every weight that started this audit unresolved (Sift, Push, Difficult
-Terrain, Resist) now has a Pencil derivation, and Damage is fully
-Locked. What's left, if anyone wants to push further:
+Terrain, Resist) now has a Pencil derivation, and Damage and Autoswing
+are fully Locked. The AoE multiplier used on area-effect Grenades
+(Hellfire Bomb, Thunderclap-in-a-Jar) is also confirmed — the designer
+balances these assuming **2 enemies hit** (deliberately bad value
+against 1, above-rate against 3+) — but plugging that in surfaces a real
+finding, not just a settled number: see `balance.md`'s Passes Completed
+entry. What's left, if anyone wants to push further:
 - Sift's ~0.60/card figure is calibrated to a once-per-day window
   specifically — a Technique that grants Sift on a different trigger
   (e.g. a combat-conditional one, which is how the design intentionally
@@ -262,9 +268,11 @@ Locked. What's left, if anyone wants to push further:
   Sift really would be strong, given how gently its value decays under
   repeated use) would need the same simulation re-run for its own actual
   window, not a reused constant.
-- Difficult Terrain's AoE/zone-effect scope is still an open estimation
-  question the same way Grenade AoE is, independent of the per-degree
-  rate now being resolved.
+- Difficult Terrain's AoE/zone-effect scope now has the same "2 enemies"
+  assumption to use as Grenade AoE (already applied to Smokejar/
+  Immaculate Adhesive in the alchemy ledger), but check whether those
+  two rows' own numbers hold up the same way Hellfire Bomb/Thunderclap's
+  didn't once the confirmed multiplier is actually applied carefully.
 - The Resist finding — every existing elemental-Resist item reading
   underpowered — is a real pattern to act on during the Masterwork pass,
   not a loose end in the weight itself. The weight's own derivation is
@@ -272,7 +280,8 @@ Locked. What's left, if anyone wants to push further:
   weight, Baseline's own combat-frequency math, and the designer's
   directly-stated enemy-type mix); what's undecided is what to *do*
   about the items it exposes as under-tuned.
-- Protected's 75% discount and Autoswing/1 AP's "plausible, not
-  confirmed" reconstructions above are still just that — reconstructions,
-  not settled the way Good Luck/Card/Pressure/Sift/Push/Difficult
-  Terrain/Damage/Resist now are.
+- Protected's 75% discount and 1 AP's "plausible, not confirmed"
+  reconstruction (2.75 vs. the sheet's 3 — still an open decision, not
+  yet locked either way) are still open, not settled the way Good Luck/
+  Card/Pressure/Sift/Push/Difficult Terrain/Damage/Resist/Autoswing now
+  are.

@@ -108,12 +108,12 @@ below, for the actual results):**
   Elemental-Attuned Tincture's Value in this ledger still reflects the
   old guess (1 Protected-equivalent) and hasn't been recomputed against
   the real Resist weight yet.
-- **AoE multiplier (×1.5)**, for any Grenade that hits more than one
-  creature (Hellfire Bomb, Thunderclap-in-a-Jar) — a genuine guess at the
-  average number of effective targets, with no anchor anywhere in THE
-  TABEL or the old sheet. This is the single least-confident number-type
-  in the whole methodology and worth a gut-check before trusting it on
-  a new AoE item.
+- **AoE multiplier — confirmed at ×2, not the original ×1.5 guess.**
+  The designer's actual balancing assumption for area-effect Grenades
+  (Hellfire Bomb, Thunderclap-in-a-Jar) is "2 enemies hit" — deliberately
+  bad value if only 1 target is caught, above-rate if 3+ are. Applying
+  the real number surfaced a genuine finding rather than just fixing a
+  guess — see Passes Completed below.
 - **Dropped the old sheet's "Autoswing" credit on Grenades.** The 4
   existing reference rows (Bottled Fire, Bonemelter, Sunbeam, Hellfire
   Bomb) each carried a flat Autoswing bonus (a 💯-tagged mechanic worth
@@ -260,9 +260,9 @@ they're crafted onto rather than being fixed.
   scaling) need a real numbers bump. Flagging the pattern rather than
   picking an answer.
 - **`I207` Quartz Tincture** (one of our own newly-drafted items) is
-  notably weaker than its Level 4 Grenade peers (Net −6 vs. Sunbeam's +2
-  and Hellfire Bomb's +6) — worth a look alongside the Masterwork pass
-  as the same drafting batch.
+  notably weaker than its Level 4 single-target peer Sunbeam (Net −6 vs.
+  +2) — worth a look alongside the Masterwork pass as the same drafting
+  batch.
 - **Food's Target formula was fixed after this pass first landed** — the
   original version mixed a per-encounter `Target = Level × 3` with a
   separately-discounted per-day `Rate`, double-counting the infrequency
@@ -286,10 +286,27 @@ they're crafted onto rather than being fixed.
   to use for something like Power Snack that resets daily. The old
   0.64 turns out to be close to the *right* per-day number almost by
   coincidence, not by the reasoning that produced it.
+- **The AoE multiplier is now confirmed at ×2 (the designer balances
+  area Grenades assuming 2 enemies hit), and applying it honestly
+  exposes a real problem, not just a corrected guess.** Hellfire Bomb
+  and Thunderclap-in-a-Jar jump to Net +14 and +19 — far above every
+  other item in the batch, including same-Level single-target Grenades
+  (Sunbeam +2). Both use the *same* raw per-target Damage as their
+  single-target peers, then get doubled on top for the AoE credit —
+  which is very likely the actual issue: **an AoE item's raw per-target
+  numbers should probably be set lower than a same-Level single-target
+  item's from the start**, since the ×2 credit is already baked into how
+  it's meant to be priced. Worth trimming the raw Damage/Debuff numbers
+  on these two specifically during the real pass, not re-litigating the
+  multiplier itself.
 
 **Lower-confidence spots, flagged in the ledger but not necessarily
-wrong:** the AoE multiplier on Hellfire Bomb/Thunderclap-in-a-Jar; the
-Cover/Difficult-Terrain approximation on Smokejar/Immaculate Adhesive;
-the Resist-mechanic gap on Elemental-Attuned Tincture; the Hasted-
-mechanic gap on Swiftblade Vial; and Insanity Potion's multi-effect
+wrong:** the Cover/Difficult-Terrain approximation on Smokejar/
+Immaculate Adhesive (now at least using the same confirmed "2 enemies"
+assumption, but not double-checked the way Hellfire Bomb/Thunderclap
+were); the Resist-mechanic gap on Elemental-Attuned Tincture (the
+weight itself is now derived, see above, but this row hasn't been
+recomputed against it yet); the Hasted-mechanic gap on Swiftblade Vial
+(same — Hasted is now known to just be Speed, 0.6/stack, not yet
+applied to this row); and Insanity Potion's multi-effect
 translation overall (the single messiest item in the batch to price).
