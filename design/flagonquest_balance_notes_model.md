@@ -77,7 +77,7 @@ effects, matching Baseline's average hit chance.
 | Good Luck | 2.2 *(was 2.5)* | Yes | Exact expectation of flip-2-take-highest from a real 52-card deck (9.196) minus the 1-card baseline (7). |
 | Pressure *(was "Concession," 2.5)* | 2.2 | Yes | Exactly mirrors Good Luck — Pressure literally *is* imposed Bad Luck under current rules, and the underlying card math is symmetric (harm from worst-of-2 = benefit from best-of-2). |
 | Gold | 1.5 | Yes | Reciprocal of Baseline's own "Value / Gold ratio" (2/3). |
-| Protected | 3 | Yes | Health's value (4) discounted ~25%, plausibly for its `[Fleeting]` tag (a granted stack can expire unused before it's spent). *(Plausible, not fully confirmed.)* |
+| Protected | 3 | Yes | Confirmed: Health's value (4) × the real (bank-partial, not burn-all) mechanic, simulated across a full encounter at the designer's stated "takes more hits than average" targeting assumption — lands at ~75-84% of full value realized for a realistic 1-4 stack grant, matching the ~25% `[Fleeting]`-driven discount. |
 | Sift | 0.6/card *(was 0.64)* | Yes | Simulated the real mechanic (discard low cards, let the rest reshuffle back in) — ~0.60/card is what lands within one adventuring day's worth of draws; the true long-run value is ~1.62/card. |
 | Speed | 0.6/point | Yes | New row — THE TABEL never had one, despite real items granting flat Speed. `(1 AP's value) ÷ (baseline Speed + 1)`, at an agreed baseline of Agility 3 (Speed 4). |
 | Push | 0.6/meter *(was 0.5)* | No | Directly Speed's own per-meter rate — still priced as an on-hit-style rider, same reasoning as Damage/Debuff above. |

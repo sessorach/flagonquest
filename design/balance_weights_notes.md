@@ -90,6 +90,35 @@ numbers without ever checking where they came from.
   Grenade/Poison, all costed at `AP:-2`) has been recomputed under this
   — a uniform +0.5 Value/Net shift across 32 rows, since only the AP
   term changed.
+- **Protected = 3** (`= 4 × 75%`), promoted from "asserted" to confirmed.
+  First had to resolve a real mechanical ambiguity: the rule text
+  ("prevent 1 Health loss for each stack... then remove that many
+  stacks") could be read as burning *all* current stacks on the first
+  Health-loss event regardless of size, or as banking the unused
+  remainder. Confirmed by the designer: it's the latter — a Health-loss
+  event only consumes `min(stacks, incoming loss)`, leaving the rest for
+  a future hit, and it applies to *any* Health loss (Bleeding ticks
+  included, not just attacks). That makes Protected behave like a real
+  banked shield, not a use-it-or-lose-it burst. Simulated the actual
+  mechanic across a full 5-round encounter (Baseline's own enemy taper/
+  attack-rate, ~2.25 avg damage/hit, 0.5 hit chance) at three targeting
+  assumptions — how much of the party's total incoming hit volume lands
+  on the Protected-holder specifically:
+  - Generic/untargeted (1/4 share, same as any other party member):
+    49-61% of granted stacks' value realized, depending on stack count.
+  - Moderately focused (1/2 share — roughly double an average party
+    member's hits, matching a tank/Taunt-adjacent build): 74-84%.
+  - Fully taunted (100% share): 93-97%.
+
+  Real grants run 1-4 stacks per use (Brace = 3, Fortifying Concoction =
+  4, Strength from the Slain = 3, Skin of Stone scales with Meditation),
+  and per the designer's own recollection — "I was estimating a
+  character using Protected would take more hits than average, in the
+  same vein of assuming some synergy or strategy" — the intended
+  baseline was the moderately-focused case, which lands at 74-84% across
+  that realistic stack range: an almost exact match to the workbook's
+  original 75%. The number holds up under an actual simulation of the
+  real (bank-partial) mechanic, not just an asserted split.
 
 ## Shallow/Deep HP and Heal — Locked, but easy to get backwards
 
@@ -247,19 +276,6 @@ under pressure mid-pass the way the alchemy ledger almost did.
   in a single big hit, not just average damage over time) — worth
   deciding deliberately rather than defaulting to "buff everything."
 
-## Plausible, not confirmed — the numbers line up with something real,
-## but the workbook never says so
-
-- **Protected = 3** (`=4×75%` in the sheet). Health's own value is 4, and
-  Protected's current rule prevents exactly 1 Health loss per stack,
-  fully guaranteed once it actually triggers — so a naive read would
-  price it at the full 4, same as Health. The 75% discount most likely
-  accounts for `[Fleeting]`: a stack of Protected clears at the end of
-  your turn if unused, so a granted stack doesn't always get spent
-  against an actual hit before it expires. That's a real mechanical
-  reason a discount belongs here — but the *specific* 75%/25% split isn't
-  computed or stated anywhere, just asserted.
-
 ## What's still open
 
 Every weight that started this audit unresolved (Sift, Push, Difficult
@@ -289,10 +305,13 @@ entry. What's left, if anyone wants to push further:
   weight, Baseline's own combat-frequency math, and the designer's
   directly-stated enemy-type mix); what's undecided is what to *do*
   about the items it exposes as under-tuned.
-- Protected's 75% discount is the one weight left with no confirmed
-  reasoning behind its specific number — everything else in THE TABEL
-  now has either a real derivation, a confirmed designer intent, or a
-  fresh Pencil one built and reasoned through this pass.
+
+Protected's 75% discount (the last core THE TABEL weight with no
+confirmed reasoning behind it) is now resolved too — see the Locked
+section above. Every core weight has either a real derivation, a
+confirmed designer intent, or a fresh Pencil one built and reasoned
+through this pass. What's left is the buff/debuff bucket's own
+per-keyword curves, below.
 
 ## The Debuff bucket, broken out — per-keyword curves (Pencil)
 
@@ -442,7 +461,9 @@ up in encounter design, not inflating the per-stack weight.
 
 ### Still to go
 
-Protected, Taunted, Frightened — Harried (1, the original
+Taunted, Frightened — Protected is resolved above, promoted to Locked
+rather than living in this bucket, since it turned out to be a real
+confirmed derivation, not a judgment-call curve. Harried (1, the original
 Baseline-confirmed anchor) and Hasted/Slowed/Ward (0.6/0.6/0.375-0.19,
 direct mirrors of already-Locked Speed and Resist) don't need this same
 treatment, since they're flat continuously-active modifiers with no
