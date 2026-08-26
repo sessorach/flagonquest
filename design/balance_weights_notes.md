@@ -293,3 +293,112 @@ entry. What's left, if anyone wants to push further:
   reasoning behind its specific number — everything else in THE TABEL
   now has either a real derivation, a confirmed designer intent, or a
   fresh Pencil one built and reasoned through this pass.
+
+## The Debuff bucket, broken out — per-keyword curves (Pencil)
+
+THE TABEL's generic `Debuff = 1` bucket lumps every stacking status
+effect (Bleeding, Crippled, Frightened, Harried, Hasted, Necrotic,
+Slowed, Taunted, Vulnerable — the "Common Effects" glossary keywords)
+into one flat per-stack rate. Going through them individually instead —
+these are **not flat rates**, most of them are genuinely non-linear in
+stack count, for real mechanical reasons specific to each one, not a
+shared curve applied uniformly.
+
+**General principle, stated by the designer:** a build that specifically
+opts into and stacks one of these is expected to have other abilities
+synergizing with it — the numbers below assume *moderate* synergy (the
+mechanic gets built around a little), not the theoretical maximum-power
+combo. This is why the compounding curves below aren't flattened down to
+match a flat, incidental-use rate.
+
+**Two survival assumptions do most of the work here**, both grounded in
+the same design fact: the party's baseline strategy is to focus-fire
+down one enemy at a time, which cuts directly against any effect that
+needs its *target* to keep existing for its value to land.
+- **Bleeding/Necrotic-shaped effects** (resolve via a discrete event when
+  a stack decays, one stack per turn) get a **hard-ish cap**: real play
+  experience says only ~1-2 stacks of Bleeding actually get a chance to
+  resolve per enemy before it dies. Modeled as a geometric taper — full
+  value for the first 2 stacks, each stack beyond that worth half the
+  previous one — rather than a hard cutoff, so it degrades gracefully
+  instead of creating a cliff.
+- **Crippled/Vulnerable-shaped effects** (a continuously-active modifier
+  that applies in full to everything relevant while any stacks remain,
+  decaying 1/turn) get a **2-turn realistic-survival window** instead —
+  shorter than their full theoretical decay-to-zero, same focus-fire
+  logic, but these compound differently under stacking (see below) since
+  concentrating stacks makes *every* remaining turn in that window hit
+  harder, not just adding one more discrete future tick.
+
+### Bleeding = 4/stack, capped (geometric taper beyond 2)
+
+Removed 1 stack per turn (the standard Fleeting decay), each removal
+causing 1 guaranteed Health loss — no roll involved once applied, so it
+prices at Health's full rate (4), the same "guaranteed harm bypasses the
+attack roll" rule that governs Damage vs. Health elsewhere in this
+audit. `value(n) = 4 × min(n, 2) + 4 × Σ 0.5^k` for stacks beyond 2 —
+asymptotically caps at **12 total**, no matter how large n gets:
+
+| Stacks | 1 | 2 | 3 | 4 | 6 | 10 | 20 (max-Level Bloody Poison, ingested) |
+|---|---|---|---|---|---|---|---|
+| Value | 4 | 8 | 10 | 11 | 11.75 | ≈12 | ≈12 |
+
+A 20-stack application (the extreme case — Bloody Poison's ingested
+variant at max Potency) reads as worth about 3 realistic stacks, not 20
+— by design, so an ability can't just pile on Bleeding for unbounded
+scaling. This is the standout finding from the whole breakout: Bleeding
+has been scored at the generic Debuff rate (1) everywhere in the current
+data (16 mentions across items/techniques) — a 4× miss even before the
+stacking cap is applied.
+
+### Crippled = 1.5/stack base, rising toward ~2.85/stack
+
+"-1 to your own attacks" per stack — reduces the *afflicted creature's
+own* future attack rolls, all current stacks apply to every attack made
+while any remain (not one discrete event per stack, unlike Bleeding).
+At Baseline's 1.5 attacks/turn, a single stack is worth 1.5 (not 1 —
+the earlier "same as Harried" guess undercounted this). Concentrating
+stacks compounds: applying N at once hits every attack made before full
+decay, so it's worth roughly double the same N stacks applied one at a
+time. Under the 2-turn survival window:
+
+| Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 |
+|---|---|---|---|---|---|---|---|---|
+| Value | 1.5 | 4.5 | 7.5 | 10.5 | 13.5 | 16.5 | 22.5 | 28.5 |
+| Per-stack | 1.5 | 2.25 | 2.5 | 2.625 | 2.7 | 2.75 | 2.81 | 2.85 |
+
+Converges toward 3/stack as n grows (the 2-turn ceiling: 1.5
+attacks/turn × 2 turns), never runs away unbounded.
+
+### Vulnerable = 1/stack base, rising toward ~1.9/stack
+
+"-1 to Vital/Mental/Instinct Defense" per stack — same decay/compounding
+shape as Crippled (generic 1/turn Fleeting decay), but calibrated to a
+different base rate: these three Defenses see real use (spells and
+abilities that specifically target them, enemy Taunt/Frighten effects
+against Mental, planned future "feint"-style Instinct-targeting
+abilities) but are individually rarer than Dodge/Parry — which is
+explicitly *why* Vulnerable hits all three at once, to land on par with
+Harried's single-Defense relevance rather than under- or over-shoot it.
+Calibrated to Harried's own confirmed value (1) as the single-stack
+base, same 2-turn survival window:
+
+| Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 |
+|---|---|---|---|---|---|---|---|---|
+| Value | 1 | 3 | 5 | 7 | 9 | 11 | 15 | 19 |
+| Per-stack | 1 | 1.5 | 1.67 | 1.75 | 1.8 | 1.83 | 1.875 | 1.9 |
+
+Converges toward 2/stack (the 2-turn ceiling at a rate of 1), noticeably
+more conservative than Crippled's curve since it's anchored to Harried's
+narrower incoming-threat rate rather than the target's own full attack
+output.
+
+### Still to go
+
+Necrotic, Protected, Taunted, Frightened — Harried (1, the original
+Baseline-confirmed anchor) and Hasted/Slowed/Ward (0.6/0.6/0.375-0.19,
+direct mirrors of already-Locked Speed and Resist) don't need this same
+treatment, since they're flat continuously-active modifiers with no
+decay-driven event to make non-linear the way Bleeding/Necrotic are, and
+aren't calibrated against a narrower incoming-threat rate the way
+Crippled/Vulnerable are.
