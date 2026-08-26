@@ -3,13 +3,16 @@
 Aggregate notes on game balance in the broad sense — approaches, recurring
 judgment calls, and conclusions from specific balance passes as they
 happen. Companion to `design/RULES_DESIGN.md` (which covers rules
-*design* decisions — what a mechanic is and why) and
+*design* decisions — what a mechanic is and why),
 `design/flagonquest_balance_notes_model.md` (which explains the value-economy
 model in `archive/flagonquest_balance_notes.xlsx` that this file's analysis
-leans on). This file starts mostly empty and fills in as real balance
-passes happen — it's meant to be the current, living version of the kind
-of self-notes the designer already kept in the old Manifesto documents
-(`archive/flagonquest_manifesto_2k19.md`, `flagonquest_manifesto_v5.md`).
+leans on), and `design/balance_weights_notes.md` (a narrower, more
+skeptical audit of THE TABEL's actual per-mechanic weights — which ones
+are really derived, which are just typed in). This file starts mostly
+empty and fills in as real balance passes happen — it's meant to be the
+current, living version of the kind of self-notes the designer already
+kept in the old Manifesto documents (`archive/flagonquest_manifesto_2k19.md`,
+`flagonquest_manifesto_v5.md`).
 
 ## The value-economy model, in short
 
