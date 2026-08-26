@@ -590,7 +590,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "Remove 1 stack of Bleeding from the target. Reduce the effects of each poison afflicting the target as though an hour had passed.",
+    "effects": "Remove 1 stack of Bleeding from the target. Remove 1 stack of each Poison effect affecting the target.",
     "prereq": null
   },
   {

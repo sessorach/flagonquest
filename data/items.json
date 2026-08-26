@@ -2261,7 +2261,7 @@
     "tags": null,
     "level": null,
     "description": "A particularly unsavory poison, as soon as it enters the victim's bloodstream they find their wounds almost impossible to close.",
-    "effects": "A target affected by this poison suffers [twice its Potency] stacks of Necrotic. While these stacks still don't expire as usual, 2 of these stacks expire each hour, and they can be removed through Necrotic's other usual rules.",
+    "effects": "A target affected by this poison suffers [twice its Potency] stacks of Necrotic. These stacks can still be removed through Necrotic's other usual rules.",
     "cost": null,
     "value_per_level": null,
     "school": null,

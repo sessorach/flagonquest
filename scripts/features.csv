@@ -52,7 +52,7 @@ F050,T104,Spirit Blessing,Alacrity,Advanced,2,,The target may adjust their posit
 F051,T104,Spirit Blessing,Steal Fate,Advanced,2,,"For the next X weapon attacks the target makes this encounter, if the attack Downs a creature the target may draw a card. They may only draw 1 card per casting of this Spell.",
 F052,T104,Spirit Blessing,Guided Hand,Advanced,2,,The target has Good Luck on the next X attacks they make.,
 F053,T105,Healing Magic,Reach,Basic,1,,Increase the Range of the Spell by [Theurgy Skill Total] meters.,
-F054,T105,Healing Magic,Purify,Basic,1,,Remove 1 stack of Bleeding from the target. Reduce the effects of each poison afflicting the target as though an hour had passed.,
+F054,T105,Healing Magic,Purify,Basic,1,,Remove 1 stack of Bleeding from the target. Remove 1 stack of each Poison effect affecting the target.,
 F055,T105,Healing Magic,Rejuvenate,Basic,1,,"Instead of healing immediately, the target heals 1 Shallow Health at the start of each of their turns for [Spell's healing amount] rounds.",
 F056,T105,Healing Magic,Guardian Angel,Basic,1,,"The next time this scene the target would be Downed, instead they are reduced to X Deep Health.",
 F057,T105,Healing Magic,Vitality,Basic,2,,The Spell's healing is increased by 1.,
