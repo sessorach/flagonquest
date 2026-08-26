@@ -1281,6 +1281,16 @@ the full list going into the balance pass.
 
 ## Open questions / TODO
 
+- **Poison duration — "1 hour" vs. "until your next long rest."**
+  Surfaced during the balance pass on Poisons (see `balance.md`'s
+  "Poisons were charging AP twice" entry): applying a Poison is meant
+  to happen before a fight, but the current 1-hour duration means a
+  Poison applied too early can expire unused before it ever gets to
+  matter — a real feel-bad at the table. Changing it to last until the
+  wielder's next long rest would remove that risk, at the cost of
+  making less narrative sense (a poison coating that just doesn't
+  degrade for a full adventuring day). Raised, not decided — the
+  designer flagged it as "possible" rather than committing to it.
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.
 - Diamonds still has no defensive keyword/mechanic identity.
 - ~~The "bad fail" trigger for accumulating multi-attempt checks~~ —
