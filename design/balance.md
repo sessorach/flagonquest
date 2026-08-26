@@ -204,7 +204,8 @@ actual effect may need adjusting, not just its raw Value-model number.
   sanity-checking, since it's stronger than `I103` Thrumming Focus's
   otherwise-similar AP-gated version. **Expect Resist-granting items to
   read as underpowered across the board** — Physical Resist and a single
-  element's Resist aren't remotely the same value (~15× apart, see
+  element's Resist aren't remotely the same value (~5-10× apart after a
+  damage-share correction narrowed the original ~7.5-15× gap; see
   `balance_weights_notes.md`), and every existing Resist item already
   checked against the derived weight comes back meaningfully negative
   (Attuned Shroud, Elemental-Resistant Armor, Robes of Resilience, Robes

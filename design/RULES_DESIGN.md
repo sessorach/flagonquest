@@ -66,6 +66,23 @@ Fire 10%, each other element 5%, of all enemies) — likely trending
 higher as characters reach higher Levels and face tougher, more varied
 threats.
 
+That's a headcount rule of thumb, though — a later correction narrowed
+what actually matters for Resist's math, which is *damage share*, not
+enemy count. An elemental-relevant encounter (roughly half of all
+encounters, matching the cadence above) isn't just "half the field is
+elemental, half is physical" — the elemental-dealing enemy tends to be
+the fight's main damage dealer (a mage lobbing fireballs), while the
+physical-damage enemies alongside it skew tank/disruptor and contribute
+comparatively little. Designer's revised estimate: **when an element is
+relevant to a fight, it accounts for roughly two-thirds of that fight's
+total damage**, not merely "as much as its share of the enemy count."
+Physical Resist is still clearly the better overall pick (it's relevant
+in every fight, not just the ones featuring that specific element), but
+elemental Resist pays off harder in the fights where it does apply than
+the headcount framing alone suggested. See the Resist section of
+`design/balance_weights_notes.md` for the recomputed weights this
+produces.
+
 The explicit intent, stated directly: there should be real room to
 build toward resisting a *specific* element for a known upcoming fight
 (a consumable prepared once the party knows what they're up against,

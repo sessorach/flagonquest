@@ -252,33 +252,72 @@ under pressure mid-pass the way the alchemy ledger almost did.
   value is `Damage's own weight (2, mirroring granting vs. preventing a
   contingent point of harm) × how many hits of that type actually land`.
   "How many hits of that type land" needed two inputs with no existing
-  derivation, both taken directly from the designer's own stated rule of
-  thumb rather than derived: **enemy type mix** — 3 in 4 enemies are
-  Physical-only, 1 in 4 deal an element, and among those, Fire is twice
-  as common as Frost, Brilliant, or Shadow individually (Fire 10% of all
-  enemies, each other element 5%) — and **total hits landed per player
-  per encounter**, worked out from Baseline's own existing combat math
-  (10 enemy-rounds/fight × 1.5 attacks/round, split across a 4-player
-  party, at 50% hit chance ≈ **1.875 hits/player/encounter, any type**)
-  rather than a new guess.
+  derivation: **how often each damage type shows up**, and **total hits
+  landed per player per encounter** — worked out from Baseline's own
+  existing combat math (10 enemy-rounds/fight × 1.5 attacks/round, split
+  across a 4-player party, at 50% hit chance ≈ **1.875 hits/player/
+  encounter, any type**) rather than a new guess.
 
-  Combining those: **Physical Resist ≈ 2.8/point**, **Fire Resist ≈
-  0.375/point**, **Frost/Brilliant/Shadow Resist ≈ 0.19/point each** —
-  Physical is worth roughly **15×** a single element, confirming the
-  designer's own intuition sharply, not just directionally. Checked
-  against the 4 existing chosen-element/elemental Resist items already
-  in the catalog (assuming Fire is chosen where there's a choice, since
-  a rational player would): **every one reads meaningfully underpowered
-  for its Level** — Attuned Shroud −2.25, Elemental-Resistant Armor
-  −2.6 to −5.25 depending on Level, Robes of Resilience −5.25, Robes of
-  the Elemental Lord −13.1. This is a real, consistent pattern, not
-  noise from one bad row — flagging it for the actual Masterwork pass
-  rather than fixing it here, same as the alchemy pass did with Poisons:
-  it might mean these items are genuinely overpriced/over-leveled for
-  what they deliver, or it might mean a pure expected-hits model is
-  missing something real about Resist's value (burst/spike protection
-  in a single big hit, not just average damage over time) — worth
-  deciding deliberately rather than defaulting to "buff everything."
+  The first input went through a real correction. The initial pass used
+  the designer's *enemy headcount* rule of thumb directly as a stand-in
+  for damage share: 3 in 4 enemies Physical-only, 1 in 4 elemental, Fire
+  twice as common as Frost/Brilliant/Shadow individually (Fire 10% of
+  all enemies, each other element 5%). On review, that overstates
+  Physical and understates the elements — an elemental-relevant fight
+  isn't split evenly by headcount, because the elemental-damage enemy
+  tends to be the fight's actual main damage dealer (a mage lobbing
+  fireballs), while the physical enemies alongside it skew tank/
+  disruptor and contribute comparatively little. Corrected model, per
+  the designer: an encounter is elemental-relevant about half the time
+  (unchanged), Fire is twice as likely as each other element *within*
+  that half (unchanged), but *within* a relevant encounter, that element
+  now accounts for **two-thirds of the fight's total damage**, not just
+  its headcount share. Averaged across all encounters (elemental and
+  not), that resolves to exact clean fractions: **Physical 2/3 of all
+  damage, Fire 2/15, Frost/Brilliant/Shadow 1/15 each** (down from
+  Physical's old 3/4, up from Fire's old 1/10 and the others' old 1/20).
+
+  Combining those with the same formula: **Physical Resist = 2.5/point**
+  (down from 2.8), **Fire Resist = 0.5/point** (up from 0.375),
+  **Frost/Brilliant/Shadow Resist = 0.25/point each** (up from 0.19).
+  Physical is now worth **5×** Fire and **10×** a non-Fire element —
+  still clearly the better overall pick (per the designer: "that doesn't
+  mean physical resist isn't still better" — it's relevant in *every*
+  fight, not just the ones featuring that specific element), but a
+  meaningfully smaller gap than the original 7.5×/15× the headcount
+  model implied. Checked against the same 4 existing chosen-element/
+  elemental Resist items (assuming Fire chosen where there's a choice):
+  **still reads underpowered across the board, just less severely** —
+  Attuned Shroud −2.0 (was −2.25), Elemental-Resistant Armor −2.5 to
+  −5.0 depending on Level (was −2.6 to −5.25), Robes of the Elemental
+  Lord −12.5 (was −13.1). Robes of Resilience is the one exception,
+  landing at exactly the same −5.25 either way — it grants +1 of *every*
+  type at once, and since both models' shares always sum to 1, a
+  one-of-each grant's total value is invariant to how the split between
+  types is drawn. This remains a real, consistent pattern flagged for
+  the actual Masterwork pass, not fixed here, same as the alchemy pass
+  did with Poisons — and the open question about *why* still stands
+  too: it might mean these items are genuinely under-leveled for what
+  they deliver, or it might mean a pure expected-hits model is missing
+  something real about Resist's value (burst/spike protection in a
+  single big hit, not just average damage over time).
+
+  This same correction directly raises **Ward** (Fire/Frost/Brilliant/
+  Shadow Ward, `+1 Resist against the specified type while any stacks
+  remain`) — Ward mirrors Resist's own per-point rate, so Fire Ward and
+  Frost/Brilliant/Shadow Ward both go up by the same ratio Resist did.
+  Two things about Ward are still open past this fix, from a design
+  conversation about making Ward more powerful generally: (1) Ward's
+  actual rule text is *boolean* ("any stacks" → flat +1, not scaling per
+  stack) — closer to Taunted/Frightened's shape than to Hasted/Slowed's,
+  meaning it should get the same linear-per-turn-of-duration treatment
+  those two got rather than being priced as one flat number, and/or the
+  rule itself could change to scale with stacks the way Hasted does,
+  which would need this same Resist-rate fix layered on top either way;
+  (2) the burst/spike-protection blind spot flagged just above applies
+  to Ward too, since it inherits Resist's rate directly. Neither is
+  resolved yet — flagged here so the Ward writeup doesn't get finalized
+  without them.
 
 ## What's still open
 
@@ -569,14 +608,21 @@ different:
 
 ### Still to go
 
-Nothing — every keyword in the Common Effects glossary is now resolved.
-Bleeding, Crippled, Vulnerable, Necrotic, Taunted/Frightened, and now
+Bleeding, Crippled, Vulnerable, Necrotic, Taunted/Frightened, and
 Hasted/Slowed all have reasoned per-stack curves above; Protected turned
 out to be a real confirmed Locked derivation rather than a judgment-call
-curve, so it lives in the Locked section instead of this bucket. Only
-Harried (1, the original Baseline-confirmed anchor — clears *all*
-stacks at end of turn, not a 1/turn decay) and Ward (0.375/0.19, a
-direct mirror of already-Locked Resist, boolean "any stacks" the same
-way Taunted/Frightened are) stay genuinely flat — both for structural
-reasons specific to their own mechanic, not because they were never
-checked.
+curve, so it lives in the Locked section instead of this bucket. Harried
+(1, the original Baseline-confirmed anchor — clears *all* stacks at end
+of turn, not a 1/turn decay) stays genuinely flat for a structural
+reason specific to its own mechanic, not because it was never checked.
+
+**Ward is the one still genuinely open**, on purpose — see the Resist
+entry above (Ward's rate just moved to 0.5/0.25, mirroring Resist's own
+correction) for the full context: it's currently priced as flat, but its
+actual rule ("any stacks" → flat +1) is boolean like Taunted/Frightened,
+not scaling like Hasted/Slowed, so by the same logic that fixed
+Hasted/Slowed it should get a real per-turn-of-duration derivation
+instead of one flat number — and there's a live design conversation
+about whether to change the underlying rule to scale per stack instead
+(mirroring Hasted's shape) as part of making Ward hit harder generally.
+Both are pending a decision, not yet resolved into a number here.
