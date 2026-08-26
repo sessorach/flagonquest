@@ -336,25 +336,47 @@ Swiftblade Vial are both now resolved — see "Full ledger sync" below.
   flagged AoE overpower finding gets worse under the same correction,
   +19.5 → +26.5, now the single most overpowered item in the ledger.
   Full detail in `balance_ledger.csv`'s own per-row Notes.
-- **Poisons were charging AP twice, effectively — fixed.** Every Poison
-  row had `AP:-2` baked into its Value, priced as if applying the
-  poison cost an action every time it triggered. The real rule
-  (`glossary.md`'s `[Poison]` entry): applying a Poison to a weapon is
-  a **one-time, out-of-combat setup action** — the weapon stays
-  poisoned for up to an hour and triggers off a normal attack that
+- **Poisons were carrying two stacked pricing errors — both fixed.**
+  Every Poison row had `AP:-2` baked into its Value, priced as if
+  applying the poison cost an action every time it triggered, *and* a
+  separate ×0.5 "poison-landing" discount on top of that, treating the
+  weapon's own to-hit roll and the poison's own Concentration-vs-Vital-
+  Defense roll as two independently-multiplying ~50% gates.
+
+  Both turned out wrong, confirmed with the designer against the real
+  rule (`glossary.md`'s `[Poison]` entry — applying a Poison is a
+  **one-time, out-of-combat setup action**; the weapon stays poisoned
+  for up to an hour and, once a normal attack lands and deals Health
+  loss, the poison automatically makes its own attack against Vital
+  Defense). The AP charge double-counted an action the wielder wasn't
+  spending on the poison at the moment it pays off — that attack
   already pays its own AP and deals its own separately-priced Damage.
-  Confirmed with the designer: the intent was always to apply
-  beforehand, so a Poison's own Value shouldn't be charged any AP at
-  all. Dropped it from all 7 Poison rows — every one moves up by
-  exactly 5.5 (2 AP × 2.75). Even after the fix, most Poisons still
-  land short of their Level×3 Target (Bloody Poison and Necrotic Poison
-  come closest, at -3.13 and -2.25) — which raises a real follow-up
-  question rather than fully resolving the group: does Target itself
-  need to be smaller for a Poison, since it's a bonus effect riding
-  along an attack that's already priced elsewhere, not a full turn's
-  own investment the way a Grenade or Potion actually is? Not yet
-  decided. Separately, the designer raised (but hasn't committed to) an
-  idea to change Poison's own duration rule from "1 hour" to "until
-  your next long rest," specifically to avoid the feel-bad of a
-  pre-applied Poison expiring unused before a fight — noted here as an
-  open idea, not implemented.
+  The extra ×0.5 double-counted the *same* contingency a different way:
+  per the designer, the whole chain (weapon hits → poison's own
+  Concentration-boosted roll) is contingent on "the one attack," not
+  two separate coin flips — the same single-contingency treatment a
+  Grenade's own on-hit Debuff grant already gets, with no extra
+  discount layered on top of the curve.
+
+  Dropping both moves every row up substantially — Bloody Poison and
+  Necrotic Poison now read *overpowered* (+2.75, +4.5) rather than
+  underpowered, since Bleeding's and Necrotic's own curves are strong
+  enough that a single undiscounted application clears the Level×3
+  Target on their own. The rest (Crippling -1.5, Vulnerability -4,
+  Harrying -6, Slowing -6.25, Psychosis -5.7) remain below Target,
+  purely as a function of their own keyword's curve value at this
+  stack count now, not any remaining pricing artifact. Necrotic Poison
+  keeps its own separate situational-realization discount (×0.75 — does
+  the target ever actually heal or gain Protected while the
+  slower-decaying stacks last, a genuinely different question from
+  "did the poison attack land") and Psychosis Poison keeps its own
+  future-hit proc-trigger discount (×0.5 — does a *later* hit land to
+  actually fire the effect) — both are real, separate contingencies
+  from the poison-landing one that got removed, not further instances
+  of the same error.
+
+  Separately, the designer raised (but hasn't committed to) an idea to
+  change Poison's own duration rule from "1 hour" to "until your next
+  long rest," specifically to avoid the feel-bad of a pre-applied
+  Poison expiring unused before a fight — noted here as an open idea,
+  not implemented; see `RULES_DESIGN.md`'s open questions.
