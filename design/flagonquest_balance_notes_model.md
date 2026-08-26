@@ -1,12 +1,15 @@
 # FlagonQuest balance-notes model (reading guide)
 
-A companion note for `flagonquest_balance_notes.xlsx` — explains what the
-three key tabs actually compute, so the model can be reused without
-re-deriving it from the raw cells each time. The workbook has other tabs
-(IDEAS, Suits EVOLVED, Costs, Crafting Table, HExboys, DM Guide, Equipment,
-Card Cheating...) that weren't reviewed in depth here; this note covers the
-three the designer specifically pointed to: **Baseline**, **THE TABEL**, and
-**BALANCE**.
+A companion note for `flagonquest_balance_notes.xlsx` (the designer's
+historical balance notes, in `archive/`) — explains what the three key
+tabs actually compute, so the model can be reused without re-deriving it
+from the raw cells each time. The workbook has other tabs (IDEAS, Suits
+EVOLVED, Costs, Crafting Table, HExboys, DM Guide, Equipment, Card
+Cheating...) that weren't reviewed in depth here; this note covers the
+three the designer specifically pointed to: **Baseline**, **THE TABEL**,
+and **BALANCE**. See `balance_weights_notes.md` for the full derivation
+behind every value in THE TABEL below — this file gives the short version
+of each; that one shows the actual math and where it came from.
 
 ## The core idea
 
@@ -42,35 +45,41 @@ derives a chain of aggregate values from them:
 
 ## THE TABEL — the exchange-rate matrix
 
-One VALUE-per-unit for each mechanic type (row 2, anchored to Fudge Value
-= 1), then a full cross-conversion grid so any mechanic can be expressed in
-terms of any other. Current per-unit values:
-
-| Mechanic | Value | Mechanic | Value |
-|---|---|---|---|
-| Fudge Value (baseline) | 1 | Sift | 0.64 |
-| Acc / Def 💯 | 1 | Shallow HP 💯 | 5 |
-| Damage | 2 | Deep HP 💯 | 4 |
-| Card 💯 | ~3.05 | Shallow Heal 💯 | 4 |
-| Health 💯 | 4 | Deep Heal 💯 | 5 |
-| 1 AP 💯 | 3 | Good Luck 💯 | 2.5 |
-| Debuff | 1 | Autoswing 💯 | 5.5 |
-| Gold 💯 | 1.5 | Push | 0.5 |
-| Protected 💯 | 3 | Difficult Terrain 💯 | 1 |
-| | | Concession 💯 *(old name — see note below)* | 2.5 |
-
-The 💯 tag marks a mechanic whose value is **not** discounted for
+One VALUE-per-unit for each mechanic type, then a full cross-conversion
+grid so any mechanic can be expressed in terms of any other. The table
+below is the **current, reconciled set** — several values have been
+revised from the original workbook (each row says which), and the old
+💯 emoji marker has been replaced with a plain **Guaranteed?** column,
+same meaning as before: **Yes** means the value is *not* discounted for
 contingency — it always applies once granted (a flat Accuracy/Defense
-bump, a card, Gold, Protected, straight Health, a guaranteed heal, Good
-Luck, Autoswing, Difficult Terrain). The untagged mechanics (Damage,
-Debuff, Push) are cheaper per unit precisely because they only pay off
-when an attack actually connects — roughly 50/50 absent other effects,
-matching Baseline's average hit chance.
+bump, a card, Gold, Protected, straight Health, Good Luck...). **No**
+means the mechanic is typically delivered as an on-hit rider (Damage,
+Debuff, Push) and is priced cheaper per unit to reflect that it only
+pays off when the attack actually connects — roughly 50/50 absent other
+effects, matching Baseline's average hit chance.
 
-**Naming note:** "Concession" is this document's era's name for what the
-current rules call **Pressure** (renamed earlier this session, along with
-the Social Contest rework — see `RULES_DESIGN.md`). Same underlying
-mechanic, just an older label.
+| Mechanic | Value | Guaranteed? | How the value was determined (short — see `balance_weights_notes.md` for the full math) |
+|---|---|---|---|
+| Fudge Value | 1 | Yes | The anchor itself, by definition — 1 value ≈ +1 to a flip. |
+| Accuracy / Defense | 1 | Yes | Same as Fudge Value by definition — a flat Accuracy/Defense bonus *is* a flip bonus. |
+| Damage | 2 | No | Matches Baseline's own "weapons deal ~2 over resist" assumption. *(Plausible, not fully confirmed.)* |
+| Debuff | 1 | No | Calibrated to Baseline's own "Harried value" (~1) — the generic bucket every stacking status effect (Crippled, Slowed, Vulnerable, Bleeding, Necrotic...) gets lumped into. |
+| Health | 4 | Yes | Baseline formula: Damage(2) ÷ average hit chance(0.5). |
+| Shallow HP (max pool) | 5 | Yes | Worth *more* than Deep as a pool increase, since it's easier to top back up at rest. |
+| Deep HP (max pool) | 4 | Yes | The baseline "effective healing" rate — doesn't need healing to already count. |
+| Shallow Heal | 4 | Yes | Healing the *less*-restricted resource — the inverse ranking from the max-pool rows above. |
+| Deep Heal | 5 | Yes | Healing the scarcer, more-restricted resource. |
+| 1 AP | 3 | Yes | Baseline's own combat math gives ~2.75 two independent ways; 3 is a modest round-up. *(Plausible, not fully confirmed.)* |
+| Card (drawn / from hand) | 2.7 *(was ~3.05)* | Yes | Floor = Good Luck's own marginal (2.2 — playing a hand card to replace a flip is the same math as Good Luck); a premium above that for timing/targeting/Suit Pool flexibility, which is a judgment call, not a computed number. |
+| Good Luck | 2.2 *(was 2.5)* | Yes | Exact expectation of flip-2-take-highest from a real 52-card deck (9.196) minus the 1-card baseline (7). |
+| Pressure *(was "Concession," 2.5)* | 2.2 | Yes | Exactly mirrors Good Luck — Pressure literally *is* imposed Bad Luck under current rules, and the underlying card math is symmetric (harm from worst-of-2 = benefit from best-of-2). |
+| Gold | 1.5 | Yes | Reciprocal of Baseline's own "Value / Gold ratio" (2/3). |
+| Protected | 3 | Yes | Health's value (4) discounted ~25%, plausibly for its `[Fleeting]` tag (a granted stack can expire unused before it's spent). *(Plausible, not fully confirmed.)* |
+| Sift | 0.6/card *(was 0.64)* | Yes | Simulated the real mechanic (discard low cards, let the rest reshuffle back in) — ~0.60/card is what lands within one adventuring day's worth of draws; the true long-run value is ~1.62/card. |
+| Speed | 0.6/point | Yes | New row — THE TABEL never had one, despite real items granting flat Speed. `(1 AP's value) ÷ (baseline Speed + 1)`, at an agreed baseline of Agility 3 (Speed 4). |
+| Push | 0.6/meter *(was 0.5)* | No | Directly Speed's own per-meter rate — still priced as an on-hit-style rider, same reasoning as Damage/Debuff above. |
+| Difficult Terrain | 0.6/degree *(was 1)* | Yes | Same per-meter-of-Speed rate as Push, but usually granted as a standalone zone effect rather than an attack rider — still carries its own AoE/zone-size uncertainty on top of this rate. |
+| Autoswing | 5.5 | Yes | Equals Baseline's *full* average attack value (damage-value + Harried-value) — prices "this attack's whole payoff is now guaranteed," not just the removed hit-chance discount. *(Plausible, not fully confirmed.)* |
 
 ## BALANCE tab — every Technique/Item, audited
 
