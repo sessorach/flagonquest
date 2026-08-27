@@ -23,9 +23,11 @@ the full commit-by-commit detail behind any of these.
   recomputed against a corrected, non-linear Difficult Terrain/Cover
   model rather than the old flat-rate approximations; Smokejar's
   Crippled bumped twice→thrice to match.
-- **Quartz Tincture** moved from Level 4 to Level 3 — its name and
-  numbers are still a placeholder pending a planned rework toward a
-  concussive, Harried-forward identity.
+- **Quartz Tincture** renamed **Static Jolt** and reworked into a
+  concussive, Harried-forward Level 3 item (8 Fire damage, 4 +
+  [Diamonds] stacks of Harried on hit) — a deliberately below-full-value
+  item, prioritizing its identity over squeezing out every last point of
+  budget.
 - **Card-suit scaling** added to every debuff-granting Grenade for the
   first time (previously only Techniques used this) — e.g. Acidic
   Flask now reads "5 + [Clubs] stacks of Bleeding," Snowstorm "Slowed
