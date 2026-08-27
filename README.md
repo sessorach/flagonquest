@@ -13,6 +13,17 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-27 — Refund-Potion family reshuffled, new item added
+
+- **Soldier's Salts** is now Level 1 (down from 2) — its "regain a
+  Level-2-or-lower Technique" effect is unchanged, it was simply costed
+  a Level too high for what it does. **Fighter's Friend** is now Level 3
+  (down from 4), and now refunds a Level-3-or-lower Technique (down from
+  4). A new item, **Battlemaster's Brew** (Potion, Level 4, refunds a
+  Level-4-or-lower Technique), fills the tier Fighter's Friend vacated —
+  a further-refined, closely-guarded successor recipe in the same
+  "Soldier's Salts → Fighter's Friend" lineage.
+
 ### 2026-08-26 — Ward's Resist bonus doubled
 
 - Fire/Frost/Brilliant/Shadow Ward now grants **+2 Resist** against its

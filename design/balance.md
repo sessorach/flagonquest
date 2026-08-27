@@ -380,3 +380,35 @@ Swiftblade Vial are both now resolved — see "Full ledger sync" below.
   long rest," specifically to avoid the feel-bad of a pre-applied
   Poison expiring unused before a fight — noted here as an open idea,
   not implemented; see `RULES_DESIGN.md`'s open questions.
+- **The refund-trick pricing method got a real premium, and the family
+  it prices got reshuffled.** "Regain the use of a Technique" has no
+  THE TABEL mechanic of its own, so it's priced as if it directly grants
+  a second use of the refunded Technique — worth that Technique's own
+  Target (`Level × 3`). On its own, that pins Value to *exactly* equal
+  Target, leaving zero margin to ever clear an item's own AP cost —
+  true of every item using this trick, and why Soldier's Salts and
+  Fighter's Friend both landed at precisely `−(2 AP's value)` regardless
+  of their own Level (Soul Soup, the AP-free Food version of the same
+  trick, was fine for the same reason). Fixed with a **×1.5 premium** on
+  the refund's own baseline, same "flexibility is worth something extra"
+  reasoning Card's premium over Good Luck's bare floor already uses —
+  choosing exactly when to get a second use out of your best Technique
+  has real tactical value beyond just "another instance of a fixed
+  number." Applied uniformly to all four refund-trick items, not just
+  the two that were flagged, since it's a change to the underlying
+  convention.
+
+  The premium alone doesn't fully solve it, though — the AP tax is a
+  fixed cost (2.75 × 2 = 5.5) against a Target that scales with Level,
+  so it eats a much bigger share of a low-Level item's budget than a
+  high-Level one's. Checking every (potion Level, refunded Technique
+  Level) pair found the "break-even" gap between the two shrinks from
+  +1 at low Levels down to 0 by Level 4 — not a flat rule, a real taper.
+  Used that to reshuffle the two existing items and add a third:
+  **Soldier's Salts** re-Leveled from 2 to 1 (unchanged otherwise — it
+  wasn't underpowered, it was costed a Level too high for what it does),
+  **Fighter's Friend** re-Leveled from 4 to 3, and a new item,
+  **Battlemaster's Brew**, fills the vacated Level 4/refund-4 slot.
+  Final family: Soldier's Salts (L1, refund L2, Net +0.5), Fighter's
+  Friend (L3, refund L3, Net −1), Battlemaster's Brew (L4, refund L4,
+  Net +0.5), Soul Soup (Food L1, refund L1, Net +0.5).
