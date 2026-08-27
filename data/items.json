@@ -1274,7 +1274,7 @@
     "tags": null,
     "level": 2,
     "description": "A staple of any resourceful adventurer, a glass flask of Bottled Fire contains a mix of reagents that react violently when smashed on a surface, engulfing the point of impact in an intense plume of flame. The concoction results in a quick flash of particularly hot fire, and as such will ignite most flammable materials it strikes.",
-    "effects": "On a hit it deals 7 Fire damage.",
+    "effects": "On a hit it deals 8 Fire damage.",
     "cost": null,
     "value_per_level": null,
     "school": null,
