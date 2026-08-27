@@ -13,6 +13,14 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-27 — Two new Grenades: Battering Charge, Night Terror
+
+- **Battering Charge** (Level 2): deals 8 Physical damage and pushes
+  the target 4 meters — the first Grenade to use Push at all.
+- **Night Terror** (Level 2): deals 7 Shadow damage and inflicts
+  2 + [Hearts] stacks of Frightened — the first Grenade to use
+  Frightened at all.
+
 ### 2026-08-27 — Prevention Potions rebalanced
 
 - **Calming Brew**, **Kiss of the Earth**, and **Predator's Cry** no
