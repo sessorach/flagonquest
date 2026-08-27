@@ -60,6 +60,28 @@ the full commit-by-commit detail behind any of these.
   its Optional-Type materials and enhance that item directly instead of
   crafting a fresh one just to sacrifice into the enhancement.
 
+### 2026-08-23 – 2026-08-24 — Social Contests and Exploration reworked
+
+- **Social Contests** are no longer a separate team-check subsystem with
+  Concessions, front/back positioning, and Charismatic/Strategic
+  statement types — a social contest is now just an extended check like
+  any other, with a new fixed Defense mapping (Persuasion targets
+  Instinct Defense; Presence and Rapport both target Mental Defense).
+  **Pressure** replaces Concessions: a GM-tracked value representing
+  circumstances stacking against the party, applied as Bad Luck on
+  Statements equal to its current total.
+- **Traveling and Exploration** rewritten around **Legs of a Journey** —
+  one action and one check per character per leg, no retries. New
+  **Scout** and **Search** actions, and a new **Pushing the Pace**
+  option (the whole party trades away their leg actions to cover more
+  ground, at the cost of no roll to avoid a brewing complication).
+  `Move` dropped as a discrete action, since it only existed to be
+  AP-gated under the old rules.
+- **Food and Exhaustion** moved out of Exploration into its own section
+  under Health and Resources — it was never actually wilderness-
+  specific (1 Food item covers a day regardless of where the party is),
+  just nested somewhere that implied it was.
+
 ### 2026-08-19 — Hand-editable printed Character Sheet
 
 - Printed Stats & Skills now show filled/empty dots (●●●○○) instead of
