@@ -232,14 +232,41 @@ under pressure mid-pass the way the alchemy ledger almost did.
   this rate.)
 - **Push = 0.55/meter.** Directly Speed's own per-point rate — a Push is
   forced movement, priced the same as any other meter of movement.
-- **Difficult Terrain = 0.55/degree.** Same rate as Push and Speed: 1
-  degree costs exactly 1 extra meter of Speed to cross 1 meter of the
-  terrain, so it's priced in the same currency. Difficult Terrain still
-  carries an extra wrinkle Push doesn't, though — it's usually granted as
-  a *zone* effect ("the space gains N levels of Difficult Terrain") that
-  can affect more than one creature crossing it, inheriting the same
-  AoE-estimation uncertainty flagged for Hellfire Bomb/Thunderclap in
-  the alchemy ledger, on top of the per-degree rate itself.
+- **Difficult Terrain — non-linear, hard-capped at 2 degrees (Agility
+  3/Speed 4 baseline), not 0.55/degree.** The original derivation
+  treated each degree as flatly adding 1 extra meter of Speed cost,
+  priced at Speed's own per-point rate — but that misses the rule's
+  actual floor: "a character can still move at least 1 space [crossing
+  Difficult Terrain]... no matter how many degrees of Difficult Terrain
+  there are" (`glossary.md`). A move action covers `floor(Speed /
+  (1 + degrees))` meters, minimum 1 — at the Speed-4 baseline that
+  bottoms out at exactly 1 meter/move action once degrees reach 2, and
+  stays there for any higher degree, the same hard-cap shape every
+  stacking Debuff-bucket keyword below ended up with. Re-derived as the
+  AP-equivalent cost of covering the same ground a free move action
+  would have: `value(degrees) = (Speed ÷ throughput(degrees) − 1) ×
+  1 AP's value (2.75)`.
+
+  | Degrees | Meters/move action | Value |
+  |---|---|---|
+  | 0 | 4 | 0 |
+  | 1 | 2 | 2.75 |
+  | 2 | 1 | 8.25 |
+  | 3+ | 1 | 8.25 (capped) |
+
+  **Guaranteed: Yes** — unlike Damage or Push, nothing gates this on an
+  attack roll; a placed hazard just sits there, so no hit-chance
+  discount applies. Whether a given creature actually crosses it during
+  the encounter is a separate, item-specific question — same shape as
+  Necrotic's own "does the trigger condition come up" uncertainty —
+  handled through each granting item's own Rate of Use, not folded into
+  the weight itself. Difficult Terrain is still usually granted as a
+  *zone* effect that can catch more than one creature, so the per-degree
+  Value above gets multiplied by however many creatures the item's own
+  estimate assumes get caught — same AoE-estimation uncertainty flagged
+  for Hellfire Bomb/Thunderclap, now compounded with a curve that can
+  swing by 3x between one degree and the next, so that creature-count
+  estimate matters more here than it did under the old linear rate.
 - **Resist — a different value per damage type, not one shared rate.**
   THE TABEL never had a Resist row at all, despite 7 current Masterwork
   items granting it. This is explicitly out of scope for base weapon/armor
@@ -328,11 +355,13 @@ entry. What's left, if anyone wants to push further:
   Sift really would be strong, given how gently its value decays under
   repeated use) would need the same simulation re-run for its own actual
   window, not a reused constant.
-- Difficult Terrain's AoE/zone-effect scope now has the same "2 enemies"
-  assumption to use as Grenade AoE (already applied to Smokejar/
-  Immaculate Adhesive in the alchemy ledger), but check whether those
-  two rows' own numbers hold up the same way Hellfire Bomb/Thunderclap's
-  didn't once the confirmed multiplier is actually applied carefully.
+- Difficult Terrain's own per-degree rate is now resolved too (see the
+  non-linear, hard-capped derivation above, replacing the old flat
+  0.55/degree) — it still uses the same "2 enemies" AoE/zone-effect
+  scope assumption as Grenade AoE for how many creatures a given item's
+  zone catches, and that creature-count estimate now matters more than
+  it used to, since the per-degree curve itself can swing 3x between
+  1 and 2 degrees.
 - The Resist finding — every existing elemental-Resist item reading
   underpowered — is a real pattern to act on during the Masterwork pass,
   not a loose end in the weight itself. The weight's own derivation is
