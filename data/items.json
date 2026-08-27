@@ -1788,7 +1788,7 @@
     "category": "Potion",
     "slot": null,
     "tags": null,
-    "level": 3,
+    "level": 2,
     "description": null,
     "effects": "When consumed, ignore the next 4 total stacks of Taunted and/or Frightened you would gain this encounter. If you already have stacks of either, remove them and count them against the total.",
     "cost": null,
@@ -1822,7 +1822,7 @@
     "material_types": null,
     "base_item_options": [],
     "levels": [
-      3
+      2
     ]
   },
   {
