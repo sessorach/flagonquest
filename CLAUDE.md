@@ -11,7 +11,7 @@ balance decision, see `design/RULES_DESIGN.md` (a human-readable log of
 design reasoning as decisions get made — rules content, not workflow
 notes) and `design/balance.md` (aggregate balance-approach notes,
 building on the value-economy model explained in
-`design/flagonquest_balance_notes_model.md`). This file (`CLAUDE.md`) is
+`archive/flagonquest_balance_notes_model.md`). This file (`CLAUDE.md`) is
 where *my own* working notes belong instead — file-location facts,
 standing verification habits, session workflow — not `RULES_DESIGN.md`,
 which should stay a clean decision record.
@@ -69,15 +69,19 @@ which should stay a clean decision record.
   already done this for.
 - `archive/` holds genuinely dead files — an old prototype, stale one-off
   outputs from completed migrations, and historical source documents
-  (old design docs, the designer's balance-notes spreadsheet) kept for
+  (old design docs, the designer's balance-notes spreadsheet, and its
+  reading-guide companion `flagonquest_balance_notes_model.md`, which
+  explains the value-economy model in that spreadsheet) kept for
   reference. Nothing in it is read by the site or by `convert.py`.
 - `design/` holds living design documentation — `RULES_DESIGN.md` (a
   human-readable log of rules-design reasoning, growing as decisions get
-  made) and `balance.md` (aggregate balance-approach notes), plus
-  derivative reference docs for things archived elsewhere (e.g.
-  `flagonquest_balance_notes_model.md` explains the value-economy model
-  in the spreadsheet under `archive/`). Unlike `archive/`, this is meant
-  to be read and extended, not just kept for the record.
+  made), `balance.md` (aggregate balance-approach notes), and
+  `balance_weights_notes.md` (the full derivation behind every current
+  THE TABEL weight) — plus `balance_weights.csv`, a fast-lookup index of
+  the same weights (current value, Locked/Pencil status, which markdown
+  section has the derivation) for quick reference without scanning
+  prose. Unlike `archive/`, this is meant to be read and extended, not
+  just kept for the record.
 
 ## Quick reference
 

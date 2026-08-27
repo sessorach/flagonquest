@@ -1,15 +1,20 @@
 # FlagonQuest balance-notes model (reading guide)
 
 A companion note for `flagonquest_balance_notes.xlsx` (the designer's
-historical balance notes, in `archive/`) — explains what the three key
-tabs actually compute, so the model can be reused without re-deriving it
-from the raw cells each time. The workbook has other tabs (IDEAS, Suits
-EVOLVED, Costs, Crafting Table, HExboys, DM Guide, Equipment, Card
-Cheating...) that weren't reviewed in depth here; this note covers the
-three the designer specifically pointed to: **Baseline**, **THE TABEL**,
-and **BALANCE**. See `balance_weights_notes.md` for the full derivation
-behind every value in THE TABEL below — this file gives the short version
-of each; that one shows the actual math and where it came from.
+historical balance notes, alongside this file in `archive/`) — explains
+what the three key tabs actually compute, so the model can be reused
+without re-deriving it from the raw cells each time. The workbook has
+other tabs (IDEAS, Suits EVOLVED, Costs, Crafting Table, HExboys, DM
+Guide, Equipment, Card Cheating...) that weren't reviewed in depth here;
+this note covers the three the designer specifically pointed to:
+**Baseline**, **THE TABEL**, and **BALANCE**. See
+`design/balance_weights_notes.md` for the full derivation behind every
+value in THE TABEL below — this file gives the short version of each;
+that one shows the actual math and where it came from. This is a
+historical reference, kept for the record — it isn't updated as
+`design/balance_weights_notes.md`'s own numbers get revised, so treat
+any specific value here as "what the original spreadsheet said," not
+"what's current."
 
 ## The core idea
 
@@ -58,7 +63,7 @@ Debuff, Push) and is priced cheaper per unit to reflect that it only
 pays off when the attack actually connects — roughly 50/50 absent other
 effects, matching Baseline's average hit chance.
 
-| Mechanic | Value | Guaranteed? | How the value was determined (short — see `balance_weights_notes.md` for the full math) |
+| Mechanic | Value | Guaranteed? | How the value was determined (short — see `design/balance_weights_notes.md` for the full math) |
 |---|---|---|---|
 | Fudge Value | 1 | Yes | The anchor itself, by definition — 1 value ≈ +1 to a flip. |
 | Accuracy / Defense | 1 | Yes | Same as Fudge Value by definition — a flat Accuracy/Defense bonus *is* a flip bonus. |

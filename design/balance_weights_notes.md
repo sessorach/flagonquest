@@ -2,11 +2,13 @@
 
 Where each of THE TABEL's 19 per-mechanic values actually comes from, one
 by one. Companion to `balance.md` (aggregate balance notes and completed
-passes) and `flagonquest_balance_notes_model.md` (what the Baseline/THE
-TABEL/BALANCE tabs compute) — this file is narrower and more skeptical:
-for each weight, does the workbook actually show its derivation, or is it
-just typed in? Started because the alchemy balance pass leaned on these
-numbers without ever checking where they came from.
+passes), `archive/flagonquest_balance_notes_model.md` (what the Baseline/THE
+TABEL/BALANCE tabs compute), and `balance_weights.csv` (a fast-lookup
+index of the current value/status for every weight derived below, for
+reference without scanning this file's prose) — this file is narrower and
+more skeptical: for each weight, does the workbook actually show its
+derivation, or is it just typed in? Started because the alchemy balance
+pass leaned on these numbers without ever checking where they came from.
 
 **Status key:**
 - **Locked** — has a real derivation (a formula, or an explicit reasoned
@@ -123,7 +125,7 @@ numbers without ever checking where they came from.
 ## Shallow/Deep HP and Heal — Locked, but easy to get backwards
 
 The `Health` tab has real prose reasoning that never made it into
-`flagonquest_balance_notes_model.md`, and the relationship *inverts*
+`archive/flagonquest_balance_notes_model.md`, and the relationship *inverts*
 between max-HP and healing — worth its own callout since it's a genuine
 trap:
 
@@ -337,6 +339,51 @@ under pressure mid-pass the way the alchemy ledger almost did.
   too, since it inherits Resist's rate directly — still genuinely open,
   unlike Ward's other two questions (magnitude scaling, per-application
   value) which are now resolved.
+
+## Pricing a fresh attack from scratch (Grenades, Battle Magic, and similar) — Resist placeholder + universal Harried + Autoswing as cost
+
+Distinct from the Locked "Damage is priced before Resist" rule above —
+that rule governs *modifying* an existing attack (Extra Success and
+similar), where a real weapon's own baseline already implicitly clears
+Resist. A standalone attack built from scratch (a Grenade, or a spell
+like Battle Magic) has no such implicit weapon baseline, so it needs a
+different anchor:
+
+- **Resist placeholder**: assume the target's relevant Resist equals the
+  granting character's own investment in the matching stat — **Body 3**
+  (the same representative baseline used everywhere else this session)
+  for a fixed/non-scaling item, or the caster's actual stat for
+  something that scales with it. Physical damage assumes the full
+  baseline (**4** = Body 3 + 1 armor); elemental damage skips the armor
+  term (**3** = Body 3 alone) — the same "+1 elemental credit, assuming
+  ~1 Physical Resist from armor that elemental typically bypasses"
+  convention as before, just expressed as a smaller subtraction rather
+  than a bonus addition. `margin = raw Damage − Resist placeholder`,
+  priced at Damage's own rate (2/point) — **not** discounted again for
+  hit chance, since Damage's own weight already has that baked in.
+- **Universal Harried credit**: any attack against Dodge/Parry applies
+  Harried once, "regardless of the attack's result" (`rulebook.md`) — so
+  a fresh attack gets **+1**, flat and guaranteed (not hit-gated), same
+  as Autoswing already bundles into its own definition for a *granted*
+  attack.
+- **Autoswing (5.5) subtracted as the flat opportunity cost** of not
+  just attacking normally instead — this replaces a flat AP charge for
+  anything that's genuinely a stand-in attack (not doubled for AoE,
+  since you only gave up *one* attack regardless of how many targets the
+  substitute effect hits).
+- **AoE doubles the margin** (not the raw Damage before subtracting the
+  Resist placeholder), and doubles the universal Harried credit too
+  (each assumed target rolls their own Defense) — but does **not**
+  double Autoswing, which stays a flat, single opportunity cost.
+
+Confirmed against the full Grenade batch (see `balance_ledger.csv`, IDs
+I028-I036 and I207) — every item in that category was recomputed under
+this model this pass. Any bespoke debuff a fresh attack grants on top of
+Damage still uses its own per-keyword curve from the Debuff bucket
+below, discounted ×0.5 if it's delivered via that same attack roll
+(guaranteed value once landed, same convention as everywhere else) —
+separate from Damage's own already-baked-in discount, and never applied
+to Autoswing.
 
 ## What's still open
 

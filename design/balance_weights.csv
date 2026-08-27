@@ -1,0 +1,37 @@
+Mechanic,Value,Guaranteed,Status,Section,Notes
+Fudge Value,1,Yes,Locked,Locked,The anchor itself -- 1 value = +1 to a flip
+Accuracy / Defense,1,Yes,Locked,Locked,Same as Fudge Value by definition
+Damage,2,No,Locked,Locked,Health(4) x avg hit chance(0.5); priced before Resist; a guaranteed point of harm that skips the attack roll uses Health's rate (4) instead
+Debuff (generic bucket),1,No,Locked,Locked,Superseded per-keyword by the Debuff bucket breakout below for any of its 9 named keywords
+Health,4,Yes,Locked,Locked,Damage(2) / avg hit chance(0.5)
+Gold,1.5,Yes,Locked,Locked,Reciprocal of Baseline's Value/Gold ratio (2/3)
+Autoswing,5.5,Yes,Locked,Locked,"Value of one attack (damage discounted) + the Harried stack it applies; credit for a granted extra attack -- NOT used as a credit for Grenades (the Grenade IS the attack) but IS used as an opportunity-cost subtraction for fresh-attack items, see Pricing a fresh attack section"
+1 AP,2.75,Yes,Locked,Locked,Autoswing(5.5) / its AP cost(2)
+Protected,3,Yes,Locked,Locked,Health(4) x realistic bank-partial realization (~75-84% for a 1-4 stack grant)
+Shallow HP (max pool)/point,5,Yes,Locked,Shallow/Deep HP and Heal,Easier to top up at rest than Deep -- worth MORE than Deep as a pool increase
+Deep HP (max pool)/point,4,Yes,Locked,Shallow/Deep HP and Heal,"Effective-healing baseline, does not need healing to count"
+Shallow Heal/point,4,Yes,Locked,Shallow/Deep HP and Heal,Less-restricted resource -- opposite ranking from the max-pool rows
+Deep Heal/point,5,Yes,Locked,Shallow/Deep HP and Heal,"Scarcer, more-restricted resource"
+Good Luck,2.2,Yes,Pencil,Pencil,Flip-2-take-highest (real 52-card deck) 9.196 minus 1-card baseline 7
+Card (drawn/hand),2.7,Yes,Pencil,Pencil,Good Luck's 2.2 floor + a judgment-call premium for timing/targeting/Suit Pool flexibility
+Pressure / Bad Luck,2.2,Yes,Pencil,Pencil,Mirrors Good Luck exactly -- worst-of-2 is symmetric to best-of-2
+Sift (daily cadence),0.60/card,Yes,Pencil,Pencil,True long-run value is 1.62/card; rescoped to ~18 draws/adventuring-day. Re-derive for any other cadence (e.g. combat-conditional)
+Speed,0.55/point,Yes,Pencil,Pencil,1 AP(2.75) / (baseline Speed+1 = 5); baseline Agility 3
+Push,0.55/meter,No,Pencil,Pencil,Directly Speed's own per-point rate; on-hit rider
+Difficult Terrain,"0 / 2.75 / 8.25 / 8.25 (degrees 0/1/2/3+, hard-capped)",Yes,Pencil,Pencil (Difficult Terrain),"Non-linear -- AP-equivalent cost of covering the same ground a free move would; caps once move-action throughput floors at 1m (Agility 3/Speed 4 baseline). Per-creature-caught, same AoE-estimate uncertainty as Grenade AoE"
+Resist (Physical)/point,2.5,Yes,Pencil,Pencil (Resist),Damage(2) x expected hits of that type absorbed/encounter; Physical = 2/3 of encounter damage
+Resist (Fire)/point,0.5,Yes,Pencil,Pencil (Resist),Same formula; Fire = 2/15 of encounter damage
+"Resist (Frost/Brilliant/Shadow, each)/point",0.25,Yes,Pencil,Pencil (Resist),Same formula; each = 1/15 of encounter damage
+Fresh-attack Resist placeholder (Physical),4,n/a (baseline assumption),Pencil,Pricing a fresh attack from scratch,"Body 3 + 1 armor; subtracted from raw Damage before pricing the margin at 2/point. Distinct from the Resist weight above -- that prices GRANTING Resist, this is the assumed target baseline for a standalone attack built from scratch (Grenades, Battle Magic)"
+Fresh-attack Resist placeholder (Elemental),3,n/a (baseline assumption),Pencil,Pricing a fresh attack from scratch,"Body 3 alone, skips the armor term -- same +1 elemental credit as before, now expressed as a smaller subtraction instead of a bonus addition"
+Universal Harried-on-attack credit,1,Yes,Pencil,Pricing a fresh attack from scratch,Any attack vs Dodge/Parry applies Harried regardless of hit (rulebook.md); doubled for AoE (2 assumed targets each rolling Defense) -- Autoswing itself is never doubled
+Bleeding,"4/stack, caps ~12 total (geometric taper beyond 2 stacks)","Yes, once applied",Pencil,Debuff bucket -- Bleeding,"Guaranteed per-tick once applied (prices at Health's full rate, 4); the attack roll that DELIVERS it is priced separately, per-item (x0.5 convention)"
+Crippled,"1.5/stack base, 4-turn window, hard cap 42 (peaks ~4.71/stack at 7 stacks)","Yes, once applied",Pencil,Debuff bucket -- Crippled,Cap = the stack count where a flat -N penalty zeroes a baseline ~53.8% hit chance
+Vulnerable,"1/stack base, 4-turn window, hard cap 24 (6 stacks)","Yes, once applied",Pencil,Debuff bucket -- Vulnerable,Cap = the stack count where the attacker's hit chance saturates 100%
+Necrotic,"3/stack when it actually resolves -- no stacking curve, price via the item's own Rate of Use","Yes, once applied",Pencil,Debuff bucket -- Necrotic,"Realization is situational (does the heal/Protected trigger ever come up), not a decay curve; the 3/stack already bakes in the situational discount, do not re-discount for the attack roll on top"
+Taunted,"2.2/stack, linear (no compounding); realistic window = Baseline's 5 rounds","Yes, once applied",Pencil,Debuff bucket -- Taunted/Frightened,Ceiling usually fully realized -- no free escape route from the compulsion
+Frightened,"2.2/stack, linear, identical math to Taunted","Yes, once applied",Pencil,Debuff bucket -- Taunted/Frightened,"Ceiling often NOT realized in practice -- narrow, single-relationship protection only"
+Hasted,"0.55/stack base, 4-turn window, converges toward ~2.2/stack (unbounded, no hard cap)","Yes, once applied",Pencil,Debuff bucket -- Hasted/Slowed,"Buff on your own side -- no target-death cap, just how much fight is left"
+Slowed,"1.1/stack base, 4-turn window, hard cap 17.6 (4 stacks)","Yes, once applied",Pencil,Debuff bucket -- Hasted/Slowed,"Doubled base rate (was 0.55) -- a Slowed target needs 2 movement actions/turn, both hit by the same flat penalty"
+Ward (Fire)/stack,"0.36 to 1.00 across 1-5 stacks (rounds covered), diminishing, capped","Yes, once applied",Pencil,Debuff bucket -- Ward,Caps at 2x Fire Resist's own rate (1.0); rule changed +1->+2 Resist while any stacks are up
+Ward (Frost/Brilliant/Shadow)/stack,"0.18 to 0.50 across 1-5 stacks, diminishing, capped","Yes, once applied",Pencil,Debuff bucket -- Ward,Caps at 2x that element's own Resist rate (0.5)
