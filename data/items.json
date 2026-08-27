@@ -1188,7 +1188,7 @@
     "tags": null,
     "level": 1,
     "description": "Originally regarded as a useless byproduct of a botched process, potential was seen and after much refinement a method for creating strong acid was born. An Acidic Flask is composed of a caustic mixture that clings to whatever surface it is shattered against, burning and warping flesh.",
-    "effects": "On a hit, the target gains 4 stacks of Bleeding.",
+    "effects": "On a hit, the target gains 5 stacks of Bleeding.",
     "cost": null,
     "value_per_level": null,
     "school": null,
