@@ -9367,7 +9367,7 @@
     "category": "Grenade",
     "slot": null,
     "tags": null,
-    "level": 4,
+    "level": 3,
     "description": "When the contents of this flask are mixed, traces of electrically-charged stone react with alchemical reagents to produce a blast closely resembling a small burst of lightning - mostly affecting whatever the flask directly strikes when thrown.",
     "effects": "On a hit it deals 5 Fire damage and the target gains 2 stacks of Harried.",
     "cost": null,
@@ -9401,7 +9401,7 @@
     "material_types": null,
     "base_item_options": [],
     "levels": [
-      4
+      3
     ]
   },
   {
