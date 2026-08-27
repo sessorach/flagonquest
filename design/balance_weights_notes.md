@@ -385,6 +385,43 @@ below, discounted ×0.5 if it's delivered via that same attack roll
 separate from Damage's own already-baked-in discount, and never applied
 to Autoswing.
 
+## Cover — priced as the cost of avoiding it, not the raw penalty
+
+Heavy Cover "gives Bad Luck twice on attacks against Dodge or Parry, as
+well as flips to see you" (`rulebook.md`). Bad Luck's single-instance
+value is already Locked at 2.2 (worst-of-2-draws card math); Heavy
+Cover's "twice" is the marginal value of a *second* application on top —
+worst-of-3-draws instead of worst-of-2, same real 52-card-deck math:
+`E[min of 3] = 3.706`, against the same 7 baseline, giving **3.29/
+instance** (up from 2.2, but not dramatically — most of Bad Luck's own
+bite is already in the first application).
+
+That per-instance number is a **ceiling, not the actual price**. Heavy
+Cover from a persistent zone effect (a smoke cloud, not a one-shot
+attack) applies to *every* attack and *every* perception flip against
+the covered target for as long as the zone lasts — eating that
+repeatedly, every turn, for a whole encounter is obviously worse than
+just repositioning once to get a clean shot/view. A rational target
+always takes the cheaper option, so the value the party actually
+extracts is **the cost of that one relocation**, not the underlying
+penalty's own math — same "compulsion with an escape hatch, priced at
+whichever is cheaper" logic as Taunted/Frightened above, just with
+movement as the escape hatch instead of a different attack target.
+
+There's no formal in-system rule for "cost to route around an obstacle
+of size X," so the relocation cost is a judgment call per use case (same
+footing as Card's premium-over-Good-Luck's-floor) — priced in AP-
+equivalent terms (1 AP = 2.75) based on how disruptive the specific
+zone's size/duration realistically is. Confirmed against Smokejar (a
+wide, ~3-meter-radius cloud that lingers for the whole scene): the
+designer's own estimate is **at least one enemy loses 2 move actions**
+repositioning to stay in effective range, so **5.5** (2 × 2.75) is the
+number used there — comfortably under the 3.29-per-instance ceiling
+(and its per-turn repeated cost, which is far higher still), consistent
+with "so strong it basically never actually applies." A smaller or
+shorter-lived Cover zone would need a smaller relocation estimate, the
+same way Sift's value changes with its actual usage window.
+
 ## What's still open
 
 Every weight that started this audit unresolved (Sift, Push, Difficult

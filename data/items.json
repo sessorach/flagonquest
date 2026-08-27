@@ -1317,7 +1317,7 @@
     "tags": null,
     "level": 2,
     "description": "A smokejar consists of a stone or clay flask containing a small glass bubble, both of which contain alchemical reagents. When the glass bubble inside is shattered and the materials react with each other - usually accomplished by either shattering the jar on the ground or shaking it violently - a great amount of smoke billows out of the mixture, obscuring vision.",
-    "effects": "When thrown or broken, the jar creates a cloud of smoke in a 1-meter-radius circle centered on the jar. At the start of your next 2 turns the radius increases by 1, eventually covering a 3-meter-radius area. The smoke hangs in the air for the scene or until dispersed by a strong wind. The smoke acts as Heavy Cover in its area.\r\nThe jar can also be thrown as a Grenade. If the attack hits, the target is Crippled twice. Then, the smoke cloud is created in the target's space if the attack hits or is Parried, otherwise it is created in the space behind them.",
+    "effects": "When thrown or broken, the jar creates a cloud of smoke in a 1-meter-radius circle centered on the jar. At the start of your next 2 turns the radius increases by 1, eventually covering a 3-meter-radius area. The smoke hangs in the air for the scene or until dispersed by a strong wind. The smoke acts as Heavy Cover in its area.\r\nThe jar can also be thrown as a Grenade. If the attack hits, the target is Crippled thrice. Then, the smoke cloud is created in the target's space if the attack hits or is Parried, otherwise it is created in the space behind them.",
     "cost": null,
     "value_per_level": null,
     "school": null,
