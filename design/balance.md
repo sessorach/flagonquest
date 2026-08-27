@@ -85,13 +85,29 @@ below, for the actual results):**
   *separately* scoped to "how much value actually lands within a
   one-day window" for the same reason — a different question from how
   often the granting item itself can be re-triggered.
-- **"Does the threat even show up" discount (×0.5)**, for any item whose
-  whole effect is *preventing* a debuff rather than granting something
-  directly (Calming Brew, Kiss of the Earth, Predator's Cry, Muscular
-  Feast) — a prevention effect only pays off if the enemy was actually
-  about to inflict that debuff, which won't happen every single
-  encounter it's carried into, unlike a Grenade's own effect which pays
-  off the moment it's used.
+- **"Does the threat even show up" discount — reconsidered: doesn't
+  apply to consumable items.** Originally applied at ×0.5 to any item
+  whose whole effect is *preventing* a debuff rather than granting
+  something directly (Calming Brew, Kiss of the Earth, Predator's Cry,
+  Muscular Feast), on the theory that a prevention effect only pays off
+  if the enemy was actually about to inflict that debuff. Per the
+  designer, that reasoning doesn't actually transfer from Techniques to
+  consumables: a Technique is a permanent Experience investment
+  competing against every other Technique you could have learned
+  instead, genuinely wasted for the rest of the game if its niche never
+  comes up — but a Potion/Grenade/Food item costs Gold once and then
+  just sits in inventory with zero ongoing cost until the exact moment
+  it's actually relevant. Since Bleeding/Crippled/Slowed/Taunted/
+  Frightened are all common, frequently-recurring effects rather than
+  rare edge cases, any reasonably long campaign eventually makes these
+  relevant — "does this ever come up" isn't really the open question
+  for a held item the way it is for a learned Technique. **Discount
+  removed for consumable items** — all four prevention-type Potions/
+  Food recomputed at full, undiscounted value (see Passes Completed
+  below). The discount still applies where the underlying logic
+  actually holds: a genuinely niche Technique, or a Masterwork item's
+  specific mechanic, where there's a real ongoing opportunity cost to a
+  permanent investment that might never pay off.
 - **The "refund a Technique use" trick**, for items whose whole effect is
   handing back the use of an Encounter Technique (Soldier's Salts,
   Fighter's Friend, Soul Soup) — THE TABEL has no mechanic for this, so
