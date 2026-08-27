@@ -115,7 +115,9 @@ below, for the actual results):**
   (Hellfire Bomb, Thunderclap-in-a-Jar) is "2 enemies hit" — deliberately
   bad value if only 1 target is caught, above-rate if 3+ are. Applying
   the real number surfaced a genuine finding rather than just fixing a
-  guess — see Passes Completed below.
+  guess — see Passes Completed below. **Follow-up:** resolved with a
+  ×0.8 realization discount on top of the 2x assumption (net 1.6x) —
+  see `balance_weights_notes.md`'s AoE multiplier section.
 - **Dropped the old sheet's "Autoswing" credit on Grenades.** The 4
   existing reference rows (Bottled Fire, Bonemelter, Sunbeam, Hellfire
   Bomb) each carried a flat Autoswing bonus (a 💯-tagged mechanic worth
@@ -305,7 +307,14 @@ the values first reported when this pass landed)*:
   item's from the start**, since the ×2 credit is already baked into how
   it's meant to be priced. Worth trimming the raw Damage/Debuff numbers
   on these two specifically during the real pass, not re-litigating the
-  multiplier itself.
+  multiplier itself. **Follow-up:** the multiplier itself did end up
+  getting revisited after all — a real, previously-uncosted downside
+  (AoE is unconditional and can't avoid catching allies, and is harder
+  to land a clean multi-enemy hit with than aiming at one target) turned
+  into a ×0.8 realization discount on the 2x assumption, net 1.6x. Both
+  items land within their Level threshold at that rate without touching
+  their raw Damage/Debuff numbers at all — see
+  `balance_weights_notes.md`'s AoE multiplier section.
 - **1 AP locked at 2.75 (down from the old sheet's 3), and the whole
   ledger recomputed against it** — every AP-costed row (all 32 Potions/
   Grenades/Poisons, each at `AP:-2`) shifts by a uniform +0.5 to both

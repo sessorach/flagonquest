@@ -469,16 +469,45 @@ with "so strong it basically never actually applies." A smaller or
 shorter-lived Cover zone would need a smaller relocation estimate, the
 same way Sift's value changes with its actual usage window.
 
+## AoE multiplier — 2x enemies-hit assumption, ×0.8 realization discount, net 1.6x
+
+The designer balances area-effect Grenades (Hellfire Bomb,
+Thunderclap-in-a-Jar) assuming **2 enemies hit** — deliberately bad
+value against a single target, above-rate against 3+ — a real,
+confirmed calibration point, not re-litigated here. But taking that at
+full, undiscounted face value ignores a genuine tactical cost pure
+single-target damage doesn't have: an area effect is unconditional (it
+can't be aimed to skip an ally standing in the blast) and inherently
+harder to land a clean 2-enemy cluster with than simply pointing a
+weapon at one chosen target. That's a real downside with no cost
+attached anywhere in the model, the same kind of gap a realization
+discount already fixed for Protected (the ideal scenario doesn't always
+materialize in play).
+
+**Applied as a ×0.8 realization discount on top of the 2x
+assumption — net 1.6x** — to the AoE-doubled portion of Value only
+(Damage margin, any debuff curves, the universal Harried credit).
+Autoswing stays a flat, undiscounted subtraction regardless, same
+reasoning as always: it's the opportunity cost of not just attacking
+instead, unrelated to how the throw itself plays out.
+
+```
+Value = (DamageComponent + DebuffComponent + Harried_universal) × 1.6
+        − Autoswing (undiscounted)
+```
+
+Checked against both current AoE Grenades — both were flagged
+overpowered under the old undiscounted 2x, and both land cleanly within
+their Level threshold at 1.6x, independently (not fit to match, a
+genuine confirmation the number is in the right neighborhood):
+Hellfire Bomb Net +0.1 (was +4.5), Thunderclap-in-a-Jar Net +0.175
+(was +5.34).
+
 ## What's still open
 
 Every weight that started this audit unresolved (Sift, Push, Difficult
 Terrain, Resist) now has a Pencil derivation, and Damage, Autoswing, and
-1 AP are fully Locked. The AoE multiplier used on area-effect Grenades
-(Hellfire Bomb, Thunderclap-in-a-Jar) is also confirmed — the designer
-balances these assuming **2 enemies hit** (deliberately bad value
-against 1, above-rate against 3+) — but plugging that in surfaces a real
-finding, not just a settled number: see `balance.md`'s Passes Completed
-entry. What's left, if anyone wants to push further:
+1 AP are fully Locked. What's left, if anyone wants to push further:
 - Sift's ~0.60/card figure is calibrated to a once-per-day window
   specifically — a Technique that grants Sift on a different trigger
   (e.g. a combat-conditional one, which is how the design intentionally
