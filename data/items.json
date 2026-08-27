@@ -1446,7 +1446,7 @@
     "tags": null,
     "level": 4,
     "description": "A stabilized mixture of spiritually-energized materials that erupts suddenly when sufficiently disturbed.",
-    "effects": "On a hit it deals 8 Brilliant damage and the target gains 4 stacks of Vulnerable.",
+    "effects": "On a hit it deals 9 Brilliant damage and the target gains 4 stacks of Vulnerable.",
     "cost": null,
     "value_per_level": null,
     "school": null,
