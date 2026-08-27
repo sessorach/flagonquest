@@ -385,6 +385,53 @@ below, discounted ×0.5 if it's delivered via that same attack roll
 separate from Damage's own already-baked-in discount, and never applied
 to Autoswing.
 
+### Harried = 1/stack, linear, hard-capped at 6 — no multi-turn accrual, decays all-at-once
+
+"For each stack of this, you suffer a -1 penalty to Dodge and Parry
+Defense. At the end of your turn, remove all stacks of Harried you
+have" (`glossary.md`) — structurally closer to Vulnerable than to
+Crippled/Bleeding (both push the *attacker's* hit chance toward 100% by
+knocking down a Defense; Vulnerable hits Vital/Mental/Instinct, Harried
+hits Dodge/Parry), so it shares Vulnerable's exact saturation point: a
+flat -N zeroes the gap to 100% against the baseline ~53.8% hit chance
+at **6 stacks**.
+
+But the decay itself is genuinely different from every other keyword in
+this bucket — a flat magnitude that lasts until the *afflicted
+creature's own next turn ends*, then wipes entirely, not a 1-per-turn
+taper. More stacks buy **zero extra duration**, only a deeper Defense
+penalty during one fixed window — so there's no multi-turn window to
+sum over, and none of Crippled/Vulnerable's peak-then-decline per-stack
+shape (that shape is an artifact of their multi-turn accrual, which
+doesn't apply here).
+
+That window realistically covers about **1 follow-up attack on
+average**, per the designer — "any time someone applies Harried that
+one extra attack gets to benefit from it... sometimes it's 2, sometimes
+they're the last person to attack" — which matches the original
+Debuff=1 single-stack calibration exactly (Baseline's own "reducing
+defense against 1 attack to follow"). With no multi-turn accrual to
+bend the curve, this stays **linear** straight to the cap:
+
+| Stacks | 1 | 2 | 3 | 4 | 5 | 6 | 7+ |
+|---|---|---|---|---|---|---|---|
+| Value | 1 | 2 | 3 | 4 | 5 | 6 | 6 (capped) |
+
+Checked against the two current Grenades granting *bonus* Harried on
+top of the universal on-attack credit: Thunderclap-in-a-Jar's 4
+post-AoE stacks and Quartz Tincture's 2 stacks are both well under the
+6-stack cap, so this curve doesn't actually change either item's
+existing numbers — it's numerically identical to the flat rate they
+were already using in that range. What it does resolve: confirms
+there's a real ceiling (value 6, or 3 once halved for the standard
+on-hit contingency) on how much *any* item can extract from Harried
+alone. That's well short of what a whole item's budget needs even at
+Level 1-2, so a genuinely "Harried-forward" item (Quartz Tincture's
+planned redesign) still needs a real Damage or other component to carry
+most of its budget, with Harried as a secondary, flavorful lever rather
+than the primary one — not a flaw in the curve, just a hard limit on
+what a defense-penalty-only mechanic can be worth on its own.
+
 ## Cover — priced as the cost of avoiding it, not the raw penalty
 
 Heavy Cover "gives Bad Luck twice on attacks against Dodge or Parry, as
