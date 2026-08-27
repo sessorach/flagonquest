@@ -13,6 +13,21 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-27 — Prevention Potions rebalanced
+
+- **Calming Brew**, **Kiss of the Earth**, and **Predator's Cry** no
+  longer cost AP to use — they're long-duration (1 hour, or "this
+  encounter") consumables meant to be drunk ahead of time, before a
+  fight starts, not mid-combat instead of an attack. All three also
+  now remove stacks of the prevented effect you already have, not just
+  future ones, so they're still usable reactively in a pinch.
+- **Kiss of the Earth** moved to Level 3 (from 2) and now prevents 3
+  stacks of Bleeding, down from 4. **Predator's Cry** moved to Level 4
+  (from 2), keeping its 4-stack Crippled/Slowed prevention. **Calming
+  Brew** returned to Level 3 (it had briefly moved to Level 2 mid-pass
+  before landing here), keeping its 4-stack Taunted/Frightened
+  prevention.
+
 ### 2026-08-27 — Grenades rebalanced
 
 - Raw Damage bumped on **Sunbeam** (8→9), **Bonemelter** (7→8, Necrotic

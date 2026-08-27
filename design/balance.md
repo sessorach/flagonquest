@@ -108,6 +108,29 @@ below, for the actual results):**
   actually holds: a genuinely niche Technique, or a Masterwork item's
   specific mechanic, where there's a real ongoing opportunity cost to a
   permanent investment that might never pay off.
+- **AP dropped entirely for consumables meant to be drunk ahead of
+  time.** A follow-up to the prevention discount above, for the same
+  three items (Calming Brew, Kiss of the Earth, Predator's Cry) — AP
+  only exists as a resource *in combat* (confirmed during the Social
+  Contests/Exploration rework), and these are long-duration (1 hour, or
+  "this encounter") consumables clearly meant to be downed during
+  downtime, before initiative is even rolled, not mid-fight instead of
+  an attack. Dropped the `AP:-2` charge from their Value entirely.
+  Their wording was also extended to remove existing stacks of the
+  prevented effect, not just future ones (matching Calming Brew's
+  original phrasing) — this makes them usable reactively too, in a
+  genuine emergency, without needing a second, separately-priced
+  "reactive" version of the item: drinking one mid-fight instead of
+  ahead of time still costs the normal AP to retrieve and consume it in
+  the moment, which is already a real, unmodeled cost baked into actual
+  play — the base Value doesn't need to discount for that case
+  separately, since a player who uses it reactively is already paying
+  for it in AP they wouldn't have spent if they'd planned ahead.
+  Doesn't extend to Healing Potion, flagged as a related but distinct
+  problem — a reactive-only heal doesn't have a "drink it ahead of
+  time" mode the way a preventive effect does, so it can't dodge the AP
+  charge the same way; its own Net (-6.5 at Level 3) looks more like a
+  genuine under-granting problem than an AP-timing one.
 - **The "refund a Technique use" trick**, for items whose whole effect is
   handing back the use of an Encounter Technique (Soldier's Salts,
   Fighter's Friend, Soul Soup) — THE TABEL has no mechanic for this, so
