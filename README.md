@@ -13,6 +13,33 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-27 — Grenades rebalanced
+
+- Raw Damage bumped on **Sunbeam** (8→9), **Bonemelter** (7→8, Necrotic
+  4→3 stacks), and **Snowstorm** (7→8, Slowed four→three times), so
+  every Level 2+ single-target damage Grenade now hits at least as hard
+  as the Level 2 Bottled Fire. **Acidic Flask**'s Bleeding bumped 4→5
+  stacks. **Immaculate Adhesive** and **Smokejar**'s values were
+  recomputed against a corrected, non-linear Difficult Terrain/Cover
+  model rather than the old flat-rate approximations; Smokejar's
+  Crippled bumped twice→thrice to match.
+- **Quartz Tincture** moved from Level 4 to Level 3 — its name and
+  numbers are still a placeholder pending a planned rework toward a
+  concussive, Harried-forward identity.
+- **Card-suit scaling** added to every debuff-granting Grenade for the
+  first time (previously only Techniques used this) — e.g. Acidic
+  Flask now reads "5 + [Clubs] stacks of Bleeding," Snowstorm "Slowed
+  3 + [Spades] times." Uses the suit pairings already established for
+  Techniques (Bleeding/Crippled → Clubs, Harried/Vulnerable/Necrotic →
+  Diamonds, Slowed → Spades) — deliberately never applied to raw
+  Damage, since Extra Successes already cover that.
+- **Hellfire Bomb** and **Thunderclap-in-a-Jar** (the two area-effect
+  Grenades) had their AoE valuation corrected for a real, previously
+  uncosted downside: an area effect can't avoid catching allies caught
+  in the blast, and is inherently harder to land a clean multi-enemy
+  hit with than aiming at one target. Their numbers are unchanged —
+  this was a balance-model fix, not a nerf to what they actually do.
+
 ### 2026-08-27 — Refund-Potion family reshuffled, new item added
 
 - **Soldier's Salts** is now Level 1 (down from 2) — its "regain a
