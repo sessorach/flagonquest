@@ -9595,7 +9595,7 @@
   },
   {
     "id": "I213",
-    "name": "Boneshaker",
+    "name": "Legbreaker",
     "category": "Grenade",
     "slot": null,
     "tags": null,
@@ -9638,12 +9638,12 @@
   },
   {
     "id": "I214",
-    "name": "Direshard",
+    "name": "Harrowing Ichor",
     "category": "Grenade",
     "slot": null,
     "tags": null,
     "level": 2,
-    "description": "A shard of condensed shadow-matter, harvested from places light has never properly reached. On impact it shatters into an unnatural, writhing darkness, carrying with it something ancient and predatory that lingers just long enough to remind its target exactly how alone they truly are.",
+    "description": "A vial of thick, black ichor drawn from places light has never properly reached. When shattered it seeps into an unnatural, writhing darkness, carrying with it something ancient and predatory that lingers just long enough to remind its target exactly how alone they truly are.",
     "effects": "On a hit it deals 7 Shadow damage and the target gains 2 + [Hearts] stacks of Frightened.",
     "cost": null,
     "value_per_level": null,

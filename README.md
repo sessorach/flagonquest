@@ -25,11 +25,11 @@ the full commit-by-commit detail behind any of these.
   numbers from this specifically — it only affects the internal
   balance ledger's math.
 
-### 2026-08-27 — Two new Grenades: Boneshaker, Direshard
+### 2026-08-27 — Two new Grenades: Legbreaker, Harrowing Ichor
 
-- **Boneshaker** (Level 2): deals 8 Physical damage and pushes
+- **Legbreaker** (Level 2): deals 8 Physical damage and pushes
   the target 4 meters — the first Grenade to use Push at all.
-- **Direshard** (Level 2): deals 7 Shadow damage and inflicts
+- **Harrowing Ichor** (Level 2): deals 7 Shadow damage and inflicts
   2 + [Hearts] stacks of Frightened — the first Grenade to use
   Frightened at all.
 
