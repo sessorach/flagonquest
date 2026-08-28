@@ -13,6 +13,18 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-27 — Quagmire Charge added, AoE debuff math corrected
+
+- **Quagmire Charge** (Level 4, Grenade): an area attack that inflicts
+  4 stacks of Slowed and 3 stacks of Crippled on every creature hit —
+  the first Grenade built entirely around debuffs, no damage.
+- Fixed a balance-model bug in how area-effect items priced non-linear
+  debuffs (Bleeding, Crippled, Slowed) against multiple targets, which
+  had been over- or under-crediting some of them depending on the
+  effect. No player-facing change to existing items' actual text or
+  numbers from this specifically — it only affects the internal
+  balance ledger's math.
+
 ### 2026-08-27 — Two new Grenades: Battering Charge, Night Terror
 
 - **Battering Charge** (Level 2): deals 8 Physical damage and pushes
