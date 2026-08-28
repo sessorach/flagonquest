@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
-### 2026-08-27 — Quagmire Charge added, AoE debuff math corrected
+### 2026-08-27 — Gelatinous Charge added, AoE debuff math corrected
 
-- **Quagmire Charge** (Level 4, Grenade): an area attack that inflicts
+- **Gelatinous Charge** (Level 4, Grenade): an area attack that inflicts
   4 stacks of Slowed and 3 stacks of Crippled on every creature hit —
   the first Grenade built entirely around debuffs, no damage.
 - Fixed a balance-model bug in how area-effect items priced non-linear
