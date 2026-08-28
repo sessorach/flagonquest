@@ -9363,7 +9363,7 @@
   },
   {
     "id": "I207",
-    "name": "Static Jolt",
+    "name": "Reeler",
     "category": "Grenade",
     "slot": null,
     "tags": null,
@@ -9595,7 +9595,7 @@
   },
   {
     "id": "I213",
-    "name": "Battering Charge",
+    "name": "Boneshaker",
     "category": "Grenade",
     "slot": null,
     "tags": null,
@@ -9638,7 +9638,7 @@
   },
   {
     "id": "I214",
-    "name": "Night Terror",
+    "name": "Direshard",
     "category": "Grenade",
     "slot": null,
     "tags": null,
@@ -9681,7 +9681,7 @@
   },
   {
     "id": "I215",
-    "name": "Gelatinous Charge",
+    "name": "Oozejar",
     "category": "Grenade",
     "slot": null,
     "tags": null,

@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
-### 2026-08-27 — Gelatinous Charge added, AoE debuff math corrected
+### 2026-08-27 — Oozejar added, AoE debuff math corrected
 
-- **Gelatinous Charge** (Level 4, Grenade): an area attack that inflicts
+- **Oozejar** (Level 4, Grenade): an area attack that inflicts
   4 stacks of Slowed and 3 stacks of Crippled on every creature hit —
   the first Grenade built entirely around debuffs, no damage.
 - Fixed a balance-model bug in how area-effect items priced non-linear
@@ -25,11 +25,11 @@ the full commit-by-commit detail behind any of these.
   numbers from this specifically — it only affects the internal
   balance ledger's math.
 
-### 2026-08-27 — Two new Grenades: Battering Charge, Night Terror
+### 2026-08-27 — Two new Grenades: Boneshaker, Direshard
 
-- **Battering Charge** (Level 2): deals 8 Physical damage and pushes
+- **Boneshaker** (Level 2): deals 8 Physical damage and pushes
   the target 4 meters — the first Grenade to use Push at all.
-- **Night Terror** (Level 2): deals 7 Shadow damage and inflicts
+- **Direshard** (Level 2): deals 7 Shadow damage and inflicts
   2 + [Hearts] stacks of Frightened — the first Grenade to use
   Frightened at all.
 
@@ -58,11 +58,11 @@ the full commit-by-commit detail behind any of these.
   recomputed against a corrected, non-linear Difficult Terrain/Cover
   model rather than the old flat-rate approximations; Smokejar's
   Crippled bumped twice→thrice to match.
-- **Quartz Tincture** renamed **Static Jolt** and reworked into a
-  concussive, Harried-forward Level 3 item (8 Fire damage, 4 +
-  [Diamonds] stacks of Harried on hit) — a deliberately below-full-value
-  item, prioritizing its identity over squeezing out every last point of
-  budget.
+- **Quartz Tincture** renamed **Reeler** (briefly Static Jolt along the
+  way) and reworked into a concussive, Harried-forward Level 3 item
+  (8 Fire damage, 4 + [Diamonds] stacks of Harried on hit) — a
+  deliberately below-full-value item, prioritizing its identity over
+  squeezing out every last point of budget.
 - **Card-suit scaling** added to every debuff-granting Grenade for the
   first time (previously only Techniques used this) — e.g. Acidic
   Flask now reads "5 + [Clubs] stacks of Bleeding," Snowstorm "Slowed
