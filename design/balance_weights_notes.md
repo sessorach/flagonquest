@@ -496,12 +496,51 @@ Value = (DamageComponent + DebuffComponent + Harried_universal) × 1.6
         − Autoswing (undiscounted)
 ```
 
-Checked against both current AoE Grenades — both were flagged
-overpowered under the old undiscounted 2x, and both land cleanly within
-their Level threshold at 1.6x, independently (not fit to match, a
-genuine confirmation the number is in the right neighborhood):
-Hellfire Bomb Net +0.1 (was +4.5), Thunderclap-in-a-Jar Net +0.175
-(was +5.34).
+Checked against both AoE Grenades that existed at the time — both were
+flagged overpowered under the old undiscounted 2x, and both landed
+cleanly within their Level threshold at 1.6x, independently (not fit to
+match, a genuine confirmation the number is in the right neighborhood):
+Hellfire Bomb Net +0.1, Thunderclap-in-a-Jar Net +0.175 (at the time —
+see the correction below for why Thunderclap's own number has moved
+since).
+
+### Correction: curves need `curve(N) × 2`, not `curve(2N)`, for AoE debuffs
+
+The "AoE-doubled portion" language above was ambiguous about *how* to
+double a non-linear debuff curve, and the first two AoE items to use
+one (Thunderclap's Bleeding and bonus Harried) picked the wrong reading:
+doubling the *stack count* fed into one curve evaluation
+(`curve(2N)`), rather than evaluating the curve once per target and
+doubling *that* (`curve(N) × 2`). These are only equivalent for a
+linear mechanic (Damage's margin, the flat universal Harried credit) —
+for anything with a shaped curve, they diverge, because the curve
+represents the value delivered to **one** target, and AoE means that
+same experience happens to two **independent** targets, not one target
+receiving a doubled dose.
+
+Which direction this moves a given item's Value depends on the shape
+of that specific curve near the stack count in question:
+- **Crippled/Slowed** (rising marginal value approaching their caps —
+  higher starting stacks buy more turns at the capped per-turn
+  contribution before decaying below it) were being **over-credited**
+  by the old method: concentrating a doubled stack count on one
+  hypothetical target extracts more value from a still-climbing curve
+  than genuinely splitting the same total across two independent
+  targets.
+- **Bleeding** (the opposite shape — a geometric taper past 2 stacks,
+  diminishing not rising) was being **under-credited**: spreading a
+  small stack count across two independent targets, each getting the
+  full un-tapered value, beats concentrating it on one target where
+  the back half of the stacks fall into the taper.
+- **Harried** (linear straight to its cap) is unaffected as long as
+  neither the base grant nor its doubled reading crosses the cap —
+  true for every current item using it.
+
+Fixed at the point of use rather than retroactively auditing every
+prior AoE computation in isolation — see Thunderclap-in-a-Jar's own
+recomputation in `balance_ledger.csv` for the corrected numbers, and
+apply `curve(N) × 2` (not `curve(2N)`) to any future AoE item using a
+shaped debuff curve.
 
 ## What's still open
 

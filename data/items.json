@@ -9678,5 +9678,48 @@
     "levels": [
       2
     ]
+  },
+  {
+    "id": "I215",
+    "name": "Quagmire Charge",
+    "category": "Grenade",
+    "slot": null,
+    "tags": null,
+    "level": 4,
+    "description": "A viscous alchemical sludge that erupts into a clinging, waterlogged muck on impact, sapping the strength from anyone's swing and the speed from anyone's step.",
+    "effects": "Make an attack against all creatures adjacent to the target. On a hit, each target gains 4 stacks of Slowed and 3 stacks of Crippled.",
+    "cost": null,
+    "value_per_level": null,
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "main_materials": "Bone",
+    "optional_materials": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "bodily_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skills": null,
+    "might_requirement": null,
+    "held_slots": null,
+    "supplement": "Base Game",
+    "material_types": null,
+    "base_item_options": [],
+    "levels": [
+      4
+    ]
   }
 ]
