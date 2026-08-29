@@ -1833,7 +1833,7 @@
     "tags": null,
     "level": 2,
     "description": "A staple of any true adventurer, healing potions contain a mix of specially prepared medicines that help the body resist trauma and shock and aid in blood clotting and other functions that are pretty useful to someone who has been stabbed.",
-    "effects": "When consumed, you heal 3 Health.",
+    "effects": "When consumed, you heal 2 Health.",
     "cost": null,
     "value_per_level": null,
     "school": null,

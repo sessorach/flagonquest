@@ -126,11 +126,30 @@ below, for the actual results):**
   play — the base Value doesn't need to discount for that case
   separately, since a player who uses it reactively is already paying
   for it in AP they wouldn't have spent if they'd planned ahead.
-  Doesn't extend to Healing Potion, flagged as a related but distinct
-  problem — a reactive-only heal doesn't have a "drink it ahead of
-  time" mode the way a preventive effect does, so it can't dodge the AP
-  charge the same way; its own Net (-6.5 at Level 3) looks more like a
-  genuine under-granting problem than an AP-timing one.
+  Originally didn't extend to Healing Potion — flagged at the time as a
+  related but distinct problem, since a reactive-only heal doesn't have
+  a "drink it ahead of time" mode the way a preventive effect does. See
+  the half-AP convention immediately below for how that ultimately got
+  resolved instead.
+- **Half AP for items with genuinely mixed combat/non-combat use** — a
+  third AP treatment, distinct from both of the above, for an item that
+  doesn't cleanly sit at either extreme. Healing Potion is the case that
+  motivated this: unlike the prevention trio above (overwhelmingly
+  pre-fight prep) it's also genuinely used reactively mid-fight, but
+  unlike a Grenade (always in-combat) a lot of its real use is just
+  topping off Health during downtime, where AP doesn't exist as a
+  resource at all. Charging the full `AP:-2` assumes it's always
+  reactive; dropping AP entirely (the prevention-item treatment)
+  assumes it's never used that way — neither extreme is honest for an
+  item that's genuinely both. Splitting the difference: charge **half
+  the standard AP cost** (2.75, one AP's value, instead of the full
+  5.5), on the read that roughly half of real use is in-combat and half
+  is downtime. Healing Potion: ShallowHeal(2)=8, −2.75 = Value 5.25,
+  Net −0.75 at Level 2 — a clean fit, restoring its original 2-Health
+  grant rather than needing to inflate it to 3 the way a full AP charge
+  required. Worth reaching for on any future item with this same
+  genuinely-mixed-use shape, rather than defaulting to the full or zero
+  treatment out of habit.
 - **The "refund a Technique use" trick**, for items whose whole effect is
   handing back the use of an Encounter Technique (Soldier's Salts,
   Fighter's Friend, Soul Soup) — THE TABEL has no mechanic for this, so
