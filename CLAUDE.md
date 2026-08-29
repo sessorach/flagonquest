@@ -48,6 +48,15 @@ which should stay a clean decision record.
   someone runs the converter. Run `python scripts/convert.py` from
   anywhere (it resolves paths off its own file location) after any CSV
   change, and commit the regenerated JSON alongside the CSV.
+- `items.csv` has an **`Archetype`** column (Potions only, so far) purely
+  for my own reference during balance work — informal groupings like
+  "Buff", "Healing/Protection", "Resource", "Utility" that don't
+  correspond to anything the site displays. `convert.py`'s `ITEM_MAP`
+  has no entry for it on purpose, so it's silently dropped during
+  conversion and never reaches `data/items.json` — confirmed empty diff
+  on `data/items.json` when this column was added. Keep it that way;
+  if a grouping like this ever needs to actually show up in the app, it
+  should get folded into the real `Tags` column instead, not this one.
 - **The data should be the source of truth, not prose.** Whenever the
   site needs a fact at runtime that could reasonably live as a real CSV
   column/JSON field, put it there instead of deriving it by
