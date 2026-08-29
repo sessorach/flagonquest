@@ -280,6 +280,30 @@ actual effect may need adjusting, not just its raw Value-model number.
   Potions/a Grenade (`I204`-`I207`) got that check as part of the
   alchemy pass below; the other 14 (Pack/Gear, Tool/Kit) are flavor/
   utility goods with no combat mechanic to price and don't need one.
+- **Pending, not yet applied:** move Windrunner's Draught (L2→L1, Hasted
+  trimmed 7→5) and Thornskin Elixir (L3→L2, Protected trimmed 2→1) down
+  a Level each — numbers already worked out and confirmed clean at the
+  new Levels (Net −0.8 and −0.5 respectively). Held pending the Fleeting
+  same-turn-grant timing question below, since a fix there could change
+  what "N stacks of a Fleeting effect" actually delivers and invalidate
+  these numbers before they're written in.
+- **Fleeting effects: same-turn-grant snag.** Fleeting effects (Protected,
+  Hasted, Bleeding, Crippled, etc.) decay 1 stack at the end of the
+  affected creature's own turn. A Fleeting effect granted to a creature
+  *during that creature's own turn* (the common case: any self-buff
+  technique/item) immediately loses a stack to that same turn's decay,
+  before it's had a real turn of use. Past fix was an ad hoc "+1 free
+  stack" baked into the grant itself (e.g. Brace) — mostly works, but
+  over-corrects when the target already has stacks (the flat +1 doesn't
+  know that), and has to be manually remembered/re-applied to every new
+  Fleeting-granting effect. Needs a real rules-level fix, not another
+  patched item. See chat for the options discussed; leaning toward a
+  timing-scoped exemption ("stacks gained during your own turn aren't
+  touched by that turn's own decay, and start decaying from the next
+  one") over moving the decay point to start-of-turn, which would also
+  quietly weaken every debuff applied to an enemy before their own next
+  turn — the far more common case, and the one all the Crippled/Slowed/
+  Bleeding curve derivations already assume. Not decided or applied yet.
 
 ## Passes completed
 
