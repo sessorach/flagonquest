@@ -13,6 +13,17 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-29 — Insanity Potion reworked
+
+Replaced the old "treat any card as a Heart" clause (a leftover from a
+previous rules version) with a Battle Maneuver-style effect: for the
+hour, any attack that hits you or is Parried gains a stack of Bleeding.
+Ignoring Wounded/Crippled/Slowed penalties and the item's own
+can't-heal-or-gain-Protected drawback are now treated as roughly
+offsetting each other, since the drawback exists specifically to
+counterbalance that one piece. This finishes the buff-Potion cluster —
+all ten items now land as intended.
+
 ### 2026-08-29 — Ward redesigned, Protected's wording tightened
 
 **Ward** (Fire/Frost/Brilliant/Shadow) now does more than a flat Resist

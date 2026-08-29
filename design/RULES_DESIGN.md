@@ -163,6 +163,30 @@ Vial redesign considered granting a direct Extra Success) — rejected
 for exactly this reason, redirected toward turn-order adjustment
 instead (see below).
 
+### STANDING RULE — Reward cleverness and risk, not raw power
+
+Stated directly by the designer while finalizing Insanity Potion (a
+Level 5 capstone deliberately built to be swingy — genuinely stronger
+in the right hands and circumstances, offset by a real drawback rather
+than a flat number): **a build/item/moment should read as strong
+because a player was clever or dared something risky, not because the
+math is just bigger than it should be.** Not the same thing as "nothing
+should ever be strong" — the opposite, actually: an item is allowed to
+land well outside the normal Net band *when the strength comes from the
+player's own decision-making or risk tolerance* (reading a fight right,
+accepting a real drawback, setting up a combo across multiple sources)
+rather than from an unconditional number that's simply too generous for
+its Level. The practical test when something reads as strong: is the
+power gated behind genuine skill/risk, or would it be exactly as strong
+sitting in anyone's hands doing nothing clever at all? The former is
+fine even well outside the usual threshold band; the latter is the
+"obviously overpowered" failure mode to actually avoid. Directly
+informed how Insanity Potion's own Net (−0.15, close to neutral) was
+allowed to stand rather than being pushed higher for "capstone flair" —
+the item's real power lives in stacking three debuff immunities with a
+Speed buff and sustained Bleeding all under one drawback that has to be
+accepted to get any of it, not in an inflated top-line number.
+
 ### Turn-order adjustment — a mechanic to lean into more, first value derivation
 
 Several existing Techniques already let a creature's position in the

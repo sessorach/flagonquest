@@ -2091,7 +2091,7 @@
     "tags": null,
     "level": 5,
     "description": "While not the most descriptive name for a potion, it is nonetheless fitting as one may very well have to be mentally disturbed to consider voluntarily drinking it. That being said, the benefits of the Insanity Potion are to be considered, for while it does wreak havoc on a person's physical well-being it also bolsters their strength tremendously, and provided you have medical care for the after-effects it is usually survivable.",
-    "effects": "When consumed, for 1 hour you gain the following:A +1 bonus to SpeedYou may treat any card you flip as a HeartIgnore any penalties for being Wounded, Crippled, or SlowedYou cannot heal any Health or gain any stacks of Protected",
+    "effects": "When consumed, for 1 hour you gain the following: A +1 bonus to Speed. Ignore any penalties for being Wounded, Crippled, or Slowed. If your attack hits or is Parried, the target gains a stack of Bleeding. You cannot heal any Health or gain any stacks of Protected.",
     "cost": null,
     "value_per_level": null,
     "school": null,
