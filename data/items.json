@@ -9816,7 +9816,7 @@
     "tags": null,
     "level": 3,
     "description": "Battle-mages brew this draft before wading into a fight they've already sized up, tuning their strikes to exploit a known weakness while the opposite element's essence settles protectively over their skin.",
-    "effects": "When this Potion is created, choose Fire, Frost, Brilliant, or Shadow. When consumed, your next 4 attacks deal the chosen type of damage instead of Physical, and you gain 3 stacks of Ward against the opposite element - Frost for Fire, Brilliant for Shadow, and vice versa.",
+    "effects": "When this Potion is created, choose Fire, Frost, Brilliant, or Shadow. When consumed, your next 4 attacks this encounter deal the chosen type of damage instead of Physical, and you gain 3 stacks of Ward against the opposite element - Frost for Fire, Brilliant for Shadow, and vice versa.",
     "cost": null,
     "value_per_level": null,
     "school": null,
