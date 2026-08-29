@@ -399,6 +399,21 @@ the values first reported when this pass landed)*:
   weak at −3** (likely more about the prevention-contingency discount
   than the day/encounter scoping this time). Travel Rations remains
   out-of-model (no combat mechanic to price).
+- **Spirit Quest Ointment (`I116`) is deliberately out-of-model too**,
+  same reasoning as Travel Rations — a 24-hour ritual with no combat
+  mechanic at all (full Experience respec, once a full night's rest
+  follows), it exists purely to establish that respeccing is a real,
+  sanctioned thing a character can do, not to be priced against a
+  combat Target. Confirmed rather than left unexamined: its recipe
+  already carries a deliberate "token cost to prevent abuse," per the
+  designer — `Total Materials: 15` (vs. the generic Alchemical Potion
+  fallback's 2) and an explicit `Cost: 60 Gold` override, both already
+  set on the item itself rather than inheriting `crafting_recipes.csv`'s
+  shared fallback. 60 Gold at Level 3 lands in the same range as a full
+  permanent Masterwork enhancement of the same Level (Robes of
+  Resilience, also 60 Gold) — a real, meaningful gate for something as
+  impactful as a full respec, not a token in the "basically free"
+  sense. No change needed.
 - **Sift was undervalued in the old sheet, but not for the reason it
   first looked like.** THE TABEL's 0.64 turned out to have no traceable
   derivation at all (see `balance_weights_notes.md`); simulating the
