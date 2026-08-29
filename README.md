@@ -13,6 +13,14 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-29 — Three weak Poisons brought up to strength
+
+**Vulnerability Poison**, **Harrying Poison**, and **Psychosis Poison**
+now grant twice their Potency in stacks instead of once, matching
+Bloody Poison's own multiplier — closing out the last real gaps in the
+Poison lineup. Slowing Poison was left as-is; it already reads close
+enough given Slowed's own extra "does this actually matter" discount.
+
 ### 2026-08-29 — Insanity Potion reworked
 
 Replaced the old "treat any card as a Heart" clause (a leftover from a

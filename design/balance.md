@@ -522,6 +522,40 @@ Swiftblade Vial are both now resolved — see "Full ledger sync" below.
   long rest," specifically to avoid the feel-bad of a pre-applied
   Poison expiring unused before a fight — noted here as an open idea,
   not implemented; see `RULES_DESIGN.md`'s open questions.
+
+  **Follow-up pass, closing out the remaining shortfalls**: Vulnerability,
+  Harrying, and Psychosis Poison all bumped from 1× to 2× Potency,
+  matching Bloody Poison's own already-accepted precedent. Root cause
+  was the same across all three: Crippling Poison lands exactly on
+  Target at 1× Potency because Crippled's own per-stack rate (1.5) is
+  high enough to get there at that multiplier, but Vulnerable's rate
+  (1) and Harried's continuously-active-via-Poison rate (also 1, reusing
+  Vulnerable's formula) can't reach Target the same way at 1× — a lower-
+  rate keyword needing a bigger multiplier, not a poison-specific flaw.
+  Vulnerability and Harrying now land at Net +3 (an accepted overshoot,
+  the same magnitude as Bloody Poison's own +2.75); Psychosis lands at
+  +0.9, a genuinely clean fit. Slowing Poison was deliberately left at
+  1× — it already carries its own extra realization discount (Slowed's
+  value depends on movement actually being contested, unlike a flat
+  attack/defense penalty), and bumping it would have overshot by roughly
+  +4.2, more than any of the others.
+
+  **Standing convention, stated by the designer while reviewing this
+  pass: Poisons can reasonably carry a wider balance berth than other
+  item categories, and the low end of their Level range matters more
+  than the ceiling.** Two reasons given: Poisons are single-target,
+  narrower in impact than an AoE Grenade or a self-buff Potion by
+  nature, so a stronger-than-Target application doesn't swing a fight
+  the way an equivalently-overshooting party-wide buff would; and the
+  archetype that leans hardest on Poisons — a dedicated alchemist —
+  realistically gets more mileage from applying them steadily at
+  whatever Level they can currently make than from chasing the biggest
+  possible Potency on rare, maxed-out applications. Practical effect:
+  when a Poison flavor's own curve makes hitting Target exactly
+  impossible at a clean integer Potency multiplier, prefer erring
+  toward a stronger low-Level fit over a perfectly-centered one that
+  reads weak at Level 1-2 — the overshoot at Level 5 matters less than
+  it would for most other categories.
 - **The refund-trick pricing method got a real premium, and the family
   it prices got reshuffled.** "Regain the use of a Technique" has no
   THE TABEL mechanic of its own, so it's priced as if it directly grants
