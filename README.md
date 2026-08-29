@@ -13,6 +13,20 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-29 — Good Luck's value corrected for the Suit Pool, Card cluster rebalanced
+
+- Good Luck's underlying value moved from 2.2 to 2.4 — both cards
+  drawn for a Good Luck flip count toward the Suit Pool, not just the
+  kept higher one, which was previously uncredited.
+- **Energizing Brew** now lasts until your next full night's rest
+  instead of 1 hour, removing the guesswork of timing the drink to a
+  specific fight, and no longer costs AP — you'd have it active before
+  initiative is even rolled.
+- **Essential Ointment** now draws 2 cards instead of 1, and no longer
+  costs AP.
+- **Liquid Charisma** no longer costs AP — Social Contests don't spend
+  AP as a resource in the first place.
+
 ### 2026-08-27 — Healing-item family restructured into a Level ladder
 
 - **Fortifying Concoction** (Level 1) trimmed from 4 to 3 stacks of

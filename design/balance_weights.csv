@@ -12,7 +12,7 @@ Shallow HP (max pool)/point,5,Yes,Locked,Shallow/Deep HP and Heal,Easier to top 
 Deep HP (max pool)/point,4,Yes,Locked,Shallow/Deep HP and Heal,"Effective-healing baseline, does not need healing to count"
 Shallow Heal/point,4,Yes,Locked,Shallow/Deep HP and Heal,Less-restricted resource -- opposite ranking from the max-pool rows
 Deep Heal/point,5,Yes,Locked,Shallow/Deep HP and Heal,"Scarcer, more-restricted resource"
-Good Luck,2.2,Yes,Pencil,Pencil,Flip-2-take-highest (real 52-card deck) 9.196 minus 1-card baseline 7
+Good Luck,2.4,Yes,Pencil,Pencil,"Flip-2-take-highest (real 52-card deck) 9.196 minus 1-card baseline 7 = 2.196, +0.19 discounted Suit Pool credit (both flipped cards count toward the suit pool -- see notes)"
 Card (drawn/hand),2.7,Yes,Pencil,Pencil,Good Luck's 2.2 floor + a judgment-call premium for timing/targeting/Suit Pool flexibility
 Pressure / Bad Luck,2.2,Yes,Pencil,Pencil,Mirrors Good Luck exactly -- worst-of-2 is symmetric to best-of-2
 Sift (daily cadence),0.60/card,Yes,Pencil,Pencil,True long-run value is 1.62/card; rescoped to ~18 draws/adventuring-day. Re-derive for any other cadence (e.g. combat-conditional)

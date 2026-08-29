@@ -163,6 +163,48 @@ under pressure mid-pass the way the alchemy ledger almost did.
   slightly generous on its own without needing a separate round-up.
   Lands within ~10% of the model's own Extra-Success anchor (2, fixed by
   Gambling's cost) — a decent independent cross-check.
+
+  ### Correction: Good Luck = 2.4, crediting the Suit Pool
+
+  The 2.196 above only prices the numeric "keep the higher card" benefit
+  and misses a second real effect: per the Suit Pool rule ("any cards
+  flipped for Good or Bad Luck... combine to determine the total suit
+  pool"), **both** cards drawn for a Good Luck flip count toward the
+  suit pool, not just the kept higher one. With 2 cards drawn without
+  replacement from a 52-card deck, `P(at least one matches a given
+  suit) = 1 − (39/52)(38/51) ≈ 44.1%`, versus 25% (13/52) for a single
+  card — a **+19.1 percentage point** jump in the odds of an Extra
+  Success from a suit match. Since Extra Success is the model's own
+  Locked anchor (2 value, fixed by Gambling), that's worth
+  `0.191 × 2 ≈ 0.38` additional expected value per flip, *if* the flip
+  is one where Extra Successes actually matter.
+
+  They don't always: Extra Successes only do something on flips that
+  "call for more than a bare pass" — attacks (bonus damage) and
+  extended-effort checks — not a plain pass/fail check, where a suit
+  match is wasted. There's no way to derive the real split precisely,
+  so this applies a **50% discount** to the raw 0.38 credit (the same
+  kind of judgment call as Card's premium below, or Harried's "on
+  average one extra attack benefits" reasoning) — `0.38 × 0.5 = 0.19`.
+
+  **Good Luck = 2.196 + 0.19 = 2.39, rounded to 2.4.**
+
+  This barely moves the 51 existing single-instance Good Luck grants
+  (Technique-level, usually exactly one flip), but matters more for
+  long-duration grants covering many flips over their active window
+  (e.g. Liquid Charisma) — those get re-priced as `(relevant flip
+  count) × 2.4`, not a flat per-grant bump.
+
+  Two follow-ups this surfaces but doesn't resolve:
+  - **Pressure/Bad Luck (2.2, mirrored off Good Luck)** should, by the
+    same logic, move the *other* way: both cards from a Bad Luck flip
+    also feed the *target's own* suit pool, so the same probability
+    bump partially offsets the imposed penalty rather than adding to
+    it. Not re-priced here — flagged for a dedicated pass.
+  - **Card (2.7)** is floored on Good Luck's old marginal, and a hand
+    card played for a flip also joins that flip's suit pool the same
+    way, so its floor likely deserves the same bump (~2.9). Not applied
+    here since nothing downstream needed it yet.
 - **Card (drawn/from hand) = 2.7.** Floor is Good Luck's own marginal
   (2.2): playing a hand card to replace an already-flipped result, on
   your own flip, immediately, is mechanically identical to Good Luck's
