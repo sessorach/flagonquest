@@ -1370,6 +1370,50 @@ the full list going into the balance pass.
   check is "was this at zero right before the grant?"), and every
   existing "+1 free stack" item-level patch becomes safe to remove as a
   follow-up cleanup, not required to keep working around this anymore.
+- **Ward reimagined: flat Resist + a self-limiting absorption charge**
+  (`glossary.md`'s `(Fire/Frost/Brilliant/Shadow) Ward [Fleeting]`
+  entry). Surfaced fixing Elemental-Attuned Tincture — even after the
+  +1→+2 fix above, every Resist-granting item in the catalog still read
+  as underpowered, and raising the flat bonus further was already ruled
+  out (unbounded magnitude risks eventual immunity to a whole damage
+  type). Instead of a bigger first component, Ward now gets a second,
+  self-limiting one: each stack can also directly absorb 1 Health loss
+  from that damage type, on top of the existing "+2 Resist while any
+  stacks remain." Self-limiting because it's consumed on use, not a
+  permanent multiplier — no immunity risk, the same reason Protected
+  itself was always safe to price at a real rate. New Ward text: "While
+  you have any stacks of this, you have +2 Resist against the specified
+  type of damage. If you would lose Health to that damage type from
+  something other than a cost, remove up to that many stacks instead."
+  See `balance_weights_notes.md` for the value derivation (2.0/stack
+  for the absorption piece, reusing Protected's 3/stack rate scaled by
+  Resist's own damage-share fraction).
+
+  Applying this exposed one more thing worth tightening while in there:
+  **Protected's own wording** ("prevent 1 Health loss... then remove
+  that many stacks") reads more like a description of an outcome than
+  a hard rule — reworded to a direct, mandatory substitution: "If you
+  would lose Health to something other than a cost, remove up to that
+  many stacks of Protected instead." One sentence, no "may," value
+  unchanged — Ward's new absorption clause mirrors this exact phrasing
+  rather than cross-referencing Protected, per the designer's explicit
+  call to keep rules text short and self-contained rather than layering
+  "same as X, except Y" cross-references.
+
+  **Ripple, checked and resolved:** first flagged this as affecting "7
+  Masterwork items and 12 Techniques," a stale count carried over from
+  an early, imprecise substring search (it was matching "Resist," not
+  "Ward" — corrected after actually grepping for the keyword). The real
+  scope is much smaller: only **Warmage's Draft** (this session's own
+  Potion, fixed in the same pass — see `balance_ledger.csv`) and
+  **Spellblade** (`T100`, a Technique not yet priced against this model
+  at all, so nothing to fix there yet) grant Ward. The much larger set
+  of items that read as "Resist-granting" and underpowered (Attuned
+  Shroud, Elemental-Resistant Armor, Fortified Armor, Robes of
+  Resilience, Robes of the Elemental Lord, Charcoal, Elemental Warding
+  Amulet, Worry Token) grant a flat Resist stat bonus directly, not the
+  Ward keyword — they're unaffected by this change and remain the
+  separate, still-open systemic issue already flagged in `balance.md`.
 
 ## Open questions / TODO
 

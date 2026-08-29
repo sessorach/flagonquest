@@ -221,7 +221,7 @@
     "level": 4,
     "title": "Protected [Fleeting]",
     "supplement": "Base Game",
-    "body": "Whenever you would lose Health, prevent 1 Health loss for each stack of Protected you have, then remove that many stacks of Protected.\n\nThis does not apply to Health paid as a cost."
+    "body": "If you would lose Health to something other than a cost, remove up to that many stacks of Protected instead."
   },
   {
     "id": "slowed-fleeting",
@@ -249,7 +249,7 @@
     "level": 4,
     "title": "(Fire/Frost/Brilliant/Shadow) Ward [Fleeting]",
     "supplement": "Base Game",
-    "body": "While you have any stacks of this, you have +2 Resist against the specified type of damage."
+    "body": "While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead."
   },
   {
     "id": "type-tags",

@@ -150,9 +150,7 @@ At any time if you have stacks of both Necrotic and Protected, remove 1 stack of
 
 #### Protected [Fleeting]
 
-Whenever you would lose Health, prevent 1 Health loss for each stack of Protected you have, then remove that many stacks of Protected.
-
-This does not apply to Health paid as a cost.
+If you would lose Health to something other than a cost, remove up to that many stacks of Protected instead.
 
 #### Slowed [Fleeting]
 
@@ -172,7 +170,7 @@ For each stack of this, you suffer a -1 penalty to Vital, Mental, and Instinct D
 
 #### (Fire/Frost/Brilliant/Shadow) Ward [Fleeting]
 
-While you have any stacks of this, you have +2 Resist against the specified type of damage.
+While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead.
 
 # Type Tags
 

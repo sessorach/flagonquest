@@ -13,6 +13,22 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-29 — Ward redesigned, Protected's wording tightened
+
+**Ward** (Fire/Frost/Brilliant/Shadow) now does more than a flat Resist
+bonus: while you have any stacks, you still get +2 Resist against that
+damage type, but you can also spend those stacks to absorb Health loss
+from that type outright, one point per stack — the same rule
+**Protected** already uses, just restricted to one damage type.
+Protected's own wording was tightened to match (no rules change, just a
+shorter, unambiguous "instead" phrasing).
+
+Fixes **Elemental-Attuned Tincture**, which now grants 3 stacks of Ward
+that last for hours instead of decaying per-turn (matching how Poisons
+already work) and no longer costs AP. **Warmage's Draft** was trimmed
+from 7 attacks/5 Ward down to 6 attacks/1 Ward to stay balanced under
+Ward's new, stronger definition.
+
 ### 2026-08-29 — Swiftblade Vial reworked, turn-order adjustment given a real value
 
 **Swiftblade Vial** no longer grants Good Luck — it's now Hasted eight

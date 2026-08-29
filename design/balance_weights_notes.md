@@ -996,6 +996,57 @@ worth stacking up to cover a fight's opening, but each additional
 stack buys less than the last, exactly the opposite incentive from the
 immunity-risk shape that got rejected.
 
+### Correction: Ward reimagined as flat Resist + a self-limiting absorption charge
+
+Even after the +1→+2 fix above, Ward still read as chronically
+underpowered — every existing Resist-granting item (this element's own
+Masterwork gear included) came back meaningfully negative against its
+own Target. Raising the flat Resist bonus further was already ruled
+out (see above: unbounded magnitude risks eventual immunity to a whole
+damage type). The fix instead adds a **second, self-limiting**
+component rather than a bigger first one: each Ward stack can now also
+directly absorb 1 Health loss from that damage type — the exact same
+mandatory-substitution rule Protected uses (`glossary.md`'s Protected
+entry was tightened to the same "instead" wording this pass, value
+unchanged), just restricted to one damage type. This can't
+create an immunity risk the way scaling the flat bonus would, since
+it's consumed on use, not a permanent multiplier — the same reason
+Protected itself was always safe to price at a real rate.
+
+**Pricing the new component**: Protected's own rate is Locked at
+3/stack (blocks any Health loss, unconditionally). A type-restricted
+version only fires against one damage type — scaled by the same
+damage-share logic Resist's own derivation already established:
+*within a fight where that element is actually relevant* (the assumed
+context for any item built around a known threat), roughly two-thirds
+of incoming damage is that element. `(2/3) × 3 ≈ 2.0/stack`, uniform
+across all four elements — the Fire-vs-other asymmetry lives entirely
+in *whether* a fight becomes elemental-relevant at all (already
+resolved to yes by the item's own premise), not in how concentrated
+the damage is once it does. This is an **additive approximation**, not
+a full joint-probability model — a stack that gets consumed early by
+absorbing a hit can no longer also be sitting there extending the flat
+Resist bonus's own duration, so treating the two components as
+independently additive is mildly generous. Not worth a more exact
+model yet given this is a first pass; revisit if it reads too strong
+in play.
+
+**Ripple**: this makes Ward's *universal* definition stronger, not
+just a special case for one item. First estimated this at "7
+Masterwork items, 12 Techniques" — a stale count from an earlier,
+imprecise substring search that was actually matching "Resist," not
+the Ward keyword itself. Grepping for `\bWard\b` directly found the
+real scope is much smaller: only **Warmage's Draft** (fixed in this
+same pass — see `balance_ledger.csv`, its own 5-stack Ward grant went
+from Net 0.0 to roughly +10 before the trim) and **Spellblade** (`T100`,
+a Technique, not priced against this model at all yet) actually grant
+Ward. The larger set of items that looked like they should be affected
+(Attuned Shroud, Elemental-Resistant Armor, Fortified Armor, Robes of
+Resilience, Robes of the Elemental Lord, Charcoal, Elemental Warding
+Amulet, Worry Token) grant a flat Resist stat bonus directly, not
+Ward — unaffected by this change, and still the separate systemic
+issue flagged in `balance.md`'s Open balance work.
+
 Checked against the only two things in the catalog that currently grant
 Ward: **Spellblade** (`[3×X]+1+[Hearts]` stacks — 4 to 17 at Level 1
 depending on the card flip) massively over-grants relative to the

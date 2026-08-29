@@ -109,7 +109,7 @@
   },
   {
     "term": "Protected",
-    "description": "Whenever you would lose Health, prevent 1 Health loss for each stack of Protected you have, then remove that many stacks of Protected.\n\nThis does not apply to Health paid as a cost."
+    "description": "If you would lose Health to something other than a cost, remove up to that many stacks of Protected instead."
   },
   {
     "term": "Slowed",
@@ -125,19 +125,19 @@
   },
   {
     "term": "Fire Ward",
-    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage."
+    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead."
   },
   {
     "term": "Frost Ward",
-    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage."
+    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead."
   },
   {
     "term": "Brilliant Ward",
-    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage."
+    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead."
   },
   {
     "term": "Shadow Ward",
-    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage."
+    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead."
   },
   {
     "term": "Alcohol",
