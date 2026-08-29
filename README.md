@@ -13,6 +13,25 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-27 — Healing-item family restructured into a Level ladder
+
+- **Healing Potion** moved to Level 2 and now heals 3 Health (up from
+  2 at Level 3) — the system's standard, baseline healing item.
+- **Calming Brew**, **Kiss of the Earth**, and **Predator's Cry** are
+  now a matched Level 3 trio (Predator's Cry moved down from Level 4,
+  trimmed to 3 stacks), all lasting until your next full night's rest
+  — preparation items you carry for a specific threat, not combat-
+  reactive ones.
+- **Revivification Draught** moved from Level 5 to Level 4 and
+  reworked from a burst heal into a pure trickle: 1 Health, your
+  choice of Shallow or Deep, at the start of each of your next 4
+  turns — useful both for topping off Shallow Health to avoid Wounded
+  and as an efficient way to feed the scarcer Deep Health pool.
+- Together with the existing **Fortifying Concoction** (Level 1,
+  Protected), this gives the healing/preparation family a clean ladder
+  from Level 1 through 4. Level 5 is intentionally open for a future
+  capstone item.
+
 ### 2026-08-27 — Oozejar added, AoE debuff math corrected
 
 - **Oozejar** (Level 4, Grenade): an area attack that inflicts
