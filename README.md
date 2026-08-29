@@ -13,6 +13,24 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-29 — Four new buff Potions round out the Level 2-4 band
+
+- **Windrunner's Draught** (Level 2) — Hasted seven times. A simple,
+  broadly-useful pickup.
+- **Thornskin Elixir** (Level 3) — the next 2 hits against you Bleed
+  the attacker, plus 2 stacks of Protected. A retaliation tool for
+  when you expect to get focused.
+- **Warmage's Draft** (Level 3) — your next 7 attacks deal a chosen
+  element instead of Physical, plus 5 stacks of Ward against the
+  *opposite* element (Fire/Frost, Brilliant/Shadow). Built for a fight
+  you've already sized up.
+- **Fatebinder's Cordial** (Level 4) — Good Luck on your next 5
+  attacks, plus draw 2 cards the next time you Down a creature. A
+  finisher tool for pushing for the kill.
+
+All four cost the standard AP to drink, same as any other reactive
+combat Potion.
+
 ### 2026-08-29 — Good Luck's value corrected for the Suit Pool, Card cluster rebalanced
 
 - Good Luck's underlying value moved from 2.2 to 2.4 — both cards

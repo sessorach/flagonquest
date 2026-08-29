@@ -382,6 +382,19 @@ under pressure mid-pass the way the alchemy ledger almost did.
   unlike Ward's other two questions (magnitude scaling, per-application
   value) which are now resolved.
 
+  **Clarification, caught during the Potion buff-cluster pass:** the
+  `2` in "Damage's own weight (2, mirroring granting vs. preventing a
+  contingent point of harm)" is already the price of a *hit-gated*
+  point of damage — it has the ~50% on-hit discount baked directly into
+  the rate itself, not applied separately at the aggregate "how many
+  hits land" step. A **guaranteed, unconditional** point of harm (no
+  attack roll gating it at all) prices at double that — **4**, matching
+  Health's own full rate (same reasoning Bleeding's guaranteed per-tick
+  Health loss uses to justify pricing at 4, not 2). Don't discount the
+  `2` rate a second time for "this only matters on a hit" — that's
+  already priced in. (First got this wrong pricing Warmage's Draft's
+  elemental-conversion effect — walked it back once caught.)
+
 ## Pricing a fresh attack from scratch (Grenades, Battle Magic, and similar) — Resist placeholder + universal Harried + Autoswing as cost
 
 Distinct from the Locked "Damage is priced before Resist" rule above —
