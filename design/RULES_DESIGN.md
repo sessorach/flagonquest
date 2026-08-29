@@ -192,19 +192,22 @@ order adjustment doesn't open a window itself; it lets you choose *who*
 gets to use one that's already open (from Harried, Vulnerable, a
 kill-race, or simply denying an enemy the chance to react before your
 side reshapes the board) — a related but distinct kind of tactical
-edge from a direct numeric buff. Session's first-pass Pencil value,
-**pending confirmation**: **1.0 per place shifted**, roughly half of
-Good Luck's revised marginal (2.4) — reasoning it as "sometimes
-decisive, often marginal" in the same spirit as the discount Good
-Luck's own Suit Pool credit needed, since a shift only pays off when
-there's an actual timing-sensitive window to exploit, unlike Good Luck
-which improves the flip it's attached to every single time. Likely
-linear for small shifts (no reason yet to assume otherwise), but a
-realistic **cap** almost certainly exists once a shift is big enough to
-already guarantee "first in the round" for a typical Baseline party+
-encounter size — not yet derived. Not written into
-`balance_weights.csv`/`balance_weights_notes.md` yet, pending
-confirmation and (ideally) the cap question resolved first.
+edge from a direct numeric buff. **Confirmed Pencil value: 1.0 per
+place shifted**, roughly half of Good Luck's revised marginal (2.4) —
+reasoning it as "sometimes decisive, often marginal" in the same spirit
+as the discount Good Luck's own Suit Pool credit needed, since a shift
+only pays off when there's an actual timing-sensitive window to
+exploit, unlike Good Luck which improves the flip it's attached to
+every single time. Linear for now, deliberately left uncapped — per the
+designer, worth seeing how it actually reads once used across a few
+more items/Techniques before deriving a cap from first principles,
+rather than guessing one now. Worth revisiting the moment a design
+would need double-digit places to hit its budget (a first warning sign
+this session: an early draft of Swiftblade Vial's redesign needed ~9
+places paired with modest Hasted to hit its Level-4 budget alone — far
+past any existing precedent's scale, which is what pushed the final
+version toward a smaller shift paired with more Hasted instead). Now
+in `balance_weights.csv`/`balance_weights_notes.md`.
 
 ### Suits: an emerging identity per suit, not a strict grid
 

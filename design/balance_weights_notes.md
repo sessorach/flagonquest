@@ -217,6 +217,26 @@ under pressure mid-pass the way the alchemy ledger almost did.
   judgment call — landed on 2.7 (a ~23% premium over the 2.2 floor) as a
   middle point between the bare floor and the old sheet's unexplained
   3.05.
+- **Turn-order adjustment = 1.0/place shifted.** New this pass — several
+  existing Techniques already shift a creature's position in turn order
+  (`Backfoot`, `Alacrity`, `One Eye Behind You`, `Heroic Inspiration`),
+  but none were ever priced against THE TABEL. The mechanic doesn't
+  create a beneficial window on its own; it lets you choose *who* gets
+  to act inside one that's already open (a debuff just landed, an enemy
+  about to go down, denying an enemy a reaction before the board
+  reshapes) — the same fundamental shape Harried's own value already
+  covers, where the payoff depends on whichever attack happens to land
+  inside the window, not a guaranteed numeric swing. Priced as a
+  judgment call at roughly half of Good Luck's revised marginal (2.4),
+  reasoning it as "sometimes decisive, often marginal" — Good Luck
+  improves the flip it's attached to every single time, a turn-order
+  shift only pays off when an exploitable window actually exists.
+  Deliberately left **linear and uncapped** for now — a real cap almost
+  certainly exists once a shift is large enough to guarantee "first in
+  the round" for a typical party+encounter size, but per the designer,
+  worth seeing how the flat rate reads across a few more real items/
+  Techniques before deriving one from first principles rather than
+  guessing. Guaranteed: Yes (nothing gates the shift itself on a flip).
 - **Concession/Pressure = 2.2 (matches Good Luck).** Current rules:
   "party has Bad Luck on Statements equal to their current Pressure" —
   Pressure literally *is* imposed Bad Luck, not a separate mechanic. Bad

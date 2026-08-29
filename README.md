@@ -13,6 +13,18 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-08-29 — Swiftblade Vial reworked, turn-order adjustment given a real value
+
+**Swiftblade Vial** no longer grants Good Luck — it's now Hasted eight
+times (up from five), plus the ability to adjust your position in turn
+order by up to 3, separating it fully from Fatebinder's Cordial's
+accuracy-focused identity. Turn-order adjustment — already used by a
+few existing Techniques, but never priced — gets its first real value
+this pass, and a standing rule going forward: items and Techniques
+shouldn't grant a flat Extra Success or damage bonus directly, only
+through the existing systems (Good Luck, Defense reduction, Gambling,
+suit-pool assists).
+
 ### 2026-08-29 — Fleeting effects no longer deflate on the turn you gain them
 
 A Fleeting effect (Protected, Hasted, Bleeding, Crippled, and the rest)

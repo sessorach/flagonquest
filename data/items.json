@@ -2048,7 +2048,7 @@
     "tags": null,
     "level": 4,
     "description": null,
-    "effects": "When consumed, you are Hasted five times, and the next attack you make this encounter has Good Luck.",
+    "effects": "When consumed, you are Hasted eight times, and you may adjust your position in turn order by up to 3.",
     "cost": null,
     "value_per_level": null,
     "school": null,
