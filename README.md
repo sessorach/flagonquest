@@ -25,8 +25,9 @@ shorter, unambiguous "instead" phrasing).
 
 Fixes **Elemental-Attuned Tincture**, which now grants 3 stacks of Ward
 that last for hours instead of decaying per-turn (matching how Poisons
-already work) and no longer costs AP. **Warmage's Draft** was trimmed
-from 7 attacks/5 Ward down to 6 attacks/1 Ward to stay balanced under
+already work) and no longer costs AP. **Warmage's Draft**, renamed
+**Spellblade's Sipper**, was rebalanced to 4 attacks/3 Ward (down from
+7 attacks/5 Ward) so its two effects carry roughly equal weight under
 Ward's new, stronger definition.
 
 ### 2026-08-29 — Swiftblade Vial reworked, turn-order adjustment given a real value
@@ -57,8 +58,8 @@ works the same as before.
 - **Thornskin Elixir** (Level 2) — the next 2 hits against you Bleed
   the attacker, plus a stack of Protected. A retaliation tool for
   when you expect to get focused.
-- **Warmage's Draft** (Level 3) — your next 7 attacks deal a chosen
-  element instead of Physical, plus 5 stacks of Ward against the
+- **Spellblade's Sipper** (Level 3) — your next 4 attacks deal a chosen
+  element instead of Physical, plus 3 stacks of Ward against the
   *opposite* element (Fire/Frost, Brilliant/Shadow). Built for a fight
   you've already sized up.
 - **Fatebinder's Cordial** (Level 4) — Good Luck on your next 5
