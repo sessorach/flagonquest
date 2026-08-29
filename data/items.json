@@ -9324,9 +9324,9 @@
     "category": "Potion",
     "slot": null,
     "tags": null,
-    "level": 5,
-    "description": "The most potent healing potion scholars have confirmed can be brewed through alchemical means, using rare and powerful ingredients to infuse a body with enough energy and nutrients to knit closed even extremely serious wounds.",
-    "effects": "When consumed, you heal 5 Health immediately, then 1 Health at the start of your turn for 4 rounds.",
+    "level": 4,
+    "description": "A carefully balanced regenerative tonic, prized by field medics and battle-mages alike for its versatility -- rather than a single burst of healing, it mends the body steadily over time, its effects equally capable of closing shallow wounds or restoring deeper reserves of vitality as the drinker's body needs most.",
+    "effects": "When consumed, you heal 1 Health (your choice of Shallow or Deep) at the start of each of your next 4 turns.",
     "cost": null,
     "value_per_level": null,
     "school": null,
@@ -9358,7 +9358,7 @@
     "material_types": null,
     "base_item_options": [],
     "levels": [
-      5
+      4
     ]
   },
   {
