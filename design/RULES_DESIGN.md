@@ -1278,6 +1278,30 @@ the full list going into the balance pass.
   keeps the existing "any stacks → this bonus" shape (stacks still only
   ever buy duration, never a growing wall) while making a single
   application meaningfully stronger.
+- **Fleeting effects don't decay on the turn they go from 0 stacks to
+  some** (`glossary.md`'s `[Fleeting]` entry). Surfaced during the buff-
+  Potion balance pass: since decay is a flat "remove 1 from the whole
+  pool," not "remove 1 per source," a creature that already has at least
+  1 stack of a Fleeting effect is completely unaffected by gaining more
+  of it the same turn — the pool's own pre-existing stacks already
+  absorb that turn's -1, so topping off a stack you already have was
+  never actually broken. The bug only bites the 0→N case: a *freshly*
+  granted Fleeting effect (most commonly a self-buff cast on your own
+  turn, since that's the same turn its own end-of-turn decay fires) has
+  nothing pre-existing to absorb the -1, so it eats directly into the
+  brand-new grant — gain 1 Protected, immediately lose it to 0; gain 3,
+  immediately down to 2. Past fix for this was ad hoc, baking a "+1 free
+  stack" into specific grants (Brace, e.g.) — mostly worked, but doesn't
+  know about pre-existing stacks, so it silently over-corrects by 1 in
+  the (never-actually-broken) topping-off case, and has to be manually
+  remembered and reapplied to every new Fleeting-granting effect. Fixed
+  at the rule level instead, scoped to exactly the case that's broken:
+  a Fleeting effect skips the next decay after going from 0 to a
+  positive count, then decays normally from there on — no new
+  bookkeeping needed (still just one stack counter per effect; the only
+  check is "was this at zero right before the grant?"), and every
+  existing "+1 free stack" item-level patch becomes safe to remove as a
+  follow-up cleanup, not required to keep working around this anymore.
 
 ## Open questions / TODO
 

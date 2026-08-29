@@ -9728,9 +9728,9 @@
     "category": "Potion",
     "slot": null,
     "tags": null,
-    "level": 2,
+    "level": 1,
     "description": "Brewed from herbs gathered on high, wind-scoured peaks, this thin, sharp-smelling tonic is favored by scouts and skirmishers who need to close distance in a hurry - or open it.",
-    "effects": "When consumed, you are Hasted seven times.",
+    "effects": "When consumed, you are Hasted five times.",
     "cost": null,
     "value_per_level": null,
     "school": null,
@@ -9762,7 +9762,7 @@
     "material_types": null,
     "base_item_options": [],
     "levels": [
-      2
+      1
     ]
   },
   {
@@ -9771,9 +9771,9 @@
     "category": "Potion",
     "slot": null,
     "tags": null,
-    "level": 3,
+    "level": 2,
     "description": "A thick, bitter tonic brewed from bramble-thorns and clotting herbs, said to turn a soldier's own wounds against whoever dealt them.",
-    "effects": "When consumed, the next 2 times a damaging attack hits you this encounter, the attacker gains a stack of Bleeding. You also gain 2 stacks of Protected.",
+    "effects": "When consumed, the next 2 times a damaging attack hits you this encounter, the attacker gains a stack of Bleeding. You also gain 1 stack of Protected.",
     "cost": null,
     "value_per_level": null,
     "school": null,
@@ -9805,7 +9805,7 @@
     "material_types": null,
     "base_item_options": [],
     "levels": [
-      3
+      2
     ]
   },
   {

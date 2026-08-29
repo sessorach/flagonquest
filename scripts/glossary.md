@@ -78,7 +78,7 @@ Encounter abilities are expended when you use them, and you regain their use whe
 
 #### [Fleeting]
 
-At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. Outside of combat encounters, remove 1 stack roughly every 6 seconds.
+At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. Outside of combat encounters, remove 1 stack roughly every 6 seconds. If you had no stacks of a Fleeting effect right before gaining some, skip the next removal that would apply to it — it starts losing stacks normally from the one after that.
 
 #### [Food]
 

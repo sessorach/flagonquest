@@ -13,12 +13,21 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
-### 2026-08-29 — Four new buff Potions round out the Level 2-4 band
+### 2026-08-29 — Fleeting effects no longer deflate on the turn you gain them
 
-- **Windrunner's Draught** (Level 2) — Hasted seven times. A simple,
+A Fleeting effect (Protected, Hasted, Bleeding, Crippled, and the rest)
+now skips its next decay the moment it goes from 0 stacks to some —
+fixing a long-standing snag where a self-buff cast on your own turn
+would immediately lose 1 stack to that same turn's cleanup. Topping off
+an effect you already have was never actually affected by this and
+works the same as before.
+
+### 2026-08-29 — Four new buff Potions round out the Level 1-4 band
+
+- **Windrunner's Draught** (Level 1) — Hasted five times. A simple,
   broadly-useful pickup.
-- **Thornskin Elixir** (Level 3) — the next 2 hits against you Bleed
-  the attacker, plus 2 stacks of Protected. A retaliation tool for
+- **Thornskin Elixir** (Level 2) — the next 2 hits against you Bleed
+  the attacker, plus a stack of Protected. A retaliation tool for
   when you expect to get focused.
 - **Warmage's Draft** (Level 3) — your next 7 attacks deal a chosen
   element instead of Physical, plus 5 stacks of Ward against the
