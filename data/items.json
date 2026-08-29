@@ -1618,7 +1618,7 @@
     "tags": null,
     "level": 1,
     "description": "Frequently stocked in the supplies of anyone who might anticipate a fight, from mercenary companies to lone woodsmen, this ages-old recipe bolsters the body with a burst of energy and helps reduce any bruising or swelling.",
-    "effects": "When consumed, you gain 4 stacks of Protected.",
+    "effects": "When consumed, you gain 3 stacks of Protected.",
     "cost": null,
     "value_per_level": null,
     "school": null,
