@@ -141,6 +141,71 @@ optional and costed. This will need a numbers pass once the formula is
 locked, separate from writing the rule itself. (That pass belongs in the
 sibling data-focused chat, not here.)
 
+### STANDING RULE — Damage/success bonuses stay routed through the existing systems, never granted flat
+
+Extends "Successes as the universal resolution currency" above from a
+core-rule principle to a **content-design** one: a new item or Technique
+should never directly grant an Extra Success or a flat bonus to a flip
+or to damage. Per the designer, that's "free damage" outside the
+systems meant to gate it — the whole point of Extra Success being
+earned through Gambling (a real risk/reward trade) or a suit-pool match
+(a card-luck/build-synergy payoff) is that it always costs or risks
+something, or rewards forethought. A flat grant skips that entirely.
+Anything that wants to make an attack land harder or more reliably
+should reach for one of the existing levers instead — Good Luck
+(better odds on the flip itself), reducing the target's Defense
+(Vulnerable and friends), enabling more Gambling (higher Skill Total,
+or removing its downside), or a suit-pool assist (Sift, an extra card
+in the pool) — all of which still route the actual bonus through the
+normal resolution math, preserving the trade-off instead of bypassing
+it. Cited directly against a real proposal this session (a Swiftblade
+Vial redesign considered granting a direct Extra Success) — rejected
+for exactly this reason, redirected toward turn-order adjustment
+instead (see below).
+
+### Turn-order adjustment — a mechanic to lean into more, first value derivation
+
+Several existing Techniques already let a creature's position in the
+turn order shift, but each was designed independently with no shared
+value behind it: `Backfoot` (Battle Maneuver Feature, Basic/1pt) pushes
+a *target* back "by up to X + [Spades] times" on a hit; `Alacrity`
+(Spirit Blessing Feature, Advanced/2pt) lets the target move up "by up
+to 2," flat, no scaling; `One Eye Behind You` lets you discard a card
+to move yourself "by up to [half Insight Skill Total]"; `Heroic
+Inspiration` offers "adjust position by 1" as one of three
+interchangeable choices alongside "Protected twice" or a Taunted/
+Frightened cleanse. None of these were priced against THE TABEL — they
+predate the value-economy work entirely, so their relative magnitudes
+aren't a reliable calibration point (Heroic Inspiration bucketing "shift
+by 1" alongside "Protected twice," worth 6 on its own, is suggestive of
+original design instinct but not verified).
+
+Per the designer, this is a mechanic they want to lean into more —
+"a fun tactical thing," enabling one character to capitalize on another's
+setup (a debuff landed, an enemy about to go down) by acting inside a
+window that would otherwise close before their natural turn comes up.
+That's the same fundamental shape Harried's own value already covers:
+a temporary window whose benefit accrues to *whichever attack happens
+to land inside it* — Harried's per-stack rate was derived assuming
+"on average, one extra attack benefits" from a window it opens. Turn-
+order adjustment doesn't open a window itself; it lets you choose *who*
+gets to use one that's already open (from Harried, Vulnerable, a
+kill-race, or simply denying an enemy the chance to react before your
+side reshapes the board) — a related but distinct kind of tactical
+edge from a direct numeric buff. Session's first-pass Pencil value,
+**pending confirmation**: **1.0 per place shifted**, roughly half of
+Good Luck's revised marginal (2.4) — reasoning it as "sometimes
+decisive, often marginal" in the same spirit as the discount Good
+Luck's own Suit Pool credit needed, since a shift only pays off when
+there's an actual timing-sensitive window to exploit, unlike Good Luck
+which improves the flip it's attached to every single time. Likely
+linear for small shifts (no reason yet to assume otherwise), but a
+realistic **cap** almost certainly exists once a shift is big enough to
+already guarantee "first in the round" for a typical Baseline party+
+encounter size — not yet derived. Not written into
+`balance_weights.csv`/`balance_weights_notes.md` yet, pending
+confirmation and (ideally) the cap question resolved first.
+
 ### Suits: an emerging identity per suit, not a strict grid
 
 Each suit (♥ Hearts / ♣ Clubs / ◆ Diamonds / ♠ Spades) is being built out
