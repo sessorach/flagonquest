@@ -29,6 +29,44 @@ clean `Level × 3` Target formula, so balancing them is more about relative
 comparison against similarly-priced existing entries than a hard
 pass/fail number.
 
+### Estimating a genuinely hard-to-price effect: triangulate, don't guess once
+
+Most mechanics in this model trace back to a real derivation (a card-math
+expectation, a stacking curve built from Baseline's own combat math). But
+some effects don't reduce to a clean formula no matter how carefully
+you derive one — "ignore Wounded's penalties for the rest of the fight"
+is a real example: its actual value depends on how many flips it saves,
+how many Defenses it matters for, and whether anyone would've had to
+spend a resource fixing the problem instead. There's no single
+authoritative number to derive there, just several *reasonable* ways to
+look at it.
+
+When that happens, the fix isn't to pick the framing that feels most
+rigorous and trust it alone — it's to price the same effect through **two
+or more genuinely independent framings**, and take the middle. Independent
+means they'd only agree by coincidence if the "true" number were
+different — not two versions of the same argument dressed up
+differently. For Wounded-immunity (see Insanity Potion below), that
+meant: (a) the *direct* cost, estimated flip-by-flip (Bad Luck hitting
+roughly one attack and one defensive flip per turn, for a couple of
+turns), and (b) the *opportunity* cost — what the party's Healer would've
+had to spend fixing the same problem instead (2 AP). Two unrelated ways
+of looking at the same effect landing within a few tenths of each other
+(8.8 vs 5.5, averaging to 7.15) is a real signal the number's in the
+right neighborhood — much stronger evidence than either estimate alone,
+and cheap to get once you notice you're eyeballing something rather than
+deriving it.
+
+Also worth remembering when several *simultaneous* debuffs get bundled
+into one prevention effect: don't just sum each one's "if this happens"
+value assuming they all land in the same fight. If an enemy is more
+likely to throw *one* debuff type at a target than several at once,
+price the group as an average across the plausible ones (same
+"GM/enemy decides which applies, not the player" logic Predator's Cry's
+Crippled-or-Slowed clause already uses), not a straight sum — otherwise
+the estimate quietly assumes a worse (better, for the item) fight than
+a real one.
+
 ## The balance ledger (`design/balance_ledger.csv`)
 
 A running, human-readable record of every item/Technique that's actually
