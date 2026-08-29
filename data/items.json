@@ -1790,7 +1790,7 @@
     "tags": null,
     "level": 3,
     "description": null,
-    "effects": "When consumed, ignore the next 4 total stacks of Taunted and/or Frightened you would gain this encounter. If you already have stacks of either, remove them and count them against the total.",
+    "effects": "When consumed, ignore the next 4 total stacks of Taunted and/or Frightened you would gain until you take a full night's rest. If you already have stacks of either, remove them and count them against the total.",
     "cost": null,
     "value_per_level": null,
     "school": null,
@@ -9240,7 +9240,7 @@
     "tags": null,
     "level": 3,
     "description": "A skilled alchemist can distill medicinal herbs into a potion that clots wounds almost instantaneously, saving an otherwise mortally-wounded soldier from impending death.",
-    "effects": "When consumed, for 1 hour the first 3 stacks of Bleeding you would gain, instead you don't. If you already have stacks of Bleeding, remove them and count them against the total.",
+    "effects": "When consumed, until you take a full night's rest the first 3 stacks of Bleeding you would gain, instead you don't. If you already have stacks of Bleeding, remove them and count them against the total.",
     "cost": null,
     "value_per_level": null,
     "school": null,
@@ -9281,9 +9281,9 @@
     "category": "Potion",
     "slot": null,
     "tags": null,
-    "level": 4,
+    "level": 3,
     "description": "Straining the blood of tigers, bears, and other hunters together with certain medicinal herbs produces a curative that helps the drinker push through weakness and numbness in their limbs.",
-    "effects": "When consumed, for 1 hour the first 4 stacks of Crippled or Slowed you would gain, instead you don't. If you already have stacks of either, remove them and count them against the total.",
+    "effects": "When consumed, until you take a full night's rest the first 3 stacks of Crippled or Slowed you would gain, instead you don't. If you already have stacks of either, remove them and count them against the total.",
     "cost": null,
     "value_per_level": null,
     "school": null,
@@ -9315,7 +9315,7 @@
     "material_types": null,
     "base_item_options": [],
     "levels": [
-      4
+      3
     ]
   },
   {
