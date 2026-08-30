@@ -1059,3 +1059,34 @@ encounter, so that item doesn't decay mid-fight the way a normal
 stacked grant does; it should just be priced at the flat full-encounter
 rate (1.0 Fire / 0.5 others) with no duration discount, not run through
 the stacking table above.
+
+### Lifeforce Plate — refill-frequency framing, not a new per-stack rate
+
+Lifeforce Plate (`I072`, Masterwork Torso) doesn't grant Protected
+directly — it refills the wearer to 1 stack (Level 3) or tops back up
+to 2 stacks (Level 5) whenever they'd otherwise be sitting at 0 or
+under. Protected's own per-stack rate (3, Locked) isn't in question
+here; the only real unknown is *how often* "the wearer has no/too few
+stacks" actually comes up in a real fight — a refill-frequency
+question, not a new mechanic to price from scratch.
+
+Two framings were considered:
+
+- **Strict**: reuse Resist's own "1.875 hits/player/encounter" anchor
+  (10 enemy-rounds/fight × 1.5 attacks/round ÷ 4 players × 50% hit
+  chance) as the refill count, treating every one of those hits as an
+  instance where this item's Protected was up and got consumed. This
+  collapses to Value = 1.875 × stacks × 3 — L3: 5.625 (Net −3.375), L5:
+  11.25 (Net −3.75).
+- **Broad** (adopted): Lifeforce Plate's actual trigger ("0 stacks of
+  Protected") is looser than Resist's "a guaranteed major hit" —
+  it also catches incidental chip damage, not just the big swing that
+  anchor was built around. Estimated at ~2.5 "relevant empty moments"
+  per encounter instead. Value = 2.5 × stacks × 3 — L3: 7.5 (Net −1.5),
+  L5: 15 (Net exactly 0).
+
+Went with the broader read: the item's own wording doesn't gate on
+"took a hit," it gates on "currently has 0 stacks," which is a wider
+net than 1.875 was ever meant to capture. Landed with L3 still a bit
+under Target and L5 an exact fit — both accepted, consistent with the
+rest of this Torso cluster's below-budget Masterwork allowance.

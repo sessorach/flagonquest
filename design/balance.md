@@ -356,11 +356,26 @@ rather than differently-priced:
   L4 benchmark as a floor, since it caps before reaching Level 5).
 
 Three items now span L1/2 → L3 → L5, a fair spread without needing a
-fourth. Still open: the other seven Torso items (Lifeforce Plate, Coat
-of Knit Flesh, Dauntless Wrap, Armor of Constitutional Integrity,
-Fortified Armor, Fitted Armor, Jerkin of the Land) haven't been priced
-yet — none of them lean on flat Resist, so this same fix doesn't
-automatically apply, and they need their own pass.
+fourth. None of the remaining Torso items lean on flat Resist, so this
+same fix doesn't automatically apply — they got their own pass instead:
+
+- **Armor of Constitutional Integrity** (`I069`) — cut its exact-duplicate
+  Neck-slot twin (Periapt of Constitutional Integrity, `I175`), kept
+  this one as the sole grantor. Net −1.4, a modest, accepted shortfall.
+- **Lifeforce Plate** (`I072`) — refills the wearer to 1 (L3) or 2 (L5)
+  stacks of Protected whenever they're at 0. Priced off an estimated
+  ~2.5 "relevant empty moments per encounter" (broader than the strict
+  1.875-hits anchor, since its trigger also catches incidental chip
+  damage, not just a guaranteed major hit — see
+  `balance_weights_notes.md`'s Lifeforce Plate section for the full
+  comparison against the stricter framing). L3 Net −1.5, L5 Net exactly
+  0.
+
+Still open: Coat of Knit Flesh, Dauntless Wrap, Fortified Armor, Fitted
+Armor, and Jerkin of the Land — five Torso items still unpriced, one of
+them (Fortified Armor) needing its own non-standard "composable
+amplifier" treatment since it doesn't grant Resist itself, only
+conditionally amplifies whatever Resist is already present.
 
 ## Open balance work
 
