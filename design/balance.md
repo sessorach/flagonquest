@@ -320,6 +320,48 @@ item is actually blunting a representative hit by a noticeable amount,
 independent of the Value/Target economy — see the Torso Masterwork
 pass below for the first real application of this.
 
+### Torso Masterwork pass — flat-Resist items
+
+First real application of the War Magic baseline above. All four
+flat-Resist Torso items read as catastrophic against `Target = Level x
+3` (Net −2 to −12.5) — but cross-checked against a real representative
+hit, each one is actually blunting **10-25% of a same-Level attack**,
+a genuine felt effect the raw Net doesn't convey. Decided, per the
+designer: accept these below Target rather than inflate the flat bonus
+further (which risks the same eventual-immunity problem that ruled out
+scaling Ward's flat bonus this session), and keep the "choose one
+element permanently at crafting" design as-is — a real, informed bet
+the player commits to, not something to soften into a re-pickable
+choice. Two allowances feed into how generous a design to land on:
+Masterwork items broadly can run a bit hotter than a strict Target
+comparison implies, since you can only equip one per slot; Robes
+specifically (can't be worn as real armor, explicitly sacrificing base
+armor's own protection) get an additional bump on top of that.
+
+Trimmed from four items to three, since two were genuinely redundant
+rather than differently-priced:
+- **Cut Attuned Shroud** (`I066`) — a strict subset of Elemental-
+  Resistant Armor (flat +2 one element vs. that item's own L1 +1/L2
+  +2 same element), not a different design, just a smaller duplicate.
+- **Kept Elemental-Resistant Armor** (L1 +1 / L2 +2, one chosen
+  element) as the accessible option — Net −2.5/−5.0, 12.5%/25% off a
+  same-Level hit.
+- **Kept Robes of Resilience** (L3, +1 to all five Resists) as the
+  mid-tier generalist — Net −5.25, 10% off a same-Level hit but across
+  every damage type at once, a versatility premium the single-hit
+  percentage doesn't capture.
+- **Reworked Robes of the Elemental Lord** into the L5 capstone: +3 to
+  Fire/Frost/Brilliant/Shadow (up from +2), explicit "robe, not armor"
+  framing — Net −11.25, ~23% off a same-Level hit (using War Magic's
+  L4 benchmark as a floor, since it caps before reaching Level 5).
+
+Three items now span L1/2 → L3 → L5, a fair spread without needing a
+fourth. Still open: the other seven Torso items (Lifeforce Plate, Coat
+of Knit Flesh, Dauntless Wrap, Armor of Constitutional Integrity,
+Fortified Armor, Fitted Armor, Jerkin of the Land) haven't been priced
+yet — none of them lean on flat Resist, so this same fix doesn't
+automatically apply, and they need their own pass.
+
 ## Open balance work
 
 - **The full Masterwork list, 103 items total** (`items.csv` `I057`-`I115`
