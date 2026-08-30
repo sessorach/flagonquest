@@ -2423,7 +2423,7 @@ function DerivedStats({
   // caption under the Shallow Health track below.
   const shallowCurrent = Math.max(0, Math.min(currentHealth.shallow ?? shallowMax, shallowMax));
   const wounded = shallowCurrent <= 0;
-  const WOUND_PENALTY_KEYS = new Set(["speed", "parry_defense", "dodge_defense", "bodily_defense", "mental_defense", "instinct_defense"]);
+  const WOUND_PENALTY_KEYS = new Set(["speed", "parry_defense", "dodge_defense", "vital_defense", "mental_defense", "instinct_defense"]);
   const woundedDesc = (glossary.find(g => g.term === "Wounded") || {}).description
     || "Missing all Shallow Health — Bad Luck on all flips, and -2 to all Defenses and Speed.";
 
@@ -2499,7 +2499,7 @@ function DerivedStats({
       {block("Defenses", [
         ["Parry Defense",    8 + Math.max(st("Melee"), st("Brawl")), "= 8 + Melee or Brawl", "parry_defense"],
         ["Dodge Defense",    8 + Math.max(st("Acrobatics"), st("Brawl")), "= 8 + Acrobatics or Brawl", "dodge_defense"],
-        ["Bodily Defense",   8 + st("Resilience"), "= 8 + Resilience", "bodily_defense"],
+        ["Vital Defense",    8 + st("Resilience"), "= 8 + Resilience", "vital_defense"],
         ["Mental Defense",   8 + st("Composure"), "= 8 + Composure", "mental_defense"],
         ["Instinct Defense", 8 + st("Insight"), "= 8 + Insight", "instinct_defense"],
       ])}
@@ -2885,7 +2885,7 @@ const ITEM_STAT_FIELDS = [
   ["frost_resist", "Frost Resist"], ["brilliant_resist", "Brilliant Resist"],
   ["shadow_resist", "Shadow Resist"], ["speed", "Speed"],
   ["parry_defense", "Parry Defense"], ["dodge_defense", "Dodge Defense"],
-  ["bodily_defense", "Bodily Defense"], ["mental_defense", "Mental Defense"],
+  ["vital_defense", "Vital Defense"], ["mental_defense", "Mental Defense"],
   ["instinct_defense", "Instinct Defense"],
   ["shallow_health", "Shallow Health"], ["deep_health", "Deep Health"],
 ];

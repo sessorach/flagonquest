@@ -375,6 +375,8 @@ Example: To insult him further, an enemy warmage decides to take advantage of th
 
 A full night’s rest is a full 8 hours of rest, which may include up to 2 hours spent performing non-strenuous activities such as reading, maintaining equipment, and/or watching over a campsite. You may only get a full night’s rest once in a 24-hour period.
 
+Something that recharges or resets “once per day” follows this same rhythm - it comes back after your next full night’s rest, not simply after 24 hours pass on a clock. A long stretch without one, pushing well past a normal day, doesn’t grant an early refresh - it just risks Exhaustion instead.
+
 After you get a full night’s rest, you do the following in order:
 
 - Discard any cards in your hand

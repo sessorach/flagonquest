@@ -118,6 +118,13 @@ which should stay a clean decision record.
   self-check. When a claim involves arithmetic, actually compute it and
   check the result is internally consistent before presenting it — don't
   write plausible-looking numbers and trust they work out.
+- **Old-term translations to apply on sight, from earlier eras of this
+  project**: "Bodily Defense" → **Vital Defense** (found live in
+  `items.csv`'s own schema and `index.html` until this got fixed, not
+  just an archive-only artifact — worth a second look if it turns up
+  anywhere else), "Soak" → **Resist**. When reading `archive/` source
+  material or old drafts, translate these automatically rather than
+  treating them as a different mechanic.
 
 ## Editing content
 

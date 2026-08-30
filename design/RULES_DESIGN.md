@@ -1263,6 +1263,20 @@ for it at all.
 - `I073` Robes of Resilience used the old term "Soak" instead of
   current "Resist" in its Effects text (bonus value itself, +1, was
   already correct against source) — fixed the wording only.
+- **"Bodily Defense" was a live schema bug, not just an archive-only
+  old term** — caught this pass while pricing Armor of Constitutional
+  Integrity. `rulebook.md` and `glossary.md` consistently call this
+  Defense "Vital Defense" ("Your Vital Defense is equal to 8 + your
+  Resilience Skill Total"), but `items.csv`'s own column header,
+  `convert.py`'s `ITEM_MAP`, and three spots in `index.html` (the
+  Wounded-penalty key set, the Derived Stats table row, and the
+  display-label map) all still said "Bodily Defense"/`bodily_defense` —
+  meaning the live Character Sheet was actually showing the stale term
+  to players. No item currently grants a bonus to it (confirmed empty
+  column before renaming), so this was a pure label bug, not a data
+  migration. Fixed across all four spots. Standing habit going
+  forward, noted in `CLAUDE.md`: treat "Bodily Defense" as this same
+  Defense whenever it turns up in older archive material.
 - `I074` Robes of the Elemental Lord read "+3 bonus to Fire, Frost, and
   Shadow Resists" — checked against its own source
   (`site_items.md` line 2254, the more-current-looking of two listings,

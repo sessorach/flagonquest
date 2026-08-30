@@ -372,7 +372,7 @@ ITEM_MAP = {
     "Speed":              "speed",
     "Parry Defense":      "parry_defense",
     "Dodge Defense":      "dodge_defense",
-    "Bodily Defense":     "bodily_defense",
+    "Vital Defense":      "vital_defense",
     "Mental Defense":     "mental_defense",
     "Instinct Defense":   "instinct_defense",
     "Shallow Health":     "shallow_health",
