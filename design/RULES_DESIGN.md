@@ -93,6 +93,30 @@ content — a new elemental enemy, spell, or Masterwork item should
 default to Fire unless there's a specific reason (theme, a Frost-heavy
 dungeon, a Shadow-aligned villain) to reach for one of the other three.
 
+### STANDING RULE — Weapon and Implement Masterwork enhancements are meant to overlap heavily
+
+Not an oversight to tidy up — deliberate. Per the designer: a magic
+weapon reading as useful to *both* a martial character and a spellcaster
+is intentional, for two reasons. First, it widens who a given piece of
+loot is actually exciting for — an enchanted blade doesn't have to sit
+dead in a spellcaster's inventory just because its bonus reads
+combat-flavored. Second, and more importantly, it avoids punishing a
+"spellblade"-style hybrid character (someone who both swings a weapon
+and casts spells) for wanting one held item to do both jobs, rather than
+needing to carry a dedicated weapon *and* a dedicated implement
+separately just to have both halves of their kit online. This is
+already load-bearing in the base rules, not something Masterwork items
+have to individually re-earn: per `glossary.md`'s `[Implement]` entry,
+*any* weapon can already be channeled through as an Implement ("If the
+Implement is a weapon, the Spell or Discipline counts as an attack with
+that weapon for any additional effects"). So a Held weapon enhancement
+that reads as combat-flavored (bonus damage-on-hit, a Push, a debuff
+proc) is *already* just as usable by a caster funneling spells through
+it, and vice versa — worth keeping in mind when archetype-tagging or
+designing new Held items: "Weapon" and "Implement" should be treated as
+overlapping, not exclusive, categories for the vast majority of Held
+Masterwork items, not a hard split.
+
 ### Successes as the universal resolution currency
 
 The game is moving toward one unified idea of "success" behind every flip
