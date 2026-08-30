@@ -117,6 +117,52 @@ designing new Held items: "Weapon" and "Implement" should be treated as
 overlapping, not exclusive, categories for the vast majority of Held
 Masterwork items, not a hard split.
 
+### STANDING RULE — Equipment slots each have an intended design lane
+
+Surfaced while starting the Masterwork balance pass, checking why a
+Neck item (Worry Token) read as an odd fit for a flat Resist bonus (it
+turned out not to actually grant one — see below). Found the original
+slot philosophy in two archive drafts, `archive/flagonquest_items_2k20.md`
+and the updated `archive/flagonquest_items_2k22.md` (which adds Belt and
+retitles Hands), never previously carried into the live design docs:
+
+| Slot | Intended lane |
+|---|---|
+| Head | Mental, vision |
+| Hands | Skill-based non-attack actions (lockpicking, surgery, and similar) |
+| Feet | Mobility |
+| Belt | Carrying items |
+| Torso | Direct protection, vitality/healing |
+| Held | Weapons and other active-use items requiring an action |
+| Neck | Niche, boring, passive utility — deliberately *not* interactive or defensive |
+| Ring | A specific active ability, or an augment to a specific skill/ability |
+
+`archive/flagonquest_manifesto_2k19.md`'s "RESIST PLANNING" section ties
+Resist specifically to Torso: *"+1 Resist from Torso equipment, MAYBE
++2 for like a Level 5 item."* No archive document ever pairs Resist
+with Neck or Ring.
+
+Checking the live catalog against this table caught one real thing and
+ruled out another. Real: **Elemental Warding Amulet** (`I208`, Ring)
+grants a flat elemental Resist bonus with numbers identical to
+Elemental-Resistant Armor's (Torso) — a passive stat clone sitting on
+the wrong slot's lane (Ring is meant for *active* abilities, not a
+passive number), and redundant with an existing Torso item to boot. See
+the Masterwork balance pass below for the redesign that resolved it.
+Ruled out: Worry Token doesn't actually grant flat Resist at all — an
+earlier broad text search this session matched the word "Resist"
+appearing inside one of its six random secret-effect outcomes ("ignores
+the target's Physical Resist"), not an actual granted stat. Its real
+effect (a charge-based random-benefit charm) already matches Neck's
+"boring passive utility" lane correctly; no change needed there. Same
+search error also mis-flagged Charcoal (not even a Masterwork item —
+its "Resist" hit was a Poison-*Resistance flip*, a saving throw,
+unrelated to the Resist stat) and Fortified Armor (which doesn't grant
+Resist itself, only conditionally amplifies Resist the wearer already
+has from elsewhere) — worth remembering broad substring searches over
+`Effects` text need a second look before being trusted as a
+categorization, not just a starting point.
+
 ### Successes as the universal resolution currency
 
 The game is moving toward one unified idea of "success" behind every flip
