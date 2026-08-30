@@ -122,7 +122,7 @@ Others cannot tell when this ability is being used, discern its effects, or take
 
 #### Bleeding [Fleeting]
 
-When you remove a stack of Bleeding at the end of your turn, lose 1 Health.
+Each stack of this that decays at the end of your turn deals 1 Health loss.
 
 #### Crippled [Fleeting]
 

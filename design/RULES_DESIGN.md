@@ -1522,6 +1522,24 @@ the full list going into the balance pass.
   Amulet, Worry Token) grant a flat Resist stat bonus directly, not the
   Ward keyword — they're unaffected by this change and remain the
   separate, still-open systemic issue already flagged in `balance.md`.
+- **Bleeding's Health-loss clause reworded to tie explicitly to decay,
+  not to removal by any means** (`glossary.md`'s Bleeding entry: "When
+  you remove a stack of Bleeding at the end of your turn, lose 1
+  Health" → "Each stack of this that decays at the end of your turn
+  deals 1 Health loss"). Surfaced pricing Coat of Knit Flesh (`I070`,
+  Masterwork Torso) — its old text ("before any of your debuffs expire,
+  remove N stacks of Bleeding from yourself") used the same "remove a
+  stack... at the end of your turn" language the old Bleeding clause
+  gated on, so read literally the item's own cleanse could have
+  triggered its own Health-loss rule — a Torso defensive item that
+  damages the wearer through the exact mechanic it exists to mitigate.
+  Fixed generally at the glossary level (any future Bleeding-cleanse
+  effect gets the same protection, not just this one item) rather than
+  wording around it item-by-item. Coat of Knit Flesh itself was also
+  reworked away from the per-turn cleanse entirely, into a cleaner
+  once-per-day prevention ("the first N stacks of Bleeding the wearer
+  would gain in a day are ignored instead") — see `balance_ledger.csv`
+  (`I070-L2`/`I070-L4`) for the pricing.
 
 ## Open questions / TODO
 

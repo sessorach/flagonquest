@@ -371,11 +371,23 @@ same fix doesn't automatically apply — they got their own pass instead:
   comparison against the stricter framing). L3 Net −1.5, L5 Net exactly
   0.
 
-Still open: Coat of Knit Flesh, Dauntless Wrap, Fortified Armor, Fitted
-Armor, and Jerkin of the Land — five Torso items still unpriced, one of
-them (Fortified Armor) needing its own non-standard "composable
-amplifier" treatment since it doesn't grant Resist itself, only
-conditionally amplifies whatever Resist is already present.
+- **Coat of Knit Flesh** (`I070`) — reworked from a per-turn "remove
+  stacks of Bleeding" cleanse into a clean once-per-day prevention (the
+  first 1/L2 or 2/L4 stacks of Bleeding the wearer would ever gain in a
+  day are ignored outright), after the original wording turned out
+  ambiguous against Bleeding's own "lose 1 Health when a stack decays"
+  rule — read literally, the item's own removal could have triggered
+  that same Health loss. Also prompted a general glossary reword tying
+  the Health cost explicitly to natural decay, not removal by any
+  means (see `scripts/glossary.md`'s Bleeding entry). Rescoped under
+  this file's once/day convention (`Target = Level × 4`, not × 3).
+  L2 Net −4, L4 Net −8.
+
+Still open: Dauntless Wrap, Fortified Armor, Fitted Armor, and Jerkin
+of the Land — four Torso items still unpriced, one of them (Fortified
+Armor) needing its own non-standard "composable amplifier" treatment
+since it doesn't grant Resist itself, only conditionally amplifies
+whatever Resist is already present.
 
 ## Open balance work
 
