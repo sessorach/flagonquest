@@ -290,6 +290,36 @@ times per relevant span (session, or however "makes par" ends up being
 defined for the current system), that's a signal its Level or its
 actual effect may need adjusting, not just its raw Value-model number.
 
+## Reference: War Magic damage baseline
+
+`War Magic` (`T120`) is the designer's own go-to comparison point for
+"what does a damaging spellcaster's attack actually look like" — a
+Buildable Sorcery Spell (base: *"deals 2 + [your Mind] Fire damage"*
+on a hit), capped at **Level 4, not 5** (Feature Budget `1:1, 2:3,
+3:4/adv, 4:6/adv`). Worked out two builds per Level (a maximum-damage
+dump and a "damaging but strategic" build trading some damage for
+range/alt-type/debuffs), using representative Mind values (3/4/5 at
+Levels 2/3/4 respectively — no "Baseline Stat" convention exists
+elsewhere yet, so treat these as illustrative, not authoritative):
+
+| Level | Mind | Max single-target damage | Strategic build |
+|---|---|---|---|
+| 2 | 3 | **8** Fire (`Destructive ×3`) | **6** Frost + Slowed 2+[Spades] + range (`Frigid ×1, Lance, Destructive ×1`) |
+| 3 | 4 | **10** Fire (`Destructive ×4`) | **7** Shadow + Vulnerable 2+[Diamonds] + range + Good Luck (`Destructive ×1, Corrupting ×1, Lance, Piercing Elements`) |
+| 4 | 5 | **13** Fire (`Destructive ×6`) | **9** Shadow + Vulnerable 2+[Diamonds] + Harried + range + Good Luck (`Destructive ×2, Corrupting ×1, Barraging ×1, Lance, Piercing Elements`) |
+
+Rough shape: pure damage climbs 8 → 10 → 13; the "does other things
+too" build trades a chunk of that for utility and sits at 6 → 7 → 9 —
+a fairly steady, moderate curve, not explosive scaling. War Magic can't
+reach Brilliant damage (no Feature offers it — Frost and Shadow are
+the only alternates to its Fire baseline), so this benchmark only
+covers Fire/Frost/Shadow directly.
+
+**Use case**: a same-Level rough sanity check for whether a Resist
+item is actually blunting a representative hit by a noticeable amount,
+independent of the Value/Target economy — see the Torso Masterwork
+pass below for the first real application of this.
+
 ## Open balance work
 
 - **The full Masterwork list, 103 items total** (`items.csv` `I057`-`I115`
