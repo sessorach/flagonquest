@@ -324,19 +324,19 @@ pass below for the first real application of this.
 
 First real application of the War Magic baseline above. All four
 flat-Resist Torso items read as catastrophic against `Target = Level x
-3` (Net −2 to −12.5) — but cross-checked against a real representative
-hit, each one is actually blunting **10-25% of a same-Level attack**,
-a genuine felt effect the raw Net doesn't convey. Decided, per the
-designer: accept these below Target rather than inflate the flat bonus
-further (which risks the same eventual-immunity problem that ruled out
-scaling Ward's flat bonus this session), and keep the "choose one
-element permanently at crafting" design as-is — a real, informed bet
-the player commits to, not something to soften into a re-pickable
-choice. Two allowances feed into how generous a design to land on:
-Masterwork items broadly can run a bit hotter than a strict Target
-comparison implies, since you can only equip one per slot; Robes
-specifically (can't be worn as real armor, explicitly sacrificing base
-armor's own protection) get an additional bump on top of that.
+3` — but cross-checked against a real representative hit, each one is
+actually blunting **10-25% of a same-Level attack**, a genuine felt
+effect the raw Net doesn't convey. Decided, per the designer: accept
+these below Target rather than inflate the flat bonus further (which
+risks the same eventual-immunity problem that ruled out scaling Ward's
+flat bonus this session), and keep the "choose one element permanently
+at crafting" design as-is — a real, informed bet the player commits to,
+not something to soften into a re-pickable choice. Two allowances feed
+into how generous a design to land on: Masterwork items broadly can run
+a bit hotter than a strict Target comparison implies, since you can
+only equip one per slot; Robes specifically (can't be worn as real
+armor, explicitly sacrificing base armor's own protection) get an
+additional bump on top of that.
 
 Trimmed from four items to three, since two were genuinely redundant
 rather than differently-priced:
@@ -344,16 +344,36 @@ rather than differently-priced:
   Resistant Armor (flat +2 one element vs. that item's own L1 +1/L2
   +2 same element), not a different design, just a smaller duplicate.
 - **Kept Elemental-Resistant Armor** (L1 +1 / L2 +2, one chosen
-  element) as the accessible option — Net −2.5/−5.0, 12.5%/25% off a
+  element) as the accessible option — Net −2.0/−4.0, 12.5%/25% off a
   same-Level hit.
 - **Kept Robes of Resilience** (L3, +1 to all five Resists) as the
-  mid-tier generalist — Net −5.25, 10% off a same-Level hit but across
+  mid-tier generalist — Net −1.5, 10% off a same-Level hit but across
   every damage type at once, a versatility premium the single-hit
   percentage doesn't capture.
 - **Reworked Robes of the Elemental Lord** into the L5 capstone: +3 to
   Fire/Frost/Brilliant/Shadow (up from +2), explicit "robe, not armor"
-  framing — Net −11.25, ~23% off a same-Level hit (using War Magic's
+  framing — Net −7.5, ~23% off a same-Level hit (using War Magic's
   L4 benchmark as a floor, since it caps before reaching Level 5).
+
+**Resist double-discount correction (later in the same pass):**
+Resist's own per-point rate was found to double-discount the hit
+chance — it multiplied an already-landed-hit count by Damage's own
+hit-gated rate (2), when a point of Resist against a landed hit
+prevents a *guaranteed* point of Health loss and should price at the
+guaranteed rate (4) instead. Every Resist rate doubled as a result
+(Physical 2.5→5.0, Fire 0.5→1.0, Frost/Brilliant/Shadow 0.25→0.5 each)
+— see `balance_weights_notes.md`'s Resist section for the full
+derivation. The three Nets above are the corrected numbers (previously
+−2.5/−5.0, −5.25, −11.25) — the War Magic percentage-reduction
+cross-checks are unaffected, since those describe Resist points against
+raw damage, not this model's Value/Net accounting. This also ripples
+through Ward's flat-Resist component (Elemental-Attuned Tincture,
+Spellblade's Sipper, Elemental Warding Amulet — all recomputed in the
+ledger); Elemental-Attuned Tincture in particular now overshoots its
+Target by more than its Level's usual tolerance (Net +2.0 against a
+~0.975 band) and may need a follow-up trim, unlike the others which
+either landed closer to on-target or stayed within their usual accepted
+band.
 
 Three items now span L1/2 → L3 → L5, a fair spread without needing a
 fourth. None of the remaining Torso items lean on flat Resist, so this

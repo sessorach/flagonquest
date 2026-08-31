@@ -340,8 +340,8 @@ under pressure mid-pass the way the alchemy ledger almost did.
 
   Resist prevents 1 point of damage on *every* future hit of that type
   for as long as it's active (not a one-shot like Protected), so its
-  value is `Damage's own weight (2, mirroring granting vs. preventing a
-  contingent point of harm) × how many hits of that type actually land`.
+  value is `4 (the guaranteed-harm rate, matching Health's own — see the
+  correction note below) × how many hits of that type actually land`.
   "How many hits of that type land" needed two inputs with no existing
   derivation: **how often each damage type shows up**, and **total hits
   landed per player per encounter** — worked out from Baseline's own
@@ -368,30 +368,46 @@ under pressure mid-pass the way the alchemy ledger almost did.
   damage, Fire 2/15, Frost/Brilliant/Shadow 1/15 each** (down from
   Physical's old 3/4, up from Fire's old 1/10 and the others' old 1/20).
 
-  Combining those with the same formula: **Physical Resist = 2.5/point**
-  (down from 2.8), **Fire Resist = 0.5/point** (up from 0.375),
-  **Frost/Brilliant/Shadow Resist = 0.25/point each** (up from 0.19).
-  Physical is now worth **5×** Fire and **10×** a non-Fire element —
+  Combining those with the same formula (using the corrected guaranteed-
+  harm rate of 4, not the hit-gated Damage rate of 2 — see the double-
+  discount correction below): **Physical Resist = 5.0/point**, **Fire
+  Resist = 1.0/point**, **Frost/Brilliant/Shadow Resist = 0.5/point
+  each**. Physical is worth **5×** Fire and **10×** a non-Fire element —
   still clearly the better overall pick (per the designer: "that doesn't
   mean physical resist isn't still better" — it's relevant in *every*
-  fight, not just the ones featuring that specific element), but a
-  meaningfully smaller gap than the original 7.5×/15× the headcount
-  model implied. Checked against the same 4 existing chosen-element/
-  elemental Resist items (assuming Fire chosen where there's a choice):
-  **still reads underpowered across the board, just less severely** —
-  Attuned Shroud −2.0 (was −2.25), Elemental-Resistant Armor −2.5 to
-  −5.0 depending on Level (was −2.6 to −5.25), Robes of the Elemental
-  Lord −12.5 (was −13.1). Robes of Resilience is the one exception,
-  landing at exactly the same −5.25 either way — it grants +1 of *every*
-  type at once, and since both models' shares always sum to 1, a
-  one-of-each grant's total value is invariant to how the split between
-  types is drawn. This remains a real, consistent pattern flagged for
-  the actual Masterwork pass, not fixed here, same as the alchemy pass
-  did with Poisons — and the open question about *why* still stands
-  too: it might mean these items are genuinely under-leveled for what
-  they deliver, or it might mean a pure expected-hits model is missing
+  fight, not just the ones featuring that specific element).
+
+  **Correction: Resist was double-discounting the hit-chance, exactly
+  the bug the Damage-weight clarification below exists to prevent.**
+  The formula above originally used `Damage's own weight (2, mirroring
+  granting vs. preventing a contingent point of harm)` as the
+  per-hit-landed multiplier — but "hits landed" (the 1.875 figure) is
+  *already* a landed-hit count, with the 50% hit-chance discount baked
+  in at derivation time (see below). Damage's own weight of 2 is
+  *also* a hit-chance-discounted rate. Multiplying an already-landed-hit
+  count by an already-discounted per-point rate discounts the same miss
+  chance twice. Caught by the designer directly: once an attack has
+  landed, a point of Resist prevents a *guaranteed* point of Health
+  loss, priced at the guaranteed rate (4) — not Damage's contingent rate
+  (2), which is for uncertain-whether-it-hits situations "hits landed"
+  has already resolved. Every Resist rate above doubles cleanly as a
+  result (the share and hit-count terms are untouched, only the
+  multiplier changes) — previously Physical 2.5, Fire 0.5,
+  Frost/Brilliant/Shadow 0.25 each.
+
+  This ripples through every already-priced Resist-granting item in the
+  Torso Masterwork pass — see `balance_ledger.csv` and `balance.md`'s
+  Torso pass section for the corrected Nets (Elemental-Resistant Armor,
+  Robes of Resilience, Robes of the Elemental Lord) — and through Ward,
+  whose flat-Resist component inherits this rate directly (Elemental-
+  Attuned Tincture, Spellblade's Sipper, Elemental Warding Amulet), all
+  recomputed in the same pass. The open question about *why* Resist
+  read as underpowered even before this fix still stands, separately: it
+  might mean these items are genuinely under-leveled for what they
+  deliver, or it might mean a pure expected-hits model is missing
   something real about Resist's value (burst/spike protection in a
-  single big hit, not just average damage over time).
+  single big hit, not just average damage over time) — worth revisiting
+  now that the more mundane double-discount explanation is resolved.
 
   This same correction feeds directly into **Ward** (Fire/Frost/
   Brilliant/Shadow Ward) — see its own writeup below in the Debuff
@@ -402,18 +418,21 @@ under pressure mid-pass the way the alchemy ledger almost did.
   unlike Ward's other two questions (magnitude scaling, per-application
   value) which are now resolved.
 
-  **Clarification, caught during the Potion buff-cluster pass:** the
-  `2` in "Damage's own weight (2, mirroring granting vs. preventing a
-  contingent point of harm)" is already the price of a *hit-gated*
-  point of damage — it has the ~50% on-hit discount baked directly into
-  the rate itself, not applied separately at the aggregate "how many
-  hits land" step. A **guaranteed, unconditional** point of harm (no
-  attack roll gating it at all) prices at double that — **4**, matching
-  Health's own full rate (same reasoning Bleeding's guaranteed per-tick
-  Health loss uses to justify pricing at 4, not 2). Don't discount the
-  `2` rate a second time for "this only matters on a hit" — that's
-  already priced in. (First got this wrong pricing Warmage's Draft's
-  elemental-conversion effect — walked it back once caught.)
+  **Clarification, caught during the Potion buff-cluster pass (and the
+  origin of the Resist fix above):** the `2` in "Damage's own weight (2,
+  mirroring granting vs. preventing a contingent point of harm)" is
+  already the price of a *hit-gated* point of damage — it has the ~50%
+  on-hit discount baked directly into the rate itself, not applied
+  separately at the aggregate "how many hits land" step. A
+  **guaranteed, unconditional** point of harm (no attack roll gating it
+  at all) prices at double that — **4**, matching Health's own full rate
+  (same reasoning Bleeding's guaranteed per-tick Health loss uses to
+  justify pricing at 4, not 2). Don't discount the `2` rate a second
+  time for "this only matters on a hit" — that's already priced in.
+  (First got this wrong pricing Warmage's Draft's elemental-conversion
+  effect — walked it back once caught there, but didn't retroactively
+  check Resist's own formula for the same mistake until the designer
+  flagged it directly while reviewing a new Torso item.)
 
 ## Pricing a fresh attack from scratch (Grenades, Battle Magic, and similar) — Resist placeholder + universal Harried + Autoswing as cost
 
@@ -997,13 +1016,16 @@ round 2, and so on:
 
 | Stacks (rounds covered) | 1 | 2 | 3 | 4 | 5 |
 |---|---|---|---|---|---|
-| Fire — Value | 0.36 | 0.64 | 0.84 | 0.96 | 1.00 |
-| Fire — Per-stack | 0.36 | 0.32 | 0.28 | 0.24 | 0.20 |
-| Frost/Brilliant/Shadow — Value | 0.18 | 0.32 | 0.42 | 0.48 | 0.50 |
-| Frost/Brilliant/Shadow — Per-stack | 0.18 | 0.16 | 0.14 | 0.12 | 0.10 |
+| Fire — Value | 0.72 | 1.28 | 1.68 | 1.92 | 2.00 |
+| Fire — Per-stack | 0.72 | 0.64 | 0.56 | 0.48 | 0.40 |
+| Frost/Brilliant/Shadow — Value | 0.36 | 0.64 | 0.84 | 0.96 | 1.00 |
+| Frost/Brilliant/Shadow — Per-stack | 0.36 | 0.32 | 0.28 | 0.24 | 0.20 |
 
-Both cap at exactly `2 × Resist's own per-point rate` (1.0 Fire, 0.5
-others) at 5 stacks — a full Baseline encounter's worth of coverage,
+(Doubled straight through following the Resist double-discount
+correction above — the curve's shape is untouched, only the per-point
+rate it's built on changed.) Both cap at exactly `2 × Resist's own
+per-point rate` (2.0 Fire, 1.0 others) at 5 stacks — a full Baseline
+encounter's worth of coverage,
 matching the same realistic-window cap every other keyword in this
 bucket uses. Genuinely **diminishing** returns per stack, the third
 distinct shape in this whole bucket (alongside Bleeding/Necrotic's
@@ -1073,8 +1095,8 @@ Attuned Tincture** grants Ward "that lasts for 1 hour" instead of a
 stack count — a full hour comfortably outlasts a single 5-round
 encounter, so that item doesn't decay mid-fight the way a normal
 stacked grant does; it should just be priced at the flat full-encounter
-rate (1.0 Fire / 0.5 others) with no duration discount, not run through
-the stacking table above.
+rate (2.0 Fire / 1.0 others, doubled per the Resist correction above)
+with no duration discount, not run through the stacking table above.
 
 ### Lifeforce Plate — refill-frequency framing, not a new per-stack rate
 
