@@ -444,14 +444,31 @@ same fix doesn't automatically apply — they got their own pass instead:
   in this cluster get; the item's own self-selection (only the right
   build wants it) already does the limiting work.
 
-Still open: Fortified Armor and Jerkin of the Land — two Torso items
-still unpriced. Fortified Armor needs its own non-standard "composable
-amplifier" treatment since it doesn't grant Resist itself, only
-conditionally amplifies whatever Resist is already present. Jerkin of
-the Land has no combat mechanic at all (does not need to eat/drink,
-heals extra Health on a full night's rest) — likely out-of-model
-entirely, same reasoning as Spirit Quest Ointment/Travel Rations,
-pending confirmation.
+- **Fortified Armor** (`I071`) — the "composable amplifier" case: it
+  doesn't grant Resist itself, only conditionally boosts whatever
+  Resist the rest of the build already has. Reworded its trigger from
+  "a red card was flipped" (a stale reference to an older design where
+  Hearts/Diamonds paired with bonus successes) to "the attack scored an
+  Extra Success" — the current rules tie Extra Successes to matching
+  the attacking Skill's own single governing suit, not a fixed
+  red/black split, so this both fixes the wording and makes the item
+  actually do what it was designed for: soften spikes specifically on
+  hits that already dealt bonus damage. Priced at the honest suit-match
+  rate (25%) × Physical Resist's rate (5.0) × the same tank assumption
+  as Fitted Armor (1.5×): Value 1.875, Net **−7.125**, the deepest gap
+  in this cluster. Accepted deliberately, not as a miss — per the
+  designer, this is meant to have a higher ceiling than a flat
+  expected-value model can price (it's countering burst/spike damage,
+  the separately-flagged blind spot in `balance_weights_notes.md`'s
+  Resist section, not shaving average damage), and there's real design
+  room to expand which enemies can score Extra Successes (e.g. Good
+  Luck to hit) going forward. Better to leave this underpowered by the
+  model than inflate it to hit a Net the model can't actually justify.
+
+Still open: Jerkin of the Land — no combat mechanic at all (does not
+need to eat/drink, heals extra Health on a full night's rest) — likely
+out-of-model entirely, same reasoning as Spirit Quest Ointment/Travel
+Rations, pending confirmation.
 
 ## Open balance work
 
