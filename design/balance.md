@@ -525,19 +525,52 @@ useful items in these slots, or has something worth hiding when it
 matters) — the same "rational player" convention used for elemental
 Resist picks elsewhere in this model.
 
-**Mendicant's Cord** (L2, Defense) — as a Move, shift up to 2 points
-from one Defense to another (self or a willing adjacent creature).
-Priced at Acc/Def's flat rate (1/point, Locked): Value 2. Per the
-designer's "assume optimal use" steer, only the +2 gain is credited —
-the lowered Defense is assumed to never actually get tested, that's
-the whole point of moving points away from it, so it isn't also
-discounted for the -2 elsewhere. One real judgment call, flagged rather
-than silently resolved: did **not** subtract the 1 AP cost the way a
-Grenade/Potion's AP gets charged as a negative grant, since this isn't
-substituting for an attack (no Autoswing-style opportunity cost
-applies) — matches the 0-AP precedent already used for the Ring
-Masterwork items' reactive triggers. If that read is wrong, Net drops
-from −4 to roughly −4.75 instead. Net = 2 − 6 = **−4**.
+**Mendicant's Cord** moved off Belt entirely — on review, "shift 2
+points between Defenses" doesn't fit Belt's "carrying items" lane at
+all; it's "a specific active ability," Ring's own design lane almost
+word-for-word (the slot-philosophy STANDING RULE), and a better match
+than Torso too (Torso's items are all passive stat bonuses, this is an
+active, targeted ability). Reslotted to **Ring** — its Net (−4,
+computed under Belt's per-encounter Target, same formula either way)
+carries over for now, but the full pricing gets revisited once the
+Ring slot pass properly starts, in case Ring's own items suggest a
+different framing.
+
+**Two new Belt items**, filling the gap this pass surfaced: raw
+capacity plateaus fast in this model (that's the whole finding above —
+more pouches past a realistic-use ceiling buy flavor, not value), so
+reaching a higher Level needs a stronger *active* mechanic, not more
+storage. Both modeled on **Quick Draw** (`T039`, a fixed Level-2
+Technique: *"It takes you 0 AP to retrieve or store an item, regardless
+of location"*) scoped down to something a replaceable item can grant
+without outclassing the permanent Technique it's borrowing from:
+
+- **Belt of the Wayfarer** (`I220`, L3) — *"This belt's pouches can
+  hold an item of any size. Once per encounter, you may retrieve or
+  store any carried item — not just one stored in this belt — for 0
+  AP, regardless of its location."* Two components: capacity (same
+  Storage model as Sash of Deep Pockets, 3.667 — unlimited object size
+  credited the same way Sash's 1-meter allowance was) plus the
+  once-per-encounter free retrieval, priced against the backpack case
+  (2 AP normally, saves 2 AP = 5.5) since that's the scenario that
+  actually differentiates it from a plain belt-only Quick Draw. Total
+  Value 9.167, Net = 9.167 − 9 = **+0.167**, an almost exact fit.
+- **Hair-Trigger Belt** (`I221`, L4) — *"As an Interrupt, you may
+  retrieve any carried item, or swap it for one already in your hand,
+  for 0 AP, regardless of its location. You may do this twice per
+  encounter."* Same Quick Draw anchor, but Interrupt-timed — reacting
+  to new information (a revealed threat, a declared attack) rather
+  than committing blind, which is what justifies the Level jump over
+  Belt of the Wayfarer, not a separate "reactive premium" stacked on
+  top of the AP math. Estimated at 2 real Interrupt-worthy moments per
+  encounter, each at the same backpack-case 2 AP saved (5.5) — a
+  genuine judgment call with no clean precedent, flagged for
+  revisiting rather than asserted with confidence. Value 11.0,
+  Net = 11.0 − 12 = **−1.0**.
+
+That leaves the Belt slot spanning Levels 1 through 4 (Bottomless Belt
+→ Sash/Smuggler's/Mendicant's-gone-to-Ring → Wayfarer → Hair-Trigger),
+with Level 5 open for a future capstone.
 
 ## Open balance work
 
