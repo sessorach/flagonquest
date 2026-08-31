@@ -107,22 +107,28 @@ below, for the actual results):**
   (Food, and anything else whose real cadence is "once an adventuring
   day" or rarer): **rescope the whole row to a one-day window** —
   `Rate = 1` (it triggers once, within its own one-day window, not a
-  fraction of an encounter), and `Target = Level × 2 × (2 / times used
-  per day)` — for a once/day item that's `Level × 4`; an every-other-day
-  item would use `times per day = 0.5`, giving `Level × 8`. The earlier
-  version of this pass mixed scopes (a per-encounter `Target = Level × 3`
-  left untouched, with `Rate` separately discounted by a
+  fraction of an encounter), and `Target = (Level × 3) × encounters
+  between uses` — built directly off the same per-encounter Target
+  every other item uses, not a separately-derived daily constant, scaled
+  by the standing assumption of **2 encounters per adventuring day**.
+  For a once/day item that's `Level × 3 × 2 = Level × 6`; an
+  every-other-day item spans 4 encounters between uses, giving
+  `Level × 12`. (Corrected from an earlier `Level × 2 × (2/times per
+  day)` version — `Level × 4` for once/day — that used its own
+  unexplained "2" constant instead of tying back to the per-encounter
+  Target everything else in the model is built from; caught reviewing
+  the Belt Storage items, see below.) The earlier version of this pass
+  also mixed scopes (a per-encounter `Target = Level × 3` left
+  untouched, with `Rate` separately discounted by a
   2.5-encounters-per-day conversion) — that double-counts the
   infrequency penalty once on each side of the formula, since the
   point of the wider Target is specifically to *compensate* for not
   getting to use the effect every encounter, not to be discounted again
-  on top of that by a shrunken Rate. All 5 Food rows in the ledger were
-  re-scored under the corrected version — see Passes Completed below for
-  how that changed Power Snack, Hearty Meal, Muscular Feast, and Soul
-  Soup's numbers. Sift's own weight (see `balance_weights_notes.md`) is
-  *separately* scoped to "how much value actually lands within a
-  one-day window" for the same reason — a different question from how
-  often the granting item itself can be re-triggered.
+  on top of that by a shrunken Rate. Sift's own weight (see
+  `balance_weights_notes.md`) is *separately* scoped to "how much value
+  actually lands within a one-day window" for the same reason — a
+  different question from how often the granting item itself can be
+  re-triggered.
 - **"Does the threat even show up" discount — reconsidered: doesn't
   apply to consumable items.** Originally applied at ×0.5 to any item
   whose whole effect is *preventing* a debuff rather than granting
@@ -400,17 +406,20 @@ same fix doesn't automatically apply — they got their own pass instead:
   Health loss. Also prompted a general glossary reword tying the Health
   cost explicitly to natural decay, not removal by any means (see
   `scripts/glossary.md`'s Bleeding entry). Rescoped under this file's
-  once/day convention (`Target = Level × 4`, not × 3). First priced
-  against Bleeding's tapered `value(n)` curve (built for pricing
-  Bleeding dealt *to enemies*, where the target might not survive long
-  enough for every stack to matter) — that curve caps out at 12,
-  meaning L4's Target of 16 was mathematically unreachable through
-  stack count alone. Corrected per the designer's steer: a player
-  wearing this genuinely eats every stack's Health cost eventually
-  (no "might not survive to see it" discount the way an enemy has), so
-  prevented stacks price at the full linear rate (4/stack, uncapped)
-  instead. Landed exactly on Target both Levels: **N=2 at L2** (Value
-  8, Net 0), **N=4 at L4** (Value 16, Net 0).
+  once/day convention (`Target = Level × 6`, not × 3 — see the Scoping
+  window correction below). First priced against Bleeding's tapered
+  `value(n)` curve (built for pricing Bleeding dealt *to enemies*,
+  where the target might not survive long enough for every stack to
+  matter) — that curve caps out at 12, meaning even L2's corrected
+  Target of 12 would be mathematically unreachable through stack count
+  alone. Corrected per the designer's steer: a player wearing this
+  genuinely eats every stack's Health cost eventually (no "might not
+  survive to see it" discount the way an enemy has), so prevented
+  stacks price at the full linear rate (4/stack, uncapped) instead.
+  Re-tuned after the once/day Target correction below (Level × 6, not
+  × 4) moved the target it was landing exactly on — bumped from
+  preventing 2/4 stacks to **3 at L2** (Value 12, Net 0) and **6 at L4**
+  (Value 24, Net 0), landing exactly on Target again both Levels.
 - **Dauntless Wrap** (`I068`, L1-5) — grants `[thrice the enhancement's
   Level]` stacks of Protected the first time each day the wearer would
   be Downed, before that Health loss lands. Flat once/day Protected
@@ -425,8 +434,13 @@ same fix doesn't automatically apply — they got their own pass instead:
   Landed on roughly once every 3 adventuring days as the realized
   trigger rate (comparable order of rarity to the established
   Poison-frequency convention, scaled to a per-day cadence). Result: a
-  clean, linear `Net = −Level` across the whole range (−1 to −5) —
-  fits the same accepted-below-Target band as the rest of this cluster.
+  clean, linear `Net = −3 × Level` (−3 to −15) once the once/day Target
+  correction below is applied (was `Level × 4`, giving `−Level`) — a
+  deeper gap than before, but **not re-tuned**: unlike Coat of Knit
+  Flesh, this item was already deliberately discounted for genuine
+  rarity/leeway per the designer's own call, so the wider gap under the
+  corrected Target is left as-is rather than closed by inflating the
+  stack count or the frequency assumption.
 
 - **Fitted Armor** (`I177`) — reworked from "-1 Might Requirement" (no
   documented mechanical consequence exists anywhere in `rulebook.md`
@@ -504,26 +518,37 @@ mostly buying headroom against GM pushback, not new mechanical value.
 Realized at the niche/rare trigger frequency (⅓, from
 `balance_weights.csv`'s new Situational Multipliers section) — a
 capacity crunch big enough to matter isn't an everyday thing. Rescoped
-to the once/day convention (`Target = Level × 4`).
+to the once/day convention, `Target = Level × 6` (corrected from
+`Level × 4` — see the Scoping window correction above).
 
 - **Placeholder's Bottomless Belt** (L1) — capacity only. Value 2.75,
-  Net −1.25. Its lower Level (1, vs. the other two's 2) is what
-  actually differentiates it, not its much larger nominal pouch count.
+  Net **−3.25** (was −1.25). Its lower Level (1, vs. the other two's 2)
+  is what actually differentiates it, not its much larger nominal pouch
+  count.
 - **Sash of Deep Pockets** (L2) — capacity, plus a real differentiator:
   its pouches fit 1-meter objects, not just small Potion/Grenade-sized
   ones, so it can carry a spare weapon or tool the other two can't at
   all. Credited 1 more genuinely-useful large-object slot at the same
-  rate. Value 3.667, Net −4.33.
+  rate. Value 3.667, Net **−8.33** (was −4.33).
 - **Smuggler's Belt** (L2) — capacity, plus a secrecy component per the
   designer's steer: the "automatically fails to discover" guarantee
   modeled as Good Luck-tier (2.4, a near-certain success) on a
   Stealth-adjacent concealment check, at the same ⅓ frequency. Value
-  3.55, Net −4.45.
+  3.55, Net **−8.45** (was −4.45).
 
 All three assume optimal use throughout (the owner actually carries
 useful items in these slots, or has something worth hiding when it
 matters) — the same "rational player" convention used for elemental
-Resist picks elsewhere in this model.
+Resist picks elsewhere in this model. Not re-tuned to close the gap
+under the corrected Target — the underlying capacity model (3 realistic
+slots, ⅓ niche frequency) was already a considered judgment call rather
+than something to inflate on its own; flagged for the designer's
+review. **This whole trio is also mid-redesign** as of the latest
+review pass (Mendicant's Cord moved off Belt to Ring; two new items,
+Quick Draw Belt and an Interrupt-swap item, proposed to give the slot
+real Level range; a "super big belt" and a daily Survival Belt still
+being worked out) — treat the Nets above as the last-committed state,
+not final.
 
 **Mendicant's Cord** moved off Belt entirely — on review, "shift 2
 points between Defenses" doesn't fit Belt's "carrying items" lane at
@@ -674,13 +699,17 @@ the values first reported when this pass landed)*:
   original version mixed a per-encounter `Target = Level × 3` with a
   separately-discounted per-day `Rate`, double-counting the infrequency
   penalty (see the corrected methodology above). Re-scored under
-  `Rate = 1` / `Target = Level × 4` (the once-per-day convention), the
-  category reads much healthier: **Hearty Meal lands exactly at Net 0**,
-  **Power Snack at −0.39** (using Sift's own corrected weight, see
-  below), **Soul Soup at −1**, and only **Muscular Feast stays notably
-  weak at −3** (likely more about the prevention-contingency discount
-  than the day/encounter scoping this time). Travel Rations remains
-  out-of-model (no combat mechanic to price).
+  `Rate = 1` / `Target = Level × 4` (the once-per-day convention as it
+  stood then). **Re-scored again** after the once/day Target formula's
+  own follow-up correction (`Level × 6`, not `× 4` — see the Scoping
+  window section above): **Hearty Meal** Net −2 (was 0), **Power
+  Snack** Net −2.39 (was −0.39, using Sift's own corrected weight, see
+  below), **Soul Soup** Net −1.5 (was −1), **Muscular Feast** Net
+  −0.733 (was +1.267). None of these have been re-tuned to close the
+  gap under the corrected Target — flagged for the designer's review,
+  same as the Belt Storage items above, rather than adjusted
+  unilaterally. Travel Rations remains out-of-model (no combat
+  mechanic to price).
 - **Spirit Quest Ointment (`I116`) is deliberately out-of-model too**,
   same reasoning as Travel Rations — a 24-hour ritual with no combat
   mechanic at all (full Experience respec, once a full night's rest
