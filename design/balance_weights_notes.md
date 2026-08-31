@@ -1140,3 +1140,43 @@ Went with the broader read: the item's own wording doesn't gate on
 net than 1.875 was ever meant to capture. Landed with L3 still a bit
 under Target and L5 an exact fit — both accepted, consistent with the
 rest of this Torso cluster's below-budget Masterwork allowance.
+
+### Storage capacity — priced as AP saved on a realistic-use cap, not raw pouch count
+
+First applied to the Belt slot's three Storage items (Sash of Deep
+Pockets, Smuggler's Belt, Placeholder's Bottomless Belt) — reusable for
+any other Storage-archetype item (7 total in the catalog). `rulebook.md`'s
+Retrieving Items rule is the key fact: a belt pouch is already an "easy"
+1-AP location, with no stated mundane capacity limit, so a Storage item
+isn't saving AP over a normal pouch — it's converting a soft,
+GM-adjudicated "sure, you can probably fit that" into a hard mechanical
+guarantee. That means raw pouch count (5, 12, or 20 across the three
+Belt items) isn't the right thing to price directly: a character rarely
+wants more than a handful of consumables in easy reach beyond what a
+normal belt already plausibly holds, so pouches past that point buy
+headroom against GM pushback, not new mechanical value.
+
+**Model**: cap the "genuinely extra slots used" at **3** regardless of
+an item's nominal pouch count, value each at the AP saved retrieving
+from it (1 AP, 2.75/point per `1 AP,2.75,...` in `balance_weights.csv`),
+realized at the niche/rare trigger frequency (⅓, the new Situational
+Multiplier) — a capacity crunch big enough to matter isn't an everyday
+occurrence. `Value(capacity) = 3 × 2.75 × ⅓ = 2.75`, the same for every
+Storage item regardless of pouch count, unless it has a real qualitative
+differentiator worth pricing separately (Sash of Deep Pockets' pouches
+fit 1-meter objects, not just small ones — credited 1 more slot at the
+same rate, +0.917). A Level difference (Bottomless Belt's L1 vs. the
+other two's L2) is the correct way to differentiate otherwise-similar
+Storage items, not inflating the capacity component itself.
+
+**Secrecy** (Smuggler's Belt): its "automatically fails to discover"
+guarantee modeled as Good Luck-tier (2.4, a near-certain success — not
+a modest edge) on a Stealth-adjacent concealment check, at the same ⅓
+frequency: `2.4 × ⅓ = 0.8`, additive on top of the capacity component.
+
+All Storage pricing rescopes to the once/day convention (`Target =
+Level × 4`, `Rate = 1`) rather than per-encounter, and assumes optimal
+use throughout (the owner actually carries useful items in the extra
+slots, or has something worth hiding when it matters) — the same
+"rational player" convention used for elemental Resist picks elsewhere
+in this model.

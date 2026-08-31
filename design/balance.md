@@ -479,8 +479,65 @@ same fix doesn't automatically apply — they got their own pass instead:
   entirely.
 
 That's the full 11-item Torso Masterwork cluster priced or confirmed
-out-of-model. Next up: the rest of the 19-item Defense archetype
-(Belt, Feet, Head, Neck, Ring slots).
+out-of-model. Switched strategy after this: work the remaining
+Masterwork items **slot by slot** (Belt, Hands, Other, Feet, Head,
+Neck, Ring, Held — smallest to largest), saving an archetype-wide pass
+for after every slot's been through the model at least once.
+
+### Belt Masterwork pass — first Storage-archetype items priced
+
+4 items: 3 Storage (Sash of Deep Pockets, Smuggler's Belt, Placeholder's
+Bottomless Belt) and 1 Defense (Mendicant's Cord). Storage hadn't been
+priced against this model at all before this — `rulebook.md`'s
+Retrieving Items rule was the key check: a belt pouch is already an
+"easy" 1-AP location with no stated mundane capacity limit, so these
+items aren't saving AP over a normal belt pouch, they're converting a
+soft, GM-adjudicated "sure, you can probably fit that" into a hard
+mechanical guarantee.
+
+Priced capacity as the AP saved (1 AP, 2.75) on a realistic "genuinely
+extra slots used" ceiling of **3** — a character rarely wants more than
+a handful of consumables in easy reach beyond what a normal belt
+already plausibly holds, so 12 or 20 nominal pouches don't translate
+into proportionally more value than 3 does; past that point they're
+mostly buying headroom against GM pushback, not new mechanical value.
+Realized at the niche/rare trigger frequency (⅓, from
+`balance_weights.csv`'s new Situational Multipliers section) — a
+capacity crunch big enough to matter isn't an everyday thing. Rescoped
+to the once/day convention (`Target = Level × 4`).
+
+- **Placeholder's Bottomless Belt** (L1) — capacity only. Value 2.75,
+  Net −1.25. Its lower Level (1, vs. the other two's 2) is what
+  actually differentiates it, not its much larger nominal pouch count.
+- **Sash of Deep Pockets** (L2) — capacity, plus a real differentiator:
+  its pouches fit 1-meter objects, not just small Potion/Grenade-sized
+  ones, so it can carry a spare weapon or tool the other two can't at
+  all. Credited 1 more genuinely-useful large-object slot at the same
+  rate. Value 3.667, Net −4.33.
+- **Smuggler's Belt** (L2) — capacity, plus a secrecy component per the
+  designer's steer: the "automatically fails to discover" guarantee
+  modeled as Good Luck-tier (2.4, a near-certain success) on a
+  Stealth-adjacent concealment check, at the same ⅓ frequency. Value
+  3.55, Net −4.45.
+
+All three assume optimal use throughout (the owner actually carries
+useful items in these slots, or has something worth hiding when it
+matters) — the same "rational player" convention used for elemental
+Resist picks elsewhere in this model.
+
+**Mendicant's Cord** (L2, Defense) — as a Move, shift up to 2 points
+from one Defense to another (self or a willing adjacent creature).
+Priced at Acc/Def's flat rate (1/point, Locked): Value 2. Per the
+designer's "assume optimal use" steer, only the +2 gain is credited —
+the lowered Defense is assumed to never actually get tested, that's
+the whole point of moving points away from it, so it isn't also
+discounted for the -2 elsewhere. One real judgment call, flagged rather
+than silently resolved: did **not** subtract the 1 AP cost the way a
+Grenade/Potion's AP gets charged as a negative grant, since this isn't
+substituting for an attack (no Autoswing-style opportunity cost
+applies) — matches the 0-AP precedent already used for the Ring
+Masterwork items' reactive triggers. If that read is wrong, Net drops
+from −4 to roughly −4.75 instead. Net = 2 − 6 = **−4**.
 
 ## Open balance work
 
