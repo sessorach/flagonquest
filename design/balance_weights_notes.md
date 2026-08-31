@@ -25,6 +25,18 @@ pass leaned on these numbers without ever checking where they came from.
 - **Unexplained** — no formula, no reasoning line, nothing. A bare
   literal someone typed in.
 
+**Before combining two weights (or applying a situational multiplier
+from `balance_weights.csv`'s Situational Multipliers section) to derive
+a new number, check both source rows' `Discount Baked In` columns
+first.** If either one already reflects a probability discount (hit
+chance, realization, frequency), don't apply that same dimension again
+on top of it. This is exactly the bug the Resist correction below was
+born from: Resist's formula multiplied an already-landed-hit count
+(hit chance already resolved) by Damage's own rate (hit chance *also*
+baked in) — the same discount counted twice. `balance_weights.csv` now
+carries a `Derived From` column precisely so a check like that is a
+quick lookup, not a re-derivation from scratch.
+
 ## Locked
 
 - **Fudge Value = 1.** The anchor itself, by definition — 1 value ≈ +1
