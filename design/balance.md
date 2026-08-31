@@ -465,10 +465,15 @@ same fix doesn't automatically apply — they got their own pass instead:
   Luck to hit) going forward. Better to leave this underpowered by the
   model than inflate it to hit a Net the model can't actually justify.
 
-Still open: Jerkin of the Land — no combat mechanic at all (does not
-need to eat/drink, heals extra Health on a full night's rest) — likely
-out-of-model entirely, same reasoning as Spirit Quest Ointment/Travel
-Rations, pending confirmation.
+- **Jerkin of the Land** (`I176`) — confirmed out-of-model, same
+  reasoning as Spirit Quest Ointment/Travel Rations: no combat mechanic
+  at all (doesn't need to eat/drink, heals an extra 1 Health on a full
+  night's rest), purely a downtime/survival convenience with nothing
+  for `Target = Level × 3` to check against.
+
+That's the full 11-item Torso Masterwork cluster priced or confirmed
+out-of-model. Next up: the rest of the 19-item Defense archetype
+(Belt, Feet, Head, Neck, Ring slots).
 
 ## Open balance work
 
