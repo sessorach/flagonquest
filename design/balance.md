@@ -428,11 +428,30 @@ same fix doesn't automatically apply — they got their own pass instead:
   clean, linear `Net = −Level` across the whole range (−1 to −5) —
   fits the same accepted-below-Target band as the rest of this cluster.
 
-Still open: Fortified Armor, Fitted Armor, and Jerkin of the Land —
-three Torso items still unpriced, one of them (Fortified Armor)
-needing its own non-standard "composable amplifier" treatment since it
-doesn't grant Resist itself, only conditionally amplifies whatever
-Resist is already present.
+- **Fitted Armor** (`I177`) — reworked from "-1 Might Requirement" (no
+  documented mechanical consequence exists anywhere in `rulebook.md`
+  for failing a Might Requirement, so the old text was unpriceable)
+  into a flat +1 Physical Resist grant, the Physical sibling of
+  Elemental-Resistant Armor. Priced against the designer's steer that
+  this specific item should be balanced for who actually buys it — a
+  tank/bruiser playstyle, not an average character — taking 50% more
+  attacks than the party-average baseline, so Physical Resist's own
+  rate scales with the hit-count term (5.0 × 1.5 = 7.5/point). Landed
+  on **Level 2** (Target 6, Net +1.5) over Level 3 (Net −1.5): unlike
+  Elemental-Resistant Armor's chosen-element bet, this grant carries no
+  risk or guesswork — a tank gets full, guaranteed value every fight —
+  so it doesn't need the same below-Target discount the riskier picks
+  in this cluster get; the item's own self-selection (only the right
+  build wants it) already does the limiting work.
+
+Still open: Fortified Armor and Jerkin of the Land — two Torso items
+still unpriced. Fortified Armor needs its own non-standard "composable
+amplifier" treatment since it doesn't grant Resist itself, only
+conditionally amplifies whatever Resist is already present. Jerkin of
+the Land has no combat mechanic at all (does not need to eat/drink,
+heals extra Health on a full night's rest) — likely out-of-model
+entirely, same reasoning as Spirit Quest Ointment/Travel Rations,
+pending confirmation.
 
 ## Open balance work
 
