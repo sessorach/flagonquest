@@ -708,6 +708,22 @@ has been scored at the generic Debuff rate (1) everywhere in the current
 data (16 mentions across items/techniques) — a 4× miss even before the
 stacking cap is applied.
 
+**Correction: the taper is an enemy-targeting assumption, not a
+universal one.** The cap exists because Bleeding is normally something
+the party inflicts on an *enemy* — a target whose continued presence in
+the fight is genuinely uncertain (it might die to other damage, or the
+encounter might just end, before every stack finishes decaying), so
+stacking past ~2 buys a shrinking chance of ever actually cashing out.
+That uncertainty doesn't apply the same way to a **player character**
+carrying Bleeding — the wearer is the one still standing at the table
+for the whole encounter (and the rest of the day), so every stack they
+pick up really does eventually tick down and cost Health, without the
+"might not live to see it" discount. Pricing an effect that removes or
+prevents Bleeding **from a player** (Coat of Knit Flesh, or anything
+like it in the future) should use the full linear rate — 4/stack,
+uncapped — not this tapered `value(n)` curve, which stays reserved for
+pricing Bleeding as something the party deals out.
+
 ### Crippled = 1.5/stack base, 4-turn window, hard-capped at 42
 
 "-1 to your own attacks" per stack — reduces the *afflicted creature's

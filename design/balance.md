@@ -373,21 +373,46 @@ same fix doesn't automatically apply — they got their own pass instead:
 
 - **Coat of Knit Flesh** (`I070`) — reworked from a per-turn "remove
   stacks of Bleeding" cleanse into a clean once-per-day prevention (the
-  first 1/L2 or 2/L4 stacks of Bleeding the wearer would ever gain in a
-  day are ignored outright), after the original wording turned out
-  ambiguous against Bleeding's own "lose 1 Health when a stack decays"
-  rule — read literally, the item's own removal could have triggered
-  that same Health loss. Also prompted a general glossary reword tying
-  the Health cost explicitly to natural decay, not removal by any
-  means (see `scripts/glossary.md`'s Bleeding entry). Rescoped under
-  this file's once/day convention (`Target = Level × 4`, not × 3).
-  L2 Net −4, L4 Net −8.
+  first N stacks of Bleeding the wearer would ever gain in a day are
+  ignored outright), after the original wording turned out ambiguous
+  against Bleeding's own "lose 1 Health when a stack decays" rule —
+  read literally, the item's own removal could have triggered that same
+  Health loss. Also prompted a general glossary reword tying the Health
+  cost explicitly to natural decay, not removal by any means (see
+  `scripts/glossary.md`'s Bleeding entry). Rescoped under this file's
+  once/day convention (`Target = Level × 4`, not × 3). First priced
+  against Bleeding's tapered `value(n)` curve (built for pricing
+  Bleeding dealt *to enemies*, where the target might not survive long
+  enough for every stack to matter) — that curve caps out at 12,
+  meaning L4's Target of 16 was mathematically unreachable through
+  stack count alone. Corrected per the designer's steer: a player
+  wearing this genuinely eats every stack's Health cost eventually
+  (no "might not survive to see it" discount the way an enemy has), so
+  prevented stacks price at the full linear rate (4/stack, uncapped)
+  instead. Landed exactly on Target both Levels: **N=2 at L2** (Value
+  8, Net 0), **N=4 at L4** (Value 16, Net 0).
+- **Dauntless Wrap** (`I068`, L1-5) — grants `[thrice the enhancement's
+  Level]` stacks of Protected the first time each day the wearer would
+  be Downed, before that Health loss lands. Flat once/day Protected
+  pricing wildly overshot Target (+5 to +25 across Levels) — that rate
+  assumes stacks realized gradually across a normal fight, not a single
+  guaranteed lump delivered at the one moment it's certain to help.
+  Discounted per the designer's own framing instead: there's no
+  guarantee a given day even produces a hit that would Down the
+  wearer specifically, and when one does, the fight was probably
+  already going badly — this only ever helps in a losing situation, so
+  it deserves real leeway rather than being priced as a guaranteed win.
+  Landed on roughly once every 3 adventuring days as the realized
+  trigger rate (comparable order of rarity to the established
+  Poison-frequency convention, scaled to a per-day cadence). Result: a
+  clean, linear `Net = −Level` across the whole range (−1 to −5) —
+  fits the same accepted-below-Target band as the rest of this cluster.
 
-Still open: Dauntless Wrap, Fortified Armor, Fitted Armor, and Jerkin
-of the Land — four Torso items still unpriced, one of them (Fortified
-Armor) needing its own non-standard "composable amplifier" treatment
-since it doesn't grant Resist itself, only conditionally amplifies
-whatever Resist is already present.
+Still open: Fortified Armor, Fitted Armor, and Jerkin of the Land —
+three Torso items still unpriced, one of them (Fortified Armor)
+needing its own non-standard "composable amplifier" treatment since it
+doesn't grant Resist itself, only conditionally amplifies whatever
+Resist is already present.
 
 ## Open balance work
 
