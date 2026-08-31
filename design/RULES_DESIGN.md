@@ -1541,6 +1541,24 @@ the full list going into the balance pass.
   would gain in a day are ignored instead") — see `balance_ledger.csv`
   (`I070-L2`/`I070-L4`) for the pricing.
 
+### STANDING RULE — Masterwork slots don't need equal Level bands, and some slots are just more exciting than others
+
+Surfaced finishing the Belt slot: its six items landed clustered at
+Levels 1-4 (three of them at Level 2, none at Level 5) rather than an
+even Level 1-5 spread — confirmed as fine, not a gap to force-fill.
+Two reasons, both worth remembering for future slots: first, some
+mechanics genuinely plateau (Belt's own raw-capacity items can't
+support a higher Level no matter how the numbers are pushed — see the
+Belt Masterwork pass in `balance.md`), so a slot built mostly around
+one of those mechanics will naturally cluster low. Second, and more
+important going forward: players are never going to get as excited
+about a Level 5 Belt as they are a capstone weapon or a signature
+piece of armor — some slots are just more interesting to build toward
+than others, and that's fine. Don't chase a uniform Level curve across
+every slot for its own sake; let each slot's Level spread reflect what
+it can actually support and how much attention it's worth, the same
+way Belt was allowed to sit lower and lumpier than Torso did.
+
 ## Open questions / TODO
 
 - **Poison duration — "1 hour" vs. "until your next long rest."**

@@ -498,104 +498,116 @@ Masterwork items **slot by slot** (Belt, Hands, Other, Feet, Head,
 Neck, Ring, Held — smallest to largest), saving an archetype-wide pass
 for after every slot's been through the model at least once.
 
-### Belt Masterwork pass — first Storage-archetype items priced
+### Belt Masterwork pass — final lineup
 
-4 items: 3 Storage (Sash of Deep Pockets, Smuggler's Belt, Placeholder's
-Bottomless Belt) and 1 Defense (Mendicant's Cord). Storage hadn't been
-priced against this model at all before this — `rulebook.md`'s
-Retrieving Items rule was the key check: a belt pouch is already an
-"easy" 1-AP location with no stated mundane capacity limit, so these
-items aren't saving AP over a normal belt pouch, they're converting a
-soft, GM-adjudicated "sure, you can probably fit that" into a hard
-mechanical guarantee.
+6 items, spanning Level 1-4. Storage hadn't been priced against this
+model at all before this pass — `rulebook.md`'s Retrieving Items rule
+was the key check: a belt pouch is already an "easy" 1-AP location
+with no stated mundane capacity limit, so these items were never
+saving AP over a normal pouch, they're converting a soft, GM-
+adjudicated "sure, you can probably fit that" into a hard mechanical
+guarantee. Went through two real structural corrections during review
+(both documented in full below) before landing here: **Mendicant's
+Cord moved off Belt to Ring** entirely (see its own note further down
+this file) — "shift 2 points between Defenses" never fit Belt's
+"carrying items" lane, it's Ring's "a specific active ability" lane
+almost word-for-word.
 
-Priced capacity as the AP saved (1 AP, 2.75) on a realistic "genuinely
-extra slots used" ceiling of **3** — a character rarely wants more than
-a handful of consumables in easy reach beyond what a normal belt
-already plausibly holds, so 12 or 20 nominal pouches don't translate
-into proportionally more value than 3 does; past that point they're
-mostly buying headroom against GM pushback, not new mechanical value.
-Realized at the niche/rare trigger frequency (⅓, from
-`balance_weights.csv`'s new Situational Multipliers section) — a
-capacity crunch big enough to matter isn't an everyday thing. Rescoped
-to the once/day convention, `Target = Level × 6` (corrected from
-`Level × 4` — see the Scoping window correction above).
+**Capacity's real value, and why it's priced per-encounter, not
+once/day.** First pass treated capacity as an occasional "crunch"
+event (once/day scoped). Corrected per the designer: the actual value
+is the everyday convenience of never having to choose what stays in
+easy reach vs. the backpack — items that would've cost 2 AP to
+retrieve now cost 1, every single fight, not once a day. That's the
+same AP-saved-on-retrieval logic Quick Draw Belt already uses, so
+capacity is now scoped `Target = Level × 3` like everything else,
+capped at **3 genuinely-extra slots** realistically used (`3 × 2.75
+[1 AP] × ⅓ [niche crunch frequency] = 2.75`) regardless of nominal
+pouch count — more pouches past that point buy flavor, not value.
 
-- **Placeholder's Bottomless Belt** (L1) — capacity only. Value 2.75,
-  Net **−3.25** (was −1.25). Its lower Level (1, vs. the other two's 2)
-  is what actually differentiates it, not its much larger nominal pouch
-  count.
-- **Sash of Deep Pockets** (L2) — capacity, plus a real differentiator:
-  its pouches fit 1-meter objects, not just small Potion/Grenade-sized
-  ones, so it can carry a spare weapon or tool the other two can't at
-  all. Credited 1 more genuinely-useful large-object slot at the same
-  rate. Value 3.667, Net **−8.33** (was −4.33).
-- **Smuggler's Belt** (L2) — capacity, plus a secrecy component per the
-  designer's steer: the "automatically fails to discover" guarantee
-  modeled as Good Luck-tier (2.4, a near-certain success) on a
-  Stealth-adjacent concealment check, at the same ⅓ frequency. Value
-  3.55, Net **−8.45** (was −4.45).
+- **Placeholder's Bottomless Belt** (`I189`, L1, 20 Gold) — *"The belt
+  has 20 pouches, each an easily-accessible container that can hold a
+  small object such as a Potion or Grenade."* Capacity only. Value
+  2.75, Target 3, **Net −0.25**.
+- **Smuggler's Belt** (`I106`, L2, 40 Gold) — *"The belt has 8 visible
+  pouches... each pouch actually has two separate compartments...
+  anyone not familiar with the specific belt will automatically fail
+  any attempt to discover the non-visible compartments. For 0 AP, you
+  may transfer an item from one of this belt's pouches directly into
+  the pouch, pocket, or pack of a willing creature within sight."*
+  Pouch count bumped 5→8 for flavor (still under the 3-slot ceiling,
+  no separate credit). Secrecy priced as **2× Good Luck** (`2.4` each)
+  at the corrected every-other-day frequency — per-encounter baseline
+  with 2 encounters/day means "every other day" = 1 occurrence per 4
+  encounters = **¼**, not the ⅓ niche-crunch rate: `4.8 × ¼ = 1.2`. The
+  remote item-transfer ability is priced flat (1 AP-equivalent, 2.75)
+  rather than an assumed per-encounter frequency, since its real value
+  is contingent on how many items actually get moved, not how often
+  combat happens. `Value = 2.75 + 1.2 + 2.75 = 6.7`, Target 6,
+  **Net +0.7**.
+- **Sash of Deep Pockets** (`I105`, L3, 60 Gold) — *"This belt's
+  pouches can hold up to 20 cubic meters (about the size of a small
+  closet) worth of stuff, as long as each item fits through a pouch's
+  opening — a little larger than a fist. If the belt is removed,
+  everything stored inside immediately falls out."* Bumped from L2 to
+  L3 and reworked into "the biggest bag you can wear" — modeled
+  against **Placeholder's Spacious Satchel** (`I115`, Other slot, L3,
+  60 Gold, 100 cubic meters) at the same price point, scaled down and
+  echoing its own phrasing style, since the Satchel stays the
+  enormous option and this item's identity is being worn and always
+  accessible instead. The "falls out if removed" drawback is the
+  countermeasure against using it as a Satchel substitute — a
+  narrative/logistics deterrent, not priced as a discount since it
+  doesn't touch combat value. `Value = 2.75 (capacity) + 1.833 (2
+  large-object slots, unrestricted size now vs. the old 1-meter cap)
+  = 4.583`, Target 9, **Net −4.42**.
 
-All three assume optimal use throughout (the owner actually carries
-useful items in these slots, or has something worth hiding when it
-matters) — the same "rational player" convention used for elemental
-Resist picks elsewhere in this model. Not re-tuned to close the gap
-under the corrected Target — the underlying capacity model (3 realistic
-slots, ⅓ niche frequency) was already a considered judgment call rather
-than something to inflate on its own; flagged for the designer's
-review. **This whole trio is also mid-redesign** as of the latest
-review pass (Mendicant's Cord moved off Belt to Ring; two new items,
-Quick Draw Belt and an Interrupt-swap item, proposed to give the slot
-real Level range; a "super big belt" and a daily Survival Belt still
-being worked out) — treat the Nets above as the last-committed state,
-not final.
+**Two items modeled on the Quick Draw Technique** (`T039`, fixed
+Level 2, Passive: *"It takes you 0 AP to retrieve or store an item,
+regardless of location"*) — scoped down to something replaceable gear
+can grant without outclassing the permanent Technique it echoes:
 
-**Mendicant's Cord** moved off Belt entirely — on review, "shift 2
-points between Defenses" doesn't fit Belt's "carrying items" lane at
-all; it's "a specific active ability," Ring's own design lane almost
-word-for-word (the slot-philosophy STANDING RULE), and a better match
-than Torso too (Torso's items are all passive stat bonuses, this is an
-active, targeted ability). Reslotted to **Ring** — its Net (−4,
-computed under Belt's per-encounter Target, same formula either way)
-carries over for now, but the full pricing gets revisited once the
-Ring slot pass properly starts, in case Ring's own items suggest a
-different framing.
+- **Quick Draw Belt** (`I220`, L2, 40 Gold) — *"Items you carry can be
+  retrieved or stored for 0 AP, regardless of their location."* One
+  realistic AP-saving retrieval per encounter, priced against the
+  backpack case (2 AP → 0 AP, saves 2 AP = 5.5) since "regardless of
+  location" is the whole point. No capacity credit (its text doesn't
+  grant pouches). Value 5.5, Target 6, **Net −0.5** — lands at the
+  Technique's own Level, confirmed by the designer as intentional
+  parity ("literally just the Technique but purchaseable with gold").
+- **Hair-Trigger Belt** (`I221`, L4, 80 Gold) — *"As an Interrupt for
+  0 AP, you may retrieve any carried item, or swap it for one already
+  in your hand, regardless of its location."* Same anchor, but
+  Interrupt-timed instead of a normal action — reacting to new
+  information rather than committing blind, which is what justifies
+  the Level jump. Deliberately **no stated use limit** in the text,
+  per the designer — priced against a realistic estimate of 2
+  Interrupt-worthy moments per fight (`2 × 5.5 = 11.0`) rather than
+  writing a hard cap; a player exceeding that in practice is an earned
+  outcome, not something to price against. Target 12, **Net −1.0**.
 
-**Two new Belt items**, filling the gap this pass surfaced: raw
-capacity plateaus fast in this model (that's the whole finding above —
-more pouches past a realistic-use ceiling buy flavor, not value), so
-reaching a higher Level needs a stronger *active* mechanic, not more
-storage. Both modeled on **Quick Draw** (`T039`, a fixed Level-2
-Technique: *"It takes you 0 AP to retrieve or store an item, regardless
-of location"*) scoped down to something a replaceable item can grant
-without outclassing the permanent Technique it's borrowing from:
+**Belt of the Wayfarer** (`I222`, L2, 40 Gold, renamed from "Survival
+Belt") — *"This belt can produce any
+item from an Adventurer's Kit at will, though never more than one of a
+given item at a time. Once per day, it can also produce Potions worth
+up to 2 Levels total — either two Windrunner's Draughts, or one
+Thornskin Elixir. Unused Potions fade by the end of the day."* Mundane
+kit items (rope, a torch, a bedroll, and similar — see `I004`) price
+at essentially zero, same treatment as Jerkin of the Land's nourishment
+effect. The daily Potion budget is a genuine point-spend, not a flat
+cap — both options land at exactly the same raw value (`2×3=6` for two
+Level-1 Potions, `1×6=6` for one Level 2) since Potion Target scales
+linearly with Level, so which option gets picked doesn't change the
+price. `Value = 6`, `Target (once/day, Level × 6) = 12`, **Net −6** —
+the same `−3 × Level` shape Dauntless Wrap's intentional discount
+already established. **Flagged for future expansion**: only two
+Potions are currently eligible (a deliberate proof-of-concept-sized
+list) — add more non-healing, non-Poison, non-Grenade buff Potions to
+the pool as they're created, and consider whether other item types
+could eventually round out the daily budget too.
 
-- **Belt of the Wayfarer** (`I220`, L3) — *"This belt's pouches can
-  hold an item of any size. Once per encounter, you may retrieve or
-  store any carried item — not just one stored in this belt — for 0
-  AP, regardless of its location."* Two components: capacity (same
-  Storage model as Sash of Deep Pockets, 3.667 — unlimited object size
-  credited the same way Sash's 1-meter allowance was) plus the
-  once-per-encounter free retrieval, priced against the backpack case
-  (2 AP normally, saves 2 AP = 5.5) since that's the scenario that
-  actually differentiates it from a plain belt-only Quick Draw. Total
-  Value 9.167, Net = 9.167 − 9 = **+0.167**, an almost exact fit.
-- **Hair-Trigger Belt** (`I221`, L4) — *"As an Interrupt, you may
-  retrieve any carried item, or swap it for one already in your hand,
-  for 0 AP, regardless of its location. You may do this twice per
-  encounter."* Same Quick Draw anchor, but Interrupt-timed — reacting
-  to new information (a revealed threat, a declared attack) rather
-  than committing blind, which is what justifies the Level jump over
-  Belt of the Wayfarer, not a separate "reactive premium" stacked on
-  top of the AP math. Estimated at 2 real Interrupt-worthy moments per
-  encounter, each at the same backpack-case 2 AP saved (5.5) — a
-  genuine judgment call with no clean precedent, flagged for
-  revisiting rather than asserted with confidence. Value 11.0,
-  Net = 11.0 − 12 = **−1.0**.
-
-That leaves the Belt slot spanning Levels 1 through 4 (Bottomless Belt
-→ Sash/Smuggler's/Mendicant's-gone-to-Ring → Wayfarer → Hair-Trigger),
-with Level 5 open for a future capstone.
+That's the full 6-item Belt slot, Level 1 through 4, with Level 5 open
+for a future capstone.
 
 ## Open balance work
 
