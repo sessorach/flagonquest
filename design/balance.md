@@ -685,6 +685,62 @@ deliberately **not** an item — the designer wants it as a Technique
 instead, flagged as a Level 5 capstone candidate in `RULES_DESIGN.md`'s
 Open questions.
 
+### "Other" Masterwork pass — final lineup
+
+7 items originally, now 6 after a cut. Unlike the 7 worn slots, "Other"
+has no archive-established design lane — it's just whatever doesn't
+occupy a body slot. Working definition based on the actual catalog:
+**carried tools and storage that aren't worn**, distinct from Belt
+(worn, carries other items) and Hands (worn, active use).
+
+- **Cut Immaculate Spice Rack** (`I162`) — per the designer, the game
+  has few Craft flips for creating items in actual play, making this
+  item's cooking-specific Good Luck largely irrelevant. Not a strict
+  mechanical duplicate of Placeholder's Wondrous Workspace (Good Luck
+  bonus vs. a tool-requirement waiver are genuinely separate benefits,
+  same split Deft Gloves already established with its own two
+  clauses), but Workspace's universal "any School" coverage already
+  absorbs Spice Rack's thematic niche. Zero cross-references, removed
+  cleanly.
+- **Evertoking Bottle** (`I113`, L1) — surfaced as a real combat item
+  on closer read, not the "silly narrative" item it looks like on the
+  surface: a smoke cloud (Light Cover, reusing Smokejar's own
+  established `Cover(relocation): 1` rate) plus a suit-randomized
+  debuff attack (+6 vs. Vital Defense) against anyone who ends their
+  turn in it. Expected keyword value averaged across the four suits
+  (2.4), the standard on-hit discount (0.5), ~2 realized trigger-
+  instances/encounter and the same "can't avoid catching allies" 0.8
+  realization AoE Grenades get: `Value = 1 + (2.4 × 0.5 × 2 × 0.8) =
+  2.92`, **Net −0.08**. Flagged: the +6 attack bonus is unusually
+  generous for Level 1, and this used the standard 50% on-hit discount
+  without adjusting for it — may be a real underestimate.
+- **Unmovable Bar** (`I163`, L1) — pure anchor-point prop, no Skill
+  flip, no combat application. Narrative Utility item: `Value = ⅓ × 3
+  = 1`, **Net −2**.
+- **Placeholder's Indelible Instrument** (`I164`, L1) — per the
+  designer, the most purely narrative item in this batch — no
+  plausible tactical use at all, unlike the others' stretch cases.
+  Treated as fully out-of-model (same as Travel Rations), not even the
+  Narrative Utility token credit: `Value = 0`, **Net −3**.
+- **Distant Scroll Cases** (`I114`, L2) — paired long-distance
+  item/document-sharing cases, pure logistics with no combat angle.
+  Narrative Utility: `Value = ⅓ × 6 = 2`, **Net −4**.
+- **Placeholder's Wondrous Workspace** (`I165`, L2) — universal
+  tool/kit-requirement waiver for any crafting School, the same shape
+  as Deft Gloves' "counts as tinker's tools" clause but much broader,
+  and now the sole tool-substitute item in the catalog. Priced as a
+  bigger flat convenience credit than Deft Gloves' narrow version:
+  `Value = 2`, **Net −4**.
+- **Placeholder's Spacious Satchel** (`I115`, L3) — priced via the
+  Storage capacity model (not Narrative Utility), same reasoning as
+  Sash of Deep Pockets, since this is a direct storage item: base
+  capacity (2.75) plus 3 large-object slots (credited the full 3-slot
+  ceiling rather than Sash's 2, since its 100-cubic-meter volume and
+  head-sized opening both exceed Sash's numbers): `Value = 2.75 + 3 ×
+  0.917 = 5.5`, **Net −3.5**. Doesn't need Sash's "falls out if
+  removed" drawback — not being worn is already a real downside on its
+  own.
+
 ## Open balance work
 
 - **The full Masterwork list, 103 items total** (`items.csv` `I057`-`I115`
