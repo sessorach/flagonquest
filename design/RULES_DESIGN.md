@@ -1559,6 +1559,27 @@ every slot for its own sake; let each slot's Level spread reflect what
 it can actually support and how much attention it's worth, the same
 way Belt was allowed to sit lower and lumpier than Torso did.
 
+### Naming convention — "Placeholder" as an in-fiction attribution moniker, not a literal dev stub
+
+Several items and abilities across the catalog carry the name
+"Placeholder's [X]" (Placeholder's Bottomless Belt, Placeholder's
+Spacious Satchel, and others). This is **not** a literal unfinished
+placeholder name left over from drafting — it's deliberate in-fiction
+flavor, worth recording since nothing else spells it out. "Placeholder"
+is a legendary, untraceable attribution used across generations of mage
+students for a specific flavor of spell/item: the kind of clever-but-
+faintly-embarrassing minor utility trick nobody wants their own name
+permanently attached to (a mage-light spell specialized in sneaking out
+undetected, minor telekinesis handy for pranks, that sort of thing) —
+written down, passed student to student, and eventually formalized into
+real, teachable effects with no traceable original author, the same way
+real-world folklore accretes onto a stock name. Two identifying
+patterns mark the whole family, worth matching if adding a new one:
+**silly alliterative names** (in the style of "Tender Telekinesis"), and
+generally **lower-Level, utility-flavored effects** — matching the
+in-fiction idea that these are exactly the kind of thing a clever,
+unserious student would think up and want credited to someone else.
+
 ## Open questions / TODO
 
 - **Poison duration — "1 hour" vs. "until your next long rest."**
