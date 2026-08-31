@@ -609,6 +609,82 @@ could eventually round out the daily budget too.
 That's the full 6-item Belt slot, Level 1 through 4, with Level 5 open
 for a future capstone.
 
+### Hands Masterwork pass — final lineup
+
+8 items, spanning Level 1-3. The archive's original one-liner for this
+slot ("skill-based non-attack actions") didn't survive contact with the
+real catalog — more than half the existing items were attack-granting
+or attack-modifying, not skill utility. **Reslotted Sorcerer's Gloves**
+(grants a Sorcery attack) **and Staying Gauntlets** (modifies weapon
+attacks to non-lethal) **to Held**, where they actually belong. Working
+definition going forward: **"utility built around what your hands can
+do — manipulate, create, or access something,"** broader than the
+archive's phrasing (a couple of items here aren't tied to a specific
+Skill flip at all) but still cleanly excluding anything that grants or
+modifies an attack.
+
+**Two new Situational Multiplier conventions came out of pricing this
+slot**, both now in `balance_weights.csv`:
+- **Trigger frequency, standardized to three fixed tiers** — `1` =
+  every encounter (no discount), `1/2` = once/day (real recurring
+  demand, not every fight), `1/3` = rarer than daily (niche). Was a
+  single ad hoc "~1/3" example before; per the designer, don't
+  calculate finer gradations than this — an item that lands
+  underpowered at the 1/3 tier needs redesigning, not a more precise
+  discount.
+- **Narrative Utility items** (`Value = 1/3 × the item's own Target`)
+  — for effects the model has no real way to price (exploration/puzzle
+  value, not combat). Explicitly a labeled guess, not a derivation —
+  formalized so the whole category gets one honest, consistent
+  convention instead of a different ad hoc number picked per item.
+
+- **Placeholder's Grasping Gloves** (`I223`, L1) — a scoped-down item
+  version of the Tender Telekinesis Technique (`T095`): kept its 2 AP
+  cost and fixed the range at 5m (was Skill-Total-scaled) so it
+  doesn't outclass the Technique or require the wearer to have
+  Sorcery/Theurgy. Narrative Utility item — `Value = 1/3 × 3 = 1`,
+  **Net −2**. Deliberately not optimized — a fun, quirky Level-1
+  pickup, not a min-max choice.
+- **Vanishing Gloves** (`I224`, L1) — once/day, conjures a free
+  Smokejar into the wearer's hand. Granting a copy of an
+  already-priced Grenade makes this clean to cost directly off that
+  item's own Value (6.25) against the once/day Target (6) —
+  **Net +0.25**, about as tight a fit as this pass has produced.
+- **Armory Gauntlets** (`I075`, L1) — retooled from knightly
+  "Armory" theming into a smuggling item: conjures any weapon at will
+  (0 AP), undetectable to anyone unfamiliar with this specific pair.
+  Conjuring priced as a tier-1 draw-speed saving (2.75, happens nearly
+  every fight); concealment priced like Smuggler's Belt's secrecy,
+  tier-1/3 (0.8). **Net +0.55**.
+- **Deft Gloves** (`I076`, L2) — broadened from "Craft for locks/small
+  devices only" to all non-attack Craft flips, per the designer's
+  steer, landing it at tier-1/2 (2.4 × 0.5 = 1.2) plus a flat
+  tinker's-tools convenience credit (0.5). **Net −4.3**.
+- **Field Surgeon's Handwraps** (`I153`, L2) — Good Luck on all
+  Medicine, also tier-1/2 since several Techniques call for Medicine
+  flips directly (real recurring demand, not a niche trigger).
+  **Net −4.8**.
+- **Nimble Fingers** (`I225`, L2) — reworked from an active "opposed
+  Stealth check" ability into a passive Good Luck bonus on Stealth
+  flips made specifically to steal an item unnoticed, matching the
+  Deft Gloves/Field Surgeon's pattern. Kept narrow (stealing
+  specifically), so tier-1/3 applies: 2.4 × ⅓ = 0.8. **Net −5.2**.
+- **Mighty Mitts** (`I077`, L3) — three components: a flat
+  no-tools-needed credit (0.5, same shape as Deft Gloves'), narrow
+  Good Luck on Might-to-destroy (tier-1/3, 0.8), and a once/day 4-AP
+  "act as though you'd spent a minute" burst priced as its own
+  flagged guess (1.5) rather than derived. **Net −6.2**.
+- **Gloves of Spatial Distortion** (`I154`, L3) — reworked to pass
+  objects only, not the wearer (the old text accidentally let the
+  wearer teleport through, overlapping with Feet-slot Mobility items).
+  Narrative Utility item — `Value = 1/3 × 9 = 3`, **Net −6**.
+
+A "steal an item mid-combat, as part of a successful melee attack"
+concept ("Cutpurse's Grip") came up designing this slot but is
+deliberately **not** an item — the designer wants it as a Technique
+instead, flagged as a Level 5 capstone candidate in `RULES_DESIGN.md`'s
+Open questions.
+
 ## Open balance work
 
 - **The full Masterwork list, 103 items total** (`items.csv` `I057`-`I115`

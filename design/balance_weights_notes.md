@@ -1180,3 +1180,46 @@ use throughout (the owner actually carries useful items in the extra
 slots, or has something worth hiding when it matters) — the same
 "rational player" convention used for elemental Resist picks elsewhere
 in this model.
+
+### Trigger frequency tiers, standardized — and a labeled-guess convention for Narrative Utility items
+
+Surfaced pricing the Hands Masterwork slot, where several items needed
+a "how often does this actually trigger" discount with no combat-
+frequency anchor to lean on (unlike Resist's own 1.875-hits/encounter
+derivation). The ad hoc "~⅓, niche" example used loosely across
+earlier passes (Poisons, Dauntless Wrap, Storage capacity, secrecy
+checks) is now **three fixed tiers**, per the designer — deliberately
+no finer gradations than this:
+
+- **1 (every encounter)** — something used almost every fight (an
+  Encounter-style power, or a draw-speed saving that happens each
+  combat, e.g. Armory Gauntlets' weapon-conjure). No discount.
+- **½ (once/day)** — real, roughly-daily regularity, but not every
+  single fight (a Skill Good Luck tied to genuine recurring demand —
+  Field Surgeon's Handwraps' Medicine, once the designer pointed out
+  several Techniques actually call for Medicine flips; Deft Gloves'
+  broadened Craft).
+- **⅓ (rarer than daily)** — the old catch-all "niche" bucket:
+  Poisons, Dauntless Wrap's Down-threatening hit, Lifeforce Plate's
+  "empty moments," a narrow single-use-case Skill bonus (Nimble
+  Fingers' steal-specifically), someone actually searching you
+  (Smuggler's Belt/Armory Gauntlets' secrecy).
+
+Don't try to calculate a more precise rate for "comes up every other
+day" or similar in-between cadences — per the designer, an item that
+lands underpowered at the ⅓ tier needs redesigning, not a fancier
+discount. That's a deliberate simplicity choice: these frequencies
+were never going to be measured precisely anyway, so a small fixed set
+beats an ever-growing pile of one-off fractions.
+
+**Narrative Utility items** — a second, separate convention for
+effects the model genuinely has no way to price at all (exploration/
+puzzle value, not combat): `Value = ⅓ × the item's own Target`.
+Explicitly **not** a derived discount the way the frequency tiers are
+— it's a flat, labeled guess, formalized only so the whole category
+(Placeholder's Grasping Gloves, Gloves of Spatial Distortion) gets one
+honest, consistent number instead of a different ad hoc pick per item.
+Any item using this convention should say so plainly in its own
+pricing note, the same way every other flagged judgment call in this
+file gets called out rather than presented as more rigorous than it
+is.

@@ -129,7 +129,7 @@ retitles Hands), never previously carried into the live design docs:
 | Slot | Intended lane |
 |---|---|
 | Head | Mental, vision |
-| Hands | Skill-based non-attack actions (lockpicking, surgery, and similar) |
+| Hands | Utility built around what your hands can do — manipulate, create, or access something (see refinement below) |
 | Feet | Mobility |
 | Belt | Carrying items |
 | Torso | Direct protection, vitality/healing |
@@ -162,6 +162,21 @@ Resist itself, only conditionally amplifies Resist the wearer already
 has from elsewhere) — worth remembering broad substring searches over
 `Effects` text need a second look before being trusted as a
 categorization, not just a starting point.
+
+**Hands' lane refined against the real catalog.** The archive's
+original one-liner ("skill-based non-attack actions") didn't survive
+contact with the actual 7 items — more than half were attack-granting
+(Armory Gauntlets conjures a weapon, Sorcerer's Gloves grants a
+Sorcery attack) or attack-modifying (Staying Gauntlets makes weapon
+attacks non-lethal), not skill utility at all. **Reslotted Sorcerer's
+Gloves and Staying Gauntlets to Held** — both genuinely belong there,
+Held's own lane being "weapons and other active-use items." Armory
+Gauntlets stayed on Hands (retooled into a smuggling item instead of
+its old knightly theming) since conjuring-a-weapon-into-your-hand is
+close enough to the slot's core "what your hands can do" idea even
+without a Skill flip attached. Landed on the broader phrasing in the
+table above — still cleanly excludes anything that grants or modifies
+an attack, which stays Held's job.
 
 ### Successes as the universal resolution currency
 
@@ -1580,8 +1595,72 @@ generally **lower-Level, utility-flavored effects** — matching the
 in-fiction idea that these are exactly the kind of thing a clever,
 unserious student would think up and want credited to someone else.
 
+**The legend of Placeholder, as scraped from every source that mentions
+the name** (`I115`, `I161`, `I164`, `I165`, `I189`, `T037`, `T095`,
+`T096`, `T133`) — collected here since nothing else pulls it together
+in one place. The designer confirms this is **intentionally
+inconsistent**: different sources contradict each other on basic facts,
+including Placeholder's own pronouns, and that's the point — a folk
+legend garbled by generations of retelling, not a biography.
+
+- **`T096` states outright, in-world, that "Placeholder" is a
+  pseudonym** — *"the arcanist pseudonym Placeholder"* — confirming
+  even in-fiction that nobody knows who actually stood behind the name.
+- **Pronouns conflict, sometimes within the same passage.** `T037`'s
+  own fluff (attributed to "*Arcanists of Myth and Legend, Vol. IV*")
+  refers to Placeholder as "**him**" ("allowed **him** to freely
+  manipulate energy") in one paragraph and "**her**" ("for every
+  opponent placed in **her** way") in the very next. `T095` calls
+  Tender Telekinesis "one of **his** legendary" incantations. `T133`
+  calls Placeholder "**he**." No two sources agree, and one source
+  doesn't even agree with itself.
+- **Two incompatible pictures of who Placeholder even was.** `T037`
+  paints an epic wuxia-style legend — an ancient martial/arcane master
+  who defeated "the Master of the School of the Fifth Dragon Fist" to
+  unlock "the final chakra," fused "martial, arcane, and meditative
+  arts," and was called "the supreme master of the third sphere." `T095`
+  and `T096` instead describe a mischievous magic-college student whose
+  minor utility spells (levitating small objects, a concealable
+  colored-flame torch "which lends itself nicely to shadowy dealings")
+  got passed around by other students and staff never quite approved
+  of. Nothing reconciles a legendary martial demigod with a prankster
+  undergrad — deliberately.
+- **One consistent thread**: the number **101**. `T037` says
+  Placeholder "was said to know a hundred and one maneuvers"; `T095`
+  independently calls Tender Telekinesis one of "Placeholder's
+  legendary one-hundred-and-one incantations." Whether this is a real
+  shared fact the legend preserved accurately, or just the one detail
+  every garbled retelling happened to agree on, is left open.
+- **Also credited with enchanting/crafting**, not just spellcasting —
+  `I161` (Placeholder's Speedy Scepter) calls itself *"the legendary
+  regalia considered the pinnacle of Placeholder's illustrious
+  enchanting career"* — so the legend spans magic item creation too,
+  not only spells.
+- Full list of known Placeholder-attributed content so far: **Items** —
+  Placeholder's Spacious Satchel (`I115`, storage), Placeholder's Speedy
+  Scepter (`I161`, L5 enchanting capstone), Placeholder's Indelible
+  Instrument (`I164`, L1), Placeholder's Wondrous Workspace (`I165`,
+  L2, universal crafting tools), Placeholder's Bottomless Belt (`I189`,
+  L1, storage). **Techniques** — Placeholder's Alacritous Adaptation
+  (`T037`, regain an Encounter Technique), Placeholder's Tender
+  Telekinesis (`T095`, minor telekinesis), Placeholder's Wizardly
+  Witchlight (`T096`, conjured torch flame), Placeholder's Lengthy
+  Ley-weaving (`T133`, +3m Spell/Discipline range).
+
 ## Open questions / TODO
 
+- **New Technique idea: steal an item mid-combat, as part of a
+  successful melee attack.** Surfaced while designing Hands Masterwork
+  items ("Cutpurse's Grip") — instead of dealing damage, a successful
+  melee hit lets the attacker take a held or worn item from the
+  target. Genuinely novel, nothing else in the catalog does this.
+  Deliberately **not** built as an item — the designer wants it as a
+  Technique instead, floated as a strong candidate for a Level 5
+  capstone (Stealth-tree or otherwise). Not designed or priced yet;
+  still needs the actual mechanic worked out (opposed check vs. flat
+  difficulty, what's fair game to steal, whether a wielded weapon
+  mid-swing needs an exception) the same way the item version would
+  have.
 - **Poison duration — "1 hour" vs. "until your next long rest."**
   Surfaced during the balance pass on Poisons (see `balance.md`'s
   "Poisons were charging AP twice" entry): applying a Poison is meant
