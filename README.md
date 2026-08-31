@@ -13,193 +13,92 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
-### 2026-08-29 — Three weak Poisons brought up to strength
+### 2026-08-31 — Torso cluster closed out; Resist's rate fixed
 
-**Vulnerability Poison**, **Harrying Poison**, and **Psychosis Poison**
-now grant twice their Potency in stacks instead of once, matching
-Bloody Poison's own multiplier — closing out the last real gaps in the
-Poison lineup. Slowing Poison was left as-is; it already reads close
-enough given Slowed's own extra "does this actually matter" discount.
+- Fixed **Resist**'s per-point rate — it was double-discounting hit
+  chance (Physical 2.5→5.0, Fire 0.5→1.0, other elements 0.25→0.5 per
+  point). Recomputed everything that depends on it: Elemental-Resistant
+  Armor, Robes of Resilience, Robes of the Elemental Lord, and Ward's
+  flat-Resist component.
+- **Fitted Armor** reworked from an undocumented "-1 Might Requirement"
+  effect into a flat +1 Physical Resist grant, priced for the
+  tank/bruiser build who'd actually equip it.
+- **Fortified Armor**'s stale "red card" trigger (a leftover from an
+  old bonus-success rule) fixed to "scored an Extra Success," matching
+  current mechanics — now correctly softens spike damage instead of
+  referencing a rule that no longer exists.
+- **Jerkin of the Land** cut as a duplicate of Shawl of the Land
+  (Neck) — this completes the full 9-item Torso Masterwork cluster.
+- `balance_weights.csv` gained "Derived From" tracking and a
+  Situational Multipliers section, to catch this kind of
+  double-discount before it happens again.
 
-### 2026-08-29 — Insanity Potion reworked
+### 2026-08-30 — Torso Masterwork pass
 
-Replaced the old "treat any card as a Heart" clause (a leftover from a
-previous rules version) with a Battle Maneuver-style effect: for the
-hour, any attack that hits you or is Parried gains a stack of Bleeding.
-Ignoring Wounded/Crippled/Slowed penalties and the item's own
-can't-heal-or-gain-Protected drawback are now treated as roughly
-offsetting each other, since the drawback exists specifically to
-counterbalance that one piece. This finishes the buff-Potion cluster —
-all ten items now land as intended.
+- Tagged all 103 Masterwork items with an **Archetype** reference
+  column, and recorded the equipment slot-design philosophy (Torso =
+  protection, Neck = boring passive utility, Ring = active ability,
+  etc.) as a standing rule.
+- Recorded **War Magic** (T120) as a damage-baseline reference
+  (Level 2-4 builds) to sanity-check Resist items against real hits.
+- Trimmed the Torso flat-Resist cluster: cut **Attuned Shroud**
+  (duplicate of Elemental-Resistant Armor), reworked **Robes of the
+  Elemental Lord** into the Level 5 capstone (+3, up from +2).
+- Fixed the stale **"Bodily Defense"** term to **"Vital Defense"**
+  everywhere it was still live (items.csv, convert.py, index.html).
+- Cut **Periapt of Constitutional Integrity** (Neck), a duplicate of
+  Armor of Constitutional Integrity (Torso); widened the survivor's
+  trigger to "Poison, Disease, or similar bodily threat."
+- Priced **Lifeforce Plate** (refills Protected when you're at 0),
+  **Coat of Knit Flesh** (reworked into a once-per-day Bleeding
+  prevention, which also exposed and fixed a stale Bleeding glossary
+  rule), and **Dauntless Wrap** (Protected on the hit that would Down
+  you, discounted for how rarely that actually comes up).
 
-### 2026-08-29 — Ward redesigned, Protected's wording tightened
+### 2026-08-29 — Buff-Potion cluster finished, Ward redesigned
 
-**Ward** (Fire/Frost/Brilliant/Shadow) now does more than a flat Resist
-bonus: while you have any stacks, you still get +2 Resist against that
-damage type, but you can also spend those stacks to absorb Health loss
-from that type outright, one point per stack — the same rule
-**Protected** already uses, just restricted to one damage type.
-Protected's own wording was tightened to match (no rules change, just a
-shorter, unambiguous "instead" phrasing).
+- **Good Luck**'s value corrected (2.2→2.4, crediting both cards in a
+  Good Luck flip toward the Suit Pool); **Energizing Brew** and
+  **Essential Ointment** simplified and lost their AP costs.
+- Four new buff Potions rounding out Levels 1-4: **Windrunner's
+  Draught**, **Thornskin Elixir**, **Spellblade's Sipper** (see Ward
+  below), **Fatebinder's Cordial**.
+- Fixed a **Fleeting** timing bug where a freshly-granted effect
+  immediately lost a stack to that same turn's decay.
+- **Swiftblade Vial** reworked (Hasted eight times, turn-order
+  adjustment by up to 3, Good Luck handed fully to Fatebinder's
+  Cordial); turn-order adjustment given its first real value.
+- **Ward** redesigned: flat +2 Resist plus a self-limiting typed-
+  Protected absorption charge per stack. Fixed **Elemental-Attuned
+  Tincture** and rebalanced **Spellblade's Sipper** (renamed from
+  Warmage's Draft) around the stronger Ward.
+- **Insanity Potion** finalized: sustained Bleeding on hit/Parry
+  instead of a stale "treat any card as a Heart" clause.
+- **Vulnerability, Harrying, and Psychosis Poison** bumped to twice
+  their Potency, closing the last real gaps in the Poison lineup.
+- Added an **Archetype** reference column (Potions/Grenades/Poisons/
+  Food) for informal balance groupings.
 
-Fixes **Elemental-Attuned Tincture**, which now grants 3 stacks of Ward
-that last for hours instead of decaying per-turn (matching how Poisons
-already work) and no longer costs AP. **Warmage's Draft**, renamed
-**Spellblade's Sipper**, was rebalanced to 4 attacks/3 Ward (down from
-7 attacks/5 Ward) so its two effects carry roughly equal weight under
-Ward's new, stronger definition.
+### 2026-08-27 — Grenade and Potion families rebalanced
 
-### 2026-08-29 — Swiftblade Vial reworked, turn-order adjustment given a real value
-
-**Swiftblade Vial** no longer grants Good Luck — it's now Hasted eight
-times (up from five), plus the ability to adjust your position in turn
-order by up to 3, separating it fully from Fatebinder's Cordial's
-accuracy-focused identity. Turn-order adjustment — already used by a
-few existing Techniques, but never priced — gets its first real value
-this pass, and a standing rule going forward: items and Techniques
-shouldn't grant a flat Extra Success or damage bonus directly, only
-through the existing systems (Good Luck, Defense reduction, Gambling,
-suit-pool assists).
-
-### 2026-08-29 — Fleeting effects no longer deflate on the turn you gain them
-
-A Fleeting effect (Protected, Hasted, Bleeding, Crippled, and the rest)
-now skips its next decay the moment it goes from 0 stacks to some —
-fixing a long-standing snag where a self-buff cast on your own turn
-would immediately lose 1 stack to that same turn's cleanup. Topping off
-an effect you already have was never actually affected by this and
-works the same as before.
-
-### 2026-08-29 — Four new buff Potions round out the Level 1-4 band
-
-- **Windrunner's Draught** (Level 1) — Hasted five times. A simple,
-  broadly-useful pickup.
-- **Thornskin Elixir** (Level 2) — the next 2 hits against you Bleed
-  the attacker, plus a stack of Protected. A retaliation tool for
-  when you expect to get focused.
-- **Spellblade's Sipper** (Level 3) — your next 4 attacks deal a chosen
-  element instead of Physical, plus 3 stacks of Ward against the
-  *opposite* element (Fire/Frost, Brilliant/Shadow). Built for a fight
-  you've already sized up.
-- **Fatebinder's Cordial** (Level 4) — Good Luck on your next 5
-  attacks, plus draw 2 cards the next time you Down a creature. A
-  finisher tool for pushing for the kill.
-
-All four cost the standard AP to drink, same as any other reactive
-combat Potion.
-
-### 2026-08-29 — Good Luck's value corrected for the Suit Pool, Card cluster rebalanced
-
-- Good Luck's underlying value moved from 2.2 to 2.4 — both cards
-  drawn for a Good Luck flip count toward the Suit Pool, not just the
-  kept higher one, which was previously uncredited.
-- **Energizing Brew** now lasts until your next full night's rest
-  instead of 1 hour, removing the guesswork of timing the drink to a
-  specific fight, and no longer costs AP — you'd have it active before
-  initiative is even rolled.
-- **Essential Ointment** now draws 2 cards instead of 1, and no longer
-  costs AP.
-- **Liquid Charisma** no longer costs AP — Social Contests don't spend
-  AP as a resource in the first place.
-
-### 2026-08-27 — Healing-item family restructured into a Level ladder
-
-- **Fortifying Concoction** (Level 1) trimmed from 4 to 3 stacks of
-  Protected — it had never been rechecked against Protected's own
-  confirmed value and was running more than 4x over its Level-1
-  budget.
-- **Healing Potion** moved to Level 2, the system's standard baseline
-  heal, and now heals 2 Health at half the usual AP cost — reflecting
-  that it's used both reactively mid-fight and to top off Health
-  during downtime, where AP isn't even a resource.
-- **Calming Brew**, **Kiss of the Earth**, and **Predator's Cry** are
-  now a matched Level 3 trio (Predator's Cry moved down from Level 4,
-  trimmed to 3 stacks), all lasting until your next full night's rest
-  and free of AP cost entirely — preparation items you carry for a
-  specific threat, not combat-reactive ones.
-- **Revivification Draught** moved from Level 5 to Level 4 and
-  reworked from a burst heal into a pure trickle: 1 Health, your
-  choice of Shallow or Deep, at the start of each of your next 4
-  turns — useful both for topping off Shallow Health to avoid Wounded
-  and as an efficient way to feed the scarcer Deep Health pool.
-- Together these give the healing/preparation family a clean ladder
-  from Level 1 through 4. Level 5 is intentionally open for a future
-  capstone item.
-
-### 2026-08-27 — Oozejar added, AoE debuff math corrected
-
-- **Oozejar** (Level 4, Grenade): an area attack that inflicts
-  4 stacks of Slowed and 3 stacks of Crippled on every creature hit —
-  the first Grenade built entirely around debuffs, no damage.
-- Fixed a balance-model bug in how area-effect items priced non-linear
-  debuffs (Bleeding, Crippled, Slowed) against multiple targets, which
-  had been over- or under-crediting some of them depending on the
-  effect. No player-facing change to existing items' actual text or
-  numbers from this specifically — it only affects the internal
-  balance ledger's math.
-
-### 2026-08-27 — Two new Grenades: Legbreaker, Harrowing Ichor
-
-- **Legbreaker** (Level 2): deals 8 Physical damage and pushes
-  the target 4 meters — the first Grenade to use Push at all.
-- **Harrowing Ichor** (Level 2): deals 7 Shadow damage and inflicts
-  2 + [Hearts] stacks of Frightened — the first Grenade to use
-  Frightened at all.
-
-### 2026-08-27 — Prevention Potions rebalanced
-
-- **Calming Brew**, **Kiss of the Earth**, and **Predator's Cry** no
-  longer cost AP to use — they're long-duration (1 hour, or "this
-  encounter") consumables meant to be drunk ahead of time, before a
-  fight starts, not mid-combat instead of an attack. All three also
-  now remove stacks of the prevented effect you already have, not just
-  future ones, so they're still usable reactively in a pinch.
-- **Kiss of the Earth** moved to Level 3 (from 2) and now prevents 3
-  stacks of Bleeding, down from 4. **Predator's Cry** moved to Level 4
-  (from 2), keeping its 4-stack Crippled/Slowed prevention. **Calming
-  Brew** returned to Level 3 (it had briefly moved to Level 2 mid-pass
-  before landing here), keeping its 4-stack Taunted/Frightened
-  prevention.
-
-### 2026-08-27 — Grenades rebalanced
-
-- Raw Damage bumped on **Sunbeam** (8→9), **Bonemelter** (7→8, Necrotic
-  4→3 stacks), and **Snowstorm** (7→8, Slowed four→three times), so
-  every Level 2+ single-target damage Grenade now hits at least as hard
-  as the Level 2 Bottled Fire. **Acidic Flask**'s Bleeding bumped 4→5
-  stacks. **Immaculate Adhesive** and **Smokejar**'s values were
-  recomputed against a corrected, non-linear Difficult Terrain/Cover
-  model rather than the old flat-rate approximations; Smokejar's
-  Crippled bumped twice→thrice to match.
-- **Quartz Tincture** renamed **Reeler** (briefly Static Jolt along the
-  way) and reworked into a concussive, Harried-forward Level 3 item
-  (8 Fire damage, 4 + [Diamonds] stacks of Harried on hit) — a
-  deliberately below-full-value item, prioritizing its identity over
-  squeezing out every last point of budget.
-- **Card-suit scaling** added to every debuff-granting Grenade for the
-  first time (previously only Techniques used this) — e.g. Acidic
-  Flask now reads "5 + [Clubs] stacks of Bleeding," Snowstorm "Slowed
-  3 + [Spades] times." Uses the suit pairings already established for
-  Techniques (Bleeding/Crippled → Clubs, Harried/Vulnerable/Necrotic →
-  Diamonds, Slowed → Spades) — deliberately never applied to raw
-  Damage, since Extra Successes already cover that.
-- **Hellfire Bomb** and **Thunderclap-in-a-Jar** (the two area-effect
-  Grenades) had their AoE valuation corrected for a real, previously
-  uncosted downside: an area effect can't avoid catching allies caught
-  in the blast, and is inherently harder to land a clean multi-enemy
-  hit with than aiming at one target. Their numbers are unchanged —
-  this was a balance-model fix, not a nerf to what they actually do.
-
-### 2026-08-27 — Refund-Potion family reshuffled, new item added
-
-- **Soldier's Salts** is now Level 1 (down from 2) — its "regain a
-  Level-2-or-lower Technique" effect is unchanged, it was simply costed
-  a Level too high for what it does. **Fighter's Friend** is now Level 3
-  (down from 4), and now refunds a Level-3-or-lower Technique (down from
-  4). A new item, **Battlemaster's Brew** (Potion, Level 4, refunds a
-  Level-4-or-lower Technique), fills the tier Fighter's Friend vacated —
-  a further-refined, closely-guarded successor recipe in the same
-  "Soldier's Salts → Fighter's Friend" lineage.
+- **Healing-item family** restructured into a clean Level 1-4 ladder
+  (Fortifying Concoction, Healing Potion, Calming Brew/Kiss of the
+  Earth/Predator's Cry, Revivification Draught); Level 5 left open for
+  a future capstone.
+- **Oozejar** added (Level 4, debuff-only Grenade); fixed an AoE
+  debuff-pricing bug affecting non-linear debuffs on multi-target items
+  (balance-model only, no player-facing number changes).
+- Two new Grenades: **Legbreaker** (Push) and **Harrowing Ichor**
+  (Frightened).
+- **Prevention Potions** (Calming Brew, Kiss of the Earth, Predator's
+  Cry) no longer cost AP, now also clear existing stacks of what they
+  prevent, and settled into a Level 3-4 spread.
+- **Grenades rebalanced**: several damage bumps, suit-based scaling
+  added to every debuff-granting Grenade, Quartz Tincture renamed
+  Reeler, Hellfire Bomb/Thunderclap-in-a-Jar's AoE math corrected.
+- **Refund-Potion family** reshuffled (Soldier's Salts to Level 1,
+  Fighter's Friend to Level 3) and a new **Battlemaster's Brew**
+  (Level 4) added.
 
 ### 2026-08-26 — Ward's Resist bonus doubled
 
