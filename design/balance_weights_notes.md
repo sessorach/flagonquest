@@ -1057,6 +1057,64 @@ finding a gap the raw economy missed; Speed's 0.55 base rate already
 this is a real, if modest, shortfall being knowingly accepted, not a
 pricing-model blind spot like Resist's was).
 
+### Range breakpoints — how far a Speed 4 (Agility 3) attacker can close and still act
+
+A companion tool to the Speed correction above, for tuning weapon/ability
+ranges deliberately rather than by feel: given a distance `D` and a
+would-be closer's Speed, `moves_needed(D, Speed) = ceil(D / Speed)` move
+actions are required to cross it (each 1 AP, up to Speed meters). Since
+a standard turn is 4 AP and a standard attack costs 2 AP, **closing the
+gap and still attacking the same turn requires `moves_needed ≤ 2`** —
+the same 2-move ceiling the Speed correction above derived directly
+from Baseline's own attack economy (half of turns spend the full 4 AP
+on 2 attacks; the rest split 2 AP between movement and either a second
+move or something else).
+
+At the session's baseline Speed 4, four named breakpoints fall out of
+this cleanly:
+
+| Breakpoint | AP story | Distance | Meaning |
+|---|---|---|---|
+| **Melee/Reach** | Weapon-defined, not movement-derived | 1m ("close range," per `glossary.md`) | Already in range; not a movement question |
+| **Short** | 1 move (1 AP) | 4m | Closable for the cheapest possible action |
+| **Medium** | 2 moves + attack (4 AP, full turn) | 8m | The outer edge of "close and still swing" |
+| **Long** | 4 moves, 0 AP left (full turn) | 16m | Closable in one turn, but costs the whole turn — no attack |
+| **Extreme** | \>4 moves | \>16m | Can't be closed in a single turn at all |
+
+These aren't snap points every range value has to land on exactly —
+they're landmarks to test a proposed range against: does crossing it
+cost an attacker their attack that turn, their whole turn, or is it
+simply out of reach for a turn entirely?
+
+**Cross-checked against the weapons already in `items.csv`** (Body's
+own baseline is 3, per the Fresh-attack Resist placeholder note above,
+so `3 × Body` = 9m):
+
+| Weapon | Range | Moves needed (Speed 4) | Tier |
+|---|---|---|---|
+| Melee (any) | Close (1m) | 1 | Melee/Reach |
+| Thrown weapons / Bombs | 3 × Body (9m) | 3 | Long — just past Medium |
+| Handgun | 10m | 3 | Long (1 AP left over after closing) |
+| Light Bow / Blunderbuss | 15m | 4 | Long, right at the edge — 0 AP left over |
+| Heavy Bow / Musket | 20m | 5 | Extreme — can't be closed in one turn |
+
+Reads as more intentional than gut-estimated, on inspection: Handgun
+sits just past the "still attack" line, Light Bow/Blunderbuss sit right
+at the outer edge of what a single committed turn can cross, and Heavy
+Bow/Musket are the only ranged weapons genuinely safe from a one-turn
+charge — a clean three-tier ranged-weapon spread that already tracks
+the breakpoints without having been designed against them explicitly.
+
+**This shifts with the closer's actual Speed**, which matters most for
+calibrating against non-baseline creatures (a fast monster, a Hasted
+ally) rather than the player-facing weapon numbers themselves: a Speed
+5 closer brings the Handgun's 10m back under the 2-move "still attacks"
+line (`ceil(10/5) = 2`), and even Heavy Bow/Musket's 20m only takes 4
+moves at Speed 5-6 (`ceil(20/5) = 4`, `ceil(20/6) = 4`) — still the full
+turn, but no longer safely uncrossable the way it is at baseline. Worth
+checking any new range value against a faster baseline too (Speed 5-6),
+not just the default 4, before calling it safely in a given tier.
+
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
 Two questions were open here: should Ward scale magnitude per stack
