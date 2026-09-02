@@ -993,6 +993,70 @@ different:
   smooth per-stack convergence rather than the hard wall Slowed's own
   revision added.
 
+### Speed (permanently-worn) = 2.54375/point — the single-instance rate was never re-scoped for gear
+
+Same class of gap as the Hasted/Slowed correction above, caught while
+pricing the Feet slot. Speed's 0.55/point rate (`balance_weights.csv`)
+was derived from a single move action's AP savings — it prices *one
+use*, the same basis Push and Difficult Terrain correctly use, since
+those really are one-shot effects. But several Feet items grant a
+*permanent, continuously-active* Speed bonus (Lightfoot Shoes and
+others), live for the whole encounter the same way Resist or
+Hasted/Slowed are — and unlike those two, Speed's rate never got the
+"sum across every turn it's up" treatment.
+
+**Deriving how many move actions that permanent bonus actually pays out
+over an encounter**, from the game's own AP economy rather than a
+guess: a player turn is 4 AP (`rulebook.md:436`), an attack costs 2 AP
+(`rulebook.md:438`), and Baseline's own established average is 1.5
+attacks/turn (already used for the Resist and card-draw derivations
+above). Since attacks come in whole numbers, that average isn't a
+smooth "1.5 attacks, 1 AP left over every turn" — it's a blend of two
+turn shapes:
+
+- **Half of turns**: a well-positioned or ranged character spends the
+  full 4 AP on 2 attacks — 0 AP left for movement.
+- **The other half**: 1 attack (2 AP) leaves 2 AP, split — per the
+  designer — roughly **85/15** between moving twice (both leftover AP
+  spent on a second move action) and moving once (the last AP wasted,
+  or spent on a 1-AP utility technique/Interrupt instead of a second
+  move).
+
+Average moves/turn = 0.5 × 0 (double-attack turns) + 0.5 × (0.85×2 +
+0.15×1) = 0.925. Over Baseline's 5-round encounter: **4.625
+moves/encounter**.
+
+`Value = 0.55 (single-instance rate) × 4.625 = 2.54375/point` — this is
+Speed's rate for anything **permanently worn or continuously active**
+(gear, a passive technique bonus). Push and Difficult Terrain stay on
+the original 0.55/point single-instance rate, since they're genuinely
+one-shot — this correction only applies to an effect that's live for
+the whole fight, the same distinction Hasted/Slowed drew from
+Taunted/Frightened above.
+
+Worked check against Lightfoot Shoes (flat `+Level` Speed, Feet slot,
+`Target = Level × 3`):
+
+| Level | Value (Level × 2.54375) | Target | Net |
+|---|---|---|---|
+| 1 | 2.54 | 3 | −0.46 |
+| 2 | 5.09 | 6 | −0.91 |
+| 3 | 7.63 | 9 | −1.37 |
+| 4 | 10.18 | 12 | −1.82 |
+| 5 | 12.72 | 15 | −2.28 |
+
+Lands at a flat ~85% of Target every Level — a modest, consistent
+shortfall rather than the catastrophic one the uncorrected
+single-instance rate implied (was −2.45 to −12.25 across the same
+Levels). Worth the same kind of "accept below Target" allowance the
+Torso Resist items got, on its own grounds this time — see the Torso
+Masterwork pass note above on why that precedent doesn't transfer
+wholesale (Resist's allowance came from a felt-value cross-check
+finding a gap the raw economy missed; Speed's 0.55 base rate already
+*is* the felt-value number, so there's no equivalent hidden gap here —
+this is a real, if modest, shortfall being knowingly accepted, not a
+pricing-model blind spot like Resist's was).
+
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
 Two questions were open here: should Ward scale magnitude per stack
