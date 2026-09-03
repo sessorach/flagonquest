@@ -453,9 +453,9 @@ A move action takes 1 AP to make, representing a small but notable movement. In 
 
 A standing character occupies two vertical spaces, roughly their own height, and can reach into whatever’s in the space right next to their head without any special effort — pulling a lever, grabbing something off a shelf, or catching a hold to start a climb. Actually climbing up to stand somewhere, even somewhere already within reach, still takes movement.
 
-Climbing, jumping, and swimming all draw from the same budget: half your Athletics Skill Total. This is the most you can spend on climbing, jumping, or swimming in a single move action, or in one longer jump built from several combined actions (see below). Moving one space horizontally, such as swimming or jumping across a gap, costs 1 from that budget. Moving one space vertically, such as climbing or jumping upward, costs 2. A jump that combines both directions, like leaping up and across a gap, spends from the same budget for every space it covers, horizontal and vertical alike.
+Climbing, jumping, and swimming all draw from the same budget: half your Athletics Skill Total. This is the most you can spend on climbing, jumping, or swimming in a single move action. Moving one space horizontally, such as swimming or jumping across a gap, costs 1 from that budget. Moving one space vertically, such as climbing or jumping upward, costs 2. A jump that combines both directions, like leaping up and across a gap, spends from the same budget for every space it covers, horizontal and vertical alike.
 
-This budget only applies against spaces that would otherwise be uncrossable, not your whole move - the rest of your movement still comes out of your Speed as normal. If covering that distance takes more Speed than a single move action gives you, you can spend another move action and add its Speed toward the same climb, jump, or swim, taking a running start across multiple actions. The budget itself stays fixed either way, so combining actions only helps when Speed, not the budget, is what’s holding you back.
+This budget only applies against spaces that would otherwise be uncrossable, not your whole move - the rest of your movement still comes out of your Speed as normal. A climb, jump, or swim can’t cover more ground in a single move action than your Speed allows, the same as any other movement - if the distance you need is more than that, the budget alone won’t get you there in one action.
 
 In cases where a surface is not easy to move across, an Acrobatics or Athletics check may be required to avoid wasting the movement.
 
@@ -467,7 +467,7 @@ Example: Hilde needs to climb up the side of a building to chase a bandit. The b
 
 Example: Hilde is running after the bandit across city rooftops, but he throws a bottle of grease behind him. The GM says she needs to make an Acrobatics check to avoid slipping if she wants to jump across buildings after him. Hilde could easily make the jump with her Athletics, but unfortunately has bad Acrobatics and fails the skill flip for it. Instead of easily jumping across, she tumbles over the side and the bandit runs away. Better luck next time!
 
-Example: Felix needs to leap across a wide chasm, six spaces across. His Athletics Skill Total is 12, giving him a budget of 6 - just enough - but his Speed is only 3, so a single move action can’t cover that much ground. He spends a second move action, adding its Speed to the first, giving him 6 meters of movement between the two and clearing the chasm in one running leap.
+Example: Felix needs to leap across a wide chasm, six spaces across. His Athletics Skill Total is 12, giving him a budget of 6 - just enough - but his Speed is only 3, so a single move action can’t cover that much ground, no matter how much budget he has to spare. He’ll need to find another way across - a narrower crossing point, a rope, going around - rather than trying to clear it in one leap.
 
 ### Making an Attack
 
