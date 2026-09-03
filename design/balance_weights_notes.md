@@ -1275,6 +1275,71 @@ one.
 `Value = 2×5.5 + 2×2.75 = 11 + 5.5 = 16.5`. `Target = 15` (Level 5 ×
 3). **Net = +1.5**.
 
+### Greaves of the Stalwart Guardian = 5.5 — redesigned down to Level 2 after Push/Slowed turned out to be common, not niche
+
+Originally Level 5, three components (immovability, ignore 3 degrees
+of Difficult Terrain, 5 charges/encounter to negate a stack of
+Slowed), landing at a guessed ≈15.55 against Target 15 — flagged from
+the start as the most guesswork in the batch. Reworked from scratch:
+
+- **Difficult Terrain dropped entirely.** Its own rate is hard-capped
+  at degree 2 (`0/2.75/8.25/8.25` for degrees 0/1/2/3+) — the rule
+  itself floors movement throughput at 1m/action once terrain hits
+  degree 2, so degree 3 is no worse than degree 2 to a mover. Ignoring
+  3 degrees protects no more than Surestride Boots' 2 already does, and
+  duplicating Surestride's whole job on a second item added nothing.
+  Per the designer, this also lets the item concentrate its full budget
+  on one coherent "unshakeable" identity instead of splitting across a
+  third, unrelated axis.
+- **Slowed-negation replaced with outright immunity**, dropping the
+  5-charges tracked-resource mechanic (hard to price rigorously — no
+  clean anchor, and "you choose which stack to block" added real but
+  unquantifiable strategic value) for something that reads clean
+  against Slowed's own established curve.
+- **No knockdown/recovery credit.** Prone isn't a mechanic in this
+  game — "unwillingly knocked over" is flavor for how the forced-
+  movement immunity manifests, not a separate priced component.
+
+**Frequency was the real correction, and it went the opposite
+direction from the first guess.** Initially assumed Push/Shift/
+Teleport effects were rare, based on `\bpush\b` across `techniques.csv`
+finding only one hit (Spellblade, `T100` — itself flagged as "not
+priced against this model at all yet," so not a trustworthy magnitude
+reference either). That search missed `features.csv` entirely: Push
+and Slowed are both cheapest-tier **Basic** Features on the two most
+generic, broadly-available Buildable techniques in the catalog —
+**Lodestone** (`F010`, Battle Maneuver, 1 point — Push `2×[X+Spades]`
+meters on hit/Parry) and **Kinetic** (`F070`, War Magic, 1 point — Push
+up to `[4×X]+Spades` meters on hit), with **Hamstring** (`F008`) and
+**Frigid** (`F071`) doing the same for Slowed. Any ordinarily-built
+martial or caster enemy could plausibly carry one — not niche at all.
+
+Per the designer: rather than pricing each trigger as its own
+independent ½-tier event (which implies *something* relevant in 75% of
+fights, `1 − 0.5×0.5`), the two triggers split one shared "about half
+of fights feature either a Push- or a Slow-relevant threat" — 25% each
+if split evenly, no signal either is more common than the other:
+
+- Immovability: representative hit ≈ `8m × 0.55/meter = 4.4` (still a
+  constructed placeholder — Spellblade's own number is unreliable,
+  and neither Lodestone nor Kinetic resolve to one fixed "typical"
+  distance since both scale with X and a suit flip), realized 25% of
+  fights: `4.4 × 0.25 = 1.1`.
+- Slowed immunity: full cap `17.6`, realized 25% of fights: `17.6 ×
+  0.25 = 4.4`.
+
+`Value = 1.1 + 4.4 = 5.5`. Per the designer, a reactive, niche item
+shouldn't be pushed to fit a bigger Level than it earns — **dropped to
+Level 2** (`Target = 6`) rather than stretched to justify staying at
+Level 5. **Net = −0.5**, the same modest-shortfall shape as Surestride
+Boots' own −0.75.
+
+Effects text simplified to match (`items.csv` `I112`, regenerated into
+`data/items.json`): "You cannot be unwillingly knocked over, Pushed,
+Shifted, Teleported, or otherwise moved unless they wish to be. You
+are immune to Slowed." Cost dropped from 100 Gold (Level 5) to 40 Gold,
+matching this slot's flat Level × 20 Gold convention.
+
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
 Two questions were open here: should Ward scale magnitude per stack

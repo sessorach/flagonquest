@@ -5093,10 +5093,10 @@
     "category": "Masterwork",
     "slot": "Feet",
     "tags": null,
-    "level": 5,
+    "level": 2,
     "description": "Appearing to be crude iron boots, heavy and awkward, the greaves feel as light as sandals and don’t encumber the wearer at all. Rather, when worn, they impart an unshakable sense of stability and steadfastness.",
-    "effects": "You cannot be unwillingly knocked over, Pushed, Shifted, Teleported, or otherwise moved unless they wish to be. Additionally, you ignore up to 3 degrees of Difficult Terrain at all times.This item starts each encounter with 5 charges. When you would gain a stack of Slowed, you may expend a charge from this and instead you don’t gain that stack.",
-    "cost": "100 Gold",
+    "effects": "You cannot be unwillingly knocked over, Pushed, Shifted, Teleported, or otherwise moved unless they wish to be. You are immune to Slowed.",
+    "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -5129,7 +5129,7 @@
       "I002"
     ],
     "levels": [
-      5
+      2
     ]
   },
   {
