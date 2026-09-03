@@ -179,7 +179,7 @@
     "level": 4,
     "title": "Bleeding [Fleeting]",
     "supplement": "Base Game",
-    "body": "When you remove a stack of Bleeding at the end of your turn, lose 1 Health."
+    "body": "Each stack of this that decays at the end of your turn deals 1 Health loss."
   },
   {
     "id": "crippled-fleeting",
