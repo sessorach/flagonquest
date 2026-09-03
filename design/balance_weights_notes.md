@@ -1189,44 +1189,60 @@ and Greaves of the Warlock King below, since both are also
 once-per-encounter/turn movement effects rather than continuously
 active ones.
 
-### Vaulting Boots = 6.5 — trimmed after a movement-rules correction (no more running start, flips only when "very complicated")
+### Vaulting Boots = 9.3 — rebuilt after the running-start rule was cut outright
 
 Once/encounter, 1 AP, jump up to 10m in any direction (Feet, Level 3).
 The first pass split this into an attack-enabler component (5.5, same
 basis as Slipstream Sandals) plus a **flip-guarantee** component
-(2.75, `50% × 5.5`, using Baseline's own default 50%
-hit/success-chance convention) — reasoning that the item's own wording
-("without requiring a running start or a flip") implied a mundane jump
-this size would normally need a flip with a real chance of failure,
-and that guaranteeing success was worth crediting.
+(2.75, `50% × 5.5`), reasoning that the item's own wording ("without
+requiring a running start or a flip") implied a mundane jump this size
+would normally need a flip with a real chance of failure, and that
+guaranteeing success was worth crediting.
 
-**Per the designer, that's stale against the current movement rules**:
-there's no running-start mechanic anymore (an obstacle-crossing jump is
-no longer buildable across combined move actions the way
-`rulebook.md:456-470` still describes — that passage needs updating to
-match, flagged separately below, not fixed here since it's a rulebook
-rules-text change beyond this one item), and flips are no longer
-required for jumps except "very complicated" ones — which a flat,
-undirected 10m jump doesn't obviously qualify as. The item's own
-Effects text is corrected to match: "without requiring a running start
-or a flip" → "without requiring a flip if one would otherwise be
-needed" (`items.csv` `I111`, regenerated into `data/items.json`).
+**Per the designer, the running-start mechanic wasn't just stale
+here — it's gone from the game entirely.** There used to be a rule
+requiring you to cover a certain amount of ground before you could
+long-jump (combining move actions' Speed toward one big jump/climb/
+swim, per `rulebook.md:456-470` — Felix's chasm example is the clearest
+illustration), cut outright for being more complicated than it was
+worth. `rulebook.md`'s Moving section still describes it and needs a
+rewrite to match — a separate rules-text pass, not done here.
 
-With the mundane case no longer assumed to require a flip at all, the
-flip-guarantee credit doesn't apply to a typical use — dropped rather
-than kept at a discounted fraction, since guessing a partial-credit
-number here would be asserting, not deriving. (Note that removing
-"running start" from the wording doesn't itself change the price: that
-mechanic drew from the same per-action Speed rate as ordinary
-movement, so it was never a distinct value source — the attack-enabler
-component, which already compares straight against ordinary move
-actions, already fully covered it.)
+The item itself is simplified to match, replacing the old flip-related
+wording with a **Good Luck** grant instead of an outright guarantee —
+you can still be asked for a flip on an unusually complicated jump, you
+just get help on it:
 
-`Value = 5.5 (attack-enabler) + 1 (unchanged fall-safety flat credit)
-= 6.5`. `Target = 9` (Level 3 × 3). **Net = −2.5** — a real shortfall
-now, not the near-exact match the pre-correction number showed. Open:
-whether to accept this below Target, buff the jump distance/AP cost,
-or add a rider, same open-ended set of options as Lightfoot Shoes.
+> Once per encounter you may spend 1 AP to make a jump up to 10 meters
+> in any direction. You have Good Luck on any flips related to the
+> jump, and if you fall as part of the jump you ignore up to 10 meters
+> of distance for the purpose of determining the difficulty of the
+> Acrobatics flip to avoid falling damage.
+
+(`items.csv` `I111`, regenerated into `data/items.json`.)
+
+Repricing component by component:
+
+- **Attack-enabler**: unchanged, `5.5`.
+- **Fall-safety**: unchanged flat credit, `1`.
+- **Vertical-jump flexibility**: the Athletics budget's standing 2-per-
+  space vertical cost (`rulebook.md:456`, untouched by the running-start
+  cut — a separate mechanic) means a mundane 10m *vertical* climb/jump
+  needs a budget of 20 (Athletics Skill Total ≥ 40), a bar most
+  characters never clear, versus 10 for the same distance horizontally.
+  A flat "10m, any direction, no check" item bypasses that gate
+  entirely in the harder direction, not just the easy one — a modest
+  flat rider, one step above fall-safety's own +1 given it's bypassing
+  a budget most characters can't reach at all: **+2**.
+- **Good Luck on jump-related flips**: Good Luck's own established rate
+  is `2.4/instance` (`balance_weights.csv`). Since most jumps under the
+  simplified rules won't call for a flip at all — this only matters on
+  the rare complicated case — it's priced at the **1/3 "rarer than
+  daily, narrow single-use-case" tier**: `2.4 × ⅓ = 0.8`.
+
+`Value = 5.5 + 1 + 2 + 0.8 = 9.3`. `Target = 9` (Level 3 × 3). **Net =
++0.3** — lands close to Target on its own, no accept-below-Target
+allowance needed this time.
 
 ### Greaves of the Warlock King = 16.5 — a two-mode once/turn engine, not a single flat rate
 

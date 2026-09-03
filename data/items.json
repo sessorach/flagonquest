@@ -5050,7 +5050,7 @@
     "tags": null,
     "level": 3,
     "description": "Usually crafted as a light pair of leather boots with supple soles, these boots are widely used by all manner of adventurous individuals for their simple yet useful enchantment.",
-    "effects": "Once per encounter you may spend 1 AP to make a jump up to 10 meters in any direction, without requiring a flip if one would otherwise be needed, and if you fall as part of the jump you ignore up to 10 meters of distance for the purpose of determining the difficulty of the Acrobatics flip to avoid falling damage.",
+    "effects": "Once per encounter you may spend 1 AP to make a jump up to 10 meters in any direction. You have Good Luck on any flips related to the jump, and if you fall as part of the jump you ignore up to 10 meters of distance for the purpose of determining the difficulty of the Acrobatics flip to avoid falling damage.",
     "cost": "60 Gold",
     "value_per_level": null,
     "school": null,
