@@ -1061,25 +1061,45 @@ pricing-model blind spot like Resist's was).
 
 A companion tool to the Speed correction above, for tuning weapon/ability
 ranges deliberately rather than by feel: given a distance `D` and a
-would-be closer's Speed, `moves_needed(D, Speed) = ceil(D / Speed)` move
-actions are required to cross it (each 1 AP, up to Speed meters). Since
-a standard turn is 4 AP and a standard attack costs 2 AP, **closing the
-gap and still attacking the same turn requires `moves_needed ≤ 2`** —
-the same 2-move ceiling the Speed correction above derived directly
-from Baseline's own attack economy (half of turns spend the full 4 AP
-on 2 attacks; the rest split 2 AP between movement and either a second
-move or something else).
+would-be closer's Speed, the moves needed to *cross* it isn't `D /
+Speed` — closing a gap only means covering ground down to melee range
+(1m, "close range" per `glossary.md`), not all the way to 0. Corrected:
 
-At the session's baseline Speed 4, four named breakpoints fall out of
-this cleanly:
+`moves_needed(D, Speed) = ceil((D − 1) / Speed)`
+
+(An earlier pass here divided the raw distance by Speed directly,
+missing the −1; caught by cross-checking the grenade/thrown-weapon
+range below, which the uncorrected formula misclassified — see the
+worked check further down.)
+
+Since a standard turn is 4 AP and a standard attack costs 2 AP,
+**closing the gap and still attacking the same turn requires
+`moves_needed ≤ 2`** — the same 2-move ceiling the Speed correction
+above derived directly from Baseline's own attack economy (half of
+turns spend the full 4 AP on 2 attacks; the rest split 2 AP between
+movement and either a second move or something else). Solving that
+ceiling for `D` gives the single most useful number here:
+
+**The "still attacks" ceiling is `D ≤ 2×Speed + 1`; the "costs you the
+attack" floor is `D ≥ 2×Speed + 2`.** At the session's baseline Speed
+4, that's **9m vs. 10m exactly** — the line where a target goes from
+"reachable and punishable this turn" to "reachable only by giving up
+the attack." This is the breakpoint worth designing weapon/ability
+ranges around most deliberately, more than the outer full-turn edge
+below: it's the first point where range actually buys the wielder
+something (a free turn without melee retaliation), not just a
+theoretical "eventually out of reach."
+
+The rest of the tiers, at baseline Speed 4:
 
 | Breakpoint | AP story | Distance | Meaning |
 |---|---|---|---|
 | **Melee/Reach** | Weapon-defined, not movement-derived | 1m ("close range," per `glossary.md`) | Already in range; not a movement question |
-| **Short** | 1 move (1 AP) | 4m | Closable for the cheapest possible action |
-| **Medium** | 2 moves + attack (4 AP, full turn) | 8m | The outer edge of "close and still swing" |
-| **Long** | 4 moves, 0 AP left (full turn) | 16m | Closable in one turn, but costs the whole turn — no attack |
-| **Extreme** | \>4 moves | \>16m | Can't be closed in a single turn at all |
+| **Short** | 1 move (1 AP) | up to 5m | Closable for the cheapest possible action |
+| **Medium** | 2 moves + attack (4 AP, full turn) | up to 9m | Closable **and still punishable** in melee this turn |
+| *(the 10m line)* | 3 moves (3 AP), 0 AP left for an attack | 10m–13m | Costs the wielder's attack to close — "most of a turn," per the designer |
+| **Long** | 4 moves, 0 AP left (full turn) | 14m–17m | Closable in one turn, but the whole turn — no attack, no AP to spare |
+| **Extreme** | \>4 moves | \>17m | Can't be closed in a single turn at all |
 
 These aren't snap points every range value has to land on exactly —
 they're landmarks to test a proposed range against: does crossing it
@@ -1092,28 +1112,31 @@ so `3 × Body` = 9m):
 
 | Weapon | Range | Moves needed (Speed 4) | Tier |
 |---|---|---|---|
-| Melee (any) | Close (1m) | 1 | Melee/Reach |
-| Thrown weapons / Bombs | 3 × Body (9m) | 3 | Long — just past Medium |
-| Handgun | 10m | 3 | Long (1 AP left over after closing) |
+| Melee (any) | Close (1m) | 0 | Melee/Reach |
+| Thrown weapons / Bombs | 3 × Body (9m) | 2 | Medium — sits exactly at the "still attacks" ceiling |
+| Handgun | 10m | 3 | First weapon past the ceiling — costs the attack |
 | Light Bow / Blunderbuss | 15m | 4 | Long, right at the edge — 0 AP left over |
 | Heavy Bow / Musket | 20m | 5 | Extreme — can't be closed in one turn |
 
-Reads as more intentional than gut-estimated, on inspection: Handgun
-sits just past the "still attack" line, Light Bow/Blunderbuss sit right
-at the outer edge of what a single committed turn can cross, and Heavy
-Bow/Musket are the only ranged weapons genuinely safe from a one-turn
-charge — a clean three-tier ranged-weapon spread that already tracks
-the breakpoints without having been designed against them explicitly.
+Reads as more intentional than gut-estimated, on inspection, and
+sharper than the uncorrected pass made it look: thrown weapons/Bombs
+land exactly on the "still punishable in melee" line rather than past
+it, Handgun is the *first* weapon that reliably buys a full turn of
+safety from a baseline-Speed melee attacker, and Light Bow/Blunderbuss
+sit right at the outer edge of what a single committed turn can cross
+at all — a clean progression that already tracks the breakpoints
+without having been designed against them explicitly.
 
 **This shifts with the closer's actual Speed**, which matters most for
 calibrating against non-baseline creatures (a fast monster, a Hasted
 ally) rather than the player-facing weapon numbers themselves: a Speed
 5 closer brings the Handgun's 10m back under the 2-move "still attacks"
-line (`ceil(10/5) = 2`), and even Heavy Bow/Musket's 20m only takes 4
-moves at Speed 5-6 (`ceil(20/5) = 4`, `ceil(20/6) = 4`) — still the full
-turn, but no longer safely uncrossable the way it is at baseline. Worth
-checking any new range value against a faster baseline too (Speed 5-6),
-not just the default 4, before calling it safely in a given tier.
+line (`ceil((10−1)/5) = 2`), and even Heavy Bow/Musket's 20m only takes
+4 moves at Speed 5-6 (`ceil((20−1)/5) = 4`, `ceil((20−1)/6) = 4`) —
+still the full turn, but no longer safely uncrossable the way it is at
+baseline. Worth checking any new range value against a faster baseline
+too (Speed 5-6), not just the default 4, before calling it safely in a
+given tier.
 
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
