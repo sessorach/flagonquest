@@ -1138,6 +1138,57 @@ baseline. Worth checking any new range value against a faster baseline
 too (Speed 5-6), not just the default 4, before calling it safely in a
 given tier.
 
+### Slipstream Sandals = 5.5 — a once/encounter movement item priced as an attack-enabler, not raw movement
+
+Once/encounter, 0 AP, Teleport 3 meters (Feet, Level 2). The first pass
+priced this against Push's marginal per-meter rate (`3 × 0.55 = 1.65`)
+and flagged it as probably wrong — Push's rate prices incremental
+Speed, appropriate for an on-hit rider, but this is a single
+once-per-encounter effect with a completely different use pattern: per
+the designer, "you only use them if you need the extra to hit a
+breakpoint" — this item does nothing on a turn where you were already
+in range, and does nothing if you're too far out for even the extra 3m
+to matter. Its entire value lives in the turns where it's exactly the
+difference between closing-and-attacking and wasting the turn just
+approaching.
+
+**Model: `Value = (value of landing the attack it enables) × (how
+often it's actually the deciding factor)`.** The payoff side uses the
+same AP-cost basis as everywhere else in this document rather than a
+weapon-specific damage number (this is a generic item, not tied to any
+one weapon): landing an attack costs 2 AP, so its value is `2 × 2.75 =
+5.5`. Per the designer, a player who takes this item is assumed to
+find a way to use it to good effect basically every fight — **frequency
+= 100%** — so `Value = 5.5`.
+
+`Target = 6` (Level 2 × 3). **Net = −0.5** — effectively at Target, no
+additional rider needed.
+
+**Why 3 meters specifically**, not some other distance: anchored to
+Slowed's own already-derived rate (`balance_weights.csv` row "Slowed"),
+not a hand-wavy "some obstacle." Slowed reduces Speed by 1/stack,
+hard-capped at 4 stacks — at baseline Speed 4, 4 stacks zeroes movement
+out completely. 3 meters is exactly *one stack short* of that full
+cap: the item guarantees your one crucial move still gets through even
+under near-maximal Slowed, without fully trivializing a fully-capped
+Slowed. A deliberate, checkable design constraint ("Slowed-cap minus
+one") rather than an arbitrary flavor number — worth reusing as a
+reference point for any future item whose whole point is "still lets
+you act despite a debuff."
+
+**This is also a direct, concrete application of the range breakpoints
+above**: spending the teleport plus a normal turn's 2 leftover move
+actions covers `3 + 2×4 = 11m` before the attack's 2 AP, which
+functionally extends the "still attacks" ceiling from 9m to 12m for
+one turn per encounter — a Feet item literally moving the breakpoint
+line rather than granting movement in the abstract.
+
+Same "attack-enabler, priced via the AP-cost basis, discounted by how
+often it's the deciding factor" model should be checked against
+Vaulting Boots and Greaves of the Warlock King next, since both are
+also once-per-encounter/turn movement effects rather than continuously
+active ones.
+
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
 Two questions were open here: should Ward scale magnitude per stack
