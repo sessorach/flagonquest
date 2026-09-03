@@ -1340,6 +1340,98 @@ Shifted, Teleported, or otherwise moved unless they wish to be. You
 are immune to Slowed." Cost dropped from 100 Gold (Level 5) to 40 Gold,
 matching this slot's flat Level × 20 Gold convention.
 
+### Feathered Sandals = 4.0 — moved off Narrative Utility once fall damage turned out to be a real, guaranteed-harm anchor
+
+Originally priced as plain Narrative Utility (`Value = ⅓ × 3 = 1`, Net
+−2), on the reasoning that it had "no clean AP/frequency anchor" — but
+its own wording was stale first: "automatically succeeds on flips to
+avoid damage when falling 10 meters or less" describes a fall-damage
+flip that doesn't exist anymore (fall damage is a flat calculation:
+reduce distance by Essence or half Acrobatics Skill Total, lose Health
+for the rest — same correction already made to Vaulting Boots).
+Reworded to match, and made unconditional rather than gated to a
+specific ability (`items.csv` `I108`): "The wearer ignores up to 10
+meters of distance for the purpose of determining fall damage, from
+any fall."
+
+Once it's read as "ignores 10m of distance" rather than "avoids a
+flip," the old "no clean anchor" reasoning stops being true — this
+prevents *guaranteed* Health loss (no attack roll involved, same shape
+as Resist), which is exactly what Health's own guaranteed-harm rate
+(4/point) already prices. No baseline Essence or Acrobatics Skill
+Total exists anywhere in this document the way baseline Speed (4) or
+Body (3) do, so a representative case has to be constructed rather
+than derived: a **6m fall** (a real, moderate, plausible fall — not an
+extreme case) against a **baseline reduction of 3** (matching the
+"baseline stat = 3" pattern used for Body/Agility elsewhere).
+Unmitigated damage `= max(0, 6−3) = 3`; with the item, effective
+distance drops to 0, fully negating it. `Prevented = 3 × 4 = 12` raw.
+
+Checked `features.csv`/`techniques.csv` for anything that forces a
+fall as a combat consequence, the same way Push/Slowed got checked —
+found nothing (`Bound Across Mountains`/`Falling Tumble` both just let
+you substitute a different stat into the existing reduction formula,
+not create new fall scenarios). Unlike Push/Slowed, there's no reason
+to think falling is more common than it looks, so it stays on the
+**⅓ "rarer than daily, niche" tier**: `12 × ⅓ = 4.0`.
+
+`Target = 3` (Level 1). **Net ≈ +1.0**. The 6m/reduction-3 case is a
+constructed placeholder, not a firm derivation the way Speed's rate
+or Slowed's curve are — flagged as a first stab, open to a different
+representative fall if a better anchor turns up later.
+
+### Shadowcat Slippers = 4 — the softest number of the batch, likely still wants a redesign pass
+
+Wall-running, unconditional, for the whole encounter. Structurally the
+same shape as Vaulting Boots' vertical-jump flexibility rider (+2,
+bypassing the Athletics budget's 2-per-space vertical cost — the same
+steep bottleneck) — but continuously available rather than gated to
+one guaranteed use, the same permanent-vs-single-use distinction that
+required multiplying Speed's rate by moves/encounter for Lightfoot
+Shoes.
+
+Unlike that derivation, this one isn't built on a hard per-meter or
+per-move rate — Vaulting Boots' own +2 was already a soft, constructed
+flat credit, not a firm number. Multiplying a soft flat guess by an
+assumed frequency compounds uncertainty rather than resolving it, so
+treat this accordingly: assuming roughly **2 meaningful uses/encounter**
+where vertical mobility actually matters (same order of magnitude as
+Greaves of the Warlock King's own "2 uses" figure), `Value ≈ 2 × 2 =
+4`. `Target = 6` (Level 2). **Net ≈ −2** — better than the original
+Narrative Utility −4, but this is the least-grounded number of the
+three Feet-slot items revisited this pass. Probably wants the same
+kind of redesign conversation Greaves of the Stalwart Guardian got,
+rather than being treated as settled.
+
+### Swim Flippers (formerly Cobblestone Boots) = 1 — redesigned for a bigger, more compelling effect at the same modest price
+
+The original mechanic (full-Speed underwater walking, no buoyancy) was
+checked against the same vertical-budget-bypass lens that helped
+Vaulting Boots/Shadowcat Slippers and didn't hold up: swimming only
+costs 1/space from the Athletics budget — the same gentle *horizontal*
+rate as jumping, nothing like vertical's steep 2/space wall. Most
+reasonably-built characters can likely already swim at full Speed
+without this item, so there was no real bypass value to price beyond
+Narrative Utility's flat credit.
+
+Redesigned and renamed rather than re-priced (`items.csv` `I107`,
+regenerated into `data/items.json`): "The wearer may swim with no
+penalty, at their full Speed, and does not need to breathe while
+underwater." Trades the minor "walk the seafloor" mobility nicety for
+a real survival guarantee (can't drown) — a much more compelling
+reason to take the item, on the same "Leather" material tag flippers
+actually call for rather than the old "Metal" (a mismatch even under
+the original rock-boots concept).
+
+Breathing isn't gated by AP spend or hit chance any more than the old
+buoyancy effect was, so this still has no clean economic anchor and
+stays on the plain **Narrative Utility** formula: `Value = ⅓ × 3 = 1`.
+`Target = 3` (Level 1). **Net = −2**, numerically unchanged from the
+original Cobblestone Boots — the formula is Level-based, not
+effect-based, so a qualitatively much stronger effect doesn't move the
+number on its own. The improvement here is that the item is now
+clearly worth taking at its price, not that its Net changed.
+
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
 Two questions were open here: should Ward scale magnitude per stack
