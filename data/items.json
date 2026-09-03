@@ -4911,7 +4911,7 @@
     "tags": null,
     "level": 1,
     "description": "A breathtaking number of soft, smooth feathers (or materials patterned as such) are stitched into the sides of these soft sandals. The wearer feels a subtle lightness from their feet, as though they could jump from a balcony and float to the ground like a piece of parchment.",
-    "effects": "The wearer automatically succeeds on flips to avoid damage when falling 10 meters or less, suffering no damage or other penalty.",
+    "effects": "The wearer ignores up to 10 meters of distance for the purpose of determining fall damage, from any fall.",
     "cost": "20 Gold",
     "value_per_level": null,
     "school": null,
