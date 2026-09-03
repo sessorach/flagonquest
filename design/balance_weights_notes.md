@@ -1216,10 +1216,12 @@ just get help on it:
 > Once per encounter you may spend 1 AP to make a jump up to 10 meters
 > in any direction. You have Good Luck on any flips related to the
 > jump, and if you fall as part of the jump you ignore up to 10 meters
-> of distance for the purpose of determining the difficulty of the
-> Acrobatics flip to avoid falling damage.
+> of distance for the purpose of determining fall damage.
 
-(`items.csv` `I111`, regenerated into `data/items.json`.)
+(`items.csv` `I111`, regenerated into `data/items.json`. The original
+draft still referenced an "Acrobatics flip to avoid falling damage" —
+per the designer, fall damage is a flat calculation now, not a flip,
+so the wording is trimmed to just "determining fall damage.")
 
 Repricing component by component:
 
