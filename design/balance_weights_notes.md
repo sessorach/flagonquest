@@ -1184,10 +1184,78 @@ one turn per encounter — a Feet item literally moving the breakpoint
 line rather than granting movement in the abstract.
 
 Same "attack-enabler, priced via the AP-cost basis, discounted by how
-often it's the deciding factor" model should be checked against
-Vaulting Boots and Greaves of the Warlock King next, since both are
-also once-per-encounter/turn movement effects rather than continuously
+often it's the deciding factor" model checked against Vaulting Boots
+and Greaves of the Warlock King below, since both are also
+once-per-encounter/turn movement effects rather than continuously
 active ones.
+
+### Vaulting Boots = 6.5 — trimmed after a movement-rules correction (no more running start, flips only when "very complicated")
+
+Once/encounter, 1 AP, jump up to 10m in any direction (Feet, Level 3).
+The first pass split this into an attack-enabler component (5.5, same
+basis as Slipstream Sandals) plus a **flip-guarantee** component
+(2.75, `50% × 5.5`, using Baseline's own default 50%
+hit/success-chance convention) — reasoning that the item's own wording
+("without requiring a running start or a flip") implied a mundane jump
+this size would normally need a flip with a real chance of failure,
+and that guaranteeing success was worth crediting.
+
+**Per the designer, that's stale against the current movement rules**:
+there's no running-start mechanic anymore (an obstacle-crossing jump is
+no longer buildable across combined move actions the way
+`rulebook.md:456-470` still describes — that passage needs updating to
+match, flagged separately below, not fixed here since it's a rulebook
+rules-text change beyond this one item), and flips are no longer
+required for jumps except "very complicated" ones — which a flat,
+undirected 10m jump doesn't obviously qualify as. The item's own
+Effects text is corrected to match: "without requiring a running start
+or a flip" → "without requiring a flip if one would otherwise be
+needed" (`items.csv` `I111`, regenerated into `data/items.json`).
+
+With the mundane case no longer assumed to require a flip at all, the
+flip-guarantee credit doesn't apply to a typical use — dropped rather
+than kept at a discounted fraction, since guessing a partial-credit
+number here would be asserting, not deriving. (Note that removing
+"running start" from the wording doesn't itself change the price: that
+mechanic drew from the same per-action Speed rate as ordinary
+movement, so it was never a distinct value source — the attack-enabler
+component, which already compares straight against ordinary move
+actions, already fully covered it.)
+
+`Value = 5.5 (attack-enabler) + 1 (unchanged fall-safety flat credit)
+= 6.5`. `Target = 9` (Level 3 × 3). **Net = −2.5** — a real shortfall
+now, not the near-exact match the pre-correction number showed. Open:
+whether to accept this below Target, buff the jump distance/AP cost,
+or add a rider, same open-ended set of options as Lightfoot Shoes.
+
+### Greaves of the Warlock King = 16.5 — a two-mode once/turn engine, not a single flat rate
+
+Once/turn, 1 AP, Teleport `2 × Speed` meters (Feet, Level 5) — 8m at
+baseline Speed 4. Unlike the once/encounter items above, this is
+repeatable up to 5 times across a Baseline encounter, so "how often
+does it matter" isn't a single yes/no — it's two distinct payoffs
+depending on the gap it's used against:
+
+- **Gap ≤ 9m** (already inside the normal "still attacks" range):
+  doesn't enable anything new, just does the same job for less AP — 1
+  AP instead of the 2 AP ordinary movement would cost to close the
+  same ground. Backpack-precedent AP-savings: `1 AP saved × 2.75 =
+  2.75/use`.
+- **Gap 10-13m** (the "costs the attack" zone from the range
+  breakpoints above): 1 AP on the 8m teleport, 1 remaining move action
+  covers up to 4 more meters, 2 AP left for the attack — `8 + 4 + 1
+  (melee range) = 13m`, exactly the full width of that zone. Full
+  attack-enabler value: `5.5/use`.
+
+Per the designer: a player who takes this item finds ways to make the
+extra margin count, landing at **2 rescue uses + 2 cheap-saver uses
+per encounter** — a player expanding what they can do with a
+repeatable tool, same framing as Slipstream Sandals' "will find a way
+to get value every fight," just split across two use-modes instead of
+one.
+
+`Value = 2×5.5 + 2×2.75 = 11 + 5.5 = 16.5`. `Target = 15` (Level 5 ×
+3). **Net = +1.5**.
 
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
