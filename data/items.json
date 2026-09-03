@@ -8366,7 +8366,7 @@
     "tags": null,
     "level": 3,
     "description": "These boots come in a variety of designs, from hiking boots to snowshoes, but the enchantment powering them stays the same - desired by trappers, explorers, and anyone who spends time in the wilderness, giving their wearer a firm foothold on almost any landscape.",
-    "effects": "The wearer ignores 2 levels of Difficult Terrain.",
+    "effects": "The wearer ignores all Difficult Terrain.",
     "cost": "60 Gold",
     "value_per_level": null,
     "school": null,

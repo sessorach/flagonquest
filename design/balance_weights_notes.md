@@ -1439,6 +1439,26 @@ Cobblestone Boots throughout every version of this item — the formula
 is Level-based, not effect-based, so this was always going to land
 here regardless of which specific water-themed flavor it settled on.
 
+### Surestride Boots = 8.25 — simplified to "ignore all," Net unchanged
+
+Was "ignores 2 levels of Difficult Terrain," the cleanest, most
+directly-derived number in the whole Feet slot — Difficult Terrain's
+own rate hard-caps at degree 2 (`0/2.75/8.25/8.25` for degrees
+0/1/2/3+), so ignoring 2 degrees already sat at the full capped value,
+`Value = 8.25` with no construction or guesswork needed.
+
+Per the designer, simplified to "ignores all Difficult Terrain"
+(`items.csv` `I188`, regenerated into `data/items.json`) — Difficult
+Terrain beyond degree 2 doesn't exist in a meaningfully different way
+mechanically (the rule itself floors movement throughput at 1m/action
+once terrain hits degree 2, so degree 3+ was never worse to a mover
+than degree 2 already was, the same reasoning that let Greaves of the
+Stalwart Guardian's "ignore 3 degrees" get cut without losing anything
+real). Ignoring "all" therefore grants exactly the same practical
+protection "ignore 2" already did — a pure wording simplification, not
+a power change. `Value` stays `8.25`, `Target = 9` (Level 3 × 3),
+**Net = −0.75**, unchanged.
+
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
 Two questions were open here: should Ward scale magnitude per stack
