@@ -1403,7 +1403,15 @@ three Feet-slot items revisited this pass. Probably wants the same
 kind of redesign conversation Greaves of the Stalwart Guardian got,
 rather than being treated as settled.
 
-### Swim Flippers (formerly Cobblestone Boots) = 1 — redesigned for a bigger, more compelling effect at the same modest price
+Per the designer, the wording was ambiguous about whether wall-running
+happened at the wearer's normal Speed or something slower — clarified
+rather than changed (`items.csv` `I155`, regenerated into
+`data/items.json`): "The wearer can run up walls and other vertical
+surfaces at their full Speed, but must end their turn on a stable
+surface or fall." This was already the assumption behind the Value
+derivation above, so it doesn't move the number.
+
+### Swim Flippers (formerly Cobblestone Boots) = 1 — renamed and simplified, Net unchanged
 
 The original mechanic (full-Speed underwater walking, no buoyancy) was
 checked against the same vertical-budget-bypass lens that helped
@@ -1414,23 +1422,22 @@ reasonably-built characters can likely already swim at full Speed
 without this item, so there was no real bypass value to price beyond
 Narrative Utility's flat credit.
 
-Redesigned and renamed rather than re-priced (`items.csv` `I107`,
-regenerated into `data/items.json`): "The wearer may swim with no
-penalty, at their full Speed, and does not need to breathe while
-underwater." Trades the minor "walk the seafloor" mobility nicety for
-a real survival guarantee (can't drown) — a much more compelling
-reason to take the item, on the same "Leather" material tag flippers
-actually call for rather than the old "Metal" (a mismatch even under
-the original rock-boots concept).
+First redesigned to add a no-need-to-breathe-underwater guarantee, then
+walked back — per the designer, water-breathing belongs to a different
+slot's job, not this one. Settled (`items.csv` `I107`, regenerated into
+`data/items.json`): "The wearer may swim with no penalty, at their full
+Speed." A plain swim-Speed item, renamed off the old "walk the
+seafloor, immune to buoyancy" framing since that's an oddly specific
+niche for a boot enchantment, on the "Leather" material tag flippers
+actually call for rather than the old "Metal."
 
-Breathing isn't gated by AP spend or hit chance any more than the old
-buoyancy effect was, so this still has no clean economic anchor and
-stays on the plain **Narrative Utility** formula: `Value = ⅓ × 3 = 1`.
-`Target = 3` (Level 1). **Net = −2**, numerically unchanged from the
-original Cobblestone Boots — the formula is Level-based, not
-effect-based, so a qualitatively much stronger effect doesn't move the
-number on its own. The improvement here is that the item is now
-clearly worth taking at its price, not that its Net changed.
+Still no clean economic anchor (swim distance isn't gated by AP spend
+or hit chance any more than the old buoyancy effect was), so it stays
+on the plain **Narrative Utility** formula: `Value = ⅓ × 3 = 1`.
+`Target = 3` (Level 1). **Net = −2**, unchanged from the original
+Cobblestone Boots throughout every version of this item — the formula
+is Level-based, not effect-based, so this was always going to land
+here regardless of which specific water-themed flavor it settled on.
 
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
