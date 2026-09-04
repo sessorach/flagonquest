@@ -1636,6 +1636,21 @@ confirmed deliberately rather than reworked further — this is a "gut
 feeling, niche, and that's fine" item, not one meant to ever get a
 harder numeric anchor. Left as Level 1 with no changes.
 
+### Lens of Daybreak = 1.2 — confirmed at the ½ tier, same as Mask of Night
+
+Level 2. "The wearer has Good Luck on Awareness flips that
+specifically involve sight." Per the designer, sight-based Awareness
+checks are genuinely common (spotting stealthing enemies, general
+perception) — but the value per success is soft/narrative ("succeeding
+on them can give the party great ways to move forward") rather than a
+guaranteed hard payoff, so this confirms the ½ "genuine recurring
+demand" tier rather than pushing to the full "every encounter" one —
+matches Mask of Night's own reasoning exactly, just for a different
+sight-related trigger. `Value = 2.4 (Good Luck) × 0.5 = 1.2`. `Target =
+6` (Level 2). **Net = −4.8** — the biggest shortfall of the Head slot
+items reviewed so far, since Awareness-specifically-sight is a
+narrower Skill-use than Mask of Night's broader darkness-negation.
+
 
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
