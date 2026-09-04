@@ -1609,7 +1609,23 @@ No pricing changes from any of this — every edit here is a wording-
 only pass, not a mechanical one. All regenerated into `data/items.json`
 and `data/techniques.json`.
 
-### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
+### Mask of Night = 2.2 — priced off Heavy Cover's Bad-Luck-twice rule
+
+Level 1. "When the mask is in place it grants its wearer perfect
+vision in darkness, negating any penalty to sight due to a lack of
+light. Smoke or anything else that physically obscures sight is not
+negated, however."
+
+Real anchor: total darkness counts as Heavy Cover (`rulebook.md:512`),
+which gives Bad Luck twice on "flips to see you" *and* on attacks
+against Dodge/Parry. This item negates the wearer's own side of that —
+their sight-related flips while in darkness — not the
+attacker's-difficulty-seeing-them side, which is a different
+beneficiary this item doesn't touch. `Value = 2 × 2.2 (Bad Luck's
+rate, mirrors Good Luck) × 0.5 (½ "genuine recurring demand" tier,
+same as the social hats and Cowl of Tranquility above) = 2.2`. `Target
+= 3` (Level 1). **Net = −0.8**.
+
 
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
