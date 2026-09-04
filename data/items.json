@@ -2466,11 +2466,11 @@
     "category": "Masterwork",
     "slot": "Head",
     "tags": null,
-    "level": "1-5",
+    "level": 2,
     "description": "A loose hood stitched from prayer shawls and adorned with simple beads, when donned the wearer feels faint, insubstantial energy flowing through them, like a flowing river or a spring breeze.",
-    "effects": "This item starts each encounter with [Level] charges. When you would gain a stack of Taunted or Frightened, you may expend a charge from this and instead you don’t gain that stack.",
-    "cost": null,
-    "value_per_level": 20,
+    "effects": "You are immune to Taunted and Frightened.",
+    "cost": "40 Gold",
+    "value_per_level": null,
     "school": null,
     "skill_total": null,
     "total_materials": null,
@@ -2503,11 +2503,7 @@
       "I003"
     ],
     "levels": [
-      1,
-      2,
-      3,
-      4,
-      5
+      2
     ]
   },
   {

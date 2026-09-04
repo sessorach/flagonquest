@@ -1521,6 +1521,44 @@ a bit more use out of it than the flat tier assumption implies, the
 same "will find a way to get value" reasoning as Slipstream Sandals,
 just not pushed all the way to a full tier bump this time.
 
+### Cowl of Tranquility = 5.5 — cut from a Level 1-5 range down to a fixed Level 2, charges converted to outright immunity
+
+Was `1-5`, "starts each encounter with `[Level]` charges," negate a
+stack of Taunted or Frightened per charge. Checked `features.csv` the
+same way Push/Slowed got checked for Greaves of the Stalwart Guardian:
+**Taunted is just as common** — "Distracting" (`F004`, Battle
+Maneuver, Basic, 1 point) inflicts it on hit/Parry, the same
+universal-technique-Basic-feature pattern as Push/Slowed — but no
+Frightened-inflicting feature was found (only `F043` Embolden, which
+*removes* it), so Frightened doesn't get the same confidence boost.
+
+**The structural problem**: charges scale `1× Level`, but Target
+scales `3× Level`, and per the designer a single relevant attack only
+ever grants 1-2 stacks — realistic usage caps out low regardless of
+how many charges a higher Level buys, so the shortfall only gets worse
+with Level, not better (unlike Lightfoot Shoes' proportional gap, this
+one is absolute and flat while Target keeps climbing). No Level fixes
+this on its own; it needed the same "right-size the Level, don't
+stretch the effect" move Greaves of the Stalwart Guardian got.
+
+**Solved for the charge count a fixed Level 2 (`Target = 6`) would
+need**: `charges × 2.2 (Taunted/Frightened's own rate) × 0.5 (½
+"genuine recurring demand" tier, matching the Head slot's social hats
+above) = Target` → `charges ≈ 5.45`. 5 charges lands at `Value = 5 ×
+2.2 × 0.5 = 5.5`, `Net = −0.5` — but per the designer, 5 charges
+already covers realistic Taunted/Frightened exposure in a fight so
+completely that tracking them as a resource is pointless theater —
+functionally equivalent to outright immunity. Simplified to match,
+same move as Greaves of the Stalwart Guardian's Slowed-charges → Slowed
+immunity, and Surestride Boots' "ignore 2" → "ignore all": a wording
+simplification once the charge count already covers the realistic
+ceiling, not a power change. `Value` stays `5.5`, `Net` stays `−0.5`.
+
+`items.csv` `I057`, regenerated into `data/items.json`: fixed at
+**Level 2** (was `1-5`), Cost fixed at 40 Gold (was Level × 20 via
+`Value Per Level`, no longer applicable to a fixed-Level item),
+Effects simplified to: "You are immune to Taunted and Frightened."
+
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
 Two questions were open here: should Ward scale magnitude per stack
