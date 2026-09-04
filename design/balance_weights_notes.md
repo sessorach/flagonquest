@@ -1626,6 +1626,16 @@ rate, mirrors Good Luck) × 0.5 (½ "genuine recurring demand" tier,
 same as the social hats and Cowl of Tranquility above) = 2.2`. `Target
 = 3` (Level 1). **Net = −0.8**.
 
+### Headband of Telepathy = 1 — confirmed as-is, no numeric anchor exists or is being sought
+
+Level 1. "The wearer can communicate telepathically with one creature
+they can see within 20 meters, for the rest of the scene." Pure
+Narrative Utility, `Value = ⅓ × 3 = 1`, `Net = −2`, same formula as
+Feathered Sandals originally and Swim Flippers. Per the designer,
+confirmed deliberately rather than reworked further — this is a "gut
+feeling, niche, and that's fine" item, not one meant to ever get a
+harder numeric anchor. Left as Level 1 with no changes.
+
 
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
