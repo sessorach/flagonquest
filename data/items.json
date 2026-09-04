@@ -2608,10 +2608,10 @@
     "category": "Masterwork",
     "slot": "Head",
     "tags": null,
-    "level": 3,
-    "description": "These hats are simple but impressively crafted, designed in an understated fashion but woven with silver threading and other fine materials. The styling of the hats varies, and with that the effects seem to as well - some are styled in a stylish manner that gives the wearer a boost of smugness, and others with clashing, distracting motifs that help them regain their footing in a conversation. Regardless, every expert negotiator can be seen sporting such a hat.",
-    "effects": "This starts each encounter with 5 charges. Whenever you are in the front in a social contest and your party would gain a Concession, instead you may expend a charge and you don’t gain that Concession.",
-    "cost": "60 Gold",
+    "level": 1,
+    "description": "These hats are simple but impressively crafted, understated but woven with fine silver threading. Every expert negotiator can be seen sporting one, and for good reason.",
+    "effects": "The wearer has Good Luck on Persuasion flips, other than those made as part of a social contest.",
+    "cost": "20 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -2645,7 +2645,7 @@
       "I003"
     ],
     "levels": [
-      3
+      1
     ]
   },
   {
@@ -7491,10 +7491,10 @@
     "category": "Masterwork",
     "slot": "Head",
     "tags": null,
-    "level": 2,
-    "description": "These hats are simple but impressively crafted, designed in an understated fashion but woven with silver threading and other expensive materials.",
-    "effects": "The wearer has their anxieties dampened, and gains a +1 bonus to Instinct Defense against Statements.",
-    "cost": "40 Gold",
+    "level": 1,
+    "description": "These hats are simple but impressively crafted, understated but woven with expensive silver threading. Wearing one lends the wearer an air of quiet, magnetic confidence.",
+    "effects": "The wearer has Good Luck on Presence flips, other than those made as part of a social contest.",
+    "cost": "20 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -7528,53 +7528,7 @@
       "I003"
     ],
     "levels": [
-      2
-    ]
-  },
-  {
-    "id": "I169",
-    "name": "Stoic Skullcap",
-    "category": "Masterwork",
-    "slot": "Head",
-    "tags": null,
-    "level": 2,
-    "description": "These caps provide the wearer a sense of calm and clarity when dealing with others, a feeling that intensifies the more another tries to menace or win them over with raw charisma.",
-    "effects": "The wearer gains a +1 bonus to Mental Defense against Statements.",
-    "cost": "40 Gold",
-    "value_per_level": null,
-    "school": null,
-    "skill_total": null,
-    "total_materials": null,
-    "main_materials": "Brilliant",
-    "optional_materials": null,
-    "physical_resist": null,
-    "fire_resist": null,
-    "frost_resist": null,
-    "brilliant_resist": null,
-    "shadow_resist": null,
-    "speed": null,
-    "parry_defense": null,
-    "dodge_defense": null,
-    "vital_defense": null,
-    "mental_defense": null,
-    "instinct_defense": null,
-    "shallow_health": null,
-    "deep_health": null,
-    "accuracy": null,
-    "damage": null,
-    "weapon_defense": null,
-    "range": null,
-    "relevant_skills": null,
-    "might_requirement": null,
-    "held_slots": null,
-    "supplement": "Base Game",
-    "material_types": null,
-    "base_item_options": [
-      "I002",
-      "I003"
-    ],
-    "levels": [
-      2
+      1
     ]
   },
   {
@@ -7583,10 +7537,10 @@
     "category": "Masterwork",
     "slot": "Head",
     "tags": null,
-    "level": 2,
+    "level": 1,
     "description": "The enchantment placed on these hats helps attune the emotions of the wearer with those around them - not enough to affect their own thoughts or desires, but enough to help them understand the feelings that drive others.",
-    "effects": "The wearer gains a +1 bonus to Instinct Defense.",
-    "cost": "40 Gold",
+    "effects": "The wearer has Good Luck on Rapport flips, other than those made as part of a social contest.",
+    "cost": "20 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -7620,7 +7574,7 @@
       "I003"
     ],
     "levels": [
-      2
+      1
     ]
   },
   {

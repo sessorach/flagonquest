@@ -1459,6 +1459,68 @@ protection "ignore 2" already did — a pure wording simplification, not
 a power change. `Value` stays `8.25`, `Target = 9` (Level 3 × 3),
 **Net = −0.75**, unchanged.
 
+## Head slot — first pass
+
+### Confident Cap, Cap of Smug Confidence, Stoic Skullcap, Sympathetic Hat — consolidated from four defensive items into three offensive Skill hats
+
+Started as a quick value-model sanity check across all ten Head Masterwork
+items, which flagged these four as needing attention before pricing —
+`I060`/`I168` share near-word-for-word fluff ("simple but impressively
+crafted, designed in an understated fashion but woven with silver
+threading...") under different names, the exact same gap-fill-batch
+duplication pattern that produced Attuned Shroud in the Torso pass.
+
+**Confident Cap turned out to be worse than a duplicate — its whole
+mechanic is built on defunct rules.** Its text ("Whenever you are in
+the front in a social contest and your party would gain a Concession...")
+references "front" and "Concession," neither of which exist in the
+current Social Contests rules (`rulebook.md:579-629`): the actual
+system is Statements (a Presence/Rapport/Persuasion flip against
+Mental/Instinct Defense) and Pressure (an accumulating Bad Luck stack
+on Statements) — already noted elsewhere in this document ("Pressure
+literally *is* imposed Bad Luck, not a separate mechanic"). Confident
+Cap was the most antiquated item found in the Head slot audit.
+
+**Redesigned as three Level 1 items, one per social Skill** (Presence,
+Persuasion, Rapport), each granting Good Luck on that Skill's flips
+**outside of a social contest** — a single flat-difficulty check,
+Support, or any other narrative use, rather than the contested
+Statement itself. Worded to avoid the term "Statement" entirely
+(per the designer, that framing is being reworked into something else,
+not yet reflected in `rulebook.md`) — scoping instead to "other than
+those made as part of a social contest," which stays correct regardless
+of what the contest-check ends up being called.
+
+Repurposed existing IDs/flavor rather than creating new ones, matching
+each hat's fluff to the Skill it already suited best:
+
+- **`I060` Confident Cap → Persuasion** ("every expert negotiator can
+  be seen sporting one"). Fluff trimmed — the original justified two
+  different effects via "the styling of the hats varies," which no
+  longer applies now that the family is split one-Skill-per-hat.
+- **`I168` Cap of Smug Confidence → Presence** (the more generic of
+  the four fluff-wise; kept largely as-is).
+- **`I170` Sympathetic Hat → Rapport** ("helps attune the emotions of
+  the wearer with those around them... understand the feelings that
+  drive others") — already read as Rapport almost exactly as written,
+  no rework needed.
+- **`I169` Stoic Skullcap → retired**, doesn't map cleanly to an
+  offensive Skill-buff (its flavor — resisting *others'* persuasion —
+  is defensive, not offensive). Per the designer, its name/flavor is
+  reserved for a future Neck-slot item that deals with Pressure
+  directly, not reused here. Row deleted from `items.csv`.
+
+**Pricing**, identical shape for all three: Good Luck's own rate (2.4)
+at the **½ "genuine recurring demand"** tier — the standardized tiers
+doc's own worked example for exactly this case ("a Skill Good Luck
+tied to genuine recurring demand, e.g. Techniques that call for
+Medicine flips"). `Value = 2.4 × 0.5 = 1.2`. `Target = 3` (Level 1).
+**Net = −1.8** for all three. Per the designer, accepted as-is —
+genuinely niche items, and a player who takes one is assumed to find
+a bit more use out of it than the flat tier assumption implies, the
+same "will find a way to get value" reasoning as Slipstream Sandals,
+just not pushed all the way to a full tier bump this time.
+
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 
 Two questions were open here: should Ward scale magnitude per stack
