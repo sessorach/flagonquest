@@ -1651,6 +1651,80 @@ sight-related trigger. `Value = 2.4 (Good Luck) × 0.5 = 1.2`. `Target =
 items reviewed so far, since Awareness-specifically-sight is a
 narrower Skill-use than Mask of Night's broader darkness-negation.
 
+### Wizardly Hat of Tam the Tipsy = a real per-use accounting, using Gold's own established rate for the first time
+
+Level 3. "Whenever the wearer drinks Alcohol, they may regain the use
+of an Encounter Technique with a Level equal to or lower than the
+Alcohol's own Level." No established rate exists for "the value of
+regaining an Encounter Technique use" — Techniques generally haven't
+been run through this Value/Target model at all (Spellblade's own
+writeup flags it as unpriced). Per the designer, this item predates a
+planned suite of Alcohol-cost Techniques and stays as a fun legacy
+item for now rather than getting formalized — but the accounting
+below is worth keeping for whenever that suite gets priced, since it
+establishes real anchors this document didn't have before.
+
+**Gold has an established conversion this document hadn't used until
+now**: `Gold = 1.5` (Locked, `balance_weights.csv`, "reciprocal of
+Baseline's Value/Gold ratio"). Alcohol (`I195`-`I199`, 1-5 Gold across
+Levels 1-5) is therefore worth `1.5 × Level` in raw Value with no
+construction needed. A technique-refresh's own value has no established
+anchor, so — per the designer's working assumption, not a verified
+fact — it's treated as worth the same `Level × 3` a same-Level item
+would be, on the reasoning that a Level-N technique should deliver
+comparable power to a Level-N item. That gives a clean, level-invariant
+finding: **a technique refresh is worth exactly double what that
+Level's Alcohol costs** (`3N` vs. `1.5N`), so net benefit per matched-
+Level use is just Alcohol's own Value again (`1.5 × Level`).
+
+**First pass (2 AP to drink, matching a Potion's cost) read badly.**
+Subtracting the 2 AP opportunity cost (`2 × 2.75 = 5.5`, the same
+"AP has a real, comparable-value alternative — an attack" basis the
+attack-enabler items use) alongside Alcohol's own cost:
+
+| Level | Technique value (3N) | Alcohol cost (1.5N) | AP cost | Net/use |
+|---|---|---|---|---|
+| 1 | 3.0 | 1.5 | 5.5 | −4.0 |
+| 2 | 6.0 | 3.0 | 5.5 | −2.5 |
+| 3 | 9.0 | 4.5 | 5.5 | **−1.0** |
+| 4 | 12.0 | 6.0 | 5.5 | +0.5 |
+| 5 | 15.0 | 7.5 | 5.5 | +2.0 |
+
+At the hat's own Level, triggering it was a net *loss* compared to
+just attacking that turn — only break-even to positive at Level 4-5
+Alcohol/technique pairs. More uses didn't accumulate toward Target the
+normal way, since each individual use below Level 4 was itself
+negative.
+
+**Redesigned per the designer**: the hat holds its own Alcohol supply
+(up to twelve doses) and drinking from that stock costs **0 AP** as
+part of using it — removing the AP-opportunity-cost term entirely.
+Net benefit per matched-Level use reverts to `1.5 × Level` (1.5, 3.0,
+**4.5**, 6.0, 7.5 for Levels 1-5) — positive at every Level now, not
+just 4+. At Level 3, **2 uses in a single encounter exactly hits
+Target** (`2 × 4.5 = 9`, `Net = 0`) — clean, though every use is
+scoped to *within* one encounter specifically, never between them
+(an Encounter Technique refreshes for free at the next encounter
+regardless, so recovering one between fights is worthless — the
+ability only ever does something real when it recovers a technique
+already burned earlier in the *same* fight).
+
+Flagged, not resolved: with 0 AP cost and a dozen-dose reserve, the
+real ceiling on uses/encounter isn't anything this item controls
+anymore — it's just however many Encounter Techniques the wearer
+knows and burns in one hard fight. A character cycling through 3-4
+Techniques in a tough encounter could plausibly trigger this 3+ times
+(`Value` 13.5+, `Net` +4.5 or more), meaningfully over Target. Left
+as-is per the designer rather than fixed now, since this stays a
+legacy item pending the future Technique suite, not something being
+actively rebalanced today.
+
+Effects text updated to match (`items.csv` `I171`, regenerated into
+`data/items.json`): "The hat can hold up to twelve doses of Alcohol,
+and drinking Alcohol stored this way costs 0 AP. Whenever the wearer
+drinks Alcohol, they may regain the use of an Encounter Technique with
+a Level equal to or lower than the Alcohol's own Level."
+
 
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.

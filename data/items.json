@@ -7581,7 +7581,7 @@
     "tags": null,
     "level": 3,
     "description": "An old, battered wizard's hat with a wide brim and a long, pointy tip, patched and stained many times. Its haggard appearance is part of its power - the hat contains the power of the famous sorcerer-brewmaster Tam the Tipsy.",
-    "effects": "Whenever the wearer drinks Alcohol, they may regain the use of an Encounter Technique with a Level equal to or lower than the Alcohol's own Level.",
+    "effects": "The hat can hold up to twelve doses of Alcohol, and drinking Alcohol stored this way costs 0 AP. Whenever the wearer drinks Alcohol, they may regain the use of an Encounter Technique with a Level equal to or lower than the Alcohol's own Level.",
     "cost": "60 Gold",
     "value_per_level": null,
     "school": null,
