@@ -1459,6 +1459,12 @@ protection "ignore 2" already did — a pure wording simplification, not
 a power change. `Value` stays `8.25`, `Target = 9` (Level 3 × 3),
 **Net = −0.75**, unchanged.
 
+**Wording updated again** during the immunity/prevention phrasing
+standardization pass below: "ignores all Difficult Terrain" →
+"ignores the effects of Difficult Terrain," matching the "ignores the
+effects of X" template for non-stacking mechanics. Still no power
+change — same `Value = 8.25`, `Net = −0.75`.
+
 ## Head slot — first pass
 
 ### Confident Cap, Cap of Smug Confidence, Stoic Skullcap, Sympathetic Hat — consolidated from four defensive items into three offensive Skill hats
@@ -1557,7 +1563,51 @@ ceiling, not a power change. `Value` stays `5.5`, `Net` stays `−0.5`.
 `items.csv` `I057`, regenerated into `data/items.json`: fixed at
 **Level 2** (was `1-5`), Cost fixed at 40 Gold (was Level × 20 via
 `Value Per Level`, no longer applicable to a fixed-Level item),
-Effects simplified to: "You are immune to Taunted and Frightened."
+Effects simplified to: "You cannot gain stacks of Taunted or
+Frightened." (Wording updated again in the standardization pass below
+— was "You are immune to Taunted and Frightened" at first.)
+
+### Immunity/prevention wording standardized across items.csv and techniques.csv
+
+Audited every "immune to"/"cannot gain"/"ignored instead"-style clause
+in both files — four genuinely different patterns had accumulated:
+full unconditional immunity ("You are immune to X"), count-limited
+prevention ("the next/first N stacks... instead you don't" vs. "...are
+ignored instead" — two different verbs for the same mechanic), a
+hedged partial immunity (Pranic Nourishment's "effectively immune,"
+deliberately not full since it still allows intoxication), and
+Difficult Terrain's own non-stacking "ignores" phrasing.
+
+Per the designer, standardized to two templates:
+
+- **Full immunity to a stacking debuff**: "cannot gain stacks of X."
+  Applied to Cowl of Tranquility (`I057`) and Greaves of the Stalwart
+  Guardian (`I112`), both "You are immune to X" → "You cannot gain
+  stacks of X."
+- **Full immunity to a non-stacking mechanic**: "ignores the effects
+  of X." Applied to Surestride Boots (Difficult Terrain, see above)
+  and Corrupted Blood (`T090`, Technique) — poison isn't stack-based
+  (Concentration/Potency instead), so "cannot gain stacks of" doesn't
+  literally apply; "You are immune to this poison" → "You ignore the
+  effects of this poison" fits the non-stacking template instead.
+- **Count-limited prevention**: "ignore the first N stacks of X you
+  would gain," replacing both older verbs. Applied to Muscular Feast
+  (`I026`), Kiss of the Earth (`I204`), Predator's Cry (`I205`), and
+  Coat of Knit Flesh (`I070`) — the latter's old "...are ignored
+  instead" was the specific inconsistency that started this audit.
+  Any trailing mechanical clauses (Muscular Feast's "choose which
+  stacks to prevent" for simultaneous effects; Kiss of the
+  Earth's/Predator's Cry's "if you already have stacks, remove them
+  and count them against the total") are unchanged — only the lead-in
+  verb moved.
+
+Pranic Nourishment (`T085`) deliberately left alone — it's genuinely
+partial (doesn't prevent intoxication), not a full-immunity case
+either template fits.
+
+No pricing changes from any of this — every edit here is a wording-
+only pass, not a mechanical one. All regenerated into `data/items.json`
+and `data/techniques.json`.
 
 ### Ward = a rule change (+1 → +2 Resist), plus a diminishing-return duration curve — not a flat number, not a compounding one
 

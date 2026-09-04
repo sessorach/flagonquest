@@ -4106,7 +4106,7 @@
     "action": "2 AP",
     "cost": "1 Health, discard a card",
     "target": null,
-    "effects": "Choose Bloody, Necrotic, Vulnerability, or Psychosis Poison; create a fresh dose with Concentration +X and Potency [half X] (X = your Meditation Skill Total). Extra +1 Potency if matching suit was Pitched (Clubs/Bloody, Spades/Necrotic, Diamonds/Vulnerability, Hearts/Psychosis). Spend 1 AP to coat a weapon instead. You are immune to this poison. After a full rest, the poison loses potency.",
+    "effects": "Choose Bloody, Necrotic, Vulnerability, or Psychosis Poison; create a fresh dose with Concentration +X and Potency [half X] (X = your Meditation Skill Total). Extra +1 Potency if matching suit was Pitched (Clubs/Bloody, Spades/Necrotic, Diamonds/Vulnerability, Hearts/Psychosis). Spend 1 AP to coat a weapon instead. You ignore the effects of this poison. After a full rest, the poison loses potency.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 4, Resilience 3",
