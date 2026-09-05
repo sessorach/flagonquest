@@ -6616,7 +6616,7 @@
     "tags": null,
     "level": 2,
     "description": "A thick, fur mantle that provides the wearer with a sense of comfort and alertness.",
-    "effects": "The wearer does not tire and never needs to sleep, and may benefit from a full night's rest whenever they choose - they may still only benefit from such a rest once per 24 hours, as usual. This only functions once the wearer has worn the mantle continuously for a full day.",
+    "effects": "The wearer does not tire and never needs to sleep, and may benefit from a full night's rest whenever they choose - they may still only benefit from such a rest once per 24 hours, as usual. This only begins functioning after the wearer has worn the mantle through a full night's rest, without receiving its benefits during that rest.",
     "cost": "40 Gold",
     "value_per_level": null,
     "school": null,

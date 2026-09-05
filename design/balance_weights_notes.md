@@ -1825,6 +1825,23 @@ own preferred fit: `Target = 3`, **Net = −1.8**. `items.csv` `I148`
 updated (Level 2→1, Cost 40→20 Gold), regenerated into
 `data/items.json`.
 
+### Watcher's Mantle = 2 — confirmed at Level 2, wording clarified
+
+No combat mechanic — pure Narrative Utility, `Value = ⅓ × 6 = 2`,
+`Target = 6` (Level 2), **Net = −4**. Per the designer, confirmed at
+this Level/tier rather than dropped to Level 1 like Shroud of Shadowy
+Stillness — "never sleep, rest on your own schedule" reads as enough
+of a step up from the Level 1 utility items to stay where it is.
+
+Wording clarified rather than the mechanic changed (`items.csv` `I149`,
+regenerated into `data/items.json`): the old "worn the mantle
+continuously for a full day" was ambiguous about whether that meant a
+literal 24-hour timer or specifically passing through a night's rest.
+Now explicit: "This only begins functioning after the wearer has worn
+the mantle through a full night's rest, without receiving its benefits
+during that rest" — the mantle needs one full rest cycle to activate,
+during which its own benefits don't apply yet.
+
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
 Both are now resolved.
