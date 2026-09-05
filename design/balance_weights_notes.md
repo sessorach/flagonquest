@@ -2027,6 +2027,35 @@ three separate components instead of one number:
 Level, Cost, and Effects text were already correct; only the pricing
 derivation needed resolving.
 
+### Cloak of Faces — cut, was never meant to be in the main list
+
+Level 5, 100 Gold. "Placed over the face of a recently-deceased
+humanoid, after a full round the cloak steals the corpse's face...
+after wearing the cloak for a full day, the wearer becomes attuned to
+it... for 2 AP, the wearer may raise the hood and replace their face
+with any face the cloak has stolen — this actually changes their
+features, not an illusion." Per `RULES_DESIGN.md`'s "explicit judgment
+calls" note from the original drafting pass: this item was sitting in
+the old design doc's "THE BIN" (a rejected-ideas dump), not the main
+item list, and only got drafted into `items.csv` by a broad "draft up
+entries for all of those items" instruction that didn't distinguish the
+bin from the real list — flagged at the time as possibly intentionally
+shelved, never resolved either way until now.
+
+Mechanically it would have been a real outlier too: every existing
+Masquerade-family effect (Practiced Persona, One of Many Faces, Hat of
+Disguise) is a disguise check — Good Luck on it, or an auto-success —
+still beatable by an opposed Insight check. This was an unconditional,
+undetectable-by-any-check actual transformation, with no real precedent
+to price against. Per the designer: bin it — Hat of Disguise is the
+right analogue for this design space already, and Cloak of Faces was
+"just a fun idea that didn't pan out." Removed from `items.csv`
+(`I152`), regenerated into `data/items.json`. Nine items remain in the
+Neck slot: Cloak of Caches, Diver's Necklace, Snowfall Drape, Shroud of
+Shadowy Stillness, Watcher's Mantle, Shawl of the Land, Choker of
+Defiance, Cloak of One Thousand Feathers, and Worry Token — the last of
+which is still open (see next).
+
 **The rule itself changed.** Scaling magnitude per stack (Hasted's
 shape) was considered and rejected: Resist reduces damage 1-for-1 per
 point with no upper bound, so an unbounded per-stack scale would let a
