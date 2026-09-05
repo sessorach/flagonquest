@@ -1879,6 +1879,24 @@ match it, since compared against the standard per-encounter Target the
 number already lands well. Worth remembering if this item ever gets
 revisited: the −0.5 Net is real only under the standard Target, not
 the once/day one this item's own cadence would technically call for.
+
+### Cape of Many Pockets — cut, duplicates existing Belt items
+
+Level 3. "The cape has 12 pouches, each an easily-accessible container
+that can hold an object no larger than 1 meter in any dimension.
+Stored items are weightless and cannot be damaged." Checked against
+Belt's own lane ("carrying items," `RULES_DESIGN.md:129`) and found
+to be a clean duplicate, not just a thematic overlap — two existing
+Belt items already do this exact job: **Placeholder's Bottomless
+Belt** (`I189`, Level 1, 20 pouches for small objects — the same
+"many pouches" shape, more pouches, a third the Level) and **Sash of
+Deep Pockets** (`I105`, Level 3, 20 cubic meters of capacity-gated
+storage — bigger and more flexible at the same Level). Nothing about
+Cape of Many Pockets carved out real space between those two. Per the
+designer, cut entirely rather than ported to Belt, since Belt already
+covers this ground better. Removed from `items.csv` (`I174`),
+regenerated into `data/items.json`.
+
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
 Both are now resolved.
