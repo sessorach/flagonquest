@@ -1527,6 +1527,28 @@ a bit more use out of it than the flat tier assumption implies, the
 same "will find a way to get value" reasoning as Slipstream Sandals,
 just not pushed all the way to a full tier bump this time.
 
+### Hat of Disguise = 1.2 — a new fourth Skill hat, same family as the three above
+
+New item (`I226`), added rather than found during the audit — a D&D-
+"Hat of Disguise"-style pitch, checked against real support before
+drafting: Masquerade (`rulebook.md:272`) is disguising yourself and
+acting in character, already backed by a mundane Disguise Kit
+(`I015`) and several Masquerade-focused Techniques (Practiced Persona,
+Ventriloquy, Air of Mystery, One of Many Faces). Confirmed Masquerade
+targets Insight Defense and isn't one of the three Skills a Statement
+uses (Presence/Rapport/Persuasion) — a genuinely separate mechanic,
+not a fourth flavor of the same thing.
+
+"The wearer has Good Luck on Masquerade flips, and does not need a
+Disguise Kit to attempt a disguise." Same pricing shape as the three
+social hats: `Value = 2.4 (Good Luck) × 0.5 (½ tier) = 1.2`. `Target =
+3` (Level 1). **Net = −1.8**, matching the other three exactly. The
+"no Disguise Kit needed" clause is left unpriced — kits are cheap and
+common, so this is a flavor-consistent convenience (the classic "the
+hat alone handles it" trope) rather than a real value swing, the same
+call made for Difficult Terrain's "ignore 2" vs. "ignore all" not
+moving Surestride Boots' price.
+
 ### Cowl of Tranquility = 5.5 — cut from a Level 1-5 range down to a fixed Level 2, charges converted to outright immunity
 
 Was `1-5`, "starts each encounter with `[Level]` charges," negate a

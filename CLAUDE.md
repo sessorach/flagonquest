@@ -84,12 +84,16 @@ which should stay a clean decision record.
   reference. Nothing in it is read by the site or by `convert.py`.
 - `design/` holds living design documentation — `RULES_DESIGN.md` (a
   human-readable log of rules-design reasoning, growing as decisions get
-  made), `balance.md` (aggregate balance-approach notes), and
+  made), `balance.md` (aggregate balance-approach notes),
   `balance_weights_notes.md` (the full derivation behind every current
-  THE TABEL weight) — plus `balance_weights.csv`, a fast-lookup index of
-  the same weights (current value, Locked/Pencil status, which markdown
-  section has the derivation) for quick reference without scanning
-  prose. Unlike `archive/`, this is meant to be read and extended, not
+  THE TABEL weight), and `IDEAS_BACKLOG.md` (loose not-yet-drafted ideas
+  for items/abilities/content — a holding pen, not a commitment; move an
+  idea out once it's actually drafted into the real CSVs and given a
+  proper writeup, don't leave it duplicated in both places) — plus
+  `balance_weights.csv`, a fast-lookup index of the same weights (current
+  value, Locked/Pencil status, which markdown section has the derivation)
+  for quick reference without scanning prose. Unlike `archive/`, this is
+  meant to be read and extended, not
   just kept for the record.
 
 ## Quick reference
