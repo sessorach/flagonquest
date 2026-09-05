@@ -377,16 +377,53 @@ are different axes; don't assume they need to track together.
 **Suit portfolio so far** (✓ = confirmed real against `glossary.md`, — =
 open):
 
-| Suit | Offensive | Defensive |
-|---|---|---|
-| ♥ Hearts | Frightened, Taunted | Brilliant Ward; healing effects scale off Hearts (roughly half of `Healing:TRUE` techniques already check "if the discarded card was a Heart" — see `Second Wind`, `Lay On Hands`) |
-| ♣ Clubs | Bleeding, Crippled | Fire Ward, Hasted, Shift |
-| ◆ Diamonds | Harried, Vulnerable, Necrotic | Shadow Ward; **no defensive keyword yet** |
-| ♠ Spades | Slowed, Pushing, Difficult Terrain | Frost Ward, Protected |
+| Suit | Offensive | Defensive | Generic/Utility |
+|---|---|---|---|
+| ♥ Hearts | Frightened, Taunted | Brilliant Ward; healing effects scale off Hearts (roughly half of `Healing:TRUE` techniques already check "if the discarded card was a Heart" — see `Second Wind`, `Lay On Hands`) | — |
+| ♣ Clubs | Bleeding, Crippled | Fire Ward, Hasted, Shift | — |
+| ◆ Diamonds | Harried, Vulnerable, Necrotic | Shadow Ward, Cover/Concealment | — |
+| ♠ Spades | Slowed, Pushing, Difficult Terrain | Frost Ward, Protected | Turn-order adjustment, Card Manipulation (placeholder) |
 
 `(Fire/Frost/Brilliant/Shadow) Ward` is one glossary entry with four
 elemental variants, not a Hearts-exclusive effect — every suit already
 gets its own Ward for free via the Element correspondence above.
+
+**Diamonds' defensive gap resolved**, surfaced while designing Worry
+Token (Neck): Diamonds used to have nothing beyond the shared Ward,
+noted as an open gap ("no defensive keyword yet"). Per the game's own
+element-duality reasoning above (Brilliant/Shadow = abundance of spirit
+vs. its absence/**concealment**) plus Diamonds already owning Stealth
+and Masquerade, **Cover/Concealment mechanics** (Heavy/Light/Total
+Cover, smoke-cloud effects like Smokejar's) are a genuinely independent
+fit — not borrowed from another suit's column, just previously
+unclaimed. Considered moving Shift from Clubs to Diamonds instead
+(Shift's "ignore Difficult Terrain, no Interrupts" reads as agile
+evasion, arguably an Acrobatics fit) but left it alone — Clubs already
+owns Athletics, the *other* movement Skill, making that a genuine
+coin-flip rather than a clear miss, and Diamonds no longer needs the
+reshuffle now that it has its own real defensive identity.
+
+**Spades picked up two generic mechanics that don't fit the
+Offensive/Defensive split**, both from mechanics that aren't tied to
+any specific keyword: **Turn-order adjustment** (already informally
+justified elsewhere in this file — Insight determines the Reflex flip
+that sets Turn Order, and Turn Order is already a Spades-flavored
+defensive concept — now formalized here instead of only living in prose
+elsewhere) and **Card Manipulation** (Sift, the new Hand Filtering rate,
+and any future "manage your deck/hand" mechanic), matching Spades'
+"precise-combatant/analyst" archetype. This is a placeholder category,
+not a hard commitment that every card-manipulation effect must be
+Spades-flavored — invoke it only if a specific mechanic actually needs
+a suit tie, the same "don't force it" spirit as everything else in this
+table.
+
+**Checked against the usage-weighted Skill tally** (`Clubs 82 / Hearts
+60 / Diamonds 55 / Spades 46`, from the archetype notes above) before
+locking this in: both new Spades mechanics and Diamonds' Cover slot
+land on the two lowest-usage suits, not the highest — Clubs (highest
+usage, already the richest Defensive column) and Hearts (2nd-highest
+despite fewest Skills, carried by Theurgy) got nothing new this round.
+Reads as a genuine balancing move, not a pile-on.
 
 **Embolden and Bolstered are deliberately cut, not gaps to fill.**
 Embolden (a specific counter to Taunted/Frightened) was cut because
@@ -1746,7 +1783,9 @@ legend garbled by generations of retelling, not a biography.
   degrade for a full adventuring day). Raised, not decided — the
   designer flagged it as "possible" rather than committing to it.
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.
-- Diamonds still has no defensive keyword/mechanic identity.
+- ~~Diamonds still has no defensive keyword/mechanic identity~~ —
+  resolved: Cover/Concealment mechanics, see the Suit portfolio table
+  above.
 - ~~The "bad fail" trigger for accumulating multi-attempt checks~~ —
   resolved: this is deliberately left to GM fiat, not a formula. Fits
   the player-facing-only scoping note above; no rules text needed.
