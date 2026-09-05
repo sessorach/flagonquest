@@ -1783,14 +1783,12 @@ rather than patch the current mechanic's numbers.
 
 ## Neck slot — first pass
 
-### Choker of Silent Whispers, Cloak of Caches, Diver's Necklace = 1 each — plain Narrative Utility
+### Cloak of Caches, Diver's Necklace = 1 each — plain Narrative Utility
 
-All three Level 1, no combat mechanic to anchor to, same formula as
+Both Level 1, no combat mechanic to anchor to, same formula as
 Feathered Sandals originally and Swim Flippers: `Value = ⅓ × 3 = 1`,
 `Target = 3`, **Net = −2** each.
 
-- **Choker of Silent Whispers**: silent, long-distance whisper to one
-  seen person within 10m.
 - **Cloak of Caches**: produces mundane adventuring gear (rope, flint
   and steel, a bowl, twine, and similar) on demand, one of each at a
   time.
@@ -1801,6 +1799,18 @@ earlier call: Swim Flippers (Feet slot) originally had a
 water-breathing clause added, then cut per the designer since "that
 would be a different slot's job" — this is that slot, already live
 with exactly that effect, at exactly this Narrative Utility price.
+
+**Choker of Silent Whispers cut entirely** (`I062`, removed from
+`items.csv`, regenerated into `data/items.json`) — checked against
+Headband of Telepathy (Head, also Level 1) and found to be a strictly
+*worse* version of the same idea rather than a genuine alternative:
+half the range (10m vs. 20m), a single message instead of a standing
+"rest of the scene" channel, and a visible tell Headband of Telepathy
+doesn't have ("will be able to tell... if they see the wearer
+whispering"). Per the designer, this kind of remote-communication
+effect belongs on Head, not Neck — Headband of Telepathy is the
+correct version of the idea, this was a redundant, strictly-inferior
+reskin of it on the wrong slot.
 
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
