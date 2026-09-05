@@ -13,13 +13,41 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
-### 2026-09-05 — Neck slot pass (in progress)
+### 2026-09-05 — Neck cluster closed out
 
-- Added the **Burst (X)** keyword (`glossary.md`) for "this space, plus
-  every space within X meters of it," and converted existing area
-  effects using equivalent ad hoc phrasing ("adjacent to," "within X
-  meters of," "an X-meter-radius circle") to it — several Grenades,
-  a few Masterwork items, and a few Techniques.
+- Cut three items: **Choker of Silent Whispers** (a strictly-worse
+  reskin of Headband of Telepathy), **Cape of Many Pockets** (duplicates
+  existing Belt storage items), and **Cloak of Faces** (found sitting in
+  the old design doc's rejected-ideas "bin," never actually meant to
+  ship — Hat of Disguise already covers this design space).
+- **Snowfall Drape** redesigned around the new **Burst (X)** keyword
+  (`glossary.md`, "this space, plus every space within X meters of it")
+  — fixed at Level 3, 2 degrees of Difficult Terrain, Burst 1 footprint,
+  replacing an uncapped-scaling version that read as overpowered past
+  Level 1. Converted several existing area effects (Grenades, a few
+  Masterwork items and Techniques) to the same Burst phrasing.
+- **Choker of Defiance** reworked: Sift now triggers as an Interrupt
+  after a flip (so it can actually feed that flip's suit pool) and
+  derives a real suit-pool credit instead of folding it silently into
+  Sift's own rate; kept its deliberate "locks until the next Discard
+  Cycle" clause to stop free deck-stacking.
+- **Cloak of One Thousand Feathers** repriced as three components
+  (modest fall-damage prevention, a small uncapped-tail-risk premium,
+  and the real headline benefit — solving traversal problems by jumping
+  instead of climbing/rappelling) rather than one blown-up number.
+- **Worry Token** replaced a broken GM-secret random table with a
+  suit-keyed Sift — each of the four suits' effect built from that
+  suit's own established identity (`RULES_DESIGN.md`'s Suit portfolio),
+  including a new general-purpose **Hand Filtering** balance rate for
+  "draw + discard" hand-management mechanics.
+- Named the three steps of **A Full Night's Rest** as Cycles (Discard,
+  Recovery, Draw), with a default ordering rule for anything that hooks
+  into one — surfaced while designing Choker of Defiance's unlock
+  condition.
+- Added `design/PROSE_REVIEW_QUEUE.md` — a checklist of `rulebook.md`/
+  `glossary.md` sections written or edited during an AI-assisted
+  session, since there's no way to leave an inline review marker in
+  those files.
 
 ### 2026-08-31 — Torso cluster closed out; Resist's rate fixed
 
