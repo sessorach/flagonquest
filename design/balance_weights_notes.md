@@ -462,7 +462,7 @@ under pressure mid-pass the way the alchemy ledger almost did.
   Torso pass section for the corrected Nets (Elemental-Resistant Armor,
   Robes of Resilience, Robes of the Elemental Lord) — and through Ward,
   whose flat-Resist component inherits this rate directly (Elemental-
-  Attuned Tincture, Spellblade's Sipper, Elemental Warding Amulet), all
+  Attuned Tincture, Spellblade's Sipper, Elemental Warding Band), all
   recomputed in the same pass. The open question about *why* Resist
   read as underpowered even before this fix still stands, separately: it
   might mean these items are genuinely under-leveled for what they
@@ -2391,3 +2391,68 @@ Any item using this convention should say so plainly in its own
 pricing note, the same way every other flagged judgment call in this
 file gets called out rather than presented as more rigorous than it
 is.
+
+## Ring slot — first pass
+
+15 items. Two flagged as possibly mis-tagged before pricing started —
+checked against the archive source docs (`archive/flagonquest_site_other.md`):
+**Elemental Warding Band** (`I208`, then "Elemental Warding Amulet")
+was always `Slot: Ring` in the original doc despite its amulet/pendant
+flavor text — not mis-tagged, just oddly named. Renamed and reflavored
+to actually describe a ring. **Mendicant's Cord** (`I209`) was
+originally `Slot: Waist`, an old slot that doesn't exist anymore — most
+likely folded into the modern Belt, but Belt's established design lane
+(`RULES_DESIGN.md:129`) is narrowly "carrying items," while Ring's is "a
+specific active ability, or an augment to a specific skill/ability" —
+a much better fit for Mendicant's Cord's active Defense-shifting effect.
+Left on Ring; the stale "sash" fluff still needs a rewrite when that
+item comes up.
+
+### Elemental Warding Band = 2.72-5.28 (Fire) / 2.36-4.64 (other) — reused Ward's already-Locked rate directly
+
+Level `1, 2`, `20/40 Gold`. "When this enhancement is created, choose
+Fire, Frost, Brilliant, or Shadow. Once per encounter, you may grant 1
+stack of Ward of the chosen type (2 stacks if Level 2) to yourself or a
+willing creature you touch." Renamed from "Elemental Warding Amulet"
+and reflavored to describe an actual ring (see the slot-check note
+above) — no mechanical change from that alone.
+
+Quick to price since Ward's rate is already fully Locked from the
+Torso pass — no new derivation needed, just look up the table:
+
+| Stacks | Fire (flat Resist + absorption) | Frost/Brilliant/Shadow |
+|---|---|---|
+| 1 (Level 1) | `0.72 + 2.0 = 2.72` | `0.36 + 2.0 = 2.36` |
+| 2 (Level 2) | `1.28 + 4.0 = 5.28` | `0.64 + 4.0 = 4.64` |
+
+Against the standard once/encounter `Target = Level × 3` (Level 1 = 3,
+Level 2 = 6): **Net −0.28 Fire / −0.64 other** (Level 1), **Net −0.72
+Fire / −1.36 other** (Level 2) — all four cases modestly under budget,
+same shape as most other Pencil items in this pass.
+
+**Added "or a willing creature you touch"** per the designer, for
+flexibility (buff an ally instead of only yourself) — doesn't change
+Ward's own raw value, but carries real option value the same way
+Card's premium over Good Luck's floor does (timing/targeting
+flexibility). Applied a modest, explicitly-judgment-call **+15%**
+bump rather than a derived number: `2.72 × 1.15 ≈ 3.13` (Fire, Level
+1), landing almost exactly on Target — a side benefit of the change,
+not a target forced backward into the math.
+
+**Considered extending to Level 5** (continuing the existing "stacks =
+Level" pattern) — verified this doesn't hold up:
+
+| Level | Stacks | Value (Fire) | Value (other) | Target | Net (Fire) | Net (other) |
+|---|---|---|---|---|---|---|
+| 3 | 3 | 7.68 | 6.84 | 9 | −1.32 | −2.16 |
+| 4 | 4 | 9.92 | 8.96 | 12 | −2.08 | −3.04 |
+| 5 | 5 | 12.00 | 11.00 | 15 | −3.00 | −4.00 |
+
+The gap widens every Level rather than staying flat, because Ward's
+flat-Resist component has diminishing per-stack returns that cap at 5
+stacks, while Target keeps climbing a flat +3/Level regardless — a
+structural mismatch, not something a flat bonus could patch. Per the
+designer: kept capped at Level 1-2 as originally structured, rather
+than stretched to a range that doesn't actually scale. `items.csv`
+(`I208`) updated (Name, Fluff, Effects), regenerated into
+`data/items.json`.
