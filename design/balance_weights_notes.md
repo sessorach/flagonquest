@@ -1781,6 +1781,27 @@ the designer wants to work out the rest of the slot first, then
 revisit what a new capstone-appropriate design should look like here,
 rather than patch the current mechanic's numbers.
 
+## Neck slot — first pass
+
+### Choker of Silent Whispers, Cloak of Caches, Diver's Necklace = 1 each — plain Narrative Utility
+
+All three Level 1, no combat mechanic to anchor to, same formula as
+Feathered Sandals originally and Swim Flippers: `Value = ⅓ × 3 = 1`,
+`Target = 3`, **Net = −2** each.
+
+- **Choker of Silent Whispers**: silent, long-distance whisper to one
+  seen person within 10m.
+- **Cloak of Caches**: produces mundane adventuring gear (rope, flint
+  and steel, a bowl, twine, and similar) on demand, one of each at a
+  time.
+- **Diver's Necklace**: breathe water perfectly.
+
+Diver's Necklace is worth noting as a direct confirmation of an
+earlier call: Swim Flippers (Feet slot) originally had a
+water-breathing clause added, then cut per the designer since "that
+would be a different slot's job" — this is that slot, already live
+with exactly that effect, at exactly this Narrative Utility price.
+
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
 Both are now resolved.
