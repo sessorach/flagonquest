@@ -1689,6 +1689,38 @@ legend garbled by generations of retelling, not a biography.
   exhaustive catalog-wide sweep — more candidates likely remain
   elsewhere and should convert on sight per the standing policy above.
 
+- **New term: Cycle**, naming the three ordered steps of `## A Full
+  Night's Rest` (`rulebook.md`) — the Discard Cycle, the Recovery
+  Cycle, the Draw Cycle, in that order. Surfaced while designing a
+  reworked Choker of Defiance (Neck), which needed to hook a specific
+  point in the resting sequence ("shuffle your discard into your deck")
+  and had nothing to name beyond re-describing the whole rule in prose
+  each time — same gap Burst filled for area effects above. Considered
+  "Stage" first (plainer, more mechanical) and "Reckoning" (more
+  formal/weighty); the designer picked "Cycle" for the sound of it and
+  the natural fit with resting as a recurring nightly rhythm.
+
+  **New default-ordering rule as part of this**: for each Cycle, the
+  Rulebook's own listed action happens first, then anything else from
+  the character's items/abilities tied to that Cycle applies after —
+  e.g. in the Draw Cycle, you draw your normal hand *then* apply any
+  card-drawing bonus a Technique/item grants for that Cycle, not the
+  other way around. This resolves ordering for any future Cycle-hooking
+  effect without each one having to spell it out itself.
+
+  **Standing to-do**: several existing items/Techniques already
+  reference "a full night's rest" without pinning to a specific Cycle —
+  Hearty Meal, Muscular Feast, Soul Soup, Calming Brew, Kiss of the
+  Earth, Predator's Cry (all "until/next full night's rest," Food/Potion
+  duration triggers), Patch Up (hooks the healing step specifically —
+  the clearest existing candidate for "as part of the Recovery Cycle"),
+  and Awaken Armament ("until you get a full night's rest," a duration
+  trigger like the Food/Potion group). None of these are broken as
+  written, but now that Cycles exist as a real hook, iron out whether
+  each one should cite a specific Cycle for precision the next time any
+  of them gets touched — same "convert on sight, don't sweep the whole
+  catalog at once" policy as Burst above, not an immediate rewrite pass.
+
 ## Open questions / TODO
 
 - **New Technique idea: steal an item mid-combat, as part of a

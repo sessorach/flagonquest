@@ -377,11 +377,11 @@ A full night’s rest is a full 8 hours of rest, which may include up to 2 hours
 
 Something that recharges or resets “once per day” follows this same rhythm - it comes back after your next full night’s rest, not simply after 24 hours pass on a clock. A long stretch without one, pushing well past a normal day, doesn’t grant an early refresh - it just risks Exhaustion instead.
 
-After you get a full night’s rest, you do the following in order:
+After you get a full night’s rest, you go through the following Cycles in order. For each Cycle, first do the listed action, then apply anything else from your items or abilities tied to that Cycle.
 
-- Discard any cards in your hand
-- Heal an amount of Health equal to your Body, split as you choose between Shallow and Deep
-- Draw a number of cards equal to twice the total of your Cunning plus Mind
+- **The Discard Cycle**: Discard any cards in your hand.
+- **The Recovery Cycle**: Heal an amount of Health equal to your Body, split as you choose between Shallow and Deep.
+- **The Draw Cycle**: Draw a number of cards equal to twice the total of your Cunning plus Mind.
 
 ## Food and Exhaustion
 
