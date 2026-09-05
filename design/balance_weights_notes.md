@@ -1842,6 +1842,31 @@ the mantle through a full night's rest, without receiving its benefits
 during that rest" — the mantle needs one full rest cycle to activate,
 during which its own benefits don't apply yet.
 
+### Shawl of the Land = 5.5 — a real anchor for "doesn't need to eat," not just Narrative Utility
+
+Two components. The **+1 Health from a full night's rest** piece uses
+Health's own guaranteed-harm rate (4/point, the same basis as Feathered
+Sandals' fall-safety re-derivation) directly: `Value = 1 × 4 = 4`.
+
+The **"doesn't need to eat or drink"** piece got a real anchor instead
+of the usual Narrative Utility fallback: Travel Rations (`I023`, the
+plain, no-bonus Level 1-5 Food item — "enough food for a single person
+for an entire day," nothing else) needs `Total Materials: 1` with no
+type specified, and this project's own crafting convention is "a
+material is baseline worth its Level in Gold" (`convert.py:339`). At
+Level 1 that's **1 Gold** — through the established `Gold = 1.5` rate,
+**1.5 raw Value**. Per the designer, that's the credit for this piece:
+the value of the basic Level 1 food item this shawl makes unnecessary.
+
+`Value = 4 + 1.5 = 5.5`. `Target = 6` (Level 2). **Net = −0.5** — a
+clean, close fit.
+
+Wording clarified the same way as Watcher's Mantle (`items.csv` `I150`,
+regenerated into `data/items.json`): "worn continuously for 24 hours"
+→ "This only begins functioning after the wearer has worn the shawl
+through a full night's rest, without receiving its benefits during
+that rest."
+
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
 Both are now resolved.

@@ -6661,7 +6661,7 @@
     "tags": null,
     "level": 2,
     "description": "Woven from cloth, ivy, fur, and other natural materials, these shawls were originally created by druidic sects to help wearers become more attuned to, and draw sustenance from, the earth.",
-    "effects": "The wearer does not need to eat or drink, and is nourished as though they were eating regular meals. They heal an extra 1 Health from getting a full night's rest. These benefits only function once the wearer has worn the shawl continuously for 24 hours.",
+    "effects": "The wearer does not need to eat or drink, and is nourished as though they were eating regular meals. They heal an extra 1 Health from getting a full night's rest. This only begins functioning after the wearer has worn the shawl through a full night's rest, without receiving its benefits during that rest.",
     "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
