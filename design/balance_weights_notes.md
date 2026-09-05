@@ -1520,12 +1520,27 @@ each hat's fluff to the Skill it already suited best:
 at the **½ "genuine recurring demand"** tier — the standardized tiers
 doc's own worked example for exactly this case ("a Skill Good Luck
 tied to genuine recurring demand, e.g. Techniques that call for
-Medicine flips"). `Value = 2.4 × 0.5 = 1.2`. `Target = 3` (Level 1).
-**Net = −1.8** for all three. Per the designer, accepted as-is —
-genuinely niche items, and a player who takes one is assumed to find
-a bit more use out of it than the flat tier assumption implies, the
-same "will find a way to get value" reasoning as Slipstream Sandals,
-just not pushed all the way to a full tier bump this time.
+Medicine flips"). `Value = 2.4 × 0.5 = 1.2`.
+
+Checked against real precedent before finalizing the Level: three
+existing Hands-slot items already do this exact "Good Luck on one
+Skill's flips" shape — Field Surgeon's Handwraps (`I153`, Level 2,
+unconditional Good Luck on Medicine), Deft Gloves (`I076`, Level 2,
+Good Luck on Craft plus a tool-replacement clause — nearly identical
+in structure to these hats), and Nimble Fingers (`I225`, Level 2,
+Good Luck on Stealth for theft specifically). All three sit at Level
+2, not Level 1 — and while the derived `Value = 1.2` actually fits
+Level 1's `Target = 3` (`Net = −1.8`) better than Level 2's `Target =
+6` (`Net = −4.8`) under this model, those three items predate this
+balance pass and were never run through it (the same risk `balance.md`'s
+Open balance work section already flags across the untouched
+Masterwork list generally). Per the designer, pegged to **Level 2**
+anyway for consistency with what's already live, rather than trusting
+the model over existing precedent here — `Target = 6`, **Net = −4.8**
+for all three. `items.csv` `I060`/`I168`/`I170` updated (Level 1→2,
+Cost 20→40 Gold), regenerated into `data/items.json`. Field Surgeon's
+Handwraps/Deft Gloves/Nimble Fingers themselves are flagged as
+candidates to re-examine once the Hands slot gets its own pass.
 
 ### Hat of Disguise = 1.2 — a new fourth Skill hat, same family as the three above
 
@@ -1541,8 +1556,11 @@ not a fourth flavor of the same thing.
 
 "The wearer has Good Luck on Masquerade flips, and does not need a
 Disguise Kit to attempt a disguise." Same pricing shape as the three
-social hats: `Value = 2.4 (Good Luck) × 0.5 (½ tier) = 1.2`. `Target =
-3` (Level 1). **Net = −1.8**, matching the other three exactly. The
+social hats: `Value = 2.4 (Good Luck) × 0.5 (½ tier) = 1.2`. Pegged to
+**Level 2** for the same reason as the other three (matching existing
+Hands-slot precedent over the model's own preferred Level 1 — see
+above): `Target = 6`, **Net = −4.8**, matching the other three
+exactly. The
 "no Disguise Kit needed" clause is left unpriced — kits are cheap and
 common, so this is a flavor-consistent convenience (the classic "the
 hat alone handles it" trope) rather than a real value swing, the same

@@ -2604,10 +2604,10 @@
     "category": "Masterwork",
     "slot": "Head",
     "tags": null,
-    "level": 1,
+    "level": 2,
     "description": "These hats are simple but impressively crafted, understated but woven with fine silver threading. Every expert negotiator can be seen sporting one, and for good reason.",
     "effects": "The wearer has Good Luck on Persuasion flips, other than those made as part of a social contest.",
-    "cost": "20 Gold",
+    "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -2641,7 +2641,7 @@
       "I003"
     ],
     "levels": [
-      1
+      2
     ]
   },
   {
@@ -7487,10 +7487,10 @@
     "category": "Masterwork",
     "slot": "Head",
     "tags": null,
-    "level": 1,
+    "level": 2,
     "description": "These hats are simple but impressively crafted, understated but woven with expensive silver threading. Wearing one lends the wearer an air of quiet, magnetic confidence.",
     "effects": "The wearer has Good Luck on Presence flips, other than those made as part of a social contest.",
-    "cost": "20 Gold",
+    "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -7524,7 +7524,7 @@
       "I003"
     ],
     "levels": [
-      1
+      2
     ]
   },
   {
@@ -7533,10 +7533,10 @@
     "category": "Masterwork",
     "slot": "Head",
     "tags": null,
-    "level": 1,
+    "level": 2,
     "description": "The enchantment placed on these hats helps attune the emotions of the wearer with those around them - not enough to affect their own thoughts or desires, but enough to help them understand the feelings that drive others.",
     "effects": "The wearer has Good Luck on Rapport flips, other than those made as part of a social contest.",
-    "cost": "20 Gold",
+    "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -7570,7 +7570,7 @@
       "I003"
     ],
     "levels": [
-      1
+      2
     ]
   },
   {
@@ -7671,10 +7671,10 @@
     "category": "Masterwork",
     "slot": "Head",
     "tags": null,
-    "level": 1,
+    "level": 2,
     "description": "A nondescript, well-worn hat that seems to shift its shape and color slightly depending on who's looking at it - or who's wearing it.",
     "effects": "The wearer has Good Luck on Masquerade flips, and does not need a Disguise Kit to attempt a disguise.",
-    "cost": "20 Gold",
+    "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -7708,7 +7708,7 @@
       "I003"
     ],
     "levels": [
-      1
+      2
     ]
   },
   {
