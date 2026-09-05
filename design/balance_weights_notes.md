@@ -294,6 +294,56 @@ under pressure mid-pass the way the alchemy ledger almost did.
   gated to a specific in-combat condition) would need this same
   simulation re-run for whatever window applies to it instead — this
   isn't a universal constant the way Damage or Health are.
+- **Hand Filtering (draw + discard) = 1.66/card.** New this pass,
+  surfaced while designing Worry Token's (Neck) Spades effect: "draw 1
+  card, then discard the worse of it and your current worst hand card."
+  Not the same mechanism as Sift (there's no reason to ever choose
+  "bottom" over "discard" once a card is already sitting in your hand
+  and known to be bad — Sift's bottom-vs-discard choice only matters for
+  an unseen top-of-deck card you're trying to bias for the future), so
+  this gets its own rate rather than reusing Sift's.
+
+  The real question is what a "hand card" is actually worth holding for
+  future use, and per the designer, that isn't a flat average across
+  1-13: below rank 9, a card only really serves as generic
+  Technique-discard fuel, and any card works equally well for that — so
+  gaining "another" sub-9 card has no marginal value at all, since you
+  already have plenty of interchangeable fuel. Only rank 9+ is a card a
+  player would actually hold and look for a chance to sub into a flip.
+  That's `5/13` of draws (ranks 9-13, 4 copies each, 20 of 52 cards).
+
+  Below that threshold, drawing and discarding is a pure wash — you'd
+  just discard the useless draw and keep your hand exactly as it was,
+  no cost either way. At/above it, you get a card worth holding — but
+  its value isn't simply "the rank-9-13 average (11) minus the 7
+  baseline" (a naive +4), since you don't just blindly sub it into your
+  *next* flip regardless — you keep whichever is higher, the held card
+  or your natural flip, same "keep the max" logic as Good Luck/Card. So
+  the real marginal value is `E[max(held card, natural flip)] − 7`,
+  computed exactly against a real 52-card deck (the held card removed
+  from the pool) for each possible held rank:
+
+  | Held card | E[max(held, natural flip)] |
+  |---|---|
+  | 9 | 9.78 |
+  | 10 | 10.47 |
+  | 11 | 11.24 |
+  | 12 | 12.08 |
+  | 13 | 13.00 |
+
+  Averaging across the 5 equally-likely held ranks (conditional on
+  clearing the ≥9 bar) gives **11.31**, so the marginal value of holding
+  a known rank-9-13 card is `11.31 − 7 = 4.31` — a touch above the naive
+  +4, since a held 9 or 10 still occasionally rides along "for free" on
+  a better natural flip rather than ever actively costing you anything.
+
+  **Full rate: `Value = (5/13) × 4.31 ≈ 1.66/card`.** This is a general,
+  reusable benchmark for any "draw + discard" hand-filtering mechanic,
+  not just Worry Token — record it in `balance_ledger.csv`'s `Grants`
+  column as `HandFiltering:N` (N = cards drawn-and-filtered), same
+  convention as `Card:N`/`GoodLuck:N`. Re-derive the threshold/marginal
+  if a mechanic ever changes the "won't sub in below rank X" cutoff or
+  the card range itself.
 - **Speed = 0.55/point** (Agility 3, i.e. Speed 4, agreed as the
   representative baseline for most movement). Not a mechanic THE TABEL
   currently has a row for at all, despite real items granting flat Speed
