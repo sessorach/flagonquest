@@ -1867,6 +1867,18 @@ regenerated into `data/items.json`): "worn continuously for 24 hours"
 through a full night's rest, without receiving its benefits during
 that rest."
 
+**Known inconsistency, kept deliberately.** Both components here are
+daily-cadence (once/rest), not per-encounter — under the once/day
+`Target = Level × 6` convention used elsewhere (Crown of Glory,
+Choker of Defiance below), this should really be checked against
+`Target = 12`, not the standard `Target = 6`, which would make it read
+as badly undervalued rather than a clean −0.5 fit. Per the designer,
+left as-is anyway — Shawl of the Land is accepted as a deliberate
+exception to the once/day Target convention rather than rescoped to
+match it, since compared against the standard per-encounter Target the
+number already lands well. Worth remembering if this item ever gets
+revisited: the −0.5 Net is real only under the standard Target, not
+the once/day one this item's own cadence would technically call for.
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
 Both are now resolved.
