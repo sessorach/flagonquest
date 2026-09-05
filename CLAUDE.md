@@ -113,7 +113,12 @@ which should stay a clean decision record.
   non-blank, non-heading line in `rulebook.md`/`glossary.md` as literal
   rendered body text — no HTML-comment stripping exists. Never leave
   draft/review markers inside those files; draft in chat first, commit
-  clean.
+  clean. Since a marker can't live inline, track "the designer still
+  wants to read this over" separately instead: append an entry to
+  `design/PROSE_REVIEW_QUEUE.md` (file/section/one-line summary/commit
+  hash) whenever a `rulebook.md`/`glossary.md` prose section gets
+  written or edited — a running checklist the designer deletes entries
+  from as they review them, not a permanent log (git history is that).
 - **Verify, don't assert, especially on any math** (crafting formulas,
   worked examples, balance-model calculations) — standing instruction
   from an explicit correction earlier in this project's history: a
