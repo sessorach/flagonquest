@@ -13,6 +13,14 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-05 — Neck slot pass (in progress)
+
+- Added the **Burst (X)** keyword (`glossary.md`) for "this space, plus
+  every space within X meters of it," and converted existing area
+  effects using equivalent ad hoc phrasing ("adjacent to," "within X
+  meters of," "an X-meter-radius circle") to it — several Grenades,
+  a few Masterwork items, and a few Techniques.
+
 ### 2026-08-31 — Torso cluster closed out; Resist's rate fixed
 
 - Fixed **Resist**'s per-point rate — it was double-discounting hit
