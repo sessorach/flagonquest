@@ -1812,6 +1812,19 @@ effect belongs on Head, not Neck — Headband of Telepathy is the
 correct version of the idea, this was a redundant, strictly-inferior
 reskin of it on the wrong slot.
 
+### Shroud of Shadowy Stillness = 1.2 — dropped to Level 1
+
+Same Good-Luck-on-a-Skill shape as the Head hats: "While wearing the
+shroud and not moving, the wearer becomes very hard to perceive, and
+has Good Luck on Stealth flips as long as they remain still." `Value =
+2.4 × 0.5 (½ tier) = 1.2`, unchanged. Per the designer, dropped from
+Level 2 to **Level 1** rather than matching the Head hats' Level-2 peg
+— unlike those, there's no existing same-shape item elsewhere in the
+catalog pulling this one toward Level 2, so it stays on the model's
+own preferred fit: `Target = 3`, **Net = −1.8**. `items.csv` `I148`
+updated (Level 2→1, Cost 40→20 Gold), regenerated into
+`data/items.json`.
+
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
 Both are now resolved.

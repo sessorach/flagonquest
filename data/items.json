@@ -6569,10 +6569,10 @@
     "category": "Masterwork",
     "slot": "Neck",
     "tags": null,
-    "level": 2,
+    "level": 1,
     "description": "A thin, gossamer cape that looks almost woven out of shadows, valued by scoundrels engaging in illegal business and those who simply cherish peace and quiet alike.",
     "effects": "While wearing the shroud and not moving, the wearer becomes very hard to perceive, and has Good Luck on Stealth flips as long as they remain still.",
-    "cost": "40 Gold",
+    "cost": "20 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -6605,7 +6605,7 @@
       "I003"
     ],
     "levels": [
-      2
+      1
     ]
   },
   {
