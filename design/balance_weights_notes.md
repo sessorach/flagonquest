@@ -1985,6 +1985,48 @@ separate constant), **Net = −0.6 × Level** — a clean, consistent 90%
 funded at every Level 1-5, not just one sweet spot. `items.csv` (`I151`)
 Effects updated, regenerated into `data/items.json`.
 
+### Cloak of One Thousand Feathers = 6.0 — three components, not one blown-up fall-damage number
+
+Level 2, 40 Gold. "Whenever the wearer would fall, instead they glide —
+moving 5 meters toward the ground and 5 meters horizontally, as they
+choose — ignoring any effects of falling from a height regardless of
+distance. This takes no action to do." Structurally different from
+Feathered Sandals (`Value = 4.0`, ignores *up to* 10m): this has no cap
+at all, and the rulebook's own fall rule has no ceiling either, so a
+naive "construct a representative extreme fall and price the full
+guaranteed-harm prevention" approach could land almost anywhere
+depending on how tall a fall gets picked — tried a 20m case first
+(`Net ≈ +16.67` at Level 2), which only showed the question was
+underspecified, not that the item was actually that strong.
+
+Per the designer: the big-fall framing has it backwards. Falls large
+enough to matter as *damage prevented* are rare and not really the
+point; the real benefit is the **opportunity** the item creates — jump
+off something as a deliberate way to solve a traversal problem (skip
+climbing down, rappelling, or finding a longer route) — plus the
+diagonal glide (5m down *and* 5m horizontal, wearer's choice) meaning
+the movement isn't wasted the way a straight fall would be. Repriced as
+three separate components instead of one number:
+
+- **Base fall-damage prevention**, anchored to the same modest,
+  plausible case Feathered Sandals used (not an extreme height, per the
+  designer's framing above) — 6m fall, baseline reduction 3:
+  `(6−3) × 4 (Health's guaranteed-harm rate) × ⅓ (niche tier) = 4.0`.
+- **Uncapped tail-risk bump**: a small premium over Feathered Sandals'
+  own 10m cap, since a fall beyond that is unlikely but does still fully
+  resolve here where Feathered Sandals wouldn't help at all. Kept
+  deliberately modest per the designer's read that this isn't the main
+  event: **+1.0**.
+- **Movement/traversal utility**: the actual headline benefit — no
+  combat-mechanic anchor, so priced at the same Narrative Utility
+  niche-convenience rate used elsewhere this pass (Cloak of Caches,
+  Diver's Necklace: `⅓ × 3 = 1`): **+1.0**.
+
+`Value = 4.0 + 1.0 + 1.0 = 6.0`. Against `Target = 6` (Level 2), **Net =
+0** — confirmed by the designer. No changes to `items.csv` (`I173`) —
+Level, Cost, and Effects text were already correct; only the pricing
+derivation needed resolving.
+
 **The rule itself changed.** Scaling magnitude per stack (Hasted's
 shape) was considered and rejected: Resist reduces damage 1-for-1 per
 point with no upper bound, so an unbounded per-stack scale would let a
