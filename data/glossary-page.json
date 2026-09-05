@@ -35,6 +35,13 @@
     "body": "These are specific terms used in many items and abilities, used to consistently refer to a mechanic."
   },
   {
+    "id": "burst-x",
+    "level": 4,
+    "title": "Burst (X)",
+    "supplement": "Base Game",
+    "body": "A Burst affects the indicated space, plus every space within X meters of it, in a circle centered on that space. Burst 0 only affects the indicated space itself."
+  },
+  {
     "id": "countered",
     "level": 4,
     "title": "Countered",

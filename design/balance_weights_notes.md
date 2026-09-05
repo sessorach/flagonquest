@@ -1897,7 +1897,53 @@ designer, cut entirely rather than ported to Belt, since Belt already
 covers this ground better. Removed from `items.csv` (`I174`),
 regenerated into `data/items.json`.
 
-Two questions were open here: should Ward scale magnitude per stack
+### Snowfall Drape = 8.25 — redesigned to a fixed Level 3, fixed 2 degrees, Burst 1 footprint
+
+Originally Level 1-5, "leave snow in the first 3 spaces you move from
+that action. Those spaces each gain `[Level]` degrees of Difficult
+Terrain." Difficult Terrain's own rate is non-linear and hard-capped at
+degree 2 (`0/2.75/8.25/8.25` for degrees 0/1/2/3+, per the Speed-4
+baseline derivation above) — so this had the same plateau shape Cowl of
+Tranquility had before its fix, except landing the opposite way: priced
+per-creature-caught against a "clever player really bogging down
+enemies" framing (2-4 creatures caught across an encounter), even the
+most conservative case already blew past Target at Level 2 and got
+worse at every Level above it. Reworked from scratch rather than patched:
+
+- **Footprint changed from a 3-space line to Burst 1**, centered on the
+  space the wearer moved from (see the new `Burst (X)` keyword,
+  `glossary.md`) — a deliberate nerf as well as a terminology cleanup.
+  A straight 3-meter line forces a full 3-meter crossing on anyone
+  walking its length; Burst 1 is a circle of diameter 2m, so the
+  worst-case straight-through crossing drops to 2 meters.
+- **Degrees fixed at 2**, no longer scaling with Level — Level 3-5
+  bought nothing extra under the old `[Level]` scaling anyway, since
+  degree hard-caps at 2, so tying the item's own Level to that number
+  was always going to either underdeliver (Level 1) or plateau
+  (Level 2+). Fixed magnitude, Level now just sets where it sits
+  against Target.
+- **Crossing cost is stepped, not linear** — a single move action
+  already covers up to Speed (4m baseline) for free, so terrain cost
+  only bites once the ground covered exceeds what one action would
+  normally take: crossing 1m of degree-2 terrain costs the same 1
+  action a clear-ground move would (0 extra); crossing the full 2m
+  diameter costs 2 actions against a normal 1 (**1 extra action**,
+  `Value = 1 AP's value (2.75)`). No partial-action credit for "half a
+  space" — the cost is 0 or 2.75 per space actually crossed, nothing
+  between.
+- **Priced at 3 creatures caught, each crossing the full diameter**:
+  `Value = 3 × 2.75 = 8.25`. Against `Target = 9` (Level 3), **Net =
+  −0.75** — a clean fit, and a more defensible creature-count than the
+  old line-footprint's "chokepoint catches everyone forced through,"
+  since a round Burst can be approached (and partially dodged) from any
+  direction rather than only blocking one lane.
+
+`items.csv` (`I065`) updated: Level `1-5` → fixed `3`, Cost blank/`Value
+Per Level: 20` → fixed `60 Gold` (matching the existing 20-Gold/Level
+convention), Effects reworded to "Once per encounter, when you move,
+you may ruffle the cloak and leave snow in Burst 1 of the space you
+moved from. Those spaces each gain 2 degrees of Difficult Terrain that
+last for the encounter." Regenerated into `data/items.json`.
 (mirroring Hasted), and what should its actual per-application value be.
 Both are now resolved.
 

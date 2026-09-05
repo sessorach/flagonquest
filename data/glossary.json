@@ -12,6 +12,10 @@
     "description": "Look at the top X cards of your deck, and for each one choose to put it on the bottom of your deck or in your discard, then shuffle your deck.\n\nCan have extra mechanics tacked in, like “Sift X cards, and add their suits to the suit pool [for a flip]”.\n\nIf you would Sift more cards than are left in your deck, shuffle your discard back into your deck, then Sift that many cards."
   },
   {
+    "term": "Burst",
+    "description": "A Burst affects the indicated space, plus every space within X meters of it, in a circle centered on that space. Burst 0 only affects the indicated space itself."
+  },
+  {
     "term": "Countered",
     "description": "A Technique, attack, or other ability that is Countered is still expended as normal, as are any other resources spent to use it, but otherwise has no effect as though it were never used."
   },

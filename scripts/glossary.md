@@ -20,6 +20,10 @@ If you would Sift more cards than are left in your deck, shuffle your discard ba
 
 These are specific terms used in many items and abilities, used to consistently refer to a mechanic.
 
+#### Burst (X)
+
+A Burst affects the indicated space, plus every space within X meters of it, in a circle centered on that space. Burst 0 only affects the indicated space itself.
+
 #### Countered
 
 A Technique, attack, or other ability that is Countered is still expended as normal, as are any other resources spent to use it, but otherwise has no effect as though it were never used.

@@ -1647,6 +1647,48 @@ legend garbled by generations of retelling, not a biography.
   Witchlight (`T096`, conjured torch flame), Placeholder's Lengthy
   Ley-weaving (`T133`, +3m Spell/Discipline range).
 
+- **New keyword: Burst (X)**, added to `glossary.md`'s `# Keywords`
+  section. Surfaced while re-deriving Snowfall Drape (Neck) during the
+  Neck-slot balance pass — its footprint used to be described as raw
+  prose ("the first 3 spaces you move from"), and the designer wanted a
+  reusable term for "this space, plus everything within X of it" rather
+  than hand-writing that shape every time. Defined as a circle of
+  radius X meters centered on the indicated space; Burst 0 is just the
+  indicated space itself. Matches an existing parenthetical-parameter
+  precedent already in `glossary.md` (`Sift (X cards)`), and the
+  mouseover-list heading-stripping rule in `convert.py` registers it as
+  the bare term "Burst," same as Sift.
+
+  **Standing policy going forward**: prefer "Burst X" over ad hoc
+  "adjacent to," "within X meters of," or "an X-meter-radius circle
+  centered on" phrasing for any new area effect, and convert existing
+  prose to it when touching that content for another reason (same
+  "migrate a shortcut when you're in there anyway" principle as the
+  data-over-prose rule in `CLAUDE.md`) rather than leaving old and new
+  phrasing to drift side by side. Not a retroactive full-catalog sweep —
+  converted on sight, not hunted down everywhere at once.
+
+  Converted in this same pass (wording only, no mechanical or pricing
+  change in any of these — each new phrasing describes exactly the same
+  shape as the old): **Grenades** — Immaculate Adhesive (`I029`,
+  "adjacent" → Burst 1), Smokejar (`I031`, its growing 1/2/3-meter-radius
+  cloud → Burst 1/2/3), Hellfire Bomb (`I035`, "adjacent to the target" →
+  Burst 1), Thunderclap-in-a-Jar (`I036`, "in or adjacent to the space" →
+  Burst 1), Oozejar (`I215`, "adjacent to the target" → Burst 1).
+  **Masterwork items** — Evertoking Bottle (`I113`, 2-meter-radius cloud
+  → Burst 2), Luminous Signet (`I087`, "within 5 meters of you" → Burst
+  5). **Techniques** — Land's Bounty (`T109`, "circular area 2 meters in
+  radius" → Burst 2), Cloak of Awe/Cloak of Command (`T116`/`T117`,
+  "within 3 meters of the target" → Burst 3 each), Earthquake (`T118`,
+  "area [Theurgy Skill Total] meters in radius" → Burst [Theurgy Skill
+  Total]). **Deliberately left alone**: Weatherworking (`T115`, "an area
+  [Mind] km in radius") — same circle-around-a-point shape, but at
+  kilometer scale for a weather effect rather than Burst's tactical
+  meter scale, so forcing it into the same term would blur rather than
+  clarify. This was a skim of already-reviewed content, not an
+  exhaustive catalog-wide sweep — more candidates likely remain
+  elsewhere and should convert on sight per the standing policy above.
+
 ## Open questions / TODO
 
 - **New Technique idea: steal an item mid-combat, as part of a
