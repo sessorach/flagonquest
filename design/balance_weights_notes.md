@@ -1725,6 +1725,21 @@ and drinking Alcohol stored this way costs 0 AP. Whenever the wearer
 drinks Alcohol, they may regain the use of an Encounter Technique with
 a Level equal to or lower than the Alcohol's own Level."
 
+### Crown of Glory — set aside, not resolved
+
+Level 5. "Once per day, for 0 AP, the wearer may have themselves and
+up to 4 allies who can see them each draw a card." Priced at `Value =
+5 × 2.7 (Card) = 13.5` against the once/day `Target = Level × 6 = 30`,
+**Net = −16.5** — the largest raw gap in the Head slot. A "wearer +
+up to `2 × Level` allies" scaling formula was worked out as a possible
+fix (lands Net from +2.1 at Level 1 down to −0.3 at Level 5 — a tight
+fit), but per the designer, the deeper concern isn't the Level-scaling,
+it's whether a Head-slot item should be generating extra cards at all
+— generic party-wide card generation reads as more of a capstone-tier
+effect than a normal equipment-slot one. Set aside rather than fixed;
+the designer wants to work out the rest of the slot first, then
+revisit what a new capstone-appropriate design should look like here,
+rather than patch the current mechanic's numbers.
 
 Two questions were open here: should Ward scale magnitude per stack
 (mirroring Hasted), and what should its actual per-application value be.
