@@ -1944,8 +1944,46 @@ convention), Effects reworded to "Once per encounter, when you move,
 you may ruffle the cloak and leave snow in Burst 1 of the space you
 moved from. Those spaces each gain 2 degrees of Difficult Terrain that
 last for the encounter." Regenerated into `data/items.json`.
-(mirroring Hasted), and what should its actual per-application value be.
-Both are now resolved.
+
+### Choker of Defiance = 5.4×Level — Sift's suit-pool credit derived, locking clause kept
+
+Originally `[twice Level]` charges, "spend X charges to Sift X cards and
+add their suits to the suit pool" before a flip. Reworked in three ways:
+
+- **Timing moved to an Interrupt after a flip** — it adds the sifted
+  cards' suits to *that flip's* suit pool, so it needs to resolve
+  before the flip's effects land, same window `Play` from hand already
+  uses to feed a suit pool reactively. "Before making a flip" didn't
+  actually support that.
+- **Suit-pool credit properly derived**, not folded silently into
+  Sift's plain 0.60/card rate (which only covers the "stack the deck"
+  future-draw benefit, not this). Per the designer's correction, each
+  matching-suit card grants its *own* Extra Success (not just "does at
+  least one match" — the model Good Luck's 2.4 correction used), so the
+  right measure is **expected number of matches**, linear via
+  expectation: each card is an independent 13/52 = ¼ chance to match a
+  given suit, worth `¼ × 2 (Extra Success) × 0.5 (not every flip cares)
+  = 0.25/card` at the naive floor. Bumped to **0.30/card** (designer's
+  judgment call, same shape as Card's premium over Good Luck's own
+  floor) to credit suits sometimes triggering more than a plain Extra
+  Success. Combined per-card value: `0.60 (stack the deck) + 0.30
+  (suit pool) = 0.90/card`.
+- **Locking clause kept deliberately** (not dropped even though a flat
+  charge cap alone would have worked) — spending a charge locks the
+  choker until it unlocks during the Discard Cycle of the wearer's next
+  full night's rest, at which point the wearer shuffles their discard
+  pile into their deck. Destroying it is the only way to remove it
+  early. Per the designer: this stops a clever player from using it to
+  freely stack the deck for the next adventuring day — "use it or lose
+  it."
+
+**Pricing**: `2 × Level` charges, each spending 1 to Sift 3 cards:
+`Value = 2 × Level × 3 × 0.90 = 5.4 × Level`. Against the once/day
+`Target = Level × 6` (confirmed: this is exactly `Level × 3`
+per-encounter × the standing 2-encounters/day assumption, not a
+separate constant), **Net = −0.6 × Level** — a clean, consistent 90%
+funded at every Level 1-5, not just one sweet spot. `items.csv` (`I151`)
+Effects updated, regenerated into `data/items.json`.
 
 **The rule itself changed.** Scaling magnitude per stack (Hasted's
 shape) was considered and rejected: Resist reduces damage 1-for-1 per

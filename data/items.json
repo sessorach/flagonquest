@@ -6702,7 +6702,7 @@
     "tags": null,
     "level": "1-5",
     "description": "A simple, unadorned choker that thrums faintly with a defiant energy, resisting whatever fate seems to have in store.",
-    "effects": "This choker has [twice the enhancement's Level] charges, regained after a full night's rest. Before making a flip, the wearer may spend X charges to Sift X cards and add their suits to the suit pool.",
+    "effects": "This choker has [twice the enhancement's Level] charges, regained after a full night's rest. As an Interrupt after you make a flip, the wearer may spend 1 charge to Sift 3 cards and add their suits to the suit pool for that flip. The first time this is done since your last full night's rest, the choker locks and cannot be removed until it unlocks - destroying it is the only way to remove it early. During the Discard Cycle of your next full night's rest, shuffle your discard pile into your deck. Then the choker unlocks.",
     "cost": null,
     "value_per_level": 20,
     "school": null,
