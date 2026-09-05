@@ -2106,6 +2106,67 @@ Shadowy Stillness, Watcher's Mantle, Shawl of the Land, Choker of
 Defiance, Cloak of One Thousand Feathers, and Worry Token — the last of
 which is still open (see next).
 
+### Worry Token = suit-keyed Sift, Level 2/4 — closes out the Neck slot
+
+Originally a GM-secret random table (3 charges/day, "more often than not
+nothing happens," otherwise one of six effects — a flat +2 to "the
+second flip within 2 hours," a vague social nudge, a confusingly-timed
+Defense bonus, plus three usable ones: heal, ignore Physical Resist,
+draw a card after 6 hours). Reworked from scratch — the vague/broken
+effects had no real anchor, and GM-fiat selection doesn't fit a game
+this card-driven.
+
+**Resolution mechanism**: spend 1 charge to Sift 1 card, and the suit
+determines the effect — reusing the established `Sift` mechanic
+directly (Sift's own 0.60/card value applies to every activation,
+regardless of which branch fires) rather than inventing a new reveal
+mechanism. Each suit's effect is built from that suit's own established
+identity (`RULES_DESIGN.md`'s Suit portfolio table and archetype notes),
+not an arbitrary pick:
+
+- **♥ Hearts — heal 1 Shallow Health (4.0).** Hearts' clearest
+  "why hand me cards" hook is already healing-scales-with-Hearts
+  (confirmed real per the archetype notes); Health only comes in whole
+  points, so this is the smallest possible unit, not an attempt to match
+  the other three branches' magnitude.
+- **♣ Clubs — you are Hasted thrice (3.3, 3-stack rate).** Clubs'
+  established defensive identity ("Fire Ward, Hasted, Shift"). Bumped
+  from an original 1-stack proposal (0.55) to 3 stacks specifically to
+  close the gap with Hearts' fixed 4.0, since Hasted (unlike Health) can
+  flex to hit a target magnitude.
+- **◆ Diamonds — your next two attacks this encounter deal Shadow
+  damage instead of their normal type (4.0).** Diamonds' own element is
+  Shadow (established suit↔element mapping), so this is the "generic
+  elemental conversion" every suit gets for free. Priced off an assumed
+  **average 1 point of Physical soak per hit** (the designer's own
+  estimate) — bypassing it is worth `1 × 2 (Damage's hit-gated rate,
+  Locked) = 2.0/attack`, `× 2 attacks = 4.0`. Scoped to "this encounter"
+  (not "this hour") to match the other three branches' combat framing.
+- **♠ Spades — draw 2 cards, then discard 2 from your hand (3.32, using
+  the new Hand Filtering rate above, linear for 2 cards).** Checked
+  against `RULES_DESIGN.md`'s suit archetype notes before finalizing:
+  Spades is explicitly "the precise-combatant/**analyst** suit," a
+  direct match for calculated hand-filtering — a stronger fit than
+  Diamonds' "generalist/skill-monkey" archetype, which was briefly
+  considered instead before this check.
+
+**Pricing**: `Value/charge = 0.60 (base Sift, every activation) +
+avg(4.0, 3.3, 4.0, 3.32) = 0.60 + 3.655 = 4.255`. Following
+`items.csv`'s existing non-contiguous-Level convention (same shape as
+Coat of Knit Flesh's `Level: 2, 4`): **3 charges at Level 2** (`Value =
+12.77` against `Target = 12`, **Net = +0.77**) and **6 charges at Level
+4** (`Value = 25.53` against `Target = 24`, **Net = +1.53**) — both
+land at the same ~106%-funded ratio, since charges and Target both
+scale directly with Level. `items.csv` (`I211`) updated: Level `2` →
+`2, 4`, Cost `40 Gold` → blank/`Value Per Level: 20` (matching the
+20-Gold/Level convention), Effects rewritten for the suit-keyed
+mechanic. Regenerated into `data/items.json`.
+
+**Neck slot closed out.** Final nine: Cloak of Caches, Diver's
+Necklace, Snowfall Drape, Shroud of Shadowy Stillness, Watcher's
+Mantle, Shawl of the Land, Choker of Defiance, Cloak of One Thousand
+Feathers, Worry Token.
+
 **The rule itself changed.** Scaling magnitude per stack (Hasted's
 shape) was considered and rejected: Resist reduces damage 1-for-1 per
 point with no upper bound, so an unbounded per-stack scale would let a
