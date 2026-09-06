@@ -143,3 +143,31 @@ vitality for raw power" theme — reusing the break-even-at-1-2/
 profitable-at-3+ shape already worked out above as a starting point,
 and deciding a real per-encounter usage cap as part of that draft
 rather than leaving it open-ended the way the ring did.
+
+## "Flamefist" Form Technique, pulled from Flamefist's Approach
+
+Original Ring mechanic (`I086`, Level 4, cut from `items.csv`): two
+powers, both once/encounter (uncappable by discarding a card) — a
+Brawl hit grants a free Sorcery Spell cast (≤2 AP, targeting a Brawl
+target); a Sorcery hit within `[Meditation Skill Total]` meters grants
+a free Teleport into a space adjacent to that creature. Broken into
+components during the Ring-slot balance pass before pricing finished
+(Power 1 as a hit-gated Autoswing; Power 2 as an attack-enabler, once
+it became clear `[Meditation Skill Total]` was just the trigger's range
+gate, not the teleport distance — the destination is always
+"adjacent").
+
+Pulled rather than priced as an item because the whole
+Brawl-enables-Spell/Spell-enables-Brawl-closing interplay — a genuine
+martial-arts/spellcasting hybrid combat style — reads as a much more
+natural fit for a `[Form]` Technique (a stance entered/left at the
+start of a turn, per `glossary.md`) than an always-on passive Ring.
+Worth drafting later as a Form: the toggled, turn-scoped nature of a
+Form suits "while in this stance, landing one kind of hit unlocks a
+follow-up of the other kind" far better than a Ring ever could, and a
+Technique draft can build in a real once/encounter (or Form-scoped)
+cap from the start instead of needing the discard-a-card escape valve
+the ring used. The component breakdown above (hit-gated Autoswing for
+the Brawl→Spell half, attack-enabler for the Spell→Brawl-closing half)
+is a reusable starting point for pricing whichever Level this ends up
+drafted at.

@@ -898,9 +898,9 @@ times"/"five times" anyway. Wording only, no mechanical changes.
 
 ### Ring Masterwork pass — status so far
 
-15 items originally drafted; 12 resolved (2 cut, 1 — Fate's Grasp —
-moved to Neck), 3 remain (Focusing Band of [Technique], Flamefist's
-Approach, Luminous Signet). Two items flagged as
+15 items originally drafted; 13 resolved (3 cut, 1 — Fate's Grasp —
+moved to Neck), 2 remain (Focusing Band of [Technique], Luminous
+Signet). Two items flagged as
 possibly mis-tagged before pricing, both confirmed correctly on Ring:
 Elemental Warding Amulet (renamed **Elemental Warding Band**) was
 always `Slot: Ring` in the source doc, just oddly named; Mendicant's
@@ -931,6 +931,15 @@ than Belt's narrow "carrying items" one.
   exact fit against Level 2's Target — bumped to **Level 3** anyway per
   the designer as deliberate headroom against a clever party exceeding
   the single-donor baseline: `Target = 18`, **Net −6** (67% funded).
+- **Flamefist's Approach** (`I086`) — cut. Two powers (a Brawl hit
+  grants a free ≤2 AP Sorcery Spell cast; a Sorcery hit within
+  `[Meditation Skill Total]` meters grants a free Teleport-to-adjacent)
+  were broken into components before pricing finished, but per the
+  designer the whole Brawl-enables-Spell/Spell-enables-Brawl-closing
+  interplay reads as a better fit for a `[Form]` Technique (a toggled
+  combat stance) than a passive Ring. Moved to `IDEAS_BACKLOG.md`
+  rather than priced, same call as Bloodshard Ring earlier in this
+  slot.
 - **Flamebinder's Promise** (`I078`, L1) — a standalone, once/encounter
   fresh attack, priced via the "Pricing a fresh attack from scratch"
   model (Resist placeholder + universal Harried + Autoswing). Its

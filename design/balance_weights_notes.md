@@ -2894,3 +2894,30 @@ real headroom rather than right at the exact-fit line. `items.csv`
 (`I084`) updated: Level `2` → `3`, Cost `40 Gold` → `60 Gold` (Level ×
 20, matching this pass's flat Masterwork convention), Effects reworded
 to specify Shallow Health. Regenerated into `data/items.json`.
+
+### Flamefist's Approach — cut, pulled to the backlog as a Form Technique instead
+
+Level 4, 80 Gold. Two powers (Brawl hit grants a free ≤2 AP Sorcery
+Spell cast; Sorcery hit within `[Meditation Skill Total]` meters grants
+a free Teleport-to-adjacent), each once/encounter, both uncappable by
+discarding a card. Broken into components before pricing started —
+Power 1 as a conditionally-hit-gated Autoswing (`5.5 × 0.5` for the
+triggering Brawl attack's own hit chance, on top of whatever's already
+baked into Autoswing's 5.5), Power 2 as an attack-enabler in the same
+family as Slipstream Sandals/Windrider's Loop (the `[Meditation Skill
+Total]` term turned out to just be the *range gate* for triggering,
+not the teleport distance itself — the destination is always
+"adjacent," so this isn't an unanchored-Skill-Total problem the way
+Flamebinder's Promise's Mind scaling was), plus the discard-a-card
+escape valve priced as its own component (a card's own value, 2.7,
+spent to unlock an extra use).
+
+Per the designer: cut before finishing the derivation — the whole
+Brawl-hit-enables-Spell / Spell-hit-enables-Brawl-closing interplay
+reads as a more natural fit for a **`[Form]` Technique** (a stance
+entered/left at the start of a turn, per `glossary.md`) than a passive
+Ring — the concept is "a martial-arts/spellcasting hybrid combat
+style," which a Form's own toggled, turn-scoped nature suits better
+than an always-on item ever could. Moved to `IDEAS_BACKLOG.md` rather
+than priced, same call as Bloodshard Ring earlier in this slot.
+Removed from `items.csv` (`I086`), regenerated into `data/items.json`.
