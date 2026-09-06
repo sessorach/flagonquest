@@ -3046,3 +3046,32 @@ Band, Luminous Signet, Focusing Band of [Technique], and Worry Token
 (swapped in from Neck) — 12 live items, 3 cut (Ring of Charming/
 Assertive/Bold Statements, Bloodshard Ring, Flamefist's Approach), 1
 moved out (Fate's Grasp, swapped to Neck).
+
+## Held slot — first pass
+
+30 items, the largest single slot.
+
+### Assassin's Undetectable Arms — cut, pulled to the backlog as a concealment accessory power
+
+Level 1, 20 Gold. "Regardless of its type or construction, some feature
+or enhancement of the weapon allows it to be concealed on your person.
+Furthermore, you have Good Luck on any flip to keep it hidden, and
+anyone attempting to search you for it or detect it has Bad Luck on the
+associated flip." A narrative/skill-challenge item — closest existing
+precedent is Smuggler's Belt's own "Secrecy" component (Good Luck-tier
+concealment at the ⅓ "rarer than daily" niche tier, and "someone
+actually searching you" is literally that tier's own canonical
+example). Partial pricing sketch before the cut: `(2.4 Good Luck + 2.2
+Bad Luck) × ⅓ = 1.53` against either Target convention, a real
+shortfall (51% funded per-encounter, 26% funded once/day) — and that's
+before even accounting for the item's other implied component (that a
+weapon normally *can't* be concealed at all without this enhancement),
+which was never resolved.
+
+Per the designer: this reads better as a **narrative/skill-challenge
+concealment power** that would work better folded into another item as
+an accessory effect than priced and shipped standalone at Level 1.
+Moved to `IDEAS_BACKLOG.md` rather than priced — flagged for a future
+Held item (or another slot) that wants a concealment hook alongside its
+main effect, not a fresh derivation from scratch when that day comes.
+Removed from `items.csv` (`I088`), regenerated into `data/items.json`.

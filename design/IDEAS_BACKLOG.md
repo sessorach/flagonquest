@@ -171,3 +171,25 @@ the ring used. The component breakdown above (hit-gated Autoswing for
 the Brawl→Spell half, attack-enabler for the Spell→Brawl-closing half)
 is a reusable starting point for pricing whichever Level this ends up
 drafted at.
+
+## Concealment accessory power, pulled from Assassin's Undetectable Arms
+
+Original Held mechanic (`I088`, Level 1, cut from `items.csv`): a weapon
+that can be concealed on the person, Good Luck on flips to keep it
+hidden, Bad Luck on anyone searching for or detecting it. Partial
+pricing sketch before the cut: closest precedent is Smuggler's Belt's
+own "Secrecy" component (Good Luck-tier concealment at the ⅓ "rarer
+than daily" niche tier — "someone actually searching you" is literally
+that tier's own canonical example). `(2.4 Good Luck + 2.2 Bad Luck) ×
+⅓ = 1.53` against either Target convention read as a real shortfall
+(51% funded per-encounter, 26% once/day) — and that's before even
+resolving the item's other implied component, that a weapon normally
+can't be concealed at all without this enhancement.
+
+Pulled rather than priced standalone because it reads as a narrative/
+skill-challenge power, not a combat one — per the designer, better
+suited as an **accessory effect folded into another item** than shipped
+as its own Level 1 Held weapon. Worth revisiting once a Held (or other
+slot) item comes up that wants a concealment hook alongside its main
+effect, reusing the Smuggler's Belt-precedent math above as a starting
+point rather than re-deriving it from scratch.

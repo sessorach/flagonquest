@@ -1031,6 +1031,19 @@ Mendicant's Cord, Galeforce Loop, Poison Needle, Ring of Pure Elements,
 Windrider's Loop, Tactician's Band, Flamebinder's Promise, Heartbinding
 Band, Luminous Signet, Focusing Band of [Technique], and Worry Token.
 
+### Held Masterwork pass — status so far
+
+30 items, the largest single slot by far (more than double the
+next-biggest). Working through it lowest-Level to highest.
+
+- **Assassin's Undetectable Arms** (`I088`) — cut. A narrative/skill-
+  challenge concealment power (Good Luck to keep a weapon hidden, Bad
+  Luck on anyone searching for it), closest priced to Smuggler's Belt's
+  own Secrecy component but reading as a real shortfall either way it's
+  scoped. Per the designer, better suited as an accessory effect folded
+  into another item than shipped standalone — moved to
+  `IDEAS_BACKLOG.md`.
+
 ## Open balance work
 
 - **The full Masterwork list, 103 items total** (`items.csv` `I057`-`I115`
