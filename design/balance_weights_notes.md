@@ -2520,3 +2520,14 @@ elsewhere — better than the original flat point-shift did. `items.csv`
 Options corrected from `I002` (Basic Clothing, a leftover from the old
 "Waist" slot) to `I003` (Basic Jewelry, matching Ring/Neck's
 established convention). Regenerated into `data/items.json`.
+
+### Ring of Charming, Assertive, or Bold Statements — cut, duplicates the Head hats
+
+Level 1, 20 Gold. "Once per encounter, the wearer may gain Good Luck
+on a Statement made using Rapport (if Charming), Persuasion (if
+Assertive), or Presence (if Bold)." Same shape as Confident Cap/Cap of
+Smug Confidence/Sympathetic Hat (Head) — Good Luck on a specific
+social Skill, chosen at creation — with no real differentiation beyond
+the slot. Per the designer, cut entirely rather than kept alongside an
+already-established equivalent family. Removed from `items.csv`
+(`I157`), regenerated into `data/items.json`.
