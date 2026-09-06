@@ -1056,6 +1056,12 @@ next-biggest). Working through it lowest-Level to highest.
   rate rather than left stale: the old 4m Push would have become 118%
   funded at the new rate, so trimmed to **3m**, restoring a clean fit
   (`Value = 6.18`, **Net +0.18**, 103% funded).
+- **Bounty Hunter's Blade** (`I089`, L1) — no Bad Luck on non-lethal
+  attacks made with it. Per the designer, meant to read like a same-
+  Level Form Technique feeding narrative requirements, not combat
+  optimization — priced via the Narrative Utility convention rather
+  than a real frequency guess: `Value = 1`, **Net −2**. Confirmed
+  as-is.
 
 ## Open balance work
 

@@ -3135,3 +3135,21 @@ Push distance to **3m** (`3×0.89375 = 2.68125`), landing at `Value =
 6.181`, **Net = +0.18** (103% funded) — a clean fit, restoring the same
 close-to-Target shape the original 4m/old-rate version had. `items.csv`
 (`I213`) updated (4m → 3m). Regenerated into `data/items.json`.
+
+### Bounty Hunter's Blade = Narrative Utility, confirmed as-is — Level 1
+
+"Non-lethal attacks with this don't have Bad Luck," removing the
+rulebook's Non-Lethal Attacks penalty (`rulebook.md:530`) specifically
+on non-lethal attacks made with this weapon. The naive read is real
+combat math (Bad Luck's own established 2.2 rate) — but the value
+swings wildly depending on an assumed frequency with no real anchor: a
+clean-ish fit around 1 non-lethal attack/encounter (2.2 ≈ Target 3),
+badly overfunded on a full non-lethal build (~7.5 own-attacks/encounter
+baseline × 2.2 ≈ 16.5).
+
+Per the designer: this item is meant to be comparable to a same-Level
+Form Technique — a way to feed mostly narrative requirements (a bounty
+hunter needing a target alive), not a combat-optimization pick — and
+isn't meant to be evaluated well at all. Priced via the Narrative
+Utility convention instead of the frequency guess: `Value = ⅓ × 3 = 1`,
+`Net = 1 − 3 = −2`. Confirmed as-is, no item text changes needed.
