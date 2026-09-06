@@ -2456,3 +2456,67 @@ designer: kept capped at Level 1-2 as originally structured, rather
 than stretched to a range that doesn't actually scale. `items.csv`
 (`I208`) updated (Name, Fluff, Effects), regenerated into
 `data/items.json`.
+
+### Mendicant's Cord = 1.375-4.125 (context-dependent), Level 2 accepted below budget — Good Luck/Bad Luck instead of point-shifting
+
+Level 2, 40 Gold. Originally "As a Move, you may touch yourself or a
+willing adjacent creature and shift up to 2 points from one of their
+Defenses to another — the raised Defense can't end up higher than the
+lowered one's new value." Reworked entirely — moving discrete Defense
+points didn't feel good to the designer, and the underlying value
+question (is the reallocation actually useful) is the same either way,
+so a cleaner mechanic was worth finding rather than pricing the
+original as-is.
+
+**New mechanic**: "On your turn, for 0 AP, you may choose either your
+Dodge and Parry Defenses or your Vital, Mental, and Instinct Defenses.
+Until you do this again, attacks against the chosen group have Bad
+Luck, and attacks against the other group have Good Luck." Self-only
+(the "or a willing adjacent creature" targeting was cut). The two
+groups match Harried's and Vulnerable's own established Defense
+pairings exactly (`glossary.md`: Harried hits "Dodge and Parry
+Defense," Vulnerable hits "Vital, Mental, and Instinct Defenses") —
+reusing an existing split rather than inventing a new one, and
+simplifying what was originally going to be a "pick one Defense from
+each group" sub-choice down to just picking which whole group gets
+hardened.
+
+**Pricing**: Good Luck and Bad Luck are priced identically (`2.2`
+each), so protecting one group while weakening the other nets to
+`Value = 2.2 × D`, where `D` = the net number of extra hits landing on
+the protected group versus the weakened one over the encounter — a
+direct consequence of Bad Luck/Good Luck's symmetry, not a new
+derivation. Using the established `1.875 hits/player/encounter`
+baseline (the same one Resist's own derivation uses) as the ceiling on
+total hits, `D` maxes out at 1.875 (every single hit lands on the
+protected group) — meaning the absolute best case is `Value = 2.2 ×
+1.875 = 4.125`.
+
+That ceiling **cannot reach Level 2's Target (6)** under any
+circumstance, not just an unlucky one — a hard structural cap from the
+encounter's own combat math, not a judgment call. Realistic cases
+range from `≈1.375` (a genuinely mixed encounter, no reliable read,
+using Resist's own Physical/elemental damage-share split — 2/3 vs
+1/3 — as the read-accuracy proxy) up to close to the `4.125` ceiling
+(a well-read, consistently lopsided encounter — a tank correctly
+clocking "this room is all melee" and staying toggled that way the
+whole fight). Per the designer: accepted at Level 2 anyway, on the
+same "identity over hitting the exact number" basis as Acidic
+Flask/Reeler earlier in this pass — many real encounters *are*
+consistently lopsided rather than an even mix, so the realized value
+skews well above the pessimistic blended estimate even though it can
+never fully close the gap.
+
+**Reflavored as an actual ring** while keeping the name: mendicant
+orders (Franciscans, most notably) are historically defined by a
+knotted cord/cincture worn as a vow-symbol, so "Mendicant's Cord" as a
+name already has a real anchor independent of which slot it's worn on
+— reworked to a ring shaped like a small knotted cord rather than
+inventing an unrelated ring concept. The sacrifice-based mechanic
+(harden one thing at the cost of another) also fits a mendicant's
+core ethos — voluntary sacrifice in one place for protection
+elsewhere — better than the original flat point-shift did. `items.csv`
+(`I209`) updated: Name kept, Fluff and Effects rewritten, Base Item
+Options corrected from `I002` (Basic Clothing, a leftover from the old
+"Waist" slot) to `I003` (Basic Jewelry, matching Ring/Neck's
+established convention). Regenerated into `data/items.json`.

@@ -9132,8 +9132,8 @@
     "slot": "Ring",
     "tags": null,
     "level": 2,
-    "description": "A sash woven from common linen and cotton thread, yet as strong and sturdy as if it were spun from steel, infused with its power through spiritually-charged rituals and long meditation.",
-    "effects": "As a Move, you may touch yourself or a willing adjacent creature and shift up to 2 points from one of their Defenses to another - the raised Defense can't end up higher than the lowered one's new value.",
+    "description": "A ring fashioned like a small knotted cord, woven from plain linen and cotton thread yet as strong and sturdy as if it were spun from steel - a mendicant's traditional token of vowed poverty, infused with its power through spiritually-charged rituals and long meditation on what one gives up to gain protection elsewhere.",
+    "effects": "On your turn, for 0 AP, you may choose either your Dodge and Parry Defenses or your Vital, Mental, and Instinct Defenses. Until you do this again, attacks against the chosen group have Bad Luck, and attacks against the other group have Good Luck.",
     "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
@@ -9164,7 +9164,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I003"
     ],
     "levels": [
       2
