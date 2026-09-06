@@ -2641,3 +2641,26 @@ a genuine gap). Real situational upside, same shape as Cloak of One
 Thousand Feathers' unquantified traversal bonus — not folded in since
 the base case already lands close to Target without it. `items.csv`
 (`I187`) updated (5m → 10m). Regenerated into `data/items.json`.
+
+### Bloodshard Ring — cut, no clean usage cap to price against
+
+Level 2, 40 Gold. "Before making a spell attack that deals damage, the
+wearer may spend X Health. If they do, the spell attack deals its
+damage as Fire, and deals an extra X damage. If the spell attack only
+has one target, then instead it deals an extra [twice X] damage."
+Worked through in detail — the raw Health-for-damage trade turns out
+close to a wash rather than a trap once AoE is correctly modeled as
+applying the bonus *per target hit*: `Net = 2X(N−2)` for N targets,
+break-even at 1-2 targets, genuinely profitable at 3+. The flat "deals
+its damage as Fire" conversion adds a consistent `~2.0` on top (same
+"1 point of average soak bypassed" logic as Ring of Pure Elements),
+independent of target count.
+
+Cut rather than priced, though — the text has no stated usage cap at
+all ("before making a spell attack" reads as usable on every qualifying
+attack), which makes it impossible to price cleanly without a realistic
+per-encounter usage-frequency assumption the model has no way to
+supply on its own. Per the designer, moved to `IDEAS_BACKLOG.md` as a
+Technique idea instead, where a usage cap can be designed in from the
+start rather than left open-ended. Removed from `items.csv` (`I081`),
+regenerated into `data/items.json`.

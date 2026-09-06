@@ -113,3 +113,33 @@ Technique effect is worth about the same `Level × 3` a same-Level item
 would be. See the Wizardly Hat writeup in `balance_weights_notes.md` for
 the full accounting, including why a 2 AP activation cost read as a net
 loss at low Levels and why 0 AP reads much better.
+
+## Spend-Health-for-damage Technique, pulled from Bloodshard Ring
+
+Original Ring mechanic (`I081`, Level 2, cut from `items.csv`): "Before
+making a spell attack that deals damage, the wearer may spend X Health.
+If they do, the spell attack deals its damage as Fire, and deals an
+extra X damage. If the spell attack only has one target, then instead
+it deals an extra [twice X] damage." Worked through during the
+Ring-slot balance pass — the raw Health-for-damage trade is close to a
+wash, not a trap: break-even at 1-2 targets hit (`Net = 2X(N−2)` for N
+targets, since the bonus damage applies per target on an AoE, priced at
+`X × 2` per target against a flat `4X` Health cost), genuinely
+profitable at 3+ targets and scaling with however much Health the
+player risks. The flat "deals its damage as Fire" conversion adds a
+consistent `~2.0` (same "1 point of average soak bypassed" logic as
+Ring of Pure Elements/Worry Token's Diamonds branch) on top, regardless
+of target count.
+
+Pulled rather than priced as an item because the original text has no
+stated usage cap ("before making a spell attack" reads as usable on
+every qualifying attack) — hard to price cleanly without a realistic
+usage-frequency assumption the model can't supply on its own. Checked
+both `items.csv` and `techniques.csv`: no other spend-Health-for-damage
+mechanic exists anywhere in the game currently, so a Technique version
+would be genuinely new ground. Worth drafting later — Sorcery-flavored
+given the Fire-conversion, or School-neutral as a "sacrifice your own
+vitality for raw power" theme — reusing the break-even-at-1-2/
+profitable-at-3+ shape already worked out above as a starting point,
+and deciding a real per-encounter usage cap as part of that draft
+rather than leaving it open-ended the way the ring did.
