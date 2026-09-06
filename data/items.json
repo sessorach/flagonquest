@@ -3396,7 +3396,7 @@
     "tags": null,
     "level": "1-5",
     "description": "Coveted for their usefulness and rarity, these rings hold the skill and knowledge of their crafter. Through careful meditation and focus, the jeweler binds their ability into a small token that can be tapped into when worn, allowing another person - who might be entirely unfamiliar with the art - to replicate it.",
-    "effects": "When this ring is created, the creator chooses a Technique they know, which must be the same Level as this ring.The wearer may discard a card at any time in order to “learn” the chosen Technique until they get a full night’s rest or take the ring off. During this time they are treated as though they know the Technique, or an extra copy of it if it’s an Encounter or Duplicate Technique.",
+    "effects": "When this ring is created, the creator chooses a Technique they know, which must be the same Level as this ring. If that Technique has any choices, such as picked Features or a Free Text option, the ring is instead bound to match a specific copy of it the creator knows, determined when the ring is created.The wearer may discard a card at any time in order to “learn” the chosen Technique until they get a full night’s rest or take the ring off. During this time they are treated as though they know the Technique, or an extra copy of it if it’s an Encounter or Duplicate Technique.",
     "cost": null,
     "value_per_level": 20,
     "school": null,

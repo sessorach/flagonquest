@@ -13,6 +13,46 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-06 — Ring cluster closed out
+
+- Cut two items: **Ring of Charming, Assertive, or Bold Statements**
+  (duplicates the Head hats' Good-Luck-on-a-Skill family) and
+  **Flamefist's Approach** (its Brawl/Spell interplay was pulled to
+  `IDEAS_BACKLOG.md` as a `[Form]` Technique idea instead — a toggled
+  combat stance fits the concept better than a passive Ring). A third,
+  **Bloodshard Ring**, was already cut earlier this same pass.
+- **Fate's Grasp** and **Worry Token** swapped slots (Neck ↔ Ring),
+  checked directly against `RULES_DESIGN.md`'s own Neck/Ring design
+  lanes: Fate's Grasp's automatic, no-decision Sift trigger is Neck's
+  "passive utility" case, Worry Token's deliberate charge-spend is
+  Ring's "active ability" one.
+- **Fate's Grasp** priced by deriving its daily card-spend total exactly
+  from the Cycles rule (Draw Cycle income = Discard Cycle's mandatory
+  clear, so nothing carries over day to day) rather than guessing — the
+  best-fitting multiplier landed it at Level 4 with "Sift up to three
+  times that many cards."
+- **Heartbinding Band** reworked to close a real Shallow/Deep healing-
+  rate arbitrage (the recipient's free choice of type let a rational
+  pair launder cheap Shallow loss into valuable Deep healing) — priced
+  instead on a cleaner story: recycling a capped-out donor's otherwise-
+  wasted daily rest-healing into healing an ally actually needs.
+- **Focusing Band of [Technique]** closes out the slot with a new,
+  reusable Technique-value convention (`balance_weights.csv`): a
+  Level-N Technique is worth the same `Level × 3`/`Level × 6` a
+  same-Level item's own Target represents. Also fixed a real rules gap
+  — a Technique with its own choices (Feature picks, Free Text options)
+  is now explicitly bound to a specific copy the creator already knows.
+- **"Thrice" retired project-wide**, replaced with "three times" across
+  every item/technique/feature/rulebook occurrence — reads as an
+  archaic outlier once a counting sequence needs "four times"/"five
+  times" anyway.
+- Backfilled `design/balance_ledger.csv` and `balance.md`'s per-slot
+  summaries for the Feet, Head, and Neck clusters, which had full
+  writeups in `balance_weights_notes.md` but no matching rows/summaries
+  in the other two tracking files — a gap that had opened silently over
+  several slots before being caught. Added a standing note (`CLAUDE.md`)
+  to keep all three files in sync going forward.
+
 ### 2026-09-05 — Neck cluster closed out
 
 - Cut three items: **Choker of Silent Whispers** (a strictly-worse

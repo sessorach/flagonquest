@@ -896,11 +896,15 @@ project-wide**, replaced with "three times" everywhere it appeared
 designer, it reads as an archaic outlier once the sequence needs "four
 times"/"five times" anyway. Wording only, no mechanical changes.
 
-### Ring Masterwork pass — status so far
+### Ring Masterwork pass — final lineup
 
-15 items originally drafted; 14 resolved (3 cut, 1 — Fate's Grasp —
-moved to Neck), 1 remains (Focusing Band of [Technique]). Two items
-flagged as
+15 items originally drafted; 3 cut (Ring of Charming/Assertive/Bold
+Statements, Bloodshard Ring, Flamefist's Approach), 1 moved out (Fate's
+Grasp, swapped to Neck) — 12 final: Elemental Warding Band, Mendicant's
+Cord, Galeforce Loop, Poison Needle, Ring of Pure Elements, Windrider's
+Loop, Tactician's Band, Flamebinder's Promise, Heartbinding Band,
+Luminous Signet, Focusing Band of [Technique], and Worry Token (swapped
+in from Neck). Two items flagged as
 possibly mis-tagged before pricing, both confirmed correctly on Ring:
 Elemental Warding Amulet (renamed **Elemental Warding Band**) was
 always `Slot: Ring` in the source doc, just oddly named; Mendicant's
@@ -1005,6 +1009,27 @@ than Belt's narrow "carrying items" one.
   pool; pinned to 7 charges (L2) / 14 charges (L4) after the original
   `5×Level` formula ran a consistent 138%-funded overshoot at every
   Level: **Net −0.38 / −0.76** — ~97% funded at both.
+- **Focusing Band of [Technique]** (`I079`, L1-5) — closes out the
+  slot. Unlike every other item this pass, its value depends on *which*
+  Technique gets bound to it, chosen by the crafter at creation — priced
+  via a newly-codified convention (`balance_weights.csv`): a Technique
+  is worth `Level × 3` (Encounter cadence) or `Level × 6` (daily
+  cadence), the same relationship the once/day item-Target convention
+  already uses. Since the ring only activates once/day and persists,
+  both cadences land on the identical `Level × 6` total either way —
+  collapsing the whole derivation to just the card-discard activation
+  cost: `Value = 6L − 2.7`, `Target = 6L`, **flat Net = −2.7 at every
+  Level**, exactly the deliberate activation-cost friction the designer
+  intended ("the thing that makes it not just a way to buy abilities").
+  Rules gap fixed along the way: a Technique with its own choices
+  (Feature picks, Free Text) is now explicitly bound to a specific copy
+  the creator already knows, locked in at creation, not left open for
+  the wearer.
+
+**Ring slot closed out.** Final twelve: Elemental Warding Band,
+Mendicant's Cord, Galeforce Loop, Poison Needle, Ring of Pure Elements,
+Windrider's Loop, Tactician's Band, Flamebinder's Promise, Heartbinding
+Band, Luminous Signet, Focusing Band of [Technique], and Worry Token.
 
 ## Open balance work
 

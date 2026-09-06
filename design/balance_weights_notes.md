@@ -2969,3 +2969,80 @@ convention, not once/day — this is a combat-only effect, unlike Fate's
 Grasp's daily one). **Net = −1.0.** No changes to `items.csv` — Level,
 Cost, and Effects text were already correct; only the pricing
 derivation needed resolving.
+
+### Focusing Band of [Technique] = 6L − 2.7, flat Net −2.7 at every Level — closes out the Ring slot
+
+Level 1-5, 20 Gold/Level. "When this ring is created, the creator
+chooses a Technique they know, which must be the same Level as this
+ring. The wearer may discard a card at any time in order to 'learn'
+the chosen Technique until they get a full night's rest or take the
+ring off. During this time they are treated as though they know the
+Technique, or an extra copy of it if it's an Encounter or Duplicate
+Technique." Unlike every other item this pass, its value depends
+entirely on *which* Technique gets bound to it — a genuinely different
+pricing problem, needing a real anchor for "what is a Technique worth"
+rather than a mechanical derivation of its own.
+
+**The anchor, formalized per the designer**: a Level-N Technique is
+worth the same `Level × 3` a same-Level item's own per-encounter
+`Target` represents (first used informally for Wizardly Hat of Tam the
+Tipsy's Alcohol/technique-refresh accounting, now codified in
+`balance_weights.csv` as **Technique value (Encounter cadence) = 3/
+Level**) — and a Technique designed to deliver its value once per day
+rather than refreshing per-encounter is worth **twice** that, `6/
+Level` (**Technique value (daily cadence)**), matching the once/day
+item-Target convention's own `Level × 3 × 2 encounters/day` logic
+exactly.
+
+**Both cadences land on the same number here, for a structural
+reason**: this ring only activates once per day (discard a card,
+persists until the next rest or removing the ring — re-discarding
+while already active does nothing new). If bound to an *Encounter*
+Technique, the wearer gets to use it once per encounter, every
+encounter, for the rest of that day — `Level × 3` per encounter × ~2
+encounters/day (Baseline's own standing assumption) = `Level × 6`
+total daily value. If bound to a Technique with genuine daily cadence,
+it's already worth `Level × 6` on its own by the convention above. So
+whichever type of Technique the ring is bound to, its total daily
+value comes out to the same `Level × 6` — which is exactly the once/day
+`Target = Level × 6` convention this item should be checked against.
+
+**Per the designer: the card-discard activation cost is the entire
+intended balancing lever here** — "the thing that makes it not just a
+way to buy abilities is the card cost to use the item." With the
+Technique's own value and the item's Target cancelling out by
+construction (both `Level × 6`), the whole derivation collapses to just
+that one cost: `Value = 6L − 2.7` (2.7, the established Card
+drawn/hand rate) against `Target = 6L`, giving a **flat Net = −2.7 at
+every Level 1-5** — not a shortfall that grows or shrinks with Level,
+just the deliberate, constant activation friction the designer
+intended.
+
+| Level | Value | Target | Net |
+|---|---|---|---|
+| 1 | 3.3 | 6 | −2.7 |
+| 2 | 9.3 | 12 | −2.7 |
+| 3 | 15.3 | 18 | −2.7 |
+| 4 | 21.3 | 24 | −2.7 |
+| 5 | 27.3 | 30 | −2.7 |
+
+**One real rules gap fixed while pricing this**: the original text
+never addressed what happens for a Technique with its own internal
+choices (a Buildable technique's Feature picks, or a Free Text option
+like a chosen School/Profession) — a real ambiguity, since a smartly-
+built copy of a Buildable Technique is worth far more than a generic
+one, and the model's own flat `Level × 3`/`Level × 6` anchor implicitly
+assumes one specific, already-realized version of the Technique, not
+an open choice the wearer gets to make fresh. Per the designer,
+resolved: the ring is bound to match a *specific copy* of the Technique
+the creator already knows, its choices locked in at creation, not left
+open for the wearer to pick their own. `items.csv` (`I079`) updated to
+add this clarifying sentence. Regenerated into `data/items.json`.
+
+**Ring slot closed out.** Final roster: Elemental Warding Band,
+Mendicant's Cord, Galeforce Loop, Poison Needle, Ring of Pure Elements,
+Windrider's Loop, Tactician's Band, Flamebinder's Promise, Heartbinding
+Band, Luminous Signet, Focusing Band of [Technique], and Worry Token
+(swapped in from Neck) — 12 live items, 3 cut (Ring of Charming/
+Assertive/Bold Statements, Bloodshard Ring, Flamefist's Approach), 1
+moved out (Fate's Grasp, swapped to Neck).
