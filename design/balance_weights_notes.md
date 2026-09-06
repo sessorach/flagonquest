@@ -3075,3 +3075,63 @@ Moved to `IDEAS_BACKLOG.md` rather than priced — flagged for a future
 Held item (or another slot) that wants a concealment hook alongside its
 main effect, not a fresh derivation from scratch when that day comes.
 Removed from `items.csv` (`I088`), regenerated into `data/items.json`.
+
+### Push decoupled from Speed and re-derived = 0.89375/meter — Battering Armament = 3m, Level 1
+
+Level 1, 20 Gold. "When an attack with this weapon hits or is Parried,
+the target is Pushed 1 meter in a direction of your choice." Priced at
+the existing Push rate (0.55/meter, reused directly from Speed's own
+single-instance rate), `Value = 0.55`, **Net = −2.45** against Level 1's
+`Target = 3` — only 18% funded, the largest shortfall found so far this
+pass on a single-component item.
+
+**Push's own rate got re-derived from scratch, decoupled from Speed
+entirely**, rather than patched item-by-item. The old rate reused
+Speed's single-instance derivation (`1 AP(2.75) / (baseline Speed+1 =
+5)`) wholesale — but per the designer, Push deserves its own anchor:
+**a standard move is 4 spaces**, not Speed's own baseline-plus-one
+figure, and Push's real value is more than a raw AP-equivalent of
+lost movement — forcing an enemy out of position (breaking their
+formation, isolating them from allies, shoving them somewhere
+disadvantageous) is a real, additional tactical benefit a plain
+"undo my displacement" framing doesn't capture. `Value = 1 AP(2.75) / 4
+= 0.6875/meter` base, **+30% tactical premium** (a modest, explicitly
+judgment-call bump, same convention as Elemental Warding Band's own
++15% targeting-flexibility bump) `= 0.89375/meter`. **Speed's own rates
+(single-instance 0.55, permanent 2.54375) are untouched** — this
+correction is scoped to Push alone, not a wholesale Speed re-derivation.
+`balance_weights.csv` updated.
+
+At the new rate, Level 1's `Target = 3` needs **3.357m** for an exact
+fit — not a clean number, and half-spaces aren't a thing. **Locked in
+at 3m** (`Value = 2.68`, **Net = −0.32**, 89% funded) over 3.5m (104%
+funded), the closest clean distance under the target. `items.csv`
+(`I090`) updated (1m → 3m). Regenerated into `data/items.json`.
+
+**Flagged for later, not decided now**: whether Battering Armament
+should scale Level 1-5 instead of staying fixed at Level 1. A naive
+`3m × Level` scaling holds a perfectly constant 89.4%-funded ratio at
+every Level (Push has no diminishing curve to fight, unlike Ward/
+Hasted), but the raw distances get large fast — 15m at Level 5 reads as
+a lot for a single melee hit's shove, well past every other Push/
+movement effect priced this pass (Slipstream Sandals topped out at 3m,
+Windrider's Loop's Range at 10m). If it scales, it likely wants
+something other than raw linear meters-per-Level (the same "cap it and
+scale a secondary component instead" move Snowfall Drape and Cowl of
+Tranquility made once *their* linear scaling stopped making sense), not
+a decision to make in isolation — revisit once the whole Held block
+gets assessed after this pass, alongside any other single-Level items
+that might want the same look.
+
+### Legbreaker rechecked under the new Push rate — trimmed 4m → 3m
+
+Level 2 Grenade, previously `Value = 5.7`, `Net = −0.3` (95% funded),
+using the old Push rate: `margin(8) + 4m×0.55(2.2) + Harried(1) −
+Autoswing(5.5) = 5.7`. Under the new 0.89375/meter rate, the same 4m
+Push jumps to `4×0.89375 = 3.575`, pushing `Value` to `7.075` against
+`Target = 6` — **Net = +1.075, 118% funded**, a real overshoot, not
+noise. Per the designer, rechecked rather than left stale: trimmed the
+Push distance to **3m** (`3×0.89375 = 2.68125`), landing at `Value =
+6.181`, **Net = +0.18** (103% funded) — a clean fit, restoring the same
+close-to-Target shape the original 4m/old-rate version had. `items.csv`
+(`I213`) updated (4m → 3m). Regenerated into `data/items.json`.

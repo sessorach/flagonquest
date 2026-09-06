@@ -1043,6 +1043,19 @@ next-biggest). Working through it lowest-Level to highest.
   scoped. Per the designer, better suited as an accessory effect folded
   into another item than shipped standalone — moved to
   `IDEAS_BACKLOG.md`.
+- **Battering Armament** (`I090`, L1) — Push, decoupled from Speed and
+  re-derived this same item: `1 AP / 4-space standard move = 0.6875/
+  meter` base, `+30%` tactical premium for forcing an enemy out of
+  position, `= 0.89375/meter` (Speed's own rates untouched). Locked in
+  at **3m** (exact fit needed 3.357m, not a clean number): `Value =
+  2.68`, **Net −0.32** (89% funded). Flagged, not decided: whether this
+  should scale Level 1-5 — revisit once the whole Held block is
+  assessed after this pass, since a naive linear-meters-per-Level
+  scaling gets to unrealistic distances (15m at L5) fast.
+- **Legbreaker** (`I213`, Grenade, L2) — rechecked under the new Push
+  rate rather than left stale: the old 4m Push would have become 118%
+  funded at the new rate, so trimmed to **3m**, restoring a clean fit
+  (`Value = 6.18`, **Net +0.18**, 103% funded).
 
 ## Open balance work
 
