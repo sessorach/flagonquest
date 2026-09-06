@@ -898,9 +898,9 @@ times"/"five times" anyway. Wording only, no mechanical changes.
 
 ### Ring Masterwork pass — status so far
 
-15 items originally drafted; 11 resolved (2 cut, 1 — Fate's Grasp —
-moved to Neck), 4 remain (Focusing Band of [Technique], Heartbinding
-Band, Flamefist's Approach, Luminous Signet). Two items flagged as
+15 items originally drafted; 12 resolved (2 cut, 1 — Fate's Grasp —
+moved to Neck), 3 remain (Focusing Band of [Technique], Flamefist's
+Approach, Luminous Signet). Two items flagged as
 possibly mis-tagged before pricing, both confirmed correctly on Ring:
 Elemental Warding Amulet (renamed **Elemental Warding Band**) was
 always `Slot: Ring` in the source doc, just oddly named; Mendicant's
@@ -917,6 +917,20 @@ than Belt's narrow "carrying items" one.
   since its deliberate charge-spend ("use it now or save it") is Ring's
   "active ability" lane, not Neck's "passive utility" one.
 
+- **Heartbinding Band** (`I084`, L3, up from L2) — spend 1 AP + any
+  amount of own Health, an adjacent willing creature heals that much
+  Shallow Health (type specified to close a Shallow-pay/Deep-receive
+  rate arbitrage the original open wording allowed). In combat, one
+  activation is a guaranteed raw loss regardless of magnitude — Heal
+  and Health-spend cost cancel exactly, leaving only the flat 1 AP cost
+  as debit — kept deliberately as combat-use friction, not a flaw. Real
+  value comes from recycling otherwise-wasted overheal out of combat: a
+  capped-out full-Health donor's daily Recovery Cycle heal (`= Body`,
+  baseline 3) normally goes to waste, and this ring redirects it to
+  whoever actually needs it. `Value = 3 × 4 (Healing Shallow) = 12`, an
+  exact fit against Level 2's Target — bumped to **Level 3** anyway per
+  the designer as deliberate headroom against a clever party exceeding
+  the single-donor baseline: `Target = 18`, **Net −6** (67% funded).
 - **Flamebinder's Promise** (`I078`, L1) — a standalone, once/encounter
   fresh attack, priced via the "Pricing a fresh attack from scratch"
   model (Resist placeholder + universal Harried + Autoswing). Its

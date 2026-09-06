@@ -2838,3 +2838,59 @@ from the Slain), `features.csv` (Wild Magic), and `rulebook.md`
 times" in this same pass, so there's no lingering mixed usage. No
 mechanical changes from any of these — wording only. `CLAUDE.md`'s own
 documented convention updated to match.
+
+### Heartbinding Band = 12 (recycled overheal, not rate-arbitrage) — Level 3
+
+Originally Level 2, 40 Gold. "The wearer may spend 1 AP, place their
+hand (the one with the ring) on an adjacent willing creature, and
+spend any amount of Health. That creature then heals that much
+Health." Two real problems surfaced before landing on a final number.
+
+**A genuine Shallow/Deep rate arbitrage existed in the original
+wording.** `rulebook.md`'s healing rule lets the recipient freely
+choose Shallow or Deep for any healing received "unless the effect
+specifies one type" — and Healing Deep (5/point, Locked) is worth more
+than Healing Shallow (4/point, Locked), while spending Health as a
+flat cost prices at the plain guaranteed rate (4/point, the same basis
+Bloodshard Ring's Health cost used). A rational pair could pay from
+Shallow and receive as Deep, generating `+1/point` out of the rate
+mismatch alone, before any tactical value. **Closed by specifying the
+type**: `items.csv` now reads "...heals that much **Shallow** Health,"
+which the recipient no longer gets to override.
+
+**With the arbitrage closed, a single in-combat activation is a
+guaranteed raw loss, and that's intentional.** Healing Shallow (4) and
+the flat Health-spend cost (4) cancel exactly, leaving only the 1 AP
+cost (2.75, same opportunity-cost basis Wizardly Hat's first-pass "2 AP
+to drink" version used) as pure debit: `Value = 4 − 4 − 2.75 = −2.75`
+per activation, regardless of how much Health is moved in one action
+(the AP cost is flat per activation, not per point). Per the designer:
+**kept deliberately** as a combat-use penalty — this ring isn't meant
+to be spammed mid-fight, the AP cost is the friction that enforces
+that.
+
+**The real value comes from a different mechanism: recycling
+otherwise-wasted overheal, not the Shallow/Deep rate mismatch.**
+Outside combat, AP isn't a binding resource (per this document's
+existing "AP doesn't exist outside combat" precedent), so the 1 AP
+cost stops mattering. A character already sitting at full Health gets
+nothing from their own Recovery Cycle heal (`Heal = Body`, capped at
+max Health) — that healing is simply wasted every day it happens to a
+capped-out character. This ring lets the party redirect that
+would-be-wasted heal to whoever actually needs it instead, converting
+healing that would otherwise vanish into real Value the party wouldn't
+have had. Using the Recovery Cycle's own formula directly (`Body`,
+baseline 3) as the recycled amount: `Value = 3 × 4 (Healing Shallow,
+Locked) = 12` — an exact fit against Level 2's once/day `Target = 12`
+(`Net = 0`), not a coincidence, since both numbers come straight from
+already-established rates/formulas rather than being tuned to match.
+
+**Per the designer, bumped to Level 3 anyway** (`Target = 18`, `Net =
+−6`, 67% funded) as a deliberate margin against a clever party pushing
+past the single-donor baseline this estimate assumes (more than one
+capped-out donor, more than one beaten-up recipient, in the same day)
+— explicitly accepted as "a rulebreaking type of item," priced with
+real headroom rather than right at the exact-fit line. `items.csv`
+(`I084`) updated: Level `2` → `3`, Cost `40 Gold` → `60 Gold` (Level ×
+20, matching this pass's flat Masterwork convention), Effects reworded
+to specify Shallow Health. Regenerated into `data/items.json`.

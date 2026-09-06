@@ -3579,10 +3579,10 @@
     "category": "Masterwork",
     "slot": "Ring",
     "tags": null,
-    "level": 2,
+    "level": 3,
     "description": "A band of dull metal with soft, pink gemstones embedded in it which seem to pulse with a faint light.",
-    "effects": "The wearer may spend 1 AP, place their hand (the one with the ring) on an adjacent willing creature, and spend any amount of Health. That creature then heals that much Health.",
-    "cost": "40 Gold",
+    "effects": "The wearer may spend 1 AP, place their hand (the one with the ring) on an adjacent willing creature, and spend any amount of Health. That creature then heals that much Shallow Health.",
+    "cost": "60 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -3615,7 +3615,7 @@
       "I003"
     ],
     "levels": [
-      2
+      3
     ]
   },
   {
