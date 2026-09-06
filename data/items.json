@@ -3443,9 +3443,9 @@
     "category": "Masterwork",
     "slot": "Ring",
     "tags": null,
-    "level": "1-5",
+    "level": "2, 4",
     "description": "An austere, silver ring, etched with markings from battlemaps, warmage tomes, or other works that prominently feature tactical maneuvers and other strategies. The ring helps focus the wearer's thoughts, keeping their tactics one step ahead of any opponent.",
-    "effects": "This starts each day (after you get a full night’s rest) with [five times Level] charges. At any time, you may expend a charge, discard a card from your hand, and draw a card.",
+    "effects": "This starts each day (after you get a full night’s rest) with 7 (if Level 2) or 14 (if Level 4) charges. At any time, you may expend a charge, discard a card from your hand, and draw a card.",
     "cost": null,
     "value_per_level": 20,
     "school": null,
@@ -3479,11 +3479,8 @@
       "I003"
     ],
     "levels": [
-      1,
       2,
-      3,
-      4,
-      5
+      4
     ]
   },
   {

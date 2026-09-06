@@ -2664,3 +2664,30 @@ supply on its own. Per the designer, moved to `IDEAS_BACKLOG.md` as a
 Technique idea instead, where a usage cap can be designed in from the
 start rather than left open-ended. Removed from `items.csv` (`I081`),
 regenerated into `data/items.json`.
+
+### Tactician's Band = charges × 1.66, pinned to Level 2/4 at 7/14 charges — direct reuse of Hand Filtering
+
+Originally Level 1-5, "`[five times Level]` charges per day, each:
+expend a charge, discard a card from your hand, and draw a card." This
+mechanic *is* the Hand Filtering primitive verbatim — no new derivation
+needed, just apply the already-codified rate (`1.66/card`) directly.
+Since the charge pool is a fixed daily allotment (not an ambiguous
+realistic-usage-frequency question the way Sift's own rate needed
+rescoping for), the total Value is just `charges × 1.66`, compared
+against the once/day Target convention (`Level × 6`).
+
+At the original `5 × Level` charges, `Value = 8.3 × Level` against
+`Target = 6 × Level` — **Net = +2.3 × Level**, a consistent 138%-funded
+overshoot at every Level, not a rounding-level gap. Per the designer,
+pinned to a non-contiguous Level `2, 4` (`items.csv`'s existing
+convention, same shape as Coat of Knit Flesh/Elemental Warding Band) —
+but pinning the Level alone doesn't fix the ratio, since `Value` and
+`Target` both scale identically with Level regardless of which ones are
+offered. Landed on **7 charges (Level 2) / 14 charges (Level 4)**
+instead (not `4×Level`'s 8/16, a close-but-not-quite fit): `7 × 1.66 =
+11.62` against `Target = 12` (**Net = −0.38**), `14 × 1.66 = 23.24`
+against `Target = 24` (**Net = −0.76**) — ~97% funded at both, the
+closest fit found for this item. `items.csv` (`I080`) updated: Level
+`1-5` → `2, 4`, Effects reworded to the fixed 7/14 charge counts
+(matching Coat of Knit Flesh's "X (if Level N) or Y (if Level M)"
+phrasing). Regenerated into `data/items.json`.
