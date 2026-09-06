@@ -2691,3 +2691,58 @@ closest fit found for this item. `items.csv` (`I080`) updated: Level
 `1-5` → `2, 4`, Effects reworded to the fixed 7/14 charge counts
 (matching Coat of Knit Flesh's "X (if Level N) or Y (if Level M)"
 phrasing). Regenerated into `data/items.json`.
+
+### Flamebinder's Promise = 1.5 — priced as a portable Level 1 War Magic, not the generic fresh-attack model's own guessed baseline
+
+Level 1, 20 Gold. "Once per encounter, for 2 AP, the wearer may throw a
+ball of fire at a nearby creature. This is an Acrobatics attack against
+the Dodge Defense of a target within 5 meters, dealing 3 + [Mind] Fire
+damage." A standalone, once/encounter, from-scratch attack — exactly
+the shape the **"Pricing a fresh attack from scratch"** model above was
+built for (Resist placeholder, priced at Damage's rate; a flat
+Universal Harried credit; Autoswing subtracted as the opportunity cost
+of spending the 2 AP on this instead of a normal attack).
+
+The one real snag: the damage scales off the wearer's own **Mind**, and
+no baseline Mind value has ever been established in this document —
+`balance.md`'s own War Magic reference explicitly flags "no Baseline
+Stat convention exists" for Mind, using illustrative 3/4/5 values tied
+to *War Magic's own Level* (a Buildable Technique), which doesn't map
+directly onto a fixed-Level item. **Per the designer, resolved by
+treating this ring as a portable Level 1 equivalent of War Magic
+(`T120`) itself** — War Magic is this project's own established
+"what does a spellcaster's attack actually look like" reference point,
+so reusing its own baseline directly is more grounded than constructing
+a fresh Mind assumption from nothing. War Magic is itself an
+Encounter-tagged Technique (2 AP, once/encounter) with the same base
+line, "2 + [your Mind] Fire damage" against Dodge or Vital Defense,
+melee range only ("An adjacent creature") — confirming the same
+once/encounter, 2-AP cadence this ring already uses, just delivered via
+Acrobatics instead of Sorcery Spell and with a fixed range instead of
+melee-only. Mind **3** (the lowest value War Magic's own reference
+table tabulates, at "Level 2") is used as the representative baseline —
+the closest already-established anchor, not a fresh guess, though still
+flagged as a judgment call rather than a firm fact, being the first
+item this document has ever priced with a Mind-scaling formula.
+
+- Raw Damage = 3 + 3 (Mind) = 6 Fire.
+- Resist placeholder (elemental, skips the armor term) = 3 → `margin =
+  6 − 3 = 3`, priced at Damage's own rate (2/point): **6**.
+- Universal Harried credit (attack vs. Dodge Defense) = **+1**.
+- Autoswing subtracted as the flat opportunity cost = **−5.5**.
+
+`Value = 6 + 1 − 5.5 = 1.5`. `Target = 3` (Level 1). **Net = −1.5** — a
+modest, accepted shortfall, the same shape as several other items this
+pass that land close-but-under Target rather than needing a Level or
+magnitude change.
+
+**Range bumped from 5m to 6m**, per the designer, purely for flavor —
+checked against the range breakpoints table (`balance_weights_notes.md`
+above) and confirmed inconsequential either way: both 5m and 6m sit
+well inside the "Short" tier's own 1-move-closable range, nowhere near
+the 9m "still attacks" ceiling or the 10m "costs the attack" floor, so
+the bump crosses no breakpoint and carries no separate Value credit
+under this model (a fresh-attack effect's inherent Range isn't
+separately priced the way Windrider's Loop's Range *rider* on an
+existing weapon was). `items.csv` (`I078`) updated (5m → 6m).
+Regenerated into `data/items.json`.

@@ -3351,7 +3351,7 @@
     "tags": null,
     "level": 1,
     "description": "A ring of dull brass etched with black marks, embedded with burnt-colored jewels. These versatile and useful trinkets can only be created by a jeweler with a strong connection to the element of fire, and grant the wearer a measure of control over it.",
-    "effects": "Once per encounter, for 2 AP, the wearer may throw a ball of fire at a nearby creature. This is an Acrobatics attack against the Dodge Defense of a target within 5 meters, dealing 3 + [Mind] Fire damage.",
+    "effects": "Once per encounter, for 2 AP, the wearer may throw a ball of fire at a nearby creature. This is an Acrobatics attack against the Dodge Defense of a target within 6 meters, dealing 3 + [Mind] Fire damage.",
     "cost": "20 Gold",
     "value_per_level": null,
     "school": null,

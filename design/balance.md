@@ -880,9 +880,9 @@ check).
 
 ### Ring Masterwork pass — status so far
 
-13 of 15 original items resolved (2 cut); 6 remain (Flamebinder's
-Promise, Focusing Band of [Technique], Fate's Grasp, Heartbinding Band,
-Flamefist's Approach, Luminous Signet). Two items flagged as possibly
+14 of 15 original items resolved (2 cut); 5 remain (Focusing Band of
+[Technique], Fate's Grasp, Heartbinding Band, Flamefist's Approach,
+Luminous Signet). Two items flagged as possibly
 mis-tagged before pricing, both confirmed correctly on Ring: Elemental
 Warding Amulet (renamed **Elemental Warding Band**) was always
 `Slot: Ring` in the source doc, just oddly named; Mendicant's Cord's
@@ -890,6 +890,17 @@ original `Slot: Waist` doesn't exist anymore, and Ring's "a specific
 active ability" lane fits its Defense-shifting effect better than
 Belt's narrow "carrying items" one.
 
+- **Flamebinder's Promise** (`I078`, L1) — a standalone, once/encounter
+  fresh attack, priced via the "Pricing a fresh attack from scratch"
+  model (Resist placeholder + universal Harried + Autoswing). Its
+  damage scales off Mind, which has no established baseline anywhere in
+  this document — resolved per the designer by treating the ring as a
+  portable Level 1 equivalent of **War Magic** (`T120`), reusing that
+  Technique's own reference-table Mind value (3) rather than inventing
+  a fresh one: `Value = 1.5`, **Net −1.5**, a modest accepted shortfall.
+  Range bumped 5m→6m for flavor — checked against the range breakpoints
+  table and confirmed inconsequential (both sit inside the "Short"
+  tier, no line crossed).
 - **Elemental Warding Band** (`I208`, L1/2) — Ward's already-Locked rate
   reused directly, plus a +15% targeting-flexibility bump for "or a
   willing creature you touch": `Value = 3.13` (L1 Fire) / `6.07` (L2
