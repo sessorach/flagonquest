@@ -2106,7 +2106,7 @@ Shadowy Stillness, Watcher's Mantle, Shawl of the Land, Choker of
 Defiance, Cloak of One Thousand Feathers, and Worry Token — the last of
 which is still open (see next).
 
-### Worry Token = suit-keyed Sift, Level 2/4 — closes out the Neck slot
+### Worry Token = suit-keyed Sift, Level 2/4
 
 Originally a GM-secret random table (3 charges/day, "more often than not
 nothing happens," otherwise one of six effects — a flat +2 to "the
@@ -2129,7 +2129,7 @@ not an arbitrary pick:
   (confirmed real per the archetype notes); Health only comes in whole
   points, so this is the smallest possible unit, not an attempt to match
   the other three branches' magnitude.
-- **♣ Clubs — you are Hasted thrice (3.3, 3-stack rate).** Clubs'
+- **♣ Clubs — you are Hasted three times (3.3, 3-stack rate).** Clubs'
   established defensive identity ("Fire Ward, Hasted, Shift"). Bumped
   from an original 1-stack proposal (0.55) to 3 stacks specifically to
   close the gap with Hearts' fixed 4.0, since Hasted (unlike Health) can
@@ -2162,10 +2162,9 @@ scale directly with Level. `items.csv` (`I211`) updated: Level `2` →
 20-Gold/Level convention), Effects rewritten for the suit-keyed
 mechanic. Regenerated into `data/items.json`.
 
-**Neck slot closed out.** Final nine: Cloak of Caches, Diver's
-Necklace, Snowfall Drape, Shroud of Shadowy Stillness, Watcher's
-Mantle, Shawl of the Land, Choker of Defiance, Cloak of One Thousand
-Feathers, Worry Token.
+**Later swapped to Ring** (see Fate's Grasp below, priced right after
+this) — Worry Token's own math is untouched by the swap, only its Slot
+field moved.
 
 **The rule itself changed.** Scaling magnitude per stack (Hasted's
 shape) was considered and rejected: Resist reduces damage 1-for-1 per
@@ -2746,3 +2745,96 @@ under this model (a fresh-attack effect's inherent Range isn't
 separately priced the way Windrider's Loop's Range *rider* on an
 existing weapon was). `items.csv` (`I078`) updated (5m → 6m).
 Regenerated into `data/items.json`.
+
+### Fate's Grasp = Sift, keyed to a daily card-spend total derived from the Cycles rule — moved to Neck, Level 4
+
+Originally Level 2, 40 Gold, no Fluff written yet. "Whenever you discard
+or play cards from your hand, after that effect is resolved, you may
+Sift up to that many cards." No charge cap at all — fires every single
+time a card leaves the hand via discard or play, for the rest of the
+game.
+
+**Why this isn't just a reuse of Sift's existing 0.60/card rate applied
+blind.** That rate is explicitly calibrated to a once-per-day window
+(~18 draws/adventuring-day); a Technique or item granting Sift on a
+*different* trigger needs the same simulation re-run for its own actual
+window, not a reused constant (see "What's still open" above — this is
+exactly the case it flagged). Two questions had to be answered fresh:
+how many cards actually get discarded/played from hand per day, and
+whether 0.60/card is even the right rate to apply to each one.
+
+**The daily card-spend total is derivable exactly, not guessed.** The
+Draw Cycle gives `2 × (Cunning + Mind)` cards each day (`rulebook.md`'s
+Cycles rule) — **12** at the "baseline stat = 3" convention already
+used throughout this pass (Body, Agility, and now Cunning/Mind). The
+Discard Cycle then unconditionally discards *whatever's left* in hand
+before the next day's draw. Because of that, every card that enters
+hand over a full day-night cycle also *leaves* it before the cycle
+repeats — played, discarded as some ability's cost, or swept by the
+Discard Cycle itself — with nothing carrying over. So "cards discarded
+or played from hand per day" isn't a rough estimate, it's mechanically
+**exactly equal to** the Draw Cycle's own daily income: 12/day at
+baseline. (Flips themselves don't touch this count at all — a flip
+draws straight off the top of the deck, per `rulebook.md`'s Skill
+Checks section; "hand" cards are a wholly separate resource, fed only
+by the Draw Cycle and whatever else explicitly draws to hand.)
+
+**0.60/card is still the right rate**, despite the different trigger —
+the discount is about how many future flips remain in the day for a
+Sift's bias to pay off, not about what causes the Sift to fire. Since
+Fate's Grasp's triggers land at roughly typical points across a normal
+day (not bunched at the very end where few flips remain to benefit),
+the same daily-cadence rate applies.
+
+`Value = 12 × 0.60 = 7.2` at the original 1:1 ("Sift up to that many
+cards"). Against the once/day `Target = Level × 6`: **Net = −4.8** at
+the original Level 2 (`Target = 12`, 60% funded) — a real shortfall,
+not a rounding one.
+
+**Explored scaling the multiplier up instead of just dropping the
+Level**, checking every clean integer multiplier ("twice," "three
+times," "four times" the cards spent) against Levels 1-5:
+
+| Multiplier | Value | Best-fitting Level | Net | % funded |
+|---|---|---|---|---|
+| ×1 (original) | 7.2 | L1 (`Target` 6) | +1.2 | 120% |
+| ×2 ("twice") | 14.4 | L2 (`Target` 12) | +2.4 | 120% |
+| ×3 ("three times") | 21.6 | **L4 (`Target` 24)** | **−2.4** | **90%** |
+| ×4 ("four times") | 28.8 | L5 (`Target` 30) | −1.2 | 96% |
+
+Whenever the multiplier equals the Level, the ratio is always the same
+120% — not a new fit, just the same one repeating, since Value and
+Target both scale by that shared number. The one genuine standout among
+clean multipliers is **×3 at Level 4: 90% funded**, tighter than any
+Level 2 or Level 3 pairing available — in the same close-but-under
+range as Surestride Boots (−0.75) and Windrider's Loop (−0.5). Per the
+designer: **locked in at Level 4, "Sift up to three times that many
+cards."** `Value = 21.6`, `Target = 24`, **Net = −2.4**.
+
+**Moved from Ring to Neck**, swapped with Worry Token (above) — checked
+directly against `RULES_DESIGN.md`'s own slot table (Neck: "niche,
+boring, passive utility — deliberately not interactive"; Ring: "a
+specific active ability, or an augment to a specific skill/ability").
+Fate's Grasp has no charges, no timing decision, no AP cost — it just
+fires automatically off whatever the wearer is already doing, the
+textbook Neck case. Worry Token is a deliberate charge-spend with a
+real "use it now or save it" decision each time, the textbook Ring
+case. `items.csv` (`I082`) updated: Slot `Ring` → `Neck`, Level `2` →
+`4`, Cost `40 Gold` → `80 Gold` (Level × 20, matching this pass's flat
+Masterwork convention), Effects reworded for the ×3 multiplier.
+`items.csv` (`I211` Worry Token) updated: Slot `Neck` → `Ring` only —
+its own Value/Target/Net derivation above is untouched by the swap.
+Both regenerated into `data/items.json`.
+
+**"Thrice" retired project-wide, replaced with "three times."** Swept
+while writing this item's own effects text — per the designer, "thrice"
+reads as an archaic outlier once the counting sequence goes past
+"twice" and starts needing "four times"/"five times" anyway, where
+"twice" itself has no plainer two-word alternative competing with it.
+Every existing "thrice" across `items.csv` (Dauntless Wrap, Worry
+Token's Clubs branch), `techniques.csv` (Solemn Perseverance, Strength
+from the Slain), `features.csv` (Wild Magic), and `rulebook.md`
+(Experience cost, the Carrick Gambling example) was swept to "three
+times" in this same pass, so there's no lingering mixed usage. No
+mechanical changes from any of these — wording only. `CLAUDE.md`'s own
+documented convention updated to match.

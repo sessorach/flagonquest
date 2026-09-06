@@ -72,7 +72,7 @@ F070,T120,War Magic,Kinetic,Basic,1,,"If the spell attack hits, the target is Pu
 F071,T120,War Magic,Frigid,Basic,1,,"If the attack hits, the target is Slowed [twice X] + [Spades] times. You may change the attack's damage type to Frost.",
 F072,T120,War Magic,Glacier,Basic,1,,"After the attack, every space occupied by or adjacent to any targeted creature gains [twice X] + [Spades] levels of Difficult Terrain, lasting for the encounter. You may change the attack's damage type to Frost.",
 F073,T120,War Magic,Reign of Blood,Basic,1,,"If the spell attack hits, remove up to [twice X] + [Clubs] stacks of Bleeding from the target, and they lose that much Health.",
-F074,T120,War Magic,Wild Magic,Basic,1,,"Sift [thrice X] cards, adding each of their suits to the suit pool for all attacks made.",
+F074,T120,War Magic,Wild Magic,Basic,1,,"Sift [three times X] cards, adding each of their suits to the suit pool for all attacks made.",
 F075,T120,War Magic,Piercing Elements,Advanced,1,,You have Good Luck on the spell attack.,
 F076,T120,War Magic,Draw Power,Advanced,1,,"If the attack Downs the target, they are instantly killed and you draw a card. You may only draw one card per casting. You may change the attack's damage type to Shadow.",
 F077,T120,War Magic,Furrow (Shape),Advanced,3,,"The spell attack instead targets all creatures in a line [half your Sorcery Skill Total] meters long, from your space. You may only apply one Shape feature to the Spell.",

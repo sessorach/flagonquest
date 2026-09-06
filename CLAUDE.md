@@ -222,10 +222,17 @@ which should stay a clean decision record.
   lists (steps, options, factors). Repeated-count phrasing is always
   spelled out as a word, never a numeral, and never "N times" for small
   N: once (or just the bare effect — "Good Luck", not "1 Good Luck"),
-  twice, thrice, then "four times"/"five times"/... from there on. This
-  applies both to stacking an effect (Good Luck twice, Protected thrice)
-  and to multiplying a value in a formula, bracketed or not (twice your
-  Speed, thrice the Level, [four times X]) — same convention either way.
+  twice, then "three times"/"four times"/"five times"/... from there on
+  — **not "thrice"**, per the designer: it reads as an archaic outlier
+  next to "four times"/"five times" the moment the pattern goes past 2,
+  where "twice" doesn't have the same problem since there's no plainer
+  two-word alternative competing with it. Every existing "thrice" across
+  `items.csv`/`techniques.csv`/`features.csv`/`rulebook.md` was swept to
+  "three times" in the same pass this got decided, so there's no
+  lingering mixed usage to match against by accident. This applies both
+  to stacking an effect (Good Luck twice, Protected three times) and to
+  multiplying a value in a formula, bracketed or not (twice your Speed,
+  three times the Level, [four times X]) — same convention either way.
 
 ## Design conventions established so far
 

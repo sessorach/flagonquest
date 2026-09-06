@@ -23,7 +23,7 @@ A Skill point costs Experience equal to the new point total (you buy each point 
 
 A Stat point costs Experience equal to twice the new point total (same).
 
-Learning a Technique costs Experience equal to thrice the Level of the Technique.
+Learning a Technique costs Experience equal to three times the Level of the Technique.
 
 Stats and Skills each cap at 5 ranks.
 
@@ -144,7 +144,7 @@ Some flips only need a bare pass to succeed. Others call for more, usually becau
 
 Before making a flip, you may Gamble on it, once or more, declaring how many times before the card is flipped. Each Gamble applies a -2 penalty to the result, but grants an Extra Success if the flip still succeeds - it’s a bet, since you’re wagering on a card you haven’t seen yet. A character with plenty of Skill Total to spare is making a safe bet and can usually Gamble freely; one working at the edge of their ability risks the whole flip to push for more.
 
-Example: Carrick is infiltrating a noble’s inn room while the party keeps him distracted downstairs. She needs to pick the lock to get in, and knows both that this upscale inn has well-oiled locks that are easy to pick open and that she doesn’t have a lot of time. She Gambles thrice on the flip, and thankfully gets a 17 total, so even with the -6 she’s left with a result of 11. This is just enough to pick the lock with 4 total successes, and although normally she would require multiple successful attempts to get the lock all the way open, the GM says that her risky attempt got the lock open in one try.
+Example: Carrick is infiltrating a noble’s inn room while the party keeps him distracted downstairs. She needs to pick the lock to get in, and knows both that this upscale inn has well-oiled locks that are easy to pick open and that she doesn’t have a lot of time. She Gambles three times on the flip, and thankfully gets a 17 total, so even with the -6 she’s left with a result of 11. This is just enough to pick the lock with 4 total successes, and although normally she would require multiple successful attempts to get the lock all the way open, the GM says that her risky attempt got the lock open in one try.
 
 ### Supporting
 

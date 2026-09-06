@@ -810,7 +810,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "Sift [thrice X] cards, adding each of their suits to the suit pool for all attacks made.",
+    "effects": "Sift [three times X] cards, adding each of their suits to the suit pool for all attacks made.",
     "prereq": null
   },
   {

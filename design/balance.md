@@ -420,10 +420,11 @@ same fix doesn't automatically apply — they got their own pass instead:
   × 4) moved the target it was landing exactly on — bumped from
   preventing 2/4 stacks to **3 at L2** (Value 12, Net 0) and **6 at L4**
   (Value 24, Net 0), landing exactly on Target again both Levels.
-- **Dauntless Wrap** (`I068`, L1-5) — grants `[thrice the enhancement's
-  Level]` stacks of Protected the first time each day the wearer would
-  be Downed, before that Health loss lands. Flat once/day Protected
-  pricing wildly overshot Target (+5 to +25 across Levels) — that rate
+- **Dauntless Wrap** (`I068`, L1-5) — grants `[three times the
+  enhancement's Level]` stacks of Protected the first time each day the
+  wearer would be Downed, before that Health loss lands. Flat once/day
+  Protected pricing wildly overshot Target (+5 to +25 across Levels) —
+  that rate
   assumes stacks realized gradually across a normal fight, not a single
   guaranteed lump delivered at the one moment it's certain to help.
   Discounted per the designer's own framing instead: there's no
@@ -872,23 +873,49 @@ check).
   bump, traversal utility) rather than one blown-up fall-damage number
   after a naive extreme-fall framing proved underspecified: `Value =
   6.0`, **Net = 0**, confirmed by the designer.
-- **Worry Token** (`I211`, L2/4, non-contiguous) — closes out the slot.
-  Reworked from a broken GM-secret random table to a suit-keyed Sift
-  (each suit's effect built from that suit's own `RULES_DESIGN.md`
-  archetype): `Value = 4.255/charge`, 3 charges at L2 / 6 at L4, **Net
-  +0.77 / +1.53** — both ~106% funded.
+- **Fate's Grasp** (`I082`, L4, moved here from Ring — swapped with
+  Worry Token, see below) — an unconditional, no-charges Sift keyed to
+  whatever the wearer already discards or plays from hand. Its daily
+  card-spend total is derivable exactly from the Cycles rule (the Draw
+  Cycle's `2 × (Cunning + Mind)` income and the Discard Cycle's
+  unconditional end-of-day clear mean everything drawn also gets spent
+  before the cycle repeats — 12/day at baseline, not a guess), priced
+  at Sift's own daily-cadence rate: `Value = 12 × 0.60 = 7.2` at the
+  original 1:1 grant, badly underfunded at its original Level 2 (60%).
+  Checked every clean integer multiplier ("twice," "three times," "four
+  times") against every Level — whenever the multiplier matches the
+  Level the ratio is always the same 120% (not a new fit), but "three
+  times" paired with **Level 4** gave the tightest fit found, 90%
+  funded: `Value = 21.6`, **Net −2.4**. Moved off Ring since its
+  automatic, no-decision trigger is Neck's "passive utility" lane, not
+  Ring's "active ability" one (`RULES_DESIGN.md`'s slot table).
+
+Swept while drafting this item's own text: **"thrice" retired
+project-wide**, replaced with "three times" everywhere it appeared
+(`items.csv`, `techniques.csv`, `features.csv`, `rulebook.md`) — per the
+designer, it reads as an archaic outlier once the sequence needs "four
+times"/"five times" anyway. Wording only, no mechanical changes.
 
 ### Ring Masterwork pass — status so far
 
-14 of 15 original items resolved (2 cut); 5 remain (Focusing Band of
-[Technique], Fate's Grasp, Heartbinding Band, Flamefist's Approach,
-Luminous Signet). Two items flagged as possibly
-mis-tagged before pricing, both confirmed correctly on Ring: Elemental
-Warding Amulet (renamed **Elemental Warding Band**) was always
-`Slot: Ring` in the source doc, just oddly named; Mendicant's Cord's
-original `Slot: Waist` doesn't exist anymore, and Ring's "a specific
-active ability" lane fits its Defense-shifting effect better than
-Belt's narrow "carrying items" one.
+15 items originally drafted; 11 resolved (2 cut, 1 — Fate's Grasp —
+moved to Neck), 4 remain (Focusing Band of [Technique], Heartbinding
+Band, Flamefist's Approach, Luminous Signet). Two items flagged as
+possibly mis-tagged before pricing, both confirmed correctly on Ring:
+Elemental Warding Amulet (renamed **Elemental Warding Band**) was
+always `Slot: Ring` in the source doc, just oddly named; Mendicant's
+Cord's original `Slot: Waist` doesn't exist anymore, and Ring's "a
+specific active ability" lane fits its Defense-shifting effect better
+than Belt's narrow "carrying items" one.
+
+- **Worry Token** (`I211`, L2/4, non-contiguous, moved here from Neck —
+  swapped with Fate's Grasp, see above) — its own derivation is
+  unchanged by the swap. Reworked from a broken GM-secret random table
+  to a suit-keyed Sift (each suit's effect built from that suit's own
+  `RULES_DESIGN.md` archetype): `Value = 4.255/charge`, 3 charges at L2
+  / 6 at L4, **Net +0.77 / +1.53** — both ~106% funded. Moved to Ring
+  since its deliberate charge-spend ("use it now or save it") is Ring's
+  "active ability" lane, not Neck's "passive utility" one.
 
 - **Flamebinder's Promise** (`I078`, L1) — a standalone, once/encounter
   fresh attack, priced via the "Pricing a fresh attack from scratch"
