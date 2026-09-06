@@ -2921,3 +2921,51 @@ style," which a Form's own toggled, turn-scoped nature suits better
 than an always-on item ever could. Moved to `IDEAS_BACKLOG.md` rather
 than priced, same call as Bloodshard Ring earlier in this slot.
 Removed from `items.csv` (`I086`), regenerated into `data/items.json`.
+
+### Luminous Signet = 11.0, confirmed at Level 4 — same trigger as Fate's Grasp, a genuinely different derivation
+
+Level 4, 80 Gold. "Whenever you discard or play cards from your hand,
+all allies in Burst 5 of you are each Hasted [cards discarded/played]
+times." Same unconditional, uncapped discard/play trigger as Fate's
+Grasp, but not the same math — three real differences kept this from
+being a copy of that derivation:
+
+- **Timing matters here, unlike for Fate's Grasp.** Sift's bias pays
+  off no matter when it's granted; Hasted decays over roughly a 4-turn
+  window, so a stack granted outside combat is essentially wasted
+  before the next fight starts. Fate's Grasp's `12/day` (from the Draw
+  Cycle's daily income) isn't the right volume here — this needed a
+  per-*encounter* estimate of in-combat card-spend specifically, not a
+  daily aggregate.
+- **Hasted's curve is convex** (`balance_weights.csv`: `0.55/stack`
+  base, rising toward `~2.2/stack`, unbounded), so trigger *size*
+  matters, not just total cards spent — three separate 1-card triggers
+  deliver less than one 3-card trigger, even though both are "3 stacks
+  total."
+- **This is AoE**, needing the same kind of realistic-count assumption
+  Grenade AoE uses (settled on 2 enemies hit, not the theoretical max).
+
+Per the designer: **2 allies** affected (not the wearer), and **4
+cards** discarded/played in a representative encounter — checked
+against both ends of an initially-floated 3-4 range:
+
+| Cards/trigger | Hasted value/ally (table above) | × 2 allies | vs. L4 `Target = 12` |
+|---|---|---|---|
+| 3 | 3.3 | 6.6 | Net −5.4 (55% funded) |
+| 4 | 5.5 | 11.0 | **Net −1.0 (92% funded)** |
+
+The convex curve makes the two ends of that range land very
+differently — going from 3 to 4 cards jumps 55%→92% funded, not a
+proportional bump, purely because Hasted's per-stack rate itself rises
+at higher stack counts. **Confirmed at Level 4** rather than dropped to
+fit the 3-card case at Level 3 — per the designer, deliberately keeping
+this Level (and its correspondingly higher `Target`) rather than a
+lower one, since the trigger itself is uncapped and a clever party
+pushing trigger sizes past the 4-card baseline (playing several cards
+at once for a bigger single application) is exactly the kind of
+escalation a lower Level's smaller `Target` buffer would handle worse.
+`Value = 11.0`, `Target = 12` (Level 4 × 3, the standard per-encounter
+convention, not once/day — this is a combat-only effect, unlike Fate's
+Grasp's daily one). **Net = −1.0.** No changes to `items.csv` — Level,
+Cost, and Effects text were already correct; only the pricing
+derivation needed resolving.

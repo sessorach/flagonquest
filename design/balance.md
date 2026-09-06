@@ -898,9 +898,9 @@ times"/"five times" anyway. Wording only, no mechanical changes.
 
 ### Ring Masterwork pass — status so far
 
-15 items originally drafted; 13 resolved (3 cut, 1 — Fate's Grasp —
-moved to Neck), 2 remain (Focusing Band of [Technique], Luminous
-Signet). Two items flagged as
+15 items originally drafted; 14 resolved (3 cut, 1 — Fate's Grasp —
+moved to Neck), 1 remains (Focusing Band of [Technique]). Two items
+flagged as
 possibly mis-tagged before pricing, both confirmed correctly on Ring:
 Elemental Warding Amulet (renamed **Elemental Warding Band**) was
 always `Slot: Ring` in the source doc, just oddly named; Mendicant's
@@ -940,6 +940,19 @@ than Belt's narrow "carrying items" one.
   combat stance) than a passive Ring. Moved to `IDEAS_BACKLOG.md`
   rather than priced, same call as Bloodshard Ring earlier in this
   slot.
+- **Luminous Signet** (`I087`, L4) — same unconditional discard/play
+  trigger as Fate's Grasp, but not the same math: timing matters here
+  (Hasted decays over ~4 turns, so a stack granted outside combat is
+  wasted, unlike Sift's timing-independent bias) and Hasted's rate is
+  convex (rising toward ~2.2/stack), so trigger *size* matters, not
+  just aggregate volume. Per the designer: 2 allies affected, 4 cards
+  in a representative encounter — checked against an initially-floated
+  3-4 range, where the convex curve made the difference stark (3 cards:
+  55% funded; 4 cards: 92% funded). `Value = Hasted(4)=5.5 × 2 allies =
+  11.0`, `Target = 12`, **Net −1.0**. Confirmed at Level 4 rather than
+  dropped to fit the 3-card case, deliberately keeping the higher
+  `Target` buffer against a clever party pushing trigger sizes past the
+  baseline, since the trigger itself is uncapped.
 - **Flamebinder's Promise** (`I078`, L1) — a standalone, once/encounter
   fresh attack, priced via the "Pricing a fresh attack from scratch"
   model (Resist placeholder + universal Harried + Autoswing). Its
