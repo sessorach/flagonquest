@@ -2588,3 +2588,18 @@ hour" references in `balance.md` that predated this change.
 
 `items.csv` (`I085`) updated: Level 3 → 1, Cost 60 → 20 Gold.
 Regenerated into `data/items.json`.
+
+### Ring of Pure Elements = 2.0, moved from Level 3 to Level 1 — same conservative estimate as before, just a better-fitting Level
+
+Originally Level 3, 60 Gold. "Once per encounter, when the wearer
+makes a damaging spell attack, they may have it deal its damage as
+Fire, Frost, Brilliant, or Shadow instead of its normal type." Same
+"average 1 point of soak bypassed" assumption used for Worry Token's
+Diamonds branch: `Value = 1 × 2 (Damage's hit-gated rate) = 2.0`. At
+Level 3 (Target 9) this was a **Net ≈ −7** gap; at **Level 1** (Target
+3), **Net = −1.0** — a much closer fit, and still a conservative
+estimate, since no premium was added for choosing among all four
+elements rather than one fixed type (unquantified upside, same
+reasoning as Poison Needle's flexibility premium above — the base case
+is close enough to Target without it). `items.csv` (`I158`) updated:
+Level 3 → 1, Cost 60 → 20 Gold. Regenerated into `data/items.json`.

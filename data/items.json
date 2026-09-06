@@ -6929,10 +6929,10 @@
     "category": "Masterwork",
     "slot": "Ring",
     "tags": null,
-    "level": 3,
+    "level": 1,
     "description": "A large ring studded with a variety of multi-colored gemstones.",
     "effects": "Once per encounter, when the wearer makes a damaging spell attack, they may have it deal its damage as Fire, Frost, Brilliant, or Shadow instead of its normal type.",
-    "cost": "60 Gold",
+    "cost": "20 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -6965,7 +6965,7 @@
       "I003"
     ],
     "levels": [
-      3
+      1
     ]
   },
   {
