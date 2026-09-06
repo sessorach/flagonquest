@@ -1772,16 +1772,16 @@ legend garbled by generations of retelling, not a biography.
   difficulty, what's fair game to steal, whether a wielded weapon
   mid-swing needs an exception) the same way the item version would
   have.
-- **Poison duration — "1 hour" vs. "until your next long rest."**
-  Surfaced during the balance pass on Poisons (see `balance.md`'s
-  "Poisons were charging AP twice" entry): applying a Poison is meant
-  to happen before a fight, but the current 1-hour duration means a
-  Poison applied too early can expire unused before it ever gets to
-  matter — a real feel-bad at the table. Changing it to last until the
-  wielder's next long rest would remove that risk, at the cost of
-  making less narrative sense (a poison coating that just doesn't
-  degrade for a full adventuring day). Raised, not decided — the
-  designer flagged it as "possible" rather than committing to it.
+- ~~Poison duration — "1 hour" vs. "until your next long rest"~~ —
+  resolved: changed to last until the wielder's next full night's rest
+  (`glossary.md`'s `[Poison]` entry), removing the "applied too early,
+  expires unused before it matters" feel-bad the 1-hour version had.
+  Surfaced again while designing Poison Needle (Ring) — that item
+  specifically wants to let the wearer hold a loaded dose indefinitely
+  and apply it at the perfect reactive moment, which the 1-hour window
+  worked against. The "less narrative sense" tradeoff (a poison coating
+  that doesn't degrade for a full adventuring day) was accepted per the
+  designer.
 - Presence: Hearts (current) vs. Clubs — genuinely contested, see above.
 - ~~Diamonds still has no defensive keyword/mechanic identity~~ —
   resolved: Cover/Concealment mechanics, see the Suit portfolio table

@@ -2531,3 +2531,60 @@ social Skill, chosen at creation — with no real differentiation beyond
 the slot. Per the designer, cut entirely rather than kept alongside an
 already-established equivalent family. Removed from `items.csv`
 (`I157`), regenerated into `data/items.json`.
+
+### Galeforce Loop = 1 — plain Narrative Utility
+
+Level 1, 20 Gold. Once/encounter flavor gust (snuffs torches, scatters
+paper, disperses smoke, untraceable to the wearer) — no combat
+mechanic. Same formula as Cloak of Caches/Diver's Necklace/Choker of
+Silent Whispers: `Value = ⅓ × 3 = 1`, `Target = 3`, **Net = −2**.
+Confirmed as-is, no changes needed.
+
+### Poison Needle = 5.5, moved from Level 3 to Level 1 — same AP-savings shape as Quick Draw Belt
+
+Originally Level 3, 60 Gold. "The wearer can spend a full minute to
+place a dose of poison inside the ring, where it can remain
+indefinitely. When the wearer declares an attack with a weapon, as an
+Interrupt for 0 AP they may apply the poison in the ring to that
+weapon." This saves exactly Poison's own application cost (2 AP,
+charged once per encounter since a poisoned weapon persists) —
+`Value = 2 × 2.75 = 5.5`, the *identical* derivation shape as Quick
+Draw Belt (also "saves 2 AP once/encounter," also landing at 5.5).
+Quick Draw Belt is Level 2 (Target 6, Net −0.5); at Level 3 (Target 9)
+this same 5.5 landed at **Net −3.5**, a much bigger gap for
+mechanically the same shape. At **Level 1** (Target 3), **Net = +2.5**
+— a real overshoot, but the same ballpark as other accepted Level-1
+overshoots this pass (Feathered Sandals +1.0, Immaculate Adhesive
++1.125), and closer to Quick Draw Belt's own per-Level fit than Level
+3 ever was.
+
+Checked whether "2 combats/day" changes this (the designer's framing,
+assuming the ring gets used once per fight) — it doesn't: `Value = 5.5`
+and `Target = Level × 3` are both already scoped per-encounter, the
+same convention Quick Draw Belt uses, so the number of combats in a
+day doesn't change the per-encounter comparison (multiplying by
+combats/day would double-count what the per-encounter convention
+already accounts for).
+
+There's a real, unquantified flexibility premium on top that wasn't
+folded into the number above: the designer's framing is "hold a more
+conditional poison and choose exactly when to apply it" rather than
+committing to one poison type blind, well before a fight — the same
+"timing/targeting/optionality" shape as Card's premium over Good
+Luck's floor. Left unquantified since the base case already clears
+Level 1's Target comfortably without it (`+2.5`) — this only makes the
+Level-1 placement more generously justified, not something that needed
+deriving to clear a bar it was already clearing.
+
+**Poison duration changed from "1 hour" to "until a full night's
+rest"** as part of this (`glossary.md`'s `[Poison]` entry) — resolves a
+previously-flagged, undecided open question (`RULES_DESIGN.md`: a
+Poison applied too early under the old 1-hour window risked expiring
+unused before it ever mattered). This specific item is exactly why it
+came back up: Poison Needle's whole point is holding a loaded dose
+indefinitely and applying it at the perfect reactive moment, which the
+1-hour window worked directly against. Also fixed two stale "up to an
+hour" references in `balance.md` that predated this change.
+
+`items.csv` (`I085`) updated: Level 3 → 1, Cost 60 → 20 Gold.
+Regenerated into `data/items.json`.

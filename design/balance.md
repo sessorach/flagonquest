@@ -97,9 +97,9 @@ below, for the actual results):**
   charge a separate 1 AP draw cost for Grenades, matching how the
   existing reference rows in the old sheet already priced them). A
   Poison's 2 AP application cost is charged **once**, not once per
-  encounter, since a poisoned weapon stays poisoned for up to an hour or
-  until it lands a hit — see the Poison note below for why this still
-  nets out to `Rate of Use/Encounter = 1`.
+  encounter, since a poisoned weapon stays poisoned until it lands a hit
+  or the wielder gets a full night's rest — see the Poison note below
+  for why this still nets out to `Rate of Use/Encounter = 1`.
 - **Scoping window: `Rate` and `Target` have to match, not fight each
   other.** THE TABEL's default is per-*encounter* (`Target = Level × 3`,
   most Techniques/items assumed usable once an encounter). Corrected
@@ -943,9 +943,9 @@ Swiftblade Vial are both now resolved — see "Full ledger sync" below.
   Both turned out wrong, confirmed with the designer against the real
   rule (`glossary.md`'s `[Poison]` entry — applying a Poison is a
   **one-time, out-of-combat setup action**; the weapon stays poisoned
-  for up to an hour and, once a normal attack lands and deals Health
-  loss, the poison automatically makes its own attack against Vital
-  Defense). The AP charge double-counted an action the wielder wasn't
+  until it lands a hit or the wielder gets a full night's rest, and
+  once a normal attack lands and deals Health loss, the poison
+  automatically makes its own attack against Vital Defense). The AP charge double-counted an action the wielder wasn't
   spending on the poison at the moment it pays off — that attack
   already pays its own AP and deals its own separately-priced Damage.
   The extra ×0.5 double-counted the *same* contingency a different way:

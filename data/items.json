@@ -3672,10 +3672,10 @@
     "category": "Masterwork",
     "slot": "Ring",
     "tags": null,
-    "level": 3,
+    "level": 1,
     "description": "A large ring of iron, covering an entire finger joint, and relatively unassuming at first glance. Hidden mechanisms allow the ring to store a dose of poison, which can be quickly applied to a weapon.",
     "effects": "The wearer can spend a full minute to place a dose of poison inside the ring, where it can remain indefinitely. When the wearer declares an attack with a weapon, as an Interrupt for 0 AP they may apply the poison in the ring to that weapon.",
-    "cost": "60 Gold",
+    "cost": "20 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -3708,7 +3708,7 @@
       "I003"
     ],
     "levels": [
-      3
+      1
     ]
   },
   {

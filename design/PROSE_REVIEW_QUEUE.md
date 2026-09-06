@@ -91,6 +91,12 @@ things off in order.
   space, plus every space within X meters of it" for area effects, used
   going forward instead of ad hoc "adjacent to"/"within X meters of"
   phrasing. Commit `4ab9a21`.
+- **`#### [Poison]`** (Rules Tags) — duration changed from "1 hour or
+  until it exposes a creature" to "until it exposes a creature or the
+  wielder gets a full night's rest," resolving a previously-flagged
+  open question (a poison applied too early used to risk expiring
+  unused before it mattered). Surfaced while designing Poison Needle
+  (Ring), which wants to let the wearer hold a loaded dose indefinitely.
 - **`#### [Form]`** (Rules Tags) — renamed from `[Stance]`. Commit
   `4016fe0`.
 - **`#### Bleeding [Fleeting]`** — Coat of Knit Flesh's interaction
