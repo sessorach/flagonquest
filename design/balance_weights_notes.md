@@ -2603,3 +2603,41 @@ elements rather than one fixed type (unquantified upside, same
 reasoning as Poison Needle's flexibility premium above — the base case
 is close enough to Target without it). `items.csv` (`I158`) updated:
 Level 3 → 1, Cost 60 → 20 Gold. Regenerated into `data/items.json`.
+
+### Windrider's Loop = 5.5, bumped from 5m to 10m Range — new Range rate derived, reusing Speed directly
+
+Level 2, 40 Gold. "Once per encounter, when making a weapon attack,
+the wearer may increase that weapon's Range by 10 meters" (was 5m). No
+existing rate for Range anywhere in this document, so derived fresh —
+cleanly, since the real alternative to "attack from X meters farther
+away" is "spend a Move action closing that same distance first, then
+attack." Extra Range substitutes directly for movement, so it prices
+identically to Speed's own single-instance rate (`0.55/meter`, already
+used for one-shot movement effects like Push/Difficult Terrain): **Range
+(single-instance) = 0.55/meter**, added to `balance_weights.csv`.
+
+At the original 5m: `Value = 5 × 0.55 = 2.75` (exactly 1 AP's own raw
+value, which tracks — this effectively saves the Move action you'd
+otherwise spend before attacking). Against Level 2's Target (6), **Net
+= −3.25**, a big gap in the same "clearly mis-Leveled" shape as Poison
+Needle and Ring of Pure Elements.
+
+Unlike Ward, Range has **no diminishing-returns curve** — the rate is
+flat per meter with no cap, so a few different fixes were all
+genuinely viable (worked through with the designer): stretch it to a
+full Level 1-5 range at `5 × Level` meters (a clean ~91-92%-funded fit
+at every Level, since both Value and Target stay purely linear); keep
+Level 2 fixed and bump to `~11m` once/encounter; or keep 5m but allow
+two uses/encounter (`Value = 2 × 2.75 = 5.5`). Per the designer: kept
+as a single fixed Level 2 item, bumped to **10m** once/encounter —
+`Value = 10 × 0.55 = 5.5`, **Net = −0.5**, a clean fit, same number the
+"twice per encounter at 5m" option would have landed on, just via a
+simpler single-larger-bonus mechanic instead.
+
+One thing deliberately left unquantified: extra Range is sometimes
+worth *more* than the movement it substitutes for, specifically when
+moving isn't an option at all (surrounded, restrained, shooting across
+a genuine gap). Real situational upside, same shape as Cloak of One
+Thousand Feathers' unquantified traversal bonus — not folded in since
+the base case already lands close to Target without it. `items.csv`
+(`I187`) updated (5m → 10m). Regenerated into `data/items.json`.

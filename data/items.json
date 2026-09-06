@@ -8133,7 +8133,7 @@
     "tags": null,
     "level": 2,
     "description": "A winding ring of steel and silver, wrapping a dozen times around the wearer's finger. When worn, the wearer feels the breeze more strongly against their hand.",
-    "effects": "Once per encounter, when making a weapon attack, the wearer may increase that weapon's Range by 5 meters.",
+    "effects": "Once per encounter, when making a weapon attack, the wearer may increase that weapon's Range by 10 meters.",
     "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
