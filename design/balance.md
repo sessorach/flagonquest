@@ -741,6 +741,197 @@ occupy a body slot. Working definition based on the actual catalog:
   removed" drawback — not being worn is already a real downside on its
   own.
 
+### Feet Masterwork pass — final lineup
+
+9 items, spanning Level 1-5. Surfaced a real gap in the rate table while
+pricing this slot: Speed's existing 0.55/point rate only ever priced
+*one* move action, correct for a one-shot effect (Push, Difficult
+Terrain) but wrong for a bonus that's live the whole encounter. Derived
+**Speed (permanent/gear) = 2.54375/point** from the game's own AP
+economy (4 AP/turn, 2 AP/attack, 1.5 attacks/turn average) and a
+companion **range-breakpoints tool** (`moves_needed(D, Speed) = ceil((D
+− 1) / Speed)`) for tuning weapon/ability ranges deliberately against
+the "still attacks" (D ≤ 2×Speed+1) vs. "costs the attack" (D ≥
+2×Speed+2) line — both now in `balance_weights_notes.md`.
+
+- **Lightfoot Shoes** (`I109`, L1-5) — flat `+Level` Speed, worn
+  continuously. First real application of the new permanent-Speed rate:
+  `Value = Level × 2.54375`, landing at a flat ~85% of Target every
+  Level. Accepted as a modest, real shortfall.
+- **Slipstream Sandals** (`I110`, L2) — once/encounter Teleport 3m,
+  priced as an attack-enabler (not raw movement) since it only matters
+  on the turn it's the deciding factor between closing-and-attacking or
+  wasting the turn approaching: `Value = 5.5`, **Net −0.5**.
+- **Vaulting Boots** (`I111`, L3) — rebuilt after the running-start rule
+  was cut outright (old flip-guarantee wording replaced with a Good
+  Luck grant); four components (attack-enabler, fall-safety, vertical-
+  Athletics-budget bypass, Good Luck on jump flips): `Value = 9.3`,
+  **Net +0.3**.
+- **Greaves of the Stalwart Guardian** (`I112`, L2, down from L5) —
+  redesigned after `features.csv` showed Push and Slowed are both
+  cheapest-tier Basic Features on the game's most generic techniques,
+  not niche at all. Two components (immovability, Slowed immunity),
+  each realized 25% of fights: `Value = 5.5`, **Net −0.5**.
+- **Feathered Sandals** (`I108`, L1) — moved off plain Narrative Utility
+  once "ignores up to 10m of fall distance" was read as a real,
+  guaranteed-harm anchor (Health's own rate) rather than a stale flip
+  reference: `Value = 4.0`, **Net +1.0**.
+- **Shadowcat Slippers** (`I155`, L2) — unconditional wall-running,
+  same shape as Vaulting Boots' vertical rider but continuously
+  available: `Value ≈ 4`, **Net ≈ −2**. Flagged as the least-grounded
+  number in this slot — likely still wants a redesign pass.
+- **Swim Flippers** (`I107`, L1, renamed from Cobblestone Boots) —
+  full-Speed swimming, no penalty; a water-breathing clause was
+  considered then moved to Neck (Diver's Necklace) as a different
+  slot's job. Plain Narrative Utility: `Value = 1`, **Net −2**.
+- **Surestride Boots** (`I188`, L3) — simplified from "ignores 2 degrees
+  of Difficult Terrain" to "ignores the effects of," a pure wording
+  change (degree 3+ was never worse to a mover than degree 2 already
+  is). `Value = 8.25` unchanged, **Net −0.75**.
+- **Greaves of the Warlock King** (`I156`, L5) — once/turn Teleport
+  `2×Speed` meters, a two-mode engine (cheap AP-saver vs. full
+  attack-enabler) landing at 2 uses of each per encounter: `Value =
+  16.5`, **Net +1.5**.
+
+### Head Masterwork pass — final lineup
+
+10 items. A quick audit before pricing flagged **Confident Cap** as
+running on defunct rules (its old "front"/"Concession" text predates
+the Statements/Pressure rework) and three near-duplicate Good-Luck-on-
+a-social-Skill hats sharing the same fluff. Consolidated into **three
+Level-2 Skill hats plus a new fourth** (Confident Cap→Persuasion, Cap
+of Smug Confidence→Presence, Sympathetic Hat→Rapport, Hat of
+Disguise→Masquerade, new), each `Value = 2.4 × 0.5 = 1.2`, **Net −4.8**
+— pegged to Level 2 over the model's own preferred Level 1 to match
+live Hands-slot precedent (Field Surgeon's Handwraps, Deft Gloves,
+Nimble Fingers). **Stoic Skullcap retired** from this family (doesn't
+map to an offensive Skill buff); its name/flavor reserved for a future
+Neck-slot Pressure item.
+
+- **Cowl of Tranquility** (`I057`, L2, down from L1-5) — cut from a
+  charge-scaling range (charges scaled `1×Level`, Target `3×Level`, an
+  absolute and worsening gap) to a fixed Level 2 with outright Taunted/
+  Frightened immunity. `Value = 5.5`, **Net −0.5**.
+- **Mask of Night** (`I058`, L1) — negates the wearer's own darkness
+  sight penalty, priced off Heavy Cover's Bad-Luck-twice rule: `Value =
+  2.2`, **Net −0.8**.
+- **Headband of Telepathy** (`I172`, L1) and **Lens of Daybreak**
+  (`I059`, L2) confirmed at their existing Narrative-Utility/½-tier
+  numbers (**Net −2**, **Net −4.8**) — no changes.
+- **Wizardly Hat of Tam the Tipsy** (`I171`, L3) — first real use of
+  Gold's own `1.5` rate for pricing a per-use accounting; redesigned
+  from a 2-AP-to-drink version that read as a net loss below Level 4 to
+  a 0-AP internal-stock version, landing at exactly `Net = 0` for 2
+  matched-Level uses/encounter. Flagged, not resolved: the real usage
+  ceiling is uncapped in a hard fight.
+- **Crown of Glory** (`I061`, L5) — **set aside, not resolved.** Value
+  `13.5` against a once/day Target `30` (**Net −16.5**), the largest
+  gap in the slot. A Level-scaling fix was worked out but the real
+  question — should a Head item generate party-wide cards at all, or
+  is this a capstone-tier effect — is left for after the rest of the
+  slots have a first pass.
+
+### Neck Masterwork pass — final lineup
+
+9 items (of 12 drafted; 3 cut). **Choker of Silent Whispers** cut as a
+strictly-worse duplicate of Headband of Telepathy on the wrong slot;
+**Cape of Many Pockets** cut as a clean duplicate of Belt's existing
+Storage items; **Cloak of Faces** cut as a shelved "THE BIN" idea with
+no real precedent to price against (an unconditional, undetectable
+transformation, unlike every real Masquerade item's beatable disguise
+check).
+
+- **Cloak of Caches** (`I063`) and **Diver's Necklace** (`I064`, both
+  L1) — plain Narrative Utility, `Value = 1`, **Net −2** each. Diver's
+  Necklace directly confirms the Feet slot's own water-breathing call
+  (cut from Swim Flippers, "a different slot's job" — this is that
+  slot).
+- **Shroud of Shadowy Stillness** (`I148`, L1, down from L2) —
+  Good-Luck-on-Stealth-while-still, same shape as the Head hats but
+  dropped a Level since no existing item pulls it toward L2: `Value =
+  1.2`, **Net −1.8**.
+- **Watcher's Mantle** (`I149`, L2) — confirmed Narrative Utility,
+  `Value = 2`, **Net −4**.
+- **Shawl of the Land** (`I150`, L2) — a real anchor for "doesn't need
+  to eat" via Travel Rations' own material cost through the Gold rate,
+  plus Health's guaranteed-rest bonus: `Value = 5.5`, **Net −0.5**.
+  Known, accepted inconsistency: both components are daily-cadence,
+  checked against the standard per-encounter Target rather than the
+  once/day one this item's own cadence would technically call for.
+- **Snowfall Drape** (`I065`, L3, down from L1-5) — redesigned from a
+  3-space line (blew past Target even at Level 2) to a Burst 1
+  footprint at a fixed 2 degrees of Difficult Terrain: `Value = 8.25`,
+  **Net −0.75**.
+- **Choker of Defiance** (`I151`, L1-5) — Sift's suit-pool credit
+  properly derived for the first time (0.30/card, on top of Sift's own
+  0.60/card), reworked to an Interrupt timing with a "use it or lose
+  it" locking clause: `Value = 5.4 × Level`, **Net = −0.6 × Level** — a
+  clean, consistent 90% funded at every Level.
+- **Cloak of One Thousand Feathers** (`I173`, L2) — an uncapped
+  fall-glide, repriced as three components (base prevention, tail-risk
+  bump, traversal utility) rather than one blown-up fall-damage number
+  after a naive extreme-fall framing proved underspecified: `Value =
+  6.0`, **Net = 0**, confirmed by the designer.
+- **Worry Token** (`I211`, L2/4, non-contiguous) — closes out the slot.
+  Reworked from a broken GM-secret random table to a suit-keyed Sift
+  (each suit's effect built from that suit's own `RULES_DESIGN.md`
+  archetype): `Value = 4.255/charge`, 3 charges at L2 / 6 at L4, **Net
+  +0.77 / +1.53** — both ~106% funded.
+
+### Ring Masterwork pass — status so far
+
+13 of 15 original items resolved (2 cut); 6 remain (Flamebinder's
+Promise, Focusing Band of [Technique], Fate's Grasp, Heartbinding Band,
+Flamefist's Approach, Luminous Signet). Two items flagged as possibly
+mis-tagged before pricing, both confirmed correctly on Ring: Elemental
+Warding Amulet (renamed **Elemental Warding Band**) was always
+`Slot: Ring` in the source doc, just oddly named; Mendicant's Cord's
+original `Slot: Waist` doesn't exist anymore, and Ring's "a specific
+active ability" lane fits its Defense-shifting effect better than
+Belt's narrow "carrying items" one.
+
+- **Elemental Warding Band** (`I208`, L1/2) — Ward's already-Locked rate
+  reused directly, plus a +15% targeting-flexibility bump for "or a
+  willing creature you touch": `Value = 3.13` (L1 Fire) / `6.07` (L2
+  Fire), **Net +0.13 / +0.07** (Fire; modestly negative for the other
+  three elements). Extending to Level 3-5 was considered and rejected —
+  Ward's flat-Resist component caps at 5 stacks while Target keeps
+  climbing, a structural mismatch no flat bonus fixes.
+- **Mendicant's Cord** (`I209`, L2) — mechanic reworked entirely, from a
+  flat 2-point Defense-shift to a Good-Luck/Bad-Luck toggle between
+  Harried's and Vulnerable's own Defense groupings. `Value` ranges
+  `1.375–4.125` depending on how lopsided the encounter reads — the
+  ceiling **cannot reach Target (6) under any circumstance**, a hard
+  structural cap, not a judgment call. Accepted anyway per the designer
+  — many real encounters are consistently lopsided enough to realize
+  well above the pessimistic floor.
+- **Ring of Charming, Assertive, or Bold Statements** (`I157`) — cut,
+  duplicates the Head hats with no differentiation beyond the slot.
+- **Galeforce Loop** (`I083`, L1) — confirmed plain Narrative Utility,
+  `Value = 1`, **Net −2**.
+- **Poison Needle** (`I085`, L1, down from L3) — same AP-savings shape
+  as Quick Draw Belt (saves Poison's 2 AP application cost): `Value =
+  5.5`, **Net +2.5**. Prompted the Poison duration rule change ("1
+  hour" → "until it exposes a creature or a full night's rest") so a
+  loaded dose can't expire unused before it matters.
+- **Ring of Pure Elements** (`I158`, L1, down from L3) — same "1 point
+  of average soak bypassed" logic as Worry Token's Diamonds branch:
+  `Value = 2.0`, **Net −1.0**.
+- **Windrider's Loop** (`I187`, L2) — a new Range rate derived
+  (`0.55/meter`, reusing Speed's single-instance rate directly, since
+  extra Range substitutes for the Move action it would otherwise cost
+  to close the gap), bumped from 5m to 10m: `Value = 5.5`, **Net −0.5**.
+- **Bloodshard Ring** (`I081`) — cut. The Health-for-damage trade
+  worked out to a near-wash once AoE was correctly modeled as applying
+  the bonus per target hit (`Net = 2X(N−2)`), but the text has no
+  stated usage cap, so it moved to `IDEAS_BACKLOG.md` as a Technique
+  idea instead, where a cap can be designed in from the start.
+- **Tactician's Band** (`I080`, L2/4, non-contiguous) — the Hand
+  Filtering rate (1.66/card) applied directly to a fixed daily charge
+  pool; pinned to 7 charges (L2) / 14 charges (L4) after the original
+  `5×Level` formula ran a consistent 138%-funded overshoot at every
+  Level: **Net −0.38 / −0.76** — ~97% funded at both.
+
 ## Open balance work
 
 - **The full Masterwork list, 103 items total** (`items.csv` `I057`-`I115`

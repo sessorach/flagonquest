@@ -127,6 +127,24 @@ which should stay a clean decision record.
   self-check. When a claim involves arithmetic, actually compute it and
   check the result is internally consistent before presenting it — don't
   write plausible-looking numbers and trust they work out.
+- **Keep all three balance-tracking files in sync whenever a Masterwork
+  item's design gets committed** — they serve different readers and
+  none of them substitutes for the others: `design/balance_ledger.csv`
+  (a compact, spreadsheet-searchable ID/Value/Target/Net/Grants/Notes
+  row per item — the fastest way for a human to look something up or
+  scan for outliers, not just skim past), `design/balance.md`'s per-slot
+  "final lineup" section (a short narrative summary of the whole slot's
+  pass, one bullet per item), and `design/balance_weights_notes.md`
+  (the full worked derivation, for whenever the reasoning itself needs
+  reviewing, not just the number it landed on). This slipped once
+  already — the Feet/Head/Neck/most-of-Ring slot passes all got full
+  writeups in `balance_weights_notes.md` but no matching rows/summary
+  ever landed in the other two, silently going stale for several slots
+  before the gap got noticed and backfilled. When an item's Value/
+  Target/Net/Level changes (or it gets cut), update its `balance_ledger.
+  csv` row (or add a `-CUT` row) and its `balance.md` bullet in the same
+  commit as the `items.csv`/`balance_weights_notes.md` change — not as
+  a separate catch-up pass later.
 - **Old-term translations to apply on sight, from earlier eras of this
   project**: "Bodily Defense" → **Vital Defense** (found live in
   `items.csv`'s own schema and `index.html` until this got fixed, not
