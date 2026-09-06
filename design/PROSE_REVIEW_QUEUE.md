@@ -21,7 +21,9 @@ things off in order.
   a one-page overview before Character Creation. Commit `e2156ca`.
 - **`## Spending Experience`** — moved next to Character Creation, fixed
   an XP-cost ambiguity, documented the 5-rank Stat/Skill cap, then
-  simplified that cap note. Commits `d01e193`, `3cd85d9`, `45215d0`.
+  simplified that cap note; later "thrice the Level" reworded to "three
+  times the Level" as part of a project-wide sweep. Commits `d01e193`,
+  `3cd85d9`, `45215d0`, `60c5cff`.
 - **`### Learning Techniques`** — moved along with the Basics/Character
   Creation reorder. Commit `697cc2e`.
 - **`## Building a Character`** — reordered next to Spending Experience.
@@ -36,7 +38,9 @@ things off in order.
   Success section; suit-matching folded in as an Extra Success source.
   Commits `e668e91`, `e2156ca`.
 - **`### Gambling`** — reframed as a bet declared before the flip, not a
-  GM-gated option, as part of the same split. Commit `e2156ca`.
+  GM-gated option, as part of the same split; later Carrick's example
+  reworded "Gambles thrice" to "Gambles three times" as part of a
+  project-wide sweep. Commits `e2156ca`, `60c5cff`.
 - **`### Supporting`** — reframed away from a skill-deficit fallback.
   Commit `038f203`.
 - **`### The Suit Pool`** — added the Skill→Suit bullet list and a
