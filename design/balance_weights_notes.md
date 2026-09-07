@@ -3332,3 +3332,32 @@ Found and fixed the same stale pattern on **Spiritlink Scepter**
 for consistency — same fix, no pricing change, will get its own full
 pass when the Held slot reaches Level 3. `items.csv` (`I093`, `I184`)
 updated. Regenerated into `data/items.json`.
+
+### Returning Knives + Weapon of Sending — both cut, thrown-weapon "return" mechanic dropped
+
+Returning Knives (`I183`, Level 1) — "when the weapon is thrown as part
+of an attack, at the start of the wielder's next turn it returns to
+their hand" — looked at first like it solved a real problem: a Held-
+slot Masterwork weapon is presumably the wielder's primary attack, and
+throwing it away would seem to leave them disarmed until it's
+retrieved.
+
+Per the designer: that premise doesn't hold. Thrown weapons are meant
+to be treated as an abstracted "you have enough of these to fight
+with" collection, recovered as a batch after the encounter — not
+tracked square-by-square mid-combat, since that bookkeeping isn't
+interesting or worth balancing around. Under that design call, there's
+no real in-combat cost this item is removing in the first place — cut
+rather than priced.
+
+**Weapon of Sending** (`I097`, Level 2) shares the identical "returns
+to hand" clause, so it loses the same rationale. Its other component —
+letting a weapon that couldn't normally be thrown be thrown as an
+Acrobatics attack — was originally added "for fun," but per the
+designer, Reaching Weapon already covers the underlying need (extended
+threat range instead of needing to throw at all), and a genuine
+throw-a-melee-weapon option is better suited to a Technique if it's
+ever wanted. Cut alongside Returning Knives.
+
+Both removed from `items.csv`. Regenerated into `data/items.json`
+(213 → 211 rows).

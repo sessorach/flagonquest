@@ -1093,6 +1093,14 @@ next-biggest). Working through it lowest-Level to highest.
   Wording also cleaned up to match the `[Range]` glossary keyword
   (dropped a now-redundant manually-spelled-out clause); same fix
   applied to Spiritlink Scepter (`I184`, not yet priced this pass).
+- **Returning Knives** (`I183`, L1) and **Weapon of Sending** (`I097`,
+  L2) — both cut. Per the designer, thrown weapons are meant to be
+  treated as an abstracted "you have enough to fight with" collection
+  recovered after the encounter, not tracked mid-combat — so
+  Returning Knives' "return to hand" premise doesn't solve a real
+  problem. Weapon of Sending shares that same clause plus a "throw a
+  melee weapon" component now covered by Reaching Weapon (or better
+  suited to a future Technique) — cut alongside it.
 
 ## Open balance work
 
