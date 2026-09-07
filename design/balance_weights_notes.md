@@ -3375,3 +3375,44 @@ a weapon attack would Down a creature. Per the designer: redundant
 with an item already confirmed in the list rather than a distinct
 niche — cut rather than priced. Removed from `items.csv`. Regenerated
 into `data/items.json` (211 → 210 rows).
+
+### Venomous Weapon = flat Level×3, exact fit — Level 1-5, all Poison flavors treated as interchangeable
+
+"When created, a Basic Poison is chosen, with a Concentration of
++[3+Level] and a Potency of Level" — the exact same formula Basic
+Poison (`I049`) itself uses, auto-exposed the first time each encounter
+this weapon causes Health loss or Bleeding. Per the designer's framing:
+this is basically a weapon that "creates" one poison dose per fight.
+
+**First pass considered and set aside**: since the wielder locks in one
+flavor permanently at creation, price off whichever of the seven
+already-priced flavors (`I050`-`I056`) is mathematically strongest —
+Vulnerability/Harrying Poison, cleanly linear at `Value = 4×Level`,
+`Net = +1×Level` (133% funded), no stack cap to run into. Set aside per
+the designer: all seven flavors cost the same to craft and should be
+treated as "worth" the same regardless of their own internal balance
+(which genuinely varies, from Slowing Poison's real shortfall to
+Vulnerability/Harrying's accepted overshoot) — re-litigating which
+flavor a min-maxer would pick isn't the point of pricing this item.
+
+**Used instead**: Crippling Poison's own formula stands in as the flat
+baseline, since it's the one already called "naturally balanced" in its
+own writeup — `Value = 3×Potency×2 = 3×Level`, exactly matching
+`Target = 3×Level` at every Level. Venomous Weapon delivers that same
+value for free, once per encounter:
+
+| Level | Value | Target | Net |
+|---|---|---|---|
+| 1 | 3 | 3 | 0 |
+| 2 | 6 | 6 | 0 |
+| 3 | 9 | 9 | 0 |
+| 4 | 12 | 12 | 0 |
+| 5 | 15 | 15 | 0 |
+
+An exact fit at every Level — no per-Level curve needed. Wording
+clarified (not the pricing): the trigger now explicitly states it costs
+**0 AP** to auto-expose the target, closing a gap where the text could
+otherwise be read as still owing the glossary's normal 2 AP Poison-
+application cost (`glossary.md:105`) on top of the automatic trigger.
+Flavor choice stays fixed at creation, per the designer, unchanged.
+`items.csv` (`I094`) updated. Regenerated into `data/items.json`.

@@ -3989,7 +3989,7 @@
     "tags": "Implement",
     "level": "1-5",
     "description": "A favorite of assassins and cunning killers of all stripes, these weapons are as dangerous as they are prized. Crafted with grooves along the blade or other striking surface of the weapon to allow poison to quickly streak down the weapon, or onto ammunition if the weapon is a bow or similar armament.",
-    "effects": "When created, a Basic Poison is chosen, with a Concentration of +[3 + X] and a Potency of X, where X is the enhancement’s Level. The first time each encounter that a weapon attack or ability using this as an Implement causes a target to lose Health or gain stacks of Bleeding, they expose it to this poison.",
+    "effects": "When created, a Basic Poison is chosen, with a Concentration of +[3 + X] and a Potency of X, where X is the enhancement's Level. The first time each encounter that a weapon attack or ability using this as an Implement causes a target to lose Health or gain stacks of Bleeding, they are automatically exposed to this poison for 0 AP.",
     "cost": null,
     "value_per_level": 20,
     "school": null,
