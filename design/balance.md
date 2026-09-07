@@ -1075,6 +1075,12 @@ next-biggest). Working through it lowest-Level to highest.
   sharing one shortfall shape: Net lands at 60% (L1, confirmed
   acceptable as underpowered), 90% (L2), 100% (L3), 90% (L4), 96% (L5).
   Charge cap raised 5 → 8 to fit the new Level 5 grant.
+- **Quartermaster's Blade** (`I186`, L1) — swap the weapon's shape to
+  any other weapon as a Move. Genuinely situational/build-dependent
+  (mostly useful within one Skill family), no clean anchor — priced via
+  the Narrative Utility convention: `Value = 1`, **Net −2**. Confirmed
+  as-is; ammo wording flipped to match Armory Gauntlets' precedent
+  (conjures its own ammo rather than being denied it).
 
 ## Open balance work
 

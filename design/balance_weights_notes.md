@@ -3245,3 +3245,25 @@ waste 3 charges immediately). `items.csv` (`I092`) Effects text
 rewritten to state the per-Level curve explicitly rather than a
 `[Level]` formula, since it's no longer a clean multiple. Regenerated
 into `data/items.json`.
+
+### Quartermaster's Blade = Narrative Utility, confirmed as-is — Level 1
+
+"As a Move, change the weapon's shape to that of any other single
+weapon, including shields." No clean anchor: `weapon_categories.json`'s
+profiles genuinely differ (Accuracy/Damage/Defense, plus different
+governing Skills), but the practical value is mostly confined to
+swapping within one Skill family (a Melee character can freely move
+between 1H/2H Light/Heavy and Shield; swapping to a Bow/Thrown/Unarmed
+profile only helps if that Skill is also trained) — genuinely
+situational and build-dependent rather than a fixed number, without
+picking an arbitrary "which swap, how often" scenario.
+
+Per the designer: priced via the Narrative Utility convention rather
+than constructing a representative case. `Value = ⅓ × 3 = 1`, `Net = 1
+− 3 = −2`. One wording fix alongside the confirmation (not the pricing):
+the original text denied ammunition outright if the weapon turned
+ranged ("does not create ammunition") — flipped to match Armory
+Gauntlets' own precedent (`I075`, "may also conjure ammunition for it
+as part of an attack"), so the effect reads flat across every weapon
+type instead of carving out a ranged-specific exception. `items.csv`
+(`I186`) updated. Regenerated into `data/items.json`.

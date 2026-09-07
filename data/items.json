@@ -7934,7 +7934,7 @@
     "tags": "Implement",
     "level": 1,
     "description": "These weapons can be crafted in just about any style or appearance, from a worn and simple club to an elegant courtier's blade with precious metals worked in - fitting, since the weapon's enchantment lets it change its shape to that of any other weapon while keeping its own design and aesthetic.",
-    "effects": "As a Move, the wielder can change the weapon's shape to that of any other single weapon, including shields. If it's turned into a ranged weapon, it does not create ammunition.",
+    "effects": "As a Move, the wielder can change the weapon's shape to that of any other single weapon, including shields. If it's turned into a ranged weapon, the wielder may also conjure ammunition for it as part of an attack.",
     "cost": "20 Gold",
     "value_per_level": null,
     "school": null,
