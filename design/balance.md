@@ -1066,6 +1066,15 @@ next-biggest). Working through it lowest-Level to highest.
   (`5.5 × ⅓ = 1.833`), plus the concealment component (`1.53`): `Value
   = 3.36`, **Net +0.36** (112% funded), a clean fit at the original
   Level 1 / 20 Gold.
+- **Fatestealer** (`I092`, L1-5) — Downing a creature with this weapon
+  instantly kills it (unpriced, GM-dependent) and grants charges spent
+  on Sift 2 (better rate, 1.2/charge) or drawing a card (worse rate,
+  0.9/charge, left as a deliberate inefficiency). Replaced the flat
+  `[Level]`-charges formula with a hand-tuned curve (**1/3/5/6/8**
+  charges/Down by Level) to tighten the fit at every Level instead of
+  sharing one shortfall shape: Net lands at 60% (L1, confirmed
+  acceptable as underpowered), 90% (L2), 100% (L3), 90% (L4), 96% (L5).
+  Charge cap raised 5 → 8 to fit the new Level 5 grant.
 
 ## Open balance work
 

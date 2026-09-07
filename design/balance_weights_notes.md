@@ -3191,3 +3191,57 @@ home. Renamed to **Shadowdraw**, merging both effects:
 no Level bump needed. Main Material swapped Wood → Shadow to match the
 concealment half. Assassin's Undetectable Arms' `IDEAS_BACKLOG.md`
 entry removed — resolved into this item rather than left pulled.
+
+### Fatestealer = hand-tuned 1/3/5/6/8 charge curve, Level 1-5
+
+"When an attack with this weapon Downs a creature, that creature is
+instantly killed and the weapon gains up to `[enhancement's Level]`
+charges" (capped 5, lost on a full night's rest). Spend charges: 1 →
+Sift 2 cards, or 3 → draw a card.
+
+Three pieces:
+
+- **"Instantly killed" on Down** — real mechanical insurance (the
+  rulebook's Downed state, `rulebook.md:366`, explicitly isn't death —
+  "not at risk of dying immediately, but this may change depending on
+  the circumstances"), but genuinely GM/scenario-dependent (how often
+  does an enemy actually threaten to come back?). No clean anchor —
+  left unpriced, same as several other flagged-but-unquantified clauses
+  this pass.
+- **Charge economy** — 1 charge → Sift 2 = `2 × 0.60 = 1.2/charge`; 3
+  charges → draw 1 = `2.7 / 3 = 0.9/charge`. Per the designer, left as-
+  is deliberately even though Sift is strictly the better trade (a
+  rational player never takes the draw option) — a real, accepted
+  inefficiency rather than a bug to fix.
+- **Charge generation frequency** — no existing anchor for "how many
+  enemies does the wielder personally Down." Per the designer: someone
+  building around this weapon handles more than an average character,
+  landing on **~1.5 Downs/encounter** as the working baseline (2/day
+  at the high end was also discussed) — `× 2 encounters/day` (the
+  established convention) = **3 Downs/day**.
+
+**Flat-`Level` formula replaced with a hand-tuned curve** rather than
+left as one shared shortfall shape across every Level. Solving
+`Value = 3 × chargesPerDown × 1.2` against `Target = 6 × Level` for an
+exact fit gives `chargesPerDown ≈ 1.667 × Level`; rounded to clean
+integers and anchored on the designer's own `L2=3`/`L4=6` picks, with
+`L3=5` filled in by exact-fit interpolation (lands precisely on
+`Net=0`) and `L5=8` chosen over `9` to stay at or under Target rather
+than overshoot it:
+
+| Level | Charges/Down | Value | Target | Net | Funded |
+|---|---|---|---|---|---|
+| 1 | 1 | 3.6 | 6 | −2.4 | 60% |
+| 2 | 3 | 10.8 | 12 | −1.2 | 90% |
+| 3 | 5 | 18.0 | 18 | 0 | 100% |
+| 4 | 6 | 21.6 | 24 | −2.4 | 90% |
+| 5 | 8 | 28.8 | 30 | −1.2 | 96% |
+
+Levels 2-5 land in a tight 90-100% band; Level 1 stays at 60%,
+confirmed by the designer as acceptable — "Level 1 can be a bit
+underpowered." Charge cap raised **5 → 8** to match the new Level 5
+grant (a single Down at Level 5 would otherwise exceed the old cap and
+waste 3 charges immediately). `items.csv` (`I092`) Effects text
+rewritten to state the per-Level curve explicitly rather than a
+`[Level]` formula, since it's no longer a clean multiple. Regenerated
+into `data/items.json`.

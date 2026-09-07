@@ -3875,7 +3875,7 @@
     "tags": "Implement",
     "level": "1-5",
     "description": "Grim motifs decorate this weapon that, through magic or craftsmanship, somehow guides its wielder to become more deft as the battle rages on. A series of runes run along the blade, head, or other prominent part of the weapon, glowing with increasing intensity the more the wielder battles.",
-    "effects": "When an attack with this weapon Downs a creature, that creature is instantly killed and the weapon gains up to [enhancement's Level] charges.The weapon may not have more than 5 charges at any time, and when the wielder gets a full night’s rest all charges are lost.At any time, the wielder may spend charges on the following:For 1 charge, the wielder may Sift 2 cardsFor 3 charges, the wielder may draw a card",
+    "effects": "When an attack with this weapon Downs a creature, that creature is instantly killed and the weapon gains charges based on its Level: 1 at Level 1, 3 at Level 2, 5 at Level 3, 6 at Level 4, or 8 at Level 5.The weapon may not have more than 8 charges at any time, and when the wielder gets a full night's rest all charges are lost.At any time, the wielder may spend charges on the following:For 1 charge, the wielder may Sift 2 cardsFor 3 charges, the wielder may draw a card",
     "cost": null,
     "value_per_level": 20,
     "school": null,
