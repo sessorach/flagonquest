@@ -1119,6 +1119,14 @@ next-biggest). Working through it lowest-Level to highest.
   Health loss — an early elemental-weapon pass that predates the
   Bleeding-taper work and doesn't hold up under it. Binned in favor of
   the Held slot's other elemental-conversion items.
+- **Grim Promise** (`I095`, L2) — ignores Wounded/Crippled penalties
+  when attacking or parrying. Reused Insanity Potion's own already-
+  priced Wounded/Crippled-immunity components directly (`21.8` raw
+  stacked), but discounted from Insanity Potion's guaranteed 100%-
+  uptime assumption down to the established ⅓ niche tier, since being
+  Wounded/Crippled is uncommon for the wielder specifically even though
+  the debuffs are common from enemies generally: `Value ≈ 7.27`, **Net
+  ≈ +1.27** (121% funded).
 
 ## Open balance work
 

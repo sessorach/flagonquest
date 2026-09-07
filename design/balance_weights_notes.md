@@ -3459,3 +3459,40 @@ options already in the Held slot (Elemental-Forged Weaponry, Claw of
 Mortality, Claw of Rime, Conflagration Brand — none yet priced this
 pass, but all structurally simpler). Removed from `items.csv`.
 Regenerated into `data/items.json` (210 → 209 rows).
+
+### Grim Promise = 7.27, reusing Insanity Potion's Wounded/Crippled components at the ⅓ niche tier — Level 2
+
+"When attacking or parrying with this weapon, the wielder ignores any
+penalties from being Wounded or Crippled." Reused Insanity Potion's
+(`I048`) own already-established Wounded/Crippled-immunity components
+directly as raw per-instance figures, rather than re-deriving from
+scratch:
+
+- **Wounded's Bad Luck** on attack/parry flips — Insanity Potion's own
+  "flip-based" sub-estimate is already scoped to exactly this (not all
+  flips broadly): `~2 turns × (1 attack + 1 defense flip) × Bad Luck
+  (2.2) = 8.8`.
+- **Wounded's separate −2 Defense penalty** on Parry specifically (a
+  distinct modifier from Bad Luck, not covered above): `~2 turns × 1
+  parry/turn × 2 points × Defense's rate (1) = 4`.
+- **Crippled's removal**: since Crippled's only effect is "−1 to
+  attacks" (nothing else, per the glossary), ignoring it while
+  attacking is full Crippled immunity — Insanity Potion's own
+  representative case, `3 stacks, 4-turn window = 9`.
+
+Stacked raw: `8.8 + 4 + 9 = 21.8` — 363% over Level 2's Target (6) if
+taken at face value. But Insanity Potion's own figures assumed
+**guaranteed, 100%-uptime Wounded+Crippled**, since that item inflicts
+both conditions on the drinker itself as a built-in drawback — a
+completely different premise from a normal wielder's baseline
+likelihood of actually being Wounded or Crippled during a given fight.
+
+Per the designer: Wounded and Crippled are relatively uncommon
+specifically **for the wielder**, even though similar debuffs are
+common from enemies in general (i.e., the debuffs themselves come up
+with regularity against the party as a whole, but landing on this one
+character specifically is rarer) — mapping onto the established ⅓
+"rarer than daily, niche" realization tier rather than treating it as
+guaranteed. `Value = 21.8 × ⅓ ≈ 7.27`, `Target (L2) = 6`, `Net ≈ +1.27`
+(121% funded) — a modest overshoot in line with several other
+accepted overshoots this pass. No item text changes needed.
