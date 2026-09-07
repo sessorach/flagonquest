@@ -1136,6 +1136,12 @@ next-biggest). Working through it lowest-Level to highest.
   also forfeits any Archery-gated Techniques — a real cost with no
   clean way to price directly, better reflected by a lower Level than
   an inflated Value. **Net = 0** at Level 1, exact fit.
+- **Apprentice's Dueling Catalyst** (`I179`, L1, missed in the original
+  stocktake) — cut, obsolete. A holdover from before most weapons
+  carried the `[Implement]` tag; now that Bounty Hunter's Blade is
+  itself an Implement, its non-lethal Bad Luck removal already covers
+  spell attacks channeled through it, per the `[Implement]` rule — no
+  separate item needed.
 
 ## Open balance work
 

@@ -3527,3 +3527,21 @@ Value to chase Level 2's Target. At Level 1 (Target 3, Cost 20 Gold):
 `Net = 0` — an exact fit, cleaner than the Level 2 version's 50%-funded
 gap. `items.csv` (`I096` Level/Cost updated, `I178` removed).
 Regenerated into `data/items.json` (209 → 208 rows).
+
+### Apprentice's Dueling Catalyst — cut, obsolete now that Bounty Hunter's Blade is an Implement
+
+"Spell attacks made using this as an Implement that would Down a
+creature instead render them unconscious rather than killing them."
+Wasn't in the original Held stocktake — caught while surveying what
+was left after closing out Level 1/2.
+
+Per the designer: this is a holdover from before most weapons carried
+the `[Implement]` tag, when a spellcaster needed a dedicated item to
+guarantee non-lethal spell attacks since their weapon Implement
+couldn't cover that ground too. Now that Bounty Hunter's Blade (`I089`)
+is itself tagged Implement, the `[Implement]` rule (`glossary.md:97`,
+"the Spell or Discipline counts as an attack with that weapon for any
+additional effects") already makes its non-lethal Bad Luck removal
+apply to any spell attack channeled through it as well — no separate
+item needed. Removed from `items.csv`. Regenerated into `data/items.json`
+(208 → 207 rows).
