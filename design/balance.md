@@ -1036,13 +1036,8 @@ Band, Luminous Signet, Focusing Band of [Technique], and Worry Token.
 30 items, the largest single slot by far (more than double the
 next-biggest). Working through it lowest-Level to highest.
 
-- **Assassin's Undetectable Arms** (`I088`) — cut. A narrative/skill-
-  challenge concealment power (Good Luck to keep a weapon hidden, Bad
-  Luck on anyone searching for it), closest priced to Smuggler's Belt's
-  own Secrecy component but reading as a real shortfall either way it's
-  scoped. Per the designer, better suited as an accessory effect folded
-  into another item than shipped standalone — moved to
-  `IDEAS_BACKLOG.md`.
+- **Assassin's Undetectable Arms** (`I088`) — cut, then merged into
+  Shadowdraw below rather than left in the backlog. See Shadowdraw.
 - **Battering Armament** (`I090`, L1) — Push, decoupled from Speed and
   re-derived this same item: `1 AP / 4-space standard move = 0.6875/
   meter` base, `+30%` tactical premium for forcing an enemy out of
@@ -1062,6 +1057,15 @@ next-biggest). Working through it lowest-Level to highest.
   optimization — priced via the Narrative Utility convention rather
   than a real frequency guess: `Value = 1`, **Net −2**. Confirmed
   as-is.
+- **Shadowdraw** (`I091`, L1, renamed from Eager Armament) — merges
+  Eager Armament's 0-AP draw with Assassin's Undetectable Arms'
+  concealment Good Luck/Bad Luck into one infiltrator-flavored weapon.
+  The 0-AP draw isn't a guaranteed once/encounter saving the way Quick
+  Draw Belt's is — most characters already carry a weapon drawn — so
+  it's scoped to the same ⅓ niche tier as the concealment checks
+  (`5.5 × ⅓ = 1.833`), plus the concealment component (`1.53`): `Value
+  = 3.36`, **Net +0.36** (112% funded), a clean fit at the original
+  Level 1 / 20 Gold.
 
 ## Open balance work
 

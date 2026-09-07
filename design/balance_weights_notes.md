@@ -3153,3 +3153,41 @@ hunter needing a target alive), not a combat-optimization pick — and
 isn't meant to be evaluated well at all. Priced via the Narrative
 Utility convention instead of the frequency guess: `Value = ⅓ × 3 = 1`,
 `Net = 1 − 3 = −2`. Confirmed as-is, no item text changes needed.
+
+### Shadowdraw = 3.36, merged from Eager Armament + Assassin's Undetectable Arms — Level 1
+
+Eager Armament ("drawing the weapon from any location within reach only
+takes 0 AP") started down the same path as Quick Draw Belt — priced
+against the backpack case (2 AP saved = 5.5), once/encounter. First
+draft landed at `Net +2.5` (matching Poison Needle's own accepted
+Level-1 overshoot), on the read that the weapon's normally-concealed
+fluff makes it the hard-to-reach case.
+
+**Corrected before locking in**: that once/encounter framing carries an
+implicit assumption the designer flagged — most characters already
+have their weapon drawn or in easy reach when a fight starts, so a
+generic "saves 2 AP every encounter" claim doesn't actually hold for
+this item the way it does for Quick Draw Belt's general-purpose
+version. The 0-AP draw only pays off in the specific scenes where the
+wielder chose to go around visibly unarmed and a fight then breaks out
+— the same ⅓ "rarer than daily, niche" trigger already governing
+concealment checks, not a guaranteed once/encounter event.
+
+That reframing pointed straight at merging Eager Armament with
+**Assassin's Undetectable Arms** (`I088`, cut earlier this pass — see
+its writeup above): both items are really the same underlying weapon
+(one hidden and hard to draw, one designed to draw for free from
+wherever it's kept), and Assassin's Undetectable Arms' own concealment
+component was already priced at the ⅓ niche tier and looking for a
+home. Renamed to **Shadowdraw**, merging both effects:
+
+- **0 AP draw**, now correctly scoped to the ⅓ niche tier (not every
+  encounter): `5.5 × ⅓ = 1.833`.
+- **Concealment Good Luck/Bad Luck** (Assassin's Undetectable Arms'
+  own Smuggler's Belt-precedent math, unchanged): `1.53`.
+
+`Value = 1.833 + 1.53 = 3.36`, `Target (L1, per-encounter) = 3`, `Net =
++0.36` (112% funded) — a clean fit at the original Level 1 / 20 Gold,
+no Level bump needed. Main Material swapped Wood → Shadow to match the
+concealment half. Assassin's Undetectable Arms' `IDEAS_BACKLOG.md`
+entry removed — resolved into this item rather than left pulled.
