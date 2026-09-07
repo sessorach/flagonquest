@@ -1101,6 +1101,10 @@ next-biggest). Working through it lowest-Level to highest.
   problem. Weapon of Sending shares that same clause plus a "throw a
   melee weapon" component now covered by Reaching Weapon (or better
   suited to a future Technique) — cut alongside it.
+- **Staying Gauntlets** (`I180`, L1) — cut, superseded by Bounty
+  Hunter's Blade (both bypass the Non-Lethal Attacks Bad Luck penalty,
+  just triggered differently — one on a declared non-lethal attack,
+  this one automatically on any Down).
 
 ## Open balance work
 

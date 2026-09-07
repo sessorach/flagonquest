@@ -3361,3 +3361,17 @@ ever wanted. Cut alongside Returning Knives.
 
 Both removed from `items.csv`. Regenerated into `data/items.json`
 (213 → 211 rows).
+
+### Staying Gauntlets — cut, superseded by Bounty Hunter's Blade
+
+"Weapon attacks made by the wearer that would Down a creature instead
+render them unconscious rather than killing them." Landed in almost
+exactly the same spot as **Bounty Hunter's Blade** (`I089`, just
+confirmed via the Narrative Utility convention): both remove the
+practical cost/risk of the Non-Lethal Attacks Bad Luck penalty
+(`rulebook.md:530`), just triggered differently — Bounty Hunter's
+Blade on a declared non-lethal attack, this one automatically whenever
+a weapon attack would Down a creature. Per the designer: redundant
+with an item already confirmed in the list rather than a distinct
+niche — cut rather than priced. Removed from `items.csv`. Regenerated
+into `data/items.json` (211 → 210 rows).
