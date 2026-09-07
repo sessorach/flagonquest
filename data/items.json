@@ -4097,10 +4097,10 @@
     "category": "Masterwork",
     "slot": "Held",
     "tags": null,
-    "level": 2,
+    "level": 1,
     "description": "This bow is extremely durable despite seeming thin and fragile, with a strange construction that lacks any kind of bow string. When the wielder concentrates and channels magical energy, gemstones along the bow trace a glittering pattern as a string of pure light is created, allowing the wielder to shoot arrows of magical force from it.",
     "effects": "This weapon uses Sorcery as its relevant Skill, deals damage based on the wielder’s Mind instead of Cunning, and has a Might Skill Total requirement of 3.",
-    "cost": "40 Gold",
+    "cost": "20 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -4141,7 +4141,7 @@
       "I126"
     ],
     "levels": [
-      2
+      1
     ]
   },
   {
@@ -7459,51 +7459,6 @@
     "base_item_options": [
       "I128",
       "I129",
-      "I002"
-    ],
-    "levels": [
-      2
-    ]
-  },
-  {
-    "id": "I178",
-    "name": "Sorcerer's Gloves",
-    "category": "Masterwork",
-    "slot": "Held",
-    "tags": null,
-    "level": 2,
-    "description": "Light, silken gloves woven with silver and gold thread, extremely durable despite seeming thin and fragile. When the wearer channels magical energy, gemstones stitched along the gloves light up in a variety of colors.",
-    "effects": "The wearer can throw a bolt of energy at a creature within their Sorcery Skill Total in meters, making a Sorcery attack against the target's Dodge or Parry Defense. On a hit, it deals 3 + [Mind] Physical damage.",
-    "cost": "40 Gold",
-    "value_per_level": null,
-    "school": null,
-    "skill_total": null,
-    "total_materials": null,
-    "main_materials": "Fire, Frost, Brilliant, or Shadow",
-    "optional_materials": null,
-    "physical_resist": null,
-    "fire_resist": null,
-    "frost_resist": null,
-    "brilliant_resist": null,
-    "shadow_resist": null,
-    "speed": null,
-    "parry_defense": null,
-    "dodge_defense": null,
-    "vital_defense": null,
-    "mental_defense": null,
-    "instinct_defense": null,
-    "shallow_health": null,
-    "deep_health": null,
-    "accuracy": null,
-    "damage": null,
-    "weapon_defense": null,
-    "range": null,
-    "relevant_skills": null,
-    "might_requirement": null,
-    "held_slots": null,
-    "supplement": "Base Game",
-    "material_types": null,
-    "base_item_options": [
       "I002"
     ],
     "levels": [

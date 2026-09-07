@@ -1127,6 +1127,15 @@ next-biggest). Working through it lowest-Level to highest.
   Wounded/Crippled is uncommon for the wielder specifically even though
   the debuffs are common from enemies generally: `Value ≈ 7.27`, **Net
   ≈ +1.27** (121% funded).
+- **Sorcerer's Bow** (`I096`) and **Sorcerer's Gloves** (`I178`, cut) —
+  both covered a caster's Sorcery/Mind driving a weapon-style attack;
+  per the designer, the Bow absorbs the Gloves' role. Priced as build-
+  flexibility (Narrative Utility floor `2`) plus a flat `+1.0` premium
+  for now covering the Gloves' "no separate weapon needed" niche too,
+  `Value = 3.0`. Moved Level 2 → 1, since committing to this weapon
+  also forfeits any Archery-gated Techniques — a real cost with no
+  clean way to price directly, better reflected by a lower Level than
+  an inflated Value. **Net = 0** at Level 1, exact fit.
 
 ## Open balance work
 

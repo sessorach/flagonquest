@@ -3496,3 +3496,34 @@ character specifically is rarer) — mapping onto the established ⅓
 guaranteed. `Value = 21.8 × ⅓ ≈ 7.27`, `Target (L2) = 6`, `Net ≈ +1.27`
 (121% funded) — a modest overshoot in line with several other
 accepted overshoots this pass. No item text changes needed.
+
+### Sorcerer's Bow = 3.0, moved to Level 1 — Sorcerer's Gloves cut, absorbed into the Bow
+
+Sorcerer's Bow ("uses Sorcery as its relevant Skill, damage based on
+Mind instead of Cunning") is a build-flexibility item, not a numeric
+buff — the underlying Bow-category stats (`weapon_categories.json`)
+stay identical; only which Skill/Stat drives them changes. Same shape
+as Quartermaster's Blade's weapon-flexibility (priced via the Narrative
+Utility convention, since the real gain depends entirely on the
+wielder's own build — how lopsided their Mind-vs-Cunning gap is, which
+the model has no way to know): `Value = ⅓ × 6 = 2` as a floor.
+
+**Sorcerer's Gloves** (`I178`, same Level, "throw a bolt of energy...
+Sorcery attack... 3+[Mind] Physical damage") covered a related but
+distinct niche — a generic Sorcery-driven attack that doesn't require
+holding any weapon at all. Per the designer: the Bow should absorb this
+role rather than keeping both items around. Cut Sorcerer's Gloves,
+folded a flat **+1.0** premium into Sorcerer's Bow for now covering
+that niche too (no clean way to price the "no separate weapon needed"
+convenience harder than a flat premium, same judgment-call shape as
+other flexibility bumps this pass): `Value = 2 + 1.0 = 3.0`.
+
+**Moved Level 2 → 1**: per the designer, committing to this weapon's
+Skill/Stat also means giving up any Archery-gated Techniques the
+wielder might otherwise want — a real opportunity cost with no clean
+way to price directly (the same rabbit hole as everything else this
+pass), better reflected by sitting at a lower Level than by inflating
+Value to chase Level 2's Target. At Level 1 (Target 3, Cost 20 Gold):
+`Net = 0` — an exact fit, cleaner than the Level 2 version's 50%-funded
+gap. `items.csv` (`I096` Level/Cost updated, `I178` removed).
+Regenerated into `data/items.json` (209 → 208 rows).
