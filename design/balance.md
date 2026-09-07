@@ -1081,6 +1081,18 @@ next-biggest). Working through it lowest-Level to highest.
   the Narrative Utility convention: `Value = 1`, **Net −2**. Confirmed
   as-is; ammo wording flipped to match Armory Gauntlets' precedent
   (conjures its own ammo rather than being denied it).
+- **Reaching Weapon** (`I093`, L1-5) — always-on Range increase equal
+  to Level. New **Range (permanent) = 4.125/meter** rate derived —
+  scoped by attacks/encounter (7.5), not Speed's own moves/encounter
+  rescoping, since the bonus applies to every attack rather than just
+  movement spent closing distance. Lands at a constant **137.5% funded**
+  at every Level (`Value = Level×4.125` vs. `Target = Level×3`); per
+  the designer, confirmed "a little powerful" but left as-is — no clean
+  way to trim it without breaking the `Range = Level` symmetry, and the
+  overshoot is smaller than Poison Needle's already-accepted 183%.
+  Wording also cleaned up to match the `[Range]` glossary keyword
+  (dropped a now-redundant manually-spelled-out clause); same fix
+  applied to Spiritlink Scepter (`I184`, not yet priced this pass).
 
 ## Open balance work
 

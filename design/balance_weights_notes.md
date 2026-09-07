@@ -3267,3 +3267,68 @@ Gauntlets' own precedent (`I075`, "may also conjure ammunition for it
 as part of an attack"), so the effect reads flat across every weapon
 type instead of carving out a ranged-specific exception. `items.csv`
 (`I186`) updated. Regenerated into `data/items.json`.
+
+### Reaching Weapon = Level×4.125, confirmed overfunded but left as-is — Level 1-5, new Range (permanent) rate derived
+
+"Attacks made with this weapon, and abilities used with it, have their
+Range increased by [Level] meters," always on. Unlike Windrider's
+Loop's once/encounter Range bump, this is a permanent bonus — the same
+gap `balance_weights.csv`'s Range row already flagged for itself
+("a permanently-worn Range bonus would need the same single-instance-
+to-permanent rescoping Speed itself needed").
+
+**First framing tried and set aside**: reuse Speed's own permanent
+rescoping directly (`single-instance × moves/encounter`), on the theory
+that Range substitutes for movement the same way Speed does. Rejected
+on reflection — Speed's `4.625 moves/encounter` multiplier counts *all*
+movement (retreating, repositioning, chasing), but Range only
+substitutes for the fraction of that spent specifically closing
+distance to attack. Tried scoping it down via the established ½/⅓
+realization tiers instead (`half of moves/encounter are attack-closing`
+→ `1.271875/meter`), but that produced a very different verdict (42%
+funded at every Level) than the full-reuse alternative (85% funded) —
+too wide a swing to settle on either number without a firmer anchor.
+
+**Reframed, and this is the version used**: per the designer, since the
+weapon is always-on, its Range bonus should be scoped by how many
+*attacks* happen per encounter, not by movement at all — every attack
+made with the weapon benefits from the extra reach, so the multiplier
+is the established `attacks/encounter` figure (**7.5**, `1.5/turn × 5
+rounds`), applied to the existing single-instance Range rate rather
+than inventing a new discount:
+
+`Range (permanent)/meter = 0.55 (single-instance) × 7.5 (attacks/
+encounter) = 4.125/meter` — added to `balance_weights.csv`.
+
+Solving for the break-even point (`Target/4.125 = 3L/4.125 ≈ 0.727×L`)
+shows the item's own `[Level]`-meters formula already grants *more*
+than the break-even amount at every Level:
+
+| Level | Meters | Value | Target | Net | Funded |
+|---|---|---|---|---|---|
+| 1 | 1 | 4.125 | 3 | +1.125 | 137.5% |
+| 2 | 2 | 8.25 | 6 | +2.25 | 137.5% |
+| 3 | 3 | 12.375 | 9 | +3.375 | 137.5% |
+| 4 | 4 | 16.5 | 12 | +4.5 | 137.5% |
+| 5 | 5 | 20.625 | 15 | +5.625 | 137.5% |
+
+A constant 137.5%-funded overshoot at every Level, since both sides
+scale linearly with Level — no per-Level curve needed (unlike
+Fatestealer), just one consistent ratio. Per the designer: confirmed
+"a little powerful," but left as-is — there's no clean way to trim
+this without breaking the tidy `Range = Level` symmetry, and the
+overshoot is smaller than Poison Needle's already-accepted 183%.
+
+**Wording also cleaned up** while in this text: the item predated the
+`[Range]` glossary keyword (`glossary.md:39`, "if something increases
+an effect's Range by X, you may choose any point within X meters... to
+target creatures that are X meters farther away than usual"), so it
+still manually spelled out the "choose any point within X meters for
+non-ranged effects" clause the keyword now covers generically.
+Simplified to match Windrider's Loop's already-clean phrasing
+("increase that weapon's Range by 10 meters," no follow-up sentence).
+Found and fixed the same stale pattern on **Spiritlink Scepter**
+(`I184`, Held, Level 3, not yet reached in this pass) while checking
+for consistency — same fix, no pricing change, will get its own full
+pass when the Held slot reaches Level 3. `items.csv` (`I093`, `I184`)
+updated. Regenerated into `data/items.json`.
