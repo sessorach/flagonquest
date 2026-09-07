@@ -3416,3 +3416,46 @@ otherwise be read as still owing the glossary's normal 2 AP Poison-
 application cost (`glossary.md:105`) on top of the automatic trigger.
 Flavor choice stays fixed at creation, per the designer, unchanged.
 `items.csv` (`I094`) updated. Regenerated into `data/items.json`.
+
+### Elemental Bloodletter — cut, an early elemental-weapon pass that doesn't hold up under the Bleeding-taper model
+
+"When the weapon is created, choose Fire, Frost, Brilliant, or Shadow —
+it deals its damage as that type instead of Physical. Whenever an
+attack with it would cause a creature to lose Health, they instead
+gain that many stacks of Bleeding." Two components, priced fully per
+the designer's request before deciding what to do with the result.
+
+**Component 1 — permanent damage-type conversion**. Ring of Pure
+Elements already priced a *once/encounter* version of this idea at
+`1 point of average soak bypassed × Damage's rate (2/point) = 2.0`.
+Worry Token's Diamonds branch and Spellblade's Sipper both confirm the
+formula scales linearly with how many attacks it covers (`×2 attacks
+= 4.0`, `×4 attacks = 8`, respectively). Elemental Bloodletter's
+version is permanent — every attack, all encounter — so using the
+established `attacks/encounter = 7.5` baseline: `Value = 1 × 2 × 7.5 =
+15`. A real, strong number on its own.
+
+**Component 2 — damage→Bleeding conversion**. Checked against Bleeding's
+own established capped curve (`value(n)`, asymptotically capping near
+12) versus what the same points would be worth as guaranteed Health
+loss instead (Health's own rate, `4/point`, uncapped). At a
+representative weapon hit (baseline stat=3, e.g. 1H Light Melee's
+`3+[Body]` → 6 damage): `value(6) = 11.75` vs. `6 × 4 = 24` as plain
+Health loss — a per-hit **loss of −12.25**. This isn't sensitive to the
+exact representative number either: it holds for any hit above ~2
+damage, and gets worse as weapon damage increases, since Bleeding's
+curve caps near 12 while raw guaranteed Health loss keeps scaling
+linearly. Scaled the same way as Component 1 (every attack, ×7.5):
+**−91.875**.
+
+**Combined**: `15 − 91.875 ≈ −77` against Target 6 — not a "landed low"
+number, a structural finding: as literally worded, the Bleeding clause
+makes the wielder's own attacks actively worse than doing nothing
+extra, on essentially every hit. Per the designer: this reads like an
+early pass at an elemental weapon from before the Bleeding-taper work
+existed in this project, and doesn't hold up now that it does. Binned
+rather than redesigned, in favor of the existing elemental-conversion
+options already in the Held slot (Elemental-Forged Weaponry, Claw of
+Mortality, Claw of Rime, Conflagration Brand — none yet priced this
+pass, but all structurally simpler). Removed from `items.csv`.
+Regenerated into `data/items.json` (210 → 209 rows).

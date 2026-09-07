@@ -1112,6 +1112,13 @@ next-biggest). Working through it lowest-Level to highest.
   mathematically strongest — Crippling Poison's own already-"naturally
   balanced" formula (`Value = 3×Level`) stands in as the flat baseline.
   **Net = 0 at every Level**, an exact fit.
+- **Elemental Bloodletter** (`I181`, L2) — cut. Priced both components
+  fully: permanent elemental damage conversion is a real `+15` on its
+  own, but the damage→Bleeding clause is a structural `−92` once
+  checked against Bleeding's own capped curve versus plain guaranteed
+  Health loss — an early elemental-weapon pass that predates the
+  Bleeding-taper work and doesn't hold up under it. Binned in favor of
+  the Held slot's other elemental-conversion items.
 
 ## Open balance work
 
