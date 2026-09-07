@@ -3545,3 +3545,60 @@ additional effects") already makes its non-lethal Bad Luck removal
 apply to any spell attack channeled through it as well — no separate
 item needed. Removed from `items.csv`. Regenerated into `data/items.json`
 (208 → 207 rows).
+
+### Attacks/turn split into two baselines — 1.25 (own, incidental) vs. 1.5 (aggressive/tank), Reaching Weapon rechecked
+
+Surfaced while pricing Claw of Mortality's permanent elemental-conversion
+component, which reused Range (permanent)'s own `attacks/encounter`
+scaling (`7.5`, derived from `1.5 attacks/turn × 5 rounds`) — the same
+figure used throughout this project for combat-frequency math (Crippled's
+per-stack rate, Fitted Armor's tank assumption, Sift's daily cadence,
+the Skill-vs-Technique meditation's daily-attack figures). Surveyed
+every elemental-conversion item in the pool (Ring of Pure Elements,
+Spellblade's Sipper, Elemental-Forged Weaponry, Claw of Mortality/Rime,
+Conflagration Brand) to check whether the permanent, full-attacks/
+encounter scaling had any real precedent — it didn't; every item priced
+*so far* used an explicit, capped window (1 attack, or 4 attacks), and
+nobody had actually validated the formula at the full permanent baseline
+before Elemental Bloodletter/Claw of Mortality tried it.
+
+Per the designer: `1.5 attacks/turn` (implying half of all turns are a
+double-swing) reads too generous for a normal player's own attack rate
+— realistically closer to **one, maybe two turns out of five** seeing a
+double swing, not half. Solving `attacks/turn = 2p + 1×(1−p)` for
+`p ≈ 0.25` (roughly 1 in 4 turns doubles): **`1.25/turn`**.
+
+**Critical distinction, not a blanket revision**: this doesn't replace
+the older `1.5/turn` figure everywhere — that figure stays exactly as
+it was for anything modeling an **aggressive or tank-style combatant**
+taking/making more hits than a normal player optimizing their own
+turns (Crippled's own per-stack rate, Fitted Armor's "tank takes 1.5×
+hits" assumption, Sift's daily-cadence estimate, and the earlier
+Skill-vs-Technique meditation's daily-attack figures) — per the
+designer, "a tank putting themself in the position to take more hits"
+is a genuinely different scenario from "a player doing what they can
+to make more attacks." Those derivations aren't reopened by this
+correction. The new **`1.25/turn` ("own, incidental")** baseline is
+specifically for pricing an always-on item effect that rides every
+attack the *wielder personally makes* — Range-permanent, elemental-
+conversion-permanent, and anything else in that same shape. Added both
+as distinct rows to `balance_weights.csv`.
+
+`attacks/encounter (own, incidental) = 1.25 × 5 = 6.25` (down from
+7.5). Downstream effects:
+
+- **Range (permanent)**: `0.55 × 6.25 = 3.4375/meter` (down from
+  4.125).
+- **Elemental Conversion (permanent)**: `2 (Damage's hit-gated rate ×
+  1 soak bypassed) × 6.25 = 12.5` for a full-uptime case (down from 15).
+  Added as its own row to `balance_weights.csv`, generalizing the
+  "1 soak bypassed × Damage's rate" formula for a permanent, not just
+  fixed-window, conversion.
+
+**Reaching Weapon rechecked** (already committed/pushed under the old
+rate): `Value = Level × 3.4375`, still a consistent overshoot at every
+Level but down from 137.5% to **114.6% funded**. Same designer call as
+before — left as-is rather than trimmed, no clean way to reel it in
+without breaking the `Range = Level` symmetry. `balance_ledger.csv`
+rows updated (`I093-L1` through `L5`); no `items.csv` text change
+needed, only the rate/Value/Net.

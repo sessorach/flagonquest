@@ -1036,6 +1036,17 @@ Band, Luminous Signet, Focusing Band of [Technique], and Worry Token.
 30 items, the largest single slot by far (more than double the
 next-biggest). Working through it lowest-Level to highest.
 
+- **Attacks/turn split into two baselines**, surfaced while pricing
+  Claw of Mortality's permanent elemental conversion. The existing
+  `1.5 attacks/turn` figure (used throughout this project — Crippled's
+  rate, Fitted Armor's tank assumption, Sift's daily cadence) implies
+  half of all turns are a double swing; per the designer that's too
+  generous for a normal player's own rate, closer to one-or-two turns
+  in five. New **`1.25/turn`** baseline added specifically for pricing
+  an always-on effect that rides the wielder's own attacks (Range-
+  permanent, elemental-conversion-permanent) — the older `1.5/turn`
+  stays exactly as-is for aggressive/tank-style scenarios, not
+  reopened. See Reaching Weapon below for the resulting recheck.
 - **Assassin's Undetectable Arms** (`I088`) — cut, then merged into
   Shadowdraw below rather than left in the backlog. See Shadowdraw.
 - **Battering Armament** (`I090`, L1) — Push, decoupled from Speed and
@@ -1082,14 +1093,16 @@ next-biggest). Working through it lowest-Level to highest.
   as-is; ammo wording flipped to match Armory Gauntlets' precedent
   (conjures its own ammo rather than being denied it).
 - **Reaching Weapon** (`I093`, L1-5) — always-on Range increase equal
-  to Level. New **Range (permanent) = 4.125/meter** rate derived —
-  scoped by attacks/encounter (7.5), not Speed's own moves/encounter
+  to Level. New **Range (permanent) = 3.4375/meter** rate derived —
+  scoped by attacks/encounter, not Speed's own moves/encounter
   rescoping, since the bonus applies to every attack rather than just
-  movement spent closing distance. Lands at a constant **137.5% funded**
-  at every Level (`Value = Level×4.125` vs. `Target = Level×3`); per
-  the designer, confirmed "a little powerful" but left as-is — no clean
-  way to trim it without breaking the `Range = Level` symmetry, and the
-  overshoot is smaller than Poison Needle's already-accepted 183%.
+  movement spent closing distance. [Corrected from an initial
+  4.125/meter — see the attacks/turn baseline split below.] Lands at a
+  constant **114.6% funded** at every Level (`Value = Level×3.4375` vs.
+  `Target = Level×3`); per the designer, confirmed "a little powerful"
+  but left as-is — no clean way to trim it without breaking the
+  `Range = Level` symmetry, and the overshoot is smaller than Poison
+  Needle's already-accepted 183%.
   Wording also cleaned up to match the `[Range]` glossary keyword
   (dropped a now-redundant manually-spelled-out clause); same fix
   applied to Spiritlink Scepter (`I184`, not yet priced this pass).
