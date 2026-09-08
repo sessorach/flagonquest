@@ -1155,6 +1155,23 @@ next-biggest). Working through it lowest-Level to highest.
   itself an Implement, its non-lethal Bad Luck removal already covers
   spell attacks channeled through it, per the `[Implement]` rule — no
   separate item needed.
+- **Claw of Mortality / Rimefang / Radiant Verdict / Conflagration
+  Brand** (`I098`/`I099`/`I227`/`I100`, all L3) — priced as a family:
+  weapon-attack damage conversion is the valuable half (Elemental-
+  Forged Weaponry's job), so these four lean on debuffs instead, with
+  only a small spell-conversion bonus on top (spells default to Fire,
+  not Physical, so converting them is a much smaller benefit — derived
+  a separate **Fire-baseline** conversion rate, `0.4/attack`, alongside
+  a **Fire discount** on the full weapon-conversion rate, both new to
+  `balance_weights.csv`). New **continuously-refreshed debuff**
+  pricing technique (queueing approximation for always-active debuffs
+  like Slowed/Vulnerable; total-stacks-applied for discrete-payout ones
+  like Bleeding/Necrotic). Results: Claw of Mortality (Necrotic) 94%
+  funded, Rimefang (Slowed, renamed from Claw of Rime) 130%, Radiant
+  Verdict (new item, Brilliant/Vulnerable) 121%, Conflagration Brand
+  (Bleeding, Fire spell-clause is a deliberate no-op) 139% — a
+  consistent family shape rather than four independent misses,
+  accepted as-is.
 
 ## Open balance work
 

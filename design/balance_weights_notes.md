@@ -3602,3 +3602,121 @@ before — left as-is rather than trimmed, no clean way to reel it in
 without breaking the `Range = Level` symmetry. `balance_ledger.csv`
 rows updated (`I093-L1` through `L5`); no `items.csv` text change
 needed, only the rate/Value/Net.
+
+### Claw of Mortality / Rimefang / Radiant Verdict / Conflagration Brand — the elemental-Held-weapon family, priced together
+
+Surfaced while pricing Claw of Mortality's spell-conversion clause,
+which needed the new `attacks/turn` split above. Rather than price the
+four Level 3 "weapon debuff + spell-conversion" items one at a time,
+worked through them as a family so their relative strength lines up on
+purpose rather than by accident. Confirmed the family's actual design
+intent first, per the designer: **damage conversion is the valuable
+half for weapon attacks specifically**, and these four items exist to
+give spellcasters something useful out of the same slot too — via
+debuffs, not damage conversion, since spells are already elemental
+most of the time and converting an already-elemental spell to a
+*different* element is a much smaller benefit than converting a
+Physical weapon attack.
+
+**Two separate elemental-conversion baselines derived**, since "what
+does this attack default to" differs by attack type:
+
+- **Weapon attacks default to Physical.** Converting one to an element
+  bypasses the real, large gap between Physical Resist's rate (5.0)
+  and an elemental Resist rate (1.0 Fire, 0.5 Frost/Brilliant/Shadow)
+  — the original `1 point of soak bypassed × Damage's rate(2) = 2`
+  formula holds at full strength for Frost/Brilliant/Shadow. **Fire
+  gets a discount**: it's the most common elemental damage type (per
+  the designer, and matching Fire Resist's own rate being double the
+  other three — enemies more often carry some), so converting *to*
+  Fire specifically bypasses less. Calibrated directly off Elemental-
+  Forged Weaponry's own existing Level 3 (Fire) / Level 4 (other three)
+  split rather than re-deriving from Resist-rate arithmetic: solving
+  for what value/attack lands Fire's own Level-3 Target at the same
+  ~104%-funded ratio the other three hit at Level 4 gives **`1.5/
+  attack`** for Fire, `2/attack` for the rest. Added to
+  `balance_weights.csv` as *Elemental Conversion, weapon (Physical
+  baseline)*. This also confirmed Elemental-Forged Weaponry (`I101`,
+  not otherwise touched this pass) was already correctly designed —
+  its existing Level split just never had the underlying rate written
+  down.
+- **Spells default to Fire**, not Physical (per the designer, matching
+  Sorcery's own flavor text — "shooting fireballs"). A conversion
+  scoped to spell/non-weapon attacks (the shape all four family items
+  use) is really Fire → [other element], a much smaller resist gap.
+  Scaled the original soak-bypass credit proportionally to the
+  established Resist rates (`Fire's rate ÷ Physical's rate = 1.0 ÷ 5.0
+  = 0.2`) rather than assuming the full 1-point credit: `value/attack =
+  0.2 × Damage's rate(2) = 0.4`. Added to `balance_weights.csv` as
+  *Elemental Conversion, spell (Fire baseline)*. At full spell-uptime
+  (`attacks/encounter`, own-incidental baseline, 6.25): **`0.4 × 6.25 =
+  2.5`**. A conversion *to* Fire specifically is a complete no-op under
+  this rule (spells are already Fire by default) — flagged for
+  Conflagration Brand below.
+
+**Checked whether a debuff could stack on top of the full weapon-
+conversion value**: no room — weapon-conversion alone already
+saturates the Target at either Level (104% both ways), so there's no
+budget left without bumping the Level. Confirms the current split is
+correct: Elemental-Forged Weaponry stays the pure-conversion item, this
+family stays debuff-focused with only the small spell-bonus on top.
+
+**New debuff-pricing technique**: none of these four items apply their
+debuff as a one-shot lump — they refresh it on *every* weapon hit,
+continuously, for the whole fight. That needed a different model than
+this project's existing lump-application curves (which assume all
+stacks land at once and decay together). Set up as: `hits/turn = 1.25
+(own-incidental attacks/turn) × 0.5 (avg hit chance) = 0.625`, `×5
+rounds = 3.125 total stacks applied/encounter`. Then split by keyword
+shape:
+
+- **Discrete-payout debuffs** (Bleeding, Necrotic — resolve via one
+  event when a stack decays, no interaction between simultaneous
+  stacks): `total stacks applied × the keyword's own per-stack rate`
+  directly, since individual 1-stack applications mostly resolve well
+  clear of any stacking taper before the next one lands.
+- **Continuously-active debuffs** (Slowed, Vulnerable, Crippled,
+  Taunted/Frightened — penalty applies for as long as any stacks
+  remain): a queueing approximation, since arrivals (0.625/turn) run
+  below the 1/turn decay rate and the stack count settles into a low
+  equilibrium rather than climbing to the stacking cap and holding
+  there. `average active stacks = arrival/(decay−arrival) = 0.625 ÷
+  0.375 ≈ 1.67`, then `value = avg active stacks × per-stack rate × 5
+  rounds`. Flagged explicitly as a simplified (M/M/1-style) queueing
+  approximation, directionally solid but not exact to the decimal.
+  Assumes each weapon is the sole source of its own debuff — no
+  stacking with a duplicate copy or another item/Technique granting
+  the same keyword, since that's a different character's pricing
+  problem, not this one's. Both added to `balance_weights.csv` as one
+  combined *Continuously-refreshed debuff* row.
+
+**Family results** (Level 3, Target 9 each):
+
+| Item | Element | Debuff (weapon) | Spell bonus | Total | Net | Funded |
+|---|---|---|---|---|---|---|
+| Claw of Mortality | Shadow | Necrotic ×2/hit, full tier: `2×3×1=6.0` | +2.5 | 8.5 | −0.5 | 94% |
+| Rimefang (renamed from Claw of Rime) | Frost | Slowed ×1/hit, queueing: `1.67×1.1×5≈9.2` | +2.5 | 11.7 | +2.7 | 130% |
+| Radiant Verdict (new) | Brilliant | Vulnerable ×1/hit, queueing: `1.67×1×5≈8.35` | +2.5 | 10.85 | +1.85 | 121% |
+| Conflagration Brand | Fire | Bleeding ×1/hit, total-applied: `3.125×4=12.5` | +0 (no-op) | 12.5 | +3.5 | 139% |
+
+Necrotic's rare-trigger nature genuinely caps how much it can carry
+even under the most generous realization tier, landing Claw of
+Mortality a bit short (94%) — structural, not a mistake. The other
+three cluster in a 120–140% band, consistent enough across the family
+to read as an intentional "this whole cluster runs a bit hot" choice
+rather than three separate misses — accepted as-is rather than trimmed
+individually, per the designer. Conflagration Brand's dead Fire spell
+clause is deliberately left as a no-op (its own choice, not swapped to
+a different element) — the item compensates by having Bleeding alone
+carry the item's entire budget, ending up the strongest of the four,
+which reads as a fair trade for the wasted clause.
+
+**Radiant Verdict** (`I227`) is a new item, not previously in
+`items.csv` — fills the family's missing Brilliant slot. Held, Level 3,
+60 Gold, Main Material Brilliant, same Base Item Options as its three
+siblings. **Claw of Rime renamed to Rimefang** (`I099`) — same
+mechanics, new name (and a new Fluff paragraph, since the original had
+none) to read as distinct from Claw of Mortality rather than a second
+"Claw of X." `items.csv` updated (`I098` untouched mechanically,
+`I099` renamed, `I100` untouched, `I227` added). Regenerated into
+`data/items.json` (207 → 208 rows).
