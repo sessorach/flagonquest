@@ -1181,6 +1181,13 @@ next-biggest). Working through it lowest-Level to highest.
 - **Spiritlink Scepter** (`I184`, L3) — cut, obsolete. Reaching Weapon
   already grants the identical 3-meter Range bonus at Level 3 to ALL
   attacks and abilities, not just Theurgy spells — a strict superset.
+- **Valiant Arms** (`I160`, moved L3 → L2) — Good Luck on an attack
+  after a 6-meter straight-line charge. A charge-attack mechanic (no
+  formal "charge" rule exists elsewhere) — wording tightened
+  ("relatively straight line" → "in a straight line," added
+  "immediately before the attack"). Priced at `2.5 uses/encounter ×
+  2.4 (Good Luck) = 6.0`; original Level 3 was a 67%-funded shortfall,
+  Level 2 lands as an exact fit, `Net = 0` — same shape as Fanged Guard.
 
 ## Open balance work
 

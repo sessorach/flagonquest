@@ -3755,3 +3755,23 @@ cut rather than priced (would have landed at `Value = 10.3125`, `Net =
 overshoot, but there's no reason to keep a narrower duplicate around).
 Removed from `items.csv`. Regenerated into `data/items.json` (208 →
 207 rows).
+
+### Valiant Arms = 6.0, moved to Level 2 for an exact fit
+
+"When this weapon is used to make an attack, if the wielder moved at
+least 6 meters in a straight line immediately before the attack, they
+have Good Luck on the attack." A charge-attack mechanic — no formal
+"charge" rule exists in the rulebook, per the designer, this item is
+that idea informally. Wording tightened alongside pricing: "relatively
+straight line" → "in a straight line," and added "immediately before
+the attack" to fix the timing (move-then-attack, same turn).
+
+Per the designer, a mobile build could pull this off roughly every
+other attack without much tradeoff — **2-3 times/fight**; used 2.5 as
+the working middle: `Value = 2.5 × 2.4 (Good Luck) = 6.0`.
+
+Originally Level 3 (`Target 9`, `Net −3.0`, 67% funded) — moved to
+**Level 2** instead (`Target 6`, `Cost 40 Gold`): `Net = 0`, an exact
+fit, same shape as Fanged Guard's own move this pass. `items.csv`
+(`I160`) updated (wording, Level 3→2, Cost 60→40 Gold). Regenerated
+into `data/items.json`.

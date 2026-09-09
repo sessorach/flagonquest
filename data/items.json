@@ -6881,10 +6881,10 @@
     "category": "Masterwork",
     "slot": "Held",
     "tags": "Implement",
-    "level": 3,
+    "level": 2,
     "description": "Reinforced and sturdy, the style of this weapon makes it feel reassuring in one's hands.",
-    "effects": "When this weapon is used to make an attack, if the wielder moved at least 6 meters in a relatively straight line this turn, they have Good Luck on the attack.",
-    "cost": "60 Gold",
+    "effects": "When this weapon is used to make an attack, if the wielder moved at least 6 meters in a straight line immediately before the attack, they have Good Luck on the attack.",
+    "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -6925,7 +6925,7 @@
       "I126"
     ],
     "levels": [
-      3
+      2
     ]
   },
   {
