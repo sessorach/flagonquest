@@ -1178,6 +1178,9 @@ next-biggest). Working through it lowest-Level to highest.
   60% (successful Parry, for a Parry-focused build) = 1.5 successful
   Parries/encounter`, `Value = 6.0`. Original Level 3 was a real
   shortfall (67% funded); Level 2 lands as an exact fit, `Net = 0`.
+- **Spiritlink Scepter** (`I184`, L3) — cut, obsolete. Reaching Weapon
+  already grants the identical 3-meter Range bonus at Level 3 to ALL
+  attacks and abilities, not just Theurgy spells — a strict superset.
 
 ## Open balance work
 

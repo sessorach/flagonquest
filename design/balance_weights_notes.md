@@ -3741,3 +3741,17 @@ shortfall. Moved to **Level 2** instead (`Target 6`, `Cost 40 Gold`):
 `Net = 0`, an exact fit. `items.csv` (`I102`) updated (Level 3→2, Cost
 60→40 Gold; mechanic/wording unchanged). Regenerated into
 `data/items.json`.
+
+### Spiritlink Scepter — cut, obsolete since Reaching Weapon covers the same ground
+
+"Theurgy spells cast using this as an Implement have their Range
+increased by 3 meters." Already the same permanent-Range mechanic
+Reaching Weapon uses, just scoped narrower (Theurgy spells only,
+instead of all attacks and abilities). Since Reaching Weapon already
+grants the identical 3-meter bonus at Level 3 with no such
+restriction, per the designer this item is now strictly obsolete —
+cut rather than priced (would have landed at `Value = 10.3125`, `Net =
++1.3125`, 114.6% funded, identical to Reaching Weapon's own accepted
+overshoot, but there's no reason to keep a narrower duplicate around).
+Removed from `items.csv`. Regenerated into `data/items.json` (208 →
+207 rows).
