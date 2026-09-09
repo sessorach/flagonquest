@@ -1172,6 +1172,12 @@ next-biggest). Working through it lowest-Level to highest.
   (Bleeding, Fire spell-clause is a deliberate no-op) 139% — a
   consistent family shape rather than four independent misses,
   accepted as-is.
+- **Fanged Guard** (`I102`, moved L3 → L2) — Bleeding on a successful
+  Parry. First item this pass triggered off Parrying, needing a
+  defensive-frequency baseline: `3.75 attempts/encounter × ⅔ (melee) ×
+  60% (successful Parry, for a Parry-focused build) = 1.5 successful
+  Parries/encounter`, `Value = 6.0`. Original Level 3 was a real
+  shortfall (67% funded); Level 2 lands as an exact fit, `Net = 0`.
 
 ## Open balance work
 

@@ -4416,10 +4416,10 @@
     "category": "Masterwork",
     "slot": "Held",
     "tags": null,
-    "level": 3,
+    "level": 2,
     "description": "Weapons and shields designed for parrying and blocking, frequently styled with spikes, thorns, barbs.",
     "effects": "When the weapon is used to successfully Parry an attack from an adjacent creature, that creature gains a stack of Bleeding.",
-    "cost": "60 Gold",
+    "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -4460,7 +4460,7 @@
       "I126"
     ],
     "levels": [
-      3
+      2
     ]
   },
   {

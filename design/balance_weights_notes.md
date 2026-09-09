@@ -3720,3 +3720,24 @@ none) to read as distinct from Claw of Mortality rather than a second
 "Claw of X." `items.csv` updated (`I098` untouched mechanically,
 `I099` renamed, `I100` untouched, `I227` added). Regenerated into
 `data/items.json` (207 → 208 rows).
+
+### Fanged Guard = 6.0, moved to Level 2 for an exact fit
+
+"When the weapon is used to successfully Parry an attack from an
+adjacent creature, that creature gains a stack of Bleeding." First
+item this pass triggered off Parrying rather than attacking, needing a
+defensive-frequency baseline instead of the offensive `attacks/turn`
+one. Per the designer: a rational build for this item is a melee
+defender specifically leaning into Parry Defense, planning to use it
+against virtually every attack they face — `incoming attack attempts/
+encounter (3.75, the established figure) × ⅔ (assumed melee share of
+attacks against them) × 60% (assumed successful-Parry rate for a
+Parry-focused build) = 1.5 successful Parries/encounter`. Bleeding
+priced as a discrete-payout debuff (undiscounted per-stack rate, same
+treatment as the Claw family): `Value = 1.5 × 4 = 6.0`.
+
+Originally Level 3 (`Target 9`, `Net −3.0`, 67% funded) — a real
+shortfall. Moved to **Level 2** instead (`Target 6`, `Cost 40 Gold`):
+`Net = 0`, an exact fit. `items.csv` (`I102`) updated (Level 3→2, Cost
+60→40 Gold; mechanic/wording unchanged). Regenerated into
+`data/items.json`.
