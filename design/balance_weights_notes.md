@@ -3775,3 +3775,20 @@ Originally Level 3 (`Target 9`, `Net −3.0`, 67% funded) — moved to
 fit, same shape as Fanged Guard's own move this pass. `items.csv`
 (`I160`) updated (wording, Level 3→2, Cost 60→40 Gold). Regenerated
 into `data/items.json`.
+
+### Elemental-Forged Weaponry = confirmed as-is, both Levels clean fits
+
+"When the weapon is made, Fire is chosen; if the enhancement is Level
+4, Frost, Brilliant, or Shadow may be chosen instead. Attacks with
+this weapon deal their damage as that type, instead of their usual
+type." The pure weapon-conversion item — no debuff, unlike the Claw
+family. Already priced during that same family pass, since this item's
+own existing Level 3 (Fire)/Level 4 (any of the other three) split was
+the actual calibration anchor for the new Fire-discounted weapon-
+conversion rate, not something derived independently here.
+
+`Value (Fire, L3) = 1.5/attack × 6.25 (own-incidental attacks/
+encounter) = 9.375`, `Target = 9`, `Net = +0.375` (104% funded).
+`Value (Frost/Brilliant/Shadow, L4) = 2/attack × 6.25 = 12.5`, `Target
+= 12`, `Net = +0.5` (104% funded). Both clean fits — confirmed as-is,
+no text or pricing changes needed.

@@ -1188,6 +1188,11 @@ next-biggest). Working through it lowest-Level to highest.
   "immediately before the attack"). Priced at `2.5 uses/encounter ×
   2.4 (Good Luck) = 6.0`; original Level 3 was a 67%-funded shortfall,
   Level 2 lands as an exact fit, `Net = 0` — same shape as Fanged Guard.
+- **Elemental-Forged Weaponry** (`I101`, L3 or 4) — confirmed as-is,
+  no changes. Already priced during the Claw family pass, since this
+  item's own existing Level split was the calibration anchor for the
+  Fire-discounted weapon-conversion rate. Both options a clean 104%
+  funded (Fire at L3, Frost/Brilliant/Shadow at L4).
 
 ## Open balance work
 
