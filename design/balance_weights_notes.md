@@ -3802,3 +3802,16 @@ every hit) minus the elemental-conversion half, at Level 4 instead of
 3. Reused the total-stacks-applied model directly: `3.125 stacks/
 encounter × 4/stack = 12.5`, `Target (L4) = 12`, `Net = +0.5` (104%
 funded) — a clean fit, no changes needed.
+
+### Scepter of Evocation — cut, superseded by Thrumming Focus
+
+"A spell that would normally cost 2 or fewer AP may instead be cast
+for 4 AP. If it is, Good Luck on any attacks made as part of the
+spell." Same underlying idea as Thrumming Focus (`I103`, same Level,
+same slot): pay extra AP for Good Luck. Per the designer, this reads
+as an earlier draft of that same idea — narrower (only spells already
+costing ≤2 AP) and pricier (+2 AP, not +1) for the identical benefit,
+with Thrumming Focus's own wording ("spend an extra 1 AP for any
+action involving an attack with this weapon") already the cleaner,
+more general version. Cut rather than priced. Removed from
+`items.csv`. Regenerated into `data/items.json` (207 → 206 rows).

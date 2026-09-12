@@ -1198,6 +1198,9 @@ next-biggest). Working through it lowest-Level to highest.
   without the elemental half. Reused the total-stacks-applied model
   directly: `Value = 12.5`, **Net +0.5** (104% funded). Confirmed
   as-is.
+- **Scepter of Evocation** (`I185`, L4) — cut, an earlier draft of the
+  same idea that became Thrumming Focus (spend extra AP for Good Luck),
+  narrower and pricier for the identical benefit.
 
 ## Open balance work
 
