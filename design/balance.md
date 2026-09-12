@@ -1193,6 +1193,11 @@ next-biggest). Working through it lowest-Level to highest.
   item's own existing Level split was the calibration anchor for the
   Fire-discounted weapon-conversion rate. Both options a clean 104%
   funded (Fire at L3, Frost/Brilliant/Shadow at L4).
+- **Sanguine Iron Weapon** (`I182`, L4) — Bleeding on any Health-loss-
+  causing hit, same discrete-payout mechanic as Conflagration Brand
+  without the elemental half. Reused the total-stacks-applied model
+  directly: `Value = 12.5`, **Net +0.5** (104% funded). Confirmed
+  as-is.
 
 ## Open balance work
 

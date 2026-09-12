@@ -3792,3 +3792,13 @@ encounter) = 9.375`, `Target = 9`, `Net = +0.375` (104% funded).
 `Value (Frost/Brilliant/Shadow, L4) = 2/attack × 6.25 = 12.5`, `Target
 = 12`, `Net = +0.5` (104% funded). Both clean fits — confirmed as-is,
 no text or pricing changes needed.
+
+### Sanguine Iron Weapon = 12.5, confirmed as-is
+
+"Whenever an attack with the weapon causes the target to lose Health,
+they also gain a stack of Bleeding." Same mechanic as Conflagration
+Brand's Bleeding clause (discrete-payout, continuously reapplied on
+every hit) minus the elemental-conversion half, at Level 4 instead of
+3. Reused the total-stacks-applied model directly: `3.125 stacks/
+encounter × 4/stack = 12.5`, `Target (L4) = 12`, `Net = +0.5` (104%
+funded) — a clean fit, no changes needed.
