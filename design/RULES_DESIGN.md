@@ -1263,13 +1263,18 @@ pass hadn't fully mined. 4 were portable and got drafted:
   willing adjacent creature and shift up to 2 points from one Defense to
   another (can't push the raised one above the lowered one's new value).
   A genuinely novel mechanic, no current analogue.
-- **Scaraculpi's Gleaming Justice** (`I210`, Held, Level 5) — unconditional
-  Good Luck on all attacks with the weapon, no action cost. Stronger than
-  `I103` Thrumming Focus's AP-gated version of the same benefit, but the
-  old doc places it at Level 5 (this system's top tier) and other Level 5
-  items are similarly strong (`I104` Apocalyptic Staff gives a free
-  Level-4 spell once per encounter) — ported at face value, flagged here
-  as a first candidate to sanity-check once the balance pass actually runs.
+- **Scaraculpi's Gleaming Justice** (`I210`, Held, Level 5, later renamed
+  **Blade of Fortune**) — unconditional Good Luck on all attacks with the
+  weapon, no action cost. Stronger than `I103` Thrumming Focus's AP-gated
+  version of the same benefit, but the old doc places it at Level 5 (this
+  system's top tier) and other Level 5 items are similarly strong (`I104`
+  Apocalyptic Staff gives a free Level-4 spell once per encounter) —
+  ported at face value, flagged here as a first candidate to sanity-check
+  once the balance pass actually runs. **Resolved** during the Held
+  Masterwork balance pass: priced at an exact `Net = 0` (Level 5), and
+  with Thrumming Focus separately repriced down to Level 2 during the
+  same pass, the two now read as a sensible progression rather than a
+  mismatch — see `balance.md`/`balance_weights_notes.md` for the math.
 - **Worry Token** (`I211`, Neck, Level 2) — a 3-charge daily trinket with
   a GM-secret random-effect table (mostly "nothing happens," occasionally
   a minor heal/flip bonus/Defense bonus/Resist-ignore/card draw). Ported

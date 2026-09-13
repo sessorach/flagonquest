@@ -13,6 +13,45 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-13 — Held cluster closed out
+
+- Worked through all 30 Held Masterwork items, the largest single slot
+  by far. Cut six items outright (**Weapon of Sending**, **Staying
+  Gauntlets**, **Returning Knives**, **Spiritlink Scepter**, **Scepter
+  of Evocation**, **Apprentice's Dueling Catalyst** — mostly superseded
+  by another item in the same pass) plus **Elemental Bloodletter**,
+  whose damage-to-Bleeding conversion turned out to be a structural net
+  loss once checked against Bleeding's own capped curve.
+- Derived a second **attacks/turn baseline (`1.25/turn`)** for pricing
+  an always-on effect that rides the wielder's own attacks, alongside
+  the existing `1.5/turn` figure (kept for aggressive/tank scenarios) —
+  surfaced while re-pricing the Held slot's permanent Range and
+  elemental-conversion items.
+- Priced a 4-item elemental-weapon family together (**Claw of
+  Mortality**, **Rimefang**, new item **Radiant Verdict**,
+  **Conflagration Brand**), deriving a new **continuously-refreshed
+  debuff** pricing technique and a **Fire-baseline elemental-conversion
+  rate** for spells (spells default to Fire damage, not Physical, so
+  converting them is worth much less than converting a weapon attack).
+- **Heartseeker** fully redesigned — its original "treat any card as a
+  Heart" mechanic did nothing under the current suit-governance rules
+  and dated back to an older variable-damage system. Now grants a
+  guaranteed Extra Success via the kept flip card.
+- Derived the full **Good Luck stacking curve** (exact card-deck
+  combinatorics) to price **Thrumming Focus**'s "spend AP for extra
+  Good Luck" mechanic, finding that a second stack on the same attack
+  is a net loss — rational play self-caps at one activation without
+  needing an explicit rule.
+- **Placeholder's Speedy Scepter**'s AP-discount mechanic caught and
+  closed as a real exploit before shipping (uncapped, it could fund
+  extra actions per turn, not just cheaper ones) — capped to once/turn
+  and given a special crafting restriction (base item name must start
+  with "S").
+- **Blade of Fortune** (renamed from Scaraculpi's Gleaming Justice)
+  closes out the slot at an exact-fit Good Luck weapon, resolving a
+  design flag that it read stronger than Thrumming Focus's similar
+  effect — the two now sit at different Levels with different costs.
+
 ### 2026-09-06 — Ring cluster closed out
 
 - Cut two items: **Ring of Charming, Assertive, or Bold Statements**

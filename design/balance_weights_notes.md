@@ -3970,3 +3970,34 @@ Instrument — deliberately whimsical items, not meant to be optimized)
 — a "Speedy Scepter" that can only ever actually be built as a Shield.
 `items.csv` (`I161`) updated (wording, Base Item Options). Regenerated
 into `data/items.json`.
+
+### Blade of Fortune (formerly Scaraculpi's Gleaming Justice) = 15, exact fit
+
+"The wielder has Good Luck on attacks made with this weapon" —
+unconditional, permanent, no AP cost. Renamed from Scaraculpi's
+Gleaming Justice per the designer (read as accidentally Italian for a
+fantasy weapon name; "Sword of Glory" and "Blessed Edge" were also
+floated — landed on **Blade of Fortune**).
+
+Priced the same way as every other permanent always-on weapon effect
+this pass: single-instance rate × own-incidental attacks/encounter.
+`Good Luck (2.4) × 6.25 = 15`, `Target (L5) = 15`, `Net = 0` — an
+exact fit, no Level/Cost/Effects changes needed beyond the name.
+
+This also resolves the sanity-check flag `RULES_DESIGN.md` raised when
+this item was first drafted: it's a strictly stronger, unconditional
+version of Thrumming Focus's (`I103`) AP-gated single Good Luck, both
+originally sitting at higher Levels than made sense side by side. That
+flag predates Thrumming Focus's own repricing earlier in this pass,
+which moved it down to Level 2 (see above) — with Thrumming Focus now
+a cheap, AP-gated Level 2 item and Blade of Fortune a pricier,
+unconditional, permanent Level 5 one, the two read as a sensible
+progression rather than a mismatch. No further action needed on that
+flag.
+
+`items.csv` (`I210`) updated (name only). Regenerated into
+`data/items.json`.
+
+**This closes out the Held Masterwork slot pass** — every item across
+`I089`-`I104`, `I159`-`I161`, `I179`-`I185`, `I227` (Levels 1-5) has
+now been confirmed, reworked, repriced, or cut.

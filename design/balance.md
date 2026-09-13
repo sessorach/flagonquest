@@ -1240,20 +1240,31 @@ next-biggest). Working through it lowest-Level to highest.
   special crafting restriction per the designer — base item name must
   start with "S," which among this slot's options means Shield only,
   fitting the "Placeholder's" whimsical-joke-item pattern.
+- **Blade of Fortune** (`I210`, L5, renamed from Scaraculpi's Gleaming
+  Justice — read as accidentally Italian) — unconditional, permanent
+  Good Luck on attacks made with this weapon, no AP cost. Priced the
+  same as every other permanent always-on weapon effect this pass:
+  `Good Luck (2.4) × 6.25 (own-incidental attacks/encounter) = 15`,
+  **Net = 0** at Level 5, an exact fit. Resolves the RULES_DESIGN.md
+  flag against Thrumming Focus (`I103`) — that flag predates Thrumming
+  Focus's own move down to Level 2 earlier in this pass, so the two now
+  read as a sensible cheap-AP-gated vs. pricier-unconditional-permanent
+  progression rather than a mismatch.
+
+**Held Masterwork slot pass complete** — all 30 items (`I089`-`I104`,
+`I159`-`I161`, `I179`-`I185`, `I227`) across Levels 1-5 confirmed,
+reworked, repriced, or cut.
 
 ## Open balance work
 
-- **The full Masterwork list, 103 items total** (`items.csv` `I057`-`I115`
-  pre-existing, plus `I148`-`I165`, `I168`-`I189`, and `I208`-`I211`
-  newly drafted across three gap-fill passes — see `RULES_DESIGN.md`'s
-  "Old-docs review," "Site export gap-fill," and "Final Masterwork
-  completeness/dedup sweep" entries) needs to be run through the value
-  model to get properly statted and leveled — this is the next planned
-  pass, and the gap-fill work feeding it is now done. `I210` Scaraculpi's
-  Gleaming Justice (unconditional Good Luck on all attacks, no action
-  cost) is flagged in RULES_DESIGN.md as a first candidate worth
-  sanity-checking, since it's stronger than `I103` Thrumming Focus's
-  otherwise-similar AP-gated version. **Expect Resist-granting items to
+- **The rest of the Masterwork list** (~73 items across the other
+  slots — `items.csv` `I057`-`I115` pre-existing minus Held, plus
+  `I148`-`I165`, `I168`-`I189`, and `I208`-`I211` newly drafted across
+  three gap-fill passes — see `RULES_DESIGN.md`'s "Old-docs review,"
+  "Site export gap-fill," and "Final Masterwork completeness/dedup
+  sweep" entries) still needs to be run through the value model to get
+  properly statted and leveled — Held (above) is the first slot done,
+  not the whole list. **Expect Resist-granting items to
   read as underpowered across the board** — Physical Resist and a single
   element's Resist aren't remotely the same value (~5-10× apart after a
   damage-share correction narrowed the original ~7.5-15× gap; see
