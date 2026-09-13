@@ -1214,6 +1214,13 @@ next-biggest). Working through it lowest-Level to highest.
   AP) — it isn't, so rational play self-caps at one per attack with no
   explicit rule needed. `Value = 5.31` at Level 2, **Net −0.69** (89%
   funded).
+- **Apocalyptic Staff** (`I104`, L5) — once/encounter, cast War Magic
+  (max Level 4) as though known, Features chosen fresh. Wording fixed
+  from a broken reference ("Elementalist's Artillery," War Magic's old
+  name). Reused the Technique-value convention: `Value = 3×4 = 12`
+  against the item's own Level-5 Target (15) — a real, structural
+  `Net −3` (80% funded), accepted per the designer for the flexibility
+  of a fresh Feature loadout every encounter.
 
 ## Open balance work
 

@@ -3865,3 +3865,27 @@ Originally Level 4 (`Target 12`, `Net −6.69`, 44% funded) — moved to
 **Level 2** (`Target 6`, `Cost 40 Gold`): `Net = −0.69` (89% funded), a
 much closer fit. `items.csv` (`I103`) updated (wording, Level 4→2,
 Cost 80→40 Gold). Regenerated into `data/items.json`.
+
+### Apocalyptic Staff = 12, 80% funded and accepted for the Feature flexibility
+
+"Once per encounter, the wielder may choose a version of the War Magic
+(Level 4) Sorcery Spell Technique, selecting any Features as though
+they were learning it, and cast it as though they knew it." The
+original text referenced "Elementalist's Artillery (Level 4) battle
+magic Technique" — a broken reference, no such Technique exists.
+Confirmed with the designer: that was War Magic's (`T120`) old name, a
+Buildable Encounter Sorcery Spell capped at Level 4 (`Level Min 1 /
+Max 4`, base "2+[Mind] Fire damage," up to 6 basic/advanced Feature
+points at Level 4). Wording updated to the current name.
+
+Reuses the already-established Technique-value convention from
+Focusing Band of [Technique]: `Technique value (Encounter cadence)/
+Level = 3`. At War Magic's max Level (4): `Value = 3 × 4 = 12`. The
+item itself is Level 5 (`Target = 15`) while the Technique it borrows
+caps at Level 4 — a real, structural gap: `Net = -3` (80% funded).
+
+Per the designer: accepted as-is, not adjusted further — the
+flexibility of choosing Features fresh each encounter (rather than
+being locked into one fixed loadout the way actually learning the
+Technique would be) is worth the shortfall. `items.csv` (`I104`)
+updated (wording only). Regenerated into `data/items.json`.
