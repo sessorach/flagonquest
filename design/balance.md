@@ -1221,6 +1221,16 @@ next-biggest). Working through it lowest-Level to highest.
   against the item's own Level-5 Target (15) — a real, structural
   `Net −3` (80% funded), accepted per the designer for the flexibility
   of a fresh Feature loadout every encounter.
+- **Heartseeker** (`I159`, L5) — full redesign. Original "treat any
+  card as a Heart" did nothing (no weapon-attack Skill is governed by
+  Hearts); per the designer, it used to guarantee max damage back when
+  suits added variable damage directly, before the current Extra-
+  Success system replaced that. Considered and rejected retuning
+  *every* flipped card (Good Luck's both cards feed the Suit Pool,
+  which would spiral); redesigned to retune only the *kept* card,
+  adding the matching suit alongside its natural one. Priced as a
+  guaranteed Extra Success (`+1 Damage`): `Value = 2.0/attack × 6.25 =
+  12.5`, **Net −2.5** (83% funded).
 
 ## Open balance work
 

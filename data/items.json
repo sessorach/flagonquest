@@ -6830,7 +6830,7 @@
     "tags": "Implement",
     "level": 5,
     "description": "Forged of a blood-red steel, or some equally sinister material, the bearer feels a subtle pressure guiding their strikes toward the heart of anyone who stands against them.",
-    "effects": "When the wielder makes an attack with this weapon, they may treat any card flipped for it as a Heart.",
+    "effects": "When the wielder makes an attack with this weapon, the card they keep for that attack's flip counts as matching whichever suit governs the Skill used for the attack, in addition to its normal suit if different.",
     "cost": "100 Gold",
     "value_per_level": null,
     "school": null,

@@ -3889,3 +3889,42 @@ flexibility of choosing Features fresh each encounter (rather than
 being locked into one fixed loadout the way actually learning the
 Technique would be) is worth the shortfall. `items.csv` (`I104`)
 updated (wording only). Regenerated into `data/items.json`.
+
+### Heartseeker = 12.5, redesigned around a guaranteed Extra Success
+
+"When the wielder makes an attack with this weapon, they may treat any
+card flipped for it as a Heart" — broken as written. Extra Successes
+require matching the *attacking Skill's own governing suit*
+(`rulebook.md:181`), and no weapon-attack Skill is governed by Hearts
+(Melee and Archery are both Spades, Brawl is Clubs) — the original
+text did nothing for its own stated purpose.
+
+Per the designer: this used to guarantee max damage back when suits
+added a variable 0-3 damage bonus directly. That mechanic was replaced
+by the current Extra-Success-adds-damage system, so this needed a real
+redesign, not just a suit swap.
+
+**First version considered and rejected**: retune *every* card flipped
+for the attack to match, not just the one kept. Since Good Luck's both
+flipped cards feed the Suit Pool, this would guarantee-match *both*
+cards on every single attack — a real spiral, compounding a growing
+Suit Pool advantage across a whole fight, not just a one-off tension
+removal. Caught before pricing it.
+
+**Redesigned instead**: scope the retuning to only the card actually
+*kept* for the attack's flip, and have it **add** the matching suit
+alongside its natural one (not replace it) — so the discarded Good
+Luck card keeps its own real suit, closing the spiral entirely, while
+the attack itself still gets a guaranteed Extra Success. New wording:
+"the card they keep for that attack's flip counts as matching
+whichever suit governs the Skill used for the attack, in addition to
+its normal suit if different."
+
+Priced as a guaranteed Extra Success: `+1 Damage` (the rulebook's own
+worked example), at Damage's rate (`2/point`, already hit-chance-
+discounted) = `2.0/attack`. Full uptime (`own-incidental attacks/
+encounter`, 6.25, since this is a permanent always-on effect on every
+attack): `Value = 2.0 × 6.25 = 12.5`. `Target (L5) = 15`, `Net = -2.5`
+(83% funded) — a clean fit, no Level/Cost change needed. `items.csv`
+(`I159`) updated (mechanic rewritten). Regenerated into
+`data/items.json`.
