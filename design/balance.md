@@ -1031,7 +1031,7 @@ Mendicant's Cord, Galeforce Loop, Poison Needle, Ring of Pure Elements,
 Windrider's Loop, Tactician's Band, Flamebinder's Promise, Heartbinding
 Band, Luminous Signet, Focusing Band of [Technique], and Worry Token.
 
-### Held Masterwork pass — status so far
+### Held Masterwork pass — final lineup
 
 30 items, the largest single slot by far (more than double the
 next-biggest). Working through it lowest-Level to highest.
@@ -1257,23 +1257,41 @@ reworked, repriced, or cut.
 
 ## Open balance work
 
-- **The rest of the Masterwork list** (~73 items across the other
-  slots — `items.csv` `I057`-`I115` pre-existing minus Held, plus
-  `I148`-`I165`, `I168`-`I189`, and `I208`-`I211` newly drafted across
-  three gap-fill passes — see `RULES_DESIGN.md`'s "Old-docs review,"
-  "Site export gap-fill," and "Final Masterwork completeness/dedup
-  sweep" entries) still needs to be run through the value model to get
-  properly statted and leveled — Held (above) is the first slot done,
-  not the whole list. **Expect Resist-granting items to
-  read as underpowered across the board** — Physical Resist and a single
-  element's Resist aren't remotely the same value (~5-10× apart after a
-  damage-share correction narrowed the original ~7.5-15× gap; see
-  `balance_weights_notes.md`), and every existing Resist item already
-  checked against the derived weight comes back meaningfully negative
-  (Attuned Shroud, Elemental-Resistant Armor, Robes of Resilience, Robes
-  of the Elemental Lord). Decide deliberately whether that means these
-  items need real numeric buffs/Level cuts, not just each one
-  individually — this is a systemic pattern, not isolated undertuning.
+**Correction (2026-09-13): the Masterwork list is fully closed, not
+"~73 items still remaining" as an earlier version of this bullet
+claimed.** That claim was written right after the Held slot closed and
+assumed every other slot was still open — it wasn't checked against
+what had actually already landed. All 9 Masterwork slots (Head, Neck,
+Torso, Hands, Ring, Held, Belt, Feet, Other — 91 items total currently
+in `items.csv`) have "final lineup" sections above with real Value/
+Target/Net math, and every surviving Masterwork item ID has a row in
+`balance_ledger.csv` (verified directly, not assumed). Nothing at the
+per-item Masterwork level is outstanding.
+
+What genuinely remains, cross-cutting rather than slot-shaped:
+
+- **The Resist-granting-item systemic gap.** Physical Resist and a
+  single element's Resist aren't remotely the same value (~5-10× apart
+  after a damage-share correction narrowed the original ~7.5-15× gap;
+  see `balance_weights_notes.md`), and every existing Resist item
+  already checked against the derived weight comes back meaningfully
+  negative (Attuned Shroud, Elemental-Resistant Armor, Robes of
+  Resilience, Robes of the Elemental Lord — spread across multiple
+  already-closed slots). Needs a deliberate decision on whether these
+  items need real numeric buffs/Level cuts as a group, not just each
+  one individually re-litigated — this is a systemic pattern, not
+  isolated undertuning.
+- **Several flagged findings from the Alchemy pass** (below) were never
+  acted on: Revivification Draught reads overpowered, Healing Potion
+  underpowered, Poisons systematically weak as a whole category, Quartz
+  Tincture weak, several Food items not retuned after the once/day
+  Target formula's correction, and Hellfire Bomb/Thunderclap-in-a-Jar
+  reading overpowered once the AoE ×2 multiplier got confirmed.
+- **Baseline (non-Masterwork) Weapon and Armor items** — the actual
+  base stat lines (`I117`-`I135` Weapons, `I128`-`I129` Armor, plus
+  `I002` Basic Clothing) haven't been run through the value model at
+  all yet; only the Masterwork enhancements layered on top of them
+  have. Next planned pass.
 - The site-export batch also added 18 non-Masterwork items (`I190`-`I207`)
   that don't need value-model leveling but should get a normal
   price/rarity sanity check alongside the rest — the 4 that are
