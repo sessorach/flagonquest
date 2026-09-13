@@ -3928,3 +3928,45 @@ attack): `Value = 2.0 × 6.25 = 12.5`. `Target (L5) = 15`, `Net = -2.5`
 (83% funded) — a clean fit, no Level/Cost change needed. `items.csv`
 (`I159`) updated (mechanic rewritten). Regenerated into
 `data/items.json`.
+
+### Placeholder's Speedy Scepter = 17.19, capped once/turn, restricted to Shield
+
+"Abilities used with this cost 1 less AP, to a minimum of 1 AP."
+First-pass pricing used the standard permanent-effect treatment
+(single-instance rate × own-incidental attacks/encounter): `1 AP saved
+(2.75) × 6.25 = 17.1875`, `Target (L5) = 15`, `Net = +2.19` (114.6%
+funded) — same ratio Reaching Weapon and Spiritlink Scepter both
+landed at.
+
+**Caught before locking in**: as originally worded (uncapped), this is
+a real exploit. Freeing up AP doesn't just save value on a fixed
+number of actions — it lets the wielder fit *more* actions into the
+same turn. Normally 4 AP/turn funds 2 actions (2 AP each); at 1 AP
+each (minimum), the same 4 AP could fund 4 actions. Each of those
+*extra* actions is worth a full action's value (Autoswing, `5.5`), not
+just the AP saved (`2.75`) — an uncapped version could theoretically
+reach something like `2 extra actions/turn × 5.5 × 5 rounds ≈ 55`,
+wildly beyond anything else priced this pass.
+
+**Capped to once per turn** to close this — conveniently, that
+reproduces the original single-instance-per-attack framing almost
+exactly (6.25 ≈ 5 rounds, allowing for occasional double-attack turns),
+so the pricing didn't need to change: `Value = 17.1875`, `Net = +2.19`
+(114.6% funded), unchanged from the first pass, just now correctly
+bounded by the wording.
+
+**Special crafting restriction added**, per the designer: can only be
+applied to a base item whose name begins with "S." Checked this
+slot's own Base Item Options list (`I117`-`I126`) — only **Shield**
+qualifies. `Base Item Options` restricted to just `I126` as a result.
+No dedicated schema field exists for a special per-item crafting
+requirement like this (checked `convert.py`'s docstring — the only
+existing mechanism is the plain Base Item Options list), so this is
+documented directly in the item's own Effects text rather than adding
+a new column for what's a one-off rule. Fits the established
+"Placeholder's" joke-naming pattern already used elsewhere in this
+project (Placeholder's Grasping Gloves, Placeholder's Indelible
+Instrument — deliberately whimsical items, not meant to be optimized)
+— a "Speedy Scepter" that can only ever actually be built as a Shield.
+`items.csv` (`I161`) updated (wording, Base Item Options). Regenerated
+into `data/items.json`.

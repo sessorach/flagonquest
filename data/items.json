@@ -6936,7 +6936,7 @@
     "tags": "Implement",
     "level": 5,
     "description": "The legendary regalia considered the pinnacle of Placeholder's illustrious enchanting career, serving as a near-perfect conduit for magical power.",
-    "effects": "Abilities used with this cost 1 less AP, to a minimum of 1 AP.",
+    "effects": "Once per turn, an ability used with this costs 1 less AP, to a minimum of 1 AP. This enchantment can only be applied to a base item whose name begins with the letter S.",
     "cost": "100 Gold",
     "value_per_level": null,
     "school": null,
@@ -6967,14 +6967,6 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I117",
-      "I118",
-      "I119",
-      "I120",
-      "I121",
-      "I122",
-      "I123",
-      "I124",
       "I126"
     ],
     "levels": [

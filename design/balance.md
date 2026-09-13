@@ -1231,6 +1231,15 @@ next-biggest). Working through it lowest-Level to highest.
   adding the matching suit alongside its natural one. Priced as a
   guaranteed Extra Success (`+1 Damage`): `Value = 2.0/attack × 6.25 =
   12.5`, **Net −2.5** (83% funded).
+- **Placeholder's Speedy Scepter** (`I161`, L5) — 1 AP cheaper
+  abilities. Uncapped, this was a real exploit (freeing AP lets a
+  turn fund *more* actions, not just cheaper ones — an unbounded
+  version could reach ~55 raw). Capped to once/turn, which
+  conveniently reproduces the original pricing: `Value = 17.19`, **Net
+  +2.19** (114.6% funded, same ratio as Reaching Weapon). Also given a
+  special crafting restriction per the designer — base item name must
+  start with "S," which among this slot's options means Shield only,
+  fitting the "Placeholder's" whimsical-joke-item pattern.
 
 ## Open balance work
 
