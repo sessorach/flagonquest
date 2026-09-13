@@ -4469,10 +4469,10 @@
     "category": "Masterwork",
     "slot": "Held",
     "tags": "Implement",
-    "level": 4,
+    "level": 2,
     "description": "A weapon gently trembling with power; by focusing, the wielder can draw this power out and use it to strike true.",
-    "effects": "The wielder may spend an extra 1 AP for any action involving an attack with this weapon. If they do, any such attack has Good Luck.",
-    "cost": "80 Gold",
+    "effects": "The wielder may spend an extra 1 AP for any action involving an attack with this weapon. If they do, that attack has Good Luck twice instead of once.",
+    "cost": "40 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -4513,7 +4513,7 @@
       "I126"
     ],
     "levels": [
-      4
+      2
     ]
   },
   {

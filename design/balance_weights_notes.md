@@ -3815,3 +3815,53 @@ with Thrumming Focus's own wording ("spend an extra 1 AP for any
 action involving an attack with this weapon") already the cleaner,
 more general version. Cut rather than priced. Removed from
 `items.csv`. Regenerated into `data/items.json` (207 → 206 rows).
+
+### Thrumming Focus = 5.31, bumped to "Good Luck twice" and moved to Level 2
+
+"The wielder may spend an extra 1 AP for any action involving an
+attack with this weapon. If they do, that attack has Good Luck twice
+instead of once." Originally just "Good Luck" — checked the raw trade
+first, since this is the first item this pass to charge the *player's
+own AP* per use rather than a flat activation tax: `Good Luck (2.4) −
+1 AP (2.75) = −0.35`, a flat loss every single use. That means a
+rational player only ever activates it in the narrow case where the AP
+would otherwise go completely unused — modeled via the same 85/15
+split Speed's own permanent-rescoping already uses for "moving once, 1
+AP idle": `~0.56 turns/encounter`, `Value ≈ 1.35`, only **11% funded**.
+
+**Bumped to "Good Luck twice"** (flip 3, take highest) instead of
+raising the frequency assumption, per the designer. Needed a fresh
+derivation — no existing rate for stacked Good Luck. Computed exact
+`E[max of N]` from the 52-card deck (13 ranks, 4 copies each) via
+combinatorics, marginal over the 7-baseline, plus a Suit Pool credit
+scaled proportionally to Good Luck's own `+0.19` for 2 cards (`~0.095/
+card`):
+
+| Flips | Raw marginal | +Suit Pool | Total |
+|---|---|---|---|
+| 2 (Good Luck) | 2.196 | +0.19 | 2.4 (matches Good Luck exactly) |
+| 3 (twice) | 3.294 | +0.285 | 3.6 |
+| 4 (thrice) | 3.950 | +0.38 | 4.33 |
+| 5 (four times) | 4.385 | +0.475 | 4.86 |
+
+Added to `balance_weights.csv` as *Good Luck (stacked, flip N take
+highest)*.
+
+At "twice" (flip 3), the trade flips to genuinely profitable: `3.6 −
+2.75 = +0.85` — a rational player now uses it on essentially every
+attack, not just spare-AP turns. **Checked whether a second activation
+on the same attack is worth it** (per the designer's own "what if it
+stacks twice a turn" question): flip 5 (`4.86`) over flip 3 (`3.6`) is
+only `+1.26` marginal, against another full `2.75` AP — a net loss.
+Diminishing returns kill the second activation; rational play caps at
+one per attack regardless of whether the rules permit more, so the
+item's wording doesn't need an explicit stacking cap — natural optimal
+play already self-limits.
+
+Priced at full uptime (`own-incidental attacks/encounter`, 6.25), net
+of the AP cost paid per use (not a one-time Potion-style tax, since
+it's spent every time): `Value = 6.25 × (3.6 − 2.75) = 5.31`.
+Originally Level 4 (`Target 12`, `Net −6.69`, 44% funded) — moved to
+**Level 2** (`Target 6`, `Cost 40 Gold`): `Net = −0.69` (89% funded), a
+much closer fit. `items.csv` (`I103`) updated (wording, Level 4→2,
+Cost 80→40 Gold). Regenerated into `data/items.json`.

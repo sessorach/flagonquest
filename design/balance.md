@@ -1201,6 +1201,19 @@ next-biggest). Working through it lowest-Level to highest.
 - **Scepter of Evocation** (`I185`, L4) — cut, an earlier draft of the
   same idea that became Thrumming Focus (spend extra AP for Good Luck),
   narrower and pricier for the identical benefit.
+- **Thrumming Focus** (`I103`, moved L4 → L2) — spend an extra 1 AP for
+  Good Luck. First item this pass to charge the player's own AP per
+  use: raw "Good Luck for 1 AP" is a flat loss (`2.4 − 2.75 = −0.35`),
+  only usable when the AP would've gone to waste anyway (~11% funded).
+  Bumped to **"Good Luck twice"** instead — derived a fresh Good Luck
+  stacking curve (exact 52-card combinatorics + scaled Suit Pool
+  credit; new `balance_weights.csv` rate) — which flips the trade
+  profitable (`3.6 − 2.75 = +0.85`), usable on essentially every
+  attack. Checked whether a second activation on the same attack is
+  worth it (diminishing returns: `+1.26` marginal against another full
+  AP) — it isn't, so rational play self-caps at one per attack with no
+  explicit rule needed. `Value = 5.31` at Level 2, **Net −0.69** (89%
+  funded).
 
 ## Open balance work
 
