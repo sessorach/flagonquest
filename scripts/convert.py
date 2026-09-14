@@ -482,7 +482,12 @@ CRAFTING_RECIPE_MAP = {
     # ITEM_MAP) take priority over this table field by field, not
     # all-or-nothing — e.g. a Weapon item sets its own Total Materials
     # but still inherits School/Skill Total/Main/Optional Types from
-    # here, since only the count actually varies per weapon.
+    # here, since only the count actually varies per weapon. Total
+    # Materials is the one exception within that merge (see index.html's
+    # recipesForItem): a RECIPE row's own Total Materials, when set,
+    # wins over the item's default instead — used by Armor's "Upgrade
+    # from [lower tier]" recipes, which need a smaller count than that
+    # same item's fresh-build recipes.
     "Applies To":       "applies_to",
 }
 

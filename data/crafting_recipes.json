@@ -88,6 +88,50 @@
     "applies_to": "Category:Armor,NameContains:Medium"
   },
   {
+    "id": "CR020",
+    "name": "Armor - Medium (Upgrade from Light, Tailoring)",
+    "description": "Reinforce an existing suit of Light Armor into Medium with added leather and padding, instead of building fresh.",
+    "school": "Tailoring",
+    "skill_total": "Craft 4",
+    "total_materials": 2,
+    "main_materials": "Cloth, Leather",
+    "optional_materials": "Wood, Bone, Metal",
+    "applies_to": "Category:Armor,NameContains:Medium"
+  },
+  {
+    "id": "CR021",
+    "name": "Armor - Medium (Upgrade from Light, Smithing)",
+    "description": "Reinforce an existing suit of Light Armor into Medium with added metal plating, instead of building fresh.",
+    "school": "Smithing",
+    "skill_total": "Craft 4",
+    "total_materials": 2,
+    "main_materials": "Metal",
+    "optional_materials": "Cloth, Leather, Wood, Bone",
+    "applies_to": "Category:Armor,NameContains:Medium"
+  },
+  {
+    "id": "CR022",
+    "name": "Armor - Heavy (Upgrade from Medium)",
+    "description": "Reinforce an existing suit of Medium Armor into Heavy with additional plating. Can only be made using Smithing, same as building Heavy fresh.",
+    "school": "Smithing",
+    "skill_total": "Craft 5",
+    "total_materials": 2,
+    "main_materials": "Metal",
+    "optional_materials": "Cloth, Leather, Wood, Bone",
+    "applies_to": "Category:Armor,NameContains:Heavy"
+  },
+  {
+    "id": "CR023",
+    "name": "Armor - Heavy (Upgrade from Light)",
+    "description": "Reinforce an existing suit of Light Armor directly into Heavy. Can only be made using Smithing, same as building Heavy fresh.",
+    "school": "Smithing",
+    "skill_total": "Craft 5",
+    "total_materials": 4,
+    "main_materials": "Metal",
+    "optional_materials": "Cloth, Leather, Wood, Bone",
+    "applies_to": "Category:Armor,NameContains:Heavy"
+  },
+  {
     "id": "CR007",
     "name": "Unarmed Enhancer (Tailoring)",
     "description": "Generally a base item for Masterwork items, for unarmed attacks.",

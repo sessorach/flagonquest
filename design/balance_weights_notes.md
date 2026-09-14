@@ -4278,3 +4278,86 @@ type." Speed specifically gates the jump to Heavy, not Might or Gold.
 Verified in a sandboxed Playwright pass (Items tab search/add for all
 three tiers, Crafting tab's Medium Armor recipe dropdown) — no console
 errors, all three tiers and the new recipe render correctly.
+
+### Armor follow-up — variable-material upgrade recipes, tightened Might Requirements
+
+A quick follow-up pass on the 3-tier Armor system above, prompted by
+wanting Armor's crafting to support upgrading an existing suit into a
+higher tier rather than only building each tier from scratch, plus a
+deliberate tightening of the Might Requirement gates.
+
+**Might Requirement: Light 3 (unchanged), Medium 4→5, Heavy 6→7.**
+Might is governed by the Body Stat (`STAT_SKILLS.Body` in `index.html`
+includes Might), so Might's Skill Total = Body Stat points + Might
+Skill points. At character creation, the absolute ceiling for a
+character who fully dumps into it (Body as their one 3-rank primary
+Stat, Might as one of their two 3-rank primary Skills) is `3+3=6`. Per
+the designer: "I don't want heavy to be available at character
+creation, but shortly after" — **Heavy's Might Req 7 sits exactly 1
+point past that creation-time ceiling**, so it's mathematically
+unreachable at creation and opens up after a single Experience-funded
+Body or Might rank-up. Medium's 5 is reachable at creation but needs a
+real, non-token investment (e.g. a 2-rank secondary Stat + 3-rank
+primary Skill, or the reverse) — not something every build clears by
+accident the way Light's 3 is.
+
+**Variable-material Armor upgrade recipes** — a suit of Armor can now
+be built by reinforcing an existing lower tier instead of only from
+scratch, paying just the Total Materials *difference* between tiers
+(Light=4, Medium=6, Heavy=8, so Light→Medium=2, Medium→Heavy=2,
+Light→Heavy=4) at the same Craft requirement and crafting time as
+building the target tier fresh. Per the designer, kept simple as plain
+additional recipe rows (the same pattern already used for a School
+choice) rather than a new rulebook rule — no new mechanic for players
+to learn, just more entries in the same picker:
+
+| Recipe | School | Craft | Materials |
+|---|---|---|---|
+| Medium ← Light (Tailoring) | Tailoring | 4 | 2 |
+| Medium ← Light (Smithing) | Smithing | 4 | 2 |
+| Heavy ← Medium | Smithing only | 5 | 2 |
+| Heavy ← Light | Smithing only | 5 | 4 |
+
+Medium's upgrade path got both Schools (mirroring its own fresh-build
+duality), per the designer; Heavy's upgrade paths stay Smithing-only
+either way, matching Heavy's own fresh-build restriction — reinforcing
+into plate is a metalworking job regardless of what the base armor
+was built from.
+
+**Two real bugs found and fixed while wiring this up, not just data
+entry:**
+
+1. **A genuine CSV-quoting corruption** — `CR020`/`CR021`'s Name field
+   (`Armor - Medium (Upgrade from Light, Tailoring)`) contains an
+   unquoted comma, which silently shifted every field after it by one
+   column (the Description ended up in the School column, etc.).
+   Exactly the failure mode `CLAUDE.md` warns about hand-editing CSVs
+   outside a tool that understands quoting — caught by actually
+   checking the converted JSON output before trusting it, not by
+   assuming the edit worked. Fixed by quoting the Name field properly.
+2. **A real precedence bug in `index.html`'s `recipesForItem`** — the
+   merge logic let an item's own `total_materials` *always* win over a
+   recipe's, which happened to work for every existing recipe (they
+   all leave Total Materials blank at the recipe level, relying on the
+   item's default) but would have made these new upgrade recipes
+   silently ignore their own reduced material counts and just show the
+   item's full fresh-build number — defeating the entire point of the
+   feature without any visible error. Fixed by flipping the precedence
+   specifically for Total Materials: a recipe's own value now wins
+   when set, falling back to the item's default otherwise — fully
+   backward compatible, since every pre-existing recipe still leaves
+   it blank. Also fixed the crafting picker's option labels, which
+   used only the recipe's School name (`via Tailoring`) — two recipes
+   sharing a School (a tier's fresh-build and upgrade recipes) would
+   have rendered as identical, indistinguishable dropdown options.
+   Now falls back to the recipe's own parenthesized name suffix
+   whenever more than one variant shares a School.
+
+`items.csv` (Might Req changes), `crafting_recipes.csv` (4 new
+recipes, `CR020`-`CR023`), `armor_categories.csv` (Might Req updated),
+and `index.html` (the two fixes above) all updated. Regenerated into
+`data/*.json`. Re-verified in the sandboxed Playwright pass: all three
+Armor tiers' full recipe picker (fresh + upgrade variants) render with
+correct, distinguishable labels and correct Materials counts for every
+option, Might Requirements display correctly on all three tiers, no
+console errors.

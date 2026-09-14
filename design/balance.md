@@ -1350,6 +1350,21 @@ points:
   `Base Item Options` now include `I127`. `armor_categories.csv`
   (reference table, not consumed by the live site) updated to match.
 
+**Follow-up**: Might Requirements tightened (Medium `4→5`, Heavy
+`6→7`, Light unchanged at 3) — Heavy's 7 sits exactly 1 point past the
+character-creation ceiling for a fully-dumped Might Skill Total (Body
+3 + Might 3 = 6), so it's unreachable at creation and opens up after a
+single Experience rank-up, per the designer's explicit intent. Also
+added variable-material Armor upgrade recipes — a lower tier can now
+be reinforced into a higher one for just the Total Materials
+difference (Light→Medium 2, Medium→Heavy 2, Light→Heavy 4) rather than
+only building each tier from scratch. Found and fixed two real bugs
+while wiring this up: a CSV-quoting corruption from an unquoted comma
+in a recipe name (shifted every later field by one column), and a
+genuine precedence bug in `index.html`'s crafting-recipe merge logic
+that would have made the new upgrade recipes silently ignore their own
+reduced material counts. Full writeup in `balance_weights_notes.md`.
+
 ## Open balance work
 
 **Correction (2026-09-13): the Masterwork list is fully closed, not

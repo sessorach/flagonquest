@@ -4071,7 +4071,15 @@ function recipesForItem(item, recipes) {
   // matching table row rather than just the first, so an item craftable
   // via more than one School (e.g. Weapons via Carving or Smithing)
   // still gets one variant per School, each carrying the item's own
-  // override alongside that School's own Types.
+  // override alongside that School's own Types. Total Materials is the
+  // one field where a specific RECIPE row can in turn override the
+  // item's own default — e.g. an Armor tier's "Upgrade from" recipes
+  // (reinforcing an existing lower-tier suit instead of building fresh)
+  // need a smaller Total Materials than that same item's other, fresh-
+  // build recipes, so the recipe row's own value wins whenever it's set,
+  // falling back to the item's default only when the recipe leaves it
+  // blank — exactly the every-other-existing-recipe case, so this stays
+  // backward compatible with nothing else needing to change.
   if (applicable.length === 0) {
     return [{
       id: `item:${item.id}`, source: "item",
@@ -4085,7 +4093,7 @@ function recipesForItem(item, recipes) {
     id: `item:${item.id}:${r.id}`, source: "item",
     school: item.school || r.school,
     skill_total: item.skill_total || r.skill_total,
-    total_materials: item.total_materials != null ? item.total_materials : r.total_materials,
+    total_materials: r.total_materials != null ? r.total_materials : item.total_materials,
     main_materials: item.main_materials || r.main_materials,
     optional_materials: item.optional_materials || r.optional_materials,
   }));
@@ -4399,20 +4407,34 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
                     {readyBadge("Materials", materialsReady)}
                   </div>
                 </div>
-                {/* More than one way to make this item (one recipe row
-                    per School) — a picker instead of a separate card per
-                    School, so the item only shows up once. */}
+                {/* More than one way to make this item — usually one
+                    recipe row per School, but an Armor tier's "Upgrade
+                    from [lower tier]" recipes can share a School with
+                    that same tier's fresh-build recipe (e.g. Medium via
+                    Tailoring, fresh or upgraded from Light) — a picker
+                    instead of a separate card per recipe, so the item
+                    only shows up once. Labeling falls back to the
+                    recipe's own parenthesized name suffix (e.g.
+                    "Upgrade from Light, Tailoring") whenever more than
+                    one variant shares the same School, so two variants
+                    never render as identical, indistinguishable options. */}
                 {variants.length > 1 && (
                   <select
                     value={recipe.id}
                     onChange={e => setSelectedRecipe(s => ({ ...s, [item.id]: e.target.value }))}
                     style={{ fontSize: 13, alignSelf: "flex-start" }}
                   >
-                    {variants.map(v => (
-                      <option key={v.recipe.id} value={v.recipe.id}>
-                        via {v.recipe.school || v.recipe.name}
-                      </option>
-                    ))}
+                    {variants.map(v => {
+                      const schoolShared = v.recipe.school
+                        && variants.filter(x => x.recipe.school === v.recipe.school).length > 1;
+                      const nameSuffix = v.recipe.name && v.recipe.name.match(/\(([^)]+)\)\s*$/);
+                      const label = schoolShared && nameSuffix ? nameSuffix[1] : (v.recipe.school || v.recipe.name);
+                      return (
+                        <option key={v.recipe.id} value={v.recipe.id}>
+                          via {label}
+                        </option>
+                      );
+                    })}
                   </select>
                 )}
                 <div style={{ fontSize: 13, color: TEXT.faint, lineHeight: 1.5 }}>

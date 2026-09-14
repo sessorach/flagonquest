@@ -13,6 +13,25 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-14 — Armor upgrade recipes, tightened Might Requirements
+
+- Armor can now be crafted by reinforcing an existing lower tier
+  instead of only building fresh — pay just the Total Materials
+  difference between tiers (Light→Medium 2, Medium→Heavy 2,
+  Light→Heavy 4) at the same Craft requirement and time. Medium's
+  upgrade path is craftable via either Tailoring or Smithing; Heavy's
+  upgrade paths stay Smithing-only, matching Heavy's own restriction.
+- Might Requirements tightened: Medium `4→5`, Heavy `6→7` (Light stays
+  3). Heavy's 7 sits exactly 1 point past the character-creation
+  ceiling for a fully-invested Might Skill Total (6), so it's
+  deliberately unreachable at creation and opens up after a single
+  Experience rank-up.
+- Fixed two real bugs found while wiring this up: a CSV-quoting
+  corruption from an unquoted comma in a recipe name that silently
+  shifted later fields by one column, and a crafting-recipe merge
+  precedence bug that would have made the new upgrade recipes ignore
+  their own reduced material counts.
+
 ### 2026-09-14 — Baseline Weapons and Armor balanced, new 3-tier Armor
 
 - First balance pass through the base (non-Masterwork) Weapon and

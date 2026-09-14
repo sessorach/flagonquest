@@ -7,6 +7,10 @@ CR005,Armor - Light (Smithing),Light armor with metal fittings and plating.,Smit
 CR006,Armor - Heavy (Smithing),Heavy armor. Can only be made using Smithing.,Smithing,Craft 5,,Metal,"Cloth, Leather, Wood, Bone","Category:Armor,NameContains:Heavy"
 CR018,Armor - Medium (Tailoring),Medium armor built from reinforced leather.,Tailoring,Craft 4,,"Cloth, Leather","Wood, Bone, Metal","Category:Armor,NameContains:Medium"
 CR019,Armor - Medium (Smithing),Medium armor with substantial metal components — mail or plated leather.,Smithing,Craft 4,,Metal,"Cloth, Leather, Wood, Bone","Category:Armor,NameContains:Medium"
+CR020,"Armor - Medium (Upgrade from Light, Tailoring)","Reinforce an existing suit of Light Armor into Medium with added leather and padding, instead of building fresh.",Tailoring,Craft 4,2,"Cloth, Leather","Wood, Bone, Metal","Category:Armor,NameContains:Medium"
+CR021,"Armor - Medium (Upgrade from Light, Smithing)","Reinforce an existing suit of Light Armor into Medium with added metal plating, instead of building fresh.",Smithing,Craft 4,2,Metal,"Cloth, Leather, Wood, Bone","Category:Armor,NameContains:Medium"
+CR022,Armor - Heavy (Upgrade from Medium),"Reinforce an existing suit of Medium Armor into Heavy with additional plating. Can only be made using Smithing, same as building Heavy fresh.",Smithing,Craft 5,2,Metal,"Cloth, Leather, Wood, Bone","Category:Armor,NameContains:Heavy"
+CR023,Armor - Heavy (Upgrade from Light),"Reinforce an existing suit of Light Armor directly into Heavy. Can only be made using Smithing, same as building Heavy fresh.",Smithing,Craft 5,4,Metal,"Cloth, Leather, Wood, Bone","Category:Armor,NameContains:Heavy"
 CR007,Unarmed Enhancer (Tailoring),"Generally a base item for Masterwork items, for unarmed attacks.",Tailoring,Craft 3,3,"Cloth, Leather",Metal,Name:Unarmed Enhancer
 CR008,Unarmed Enhancer (Smithing),"Generally a base item for Masterwork items, for unarmed attacks.",Smithing,Craft 3,3,Metal,"Cloth, Leather",Name:Unarmed Enhancer
 CR009,Basic Clothing,For any applicable slot.,Tailoring,Craft 3,3,Cloth,"Bone, Leather, Metal, Precious",Name:Basic Clothing
