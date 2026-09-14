@@ -1957,6 +1957,62 @@ legend garbled by generations of retelling, not a biography.
     since Goblin Game is out of scope for this pass; worth revisiting
     whenever Goblin Game content is back in scope.
 
+## Baseline damage-over-Resist assumption
+
+Formalizing an assumption that's been implicit since the original
+designer's balance-notes spreadsheet but never written down as an
+explicit rule of thumb: **a baseline weapon attack, with no Stat
+investment in the damage-contributing Stat, should net roughly 2-3
+damage over a Light-Armored target's Resist once it lands.** This is
+the grounding fact behind "extra points of Damage are almost certainly
+going to convert to just extra Health lost" — once an attack already
+clears Resist by a comfortable margin in the ordinary case, more
+Damage mostly translates 1:1 into Health loss rather than being eaten
+by Resist, which is why `Damage`'s own established value (`2/pt` —
+`Health(4) × ~50% hit chance`) doesn't carry an additional Resist
+discount layered on top.
+
+Traced to the original spreadsheet's own Baseline tab (`archive/
+flagonquest_balance_notes_model.md`): *"Party of 4 vs. 4 enemies, ~50%
+average hit chance, ~2.25 Health lost per hit that lands."* The
+current, reconciled `Damage = 2/pt` rate rounds this to a clean 2
+(`Health(4) × 0.5`) rather than 2.25 — a small, harmless rounding from
+the original figure, not a real disagreement.
+
+**Checked directly against the actual baseline weapons and Light
+Armor** (`I117`-`I120`, `I128`), at zero Stat investment in the
+relevant Stat (the genuine floor, not the `Body/Cunning = 3` baseline
+used elsewhere for Range formulas) — Light Armor's Resist is 1:
+
+| Weapon | Damage @ Stat=0 | vs. Light Armor's Resist (1) |
+|---|---|---|
+| Light 1H Melee (`3 + [Stat]`) | 3 | **2** |
+| Light 2H Melee (`4 + [Stat]`) | 4 | **3** |
+| Heavy 1H Melee (`4 + [Stat]`) | 4 | **3** |
+| Heavy 2H Melee (`5 + [Stat]`) | 5 | **4** |
+
+Lands almost exactly on the 2-3 target already, with Heavy 2H running
+a point higher — a clean, reassuring confirmation that the baseline
+weapon Damage values (locked during the Baseline Weapons pass) were
+already well-calibrated to this assumption without it ever being
+written down explicitly. Worth checking any future weapon or enemy
+damage number against this same floor-Stat/Light-Armor baseline before
+trusting it by feel.
+
+## Unarmored as an opt-in archetype choice, not a default
+
+Confirmed as an intentional design pattern, not a gap: going without
+Armor (`I002` Basic Clothing, which explicitly "does not count as
+Armor of any kind") is meant to read the same way Unarmed weapon
+combat does — a real, viable choice for a character built specifically
+around it (Techniques that reward being unarmored, the same way some
+reward fighting bare-handed), not something anyone would pick with
+other options on the table and no particular reason to. No item
+changes needed to establish this; it's already how `I002`/Unarmed are
+built. Worth keeping in mind if a future Torso-slot Technique or
+Masterwork enhancement specifically rewards *not* wearing Armor —
+that's the intended niche for this choice, not an oversight to patch.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).
