@@ -171,3 +171,25 @@ the ring used. The component breakdown above (hit-gated Autoswing for
 the Brawl→Spell half, attack-enabler for the Spell→Brawl-closing half)
 is a reusable starting point for pricing whichever Level this ends up
 drafted at.
+
+## Masterwork recipes as a learned/collected resource, not universally known
+
+Right now any character with the right School and Craft Skill Total
+can attempt any Masterwork item's recipe — the only gates are Skill,
+materials, tools, and (per the rulebook's own Tools section) *"special
+items like Masterwork creations require you to find a specific recipe
+for them"*, which isn't currently backed by any mechanic. Per the
+designer, base (non-Masterwork) items make sense as broadly known —
+a Smithing Kit or similar already implies "you know the basic
+recipes" — but Masterwork recipes could be their own acquired,
+collectible resource: found, bought, or otherwise earned individually,
+the same way a specific magic item is.
+
+One shape floated: standardized recipe-collection items bundling
+"all the Level 1 Masterwork recipes" (and so on per Level), while
+Level 4-5 recipes stay individual, rarer finds — reflecting that the
+most powerful enchantments shouldn't come as part of a convenient
+starter bundle. Not drafted at all yet — needs a real pass on how
+recipe acquisition actually works mechanically (a new item category?
+a Technique? pure GM narrative?) before this goes anywhere. Flagged
+here rather than acted on now.
