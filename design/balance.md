@@ -1255,6 +1255,49 @@ next-biggest). Working through it lowest-Level to highest.
 `I159`-`I161`, `I179`-`I185`, `I227`) across Levels 1-5 confirmed,
 reworked, repriced, or cut.
 
+### Baseline Weapons pass — final lineup
+
+The first pass through the 13 core Base Game weapons plus the 3
+Goblin Game firearms (`I117`-`I126`, `I130`-`I132`) — the actual base
+items every Masterwork enhancement gets built onto, none of which
+carry a `Level`/`Target` the way every other item priced so far does.
+Full derivation in `balance_weights_notes.md`; headline results:
+
+- **New pricing model for un-Leveled base items**: compare raw
+  `Accuracy(1/pt) + Damage(2/pt) + Weapon Defense(1/pt)` directly
+  (valid since every weapon shares the same attack cadence), against
+  a Target of `baseline(8) + 2 (Archery) − 2 (Acrobatics) + 2
+  (two-handed)`. Both Melee weapon pairs (`I117`-`I120`) already fit
+  this exactly with zero changes, and the two-handed `+2` is directly
+  confirmed by existing data (`Light 2H`'s raw of 10 already equals
+  `Light 1H`'s 8, plus the slot cost).
+- **New Range-value curve** for a weapon's own inherent engagement
+  distance (distinct from every other Range rate, which price a
+  *bonus* on top of an existing range): flat 0 below 6m, ramping to
+  1.375 by 9m, climbing steeply (`0.515625/m`) from 9-12m, then
+  tapering to a quarter of that rate beyond 12m — "past that distance
+  it's already the whole battlefield," per the designer.
+- **New reload penalty** (`0.8×` on Accuracy/Damage only) for the
+  three fire-every-shot firearms — reload doesn't just cost AP, it
+  makes double-attacking within a turn mathematically impossible,
+  flattening their attack cadence to `5.0/encounter` vs. the `6.25`
+  baseline.
+- **Light Thrown** (`I121`) Damage `3→2`, **Heavy Thrown** (`I122`)
+  Damage `4→3` — kept deliberately generous against their own
+  (Acrobatics-discounted) Target, per the designer: Thrown is meant
+  to stay a viable flexible/backup pick for non-combat-focused
+  archetypes without needing to fully compete with a dedicated
+  build's own weapon.
+- **Light Bow** (`I123`) Range `15→19`, **Heavy Bow** (`I124`) Range
+  `20→17` — swapped into a "precise sniper, longer reach" (Light) vs.
+  "hard-hitting, shorter reach" (Heavy) identity, the inverse of the
+  naive intuition, since the model's own math wanted Light's lower
+  raw stats to need *more* Range credit to hit the same Target.
+  Accuracy/Damage deliberately left untouched on both, per the
+  designer — only Range was in scope for this fix.
+- **Unarmed, Shield, Handgun, Blunderbuss, Musket**: all confirmed
+  as-is, no changes needed.
+
 ## Open balance work
 
 **Correction (2026-09-13): the Masterwork list is fully closed, not
@@ -1287,11 +1330,12 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   Tincture weak, several Food items not retuned after the once/day
   Target formula's correction, and Hellfire Bomb/Thunderclap-in-a-Jar
   reading overpowered once the AoE ×2 multiplier got confirmed.
-- **Baseline (non-Masterwork) Weapon and Armor items** — the actual
-  base stat lines (`I117`-`I135` Weapons, `I128`-`I129` Armor, plus
-  `I002` Basic Clothing) haven't been run through the value model at
-  all yet; only the Masterwork enhancements layered on top of them
-  have. Next planned pass.
+- **Baseline (non-Masterwork) Armor items** — the actual base stat
+  lines (`I128`-`I129` Armor, plus `I002` Basic Clothing) haven't been
+  run through the value model yet. Weapons (above) are now done; Armor
+  is the next planned pass, and will likely intersect directly with
+  the Resist-granting-item systemic gap flagged above, since Physical
+  Resist is Armor's whole reason to exist.
 - The site-export batch also added 18 non-Masterwork items (`I190`-`I207`)
   that don't need value-model leveling but should get a normal
   price/rarity sanity check alongside the rest — the 4 that are

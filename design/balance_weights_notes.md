@@ -4001,3 +4001,180 @@ flag.
 **This closes out the Held Masterwork slot pass** — every item across
 `I089`-`I104`, `I159`-`I161`, `I179`-`I185`, `I227` (Levels 1-5) has
 now been confirmed, reworked, repriced, or cut.
+
+### Baseline Weapons pass — a new model for `Category: Weapon` items, no Level/Target of their own
+
+The first pass through the 13 core baseline weapons plus the 3 Goblin
+Game firearms (`I117`-`I126`, `I130`-`I132`) — the actual base items
+every Masterwork enhancement gets built onto. None of these carry a
+`Level`, so unlike everything priced so far there's no `Level × 3/6`
+Target to check against. The only meaningful check is *internal*: do
+weapons in the same tier cost roughly the same, does Accuracy/Damage/
+Weapon Defense trade off sensibly, does Gold scale with power.
+
+**The raw model.** A weapon's "budget" is `Accuracy(1/pt) + Damage
+(2/pt) + Weapon Defense(1/pt)`, using the same locked rates as
+everywhere else. Comparing raw budgets directly (not multiplied by
+attacks/encounter) is valid here specifically because every weapon
+shares the same underlying attack cadence — the multiplier is common
+to all of them and cancels out in a weapon-to-weapon ranking. Light/
+Heavy `1H`/`2H` Melee (`I117`-`I120`) turned out to already be
+perfectly matched pairs under this model with zero changes needed —
+Light trades Accuracy+WD for Damage relative to Heavy, both landing on
+identical totals (8, 10) — confirming the raw model wasn't inventing
+anything, just describing what was already there.
+
+**Held-slot opportunity cost = 2, anchored to Shield.** Per the
+designer: "the value of a one-handed weapon is lower because you can
+use something else in the other hand... my baseline for that is
+someone choosing to use a shield for an extra +2 parry defense." This
+single number validates itself beautifully against existing data:
+`Light 2H Melee's raw (10) = Light 1H's raw (8) + 2` exactly, same for
+Heavy (10=8+2) — both pairs were already priced correctly before this
+model ever touched them. It also explains Shield itself: a sword-and-
+board build (`Light 1H`, 8, + Shield's own +2) totals 10, the *same*
+combined value as a two-hander, just redistributed toward defense
+instead of damage.
+
+**Target formula: `baseline(8) + 2 (Archery) − 2 (Acrobatics) + 2
+(two-handed)`.** Established through a long back-and-forth — see the
+full exchange in this project's session history for the complete
+reasoning — but the durable result:
+
+- **Archery: +2.** The only combat Skill that feeds zero Defenses and
+  has no other listed use at all (`rulebook.md`: *"Marksmanship with
+  bows and similar ranged weaponry. It can be used to attack with
+  these weapons"* — nothing else). A character investing in it gets
+  strictly less back per point than Melee (feeds Parry) or Acrobatics
+  (feeds Dodge, fall-damage reduction, general checks). The full
+  theoretical gap (a 3-point "primary focus" skill investment × the
+  Defense rate) is discounted down to a flat +2 rather than credited
+  in full.
+- **Acrobatics: −2.** Mirrors Archery exactly, in the opposite
+  direction. Two distinct arguments converge here: Acrobatics is
+  broader in absolute utility than even Melee's own skill (Dodge +
+  fall damage + general checks, vs. Melee's Parry-only), *and* — the
+  sharper point — most builds invest *some* Acrobatics for Dodge
+  regardless of weapon choice, so a Thrown build's offensive
+  investment substantially overlaps with spending it was going to make
+  anyway, a genuine marginal-cost efficiency distinct from the
+  breadth argument. Per the designer, this is deliberately generous:
+  Thrown weapons are meant to read as a flexible, viable backup choice
+  for non-combat-focused archetypes (a Rogue, or a spellcaster who's
+  run out of spells) without needing to compete on raw power with a
+  dedicated build's weapon — "them being usable as melee weapons is
+  fine, then they're just worse melee weapons, but they have a real
+  upside in being so flexible."
+- **Two-handed: +2.** The Held-slot opportunity cost above, applied as
+  an *increase to the entitled budget* (the weapon is allowed more raw
+  power), not a credit added after the fact that lets it get away with
+  less raw power — confirmed against the crucial direction-check: Light
+  2H Melee's raw (10) already equals `8+2`, an empirical fact that
+  fixed which of the two mathematically-equivalent-looking readings was
+  correct before Archery's own sign got decided.
+- **Important direction note**, since it was easy to get backwards:
+  "budget increased by two" means the weapon is *entitled to more raw
+  power*, not that a credit lets it need *less*. Confirmed unambiguously
+  from the two-handed case (a known fact, not something being solved
+  for) before applying the same direction to Archery/Acrobatics.
+
+**Accuracy stays capped at +1** for every weapon except Unarmed's own
++2 (a deliberate, singular exception, per the designer) — all of this
+pass's budget corrections went into Damage (and Range) instead, never
+into pushing Accuracy higher.
+
+**A units note, worth remembering the next time a Range-like mechanic
+needs pricing**: Accuracy/Damage/WD are *per-event* stats (their value
+scales with how often the triggering event — an attack made, an attack
+parried — happens over an encounter); the Range value below is a
+*per-turn/per-encounter* quantity that does NOT compound with attack
+frequency at all — it's about the structure of the fight, not how often
+the wielder swings. They're only safely addable because the Range
+credit is deliberately expressed in the same "attack-value-equivalent"
+units (via the `5.5`-per-attack conversion) before being summed with
+the per-event stats — a translation step, not a coincidence. This is
+also exactly why the firearms' reload penalty (below) correctly applies
+only to the per-event Accuracy+Damage sum and never touches the Range
+term: reload reduces how often you attack, which has no bearing on how
+delayed the enemy's approach is.
+
+**Reload penalty (firearms) = 0.8×, on the per-event stats only.**
+Per the designer: a reload-gated weapon needs 1 AP to reload after
+every shot but the last. The real constraint isn't the AP cost itself
+— it's that firing twice in one turn would cost `2+1+2=5 AP`, more
+than a turn allows, a hard deterministic ceiling (not a probability)
+on ever double-attacking. That flattens the firearms' own-incidental
+rate to a flat `1.0/turn × 5 = 5.0/encounter`, vs. the `1.25/turn ×
+5 = 6.25` baseline everything else gets — a `5.0/6.25 = 0.8×`
+multiplier, applied only to `Accuracy+Damage`, never to Range.
+
+**Range value — the longest derivation in this pass**, through
+several iterations before landing:
+
+1. First pass treated Range as a small flat "avoided melee's closing
+   tax" credit (~1.4), same for every ranged weapon regardless of
+   actual meters — this under-priced how much a Bow's real reach is
+   worth and forced almost all of the Archery+two-handed budget
+   compensation into Damage, which would have made Heavy Bow's Damage
+   literally exceed Heavy 2H Melee's — exactly the "tactically better
+   *and* straight-up more damage" outcome the designer explicitly did
+   not want.
+2. Corrected to price Range as **guaranteed extra double-attack
+   turns**: `moves_needed(D, Speed 4) = ceil((D−1)/4)` from the Feet
+   pass's own breakpoint work determines how many turns the enemy needs
+   to close; a "safe turn" (the enemy hasn't arrived yet) is worth
+   `(2 attacks guaranteed − 1.25 baseline expectation) × 5.5 = 4.125`.
+3. Final shape, a single continuous curve rather than discrete tiers,
+   per the designer's own worked proposal ("if each move is 4 meters,
+   1 meter of range is 1/8 of a safe turn"):
+   - **0 below 6m** — no real tactical benefit that close.
+   - **Ramps to 1.375 by 9m** — restores credit for "avoiding
+     repositioning to chase a target," which a hard cliff at a single
+     threshold was missing entirely; per the designer, "even a few
+     points of range can be valuable like that."
+   - **+0.515625/meter from 9-12m** (reaching 2.922 at 12m) — the
+     steep "denies the enemy's whole turn" zone, `(D−9)/8` safe turns.
+   - **Tapers to 1/4 rate (+0.129/meter) beyond 12m** — per the
+     designer, past this distance a fight is already "the entire
+     battlefield," so further range shouldn't keep adding value at
+     the same steep rate.
+4. A separate "counters enemy ranged fighters" value stream (return
+   fire during the approach instead of eating free hits) was
+   considered and explicitly dropped — per the designer, this should
+   symmetrically apply to enemy stat blocks too once those get their
+   own balance pass, so it nets to roughly zero for *this* pass's
+   purposes and isn't worth pricing into player weapons now.
+
+**Final changes locked in this pass:**
+
+- **Light Thrown** (`I121`): Damage `3+[Cunning] → 2+[Cunning]`. Range
+  (`3×Body`) unchanged. `Value = Acc(1)+Dmg(4)+Range(9m,1.375) =
+  6.375`, `Target = 6` (8−2 Acrobatics), `Net = +0.375` (106% funded).
+- **Heavy Thrown** (`I122`): Damage `4+[Body] → 3+[Body]`. `Value =
+  0+Dmg(6)+1.375 = 7.375`, `Target = 6`, `Net = +1.375` (123% funded)
+  — deliberately left generous rather than trimmed further, per the
+  designer's explicit "err on the side of over-valuing their
+  capabilities" for this weapon line's flexibility.
+- **Light Bow** (`I123`): Range `15 → 19`. Accuracy/Damage untouched
+  (`+1`/`3`), per the designer — only Range was to move. `Value =
+  1+6+3.825 = 10.825`, `Target = 12` (8+2 Archery+2 two-handed),
+  `Net = −1.175` (90% funded).
+- **Heavy Bow** (`I124`): Range `20 → 17` — swapped with Light Bow
+  into a "hard-hitting, shorter reach" identity (the inverse of
+  Light's "precise sniper, longer reach"), since the model's own math
+  wanted Light's lower raw stats to need *more* Range credit than
+  Heavy's to hit the same Target, inverting the naive intuition that
+  "Heavy" should also mean "longer ranged." `Value = 0+8+3.567 =
+  11.567`, `Target = 12`, `Net = −0.433` (96% funded).
+- **Unarmed** (`I125`), **Shield** (`I126`): confirmed as-is, no
+  changes — see the model notes above for why each sits deliberately
+  below the 1H attacker baseline.
+- **Handgun/Blunderbuss/Musket** (`I131`/`I130`/`I132`): confirmed
+  as-is, no changes — all land within 88-106% funded once the reload
+  penalty and Range curve are both applied, close enough given the
+  designer's own "long range is too context-sensitive to land a
+  perfectly balanced number" allowance. Blunderbuss is the loosest fit
+  (88%) but carries its own unpriced Good Luck(≤5m)/Bad Luck(10-15m)
+  clause likely closing some of that gap.
+
+`items.csv` (`I121`-`I124`) updated. Regenerated into `data/items.json`.
