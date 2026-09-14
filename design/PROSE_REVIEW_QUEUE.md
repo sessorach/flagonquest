@@ -84,7 +84,11 @@ things off in order.
   `6eb02a5`.
 - **`#### Materials`** / **`#### Time`** (Creating Items) — rewritten for
   the unified crafting formula, then Time simplified into two
-  GM-adjustable baseline buckets. Commits `413f9b3`, `0799328`.
+  GM-adjustable baseline buckets. Commits `413f9b3`, `0799328`. New
+  rule + worked example added for the "several Main Types, no
+  alternatives" case (need one of each Type, not just any single one)
+  — Robes of the Elemental Lord's own Main Materials had exactly this
+  gap. Commit `1f012e7`.
 - **`## Examples`** (Creating Items) — rewritten alongside the
   Materials/Time changes; also touched during the Quick Start Guide add.
   Commits `e2156ca`, `413f9b3`.
