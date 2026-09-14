@@ -2864,6 +2864,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I127",
       "I128",
       "I129",
       "I002"
@@ -2912,6 +2913,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I127",
       "I128",
       "I129",
       "I002"
@@ -2963,6 +2965,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I127",
       "I128",
       "I129",
       "I002"
@@ -3010,6 +3013,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I127",
       "I128",
       "I129",
       "I002"
@@ -3058,6 +3062,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I127",
       "I128",
       "I129",
       "I002"
@@ -3105,6 +3110,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I127",
       "I128",
       "I129",
       "I002"
@@ -3153,6 +3159,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I127",
       "I128",
       "I129",
       "I002"
@@ -3200,6 +3207,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I127",
       "I128",
       "I129",
       "I002"
@@ -5516,6 +5524,47 @@
     "levels": []
   },
   {
+    "id": "I127",
+    "name": "Medium Armor",
+    "category": "Armor",
+    "slot": "Torso",
+    "tags": null,
+    "level": null,
+    "description": "Medium armor — a hardened leather cuirass, mail shirt, or similar.",
+    "effects": null,
+    "cost": "6 Gold",
+    "value_per_level": null,
+    "school": null,
+    "skill_total": null,
+    "total_materials": 6,
+    "main_materials": null,
+    "optional_materials": null,
+    "physical_resist": 2,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": 0,
+    "parry_defense": null,
+    "dodge_defense": -1,
+    "vital_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skills": null,
+    "might_requirement": 4,
+    "held_slots": null,
+    "supplement": "Base Game",
+    "material_types": null,
+    "base_item_options": [],
+    "levels": []
+  },
+  {
     "id": "I128",
     "name": "Light Armor",
     "category": "Armor",
@@ -5572,7 +5621,7 @@
     "total_materials": 8,
     "main_materials": null,
     "optional_materials": null,
-    "physical_resist": 2,
+    "physical_resist": 3,
     "fire_resist": null,
     "frost_resist": null,
     "brilliant_resist": null,
@@ -7502,6 +7551,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I127",
       "I128",
       "I129",
       "I002"

@@ -66,6 +66,28 @@
     "applies_to": "Category:Armor,NameContains:Heavy"
   },
   {
+    "id": "CR018",
+    "name": "Armor - Medium (Tailoring)",
+    "description": "Medium armor built from reinforced leather.",
+    "school": "Tailoring",
+    "skill_total": "Craft 4",
+    "total_materials": null,
+    "main_materials": "Cloth, Leather",
+    "optional_materials": "Wood, Bone, Metal",
+    "applies_to": "Category:Armor,NameContains:Medium"
+  },
+  {
+    "id": "CR019",
+    "name": "Armor - Medium (Smithing)",
+    "description": "Medium armor with substantial metal components — mail or plated leather.",
+    "school": "Smithing",
+    "skill_total": "Craft 4",
+    "total_materials": null,
+    "main_materials": "Metal",
+    "optional_materials": "Cloth, Leather, Wood, Bone",
+    "applies_to": "Category:Armor,NameContains:Medium"
+  },
+  {
     "id": "CR007",
     "name": "Unarmed Enhancer (Tailoring)",
     "description": "Generally a base item for Masterwork items, for unarmed attacks.",

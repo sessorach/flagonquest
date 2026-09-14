@@ -4178,3 +4178,103 @@ several iterations before landing:
   clause likely closing some of that gap.
 
 `items.csv` (`I121`-`I124`) updated. Regenerated into `data/items.json`.
+
+### Baseline Armor pass — 3 tiers, a genuinely different balance shape than Weapons
+
+The second and final piece of the Baseline items work, after Weapons
+above — `I128`/`I129` (Light/Heavy Armor) plus a new `I127` Medium
+Armor, reworking the old 2-tier system into 3.
+
+**Why this couldn't reuse the Weapons model directly.** Every Weapon
+stat (Accuracy, Damage, Weapon Defense) has build-independent value —
+everyone attacks at roughly the same cadence, so comparing raw budgets
+directly was valid. Physical Resist doesn't work that way: its
+*realized* value scales with how many hits the wearer actually
+absorbs, a property of the wearer's build, not the armor. This project
+already has a rate for exactly this case (`Tank / above-average attack
+draw`, `×1.5` example, `balance_weights.csv`) — a flat single-scenario
+raw-value comparison will always make heavier armor look like a
+mediocre trade for an "average" character while understating its real
+value for the dedicated-tank archetype it's actually built for.
+
+**Resolved by checking every tier under two lenses** rather than one —
+generic party member (baseline hit-draw) and dedicated tank (`×1.5` on
+the Resist component only, since Speed/Dodge penalties are flat costs
+that don't scale with how tanky the build is):
+
+| Tier | Resist | Speed | Dodge | Generic value | Tank value | Tank/Generic |
+|---|---|---|---|---|---|---|
+| Light | 1 | 0 | 0 | 5.0 | 7.5 | 1.50× |
+| Medium | 2 | 0 | −1 | 9.0 | 14.0 | 1.56× |
+| Heavy | 3 | −1 | −1 | 11.46 | 18.96 | 1.65× |
+
+Heavy reads as a mediocre, easily-skippable trade under the generic
+lens — deliberately, since that's not who it's for. Under the tank
+lens it pulls further ahead than Light does (1.65× vs. 1.50×), because
+it has more Resist for the multiplier to amplify against the same flat
+penalty cost — the mechanical shape behind "dedicated tanks really
+synergizing with higher Resist provide real value," not just a vibe.
+
+**Reframed the design goal.** Not "no tier should be better than
+another" (a single-axis target that doesn't fit a build-dependent
+stat), but **"no tier should be better than another *for the same
+build*"** — a genuine two-way tension: a squishy character in Heavy
+Armor should feel like a real mistake (paying Speed/Dodge costs for
+Resist they'll never draw enough hits to cash in), and a dedicated
+tank in Light Armor should *also* feel like a missed opportunity
+(leaving Resist value on the table their build was built to
+capitalize on). Both being true at once is success, not a sign the
+tiers are failing to converge on one "best" answer.
+
+**The tier shape**: Light = no penalty, Medium = one penalty
+dimension, Heavy = both — matching "somewhat more flexible" (Medium)
+vs. "more pronounced" (Heavy) directly. Checked which single stat
+Medium should sacrifice: Dodge (`raw 9.0`) vs. Speed (`raw 7.46`) leave
+different raw totals since Dodge's rate (1/pt) is cheaper than Speed's
+(2.54375/pt) — meaning a genuine free choice between the two would have
+a dominant strategy (always take Dodge), not a real decision. Fixed
+Medium's penalty at Dodge specifically instead, per the designer:
+"you really only start picking up heavier armor once you're planning
+on either using Parry or just killing dudes faster than they hurt
+you... a Barbarian archetype might go Medium since their Dodge isn't
+very good regardless... but the Speed penalty starts biting so they
+don't go all the way to Heavy unless they're more of an actual Tank
+type." Speed specifically gates the jump to Heavy, not Might or Gold.
+
+**Final changes:**
+
+- **Light Armor** (`I128`): confirmed as-is, untouched — the anchor
+  tier everything else compares against, and also the anchor for the
+  "average attack nets ~2-3 over Resist" assumption (see
+  `RULES_DESIGN.md`'s new note) — baseline weapons at zero Stat
+  investment already land almost exactly on this against Light
+  Armor's Resist.
+- **Medium Armor** (`I127`, new): Resist 2, Speed 0, Dodge −1, Might
+  Req 4, 6 Gold. `Value = 9.0` generic, `14.0` under the tank lens.
+- **Heavy Armor** (`I129`): Physical Resist `2 → 3` (Speed −1/Dodge
+  −1/Might 6/Cost 8g unchanged). `Value = 11.46` generic, `18.96`
+  tank-lens — directly fixes the problem that prompted revisiting this
+  at all: the old 2-tier Heavy paid double Light's Gold for only ~29%
+  more raw value (`10.0−2.54−1=6.46` at the old Resist 2), a bad deal
+  under any build, not just the wrong one.
+- **Gold kept to a simple 4/6/8 linear scale**, deliberately not used
+  as a real balancing lever — per the designer, all Armor should stay
+  inexpensive; the actual tradeoff lives entirely in the stat
+  penalties, not the price tag.
+- **Unarmored** (`I002` Basic Clothing) and the Might Requirement
+  gating (Light 3, Medium 4, Heavy 6, unchanged/interpolated) both
+  confirmed as-is — see `RULES_DESIGN.md`'s "Unarmored as an opt-in
+  archetype choice" note. Might Requirement gates access to the higher
+  tiers rather than buying extra budget, the same rule established for
+  Weapons' Heavy variants.
+- `crafting_recipes.csv` gained `CR018`/`CR019` (Medium Armor via
+  Tailoring/Smithing, Craft 4) and all 9 Torso-slot Masterwork items'
+  `Base Item Options` now include `I127` alongside `I128`/`I129`/`I002`.
+  `armor_categories.csv` (a small unconsumed reference table, per
+  `convert.py`'s own comment) updated to a matching 3-row AC001-AC003.
+
+`items.csv` (`I127` new, `I129` Resist changed), `crafting_recipes.csv`,
+`armor_categories.csv` updated. Regenerated into `data/*.json`.
+Verified in a sandboxed Playwright pass (Items tab search/add for all
+three tiers, Crafting tab's Medium Armor recipe dropdown) — no console
+errors, all three tiers and the new recipe render correctly.

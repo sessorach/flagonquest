@@ -13,6 +13,34 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-14 — Baseline Weapons and Armor balanced, new 3-tier Armor
+
+- First balance pass through the base (non-Masterwork) Weapon and
+  Armor items — `I117`-`I135` Weapons and `I128`/`I129` Armor — which
+  carry no Level, so a new pricing model was built instead of reusing
+  the Masterwork `Level × 3/6` Target: raw `Accuracy+Damage+Weapon
+  Defense` compared against `baseline(8) + 2 (Archery) − 2
+  (Acrobatics) + 2 (two-handed)`, plus a new Range-value curve for a
+  weapon's own inherent engagement distance and a reload penalty for
+  fire-every-shot firearms.
+- **Light/Heavy Thrown** Damage trimmed (`3→2`/`4→3`) but kept
+  deliberately generous, so Thrown stays a viable flexible/backup
+  weapon line for non-combat-focused archetypes.
+- **Light/Heavy Bow** ranges swapped (`15→19`/`20→17`) into a
+  "precise sniper, longer reach" vs. "hard-hitting, shorter reach"
+  identity — Accuracy/Damage left untouched on both.
+- **Armor reworked from 2 tiers to 3** — added a new **Medium Armor**
+  (Resist 2, Dodge −1 only) between Light (unchanged) and Heavy
+  (Resist raised `2→3`, same Speed/Dodge penalties as before). Fixes
+  the old 2-tier Heavy Armor paying double Light's Gold for barely
+  more value. Might Requirement now gates the jump from Medium to
+  Heavy at the Speed penalty specifically, not Gold or raw stats.
+- Formalized two standing design assumptions in `RULES_DESIGN.md`: a
+  baseline weapon attack should net ~2-3 damage over a Light-Armored
+  target's Resist (traced to the original balance spreadsheet, and
+  confirmed directly against the actual weapon numbers), and going
+  Unarmored is an intentional opt-in archetype choice, not a gap.
+
 ### 2026-09-13 — Held cluster closed out
 
 - Worked through all 30 Held Masterwork items, the largest single slot

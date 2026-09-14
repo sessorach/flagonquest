@@ -9,8 +9,16 @@
   },
   {
     "id": "AC002",
-    "name": "Heavy Armor",
+    "name": "Medium Armor",
     "physical_resist": 2,
+    "dodge_penalty": -1,
+    "speed_penalty": 0,
+    "might_str": 4
+  },
+  {
+    "id": "AC003",
+    "name": "Heavy Armor",
+    "physical_resist": 3,
     "dodge_penalty": -1,
     "speed_penalty": -1,
     "might_str": 6

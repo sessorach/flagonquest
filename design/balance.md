@@ -1298,6 +1298,58 @@ Full derivation in `balance_weights_notes.md`; headline results:
 - **Unarmed, Shield, Handgun, Blunderbuss, Musket**: all confirmed
   as-is, no changes needed.
 
+### Baseline Armor pass — three tiers, a genuinely different balance shape than Weapons
+
+Reworked from 2 tiers (Light/Heavy) to 3 (Light/Medium/Heavy), adding
+a new `I127` Medium Armor. Full reasoning in `balance_weights_notes.md`
+and the two new `RULES_DESIGN.md` notes ("Baseline damage-over-Resist
+assumption," "Unarmored as an opt-in archetype choice"); headline
+points:
+
+- **Armor's core stat doesn't balance the way Weapons' did.** A
+  Weapon's Accuracy/Damage/WD has build-independent value (everyone
+  attacks at roughly the same rate), which is what let Light/Heavy
+  Weapon pairs balance against a single universal yardstick. Physical
+  Resist's *realized* value scales with how many hits the wearer
+  actually absorbs — a property of the wearer's build, not the armor
+  — so a flat "raw value" comparison under one assumed scenario always
+  makes heavier armor look mediocre for an average character while
+  understating its value for the dedicated-tank archetype it's
+  actually for. Resolved by checking the tiers under two lenses
+  (generic party member vs. the already-established `Tank/above-
+  average attack draw ×1.5` multiplier) instead of one.
+- **Reframed the design goal**: not "no armor tier should be better
+  than another" (a single-axis target that doesn't fit this stat), but
+  "no tier should be better than another *for the same build*" — a
+  squishy character in Heavy Armor should feel like a mistake, a
+  dedicated tank in Light Armor should feel like a missed opportunity,
+  both true at once rather than one tier dominating.
+- **Light Armor stays the untouched baseline** (Resist 1, no
+  penalty, Might 3, 4 Gold) — confirmed as the anchor the "average
+  attack nets ~2-3 over Resist" assumption is built around.
+- **New Medium Armor** (`I127`, Resist 2, Dodge −1 only, Might 4, 6
+  Gold) — deliberately took the single-penalty-dimension shape (Dodge,
+  not Speed) per the designer: this reads as the pick for a build
+  that's already not leaning on Dodge (a Parry-focused or high-output
+  "kill them before they hurt you" archetype), where Heavy's *added*
+  Speed penalty is what actually gates going further, not raw
+  Might/Gold.
+- **Heavy Armor's Resist raised 2 → 3** (Speed −1, Dodge −1 both,
+  Might 6, 8 Gold unchanged) — fixes the problem that prompted
+  revisiting this: the old 2-tier Heavy paid double Light's Gold for
+  only ~29% more raw value, a bad deal under *any* build. At Resist 3
+  it reads clearly ahead of Medium once a build can actually capitalize
+  on the extra Resist (the tank lens), while still a real, feelable
+  step down for anyone who can't.
+- Gold kept to a simple, cheap linear scale (4/6/8) — deliberately
+  *not* used as a meaningful balancing lever, since all Armor is meant
+  to stay inexpensive; the real tradeoff lives entirely in the stat
+  penalties.
+- `crafting_recipes.csv` gained two new Medium Armor recipes
+  (Tailoring/Smithing, Craft 4) and all 9 Torso-slot Masterwork items'
+  `Base Item Options` now include `I127`. `armor_categories.csv`
+  (reference table, not consumed by the live site) updated to match.
+
 ## Open balance work
 
 **Correction (2026-09-13): the Masterwork list is fully closed, not
@@ -1330,12 +1382,13 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   Tincture weak, several Food items not retuned after the once/day
   Target formula's correction, and Hellfire Bomb/Thunderclap-in-a-Jar
   reading overpowered once the AoE ×2 multiplier got confirmed.
-- **Baseline (non-Masterwork) Armor items** — the actual base stat
-  lines (`I128`-`I129` Armor, plus `I002` Basic Clothing) haven't been
-  run through the value model yet. Weapons (above) are now done; Armor
-  is the next planned pass, and will likely intersect directly with
-  the Resist-granting-item systemic gap flagged above, since Physical
-  Resist is Armor's whole reason to exist.
+- **Baseline (non-Masterwork) Weapon and Armor items are now both
+  done** (see the Baseline Weapons/Armor passes above). The
+  Resist-granting-item systemic gap immediately above is still open,
+  though — the Armor pass's two-lens (generic party member/dedicated
+  tank) approach may be worth applying to those Masterwork Resist
+  items too once that gets picked back up, rather than re-checking
+  them against a single flat rate the same way they were first flagged.
 - The site-export batch also added 18 non-Masterwork items (`I190`-`I207`)
   that don't need value-model leveling but should get a normal
   price/rarity sanity check alongside the rest — the 4 that are
