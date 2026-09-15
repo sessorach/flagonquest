@@ -13,6 +13,18 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-15 — Alcohol has its own crafting recipe
+
+- Alcohol (all five Levels) now has a proper Alchemy recipe instead of
+  falling to the generic "Other Items" reference-only fallback: Mixology
+  [twice the Level], one Medicinal material of its own Level — priced as
+  a plain reagent rather than a proper Potion, consistent with Alcohol's
+  Cost already being exactly its Level in Gold.
+- The Wizardly Hat of Tam the Tipsy's Main Materials changed from just
+  Fire (with Alcohol optionally substituting for it) to requiring one
+  material each of Fire, Alcohol, and Cloth, now that Alcohol has a real
+  recipe to hang that requirement on.
+
 ### 2026-09-14 — Armor upgrade recipes, tightened Might Requirements
 
 - Armor can now be crafted by reinforcing an existing lower tier

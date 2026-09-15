@@ -198,6 +198,17 @@
     "applies_to": "Name:Medicinal Supply"
   },
   {
+    "id": "CR024",
+    "name": "Alcohol",
+    "description": "Fermented and distilled drinks — priced and crafted as a simple reagent rather than a proper Potion, since Alcohol has no effect purely on its own. Just one material of its own Level, same as its Gold cost.",
+    "school": "Alchemy",
+    "skill_total": "Mixology [twice the item's Level]",
+    "total_materials": 1,
+    "main_materials": "Medicinal",
+    "optional_materials": "None",
+    "applies_to": "NameContains:Alcohol"
+  },
+  {
     "id": "CR013",
     "name": "Alchemical Potion",
     "description": "Generic fallback for Potions without their own specific recipe — beneficial brews and elixirs. Each Potion's own entry states its Main Type.",
