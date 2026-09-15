@@ -9303,9 +9303,9 @@
     "range": null,
     "relevant_skills": null,
     "might_requirement": null,
-    "held_slots": "Base Game",
-    "supplement": null,
-    "material_types": "Storage",
+    "held_slots": null,
+    "supplement": "Base Game",
+    "material_types": null,
     "base_item_options": [
       "I002"
     ],
@@ -9349,9 +9349,9 @@
     "range": null,
     "relevant_skills": null,
     "might_requirement": null,
-    "held_slots": "Base Game",
-    "supplement": null,
-    "material_types": "Storage",
+    "held_slots": null,
+    "supplement": "Base Game",
+    "material_types": null,
     "base_item_options": [
       "I002"
     ],
