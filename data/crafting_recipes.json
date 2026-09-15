@@ -275,6 +275,116 @@
     "applies_to": "Category:Pack/Gear,NameContains:Large"
   },
   {
+    "id": "CR037",
+    "name": "Musical Instrument",
+    "description": "Lutes, trumpets, drums, and the like — whichever material fits the specific instrument.",
+    "school": null,
+    "skill_total": "Craft 4",
+    "total_materials": 3,
+    "main_materials": "Bone, Metal, or Wood",
+    "optional_materials": null,
+    "applies_to": "Name:Musical Instrument"
+  },
+  {
+    "id": "CR038",
+    "name": "Climber's Kit",
+    "description": "Hooks, pitons, boot spikes, and other climbing gear.",
+    "school": null,
+    "skill_total": "Craft 4",
+    "total_materials": 3,
+    "main_materials": "Leather and Metal",
+    "optional_materials": null,
+    "applies_to": "Name:Climber's Kit"
+  },
+  {
+    "id": "CR039",
+    "name": "Disguise Kit",
+    "description": "Basic cosmetics and a variety of costume accessories.",
+    "school": null,
+    "skill_total": "(Craft or Mixology) 4",
+    "total_materials": 3,
+    "main_materials": "Cloth or Medicinal",
+    "optional_materials": null,
+    "applies_to": "Name:Disguise Kit"
+  },
+  {
+    "id": "CR040",
+    "name": "Tinker's Kit",
+    "description": "Picks, screwdrivers, pins, and the like, wrought from fine spring steel.",
+    "school": null,
+    "skill_total": "Craft 4",
+    "total_materials": 6,
+    "main_materials": "Metal",
+    "optional_materials": null,
+    "applies_to": "Name:Tinker's Kit"
+  },
+  {
+    "id": "CR041",
+    "name": "Mixology Set",
+    "description": "Beakers, spoons, vials, and other measuring devices.",
+    "school": null,
+    "skill_total": "Craft 4",
+    "total_materials": 6,
+    "main_materials": "Metal",
+    "optional_materials": null,
+    "applies_to": "Name:Mixology Set"
+  },
+  {
+    "id": "CR042",
+    "name": "Tailor's Kit",
+    "description": "A satchel of needles, shears, and other tools of the trade — same tools-are-metal logic as every other Craft kit.",
+    "school": "Tailoring",
+    "skill_total": "Craft 4",
+    "total_materials": 5,
+    "main_materials": "Metal",
+    "optional_materials": null,
+    "applies_to": "Name:Tailor's Kit"
+  },
+  {
+    "id": "CR043",
+    "name": "Carving Kit",
+    "description": "A satchel of knives, chisels, and other tools of the trade.",
+    "school": "Carving",
+    "skill_total": "Craft 4",
+    "total_materials": 5,
+    "main_materials": "Metal",
+    "optional_materials": null,
+    "applies_to": "Name:Carving Kit"
+  },
+  {
+    "id": "CR044",
+    "name": "Smithing Kit",
+    "description": "A satchel of hammers, tongs, and other tools of the trade.",
+    "school": "Smithing",
+    "skill_total": "Craft 4",
+    "total_materials": 5,
+    "main_materials": "Metal",
+    "optional_materials": null,
+    "applies_to": "Name:Smithing Kit"
+  },
+  {
+    "id": "CR045",
+    "name": "Jeweler's Kit",
+    "description": "A satchel of fine files, tongs, and other tools of the trade.",
+    "school": "Jewelrymaking",
+    "skill_total": "Craft 4",
+    "total_materials": 5,
+    "main_materials": "Metal",
+    "optional_materials": null,
+    "applies_to": "Name:Jeweler's Kit"
+  },
+  {
+    "id": "CR046",
+    "name": "Fisher's Kit",
+    "description": "A rod, hooks, and the other basics of tackle.",
+    "school": "Carving",
+    "skill_total": "Craft 4",
+    "total_materials": 5,
+    "main_materials": "Wood and Metal",
+    "optional_materials": null,
+    "applies_to": "Name:Fisher's Kit"
+  },
+  {
     "id": "CR011",
     "name": "Other Items",
     "description": "For various skill kits, adventuring goods, and other items that a character might want to create. Too variable to auto-match against a character's build — reference only, use whichever School/Skill Total fits the specific item.",
@@ -306,6 +416,83 @@
     "main_materials": "Medicinal",
     "optional_materials": "None",
     "applies_to": "NameContains:Alcohol"
+  },
+  {
+    "id": "CR047",
+    "name": "Basic Conveniences",
+    "description": "Soap, dyes, lubricants, wax, and similar everyday goods needing no particular recipe of their own.",
+    "school": "Alchemy",
+    "skill_total": "Mixology 2",
+    "total_materials": 1,
+    "main_materials": "Medicinal",
+    "optional_materials": "None",
+    "applies_to": "Name:Basic Conveniences"
+  },
+  {
+    "id": "CR048",
+    "name": "Charcoal",
+    "description": "Purified charcoal from a woodfire.",
+    "school": "Cooking",
+    "skill_total": "Survival 2",
+    "total_materials": 1,
+    "main_materials": "Wood",
+    "optional_materials": "None",
+    "applies_to": "Name:Charcoal"
+  },
+  {
+    "id": "CR049",
+    "name": "Incense",
+    "description": "Bricks of incense that burn for a few hours.",
+    "school": "Alchemy",
+    "skill_total": "Mixology [twice the item's Level]",
+    "total_materials": 1,
+    "main_materials": "Medicinal or Wood",
+    "optional_materials": "None",
+    "applies_to": "NameContains:Incense"
+  },
+  {
+    "id": "CR050",
+    "name": "Oil",
+    "description": "A small flask of oil rendered pure enough to burn.",
+    "school": "Alchemy",
+    "skill_total": "Mixology 2",
+    "total_materials": 1,
+    "main_materials": "Medicinal",
+    "optional_materials": "None",
+    "applies_to": "Name:Oil"
+  },
+  {
+    "id": "CR051",
+    "name": "Embalming Fluid",
+    "description": "A preservative fluid for organic matter.",
+    "school": "Alchemy",
+    "skill_total": "Mixology [twice the item's Level]",
+    "total_materials": 1,
+    "main_materials": "Medicinal",
+    "optional_materials": "None",
+    "applies_to": "Name:Embalming Fluid"
+  },
+  {
+    "id": "CR052",
+    "name": "Quicktorch",
+    "description": "A wooden stick with a specially prepared, alchemically-treated head.",
+    "school": "Alchemy",
+    "skill_total": "Mixology 2",
+    "total_materials": 1,
+    "main_materials": "Medicinal and Wood",
+    "optional_materials": "None",
+    "applies_to": "Name:Quicktorch"
+  },
+  {
+    "id": "CR053",
+    "name": "Recreational Drugs",
+    "description": "Doses of a recreational drug — refined to whatever degree its own quality implies.",
+    "school": "Alchemy",
+    "skill_total": "Mixology [twice the item's Level]",
+    "total_materials": 1,
+    "main_materials": "Medicinal",
+    "optional_materials": "None",
+    "applies_to": "NameContains:Recreational Drugs"
   },
   {
     "id": "CR013",
