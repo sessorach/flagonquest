@@ -4471,6 +4471,16 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
                     )}
                   </div>
                 )}
+                {/* Crafting-time detail that doesn't fit School/Skill
+                    Total/Materials/Base Item — see the CRAFTING NOTES doc
+                    on ITEM_MAP in convert.py. Only shown here, not
+                    wherever the item's own Effects text is shown, since
+                    it's about how it's built, not what it does. */}
+                {item.crafting_notes && (
+                  <div style={{ fontSize: 13, color: TEXT.faint, fontStyle: "italic", lineHeight: 1.5 }}>
+                    {item.crafting_notes}
+                  </div>
+                )}
               </div>
             );
           })}

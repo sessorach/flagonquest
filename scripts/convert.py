@@ -173,6 +173,21 @@ Masterwork item's own when it's equipped.
   doesn't carry any stats of its own — there's nothing useful to pick
   between, so no selector is needed.
 
+CRAFTING NOTES — items.csv can also have an optional "Crafting Notes"
+column: free text, same idea as techniques.csv's Builder Notes, for a
+crafting-time detail that doesn't fit the structured School/Skill
+Total/Main/Optional Materials/Base Item Options fields and isn't part of
+what the finished item actually does — so it stays out of Effects,
+which should read as just the completed item. Covers things like a base
+item restriction that can't be expressed as a Base Item Options list
+(Placeholder's Speedy Scepter: "can only be applied to a base item whose
+name begins with the letter S" — no list of IDs captures "starts with
+S," so it stays prose) or a one-off material substitution/equivalence
+rule (Wizardly Hat of Tam the Tipsy: a bottle of Alcohol counts as a
+Main Material of its own Level, once Alcohol had a real crafting recipe
+of its own to hang that on). Shown in the Crafting tab alongside the
+item's own recipe row, not wherever Effects is otherwise shown.
+
 MARKDOWN SOURCES — the Rulebook and Glossary tabs aren't spreadsheets,
 they're just hand-edited Markdown: scripts/rulebook.md and
 scripts/glossary.md, straight text files you can open and edit in
@@ -356,6 +371,7 @@ ITEM_MAP = {
     "Total Materials":  "total_materials",
     "Main Materials":   "main_materials",
     "Optional Materials": "optional_materials",
+    "Crafting Notes":   "crafting_notes",  # free-text crafting-time note — see CRAFTING NOTES doc above; shown in the Crafting tab, not with Effects
     "Base Item Options": "base_item_options_raw",  # parsed below into a list of item IDs
     # Flat stat bonuses an equipped/carried item grants, one column per
     # number the Character Sheet's Vitals/Defenses/Health/Resists boxes

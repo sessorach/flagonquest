@@ -13,7 +13,7 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
-### 2026-09-15 — Alcohol has its own crafting recipe
+### 2026-09-15 — Alcohol has its own crafting recipe; new Crafting Notes column
 
 - Alcohol (all five Levels) now has a proper Alchemy recipe instead of
   falling to the generic "Other Items" reference-only fallback: Mixology
@@ -24,6 +24,13 @@ the full commit-by-commit detail behind any of these.
   Fire (with Alcohol optionally substituting for it) to requiring one
   material each of Fire, Alcohol, and Cloth, now that Alcohol has a real
   recipe to hang that requirement on.
+- New optional `items.csv` column, "Crafting Notes" — a crafting-time
+  detail that doesn't fit the structured recipe fields and isn't part of
+  what the finished item does, so it stays out of Effects and shows only
+  in the Crafting tab instead. Placeholder's Speedy Scepter's "base item
+  must start with S" restriction and the Wizardly Hat's Alcohol-as-
+  material rule both moved here from Effects, where they used to be the
+  one bit of crafting-only prose mixed into otherwise pure gameplay text.
 
 ### 2026-09-14 — Armor upgrade recipes, tightened Might Requirements
 
