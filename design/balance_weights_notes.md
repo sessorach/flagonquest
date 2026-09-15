@@ -4361,3 +4361,52 @@ Armor tiers' full recipe picker (fresh + upgrade variants) render with
 correct, distinguishable labels and correct Materials counts for every
 option, Might Requirements display correctly on all three tiers, no
 console errors.
+
+### Vigor = 4.5/point — a reusable Technique-refund pool
+
+Vigor (`glossary.md` Keyword) is a spendable pool that recovers an
+expended Encounter Technique: spend Vigor equal to that Technique's own
+Level to regain a use of it. Introduced this pass to unify two items/
+techniques that had independently reinvented the exact same mechanic
+under different names — Soul Soup's "Nutrition points" and Solemn
+Covenant's (`T022`) "Covenant points" — but it's written up here as its
+own weight, not just a rename, because the underlying math turns out to
+reduce to a clean, flat, reusable per-point rate.
+
+**Derivation.** The refund-trick family (Soldier's Salts/Fighter's
+Friend/Battlemaster's Brew/Soul Soup, see `balance.md`) already
+established that outright refunding a Technique of Level N is worth
+`1.5 × (N × 3)` = `4.5N` — the refunded Technique's own `Target` budget
+(`Level × 3`), plus a ×1.5 premium for the flexibility of choosing
+*which* Technique and *when*. Spending Vigor to recover a Level-N
+Technique costs exactly N Vigor, so the value realized per point spent
+is `4.5N ÷ N` = **4.5**, independent of N. This isn't a coincidence to
+re-derive per item — it's a property of the refund-trick formula itself
+being linear in Level, the same way `1 AP`'s rate (2.75) falls straight
+out of Autoswing's, not a fresh judgment call each time it's used.
+
+Confirmed against Soul Soup's own worked numbers at every Level (not
+just asserted): Level 1 grants 2 Vigor for Value 9 (4.5/point exactly);
+Level 3 grants 4 Vigor for Value 18 (4.5/point exactly); the pattern
+holds at every Level since both the grant formula (`[Level]+1`) and the
+refund-trick Value formula are linear in Level.
+
+**Use this rate directly for any future "recover a Technique" design**,
+the same way Good Luck (2.4) or Card (2.7) are reached for directly
+rather than re-deriving the underlying card math each time: price a
+new Vigor-granting item/technique as `(Vigor granted) × 4.5`, no need
+to work back through the refund-trick formula unless the design itself
+changes (e.g. a different premium, or a mechanic that isn't a flat
+pay-Level-in-Vigor spend).
+
+**One caveat, not yet fully priced in either direction:** Vigor is a
+genuine spendable *pool*, not a single redemption — a character holding
+6 Vigor can split it across two separate Technique refunds (a Level 5 +
+a Level 1, or two Level 3s) rather than needing one hypothetical
+"Level 6" Technique the flat rate implicitly assumes when granted in a
+single lump sum near a Technique-Level ceiling. That flexibility is
+real value the flat 4.5/point rate doesn't capture, so treat 4.5/point
+as a reasonable floor for a Vigor grant sized well within the 1-5
+Technique-Level range, and a likely-conservative floor for a grant
+large enough that splitting it matters (see Soul Soup's own Level 5
+case in `balance.md`, granted uncapped for exactly this reason).
