@@ -1391,12 +1391,22 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   items need real numeric buffs/Level cuts as a group, not just each
   one individually re-litigated — this is a systemic pattern, not
   isolated undertuning.
-- **Several flagged findings from the Alchemy pass** (below) were never
-  acted on: Revivification Draught reads overpowered, Healing Potion
-  underpowered, Poisons systematically weak as a whole category, Quartz
-  Tincture weak, several Food items not retuned after the once/day
-  Target formula's correction, and Hellfire Bomb/Thunderclap-in-a-Jar
-  reading overpowered once the AoE ×2 multiplier got confirmed.
+- **Correction (2026-09-15): most of the Alchemy-pass findings below are
+  already resolved, not still open as this bullet used to claim.**
+  Checked directly against `balance_ledger.csv` rather than trusting the
+  prose: Revivification Draught was reworked into a deliberate Level-4
+  trickle-heal (Net +2.5, an accepted overshoot); Healing Potion got the
+  half-AP convention and reverted to its original 2-Health grant (Net
+  −0.75, a clean fit); Quartz Tincture was renamed and redesigned into
+  Reeler (Net −1.375, accepted below-budget in exchange for identity);
+  Poisons had two stacked pricing errors fixed and a follow-up Potency
+  pass closing the remaining shortfalls; Hellfire Bomb/Thunderclap-in-
+  a-Jar landed within their Level thresholds once the AoE multiplier's
+  own realization discount (×1.6, not a bare ×2) was applied. **Only
+  the Food items are genuinely still open** — Hearty Meal, Power Snack,
+  Soul Soup, and Muscular Feast are all below Target under the
+  corrected once/day formula (`Level × 6`), and none of them have been
+  retuned to close that gap yet.
 - **Baseline (non-Masterwork) Weapon and Armor items are now both
   done** (see the Baseline Weapons/Armor passes above). The
   Resist-granting-item systemic gap immediately above is still open,
