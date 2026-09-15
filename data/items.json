@@ -1023,7 +1023,7 @@
     "tags": null,
     "level": "1-5",
     "description": "A quick yet tasty meal to help you take on the day!",
-    "effects": "This is a full day's meal. In addition, you may Sift [six times Level] cards.",
+    "effects": "This is a full day's meal. In addition, you may Sift [six times Level] cards, and up to [Level] times before your next full night's rest, you may choose to have Good Luck on a flip before making it.",
     "cost": null,
     "value_per_level": null,
     "school": null,
