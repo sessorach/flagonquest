@@ -339,9 +339,9 @@ into a consistent tier system, just never written down:
 
 | Tier | Gold | What qualifies | Examples |
 |---|---|---|---|
-| 1 | 1 Gold | Consumable and basic — single-use or otherwise spent/used-up goods needing minimal skill or material investment | Alcohol (Simple), Charcoal, Oil, Basic Conveniences, Quicktorch, Travel Rations, Incense (Simple/Quality), Recreational Drugs (Poor/Quality), Embalming Fluid |
-| 2 | 2-3 Gold | Basic but permanent — simple everyday gear that isn't used up, but doesn't grant a real Skill-mechanic benefit either | Basic Clothing, Basic Jewelry, Musical Instrument, Knapsack, Adventurer's Belt |
-| 3 | 5 Gold | A genuine mechanical benefit (removes a real Bad Luck penalty on a specific Skill/School), or a bundle of several minor goods in one purchase | The Craft-School kits (Tailor's/Carving/Smithing/Jeweler's), Climber's/Disguise/Tinker's/Fisher's Kit, Mixology Set, Adventurer's Kit |
+| 1 | 1 Gold | Consumable and basic — single-use or otherwise spent/used-up goods needing minimal skill or material investment | Alcohol (Simple), Charcoal, Oil, Basic Conveniences, Quicktorch, Travel Rations, Incense (Simple/Quality), Recreational Drugs (Poor/Quality), Embalming Fluid, Rope |
+| 2 | 2-3 Gold | Basic but permanent — simple everyday gear that isn't used up, but doesn't grant a real Skill-mechanic benefit either | Basic Clothing, Basic Jewelry, Musical Instrument, Knapsack, Adventurer's Belt, Firestarter, Camping Kit |
+| 3 | 5 Gold | A genuine mechanical benefit (removes a real Bad Luck penalty on a specific Skill/School), or a bundle of several minor goods in one purchase | The Craft-School kits (Tailor's/Carving/Smithing/Jeweler's), Climber's/Disguise/Tinker's/Fisher's Kit, Mixology Set |
 | 4 | +3 Gold per capacity step | Storage capacity, scaling linearly | Knapsack (3g, step 1) → Backpack (6g, step 2) → Rucksack (9g, step 3) → Survivalist's Pack (12g, step 4) |
 | 5 | Roughly doubling per size step | Large transport/vehicles — its own scale, separate from worn/carried gear | Cart, Small (12g) → Cart, Medium (24g) → Wagon, Large (48g) |
 
@@ -372,6 +372,35 @@ same way THE TABEL's own weights get reached for on combat items,
 rather than re-deriving a number by vibes each time. Expected to keep
 growing — the designer's next step is identifying more items/
 categories to backfill into this scheme.
+
+**Follow-up, same session: Adventurer's Kit retired, split into three
+real items.** Per the designer, Adventurer's Kit's old flavor-text
+bundle (mess kit, bedroll, waterskin, utility knife, a rope coil, a
+tinderbox) hid two items with genuine standalone value behind one
+5 Gold purchase. Split out:
+- **Rope** (Tier 1, 1 Gold) — the clearest "consumable" case: gets
+  cut, burned through, or left behind, so a player would plausibly buy
+  more independent of the rest of the kit.
+- **Firestarter** (Tier 2, 2 Gold) — reworded from "Tinderbox, with
+  flint and steel" to something deliberately open-ended (flint and
+  steel, a fire-bow, oil-soaked tinder, whatever the player wants it
+  to be), per the designer's own framing. No mechanical Effects text —
+  there's no existing "starting a fire" check in the rulebook to hook
+  a bonus into, so it stays pure flavor/logistics, same treatment
+  Musical Instrument just got.
+- **Camping Kit** (Tier 2, 3 Gold) — everything else (mess kit,
+  bedroll, waterskin, utility knife), the "hand-wave the boring
+  survival details" bundle Adventurer's Kit always mostly was.
+
+New starting-gear total: 1 + 2 + 3 = 6 Gold (up from the old flat 5),
+confirmed fine by the designer — reflects the split items' own real
+value rather than the old bundle undercharging for what amounted to
+two separate useful goods. `rulebook.md`'s three Character Creation
+mentions of Adventurer's Kit updated to name all three replacements;
+Belt of the Wayfarer's "produce any item from an Adventurer's Kit"
+text updated to reference the new trio — its own Value math is
+unaffected, since that clause was already priced at essentially zero
+(see `balance_ledger.csv`'s `I222` row).
 
 **Follow-up, same session: grouping Tier 1 items under one shared
 recipe.** `crafting_recipes.csv`'s `Applies To` syntax has no way to

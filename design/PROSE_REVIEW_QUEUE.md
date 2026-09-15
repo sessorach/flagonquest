@@ -27,7 +27,11 @@ things off in order.
 - **`### Learning Techniques`** — moved along with the Basics/Character
   Creation reorder. Commit `697cc2e`.
 - **`## Building a Character`** — reordered next to Spending Experience.
-  Commit `d01e193`.
+  Commit `d01e193`. Its three starting-equipment mentions (the main
+  bullet plus both Quick Creation guide equipment lines) updated from
+  "an Adventurer's Kit" to "a Camping Kit, a coil of Rope, and a
+  Firestarter," following Adventurer's Kit's retirement. Commit
+  `TBD`.
 - **`## Calculated Statistics`** / **`### Moving`** — movement reworked
   into a shared Athletics budget, reach clarified, a rounding rule
   added; the running-start rule later removed. Commits `6e038d4`,

@@ -177,14 +177,14 @@
   },
   {
     "id": "CR028",
-    "name": "Adventurer's Kit",
-    "description": "A general collection of useful travel gear — mess kit, bedroll, waterskin, knife, rope, and a tinderbox.",
+    "name": "Camping Kit",
+    "description": "A general collection of useful camping gear — mess kit, bedroll, waterskin, and a knife.",
     "school": "Tailoring",
     "skill_total": "Craft 3",
-    "total_materials": 5,
+    "total_materials": 3,
     "main_materials": "Cloth, Leather, and Metal",
     "optional_materials": null,
-    "applies_to": "Name:Adventurer's Kit"
+    "applies_to": "Name:Camping Kit"
   },
   {
     "id": "CR029",
@@ -548,5 +548,27 @@
     "main_materials": null,
     "optional_materials": null,
     "applies_to": "Category:Masterwork"
+  },
+  {
+    "id": "CR054",
+    "name": "Rope",
+    "description": "A sturdy coil of rope.",
+    "school": "Tailoring",
+    "skill_total": "Craft 3",
+    "total_materials": 1,
+    "main_materials": "Cloth or Leather",
+    "optional_materials": "None",
+    "applies_to": "Name:Rope"
+  },
+  {
+    "id": "CR055",
+    "name": "Firestarter",
+    "description": "Flint and steel, a fire-bow, or similar simple fire-starting gear.",
+    "school": "Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": 2,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Firestarter"
   }
 ]

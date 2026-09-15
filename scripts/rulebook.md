@@ -47,7 +47,7 @@ The basics of making a character are simple:
 
 - Choose whether your character is a **Settler** or a **Wildfolk**. Choose two backgrounds from the General list and/or the list you chose.
 - Spend **75 Experience** to buy Stats, Skills, and Techniques for your character. All your Stats and Skills start at 0, and at this point no Stat or Skill can be raised above 3 ranks.
-- You start with an **Adventurer’s Kit** and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
+- You start with a **Camping Kit**, a coil of **Rope**, a **Firestarter**, and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
 
 ## Calculated Statistics
 
@@ -86,7 +86,7 @@ Yes! Just follow this handy guide:
   - Choose 2 Stats to have 2 ranks each; pick ones to round out your character, peek back at Calculated Statistics for ideas
   - Put 1 rank in each of the last 2 Stats; on the plus side, they’re easy to buy up higher with Experience in the future
 - **Techniques**: choose 6 total Levels’ worth of Techniques, making sure that you meet the prerequisites for them.
-- **Equipment**: You get an Adventurer’s Kit with all the basics, and then 20 Gold to buy what you want. A bag of some kind is important - a Knapsack if you’re not very strong - plus some weapons, armor, and anything else that looks fun.
+- **Equipment**: You get a Camping Kit, a coil of Rope, and a Firestarter to cover the basics, and then 20 Gold to buy what you want. A bag of some kind is important - a Knapsack if you’re not very strong - plus some weapons, armor, and anything else that looks fun.
 - Verify that everything looks good, you can use all of your Techniques and equipment, and that you didn’t accidentally leave a Defense lower than you meant to.
 
 ### “Okay that was helpful, but I’m having trouble making sure I did it right…”
@@ -95,7 +95,7 @@ Yes! Just follow this handy guide:
 - 1 Stat at 3 ranks, 2 Stats at 2 ranks, the last 2 Stats at 1 rank each
 - Pick 6 total Levels’ worth of Techniques; make sure you meet the prereqs
 - Pick the two Backgrounds that fit best and/or look the funniest; anyone can have General ones, but you have to pick ONLY Settler OR Wildfolk options to choose from, on top of that.
-- You have an Adventurer’s Kit, plus 20 Gold to buy some kind of bag, weapon and armor, and anything else you want. Keep the rest to buy drinks with.
+- You have a Camping Kit, a coil of Rope, and a Firestarter, plus 20 Gold to buy some kind of bag, weapon and armor, and anything else you want. Keep the rest to buy drinks with.
 - Make sure you can actually use all of your stuff, and that you didn’t pick the wrong Stats or Skills for anything
 - Double-check Calculated Statistics to make sure you didn’t accidentally end up with something too low for your tastes
 - Give your character a nice name :)

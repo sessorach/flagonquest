@@ -13,6 +13,24 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-15 — Adventurer's Kit retired; Rope, Camping Kit, and Firestarter added
+
+- Adventurer's Kit's old flavor-text bundle (mess kit, bedroll,
+  waterskin, knife, rope, tinderbox) is retired in favor of three real
+  items: **Rope** (1 Gold, the clearest "you'd buy more of this"
+  case), **Firestarter** (2 Gold, reworded from "Tinderbox" into
+  something deliberately open-ended — flint and steel, a fire-bow,
+  whatever fits), and **Camping Kit** (3 Gold, everything else).
+  Starting gear moves from a flat 5 Gold to 6 (1+2+3), reflecting the
+  split items' real value. Belt of the Wayfarer's "produce any item
+  from an Adventurer's Kit" updated to name all three; its own pricing
+  is unaffected, since that clause was already valued at essentially
+  zero.
+- Also formalized the everyday-goods pricing tiers these fit into as a
+  reference chart, and grouped Basic Conveniences/Charcoal/Oil under
+  one shared "Basic Convenience" recipe (Alchemy, Mixology or
+  Survival) — see `design/balance.md`.
+
 ### 2026-09-15 — Masquerade's Bad Luck/Good Luck rule; Musical Instrument un-gated
 
 - New rule for Masquerade: attempting a disguise with nothing to back

@@ -15,7 +15,7 @@ CR007,Unarmed Enhancer (Tailoring),"Generally a base item for Masterwork items, 
 CR008,Unarmed Enhancer (Smithing),"Generally a base item for Masterwork items, for unarmed attacks.",Smithing,Craft 3,3,Metal,"Cloth, Leather",Name:Unarmed Enhancer
 CR009,Basic Clothing,For any applicable slot.,Tailoring,Craft 3,3,Cloth,"Bone, Leather, Metal, Precious",Name:Basic Clothing
 CR010,Basic Jewelry,For any applicable slot.,Jewelrymaking,Craft 3,3,Precious,Metal,Name:Basic Jewelry
-CR028,Adventurer's Kit,"A general collection of useful travel gear — mess kit, bedroll, waterskin, knife, rope, and a tinderbox.",Tailoring,Craft 3,5,"Cloth, Leather, and Metal",,Name:Adventurer's Kit
+CR028,Camping Kit,"A general collection of useful camping gear — mess kit, bedroll, waterskin, and a knife.",Tailoring,Craft 3,3,"Cloth, Leather, and Metal",,Name:Camping Kit
 CR029,Knapsack,A small traveler's pack worn across the back.,Tailoring,Craft 3,3,Cloth or Leather,,Name:Knapsack
 CR030,Backpack,A decent-sized bag with two sturdy straps and some outside pockets.,Tailoring,Craft 4,6,Cloth or Leather,,Name:Backpack
 CR031,Rucksack,A large bag with multiple sections and pockets.,Tailoring,Craft 5,9,Cloth or Leather,,Name:Rucksack
@@ -49,3 +49,5 @@ CR014,Alchemical Poison,Generic fallback for Poisons without their own specific 
 CR015,Alchemical Grenade,Generic fallback for Grenades without their own specific recipe — thrown one-use alchemical devices. Each Grenade's own entry states its Main Type.,Alchemy,Mixology [twice the item's Level],2,,Medicinal,Category:Grenade
 CR016,Food Item,Generic fallback for Food without their own specific recipe — prepared meals and preserved rations.,Cooking,Mixology or Survival [twice the item's Level],2,Food,"Bone, Medicinal",Category:Food
 CR017,Masterwork Enhancement,"Generic fallback for Masterwork items without their own specific recipe. School varies per power — check the item's own text (same as base item, unless otherwise stated). Each Masterwork item's entry states its own Main Type; its Optional Type comes from whichever base item is chosen (see the rulebook's ""base item"" rules).",,Craft 5 + [the item's Level],20,,,Category:Masterwork
+CR054,Rope,A sturdy coil of rope.,Tailoring,Craft 3,1,Cloth or Leather,None,Name:Rope
+CR055,Firestarter,"Flint and steel, a fire-bow, or similar simple fire-starting gear.",Smithing,Craft 3,2,Metal,None,Name:Firestarter
