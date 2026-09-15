@@ -13,6 +13,20 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-15 — Masquerade's Bad Luck/Good Luck rule; Musical Instrument un-gated
+
+- New rule for Masquerade: attempting a disguise with nothing to back
+  it up gives Bad Luck, a Disguise Kit clears that penalty for an
+  everyday disguise, and a specific prop matched to exactly who you're
+  impersonating (a real guard's uniform, not just a costume) grants
+  Good Luck instead — settling where the item itself sits relative to
+  clever, situational roleplay.
+- Musical Instrument was wrongly priced alongside the other Craft-
+  School/mechanical skill kits at a uniform 5 Gold — Performance
+  doesn't actually require one (singing works fine), so it's flavor
+  gear, not a Bad-Luck-avoiding tool. Repriced to 3 Gold, with an
+  explicit Effects line saying so.
+
 ### 2026-09-15 — Food items retuned; new Vigor keyword
 
 - Closed out the last open finding from the Alchemy balance pass: Power

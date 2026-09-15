@@ -53,6 +53,12 @@ things off in order.
 - **`#### Persuasion`** — additionally touched by the Social Contests
   rework (its "governed by" framing adjusted alongside Presence/Rapport
   becoming the fixed Statement skills). Commit `78ec143`.
+- **`#### Masquerade`** — new rule + worked example added: attempting a
+  disguise with nothing to back it up gives Bad Luck, a Disguise Kit
+  clears that penalty for an everyday disguise, and a specific prop
+  matched to exactly who you're impersonating grants Good Luck instead
+  — resolving where the Disguise Kit item itself lands relative to a
+  clever, situational prop. Commit TBD.
 - **`## Techniques`** — gained "Techniques can override the baseline
   rules" line; Prerequisites sentence's missing subject fixed; reordered
   alongside Spending Experience. Commits `d01e193`, `ffe0aff`, `6eb02a5`.
