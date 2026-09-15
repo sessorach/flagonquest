@@ -890,7 +890,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "At the start of each encounter, you gain 4 Vigor. Breaking your pact removes these benefits until atonement.",
+    "effects": "At the start of each encounter, you gain 4 Vigor that lasts for the encounter. Breaking your pact removes these benefits until atonement.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Solemn Perseverance, (Any Skill) 5",

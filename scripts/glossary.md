@@ -60,7 +60,7 @@ When you teleport you disappear from your current location and reappear at your 
 
 #### Vigor
 
-A pool of points, granted by certain items and abilities, that can be spent to refund a Technique. Whenever you use an Encounter Technique, you may pay Vigor equal to that Technique’s Level; if you do, you don’t expend a use of it. How much Vigor you have and how long it lasts is set by whatever granted it.
+A pool of points, granted by certain items and abilities, that can be spent to refund a Technique. Whenever you use an Encounter Technique, you may pay Vigor equal to that Technique’s Level; if you do, you don’t expend a use of it.
 
 # Rules Tags
 
