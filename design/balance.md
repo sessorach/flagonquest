@@ -1444,6 +1444,14 @@ per-item Masterwork level is outstanding.
 
 What genuinely remains, cross-cutting rather than slot-shaped:
 
+- **Crafting Schools' XP cost vs. payoff, broadly — flagged 2026-09-15,
+  not yet reviewed.** Surfaced while grouping everyday-goods recipes:
+  the designer isn't convinced a player would actually spend XP
+  learning a Craft/Mixology School just to make cheap Tier 1-2 goods
+  (a School is a real Skill investment; these items are 1-6 Gold).
+  Worth a real pass on whether Schools are priced/gated sensibly
+  across their whole range — from "worth learning just for basic
+  goods" up through Masterwork-tier payoff — not a per-item fix.
 - **The Resist-granting-item systemic gap.** Physical Resist and a
   single element's Resist aren't remotely the same value (~5-10× apart
   after a damage-share correction narrowed the original ~7.5-15× gap;
