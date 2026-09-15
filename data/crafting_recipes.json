@@ -280,7 +280,7 @@
     "description": "Lutes, trumpets, drums, and the like — whichever material fits the specific instrument.",
     "school": null,
     "skill_total": "Craft 4",
-    "total_materials": 5,
+    "total_materials": 3,
     "main_materials": "Bone, Metal, or Wood",
     "optional_materials": null,
     "applies_to": "Name:Musical Instrument"
