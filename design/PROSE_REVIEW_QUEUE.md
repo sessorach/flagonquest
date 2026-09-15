@@ -99,6 +99,11 @@ things off in order.
   space, plus every space within X meters of it" for area effects, used
   going forward instead of ad hoc "adjacent to"/"within X meters of"
   phrasing. Commit `4ab9a21`.
+- **`#### Vigor`** (new entry, `# Keywords`) — added to name the
+  pay-a-Technique's-Level-to-refund-it mechanic, unifying Soul Soup's
+  "Nutrition points" and Solemn Covenant's "Covenant points" (two
+  bespoke names for the exact same thing) under one shared term. Commit
+  `304ab66`.
 - **`#### [Poison]`** (Rules Tags) — duration changed from "1 hour or
   until it exposes a creature" to "until it exposes a creature or the
   wielder gets a full night's rest," resolving a previously-flagged
