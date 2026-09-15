@@ -58,7 +58,7 @@ things off in order.
   clears that penalty for an everyday disguise, and a specific prop
   matched to exactly who you're impersonating grants Good Luck instead
   — resolving where the Disguise Kit item itself lands relative to a
-  clever, situational prop. Commit TBD.
+  clever, situational prop. Commit `5838e7e`.
 - **`## Techniques`** — gained "Techniques can override the baseline
   rules" line; Prerequisites sentence's missing subject fixed; reordered
   alongside Spending Experience. Commits `d01e193`, `ffe0aff`, `6eb02a5`.
