@@ -176,6 +176,105 @@
     "applies_to": "Name:Basic Jewelry"
   },
   {
+    "id": "CR028",
+    "name": "Adventurer's Kit",
+    "description": "A general collection of useful travel gear — mess kit, bedroll, waterskin, knife, rope, and a tinderbox.",
+    "school": "Tailoring",
+    "skill_total": "Craft 3",
+    "total_materials": 5,
+    "main_materials": "Cloth, Leather, and Metal",
+    "optional_materials": null,
+    "applies_to": "Name:Adventurer's Kit"
+  },
+  {
+    "id": "CR029",
+    "name": "Knapsack",
+    "description": "A small traveler's pack worn across the back.",
+    "school": "Tailoring",
+    "skill_total": "Craft 3",
+    "total_materials": 3,
+    "main_materials": "Cloth or Leather",
+    "optional_materials": null,
+    "applies_to": "Name:Knapsack"
+  },
+  {
+    "id": "CR030",
+    "name": "Backpack",
+    "description": "A decent-sized bag with two sturdy straps and some outside pockets.",
+    "school": "Tailoring",
+    "skill_total": "Craft 4",
+    "total_materials": 6,
+    "main_materials": "Cloth or Leather",
+    "optional_materials": null,
+    "applies_to": "Name:Backpack"
+  },
+  {
+    "id": "CR031",
+    "name": "Rucksack",
+    "description": "A large bag with multiple sections and pockets.",
+    "school": "Tailoring",
+    "skill_total": "Craft 5",
+    "total_materials": 9,
+    "main_materials": "Cloth or Leather",
+    "optional_materials": null,
+    "applies_to": "Name:Rucksack"
+  },
+  {
+    "id": "CR032",
+    "name": "Survivalist's Pack",
+    "description": "A great pack with multiple reinforced straps.",
+    "school": "Tailoring",
+    "skill_total": "Craft 6",
+    "total_materials": 12,
+    "main_materials": "Cloth or Leather",
+    "optional_materials": null,
+    "applies_to": "Name:Survivalist's Pack"
+  },
+  {
+    "id": "CR033",
+    "name": "Adventurer's Belt",
+    "description": "A sturdy belt with pouches for easy access to tools.",
+    "school": "Tailoring",
+    "skill_total": "Craft 3",
+    "total_materials": 3,
+    "main_materials": "Cloth or Leather",
+    "optional_materials": null,
+    "applies_to": "Name:Adventurer's Belt"
+  },
+  {
+    "id": "CR034",
+    "name": "Cart (Small)",
+    "description": "A small wooden cart with long handles.",
+    "school": "Carving",
+    "skill_total": "Craft 3",
+    "total_materials": 12,
+    "main_materials": "Wood and Metal",
+    "optional_materials": null,
+    "applies_to": "Category:Pack/Gear,NameContains:Small"
+  },
+  {
+    "id": "CR035",
+    "name": "Cart (Medium)",
+    "description": "A more substantial wooden cart reinforced with metal.",
+    "school": "Carving",
+    "skill_total": "Craft 5",
+    "total_materials": 24,
+    "main_materials": "Wood and Metal",
+    "optional_materials": null,
+    "applies_to": "Category:Pack/Gear,NameContains:Medium"
+  },
+  {
+    "id": "CR036",
+    "name": "Wagon (Large)",
+    "description": "A great wooden wagon bound with bands of iron.",
+    "school": "Carving",
+    "skill_total": "Craft 7",
+    "total_materials": 48,
+    "main_materials": "Wood and Metal",
+    "optional_materials": null,
+    "applies_to": "Category:Pack/Gear,NameContains:Large"
+  },
+  {
     "id": "CR011",
     "name": "Other Items",
     "description": "For various skill kits, adventuring goods, and other items that a character might want to create. Too variable to auto-match against a character's build — reference only, use whichever School/Skill Total fits the specific item.",

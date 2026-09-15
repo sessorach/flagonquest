@@ -13,6 +13,16 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-15 — Real recipes for 9 more basic Pack/Gear items
+
+- Carts/Wagon (Small/Medium/Large), the four packs (Knapsack, Backpack,
+  Rucksack, Survivalist's Pack), Adventurer's Kit, and Adventurer's Belt
+  all moved off the generic "Other Items" reference-only fallback onto
+  real recipes — Craft School, Skill Total, and Total Materials all
+  sourced from the original design doc and cross-checked against each
+  item's current Gold Cost (Total Materials = Cost, same Gold-
+  equivalence rate as everything else).
+
 ### 2026-09-15 — Alcohol has its own crafting recipe; new Crafting Notes column
 
 - Alcohol (all five Levels) now has a proper Alchemy recipe instead of
