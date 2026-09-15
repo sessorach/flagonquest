@@ -326,6 +326,46 @@ item is actually blunting a representative hit by a noticeable amount,
 independent of the Value/Target economy — see the Torso Masterwork
 pass below for the first real application of this.
 
+## Reference: Everyday-goods pricing tiers
+
+Pack/Gear and Tool/Kit items (kits, bags, basic consumables, and the
+like) sit outside THE TABEL entirely — no combat mechanic to run
+through the Value/Target economy, so they were never priced by
+formula the way Potions/Grenades/Masterwork items are. Reconstructed
+here (2026-09-15) from the Cost values already sitting in `items.csv`
+across this session's several Pack/Gear and Tool/Kit passes, rather
+than invented fresh — the existing numbers turned out to already fall
+into a consistent tier system, just never written down:
+
+| Tier | Gold | What qualifies | Examples |
+|---|---|---|---|
+| 1 | 1 Gold | Consumable and basic — single-use or otherwise spent/used-up goods needing minimal skill or material investment | Alcohol (Simple), Charcoal, Oil, Basic Conveniences, Quicktorch, Medicinal Supply, Travel Rations, Incense (Simple/Quality), Recreational Drugs (Poor/Quality), Embalming Fluid |
+| 2 | 2-3 Gold | Basic but permanent — simple everyday gear that isn't used up, but doesn't grant a real Skill-mechanic benefit either | Basic Clothing, Basic Jewelry, Musical Instrument, Knapsack, Adventurer's Belt |
+| 3 | 5 Gold | A genuine mechanical benefit (removes a real Bad Luck penalty on a specific Skill/School), or a bundle of several minor goods in one purchase | The Craft-School kits (Tailor's/Carving/Smithing/Jeweler's), Climber's/Disguise/Tinker's/Fisher's Kit, Mixology Set, Adventurer's Kit |
+| 4 | +3 Gold per capacity step | Storage capacity, scaling linearly | Knapsack (3g, step 1) → Backpack (6g, step 2) → Rucksack (9g, step 3) → Survivalist's Pack (12g, step 4) |
+| 5 | Roughly doubling per size step | Large transport/vehicles — its own scale, separate from worn/carried gear | Cart, Small (12g) → Cart, Medium (24g) → Wagon, Large (48g) |
+
+Two things worth noting, checked rather than assumed:
+- **Tier 1 items don't scale by Level**, with one deliberate exception:
+  Incense (Quality, Level 2), Embalming Fluid (Level 2), and
+  Recreational Drugs (Quality, Level 3) all still sit at a flat 1
+  Gold despite a higher Level — a higher Level here is about
+  refinement/quality, not more raw material. Alcohol is the one Tier 1
+  item that *does* scale (Cost = Level, 1-5 Gold) — an intentional
+  exception tied to its own real quality ladder (Simple through
+  Legendary), not a tier violation.
+- **Tier 4's "+3 Gold per step" is exact**, not approximate — checked
+  against all three bag sizes, not just the first two.
+
+**Use this table directly when pricing the next everyday good**, the
+same way THE TABEL's own weights get reached for on combat items,
+rather than re-deriving a number by vibes each time. Expected to keep
+growing — the designer's next step is identifying more items/
+categories to backfill into this scheme; see also the "shared Basic
+Convenience-style recipes" idea in `IDEAS_BACKLOG.md`, floated
+alongside this as a related but separate follow-up (grouping items
+under one shared recipe, not just a shared price tier).
+
 ### Torso Masterwork pass — flat-Resist items
 
 First real application of the War Magic baseline above. All four

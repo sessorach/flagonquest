@@ -193,3 +193,18 @@ starter bundle. Not drafted at all yet — needs a real pass on how
 recipe acquisition actually works mechanically (a new item category?
 a Technique? pure GM narrative?) before this goes anywhere. Flagged
 here rather than acted on now.
+
+## Shared "Basic Convenience"-style recipes for everyday goods
+
+Per the designer, once the everyday-goods pricing tiers (see
+`balance.md`'s Reference section) are sorted out, worth revisiting
+whether some of Tier 1's basic consumables should share a single
+named recipe across more than one School/Skill instead of each
+getting their own — e.g. Charcoal and Oil both offered under a
+"Basic Convenience"-style recipe available via either Survival or
+Mixology, representing that these are simple enough to make a couple
+different plausible ways. Not drafted — needs a look at which other
+Tier 1 items would actually make sense grouped this way (and whether
+`crafting_recipes.csv`'s existing `Applies To` syntax already supports
+a recipe matching several distinct item Names at once, or would need a
+small extension) before committing to a specific grouping.
