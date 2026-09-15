@@ -13,6 +13,18 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-15 — 15 new "basic adventuring tool" items added
+
+- Classic dungeoneering gear drafted as real items for the first time
+  (10-foot pole, crowbar, manacles, and a dozen others), split into a
+  flavor-only "Basic Tool" family (Hammer, Shovel, Pickaxe, Chain,
+  Small Mirror, Iron Spikes, Lantern, Tripwire Bells, 10-Foot Pole,
+  Ladder, Torch, Block and Tackle — 1-2 Gold) and a niche-mechanical
+  family (Crowbar, Manacles, Grappling Hook — 3 Gold, each granting a
+  real but situational mechanical benefit). See
+  `design/balance.md`'s pricing tiers reference for the full pricing
+  rationale.
+
 ### 2026-09-15 — Adventurer's Kit retired; Rope, Camping Kit, and Firestarter added
 
 - Adventurer's Kit's old flavor-text bundle (mess kit, bedroll,

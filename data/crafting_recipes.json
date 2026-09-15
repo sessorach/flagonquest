@@ -570,5 +570,170 @@
     "main_materials": "Metal",
     "optional_materials": "None",
     "applies_to": "Name:Firestarter"
+  },
+  {
+    "id": "CR056",
+    "name": "Hammer",
+    "description": "A simple worked-metal tool - no special technique required, just steel and elbow grease.",
+    "school": "Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": 1,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Hammer"
+  },
+  {
+    "id": "CR057",
+    "name": "Shovel",
+    "description": "A simple worked-metal tool - no special technique required, just steel and elbow grease.",
+    "school": "Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": 1,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Shovel"
+  },
+  {
+    "id": "CR058",
+    "name": "Pickaxe",
+    "description": "A simple worked-metal tool - no special technique required, just steel and elbow grease.",
+    "school": "Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": 2,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Pickaxe"
+  },
+  {
+    "id": "CR059",
+    "name": "Chain",
+    "description": "A simple worked-metal tool - no special technique required, just steel and elbow grease.",
+    "school": "Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": 2,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Chain"
+  },
+  {
+    "id": "CR060",
+    "name": "Small Mirror",
+    "description": "A simple worked-metal tool - no special technique required, just steel and elbow grease.",
+    "school": "Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": 1,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Small Mirror"
+  },
+  {
+    "id": "CR061",
+    "name": "Iron Spikes",
+    "description": "A simple worked-metal tool - no special technique required, just steel and elbow grease.",
+    "school": "Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": 1,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Iron Spikes"
+  },
+  {
+    "id": "CR062",
+    "name": "Lantern",
+    "description": "A simple worked-metal tool - no special technique required, just steel and elbow grease.",
+    "school": "Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": 2,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Lantern"
+  },
+  {
+    "id": "CR063",
+    "name": "Tripwire Bells",
+    "description": "A simple worked-metal tool - no special technique required, just steel and elbow grease.",
+    "school": "Smithing",
+    "skill_total": "Craft 3",
+    "total_materials": 1,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Tripwire Bells"
+  },
+  {
+    "id": "CR064",
+    "name": "10-Foot Pole",
+    "description": "A simple worked-wood tool - no special technique required, just timber and elbow grease.",
+    "school": "Carving",
+    "skill_total": "Craft 3",
+    "total_materials": 1,
+    "main_materials": "Wood",
+    "optional_materials": "None",
+    "applies_to": "Name:10-Foot Pole"
+  },
+  {
+    "id": "CR065",
+    "name": "Ladder",
+    "description": "A simple worked-wood tool - no special technique required, just timber and elbow grease.",
+    "school": "Carving",
+    "skill_total": "Craft 3",
+    "total_materials": 2,
+    "main_materials": "Wood",
+    "optional_materials": "None",
+    "applies_to": "Name:Ladder"
+  },
+  {
+    "id": "CR066",
+    "name": "Torch",
+    "description": "A simple worked-wood tool - no special technique required, just timber and elbow grease.",
+    "school": "Carving",
+    "skill_total": "Craft 3",
+    "total_materials": 1,
+    "main_materials": "Wood",
+    "optional_materials": "None",
+    "applies_to": "Name:Torch"
+  },
+  {
+    "id": "CR067",
+    "name": "Block and Tackle",
+    "description": "A simple worked-wood tool - no special technique required, just timber and elbow grease.",
+    "school": "Carving",
+    "skill_total": "Craft 3",
+    "total_materials": 2,
+    "main_materials": "Wood",
+    "optional_materials": "None",
+    "applies_to": "Name:Block and Tackle"
+  },
+  {
+    "id": "CR068",
+    "name": "Crowbar",
+    "description": "A single piece of forged and tempered iron.",
+    "school": "Smithing",
+    "skill_total": "Craft 4",
+    "total_materials": 3,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Crowbar"
+  },
+  {
+    "id": "CR069",
+    "name": "Manacles",
+    "description": "Iron cuffs and a chain, hardened and fitted to actually hold someone.",
+    "school": "Smithing",
+    "skill_total": "Craft 4",
+    "total_materials": 3,
+    "main_materials": "Metal",
+    "optional_materials": "None",
+    "applies_to": "Name:Manacles"
+  },
+  {
+    "id": "CR070",
+    "name": "Grappling Hook",
+    "description": "A forged hook and its own short coil of rope.",
+    "school": "Smithing",
+    "skill_total": "Craft 4",
+    "total_materials": 3,
+    "main_materials": "Metal",
+    "optional_materials": "Cloth or Leather",
+    "applies_to": "Name:Grappling Hook"
   }
 ]

@@ -43,7 +43,7 @@ CR049,Incense,Bricks of incense that burn for a few hours.,Alchemy,Mixology [twi
 CR050,Basic Convenience,"Soap, dyes, charcoal, lubricants, oil, and similar everyday goods needing no particular recipe of their own — simple enough to make through either basic alchemy or simple field methods.",Alchemy,Mixology or Survival 2,1,Medicinal or Wood,None,Name:Oil
 CR051,Embalming Fluid,A preservative fluid for organic matter.,Alchemy,Mixology [twice the item's Level],1,Medicinal,None,Name:Embalming Fluid
 CR052,Quicktorch,"A wooden stick with a specially prepared, alchemically-treated head.",Alchemy,Mixology 2,1,Medicinal and Wood,None,Name:Quicktorch
-CR053,Recreational Drugs,Doses of a recreational drug — refined to whatever degree its own quality implies.,Alchemy,Mixology [twice the item's Level],1,Medicinal,None,"NameContains:Recreational Drugs"
+CR053,Recreational Drugs,Doses of a recreational drug — refined to whatever degree its own quality implies.,Alchemy,Mixology [twice the item's Level],1,Medicinal,None,NameContains:Recreational Drugs
 CR013,Alchemical Potion,Generic fallback for Potions without their own specific recipe — beneficial brews and elixirs. Each Potion's own entry states its Main Type.,Alchemy,Mixology [twice the item's Level],2,,Medicinal,Category:Potion
 CR014,Alchemical Poison,Generic fallback for Poisons without their own specific recipe — harmful concoctions and venoms. Each Poison's own entry states its Main Type.,Alchemy,Mixology [twice the item's Level],2,,Medicinal,Category:Poison
 CR015,Alchemical Grenade,Generic fallback for Grenades without their own specific recipe — thrown one-use alchemical devices. Each Grenade's own entry states its Main Type.,Alchemy,Mixology [twice the item's Level],2,,Medicinal,Category:Grenade
@@ -51,3 +51,18 @@ CR016,Food Item,Generic fallback for Food without their own specific recipe — 
 CR017,Masterwork Enhancement,"Generic fallback for Masterwork items without their own specific recipe. School varies per power — check the item's own text (same as base item, unless otherwise stated). Each Masterwork item's entry states its own Main Type; its Optional Type comes from whichever base item is chosen (see the rulebook's ""base item"" rules).",,Craft 5 + [the item's Level],20,,,Category:Masterwork
 CR054,Rope,A sturdy coil of rope.,Tailoring,Craft 3,1,Cloth or Leather,None,Name:Rope
 CR055,Firestarter,"Flint and steel, a fire-bow, or similar simple fire-starting gear.",Smithing,Craft 3,2,Metal,None,Name:Firestarter
+CR056,Hammer,"A simple worked-metal tool - no special technique required, just steel and elbow grease.",Smithing,Craft 3,1,Metal,None,Name:Hammer
+CR057,Shovel,"A simple worked-metal tool - no special technique required, just steel and elbow grease.",Smithing,Craft 3,1,Metal,None,Name:Shovel
+CR058,Pickaxe,"A simple worked-metal tool - no special technique required, just steel and elbow grease.",Smithing,Craft 3,2,Metal,None,Name:Pickaxe
+CR059,Chain,"A simple worked-metal tool - no special technique required, just steel and elbow grease.",Smithing,Craft 3,2,Metal,None,Name:Chain
+CR060,Small Mirror,"A simple worked-metal tool - no special technique required, just steel and elbow grease.",Smithing,Craft 3,1,Metal,None,Name:Small Mirror
+CR061,Iron Spikes,"A simple worked-metal tool - no special technique required, just steel and elbow grease.",Smithing,Craft 3,1,Metal,None,Name:Iron Spikes
+CR062,Lantern,"A simple worked-metal tool - no special technique required, just steel and elbow grease.",Smithing,Craft 3,2,Metal,None,Name:Lantern
+CR063,Tripwire Bells,"A simple worked-metal tool - no special technique required, just steel and elbow grease.",Smithing,Craft 3,1,Metal,None,Name:Tripwire Bells
+CR064,10-Foot Pole,"A simple worked-wood tool - no special technique required, just timber and elbow grease.",Carving,Craft 3,1,Wood,None,Name:10-Foot Pole
+CR065,Ladder,"A simple worked-wood tool - no special technique required, just timber and elbow grease.",Carving,Craft 3,2,Wood,None,Name:Ladder
+CR066,Torch,"A simple worked-wood tool - no special technique required, just timber and elbow grease.",Carving,Craft 3,1,Wood,None,Name:Torch
+CR067,Block and Tackle,"A simple worked-wood tool - no special technique required, just timber and elbow grease.",Carving,Craft 3,2,Wood,None,Name:Block and Tackle
+CR068,Crowbar,A single piece of forged and tempered iron.,Smithing,Craft 4,3,Metal,None,Name:Crowbar
+CR069,Manacles,"Iron cuffs and a chain, hardened and fitted to actually hold someone.",Smithing,Craft 4,3,Metal,None,Name:Manacles
+CR070,Grappling Hook,A forged hook and its own short coil of rope.,Smithing,Craft 4,3,Metal,Cloth or Leather,Name:Grappling Hook

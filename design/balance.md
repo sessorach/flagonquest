@@ -339,9 +339,10 @@ into a consistent tier system, just never written down:
 
 | Tier | Gold | What qualifies | Examples |
 |---|---|---|---|
-| 1 | 1 Gold | Consumable and basic — single-use or otherwise spent/used-up goods needing minimal skill or material investment | Alcohol (Simple), Charcoal, Oil, Basic Conveniences, Quicktorch, Travel Rations, Incense (Simple/Quality), Recreational Drugs (Poor/Quality), Embalming Fluid, Rope |
-| 2 | 2-3 Gold | Basic but permanent — simple everyday gear that isn't used up, but doesn't grant a real Skill-mechanic benefit either | Basic Clothing, Basic Jewelry, Musical Instrument, Knapsack, Adventurer's Belt, Firestarter, Camping Kit |
-| 3 | 5 Gold | A genuine mechanical benefit (removes a real Bad Luck penalty on a specific Skill/School), or a bundle of several minor goods in one purchase | The Craft-School kits (Tailor's/Carving/Smithing/Jeweler's), Climber's/Disguise/Tinker's/Fisher's Kit, Mixology Set |
+| 1 | 1 Gold | Consumable and basic — single-use or otherwise spent/used-up goods needing minimal skill or material investment | Alcohol (Simple), Charcoal, Oil, Basic Conveniences, Quicktorch, Travel Rations, Incense (Simple/Quality), Recreational Drugs (Poor/Quality), Embalming Fluid, Rope, Hammer, Shovel, Small Mirror, Iron Spikes, Tripwire Bells, 10-Foot Pole, Torch, Lantern |
+| 2 | 2-3 Gold | Basic but permanent — simple everyday gear that isn't used up, but doesn't grant a real Skill-mechanic benefit either | Basic Clothing, Basic Jewelry, Musical Instrument, Knapsack, Adventurer's Belt, Firestarter, Camping Kit, Pickaxe, Chain, Ladder, Block and Tackle |
+| 3a | 3 Gold | A genuine mechanical benefit, but a niche one — comes up in specific, occasional situations rather than gating a core, frequently-used Skill activity | Crowbar (force something open), Manacles (restrain a captive), Grappling Hook (reach an otherwise-unreachable anchor point) |
+| 3b | 5 Gold | A genuine mechanical benefit that removes a real Bad Luck penalty on a mainstream, frequently-exercised Skill/School, or a bundle of several minor goods in one purchase | The Craft-School kits (Tailor's/Carving/Smithing/Jeweler's), Climber's/Disguise/Tinker's/Fisher's Kit, Mixology Set |
 | 4 | +3 Gold per capacity step | Storage capacity, scaling linearly | Knapsack (3g, step 1) → Backpack (6g, step 2) → Rucksack (9g, step 3) → Survivalist's Pack (12g, step 4) |
 | 5 | Roughly doubling per size step | Large transport/vehicles — its own scale, separate from worn/carried gear | Cart, Small (12g) → Cart, Medium (24g) → Wagon, Large (48g) |
 
@@ -418,6 +419,41 @@ Cooking/Survival-only design into this Alchemy-with-an-alternate-skill
 shape, matching CR016 Food Item's own precedent for "one School, two
 valid Skills" rather than branching School itself the way Weapon/Armor
 do.
+
+**Follow-up, same session: classic dungeoneering "basic tool" items
+drafted.** Brainstormed against D&D/Pathfinder-style adventuring gear
+(10-foot pole, crowbar, manacles, and the like), landing on 15 new
+`Pack/Gear`/`Tool/Kit` items split into two families:
+- **"Basic Tool" family** (Tier 1/2, flavor-only, same `Craft 3` /
+  materials-equal-Cost pattern as Rope/Firestarter/Camping Kit),
+  split by material the same way Weapon/Armor split by School — metal
+  items via Smithing (Hammer, Shovel, Pickaxe, Chain, Small Mirror,
+  Iron Spikes, Lantern, Tripwire Bells), wood items via Carving
+  (10-Foot Pole, Ladder, Torch, Block and Tackle). Torch is the plain,
+  un-alchemized counterpart to Quicktorch — needs an existing flame or
+  a Firestarter to light and doesn't get Quicktorch's 1 AP lighting
+  shortcut, so it isn't just a strictly-worse duplicate.
+- **Niche-mechanical family** (Crowbar, Manacles, Grappling Hook) —
+  each does grant a real mechanical benefit (Good Luck forcing
+  something open, an actual restraint effect, a genuine reach-an-
+  unreachable-anchor tool), which would put them in Tier 3 by the
+  existing definition, but per the designer they gate specific,
+  occasional situations rather than a core, frequently-exercised
+  Skill the way the mainstream 5 Gold Kits do (Climbing, Disguise,
+  Lockpicking, etc.) — priced at 3 Gold instead of 5, and the pricing
+  tiers table above split Tier 3 into 3a (3g, niche) and 3b (5g,
+  mainstream) to keep tracking both cases. `Craft 4`/3 materials,
+  same Smithing-tool shape as the Basic Tool family just one skill
+  tier up, matching `Tool/Kit` category alongside the mainstream Kits
+  rather than `Pack/Gear`. Grappling Hook explicitly requires a length
+  of Rope to reach beyond its own short coil, tying it to the Rope
+  item from the Adventurer's Kit split above rather than duplicating
+  rope-carrying capacity into the item itself.
+
+Not Masterwork items, so no `balance_ledger.csv` rows — that file
+tracks THE TABEL's Value/Target economy, which these Pack/Gear and
+Tool/Kit items sit outside of entirely, same as everything else in
+this pricing-tiers section.
 
 ### Torso Masterwork pass — flat-Resist items
 
