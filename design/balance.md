@@ -371,10 +371,24 @@ Two things worth noting, checked rather than assumed:
 same way THE TABEL's own weights get reached for on combat items,
 rather than re-deriving a number by vibes each time. Expected to keep
 growing — the designer's next step is identifying more items/
-categories to backfill into this scheme; see also the "shared Basic
-Convenience-style recipes" idea in `IDEAS_BACKLOG.md`, floated
-alongside this as a related but separate follow-up (grouping items
-under one shared recipe, not just a shared price tier).
+categories to backfill into this scheme.
+
+**Follow-up, same session: grouping Tier 1 items under one shared
+recipe.** `crafting_recipes.csv`'s `Applies To` syntax has no way to
+match several distinct item Names in one clause (clauses AND, not OR)
+— rather than extend it for this one case, followed the same pattern
+Armor already uses for "one recipe, several paths" (separate rows
+sharing a Name). First group drafted: **Basic Convenience** (Basic
+Conveniences, Charcoal, Oil — three `crafting_recipes.csv` rows, same
+Name/School/Skill Total/Materials, each with its own `Applies To`),
+Alchemy, `Mixology or Survival 2`, 1 material of `Medicinal or Wood`
+(an OR-pair rather than forcing one material across genuinely
+different goods — Charcoal is wood-derived, Oil/soap read as more
+Medicinal, and both are valid). Unified Charcoal's own School from a
+Cooking/Survival-only design into this Alchemy-with-an-alternate-skill
+shape, matching CR016 Food Item's own precedent for "one School, two
+valid Skills" rather than branching School itself the way Weapon/Armor
+do.
 
 ### Torso Masterwork pass — flat-Resist items
 

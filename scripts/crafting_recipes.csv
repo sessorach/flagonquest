@@ -37,10 +37,10 @@ CR046,Fisher's Kit,"A rod, hooks, and the other basics of tackle.",Carving,Craft
 CR011,Other Items,"For various skill kits, adventuring goods, and other items that a character might want to create. Too variable to auto-match against a character's build — reference only, use whichever School/Skill Total fits the specific item.",Varies,Craft 3-5,,,,
 CR012,Medicinal Supply,Used in place of cards for certain Medicine-related Techniques and similar uses.,Alchemy,Mixology 3,2,Medicinal,Cloth,Name:Medicinal Supply
 CR024,Alcohol,"Fermented and distilled drinks — priced and crafted as a simple reagent rather than a proper Potion, since Alcohol has no effect purely on its own. Just one material of its own Level, same as its Gold cost.",Alchemy,Mixology [twice the item's Level],1,Medicinal,None,NameContains:Alcohol
-CR047,Basic Conveniences,"Soap, dyes, lubricants, wax, and similar everyday goods needing no particular recipe of their own.",Alchemy,Mixology 2,1,Medicinal,None,Name:Basic Conveniences
-CR048,Charcoal,Purified charcoal from a woodfire.,Cooking,Survival 2,1,Wood,None,Name:Charcoal
+CR047,Basic Convenience,"Soap, dyes, charcoal, lubricants, oil, and similar everyday goods needing no particular recipe of their own — simple enough to make through either basic alchemy or simple field methods.",Alchemy,Mixology or Survival 2,1,Medicinal or Wood,None,Name:Basic Conveniences
+CR048,Basic Convenience,"Soap, dyes, charcoal, lubricants, oil, and similar everyday goods needing no particular recipe of their own — simple enough to make through either basic alchemy or simple field methods.",Alchemy,Mixology or Survival 2,1,Medicinal or Wood,None,Name:Charcoal
 CR049,Incense,Bricks of incense that burn for a few hours.,Alchemy,Mixology [twice the item's Level],1,Medicinal or Wood,None,NameContains:Incense
-CR050,Oil,A small flask of oil rendered pure enough to burn.,Alchemy,Mixology 2,1,Medicinal,None,Name:Oil
+CR050,Basic Convenience,"Soap, dyes, charcoal, lubricants, oil, and similar everyday goods needing no particular recipe of their own — simple enough to make through either basic alchemy or simple field methods.",Alchemy,Mixology or Survival 2,1,Medicinal or Wood,None,Name:Oil
 CR051,Embalming Fluid,A preservative fluid for organic matter.,Alchemy,Mixology [twice the item's Level],1,Medicinal,None,Name:Embalming Fluid
 CR052,Quicktorch,"A wooden stick with a specially prepared, alchemically-treated head.",Alchemy,Mixology 2,1,Medicinal and Wood,None,Name:Quicktorch
 CR053,Recreational Drugs,Doses of a recreational drug — refined to whatever degree its own quality implies.,Alchemy,Mixology [twice the item's Level],1,Medicinal,None,"NameContains:Recreational Drugs"
