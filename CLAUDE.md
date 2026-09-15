@@ -233,6 +233,12 @@ which should stay a clean decision record.
   to stacking an effect (Good Luck twice, Protected three times) and to
   multiplying a value in a formula, bracketed or not (twice your Speed,
   three times the Level, [four times X]) — same convention either way.
+  For an effect that lasts until the end of the current encounter, say
+  "for the encounter" (or "lasting for the encounter") — not "until the
+  end of the encounter." Checked against existing usage before this got
+  decided: a dozen-plus items/techniques already phrase it that way,
+  zero use the "until the end of" wording, so this is naming the
+  existing convention, not introducing a new one.
 
 ## Design conventions established so far
 

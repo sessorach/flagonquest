@@ -1505,7 +1505,15 @@ the values first reported when this pass landed)*:
 
   **Retuned (2026-09-15), per the designer's own framing that Food
   items are start-of-day prep the player carries forward and spends at
-  their own discretion, not an instant or forced effect:**
+  their own discretion, not an instant or forced effect.** Also added a
+  new rulebook rule as part of this pass (`rulebook.md`, Food and
+  Exhaustion): a character only benefits from the bonus effect of the
+  *first* special-effect meal (Power Snack, Hearty Meal, and the like)
+  they eat in a day — eating a second still counts as that day's food,
+  but grants no further bonus. This makes each Food item's once/day
+  Target genuinely mean "your one pick for the day" instead of an
+  unenforced assumption, and is what makes leaving Soul Soup's Level 5
+  generous (below) safe rather than stackable/abusable.
   - **Power Snack** — added `[Level]` charges of Good Luck, usable on
     any flip before the next rest. Net +0.01, an almost exact fit at
     every Level (both terms scale linearly with Level).
@@ -1516,14 +1524,18 @@ the values first reported when this pass landed)*:
     choice" convention. Net −1.0, deliberately accepted under Target —
     the designer's call, since this reads as strong and generically
     useful enough to be worth the shortfall.
-  - **Soul Soup** — grants `[Level]+1` Vigor (capped at 5, see the new
-    Vigor keyword in `glossary.md`, also adopted by Solemn Covenant's
-    near-identical "Covenant points") instead of `[Level]`, letting it
-    refund a Technique one Level above its own. An asymmetric fix in
-    the same spirit as Soldier's Salts, but shaped differently since
-    Soul Soup has no AP cost to taper away — Net ranges from +3 at
-    Level 1 down to a Level-5 cap where it lands exactly where it
-    started (−7.5, unchanged from before this fix, not made worse).
+  - **Soul Soup** — grants `[Level]+1` Vigor (see the new Vigor keyword
+    in `glossary.md`, also adopted by Solemn Covenant's near-identical
+    "Covenant points") instead of `[Level]`, letting it refund a
+    Technique one Level above its own. An asymmetric fix in the same
+    spirit as Soldier's Salts, but shaped differently since Soul Soup
+    has no AP cost to taper away — Net ranges from +3 at Level 1 down
+    to −3 at Level 5 (uncapped: the new "only your first special-effect
+    meal counts" rule above makes this an exclusive daily pick, so the
+    designer was fine leaving the top end generous; the −3 figure is
+    also likely conservative, since 6 Vigor can split across two real
+    Techniques rather than needing one hypothetical "Level 6" Technique
+    the way the simple pricing formula assumes).
   - **Muscular Feast** — left as-is. Its Value doesn't scale linearly
     with Level (Bleeding/Crippled/Slowed each have their own non-linear
     per-stack curves), so no clean multiplier closes the gap without

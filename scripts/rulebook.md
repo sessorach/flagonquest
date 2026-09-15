@@ -393,6 +393,8 @@ If you go a full day without enough food and water, you become exhausted. This l
 
 While exhausted, you suffer a -2 penalty to all flips, Speed, and Defenses. If you remain exhausted for a prolonged amount of time - subject to GM approval, and usually over a week’s time - eventually you will die.
 
+A few meals - Power Snack, Hearty Meal, and others like them - grant a bonus effect on top of the food itself. Only the first of these you eat in a day actually grants that bonus; eating a second still counts as your food for the day, but doesn’t grant its own extra effect on top.
+
 ## Costs and Commitment
 
 Some abilities and items have costs such as spending Health, expending Encounter Techniques, or discarding cards from your hand. If something has a cost, you have to pay the cost in order to use it. If a variable cost is listed, like ‘Discard X cards’, then X must be at least 1. If you pay Health, you choose how much Shallow and/or Deep to make up the total.

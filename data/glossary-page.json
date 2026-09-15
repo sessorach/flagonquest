@@ -95,7 +95,7 @@
     "level": 4,
     "title": "Vigor",
     "supplement": "Base Game",
-    "body": "A pool of points, granted by certain items and abilities, that can be spent to refund a Technique. Whenever you use an Encounter Technique, you may pay Vigor equal to that Technique’s Level; if you do, you don’t expend a use of it."
+    "body": "A pool of points, granted by certain items and abilities, that can be spent to recover an expended Technique. You may spend Vigor equal to an expended Encounter Technique’s Level to regain a use of it."
   },
   {
     "id": "rules-tags",
