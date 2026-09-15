@@ -15,14 +15,17 @@ the full commit-by-commit detail behind any of these.
 
 ### 2026-09-15 — Recipes for the remaining Tool/Kit and misc. Pack/Gear items
 
-- The 5 Craft-School kits (Tailor's/Carving/Smithing/Jeweler's/Fisher's
-  Kit) had no Gold Cost at all before now — priced at 5 Gold each per
-  the designer, with a matching Craft 4 / 5-Metal recipe apiece (Fisher's
-  Kit gets Wood and Metal instead, no School of its own being a fit).
-- 5 more Tool/Kit items (Musical Instrument, Climber's Kit, Disguise
-  Kit, Tinker's Kit, Mixology Set) had real Cost/Material precedent in
-  the original design doc that had gone unused — backfilled both Cost
-  and a matching recipe from there.
+- All 10 "skill kit" Tool/Kit items (Musical Instrument, Climber's Kit,
+  Disguise Kit, Tinker's Kit, Fisher's Kit, and the 5 Craft-School kits)
+  are uniformly priced at 5 Gold per the designer, each with a matching
+  Craft 4 / 5-material recipe (Metal for every Craft-School kit, per
+  the "tools are metal regardless of which School they serve" reasoning
+  below; Bone/Metal/Wood, Leather+Metal, Cloth/Medicinal, Metal, and
+  Wood+Metal respectively for Musical Instrument/Climber's/Disguise/
+  Tinker's/Fisher's). The original design doc had lower figures for
+  some of these (3-6 Gold) that had gone unused, but the designer
+  confirmed the 5 Gold figure is where these actually landed, not the
+  older doc's numbers.
 - 8 simple Level 1-3 Pack/Gear consumables (Basic Conveniences, Charcoal,
   Incense × 2 Levels, Oil, Embalming Fluid, Quicktorch, Recreational
   Drugs × 2 Levels) got straightforward one-material recipes — no real

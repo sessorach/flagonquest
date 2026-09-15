@@ -280,7 +280,7 @@
     "description": "Lutes, trumpets, drums, and the like — whichever material fits the specific instrument.",
     "school": null,
     "skill_total": "Craft 4",
-    "total_materials": 3,
+    "total_materials": 5,
     "main_materials": "Bone, Metal, or Wood",
     "optional_materials": null,
     "applies_to": "Name:Musical Instrument"
@@ -291,7 +291,7 @@
     "description": "Hooks, pitons, boot spikes, and other climbing gear.",
     "school": null,
     "skill_total": "Craft 4",
-    "total_materials": 3,
+    "total_materials": 5,
     "main_materials": "Leather and Metal",
     "optional_materials": null,
     "applies_to": "Name:Climber's Kit"
@@ -302,7 +302,7 @@
     "description": "Basic cosmetics and a variety of costume accessories.",
     "school": null,
     "skill_total": "(Craft or Mixology) 4",
-    "total_materials": 3,
+    "total_materials": 5,
     "main_materials": "Cloth or Medicinal",
     "optional_materials": null,
     "applies_to": "Name:Disguise Kit"
@@ -313,7 +313,7 @@
     "description": "Picks, screwdrivers, pins, and the like, wrought from fine spring steel.",
     "school": null,
     "skill_total": "Craft 4",
-    "total_materials": 6,
+    "total_materials": 5,
     "main_materials": "Metal",
     "optional_materials": null,
     "applies_to": "Name:Tinker's Kit"
@@ -324,7 +324,7 @@
     "description": "Beakers, spoons, vials, and other measuring devices.",
     "school": null,
     "skill_total": "Craft 4",
-    "total_materials": 6,
+    "total_materials": 5,
     "main_materials": "Metal",
     "optional_materials": null,
     "applies_to": "Name:Mixology Set"
