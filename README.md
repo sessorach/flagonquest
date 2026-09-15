@@ -13,6 +13,22 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-15 — Food items retuned; new Vigor keyword
+
+- Closed out the last open finding from the Alchemy balance pass: Power
+  Snack, Hearty Meal, and Soul Soup were all under Target once the
+  once-per-day Food formula got corrected. All three now grant a
+  player-discretion bonus they carry through the day instead of
+  something automatic — Power Snack and Hearty Meal add banked Good
+  Luck/healing, and Soul Soup gets an asymmetric refund (can refund a
+  Technique one Level above its own, capped at Level 5). Muscular Feast
+  was formally accepted as slightly under Target rather than retuned.
+- New shared glossary term, **Vigor** — the "pay a Technique's own
+  Level to refund it" mechanic, previously reinvented under two
+  different bespoke names (Soul Soup's "Nutrition points", Solemn
+  Covenant's "Covenant points"). Both items now read consistently, and
+  any future item using this trick can just say "Vigor."
+
 ### 2026-09-15 — Recipes for the remaining Tool/Kit and misc. Pack/Gear items
 
 - All 10 "skill kit" Tool/Kit items (Musical Instrument, Climber's Kit,
