@@ -35,7 +35,7 @@ CR044,Smithing Kit,"A satchel of hammers, tongs, and other tools of the trade.",
 CR045,Jeweler's Kit,"A satchel of fine files, tongs, and other tools of the trade.",Jewelrymaking,Craft 4,5,Metal,,Name:Jeweler's Kit
 CR046,Fisher's Kit,"A rod, hooks, and the other basics of tackle.",Carving,Craft 4,5,Wood and Metal,,Name:Fisher's Kit
 CR011,Other Items,"For various skill kits, adventuring goods, and other items that a character might want to create. Too variable to auto-match against a character's build — reference only, use whichever School/Skill Total fits the specific item.",Varies,Craft 3-5,,,,
-CR012,Medicinal Supply,Used in place of cards for certain Medicine-related Techniques and similar uses.,Alchemy,Mixology 2,1,Medicinal,None,Name:Medicinal Supply
+CR012,Medicinal Supply,Used in place of cards for certain Medicine-related Techniques and similar uses.,Alchemy,Mixology 3,2,Medicinal,Cloth,Name:Medicinal Supply
 CR024,Alcohol,"Fermented and distilled drinks — priced and crafted as a simple reagent rather than a proper Potion, since Alcohol has no effect purely on its own. Just one material of its own Level, same as its Gold cost.",Alchemy,Mixology [twice the item's Level],1,Medicinal,None,NameContains:Alcohol
 CR047,Basic Conveniences,"Soap, dyes, lubricants, wax, and similar everyday goods needing no particular recipe of their own.",Alchemy,Mixology 2,1,Medicinal,None,Name:Basic Conveniences
 CR048,Charcoal,Purified charcoal from a woodfire.,Cooking,Survival 2,1,Wood,None,Name:Charcoal

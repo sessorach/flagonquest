@@ -184,7 +184,7 @@
     "level": 1,
     "description": "A bandage, salve, or other simple yet critical supply that aids in various types of first aid.",
     "effects": "Medicinal supplies may be used in place of cards for certain Techniques.",
-    "cost": "1 Gold",
+    "cost": "2 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,

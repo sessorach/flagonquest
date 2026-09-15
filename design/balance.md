@@ -339,7 +339,7 @@ into a consistent tier system, just never written down:
 
 | Tier | Gold | What qualifies | Examples |
 |---|---|---|---|
-| 1 | 1 Gold | Consumable and basic — single-use or otherwise spent/used-up goods needing minimal skill or material investment | Alcohol (Simple), Charcoal, Oil, Basic Conveniences, Quicktorch, Medicinal Supply, Travel Rations, Incense (Simple/Quality), Recreational Drugs (Poor/Quality), Embalming Fluid |
+| 1 | 1 Gold | Consumable and basic — single-use or otherwise spent/used-up goods needing minimal skill or material investment | Alcohol (Simple), Charcoal, Oil, Basic Conveniences, Quicktorch, Travel Rations, Incense (Simple/Quality), Recreational Drugs (Poor/Quality), Embalming Fluid |
 | 2 | 2-3 Gold | Basic but permanent — simple everyday gear that isn't used up, but doesn't grant a real Skill-mechanic benefit either | Basic Clothing, Basic Jewelry, Musical Instrument, Knapsack, Adventurer's Belt |
 | 3 | 5 Gold | A genuine mechanical benefit (removes a real Bad Luck penalty on a specific Skill/School), or a bundle of several minor goods in one purchase | The Craft-School kits (Tailor's/Carving/Smithing/Jeweler's), Climber's/Disguise/Tinker's/Fisher's Kit, Mixology Set, Adventurer's Kit |
 | 4 | +3 Gold per capacity step | Storage capacity, scaling linearly | Knapsack (3g, step 1) → Backpack (6g, step 2) → Rucksack (9g, step 3) → Survivalist's Pack (12g, step 4) |
@@ -356,6 +356,16 @@ Two things worth noting, checked rather than assumed:
   Legendary), not a tier violation.
 - **Tier 4's "+3 Gold per step" is exact**, not approximate — checked
   against all three bag sizes, not just the first two.
+- **Medicinal Supply (2 Gold) doesn't fit any tier above cleanly, and
+  that's correct, not an oversight.** Briefly moved to Tier 1 during
+  this pass, then reverted once the designer caught it — it's
+  consumable like Tier 1, but it's not just a passive good the way
+  Charcoal or Oil are: it's a genuine mechanical substitute for cards
+  from hand on certain Medicine-related Techniques, real ongoing
+  utility a Tier 1 good doesn't have. Sits a notch above Tier 1
+  despite being single-use for exactly that reason. Worth checking
+  any future "basic consumable" candidate for a similar hidden
+  mechanical role before defaulting it to Tier 1 on looks alone.
 
 **Use this table directly when pricing the next everyday good**, the
 same way THE TABEL's own weights get reached for on combat items,

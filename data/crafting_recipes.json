@@ -400,10 +400,10 @@
     "name": "Medicinal Supply",
     "description": "Used in place of cards for certain Medicine-related Techniques and similar uses.",
     "school": "Alchemy",
-    "skill_total": "Mixology 2",
-    "total_materials": 1,
+    "skill_total": "Mixology 3",
+    "total_materials": 2,
     "main_materials": "Medicinal",
-    "optional_materials": "None",
+    "optional_materials": "Cloth",
     "applies_to": "Name:Medicinal Supply"
   },
   {
