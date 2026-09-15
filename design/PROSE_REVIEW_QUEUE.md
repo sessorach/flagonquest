@@ -63,7 +63,10 @@ things off in order.
   `93efdc2`.
 - **`## Food and Exhaustion`** — moved to Health and Resources,
   generalized beyond Exploration (no longer travel-scoped). Commit
-  `14930ef`.
+  `14930ef`. New rule added: a character only benefits from the first
+  special-effect meal (Power Snack, Hearty Meal, and the like) they eat
+  in a day, closing a stacking gap the once/day Food Target formula
+  assumed but never actually enforced. Commit `29ff816`.
 - **`# Adventuring`** — intro sentence's stale "combat/exploration/
   social all share turns and AP" claim fixed to correctly scope turns/AP
   to combat only. Commit `6eb02a5`.
