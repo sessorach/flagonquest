@@ -58,6 +58,10 @@ A Summoned creature may only make a normal attack once during its turn.
 
 When you teleport you disappear from your current location and reappear at your destination without moving through any other spaces. To Teleport you must be able to clearly see your destination, but don’t otherwise need a clear path to get there.
 
+#### Vigor
+
+A pool of points, granted by certain items and abilities, that can be spent to refund a Technique. Whenever you use an Encounter Technique, you may pay Vigor equal to that Technique’s Level; if you do, you don’t expend a use of it. How much Vigor you have and how long it lasts is set by whatever granted it.
+
 # Rules Tags
 
 These tags designate items and abilities that work a certain way. Each tag has its own rules and, usually, some unique function.

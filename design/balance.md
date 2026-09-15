@@ -1402,11 +1402,12 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   Poisons had two stacked pricing errors fixed and a follow-up Potency
   pass closing the remaining shortfalls; Hellfire Bomb/Thunderclap-in-
   a-Jar landed within their Level thresholds once the AoE multiplier's
-  own realization discount (×1.6, not a bare ×2) was applied. **Only
-  the Food items are genuinely still open** — Hearty Meal, Power Snack,
-  Soul Soup, and Muscular Feast are all below Target under the
-  corrected once/day formula (`Level × 6`), and none of them have been
-  retuned to close that gap yet.
+  own realization discount (×1.6, not a bare ×2) was applied. **The
+  Food items are now resolved too** (2026-09-15, see the Food bullet
+  below for the per-item breakdown) — Power Snack and Hearty Meal land
+  a clean/deliberately-under fit, Soul Soup got an asymmetric fix, and
+  Muscular Feast was formally accepted as-is. Nothing outstanding
+  remains from this Alchemy-pass list.
 - **Baseline (non-Masterwork) Weapon and Armor items are now both
   done** (see the Baseline Weapons/Armor passes above). The
   Resist-granting-item systemic gap immediately above is still open,
@@ -1500,11 +1501,36 @@ the values first reported when this pass landed)*:
   window section above): **Hearty Meal** Net −2 (was 0), **Power
   Snack** Net −2.39 (was −0.39, using Sift's own corrected weight, see
   below), **Soul Soup** Net −1.5 (was −1), **Muscular Feast** Net
-  −0.733 (was +1.267). None of these have been re-tuned to close the
-  gap under the corrected Target — flagged for the designer's review,
-  same as the Belt Storage items above, rather than adjusted
-  unilaterally. Travel Rations remains out-of-model (no combat
-  mechanic to price).
+  −0.733 (was +1.267).
+
+  **Retuned (2026-09-15), per the designer's own framing that Food
+  items are start-of-day prep the player carries forward and spends at
+  their own discretion, not an instant or forced effect:**
+  - **Power Snack** — added `[Level]` charges of Good Luck, usable on
+    any flip before the next rest. Net +0.01, an almost exact fit at
+    every Level (both terms scale linearly with Level).
+  - **Hearty Meal** — generalized from a Shallow-only heal to a bonus
+    on the next Recovery Cycle (the rulebook's own rest-Cycle term),
+    inheriting that Cycle's existing Shallow/Deep split choice; priced
+    at Deep Heal's rate (5/point) per the "price the rational best
+    choice" convention. Net −1.0, deliberately accepted under Target —
+    the designer's call, since this reads as strong and generically
+    useful enough to be worth the shortfall.
+  - **Soul Soup** — grants `[Level]+1` Vigor (capped at 5, see the new
+    Vigor keyword in `glossary.md`, also adopted by Solemn Covenant's
+    near-identical "Covenant points") instead of `[Level]`, letting it
+    refund a Technique one Level above its own. An asymmetric fix in
+    the same spirit as Soldier's Salts, but shaped differently since
+    Soul Soup has no AP cost to taper away — Net ranges from +3 at
+    Level 1 down to a Level-5 cap where it lands exactly where it
+    started (−7.5, unchanged from before this fix, not made worse).
+  - **Muscular Feast** — left as-is. Its Value doesn't scale linearly
+    with Level (Bleeding/Crippled/Slowed each have their own non-linear
+    per-stack curves), so no clean multiplier closes the gap without
+    overshooting by more than the −0.73 shortfall is worth fixing;
+    formally accepted rather than retuned.
+
+  Travel Rations remains out-of-model (no combat mechanic to price).
 - **Spirit Quest Ointment (`I116`) is deliberately out-of-model too**,
   same reasoning as Travel Rations — a 24-hour ritual with no combat
   mechanic at all (full Experience respec, once a full night's rest

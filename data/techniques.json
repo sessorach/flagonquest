@@ -890,7 +890,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "At the start of each encounter, you gain 4 Covenant points. When you use an Encounter Technique, you may pay [that Technique's Level] Covenant points to not expend a use of it. Breaking your pact removes these benefits until atonement.",
+    "effects": "At the start of each encounter, you gain 4 Vigor. Breaking your pact removes these benefits until atonement.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Solemn Perseverance, (Any Skill) 5",

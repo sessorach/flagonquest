@@ -91,6 +91,13 @@
     "body": "When you teleport you disappear from your current location and reappear at your destination without moving through any other spaces. To Teleport you must be able to clearly see your destination, but don’t otherwise need a clear path to get there."
   },
   {
+    "id": "vigor",
+    "level": 4,
+    "title": "Vigor",
+    "supplement": "Base Game",
+    "body": "A pool of points, granted by certain items and abilities, that can be spent to refund a Technique. Whenever you use an Encounter Technique, you may pay Vigor equal to that Technique’s Level; if you do, you don’t expend a use of it. How much Vigor you have and how long it lasts is set by whatever granted it."
+  },
+  {
     "id": "rules-tags",
     "level": 1,
     "title": "Rules Tags",

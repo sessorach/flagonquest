@@ -44,6 +44,10 @@
     "description": "When you teleport you disappear from your current location and reappear at your destination without moving through any other spaces. To Teleport you must be able to clearly see your destination, but don’t otherwise need a clear path to get there."
   },
   {
+    "term": "Vigor",
+    "description": "A pool of points, granted by certain items and abilities, that can be spent to refund a Technique. Whenever you use an Encounter Technique, you may pay Vigor equal to that Technique’s Level; if you do, you don’t expend a use of it. How much Vigor you have and how long it lasts is set by whatever granted it."
+  },
+  {
     "term": "Buildable",
     "description": "This Technique does not have a fixed effect, and instead each time you learn it you choose features that determine what effects it has.\n\nBased on the Level at which you learn it, you get a number of points to spend on basic features, as well as advanced features if the Level is high enough.\n\nEach feature is worth a certain number of points, and the total of all features cannot exceed the limit for that Level of the Technique.\n\nUnless otherwise stated, you can choose a feature as many times as you like. For features with an X value, X is the number of times the feature is applied.\n\nSome features have their own requirements to choose for a Technique; these work like Technique prereqs do.\n\nThis Technique may also be upgraded to a higher-Level version of itself. To do so, pay 3 Experience for each Level you want to increase the Technique by. Then you build the new version as normal, except that it must have all of the features that the previous version had. This new Technique replaces the old one, and you no longer know the old one."
   },
