@@ -31,7 +31,7 @@ things off in order.
   bullet plus both Quick Creation guide equipment lines) updated from
   "an Adventurer's Kit" to "a Camping Kit, a coil of Rope, and a
   Firestarter," following Adventurer's Kit's retirement. Commit
-  `TBD`.
+  `ab2f59f`.
 - **`## Calculated Statistics`** / **`### Moving`** — movement reworked
   into a shared Athletics budget, reach clarified, a rounding rule
   added; the running-start rule later removed. Commits `6e038d4`,
