@@ -1509,14 +1509,60 @@ per-item Masterwork level is outstanding.
 
 What genuinely remains, cross-cutting rather than slot-shaped:
 
-- **Crafting Schools' XP cost vs. payoff, broadly — flagged 2026-09-15,
-  not yet reviewed.** Surfaced while grouping everyday-goods recipes:
-  the designer isn't convinced a player would actually spend XP
-  learning a Craft/Mixology School just to make cheap Tier 1-2 goods
-  (a School is a real Skill investment; these items are 1-6 Gold).
-  Worth a real pass on whether Schools are priced/gated sensibly
-  across their whole range — from "worth learning just for basic
-  goods" up through Masterwork-tier payoff — not a per-item fix.
+- ~~Crafting Schools' XP cost vs. payoff, broadly~~ — **reviewed
+  2026-09-15, resolved: no rebalance needed.** Flagged while grouping
+  everyday-goods recipes on the assumption that a School's payoff was
+  "craft this item instead of buying it retail" — under that framing,
+  a 6+ XP School investment (Artisanal Training, 3 XP, + Craft/
+  Mixology 2, 3 XP) looked like a bad deal for Tier 1-2 goods worth
+  only 1-6 Gold outright.
+
+  That framing was wrong. Per the designer, a School's real payoff is
+  **crafting instead of vendoring loot**, not crafting instead of
+  buying — `rulebook.md` already states this (materials are worth
+  Gold equal to their Level, but "sell for much less except to
+  specific tradespeople, and even they are unlikely to pay full
+  value"), just without a concrete number. The designer's number: a
+  vendor pays roughly **50-75% of a material's Level-equivalent Gold
+  value**; crafting instead converts the same material into an item
+  worth its **full** value. So the comparison is: find materials as
+  loot → sell them at a discount, or craft with them and keep the
+  full value.
+
+  Checked this against both ends of the pricing range rather than just
+  asserting it holds:
+  - **Camping Kit** (3 Gold, 3 materials at Level 1 = 3 Gold raw
+    value): vendor sale nets 1.5-2.25 Gold (50-75%); crafting nets the
+    full 3 Gold. **Recovers 0.75-1.5 Gold — 25-50% of the material's
+    own value.**
+  - **A Level 1 Masterwork** (20 materials at Level 1 — confirmed
+    exactly `20 × Level` Gold across all 91 Masterwork items in
+    `items.csv`, holding precisely at 20/40/60/80/100 through Level
+    5): vendor sale nets 10-15 Gold; crafting nets the full 20 Gold.
+    **Recovers 5-10 Gold — the same 25-50%.**
+
+  The percentage recovered is identical at every tier — cheap items
+  and Masterwork items are proportionally the same deal, just
+  different absolute Gold amounts. There's no tier where a School's
+  crafting access is a worse deal than another; the real determinant
+  of whether a School's fixed XP cost pays off is **how much
+  loot-material volume a character actually converts over a
+  campaign**, which depends on how the GM paces material loot, not on
+  which items that School happens to unlock. That's a GM-pacing
+  variable outside the system's control, the same way a situational
+  Technique's value depends on how often its trigger condition comes
+  up in play — not a design gap to close.
+
+  Kept on the table as an optional idea, not a fix (nothing here is
+  broken): a School granting some standing perk beyond crafting access
+  itself, so the XP has value from the moment it's spent rather than
+  only once a character starts converting loot. Not pursued this pass.
+
+  See `design/GM_GUIDE_NOTES.md` (new) for the loot-planning notes this
+  review produced, for an eventual GM-facing guide — `rulebook.md`
+  stays player-facing only per its existing scoping note, so this kind
+  of "how should a GM actually pace this" guidance doesn't belong
+  there.
 - **The Resist-granting-item systemic gap.** Physical Resist and a
   single element's Resist aren't remotely the same value (~5-10× apart
   after a damage-share correction narrowed the original ~7.5-15× gap;
