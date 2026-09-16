@@ -173,6 +173,19 @@ Masterwork item's own when it's equipped.
   doesn't carry any stats of its own — there's nothing useful to pick
   between, so no selector is needed.
 
+  This is also why a Masterwork item's own "School" column is normally
+  left blank when it has Base Item Options: applying the power onto a
+  base item needs no separate School requirement, since building that
+  base item already required the right training — the enchanting step
+  doesn't gate on School again. index.html doesn't dynamically resolve
+  School from whichever base item ends up chosen (it only pulls the
+  base item's Material Type, for the Optional Materials slot); "no
+  School requirement" here is the actual, intentional rule, not a
+  simplification of "inherits from the base item." A Masterwork item
+  with no valid base at all (nothing to apply it to, e.g. Evertoking
+  Bottle, Distant Scroll Cases, Unmovable Bar) has nothing to inherit
+  training from, so it states its own School directly instead.
+
 CRAFTING NOTES — items.csv can also have an optional "Crafting Notes"
 column: free text, same idea as techniques.csv's Builder Notes, for a
 crafting-time detail that doesn't fit the structured School/Skill
@@ -461,8 +474,11 @@ CRAFTING_RECIPE_MAP = {
     # a Weapon can be made via Carving or Smithing) is one row per
     # School instead of one row with a "(if School)" conditional, so
     # every field here is a flat, unconditional value. See CR001/CR002
-    # for the Weapon example. Leave blank ("Varies") for a fallback
-    # recipe that's genuinely different per item (e.g. Masterwork).
+    # for the Weapon example. Leave blank for a fallback recipe that's
+    # genuinely different per item (e.g. Masterwork) — for Masterwork
+    # specifically this isn't "varies, check the item's own text," it's
+    # deliberately no School requirement at all when the power applies
+    # onto a base item (see the BASE ITEM OPTIONS doc below for why).
     "School":           "school",
     "Skill Total":      "skill_total",
     # One shared shape for every recipe: gather Total Materials worth of
