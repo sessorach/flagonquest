@@ -24,11 +24,11 @@ CR033,Adventurer's Belt,A sturdy belt with pouches for easy access to tools.,Tai
 CR034,Cart (Small),A small wooden cart with long handles.,Carving,Craft 3,12,Wood and Metal,,"Category:Pack/Gear,NameContains:Small"
 CR035,Cart (Medium),A more substantial wooden cart reinforced with metal.,Carving,Craft 5,24,Wood and Metal,,"Category:Pack/Gear,NameContains:Medium"
 CR036,Wagon (Large),A great wooden wagon bound with bands of iron.,Carving,Craft 7,48,Wood and Metal,,"Category:Pack/Gear,NameContains:Large"
-CR037,Musical Instrument,"Lutes, trumpets, drums, and the like — whichever material fits the specific instrument.",,Craft 4,3,"Bone, Metal, or Wood",,Name:Musical Instrument
-CR038,Climber's Kit,"Hooks, pitons, boot spikes, and other climbing gear.",,Craft 4,5,Leather and Metal,,Name:Climber's Kit
-CR039,Disguise Kit,Basic cosmetics and a variety of costume accessories.,,(Craft or Mixology) 4,5,Cloth or Medicinal,,Name:Disguise Kit
-CR040,Tinker's Kit,"Picks, screwdrivers, pins, and the like, wrought from fine spring steel.",,Craft 4,5,Metal,,Name:Tinker's Kit
-CR041,Mixology Set,"Beakers, spoons, vials, and other measuring devices.",,Craft 4,5,Metal,,Name:Mixology Set
+CR037,Musical Instrument (Carving),"Lutes, trumpets, drums, and the like — whichever material fits the specific instrument.",Carving,Craft 4,3,"Wood, Bone","Cloth, Leather, Metal",Name:Musical Instrument
+CR038,Climber's Kit,"Hooks, pitons, boot spikes, and other climbing gear.",Smithing,Craft 4,5,Leather and Metal,,Name:Climber's Kit
+CR039,Disguise Kit (Tailoring),Basic cosmetics and a variety of costume accessories.,Tailoring,Craft 4,5,Cloth,Medicinal,Name:Disguise Kit
+CR040,Tinker's Kit,"Picks, screwdrivers, pins, and the like, wrought from fine spring steel.",Smithing,Craft 4,5,Metal,,Name:Tinker's Kit
+CR041,Mixology Set,"Beakers, spoons, vials, and other measuring devices.",Smithing,Craft 4,5,Metal,,Name:Mixology Set
 CR042,Tailor's Kit,"A satchel of needles, shears, and other tools of the trade — same tools-are-metal logic as every other Craft kit.",Tailoring,Craft 4,5,Metal,,Name:Tailor's Kit
 CR043,Carving Kit,"A satchel of knives, chisels, and other tools of the trade.",Carving,Craft 4,5,Metal,,Name:Carving Kit
 CR044,Smithing Kit,"A satchel of hammers, tongs, and other tools of the trade.",Smithing,Craft 4,5,Metal,,Name:Smithing Kit
@@ -66,3 +66,5 @@ CR067,Block and Tackle,"A simple worked-wood tool - no special technique require
 CR068,Crowbar,A single piece of forged and tempered iron.,Smithing,Craft 4,3,Metal,None,Name:Crowbar
 CR069,Manacles,"Iron cuffs and a chain, hardened and fitted to actually hold someone.",Smithing,Craft 4,3,Metal,None,Name:Manacles
 CR070,Grappling Hook,A forged hook and its own short coil of rope.,Smithing,Craft 4,3,Metal,Cloth or Leather,Name:Grappling Hook
+CR071,Musical Instrument (Smithing),"Lutes, trumpets, drums, and the like — whichever material fits the specific instrument.",Smithing,Craft 4,3,Metal,"Cloth, Leather, Wood, Bone",Name:Musical Instrument
+CR072,Disguise Kit (Alchemy),Basic cosmetics and a variety of costume accessories.,Alchemy,Mixology 4,5,Medicinal,Cloth,Name:Disguise Kit

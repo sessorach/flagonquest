@@ -1659,6 +1659,68 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   | 6 | Survivalist's Pack, + every Level 2 Progression item |
   | 7 | Heavy Armor (+2 upgrades), Wagon (Large) |
   | 8 / 9 / 10 | Level 3 / 4 / 5 Progression items only |
+- **Crafting Schools themselves, reviewed 2026-09-16 — structure holds
+  up, applied one real gap-fill.** Follow-up to the XP-payoff review
+  above: is there a better way to structure the six Schools
+  (Smithing/Carving/Tailoring/Jewelrymaking/Alchemy/Cooking) given
+  players spend real XP to unlock each one? First theory (Jewelrymaking
+  is badly underweight — only 2 recipes vs. 11-17 for its Craft-School
+  siblings) turned out wrong once checked against a dimension that
+  matters just as much: which Schools gatekeep a Masterwork item's
+  *base*. Counted every Masterwork item's `Base Item Options` against
+  which School can craft that base (deduplicated — a naive per-base-
+  item sum wildly overcounts, since a single "any weapon" Masterwork
+  item lists 8-9 Held-slot weapon IDs at once):
+
+  | School | Direct recipes | Distinct Masterwork items reachable via a base it can craft | Slots fed |
+  |---|---|---|---|
+  | Smithing | 21 | 31 | Held, Torso |
+  | Carving | 12 | 31 | Held, Torso |
+  | Tailoring | 13 | 42 | Belt, Feet, Hands, Head, Torso |
+  | Jewelrymaking | 2 | 31 | Head, Neck, Ring |
+  | Alchemy | ~55 (Potions/Poisons/Grenades/Convenience) | — (Alchemy items aren't Masterwork bases) | — |
+  | Cooking | 5 (Food) | — | — |
+
+  Jewelrymaking reaches the *same* 31 distinct Masterwork items as
+  Smithing/Carving despite having almost no direct recipes of its own
+  — it's the sole gatekeeper for Basic Jewelry, which 31 Ring/Neck/Head
+  Masterwork items build onto, the same role Basic Clothing plays for
+  Tailoring (42 items, and the widest slot spread of any School). The
+  one real distinction left standing: Jewelrymaking has far less
+  **hands-on crafting variety** than its siblings — every one of those
+  31 Masterwork items starts from the identical Basic Jewelry recipe,
+  where Smithing's 21 direct recipes are each a different crafting
+  interaction. A real, softer imbalance, but not a numbers problem —
+  not pursued further this pass, since it's about crafting-moment
+  variety rather than XP value. Cooking's narrowness (Food only) is
+  unaffected by any of this and stays intentional, per the earlier
+  Crafting Schools XP-payoff review (its `Mixology or Survival` prereq
+  is a deliberately cheap entry point for a Survival-focused character,
+  not a gap to fill).
+
+  **Applied: every crafting recipe now has a real School**, closing a
+  gap surfaced during this review — five recipes (Musical Instrument,
+  Climber's Kit, Disguise Kit, Tinker's Kit, Mixology Set) had a blank
+  `School` field, meaning no School check applied to them at all
+  (silently, not by documented design, unlike CR017 Masterwork
+  Enhancement's *deliberate* blank School). Two were genuinely
+  multi-material and split into two School-specific rows, matching the
+  Weapon/Armor precedent, rather than picking one arbitrarily:
+  - **Musical Instrument** → Carving (Wood/Bone) or Smithing (Metal),
+    mirroring Weapon's exact material split.
+  - **Disguise Kit** → Tailoring (Cloth, Craft 4) or Alchemy (Medicinal,
+    Mixology 4) — already had a dual-Skill "(Craft or Mixology) 4"
+    Skill Total; splitting School the same way makes the two paths
+    fully parallel instead of one merged row with an ambiguous School.
+
+  The other three read as single-School on inspection: **Climber's
+  Kit** and **Tinker's Kit** → Smithing (forged metal hardware is the
+  functional part in both — pitons/hooks, picks/springs). **Mixology
+  Set** → Smithing too, not Alchemy — building the beakers/vials/stands
+  is a metalworking task even though what the finished kit is *for* is
+  alchemy, the same "you need a smith to forge the tool, even if the
+  tool serves a different trade" logic Jeweler's Kit already follows
+  for Jewelrymaking.
 - **The Resist-granting-item systemic gap.** Physical Resist and a
   single element's Resist aren't remotely the same value (~5-10× apart
   after a damage-share correction narrowed the original ~7.5-15× gap;

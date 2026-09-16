@@ -33,6 +33,10 @@ the full commit-by-commit detail behind any of these.
   Conveniences/Charcoal/Oil) no longer scale in difficulty with their
   own quality — a fancier bottle of Alcohol costs more Gold, not more
   training.
+- Five recipes that had no crafting School requirement at all
+  (Climber's Kit, Tinker's Kit, Mixology Set, plus Musical Instrument
+  and Disguise Kit, which now offer a choice of two) now correctly
+  require one, closing a real gap rather than a documented exception.
 
 ### 2026-09-15 — 15 new "basic adventuring tool" items added
 
