@@ -193,3 +193,12 @@ starter bundle. Not drafted at all yet — needs a real pass on how
 recipe acquisition actually works mechanically (a new item category?
 a Technique? pure GM narrative?) before this goes anywhere. Flagged
 here rather than acted on now.
+
+## More Cooking recipes
+
+Per the designer, the Food catalog (currently just Hearty Meal,
+Muscular Feast, Power Snack, Soul Soup, Travel Rations — 5 items) is
+worth expanding with more Food items at some point, giving Cooking a
+bigger direct catalog rather than staying this narrow. Not scoped yet
+— just a flagged reminder, no direction on what the new items should
+do.
