@@ -2013,6 +2013,42 @@ built. Worth keeping in mind if a future Torso-slot Technique or
 Masterwork enhancement specifically rewards *not* wearing Armor —
 that's the intended niche for this choice, not an oversight to patch.
 
+## Skill Total 6 as a crafting-tier anchor: the character-creation ceiling
+
+Standing design principle, surfaced while reviewing crafting Skill
+Total thresholds broadly (see `balance.md` for the specific numeric
+changes this produced). Character creation caps every individual Stat
+and Skill at 3 ranks (`rulebook.md`'s Quick Start Guide). Since a Skill
+Total is Stat + Skill, the highest Skill Total obtainable in any one
+Skill at creation is exactly **3 + 3 = 6** — never higher, no matter
+how a 75-Experience chargen budget gets spent.
+
+That makes Skill Total 6 a genuinely meaningful line, not just a round
+number: anything craftable at Skill Total 6 or below is something a
+starting character — or, in-fiction, a plausible "peak of an ordinary,
+non-adventuring craftsman" NPC — could already do. Anything above 6 is
+explicitly something only real Experience growth can reach, a
+believability anchor for how skilled the game world's ordinary
+tradespeople could plausibly be without ever having adventured. Worth
+deliberately weighing when picking a Skill Total for a new crafting
+recipe going forward, the same way the Gold-equals-Level rule already
+gets weighed for pricing — not a hard rule that every "mundane" item
+must sit at or under 6, but a real consideration to check against
+rather than picking a threshold by feel.
+
+Applied this pass: **Heavy Armor** (`CR006`/`CR022`/`CR023`) moved
+from Craft 5 to **Craft 6**, and **Wagon, Large** (`CR036`) moved from
+Craft 7 to **Craft 6** — both now land exactly on the
+character-creation ceiling rather than past it. Separately decided but
+not yet built: folding Masterwork and the whole Alchemy/Cooking
+Level-scaling family onto one shared curve (Skill Total 4/6/8/9/10
+across Levels 1-5, chosen so Level 3's already-agreed value of 8
+doesn't move) to fix an unrelated bug where Alchemy's old Level 1
+threshold exactly collided with its own School-access prereq — full
+reasoning and implementation status are in `balance.md`, this note is
+just the reusable principle behind the Skill Total 6 choices
+specifically.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).

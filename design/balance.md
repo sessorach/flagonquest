@@ -1563,6 +1563,57 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   stays player-facing only per its existing scoping note, so this kind
   of "how should a GM actually pace this" guidance doesn't belong
   there.
+- **Crafting Skill Total tiers, broadly — reviewed 2026-09-16, partially
+  applied.** Follow-up to the Crafting Schools review above, once the
+  designer noticed a real gap: Alchemy's Level-scaling formula
+  (`Mixology [twice the item's Level]`) put Level 1 at Mixology 2 —
+  the *exact same* number as Artisanal Training's own Alchemy prereq
+  (also Mixology 2, checked as raw skill ranks per the rulebook's
+  Technique-prereq carve-out). So the moment a character paid the real
+  cost to unlock Alchemy, their Skill Total already cleared every
+  Level 1 recipe in the School with zero further investment — no ramp
+  at all between "just unlocked this School" and "can make its
+  cheapest item," unlike Craft-based Schools (Craft 2 prereq vs. Craft
+  3 for the cheapest recipe, a real if modest gap). Cooking's Food
+  recipe had the identical collision against its own prereq.
+
+  First attempt (`[1 + twice the Level]`, preserving the old slope but
+  adding a flat floor) turned out to be unworkable: Skill Total caps
+  at 10 (Stat 5 + Skill 5), and the old formula's slope of 2 already
+  hit exactly 10 at Level 5 — any positive offset pushes Level 5 past
+  the cap into a threshold nothing could ever reach.
+
+  **Decided, not yet implemented: unify Masterwork and the whole
+  Alchemy/Cooking family onto one shared curve — Skill Total 4 / 6 / 8
+  / 9 / 10 across Levels 1-5** (steps of +2, +2, +1, +1 — not a single
+  clean line; `min(2 × Level + 2, Level + 5)` as a closed form if one's
+  wanted). Replaces Masterwork's old `Craft 5 + Level` (6/7/8/9/10) and
+  Alchemy's old `Mixology [twice the Level]` (2/4/6/8/10). Chosen
+  because Level 3 is exactly 8 under *both* old formulas — picking a
+  curve that passes through that shared point means Masterwork's
+  already-tuned Levels 3-5 don't move at all, only the low end (Levels
+  1-2) comes down, which also directly answers an earlier flagged
+  concern that Masterwork read as needlessly punitive for a common,
+  low-Level item. Alchemy's floor moves from 2 to 4, closing the
+  collision with its own prereq with real room to spare. This curve
+  needs a small `index.html` parser addition (none of the existing
+  Skill Total text patterns can express a bend partway through), plus
+  the same treatment for two flat (non-Level-scaling) recipes with the
+  identical bare-prereq collision — **Quicktorch** (`CR052`, Mixology
+  2 → 4) and **Basic Convenience / Charcoal / Oil** (`CR047`/`CR048`/
+  `CR050`, Mixology or Survival 2 → 4) — so still open until that's
+  built and verified.
+
+  **Applied now: Skill Total 6 as a meaningful anchor for crafting-tier
+  decisions**, not just a round number — see `RULES_DESIGN.md` for the
+  full reasoning (character creation caps every Stat/Skill at 3, so 6
+  is the highest Skill Total obtainable before a character has actually
+  adventured). **Heavy Armor** (`CR006`/`CR022`/`CR023`) moved from
+  Craft 5 to **Craft 6**, and **Wagon, Large** (`CR036`) moved from
+  Craft 7 to **Craft 6** — both now land exactly on the
+  character-creation ceiling instead of past it, since a master smith
+  or wainwright plausibly existing in any settled town shouldn't need
+  capability beyond what's reachable before a character has left home.
 - **The Resist-granting-item systemic gap.** Physical Resist and a
   single element's Resist aren't remotely the same value (~5-10× apart
   after a damage-share correction narrowed the original ~7.5-15× gap;
