@@ -13,6 +13,17 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-16 — Two new Masterwork items: Clarion Cord, Kindled Wrap
+
+- **Clarion Cord** (Neck, Level 3, 60 Gold) — a fully passive item: at
+  the start of each encounter, the wearer and all allies within
+  earshot have Good Luck on their Reflex (initiative) flip.
+- **Kindled Wrap** (Torso, Level 1, 20 Gold) — heals 1 Health the
+  first time the wearer loses Health each encounter.
+- Fills the Neck L3 count gap and the previously-empty Torso L1 slot,
+  identified during the same Slot × Level gap review as Numbing Edge
+  and Chillstrike Band below.
+
 ### 2026-09-16 — Two new Frost Masterwork items: Numbing Edge, Chillstrike Band
 
 - **Numbing Edge** (Held, Level 2, 40 Gold) — a Frost weapon enchantment

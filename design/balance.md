@@ -1856,6 +1856,48 @@ What genuinely remains, cross-cutting rather than slot-shaped:
     bonus = **Value 10.35, Net +1.35 (115% funded)**. Full derivation
     in `balance_ledger.csv`.
 
+  **Follow-up, same session: two more items drafted and priced,
+  filling the Neck L3 count gap and the Torso L1 gap (previously
+  empty).** Checked against `RULES_DESIGN.md`'s Suit portfolio table
+  per the designer's standing instruction to verify any reviewed
+  content against it going forward — neither item ended up touching a
+  suit at all (Good Luck's own rate already bakes in its own Suit Pool
+  credit; ShallowHeal isn't suit-scaled), so nothing to flag either
+  way.
+  - **Clarion Cord** (`I248`, Neck, Level 3, 60 Gold) — "At the start
+    of each encounter, you and all allies within earshot each have
+    Good Luck on their Reflex flip." Went through three revisions
+    before landing here. First draft was pure Narrative Utility (no
+    combat mechanic) — rejected per the designer as too weak to be
+    worth a Level 3 investment. Second draft added a real mechanic but
+    as an active "once per encounter, you may call out, choose up to
+    four allies" ability — still rejected as reading too active for
+    Neck's "not interactive" lane. Reworked to a fully unconditional
+    start-of-encounter trigger (no activation, no targeting choice) —
+    the same passive shape as Fate's Grasp/Cloak of One Thousand
+    Feathers, both already-established "fires automatically" Neck
+    items — then narrowed from generic "Good Luck on their first flip"
+    to specifically the Reflex (initiative) flip per the designer, for
+    a sharper identity: the item version of `T011` One Eye Behind
+    You's own self-only "Good Luck on Reflex flips." Finally broadened
+    from a capped "up to 3 allies" to "all allies" for simplicity, per
+    the designer — priced against a representative party of 4 (wearer
+    + 3 allies), the same headcount the capped version already
+    assumed, so the Net is unchanged by the simplification: Value = 4
+    × Good Luck(2.4) = **9.6, Net +0.6 (107% funded)**. Full derivation
+    in `balance_ledger.csv`.
+  - **Kindled Wrap** (`I249`, Torso, Level 1, 20 Gold) — "The first
+    time each encounter you lose Health, heal 1 Health immediately
+    after." Approved as drafted, no revisions. Same always-on-trigger
+    shape as Coat of Knit Flesh's own Bleeding-mitigation clause.
+    Priced at the inferred ShallowHeal rate (4/point), backed out of
+    Healing Potion's (`I043`) own ledger Notes ("ShallowHeal(2)=8") —
+    not yet a formally Locked entry in `balance_weights.csv`, flagged
+    for a future Locking pass now that it's been reused a second time.
+    Value = 1×4 = **4, Net +1 (133% funded)**, comparable to Feathered
+    Sandals' own +1.0 Net at Level 1. Full derivation in
+    `balance_ledger.csv`.
+
   **Two real bugs surfaced while drafting these, unrelated to the new
   items themselves:**
   - **`balance_ledger.csv` had genuine pre-existing corruption**: four
