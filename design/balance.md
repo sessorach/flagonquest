@@ -1677,7 +1677,7 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   | Smithing | 21 | 31 | Held, Torso |
   | Carving | 12 | 31 | Held, Torso |
   | Tailoring | 13 | 42 | Belt, Feet, Hands, Head, Torso |
-  | Jewelrymaking | 2 | 31 | Head, Neck, Ring |
+  | Jewelrymaking | 2 | 31 → **48** (see follow-up below) | Head, Neck, Ring → **+ Hands, Feet** |
   | Alchemy | ~55 (Potions/Poisons/Grenades/Convenience) | — (Alchemy items aren't Masterwork bases) | — |
   | Cooking | 5 (Food) | — | — |
 
@@ -1697,6 +1697,28 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   Crafting Schools XP-payoff review (its `Mixology or Survival` prereq
   is a deliberately cheap entry point for a Survival-focused character,
   not a gap to fill).
+
+  **Follow-up, same session: Jewelrymaking's slot coverage genuinely
+  expanded, not just re-measured.** The designer asked specifically
+  whether Jewelrymaking should reach into some of Tailoring's
+  accessory slots (Belt, Hands, Head — bracelets, circlets). Checked
+  Head first: already works, all 10 Head-slot Masterwork items already
+  list both Basic Clothing and Basic Jewelry as valid bases. Then
+  checked **Basic Jewelry's own Fluff text**, which already states it
+  covers "the Head, Neck, Ring, Hands, and Feet slots" — but zero of
+  the 8 Hands-slot or 9 Feet-slot Masterwork items actually listed it
+  as a Base Item Option, all Cloth-only. A real gap between documented
+  scope and implemented data, not a stretch — added Basic Jewelry as a
+  second `Base Item Options` entry to all 17 of those items (verified
+  in the Playwright sandbox: the Base Item dropdown now correctly
+  offers both choices on, e.g., Deft Gloves and Vaulting Boots).
+  Jewelrymaking moves from 31 to **48** reachable Masterwork items and
+  from 3 to **5** slots (Head, Neck, Ring, Hands, Feet) — matching
+  Tailoring's slot count exactly, using only scope the game already
+  claimed rather than inventing new territory. Belt stayed out:
+  Basic Jewelry's Fluff doesn't mention it, so extending there would
+  need a deliberate edit to that item's own definition first, not just
+  a data-completeness fix like Hands/Feet were.
 
   **Applied: every crafting recipe now has a real School**, closing a
   gap surfaced during this review — five recipes (Musical Instrument,

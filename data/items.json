@@ -3285,7 +3285,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       1
@@ -3331,7 +3332,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       2
@@ -3377,7 +3379,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       3
@@ -4765,7 +4768,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       1
@@ -4811,7 +4815,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       1
@@ -4857,7 +4862,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       1,
@@ -4907,7 +4913,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       2
@@ -4953,7 +4960,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       3
@@ -4999,7 +5007,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       2
@@ -6789,7 +6798,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       2
@@ -6835,7 +6845,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       3
@@ -6881,7 +6892,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       2
@@ -6927,7 +6939,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       5
@@ -7877,7 +7890,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       3
@@ -9401,7 +9415,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       1
@@ -9447,7 +9462,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       1
@@ -9493,7 +9509,8 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
-      "I002"
+      "I002",
+      "I003"
     ],
     "levels": [
       2

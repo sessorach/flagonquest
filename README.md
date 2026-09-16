@@ -37,6 +37,12 @@ the full commit-by-commit detail behind any of these.
   (Climber's Kit, Tinker's Kit, Mixology Set, plus Musical Instrument
   and Disguise Kit, which now offer a choice of two) now correctly
   require one, closing a real gap rather than a documented exception.
+- 17 Hands and Feet Masterwork items (gloves and boots — Deft Gloves,
+  Vaulting Boots, and the rest) can now be crafted from either a Basic
+  Clothing or a Basic Jewelry base, so a Jewelrymaking-trained
+  character can make a bracelet or anklet version instead of always
+  needing Tailoring. Basic Jewelry's own description already covered
+  Hands and Feet slots; the actual items just hadn't caught up to it.
 
 ### 2026-09-15 — 15 new "basic adventuring tool" items added
 
