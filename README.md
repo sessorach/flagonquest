@@ -13,6 +13,20 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-16 — Two new Frost Masterwork items: Numbing Edge, Chillstrike Band
+
+- **Numbing Edge** (Held, Level 2, 40 Gold) — a Frost weapon enchantment
+  that adds bonus Harried on a hit or a Parried attack, giving the rest
+  of the party an opening against a heavily-armored, Parry-reliant
+  target.
+- **Chillstrike Band** (Ring, Level 3, 60 Gold) — a Frost ring with an
+  active, once-per-encounter attack that Slows a target, rather than a
+  passive effect (Ring is meant to be something you *do*, not a
+  standing buff).
+- Both fill real gaps identified while reviewing crafting material
+  coverage — Frost had zero representation in either of these
+  Slot/Level combinations before now.
+
 ### 2026-09-16 — Crafting Skill Total requirements reorganized
 
 - Reworked the Skill Total needed to craft across the board, landing

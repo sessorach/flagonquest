@@ -1817,8 +1817,65 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   regardless of material. **Torso L1** is thinner in count (2) than
   Torso L2 (5), worth a look too, though its 2 existing items already
   cover all 4 elements between them so it's a lower-priority count gap
-  rather than a material gap. Held is already the best-covered of the
-  four at every Level 1-3 and doesn't need urgent attention.
+  rather than a material gap. Held was already the best-covered of the
+  four at every Level 1-3, but a real Level 2 Frost gap turned up
+  anyway once checked specifically (see the follow-up below) — Held's
+  breadth just meant it had less urgency, not zero gaps.
+
+  **Follow-up, same session: two Frost items drafted and priced,
+  filling the Ring L3 and Held L2 gaps.**
+  - **Numbing Edge** (`I246`, Held, Level 2, 40 Gold) — "When an attack
+    with this weapon hits or is Parried, the target gains 2 +
+    [Diamonds] additional stacks of Harried." A real, previously-
+    unflagged Held L2 Frost gap (checked while drafting this one —
+    Held L2 had zero Frost presence at all, unlike L1/L3). Priced
+    against the Fanged Guard/Valiant Arms precedent (both L2 Held
+    single-effect enchantments, Net=0 at Target=6): ~2.81 hit-or-Parry
+    triggers/encounter (3.75 attacks/encounter, an already-established
+    figure, × 50% hit chance, + an estimated half of remaining misses
+    being specifically Parried) × 2 stacks/trigger × Harried's own
+    Locked 1/stack rate, + a `[Diamonds]` suit bonus (per the
+    designer's follow-up call to start adding suit synergy to this
+    class of effect) = **Value 6.33, Net +0.33 (105% funded)**. Full
+    derivation in `balance_ledger.csv`.
+  - **Chillstrike Band** (`I247`, Ring, Level 3, 60 Gold) — "Once per
+    encounter, for 2 AP, you may make an Acrobatics attack against a
+    creature's Dodge Defense within 6 meters. If it hits, the target
+    is Slowed 5 + [Spades] times." First drafted as a passive
+    forced-movement immunity, reworked per the designer to something
+    genuinely *active* for a Ring slot (passive defense reads as
+    Neck's lane, not Ring's) — modeled as a portable Level 3 War Magic
+    (`T120`) cast with Tormenting Curse (`F061`, converts the spell to
+    no-damage in exchange for +3 bonus Feature points) spent on Frigid
+    (`F071`, the Slowed-granting Feature), the same "portable War
+    Magic" method Flamebinder's Promise already established. Dumping
+    the full 7-point Curse budget into Frigid would produce 14+ Slowed
+    stacks, wildly past Slowed's own Locked hard cap (4 stacks, Value
+    11) — scaled back to 5 base stacks (bumped up from an initial 4
+    per the designer, to land closer to Target) + a `[Spades]` suit
+    bonus = **Value 10.35, Net +1.35 (115% funded)**. Full derivation
+    in `balance_ledger.csv`.
+
+  **Two real bugs surfaced while drafting these, unrelated to the new
+  items themselves:**
+  - **`balance_ledger.csv` had genuine pre-existing corruption**: four
+    rows (`I095` Grim Promise, `I096` Sorcerer's Bow, `I101-L3`/
+    `I101-L4` Elemental-Forged Weaponry) each have an unescaped comma
+    in their "Rate of Use/Encounter" field, shifting every later
+    column by one — present in git history already, not something
+    this session introduced. Worked around it this pass (read/wrote
+    via plain list-based `csv.reader`/`csv.writer` instead of the
+    Dict variants, which choke on the extra column) rather than fixing
+    it, to avoid conflating an unrelated cleanup with this item-adding
+    commit — confirmed byte-identical before/after on all four rows.
+    Still needs a real fix (re-quote the affected field) whenever
+    someone's next in that file.
+  - **Harried's suit pairing has an existing inconsistency**: the
+    confirmed Suit portfolio table (`RULES_DESIGN.md`) ties Harried to
+    Diamonds, but an existing War Magic Feature, Barraging (`F066`),
+    reads "Harried X + [Hearts] stacks" instead. Numbing Edge uses
+    Diamonds, matching the authoritative table — Barraging's own
+    Hearts tie wasn't touched or corrected this pass, just noted.
 - **Resolved: Fleeting effects and the same-turn-grant snag.** Fleeting
   effects decay 1 stack at the end of the affected creature's own turn.
   Turned out topping off an *existing* stack was never actually broken —
