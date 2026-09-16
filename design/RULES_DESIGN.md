@@ -2013,40 +2013,49 @@ built. Worth keeping in mind if a future Torso-slot Technique or
 Masterwork enhancement specifically rewards *not* wearing Armor —
 that's the intended niche for this choice, not an oversight to patch.
 
-## Skill Total 6 as a crafting-tier anchor: the character-creation ceiling
+## Skill Total 7 as a crafting-tier anchor: one step past the character-creation ceiling
 
 Standing design principle, surfaced while reviewing crafting Skill
-Total thresholds broadly (see `balance.md` for the specific numeric
-changes this produced). Character creation caps every individual Stat
+Total thresholds broadly (see `balance.md` for the full numeric
+table this produced). Character creation caps every individual Stat
 and Skill at 3 ranks (`rulebook.md`'s Quick Start Guide). Since a Skill
 Total is Stat + Skill, the highest Skill Total obtainable in any one
 Skill at creation is exactly **3 + 3 = 6** — never higher, no matter
-how a 75-Experience chargen budget gets spent.
+how a 75-Experience chargen budget gets spent. That's a hard fact
+about the character sheet, not itself the design rule.
 
-That makes Skill Total 6 a genuinely meaningful line, not just a round
-number: anything craftable at Skill Total 6 or below is something a
-starting character — or, in-fiction, a plausible "peak of an ordinary,
-non-adventuring craftsman" NPC — could already do. Anything above 6 is
-explicitly something only real Experience growth can reach, a
-believability anchor for how skilled the game world's ordinary
-tradespeople could plausibly be without ever having adventured. Worth
-deliberately weighing when picking a Skill Total for a new crafting
-recipe going forward, the same way the Gold-equals-Level rule already
-gets weighed for pricing — not a hard rule that every "mundane" item
-must sit at or under 6, but a real consideration to check against
-rather than picking a threshold by feel.
+The design rule, per the designer: **Skill Total 7 is the practical
+ceiling for the most skilled *ordinary* craftsperson in the game
+world** — one deliberate step past the exact chargen cap (representing
+a season or two of real practice after leaving home, not a dedicated
+adventurer's specialization), rather than requiring literal
+achievability at character creation itself. A common village smith or
+wainwright plausibly reaches Skill Total 7; Skill Total 8 and up is
+explicitly beyond that, reserved for someone who has actually
+adventured or trained hard for it. Worth deliberately weighing when
+picking a Skill Total for a new "mundane but skilled" recipe going
+forward, the same way the Gold-equals-Level rule already gets weighed
+for pricing — not a hard rule that everything must sit at or under 7,
+but a real consideration to check against rather than picking a
+threshold by feel. (Skill Total 6 itself — the *exact* chargen
+ceiling — remains meaningful too: it's the "true beginner's maximum"
+line one step below the practical-craftsperson one.)
 
-Applied this pass: **Heavy Armor** (`CR006`/`CR022`/`CR023`) moved
-from Craft 5 to **Craft 6**, and **Wagon, Large** (`CR036`) moved from
-Craft 7 to **Craft 6** — both now land exactly on the
-character-creation ceiling rather than past it. Separately decided but
-not yet built: folding Masterwork and the whole Alchemy/Cooking
-Level-scaling family onto one shared curve (Skill Total 4/6/8/9/10
-across Levels 1-5, chosen so Level 3's already-agreed value of 8
-doesn't move) to fix an unrelated bug where Alchemy's old Level 1
-threshold exactly collided with its own School-access prereq — full
-reasoning and implementation status are in `balance.md`, this note is
-just the reusable principle behind the Skill Total 6 choices
+Applied this pass, once the whole crafting Skill Total table got
+reorganized around this: **Heavy Armor** (`CR006`/`CR022`/`CR023`) and
+**Wagon, Large** (`CR036`) both moved to **Craft 7** — the two
+"needs real engineering" items landing exactly on the practical
+ceiling (both had briefly sat at Craft 6 earlier this same session,
+since revised once 7 became the intended target). Also, unrelated to
+the Skill Total 6/7 anchor specifically but decided in the same pass:
+**Weapons** moved from Craft 3 to Craft 4, **Medium Armor** moved from
+Craft 4 to Craft 5, and Masterwork/Alchemy's Level-scaling families
+were unified onto a shared Skill Total 4/6/8/9/10 curve (fixing an
+unrelated bug where Alchemy's old Level 1 threshold exactly collided
+with its own School-access prereq) — full reasoning, the Archetype-
+based Progression/Special/Convenience split this also produced, and
+the complete resulting table are all in `balance.md`; this note is
+just the reusable principle behind the Skill Total 6/7 choices
 specifically.
 
 ## Things considered and deliberately not done

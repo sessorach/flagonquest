@@ -1563,7 +1563,7 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   stays player-facing only per its existing scoping note, so this kind
   of "how should a GM actually pace this" guidance doesn't belong
   there.
-- **Crafting Skill Total tiers, broadly — reviewed 2026-09-16, partially
+- **Crafting Skill Total tiers, broadly — reviewed 2026-09-16, fully
   applied.** Follow-up to the Crafting Schools review above, once the
   designer noticed a real gap: Alchemy's Level-scaling formula
   (`Mixology [twice the item's Level]`) put Level 1 at Mixology 2 —
@@ -1571,11 +1571,8 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   (also Mixology 2, checked as raw skill ranks per the rulebook's
   Technique-prereq carve-out). So the moment a character paid the real
   cost to unlock Alchemy, their Skill Total already cleared every
-  Level 1 recipe in the School with zero further investment — no ramp
-  at all between "just unlocked this School" and "can make its
-  cheapest item," unlike Craft-based Schools (Craft 2 prereq vs. Craft
-  3 for the cheapest recipe, a real if modest gap). Cooking's Food
-  recipe had the identical collision against its own prereq.
+  Level 1 recipe in the School with zero further investment. Cooking's
+  Food recipe had the identical collision against its own prereq.
 
   First attempt (`[1 + twice the Level]`, preserving the old slope but
   adding a flat floor) turned out to be unworkable: Skill Total caps
@@ -1583,37 +1580,85 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   hit exactly 10 at Level 5 — any positive offset pushes Level 5 past
   the cap into a threshold nothing could ever reach.
 
-  **Decided, not yet implemented: unify Masterwork and the whole
-  Alchemy/Cooking family onto one shared curve — Skill Total 4 / 6 / 8
-  / 9 / 10 across Levels 1-5** (steps of +2, +2, +1, +1 — not a single
-  clean line; `min(2 × Level + 2, Level + 5)` as a closed form if one's
-  wanted). Replaces Masterwork's old `Craft 5 + Level` (6/7/8/9/10) and
-  Alchemy's old `Mixology [twice the Level]` (2/4/6/8/10). Chosen
-  because Level 3 is exactly 8 under *both* old formulas — picking a
-  curve that passes through that shared point means Masterwork's
-  already-tuned Levels 3-5 don't move at all, only the low end (Levels
-  1-2) comes down, which also directly answers an earlier flagged
-  concern that Masterwork read as needlessly punitive for a common,
-  low-Level item. Alchemy's floor moves from 2 to 4, closing the
-  collision with its own prereq with real room to spare. This curve
-  needs a small `index.html` parser addition (none of the existing
-  Skill Total text patterns can express a bend partway through), plus
-  the same treatment for two flat (non-Level-scaling) recipes with the
-  identical bare-prereq collision — **Quicktorch** (`CR052`, Mixology
-  2 → 4) and **Basic Convenience / Charcoal / Oil** (`CR047`/`CR048`/
-  `CR050`, Mixology or Survival 2 → 4) — so still open until that's
-  built and verified.
+  **Landed on unifying Masterwork with a genuine "core progression"
+  subset of the Alchemy/Cooking family onto one shared curve — Skill
+  Total 4 / 6 / 8 / 9 / 10 across Levels 1-5** (steps of +2, +2, +1,
+  +1 — not a single clean line; `min(2 × Level + 2, Level + 5)` as a
+  closed form). Replaces Masterwork's old `Craft 5 + Level`
+  (6/7/8/9/10) and Alchemy's old `Mixology [twice the Level]`
+  (2/4/6/8/10); Level 3 is exactly 8 under both old formulas, so this
+  curve was chosen to pass through that shared point — Masterwork's
+  already-tuned Levels 3-5 don't move at all, only the low end (1-2)
+  comes down. `index.html`'s `parseSkillTotalText` gained a fourth
+  pattern for the literal text `"[4/6/8/9/10 by Level]"` (a by-Level
+  lookup, not an arithmetic expression like the other two patterns,
+  since no single line can hit both endpoints without exceeding the
+  cap) — verified in the Playwright sandbox across Levels 1/2/3/5 for
+  both Potions and Masterwork items built on different base items.
 
-  **Applied now: Skill Total 6 as a meaningful anchor for crafting-tier
-  decisions**, not just a round number — see `RULES_DESIGN.md` for the
-  full reasoning (character creation caps every Stat/Skill at 3, so 6
-  is the highest Skill Total obtainable before a character has actually
-  adventured). **Heavy Armor** (`CR006`/`CR022`/`CR023`) moved from
-  Craft 5 to **Craft 6**, and **Wagon, Large** (`CR036`) moved from
-  Craft 7 to **Craft 6** — both now land exactly on the
-  character-creation ceiling instead of past it, since a master smith
-  or wainwright plausibly existing in any settled town shouldn't need
-  capability beyond what's reachable before a character has left home.
+  **New Archetype-based split, once the designer flagged that not
+  every Alchemy-ish good should really be on this curve:**
+  - **Progression** (untagged in `Archetype`, the default) — the
+    30 Potions/Poisons/Grenades and 5 Food items players actually
+    level through. These follow the curve above.
+  - **Special** (flagged via `Crafting Notes`, not `Archetype` — this
+    is a crafting-mechanics distinction, not the player-facing
+    thematic grouping `Archetype` already holds for Potions) —
+    **Spirit Quest Ointment** (`I116`) is the one confirmed case,
+    found by checking every Potion/Poison/Grenade for a Cost override:
+    it's the *only* one with a flat Cost (60 Gold) instead of the
+    formula-derived default, real evidence it was never meant to
+    follow the generic curve. Still falls through to the generic
+    Alchemical Potion recipe for now (Skill Total 8) with a
+    `Crafting Notes` flag that it needs its own bespoke recipe — a
+    real gap, but a documented one, not a silent one.
+  - **Convenience** (`Archetype = "Convenience"`, 14 items: Basic
+    Conveniences, Charcoal, Oil, Alcohol ×5, Incense ×2, Embalming
+    Fluid, Recreational Drugs ×2, Quicktorch) — reads as a common tool
+    rather than a proper Alchemy consumable (Alcohol's own recipe text
+    already called it "a simple reagent rather than a proper Potion").
+    Pulled off the curve entirely and flattened to **Mixology 3** (or
+    `Mixology or Survival 3` for the three with that alternate skill),
+    matching Craft's Basic Tool tier exactly rather than sitting at
+    the curve's Level 1 floor of 4 — same "everyday goods barely need
+    training" tier, just reached via a different Skill. Flattening
+    also means a fancier tier (Alcohol, Legendary at Level 5) doesn't
+    need more Skill to make, only better/costlier materials — a nicer
+    Gold cost doesn't imply a harder recipe for something this basic.
+  - **Unarmed Enhancer** (`I001`) — tagged `Archetype = "Masterwork
+    Base"` per the designer: mechanically a real weapon-tier item, but
+    conceptually more like a piece of clothing (a placeholder base for
+    Masterwork unarmed powers, not something with standalone combat
+    value at its own tier) — deliberately left off the Weapon curve
+    move below and kept at Craft 3, flagged rather than silently
+    grouped with either bucket.
+
+  **Also moved, once the tiers were reorganized around Skill Total 7 as
+  the new "master craftsperson" ceiling** (see `RULES_DESIGN.md` for
+  the anchor reasoning — the strict character-creation cap is Skill
+  Total 6, and 7 is one deliberate step past it, not the exact cap):
+  - **Weapons** (`CR001`/`CR002`) moved from Craft 3 to **Craft 4**,
+    joining the Skill Kits as "properly equipped for adventuring"
+    rather than "barely trained."
+  - **Medium Armor** (`CR018`-`CR021`) moved from Craft 4 to
+    **Craft 5**, filling out a tier that was previously thin (just
+    Rucksack and Cart, Medium).
+  - **Heavy Armor** (`CR006`/`CR022`/`CR023`) and **Wagon, Large**
+    (`CR036`) moved to **Craft 7** (both had briefly landed at Craft 6
+    in an earlier pass this same session, since revised) — the two
+    "needs real engineering" items, now a genuinely populated tier of
+    their own rather than colliding with Survivalist's Pack at 6.
+
+  Full resulting table (everything Craft/Mixology-gated, current as of
+  this pass):
+  | Skill Total | Contents |
+  |---|---|
+  | 3 | Light Armor (×3 Schools), Unarmed Enhancer, Basic Clothing/Jewelry, Camping Kit, Knapsack, Adventurer's Belt, Cart (Small), Rope, Firestarter, all 12 Basic Tool items, + the whole Convenience bucket |
+  | 4 | Weapons (×2 Schools), Musical Instrument, all 8 Skill Kits, Backpack, Crowbar, Manacles, Grappling Hook, + every Level 1 Progression item |
+  | 5 | Medium Armor (×2 Schools + 2 upgrades), Rucksack, Cart (Medium) |
+  | 6 | Survivalist's Pack, + every Level 2 Progression item |
+  | 7 | Heavy Armor (+2 upgrades), Wagon (Large) |
+  | 8 / 9 / 10 | Level 3 / 4 / 5 Progression items only |
 - **The Resist-granting-item systemic gap.** Physical Resist and a
   single element's Resist aren't remotely the same value (~5-10× apart
   after a damage-share correction narrowed the original ~7.5-15× gap;

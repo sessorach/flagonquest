@@ -13,6 +13,27 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-16 — Crafting Skill Total requirements reorganized
+
+- Reworked the Skill Total needed to craft across the board, landing
+  on a cleaner tiered table: **3** for genuinely basic goods (Light
+  Armor, everyday tools, and simple "convenience" Alchemy goods like
+  Alcohol/Charcoal/Oil), **4** for real adventuring gear (Weapons,
+  Skill Kits, and your first Level 1 Potion/Poison/Grenade), **5** for
+  Medium Armor and bigger packs, **6** for Survivalist's Pack and
+  Level 2 Potions, and **7** — a new "master craftsperson" ceiling —
+  for Heavy Armor and large Wagons.
+- Masterwork items and the core Alchemy/Cooking progression (Potions,
+  Poisons, Grenades, Food) now share one Skill Total curve across
+  Levels 1-5, fixing a gap where the easiest Alchemy items used to
+  require no more Skill than just being allowed to learn Alchemy in
+  the first place.
+- A handful of "convenience" Alchemy goods (Alcohol, Incense,
+  Embalming Fluid, Recreational Drugs, Quicktorch, Basic
+  Conveniences/Charcoal/Oil) no longer scale in difficulty with their
+  own quality — a fancier bottle of Alcohol costs more Gold, not more
+  training.
+
 ### 2026-09-15 — 15 new "basic adventuring tool" items added
 
 - Classic dungeoneering gear drafted as real items for the first time

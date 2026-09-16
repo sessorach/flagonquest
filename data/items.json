@@ -5153,7 +5153,7 @@
     "total_materials": 15,
     "main_materials": "Brilliant, Shadow, Medicinal",
     "optional_materials": "None",
-    "crafting_notes": null,
+    "crafting_notes": "Deliberately priced outside the generic Alchemical Potion formula (see its own flat 60 Gold Cost) - needs its own bespoke crafting recipe rather than following the generic Level curve. Currently falls through to the generic Alchemical Potion fallback (Skill Total 8) for lack of one; not yet drafted.",
     "physical_resist": null,
     "fire_resist": null,
     "frost_resist": null,
