@@ -63,3 +63,21 @@ out per session/arc/character Level — that needs actual play data or a
 deliberate design pass, not just this session's back-of-envelope check,
 so it's deliberately left open rather than asserting a number with
 nothing behind it.
+
+## Early-game loot: mundane gear, not just raw materials
+
+Per the designer — early-game loot doesn't need to be raw Materials
+specifically to feed the crafting-conversion payoff above. Plain
+mundane equipment works too, as long as the party has a way to turn it
+into Materials: a half-dozen looted suits of gambeson (Light Armor)
+that nobody in the party wants to wear can be stripped down into Cloth
+by whoever has **Re-purpose Materials** (`T040`) — "You may break down
+existing items into raw materials. Produces materials of Types
+matching the Base and Extra Materials of the item... All materials
+produced are of the item's Level." A low-Level dungeon or bandit camp
+stuffed with mundane gear the party doesn't need to *use* is still
+real, actionable loot for a crafting-invested character once someone
+in the party has learned that Technique — worth keeping in mind as
+another lever alongside raw Material drops, and a good in-fiction
+reason for early loot to skew toward "pile of ordinary equipment"
+rather than always needing to be curated treasure.
