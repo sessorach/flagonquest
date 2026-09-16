@@ -2058,6 +2058,36 @@ the complete resulting table are all in `balance.md`; this note is
 just the reusable principle behind the Skill Total 6/7 choices
 specifically.
 
+## Where new Masterwork content should go: Level 1-3 breadth over Level 4-5 completionism, and "range" slots vs. narrow slots
+
+Standing design principle, per the designer, surfaced while reviewing
+where the Masterwork catalog has real gaps (see `balance.md`'s
+Material Type and Slot × Level coverage entries for the specific
+numbers this produced).
+
+**Level 4-5 rounding out is explicitly not a priority.** Those are
+high-power endgame tiers most games never reach, and by the time a
+table is playing at that Level, loot is naturally abundant enough that
+players aren't hurting for options the way a Level 1-3 character is.
+Most characters reach for Weapons or Armor as their capstone item
+anyway, which the catalog already covers. New content should default
+to **Level 1-3** unless there's a specific reason to reach higher —
+the opposite instinct from just filling every empty Slot × Level cell
+mechanically.
+
+**Not every Slot needs to offer a range of themes, and that's
+intentional, not a gap.** Some Slots are deliberately built around one
+narrow cluster of mechanics — Feet is movement-focused, for instance —
+and a character either cares about that niche or doesn't; there's
+nothing wrong with Feet staying narrow. The Slots meant to offer real
+breadth are the ones with room for genuinely different builds to want
+different things from the same Slot: **Held, Torso, Ring, and Neck**
+specifically. When picking where to spend new-content effort, these
+four are where thematic/material variety actually matters — an
+under-represented Material Type (Frost, per `balance.md`) is best
+addressed by finding room for it in one of these four, not by forcing
+it into a Slot whose whole identity is already narrower by design.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).

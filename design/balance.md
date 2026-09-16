@@ -1784,55 +1784,41 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   Potions/a Grenade (`I204`-`I207`) got that check as part of the
   alchemy pass below; the other 14 (Pack/Gear, Tool/Kit) are flavor/
   utility goods with no combat mechanic to price and don't need one.
-- **Material Type coverage — flagged 2026-09-16, not yet actioned.**
-  Reviewed how evenly the 12 Material Types (Bone/Cloth/Leather/Metal/
-  Wood/Food/Medicinal/Precious/Brilliant/Fire/Frost/Shadow) are spread
-  across every recipe and item, since players should have a real range
-  of options for whichever material they end up with. Tallied total
-  items reachable per Material (Main or Optional): most sit comfortably
-  between 20-67 items; Food (5) is fine, it's Cooking-exclusive by
-  design. **Frost is the real outlier — 11 items total, and it has
-  zero representation at Level 2 or Level 4**, dedicated or as part of
-  a "pick any element" choice. Every *dedicated* Frost item (Snowstorm,
-  Calming Brew, Snowfall Drape, Rimefang) happens to be Level 3; the
-  rest of Frost's presence is riding along inside four generic
-  "Fire/Frost/Brilliant/Shadow, pick one" items at Levels 1, 3, and 5.
-  A player who specifically wants a Frost item at Level 2 or 4 has
-  nothing to make. Not acted on this pass — logged for whenever new
-  Masterwork/Potion/Grenade content gets drafted, as a Level slot to
-  specifically reach for Frost. The newer Pack/Gear "basic tool" batch
-  (Rope/Firestarter/Hammer and the rest) was checked too and is fine —
-  heavily Metal/Wood as expected for mundane goods, correctly doesn't
-  touch the elemental types at all, and its `Optional: None` pattern on
-  every recipe matches the precedent Rope/Firestarter already set
-  rather than introducing a new inconsistency.
-- **Masterwork Slot × Level coverage — flagged 2026-09-16, not yet
-  actioned.** Companion check to the Material Type one above, same
-  "where should new content go" motivation. Counting every Masterwork
-  item at every Level it's buildable at (including the 14 buildable-
-  range items like `Dauntless Wrap`'s "Level 1-5", each counted once
-  per Level it covers, not just its fixed Levels):
+- **Material Type and Masterwork Slot × Level coverage — flagged
+  2026-09-16, priority corrected same session, still not acted on.**
+  Reviewed how evenly the 12 Material Types are spread across every
+  recipe/item, and separately how Masterwork content spreads across
+  Slot × Level — both in service of "where should new content go."
+  First pass measured raw gaps everywhere (see `RULES_DESIGN.md`'s new
+  "Where new Masterwork content should go" entry for the corrected
+  standing principle this produced): **Level 4-5 completionism isn't
+  the goal** — those are endgame tiers most tables never reach, loot is
+  naturally abundant by then, and Weapons/Armor are already the
+  expected capstone. **Not every Slot needs thematic range either** —
+  Feet is deliberately movement-focused and that's fine as-is. The
+  actual target is Level 1-3 variety specifically within the four
+  Slots built for it: **Held, Torso, Ring, Neck.**
 
-  | Slot | L1 | L2 | L3 | L4 | L5 |
-  |---|---|---|---|---|---|
-  | Belt | 1 | 3 | 1 | 1 | **0** |
-  | Feet | 3 | 4 | 3 | 1 | 2 |
-  | Hands | 3 | 3 | 2 | **0** | **0** |
-  | Head | 2 | 6 | 1 | **0** | 1 |
-  | Held | 8 | 7 | 8 | 5 | 7 |
-  | Neck | 4 | 4 | 2 | 2 | 1 |
-  | Other | 3 | 2 | 1 | **0** | **0** |
-  | Ring | 6 | 6 | 2 | 4 | 1 |
-  | Torso | 2 | 5 | 4 | 2 | 3 |
+  Re-cut the data to match. Material Type presence within just those
+  four Slots at Levels 1-3:
+  | Slot | L1 items (materials present) | L2 | L3 |
+  |---|---|---|---|
+  | Held | 8 (Bone/Brilliant/Fire/Frost/Medicinal/Metal/Shadow/Wood) | 7 (no Fire/Frost) | 8 (no Bone/Metal, has Frost) |
+  | Torso | 2 (Bone + all 4 elements via Elemental-Resistant Armor) | 5 (+Medicinal/Metal) | 4 (Bone/Metal + all 4 elements) |
+  | Ring | 6 (Brilliant/Fire/Frost/Medicinal/Shadow/Wood) | 6 (Brilliant/Metal/Shadow) | **2 (Bone/Brilliant only — no Fire/Frost/Shadow at all)** |
+  | Neck | 4 (Bone/Metal/Shadow/Wood) | 4 (Brilliant/Leather/Metal/Wood) | **2 (Frost + Metal only)** |
 
-  Six genuinely empty cells: Belt L5, Hands L4, Hands L5, Head L4,
-  Other L4, Other L5. Held and Ring are the best-covered slots at every
-  Level (both benefit heavily from buildable-range items). Overall
-  Level distribution also thins out at the top: 32/40/24/15/15 across
-  Levels 1-5 — roughly half as much content at L4-5 as at L1-2. `Other`
-  going empty at L4-5 is lower priority (it's the miscellaneous-novelty
-  slot, not core equipment); Hands and Head are the two real gaps worth
-  planning new items around.
+  **Ring L3 is the clearest concrete target**: only 2 items
+  (Focusing Band of [Technique], Heartbinding Band), and neither
+  touches any of the three "hot" elements (Fire/Frost/Shadow) — every
+  other Level of Ring has at least one. **Neck L3** is thin on raw
+  count (2 items) though it does already have a Frost item
+  (Snowfall Drape) — a plain third Neck L3 item, any theme, would help
+  regardless of material. **Torso L1** is thinner in count (2) than
+  Torso L2 (5), worth a look too, though its 2 existing items already
+  cover all 4 elements between them so it's a lower-priority count gap
+  rather than a material gap. Held is already the best-covered of the
+  four at every Level 1-3 and doesn't need urgent attention.
 - **Resolved: Fleeting effects and the same-turn-grant snag.** Fleeting
   effects decay 1 stack at the end of the affected creature's own turn.
   Turned out topping off an *existing* stack was never actually broken —
