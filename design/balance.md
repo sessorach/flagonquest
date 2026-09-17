@@ -2041,12 +2041,27 @@ What genuinely remains, cross-cutting rather than slot-shaped:
       Food materials/rations, plus the no-spoilage clause (Food
       materials genuinely do spoil a week after gathering, per
       `rulebook.md`'s own Material Types section — not an invented
-      restriction). Per the designer, explicitly **penciled in, not
-      fully derived**: priced via the Narrative Utility convention for
-      now (Value = ⅓×9 = 3, Net -6, 33% funded), matching Distant
-      Scroll Cases' (`I114`) own pure-logistics treatment — but this is
-      a placeholder pending a real Storage/capacity value model, which
-      doesn't exist yet (see the new Open Balance Work entry below).
+      restriction). **Re-derived** in the follow-up Storage review (see
+      `balance_weights_notes.md`'s "Preserving Larder" writeup): the
+      Storage-capacity model's AP-saved-on-retrieval logic turned out
+      not to fit a Food-only bag at all (nobody retrieves rations
+      mid-combat), so per the designer's own steer, this instead prices
+      the value of the food it saves from spoiling — a large-beast kill
+      (10 Food, Level 1) is worth 10 Gold nominally → 15 raw Value at
+      the established `Gold = 1.5` rate, discounted at the standard ⅓
+      niche tier (a spoilage-risking windfall isn't an every-fight
+      occurrence): `15 × ⅓ = 5.0`. **Value = 5.0, Net -4.0 (56%
+      funded)** — in the same band as its Storage-family peers
+      (Spacious Satchel 61%, Sash of Deep Pockets 51%). This also
+      surfaced a real gap: `rulebook.md` had no base-game guidance for
+      how much food a kill yields, only a vague line that turned out to
+      live in the Goblin Game chapter specifically — closed by
+      generalizing that chapter's own "adult Goblin = 5 Food" anchor
+      into a base-game size table (Material Types' Food bullet).
+      Distant Scroll Cases (`I114`) was reviewed alongside this and
+      left unchanged — its mechanic (sharing a small pocket of space
+      across distance, sized for documents) isn't a capacity item
+      either, and its existing Narrative Utility pricing already fits.
       **With this item, the Cloth/Leather Material Type bucket is fully
       closed out** — 5/3/3/0/0 across L1-5, no L1-3 gap remaining (see
       the `RULES_DESIGN.md`/`balance.md` re-run entries above for the
@@ -2105,7 +2120,7 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   the bug), so **no existing pricing needs revisiting** — the rule fix
   just makes that assumption actually true going forward.
 - **Storage/capacity items reviewed as a family — model weights fixed,
-  item repricing still open.** A real "Storage capacity" model already
+  outlier items repriced.** A real "Storage capacity" model already
   existed (`balance_weights_notes.md`) — cap "genuinely extra slots
   used" at 3, `2.75` base credit (3 × 2.75 AP-equivalent × ⅓ niche
   frequency), `+0.917`/slot for a qualitative large-object
@@ -2144,15 +2159,32 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   whenever someone's next in that file with time to re-quote the
   affected rows properly.
 
-  **Still open**: actually reprice Distant Scroll Cases and Preserving
-  Larder under the now-fixed Storage-capacity model instead of
-  Narrative Utility (Larder's own capacity spec directly mirrors
-  Spacious Satchel's, so its base credit should likely just be the
-  same 5.5, not 3). Also confirmed: **Placeholder's Sneaky Storage**
-  (the "limited magical storage" spell the designer recalled) exists
-  only in `archive/flagonquest_site_techniques.md` — a cut Level 2
-  Spell, not in the current ruleset. Per the designer, left archived
-  for now; logged in `IDEAS_BACKLOG.md` as a candidate for the same
+  **Resolved.** Distant Scroll Cases turned out to be correctly priced
+  as-is — its mechanic (two cases sharing a small pocket of space
+  across distance, for documents specifically) was never really a
+  capacity item, just a narrow logistics/communication effect, so
+  Narrative Utility is the right convention for it after all. Preserving
+  Larder did need repricing, but not by borrowing Spacious Satchel's
+  capacity credit directly as first assumed — per the designer, the
+  Storage-capacity model's whole AP-saved-on-retrieval basis doesn't
+  fit a Food-only bag (nobody retrieves rations mid-combat), so it's
+  priced instead on the food it saves from spoiling: a large-beast kill
+  (10 Food, Level 1) worth 10 Gold nominally → 15 raw Value at the
+  established `Gold = 1.5` rate, discounted at the standard ⅓ niche
+  tier, landing at **Value 5.0, Net -4.0 (56% funded)** — see the
+  Preserving Larder bullet above and `balance_weights_notes.md`'s own
+  writeup for the full derivation. That also closed a real content gap:
+  `rulebook.md` had no base-game guidance for how much food a kill
+  yields, so the Goblin Game chapter's own "adult Goblin = 5 Food"
+  anchor was generalized into a base-game size table on the Food
+  Material Type bullet — flagged in `PROSE_REVIEW_QUEUE.md` for a
+  later read-through, same as any other rulebook prose edit.
+
+  Also confirmed: **Placeholder's Sneaky Storage** (the "limited
+  magical storage" spell the designer recalled) exists only in
+  `archive/flagonquest_site_techniques.md` — a cut Level 2 Spell, not
+  in the current ruleset. Per the designer, left archived for now;
+  logged in `IDEAS_BACKLOG.md` as a candidate for the same
   archive-recovery treatment Distraction (`T144`) got, once there's
   appetite for another pass like that.
 

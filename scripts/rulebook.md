@@ -697,7 +697,7 @@ A material has a Level as well as one or more Types, which represent its makeup 
 - Leather: Fur, hide, skin, and similar materials harvested from creatures.
 - Metal: Iron, steel, copper, etc. Can include some kinds of stone, if they can be properly worked into a new form.
 - Wood: Maple, oak, cedar, pine, and other material harvested from trees and similar plants.
-- Food: Meat, fruit, grains, and similar raw foods. Food materials spoil one week after being gathered, and cannot be used.
+- Food: Meat, fruit, grains, and similar raw foods. Food materials spoil one week after being gathered, and cannot be used. A rodent, fish, bird, or fistful of insects is good for a single Food; a person-sized kill yields about five, and a larger beast - a boar, elk, or bear, say - can yield ten or more, scaling up further for anything truly massive.
 - Medicinal: Herbs, venom, fungus, and other natural materials harvested from plants and animals. Used in medicines, poisons, and everything in between.
 - Precious: Gold, silver, silk, and any other material primarily known for being valuable. Precious materials can usually be sold for full value to merchants and others.
 - Brilliant: Material aligned in a spiritually positive way.

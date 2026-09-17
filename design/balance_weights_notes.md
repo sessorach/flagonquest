@@ -2363,6 +2363,67 @@ own `balance_weights.csv` row ("Storage capacity component
 (large-object slot)") since it's been reused across multiple items
 without ever being formally tabulated.
 
+### Preserving Larder = 5.0 — a money-saved-from-spoilage anchor, not the capacity model
+
+Level 3, "Other" (no equipment Slot). Reviewed alongside the rest of
+the Storage family per the designer's request, and it turned out *not*
+to fit the capacity model above at all, rather than just needing its
+placeholder Narrative Utility pricing (`Value = 3`, PENCILED IN)
+swapped for the real thing. The capacity model's whole basis is AP
+saved on retrieval — converting a belt pouch's soft "sure, you can
+probably fit that" into a hard guarantee, scoped per-encounter because
+that convenience recurs every fight. None of that holds for a bag that
+can only ever hold Food: nobody is digging for rations mid-combat, so
+there's no AP-retrieval story to price here at all, borrowed from
+Spacious Satchel or otherwise.
+
+**Per the designer**, the item's real value is what it saves the party
+from *wasting* — food that would otherwise spoil a week after
+gathering (`rulebook.md`'s Material Types section) gets preserved
+instead, either to actually eat later or, less directly, to not need
+to re-gather. That's the same shape as Shawl of the Land's own
+"doesn't need to eat" credit (Neck slot, above): a real Gold number run
+through the established `Gold = 1.5` conversion (`balance_weights.csv`,
+"reciprocal of Baseline's own Value/Gold ratio"), rather than the usual
+Narrative Utility fallback.
+
+That needed a real number for "how much food does a kill actually
+yield," which `rulebook.md` didn't have at the base-game level — only
+a vague "larger kills have many more units, depending on their size"
+line, and that line lives in the Goblin Game chapter specifically (its
+own concrete anchor, "an adult Goblin has 5 Food worth of meat," is
+scoped to that supplement, not Base Game). Generalized the Goblin
+anchor into a base-game size table instead of inventing new numbers:
+a rodent/fish/bird/insects-sized kill is good for 1 Food, a
+person-sized kill for about 5 (reusing the Goblin figure directly),
+and a larger beast (boar, elk, bear) for 10 or more. `scripts/
+rulebook.md`'s Food bullet updated to match, regenerated into
+`data/rulebook.json`.
+
+**The math**: a large-beast kill (10 Food, Level 1 by default — most
+mundane game is Level 1 baseline per "higher-quality materials can be
+hard to find") is worth 10 Gold nominally (Materials are worth Gold
+equal to their own Level) → `10 × 1.5 = 15` raw Value at the Gold
+rate. A windfall big enough to actually risk spoiling waste — more
+food than the party can eat or otherwise use inside the one-week
+clock — isn't an every-fight or even every-day occurrence, so this
+takes the standard **⅓ niche tier**, same as Smuggler's Belt's Secrecy
+or Shadowdraw's concealment: `15 × ⅓ = 5.0`.
+
+`Value = 5.0`, `Target = 9` (Level 3, unchanged), **`Net = −4.0` (56%
+funded)** — lands in the same band as its Storage-family peers
+(Spacious Satchel 61%, Sash of Deep Pockets 51%), not forced to fit,
+just landing there. `design/balance_ledger.csv`'s `I254` row updated
+to match.
+
+**Distant Scroll Cases (`I114`) reviewed alongside this and left
+unchanged.** Its own mechanic — two cases sharing a small pocket of
+space across arbitrary distance, sized for documents specifically, not
+a bag's worth of gear — was never really a capacity item either; it's
+a narrow logistics/communication effect, correctly priced via
+Narrative Utility already (`Value = ⅓ × 6 = 2`, `Net = −4`, 33%
+funded). No change needed.
+
 ### Trigger frequency tiers, standardized — and a labeled-guess convention for Narrative Utility items
 
 Surfaced pricing the Hands Masterwork slot, where several items needed

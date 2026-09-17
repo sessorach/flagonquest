@@ -18,8 +18,11 @@ the full commit-by-commit detail behind any of these.
 A food-only sidegrade to Placeholder's Spacious Satchel — same huge
 capacity, but restricted to Food materials/rations, and keeps them
 from spoiling. Closes out the last remaining Cloth/Leather Material
-Type gap (Level 3). Pricing is a deliberate placeholder pending a
-real Storage/capacity value model, which doesn't exist yet.
+Type gap (Level 3). Priced on the food it saves from spoiling rather
+than the usual storage-capacity model, which doesn't fit a bag nobody
+reaches into mid-combat. Also added base-game guidance for how much
+Food a kill yields (rulebook.md's Material Types section), previously
+only spelled out for the Goblin Game supplement.
 
 ### 2026-09-17 — Instinct Defense renamed to Vigilant Defense
 
