@@ -1937,6 +1937,51 @@ What genuinely remains, cross-cutting rather than slot-shaped:
     those two gaps should be read together once this School pass is
     fully settled; picking the gap-filling pass back up is the natural
     next step.
+  - **Follow-up, same session: re-ran the gap numbers, bucketed by
+    School/Alchemy-type instead of raw Material Type.** The original
+    12-Material-Type matrix undercounted real coverage for the two
+    paired Schools, since it graded Cloth and Leather (and separately
+    Wood and Bone) as two independent gaps each needing their own 3
+    items, when a Tailoring or Carving crafter genuinely doesn't care
+    which of the pair they end up with. Re-cut into 9 buckets instead
+    (one per School for the four mundane pairs/singles, one each for
+    the five Alchemy-only Types) and counted an item once if it touches
+    *either* member of a pair, at every Level 1-5, across Masterwork +
+    Potion/Poison/Grenade:
+    | Bucket | L1 | L2 | L3 | L4 | L5 |
+    |---|---|---|---|---|---|
+    | Metal (Smithing) | 7 | 8 | 3 | 1\* | 1\* |
+    | Wood/Bone (Carving) | 12 | 13 | 10 | 7 | 5 |
+    | Cloth/Leather (Tailoring) | **2\*** | **2\*** | **2\*** | 0\* | 0\* |
+    | Precious (Jewelrymaking) | 4 | **2\*** | **2\*** | 1\* | 1\* |
+    | Medicinal (Alchemy) | 6 | 4 | 3 | 2\* | 2\* |
+    | Fire (Alchemy) | 9 | 7 | 8 | 3 | 4 |
+    | Frost (Alchemy) | 5 | 4 | 8 | **0\*** | 2\* |
+    | Brilliant (Alchemy) | 8 | 12 | 8 | 5 | 4 |
+    | Shadow (Alchemy) | 11 | 12 | 9 | 4 | 4 |
+
+    **Wood/Bone turns out to have no real gap at all** once merged
+    (12/13/10/7/5) — the standalone Leather numbers from the first pass
+    were misleading; a Carving-trained crafter was never actually short
+    on options. **Cloth/Leather is the one genuine standout**, and a
+    much smaller fix than the original unmerged read suggested: it
+    needs exactly **one more item at each of L1, L2, and L3** to clear
+    the floor (was miscounted as needing 7 Cloth items + 4 Leather
+    items separately before the merge — really just 3 items total).
+    Its existing L1-3 coverage (Swim Flippers/Bottomless Belt at Feet/
+    Belt, Distant Scroll Cases/Watcher's Mantle at Other/Neck,
+    Spacious Satchel/Wizardly Hat at Other/Head) also has a real second
+    pattern worth acting on: **zero Cloth/Leather items in Held,
+    Torso, or Ring at any Level 1-5** — the three "should offer range"
+    Slots per `RULES_DESIGN.md`'s standing principle, making one of
+    those three the natural target for each of the L1-3 fills rather
+    than defaulting to whichever Slot's easiest. **Precious is the only
+    other L1-3-relevant gap**, needing one more item each at L2 and L3
+    (L1 is already healthy at 4). Metal/Medicinal's own L4-5 thinness
+    and Frost's L4 zero stay unaddressed per the standing Level 1-3
+    priority principle, same as before. Full working data (per-item
+    breakdown feeding this table) in the session's scratch files, not
+    committed — regenerable directly from `items.csv` if needed again.
 - **Resolved: Fleeting effects and the same-turn-grant snag.** Fleeting
   effects decay 1 stack at the end of the affected creature's own turn.
   Turned out topping off an *existing* stack was never actually broken —
