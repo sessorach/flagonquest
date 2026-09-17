@@ -13,6 +13,14 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-17 — Preserving Larder, closing out the Cloth/Leather gap
+
+A food-only sidegrade to Placeholder's Spacious Satchel — same huge
+capacity, but restricted to Food materials/rations, and keeps them
+from spoiling. Closes out the last remaining Cloth/Leather Material
+Type gap (Level 3). Pricing is a deliberate placeholder pending a
+real Storage/capacity value model, which doesn't exist yet.
+
 ### 2026-09-17 — Instinct Defense renamed to Vigilant Defense
 
 Renamed across the rulebook, glossary, and every item/Technique/

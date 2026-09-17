@@ -10698,5 +10698,49 @@
     "levels": [
       1
     ]
+  },
+  {
+    "id": "I254",
+    "name": "Preserving Larder",
+    "category": "Masterwork",
+    "slot": "Other",
+    "tags": null,
+    "level": 3,
+    "description": "A tightly-woven bag lined with waxed cloth and cured leather, radiating a faint chill that never quite fades - whatever's placed inside stays as fresh as the day it was picked.",
+    "effects": "Only Food materials, rations, or other food items can be stored in the bag, although each must fit within the mouth of the larder - a little larger than most people's heads - and the bag can hold 100 cubic meters (the size of a modest closet) worth of food. The bag is always treated as an easily-accessible location. Food stored within never spoils. No items will fall out of the bag if it is upended, although there is a specific method that will cause the bag to empty out all items inside of it in a heap on the ground.",
+    "cost": "60 Gold",
+    "value_per_level": null,
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "main_materials": "Cloth or Leather",
+    "optional_materials": null,
+    "crafting_notes": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "vital_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skills": null,
+    "might_requirement": null,
+    "held_slots": null,
+    "supplement": "Base Game",
+    "material_types": null,
+    "base_item_options": [],
+    "levels": [
+      3
+    ]
   }
 ]

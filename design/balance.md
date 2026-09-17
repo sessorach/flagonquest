@@ -2031,6 +2031,27 @@ What genuinely remains, cross-cutting rather than slot-shaped:
       (Level × 3 for Encounter cadence). Value = 3, Net = 0 (exact
       fit). Main Materials includes Shadow as a third alternative
       alongside Cloth/Leather, matching the item's stealth theme.
+    - **Preserving Larder** (`I254`, Other — no equipment Slot, Level
+      3, 60 Gold) — "Only Food materials, rations, or other food items
+      can be stored in the bag... the bag can hold 100 cubic meters...
+      Food stored within never spoils." The last Cloth/Leather gap
+      (Level 3), closing the bucket out entirely. A food-only sidegrade
+      to Placeholder's Spacious Satchel (`I115`, also Other slot) —
+      same 100-cubic-meter capacity and mouth-size text, narrowed to
+      Food materials/rations, plus the no-spoilage clause (Food
+      materials genuinely do spoil a week after gathering, per
+      `rulebook.md`'s own Material Types section — not an invented
+      restriction). Per the designer, explicitly **penciled in, not
+      fully derived**: priced via the Narrative Utility convention for
+      now (Value = ⅓×9 = 3, Net -6, 33% funded), matching Distant
+      Scroll Cases' (`I114`) own pure-logistics treatment — but this is
+      a placeholder pending a real Storage/capacity value model, which
+      doesn't exist yet (see the new Open Balance Work entry below).
+      **With this item, the Cloth/Leather Material Type bucket is fully
+      closed out** — 5/3/3/0/0 across L1-5, no L1-3 gap remaining (see
+      the `RULES_DESIGN.md`/`balance.md` re-run entries above for the
+      full arc: Quilted Overcoat, Sure-Grip Boots, Dancing Shoes,
+      Gloves of Misdirection, and this item).
   - **New Technique, same session: Distraction (`T144`), Level 1,
     Encounter.** Reconstructed from an old, never-carried-forward draft
     found in `archive/flagonquest_site_techniques.md` (per the designer,
@@ -2083,6 +2104,27 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   if fully delivered (nothing in this session's math ever discounted for
   the bug), so **no existing pricing needs revisiting** — the rule fix
   just makes that assumption actually true going forward.
+- **No shared Storage/capacity value model exists yet.** Flagged while
+  pricing Preserving Larder (`I254`) — every storage-flavored item
+  priced so far has been priced ad hoc, on its own logic, rather than
+  against a shared rate: Placeholder's Spacious Satchel (`I115`,
+  Storage-capacity model, 5.5/9), Sash of Deep Pockets (`I105`, same
+  model scaled down, 4.583/9), Distant Scroll Cases (`I114`, Narrative
+  Utility instead, 2/6) — two different conventions for what's
+  arguably the same underlying thing (raw capacity), plus a third,
+  adjacent-but-distinct axis (retrieval speed, not capacity) covered
+  by Quick Draw Belt/Hair-Trigger Belt. Preserving Larder was
+  deliberately penciled in against the weaker Narrative Utility
+  convention rather than picking one of these to extend, since neither
+  clearly generalizes yet. Per the designer, worth a real pass:
+  reconcile the Storage-capacity model against the Narrative Utility
+  one (are they actually the same thing measured two ways, or
+  genuinely different?), and check whether any Technique or Spell
+  grants storage/capacity too — the designer recalls one that grants
+  "limited magical storage," not yet located in `techniques.csv`/
+  `features.csv` (a search for storage/holding/dimension-flavored
+  terms came up empty this pass; may need a skim of `archive/`
+  instead, or it may not have been drafted into the current ruleset).
 
 ## Passes completed
 
