@@ -64,6 +64,64 @@ deliberate design pass, not just this session's back-of-envelope check,
 so it's deliberately left open rather than asserting a number with
 nothing behind it.
 
+## Why Materials exist as their own resource, not just abstracted into Gold
+
+The two sections above are both tactical ("how much to hand out," "what
+counts as loot") — this one is the theory underneath them, for a GM who
+wants to understand *why* the system is built this way before running it,
+not just what to do.
+
+**Materials exist so that "what got looted" and "what a crafting-invested
+character can build" are the literal same object**, not two separate
+systems a GM has to reconcile by hand. A game that only tracked Gold
+would still let characters buy their way to a Masterwork enchantment, but
+the fiction would be thin — nothing about *finding* the loot would matter,
+only its price tag. Materials keep the connective tissue: the frost
+wyrm's hide the party skinned isn't just "40 Gold of loot," it's Frost
+Material, at that wyrm's own Level, sitting in the party's pack until
+someone with Craft/Mixology and the right School decides what to build
+with it. The reward and the story of getting it stay attached to each
+other all the way to the character sheet.
+
+**The Level gate is what keeps that connection meaningful instead of
+decorative.** A Material must be at least as high-Level as whatever it's
+used to build (`rulebook.md`'s Materials rule), so a GM doesn't need to
+hand-pick "is this the right reward for this party" beyond keeping drops
+roughly on-Level the way any other loot already gets paced — the system
+does the rest. This cuts both directions, and both are worth watching for:
+underleveled Materials pile up as dead weight a crafting character can
+still use for something eventually but can't act on *now* (Level 4-5
+loot dropped on a Level 1-3 party, see the Planning Loot section above),
+while a GM who never varies drop Level at all denies higher-Level
+characters anything worth spending their build investment on.
+
+**Material *Type*, separate from Level, is the GM's actual worldbuilding
+lever here — this is the more interesting knob to turn, and the easier
+one to overlook.** Mundane Types (Bone, Cloth, Leather, Metal, Wood) read
+as "what a creature or a person's gear is made of" and show up anywhere
+that fits — a bandit camp, a butchered monster, a ruined workshop.
+Elemental and exotic Types (Fire, Frost, Brilliant, Shadow, Medicinal,
+Precious) read as "what this specific place or creature is *about*," and
+dropping them is a cheap, mechanically-real way to make an encounter's
+theme carry forward: a frost-touched dungeon that actually drops Frost
+Materials lets a player walk out with a tangible reason to go build
+something Frost-flavored, not just a settings detail that stopped
+mattering the moment the fight ended. Since the Masterwork catalog is
+deliberately built for **Material Type variety within a Level**, not just
+raw Level progression (see `balance.md`'s Material Type × Level coverage
+work), a GM leaning into this has real choices waiting on the other end —
+the loot placement isn't just flavor, it's steering which part of the
+catalog a character actually has a reason to reach for.
+
+**Masterwork's flat 20-Materials-per-item convention (regardless of
+Level) means a GM doesn't have to scale *how much* loot a location drops
+to keep pace with character Level** — only *what Level* it's at. The
+gathering effort for a Level 1 enchantment and a Level 5 one is the same
+raw count; only the Gold-equivalent value (and therefore how rare/potent
+each individual Material dropped should feel) goes up. That's one less
+axis a GM has to consciously manage when pacing a dungeon's loot table
+against the party's own progression.
+
 ## Early-game loot: mundane gear, not just raw materials
 
 Per the designer — early-game loot doesn't need to be raw Materials
@@ -81,3 +139,17 @@ in the party has learned that Technique — worth keeping in mind as
 another lever alongside raw Material drops, and a good in-fiction
 reason for early loot to skew toward "pile of ordinary equipment"
 rather than always needing to be curated treasure.
+
+There's a second, Technique-free way mundane gear pays off too: a
+Masterwork item's own base-item rule lets an already-suitable item
+(bought, found, or crafted) stand in for the Optional-Type half of its
+materials outright, no scrapping required (`rulebook.md`'s Materials
+section — "If you already have a suitable item to enhance... you can
+use that instead of gathering Optional-Type materials for it"). A
+found sword or a plain hat/cloak (Basic Clothing/Basic Jewelry cover
+most slots between them, see `RULES_DESIGN.md`'s Crafting Schools
+entry) means a would-be enchanter only has to gather their Main Type
+materials, not the base item's own — so "here's a serviceable but
+unremarkable [item]" is itself a real, crafting-relevant reward for an
+enchantment-minded character, distinct from both raw Materials and
+scrap-for-parts gear.
