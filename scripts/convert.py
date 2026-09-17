@@ -403,7 +403,11 @@ ITEM_MAP = {
     "Dodge Defense":      "dodge_defense",
     "Vital Defense":      "vital_defense",
     "Mental Defense":     "mental_defense",
-    "Instinct Defense":   "instinct_defense",
+    # "Vigilant Defense" is the renamed Instinct Defense (RULES_DESIGN.md) —
+    # column header and every player-facing mention updated, but the JSON
+    # key stays instinct_defense on purpose, an internal identifier no
+    # player ever sees, to avoid churning every other file that references it.
+    "Vigilant Defense":   "instinct_defense",
     "Shallow Health":     "shallow_health",
     "Deep Health":        "deep_health",
     # Weapon/Armor-category items (Category = "Weapon"/"Armor") — their

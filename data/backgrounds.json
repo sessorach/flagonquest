@@ -265,7 +265,7 @@
     "name": "Numb",
     "category": "Black-Ear",
     "description": "Black-Ear feel less emotions, except for rage, fear, and joy at the misfortune of others.",
-    "effects": "While still capable of positive feelings and cultivating relationships, they have Bad Luck on Masquerade, Performance, and Rapport flips and tend to be awkward at gatherings. The plus side is that they are harder to trick or provoke, so Flips against their Mental or Instinct Defense have Bad Luck.",
+    "effects": "While still capable of positive feelings and cultivating relationships, they have Bad Luck on Masquerade, Performance, and Rapport flips and tend to be awkward at gatherings. The plus side is that they are harder to trick or provoke, so Flips against their Mental or Vigilant Defense have Bad Luck.",
     "grants_technique": null,
     "supplement": "Goblin Game"
   },

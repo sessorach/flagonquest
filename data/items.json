@@ -8799,7 +8799,7 @@
     "tags": null,
     "level": 2,
     "description": "A ring fashioned like a small knotted cord, woven from plain linen and cotton thread yet as strong and sturdy as if it were spun from steel - a mendicant's traditional token of vowed poverty, infused with its power through spiritually-charged rituals and long meditation on what one gives up to gain protection elsewhere.",
-    "effects": "On your turn, for 0 AP, you may choose either your Dodge and Parry Defenses or your Vital, Mental, and Instinct Defenses. Until you do this again, attacks against the chosen group have Bad Luck, and attacks against the other group have Good Luck.",
+    "effects": "On your turn, for 0 AP, you may choose either your Dodge and Parry Defenses or your Vital, Mental, and Vigilant Defenses. Until you do this again, attacks against the chosen group have Bad Luck, and attacks against the other group have Good Luck.",
     "cost": "40 Gold",
     "value_per_level": null,
     "school": null,

@@ -2224,6 +2224,18 @@ Wood/Bone pairing being meant as one combined pool, not two options to
 weigh, are both generally-applicable GM guidance that came directly out
 of this recipe skim, not just a data-cleanliness note.
 
+**Vigilant Defense is the renamed Instinct Defense** — if the old name
+turns up anywhere (old notes, a stray CSV mention), it should be
+updated to match. Chosen over Insight's own name specifically because
+the two were too easy to mix up in conversation despite meaning
+different things; landed on "Vigilant" over "Vigil" for reading more
+naturally as a true adjective, matching Vital/Mental Defense's own
+part of speech, even at the cost of a third syllable neither of those
+two carries. The JSON field `instinct_defense` was deliberately left
+unrenamed (see `convert.py`'s `ITEM_MAP` comment) — an internal
+identifier no player ever sees, not worth the churn of updating every
+file that references it.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).

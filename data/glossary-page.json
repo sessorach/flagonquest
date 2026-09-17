@@ -256,7 +256,7 @@
     "level": 4,
     "title": "Vulnerable [Fleeting]",
     "supplement": "Base Game",
-    "body": "For each stack of this, you suffer a -1 penalty to Vital, Mental, and Instinct Defenses."
+    "body": "For each stack of this, you suffer a -1 penalty to Vital, Mental, and Vigilant Defenses."
   },
   {
     "id": "firefrostbrilliantshadow-ward-fleeting",

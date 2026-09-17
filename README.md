@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-17 — Instinct Defense renamed to Vigilant Defense
+
+Renamed across the rulebook, glossary, and every item/Technique/
+background that references it — "Instinct" and "Insight" (the Skill
+that governs it) were too easy to mix up in conversation despite
+meaning different things.
+
 ### 2026-09-17 — New Technique (Distraction) and four Cloth/Leather items
 
 - **Distraction** (new Technique, Level 1, Encounter, Stealth 2) — a

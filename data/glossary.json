@@ -129,7 +129,7 @@
   },
   {
     "term": "Vulnerable",
-    "description": "For each stack of this, you suffer a -1 penalty to Vital, Mental, and Instinct Defenses."
+    "description": "For each stack of this, you suffer a -1 penalty to Vital, Mental, and Vigilant Defenses."
   },
   {
     "term": "Fire Ward",

@@ -174,7 +174,7 @@ If the creature who Taunted you is incapacitated or otherwise removed from comba
 
 #### Vulnerable [Fleeting]
 
-For each stack of this, you suffer a -1 penalty to Vital, Mental, and Instinct Defenses.
+For each stack of this, you suffer a -1 penalty to Vital, Mental, and Vigilant Defenses.
 
 #### (Fire/Frost/Brilliant/Shadow) Ward [Fleeting]
 

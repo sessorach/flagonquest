@@ -62,7 +62,7 @@ Below are the calculations for various statistics that your character has, that 
 - **Dodge Defense**: When you apply your Dodge Defense, you choose Acrobatics or Brawl and then your Defense is equal to 8 + [Acrobatics or Brawl Skill Total].
 - **Vital Defense**: Your Vital Defense is equal to 8 + your Resilience Skill Total.
 - **Mental Defense**: Your Mental Defense is equal to 8 + your Composure Skill Total.
-- **Instinct Defense**: Your Instinct Defense is equal to 8 + your Insight Skill Total.
+- **Vigilant Defense**: Your Vigilant Defense is equal to 8 + your Insight Skill Total.
 - **Resists**: Each of the five types of Resist (Physical, Fire, Frost, Brilliant, Shadow) starts equal to your Essence. Bonuses to any of them come from equipment and other effects.
 
 ### Quick Creation References
@@ -267,7 +267,7 @@ Cunning determines how many cards you draw each morning, the damage of lighter w
 
 #### Insight
 
-Sensing the motives of others, looming danger, and other things that are insubstantial or not directly perceivable. It represents a sort of “sixth sense”, and also determines your Reflex bonus and Instinct Defense. Insight is governed by Spades.
+Sensing the motives of others, looming danger, and other things that are insubstantial or not directly perceivable. It represents a sort of “sixth sense”, and also determines your Reflex bonus and Vigilant Defense. Insight is governed by Spades.
 
 #### Masquerade
 
@@ -279,7 +279,7 @@ Example: Jackal needs to walk into a garrison unnoticed, so he’s disguised him
 
 #### Persuasion
 
-Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets Instinct Defense in a social contest. Persuasion is governed by Spades.
+Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets Vigilant Defense in a social contest. Persuasion is governed by Spades.
 
 #### Streetwise
 
@@ -590,14 +590,14 @@ In many cases, social interactions to convince, impress, or trick someone are re
 
 Some social goals take more than one Statement to pull off - winning someone over, talking your way past a guard, negotiating a good price. These work as an extended check, the same as any other: the GM sets a number of successes needed, and the party earns successes toward it with Statements.
 
-A Statement is a flip using Presence, Rapport, or Persuasion, made against the target’s Mental or Instinct Defense. Persuasion targets Instinct Defense; Presence and Rapport both target Mental Defense.
+A Statement is a flip using Presence, Rapport, or Persuasion, made against the target’s Mental or Vigilant Defense. Persuasion targets Vigilant Defense; Presence and Rapport both target Mental Defense.
 
 ### Pressure
 
 The GM can track Pressure over a social contest - circumstances piling up against the party, like a mismatched disguise, a story straining under scrutiny, or simply taking too long. The party has Bad Luck on Statements equal to their current Pressure, added for things like:
 
 - A rough starting circumstance, such as impersonating a guard without the uniform.
-- An NPC actively working against the party: a check of their own (any fitting Skill) against the party’s Mental or Instinct Defense, adding Pressure on a hit.
+- An NPC actively working against the party: a check of their own (any fitting Skill) against the party’s Mental or Vigilant Defense, adding Pressure on a hit.
 - Simply taking too long - Pressure may build up the longer a scene drags on.
 
 Once Pressure stacks high enough, the GM may end the check in failure outright.

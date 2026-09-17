@@ -39,7 +39,7 @@
     "level": 2,
     "title": "Calculated Statistics",
     "supplement": "Base Game",
-    "body": "Below are the calculations for various statistics that your character has, that are determined from your Stats and Skills. Whenever a calculation leaves you with a fraction, round down.\n\n- **Health**: Each character begins with a maximum of five (5) Shallow and Deep Health (10 total).\n- **Speed**: Your Speed is equal to 1 + your Agility.\n- **Reflex**: Your Reflex is equal to your Insight Skill Total.\n- **Cards Per Day**: You draw cards after a full night’s rest equal to twice your total Cunning + Mind.\n- **Rest Health**: You heal Health after a full night’s rest equal to your Body.\n- **Parry Defense**: When you apply your Parry Defense, you pick a weapon you are wielding and then your Defense is equal to 8 + [Weapon’s relevant Skill Total] + Weapon’s Defense.\n- **Dodge Defense**: When you apply your Dodge Defense, you choose Acrobatics or Brawl and then your Defense is equal to 8 + [Acrobatics or Brawl Skill Total].\n- **Vital Defense**: Your Vital Defense is equal to 8 + your Resilience Skill Total.\n- **Mental Defense**: Your Mental Defense is equal to 8 + your Composure Skill Total.\n- **Instinct Defense**: Your Instinct Defense is equal to 8 + your Insight Skill Total.\n- **Resists**: Each of the five types of Resist (Physical, Fire, Frost, Brilliant, Shadow) starts equal to your Essence. Bonuses to any of them come from equipment and other effects."
+    "body": "Below are the calculations for various statistics that your character has, that are determined from your Stats and Skills. Whenever a calculation leaves you with a fraction, round down.\n\n- **Health**: Each character begins with a maximum of five (5) Shallow and Deep Health (10 total).\n- **Speed**: Your Speed is equal to 1 + your Agility.\n- **Reflex**: Your Reflex is equal to your Insight Skill Total.\n- **Cards Per Day**: You draw cards after a full night’s rest equal to twice your total Cunning + Mind.\n- **Rest Health**: You heal Health after a full night’s rest equal to your Body.\n- **Parry Defense**: When you apply your Parry Defense, you pick a weapon you are wielding and then your Defense is equal to 8 + [Weapon’s relevant Skill Total] + Weapon’s Defense.\n- **Dodge Defense**: When you apply your Dodge Defense, you choose Acrobatics or Brawl and then your Defense is equal to 8 + [Acrobatics or Brawl Skill Total].\n- **Vital Defense**: Your Vital Defense is equal to 8 + your Resilience Skill Total.\n- **Mental Defense**: Your Mental Defense is equal to 8 + your Composure Skill Total.\n- **Vigilant Defense**: Your Vigilant Defense is equal to 8 + your Insight Skill Total.\n- **Resists**: Each of the five types of Resist (Physical, Fire, Frost, Brilliant, Shadow) starts equal to your Essence. Bonuses to any of them come from equipment and other effects."
   },
   {
     "id": "quick-creation-references",
@@ -235,7 +235,7 @@
     "level": 4,
     "title": "Insight",
     "supplement": "Base Game",
-    "body": "Sensing the motives of others, looming danger, and other things that are insubstantial or not directly perceivable. It represents a sort of “sixth sense”, and also determines your Reflex bonus and Instinct Defense. Insight is governed by Spades."
+    "body": "Sensing the motives of others, looming danger, and other things that are insubstantial or not directly perceivable. It represents a sort of “sixth sense”, and also determines your Reflex bonus and Vigilant Defense. Insight is governed by Spades."
   },
   {
     "id": "masquerade",
@@ -249,7 +249,7 @@
     "level": 4,
     "title": "Persuasion",
     "supplement": "Base Game",
-    "body": "Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets Instinct Defense in a social contest. Persuasion is governed by Spades."
+    "body": "Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets Vigilant Defense in a social contest. Persuasion is governed by Spades."
   },
   {
     "id": "streetwise",
@@ -571,14 +571,14 @@
     "level": 3,
     "title": "Social Contests",
     "supplement": "Base Game",
-    "body": "Some social goals take more than one Statement to pull off - winning someone over, talking your way past a guard, negotiating a good price. These work as an extended check, the same as any other: the GM sets a number of successes needed, and the party earns successes toward it with Statements.\n\nA Statement is a flip using Presence, Rapport, or Persuasion, made against the target’s Mental or Instinct Defense. Persuasion targets Instinct Defense; Presence and Rapport both target Mental Defense."
+    "body": "Some social goals take more than one Statement to pull off - winning someone over, talking your way past a guard, negotiating a good price. These work as an extended check, the same as any other: the GM sets a number of successes needed, and the party earns successes toward it with Statements.\n\nA Statement is a flip using Presence, Rapport, or Persuasion, made against the target’s Mental or Vigilant Defense. Persuasion targets Vigilant Defense; Presence and Rapport both target Mental Defense."
   },
   {
     "id": "pressure",
     "level": 3,
     "title": "Pressure",
     "supplement": "Base Game",
-    "body": "The GM can track Pressure over a social contest - circumstances piling up against the party, like a mismatched disguise, a story straining under scrutiny, or simply taking too long. The party has Bad Luck on Statements equal to their current Pressure, added for things like:\n\n- A rough starting circumstance, such as impersonating a guard without the uniform.\n- An NPC actively working against the party: a check of their own (any fitting Skill) against the party’s Mental or Instinct Defense, adding Pressure on a hit.\n- Simply taking too long - Pressure may build up the longer a scene drags on.\n\nOnce Pressure stacks high enough, the GM may end the check in failure outright."
+    "body": "The GM can track Pressure over a social contest - circumstances piling up against the party, like a mismatched disguise, a story straining under scrutiny, or simply taking too long. The party has Bad Luck on Statements equal to their current Pressure, added for things like:\n\n- A rough starting circumstance, such as impersonating a guard without the uniform.\n- An NPC actively working against the party: a check of their own (any fitting Skill) against the party’s Mental or Vigilant Defense, adding Pressure on a hit.\n- Simply taking too long - Pressure may build up the longer a scene drags on.\n\nOnce Pressure stacks high enough, the GM may end the check in failure outright."
   },
   {
     "id": "ending-the-contest",
