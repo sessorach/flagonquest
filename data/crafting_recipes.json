@@ -19,7 +19,7 @@
     "total_materials": null,
     "main_materials": "Metal",
     "optional_materials": "Cloth, Leather, Wood, Bone",
-    "applies_to": "Category:Weapon"
+    "applies_to": "Category:Weapon,NameNotContains:Bow"
   },
   {
     "id": "CR003",
@@ -757,5 +757,27 @@
     "main_materials": "Medicinal",
     "optional_materials": "Cloth",
     "applies_to": "Name:Disguise Kit"
+  },
+  {
+    "id": "CR073",
+    "name": "Armor - Medium (Carving)",
+    "description": "Medium armor reinforced with hardened wood or bone plating.",
+    "school": "Carving",
+    "skill_total": "Craft 5",
+    "total_materials": null,
+    "main_materials": "Wood, Bone",
+    "optional_materials": "Cloth, Leather, Metal",
+    "applies_to": "Category:Armor,NameContains:Medium"
+  },
+  {
+    "id": "CR074",
+    "name": "Armor - Medium (Upgrade from Light, Carving)",
+    "description": "Reinforce an existing suit of Light Armor into Medium with added wood or bone plating, instead of building fresh.",
+    "school": "Carving",
+    "skill_total": "Craft 5",
+    "total_materials": 2,
+    "main_materials": "Wood, Bone",
+    "optional_materials": "Cloth, Leather, Metal",
+    "applies_to": "Category:Armor,NameContains:Medium"
   }
 ]

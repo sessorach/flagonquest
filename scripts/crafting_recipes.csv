@@ -1,6 +1,6 @@
 ID,Name,Description,School,Skill Total,Total Materials,Main Materials,Optional Materials,Applies To
 CR001,Weapon (Carving),"Standard weapons made from wood, bone, or similar worked materials.",Carving,Craft 4,,"Wood, Bone","Cloth, Leather, Metal",Category:Weapon
-CR002,Weapon (Smithing),Standard weapons forged from metal.,Smithing,Craft 4,,Metal,"Cloth, Leather, Wood, Bone",Category:Weapon
+CR002,Weapon (Smithing),Standard weapons forged from metal.,Smithing,Craft 4,,Metal,"Cloth, Leather, Wood, Bone","Category:Weapon,NameNotContains:Bow"
 CR003,Armor - Light (Carving),Light armor built from wood or bone reinforcement.,Carving,Craft 3,,"Wood, Bone","Cloth, Leather, Metal","Category:Armor,NameContains:Light"
 CR004,Armor - Light (Tailoring),Light armor sewn from cloth and leather.,Tailoring,Craft 3,,"Cloth, Leather","Wood, Bone, Metal","Category:Armor,NameContains:Light"
 CR005,Armor - Light (Smithing),Light armor with metal fittings and plating.,Smithing,Craft 3,,Metal,"Cloth, Leather, Wood, Bone","Category:Armor,NameContains:Light"
@@ -68,3 +68,5 @@ CR069,Manacles,"Iron cuffs and a chain, hardened and fitted to actually hold som
 CR070,Grappling Hook,A forged hook and its own short coil of rope.,Smithing,Craft 4,3,Metal,Cloth or Leather,Name:Grappling Hook
 CR071,Musical Instrument (Smithing),"Lutes, trumpets, drums, and the like — whichever material fits the specific instrument.",Smithing,Craft 4,3,Metal,"Cloth, Leather, Wood, Bone",Name:Musical Instrument
 CR072,Disguise Kit (Alchemy),Basic cosmetics and a variety of costume accessories.,Alchemy,Mixology 4,5,Medicinal,Cloth,Name:Disguise Kit
+CR073,Armor - Medium (Carving),Medium armor reinforced with hardened wood or bone plating.,Carving,Craft 5,,"Wood, Bone","Cloth, Leather, Metal","Category:Armor,NameContains:Medium"
+CR074,"Armor - Medium (Upgrade from Light, Carving)","Reinforce an existing suit of Light Armor into Medium with added wood or bone plating, instead of building fresh.",Carving,Craft 5,2,"Wood, Bone","Cloth, Leather, Metal","Category:Armor,NameContains:Medium"

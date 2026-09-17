@@ -2088,6 +2088,100 @@ under-represented Material Type (Frost, per `balance.md`) is best
 addressed by finding room for it in one of these four, not by forcing
 it into a Slot whose whole identity is already narrower by design.
 
+## Crafting Schools — material boundaries and Base Item Option coverage, clarified
+
+Surfaced while reviewing Material Type coverage gaps (see `balance.md`'s
+Material Type entries) — before drafting more gap-filling items, the
+designer wanted the four Craft Schools' own boundaries ironed out, since
+several of those gaps (Cloth, Leather) trace back to School/Base-Item
+questions, not just missing items.
+
+**The four Craft Schools split into two narrative pairs, not four
+independent buckets**: Smithing (Metal) and Carving (Wood, Bone) is one
+pair, Jewelrymaking (Precious) and Tailoring (Cloth, Leather) is the
+other. Within each pair the two Types are treated as near-identical in
+practice — separated for in-fiction reasons, not mechanical ones — the
+same animal-good-vs-people-processed-natural-good split that already
+exists between Bone and Wood: Leather is a raw animal good, Cloth is a
+plant/animal fiber processed by people, the same relationship Bone
+(animal) has to Wood (harvested, worked by people).
+
+**Base Item Option coverage — one real gap found and fixed.** Basic
+Jewelry (`I003`) already covered every slot it should (Head, Neck,
+Ring, Hands, Feet — confirmed both in its own fluff text and in every
+Masterwork item's actual `Base Item Options`), so nothing changed
+there. Basic Clothing (`I002`) was missing from **Neck** specifically,
+despite several existing Neck items being literal cloaks in their fluff
+(Cloak of Caches, Snowfall Drape, Cloak of One Thousand Feathers) —
+all ten Neck Masterwork items had their `Base Item Options` updated
+from `I003` to `I002,I003` to fix this. Basic Clothing's own
+Description (Fluff) also had Belt added to its stated slot list (Belt's
+own `Base Item Options` already only ever listed Clothing, so this was
+a text gap, not a data gap). Both `I002` and `I003` got a new line in
+their own Effects text making their dual purpose explicit — a plain,
+mundane item usable on its own (a hat for a disguise, a cloak for
+warmth), *and* the base item a Masterwork enchantment for the same slot
+gets built onto — since neither was stated anywhere before, and a
+player looking at "Base item: Basic Clothing" in a Masterwork's
+crafting card had no way to see what that actually meant without
+separately looking up the item.
+
+**Smithing vs. Carving scope — one real structural gap, one confirmed
+non-gap, one new niche granted as compensation.** Counting actual
+`crafting_recipes.csv` rows: Smithing has roughly twice Carving's total
+recipe count (25 vs. 12), but breaking down *where* that gap actually
+sits mattered more than the raw count:
+- **Light Armor**: all three Schools reach it (Tailoring, Smithing,
+  Carving) — full parity.
+- **Medium Armor**: Tailoring and Smithing both had a recipe; Carving
+  didn't. This was the one real hole — confirmed an oversight (Medium
+  is a newer addition than Light/Heavy) rather than an intentional
+  boundary. Fixed with two new rows mirroring Tailoring's own
+  Medium-tier shape exactly (a fresh-build recipe and an
+  Upgrade-from-Light recipe): `CR073` Armor - Medium (Carving) and
+  `CR074` Armor - Medium (Upgrade from Light, Carving), both Wood/Bone
+  Main Types, Craft 5 — matching CR018/CR020's Skill Total and
+  Total Materials exactly, just swapping the material.
+- **Heavy Armor**: Smithing-only, and this is *not* a gap to close —
+  its fluff ("plate or heavy chains of metal") has no "or similar"
+  hedge the way Light's does, and Tailoring doesn't reach Heavy either,
+  so Carving isn't uniquely behind here.
+- **The long tail of small Smithing-only tools** (Hammer, Shovel,
+  Pickaxe, Chain, Manacles, Grappling Hook, Lantern, Crowbar, Iron
+  Spikes, Small Mirror — 10 of Smithing's 25 recipes) is where most of
+  the raw count gap actually comes from, and per the designer this is
+  fine as-is, not a Carving shortfall to patch — those are tools that
+  are just inherently metal objects in any reasonable telling, not
+  "missing wood versions" the way Medium Armor genuinely was. Carving's
+  own tool lineup (Torch, Ladder, 10-Foot Pole, Block and Tackle,
+  Fisher's Kit, Carts/Wagon) is the actual wood-appropriate set, not a
+  stunted mirror of Smithing's.
+- **Bows made Carving-exclusive**, per the designer, specifically to
+  give Carving a real niche of its own rather than just catching up to
+  Smithing everywhere — "if somebody wants to make their own bow,
+  they'd use Carving for that, because you're carving wood for it in
+  like 90-something percent of cases." `rulebook.md`'s own worked
+  example already assumed this ("Wood if it's built onto a
+  Carving-based bow instead," line 666) before the data actually
+  enforced it. Implemented by excluding Bows from the generic Smithing
+  Weapon recipe (`CR002`) rather than special-casing every other
+  Weapon type: `Applies To` changed from `Category:Weapon` to
+  `Category:Weapon,NameNotContains:Bow`. This needed a new clause type
+  in the `Applies To` mini-syntax — `NameNotContains:X` (excludes any
+  item whose name contains X), documented in `convert.py`'s CRAFTING
+  RECIPE MAP comment and implemented in `index.html`'s
+  `matchesRecipeApplies` — since nothing in the syntax previously
+  supported carving out an exception from an otherwise-generic
+  `Category` clause. Carving's own Weapon recipe (`CR001`) is
+  untouched (still bare `Category:Weapon`), so every other weapon type
+  keeps both Schools as options; only Bows lost Smithing.
+
+Re-evaluating the Material Type × Level gap numbers (`balance.md`) is
+the natural next step once this School pass is fully settled, since
+Cloth and Leather being treated as a near-interchangeable pair changes
+how those two gaps should probably be read together rather than
+separately.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).

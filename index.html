@@ -4056,6 +4056,7 @@ function matchesRecipeApplies(item, appliesToRaw) {
     if (key === "Category") return item.category === val;
     if (key === "Name") return item.name === val;
     if (key === "NameContains") return item.name.toLowerCase().includes(val.toLowerCase());
+    if (key === "NameNotContains") return !item.name.toLowerCase().includes(val.toLowerCase());
     return false;
   });
 }

@@ -505,6 +505,12 @@ CRAFTING_RECIPE_MAP = {
     #   Category:X       — item.category === X
     #   Name:X            — item.name === X (exact)
     #   NameContains:X    — item.name includes X (case-insensitive)
+    #   NameNotContains:X — item.name excludes X (case-insensitive) — used to
+    #                       carve out an exception from an otherwise-generic
+    #                       Category clause on another row (e.g. CR002 Weapon
+    #                       (Smithing) excludes Bows, per the designer's call
+    #                       to make Bows Carving-only, without needing every
+    #                       other Weapon-category recipe to enumerate itself)
     # Blank means "reference only" (see Other Items) — too variable to
     # auto-match, not shown as a specific item's recipe in the browser.
     # Multiple rows can share the same Applies To (one per School) —

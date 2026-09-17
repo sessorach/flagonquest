@@ -13,6 +13,23 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-17 — Crafting School boundaries clarified: Neck/Clothing, Carving Medium Armor, Bows
+
+- Basic Clothing is now a valid base item for Neck Masterwork items
+  (previously Neck only offered Basic Jewelry, despite several Neck
+  items being literal cloaks) — all ten existing Neck items updated.
+- Basic Clothing and Basic Jewelry's own descriptions now spell out
+  their dual purpose: plain mundane wear on its own, or the base item
+  a Masterwork enchantment for the same slot gets built onto.
+- Carving can now make Medium Armor (previously stopped at Light,
+  while Tailoring and Smithing both reached Medium) — a genuine
+  oversight, now fixed with a fresh-build and an upgrade-from-Light
+  recipe matching Tailoring's own shape.
+- Bows are now Carving-exclusive, giving Carving a real niche of its
+  own rather than just trailing Smithing everywhere — matches
+  `rulebook.md`'s own long-standing worked example, which already
+  assumed a Carving-based bow.
+
 ### 2026-09-16 — Two new Masterwork items: Clarion Cord, Kindled Wrap
 
 - **Clarion Cord** (Neck, Level 3, 60 Gold) — a fully passive item: at

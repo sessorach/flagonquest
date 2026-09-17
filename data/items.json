@@ -50,8 +50,8 @@
     "slot": null,
     "tags": null,
     "level": 1,
-    "description": "Clothing includes items that might cover the Head, Neck, Hands, Torso, or Feet slots. This can be in any form, including cloaks, hats, gloves, boots, etc.",
-    "effects": "Clothing does not count as Armor of any kind.",
+    "description": "Clothing includes items that might cover the Head, Neck, Torso, Hands, Belt, or Feet slots. This can be in any form, including cloaks, hats, gloves, boots, sashes, etc.",
+    "effects": "Clothing does not count as Armor of any kind. Plain Clothing works as ordinary wear on its own - a hat, cloak, or pair of gloves for any mundane need - or as the base item that a Masterwork enchantment for one of its slots gets built onto.",
     "cost": "3 Gold",
     "value_per_level": null,
     "school": null,
@@ -95,7 +95,7 @@
     "tags": null,
     "level": 1,
     "description": "Jewelry includes various items worn in the Head, Neck, Ring, Hands, and Feet slots. It can also include general, pretty jewelry that serves no purpose other than opulence and to demonstrate the wealth of the wearer.",
-    "effects": null,
+    "effects": "Plain Jewelry works as ordinary adornment on its own, or as the base item that a Masterwork enchantment for one of its slots gets built onto.",
     "cost": "3 Gold",
     "value_per_level": null,
     "school": null,
@@ -2748,6 +2748,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I002",
       "I003"
     ],
     "levels": [
@@ -2794,6 +2795,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I002",
       "I003"
     ],
     "levels": [
@@ -2840,6 +2842,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I002",
       "I003"
     ],
     "levels": [
@@ -3569,6 +3572,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I002",
       "I003"
     ],
     "levels": [
@@ -6610,6 +6614,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I002",
       "I003"
     ],
     "levels": [
@@ -6656,6 +6661,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I002",
       "I003"
     ],
     "levels": [
@@ -6702,6 +6708,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I002",
       "I003"
     ],
     "levels": [
@@ -6748,6 +6755,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I002",
       "I003"
     ],
     "levels": [
@@ -7641,6 +7649,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I002",
       "I003"
     ],
     "levels": [
@@ -10448,6 +10457,7 @@
     "supplement": "Base Game",
     "material_types": null,
     "base_item_options": [
+      "I002",
       "I003"
     ],
     "levels": [

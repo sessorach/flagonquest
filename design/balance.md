@@ -1918,6 +1918,25 @@ What genuinely remains, cross-cutting rather than slot-shaped:
     reads "Harried X + [Hearts] stacks" instead. Numbing Edge uses
     Diamonds, matching the authoritative table — Barraging's own
     Hearts tie wasn't touched or corrected this pass, just noted.
+  - **Follow-up, same session: Crafting School boundaries reviewed and
+    fixed before continuing the gap-filling pass.** Per the designer,
+    the Cloth/Leather gaps this review surfaced prompted a look at the
+    School structure itself first — full writeup in `RULES_DESIGN.md`'s
+    new "Crafting Schools — material boundaries and Base Item Option
+    coverage, clarified" entry. Short version: Basic Clothing's `Base
+    Item Options` was missing from all ten Neck Masterwork items (now
+    fixed, `I002,I003`); Basic Clothing/Basic Jewelry's own Effects text
+    now states their dual purpose (mundane item and Masterwork base)
+    explicitly; Carving got a genuine missing Medium Armor recipe
+    (`CR073`/`CR074`, mirroring Tailoring's own fresh+upgrade shape);
+    and Bows became Carving-exclusive (Smithing's generic Weapon recipe,
+    `CR002`, now excludes them via a new `NameNotContains` `Applies To`
+    clause) as Carving's own compensating niche. **The Material Type ×
+    Level gap numbers above haven't been re-run yet** — Cloth and
+    Leather being a near-interchangeable Tailoring pair may change how
+    those two gaps should be read together once this School pass is
+    fully settled; picking the gap-filling pass back up is the natural
+    next step.
 - **Resolved: Fleeting effects and the same-turn-grant snag.** Fleeting
   effects decay 1 stack at the end of the affected creature's own turn.
   Turned out topping off an *existing* stack was never actually broken —
