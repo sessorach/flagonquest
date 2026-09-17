@@ -122,6 +122,36 @@ each individual Material dropped should feel) goes up. That's one less
 axis a GM has to consciously manage when pacing a dungeon's loot table
 against the party's own progression.
 
+## Judgment calls: a player wants to use a material that's not on the list
+
+A few quick pointers for the recurring "can I use X for this" moment at
+the table, surfaced while tidying up `crafting_recipes.csv`'s own Main/
+Optional Types (see `RULES_DESIGN.md`'s Crafting Schools entry for the
+full pass).
+
+- **The Type system is deliberately coarse — a recipe names a handful
+  of Types, not a parts list.** A recipe asking for Cloth (or Leather)
+  materials is not asking for "one bolt of cloth, one strip of leather,
+  one spool of thread" — it's asking for that many *materials whose
+  Type qualifies*, however the player wants to flavor them. Don't let a
+  request to narrate a specific component turn into a new hard
+  requirement; that's flavor riding on top of the abstraction, not a
+  reason to add another Type to track.
+- **Cloth/Leather and Wood/Bone are meant to be read as near-
+  interchangeable pairs, not two separate choices to weigh.** If a
+  player is picturing an animal-hide version of something written as
+  Cloth (or a bone version of something written as Wood), that's the
+  intended flexibility, not a stretch — treat "or"-joined Main Types as
+  one combined pool for eligibility purposes, since that's genuinely
+  what they mean.
+- **A material that's thematically adjacent to a listed Optional Type
+  is usually fine to wave through as that Type**, rather than saying no
+  or inventing a new column — the existing Optional lists already lean
+  permissive on purpose (a player investing in a Craft Skill and a
+  School Technique has earned some flexibility in what counts). If it's
+  close enough to explain in one sentence why it works, it's close
+  enough.
+
 ## Early-game loot: mundane gear, not just raw materials
 
 Per the designer — early-game loot doesn't need to be raw Materials

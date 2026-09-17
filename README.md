@@ -13,6 +13,19 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-17 — Crafting recipe cleanup: Main Types wording, Basic Clothing
+
+- Nine crafting recipes (Weapon/Armor via Carving or Tailoring, plus
+  Unarmed Enhancer and Musical Instrument) had their Main Materials
+  reworded from an ambiguous `Wood, Bone`/`Cloth, Leather` comma-list
+  to an explicit `Wood or Bone`/`Cloth or Leather` — matches the intent
+  (either material works) rather than the literal "you need one of
+  each" reading the rulebook's own Materials rule gives an unjoined
+  list.
+- Basic Clothing's own recipe now lists Cloth or Leather as its Main
+  Types (previously Cloth-only, with Leather buried in Optional) and
+  Bone/Metal/Precious as Optional.
+
 ### 2026-09-17 — Crafting School boundaries clarified: Neck/Clothing, Carving Medium Armor, Bows
 
 - Basic Clothing is now a valid base item for Neck Masterwork items

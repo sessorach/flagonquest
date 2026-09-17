@@ -6,7 +6,7 @@
     "school": "Carving",
     "skill_total": "Craft 4",
     "total_materials": null,
-    "main_materials": "Wood, Bone",
+    "main_materials": "Wood or Bone",
     "optional_materials": "Cloth, Leather, Metal",
     "applies_to": "Category:Weapon"
   },
@@ -28,7 +28,7 @@
     "school": "Carving",
     "skill_total": "Craft 3",
     "total_materials": null,
-    "main_materials": "Wood, Bone",
+    "main_materials": "Wood or Bone",
     "optional_materials": "Cloth, Leather, Metal",
     "applies_to": "Category:Armor,NameContains:Light"
   },
@@ -39,7 +39,7 @@
     "school": "Tailoring",
     "skill_total": "Craft 3",
     "total_materials": null,
-    "main_materials": "Cloth, Leather",
+    "main_materials": "Cloth or Leather",
     "optional_materials": "Wood, Bone, Metal",
     "applies_to": "Category:Armor,NameContains:Light"
   },
@@ -72,7 +72,7 @@
     "school": "Tailoring",
     "skill_total": "Craft 5",
     "total_materials": null,
-    "main_materials": "Cloth, Leather",
+    "main_materials": "Cloth or Leather",
     "optional_materials": "Wood, Bone, Metal",
     "applies_to": "Category:Armor,NameContains:Medium"
   },
@@ -94,7 +94,7 @@
     "school": "Tailoring",
     "skill_total": "Craft 5",
     "total_materials": 2,
-    "main_materials": "Cloth, Leather",
+    "main_materials": "Cloth or Leather",
     "optional_materials": "Wood, Bone, Metal",
     "applies_to": "Category:Armor,NameContains:Medium"
   },
@@ -138,7 +138,7 @@
     "school": "Tailoring",
     "skill_total": "Craft 3",
     "total_materials": 3,
-    "main_materials": "Cloth, Leather",
+    "main_materials": "Cloth or Leather",
     "optional_materials": "Metal",
     "applies_to": "Name:Unarmed Enhancer"
   },
@@ -160,8 +160,8 @@
     "school": "Tailoring",
     "skill_total": "Craft 3",
     "total_materials": 3,
-    "main_materials": "Cloth",
-    "optional_materials": "Bone, Leather, Metal, Precious",
+    "main_materials": "Cloth or Leather",
+    "optional_materials": "Bone, Metal, Precious",
     "applies_to": "Name:Basic Clothing"
   },
   {
@@ -281,7 +281,7 @@
     "school": "Carving",
     "skill_total": "Craft 4",
     "total_materials": 3,
-    "main_materials": "Wood, Bone",
+    "main_materials": "Wood or Bone",
     "optional_materials": "Cloth, Leather, Metal",
     "applies_to": "Name:Musical Instrument"
   },
@@ -765,7 +765,7 @@
     "school": "Carving",
     "skill_total": "Craft 5",
     "total_materials": null,
-    "main_materials": "Wood, Bone",
+    "main_materials": "Wood or Bone",
     "optional_materials": "Cloth, Leather, Metal",
     "applies_to": "Category:Armor,NameContains:Medium"
   },
@@ -776,7 +776,7 @@
     "school": "Carving",
     "skill_total": "Craft 5",
     "total_materials": 2,
-    "main_materials": "Wood, Bone",
+    "main_materials": "Wood or Bone",
     "optional_materials": "Cloth, Leather, Metal",
     "applies_to": "Category:Armor,NameContains:Medium"
   }

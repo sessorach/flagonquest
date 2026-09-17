@@ -2182,6 +2182,48 @@ Cloth and Leather being treated as a near-interchangeable pair changes
 how those two gaps should probably be read together rather than
 separately.
 
+**Follow-up, same session: a skim of every `crafting_recipes.csv`
+Main/Optional Materials field, per the designer's request to check for
+recipes that "sit notably outside the general mold" of a couple
+sensible Types.** Three things came out of it:
+
+1. **A real text bug, now fixed**: nine rows listed a comma-separated
+   Main Types pair (`Wood, Bone` or `Cloth, Leather`) with no "or"
+   joining them — `CR001`, `CR003`, `CR004`, `CR007`, `CR018`, `CR020`,
+   `CR037`, `CR073`, `CR074`. Per `rulebook.md`'s own Materials rule, a
+   Main Types field with no "or" means *every* listed Type is required
+   (the "several Resists at once" case), not a choice between them —
+   the wrong reading for a plain wood-or-bone weapon. `index.html`'s
+   own `craftingMaterialsEligibility` comment already treated these as
+   alternatives ("Main Types are usually alternatives... e.g. Wood or
+   Bone for Carving," flagged there as a KNOWN SIMPLIFICATION) and
+   `parseTypesList` already flattens "or"/"and"/"," identically for
+   both eligibility-checking and display purposes — so this fix has
+   zero effect on the live app's behavior, it only brings the *source
+   text* in line with what the rulebook's rule and the app's own intent
+   already agreed on. All nine changed from `X, Y` to `X or Y`.
+2. **The Weapon/Armor family's 3-4-Type Optional Materials lists are
+   confirmed intentional, not a gap** — per the designer, explicitly
+   reaffirming the "full 3-way symmetry" call from the earlier pass
+   documented above. No changes made to any of those rows.
+3. **Basic Clothing (`CR009`) didn't match its own intended design.**
+   Confirmed by the designer: Main Types should be `Cloth or Leather`
+   (an "or" pair, same as everywhere else Tailoring's two Types
+   substitute for each other) with `Bone, Metal, Precious` as Optional
+   — not `Cloth` alone with Leather demoted into a 4-item Optional
+   list. Fixed to match. Precious staying as an Optional here specifically
+   is deliberate, not an oversight to trim — confirmed by the designer
+   as a legitimate "make it out of something a little nicer" case for
+   an item this universally reused across every Clothing slot.
+
+Also prompted two new GM-facing bullet-point notes in
+`GM_GUIDE_NOTES.md` (`Judgment calls: a player wants to use a material
+that's not on the list`) — the Type system being intentionally coarse
+(a recipe names Types, not a literal parts list) and the Cloth/Leather-
+Wood/Bone pairing being meant as one combined pool, not two options to
+weigh, are both generally-applicable GM guidance that came directly out
+of this recipe skim, not just a data-cleanliness note.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).
