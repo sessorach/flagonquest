@@ -102,6 +102,12 @@ things off in order.
   alternatives" case (need one of each Type, not just any single one)
   — Robes of the Elemental Lord's own Main Materials had exactly this
   gap. Commit `1f012e7`.
+- **`## Material Types`** — Food bullet gained a size-based
+  harvest-yield sentence (rodent/fish/bird = 1, person-sized = 5,
+  larger beast = 10+), generalizing a number the Goblin Game chapter
+  already had for its own "adult Goblin" case into base-game guidance,
+  surfaced while pricing Preserving Larder's spoilage-prevention
+  credit. Commit `f3e854b`.
 - **`## Examples`** (Creating Items) — rewritten alongside the
   Materials/Time changes; also touched during the Quick Start Guide add.
   Commits `e2156ca`, `413f9b3`.
