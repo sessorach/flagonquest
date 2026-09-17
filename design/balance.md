@@ -2104,27 +2104,57 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   if fully delivered (nothing in this session's math ever discounted for
   the bug), so **no existing pricing needs revisiting** — the rule fix
   just makes that assumption actually true going forward.
-- **No shared Storage/capacity value model exists yet.** Flagged while
-  pricing Preserving Larder (`I254`) — every storage-flavored item
-  priced so far has been priced ad hoc, on its own logic, rather than
-  against a shared rate: Placeholder's Spacious Satchel (`I115`,
-  Storage-capacity model, 5.5/9), Sash of Deep Pockets (`I105`, same
-  model scaled down, 4.583/9), Distant Scroll Cases (`I114`, Narrative
-  Utility instead, 2/6) — two different conventions for what's
-  arguably the same underlying thing (raw capacity), plus a third,
-  adjacent-but-distinct axis (retrieval speed, not capacity) covered
-  by Quick Draw Belt/Hair-Trigger Belt. Preserving Larder was
-  deliberately penciled in against the weaker Narrative Utility
-  convention rather than picking one of these to extend, since neither
-  clearly generalizes yet. Per the designer, worth a real pass:
-  reconcile the Storage-capacity model against the Narrative Utility
-  one (are they actually the same thing measured two ways, or
-  genuinely different?), and check whether any Technique or Spell
-  grants storage/capacity too — the designer recalls one that grants
-  "limited magical storage," not yet located in `techniques.csv`/
-  `features.csv` (a search for storage/holding/dimension-flavored
-  terms came up empty this pass; may need a skim of `archive/`
-  instead, or it may not have been drafted into the current ruleset).
+- **Storage/capacity items reviewed as a family — model weights fixed,
+  item repricing still open.** A real "Storage capacity" model already
+  existed (`balance_weights_notes.md`) — cap "genuinely extra slots
+  used" at 3, `2.75` base credit (3 × 2.75 AP-equivalent × ⅓ niche
+  frequency), `+0.917`/slot for a qualitative large-object
+  differentiator — correctly applied to Placeholder's Bottomless Belt,
+  Smuggler's Belt, Sash of Deep Pockets, and Placeholder's Spacious
+  Satchel (all landing in the normal 51-112% funded range). The real
+  gap: **Distant Scroll Cases** (`I114`, 2/6, 33% funded) and
+  **Preserving Larder** (`I254`, 3/9, 33% funded) both got priced via
+  Narrative Utility instead, despite being genuine capacity items — the
+  only two in the whole family sitting well below everyone else's
+  funding ratio. Quick Draw Belt/Hair-Trigger Belt (retrieval *speed*,
+  modeled directly off Technique T039) and Belt of the Wayfarer
+  (on-demand item *production*, a genuine once/day resource) are
+  correctly a different thing, not part of this inconsistency.
+
+  Two real model bugs caught reviewing the whole family together, both
+  fixed this pass:
+  1. `balance_weights_notes.md`'s own Storage section still described
+     the Target scope as the old, superseded once/day `Level × 4`
+     formula — corrected project-wide to per-encounter `Level × 3`
+     (matching what every ledger row actually uses) when the Belt pass
+     first ran, but this one paragraph was never updated to match.
+     Fixed to say `Level × 3`, with a note explaining the correction.
+  2. The `+0.917`/large-object-slot rate had never been given its own
+     `balance_weights.csv` row, only prose — added as "Storage capacity
+     component (large-object slot)."
+
+  **Also found real pre-existing corruption in `balance_weights.csv`**
+  while doing the above (same class of bug as the known
+  `balance_ledger.csv` corruption, unrelated to this session's edits):
+  10 rows have more columns than the header, meaning a straight
+  `csv.reader`/`csv.writer` round-trip silently mangles them. Worked
+  around it this pass (a precise text-based line insertion instead of
+  a full round-trip, same technique already used for
+  `balance_ledger.csv`) rather than fixing it — flagged here for
+  whenever someone's next in that file with time to re-quote the
+  affected rows properly.
+
+  **Still open**: actually reprice Distant Scroll Cases and Preserving
+  Larder under the now-fixed Storage-capacity model instead of
+  Narrative Utility (Larder's own capacity spec directly mirrors
+  Spacious Satchel's, so its base credit should likely just be the
+  same 5.5, not 3). Also confirmed: **Placeholder's Sneaky Storage**
+  (the "limited magical storage" spell the designer recalled) exists
+  only in `archive/flagonquest_site_techniques.md` — a cut Level 2
+  Spell, not in the current ruleset. Per the designer, left archived
+  for now; logged in `IDEAS_BACKLOG.md` as a candidate for the same
+  archive-recovery treatment Distraction (`T144`) got, once there's
+  appetite for another pass like that.
 
 ## Passes completed
 

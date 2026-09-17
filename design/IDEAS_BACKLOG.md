@@ -7,6 +7,33 @@ it's actually been drafted into `items.csv`/`techniques.csv` and given a
 real writeup in `RULES_DESIGN.md`/`balance_weights_notes.md`; don't leave
 a stale duplicate sitting in both places.
 
+## Source material to mine: cut FlagonQuest content in `archive/`
+
+Distinct from the dice-game import below — this is old *FlagonQuest's
+own* design work that never made it into the current ruleset, sitting
+in `archive/flagonquest_site_techniques.md`/`flagonquest_site_items.md`
+and similar old site exports. Distraction (`T144`) is the first real
+case of pulling one of these back in: found in an old draft, rebuilt
+against a current-ruleset sibling (Vanish, `T052`) rather than revived
+as-is, since old mechanics/terminology/Level assignments don't
+necessarily still fit. Worth treating as the template for future
+pulls — find the old draft, find its closest live analogue, rebuild
+against that rather than trusting the archived numbers directly.
+
+- **Placeholder's Sneaky Storage** (old Level 2 General Spell,
+  `(Elementalism or Theurgy) 3` + `Stealth 2` or `Legerdemain 2`,
+  three slightly different drafts in `archive/flagonquest_site_techniques.md`)
+  — grants a small extradimensional storage space (old text: "Weight
+  of 2," the archive's own pre-cubic-meters capacity system), always
+  an easily-accessible location, ends if the caster loses
+  consciousness (contents dump into adjacent spaces). Cut during
+  development; doesn't exist in `techniques.csv`/`features.csv`
+  currently. Surfaced while reviewing the Storage item family
+  (`balance.md`'s Open Balance Work) — per the designer, leave it
+  archived for now, but it's the natural next candidate once there's
+  a settled Storage-capacity value model to price it against and
+  appetite for another archive-recovery pass like Distraction's.
+
 ## Source material to mine: the dice game's item list
 
 A large batch of items from a separate dice-based tabletop game (its own

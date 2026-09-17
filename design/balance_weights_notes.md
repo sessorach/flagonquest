@@ -2341,12 +2341,27 @@ guarantee modeled as Good Luck-tier (2.4, a near-certain success — not
 a modest edge) on a Stealth-adjacent concealment check, at the same ⅓
 frequency: `2.4 × ⅓ = 0.8`, additive on top of the capacity component.
 
-All Storage pricing rescopes to the once/day convention (`Target =
-Level × 4`, `Rate = 1`) rather than per-encounter, and assumes optimal
-use throughout (the owner actually carries useful items in the extra
+All Storage pricing scopes per-encounter (`Target = Level × 3`, `Rate
+= 1`), same as everything else in this model, and assumes optimal use
+throughout (the owner actually carries useful items in the extra
 slots, or has something worth hiding when it matters) — the same
 "rational player" convention used for elemental Resist picks elsewhere
-in this model.
+in this model. [Corrected from an earlier once/day scoping (`Target =
+Level × 4`) — see `balance.md`'s Belt Masterwork pass: capacity's real
+value is the everyday convenience of freeing up 1-AP-reach slots every
+single fight, not an occasional once-a-day crunch, so it belongs on
+the same per-encounter footing as the rest of THE TABEL, not its own
+daily window. This paragraph originally went stale after that
+correction landed elsewhere and was never updated to match — caught
+reviewing the full Storage item family together.]
+
+**Large-object slot rate, now its own row.** The "+1 slot at the same
+per-slot rate" mentioned above (Sash of Deep Pockets' 1-meter-object
+pouches, Spacious Satchel's full 3-slot credit) is `2.75 / 3 = 0.917`
+per slot — previously only stated in this prose, now also given its
+own `balance_weights.csv` row ("Storage capacity component
+(large-object slot)") since it's been reused across multiple items
+without ever being formally tabulated.
 
 ### Trigger frequency tiers, standardized — and a labeled-guess convention for Narrative Utility items
 
