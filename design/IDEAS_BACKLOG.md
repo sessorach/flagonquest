@@ -202,3 +202,41 @@ worth expanding with more Food items at some point, giving Cooking a
 bigger direct catalog rather than staying this narrow. Not scoped yet
 — just a flagged reminder, no direction on what the new items should
 do.
+
+## Two mechanics pulled from the Cloth/Leather gap-filling pass
+
+Both liked mechanically, both rejected on material/slot-lane grounds
+(Cloth/Leather is Tailoring's own domain, not a fit for either of
+these) — see `balance.md`'s writeup of Quilted Overcoat/Sure-Grip
+Boots/Dancing Shoes/Gloves of Misdirection for the pass these came out
+of. Worth reviving on a properly-fitting material if either comes up
+again, not as Cloth/Leather items.
+
+- **Barbed weapon, Bleeding on hit** — a Leather-wrapped/barbed weapon
+  enchantment, "when an attack with this weapon hits, the target gains
+  1 stack of Bleeding." Per the designer, Leather doesn't fit how
+  weapon enchantments work in this system (that's Carving/Smithing's
+  job) — a genuine niche for a future Held item on the right material
+  (Bone reads as the more natural fit for a barbed/claw-flavored
+  weapon than Leather ever did). Also worth a second look at the
+  pricing convention before reviving: the draft used Battering
+  Armament's own "priced at a single occurrence/encounter" L1
+  convention, but per the designer this likely underprices an "on
+  hit" trigger that would actually fire multiple times a fight —
+  worth a real hits-per-encounter derivation (the Numbing Edge/
+  Fanged Guard precedent) instead of reusing that shortcut as-is.
+- **Cord-and-Crippled Ring** — a braided cord ring, "once per
+  encounter, for 2 AP, throw a length of cord at a creature within 6
+  meters — an attack against Dodge Defense; on hit, Crippled a number
+  of times," with a `[Clubs]` suit bonus (Crippled's own suit per the
+  portfolio table). Full math was worked out: 4 stacks Crippled
+  (Value 15, from the established stacks table) + suit bonus (1.5) +
+  Universal Harried credit (1) − Autoswing (5.5) = Value 12.0 against
+  a Level 3 Target of 9, Net +3.0 (133% funded) — same "portable War
+  Magic"-style shape as Chillstrike Band, just built on Crippled
+  instead of Slowed. Rejected purely on material grounds (Cloth/
+  Leather doesn't fit Ring's own jewelry-precedent lane), not the
+  mechanic itself — the math above is ready to reuse directly once a
+  fitting material/slot comes up (Ring on a real Jewelry material is
+  the obvious first option, since the mechanic was built for Ring's
+  own "active ability" lane specifically).

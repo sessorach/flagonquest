@@ -6602,5 +6602,45 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T144",
+    "name": "Distraction",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Encounter",
+    "description": "Trained in advanced infiltration methodology, you have a trick up your sleeve for every situation. When you skulk into a guarded area, you know just how to draw their attention in a way that allows you to handily pass them.",
+    "condition": null,
+    "action": "1 AP",
+    "cost": null,
+    "target": "Choose a point within 10 meters; this Technique targets all creatures within 5 meters of that point.",
+    "effects": "Make a Stealth attack against the Instinct Defense of each target. If it hits, the target is distracted for 3 rounds (roughly 10-15 seconds - a brief moment to investigate), plus 1 additional round for each Extra Success. A creature stops being distracted only if an imminent threat or the start of combat draws their attention away - not simply by any other distraction. While distracted, a creature has Bad Luck on any flips to notice anything other than the distraction. A creature already paying close or specific attention to something when the attack is made is immune to this Technique.",
+    "builder_notes": null,
+    "special": "You may discard a card at any time to regain a use of this Technique.",
+    "prereqs": "Stealth 2",
+    "relevant_skills": "Stealth",
+    "use_cards": true,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Stealth"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

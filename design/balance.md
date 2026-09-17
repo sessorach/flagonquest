@@ -1982,6 +1982,87 @@ What genuinely remains, cross-cutting rather than slot-shaped:
     priority principle, same as before. Full working data (per-item
     breakdown feeding this table) in the session's scratch files, not
     committed — regenerable directly from `items.csv` if needed again.
+  - **Follow-up, same session: the three Cloth/Leather items drafted and
+    priced, closing this gap out (L1/L2/L3 all filled).** Went through
+    several redesign rounds — the first drafts for Held (a Leather
+    weapon enchantment) and Ring (a leather-cord Crippled-attack) were
+    both rejected per the designer as material/lane mismatches (Cloth/
+    Leather is Tailoring's domain, not Carving/Smithing's; Ring's own
+    lane needs a material with a real jewelry precedent) and moved to
+    `IDEAS_BACKLOG.md` rather than forced into slots they didn't belong
+    in — a first attempt at a Hands Archery-Good-Luck glove was also
+    dropped per the designer's standing preference against direct-
+    combat-implication Hands items, and an initial Feet Speed-boost
+    idea was dropped for being a plain reskin of Lightfoot Shoes.
+    - **Quilted Overcoat** (`I250`, Torso, Level 2, 40 Gold) — "The
+      wearer gains a +1 bonus to Physical Resist." `Base Item Options`
+      deliberately restricted to `I002` Basic Clothing only (every
+      other Torso item also allows the 3 Armor tiers) — the whole
+      point is staying compatible with the "Unarmored" Technique
+      prereqs already noted in `RULES_DESIGN.md` as a real, intended
+      niche. Reuses Robes of Resilience's own Physical Resist rate
+      (5.0/point). Value = 5.0, Net -1.0 (83% funded).
+    - **Sure-Grip Boots** (`I251`, Feet, Level 1, 20 Gold) — "When
+      climbing, the wearer's movement is never limited by their
+      Athletics budget, and they have Good Luck on Athletics flips
+      made while climbing." A genuine gap in Feet's own roster (covers
+      combat wall-running via Shadowcat Slippers, nothing for
+      sustained climbing). Reuses Vaulting Boots' own "+2 vertical-
+      budget-bypass" flat credit at an assumed ~1.5 climbs/encounter
+      (3.0), plus a half-tier Good Luck on climbing Athletics flips
+      (1.2) added per the designer to make sure it lands with real
+      weight. Value = 4.2, Net +1.2 (140% funded, a deliberate
+      designer-requested overshoot).
+    - **Dancing Shoes** (`I252`, Feet, Level 1, 20 Gold) — "The wearer
+      has Good Luck on flips made to blend in or otherwise seem to
+      belong at a formal social event or dance. The wearer is never
+      considered inappropriately dressed for such an event, and gains
+      no Pressure for it." Half-tier Good Luck on Masquerade (1.2,
+      matching Shroud of Shadowy Stillness's own treatment) plus a
+      small discounted credit for negating one of `rulebook.md`'s own
+      named Pressure sources (being underdressed) — 2.2 × 0.25
+      situational chance = 0.55. Value = 1.75, Net -1.25 (58% funded).
+    - **Gloves of Misdirection** (`I253`, Hands, Level 1, 20 Gold) —
+      "The wearer is treated as though they know Distraction, or an
+      extra copy of it if they already know it." Distraction (`T144`)
+      is a new Technique this same pass — see below. No activation
+      cost or daily gating (unlike Focusing Band of [Technique]), so
+      priced at the full, undiscounted Technique-value convention
+      (Level × 3 for Encounter cadence). Value = 3, Net = 0 (exact
+      fit). Main Materials includes Shadow as a third alternative
+      alongside Cloth/Leather, matching the item's stealth theme.
+  - **New Technique, same session: Distraction (`T144`), Level 1,
+    Encounter.** Reconstructed from an old, never-carried-forward draft
+    found in `archive/flagonquest_site_techniques.md` (per the designer,
+    "might have been an older one") — the original was Level 3 with a
+    3-skill prereq (Awareness 2, Insight 2, Stealth 3) and a broken/
+    truncated suit-bonus clause. Found `T052` Vanish as an almost-exact
+    structural sibling already live in the current ruleset (Level 3,
+    Encounter, single-skill Stealth 4 prereq, 1 AP, a Stealth-attack-
+    against-Instinct-Defense AoE) and used it as the calibration anchor
+    rather than reviving the old draft's heavier shape. Final text:
+    "Make a Stealth attack against the Instinct Defense of each target
+    [within 5m of a chosen point, 10m range]. If it hits, the target is
+    distracted for 3 rounds, plus 1 additional round for each Extra
+    Success. A creature stops being distracted only if an imminent
+    threat or the start of combat draws their attention away — not
+    simply by any other distraction. While distracted, a creature has
+    Bad Luck on any flips to notice anything other than the
+    distraction. A creature already paying close or specific attention
+    to something when the attack is made is immune." Prereq: Stealth 2
+    (matching Feint's own L1 single-skill-prereq shape, not Vanish's
+    heavier L3 gate). Dropped to **Level 1** per the designer's own
+    read, confirmed: unlike Vanish, this Technique is explicitly voided
+    by the exact situation (a real threat, combat starting) where a
+    debuff would normally matter most, so its real utility sits almost
+    entirely in the pre-combat/infiltration space — a much narrower
+    band than Vanish covers, supporting the lower Level. Duration
+    scaling folds suits in through the existing Extra Success system
+    rather than a bolted-on `+[Suit]` clause. Range tightened from the
+    old draft's 20m to 10m per the designer. Not run through THE
+    TABEL's own Value/Target math — per the designer, this one leans
+    narrative by design, and Vanish's own precedent was judged a
+    sufficient calibration anchor on its own.
 - **Resolved: Fleeting effects and the same-turn-grant snag.** Fleeting
   effects decay 1 stack at the end of the affected creature's own turn.
   Turned out topping off an *existing* stack was never actually broken —

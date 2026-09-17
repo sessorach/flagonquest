@@ -13,6 +13,27 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-17 — New Technique (Distraction) and four Cloth/Leather items
+
+- **Distraction** (new Technique, Level 1, Encounter, Stealth 2) — a
+  Stealth attack that distracts everyone near a chosen point for a few
+  rounds, useful for slipping past guards rather than for a fight.
+  Reconstructed from an old, never-finished draft and rebalanced
+  against Vanish, its closest sibling in the current ruleset.
+- **Quilted Overcoat** (Torso, Level 2, 40 Gold) — +1 Physical Resist,
+  built only on Basic Clothing rather than Armor, so it stays
+  compatible with "fighting unarmored" builds.
+- **Sure-Grip Boots** (Feet, Level 1, 20 Gold) — removes the climbing
+  movement cap and grants Good Luck while climbing, filling a real gap
+  between the game's combat wall-running items and nothing for
+  sustained climbing.
+- **Dancing Shoes** (Feet, Level 1, 20 Gold) — Good Luck to blend in
+  at a formal event, and never counts as underdressed for one.
+- **Gloves of Misdirection** (Hands, Level 1, 20 Gold) — grants a copy
+  of the new Distraction Technique.
+- All four fill the last of the Cloth/Leather material-type gaps
+  identified in the earlier Slot × Level review.
+
 ### 2026-09-17 — Crafting recipe cleanup: Main Types wording, Basic Clothing
 
 - Nine crafting recipes (Weapon/Armor via Carving or Tailoring, plus
