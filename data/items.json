@@ -2856,7 +2856,7 @@
     "slot": "Torso",
     "tags": null,
     "level": "1, 2",
-    "description": "A very broad category for a common enchantment (as common as magic items might be, anyway), armor can be enchanted to resist a variety of elemental types. Mundane armor provides only Physical Soak - no protection against Fire damage, for example - but armor might be enchanted to protect the wearer against Fire, Frost, Shadow, or (rarely) Brilliant damage.",
+    "description": "A very broad category for a common enchantment (as common as magic items might be, anyway), armor can be enchanted to resist a variety of elemental types. Mundane armor provides only Physical Resist - no protection against Fire damage, for example - but armor might be enchanted to protect the wearer against Fire, Frost, Shadow, or (rarely) Brilliant damage.",
     "effects": "The wearer gains a +1 bonus to Fire, Frost, Brilliant, or Shadow Resist, chosen when the item is created. If the enhancement is Level 2, it increases to a total of +2 Resist of the chosen type.",
     "cost": null,
     "value_per_level": 20,

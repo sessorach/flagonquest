@@ -238,7 +238,7 @@
     "name": "Improved Bite",
     "category": "Rockbiters",
     "description": null,
-    "effects": "Rockbiters have a natural bite attack that counts as either a Heavy or Light 1H Melee Weapon (chosen at character creation). Incredibly, they can even use it to try and parry attacks like any held weapon. Their bite ignores 1 point of Physical Soak from armor, and deals double damage against inanimate objects.",
+    "effects": "Rockbiters have a natural bite attack that counts as either a Heavy or Light 1H Melee Weapon (chosen at character creation). Incredibly, they can even use it to try and parry attacks like any held weapon. Their bite ignores 1 point of Physical Resist from armor, and deals double damage against inanimate objects.",
     "grants_technique": null,
     "supplement": "Goblin Game"
   },

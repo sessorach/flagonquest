@@ -5817,7 +5817,7 @@
     "action": "2 AP",
     "cost": null,
     "target": "Up to [Sorcery Skill Total] connected spaces within [Sorcery Skill Total] meters; each 3 meters tall",
-    "effects": "You summon a wall of ice that lasts for the encounter. Creatures that would be in a space the wall occupies are moved to the nearest unoccupied adjacent space. Each space of wall has 4 Health and [Mind] Soak against all damage except Fire. When a space loses all Health, that section is destroyed.",
+    "effects": "You summon a wall of ice that lasts for the encounter. Creatures that would be in a space the wall occupies are moved to the nearest unoccupied adjacent space. Each space of wall has 4 Health and [Mind] Resist against all damage except Fire. When a space loses all Health, that section is destroyed.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Sorcery 4",
