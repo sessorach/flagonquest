@@ -90,6 +90,17 @@ necessarily still fit. Worth treating as the template for future
 pulls — find the old draft, find its closest live analogue, rebuild
 against that rather than trusting the archived numbers directly.
 
+**Full sweep completed** across all three `archive/flagonquest_site_*.md`
+files (items, techniques, other/rules — ~23,000 lines combined),
+cross-checked against current `items.csv`/`techniques.csv` and this
+whole file, so nothing from past versions should be sitting
+unaccounted-for. Coverage turned out very high already — both catalogs
+are direct ancestors of their current counterparts, and most named
+old items/techniques already exist live, often under the same name.
+The lists below are what's left: genuinely new, not-yet-addressed
+material, organized by theme. Old terminology throughout is already
+translated to current (Soak→Resist, Elementalism→Sorcery, etc.).
+
 - **Placeholder's Sneaky Storage** (old Level 2 General Spell,
   `(Elementalism or Theurgy) 3` + `Stealth 2` or `Legerdemain 2`,
   three slightly different drafts in `archive/flagonquest_site_techniques.md`)
@@ -103,6 +114,269 @@ against that rather than trusting the archived numbers directly.
   archived for now, but it's the natural next candidate once there's
   a settled Storage-capacity value model to price it against and
   appetite for another archive-recovery pass like Distraction's.
+
+### Items and Consumables (from `flagonquest_site_items.md`)
+
+No new equipment-slot (Head/Neck/Torso/Hands/Feet/Ring/Held/Belt/Other)
+concepts survived the cross-check — that catalog is fully mined and
+already live. The gap is entirely in Potions/Grenades:
+
+- **Skill-cluster "reflip" Potions.** The current game only has this
+  pattern twice (Energizing Brew/Reflex, Liquid Charisma/Presence-
+  Persuasion-Rapport); the old doc had one per cluster. **Bottled
+  Wit** (Legerdemain/Awareness/Disguise/Insight/Survival, 1 hour),
+  **Profound Potion** (Academics/Craft/Sorcery-non-Spell/Medicine/
+  Mixology, 1 hour — check this name isn't already spoken for; the
+  Wizardly Hat/Alcohol-suite writeup in `balance_weights_notes.md`
+  references a potion by this name as what prompted that whole line
+  of work), **Strongbrew** (Athletics/Might/Centering/Intimidate, 1
+  hour), **Steady Heart** (reflip Acrobatics/Stealth + Good Luck on
+  Reflex + reduces the first Forceful social attack each encounter —
+  more complex, multi-part).
+- **"Extra Action" Potions** — no current potion grants a flat extra
+  action (Swiftblade Vial's Hasted+reposition is a different shape).
+  **Extra Heartbeat** (extra Main action this turn), **Coursing
+  River** (extra Move action for the rest of the scene). A strong
+  pair; needs real balance scrutiny before drafting given how big an
+  extra action is.
+- **Heaven's Kiss** — ignore all Wounded stacks until end of scene.
+  Kiss of the Earth/Predator's Cry cover Bleeding/Crippled-Slowed;
+  Wounded itself isn't covered by any current Potion.
+  **Essence-Infused Bauble** — restores 1 Focus (old "Willpower"
+  term) on use; no current Potion restores a resource point like
+  this (only the deferred Crown of Glory capstone touches it).
+- **Lower priority / needs real reframing, not just translation:**
+  Quartz Tincture (damage + old "Off-Balance"/"Prone," neither a
+  current keyword), Reaper's Mist (Shadow damage + old "Weakened,"
+  also redundant with Bonemelter/Harrowing Ichor already covering
+  that niche), a second Hellfire Bomb variant (repeating/unavoidable
+  attack, name conflict with the current item), Cobblestone Boots
+  (walk the sea floor at full Speed — Swim Flippers already covers
+  Feet's water-utility niche from a different angle), Orb of the
+  Weave/Wand (cast a spell you don't know via the item — corroborates
+  the already-logged Tome of Mana Bolt gap, not a new finding).
+
+### Techniques and Spells (from `flagonquest_site_techniques.md`)
+
+By far the largest source of unmined material — this file is ~12,000
+lines and several whole old families (Battle Magic→War Magic, Blessing
+Magic→Spirit Blessing, Healing Magic, Social Contest Techniques→Social
+Maneuver, Martial Strikes→Battle Maneuver) already got a full
+systematic redesign into today's Feature-Budget techniques. What's
+below is what's left after checking each family's current Feature list
+against the old drafts — genuinely missing mechanics, not just
+unported flavor text.
+
+**Sorcery spells**: Force Barrier (Counter an attack targeting Parry —
+roll Sorcery and substitute for Dodge instead, ignoring Harried — no
+current "roll to dodge" reactive spell exists), Bindings of Force
+(ranged magical grapple — no ranged-grapple mechanic exists anywhere
+currently), Elemental Storm (spell attack leaves a delayed hazard zone
+that keeps attacking), Shadowfrost Bolt (capstone; attacks whichever
+of Fire/Frost/Shadow the target resists least — a novel "targets your
+weakest Resist" mechanic), Concentrate Arcana (spend Focus as a
+Counter right as you cast, to boost that cast).
+
+**Theurgy/Nature spells** — a large, mostly-untouched vein even though
+Sculpt Stone/Weatherworking/Earthquake/Cloak of Awe made it in: Wild
+Shape (full animal transformation — classic archetype, absent
+currently), Control Weather, Alarm Ward (12-hour perimeter alarm),
+Birdsight (bird familiar, see through its eyes), Windweaving
+(breathable-air bubble, or Counter a fall to land safely), Door of
+Respite (extradimensional rest shelter — distinct from Sneaky
+Storage's item-storage niche above), Fog Cloud (steerable obscuring
+fog), Mark of Smiting (mark an ally; their next hit converts some
+damage to Spirit), Ring of Entropy (Weakens anyone entering/starting
+their turn in a rune-trap zone), Commune With Nature (wilderness
+divination, 15km), Curse of Mortality (Necrotic + strips temporary
+Health), Dust to Dust (disintegrates dead organic matter, ignores
+Armor Soak), Entangle (vine zone, Snares), Heat Metal (remotely heat a
+metal weapon/armor), Plague Cloud (disease-miasma zone), Step Into the
+Earth (meld into solid earth to move through it, blind), Interdict
+(Snare + Off-Balance).
+
+**General Spells** (school-neutral utility "cantrip" magic) — a whole
+layer that didn't make it in at all: Identify Magic, Minor Illusion
+(known-fake image/sound), Sympathetic Sight (see through a linked
+creature's eyes), Telepathic Sending (one-way single-sentence, distinct
+from the current group Telepathic Link), Wisps (persistent following
+candlelight), Freeze/Scorch (heat/chill a small object), Glittering
+Trail (party-only visible trail), Quick Sober, Placeholder's Accurate
+Artistry (instant perfect sketch), Placeholder's Covert Conclave
+(eavesdropping/scrying ward), Placeholder's Instantaneous Instrument
+(Conjure Armament variant for musical instruments), Placeholder's
+Meticulous Mending (repair/clean a mundane object), Blood Magic (spend
+Health, Interrupt, any time, to regain a Spell Encounter Technique use),
+Prepared Magic (pre-load a spell to cast free next turn), Counterspell
+/ Spell-Rending Arcanology (Counter a creature starting to cast, spell-
+attack to negate it — a genuine counterspell mechanic, nothing like it
+exists currently), Sudden Abjuration (expend spell uses reactively for
+temp Health when hit), Infuse Summon (extra turn for a summoned
+creature), Swordsoul (the mirror of the already-live Spellblade —
+expend a *Martial* Encounter Technique to fuel a magic attack instead
+of the other way around).
+
+**Martial reactive/defensive tricks** — checked directly, nothing in
+`techniques.csv` lets you substitute a roll for your Defense or negate/
+redirect an attack outright: the Flashing Steel/Lucky Dodge/Tumble
+family (Counter an attack, substitute a fresh roll or a discarded
+card's value for Parry/Dodge, ignoring Harried), Cleave Magic (melee
+Counter against a spell attack — weapon-attack roll as Defense,
+redirect the spell back on a miss), Veil of Dispersing Shadows /
+Unbreakable Stone Anchor / Unmovable Stone Anchor (capstone "ignore
+this attack" defenses), Parry Cover / Intervene (redirect an attack
+from an adjacent ally onto yourself), Final Feint Strikes the Heart
+(3-attack combo, first two are damage-less setup, third bypasses Armor
+Soak with guaranteed Hearts), Deadeye Shot (unlimited-range called
+shot), Hammer and Anvil (shield bash Push + free ally follow-up),
+Obliterating Smash (two-handed cleave, chip damage even on a Dodge/
+Parry), Shield Slam (Stunning bash), Adaptive Style (Martial's own
+Channel Ki/Warmage's Reserves — expend one Encounter Technique to
+regain another), Moment of Celerity (spend Soul for a genuine extra
+Main action — no current technique grants one).
+
+**Combat Stances** (general Martial, not tied to a named Style) — a
+whole unported family, ~20 tradeoff-based postures. Representative
+sample: Alacritous Posture (Main/Move as Extra/Counter if unused),
+Half-Guard/Drunken Brawling/Shifting Ground (Speed-for-defense),
+Breaching Blows/Earthen Fist Posture (offense-for-defense, two-
+handers), Doubleshot (double ranged attack as a Full action), Group
+Bulwark/Lend Bulwark (share your shield's Defense with an adjacent
+ally), Sentinel (shadow an adjacent enemy's movement), Iron Vanguard
+(shield-tank, Bad Luck to attackers), Raptor's Precision/Swashbuckler's
+Focus (accuracy/speed or single-target tradeoffs), Earthen Mantle
+Approach (elemental Resist for defense).
+
+**Discipline/Martial-Arts Styles** — only 1-4 techniques per Style
+made it in; the rest of each tier ladder didn't. **Great Old Oak
+Style** and **Ki Style** are entirely absent (0 ported) — Oak is a
+defensive/endurance style (ignore Harried, counter-and-heal, remove
+debuffs mid-swing, regen on hit, deflect as a Counter); Ki is a
+teleport/chakra-disruption style (teleport-then-strike, Spirit-damage
+unarmed, disintegration finishers, Weakened strikes). **Bear**, **Demon**,
+**Shugen**, and **Snake** each have several tier-ladder entries still
+unported (defensive-mauling Parries, Bleed-on-Parry, disarm Counters,
+AoE knockdowns, Vulnerable-on-hit stances, self-sacrifice strikes,
+disintegration/chain-binding/teleport-swap/mind-shatter/shuriken
+options, trip-Counters, Slowed dual-wield stances, Parry-redirect).
+
+**Card/luck-economy techniques** — nothing currently manipulates cards
+beyond Grim Resolve's "spend Health, draw a card": Intuitive Maneuver
+(swap a played card for deck-top), Lucky (passive card draw after a
+rest), Minor Oracle (peek/cull your own top cards), Focus and
+Conviction/Strength and Conviction/Words of Encouragement/Roll the
+Dice (spend Soul or Focus to draw 2 discard 1, self or ally), Font of
+Inspiration (nearby allies reflip low cards when you spend Soul),
+Morning's Determination (keep 1 card through the rest-discard),
+Primal Intuition (cull top cards on demand, but must reshuffle your
+discard pile every rest — real risk/reward), Mastermind (capstone,
+permanent +1 max Focus — no current technique raises a resource cap).
+
+**Battle Maneuver leftovers** (old Features with no current match):
+Riposte/Counterstrike (counter-attack on a Parry/Dodge), Opportunist
+(punish a retreating target), Pinpoint Flash (teleport into range
+before attacking), Hemorrhage (bypass Armor Soak, convert lost Health
+to Bleeding), Shockwave/Scattershot (splash to an adjacent target or
+ranged cone), Inescapable Claw (miss → free second attack), Stagger
+(deny a Move each round), Execute (finishing Bleed scaled to missing
+Health), Fighting Spirit/Ten Ton Hammer (spend extra Willpower for a
+bonus).
+
+**Social Maneuver leftovers** (same idea, social side): Gritty
+Countenance-style Defense-swap-for-front-member, Corner and Interrogate
+(force the same front members next turn), Bow Out (remove yourself,
+negate a Demerit), Fast Talker (extra turn in the contest), Logos
+Overwhelming (Disadvantage on the opponent's next Statement), Instill
+Emotion (crowd mood-shifting outside a formal contest), Storied
+Adventurer/"Impressive" Reputation (reputation-based Good Luck on a
+first social flip with a stranger).
+
+**Craft/Mixology utility**: Immaculate Saucepan Methodology/Stately
+Tailoring (reflavor a dish/restyle a garment), Deploy Mounted Launcher
+(summon a temporary turret from materials), Scraptrops (scatter
+material caltrops), Essence Admixture/Catalytic Activation (buff a
+Potion/Grenade you personally crafted), Inspirited Armaments
+(temporarily grant a Masterwork enhancement to gear you crafted),
+Reactant Brewing (transmute one alchemical good you know into
+another), Saboteur (rig a disabled trap/device), Vessel of Belief
+(bank committed Soul/Focus in an item, released to whoever uses it),
+Philosopher's Metallurgy (convert materials up/down a Level).
+
+**Alcohol-cost techniques** — direct hits for the already-queued
+"Alcohol-cost Technique suite" below: Flamebreath (drink, breathe fire),
+For Medicinal Purposes (drink to heal/reduce a poison, scaled to the
+drink's Level), Victory Swig (drink on a kill, Frighten onlookers).
+Worth reusing as worked examples when that suite gets drafted.
+
+**Misc Skill/Utility**: Hunter's Mark (Survival — mark + Slowed on
+next hit), Speak With Animals, Assert Dominance (Survival —
+intimidate a wild animal), Hidden Meaning/Secret Cant (Streetwise
+coded speech), Dark Powers of Commerce (fair-value trading + market
+research), Encrypt Letter, Perfect Poise (Integrity — immune to
+Insight reads except lying, ignores appearance penalties), Perfect
+Visual Analysis (eidetic memory, instant estimation), Trivia Master
+(Academics, Daily — recall a fact on demand), Animal Companion: Combat
+Training/War Training (a missing mid/high progression tier — current
+game only has base + one Trick tier), Spider Climb, Overbear (double
+Carrying Capacity/ignore Might for backpacks), Hulking Hurl (Might —
+throw a heavy object as improvised ranged), Tavern Brawler
+(improvised weapons count as real; destroying one on a kill Bleeds
+nearby enemies), Plaguebearer (a Corrupted Blood sibling using disease
+instead of poison).
+
+No additional storage-granting spell drafts turned up beyond the three
+already logged for Sneaky Storage above.
+
+### Rules and GM notes worth reviewing (from `flagonquest_site_other.md`)
+
+This file turned out to be overwhelmingly superseded material — an
+export from at least three distinct earlier rules eras, over a third
+of it sitting in the designer's own explicit "Quarantine" (deprecated)
+section. Checked systematically against current `rulebook.md`/
+`glossary.md`/`design/RULES_DESIGN.md`/`design/GM_GUIDE_NOTES.md`;
+confirmed already-superseded (not re-flagged as findings): the old
+Rules Tags/Common Effects/Type Tags glossary (all current except
+Bolstered, already documented as deliberately cut), two old Stat/Skill
+taxonomies (5-Stat and 7-Stat, both superseded by the current 4-suit
+system), old Summoned-creature rules, the DM Notes item-tier math
+(already incorporated, see `balance.md`'s "Common/Uncommon/Rare/
+Extraordinary tiers" section), old "Stunting" (superseded by Bingus/
+Golden Bingus), and old movement/climb/swim/jump formulas (superseded
+by the current Athletics budget rules). A large fraction of the file's
+bulk is also just old Technique/Item text blocks belonging with the
+sweeps above, not separate rules content.
+
+What's actually left, worth a look:
+
+- **A "Destroying Objects" rule** — a compact, complete mechanic for
+  breaking scenery/objects: four Soak(→Resist) tiers by material
+  category (Delicate/Normal/Sturdy/Impenetrable) crossed with three
+  Health tiers by size (Small/Medium/Large). Confirmed no equivalent
+  exists anywhere in current `rulebook.md`/`glossary.md` (no hits for
+  break/shatter/smash/inanimate/construct). The one candidate here
+  with real teeth — a ready-made starting point if formal
+  object-destruction rules are ever wanted.
+- **Legend Binding** / **Palhalla** — binds a chosen item to you
+  permanently (unlosable, always retrievable), old-costed in "Glory"
+  (a resource that no longer exists). The underlying concept — a
+  signature item that can never be stolen or lost — has no current
+  analogue; would need a real cost mechanism designed fresh.
+- **Meta Book** ("Basics of Roleplaying") — no-metagaming guidance,
+  keeping character politics separate from the table, a plain
+  GM/player gameplay-loop description. Current `rulebook.md` only has
+  a one-line "GM has final say" note; this is fuller onboarding-style
+  framing that may or may not fit a rules-only rulebook's scope.
+- **Skill-rating flavor text** — narrative description of what Skill
+  ratings 0-5 feel like in-fiction ("a base level of competency,"
+  "among the elite," etc.). The specific numbers reference the old
+  dice-pool scale so wouldn't port directly, but the framing device
+  itself could be adapted.
+- **Design philosophy fragments**, repeated across several old
+  sections: a "Variety / Distinct / Obvious / Prune" four-point design
+  checklist, and a "Barrier vs. Justification" framing for why prereqs
+  exist. Not tied to any specific current mechanic — generic design
+  wisdom — but could fold into `RULES_DESIGN.md`'s own meta-principles
+  if useful as a standing checklist.
 
 ## Source material to mine: the dice game's item list
 
