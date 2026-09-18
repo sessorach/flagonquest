@@ -17,16 +17,18 @@ the full commit-by-commit detail behind any of these.
 
 Two new pieces of `design/`-only GM content (not player-facing, no
 rulebook/site changes) — the site itself is unaffected by this entry.
-**A first-draft enemy stat block by Level and tier**
-(`design/GM_GUIDE_NOTES.md`) closes a real, previously-flagged gap: this
-project never had a reference for what an enemy's stats should look
-like at a given Level. Built from the same combat math everything else
-already uses — enemies flip cards and use Defense/Damage formulas
-exactly like PCs do — with a Level 1-5 table (Primary Stat, Skill
-Total, Defense, Resist, representative weapon Damage) plus a
-Minion/Standard/Elite/Boss tier system for Health, since toughness
-needed to be an independent lever from Level. Full derivation, its
-assumptions, and known limitations are in `design/
+**An enemy stat block by XP Tier** (`design/GM_GUIDE_NOTES.md`) closes a
+real, previously-flagged gap: this project never had a reference for
+what an enemy's stats should look like. Built around the designer's own
+past methodology for this exact problem — draft what a same-XP-tier PC's
+stats would realistically look like (accounting for XP that goes to
+non-combat Skills too, not just combat ones), then give enemies a slight
+discount off that, plus a separate budget for special abilities.
+Verified against `rulebook.md`'s own worked chargen example (which sums
+to exactly 75 XP, the actual Tier 1 anchor), tiered from there in +50 XP
+steps, with a Minion/Standard/Elite/Boss multiplier for Health since
+toughness needed to be an independent lever from Tier. Full derivation,
+its assumptions, and known limitations are in `design/
 balance_weights_notes.md`. Also added: a practical guide for running
 Social Encounters (`design/GM_GUIDE_NOTES.md`), translating the Social
 Encounter Baseline model below into table-ready pacing advice — when to

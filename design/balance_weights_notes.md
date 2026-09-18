@@ -4911,205 +4911,202 @@ large enough that splitting it matters (see Soul Soup's own Level 5
 case in `balance.md`, granted uncapped for exactly this reason).
 
 
-## Enemy Stat Block by Level — a first pass at the missing GM difficulty-by-Level table
+## Enemy Stat Block by Level — revised around the designer's own past XP-tier methodology
 
-`design/RULES_DESIGN.md` (lines 1054-1055) has flagged this as an open,
-never-drafted gap since an old-docs review surfaced it: "a GM
-difficulty-by-Level table, enemy/encounter design guidance." Confirmed
-again this pass (searched `archive/flagonquest_balance_notes.xlsx` in
-full a second time, and its own reading-guide companion
-`flagonquest_balance_notes_model.md`) — no enemy-stat-block table
-exists anywhere in this project's history. This section builds one from
-scratch, the same kind of project as the Social Encounter Baseline
-above: not derived from existing rules text (because none exists for
-this), but built to be internally consistent with everything that
-*does* already exist (weapon Damage formulas, the Defense formula,
-Resist mechanics, and two real established anchors — the "grenade base
-stat 3-5 by Level" convention and the "~2 hits to down an on-Level
-enemy" design target, both cited below) rather than invented free-hand.
-Flagged as a first draft throughout; revisit if actual play shows it's
-off.
+**Supersedes the first-draft version of this section** (see git history
+for the original, `1e172e5`..`cf8470b` if it's still needed for
+reference). That draft built enemy Stat/Skill Total purely from the
+"grenade base stat 3-5 by Level" convention with no real anchor for
+Skill Total specifically. The designer then recalled having actually
+built this before, with a real methodology: draft what a same-XP-tier
+PC's stats would realistically look like (accounting for XP that goes
+to non-combat Skills, not just combat ones), then give enemies a slight
+stat discount off that, plus a separate spare budget for special
+abilities. This section rebuilds around that — genuinely better
+grounded, since it starts from the actual character-progression math
+instead of a combat-only proxy. `Primary Stat`, `Resist`, and `Health`
+below are **unchanged** from the first draft (they weren't derived from
+a PC baseline to begin with — see their own reasoning below); `Skill
+Total`, `Defense`, and the new `Ability Budget` column are the
+genuinely new parts this revision adds.
 
-### The anchors this reuses directly, not invented fresh
+### Tiers are XP-based, not Level-based
 
-- **Primary Stat by Level**: "Grenades assume a base stat of 3-5, based
-  on Level: 1-2 assume 3, 3 assumed 4, 4-5 assumes 5" — the only
-  existing on-level-enemy convention anywhere in this project (surfaced
-  pricing Pillar Ring, cited from the archived spreadsheet's Equipment
-  tab). Reused here as the enemy's own primary Stat (whatever stat
-  drives their main attack/casting), not just a one-off grenade proxy.
-- **"~2 hits to down it" design target**: explicitly stated as "the
-  designer's own target" while validating this same Stat convention
-  against Heavy 1H Melee weapon damage for Pillar Ring's Toughness
-  sub-object — generalized here into the actual Health formula below.
-- **Skill Total tier anchors**: `RULES_DESIGN.md`'s established meaning
-  for specific Skill Total values — 6 is the exact character-creation
-  ceiling (3 Stat + 3 Skill, the hard cap on any one Skill at Level 1
-  chargen), 7 is "the practical ceiling for the most skilled *ordinary*
-  craftsperson in the game world," 8+ is "reserved for someone who has
-  actually adventured or trained hard for it." 10 is the absolute
-  ceiling (5 Stat + 5 Skill) — also the top of the separate, already-
-  established Masterwork/Alchemy crafting-difficulty curve (`balance.md`,
-  "Skill Total 4/6/8/9/10 across Levels 1-5"), a different curve for a
-  different purpose (how hard an item is to *craft*, not how strong an
-  *enemy* is) but a useful confirmation that 10 is where this project's
-  Level-5 content generally tops out.
-- **Defense formula**: `8 + [relevant Skill Total]`, identical for all
-  five PC Defenses (`rulebook.md`'s Calculated Statistics) — enemies use
-  this exact formula too, no new rule invented.
-- **Weapon Damage formulas**: reused verbatim from the weapon-category
-  table already established in `RULES_DESIGN.md`'s Baseline damage-over-
-  Resist section — Light 1H Melee `3+[Stat]`, Light 2H Melee `4+[Stat]`,
-  Heavy 1H Melee `4+[Stat]`, Heavy 2H Melee `5+[Stat]`.
-- **AP economy**: `rulebook.md`'s "you... gain 4 Action Points" and a
-  standard weapon attack costing 2 AP — enemies act on the same clock as
-  PCs, so a Standard-tier enemy attacking twice a turn (or once plus a
-  move/ability) is the normal case, not an exception to design around.
+Per the designer's own recollection: **75 XP for Tier 1** (this
+project's actual chargen budget, `rulebook.md`), **+50 XP per tier
+after that** — 75/125/175/225/275 for Tiers 1-5. This is a different
+axis than the existing Technique/Masterwork Level 1-5 scale (which
+tracks *item* power, not *character* power) — the two happen to share a
+1-5 range and roughly correspond in practice, but aren't the same
+measurement. "Level" in the rest of this table means "Tier" in this
+sense going forward.
 
-### What's newly constructed here, and the reasoning behind each piece
+### Step 1: what would a same-tier PC's Skills/Stats/Techniques spend actually look like
 
-- **Skill Total by Level, +1/Level starting at 4**: `4/5/6/7/8` across
-  Levels 1-5. Picked specifically so the meaningful anchors above land
-  exactly where they should: Level 3 (Skill Total 6) is exactly as
-  capable as the single most specialized thing a brand-new PC could
-  theoretically be at chargen; Level 4 (7) matches the skilled-ordinary-
-  NPC ceiling; Level 5 (8) crosses into "adventurer-tier," fitting for
-  the toughest Standard-tier threat this project's Level range reaches.
-  This governs the enemy's Accuracy (flip + Skill Total vs. the PC's
-  Defense, same resolution as any other check) and their own Defenses.
-- **Resist = Primary Stat + 1 (Physical) or Primary Stat alone
-  (elemental)**: direct reuse of the already-Locked "Fresh-attack Resist
-  placeholder" convention (`Body 3 + 1 armor` for Physical, `Body 3`
-  alone for elemental — the same "+1 elemental credit, assuming ~1
-  Physical Resist from armor that elemental typically bypasses"
-  reasoning), just generalized across the full Level range instead of
-  used once at a fixed Body 3. Physical: `4/4/5/6/6`. Elemental (only
-  give an enemy a specific elemental Resist when it's thematically
-  relevant — Fire by default per `RULES_DESIGN.md`'s own "Fire is the
-  deliberately common element" note, unless the encounter calls for
-  something else): `3/3/4/5/5`.
-- **Health, tiered rather than a single Level-keyed number**: a single
-  Level-scaling Health number would either force every enemy of a given
-  Level to feel identical, or fight the tier system a GM actually wants
-  (a mook, a boss, and everything between, all at the same Level). Built
-  the underlying number first, then exposed it as a tier multiplier:
+Verified against `rulebook.md`'s own worked chargen example first,
+since it's the one real data point that exists for this: "2 Skills at 3
+ranks, 5 Skills at 2 ranks, 2 Skills at 1 rank; 1 Stat at 3 ranks, 2
+Stats at 2 ranks, 2 Stats at 1 rank each; 6 total Levels' worth of
+Techniques." Actual XP cost of that exact spread (Skill cumulative cost
+to rank N is `N(N+1)/2`, Stat is double that, Technique is `3×Level`,
+all per `rulebook.md`'s Spending Experience section):
 
-### Deriving Standard-tier Health
+`Skills: 2×6 + 5×3 + 2×1 = 29. Stats: 1×12 + 2×6 + 2×2 = 28. Techniques: 6×3 = 18. Total: 75.`
 
-Using Heavy 1H Melee as the representative "typical armed opponent"
-weapon, with the attacking PC assumed to have grown their own relevant
-Stat to roughly match this same Level's baseline by the time they're
-actually facing Level-N content (the same "on-Level fight, matched
-investment" premise the original Pillar Ring cross-check used) — net
-damage per hit, Damage(Heavy 1H) minus this enemy's own Physical Resist:
+Confirms exactly — 29+28+18 = 75, matching the stated 75 XP chargen
+budget and the "6 total Levels' worth of Techniques" line precisely.
+Ratio: **Skills ~39% / Stats ~37% / Techniques ~24%.**
 
-| Level | Stat | Heavy 1H Damage (4+Stat) | Physical Resist (Stat+1) | Net/hit |
+**Per the designer, Techniques should take a growing share at higher
+tiers** (a mature character's identity leans more on its ability kit
+than raw stats by that point), Skills/Stats a shrinking one. Modeled as
+Techniques' share climbing **+6 percentage points per tier** from that
+24% anchor, with the remaining Skills/Stats split kept at the same
+~51:49 ratio chargen's own example uses:
+
+| Tier | XP | Techniques (XP) | Skills (XP) | Stats (XP) |
 |---|---|---|---|---|
-| 1 | 3 | 7 | 4 | 3 |
-| 2 | 3 | 7 | 4 | 3 |
-| 3 | 4 | 8 | 5 | 3 |
-| 4 | 5 | 9 | 6 | 3 |
-| 5 | 5 | 9 | 6 | 3 |
+| 1 | 75 | 18 (24%) | 29 | 28 |
+| 2 | 125 | 38 (30%) | 44 | 43 |
+| 3 | 175 | 63 (36%) | 57 | 55 |
+| 4 | 225 | 94 (42%) | 67 | 64 |
+| 5 | 275 | 132 (48%) | 73 | 70 |
 
-**Net/hit comes out flat at 3 across every Level** — not a coincidence,
-and not forced: since both the attacking PC's Stat and this enemy's own
-Resist are pegged to the identical by-Level convention, they rise in
-lockstep, so the gap between them never changes from its Level-1 value.
-This is a real, load-bearing modeling choice (an "on-Level fight" always
-plays out at roughly the same relative toughness, with the raw numbers
-on both sides simply getting bigger together) rather than a flat curve
-being the accidental result — worth stating plainly since it may look
-surprising ("shouldn't a Level 5 enemy hit harder in absolute terms than
-a Level 1 one?" — yes, and it does: Damage goes 7→9. What stays flat is
-the *margin* once Resist is subtracted, which is the number that
-actually determines hits-to-kill). It also happens to land almost
-exactly on the already-established, independently-derived "2-3 net
-damage over Light-Armored Resist" floor baseline (`RULES_DESIGN.md`'s
-Baseline damage-over-Resist section, Stat=0 vs. Light Armor's flat
-Resist 1) at every single Level, not just Level 1 — a genuine
-cross-check, not a circular one, since that floor number was derived
-completely independently (a fixed Stat=0/Armor=1 case, not this
-section's Level-scaled Stat/Resist pairing) and still lands in the same
-place.
+**This Skills-XP figure covers a whole character, not just their combat
+Skill(s)** — per the designer's own framing, "players didn't just spend
+XP on combat stats, some are other things like Awareness and social
+stuff." A real same-tier PC (or a same-tier NPC contact/ally the GM
+wants to gauge, not just an enemy) plausibly has meaningful Persuasion,
+Streetwise, Academics, or whatever else alongside their combat kit —
+this table doesn't try to model that breadth explicitly (it's out of
+scope for a *combat* stat block, and the Social Encounter Baseline
+above already covers the social-encounter case separately), but it's
+worth keeping in mind reading the numbers below: they represent a
+PC's *best* combat investment specifically, not their whole sheet.
 
-Standard-tier Health = 2 hits (the stated design target) × 3 net/hit =
-**6, flat across all five Levels.**
+### Step 2: the representative PC's combat Skill Totals
 
-### The tier table
+**Main Skill Total** (their best combat Skill + its governing Stat,
+the "specialize" choice): `6 / 7 / 8 / 9 / 10` across Tiers 1-5 — a
+clean +1/tier climb that lands exactly on real anchors already
+established elsewhere in this project: Tier 1 = 6 (the exact chargen
+ceiling, `3+3`, matching the real chargen example's own top skill+stat
+pick), Tier 2 = 7 (`RULES_DESIGN.md`'s "skilled ordinary craftsperson"
+ceiling), Tier 5 = 10 (the absolute Skill Total cap, `5+5` — the same
+ceiling the separate Masterwork/Alchemy crafting-difficulty curve also
+tops out at).
 
-| Tier | Health | Roughly | Skill Total (cap 10) |
-|---|---|---|---|
-| Minion | 3 | ~1 hit — mooks, swarms, anything meant to drop fast | Standard |
-| Standard | 6 | ~2 hits — the baseline "on-Level fight" derived above | Standard (`4/5/6/7/8`) |
-| Elite | 12 | ~4 hits — a real individual threat | Standard |
-| Boss | 18-24 | ~6-8 hits | Standard + 2 (capped at 10) |
+**Secondary Skill Total** (whichever other combat-relevant Skill+Stat
+covers a different Defense — Dodge/Vital/Mental/Vigilant aren't all
+governed by the same Skill as a character's main weapon): `Main − 2` —
+`4 / 5 / 6 / 7 / 8`. The `−2` offset isn't arbitrary: it's exactly what
+chargen's own worked example gives for a plausible second-best
+pick (one of the "2 ranks" Skills + a "2 ranks" Stat = Skill Total 4,
+against the top pick's 6).
 
-Boss Skill Total (`4/5/6/7/8` + 2, capped at the absolute Skill Total
-ceiling of 10) gives `6/7/8/9/10` across Levels 1-5 — a Level 1 Boss
-already reaching the chargen ceiling (appropriately exceptional for an
-early threat), a Level 5 Boss landing exactly on the absolute cap. Only
-Skill Total (and therefore Accuracy/Defense) gets the Boss bump here,
-not Resist — a Boss that's also meaningfully harder to *damage* on top
-of harder to *hit* and *survive longer against* risks stacking three
-multiplicative difficulty spikes into one fight; Health alone (already
-6-8x a Minion) carries the "this fight takes a while and matters" weight,
-keeping the accuracy/defense math from also needing a second pass.
+### Step 3: the enemy discount
 
-### Full Level 1-5 reference table (Standard tier)
+Per the designer, **a percentage discount, landing on ~85%** (splitting
+the stated 85-90% range) applied to both Skill Total lines, rounding to
+the nearest whole number (ties round down, in the enemy's *weaker*
+direction, consistent with the discount's own purpose):
 
-| Level | Primary Stat | Skill Total | Defense (all five, 8+SkillTotal) | Physical Resist | Elemental Resist | Heavy 1H Damage | Health |
+| Tier | PC Main | Enemy Main (×0.85) | Gap | PC Secondary | Enemy Secondary (×0.85) | Gap |
+|---|---|---|---|---|---|---|
+| 1 | 6 | 5 | 1 | 4 | 3 | 1 |
+| 2 | 7 | 6 | 1 | 5 | 4 | 1 |
+| 3 | 8 | 7 | 1 | 6 | 5 | 1 |
+| 4 | 9 | 8 | 1 | 7 | 6 | 1 |
+| 5 | 10 | 8 | 2 | 8 | 7 | 1 |
+
+**The gap grows on its own at Tier 5** (2, versus a flat 1 everywhere
+else) — not a separate rule bolted on, just what a flat percentage
+naturally does once the PC number itself gets big enough (10×0.85=8.5,
+rounding down). This matches the designer's own stated expectation
+("bigger absolute gap at high tiers") without needing a sliding
+percentage.
+
+**Enemy Defense = 8 + Enemy Skill Total** (identical formula to PCs, no
+new rule) — Main-line Defense `13/14/15/16/16`, Secondary-line
+`11/12/13/14/15`. **Enemy Accuracy** uses the same discounted Skill
+Total directly (flip a card + Enemy Skill Total vs. the target's
+Defense) — the discount applies uniformly to the enemy's own offense
+and defense both, not just one side.
+
+### Primary Stat, Resist, Health — unchanged from the first draft, and why they don't get the new discount
+
+These three were never derived from a PC-tier baseline in the first
+place, so this revision doesn't touch them:
+
+- **Primary Stat** (`3/3/4/5/5`) is the "grenade base stat 3-5 by
+  Level" convention — already an **enemy-facing** number by its own
+  original citation ("the on-level-*enemy* Body proxy"), not a PC
+  number that needs a further discount applied on top. Applying the new
+  85% discount here too would double-discount an already-enemy-scoped
+  figure.
+- **Resist** (Physical `4/4/5/6/6`, Elemental `3/3/4/5/5`) reuses the
+  already-Locked Fresh-attack Resist placeholder convention
+  (`Stat + 1` for Physical, `Stat` alone for elemental) directly off
+  Primary Stat above — unaffected by this revision for the same reason.
+- **Health** (flat **6** at every Tier, Standard tier) is unchanged
+  too: it comes from `2 hits × (Heavy 1H Melee Damage − Physical
+  Resist)`, both of which key off Primary Stat, not the newly-revised
+  Skill Total. Net/hit still works out flat at 3 (`7−4, 7−4, 8−5, 9−6,
+  9−6`), so Health stays flat at 6 — see the original derivation
+  (below the fold in git history) if the full walkthrough is needed;
+  the Minion/Standard/Elite/Boss tier multipliers (×0.5 / ×1 / ×2 /
+  ×3-4) are also unchanged.
+
+### Step 4: the ability budget
+
+Per the designer, this should be **a literal XP number, spent like
+Technique costs** — a GM can pick real Techniques (`3×Level` XP each)
+off the existing catalog within budget, or reskin a couple, rather than
+inventing a parallel enemy-only ability system. Uses the **undiscounted**
+Techniques-XP figure from Step 1's table directly (`18/38/63/94/132`) —
+the ability budget isn't stat power being compared apples-to-apples
+against a PC's own combat stats, so it doesn't need the same 85% cut;
+treat it as a ceiling, not an obligation to spend all of it, and not
+every ability needs to be combat-relevant (a signature non-combat trait
+fits just as well as an attack technique, same as it would for a PC).
+
+### Full Tier 1-5 reference table (Standard tier)
+
+| Tier (XP) | Primary Stat | Main / Secondary Skill Total | Main / Secondary Defense | Physical / Elemental Resist | Heavy 1H Damage | Health | Ability budget (XP) |
 |---|---|---|---|---|---|---|---|
-| 1 | 3 | 4 | 12 | 4 | 3 | 7 | 6 |
-| 2 | 3 | 5 | 13 | 4 | 3 | 7 | 6 |
-| 3 | 4 | 6 | 14 | 5 | 4 | 8 | 6 |
-| 4 | 5 | 7 | 15 | 6 | 5 | 9 | 6 |
-| 5 | 5 | 8 | 16 | 6 | 5 | 9 | 6 |
+| 1 (75) | 3 | 5 / 3 | 13 / 11 | 4 / 3 | 7 | 6 | 18 |
+| 2 (125) | 3 | 6 / 4 | 14 / 12 | 4 / 3 | 7 | 6 | 38 |
+| 3 (175) | 4 | 7 / 5 | 15 / 13 | 5 / 4 | 8 | 6 | 63 |
+| 4 (225) | 5 | 8 / 6 | 16 / 14 | 6 / 5 | 9 | 6 | 94 |
+| 5 (275) | 5 | 8 / 7 | 16 / 15 | 6 / 5 | 9 | 6 | 132 |
 
-Swap in whichever weapon-category formula actually fits a given enemy
-(Light 1H `3+Stat`, Light 2H `4+Stat`, Heavy 2H `5+Stat`) or a Spell's
-own formula using this same Primary Stat in place of `[Stat]`/`[Mind]`/
-whatever the Spell calls for — Heavy 1H is shown as the representative
-case, not a rule that every enemy must wield one.
+Same tier system as before for Health (Minion ×0.5, Standard ×1, Elite
+×2, Boss ×3-4) and for Boss's own Skill Total bump (Main/Secondary +2,
+capped at the absolute Skill Total ceiling of 10 — using the new
+Standard-tier numbers above, that's `7/5` at Tier 1 up to `10/9` at
+Tier 5), plus the same encounter-shape reference (4 Standard-tier
+enemies vs. a 4-player party, ~5 rounds) — none of that changed by this
+revision.
 
-### Encounter shape reference
+### Known limitations, carried over and updated
 
-The archived Baseline tab's own assumed default encounter — "party of 4
-vs. 4 enemies, ~50% average hit chance... 5 rounds per combat, with
-enemies dying off through the fight (assumed ~3.6 enemies still active
-round 1, down to ~0.4 by round 5)" — maps cleanly onto 4 Standard-tier
-enemies against a 4-player party as this table's own default reference
-point, not a new assumption invented for this section. A GM building an
-encounter from scratch can use that as the baseline shape (4 Standard
-enemies, expect the fight to run about 5 rounds) and reach for
-Minion/Elite/Boss tiers, or more/fewer enemies, to make a specific
-encounter feel easier, harder, or differently-shaped than that default.
-
-### Known limitations, flagged rather than silently smoothed over
-
-- **The flat-Health-across-Levels result is a genuine, deliberate
-  modeling choice, not an oversight** — see the "Deriving Standard-tier
-  Health" section above for why it falls out this way once attacker and
-  defender scale together. If actual play wants Level 5 Standard
-  enemies to feel *absolutely* tougher (not just relatively, at bigger
-  numbers) rather than matching this "same relative fight, bigger
-  numbers" philosophy, that's a real design fork worth a deliberate
-  decision, not something to patch quietly.
-- **Assumes the attacking PC's relevant Stat has grown to match this
-  same by-Level baseline** — there's no documented "PC Stat/Skill Total
-  by campaign progression" curve anywhere in this project to check that
-  against (chargen only covers the Level 1 starting budget, not
-  long-campaign growth), so this is an assumption, not a verified fact.
-  A party that's significantly over- or under-invested in combat Stats
-  relative to this baseline should expect real fights to run faster or
-  slower than the table above predicts.
-- **Non-combat enemies (something purely social, a puzzle antagonist,
-  etc.) aren't what this table is for** — it's specifically a combat
-  stat block. A social antagonist should be built using the Social
-  Encounter Baseline above instead (or just GM judgment for a one-off
-  check, same as `rulebook.md` already recommends for most social
-  interactions).
-- **The Boss tier's "+2 Skill Total, same Resist" split is a judgment
-  call**, not derived the way the Standard-tier numbers were — flagged
-  the same way any Narrative Utility item's honest-guess convention is,
-  since there's no existing anchor for how a "boss" specifically should
-  differ from a scaled-up Standard enemy.
+- **The Skills-XP figure includes non-combat investment by design**
+  (see Step 1) — this table still only outputs *combat* numbers. It
+  doesn't attempt to quantify a same-tier NPC's social/utility Skills;
+  use the Social Encounter Baseline above for that side of things.
+- **The Tier-to-Skills/Stats/Techniques ratio curve (Step 1) is a
+  clean, chosen shape** (+6pp/tier to Techniques' share, matching
+  chargen's own ratio otherwise), not something independently
+  verified against actual higher-tier play — there's no documented
+  "how does a real character's spend evolve past chargen" curve
+  anywhere else in this project to check it against.
+- **The 85% enemy discount is applied only to Skill Total/Defense/
+  Accuracy, not Primary Stat/Resist/Health** — a deliberate choice
+  (see the "unchanged" section above), not an oversight, since those
+  three were already enemy-scoped rather than PC-derived.
+- **Non-combat enemies aren't what this table is for** — same caveat
+  as before; use the Social Encounter Baseline for a social antagonist.
+- **The Boss tier's Health multiplier and Skill Total bump are still a
+  judgment call**, not derived the way the rest of this table is —
+  flagged the same way any Narrative Utility item's honest-guess
+  convention is.

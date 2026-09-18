@@ -2272,31 +2272,44 @@ technique (A Perfectly Good Explanation) still references the pre-
 Pressure "Concessions" mechanic outright — both need a real design
 decision, not a find-and-replace.
 
-**A first-draft enemy stat block by Level now exists**, closing the
-open item this file itself flagged earlier (line 1054-1055: "a GM
-difficulty-by-Level table, enemy/encounter design guidance" — noted as
-still-open when an old-docs review surfaced it, left that way rather
-than rewritten now, since it's a record of that pass's own findings).
-Full derivation in `balance_weights_notes.md`'s "Enemy Stat Block by
-Level" section, practical version in `GM_GUIDE_NOTES.md`'s "Building
-enemies" section. Built the same way the Social Encounter Baseline
-above was — new construction, not extracted from existing canon — but
-grounded directly in what already exists rather than invented free-hand:
-reuses the "grenade base stat 3-5 by Level" convention (the project's
-only prior on-Level-enemy anchor, previously cited just once for Pillar
-Ring) as the enemy's own Primary Stat, reuses the PC Defense formula
-and weapon Damage formulas verbatim, and anchors a new Skill Total-by-
-Level curve (`4/5/6/7/8`) on the already-established Skill Total tier
-meanings (6 = chargen ceiling, 7 = skilled-ordinary-NPC ceiling, 8+ =
-adventurer-tier) rather than picking numbers by feel. The one
-genuinely new, unverified piece is Health, tiered (Minion/Standard/
-Elite/Boss) rather than Level-keyed since a GM needs that as an
-independent lever — Standard-tier Health comes out flat at 6 across
-every Level, a deliberate modeling consequence (attacker Stat and
-defender Resist scale together, so the *margin* stays constant even as
-raw Damage climbs) flagged clearly in both writeups as worth
-revisiting if actual play wants Level 5 enemies to feel absolutely
-tougher, not just relatively so.
+**An enemy stat block by (XP) Tier now exists**, closing the open item
+this file itself flagged earlier (line 1054-1055: "a GM difficulty-by-
+Level table, enemy/encounter design guidance" — noted as still-open
+when an old-docs review surfaced it, left that way rather than
+rewritten now, since it's a record of that pass's own findings). Full
+derivation in `balance_weights_notes.md`'s "Enemy Stat Block by Level"
+section, practical version in `GM_GUIDE_NOTES.md`'s "Building enemies"
+section.
+
+Went through two real passes. The first built Skill Total from scratch
+with no PC-side anchor (just the "grenade base stat 3-5 by Level"
+convention plus an invented `4/5/6/7/8` curve). The designer then
+recalled having solved this exact problem before, with a real
+methodology: draft a same-XP-tier PC's realistic stat spread first
+(accounting for XP that goes to non-combat Skills too, not just
+combat), then discount enemies slightly off that, plus a separate
+ability budget. The current version rebuilds around that — genuinely
+better grounded, since Skill Total now traces back to real chargen math
+(`rulebook.md`'s own worked chargen example, verified to sum to exactly
+75 XP) rather than a combat-only proxy. Tiers are now XP-keyed (75, then
++50/tier) rather than borrowing the item Level 1-5 scale directly, and
+a new Main/Secondary Skill Total split (the PC's best combat Skill+Stat
+vs. their next-best, `−2` per chargen's own worked example) replaced
+the single flat number. The 85% enemy discount (the designer's own
+recalled figure) applied as a flat percentage turned out to reproduce
+the "bigger gap at high Tiers" the designer described on its own, with
+no sliding scale needed — a genuine "the math already wanted to do this"
+moment, not a coincidence forced into place.
+
+Primary Stat, Resist, and Health carried over unchanged across both
+passes, since they were never PC-derived to begin with (Primary Stat
+is already an enemy-facing figure by its own original citation, not a
+PC number needing the same discount) — Standard-tier Health still comes
+out flat at 6 across every Tier, the same deliberate modeling
+consequence (attacker Stat and defender Resist scale together, so the
+*margin* stays constant even as raw Damage climbs) flagged in both
+writeups as worth revisiting if actual play wants high-Tier enemies to
+feel absolutely tougher, not just relatively so.
 
 ## Things considered and deliberately not done
 
