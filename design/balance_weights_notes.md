@@ -4913,6 +4913,16 @@ case in `balance.md`, granted uncapped for exactly this reason).
 
 ## Enemy Stat Block by Level — revised around the designer's own past XP-tier methodology
 
+**In turn superseded by `design/ENEMY_ENCOUNTER_DESIGN.md`.** The
+designer then found the actual spreadsheet this XP-tier recollection
+was describing (`archive/flagonquest_encounter_builder.xlsx`) — a
+complete, already-tested point-buy system (Role archetypes,
+Primary/Secondary Defense tiering, Battle Tactics/Fighting Style
+pickers, a full Ability catalog, real worked examples), well past what
+this section reconstructed from memory alone. Left below as the record
+of that reconstruction attempt, not because it's still the thing to
+build enemies from.
+
 **Supersedes the first-draft version of this section** (see git history
 for the original, `1e172e5`..`cf8470b` if it's still needed for
 reference). That draft built enemy Stat/Skill Total purely from the

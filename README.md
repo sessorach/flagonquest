@@ -13,6 +13,28 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-18 — Enemy Encounter Design: a full point-buy system for building enemies, from the designer's own spreadsheet
+
+`design/`-only content (not player-facing, no rulebook/site changes).
+The designer uploaded `archive/flagonquest_encounter_builder.xlsx` — a
+spreadsheet they'd already built and used at the table for exactly the
+problem the previous entry below was reconstructing from scratch. New
+document, **`design/ENEMY_ENCOUNTER_DESIGN.md`**, documents the real
+system: Enemy Level + a separate "Encounter Slots" dial (with a
+genuinely non-linear Health formula — a 0.5-slot minion gets ⅓ Health,
+not ½, an intentional action-economy tax so a pair of minions can't
+quietly out-perform one standard enemy for the same encounter budget),
+five Role archetypes that nudge specific stats, a Primary/Secondary
+Defense-tiering system that's the actual mechanism behind "this enemy
+is intuitively strong here, weak there," six Battle Tactics (targeting
+AI) and four Fighting Styles (action economy) specifically built to
+stop combat collapsing into melee-clash-and-double-attack, a ~40-entry
+Ability catalog, and a full escalating-cost point-buy economy
+reconciled against an assumed loot/Gold handout. Supersedes the
+from-scratch "Enemy Stat Block by Level" work below (left in place as
+historical record, not deleted) — turned out to be a richer,
+already-tested system for the same problem.
+
 ### 2026-09-18 — First GM-facing enemy stat block, plus a Social Encounter running guide
 
 Two new pieces of `design/`-only GM content (not player-facing, no

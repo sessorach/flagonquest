@@ -2311,6 +2311,20 @@ consequence (attacker Stat and defender Resist scale together, so the
 writeups as worth revisiting if actual play wants high-Tier enemies to
 feel absolutely tougher, not just relatively so.
 
+**Both passes above are now themselves superseded by `design/
+ENEMY_ENCOUNTER_DESIGN.md`.** The designer found and uploaded the
+actual source this session's "XP-tier methodology" recollection was
+describing — `archive/flagonquest_encounter_builder.xlsx`, a complete,
+already-built-and-used point-buy system, not just a remembered shape of
+one. Both write-ups above are left in place as the record of two
+honest reconstruction attempts working from partial information, not
+because either is still the thing to build enemies from — see the new
+document for the real system (Role archetypes, Primary/Secondary
+Defense tiering for legible strengths/weaknesses, Battle Tactics/
+Fighting Style pickers built specifically to keep combat from
+collapsing into melee-clash-and-double-attack, a full Ability catalog,
+and real worked examples from the designer's own roster).
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).

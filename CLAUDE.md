@@ -82,19 +82,33 @@ which should stay a clean decision record.
   reading-guide companion `flagonquest_balance_notes_model.md`, which
   explains the value-economy model in that spreadsheet) kept for
   reference. Nothing in it is read by the site or by `convert.py`.
+  **Standing habit**: whenever the designer uploads novel source
+  material (an old design doc, a spreadsheet, notes from outside this
+  repo), save a copy into `archive/` as part of handling it — don't
+  just read it from the upload location and let the copy disappear at
+  session end. The one exception: a large bulk upload (the ~100-file
+  archive-doc sweep this project already did once) is worth checking
+  with the designer first — scrape-and-summarize into a single doc
+  might serve better than uploading every original individually.
 - `design/` holds living design documentation — `RULES_DESIGN.md` (a
   human-readable log of rules-design reasoning, growing as decisions get
   made), `balance.md` (aggregate balance-approach notes),
   `balance_weights_notes.md` (the full derivation behind every current
-  THE TABEL weight), and `IDEAS_BACKLOG.md` (loose not-yet-drafted ideas
-  for items/abilities/content — a holding pen, not a commitment; move an
-  idea out once it's actually drafted into the real CSVs and given a
-  proper writeup, don't leave it duplicated in both places) — plus
-  `balance_weights.csv`, a fast-lookup index of the same weights (current
-  value, Locked/Pencil status, which markdown section has the derivation)
-  for quick reference without scanning prose. Unlike `archive/`, this is
-  meant to be read and extended, not
-  just kept for the record.
+  THE TABEL weight), `GM_GUIDE_NOTES.md` (loose notes toward an eventual
+  GM-facing guide — "how should a GM actually run X," out of scope for
+  the player-facing `rulebook.md`), `ENEMY_ENCOUNTER_DESIGN.md` (the
+  full point-buy model for building enemies — Level/Encounter Slots,
+  Role archetypes, Defense tiering, Battle Tactics/Fighting Style, the
+  Ability catalog, reconstructed from the designer's own
+  `archive/flagonquest_encounter_builder.xlsx`), and `IDEAS_BACKLOG.md`
+  (loose not-yet-drafted ideas for items/abilities/content — a holding
+  pen, not a commitment; move an idea out once it's actually drafted
+  into the real CSVs and given a proper writeup, don't leave it
+  duplicated in both places) — plus `balance_weights.csv`, a fast-lookup
+  index of the same weights (current value, Locked/Pencil status, which
+  markdown section has the derivation) for quick reference without
+  scanning prose. Unlike `archive/`, this is meant to be read and
+  extended, not just kept for the record.
 
 ## Quick reference
 

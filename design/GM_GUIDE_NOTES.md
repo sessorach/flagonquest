@@ -276,110 +276,17 @@ enchantment-minded character, distinct from both raw Materials and
 scrap-for-parts gear.
 
 
+## Building enemies
 
-## Building enemies: a quick stat block by Tier
-
-No enemy-stat-block reference existed anywhere in this project before
-this — a real, named gap (`RULES_DESIGN.md` had flagged "a GM
-difficulty-by-Level table, enemy/encounter design guidance" as an open
-item nobody had drafted). Built around the designer's own past
-methodology for this exact problem: draft what a same-XP-tier PC's
-stats would realistically look like (accounting for XP that goes to
-non-combat Skills too, not just combat ones), then give enemies a
-slight discount off that, plus a separate budget for special abilities.
-Full derivation and its assumptions are in `design/
-balance_weights_notes.md`'s "Enemy Stat Block by Level" section — this
-is the practical version for actually running a fight.
-
-**Enemies use the same rules PCs do — flip a card + Skill Total vs. the
-target's Defense, Defense is `8 + Skill Total`, weapon Damage uses the
-same formulas as player weapons.** Nothing below is a separate monster
-subsystem; it's just a fast way to pick reasonable numbers instead of
-building a full character sheet for every NPC.
-
-**Tiers track XP, not the item Level scale**: Tier 1 is 75 XP (this
-game's actual chargen budget), +50 XP per tier after that. A Tier-5
-enemy roughly represents "what a party that's earned 275 XP total looks
-like," not literally "a Level 5 Technique." The two scales happen to
-share a 1-5 range and roughly line up in practice, but aren't the same
-measurement — don't feel locked into matching an enemy's Tier to a
-specific item Level in the encounter.
-
-**Pick a Tier (1-5):**
-
-| Tier (XP) | Primary Stat | Main / Secondary Skill Total | Defense (Main / Secondary) | Physical / Elemental Resist* | Heavy 1H Melee Damage | Ability budget (XP) |
-|---|---|---|---|---|---|---|
-| 1 (75) | 3 | 5 / 3 | 13 / 11 | 4 / 3 | 7 | 18 |
-| 2 (125) | 3 | 6 / 4 | 14 / 12 | 4 / 3 | 7 | 38 |
-| 3 (175) | 4 | 7 / 5 | 15 / 13 | 5 / 4 | 8 | 63 |
-| 4 (225) | 5 | 8 / 6 | 16 / 14 | 6 / 5 | 9 | 94 |
-| 5 (275) | 5 | 8 / 7 | 16 / 15 | 6 / 5 | 9 | 132 |
-
-Use **Main** Skill Total for the enemy's own attack and its most
-relevant Defense (whichever matches their weapon/casting Skill);
-**Secondary** for any other Defense that isn't covered by that same
-Skill (Dodge/Vital/Mental/Vigilant aren't all governed by the same
-Skill as a weapon attack — see `rulebook.md`'s Calculated Statistics if
-you need the exact Skill-per-Defense mapping).
-
-*Only give an enemy a specific elemental Resist when it's actually
-thematically relevant — default to Fire if you're not sure which
-element fits, since it's the one PCs are most likely to have prepared
-for (`RULES_DESIGN.md`'s "Fire is the deliberately common element"
-note).
-
-**The ability budget is real XP, spent exactly like a Technique
-purchase** (`3 × Level`) — pick real Techniques off the existing
-catalog totaling up to that budget (a Tier 3 enemy could carry a Level
-5 Technique plus a Level 4, or several smaller ones), reskin one to fit
-the enemy's flavor, or invent something new costed the same way. Treat
-it as a ceiling, not an obligation to spend all of it, and it doesn't
-have to be combat-only — a signature non-combat trait is a fine use of
-the budget too, same as it would be for a PC.
-
-**Then pick a Health tier** — this is the actual "how tough is this
-specific enemy" lever, independent of Tier:
-
-| Tier | Health | Feels like |
-|---|---|---|
-| Minion | 3 | Drops in about 1 solid hit — mooks, swarms, things meant to die fast |
-| Standard | 6 | About 2 solid hits — the default "on-Tier fight" |
-| Elite | 12 | About 4 solid hits — a real individual threat |
-| Boss | 18-24 | 6-8 solid hits, and bump both Skill Total numbers by 2 (cap 10) too — a genuine centerpiece fight |
-
-Swap in whatever weapon formula actually fits instead of Heavy 1H Melee
-— Light 1H Melee is `3 + [Primary Stat]`, Light 2H Melee and Heavy 1H
-Melee are both `4 + [Primary Stat]`, Heavy 2H Melee is `5 + [Primary
-Stat]`. A caster enemy's Spell damage should use this same Primary Stat
-in place of whatever Stat the Spell's own formula calls for (Mind,
-usually).
-
-**A default encounter shape to build around**: 4 Standard-tier enemies
-against a 4-player party, expected to run about 5 rounds as the enemies
-get whittled down — this is the same assumed "typical fight" the
-combat math elsewhere in this project is calibrated against, not a new
-guess. Deviate from it deliberately (more Minions for a swarm, one
-Elite or Boss plus a couple of Standards for a "tough leader with
-backup" fight, and so on) rather than by accident.
-
-**Worth knowing about this table before leaning on it hard**:
-- It assumes an attacking PC's own relevant Stat has grown to roughly
-  match the same Tier's baseline by the time they're actually facing
-  that Tier's content — there's no documented curve anywhere in this
-  project for exactly how a PC's Stats grow past chargen over a real
-  campaign, so if your table's characters are notably over- or
-  under-invested in combat Stats relative to this assumption, expect
-  fights to run faster or slower than "2 hits" for a Standard enemy.
-- **Standard-tier Health stays flat (6) across every Tier on purpose**
-  — a Tier 5 Standard enemy isn't meant to soak up more raw hits than a
-  Tier 1 one, just to hit harder and be harder to hit while doing it
-  (Damage and Defense both climb with Tier; the *margin* once Resist is
-  subtracted doesn't). If that reads as too flat once you've actually
-  run a few fights with it, that's useful feedback, not a sign you're
-  using it wrong.
-- The Skill Total numbers only reflect an enemy's *combat* ability —
-  the underlying XP-tier math they're built from also accounts for a
-  same-tier PC spending real XP on non-combat Skills (Awareness, social
-  Skills, and so on), which this table intentionally doesn't try to
-  give a number to. A social antagonist should be built against the
-  Social Encounter Baseline above instead, not this table.
+**Moved to its own document: `design/ENEMY_ENCOUNTER_DESIGN.md`.** What
+used to live here was a from-scratch reconstruction with no real
+precedent to check against; the designer then found and uploaded the
+actual spreadsheet (`archive/flagonquest_encounter_builder.xlsx`) they'd
+already built and used for this exact purpose — a complete point-buy
+system (Enemy Level + Encounter Slots, Role archetypes, Primary/
+Secondary Defense tiering for intuitive strengths/weaknesses, Battle
+Tactics/Fighting Style pickers specifically built to keep combat from
+collapsing into melee-clash-and-double-attack, a full Ability catalog,
+and real worked examples), well beyond what a from-scratch pass could
+reconstruct. Big enough on its own to warrant a dedicated file rather
+than a GM_GUIDE_NOTES.md section — reach for it directly.
