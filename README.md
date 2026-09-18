@@ -13,6 +13,16 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-18 — Pillar Ring, the first Precious-material Ring item
+
+Once per encounter, conjures a destructible, person-sized pillar of
+force that grants Total Cover — the first item in the game to grant
+that directly. Fills half of the Ring slot's Precious Material Type
+gap (L2; L3 still open) and gives Ring its first-ever Precious item
+after 13 items with none. Translated from a Charm in a separate
+tabletop game's item list, used as inspiration for a few equipment
+slots that needed fresh ideas.
+
 ### 2026-09-17 — Preserving Larder, closing out the Cloth/Leather gap
 
 A food-only sidegrade to Placeholder's Spacious Satchel — same huge

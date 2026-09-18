@@ -3123,6 +3123,97 @@ Band, Luminous Signet, Focusing Band of [Technique], and Worry Token
 Assertive/Bold Statements, Bloodshard Ring, Flamefist's Approach), 1
 moved out (Fate's Grasp, swapped to Neck).
 
+### Pillar Ring = 6.0, follow-up pass — the Ring slot's first Precious item, and a new value model for terrain control
+
+Level 2, 40 Gold, Precious. Closes a real gap noted during the Precious
+Material Type review: 13 Ring items existed spanning Levels 1-5, and
+not one used Precious as a Main Material. Translated from "Pillar
+Talisman," one of the Charms in a separate dice-based tabletop game's
+item list handed over as inspiration (`IDEAS_BACKLOG.md`'s "Source
+material to mine: the dice game's item list" section) — the original
+placed a wall-like obstacle with no Health, destructibility, or combat
+stats at all, just a placement restriction (adjacent to at most one
+existing wall) as its only balancing lever.
+
+**Mechanic**, once per encounter for 1 AP: conjure a person-sized
+pillar of magical force in an unoccupied space within 10 meters,
+blocking sight and attacks through it like a wall — mechanically
+**Total Cover** (`rulebook.md`'s Cover and Obscurement section: "makes
+attacks against Dodge or Parry, as well as flips to see you,
+impossible"), the first item in the catalog to grant it directly
+rather than relying on terrain the GM places. Per the designer, the
+adjacent-to-a-wall restriction was dropped once the pillar became
+destructible instead — a real HP pool is a better anti-abuse lever
+than a placement rule, and it opens up the item's use anywhere instead
+of only near existing terrain.
+
+**Toughness**, borrowed directly from Wall of Ice's (`T126`)
+Health/Resist/destruction structure (`4 Health, [Mind] Resist... When
+a space loses all Health, that section is destroyed`), scaled down to
+a single segment since this is an accessory's once-per-encounter
+effect, not a multi-segment Spell: **4 Health, Resist = 2 + Level**,
+flat. No enemy-stat-block table exists in this project yet to gauge
+"what would an on-level attacker's hit look like" against (checked —
+searched all 15 tabs of `archive/flagonquest_balance_notes.xlsx`, the
+designer's own balance notes, nothing there either); used the closest
+real precedent instead, the Equipment tab's own note that "Grenades
+assume a base stat of 3-5, based on Level: 1-2 assume 3, 3 assumed 4,
+4-5 assumes 5" as the on-level-enemy Body proxy, checked against a
+Heavy One-Handed Melee Weapon's `4 + [Body]` damage:
+
+| Level | Enemy Body (grenade convention) | Attack dmg | Resist (2+L) | Net/hit | Hits to destroy |
+|---|---|---|---|---|---|
+| 1 | 3 | 7 | 3 | 4 | 1 (too fragile) |
+| 2 | 3 | 7 | 4 | 3 | 2 |
+| 3 | 4 | 8 | 5 | 3 | 2 |
+| 4 | 5 | 9 | 6 | 3 | 2 |
+| 5 | 5 | 9 | 7 | 2 | 2 |
+
+Levels 2-5 land exactly on the designer's own target ("an average
+enemy should take two attacks to clear it") with no further tuning;
+Level 1 breaks the pattern (one-shot), so the item is fixed at Level 2
+rather than spanning the usual 1-5 range. (An earlier draft of this
+formula — Resist capped at 9 — hit the exact ceiling of a maxed Heavy
+1H's damage, 4+5=9, making the pillar *literally* unbreakable by
+Levels 4-5; caught by checking the worst case explicitly rather than
+trusting the formula's shape, and fixed by lowering the growth rate
+before landing on the cleaner 2+Level version above.) The pillar also
+has a flat **8 Parry and Dodge Defense** against attacks made to
+destroy it — not a new number, just `rulebook.md`'s own baseline for a
+target applying no Defense ("Making an Attack": *"The target may
+choose not \[or be unable\] to apply any Defenses against an attack,
+in which case it is considered to be 8"*) restated explicitly on the
+card, since a stationary pillar obviously isn't dodging — so hitting
+it is close to guaranteed, and the real question is whether an attacker
+commits the 2 attacks (or a Gamble) it takes to actually bring it down.
+
+**Value**, per the designer's own framing (confirmed over forcing a
+detour): the pillar's real job is blocking line of sight to protect an
+ally, not just making enemies walk the long way around — though a
+chokepoint can make that detour cost real AP too, as upside, not the
+primary case being priced. Modeled as blocking **~2 attacks' worth of
+harm** before it stops mattering (destroyed, the ally repositions, or
+the fight moves on) — symmetric with the 2-hits-to-destroy figure
+above, since either the enemy spends ~2 attacks breaking through, or
+the cover denies them ~2 attacks' worth of offense instead. Each fully
+blocked hit is valued at the old balance spreadsheet's own descriptive
+(not double-discounted, unlike the archived "character attack value"
+figure which bakes hit-chance in twice) "Average Health lost per hit:
+2.25" × Health's guaranteed-harm rate (4) = 9.0/hit; two of those =
+18.0 uncapped. That's the "if it always lands perfectly" number, far
+too high to take at face value — real use depends on there being
+actual terrain to exploit, the ally choosing to stand behind it, and
+the attack being a Dodge/Parry one specifically (spell attacks against
+Vital/Mental/Vigilant see straight through cover per the rulebook, per
+its own text). Standard **⅓ niche tier**, same as Secrecy/Concealment:
+`18.0 × ⅓ = 6.0`.
+
+`Value = 6.0`, `Target = 6` (Level 2), **`Net = 0`** — an exact fit,
+and landing on the same Level the designer's own gut-feel called for
+independently of the math ("this is going to be about a level 2 or 3
+ring... it will inconvenience people a little bit if they try to break
+it").
+
 ## Held slot — first pass
 
 30 items, the largest single slot.

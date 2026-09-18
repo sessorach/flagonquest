@@ -56,12 +56,13 @@ granting mechanic analogue).
 
 **Charms** (likely Ring or Neck candidates — small always-available
 triggered effects): Blink Charm, Charm of Ambition, Deflecting Charm,
-Gambler's Charm, Goading Charm, Hunter's Handbook, Pillar Talisman,
+Gambler's Charm, Goading Charm, Hunter's Handbook,
 Repelling Charm, Restoring Charm, Ring of Comets, Ring of the Skull Oath,
 Shielding Charm, Thug's Shiv, Thunderstone Bracelet, Weighted Pommel,
 Wizard's Earring, Crab Demon Figurine (+), Dryad's Mantle (+), Lifeforce
 Shard (+), Regrowth Amulet (+), Shockwave Talisman (+), Vampire's Fang
-(+), Venomstone Pendant (+).
+(+), Venomstone Pendant (+). (Pillar Talisman drafted and priced —
+see Pillar Ring, `I255`.)
 
 **Equipment** (Feet/Held/Torso/Belt candidates mostly, a few Head-shaped
 by name but combat-mechanical rather than mental/vision — see the Head

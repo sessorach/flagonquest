@@ -1982,6 +1982,27 @@ What genuinely remains, cross-cutting rather than slot-shaped:
     priority principle, same as before. Full working data (per-item
     breakdown feeding this table) in the session's scratch files, not
     committed — regenerable directly from `items.csv` if needed again.
+  - **Follow-up: Pillar Ring (`I255`, Level 2, 40 Gold, Precious) fills
+    the L2 half of the Precious gap** — the first Precious-material Ring
+    item at all (13 existing Ring items, none Precious before this).
+    Translated from "Pillar Talisman," one of the Charms in a separate
+    dice-based tabletop game's item list handed over as inspiration
+    (`IDEAS_BACKLOG.md`'s dice-game section) — conjures a person-sized,
+    destructible pillar of force (Total Cover, per `rulebook.md`'s Cover
+    and Obscurement section) once per encounter. Full mechanical/value
+    derivation in `balance_weights_notes.md`'s own "Pillar Ring" writeup
+    (Ring slot, follow-up section) — worth a read for the process alone:
+    surfaced that this project has no enemy-stat-block table to gauge
+    "what would an on-level attacker's hit look like" against (checked
+    the designer's own `archive/flagonquest_balance_notes.xlsx` in full,
+    not there either — the designer believes it lives in a different,
+    not-yet-located file), caught a real design bug mid-derivation (an
+    early Resist formula capped exactly at a maxed attacker's damage,
+    making the pillar unbreakable by Levels 4-5), and ended up modeling
+    its value around protecting an ally via line-of-sight blocking
+    rather than the cheaper "forces a detour" reading, per the
+    designer's own steer. Value 6.0, Net 0 (exact fit) at Level 2. **L3
+    still open** for the Precious gap.
   - **Follow-up, same session: the three Cloth/Leather items drafted and
     priced, closing this gap out (L1/L2/L3 all filled).** Went through
     several redesign rounds — the first drafts for Held (a Leather

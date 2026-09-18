@@ -10742,5 +10742,51 @@
     "levels": [
       3
     ]
+  },
+  {
+    "id": "I255",
+    "name": "Pillar Ring",
+    "category": "Masterwork",
+    "slot": "Ring",
+    "tags": null,
+    "level": 2,
+    "description": "A heavy signet set with a flawless, uncut gem, humming faintly with contained magical force.",
+    "effects": "Once per encounter, for 1 AP, choose an unoccupied space within 10 meters of you. A translucent pillar of magical force rises there, roughly the size of a person, blocking sight and attacks through it like a wall. The pillar has 4 Health and 4 Resist against all damage types, and can't defend itself - it's always treated as having a flat 8 Parry and Dodge Defense against attacks made to destroy it. It lasts for the encounter or until it's destroyed.",
+    "cost": "40 Gold",
+    "value_per_level": null,
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "main_materials": "Precious",
+    "optional_materials": null,
+    "crafting_notes": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "vital_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skills": null,
+    "might_requirement": null,
+    "held_slots": null,
+    "supplement": "Base Game",
+    "material_types": null,
+    "base_item_options": [
+      "I003"
+    ],
+    "levels": [
+      2
+    ]
   }
 ]
