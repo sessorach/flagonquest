@@ -279,7 +279,7 @@ Example: Jackal needs to walk into a garrison unnoticed, so he’s disguised him
 
 #### Persuasion
 
-Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets Vigilant Defense in a social contest. Persuasion is governed by Spades.
+Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets Vigilant Defense in a social encounter. Persuasion is governed by Spades.
 
 #### Streetwise
 
@@ -586,7 +586,7 @@ If the whole party agrees, they can push the pace to close more ground than a le
 
 In many cases, social interactions to convince, impress, or trick someone are resolved with a single Rapport, Presence, or Persuasion check, and the GM determines a difficulty for the check as normal. However, sometimes convincing someone takes more than one check.
 
-### Social Contests
+### Social Encounters
 
 Some social goals take more than one Statement to pull off - winning someone over, talking your way past a guard, negotiating a good price. These work as an extended check, the same as any other: the GM sets a number of successes needed, and the party earns successes toward it with Statements.
 
@@ -594,33 +594,37 @@ A Statement is a flip using Presence, Rapport, or Persuasion, made against the t
 
 ### Pressure
 
-The GM can track Pressure over a social contest - circumstances piling up against the party, like a mismatched disguise, a story straining under scrutiny, or simply taking too long. The party has Bad Luck on Statements equal to their current Pressure, added for things like:
+The GM can track Pressure over a social encounter - circumstances piling up against the party, like a mismatched disguise, a story straining under scrutiny, or simply taking too long. The party has Bad Luck on Statements equal to their current Pressure, added for things like:
 
 - A rough starting circumstance, such as impersonating a guard without the uniform.
 - An NPC actively working against the party: a check of their own (any fitting Skill) against the party’s Mental or Vigilant Defense, adding Pressure on a hit.
 - Simply taking too long - Pressure may build up the longer a scene drags on.
 
+This Bad Luck applies to Support checks made toward a Statement just as much as the Statement itself - the same mounting tension makes it just as hard to find your opening to back someone up as it is to speak up yourself.
+
+Some abilities and items let a character shrug off Pressure’s weight without truly resolving the underlying trouble - the wearer of a certain charm might feel steady and unbothered even as the room keeps closing in around them. These effects say specifically whether they let you ignore Pressure or remove it. Ignoring Pressure means the Bad Luck it would cause doesn’t apply, but the Pressure itself is still there, piling up the same as ever toward the point where the GM may end the encounter outright. Removing Pressure actually clears it away, buying the party real breathing room, not just a personal sense of calm - a rarer and more valuable trick.
+
 Once Pressure stacks high enough, the GM may end the check in failure outright.
 
-### Ending the Contest
+### Ending the Encounter
 
-There are three ways that social contest can end:
+There are three ways that a social encounter can end:
 
 #### One Party Wins
 
-When a side wins the social contest, they may choose what outcome will occur (based on their initial goal): Win Over, Disrespect, or Agreement.
+When a side wins the social encounter, they may choose what outcome will occur (based on their initial goal): Win Over, Disrespect, or Agreement.
 
-#### Interrupted Contest
+#### Interrupted Encounter
 
-If one side deliberately interrupts and ends the social contest, violently or otherwise, that side suffers the Disrespected result. That side may also suffer additional consequences depending on how they interrupt the social contest.
+If one side deliberately interrupts and ends the social encounter, violently or otherwise, that side suffers the Disrespected result. That side may also suffer additional consequences depending on how they interrupt the encounter.
 
 #### Mutual Ending
 
-When both sides agree to end the social contest, or when some outside event interrupts the social contest, then the social contest ends and neither side suffers any consequences as a result. This may occur if the sides decide to reach an Agreement, as per the result.
+When both sides agree to end the social encounter, or when some outside event interrupts it, then the encounter ends and neither side suffers any consequences as a result. This may occur if the sides decide to reach an Agreement, as per the result.
 
-In some situations, this ending can occur when the contest no longer represents interest from both sides - if one side no longer has a stake in the discussion, or a side begins acting ridiculously or unreasonably, they might choose to simply end the conversation. This represents a dramatic case, such as one side in a negotiation suddenly demanding twice their previous suggested offer, where the other side wouldn’t lose face by just shrugging and leaving.
+In some situations, this ending can occur when the encounter no longer represents interest from both sides - if one side no longer has a stake in the discussion, or a side begins acting ridiculously or unreasonably, they might choose to simply end the conversation. This represents a dramatic case, such as one side in a negotiation suddenly demanding twice their previous suggested offer, where the other side wouldn’t lose face by just shrugging and leaving.
 
-### Results of a Social Contest
+### Results of a Social Encounter
 
 #### Win Over
 
@@ -628,11 +632,11 @@ The winning side has earned the respect of the other side for the rest of the da
 
 #### Disrespect
 
-The winning side has made the other side look foolish, unrefined, or otherwise at odds with the overall social fabric of the surroundings for the next hour. All members of the other side have Bad Luck on any Persuasion, Presence, or Rapport flips during this time, and may suffer additional consequences. They will also likely avoid all members of the winning side, and depending on how the contest ended might be Frightened of the winning side.
+The winning side has made the other side look foolish, unrefined, or otherwise at odds with the overall social fabric of the surroundings for the next hour. All members of the other side have Bad Luck on any Persuasion, Presence, or Rapport flips during this time, and may suffer additional consequences. They will also likely avoid all members of the winning side, and depending on how the encounter ended might be Frightened of the winning side.
 
 #### Agreement
 
-The winning side has convinced the other side to agree with them or otherwise accomplish the goal they declared at the start of social contest. The exact nature of this outcome will depend on the goal declared and the overall situation, but will represent that the other side has genuinely been convinced to agree with the winning side, or at least work with them towards their goal.
+The winning side has convinced the other side to agree with them or otherwise accomplish the goal they declared at the start of the social encounter. The exact nature of this outcome will depend on the goal declared and the overall situation, but will represent that the other side has genuinely been convinced to agree with the winning side, or at least work with them towards their goal.
 
 # Creating Items
 

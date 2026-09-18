@@ -99,6 +99,40 @@ cut, not just backfilled at a point in time.
   reaching for another "detect/pierce/understand X" Head concept:
   check whether X is a real mechanic in this game first.
 
+## Techniques with stale "Social Contest"-era mechanics, need real rework
+
+Found while doing the Social Contest → Social Encounter terminology
+rename across the codebase (see `scripts/rulebook.md`'s Pressure/Social
+Encounter sections, `design/balance_weights_notes.md`'s Social Encounter
+Baseline). These four `techniques.csv` rows got the plain text rename
+("social contest" → "social encounter") since that much is unambiguous,
+but each also references a mechanic that no longer exists in the
+current Statement/Support/Pressure system — a real design decision, not
+a find-and-replace, so flagging here instead of guessing:
+
+- **T058 Challenge, T062 Cry of Victory, T067 Exert Pressure** all key
+  their social-encounter Interrupt off "while in the front, when you
+  succeed on a Charismatic statement." Neither "front" positioning nor
+  a "Charismatic" statement type exists anywhere in the current rules —
+  Support doesn't require "back" positioning, and statements aren't
+  typed Charismatic/Strategic/etc. in the current text (Strategic shows
+  up elsewhere, e.g. T054/T057/T068, so that half might still map, but
+  "front" doesn't map to anything). These three all currently read as
+  combat Techniques with a bolted-on social side-effect (Taunt/Frighten
+  a target once) gated on a condition that can't currently be
+  satisfied. Needs a decision on what the trigger should actually be —
+  maybe "when your Statement succeeds" with no positioning clause, maybe
+  something else entirely — before these are usable as written.
+- **T061 A Perfectly Good Explanation**: "Whenever your party would
+  gain Concessions in a social encounter, as many times as you like you
+  may discard a card and reduce those Concessions by 3 (or 4 if you
+  discarded a Heart)." This predates the Pressure rework entirely —
+  "Concessions" was the old mechanic Pressure replaced. The shape of
+  the effect (discard a card to blunt the party's rising social cost)
+  actually maps reasonably well onto "discard a card to remove some
+  Pressure," but that's a judgment call on the conversion rate, not a
+  literal rename, so it's flagged here rather than silently converted.
+
 ## Source material to mine: cut FlagonQuest content in `archive/`
 
 Distinct from the dice-game import below — this is old *FlagonQuest's

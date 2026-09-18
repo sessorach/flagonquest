@@ -2303,6 +2303,186 @@ convention until the designer raised it explicitly; Main Materials
 `Wood` (sapling/nature flavor) sits on top of that base, same as
 Shawl of the Land's own Wood or Clarion Cord's own Precious already do.
 
+## Social Encounter Baseline — the combat Baseline's counterpart, built from scratch
+
+Surfaced while trying to price Stoic Collar (below): unlike combat,
+which has real numeric anchors throughout (`rulebook.md`'s own worked
+examples, `50% avg hit chance`, `1.875 hits/player/encounter`, etc.),
+Social Contests — retermed **Social Encounters** going forward, per the
+designer's own move away from the old "Contest" framing — had nothing
+equivalent. `rulebook.md` deliberately leaves successes-needed and
+Pressure's accrual rate to GM judgment, so pricing anything that
+touches Pressure meant constructing a representative baseline from
+scratch, the same project the old archived spreadsheet's `Baseline` tab
+did for combat. Everything below is a new, explicit estimate — not
+derived from existing rules text the way combat's numbers were — and
+should be revisited if actual play shows it's off.
+
+**Why build this at all, rather than eyeball Pressure item pricing the
+way Narrative Utility items get a labeled guess:** Pressure interacts
+with itself nonlinearly (Bad Luck stacking, a hard failure threshold,
+Support's success chance collapsing as it stacks) in a way that no
+flat per-point rate can capture honestly. The first attempt at pricing
+Stoic Collar's mechanic using just the already-Locked `Concession/
+Pressure = 2.2/point` rate landed on a plausible-looking but untested
+number — building the actual round-by-round model is what caught that
+it was wrong by a wide margin once checked against real dynamics (see
+Stoic Collar's own writeup below).
+
+### The assumptions, and why each one was picked
+
+- **Party composition**: one character built for social checks (+6
+  Skill Total) leading Statements, three others Supporting (+4 each).
+  Not derived from anything — the designer's own estimate of "a
+  reasonably-built party, not a specialist min-max," picked as the
+  representative case to price against rather than either extreme.
+- **Difficulty 13**, giving the main character success on a card **≥7**
+  and Supporters success on **≥9**. **Known discrepancy, flagged rather
+  than silently resolved**: `rulebook.md`'s actual Supporting rule uses
+  a **flat difficulty of 11** for every Support check, regardless of
+  what's being supported — not derived from the specific Statement's
+  own difficulty the way this baseline assumes. Under the real rule, a
+  +4 Supporter would succeed on **≥7** (`11−4`), meaningfully easier
+  than the ≥9 this baseline uses. This baseline keeps the designer's
+  own stated numbers as given (a deliberate simplification for this
+  exercise), but real play following the literal Supporting rule should
+  see Support hold up better than everything below suggests — worth
+  reconciling in a future pass, either by adjusting this baseline or by
+  reconsidering whether Support really should scale with the specific
+  check's difficulty for Social Encounters specifically.
+- **5 successes needed**, 1 per successful Statement plus 1 per Extra
+  Success (suit-pool match). Per the designer, representing a
+  "prolonged, not one-off" Encounter — the kind that actually calls for
+  tracking Pressure at all, as opposed to the single-check case
+  `rulebook.md` says most social interactions resolve as.
+- **Pressure +1 after every round**, applying its Bad Luck to **both**
+  the Statement and every Support check made that round. Per the
+  designer, this needs its own `rulebook.md` clarification (added
+  below) — the current text only says Pressure hits "Statements," and
+  a Support check is textually a separate flip, not a Statement itself.
+- **Fail at Pressure 5** (checked against fail-at-4 too; 5 fits the
+  designer's own described shape — "some parties finish in 2 checks
+  with good luck, others drag to 4" — much better, since fail-at-4
+  leaves almost no room for a 4-round encounter to still be winnable).
+- **All cards drawn from a Good/Bad Luck flip count toward the Suit
+  Pool**, not just the one used for the pass/fail result — per the
+  designer: "if they have 2x good luck and flip 3 clubs... they'd get 4
+  total successes." This is a real interpretation of the existing Extra
+  Success rule (`rulebook.md`'s Making an Attack section: "an Extra
+  Success for each card in your suit pool matching") that isn't
+  currently spelled out for the multi-card Good/Bad Luck case — also
+  flagged for a `rulebook.md` clarification, though not yet added
+  (affects every Good/Bad Luck check in the game, combat included, so
+  it's a bigger, separate change than this pass's scope).
+- **Card-spending rescue, assumed available "most of the time."** Per
+  the designer, a party is assumed to have a suitable card free for
+  their main Statement-maker more often than not. Modeled precisely as
+  two cases: **net Good Luck or neutral** (Support successes ≥
+  Pressure) — *any* failure is rescuable, since failing there means
+  zero of the drawn cards cleared the difficulty, and one more
+  (assumed-high) card always fixes that — so this case becomes a
+  **guaranteed success** under the assumption. **Net Bad Luck**
+  (Pressure > Support successes) — only rescuable if *exactly one*
+  drawn card was the spoiler; two or more low cards can't be fixed by
+  swapping just one, so this stays probabilistic:
+  `P(success) = (7/13)^n + n·(6/13)·(7/13)^(n−1)`, `n` = cards drawn.
+  This assumption turned out to be the single biggest lever in the
+  whole model — see the isolation check below.
+
+### Methodology: exact combinatorics, not Monte Carlo
+
+Every number below comes from an exact dynamic-program over the
+distribution of "successes so far," advancing one round at a time
+(convolving in that round's exact successes-gained distribution,
+itself computed via closed-form order statistics on the uniform 1-13
+deck — `P(max of n ≥ T) = 1-((T-1)/13)^n`, `P(min of n ≥ T) =
+((14-T)/13)^n`), rather than sampling. Cross-checked against a
+200,000-trial Monte Carlo run of the same rules (before the difficulty
+tweak/card-rescue were added) — 8.32% exact vs. 8.3% simulated for the
+same configuration, confirming the exact model is correct.
+
+### The locked baseline: 57% win rate
+
+Final configuration (party +6/+4, difficulty 13, 5 successes, Pressure
+every round hitting Statement + all 3 Supports, fail at Pressure 5,
+card-rescue assumed available):
+
+| Round | Pressure | Support success % | E[successful Supports] | Main flip success % | E[successes this round] | Cumulative win % |
+|---|---|---|---|---|---|---|
+| 1 | 0 | 38.5% | 1.15 | 100.0% | 1.54 | 0.02% |
+| 2 | 1 | 14.8% | 0.44 | 86.8% | 1.22 | 4.36% |
+| 3 | 2 | 5.7% | 0.17 | 59.7% | 1.01 | 29.04% |
+| 4 | 3 | 2.2% | 0.07 | 38.5% | 0.76 | 47.32% |
+| 5 | 4 | 0.8% | 0.03 | 24.3% | 0.54 | **57.03%** (43.0% loss) |
+
+**57.03%** sits where the designer wanted it — "closer to 50% than
+75%," within the originally-stated 50-66% target band. Note this was
+reached by testing several configurations (successes needed 3/4/5,
+Pressure every round vs. every-other-round) before landing here; the
+other tested combinations ran from 6.7% (harshest: every round, 5
+successes, no card-rescue, support needing 10+) up to 98.7%
+(gentlest: Pressure only every other round, full card-rescue) — see
+git history for the intermediate passes if any of those numbers are
+useful reference points later.
+
+**The isolation check that mattered most**: with the exact same
+difficulty tweak but card-rescue turned off, the same configuration
+only wins 9.72% of the time — confirming the card-spending assumption,
+not the difficulty numbers, is what does most of the work getting this
+into a sane range. Any future change to how freely available cards are
+assumed to be should expect a large swing in these numbers, not a
+minor one.
+
+### Stoic Collar = ~3, priced against the real Social Encounter Baseline instead of the abstract Pressure curve
+
+Level 1, 20 Gold, Neck (`I2XX` — see item entry). Retired from the Head
+slot's social-hat consolidation as "Stoic Skullcap," renamed since a
+skullcap can't be a Neck item (that name only made sense back when
+this was Head). Once per encounter, for 1 AP: ignore 1 Pressure the
+party would otherwise apply this round.
+
+**First pass used the abstract stacking-curve math** (`Concession/
+Pressure = 2.2`, the multi-stack Good/Bad Luck table from Thrumming
+Focus's own derivation) and landed on a plausible-sounding
+`Value ≈ 1.3-2.8` depending on the exact wording tried. Once the actual
+Social Encounter Baseline existed to check against, this turned out to
+be unreliable in both directions:
+
+- An **always-on** "ignore N Pressure every round" version, run through
+  the real model, comes out wildly overfunded — `ignore 1` alone lifts
+  the baseline's 57.03% win rate to **78.48%** (+21.45pp), pricing out
+  at raw Value **~15.76** (weighted by how often each round is actually
+  reached, using the same stacking-curve rate across all 4 checks/round
+  it touches) — far past what any reasonable Level should carry.
+- A **single-use, one-round** version (the one actually shipped) lifts
+  the win rate by **+5.99pp** at its best timing (round 2 or 4) — a
+  real, modest effect, not nothing, but nowhere near the always-on
+  version's power.
+
+**Why the always-on version blew up**: the card-rescue assumption in
+the Baseline makes any round with "net Good Luck or neutral" (Support
+successes ≥ Pressure) an automatic success. Reducing Pressure doesn't
+just soften a linear penalty here — past a certain point it flips
+rounds across that guaranteed-success line entirely, which the flat
+per-point stacking curve has no way to see. This is the same
+spiral-breaking dynamic noted in the Baseline's own card-rescue
+isolation check, just showing up again from the item-pricing side.
+
+**Landed on Value ≈ 3** for the single-use version as a considered
+judgment call, not a clean formula output: converting the win-rate
+delta into raw Value the same way as the always-on case (stacking-curve
+harm removed × 4 checks that round) gives inconsistent numbers
+depending on which round is assumed (`2.62` at round 4's Pressure
+level, `8.78` at round 2's) despite both producing the *same* empirical
+win-rate delta in the exact model — a sign the simple per-check-harm
+approximation doesn't cleanly capture a one-time rescue's real
+value the way it captures the always-on case's per-round tax. Given
+that spread, `Value = 3` was picked as a defensible middle ground
+rather than over-trusting either endpoint: `Target = 3` (Level 1),
+`Net ≈ 0`. Flagged as a labeled judgment call, same as any Narrative
+Utility item's own honest-guess convention — revisit if actual play
+suggests this reads stronger or weaker than intended.
+
 ### Correction: Ward reimagined as flat Resist + a self-limiting absorption charge
 
 Even after the +1→+2 fix above, Ward still read as chronically

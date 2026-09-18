@@ -13,6 +13,29 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-18 — Social Contests renamed to Social Encounters, Pressure clarified, Stoic Collar
+
+"Social Contest" is now "Social Encounter" throughout the rulebook,
+glossary, and every technique/item/feature that referenced it, moving
+away from the old "Contest" framing. The Pressure rules gained two real
+clarifications along with the rename: Pressure's Bad Luck now explicitly
+applies to Support checks too, not just the lead Statement, and effects
+that soften Pressure now distinguish *ignoring* it (the Bad Luck doesn't
+apply, but Pressure still climbs toward the failure point) from
+*removing* it (actually cleared — rarer and stronger), closing off a
+would-be exploit where a Pressure-negation effect could stall an
+encounter's failure clock indefinitely. Backing all of this is a new
+**Social Encounter Baseline** model in `design/balance_weights_notes.md`
+— the social encounter's counterpart to the combat Baseline, built from
+scratch since nothing like it existed before, locked at a 57.03%
+baseline win rate. **Stoic Collar** (Neck, Level 1) is the first item
+priced against it: once per encounter, ignore 1 Pressure the party
+would otherwise apply that round. The rename also surfaced two older
+techniques (Challenge, Cry of Victory, Exert Pressure, and A Perfectly
+Good Explanation) that reference mechanics — "front" positioning,
+"Concessions" — that no longer exist in the current rules; flagged in
+`design/IDEAS_BACKLOG.md` for a real rework rather than patched over.
+
 ### 2026-09-18 — Backlog cleanup: full archive sweep, Head slot review, Third Eye
 
 A full sweep of the old design archive to make sure nothing useful from

@@ -208,7 +208,7 @@ Martial abilities include swordsmanship, karate, and every kind of fighting with
 
 #### [Social]
 
-Social abilities are specific conversational tactics, usually used in social contests.
+Social abilities are specific conversational tactics, usually used in social encounters.
 
 #### [Spell]
 
@@ -257,7 +257,7 @@ A bonus success gained from Gambling or other sources, on top of the 1 success a
 
 #### Pressure
 
-Circumstances piling up against the party during a social contest, adding Bad Luck on Statements equal to the current total. If it climbs high enough, the GM may end the check in failure outright.
+Circumstances piling up against the party during a social encounter, adding Bad Luck on Statements and Support checks alike, equal to the current total. Some effects let a character ignore Pressure (the Bad Luck doesn’t apply, but it keeps piling up toward the failure point) or remove it outright (it’s actually cleared) — removing is rarer and stronger. If it climbs high enough, the GM may end the check in failure outright.
 
 # Goblin Game Terms {Goblin Game}
 

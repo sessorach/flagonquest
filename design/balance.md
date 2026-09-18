@@ -2057,6 +2057,38 @@ What genuinely remains, cross-cutting rather than slot-shaped:
     already the consistent existing practice across all ten other Neck
     items) rather than floating a bespoke Main Material with no
     underlying base — this item's `I002,I003` + Wood now matches that.
+  - **Follow-up: Stoic Collar (`I259`, Level 1, 20 Gold, Neck) — "Once
+    per encounter, for 1 AP, the party ignores 1 Pressure they would
+    otherwise apply this round."** Renamed and moved from Head (where
+    it started life as "Stoic Skullcap," a name that stopped making
+    sense once it became a Neck item) as part of pricing it properly:
+    doing so required building an entirely new **Social Encounter
+    Baseline** model from scratch (`balance_weights_notes.md`), the
+    social-encounter counterpart to the combat Baseline the old archived
+    spreadsheet built, since nothing equivalent existed for pricing
+    anything that touches Pressure. The Baseline is a 1-main/3-Support
+    party against a 5-round Pressure clock, exact-combinatorics DP
+    cross-validated against Monte Carlo, locked at a 57.03% baseline win
+    rate. Checking the abstract `Concession/Pressure=2.2` stacking-curve
+    math (the first pass, Value≈1.3-2.8) against the real model showed
+    it was unreliable in both directions — an always-on version of this
+    effect would be wildly overfunded (Value≈15.76, since reducing
+    Pressure flips whole rounds across the model's card-rescue
+    guaranteed-success line rather than just softening a penalty
+    linearly), while the single-use version actually shipped lifts the
+    win rate by a modest +5.99pp at its best timing. Landed on Value=3
+    as a considered judgment call (the win-rate delta converts
+    inconsistently, 2.62-8.78, depending which round's Pressure level is
+    assumed) rather than a clean formula output — flagged the same way
+    as any Narrative Utility item's honest-guess convention. Target=3
+    (L1), Net=0 (exact fit). Also the occasion for renaming "Social
+    Contest" to **Social Encounter** throughout the codebase, per the
+    designer's own move away from the old "Contest" framing, and for
+    drafting the Pressure rule's ignore-vs-remove distinction into
+    `rulebook.md` (ignoring softens the Bad Luck but Pressure still
+    climbs toward the failure clock; removing actually clears it —
+    rarer and stronger) so an item like this can't stall the encounter's
+    failure clock indefinitely.
   - **Follow-up, same session: the three Cloth/Leather items drafted and
     priced, closing this gap out (L1/L2/L3 all filled).** Went through
     several redesign rounds — the first drafts for Held (a Leather

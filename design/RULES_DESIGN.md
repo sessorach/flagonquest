@@ -2250,6 +2250,28 @@ choice rather than something pre-decided per item, rather than a new
 rule invented on the spot. Worth checking any future item against this
 before treating a slot's Base Item Options as optional.
 
+**Social Encounter is the renamed Social Contest** — per the designer's
+own move away from the old "Contest" framing, surfaced while pricing
+Stoic Collar (`I259`) against a newly-built Social Encounter Baseline
+model (`balance_weights_notes.md`). Renamed throughout `rulebook.md`
+(the whole "Social Challenges" section — headers, subheaders, and inline
+text), `glossary.md` (the `[Social]` tag entry and the Pressure entry),
+`features.csv` (Social Maneuver's Advanced Features), `items.csv`
+(Confident Cap/Cap of Smug Confidence/Sympathetic Hat), and
+`techniques.csv` (nine techniques' Action/Effects text). Same "update
+the term wherever it turns up" treatment as Vigilant Defense above — old
+references in past decision-log entries in this file, and in
+`balance_ledger.csv`'s own historical Notes, were deliberately left
+as-is, since those are a record of reasoning at the time rather than
+live rules text. The rename also surfaced two real content gaps flagged
+in `IDEAS_BACKLOG.md` rather than silently patched: three techniques
+(Challenge, Cry of Victory, Exert Pressure) key a social Interrupt off a
+"front" positioning / "Charismatic statement" mechanic that doesn't
+exist in the current Statement/Support/Pressure system, and one
+technique (A Perfectly Good Explanation) still references the pre-
+Pressure "Concessions" mechanic outright — both need a real design
+decision, not a find-and-replace.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).

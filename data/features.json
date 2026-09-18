@@ -359,7 +359,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "If the statement succeeds, the other party may only make social statements of the same type as this statement for the rest of the social contest. This effect ends if any of your party members make a statement of a different type.",
+    "effects": "If the statement succeeds, the other party may only make social statements of the same type as this statement for the rest of the social encounter. This effect ends if any of your party members make a statement of a different type.",
     "prereq": "Persuasion 3"
   },
   {
@@ -381,7 +381,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "(Succession) If the statement succeeds, choose one member of the other party. If you win the social contest, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Succession feature at a time.",
+    "effects": "(Succession) If the statement succeeds, choose one member of the other party. If you win the social encounter, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Succession feature at a time.",
     "prereq": "Presence 3"
   },
   {
@@ -392,7 +392,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social contest, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Succession feature at a time.",
+    "effects": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social encounter, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Succession feature at a time.",
     "prereq": null
   },
   {
@@ -403,7 +403,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social contest and chooses Win Over, the shift in the target's opinion will be permanent — they will treat you with a favorable attitude as though you are a friend. You may only apply one Succession feature at a time.",
+    "effects": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social encounter and chooses Win Over, the shift in the target's opinion will be permanent — they will treat you with a favorable attitude as though you are a friend. You may only apply one Succession feature at a time.",
     "prereq": "Rapport 3"
   },
   {
