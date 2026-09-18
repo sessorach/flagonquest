@@ -552,6 +552,79 @@ or Crafting investment) would need *more*. Revisit this table if actual
 play shows parties consistently feel on-level with a given Enemy Level
 well before or after the total XP they've actually earned matches it.
 
+### Empirical validation: Monte Carlo combat simulation
+
+The algebra above checks out, but it can't see everything — multiple
+enemies, multiple rounds, and how a GM's actual Role/Action/Armor/
+Defense-tier choices compound together. Built a small combat simulator
+(`design/enemy_sim/`) to test the "5 discrete tiers" hypothesis
+directly: 4 identical party members (per the PC power-per-Tier numbers
+above) against 4 copies of a same-Level enemy, fought out thousands of
+times with real card flips, tracking win rate, rounds to resolve, and
+party Health remaining. See `design/enemy_sim/README.md` for the tool
+itself; this section is the finding.
+
+**First pass, enemies picked straight off the base Level curve, no
+special tuning**: wildly inconsistent on-level win rates — 47%, 8.5%,
+0%, 55%, 9.6% across Levels 1-5, when the target was ~50% at every
+Level. Diagnosis, confirmed by tracing the actual numbers: **individual
+build choices swing real difficulty far more than raw Level does.** The
+first "Level 3" test enemy (a Tank with Primary Defense on Parry/Dodge
+*and* Medium Armor *and* Defensive Melee's own +2 Parry bonus, all
+stacking onto the same stat) came out needing 5 hits to drop instead of
+the ~2 the flat per-Level curve implies — genuinely elite-tier tough
+while still nominally "just Level 3." Caught a real gap in the
+simulator too along the way: it wasn't giving PCs any Physical Resist
+at all, inflating difficulty everywhere (worst against double-attack
+Fighting Styles) until fixed.
+
+**After retuning each sample enemy** (swapping which Defense category is
+Primary vs. Secondary, adjusting Armor, picking a less stacking-prone
+Action/Fighting Style — the same kind of choices any GM would make
+building a real enemy) to land close to a genuine on-level fight at its
+own Tier:
+
+| Enemy | Level | Role | Primary/Secondary Defense | Action | Armor | Battle Tactics | Fighting Style |
+|---|---|---|---|---|---|---|---|
+| Marsh Viper Scout | 1 | Striker | Parry/Dodge / Bodily | Offensive Melee | Light | Assassin | Skirmisher |
+| Ironbranch Skirmisher | 2 | Striker | Parry/Dodge / Mental | Offensive Melee | Light | Hit Whatever | Flurry |
+| Ironbranch Warden | 3 | Defensive | Parry/Dodge / Bodily | Offensive Melee | Light | Hold the Line | Guarded |
+| Deadbough Priest | 4 | Tank | Mental / Bodily | Ranged Spell | Medium | Vanguard | Guarded |
+| Deep Coven Matriarch | 5 | Tank | Mental / Bodily | Ranged Spell | Light | Vanguard | Flurry |
+
+**The resulting Party Tier × Enemy Level grid** (win rate %, 3000
+trials/cell, `design/enemy_sim/run_grid.py`):
+
+| Tier | L1 | L2 | L3 | L4 | L5 |
+|---|---|---|---|---|---|
+| 1 | 96.0 | 2.8 | 0.0 | 0.0 | 0.0 |
+| 2 | 100.0 | **53.3** | 0.1 | 0.0 | 0.0 |
+| 3 | 100.0 | 99.0 | **48.0** | 0.0 | 0.0 |
+| 4 | 100.0 | 100.0 | 99.5 | **26.7** | 15.6 |
+| 5 | 100.0 | 100.0 | 100.0 | 64.2 | **63.1** |
+
+This is the shape the design goal actually asked for. Reading any
+column top to bottom: a party well below the enemy's Level is locked
+out (0-3%), the party at that Level gets a genuine, uncertain fight
+(bold diagonal), and a party that's grown past it wins comfortably
+(98-100%). **A party doesn't gradually ease into the next tier — it's a
+wall until it suddenly isn't.** Worth naming the asymmetry too: climbing
+*up* one tier is harder than the reverse feels easy (Tier 2 vs. Level 3
+is still a real fight at 46-48%, while Tier 3 vs. Level 2 is already a
+near-stomp at 99%) — outgrowing a tier happens fast once it happens,
+catching up to the next one takes longer.
+
+**Caveat carried over from the tuning process itself**: reaching that
+clean diagonal took real, deliberate build choices per enemy — it
+didn't fall out of the base Level curve automatically. Two of the five
+sample enemies (Level 4's Priest at 26.7%, in particular) still read as
+harder than a clean 50/50, closer to the "stretched thin" end even
+nominally on-level — left as-is rather than force-tuned further, since
+the underlying PC-Tier/enemy-Level baselines in `design/enemy_sim/
+tunables.py` are themselves expected to move as the PC and enemy models
+get worked on more (per the designer). Re-run `python3 run_grid.py`
+after any tunables change to see where the diagonal lands.
+
 ## Superseded sources in the same workbook — historical only
 
 Three more tabs in the source workbook explore the same problems from
@@ -575,3 +648,13 @@ the record, not modeled here:
   with the "Concessions"/"front" terminology already flagged as defunct
   in `IDEAS_BACKLOG.md`. Not a source to reconcile the new Social
   Encounter Baseline against; purely historical.
+
+## Planned next steps
+
+Per the designer: the PC and enemy baseline models (`design/enemy_sim/
+tunables.py`) are still being actively worked on and expected to
+change. Once those settle, this project will want real **"Example PC
+Builds"** and **"Example Enemies"** documents in `design/` — a proper,
+game-ready roster, not just `enemy_sim/sample_enemies.py`'s simulator
+fixtures. Revisit this section once the tunables are locked down rather
+than starting that work against numbers still in flux.

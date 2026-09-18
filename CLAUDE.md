@@ -100,7 +100,12 @@ which should stay a clean decision record.
   full point-buy model for building enemies — Level/Encounter Slots,
   Role archetypes, Defense tiering, Battle Tactics/Fighting Style, the
   Ability catalog, reconstructed from the designer's own
-  `archive/flagonquest_encounter_builder.xlsx`), and `IDEAS_BACKLOG.md`
+  `archive/flagonquest_encounter_builder.xlsx` — its `enemy_sim/`
+  subfolder is a small Python Monte Carlo combat simulator that
+  validates the model empirically; `enemy_sim/tunables.py` holds every
+  number still subject to revision, kept separate from the mechanics
+  code specifically so a PC/enemy baseline retune doesn't need touching
+  anything else — see `enemy_sim/README.md`), and `IDEAS_BACKLOG.md`
   (loose not-yet-drafted ideas for items/abilities/content — a holding
   pen, not a commitment; move an idea out once it's actually drafted
   into the real CSVs and given a proper writeup, don't leave it

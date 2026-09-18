@@ -13,6 +13,29 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-18 — Does the enemy model actually produce 5 felt power tiers? Checked with a Monte Carlo simulator
+
+`design/`-only content. Checked the Enemy Encounter Design system
+(below) against its own stated goal — a party should feel on-level
+with an enemy Level, then clearly outgrow it, then feel stretched by
+the next one, five discrete steps rather than a smooth treadmill — both
+algebraically and empirically. The base stat curve turned out to be
+deliberately gentle (Accuracy/Defense barely move past Level 2, Damage/
+Resist caps outright at Level 4), so the 5-tier feel has to come from
+the Ability catalog and GM pacing, not rising numbers alone. Built a
+small Monte Carlo combat simulator (**`design/enemy_sim/`**) to test
+this directly against 4-vs-4 fights — confirmed the intended shape once
+sample enemies were properly tuned (a party is essentially locked out
+2+ Levels above its own tier, dominant 2+ Levels below, genuinely
+contested right at its own Level), but also surfaced that individual
+build choices (which Defense is Primary, which Armor, which Action)
+swing real difficulty far more than raw Level does — the first attempt
+at a "Level 3" enemy came out needing 5 hits to drop instead of the
+~2 the flat curve implied. The simulator's tunable numbers
+(`enemy_sim/tunables.py`) are kept separate from its mechanics code
+specifically since the PC/enemy baseline models are still being
+actively revised.
+
 ### 2026-09-18 — Enemy Encounter Design: a full point-buy system for building enemies, from the designer's own spreadsheet
 
 `design/`-only content (not player-facing, no rulebook/site changes).
