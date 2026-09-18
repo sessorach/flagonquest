@@ -56,7 +56,9 @@ things off in order.
   list. Commit `e668e91`.
 - **`#### Persuasion`** — additionally touched by the Social Contests
   rework (its "governed by" framing adjusted alongside Presence/Rapport
-  becoming the fixed Statement skills). Commit `78ec143`.
+  becoming the fixed Statement skills). Commit `78ec143`. "Social
+  contest" → "social encounter" as part of the wider rename below.
+  Commit `8e7e60d`.
 - **`#### Masquerade`** — new rule + worked example added: attempting a
   disguise with nothing to back it up gives Bad Luck, a Disguise Kit
   clears that penalty for an everyday disguise, and a specific prop
@@ -90,7 +92,14 @@ things off in order.
 - **`## Social Challenges`** / **`### Social Contests`** /
   **`### Pressure`** — social contests replaced with an extended check
   plus the new Pressure mechanic (no more separate team-check subsystem,
-  Concessions, or front/back positioning). Commit `78ec143`.
+  Concessions, or front/back positioning). Commit `78ec143`. Renamed
+  "Social Contests"/"Contest" to "Social Encounters"/"Encounter"
+  throughout the section (headers and inline text), per the designer's
+  move away from the "Contest" framing; Pressure section gained two new
+  paragraphs — its Bad Luck explicitly applies to Support checks too,
+  and a new ignore-vs-remove-Pressure distinction (ignoring softens the
+  Bad Luck but Pressure still climbs toward the failure clock; removing
+  actually clears it). Commit `8e7e60d`.
 - **`#### Disrespect`** (Results of a Social Contest) — fixed a
   reference to "Persuasion, Diplomacy, or Intimidate" (the latter two
   aren't Skills in this game) to the three real social Skills. Commit
@@ -148,4 +157,9 @@ things off in order.
   some, instead of losing a stack the instant it's granted. Commit
   `5e103d2`.
 - **`#### Pressure`** (Common Terms) — added alongside the Social
-  Contests rework. Commit `78ec143`.
+  Contests rework. Commit `78ec143`. "Social contest" → "social
+  encounter", plus condensed versions of the two new Support-inclusion
+  and ignore-vs-remove Pressure clarifications added to rulebook.md's
+  fuller Pressure section, so the two stay consistent. Commit `8e7e60d`.
+- **`#### [Social]`** (Rules Tags) — "social contest" → "social
+  encounter". Commit `8e7e60d`.
