@@ -2213,6 +2213,52 @@ worth stacking up to cover a fight's opening, but each additional
 stack buys less than the last, exactly the opposite incentive from the
 immunity-risk shape that got rejected.
 
+### Dryad's Mantle = 6.0, follow-up pass — an avoided hit priced the same way as Pillar Ring's protection, at a higher realization rate
+
+Level 2, 40 Gold, Neck. The third and final dice-game Charm
+translated this pass (same source as Pillar Ring/Ring of Comets
+above) — picked for Neck on mechanical/flavor fit rather than a
+Material Type gap, since Precious was already closed out by the other
+two.
+
+**Mechanic**, once per encounter for 1 AP: plant a sapling in an
+empty space within 10 meters; while within 10 meters of it, Interrupt
+an attack that would hit you, for 0 AP, to Shift into its space,
+remove it, and the attack misses instead. Reworked from the original
+"still take the hit, heal 1 Health after" — per the designer, no heal
+at all, which meant the mechanic needed to actually resolve *something*
+in exchange, not just lose its only payoff. Landed on the stronger
+escape-valve reading (the attack never lands, rather than landing and
+then getting patched up) since a Technique-style Interrupt on "would
+hit you" naturally sits *before* the triggering action's effects
+resolve (`rulebook.md`'s own Interrupt rule), and because a pure
+reposition-after-eating-a-hit version would have nothing left to price
+at all once the heal was gone.
+
+**Value**: same anchor as Pillar Ring's own protection component — a
+fully avoided hit is worth the old balance spreadsheet's descriptive
+"Average Health lost per hit: 2.25" × Health's guaranteed-harm rate
+(4) = 9.0. Per the designer, this fires in about **⅔ of combat
+encounters** — notably more reliable than Pillar Ring's own ⅓ niche
+tier, since staying within 10 meters of a sapling you planted yourself
+is a much easier bar to clear than the battlefield geometry Pillar
+Ring's line-of-sight protection depends on: `9.0 × ⅔ = 6.0`. `Target =
+6` (Level 2), **`Net = 0`** — an exact fit, the third of these three
+translated Charms to land exactly on Target.
+
+**Base Item Options set to `I002,I003`** (Basic Clothing or Basic
+Jewelry), not a bespoke standalone material — per the designer, every
+Masterwork item should tie back to a real Base Item, with its own
+flavor Main Materials layered on top rather than floating free. This
+wasn't a new rule invented for this item: every one of the 10 other
+existing Neck items already uses exactly this pattern (`I002,I003`
+together), letting the physical form — cloak or necklace — stay the
+crafter's choice rather than something the designer pre-decides per
+item. This item just hadn't been checked against that existing
+convention until the designer raised it explicitly; Main Materials
+`Wood` (sapling/nature flavor) sits on top of that base, same as
+Shawl of the Land's own Wood or Clarion Cord's own Precious already do.
+
 ### Correction: Ward reimagined as flat Resist + a self-limiting absorption charge
 
 Even after the +1→+2 fix above, Ward still read as chronically

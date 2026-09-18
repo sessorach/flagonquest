@@ -13,17 +13,20 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
-### 2026-09-18 — Pillar Ring and Ring of Comets, closing the Precious gap
+### 2026-09-18 — Three items translated from a separate game's Charms
 
-Two new Precious-material Ring items, both translated from Charms in a
-separate tabletop game's item list used as inspiration for a few
-equipment slots that needed fresh ideas — Ring's first-ever Precious
-items after 13 items with none. **Pillar Ring** (Level 2) conjures a
-destructible, person-sized pillar of force that grants Total Cover,
-the first item in the game to grant that directly. **Ring of Comets**
-(Level 3) unleashes a delayed, guaranteed-hit blast of magic at a
-chosen point, trading an attack roll for a round of telegraph. Between
-the two, the Ring slot's Precious Material Type gap is fully closed.
+Three new Masterwork items, all translated from Charms in a separate
+tabletop game's item list used as inspiration for a few equipment
+slots that needed fresh ideas. **Pillar Ring** (Ring, Level 2)
+conjures a destructible, person-sized pillar of force that grants
+Total Cover, the first item in the game to grant that directly.
+**Ring of Comets** (Ring, Level 3) unleashes a delayed, guaranteed-hit
+blast of magic at a chosen point, trading an attack roll for a round
+of telegraph. Between the two, Ring's total absence of Precious-
+material items (13 items, none) and the Precious Material Type gap
+are both fully closed. **Dryad's Mantle** (Neck, Level 2) plants a
+sapling that lets the wearer escape one incoming hit entirely, once
+per encounter.
 
 ### 2026-09-17 — Preserving Larder, closing out the Cloth/Leather gap
 

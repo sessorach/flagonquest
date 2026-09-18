@@ -2022,6 +2022,25 @@ What genuinely remains, cross-cutting rather than slot-shaped:
     there when it lands) landed the math correctly. Value 9.33, Net
     +0.33 (104% funded) at Level 3. **With this, the Precious Material
     Type gap is fully closed (L1-3 all covered).**
+  - **Follow-up: Dryad's Mantle (`I257`, Level 2, 40 Gold, Neck) closes
+    out the three-item dice-game Charm translation batch.** Picked for
+    Neck on mechanical/flavor fit rather than a gap target, since
+    Precious was already closed by the other two. Reworked away from
+    its original "take the hit, heal 1 after" shape once the designer
+    ruled out any healing — an Interrupt that converts the incoming hit
+    into a miss entirely, tied to a self-planted sapling anchor, priced
+    the same way as Pillar Ring's own protection component (a fully
+    avoided hit = 2.25 Health × the guaranteed-harm rate, 4) but at a
+    higher ⅔ realization rate per the designer (staying within 10m of a
+    self-planted anchor is far more reliable than Pillar Ring's own
+    battlefield-geometry dependency). Value 6.0, Net 0 (exact fit) at
+    Level 2 — all three translated Charms this pass landed within
+    ±0.33 of their Target. Also surfaced a general rule, now in
+    `RULES_DESIGN.md`: every Masterwork item should tie to a real Base
+    Item Option (Ring → `I003` alone; Neck → `I002,I003` together,
+    already the consistent existing practice across all ten other Neck
+    items) rather than floating a bespoke Main Material with no
+    underlying base — this item's `I002,I003` + Wood now matches that.
   - **Follow-up, same session: the three Cloth/Leather items drafted and
     priced, closing this gap out (L1/L2/L3 all filled).** Went through
     several redesign rounds — the first drafts for Held (a Leather

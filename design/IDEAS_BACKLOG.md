@@ -59,11 +59,11 @@ triggered effects): Blink Charm, Charm of Ambition, Deflecting Charm,
 Gambler's Charm, Goading Charm, Hunter's Handbook,
 Repelling Charm, Restoring Charm, Ring of the Skull Oath,
 Shielding Charm, Thug's Shiv, Thunderstone Bracelet, Weighted Pommel,
-Wizard's Earring, Crab Demon Figurine (+), Dryad's Mantle (+), Lifeforce
+Wizard's Earring, Crab Demon Figurine (+), Lifeforce
 Shard (+), Regrowth Amulet (+), Shockwave Talisman (+), Vampire's Fang
-(+), Venomstone Pendant (+). (Pillar Talisman and Ring of Comets
-drafted and priced — see Pillar Ring, `I255`, and Ring of Comets,
-`I256`.)
+(+), Venomstone Pendant (+). (Pillar Talisman, Ring of Comets, and
+Dryad's Mantle drafted and priced — see Pillar Ring, `I255`, Ring of
+Comets, `I256`, and Dryad's Mantle, `I257`.)
 
 **Equipment** (Feet/Held/Torso/Belt candidates mostly, a few Head-shaped
 by name but combat-mechanical rather than mental/vision — see the Head

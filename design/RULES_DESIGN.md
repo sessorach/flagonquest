@@ -2236,6 +2236,20 @@ unrenamed (see `convert.py`'s `ITEM_MAP` comment) — an internal
 identifier no player ever sees, not worth the churn of updating every
 file that references it.
 
+**Every Masterwork item ties back to a real Base Item Option** — Main
+Materials are additive flavor on top of a real crafted base, never a
+bespoke material floating with no underlying object at all. Made
+explicit by the designer while reviewing three new Ring/Neck items:
+Ring items use `I003` (Basic Jewelry) alone, since Basic Clothing's
+own definition doesn't cover the Ring slot at all; Neck items use
+`I002,I003` together (Basic Clothing *or* Basic Jewelry) — already the
+consistent practice across every existing Neck item (Shawl of the
+Land, Cloak of One Thousand Feathers, Clarion Cord, and seven more),
+letting the physical form (cloak vs. necklace) stay the crafter's
+choice rather than something pre-decided per item, rather than a new
+rule invented on the spot. Worth checking any future item against this
+before treating a slot's Base Item Options as optional.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).

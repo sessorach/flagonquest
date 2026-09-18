@@ -10834,5 +10834,52 @@
     "levels": [
       3
     ]
+  },
+  {
+    "id": "I257",
+    "name": "Dryad's Mantle",
+    "category": "Masterwork",
+    "slot": "Neck",
+    "tags": null,
+    "level": 2,
+    "description": "A cloak woven through with living vine and moss, still faintly green no matter how long it's worn far from any forest.",
+    "effects": "Once per encounter, for 1 AP, choose an empty space within 10 meters of you and plant a sapling there; it lasts for the encounter, occupying the space without blocking sight or attacks through it. While you're within 10 meters of the sapling, you may Interrupt (an attack would hit you), for 0 AP: Shift into the sapling's space, remove it, and the triggering attack misses instead.",
+    "cost": "40 Gold",
+    "value_per_level": null,
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "main_materials": "Wood",
+    "optional_materials": null,
+    "crafting_notes": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "vital_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skills": null,
+    "might_requirement": null,
+    "held_slots": null,
+    "supplement": "Base Game",
+    "material_types": null,
+    "base_item_options": [
+      "I002",
+      "I003"
+    ],
+    "levels": [
+      2
+    ]
   }
 ]
