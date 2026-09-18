@@ -250,11 +250,17 @@ abilities).
 **Combat Actions** (the enemy's actual attack/support move — pick at
 least one; costs are baked into the stat differences below, not a
 flat point tag the way Abilities are):
-- **Defensive Melee** — Accuracy +1 (favors the "Good"-tier value),
-  Damage 3, targets Parry/Dodge, Physical. The safer melee option.
-- **Offensive Melee** — Damage 4, targets Parry/Dodge, Physical. Hits
-  harder than Defensive Melee, at a slightly worse Accuracy bonus
-  against Parry specifically.
+- **Defensive Melee** — Accuracy +1, Damage 3, targets Parry/Dodge,
+  Physical, and grants the enemy **+2 to its own Parry Defense** — the
+  name is literal, this is the option that makes an enemy noticeably
+  harder to Parry against. Verified directly against the live
+  spreadsheet's own worked example (Level 2: this action alone is what
+  takes Parry Defense from a base 15 up to the shown 17).
+- **Offensive Melee** — Damage 4 (a full point higher than Defensive
+  Melee), targets Parry/Dodge, Physical, and grants a smaller **+1** to
+  the enemy's own Parry Defense — still safer than no bonus at all, just
+  a real trade against Defensive Melee's larger one for the extra
+  Damage.
 - **Ranged Weapon** — Accuracy +1, Damage 3, Range ×3 (scales with
   Level), targets Parry/Dodge, Physical.
 - **Melee Spell** — Damage 3, targets Dodge, Fire (default element —
@@ -292,9 +298,12 @@ flat point tag the way Abilities are):
   landed attack, target gains the named stacks (2 for
   Bleeding/Necrotic, 1 for the others) — targets Bodily specifically
   (a poison/toxin framing, not a weapon-edge one).
-- **Powerful Spell** — Damage +1, Parry becomes unusable against it
-  (`K43=-99`, i.e. this attack can't be Parried at all — a Dodge-only
-  spell).
+- **Powerful Spell** — Damage +1, and sets the enemy's **own** Parry
+  Defense to effectively unusable (`K43=-99`) — not something done to
+  the target, a trade the enemy itself makes: a caster leaning further
+  into raw magical power stops being able to parry at all (fitting
+  flavor for a spellcaster with no real weapon training), paid for with
+  +1 Damage on their own Spell.
 - **Powerful Weapon** — Damage +1, Accuracy −1, Parry −1 (a real
   glass-cannon trade on the weapon attack specifically).
 - **Resist (Brilliant/Fire/Frost/Shadow)** — +2 Resist to that element
