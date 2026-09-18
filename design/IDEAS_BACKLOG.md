@@ -90,6 +90,14 @@ cut, not just backfilled at a point in time.
   Cowl of Tranquility hooks into the real, live Taunted/Frightened
   keywords — so this wasn't a distinct gap, just an already-covered
   Stat doing its job.
+- **Comprehend Languages Circlet** (Head) — cut; this game doesn't
+  have a language system at all beyond Goblins' illiteracy *flavor*
+  trait — no language list, no "you don't speak this" friction for
+  any Skill to gate. Nothing for the item to actually remove. Third
+  candidate in a row to hit this exact wall (see True-Seeing Lenses,
+  Circlet of Clarity above) — worth remembering as a pattern before
+  reaching for another "detect/pierce/understand X" Head concept:
+  check whether X is a real mechanic in this game first.
 
 ## Source material to mine: cut FlagonQuest content in `archive/`
 
@@ -450,8 +458,6 @@ hook, though the attack-bonus half reads more Ring-lane than Head-lane.
 Surfaced while reviewing the existing Head slot Masterwork items against
 its established "mental, vision" design lane (`RULES_DESIGN.md:129`):
 
-- **Comprehend languages circlet** — understand any spoken/written
-  language. Purely mental/utility, untouched so far.
 - **Third Eye / detect-magic lens** — see magical auras, identify
   enchanted items/effects at a glance. A different vision-flavored
   knowledge tool than either existing vision item.
