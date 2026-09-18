@@ -7,6 +7,76 @@ it's actually been drafted into `items.csv`/`techniques.csv` and given a
 real writeup in `RULES_DESIGN.md`/`balance_weights_notes.md`; don't leave
 a stale duplicate sitting in both places.
 
+## Reviewed and declined
+
+A running log of ideas that got a real look and were explicitly decided
+against — distinct from the rest of this file, which is ideas still
+queued to draft. Kept rather than deleted: "decided against for now"
+isn't the same as "never revisit" (see the Cloth/Leather section below
+for two ideas that got exactly that treatment, on material grounds
+only). New entries append here going forward whenever something gets
+cut, not just backfilled at a point in time.
+
+- **Immaculate Spice Rack** (Masterwork) — cut; the game has too few
+  Craft flips in actual play for a cooking-specific Good Luck bonus to
+  matter, and Placeholder's Wondrous Workspace already covers the
+  "waive tool requirements" niche.
+- **Choker of Silent Whispers** (Neck) — cut; a strictly worse reskin
+  of Headband of Telepathy (Head) — half the range, a single message
+  instead of a standing channel, plus a visible tell the original
+  doesn't have.
+- **Cape of Many Pockets** (Belt) — cut; a clean duplicate of
+  Bottomless Belt/Sash of Deep Pockets' own "carrying items" lane, no
+  real differentiation.
+- **Cloak of Faces** (Masquerade) — cut; sourced from the old design
+  doc's own rejected-ideas dump ("THE BIN"), not the real item list,
+  and mechanically an outlier — an unconditional, no-check
+  transformation with no precedent among the Masquerade family's
+  disguise-CHECK shape.
+- **Ring of Charming, Assertive, or Bold Statements** (Ring) — cut;
+  exact same shape as the Head slot's social-hat family (Confident
+  Cap etc.), no differentiation beyond which slot it's worn on.
+- **Returning Knives** / **Weapon of Sending** (Held) — both cut;
+  thrown weapons are meant to be an abstracted "you have enough to
+  fight with" collection recovered after the encounter, not tracked
+  square-by-square — so "return a thrown weapon mid-fight" doesn't
+  solve a real problem under that design call.
+- **Staying Gauntlets** (Hands) — cut; redundant with Bounty Hunter's
+  Blade, which solves the same "remove the risk of an accidental
+  kill" problem via the same mechanism (bypassing the Non-Lethal
+  Attacks penalty).
+- **Elemental Bloodletter** (Held) — cut; the Bleeding-conversion half
+  loses badly (~−77 Net) once checked against Bleeding's own capped
+  curve versus guaranteed Health loss — a structural finding, not a
+  tuning miss. Superseded by the Held slot's existing
+  elemental-conversion options.
+- **Sorcerer's Gloves** (Hands) — cut; superseded by Sorcerer's Bow,
+  which covers the same "Sorcery Skill Total drives a weapon-style
+  attack" niche.
+- **Apprentice's Dueling Catalyst** (Held) — cut as obsolete; predates
+  the Implement tag existing, which already makes Bounty Hunter's
+  Blade's non-lethal waiver apply to spell attacks channeled through
+  it.
+- **Spiritlink Scepter** (Held) — cut; strictly obsolete once Reaching
+  Weapon (same Range bonus, broader scope) existed.
+- **Scepter of Evocation** (Held) — cut; an earlier, narrower draft of
+  what became Thrumming Focus.
+- **Stoic Skullcap** (Head) — retired from the Head social-hat family
+  (its "resisting others' persuasion" flavor doesn't fit that
+  family's own-Skill-buff shape); name/fluff reserved for a future
+  Neck item instead — see "Neck slot — reserved flavor" below.
+- **Bloodshard Ring** (Ring) — cut as an item (no usage cap made it
+  impossible to price cleanly); the mechanic itself was sound and
+  moved to a Technique idea — see "Spend-Health-for-damage Technique"
+  below.
+- **Flamefist's Approach** (Ring) — cut as an item (the Brawl/Spell
+  interplay fits a toggled Form better than a passive Ring); moved to
+  a Technique idea — see "'Flamefist' Form Technique" below.
+- **Assassin's Undetectable Arms** (Held) — cut as a standalone item;
+  the concealment mechanic works better folded into another item as
+  an accessory effect. Partial pricing sketch (~1.53 raw Value, a real
+  shortfall either way) preserved in case a home for it comes up.
+
 ## Source material to mine: cut FlagonQuest content in `archive/`
 
 Distinct from the dice-game import below — this is old *FlagonQuest's

@@ -239,6 +239,15 @@ which should stay a clean decision record.
   decided: a dozen-plus items/techniques already phrase it that way,
   zero use the "until the end of" wording, so this is naming the
   existing convention, not introducing a new one.
+- **Whenever an idea gets binned** (cut from `items.csv`/`techniques.csv`,
+  or considered and never drafted at all), log it in
+  `IDEAS_BACKLOG.md`'s "Reviewed and declined" section — a short note
+  on what it was and why it didn't make the cut, not a full writeup
+  (that still lives in `balance_ledger.csv`'s own `-CUT` row Notes, or
+  wherever else the idea got worked through). "Declined" isn't
+  "deleted forever" — the whole point of the section is a scannable
+  record of past no's that's still worth checking before assuming
+  something's genuinely new ground.
 
 ## Design conventions established so far
 
