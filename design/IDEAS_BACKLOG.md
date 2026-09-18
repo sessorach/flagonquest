@@ -76,6 +76,12 @@ cut, not just backfilled at a point in time.
   the concealment mechanic works better folded into another item as
   an accessory effect. Partial pricing sketch (~1.53 raw Value, a real
   shortfall either way) preserved in case a home for it comes up.
+- **True-Seeing Lenses** (Head) — cut; per the designer, Invisibility
+  and illusion magic are intentionally not mechanics in this game, so
+  a detection tool built around piercing them has nothing real to
+  detect. Too niche to earn a slot, not a balance problem — draft
+  read at 27% funded (Good Luck on a disguise-detection check, ⅓
+  niche tier) before the designer called it.
 
 ## Source material to mine: cut FlagonQuest content in `archive/`
 
@@ -436,10 +442,6 @@ hook, though the attack-bonus half reads more Ring-lane than Head-lane.
 Surfaced while reviewing the existing Head slot Masterwork items against
 its established "mental, vision" design lane (`RULES_DESIGN.md:129`):
 
-- **True-seeing lenses/spectacles** — pierces illusions, disguises,
-  invisibility specifically, distinct from Mask of Night's darkness-only
-  fix. Fills a real gap: nothing in the slot currently handles "vision
-  beyond darkness."
 - **Circlet of clarity** — resistance to Charm/domination/mind-control-
   style effects. Fills a gap on the mental side: nothing currently
   covers this axis, as distinct from Taunted/Frightened (Cowl of
