@@ -82,6 +82,14 @@ cut, not just backfilled at a point in time.
   detect. Too niche to earn a slot, not a balance problem — draft
   read at 27% funded (Good Luck on a disguise-detection check, ⅓
   niche tier) before the designer called it.
+- **Circlet of Clarity** (Head) — cut; "resistance to Charm/domination/
+  mind-control" turns out to already be what Mental Defense itself
+  represents (`rulebook.md:310`'s own flavor text: "resist fear,
+  compulsion, and other mental manipulations"). No separate
+  Charmed-style keyword exists to grant resistance *against* the way
+  Cowl of Tranquility hooks into the real, live Taunted/Frightened
+  keywords — so this wasn't a distinct gap, just an already-covered
+  Stat doing its job.
 
 ## Source material to mine: cut FlagonQuest content in `archive/`
 
@@ -442,10 +450,6 @@ hook, though the attack-bonus half reads more Ring-lane than Head-lane.
 Surfaced while reviewing the existing Head slot Masterwork items against
 its established "mental, vision" design lane (`RULES_DESIGN.md:129`):
 
-- **Circlet of clarity** — resistance to Charm/domination/mind-control-
-  style effects. Fills a gap on the mental side: nothing currently
-  covers this axis, as distinct from Taunted/Frightened (Cowl of
-  Tranquility) or social-Skill buffs (the four Skill hats).
 - **Comprehend languages circlet** — understand any spoken/written
   language. Purely mental/utility, untouched so far.
 - **Third Eye / detect-magic lens** — see magical auras, identify
