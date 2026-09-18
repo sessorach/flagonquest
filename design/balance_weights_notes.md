@@ -3214,6 +3214,68 @@ independently of the math ("this is going to be about a level 2 or 3
 ring... it will inconvenience people a little bit if they try to break
 it").
 
+### Ring of Comets = 9.33, follow-up pass — a War Magic build priced as a guaranteed hit, not an attack roll
+
+Level 3, 60 Gold, Precious — the second of the dice-game Charms (same
+source as Pillar Ring above), and the other half of the Ring slot's
+Precious gap fix (L2 Pillar Ring, L3 this). Reflavored per the
+designer from a literal falling comet to a gathering blast of magic —
+the name stays (poetic enough on its own), but the Effects text no
+longer describes an actual sky object.
+
+**Mechanic**, once per encounter for 1 AP: choose a point within 10
+meters, and at the start of your next turn it detonates, dealing flat
+damage to anyone still standing in that space — no attack roll at all.
+Per the designer: "hand wave the range and to hit... in exchange for
+it taking a round to set up." Built directly off War Magic's (`T120`)
+own base ("2 + [your Mind] Fire damage") with its full Feature Budget
+dumped into Destructive (`F062`, Basic, 1 point = +1 damage, repeatable)
+— at Level 3 that's 4 points, +4 damage — plus the already-established
++1 bonus for locking the damage type to Physical instead of leaving it
+open. Per the designer's latest steer, the `[Mind]` term was dropped
+entirely in favor of **baking in a flat stat** rather than scaling with
+the wearer's own investment: `2 (base) + 4 (Level 3 budget) + 1
+(Physical lock) + 4 (baked-in stat) = 11 Physical damage`. 4 was chosen
+over 3 specifically because it lands closer to Target (see below) — not
+an arbitrary pick.
+
+**Two real corrections mid-derivation**, both caught by taking "hand
+wave... to hit" at its literal word rather than treating it as still a
+normal attack roll underneath:
+
+1. **Damage rate.** A first pass used the standard hit-chance-
+   discounted rate (2/point, the same one weapons/Grenades use) plus a
+   flat Harried credit, on the reasoning that a normal attack roll's
+   own baked-in ~50% miss chance was doing similar work to "they might
+   not be there." Per the designer, that's the wrong model — there's no
+   roll here at all, so this is a genuine guaranteed hit whenever the
+   target's actually present, which is exactly the case
+   `balance_weights.csv`'s own Damage row calls out: *"a guaranteed
+   point of harm that skips the attack roll uses Health's rate (4)
+   instead."* No Harried credit either, since Harried only triggers when
+   a real Defense gets applied against an actual attack — nothing like
+   that happens here.
+2. **Realization tier.** The corrected math (4/point, no Harried) came
+   out badly overfunded on its own (140-230% across Levels 1-4) — not a
+   subtle miss, a real sign the "guaranteed hit" framing was letting the
+   item keep value it hadn't actually earned. Per the designer's own
+   diagnosis: the delay is exactly why it isn't really guaranteed in
+   practice — "an enemy is just going to step out of the way." A full
+   round of telegraph is enough warning that most aware, on-level
+   enemies do relocate, making "still standing there" the less common
+   outcome, not a coin flip — the standard **⅓ niche tier**, not the ½
+   tier a first pass tried, which still left it well over Target.
+
+**Final math**: Resist placeholder for a fixed (non-scaling) Physical
+item stays the standard `Body 3 + 1 armor = 4` (the baked-in 4 is the
+*item's* own chosen power level, not a stand-in for a tougher assumed
+enemy, so it doesn't get to also inflate its own target's toughness).
+`margin = 11 − 4 = 7`, `Value = 7 × 4 (guaranteed-harm rate) × ⅓ (niche
+tier) = 9.33`. `Target = 9` (Level 3), **`Net = +0.33` (104% funded)** —
+about as close to an exact fit as this model produces. (At a baked-in
+stat of 3 instead: `Value = 8.0`, `Net = −1.0`, 89% funded — still
+reasonable, just a worse fit than 4.)
+
 ## Held slot — first pass
 
 30 items, the largest single slot.

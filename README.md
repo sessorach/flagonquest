@@ -13,15 +13,17 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
-### 2026-09-18 — Pillar Ring, the first Precious-material Ring item
+### 2026-09-18 — Pillar Ring and Ring of Comets, closing the Precious gap
 
-Once per encounter, conjures a destructible, person-sized pillar of
-force that grants Total Cover — the first item in the game to grant
-that directly. Fills half of the Ring slot's Precious Material Type
-gap (L2; L3 still open) and gives Ring its first-ever Precious item
-after 13 items with none. Translated from a Charm in a separate
-tabletop game's item list, used as inspiration for a few equipment
-slots that needed fresh ideas.
+Two new Precious-material Ring items, both translated from Charms in a
+separate tabletop game's item list used as inspiration for a few
+equipment slots that needed fresh ideas — Ring's first-ever Precious
+items after 13 items with none. **Pillar Ring** (Level 2) conjures a
+destructible, person-sized pillar of force that grants Total Cover,
+the first item in the game to grant that directly. **Ring of Comets**
+(Level 3) unleashes a delayed, guaranteed-hit blast of magic at a
+chosen point, trading an attack roll for a round of telegraph. Between
+the two, the Ring slot's Precious Material Type gap is fully closed.
 
 ### 2026-09-17 — Preserving Larder, closing out the Cloth/Leather gap
 

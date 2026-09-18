@@ -10788,5 +10788,51 @@
     "levels": [
       2
     ]
+  },
+  {
+    "id": "I256",
+    "name": "Ring of Comets",
+    "category": "Masterwork",
+    "slot": "Ring",
+    "tags": null,
+    "level": 3,
+    "description": "A slender band inset with three small, dark gemstones that seem to catch and hold a strange inner light, like sparks frozen mid-fall.",
+    "effects": "Once per encounter, for 1 AP, choose a point within 10 meters of you. At the start of your next turn, unleash a blast of magic at that point, dealing 11 Physical damage to each creature in that space.",
+    "cost": "60 Gold",
+    "value_per_level": null,
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "main_materials": "Precious",
+    "optional_materials": null,
+    "crafting_notes": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "vital_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skills": null,
+    "might_requirement": null,
+    "held_slots": null,
+    "supplement": "Base Game",
+    "material_types": null,
+    "base_item_options": [
+      "I003"
+    ],
+    "levels": [
+      3
+    ]
   }
 ]

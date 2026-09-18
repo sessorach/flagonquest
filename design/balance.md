@@ -2001,8 +2001,27 @@ What genuinely remains, cross-cutting rather than slot-shaped:
     making the pillar unbreakable by Levels 4-5), and ended up modeling
     its value around protecting an ally via line-of-sight blocking
     rather than the cheaper "forces a detour" reading, per the
-    designer's own steer. Value 6.0, Net 0 (exact fit) at Level 2. **L3
-    still open** for the Precious gap.
+    designer's own steer. Value 6.0, Net 0 (exact fit) at Level 2.
+  - **Follow-up: Ring of Comets (`I256`, Level 3, 60 Gold, Precious)
+    fills the L3 half of the Precious gap, closing it out entirely
+    alongside Pillar Ring.** Also translated from the dice-game Charms
+    list (reflavored from a literal falling comet to a gathering blast
+    of magic). Built off War Magic's (`T120`) own base with its full
+    Level-3 Feature Budget dumped into pure Damage (Destructive, `F062`)
+    plus the established Physical-lock bonus, then — per the designer —
+    a flat stat baked in rather than scaling off the wearer's Mind: 11
+    Physical damage, once per encounter, no attack roll ("hand wave the
+    range and to hit... in exchange for it taking a round to set up").
+    Full derivation in `balance_weights_notes.md`'s "Ring of Comets"
+    writeup (Ring slot, follow-up section) — the interesting part is a
+    real correction mid-derivation: a first pass priced this at the
+    normal hit-chance-discounted Damage rate, which badly overfunded it
+    (140-230% across Levels), before the designer's own diagnosis (a
+    guaranteed no-roll hit needs the *guaranteed*-harm rate, 4/point,
+    discounted instead by a niche-tier chance the target simply isn't
+    there when it lands) landed the math correctly. Value 9.33, Net
+    +0.33 (104% funded) at Level 3. **With this, the Precious Material
+    Type gap is fully closed (L1-3 all covered).**
   - **Follow-up, same session: the three Cloth/Leather items drafted and
     priced, closing this gap out (L1/L2/L3 all filled).** Went through
     several redesign rounds — the first drafts for Held (a Leather
