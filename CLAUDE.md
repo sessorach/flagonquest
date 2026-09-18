@@ -776,6 +776,11 @@ Two recurring environment quirks worth knowing:
 - Add a new dated entry to `README.md`'s changelog section for each
   notable commit — skip pure internal housekeeping (file reorganization,
   a stale comment fix) that doesn't change anything a user would notice.
+  **Keep it to ~3 bullet points, executive-summary style, even for a
+  complex change** — not a full paragraph walking through the reasoning
+  (that's what the commit body and the design docs themselves are for).
+  State what changed and why it matters to a reader skimming the list,
+  not the derivation.
 - Before committing, always check `git status`/`git diff --stat`, and
   fetch + compare against `origin/<branch>` to confirm nothing else
   changed the remote branch since the last push.
