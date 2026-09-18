@@ -127,6 +127,24 @@ which should stay a clean decision record.
   self-check. When a claim involves arithmetic, actually compute it and
   check the result is internally consistent before presenting it — don't
   write plausible-looking numbers and trust they work out.
+- **When and how to delegate simulation/probability work to a subagent.**
+  Two shapes of work are good candidates for delegating out of the main
+  conversation: "go find out what already exists" (an archive sweep, a
+  codebase-wide grep-and-summarize — always a good background-Agent fit,
+  keeps the main context clean) and "run this exact, already-agreed
+  simulation/calculation and report the numbers" (fine to hand off once
+  the model's assumptions are actually locked, cheaper on a `haiku`-tier
+  Agent call for pure arithmetic with no judgment calls left). **Don't**
+  delegate the part where a model is still being *built* — the actual
+  back-and-forth of proposing assumptions and having the designer
+  correct them. The Social Encounter Baseline (`balance_weights_notes.
+  md`) took ~8-10 rounds of real corrections (Pressure hitting Support
+  checks too, all cards counting for suit-pool matching, the exact
+  card-rescue mechanic) before it was right — handing that off early
+  would have produced a confidently-wrong simulation and cost a
+  round-trip discovering it, not saved effort. Keep model-building
+  interactive; delegate research and confirmatory number-crunching once
+  the shape is agreed.
 - **Keep all three balance-tracking files in sync whenever a Masterwork
   item's design gets committed** — they serve different readers and
   none of them substitutes for the others: `design/balance_ledger.csv`
