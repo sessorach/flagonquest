@@ -13,6 +13,27 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-18 — First GM-facing enemy stat block, plus a Social Encounter running guide
+
+Two new pieces of `design/`-only GM content (not player-facing, no
+rulebook/site changes) — the site itself is unaffected by this entry.
+**A first-draft enemy stat block by Level and tier**
+(`design/GM_GUIDE_NOTES.md`) closes a real, previously-flagged gap: this
+project never had a reference for what an enemy's stats should look
+like at a given Level. Built from the same combat math everything else
+already uses — enemies flip cards and use Defense/Damage formulas
+exactly like PCs do — with a Level 1-5 table (Primary Stat, Skill
+Total, Defense, Resist, representative weapon Damage) plus a
+Minion/Standard/Elite/Boss tier system for Health, since toughness
+needed to be an independent lever from Level. Full derivation, its
+assumptions, and known limitations are in `design/
+balance_weights_notes.md`. Also added: a practical guide for running
+Social Encounters (`design/GM_GUIDE_NOTES.md`), translating the Social
+Encounter Baseline model below into table-ready pacing advice — when to
+actually bother with Pressure tracking, a round-by-round difficulty
+cheat sheet, and why letting players spend hand cards to rescue a
+near-miss is load-bearing for the intended win rate.
+
 ### 2026-09-18 — Social Contests renamed to Social Encounters, Pressure clarified, Stoic Collar
 
 "Social Contest" is now "Social Encounter" throughout the rulebook,

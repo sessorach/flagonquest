@@ -274,3 +274,78 @@ materials, not the base item's own — so "here's a serviceable but
 unremarkable [item]" is itself a real, crafting-relevant reward for an
 enchantment-minded character, distinct from both raw Materials and
 scrap-for-parts gear.
+
+
+## Building enemies: a quick stat block by Level and tier
+
+No enemy-stat-block reference existed anywhere in this project before
+this — a real, named gap (`RULES_DESIGN.md` had flagged "a GM
+difficulty-by-Level table, enemy/encounter design guidance" as an open
+item nobody had drafted). This is that table, built from scratch and
+checked against what real combat math already exists (`design/
+balance_weights_notes.md`'s "Enemy Stat Block by Level" section has the
+full derivation and its assumptions — this is the practical version for
+actually running a fight).
+
+**Enemies use the same rules PCs do — flip a card + Skill Total vs. the
+target's Defense, Defense is `8 + Skill Total`, weapon Damage uses the
+same formulas as player weapons.** Nothing below is a separate monster
+subsystem; it's just a fast way to pick reasonable numbers instead of
+building a full character sheet for every NPC.
+
+**Pick a Level (1-5, matching Technique/Masterwork Level) and a tier:**
+
+| Level | Primary Stat | Skill Total | Defense (all five) | Physical Resist | Elemental Resist* | Heavy 1H Melee Damage |
+|---|---|---|---|---|---|---|
+| 1 | 3 | 4 | 12 | 4 | 3 | 7 |
+| 2 | 3 | 5 | 13 | 4 | 3 | 7 |
+| 3 | 4 | 6 | 14 | 5 | 4 | 8 |
+| 4 | 5 | 7 | 15 | 6 | 5 | 9 |
+| 5 | 5 | 8 | 16 | 6 | 5 | 9 |
+
+*Only give an enemy a specific elemental Resist when it's actually
+thematically relevant — default to Fire if you're not sure which
+element fits, since it's the one PCs are most likely to have prepared
+for (`RULES_DESIGN.md`'s "Fire is the deliberately common element"
+note).
+
+**Then pick a Health tier** — this is the actual "how tough is this
+specific enemy" lever, independent of Level:
+
+| Tier | Health | Feels like |
+|---|---|---|
+| Minion | 3 | Drops in about 1 solid hit — mooks, swarms, things meant to die fast |
+| Standard | 6 | About 2 solid hits — the default "on-Level fight" |
+| Elite | 12 | About 4 solid hits — a real individual threat |
+| Boss | 18-24 | 6-8 solid hits, and bump Skill Total by 2 (cap 10) too — a genuine centerpiece fight |
+
+Swap in whatever weapon formula actually fits instead of Heavy 1H Melee
+— Light 1H Melee is `3 + [Primary Stat]`, Light 2H Melee and Heavy 1H
+Melee are both `4 + [Primary Stat]`, Heavy 2H Melee is `5 + [Primary
+Stat]`. A caster enemy's Spell damage should use this same Primary Stat
+in place of whatever Stat the Spell's own formula calls for (Mind,
+usually).
+
+**A default encounter shape to build around**: 4 Standard-tier enemies
+against a 4-player party, expected to run about 5 rounds as the enemies
+get whittled down — this is the same assumed "typical fight" the
+combat math elsewhere in this project is calibrated against, not a new
+guess. Deviate from it deliberately (more Minions for a swarm, one
+Elite or Boss plus a couple of Standards for a "tough leader with
+backup" fight, and so on) rather than by accident.
+
+**Worth knowing about this table before leaning on it hard**: it
+assumes an attacking PC's own relevant Stat has grown to roughly match
+the same Level's baseline by the time they're actually facing that
+Level's content — there's no documented curve anywhere in this project
+for how a PC's Stats actually grow over a real campaign (only the
+Level 1 chargen budget), so if your table's characters are notably
+over- or under-invested in combat Stats relative to this assumption,
+expect fights to run faster or slower than "2 hits" for a Standard
+enemy. Also worth knowing: **Standard-tier Health stays flat (6) across
+every Level on purpose** — a Level 5 Standard enemy isn't meant to
+soak up more raw hits than a Level 1 one, just to hit harder and be
+harder to hit while doing it (Damage and Defense both climb with
+Level; the *margin* once Resist is subtracted doesn't). If that reads
+as too flat once you've actually run a few fights with it, that's
+useful feedback, not a sign you're using it wrong.

@@ -4909,3 +4909,207 @@ as a reasonable floor for a Vigor grant sized well within the 1-5
 Technique-Level range, and a likely-conservative floor for a grant
 large enough that splitting it matters (see Soul Soup's own Level 5
 case in `balance.md`, granted uncapped for exactly this reason).
+
+
+## Enemy Stat Block by Level — a first pass at the missing GM difficulty-by-Level table
+
+`design/RULES_DESIGN.md` (lines 1054-1055) has flagged this as an open,
+never-drafted gap since an old-docs review surfaced it: "a GM
+difficulty-by-Level table, enemy/encounter design guidance." Confirmed
+again this pass (searched `archive/flagonquest_balance_notes.xlsx` in
+full a second time, and its own reading-guide companion
+`flagonquest_balance_notes_model.md`) — no enemy-stat-block table
+exists anywhere in this project's history. This section builds one from
+scratch, the same kind of project as the Social Encounter Baseline
+above: not derived from existing rules text (because none exists for
+this), but built to be internally consistent with everything that
+*does* already exist (weapon Damage formulas, the Defense formula,
+Resist mechanics, and two real established anchors — the "grenade base
+stat 3-5 by Level" convention and the "~2 hits to down an on-Level
+enemy" design target, both cited below) rather than invented free-hand.
+Flagged as a first draft throughout; revisit if actual play shows it's
+off.
+
+### The anchors this reuses directly, not invented fresh
+
+- **Primary Stat by Level**: "Grenades assume a base stat of 3-5, based
+  on Level: 1-2 assume 3, 3 assumed 4, 4-5 assumes 5" — the only
+  existing on-level-enemy convention anywhere in this project (surfaced
+  pricing Pillar Ring, cited from the archived spreadsheet's Equipment
+  tab). Reused here as the enemy's own primary Stat (whatever stat
+  drives their main attack/casting), not just a one-off grenade proxy.
+- **"~2 hits to down it" design target**: explicitly stated as "the
+  designer's own target" while validating this same Stat convention
+  against Heavy 1H Melee weapon damage for Pillar Ring's Toughness
+  sub-object — generalized here into the actual Health formula below.
+- **Skill Total tier anchors**: `RULES_DESIGN.md`'s established meaning
+  for specific Skill Total values — 6 is the exact character-creation
+  ceiling (3 Stat + 3 Skill, the hard cap on any one Skill at Level 1
+  chargen), 7 is "the practical ceiling for the most skilled *ordinary*
+  craftsperson in the game world," 8+ is "reserved for someone who has
+  actually adventured or trained hard for it." 10 is the absolute
+  ceiling (5 Stat + 5 Skill) — also the top of the separate, already-
+  established Masterwork/Alchemy crafting-difficulty curve (`balance.md`,
+  "Skill Total 4/6/8/9/10 across Levels 1-5"), a different curve for a
+  different purpose (how hard an item is to *craft*, not how strong an
+  *enemy* is) but a useful confirmation that 10 is where this project's
+  Level-5 content generally tops out.
+- **Defense formula**: `8 + [relevant Skill Total]`, identical for all
+  five PC Defenses (`rulebook.md`'s Calculated Statistics) — enemies use
+  this exact formula too, no new rule invented.
+- **Weapon Damage formulas**: reused verbatim from the weapon-category
+  table already established in `RULES_DESIGN.md`'s Baseline damage-over-
+  Resist section — Light 1H Melee `3+[Stat]`, Light 2H Melee `4+[Stat]`,
+  Heavy 1H Melee `4+[Stat]`, Heavy 2H Melee `5+[Stat]`.
+- **AP economy**: `rulebook.md`'s "you... gain 4 Action Points" and a
+  standard weapon attack costing 2 AP — enemies act on the same clock as
+  PCs, so a Standard-tier enemy attacking twice a turn (or once plus a
+  move/ability) is the normal case, not an exception to design around.
+
+### What's newly constructed here, and the reasoning behind each piece
+
+- **Skill Total by Level, +1/Level starting at 4**: `4/5/6/7/8` across
+  Levels 1-5. Picked specifically so the meaningful anchors above land
+  exactly where they should: Level 3 (Skill Total 6) is exactly as
+  capable as the single most specialized thing a brand-new PC could
+  theoretically be at chargen; Level 4 (7) matches the skilled-ordinary-
+  NPC ceiling; Level 5 (8) crosses into "adventurer-tier," fitting for
+  the toughest Standard-tier threat this project's Level range reaches.
+  This governs the enemy's Accuracy (flip + Skill Total vs. the PC's
+  Defense, same resolution as any other check) and their own Defenses.
+- **Resist = Primary Stat + 1 (Physical) or Primary Stat alone
+  (elemental)**: direct reuse of the already-Locked "Fresh-attack Resist
+  placeholder" convention (`Body 3 + 1 armor` for Physical, `Body 3`
+  alone for elemental — the same "+1 elemental credit, assuming ~1
+  Physical Resist from armor that elemental typically bypasses"
+  reasoning), just generalized across the full Level range instead of
+  used once at a fixed Body 3. Physical: `4/4/5/6/6`. Elemental (only
+  give an enemy a specific elemental Resist when it's thematically
+  relevant — Fire by default per `RULES_DESIGN.md`'s own "Fire is the
+  deliberately common element" note, unless the encounter calls for
+  something else): `3/3/4/5/5`.
+- **Health, tiered rather than a single Level-keyed number**: a single
+  Level-scaling Health number would either force every enemy of a given
+  Level to feel identical, or fight the tier system a GM actually wants
+  (a mook, a boss, and everything between, all at the same Level). Built
+  the underlying number first, then exposed it as a tier multiplier:
+
+### Deriving Standard-tier Health
+
+Using Heavy 1H Melee as the representative "typical armed opponent"
+weapon, with the attacking PC assumed to have grown their own relevant
+Stat to roughly match this same Level's baseline by the time they're
+actually facing Level-N content (the same "on-Level fight, matched
+investment" premise the original Pillar Ring cross-check used) — net
+damage per hit, Damage(Heavy 1H) minus this enemy's own Physical Resist:
+
+| Level | Stat | Heavy 1H Damage (4+Stat) | Physical Resist (Stat+1) | Net/hit |
+|---|---|---|---|---|
+| 1 | 3 | 7 | 4 | 3 |
+| 2 | 3 | 7 | 4 | 3 |
+| 3 | 4 | 8 | 5 | 3 |
+| 4 | 5 | 9 | 6 | 3 |
+| 5 | 5 | 9 | 6 | 3 |
+
+**Net/hit comes out flat at 3 across every Level** — not a coincidence,
+and not forced: since both the attacking PC's Stat and this enemy's own
+Resist are pegged to the identical by-Level convention, they rise in
+lockstep, so the gap between them never changes from its Level-1 value.
+This is a real, load-bearing modeling choice (an "on-Level fight" always
+plays out at roughly the same relative toughness, with the raw numbers
+on both sides simply getting bigger together) rather than a flat curve
+being the accidental result — worth stating plainly since it may look
+surprising ("shouldn't a Level 5 enemy hit harder in absolute terms than
+a Level 1 one?" — yes, and it does: Damage goes 7→9. What stays flat is
+the *margin* once Resist is subtracted, which is the number that
+actually determines hits-to-kill). It also happens to land almost
+exactly on the already-established, independently-derived "2-3 net
+damage over Light-Armored Resist" floor baseline (`RULES_DESIGN.md`'s
+Baseline damage-over-Resist section, Stat=0 vs. Light Armor's flat
+Resist 1) at every single Level, not just Level 1 — a genuine
+cross-check, not a circular one, since that floor number was derived
+completely independently (a fixed Stat=0/Armor=1 case, not this
+section's Level-scaled Stat/Resist pairing) and still lands in the same
+place.
+
+Standard-tier Health = 2 hits (the stated design target) × 3 net/hit =
+**6, flat across all five Levels.**
+
+### The tier table
+
+| Tier | Health | Roughly | Skill Total (cap 10) |
+|---|---|---|---|
+| Minion | 3 | ~1 hit — mooks, swarms, anything meant to drop fast | Standard |
+| Standard | 6 | ~2 hits — the baseline "on-Level fight" derived above | Standard (`4/5/6/7/8`) |
+| Elite | 12 | ~4 hits — a real individual threat | Standard |
+| Boss | 18-24 | ~6-8 hits | Standard + 2 (capped at 10) |
+
+Boss Skill Total (`4/5/6/7/8` + 2, capped at the absolute Skill Total
+ceiling of 10) gives `6/7/8/9/10` across Levels 1-5 — a Level 1 Boss
+already reaching the chargen ceiling (appropriately exceptional for an
+early threat), a Level 5 Boss landing exactly on the absolute cap. Only
+Skill Total (and therefore Accuracy/Defense) gets the Boss bump here,
+not Resist — a Boss that's also meaningfully harder to *damage* on top
+of harder to *hit* and *survive longer against* risks stacking three
+multiplicative difficulty spikes into one fight; Health alone (already
+6-8x a Minion) carries the "this fight takes a while and matters" weight,
+keeping the accuracy/defense math from also needing a second pass.
+
+### Full Level 1-5 reference table (Standard tier)
+
+| Level | Primary Stat | Skill Total | Defense (all five, 8+SkillTotal) | Physical Resist | Elemental Resist | Heavy 1H Damage | Health |
+|---|---|---|---|---|---|---|---|
+| 1 | 3 | 4 | 12 | 4 | 3 | 7 | 6 |
+| 2 | 3 | 5 | 13 | 4 | 3 | 7 | 6 |
+| 3 | 4 | 6 | 14 | 5 | 4 | 8 | 6 |
+| 4 | 5 | 7 | 15 | 6 | 5 | 9 | 6 |
+| 5 | 5 | 8 | 16 | 6 | 5 | 9 | 6 |
+
+Swap in whichever weapon-category formula actually fits a given enemy
+(Light 1H `3+Stat`, Light 2H `4+Stat`, Heavy 2H `5+Stat`) or a Spell's
+own formula using this same Primary Stat in place of `[Stat]`/`[Mind]`/
+whatever the Spell calls for — Heavy 1H is shown as the representative
+case, not a rule that every enemy must wield one.
+
+### Encounter shape reference
+
+The archived Baseline tab's own assumed default encounter — "party of 4
+vs. 4 enemies, ~50% average hit chance... 5 rounds per combat, with
+enemies dying off through the fight (assumed ~3.6 enemies still active
+round 1, down to ~0.4 by round 5)" — maps cleanly onto 4 Standard-tier
+enemies against a 4-player party as this table's own default reference
+point, not a new assumption invented for this section. A GM building an
+encounter from scratch can use that as the baseline shape (4 Standard
+enemies, expect the fight to run about 5 rounds) and reach for
+Minion/Elite/Boss tiers, or more/fewer enemies, to make a specific
+encounter feel easier, harder, or differently-shaped than that default.
+
+### Known limitations, flagged rather than silently smoothed over
+
+- **The flat-Health-across-Levels result is a genuine, deliberate
+  modeling choice, not an oversight** — see the "Deriving Standard-tier
+  Health" section above for why it falls out this way once attacker and
+  defender scale together. If actual play wants Level 5 Standard
+  enemies to feel *absolutely* tougher (not just relatively, at bigger
+  numbers) rather than matching this "same relative fight, bigger
+  numbers" philosophy, that's a real design fork worth a deliberate
+  decision, not something to patch quietly.
+- **Assumes the attacking PC's relevant Stat has grown to match this
+  same by-Level baseline** — there's no documented "PC Stat/Skill Total
+  by campaign progression" curve anywhere in this project to check that
+  against (chargen only covers the Level 1 starting budget, not
+  long-campaign growth), so this is an assumption, not a verified fact.
+  A party that's significantly over- or under-invested in combat Stats
+  relative to this baseline should expect real fights to run faster or
+  slower than the table above predicts.
+- **Non-combat enemies (something purely social, a puzzle antagonist,
+  etc.) aren't what this table is for** — it's specifically a combat
+  stat block. A social antagonist should be built using the Social
+  Encounter Baseline above instead (or just GM judgment for a one-off
+  check, same as `rulebook.md` already recommends for most social
+  interactions).
+- **The Boss tier's "+2 Skill Total, same Resist" split is a judgment
+  call**, not derived the way the Standard-tier numbers were — flagged
+  the same way any Narrative Utility item's honest-guess convention is,
+  since there's no existing anchor for how a "boss" specifically should
+  differ from a scaled-up Standard enemy.

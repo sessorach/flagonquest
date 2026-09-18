@@ -2272,6 +2272,32 @@ technique (A Perfectly Good Explanation) still references the pre-
 Pressure "Concessions" mechanic outright — both need a real design
 decision, not a find-and-replace.
 
+**A first-draft enemy stat block by Level now exists**, closing the
+open item this file itself flagged earlier (line 1054-1055: "a GM
+difficulty-by-Level table, enemy/encounter design guidance" — noted as
+still-open when an old-docs review surfaced it, left that way rather
+than rewritten now, since it's a record of that pass's own findings).
+Full derivation in `balance_weights_notes.md`'s "Enemy Stat Block by
+Level" section, practical version in `GM_GUIDE_NOTES.md`'s "Building
+enemies" section. Built the same way the Social Encounter Baseline
+above was — new construction, not extracted from existing canon — but
+grounded directly in what already exists rather than invented free-hand:
+reuses the "grenade base stat 3-5 by Level" convention (the project's
+only prior on-Level-enemy anchor, previously cited just once for Pillar
+Ring) as the enemy's own Primary Stat, reuses the PC Defense formula
+and weapon Damage formulas verbatim, and anchors a new Skill Total-by-
+Level curve (`4/5/6/7/8`) on the already-established Skill Total tier
+meanings (6 = chargen ceiling, 7 = skilled-ordinary-NPC ceiling, 8+ =
+adventurer-tier) rather than picking numbers by feel. The one
+genuinely new, unverified piece is Health, tiered (Minion/Standard/
+Elite/Boss) rather than Level-keyed since a GM needs that as an
+independent lever — Standard-tier Health comes out flat at 6 across
+every Level, a deliberate modeling consequence (attacker Stat and
+defender Resist scale together, so the *margin* stays constant even as
+raw Damage climbs) flagged clearly in both writeups as worth
+revisiting if actual play wants Level 5 enemies to feel absolutely
+tougher, not just relatively so.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).
