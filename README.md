@@ -13,6 +13,22 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-18 — Backlog cleanup: full archive sweep, Head slot review, Third Eye
+
+A full sweep of the old design archive to make sure nothing useful from
+past versions was sitting forgotten, plus a pass through the resulting
+backlog's Head-slot candidates. Three of four (True-Seeing Lenses,
+Circlet of Clarity, Comprehend Languages Circlet) turned out to reach
+for mechanics this game intentionally doesn't have (Invisibility,
+illusion magic, a distinct mind-control keyword, a language system) and
+got cut. **Third Eye** (Head, Level 1) is the one that stuck — shortens
+the rulebook's hour-long "examine a Masterwork item" rule to 10
+minutes, plus Good Luck identifying unfamiliar magical phenomena.
+`design/IDEAS_BACKLOG.md` also picked up a "Reviewed and declined"
+section, a running log of ideas that got a real look and were turned
+down, so past no's stay easy to check rather than needing to be
+re-derived.
+
 ### 2026-09-18 — Three items translated from a separate game's Charms
 
 Three new Masterwork items, all translated from Charms in a separate

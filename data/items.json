@@ -10881,5 +10881,52 @@
     "levels": [
       2
     ]
+  },
+  {
+    "id": "I258",
+    "name": "Third Eye",
+    "category": "Masterwork",
+    "slot": "Head",
+    "tags": null,
+    "level": 1,
+    "description": "A small, faceted lens set into the brow, said to open a window onto truths the ordinary eye can't perceive.",
+    "effects": "The wearer can determine a Masterwork item's full effects and statistics after spending just 10 minutes examining it, rather than a full hour. The wearer also has Good Luck on any flip made to identify or make sense of an unfamiliar magical effect or phenomenon.",
+    "cost": "20 Gold",
+    "value_per_level": null,
+    "school": null,
+    "skill_total": null,
+    "total_materials": null,
+    "main_materials": "Brilliant",
+    "optional_materials": null,
+    "crafting_notes": null,
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "vital_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skills": null,
+    "might_requirement": null,
+    "held_slots": null,
+    "supplement": "Base Game",
+    "material_types": null,
+    "base_item_options": [
+      "I002",
+      "I003"
+    ],
+    "levels": [
+      1
+    ]
   }
 ]

@@ -1831,6 +1831,50 @@ the designer wants to work out the rest of the slot first, then
 revisit what a new capstone-appropriate design should look like here,
 rather than patch the current mechanic's numbers.
 
+### Third Eye = ~1.0, follow-up pass — three of four backlog candidates resolved by checking what actually exists to hook into
+
+Level 1, 20 Gold, Brilliant. Last of four Head-slot candidates sitting
+in `IDEAS_BACKLOG.md` since the original Head-slot pass. The other
+three (True-Seeing Lenses, Circlet of Clarity, Comprehend Languages
+Circlet) all got cut outright on the same root problem, caught one
+after another: each reached for a mechanic — Invisibility/illusion
+magic, a distinct Charm/domination keyword, a language system — that
+simply doesn't exist anywhere in this ruleset, so there was nothing
+real for the item to interact with. Worth remembering as a pattern:
+check whether the thing an item claims to detect/pierce/resist is an
+actual live mechanic before drafting it, not after.
+
+This one grounds out in two real things. Per the designer, built as a
+weaker, universally-accessible cousin of **Artisan's Eye** (`T046`,
+Level 3 Technique, gated behind Craft/Mixology/Survival 4 + Academics
+2) rather than a duplicate of it:
+
+1. **Reduces the baseline "examine a Masterwork item for an hour" rule**
+   (`rulebook.md`'s Equipment section) down to 10 minutes. Pure
+   downtime convenience, no combat relevance — the model has no real
+   way to price this (same reasoning as the Narrative Utility
+   convention, though this is one component of a two-part item rather
+   than the item's whole basis).
+2. **Good Luck on any flip made to identify or make sense of an
+   unfamiliar magical effect or phenomenon** — broadened per the
+   designer from an initial Academics-only draft, since Sorcery or
+   Theurgy will often be the actually-relevant Skill depending on what's
+   being identified, not just Academics. Standard niche-tier Good Luck:
+   `2.4 × ⅓ = 0.8`.
+
+Combined estimate **~1.0 Value**, `Target = 3` (Level 1), **`Net ≈
+−2.0` (33% funded)** — the same modest tier as Cloak of Caches/Diver's
+Necklace/Watcher's Mantle, consistent with a flavorful niche-utility
+item rather than a combat-relevant one.
+
+**Flagged, not fixed**: Artisan's Eye's own Effects text references
+"as though you had flipped a 13 to analyze it," but no "analyze" check
+is documented anywhere in `rulebook.md` — the only baseline rule found
+is a plain, rollless "examine for an hour" line. This suggests Artisan's
+Eye's real value-add is purely collapsing that hour down to instant,
+not removing some failure chance that may never have existed in the
+first place. Worth a look whenever Techniques get their own review pass.
+
 ## Neck slot — first pass
 
 ### Cloak of Caches, Diver's Necklace = 1 each — plain Narrative Utility

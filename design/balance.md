@@ -960,6 +960,22 @@ Neck-slot Pressure item.
   question — should a Head item generate party-wide cards at all, or
   is this a capstone-tier effect — is left for after the rest of the
   slots have a first pass.
+- **Follow-up: three of four remaining Head-slot backlog candidates
+  cut, one drafted.** True-Seeing Lenses, Circlet of Clarity, and
+  Comprehend Languages Circlet all reached for a mechanic that doesn't
+  actually exist in this ruleset (Invisibility/illusion magic, a
+  distinct Charm/domination keyword, a language system) and got binned
+  in a row — logged in `IDEAS_BACKLOG.md`'s "Reviewed and declined"
+  section. **Third Eye** (`I258`, L1, 20 Gold, Brilliant) is the one
+  that grounded out in real mechanics: shortens the rulebook's own
+  hour-long "examine a Masterwork item" rule to 10 minutes, plus Good
+  Luck on identifying unfamiliar magical effects/phenomena, built as a
+  weaker cousin of Artisan's Eye (`T046`). Value ~1.0, Net −2.0 (33%
+  funded) at Level 1 — same modest tier as the slot's other
+  Narrative-Utility-adjacent items. Full derivation in
+  `balance_weights_notes.md`'s own writeup, including a documentation
+  gap it surfaced in Artisan's Eye worth a look during a future
+  Techniques pass.
 
 ### Neck Masterwork pass — final lineup
 

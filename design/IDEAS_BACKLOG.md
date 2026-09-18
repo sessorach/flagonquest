@@ -453,14 +453,21 @@ Good-Luck/Bad-Luck effect on wearer and target. Hunter's Handbook's
 "learn a fact about an enemy, gain a bonus" has a nice knowledge/analysis
 hook, though the attack-bonus half reads more Ring-lane than Head-lane.
 
-## Head slot — candidates not yet drafted
+## Artisan's Eye — undocumented "analyze" mechanic
 
-Surfaced while reviewing the existing Head slot Masterwork items against
-its established "mental, vision" design lane (`RULES_DESIGN.md:129`):
-
-- **Third Eye / detect-magic lens** — see magical auras, identify
-  enchanted items/effects at a glance. A different vision-flavored
-  knowledge tool than either existing vision item.
+Surfaced while drafting Third Eye (`I258`) off Artisan's Eye (`T046`)
+as a precedent. Artisan's Eye's Effects text reads "as though you had
+flipped a 13 to analyze it," but no "analyze" check is actually
+documented anywhere in `rulebook.md` — the only baseline rule found is
+a plain, rollless "a character can determine [a Masterwork item's
+effects] in full by examining the item for an hour" line (Equipment
+section). Since that baseline already reads as automatic success with
+no roll involved, Artisan's Eye's real value-add is likely just
+collapsing the hour down to instant (1 AP), not removing some failure
+chance that may never have existed. Worth a look whenever Techniques
+get a dedicated review pass — either the "analyze" check needs to
+actually get written into the rulebook, or Artisan's Eye's own text
+should stop implying a flip that doesn't exist.
 
 ## Crown of Glory — capstone redesign, deferred
 
