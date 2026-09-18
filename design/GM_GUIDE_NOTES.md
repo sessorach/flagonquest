@@ -122,6 +122,97 @@ each individual Material dropped should feel) goes up. That's one less
 axis a GM has to consciously manage when pacing a dungeon's loot table
 against the party's own progression.
 
+## Running Social Encounters: pacing and difficulty, from the Social Encounter Baseline model
+
+`rulebook.md`'s Social Challenges section deliberately leaves
+successes-needed and Pressure's accrual rate to GM judgment, same as it
+leaves combat encounter difficulty to GM judgment. To have *some* real
+numbers to calibrate against instead of pure guesswork, `design/
+balance_weights_notes.md`'s **Social Encounter Baseline** built a
+representative scenario and ran the actual math on it (exact
+combinatorics, cross-checked against Monte Carlo) — a reasonably-built
+four-person party (one lead at +6 Skill Total, three Supporters at +4
+each), 5 successes needed, Pressure climbing by 1 every round and
+hitting the lead Statement *and* every Support check, failing outright
+at Pressure 5. This is GM-facing guidance built on top of that model,
+not a repeat of its derivation — see that file if the underlying math
+needs checking.
+
+**This model represents a prolonged Encounter specifically — most
+social interactions should still resolve as the single check `rulebook.
+md` already describes.** Reach for the Pressure/multi-round shape (and
+the pacing below) when the scene has real stakes riding on a drawn-out
+negotiation or interrogation, not for "can you talk your way past the
+gate guard." Calling for Pressure tracking on every minor social beat
+will wear the mechanic out fast and make it feel punishing rather than
+tense.
+
+**The expected shape, round by round** (numbers from the locked
+Baseline, `balance_weights_notes.md`'s own table):
+
+| Round | Pressure that round | Roughly how it should feel |
+|---|---|---|
+| 1 | none yet | The lead's Statement almost always lands (100% in the model) — this round is about setting up the scene, not real risk. |
+| 2 | 1 | Still favored, but Support starts visibly struggling (its success chance roughly drops by two-thirds from round 1). |
+| 3 | 2 | The real swing round — cumulative win odds cross 50% right around here. |
+| 4 | 3 | Genuinely tense; Support is now only occasionally landing. |
+| 5 | 4 | Do-or-die — if the party hasn't closed it out by now, the odds are against them (~57% overall win rate across the whole encounter, ~43% real chance of a scripted failure). |
+
+A GM running this by feel rather than pulling out a calculator should
+expect: an easy-feeling opening round, a real sense of things getting
+harder starting around round 3, and a genuine chance of failure by
+round 5 that the table should be allowed to actually land — don't
+quietly fudge it toward success just because it's a social scene rather
+than combat. **43% is not a small number; be ready to actually play out
+what "the party loses this Encounter" means** (per `rulebook.md`'s
+Interrupted Encounter / Results of a Social Encounter guidance) rather
+than treating failure as a hypothetical that never happens at the
+table.
+
+**The single biggest lever is how freely the GM lets players spend
+cards from their hand to rescue a near-miss** (`rulebook.md`'s "Your
+Hand and Playing Cards" — playing a card from hand to replace one
+already flipped). The Baseline explicitly assumes a party has a
+suitable card free "most of the time," and that assumption alone is
+most of what keeps the win rate in a reasonable band: the exact same
+scenario without it only wins **9.72%** of the time, against 57.03%
+with it. In practice, that means: don't be stingy about letting a
+player search their hand for something that saves a failing Statement
+or Support check when a Social Encounter's Pressure is mounting — that
+generosity isn't a house-rule kindness, it's load-bearing for the
+difficulty actually landing where it's designed to. A table that plays
+cards close to the chest (hoarding hand cards for combat, rarely
+spending them socially) should expect Social Encounters to run
+noticeably harder than the numbers above suggest, closer to the ~10%
+floor than the ~57% baseline.
+
+**Two known gaps between this model and the literal rulebook text**,
+worth knowing about since they mean real play may run a bit differently
+than the table above:
+- The Baseline assumes Support checks scale in difficulty with the
+  specific Statement they're backing (Difficulty 13 → Support needs
+  ≥9). The actual Supporting rule is a **flat Difficulty 11** for every
+  Support check regardless of what's being supported, which would put a
+  +4 Supporter's threshold at ≥7 instead — noticeably easier. If Support
+  is landing more often at the table than the numbers above imply,
+  that's expected, not a sign something's off.
+- The Baseline counts **every card drawn from a Good/Bad Luck flip**
+  toward that flip's suit pool for Extra Success purposes (not just the
+  one card actually used for pass/fail) — a real reading of the
+  existing Extra Success rule, but not yet spelled out anywhere in
+  `rulebook.md` for the multi-card case. This affects Good/Bad Luck
+  checks generally, combat included, not just Social Encounters — worth
+  applying consistently at the table either way once you're using it.
+
+**Pressure's ignore-vs-remove distinction** (`rulebook.md`'s Pressure
+section) matters for pacing too: an effect that lets the party *ignore*
+Pressure softens a round's Bad Luck without slowing the failure clock
+down at all, while one that actually *removes* Pressure buys real extra
+rounds. When a player asks whether their item/Technique effect ends the
+encounter's countdown faster, that's the question to check against —
+"ignore" keeps today's round easier but Round 5 is still Round 5;
+"remove" genuinely pushes it back.
+
 ## Judgment calls: a player wants to use a material that's not on the list
 
 A few quick pointers for the recurring "can I use X for this" moment at
