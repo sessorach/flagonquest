@@ -420,6 +420,129 @@ Mender (2, 1), Otherworld Slasher (2, 1), Bandit Firemage (1, 1),
 Bandit Raider (1, 1) — see `archive/flagonquest_encounter_builder.xlsx`
 directly (`Monster List` tab) for every stat on each.
 
+## Analysis: does this actually produce 5 discrete power tiers?
+
+Per the designer's own stated goal, checked directly against the real
+numbers rather than assumed: **the party should start roughly on-level
+with a given Enemy Level, grow clearly stronger than it, then move to
+the next Level and feel stretched thin again — five distinct,
+felt steps, not a fine-grained treadmill that always keeps combat
+"balanced."**
+
+### The base stat curve is deliberately gentle — almost flat
+
+Level-to-Level deltas on the four core axes:
+
+| | L1→2 | L2→3 | L3→4 | L4→5 |
+|---|---|---|---|---|
+| Accuracy/Defense | +2 | +1 | +1 | +1 |
+| Damage/Resist | +1 | +1 | +1 | **+0** |
+| Health | +1 | +2 | +1 | +2 |
+| **Ability budget** | +1 | +1 | +1 | **+3** |
+
+Three of the four axes barely move after the opening Level 1→2 jump.
+**Damage/Resist caps at Level 4 outright** — a Level 5 enemy hits no
+harder and resists no better than a Level 4 one; only Health (+2) and
+Ability budget (a near-doubling, +3 on a base of 5) keep growing into
+Level 5. Converting to hit-chance terms: reaching a clearly "stronger
+than" feel (~70%+ hit chance) or "stretched thin" feel (~35%) from an
+"on-level" baseline (~54%, the card-average-7 case) needs roughly a
+±2-2.5 point Skill Total gap — bigger than almost every one of these
+Level-to-Level steps.
+
+**Conclusion: the 5-tier feel is not something the base stat curve
+produces on its own.** It has to come from two other places instead:
+
+1. **The Ability catalog, used deliberately per tier** — this is the
+   one axis that genuinely breaks the gentle-growth pattern (the
+   Level 4→5 near-doubling), and it's the axis a GM directly controls
+   per-encounter. A Level 5 fight should feel different from a Level 1
+   one mostly because of *what it can do* (more elemental variety,
+   real utility like Omniguard/Resilient a Level 1-2 budget can't
+   afford, stacked debuffs), not because its Accuracy is 5 points
+   higher. Lean on this axis, not on inflating base stats, whenever a
+   tier needs to feel like a genuine step up.
+2. **When the GM chooses to introduce the next Level into the
+   story** — since PC growth is continuous (XP earned session by
+   session) but Enemy Level is quantized into 5 discrete bins, holding
+   a region's Enemy Level fixed while the party keeps earning XP
+   *automatically* produces the on-level → outgrown arc, with no extra
+   engineering needed on the enemy-math side. The discreteness lives in
+   the GM's pacing decision (this region is Level 2 content; the party
+   moves to Level 3 content at the next real story beat), not in the
+   numbers themselves.
+
+This isn't a flaw in the system — flat stat escalation avoiding a raw
+numbers arms race is consistent with this project's own standing
+design rule (`RULES_DESIGN.md`: "Reward cleverness and risk, not raw
+power") — but it does mean the discreteness has to be an active choice
+each time a new Level's content gets built, not something to expect
+"for free" from the formula.
+
+### What Skill Total a PC needs to be on-level, per Enemy Level
+
+Computed directly from the real Defense numbers (card-flip math: for
+roughly 54% hit chance, `PC Skill Total = Defense − 7`, since the
+average card is 7), across all three Defense tiers an enemy might use:
+
+| Enemy Level | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| vs. a Poor-tier Defense | 4 | 6 | 7 | 8 | 9 |
+| vs. a Secondary-tier Defense | 5 | 7 | 8 | 9 | 10 |
+| vs. a Primary-tier Defense | 6 | 8 | 9 | 10 | 11 |
+
+Cross-checked against the earlier (superseded) session's own PC
+Skill-Total-by-tier reconstruction (6/7/8/9/10, anchored on the
+chargen ceiling / skilled-NPC-ceiling / adventurer-tier Skill Total
+meanings) — it lines up closely with the Secondary-tier row above (off
+by exactly 1 at Tier 1). That reconstruction's *shape* held up under
+this real cross-check; what it couldn't verify was the XP timeline
+next to it.
+
+### A rough XP anchor — explicitly a planning estimate, not a verified rate
+
+**This project has no documented XP-per-session or XP-per-milestone
+rate anywhere** (`rulebook.md` only says Experience comes "as you
+reach goals and milestones") — so no total-XP number can be *derived*
+the way the Skill Total table above was. What follows is a labeled
+estimate for planning purposes only, built by anchoring to the one
+real data point that exists (`rulebook.md`'s own worked chargen
+example: reaching Skill Total 6 via 1 Stat at rank 3 + 1 Skill at rank
+3 costs 18 XP, which is 24% of the full 75 XP chargen budget) and
+extending that same ratio outward using the real, escalating Skill/Stat
+XP-cost formulas — **assuming a party keeps investing roughly as
+broadly as chargen does** (not funneling an ever-growing share into
+pure combat as they level; some Awareness, social Skills, Techniques,
+crafting, etc. the whole way through):
+
+| Enemy Level | Low estimate (vs. Poor Defense) | Mid estimate (vs. Secondary) | High estimate (vs. Primary) |
+|---|---|---|---|
+| 1 | 46 | **67** | 75 |
+| 2 | 75 | **92** | 117 |
+| 3 | 92 | **117** | 150 |
+| 4 | 117 | **150** | 192 |
+| 5 | 150 | **192** | 242 |
+
+Read the **Mid** column as the working estimate if one number is
+needed ("a party feels ready for Level 3 content around 117 total
+Experience earned"); the Low/High columns show how much that number
+moves depending which Defense tier "on-level" is measured against, to
+keep from presenting false precision. **Notably lower than the
+previous session's own guessed 75/125/175/225/275 schedule at every
+tier past the first** (e.g. Level 5: 192 here vs. 275 guessed before —
+a real, meaningful correction, not just a re-derivation landing in the
+same place) — the earlier schedule's flat +50/tier shape had no real
+anchor behind it at all; this one at least starts from a verified data
+point, even though the *extension* past that point is still an
+assumption, not a fact. **The single biggest lever in this table is
+the "combat-XP-share stays ~24%" assumption** — a party that
+specializes *harder* into combat as it levels (skipping non-combat
+Skills more and more) would hit each Skill Total threshold on *less*
+total XP than shown; a party that diversifies *more* (heavy Technique
+or Crafting investment) would need *more*. Revisit this table if actual
+play shows parties consistently feel on-level with a given Enemy Level
+well before or after the total XP they've actually earned matches it.
+
 ## Superseded sources in the same workbook — historical only
 
 Three more tabs in the source workbook explore the same problems from
