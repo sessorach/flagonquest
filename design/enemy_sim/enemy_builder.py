@@ -10,11 +10,15 @@ import tunables as T
 
 
 def build_enemy(name, level, slots, role, primary_def, secondary_def, action, armor="Light",
-                 ability_dmg_bonus=0, ability_parry_delta=0):
+                 ability_dmg_bonus=0, ability_parry_delta=0, abilities=()):
     acc_base = T.ACCURACY[level]
     dmg_resist = T.DMG_RESIST[level]
     health = math.ceil(T.HEALTH_BASE[level] * T.SLOT_MULTIPLIER[slots])
     ability_budget = math.ceil(T.ABILITY_RATE[level] * slots) * 5
+
+    ability_cost = sum(T.ABILITY_COST[a] for a in abilities)
+    if ability_cost > ability_budget:
+        raise ValueError(f"{name}: abilities cost {ability_cost}, only {ability_budget} available")
 
     role_mod = T.ROLE_MODS[role]
     act = T.ACTIONS[action]
@@ -44,13 +48,28 @@ def build_enemy(name, level, slots, role, primary_def, secondary_def, action, ar
     speed = math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"]
     reflex = 2 + level
 
+    # Static abilities (flat stat modifiers) apply immediately; dynamic
+    # ones (an on-hit debuff, Durable's per-turn Protected regen) are
+    # just recorded on the enemy dict for combat_sim.py's round loop to
+    # check - see tunables.ABILITY_COST's own comment for which is which.
+    if "Enhanced Health" in abilities:
+        health += 3
+    if "Powerful Weapon" in abilities:
+        attack_damage += 1
+        accuracy -= 1
+        parry -= 1
+    if "Powerful Spell" in abilities:
+        attack_damage += 1
+        parry = -99  # own Parry effectively unusable, matching the source spreadsheet's convention
+
     return dict(name=name, level=level, slots=slots, role=role, action=action,
                 accuracy=accuracy, attack_damage=attack_damage, dmg_type=dmg_type,
                 opp_def=opp_def, attack_range=attack_range,
                 parry=parry, dodge=dodge, bodily=bodily, mental=mental,
                 physres=physres, elemres=elemres,
                 health=health, max_health=health, speed=speed, reflex=reflex,
-                ability_budget=ability_budget, armor=armor)
+                ability_budget=ability_budget, ability_cost=ability_cost, abilities=list(abilities),
+                protected=0, armor=armor)
 
 
 if __name__ == "__main__":

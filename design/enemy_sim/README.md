@@ -29,9 +29,14 @@ usage.
   real "Example Enemies" doc to supersede this once the tunables below
   are locked down further.
 - **`combat_sim.py`** — the Monte Carlo fight loop (`run_fight`) and
-  driver (`simulate`). See its module docstring for exactly what's
-  simplified/not modeled (no Extra Successes, Gambling, Techniques,
-  items, positioning, or real initiative).
+  driver (`simulate`). Models Gambling (PCs punching through high
+  Resist) and a subset of the Ability catalog (Enhanced Health,
+  Powerful Weapon/Spell, Strike (Crippling)/(Vulnerable), Poison
+  (Bleeding), Durable — see `tunables.ABILITY_COST`'s own comment for
+  which abilities are wired in and why the rest aren't yet). See its
+  module docstring for what's still simplified/not modeled (no real
+  Extra Successes from suit-pool matching, Techniques, items,
+  positioning, or real initiative).
 - **`run_grid.py`** — runs every Party Tier × Enemy Level combination
   and prints win rate / average rounds / party HP% remaining.
 

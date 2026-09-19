@@ -61,6 +61,31 @@ ACTIONS = {
     "Ranged Spell":     {"accuracy": 0, "damage": 2, "dmg_type": "Fire", "opp_def": "Dodge", "range": 2},
 }
 
+# ---- Ability catalog: the subset wired into the simulator ----
+# The full Ability catalog (ENEMY_ENCOUNTER_DESIGN.md's "The Ability
+# catalog" section) has ~30 entries; only the ones with a single, clean
+# numeric effect that this simulator's simplified round loop can
+# actually represent are implemented here - flat stat modifiers, an
+# on-hit debuff with one real number attached (Crippled's -1 to
+# attacks, Vulnerable's -1 to Vital/Mental/Vigilant Defenses, Bleeding's
+# 1 damage per decaying stack), and Durable's Protected regen. Left out
+# for now: anything needing Speed/initiative (Slowed, Enhanced Speed -
+# no turn-order model here), healing (Necrotic - no PC healing action
+# exists in this sim), Harried/targeting-choice effects (Omniguard,
+# Action abilities, Frightened/Taunted), multi-target hits (Strike
+# (Cleaving)), and anything positional (Sturdy, Shadow Jaunt,
+# Retribution Aura). Costs match the real catalog exactly, for the
+# budget-validation check in enemy_builder.build_enemy.
+ABILITY_COST = {
+    "Enhanced Health": 5,
+    "Powerful Weapon": 5,
+    "Powerful Spell": 5,
+    "Strike (Crippling)": 5,
+    "Strike (Vulnerable)": 5,
+    "Poison (Bleeding)": 5,
+    "Durable": 5,
+}
+
 # ---- PC power per Tier (1-5) ----
 # A real named Stat/Skill build per Tier (75/125/175/225/275 total XP -
 # the designer's own chargen-then-+50/tier schedule), not an abstract

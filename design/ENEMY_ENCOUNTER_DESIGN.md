@@ -334,6 +334,29 @@ sections above; picked from this same master catalog, just broken out
 here for clarity since they're structural picks rather than optional
 extras.
 
+**Wired into the combat simulator**: a subset with a single, clean
+numeric effect the simulator's round loop can represent — Enhanced
+Health, Powerful Weapon, Powerful Spell, Strike (Crippling), Strike
+(Vulnerable), Poison (Bleeding), and Durable. `design/enemy_sim/
+tunables.py`'s `ABILITY_COST` has the full list and why the rest
+(Slowed, Omniguard, the support/targeting abilities, anything
+positional) aren't modeled yet. `enemy_builder.build_enemy` takes an
+`abilities` list and checks its cost against the Level's own budget.
+
+Testing this against `sample_enemies.py`'s roster turned up two things
+worth knowing before picking abilities for a real enemy:
+- **Powerful Weapon can backfire** on an enemy whose Primary Defense is
+  Parry/Dodge specifically — its own -1 Parry from the ability directly
+  undercuts that investment, and in one test raised the party's win
+  rate from 14.7% to 28.1% rather than lowering it. The +1 Damage
+  didn't make up for handing the party easier hits (and more
+  Gambling room) on every one of their own turns.
+- **Strike (Vulnerable) has no live target right now** — none of the
+  five Combat Actions above actually target a PC's Bodily or Mental
+  Defense (they all route to Parry/Dodge or Dodge), and Vulnerable only
+  lowers Vital/Mental/Vigilant. It's correctly wired, just inert until
+  a Bodily/Mental-targeting Action exists to pair it with.
+
 ## The point-buy economy behind all of this
 
 Every axis above (Accuracy, Defense, Damage, Resist, Health,

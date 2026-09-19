@@ -13,6 +13,16 @@ otherwise had no counter-play modeled at all. Good for catching relative
 differences between builds and Tiers; the exact win percentages aren't
 precise predictions of real play.
 
+Enemy Abilities (the subset in tunables.ABILITY_COST) are also modeled:
+Crippled/Vulnerable/Bleeding stacks on PCs from Strike (Crippling)/
+Strike (Vulnerable)/Poison (Bleeding), Durable's per-turn Protected
+regen on enemies, all following rulebook.md/glossary.md's real numbers
+(Crippled -1 to attacks/stack, Vulnerable -1 to Vital/Mental/Vigilant
+Defenses/stack, Bleeding 1 damage per stack that decays, Protected
+absorbs Health loss 1-for-1). Fleeting effects (all of the above) decay
+1 stack per bearer's own turn, per glossary.md's [Fleeting] rule - not
+all stacks at once.
+
 `max_rounds` (30, not the original 10) matters more than it looks: a
 fight that's genuinely close but slow-grinding (both sides doing modest
 damage against real Resist/Defense) was hitting the old 10-round cap as
@@ -62,11 +72,12 @@ def pc_gamble_count(pc, target):
     for the extra damage, but only if the *average* card (7) would still
     clear the target's Parry.
     """
+    effective_skill = pc['skill_total'] - pc.get('crippled', 0)
     needed = max(0, target['physres'] - pc['damage'] + 1)
-    max_possible = max(0, (pc['skill_total'] + 13 - target['parry']) // 2)
+    max_possible = max(0, (effective_skill + 13 - target['parry']) // 2)
     if needed > 0:
         return min(needed, max_possible)
-    max_safe = max(0, (pc['skill_total'] + 7 - target['parry']) // 2)
+    max_safe = max(0, (effective_skill + 7 - target['parry']) // 2)
     return min(1, max_safe)
 
 
@@ -74,15 +85,18 @@ def pc_defense_for(target, opp_def):
     """Route an enemy attack's opp_def to the right PC Defense category -
     'Parry/Dodge' lets the target pick whichever's better, same as
     rulebook.md's real rule ("If multiple Defenses are stated, the target
-    chooses which to use")."""
+    chooses which to use"). Vulnerable stacks (-1 to Vital/Mental/
+    Vigilant Defenses per stack, glossary.md) apply to the Bodily/Mental
+    cases only - Dodge and Parry aren't Vulnerable's targets."""
+    vulnerable = target.get('vulnerable', 0)
     if opp_def == 'Parry/Dodge':
         return max(target['parry'], target['dodge'])
     if opp_def == 'Dodge':
         return target['dodge']
     if opp_def == 'Bodily':
-        return target['bodily']
+        return target['bodily'] - vulnerable
     if opp_def == 'Mental':
-        return target['mental']
+        return target['mental'] - vulnerable
     return target['dodge']
 
 
@@ -103,13 +117,34 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None):
                 break
             target = targets[0]
             gambles = pc_gamble_count(pc, target)
-            roll = pc['skill_total'] + flip() - 2 * gambles  # PCs attack with Melee, vs. the enemy's Parry
+            crippled = pc.get('crippled', 0)
+            roll = pc['skill_total'] - crippled + flip() - 2 * gambles  # PCs attack with Melee, vs. the enemy's Parry
             if roll >= target['parry']:
                 dmg = max(0, pc['damage'] + gambles - target['physres'])
+                protected = target.get('protected', 0)
+                if protected > 0 and dmg > 0:
+                    absorbed = min(dmg, protected)
+                    target['protected'] -= absorbed
+                    dmg -= absorbed
                 target['health'] -= dmg
+        # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
+        # [Fleeting] rule), not all stacks at once - Bleeding's decaying
+        # stack is what actually deals its 1 damage.
+        for pc in pcs:
+            if pc['health'] <= 0:
+                continue
+            if pc.get('crippled', 0) > 0:
+                pc['crippled'] -= 1
+            if pc.get('vulnerable', 0) > 0:
+                pc['vulnerable'] -= 1
+            if pc.get('bleeding', 0) > 0:
+                pc['bleeding'] -= 1
+                pc['health'] -= 1
         if all(e['health'] <= 0 for e in enemies):
             return dict(winner='party', rounds=rnd,
                         party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs))
+        if all(p['health'] <= 0 for p in pcs):
+            return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0)
 
         # Enemies' turn: Fighting Style sets attack count, Battle Tactics
         # picks the target (rough proxies, not a real implementation - see
@@ -117,6 +152,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None):
         for e in enemies:
             if e['health'] <= 0:
                 continue
+            abilities = e.get('abilities', [])
+            if 'Durable' in abilities and e.get('protected', 0) < 4:
+                e['protected'] = e.get('protected', 0) + 1
             living_pcs = [p for p in pcs if p['health'] > 0]
             if not living_pcs:
                 break
@@ -134,6 +172,12 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None):
                 if roll >= opp_def_val:
                     dmg = max(0, e['attack_damage'] - target.get('physres', 0))
                     target['health'] -= dmg
+                    if 'Strike (Crippling)' in abilities:
+                        target['crippled'] = target.get('crippled', 0) + 1
+                    if 'Strike (Vulnerable)' in abilities:
+                        target['vulnerable'] = target.get('vulnerable', 0) + 1
+                    if 'Poison (Bleeding)' in abilities:
+                        target['bleeding'] = target.get('bleeding', 0) + 2
                 if target['health'] <= 0:
                     living_pcs = [p for p in pcs if p['health'] > 0]
                     if not living_pcs:

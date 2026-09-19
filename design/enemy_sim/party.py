@@ -38,7 +38,8 @@ def make_party(tier):
     health = T.PC_HEALTH[tier]
     return [dict(name=f"PC{i+1}", parry=parry, dodge=dodge, bodily=bodily, mental=mental,
                  vigilant=vigilant, skill_total=parry - 8,  # Melee's own Skill Total, for the PC's own attack roll
-                 damage=damage, physres=physres, health=health, max_health=health) for i in range(4)]
+                 damage=damage, physres=physres, health=health, max_health=health,
+                 crippled=0, vulnerable=0, bleeding=0) for i in range(4)]
 
 
 if __name__ == "__main__":
