@@ -13,232 +13,87 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
-### 2026-09-19 — Gave enemies the real player Armor system, which surfaced two real simulator gaps
+### 2026-09-19 — Enemies now use real player Armor; found two real gaps doing it
 
-`design/`-only content. Extended the enemy simulator to use the same
-Light/Medium/Heavy Armor players choose from, which exposed that PCs
-had zero modeled counter-play against high Physical Resist (added
-Gambling - rulebook.md's real "-2 to the roll for +1 Extra Success"
-mechanic) and that the combat loop's 10-round cap was quietly masking
-close fights as unresolved draws rather than real wins/losses (raised
-to 30).
-- With both fixed, Light Armor - not Unarmored - turned out to be the
-  tier that reads as genuinely "on-level"; Medium/Heavy remain a real
-  wall even with smart Gambling, which is a sensible outcome for a
-  "tougher elite enemy" option rather than a bug to chase.
-- Retuned all 5 sample enemies to Light Armor and re-validated: zero
-  draws anywhere in the grid now, every on-level fight within ~8 points
-  of 50%, and full (not just near-total) lockout above one's own Tier.
+Gave enemies the same Light/Medium/Heavy Armor choice players get, which broke two things that mattered more than the armor itself.
+- PCs never had a way to punch through high Resist, so added Gambling — the real rulebook trick of risking -2 on a roll for +1 damage.
+- The fight simulator's 10-round cap was turning close fights into fake "draws" instead of real wins or losses, so raised it to 30.
+- Turns out Light Armor, not Unarmored, is actually the "on-level" tier — Medium and Heavy read as legitimately tougher fights now, which is the point.
 
-### 2026-09-19 — PC baseline rebuilt as a real character, enemy roster retuned against it
+### 2026-09-19 — Built a real PC character instead of an abstract Skill Total, retuned enemies to match
 
-`design/`-only content. Replaced the enemy simulator's abstract "Skill
-Total by Tier" PC estimate with a real, named Stat/Skill build per Tier
-(favorite Skill, defensive core, broad utility, XP-exact against
-`rulebook.md`'s own chargen example) — surfaced two real formula
-corrections along the way: PC Weapon Damage uses Body, not Agility, and
-PC Resist is raw Essence with zero Skill needed, which had been badly
-under-modeled before.
-- The corrected (weaker, more realistic) PC numbers broke the old enemy
-  roster outright; retuning found no single Role/Armor/Defense-tier
-  "formula" works across all 5 Levels, so each sample enemy got tuned
-  individually against a systematic search.
-- Result: the cleanest Party Tier × Enemy Level win-rate grid yet — every
-  on-level fight lands within ~4 points of 50%, with near-total lockout
-  above and dominance below. See `ENEMY_ENCOUNTER_DESIGN.md`'s Analysis
-  section for the full grid and an open finding (Levels 2-5 combat now
-  runs slower, hitting the round cap more often) left for a future pass.
+Swapped the enemy sim's fake "Skill Total by Tier" PC for an actual named Stat/Skill build, checked XP-exact against the rulebook's own chargen example.
+- Found two real formula bugs along the way: weapon Damage uses Body, not Agility, and Resist is raw Essence with no Skill needed at all.
+- The corrected (weaker, more honest) PC numbers broke the old enemy roster completely, so every enemy got retuned by hand instead of one shared formula.
+- Result is the cleanest Tier-vs-Level win-rate grid yet, with a real ~50% fight at your own tier every time.
 
-### 2026-09-18 — Does the enemy model actually produce 5 felt power tiers? Checked with a Monte Carlo simulator
+### 2026-09-18 — Checked whether the enemy system actually produces 5 felt power tiers
 
-`design/`-only content. Checked the Enemy Encounter Design system
-(below) against its own stated goal — a party should feel on-level
-with an enemy Level, then clearly outgrow it, then feel stretched by
-the next one, five discrete steps rather than a smooth treadmill — both
-algebraically and empirically. The base stat curve turned out to be
-deliberately gentle (Accuracy/Defense barely move past Level 2, Damage/
-Resist caps outright at Level 4), so the 5-tier feel has to come from
-the Ability catalog and GM pacing, not rising numbers alone. Built a
-small Monte Carlo combat simulator (**`design/enemy_sim/`**) to test
-this directly against 4-vs-4 fights — confirmed the intended shape once
-sample enemies were properly tuned (a party is essentially locked out
-2+ Levels above its own tier, dominant 2+ Levels below, genuinely
-contested right at its own Level), but also surfaced that individual
-build choices (which Defense is Primary, which Armor, which Action)
-swing real difficulty far more than raw Level does — the first attempt
-at a "Level 3" enemy came out needing 5 hits to drop instead of the
-~2 the flat curve implied. The simulator's tunable numbers
-(`enemy_sim/tunables.py`) are kept separate from its mechanics code
-specifically since the PC/enemy baseline models are still being
-actively revised.
+Built a Monte Carlo combat simulator to test the enemy design against its own goal: locked out above your tier, dominant below it, a real fight at your own level.
+- The base stat curve barely moves Level to Level, so the "5 tiers" feeling has to come from the Ability catalog and GM pacing, not rising numbers.
+- Individual build choices (which Defense is Primary, which Armor) swing real difficulty way more than raw Level does — a "Level 3" enemy came out needing 5 hits instead of 2.
 
-### 2026-09-18 — Enemy Encounter Design: a full point-buy system for building enemies, from the designer's own spreadsheet
+### 2026-09-18 — Documented the real Enemy Encounter Design system from an old spreadsheet
 
-`design/`-only content (not player-facing, no rulebook/site changes).
-The designer uploaded `archive/flagonquest_encounter_builder.xlsx` — a
-spreadsheet they'd already built and used at the table for exactly the
-problem the previous entry below was reconstructing from scratch. New
-document, **`design/ENEMY_ENCOUNTER_DESIGN.md`**, documents the real
-system: Enemy Level + a separate "Encounter Slots" dial (with a
-genuinely non-linear Health formula — a 0.5-slot minion gets ⅓ Health,
-not ½, an intentional action-economy tax so a pair of minions can't
-quietly out-perform one standard enemy for the same encounter budget),
-five Role archetypes that nudge specific stats, a Primary/Secondary
-Defense-tiering system that's the actual mechanism behind "this enemy
-is intuitively strong here, weak there," six Battle Tactics (targeting
-AI) and four Fighting Styles (action economy) specifically built to
-stop combat collapsing into melee-clash-and-double-attack, a ~40-entry
-Ability catalog, and a full escalating-cost point-buy economy
-reconciled against an assumed loot/Gold handout. Supersedes the
-from-scratch "Enemy Stat Block by Level" work below (left in place as
-historical record, not deleted) — turned out to be a richer,
-already-tested system for the same problem.
+Found the designer's own spreadsheet for building enemies and wrote it up properly in `ENEMY_ENCOUNTER_DESIGN.md` instead of reconstructing it from scratch.
+- Covers Enemy Level, a separate Encounter Slots toughness dial, five Role archetypes, Defense tiering, Battle Tactics and Fighting Styles, and a ~40-entry Ability catalog.
+- Replaces the earlier "Enemy Stat Block by Level" draft below — same problem, but this is the richer, already-playtested version.
 
-### 2026-09-18 — First GM-facing enemy stat block, plus a Social Encounter running guide
+### 2026-09-18 — First enemy stat block for GMs, plus a Social Encounter running guide
 
-Two new pieces of `design/`-only GM content (not player-facing, no
-rulebook/site changes) — the site itself is unaffected by this entry.
-**An enemy stat block by XP Tier** (`design/GM_GUIDE_NOTES.md`) closes a
-real, previously-flagged gap: this project never had a reference for
-what an enemy's stats should look like. Built around the designer's own
-past methodology for this exact problem — draft what a same-XP-tier PC's
-stats would realistically look like (accounting for XP that goes to
-non-combat Skills too, not just combat ones), then give enemies a slight
-discount off that, plus a separate budget for special abilities.
-Verified against `rulebook.md`'s own worked chargen example (which sums
-to exactly 75 XP, the actual Tier 1 anchor), tiered from there in +50 XP
-steps, with a Minion/Standard/Elite/Boss multiplier for Health since
-toughness needed to be an independent lever from Tier. Full derivation,
-its assumptions, and known limitations are in `design/
-balance_weights_notes.md`. Also added: a practical guide for running
-Social Encounters (`design/GM_GUIDE_NOTES.md`), translating the Social
-Encounter Baseline model below into table-ready pacing advice — when to
-actually bother with Pressure tracking, a round-by-round difficulty
-cheat sheet, and why letting players spend hand cards to rescue a
-near-miss is load-bearing for the intended win rate.
+Added a real answer to "what should an enemy's stats look like" — drafted from the same-tier PC's stats, then discounted slightly and given a separate ability budget.
+- Verified against the rulebook's own chargen example (75 XP), tiered up from there in +50 steps, with a Minion/Standard/Elite/Boss multiplier for toughness.
+- Also added a practical guide for running Social Encounters at the table — when Pressure actually matters, and a round-by-round difficulty cheat sheet.
 
-### 2026-09-18 — Social Contests renamed to Social Encounters, Pressure clarified, Stoic Collar
+### 2026-09-18 — Social Contests renamed to Social Encounters, plus a real Pressure fix
 
-"Social Contest" is now "Social Encounter" throughout the rulebook,
-glossary, and every technique/item/feature that referenced it, moving
-away from the old "Contest" framing. The Pressure rules gained two real
-clarifications along with the rename: Pressure's Bad Luck now explicitly
-applies to Support checks too, not just the lead Statement, and effects
-that soften Pressure now distinguish *ignoring* it (the Bad Luck doesn't
-apply, but Pressure still climbs toward the failure point) from
-*removing* it (actually cleared — rarer and stronger), closing off a
-would-be exploit where a Pressure-negation effect could stall an
-encounter's failure clock indefinitely. Backing all of this is a new
-**Social Encounter Baseline** model in `design/balance_weights_notes.md`
-— the social encounter's counterpart to the combat Baseline, built from
-scratch since nothing like it existed before, locked at a 57.03%
-baseline win rate. **Stoic Collar** (Neck, Level 1) is the first item
-priced against it: once per encounter, ignore 1 Pressure the party
-would otherwise apply that round. The rename also surfaced two older
-techniques (Challenge, Cry of Victory, Exert Pressure, and A Perfectly
-Good Explanation) that reference mechanics — "front" positioning,
-"Concessions" — that no longer exist in the current rules; flagged in
-`design/IDEAS_BACKLOG.md` for a real rework rather than patched over.
+"Social Contest" is now "Social Encounter" everywhere in the book. Pressure got two real fixes alongside the rename.
+- Pressure's Bad Luck now hits Support checks too, not just the lead Statement.
+- Ignoring Pressure and removing it are now different things — ignoring doesn't stop it climbing, which closes an exploit that could stall an encounter forever.
+- New Social Encounter Baseline model backs all of it, and Stoic Collar (Neck, Level 1) is the first item priced against it.
 
-### 2026-09-18 — Backlog cleanup: full archive sweep, Head slot review, Third Eye
+### 2026-09-18 — Archive sweep, Head slot cleanup, and a new item: Third Eye
 
-A full sweep of the old design archive to make sure nothing useful from
-past versions was sitting forgotten, plus a pass through the resulting
-backlog's Head-slot candidates. Three of four (True-Seeing Lenses,
-Circlet of Clarity, Comprehend Languages Circlet) turned out to reach
-for mechanics this game intentionally doesn't have (Invisibility,
-illusion magic, a distinct mind-control keyword, a language system) and
-got cut. **Third Eye** (Head, Level 1) is the one that stuck — shortens
-the rulebook's hour-long "examine a Masterwork item" rule to 10
-minutes, plus Good Luck identifying unfamiliar magical phenomena.
-`design/IDEAS_BACKLOG.md` also picked up a "Reviewed and declined"
-section, a running log of ideas that got a real look and were turned
-down, so past no's stay easy to check rather than needing to be
-re-derived.
+Swept the old design archive for anything useful that got forgotten, then reviewed the Head-slot candidates it turned up.
+- Cut three of four — they leaned on mechanics this game doesn't have, like Invisibility or a language system.
+- Third Eye (Head, Level 1) stuck: shortens the hour-long "examine a Masterwork item" rule down to 10 minutes.
+- Backlog now has a "Reviewed and declined" section, so past no's don't need re-deriving.
 
-### 2026-09-18 — Three items translated from a separate game's Charms
+### 2026-09-18 — Three new items, translated from another game's Charms
 
-Three new Masterwork items, all translated from Charms in a separate
-tabletop game's item list used as inspiration for a few equipment
-slots that needed fresh ideas. **Pillar Ring** (Ring, Level 2)
-conjures a destructible, person-sized pillar of force that grants
-Total Cover, the first item in the game to grant that directly.
-**Ring of Comets** (Ring, Level 3) unleashes a delayed, guaranteed-hit
-blast of magic at a chosen point, trading an attack roll for a round
-of telegraph. Between the two, Ring's total absence of Precious-
-material items (13 items, none) and the Precious Material Type gap
-are both fully closed. **Dryad's Mantle** (Neck, Level 2) plants a
-sapling that lets the wearer escape one incoming hit entirely, once
-per encounter.
+Pulled three Charms from a different tabletop game's item list and translated them into proper Masterwork items.
+- Pillar Ring (Ring, Level 2) conjures a person-sized pillar of force that grants Total Cover — the first item in the game to do that.
+- Ring of Comets (Ring, Level 3) trades an attack roll for a round of telegraph in exchange for a guaranteed hit, and closes Ring's last material-type gap.
+- Dryad's Mantle (Neck, Level 2) lets the wearer dodge one hit entirely, once per encounter.
 
-### 2026-09-17 — Preserving Larder, closing out the Cloth/Leather gap
+### 2026-09-17 — Preserving Larder closes the last Cloth/Leather gap
 
-A food-only sidegrade to Placeholder's Spacious Satchel — same huge
-capacity, but restricted to Food materials/rations, and keeps them
-from spoiling. Closes out the last remaining Cloth/Leather Material
-Type gap (Level 3). Priced on the food it saves from spoiling rather
-than the usual storage-capacity model, which doesn't fit a bag nobody
-reaches into mid-combat. Also added base-game guidance for how much
-Food a kill yields (rulebook.md's Material Types section), previously
-only spelled out for the Goblin Game supplement.
+New item: Preserving Larder, a food-only sidegrade of Spacious Satchel that also keeps rations from spoiling.
+- Closes the last remaining Cloth/Leather gap at Level 3.
+- Priced on the food it saves from spoiling, not the usual storage-capacity model.
+- Also added base-game guidance for how much Food a kill yields, which previously only existed for the Goblin Game supplement.
 
 ### 2026-09-17 — Instinct Defense renamed to Vigilant Defense
 
-Renamed across the rulebook, glossary, and every item/Technique/
-background that references it — "Instinct" and "Insight" (the Skill
-that governs it) were too easy to mix up in conversation despite
-meaning different things.
+Renamed across the whole book — "Instinct" and "Insight" (the Skill behind it) were too easy to mix up out loud.
 
-### 2026-09-17 — New Technique (Distraction) and four Cloth/Leather items
+### 2026-09-17 — New Technique (Distraction) plus four Cloth/Leather items
 
-- **Distraction** (new Technique, Level 1, Encounter, Stealth 2) — a
-  Stealth attack that distracts everyone near a chosen point for a few
-  rounds, useful for slipping past guards rather than for a fight.
-  Reconstructed from an old, never-finished draft and rebalanced
-  against Vanish, its closest sibling in the current ruleset.
-- **Quilted Overcoat** (Torso, Level 2, 40 Gold) — +1 Physical Resist,
-  built only on Basic Clothing rather than Armor, so it stays
-  compatible with "fighting unarmored" builds.
-- **Sure-Grip Boots** (Feet, Level 1, 20 Gold) — removes the climbing
-  movement cap and grants Good Luck while climbing, filling a real gap
-  between the game's combat wall-running items and nothing for
-  sustained climbing.
-- **Dancing Shoes** (Feet, Level 1, 20 Gold) — Good Luck to blend in
-  at a formal event, and never counts as underdressed for one.
-- **Gloves of Misdirection** (Hands, Level 1, 20 Gold) — grants a copy
-  of the new Distraction Technique.
-- All four fill the last of the Cloth/Leather material-type gaps
-  identified in the earlier Slot × Level review.
+Five new pieces of content, all filling out the last Cloth/Leather gaps from the earlier Slot × Level review.
+- Distraction (Technique, Level 1) is a Stealth attack for slipping past guards, rebuilt from an old unfinished draft.
+- Quilted Overcoat, Sure-Grip Boots, Dancing Shoes, and Gloves of Misdirection round out Torso/Feet/Hands — Physical Resist, easier climbing, blending in at formal events, and a free copy of Distraction.
 
-### 2026-09-17 — Crafting recipe cleanup: Main Types wording, Basic Clothing
+### 2026-09-17 — Crafting recipes: cleaner "or" wording for Main Materials
 
-- Nine crafting recipes (Weapon/Armor via Carving or Tailoring, plus
-  Unarmed Enhancer and Musical Instrument) had their Main Materials
-  reworded from an ambiguous `Wood, Bone`/`Cloth, Leather` comma-list
-  to an explicit `Wood or Bone`/`Cloth or Leather` — matches the intent
-  (either material works) rather than the literal "you need one of
-  each" reading the rulebook's own Materials rule gives an unjoined
-  list.
-- Basic Clothing's own recipe now lists Cloth or Leather as its Main
-  Types (previously Cloth-only, with Leather buried in Optional) and
-  Bone/Metal/Precious as Optional.
+Nine recipes had their Main Materials reworded from an ambiguous comma-list to an explicit "or" — the intent was always "either material works," not "bring one of each."
+- Basic Clothing's own recipe now lists Cloth or Leather as Main, instead of Cloth-only with Leather buried in Optional.
 
-### 2026-09-17 — Crafting School boundaries clarified: Neck/Clothing, Carving Medium Armor, Bows
+### 2026-09-17 — Crafting School fixes: Neck items, Carving's ceiling, Bows
 
-- Basic Clothing is now a valid base item for Neck Masterwork items
-  (previously Neck only offered Basic Jewelry, despite several Neck
-  items being literal cloaks) — all ten existing Neck items updated.
-- Basic Clothing and Basic Jewelry's own descriptions now spell out
-  their dual purpose: plain mundane wear on its own, or the base item
-  a Masterwork enchantment for the same slot gets built onto.
-- Carving can now make Medium Armor (previously stopped at Light,
-  while Tailoring and Smithing both reached Medium) — a genuine
-  oversight, now fixed with a fresh-build and an upgrade-from-Light
-  recipe matching Tailoring's own shape.
-- Bows are now Carving-exclusive, giving Carving a real niche of its
-  own rather than just trailing Smithing everywhere — matches
-  `rulebook.md`'s own long-standing worked example, which already
-  assumed a Carving-based bow.
+Three real gaps closed in the crafting rules.
+- Basic Clothing is now a valid base for Neck items too, not just Basic Jewelry — all ten existing Neck items got updated to match.
+- Carving can now build Medium Armor, matching Tailoring and Smithing instead of stopping at Light.
+- Bows are now Carving-exclusive, giving Carving its own real niche and matching the rulebook's existing worked example.
 
 ### 2026-09-16 — Two new Masterwork items: Clarion Cord, Kindled Wrap
 

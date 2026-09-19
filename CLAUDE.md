@@ -776,11 +776,24 @@ Two recurring environment quirks worth knowing:
 - Add a new dated entry to `README.md`'s changelog section for each
   notable commit — skip pure internal housekeeping (file reorganization,
   a stale comment fix) that doesn't change anything a user would notice.
-  **Keep it to ~3 bullet points, executive-summary style, even for a
-  complex change** — not a full paragraph walking through the reasoning
-  (that's what the commit body and the design docs themselves are for).
-  State what changed and why it matters to a reader skimming the list,
-  not the derivation.
+  **One summary sentence for the heading line, then 2-3 bullets, each
+  one plain sentence** — even for a complex multi-part change. No
+  sub-clauses stacked on em-dashes, no "surfaced a real gap" scaffolding,
+  no walking through the reasoning (that's what the commit body and the
+  design docs are for) — just what changed, said once, plainly. If a
+  bullet needs a semicolon to fit everything in, it's two bullets.
+  Corrected from an earlier "~3 bullets" version of this same rule that
+  in practice still let entries run long — this is the stricter version,
+  going forward.
+- **Voice for changelog entries (and any other human-facing prose, not
+  just code comments)**: write like the designer's own notes, not like
+  an AI summarizing a diff. Short, direct sentences. Contractions.
+  Skip the hedge-words a model defaults to — "notably," "genuinely,"
+  "deliberately," "surfaced," "consequential" — and the "X, not Y"
+  contrastive-clause habit stacked three deep in one sentence. When in
+  doubt, check `archive/flagonquest_manifesto_*.md` or the designer's
+  own chat messages for the actual register (plain, a little dry,
+  gets to the point) rather than reaching for polished exposition.
 - Before committing, always check `git status`/`git diff --stat`, and
   fetch + compare against `origin/<branch>` to confirm nothing else
   changed the remote branch since the last push.
