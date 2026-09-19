@@ -13,6 +13,23 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-19 — Gave enemies the real player Armor system, which surfaced two real simulator gaps
+
+`design/`-only content. Extended the enemy simulator to use the same
+Light/Medium/Heavy Armor players choose from, which exposed that PCs
+had zero modeled counter-play against high Physical Resist (added
+Gambling - rulebook.md's real "-2 to the roll for +1 Extra Success"
+mechanic) and that the combat loop's 10-round cap was quietly masking
+close fights as unresolved draws rather than real wins/losses (raised
+to 30).
+- With both fixed, Light Armor - not Unarmored - turned out to be the
+  tier that reads as genuinely "on-level"; Medium/Heavy remain a real
+  wall even with smart Gambling, which is a sensible outcome for a
+  "tougher elite enemy" option rather than a bug to chase.
+- Retuned all 5 sample enemies to Light Armor and re-validated: zero
+  draws anywhere in the grid now, every on-level fight within ~8 points
+  of 50%, and full (not just near-total) lockout above one's own Tier.
+
 ### 2026-09-19 — PC baseline rebuilt as a real character, enemy roster retuned against it
 
 `design/`-only content. Replaced the enemy simulator's abstract "Skill

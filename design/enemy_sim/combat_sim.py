@@ -5,11 +5,24 @@ rounds to resolve, and party Health remaining on a win.
 
 Deliberately simplified, not a real combat engine - see design/
 ENEMY_ENCOUNTER_DESIGN.md's Analysis section for the full list of what's
-NOT modeled (no Extra Successes/Gambling/Techniques/items, no distinct
-PC roles, no positioning, no real initiative, rough Battle Tactics
-targeting proxies). Good for catching relative differences between
-builds and Tiers; the exact win percentages aren't precise predictions
-of real play.
+NOT modeled (no real Extra Successes from suit-pool matching, no
+Techniques/items, no distinct PC roles, no positioning, no real
+initiative, rough Battle Tactics targeting proxies). PCs DO now Gamble
+(see `pc_gamble_count`) - added specifically because armored enemies
+otherwise had no counter-play modeled at all. Good for catching relative
+differences between builds and Tiers; the exact win percentages aren't
+precise predictions of real play.
+
+`max_rounds` (30, not the original 10) matters more than it looks: a
+fight that's genuinely close but slow-grinding (both sides doing modest
+damage against real Resist/Defense) was hitting the old 10-round cap as
+an unresolved "draw" most of the time rather than actually playing out -
+e.g. one build read as "10% win rate" under the old cap that was really
+a near-even 201-vs-211 split once let run to a real conclusion (1588 of
+2000 trials had been draws). Always sanity-check a low win rate against
+the raw party/enemies/draw counts (`simulate()`'s 4th return value)
+before assuming it means "this build loses," not just "this build is
+slow to resolve."
 """
 import random
 import copy
@@ -23,6 +36,38 @@ def flip():
 
 def flip_best_of(n):
     return max(flip() for _ in range(n))
+
+
+def pc_gamble_count(pc, target):
+    """How many times a 'clever' PC Gambles on this attack (rulebook.md's
+    Gambling rule: each Gamble is -2 to the roll, but grants +1 Extra
+    Success - and +1 damage - if the flip still hits). Not modeled at all
+    before this - without it, a target whose Physical Resist reaches or
+    exceeds the PC's own weapon Damage was untouchable no matter how many
+    rounds passed, which isn't how a real player would actually respond
+    to a wall of Resist.
+
+    `needed` is how many Extra Successes it takes to make a hit deal net
+    +1 damage through the target's Resist - a normal attack against a
+    target with `needed > 0` deals exactly 0 on every hit, so a player
+    who recognizes that gambles regardless of the accuracy cost: some
+    chance of real damage beats a guaranteed zero. `max_possible` is the
+    only cap applied then - never gamble past the point where even the
+    best possible card (13) couldn't clear the target's Parry, since
+    that's a wasted action no one would actually take.
+
+    Only when `needed == 0` (a normal hit is already doing something)
+    does the more cautious "plenty of Skill Total to spare" judgment
+    call from the rulebook's own Gambling text apply - gamble once more
+    for the extra damage, but only if the *average* card (7) would still
+    clear the target's Parry.
+    """
+    needed = max(0, target['physres'] - pc['damage'] + 1)
+    max_possible = max(0, (pc['skill_total'] + 13 - target['parry']) // 2)
+    if needed > 0:
+        return min(needed, max_possible)
+    max_safe = max(0, (pc['skill_total'] + 7 - target['parry']) // 2)
+    return min(1, max_safe)
 
 
 def pc_defense_for(target, opp_def):
@@ -41,7 +86,7 @@ def pc_defense_for(target, opp_def):
     return target['dodge']
 
 
-def run_fight(tier, enemy_level, n_enemies=4, max_rounds=10, seed=None):
+def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None):
     if seed is not None:
         random.seed(seed)
     pcs = make_party(tier)
@@ -57,9 +102,10 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=10, seed=None):
             if not targets:
                 break
             target = targets[0]
-            roll = pc['skill_total'] + flip()  # PCs attack with Melee, vs. the enemy's Parry
+            gambles = pc_gamble_count(pc, target)
+            roll = pc['skill_total'] + flip() - 2 * gambles  # PCs attack with Melee, vs. the enemy's Parry
             if roll >= target['parry']:
-                dmg = max(0, pc['damage'] - target['physres'])
+                dmg = max(0, pc['damage'] + gambles - target['physres'])
                 target['health'] -= dmg
         if all(e['health'] <= 0 for e in enemies):
             return dict(winner='party', rounds=rnd,

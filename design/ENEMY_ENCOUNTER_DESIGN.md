@@ -595,73 +595,95 @@ correction to the PC baseline, not a re-derivation landing in the same
 place — the corrected numbers are generally weaker (more realistically
 spread) than the earlier abstract estimate, especially on Resist.
 
-That correction broke the previous roster (below) outright — Levels
-2-5 collapsed to 0-2% win rate against the new, weaker PC numbers, the
-same order-of-magnitude problem the first pass diagnosed, just from the
-opposite direction (enemies now overtuned, not undertuned). Retuning
-against the corrected baseline also surfaced a second finding: **no
-single Role/Armor/Defense-tier "formula" produced a good win rate across
-all 5 Levels at once** — a build pattern that landed close to 50% for
-Levels 3 and 5 made Levels 1, 2, and 4 nearly unloseable (95-99% win
-rate) when applied there unchanged. Each Level's sample enemy below was
-therefore searched and tuned individually (a systematic search over
-Role x Defense-tier permutation x Armor x Action x Fighting Style x
-Battle Tactic per Level, `design/enemy_sim/` tuning scripts), not
-derived from one repeated pattern:
+That correction broke the previous roster outright — Levels 2-5
+collapsed to 0-2% win rate against the new, weaker PC numbers, the same
+order-of-magnitude problem the first pass diagnosed, just from the
+opposite direction (enemies now overtuned, not undertuned). A first
+retuning pass (searched per Level, since no single Role/Defense-tier
+"formula" worked across all 5 Levels at once - a build tuned for
+Levels 3/5 made 1/2/4 nearly unloseable applied unchanged) landed a
+clean-looking diagonal, but two further fixes were needed before the
+numbers could be trusted.
+
+**Third pass — giving enemies the real player Armor system surfaced two
+real gaps, not just a tuning nuance.** The designer asked for enemies to
+use the same Light/Medium/Heavy Armor choice players do (`enemy_
+builder.py`'s `ARMOR` table is a deliberate simplification of the real
+`armor_categories.csv`, anchored so Light matches it exactly - see
+`tunables.py`'s own comment). Testing it found:
+
+1. **PCs had no counter-play modeled against high Physical Resist at
+   all.** `rulebook.md`'s damage rule is a flat subtraction (`damage -
+   Resist`), and a Medium/Heavy-armored enemy's Resist can rival a PC's
+   whole weapon Damage - meaning normal attacks dealt exactly 0 net
+   damage, forever, against nothing more exotic than a Level 2 enemy in
+   Heavy Armor. The real counter is Gambling (rulebook.md: declare N
+   Gambles before a flip, each is -2 to the roll but grants +1 Extra
+   Success - and +1 damage - if it still hits) - not modeled at all
+   before this. Added `combat_sim.pc_gamble_count`: a PC gambles enough
+   to make a hit deal net damage when a normal hit would deal none
+   (since a real player facing a guaranteed zero has nothing to lose by
+   trying), and gambles once more opportunistically when it's already a
+   safe bet.
+2. **The 10-round cap was quietly masking the real win/loss split.**
+   A build that read as "10% win rate" turned out to be a near-even
+   201-vs-211 split once allowed to actually resolve - 1588 of 2000
+   trials had been hitting the cap as an unresolved "draw," not a loss,
+   and draws don't count toward win rate. Raised `run_fight`'s default
+   `max_rounds` from 10 to 30. This also explains the previous pass's
+   own flagged "Levels 2-5 run slower, more draws" finding - it wasn't
+   a symptom of the Level curve, it was the round cap cutting close,
+   slow-grinding fights short before they could resolve.
+
+With both fixes in place, retesting confirmed **Light Armor specifically
+is the tier that reads as "on-level"** - Unarmored is too easy, and
+Medium/Heavy remain a real wall (0-12% win rate) even with smart
+Gambling, reading as a legitimately tougher "elite" encounter rather
+than an on-level fight. All five sample enemies below use Light Armor
+for this reason, not an arbitrary pick:
 
 | Enemy | Level | Role | Primary/Secondary Defense | Action | Armor | Battle Tactics | Fighting Style |
 |---|---|---|---|---|---|---|---|
-| Marsh Viper Scout | 1 | Striker | Bodily / Parry/Dodge | Offensive Melee | Light | Assassin | Flurry |
-| Ironbranch Skirmisher | 2 | Striker | Mental / Bodily | Ranged Weapon | Medium | Assassin | Skirmisher |
-| Ironbranch Warden | 3 | None | Mental / Bodily | Defensive Melee | Unarmored | Assassin | Guarded |
-| Deadbough Priest | 4 | Tank | Bodily / Mental | Melee Spell | Unarmored | Assassin | Guarded |
-| Deep Coven Matriarch | 5 | Strategist | Mental / Bodily | Melee Spell | Unarmored | Assassin | Guarded |
+| Marsh Viper Scout | 1 | Striker | Bodily / Parry/Dodge | Offensive Melee | Light | Hit Whatever | Flurry |
+| Ironbranch Skirmisher | 2 | Bruiser | Parry/Dodge / Mental | Ranged Spell | Light | Hit Whatever | Flurry |
+| Ironbranch Warden | 3 | Bruiser | Bodily / Mental | Ranged Weapon | Light | Assassin | Guarded |
+| Deadbough Priest | 4 | None | Bodily / Mental | Melee Spell | Light | Assassin | Flurry |
+| Deep Coven Matriarch | 5 | Striker | Mental / Bodily | Ranged Spell | Light | Assassin | Guarded |
 
-**The resulting Party Tier × Enemy Level grid** (win rate %, 2000
-trials/cell, `design/enemy_sim/run_grid.py`):
+**The resulting Party Tier × Enemy Level grid** (win rate %, 1500
+trials/cell, `design/enemy_sim/run_grid.py`, `max_rounds=30`):
 
 | Tier | L1 | L2 | L3 | L4 | L5 |
 |---|---|---|---|---|---|
-| 1 | **46.9** | 0.9 | 0.0 | 0.0 | 0.0 |
-| 2 | 98.9 | **50.8** | 0.8 | 0.0 | 0.0 |
-| 3 | 100.0 | 99.1 | **53.5** | 0.0 | 0.1 |
-| 4 | 100.0 | 100.0 | 99.9 | **49.0** | 30.8 |
-| 5 | 100.0 | 100.0 | 100.0 | 69.7 | **50.8** |
+| 1 | **46.3** | 0.0 | 0.0 | 0.0 | 0.0 |
+| 2 | 98.6 | **49.0** | 0.0 | 0.0 | 0.0 |
+| 3 | 100.0 | 99.3 | **52.3** | 0.0 | 0.0 |
+| 4 | 100.0 | 100.0 | 100.0 | **50.9** | 39.3 |
+| 5 | 100.0 | 100.0 | 100.0 | 44.3 | **42.3** |
 
-This is the cleanest diagonal this project has produced yet — every
-on-level cell lands within ~4 points of 50% (46.9-53.5%), and lockout
-above one's own Tier is near-total (0-0.9%). Reading any column top to
-bottom: a party well below the enemy's Level is locked out, the party
-at that Level gets a genuine, uncertain fight (bold diagonal), and a
-party that's grown well past it wins comfortably (98-100%). Two cells
-are softer than the rest — Tier 5 vs. Level 4 (69.7%, expected closer to
-a near-stomp like the other one-tier-below cells) and Tier 4 vs. Level 5
-(30.8%, expected closer to full lockout like the other one-tier-above
-cells) — left as-is rather than force-tuned further, same reasoning as
-before: the underlying baselines are still expected to move.
-
-**A second caveat from this pass**: Levels 2-5 (not Level 1) resolve
-much more slowly than before — average 9-9.4 rounds out of a 10-round
-cap, with roughly 35-49% of trials hitting that cap as an unresolved
-draw rather than a clean win/loss. Level 1 fights stay fast and clean
-(~5 rounds, ~12 draws out of 2000). Spot-checked whether this was tied
-to a specific Action choice (ranged vs. melee) per Level and it wasn't —
-swapping actions kept the same high-draw pattern, so this reads as
-something structural to how Levels 2+ compare (Defenses/Health scaling
-outpacing what 10 rounds can resolve at this simulator's simplified
-hit rates) rather than a pick this particular roster happened to make.
-Not fixed in this pass — flagged here as a real, unresolved finding for
-whoever next revisits `tunables.py`'s Level curve or `combat_sim.py`'s
-round cap.
+Zero draws anywhere in this grid (every cell now resolves to an actual
+win or loss within 30 rounds) - the cleanest, most trustworthy version
+of this diagonal yet, every on-level cell within ~8 points of 50% and
+lockout above one's own Tier now *fully* clean (0.0%, not just close).
+One soft spot: Tier 5 vs. Level 4 (44.3%) reads slightly *weaker* than
+Tier 4 vs. Level 4 (50.9%), when a stronger party should do at least as
+well - most likely noise from the PC build's own per-Skill growth not
+being perfectly monotonic tier-to-tier (`PC_SKILLS_COMBAT`), not a
+grid-construction bug; left as-is rather than force-tuned, same
+reasoning as always: the underlying baselines are still expected to
+move.
 
 **Caveat carried over from the tuning process itself**: reaching that
-clean diagonal took real, deliberate build choices per enemy — it
-didn't fall out of the base Level curve automatically, and (per the
-finding above) didn't fall out of one reusable build pattern either.
-The underlying PC-Tier/enemy-Level baselines in `design/enemy_sim/
-tunables.py` are themselves expected to move as the PC and enemy models
-get worked on more (per the designer). Re-run `python3 run_grid.py`
-after any tunables change to see where the diagonal lands.
+clean diagonal took real, deliberate build choices per enemy - it
+didn't fall out of the base Level curve automatically, and didn't fall
+out of one reusable build pattern either. The underlying PC-Tier/
+enemy-Level baselines in `design/enemy_sim/tunables.py` are themselves
+expected to move as the PC and enemy models get worked on more (per the
+designer). Re-run `python3 run_grid.py` after any tunables change to
+see where the diagonal lands - and when interpreting a *low* win rate
+from any future run, check the raw party/enemies/draw counts
+(`simulate()`'s 4th return value) before assuming it means "this build
+loses" rather than "this build is just slow to resolve."
 
 ## Superseded sources in the same workbook — historical only
 

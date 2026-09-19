@@ -23,7 +23,18 @@ ABILITY_RATE = {1: 2, 2: 3, 3: 4, 4: 5, 5: 8}
 # ---- Encounter Slots -> Health multiplier (non-linear, action-economy tax) ----
 SLOT_MULTIPLIER = {1: 1, 0.5: 1 / 3, 2: 3}
 
-# ---- Armor tiers (Combat Armor catalog) ----
+# ---- Armor tiers ----
+# Not a literal copy of the player-facing armor_categories.csv (which
+# gives every bonus relative to bare skin) - deliberately relative to an
+# assumed baseline of an enemy already wearing some armor (per the
+# designer: "a baseline of them having 1 armor"), i.e. Light's own
+# numbers here (dodge/speed +0, physres +1) ARE that baseline. Unarmored
+# then reads as trading that armor away for +1 Dodge/+1 Speed; Medium/
+# Heavy read as layering on more Physical Resist at a cost to Dodge and
+# Speed, same shape as the real player table's own tradeoff, just
+# anchored one step over so an enemy's resulting stat block still lands
+# close to what a similarly-built PC would have (verified against
+# party.py's PC physres, which is raw Essence with no armor modeled).
 ARMOR = {
     "Unarmored": {"dodge": 1, "speed": 1, "physres": 0},
     "Light":     {"dodge": 0, "speed": 0, "physres": 1},
