@@ -25,6 +25,22 @@ def flip_best_of(n):
     return max(flip() for _ in range(n))
 
 
+def pc_defense_for(target, opp_def):
+    """Route an enemy attack's opp_def to the right PC Defense category -
+    'Parry/Dodge' lets the target pick whichever's better, same as
+    rulebook.md's real rule ("If multiple Defenses are stated, the target
+    chooses which to use")."""
+    if opp_def == 'Parry/Dodge':
+        return max(target['parry'], target['dodge'])
+    if opp_def == 'Dodge':
+        return target['dodge']
+    if opp_def == 'Bodily':
+        return target['bodily']
+    if opp_def == 'Mental':
+        return target['mental']
+    return target['dodge']
+
+
 def run_fight(tier, enemy_level, n_enemies=4, max_rounds=10, seed=None):
     if seed is not None:
         random.seed(seed)
@@ -41,7 +57,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=10, seed=None):
             if not targets:
                 break
             target = targets[0]
-            roll = pc['skill_total'] + flip()
+            roll = pc['skill_total'] + flip()  # PCs attack with Melee, vs. the enemy's Parry
             if roll >= target['parry']:
                 dmg = max(0, pc['damage'] - target['physres'])
                 target['health'] -= dmg
@@ -68,7 +84,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=10, seed=None):
             n_attacks = 2 if fighting_style == 'Flurry' else 1
             for _ in range(n_attacks):
                 roll = e['accuracy'] + (flip_best_of(2) if fighting_style == 'Aimed Shot' else flip())
-                opp_def_val = target['defense']
+                opp_def_val = pc_defense_for(target, e['opp_def'])
                 if roll >= opp_def_val:
                     dmg = max(0, e['attack_damage'] - target.get('physres', 0))
                     target['health'] -= dmg
