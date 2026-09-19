@@ -558,11 +558,11 @@ The algebra above checks out, but it can't see everything — multiple
 enemies, multiple rounds, and how a GM's actual Role/Action/Armor/
 Defense-tier choices compound together. Built a small combat simulator
 (`design/enemy_sim/`) to test the "5 discrete tiers" hypothesis
-directly: 4 identical party members (per the PC power-per-Tier numbers
-above) against 4 copies of a same-Level enemy, fought out thousands of
-times with real card flips, tracking win rate, rounds to resolve, and
-party Health remaining. See `design/enemy_sim/README.md` for the tool
-itself; this section is the finding.
+directly: 4 party members (per the PC power-per-Tier numbers above)
+against 4 copies of a same-Level enemy, fought out thousands of times
+with real card flips, tracking win rate, rounds to resolve, and party
+Health remaining. See `design/enemy_sim/README.md` for the tool itself;
+this section is the finding.
 
 **First pass, enemies picked straight off the base Level curve, no
 special tuning**: wildly inconsistent on-level win rates — 47%, 8.5%,
@@ -578,49 +578,87 @@ simulator too along the way: it wasn't giving PCs any Physical Resist
 at all, inflating difficulty everywhere (worst against double-attack
 Fighting Styles) until fixed.
 
-**After retuning each sample enemy** (swapping which Defense category is
-Primary vs. Secondary, adjusting Armor, picking a less stacking-prone
-Action/Fighting Style — the same kind of choices any GM would make
-building a real enemy) to land close to a genuine on-level fight at its
-own Tier:
+**Second pass — the PC side itself got replaced.** The abstract
+"Skill Total by Tier" estimate this section's algebra used above (and
+the party.py that originally fed the simulator) was replaced with a
+real, named Stat/Skill build per Tier — an actual character (favorite
+Skill, a defensive core, broad utility Skills, real Stats), verified
+XP-exact against `rulebook.md`'s own chargen worked example rather than
+an abstract number. See `design/enemy_sim/tunables.py`'s `PC_SKILLS`/
+`PC_STATS` for the build and its own comments for the full derivation
+and every correction that went into it — most consequentially, PC
+Weapon Damage uses **Body** (not Agility, `weapon_categories.csv`) and
+PC Resist is **raw Essence with zero Skill investment needed**
+(rulebook.md) — the latter had been badly under-modeled, making PCs
+read as far too fragile before the fix. This is a real, meaningful
+correction to the PC baseline, not a re-derivation landing in the same
+place — the corrected numbers are generally weaker (more realistically
+spread) than the earlier abstract estimate, especially on Resist.
+
+That correction broke the previous roster (below) outright — Levels
+2-5 collapsed to 0-2% win rate against the new, weaker PC numbers, the
+same order-of-magnitude problem the first pass diagnosed, just from the
+opposite direction (enemies now overtuned, not undertuned). Retuning
+against the corrected baseline also surfaced a second finding: **no
+single Role/Armor/Defense-tier "formula" produced a good win rate across
+all 5 Levels at once** — a build pattern that landed close to 50% for
+Levels 3 and 5 made Levels 1, 2, and 4 nearly unloseable (95-99% win
+rate) when applied there unchanged. Each Level's sample enemy below was
+therefore searched and tuned individually (a systematic search over
+Role x Defense-tier permutation x Armor x Action x Fighting Style x
+Battle Tactic per Level, `design/enemy_sim/` tuning scripts), not
+derived from one repeated pattern:
 
 | Enemy | Level | Role | Primary/Secondary Defense | Action | Armor | Battle Tactics | Fighting Style |
 |---|---|---|---|---|---|---|---|
-| Marsh Viper Scout | 1 | Striker | Parry/Dodge / Bodily | Offensive Melee | Light | Assassin | Skirmisher |
-| Ironbranch Skirmisher | 2 | Striker | Parry/Dodge / Mental | Offensive Melee | Light | Hit Whatever | Flurry |
-| Ironbranch Warden | 3 | Defensive | Parry/Dodge / Bodily | Offensive Melee | Light | Hold the Line | Guarded |
-| Deadbough Priest | 4 | Tank | Mental / Bodily | Ranged Spell | Medium | Vanguard | Guarded |
-| Deep Coven Matriarch | 5 | Tank | Mental / Bodily | Ranged Spell | Light | Vanguard | Flurry |
+| Marsh Viper Scout | 1 | Striker | Bodily / Parry/Dodge | Offensive Melee | Light | Assassin | Flurry |
+| Ironbranch Skirmisher | 2 | Striker | Mental / Bodily | Ranged Weapon | Medium | Assassin | Skirmisher |
+| Ironbranch Warden | 3 | None | Mental / Bodily | Defensive Melee | Unarmored | Assassin | Guarded |
+| Deadbough Priest | 4 | Tank | Bodily / Mental | Melee Spell | Unarmored | Assassin | Guarded |
+| Deep Coven Matriarch | 5 | Strategist | Mental / Bodily | Melee Spell | Unarmored | Assassin | Guarded |
 
-**The resulting Party Tier × Enemy Level grid** (win rate %, 3000
+**The resulting Party Tier × Enemy Level grid** (win rate %, 2000
 trials/cell, `design/enemy_sim/run_grid.py`):
 
 | Tier | L1 | L2 | L3 | L4 | L5 |
 |---|---|---|---|---|---|
-| 1 | 96.0 | 2.8 | 0.0 | 0.0 | 0.0 |
-| 2 | 100.0 | **53.3** | 0.1 | 0.0 | 0.0 |
-| 3 | 100.0 | 99.0 | **48.0** | 0.0 | 0.0 |
-| 4 | 100.0 | 100.0 | 99.5 | **26.7** | 15.6 |
-| 5 | 100.0 | 100.0 | 100.0 | 64.2 | **63.1** |
+| 1 | **46.9** | 0.9 | 0.0 | 0.0 | 0.0 |
+| 2 | 98.9 | **50.8** | 0.8 | 0.0 | 0.0 |
+| 3 | 100.0 | 99.1 | **53.5** | 0.0 | 0.1 |
+| 4 | 100.0 | 100.0 | 99.9 | **49.0** | 30.8 |
+| 5 | 100.0 | 100.0 | 100.0 | 69.7 | **50.8** |
 
-This is the shape the design goal actually asked for. Reading any
-column top to bottom: a party well below the enemy's Level is locked
-out (0-3%), the party at that Level gets a genuine, uncertain fight
-(bold diagonal), and a party that's grown past it wins comfortably
-(98-100%). **A party doesn't gradually ease into the next tier — it's a
-wall until it suddenly isn't.** Worth naming the asymmetry too: climbing
-*up* one tier is harder than the reverse feels easy (Tier 2 vs. Level 3
-is still a real fight at 46-48%, while Tier 3 vs. Level 2 is already a
-near-stomp at 99%) — outgrowing a tier happens fast once it happens,
-catching up to the next one takes longer.
+This is the cleanest diagonal this project has produced yet — every
+on-level cell lands within ~4 points of 50% (46.9-53.5%), and lockout
+above one's own Tier is near-total (0-0.9%). Reading any column top to
+bottom: a party well below the enemy's Level is locked out, the party
+at that Level gets a genuine, uncertain fight (bold diagonal), and a
+party that's grown well past it wins comfortably (98-100%). Two cells
+are softer than the rest — Tier 5 vs. Level 4 (69.7%, expected closer to
+a near-stomp like the other one-tier-below cells) and Tier 4 vs. Level 5
+(30.8%, expected closer to full lockout like the other one-tier-above
+cells) — left as-is rather than force-tuned further, same reasoning as
+before: the underlying baselines are still expected to move.
+
+**A second caveat from this pass**: Levels 2-5 (not Level 1) resolve
+much more slowly than before — average 9-9.4 rounds out of a 10-round
+cap, with roughly 35-49% of trials hitting that cap as an unresolved
+draw rather than a clean win/loss. Level 1 fights stay fast and clean
+(~5 rounds, ~12 draws out of 2000). Spot-checked whether this was tied
+to a specific Action choice (ranged vs. melee) per Level and it wasn't —
+swapping actions kept the same high-draw pattern, so this reads as
+something structural to how Levels 2+ compare (Defenses/Health scaling
+outpacing what 10 rounds can resolve at this simulator's simplified
+hit rates) rather than a pick this particular roster happened to make.
+Not fixed in this pass — flagged here as a real, unresolved finding for
+whoever next revisits `tunables.py`'s Level curve or `combat_sim.py`'s
+round cap.
 
 **Caveat carried over from the tuning process itself**: reaching that
 clean diagonal took real, deliberate build choices per enemy — it
-didn't fall out of the base Level curve automatically. Two of the five
-sample enemies (Level 4's Priest at 26.7%, in particular) still read as
-harder than a clean 50/50, closer to the "stretched thin" end even
-nominally on-level — left as-is rather than force-tuned further, since
-the underlying PC-Tier/enemy-Level baselines in `design/enemy_sim/
+didn't fall out of the base Level curve automatically, and (per the
+finding above) didn't fall out of one reusable build pattern either.
+The underlying PC-Tier/enemy-Level baselines in `design/enemy_sim/
 tunables.py` are themselves expected to move as the PC and enemy models
 get worked on more (per the designer). Re-run `python3 run_grid.py`
 after any tunables change to see where the diagonal lands.

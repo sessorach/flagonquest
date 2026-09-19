@@ -13,6 +13,25 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-19 — PC baseline rebuilt as a real character, enemy roster retuned against it
+
+`design/`-only content. Replaced the enemy simulator's abstract "Skill
+Total by Tier" PC estimate with a real, named Stat/Skill build per Tier
+(favorite Skill, defensive core, broad utility, XP-exact against
+`rulebook.md`'s own chargen example) — surfaced two real formula
+corrections along the way: PC Weapon Damage uses Body, not Agility, and
+PC Resist is raw Essence with zero Skill needed, which had been badly
+under-modeled before.
+- The corrected (weaker, more realistic) PC numbers broke the old enemy
+  roster outright; retuning found no single Role/Armor/Defense-tier
+  "formula" works across all 5 Levels, so each sample enemy got tuned
+  individually against a systematic search.
+- Result: the cleanest Party Tier × Enemy Level win-rate grid yet — every
+  on-level fight lands within ~4 points of 50%, with near-total lockout
+  above and dominance below. See `ENEMY_ENCOUNTER_DESIGN.md`'s Analysis
+  section for the full grid and an open finding (Levels 2-5 combat now
+  runs slower, hitting the round cap more often) left for a future pass.
+
 ### 2026-09-18 — Does the enemy model actually produce 5 felt power tiers? Checked with a Monte Carlo simulator
 
 `design/`-only content. Checked the Enemy Encounter Design system
