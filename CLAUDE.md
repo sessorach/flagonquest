@@ -773,18 +773,36 @@ Two recurring environment quirks worth knowing:
   and confirm `main` has nothing the feature branch doesn't (a clean
   fast-forward) before merging — if `main` has diverged, that needs a real
   merge/rebase decision, not an assumed fast-forward.
-- Add a new dated entry to `README.md`'s changelog section for each
-  notable commit — skip pure internal housekeeping (file reorganization,
-  a stale comment fix) that doesn't change anything a user would notice.
-  **One summary sentence for the heading line, then 2-3 bullets, each
-  one plain sentence** — even for a complex multi-part change. No
-  sub-clauses stacked on em-dashes, no "surfaced a real gap" scaffolding,
-  no walking through the reasoning (that's what the commit body and the
-  design docs are for) — just what changed, said once, plainly. If a
-  bullet needs a semicolon to fit everything in, it's two bullets.
-  Corrected from an earlier "~3 bullets" version of this same rule that
-  in practice still let entries run long — this is the stricter version,
-  going forward.
+- **One `README.md` changelog entry per day, not per commit.** The
+  reader is a handful of people who skim this once a week out of
+  curiosity, not someone tracking every change — a growing wall of
+  same-day entries loses them before they finish reading. If today
+  already has an entry, extend that entry instead of adding a new one;
+  don't start a fresh entry just because it's a separate commit or a
+  separate piece of work.
+  - **Heading**: date + a short title for the day, same as before.
+  - **Body**: 1-2 plain sentences (an actual maximum, not a soft
+    target) giving the gist of everything that happened that day — what
+    changed and, if it fits in the same breath, why it matters. Business
+    executive-summary register: e.g. "Built new PC and enemy stat-block
+    estimates for the simulator, then retuned the simulator's own math
+    to match." That's the whole point of the entry; the reader should be
+    able to stop there.
+  - **Bullets** (optional, only if the summary alone loses something
+    worth keeping): one bullet per genuinely separate piece of work that
+    day, each a single plain sentence. A simple day-spanning change
+    (reviewed a dozen items in one slot) still gets just one bullet
+    ("reviewed all Belt items for X"), not one per item touched. A
+    complex day (the whole combat simulator got reworked) can stretch to
+    2-3 bullets, still one sentence each, still no more detail than
+    "here's roughly what happened and why" — not a change-by-change
+    account. New content worth naming by name (a few specific items or
+    techniques) is fine in a bullet; don't itemize a dozen.
+  - Skip pure internal housekeeping (file reorganization, a stale
+    comment fix) that doesn't change anything a reader would notice.
+  - Corrected from an earlier "one entry per notable commit" version of
+    this rule, which in practice produced 5-6 entries on a single busy
+    day — this is the stricter, day-level version, going forward.
 - **Voice for changelog entries (and any other human-facing prose, not
   just code comments)**: write like the designer's own notes, not like
   an AI summarizing a diff. Short, direct sentences. Contractions.
