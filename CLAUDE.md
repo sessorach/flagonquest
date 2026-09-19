@@ -812,6 +812,16 @@ Two recurring environment quirks worth knowing:
   doubt, check `archive/flagonquest_manifesto_*.md` or the designer's
   own chat messages for the actual register (plain, a little dry,
   gets to the point) rather than reaching for polished exposition.
+  **Specific tic to watch for, flagged directly by the designer**:
+  reaching for "real"/"genuine(ly)" as an intensifier on an ordinary,
+  bread-and-butter change ("a real formula bug," "genuine ~50% fights"),
+  and "gap" as the default noun for anything missing. Most changes don't
+  need an intensifier at all — just state the fact plainly ("a formula
+  bug," not "a real formula bug"). If something actually is a big deal,
+  say that directly ("this was important") rather than doubling down
+  with "real"/"genuinely," and reach for a plain synonym instead of
+  "gap" each time (missing, hole, uncovered, wasn't covered) rather than
+  leaning on the one word repeatedly.
 - Before committing, always check `git status`/`git diff --stat`, and
   fetch + compare against `origin/<branch>` to confirm nothing else
   changed the remote branch since the last push.

@@ -11,52 +11,52 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 ## Changelog
 
 One entry per day, newest first — a quick skim of what happened, not a
-full log. See `git log` for the real commit-by-commit detail.
+full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-09-19 — Enemy math retuning
 
 Rebuilt the PC baseline as an actual named character instead of an abstract number, then retuned the whole enemy roster and combat math to match — including giving enemies the same Armor choices players get.
-- Found and fixed two real formula bugs along the way (weapon Damage uses Body, not Agility; Resist is raw Essence) and added a missing Gambling option to the fight simulator so PCs have a real way through heavy armor.
-- Result is the cleanest enemy difficulty curve yet — genuine ~50% fights at your own tier, real lockout above it and dominance below.
+- Found and fixed two formula bugs along the way (weapon Damage uses Body, not Agility; Resist is raw Essence) and added a missing Gambling option to the fight simulator so PCs have a way through heavy armor.
+- Result is the cleanest enemy difficulty curve yet — ~50% fights at your own tier, lockout above it and dominance below.
 
 ### 2026-09-18 — Enemy Encounter Design written up and validated
 
 Documented the designer's own point-buy system for building enemies (Level, Encounter Slots, Roles, Defense tiering, Battle Tactics) from an old spreadsheet, then built a combat simulator to check it actually produces five felt power tiers.
 - Added a first GM-facing enemy stat block and a practical guide for running Social Encounters at the table.
-- Also: Social Contest renamed to Social Encounter with a real Pressure fix, an archive sweep that cut a few overreaching Head items and added Third Eye, and three new Masterwork items translated from another game.
+- Also: Social Contest renamed to Social Encounter with a Pressure fix, an archive sweep that cut a few overreaching Head items and added Third Eye, and three new Masterwork items translated from another game.
 
-### 2026-09-17 — Crafting gaps closed, new Technique and items
+### 2026-09-17 — Crafting cleanup, new Technique and items
 
-Closed several real gaps in the crafting rules and added gear to round out material coverage.
+Fixed several inconsistencies in the crafting rules and added gear to round out material coverage.
 - Fixed which base items and Crafting Schools can make what (Neck items off Basic Clothing, Carving up to Medium Armor, Bows Carving-only), and cleaned up ambiguous recipe wording.
 - New content: Preserving Larder, the Distraction Technique plus four Cloth/Leather items, and renamed Instinct Defense to Vigilant Defense so it stops getting confused with Insight.
 
 ### 2026-09-16 — Crafting Skill Total requirements reorganized
 
-Reworked the Skill Total needed to craft anything into one clean tiered table, and closed a few more material/slot gaps.
-- New items: Clarion Cord, Kindled Wrap, Numbing Edge, and Chillstrike Band, each filling a specific Frost or Slot/Level gap.
+Reworked the Skill Total needed to craft anything into one clean tiered table, and rounded out a few more material/slot combinations.
+- New items: Clarion Cord, Kindled Wrap, Numbing Edge, and Chillstrike Band, each covering a Frost or Slot/Level combination that was missing.
 - 17 Hands/Feet items can now be crafted via Jewelrymaking as well as Tailoring.
 
-### 2026-09-15 — Real crafting recipes for the rest of Pack/Gear and Tools
+### 2026-09-15 — Crafting recipes for the rest of Pack/Gear and Tools
 
-Gave every remaining basic adventuring item (Tools, Kits, Packs, Wagons, Alcohol) a real crafting recipe instead of a generic placeholder, and added 15 new basic tool items.
-- Retired Adventurer's Kit in favor of Rope, Firestarter, and Camping Kit as real, separately priced items.
+Gave every remaining basic adventuring item (Tools, Kits, Packs, Wagons, Alcohol) a proper crafting recipe instead of a generic placeholder, and added 15 new basic tool items.
+- Retired Adventurer's Kit in favor of Rope, Firestarter, and Camping Kit as separately priced items.
 - New Masquerade Bad Luck/Good Luck rule for disguises, a new shared "Vigor" keyword, and a Food-item retune to fix a couple of items that had landed under their Value target.
 
 ### 2026-09-14 — Weapons and Armor balance pass
 
-First real balance pass on base Weapons and Armor, plus new upgrade-path recipes for Armor.
+First balance pass on base Weapons and Armor, plus new upgrade-path recipes for Armor.
 - Reworked Armor from two tiers to three (added Medium), tightened Might Requirements, and adjusted a couple of Bow/Thrown numbers.
 - Armor can now be upgraded in place (pay just the difference) instead of only built fresh.
 
 ### 2026-09-13 — Held slot closed out
 
 Worked through all 30 Held Masterwork items, the largest slot in the game — cut a handful of redundant or broken ones and repriced the rest against a couple of newly-derived pricing baselines.
-- Heartseeker and Blade of Fortune got real redesigns; Placeholder's Speedy Scepter had a real AP-cost exploit caught and closed before it shipped.
+- Heartseeker and Blade of Fortune got redesigns; Placeholder's Speedy Scepter had an AP-cost exploit caught and closed before it shipped.
 
 ### 2026-09-06 — Ring slot closed out
 
-Finished the Ring Masterwork cluster — cut a couple of duplicate items, swapped two items between Neck and Ring to match their actual design lane, and priced the rest against real formulas instead of guesses.
+Finished the Ring Masterwork cluster — cut a couple of duplicate items, swapped two items between Neck and Ring to match their actual design lane, and priced the rest from formulas instead of guesses.
 - Backfilled the balance tracking files for Feet/Head/Neck, which had quietly fallen behind during this stretch of work.
 
 ### 2026-09-05 — Neck slot closed out
@@ -66,7 +66,7 @@ Finished the Neck Masterwork cluster, cutting a few duplicate or unused items an
 
 ### 2026-08-31 — Torso slot closed out, Resist rate fixed
 
-Finished the Torso Masterwork cluster and fixed a real math bug in Resist's pricing that had been double-discounting its value.
+Finished the Torso Masterwork cluster and fixed a math bug in Resist's pricing that had been double-discounting its value.
 - Recomputed every item that depended on the old (wrong) Resist rate.
 
 ### 2026-08-30 — Torso Masterwork pass
@@ -110,18 +110,18 @@ Bumped the site's base text sizes up a notch across the board, especially for mo
 
 ### 2026-08-17 — Choice-based prereqs, Builder cleanup
 
-Techniques that make you pick something when you learn them (School, Profession, weapon type) now use real dropdowns instead of free text, with prereq checking that follows the actual pick.
-- Character switching and sharing got a real overhaul — one "Manage Characters" list, a QR code option, and much shorter share links.
+Techniques that make you pick something when you learn them (School, Profession, weapon type) now use dropdowns instead of free text, with prereq checking that follows the actual pick.
+- Character switching and sharing got an overhaul — one "Manage Characters" list, a QR code option, and much shorter share links.
 
 ### 2026-08-14 — Rulebook cleanup, crafting browser overhaul, Goblin Game content
 
 A big cleanup pass across the Rulebook and crafting system, plus a wave of new Goblin Game content.
-- Crafting browser rebuilt with real recipes and pickers instead of guesswork; automatic prereq-checking added to most techniques.
+- Crafting browser rebuilt with working recipes and pickers instead of guesswork; automatic prereq-checking added to most techniques.
 - New Goblin Game Food System chapter (Fullness, Too Full, the Meal recipe), plus more content pulled from the full player doc.
 
 ### 2026-08-11 — Crafting materials framework
 
-Added the Materials system — a real item category for crafting resources, plus a browser showing what you're eligible to craft.
+Added the Materials system — a new item category for crafting resources, plus a browser showing what you're eligible to craft.
 - Custom materials builder for GM-granted special materials that aren't in the data file.
 
 ### 2026-08-04 — Health tracking
@@ -139,7 +139,7 @@ Added 14 new Goblin Game clan Backgrounds and fixed Accuracy/Defenses to consist
 
 ### 2026-08-01 — Items, Backgrounds, multiple characters
 
-Added Items and Backgrounds pickers, character slots (more than one character per browser), and a real print layout.
+Added Items and Backgrounds pickers, character slots (more than one character per browser), and a proper print layout.
 
 ### 2026-07-29 – 2026-07-31 — Foundation
 
