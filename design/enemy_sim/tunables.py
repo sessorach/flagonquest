@@ -23,6 +23,22 @@ ABILITY_RATE = {1: 2, 2: 3, 3: 4, 4: 5, 5: 8}
 # ---- Encounter Slots -> Health multiplier (non-linear, action-economy tax) ----
 SLOT_MULTIPLIER = {1: 1, 0.5: 1 / 3, 2: 3}
 
+# ---- Movement mode (combat_sim.run_fight(..., movement=True)) ----
+# A bounded square arena, in meters ("space" and "meter" are the same
+# unit throughout this project - see weapon/spell Range values). 20x20
+# was picked as a representative mid-size arena, not derived from
+# anything - a real Range value at Level 5 (Heavy Bow: 17m, Ranged
+# Spell: 12m) can span most of it, while Level 1's shorter ranges (5-6m)
+# leave real room for a kiter to actually use the space.
+ARENA_SIZE = 20
+# How close two units need to be for a melee Action (attack_range == 0
+# from enemy_builder's own formula) to actually connect - not literally
+# 0, since two approaching units stopping exactly on top of each other
+# isn't a sensible reading of "Close Range." Not derived from a real
+# rulebook.md number (no such number exists); picked as a small,
+# plausible "within striking distance" buffer.
+MELEE_RANGE = 2
+
 # ---- Armor tiers ----
 # Not a literal copy of the player-facing armor_categories.csv (which
 # gives every bonus relative to bare skin) - deliberately relative to an
@@ -112,3 +128,19 @@ PC_SKILL_STAT = {
     "Composure": "Mind", "Craft": "Mind", "Medicine": "Mind", "Academics": "Mind", "Mixology": "Mind",
     "Meditation": "Essence", "Performance": "Essence", "Rapport": "Essence", "Sorcery": "Essence", "Theurgy": "Essence",
 }
+
+# ---- TODO: PC power budget from loot - not modeled yet ----
+# The designer's own point: PCs get a small power bump from the loot they
+# find (items/gear), same idea as ENEMY_ENCOUNTER_DESIGN.md's enemy-side
+# "loot/Gold discount" (350 Gold total across 15 notional Levels, Gold÷7
+# XP-equivalent, subtracted from the enemy's own stat budget before
+# pricing - see that doc's "per-Level total budget" section). Nothing on
+# the PC/Roster side accounts for this yet - the Roster rows in
+# sample_pcs.csv are bare Stats/Skills/Health only, no items layered on
+# top, so this simulator currently reads PCs as somewhat weaker than a
+# real, geared party would be at the same Tier. Deferred per the
+# designer ("if it's a bit of a tricky calculation, put a note to do it
+# later and just worry about the sim for now") rather than guessed at
+# here - when this gets picked up, the enemy-side Gold÷7 XP-equivalent
+# rate is the natural starting point for converting loot into the same
+# kind of stat-budget bump.

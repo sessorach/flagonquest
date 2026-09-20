@@ -83,7 +83,22 @@ usage.
   `tunables.ABILITY_COST`'s own comment for which abilities are wired
   in and why the rest aren't yet). See its module docstring for what's
   still simplified/not modeled (Extra Successes from suit-pool
-  matching, Techniques, items, positioning, real initiative).
+  matching, Techniques, items, real initiative — positioning has a
+  first pass now, see `movement.py` below).
+- **`movement.py`** — geometry helpers (`distance`, `move_toward`,
+  `move_away`) for `combat_sim.py`'s optional `movement=True` mode: a
+  bounded `tunables.ARENA_SIZE`-square arena, continuous coordinates, no
+  obstacles or formations. `run_fight(..., movement=True)` starts PCs
+  and enemies on opposite sides, and each unit has to close into its own
+  effective range (`combat_sim.effective_range`) before it can attack
+  that round — a Kiting unit (`sample_enemies.csv`'s `BattleTactic`
+  column) retreats along the straight line away from its nearest threat
+  instead of closing. Built to test the Speed-vs-Range question
+  directly: can a backline caster's range actually keep it out of melee?
+  See `combat_sim.py`'s module docstring for what that showed.
+  `movement=False` (the default everywhere else in this README) is
+  untouched by any of this — it's still the exact behavior the
+  win-rate grid below was validated against.
 - **`run_grid.py`** — runs every Party Tier × Enemy Level combination
   and prints win rate / average rounds / party HP% remaining.
 
@@ -103,7 +118,9 @@ archetype comparison) without touching the Roster: monkeypatch
 `combat_sim.make_enemy` (or `party.make_party`) to return
 `sample_enemies.get_enemy("name")` (or `party.get_pc("name")`) instead —
 see any of the Ring-item pricing checks in `design/
-balance_weights_notes.md` for a worked example.
+balance_weights_notes.md` for a worked example. Add `movement=True` to
+either `run_fight(...)` or `simulate(...)` to run that same matchup on
+the 2D arena instead of the default list-order-focus-fire model.
 
 After editing `tunables.py` (a pure numbers retune) or a Roster row in
 `sample_enemies.csv`/`sample_pcs.csv`, just re-run `run_grid.py` — no

@@ -37,6 +37,9 @@ Every Stat/Skill/Defense formula here is straight from rulebook.md:
 - Weapon Damage = 4 + Body (Heavy 1H Melee formula, weapon_categories.csv)
 - Resist = raw Essence, no Skill needed (rulebook.md's Calculated
   Statistics: "Resists... starts equal to your Essence")
+- Speed = 1 + Agility (rulebook.md's Calculated Statistics) - only used
+  by combat_sim.py's optional movement mode (run_fight(..., movement=
+  True), see movement.py); ignored entirely otherwise.
 """
 import csv
 import os
@@ -67,10 +70,11 @@ def _pc_dict(row, index, good_luck):
     damage = 4 + int(stats["Body"])  # Heavy 1H Melee formula
     physres = int(stats["Essence"])  # raw Essence, no Skill needed
     health = int(row["Health"])
+    speed = 1 + int(stats["Agility"])  # rulebook.md: "Your Speed is equal to 1 + your Agility"
     return dict(name=row["Name"] if row["Name"].startswith("Baseline") else f"{row['Name']}{index}",
                 parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
                 skill_total=parry - 8,  # Melee's own Skill Total, for the PC's own attack roll
-                damage=damage, physres=physres, health=health, max_health=health,
+                damage=damage, physres=physres, health=health, max_health=health, speed=speed,
                 crippled=0, vulnerable=0, bleeding=0, good_luck=good_luck)
 
 

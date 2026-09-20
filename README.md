@@ -13,12 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-09-20 — Good Luck wired in, item pricing spot-checked, PCs and enemies moved to CSVs with a wider archetype set
+### 2026-09-20 — Good Luck wired in, item pricing spot-checked, PCs and enemies moved to CSVs with a wider archetype set, movement added to the sim
 
-Added Good Luck to the fight simulator and used the enemy model to spot-check several Ring items' existing prices, then moved both PC and enemy stat blocks into CSV tables and built out a much wider set of reference builds for future use.
+Added Good Luck to the fight simulator and used the enemy model to spot-check several Ring items' existing prices, then moved both PC and enemy stat blocks into CSV tables and built out a much wider set of reference builds for future use. Also gave the simulator an optional 2D-movement mode to test how Speed and range actually interact.
 - Good Luck's simulated swing confirmed a real effect but isn't directly comparable to the calculated per-flip value; Pillar Ring and Ring of Comets checked out at their existing price, Flamebinder's Promise turned out more Resist-sensitive than assumed, and Mendicant's Cord's "guess which Defense to protect" has no real risk yet. Logged both open findings in `balance_weights_notes.md`.
 - PC stat blocks now live in `sample_pcs.csv` (real named characters - Hilde, Browndog, Carrick, Jackal, Felix - alongside the validated party baseline), and enemy stat blocks gained 20 new archetype touchstones (Neutral/Power-Attack/Max-Damage/Ranged Caster/Tank at every Level).
 - Building the Ranged Caster archetype surfaced a real bug: PCs' own attacks were hardcoded to always target an enemy's Parry, never Dodge, which broke badly against an enemy with a deliberately tanked Parry. Fixed to match the actual rule (target picks whichever Defense is better for them).
+- New optional `movement=True` sim mode: a bounded 20x20 arena, units closing to their own attack range or kiting away from the nearest threat. Turning it on for the Ranged Caster archetype shows range starts to genuinely matter at Tier 3+, since a caster's range scales with Level but Speed doesn't - by Tier 5 the party's win rate against an on-level kiting caster drops from 42% to 5%.
 
 ### 2026-09-19 — Enemy math retuning, abilities wired into the simulator
 
