@@ -13,11 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-09-20 — Good Luck wired into the simulator, used it to spot-check an item's pricing
+### 2026-09-20 — Good Luck wired into the simulator, used it to spot-check several Ring items' pricing
 
-Added Good Luck to the fight simulator (`good_luck=N` on `party.py`/`combat_sim.py`) to see whether simulated outcomes could help validate the hand-derived balance values in `balance_weights_notes.md`, then used the same enemy model to double-check Pillar Ring's existing price.
-- Giving one PC always-on Good Luck for a whole fight moved win rate by about +7 to +9 points — a real effect, but not directly comparable to the calculated 2.4 value, which prices a single flip rather than a whole fight's worth of them.
-- Checked Pillar Ring against a couple of freshly-built generic Level 2 fighters (a neutral one, a power-attack-leaning one) instead of a specific named enemy — both landed on exactly the item's existing price, confirming the original pricing holds up.
+Added Good Luck to the fight simulator, then used the enemy model to double-check a handful of Ring items' existing prices against generic on-level fighters instead of specific named enemies.
+- Good Luck's simulated swing (one PC, always-on for a fight, +7 to +9 win-rate points) confirmed a real effect but isn't directly comparable to the calculated 2.4 per-flip value.
+- Pillar Ring and Ring of Comets both checked out at their existing price; Flamebinder's Promise turned out to be far more sensitive to which enemy it's used against than assumed, and Mendicant's Cord's "guess which Defense to protect" premise has no real risk yet, since no enemy Action targets Bodily or Mental. Logged both in `balance_weights_notes.md`.
+- Sample enemy stat blocks now live in a CSV instead of one-off Python functions, so builds made for a specific question stick around for reuse.
 - Sample enemy stat blocks now live in a CSV (`design/enemy_sim/sample_enemies.csv`) instead of one-off Python functions, so builds made for a specific question stick around for reuse instead of getting thrown away.
 
 ### 2026-09-19 — Enemy math retuning, abilities wired into the simulator

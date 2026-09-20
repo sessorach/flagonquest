@@ -2866,6 +2866,32 @@ Options corrected from `I002` (Basic Clothing, a leftover from the old
 "Waist" slot) to `I003` (Basic Jewelry, matching Ring/Neck's
 established convention). Regenerated into `data/items.json`.
 
+### Mendicant's Cord, follow-up — the "genuinely mixed encounter" case may not be reachable yet
+
+Checked directly against `design/enemy_sim/`'s real enemy-Action catalog
+(not just the pricing math above): none of the five Combat Actions
+(`tunables.ACTIONS`) target Bodily or Mental Defense — Defensive Melee/
+Offensive Melee/Ranged Weapon all route to Parry/Dodge, Melee Spell/
+Ranged Spell route to Dodge. Checked the full catalog in this doc's own
+"Combat Actions" section too, not just the simulator's subset — Curse
+and the three support actions don't target Bodily/Mental either. So
+right now, *every* enemy attack targets the Dodge & Parry group, which
+means choosing that group to protect is never a wrong guess — the
+"genuinely mixed encounter, no reliable read" case the `1.375` floor
+above assumes may not actually be possible under the current Action
+catalog, not just uncommon.
+
+Ran the actual card math on it (a generic Level 2 fighter, Accuracy 6,
+against a Tier 2 PC's Parry/Dodge of 14): hit chance without Luck is
+46.1%, drops to 21.3% with Bad Luck applied (a −24.8 point swing) —
+confirming the protection is real and large, just currently guaranteed
+rather than a genuine gamble. Not re-pricing off this alone — a future
+Combat Action that does target Bodily/Mental (or a PC-facing ability
+that does) would restore the intended risk, and the item's accepted
+shortfall already leans on real play being lopsided anyway. Worth
+revisiting if the Action catalog ever grows a Bodily/Mental option, or
+if the gap is judged with intent instead.
+
 ### Ring of Charming, Assertive, or Bold Statements — cut, duplicates the Head hats
 
 Level 1, 20 Gold. "Once per encounter, the wearer may gain Good Luck
@@ -3091,6 +3117,32 @@ under this model (a fresh-attack effect's inherent Range isn't
 separately priced the way Windrider's Loop's Range *rider* on an
 existing weapon was). `items.csv` (`I078`) updated (5m → 6m).
 Regenerated into `data/items.json`.
+
+### Flamebinder's Promise, follow-up — the Resist placeholder (3) was a Bruiser-shaped guess, not a generic one
+
+Checked against `design/enemy_sim/`'s Level 1 enemy model, built two
+ways: a neutral fighter (no Role, no Defense-tier pick) and a
+Bruiser-Role "power-attack" one. The Bruiser's ElemRes comes out to
+**3** — matching this item's own placeholder almost exactly — but the
+neutral fighter's ElemRes is only **1**, since Resist is small enough
+at Level 1 that a single Role-derived point swings it by a lot in
+relative terms:
+
+| | Enemy ElemRes | Value | Net |
+|---|---|---|---|
+| Neutral fighter | 1 | 5.5 | +2.5 (183% funded) |
+| Bruiser (power-attack) fighter | 3 | 1.5 | −1.5 (50% funded, matches the derivation above) |
+
+So the original `3` wasn't a bad guess — it happens to land right on
+the Bruiser case — but it isn't the generic one either, and this item's
+Value swings harder on that choice than most (Ring of Comets, checked
+the same way, only moved from 104% to 89% funded across the same two
+builds — a linear-margin formula like this one doesn't get the same
+cushioning a step-function one like Pillar Ring's "hits to destroy"
+does). Not re-pricing off this alone — flagged here since it's a real
+example of how much a pricing placeholder can move once a concrete
+enemy model exists to check it against, worth keeping in mind for any
+other item whose derivation leans on a guessed Resist value.
 
 ### Fate's Grasp = Sift, keyed to a daily card-spend total derived from the Cycles rule — moved to Neck, Level 4
 
