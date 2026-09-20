@@ -129,6 +129,38 @@ PC_SKILL_STAT = {
     "Meditation": "Essence", "Performance": "Essence", "Rapport": "Essence", "Sorcery": "Essence", "Theurgy": "Essence",
 }
 
+# ---- PC ranged attack options (sample_pcs.csv's `Weapon` column) ----
+# A PC row with a blank Weapon uses the original hardcoded default (1H
+# Heavy Melee: Melee Skill Total, no accuracy bonus, Damage = 4 + Body,
+# no attack_range - falls back to MELEE_RANGE via combat_sim.
+# effective_range) - every pre-existing PC row still does this, so this
+# table only needs entries for the ranged options actually in use.
+# Numbers are real weapon_categories.csv/rulebook.md values, not
+# invented for the simulator:
+# - Light Bow (weapon_categories.csv WC007): Accuracy +1, Damage
+#   3 + [Cunning], Range a flat 15m, Skill Archery.
+# - Light Thrown (WC005): Accuracy +1, Damage 3 + [Cunning], Range
+#   "Close, or 3 x Body" - modeled as the ranged option (3 x Body), the
+#   whole point of a thrown weapon's own scaling being worth testing
+#   here; Skill "Acrobatics or Melee" - Acrobatics chosen (Dodge's own
+#   governing Skill, an agile-skirmisher lean).
+# - War Magic (Lance) - War Magic (T120) itself is Range "An adjacent
+#   creature"; its own Lance feature (features.csv F064) reads "Increase
+#   the Range of the spell attack by [Sorcery Skill Total] meters" - so
+#   a War Magic build that's taken Lance has Range == Sorcery Skill
+#   Total exactly, per the designer's own framing. No Accuracy bonus (a
+#   Spell attack roll, not a weapon-category one); Damage 2 + [Mind]
+#   straight from T120's own Effects text (the spell's damage stat is
+#   Mind, distinct from Essence, which governs the Sorcery Skill Total
+#   that resolves the attack roll and this Range - the two track
+#   separately here the same way melee's own Skill Total (Agility) and
+#   Damage stat (Body) already do).
+WEAPON = {
+    "Light Bow":         {"skill": "Archery",    "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range": 15},
+    "Light Thrown":      {"skill": "Acrobatics",  "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range_per_body": 3},
+    "War Magic (Lance)": {"skill": "Sorcery",     "accuracy": 0, "damage_base": 2, "damage_stat": "Mind",    "range_per_skill": 1},
+}
+
 # ---- TODO: PC power budget from loot - not modeled yet ----
 # The designer's own point: PCs get a small power bump from the loot they
 # find (items/gear), same idea as ENEMY_ENCOUNTER_DESIGN.md's enemy-side

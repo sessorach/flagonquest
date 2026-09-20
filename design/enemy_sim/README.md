@@ -30,20 +30,32 @@ usage.
   Tier N Party Member" rows are what `party.py`'s `make_party(tier)`
   actually uses (4 identical copies, the smoothed PC_SKILLS_COMBAT
   variant migrated from `tunables.py`); the `FALSE` rows are named
-  reference characters (Hilde, Browndog, Carrick, Jackal, Felix — one
-  leaning into each of the 5 Stats, built to rulebook.md's own Quick
-  Creation Reference shape and verified to cost exactly 75 XP including
-  Techniques). **Worth knowing**: `combat_sim.py`'s PC attack only ever
-  uses Melee — a non-melee reference character like Felix will read as
-  weak in a real fight regardless of how coherent the build is on paper;
-  that's a gap in the sim's model, not the character.
+  reference characters — melee: Hilde, Browndog, Carrick, Jackal, Felix
+  (one leaning into each of the 5 Stats); ranged (via the `Weapon`
+  column, see below): Sable (Light Bow), Rook (Light Thrown), Wren (War
+  Magic + Lance) — all built to rulebook.md's own Quick Creation
+  Reference shape and verified to cost exactly 75 XP including
+  Techniques. **Worth knowing**: a blank `Weapon` cell still means
+  `combat_sim.py`'s PC attack only uses Melee — a non-melee, no-`Weapon`
+  reference character like Felix reads as weak in a real fight
+  regardless of how coherent the build is on paper; that's `Weapon`
+  not being set for that character, not a limit of the sim anymore
+  (see Wren for the same Essence-primary concept actually built to
+  attack through Sorcery).
 - **`party.py`** — loads `sample_pcs.csv`. `make_party(tier, good_luck=N)`
   pulls the Roster row and duplicates it x4 (still 4 identical party
   members, no distinct roles, no Techniques/items, no gear-based Resist);
   `good_luck=N` gives every PC N stacks of Good Luck on their own attack
   roll, for testing a mechanic's value empirically (see `combat_sim.py`'s
-  note below). `get_pc(name)` pulls any row by name; `all_pcs()` returns
-  every row built.
+  note below). `get_pc(name)` pulls any row by name; `make_party_of(name)`
+  duplicates one row x4 into a full party (for testing one build's own
+  attack profile against the Roster - see `combat_sim.py`'s note on
+  the three `Weapon`-based ranged builds); `all_pcs()` returns every
+  row built. A row's `Weapon` cell (blank by default) switches which
+  Skill/Stat drives that PC's own attack roll, Damage, and attack range
+  away from the 1H Heavy Melee default - `tunables.WEAPON` has the real
+  weapon_categories.csv/features.csv numbers behind each option, fully
+  decoupled from Parry/Dodge/etc.
 - **`sample_enemies.csv`** — every enemy stat block that's been built for
   a reason, one row per build (Level/Slots/Role/Defense-tier/Action/
   Armor/Battle Tactic/Fighting Style/Abilities/Archetype). The `Roster`
@@ -115,12 +127,15 @@ python3 party.py              # print every stat block in sample_pcs.csv
 
 Testing one specific build against another (an item-balancing check, an
 archetype comparison) without touching the Roster: monkeypatch
-`combat_sim.make_enemy` (or `party.make_party`) to return
-`sample_enemies.get_enemy("name")` (or `party.get_pc("name")`) instead —
-see any of the Ring-item pricing checks in `design/
-balance_weights_notes.md` for a worked example. Add `movement=True` to
-either `run_fight(...)` or `simulate(...)` to run that same matchup on
-the 2D arena instead of the default list-order-focus-fire model.
+`combat_sim.make_enemy` (or `combat_sim.make_party`) to return
+`sample_enemies.get_enemy("name")` (or `party.make_party_of("name")`,
+4 copies of one reference PC) instead — see any of the Ring-item
+pricing checks in `design/balance_weights_notes.md` for a worked
+example. Add `movement=True` to either `run_fight(...)` or
+`simulate(...)` to run that same matchup on the 2D arena instead of the
+default list-order-focus-fire model — this is how the three `Weapon`
+ranged builds (Sable/Rook/Wren) got tested against the Roster, see
+`combat_sim.py`'s own note on the result.
 
 After editing `tunables.py` (a pure numbers retune) or a Roster row in
 `sample_enemies.csv`/`sample_pcs.csv`, just re-run `run_grid.py` — no

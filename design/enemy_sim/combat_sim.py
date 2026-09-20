@@ -6,8 +6,9 @@ rounds to resolve, and party Health remaining on a win.
 Deliberately simplified, not a full combat engine - see design/
 ENEMY_ENCOUNTER_DESIGN.md's Analysis section for the full list of what's
 NOT modeled (no Extra Successes from suit-pool matching, no Techniques/
-items, no distinct PC roles, no positioning, no initiative, rough
-Battle Tactics targeting proxies). PCs DO now Gamble (see
+items, no distinct PC roles, no real initiative, rough Battle Tactics
+targeting proxies). Positioning has a first pass now (see `movement=True`
+below), off by default. PCs DO now Gamble (see
 `pc_gamble_count`) - added specifically because armored enemies
 otherwise had no counter-play modeled at all. Good for catching relative
 differences between builds and Tiers; the exact win percentages aren't
@@ -50,6 +51,28 @@ Ranged Caster')` to reproduce). `movement=False` (the default) is the
 exact original list-order-focus-fire behavior - the whole win-rate grid
 this file's tuning depends on was built and stays validated against that
 path, not the movement one.
+
+The same question from the PC side: `sample_pcs.csv`'s `Weapon` column
+(see party.py's own docstring) adds three ranged reference builds -
+Sable (Light Bow, 15m fixed range), Rook (Light Thrown, range = 3 x
+Body - 9m for her own Body 3), Wren (War Magic + Lance, range = Sorcery
+Skill Total - 6m). Tested as 4-clone parties (`party.make_party_of`)
+against the Level 1 Roster enemy (Marsh Viper Scout, Speed 3, melee
+Flurry): Sable's 13m head start over the enemy's ~2m melee-closing
+distance is enough to win the fight before the enemy ever gets an
+attack in most of the time (28% -> 99.8% under movement); Rook's
+smaller 7m head start still helps a lot (2.5% -> 43%) but doesn't
+dominate; Wren's head start is only 4m - not enough to matter against
+an equal-Speed opponent (2.6% -> 1.3%, i.e. no real change, possibly
+slightly worse from the extra rounds movement adds before contact).
+Range alone isn't the whole story either: a PC's own effective_range
+gates *their* attack too, same as an enemy's - a short-ranged build still
+has to close most of the gap itself before landing a hit, it just needs
+less of a head start than a melee unit to get there first. These are
+4 identical copies of one Level 1 build, not a mixed party with a tank
+soaking hits for a fragile backline caster like a real table would run -
+worth keeping in mind before reading too much into Wren's poor showing
+specifically.
 
 Good Luck (`good_luck=N` on `run_fight`/`simulate`, `make_party`'s own
 param) is wired the same way as Aimed Shot's best-of-2 flip - N stacks
