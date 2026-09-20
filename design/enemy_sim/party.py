@@ -79,15 +79,32 @@ for what all of this showed. Doesn't change anything else in this file
 - `strategy`/`heal_uses_left` just get threaded onto the PC dict for
 tactics.py/combat_sim.py to read.
 
+**`Armor`** (`Unarmored`/`Light`/`Medium`/`Heavy`, blank = `Unarmored`)
+is the real armor_categories.csv table (`tunables.ARMOR`, shared with
+enemy_builder.py - see its own comment), applied the same way on both
+sides: Physical Resist gets the armor bonus, Dodge/Speed take the
+penalty, elemental Resist (`elemres` - Fire/Frost/Brilliant/Shadow, one
+pool in this sim) stays Essence-only regardless of Armor. Every
+existing row defaults to Unarmored (bare Essence Physical Resist, no
+Dodge/Speed change) unless its `Armor` cell says otherwise - see each
+row's own Notes for why that tier was picked (usually: does this
+character's Might Skill Total actually clear that armor's real
+Might Requirement, per weapon_categories.csv - not mechanically
+enforced here, just used as the judgment call for which tier reads as
+plausible for that build).
+
 Every Stat/Skill/Defense formula here is straight from rulebook.md:
-- Defense = 8 + [governing Skill Total]
+- Defense = 8 + [governing Skill Total], plus Armor's Dodge penalty for
+  Dodge specifically
 - Weapon Damage = 4 + Body (Heavy 1H Melee formula, weapon_categories.csv)
   unless `Weapon` names a ranged option (see above)
-- Resist = raw Essence, no Skill needed (rulebook.md's Calculated
-  Statistics: "Resists... starts equal to your Essence")
-- Speed = 1 + Agility (rulebook.md's Calculated Statistics) - only used
-  by combat_sim.py's optional movement mode (run_fight(..., movement=
-  True), see movement.py); ignored entirely otherwise.
+- Resist starts equal to Essence (rulebook.md's Calculated Statistics:
+  "Resists... starts equal to your Essence"); Physical Resist then adds
+  Armor's own bonus, elemental Resist (`elemres`) doesn't
+- Speed = 1 + Agility (rulebook.md's Calculated Statistics), plus
+  Armor's Speed penalty - only used by combat_sim.py's optional
+  movement mode (run_fight(..., movement=True), see movement.py);
+  ignored entirely otherwise, same as before Armor existed.
 """
 import csv
 import os
@@ -109,15 +126,32 @@ def skill_total(stats, skills, skill):
 def _pc_dict(row, index, good_luck):
     stats = {s: row[s] for s in ("Agility", "Body", "Cunning", "Mind", "Essence")}
     skills = {k: v for k, v in row.items() if k not in
-              ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes", "Weapon", "Support")}
+              ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
+               "Weapon", "Support", "Armor")}
     parry = 8 + skill_total(stats, skills, "Melee")
     dodge = 8 + skill_total(stats, skills, "Acrobatics")
     bodily = 8 + skill_total(stats, skills, "Resilience")
     mental = 8 + skill_total(stats, skills, "Composure")
     vigilant = 8 + skill_total(stats, skills, "Insight")
-    physres = int(stats["Essence"])  # raw Essence, no Skill needed
     health = int(row["Health"])
     speed = 1 + int(stats["Agility"])  # rulebook.md: "Your Speed is equal to 1 + your Agility"
+
+    # Resist "starts equal to your Essence" (rulebook.md), and worn
+    # Armor adds to Physical Resist specifically (armor_categories.csv,
+    # T.ARMOR - the same real table enemy_builder.py already uses).
+    # elemres (Fire/Frost/Brilliant/Shadow, one pool in this sim) is
+    # Essence alone on both sides - no armor contribution, matching
+    # armor_categories.csv's own "Physical Resist" column name. Armor's
+    # Dodge/Speed penalty apply the same way here - a blank `Armor` cell
+    # defaults to Unarmored (T.ARMOR's own all-zero baseline), so an
+    # existing row with no Armor set reads exactly as it used to (raw
+    # Essence, no Dodge/Speed change) rather than silently changing.
+    armor = (row.get("Armor") or "Unarmored").strip() or "Unarmored"
+    armor_mod = T.ARMOR[armor]
+    physres = int(stats["Essence"]) + armor_mod["physres"]
+    elemres = int(stats["Essence"])
+    dodge += armor_mod["dodge"]
+    speed += armor_mod["speed"]
 
     # The PC's own attack roll: 1H Heavy Melee (Melee Skill Total, no
     # accuracy bonus, Damage 4 + Body, Physical, opposed by Parry/Dodge,
@@ -181,7 +215,8 @@ def _pc_dict(row, index, good_luck):
               parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
               skill_total=atk_skill_total,  # the PC's own attacking Skill Total - see the Weapon block above
               damage=damage, dmg_type=dmg_type, opp_def=opp_def,
-              physres=physres, health=health, max_health=health, speed=speed,
+              physres=physres, elemres=elemres, armor=armor,
+              health=health, max_health=health, speed=speed,
               crippled=0, vulnerable=0, bleeding=0, good_luck=good_luck,
               strategy=strategy, heal_uses_left=hand_size // 4)
     if attack_range is not None:

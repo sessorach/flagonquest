@@ -1,181 +1,129 @@
 """
-Monte Carlo combat loop: 4 party members vs. N copies of one enemy,
-repeated many times with fresh card flips to estimate win rate, average
-rounds to resolve, and party Health remaining on a win.
+Monte Carlo combat loop: N party members vs. M enemies, repeated many
+times with fresh card flips to estimate win rate, average rounds to
+resolve, and party Health remaining on a win.
 
 Deliberately simplified, not a full combat engine - see design/
-ENEMY_ENCOUNTER_DESIGN.md's Analysis section for the full list of what's
-NOT modeled (no Extra Successes from suit-pool matching, no Techniques/
-items, no distinct PC roles, no real initiative, rough Battle Tactics
-targeting proxies). Positioning has a first pass now (see `movement=True`
-below), off by default. PCs DO now Gamble (see
-`pc_gamble_count`) - added specifically because armored enemies
-otherwise had no counter-play modeled at all. Good for catching relative
-differences between builds and Tiers; the exact win percentages aren't
-precise predictions of real play.
+ENEMY_ENCOUNTER_DESIGN.md's Analysis section for the full list of
+what's NOT modeled (no Extra Successes from suit-pool matching, no
+Techniques/items beyond Weapon/Armor/Support, no real initiative, rough
+Battle Tactics targeting proxies, no Shallow/Deep Health split - so
+"Wounded" is approximated as half max Health, see tactics.
+strategy_support_healer). Good for catching relative differences
+between builds and Tiers; the exact win percentages aren't precise
+predictions of real play.
+
+## How a turn works (rulebook.md's "Actions on a Turn")
+
+Every unit - PC or enemy - gets tunables.AP_PER_TURN (4) Action Points
+on its own turn, spent in this order:
+
+1. **A support strategy, if the unit has one** (tactics.
+   resolve_pc_strategy - currently just a support healer) - spends
+   whatever AP that costs (Healing Magic: tunables.HEALING_MAGIC_AP_COST,
+   1) and reports it, before anything else happens this turn.
+2. **Movement**, if `movement=True` (spend_movement_ap) - as many move
+   actions (tunables.MOVE_AP_COST, 1 AP each, up to Speed meters) as it
+   takes to close on the unit's target and stop in range, or exactly
+   one retreat action for a Kiting unit - "as many action points as
+   required," per the designer, not an artificial cap; a unit that
+   needs its whole turn's worth of AP just to close the gap simply
+   doesn't get to attack this round. Skipped entirely when
+   `movement=False` (see below).
+3. **Attacks**, tunables.ATTACK_AP_COST (2) AP each - as many as the
+   remaining AP allows, capped at 1 for a non-Flurry enemy Fighting
+   Style (tactics.attack_cap - Guarded/Aimed Shot/Skirmisher
+   deliberately give up a possible 2nd attack for their own
+   compensating bonus, see tactics.py's own Fighting Style section) but
+   uncapped for everyone else - which in practice always means "up to
+   2," since 4 AP only ever buys 2 attacks. PCs have no Fighting Style
+   at all and are always uncapped, matching the designer's own "bread
+   and butter" default: move into range, attack, attack again if the
+   AP's there.
+
+`movement=False` (the default) skips the whole movement step - every
+unit is always "in range" - so a plain attacker still gets up to 2
+attacks a turn (0 AP spent moving leaves the full 4 for attacks). This
+used to be a flat 1 attack/turn regardless of AP; this file's old
+"movement=False must stay byte-identical" invariant doesn't hold
+anymore now that the AP economy is real on both paths, not just under
+`movement=True` - expect both paths' numbers to have moved together.
+
+## Where the "AI" and the numbers live
 
 Every "AI" decision a unit makes on its own turn - who it targets, how
-it moves, whether a PC attacks or does something else (healing) - lives
-in `tactics.py` as a small named-function registry, not as `if`
-branches in this file's `run_fight`; "which suit is this card"
-assumptions (currently just Healing Magic's Hearts check) live the same
-way in `cards.py`. Both exist so a new tactic/strategy/card-rule is one
-function plus one registry entry, not a new conditional threaded
-through run_fight - see either module's own docstring before adding
-one. `run_fight(..., trace=[])` records a full round-by-round log of
+it moves, how many attacks it gets, whether a PC does something other
+than attack - lives in `tactics.py` as small named-function registries,
+not as `if` branches in this file's `run_fight`; "which suit is this
+card" assumptions live the same way in `cards.py`. Both exist so a new
+tactic/strategy/style/card-rule is one function plus one registry
+entry, not a new conditional threaded through run_fight - see either
+module's own docstring before adding one. The actual numbers (AP costs,
+Armor bonuses, the Level curve, ...) live in `tunables.py`, same
+"numbers vs. shape" split as everywhere else in this project.
+
+`run_fight(..., trace=[])` records a full round-by-round log of
 whatever a fight actually did (positions, moves, attacks, heals) for
 one specific run rather than just its final tally - `narrate_fight.py`
-renders one into a position table plus a combat log, for actually
-looking at what this simulator does instead of only reading aggregate
-win rates.
+renders one into a position table plus a combat log (and, with
+`--html`, a real self-contained replay page you can open in a browser
+on your own - see its own docstring), for actually looking at what
+this simulator does instead of only reading aggregate win rates.
 
-Enemy Abilities (the subset in tunables.ABILITY_COST) are also modeled:
-Crippled/Vulnerable/Bleeding stacks on PCs from Strike (Crippling)/
-Strike (Vulnerable)/Poison (Bleeding), Durable's per-turn Protected
-regen on enemies, all following rulebook.md/glossary.md's numbers
-(Crippled -1 to attacks/stack, Vulnerable -1 to Vital/Mental/Vigilant
-Defenses/stack, Bleeding 1 damage per stack that decays, Protected
-absorbs Health loss 1-for-1). Fleeting effects (all of the above) decay
-1 stack per bearer's own turn, per glossary.md's [Fleeting] rule - not
-all stacks at once.
+## Resist, by damage type, on both sides
+
+A PC's attack draws on the target enemy's `physres` (Physical) or
+`elemres` (Fire/Frost/Brilliant/Shadow, one pool in this sim) depending
+on the PC's own `dmg_type` (enemy_resist_for_pc_attack); an enemy's
+attack against a PC now does the same in reverse
+(pc_resist_for_enemy_attack) - this used to always use `physres`
+regardless of the enemy's own `dmg_type`, so a Fire-damage enemy Action
+(Melee/Ranged Spell) was being resisted by a PC's Physical Resist
+instead of their usually-lower elemental one (no Armor bonus there -
+see below). Both a PC's and an enemy's Physical Resist now include
+worn Armor (tunables.ARMOR, the real armor_categories.csv table,
+shared by both sides - see party.py's own Armor paragraph for the PC
+side) - PCs used to have no Armor modeled at all (bare Essence only),
+which read as enemies dealing full, only lightly resisted damage on
+every hit.
+
+## Enemy Abilities
+
+The subset in tunables.ABILITY_COST: Crippled/Vulnerable/Bleeding
+stacks on PCs from Strike (Crippling)/Strike (Vulnerable)/Poison
+(Bleeding), Durable's per-turn Protected regen on enemies, all
+following rulebook.md/glossary.md's numbers (Crippled -1 to
+attacks/stack, Vulnerable -1 to Vital/Mental/Vigilant Defenses/stack,
+Bleeding 1 damage per stack that decays, Protected absorbs Health loss
+1-for-1). Fleeting effects (all of the above) decay 1 stack per
+bearer's own turn, per glossary.md's [Fleeting] rule - not all stacks
+at once.
+
+## Good Luck / Bad Luck
+
+`resolve_card` combines a flipper's own Good Luck stacks (`good_luck=N`
+on `run_fight`/`simulate`, `make_party`'s own param - N stacks means N
+extra cards flipped, keep the best) with a defender's Bad Luck (a
+Guarded enemy that held its ground last turn - tactics.
+defense_has_bad_luck) into one net flip. rulebook.md defines Good Luck
+and Bad Luck individually but doesn't state how they interact if both
+apply to the same flip at once - **this is an assumption, not a
+confirmed rule**: modeled here as cancelling 1-for-1, the closest
+documented analogy this project's own source text gives (glossary.md's
+Range increase/decrease: "1 meter of each effect cancels out until
+only one remains"). Good Luck's own win-rate-swing experiment
+(comparing a simulated swing against balance_weights_notes.md's
+hand-derived value of 2.4) predates the AP-economy/Armor fixes above
+and hasn't been rerun since - treat that comparison as stale until it
+is.
 
 `max_rounds` (30, not the original 10) matters more than it looks: a
 fight that's close but slow-grinding (both sides doing modest damage
-against Resist/Defense) was hitting the old 10-round cap as an
-unresolved "draw" most of the time instead of actually playing out -
-e.g. one build read as "10% win rate" under the old cap that was
-actually a near-even 201-vs-211 split once let run to a conclusion
-(1588 of 2000 trials had been draws). Always sanity-check a low win
-rate against the raw party/enemies/draw counts (`simulate()`'s 4th
-return value) before assuming it means "this build loses," not just
-"this build is slow to resolve."
-
-`movement=True` on `run_fight`/`simulate` turns on the optional 2D-arena
-mode (movement.py) - a bounded ARENA_SIZE x ARENA_SIZE square, PCs
-starting opposite the enemies, everyone closing to their own
-effective_range before they can attack (Kiting units retreat instead).
-Built specifically to test the earlier Speed-vs-Range discussion: does a
-backline caster's range actually let it stay out of melee reach, given
-real PC Speed? Answer so far: yes, and it matters a lot more at higher
-Levels, since a Ranged Spell's range scales with Level while a
-Roster PC's Speed doesn't - the Ranged Caster archetype's win rate
-against an on-level party drops hard under movement at Tier 3+ (see
-sample_enemies.csv's Archetype rows and run `combat_sim.simulate(tier,
-tier, movement=True)` against `sample_enemies.get_enemy('Generic Level N
-Ranged Caster')` to reproduce). `movement=False` (the default) is the
-exact original list-order-focus-fire behavior - the whole win-rate grid
-this file's tuning depends on was built and stays validated against that
-path, not the movement one.
-
-The same question from the PC side: `sample_pcs.csv`'s `Weapon` column
-(see party.py's own docstring) adds three ranged reference builds -
-Sable (Light Bow, 15m fixed range), Rook (Light Thrown, range = 3 x
-Body - 9m for her own Body 3), Wren (War Magic + Lance, range = Sorcery
-Skill Total - 6m). Tested as 4-clone parties (`party.make_party_of`)
-against the Level 1 Roster enemy (Marsh Viper Scout, Speed 3, melee
-Flurry): Sable's 13m head start over the enemy's ~2m melee-closing
-distance is enough to win the fight before the enemy ever gets an
-attack in most of the time (28% -> 99.8% under movement); Rook's
-smaller 7m head start still helps a lot (2.5% -> 43%) but doesn't
-dominate; Wren's head start is only 4m - not enough to matter against
-an equal-Speed opponent (2.6% -> 1.3%, i.e. no real change, possibly
-slightly worse from the extra rounds movement adds before contact).
-Range alone isn't the whole story either: a PC's own effective_range
-gates *their* attack too, same as an enemy's - a short-ranged build still
-has to close most of the gap itself before landing a hit, it just needs
-less of a head start than a melee unit to get there first.
-
-Follow-up with a real mixed party (`party.make_party_from([names])`,
-not 4 clones): War Magic's damage now actually resolves as Fire, not
-Physical - `pc['dmg_type']`/`pc['opp_def']` (party.py's Weapon
-paragraph) route a Fire attack through the target's `elemres` instead
-of `physres` (see `enemy_resist_for_pc_attack`) and War Magic's own
-Dodge-only opposed Defense instead of Parry/Dodge (see
-`enemy_defense_for_pc_attack`) - this matters because tunables.ARMOR
-only bumps `physres`, so a heavily-armored enemy's `elemres` stays
-comparatively low; Wren draws real benefit from this that Sable/Rook's
-Physical attacks don't. Movement mode's start now matches "spaced out
-slightly but not opposite ends": the party starts in a compact 2x2
-block (`_party_formation`, tunables.PARTY_FORMATION_SPACING) instead of
-the enemies' own spread line, and the two front lines start a random
-tunables.START_GAP_RANGE (5-10m) apart by default instead of the
-original fixed 16m corner-to-corner gap - `run_fight`'s own `start_gap`
-param overrides this for a controlled comparison. That comparison
-matters: sweeping start_gap from 5m to 16m against the Full Utility
-comp below showed a real cliff between 5m (~5% win) and 6-8m (~18-31%),
-then a plateau from ~8m on - Sable's 15m range already dominates well
-before anything gets that close, and Wren's 6m range is already in (or
-almost in) range at any gap 6m or wider, so most of the movement
-benefit is already captured by 8m; a shorter gap mostly just costs the
-ranged builds their head start.
-
-The mixed-party comparisons themselves (Hilde/Browndog/Carrick/Jackal
-all-melee; various Sable/Wren/Beornhard swaps) all landed far below the
-Roster's own ~50% at n_enemies=4 (3-17% depending on comp/movement) -
-**not** a sign these builds or movement are bad, but a reminder that
-n_enemies=4 vs a Level 1 Roster enemy is exactly the matchup the Roster
-was *calibrated* to be a fair fight for 4 identical, smoothed Roster
-PCs, not 4 spikier named reference builds sharing one "combat slot"
-with a PC who isn't fighting every round. Re-run at n_enemies=2 (a
-lighter, more proportionate encounter) to isolate composition from that
-calibration gap: swapping a 4th melee/caster/support into
-Hilde+Browndog+Sable put Wren (2nd caster) on top (~96-97%), with
-Beornhard (healer, but see below) close behind (~91%, beating a 4th
-plain fighter under movement: 91.2% vs 79.9% - the extra fighter, all
-melee, doesn't get movement's range benefit the way a caster does, and
-seemingly loses more to it than Beornhard's healing gains).
-
-`tactics.strategy_support_healer`'s heal-or-attack rule is a hard-capped
-resource, not a per-round coin flip: `pc['heal_uses_left']` starts at hand_size
-// 4 (party.py's Support paragraph - 1 use for Beornhard specifically,
-his Cunning+Mind being what it is), spent only once a living ally drops
-to half Health or below (standing in for Wounded, since there's no
-Shallow/Deep Health split here) - "if necessary, ESPECIALLY if wounded"
-reads as "only when it's actually needed," given how few uses there
-are. Every other round, a support PC just attacks normally like anyone
-else - Beornhard's own Melee (2, up from an original 1, paid for by
-dropping Medicine 2 to 1 - see his sample_pcs.csv Notes) makes that a
-real contribution (Parry 11, Damage 6) instead of dead weight, which is
-exactly what closed most of the gap to a dedicated 2nd caster or 4th
-fighter above - an earlier version of this build that healed on a ~25%
-per-round chance and fought weakly the rest of the time scored
-noticeably worse in the same matchups (n_enemies=2, movement=True:
-85.4% vs this version's 91.2%).
-
-The heal amount itself later moved from "1 + a 25% chance of +1 more"
-to a flat +2 every time (cards.chosen_matches always true now, per the
-designer: a discarded card is chosen from the player's whole hand, not
-flipped blind, and Healing Magic only ever spends a quarter of that
-hand this way - see cards.py's own module docstring). Barely moved win
-rate at all (n_enemies=2: 91.2% -> 90.9%/91.4% across two reruns, well
-within trial noise) - the reason is the same hard cap that made the
-melee fix matter: Beornhard only has 1 heal_uses_left, so the entire
-swing from "usually heals 1, sometimes 2" to "always heals 2" is a
-one-time +0.75 HP difference across a whole fight already decided by
-dozens of other rolls. A build with a bigger hand (more heal uses)
-would see this matter more; Beornhard specifically doesn't.
-
-Good Luck (`good_luck=N` on `run_fight`/`simulate`, `make_party`'s own
-param) is wired the same way as Aimed Shot's best-of-2 flip - N stacks
-means `flip_best_of(1 + N)` on the PC's own attack roll. Used once to
-compare a simulated swing against `balance_weights_notes.md`'s
-hand-derived Good Luck value (2.4) - worth knowing before reading too
-much into a result: `good_luck` currently applies to every PC named in
-`make_party`, for every attack, all fight. That's a much bigger grant
-than the 2.4 figure prices (one stack, one flip), and it swings win
-rate dramatically (all 4 PCs at Tier=Level: ~+45-50 points). To
-approximate a single item/Technique on one PC, monkeypatch `make_party`
-to zero the other three PCs' stacks back out before calling
-`simulate()` - even that's still "every attack, all fight" rather than
-a single flip, and moved win rate by a more moderate +7 to +9 points in
-that test. Neither is directly convertible back to the 2.4 per-flip
-figure without a real exchange-rate calibration (what win-rate swing
-does an already-priced, fixed mechanic produce in this same sim) - not
-built yet. `pc_attacks`/`pc_damage_dealt` (summed into `simulate()`'s
-5th return value, damage per PC attack) exist for this kind of
-comparison, but a pooled multi-PC average dilutes an effect that's only
-live on some of the PCs - isolate the one PC actually being tested
-before trusting that number.
+against Resist/Defense) can hit a too-low round cap as an unresolved
+"draw" most of the time instead of actually playing out. Always
+sanity-check a low win rate against the raw party/enemies/draw counts
+(`simulate()`'s 4th return value) before assuming it means "this build
+loses," not just "this build is slow to resolve."
 """
 import random
 import copy
@@ -194,34 +142,65 @@ def flip_best_of(n):
     return max(flip() for _ in range(n))
 
 
+def flip_worst_of(n):
+    return min(flip() for _ in range(n))
+
+
+def resolve_card(good_luck_stacks, bad_luck_active):
+    """One flip, combining a flipper's own Good Luck stacks with a
+    target's Bad Luck (tactics.defense_has_bad_luck) into a single net
+    result - **an assumption, not a confirmed rulebook.md rule**, see
+    this module's own docstring for the reasoning. Net positive -> Good
+    Luck with that many extra cards; net negative -> Bad Luck; net zero
+    -> one plain flip."""
+    net = good_luck_stacks - (1 if bad_luck_active else 0)
+    if net > 0:
+        return flip_best_of(1 + net)
+    if net < 0:
+        return flip_worst_of(1 - net)
+    return flip()
+
+
 def effective_range(unit):
-    """The distance a unit's own action actually reaches - PCs always
-    use Melee (a flat MELEE_RANGE); enemies use their own attack_range
-    if it's a real ranged Action, or MELEE_RANGE if it's 0 (a melee
-    Action, per enemy_builder's own formula - 0 doesn't mean 'must be
-    standing on the same point,' see tunables.MELEE_RANGE's comment)."""
+    """The distance a unit's own action actually reaches - PCs use
+    Melee's flat MELEE_RANGE unless `Weapon` gives them a real
+    attack_range (party.py); enemies use their own attack_range if it's
+    a real ranged Action, or MELEE_RANGE if it's 0 (a melee Action, per
+    enemy_builder's own formula - 0 doesn't mean 'must be standing on
+    the same point,' see tunables.MELEE_RANGE's comment)."""
     return unit.get('attack_range') or T.MELEE_RANGE
 
 
-def resolve_movement(unit, target):
-    """Moves `unit` this round per its own Battle Tactic (tactics.
-    move_unit - Kiting retreats, everything else closes in, stopping
-    `reach` meters short rather than walking on top of `target`), then
-    reports whether it ends up within its own effective_range and can
-    therefore attack this round. Either way, the same range check
-    afterward decides whether an attack is possible - a Kiting unit with
-    real range can still retreat *and* attack the same round if its
-    range covers the new distance; a melee unit that couldn't fully
-    close the gap this round just doesn't get to act."""
-    reach = effective_range(unit)
-    tactics.move_unit(unit, target, reach)
+def spend_movement_ap(unit, target, ap, reach):
+    """Spends AP on move actions (tunables.MOVE_AP_COST each) closing on
+    `target`, stopping once in range or out of AP to spend - "as many
+    action points as required," per the designer, not an artificial
+    cap (see tactics.py's own note on why Skirmisher doesn't need a
+    separate move-count rule as a result). A Kiting unit spends exactly
+    one move action instead, retreating rather than closing (tactics.
+    move_kite) - "keeps max range" is a positioning preference, not
+    "flee as far as possible every turn." Returns (ap_remaining,
+    in_range, moved) - `moved` is whether any move action was actually
+    taken, for Guarded's own stand-still bonus to check (see
+    run_fight's Enemies' turn)."""
+    kiting = unit.get('battle_tactic') == 'Kiting'
+    moved = False
+    while ap >= T.MOVE_AP_COST:
+        if not kiting and movement.distance(unit['pos'], target['pos']) <= reach + 1e-6:
+            break
+        tactics.move_unit(unit, target, reach)
+        ap -= T.MOVE_AP_COST
+        moved = True
+        if kiting:
+            break
     # 1e-6 slack: move_toward's own stop_at logic can land a unit a
     # floating-point hair past `reach` (float division/subtraction isn't
     # exact) - without it, two units that just closed to melee range can
     # get flagged permanently out-of-range by a fraction no real ruler
     # would ever measure, freezing the fight into an unresolved draw
     # (found via a real seeded fight that stalemated at exactly this gap).
-    return movement.distance(unit['pos'], target['pos']) <= reach + 1e-6
+    in_range = movement.distance(unit['pos'], target['pos']) <= reach + 1e-6
+    return ap, in_range, moved
 
 
 def _start_positions(n, x, spread=4):
@@ -289,6 +268,19 @@ def enemy_resist_for_pc_attack(pc, target):
     return target['physres']
 
 
+def pc_resist_for_enemy_attack(e, target):
+    """The mirror of enemy_resist_for_pc_attack - an enemy's own
+    `dmg_type` (tunables.ACTIONS - Physical or Fire) picks which of the
+    target PC's Resist pools its attack draws from. Used to always read
+    `physres` regardless of the enemy's own dmg_type - a real bug once
+    a Fire-damage enemy Action (Melee/Ranged Spell) is in play, since a
+    PC's `elemres` gets no Armor bonus (party.py's Armor paragraph) and
+    is usually lower than `physres`."""
+    if e.get('dmg_type') == 'Fire':
+        return target.get('elemres', 0)
+    return target.get('physres', 0)
+
+
 def pc_gamble_count(pc, target):
     """How many times a 'clever' PC Gambles on this attack (rulebook.md's
     Gambling rule: each Gamble is -2 to the roll, but grants +1 Extra
@@ -354,21 +346,39 @@ def _log(trace, **event):
         trace.append(event)
 
 
+def _retarget(unit, remaining, movement_on):
+    """Same-round retarget after a kill, mid-attack-sequence: reuses the
+    plain movement-aware default (tactics.target_closest/target_first)
+    rather than re-running a Battle-Tactic-specific rule like Assassin's
+    - "not a super intensive analysis," same simplification as
+    everywhere else in movement mode. Returns None if nothing's left to
+    retarget to."""
+    if not remaining:
+        return None
+    return (tactics.target_closest if movement_on else tactics.target_first)(unit, remaining)
+
+
 def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0, movement=False, start_gap=None,
-              trace=None):
-    """`movement=True` turns on the optional 2D-arena mode (movement.py):
+              trace=None, enemies=None):
+    """`enemies`: pass a pre-built list of enemy dicts (e.g. from
+    sample_enemies.build_encounter([...])) to fight that exact mix
+    instead of `n_enemies` identical copies of `make_enemy(enemy_level)`
+    - `enemy_level`/`n_enemies` are ignored when this is given. Lets a
+    single fight mix Levels/Slots/Archetypes freely (a 2-slot Tank plus
+    a handful of 0.5-slot Minions, say) rather than always facing one
+    enemy type - see sample_enemies.total_slots to check the mix
+    against "one slot per PC."
+
+    `movement=True` turns on the optional 2D-arena mode (movement.py):
     the party starts in a compact 2x2 block (_party_formation), enemies
     spread down the y-axis (_start_positions), the two sides' front
     lines a random tunables.START_GAP_RANGE meters apart by default
     (`start_gap` overrides this with a fixed distance instead, e.g. for
     a controlled before/after comparison - see _random_front_lines).
-    Every unit must move into its own effective_range of its target
-    before it can attack this round (resolve_movement) - a unit that
-    can't close the gap (or a Kiting unit that outruns its pursuer) just
-    doesn't get to act. `movement=False` (the default) skips all of this
-    and matches the original list-order-focus-fire behavior exactly -
-    kept byte-identical on purpose so the already-validated win-rate
-    grid never depends on this code path.
+    See this module's own docstring ("How a turn works") for the full
+    AP-based movement/attack economy, which applies whether or not
+    `movement` is on - `movement=False` just means every unit is always
+    "in range," skipping the movement step of that economy entirely.
 
     `trace`: pass a list (e.g. `trace=[]`) to have this call record what
     happened, round by round, instead of just returning the final tally
@@ -379,16 +389,21 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     once per round, before any of that round's actions) snapshots every
     living unit's `pos`/`health`; everything else carries `side`
     ('party'/'enemy') and `unit`, and is either `action='move'` (this
-    unit couldn't reach its target this round - `pos`, `in_range=False`),
-    `action='attack'` (`target`, `roll`, `defense`, `hit`, `dmg`,
-    `target_hp_after`), or whatever a PC's own strategy function logs
-    (`tactics.strategy_support_healer` logs `action='heal'` - see
-    tactics.py's own `log` parameter). A final `type='result'` event
+    unit actually spent AP moving this turn - `pos`, `in_range` says
+    whether that got it into range or it's still short and doesn't
+    attack this round), `action='attack'` (`target`, `roll`, `defense`,
+    `hit`, `dmg`, `target_hp_after`), or whatever a PC's own strategy
+    function logs (`tactics.strategy_support_healer` logs
+    `action='heal'` - see tactics.py's own `log` parameter). A final
+    `type='result'` event
     carries `winner`."""
     if seed is not None:
         random.seed(seed)
     pcs = make_party(tier, good_luck=good_luck)
-    enemies = [copy.deepcopy(make_enemy(enemy_level)) for _ in range(n_enemies)]
+    if enemies is not None:
+        enemies = [copy.deepcopy(e) for e in enemies]
+    else:
+        enemies = [copy.deepcopy(make_enemy(enemy_level)) for _ in range(n_enemies)]
     # Unlike PCs (party.py already suffixes each copy - "Hilde1",
     # "Hilde2"), every enemy copy comes back from make_enemy with the
     # exact same 'name' - fine when nothing ever needs to tell two
@@ -420,46 +435,48 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                  party=[{'unit': p['name'], 'pos': p['pos'], 'health': p['health']} for p in pcs if p['health'] > 0],
                  enemies=[{'unit': e['name'], 'pos': e['pos'], 'health': e['health']} for e in enemies if e['health'] > 0])
 
-        # Party's turn: each living PC attacks the closest/first living
-        # enemy (tactics.select_target - PCs have no Battle Tactic of
-        # their own, so this always falls to the movement-aware default)
-        # vs. whichever of the enemy's Defenses is worse for it
-        # (enemy_defense_for_pc_attack) - unless a PC's own strategy
-        # (tactics.resolve_pc_strategy - a support healer, say) does
-        # something else with their turn instead.
+        # ---- Party's turn (see module docstring's "How a turn works") ----
         for pc in pcs:
             if pc['health'] <= 0:
                 continue
-            if tactics.resolve_pc_strategy(pc, pcs, log=party_log):
-                continue  # spent this turn on something other than attacking
+            ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
             targets = [e for e in enemies if e['health'] > 0]
             if not targets:
                 break
             target = tactics.select_target(pc, targets, movement)
-            if movement and not resolve_movement(pc, target):
-                _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'], in_range=False)
-                continue
-            defense = enemy_defense_for_pc_attack(pc, target)
-            resist = enemy_resist_for_pc_attack(pc, target)
-            gambles = pc_gamble_count(pc, target)
-            crippled = pc.get('crippled', 0)
-            card = flip_best_of(1 + pc.get('good_luck', 0))  # Good Luck: flip 1 extra card per stack, keep the highest
-            roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
-            pc_attacks += 1
-            hit = roll >= defense
-            dmg = 0
-            if hit:
-                dmg = max(0, pc['damage'] + gambles - resist)
-                protected = target.get('protected', 0)
-                if protected > 0 and dmg > 0:
-                    absorbed = min(dmg, protected)
-                    target['protected'] -= absorbed
-                    dmg -= absorbed
-                target['health'] -= dmg
-                pc_damage_dealt += dmg
-            if party_log:
-                party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
-                           hit=hit, dmg=dmg, target_hp_after=target['health'])
+            if movement:
+                ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
+                if moved:
+                    _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'], in_range=in_range)
+                if not in_range:
+                    continue
+
+            while ap >= T.ATTACK_AP_COST and target is not None:
+                defense = enemy_defense_for_pc_attack(pc, target)
+                resist = enemy_resist_for_pc_attack(pc, target)
+                gambles = pc_gamble_count(pc, target)
+                crippled = pc.get('crippled', 0)
+                bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge'))
+                card = resolve_card(pc.get('good_luck', 0), bad_luck)
+                roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
+                pc_attacks += 1
+                ap -= T.ATTACK_AP_COST
+                hit = roll >= defense
+                dmg = 0
+                if hit:
+                    dmg = max(0, pc['damage'] + gambles - resist)
+                    protected = target.get('protected', 0)
+                    if protected > 0 and dmg > 0:
+                        absorbed = min(dmg, protected)
+                        target['protected'] -= absorbed
+                        dmg -= absorbed
+                    target['health'] -= dmg
+                    pc_damage_dealt += dmg
+                if party_log:
+                    party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
+                               hit=hit, dmg=dmg, target_hp_after=target['health'])
+                if target['health'] <= 0:
+                    target = _retarget(pc, [e for e in enemies if e['health'] > 0], movement)
         # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
         # [Fleeting] rule), not all stacks at once - Bleeding's decaying
         # stack is what actually deals its 1 damage.
@@ -483,9 +500,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0,
                         pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
 
-        # Enemies' turn: Fighting Style sets attack count, Battle Tactics
-        # picks the target (tactics.select_target - rough proxies, not a
-        # real implementation, see module docstring).
+        # ---- Enemies' turn (see module docstring's "How a turn works") ----
         for e in enemies:
             if e['health'] <= 0:
                 continue
@@ -495,20 +510,35 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             living_pcs = [p for p in pcs if p['health'] > 0]
             if not living_pcs:
                 break
+            fighting_style = e.get('fighting_style', 'Guarded')
+            ap = T.AP_PER_TURN
             target = tactics.select_target(e, living_pcs, movement)
-            if movement and not resolve_movement(e, target):
-                _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'], in_range=False)
+            moved = False
+            in_range = True
+            if movement:
+                ap, in_range, moved = spend_movement_ap(e, target, ap, effective_range(e))
+            # Guarded's own stand-still bonus (tactics.
+            # defense_has_bad_luck) - set here, at the end of resolving
+            # this enemy's own movement, so it's ready for the PARTY's
+            # next turn to check (Party's turn runs before Enemies'
+            # turn within a round, so this is necessarily a one-round-
+            # lagged "held its ground last time" bonus, not instant).
+            e['guarded_active'] = (fighting_style == 'Guarded' and not moved)
+            if moved:
+                _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'], in_range=in_range)
+            if movement and not in_range:
                 continue
 
-            fighting_style = e.get('fighting_style', 'Guarded')
-            n_attacks = 2 if fighting_style == 'Flurry' else 1
-            for _ in range(n_attacks):
+            cap = tactics.attack_cap(e)
+            attacks_made = 0
+            while ap >= T.ATTACK_AP_COST and (cap is None or attacks_made < cap) and target is not None:
                 roll = e['accuracy'] + (flip_best_of(2) if fighting_style == 'Aimed Shot' else flip())
                 opp_def_val = pc_defense_for(target, e['opp_def'])
                 hit = roll >= opp_def_val
                 dmg = 0
                 if hit:
-                    dmg = max(0, e['attack_damage'] - target.get('physres', 0))
+                    resist = pc_resist_for_enemy_attack(e, target)
+                    dmg = max(0, e['attack_damage'] - resist)
                     target['health'] -= dmg
                     if 'Strike (Crippling)' in abilities:
                         target['crippled'] = target.get('crippled', 0) + 1
@@ -516,19 +546,13 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                         target['vulnerable'] = target.get('vulnerable', 0) + 1
                     if 'Poison (Bleeding)' in abilities:
                         target['bleeding'] = target.get('bleeding', 0) + 2
+                ap -= T.ATTACK_AP_COST
+                attacks_made += 1
                 if enemy_log:
                     enemy_log(unit=e['name'], action='attack', target=target['name'], roll=roll, defense=opp_def_val,
                                hit=hit, dmg=dmg, target_hp_after=target['health'])
                 if target['health'] <= 0:
-                    living_pcs = [p for p in pcs if p['health'] > 0]
-                    if not living_pcs:
-                        break
-                    # Same-round retarget after a kill: reuses the same
-                    # movement-aware default rather than re-checking a
-                    # Battle-Tactic-specific rule like Assassin's, same
-                    # "not a super intensive analysis" simplification as
-                    # everywhere else in movement mode.
-                    target = (tactics.target_closest if movement else tactics.target_first)(e, living_pcs)
+                    target = _retarget(e, [p for p in pcs if p['health'] > 0], movement)
         if all(p['health'] <= 0 for p in pcs):
             _log(trace, round=rnd, type='result', winner='enemies')
             return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0,
@@ -540,14 +564,15 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
 
 
-def simulate(tier, enemy_level, n_enemies=4, trials=4000, good_luck=0, movement=False, start_gap=None):
+def simulate(tier, enemy_level, n_enemies=4, trials=4000, good_luck=0, movement=False, start_gap=None, enemies=None):
     results = {'party': 0, 'enemies': 0, 'draw': 0}
     rounds_list = []
     hp_list = []
     total_attacks = 0
     total_damage = 0
     for _ in range(trials):
-        r = run_fight(tier, enemy_level, n_enemies=n_enemies, good_luck=good_luck, movement=movement, start_gap=start_gap)
+        r = run_fight(tier, enemy_level, n_enemies=n_enemies, good_luck=good_luck, movement=movement,
+                       start_gap=start_gap, enemies=enemies)
         results[r['winner']] += 1
         rounds_list.append(r['rounds'])
         total_attacks += r['pc_attacks']

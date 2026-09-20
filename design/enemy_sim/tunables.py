@@ -39,24 +39,50 @@ ARENA_SIZE = 20
 # plausible "within striking distance" buffer.
 MELEE_RANGE = 2
 
-# ---- Armor tiers ----
-# Not a literal copy of the player-facing armor_categories.csv (which
-# gives every bonus relative to bare skin) - deliberately relative to an
-# assumed baseline of an enemy already wearing some armor (per the
-# designer: "a baseline of them having 1 armor"), i.e. Light's own
-# numbers here (dodge/speed +0, physres +1) ARE that baseline. Unarmored
-# then reads as trading that armor away for +1 Dodge/+1 Speed; Medium/
-# Heavy read as layering on more Physical Resist at a cost to Dodge and
-# Speed, same shape as the real player table's own tradeoff, just
-# anchored one step over so an enemy's resulting stat block still lands
-# close to what a similarly-built PC would have (verified against
-# party.py's PC physres, which is raw Essence with no armor modeled).
+# ---- Armor tiers (armor_categories.csv, the real player-facing table) ----
+# One shared table for both sides now - enemies and PCs alike wear real
+# armor and get the real armor bonus (see party.py's own Armor
+# paragraph for the PC side; enemy_builder.py already used this table).
+# Physical Resist only - rulebook.md's Resist rule ("starts equal to
+# your Essence") only gets a further boost from Armor for Physical
+# damage; elemental Resist (Fire/Frost/Brilliant/Shadow, collapsed into
+# one `elemres` pool in this sim) stays Essence-only on both sides, no
+# armor contribution, matching armor_categories.csv's own column being
+# titled "Physical Resist" specifically. Unarmored is the implicit
+# baseline (all zeroes) - armor_categories.csv only lists the three worn
+# tiers, each relative to bare skin. This used to be a different,
+# enemy-only table anchored one step over Unarmored (to compensate for
+# PCs having no armor modeled at all) - now that PCs get the real thing
+# too (see party.py), that workaround isn't needed; both sides read off
+# this one real table. Note this does shift every enemy that wasn't
+# already on Light Armor (all 5 Roster enemies are, so the validated
+# grid's own enemy side is unaffected - only Medium/Heavy archetype
+# rows, like the Tank archetype, see a small Dodge/Speed change).
 ARMOR = {
-    "Unarmored": {"dodge": 1, "speed": 1, "physres": 0},
+    "Unarmored": {"dodge": 0, "speed": 0, "physres": 0},
     "Light":     {"dodge": 0, "speed": 0, "physres": 1},
-    "Medium":    {"dodge": -1, "speed": -1, "physres": 2},
-    "Heavy":     {"dodge": -2, "speed": -2, "physres": 3},
+    "Medium":    {"dodge": -1, "speed": 0, "physres": 2},
+    "Heavy":     {"dodge": -1, "speed": -1, "physres": 3},
 }
+
+# ---- Action Points (rulebook.md's "Actions on a Turn") ----
+# "When you flip Reflex to join an encounter, and again at the end of
+# each of your turns, you lose any existing Action Points and gain 4
+# Action Points in their place." - a flat per-turn budget every unit
+# gets, spent on move actions and attacks (see combat_sim.py's
+# spend_movement_ap and the Party's/Enemies' turn loops in run_fight).
+AP_PER_TURN = 4
+# "A move action takes 1 AP to make... this moves you up to your Speed
+# in meters. You can always end a move action early." - can be taken
+# more than once in a turn, AP allowing, which is exactly how closing a
+# longer gap than one Speed's worth of distance works here.
+MOVE_AP_COST = 1
+# "Most normal actions that involve a bit of effort, like making an
+# attack, take 2 AP to do."
+ATTACK_AP_COST = 2
+# T105 Healing Magic's own techniques.csv row gives it 1 AP specifically
+# (not the standard 2 above) - see tactics.strategy_support_healer.
+HEALING_MAGIC_AP_COST = 1
 
 # ---- Role archetypes (Combat Role catalog, richer/authoritative version) ----
 ROLE_MODS = {
@@ -193,18 +219,17 @@ PARTY_FORMATION_SPACING = 2
 # distance instead, for a controlled before/after comparison.
 START_GAP_RANGE = (5, 10)
 
-# ---- TODO: PC power budget from loot - not modeled yet ----
+# ---- TODO: PC power budget from loot - partially resolved, not fully ----
 # The designer's own point: PCs get a small power bump from the loot they
 # find (items/gear), same idea as ENEMY_ENCOUNTER_DESIGN.md's enemy-side
 # "loot/Gold discount" (350 Gold total across 15 notional Levels, Gold÷7
 # XP-equivalent, subtracted from the enemy's own stat budget before
-# pricing - see that doc's "per-Level total budget" section). Nothing on
-# the PC/Roster side accounts for this yet - the Roster rows in
-# sample_pcs.csv are bare Stats/Skills/Health only, no items layered on
-# top, so this simulator currently reads PCs as somewhat weaker than a
-# real, geared party would be at the same Tier. Deferred per the
-# designer ("if it's a bit of a tricky calculation, put a note to do it
-# later and just worry about the sim for now") rather than guessed at
-# here - when this gets picked up, the enemy-side Gold÷7 XP-equivalent
-# rate is the natural starting point for converting loot into the same
-# kind of stat-budget bump.
+# pricing - see that doc's "per-Level total budget" section). Real worn
+# Armor (see ARMOR above and party.py's own Armor paragraph) is now
+# modeled and closes part of this gap - a PC's Physical Resist is no
+# longer bare Essence alone. Still missing: every other kind of gear
+# (weapons beyond the base weapon_categories.csv options already modeled
+# via `Weapon`, Masterwork items, Techniques) - deferred per the
+# designer's original framing, same as before. If this gets picked up
+# further, the enemy-side Gold÷7 XP-equivalent rate is still the natural
+# starting point for whatever's still missing.

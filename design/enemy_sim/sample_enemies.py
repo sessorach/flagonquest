@@ -17,7 +17,18 @@ function per enemy. Two kinds of rows share the file:
   specific question (an item-balancing check, a "what does a generic
   fighter look like" ask) that aren't part of the validated roster and
   don't need to be unique per Level. `get_enemy(name)` pulls these by
-  name.
+  name. Includes a Minion archetype at every Level (0.5 Slots, same
+  Neutral shape as the Generic Fighter archetype) specifically so
+  `build_encounter`/`total_slots` below have a real sub-1-slot enemy to
+  compose with - every other row in this file is 1 Slot.
+
+`build_encounter(names)` assembles a custom encounter from any mix of
+named rows (Roster or reference, any Level/Slots combination) instead
+of `make_enemy(level)`'s single Roster pull - pass its result as
+`combat_sim.run_fight`'s own `enemies=` param. `total_slots(enemies)`
+sums an encounter's own Slots, for checking a mix against "one slot per
+PC" - the default encounter budget (the designer's own framing; not
+yet written into ENEMY_ENCOUNTER_DESIGN.md itself).
 
 These are simulator fixtures, not a finished in-game roster - expect an
 "Example Enemies" design doc to supersede the Roster rows once the
@@ -68,6 +79,29 @@ def get_enemy(name):
 
 def all_enemies():
     return [_build_from_row(row) for row in _load_rows()]
+
+
+def build_encounter(names):
+    """A custom encounter assembled from named reference rows in
+    whatever Level/Slots mix is asked for - e.g. build_encounter(
+    ["Generic Level 1 Tank", "Generic Level 1 Minion", "Generic Level 1
+    Minion"]) for a 2-slot Tank plus two 0.5-slot Minions (a 3-slot
+    encounter). Pass the result as combat_sim.run_fight's own
+    `enemies=` param (it takes any list of already-built enemy dicts,
+    not just N copies of one make_enemy(level) call) - see total_slots
+    to check the mix against "one slot per PC," the default encounter
+    budget (the designer's own framing - see this file's own module
+    docstring; ENEMY_ENCOUNTER_DESIGN.md doesn't spell this rule out
+    yet)."""
+    return [get_enemy(name) for name in names]
+
+
+def total_slots(enemies):
+    """Sum of an encounter's own Slots values, for checking a
+    build_encounter mix against "one slot per PC" (4 for a 4-PC party,
+    made up however - four 1-slot enemies, two 1-slot plus four
+    0.5-slot, one 2-slot plus two 1-slot, ...)."""
+    return sum(e.get("slots", 1) for e in enemies)
 
 
 if __name__ == "__main__":

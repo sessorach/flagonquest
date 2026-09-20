@@ -9,14 +9,23 @@ check it's doing what you meant.
 Usage:
     python3 narrate_fight.py [tier] [enemy_level] [seed]
         [--n-enemies N] [--static] [--party name1,name2,name3,name4]
-        [--json out.json]
+        [--encounter "Name 1,Name 2,..."] [--json out.json]
+        [--html out.html]
 
 `--static` runs the original (non-movement) mode instead - no position
 map then, just the combat log. `--party` swaps in a custom mix (see
 party.make_party_from) instead of the Tier's Roster; give exactly 4
-names. `--json` also writes the raw trace (plus the fight result) to a
-file, e.g. for narrate_fight.html to render as a real graphical
-battle-map instead of ASCII.
+names. `--encounter` swaps in a custom enemy mix (see sample_enemies.
+build_encounter) instead of `n_enemies` copies of the Level's Roster
+enemy - any mix of named rows, any Level/Slots combination (e.g. a Tank
+plus several Minions - see sample_enemies.py's own module docstring for
+the "one Slot per PC" convention); `enemy_level`/`--n-enemies` are
+ignored when this is given. `--json` writes the raw trace (plus the
+fight result) as JSON. `--html` writes a real self-contained HTML
+replay page (battle-map + combat log, same data as this terminal
+output but genuinely graphical - see replay_html.py) that you can open
+in any browser, no server needed - the easiest way to just look at one
+fight without reading a JSON dump.
 """
 import argparse
 import json
@@ -25,6 +34,8 @@ import sys
 import combat_sim as cs
 import tunables as T
 from party import make_party_from
+from sample_enemies import build_encounter
+from replay_html import render_html
 
 
 def build_labels(first_positions_event):
@@ -66,6 +77,8 @@ def render_event(event):
     unit, action = event['unit'], event['action']
     if action == 'move':
         pos = tuple(round(c, 1) for c in event['pos'])
+        if event.get('in_range'):
+            return f"  {unit} moves toward its target, ends at {pos} - now in range."
         return f"  {unit} moves toward its target, ends at {pos} - still out of range, no attack."
     if action == 'attack':
         verb = 'HITS' if event['hit'] else 'misses'
@@ -113,23 +126,31 @@ def main():
     ap.add_argument('--n-enemies', type=int, default=4)
     ap.add_argument('--static', action='store_true', help='run movement=False instead')
     ap.add_argument('--party', help='comma-separated names, exactly 4 (default: the Tier Roster)')
+    ap.add_argument('--encounter', help='comma-separated sample_enemies.csv names, any mix (default: n_enemies copies of the Level Roster)')
     ap.add_argument('--json', help='also write the raw trace + result to this file')
+    ap.add_argument('--html', help='also write a self-contained HTML replay page to this file')
     args = ap.parse_args()
 
     movement_on = not args.static
     if args.party:
         names = args.party.split(',')
         cs.make_party = lambda tier, good_luck=0, names=names: make_party_from(names, good_luck)
+    enemies = build_encounter(args.encounter.split(',')) if args.encounter else None
 
     trace = []
     result = cs.run_fight(args.tier, args.enemy_level, n_enemies=args.n_enemies,
-                           seed=args.seed, movement=movement_on, trace=trace)
+                           seed=args.seed, movement=movement_on, trace=trace, enemies=enemies)
     narrate(trace, movement_on)
 
     if args.json:
         with open(args.json, 'w') as f:
             json.dump({'trace': trace, 'result': result, 'arena_size': T.ARENA_SIZE}, f, indent=2)
         print(f"\nWrote trace to {args.json}", file=sys.stderr)
+
+    if args.html:
+        with open(args.html, 'w') as f:
+            f.write(render_html(trace, result, T.ARENA_SIZE))
+        print(f"Wrote HTML replay to {args.html} - open it in any browser.", file=sys.stderr)
 
 
 if __name__ == '__main__':
