@@ -82,7 +82,13 @@ def render_event(event):
         return f"  {unit} moves toward its target, ends at {pos} - still out of range, no attack."
     if action == 'attack':
         verb = 'HITS' if event['hit'] else 'misses'
-        extra = f" for {event['dmg']} damage (-> {event['target_hp_after']} HP)" if event['hit'] else ''
+        extra = ''
+        if event['hit']:
+            absorbed = event.get('protected_absorbed', 0)
+            breakdown = f"{event['raw_dmg']} raw - {event['resist']} resist"
+            if absorbed:
+                breakdown += f" - {absorbed} Protected"
+            extra = f" for {event['dmg']} damage ({breakdown} = {event['dmg']}) (-> {event['target_hp_after']} HP)"
         return f"  {unit} attacks {event['target']}: rolls {event['roll']} vs {event['defense']} - {verb}{extra}"
     if action == 'heal':
         return f"  {unit} heals {event['target']} for {event['amount']} (-> {event['target_hp_after']} HP)"

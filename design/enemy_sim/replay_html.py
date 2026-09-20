@@ -101,6 +101,7 @@ h1{
 .line.heal .who{color:var(--heal);}
 .line.move{color:var(--text-faint);font-style:italic;}
 .line .arrow{color:var(--text-dim);margin:0 4px;}
+.line .breakdown{color:var(--text-faint);font-size:11.5px;}
 footer{margin-top:36px;color:var(--text-dim);font-size:12px;font-family:monospace;border-top:1px solid var(--border-soft);padding-top:16px;}
 footer code{color:var(--accent);}
 </style>
@@ -191,7 +192,12 @@ function logLine(e) {
   }
   if (e.action === 'attack') {
     const cls = e.hit ? 'hit' : 'miss';
-    const verdict = e.hit ? `<span class="dmg">HIT for ${e.dmg}</span> &rarr; ${e.target_hp_after} HP` : 'misses';
+    let verdict = 'misses';
+    if (e.hit) {
+      let breakdown = `${e.raw_dmg} raw &minus; ${e.resist} resist`;
+      if (e.protected_absorbed) breakdown += ` &minus; ${e.protected_absorbed} Protected`;
+      verdict = `<span class="dmg">HIT for ${e.dmg}</span> <span class="breakdown">(${breakdown})</span> &rarr; ${e.target_hp_after} HP`;
+    }
     return `<div class="line ${cls}"><span class="who">${e.unit}</span> attacks <b>${e.target}</b> <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}</div>`;
   }
   if (e.action === 'heal') {

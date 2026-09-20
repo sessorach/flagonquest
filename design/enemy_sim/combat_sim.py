@@ -394,8 +394,15 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     attack this round), `action='attack'` (`target`, `roll`, `defense`,
     `hit`, `dmg`, `target_hp_after`), or whatever a PC's own strategy
     function logs (`tactics.strategy_support_healer` logs
-    `action='heal'` - see tactics.py's own `log` parameter). A final
-    `type='result'` event
+    `action='heal'` - see tactics.py's own `log` parameter). An
+    `action='attack'` event also carries `raw_dmg` (damage before
+    Resist - PCs' includes Gambling's +1/success, already never
+    negative) and `resist` (the Resist pool actually applied -
+    enemy_resist_for_pc_attack/pc_resist_for_enemy_attack), so
+    `dmg == max(0, raw_dmg - resist)` minus whatever Protected
+    absorbed (`protected_absorbed`, PC attacks only - enemies have no
+    Protected-granting Ability modeled) is always visible in the trace,
+    not just the final post-Resist number. A final `type='result'` event
     carries `winner`."""
     if seed is not None:
         random.seed(seed)
@@ -463,18 +470,22 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 ap -= T.ATTACK_AP_COST
                 hit = roll >= defense
                 dmg = 0
+                raw_dmg = 0
+                protected_absorbed = 0
                 if hit:
-                    dmg = max(0, pc['damage'] + gambles - resist)
+                    raw_dmg = pc['damage'] + gambles
+                    dmg = max(0, raw_dmg - resist)
                     protected = target.get('protected', 0)
                     if protected > 0 and dmg > 0:
-                        absorbed = min(dmg, protected)
-                        target['protected'] -= absorbed
-                        dmg -= absorbed
+                        protected_absorbed = min(dmg, protected)
+                        target['protected'] -= protected_absorbed
+                        dmg -= protected_absorbed
                     target['health'] -= dmg
                     pc_damage_dealt += dmg
                 if party_log:
                     party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
-                               hit=hit, dmg=dmg, target_hp_after=target['health'])
+                               hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
+                               target_hp_after=target['health'])
                 if target['health'] <= 0:
                     target = _retarget(pc, [e for e in enemies if e['health'] > 0], movement)
         # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
@@ -536,9 +547,12 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 opp_def_val = pc_defense_for(target, e['opp_def'])
                 hit = roll >= opp_def_val
                 dmg = 0
+                raw_dmg = 0
+                resist = 0
                 if hit:
                     resist = pc_resist_for_enemy_attack(e, target)
-                    dmg = max(0, e['attack_damage'] - resist)
+                    raw_dmg = e['attack_damage']
+                    dmg = max(0, raw_dmg - resist)
                     target['health'] -= dmg
                     if 'Strike (Crippling)' in abilities:
                         target['crippled'] = target.get('crippled', 0) + 1
@@ -550,7 +564,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 attacks_made += 1
                 if enemy_log:
                     enemy_log(unit=e['name'], action='attack', target=target['name'], roll=roll, defense=opp_def_val,
-                               hit=hit, dmg=dmg, target_hp_after=target['health'])
+                               hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, target_hp_after=target['health'])
                 if target['health'] <= 0:
                     target = _retarget(e, [p for p in pcs if p['health'] > 0], movement)
         if all(p['health'] <= 0 for p in pcs):
