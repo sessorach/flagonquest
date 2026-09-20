@@ -70,6 +70,19 @@ def flip_best_of(n):
     return max(flip() for _ in range(n))
 
 
+def enemy_defense_for_pc_attack(target):
+    """A PC's own weapon attack is opposed by Parry or Dodge, the
+    target's choice (rulebook.md: "If multiple Defenses are stated, the
+    target chooses which to use") - same rule pc_defense_for already
+    applies to an enemy's own 'Parry/Dodge' Actions, just the reverse
+    direction. Used to be hardcoded to target['parry'] alone; that broke
+    badly once Powerful Spell's -99-Parry trick showed up (see
+    tunables.ABILITY_COST) - a caster who's given up on Parry entirely
+    isn't supposed to be an automatic hit every time, just one who'll
+    always be defended by Dodge instead."""
+    return max(target['parry'], target['dodge'])
+
+
 def pc_gamble_count(pc, target):
     """How many times a 'clever' PC Gambles on this attack (rulebook.md's
     Gambling rule: each Gamble is -2 to the roll, but grants +1 Extra
@@ -85,21 +98,22 @@ def pc_gamble_count(pc, target):
     who recognizes that gambles regardless of the accuracy cost: some
     chance of real damage beats a guaranteed zero. `max_possible` is the
     only cap applied then - never gamble past the point where even the
-    best possible card (13) couldn't clear the target's Parry, since
+    best possible card (13) couldn't clear the target's Defense, since
     that's a wasted action no one would actually take.
 
     Only when `needed == 0` (a normal hit is already doing something)
     does the more cautious "plenty of Skill Total to spare" judgment
     call from the rulebook's own Gambling text apply - gamble once more
     for the extra damage, but only if the *average* card (7) would still
-    clear the target's Parry.
+    clear the target's Defense.
     """
     effective_skill = pc['skill_total'] - pc.get('crippled', 0)
+    defense = enemy_defense_for_pc_attack(target)
     needed = max(0, target['physres'] - pc['damage'] + 1)
-    max_possible = max(0, (effective_skill + 13 - target['parry']) // 2)
+    max_possible = max(0, (effective_skill + 13 - defense) // 2)
     if needed > 0:
         return min(needed, max_possible)
-    max_safe = max(0, (effective_skill + 7 - target['parry']) // 2)
+    max_safe = max(0, (effective_skill + 7 - defense) // 2)
     return min(1, max_safe)
 
 
@@ -132,7 +146,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
 
     for rnd in range(1, max_rounds + 1):
         # Party's turn: each living PC attacks the first living enemy
-        # (pure focus fire, no target choice) vs. that enemy's Parry Defense.
+        # (pure focus fire, no target choice) vs. whichever of the
+        # enemy's Parry/Dodge is better for it (enemy_defense_for_pc_attack).
         for pc in pcs:
             if pc['health'] <= 0:
                 continue
@@ -140,12 +155,13 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             if not targets:
                 break
             target = targets[0]
+            defense = enemy_defense_for_pc_attack(target)
             gambles = pc_gamble_count(pc, target)
             crippled = pc.get('crippled', 0)
             card = flip_best_of(1 + pc.get('good_luck', 0))  # Good Luck: flip 1 extra card per stack, keep the highest
-            roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack with Melee, vs. the enemy's Parry
+            roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack with Melee, vs. the enemy's Parry/Dodge
             pc_attacks += 1
-            if roll >= target['parry']:
+            if roll >= defense:
                 dmg = max(0, pc['damage'] + gambles - target['physres'])
                 protected = target.get('protected', 0)
                 if protected > 0 and dmg > 0:

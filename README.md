@@ -13,13 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-09-20 — Good Luck wired into the simulator, used it to spot-check several Ring items' pricing
+### 2026-09-20 — Good Luck wired in, item pricing spot-checked, PCs and enemies moved to CSVs with a wider archetype set
 
-Added Good Luck to the fight simulator, then used the enemy model to double-check a handful of Ring items' existing prices against generic on-level fighters instead of specific named enemies.
-- Good Luck's simulated swing (one PC, always-on for a fight, +7 to +9 win-rate points) confirmed a real effect but isn't directly comparable to the calculated 2.4 per-flip value.
-- Pillar Ring and Ring of Comets both checked out at their existing price; Flamebinder's Promise turned out to be far more sensitive to which enemy it's used against than assumed, and Mendicant's Cord's "guess which Defense to protect" premise has no real risk yet, since no enemy Action targets Bodily or Mental. Logged both in `balance_weights_notes.md`.
-- Sample enemy stat blocks now live in a CSV instead of one-off Python functions, so builds made for a specific question stick around for reuse.
-- Sample enemy stat blocks now live in a CSV (`design/enemy_sim/sample_enemies.csv`) instead of one-off Python functions, so builds made for a specific question stick around for reuse instead of getting thrown away.
+Added Good Luck to the fight simulator and used the enemy model to spot-check several Ring items' existing prices, then moved both PC and enemy stat blocks into CSV tables and built out a much wider set of reference builds for future use.
+- Good Luck's simulated swing confirmed a real effect but isn't directly comparable to the calculated per-flip value; Pillar Ring and Ring of Comets checked out at their existing price, Flamebinder's Promise turned out more Resist-sensitive than assumed, and Mendicant's Cord's "guess which Defense to protect" has no real risk yet. Logged both open findings in `balance_weights_notes.md`.
+- PC stat blocks now live in `sample_pcs.csv` (real named characters - Hilde, Browndog, Carrick, Jackal, Felix - alongside the validated party baseline), and enemy stat blocks gained 20 new archetype touchstones (Neutral/Power-Attack/Max-Damage/Ranged Caster/Tank at every Level).
+- Building the Ranged Caster archetype surfaced a real bug: PCs' own attacks were hardcoded to always target an enemy's Parry, never Dodge, which broke badly against an enemy with a deliberately tanked Parry. Fixed to match the actual rule (target picks whichever Defense is better for them).
 
 ### 2026-09-19 — Enemy math retuning, abilities wired into the simulator
 
