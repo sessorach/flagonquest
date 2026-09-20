@@ -253,3 +253,94 @@ def resolve_pc_strategy(pc, party, log=None):
     (move, then attack)."""
     fn = PC_STRATEGIES.get(pc.get('strategy'))
     return fn(pc, party, log) if fn else 0
+
+
+# ---- Card Techniques: a PC technique whose own cost is "discard a
+# card," not AP (techniques.csv's own Action/Cost columns - Second Wind,
+# Perfect Strike and Warmage's Reserves are each literally "0 AP",
+# Bottomless Bottles' Cost is card-based too, though its own Action is a
+# pre-combat 10-minute crafting step - see party.py's Card Techniques
+# paragraph for the shared budget these all draw from
+# (`card_uses_left`), computed once from hand_size the same "quick
+# check, not real hand/suit tracking" way heal_uses_left already is.
+# These three don't share one call signature the way TARGETING/
+# MOVEMENT_TACTICS/PC_STRATEGIES above do - each hooks into a genuinely
+# different point in a PC's turn (a free self-heal before attacking, a
+# swapped-in attack profile inside the attack loop, a one-time luck bonus
+# on a specific attack roll) - so each gets its own function, called by
+# name from party.py's `card_techniques` list rather than forced through
+# a single dispatch table that doesn't fit all three shapes. combat_sim.
+# run_fight's Party's-turn block is what actually calls these.
+
+def try_second_wind(pc, log=None):
+    """Second Wind (T012, 0 AP, Cost 'Discard a card'): self-heal 2
+    Shallow Health (1 base, +1 since the discarded card is assumed a
+    Heart - same guaranteed-favorable-discard simplification
+    strategy_support_healer already makes) when Wounded (health at or
+    below half max, same proxy used everywhere else in this sim) and a
+    card_uses_left charge remains. Entirely free of AP - Second Wind's
+    own Action cost is 0 - so it never competes with this PC's own
+    attack(s) the same turn; combat_sim.run_fight calls this once per PC
+    turn, before movement/attacks, regardless of `ap`."""
+    if 'Second Wind' not in pc.get('card_techniques', ()):
+        return False
+    if pc.get('card_uses_left', 0) <= 0:
+        return False
+    if not (0 < pc['health'] <= pc['max_health'] / 2):
+        return False
+    pc['card_uses_left'] -= 1
+    heal = min(2, pc['max_health'] - pc['health'])
+    pc['health'] += heal
+    if log:
+        log(unit=pc['name'], action='heal', target=pc['name'], amount=heal, target_hp_after=pc['health'])
+    return True
+
+
+def perfect_strike_bonus(pc, gambles):
+    """Perfect Strike (T078, 0 AP - Interrupt 'you declare a weapon
+    attack', Cost 'Discard a card'): +2 Good Luck (1 base, +1 for
+    choosing 'Good Luck a second time' over the suit-pool option this
+    sim doesn't model) on an attack where the PC is Gambling - matching
+    the designer's own framing ('an attack where she needs to Gamble').
+    Called from inside combat_sim's attack loop right where `gambles`
+    is already known; consumes a card_uses_left charge only when it
+    actually applies (gambles > 0 and a charge remains), so a PC who
+    never needs to Gamble never spends the budget on it."""
+    if 'Perfect Strike' not in pc.get('card_techniques', ()):
+        return 0
+    if gambles <= 0 or pc.get('card_uses_left', 0) <= 0:
+        return 0
+    pc['card_uses_left'] -= 1
+    return 2
+
+
+def bottomless_bottles_choice(pc):
+    """Bottomless Bottles (T053): the 10-minute crafting Action that
+    actually creates the items happens before the fight (not AP-costed
+    here at all) - what this models is spending one of THIS PC's own
+    2-AP attack actions on a created item instead of their normal
+    weapon attack, gated by the same card_uses_left budget as the other
+    Card Techniques (the designer's own 'Discard X cards' cost,
+    standing in for the same quick 1/3-of-hand check). Only Jackal has
+    this technique right now, so the two items she actually built
+    (Bottled Fire - I030, Healing Potion - I043) are hardcoded via the
+    profile party.py precomputes onto her PC dict
+    (`bottled_fire_profile`/`healing_potion_amount`) rather than a
+    general "what did this PC craft" system - generalize this once a
+    second Bottomless Bottles PC needs different items, not before.
+    Returns None (fall through to a normal weapon attack) if this PC
+    doesn't have the technique or has no charge left; otherwise a dict
+    describing what combat_sim.run_fight's attack loop should do instead
+    this iteration - `{'kind': 'heal', 'amount': N}` (Healing Potion,
+    chosen when Wounded, same half-max-health proxy as everywhere else)
+    or `{'kind': 'attack', **bottled_fire_profile}` (an alternate attack
+    profile - skill_total/damage/dmg_type/opp_def - the caller
+    temporarily overlays onto the PC for that one attack)."""
+    if 'Bottomless Bottles' not in pc.get('card_techniques', ()):
+        return None
+    if pc.get('card_uses_left', 0) <= 0:
+        return None
+    pc['card_uses_left'] -= 1
+    if 0 < pc['health'] <= pc['max_health'] / 2:
+        return {'kind': 'heal', 'amount': pc['healing_potion_amount']}
+    return {'kind': 'attack', **pc['bottled_fire_profile']}

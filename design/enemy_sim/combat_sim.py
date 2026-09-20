@@ -117,6 +117,30 @@ hand-derived value of 2.4) predates the AP-economy/Armor fixes above
 and hasn't been rerun since - treat that comparison as stale until it
 is.
 
+## Card Techniques
+
+A small set of PC techniques whose real cost is "discard a card," not
+AP (techniques.csv's own Action/Cost columns say so directly - Second
+Wind, Perfect Strike and Warmage's Reserves are each literally "0 AP").
+`tactics.try_second_wind`/`perfect_strike_bonus`/`bottomless_bottles_
+choice` implement the three currently in use (self-heal when Wounded,
++2 Good Luck on a Gambled attack, substituting a created item for one
+attack action) against a shared per-fight budget - `card_uses_left`,
+computed once in party.py as `hand_size // 3` ("say 1/3 of" a full
+hand, the designer's own quick-check framing, same shape as
+heal_uses_left's `// 4`) - rather than tracking real hand composition
+or suits. This is deliberately a rough stand-in, same spirit as Good
+Luck/Bad Luck's `resolve_card` above: good enough to make a Technique
+that's otherwise completely invisible to this sim show up as a
+real, budget-limited effect, not a claim that it's tracking actual
+cards. `weapon_uses_left` is the separate, related idea of an
+Encounter-Technique Weapon (a PC whose own attack is itself a
+Technique with a limited number of known copies, like Beornhard's 3x
+War Magic) running out of charges partway through a long fight -
+Warmage's Reserves adds `ceil(hand_size / 3)` more on top of the base
+copy count. See tactics.py's own "Card Techniques" section and party.py
+'s own paragraph on both columns for the full picture.
+
 `max_rounds` (30, not the original 10) matters more than it looks: a
 fight that's close but slow-grinding (both sides doing modest damage
 against Resist/Defense) can hit a too-low round cap as an unresolved
@@ -447,6 +471,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             if pc['health'] <= 0:
                 continue
             ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
+            tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
             targets = [e for e in enemies if e['health'] > 0]
             if not targets:
                 break
@@ -459,15 +484,41 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                     continue
 
             while ap >= T.ATTACK_AP_COST and target is not None:
+                if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0:
+                    break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
+                substitute = tactics.bottomless_bottles_choice(pc)
+                if substitute and substitute['kind'] == 'heal':
+                    ap -= T.ATTACK_AP_COST
+                    healed = min(substitute['amount'], pc['max_health'] - pc['health'])
+                    pc['health'] += healed
+                    if party_log:
+                        party_log(unit=pc['name'], action='heal', target=pc['name'], amount=healed,
+                                   target_hp_after=pc['health'])
+                    continue
+                # A Bottled-Fire substitution temporarily overlays this PC's
+                # own attack profile with the thrown item's numbers for one
+                # iteration, restored right after logging - everything below
+                # (defense/resist/roll) reads pc['skill_total'] etc. exactly
+                # as it would for a normal weapon attack, so nothing else
+                # needs to branch on `substitute`.
+                saved_profile = None
+                if substitute:
+                    saved_profile = (pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'])
+                    pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = (
+                        substitute['skill_total'], substitute['damage'], substitute['dmg_type'], substitute['opp_def'])
                 defense = enemy_defense_for_pc_attack(pc, target)
                 resist = enemy_resist_for_pc_attack(pc, target)
-                gambles = pc_gamble_count(pc, target)
+                # Grenades can't be Gambled on (glossary.md's [Grenade] rule).
+                gambles = 0 if substitute else pc_gamble_count(pc, target)
                 crippled = pc.get('crippled', 0)
                 bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge'))
-                card = resolve_card(pc.get('good_luck', 0), bad_luck)
+                luck_bonus = tactics.perfect_strike_bonus(pc, gambles)
+                card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
                 roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
                 pc_attacks += 1
                 ap -= T.ATTACK_AP_COST
+                if pc.get('weapon_uses_left') is not None and not substitute:
+                    pc['weapon_uses_left'] -= 1
                 hit = roll >= defense
                 dmg = 0
                 raw_dmg = 0
@@ -486,6 +537,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                     party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
                                hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
                                target_hp_after=target['health'])
+                if saved_profile:
+                    pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
                 if target['health'] <= 0:
                     target = _retarget(pc, [e for e in enemies if e['health'] > 0], movement)
         # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's

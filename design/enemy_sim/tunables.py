@@ -201,6 +201,13 @@ WEAPON = {
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
     "War Magic (Lance)": {"skill": "Sorcery",     "accuracy": 0, "damage_base": 2, "damage_stat": "Mind",    "range_per_skill": 1,
                            "dmg_type": "Fire", "opp_def": "Dodge"},
+    # 2H Heavy Melee (weapon_categories.csv WC004): Accuracy +0, Damage
+    # 5 + [Body] (one higher than the 1H Heavy Melee default every blank
+    # `Weapon` cell already gets), Skill Melee, no attack_range (falls
+    # back to MELEE_RANGE like the blank default) - the only real
+    # difference from leaving `Weapon` blank is the +1 Damage.
+    "2H Heavy Melee":    {"skill": "Melee",       "accuracy": 0, "damage_base": 5, "damage_stat": "Body",
+                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
 }
 
 # ---- Movement mode: party formation and start distance ----

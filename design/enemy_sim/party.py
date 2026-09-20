@@ -107,6 +107,7 @@ Every Stat/Skill/Defense formula here is straight from rulebook.md:
   ignored entirely otherwise, same as before Armor existed.
 """
 import csv
+import math
 import os
 import tunables as T
 
@@ -127,7 +128,7 @@ def _pc_dict(row, index, good_luck):
     stats = {s: row[s] for s in ("Agility", "Body", "Cunning", "Mind", "Essence")}
     skills = {k: v for k, v in row.items() if k not in
               ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
-               "Weapon", "Support", "Armor")}
+               "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses")}
     parry = 8 + skill_total(stats, skills, "Melee")
     dodge = 8 + skill_total(stats, skills, "Acrobatics")
     bodily = 8 + skill_total(stats, skills, "Resilience")
@@ -204,6 +205,60 @@ def _pc_dict(row, index, good_luck):
     # another registry entry instead of a new boolean CSV column.
     strategy = "support_healer" if (row.get("Support") or "").strip().upper() == "TRUE" else "attacker"
 
+    # `Card Techniques` (comma-separated tags from tactics.py's
+    # try_second_wind/perfect_strike_bonus/bottomless_bottles_choice -
+    # "Second Wind", "Perfect Strike", "Bottomless Bottles",
+    # "Warmage's Reserves") - a PC technique whose own cost is "discard
+    # a card," not AP, per techniques.csv's own Action/Cost columns.
+    # `card_uses_left` is the shared per-fight budget all of them draw
+    # from - hand_size // 3, the same "quick check, not real hand/suit
+    # tracking" shape as heal_uses_left's hand_size // 4, per the
+    # designer's own framing ("say 1/3 of those"). Computed for every
+    # PC, not just ones with a Card Technique - harmless, one less
+    # special case.
+    card_techniques = [t.strip() for t in (row.get("Card Techniques") or "").split(",") if t.strip()]
+    card_uses_left = hand_size // 3
+
+    # `Weapon Uses`: blank/absent means unlimited (every existing PC),
+    # matching the sim's original always-available attack. A number
+    # means this PC's own Weapon is an Encounter Technique with that
+    # many known copies (Beornhard's 3x War Magic, say) - only that many
+    # casts a fight, decremented once per real weapon attack in
+    # combat_sim.run_fight (not a Bottomless-Bottles-substituted one,
+    # which is a different action entirely). "Warmage's Reserves" in
+    # `card_techniques` adds ceil(hand_size / 3) more on top - the
+    # designer's own call (rounded up, unlike the floor() card_uses_left
+    # budget above, since this is a bonus on an already-scarce resource
+    # rather than a fresh one) for how many times its own 'regain an
+    # Encounter Technique use' effect can fire in one fight.
+    weapon_uses_raw = (row.get("Weapon Uses") or "").strip()
+    weapon_uses_left = int(weapon_uses_raw) if weapon_uses_raw else None
+    if weapon_uses_left is not None and "Warmage's Reserves" in card_techniques:
+        weapon_uses_left += math.ceil(hand_size / 3)
+
+    # Bottomless Bottles (T053) items - hardcoded to the two Jackal
+    # actually built (Bottled Fire I030, Healing Potion I043) rather
+    # than a general "what did this PC craft" system; see tactics.
+    # bottomless_bottles_choice's own docstring for why. Bottled Fire is
+    # a [Grenade] (glossary.md): Acrobatics Skill Total, no accuracy
+    # bonus, flat 8 Fire damage (not scaled by any Stat), opposed by
+    # Dodge alone (not Parry/Dodge), Range 3 x Body - reusing whichever
+    # Range this PC's own base Weapon already uses is wrong in general,
+    # so this is computed straight from Acrobatics/Body here regardless
+    # of what `Weapon` is set to.
+    # combat_sim's attack loop only overlays skill_total/damage/dmg_type/
+    # opp_def for a Bottled Fire throw, not attack_range - so this only
+    # reads correctly for a PC whose own base Weapon's Range formula
+    # already happens to be 3 x Body too (Jackal's Light Thrown is,
+    # coincidentally); revisit if a future Bottomless Bottles PC's base
+    # Weapon uses a different Range.
+    bottled_fire_profile = None
+    healing_potion_amount = None
+    if "Bottomless Bottles" in card_techniques:
+        bottled_fire_profile = dict(skill_total=skill_total(stats, skills, "Acrobatics"), damage=8,
+                                     dmg_type="Fire", opp_def="Dodge")
+        healing_potion_amount = 2  # Healing Potion (I043): "you heal 2 Health"
+
     # Every copy gets its own suffix, Roster rows included (a Roster
     # build used to keep its bare row Name - "Baseline Tier 1 Party
     # Member" x4, all identical - since nothing needed to tell 4
@@ -218,9 +273,15 @@ def _pc_dict(row, index, good_luck):
               physres=physres, elemres=elemres, armor=armor,
               health=health, max_health=health, speed=speed,
               crippled=0, vulnerable=0, bleeding=0, good_luck=good_luck,
-              strategy=strategy, heal_uses_left=hand_size // 4)
+              strategy=strategy, heal_uses_left=hand_size // 4,
+              card_techniques=card_techniques, card_uses_left=card_uses_left)
     if attack_range is not None:
         pc["attack_range"] = attack_range
+    if weapon_uses_left is not None:
+        pc["weapon_uses_left"] = weapon_uses_left
+    if bottled_fire_profile is not None:
+        pc["bottled_fire_profile"] = bottled_fire_profile
+        pc["healing_potion_amount"] = healing_potion_amount
     return pc
 
 

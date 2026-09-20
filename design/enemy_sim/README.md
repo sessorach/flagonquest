@@ -47,23 +47,41 @@ a file map.
   Tier N Party Member" rows are what `party.py`'s `make_party(tier)`
   actually uses (4 copies, the smoothed PC_SKILLS_COMBAT variant
   migrated from `tunables.py`); the `FALSE` rows are named reference
-  characters — melee: Hilde, Browndog, Carrick, Jackal, Felix (one
-  leaning into each of the 5 Stats); ranged (via `Weapon`, see below):
-  Sable (Light Bow), Rook (Light Thrown), Wren (War Magic + Lance);
-  support (via `Support`, see below): Beornhard — all built to
-  rulebook.md's own Quick Creation Reference shape and verified to cost
-  exactly 75 XP including Techniques. A row's `Armor` cell
-  (`Unarmored`/`Light`/`Medium`/`Heavy`, blank = `Unarmored`) is the
-  real `tunables.ARMOR` table — see each row's own Notes for why that
-  tier was picked (usually whether the build's Might Skill Total
-  actually clears that armor's real Might Requirement).
+  characters — melee: Hilde, Browndog, Carrick, Felix (one leaning into
+  each of the 4 physical Stats, Cunning covered by Carrick's Acrobatics
+  lean); ranged/utility (via `Weapon`, see below): Sable (Light Bow),
+  Rook (Light Thrown), Jackal (Light Thrown + Bottomless Bottles), Wren
+  (War Magic + Lance); caster (via `Weapon`): Beornhard (War Magic +
+  Lance, an Encounter-Technique attack, see `Weapon Uses` below) — all
+  built to rulebook.md's own Quick Creation Reference shape and verified
+  to cost exactly 75 XP including Techniques. Hilde/Browndog/Carrick/
+  Jackal/Beornhard are player-drafted, real JSON exports from
+  `index.html` (not this project's own reference-build convention), and
+  replaced this project's own earlier versions of those same five names
+  — a row's own Notes says so and gives the full derivation. A row's
+  `Armor` cell (`Unarmored`/`Light`/`Medium`/`Heavy`, blank =
+  `Unarmored`) is the real `tunables.ARMOR` table — see each row's own
+  Notes for why that tier was picked (usually whether the build's Might
+  Skill Total actually clears that armor's real Might Requirement).
   **Worth knowing**: a blank `Weapon` cell still means a PC's attack
   only uses Melee/Physical — a non-melee, no-`Weapon` reference
   character like Felix reads as weak in a real fight regardless of how
   coherent the build is on paper; that's `Weapon` not being set for
   that character, not a limit of the sim (see Wren for the same
   Essence-primary concept built to attack through Sorcery instead, with
-  Fire damage).
+  Fire damage). `Pronouns` (blank unless specified) is reference-only —
+  useful for consistent rulebook prose, read by nothing in the sim
+  itself.
+  **`Card Techniques`** (comma-separated tags — "Second Wind", "Perfect
+  Strike", "Bottomless Bottles", "Warmage's Reserves") names which of
+  `tactics.py`'s Card Techniques (see its own section below) this PC
+  has — a technique whose real cost is "discard a card" rather than AP,
+  drawing on a shared per-fight budget (`card_uses_left`, `party.py`'s
+  `hand_size // 3` — "say 1/3 of" a full hand, the designer's own quick-
+  check framing). **`Weapon Uses`** (blank = unlimited, the default) is
+  the separate idea of a PC whose own `Weapon` is itself an Encounter
+  Technique with a limited number of known copies (Beornhard's 3x War
+  Magic) — see `party.py`'s own paragraph on both columns.
 - **`party.py`** — loads `sample_pcs.csv`. `make_party(tier, good_luck=N)`
   pulls the Roster row and duplicates it x4; `get_pc(name)` pulls any
   row by name; `make_party_of(name)` duplicates one row x4; `make_party_
@@ -84,7 +102,13 @@ a file map.
   registry keyed off a CSV column value — add a new tactic/strategy/
   style by writing one function and registering it, not by adding
   another `if` branch to `combat_sim.py`'s `run_fight`. See its own
-  module docstring before adding one.
+  module docstring before adding one. Its **Card Techniques** section
+  (`try_second_wind`/`perfect_strike_bonus`/`bottomless_bottles_choice`)
+  covers PC techniques whose own cost is "discard a card," not AP — a
+  self-heal when Wounded, a Good Luck bonus on a Gambled attack, and
+  substituting a created item for one attack action, each gated by the
+  shared `card_uses_left` budget (`sample_pcs.csv`'s own `Card
+  Techniques` column above).
 - **`cards.py`** — the one place "which suit is this card" gets decided:
   `flipped_matches(suit)` (a genuinely random flipped card, a 1-in-4
   roll) vs. `chosen_matches(suit)` (a discarded/played card, chosen by
