@@ -52,13 +52,24 @@ Melee/Acrobatics/Resilience/Composure/Insight regardless of `Weapon` -
 a War Magic caster's Sorcery Skill Total drives their own attack and
 Range without touching their (separately tracked) Parry.
 
-**`Support`** (`TRUE`/blank) flags a PC who spends their turn healing
-an ally instead of attacking when combat_sim.py's `resolve_support_pc`
-decides the party needs it, approximating T105 Healing Magic (Level 1:
-discard 1 card, heal 1 Shallow Health + 1 more if that card's a Heart)
-- see combat_sim.py's own docstring for the exact heuristic and what it
-showed. Doesn't change anything in this file - `support` just gets
-threaded onto the PC dict as a plain bool for combat_sim to read.
+**`Support`** (`TRUE`/blank) flags a PC who spends *some* of their turns
+healing an ally instead of attacking - a hard-capped resource, not a
+per-round coin flip, so a support PC still fights their own weapon
+attack most rounds rather than sitting idle. `heal_uses_left` (every
+PC dict, not just Support ones) is `hand_size // 4`, `hand_size` being
+rulebook.md's own "Cards Per Day"/Draw Cycle formula (twice Cunning
+plus Mind) standing in for how many cards this PC carries into a fresh
+encounter - one use of Healing Magic at Level 1 costs 1 card, so a
+quarter of a full hand caps how many times they can afford to cast it
+in one fight. combat_sim.py's `resolve_support_pc` spends a use (and
+only a use) once a living ally drops to half Health or below - "if
+necessary, ESPECIALLY if wounded" (the designer's own framing) reads as
+"only when it's actually needed," given how few uses there usually are
+- approximating T105 Healing Magic (1 Shallow Health + 1 more if the
+discarded card's a Heart). See combat_sim.py's own docstring for what
+that showed. Doesn't change anything else in this file - `support`/
+`heal_uses_left` just get threaded onto the PC dict for combat_sim to
+read.
 
 Every Stat/Skill/Defense formula here is straight from rulebook.md:
 - Defense = 8 + [governing Skill Total]
@@ -131,13 +142,25 @@ def _pc_dict(row, index, good_luck):
         dmg_type = "Physical"
         opp_def = "Parry/Dodge"
 
+    # "Hand size" for a support PC's own heal-use cap (see combat_sim.
+    # resolve_support_pc) - rulebook.md has no per-encounter hand-size
+    # concept, only "Cards Per Day"/"The Draw Cycle": "Draw a number of
+    # cards equal to twice the total of your Cunning plus Mind." Reused
+    # here as the stand-in for how many cards this PC is carrying into a
+    # single isolated encounter (this sim never chains multiple fights
+    # in one trial, so "starts every fight with a full hand" is the
+    # right simplification). Computed for every PC, not just Support
+    # ones - harmless, and one less thing to special-case.
+    hand_size = 2 * (int(stats["Cunning"]) + int(stats["Mind"]))
+
     pc = dict(name=row["Name"] if row["Name"].startswith("Baseline") else f"{row['Name']}{index}",
               parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
               skill_total=atk_skill_total,  # the PC's own attacking Skill Total - see the Weapon block above
               damage=damage, dmg_type=dmg_type, opp_def=opp_def,
               physres=physres, health=health, max_health=health, speed=speed,
               crippled=0, vulnerable=0, bleeding=0, good_luck=good_luck,
-              support=(row.get("Support") or "").strip().upper() == "TRUE")
+              support=(row.get("Support") or "").strip().upper() == "TRUE",
+              heal_uses_left=hand_size // 4)
     if attack_range is not None:
         pc["attack_range"] = attack_range
     return pc

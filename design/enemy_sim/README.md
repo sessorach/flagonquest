@@ -61,9 +61,11 @@ usage.
   Heavy Melee default - `tunables.WEAPON` has the real
   weapon_categories.csv/features.csv numbers behind each option, fully
   decoupled from Parry/Dodge/etc. A row's `Support` cell (`TRUE`/blank)
-  flags a PC who spends their turn healing an ally instead of attacking
-  when `combat_sim.resolve_support_pc` decides the party needs it — see
-  Beornhard's own row and `combat_sim.py`'s note on what that showed.
+  flags a PC who spends *some* of their turns healing an ally instead of
+  attacking — a hard-capped resource (`heal_uses_left`, every PC dict),
+  not a per-round coin flip, so they're still fighting with their own
+  Weapon/Melee most rounds. See Beornhard's own row and `combat_sim.py`'s
+  note on what that showed.
 - **`sample_enemies.csv`** — every enemy stat block that's been built for
   a reason, one row per build (Level/Slots/Role/Defense-tier/Action/
   Armor/Battle Tactic/Fighting Style/Abilities/Archetype). The `Roster`

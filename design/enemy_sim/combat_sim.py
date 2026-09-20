@@ -96,28 +96,36 @@ ranged builds their head start.
 
 The mixed-party comparisons themselves (Hilde/Browndog/Carrick/Jackal
 all-melee; various Sable/Wren/Beornhard swaps) all landed far below the
-Roster's own ~50% at n_enemies=4 (3-22% depending on comp/movement) -
+Roster's own ~50% at n_enemies=4 (3-17% depending on comp/movement) -
 **not** a sign these builds or movement are bad, but a reminder that
 n_enemies=4 vs a Level 1 Roster enemy is exactly the matchup the Roster
 was *calibrated* to be a fair fight for 4 identical, smoothed Roster
 PCs, not 4 spikier named reference builds sharing one "combat slot"
-with a non-attacking healer. Re-run at n_enemies=2 (a lighter, more
-proportionate encounter) to isolate composition from that calibration
-gap: swapping a 4th melee/caster/healer into Hilde+Browndog+Sable
-showed Beornhard's healing (~85-88%) actually underperforming both a
-2nd caster (~96-97%) and a 4th fighter (~80-90%, but this one got
-noticeably *worse* under movement, likely just melee not benefiting
-the way a ranged 4th slot does) - in this sim's flat, no-AP-economy
-model, Beornhard's ~1.25-average Health per activation (approximating
-T105 Healing Magic Lv1: 1 + [Hearts discarded], modeled as a flat 25%
-chance since this sim tracks no real suits/cards) isn't worth as much
-as a 4th attacker's damage, since enemy burst outpaces that trickle of
-healing more often than not. `resolve_support_pc` has the exact
-heal-or-attack heuristic (near-always once anyone's at half Health or
-below - standing in for Wounded, since there's no Shallow/Deep Health
-split here - else ~25% of rounds, per the designer's "if necessary,
-ESPECIALLY if wounded" framing) and Beornhard's own sample_pcs.csv Notes
-for the build.
+with a PC who isn't fighting every round. Re-run at n_enemies=2 (a
+lighter, more proportionate encounter) to isolate composition from that
+calibration gap: swapping a 4th melee/caster/support into
+Hilde+Browndog+Sable put Wren (2nd caster) on top (~96-97%), with
+Beornhard (healer, but see below) close behind (~91%, beating a 4th
+plain fighter under movement: 91.2% vs 79.9% - the extra fighter, all
+melee, doesn't get movement's range benefit the way a caster does, and
+seemingly loses more to it than Beornhard's healing gains).
+
+`resolve_support_pc`'s heal-or-attack rule is a hard-capped resource,
+not a per-round coin flip: `pc['heal_uses_left']` starts at hand_size
+// 4 (party.py's Support paragraph - 1 use for Beornhard specifically,
+his Cunning+Mind being what it is), spent only once a living ally drops
+to half Health or below (standing in for Wounded, since there's no
+Shallow/Deep Health split here) - "if necessary, ESPECIALLY if wounded"
+reads as "only when it's actually needed," given how few uses there
+are. Every other round, a support PC just attacks normally like anyone
+else - Beornhard's own Melee (2, up from an original 1, paid for by
+dropping Medicine 2 to 1 - see his sample_pcs.csv Notes) makes that a
+real contribution (Parry 11, Damage 6) instead of dead weight, which is
+exactly what closed most of the gap to a dedicated 2nd caster or 4th
+fighter above - an earlier version of this build that healed on a ~25%
+per-round chance and fought weakly the rest of the time scored
+noticeably worse in the same matchups (n_enemies=2, movement=True:
+85.4% vs this version's 91.2%).
 
 Good Luck (`good_luck=N` on `run_fight`/`simulate`, `make_party`'s own
 param) is wired the same way as Aimed Shot's best-of-2 flip - N stacks
@@ -322,38 +330,43 @@ def pc_defense_for(target, opp_def):
 
 
 def resolve_support_pc(pc, pcs):
-    """A `support`-flagged PC (see party.py) spends their turn healing an
-    ally instead of attacking, when the party needs it. Approximates
-    T105 Healing Magic at Level 1 (discard 1 card, heal 1 Shallow Health
-    + 1 more if that card's a Heart) - this sim has no real suit-tracked
-    cards (see the module docstring's own note on what's simplified), so
-    "is the discarded card a Heart" is modeled as a flat 25% chance,
-    matching a 4-suit deck. No attack roll: Healing Magic isn't opposed,
-    and the target is assumed reachable (an "adjacent ally" per its own
-    Target text) without a real range check, since the party's 2x2
-    formation keeps everyone clustered together anyway.
+    """A `support`-flagged PC (see party.py) spends *some* of their turns
+    healing an ally instead of attacking - a hard-capped resource
+    (`pc['heal_uses_left']`, starting at hand_size // 4, see party.py's
+    Support paragraph), not a per-round coin flip, so they're actually
+    fighting most rounds rather than sitting idle in the back. Each use
+    approximates one casting of T105 Healing Magic at Level 1 (discard 1
+    card, heal 1 Shallow Health + 1 more if that card's a Heart) - this
+    sim has no real suit-tracked cards (see the module docstring's own
+    note on what's simplified), so "is the discarded card a Heart" is
+    modeled as a flat 25% chance, matching a 4-suit deck. No attack
+    roll: Healing Magic isn't opposed, and the target is assumed
+    reachable (an "adjacent ally" per its own Target text) without a
+    real range check, since the party's 2x2 formation keeps everyone
+    clustered together anyway.
 
-    Per the designer: heals "if necessary," roughly a quarter of the
-    time in general, "ESPECIALLY if someone gets wounded." Modeled here
-    as: always heal once any living ally has dropped to half their max
-    Health or below (this sim has no Shallow/Deep Health split - half of
-    max stands in for "missing all Shallow Health," which is exactly
-    right for these Level 1 builds, all starting from the rulebook's own
-    even 5/5 split with no Health-bonus Techniques); otherwise heal with
-    25% probability if anyone's missing any Health at all, else attack
-    normally. Returns True if this PC healed this round (skip their
-    attack this round entirely, no movement either), False if they
-    should proceed to a normal attack instead."""
-    living = [p for p in pcs if p['health'] > 0]
-    hurt = [p for p in living if p['health'] < p['max_health']]
-    if not hurt:
+    Per the designer: heal "if necessary, ESPECIALLY if someone gets
+    wounded" - with so few uses available (1 for Beornhard specifically,
+    see his own sample_pcs.csv row), "especially" becomes the whole
+    rule: spend a use only once a living ally has dropped to half their
+    max Health or below (this sim has no Shallow/Deep Health split -
+    half of max stands in for "missing all Shallow Health," which is
+    exactly right for these Level 1 builds, all starting from the
+    rulebook's own even 5/5 split with no Health-bonus Techniques).
+    Returns True if this PC healed this round (skip their attack this
+    round entirely, no movement either), False if they should proceed
+    to a normal attack instead - including whenever they're simply out
+    of uses, at which point they're just a regular attacker for the
+    rest of the fight."""
+    if pc.get('heal_uses_left', 0) <= 0:
         return False
-    wounded = [p for p in hurt if p['health'] <= p['max_health'] / 2]
-    if not wounded and random.random() >= 0.25:
+    wounded = [p for p in pcs if 0 < p['health'] <= p['max_health'] / 2]
+    if not wounded:
         return False
-    target = min(wounded or hurt, key=lambda p: p['health'])
+    target = min(wounded, key=lambda p: p['health'])
     heal = 1 + (1 if random.random() < 0.25 else 0)
     target['health'] = min(target['max_health'], target['health'] + heal)
+    pc['heal_uses_left'] -= 1
     return True
 
 
