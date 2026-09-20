@@ -154,12 +154,44 @@ PC_SKILL_STAT = {
 #   Mind, distinct from Essence, which governs the Sorcery Skill Total
 #   that resolves the attack roll and this Range - the two track
 #   separately here the same way melee's own Skill Total (Agility) and
-#   Damage stat (Body) already do).
+#   Damage stat (Body) already do). `dmg_type` selects which of the
+#   target's own Resist pools the hit is reduced by (see combat_sim.
+#   enemy_resist_for_pc_attack) - Fire for War Magic, matching T120's own
+#   Effects text ("...Fire damage"), Physical for both real weapons
+#   (matching tunables.ACTIONS' own Physical/Fire split for the enemy
+#   side of the same Actions). `opp_def` selects which of the target's
+#   Defenses the attack roll is opposed by - "Parry/Dodge" (the
+#   target's own choice, rulebook.md's real rule for a weapon attack)
+#   for both real weapons; War Magic's own rule reads "against the
+#   target's Defense (Dodge or Vital, chosen when you learn this)" - a
+#   one-time pick at chargen, not a per-attack target choice like
+#   Parry/Dodge - Dodge was picked here to match how tunables.ACTIONS
+#   already resolves the enemy side's own Melee/Ranged Spell (opp_def
+#   "Dodge", no Bodily/Vital option modeled).
 WEAPON = {
-    "Light Bow":         {"skill": "Archery",    "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range": 15},
-    "Light Thrown":      {"skill": "Acrobatics",  "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range_per_body": 3},
-    "War Magic (Lance)": {"skill": "Sorcery",     "accuracy": 0, "damage_base": 2, "damage_stat": "Mind",    "range_per_skill": 1},
+    "Light Bow":         {"skill": "Archery",    "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range": 15,
+                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
+    "Light Thrown":      {"skill": "Acrobatics",  "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range_per_body": 3,
+                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
+    "War Magic (Lance)": {"skill": "Sorcery",     "accuracy": 0, "damage_base": 2, "damage_stat": "Mind",    "range_per_skill": 1,
+                           "dmg_type": "Fire", "opp_def": "Dodge"},
 }
+
+# ---- Movement mode: party formation and start distance ----
+# A 2x2 block, "for simplicity's sake" per the designer, rather than the
+# single-file line the enemies still use (_start_positions in
+# combat_sim.py) - real formation/facing isn't modeled at all, this is
+# just enough that the party's 4 positions aren't identical. spacing=2
+# keeps the block tight (roughly MELEE_RANGE-sized) without stacking
+# every PC on one exact point.
+PARTY_FORMATION_SPACING = 2
+# The party's and enemies' front lines start a random distance apart in
+# this range (meters) each fight, centered in the arena - "spaced out
+# slightly but not opposite ends," per the designer, replacing the
+# original fixed 16m corner-to-corner start this mode shipped with.
+# run_fight's own `start_gap` param can override this with a fixed
+# distance instead, for a controlled before/after comparison.
+START_GAP_RANGE = (5, 10)
 
 # ---- TODO: PC power budget from loot - not modeled yet ----
 # The designer's own point: PCs get a small power bump from the loot they

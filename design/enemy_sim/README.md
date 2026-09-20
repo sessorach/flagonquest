@@ -33,15 +33,17 @@ usage.
   reference characters — melee: Hilde, Browndog, Carrick, Jackal, Felix
   (one leaning into each of the 5 Stats); ranged (via the `Weapon`
   column, see below): Sable (Light Bow), Rook (Light Thrown), Wren (War
-  Magic + Lance) — all built to rulebook.md's own Quick Creation
-  Reference shape and verified to cost exactly 75 XP including
-  Techniques. **Worth knowing**: a blank `Weapon` cell still means
-  `combat_sim.py`'s PC attack only uses Melee — a non-melee, no-`Weapon`
+  Magic + Lance); support (via the `Support` column, see below):
+  Beornhard — all built to rulebook.md's own Quick Creation Reference
+  shape and verified to cost exactly 75 XP including Techniques.
+  **Worth knowing**: a blank `Weapon` cell still means `combat_sim.py`'s
+  PC attack only uses Melee/Physical — a non-melee, no-`Weapon`
   reference character like Felix reads as weak in a real fight
   regardless of how coherent the build is on paper; that's `Weapon`
   not being set for that character, not a limit of the sim anymore
   (see Wren for the same Essence-primary concept actually built to
-  attack through Sorcery).
+  attack through Sorcery, and note her damage is Fire, not Physical —
+  see `Weapon` below).
 - **`party.py`** — loads `sample_pcs.csv`. `make_party(tier, good_luck=N)`
   pulls the Roster row and duplicates it x4 (still 4 identical party
   members, no distinct roles, no Techniques/items, no gear-based Resist);
@@ -49,13 +51,19 @@ usage.
   roll, for testing a mechanic's value empirically (see `combat_sim.py`'s
   note below). `get_pc(name)` pulls any row by name; `make_party_of(name)`
   duplicates one row x4 into a full party (for testing one build's own
-  attack profile against the Roster - see `combat_sim.py`'s note on
-  the three `Weapon`-based ranged builds); `all_pcs()` returns every
+  attack profile against the Roster); `make_party_from([names])`
+  assembles a custom 4-person mix from any named rows instead, for
+  testing party composition itself (see `combat_sim.py`'s note on both
+  the ranged builds and several mixed comps); `all_pcs()` returns every
   row built. A row's `Weapon` cell (blank by default) switches which
-  Skill/Stat drives that PC's own attack roll, Damage, and attack range
-  away from the 1H Heavy Melee default - `tunables.WEAPON` has the real
+  Skill/Stat drives that PC's own attack roll, Damage, damage type
+  (Physical/Fire), opposed Defense, and attack range away from the 1H
+  Heavy Melee default - `tunables.WEAPON` has the real
   weapon_categories.csv/features.csv numbers behind each option, fully
-  decoupled from Parry/Dodge/etc.
+  decoupled from Parry/Dodge/etc. A row's `Support` cell (`TRUE`/blank)
+  flags a PC who spends their turn healing an ally instead of attacking
+  when `combat_sim.resolve_support_pc` decides the party needs it — see
+  Beornhard's own row and `combat_sim.py`'s note on what that showed.
 - **`sample_enemies.csv`** — every enemy stat block that's been built for
   a reason, one row per build (Level/Slots/Role/Defense-tier/Action/
   Armor/Battle Tactic/Fighting Style/Abilities/Archetype). The `Roster`
@@ -81,10 +89,13 @@ usage.
   further.
 - **`combat_sim.py`** — the Monte Carlo fight loop (`run_fight`) and
   driver (`simulate`). PCs attack whichever of the enemy's Parry/Dodge
-  is worse for the enemy (`enemy_defense_for_pc_attack`, matching
-  rulebook.md's "the target chooses which Defense to use" rule — this
-  used to be hardcoded to Parry alone, which broke badly against the
-  Ranged Caster archetype's -99 Parry trick before it was fixed). Also
+  is worse for the enemy by default (`enemy_defense_for_pc_attack`,
+  matching rulebook.md's "the target chooses which Defense to use" rule
+  — this used to be hardcoded to Parry alone, which broke badly against
+  the Ranged Caster archetype's -99 Parry trick before it was fixed), or
+  Dodge alone for a PC whose `Weapon` overrides it (War Magic); damage
+  is reduced by the target's Physical or elemental Resist depending on
+  the attacker's own `dmg_type` (`enemy_resist_for_pc_attack`). Also
   models Gambling (PCs punching through high Resist), Good Luck
   (`good_luck=N` on `simulate`/`run_fight`, applied to every PC — see
   the module's own note on why "every PC, every attack, all fight"
@@ -100,14 +111,19 @@ usage.
 - **`movement.py`** — geometry helpers (`distance`, `move_toward`,
   `move_away`) for `combat_sim.py`'s optional `movement=True` mode: a
   bounded `tunables.ARENA_SIZE`-square arena, continuous coordinates, no
-  obstacles or formations. `run_fight(..., movement=True)` starts PCs
-  and enemies on opposite sides, and each unit has to close into its own
-  effective range (`combat_sim.effective_range`) before it can attack
-  that round — a Kiting unit (`sample_enemies.csv`'s `BattleTactic`
-  column) retreats along the straight line away from its nearest threat
-  instead of closing. Built to test the Speed-vs-Range question
-  directly: can a backline caster's range actually keep it out of melee?
-  See `combat_sim.py`'s module docstring for what that showed.
+  obstacles. `run_fight(..., movement=True)` starts the party in a
+  compact 2x2 block (`combat_sim._party_formation`,
+  `tunables.PARTY_FORMATION_SPACING`) and the enemies spread down the
+  y-axis, front lines a random `tunables.START_GAP_RANGE` (5-10m) apart
+  by default — pass `run_fight(..., start_gap=N)` for a fixed distance
+  instead. Each unit has to close into its own effective range
+  (`combat_sim.effective_range`) before it can attack that round — a
+  Kiting unit (`sample_enemies.csv`'s `BattleTactic` column) retreats
+  along the straight line away from its nearest threat instead of
+  closing. Built to test the Speed-vs-Range question directly: can a
+  backline caster's range actually keep it out of melee? See
+  `combat_sim.py`'s module docstring for what that showed, including a
+  `start_gap` sweep showing where the starting distance stops mattering.
   `movement=False` (the default everywhere else in this README) is
   untouched by any of this — it's still the exact behavior the
   win-rate grid below was validated against.
@@ -128,14 +144,15 @@ python3 party.py              # print every stat block in sample_pcs.csv
 Testing one specific build against another (an item-balancing check, an
 archetype comparison) without touching the Roster: monkeypatch
 `combat_sim.make_enemy` (or `combat_sim.make_party`) to return
-`sample_enemies.get_enemy("name")` (or `party.make_party_of("name")`,
-4 copies of one reference PC) instead — see any of the Ring-item
-pricing checks in `design/balance_weights_notes.md` for a worked
-example. Add `movement=True` to either `run_fight(...)` or
-`simulate(...)` to run that same matchup on the 2D arena instead of the
-default list-order-focus-fire model — this is how the three `Weapon`
-ranged builds (Sable/Rook/Wren) got tested against the Roster, see
-`combat_sim.py`'s own note on the result.
+`sample_enemies.get_enemy("name")` (or `party.make_party_of("name")` /
+`party.make_party_from([names])`, 4 copies of one reference PC or a
+custom mix) instead — see any of the Ring-item pricing checks in
+`design/balance_weights_notes.md` for a worked example. Add
+`movement=True` to either `run_fight(...)` or `simulate(...)` to run
+that same matchup on the 2D arena instead of the default
+list-order-focus-fire model — this is how the three `Weapon` ranged
+builds (Sable/Rook/Wren) and several mixed-party comps got tested
+against the Roster, see `combat_sim.py`'s own note on the results.
 
 After editing `tunables.py` (a pure numbers retune) or a Roster row in
 `sample_enemies.csv`/`sample_pcs.csv`, just re-run `run_grid.py` — no

@@ -68,11 +68,56 @@ slightly worse from the extra rounds movement adds before contact).
 Range alone isn't the whole story either: a PC's own effective_range
 gates *their* attack too, same as an enemy's - a short-ranged build still
 has to close most of the gap itself before landing a hit, it just needs
-less of a head start than a melee unit to get there first. These are
-4 identical copies of one Level 1 build, not a mixed party with a tank
-soaking hits for a fragile backline caster like a real table would run -
-worth keeping in mind before reading too much into Wren's poor showing
-specifically.
+less of a head start than a melee unit to get there first.
+
+Follow-up with a real mixed party (`party.make_party_from([names])`,
+not 4 clones): War Magic's damage now actually resolves as Fire, not
+Physical - `pc['dmg_type']`/`pc['opp_def']` (party.py's Weapon
+paragraph) route a Fire attack through the target's `elemres` instead
+of `physres` (see `enemy_resist_for_pc_attack`) and War Magic's own
+Dodge-only opposed Defense instead of Parry/Dodge (see
+`enemy_defense_for_pc_attack`) - this matters because tunables.ARMOR
+only bumps `physres`, so a heavily-armored enemy's `elemres` stays
+comparatively low; Wren draws real benefit from this that Sable/Rook's
+Physical attacks don't. Movement mode's start now matches "spaced out
+slightly but not opposite ends": the party starts in a compact 2x2
+block (`_party_formation`, tunables.PARTY_FORMATION_SPACING) instead of
+the enemies' own spread line, and the two front lines start a random
+tunables.START_GAP_RANGE (5-10m) apart by default instead of the
+original fixed 16m corner-to-corner gap - `run_fight`'s own `start_gap`
+param overrides this for a controlled comparison. That comparison
+matters: sweeping start_gap from 5m to 16m against the Full Utility
+comp below showed a real cliff between 5m (~5% win) and 6-8m (~18-31%),
+then a plateau from ~8m on - Sable's 15m range already dominates well
+before anything gets that close, and Wren's 6m range is already in (or
+almost in) range at any gap 6m or wider, so most of the movement
+benefit is already captured by 8m; a shorter gap mostly just costs the
+ranged builds their head start.
+
+The mixed-party comparisons themselves (Hilde/Browndog/Carrick/Jackal
+all-melee; various Sable/Wren/Beornhard swaps) all landed far below the
+Roster's own ~50% at n_enemies=4 (3-22% depending on comp/movement) -
+**not** a sign these builds or movement are bad, but a reminder that
+n_enemies=4 vs a Level 1 Roster enemy is exactly the matchup the Roster
+was *calibrated* to be a fair fight for 4 identical, smoothed Roster
+PCs, not 4 spikier named reference builds sharing one "combat slot"
+with a non-attacking healer. Re-run at n_enemies=2 (a lighter, more
+proportionate encounter) to isolate composition from that calibration
+gap: swapping a 4th melee/caster/healer into Hilde+Browndog+Sable
+showed Beornhard's healing (~85-88%) actually underperforming both a
+2nd caster (~96-97%) and a 4th fighter (~80-90%, but this one got
+noticeably *worse* under movement, likely just melee not benefiting
+the way a ranged 4th slot does) - in this sim's flat, no-AP-economy
+model, Beornhard's ~1.25-average Health per activation (approximating
+T105 Healing Magic Lv1: 1 + [Hearts discarded], modeled as a flat 25%
+chance since this sim tracks no real suits/cards) isn't worth as much
+as a 4th attacker's damage, since enemy burst outpaces that trickle of
+healing more often than not. `resolve_support_pc` has the exact
+heal-or-attack heuristic (near-always once anyone's at half Health or
+below - standing in for Wounded, since there's no Shallow/Deep Health
+split here - else ~25% of rounds, per the designer's "if necessary,
+ESPECIALLY if wounded" framing) and Beornhard's own sample_pcs.csv Notes
+for the build.
 
 Good Luck (`good_luck=N` on `run_fight`/`simulate`, `make_party`'s own
 param) is wired the same way as Aimed Shot's best-of-2 flip - N stacks
@@ -150,9 +195,32 @@ def resolve_movement(unit, target):
 def _start_positions(n, x, spread=4):
     """n units spread evenly down a vertical line at x, centered on the
     arena - just enough to avoid stacking every unit on one exact point,
-    no other formation logic."""
+    no other formation logic. Still used for the enemy side; the party
+    uses _party_formation instead (see below)."""
     mid = (n - 1) / 2
     return [(x, T.ARENA_SIZE / 2 + (i - mid) * spread) for i in range(n)]
+
+
+def _party_formation(x):
+    """The party's 4 starting positions as a compact 2x2 block centered
+    on the arena's y-midpoint - 'for simplicity's sake,' per the
+    designer, rather than the single-file line _start_positions gives
+    the enemies. Assumes exactly 4 PCs, same as the rest of this file."""
+    mid = T.ARENA_SIZE / 2
+    half = T.PARTY_FORMATION_SPACING / 2
+    return [(x - half, mid - half), (x + half, mid - half),
+            (x - half, mid + half), (x + half, mid + half)]
+
+
+def _random_front_lines(start_gap=None):
+    """The party's and enemies' starting x-positions, `start_gap` meters
+    apart (tunables.START_GAP_RANGE if not given - a random 5-10m each
+    fight) and centered in the arena - 'spaced out slightly but not
+    opposite ends,' per the designer, replacing the original fixed 16m
+    corner-to-corner start. Returns (party_x, enemy_x)."""
+    gap = start_gap if start_gap is not None else random.uniform(*T.START_GAP_RANGE)
+    mid = T.ARENA_SIZE / 2
+    return mid - gap / 2, mid + gap / 2
 
 
 def _closest(unit, candidates):
@@ -165,7 +233,7 @@ def _closest(unit, candidates):
     return min(candidates, key=lambda c: movement.distance(unit['pos'], c['pos']))
 
 
-def enemy_defense_for_pc_attack(target):
+def enemy_defense_for_pc_attack(pc, target):
     """A PC's own weapon attack is opposed by Parry or Dodge, the
     target's choice (rulebook.md: "If multiple Defenses are stated, the
     target chooses which to use") - same rule pc_defense_for already
@@ -174,8 +242,29 @@ def enemy_defense_for_pc_attack(target):
     badly once Powerful Spell's -99-Parry trick showed up (see
     tunables.ABILITY_COST) - a caster who's given up on Parry entirely
     isn't supposed to be an automatic hit every time, just one who'll
-    always be defended by Dodge instead."""
+    always be defended by Dodge instead. `pc['opp_def']` (see party.py's
+    Weapon paragraph) lets a Spell attack like War Magic override this
+    to Dodge alone, matching its own "Dodge or Vital, chosen when you
+    learn this" rule instead of a weapon's Parry-or-Dodge one."""
+    if pc.get('opp_def') == 'Dodge':
+        return target['dodge']
     return max(target['parry'], target['dodge'])
+
+
+def enemy_resist_for_pc_attack(pc, target):
+    """Which of the target's own Resist pools a PC's attack draws from -
+    Physical (physres) for a weapon attack, or elemres (enemy_builder.
+    py's single elemental-Resist stand-in for Fire/Frost/Brilliant/
+    Shadow) for a Spell attack like War Magic, per pc['dmg_type'] (see
+    party.py's Weapon paragraph). tunables.ARMOR only adds to physres,
+    never elemres, so a heavily-armored enemy's elemental Resist doesn't
+    scale up the way its Physical Resist does - a Fire-damage PC can
+    come out ahead against a Tank/Heavy-Armor build in a way a
+    same-Damage weapon attack doesn't. That's the real
+    armor-doesn't-stop-magic tradeoff this is modeling, not a bug."""
+    if pc.get('dmg_type') == 'Fire':
+        return target['elemres']
+    return target['physres']
 
 
 def pc_gamble_count(pc, target):
@@ -203,8 +292,9 @@ def pc_gamble_count(pc, target):
     clear the target's Defense.
     """
     effective_skill = pc['skill_total'] - pc.get('crippled', 0)
-    defense = enemy_defense_for_pc_attack(target)
-    needed = max(0, target['physres'] - pc['damage'] + 1)
+    defense = enemy_defense_for_pc_attack(pc, target)
+    resist = enemy_resist_for_pc_attack(pc, target)
+    needed = max(0, resist - pc['damage'] + 1)
     max_possible = max(0, (effective_skill + 13 - defense) // 2)
     if needed > 0:
         return min(needed, max_possible)
@@ -231,17 +321,56 @@ def pc_defense_for(target, opp_def):
     return target['dodge']
 
 
-def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0, movement=False):
+def resolve_support_pc(pc, pcs):
+    """A `support`-flagged PC (see party.py) spends their turn healing an
+    ally instead of attacking, when the party needs it. Approximates
+    T105 Healing Magic at Level 1 (discard 1 card, heal 1 Shallow Health
+    + 1 more if that card's a Heart) - this sim has no real suit-tracked
+    cards (see the module docstring's own note on what's simplified), so
+    "is the discarded card a Heart" is modeled as a flat 25% chance,
+    matching a 4-suit deck. No attack roll: Healing Magic isn't opposed,
+    and the target is assumed reachable (an "adjacent ally" per its own
+    Target text) without a real range check, since the party's 2x2
+    formation keeps everyone clustered together anyway.
+
+    Per the designer: heals "if necessary," roughly a quarter of the
+    time in general, "ESPECIALLY if someone gets wounded." Modeled here
+    as: always heal once any living ally has dropped to half their max
+    Health or below (this sim has no Shallow/Deep Health split - half of
+    max stands in for "missing all Shallow Health," which is exactly
+    right for these Level 1 builds, all starting from the rulebook's own
+    even 5/5 split with no Health-bonus Techniques); otherwise heal with
+    25% probability if anyone's missing any Health at all, else attack
+    normally. Returns True if this PC healed this round (skip their
+    attack this round entirely, no movement either), False if they
+    should proceed to a normal attack instead."""
+    living = [p for p in pcs if p['health'] > 0]
+    hurt = [p for p in living if p['health'] < p['max_health']]
+    if not hurt:
+        return False
+    wounded = [p for p in hurt if p['health'] <= p['max_health'] / 2]
+    if not wounded and random.random() >= 0.25:
+        return False
+    target = min(wounded or hurt, key=lambda p: p['health'])
+    heal = 1 + (1 if random.random() < 0.25 else 0)
+    target['health'] = min(target['max_health'], target['health'] + heal)
+    return True
+
+
+def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0, movement=False, start_gap=None):
     """`movement=True` turns on the optional 2D-arena mode (movement.py):
-    PCs start at x=2, enemies at x=ARENA_SIZE-2 (tunables.ARENA_SIZE),
-    spread down the y-axis (_start_positions), and every unit must move
-    into its own effective_range of its target before it can attack this
-    round (resolve_movement) - a unit that can't close the gap (or a
-    Kiting unit that outruns its pursuer) just doesn't get to act.
-    `movement=False` (the default) skips all of this and matches the
-    original list-order-focus-fire behavior exactly - kept byte-identical
-    on purpose so the already-validated win-rate grid never depends on
-    this code path."""
+    the party starts in a compact 2x2 block (_party_formation), enemies
+    spread down the y-axis (_start_positions), the two sides' front
+    lines a random tunables.START_GAP_RANGE meters apart by default
+    (`start_gap` overrides this with a fixed distance instead, e.g. for
+    a controlled before/after comparison - see _random_front_lines).
+    Every unit must move into its own effective_range of its target
+    before it can attack this round (resolve_movement) - a unit that
+    can't close the gap (or a Kiting unit that outruns its pursuer) just
+    doesn't get to act. `movement=False` (the default) skips all of this
+    and matches the original list-order-focus-fire behavior exactly -
+    kept byte-identical on purpose so the already-validated win-rate
+    grid never depends on this code path."""
     if seed is not None:
         random.seed(seed)
     pcs = make_party(tier, good_luck=good_luck)
@@ -250,9 +379,10 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     pc_damage_dealt = 0
 
     if movement:
-        for pc, pos in zip(pcs, _start_positions(len(pcs), x=2)):
+        party_x, enemy_x = _random_front_lines(start_gap)
+        for pc, pos in zip(pcs, _party_formation(party_x)):
             pc['pos'] = pos
-        for e, pos in zip(enemies, _start_positions(len(enemies), x=T.ARENA_SIZE - 2)):
+        for e, pos in zip(enemies, _start_positions(len(enemies), x=enemy_x)):
             e['pos'] = pos
 
     for rnd in range(1, max_rounds + 1):
@@ -264,6 +394,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
         for pc in pcs:
             if pc['health'] <= 0:
                 continue
+            if pc.get('support') and resolve_support_pc(pc, pcs):
+                continue  # spent this turn healing instead of attacking
             targets = [e for e in enemies if e['health'] > 0]
             if not targets:
                 break
@@ -273,14 +405,15 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                     continue
             else:
                 target = targets[0]
-            defense = enemy_defense_for_pc_attack(target)
+            defense = enemy_defense_for_pc_attack(pc, target)
+            resist = enemy_resist_for_pc_attack(pc, target)
             gambles = pc_gamble_count(pc, target)
             crippled = pc.get('crippled', 0)
             card = flip_best_of(1 + pc.get('good_luck', 0))  # Good Luck: flip 1 extra card per stack, keep the highest
-            roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack with Melee, vs. the enemy's Parry/Dodge
+            roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
             pc_attacks += 1
             if roll >= defense:
-                dmg = max(0, pc['damage'] + gambles - target['physres'])
+                dmg = max(0, pc['damage'] + gambles - resist)
                 protected = target.get('protected', 0)
                 if protected > 0 and dmg > 0:
                     absorbed = min(dmg, protected)
@@ -363,14 +496,14 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
 
 
-def simulate(tier, enemy_level, n_enemies=4, trials=4000, good_luck=0, movement=False):
+def simulate(tier, enemy_level, n_enemies=4, trials=4000, good_luck=0, movement=False, start_gap=None):
     results = {'party': 0, 'enemies': 0, 'draw': 0}
     rounds_list = []
     hp_list = []
     total_attacks = 0
     total_damage = 0
     for _ in range(trials):
-        r = run_fight(tier, enemy_level, n_enemies=n_enemies, good_luck=good_luck, movement=movement)
+        r = run_fight(tier, enemy_level, n_enemies=n_enemies, good_luck=good_luck, movement=movement, start_gap=start_gap)
         results[r['winner']] += 1
         rounds_list.append(r['rounds'])
         total_attacks += r['pc_attacks']
