@@ -3,12 +3,12 @@ Monte Carlo combat loop: 4 party members vs. N copies of one enemy,
 repeated many times with fresh card flips to estimate win rate, average
 rounds to resolve, and party Health remaining on a win.
 
-Deliberately simplified, not a real combat engine - see design/
+Deliberately simplified, not a full combat engine - see design/
 ENEMY_ENCOUNTER_DESIGN.md's Analysis section for the full list of what's
-NOT modeled (no real Extra Successes from suit-pool matching, no
-Techniques/items, no distinct PC roles, no positioning, no real
-initiative, rough Battle Tactics targeting proxies). PCs DO now Gamble
-(see `pc_gamble_count`) - added specifically because armored enemies
+NOT modeled (no Extra Successes from suit-pool matching, no Techniques/
+items, no distinct PC roles, no positioning, no initiative, rough
+Battle Tactics targeting proxies). PCs DO now Gamble (see
+`pc_gamble_count`) - added specifically because armored enemies
 otherwise had no counter-play modeled at all. Good for catching relative
 differences between builds and Tiers; the exact win percentages aren't
 precise predictions of real play.
@@ -16,7 +16,7 @@ precise predictions of real play.
 Enemy Abilities (the subset in tunables.ABILITY_COST) are also modeled:
 Crippled/Vulnerable/Bleeding stacks on PCs from Strike (Crippling)/
 Strike (Vulnerable)/Poison (Bleeding), Durable's per-turn Protected
-regen on enemies, all following rulebook.md/glossary.md's real numbers
+regen on enemies, all following rulebook.md/glossary.md's numbers
 (Crippled -1 to attacks/stack, Vulnerable -1 to Vital/Mental/Vigilant
 Defenses/stack, Bleeding 1 damage per stack that decays, Protected
 absorbs Health loss 1-for-1). Fleeting effects (all of the above) decay
@@ -24,15 +24,37 @@ absorbs Health loss 1-for-1). Fleeting effects (all of the above) decay
 all stacks at once.
 
 `max_rounds` (30, not the original 10) matters more than it looks: a
-fight that's genuinely close but slow-grinding (both sides doing modest
-damage against real Resist/Defense) was hitting the old 10-round cap as
-an unresolved "draw" most of the time rather than actually playing out -
-e.g. one build read as "10% win rate" under the old cap that was really
-a near-even 201-vs-211 split once let run to a real conclusion (1588 of
-2000 trials had been draws). Always sanity-check a low win rate against
-the raw party/enemies/draw counts (`simulate()`'s 4th return value)
-before assuming it means "this build loses," not just "this build is
-slow to resolve."
+fight that's close but slow-grinding (both sides doing modest damage
+against Resist/Defense) was hitting the old 10-round cap as an
+unresolved "draw" most of the time instead of actually playing out -
+e.g. one build read as "10% win rate" under the old cap that was
+actually a near-even 201-vs-211 split once let run to a conclusion
+(1588 of 2000 trials had been draws). Always sanity-check a low win
+rate against the raw party/enemies/draw counts (`simulate()`'s 4th
+return value) before assuming it means "this build loses," not just
+"this build is slow to resolve."
+
+Good Luck (`good_luck=N` on `run_fight`/`simulate`, `make_party`'s own
+param) is wired the same way as Aimed Shot's best-of-2 flip - N stacks
+means `flip_best_of(1 + N)` on the PC's own attack roll. Used once to
+compare a simulated swing against `balance_weights_notes.md`'s
+hand-derived Good Luck value (2.4) - worth knowing before reading too
+much into a result: `good_luck` currently applies to every PC named in
+`make_party`, for every attack, all fight. That's a much bigger grant
+than the 2.4 figure prices (one stack, one flip), and it swings win
+rate dramatically (all 4 PCs at Tier=Level: ~+45-50 points). To
+approximate a single item/Technique on one PC, monkeypatch `make_party`
+to zero the other three PCs' stacks back out before calling
+`simulate()` - even that's still "every attack, all fight" rather than
+a single flip, and moved win rate by a more moderate +7 to +9 points in
+that test. Neither is directly convertible back to the 2.4 per-flip
+figure without a real exchange-rate calibration (what win-rate swing
+does an already-priced, fixed mechanic produce in this same sim) - not
+built yet. `pc_attacks`/`pc_damage_dealt` (summed into `simulate()`'s
+5th return value, damage per PC attack) exist for this kind of
+comparison, but a pooled multi-PC average dilutes an effect that's only
+live on some of the PCs - isolate the one PC actually being tested
+before trusting that number.
 """
 import random
 import copy
@@ -100,11 +122,13 @@ def pc_defense_for(target, opp_def):
     return target['dodge']
 
 
-def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None):
+def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0):
     if seed is not None:
         random.seed(seed)
-    pcs = make_party(tier)
+    pcs = make_party(tier, good_luck=good_luck)
     enemies = [copy.deepcopy(make_enemy(enemy_level)) for _ in range(n_enemies)]
+    pc_attacks = 0
+    pc_damage_dealt = 0
 
     for rnd in range(1, max_rounds + 1):
         # Party's turn: each living PC attacks the first living enemy
@@ -118,7 +142,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None):
             target = targets[0]
             gambles = pc_gamble_count(pc, target)
             crippled = pc.get('crippled', 0)
-            roll = pc['skill_total'] - crippled + flip() - 2 * gambles  # PCs attack with Melee, vs. the enemy's Parry
+            card = flip_best_of(1 + pc.get('good_luck', 0))  # Good Luck: flip 1 extra card per stack, keep the highest
+            roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack with Melee, vs. the enemy's Parry
+            pc_attacks += 1
             if roll >= target['parry']:
                 dmg = max(0, pc['damage'] + gambles - target['physres'])
                 protected = target.get('protected', 0)
@@ -127,6 +153,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None):
                     target['protected'] -= absorbed
                     dmg -= absorbed
                 target['health'] -= dmg
+                pc_damage_dealt += dmg
         # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
         # [Fleeting] rule), not all stacks at once - Bleeding's decaying
         # stack is what actually deals its 1 damage.
@@ -142,9 +169,11 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None):
                 pc['health'] -= 1
         if all(e['health'] <= 0 for e in enemies):
             return dict(winner='party', rounds=rnd,
-                        party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs))
+                        party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs),
+                        pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
         if all(p['health'] <= 0 for p in pcs):
-            return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0)
+            return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0,
+                        pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
 
         # Enemies' turn: Fighting Style sets attack count, Battle Tactics
         # picks the target (rough proxies, not a real implementation - see
@@ -184,28 +213,35 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None):
                         break
                     target = living_pcs[0]
         if all(p['health'] <= 0 for p in pcs):
-            return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0)
+            return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0,
+                        pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
 
     return dict(winner='draw', rounds=max_rounds,
-                party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs))
+                party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs),
+                pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
 
 
-def simulate(tier, enemy_level, n_enemies=4, trials=4000):
+def simulate(tier, enemy_level, n_enemies=4, trials=4000, good_luck=0):
     results = {'party': 0, 'enemies': 0, 'draw': 0}
     rounds_list = []
     hp_list = []
+    total_attacks = 0
+    total_damage = 0
     for _ in range(trials):
-        r = run_fight(tier, enemy_level, n_enemies=n_enemies)
+        r = run_fight(tier, enemy_level, n_enemies=n_enemies, good_luck=good_luck)
         results[r['winner']] += 1
         rounds_list.append(r['rounds'])
+        total_attacks += r['pc_attacks']
+        total_damage += r['pc_damage_dealt']
         if r['winner'] == 'party':
             hp_list.append(r['party_hp_pct'])
     win_pct = results['party'] / trials * 100
     avg_rounds = sum(rounds_list) / len(rounds_list)
     avg_hp_on_win = (sum(hp_list) / len(hp_list) * 100) if hp_list else 0
-    return win_pct, avg_rounds, avg_hp_on_win, results
+    dmg_per_attack = total_damage / total_attacks if total_attacks else 0
+    return win_pct, avg_rounds, avg_hp_on_win, results, dmg_per_attack
 
 
 if __name__ == "__main__":
-    win, rnds, hp, res = simulate(2, 2, trials=4000)
-    print(f"Tier2 vs Level2: win={win:.1f}% rounds={rnds:.1f} hp_on_win={hp:.1f}% raw={res}")
+    win, rnds, hp, res, dpa = simulate(2, 2, trials=4000)
+    print(f"Tier2 vs Level2: win={win:.1f}% rounds={rnds:.1f} hp_on_win={hp:.1f}% dmg/attack={dpa:.3f} raw={res}")

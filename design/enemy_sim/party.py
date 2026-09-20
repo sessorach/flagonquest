@@ -26,7 +26,7 @@ def skill_total(tier, skill):
     return T.PC_STATS[tier][stat] + T.PC_SKILLS_COMBAT[tier][skill]
 
 
-def make_party(tier):
+def make_party(tier, good_luck=0):
     st = T.PC_STATS[tier]
     parry = 8 + skill_total(tier, "Melee")
     dodge = 8 + skill_total(tier, "Acrobatics")
@@ -36,10 +36,15 @@ def make_party(tier):
     damage = 4 + st["Body"]  # Heavy 1H Melee formula
     physres = st["Essence"]  # raw Essence, no Skill needed
     health = T.PC_HEALTH[tier]
+    # good_luck: how many stacks of Good Luck every PC has on their own
+    # attack roll (rulebook.md: each stack flips one extra card, keep the
+    # highest) - 0 by default, a param specifically so combat_sim's
+    # good-luck-value experiment can turn it on without a second copy of
+    # this function.
     return [dict(name=f"PC{i+1}", parry=parry, dodge=dodge, bodily=bodily, mental=mental,
                  vigilant=vigilant, skill_total=parry - 8,  # Melee's own Skill Total, for the PC's own attack roll
                  damage=damage, physres=physres, health=health, max_health=health,
-                 crippled=0, vulnerable=0, bleeding=0) for i in range(4)]
+                 crippled=0, vulnerable=0, bleeding=0, good_luck=good_luck) for i in range(4)]
 
 
 if __name__ == "__main__":

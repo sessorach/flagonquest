@@ -22,21 +22,27 @@ usage.
   spreadsheet's own live worked example).
 - **`party.py`** — a crude "representative PC" per power Tier (one
   Skill Total/Defense/Damage/Resist/Health, shared by all 4 party
-  members — no distinct roles, no Techniques/items).
+  members — no distinct roles, no Techniques/items). `make_party(tier,
+  good_luck=N)` can give every PC N stacks of Good Luck on their own
+  attack roll, for testing a mechanic's value empirically (see
+  `combat_sim.py`'s note below).
 - **`sample_enemies.py`** — five concrete, one-per-Level enemies,
   already tuned to land close to a genuine on-level fight at their own
-  Tier. Simulator fixtures for now, not a finished roster — expect a
-  real "Example Enemies" doc to supersede this once the tunables below
-  are locked down further.
+  Tier. Simulator fixtures for now, not a finished roster — expect an
+  "Example Enemies" doc to supersede this once the tunables below are
+  locked down further.
 - **`combat_sim.py`** — the Monte Carlo fight loop (`run_fight`) and
   driver (`simulate`). Models Gambling (PCs punching through high
-  Resist) and a subset of the Ability catalog (Enhanced Health,
-  Powerful Weapon/Spell, Strike (Crippling)/(Vulnerable), Poison
-  (Bleeding), Durable — see `tunables.ABILITY_COST`'s own comment for
-  which abilities are wired in and why the rest aren't yet). See its
-  module docstring for what's still simplified/not modeled (no real
-  Extra Successes from suit-pool matching, Techniques, items,
-  positioning, or real initiative).
+  Resist), Good Luck (`good_luck=N` on `simulate`/`run_fight`, applied
+  to every PC — see the module's own note on why "every PC, every
+  attack, all fight" reads very differently from the per-flip Value the
+  balance model prices, and how to isolate just one PC instead), and a
+  subset of the Ability catalog (Enhanced Health, Powerful Weapon/
+  Spell, Strike (Crippling)/(Vulnerable), Poison (Bleeding), Durable —
+  see `tunables.ABILITY_COST`'s own comment for which abilities are
+  wired in and why the rest aren't yet). See its module docstring for
+  what's still simplified/not modeled (Extra Successes from suit-pool
+  matching, Techniques, items, positioning, real initiative).
 - **`run_grid.py`** — runs every Party Tier × Enemy Level combination
   and prints win rate / average rounds / party HP% remaining.
 

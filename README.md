@@ -13,6 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-09-20 — Good Luck wired into the combat simulator as a test case
+
+Added Good Luck to the fight simulator (`good_luck=N` on `party.py`/`combat_sim.py`) to see whether simulated outcomes could help validate the hand-derived balance values in `balance_weights_notes.md`.
+- Giving one PC always-on Good Luck for a whole fight moved win rate by about +7 to +9 points — a real effect, but not directly comparable to the calculated 2.4 value, which prices a single flip rather than a whole fight's worth of them.
+- Takeaway: useful for sanity-checking that a mechanic's effect points the right direction and rough size, not yet set up to produce a number that swaps in for the algebra.
+
 ### 2026-09-19 — Enemy math retuning, abilities wired into the simulator
 
 Rebuilt the PC baseline as an actual named character instead of an abstract number, then retuned the whole enemy roster and combat math to match — including giving enemies the same Armor choices players get.
