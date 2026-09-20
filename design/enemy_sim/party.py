@@ -55,21 +55,29 @@ Range without touching their (separately tracked) Parry.
 **`Support`** (`TRUE`/blank) flags a PC who spends *some* of their turns
 healing an ally instead of attacking - a hard-capped resource, not a
 per-round coin flip, so a support PC still fights their own weapon
-attack most rounds rather than sitting idle. `heal_uses_left` (every
-PC dict, not just Support ones) is `hand_size // 4`, `hand_size` being
-rulebook.md's own "Cards Per Day"/Draw Cycle formula (twice Cunning
-plus Mind) standing in for how many cards this PC carries into a fresh
-encounter - one use of Healing Magic at Level 1 costs 1 card, so a
-quarter of a full hand caps how many times they can afford to cast it
-in one fight. combat_sim.py's `resolve_support_pc` spends a use (and
+attack most rounds rather than sitting idle. Translated here into
+`strategy="support_healer"` (`"attacker"` otherwise) - a name from
+`tactics.PC_STRATEGIES`, the pluggable-"AI" registry combat_sim.py
+dispatches every PC's turn through (see tactics.py's own module
+docstring for the pattern and why it exists - adding a future strategy
+means writing one function and registering it there, not adding a new
+boolean CSV column and a matching `if` in combat_sim.py). `heal_uses_left`
+(every PC dict, not just Support ones) is `hand_size // 4`, `hand_size`
+being rulebook.md's own "Cards Per Day"/Draw Cycle formula (twice
+Cunning plus Mind) standing in for how many cards this PC carries into
+a fresh encounter - one use of Healing Magic at Level 1 costs 1 card,
+so a quarter of a full hand caps how many times they can afford to cast
+it in one fight. `tactics.strategy_support_healer` spends a use (and
 only a use) once a living ally drops to half Health or below - "if
 necessary, ESPECIALLY if wounded" (the designer's own framing) reads as
 "only when it's actually needed," given how few uses there usually are
-- approximating T105 Healing Magic (1 Shallow Health + 1 more if the
-discarded card's a Heart). See combat_sim.py's own docstring for what
-that showed. Doesn't change anything else in this file - `support`/
-`heal_uses_left` just get threaded onto the PC dict for combat_sim to
-read.
+- approximating T105 Healing Magic, 1 Shallow Health + 1 more since the
+discarded card is assumed to always be a Heart (cards.chosen_matches -
+a player choosing from their whole hand, not flipping blind, on a cost
+that's only ever a quarter of it). See combat_sim.py's own docstring
+for what all of this showed. Doesn't change anything else in this file
+- `strategy`/`heal_uses_left` just get threaded onto the PC dict for
+tactics.py/combat_sim.py to read.
 
 Every Stat/Skill/Defense formula here is straight from rulebook.md:
 - Defense = 8 + [governing Skill Total]
@@ -142,25 +150,40 @@ def _pc_dict(row, index, good_luck):
         dmg_type = "Physical"
         opp_def = "Parry/Dodge"
 
-    # "Hand size" for a support PC's own heal-use cap (see combat_sim.
-    # resolve_support_pc) - rulebook.md has no per-encounter hand-size
-    # concept, only "Cards Per Day"/"The Draw Cycle": "Draw a number of
-    # cards equal to twice the total of your Cunning plus Mind." Reused
-    # here as the stand-in for how many cards this PC is carrying into a
-    # single isolated encounter (this sim never chains multiple fights
-    # in one trial, so "starts every fight with a full hand" is the
-    # right simplification). Computed for every PC, not just Support
-    # ones - harmless, and one less thing to special-case.
+    # "Hand size" for a support PC's own heal-use cap (see tactics.
+    # strategy_support_healer) - rulebook.md has no per-encounter
+    # hand-size concept, only "Cards Per Day"/"The Draw Cycle": "Draw a
+    # number of cards equal to twice the total of your Cunning plus
+    # Mind." Reused here as the stand-in for how many cards this PC is
+    # carrying into a single isolated encounter (this sim never chains
+    # multiple fights in one trial, so "starts every fight with a full
+    # hand" is the right simplification). Computed for every PC, not
+    # just Support ones - harmless, and one less thing to special-case.
     hand_size = 2 * (int(stats["Cunning"]) + int(stats["Mind"]))
 
-    pc = dict(name=row["Name"] if row["Name"].startswith("Baseline") else f"{row['Name']}{index}",
+    # `strategy` names a tactics.PC_STRATEGIES entry (blank/unrecognized
+    # -> tactics.resolve_pc_strategy's default of "just attack normally,"
+    # same as `support`'s old plain-bool gate) - the CSV's own `Support`
+    # column stays a simple TRUE/blank for whoever's editing it by hand;
+    # translating it into a named strategy here is what lets a future
+    # third strategy (a PC who always maximizes Gambling, say) just add
+    # another registry entry instead of a new boolean CSV column.
+    strategy = "support_healer" if (row.get("Support") or "").strip().upper() == "TRUE" else "attacker"
+
+    # Every copy gets its own suffix, Roster rows included (a Roster
+    # build used to keep its bare row Name - "Baseline Tier 1 Party
+    # Member" x4, all identical - since nothing needed to tell 4
+    # otherwise-identical clones apart; a trace/log does, though
+    # (narrate_fight.py's stable per-fight labels collapse into one if
+    # two units share a name), and `name` is cosmetic everywhere else in
+    # this file/combat_sim.py, so it's safe to always suffix.
+    pc = dict(name=f"{row['Name']}{index}",
               parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
               skill_total=atk_skill_total,  # the PC's own attacking Skill Total - see the Weapon block above
               damage=damage, dmg_type=dmg_type, opp_def=opp_def,
               physres=physres, health=health, max_health=health, speed=speed,
               crippled=0, vulnerable=0, bleeding=0, good_luck=good_luck,
-              support=(row.get("Support") or "").strip().upper() == "TRUE",
-              heal_uses_left=hand_size // 4)
+              strategy=strategy, heal_uses_left=hand_size // 4)
     if attack_range is not None:
         pc["attack_range"] = attack_range
     return pc

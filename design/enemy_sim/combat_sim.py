@@ -14,6 +14,21 @@ otherwise had no counter-play modeled at all. Good for catching relative
 differences between builds and Tiers; the exact win percentages aren't
 precise predictions of real play.
 
+Every "AI" decision a unit makes on its own turn - who it targets, how
+it moves, whether a PC attacks or does something else (healing) - lives
+in `tactics.py` as a small named-function registry, not as `if`
+branches in this file's `run_fight`; "which suit is this card"
+assumptions (currently just Healing Magic's Hearts check) live the same
+way in `cards.py`. Both exist so a new tactic/strategy/card-rule is one
+function plus one registry entry, not a new conditional threaded
+through run_fight - see either module's own docstring before adding
+one. `run_fight(..., trace=[])` records a full round-by-round log of
+whatever a fight actually did (positions, moves, attacks, heals) for
+one specific run rather than just its final tally - `narrate_fight.py`
+renders one into a position table plus a combat log, for actually
+looking at what this simulator does instead of only reading aggregate
+win rates.
+
 Enemy Abilities (the subset in tunables.ABILITY_COST) are also modeled:
 Crippled/Vulnerable/Bleeding stacks on PCs from Strike (Crippling)/
 Strike (Vulnerable)/Poison (Bleeding), Durable's per-turn Protected
@@ -110,8 +125,8 @@ plain fighter under movement: 91.2% vs 79.9% - the extra fighter, all
 melee, doesn't get movement's range benefit the way a caster does, and
 seemingly loses more to it than Beornhard's healing gains).
 
-`resolve_support_pc`'s heal-or-attack rule is a hard-capped resource,
-not a per-round coin flip: `pc['heal_uses_left']` starts at hand_size
+`tactics.strategy_support_healer`'s heal-or-attack rule is a hard-capped
+resource, not a per-round coin flip: `pc['heal_uses_left']` starts at hand_size
 // 4 (party.py's Support paragraph - 1 use for Beornhard specifically,
 his Cunning+Mind being what it is), spent only once a living ally drops
 to half Health or below (standing in for Wounded, since there's no
@@ -126,6 +141,19 @@ fighter above - an earlier version of this build that healed on a ~25%
 per-round chance and fought weakly the rest of the time scored
 noticeably worse in the same matchups (n_enemies=2, movement=True:
 85.4% vs this version's 91.2%).
+
+The heal amount itself later moved from "1 + a 25% chance of +1 more"
+to a flat +2 every time (cards.chosen_matches always true now, per the
+designer: a discarded card is chosen from the player's whole hand, not
+flipped blind, and Healing Magic only ever spends a quarter of that
+hand this way - see cards.py's own module docstring). Barely moved win
+rate at all (n_enemies=2: 91.2% -> 90.9%/91.4% across two reruns, well
+within trial noise) - the reason is the same hard cap that made the
+melee fix matter: Beornhard only has 1 heal_uses_left, so the entire
+swing from "usually heals 1, sometimes 2" to "always heals 2" is a
+one-time +0.75 HP difference across a whole fight already decided by
+dozens of other rolls. A build with a bigger hand (more heal uses)
+would see this matter more; Beornhard specifically doesn't.
 
 Good Luck (`good_luck=N` on `run_fight`/`simulate`, `make_party`'s own
 param) is wired the same way as Aimed Shot's best-of-2 flip - N stacks
@@ -153,6 +181,7 @@ import random
 import copy
 import tunables as T
 import movement
+import tactics
 from sample_enemies import make_enemy
 from party import make_party
 
@@ -175,22 +204,17 @@ def effective_range(unit):
 
 
 def resolve_movement(unit, target):
-    """Moves `unit` this round per its own Battle Tactic, then reports
-    whether it ends up within its own effective_range of `target` and
-    can therefore attack this round. Kiting always retreats from
-    `target` (per the designer: 'the most direct path away,' no
-    conditional check for whether retreating is actually necessary) -
-    everyone else closes toward `target`, stopping at their own
-    effective_range rather than walking on top of it. Either way, the
-    same range check afterward decides whether an attack is possible -
-    a Kiting unit with real range can still retreat *and* attack the
-    same round if its range covers the new distance; a melee unit that
-    couldn't fully close the gap this round just doesn't get to act."""
+    """Moves `unit` this round per its own Battle Tactic (tactics.
+    move_unit - Kiting retreats, everything else closes in, stopping
+    `reach` meters short rather than walking on top of `target`), then
+    reports whether it ends up within its own effective_range and can
+    therefore attack this round. Either way, the same range check
+    afterward decides whether an attack is possible - a Kiting unit with
+    real range can still retreat *and* attack the same round if its
+    range covers the new distance; a melee unit that couldn't fully
+    close the gap this round just doesn't get to act."""
     reach = effective_range(unit)
-    if unit.get('battle_tactic') == 'Kiting':
-        unit['pos'] = movement.move_away(unit['pos'], target['pos'], unit['speed'])
-    else:
-        unit['pos'] = movement.move_toward(unit['pos'], target['pos'], unit['speed'], stop_at=reach)
+    tactics.move_unit(unit, target, reach)
     # 1e-6 slack: move_toward's own stop_at logic can land a unit a
     # floating-point hair past `reach` (float division/subtraction isn't
     # exact) - without it, two units that just closed to melee range can
@@ -229,16 +253,6 @@ def _random_front_lines(start_gap=None):
     gap = start_gap if start_gap is not None else random.uniform(*T.START_GAP_RANGE)
     mid = T.ARENA_SIZE / 2
     return mid - gap / 2, mid + gap / 2
-
-
-def _closest(unit, candidates):
-    """'Attacking the closest enemy is obvious' (the designer's own
-    framing) - the movement-mode target rule for every Battle Tactic
-    except Assassin (which already has its own low-Health targeting
-    rule, unaffected by position). Also doubles as the retreat-from
-    reference point for Kiting, since the nearest threat is the one
-    worth running from."""
-    return min(candidates, key=lambda c: movement.distance(unit['pos'], c['pos']))
 
 
 def enemy_defense_for_pc_attack(pc, target):
@@ -329,48 +343,19 @@ def pc_defense_for(target, opp_def):
     return target['dodge']
 
 
-def resolve_support_pc(pc, pcs):
-    """A `support`-flagged PC (see party.py) spends *some* of their turns
-    healing an ally instead of attacking - a hard-capped resource
-    (`pc['heal_uses_left']`, starting at hand_size // 4, see party.py's
-    Support paragraph), not a per-round coin flip, so they're actually
-    fighting most rounds rather than sitting idle in the back. Each use
-    approximates one casting of T105 Healing Magic at Level 1 (discard 1
-    card, heal 1 Shallow Health + 1 more if that card's a Heart) - this
-    sim has no real suit-tracked cards (see the module docstring's own
-    note on what's simplified), so "is the discarded card a Heart" is
-    modeled as a flat 25% chance, matching a 4-suit deck. No attack
-    roll: Healing Magic isn't opposed, and the target is assumed
-    reachable (an "adjacent ally" per its own Target text) without a
-    real range check, since the party's 2x2 formation keeps everyone
-    clustered together anyway.
-
-    Per the designer: heal "if necessary, ESPECIALLY if someone gets
-    wounded" - with so few uses available (1 for Beornhard specifically,
-    see his own sample_pcs.csv row), "especially" becomes the whole
-    rule: spend a use only once a living ally has dropped to half their
-    max Health or below (this sim has no Shallow/Deep Health split -
-    half of max stands in for "missing all Shallow Health," which is
-    exactly right for these Level 1 builds, all starting from the
-    rulebook's own even 5/5 split with no Health-bonus Techniques).
-    Returns True if this PC healed this round (skip their attack this
-    round entirely, no movement either), False if they should proceed
-    to a normal attack instead - including whenever they're simply out
-    of uses, at which point they're just a regular attacker for the
-    rest of the fight."""
-    if pc.get('heal_uses_left', 0) <= 0:
-        return False
-    wounded = [p for p in pcs if 0 < p['health'] <= p['max_health'] / 2]
-    if not wounded:
-        return False
-    target = min(wounded, key=lambda p: p['health'])
-    heal = 1 + (1 if random.random() < 0.25 else 0)
-    target['health'] = min(target['max_health'], target['health'] + heal)
-    pc['heal_uses_left'] -= 1
-    return True
+def _log(trace, **event):
+    """Appends one structured event to `trace` if it's a list (i.e. the
+    caller actually wants a trace), a no-op otherwise - every call site
+    in run_fight stays a single line either way, so tracing never grows
+    its own parallel set of `if trace:` branches. See run_fight's own
+    docstring for the event shapes this produces and narrate_fight.py
+    for a renderer that consumes them."""
+    if trace is not None:
+        trace.append(event)
 
 
-def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0, movement=False, start_gap=None):
+def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0, movement=False, start_gap=None,
+              trace=None):
     """`movement=True` turns on the optional 2D-arena mode (movement.py):
     the party starts in a compact 2x2 block (_party_formation), enemies
     spread down the y-axis (_start_positions), the two sides' front
@@ -383,11 +368,36 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     doesn't get to act. `movement=False` (the default) skips all of this
     and matches the original list-order-focus-fire behavior exactly -
     kept byte-identical on purpose so the already-validated win-rate
-    grid never depends on this code path."""
+    grid never depends on this code path.
+
+    `trace`: pass a list (e.g. `trace=[]`) to have this call record what
+    happened, round by round, instead of just returning the final tally
+    - meant for actually looking at one fight (`narrate_fight.py`), not
+    for `simulate()`'s thousands of trials, so it's `None` (skip
+    entirely, via `_log`) by default. Events are plain dicts, always
+    carrying `round`; a `type='positions'` event (movement mode only,
+    once per round, before any of that round's actions) snapshots every
+    living unit's `pos`/`health`; everything else carries `side`
+    ('party'/'enemy') and `unit`, and is either `action='move'` (this
+    unit couldn't reach its target this round - `pos`, `in_range=False`),
+    `action='attack'` (`target`, `roll`, `defense`, `hit`, `dmg`,
+    `target_hp_after`), or whatever a PC's own strategy function logs
+    (`tactics.strategy_support_healer` logs `action='heal'` - see
+    tactics.py's own `log` parameter). A final `type='result'` event
+    carries `winner`."""
     if seed is not None:
         random.seed(seed)
     pcs = make_party(tier, good_luck=good_luck)
     enemies = [copy.deepcopy(make_enemy(enemy_level)) for _ in range(n_enemies)]
+    # Unlike PCs (party.py already suffixes each copy - "Hilde1",
+    # "Hilde2"), every enemy copy comes back from make_enemy with the
+    # exact same 'name' - fine when nothing ever needs to tell two
+    # copies apart, but a real problem for a trace/log that does (see
+    # `trace` below) - four identical "Marsh Viper Scout" entries are
+    # indistinguishable. `name` is cosmetic only (nothing dispatches
+    # game logic on it), so it's safe to suffix here unconditionally.
+    for i, e in enumerate(enemies, 1):
+        e['name'] = f"{e['name']} {i}"
     pc_attacks = 0
     pc_damage_dealt = 0
 
@@ -399,25 +409,36 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             e['pos'] = pos
 
     for rnd in range(1, max_rounds + 1):
-        # Party's turn: each living PC attacks the first living enemy
-        # (pure focus fire, no target choice) vs. whichever of the
-        # enemy's Parry/Dodge is better for it (enemy_defense_for_pc_attack).
-        # In movement mode, "first" becomes "closest," and a PC who can't
-        # close into effective_range this round doesn't get to attack.
+        # `trace` (see run_fight's own docstring) gets one closure per
+        # side per round, not per unit - cheap enough that a caller who
+        # isn't tracing (every Monte Carlo trial) pays nothing beyond
+        # the `is not None` checks inside _log itself.
+        party_log = (lambda **kw: _log(trace, round=rnd, side='party', **kw)) if trace is not None else None
+        enemy_log = (lambda **kw: _log(trace, round=rnd, side='enemy', **kw)) if trace is not None else None
+        if movement:
+            _log(trace, round=rnd, type='positions',
+                 party=[{'unit': p['name'], 'pos': p['pos'], 'health': p['health']} for p in pcs if p['health'] > 0],
+                 enemies=[{'unit': e['name'], 'pos': e['pos'], 'health': e['health']} for e in enemies if e['health'] > 0])
+
+        # Party's turn: each living PC attacks the closest/first living
+        # enemy (tactics.select_target - PCs have no Battle Tactic of
+        # their own, so this always falls to the movement-aware default)
+        # vs. whichever of the enemy's Defenses is worse for it
+        # (enemy_defense_for_pc_attack) - unless a PC's own strategy
+        # (tactics.resolve_pc_strategy - a support healer, say) does
+        # something else with their turn instead.
         for pc in pcs:
             if pc['health'] <= 0:
                 continue
-            if pc.get('support') and resolve_support_pc(pc, pcs):
-                continue  # spent this turn healing instead of attacking
+            if tactics.resolve_pc_strategy(pc, pcs, log=party_log):
+                continue  # spent this turn on something other than attacking
             targets = [e for e in enemies if e['health'] > 0]
             if not targets:
                 break
-            if movement:
-                target = _closest(pc, targets)
-                if not resolve_movement(pc, target):
-                    continue
-            else:
-                target = targets[0]
+            target = tactics.select_target(pc, targets, movement)
+            if movement and not resolve_movement(pc, target):
+                _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'], in_range=False)
+                continue
             defense = enemy_defense_for_pc_attack(pc, target)
             resist = enemy_resist_for_pc_attack(pc, target)
             gambles = pc_gamble_count(pc, target)
@@ -425,7 +446,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             card = flip_best_of(1 + pc.get('good_luck', 0))  # Good Luck: flip 1 extra card per stack, keep the highest
             roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
             pc_attacks += 1
-            if roll >= defense:
+            hit = roll >= defense
+            dmg = 0
+            if hit:
                 dmg = max(0, pc['damage'] + gambles - resist)
                 protected = target.get('protected', 0)
                 if protected > 0 and dmg > 0:
@@ -434,6 +457,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                     dmg -= absorbed
                 target['health'] -= dmg
                 pc_damage_dealt += dmg
+            if party_log:
+                party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
+                           hit=hit, dmg=dmg, target_hp_after=target['health'])
         # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
         # [Fleeting] rule), not all stacks at once - Bleeding's decaying
         # stack is what actually deals its 1 damage.
@@ -448,16 +474,18 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 pc['bleeding'] -= 1
                 pc['health'] -= 1
         if all(e['health'] <= 0 for e in enemies):
+            _log(trace, round=rnd, type='result', winner='party')
             return dict(winner='party', rounds=rnd,
                         party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs),
                         pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
         if all(p['health'] <= 0 for p in pcs):
+            _log(trace, round=rnd, type='result', winner='enemies')
             return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0,
                         pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
 
         # Enemies' turn: Fighting Style sets attack count, Battle Tactics
-        # picks the target (rough proxies, not a real implementation - see
-        # module docstring).
+        # picks the target (tactics.select_target - rough proxies, not a
+        # real implementation, see module docstring).
         for e in enemies:
             if e['health'] <= 0:
                 continue
@@ -467,14 +495,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             living_pcs = [p for p in pcs if p['health'] > 0]
             if not living_pcs:
                 break
-            tactic = e.get('battle_tactic', 'Hit Whatever')
-            if tactic == 'Assassin':
-                target = min(living_pcs, key=lambda p: p['health'])
-            elif movement:
-                target = _closest(e, living_pcs)  # also Kiting's retreat-from reference point
-            else:
-                target = living_pcs[0]  # proxy for Hit Whatever / Hold the Line / Vanguard alike
+            target = tactics.select_target(e, living_pcs, movement)
             if movement and not resolve_movement(e, target):
+                _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'], in_range=False)
                 continue
 
             fighting_style = e.get('fighting_style', 'Guarded')
@@ -482,7 +505,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             for _ in range(n_attacks):
                 roll = e['accuracy'] + (flip_best_of(2) if fighting_style == 'Aimed Shot' else flip())
                 opp_def_val = pc_defense_for(target, e['opp_def'])
-                if roll >= opp_def_val:
+                hit = roll >= opp_def_val
+                dmg = 0
+                if hit:
                     dmg = max(0, e['attack_damage'] - target.get('physres', 0))
                     target['health'] -= dmg
                     if 'Strike (Crippling)' in abilities:
@@ -491,19 +516,25 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                         target['vulnerable'] = target.get('vulnerable', 0) + 1
                     if 'Poison (Bleeding)' in abilities:
                         target['bleeding'] = target.get('bleeding', 0) + 2
+                if enemy_log:
+                    enemy_log(unit=e['name'], action='attack', target=target['name'], roll=roll, defense=opp_def_val,
+                               hit=hit, dmg=dmg, target_hp_after=target['health'])
                 if target['health'] <= 0:
                     living_pcs = [p for p in pcs if p['health'] > 0]
                     if not living_pcs:
                         break
-                    # Same-round retarget after a kill: reuses whichever
-                    # unit is already in range rather than re-checking
-                    # movement, same "not a super intensive analysis"
-                    # simplification as everywhere else in movement mode.
-                    target = _closest(e, living_pcs) if movement else living_pcs[0]
+                    # Same-round retarget after a kill: reuses the same
+                    # movement-aware default rather than re-checking a
+                    # Battle-Tactic-specific rule like Assassin's, same
+                    # "not a super intensive analysis" simplification as
+                    # everywhere else in movement mode.
+                    target = (tactics.target_closest if movement else tactics.target_first)(e, living_pcs)
         if all(p['health'] <= 0 for p in pcs):
+            _log(trace, round=rnd, type='result', winner='enemies')
             return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0,
                         pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
 
+    _log(trace, round=max_rounds, type='result', winner='draw')
     return dict(winner='draw', rounds=max_rounds,
                 party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs),
                 pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)

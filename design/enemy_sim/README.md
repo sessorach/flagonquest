@@ -61,11 +61,33 @@ usage.
   Heavy Melee default - `tunables.WEAPON` has the real
   weapon_categories.csv/features.csv numbers behind each option, fully
   decoupled from Parry/Dodge/etc. A row's `Support` cell (`TRUE`/blank)
-  flags a PC who spends *some* of their turns healing an ally instead of
-  attacking — a hard-capped resource (`heal_uses_left`, every PC dict),
-  not a per-round coin flip, so they're still fighting with their own
-  Weapon/Melee most rounds. See Beornhard's own row and `combat_sim.py`'s
-  note on what that showed.
+  translates into `strategy="support_healer"` (`tactics.PC_STRATEGIES`,
+  see `tactics.py` below) — spends *some* of their turns healing an
+  ally instead of attacking, a hard-capped resource (`heal_uses_left`,
+  every PC dict), not a per-round coin flip, so they're still fighting
+  with their own Weapon/Melee most rounds. See Beornhard's own row and
+  `combat_sim.py`'s note on what that showed.
+- **`tactics.py`** — the pluggable "AI" every unit's turn is dispatched
+  through: `select_target`/`TARGETING` (who a unit attacks — Assassin's
+  lowest-Health rule, closest/first as the movement-aware default),
+  `move_unit`/`MOVEMENT_TACTICS` (how a unit moves — Kiting's retreat,
+  closing in as the default), and `resolve_pc_strategy`/`PC_STRATEGIES`
+  (what a PC does instead of attacking — currently just
+  `strategy_support_healer`). Each is a plain `{name: function}`
+  registry keyed off a CSV column value (`BattleTactic` for enemies,
+  the translated `strategy` for PCs) — add a new tactic/strategy by
+  writing one function with the matching signature and registering it,
+  not by adding another `if` branch to `combat_sim.py`'s `run_fight`.
+  See its own module docstring before adding one.
+- **`cards.py`** — the one place "which suit is this card" gets decided:
+  `flipped_matches(suit)` (a genuinely random flipped card, a 1-in-4
+  roll) vs. `chosen_matches(suit)` (a discarded/played card, chosen by
+  the player from their hand — always true, a deliberate stand-in for a
+  cost that's a small slice of a full hand). `tactics.
+  strategy_support_healer` uses `chosen_matches('Hearts')` for Healing
+  Magic's own Hearts-discard bonus; a future suit-keyed mechanic
+  (Spades, Diamonds, Clubs) reaches for this instead of a fresh
+  `random.random() < 0.25` at its own call site.
 - **`sample_enemies.csv`** — every enemy stat block that's been built for
   a reason, one row per build (Level/Slots/Role/Defense-tier/Action/
   Armor/Battle Tactic/Fighting Style/Abilities/Archetype). The `Roster`
@@ -131,6 +153,22 @@ usage.
   win-rate grid below was validated against.
 - **`run_grid.py`** — runs every Party Tier × Enemy Level combination
   and prints win rate / average rounds / party HP% remaining.
+- **`narrate_fight.py`** — runs ONE seeded fight with `run_fight(...,
+  trace=[])` and renders it as a round-by-round ASCII position map plus
+  a readable combat log, instead of just an aggregate win rate — for
+  actually looking at what a fight does, or sanity-checking a new
+  tactic/strategy by reading its log. `--json out.json` also dumps the
+  raw trace (see `run_fight`'s own docstring for the event shapes) for
+  something else to render, e.g. a real graphical version — see its own
+  module docstring for the full CLI.
+
+## Files worth reading as a pair
+
+`combat_sim.py`'s `run_fight` is the loop; `tactics.py` is every
+decision a unit makes inside that loop; `cards.py` is the one card-suit
+assumption those decisions currently lean on. Reading `tactics.py`
+first, before diving into `run_fight`'s own control flow, is usually
+the faster way to understand "what can a unit actually do on its turn."
 
 ## Usage
 
@@ -141,6 +179,8 @@ python3 run_grid.py 10000     # more trials, slower but less noisy
 python3 enemy_builder.py      # cross-check against the live spreadsheet example
 python3 sample_enemies.py     # print every stat block in sample_enemies.csv
 python3 party.py              # print every stat block in sample_pcs.csv
+python3 narrate_fight.py 1 1 3 --party Hilde,Browndog,Sable,Beornhard
+                               # narrate one seeded fight round by round
 ```
 
 Testing one specific build against another (an item-balancing check, an
