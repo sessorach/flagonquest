@@ -26,11 +26,23 @@ usage.
   good_luck=N)` can give every PC N stacks of Good Luck on their own
   attack roll, for testing a mechanic's value empirically (see
   `combat_sim.py`'s note below).
-- **`sample_enemies.py`** — five concrete, one-per-Level enemies,
-  already tuned to land close to a genuine on-level fight at their own
-  Tier. Simulator fixtures for now, not a finished roster — expect an
-  "Example Enemies" doc to supersede this once the tunables below are
-  locked down further.
+- **`sample_enemies.csv`** — every enemy stat block that's been built
+  for a reason, one row per build (Level/Slots/Role/Defense-tier/
+  Action/Armor/Battle Tactic/Fighting Style/Abilities). Two kinds share
+  the file, told apart by the `Roster` column: the five `TRUE` rows are
+  the validated one-per-Level on-level roster (tuned to land close to a
+  genuine ~50% win rate at their own Tier); everything else is a `FALSE`
+  reference build made for a specific question (a generic Level 2
+  fighter for an item-balancing check, say) and isn't tied to a
+  particular Level. Add a row here instead of writing a one-off script
+  whenever a stat block gets built for a reason worth keeping around.
+- **`sample_enemies.py`** — loads the CSV above via `enemy_builder.py`.
+  `make_enemy(level)` pulls the Roster row for that Level (what
+  `combat_sim.py` uses for the grid); `get_enemy(name)` pulls any row by
+  name; `all_enemies()` returns every row built. Simulator fixtures for
+  now, not a finished in-game roster — expect an "Example Enemies" doc
+  to supersede the Roster rows once the tunables below are locked down
+  further.
 - **`combat_sim.py`** — the Monte Carlo fight loop (`run_fight`) and
   driver (`simulate`). Models Gambling (PCs punching through high
   Resist), Good Luck (`good_luck=N` on `simulate`/`run_fight`, applied
@@ -53,8 +65,9 @@ cd design/enemy_sim
 python3 run_grid.py           # full 5x5 grid, 3000 trials/cell
 python3 run_grid.py 10000     # more trials, slower but less noisy
 python3 enemy_builder.py      # cross-check against the live spreadsheet example
-python3 sample_enemies.py     # print the 5 sample enemies' stat blocks
+python3 sample_enemies.py     # print every stat block in sample_enemies.csv
 ```
 
-After editing `tunables.py` (or retuning a build in `sample_enemies.
-py`), just re-run `run_grid.py` — no other file needs to change.
+After editing `tunables.py` (a pure numbers retune) or `sample_enemies.
+csv` (a Roster row's build), just re-run `run_grid.py` — no other file
+needs to change.

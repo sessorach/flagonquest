@@ -1,0 +1,8 @@
+Name,Level,Slots,Role,PrimaryDef,SecondaryDef,Action,Armor,BattleTactic,FightingStyle,Abilities,Roster,Notes
+Marsh Viper Scout,1,1,Striker,Bodily,Parry/Dodge,Offensive Melee,Light,Hit Whatever,Flurry,,TRUE,Validated on-level roster (win-rate grid) - see ENEMY_ENCOUNTER_DESIGN.md Analysis section
+Ironbranch Skirmisher,2,1,Bruiser,Parry/Dodge,Mental,Ranged Spell,Light,Hit Whatever,Flurry,,TRUE,Validated on-level roster (win-rate grid) - see ENEMY_ENCOUNTER_DESIGN.md Analysis section
+Ironbranch Warden,3,1,Bruiser,Bodily,Mental,Ranged Weapon,Light,Assassin,Guarded,,TRUE,Validated on-level roster (win-rate grid) - see ENEMY_ENCOUNTER_DESIGN.md Analysis section
+Deadbough Priest,4,1,None,Bodily,Mental,Melee Spell,Light,Assassin,Flurry,,TRUE,Validated on-level roster (win-rate grid) - see ENEMY_ENCOUNTER_DESIGN.md Analysis section
+Deep Coven Matriarch,5,1,Striker,Mental,Bodily,Ranged Spell,Light,Assassin,Guarded,,TRUE,Validated on-level roster (win-rate grid) - see ENEMY_ENCOUNTER_DESIGN.md Analysis section
+Generic Level 2 Melee Fighter,2,1,None,,,Offensive Melee,Light,Hit Whatever,Guarded,,FALSE,No Role or Defense-tier skew on purpose - a neutral reference point for item-balancing checks (e.g. Pillar Ring), not tuned for the win-rate grid
+Generic Level 2 Power-Attack Fighter,2,1,Bruiser,,,Offensive Melee,Light,Hit Whatever,Guarded,,FALSE,Bruiser role for a "close to barbarian, not fully" power-attack lean, still no Defense-tier pick - reference build for item-balancing checks
