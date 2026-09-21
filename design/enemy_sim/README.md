@@ -194,11 +194,24 @@ before making changes — this README stays to usage and a file map.
   8 + Skill Total / Damage = base + Stat / Resist = Essence formula).
   The 4 default Level 1 archetypes (Hedge Knight/Marsh Archer/Skulking
   Footpad/Fen Warden) use this method now, at the plain designer-
-  spreadsheet Skill Total numbers with no extra bonus knob at all
-  (`HealthBonus` blank too) — landing at win≈91%, ~5.8 rounds, ~62%
-  party Health on a win, once Harried (see below) got modeled for the
-  first time this same session. Bog Caster (the deliberate double-
-  attacker, still excluded from the default 4-mix) stays on the old
+  spreadsheet Skill Total numbers, plus one active retune knob -
+  **`HealthBonus=2`** (Health 12 at Level 1, up from the real
+  Baseline-party's own 10) - landed on after two follow-up passes the
+  same session: first swapping the win-rate check from the smoothed
+  generic party over to the real drafted one (Hilde/Browndog/Carrick/
+  Sable - noticeably stronger fighters on their own, no teamwork
+  needed to already beat the generic baseline), then again once the
+  party's own base targeting strategy (focus fire on whoever's hurt
+  worst, then whichever enemy the whole party's collectively closest
+  to - `tactics.target_focus_wounded`) started actually mattering under
+  `movement=True`. Current numbers, this row's own real Abilities
+  (Durable/Strike (Vulnerable)/Poison (Bleeding), kept as-is - a
+  Powerful Weapon/Spell standin was used to sweep the retune itself,
+  see below, but isn't what ships): win≈99%, ~5.6 rounds (sd≈1.6 -
+  noticeably tighter than any earlier candidate this session, mostly
+  thanks to the party no longer scattering its own damage), ~72% party
+  Health on a win. Bog Caster (the deliberate double-attacker, still
+  excluded from the default 4-mix) stays on the old
   `enemy_builder.build_enemy` construction for now.
 - **`enemy_builder_pcstyle.py`** — the second construction method above.
   Builds an enemy the way a PC actually gets built (`party.py`'s own
