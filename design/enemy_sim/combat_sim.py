@@ -32,7 +32,10 @@ broken by re-flipping just the tied units - rulebook.md's own worked
 example) and that order is fixed for the whole fight, interleaved
 across both sides - not "all 4 PCs, then all enemies," which is what
 this file did before real initiative existed. Every round just replays
-that same order, skipping whoever's already dead.
+that same order, skipping whoever's already dead. A PC's own
+`turn_order_shift` field (not read from any real build yet - see
+`_shift_in_order`) can push a hit target later in this same order,
+modeling Backfoot/Alacrity/Heroic Inspiration's shared mechanic.
 
 ## How a turn works (rulebook.md's "Actions on a Turn")
 
@@ -494,14 +497,36 @@ def _roll_initiative(pcs, enemies, trace):
     return result
 
 
-def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
+def _shift_in_order(order, unit, places):
+    """Moves `unit`'s (side, unit) entry `places` positions later in the
+    turn order (Backfoot/Alacrity/Heroic Inspiration's shared "adjust
+    position in turn order" mechanic), clamped to the end of the list.
+    Mutates `order` in place - since `run_fight` iterates a `list(order)`
+    snapshot each round (not `order` itself), a shift applied mid-round
+    doesn't disturb that round's already-in-progress sequence, but does
+    take effect starting next round, which is fixed for the rest of the
+    fight same as any other initiative result. Only ever moves a unit
+    *later* (delay), matching every real Technique that uses this."""
+    for i, (side, u) in enumerate(order):
+        if u is unit:
+            entry = order.pop(i)
+            order.insert(min(i + places, len(order)), entry)
+            return
+
+
+def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=None):
     """One PC's full turn (see module docstring's "How a turn works") -
     strategy (a healer's own heal), Second Wind, movement, then attacks.
     Returns (attacks_made, damage_dealt) for run_fight's own running
     totals. Also runs this PC's own Fleeting decay (glossary.md: 1 stack
     of Crippled/Vulnerable/Bleeding per bearer's own turn) at the end -
     with a real initiative order this genuinely IS "their own turn" now,
-    not a once-a-round batch step after every PC's gone."""
+    not a once-a-round batch step after every PC's gone.
+
+    `order`: this fight's live turn-order list, passed through only so a
+    PC with `turn_order_shift` set (a synthetic test field, not read from
+    any real build yet - see balance_weights_notes.md's Backfoot pass)
+    can push a hit target later in it via `_shift_in_order`."""
     attacks_made = 0
     damage_dealt = 0
     if pc['health'] > 0:
@@ -576,6 +601,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
                         dmg -= protected_absorbed
                     target['health'] -= dmg
                     damage_dealt += dmg
+                    if order is not None and pc.get('turn_order_shift'):
+                        _shift_in_order(order, target, pc['turn_order_shift'])
                 if party_log:
                     party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
                                hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
@@ -802,11 +829,11 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                  party=[{'unit': p['name'], 'pos': p['pos'], 'health': p['health']} for p in pcs if p['health'] > 0],
                  enemies=[{'unit': e['name'], 'pos': e['pos'], 'health': e['health']} for e in enemies if e['health'] > 0])
 
-        for side, unit in order:
+        for side, unit in list(order):
             if unit['health'] <= 0:
                 continue
             if side == 'party':
-                made, dealt = _take_pc_turn(unit, pcs, enemies, rnd, movement, trace, party_log)
+                made, dealt = _take_pc_turn(unit, pcs, enemies, rnd, movement, trace, party_log, order)
                 pc_attacks += made
                 pc_damage_dealt += dealt
             else:
