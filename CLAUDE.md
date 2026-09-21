@@ -779,7 +779,14 @@ Two recurring environment quirks worth knowing:
   same-day entries loses them before they finish reading. If today
   already has an entry, extend that entry instead of adding a new one;
   don't start a fresh entry just because it's a separate commit or a
-  separate piece of work.
+  separate piece of work. **Extending means rewriting** — fold the new
+  work into the existing summary/bullets as one merged entry, don't
+  leave the old summary+bullets in place and append a second
+  summary-plus-bullets block underneath. This slipped on 2026-09-21 (a
+  second "paragraph + 9 bullets" got tacked on below an already-full
+  first one, ballooning one day to ~19 bullets total) and got trimmed
+  back down after the fact — check the entry you're extending still
+  reads like ONE entry, not two stacked ones, before moving on.
   - **Heading**: date + a short title for the day, same as before.
   - **Body**: 1-2 plain sentences (an actual maximum, not a soft
     target) giving the gist of everything that happened that day — what
