@@ -33,6 +33,18 @@ yet written into ENEMY_ENCOUNTER_DESIGN.md itself).
 These are simulator fixtures, not a finished in-game roster - expect an
 "Example Enemies" design doc to supersede the Roster rows once the
 PC/enemy baselines in tunables.py are locked down further.
+
+**`DamageBonus`** (blank = 0) maps straight to enemy_builder.build_enemy's
+own `ability_dmg_bonus` param - a flat retune to this row's own attack
+damage that does NOT also inflate its Resist (unlike bumping
+tunables.DMG_RESIST directly, which feeds both attack_damage and resist
+off the same Level-keyed number and turned out to be a much sharper,
+less controllable lever during the Level 1 "mixed Fighting Style"
+retune - see the 5 Mixed-Style archetypes' own Notes). Kept distinct
+from the real `Abilities` catalog (Powerful Weapon, etc.) since those
+carry their own in-fiction identity and tradeoffs (Powerful Weapon
+costs Accuracy/Parry); this is a plain numeric retune knob, not a named
+ability a GM would narrate.
 """
 import csv
 import os
@@ -56,6 +68,7 @@ def _build_from_row(row):
         row["SecondaryDef"] or None,
         row["Action"],
         row["Armor"],
+        ability_dmg_bonus=int(row["DamageBonus"]) if row.get("DamageBonus", "").strip() else 0,
         abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
     )
     e["battle_tactic"] = row["BattleTactic"]

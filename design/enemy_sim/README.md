@@ -150,8 +150,19 @@ before making changes — this README stays to usage and a file map.
   one-per-Level on-level roster; everything else is a `FALSE` reference
   build tagged with an `Archetype` label — **Neutral**, **Power-Attack**,
   **Max-Damage**, **Ranged Caster**, **Tank** (one of each at every
-  Level 1-5), plus **Minion** (0.5 Slots, one per Level — see
-  `sample_enemies.py`'s own note on why).
+  Level 1-5), **Minion** (0.5 Slots, one per Level — see
+  `sample_enemies.py`'s own note on why), plus **Mixed-Style** (5 Level 1
+  builds — Hedge Knight, Marsh Archer, Skulking Footpad, Bog Caster, Fen
+  Warden — drafted with deliberately varied Fighting Styles rather than
+  defaulting every enemy to Flurry, each row's own Notes explains its
+  particular combo and the retuning pass that gave them their
+  `DamageBonus`). **`DamageBonus`** (blank = 0) maps straight to
+  `enemy_builder.build_enemy`'s `ability_dmg_bonus` param — a flat
+  attack-damage retune that does *not* also inflate the enemy's own
+  Resist, unlike bumping `tunables.DMG_RESIST` (which feeds both off one
+  shared Level-keyed number and turned out to be a much sharper, harder
+  to control lever during the Mixed-Style retune - see those rows' own
+  Notes for the numbers).
 - **`sample_enemies.py`** — loads the CSV above via `enemy_builder.py`.
   `make_enemy(level)` pulls the Roster row for that Level; `get_enemy
   (name)` pulls any row by name; `all_enemies()` returns every row
