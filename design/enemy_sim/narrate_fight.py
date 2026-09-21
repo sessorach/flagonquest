@@ -100,6 +100,8 @@ def render_event(event):
         harried = event.get('target_harried_after', 0)
         if harried:
             extra += f" (target now Harried {harried})"
+        if event.get('turn_shift'):
+            extra += f" [{event['turn_shift']}]"
         return f"  {unit} attacks {event['target']}{via}: rolls {event['roll']} vs {event['defense']} - {verb}{extra}"
     if action == 'heal':
         via = f" with {event['via']}" if event.get('via') else ""
@@ -154,6 +156,9 @@ def main():
     ap.add_argument('--encounter', help='comma-separated sample_enemies.csv names, any mix (default: n_enemies copies of the Level Roster)')
     ap.add_argument('--json', help='also write the raw trace + result to this file')
     ap.add_argument('--html', help='also write a self-contained HTML replay page to this file')
+    ap.add_argument('--vs-average', type=int, nargs='?', const=1000, default=None,
+                     help='also run N aggregate trials (default 1000) of this exact same matchup/party mods '
+                          'and print/embed how this one seeded fight compares - win rate, avg rounds, avg HP on win')
     args = ap.parse_args()
 
     movement_on = not args.static
@@ -166,6 +171,20 @@ def main():
     result = cs.run_fight(args.tier, args.enemy_level, n_enemies=args.n_enemies,
                            seed=args.seed, movement=movement_on, trace=trace, enemies=enemies)
     narrate(trace, movement_on)
+
+    if args.vs_average:
+        # Same matchup/party mods (make_party is already monkeypatched above
+        # if --party was given), a fresh unseeded batch - "how does this one
+        # seeded fight compare to the shape of the matchup overall."
+        win_pct, avg_rounds, avg_hp, _, _ = cs.simulate(
+            args.tier, args.enemy_level, n_enemies=args.n_enemies, trials=args.vs_average,
+            movement=movement_on, enemies=enemies)
+        result['vs_average'] = {'trials': args.vs_average, 'win_pct': win_pct,
+                                 'avg_rounds': avg_rounds, 'avg_hp_on_win': avg_hp}
+        this_hp = f", {result['party_hp_pct'] * 100:.0f}% party HP" if result['winner'] == 'party' else ''
+        print(f"\nThis fight: {result['winner']} won in {result['rounds']} rounds{this_hp}.")
+        print(f"Average over {args.vs_average} trials of this same matchup: "
+              f"{win_pct:.1f}% win rate, {avg_rounds:.1f} rounds, {avg_hp:.1f}% HP on win.")
 
     if args.json:
         with open(args.json, 'w') as f:

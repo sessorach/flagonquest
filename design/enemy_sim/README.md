@@ -348,3 +348,38 @@ used to read ~50% now reads closer to 100% at Tier 1-3). The Roster
 enemies themselves haven't been retuned to match yet - that's a real
 balance pass, not a mechanics fix, so it's deliberately left for the
 designer to pick up rather than done unilaterally here.
+
+## Testing conventions for ad hoc balance checks
+
+For a quick "roughly how much is this worth" check (a proposed Feature
+fix, a new Ability idea) rather than a real calibration pass, default
+to these unless told otherwise - keeps a check fast and cheap instead
+of burning tokens on precision the question doesn't need:
+
+- **A few thousand trials, not tens of thousands.** Enough to see the
+  shape (is it bigger/smaller/flat relative to the comparison point),
+  not to pin down the exact percentage. 2000-5000 trials/config is
+  usually plenty; only reach for more if the effect you're checking is
+  genuinely small and a first pass came back too noisy to read.
+- **Default matchup: the real starter party vs. the standard Level 1
+  Roster** (`--party Hilde,Browndog,Carrick,Sable`, `enemy_level=1`,
+  `n_enemies=4` - the same matchup the Roster's own Level 1 archetypes
+  are calibrated against, no `enemies=` override needed). Only reach
+  for a different Tier/Level when the question is actually about a
+  different Tier/Level, or when Level 1's own win rate has saturated
+  too close to the ceiling to show a clean delta for whatever's being
+  tested - note that explicitly if it happens, don't silently swap
+  matchups.
+- **Save an illustrative replay when a check is worth reviewing later.**
+  `replays/` (this folder) holds a handful of `narrate_fight.py --html`
+  outputs from specific mechanic checks, gitignored-sized-permitting
+  (each is a self-contained page, typically well under 100KB) - not
+  every test run, just the ones worth coming back to. Use `--vs-average`
+  so the replay's own banner shows how that one seeded fight compares to
+  the aggregate for its matchup, and check the combat log for the
+  `turn_shift` annotation (or any other test-specific field) actually
+  showing up on the events it should. A short paired `.md` note next to
+  each saved replay (what was being tested, what the aggregate numbers
+  came back as) is worth more later than the replay alone - the replay
+  shows one fight, the note is what makes it findable and meaningful
+  months later.

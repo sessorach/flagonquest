@@ -161,9 +161,14 @@ function setupChips() {
                    `<div class="chip">Enemies: <b>${enemyNames.join(', ')}</b> (${firstPositions.enemies.length} total)</div>`);
   }
   el.innerHTML = chips.join('');
-  document.getElementById('resultBanner').textContent =
-    (result.winner === 'party' ? 'Party wins' : result.winner === 'enemies' ? 'Enemies win' : 'Draw') +
+  let banner = (result.winner === 'party' ? 'Party wins' : result.winner === 'enemies' ? 'Enemies win' : 'Draw') +
     ` after ${result.rounds} round${result.rounds === 1 ? '' : 's'}.`;
+  if (result.vs_average) {
+    const v = result.vs_average;
+    banner += ` (average over ${v.trials} trials of this matchup: ${v.win_pct.toFixed(1)}% win, ` +
+      `${v.avg_rounds.toFixed(1)} rounds, ${v.avg_hp_on_win.toFixed(1)}% HP on win - this replay is one sample, not the trend.)`;
+  }
+  document.getElementById('resultBanner').textContent = banner;
   if (initiative) {
     const names = initiative.order.map(o =>
       `<span class="${o.side === 'party' ? 'party-name' : 'enemy-name'}">${o.unit}</span>`);
@@ -218,7 +223,8 @@ function logLine(e) {
     // on the attack that added the stack (it can carry over from an
     // earlier attack this same round).
     const harried = e.target_harried_after ? ` <span class="via">(target now Harried ${e.target_harried_after})</span>` : '';
-    return `<div class="line ${cls}"><span class="who">${e.unit}</span> attacks <b>${e.target}</b>${via} <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}${harried}</div>`;
+    const turnShift = e.turn_shift ? ` <span class="via">[${e.turn_shift}]</span>` : '';
+    return `<div class="line ${cls}"><span class="who">${e.unit}</span> attacks <b>${e.target}</b>${via} <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}${harried}${turnShift}</div>`;
   }
   if (e.action === 'heal') {
     const via = e.via ? ` <span class="via">with ${e.via}</span>` : '';

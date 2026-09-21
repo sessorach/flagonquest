@@ -498,20 +498,26 @@ def _roll_initiative(pcs, enemies, trace):
 
 
 def _shift_in_order(order, unit, places):
-    """Moves `unit`'s (side, unit) entry `places` positions later in the
-    turn order (Backfoot/Alacrity/Heroic Inspiration's shared "adjust
-    position in turn order" mechanic), clamped to the end of the list.
-    Mutates `order` in place - since `run_fight` iterates a `list(order)`
-    snapshot each round (not `order` itself), a shift applied mid-round
-    doesn't disturb that round's already-in-progress sequence, but does
-    take effect starting next round, which is fixed for the rest of the
-    fight same as any other initiative result. Only ever moves a unit
-    *later* (delay), matching every real Technique that uses this."""
+    """Moves `unit`'s (side, unit) entry `places` positions in the turn
+    order - positive `places` delays it (Backfoot: push a hit target
+    later), negative advances it (a hypothetical "move yourself earlier"
+    variant, tested separately from Backfoot's own delay-the-target
+    version - see balance_weights_notes.md). Clamped to the list's own
+    bounds. Mutates `order` in place - since `run_fight` iterates a
+    `list(order)` snapshot each round (not `order` itself), a shift
+    applied mid-round doesn't disturb that round's already-in-progress
+    sequence, but does take effect starting next round, which is fixed
+    for the rest of the fight same as any other initiative result.
+    Returns the actual signed distance moved (0 if `unit` wasn't found,
+    or already at the clamped bound), for `_take_pc_turn`'s own log
+    annotation."""
     for i, (side, u) in enumerate(order):
         if u is unit:
             entry = order.pop(i)
-            order.insert(min(i + places, len(order)), entry)
-            return
+            new_i = max(0, min(i + places, len(order)))
+            order.insert(new_i, entry)
+            return new_i - i
+    return 0
 
 
 def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=None):
@@ -524,9 +530,12 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
     not a once-a-round batch step after every PC's gone.
 
     `order`: this fight's live turn-order list, passed through only so a
-    PC with `turn_order_shift` set (a synthetic test field, not read from
-    any real build yet - see balance_weights_notes.md's Backfoot pass)
-    can push a hit target later in it via `_shift_in_order`."""
+    PC with `turn_order_shift` or `self_turn_order_advance` set (both
+    synthetic test fields, not read from any real build yet - see
+    balance_weights_notes.md's Backfoot pass) can shift a unit in it via
+    `_shift_in_order` on a hit - `turn_order_shift` delays the target
+    (Backfoot's own version), `self_turn_order_advance` moves the PC
+    itself earlier instead (tested as a separate mechanic)."""
     attacks_made = 0
     damage_dealt = 0
     if pc['health'] > 0:
@@ -591,6 +600,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 dmg = 0
                 raw_dmg = 0
                 protected_absorbed = 0
+                turn_shift_note = None
                 if hit:
                     raw_dmg = pc['damage'] + gambles + (1 if tactics.sift_bonus(pc) else 0)
                     dmg = max(0, raw_dmg - resist)
@@ -602,12 +612,18 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     target['health'] -= dmg
                     damage_dealt += dmg
                     if order is not None and pc.get('turn_order_shift'):
-                        _shift_in_order(order, target, pc['turn_order_shift'])
+                        moved = _shift_in_order(order, target, pc['turn_order_shift'])
+                        if moved:
+                            turn_shift_note = f"{target['name']} pushed {moved} later in turn order"
+                    if order is not None and pc.get('self_turn_order_advance'):
+                        moved = _shift_in_order(order, pc, -pc['self_turn_order_advance'])
+                        if moved:
+                            turn_shift_note = f"{pc['name']} advanced {-moved} earlier in turn order"
                 if party_log:
                     party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
                                hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
                                target_hp_after=target['health'], target_harried_after=target.get('harried', 0),
-                               via=substitute['via'] if substitute else pc['weapon_name'])
+                               via=substitute['via'] if substitute else pc['weapon_name'], turn_shift=turn_shift_note)
                 if saved_profile:
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
                 if target['health'] <= 0:
@@ -777,8 +793,11 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     name ("Bottled Fire"/"Healing Potion"/"Second Wind"/"Healing
     Magic") on the party side, an enemy's own `action` (sample_
     enemies.csv's Action column - "Offensive Melee", "Ranged Weapon",
-    ...) on the enemy side. A final `type='result'` event carries
-    `winner`."""
+    ...) on the enemy side. A party-side `action='attack'` event also
+    carries `turn_shift` - a plain description string when this hit
+    triggered a `turn_order_shift`/`self_turn_order_advance` test field
+    (`None` otherwise), for spotting these in a replay. A final
+    `type='result'` event carries `winner`."""
     if seed is not None:
         random.seed(seed)
     pcs = make_party(tier, good_luck=good_luck)
