@@ -288,28 +288,43 @@ def _pc_dict(row, index, good_luck):
     if weapon_uses_left is not None and "Warmage's Reserves" in card_techniques:
         weapon_uses_left += math.ceil(hand_size / 3)
 
-    # Bottomless Bottles (T053) items - hardcoded to the two Jackal
-    # actually built (Bottled Fire I030, Healing Potion I043) rather
-    # than a general "what did this PC craft" system; see tactics.
-    # bottomless_bottles_choice's own docstring for why. Bottled Fire is
-    # a [Grenade] (glossary.md): Acrobatics Skill Total, no accuracy
-    # bonus, flat 8 Fire damage (not scaled by any Stat), opposed by
-    # Dodge alone (not Parry/Dodge), Range 3 x Body - reusing whichever
-    # Range this PC's own base Weapon already uses is wrong in general,
-    # so this is computed straight from Acrobatics/Body here regardless
-    # of what `Weapon` is set to.
-    # combat_sim's attack loop only overlays skill_total/damage/dmg_type/
-    # opp_def for a Bottled Fire throw, not attack_range - so this only
-    # reads correctly for a PC whose own base Weapon's Range formula
-    # already happens to be 3 x Body too (Jackal's Light Thrown is,
-    # coincidentally); revisit if a future Bottomless Bottles PC's base
-    # Weapon uses a different Range.
+    # Bottomless Bottles (T053) - Jackal only makes Bottled Fire (I030)
+    # with it now, not Healing Potion too (the designer's own call - "a
+    # bit tricky" balancing two items off one budget, not worth it).
+    # Bottled Fire is a [Grenade] (glossary.md): Acrobatics Skill Total,
+    # no accuracy bonus, flat 8 Fire damage (not scaled by any Stat),
+    # opposed by Dodge alone (not Parry/Dodge). combat_sim's attack loop
+    # only overlays skill_total/damage/dmg_type/opp_def for a Bottled
+    # Fire throw, not attack_range - so this only reads correctly for a
+    # PC whose own base Weapon's Range formula already happens to be
+    # 3 x Body too (Jackal's Light Thrown is, coincidentally); revisit
+    # if a future Bottomless Bottles PC's base Weapon uses a different
+    # Range. Hardcoded to this one item rather than a general "what did
+    # this PC craft" system - generalize once a second Bottomless
+    # Bottles PC needs a different one.
+    #
+    # How many per fight: T053's own Effects text is "items with a total
+    # Gold cost of no more than [4 x X]" for X cards discarded (its own
+    # Cost, chosen at use, not tied to the Technique's own XP-Level).
+    # The designer's own framing - spend 2/3 of a day's cards on this
+    # (X = hand_size x 2 // 3), all toward Bottled Fire, then a single
+    # fight gets half of whatever a full day's Gold budget buys - turns
+    # into: gold_budget = 4 x X, daily_count = gold_budget //
+    # T.BOTTLED_FIRE_GOLD_COST (that constant's own comment explains why
+    # it's an inference, not a set price - Bottled Fire has no Gold Cost
+    # on record at all), bottled_fire_uses = daily_count // 2. A
+    # separate counter from card_uses_left above - Bottomless Bottles'
+    # real resource math (Gold, not just "a card") is genuinely
+    # different from Second Wind/Perfect Strike/Warmage's Reserves.
     bottled_fire_profile = None
-    healing_potion_amount = None
+    bottled_fire_uses = None
     if "Bottomless Bottles" in card_techniques:
         bottled_fire_profile = dict(skill_total=skill_total(stats, skills, "Acrobatics"), damage=8,
                                      dmg_type="Fire", opp_def="Dodge")
-        healing_potion_amount = 2  # Healing Potion (I043): "you heal 2 Health"
+        cards_for_gold = hand_size * 2 // 3
+        gold_budget = 4 * cards_for_gold
+        daily_count = int(gold_budget // T.BOTTLED_FIRE_GOLD_COST)
+        bottled_fire_uses = daily_count // 2
 
     # Every copy gets its own suffix, Roster rows included (a Roster
     # build used to keep its bare row Name - "Baseline Tier 1 Party
@@ -335,7 +350,7 @@ def _pc_dict(row, index, good_luck):
         pc["weapon_uses_left"] = weapon_uses_left
     if bottled_fire_profile is not None:
         pc["bottled_fire_profile"] = bottled_fire_profile
-        pc["healing_potion_amount"] = healing_potion_amount
+        pc["bottled_fire_uses_left"] = bottled_fire_uses
     return pc
 
 

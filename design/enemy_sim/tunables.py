@@ -225,6 +225,16 @@ WEAPON = {
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
 }
 
+# Bottled Fire (I030) has no Gold Cost on record - items.csv's whole
+# Grenade/Potion category is unpriced (crafted, not bought). The only
+# real number available is its own design/balance_ledger.csv Value
+# (5.5, THE TABEL's mechanical-worth currency, not Gold), converted
+# through archive/flagonquest_balance_notes_model.md's own Value<->Gold
+# ratio (1 Gold = 1.5 Value) - an inference from the balance model, not
+# a set shop price. See party.py's own Bottomless Bottles paragraph for
+# how this turns into Jackal's actual per-fight use count.
+BOTTLED_FIRE_GOLD_COST = 5.5 / 1.5  # ~3.67 Gold
+
 # ---- Movement mode: party formation and start distance ----
 # A 2x2 block, "for simplicity's sake" per the designer, rather than the
 # single-file line the enemies still use (_start_positions in

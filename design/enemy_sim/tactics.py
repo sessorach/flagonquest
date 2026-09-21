@@ -374,29 +374,22 @@ def bottomless_bottles_choice(pc):
     """Bottomless Bottles (T053): the 10-minute crafting Action that
     actually creates the items happens before the fight (not AP-costed
     here at all) - what this models is spending one of THIS PC's own
-    2-AP attack actions on a created item instead of their normal
-    weapon attack, gated by the same card_uses_left budget as the other
-    Card Techniques (the designer's own 'Discard X cards' cost,
-    standing in for the same quick 1/3-of-hand check). Only Jackal has
-    this technique right now, so the two items she actually built
-    (Bottled Fire - I030, Healing Potion - I043) are hardcoded via the
-    profile party.py precomputes onto her PC dict
-    (`bottled_fire_profile`/`healing_potion_amount`) rather than a
-    general "what did this PC craft" system - generalize this once a
-    second Bottomless Bottles PC needs different items, not before.
-    Returns None (fall through to a normal weapon attack) if this PC
-    doesn't have the technique or has no charge left; otherwise a dict
-    describing what combat_sim.run_fight's attack loop should do instead
-    this iteration - `{'kind': 'heal', 'amount': N}` (Healing Potion,
-    chosen when Wounded, same half-max-health proxy as everywhere else)
-    or `{'kind': 'attack', **bottled_fire_profile}` (an alternate attack
-    profile - skill_total/damage/dmg_type/opp_def - the caller
-    temporarily overlays onto the PC for that one attack)."""
+    2-AP attack actions on a created item (Bottled Fire, I030 - only
+    Jackal has this technique right now, and only makes this one item
+    with it, not Healing Potion too) instead of their normal weapon
+    attack. Gated by `bottled_fire_uses_left`, a dedicated counter
+    (party.py's own Bottomless Bottles paragraph works out the actual
+    number from Bottled Fire's real Gold cost - a separate, more
+    involved derivation than the flat hand_size // 3 the other three
+    Card Techniques share, so it gets its own budget rather than
+    overloading card_uses_left). Returns None (fall through to a normal
+    weapon attack) if this PC doesn't have the technique or has no
+    charge left; otherwise an alternate attack profile (skill_total/
+    damage/dmg_type/opp_def/via) the caller temporarily overlays onto
+    the PC for that one attack."""
     if 'Bottomless Bottles' not in pc.get('card_techniques', ()):
         return None
-    if pc.get('card_uses_left', 0) <= 0:
+    if pc.get('bottled_fire_uses_left', 0) <= 0:
         return None
-    pc['card_uses_left'] -= 1
-    if 0 < pc['health'] <= pc['max_health'] / 2:
-        return {'kind': 'heal', 'amount': pc['healing_potion_amount'], 'via': 'Healing Potion'}
-    return {'kind': 'attack', 'via': 'Bottled Fire', **pc['bottled_fire_profile']}
+    pc['bottled_fire_uses_left'] -= 1
+    return {'via': 'Bottled Fire', **pc['bottled_fire_profile']}

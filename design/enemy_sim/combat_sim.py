@@ -494,14 +494,6 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
                 if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0:
                     break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
                 substitute = tactics.bottomless_bottles_choice(pc)
-                if substitute and substitute['kind'] == 'heal':
-                    ap -= T.ATTACK_AP_COST
-                    healed = min(substitute['amount'], pc['max_health'] - pc['health'])
-                    pc['health'] += healed
-                    if party_log:
-                        party_log(unit=pc['name'], action='heal', target=pc['name'], amount=healed,
-                                   target_hp_after=pc['health'], via=substitute['via'])
-                    continue
                 # A Bottled-Fire substitution temporarily overlays this PC's
                 # own attack profile with the thrown item's numbers for one
                 # iteration, restored right after logging - everything below
