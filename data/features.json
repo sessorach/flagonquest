@@ -18,7 +18,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "For the attack the chosen weapon's range is increased by [four times X].",
+    "effects": "For the attack the chosen weapon's range is increased by [twice X].",
     "prereq": null
   },
   {
