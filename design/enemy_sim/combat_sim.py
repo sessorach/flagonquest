@@ -520,6 +520,47 @@ def _shift_in_order(order, unit, places):
     return 0
 
 
+def _find_extra_target(pc, primary, enemies, movement_on, mode):
+    """Finds a second living, distinct-from-`primary` enemy for a
+    Whirlwind (`mode='melee'` - any other target within the PC's own
+    melee reach) or Piercing Shot (`mode='line'` - another target
+    roughly colinear with the PC->primary line, beyond primary) check -
+    see the Advanced Cost-6 trio's own balance_weights_notes.md pass for
+    why these need real position data rather than a flat rate. Without
+    `movement_on` there's no position data to check against, so this
+    falls back to "any other living enemy" (the same simplification the
+    rest of the static-mode model already makes - everything's "in
+    range"). Returns the enemy dict or None."""
+    others = [e for e in enemies if e['health'] > 0 and e is not primary]
+    if not others:
+        return None
+    if not movement_on:
+        return others[0]
+    px, py = pc['pos']
+    if mode == 'melee':
+        reach = effective_range(pc)
+        for e in others:
+            if _distance(pc['pos'], e['pos']) <= reach:
+                return e
+        return None
+    if mode == 'line':
+        tx, ty = primary['pos']
+        dx, dy = tx - px, ty - py
+        line_len = _distance(pc['pos'], primary['pos'])
+        if line_len == 0:
+            return None
+        for e in others:
+            ex, ey = e['pos']
+            cross = abs(dx * (ey - py) - dy * (ex - px))
+            # Beyond the primary target along the same ray, not behind
+            # the PC or between the PC and the primary target.
+            along = (dx * (ex - px) + dy * (ey - py)) / line_len
+            if cross <= 1.5 and along > line_len:
+                return e
+        return None
+    return None
+
+
 def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=None):
     """One PC's full turn (see module docstring's "How a turn works") -
     strategy (a healer's own heal), Second Wind, movement, then attacks.
@@ -538,6 +579,43 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
     itself earlier instead (tested as a separate mechanic)."""
     attacks_made = 0
     damage_dealt = 0
+
+    def _bonus_attack(bonus_target, via_suffix):
+        """Resolves one additional weapon attack against `bonus_target`,
+        granted for free by a doubling Feature (Whirlwind/Piercing
+        Shot/Flurry's own synthetic test fields - see the Advanced
+        Cost-6 trio's balance_weights_notes.md pass) - no AP cost, no
+        Gambling (a per-attack player choice, not sensible to auto-apply
+        to a bonus swing), same hit/damage/Harried/Protected resolution
+        as a normal attack otherwise. Mirrors _take_pc_turn's own main
+        attack block rather than sharing code with it, to avoid touching
+        that well-tested path. Returns the damage dealt."""
+        defense = enemy_defense_for_pc_attack(pc, bonus_target)
+        resist = enemy_resist_for_pc_attack(pc, bonus_target)
+        crippled = pc.get('crippled', 0)
+        bad_luck = tactics.defense_has_bad_luck(bonus_target, pc.get('opp_def', 'Parry/Dodge'))
+        luck_bonus = tactics.perfect_strike_bonus(pc)
+        card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
+        roll = pc['skill_total'] - crippled + card
+        hit = roll >= defense
+        bonus_target['harried'] = bonus_target.get('harried', 0) + 1
+        dmg = raw_dmg = protected_absorbed = 0
+        if hit:
+            raw_dmg = pc['damage'] + (1 if tactics.sift_bonus(pc) else 0)
+            dmg = max(0, raw_dmg - resist)
+            protected = bonus_target.get('protected', 0)
+            if protected > 0 and dmg > 0:
+                protected_absorbed = min(dmg, protected)
+                bonus_target['protected'] -= protected_absorbed
+                dmg -= protected_absorbed
+            bonus_target['health'] -= dmg
+        if party_log:
+            party_log(unit=pc['name'], action='attack', target=bonus_target['name'], roll=roll, defense=defense,
+                       hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
+                       target_hp_after=bonus_target['health'], target_harried_after=bonus_target.get('harried', 0),
+                       via=f"{pc['weapon_name']} ({via_suffix})", turn_shift=None)
+        return dmg
+
     if pc['health'] > 0:
         ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
         tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
@@ -624,6 +702,20 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                                hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
                                target_hp_after=target['health'], target_harried_after=target.get('harried', 0),
                                via=substitute['via'] if substitute else pc['weapon_name'], turn_shift=turn_shift_note)
+                # Unlike most Features on this sheet, none of these three
+                # say "if the attack hits" in their own Effects text - the
+                # extra attack is its own independent roll, granted on the
+                # attempt, not gated on the primary attack landing.
+                if pc.get('flurry'):
+                    damage_dealt += _bonus_attack(target, 'Flurry')
+                if pc.get('whirlwind'):
+                    extra = _find_extra_target(pc, target, enemies, movement_on, 'melee')
+                    if extra:
+                        damage_dealt += _bonus_attack(extra, 'Whirlwind')
+                if pc.get('piercing_shot'):
+                    extra = _find_extra_target(pc, target, enemies, movement_on, 'line')
+                    if extra:
+                        damage_dealt += _bonus_attack(extra, 'Piercing Shot')
                 if saved_profile:
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
                 if target['health'] <= 0:
