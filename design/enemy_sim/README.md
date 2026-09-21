@@ -168,7 +168,37 @@ before making changes — this README stays to usage and a file map.
   Mixed-Style retune). Of the three, `DefenseBonus` is the one to reach
   for when a win rate and an "HP% remaining on a win" both need to move
   *together* toward a target rather than trading off against each other
-  — see those 5 rows' own Notes for the numbers and why.
+  — see those 5 rows' own Notes for the numbers and why. **This whole
+  `DamageBonus`/`AccuracyBonus`/`DefenseBonus` retune is currently
+  paused** (all three blank) on the 5 Mixed-Style rows — superseded by
+  the `ParryTier`/etc. construction below, not deleted (still real
+  infrastructure if a future archetype wants that lever instead).
+  **`ParryTier`/`DodgeTier`/`BodilyTier`/`MentalTier`/`AttackTier`/
+  `HealthBonus`** are `enemy_builder_pcstyle.py`'s own columns — a
+  second, real-PC-formula construction method (`_build_from_row` picks
+  it over `enemy_builder.build_enemy` whenever `AttackTier` isn't
+  blank; see that file's own module docstring for the full Defense =
+  8 + Skill Total / Damage = base + Stat / Resist = Essence formula).
+  The 4 default Level 1 archetypes (Hedge Knight/Marsh Archer/Skulking
+  Footpad/Fen Warden) use this method now, at the plain designer-
+  spreadsheet Skill Total numbers with no extra bonus knob at all
+  (`HealthBonus` blank too) — landing at win≈91%, ~5.8 rounds, ~62%
+  party Health on a win, once Harried (see below) got modeled for the
+  first time this same session. Bog Caster (the deliberate double-
+  attacker, still excluded from the default 4-mix) stays on the old
+  `enemy_builder.build_enemy` construction for now.
+- **`enemy_builder_pcstyle.py`** — the second construction method above.
+  Builds an enemy the way a PC actually gets built (`party.py`'s own
+  formulas) instead of `enemy_builder.py`'s synthetic Level curve:
+  `SKILL_TOTAL_BY_LEVEL` is `ENEMY_ENCOUNTER_DESIGN.md`'s own validated
+  poor/secondary/primary table (the designer's spreadsheet baseline,
+  not a fresh guess), `STAT_BASELINE_BY_LEVEL`/`HEALTH_BASELINE_BY_LEVEL`
+  are `sample_pcs.csv`'s real "Baseline Tier N Party Member" Body/
+  Essence/Health numbers. `defense_adj`/`accuracy_adj`/`damage_adj`/
+  `resist_adj`/`health_bonus` are flat sensitivity-testing knobs (all 0
+  on every current row) for isolating what each base number does one at
+  a time — not a per-archetype design choice the way the Tier columns
+  are.
 - **`sample_enemies.py`** — loads the CSV above via `enemy_builder.py`.
   `make_enemy(level)` pulls the single Roster row for that Level;
   `get_enemy(name)` pulls any row by name; `all_enemies()` returns every
@@ -198,6 +228,20 @@ before making changes — this README stays to usage and a file map.
   sides (`enemy_resist_for_pc_attack`/`pc_resist_for_enemy_attack`),
   Good Luck/Bad Luck (`resolve_card`), Gambling, Card Techniques, the
   Ability catalog subset, and what's still simplified/not modeled.
+  **Harried** (glossary.md: -1 Dodge/Parry per stack, gained by anyone
+  who defends with Parry or Dodge against an attack, "regardless of the
+  attack's result" - rulebook.md; cleared at the bearer's own turn end)
+  is now modeled too - a real, previously-missing rule (it isn't an
+  Ability, so the original Ability-catalog wiring pass never covered
+  it), not a tuning choice. `enemy_defense_for_pc_attack`/
+  `pc_defense_for` read the current penalty; `_take_pc_turn`/
+  `_take_enemy_turn` grant the +1 stack (only at the real attack-roll
+  call site, not `pc_gamble_count`'s own odds check) and clear it at
+  turn end. The effect size is large - Tier 1 vs Level 1 alone moved
+  from ~36% win/~7.6 rounds to ~91%/~5.8 once it's on, and every trace/
+  replay now shows a target's current Harried count next to each attack
+  (`narrate_fight.py`/`replay_html.py`, `target_harried_after` in the
+  trace).
 - **`movement.py`** — geometry helpers (`distance`, `move_toward`,
   `move_away`) for `combat_sim.py`'s optional `movement=True` mode: a
   bounded `tunables.ARENA_SIZE`-square arena of whole spaces — the real

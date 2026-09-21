@@ -137,6 +137,15 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     speed = math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"]
     reflex = 2 + level
 
+    # Same Ability-budget formula/check as enemy_builder.build_enemy -
+    # this builder skips the synthetic Level curve for Accuracy/Damage/
+    # Resist/Defense, but the Ability catalog itself (and its budget)
+    # isn't part of that curve, so there's no reason to reinvent it.
+    ability_budget = math.ceil(T.ABILITY_RATE[level] * slots) * 5
+    ability_cost = sum(T.ABILITY_COST[a] for a in abilities)
+    if ability_cost > ability_budget:
+        raise ValueError(f"{name}: abilities cost {ability_cost}, only {ability_budget} available")
+
     if "Enhanced Health" in abilities:
         health += 3
     if "Powerful Weapon" in abilities:
@@ -153,5 +162,5 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
                 parry=parry, dodge=dodge, bodily=bodily, mental=mental,
                 physres=physres, elemres=elemres,
                 health=health, max_health=health, speed=speed, reflex=reflex,
-                ability_budget=0, ability_cost=0, abilities=list(abilities),
+                ability_budget=ability_budget, ability_cost=ability_cost, abilities=list(abilities),
                 protected=0, armor=armor)

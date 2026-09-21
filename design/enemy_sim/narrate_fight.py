@@ -92,6 +92,14 @@ def render_event(event):
             if absorbed:
                 breakdown += f" - {absorbed} Protected"
             extra = f" for {event['dmg']} damage ({breakdown} = {event['dmg']}) (-> {event['target_hp_after']} HP)"
+        # The target's own Harried count right after this attack -
+        # logged regardless of whether *this* attack was the one that
+        # added a stack (a Bodily/Mental-opposed attack doesn't grant
+        # Harried, but the target can still be carrying stacks from an
+        # earlier Parry/Dodge-opposed attack this same round).
+        harried = event.get('target_harried_after', 0)
+        if harried:
+            extra += f" (target now Harried {harried})"
         return f"  {unit} attacks {event['target']}{via}: rolls {event['roll']} vs {event['defense']} - {verb}{extra}"
     if action == 'heal':
         via = f" with {event['via']}" if event.get('via') else ""

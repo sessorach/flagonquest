@@ -569,7 +569,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
                 if party_log:
                     party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
                                hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
-                               target_hp_after=target['health'], via=substitute['via'] if substitute else pc['weapon_name'])
+                               target_hp_after=target['health'], target_harried_after=target.get('harried', 0),
+                               via=substitute['via'] if substitute else pc['weapon_name'])
                 if saved_profile:
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
                 if target['health'] <= 0:
@@ -660,7 +661,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log):
         if enemy_log:
             enemy_log(unit=e['name'], action='attack', target=target['name'], roll=roll, defense=opp_def_val,
                        hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, target_hp_after=target['health'],
-                       via=e['action'])
+                       target_harried_after=target.get('harried', 0), via=e['action'])
         if target['health'] <= 0:
             target = _retarget(e, [p for p in pcs if p['health'] > 0], movement_on)
     # Harried clears at the end of its own bearer's turn (glossary.md) -
@@ -726,7 +727,12 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     `dmg == max(0, raw_dmg - resist)` minus whatever Protected
     absorbed (`protected_absorbed`, PC attacks only - enemies have no
     Protected-granting Ability modeled) is always visible in the trace,
-    not just the final post-Resist number. Both `action='attack'` and
+    not just the final post-Resist number. Also carries
+    `target_harried_after` - the target's own Harried stack count right
+    after this attack (glossary.md's -1 Dodge/Parry per stack; this
+    attack's own `defense` already reflects whatever stacks existed
+    *before* it, per enemy_defense_for_pc_attack/pc_defense_for's own
+    "regardless of the attack's result" trigger). Both `action='attack'` and
     `action='heal'` also carry `via` - the name of whatever actually
     produced this action, for reviewing what a unit's really doing
     round to round: a PC's own `weapon_name` (party.py - the `Weapon`

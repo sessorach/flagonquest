@@ -213,7 +213,12 @@ function logLine(e) {
       if (e.protected_absorbed) breakdown += ` &minus; ${e.protected_absorbed} Protected`;
       verdict = `<span class="dmg">HIT for ${e.dmg}</span> <span class="breakdown">(${breakdown})</span> &rarr; ${e.target_hp_after} HP`;
     }
-    return `<div class="line ${cls}"><span class="who">${e.unit}</span> attacks <b>${e.target}</b>${via} <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}</div>`;
+    // Target's own Harried count right after this attack (glossary.md:
+    // -1 Dodge/Parry per stack) - shown whenever it's nonzero, not just
+    // on the attack that added the stack (it can carry over from an
+    // earlier attack this same round).
+    const harried = e.target_harried_after ? ` <span class="via">(target now Harried ${e.target_harried_after})</span>` : '';
+    return `<div class="line ${cls}"><span class="who">${e.unit}</span> attacks <b>${e.target}</b>${via} <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}${harried}</div>`;
   }
   if (e.action === 'heal') {
     const via = e.via ? ` <span class="via">with ${e.via}</span>` : '';

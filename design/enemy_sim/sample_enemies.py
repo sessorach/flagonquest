@@ -52,10 +52,35 @@ and "wins by more." Kept distinct from the real `Abilities` catalog
 (Powerful Weapon, etc.) since those carry their own in-fiction identity
 and tradeoffs (Powerful Weapon costs Accuracy/Parry); these are plain
 numeric retune knobs, not a named ability a GM would narrate.
+
+**`ParryTier`/`DodgeTier`/`BodilyTier`/`MentalTier`/`AttackTier`/
+`HealthBonus`** are a second, alternative construction method -
+enemy_builder_pcstyle.py's build_enemy_pcstyle, wired into
+`_build_from_row` whenever `AttackTier` isn't blank (a row with a blank
+`AttackTier` still builds the old way, off `Role`/`PrimaryDef`/
+`SecondaryDef`/`DamageBonus`/`AccuracyBonus`/`DefenseBonus`, which stay
+blank/unused on a pcstyle row and vice versa - the two methods are
+mutually exclusive per row, not layered). Builds an enemy the way a PC
+actually gets built - Defense = 8 + Skill Total, Damage = a weapon-style
+base + Stat, Resist = Essence alone - instead of enemy_builder.py's
+synthetic Level curve; see build_enemy_pcstyle's own module docstring
+for the full formula and why. Each Tier column is "poor"/"secondary"/
+"primary" (blank = poor, same "never invested here" reading as a blank
+Ability cell) - four independent Defenses instead of PrimaryDef/
+SecondaryDef's bundled "Parry/Dodge as one category." `HealthBonus`
+(blank = 0) is a small uniform nudge on top of the real Baseline-party
+Health for that Level, not part of the formula itself. The 4 default
+Level 1 archetypes (Hedge Knight/Marsh Archer/Skulking Footpad/Fen
+Warden) use this method now - see their own Notes for the numbers this
+landed on, and why (short version: once Harried - glossary.md, -1
+Dodge/Parry per stack, previously unmodeled entirely - got wired into
+combat_sim.py, the plain ungrounded Skill Total numbers already landed
+close to the target win rate/Health-cost shape on their own).
 """
 import csv
 import os
 from enemy_builder import build_enemy
+from enemy_builder_pcstyle import build_enemy_pcstyle
 
 _CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sample_enemies.csv")
 
@@ -66,20 +91,46 @@ def _load_rows():
 
 
 def _build_from_row(row):
-    e = build_enemy(
-        row["Name"],
-        int(row["Level"]),
-        float(row["Slots"]),
-        row["Role"],
-        row["PrimaryDef"] or None,
-        row["SecondaryDef"] or None,
-        row["Action"],
-        row["Armor"],
-        ability_dmg_bonus=int(row["DamageBonus"]) if row.get("DamageBonus", "").strip() else 0,
-        ability_acc_bonus=int(row["AccuracyBonus"]) if row.get("AccuracyBonus", "").strip() else 0,
-        ability_def_bonus=int(row["DefenseBonus"]) if row.get("DefenseBonus", "").strip() else 0,
-        abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
-    )
+    # AttackTier non-blank picks enemy_builder_pcstyle's real-PC-formula
+    # construction (Defense = 8 + Skill Total, Damage = base + Stat,
+    # Resist = Essence alone) over enemy_builder.build_enemy's synthetic
+    # Level curve - see enemy_builder_pcstyle.py's own module docstring
+    # for why. ParryTier/DodgeTier/BodilyTier/MentalTier (blank = "poor",
+    # same "a Skill you never invested in" reading as a blank Ability
+    # cell) replace PrimaryDef/SecondaryDef's bundled "Parry/Dodge as one
+    # category" for these rows - four independent Defenses, not three.
+    if (row.get("AttackTier") or "").strip():
+        e = build_enemy_pcstyle(
+            row["Name"],
+            int(row["Level"]),
+            float(row["Slots"]),
+            row["Action"],
+            row["Armor"],
+            defense_tiers={
+                "parry": (row.get("ParryTier") or "poor").strip().lower(),
+                "dodge": (row.get("DodgeTier") or "poor").strip().lower(),
+                "bodily": (row.get("BodilyTier") or "poor").strip().lower(),
+                "mental": (row.get("MentalTier") or "poor").strip().lower(),
+            },
+            attack_tier=row["AttackTier"].strip().lower(),
+            health_bonus=int(row["HealthBonus"]) if row.get("HealthBonus", "").strip() else 0,
+            abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
+        )
+    else:
+        e = build_enemy(
+            row["Name"],
+            int(row["Level"]),
+            float(row["Slots"]),
+            row["Role"],
+            row["PrimaryDef"] or None,
+            row["SecondaryDef"] or None,
+            row["Action"],
+            row["Armor"],
+            ability_dmg_bonus=int(row["DamageBonus"]) if row.get("DamageBonus", "").strip() else 0,
+            ability_acc_bonus=int(row["AccuracyBonus"]) if row.get("AccuracyBonus", "").strip() else 0,
+            ability_def_bonus=int(row["DefenseBonus"]) if row.get("DefenseBonus", "").strip() else 0,
+            abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
+        )
     e["battle_tactic"] = row["BattleTactic"]
     e["fighting_style"] = row["FightingStyle"]
     return e
