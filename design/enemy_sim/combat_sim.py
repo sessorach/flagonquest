@@ -718,6 +718,22 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # opportunity" rather than firing blind on the first swing;
                 # Flurry has no target condition, so it just fires on the
                 # PC's first attack of the fight.
+                if pc.get('bonus_attack_control'):
+                    # Calibration control, not a real Technique - an
+                    # unconditional once-per-encounter bonus attack is
+                    # exactly THE TABEL's own Autoswing definition ("value
+                    # of one full extra attack", Locked at 5.5). Run this
+                    # alongside whatever's actually being priced, in the
+                    # SAME matchup, then scale: 1 Value unit = (this
+                    # control's own win-rate delta) / 5.5. That conversion
+                    # factor is matchup-specific (a longer/harder fight
+                    # gives a bonus attack more room to matter), so
+                    # recalibrate per matchup rather than reusing a
+                    # constant across different tests - see
+                    # balance_weights_notes.md's Advanced Cost-6 trio pass
+                    # for a worked example.
+                    damage_dealt += _bonus_attack(target, 'Control')
+                    pc['bonus_attack_control'] = False
                 if pc.get('flurry'):
                     damage_dealt += _bonus_attack(target, 'Flurry')
                     pc['flurry'] = False

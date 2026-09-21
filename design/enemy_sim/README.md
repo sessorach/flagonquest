@@ -399,3 +399,25 @@ of burning tokens on precision the question doesn't need:
   came back as) is worth more later than the replay alone - the replay
   shows one fight, the note is what makes it findable and meaningful
   months later.
+- **Converting a simulated win-rate delta into real Value units.** `+1
+  Accuracy` (worth 1.0 Value by THE TABEL's own Locked convention) is
+  the right anchor for a *persistent* mechanic tested the same way -
+  both run for the whole fight, so their deltas are directly
+  comparable. It's the WRONG anchor for a one-time/Encounter-cadence
+  mechanic (a once-per-fight bonus attack, a charge-based ability) -
+  comparing a single event against a bonus that compounds across every
+  attack for the whole fight understates the one-time event badly (see
+  balance_weights_notes.md's Advanced Cost-6 trio pass, where this
+  actually happened). For anything one-time, use `combat_sim.py`'s
+  `bonus_attack_control` field instead: it's an unconditional,
+  once-per-encounter bonus attack with no target condition - literally
+  THE TABEL's own Autoswing definition ("value of one full extra
+  attack", Locked at 5.5). Run it alongside baseline in the SAME
+  matchup as whatever's actually being tested, take its own win-rate
+  delta, and that calibrates the conversion: `1 Value unit = (control's
+  delta) / 5.5`. Apply that same factor to any other one-time
+  mechanic's delta from the same matchup to get its Value directly, in
+  the same units `balance_weights.csv` already uses. This factor is
+  matchup-specific (a longer/harder fight gives one bonus attack more
+  room to matter) - recalibrate per matchup, don't reuse a constant
+  across different tests.
