@@ -148,7 +148,7 @@
     "technique_name": "Battle Maneuver",
     "feature_name": "Elemental",
     "tier": "Basic",
-    "point_cost": 3,
+    "point_cost": 2,
     "description": null,
     "effects": "When you choose this feature, choose Fire, Frost, or Shadow — the attack deals its damage as that type instead.",
     "prereq": "Sorcery 2"
@@ -181,7 +181,7 @@
     "technique_name": "Battle Maneuver",
     "feature_name": "Ascended Blade",
     "tier": "Advanced",
-    "point_cost": 3,
+    "point_cost": 2,
     "description": null,
     "effects": "You may have the attack deal its damage as Brilliant damage.",
     "prereq": "Composure, Meditation, or Theurgy 3"

@@ -12,10 +12,10 @@ F010,T072,Battle Maneuver,Lodestone,Basic,1,,"If the attack hits or is Parried, 
 F011,T072,Battle Maneuver,Half Guard,Basic,1,,"If the attack hits, you gain X + [Spades] stacks of Protected.",
 F012,T072,Battle Maneuver,Blade of Four Fates,Basic,1,,"Sift X cards, adding each of their suits to the suit pool for all attacks made.",
 F013,T072,Battle Maneuver,Victorious,Basic,2,,"If the attack Downs the target, draw a card. You may only apply one copy of this feature, and cannot draw more than one card this way.",
-F014,T072,Battle Maneuver,Elemental,Basic,3,,"When you choose this feature, choose Fire, Frost, or Shadow — the attack deals its damage as that type instead.",Sorcery 2
+F014,T072,Battle Maneuver,Elemental,Basic,2,,"When you choose this feature, choose Fire, Frost, or Shadow — the attack deals its damage as that type instead.",Sorcery 2
 F015,T072,Battle Maneuver,Viper's Sting,Basic,3,,The Technique takes 1 less AP to use. You may only apply one copy of this feature.,
 F016,T072,Battle Maneuver,Calculated,Basic,3,,You have Good Luck on the attack.,
-F017,T072,Battle Maneuver,Ascended Blade,Advanced,3,,You may have the attack deal its damage as Brilliant damage.,"Composure, Meditation, or Theurgy 3"
+F017,T072,Battle Maneuver,Ascended Blade,Advanced,2,,You may have the attack deal its damage as Brilliant damage.,"Composure, Meditation, or Theurgy 3"
 F018,T072,Battle Maneuver,Whirlwind,Advanced,6,,"If your chosen weapon is a close-range weapon, the attack may target an additional target.",
 F019,T072,Battle Maneuver,Piercing Shot,Advanced,6,,"If your chosen weapon is a ranged weapon, the attack may target an additional target as long as all targets are in a line from you.",
 F020,T072,Battle Maneuver,Flurry,Advanced,6,,"You make an extra weapon attack against each target, which benefits from all features.",
