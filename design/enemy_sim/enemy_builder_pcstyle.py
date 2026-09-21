@@ -92,7 +92,17 @@ ACTIONS = {
 
 def build_enemy_pcstyle(name, level, slots, action, armor="Light",
                          defense_tiers=None, attack_tier="secondary",
-                         health_bonus=0, abilities=()):
+                         health_bonus=0, defense_adj=0, accuracy_adj=0,
+                         damage_adj=0, resist_adj=0, abilities=()):
+    """`defense_adj`/`accuracy_adj`/`damage_adj`/`resist_adj`: flat,
+    across-the-board sensitivity-testing knobs - NOT a per-archetype
+    Ability or a per-build design choice, just a uniform nudge to
+    every enemy this function builds, for isolating "what does +1 base
+    Defense alone do" from the four real formulas above one at a time
+    (health_bonus is the same idea, already present). Keep these at 0
+    once a real archetype is settled on - the tiers/action/stat choices
+    above are the actual build; these four are a dial for exploring
+    around that build, not part of it."""
     tiers = SKILL_TOTAL_BY_LEVEL[level]
     stat = STAT_BASELINE_BY_LEVEL[level]
     defense_tiers = defense_tiers or {}
@@ -100,14 +110,14 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
 
     def def_total(category):
         tier = defense_tiers.get(category, "poor")
-        return 8 + tiers[tier]
+        return 8 + tiers[tier] + defense_adj
 
     # Accuracy is a plain Skill Total (no +8 - that's Defense's own
     # baseline, per party.py's real attack-roll formula), plus the
     # Action's small weapon-proficiency bonus, same shape as
     # tunables.WEAPON's own `accuracy` field.
-    accuracy = tiers[attack_tier] + act["acc_mod"]
-    attack_damage = act["dmg_base"] + stat[act["stat"]]
+    accuracy = tiers[attack_tier] + act["acc_mod"] + accuracy_adj
+    attack_damage = act["dmg_base"] + stat[act["stat"]] + damage_adj
     dmg_type = act["dmg_type"]
     opp_def = act["opp_def"]
     attack_range = act["range"] * level + (2 if act["range"] else 0)
@@ -120,8 +130,8 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     # Resist - Essence alone (party.py: "Resist starts equal to your
     # Essence"), completely decoupled from attack_damage above, unlike
     # enemy_builder.py's shared DMG_RESIST curve.
-    physres = stat["essence"] + T.ARMOR[armor]["physres"]
-    elemres = stat["essence"]
+    physres = stat["essence"] + T.ARMOR[armor]["physres"] + resist_adj
+    elemres = stat["essence"] + resist_adj
 
     health = math.ceil((HEALTH_BASELINE_BY_LEVEL[level] + health_bonus) * T.SLOT_MULTIPLIER[slots])
     speed = math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"]

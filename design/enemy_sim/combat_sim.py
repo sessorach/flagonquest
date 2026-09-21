@@ -13,6 +13,17 @@ is approximated as half max Health, see tactics.strategy_support_healer).
 Good for catching relative differences between builds and Tiers; the
 exact win percentages aren't precise predictions of real play.
 
+Harried (glossary.md: -1 to Dodge/Parry per stack, gained "regardless
+of the attack's result" by whoever applies Parry or Dodge against an
+attack, rulebook.md) IS modeled, on both sides - see
+enemy_defense_for_pc_attack/pc_defense_for (the -1 read) and
+_take_pc_turn/_take_enemy_turn (the +1 grant, at the real attack-roll
+call site only, and the "clear all stacks" decay at the bearer's own
+turn end). It was left out of the original Ability-catalog pass
+(tunables.py's own comment) since it isn't an Ability at all - a
+base rule that applies to every attack, not something a build opts
+into.
+
 ## Turn order (rulebook.md's real Reflex/initiative rule)
 
 Every unit - PC or enemy - rolls Reflex once at encounter start
@@ -295,10 +306,17 @@ def enemy_defense_for_pc_attack(pc, target):
     always be defended by Dodge instead. `pc['opp_def']` (see party.py's
     Weapon paragraph) lets a Spell attack like War Magic override this
     to Dodge alone, matching its own "Dodge or Vital, chosen when you
-    learn this" rule instead of a weapon's Parry-or-Dodge one."""
+    learn this" rule instead of a weapon's Parry-or-Dodge one. Also
+    reads `target['harried']` (glossary.md: "-1 penalty to Dodge and
+    Parry Defense" per stack) - a pure read here, since this also gets
+    called from pc_gamble_count's own odds check; the actual +1 stack
+    only gets granted at the real attack-roll call site in
+    _take_pc_turn, per rulebook.md's trigger rule ("a target who applied
+    their Parry or Dodge Defense... is Harried once")."""
+    harried = target.get('harried', 0)
     if pc.get('opp_def') == 'Dodge':
-        return target['dodge']
-    return max(target['parry'], target['dodge'])
+        return target['dodge'] - harried
+    return max(target['parry'], target['dodge']) - harried
 
 
 def enemy_resist_for_pc_attack(pc, target):
@@ -371,12 +389,17 @@ def pc_defense_for(target, opp_def):
     rulebook.md's real rule ("If multiple Defenses are stated, the target
     chooses which to use"). Vulnerable stacks (-1 to Vital/Mental/
     Vigilant Defenses per stack, glossary.md) apply to the Bodily/Mental
-    cases only - Dodge and Parry aren't Vulnerable's targets."""
+    cases only - Dodge and Parry aren't Vulnerable's targets. Harried
+    (-1 to Dodge/Parry per stack, glossary.md) is the mirror case - it
+    only applies to the Parry/Dodge cases here, same "pure read, the
+    real +1 stack is granted at the attack-roll call site" split as
+    enemy_defense_for_pc_attack."""
     vulnerable = target.get('vulnerable', 0)
+    harried = target.get('harried', 0)
     if opp_def == 'Parry/Dodge':
-        return max(target['parry'], target['dodge'])
+        return max(target['parry'], target['dodge']) - harried
     if opp_def == 'Dodge':
-        return target['dodge']
+        return target['dodge'] - harried
     if opp_def == 'Bodily':
         return target['bodily'] - vulnerable
     if opp_def == 'Mental':
@@ -511,6 +534,12 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = (
                         substitute['skill_total'], substitute['damage'], substitute['dmg_type'], substitute['opp_def'])
                 defense = enemy_defense_for_pc_attack(pc, target)
+                # rulebook.md: "Regardless of the attack's result, a
+                # target who applied their Parry or Dodge Defense
+                # against it is Harried once" - a PC's own weapon
+                # attack is always opposed by Parry or Dodge (see
+                # enemy_defense_for_pc_attack), so this always applies.
+                target['harried'] = target.get('harried', 0) + 1
                 resist = enemy_resist_for_pc_attack(pc, target)
                 # Grenades can't be Gambled on (glossary.md's [Grenade] rule).
                 gambles = 0 if substitute else pc_gamble_count(pc, target)
@@ -547,7 +576,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
                     target = _retarget(pc, [e for e in enemies if e['health'] > 0], movement_on)
     # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
     # [Fleeting] rule), not all stacks at once - Bleeding's decaying
-    # stack is what actually deals its 1 damage.
+    # stack is what actually deals its 1 damage. Harried is the one
+    # exception to "1 stack at a time" - its own glossary.md text says
+    # "remove all stacks of Harried you have" at the end of your turn,
+    # not decay by 1 like the others.
     if pc['health'] > 0:
         if pc.get('crippled', 0) > 0:
             pc['crippled'] -= 1
@@ -556,6 +588,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
         if pc.get('bleeding', 0) > 0:
             pc['bleeding'] -= 1
             pc['health'] -= 1
+        if pc.get('harried', 0) > 0:
+            pc['harried'] = 0
     return attacks_made, damage_dealt
 
 
@@ -597,6 +631,15 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log):
     while ap >= T.ATTACK_AP_COST and (cap is None or attacks_made < cap) and target is not None:
         roll = e['accuracy'] + (flip_best_of(2) if fighting_style == 'Aimed Shot' else flip())
         opp_def_val = pc_defense_for(target, e['opp_def'])
+        # rulebook.md's Harried trigger (see enemy_defense_for_pc_attack's
+        # own comment) - only when this attack was actually opposed by
+        # Parry or Dodge, not Bodily/Mental (e.g. a Fire Spell opposed
+        # by Dodge alone still counts; Melee Spell/Ranged Spell here are
+        # both opp_def='Dodge', so this fires for every Action in
+        # tunables.ACTIONS today, but the check stays explicit rather
+        # than assuming that never changes).
+        if e['opp_def'] in ('Parry/Dodge', 'Dodge'):
+            target['harried'] = target.get('harried', 0) + 1
         hit = roll >= opp_def_val
         dmg = 0
         raw_dmg = 0
@@ -620,6 +663,12 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log):
                        via=e['action'])
         if target['health'] <= 0:
             target = _retarget(e, [p for p in pcs if p['health'] > 0], movement_on)
+    # Harried clears at the end of its own bearer's turn (glossary.md) -
+    # this enemy can only have taken damage from its own past turns, not
+    # this one (only the acting unit deals damage on its own turn), so
+    # e['health'] is still whatever it was on entry if we got this far.
+    if e.get('harried', 0) > 0:
+        e['harried'] = 0
 
 
 def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0, movement=False, start_gap=None,

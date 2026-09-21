@@ -115,7 +115,7 @@ ACTIONS = {
 # 1 damage per decaying stack), and Durable's Protected regen. Left out
 # for now: anything needing Speed/initiative (Slowed, Enhanced Speed -
 # no turn-order model here), healing (Necrotic - no PC healing action
-# exists in this sim), Harried/targeting-choice effects (Omniguard,
+# exists in this sim), targeting-choice effects (Omniguard,
 # Action abilities, Frightened/Taunted), multi-target hits (Strike
 # (Cleaving)), and anything positional (Sturdy, Shadow Jaunt,
 # Retribution Aura). Costs match the real catalog exactly, for the
