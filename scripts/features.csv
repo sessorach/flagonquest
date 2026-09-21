@@ -9,7 +9,7 @@ F007,T072,Battle Maneuver,Harrying,Basic,1,,"If the attack hits or is Parried, t
 F008,T072,Battle Maneuver,Hamstring,Basic,1,,"If the attack hits, the target is Slowed X + [Spades] times.",
 F009,T072,Battle Maneuver,Backfoot,Basic,1,,"If the attack hits, you may adjust the target's position in turn order by up to X + [Spades] times.",
 F010,T072,Battle Maneuver,Lodestone,Basic,1,,"If the attack hits or is Parried, you Push the target (2 × [X + Spades]) meters.",
-F011,T072,Battle Maneuver,Half Guard,Basic,1,,"If the attack hits, you gain X + 1 + [Spades] stacks of Protected.",
+F011,T072,Battle Maneuver,Half Guard,Basic,1,,"If the attack hits, you gain X + [Spades] stacks of Protected.",
 F012,T072,Battle Maneuver,Blade of Four Fates,Basic,1,,"Sift X cards, adding each of their suits to the suit pool for all attacks made.",
 F013,T072,Battle Maneuver,Victorious,Basic,2,,"If the attack Downs the target, draw a card. You may only apply one copy of this feature, and cannot draw more than one card this way.",
 F014,T072,Battle Maneuver,Elemental,Basic,3,,"When you choose this feature, choose Fire, Frost, or Shadow — the attack deals its damage as that type instead.",Sorcery 2

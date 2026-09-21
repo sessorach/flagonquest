@@ -117,7 +117,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the attack hits, you gain X + 1 + [Spades] stacks of Protected.",
+    "effects": "If the attack hits, you gain X + [Spades] stacks of Protected.",
     "prereq": null
   },
   {
