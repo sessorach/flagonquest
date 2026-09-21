@@ -102,11 +102,18 @@ def render_event(event):
 def narrate(trace, movement_on):
     by_round = {}
     result = None
+    initiative = None
     for event in trace:
         if event.get('type') == 'result':
             result = event
             continue
+        if event.get('type') == 'initiative':
+            initiative = event
+            continue
         by_round.setdefault(event['round'], []).append(event)
+    if initiative:
+        order = ', '.join(f"{o['unit']} ({o['side']})" for o in initiative['order'])
+        print(f"Turn order: {order}")
     labels = None
     for rnd in sorted(by_round):
         print(f"\n=== Round {rnd} ===")

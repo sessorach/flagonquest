@@ -52,6 +52,10 @@ h1{
 }
 .subtitle{color:var(--text-dim);font-size:15px;margin:0 0 20px;line-height:1.5;}
 .setup{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;}
+.turn-order{font-family:monospace;font-size:12px;color:var(--text-dim);margin:0 0 18px;line-height:1.6;}
+.turn-order b{color:var(--text);}
+.turn-order .party-name{color:var(--party);}
+.turn-order .enemy-name{color:var(--enemy);}
 .chip{
   font-family:monospace;
   font-size:12.5px;
@@ -112,6 +116,7 @@ footer code{color:var(--accent);}
   <h1>Combat Replay</h1>
   <p class="subtitle">One seeded fight from FlagonQuest's enemy-encounter combat simulator, rendered round by round.</p>
   <div class="setup" id="setup"></div>
+  <div class="turn-order" id="turnOrder"></div>
   <div class="result-banner" id="resultBanner"></div>
   <div class="legend">
     <span><span class="dot party"></span> Party</span>
@@ -129,8 +134,10 @@ const ARENA = FIGHT.arena_size;
 const trace = FIGHT.trace;
 const result = FIGHT.result;
 
+const initiative = trace.find(e => e.type === 'initiative');
 const byRound = new Map();
 for (const e of trace) {
+  if (e.type === 'initiative') continue;
   if (!byRound.has(e.round)) byRound.set(e.round, []);
   byRound.get(e.round).push(e);
 }
@@ -157,6 +164,11 @@ function setupChips() {
   document.getElementById('resultBanner').textContent =
     (result.winner === 'party' ? 'Party wins' : result.winner === 'enemies' ? 'Enemies win' : 'Draw') +
     ` after ${result.rounds} round${result.rounds === 1 ? '' : 's'}.`;
+  if (initiative) {
+    const names = initiative.order.map(o =>
+      `<span class="${o.side === 'party' ? 'party-name' : 'enemy-name'}">${o.unit}</span>`);
+    document.getElementById('turnOrder').innerHTML = `<b>Turn order:</b> ${names.join(' &rarr; ')}`;
+  }
 }
 
 function svgMap(positions) {

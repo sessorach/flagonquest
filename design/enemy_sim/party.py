@@ -128,7 +128,8 @@ def _pc_dict(row, index, good_luck):
     stats = {s: row[s] for s in ("Agility", "Body", "Cunning", "Mind", "Essence")}
     skills = {k: v for k, v in row.items() if k not in
               ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
-               "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus")}
+               "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus",
+               "Heal Range", "Passives", "Battle Tactic")}
     parry = 8 + skill_total(stats, skills, "Melee")
     dodge = 8 + skill_total(stats, skills, "Acrobatics")
     bodily = 8 + skill_total(stats, skills, "Resilience")
@@ -136,6 +137,7 @@ def _pc_dict(row, index, good_luck):
     vigilant = 8 + skill_total(stats, skills, "Insight")
     health = int(row["Health"])
     speed = 1 + int(stats["Agility"])  # rulebook.md: "Your Speed is equal to 1 + your Agility"
+    reflex = skill_total(stats, skills, "Insight")  # rulebook.md: "Your Reflex is equal to your Insight Skill Total"
 
     # Resist "starts equal to your Essence" (rulebook.md), and worn
     # Armor adds to Physical Resist specifically (armor_categories.csv,
@@ -231,6 +233,30 @@ def _pc_dict(row, index, good_luck):
     heal_bonus_raw = (row.get("Heal Bonus") or "").strip()
     heal_bonus = int(heal_bonus_raw) if heal_bonus_raw else 0
 
+    # `Heal Range` (blank = no check, the original "adjacent ally,
+    # assumed reachable" behavior) - Healing Magic's own Target text
+    # ("an adjacent ally") is really just this build's own Range feature
+    # talking; a build that's actually picked Reach (features.csv F053)
+    # can heal from farther off. Only enforced under movement=True
+    # (positions exist to check at all) - see tactics.
+    # strategy_support_healer.
+    heal_range_raw = (row.get("Heal Range") or "").strip()
+    heal_range = int(heal_range_raw) if heal_range_raw else None
+
+    # `Passives` (comma-separated tags, e.g. "Hand of Chaos") - an
+    # always-on Technique effect with no AP/card cost of its own, unlike
+    # Card Techniques above - see tactics.sift_bonus.
+    passives = [t.strip() for t in (row.get("Passives") or "").split(",") if t.strip()]
+
+    # `Battle Tactic` - the same tactics.TARGETING registry enemies'
+    # own sample_enemies.csv BattleTactic column already dispatches
+    # through (tactics.select_target doesn't care which side a unit's
+    # on), given to PCs too now that one actually wants a non-default
+    # targeting rule (Hanforth's own Straggler Hunter - see tactics.
+    # target_straggler). Blank/absent falls through to the same
+    # movement-aware closest/first default every other PC already uses.
+    battle_tactic = (row.get("Battle Tactic") or "").strip() or None
+
     # `Card Techniques` (comma-separated tags from tactics.py's
     # try_second_wind/perfect_strike_bonus/bottomless_bottles_choice -
     # "Second Wind", "Perfect Strike", "Bottomless Bottles",
@@ -297,10 +323,11 @@ def _pc_dict(row, index, good_luck):
               skill_total=atk_skill_total,  # the PC's own attacking Skill Total - see the Weapon block above
               damage=damage, dmg_type=dmg_type, opp_def=opp_def, weapon_name=weapon_name,
               physres=physres, elemres=elemres, armor=armor,
-              health=health, max_health=health, speed=speed,
+              health=health, max_health=health, speed=speed, reflex=reflex,
               crippled=0, vulnerable=0, bleeding=0, good_luck=good_luck,
               strategy=strategy, heal_uses_left=hand_size // 4,
-              heal_cards=heal_cards, heal_bonus=heal_bonus,
+              heal_cards=heal_cards, heal_bonus=heal_bonus, heal_range=heal_range,
+              passives=passives, battle_tactic=battle_tactic,
               card_techniques=card_techniques, card_uses_left=card_uses_left)
     if attack_range is not None:
         pc["attack_range"] = attack_range

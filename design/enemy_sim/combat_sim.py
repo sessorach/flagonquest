@@ -5,18 +5,29 @@ resolve, and party Health remaining on a win.
 
 Deliberately simplified, not a full combat engine - see design/
 ENEMY_ENCOUNTER_DESIGN.md's Analysis section for the full list of
-what's NOT modeled (no Extra Successes from suit-pool matching, no
-Techniques/items beyond Weapon/Armor/Support, no real initiative, rough
-Battle Tactics targeting proxies, no Shallow/Deep Health split - so
-"Wounded" is approximated as half max Health, see tactics.
-strategy_support_healer). Good for catching relative differences
-between builds and Tiers; the exact win percentages aren't precise
-predictions of real play.
+what's NOT modeled (no Extra Successes from suit-pool matching beyond
+tactics.sift_bonus's own flat-probability stand-in, no Techniques/items
+beyond Weapon/Armor/Support/Card Techniques/Passives, rough Battle
+Tactics targeting proxies, no Shallow/Deep Health split - so "Wounded"
+is approximated as half max Health, see tactics.strategy_support_healer).
+Good for catching relative differences between builds and Tiers; the
+exact win percentages aren't precise predictions of real play.
+
+## Turn order (rulebook.md's real Reflex/initiative rule)
+
+Every unit - PC or enemy - rolls Reflex once at encounter start
+(`_roll_initiative`: a card flip + Reflex, highest to lowest, ties
+broken by re-flipping just the tied units - rulebook.md's own worked
+example) and that order is fixed for the whole fight, interleaved
+across both sides - not "all 4 PCs, then all enemies," which is what
+this file did before real initiative existed. Every round just replays
+that same order, skipping whoever's already dead.
 
 ## How a turn works (rulebook.md's "Actions on a Turn")
 
 Every unit - PC or enemy - gets tunables.AP_PER_TURN (4) Action Points
-on its own turn, spent in this order:
+on its own turn (`_take_pc_turn`/`_take_enemy_turn`), spent in this
+order:
 
 1. **A support strategy, if the unit has one** (tactics.
    resolve_pc_strategy - currently just a support healer) - spends
@@ -124,8 +135,9 @@ AP (techniques.csv's own Action/Cost columns say so directly - Second
 Wind, Perfect Strike and Warmage's Reserves are each literally "0 AP").
 `tactics.try_second_wind`/`perfect_strike_bonus`/`bottomless_bottles_
 choice` implement the three currently in use (self-heal when Wounded,
-+2 Good Luck on a Gambled attack, substituting a created item for one
-attack action) against a shared per-fight budget - `card_uses_left`,
++2 Good Luck on any weapon attack - not gated behind Gambling, per
+T078's own Effects text - substituting a created item for one attack
+action) against a shared per-fight budget - `card_uses_left`,
 computed once in party.py as `hand_size // 3` ("say 1/3 of" a full
 hand, the designer's own quick-check framing, same shape as
 heal_uses_left's `// 4`) - rather than tracking real hand composition
@@ -140,6 +152,13 @@ War Magic) running out of charges partway through a long fight -
 Warmage's Reserves adds `ceil(hand_size / 3)` more on top of the base
 copy count. See tactics.py's own "Card Techniques" section and party.py
 's own paragraph on both columns for the full picture.
+
+`tactics.sift_bonus` is a related but distinct idea: an always-on
+Technique effect with no AP/card cost of its own (`pc['passives']`,
+party.py's own Passives column) rather than a budget-limited one - Hand
+of Chaos (T131) is the first, approximated per the designer's own call
+as a flat 1-in-4 chance of +1 damage on a hit, standing in for this
+sim's complete lack of real suit-pool/Extra-Success tracking.
 
 `max_rounds` (30, not the original 10) matters more than it looks: a
 fight that's close but slow-grinding (both sides doing modest damage
@@ -383,6 +402,229 @@ def _retarget(unit, remaining, movement_on):
     return (tactics.target_closest if movement_on else tactics.target_first)(unit, remaining)
 
 
+def _resolve_group_order(indices, entries):
+    """Given unit-indices tied on their current Reflex score, returns
+    them in final relative order - rulebook.md: "For any ties, those
+    creatures make another set of flips until all ties are broken."
+    Recurses on sub-groups rather than lumping every re-flip back into
+    one global re-sort, so a re-flip only ever resolves order WITHIN the
+    tied subgroup - matching the rulebook's own worked example exactly
+    (Hilde's re-flipped 15 doesn't leapfrog Felix's already-settled,
+    numerically-lower 12; it only decides Hilde vs. the bandits, the
+    group she was actually tied with)."""
+    if len(indices) == 1:
+        return indices
+    new_scores = {}
+    for i in indices:
+        _, u = entries[i]
+        flipper = flip_best_of(2) if 'One Eye Behind You' in u.get('passives', ()) else flip()
+        new_scores[i] = flipper + u['reflex']
+    new_groups = {}
+    for i in indices:
+        new_groups.setdefault(new_scores[i], []).append(i)
+    result = []
+    for s in sorted(new_groups, reverse=True):
+        group = new_groups[s]
+        result.extend(group if len(group) == 1 else _resolve_group_order(group, entries))
+    return result
+
+
+def _roll_initiative(pcs, enemies, trace):
+    """Rolls Reflex once for every unit at encounter start - rulebook.md:
+    "First, everyone makes a Reflex flip, which is an Insight flip. Each
+    creature compares results, and is put into turn order from highest
+    to lowest" - and returns a fixed [(side, unit), ...] order for the
+    WHOLE fight: Reflex is flipped once to join an encounter, not
+    re-rolled every round (rulebook.md's own Action Point paragraph -
+    "When you flip Reflex to join an encounter, and again at the end of
+    each of your turns, you lose any existing Action Points..." implies
+    one join-flip, not a per-round one). PCs' own Reflex is their
+    Insight Skill Total (party.py); enemies' is enemy_builder.py's own
+    `reflex` (2 + Level - the real encounter-calculator value, not
+    invented for this sim). A unit with 'One Eye Behind You' in its own
+    `passives` (Sable) has Good Luck on this flip (T011's own Effects
+    text), same flip_best_of(2) pattern used everywhere else in this
+    file - the technique's other half (discarding a card to manually
+    reorder turn order mid-fight) isn't modeled, since it's an
+    of-the-moment tactical choice this sim has no basis to make for a
+    player."""
+    entries = [('party', p) for p in pcs] + [('enemy', e) for e in enemies]
+    scores = {}
+    for i, (_, u) in enumerate(entries):
+        flipper = flip_best_of(2) if 'One Eye Behind You' in u.get('passives', ()) else flip()
+        scores[i] = flipper + u['reflex']
+    groups = {}
+    for i in range(len(entries)):
+        groups.setdefault(scores[i], []).append(i)
+    order_idx = []
+    for s in sorted(groups, reverse=True):
+        group = groups[s]
+        order_idx.extend(group if len(group) == 1 else _resolve_group_order(group, entries))
+    result = [entries[i] for i in order_idx]
+    if trace is not None:
+        _log(trace, round=0, type='initiative', order=[{'side': side, 'unit': u['name']} for side, u in result])
+    return result
+
+
+def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
+    """One PC's full turn (see module docstring's "How a turn works") -
+    strategy (a healer's own heal), Second Wind, movement, then attacks.
+    Returns (attacks_made, damage_dealt) for run_fight's own running
+    totals. Also runs this PC's own Fleeting decay (glossary.md: 1 stack
+    of Crippled/Vulnerable/Bleeding per bearer's own turn) at the end -
+    with a real initiative order this genuinely IS "their own turn" now,
+    not a once-a-round batch step after every PC's gone."""
+    attacks_made = 0
+    damage_dealt = 0
+    if pc['health'] > 0:
+        ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
+        tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
+        targets = [e for e in enemies if e['health'] > 0]
+        if targets:
+            target = tactics.select_target(pc, targets, movement_on)
+            in_range = True
+            if movement_on:
+                start_pos = pc['pos']
+                ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
+                if moved:
+                    _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                         in_range=in_range, spaces=round(_distance(start_pos, pc['pos']), 1))
+
+            while in_range and ap >= T.ATTACK_AP_COST and target is not None:
+                if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0:
+                    break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
+                substitute = tactics.bottomless_bottles_choice(pc)
+                if substitute and substitute['kind'] == 'heal':
+                    ap -= T.ATTACK_AP_COST
+                    healed = min(substitute['amount'], pc['max_health'] - pc['health'])
+                    pc['health'] += healed
+                    if party_log:
+                        party_log(unit=pc['name'], action='heal', target=pc['name'], amount=healed,
+                                   target_hp_after=pc['health'], via=substitute['via'])
+                    continue
+                # A Bottled-Fire substitution temporarily overlays this PC's
+                # own attack profile with the thrown item's numbers for one
+                # iteration, restored right after logging - everything below
+                # (defense/resist/roll) reads pc['skill_total'] etc. exactly
+                # as it would for a normal weapon attack, so nothing else
+                # needs to branch on `substitute`.
+                saved_profile = None
+                if substitute:
+                    saved_profile = (pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'])
+                    pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = (
+                        substitute['skill_total'], substitute['damage'], substitute['dmg_type'], substitute['opp_def'])
+                defense = enemy_defense_for_pc_attack(pc, target)
+                resist = enemy_resist_for_pc_attack(pc, target)
+                # Grenades can't be Gambled on (glossary.md's [Grenade] rule).
+                gambles = 0 if substitute else pc_gamble_count(pc, target)
+                crippled = pc.get('crippled', 0)
+                bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge'))
+                luck_bonus = tactics.perfect_strike_bonus(pc)
+                card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
+                roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
+                attacks_made += 1
+                ap -= T.ATTACK_AP_COST
+                if pc.get('weapon_uses_left') is not None and not substitute:
+                    pc['weapon_uses_left'] -= 1
+                hit = roll >= defense
+                dmg = 0
+                raw_dmg = 0
+                protected_absorbed = 0
+                if hit:
+                    raw_dmg = pc['damage'] + gambles + (1 if tactics.sift_bonus(pc) else 0)
+                    dmg = max(0, raw_dmg - resist)
+                    protected = target.get('protected', 0)
+                    if protected > 0 and dmg > 0:
+                        protected_absorbed = min(dmg, protected)
+                        target['protected'] -= protected_absorbed
+                        dmg -= protected_absorbed
+                    target['health'] -= dmg
+                    damage_dealt += dmg
+                if party_log:
+                    party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
+                               hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
+                               target_hp_after=target['health'], via=substitute['via'] if substitute else pc['weapon_name'])
+                if saved_profile:
+                    pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
+                if target['health'] <= 0:
+                    target = _retarget(pc, [e for e in enemies if e['health'] > 0], movement_on)
+    # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
+    # [Fleeting] rule), not all stacks at once - Bleeding's decaying
+    # stack is what actually deals its 1 damage.
+    if pc['health'] > 0:
+        if pc.get('crippled', 0) > 0:
+            pc['crippled'] -= 1
+        if pc.get('vulnerable', 0) > 0:
+            pc['vulnerable'] -= 1
+        if pc.get('bleeding', 0) > 0:
+            pc['bleeding'] -= 1
+            pc['health'] -= 1
+    return attacks_made, damage_dealt
+
+
+def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log):
+    """One enemy's full turn (see module docstring's "How a turn
+    works")."""
+    if e['health'] <= 0:
+        return
+    abilities = e.get('abilities', [])
+    if 'Durable' in abilities and e.get('protected', 0) < 4:
+        e['protected'] = e.get('protected', 0) + 1
+    living_pcs = [p for p in pcs if p['health'] > 0]
+    if not living_pcs:
+        return
+    fighting_style = e.get('fighting_style', 'Guarded')
+    ap = T.AP_PER_TURN
+    target = tactics.select_target(e, living_pcs, movement_on)
+    moved = False
+    in_range = True
+    start_pos = e.get('pos')
+    if movement_on:
+        ap, in_range, moved = spend_movement_ap(e, target, ap, effective_range(e))
+    # Guarded's own stand-still bonus (tactics.defense_has_bad_luck) -
+    # set here, at the end of resolving this enemy's own movement, so
+    # it's ready for whoever attacks this enemy next (in initiative
+    # order, not necessarily "next round") to check - a "held its
+    # ground last turn" bonus that lags by however long it takes this
+    # enemy's turn to come back around, same idea as before real
+    # initiative, just no longer tied to a fixed "one round" gap.
+    e['guarded_active'] = (fighting_style == 'Guarded' and not moved)
+    if moved:
+        _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
+             in_range=in_range, spaces=round(_distance(start_pos, e['pos']), 1))
+    if movement_on and not in_range:
+        return
+
+    cap = tactics.attack_cap(e)
+    attacks_made = 0
+    while ap >= T.ATTACK_AP_COST and (cap is None or attacks_made < cap) and target is not None:
+        roll = e['accuracy'] + (flip_best_of(2) if fighting_style == 'Aimed Shot' else flip())
+        opp_def_val = pc_defense_for(target, e['opp_def'])
+        hit = roll >= opp_def_val
+        dmg = 0
+        raw_dmg = 0
+        resist = 0
+        if hit:
+            resist = pc_resist_for_enemy_attack(e, target)
+            raw_dmg = e['attack_damage']
+            dmg = max(0, raw_dmg - resist)
+            target['health'] -= dmg
+            if 'Strike (Crippling)' in abilities:
+                target['crippled'] = target.get('crippled', 0) + 1
+            if 'Strike (Vulnerable)' in abilities:
+                target['vulnerable'] = target.get('vulnerable', 0) + 1
+            if 'Poison (Bleeding)' in abilities:
+                target['bleeding'] = target.get('bleeding', 0) + 2
+        ap -= T.ATTACK_AP_COST
+        attacks_made += 1
+        if enemy_log:
+            enemy_log(unit=e['name'], action='attack', target=target['name'], roll=roll, defense=opp_def_val,
+                       hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, target_hp_after=target['health'],
+                       via=e['action'])
+        if target['health'] <= 0:
+            target = _retarget(e, [p for p in pcs if p['health'] > 0], movement_on)
+
+
 def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0, movement=False, start_gap=None,
               trace=None, enemies=None):
     """`enemies`: pass a pre-built list of enemy dicts (e.g. from
@@ -405,12 +647,21 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     `movement` is on - `movement=False` just means every unit is always
     "in range," skipping the movement step of that economy entirely.
 
+    Every round replays the same fixed turn order, rolled once at
+    encounter start (`_roll_initiative` - rulebook.md's real Reflex-flip
+    rule, ties broken by re-flipping just the tied units), skipping
+    whoever's already dead - PCs and enemies interleaved by their own
+    Reflex, not "all 4 PCs, then all enemies" like this file used to do.
+
     `trace`: pass a list (e.g. `trace=[]`) to have this call record what
     happened, round by round, instead of just returning the final tally
     - meant for actually looking at one fight (`narrate_fight.py`), not
     for `simulate()`'s thousands of trials, so it's `None` (skip
-    entirely, via `_log`) by default. Events are plain dicts, always
-    carrying `round`; a `type='positions'` event (movement mode only,
+    entirely, via `_log`) by default. Events are plain dicts; a
+    `round=0, type='initiative'` event (once per fight, before round 1)
+    carries the turn order itself (`order`: `[{'side', 'unit'}, ...]`,
+    highest Reflex first). Every other event carries `round`; a
+    `type='positions'` event (movement mode only,
     once per round, before any of that round's actions) snapshots every
     living unit's `pos`/`health`; everything else carries `side`
     ('party'/'enemy') and `unit`, and is either `action='move'` (this
@@ -465,6 +716,18 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
         for e, pos in zip(enemies, _start_positions(len(enemies), x=enemy_x)):
             e['pos'] = pos
 
+    # Rolled once at encounter start, fixed for the whole fight (see
+    # _roll_initiative's own docstring) - every round replays this same
+    # order, skipping whoever's already dead.
+    order = _roll_initiative(pcs, enemies, trace)
+
+    def _winner():
+        if all(e['health'] <= 0 for e in enemies):
+            return 'party'
+        if all(p['health'] <= 0 for p in pcs):
+            return 'enemies'
+        return None
+
     for rnd in range(1, max_rounds + 1):
         # `trace` (see run_fight's own docstring) gets one closure per
         # side per round, not per unit - cheap enough that a caller who
@@ -477,169 +740,22 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                  party=[{'unit': p['name'], 'pos': p['pos'], 'health': p['health']} for p in pcs if p['health'] > 0],
                  enemies=[{'unit': e['name'], 'pos': e['pos'], 'health': e['health']} for e in enemies if e['health'] > 0])
 
-        # ---- Party's turn (see module docstring's "How a turn works") ----
-        for pc in pcs:
-            if pc['health'] <= 0:
+        for side, unit in order:
+            if unit['health'] <= 0:
                 continue
-            ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
-            tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
-            targets = [e for e in enemies if e['health'] > 0]
-            if not targets:
-                break
-            target = tactics.select_target(pc, targets, movement)
-            if movement:
-                start_pos = pc['pos']
-                ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
-                if moved:
-                    _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
-                         in_range=in_range, spaces=round(_distance(start_pos, pc['pos']), 1))
-                if not in_range:
-                    continue
-
-            while ap >= T.ATTACK_AP_COST and target is not None:
-                if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0:
-                    break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
-                substitute = tactics.bottomless_bottles_choice(pc)
-                if substitute and substitute['kind'] == 'heal':
-                    ap -= T.ATTACK_AP_COST
-                    healed = min(substitute['amount'], pc['max_health'] - pc['health'])
-                    pc['health'] += healed
-                    if party_log:
-                        party_log(unit=pc['name'], action='heal', target=pc['name'], amount=healed,
-                                   target_hp_after=pc['health'], via=substitute['via'])
-                    continue
-                # A Bottled-Fire substitution temporarily overlays this PC's
-                # own attack profile with the thrown item's numbers for one
-                # iteration, restored right after logging - everything below
-                # (defense/resist/roll) reads pc['skill_total'] etc. exactly
-                # as it would for a normal weapon attack, so nothing else
-                # needs to branch on `substitute`.
-                saved_profile = None
-                if substitute:
-                    saved_profile = (pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'])
-                    pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = (
-                        substitute['skill_total'], substitute['damage'], substitute['dmg_type'], substitute['opp_def'])
-                defense = enemy_defense_for_pc_attack(pc, target)
-                resist = enemy_resist_for_pc_attack(pc, target)
-                # Grenades can't be Gambled on (glossary.md's [Grenade] rule).
-                gambles = 0 if substitute else pc_gamble_count(pc, target)
-                crippled = pc.get('crippled', 0)
-                bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge'))
-                luck_bonus = tactics.perfect_strike_bonus(pc, gambles)
-                card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
-                roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
-                pc_attacks += 1
-                ap -= T.ATTACK_AP_COST
-                if pc.get('weapon_uses_left') is not None and not substitute:
-                    pc['weapon_uses_left'] -= 1
-                hit = roll >= defense
-                dmg = 0
-                raw_dmg = 0
-                protected_absorbed = 0
-                if hit:
-                    raw_dmg = pc['damage'] + gambles
-                    dmg = max(0, raw_dmg - resist)
-                    protected = target.get('protected', 0)
-                    if protected > 0 and dmg > 0:
-                        protected_absorbed = min(dmg, protected)
-                        target['protected'] -= protected_absorbed
-                        dmg -= protected_absorbed
-                    target['health'] -= dmg
-                    pc_damage_dealt += dmg
-                if party_log:
-                    party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
-                               hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
-                               target_hp_after=target['health'], via=substitute['via'] if substitute else pc['weapon_name'])
-                if saved_profile:
-                    pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
-                if target['health'] <= 0:
-                    target = _retarget(pc, [e for e in enemies if e['health'] > 0], movement)
-        # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
-        # [Fleeting] rule), not all stacks at once - Bleeding's decaying
-        # stack is what actually deals its 1 damage.
-        for pc in pcs:
-            if pc['health'] <= 0:
-                continue
-            if pc.get('crippled', 0) > 0:
-                pc['crippled'] -= 1
-            if pc.get('vulnerable', 0) > 0:
-                pc['vulnerable'] -= 1
-            if pc.get('bleeding', 0) > 0:
-                pc['bleeding'] -= 1
-                pc['health'] -= 1
-        if all(e['health'] <= 0 for e in enemies):
-            _log(trace, round=rnd, type='result', winner='party')
-            return dict(winner='party', rounds=rnd,
-                        party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs),
-                        pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
-        if all(p['health'] <= 0 for p in pcs):
-            _log(trace, round=rnd, type='result', winner='enemies')
-            return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0,
-                        pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
-
-        # ---- Enemies' turn (see module docstring's "How a turn works") ----
-        for e in enemies:
-            if e['health'] <= 0:
-                continue
-            abilities = e.get('abilities', [])
-            if 'Durable' in abilities and e.get('protected', 0) < 4:
-                e['protected'] = e.get('protected', 0) + 1
-            living_pcs = [p for p in pcs if p['health'] > 0]
-            if not living_pcs:
-                break
-            fighting_style = e.get('fighting_style', 'Guarded')
-            ap = T.AP_PER_TURN
-            target = tactics.select_target(e, living_pcs, movement)
-            moved = False
-            in_range = True
-            start_pos = e.get('pos')
-            if movement:
-                ap, in_range, moved = spend_movement_ap(e, target, ap, effective_range(e))
-            # Guarded's own stand-still bonus (tactics.
-            # defense_has_bad_luck) - set here, at the end of resolving
-            # this enemy's own movement, so it's ready for the PARTY's
-            # next turn to check (Party's turn runs before Enemies'
-            # turn within a round, so this is necessarily a one-round-
-            # lagged "held its ground last time" bonus, not instant).
-            e['guarded_active'] = (fighting_style == 'Guarded' and not moved)
-            if moved:
-                _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
-                     in_range=in_range, spaces=round(_distance(start_pos, e['pos']), 1))
-            if movement and not in_range:
-                continue
-
-            cap = tactics.attack_cap(e)
-            attacks_made = 0
-            while ap >= T.ATTACK_AP_COST and (cap is None or attacks_made < cap) and target is not None:
-                roll = e['accuracy'] + (flip_best_of(2) if fighting_style == 'Aimed Shot' else flip())
-                opp_def_val = pc_defense_for(target, e['opp_def'])
-                hit = roll >= opp_def_val
-                dmg = 0
-                raw_dmg = 0
-                resist = 0
-                if hit:
-                    resist = pc_resist_for_enemy_attack(e, target)
-                    raw_dmg = e['attack_damage']
-                    dmg = max(0, raw_dmg - resist)
-                    target['health'] -= dmg
-                    if 'Strike (Crippling)' in abilities:
-                        target['crippled'] = target.get('crippled', 0) + 1
-                    if 'Strike (Vulnerable)' in abilities:
-                        target['vulnerable'] = target.get('vulnerable', 0) + 1
-                    if 'Poison (Bleeding)' in abilities:
-                        target['bleeding'] = target.get('bleeding', 0) + 2
-                ap -= T.ATTACK_AP_COST
-                attacks_made += 1
-                if enemy_log:
-                    enemy_log(unit=e['name'], action='attack', target=target['name'], roll=roll, defense=opp_def_val,
-                               hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, target_hp_after=target['health'],
-                               via=e['action'])
-                if target['health'] <= 0:
-                    target = _retarget(e, [p for p in pcs if p['health'] > 0], movement)
-        if all(p['health'] <= 0 for p in pcs):
-            _log(trace, round=rnd, type='result', winner='enemies')
-            return dict(winner='enemies', rounds=rnd, party_hp_pct=0.0,
-                        pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
+            if side == 'party':
+                made, dealt = _take_pc_turn(unit, pcs, enemies, rnd, movement, trace, party_log)
+                pc_attacks += made
+                pc_damage_dealt += dealt
+            else:
+                _take_enemy_turn(unit, enemies, pcs, rnd, movement, trace, enemy_log)
+            winner = _winner()
+            if winner:
+                _log(trace, round=rnd, type='result', winner=winner)
+                party_hp_pct = (sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs)
+                                if winner == 'party' else 0.0)
+                return dict(winner=winner, rounds=rnd, party_hp_pct=party_hp_pct,
+                            pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
 
     _log(trace, round=max_rounds, type='result', winner='draw')
     return dict(winner='draw', rounds=max_rounds,

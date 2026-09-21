@@ -10,20 +10,26 @@ usage and a map of the files.
 
 ## How a fight works
 
+Turn order is a real Reflex/initiative roll now (rulebook.md's actual
+rule: a card flip + Reflex, highest to lowest, ties broken by
+re-flipping just the tied units), rolled once at encounter start and
+fixed for the whole fight — PCs and enemies interleaved by their own
+Reflex, not "all 4 PCs, then all enemies" like this file used to do.
+
 Every unit — PC or enemy — gets `tunables.AP_PER_TURN` (4) Action
-Points a turn (rulebook.md's real "Actions on a Turn" economy): moving
-costs 1 AP per move action (up to Speed meters, repeatable — spend "as
-many as required" to close the gap, per the designer, not an artificial
-cap), and an attack costs 2 AP, so a unit that doesn't need to move
-gets up to 2 attacks. Every "AI" decision inside that turn — who a unit
-targets, how it moves, how many attacks it's willing to make, whether a
-PC does something other than attack — lives in `tactics.py` as small
-named-function registries, not as `if` branches in `combat_sim.py`'s
-`run_fight`; "which suit is this card" assumptions live the same way in
-`cards.py`. See `combat_sim.py`'s own module docstring for the full
-mechanical write-up (Resist by damage type, Good Luck/Bad Luck,
-Fighting Style) before making changes — this README stays to usage and
-a file map.
+Points on its own turn (rulebook.md's real "Actions on a Turn"
+economy): moving costs 1 AP per move action (up to Speed meters,
+repeatable — spend "as many as required" to close the gap, per the
+designer, not an artificial cap), and an attack costs 2 AP, so a unit
+that doesn't need to move gets up to 2 attacks. Every "AI" decision
+inside that turn — who a unit targets, how it moves, how many attacks
+it's willing to make, whether a PC does something other than attack —
+lives in `tactics.py` as small named-function registries, not as `if`
+branches in `combat_sim.py`'s `run_fight`; "which suit is this card"
+assumptions live the same way in `cards.py`. See `combat_sim.py`'s own
+module docstring for the full mechanical write-up (Resist by damage
+type, Good Luck/Bad Luck, Fighting Style, Card Techniques, initiative)
+before making changes — this README stays to usage and a file map.
 
 ## Files
 
@@ -85,8 +91,16 @@ a file map.
   original hardcoded numbers) let a Support PC's own Healing Magic (T105)
   build read its real Level (Cost is "Discard [Level] cards") and any
   flat healing-boost feature total (Vitality, say) from the CSV instead
-  of one universal amount — see `party.py`'s own paragraph on all four
-  columns.
+  of one universal amount. **`Heal Range`** (blank = no check) caps how
+  far away an ally can be and still get healed, enforced only under
+  `movement=True`. **`Passives`** (comma-separated tags, e.g. "Hand of
+  Chaos") are always-on Technique effects with no AP/card cost, unlike
+  Card Techniques above — see `tactics.sift_bonus`. **`Battle Tactic`**
+  reuses the exact same `tactics.TARGETING` registry
+  `sample_enemies.csv`'s own BattleTactic column already dispatches
+  through — a PC can have a non-default targeting rule too now
+  (Hanforth's own "Straggler Hunter") — see `party.py`'s own paragraph
+  on all these columns.
 - **`party.py`** — loads `sample_pcs.csv`. `make_party(tier, good_luck=N)`
   pulls the Roster row and duplicates it x4; `get_pc(name)` pulls any
   row by name; `make_party_of(name)` duplicates one row x4; `make_party_
@@ -103,17 +117,24 @@ a file map.
   Guarded enemy that held its ground last turn imposes Bad Luck on
   attacks against its Parry/Dodge), and `resolve_pc_strategy`/
   `PC_STRATEGIES` (what a PC does instead of attacking — currently just
-  `strategy_support_healer`). Each is a plain `{name: function}`
-  registry keyed off a CSV column value — add a new tactic/strategy/
-  style by writing one function and registering it, not by adding
-  another `if` branch to `combat_sim.py`'s `run_fight`. See its own
-  module docstring before adding one. Its **Card Techniques** section
-  (`try_second_wind`/`perfect_strike_bonus`/`bottomless_bottles_choice`)
-  covers PC techniques whose own cost is "discard a card," not AP — a
-  self-heal when Wounded, a Good Luck bonus on a Gambled attack, and
-  substituting a created item for one attack action, each gated by the
-  shared `card_uses_left` budget (`sample_pcs.csv`'s own `Card
-  Techniques` column above).
+  `strategy_support_healer`). `target_straggler` (registered as
+  "Straggler Hunter") is the first PC-side `TARGETING` entry — goes
+  after whichever enemy has the fewest others near it, for a PC who'd
+  rather finish off an isolated target than wade into the main clump
+  (Hanforth). Each is a plain `{name: function}` registry keyed off a
+  CSV column value — add a new tactic/strategy/style by writing one
+  function and registering it, not by adding another `if` branch to
+  `combat_sim.py`'s `run_fight`. See its own module docstring before
+  adding one. Its **Card Techniques** section (`try_second_wind`/
+  `perfect_strike_bonus`/`bottomless_bottles_choice`) covers PC
+  techniques whose own cost is "discard a card," not AP — a self-heal
+  when Wounded, +2 Good Luck on any weapon attack, and substituting a
+  created item for one attack action, each gated by the shared
+  `card_uses_left` budget (`sample_pcs.csv`'s own `Card Techniques`
+  column above). `sift_bonus` is a related but separate idea — an
+  always-on Technique effect with no AP/card cost (`Passives`), Hand of
+  Chaos's own flat 1-in-4-chance-of-+1-damage stand-in for real
+  suit-pool tracking.
 - **`cards.py`** — the one place "which suit is this card" gets decided:
   `flipped_matches(suit)` (a genuinely random flipped card, a 1-in-4
   roll) vs. `chosen_matches(suit)` (a discarded/played card, chosen by
@@ -143,11 +164,16 @@ a file map.
   DESIGN.md itself). Simulator fixtures for now, not a finished in-game
   roster.
 - **`combat_sim.py`** — the Monte Carlo fight loop (`run_fight`) and
-  driver (`simulate`). See its own module docstring for the full
-  mechanical write-up: the AP economy, Resist-by-damage-type on both
+  driver (`simulate`). `_roll_initiative`/`_resolve_group_order` roll a
+  real Reflex-based turn order once at encounter start (rulebook.md's
+  actual rule, ties re-flipped), interleaving PCs and enemies rather
+  than resolving one side's whole turn before the other's;
+  `_take_pc_turn`/`_take_enemy_turn` are one unit's own turn, called in
+  that fixed order every round. See its own module docstring for the
+  full mechanical write-up: the AP economy, Resist-by-damage-type on both
   sides (`enemy_resist_for_pc_attack`/`pc_resist_for_enemy_attack`),
-  Good Luck/Bad Luck (`resolve_card`), Gambling, the Ability catalog
-  subset, and what's still simplified/not modeled.
+  Good Luck/Bad Luck (`resolve_card`), Gambling, Card Techniques, the
+  Ability catalog subset, and what's still simplified/not modeled.
 - **`movement.py`** — geometry helpers (`distance`, `move_toward`,
   `move_away`) for `combat_sim.py`'s optional `movement=True` mode: a
   bounded `tunables.ARENA_SIZE`-square arena, continuous coordinates, no

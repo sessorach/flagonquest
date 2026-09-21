@@ -18,7 +18,11 @@ Every function here is pure decision logic - no card flips (that's
 combat_sim.py's flip()/flip_best_of()/flip_worst_of(), and cards.py for
 suit assumptions), no trace/logging concerns beyond the optional `log`
 callback a few functions accept (combat_sim.py's run_fight owns
-recording what happened, via its own `trace` param).
+recording what happened, via its own `trace` param). One exception:
+sift_bonus's flat 1-in-4 roll (Hand of Chaos's own designer-specified
+simplification) isn't a card flip at all, just a plain probability
+check, so it uses `random` directly rather than combat_sim.py's
+card-flipping helpers.
 
 The whole file assumes rulebook.md's Action Point economy (see
 tunables.AP_PER_TURN/MOVE_AP_COST/ATTACK_AP_COST): every unit gets 4 AP
@@ -29,6 +33,7 @@ round by round, following whatever this file decides.
 """
 import cards
 import movement
+import random
 import tunables as T
 
 
@@ -58,15 +63,39 @@ def target_lowest_health(unit, targets):
     return min(targets, key=lambda c: c['health'])
 
 
+def target_straggler(unit, targets):
+    """Hanforth's own Battle Tactic ('he may as well be attacking when
+    he can, but not moving too close to too many enemies' - the
+    designer's own framing): go after whichever target is most cut off
+    from its own side, approximated as the fewest other living targets
+    within 5m of it (ties broken by distance to this unit, same
+    preference target_closest already has) - a support PC who'd rather
+    finish off an isolated straggler than wade into the main clump, so
+    closing on his own target doesn't also put him in range of a bunch
+    of others. Needs positions (`movement=True`); falls back to
+    target_first under static mode, same as every other position-aware
+    tactic in this file."""
+    if 'pos' not in unit:
+        return target_first(unit, targets)
+
+    def isolation(t):
+        nearby = sum(1 for o in targets if o is not t and movement.distance(t['pos'], o['pos']) <= 5)
+        return (nearby, movement.distance(unit['pos'], t['pos']))
+    return min(targets, key=isolation)
+
+
 TARGETING = {
     'Assassin': target_lowest_health,
+    'Straggler Hunter': target_straggler,
 }
 
 
 def select_target(unit, targets, movement_on):
-    """Dispatches on unit.get('battle_tactic') - a PC has none set, so
-    always falls through to the movement-aware default (closest/first),
-    same as any enemy Battle Tactic without its own entry in TARGETING."""
+    """Dispatches on unit.get('battle_tactic') (sample_enemies.csv's own
+    BattleTactic column for enemies, sample_pcs.csv's Battle Tactic
+    column for the rare PC that wants one, e.g. Hanforth's 'Straggler
+    Hunter') - a unit with none set (every PC but Hanforth so far) falls
+    through to the movement-aware default (closest/first)."""
     fn = TARGETING.get(unit.get('battle_tactic'))
     if fn:
         return fn(unit, targets)
@@ -223,15 +252,20 @@ def strategy_support_healer(pc, party, log):
     rather than re-parsed here). Both default to 1/0 (party.py's own
     Weapon/Heal paragraph) - a Level-1-with-no-features build like the
     original Beornhard's still heals exactly 1 + 1 + 0 = 2, unchanged.
-    No attack roll - Healing Magic isn't opposed - and the target is
-    assumed reachable (an "adjacent ally" per its own Target text)
-    without a real range check, since the party's 2x2 formation keeps
-    everyone clustered together anyway. Returns 0 (spent nothing,
-    proceed to a normal turn) if there's no use left or nobody's
-    wounded enough to spend one on."""
+    No attack roll - Healing Magic isn't opposed. The target must be
+    within `pc['heal_range']` if that's set (party.py's own Heal Range
+    paragraph - blank/None means no check at all, the original "adjacent
+    ally, assumed reachable" behavior); only enforced when both units
+    have a `pos` (movement=True), since there's nothing to check under
+    the static default. Returns 0 (spent nothing, proceed to a normal
+    turn) if there's no use left or nobody in range is wounded enough to
+    spend one on."""
     if pc.get('heal_uses_left', 0) <= 0:
         return 0
     wounded = [p for p in party if 0 < p['health'] <= p['max_health'] / 2]
+    heal_range = pc.get('heal_range')
+    if heal_range is not None and 'pos' in pc:
+        wounded = [p for p in wounded if 'pos' in p and movement.distance(pc['pos'], p['pos']) <= heal_range]
     if not wounded:
         return 0
     target = min(wounded, key=lambda p: p['health'])
@@ -303,22 +337,37 @@ def try_second_wind(pc, log=None):
     return True
 
 
-def perfect_strike_bonus(pc, gambles):
+def perfect_strike_bonus(pc):
     """Perfect Strike (T078, 0 AP - Interrupt 'you declare a weapon
     attack', Cost 'Discard a card'): +2 Good Luck (1 base, +1 for
     choosing 'Good Luck a second time' over the suit-pool option this
-    sim doesn't model) on an attack where the PC is Gambling - matching
-    the designer's own framing ('an attack where she needs to Gamble').
-    Called from inside combat_sim's attack loop right where `gambles`
-    is already known; consumes a card_uses_left charge only when it
-    actually applies (gambles > 0 and a charge remains), so a PC who
-    never needs to Gamble never spends the budget on it."""
+    sim doesn't model) on any weapon attack, at will - T078's own
+    Effects text has no Gambling requirement at all; earlier framing
+    ('an attack where she needs to Gamble') was just one example of
+    when a player would actually spend it, not a hard restriction, so
+    this now applies to the first attack(s) a charge allows regardless.
+    Called from inside combat_sim's attack loop; consumes a
+    card_uses_left charge each time it fires, so it self-rations to
+    however many charges this PC's hand_size // 3 budget allows."""
     if 'Perfect Strike' not in pc.get('card_techniques', ()):
         return 0
-    if gambles <= 0 or pc.get('card_uses_left', 0) <= 0:
+    if pc.get('card_uses_left', 0) <= 0:
         return 0
     pc['card_uses_left'] -= 1
     return 2
+
+
+def sift_bonus(pc):
+    """Hand of Chaos (T131, Passive: 'Whenever you make an attack, Sift 1
+    card and add its suit to the pool') - the designer's own explicit
+    simplification, since this sim has no real suit-pool/Extra-Success
+    tracking (see combat_sim.py's module docstring): approximated as a
+    flat 1-in-4 chance of +1 damage on a hit, standing in for 'the
+    sifted card happens to match this attack's own governing suit.'
+    Always-on (no AP/card cost, unlike the Card Techniques above), so
+    this is checked on every attack a PC with 'Hand of Chaos' in
+    `pc['passives']` lands, not gated by any budget."""
+    return 'Hand of Chaos' in pc.get('passives', ()) and random.random() < 0.25
 
 
 def bottomless_bottles_choice(pc):

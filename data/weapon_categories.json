@@ -26,7 +26,7 @@
     "damage": "4 + [Body or Cunning]",
     "defense": 1,
     "range": "Close",
-    "skill": "Melee",
+    "skill": "Melee or Brawl",
     "might_str": "-"
   },
   {
