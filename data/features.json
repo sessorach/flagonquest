@@ -73,7 +73,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the attack hits or is Parried, the target is Harried X + [Diamonds] times.",
+    "effects": "If the attack hits or is Parried, the target is Harried 1 + X + [Diamonds] times.",
     "prereq": null
   },
   {

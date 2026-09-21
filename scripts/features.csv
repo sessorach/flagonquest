@@ -5,7 +5,7 @@ F003,T072,Battle Maneuver,Turn Elements,Basic,1,,"When you choose this feature, 
 F004,T072,Battle Maneuver,Distracting,Basic,1,,"If the attack hits or is Parried, you Taunt the target X + [Hearts] times.",Presence 2
 F005,T072,Battle Maneuver,Battering,Basic,1,,"If the attack hits or is Parried, the target gains X stacks of Bleeding + [Clubs] stacks.",Might 2
 F006,T072,Battle Maneuver,Wing Clip,Basic,1,,"If the attack hits, the target is Crippled X + [Clubs] times.",
-F007,T072,Battle Maneuver,Harrying,Basic,1,,"If the attack hits or is Parried, the target is Harried X + [Diamonds] times.",
+F007,T072,Battle Maneuver,Harrying,Basic,1,,"If the attack hits or is Parried, the target is Harried 1 + X + [Diamonds] times.",
 F008,T072,Battle Maneuver,Hamstring,Basic,1,,"If the attack hits, the target is Slowed X + [Spades] times.",
 F009,T072,Battle Maneuver,Backfoot,Basic,1,,"If the attack hits, you may adjust the target's position in turn order by up to X + [Spades] times.",
 F010,T072,Battle Maneuver,Lodestone,Basic,1,,"If the attack hits or is Parried, you Push the target (2 × [X + Spades]) meters.",
