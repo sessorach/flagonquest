@@ -310,12 +310,12 @@ def _pc_dict(row, index, good_luck):
     # (X = hand_size x 2 // 3), all toward Bottled Fire, then a single
     # fight gets half of whatever a full day's Gold budget buys - turns
     # into: gold_budget = 4 x X, daily_count = gold_budget //
-    # T.BOTTLED_FIRE_GOLD_COST (that constant's own comment explains why
-    # it's an inference, not a set price - Bottled Fire has no Gold Cost
-    # on record at all), bottled_fire_uses = daily_count // 2. A
-    # separate counter from card_uses_left above - Bottomless Bottles'
-    # real resource math (Gold, not just "a card") is genuinely
-    # different from Second Wind/Perfect Strike/Warmage's Reserves.
+    # T.BOTTLED_FIRE_GOLD_COST (items.csv's own real Cost - 4 Gold, the
+    # designer's general "alchemy items default to 2 x Level Gold"
+    # rule), bottled_fire_uses = daily_count // 2. A separate counter
+    # from card_uses_left above - Bottomless Bottles' real resource math
+    # (Gold, not just "a card") is genuinely different from Second
+    # Wind/Perfect Strike/Warmage's Reserves.
     bottled_fire_profile = None
     bottled_fire_uses = None
     if "Bottomless Bottles" in card_techniques:
