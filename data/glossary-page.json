@@ -56,6 +56,13 @@
     "body": "Sometimes conditions or features of terrain can give it degrees of Difficult Terrain. To cross a meter of space that has Difficult Terrain, a character takes an extra meter of Speed for each degree of Difficult Terrain on it. A character can still move at least 1 space in this way, no matter how many degrees of Difficult Terrain there are."
   },
   {
+    "id": "outflank",
+    "level": 4,
+    "title": "Outflank",
+    "supplement": "Base Game",
+    "body": "When you Outflank, your position in turn order moves up that many places, to a minimum of first."
+  },
+  {
     "id": "pushing",
     "level": 4,
     "title": "Pushing",
@@ -75,6 +82,13 @@
     "title": "Shift",
     "supplement": "Base Game",
     "body": "Shifting is like moving, with two exceptions. Nobody may take any Interrupt actions to the movement, and when you Shift you ignore Difficult Terrain."
+  },
+  {
+    "id": "stagger",
+    "level": 4,
+    "title": "Stagger",
+    "supplement": "Base Game",
+    "body": "When a creature is Staggered, its position in turn order moves down that many places, to a maximum of last."
   },
   {
     "id": "summon",

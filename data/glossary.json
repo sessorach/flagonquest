@@ -24,6 +24,10 @@
     "description": "Sometimes conditions or features of terrain can give it degrees of Difficult Terrain. To cross a meter of space that has Difficult Terrain, a character takes an extra meter of Speed for each degree of Difficult Terrain on it. A character can still move at least 1 space in this way, no matter how many degrees of Difficult Terrain there are."
   },
   {
+    "term": "Outflank",
+    "description": "When you Outflank, your position in turn order moves up that many places, to a minimum of first."
+  },
+  {
     "term": "Pushed",
     "description": "When you are pushed you are forcibly moved a certain distance, although this does not count as “moving”. If a creature or object is in your way you are pushed through their space, and if the Push would result in you being in an occupied space you end up in the nearest unoccupied space instead. If the creature or object is particularly big you may instead be pushed against them, with various consequences."
   },
@@ -34,6 +38,10 @@
   {
     "term": "Shift",
     "description": "Shifting is like moving, with two exceptions. Nobody may take any Interrupt actions to the movement, and when you Shift you ignore Difficult Terrain."
+  },
+  {
+    "term": "Stagger",
+    "description": "When a creature is Staggered, its position in turn order moves down that many places, to a maximum of last."
   },
   {
     "term": "Summon",

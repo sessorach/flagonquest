@@ -32,6 +32,10 @@ A Technique, attack, or other ability that is Countered is still expended as nor
 
 Sometimes conditions or features of terrain can give it degrees of Difficult Terrain. To cross a meter of space that has Difficult Terrain, a character takes an extra meter of Speed for each degree of Difficult Terrain on it. A character can still move at least 1 space in this way, no matter how many degrees of Difficult Terrain there are.
 
+#### Outflank
+
+When you Outflank, your position in turn order moves up that many places, to a minimum of first.
+
 #### Pushing
 
 When you are pushed you are forcibly moved a certain distance, although this does not count as “moving”. If a creature or object is in your way you are pushed through their space, and if the Push would result in you being in an occupied space you end up in the nearest unoccupied space instead. If the creature or object is particularly big you may instead be pushed against them, with various consequences.
@@ -47,6 +51,10 @@ If the same effect has its Range both increased and decreased, 1 meter of each e
 #### Shift
 
 Shifting is like moving, with two exceptions. Nobody may take any Interrupt actions to the movement, and when you Shift you ignore Difficult Terrain.
+
+#### Stagger
+
+When a creature is Staggered, its position in turn order moves down that many places, to a maximum of last.
 
 #### Summon
 

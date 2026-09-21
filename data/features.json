@@ -95,7 +95,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the attack hits, you may adjust the target's position in turn order by up to X + [Spades] times.",
+    "effects": "If the attack hits, you may Stagger the target up to [twice X] + [Spades] times.",
     "prereq": null
   },
   {
@@ -888,6 +888,17 @@
     "point_cost": 0,
     "description": null,
     "effects": "The attack must be made with an Unarmed weapon. When you learn this Technique, you may choose 2 additional points worth of features. You may only apply one copy of this feature.",
+    "prereq": null
+  },
+  {
+    "id": "F082",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Fleet Step",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": null,
+    "effects": "If the attack hits, you may Outflank up to [twice X] + [Spades] times.",
     "prereq": null
   }
 ]
