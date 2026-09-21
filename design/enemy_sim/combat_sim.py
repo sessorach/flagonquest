@@ -174,7 +174,7 @@ import tunables as T
 import movement
 from movement import distance as _distance  # run_fight's own `movement` param (bool) shadows the module name
 import tactics
-from sample_enemies import make_enemy
+from sample_enemies import make_level_encounter
 from party import make_party
 
 
@@ -230,20 +230,17 @@ def spend_movement_ap(unit, target, ap, reach):
     kiting = unit.get('battle_tactic') == 'Kiting'
     moved = False
     while ap >= T.MOVE_AP_COST:
-        if not kiting and movement.distance(unit['pos'], target['pos']) <= reach + 1e-6:
+        if not kiting and movement.distance(unit['pos'], target['pos']) <= reach:
             break
         tactics.move_unit(unit, target, reach)
         ap -= T.MOVE_AP_COST
         moved = True
         if kiting:
             break
-    # 1e-6 slack: move_toward's own stop_at logic can land a unit a
-    # floating-point hair past `reach` (float division/subtraction isn't
-    # exact) - without it, two units that just closed to melee range can
-    # get flagged permanently out-of-range by a fraction no real ruler
-    # would ever measure, freezing the fight into an unresolved draw
-    # (found via a real seeded fight that stalemated at exactly this gap).
-    in_range = movement.distance(unit['pos'], target['pos']) <= reach + 1e-6
+    # Exact integer comparison - movement is whole spaces (movement.py's
+    # own docstring), so there's no floating-point slack to account for
+    # the way the old continuous-coordinate model needed.
+    in_range = movement.distance(unit['pos'], target['pos']) <= reach
     return ap, in_range, moved
 
 
@@ -251,31 +248,39 @@ def _start_positions(n, x, spread=4):
     """n units spread evenly down a vertical line at x, centered on the
     arena - just enough to avoid stacking every unit on one exact point,
     no other formation logic. Still used for the enemy side; the party
-    uses _party_formation instead (see below)."""
+    uses _party_formation instead (see below). Whole spaces throughout
+    (movement.py's own docstring) - `spread` is even, so `(i - mid) *
+    spread` always lands on a whole number even when `mid` itself is a
+    half-space (an even `n`)."""
     mid = (n - 1) / 2
-    return [(x, T.ARENA_SIZE / 2 + (i - mid) * spread) for i in range(n)]
+    return [(x, T.ARENA_SIZE // 2 + round((i - mid) * spread)) for i in range(n)]
 
 
 def _party_formation(x):
     """The party's 4 starting positions as a compact 2x2 block centered
     on the arena's y-midpoint - 'for simplicity's sake,' per the
     designer, rather than the single-file line _start_positions gives
-    the enemies. Assumes exactly 4 PCs, same as the rest of this file."""
-    mid = T.ARENA_SIZE / 2
-    half = T.PARTY_FORMATION_SPACING / 2
+    the enemies. Assumes exactly 4 PCs, same as the rest of this file.
+    Whole spaces throughout - `half` is exact since
+    PARTY_FORMATION_SPACING is even."""
+    mid = T.ARENA_SIZE // 2
+    half = T.PARTY_FORMATION_SPACING // 2
     return [(x - half, mid - half), (x + half, mid - half),
             (x - half, mid + half), (x + half, mid + half)]
 
 
 def _random_front_lines(start_gap=None):
-    """The party's and enemies' starting x-positions, `start_gap` meters
-    apart (tunables.START_GAP_RANGE if not given - a random 5-10m each
-    fight) and centered in the arena - 'spaced out slightly but not
+    """The party's and enemies' starting x-positions, `start_gap` whole
+    spaces apart (tunables.START_GAP_RANGE if not given - a random 5-10
+    each fight) and centered in the arena - 'spaced out slightly but not
     opposite ends,' per the designer, replacing the original fixed 16m
-    corner-to-corner start. Returns (party_x, enemy_x)."""
-    gap = start_gap if start_gap is not None else random.uniform(*T.START_GAP_RANGE)
-    mid = T.ARENA_SIZE / 2
-    return mid - gap / 2, mid + gap / 2
+    corner-to-corner start. Returns (party_x, enemy_x), both ints -
+    `gap - gap // 2` (rather than a second `gap // 2`) on the enemy side
+    keeps the actual gap between the two exactly `gap` spaces even when
+    `gap` is odd, instead of losing a space to double-rounding."""
+    gap = start_gap if start_gap is not None else random.randint(*T.START_GAP_RANGE)
+    mid = T.ARENA_SIZE // 2
+    return mid - gap // 2, mid + (gap - gap // 2)
 
 
 def enemy_defense_for_pc_attack(pc, target):
@@ -488,7 +493,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
                 ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
                 if moved:
                     _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
-                         in_range=in_range, spaces=round(_distance(start_pos, pc['pos']), 1))
+                         in_range=in_range, spaces=_distance(start_pos, pc['pos']))
 
             while in_range and ap >= T.ATTACK_AP_COST and target is not None:
                 if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0:
@@ -583,7 +588,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log):
     e['guarded_active'] = (fighting_style == 'Guarded' and not moved)
     if moved:
         _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
-             in_range=in_range, spaces=round(_distance(start_pos, e['pos']), 1))
+             in_range=in_range, spaces=_distance(start_pos, e['pos']))
     if movement_on and not in_range:
         return
 
@@ -688,7 +693,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     if enemies is not None:
         enemies = [copy.deepcopy(e) for e in enemies]
     else:
-        enemies = [copy.deepcopy(make_enemy(enemy_level)) for _ in range(n_enemies)]
+        enemies = [copy.deepcopy(e) for e in make_level_encounter(enemy_level, n_enemies)]
     # Unlike PCs (party.py already suffixes each copy - "Hilde1",
     # "Hilde2"), every enemy copy comes back from make_enemy with the
     # exact same 'name' - fine when nothing ever needs to tell two

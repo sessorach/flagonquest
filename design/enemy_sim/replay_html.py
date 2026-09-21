@@ -199,7 +199,7 @@ function rosterList(positions) {
 
 function logLine(e) {
   if (e.action === 'move') {
-    const spaces = e.spaces != null ? ` <span class="via">(${e.spaces}m)</span>` : '';
+    const spaces = e.spaces != null ? ` <span class="via">(${e.spaces} space${e.spaces !== 1 ? 's' : ''})</span>` : '';
     return e.in_range
       ? `<div class="line move">${e.unit} moves${spaces} toward its target - now in range.</div>`
       : `<div class="line move">${e.unit} moves${spaces} toward its target - still out of range, no attack.</div>`;

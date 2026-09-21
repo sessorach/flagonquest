@@ -76,9 +76,9 @@ def render_event(event):
         return None
     unit, action = event['unit'], event['action']
     if action == 'move':
-        pos = tuple(round(c, 1) for c in event['pos'])
+        pos = tuple(event['pos'])  # whole spaces already - movement.py's own docstring
         spaces = event.get('spaces')
-        moved = f" ({spaces}m)" if spaces is not None else ""
+        moved = f" ({spaces} space{'s' if spaces != 1 else ''})" if spaces is not None else ""
         if event.get('in_range'):
             return f"  {unit} moves{moved} toward its target, ends at {pos} - now in range."
         return f"  {unit} moves{moved} toward its target, ends at {pos} - still out of range, no attack."

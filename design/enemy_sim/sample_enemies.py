@@ -94,6 +94,36 @@ def all_enemies():
     return [_build_from_row(row) for row in _load_rows()]
 
 
+# The new Level 1 baseline (replacing 4x Marsh Viper Scout - now a
+# reference build only, Roster=FALSE, still available via get_enemy):
+# one of each of 4 of the 5 Mixed-Style archetypes (Hedge Knight, Marsh
+# Archer, Skulking Footpad, Fen Warden), retuned against a real drafted
+# party - see those 4 rows' own Notes for the calibration numbers. Bog
+# Caster (the deliberate double-attacker) is left out of the default
+# mix on purpose, kept as a separate flavor pick for a GM who wants that
+# harsher read. Only Level 1 has an entry so far ("we'll check out the
+# rest at a later point," per the designer) - every other Level still
+# falls back to make_level_encounter's own old behavior below.
+MIXED_ROSTER = {
+    1: ["Hedge Knight", "Marsh Archer", "Skulking Footpad", "Fen Warden"],
+}
+
+
+def make_level_encounter(level, n_enemies=4):
+    """What combat_sim.run_fight builds by default when no explicit
+    `enemies=` is given - MIXED_ROSTER's own mix for this Level, if
+    it's got one sized to match `n_enemies` (a real varied encounter,
+    not clones of one archetype); otherwise the original behavior,
+    `n_enemies` copies of make_enemy(level). A caller asking for some
+    other `n_enemies` at a MIXED_ROSTER Level (a smaller test fight,
+    say) still gets the old single-archetype-clone behavior, since the
+    mix itself is a fixed-size set, not something to trim or repeat."""
+    names = MIXED_ROSTER.get(level)
+    if names and len(names) == n_enemies:
+        return build_encounter(names)
+    return [make_enemy(level) for _ in range(n_enemies)]
+
+
 def build_encounter(names):
     """A custom encounter assembled from named reference rows in
     whatever Level/Slots mix is asked for - e.g. build_encounter(

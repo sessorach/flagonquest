@@ -32,12 +32,14 @@ SLOT_MULTIPLIER = {1: 1, 0.5: 1 / 3, 2: 3}
 # leave real room for a kiter to actually use the space.
 ARENA_SIZE = 20
 # How close two units need to be for a melee Action (attack_range == 0
-# from enemy_builder's own formula) to actually connect - not literally
-# 0, since two approaching units stopping exactly on top of each other
-# isn't a sensible reading of "Close Range." Not derived from a real
-# rulebook.md number (no such number exists); picked as a small,
-# plausible "within striking distance" buffer.
-MELEE_RANGE = 2
+# from enemy_builder's own formula) to actually connect - the real rule
+# (the designer's own clarification, not a guess anymore): movement is
+# whole spaces, no fractions, and ending up in any space adjacent to a
+# target (Chebyshev distance 1, including diagonally) is enough to
+# melee it. Used to be an invented "close enough" buffer (2) since no
+# real number existed yet - see movement.py's own docstring for the
+# grid/Chebyshev-distance rule this now assumes throughout.
+MELEE_RANGE = 1
 
 # ---- Armor tiers (armor_categories.csv, the real player-facing table) ----
 # One shared table for both sides now - enemies and PCs alike wear real

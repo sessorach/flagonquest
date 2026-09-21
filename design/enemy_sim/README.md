@@ -164,16 +164,23 @@ before making changes — this README stays to usage and a file map.
   to control lever during the Mixed-Style retune - see those rows' own
   Notes for the numbers).
 - **`sample_enemies.py`** — loads the CSV above via `enemy_builder.py`.
-  `make_enemy(level)` pulls the Roster row for that Level; `get_enemy
-  (name)` pulls any row by name; `all_enemies()` returns every row
-  built. `build_encounter([names])` assembles a custom encounter from
-  any mix of named rows (any Level/Slots combination — a Tank plus
+  `make_enemy(level)` pulls the single Roster row for that Level;
+  `get_enemy(name)` pulls any row by name; `all_enemies()` returns every
+  row built. `build_encounter([names])` assembles a custom encounter
+  from any mix of named rows (any Level/Slots combination — a Tank plus
   several Minions, say) — pass its result as `combat_sim.run_fight`'s
   own `enemies=` param; `total_slots(enemies)` sums a mix's own Slots,
   for checking it against "one Slot per PC" (the default encounter
   budget, per the designer — not yet written into ENEMY_ENCOUNTER_
-  DESIGN.md itself). Simulator fixtures for now, not a finished in-game
-  roster.
+  DESIGN.md itself). **`MIXED_ROSTER`**/**`make_level_encounter(level,
+  n_enemies=4)`** is what `combat_sim.run_fight` actually calls by
+  default now (no explicit `enemies=`) — a real varied 4-archetype mix
+  for whichever Levels have one defined in `MIXED_ROSTER` (Level 1 so
+  far: Hedge Knight/Marsh Archer/Skulking Footpad/Fen Warden, replacing
+  the old 4x-clone Marsh Viper Scout default — still reachable via
+  `get_enemy`, just no longer `Roster=TRUE`), falling back to the
+  original `n_enemies` clones of `make_enemy(level)` for every other
+  Level. Simulator fixtures for now, not a finished in-game roster.
 - **`combat_sim.py`** — the Monte Carlo fight loop (`run_fight`) and
   driver (`simulate`). `_roll_initiative`/`_resolve_group_order` roll a
   real Reflex-based turn order once at encounter start (rulebook.md's
@@ -187,8 +194,12 @@ before making changes — this README stays to usage and a file map.
   Ability catalog subset, and what's still simplified/not modeled.
 - **`movement.py`** — geometry helpers (`distance`, `move_toward`,
   `move_away`) for `combat_sim.py`'s optional `movement=True` mode: a
-  bounded `tunables.ARENA_SIZE`-square arena, continuous coordinates, no
-  obstacles. The party starts in a compact 2x2 block
+  bounded `tunables.ARENA_SIZE`-square arena of whole spaces — the real
+  grid-movement rule (the designer's own clarification): no fractional
+  spaces, and a diagonal step costs the same 1 Speed as an orthogonal
+  one, so `distance` is Chebyshev ("king-move"), not Euclidean. Used to
+  be continuous float coordinates; `tunables.MELEE_RANGE` is now a real
+  1 (adjacent), not an invented buffer. The party starts in a compact 2x2 block
   (`combat_sim._party_formation`), enemies spread down the y-axis,
   front lines a random `tunables.START_GAP_RANGE` (5-10m) apart by
   default (`run_fight(..., start_gap=N)` for a fixed distance instead).
