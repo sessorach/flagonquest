@@ -153,6 +153,7 @@ import random
 import copy
 import tunables as T
 import movement
+from movement import distance as _distance  # run_fight's own `movement` param (bool) shadows the module name
 import tactics
 from sample_enemies import make_enemy
 from party import make_party
@@ -415,7 +416,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     ('party'/'enemy') and `unit`, and is either `action='move'` (this
     unit actually spent AP moving this turn - `pos`, `in_range` says
     whether that got it into range or it's still short and doesn't
-    attack this round), `action='attack'` (`target`, `roll`, `defense`,
+    attack this round, `spaces` is the straight-line distance actually
+    covered this turn, for reviewing whether a unit's Speed is really
+    the bottleneck), `action='attack'` (`target`, `roll`, `defense`,
     `hit`, `dmg`, `target_hp_after`), or whatever a PC's own strategy
     function logs (`tactics.strategy_support_healer` logs
     `action='heal'` - see tactics.py's own `log` parameter). An
@@ -426,8 +429,16 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     `dmg == max(0, raw_dmg - resist)` minus whatever Protected
     absorbed (`protected_absorbed`, PC attacks only - enemies have no
     Protected-granting Ability modeled) is always visible in the trace,
-    not just the final post-Resist number. A final `type='result'` event
-    carries `winner`."""
+    not just the final post-Resist number. Both `action='attack'` and
+    `action='heal'` also carry `via` - the name of whatever actually
+    produced this action, for reviewing what a unit's really doing
+    round to round: a PC's own `weapon_name` (party.py - the `Weapon`
+    cell, or "Melee" for the blank default) or a Card Technique's own
+    name ("Bottled Fire"/"Healing Potion"/"Second Wind"/"Healing
+    Magic") on the party side, an enemy's own `action` (sample_
+    enemies.csv's Action column - "Offensive Melee", "Ranged Weapon",
+    ...) on the enemy side. A final `type='result'` event carries
+    `winner`."""
     if seed is not None:
         random.seed(seed)
     pcs = make_party(tier, good_luck=good_luck)
@@ -477,9 +488,11 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 break
             target = tactics.select_target(pc, targets, movement)
             if movement:
+                start_pos = pc['pos']
                 ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
                 if moved:
-                    _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'], in_range=in_range)
+                    _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                         in_range=in_range, spaces=round(_distance(start_pos, pc['pos']), 1))
                 if not in_range:
                     continue
 
@@ -493,7 +506,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                     pc['health'] += healed
                     if party_log:
                         party_log(unit=pc['name'], action='heal', target=pc['name'], amount=healed,
-                                   target_hp_after=pc['health'])
+                                   target_hp_after=pc['health'], via=substitute['via'])
                     continue
                 # A Bottled-Fire substitution temporarily overlays this PC's
                 # own attack profile with the thrown item's numbers for one
@@ -536,7 +549,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 if party_log:
                     party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
                                hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
-                               target_hp_after=target['health'])
+                               target_hp_after=target['health'], via=substitute['via'] if substitute else pc['weapon_name'])
                 if saved_profile:
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
                 if target['health'] <= 0:
@@ -579,6 +592,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             target = tactics.select_target(e, living_pcs, movement)
             moved = False
             in_range = True
+            start_pos = e.get('pos')
             if movement:
                 ap, in_range, moved = spend_movement_ap(e, target, ap, effective_range(e))
             # Guarded's own stand-still bonus (tactics.
@@ -589,7 +603,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             # lagged "held its ground last time" bonus, not instant).
             e['guarded_active'] = (fighting_style == 'Guarded' and not moved)
             if moved:
-                _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'], in_range=in_range)
+                _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
+                     in_range=in_range, spaces=round(_distance(start_pos, e['pos']), 1))
             if movement and not in_range:
                 continue
 
@@ -617,7 +632,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 attacks_made += 1
                 if enemy_log:
                     enemy_log(unit=e['name'], action='attack', target=target['name'], roll=roll, defense=opp_def_val,
-                               hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, target_hp_after=target['health'])
+                               hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, target_hp_after=target['health'],
+                               via=e['action'])
                 if target['health'] <= 0:
                     target = _retarget(e, [p for p in pcs if p['health'] > 0], movement)
         if all(p['health'] <= 0 for p in pcs):

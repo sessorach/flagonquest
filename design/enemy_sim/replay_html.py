@@ -102,6 +102,7 @@ h1{
 .line.move{color:var(--text-faint);font-style:italic;}
 .line .arrow{color:var(--text-dim);margin:0 4px;}
 .line .breakdown{color:var(--text-faint);font-size:11.5px;}
+.line .via{color:var(--text-dim);font-style:italic;}
 footer{margin-top:36px;color:var(--text-dim);font-size:12px;font-family:monospace;border-top:1px solid var(--border-soft);padding-top:16px;}
 footer code{color:var(--accent);}
 </style>
@@ -186,22 +187,25 @@ function rosterList(positions) {
 
 function logLine(e) {
   if (e.action === 'move') {
+    const spaces = e.spaces != null ? ` <span class="via">(${e.spaces}m)</span>` : '';
     return e.in_range
-      ? `<div class="line move">${e.unit} moves toward its target - now in range.</div>`
-      : `<div class="line move">${e.unit} moves toward its target - still out of range, no attack.</div>`;
+      ? `<div class="line move">${e.unit} moves${spaces} toward its target - now in range.</div>`
+      : `<div class="line move">${e.unit} moves${spaces} toward its target - still out of range, no attack.</div>`;
   }
   if (e.action === 'attack') {
     const cls = e.hit ? 'hit' : 'miss';
+    const via = e.via ? ` <span class="via">with ${e.via}</span>` : '';
     let verdict = 'misses';
     if (e.hit) {
       let breakdown = `${e.raw_dmg} raw &minus; ${e.resist} resist`;
       if (e.protected_absorbed) breakdown += ` &minus; ${e.protected_absorbed} Protected`;
       verdict = `<span class="dmg">HIT for ${e.dmg}</span> <span class="breakdown">(${breakdown})</span> &rarr; ${e.target_hp_after} HP`;
     }
-    return `<div class="line ${cls}"><span class="who">${e.unit}</span> attacks <b>${e.target}</b> <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}</div>`;
+    return `<div class="line ${cls}"><span class="who">${e.unit}</span> attacks <b>${e.target}</b>${via} <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}</div>`;
   }
   if (e.action === 'heal') {
-    return `<div class="line heal"><span class="who">${e.unit}</span> heals <b>${e.target}</b> for ${e.amount} &rarr; ${e.target_hp_after} HP</div>`;
+    const via = e.via ? ` <span class="via">with ${e.via}</span>` : '';
+    return `<div class="line heal"><span class="who">${e.unit}</span> heals <b>${e.target}</b>${via} for ${e.amount} &rarr; ${e.target_hp_after} HP</div>`;
   }
   return '';
 }

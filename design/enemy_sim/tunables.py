@@ -163,8 +163,13 @@ PC_SKILL_STAT = {
 # table only needs entries for the ranged options actually in use.
 # Numbers are real weapon_categories.csv/rulebook.md values, not
 # invented for the simulator:
-# - Light Bow (weapon_categories.csv WC007): Accuracy +1, Damage
-#   3 + [Cunning], Range a flat 15m, Skill Archery.
+# - Light Bow: Accuracy +1, Damage 3 + [Cunning], Skill Archery - Range
+#   19m from the actual craftable item (items.csv I123 "Light Bow", the
+#   one PCs actually carry), not weapon_categories.csv WC007's more
+#   abstract 15m category value - items.csv is the more specific source
+#   for a real equipped item, so it wins per this project's own
+#   data-over-prose/data-over-abstraction principle. Sable (Deadeye)'s
+#   Notes flags this correction.
 # - Light Thrown (WC005): Accuracy +1, Damage 3 + [Cunning], Range
 #   "Close, or 3 x Body" - modeled as the ranged option (3 x Body), the
 #   whole point of a thrown weapon's own scaling being worth testing
@@ -195,7 +200,7 @@ PC_SKILL_STAT = {
 #   already resolves the enemy side's own Melee/Ranged Spell (opp_def
 #   "Dodge", no Bodily/Vital option modeled).
 WEAPON = {
-    "Light Bow":         {"skill": "Archery",    "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range": 15,
+    "Light Bow":         {"skill": "Archery",    "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range": 19,
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
     "Light Thrown":      {"skill": "Acrobatics",  "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range_per_body": 3,
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
@@ -207,6 +212,16 @@ WEAPON = {
     # back to MELEE_RANGE like the blank default) - the only real
     # difference from leaving `Weapon` blank is the +1 Damage.
     "2H Heavy Melee":    {"skill": "Melee",       "accuracy": 0, "damage_base": 5, "damage_stat": "Body",
+                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
+    # Unarmed (weapon_categories.csv WC009): Accuracy +2, Damage
+    # 2 + [Body or Cunning], Skill Brawl - for a Brawl-built PC (Hanforth)
+    # who doesn't actually invest in Melee, so the blank-Weapon default
+    # (Melee Skill Total) would badly understate them; "Body or Cunning"
+    # picked per-PC as whichever's actually higher (Hanforth's own
+    # Cunning) rather than hardcoded, same "pick the one that matches
+    # the build" call Light Thrown's own Acrobotics-vs-Melee choice
+    # already makes - see party.py's own handling.
+    "Unarmed":           {"skill": "Brawl",       "accuracy": 2, "damage_base": 2, "damage_stat": None,
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
 }
 

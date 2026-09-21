@@ -81,7 +81,12 @@ a file map.
   check framing). **`Weapon Uses`** (blank = unlimited, the default) is
   the separate idea of a PC whose own `Weapon` is itself an Encounter
   Technique with a limited number of known copies (Beornhard's 3x War
-  Magic) — see `party.py`'s own paragraph on both columns.
+  Magic). **`Heal Cards`**/**`Heal Bonus`** (blank = 1/0, matching the
+  original hardcoded numbers) let a Support PC's own Healing Magic (T105)
+  build read its real Level (Cost is "Discard [Level] cards") and any
+  flat healing-boost feature total (Vitality, say) from the CSV instead
+  of one universal amount — see `party.py`'s own paragraph on all four
+  columns.
 - **`party.py`** — loads `sample_pcs.csv`. `make_party(tier, good_luck=N)`
   pulls the Roster row and duplicates it x4; `get_pc(name)` pulls any
   row by name; `make_party_of(name)` duplicates one row x4; `make_party_

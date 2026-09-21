@@ -128,7 +128,7 @@ def _pc_dict(row, index, good_luck):
     stats = {s: row[s] for s in ("Agility", "Body", "Cunning", "Mind", "Essence")}
     skills = {k: v for k, v in row.items() if k not in
               ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
-               "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses")}
+               "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus")}
     parry = 8 + skill_total(stats, skills, "Melee")
     dodge = 8 + skill_total(stats, skills, "Acrobatics")
     bodily = 8 + skill_total(stats, skills, "Resilience")
@@ -170,7 +170,11 @@ def _pc_dict(row, index, good_luck):
     if weapon and weapon in T.WEAPON:
         w = T.WEAPON[weapon]
         atk_skill_total = skill_total(stats, skills, w["skill"]) + w["accuracy"]
-        damage = w["damage_base"] + int(stats[w["damage_stat"]])
+        # `damage_stat: None` (Unarmed) means "Body or Cunning" per
+        # weapon_categories.csv - pick whichever this PC's own build
+        # actually has higher, rather than hardcoding one.
+        damage_stat = w["damage_stat"] or max(("Body", "Cunning"), key=lambda s: int(stats[s]))
+        damage = w["damage_base"] + int(stats[damage_stat])
         dmg_type = w["dmg_type"]
         opp_def = w["opp_def"]
         if "range" in w:
@@ -184,6 +188,13 @@ def _pc_dict(row, index, good_luck):
         damage = 4 + int(stats["Body"])
         dmg_type = "Physical"
         opp_def = "Parry/Dodge"
+
+    # A plain display name for this PC's own base attack, for
+    # narrate_fight.py/replay_html.py's combat log ("who attacked with
+    # what") - the `Weapon` cell itself if set, "Melee" for the blank
+    # default (1H Heavy Melee). Purely cosmetic, like `name` - nothing
+    # reads this for game logic.
+    weapon_name = weapon if weapon else "Melee"
 
     # "Hand size" for a support PC's own heal-use cap (see tactics.
     # strategy_support_healer) - rulebook.md has no per-encounter
@@ -204,6 +215,21 @@ def _pc_dict(row, index, good_luck):
     # third strategy (a PC who always maximizes Gambling, say) just add
     # another registry entry instead of a new boolean CSV column.
     strategy = "support_healer" if (row.get("Support") or "").strip().upper() == "TRUE" else "attacker"
+
+    # `Heal Cards`/`Heal Bonus` (blank = 1/0, matching the original
+    # hardcoded Level-1-with-no-features numbers exactly) - a Support
+    # PC's own Healing Magic (T105) isn't one fixed spell: its Cost is
+    # "Discard [the Spell's Level] cards" (so a Level 2 build discards
+    # 2, not 1) and a Vitality feature ("healing increased by 1" per
+    # copy) stacks flat on top - both are real per-build facts, not a
+    # universal constant, so they're read from the CSV rather than
+    # hardcoded in tactics.strategy_support_healer. Computed for every
+    # PC, not just Support ones - harmless, same reasoning as
+    # card_uses_left above.
+    heal_cards_raw = (row.get("Heal Cards") or "").strip()
+    heal_cards = int(heal_cards_raw) if heal_cards_raw else 1
+    heal_bonus_raw = (row.get("Heal Bonus") or "").strip()
+    heal_bonus = int(heal_bonus_raw) if heal_bonus_raw else 0
 
     # `Card Techniques` (comma-separated tags from tactics.py's
     # try_second_wind/perfect_strike_bonus/bottomless_bottles_choice -
@@ -269,11 +295,12 @@ def _pc_dict(row, index, good_luck):
     pc = dict(name=f"{row['Name']}{index}",
               parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
               skill_total=atk_skill_total,  # the PC's own attacking Skill Total - see the Weapon block above
-              damage=damage, dmg_type=dmg_type, opp_def=opp_def,
+              damage=damage, dmg_type=dmg_type, opp_def=opp_def, weapon_name=weapon_name,
               physres=physres, elemres=elemres, armor=armor,
               health=health, max_health=health, speed=speed,
               crippled=0, vulnerable=0, bleeding=0, good_luck=good_luck,
               strategy=strategy, heal_uses_left=hand_size // 4,
+              heal_cards=heal_cards, heal_bonus=heal_bonus,
               card_techniques=card_techniques, card_uses_left=card_uses_left)
     if attack_range is not None:
         pc["attack_range"] = attack_range

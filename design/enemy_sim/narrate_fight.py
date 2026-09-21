@@ -77,11 +77,14 @@ def render_event(event):
     unit, action = event['unit'], event['action']
     if action == 'move':
         pos = tuple(round(c, 1) for c in event['pos'])
+        spaces = event.get('spaces')
+        moved = f" ({spaces}m)" if spaces is not None else ""
         if event.get('in_range'):
-            return f"  {unit} moves toward its target, ends at {pos} - now in range."
-        return f"  {unit} moves toward its target, ends at {pos} - still out of range, no attack."
+            return f"  {unit} moves{moved} toward its target, ends at {pos} - now in range."
+        return f"  {unit} moves{moved} toward its target, ends at {pos} - still out of range, no attack."
     if action == 'attack':
         verb = 'HITS' if event['hit'] else 'misses'
+        via = f" with {event['via']}" if event.get('via') else ""
         extra = ''
         if event['hit']:
             absorbed = event.get('protected_absorbed', 0)
@@ -89,9 +92,10 @@ def render_event(event):
             if absorbed:
                 breakdown += f" - {absorbed} Protected"
             extra = f" for {event['dmg']} damage ({breakdown} = {event['dmg']}) (-> {event['target_hp_after']} HP)"
-        return f"  {unit} attacks {event['target']}: rolls {event['roll']} vs {event['defense']} - {verb}{extra}"
+        return f"  {unit} attacks {event['target']}{via}: rolls {event['roll']} vs {event['defense']} - {verb}{extra}"
     if action == 'heal':
-        return f"  {unit} heals {event['target']} for {event['amount']} (-> {event['target_hp_after']} HP)"
+        via = f" with {event['via']}" if event.get('via') else ""
+        return f"  {unit} heals {event['target']}{via} for {event['amount']} (-> {event['target_hp_after']} HP)"
     return f"  {unit} {action} {event}"
 
 

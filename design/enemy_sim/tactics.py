@@ -209,18 +209,24 @@ def strategy_support_healer(pc, party, log):
     (standing in for Wounded, since this sim has no Shallow/Deep Health
     split) - "if necessary, ESPECIALLY if wounded" (the designer's own
     framing) becomes the whole rule once uses are this scarce. Each use
-    approximates one casting of T105 Healing Magic at Level 1 - its own
-    techniques.csv row costs 1 AP (T.HEALING_MAGIC_AP_COST), not the
-    standard 2, leaving 3 AP for this PC to still move and attack the
-    same turn - "use its full action pool," per the designer, applies
-    to a healer too, not just straight attackers. Heals 1 Shallow
-    Health, +1 more since the discarded card is assumed to always be a
-    Heart (cards.chosen_matches - the player is choosing from their
-    whole hand, not flipping blind, and only spending a quarter of it
-    this way). No attack roll - Healing Magic isn't opposed - and the
-    target is assumed reachable (an "adjacent ally" per its own Target
-    text) without a real range check, since the party's 2x2 formation
-    keeps everyone clustered together anyway. Returns 0 (spent nothing,
+    approximates one casting of T105 Healing Magic - its own
+    techniques.csv row costs 1 AP (T.HEALING_MAGIC_AP_COST) regardless
+    of the Spell's own Level, leaving 3 AP for this PC to still move and
+    attack the same turn - "use its full action pool," per the
+    designer, applies to a healer too, not just straight attackers.
+    Heals 1 Shallow Health, + `pc['heal_cards']` more (T105's own Cost
+    is "Discard [Level] cards," so a Level 2 Healing Magic discards 2 -
+    each assumed a Heart, same guaranteed-favorable-discard
+    simplification every other Card Technique makes, via
+    cards.chosen_matches), + `pc['heal_bonus']` flat (any Vitality-style
+    healing-boost feature's own point total, summed once in party.py
+    rather than re-parsed here). Both default to 1/0 (party.py's own
+    Weapon/Heal paragraph) - a Level-1-with-no-features build like the
+    original Beornhard's still heals exactly 1 + 1 + 0 = 2, unchanged.
+    No attack roll - Healing Magic isn't opposed - and the target is
+    assumed reachable (an "adjacent ally" per its own Target text)
+    without a real range check, since the party's 2x2 formation keeps
+    everyone clustered together anyway. Returns 0 (spent nothing,
     proceed to a normal turn) if there's no use left or nobody's
     wounded enough to spend one on."""
     if pc.get('heal_uses_left', 0) <= 0:
@@ -229,13 +235,14 @@ def strategy_support_healer(pc, party, log):
     if not wounded:
         return 0
     target = min(wounded, key=lambda p: p['health'])
-    heal = 1 + (1 if cards.chosen_matches('Hearts') else 0)
+    hearts = sum(1 for _ in range(pc.get('heal_cards', 1)) if cards.chosen_matches('Hearts'))
+    heal = 1 + hearts + pc.get('heal_bonus', 0)
     before = target['health']
     target['health'] = min(target['max_health'], target['health'] + heal)
     pc['heal_uses_left'] -= 1
     if log:
         log(unit=pc['name'], action='heal', target=target['name'],
-            amount=target['health'] - before, target_hp_after=target['health'])
+            amount=target['health'] - before, target_hp_after=target['health'], via='Healing Magic')
     return T.HEALING_MAGIC_AP_COST
 
 
@@ -292,7 +299,7 @@ def try_second_wind(pc, log=None):
     heal = min(2, pc['max_health'] - pc['health'])
     pc['health'] += heal
     if log:
-        log(unit=pc['name'], action='heal', target=pc['name'], amount=heal, target_hp_after=pc['health'])
+        log(unit=pc['name'], action='heal', target=pc['name'], amount=heal, target_hp_after=pc['health'], via='Second Wind')
     return True
 
 
@@ -342,5 +349,5 @@ def bottomless_bottles_choice(pc):
         return None
     pc['card_uses_left'] -= 1
     if 0 < pc['health'] <= pc['max_health'] / 2:
-        return {'kind': 'heal', 'amount': pc['healing_potion_amount']}
-    return {'kind': 'attack', **pc['bottled_fire_profile']}
+        return {'kind': 'heal', 'amount': pc['healing_potion_amount'], 'via': 'Healing Potion'}
+    return {'kind': 'attack', 'via': 'Bottled Fire', **pc['bottled_fire_profile']}

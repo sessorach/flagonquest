@@ -13,7 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-09-20 — Good Luck wired in, item pricing spot-checked, PCs and enemies moved to CSVs with a wider archetype set, movement added to the sim, then an Action Point/Armor overhaul
+### 2026-09-21 — More player-drafted PCs, a Heavy Bow fix, and a more readable combat log
+
+Fixed Heavy Bow's Might Requirement (was 6, now 4 - Light Bow already had none). Added two more player-drafted characters to the simulator (Sable and Hanforth, a dedicated healer), and made the combat log actually name what's happening - which weapon or technique produced each attack/heal, and how far a unit moved - instead of just numbers.
+- Swapped in Sable, Deadeye's real build and corrected the simulator's own Light Bow Range to match the actual craftable item (19m, not the abstract category's 15m). Her other two Techniques (Hand of Chaos's suit-pool bonus, One Eye Behind You's initiative reordering) would need real suit-pool and turn-order systems this simulator doesn't have at all - flagged as not modeled rather than faked.
+- Added Hanforth, a dedicated Theurgy healer, and generalized the simulator's healer logic to read a build's actual Healing Magic Level and Vitality bonus from the CSV instead of one hardcoded number - his own heal comes out to 5 Health a cast, not the old flat 2.
+- Every attack and heal in the combat log now says what did it (a weapon name, or "Second Wind"/"Bottled Fire"/etc.), and every move shows how far the unit actually went - much easier to spot-check a replay against the real rules.
 
 Added Good Luck to the fight simulator and used the enemy model to spot-check several Ring items' existing prices, then moved both PC and enemy stat blocks into CSV tables and built out a much wider set of reference builds for future use. Also gave the simulator an optional 2D-movement mode to test how Speed and range actually interact, and closed the day by fixing two rules gaps - PCs had no Armor at all, and everyone only ever got one attack a turn - that had been making every fight swingier than the actual rules allow.
 - Good Luck's simulated swing confirmed a real effect but isn't directly comparable to the calculated per-flip value; Pillar Ring and Ring of Comets checked out at their existing price, Flamebinder's Promise turned out more Resist-sensitive than assumed, and Mendicant's Cord's "guess which Defense to protect" has no real risk yet. Logged both open findings in `balance_weights_notes.md`.
