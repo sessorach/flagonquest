@@ -10,7 +10,8 @@ import tunables as T
 
 
 def build_enemy(name, level, slots, role, primary_def, secondary_def, action, armor="Light",
-                 ability_dmg_bonus=0, ability_parry_delta=0, abilities=()):
+                 ability_dmg_bonus=0, ability_parry_delta=0, ability_acc_bonus=0, ability_def_bonus=0,
+                 abilities=()):
     acc_base = T.ACCURACY[level]
     dmg_resist = T.DMG_RESIST[level]
     health = math.ceil(T.HEALTH_BASE[level] * T.SLOT_MULTIPLIER[slots])
@@ -22,7 +23,7 @@ def build_enemy(name, level, slots, role, primary_def, secondary_def, action, ar
 
     role_mod = T.ROLE_MODS[role]
     act = T.ACTIONS[action]
-    accuracy = acc_base + role_mod.get("accuracy", 0) + act.get("accuracy", 0)
+    accuracy = acc_base + role_mod.get("accuracy", 0) + act.get("accuracy", 0) + ability_acc_bonus
     attack_damage = dmg_resist + act["damage"] + role_mod.get("damage", 0) + ability_dmg_bonus
     dmg_type = act["dmg_type"]
     opp_def = act["opp_def"]
@@ -36,10 +37,15 @@ def build_enemy(name, level, slots, role, primary_def, secondary_def, action, ar
         if cat == secondary_def: return 1
         return 0
 
-    parry = base_def + tier_bonus("Parry/Dodge") + role_mod.get("parry", 0) + act.get("parry", 0) + ability_parry_delta
-    dodge = base_def + tier_bonus("Parry/Dodge") + role_mod.get("dodge", 0) + T.ARMOR[armor]["dodge"]
-    bodily = base_def + tier_bonus("Bodily") + role_mod.get("bodily", 0)
-    mental = base_def + tier_bonus("Mental") + role_mod.get("mental", 0)
+    # ability_def_bonus lands on all four defenses alike (a whole-body
+    # toughness retune), distinct from ability_parry_delta, which was
+    # already narrower - Parry only, for abilities like Powerful Weapon
+    # that specifically cost a weapon-attack's own defense, not a
+    # blanket "easier to hit" retune.
+    parry = base_def + tier_bonus("Parry/Dodge") + role_mod.get("parry", 0) + act.get("parry", 0) + ability_parry_delta + ability_def_bonus
+    dodge = base_def + tier_bonus("Parry/Dodge") + role_mod.get("dodge", 0) + T.ARMOR[armor]["dodge"] + ability_def_bonus
+    bodily = base_def + tier_bonus("Bodily") + role_mod.get("bodily", 0) + ability_def_bonus
+    mental = base_def + tier_bonus("Mental") + role_mod.get("mental", 0) + ability_def_bonus
 
     resist = dmg_resist + role_mod.get("resist", 0)
     physres = resist + T.ARMOR[armor]["physres"]

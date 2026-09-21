@@ -156,13 +156,19 @@ before making changes — this README stays to usage and a file map.
   Warden — drafted with deliberately varied Fighting Styles rather than
   defaulting every enemy to Flurry, each row's own Notes explains its
   particular combo and the retuning pass that gave them their
-  `DamageBonus`). **`DamageBonus`** (blank = 0) maps straight to
-  `enemy_builder.build_enemy`'s `ability_dmg_bonus` param — a flat
-  attack-damage retune that does *not* also inflate the enemy's own
-  Resist, unlike bumping `tunables.DMG_RESIST` (which feeds both off one
-  shared Level-keyed number and turned out to be a much sharper, harder
-  to control lever during the Mixed-Style retune - see those rows' own
-  Notes for the numbers).
+  `DamageBonus`/`AccuracyBonus`/`DefenseBonus`). **`DamageBonus`/
+  `AccuracyBonus`/`DefenseBonus`** (blank = 0) map straight to
+  `enemy_builder.build_enemy`'s `ability_dmg_bonus`/`ability_acc_bonus`/
+  `ability_def_bonus` params — flat retunes to attack damage, to-hit
+  Accuracy, and all four defenses (Parry/Dodge/Bodily/Mental together)
+  respectively, none of which also inflate the enemy's own Resist,
+  unlike bumping `tunables.DMG_RESIST`/`ACCURACY` directly (which feed
+  multiple derived stats off one shared Level-keyed number and turned
+  out to be much sharper, harder to control levers during the
+  Mixed-Style retune). Of the three, `DefenseBonus` is the one to reach
+  for when a win rate and an "HP% remaining on a win" both need to move
+  *together* toward a target rather than trading off against each other
+  — see those 5 rows' own Notes for the numbers and why.
 - **`sample_enemies.py`** — loads the CSV above via `enemy_builder.py`.
   `make_enemy(level)` pulls the single Roster row for that Level;
   `get_enemy(name)` pulls any row by name; `all_enemies()` returns every

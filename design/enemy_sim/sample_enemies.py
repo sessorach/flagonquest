@@ -34,17 +34,24 @@ These are simulator fixtures, not a finished in-game roster - expect an
 "Example Enemies" design doc to supersede the Roster rows once the
 PC/enemy baselines in tunables.py are locked down further.
 
-**`DamageBonus`** (blank = 0) maps straight to enemy_builder.build_enemy's
-own `ability_dmg_bonus` param - a flat retune to this row's own attack
-damage that does NOT also inflate its Resist (unlike bumping
-tunables.DMG_RESIST directly, which feeds both attack_damage and resist
-off the same Level-keyed number and turned out to be a much sharper,
-less controllable lever during the Level 1 "mixed Fighting Style"
-retune - see the 5 Mixed-Style archetypes' own Notes). Kept distinct
-from the real `Abilities` catalog (Powerful Weapon, etc.) since those
-carry their own in-fiction identity and tradeoffs (Powerful Weapon
-costs Accuracy/Parry); this is a plain numeric retune knob, not a named
-ability a GM would narrate.
+**`DamageBonus`/`AccuracyBonus`/`DefenseBonus`** (blank = 0) map straight
+to enemy_builder.build_enemy's own `ability_dmg_bonus`/`ability_acc_
+bonus`/`ability_def_bonus` params - flat retune knobs for this row's own
+attack damage, to-hit Accuracy, and all four defenses (Parry/Dodge/
+Bodily/Mental together) respectively, none of which also inflate this
+row's own Resist (unlike bumping tunables.DMG_RESIST or ACCURACY
+directly, which feed multiple derived stats off the same Level-keyed
+number and turned out to be much sharper, less controllable levers
+during the Level 1 "mixed Fighting Style" retune - see the 5 Mixed-
+Style archetypes' own Notes). Of the three, `DefenseBonus` turned out to
+be the cleanest lever for moving win rate and "HP% remaining on a win"
+*together* rather than pulling them apart - it changes how fast the
+party can kill the enemy, not how hard the enemy hits back, so unlike
+Damage/Accuracy it doesn't force the same tradeoff between "wins more"
+and "wins by more." Kept distinct from the real `Abilities` catalog
+(Powerful Weapon, etc.) since those carry their own in-fiction identity
+and tradeoffs (Powerful Weapon costs Accuracy/Parry); these are plain
+numeric retune knobs, not a named ability a GM would narrate.
 """
 import csv
 import os
@@ -69,6 +76,8 @@ def _build_from_row(row):
         row["Action"],
         row["Armor"],
         ability_dmg_bonus=int(row["DamageBonus"]) if row.get("DamageBonus", "").strip() else 0,
+        ability_acc_bonus=int(row["AccuracyBonus"]) if row.get("AccuracyBonus", "").strip() else 0,
+        ability_def_bonus=int(row["DefenseBonus"]) if row.get("DefenseBonus", "").strip() else 0,
         abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
     )
     e["battle_tactic"] = row["BattleTactic"]

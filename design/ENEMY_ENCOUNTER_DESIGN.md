@@ -708,6 +708,17 @@ from any future run, check the raw party/enemies/draw counts
 (`simulate()`'s 4th return value) before assuming it means "this build
 loses" rather than "this build is just slow to resolve."
 
+**This table is now known stale** (found while retuning Level 1's
+Mixed-Style roster, 2026-09-21): several mechanical additions landed in
+`combat_sim.py` after this grid was generated (Card Techniques, the
+real Armor/AP economy, real initiative order), and nobody re-ran
+`run_grid.py` afterward to check the diagonal still held. It doesn't -
+most on-level cells now read 95-100%, not ~50%, when actually measured.
+Only Level 1 has been re-tuned against this since (see `sample_
+enemies.csv`'s Mixed-Style rows and `tunables.HEALTH_BASE[1]`) - Levels
+2-5 still reflect the stale numbers in this table and need the same
+treatment before trusting them again.
+
 ## Superseded sources in the same workbook — historical only
 
 Three more tabs in the source workbook explore the same problems from
