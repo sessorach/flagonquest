@@ -84,21 +84,55 @@ def target_straggler(unit, targets):
     return min(targets, key=isolation)
 
 
+def target_focus_wounded(unit, targets, allies):
+    """The base party strategy (the designer's own priority order, "in
+    order: attack twice if possible, focus fire on the most wounded
+    enemy, attack an enemy closest to the entire party so it can be
+    focused") - attacking twice needs no targeting logic at all (every
+    PC is already uncapped, see attack_cap's own comment: no Fighting
+    Style means "however many 2-AP attacks the turn's AP allows," which
+    is exactly 2 whenever nothing else ate the AP first), so this
+    function is priorities 2 and 3. Primary: whoever's already hurt
+    worst (same read as target_lowest_health/Assassin). Tiebreak (most
+    often turn 1, when every enemy's still at full Health): whichever
+    enemy the whole party is collectively closest to - `party_reach`
+    sums every living ally's own distance to a candidate, so a target
+    the party's already clustered near beats one that's closer to this
+    one PC alone but far from the rest, a rough facsimile of "let's all
+    go for that one" without any real multi-turn coordination. Falls
+    back to Health alone (list order breaks any remaining tie) when
+    there's no `pos` to measure with (movement=False)."""
+    if 'pos' not in unit:
+        return min(targets, key=lambda t: t['health'])
+
+    def party_reach(t):
+        return sum(movement.distance(a['pos'], t['pos']) for a in allies if 'pos' in a)
+    return min(targets, key=lambda t: (t['health'], party_reach(t)))
+
+
 TARGETING = {
     'Assassin': target_lowest_health,
     'Straggler Hunter': target_straggler,
 }
 
 
-def select_target(unit, targets, movement_on):
+def select_target(unit, targets, movement_on, allies=None):
     """Dispatches on unit.get('battle_tactic') (sample_enemies.csv's own
     BattleTactic column for enemies, sample_pcs.csv's Battle Tactic
     column for the rare PC that wants one, e.g. Hanforth's 'Straggler
-    Hunter') - a unit with none set (every PC but Hanforth so far) falls
-    through to the movement-aware default (closest/first)."""
+    Hunter') - a unit with none set falls through to `allies`'s own
+    default (target_focus_wounded, the base party strategy - see its
+    own docstring) when `allies` is given (currently only _take_pc_turn
+    passes one; enemies keep the older closest/first fallback, since
+    the designer's ask was specifically about the party's own
+    strategy), otherwise the plain movement-aware default (closest/
+    first, used for enemies and any other caller without an `allies`
+    list)."""
     fn = TARGETING.get(unit.get('battle_tactic'))
     if fn:
         return fn(unit, targets)
+    if allies is not None:
+        return target_focus_wounded(unit, targets, allies)
     return (target_closest if movement_on else target_first)(unit, targets)
 
 

@@ -509,7 +509,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
         tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
         targets = [e for e in enemies if e['health'] > 0]
         if targets:
-            target = tactics.select_target(pc, targets, movement_on)
+            target = tactics.select_target(pc, targets, movement_on, allies=[p for p in pcs if p['health'] > 0])
             in_range = True
             if movement_on:
                 start_pos = pc['pos']
@@ -534,14 +534,15 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = (
                         substitute['skill_total'], substitute['damage'], substitute['dmg_type'], substitute['opp_def'])
                 defense = enemy_defense_for_pc_attack(pc, target)
-                # rulebook.md: "Regardless of the attack's result, a
-                # target who applied their Parry or Dodge Defense
-                # against it is Harried once" - a PC's own weapon
-                # attack is always opposed by Parry or Dodge (see
-                # enemy_defense_for_pc_attack), so this always applies.
-                target['harried'] = target.get('harried', 0) + 1
                 resist = enemy_resist_for_pc_attack(pc, target)
                 # Grenades can't be Gambled on (glossary.md's [Grenade] rule).
+                # pc_gamble_count reads the target's current Defense itself
+                # (via its own enemy_defense_for_pc_attack call) - computed
+                # here, before this attack's own Harried grant below, so a
+                # target already Harried from an earlier attack this round
+                # correctly makes gambling look more attractive (lower
+                # Defense to clear), but this attack's own upcoming stack
+                # doesn't get counted a turn early.
                 gambles = 0 if substitute else pc_gamble_count(pc, target)
                 crippled = pc.get('crippled', 0)
                 bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge'))
@@ -553,6 +554,15 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log):
                 if pc.get('weapon_uses_left') is not None and not substitute:
                     pc['weapon_uses_left'] -= 1
                 hit = roll >= defense
+                # rulebook.md: "Regardless of the attack's result, a
+                # target who applied their Parry or Dodge Defense
+                # against it is Harried once" - a PC's own weapon attack
+                # is always opposed by Parry or Dodge (see
+                # enemy_defense_for_pc_attack), so this always applies.
+                # Granted after this attack's own roll/gamble decision
+                # (both above) so it's ready for the *next* attack against
+                # this target, not counted against itself.
+                target['harried'] = target.get('harried', 0) + 1
                 dmg = 0
                 raw_dmg = 0
                 protected_absorbed = 0

@@ -121,7 +121,20 @@ before making changes — this README stays to usage and a file map.
   "Straggler Hunter") is the first PC-side `TARGETING` entry — goes
   after whichever enemy has the fewest others near it, for a PC who'd
   rather finish off an isolated target than wade into the main clump
-  (Hanforth). Each is a plain `{name: function}` registry keyed off a
+  (Hanforth). **`target_focus_wounded`** is the base party strategy
+  (the designer's own priority order) for every other PC — whoever's
+  hurt worst, tiebroken by which enemy the whole party is collectively
+  closest to (`party_reach`, summed distance from every living ally),
+  so the party converges on one target from turn 1 instead of each PC
+  chasing whatever's nearest to itself alone. `select_target` takes an
+  optional `allies` list now — `_take_pc_turn` passes one (the living
+  party), `_take_enemy_turn` doesn't, so enemy targeting is untouched.
+  "Attack twice if possible" needed no new code — every PC was already
+  uncapped. Only visible under `movement=True`: `target_first` (the old
+  static-mode default) already focus-fires by list order, so the
+  static-mode calibration numbers elsewhere in this doc don't move: win
+  97.9% vs 92.1%, downed-rate 46.9% vs 63.7%, tested against the real
+  party under movement. Each is a plain `{name: function}` registry keyed off a
   CSV column value — add a new tactic/strategy/style by writing one
   function and registering it, not by adding another `if` branch to
   `combat_sim.py`'s `run_fight`. See its own module docstring before
@@ -241,7 +254,14 @@ before making changes — this README stays to usage and a file map.
   from ~36% win/~7.6 rounds to ~91%/~5.8 once it's on, and every trace/
   replay now shows a target's current Harried count next to each attack
   (`narrate_fight.py`/`replay_html.py`, `target_harried_after` in the
-  trace).
+  trace). `_take_pc_turn`'s own grant is ordered *after* `pc_gamble_count`
+  reads the target's Defense for this same attack - so a PC's gambling
+  decision reflects the target's Harried count from *earlier* attacks
+  this round, not a stack this attack is about to add on top of itself
+  (that ordering was backwards at first - caught and fixed while
+  checking the designer's own question about whether gambling already
+  accounted for a target getting easier to hit as the round wears on;
+  it does, now correctly).
 - **`movement.py`** — geometry helpers (`distance`, `move_toward`,
   `move_away`) for `combat_sim.py`'s optional `movement=True` mode: a
   bounded `tunables.ARENA_SIZE`-square arena of whole spaces — the real
