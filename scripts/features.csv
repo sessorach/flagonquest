@@ -79,3 +79,4 @@ F077,T120,War Magic,Furrow (Shape),Advanced,3,,"The spell attack instead targets
 F078,T120,War Magic,Funnel (Shape),Advanced,3,,The spell attack instead targets all creatures within a 2-meter-long cone. You may only apply one Shape feature to the Spell.,
 F079,T120,War Magic,Nova (Shape),Advanced,3,,The spell attack instead targets all adjacent creatures. You may only apply one Shape feature to the Spell.,
 F080,T120,War Magic,Channel (Shape),Advanced,3,,"Each time the spell attack hits, on your next turn you may spend the AP used to cast the Spell to make a spell attack with all the same features against one of the targets. You may only apply one Shape feature to the Spell.",
+F081,T072,Battle Maneuver,Bare-Handed,Basic,0,,"The attack must be made with an Unarmed weapon. When you learn this Technique, you may choose 2 additional points worth of features. You may only apply one copy of this feature.",
