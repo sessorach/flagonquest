@@ -16,8 +16,8 @@ F014,T072,Battle Maneuver,Elemental,Basic,2,,"When you choose this feature, choo
 F015,T072,Battle Maneuver,Viper's Sting,Basic,3,,The Technique takes 1 less AP to use. You may only apply one copy of this feature.,
 F016,T072,Battle Maneuver,Calculated,Basic,3,,You have Good Luck on the attack.,
 F017,T072,Battle Maneuver,Ascended Blade,Advanced,2,,You may have the attack deal its damage as Brilliant damage.,"Composure, Meditation, or Theurgy 3"
-F018,T072,Battle Maneuver,Whirlwind,Advanced,6,,"If your chosen weapon is a close-range weapon, the attack may target an additional target.",
-F019,T072,Battle Maneuver,Piercing Shot,Advanced,6,,"If your chosen weapon is a ranged weapon, the attack may target an additional target as long as all targets are in a line from you.",
+F018,T072,Battle Maneuver,Whirlwind,Advanced,5,,"If your chosen weapon is a close-range weapon, the attack may target an additional target.",
+F019,T072,Battle Maneuver,Ricochet Shot,Advanced,5,,"If your chosen weapon is a ranged weapon, the attack may target an additional enemy adjacent to the first.",
 F020,T072,Battle Maneuver,Flurry,Advanced,6,,"You make an extra weapon attack against each target, which benefits from all features.",
 F021,T057,Social Maneuver,Brawn over Banter,Basic,1,,"(Style) Use Might for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",Might 2
 F022,T057,Social Maneuver,Unpleasant Insinuation,Basic,1,,"(Style) Use Streetwise for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",Streetwise 2

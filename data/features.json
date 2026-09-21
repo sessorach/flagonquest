@@ -192,7 +192,7 @@
     "technique_name": "Battle Maneuver",
     "feature_name": "Whirlwind",
     "tier": "Advanced",
-    "point_cost": 6,
+    "point_cost": 5,
     "description": null,
     "effects": "If your chosen weapon is a close-range weapon, the attack may target an additional target.",
     "prereq": null
@@ -201,11 +201,11 @@
     "id": "F019",
     "technique_id": "T072",
     "technique_name": "Battle Maneuver",
-    "feature_name": "Piercing Shot",
+    "feature_name": "Ricochet Shot",
     "tier": "Advanced",
-    "point_cost": 6,
+    "point_cost": 5,
     "description": null,
-    "effects": "If your chosen weapon is a ranged weapon, the attack may target an additional target as long as all targets are in a line from you.",
+    "effects": "If your chosen weapon is a ranged weapon, the attack may target an additional enemy adjacent to the first.",
     "prereq": null
   },
   {

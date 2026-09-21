@@ -523,10 +523,12 @@ def _shift_in_order(order, unit, places):
 def _find_extra_target(pc, primary, enemies, movement_on, mode):
     """Finds a second living, distinct-from-`primary` enemy for a
     Whirlwind (`mode='melee'` - any other target within the PC's own
-    melee reach) or Piercing Shot (`mode='line'` - another target
-    roughly colinear with the PC->primary line, beyond primary) check -
-    see the Advanced Cost-6 trio's own balance_weights_notes.md pass for
-    why these need real position data rather than a flat rate. Without
+    melee reach) or Ricochet Shot (`mode='adjacent'` - another target
+    adjacent to the primary target itself, not to the PC - see the
+    Advanced Cost-6 trio's own balance_weights_notes.md pass for why
+    these need real position data rather than a flat rate, and why
+    Ricochet Shot's condition was reworked from its original
+    line-of-fire version, which almost never fired in practice). Without
     `movement_on` there's no position data to check against, so this
     falls back to "any other living enemy" (the same simplification the
     rest of the static-mode model already makes - everything's "in
@@ -536,26 +538,15 @@ def _find_extra_target(pc, primary, enemies, movement_on, mode):
         return None
     if not movement_on:
         return others[0]
-    px, py = pc['pos']
     if mode == 'melee':
         reach = effective_range(pc)
         for e in others:
             if _distance(pc['pos'], e['pos']) <= reach:
                 return e
         return None
-    if mode == 'line':
-        tx, ty = primary['pos']
-        dx, dy = tx - px, ty - py
-        line_len = _distance(pc['pos'], primary['pos'])
-        if line_len == 0:
-            return None
+    if mode == 'adjacent':
         for e in others:
-            ex, ey = e['pos']
-            cross = abs(dx * (ey - py) - dy * (ex - px))
-            # Beyond the primary target along the same ray, not behind
-            # the PC or between the PC and the primary target.
-            along = (dx * (ex - px) + dy * (ey - py)) / line_len
-            if cross <= 1.5 and along > line_len:
+            if _distance(primary['pos'], e['pos']) <= T.MELEE_RANGE:
                 return e
         return None
     return None
@@ -712,7 +703,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # persistent per-attack modifier for the whole fight): each
                 # field is consumed (set False) the first time it actually
                 # fires, so a PC gets exactly one bonus attack per fight,
-                # not one every single attack. Whirlwind/Piercing Shot only
+                # not one every single attack. Whirlwind/Ricochet Shot only
                 # consume their charge once a valid second target is
                 # actually found - equivalent to "wait for a real
                 # opportunity" rather than firing blind on the first swing;
@@ -742,11 +733,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     if extra:
                         damage_dealt += _bonus_attack(extra, 'Whirlwind')
                         pc['whirlwind'] = False
-                if pc.get('piercing_shot'):
-                    extra = _find_extra_target(pc, target, enemies, movement_on, 'line')
+                if pc.get('ricochet_shot'):
+                    extra = _find_extra_target(pc, target, enemies, movement_on, 'adjacent')
                     if extra:
-                        damage_dealt += _bonus_attack(extra, 'Piercing Shot')
-                        pc['piercing_shot'] = False
+                        damage_dealt += _bonus_attack(extra, 'Ricochet Shot')
+                        pc['ricochet_shot'] = False
                 if saved_profile:
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
                 if target['health'] <= 0:
