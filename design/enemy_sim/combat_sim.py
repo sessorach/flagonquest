@@ -706,16 +706,31 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # say "if the attack hits" in their own Effects text - the
                 # extra attack is its own independent roll, granted on the
                 # attempt, not gated on the primary attack landing.
+                #
+                # Modeled as a once-per-encounter charge (per the designer's
+                # correction - these are Encounter abilities, not a
+                # persistent per-attack modifier for the whole fight): each
+                # field is consumed (set False) the first time it actually
+                # fires, so a PC gets exactly one bonus attack per fight,
+                # not one every single attack. Whirlwind/Piercing Shot only
+                # consume their charge once a valid second target is
+                # actually found - equivalent to "wait for a real
+                # opportunity" rather than firing blind on the first swing;
+                # Flurry has no target condition, so it just fires on the
+                # PC's first attack of the fight.
                 if pc.get('flurry'):
                     damage_dealt += _bonus_attack(target, 'Flurry')
+                    pc['flurry'] = False
                 if pc.get('whirlwind'):
                     extra = _find_extra_target(pc, target, enemies, movement_on, 'melee')
                     if extra:
                         damage_dealt += _bonus_attack(extra, 'Whirlwind')
+                        pc['whirlwind'] = False
                 if pc.get('piercing_shot'):
                     extra = _find_extra_target(pc, target, enemies, movement_on, 'line')
                     if extra:
                         damage_dealt += _bonus_attack(extra, 'Piercing Shot')
+                        pc['piercing_shot'] = False
                 if saved_profile:
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
                 if target['health'] <= 0:
