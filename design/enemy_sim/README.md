@@ -358,18 +358,34 @@ of burning tokens on precision the question doesn't need:
 
 - **A few thousand trials, not tens of thousands.** Enough to see the
   shape (is it bigger/smaller/flat relative to the comparison point),
-  not to pin down the exact percentage. 2000-5000 trials/config is
+  not to pin down the exact percentage. 1500-4000 trials/config is
   usually plenty; only reach for more if the effect you're checking is
-  genuinely small and a first pass came back too noisy to read.
-- **Default matchup: the real starter party vs. the standard Level 1
-  Roster** (`--party Hilde,Browndog,Carrick,Sable`, `enemy_level=1`,
-  `n_enemies=4` - the same matchup the Roster's own Level 1 archetypes
-  are calibrated against, no `enemies=` override needed). Only reach
-  for a different Tier/Level when the question is actually about a
-  different Tier/Level, or when Level 1's own win rate has saturated
-  too close to the ceiling to show a clean delta for whatever's being
-  tested - note that explicitly if it happens, don't silently swap
-  matchups.
+  genuinely small and a first pass came back too noisy to read. When
+  movement mode's own extra cost (see below) forces a choice, trim
+  trials before dropping positioning, not the other way around.
+- **`movement=True` by default, not the static/no-position model.**
+  Checked head to head at the real starter party vs. Level 3 x3
+  (balance_weights_notes.md's Backfoot pass): static reads 57% win,
+  movement reads 18.6% - closing distance, kiting, and Speed all cost
+  the party a lot that the static model just doesn't charge for. That's
+  not a minor rounding difference, it's a different fight, so any check
+  run static-only risks measuring a mechanic's value in a combat model
+  that doesn't look like real play. Only skip positioning for a quick
+  sanity check (e.g. confirming a formula/annotation actually fires),
+  never for a check whose numbers are meant to inform an actual balance
+  decision.
+- **Starter party (Hilde/Browndog/Carrick/Sable) is the default party**,
+  but don't default to only the standard Level 1 Roster fight the way
+  earlier passes did - it's saturated near 100% even under movement (no
+  headroom for a delta to show), and the party's real starting Tier is
+  worth checking across more than one enemy composition anyway. Try a
+  small spread of Levels/enemy counts (a 1-enemy fight, a 2-3 enemy
+  mix, maybe a mixed-Level pair via `sample_enemies.build_encounter`)
+  and note which ones actually produced a readable signal - a check
+  that came back too noisy or too saturated at some Level is itself
+  worth recording (so the next person doesn't re-run the same dead
+  end), but don't spend trials chasing a matchup that isn't informative
+  just to have coverage everywhere.
 - **Save an illustrative replay when a check is worth reviewing later.**
   `replays/` (this folder) holds a handful of `narrate_fight.py --html`
   outputs from specific mechanic checks, gitignored-sized-permitting
