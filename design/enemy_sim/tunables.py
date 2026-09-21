@@ -17,7 +17,7 @@ are the piece most likely to move as the PC/enemy models get revisited.
 # ---- Enemy Level curve (Design sheet) ----
 ACCURACY = {1: 4, 2: 6, 3: 7, 4: 8, 5: 9}
 DMG_RESIST = {1: 1, 2: 2, 3: 3, 4: 4, 5: 4}
-HEALTH_BASE = {1: 8, 2: 8, 3: 10, 4: 11, 5: 13}
+HEALTH_BASE = {1: 7, 2: 8, 3: 10, 4: 11, 5: 13}
 ABILITY_RATE = {1: 2, 2: 3, 3: 4, 4: 5, 5: 8}
 
 # ---- Encounter Slots -> Health multiplier (non-linear, action-economy tax) ----
