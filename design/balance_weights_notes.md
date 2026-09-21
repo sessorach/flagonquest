@@ -588,6 +588,68 @@ most of its budget, with Harried as a secondary, flavorful lever rather
 than the primary one — not a flaw in the curve, just a hard limit on
 what a defense-penalty-only mechanic can be worth on its own.
 
+## Pricing a menu of stacking-debuff Features — assume reasonable concentration, not a uniform spread
+
+A distinct question from any single keyword's own curve above: several
+Techniques (Battle Maneuver `T072`, War Magic `T120`, Social Maneuver
+`T057`, and any future one shaped the same way) hand the player a pool
+of Feature points to freely divide across a menu of options, several of
+which stack the *same* keyword the harder you invest in them (Battle
+Maneuver's Hamstring grants Slowed X + suit, where X is however many
+points went in). Pricing that menu by checking "what's 1 point worth in
+isolation" understates it — per the designer, a player looking at this
+menu doesn't spread evenly across every option, they see an attack that
+can Slow someone and put a *real* number of points there, because
+that's the obvious, intuitive move, not a min-maxed one. **Price the
+menu assuming that — a player concentrating a reasonable few points
+into one synergistic option — not a uniform 1-point-per-feature spread,
+and not a maximally-optimized dump into whichever single option has the
+highest ceiling either.**
+
+Concretely, using the ×0.5 hit-discount from the fresh-attack model
+above plus each keyword's own `value(n)` curve (n = points spent + an
+assumed 0.25 expected suit bonus), realized Value per point spent looks
+like this at a few different concentration levels:
+
+| Feature (keyword) | 1 pt | 2 pt | 3 pt | 4 pt | 6 pt |
+|---|---|---|---|---|---|
+| Wing Clip (Crippled) | 1.12 | 1.41 | 1.75 | 2.06 | 2.38 |
+| Hamstring (Slowed) | 0.82 | 1.03 | 1.28 | 1.48 | 1.39 |
+| Battering (Bleeding) | 2.50 | 2.12 | 1.71 | 1.39 | 0.98 |
+| Distracting (Taunted) | 1.38 | 1.24 | 1.19 | 1.17 | 1.10 |
+| Harrying (Harried) | 0.62 | 0.56 | 0.54 | 0.53 | 0.50 |
+
+**These shapes aren't interchangeable, and "concentrate" doesn't mean
+the same thing for each one** — this is the real payoff of checking
+each keyword's own curve instead of applying one flat multiplier:
+- **Crippled/Slowed/Taunted compound** (continuously-active,
+  multi-turn-window keywords) — per-point value *rises* with
+  concentration, up to each one's own saturation point (Slowed peaks
+  around 4 points, right where its own hard cap sits; Crippled keeps
+  climbing all the way past 7). A player who wants to invest in one of
+  these is *rewarded* for going a few points deep rather than spreading
+  thin.
+- **Bleeding tapers the opposite way** — its own stacking cap (~12
+  total, geometric taper past 2 stacks) means concentration actively
+  *hurts* per-point efficiency. The intuitive move here is the
+  shallow one (1-2 points), not a deep dump.
+- **Harried stays flat and low regardless of concentration** — it has
+  no compounding shape to reward investment in the first place (a
+  previously-known limit, see its own section above), so no amount of
+  "reasonable concentration" rescues Harrying's own per-point rate.
+
+**Working target: ~1.0 realized Value per Feature point**, landing
+roughly in the middle of what a player reasonably investing 2-4 points
+into one compounding option (Crippled, Slowed, Taunted) actually
+realizes — not the isolated 1-point number, and not the fully-optimized
+ceiling either. Use this table (or the same method applied to whichever
+keyword is actually in question) as the working check for any Feature's
+own point cost, rather than assuming every Cost-1 Feature is
+interchangeable — Harrying's flat ~0.5-0.6 across the board and
+Battering's inverted taper are both real, keyword-driven deviations
+from the target, not review misses to force back to 1.0 by re-costing
+alone.
+
 ## Cover — priced as the cost of avoiding it, not the raw penalty
 
 Heavy Cover "gives Bad Luck twice on attacks against Dodge or Parry, as
