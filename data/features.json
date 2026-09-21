@@ -29,7 +29,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + 1 + [Hearts] stacks of [chosen Element] Ward.",
+    "effects": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + [Hearts] stacks of [chosen Element] Ward.",
     "prereq": "(Academics, Sorcery, or Theurgy) 2"
   },
   {

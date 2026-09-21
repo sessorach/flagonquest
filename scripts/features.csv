@@ -1,7 +1,7 @@
 ID,Technique ID,Technique,Feature Name,Tier,Point Cost,Description (Fluff),Effects,Additional Prereq
 F001,T072,Battle Maneuver,Lunging,Basic,1,,"Up to X times, you may Shift up to 2 meters in a single direction, each either before or after the attack. You can declare the use of this Technique before being in range, but cannot make the attack unless you end up in range at some point.",
 F002,T072,Battle Maneuver,Wind Slash,Basic,1,,For the attack the chosen weapon's range is increased by [twice X].,
-F003,T072,Battle Maneuver,Turn Elements,Basic,1,,"When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + 1 + [Hearts] stacks of [chosen Element] Ward.","(Academics, Sorcery, or Theurgy) 2"
+F003,T072,Battle Maneuver,Turn Elements,Basic,1,,"When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + [Hearts] stacks of [chosen Element] Ward.","(Academics, Sorcery, or Theurgy) 2"
 F004,T072,Battle Maneuver,Distracting,Basic,1,,"If the attack hits or is Parried, you Taunt the target X + [Hearts] times.",Presence 2
 F005,T072,Battle Maneuver,Battering,Basic,1,,"If the attack hits or is Parried, the target gains X stacks of Bleeding + [Clubs] stacks.",Might 2
 F006,T072,Battle Maneuver,Wing Clip,Basic,1,,"If the attack hits, the target is Crippled X + [Clubs] times.",
