@@ -24,6 +24,18 @@ turn end). It was left out of the original Ability-catalog pass
 base rule that applies to every attack, not something a build opts
 into.
 
+Interrupts (rulebook.md: "Some abilities let you act on other turns,
+and interrupt their actions with your own... when such an action is
+declared, but before any of its effects happen, you may use the
+Interrupt ability") are now modeled too, specifically for Magehunter
+(T075, synthetic test field `pc['magehunter']`) - see _take_pc_turn's
+own AP-reservation logic and _magehunter_interrupt/_take_enemy_turn
+for the actual off-turn preemptive attack. This is a genuine Interrupt,
+not another `_bonus_attack`-style synthetic flag layered onto a PC's
+own turn (Whirlwind/Flurry/Feint's pattern) - the PC's attack really
+does resolve on the ENEMY's turn, before that enemy's own Spell attack
+does, and can kill the caster first.
+
 ## Turn order (rulebook.md's real Reflex/initiative rule)
 
 Every unit - PC or enemy - rolls Reflex once at encounter start
@@ -626,8 +638,26 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         return dmg
 
     if pc['health'] > 0:
+        # Magehunter (T075, synthetic test field): reserved AP from a
+        # previous turn that went unused is lost at this turn's own AP
+        # refresh (rulebook.md: "...and again at the end of each of
+        # your turns, you lose any existing Action Points and gain 4
+        # Action Points in their place") - clear here, before this
+        # turn decides whether to reserve again.
+        pc['magehunter_ready'] = False
         ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
         tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
+        if pc.get('magehunter'):
+            # Magehunter's own Interrupt only costs 1 AP, but attacks
+            # are spent in indivisible T.ATTACK_AP_COST (2) chunks
+            # (rulebook.md) - holding back even 1 AP for a later
+            # Interrupt means giving up a whole attack this turn, the
+            # real opportunity cost (see balance_weights_notes.md's
+            # Magehunter pass). Reserved before movement is spent, since
+            # AP is fungible - a Magehunter PC really does have less to
+            # work with this turn, not just fewer attacks at the end.
+            ap = max(0, ap - T.ATTACK_AP_COST)
+            pc['magehunter_ready'] = True
         targets = [e for e in enemies if e['health'] > 0]
         if targets:
             target = tactics.select_target(pc, targets, movement_on, allies=[p for p in pcs if p['health'] > 0])
@@ -816,17 +846,81 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
     return attacks_made, damage_dealt
 
 
-def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log):
+def _magehunter_interrupt(e, pcs, movement_on, party_log):
+    """Magehunter (T075): "Make a weapon attack against the target [...]
+    a creature within your weapon's range declares a Spell, before it
+    is cast" - called from _take_enemy_turn right before an enemy's own
+    Melee Spell/Ranged Spell attack resolves, so a real Interrupt: the
+    PC's attack lands (and can kill/interrupt the caster) BEFORE the
+    enemy's own attack roll happens, not just some other bonus-damage
+    add-on after the fact. Any living PC with reserved Interrupt AP
+    (`pc['magehunter_ready']` - see _take_pc_turn's own reservation
+    logic) within their own weapon range of `e` gets this free attack;
+    consumes the reservation on use, not on hit - same "an Encounter/
+    Interrupt ability is expended by using it" rule as Feint.
+
+    Unlike _take_pc_turn's own `_bonus_attack` closure (Whirlwind/
+    Flurry/Ricochet Shot - a genuinely free extra swing layered on top
+    of an already-resolved primary attack, deliberately no Gambling),
+    Magehunter's Interrupt IS the PC's one real attack this cycle - the
+    whole reserved-AP attack that would otherwise have happened on
+    their own turn, just retimed - so it keeps Gambling
+    (pc_gamble_count), same as any normal attack. Returns the total
+    damage dealt, for run_fight's own party damage tally."""
+    total_dmg = 0
+    for pc in pcs:
+        if pc['health'] <= 0 or not pc.get('magehunter_ready'):
+            continue
+        if e['health'] <= 0:
+            break
+        reach = effective_range(pc)
+        if movement_on and _distance(pc['pos'], e['pos']) > reach:
+            continue
+        pc['magehunter_ready'] = False
+        defense = enemy_defense_for_pc_attack(pc, e)
+        resist = enemy_resist_for_pc_attack(pc, e)
+        gambles = pc_gamble_count(pc, e)
+        crippled = pc.get('crippled', 0)
+        bad_luck = tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge'))
+        luck_bonus = tactics.perfect_strike_bonus(pc)
+        card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
+        roll = pc['skill_total'] - crippled + card - 2 * gambles
+        hit = roll >= defense
+        e['harried'] = e.get('harried', 0) + 1
+        dmg = raw_dmg = protected_absorbed = 0
+        if hit:
+            raw_dmg = pc['damage'] + gambles + (1 if tactics.sift_bonus(pc) else 0)
+            dmg = max(0, raw_dmg - resist)
+            protected = e.get('protected', 0)
+            if protected > 0 and dmg > 0:
+                protected_absorbed = min(dmg, protected)
+                e['protected'] -= protected_absorbed
+                dmg -= protected_absorbed
+            e['health'] -= dmg
+            total_dmg += dmg
+        if party_log:
+            party_log(unit=pc['name'], action='attack', target=e['name'], roll=roll, defense=defense,
+                       hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
+                       target_hp_after=e['health'], target_harried_after=e.get('harried', 0),
+                       via=f"{pc['weapon_name']} (Magehunter)", turn_shift=None)
+    return total_dmg
+
+
+def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_log=None):
     """One enemy's full turn (see module docstring's "How a turn
-    works")."""
+    works"). Returns any damage a Magehunter Interrupt dealt to `e`
+    this turn (0 normally), for run_fight's own party damage tally -
+    everything else about a plain enemy turn stays a side-effect-only
+    call, same as before."""
     if e['health'] <= 0:
-        return
+        return 0
     abilities = e.get('abilities', [])
     if 'Durable' in abilities and e.get('protected', 0) < 4:
         e['protected'] = e.get('protected', 0) + 1
     living_pcs = [p for p in pcs if p['health'] > 0]
     if not living_pcs:
-        return
+        return 0
+    magehunter_dmg = 0
     fighting_style = e.get('fighting_style', 'Guarded')
     ap = T.AP_PER_TURN
     target = tactics.select_target(e, living_pcs, movement_on)
@@ -847,11 +941,23 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log):
         _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
              in_range=in_range, spaces=_distance(start_pos, e['pos']))
     if movement_on and not in_range:
-        return
+        return 0
 
     cap = tactics.attack_cap(e)
     attacks_made = 0
     while ap >= T.ATTACK_AP_COST and (cap is None or attacks_made < cap) and target is not None:
+        # Magehunter (T075): "a creature within your weapon's range
+        # declares a Spell, before it is cast" - checked right before
+        # this attack resolves, only for a Spell Action (tunables.
+        # ACTIONS' "Melee Spell"/"Ranged Spell") - see
+        # _magehunter_interrupt's own docstring. A kill here (e['health']
+        # <= 0) ends this enemy's turn immediately, same as any other
+        # kill mid-attack-sequence - a dead caster's own attack never
+        # goes off.
+        if e['action'] in ('Melee Spell', 'Ranged Spell'):
+            magehunter_dmg += _magehunter_interrupt(e, pcs, movement_on, party_log)
+            if e['health'] <= 0:
+                break
         roll = e['accuracy'] + (flip_best_of(2) if fighting_style == 'Aimed Shot' else flip())
         opp_def_val = pc_defense_for(target, e['opp_def'])
         # rulebook.md's Harried trigger (see enemy_defense_for_pc_attack's
@@ -892,6 +998,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log):
     # e['health'] is still whatever it was on entry if we got this far.
     if e.get('harried', 0) > 0:
         e['harried'] = 0
+    return magehunter_dmg
 
 
 def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0, movement=False, start_gap=None,
@@ -1025,7 +1132,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 pc_attacks += made
                 pc_damage_dealt += dealt
             else:
-                _take_enemy_turn(unit, enemies, pcs, rnd, movement, trace, enemy_log)
+                pc_damage_dealt += _take_enemy_turn(unit, enemies, pcs, rnd, movement, trace, enemy_log, party_log)
             winner = _winner()
             if winner:
                 _log(trace, round=rnd, type='result', winner=winner)

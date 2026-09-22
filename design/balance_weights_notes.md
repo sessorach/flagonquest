@@ -5380,3 +5380,104 @@ value lives in one narrow, specific moment - Backfoot/Stagger already
 showed composition-dependence is real, and this pass adds "diluted
 into noise by fight length" as a second, distinct way the aggregate
 metric can mislead.
+
+## Magehunter (T075) — a real Interrupt-window model, and it turns out to be a net loss as written
+
+T075 Magehunter (Level 1, "1 AP - Interrupt (a creature within your
+weapon's range declares a Spell, before it is cast)"): "Make a weapon
+attack against the target. You may use a Technique instead, as long
+as it has you make a weapon attack against the target and takes no
+more than 2 AP to use." combat_sim.py had no concept of Interrupts at
+all before this pass — every turn was processed atomically per-unit,
+so there was no way to let a PC act on an enemy's turn. This needed
+real interrupt-timing logic, not another `_bonus_attack`-style
+synthetic flag layered onto the PC's own turn (Whirlwind/Flurry/
+Feint's pattern).
+
+**The real AP cost, read straight off rulebook.md.** "When you flip
+Reflex to join an encounter, and again at the end of each of your
+turns, you lose any existing Action Points and gain 4 Action Points
+in their place" — so any AP available for an Interrupt has to be AP a
+PC deliberately didn't spend on their own turn, and it's gone again
+at their own next turn-end refresh if unused. Since attacks cost
+`T.ATTACK_AP_COST` (2) AP in one indivisible chunk, holding back even
+the Interrupt's own 1 AP cost means giving up a whole attack that
+turn — there's no way to bank "just 1 AP" and still get a normal
+turn's worth of offense. That's the technique's real price, not the
+"1 AP" printed on the card.
+
+**What got built** (`combat_sim.py`): `pc['magehunter']` (synthetic
+test field) makes `_take_pc_turn` reserve `T.ATTACK_AP_COST` before
+spending anything else that turn (movement included, since AP is
+fungible) and set `pc['magehunter_ready'] = True`; that reservation
+is cleared at the *start* of the PC's own next turn if it went
+unused (the real refresh-discards-leftover-AP rule), so it only ever
+covers the window from the end of one of the PC's turns to the start
+of their next. A new top-level `_magehunter_interrupt(e, pcs,
+movement_on, party_log)` is called from `_take_enemy_turn`, once per
+attack in the enemy's own attack loop, whenever `e['action']` is a
+Spell Action (`tunables.ACTIONS`' "Melee Spell"/"Ranged Spell") —
+before that attack rolls, every living PC with `magehunter_ready` and
+`e` within their own `effective_range` gets a full weapon attack
+against `e` (same roll math as a normal attack, Gambling included —
+this is the PC's one real attack for the cycle, just retimed, not a
+free bonus swing like Whirlwind/Flurry, so it keeps the same options
+a normal attack has). A kill here ends the enemy's turn immediately —
+confirmed directly: seeding a lone low-Health caster and scanning 500
+trials found 13 fights where the interrupt dropped the caster to 0
+Health with its own attack event never appearing in that round's
+trace at all — a genuine "hit the caster before their spell goes off"
+kill, not just bonus damage after the fact.
+
+**Pricing it turned up a real problem, not a rounding error.** Tested
+in three matchups (`movement=True`, Autoswing-`bonus_attack_control`
+calibration in the same matchup each time, same methodology as every
+other Technique this pass):
+
+| Matchup | Baseline win% | Magehunter win% | Δ | Autoswing control Δ | Value |
+|---|---|---|---|---|---|
+| Level 1 mixed roster (1 of 4 enemies casts) | 63.95 | 49.53 | -14.42 | +9.63 | -8.24 |
+| 4× Fen Warden (all Melee Spell, saturated ~95%) | 94.77 | 92.70 | -2.07 | +1.20 | -9.51 |
+| 5× Fen Warden (all Melee Spell, unsaturated ~59%) | 58.72 | 54.35 | -4.37 | +8.62 | -2.79 |
+
+Every matchup is negative, including the two built to give Magehunter
+its single best possible case — every enemy on the field is a valid
+Interrupt target, so there's no range/targeting mismatch to blame.
+Decomposed directly on the 5× Fen Warden matchup (3000 trials,
+`run_fight`'s own `pc_attacks`/`pc_damage_dealt` totals): the
+Magehunter PC's reservation costs the party **3.36 fewer attacks per
+fight** (47.12 → 43.76, over an average ~10-round fight) for only a
+small per-swing quality bump (1.202 → 1.245 damage/attack, from
+keeping Gambling on the interrupt swing) — **56.63 → 54.47 total
+damage/fight**, a net loss. The reservation is a real, paid-every-turn
+tax (give up your 2nd attack) against a payoff that only sometimes
+triggers (the enemy has to actually reach a Spell-declare moment on
+*its* turn while you're still alive, in range, and haven't already
+spent the reservation) — and even when it does trigger, "the same
+attack, just earlier" is close to a wash in raw EV against "the same
+attack, on your own turn" except for the denial value of an outright
+kill, which isn't common or large enough to close a ~7% attack-volume
+gap.
+
+**Verdict: Magehunter, modeled faithfully against the real AP
+economy, is underpowered — a Level 1 Technique that costs a real
+attack and returns less than one back, even in the best-case matchup
+this pass could construct.** This isn't an artifact of a modeling
+choice that could reasonably go the other way (unlike Feint's
+Gambling-AI-bug false negative) — the AP-reservation cost is directly
+off rulebook.md's own text, and the three-matchup spread plus the
+direct attacks/fight decomposition all agree. Two ways to fix it, not
+acted on yet pending the designer's call: (1) rewrite the trigger so
+it doesn't cost a full reserved attack — e.g. a genuinely free
+reaction once per encounter, closer to Whirlwind/Flurry's shape,
+which THE TABEL's own Autoswing anchor (5.5, unconditional) suggests
+has real room since Magehunter's trigger is strictly more
+conditional than an unconditional bonus attack; or (2) leave it as a
+deliberately below-curve, flavor-first pick (a real TTRPG design
+choice, not every Technique needs to be optimal) and just make sure
+that's a deliberate call, not an accidental one. Either way, this is
+the first Technique this project's balance pass has found that's a
+clear, multi-matchup-confirmed net loss rather than "roughly on
+budget" or "needs a moment-specific re-measure" — worth flagging to
+the designer directly rather than quietly leaving Cost/Effects
+unchanged the way Feint's "no change" verdict did.
