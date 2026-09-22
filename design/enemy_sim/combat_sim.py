@@ -28,12 +28,13 @@ Interrupts (rulebook.md: "Some abilities let you act on other turns,
 and interrupt their actions with your own... when such an action is
 declared, but before any of its effects happen, you may use the
 Interrupt ability") are now modeled too, specifically for Magehunter
-(T075, synthetic test field `pc['magehunter']`) - see _take_pc_turn's
-own AP-reservation logic and _magehunter_interrupt/_take_enemy_turn
-for the actual off-turn preemptive attack. This is a genuine Interrupt,
-not another `_bonus_attack`-style synthetic flag layered onto a PC's
-own turn (Whirlwind/Flurry/Feint's pattern) - the PC's attack really
-does resolve on the ENEMY's turn, before that enemy's own Spell attack
+(T075, synthetic test field `pc['magehunter']`, real persistent AP
+via `pc['ap_bank']`) - see _take_pc_turn's own end-of-turn AP-refresh
+step and _magehunter_interrupt/_take_enemy_turn for the actual
+off-turn preemptive attack. This is a genuine Interrupt, not another
+`_bonus_attack`-style synthetic flag layered onto a PC's own turn
+(Whirlwind/Flurry/Feint's pattern) - the PC's attack really does
+resolve on the ENEMY's turn, before that enemy's own Spell attack
 does, and can kill the caster first.
 
 ## Turn order (rulebook.md's real Reflex/initiative rule)
@@ -638,26 +639,26 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         return dmg
 
     if pc['health'] > 0:
-        # Magehunter (T075, synthetic test field): reserved AP from a
-        # previous turn that went unused is lost at this turn's own AP
-        # refresh (rulebook.md: "...and again at the end of each of
-        # your turns, you lose any existing Action Points and gain 4
-        # Action Points in their place") - clear here, before this
-        # turn decides whether to reserve again.
-        pc['magehunter_ready'] = False
-        ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
-        tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
         if pc.get('magehunter'):
-            # Magehunter's own Interrupt only costs 1 AP, but attacks
-            # are spent in indivisible T.ATTACK_AP_COST (2) chunks
-            # (rulebook.md) - holding back even 1 AP for a later
-            # Interrupt means giving up a whole attack this turn, the
-            # real opportunity cost (see balance_weights_notes.md's
-            # Magehunter pass). Reserved before movement is spent, since
-            # AP is fungible - a Magehunter PC really does have less to
-            # work with this turn, not just fewer attacks at the end.
-            ap = max(0, ap - T.ATTACK_AP_COST)
-            pc['magehunter_ready'] = True
+            # Magehunter (T075, synthetic test field, `pc['ap_bank']`):
+            # rulebook.md's refresh trigger is "when you flip Reflex to
+            # join an encounter, AND AGAIN AT THE END of each of your
+            # turns" - not at the start of a turn. So a PC's own-turn AP
+            # is whatever's left of the pool granted at their *last*
+            # turn-end (run_fight's own initial `ap_bank = T.AP_PER_TURN`
+            # models the Reflex-flip refresh for their very first turn),
+            # minus whatever Interrupts actually spent from that same
+            # pool since then (_magehunter_interrupt) - not a blanket
+            # "give up a whole attack every turn whether or not the
+            # trigger ever fires" cost. If no Interrupt fired, this pool
+            # is still the full T.AP_PER_TURN, so a Magehunter PC who
+            # never got a trigger loses nothing relative to a normal PC
+            # (see balance_weights_notes.md's re-check of this pass, per
+            # the designer's own correction).
+            ap = pc['ap_bank'] - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
+        else:
+            ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
+        tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
         targets = [e for e in enemies if e['health'] > 0]
         if targets:
             target = tactics.select_target(pc, targets, movement_on, allies=[p for p in pcs if p['health'] > 0])
@@ -843,6 +844,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
             pc['health'] -= 1
         if pc.get('harried', 0) > 0:
             pc['harried'] = 0
+        if pc.get('magehunter'):
+            # rulebook.md's refresh happens at the END of your own turn
+            # - a flat reset to T.AP_PER_TURN (4), discarding whatever
+            # was left, not an accumulation - this fresh pool is what's
+            # now available for Interrupts until the NEXT end-of-turn
+            # refresh (this same assignment, next time this PC's own
+            # turn comes around).
+            pc['ap_bank'] = T.AP_PER_TURN
     return attacks_made, damage_dealt
 
 
@@ -853,30 +862,37 @@ def _magehunter_interrupt(e, pcs, movement_on, party_log):
     Melee Spell/Ranged Spell attack resolves, so a real Interrupt: the
     PC's attack lands (and can kill/interrupt the caster) BEFORE the
     enemy's own attack roll happens, not just some other bonus-damage
-    add-on after the fact. Any living PC with reserved Interrupt AP
-    (`pc['magehunter_ready']` - see _take_pc_turn's own reservation
-    logic) within their own weapon range of `e` gets this free attack;
-    consumes the reservation on use, not on hit - same "an Encounter/
-    Interrupt ability is expended by using it" rule as Feint.
+    add-on after the fact. Any living PC with at least
+    T.MAGEHUNTER_AP_COST (1) AP left in `pc['ap_bank']` - the pool
+    granted at this PC's own last turn-end refresh (or the initial
+    Reflex-flip refresh, for their very first turn), NOT a per-turn
+    "reserved" flag - within their own weapon range of `e` gets this
+    attack, spending 1 AP from that pool on use, not on hit (same "an
+    Encounter/Interrupt ability is expended by using it" rule as
+    Feint). Unlike the once-per-encounter charge fields elsewhere in
+    this file, `ap_bank` can pay for more than one Interrupt in the
+    same window if enough AP is left (a real player facing several
+    casters in one round could choose to spend down further AP on
+    more Interrupts, at the cost of even less left for their own next
+    turn) - this only checks/spends AP, no separate per-use flag.
 
     Unlike _take_pc_turn's own `_bonus_attack` closure (Whirlwind/
     Flurry/Ricochet Shot - a genuinely free extra swing layered on top
     of an already-resolved primary attack, deliberately no Gambling),
-    Magehunter's Interrupt IS the PC's one real attack this cycle - the
-    whole reserved-AP attack that would otherwise have happened on
-    their own turn, just retimed - so it keeps Gambling
-    (pc_gamble_count), same as any normal attack. Returns the total
-    damage dealt, for run_fight's own party damage tally."""
+    Magehunter's Interrupt IS a full, independent weapon attack - so it
+    keeps Gambling (pc_gamble_count), same as any normal attack.
+    Returns the total damage dealt, for run_fight's own party damage
+    tally."""
     total_dmg = 0
     for pc in pcs:
-        if pc['health'] <= 0 or not pc.get('magehunter_ready'):
+        if pc['health'] <= 0 or pc.get('ap_bank', 0) < T.MAGEHUNTER_AP_COST:
             continue
         if e['health'] <= 0:
             break
         reach = effective_range(pc)
         if movement_on and _distance(pc['pos'], e['pos']) > reach:
             continue
-        pc['magehunter_ready'] = False
+        pc['ap_bank'] -= T.MAGEHUNTER_AP_COST
         defense = enemy_defense_for_pc_attack(pc, e)
         resist = enemy_resist_for_pc_attack(pc, e)
         gambles = pc_gamble_count(pc, e)
@@ -1077,6 +1093,14 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     if seed is not None:
         random.seed(seed)
     pcs = make_party(tier, good_luck=good_luck)
+    for p in pcs:
+        if p.get('magehunter'):
+            # rulebook.md: "When you flip Reflex to join an encounter...
+            # you lose any existing Action Points and gain 4 Action
+            # Points in their place" - the same refresh _take_pc_turn's
+            # own end-of-turn step re-applies from here on (see
+            # ap_bank's own comment there).
+            p['ap_bank'] = T.AP_PER_TURN
     if enemies is not None:
         enemies = [copy.deepcopy(e) for e in enemies]
     else:

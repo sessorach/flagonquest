@@ -85,6 +85,9 @@ ATTACK_AP_COST = 2
 # T105 Healing Magic's own techniques.csv row gives it 1 AP specifically
 # (not the standard 2 above) - see tactics.strategy_support_healer.
 HEALING_MAGIC_AP_COST = 1
+# T075 Magehunter's own techniques.csv row: "1 AP - Interrupt" - see
+# combat_sim._magehunter_interrupt.
+MAGEHUNTER_AP_COST = 1
 
 # ---- Role archetypes (Combat Role catalog, richer/authoritative version) ----
 ROLE_MODS = {
