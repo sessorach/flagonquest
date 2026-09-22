@@ -6319,3 +6319,122 @@ with an actual worked example (a specific PC's Brawl investment against
 a specific grappled enemy's Parry Defense) if it comes up as a played
 character's real Technique pick, rather than forcing a roster-wide
 number now.
+
+## Spellblade (T100) — priced against every keyword rate this project has already derived, and it's badly uneven, not "massively overpowered" as a blanket
+
+T100 Spellblade (Level 2, Martial, "2 AP", Cost "Expend the use of a
+Spell Encounter Technique; X is its Level", Prereqs "(Acrobatics,
+Archery, or Melee) 3, (Sorcery or Theurgy) 3"): "Choose one option then
+make a weapon attack. General options: range +[6×X] meters; Push
+[6×X]+[Spades] meters; target gains [3×X]+[Clubs] Bleeding; you gain
+[3×X]+1+[Hearts] Fire/Frost/Shadow Ward. Sorcery options: target Slowed
+[3×X]+[Spades]; Vulnerable [3×X]+[Diamonds]; Necrotic [3×X]+[Diamonds].
+Theurgy options: Shift [6×X]+[Clubs] meters; Protected [3×X]+1+[Spades];
+target Crippled [3×X]+[Clubs]." Ten options, pick one per use. Already
+flagged in this project's history as unpriced (`RULES_DESIGN.md`) and,
+for Ward specifically, "massively over-grants relative to the 5-stack
+realistic ceiling" (this file's own Ward derivation) - this pass checks
+all ten, not just Ward, against every stacking-keyword rate already
+Locked/Pencil'd in this file, by hand (no new `combat_sim.py` mechanic
+- ten branching options with a suit-dependent, X-scaling formula each
+is exactly the kind of thing quick exact arithmetic answers faster than
+a stochastic build would).
+
+**Cost, and why it matters more here than for any other Technique
+priced this session**: X isn't Spellblade's own Level (fixed at 2) -
+it's whatever Spell Encounter Technique you expend a charge of, so the
+real cost is the foregone value of that spell's own normal effect for
+this encounter. Priced at this project's own Technique-value anchor,
+3×Level - so burning a Level-X spell charge costs `3×X` in Value, same
+number driving each option's own stack count. The weapon attack itself
+is free background value (Spellblade's own 2 AP matches a normal
+attack's cost, same opportunity-cost-only framing as Boulder Toss/
+Plague Fist) - what actually needs pricing is: does the chosen option's
+own Value clear the `3×X` spell-charge cost it took to get it.
+
+**All ten options at X=2** (matching Spellblade's own Level - a
+representative mid-case, not the ceiling): hit-gated options ("target
+gains") discounted by this session's own running p(hit) baseline
+(Defense 13 vs. Skill Total 7, 61.5% - same convention used throughout
+the Martial cluster's other write-ups); self/attack-modifying options
+(Range, Ward, Shift, Protected) priced unconditional, no hit-chance
+discount, same split this project already draws elsewhere (Ward/Range's
+own established rates are both explicitly "hit chance already resolved,
+do not re-discount" for Ward, and Range prices the attack property
+itself, not its outcome). Stacking keywords use their own already-
+Locked/Pencil'd per-stack curve tables from earlier in this file
+(Bleeding/Crippled/Vulnerable/Slowed), the expected-value split between
+the suit landing or not (75%/25%, this project's own "0.25 expected
+suit bonus" convention) folded in the same way Plague Fist's own
+Necrotic/Vulnerable stacks were:
+
+| Option | Raw Value | Net after 3X=6 spell-charge cost |
+|---|---|---|
+| Crippled `3X+[Clubs]` (Theurgy) | 17.54 | **+11.54** |
+| Protected `3X+1+[Spades]` (Theurgy) | 17.40 | **+11.40** |
+| Necrotic `3X+[Diamonds]` (Sorcery, situational) | 11.54 | +5.54 |
+| Vulnerable `3X+[Diamonds]` (Sorcery) | 11.46 | +5.46 |
+| Slowed `3X+[Spades]` (Sorcery) | 10.24 | +4.24 |
+| Bleeding `3X+[Clubs]` (General) | 7.25 | +1.25 |
+| Push `6X+[Spades]` m (General) | 6.74 | +0.74 |
+| Shift `6X+[Clubs]` m (Theurgy, Speed single-instance proxy rate) | 6.74 | +0.74 |
+| Range `+6X` m (General) | 6.60 | +0.60 |
+| Ward `3X+1+[Hearts]` (General, capped ~5 stacks) | 2.00 | **-4.00** |
+
+**Badly uneven, not uniformly overpowered.** A rational player always
+picks whichever option the moment calls for, and several of those are
+enormous: Crippled and Protected both clear their spell-charge cost by
+nearly double (+11.4 to +11.5, close to two full `3×Level` Technique
+budgets from a single use), Necrotic/Vulnerable/Slowed comfortably
+positive (+4.2 to +5.5) - while Range/Push/Bleeding/Shift land close to
+break-even (a fair trade, not a giveaway), and **Ward is net negative**
+(-4.00) - the option this project had already flagged for wasting stacks
+past its own cap turns out, once the real spell-charge cost is netted
+against it, to be an outright trap pick, not just an inefficient one.
+Crippled's own near-exact landing at its formula's peak-efficiency point
+(6.25 expected stacks against a curve that peaks at 7) is worth a note,
+not a coincidence worth over-reading - just confirms `3×X` happens to
+sit right where Crippled's own curve is most generous, which won't hold
+for every keyword's differently-shaped cap the same way.
+
+**The trend gets worse with a higher-Level spell charge, not better**:
+checked Crippled and Protected at X=1 and X=3 too - `+3.46`/`+7.20` net
+at X=1 (a Level 1 spell, the minimum), climbing to `+15.81`/`+15.60` net
+at X=3. Nothing self-corrects at higher X; a character who's picked up
+a couple of higher-Level Spell Encounter Techniques just gets a bigger
+free technique out of Spellblade every time, not a proportionally worse
+trade.
+
+**Caveats on this pass, same spirit as everywhere else stacking
+keywords got hand-priced this session**: Protected's own realization
+rate (~80%, used here) is only established at the 1-4 stack grant size
+this file's own Protected derivation calibrated against - Spellblade's
+own Protected option grants 7+ stacks at X=2, well past that range, so
+80% is likely an overestimate (the same saturation logic that caps
+Bleeding/Crippled/Vulnerable/Slowed's own curves would plausibly apply
+here too, just not derived for Protected yet) - if anything this makes
+Protected's own +11.40 a *floor*, not a ceiling. Necrotic's own +5.54
+carries the same situational-realization caveat as Plague Fist's own
+Necrotic option (3/stack "when it resolves," and this project's tested
+roster essentially never lets that trigger fire) - likely closer to ~0
+in practice than the nominal number suggests. Shift uses Speed's own
+single-instance rate as an unconfirmed proxy (no dedicated Shift/
+Teleport rate exists in THE TABEL yet, same gap Blinkstep's own Shift
+use flagged earlier this session).
+
+**Verdict: needs a real trim, but a *targeted* one, not an across-the-
+board nerf.** Crippled and Protected are the two options actually
+driving the overshoot and should come down (either a lower coefficient
+than the shared `3×X`, or an explicit per-option cap matching each
+keyword's own realistic stacking ceiling the way Vulnerable/Slowed/
+Crippled/Bleeding already have one); Necrotic/Vulnerable/Slowed sit in
+a smaller, more defensible overshoot that a design pass could leave
+alone or trim lightly; Range/Push/Bleeding/Shift are already reading
+fair and don't need touching; Ward specifically needs *more* magnitude,
+not less - as written it's the one option nobody with the other nine
+available should ever pick, which isn't the "occasionally the right
+call" niche a flexible multi-option Technique's worst option should
+land in. No Cost/Effects change made this pass - flagging with numbers
+attached for the designer's own call on which options move, matching
+how Ward's own prior "massively over-grants" flag was left for a future
+pass rather than resolved on the spot.
