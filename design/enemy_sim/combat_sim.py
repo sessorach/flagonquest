@@ -666,11 +666,43 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
             target = tactics.select_target(pc, targets, movement_on, allies=[p for p in pcs if p['health'] > 0])
             in_range = True
             if movement_on:
-                start_pos = pc['pos']
+                # Blinkstep (T077, synthetic test field, 0 AP, once per
+                # encounter): "Shift up to [half your Acrobatics Skill
+                # Total] meters" - glossary.md's [Shift] (ordinary
+                # movement, just Interrupt-immune and ignores Difficult
+                # Terrain, neither of which this simulator models).
+                # Applied BEFORE spend_movement_ap, not as a rescue after
+                # it - the Technique's real value is covering ground for
+                # FREE so AP-funded movement needs less (or none), not
+                # "you'd have failed to close the gap otherwise" (rare
+                # here - spend_movement_ap already burns up to all 4 AP
+                # closing any reachable distance, so it usually succeeds
+                # regardless; what it can't do is leave AP left over for
+                # an attack this same turn, which is exactly what
+                # Blinkstep buys). Only spent when there's an actual gap
+                # to close (`not already in range`) - a player wouldn't
+                # burn a once-per-encounter charge for nothing - and
+                # consumed on use, not just on offer, same rule as every
+                # other once-per-encounter field in this file.
+                reach = effective_range(pc)
+                if pc.get('blinkstep') and _distance(pc['pos'], target['pos']) > reach:
+                    shift_dist = pc.get('acrobatics_skill_total', 0) // 2  # rulebook.md: round fractions down
+                    if shift_dist > 0:
+                        blink_start = pc['pos']
+                        pc['pos'] = movement.move_toward(pc['pos'], target['pos'], shift_dist, stop_at=reach)
+                        pc['blinkstep'] = False
+                        # Logged as its own event (not folded into the
+                        # AP-funded move below) so `spaces` on each event
+                        # reflects only that phase's own distance, not
+                        # both combined under one misleading label.
+                        _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                             in_range=_distance(pc['pos'], target['pos']) <= reach,
+                             spaces=_distance(blink_start, pc['pos']), via='Blinkstep')
+                ap_start = pc['pos']
                 ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
                 if moved:
                     _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
-                         in_range=in_range, spaces=_distance(start_pos, pc['pos']))
+                         in_range=in_range, spaces=_distance(ap_start, pc['pos']))
 
             while in_range and ap >= T.ATTACK_AP_COST and target is not None:
                 if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0:

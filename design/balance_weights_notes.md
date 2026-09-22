@@ -5698,3 +5698,78 @@ The open question from the base Parting Shot section still stands for
 whoever's *not* running Kite Hunter or facing a Bog-Skirmisher-style
 threat: against the actual default `MIXED_ROSTER` (still 0 Kiting
 archetypes), Parting Shot remains at its ~0 floor.
+
+## Blinkstep (T077) — free pre-attack movement, measured value below its own anchor, but the simulator can only see one of its uses
+
+T077 Blinkstep (Level 2, Martial + Encounter, 0 AP): "Shift up to [half
+your Acrobatics Skill Total] meters." glossary.md's `[Shift]`: ordinary
+movement, except nobody may take an Interrupt action against it and it
+ignores Difficult Terrain - neither of those two exceptions is
+modeled in this simulator (no enemy Interrupt exists to dodge, no
+terrain system exists at all), so what's measurable here is narrower
+than the Technique's real scope - flagged up front, not as an
+afterthought, since it matters for reading the number below.
+
+**A real field was missing to model this at all**: no PC dict exposed
+raw Acrobatics Skill Total anywhere - only `dodge` (`8 +` it, *after*
+Armor's own Dodge modifier folds in), which isn't the same number for
+anyone not in Unarmored/Light Armor. Hilde specifically wears Medium
+Armor (-1 Dodge) - reading Shift distance off `dodge - 8` would have
+quietly undercounted her own Acrobatics by 1 meter of Shift. Added
+`acrobatics_skill_total` to `party.py`'s own `_pc_dict`, captured
+before the Armor modifier applies, alongside the existing `dodge`/
+`parry`/etc. fields.
+
+**Built** (`combat_sim.py`, `pc['blinkstep']` synthetic test field,
+once-per-encounter charge): applied *before* `spend_movement_ap`, not
+as a rescue after it - `spend_movement_ap` already spends up to all 4
+AP closing any reachable gap on its own (so it usually succeeds
+regardless of Blinkstep), meaning the real value here isn't "you'd
+have failed to reach otherwise" but "you get there using less AP, or
+none at all, leaving more for an attack this same turn" - the
+Technique's own real value proposition. Only spent when there's an
+actual gap left to close (a player wouldn't burn a once-per-encounter
+charge for nothing), `// 2` per rulebook.md's own "round fractions
+down" rule, logged as its own trace event separate from any
+AP-funded movement that follows so `spaces` on each event reflects
+only that phase's own distance.
+
+**Tested on Hilde** (Acrobatics Skill Total 4 → Shift 2m; her real
+Prereq is Acrobatics 3, raw skill points, which her actual build
+doesn't meet - same "test the mechanic regardless of whether this
+PC's own canonical build qualifies" convention as Magehunter/Parting
+Shot's earlier passes), real drafted party, `movement=True`:
+
+| Matchup | Baseline win% | Blinkstep win% | Δ | Autoswing control Δ | Value |
+|---|---|---|---|---|---|
+| Default Lvl1 mix (saturated ~99%) | 99.23 | 99.52 | +0.28 | +0.17 | 9.35 (untrustworthy - saturated) |
+| 4-archetype + Hedge Knight + Marsh Archer (unsaturated ~49%) | 48.60 | 53.10 | +4.50 | +8.68 | 2.85 |
+| 4-archetype + Hedge Knight (~88%, noisier) | 87.58 | 90.12 | +2.53 | +3.43 | 4.06 |
+
+The clean ~49% matchup is the one to trust; the saturated one is
+noise (same "often-saturated Level 1×4" trap the README already
+flags), the ~88% one sits in between the other two and shouldn't be
+weighted equally against the clean reading. Decomposed on the clean
+matchup (3000 trials): total party attacks/fight barely moves
+(48.52 → 48.81) but total damage/fight rises more (63.61 → 65.98) -
+consistent with "occasionally buys a 2nd attack a turn earlier than
+it would've otherwise landed" rather than a large volume change.
+
+**Verdict: measured Value ≈ 2.85-4.06, below the `3 × Level` = 6
+anchor for a Level 2 Technique - but read this as a floor, not a
+final number.** Unlike Magehunter's two real bugs (a modeling error
+each time, fully explaining the wrong numbers), there's no known
+error here to fix - the mechanic does what it says, freeing AP for an
+earlier attack when there's a gap to close. What's missing is
+everything this simulator was never going to be able to measure:
+Shift's own Interrupt-immunity (dodging a Parting-Shot-style punish -
+no enemy in this catalog has one yet, so there's nothing to test
+against), ignoring Difficult Terrain (no terrain system exists at
+all), and every purely positional use (avoiding a flank, escaping a
+bad spot, repositioning while doing something else with your AP) that
+doesn't reduce to "closed the gap for an attack." Same category of
+gap ENEMY_ENCOUNTER_DESIGN.md's own Ability catalog already
+acknowledges for Sturdy/Shadow Jaunt/Retribution Aura - positional
+effects this project's model just can't fully price. No Cost/Effects
+change - the measured shortfall isn't confident enough to act on
+given how much of the Technique's real value this pass couldn't see.

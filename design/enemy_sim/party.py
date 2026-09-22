@@ -131,7 +131,14 @@ def _pc_dict(row, index, good_luck):
                "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus",
                "Heal Range", "Passives", "Battle Tactic")}
     parry = 8 + skill_total(stats, skills, "Melee")
-    dodge = 8 + skill_total(stats, skills, "Acrobatics")
+    # Raw Acrobatics Skill Total - captured before Armor's own Dodge
+    # modifier folds into `dodge` below, since Blinkstep (T077, "Shift
+    # up to [half your Acrobatics Skill Total] meters") needs the real
+    # Skill Total itself, not Dodge (which isn't the same number for
+    # anyone in anything but Unarmored/Light Armor - Medium/Heavy's own
+    # -1 would otherwise silently leak into a PC's Shift distance too).
+    acrobatics_skill_total = skill_total(stats, skills, "Acrobatics")
+    dodge = 8 + acrobatics_skill_total
     bodily = 8 + skill_total(stats, skills, "Resilience")
     mental = 8 + skill_total(stats, skills, "Composure")
     vigilant = 8 + skill_total(stats, skills, "Insight")
@@ -336,6 +343,7 @@ def _pc_dict(row, index, good_luck):
     pc = dict(name=f"{row['Name']}{index}",
               parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
               skill_total=atk_skill_total,  # the PC's own attacking Skill Total - see the Weapon block above
+              acrobatics_skill_total=acrobatics_skill_total,
               damage=damage, dmg_type=dmg_type, opp_def=opp_def, weapon_name=weapon_name,
               physres=physres, elemres=elemres, armor=armor,
               health=health, max_health=health, speed=speed, reflex=reflex,
