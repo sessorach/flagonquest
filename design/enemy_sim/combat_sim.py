@@ -742,6 +742,44 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # Technique is expended by using it (rulebook.md), a
                     # missed attack doesn't refund the attempt.
                     pc['feint'] = False
+                # Cloak and Dagger (T079, synthetic test field, "0 AP -
+                # Interrupt (you declare a weapon attack with a
+                # close-range weapon that isn't Heavy or two-handed)"):
+                # a separate Stealth attack against the target's own
+                # Vigilant Defense - if it hits, the target is "unaware"
+                # (rulebook.md's [Unaware]: "unable to apply their Parry
+                # or Dodge Defense against it"), modeled here as the main
+                # weapon attack below auto-hitting regardless of its own
+                # roll. Only the auto-hit half is modeled - Unaware's
+                # OTHER real effect ("ignores the target's Shallow Health
+                # and instead causes them to only lose Deep Health")
+                # can't be, since this simulator has no Shallow/Deep
+                # Health split at all (a single flat `health` pool
+                # everywhere - see the module docstring's own "not
+                # modeled" list), so the measured value below is a floor,
+                # not the Technique's full real power - flagged directly
+                # rather than silently priced as complete. "Good Luck if
+                # you discarded a Spade" uses the same guaranteed-
+                # favorable-discard simplification as Second Wind's own
+                # "assumed a Heart." Doesn't feed back into this same
+                # attack's own Gambling choice (`gambles`, computed
+                # below unaware of whether Cloak and Dagger will land) -
+                # a real player who already knows they'll auto-hit could
+                # rationally gamble deeper for free extra damage since
+                # there's no miss risk left to weigh against it; not
+                # modeled, another reason the measured value undercounts.
+                close_range_weapon = not pc.get('attack_range') and pc.get('weapon_name') not in ('Melee', '2H Heavy Melee')
+                cloak_dagger_hit = False
+                if (pc.get('cloak_and_dagger') and not substitute and close_range_weapon
+                        and pc.get('card_uses_left', 0) > 0):
+                    pc['card_uses_left'] -= 1
+                    stealth_card = resolve_card(1, False)  # guaranteed Good Luck, per the Spade assumption above
+                    stealth_roll = pc.get('stealth_skill_total', 0) - pc.get('crippled', 0) + stealth_card
+                    cloak_dagger_hit = stealth_roll >= target['vigilant']
+                    if party_log:
+                        party_log(unit=pc['name'], action='stealth_check', target=target['name'],
+                                   roll=stealth_roll, defense=target['vigilant'], hit=cloak_dagger_hit,
+                                   via='Cloak and Dagger')
                 defense = enemy_defense_for_pc_attack(pc, target)
                 resist = enemy_resist_for_pc_attack(pc, target)
                 # Grenades can't be Gambled on (glossary.md's [Grenade] rule).
@@ -762,7 +800,12 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 ap -= 1 if feint_active else T.ATTACK_AP_COST
                 if pc.get('weapon_uses_left') is not None and not substitute:
                     pc['weapon_uses_left'] -= 1
-                hit = roll >= defense
+                # Cloak and Dagger's own auto-hit (see its own comment
+                # above) overrides a miss, but never overrides Feint's
+                # separate Vigilant-targeting attack - the two are
+                # mutually exclusive in practice anyway (feint_active
+                # already means this isn't a normal weapon-attack roll).
+                hit = (roll >= defense) or (cloak_dagger_hit and not feint_active)
                 # rulebook.md: "Regardless of the attack's result, a
                 # target who applied their Parry or Dodge Defense
                 # against it is Harried once" - a PC's own weapon attack

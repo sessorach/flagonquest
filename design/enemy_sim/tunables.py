@@ -231,6 +231,18 @@ WEAPON = {
     # already makes - see party.py's own handling.
     "Unarmed":           {"skill": "Brawl",       "accuracy": 2, "damage_base": 2, "damage_stat": None,
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
+    # 1H Light Melee (weapon_categories.csv WC001): Accuracy +1, Damage
+    # 3 + [Body or Cunning], Skill Melee, no attack_range (falls back to
+    # MELEE_RANGE, same close-range shape as the blank default) - added
+    # specifically for Cloak and Dagger (T079, "a close-range weapon
+    # that isn't Heavy or two-handed"), since the blank default is 1H
+    # HEAVY Melee (WC002) and "2H Heavy Melee" above is both Heavy and
+    # two-handed - neither qualifies. WC001 and Unarmed (WC009) are the
+    # only two close-range, non-Heavy, non-two-handed options in the
+    # real weapon_categories.csv table; this is the "actual dagger" one
+    # the Technique's own name suggests, not just Hanforth's fists.
+    "1H Light Melee":    {"skill": "Melee",       "accuracy": 1, "damage_base": 3, "damage_stat": None,
+                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
 }
 
 # Bottled Fire (I030): 4 Gold - items.csv's real Cost, per the

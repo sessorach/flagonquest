@@ -139,6 +139,13 @@ def _pc_dict(row, index, good_luck):
     # -1 would otherwise silently leak into a PC's Shift distance too).
     acrobatics_skill_total = skill_total(stats, skills, "Acrobatics")
     dodge = 8 + acrobatics_skill_total
+    # Stealth Skill Total - no Defense formula reads Stealth at all (it
+    # isn't a Defense-governing Skill the way Melee/Acrobatics/
+    # Resilience/Composure/Insight are), so unlike acrobatics_skill_total
+    # above there's no existing "+8" field to derive it from - Cloak and
+    # Dagger (T079, "Make a Stealth attack against the Vigilant Defense")
+    # needs it exposed directly.
+    stealth_skill_total = skill_total(stats, skills, "Stealth")
     bodily = 8 + skill_total(stats, skills, "Resilience")
     mental = 8 + skill_total(stats, skills, "Composure")
     vigilant = 8 + skill_total(stats, skills, "Insight")
@@ -343,7 +350,7 @@ def _pc_dict(row, index, good_luck):
     pc = dict(name=f"{row['Name']}{index}",
               parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
               skill_total=atk_skill_total,  # the PC's own attacking Skill Total - see the Weapon block above
-              acrobatics_skill_total=acrobatics_skill_total,
+              acrobatics_skill_total=acrobatics_skill_total, stealth_skill_total=stealth_skill_total,
               damage=damage, dmg_type=dmg_type, opp_def=opp_def, weapon_name=weapon_name,
               physres=physres, elemres=elemres, armor=armor,
               health=health, max_health=health, speed=speed, reflex=reflex,
