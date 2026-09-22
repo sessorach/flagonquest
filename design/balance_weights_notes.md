@@ -5857,97 +5857,109 @@ if priced by aggregate win-rate delta alone - net out Card (2.7)
 against whatever the simulator measures, the same way this pass did,
 rather than trusting the raw delta.
 
-## Cloak and Dagger (T079) — auto-hit alone reads as overtuned, and the Technique's other half isn't even measured yet
+## Cloak and Dagger (T079) — corrected twice: a rules bug, then an arithmetic slip, before landing on a real, situational Technique
 
 T079 Cloak and Dagger (Level 3, Martial, "0 AP - Interrupt (you declare
 a weapon attack with a close-range weapon that isn't Heavy or
 two-handed)", Cost "Discard a card"): "Make a Stealth attack against
 the Vigilant Defense of a target of the weapon attack (Good Luck if
 you discarded a Spade). If it hits, that target is unaware of the
-attack." rulebook.md's own `[Unaware]` rule has TWO real effects, not
-one: the target "cannot apply their Parry or Dodge Defense" (modeled
-here as an auto-hit) AND "that attack ignores the target's Shallow
-Health and instead causes them to only lose Deep Health" (NOT modeled
-- this simulator has no Shallow/Deep Health split anywhere, a single
-flat `health` pool throughout). **Per the designer's own call**
-(asked directly, given modeling Deep Health properly would mean
-adding a real two-pool Health system across the whole simulator, not
-just this one Technique): model the auto-hit half now, explicitly
-flag the Deep-Health half as unmeasured rather than approximate it.
-Every number below is a floor on the Technique's real value, not a
-complete price.
+attack." rulebook.md's own `[Unaware]` rule has TWO real effects: the
+target "cannot apply their Parry or Dodge Defense" AND "that attack
+ignores the target's Shallow Health and instead causes them to only
+lose Deep Health." **Per the designer's own call**, only the first
+half is modeled here - the Deep-Health half would need a real
+two-pool Health system across the whole simulator, not just this one
+Technique, so it's explicitly flagged as unmeasured rather than
+approximated. Every number below is still a floor on the Technique's
+real value for that reason.
 
-**Built**: `stealth_skill_total` added to `party.py`'s PC dict (no
-Defense formula reads Stealth, unlike Acrobatics/Melee/Resilience/
-Composure/Insight, so nothing exposed it before). Added "1H Light
-Melee" to `tunables.WEAPON` (weapon_categories.csv WC001: Accuracy +1,
-Damage 3 + [Body or Cunning], Skill Melee) - the blank-Weapon default
-is 1H *Heavy* Melee (WC002) and the existing "2H Heavy Melee" entry is
-both Heavy and two-handed, so neither qualifies for this Technique's
-own weapon restriction; WC001 and Unarmed (already modeled) are the
-only two close-range, non-Heavy, non-two-handed options in the real
-weapon_categories.csv table - added the actual "dagger" option the
-Technique's own name points at, not just Hanforth's fists. In
-`combat_sim.py`'s main attack loop: `pc.get('cloak_and_dagger')`
-(synthetic test field) plus a qualifying weapon
-(`not pc.get('attack_range')` and not "Melee"/"2H Heavy Melee") plus
-an available `card_uses_left` charge (shared with Perfect Strike's
-same pool) triggers a separate Stealth roll against the target's
-Vigilant Defense, guaranteed Good Luck (same "assumed the favorable
-suit" convention as Second Wind's own Heart assumption, for "Good Luck
-if you discarded a Spade"); a successful roll makes the main weapon
-attack's own `hit` check auto-succeed regardless of its roll.
-Confirmed directly: scanning 2000 fights, successful Stealth checks
-actually flipped a would-be miss into a hit 12402/19243 times (≈64%)
-- real, load-bearing work, not redundant with an attack that would
-have landed anyway. Doesn't feed back into that same attack's own
-Gambling choice (computed unaware of the upcoming guaranteed hit) -
-another reason the measured value below is a floor, since a real
-player who already knows they'll auto-hit could rationally gamble
-deeper for free extra damage with no miss risk left to weigh against
+**First pass got the rule itself wrong.** "Cannot apply their Parry
+or Dodge Defense" was built as a full auto-hit - but rulebook.md's own
+base attack rule is explicit (line 484): "The target may choose not
+(or be unable) to apply any Defenses against an attack, in which case
+it is considered to be **8**." Not a guaranteed success - a real
+(usually much lower) Defense the attack still rolls against.
+
+**Second pass got the arithmetic wrong on top of that.** Comparing the
+simulator's own raw win-rate-delta reading (≈3.9 Value/charge) against
+Autoswing (5.5), the write-up "credited back" the Card cost (2.7) by
+*adding* it - `3.9 + 2.7 = 6.6 > 5.5, overpowered`. Backwards: the raw
+3.9 was already a gross figure (the simulator's `card_uses_left` is an
+isolated counter, nothing else gets worse from spending it, so no cost
+was ever subtracted), and the fair comparison nets the cost by
+*subtracting* it, giving ≈1.2 - below Autoswing, not above it. The
+designer's own request to just crunch the math directly, rather than
+trust another simulator read, is what surfaced the first error.
+
+**The actual hand math, using the same EV-maximizing-Gambling logic
+already established for `pc_gamble_count`:** the target's real
+Dodge/Parry Defense in the roster ranges 12-14; Unaware routes it to a
+flat 8 instead. For Hanforth (Skill Total 6, Damage 5, Stealth Skill
+Total 3, vs PhysRes 3) against the roster's real Vigilant Defense (12,
+uniform across all four base archetypes):
+
+- Stealth check odds: Good Luck (flip 2, take best) vs threshold 9 →
+  **q = 0.621**.
+- EV-maximizing attack, normal Defense: 12→1.385 (n=1), 13→1.154
+  (n=1), 14→0.923 (n=0).
+- EV-maximizing attack, Unaware (Defense 8): **2.462** (n=2) - fixed,
+  doesn't depend on the normal Defense.
+- Net Value per *attempt* = `q × (unaware_ev − normal_ev) × 4 −
+  2.7` (Card cost, THE TABEL's own established rate):
+
+| Target Defense | Expected net Value per attempt |
+|---|---|
+| 12 | **−0.02** (not worth attempting) |
+| 13 | **+0.55** |
+| 14 | **+1.12** |
+
+A situational Technique by design, not a flat bonus - worth roughly
+Perfect Strike's own tier (0.9/use) against the roster's toughest
+targets, and correctly worth nothing (or slightly negative) against
+anything easier. This is the number to trust, not a fresh simulator
+read - same reasoning as Perfect Strike's own write-up: the aggregate
+win-rate delta doesn't reliably reconstruct a value this conditional
+on which specific target a PC happens to face turn to turn.
+
+**Rebuilt to match, in three pieces** (`combat_sim.py`):
+1. `defense = 8 if cloak_dagger_hit else enemy_defense_for_pc_attack(...)`
+   - a real (if soft) roll, not an override to `hit = True`.
+2. `pc_gamble_count` gained a `defense_override` param, so Gambling
+   re-optimizes against the Defense-8 floor once Unaware lands - more
+   headroom before missing means a rational player gambles harder.
+   `_gamble_search` factors the shared EV search out of
+   `pc_gamble_count` so both it and the new check below (3) use one
+   search, not two that could drift apart.
+3. **The PC now only attempts Cloak and Dagger when it's actually
+   worth the card** - a new gate computes the exact expression above
+   (`q × (unaware_ev − normal_ev) × 4 − T.CARD_VALUE`, `T.CARD_VALUE`
+   the same established 2.7) before spending a charge, using
+   `_p_flip_at_least` (the same flip-2-take-best formula this
+   project's Good-Luck-stacking math already established) for `q`.
+   Without this the original (Defense-8-corrected but still greedy)
+   version burned charges on already-easy targets for negative
+   expected value - a real, separate bug from the auto-hit mistake,
+   not just a design nicety.
+
+**Directly validated against the hand math**: instrumented the gate's
+live decisions against Hanforth's real stats mid-fight - it accepts
+*exactly* Defense 13-14 and rejects Defense ≤12, matching the
+sensitivity table above to the number. The code now implements the
+same EV-maximizing logic worked out by hand, not an approximation of
 it.
 
-**Tested on Hanforth** (Unarmed, Stealth Skill Total 3, 4x-clone vs
-the default Level 1 mix - a fair ~66% baseline on its own, no need to
-escalate difficulty): stripping down `card_uses_left` to isolate a
-clean per-charge rate rather than trusting Hanforth's own unusually
-large hand (Cunning 3 + Mind 3 → 4 charges) at face value:
-
-| Charges | Win% | Δ | Autoswing control Δ (×4 PCs) | Value/PC |
-|---|---|---|---|---|
-| 0 (baseline) | 65.80-67.50 | - | - | - |
-| 1 | 75.87 | +8.37 | +11.73 | 3.92 |
-| 2 | 84.17 | +16.67 | +11.73 | 7.81 |
-| 4 (Hanforth's real hand) | 93.88 | +28.08 | +12.95 | 11.93 |
-
-**Value per charge lands consistently around ≈3.9** (1 charge:
-3.92; 2 charges: 7.81, i.e. 3.905/charge) - a clean, linear per-use
-rate, not an artifact of Hanforth's own large hand. Total per-fight
-value then just scales with however many charges a PC's own Cunning +
-Mind investment buys them (`hand_size // 3`, shared with any other
-Card Technique the same PC knows) - a self-scaling economy, not a
-flat once-per-encounter cap the way Magehunter/Parting Shot/Blinkstep
-are.
-
-**This number is already a problem, and it's a floor.** ≈3.9 Value
-for guaranteeing ONE attack's hit chance is higher than Autoswing's
-own Locked rate (5.5) for manufacturing an ENTIRE extra attack from
-nothing once the Card cost is credited back (`3.9 + 2.7 = 6.6` gross,
-before the discard) - intuitively backwards, since turning an
-already-existing attack's miss into a hit should be worth less than
-creating a whole new attack (to-hit AND full damage) out of nothing.
-It's also over 4x Perfect Strike's own hand-derived net rate (0.9/use)
-for a Technique one Level higher, not four times harder to qualify
-for. And this is the auto-hit alone - the unmeasured Deep-Health-bypass
-half (skipping the entire Shallow Health buffer, moving a hit target
-much closer to Downed than equivalent normal damage would) can only
-push the true value higher, never lower.
-
-**Verdict: Cloak and Dagger reads as overtuned even on the half of
-its effect this simulator can measure - worth flagging to the
-designer directly, not quietly leaving Cost/Effects unchanged.** No
-change made here (design calls on Techniques aren't this pass's to
-make unilaterally), but this joins Spellblade (flagged earlier in this
-project's history as "massively over-grants") as the second Technique
-this Martial-cluster pass has found clearly off its own budget - the
-first case running low, this one running high.
+**Verdict: Cloak and Dagger is not overpowered - the "auto-hit,
+overtuned" read was wrong twice over, first on the rule, then on the
+arithmetic.** Net Value per use lands at ≈0.55-1.12 against the
+roster's toughest targets (in line with Perfect Strike's own tier for
+a Technique one Level higher), and the Technique correctly isn't worth
+using at all against an easy target - exactly the shape a "cracks
+tough marks" Rogue tool should have, not a flat bonus. No Cost/Effects
+change. Standing lesson alongside Perfect Strike's own: for a Card
+Technique specifically, the aggregate win-rate delta is the wrong
+primary instrument (the simulator can't see the card's own opportunity
+cost, and here also can't cleanly reconstruct a value this
+target-dependent) - hand-derive from already-Locked/Pencil rates first,
+treat the simulator read as a rough cross-check, not the other way
+around.

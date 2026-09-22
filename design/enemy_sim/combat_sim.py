@@ -374,7 +374,7 @@ def pc_resist_for_enemy_attack(e, target):
     return target.get('physres', 0)
 
 
-def pc_gamble_count(pc, target):
+def pc_gamble_count(pc, target, defense_override=None):
     """How many times a 'clever' PC Gambles on this attack (rulebook.md's
     Gambling rule: each Gamble is -2 to the roll, but grants +1 Extra
     Success - and +1 damage - if the flip still hits). Not modeled at all
@@ -400,21 +400,54 @@ def pc_gamble_count(pc, target):
     up to where even a 13 can't hit) rather than trusting the closed
     form at every edge case, since a real Resist wall shifts which
     `n` pays off in a way the plain formula doesn't reflect on its own.
+
+    `defense_override`: bypasses `enemy_defense_for_pc_attack` with a
+    flat value instead - for Cloak and Dagger (T079), whose "unaware"
+    target reads as Defense 8 (rulebook.md: "The target may choose not
+    (or be unable) to apply any Defenses against an attack, in which
+    case it is considered to be 8"), not the target's real Parry/Dodge.
+    A player who already knows their attack faces this much softer
+    Defense would rationally re-optimize how hard to Gamble, same as
+    any other Defense-lowering effect already feeds into this search.
     """
     effective_skill = pc['skill_total'] - pc.get('crippled', 0)
-    defense = enemy_defense_for_pc_attack(pc, target)
+    defense = defense_override if defense_override is not None else enemy_defense_for_pc_attack(pc, target)
     resist = enemy_resist_for_pc_attack(pc, target)
     sift = 1 if tactics.sift_bonus(pc) else 0
+    best_n, _ = _gamble_search(effective_skill, defense, pc['damage'], resist, sift)
+    return best_n
+
+
+def _gamble_search(effective_skill, defense, damage, resist, sift):
+    """The EV-maximizing search itself, factored out of pc_gamble_count
+    so a caller that also needs the resulting EV (not just the best `n`)
+    - Cloak and Dagger's own "is this attempt even worth it" check below
+    - can reuse the identical search rather than a second, possibly
+    drifting copy. Returns (best_n, best_ev)."""
     max_possible = max(0, int((effective_skill + 13 - defense) // 2))
     best_n, best_ev = 0, 0.0
     for n in range(max_possible + 1):
         threshold = defense - effective_skill + 2 * n  # min card needed to hit
         p_hit = max(0.0, min(1.0, (14 - threshold) / 13))
-        net_dmg = max(0, pc['damage'] + n + sift - resist)
+        net_dmg = max(0, damage + n + sift - resist)
         ev = p_hit * net_dmg
         if ev > best_ev:
             best_n, best_ev = n, ev
-    return best_n
+    return best_n, best_ev
+
+
+def _p_flip_at_least(threshold, n_flips=1):
+    """P(the best of `n_flips` uniform 1-13 cards >= threshold) - the
+    same formula used throughout balance_weights_notes.md's own
+    Good-Luck-stacking derivations, now shared by the actual sim code
+    (Cloak and Dagger's own Stealth-check odds) instead of living only
+    in a hand-math script - one formula, not two that could drift."""
+    if threshold <= 1:
+        return 1.0
+    if threshold > 13:
+        return 0.0
+    p_single_fail = (threshold - 1) / 13
+    return 1 - p_single_fail ** n_flips
 
 
 def pc_defense_for(target, opp_def):
@@ -748,49 +781,80 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # a separate Stealth attack against the target's own
                 # Vigilant Defense - if it hits, the target is "unaware"
                 # (rulebook.md's [Unaware]: "unable to apply their Parry
-                # or Dodge Defense against it"), modeled here as the main
-                # weapon attack below auto-hitting regardless of its own
-                # roll. Only the auto-hit half is modeled - Unaware's
+                # or Dodge Defense against it"). This does NOT auto-hit -
+                # rulebook.md's own base attack rule (line 484) is explicit
+                # that a target unable to apply a Defense "is considered
+                # to be 8," a real (if usually much lower) number the
+                # attack still rolls against, not a guaranteed success.
+                # Modeled by overriding `defense` to a flat 8 below, which
+                # also correctly feeds into this same attack's own
+                # Gambling choice via pc_gamble_count's `defense_override`
+                # - a real player who already knows they're facing this
+                # much softer Defense would rationally gamble harder,
+                # since there's far more room before missing. Unaware's
                 # OTHER real effect ("ignores the target's Shallow Health
                 # and instead causes them to only lose Deep Health")
-                # can't be, since this simulator has no Shallow/Deep
-                # Health split at all (a single flat `health` pool
+                # still can't be modeled - this simulator has no Shallow/
+                # Deep Health split at all (a single flat `health` pool
                 # everywhere - see the module docstring's own "not
-                # modeled" list), so the measured value below is a floor,
-                # not the Technique's full real power - flagged directly
-                # rather than silently priced as complete. "Good Luck if
-                # you discarded a Spade" uses the same guaranteed-
+                # modeled" list) - so the measured value is still a
+                # floor, just a less understated one than the auto-hit
+                # version this was originally (wrongly) built as - see
+                # balance_weights_notes.md's own correction. "Good Luck
+                # if you discarded a Spade" uses the same guaranteed-
                 # favorable-discard simplification as Second Wind's own
-                # "assumed a Heart." Doesn't feed back into this same
-                # attack's own Gambling choice (`gambles`, computed
-                # below unaware of whether Cloak and Dagger will land) -
-                # a real player who already knows they'll auto-hit could
-                # rationally gamble deeper for free extra damage since
-                # there's no miss risk left to weigh against it; not
-                # modeled, another reason the measured value undercounts.
+                # "assumed a Heart."
                 close_range_weapon = not pc.get('attack_range') and pc.get('weapon_name') not in ('Melee', '2H Heavy Melee')
                 cloak_dagger_hit = False
-                if (pc.get('cloak_and_dagger') and not substitute and close_range_weapon
+                if (pc.get('cloak_and_dagger') and not substitute and not feint_active and close_range_weapon
                         and pc.get('card_uses_left', 0) > 0):
-                    pc['card_uses_left'] -= 1
-                    stealth_card = resolve_card(1, False)  # guaranteed Good Luck, per the Spade assumption above
-                    stealth_roll = pc.get('stealth_skill_total', 0) - pc.get('crippled', 0) + stealth_card
-                    cloak_dagger_hit = stealth_roll >= target['vigilant']
-                    if party_log:
-                        party_log(unit=pc['name'], action='stealth_check', target=target['name'],
-                                   roll=stealth_roll, defense=target['vigilant'], hit=cloak_dagger_hit,
-                                   via='Cloak and Dagger')
-                defense = enemy_defense_for_pc_attack(pc, target)
+                    # Worth attempting at all? A real player wouldn't
+                    # discard a card chasing a target that's already easy
+                    # to hit - against an already-Harried-softened target
+                    # (this attack's own real Defense, read BEFORE the
+                    # Stealth check, so this decision doesn't peek at its
+                    # own outcome), the EV-maximizing attack against the
+                    # real Defense can already be close to Defense-8's
+                    # own ceiling, leaving little for Cloak and Dagger to
+                    # add - not enough to be worth a guaranteed Card cost
+                    # (2.7, balance_weights_notes.md's own established
+                    # rate) against a chance (not certainty) of the
+                    # Stealth check itself succeeding. Computed the same
+                    # way pc_gamble_count already searches for its own
+                    # best `n`, reusing that search rather than a second
+                    # copy, and the same flip-2-take-best formula this
+                    # project's own Good-Luck-stacking math already uses.
+                    eff_skill = pc['skill_total'] - pc.get('crippled', 0)
+                    real_defense = enemy_defense_for_pc_attack(pc, target)
+                    resist_for_ev = enemy_resist_for_pc_attack(pc, target)
+                    sift_for_ev = 1 if tactics.sift_bonus(pc) else 0
+                    _, normal_ev = _gamble_search(eff_skill, real_defense, pc['damage'], resist_for_ev, sift_for_ev)
+                    _, unaware_ev = _gamble_search(eff_skill, 8, pc['damage'], resist_for_ev, sift_for_ev)
+                    stealth_threshold = target['vigilant'] - pc.get('stealth_skill_total', 0)
+                    q = _p_flip_at_least(stealth_threshold, n_flips=2)  # guaranteed Good Luck, per the Spade assumption below
+                    worth_it = q * (unaware_ev - normal_ev) * 4 - T.CARD_VALUE > 0
+                    if worth_it:
+                        pc['card_uses_left'] -= 1
+                        stealth_card = resolve_card(1, False)  # guaranteed Good Luck, per the Spade assumption above
+                        stealth_roll = pc.get('stealth_skill_total', 0) - pc.get('crippled', 0) + stealth_card
+                        cloak_dagger_hit = stealth_roll >= target['vigilant']
+                        if party_log:
+                            party_log(unit=pc['name'], action='stealth_check', target=target['name'],
+                                       roll=stealth_roll, defense=target['vigilant'], hit=cloak_dagger_hit,
+                                       via='Cloak and Dagger')
+                defense = 8 if cloak_dagger_hit else enemy_defense_for_pc_attack(pc, target)
                 resist = enemy_resist_for_pc_attack(pc, target)
                 # Grenades can't be Gambled on (glossary.md's [Grenade] rule).
                 # pc_gamble_count reads the target's current Defense itself
-                # (via its own enemy_defense_for_pc_attack call) - computed
-                # here, before this attack's own Harried grant below, so a
-                # target already Harried from an earlier attack this round
-                # correctly makes gambling look more attractive (lower
-                # Defense to clear), but this attack's own upcoming stack
-                # doesn't get counted a turn early.
-                gambles = 0 if (substitute or feint_active) else pc_gamble_count(pc, target)
+                # (via its own enemy_defense_for_pc_attack call, or the
+                # flat 8 override above when Cloak and Dagger landed) -
+                # computed here, before this attack's own Harried grant
+                # below, so a target already Harried from an earlier
+                # attack this round correctly makes gambling look more
+                # attractive (lower Defense to clear), but this attack's
+                # own upcoming stack doesn't get counted a turn early.
+                gambles = 0 if (substitute or feint_active) else pc_gamble_count(
+                    pc, target, defense_override=8 if cloak_dagger_hit else None)
                 crippled = pc.get('crippled', 0)
                 bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge'))
                 luck_bonus = tactics.perfect_strike_bonus(pc)
@@ -800,21 +864,19 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 ap -= 1 if feint_active else T.ATTACK_AP_COST
                 if pc.get('weapon_uses_left') is not None and not substitute:
                     pc['weapon_uses_left'] -= 1
-                # Cloak and Dagger's own auto-hit (see its own comment
-                # above) overrides a miss, but never overrides Feint's
-                # separate Vigilant-targeting attack - the two are
-                # mutually exclusive in practice anyway (feint_active
-                # already means this isn't a normal weapon-attack roll).
-                hit = (roll >= defense) or (cloak_dagger_hit and not feint_active)
+                hit = roll >= defense
                 # rulebook.md: "Regardless of the attack's result, a
                 # target who applied their Parry or Dodge Defense
                 # against it is Harried once" - a PC's own weapon attack
                 # is always opposed by Parry or Dodge (see
                 # enemy_defense_for_pc_attack), so this always applies -
-                # except a Feint, which targets Vigilant instead, so this
-                # generic grant doesn't fire (Feint's own explicit Harried
-                # effect below is separate from this rule).
-                if not feint_active:
+                # except a Feint, which targets Vigilant instead, or a
+                # landed Cloak and Dagger, whose target is UNABLE to apply
+                # Parry or Dodge at all (that's the whole point of
+                # Unaware) - so this generic grant doesn't fire for
+                # either (Feint's own explicit Harried effect below is
+                # separate from this rule).
+                if not feint_active and not cloak_dagger_hit:
                     target['harried'] = target.get('harried', 0) + 1
                 dmg = 0
                 raw_dmg = 0

@@ -252,6 +252,14 @@ WEAPON = {
 # this turns into Jackal's actual per-fight use count.
 BOTTLED_FIRE_GOLD_COST = 4
 
+# Card (drawn/hand) = 2.7, THE TABEL's own established rate
+# (balance_weights_notes.md) for a "discard a card" activation cost -
+# used by combat_sim's own EV check for whether a Card Technique
+# attempt (Cloak and Dagger, T079) is worth its cost before spending
+# it, not just a design-time price to check a Technique against after
+# the fact.
+CARD_VALUE = 2.7
+
 # ---- Movement mode: party formation and start distance ----
 # A 2x2 block, "for simplicity's sake" per the designer, rather than the
 # single-file line the enemies still use (_start_positions in
