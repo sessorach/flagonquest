@@ -5447,41 +5447,155 @@ calibration in the same matchup each time):
 
 The zero-caster control lands almost exactly on the predicted floor —
 +0.28 points, noise-level, confirming a PC with no valid Interrupt
-target loses nothing. The all-caster matchups (Magehunter's best
-case) are now clearly positive: **+3.84 Value in the clean,
-unsaturated 5× Fen Warden matchup**, landing right on the `3 × Level`
-Technique-value anchor for a Level 1 Technique (the saturated 4×
-matchup's +9.06 is noisier — ~95% baseline leaves little room to move
-and shouldn't be trusted to the same precision, same caveat as every
-other saturated-matchup reading this project has flagged). The
-default mixed-roster matchup (only 1 of 4 enemies a valid target) is
-still slightly negative (-1.37) — not from any AP-timing cost anymore,
-but from `select_target`'s plain closest/priority targeting not
-knowing to stay adjacent to the one Fen Warden specifically, so the
-reserved AP sometimes gets spent as an Interrupt against a target the
-PC wasn't otherwise fighting, trading away a next-turn attack against
-whatever *was* the better target — a real tactical-AI limitation, not
-a Technique-pricing problem; a player at the actual table would just
-choose not to lean on Magehunter when there's nothing worth
-interrupting nearby.
+target loses nothing.
 
-Decomposed on the 5× Fen Warden matchup (3000 trials,
-`run_fight`'s own `pc_attacks`/`pc_damage_dealt` totals) to see where
-the value actually comes from: total attacks/fight still drops
-(46.65 → 41.90) — the retiming cost is real *when an Interrupt
-actually fires* (spending from `ap_bank` does cost a later attack,
-exactly as the designer's own worked example says: "when their turn
-comes around, they have three AP remaining"), but damage/attack rises
-sharply (1.209 → 1.391, +15%) since those retimed attacks land with
-full Gambling against Fen Wardens already softened/Harried by the
-rest of the party — **56.39 → 58.30 total damage/fight**, a clear net
-gain despite fewer swings.
+**Second correction: Magehunter is also tagged `[Encounter]`.**
+techniques.csv's own `Tags` column reads "Martial, Encounter" for
+T075, not just "Martial" - missed in the table above, which let the
+Interrupt fire every time AP and a valid trigger lined up, all fight
+long. glossary.md's `[Encounter]` definition is explicit: "Encounter
+abilities are expended when you use them, and you regain their use
+when the encounter ends" - a real once-per-encounter charge, the same
+rule Whirlwind/Flurry/Ricochet Shot already follow elsewhere in this
+file. Fixed with a separate `pc['magehunter_charge_used']` flag,
+checked alongside (not instead of) `ap_bank` in `_magehunter_interrupt`
+- the charge gates whether the Interrupt can fire again at all, while
+`ap_bank` keeps tracking the real AP cost of the one use that already
+happened (that cost doesn't disappear just because the charge is
+spent - it still reduces whichever future turn it lands before).
 
-**Verdict: Magehunter is on-budget, not underpowered.** The first
-pass's "net loss in every matchup" finding was a real bug (AP
-reserved unconditionally every turn regardless of trigger), not a
-genuine property of the Technique — corrected, it lands close to its
-`3 × Level` anchor in a fair caster-heavy matchup, is a true no-cost
-floor with zero casters, and only reads slightly negative in the
-default 1-of-4 mix for a tactical-AI-targeting reason, not an
-economic one. No Cost/Effects change — leaving Magehunter as written.
+With a true single use per fight, the table above's win-rate deltas
+mostly collapse back toward noise (5× Fen Warden retested: +5.77 pts
+→ -1.45 pts; mixed roster: -1.58 pts → -2.40 pts) - one attack, once,
+somewhere across a ~10-round, ~47-attack fight is exactly the
+"diluted into noise by fight length" trap this project's own Feint
+pass already named (see that section above). Switched to the same fix
+that pass used: measure the moment directly instead of trusting the
+aggregate delta. Instrumented the 5× Fen Warden matchup (4000 trials,
+trace-scanning for the one `(Magehunter)`-tagged attack event per
+fight) to isolate exactly what one use is worth:
+
+- **Fires in 100% of fights** in this all-caster matchup (a valid
+  trigger always comes up somewhere in ~10 rounds).
+- **41.7% hit rate**, averaging **1.371 net damage per use**
+  (unconditional on hit - EV-maximizing Gambling, per
+  `pc_gamble_count`, trades hit rate for bigger hits when it pays,
+  same as any other attack).
+- **Kills the target outright in 5.8% of uses** - a real elimination
+  (the rest of that enemy's turns for the whole fight, not just one
+  prevented attack), not fully priced into the raw damage average
+  above.
+- The matchup's own overall party-attack average (`dpa`) is **1.206**
+  net damage/attack - so the raw swap alone (1.371 vs. 1.206) is worth
+  about **+0.165 net damage per use**, converted at the guaranteed
+  rate (4/point, since both numbers are already probability-weighted
+  averages, not a fresh hit-chance to discount again) - **≈0.66
+  Value** from the swap alone, before crediting the 5.8% kill-rate's
+  own elimination value, which isn't cleanly separable with this
+  measurement but is real and additive.
+
+**Verdict: Magehunter is a small, close-to-fair, genuinely single-use
+Interrupt - not the strong positive the multi-use bug produced, and
+not the strong negative the AP-pre-reservation bug produced either.**
+The raw swap-only estimate (≈0.66 Value) plus a non-trivial 5.8%
+outright-kill chance land it in reasonable range for a cheap (1 AP)
+Level 1 Technique, even if it's more modest than the flat `3 × Level`
+anchor a repeatable ability would be judged against - a true
+once-per-encounter Interrupt is a smaller thing than the multi-use
+version this pass spent two iterations accidentally modeling. No
+Cost/Effects change - leaving Magehunter as written. Three real bugs
+in one Technique's simulator model (AP-refresh timing, then the
+missed Encounter tag) is worth remembering as its own lesson: an
+Interrupt/Encounter-tagged ability needs BOTH the real AP-economy
+check (ap_bank) AND the Encounter once-per-fight charge check before
+its numbers mean anything - checking Tags against glossary.md's own
+keyword definitions is as load-bearing as getting the AP math right.
+
+## Parting Shot (T076) — same Interrupt shape as Magehunter, built with both lessons already applied
+
+T076 Parting Shot (Level 1, Martial + Encounter, "1 AP - Interrupt (a
+creature within range of a close-range weapon you are wielding would
+move or be Pushed outside your range)"): "Make an attack with a
+close-range weapon against the target." Same trigger family as
+Magehunter (T075) - an off-turn preemptive weapon attack - just keyed
+on a creature trying to disengage instead of casting a Spell, so it
+reuses the same `ap_bank`/once-per-encounter-charge infrastructure
+Magehunter's two corrections above already built, rather than
+repeating either mistake.
+
+**What "move outside your range" means in this simulator.** Only one
+Battle Tactic ever moves a unit AWAY from its target at all -
+`tactics.move_kite` ("Kiting" - always exactly 1 retreat action per
+turn, no check for whether retreating is actually necessary). Every
+other tactic only closes distance. So Parting Shot's real trigger here
+is narrow and specific: a Kiting enemy that's currently within a
+close-range-weapon PC's reach, right before its own retreat step
+executes. "Being Pushed" isn't modeled at all (no Push ability exists
+in this simulator - see tunables.ABILITY_COST's own comment on
+positional effects left out).
+
+**Built** (`combat_sim.py`): `pc['parting_shot']` (synthetic test
+field) shares `pc['ap_bank']` with Magehunter via a new
+`_has_interrupt_tech(pc)` helper (both draw from the same real AP
+pool, since rulebook.md's AP economy is one number per PC, not one
+per Technique known) and gets its own `pc['parting_shot_charge_used']`
+Encounter charge from the start - no repeat of either bug this
+Technique's own sibling needed two passes to find.
+`_parting_shot_interrupt`, called from `_take_enemy_turn` right before
+`spend_movement_ap` executes a Kiting unit's retreat (checked against
+the enemy's position BEFORE that move, not after), gates on "close-
+range weapon" specifically (`not pc.get('attack_range')` - party.py
+only sets `attack_range` for a real ranged `Weapon` pick, so the blank
+default/2H Heavy Melee/Unarmed all qualify, a Light Bow/War Magic PC
+doesn't).
+
+**Tested** against a 12× "Generic Level 1 Ranged Caster" (Kiting,
+`Roster=FALSE` reference build - the only sample_enemies.csv rows that
+use Kiting at all; 12 gives a fair ~51% unsaturated baseline, since
+these untuned reference builds are individually weak) and a zero-Kiter
+control:
+
+| Matchup | Baseline win% | Parting Shot win% | Δ | Autoswing control Δ | Value |
+|---|---|---|---|---|---|
+| 12× Kiting Ranged Caster | 51.30 | 53.87 | +2.57 | +1.77 | +7.98 |
+| 4× non-Kiting (Hedge Knight/Marsh Archer/Skulking Footpad) | 44.95 | 45.30 | +0.35 | n/a | ~0 (control) |
+
+Same no-trigger floor as Magehunter's own zero-caster control - a PC
+with nothing worth interrupting loses nothing. Moment-level detail on
+the Kiting matchup (4000 trials, trace-scanning for the one
+`(Parting Shot)`-tagged event per fight): **fires in 100% of fights**
+(a Kiting enemy always ends up adjacent to *some* melee PC at some
+point over ~11 rounds), **67.3% hit rate**, **2.732 average net
+damage per use** (unconditional on hit) against this matchup's own
+**2.681 party-wide dpa** - a close-to-even raw swap, same shape as
+Magehunter's. The real difference is the kill rate: **23.9% of uses
+kill the target outright** (vs. Magehunter's 5.8%), because these
+particular reference-build casters are individually low-Health - a
+much bigger share of Parting Shot's value here comes from outright
+eliminating a weak straggler mid-retreat than from the raw damage
+swap, which is presumably also why the aggregate win-rate delta reads
+cleanly positive here (+2.57 vs. Autoswing's own +1.77) rather than
+collapsing into the same noise Magehunter's rarer 5.8%-kill case did.
+
+**One real caveat worth flagging directly, not just a simulator
+footnote: none of the current default Level 1 roster uses Kiting.**
+MIXED_ROSTER's four archetypes (Hedge Knight, Marsh Archer, Skulking
+Footpad, Fen Warden) all either close distance or hold position -
+none of them ever retreat from melee. Against the actual default
+encounter mix a table is likely to run, Parting Shot's trigger
+condition may simply never come up at all, landing it at the ~0 floor
+in practice rather than anywhere near the +7.98 this pass measured -
+that number describes Parting Shot's ceiling against a
+disengage-happy enemy (a skirmisher, a hit-and-run archer, anything
+actually built to kite), not its typical case with the roster as it
+stands today. Worth the designer's own call on whether that's fine
+(a situational Technique that rewards facing the right enemy type,
+same shape as Magehunter rewarding facing casters) or whether the
+roster should grow a real Kiting archetype for Techniques like this
+one to actually matter against.
+
+**Verdict: built correctly the first time, thanks to the AP-timing and
+Encounter-tag lessons Magehunter's two corrections already paid for.**
+No Cost/Effects change. The main open question isn't the Technique's
+own math - it's whether the current enemy roster gives it anything to
+trigger against at all.

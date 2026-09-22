@@ -88,6 +88,9 @@ HEALING_MAGIC_AP_COST = 1
 # T075 Magehunter's own techniques.csv row: "1 AP - Interrupt" - see
 # combat_sim._magehunter_interrupt.
 MAGEHUNTER_AP_COST = 1
+# T076 Parting Shot's own techniques.csv row: "1 AP - Interrupt" - see
+# combat_sim._parting_shot_interrupt.
+PARTING_SHOT_AP_COST = 1
 
 # ---- Role archetypes (Combat Role catalog, richer/authoritative version) ----
 ROLE_MODS = {
