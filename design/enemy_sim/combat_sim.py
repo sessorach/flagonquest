@@ -381,9 +381,15 @@ def pc_gamble_count(pc, target):
 
     Only when `needed == 0` (a normal hit is already doing something)
     does the more cautious "plenty of Skill Total to spare" judgment
-    call from the rulebook's own Gambling text apply - gamble once more
-    for the extra damage, but only if the *average* card (7) would still
-    clear the target's Defense.
+    call from the rulebook's own Gambling text apply - previously capped
+    at one extra Gamble regardless of how much room there was, which
+    undersold rulebook.md's own wording ("can usually Gamble freely,"
+    not "gamble once more" - see balance_weights_notes.md's Feint pass,
+    where a target with Defense cratered by several Harried stacks
+    should let a PC stack Gambles well past one). Now gambles as many
+    times as still clears the *average* card (7) after every -2
+    penalty, same "safe bet" threshold as before, just not artificially
+    capped at a single extra Gamble on top of it.
     """
     effective_skill = pc['skill_total'] - pc.get('crippled', 0)
     defense = enemy_defense_for_pc_attack(pc, target)
@@ -392,8 +398,7 @@ def pc_gamble_count(pc, target):
     max_possible = max(0, (effective_skill + 13 - defense) // 2)
     if needed > 0:
         return min(needed, max_possible)
-    max_safe = max(0, (effective_skill + 7 - defense) // 2)
-    return min(1, max_safe)
+    return max(0, (effective_skill + 7 - defense) // 2)
 
 
 def pc_defense_for(target, opp_def):
