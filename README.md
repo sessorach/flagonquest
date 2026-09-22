@@ -13,11 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-09-22 — Interrupt techniques modeled, a Cloak and Dagger rules bug fixed, and "Style" freed up for the martial-arts Technique families
+### 2026-09-22 — Martial Technique cluster priced, "Style" freed up for the martial-arts Technique families
 
-Built Interrupt-window support into the combat simulator (didn't exist before) to price Magehunter, Parting Shot, and Blinkstep, caught a couple of bugs along the way, then renamed the `[Form]` rules tag to `[Style]` and the Bear/Snake/Demon/Shugen/Lion/Tiger Technique families from "X Style" to "X School" to make room for it.
+Worked through the Martial Technique cluster (Magehunter, Parting Shot, Blinkstep, Perfect Strike, Cloak and Dagger, Boulder Toss, Plague Fist) pricing each one against THE TABEL, then renamed the `[Form]` rules tag to `[Style]` and the Bear/Snake/Demon/Shugen/Lion/Tiger Technique families from "X Style" to "X School" to make room for it.
 - Modeled Magehunter, Parting Shot, and Blinkstep's off-turn/free-movement mechanics for the first time, catching two bugs in the process (Magehunter's AP-refresh timing, then its missed Encounter tag) and adding a Kiting enemy archetype (Bog Skirmisher) so Parting Shot has something to trigger against.
 - Priced Perfect Strike and Cloak and Dagger, both already implemented but never checked — Cloak and Dagger turned up a rules bug (Unaware drops Defense to 8, not an auto-hit) and needed an EV-gate fix so the simulator only spends a card when it's actually worth it.
+- Hand-priced Boulder Toss and Plague Fist against THE TABEL's own weights instead of building new simulator mechanics for either — Boulder Toss reads very differently depending on whether the throw is set up deliberately or attempted on the fly, and Plague Fist turned up a real bug (Vulnerable wasn't dropping Vigilant Defense) plus a modest overshoot on budget.
 - Renamed the `[Form]` rules tag to `[Style]`, and the martial-arts Technique family names ("Bear Style", "Snake Style", etc.) to "School" to free up the word.
 
 ### 2026-09-21 — Combat simulator overhaul: turn order, Harried, Armor, movement, and a Level 1 recalibration

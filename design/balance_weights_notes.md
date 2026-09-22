@@ -6066,3 +6066,115 @@ grapple into a guaranteed payoff" comes out clearly ahead even before
 the free movement is counted. That's a coherent design shape for a
 "grab and throw" tool built around battlefield awareness, not
 something to flatten into a single number.
+
+## Demon School - Plague Fist (T083) — hand math against THE TABEL's own Vulnerable/Necrotic weights, plus a real independent bug caught along the way
+
+T083 Plague Fist (Level 2, Martial + Discipline + Encounter, "2 AP",
+Prereqs "Brawl 3, Meditation 2"): "Make an Unarmed weapon attack which
+deals its damage as Shadow. If the attack hits, before damage is dealt,
+the target gains [half your Meditation Skill Total] + [Spades] stacks
+of Necrotic, then [half your Meditation Skill Total] + [Diamonds]
+stacks of Vulnerable." Per the designer's steer, this one's priced by
+hand against THE TABEL's own already-Pencil'd Vulnerable/Necrotic
+weights - no simulator mechanic built, no `combat_sim.py` changes for
+Plague Fist itself (the "run the sim" treatment is for weird/messy
+cases; this one reduces cleanly to existing per-stack rates).
+
+**One real bug found first, and fixed independently of Plague Fist's
+own pricing.** `enemy_defense_for_pc_attack`'s Vigilant branch was
+returning `target['vigilant']` with no Vulnerable subtraction at all -
+glossary.md is explicit that Vulnerable is "-1 penalty to Vital,
+Mental, **and Vigilant** Defenses" per stack, and `pc_defense_for`
+already applied it to the enemy-attacks-PC direction's Bodily/Mental
+cases, but the reverse direction's Vigilant case was missing entirely.
+Harmless until now - nothing granted an enemy Vulnerable before Plague
+Fist - but a real, pre-existing gap, not something new introduced here.
+Fixed (now reads `target['vigilant'] - vulnerable`) and verified via a
+clean `import combat_sim`; committed alongside this write-up since it's
+correct regardless of how Plague Fist itself ends up priced, and
+directly relevant to two Martial siblings in this same cluster (Feint,
+Cloak and Dagger) that also target Vigilant.
+
+**The clean rules facts**: Unarmed's own attack roll and Defense choice
+don't change - Plague Fist is the same to-hit roll as a normal Unarmed
+attack, just with its damage type swapped to Shadow and two status
+effects tacked on "if the attack hits, before damage is dealt." Same
+2 AP an Unarmed attack already costs, so like Boulder Toss this is a
+straight opportunity-cost question: what does Plague Fist buy you over
+just attacking, at identical hit odds, with no separate AP/card cost to
+net out.
+
+**Damage-type swap (Shadow vs. Physical)**: the roster's enemies run
+`physres=3` (Light Armor's own Physical Resist bonus) but `elemres=2`
+(bare Essence, no armor contribution) - a real, unconditional +1 net
+damage per hit just from the type swap, gated by the same attack roll
+as a plain Unarmed hit (no extra roll needed). Priced the same way
+Boulder Toss's own delta was: compute both EVs (already probability-
+weighted through the shared hit chance), take the delta, convert at the
+guaranteed 4/point rate.
+
+**Vulnerable/Necrotic stacks**: worked-example build (Body 3, Agility
+2, Cunning 1, Mind 1, Essence 3, Brawl 3, Meditation 3 - meets both
+Prereqs with some headroom on Meditation, same "not bare minimum"
+convention as Boulder Toss's own example): Unarmed Skill Total 7
+(Agility 2 + Brawl 3 + weapon's own +2 accuracy), Damage 5, Meditation
+Skill Total 6 (Essence 3 + Meditation 3), so half-Meditation-ST = 3.
+Suit clauses use this project's own established 0.25 expected-value
+convention (`balance_weights_notes.md`'s own "assumed 0.25 expected
+suit bonus" - a 1-in-4 chance per suit), so expected stacks = 3.25 for
+both Necrotic and Vulnerable. Vulnerable's own value is priced off THE
+TABEL's already-Locked lump-application curve (Value(3)=6, Value(4)=10
+- see "Vulnerable = 1/stack base..." above), weighted by the 75%/25%
+split between landing exactly 3 vs. 4 stacks: `0.75×6 + 0.25×10 = 7.0`
+per landed hit, then multiplied by the attack's own hit chance (same
+roll delivers both the damage and the stacks, so no separate discount
+needed beyond that one P(hit)).
+
+| Target Defense | P(hit) | Damage-swap Value | Vulnerable EV | Core Value (damage + Vulnerable) | Necrotic ceiling (situational) |
+|---|---|---|---|---|---|
+| 12 | 0.692 | 2.77 | 4.85 | **7.62** | 6.75 |
+| 13 | 0.615 | 2.46 | 4.31 | **6.77** | 6.00 |
+| 14 | 0.538 | 2.15 | 3.77 | **5.92** | 5.25 |
+
+Against the `3 × Level` = 6 anchor for a Level 2 Encounter Technique,
+Core Value alone already lands at roughly 100-127% of budget across the
+roster's real Defense range - **before** Necrotic is counted at all.
+At the Prereq-minimum build instead (Meditation Skill Total 4, half = 2,
+expected stacks 2.25, Vulnerable EV off `0.75×3 + 0.25×6 = 3.75`/hit),
+Core Value drops to 4.17-5.37 - back in the normal on-budget range. So
+like Boulder Toss, Plague Fist's real value is build-dependent, but for
+a different reason: not a framing choice, just how much Meditation the
+character actually invested beyond the bare Prereq.
+
+**Necrotic's own honest treatment**: per THE TABEL's already-established
+convention (see "Necrotic = 3/stack..." above), 3/stack is priced for
+when it actually resolves (blocks a Protected stack or a self-heal),
+not discounted again for whether that trigger ever comes up - that
+situational discount belongs in the encounter design, not the per-stack
+rate. Against this project's own tested roster, that's **effectively
+zero** - no enemy in the simulator ever heals or carries Protected
+(same "zero measurable combat effect" finding this project already
+reached for Necrotic generally), so the 5.25-6.75 ceiling in the table
+above is real only against a healer/Protected-granting enemy archetype,
+which the roster doesn't currently field. Flagged, not counted toward
+the Core Value verdict.
+
+**One more unpriced upside, same category as Boulder Toss's reposition
+value or Cloak and Dagger's Deep-Health half**: Vulnerable's -1 to
+Vigilant stacks with any ally also attacking Vigilant that fight (Feint,
+Cloak and Dagger - both Martial siblings in this same cluster), and
+THE TABEL's own per-stack Vulnerable pricing already prices the
+Defense-drop in isolation, not this kind of party-level compounding.
+Real value, not captured in the Core Value number above.
+
+**Verdict: reads hot, not "massively over-grants."** Core Value alone
+(2.77-4.85 range depending on Defense, before Necrotic or the Vigilant-
+synergy upside) sits at roughly 100-130% of the Level 2 budget for a
+headroom build, and comfortably on-budget for a bare-minimum-Prereq one
+- a real but modest overshoot, the same shape as Boulder Toss's
+"positive but not runaway" reading rather than Spellblade's flagged
+"massively over-grants" territory. No Cost/Effects change recommended;
+worth a light trim (dropping the Shadow-type swap, or capping the
+Necrotic/Vulnerable formula at `[half your Meditation Skill Total]`
+alone with no suit bonus) only if a future pass wants to pull it fully
+back to the anchor, not urgent on its own.

@@ -336,12 +336,22 @@ def enemy_defense_for_pc_attack(pc, target):
     target who "applied their Parry or Dodge Defense" - Vigilant isn't
     either, so a Feint attack doesn't grant Harried from this rule
     (whatever Harried Feint itself grants on a hit is a separate,
-    explicit effect, not this one)."""
+    explicit effect, not this one). Also reads `target['vulnerable']`
+    against the Vigilant case specifically - glossary.md's own
+    Vulnerable text is explicit ("-1 penalty to Vital, Mental, AND
+    Vigilant Defenses" per stack), and `pc_defense_for` already applies
+    it to the enemy-attacks-PC direction's own Bodily/Mental cases; this
+    was the missing reverse-direction half (Vigilant only - Vulnerable
+    was never meant to touch Parry/Dodge, same split Harried's own
+    Dodge/Parry-only rule makes in the other direction) - harmless until
+    now since nothing granted an enemy Vulnerable before Demon School -
+    Plague Fist (T083)."""
     harried = target.get('harried', 0)
+    vulnerable = target.get('vulnerable', 0)
     if pc.get('opp_def') == 'Dodge':
         return target['dodge'] - harried
     if pc.get('opp_def') == 'Vigilant':
-        return target['vigilant']
+        return target['vigilant'] - vulnerable
     return max(target['parry'], target['dodge']) - harried
 
 
