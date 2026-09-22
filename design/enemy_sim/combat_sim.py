@@ -655,9 +655,16 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # directly rather than assumed away.
                 feint_active = bool(pc.get('feint')) and not substitute
                 saved_opp_def = None
+                feint_stacks = 3
                 if feint_active:
                     saved_opp_def = pc['opp_def']
                     pc['opp_def'] = 'Vigilant'
+                    # A numeric value overrides the default 3 stacks (a
+                    # plain True/1 test field keeps that default) - read
+                    # before the charge is consumed below, since pc['feint']
+                    # is gone by the time the hit/miss result is known.
+                    if isinstance(pc['feint'], (int, float)) and pc['feint'] is not True:
+                        feint_stacks = pc['feint']
                     # Charge consumed on use, not on hit - an Encounter
                     # Technique is expended by using it (rulebook.md), a
                     # missed attack doesn't refund the attempt.
@@ -698,11 +705,15 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 protected_absorbed = 0
                 turn_shift_note = None
                 if feint_active and hit:
-                    # "Instead of normal effects" - no damage, Harried
-                    # 3 + [Diamonds] instead (0.25 suit-pool average, same
-                    # convention as every other suit-bonus Feature this
-                    # pass).
-                    target['harried'] = target.get('harried', 0) + 3
+                    # "Instead of normal effects" - no damage, Harried N
+                    # times instead (feint_stacks, default 3 matching the
+                    # CSV's own "3 + [Diamonds]", overridable by setting
+                    # pc['feint'] to a number instead of True - see
+                    # balance_weights_notes.md's Martial Techniques pass
+                    # for the sweep this was built to run). +0.25 for the
+                    # suit-pool average, same convention as every other
+                    # suit-bonus Feature this session.
+                    target['harried'] = target.get('harried', 0) + feint_stacks + 0.25
                 elif hit:
                     raw_dmg = pc['damage'] + gambles + (1 if tactics.sift_bonus(pc) else 0)
                     dmg = max(0, raw_dmg - resist)
