@@ -315,10 +315,20 @@ def enemy_defense_for_pc_attack(pc, target):
     called from pc_gamble_count's own odds check; the actual +1 stack
     only gets granted at the real attack-roll call site in
     _take_pc_turn, per rulebook.md's trigger rule ("a target who applied
-    their Parry or Dodge Defense... is Harried once")."""
+    their Parry or Dodge Defense... is Harried once"). 'Vigilant' is a
+    third override (Feint's own text: "against the target's Vigilant
+    Defense") - Harried doesn't apply to it at all (glossary.md's -1 is
+    Dodge/Parry only), so no harried subtraction there, matching
+    rulebook.md's own Harried-grant trigger which only fires for a
+    target who "applied their Parry or Dodge Defense" - Vigilant isn't
+    either, so a Feint attack doesn't grant Harried from this rule
+    (whatever Harried Feint itself grants on a hit is a separate,
+    explicit effect, not this one)."""
     harried = target.get('harried', 0)
     if pc.get('opp_def') == 'Dodge':
         return target['dodge'] - harried
+    if pc.get('opp_def') == 'Vigilant':
+        return target['vigilant']
     return max(target['parry'], target['dodge']) - harried
 
 
@@ -636,6 +646,22 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     saved_profile = (pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'])
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = (
                         substitute['skill_total'], substitute['damage'], substitute['dmg_type'], substitute['opp_def'])
+                # Feint (T074, synthetic test field, once-per-encounter):
+                # "Make a weapon attack against the target's Vigilant
+                # Defense. Instead of normal effects, if it hits then the
+                # target is Harried 3 + [Diamonds] times." Costs 1 AP, not
+                # the usual 2 - see balance_weights_notes.md's Martial
+                # Techniques pass for why that AP discount needed checking
+                # directly rather than assumed away.
+                feint_active = bool(pc.get('feint')) and not substitute
+                saved_opp_def = None
+                if feint_active:
+                    saved_opp_def = pc['opp_def']
+                    pc['opp_def'] = 'Vigilant'
+                    # Charge consumed on use, not on hit - an Encounter
+                    # Technique is expended by using it (rulebook.md), a
+                    # missed attack doesn't refund the attempt.
+                    pc['feint'] = False
                 defense = enemy_defense_for_pc_attack(pc, target)
                 resist = enemy_resist_for_pc_attack(pc, target)
                 # Grenades can't be Gambled on (glossary.md's [Grenade] rule).
@@ -646,14 +672,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # correctly makes gambling look more attractive (lower
                 # Defense to clear), but this attack's own upcoming stack
                 # doesn't get counted a turn early.
-                gambles = 0 if substitute else pc_gamble_count(pc, target)
+                gambles = 0 if (substitute or feint_active) else pc_gamble_count(pc, target)
                 crippled = pc.get('crippled', 0)
                 bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge'))
                 luck_bonus = tactics.perfect_strike_bonus(pc)
                 card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
                 roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
                 attacks_made += 1
-                ap -= T.ATTACK_AP_COST
+                ap -= 1 if feint_active else T.ATTACK_AP_COST
                 if pc.get('weapon_uses_left') is not None and not substitute:
                     pc['weapon_uses_left'] -= 1
                 hit = roll >= defense
@@ -661,16 +687,23 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # target who applied their Parry or Dodge Defense
                 # against it is Harried once" - a PC's own weapon attack
                 # is always opposed by Parry or Dodge (see
-                # enemy_defense_for_pc_attack), so this always applies.
-                # Granted after this attack's own roll/gamble decision
-                # (both above) so it's ready for the *next* attack against
-                # this target, not counted against itself.
-                target['harried'] = target.get('harried', 0) + 1
+                # enemy_defense_for_pc_attack), so this always applies -
+                # except a Feint, which targets Vigilant instead, so this
+                # generic grant doesn't fire (Feint's own explicit Harried
+                # effect below is separate from this rule).
+                if not feint_active:
+                    target['harried'] = target.get('harried', 0) + 1
                 dmg = 0
                 raw_dmg = 0
                 protected_absorbed = 0
                 turn_shift_note = None
-                if hit:
+                if feint_active and hit:
+                    # "Instead of normal effects" - no damage, Harried
+                    # 3 + [Diamonds] instead (0.25 suit-pool average, same
+                    # convention as every other suit-bonus Feature this
+                    # pass).
+                    target['harried'] = target.get('harried', 0) + 3
+                elif hit:
                     raw_dmg = pc['damage'] + gambles + (1 if tactics.sift_bonus(pc) else 0)
                     dmg = max(0, raw_dmg - resist)
                     protected = target.get('protected', 0)
@@ -689,10 +722,13 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         if moved:
                             turn_shift_note = f"{pc['name']} advanced {-moved} earlier in turn order"
                 if party_log:
+                    via = substitute['via'] if substitute else ('Feint' if feint_active else pc['weapon_name'])
                     party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
                                hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
                                target_hp_after=target['health'], target_harried_after=target.get('harried', 0),
-                               via=substitute['via'] if substitute else pc['weapon_name'], turn_shift=turn_shift_note)
+                               via=via, turn_shift=turn_shift_note)
+                if saved_opp_def is not None:
+                    pc['opp_def'] = saved_opp_def
                 # Unlike most Features on this sheet, none of these three
                 # say "if the attack hits" in their own Effects text - the
                 # extra attack is its own independent roll, granted on the
