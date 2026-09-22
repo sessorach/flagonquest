@@ -6178,3 +6178,144 @@ worth a light trim (dropping the Shadow-type swap, or capping the
 Necrotic/Vulnerable formula at `[half your Meditation Skill Total]`
 alone with no suit bonus) only if a future pass wants to pull it fully
 back to the anchor, not urgent on its own.
+
+## Snake School - Heelbiter, Chainbreaker, Turn the Tables (T088/T089/T092) — hand math per the designer's steer, no new simulator mechanics built for any of the three
+
+Per the designer's own call, these three get estimated against THE
+TABEL's existing weights rather than full `combat_sim.py` builds -
+that treatment is for weird/messy cases specifically, and two of these
+three reduce cleanly to a comparison against work already done this
+session (Parting Shot) or a short exact probability calculation (not a
+stochastic sim) rather than needing new mechanics wired in.
+
+### Heelbiter (T088) — same situational shape as Parting Shot, same open roster question, not a separate finding
+
+0 AP Interrupt, Level 2, "a creature within range of your Unarmed
+weapon attempts to move away or be Pushed away from you" -> "Make an
+Unarmed weapon attack against that creature. If it hits, [their]
+movement... is Countered." Same trigger family as Parting Shot (T076,
+already priced this session) - an off-turn attack that fires when a
+target tries to disengage - just Unarmed-only (narrower weapon
+requirement) but broader in what triggers it (any move-away attempt,
+not just a scripted Kiting retreat, plus "Pushed away," which - per
+Parting Shot's own write-up - isn't modeled in this simulator at all,
+since no Push ability exists here).
+
+Grants a free Unarmed attack when it fires (same Autoswing anchor,
+5.5, Parting Shot's own attack-value credit used), **plus** a stronger
+payload than Parting Shot's plain damage swap: a hit fully Counters
+the movement, not just deals damage - full denial rather than a
+numeric penalty, so it doesn't reduce to an existing per-point rate the
+way Slowed/Crippled do. Treated the same way Boulder Toss's reposition
+value was: real, additive value this project's damage-based framework
+has no way to price directly, not folded into a single number.
+
+Parting Shot's own already-established finding transfers directly,
+not a new discovery worth re-simulating: the current default roster
+(Hedge Knight/Marsh Archer/Skulking Footpad/Fen Warden) never retreats
+from melee, so both Techniques fire at the same ~0 floor against it;
+the ceiling is against a disengage-prone target (a Kiter, or anything
+fleeing at low Health), the same situational shape Parting Shot already
+measured at +7.98 Value against a dedicated Kiting matchup.
+
+**Verdict: same situational read as Parting Shot, no Cost/Effects
+change.** The open question is the roster's own Kiting/flee-behavior
+coverage (already flagged once, not a second finding), not this
+Technique's own math - if anything, Heelbiter's hard-denial payload
+reads a bit stronger than Parting Shot's plain damage swap for the same
+trigger family, which is fine on a Technique gated the same way.
+
+### Chainbreaker (T089) — a genuine defense/redirect swap, priced by exact probability, not a stochastic sim
+
+1 AP Interrupt, Level 2, "a weapon attack flip is made targeting only
+you against your Parry Defense, before its effects are resolved" ->
+"Make an Unarmed weapon attack flip; its result becomes X. Your Parry
+Defense against the attack becomes X. If you Parry it, the attack is
+instead made against the target you chose as though it had a flip
+result of X, then resolved normally." Reads as: you flip your own
+Unarmed attack (skill total + card = X), swap your real Parry Defense
+for X for this one incoming attack, and if the attacker's roll fails
+against X, the attack redirects onto a target you choose, using that
+same X as its own flip result against their Defense. Both halves are
+exact probabilities over two independent uniform 1-13 card flips, not
+something that needs a stochastic combat run to answer.
+
+Worked example (Unarmed Skill Total 7 both sides - representative PC
+defender vs. representative Level 1-2 attacker, a representative static
+Parry Defense of 13 as the baseline being replaced): baseline P(miss)
+under the real static Defense = 1 - P(7+card_atk >= 13) = 38.46%.
+Under Chainbreaker, P(you successfully Parry) = P(skill+card_atk <
+skill+card_def) = P(card_atk < card_def) = **46.15%** (exact, computed
+over all 169 card-flip pairs, not sampled) - a genuine **+7.69
+percentage-point** improvement to your own miss chance, since X's own
+card-flip variance gives you a real shot at a much higher effective
+Defense than your static number on any given attack, at the cost of an
+equal chance of rolling low and doing worse.
+
+Two components, priced separately since they're genuinely different
+kinds of value:
+- **Defensive upside**: the +7.69pp miss-chance improvement, priced
+  against a representative incoming net damage of 3 (roughly this
+  session's own established party-wide dpa baseline), at the guaranteed
+  4/point rate since the probability delta is already computed exactly:
+  `0.0769 × 3 × 4 ≈ 0.92`.
+- **Offensive redirect**: on the 46.15% success branch, the attack
+  redirects using X - the exact same skill+card distribution as a
+  normal Unarmed attack you'd make yourself - against the chosen
+  target's Defense. That's Autoswing's own definition (a granted extra
+  attack), so `0.4615 × 5.5 ≈ 2.54`.
+
+Total Value ≈ 3.46, against a 1 AP cost (this project's own standing
+1 AP = 2.75 Value rate, from the Push derivation's "1 AP(2.75) / a
+standard move" - and a genuine cost, since `pc['ap_bank']`-style
+reactive spending eats the same shared AP pool a PC's own turn draws
+from, per Parting Shot's own note on this). **Net Value ≈ +0.71** -
+modestly positive, the same small-but-real tier as Perfect Strike
+(0.9/use), not a runaway, and this fires far more reliably than
+Parting Shot/Heelbiter's disengage-specific gate since it triggers on
+any incoming attack against Parry, not a specific enemy behavior.
+
+**Verdict: on-budget, no Cost/Effects change.** A genuinely well-built
+Technique mechanically - it doesn't just avoid damage, it converts a
+successful defense into offense - and the math backs up that it's
+priced close to where a Level 2, 1-AP reactive Technique should land.
+
+### Turn the Tables (T092) — qualitative flag only, too matchup-dependent for a clean number
+
+0 AP Interrupt, Level 3, "you successfully grapple a creature" ->
+"You use the target as a shield until the grapple ends. You may Parry
+with them as a Brawl weapon (Defense +0). If you successfully Parry an
+attack with the target, the attack instead targets their Parry
+Defense and is resolved accordingly." Unlike Chainbreaker's clean
+two-flip convolution, this one's real value hinges on a variable this
+project has no representative baseline for: the grappled creature's
+own Parry Defense, which swings enormously by which specific enemy got
+grappled (Boulder Toss's own Grapple prereq - "Make an Unarmed weapon
+attack against your target's Dodge or Parry Defense," same setup cost
+as Boulder Toss, not a separate one to price here) and isn't the kind
+of thing a single worked example can represent honestly the way
+Chainbreaker's symmetric skill-vs-skill flip could.
+
+Mechanically it's a real damage-transfer effect, not just an avoidance
+one - a successful Brawl-based Parry doesn't just block the attack,
+it fully redirects the hit onto the hostage, closer in kind to how
+Protected's "absorb 1 Health" is priced at the guaranteed 4/point rate
+than to a plain miss. But the actual rate that redirect happens depends
+on: whether the Brawl-based Defense option (8 + Brawl Skill Total,
+`Defense +0`) beats the PC's own normal applicable Defense on a given
+attack (a real choice, so only ever picked when favorable - a genuine
+floor-raising option, never a downgrade), and separately whether the
+grappled creature's own Parry Defense is low enough to matter once the
+attack retargets onto them. Both of those are per-encounter, per-target
+questions this project has no roster-wide baseline for the way
+Chainbreaker's symmetric attacker-vs-defender skill comparison did.
+
+**Verdict: not priced to a number - flagged as a real, likely-strong
+defensive tool gated by a genuine setup cost (an already-landed
+Grapple), same category of "real but unpriceable with what this
+project currently has" as Boulder Toss's reposition value or Turn the
+Tables' own sibling Chainbreaker's redirect upside.** Worth revisiting
+with an actual worked example (a specific PC's Brawl investment against
+a specific grappled enemy's Parry Defense) if it comes up as a played
+character's real Technique pick, rather than forcing a roster-wide
+number now.
