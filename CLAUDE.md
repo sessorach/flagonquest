@@ -127,7 +127,8 @@ which should stay a clean decision record.
 - Common Effects keyword definitions (Bleeding, Crippled, Frightened,
   Harried, Hasted, Necrotic, Protected, Slowed, Taunted, Vulnerable,
   Ward) are in `glossary.md` under "# Common Effects", ~line 121–176.
-  The `[Stance]` rules tag is ~line 113.
+  The `[Style]` rules tag (renamed from `[Stance]`, then `[Form]`) is
+  ~line 129.
 - `parse_markdown_sections` in `convert.py` (~line 596) treats every
   non-blank, non-heading line in `rulebook.md`/`glossary.md` as literal
   rendered body text — no HTML-comment stripping exists. Never leave

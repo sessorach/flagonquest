@@ -474,7 +474,7 @@ as its own specific, unique mechanic rather than it becoming common.
 
 **Emerging direction instead:** generalize `Ritual Magic`'s pattern
 ("a willing ally may pay your cost/contribute to your effect") beyond
-just Spells, and possibly turn it into a Stance-equivalent (see below) so
+just Spells, and possibly turn it into a Style-equivalent (see below) so
 it can't freely stack with other similarly strong always-on enablers if
 its scope broadens. Not yet decided how far the scope extends.
 
@@ -1803,6 +1803,30 @@ legend garbled by generations of retelling, not a biography.
   data/CSV boundary that was otherwise reserved for the sibling
   chat — the user explicitly asked for it here since it was a
   mechanical rename/tagging change, not new design.
+- ~~"Form" → "Style" rename, plus freeing up "Style" meant renaming
+  the unrelated "X Style - Y" martial-arts Technique family names to
+  "X School - Y"~~ — resolved: this rules tag has now been renamed
+  twice (Stance → Form → Style) — the designer had been separately
+  using "Style" as the naming prefix for a small set of Brawl/
+  Meditation martial-arts Technique families (Bear, Snake, Demon,
+  Shugen, Lion, Tiger — a handful of "dip into a few, not commit to
+  one" options for unarmed-focused characters, distinct from and more
+  specific than what Battle Maneuver already offers), which would have
+  collided with the tag once renamed. Both renamed in the same pass:
+  the `[Form]` tag → `[Style]` (`glossary.md`'s own definition, all 14
+  Form-tagged techniques' Tags/Action columns, plus Furious Rage's
+  "While in this Form:" and Overchanneling's flavor text — the same
+  two in-text mentions the original Stance → Form rename above already
+  had to touch), and all 12 "X Style - Y" technique Names → "X School
+  - Y" (Shugen School ×5, Snake School ×3, Bear School, Demon School,
+  Lion School, Tiger School — three of these, Lion/Shugen "Spirit
+  Hands"/Tiger, are *also* Form-tagged, so they picked up both
+  renames). `features.csv`'s own unrelated `(Style)` Feature-category
+  label (Social Maneuver's mutual-exclusivity Feature tier, paired
+  with `(Succession)`) was deliberately left alone — different
+  grammatical shape ("apply one Style feature" vs. a `[Style]`
+  Technique tag), different subsystem, and not confusable in context;
+  flagged to the designer directly rather than silently renamed too.
 - Scope of the generalized `Ritual Magic`-style card-contribution
   mechanic beyond Spells (still open — the Form conversion above is
   just the mechanical piece, not this broader design question).

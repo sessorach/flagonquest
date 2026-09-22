@@ -182,11 +182,11 @@
     "body": "Abilities with this tag can be learned more than once, and generally have special features based on how many times you learn them. (Noun, not the verb)"
   },
   {
-    "id": "form",
+    "id": "style",
     "level": 4,
-    "title": "[Form]",
+    "title": "[Style]",
     "supplement": "Base Game",
-    "body": "You may enter or leave a Form at the start of your turn, before anything else happens. You may only be in one Form at a time, and entering a Form will cause you to leave any other Form you are in. If the Form lists a condition, you may only enter the Form while you meet the condition, and if you don’t meet it at any time then you immediately leave the Form."
+    "body": "You may enter or leave a Style at the start of your turn, before anything else happens. You may only be in one Style at a time, and entering a Style will cause you to leave any other Style you are in. If the Style lists a condition, you may only enter the Style while you meet the condition, and if you don’t meet it at any time then you immediately leave the Style."
   },
   {
     "id": "subtle",
