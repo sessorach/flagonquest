@@ -5773,3 +5773,86 @@ acknowledges for Sturdy/Shadow Jaunt/Retribution Aura - positional
 effects this project's model just can't fully price. No Cost/Effects
 change - the measured shortfall isn't confident enough to act on
 given how much of the Technique's real value this pass couldn't see.
+
+## Perfect Strike (T078) — already implemented (quietly active this whole session), now actually priced
+
+T078 Perfect Strike (Level 2, Martial, "0 AP - Interrupt (you declare
+a weapon attack)", Cost "Discard a card"): "You have Good Luck on the
+weapon attack, then choose one: have Good Luck a second time on the
+attack; or add the discarded card to the attack's suit pool." Unlike
+every other Technique this Martial-cluster pass has built from
+scratch, this one already had a working `tactics.perfect_strike_bonus`
+implementation - part of the original Card Techniques infrastructure,
+not something this pass added - but it had never actually been priced
+against a control. Carrick and Sable (both real drafted-party members)
+have "Perfect Strike" in their own canonical `Card Techniques` column,
+so it's been quietly firing in *every* drafted-party test this whole
+session (Parting Shot, Blinkstep, ...) without a dedicated check of
+its own.
+
+**Implementation matches the Effects text**, modeling the "Good Luck a
+second time" branch specifically (not the suit-pool alternative, which
+this sim can't represent - same "pick the branch this simulator can
+actually model" convention as every other Choice-shaped Effect this
+project has hit): `+2` Good Luck stacks on one attack (flip 3, take
+highest), consuming one `card_uses_left` charge
+(`hand_size // 3` - Carrick's own Cunning 2 + Mind 2 gives 2 uses),
+shared with Second Wind's same budget.
+
+**A/B tested on Carrick** (4x-clone, `make_party_of` - the established
+pattern for isolating one PC build's own attack profile) against a
+clean ~51% unsaturated matchup (`['Hedge Knight', 'Marsh Archer',
+'Skulking Footpad', 'Fen Warden', 'Hedge Knight']`, `movement=True`,
+6000 trials), Autoswing-`bonus_attack_control` applied to all 4 PCs
+in the control run (since all 4 clones share Carrick's own Perfect
+Strike):
+
+| Setup | Win% | Δ |
+|---|---|---|
+| No Perfect Strike (stripped) | 26.47 | - |
+| Perfect Strike (Carrick's real build) | 50.30 | +23.83 |
+| Autoswing control (all 4 PCs) | 49.37 | +22.90 |
+
+A genuinely large swing either way - Perfect Strike alone very nearly
+doubles this matchup's win rate. Converting through the ratio (both
+deltas reflect all 4 PCs' worth of effect, so the 4s cancel):
+`Value ≈ (23.83 / 22.90) × 5.5 ≈ 5.72` per PC for the whole fight's
+worth of Perfect Strike (Carrick's 2 charges).
+
+**But this number is inflated, and there's an already-Locked way to
+check it directly.** Perfect Strike's base effect - "Good Luck, then
+Good Luck a second time" - is exactly the already-priced "Good Luck
+(stacked, flip 3 take highest)" rate from the Thrumming Focus pass:
+**3.6 Value**, not a fresh derivation. Its Cost ("Discard a card") is
+also already priced: **Card (drawn/hand) = 2.7**, the same rate this
+project already treats a card-discard activation cost as a real,
+netted charge against (see the Bloodfire Signet Ring's own "Value =
+6L − 2.7" derivation). **Net Value per use = 3.6 − 2.7 = 0.9** - a
+small, positive per-use value, ×2 uses for Carrick specifically
+(`hand_size // 3`) ≈ **1.8 total per-fight Value**, well below the raw
+5.72 the aggregate win-rate delta suggested.
+
+**Why the gap**: this simulator's `card_uses_left` is an isolated
+counter, not a real hand - spending a charge on Perfect Strike doesn't
+reduce anything else a card could have paid for (Gambling, another
+Card Technique, a future turn's own flexibility). A real player's
+discard is a genuine opportunity cost across their whole hand; this
+sim's aggregate win-rate delta can't see that cost at all, so it
+measures Perfect Strike as if the discard were free - the same
+structural blind spot Blinkstep's own section just flagged for
+position, now showing up for cards instead. **The hand-derived 0.9/use
+figure (built from two already-Locked/Pencil rates that already
+account for the discard cost properly) is the one to trust here, not
+the raw simulator delta** - the inverse of most of this pass's other
+findings, where the simulator caught something hand-math missed;
+here hand-math catches something the simulator structurally can't.
+
+**Verdict: Perfect Strike is a small, positive, on-target Technique
+(≈0.9 Value/use, ≈1.8/fight for a typical Cunning/Mind budget like
+Carrick's) - no Cost/Effects change.** Standing methodological note
+for whenever Second Wind/Bottomless Bottles/Warmage's Reserves (the
+other three Card Techniques sharing this same `card_uses_left`
+machinery) get their own dedicated check: expect the same inflation
+if priced by aggregate win-rate delta alone - net out Card (2.7)
+against whatever the simulator measures, the same way this pass did,
+rather than trusting the raw delta.
