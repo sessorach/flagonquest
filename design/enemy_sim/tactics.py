@@ -84,6 +84,26 @@ def target_straggler(unit, targets):
     return min(targets, key=isolation)
 
 
+def target_kiter(unit, targets):
+    """'Kite Hunter': a PC who'd rather chase down whoever's trying to
+    stay out of reach than fight whoever's already in front of them -
+    Hilde-style priority targeting for a melee duelist who wants her
+    Parting Shot (T076) to actually have something to punish, rather
+    than falling back to plain closest/focus-wounded and maybe never
+    ending up adjacent to the one enemy that matters for it. Prefers
+    any living target whose own `battle_tactic` is 'Kiting'
+    (sample_enemies.csv's own column) over anything else, closest
+    among those if there's more than one; falls back to
+    target_closest's own preference (or target_first under static
+    mode) when no Kiter is present, same "don't invent a target that
+    isn't there" shape as every other tactic here."""
+    kiters = [t for t in targets if t.get('battle_tactic') == 'Kiting']
+    pool = kiters if kiters else targets
+    if 'pos' not in unit:
+        return target_first(unit, pool)
+    return target_closest(unit, pool)
+
+
 def target_focus_wounded(unit, targets, allies):
     """The base party strategy (the designer's own priority order, "in
     order: attack twice if possible, focus fire on the most wounded
@@ -113,6 +133,7 @@ def target_focus_wounded(unit, targets, allies):
 TARGETING = {
     'Assassin': target_lowest_health,
     'Straggler Hunter': target_straggler,
+    'Kite Hunter': target_kiter,
 }
 
 

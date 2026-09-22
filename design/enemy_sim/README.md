@@ -121,7 +121,14 @@ before making changes — this README stays to usage and a file map.
   "Straggler Hunter") is the first PC-side `TARGETING` entry — goes
   after whichever enemy has the fewest others near it, for a PC who'd
   rather finish off an isolated target than wade into the main clump
-  (Hanforth). **`target_focus_wounded`** is the base party strategy
+  (Hanforth). `target_kiter` (registered as "Kite Hunter") is the
+  second — prefers any living enemy whose own `battle_tactic` is
+  "Kiting" over anything else, closest among those if more than one,
+  for a melee PC (Hilde, say) who wants to reliably end up adjacent to
+  a disengaging enemy rather than falling back to plain closest/
+  focus-wounded and maybe never getting there — built specifically so
+  Parting Shot (T076) has a real priority-targeting option to pair
+  with, not just the AI's default pick. **`target_focus_wounded`** is the base party strategy
   (the designer's own priority order) for every other PC — whoever's
   hurt worst, tiebroken by which enemy the whole party is collectively
   closest to (`party_reach`, summed distance from every living ally),
@@ -164,12 +171,20 @@ before making changes — this README stays to usage and a file map.
   build tagged with an `Archetype` label — **Neutral**, **Power-Attack**,
   **Max-Damage**, **Ranged Caster**, **Tank** (one of each at every
   Level 1-5), **Minion** (0.5 Slots, one per Level — see
-  `sample_enemies.py`'s own note on why), plus **Mixed-Style** (5 Level 1
+  `sample_enemies.py`'s own note on why), plus **Mixed-Style** (6 Level 1
   builds — Hedge Knight, Marsh Archer, Skulking Footpad, Bog Caster, Fen
-  Warden — drafted with deliberately varied Fighting Styles rather than
-  defaulting every enemy to Flurry, each row's own Notes explains its
-  particular combo and the retuning pass that gave them their
-  `DamageBonus`/`AccuracyBonus`/`DefenseBonus`). **`DamageBonus`/
+  Warden, Bog Skirmisher — drafted with deliberately varied Fighting
+  Styles rather than defaulting every enemy to Flurry, each row's own
+  Notes explains its particular combo and the retuning pass that gave
+  them their `DamageBonus`/`AccuracyBonus`/`DefenseBonus`). Bog
+  Skirmisher is the newest of the six and the only one that actually
+  retreats (`BattleTactic=Kiting`) — added specifically to give
+  Parting Shot (T076) and `tactics.target_kiter` ("Kite Hunter") a
+  real disengaging target to interact with, since none of the other
+  five ever back off from melee; it's a first-cut build (a quick
+  4x-clone check, not the multi-pass Powerful Weapon/Spell sweep the
+  other four got — see its own Notes) and isn't part of the default
+  `MIXED_ROSTER` mix. **`DamageBonus`/
   `AccuracyBonus`/`DefenseBonus`** (blank = 0) map straight to
   `enemy_builder.build_enemy`'s `ability_dmg_bonus`/`ability_acc_bonus`/
   `ability_def_bonus` params — flat retunes to attack damage, to-hit

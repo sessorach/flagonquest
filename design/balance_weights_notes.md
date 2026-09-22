@@ -5599,3 +5599,102 @@ Encounter-tag lessons Magehunter's two corrections already paid for.**
 No Cost/Effects change. The main open question isn't the Technique's
 own math - it's whether the current enemy roster gives it anything to
 trigger against at all.
+
+### Follow-up: a real Kiting archetype (Bog Skirmisher), and Parting Shot on Hilde specifically
+
+Picked up directly from the open question above - answered it by
+adding a real Kiting archetype and testing Parting Shot on the PC
+who'd actually want it.
+
+**Bog Skirmisher** (new `sample_enemies.csv` row, `Archetype=Mixed-
+Style`, `Roster=FALSE`): Level 1, 1 Slot, Ranged Weapon (Physical -
+distinct from Fen Warden's Melee Spell and Bog Caster's Ranged Spell,
+so the mix reads as three genuinely different threats, not two spell
+casters and a third), `BattleTactic=Kiting`, `FightingStyle=Aimed
+Shot` (not Guarded - Kiting always spends its one move action
+retreating, so Guarded's own stand-still Bad Luck bonus would never
+actually trigger on a unit that always moves; pairing Kiting with
+Guarded would waste half the Fighting Style), `AttackTier=Primary`,
+`DodgeTier=Secondary`/rest Poor, `HealthBonus=0` (not the other five's
++2 - a deliberate identity choice: this archetype's survivability is
+supposed to come from staying out of reach, not raw Health, so it
+should die fast once actually caught), Abilities `Strike
+(Vulnerable);Powerful Weapon`. Built with `enemy_builder_pcstyle.py`,
+same construction as its siblings. **Not calibrated to the same rigor
+as the other four** - a quick 4x-clone check against the real drafted
+party (Hilde/Browndog/Carrick/Sable, `movement=True`) landed at
+win=100%, ~5.0 rounds, ~86% party Health on a win, well short of the
+other four's ~72% target - Kiting alone doesn't hold up to a focused
+melee-heavy party in this simulator's bounded 20×20 arena (it gets
+cornered and caught fast, then dies quickly with `HealthBonus=0`), so
+a lone Kiter reads as considerably weaker than its stand-and-fight
+siblings at the same nominal Level. Good enough to give Parting Shot
+something real to interact with; not folded into the default
+`MIXED_ROSTER` mix, and would want a fuller retune pass first if it
+ever should be.
+
+**`target_kiter`** (`tactics.py`, registered as "Kite Hunter") - a new
+PC-side `TARGETING` entry, the second after Hanforth's "Straggler
+Hunter": prefers any living enemy whose own `battle_tactic` is
+"Kiting" over anything else, closest among those if more than one.
+Built so a melee PC who wants to punish a disengaging enemy actually
+goes after it, instead of falling back to plain closest/focus-wounded
+and maybe never ending up adjacent to the one target Parting Shot
+cares about.
+
+**Tested on Hilde specifically** (2H Heavy Melee - a close-range
+weapon, Parting Shot's own requirement - Body-primary duelist, real
+drafted-party member), in the real drafted party
+(Hilde/Browndog/Carrick/Sable) against the full 4-archetype mix plus
+two Bog Skirmishers (`['Hedge Knight', 'Marsh Archer', 'Skulking
+Footpad', 'Fen Warden', 'Bog Skirmisher', 'Bog Skirmisher']` - a fair
+~55% unsaturated matchup, `movement=True`, 4000 trials):
+
+| Setup | Win% | Δ | Autoswing control Δ | Value |
+|---|---|---|---|---|
+| Baseline (no Parting Shot) | 54.73 | - | - | - |
+| Parting Shot, default targeting | 61.25 | +6.53 | - | - |
+| Parting Shot + Kite Hunter targeting | 61.35 | +6.62 | +9.08 | 4.02 |
+
+**Value ≈ 4.02** - close to the `3 × Level` Technique-value anchor,
+and a real, well-powered aggregate reading this time (unlike Magehunter's
+own moment-diluted-into-noise problem) - because Parting Shot's
+per-use value here is both high AND frequent enough not to get lost
+in a ~10-round fight (see the moment-level numbers below).
+
+**Does "Kite Hunter" targeting actually help?** Checked directly
+(3000 trials, trace-scanning for the `(Parting Shot)` event):
+
+- Default targeting: fires in **73.7%** of fights, 62.8% hit rate,
+  3.139 avg net damage/use, **38.0% outright-kill rate**.
+- Kite Hunter targeting: fires in **81.3%** of fights (+7.6 points -
+  a real, if modest, improvement in trigger reliability), 62.7% hit
+  rate, 3.136 avg net damage/use, **33.5% kill rate**.
+
+Kite Hunter targeting does what it says - more fights end with Hilde
+actually adjacent to a Bog Skirmisher when it tries to retreat - but
+the overall win-rate delta barely moves (+6.53 → +6.62), and the
+per-use kill rate is slightly *lower* despite firing more often. The
+likely reason: chasing the Kiter specifically sometimes means engaging
+a still-full-Health Bog Skirmisher before the rest of the party has
+softened it up, trading some of `target_focus_wounded`'s own
+focus-fire efficiency for a more reliable (but not necessarily
+better-timed) trigger. Both average net damage per use (~3.14) come in
+well above this matchup's own party-wide dpa (1.392, more than double)
+- Parting Shot always targets the softest defense in the mix by
+design (Bog Skirmisher's Poor/Secondary tiers), so a triggered use
+reads as a much better-than-average attack regardless of which
+targeting rule got Hilde there.
+
+**Verdict: Parting Shot is a real, on-budget pick once the roster
+actually has something for it to punish** - Value ≈ 4.02 against a
+mix that includes even just two Kiting enemies alongside the normal
+four, a fair, well-powered, non-noisy reading. Kite Hunter targeting
+is a genuine, if modest, improvement to trigger reliability (+7.6
+points fire rate) rather than a large swing in outcome - worth having
+as an option for a player who's specifically built around punishing
+disengage (Hilde's own concept fits it well), not a required pairing.
+The open question from the base Parting Shot section still stands for
+whoever's *not* running Kite Hunter or facing a Bog-Skirmisher-style
+threat: against the actual default `MIXED_ROSTER` (still 0 Kiting
+archetypes), Parting Shot remains at its ~0 floor.
