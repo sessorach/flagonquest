@@ -5963,3 +5963,106 @@ cost, and here also can't cleanly reconstruct a value this
 target-dependent) - hand-derive from already-Locked/Pencil rates first,
 treat the simulator read as a rough cross-check, not the other way
 around.
+
+## Bear School - Boulder Toss (T081) — hand math only, no simulator changes, framing decides the verdict entirely
+
+T081 Bear School - Boulder Toss (Level 2, Martial + Encounter, "0 AP -
+Interrupt (you hit with an attack to grapple a creature)", Condition
+"Your hands are empty"): "End the grapple and throw the target up to
+[half your Might Skill Total] meters in a straight line. If thrown
+into a sturdy object, the target strikes it (3 + [your Body] Physical
+damage to both). If thrown through a creature's space, make a Might
+attack against that creature's Dodge; if it hits they are struck for
+the same damage." Almost the entire payoff depends on battlefield
+positioning (an obstacle, a second creature in the throw's line) that
+this simulator has no representation of at all - no terrain system, no
+line-of-throw resolution against arbitrary enemy positions. Building
+that properly would be a real project of its own (real obstacle
+density plus multi-target line resolution), well beyond this pass's
+scope, so **this Technique is priced by hand only - no simulator
+changes, no `combat_sim.py` edits.** The designer's own call, given
+how position-dependent the effect is.
+
+**The one clean rules fact, no assumption needed**: Grapple (rulebook.
+md's own Combat Maneuver) is "Make an Unarmed weapon attack against
+your target's Dodge or Parry Defense" - the *exact same roll* as a
+normal Unarmed attack against the same target (same Skill, same
+Defense-choice rule), and it deals **no damage of its own** - a hit
+just establishes the grapple, nothing else. So the entire question is
+a pure payload comparison at identical hit odds: is "end the grapple
+and throw" worth more than the guaranteed weapon damage you gave up by
+not just attacking? No AP/card cost to net out either - Boulder Toss
+itself is 0 AP, and the Grapple attempt already costs the same 2 AP a
+normal attack would, so this is a straight opportunity-cost comparison
+between two uses of the same attack action, not an activation-cost
+question the way Perfect Strike/Cloak and Dagger were.
+
+**First framing: attempt it opportunistically, hoping a good throw
+target exists.** Worked example (Body 3, Brawl 3, Might 3, Agility 2,
+Cunning 1 - meets both Prereqs, Brawl 3 and Might 2, with headroom):
+Unarmed Skill Total 7, Damage 5; Might Skill Total 6, Boulder Toss
+damage 6 (net 3 after PhysRes 3). Assumed odds (stated, not a rules
+fact - a battlefield-density guess): P(a usable obstacle happens to be
+in throw range) 35%, P(a second creature happens to be in the exact
+throw line) 15%.
+
+| Target Defense | Normal attack EV | Boulder Toss EV | Delta |
+|---|---|---|---|
+| 12 | 1.615 | 0.919 | **-0.70** |
+| 13 | 1.385 | 0.817 | **-0.57** |
+| 14 | 1.154 | 0.714 | **-0.44** |
+
+Negative across the whole roster's Defense range, and stays negative
+even at a generous 50% obstacle assumption (only -0.10 at Defense 14)
+- doesn't cross into positive territory until obstacle odds climb well
+past what a "maybe there's something nearby" read should assume.
+Structurally this makes sense: the raw damage bump (+1 over a normal
+hit, 6 vs. 5) is real but small, stacked behind a SECOND layer of risk
+(the obstacle/bystander has to actually be there) on top of the
+grapple itself landing - two dice to roll instead of one, for a small
+bonus if both come up.
+
+**Second framing, per the designer's own correction: a player who sets
+this up deliberately** - maneuvers so there's a wall (or equivalent
+obstacle) roughly behind the target *before* ever attempting the
+Grapple, rather than grappling first and hoping. This makes the
+"worst case" (a wall strike) a near-guarantee once the grapple lands,
+not a battlefield-density coin flip - the only real remaining
+uncertainty is whether a second enemy *also* happens to be in the
+throw's exact line before the wall (upside on top of the guaranteed
+floor, not something even a deliberate player fully controls).
+
+| Target Defense | Normal attack EV | Boulder Toss EV (guaranteed wall + 25% bystander upside) | Delta | Value |
+|---|---|---|---|---|
+| 12 | 1.615 | 2.396 | **+0.78** | **+3.12** |
+| 13 | 1.385 | 2.130 | **+0.75** | **+2.98** |
+| 14 | 1.154 | 1.864 | **+0.71** | **+2.84** |
+
+Solidly positive across the whole Defense range (holds across a
+15-35% bystander-odds spread, never crossing back to negative) - beats
+a normal attack by 50-80% in expected damage, since the floor is now a
+guaranteed hit (net 3) instead of a coin flip on whether *anything*
+connects at all. Converted to Value at the guaranteed rate (4/point,
+since the delta is already probability-weighted through both the
+grapple-hit chance and the bystander-hit chance): **≈2.8-3.1 Value
+from damage alone**, roughly half the `3 × Level` = 6 anchor for a
+Level 2 Technique - and that's still *before* crediting the free 3m
+forced repositioning on top (denying a target's own positioning,
+potential hazard synergy, the tempo cost of needing to close distance
+back in), which is real, additive value this project's damage-based
+framework still has no way to price (same category as Blinkstep's
+non-attack Shift uses and Cloak and Dagger's Deep-Health half).
+
+**Verdict: on-budget, likely comfortably so once the reposition value
+is accounted for - no Cost/Effects change.** The two framings above
+aren't really in tension - they're the same Technique played two
+different ways, and the gap between them (-0.44 to +0.78 delta,
+depending entirely on whether the player set up the throw first) is
+itself the interesting finding: Boulder Toss is a genuine skill-
+expression Technique, not a flat bonus - a player who treats Grapple
+as "attack, then hope" gets a real, measurable worse deal than just
+attacking normally, while one who plays it as "maneuver first, then
+grapple into a guaranteed payoff" comes out clearly ahead even before
+the free movement is counted. That's a coherent design shape for a
+"grab and throw" tool built around battlefield awareness, not
+something to flatten into a single number.
