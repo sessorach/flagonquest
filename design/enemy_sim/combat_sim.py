@@ -365,40 +365,43 @@ def pc_gamble_count(pc, target):
     """How many times a 'clever' PC Gambles on this attack (rulebook.md's
     Gambling rule: each Gamble is -2 to the roll, but grants +1 Extra
     Success - and +1 damage - if the flip still hits). Not modeled at all
-    before this - without it, a target whose Physical Resist reaches or
+    originally - without it, a target whose Physical Resist reaches or
     exceeds the PC's own weapon Damage was untouchable no matter how many
     rounds passed, which isn't how a real player would actually respond
     to a wall of Resist.
 
-    `needed` is how many Extra Successes it takes to make a hit deal net
-    +1 damage through the target's Resist - a normal attack against a
-    target with `needed > 0` deals exactly 0 on every hit, so a player
-    who recognizes that gambles regardless of the accuracy cost: some
-    chance of real damage beats a guaranteed zero. `max_possible` is the
-    only cap applied then - never gamble past the point where even the
-    best possible card (13) couldn't clear the target's Defense, since
-    that's a wasted action no one would actually take.
-
-    Only when `needed == 0` (a normal hit is already doing something)
-    does the more cautious "plenty of Skill Total to spare" judgment
-    call from the rulebook's own Gambling text apply - previously capped
-    at one extra Gamble regardless of how much room there was, which
-    undersold rulebook.md's own wording ("can usually Gamble freely,"
-    not "gamble once more" - see balance_weights_notes.md's Feint pass,
-    where a target with Defense cratered by several Harried stacks
-    should let a PC stack Gambles well past one). Now gambles as many
-    times as still clears the *average* card (7) after every -2
-    penalty, same "safe bet" threshold as before, just not artificially
-    capped at a single extra Gamble on top of it.
+    Picks whichever gamble count actually maximizes *expected* net
+    damage, rather than a hand-picked "safe" cutoff - a real fix, not
+    just a tighter constant, after the designer caught the old "gamble
+    until the average card still clears" heuristic overcommitting once
+    Defense is cratered (see balance_weights_notes.md's Feint pass): a
+    card is uniform 1-13, so P(hit | n gambles) is exactly linear in n,
+    which makes E[net damage] = P(hit|n) x (successes on a hit) a
+    single-peaked (concave) function of n - there's one true
+    EV-maximizing count, not a threshold to eyeball. Worked out
+    analytically it's n* = (S - D + 12) / 4, roughly HALF the old
+    "average card clears" count for the same margin, landing at a hit
+    chance around half of what 0 gambles would give (not the ~50/50 the
+    old heuristic actually produced once a big margin was in play) -
+    but computed here directly per-attack (looping every candidate `n`
+    up to where even a 13 can't hit) rather than trusting the closed
+    form at every edge case, since a real Resist wall shifts which
+    `n` pays off in a way the plain formula doesn't reflect on its own.
     """
     effective_skill = pc['skill_total'] - pc.get('crippled', 0)
     defense = enemy_defense_for_pc_attack(pc, target)
     resist = enemy_resist_for_pc_attack(pc, target)
-    needed = max(0, resist - pc['damage'] + 1)
-    max_possible = max(0, (effective_skill + 13 - defense) // 2)
-    if needed > 0:
-        return min(needed, max_possible)
-    return max(0, (effective_skill + 7 - defense) // 2)
+    sift = 1 if tactics.sift_bonus(pc) else 0
+    max_possible = max(0, int((effective_skill + 13 - defense) // 2))
+    best_n, best_ev = 0, 0.0
+    for n in range(max_possible + 1):
+        threshold = defense - effective_skill + 2 * n  # min card needed to hit
+        p_hit = max(0.0, min(1.0, (14 - threshold) / 13))
+        net_dmg = max(0, pc['damage'] + n + sift - resist)
+        ev = p_hit * net_dmg
+        if ev > best_ev:
+            best_n, best_ev = n, ev
+    return best_n
 
 
 def pc_defense_for(target, opp_def):
