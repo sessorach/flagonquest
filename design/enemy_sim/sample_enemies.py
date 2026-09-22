@@ -53,21 +53,27 @@ and "wins by more." Kept distinct from the real `Abilities` catalog
 and tradeoffs (Powerful Weapon costs Accuracy/Parry); these are plain
 numeric retune knobs, not a named ability a GM would narrate.
 
-**`ParryTier`/`DodgeTier`/`BodilyTier`/`MentalTier`/`AttackTier`/
-`HealthBonus`** are a second, alternative construction method -
-enemy_builder_pcstyle.py's build_enemy_pcstyle, wired into
+**`ParryTier`/`DodgeTier`/`BodilyTier`/`MentalTier`/`VigilantTier`/
+`AttackTier`/`HealthBonus`** are a second, alternative construction
+method - enemy_builder_pcstyle.py's build_enemy_pcstyle, wired into
 `_build_from_row` whenever `AttackTier` isn't blank (a row with a blank
 `AttackTier` still builds the old way, off `Role`/`PrimaryDef`/
-`SecondaryDef`/`DamageBonus`/`AccuracyBonus`/`DefenseBonus`, which stay
-blank/unused on a pcstyle row and vice versa - the two methods are
-mutually exclusive per row, not layered). Builds an enemy the way a PC
-actually gets built - Defense = 8 + Skill Total, Damage = a weapon-style
-base + Stat, Resist = Essence alone - instead of enemy_builder.py's
-synthetic Level curve; see build_enemy_pcstyle's own module docstring
-for the full formula and why. Each Tier column is "poor"/"secondary"/
-"primary" (blank = poor, same "never invested here" reading as a blank
-Ability cell) - four independent Defenses instead of PrimaryDef/
-SecondaryDef's bundled "Parry/Dodge as one category." `HealthBonus`
+`SecondaryDef`/`SecondaryDef2`/`DamageBonus`/`AccuracyBonus`/
+`DefenseBonus`, which stay blank/unused on a pcstyle row and vice versa
+- the two methods are mutually exclusive per row, not layered). Builds
+an enemy the way a PC actually gets built - Defense = 8 + Skill Total,
+Damage = a weapon-style base + Stat, Resist = Essence alone - instead
+of enemy_builder.py's synthetic Level curve; see build_enemy_pcstyle's
+own module docstring for the full formula and why. Each Tier column is
+"poor"/"secondary"/"primary" (blank = poor, same "never invested here"
+reading as a blank Ability cell) - five independent Defenses instead of
+PrimaryDef/SecondaryDef's bundled "Parry/Dodge as one category" (plus
+Vigilant, which PrimaryDef/SecondaryDef's own three-category shape
+doesn't cover at all - see ENEMY_ENCOUNTER_DESIGN.md's Defense tiering
+section). `SecondaryDef2` is the classic-method equivalent - a second
+Secondary pick, needed once Vigilant made four categories out of three;
+existing rows predating this change leave it blank, which reads as an
+extra, currently-unintended weak category until reviewed. `HealthBonus`
 (blank = 0) is a small uniform nudge on top of the real Baseline-party
 Health for that Level, not part of the formula itself. The 4 default
 Level 1 archetypes (Hedge Knight/Marsh Archer/Skulking Footpad/Fen
@@ -95,10 +101,11 @@ def _build_from_row(row):
     # construction (Defense = 8 + Skill Total, Damage = base + Stat,
     # Resist = Essence alone) over enemy_builder.build_enemy's synthetic
     # Level curve - see enemy_builder_pcstyle.py's own module docstring
-    # for why. ParryTier/DodgeTier/BodilyTier/MentalTier (blank = "poor",
-    # same "a Skill you never invested in" reading as a blank Ability
-    # cell) replace PrimaryDef/SecondaryDef's bundled "Parry/Dodge as one
-    # category" for these rows - four independent Defenses, not three.
+    # for why. ParryTier/DodgeTier/BodilyTier/MentalTier/VigilantTier
+    # (blank = "poor", same "a Skill you never invested in" reading as a
+    # blank Ability cell) replace PrimaryDef/SecondaryDef's bundled
+    # "Parry/Dodge as one category" for these rows - five independent
+    # Defenses, not four.
     if (row.get("AttackTier") or "").strip():
         e = build_enemy_pcstyle(
             row["Name"],
@@ -111,19 +118,28 @@ def _build_from_row(row):
                 "dodge": (row.get("DodgeTier") or "poor").strip().lower(),
                 "bodily": (row.get("BodilyTier") or "poor").strip().lower(),
                 "mental": (row.get("MentalTier") or "poor").strip().lower(),
+                "vigilant": (row.get("VigilantTier") or "poor").strip().lower(),
             },
             attack_tier=row["AttackTier"].strip().lower(),
             health_bonus=int(row["HealthBonus"]) if row.get("HealthBonus", "").strip() else 0,
             abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
         )
     else:
+        # SecondaryDef/SecondaryDef2: up to two Secondary picks now that
+        # Vigilant makes four categories (see ENEMY_ENCOUNTER_DESIGN.md's
+        # Defense tiering section) - blank entries filtered out, so a row
+        # with only SecondaryDef set (every pre-Vigilant row) still works
+        # exactly as before, just with Vigilant itself reading as a
+        # second, currently-unintended weak category until a real design
+        # pass assigns it a proper pick.
+        secondary_defs = tuple(v for v in (row["SecondaryDef"], row.get("SecondaryDef2", "")) if v)
         e = build_enemy(
             row["Name"],
             int(row["Level"]),
             float(row["Slots"]),
             row["Role"],
             row["PrimaryDef"] or None,
-            row["SecondaryDef"] or None,
+            secondary_defs,
             row["Action"],
             row["Armor"],
             ability_dmg_bonus=int(row["DamageBonus"]) if row.get("DamageBonus", "").strip() else 0,

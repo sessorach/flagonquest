@@ -158,23 +158,43 @@ contradiction: same shape, more generous, and "Backup" renamed
 
 ## Defense tiering: Primary/Secondary/base — the core "intuitive weakness" mechanic
 
-Enemies use **three** Defense categories, not the PC's five —
-**Parry/Dodge** (combined into one, unlike PCs who pick between them
-per-attack), **Bodily** (= Vital Defense), and **Mental**. Vigilant
-Defense isn't modeled for enemies at all — a deliberate simplification,
-not an oversight (nothing in the source system varies it per-enemy).
+The original source spreadsheet gave enemies **three** Defense
+categories, not the PC's five — **Parry/Dodge** (combined into one,
+unlike PCs who pick between them per-attack), **Bodily** (= Vital
+Defense), and **Mental**, with Vigilant Defense left out entirely (a
+deliberate simplification there, not an oversight — nothing in that
+source system varied it per-enemy).
 
-The GM picks **one Primary Defense** (this enemy's clear strength) and
+The GM picked **one Primary Defense** (this enemy's clear strength) and
 **one Secondary Defense** (its middling one) out of those three — the
-third, un-picked category is this enemy's clear weakness. Concretely,
+third, un-picked category was this enemy's clear weakness. Concretely,
 each Defense's base value (Accuracy + 6, the same base every category
-starts from) gets a flat **+2 if it's the Primary pick, +1 if
+starts from) got a flat **+2 if it's the Primary pick, +1 if
 Secondary, +0 otherwise** — reproduced exactly from the live
 calculator's own worked example (Level 2, Primary = Parry/Dodge,
 Secondary = Mental): Parry/Dodge Defense 17 (base 12 + 2 primary + 3
 flat), Bodily Defense 13 (base 12 + 0 + 1 flat, no bonus — the
 un-picked category), Mental Defense 14 (base 12 + 1 secondary + 1
-flat).
+flat). This three-category shape is still the historical record of
+what the spreadsheet actually specified.
+
+**Extended to four categories, Vigilant included, as of the Martial
+Techniques balance pass** (`design/balance_weights_notes.md`) — Feint
+specifically targets Vigilant Defense (`8 + Insight Skill Total` per
+rulebook.md), and leaving it unmodeled made that Technique's real hit
+rate against a typical enemy unanswerable. Vigilant slots into the
+same tiering mechanic as Bodily/Mental (base value ±0/+1/+2 by tier),
+but **the GM now picks two Secondary Defenses, not one**, keeping the
+core "exactly one clear weakness" shape intact across four categories
+instead of three (1 Primary + 2 Secondary + 1 un-picked, same as the
+old 1 + 1 + 1 did for three) — the alternative (1 Primary + 1
+Secondary + 2 un-picked) would give every enemy two legible weaknesses
+instead of one, diluting the whole "intuitive weakness" point below.
+`enemy_builder.py`'s `build_enemy` takes `secondary_defs` (a pair) now
+instead of a single `secondary_def`; existing enemies in
+`sample_enemies.csv` that predate this change have their second
+Secondary slot left blank (reads as un-picked/weak) until a real design
+pass assigns one — flagged there, not silently guessed.
 
 **This is the actual mechanism behind "intuitive strengths and
 weaknesses."** A heavily-armored brute with Parry/Dodge as Primary is
@@ -183,7 +203,9 @@ Theurgy targeting the mind) if Mental is left as its un-picked
 category — and a player who notices that and leans on a
 Composure-targeting approach instead of just swinging harder is being
 rewarded for reading the fiction correctly, not for metagaming a
-hidden number.
+hidden number. Vigilant slots into this the same way: a heavy fighter
+who never invested in Insight is legibly exploitable by Feint, the
+same "read the fiction, don't metagame a hidden number" reward.
 
 ## Battle Tactics and Fighting Style: breaking the melee-clash default
 

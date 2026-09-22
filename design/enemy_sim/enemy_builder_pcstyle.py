@@ -34,16 +34,19 @@ sits at the "secondary" row, which is the intended reading: an enemy given
 uniform "secondary" tiers across the board plays like a mirror-image of
 the party's own baseline, not a harder or easier version of it.
 
-**Four independent Defense tiers** (`defense_tiers={"parry":..., "dodge":
-..., "bodily":..., "mental":...}`, each "primary"/"secondary"/"poor")
-replace enemy_builder.py's PrimaryDef/SecondaryDef pair (which bundles
-Parry and Dodge into one "Parry/Dodge" category, moving together always) -
-a real PC's Melee (Parry) and Acrobatics (Dodge) are separate Skills that
-can be raised completely independently (rulebook.md never bundles them),
-so this gives the same variety a real character sheet would have instead
-of an invented "+2/+1" bonus tacked onto a flat baseline. Leaving a
-Defense out of the dict defaults it to "poor" - a genuine weak point, same
-as a Skill a PC never invested in.
+**Five independent Defense tiers** (`defense_tiers={"parry":..., "dodge":
+..., "bodily":..., "mental":..., "vigilant":...}`, each "primary"/
+"secondary"/"poor") replace enemy_builder.py's PrimaryDef/SecondaryDef
+pair (which bundles Parry and Dodge into one "Parry/Dodge" category,
+moving together always) - a real PC's Melee (Parry) and Acrobatics
+(Dodge) are separate Skills that can be raised completely independently
+(rulebook.md never bundles them), so this gives the same variety a real
+character sheet would have instead of an invented "+2/+1" bonus tacked
+onto a flat baseline. Leaving a Defense out of the dict defaults it to
+"poor" - a genuine weak point, same as a Skill a PC never invested in.
+Vigilant added alongside the original four for the same reason
+enemy_builder.py's own tiering grew a fourth category - see
+ENEMY_ENCOUNTER_DESIGN.md's Defense tiering section.
 """
 import math
 import tunables as T
@@ -126,6 +129,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     dodge = def_total("dodge") + T.ARMOR[armor]["dodge"]
     bodily = def_total("bodily")
     mental = def_total("mental")
+    vigilant = def_total("vigilant")  # Feint's target - see ENEMY_ENCOUNTER_DESIGN.md's Defense tiering section
 
     # Resist - Essence alone (party.py: "Resist starts equal to your
     # Essence"), completely decoupled from attack_damage above, unlike
@@ -159,7 +163,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     return dict(name=name, level=level, slots=slots, role="None", action=action,
                 accuracy=accuracy, attack_damage=attack_damage, dmg_type=dmg_type,
                 opp_def=opp_def, attack_range=attack_range,
-                parry=parry, dodge=dodge, bodily=bodily, mental=mental,
+                parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
                 physres=physres, elemres=elemres,
                 health=health, max_health=health, speed=speed, reflex=reflex,
                 ability_budget=ability_budget, ability_cost=ability_cost, abilities=list(abilities),
