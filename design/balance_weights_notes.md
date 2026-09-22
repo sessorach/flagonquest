@@ -5234,3 +5234,149 @@ revision.
   judgment call**, not derived the way the rest of this table is —
   flagged the same way any Narrative Utility item's honest-guess
   convention is.
+
+## Feint (T074) and the Martial Techniques pass — Vigilant Defense modeled, a real Gambling AI bug found, and a standing lesson on how to price moment-specific effects
+
+Feint ("Make a weapon attack against the target's Vigilant Defense.
+Instead of normal effects, if it hits then the target is Harried
+3 + [Diamonds] times", 1 AP, Level 1, Encounter) looked badly
+underpriced on a first pass (~0.43 Value against a 5.5 budget — see
+"the budget" derivation below) and ended up **confirmed fine as
+written** once the simulator's own modeling caught up to what the
+Technique actually does. Three real findings came out of chasing that
+gap down, all worth keeping for future work, not just this one
+Technique.
+
+### Vigilant Defense is now modeled for enemies
+
+`ENEMY_ENCOUNTER_DESIGN.md`'s Defense tiering used to cover only three
+categories (Parry/Dodge, Bodily, Mental) — Vigilant was explicitly
+left out of the original spreadsheet, "a deliberate simplification,
+not an oversight," per that doc's own prior text. That made Feint's
+real hit rate against a typical enemy unanswerable, since it's the
+one Technique in the catalog that specifically targets Vigilant.
+Extended to four categories (1 Primary + **2** Secondary picks now,
+not 1, to keep the "exactly one clear weakness" shape intact — see
+that doc's own updated section for the full reasoning), wired into
+both `enemy_builder.py` (now takes `secondary_defs`, a pair) and
+`enemy_builder_pcstyle.py` (a fifth independent tier), and into
+`combat_sim.py`'s `enemy_defense_for_pc_attack` (`pc['opp_def'] ==
+'Vigilant'`, no Harried subtraction — Harried is Dodge/Parry only).
+Existing `sample_enemies.csv` rows leave their new `SecondaryDef2`/
+`VigilantTier` blank until a real design pass assigns them, flagged
+rather than guessed.
+
+### A real bug in `pc_gamble_count`, not just Feint's own math
+
+Checking Feint's value meant checking what happens once a target's
+Defense is cratered by several Harried stacks and a teammate attacks
+it next — and that surfaced a genuine simulator bug, independent of
+Feint: `pc_gamble_count`'s "plenty of Skill Total to spare" branch
+used to gamble until the *average* card (7) would still clear
+Defense, which is exactly a 50/50 shot on that maxed-out attempt, not
+the "safe bet... can usually Gamble freely" rulebook.md actually
+describes. Confirmed empirically before the fix: a follow-up attack
+against a 7-stack-Harried target had a *lower* hit rate (53.0%) than
+a normal, unbuffed attack in the same fights (74.4%) — the old
+heuristic was spending the crater on marginal extra damage instead of
+on actually landing the hit.
+
+**The real fix wasn't a tighter constant, it was solving the actual
+optimization problem.** Card values are uniform 1-13, so
+`P(hit | n gambles)` is exactly linear in `n`, which makes
+`E[net damage] = P(hit|n) × (successes on a hit)` a single-peaked
+(concave) function of `n` — there's one true EV-maximizing gamble
+count, not a threshold to eyeball. `pc_gamble_count` now evaluates
+every candidate `n` from 0 up to the point even a 13 can't hit, and
+picks whichever maximizes expected *net* damage (post-Resist) — one
+unified pass instead of the old two separate hand-tuned branches
+(Resist-wall vs. normal). Worked out analytically, the EV-optimal
+count is `n* = (S - D + 12) / 4` (roughly *half* what the old "average
+card clears" heuristic gambled for the same margin), landing at a hit
+chance around **half of your zero-gamble hit chance, not a flat
+50/50** — but the actual code just searches directly rather than
+trusting a closed form at every edge case, since a real Resist wall
+shifts which `n` pays off in a way the plain formula doesn't reflect
+on its own.
+
+**This is a standing rule for any future Gambling-adjacent balance
+check, not just Feint**: when evaluating whether a target's cratered
+Defense is worth exploiting, don't assume "gamble until it's still
+likely to hit" — compute the actual EV-maximizing count (or just run
+`pc_gamble_count`'s own logic, which now does this correctly), since
+the naive threshold either over- or under-commits depending on how
+big the margin is.
+
+After the fix, the same follow-up-attack check read 79.4% hit rate
+(now *above* the 72.4% normal-attack control, matching intuition) at
+9.21 average raw damage when it hits — a real, large improvement, not
+just a smaller number.
+
+### Measure the moment, not just the aggregate win-rate delta
+
+Even with the Gambling fix, Feint's value measured against the
+**whole-fight win-rate delta** (the same method used for Backfoot/
+Stagger/Outflank and the Advanced Cost-6 trio) stayed noisy and
+inconclusive — bouncing between roughly -2 and +2 Value across a
+sweep of Harried-stack counts, indistinguishable from zero at
+reasonable trial counts. That's not because Feint has no value; it's
+because **the whole-fight win-rate delta is the wrong tool for a
+mechanic whose value is concentrated in one specific follow-up
+moment, not spread evenly across a whole fight.** A single ~4.6-net-
+damage swing is real and substantial in the moment it happens, but
+it's a drop in the bucket against everything else a 20+-round,
+4-enemy fight decides on — diluted into noise by the aggregate
+metric, even though the underlying effect is large and reliable.
+
+**The fix: measure the specific moment directly against a matched
+control**, not the whole fight's outcome. Isolated the actual
+follow-up attack(s) against the Feinted target, compared their
+expected *net* damage (post-Resist, not raw) against a same-fight
+control attack against a different, non-Feinted target:
+
+- **One follow-up** (whichever party member attacks the Feinted
+  target next): 79.4% hit / 5.78 avg net damage when hit = **4.59
+  expected**, vs. control's 72.4% / 2.54 = **1.84 expected**. Delta =
+  **2.75 net damage**. Converted at the *guaranteed* rate (4/point,
+  Health's own rate — not the hit-discounted 2/point, since the delta
+  is already probability-weighted, so discounting it again would
+  double-count): **Value ≈ 11.0** for that one follow-up alone.
+- Feint only lands on a trackable follow-up in **46.0%** of fights
+  (the rest of the time there's no living second attacker on that
+  target soon enough) — blending that in: `0.460 × 11.0 ≈ 5.0`,
+  landing almost exactly on the budget below.
+- **Two follow-ups** (crediting a second party member attacking the
+  same still-Harried target, which the decay rule — clears at the
+  *bearer's own* turn end, not after one attack — genuinely allows):
+  follow-up #2 only shows up in 57.1% of Feint-landings (the target
+  or turn order doesn't always cooperate), so its own delta (+1.18 net
+  damage) gets weighted by that incidence: `2.75 + (0.571 × 1.18) ≈
+  3.42` net damage per landing, **Value ≈ 13.7** once Feint lands at
+  all, **≈ 6.3** fully unconditional (`0.460 × 13.7`).
+
+**The budget it's being checked against**: for a 1 AP, Level 1
+Encounter Technique, the designer's own call was to price it against
+Autoswing (5.5, "value of one full extra attack") rather than the
+generic `3 × Level` Technique-value rate — reasoning that a Technique
+this cheap, replacing a whole attack action, should be judged against
+what a full extra attack is worth, not the flatter per-Level curve.
+**Verdict: Feint's real value (≈5.0-6.3, crediting one or two
+follow-ups) meets or exceeds that 5.5 budget — left as-is, no change,
+Cost still 1 AP.** The earlier "badly underpriced" read was an
+artifact of the Gambling bug and the wrong pricing metric, not a real
+problem with the Technique.
+
+**Standing lesson for future balance checks**: if a mechanic's payoff
+is concentrated in a specific follow-up action or narrow window
+(cratering Defense for an ally, a one-shot setup effect, anything
+that reads as "this enables something else" rather than "this
+directly deals with the outcome") — measure that specific moment's
+expected value against a matched control, the way this pass did,
+rather than trusting the whole-fight win-rate delta to surface it.
+The aggregate metric is the right tool for something whose value is
+genuinely spread across the whole fight (Stagger, Flurry, straight
+Damage/debuff Features); it's the wrong tool for something whose
+value lives in one narrow, specific moment - Backfoot/Stagger already
+showed composition-dependence is real, and this pass adds "diluted
+into noise by fight length" as a second, distinct way the aggregate
+metric can mislead.
