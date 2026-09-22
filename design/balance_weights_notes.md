@@ -6280,45 +6280,73 @@ Technique mechanically - it doesn't just avoid damage, it converts a
 successful defense into offense - and the math backs up that it's
 priced close to where a Level 2, 1-AP reactive Technique should land.
 
-### Turn the Tables (T092) — qualitative flag only, too matchup-dependent for a clean number
+### Turn the Tables (T092) — revisited with a real worked example, on-budget-to-strong for a Brawl-specialist build
 
 0 AP Interrupt, Level 3, "you successfully grapple a creature" ->
 "You use the target as a shield until the grapple ends. You may Parry
 with them as a Brawl weapon (Defense +0). If you successfully Parry an
 attack with the target, the attack instead targets their Parry
-Defense and is resolved accordingly." Unlike Chainbreaker's clean
-two-flip convolution, this one's real value hinges on a variable this
-project has no representative baseline for: the grappled creature's
-own Parry Defense, which swings enormously by which specific enemy got
-grappled (Boulder Toss's own Grapple prereq - "Make an Unarmed weapon
-attack against your target's Dodge or Parry Defense," same setup cost
-as Boulder Toss, not a separate one to price here) and isn't the kind
-of thing a single worked example can represent honestly the way
-Chainbreaker's symmetric skill-vs-skill flip could.
+Defense and is resolved accordingly." First pass left this unpriced -
+its real value hinges on the grappled creature's own Parry Defense,
+which swings by which specific enemy got grappled, and this project had
+no representative baseline for it the way Chainbreaker's symmetric
+skill-vs-skill flip did. Revisited per the designer's own suggested
+next step: build the actual worked example instead of leaving it
+qualitative.
 
-Mechanically it's a real damage-transfer effect, not just an avoidance
-one - a successful Brawl-based Parry doesn't just block the attack,
-it fully redirects the hit onto the hostage, closer in kind to how
-Protected's "absorb 1 Health" is priced at the guaranteed 4/point rate
-than to a plain miss. But the actual rate that redirect happens depends
-on: whether the Brawl-based Defense option (8 + Brawl Skill Total,
-`Defense +0`) beats the PC's own normal applicable Defense on a given
-attack (a real choice, so only ever picked when favorable - a genuine
-floor-raising option, never a downgrade), and separately whether the
-grappled creature's own Parry Defense is low enough to matter once the
-attack retargets onto them. Both of those are per-encounter, per-target
-questions this project has no roster-wide baseline for the way
-Chainbreaker's symmetric attacker-vs-defender skill comparison did.
+**No existing named PC meets the Prereqs** (Brawl 4, Acrobatics 3 -
+Browndog, the closest, is only Brawl 2). Worked-example build instead,
+same "meets Prereqs, some headroom" convention as Boulder Toss/Plague
+Fist: Body 3, Agility 3, Cunning 1, Mind 1, Essence 1, Brawl 4,
+Acrobatics 3, Melee 0 - a full Brawl specialist. This build's own
+normal best Defense is Dodge 14 (Acrobatics-based; Parry's only 11 with
+no Melee investment). Turn the Tables' Brawl-based option comes out to
+`8 + Brawl Skill Total (7) = 15` - **not just situational for this
+build, a flat +1 to their actual best Defense** for as long as the
+grapple holds, since Brawl beats both Melee and Acrobatics outright.
+Attacker: a real Level 3 roster enemy, Ironbranch Warden (accuracy 8,
+damage 7 Physical, `opp_def: Parry/Dodge`) - matches Turn the Tables'
+own Level.
 
-**Verdict: not priced to a number - flagged as a real, likely-strong
-defensive tool gated by a genuine setup cost (an already-landed
-Grapple), same category of "real but unpriceable with what this
-project currently has" as Boulder Toss's reposition value or Turn the
-Tables' own sibling Chainbreaker's redirect upside.** Worth revisiting
-with an actual worked example (a specific PC's Brawl investment against
-a specific grappled enemy's Parry Defense) if it comes up as a played
-character's real Technique pick, rather than forcing a roster-wide
-number now.
+The mechanic reduces to one flip checked against two thresholds at
+once (does it clear the PC's new Defense 15; if not, does that same
+roll still clear the hostage's own Parry) - exact arithmetic over 13
+card outcomes, not a convolution needing two independent flips the way
+Chainbreaker did:
+
+| Hostage's Parry Defense | Self-defense value (fewer hits taken) | Bonus hostage-damage value | Total Value/attack faced |
+|---|---|---|---|
+| Weak (Fen Warden, 12) | 1.23 | 3.69 | **4.92** |
+| Mid (13) | 1.23 | 2.46 | **3.69** |
+| Strong (Hedge Knight/Ironbranch Skirmisher, 14) | 1.23 | 1.23 | **2.46** |
+
+Self-defense value is constant across all three (it only depends on the
+PC's own Defense 14->15 swap, not the hostage) - the hostage-damage
+component is what actually swings with target selection, same shape as
+Boulder Toss's own "who's actually in throw range" uncertainty, just
+now with real numbers bracketing it instead of a placeholder.
+
+Against the Level 3 anchor (`3 × Level` = **9**), this clears budget
+once the PC eats roughly **2-3 incoming attacks** during the grapple's
+hold - a realistic count for a grapple that survives more than a turn
+or two, not an extreme assumption. Scales down against a defensively
+tough hostage (you want to grab something squishy) and up against a
+weak one, same "who did you actually grab" skill-expression shape as
+Boulder Toss's own framing split.
+
+**This reading is specific to a Brawl-as-primary-Defense build.** A PC
+who's also invested in Melee/Acrobatics gets much less from the Defense
+swap itself (Turn the Tables only ever helps, never hurts, since it's
+optional - but it stops being a genuine floor-raise once Brawl isn't
+already their best stat) and falls back toward just the hostage-damage
+upside alone. The Technique reads as a real specialist payoff, not a
+flat bonus everyone gets equally - same shape as Boulder Toss and
+Chainbreaker, a third Snake School Technique that rewards actually
+building into what it asks for.
+
+**Verdict: on-budget-to-strong for the build it's clearly meant for, no
+Cost/Effects change.** Confirms the designer's own original gauge on
+this one was accurate.
 
 ## Spellblade (T100) — priced against every keyword rate this project has already derived, and it's badly uneven, not "massively overpowered" as a blanket
 
