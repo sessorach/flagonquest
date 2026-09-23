@@ -98,6 +98,16 @@ cut, not just backfilled at a point in time.
   Circlet of Clarity above) — worth remembering as a pattern before
   reaching for another "detect/pierce/understand X" Head concept:
   check whether X is a real mechanic in this game first.
+- **Crashing Leg Sweep** (Snake School, archive) — declined; an early
+  draft of the live Heelbiter (Interrupt when an adjacent enemy tries
+  to leave, attack, stop the movement), plus Prone, which isn't a live
+  keyword anymore.
+- **Serpentine Redirection** (Snake School, archive) — declined; the
+  same Parry-redirect mechanic as the live Chainbreaker, which is where
+  it ended up.
+- **Chainbreaker, Level 4 variant** (Snake School, archive) — declined;
+  regains its own use on a hit. The live Level 2 version already prices
+  out fine.
 
 ## Techniques with stale "Social Contest"-era mechanics, need real rework
 
@@ -317,6 +327,16 @@ disagree on Level and sometimes on the whole mechanic — pick
 deliberately when drafting, don't just take the first hit. Old
 `[Stance]` tags = current `[Style]`.
 
+**Level coverage (unarmed Schools), running note** — update as
+techniques get added. Live right now: L1 Spirit Bolt, Striking
+Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Through the
+Void, Heelbiter, Chainbreaker, Spirit Hands · L3 Fist of the Third
+Dragon, Turn the Tables · **L4 none · L5 none**. L2 is crowded; L1 and
+L3 are thin; L4-L5 are empty. Bear and Demon have only one technique
+each (both L2), and Great Old Oak has none. Backlog candidates that
+could fill a thin level, flagged during review:
+- *(none flagged yet)*
+
 Heads-up for drafting: several old drafts lean on keywords that don't
 exist in the live glossary — **Dazed, Snared, Weakened, Off-Balance,
 Enervated, Prone** — plus **Spirit** damage (current elements are
@@ -357,19 +377,13 @@ translation to live keywords, not a straight port.
     hit, attack vs. Vital. A: target takes [Power] Vulnerable or
     Bleeding. C: Bleeding per Vulnerable+Necrotic stack, and Bleeding
     ticks add Necrotic for the encounter.
-- **Snake** (live: Heelbiter L2, Chainbreaker L2, Turn the Tables L3)
-  - *Striking Constrictor* — L1 (C, 7638): 1 AP Interrupt after an
-    Unarmed hit, turn it into a grapple attempt.
-  - *Crashing Leg Sweep* — L2 (A 1389 / B 1866): Interrupt when an
-    adjacent enemy moves away; Brawl attack, Prone and movement
-    cancelled. Close to live Heelbiter; check for overlap.
-  - *Serpentine Redirection* — Parry-redirect. L4 (A 1683 / B 2112),
-    L2 (C, 7816). Mechanically almost identical to live Chainbreaker;
-    likely where Chainbreaker came from rather than a new technique.
+- **Snake** (live: Striking Constrictor L1, Heelbiter L2, Chainbreaker
+  L2, Turn the Tables L3). Crashing Leg Sweep, Serpentine Redirection,
+  and the L4 Chainbreaker variant were declined as old drafts of live
+  techniques (see "Reviewed and declined").
   - *Infinite Coiling* [Style] — L3 (10392): Parrying or being hit by
-    your Unarmed attack Slows the target once.
-  - Archive also has a L4 Chainbreaker variant (C, 8088) that regains
-    its own use on a hit.
+    your Unarmed attack Slows the target once. First read: about 5.5
+    Value/encounter, so it fits L2 better than L3.
 - **Shugen** (live: Spirit Bolt L1, Iron Skin L2, Through the Void L2,
   Spirit Hands L2, Fist of the Third Dragon L3)
   - *Disintegrate Vitality* — L2 (A, 1351): ranged Meditation attack

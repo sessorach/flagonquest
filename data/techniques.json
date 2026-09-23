@@ -6642,5 +6642,54 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T145",
+    "name": "Snake School - Striking Constrictor",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Martial, Encounter",
+    "description": "One of the basic maneuvers of the Snake style, known to dozens of other martial arts across the world, trains the user to turn an unarmed attack effortlessly into a limb lock.",
+    "condition": "Your hands are empty, and you are unarmored",
+    "action": "1 AP - Interrupt (you hit with an Unarmed weapon attack, after the attack is resolved)",
+    "cost": null,
+    "target": "The creature you hit",
+    "effects": "Make an Unarmed weapon attack against the target's Dodge or Parry Defense. If it hits, you grapple the target, as the Grapple maneuver.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 2, Acrobatics 1",
+    "relevant_skills": "Brawl, Acrobatics",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

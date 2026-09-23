@@ -13,6 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-09-23 — Unarmed martial-arts Schools: backlog rebuilt, first new Technique
+
+Pulled every unported martial-arts School Technique out of the old archive into the ideas backlog, set a pricing rule for unarmed fighting, and started working through the unarmed Schools one Technique at a time.
+- Added Snake School - Striking Constrictor, a Level 1 move that turns a landed punch into a grapple attempt.
+- Unarmed now gets a small skill discount for Brawl, and Techniques that need both hands empty can carry a little extra value to make up for giving up a Shield.
+
 ### 2026-09-22 — Martial Technique cluster priced, "Style" freed up for the martial-arts Technique families
 
 Worked through the Martial Technique cluster (Magehunter, Parting Shot, Blinkstep, Perfect Strike, Cloak and Dagger, Boulder Toss, Plague Fist) pricing each one against THE TABEL, then renamed the `[Form]` rules tag to `[Style]` and the Bear/Snake/Demon/Shugen/Lion/Tiger Technique families from "X Style" to "X School" to make room for it.

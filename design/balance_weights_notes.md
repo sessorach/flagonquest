@@ -6502,3 +6502,35 @@ Encounter Technique's budget.** Nine of ten options now land in a
 similar +0 to +3 tier at reasonable X; Slowed is the one deliberate
 exception, capped by its own keyword's low ceiling rather than by
 Spellblade's formula. Effects text updated; no further action pending.
+
+## Martial Schools pass — the unarmed Schools, live and backlog, one at a time
+
+Working through every unarmed School Technique (Snake, Bear, Demon,
+Shugen, Great Old Oak), live ones plus the archive drafts now listed
+in `IDEAS_BACKLOG.md`, with the always-on `[Style]` Techniques held
+for the end. Two pricing rules set at the start of this pass (see the
+Baseline Weapons pass addendum and `balance_weights.csv`): Brawl takes
+a -1 skill adjustment, which puts Unarmed on rate with the one-handed
+weapons, and a Technique that needs both hands empty can take +2 on
+its Target for the Shield it rules out (mainly for Styles).
+
+**The Defense baseline for an unarmed fighter.** Brawl sets both Dodge
+(`8 + Brawl Skill Total`) and the Unarmed weapon's Parry (`8 + Brawl
+Skill Total + 1`). A Brawl specialist's best Defense is usually their
+own Unarmed Parry. The earlier Turn the Tables and Chainbreaker
+write-ups used an Acrobatics/Melee baseline instead and got both wrong
+(corrections pending the Turn the Tables decision). `enemy_sim/
+party.py` has the same blind spot: it works out Dodge from Acrobatics
+alone and has no Unarmed Parry.
+
+### Snake School - Striking Constrictor (T145, new, Level 1)
+
+Ported from the archive (Pass C, line 7638). 1 AP Interrupt after you
+hit with an Unarmed attack: make the Grapple maneuver's own attack
+against the target. A Grapple normally costs a full 2 AP attack, so
+this saves exactly 1 AP (2.75), gated on having already landed a hit,
+against a Level 1 Target of 3 (92%). It doesn't take the +2 (not a
+Style). It carries the same "hands empty, unarmored" Condition as the
+other three Snake Techniques to keep the School consistent. Also the
+cheap way into the grapple chain (Turn the Tables, Boulder Toss).
+Added as written.
