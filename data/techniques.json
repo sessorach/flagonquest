@@ -4576,7 +4576,7 @@
     "action": "2 AP",
     "cost": "Expend the use of a Spell Encounter Technique; X is its Level",
     "target": null,
-    "effects": "Choose one option then make a weapon attack. General options: range +[6×X] meters; Push [6×X]+[Spades] meters; target gains [3×X]+[Clubs] Bleeding; you gain [3×X]+1+[Hearts] Fire/Frost/Shadow Ward. Sorcery options: target Slowed [3×X]+[Spades]; Vulnerable [3×X]+[Diamonds]; Necrotic [3×X]+[Diamonds]. Theurgy options: Shift [6×X]+[Clubs] meters; Protected [3×X]+1+[Spades]; target Crippled [3×X]+[Clubs].",
+    "effects": "Choose one option then make a weapon attack. General options: range +[7×X] meters; Push [7×X]+[Spades] meters; target gains [3×X]+[Clubs] Bleeding; you gain [3×X]+1+[Hearts] Fire/Frost/Shadow Ward. Sorcery options: target Slowed [2×X]+[Spades]; Vulnerable [2×X]+[Diamonds]; Necrotic [2×X]+[Diamonds]. Theurgy options: Shift [7×X]+[Clubs] meters; Protected X+1+[Spades]; target Crippled X+1+[Clubs].",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics, Archery, or Melee) 3, (Sorcery or Theurgy) 3",
