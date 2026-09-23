@@ -4792,6 +4792,26 @@ several iterations before landing:
 
 `items.csv` (`I121`-`I124`) updated. Regenerated into `data/items.json`.
 
+**Addendum (Martial Schools pass): Brawl gets its own -1, and
+both-hands-empty Techniques get +2.** Unarmed was left "deliberately
+below the 1H baseline" above (raw `+2 Acc + 2 Dmg×2 + 1 WD = 7` against
+a 1H Target of 8), but that pass never gave Brawl a skill adjustment
+the way Archery (+2) and Acrobatics (-2) got one. Brawl feeds the
+attack, Parry, *and* Dodge (`rulebook.md`'s Dodge formula takes
+"Acrobatics or Brawl"), which is broader than Melee. It's also tied to
+a short weapon list, so per the designer it gets **-1**, not
+Acrobatics' full -2. That puts Unarmed exactly on rate with the other
+one-handed weapons: `Target = 8 - 1 = 7 = raw`.
+
+The second half covers what Unarmed actually costs a School fighter.
+Most unarmed School Techniques require *both* hands empty, which rules
+out an off-hand Shield. Per the designer, a Technique with that
+Condition can take an extra **+2** on its own Target, the same Held-slot
+opportunity cost (Shield's +2 WD) the two-handed weapons already get.
+It mainly applies to always-on `[Style]` Techniques. An Encounter
+Technique can consider it but doesn't get it automatically. Both
+recorded in `balance_weights.csv`.
+
 ### Baseline Armor pass — 3 tiers, a genuinely different balance shape than Weapons
 
 The second and final piece of the Baseline items work, after Weapons

@@ -445,7 +445,17 @@ Techniques get priced with a bit extra on top of the usual budget to
 bring the archetype up to rate. Mostly this applies to always-on
 `[Style]` Techniques, less to Encounter ones. Example: a Dueling Style
 is giving up the off-hand Shield (+2 Parry), so it's allowed roughly
-that much extra value on average.
+that much extra value on average. For unarmed: Brawl gets a -1 skill
+adjustment (putting Unarmed on rate with one-handed weapons), and a
+Technique that requires *both* hands empty gets +2 on top (see
+`balance_weights.csv`).
+
+Existing Styles that already fit the unarmed Schools: `T135 Shugen
+School - Spirit Hands` (hands empty, Unarmed deals Brilliant; this is
+the Brilliant Brawl Style, and it's already live). The archive's *Dragon's
+Fang* (Ki/Shugen, Spirit damage) is its earlier draft. Brawl-eligible
+but not unarmed-only: Disciple of the Flowing Hand, Indomitable
+Phalanx, Eternal Riposte, Storm of Blades, Follow Through.
 
 **Card/luck-economy techniques** — nothing currently manipulates cards
 beyond Grim Resolve's "spend Health, draw a card": Intuitive Maneuver
