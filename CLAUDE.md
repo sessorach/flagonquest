@@ -147,6 +147,16 @@ which should stay a clean decision record.
   self-check. When a claim involves arithmetic, actually compute it and
   check the result is internally consistent before presenting it — don't
   write plausible-looking numbers and trust they work out.
+- **Label the side and sign of every balance adjustment, every time.**
+  Before writing down any adjustment (a Condition allowance, a skill
+  discount, a cost), say explicitly whether it's "+N to Target" or
+  "±N to Value", and run the one-line check in `balance.md` ("Every
+  adjustment goes on one side of the ledger"): something the player
+  gives up means the Technique must deliver *more*, so the Target goes
+  up or the cost comes off Value. This has slipped twice. The second
+  time was mine: I wrote an unarmored allowance as `Target − 0.8` and
+  the designer caught it. Verify-the-arithmetic doesn't catch this;
+  the arithmetic was fine, the sign was wrong.
 - **When and how to delegate simulation/probability work to a subagent.**
   Two shapes of work are good candidates for delegating out of the main
   conversation: "go find out what already exists" (an archive sweep, a

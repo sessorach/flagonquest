@@ -6528,9 +6528,17 @@ alone and has no Unarmed Parry.
 Ported from the archive (Pass C, line 7638). 1 AP Interrupt after you
 hit with an Unarmed attack: make the Grapple maneuver's own attack
 against the target. A Grapple normally costs a full 2 AP attack, so
-this saves exactly 1 AP (2.75), gated on having already landed a hit,
-against a Level 1 Target of 3 (92%). It doesn't take the +2 (not a
-Style). It carries the same "hands empty, unarmored" Condition as the
-other three Snake Techniques to keep the School consistent. Also the
-cheap way into the grapple chain (Turn the Tables, Boulder Toss).
-Added as written.
+this saves exactly 1 AP (2.75), gated on having already landed a hit.
+It carries the same "hands empty, unarmored" Condition as the other
+three Snake Techniques to keep the School consistent. Also the cheap
+way into the grapple chain (Turn the Tables, Boulder Toss). Added as
+written.
+
+**Corrected Target.** First written up as 2.75 against a Target of 3
+(92%), with no allowance for the unarmored Condition. Then briefly
+mis-stated in chat as `3 − 0.8` (subtracting the unarmored allowance),
+which is backwards. Being unarmored is something the player gives up,
+so it's **+0.8 to Target** (one round of Light Armor's +1 Physical
+Resist at the ×0.8 monk rate; see `balance_weights.csv`). Correct
+figure: **2.75 against 3.8 = 72%**, under. Whether to drop the
+unarmored Condition (back to 92%) or buff it is still open.

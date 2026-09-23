@@ -29,6 +29,44 @@ clean `Level × 3` Target formula, so balancing them is more about relative
 comparison against similarly-priced existing entries than a hard
 pass/fail number.
 
+### Every adjustment goes on one side of the ledger: say which, every time
+
+A pricing check compares two numbers. **Target** is what the
+Technique or item is owed (its budget). **Value** is what it actually
+delivers. Every adjustment belongs on one side with a clear sign, and
+getting the side or the sign wrong flips the verdict. This has gone
+wrong at least twice: once in the base weapons pass (caught by its own
+"direction note") and again in the Martial Schools pass, where an
+"unarmored" allowance got subtracted from a Technique's Target when it
+should have been added.
+
+- **Something the player gives up raises the Target.** A Condition or
+  restriction (both hands empty, unarmored, must be two-handed), a
+  narrow Skill that pays off nowhere else (Archery), a Held slot. The
+  player accepted a worse deal to use the thing, so it's entitled to
+  deliver more. Write it as **"+N to Target."**
+- **Something the player gets goes on Value.** Every effect the
+  Technique produces. A Skill that also pays off elsewhere (Acrobatics
+  feeding Dodge, Brawl feeding Dodge and Parry) is also something the
+  player gets, so it *lowers* the Target instead: **"−N to Target."**
+- **A cost paid each time it's used comes off Value.** AP, a Card, a
+  spent Spell charge, Health: `Net = Value − cost`, then compare Net to
+  Target. (Mathematically the same as adding the cost to the Target.
+  Pick one and don't do both.)
+
+**The one-line check before writing any adjustment down:** *does this
+make the deal better or worse for the player?* Worse for the player
+(they give something up, they pay something) means the Technique has
+to deliver **more** to be on rate. So the Target goes up, or the cost
+comes off Value. Better for the player means the opposite. If an
+adjustment ever makes a restricted Technique *easier* to be on rate,
+the sign is wrong.
+
+`balance_weights.csv` rows that are adjustments (not per-unit rates)
+state their side explicitly in the Value column ("+2 to the
+Technique's own Target", "−1 to the weapon's own Target"). Keep new
+rows in that form.
+
 ### Estimating a genuinely hard-to-price effect: triangulate, don't guess once
 
 Most mechanics in this model trace back to a real derivation (a card-math
