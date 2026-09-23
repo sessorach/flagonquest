@@ -6368,6 +6368,25 @@ building into what it asks for.
 Cost/Effects change.** Confirms the designer's own original gauge on
 this one was accurate.
 
+**Correction (Martial Schools pass): the verdict above was wrong, and
+Turn the Tables is now Defense +1.** The worked example compared
+against Dodge 14 (from Acrobatics) as the PC's best Defense. But Brawl
+sets Dodge too (`8 + Brawl Skill Total` = 15), and the Unarmed weapon's
+own Parry is `8 + 7 + 1` = **16**. The analysis also missed that
+attackers get Good Luck against anyone who's grappling. Against the
+real baseline, "Parry with them as a Brawl weapon (Defense +0)" is 1
+*worse* than parrying with your own fists, so taking the option costs
+Defense. All it adds is the redirect: about **+0.7 per incoming attack**
+with a mid-Parry hostage (range −0.2 to +1.3), or 1.3-2.0 over a
+grapple's 2-3 incoming attacks. The Target is 9 + 0.8 unarmored =
+**9.8**, so that's 13-20%. At **Defense +1** the hostage parries exactly
+as well as your fists, so there's no Defense cost, and the redirect
+lands whenever the attack would have hit your Parry-16 but not the
+hostage's: **3.12 per attack** against a Parry-13 hostage (3.79 at 12,
+2.27 at 14). That's **6.3-9.4 over 2-3 attacks = 64-96%** at mid
+hostage, more against a squishy one. Changed to Defense +1. +2 was
+considered and rejected (about +6 per attack, far over).
+
 ## Spellblade (T100) — priced against every keyword rate this project has already derived, corrected three times, and rebalanced
 
 T100 Spellblade (Level 2, Martial, "2 AP", Cost "Expend the use of a
@@ -6540,5 +6559,9 @@ mis-stated in chat as `3 − 0.8` (subtracting the unarmored allowance),
 which is backwards. Being unarmored is something the player gives up,
 so it's **+0.8 to Target** (one round of Light Armor's +1 Physical
 Resist at the ×0.8 monk rate; see `balance_weights.csv`). Correct
-figure: **2.75 against 3.8 = 72%**, under. Whether to drop the
-unarmored Condition (back to 92%) or buff it is still open.
+figure: **2.75 against 3.8 = 72%**, under. **Resolved: dropped the
+unarmored Condition** (now just "Your hands are empty"), back to
+**2.75 against 3 = 92%**. The alternative, Good Luck on the grapple,
+overshot (about 135%). Its own flavor text calls it a basic move
+"known to dozens of other martial arts across the world," so it
+doesn't need the rest of the School's unarmored identity.
