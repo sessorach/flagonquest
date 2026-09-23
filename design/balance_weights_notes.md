@@ -6300,6 +6300,14 @@ Technique mechanically - it doesn't just avoid damage, it converts a
 successful defense into offense - and the math backs up that it's
 priced close to where a Level 2, 1-AP reactive Technique should land.
 
+**Superseded (Martial Schools pass).** These numbers were wrong in
+three ways: the baseline Parry should have been the Brawl fighter's
+own Unarmed Parry (`8 + Brawl + 1`), not 13; Chainbreaker's own flip
+includes the Unarmed +2 Accuracy; and it's decided *after* seeing the
+attacker's flip, with cards from hand allowed on it. The Technique has
+since been redesigned and renamed. See "Snake School - Slithering
+Hands" under the Martial Schools pass.
+
 ### Turn the Tables (T092) — revisited with a real worked example, on-budget-to-strong for a Brawl-specialist build
 
 0 AP Interrupt, Level 3, "you successfully grapple a creature" ->
@@ -6573,3 +6581,81 @@ like that on these monk abilities"), and the grapple attack now has
 grappling cuts both ways for a monk (Speed 0, and attackers get Good
 Luck against you), so the designer is fine with grapple setups running
 hot. Revisit if it plays broken.
+
+### Snake School - Slithering Hands (T089, was Chainbreaker L2 → Level 4)
+
+**What changed.** T089 was "Chainbreaker," Level 2, 1 AP. It's now
+**Slithering Hands**, Level 4, **0 AP**, and the redirect can only go
+to **another enemy adjacent to the attacker**, not back onto the
+attacker (the same "second target next to the first" condition Ricochet
+Shot uses). The mechanic is otherwise the same, reworded:
+
+> Make an Unarmed weapon attack flip. Your Parry Defense against the
+> attack is equal to its result. If you Parry the attack, it's
+> redirected: it's made against the target instead, using your flip's
+> result, and resolved normally.
+
+Builder Notes point out that it's a normal flip, so cards from hand can
+go on it. Prereqs Brawl 5, Acrobatics 4, Meditation 2 (Brawl 5 /
+Acrobatics 4 are the archive's own Level 4 Serpentine Redirection
+Prereqs, which was this Technique's original draft). The name
+"Chainbreaker" is freed up for a different design. The Master Raha
+lore stayed on this row, since "turning their own weapons against each
+other" fits the redirect.
+
+**Why it moved up.** Three things the Level 2 pricing missed, all of
+which make it stronger:
+- The trigger is *after* the attacker's flip and before it resolves, so
+  you see their result before deciding to use it.
+- Because your Parry becomes a flip, you can play a card from hand on
+  it (`rulebook.md`, "Your Hand and Playing Cards": any number of cards
+  can replace flipped cards before the result is decided). Normally a
+  static Defense can't use cards at all. With a good card you can
+  guarantee the Parry, and a guaranteed Parry means a flip high enough
+  that the redirect almost certainly hits too.
+- Your flip is a real Unarmed attack flip, including its +2 Accuracy.
+
+**Two input corrections.** Roster enemies carry **Physical Resist 5**,
+not 3, so a redirected enemy weapon hit (7 damage) nets **2**, not 4.
+And a Snake monk is unarmored, so their own Physical Resist is just
+their Essence (4 at Tier 4). Both were overstated in the Level 2
+figures.
+
+**Level 4 model.** Tier 4 monk: Agility 4, Brawl 5 (Brawl Skill Total
+9), so Unarmed Parry 18 and Unarmed flip = 11 + card. Cunning 3, Mind 3
+means about 12 cards a day, so a good card (best of about 4, around 11)
+is usually on hand. Attacker +9 with a 7-damage weapon, a second enemy
+with Defense 15 and Physical Resist 5. Three single-target Parry
+attacks per fight, used once. A use that ends up worse than your
+normal Parry (turning a miss into a hit) is counted as a loss.
+Redirecting also Harries the second enemy (+1, same as Autoswing's
+Harried credit).
+
+**Priced as value-when-used**, the same standard as Heelbiter, Parting
+Shot, and each Spellblade option: what it's worth in the situation it's
+built for (a second enemy in reach), not discounted by how often that
+situation comes up. The "must go to another enemy" condition is a
+restriction, and per the Heelbiter precedent a restriction on an
+Encounter Technique pays for an extra feature rather than being priced
+numerically. Target = 12 + 0.8 unarmored = **12.8** (+Target, the
+player gives up armor).
+
+| Good card available | Value per encounter | Funded |
+|---|---|---|
+| 70% | 9.3-12.5 | 72-98% |
+| 90% | 10.4-14.1 | 81-110% |
+
+The ideal use comes to 18.3: see a hit coming, play a card, Parry it,
+and land their own weapon on their friend (avoid 3 × 4 = 12, redirect 2
+× 4 = 8, Harried 1, minus the card 2.7). Without a card, a redirect off
+an attack that was going to miss anyway still lands about 77% of the
+time.
+
+**Verdict: on rate at Level 4 with no bonus to the redirected attack.**
+Per the designer, no damage bonus. The value is in the whole package:
+0 AP, a Parry you set after seeing their result, a card sink on
+defense, and a free attack with their weapon. Considered and dropped
+along the way, back when the model still discounted for how often a
+second enemy is in reach: +1 or +2 redirect damage, and adding the
+monk's Body (far over). None of them are needed once it's priced as
+value-when-used.

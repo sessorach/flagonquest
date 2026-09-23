@@ -15,9 +15,9 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-09-23 — Unarmed martial-arts Schools: backlog rebuilt, first new Technique
 
-Pulled every unported martial-arts School Technique out of the old archive into the ideas backlog, set a pricing rule for unarmed fighting, and started working through the unarmed Schools one Technique at a time.
-- Added Snake School - Striking Constrictor, a Level 1 move that turns a landed punch into a grapple attempt.
-- Unarmed now gets a small skill discount for Brawl, and Techniques that need both hands empty can carry a little extra value to make up for giving up a Shield.
+Pulled every unported martial-arts School Technique out of the old archive into the ideas backlog, set pricing rules for unarmed fighting, and reworked the Snake School.
+- Snake School: added Striking Constrictor (Level 1, turns a landed punch into a grapple with Good Luck), gave Turn the Tables a better parry, and rebuilt Chainbreaker as Slithering Hands (Level 4, deflect an attack you see coming into one of the attacker's friends).
+- Unarmed now gets a small skill discount for Brawl, and monk Techniques that need empty hands or no armor can carry a little extra value to make up for what they give up.
 
 ### 2026-09-22 — Martial Technique cluster priced, "Style" freed up for the martial-arts Technique families
 

@@ -62,6 +62,17 @@ comes off Value. Better for the player means the opposite. If an
 adjustment ever makes a restricted Technique *easier* to be on rate,
 the sign is wrong.
 
+**Situational Techniques are priced at their value when used**, per the
+designer: what the Technique is worth in the situation it's built for,
+not discounted by how often that situation comes up. Used for Parting
+Shot/Heelbiter (an enemy trying to leave), each Spellblade option (as
+if it's the best pick for the moment), and Slithering Hands (a second
+enemy next to the attacker). A narrow trigger or Condition on an
+Encounter Technique pays for an extra feature instead of getting a
+number. The exception is an effect whose payoff is still uncertain
+*after* you've used it (Necrotic only matters if the target later
+heals or has Protected); that one does get discounted.
+
 `balance_weights.csv` rows that are adjustments (not per-unit rates)
 state their side explicitly in the Value column ("+2 to the
 Technique's own Target", "−1 to the weapon's own Target"). Keep new

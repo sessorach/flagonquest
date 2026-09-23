@@ -4039,19 +4039,19 @@
   },
   {
     "id": "T089",
-    "name": "Snake School - Chainbreaker",
-    "level_min": 2,
-    "level_max": 2,
+    "name": "Snake School - Slithering Hands",
+    "level_min": 4,
+    "level_max": 4,
     "tags": "Martial, Encounter",
     "description": "\"One of the most historically esteemed practitioners of the martial tradition of the Snake, Master Raha, is said to have been imprisoned by a local warring nation when he was a young man. Though he was strong in the art of the Snake, he was not a Master then, and he toiled in labor camps for long years under their oppressive regime. Every night and morning he meditated, looking for guidance and a way to free himself and others. One day his consciousness flowed outward into the manacles and chains that kept him hobbled, and he understood all tools and weapons as an extension of the bodies of others, and therefore their spirits. He broke his chains and defeated the guards, fighting with the chains they had placed on him as well as turning their own weapons against each other. After he freed the camp and returned to his monastery he taught of what he had learned, and the art of the Snake flourished for his wisdom.\"",
     "condition": "Your hands are empty, and you are unarmored",
-    "action": "1 AP - Interrupt (a weapon attack flip is made targeting only you against your Parry Defense, before its effects are resolved)",
+    "action": "0 AP - Interrupt (a weapon attack flip is made against only your Parry Defense, before the attack hits or misses)",
     "cost": null,
-    "target": "A creature within range of the attack, or the attacker",
-    "effects": "Make an Unarmed weapon attack flip; its result becomes X. Your Parry Defense against the attack becomes X. If you Parry it, the attack is instead made against the target you chose as though it had a flip result of X, then resolved normally.",
-    "builder_notes": null,
+    "target": "Another enemy adjacent to the attacker",
+    "effects": "Make an Unarmed weapon attack flip. Your Parry Defense against the attack is equal to its result. If you Parry the attack, it's redirected: it's made against the target instead, using your flip's result, and resolved normally.",
+    "builder_notes": "This is a normal flip, so you can play cards from your hand on it after seeing the attacker's result. It's one of the few ways to spend a card on defense.",
     "special": null,
-    "prereqs": "Brawl 3, Acrobatics 2, Meditation 2",
+    "prereqs": "Brawl 5, Acrobatics 4, Meditation 2",
     "relevant_skills": "Brawl, Acrobatics, Meditation",
     "use_cards": null,
     "healing": null,
@@ -4070,7 +4070,7 @@
           "Brawl"
         ],
         "threshold": {
-          "base": 3
+          "base": 5
         }
       },
       {
@@ -4079,7 +4079,7 @@
           "Acrobatics"
         ],
         "threshold": {
-          "base": 2
+          "base": 4
         }
       },
       {

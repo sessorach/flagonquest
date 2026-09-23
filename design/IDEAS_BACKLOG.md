@@ -330,12 +330,17 @@ deliberately when drafting, don't just take the first hit. Old
 **Level coverage (unarmed Schools), running note** — update as
 techniques get added. Live right now: L1 Spirit Bolt, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Through the
-Void, Heelbiter, Chainbreaker, Spirit Hands · L3 Fist of the Third
-Dragon, Turn the Tables · **L4 none · L5 none**. L2 is crowded; L1 and
-L3 are thin; L4-L5 are empty. Bear and Demon have only one technique
-each (both L2), and Great Old Oak has none. Backlog candidates that
-could fill a thin level, flagged during review:
+Void, Heelbiter, Spirit Hands · L3 Fist of the Third Dragon, Turn the
+Tables · L4 Slithering Hands · **L5 none**. L2 is still the most
+crowded; L1 and L3 are thin; L4 has one; L5 is empty. Bear and Demon
+have only one technique each (both L2), and Great Old Oak has none.
+Backlog candidates that could fill a thin level, flagged during
+review:
 - *(none flagged yet)*
+
+**"Chainbreaker" name is free.** T089 was renamed Slithering Hands
+(Level 4). Per the designer, the Chainbreaker name is reserved for a
+different Snake School design, still to be worked out.
 
 Heads-up for drafting: several old drafts lean on keywords that don't
 exist in the live glossary — **Dazed, Snared, Weakened, Off-Balance,
@@ -377,8 +382,8 @@ translation to live keywords, not a straight port.
     hit, attack vs. Vital. A: target takes [Power] Vulnerable or
     Bleeding. C: Bleeding per Vulnerable+Necrotic stack, and Bleeding
     ticks add Necrotic for the encounter.
-- **Snake** (live: Striking Constrictor L1, Heelbiter L2, Chainbreaker
-  L2, Turn the Tables L3). Crashing Leg Sweep, Serpentine Redirection,
+- **Snake** (live: Striking Constrictor L1, Heelbiter L2, Turn the
+  Tables L3, Slithering Hands L4). Crashing Leg Sweep, Serpentine Redirection,
   and the L4 Chainbreaker variant were declined as old drafts of live
   techniques (see "Reviewed and declined").
   - *Infinite Coiling* [Style] — L3 (10392): Parrying or being hit by
