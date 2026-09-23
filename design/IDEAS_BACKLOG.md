@@ -303,18 +303,136 @@ ally), Sentinel (shadow an adjacent enemy's movement), Iron Vanguard
 Focus (accuracy/speed or single-target tradeoffs), Earthen Mantle
 Approach (elemental Resist for defense).
 
-**Discipline/Martial-Arts Styles** — only 1-4 techniques per Style
-made it in; the rest of each tier ladder didn't. **Great Old Oak
-Style** and **Ki Style** are entirely absent (0 ported) — Oak is a
-defensive/endurance style (ignore Harried, counter-and-heal, remove
-debuffs mid-swing, regen on hit, deflect as a Counter); Ki is a
-teleport/chakra-disruption style (teleport-then-strike, Spirit-damage
-unarmed, disintegration finishers, Weakened strikes). **Bear**, **Demon**,
-**Shugen**, and **Snake** each have several tier-ladder entries still
-unported (defensive-mauling Parries, Bleed-on-Parry, disarm Counters,
-AoE knockdowns, Vulnerable-on-hit stances, self-sacrifice strikes,
-disintegration/chain-binding/teleport-swap/mind-shatter/shuriken
-options, trip-Counters, Slowed dual-wield stances, Parry-redirect).
+**Discipline/Martial-Arts Schools** (the archive calls them "X Style";
+live game renamed them "X School") — only 1-5 techniques per School
+made it in. Full per-School list below, mined from
+`archive/flagonquest_site_techniques.md`. The archive has **three
+overlapping draft passes** of this content: Pass A (~lines 1257-1700,
+AP actions, current skill names), Pass B (~1704-2158, pre-AP
+Main/Counter actions, old skill names — Centering = Meditation, Martial
+Arts = Brawl, Strength/Will = old stats), and Pass C (~7626-8122 plus
+the "Stances" sections ~10075-10430, newest, closest to current terms).
+Where a technique shows up in more than one pass the passes often
+disagree on Level and sometimes on the whole mechanic — pick
+deliberately when drafting, don't just take the first hit. Old
+`[Stance]` tags = current `[Style]`.
+
+Heads-up for drafting: several old drafts lean on keywords that don't
+exist in the live glossary — **Dazed, Snared, Weakened, Off-Balance,
+Enervated, Prone** — plus **Spirit** damage (current elements are
+Fire/Frost/Brilliant/Shadow) and a **Will** stat. Those need a
+translation to live keywords, not a straight port.
+
+- **Bear** (live: Boulder Toss L2)
+  - *Shattering Slam* — L2 (A, 1285): Unarmed attack; Parried → 1
+    Bleeding, hit → no damage but [half Might ST] Bleeding. L3 (B,
+    1878): ignores Resist, Snared+Dazed on hit.
+  - *Defensive Mauling* — L3 (C, 7832): 1 AP Interrupt vs. an attack on
+    your Parry; Unarmed attack, on hit or Parry you Parry their attack
+    and they're Frightened.
+  - *Furious Swipes* [Style] — L3 (C, 7846): your Unarmed attacks can't
+    be Parried. L4 (10420): Parrying or being hit by your Unarmed attack
+    gives 1 Bleeding, but you can't Parry with Unarmed.
+  - *Grizzly De-Fangs the Tiger* — L4 (B, 2012): Counter; Unarmed flip
+    replaces your Parry, ignoring Harried; on Parry, opposed Might flip
+    to disarm and fling their weapon.
+  - *The Grizzly Awakens* — capstone cone. L4 (A, 1555): 3m cone, Dodge,
+    3+Body damage, Prone on hit. L5 (B, 2138): Might-ST-sized cone,
+    ignores Resist, 1 Soul. L4 (C, 7980): 3m cone, armored targets hit
+    gain Bleeding equal to their own armor's Physical Resist.
+- **Demon** (live: Plague Fist L2)
+  - *Ripjaw Gambit* — three passes, three Levels, three mechanics. L2
+    (A, 1299): Shadow, extra damage up to [Power] but you take that much
+    extra for a round. L4 (B, 2026): hit → target Bleeds, miss → you
+    Bleed. L3 (C, 7884): vs. Mental Defense, Shadow, 1 Bleeding per
+    Gamble plus 1 on a Diamond.
+  - *Hand of Defilement* — L3 (A, 1449): [Power] Necrotic for the scene.
+  - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
+    1 Vulnerable. (Different technique from the singular one above.)
+  - *Spirit-Rending Claw* — L2 (B, 1772): you AND the target take
+    [half Meditation ST] Necrotic.
+  - *Corrupted Fist* — L3 (B, 1892): target takes your pick of
+    Vulnerable/Weakened, you take the other.
+  - *Wasting Claw* — L4 (A 1575 / C 7996): Interrupt after an Unarmed
+    hit, attack vs. Vital. A: target takes [Power] Vulnerable or
+    Bleeding. C: Bleeding per Vulnerable+Necrotic stack, and Bleeding
+    ticks add Necrotic for the encounter.
+- **Snake** (live: Heelbiter L2, Chainbreaker L2, Turn the Tables L3)
+  - *Striking Constrictor* — L1 (C, 7638): 1 AP Interrupt after an
+    Unarmed hit, turn it into a grapple attempt.
+  - *Crashing Leg Sweep* — L2 (A 1389 / B 1866): Interrupt when an
+    adjacent enemy moves away; Brawl attack, Prone and movement
+    cancelled. Close to live Heelbiter; check for overlap.
+  - *Serpentine Redirection* — Parry-redirect. L4 (A 1683 / B 2112),
+    L2 (C, 7816). Mechanically almost identical to live Chainbreaker;
+    likely where Chainbreaker came from rather than a new technique.
+  - *Infinite Coiling* [Style] — L3 (10392): Parrying or being hit by
+    your Unarmed attack Slows the target once.
+  - Archive also has a L4 Chainbreaker variant (C, 8088) that regains
+    its own use on a hit.
+- **Shugen** (live: Spirit Bolt L1, Iron Skin L2, Through the Void L2,
+  Spirit Hands L2, Fist of the Third Dragon L3)
+  - *Disintegrate Vitality* — L2 (A, 1351): ranged Meditation attack
+    vs. Vital, [Power] Bleeding. *Disintegrate Spirit* (B, 2072) looks
+    like the same idea moved to L4 and vs. Mental.
+  - *Unbreakable Spirit Meditation* — L2 (A 1377, B 1854) / L3 (C
+    7938): Meditation vs. Mental, Frighten (C: twice).
+  - *Spiritual Shurikens* — L2 (B, 1838): at-will ranged Meditation
+    attack, 3 + stat Physical damage.
+  - *Shatter Mind* — L2 (C, 7778): 3 AP, vs. Mental, [Mind] Bleeding.
+  - *Empowered Blood* — L3 (A 1503, B 1956) / L4 (C 8044): Interrupt
+    when an adjacent attacker makes you lose Health, Brilliant
+    counterattack vs. Dodge.
+  - *Pull Through the Void* — L3 (A, 1519): vs. Mental, swap places
+    with the target.
+  - *Slip Through Reality* — L3 (A 1531, B 1988, C 7928): Interrupt vs.
+    an attack on your Dodge; Teleport [Power] and the attack is
+    Countered.
+  - *Radiant Rebirth of the Phoenix* — L4 (A 1657, B 2084): Interrupt
+    when you'd be Downed; [Power] temp Health and Frighten everyone who
+    sees you.
+  - *Whirlwind of the Ethereal Emperor* — L4. A/B (1669/2096): 2m
+    burst, Push everyone back. C (8072): pulls them in instead.
+  - *Indomitable Ascension* — L4 (C, 8060): clear your own Frightened/
+    Taunted, Frighten each target twice.
+  - *Immolate Soul* — L5 capstone (C, 8102): pay Health, 3m burst,
+    5 + Health-paid Brilliant damage. (Its fluff is a copy-paste of
+    Whirlwind's; needs new flavor.)
+- **Great Old Oak** (live: none) — defensive/endurance
+  - *Tree Withstands the Storm* — L2. A (1313): ignore 1 Harried for
+    [Power] rounds, no attack. B (1786): Unarmed attack, +[half
+    Meditation ST] Dodge/Parry for a round.
+  - *Boughs Unbroken* [Style] — L2 (C, 7708): before each Unarmed
+    attack, remove 1 Crippled or Slowed from yourself.
+  - *Branch/Branches in the Wind* — three variants: L3 (A 1467)
+    counterattack for temp Health; L2 (C 7718) counterattack, then
+    ignore 1 Harried for a few rounds; L2 [Style] (10266) 1 AP auto-
+    Parry vs. ranged attacks only.
+  - *Bark Over Flesh* — L4 (A 1591) temp Health whenever you lose
+    Health; L3 (B 1930) attack + temp Health; L3 (C 7900) 1 AP
+    Interrupt, auto-Parry an attack that hit you.
+  - *River Stone Deflection* — L4 (B, 2040): Counter, +Parry, Harry
+    the attacker on a Parry.
+  - *Thirsting Roots* — L4 (C, 8010): Interrupt after an Unarmed hit,
+    attack vs. Vital; target Bleeds, you gain the same number of
+    Protected.
+- **Ki** (live: none) — teleport/chakra disruption
+  - *Spirit Seeker* — L2 (A, 1337): Teleport adjacent to a target
+    within [Power] m, then Unarmed attack.
+  - *Disrupt Chakra* — L2 (B, 1812): Unarmed attack, Dazed + Weakened.
+  - *Dragon's Fang* [Style] — L2 (10075): your Unarmed attacks deal
+    Spirit damage, but you can't Parry with Unarmed.
+  - *Prana Disintegration Methodology* — L3 (A 1485) / L4 (B 2056):
+    free-ish follow-up after an Unarmed hit, Meditation attack vs.
+    Vital.
+  - *Whelming Wave* — L3 (B, 1942): Unarmed attack vs. Vital using
+    Meditation, Prone + Off-Balance.
+  - *Chakral Overload* — L4 (A, 1627): Unarmed attack, Weakened
+    [Power] times. No L5 Ki content anywhere.
+- **Lion / Tiger**: nothing in the archive. Neither name appears at
+  all; their live techniques (Eternal Riposte, Storm of Blades) came
+  from generic, unbranded "Stances" entries. New Lion/Tiger content
+  would have to be designed fresh.
 
 **Card/luck-economy techniques** — nothing currently manipulates cards
 beyond Grim Resolve's "spend Health, draw a card": Intuitive Maneuver
