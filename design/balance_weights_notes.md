@@ -6565,3 +6565,11 @@ unarmored Condition** (now just "Your hands are empty"), back to
 overshot (about 135%). Its own flavor text calls it a basic move
 "known to dozens of other martial arts across the world," so it
 doesn't need the rest of the School's unarmored identity.
+
+**Reversed, per the designer:** the unarmored Condition is back ("I
+like that on these monk abilities"), and the grapple attack now has
+**Good Luck** to make up for it. Good Luck is 2.4, so it's **2.75 + 2.4
+= 5.15 against 3.8, about 136%**. Deliberately a little overtuned:
+grappling cuts both ways for a monk (Speed 0, and attackers get Good
+Luck against you), so the designer is fine with grapple setups running
+hot. Revisit if it plays broken.
