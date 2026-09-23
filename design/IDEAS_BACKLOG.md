@@ -416,7 +416,9 @@ translation to live keywords, not a straight port.
   - *Thirsting Roots* — L4 (C, 8010): Interrupt after an Unarmed hit,
     attack vs. Vital; target Bleeds, you gain the same number of
     Protected.
-- **Ki** (live: none) — teleport/chakra disruption
+- **Ki = Shugen.** "Ki Style" is the old name for what became Shugen
+  School, per the designer — the entries below are more Shugen
+  candidates, not a separate School. Leaning teleport/chakra-disruption.
   - *Spirit Seeker* — L2 (A, 1337): Teleport adjacent to a target
     within [Power] m, then Unarmed attack.
   - *Disrupt Chakra* — L2 (B, 1812): Unarmed attack, Dazed + Weakened.
@@ -431,8 +433,19 @@ translation to live keywords, not a straight port.
     [Power] times. No L5 Ki content anywhere.
 - **Lion / Tiger**: nothing in the archive. Neither name appears at
   all; their live techniques (Eternal Riposte, Storm of Blades) came
-  from generic, unbranded "Stances" entries. New Lion/Tiger content
-  would have to be designed fresh.
+  from generic, unbranded "Stances" entries. Per the designer, **Lion =
+  Dueling** (one one-handed weapon, empty off hand) and **Tiger =
+  dual-wielding**. New Lion/Tiger content would have to be designed
+  fresh.
+
+**Pricing principle for all Schools, per the designer**: each School
+backs an archetype that's weaker on its own (why fight barehanded
+instead of with a sword? why one sword and no shield?), so School
+Techniques get priced with a bit extra on top of the usual budget to
+bring the archetype up to rate. Mostly this applies to always-on
+`[Style]` Techniques, less to Encounter ones. Example: a Dueling Style
+is giving up the off-hand Shield (+2 Parry), so it's allowed roughly
+that much extra value on average.
 
 **Card/luck-economy techniques** — nothing currently manipulates cards
 beyond Grim Resolve's "spend Health, draw a card": Intuitive Maneuver
