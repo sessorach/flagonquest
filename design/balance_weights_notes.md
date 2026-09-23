@@ -6348,7 +6348,7 @@ building into what it asks for.
 Cost/Effects change.** Confirms the designer's own original gauge on
 this one was accurate.
 
-## Spellblade (T100) — priced against every keyword rate this project has already derived, corrected twice, and rebalanced
+## Spellblade (T100) — priced against every keyword rate this project has already derived, corrected three times, and rebalanced
 
 T100 Spellblade (Level 2, Martial, "2 AP", Cost "Expend the use of a
 Spell Encounter Technique; X is its Level", Prereqs "(Acrobatics,
@@ -6388,9 +6388,44 @@ file's own Ward derivation already established (2.0/stack, the same
 "typed Protected" mechanic, consumed on use rather than decaying).
 Recounting both components, bounded by a realistic 3-5 hits/encounter
 absorption ceiling (the same range Protected's own realization rate is
-calibrated against): **Ward's real Net Value is +0.5 to +4.4**, not the
--4.00 "trap pick" the incomplete first count found. No Effects change
-needed for Ward at all - the fix was in the pricing, not the Technique.
+calibrated against): Ward's real Net Value reads roughly +0.5 to +4.4,
+not the -4.00 "trap pick" the incomplete first count found - refined
+further below once the elemental-choice question got raised. No
+Effects change needed for Ward at all - both fixes were in the pricing,
+not the Technique.
+
+**Third correction, raised by the designer after the first two shipped:
+the Resist component's own +2.00 Fire cap was being credited every
+time, but Spellblade's Ward option is a per-use choice among Fire/
+Frost/Shadow, not a fixed pick locked in at learn-time.** A real
+player doesn't always get to apply Fire's own higher cap - the exact
+element depends on what's actually attacking that fight. Re-priced
+using this file's own established elemental-incidence split (an
+encounter is elemental-relevant ~50% of the time; within that, Fire is
+twice as likely as each other element, so Fire 40%/Frost 20%/
+Brilliant 20%/Shadow 20% of the relevant half - Resist derivation,
+above). Two different ways to apply that split were considered:
+weighting Ward's own conditional value by which element you'd actually
+get *when you pick it* (matching how every other Spellblade option is
+priced - "is this the right call in the moment," not "how often is
+this specifically the best of the ten choices"), versus discounting it
+by the full population-wide incidence of an elemental fight ever
+happening at all (the same treatment Necrotic already gets, since its
+own trigger is genuinely uncertain even after being chosen). **Per the
+designer: the first framing is correct** - Spellblade is built around
+picking whichever of ten options fits the situation, so every option
+gets priced as the best available pick for its moment, same standard
+applied to Crippled/Protected/Vulnerable/etc. throughout this pass.
+
+Reweighting the Resist component by which element you'd actually be
+choosing (Fire 50% likely given a match, Frost/Shadow 25% each, since
+Fire is 2x as common as either individually): `0.5×2.00 + 0.25×1.00 +
+0.25×1.00 = 1.50`, not a flat 2.00. Combined with the same absorption
+component as before: **Ward's corrected Net Value is +0.00 to +3.90**
+(3-5 realistic absorbed stacks, 75-84% realization) - close to the
+earlier estimate, just a touch lower now that it's not assuming Fire
+specifically every time. Still no Effects change needed - reads
+comfortably in the same tier as the rest of the rebalanced options.
 
 **Second correction: coefficients need to be integers, no fractions.**
 An exact-flat-premium search (useful for diagnosing the shape of the
@@ -6406,7 +6441,7 @@ rather than hold an exact line. Re-searched integers-only against the
 | Push (General) | `[6×X]+[Spades]` | **`[7×X]+[Spades]`** | ~+0.9 → +1.84 → +2.7 |
 | Shift (Theurgy) | `[6×X]+[Clubs]` | **`[7×X]+[Clubs]`** | same shape as Push (proxy rate) |
 | Bleeding (General) | `[3×X]+[Clubs]` | unchanged | caps hard near +1.38 no matter the coefficient - already at its ceiling |
-| Ward (General) | `[3×X]+1+[Hearts]` | unchanged | +0.5 to +4.4 once correctly priced (see above) |
+| Ward (General) | `[3×X]+1+[Hearts]` | unchanged | +0.00 to +3.90 once correctly priced (see above) |
 | Slowed (Sorcery) | `[3×X]+[Spades]` | **`[2×X]+[Spades]`** | -0.46 → +1.28 → +1.24 → sags to -4.17 by X=5 (structural, see below) |
 | Vulnerable (Sorcery) | `[3×X]+[Diamonds]` | **`[2×X]+[Diamonds]`** | -0.69 → +0.77 → +2.46 → +2.23 → -0.23 |
 | Necrotic (Sorcery, situational) | `[3×X]+[Diamonds]` | **`[2×X]+[Diamonds]`** | +0.69 → +1.38 → +2.08 → +2.77 → +3.46 |
@@ -6444,6 +6479,6 @@ changed.
 **Verdict: rebalanced to a consistent, modest per-option premium,
 matching the designer's own flexibility-tool framing rather than an
 Encounter Technique's budget.** Nine of ten options now land in a
-similar +0.5 to +3 tier at reasonable X; Slowed is the one deliberate
+similar +0 to +3 tier at reasonable X; Slowed is the one deliberate
 exception, capped by its own keyword's low ceiling rather than by
 Spellblade's formula. Effects text updated; no further action pending.
