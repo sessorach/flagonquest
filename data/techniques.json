@@ -6691,5 +6691,54 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T146",
+    "name": "Snake School - Chainbreaker",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Martial, Encounter",
+    "description": null,
+    "condition": "Your hands are empty, and you are unarmored",
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "If you are grappled, the grapple ends. Then remove up to [half your Brawl Skill Total] total stacks of Bleeding, Crippled, and/or Slowed from yourself, and make an Unarmed weapon attack against the target.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Acrobatics 2",
+    "relevant_skills": "Brawl, Acrobatics",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

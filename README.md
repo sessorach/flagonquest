@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-09-24 — Chainbreaker returns as a grapple breaker
+
+Added a new Snake School Chainbreaker, a Level 2 punch that breaks you out of a grapple and shakes off Bleeding, Crippled, and Slowed before it lands.
+
 ### 2026-09-23 — Unarmed martial-arts Schools: backlog rebuilt, first new Technique
 
 Pulled every unported martial-arts School Technique out of the old archive into the ideas backlog, set pricing rules for unarmed fighting, and reworked the Snake School.

@@ -6659,3 +6659,47 @@ along the way, back when the model still discounted for how often a
 second enemy is in reach: +1 or +2 redirect damage, and adding the
 monk's Body (far over). None of them are needed once it's priced as
 value-when-used.
+
+### Snake School - Chainbreaker (T146, new, Level 2)
+
+The name freed up when T089 became Slithering Hands. The designer's
+brief: a monk-only way to shake off debuffs, separate from the
+Meditation-keyed ones (`T084 Ignore Pain`). Three shapes were priced:
+
+- **An Interrupt that reduces stacks you'd gain** (Level 1, Encounter).
+  On rate at Level 1: you'd save it for the worst application that
+  fight, about 3-4 against a Target of 3.8. Not taken.
+- **A Style that always gains 1 fewer.** Doesn't work. Enemy abilities
+  only apply 1-2 stacks per landed hit (`ENEMY_ENCOUNTER_DESIGN.md`:
+  Strike gives 1, Poison (Bleeding) gives 2), and a monk only gets hit
+  by those a couple of times a fight, so it's about 1.4 per encounter
+  against a Level 2 Style budget of 12.
+- **Tied to an attack, and breaks grapples. Taken.**
+
+> *2 AP.* If you are grappled, the grapple ends. Then remove up to
+> [half your Brawl Skill Total] total stacks of Bleeding, Crippled,
+> and/or Slowed from yourself, and make an Unarmed weapon attack
+> against the target.
+
+Per the designer, Vulnerable was dropped from the list, and the
+grapple explicitly ends before the attack is made.
+
+**Price.** It's a normal 2 AP attack, so only the extras count
+(opportunity cost only, same as Boulder Toss/Plague Fist). Ending a
+grapple normally costs 2 AP and the other creature can contest it, so
+a guaranteed escape is worth about **5.5**. Clearing stacks you're
+already carrying is worth what they'd still cost you: enemies apply
+1-2 at a time, so typically 1.1-1.5 (a stack of Slowed or Crippled) up
+to 8 (2 Bleeding, priced at the full player-side 4/stack). Call it
+**2-3** in a typical fight. In the situation it's built for (grappled
+while carrying debuffs), that's **~7.5-8.5** against a Target of 6 +
+0.8 unarmored = **6.8**: 110-125%, on the hot side, in line with the
+designer's "monk grapple stuff can run a bit hot." If only one half
+applies it's 5.5 (81%) or the cleanse alone. Same "hands empty,
+unarmored" Condition as the rest of the School. Prereqs match
+Heelbiter's (Brawl 3, Acrobatics 2).
+
+Flagged while pricing this: `T084 Ignore Pain` probably has the same
+small-stacks problem (it removes up to half your Meditation in
+Crippled/Slowed, but enemies rarely stack more than 1-2). Check it when
+the pass reaches the Meditation Techniques.
