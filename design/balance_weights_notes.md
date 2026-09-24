@@ -6840,3 +6840,33 @@ With 1 target it's about 30%, with 3 about 170%, which is the usual
 shape for a cone. Bleeding's own taper keeps it steady as Brawl
 climbs. Cone size (2m instead of 3m) was the other lever considered,
 but it's hard to price, so the damage change was used instead.
+
+### Which Schools scale on what (designer's rule)
+
+Snake and Bear are the "normal" Schools, the bread and butter for a
+pure brawler: effects scale on **Brawl**, and the secondary skill
+(Acrobatics, Might) is only a Prereq. Demon (evil), Shugen
+(neutral/good), and Great Old Oak (defensive) are supernatural and
+scale their effects on **Meditation**. They're the bridge into mixed
+combat for a character leaning into Meditation. So Plague Fist's
+[half your Meditation Skill Total] scaling is correct as written.
+
+**Plague Fist rechecked against the real roster Resists.** Its first
+pricing credited the Shadow damage swap with +1 net per hit, assuming
+Physical Resist 3 against elemental Resist 2 on every enemy. The roster
+doesn't hold that: Level 2-3 enemies have equal Physical and elemental
+Resist (4/4, 5/5), and only Level 1 (3/2) and Level 4-5 (5/4) have the
+gap. Armor only ever adds Physical Resist, so the swap pays against
+armored targets, and that's the situation it's priced in. Level 2
+monk (attack +8) against Defense 14, Target 6 (no hands-empty
+Condition):
+
+| Meditation Skill Total | Swap pays (armored) | Resists equal |
+|---|---|---|
+| 6 (3 + [Diamonds] Vulnerable) | 113% | 72% |
+| 4 (Prereq minimum) | 80% | 38% |
+
+**Verdict softens from "a bit hot" to on rate, no change.** Necrotic
+is still about 0 against the roster. Its Vulnerable sets up the Demon
+backlog drafts that attack Vital or Mental Defense (Ripjaw Gambit's
+Pass C, Wasting Claw).

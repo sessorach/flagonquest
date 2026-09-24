@@ -467,7 +467,12 @@ adjustment (putting Unarmed on rate with one-handed weapons), and a
 Technique that requires *both* hands empty gets +2 on top (see
 `balance_weights.csv`). And per the designer, every unarmed School
 works like Snake: the secondary skill (Acrobatics, Might, ...) is a
-Prereq, and the effects scale on **Brawl**.
+Prereq, and the effects scale on **Brawl**. That's for the "normal"
+Schools, **Snake and Bear**, the bread and butter for a pure brawler.
+**Demon** (evil), **Shugen** (neutral/good), and **Great Old Oak**
+(defensive) are the supernatural ones and scale their effects on
+**Meditation**. They're the bridge into mixed combat for a character
+leaning into Meditation.
 
 Existing Styles that already fit the unarmed Schools: `T135 Shugen
 School - Spirit Hands` (hands empty, Unarmed deals Brilliant; this is
