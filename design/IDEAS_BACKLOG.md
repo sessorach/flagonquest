@@ -355,7 +355,13 @@ translation to live keywords, not a straight port.
     gives 1 Bleeding, but you can't Parry with Unarmed.
   - *Grizzly De-Fangs the Tiger* — L4 (B, 2012): Counter; Unarmed flip
     replaces your Parry, ignoring Harried; on Parry, opposed Might flip
-    to disarm and fling their weapon.
+    to disarm and fling their weapon. **Parked, revisit later for fun**
+    (designer's call). Disarming isn't a mechanic in the system yet, so
+    there's nothing to hang it on. First pass came to about 55% of a
+    Level 4 Target (a Bear monk in Light Armor only takes 2 net from a
+    hit, and the disarm is a coin flip). It also runs on the same "your
+    flip becomes your Parry" engine as Slithering Hands, with the same
+    payoff moment as Swatting Paw, so it would need its own angle.
   - *The Grizzly Awakens* — capstone cone. L4 (A, 1555): 3m cone, Dodge,
     3+Body damage, Prone on hit. L5 (B, 2138): Might-ST-sized cone,
     ignores Resist, 1 Soul. L4 (C, 7980): 3m cone, armored targets hit
