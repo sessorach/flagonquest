@@ -13,9 +13,11 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-09-24 — Chainbreaker returns as a grapple breaker
+### 2026-09-24 — Snake School finished, Bear School started
 
-Added a new Snake School Chainbreaker, a Level 2 punch that breaks you out of a grapple and shakes off Bleeding, Crippled, and Slowed before it lands.
+Kept working through the unarmed martial-arts Schools: finished the Snake School and started on Bear, which now scales on Brawl like the others.
+- Added Snake School - Chainbreaker, a Level 2 punch that breaks you out of a grapple and shakes off Bleeding, Crippled, and Slowed before it lands.
+- Added Bear School - Shattering Slam, a Level 2 body-slam that trades damage for Bleeding and Slows the target, the unarmed answer to armored enemies.
 
 ### 2026-09-23 — Unarmed martial-arts Schools: backlog rebuilt, first new Technique
 

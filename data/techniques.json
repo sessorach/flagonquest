@@ -3701,7 +3701,7 @@
     "action": "0 AP - Interrupt (you hit with an attack to grapple a creature)",
     "cost": null,
     "target": "The creature you grappled",
-    "effects": "End the grapple and throw the target up to [half your Might Skill Total] meters in a straight line. If thrown into a sturdy object, the target strikes it (3 + [your Body] Physical damage to both). If thrown through a creature's space, make a Might attack against that creature's Dodge; if it hits they are struck for the same damage. Target lands in front of the obstacle.",
+    "effects": "End the grapple and throw the target up to [half your Brawl Skill Total] meters in a straight line. If thrown into a sturdy object, the target strikes it (3 + [your Body] Physical damage to both). If thrown through a creature's space, make a Brawl attack against that creature's Dodge; if it hits they are struck for the same damage. Target lands in front of the obstacle.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 3, Might 2",
@@ -6732,6 +6732,55 @@
         "type": "skill",
         "options": [
           "Acrobatics"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T147",
+    "name": "Bear School - Shattering Slam",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Martial, Encounter",
+    "description": "Throwing the weight of your entire body into some poor soul, you slam into them with enough force to rattle their bones.",
+    "condition": "Your hands are empty",
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target. If the attack is Parried, the target gains a stack of Bleeding. If it hits, it deals no damage; instead the target gains [half your Brawl Skill Total] stacks of Bleeding and is Slowed twice.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Might 2",
+    "relevant_skills": "Brawl, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
         ],
         "threshold": {
           "base": 2

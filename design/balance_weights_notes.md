@@ -6703,3 +6703,56 @@ Flagged while pricing this: `T084 Ignore Pain` probably has the same
 small-stacks problem (it removes up to half your Meditation in
 Crippled/Slowed, but enemies rarely stack more than 1-2). Check it when
 the pass reaches the Meditation Techniques.
+
+### Bear School: scale on Brawl, not Might (Boulder Toss updated)
+
+Per the designer, the Schools should work like Snake: the secondary
+skill (Acrobatics for Snake, Might for Bear) is a Prereq, and the
+effects scale on **Brawl**. A monk shouldn't need to build Might up to
+make Bear Techniques work. `T081 Boulder Toss` changed to match: the
+throw is now up to [half your Brawl Skill Total] meters, and the attack
+against a creature in the throw's path is a Brawl attack instead of a
+Might attack. Its price barely moves. The value is almost all about
+positioning (see its own section above), and a Brawl-focused monk's
+Brawl Skill Total is usually at least as high as their Might.
+
+### Bear School - Shattering Slam (T147, new, Level 2)
+
+From the archive's Level 2 draft (Pass A, line 1285), with a Slowed
+rider added per the designer, and scaled on Brawl:
+
+> *2 AP, hands empty.* Make an Unarmed weapon attack against the
+> target. If the attack is Parried, the target gains a stack of
+> Bleeding. If it hits, it deals no damage; instead the target gains
+> [half your Brawl Skill Total] stacks of Bleeding and is Slowed twice.
+
+The Pass B draft (Level 3: ignores Resist, Snared and Dazed) wasn't
+used, since neither of those keywords exists anymore.
+
+**What it's for.** Bleeding ignores Resist and fists don't. A Level 2
+monk's Unarmed hit is 5 damage, which nets 2/1/0 against Physical
+Resist 3/4/5, and every Level 3+ roster enemy has Resist 5. So the
+Slam is the unarmed answer to armor, priced at its value when used
+(against a target your punches can't hurt). The Slow keeps them close
+while they bleed. It works especially well on Heavy-armored targets,
+because Slowed runs out at the target's Speed and heavy armor already
+costs them 1.
+
+**Price.** Opportunity cost only (it's a normal 2 AP attack). Level 2
+Monk, attack +8 against Defense 14: 61.5% to hit, 19.2% Parried
+(half the misses, since the target picks Dodge or Parry).
+Enemy-targeted Bleeding curve (4/stack, tapering past 2) and Slowed
+curve (1 stack 1.1, 2 stacks 3.3). **Target = 6 + 2 (both hands empty)
+= 8.** The Condition is only "hands empty", no unarmored clause, so no
++0.8. The designer asked to use the +2 here even though it's an
+Encounter Technique.
+
+| Brawl Skill Total | Bleeding on a hit | Value | Funded |
+|---|---|---|---|
+| 5 (Prereq minimum) | 2 | 7.72 | 97% |
+| 6 (typical) | 3 | 8.95 | 112% |
+| 8 | 4 | 9.57 | 120% |
+
+Bleeding's own taper keeps it from running away as Brawl climbs.
+Scaling the Slow on Brawl too was considered and dropped: it would
+double-dip on the Bleeding's scaling (137% at Brawl 6).

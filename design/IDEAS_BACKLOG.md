@@ -334,7 +334,8 @@ deliberately when drafting, don't just take the first hit. Old
 **Level coverage (unarmed Schools), running note** — update as
 techniques get added. Live right now: L1 Spirit Bolt, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Through the
-Void, Heelbiter, Chainbreaker, Spirit Hands · L3 Fist of the Third
+Void, Heelbiter, Chainbreaker, Shattering Slam, Spirit Hands · L3 Fist
+of the Third
 Dragon, Turn the
 Tables · L4 Slithering Hands · **L5 none**. L2 is still the most
 crowded; L1 and L3 are thin; L4 has one; L5 is empty. Bear and Demon
@@ -349,10 +350,8 @@ Enervated, Prone** — plus **Spirit** damage (current elements are
 Fire/Frost/Brilliant/Shadow) and a **Will** stat. Those need a
 translation to live keywords, not a straight port.
 
-- **Bear** (live: Boulder Toss L2)
-  - *Shattering Slam* — L2 (A, 1285): Unarmed attack; Parried → 1
-    Bleeding, hit → no damage but [half Might ST] Bleeding. L3 (B,
-    1878): ignores Resist, Snared+Dazed on hit.
+- **Bear** (live: Boulder Toss L2, Shattering Slam L2). Bear Techniques
+  need hands empty but allow armor.
   - *Defensive Mauling* — L3 (C, 7832): 1 AP Interrupt vs. an attack on
     your Parry; Unarmed attack, on hit or Parry you Parry their attack
     and they're Frightened.
@@ -468,7 +467,9 @@ is giving up the off-hand Shield (+2 Parry), so it's allowed roughly
 that much extra value on average. For unarmed: Brawl gets a -1 skill
 adjustment (putting Unarmed on rate with one-handed weapons), and a
 Technique that requires *both* hands empty gets +2 on top (see
-`balance_weights.csv`).
+`balance_weights.csv`). And per the designer, every unarmed School
+works like Snake: the secondary skill (Acrobatics, Might, ...) is a
+Prereq, and the effects scale on **Brawl**.
 
 Existing Styles that already fit the unarmed Schools: `T135 Shugen
 School - Spirit Hands` (hands empty, Unarmed deals Brilliant; this is
