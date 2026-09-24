@@ -335,13 +335,11 @@ deliberately when drafting, don't just take the first hit. Old
 techniques get added. Live right now: L1 Spirit Bolt, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Through the
 Void, Heelbiter, Chainbreaker, Shattering Slam, Spirit Hands · L3 Fist
-of the Third
-Dragon, Turn the
-Tables · L4 Slithering Hands · **L5 none**. L2 is still the most
-crowded; L1 and L3 are thin; L4 has one; L5 is empty. Bear and Demon
-have only one technique each (both L2), and Great Old Oak has none.
-Backlog candidates that could fill a thin level, flagged during
-review:
+of the Third Dragon, Turn the Tables, Swatting Paw · L4 Slithering
+Hands · **L5 none**. L2 is the most crowded; L1 is thin; L3-L4 are
+filling in; L5 is empty. Demon still has only one technique (L2), and
+Great Old Oak has none. Backlog candidates that could fill a thin
+level, flagged during review:
 - *(none flagged yet)*
 
 Heads-up for drafting: several old drafts lean on keywords that don't
@@ -350,11 +348,8 @@ Enervated, Prone** — plus **Spirit** damage (current elements are
 Fire/Frost/Brilliant/Shadow) and a **Will** stat. Those need a
 translation to live keywords, not a straight port.
 
-- **Bear** (live: Boulder Toss L2, Shattering Slam L2). Bear Techniques
-  need hands empty but allow armor.
-  - *Defensive Mauling* — L3 (C, 7832): 1 AP Interrupt vs. an attack on
-    your Parry; Unarmed attack, on hit or Parry you Parry their attack
-    and they're Frightened.
+- **Bear** (live: Boulder Toss L2, Shattering Slam L2, Swatting Paw
+  L3). Bear Techniques need hands empty but allow armor.
   - *Furious Swipes* [Style] — L3 (C, 7846): your Unarmed attacks can't
     be Parried. L4 (10420): Parrying or being hit by your Unarmed attack
     gives 1 Bleeding, but you can't Parry with Unarmed.

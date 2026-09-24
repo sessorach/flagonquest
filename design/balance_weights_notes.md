@@ -6756,3 +6756,42 @@ Encounter Technique.
 Bleeding's own taper keeps it from running away as Brawl climbs.
 Scaling the Slow on Brawl too was considered and dropped: it would
 double-dip on the Bleeding's scaling (137% at Brawl 6).
+
+### Bear School - Swatting Paw (T148, new, Level 3; archive "Defensive Mauling")
+
+From the archive's Defensive Mauling (Pass C, line 7832), renamed per
+the designer. The draft was a 1 AP Interrupt declared *before* the
+attacker's flip: an Unarmed attack that, "if it hits or is Parried,"
+Parries their attack and Frightens them once. Now:
+
+> *0 AP – Interrupt (a weapon attack flip is made against your Parry
+> Defense by a creature within range of your Unarmed weapon, before
+> the attack hits or misses).* Make an Unarmed weapon attack against
+> the target. If it hits, you Parry the target's attack, and they are
+> Frightened of you once.
+
+**Why the draft was under.** It fired before their flip, so more than
+half the time it "parried" an attack that would have missed a
+Brawl-monk's Parry 16 anyway, and a monk's punch does almost nothing to
+a Resist 5 enemy. "Hits or is Parried" was also dodgeable: on a miss
+the target just picks Dodge instead of Parry, so it's effectively "if
+it hits." Level 3 Bear monk (attack +9, Parry 16, Light Armor for
+Resist 4) against a Level 3 attacker (+8, 7 damage, Defense 13, Resist
+5). **Target = 9 + 2 (both hands empty) = 11.**
+
+| Version | Value | Funded (Level 3) |
+|---|---|---|
+| Draft (before their flip, 1 AP) | 4.2 | 38% |
+| Before their flip, 0 AP | 7.0 | 63% |
+| After their flip, 1 AP | 9.2 | 83% |
+| **After their flip, 0 AP (taken)** | **11.9** | **108%** |
+
+Priced at its value when used: on an attack you can see would hit.
+It's 77% to land (10/13), and when it does it saves a 3-damage hit
+(12), plus Frightened once (2.2), plus the Harried the target takes
+from defending (1). The trigger uses the same "after the flip, before
+it resolves" wording as Slithering Hands, so it can also go on an attack
+that was going to miss, if the player just wants the Frighten. Level 3
+was one of the thin levels. Swatting Paw and Slithering Hands are the
+Bear and Snake answers to the same moment: one cancels the hit and
+scares them, the other redirects it.

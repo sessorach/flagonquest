@@ -6789,5 +6789,54 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T148",
+    "name": "Bear School - Swatting Paw",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Martial, Encounter",
+    "description": "While lesser men hide behind armor and swing bits of metal at you, with the might of a bear you brush aside their puny attacks.",
+    "condition": "Your hands are empty",
+    "action": "0 AP - Interrupt (a weapon attack flip is made against your Parry Defense by a creature within range of your Unarmed weapon, before the attack hits or misses)",
+    "cost": null,
+    "target": "The attacking creature",
+    "effects": "Make an Unarmed weapon attack against the target. If it hits, you Parry the target's attack, and they are Frightened of you once.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Might 3",
+    "relevant_skills": "Brawl, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
