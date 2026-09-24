@@ -1574,6 +1574,19 @@ per-item Masterwork level is outstanding.
 
 What genuinely remains, cross-cutting rather than slot-shaped:
 
+- **Gambling is weapon-attacks-only for damaging attacks: look deeper
+  later, with the simulator.** Added to `rulebook.md`'s Gambling
+  section on 2026-09-24. The intent is to give weapon users an edge
+  over spellcasters on raw damage, but the designer may revise it.
+  Worth checking how big that edge actually is. **The combat
+  simulator doesn't follow the rule yet**: `combat_sim.py`'s Gambling
+  logic runs on every PC attack, War Magic included (Beornhard), so
+  casters there have been getting Gambles they shouldn't. Fixing that
+  shifts results the Level 1 roster was tuned against, so it wants a
+  deliberate pass rather than a quiet patch. Also open: whether
+  Discipline attacks like Spirit Bolt count (they aren't tagged
+  [Spell]).
+
 - ~~Crafting Schools' XP cost vs. payoff, broadly~~ — **reviewed
   2026-09-15, resolved: no rebalance needed.** Flagged while grouping
   everyday-goods recipes on the assumption that a School's payoff was

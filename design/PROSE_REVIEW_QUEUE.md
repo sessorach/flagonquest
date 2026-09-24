@@ -44,7 +44,10 @@ things off in order.
 - **`### Gambling`** — reframed as a bet declared before the flip, not a
   GM-gated option, as part of the same split; later Carrick's example
   reworded "Gambles thrice" to "Gambles three times" as part of a
-  project-wide sweep. Commits `e2156ca`, `60c5cff`.
+  project-wide sweep. Then added one sentence making explicit that, for
+  damaging attacks, only weapon attacks can be Gambled on (spell
+  attacks can't). Intended all along but never written down. Commits
+  `e2156ca`, `60c5cff`, `7717cec`.
 - **`### Supporting`** — reframed away from a skill-deficit fallback.
   Commit `038f203`.
 - **`### The Suit Pool`** — added the Skill→Suit bullet list and a

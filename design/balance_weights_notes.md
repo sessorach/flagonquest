@@ -6870,3 +6870,33 @@ Condition):
 is still about 0 against the roster. Its Vulnerable sets up the Demon
 backlog drafts that attack Vital or Mental Defense (Ripjaw Gambit's
 Pass C, Wasting Claw).
+
+### Suit riders and Extra Success Bleeding on the Bear Techniques; Plague Fist suits
+
+Per the designer, Techniques that apply a debuff get a suit rider
+matching that debuff's suit (`RULES_DESIGN.md`'s keyword table: Hearts
+for Frightened/Taunted, Clubs for Bleeding/Crippled, Diamonds for
+Harried/Vulnerable/Necrotic, Spades for Slowed/Push). The Bear
+Techniques' Bleeding now scales on Extra Successes instead of Brawl,
+so it can be Gambled on. Brawl is a Clubs skill, so a Clubs flip is
+already an Extra Success, which is +1 Bleeding. Priced with the Gamble
+count chosen to maximize value:
+
+| Technique | Now | Funded (was) |
+|---|---|---|
+| Shattering Slam (Target 8) | 2 Bleeding + 1 per Extra Success; Slowed 2 + [Spades] times | 107% (112%); 137% for a high-Brawl monk |
+| The Grizzly Awakens (Target 14, 2 targets) | 3 Bleeding + 1 per Extra Success; Slowed once | 97% (106%) |
+| Swatting Paw (Target 11) | Frightened 1 + [Hearts] times | 112% (108%) |
+
+A caveat worth knowing: Bleeding's value tapers after 2 stacks (4, 8,
+10, 11, ...), so with a base of 2 or 3 an expected-value player usually
+*won't* Gamble on these. The Gamble is a situational push (Good Luck, a
+big Skill Total lead, finishing a target), not the default. A base of 1
+on the Slam would make Gambling once the natural play, but it came to
+82-86% of Target. Snake's non-Style Techniques apply no debuffs, and
+Boulder Toss applies none, so nothing to add there. Infinite Coiling's
+Slowed takes [Spades] when the Styles pass reaches it.
+
+**Plague Fist**: its Necrotic rider moved from [Spades] to [Diamonds]
+to match the table. Vulnerable was already [Diamonds]. The value is
+unchanged, since each suit rider is worth the same 0.25 expected.
