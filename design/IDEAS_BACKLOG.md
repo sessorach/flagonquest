@@ -105,6 +105,12 @@ cut, not just backfilled at a point in time.
 - **Serpentine Redirection** (Snake School, archive) — declined; the
   same Parry-redirect mechanic that became the live Slithering Hands
   (T089, first shipped as a Level 2 "Chainbreaker").
+- **Spirit-Rending Claw** (Demon School, archive Pass B) — declined;
+  an Unarmed attack that gives both you and the target Necrotic for the
+  whole scene. It sits in the same Level 2 slot as the live Plague Fist
+  (Unarmed, Necrotic, Shadow), and its cost lands on the wrong side:
+  Necrotic on an enemy is worth about 0 against the roster, since they
+  never heal, while Necrotic on you blocks real healing all fight.
 - **Chainbreaker as a cheap attack** (Snake School, old drafts) —
   declined; the early versions were a cut-price extra attack, which the
   Styles and Battle Maneuver's Viper Sting already cover. The name went
@@ -372,8 +378,6 @@ translation to live keywords, not a straight port.
   - *Hand of Defilement* — L3 (A, 1449): [Power] Necrotic for the scene.
   - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
     1 Vulnerable. (Different technique from the singular one above.)
-  - *Spirit-Rending Claw* — L2 (B, 1772): you AND the target take
-    [half Meditation ST] Necrotic.
   - *Corrupted Fist* — L3 (B, 1892): target takes your pick of
     Vulnerable/Weakened, you take the other.
   - *Wasting Claw* — L4 (A 1575 / C 7996): Interrupt after an Unarmed
