@@ -17,7 +17,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 Kept working through the unarmed martial-arts Schools: finished the Snake School and started on Bear, which now scales on Brawl like the others.
 - Added Snake School - Chainbreaker, a Level 2 punch that breaks you out of a grapple and shakes off Bleeding, Crippled, and Slowed before it lands.
-- Added two Bear School Techniques: Shattering Slam (Level 2), a body-slam that trades damage for Bleeding and Slows the target, and Swatting Paw (Level 3), which bats aside an attack you see coming and Frightens the attacker.
+- Added three Bear School Techniques: Shattering Slam (Level 2), a body-slam that trades damage for Bleeding and Slows the target; Swatting Paw (Level 3), which bats aside an attack you see coming and Frightens the attacker; and The Grizzly Awakens (Level 4), the Slam as a shockwave cone.
 
 ### 2026-09-23 — Unarmed martial-arts Schools: backlog rebuilt, first new Technique
 

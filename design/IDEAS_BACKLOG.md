@@ -336,10 +336,10 @@ techniques get added. Live right now: L1 Spirit Bolt, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Through the
 Void, Heelbiter, Chainbreaker, Shattering Slam, Spirit Hands · L3 Fist
 of the Third Dragon, Turn the Tables, Swatting Paw · L4 Slithering
-Hands · **L5 none**. L2 is the most crowded; L1 is thin; L3-L4 are
-filling in; L5 is empty. Demon still has only one technique (L2), and
-Great Old Oak has none. Backlog candidates that could fill a thin
-level, flagged during review:
+Hands, The Grizzly Awakens · **L5 none**. L2 is the most crowded; L1
+is thin; L3-L4 are filling in; L5 is empty. Demon still has only one
+technique (L2), and Great Old Oak has none. Backlog candidates that
+could fill a thin level, flagged during review:
 - *(none flagged yet)*
 
 Heads-up for drafting: several old drafts lean on keywords that don't
@@ -349,7 +349,8 @@ Fire/Frost/Brilliant/Shadow) and a **Will** stat. Those need a
 translation to live keywords, not a straight port.
 
 - **Bear** (live: Boulder Toss L2, Shattering Slam L2, Swatting Paw
-  L3). Bear Techniques need hands empty but allow armor.
+  L3, The Grizzly Awakens L4). Bear Techniques need hands empty but
+  allow armor.
   - *Furious Swipes* [Style] — L3 (C, 7846): your Unarmed attacks can't
     be Parried. L4 (10420): Parrying or being hit by your Unarmed attack
     gives 1 Bleeding, but you can't Parry with Unarmed.
@@ -362,10 +363,6 @@ translation to live keywords, not a straight port.
     hit, and the disarm is a coin flip). It also runs on the same "your
     flip becomes your Parry" engine as Slithering Hands, with the same
     payoff moment as Swatting Paw, so it would need its own angle.
-  - *The Grizzly Awakens* — capstone cone. L4 (A, 1555): 3m cone, Dodge,
-    3+Body damage, Prone on hit. L5 (B, 2138): Might-ST-sized cone,
-    ignores Resist, 1 Soul. L4 (C, 7980): 3m cone, armored targets hit
-    gain Bleeding equal to their own armor's Physical Resist.
 - **Demon** (live: Plague Fist L2)
   - *Ripjaw Gambit* — three passes, three Levels, three mechanics. L2
     (A, 1299): Shadow, extra damage up to [Power] but you take that much

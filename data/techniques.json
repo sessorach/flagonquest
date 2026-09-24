@@ -6838,5 +6838,54 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T149",
+    "name": "Bear School - The Grizzly Awakens",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Martial, Encounter",
+    "description": "With true mastery over the style of the Bear, you shatter the earth with the force of several bears and send a shockwave forward to violently destroy all in its path.",
+    "condition": "Your hands are empty",
+    "action": "3 AP",
+    "cost": null,
+    "target": "All creatures and large, unattended objects in a 3-meter cone. The area passes through objects and isn't blocked by them.",
+    "effects": "Make an Unarmed weapon attack against the Dodge Defense of each target creature. If it hits, it deals no damage; instead the target gains [half your Brawl Skill Total] stacks of Bleeding and is Slowed once. Any target object large enough to be affected is treated as though you had tried to knock it over or batter it down, using your Brawl Skill Total.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 5, Might 4",
+    "relevant_skills": "Brawl, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

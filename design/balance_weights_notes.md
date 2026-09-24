@@ -6795,3 +6795,48 @@ that was going to miss, if the player just wants the Frighten. Level 3
 was one of the thin levels. Swatting Paw and Slithering Hands are the
 Bear and Snake answers to the same moment: one cancels the hit and
 scares them, the other redirects it.
+
+### Bear School - The Grizzly Awakens (T149, new, Level 4)
+
+The Bear capstone, from three archive drafts: Pass A (Level 4, 3+Body
+damage, knocks Prone), Pass B (Level 5, ignores Resist, costs 1 Soul,
+cone sized by Might), and Pass C (Level 4, Bleeding equal to the
+target's *armor's* Physical Resist). Per the designer it's a retuned
+AoE of Shattering Slam:
+
+> *3 AP, hands empty. Target: all creatures and large, unattended
+> objects in a 3-meter cone (passes through objects).* Make an Unarmed
+> weapon attack against the Dodge Defense of each target creature. If
+> it hits, it deals no damage; instead the target gains [half your
+> Brawl Skill Total] stacks of Bleeding and is Slowed once. Any target
+> object large enough to be affected is treated as though you had
+> tried to knock it over or batter it down, using your Brawl Skill
+> Total.
+
+**Why not the drafts as written.** Every roster enemy wears Light
+Armor, so Pass C's armor-scaled Bleeding is always 1 stack (61% at 2
+targets). Switching it to their *total* Resist would scale off the
+enemy instead of the monk, against the Brawl-scaling rule. Prone
+(Pass A/B) isn't a live keyword. The object-smashing clause moved from
+Might to Brawl, same rule.
+
+**Price.** Level 4 monk (Brawl Skill Total 9, attack +11) against
+Dodge 15: 77% to hit each target. Enemy-targeted Bleeding curve,
+Slowed 1 stack = 1.1, and +1 Harried per target for defending.
+Opportunity cost: the normal attack it replaces (1 net damage through
+Resist 5) plus 1 extra AP (3 AP instead of 2). **Target = 12 + 2 (both
+hands empty) = 14.** A cone gets priced at its design point of **2
+targets**, as value when used.
+
+| Version (2 targets) | Value | Funded |
+|---|---|---|
+| Hit deals damage + [half Brawl] Bleeding | 19.2 | 138% |
+| 4 AP instead of 3 | 16.5 | 118% |
+| Fixed 3 / fixed 2 Bleeding | 17.7 / 14.6 | 127% / 105% |
+| No damage, [half Brawl] Bleeding | 13.1 | 94% |
+| **No damage, [half Brawl] Bleeding, Slowed once (taken)** | **14.8** | **106%** |
+
+With 1 target it's about 30%, with 3 about 170%, which is the usual
+shape for a cone. Bleeding's own taper keeps it steady as Brawl
+climbs. Cone size (2m instead of 3m) was the other lever considered,
+but it's hard to price, so the damage change was used instead.
