@@ -341,11 +341,11 @@ deliberately when drafting, don't just take the first hit. Old
 techniques get added. Live right now: L1 Spirit Bolt, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Through the
 Void, Heelbiter, Chainbreaker, Shattering Slam, Spirit Hands · L3 Fist
-of the Third Dragon, Turn the Tables, Swatting Paw · L4 Slithering
-Hands, The Grizzly Awakens · **L5 none**. L2 is the most crowded; L1
-is thin; L3-L4 are filling in; L5 is empty. Demon still has only one
-technique (L2), and Great Old Oak has none. Backlog candidates that
-could fill a thin level, flagged during review:
+of the Third Dragon, Turn the Tables, Swatting Paw, Ripjaw Gambit · L4
+Slithering Hands, The Grizzly Awakens · **L5 none**. L2 is the most
+crowded; L1 is thin; L3-L4 are filling in; L5 is empty. Great Old Oak
+has none. Backlog candidates that could fill a thin level, flagged
+during review:
 - *(none flagged yet)*
 
 Heads-up for drafting: several old drafts lean on keywords that don't
@@ -369,12 +369,7 @@ translation to live keywords, not a straight port.
     hit, and the disarm is a coin flip). It also runs on the same "your
     flip becomes your Parry" engine as Slithering Hands, with the same
     payoff moment as Swatting Paw, so it would need its own angle.
-- **Demon** (live: Plague Fist L2)
-  - *Ripjaw Gambit* — three passes, three Levels, three mechanics. L2
-    (A, 1299): Shadow, extra damage up to [Power] but you take that much
-    extra for a round. L4 (B, 2026): hit → target Bleeds, miss → you
-    Bleed. L3 (C, 7884): vs. Mental Defense, Shadow, 1 Bleeding per
-    Gamble plus 1 on a Diamond.
+- **Demon** (live: Plague Fist L2, Ripjaw Gambit L3)
   - *Hand of Defilement* — L3 (A, 1449): [Power] Necrotic for the scene.
   - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
     1 Vulnerable. (Different technique from the singular one above.)

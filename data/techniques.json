@@ -6887,5 +6887,54 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T150",
+    "name": "Demon School - Ripjaw Gambit",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "By tearing loose your own spirit's energy to fuel your attacks, you devastate your victim at a cost to yourself.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "You gain 2 stacks of Bleeding. Then make an Unarmed weapon attack against the target's Vital Defense. If it hits, it deals its damage as Shadow and deals an extra [half your Meditation Skill Total] damage.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Meditation 3",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

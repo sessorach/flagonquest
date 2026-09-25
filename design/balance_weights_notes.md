@@ -6900,3 +6900,53 @@ Slowed takes [Spades] when the Styles pass reaches it.
 **Plague Fist**: its Necrotic rider moved from [Spades] to [Diamonds]
 to match the table. Vulnerable was already [Diamonds]. The value is
 unchanged, since each suit rider is worth the same 0.25 expected.
+
+### Demon School - Ripjaw Gambit (T150, redesigned, Level 3)
+
+Three archive drafts (Pass A L2, Pass B L4, Pass C L3), all well under
+budget:
+
+| Draft | Mechanic | Funded |
+|---|---|---|
+| A, L2 | Choose X up to [half Med]: +X damage, and all damage you take for 1 round is +X | 17% vs one attacker, **-83%** vs two (the "for 1 round" window punishes you for every attacker) |
+| C, L3 | vs Mental, Bleeding = number of Gambles (+1 on a Diamond), no Meditation term | 36% |
+| B, L4 | hit: target gets [half Med] Bleeding; miss: you do | 21% |
+
+**Redesign, per the designer:** a predictable self-cost instead of a
+random one. The player takes a flat 2 Bleeding every use and plans
+around it with Bleeding-clearing tools, which is priced as about half
+of it getting cleared before it ticks (2 stacks × 4 × 50% = 4). The
+first shape tried (Bleeding on you, double Bleeding on them) fails
+structurally. Enemy-targeted Bleeding tapers after 2 stacks while
+player-side Bleeding is a linear 4/stack, so it got worse with more
+Meditation (-11% at Med ST 8). Extra damage doesn't taper, so it's the
+payoff:
+
+> *2 AP.* You gain 2 stacks of Bleeding. Then make an Unarmed weapon
+> attack against the target's Vital Defense. If it hits, it deals its
+> damage as Shadow and deals an extra [half your Meditation Skill
+> Total] damage.
+
+Prereqs Brawl 4, Meditation 3 (the old Might Prereq dropped, since
+Demon scales on Meditation). No [Diamonds] on the damage, per the
+designer: Extra Successes already add damage on any attack, so they
+don't change the comparison.
+
+**Priced at Level 3** (Target 9, no hands-empty Condition). Level 3
+monk: Brawl Skill Total 7, attack +9. Shadow is credited +1 against an
+armored target (Plague Fist's precedent). Vital is priced **1-2 below
+Dodge/Parry 13**, per the designer's intent that Vital usually runs
+lower. See Open balance work in `balance.md`: the current roster's
+Level 3-5 archetypes don't match that.
+
+| Vital | Med ST 5 | Med ST 6-7 (typical) | Med ST 9 |
+|---|---|---|---|
+| 12 | 68% | **106%** | 144% |
+| 11 | 79% | **120%** | 161% |
+
+A flat +1 or +2 damage on top overshoots (144-202%). The "bigger
+gambit" alternative (3 self-Bleeding, +[half Med] + 1) came to 121%
+and was passed over for the plain version. At Level 3, Demon's ladder
+reads Plague Fist (L2) → Ripjaw Gambit (L3) → Wasting Claw (L4,
+backlog), and Plague Fist's Vulnerable lowers the Vital Defense Ripjaw
+attacks.

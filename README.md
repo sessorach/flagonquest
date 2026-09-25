@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-09-25 — Demon School: Ripjaw Gambit rebuilt
+
+Rebuilt Demon School's Ripjaw Gambit as a Level 3 attack where you bleed yourself for a big Shadow hit to the target's Vital Defense, since all three old drafts priced out far below budget.
+
 ### 2026-09-24 — Snake and Bear Schools finished
 
 Finished the Snake and Bear martial-arts Schools, and wrote down that spell attacks can't be Gambled on, which was always intended but never in the rulebook.

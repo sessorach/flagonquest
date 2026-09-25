@@ -1574,6 +1574,16 @@ per-item Masterwork level is outstanding.
 
 What genuinely remains, cross-cutting rather than slot-shaped:
 
+- **Is Vital Defense supposed to run lower than Dodge/Parry?** Per the
+  designer, Techniques attacking Vital (Ripjaw Gambit, Wasting Claw,
+  Plague Fist's Vulnerable setup) are priced on the assumption that an
+  enemy's Vital is usually 1-2 below its Dodge/Parry. The roster
+  doesn't match right now: the Level 3-5 archetypes have Vital 16-17
+  against Dodge/Parry 13-16, since each archetype picks one Defense to
+  be Primary and those picked Vital. Worth a look at
+  `ENEMY_ENCOUNTER_DESIGN.md`'s Defense tiering and the roster before
+  more Vital-targeting Techniques land.
+
 - **Gambling is weapon-attacks-only for damaging attacks: look deeper
   later, with the simulator.** Added to `rulebook.md`'s Gambling
   section on 2026-09-24. The intent is to give weapon users an edge
