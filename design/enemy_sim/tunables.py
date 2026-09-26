@@ -93,11 +93,17 @@ MAGEHUNTER_AP_COST = 1
 PARTING_SHOT_AP_COST = 1
 
 # ---- Role archetypes (Combat Role catalog, richer/authoritative version) ----
+# Tank/Bruiser's Resist +1 is the NPC equivalent of a character raising
+# Essence, so it already reaches every Resist (enemy_builder feeds
+# `resist` into both physres and elemres). They used to carry an extra
+# "elem_all": 1 on top, which double-counted elemental Resist and put a
+# Level 3 Bruiser at 5 elemental - past the "no 5s in base stats below
+# Level 4" line the designer holds enemies to.
 ROLE_MODS = {
     "None":       {},
-    "Tank":       {"resist": 1, "parry": 1, "dodge": 1, "elem_all": 1},
+    "Tank":       {"resist": 1, "parry": 1, "dodge": 1},
     "Striker":    {"accuracy": 1, "damage": 1},
-    "Bruiser":    {"damage": 1, "resist": 1, "parry": -1, "dodge": -1, "elem_all": 1},
+    "Bruiser":    {"damage": 1, "resist": 1, "parry": -1, "dodge": -1},
     "Strategist": {"accuracy": 1, "bodily": 1, "mental": 1},
     "Defensive":  {"parry": 1, "dodge": 1, "bodily": 1, "mental": 1},
 }

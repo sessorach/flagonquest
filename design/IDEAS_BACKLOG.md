@@ -460,6 +460,15 @@ translation to live keywords, not a straight port.
   - *Prana Disintegration Methodology* — L3 (A 1485) / L4 (B 2056):
     free-ish follow-up after an Unarmed hit, Meditation attack vs.
     Vital.
+    **Set aside, revisit after the rest of Shugen.** As drafted (a 1 AP
+    follow-up Meditation attack for 2 + [Will] Brilliant) it prices at
+    31-38% at Level 3. It's meant as the Brilliant-aligned offensive
+    option for a monk who doesn't want Demon, but it crowds Spirit Bolt
+    (a Meditation Brilliant attack) and Wasting Claw (same 1 AP
+    Interrupt-after-hit shape). An "ignore the target's Resist" version
+    was declined: per the designer, getting past Resist and armor
+    should come from an elemental damage type or Bleeding, not a raw
+    bypass.
   - *Whelming Wave* — L3 (B, 1942): Unarmed attack vs. Vital using
     Meditation, Prone + Off-Balance.
   - *Chakral Overload* — L4 (A, 1627): Unarmed attack, Weakened

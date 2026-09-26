@@ -142,11 +142,21 @@ simpler earlier draft is noted after it for context only.
 
 | Role | Modifiers |
 |---|---|
-| **Tank** | Resist +1, Parry +1, Dodge +1, and all four elemental Resists (Fire/Frost/Brilliant/Shadow) +1 |
+| **Tank** | Resist +1 (Physical and all four elemental), Parry +1, Dodge +1 |
 | **Striker** | Accuracy +1, Damage +1 |
-| **Bruiser** | Damage +1, Resist +1, Parry −1, Dodge −1, and all four elemental Resists +1 |
+| **Bruiser** | Damage +1, Resist +1 (Physical and all four elemental), Parry −1, Dodge −1 |
 | **Strategist** | Accuracy +1, Bodily Defense +1, Mental Defense +1 |
 | **Defensive** | Parry +1, Dodge +1, Bodily Defense +1, Mental Defense +1 |
+
+Tank and Bruiser's Resist +1 is the NPC version of a character raising
+Essence: the kind of character who takes that Role would. So it's one
++1 to every Resist, not +1 Physical plus a second +1 to each element.
+An earlier version of this table (and the simulator) gave both, which
+put a Level 3 Bruiser at 5 elemental Resist. Per the designer, an enemy
+below Level 4 shouldn't have the equivalent of a 5 in any base stat, so
+no damage bonus or Resist of 5 from stats alone; only Physical Resist
+reaches 5 there, by way of armor. Dropping the double count moved the
+win-rate grid by 2 points at most, inside the noise.
 
 *(Earlier/simpler draft, superseded by the above but consistent with
 it in spirit: Tank = Resist+1/Parry-Dodge+1; Striker = Damage+1/

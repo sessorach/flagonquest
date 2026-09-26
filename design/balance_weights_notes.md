@@ -6871,6 +6871,14 @@ is still about 0 against the roster. Its Vulnerable sets up the Demon
 backlog drafts that attack Vital or Mental Defense (Ripjaw Gambit's
 Pass C, Wasting Claw).
 
+**Correction (later):** the "equal Resists at Level 2-3" reading came from
+the roster's Level 2 and 3 picks both being Bruisers, and the simulator
+was double-counting a Bruiser's elemental Resist (see
+`ENEMY_ENCOUNTER_DESIGN.md`'s Role table). A typical Level 3 enemy in
+Light Armor is Physical 4 / elemental 3, and even a Bruiser is now 5/4.
+So the Shadow swap pays its +1 at every Level, and Plague Fist is back
+near its first ~113%, still in the accepted monk range.
+
 ### Suit riders and Extra Success Bleeding on the Bear Techniques; Plague Fist suits
 
 Per the designer, Techniques that apply a debuff get a suit rider
