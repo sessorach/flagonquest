@@ -124,6 +124,14 @@ cut, not just backfilled at a point in time.
   (Crippled/Slowed) and Plague Fist (Vulnerable) already cover both
   halves without the self-debuff.
 
+## Downtime Meditation Techniques
+
+Meditation Techniques that aren't martial at all: meditate for ten
+minutes or so and get an out-of-combat benefit. Astral projection,
+learning something new, that kind of utility. Pranic Nourishment
+(T085) is the only one like it so far. Not for now; comes after the
+Shugen pass.
+
 ## Techniques with stale "Social Contest"-era mechanics, need real rework
 
 Found while doing the Social Contest → Social Encounter terminology
@@ -390,6 +398,14 @@ translation to live keywords, not a straight port.
     Value/encounter, so it fits L2 better than L3.
 - **Shugen** (live: Spirit Bolt L1, Iron Skin L2, Through the Void L2,
   Spirit Hands L2, Fist of the Third Dragon L3)
+  Shugen is the broad School: it holds all the generic Meditation
+  abilities. Per the designer, its combat Techniques fall into three
+  rough groups: hybrid Brawl/Meditation abilities (the monk counterpart
+  to Demon), pure Meditation attacks (the equivalent of Sorcery/battle
+  magic), and pure Meditation buffs/healing (the equivalent of Theurgy,
+  but only on yourself). Shugen Techniques get poetic names in the
+  style of real martial and meditative forms ("Fair Lady Plays at
+  Shuttles", "Wasp Enters the Nest").
   - *Disintegrate Vitality* — L2 (A, 1351): ranged Meditation attack
     vs. Vital, [Power] Bleeding. *Disintegrate Spirit* (B, 2072) looks
     like the same idea moved to L4 and vs. Mental.
