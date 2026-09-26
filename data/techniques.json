@@ -7083,5 +7083,54 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T154",
+    "name": "Shugen School - Hand Rings the Bell",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "By striking a target's chakras with your ki you can disrupt the flow of their energy, interrupting their focus.",
+    "condition": null,
+    "action": "1 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target. If it hits, the target is Harried 2 + [half your Meditation Skill Total] + [Diamonds] times.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Meditation 2",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

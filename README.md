@@ -17,7 +17,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 Finished Demon School and started on Shugen, which now gets poetic names for its Techniques.
 - Added Demon School - Hand of Defilement (Level 3), a Shadow punch that Cripples and Slows, and Wasting Claw (Level 4), a follow-up that strips every debuff off the target and makes it lose 1 Health per stack.
-- Added Shugen School - Swallow Skims the Water (Level 2), which teleports you to a target and punches it for 1 AP.
+- Added two Level 2 Shugen School Techniques: Swallow Skims the Water, which teleports you to a target and punches it for 1 AP, and Hand Rings the Bell, a 1 AP punch that drops the target's Dodge and Parry for your follow-up.
 
 ### 2026-09-25 — Demon School: Ripjaw Gambit rebuilt
 

@@ -7050,3 +7050,33 @@ Skill Total 6. The Unarmed attack costs 1 AP instead of an autoswing's
 Full range, per the designer. It sits next to the live Through the Void
 (also a 1 AP teleport to the target) without doubling it: this one
 closes and hits, Through the Void repositions and swaps.
+
+### Shugen School - Hand Rings the Bell (T154, Level 2)
+
+Drafted from the archive's Ki Style - Disrupt Chakra (Pass B, L2): an
+Unarmed attack that left the target Dazed with [half Centering] Weakened.
+Neither effect exists anymore. The fluff is about breaking the target's
+focus, so it became **Harried** (−1 Dodge/Parry per stack, cleared at
+the end of the target's turn, capped at 6, 1/stack). No martial
+Technique used Harried yet, and it gives Shugen an opener that sets up
+your next hit and your allies', where Demon cripples. Translating
+Weakened to Crippled instead (2 AP, [half Med] + [Clubs]) priced at
+108% but repeated Hand of Defilement.
+
+> *1 AP.* Make an Unarmed weapon attack against the target. If it hits,
+> the target is Harried 2 + [half your Meditation Skill Total] +
+> [Diamonds] times.
+
+Prereqs Brawl 3, Meditation 2. Priced at Level 2 (Target 6): attack +8
+vs Defense 14, P(hit) 8/13. The 1 AP attack saves an AP against the
+2 AP autoswing, +2.75 Value. Harried at 1/stack × expected stacks ×
+P(hit).
+
+| Harried | Value | Funded |
+|---|---|---|
+| [half Med] + [Diamonds] (3.25) | 2.75 + 2.00 = 4.75 | 79% |
+| **2 + [half Med] + [Diamonds] (5.25)** | 2.75 + 3.23 = 5.98 | **100%** |
+| same, at Med ST 5 (4.25) | 2.75 + 2.62 = 5.37 | 89% |
+
+The expected 5.25 stacks sit under Harried's cap of 6. Named by the
+designer: striking someone in the head literally rings their bell.
