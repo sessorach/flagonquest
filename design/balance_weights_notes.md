@@ -7088,3 +7088,32 @@ P(hit).
 
 The expected 5.25 stacks sit under Harried's cap of 6. Named by the
 designer: striking someone in the head literally rings their bell.
+
+### Shugen School - Tide Rolls Back the Shore (T155, Level 3)
+
+Drafted from the archive's Ki Style - Whelming Wave (Pass B, L3): an
+Unarmed attack using Meditation, against Vital, that knocked the target
+Prone and Off-Balance, with Spirit damage on a Diamond. Neither effect
+exists anymore. A wave that overwhelms reads as a **Push** (Spades,
+which Shugen didn't use yet), and Spirit damage became **Brilliant**,
+giving Shugen the Brilliant-aligned counterpart to Demon's Shadow.
+
+> *2 AP.* Make an Unarmed weapon attack against the target's Vital
+> Defense, using your Meditation Skill Total in place of your Brawl
+> Skill Total. If it hits, it deals Brilliant damage and Pushes the
+> target [Meditation Skill Total] + [Spades] meters.
+
+Prereqs Brawl 4, Meditation 3. Priced at Level 3 (Target 9). Meditation
+Skill Total 7 plus the Unarmed weapon's +2 is an attack of +9, the same
+as Brawl, and it's a 2 AP attack, so no AP delta. Push is 7.25 m ×
+0.89375 × P(hit). Brilliant is +1 net damage per hit against a typical
+Level 3 enemy (Physical 4, elemental 3; see the Resist correction
+above), × 4 × P(hit).
+
+| | Vital 12 (P 0.846) | Vital 11 (P 0.923) |
+|---|---|---|
+| Push only | 5.48, 61% | 5.98, 66% |
+| **Push + Brilliant** | 8.86, **99%** | 9.67, **107%** |
+
+A character in the Spirit Hands Style gets nothing from the Brilliant
+half; that's logged for the Styles pass (see the backlog).

@@ -287,6 +287,18 @@ which should stay a clean decision record.
   decided: a dozen-plus items/techniques already phrase it that way,
   zero use the "until the end of" wording, so this is naming the
   existing convention, not introducing a new one.
+- **Rules text is as concise as it can be while still getting the
+  point across** (per the designer). Two specifics:
+  - **Damage type:** an attack only ever deals one type of damage, and
+    that's the Resist it checks. Say "it deals Shadow damage," not "it
+    deals its damage as Shadow" or "Shadow instead of Physical." A
+    hybrid that uses the lower of two Resists would get its own
+    carve-out if it ever exists, not a general rule.
+  - **Batch effects by when they happen.** Everything that happens on a
+    hit goes in one "If it hits, ..." sentence ("If it hits, it deals
+    Brilliant damage and Pushes the target 3 meters."), and the same
+    for "If it's Parried, ..." or "If it hits or is Parried, ...".
+    Split into separate sentences only when it's actually complicated.
 - **Whenever an idea gets binned** (cut from `items.csv`/`techniques.csv`,
   or considered and never drafted at all), log it in
   `IDEAS_BACKLOG.md`'s "Reviewed and declined" section — a short note

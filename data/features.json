@@ -150,7 +150,7 @@
     "tier": "Basic",
     "point_cost": 2,
     "description": null,
-    "effects": "When you choose this feature, choose Fire, Frost, or Shadow — the attack deals its damage as that type instead.",
+    "effects": "When you choose this feature, choose Fire, Frost, or Shadow — the attack deals that type of damage.",
     "prereq": "Sorcery 2"
   },
   {

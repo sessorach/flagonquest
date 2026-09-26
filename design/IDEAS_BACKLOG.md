@@ -356,7 +356,7 @@ Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Through the
 Void, Heelbiter, Chainbreaker, Shattering Slam, Spirit Hands, Swallow
 Skims the Water, Hand Rings the Bell · L3 Fist
 of the Third Dragon, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand
-of Defilement · L4 Slithering Hands, The Grizzly Awakens, Wasting Claw
+of Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The Grizzly Awakens, Wasting Claw
 · **L5 none**. L2 is the most
 crowded; L1 is thin; L3-L4 are filling in; L5 is empty. Great Old Oak
 has none. Backlog candidates that could fill a thin level, flagged
@@ -399,7 +399,7 @@ translation to live keywords, not a straight port.
     Value/encounter, so it fits L2 better than L3.
 - **Shugen** (live: Spirit Bolt L1, Iron Skin L2, Through the Void L2,
   Spirit Hands L2, Swallow Skims the Water L2, Hand Rings the Bell L2,
-  Fist of the Third Dragon L3)
+  Fist of the Third Dragon L3, Tide Rolls Back the Shore L3)
   Shugen is the broad School: it holds all the generic Meditation
   abilities. Per the designer, its combat Techniques fall into three
   rough groups: hybrid Brawl/Meditation abilities (the monk counterpart
@@ -469,8 +469,6 @@ translation to live keywords, not a straight port.
     was declined: per the designer, getting past Resist and armor
     should come from an elemental damage type or Bleeding, not a raw
     bypass.
-  - *Whelming Wave* — L3 (B, 1942): Unarmed attack vs. Vital using
-    Meditation, Prone + Off-Balance.
   - *Chakral Overload* — L4 (A, 1627): Unarmed attack, Weakened
     [Power] times. No L5 Ki content anywhere.
 - **Lion / Tiger**: nothing in the archive. Neither name appears at
@@ -502,7 +500,13 @@ leaning into Meditation.
 Existing Styles that already fit the unarmed Schools: `T135 Shugen
 School - Spirit Hands` (hands empty, Unarmed deals Brilliant; this is
 the Brilliant Brawl Style, and it's already live). The archive's *Dragon's
-Fang* (Ki/Shugen, Spirit damage) is its earlier draft. Brawl-eligible
+Fang* (Ki/Shugen, Spirit damage) is its earlier draft. **Known conflict,
+for the Styles pass:** the Shugen Encounter Techniques turn Unarmed
+attacks to Brilliant the same way Demon's turn them to Shadow, so in
+Spirit Hands they gain nothing from that half (Tide Rolls Back the
+Shore, for one). The designer wants to keep a plain "tune your Unarmed
+to Brilliant" Style. A likely fix: if the attack would already deal
+Brilliant damage, the Style adds +1 damage instead. Brawl-eligible
 but not unarmed-only: Disciple of the Flowing Hand, Indomitable
 Phalanx, Eternal Riposte, Storm of Blades, Follow Through.
 
