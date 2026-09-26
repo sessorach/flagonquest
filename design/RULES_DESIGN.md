@@ -2349,6 +2349,45 @@ Fighting Style pickers built specifically to keep combat from
 collapsing into melee-clash-and-double-attack, a full Ability catalog,
 and real worked examples from the designer's own roster).
 
+## The three supernatural martial Schools: Demon, Shugen, Great Old Oak
+
+Snake and Bear are the "normal" unarmed Schools and scale on Brawl.
+Demon, Shugen, and Great Old Oak are the supernatural ones and scale on
+Meditation. Each of the three gets both a hybrid Brawl/Meditation track
+(Techniques that power up an Unarmed strike) and a pure Meditation track
+(Discipline Techniques that stand in for Sorcery-style attacks or
+Theurgy-style self-buffs). Nearly every in-combat Meditation Technique
+belongs to one of the three. The exceptions are narrative,
+out-of-combat Meditation Techniques (see the downtime idea in
+`IDEAS_BACKLOG.md`), and Techniques where Meditation is just one of
+several Prereq options.
+
+First-pass split, a goal to steer by rather than a hard rule. It'll get
+tweaked as the Techniques get reviewed one by one:
+
+| | Demon | Shugen | Great Old Oak |
+|---|---|---|---|
+| Job | Offense: break them open | Control: stop them fighting back | Defense: outlast them (the closest thing to a tank) |
+| Hybrid attacks | vs. Vital, Shadow damage | vs. Mental, Brilliant damage | Normal Defenses; value is in the riders |
+| Owns | Vulnerable, Harried, Necrotic, Health loss, self-costs | Crippled, Frightened, Slowed, Push, Teleport | Protected, Ward, self-healing, clearing your own debuffs, counters, Taunted |
+| Suits | Diamonds | Clubs, Hearts (Frightened), Spades | Hearts (Taunted) |
+| Pure Meditation | Shadow attacks, draining life (healing by harming) | Brilliant attacks, fear, repositioning | Self-buffs and self-restoration |
+
+The damage types line up with the existing suit-element pairing
+(Diamonds↔Shadow, Hearts↔Brilliant). Hasted isn't assigned to any of
+the three.
+
+Overlap with Snake and Bear is kept light: Bear's Slowed and Frightened
+are riders on physical slams, while Shugen's are the main effect.
+Snake's and Bear's Pushes are physical shoves, while Shugen's is a ki
+wave. Snake's Chainbreaker clears debuffs as part of breaking a
+grapple, while Oak's clearing is Meditation endurance.
+
+Moved to Great Old Oak when this was decided: Iron Skin (from Shugen),
+Ignore Pain, Harmonious Mending, and Channel Ki (untagged before). Order
+of review from here: Shugen, then a pass back over Demon (adding
+its pure Meditation counterparts), then Great Old Oak last.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).

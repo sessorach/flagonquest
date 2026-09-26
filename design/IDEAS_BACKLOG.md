@@ -352,15 +352,15 @@ deliberately when drafting, don't just take the first hit. Old
 
 **Level coverage (unarmed Schools), running note** — update as
 techniques get added. Live right now: L1 Spirit Bolt, Striking
-Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Through the
-Void, Heelbiter, Chainbreaker, Shattering Slam, Spirit Hands, Swallow
-Skims the Water, Hand Rings the Bell · L3 Fist
-of the Third Dragon, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand
-of Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The Grizzly Awakens, Wasting Claw
-· **L5 none**. L2 is the most
-crowded; L1 is thin; L3-L4 are filling in; L5 is empty. Great Old Oak
-has none. Backlog candidates that could fill a thin level, flagged
-during review:
+Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Ignore Pain,
+Channel Ki, Through the Void, Heelbiter, Chainbreaker, Shattering Slam,
+Spirit Hands, Swallow Skims the Water, Hand Rings the Bell · L3 Fist of
+the Third Dragon, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
+Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
+Grizzly Awakens, Wasting Claw, Harmonious Mending · **L5 none**. L2 is
+the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
+Backlog candidates that could fill a thin level, flagged during
+review:
 - *(none flagged yet)*
 
 Heads-up for drafting: several old drafts lean on keywords that don't
@@ -397,17 +397,17 @@ translation to live keywords, not a straight port.
   - *Infinite Coiling* [Style] — L3 (10392): Parrying or being hit by
     your Unarmed attack Slows the target once. First read: about 5.5
     Value/encounter, so it fits L2 better than L3.
-- **Shugen** (live: Spirit Bolt L1, Iron Skin L2, Through the Void L2,
-  Spirit Hands L2, Swallow Skims the Water L2, Hand Rings the Bell L2,
-  Fist of the Third Dragon L3, Tide Rolls Back the Shore L3)
-  Shugen is the broad School: it holds all the generic Meditation
-  abilities. Per the designer, its combat Techniques fall into three
-  rough groups: hybrid Brawl/Meditation abilities (the monk counterpart
-  to Demon), pure Meditation attacks (the equivalent of Sorcery/battle
-  magic), and pure Meditation buffs/healing (the equivalent of Theurgy,
-  but only on yourself). Shugen Techniques get poetic names in the
-  style of real martial and meditative forms ("Fair Lady Plays at
-  Shuttles", "Wasp Enters the Nest").
+- **Shugen** (live: Spirit Bolt L1, Through the Void L2, Spirit Hands
+  L2, Swallow Skims the Water L2, Hand Rings the Bell L2, Fist of the
+  Third Dragon L3, Tide Rolls Back the Shore L3). The control School:
+  Crippled, Frightened, Slowed, Push, Teleport, Brilliant damage,
+  hybrid attacks vs. Mental. See `RULES_DESIGN.md`'s "three
+  supernatural martial Schools" for the full Demon/Shugen/Oak split.
+  Shugen Techniques get poetic names in the style of real martial and
+  meditative forms ("Fair Lady Plays at Shuttles", "Wasp Enters the
+  Nest"). Disintegrate Vitality and Shatter Mind both inflict Bleeding,
+  which none of the three supernatural Schools owns; rework or fold
+  them into Demon when reviewed.
   - *Disintegrate Vitality* — L2 (A, 1351): ranged Meditation attack
     vs. Vital, [Power] Bleeding. *Disintegrate Spirit* (B, 2072) looks
     like the same idea moved to L4 and vs. Mental.
@@ -424,9 +424,6 @@ translation to live keywords, not a straight port.
   - *Slip Through Reality* — L3 (A 1531, B 1988, C 7928): Interrupt vs.
     an attack on your Dodge; Teleport [Power] and the attack is
     Countered.
-  - *Radiant Rebirth of the Phoenix* — L4 (A 1657, B 2084): Interrupt
-    when you'd be Downed; [Power] temp Health and Frighten everyone who
-    sees you.
   - *Whirlwind of the Ethereal Emperor* — L4. A/B (1669/2096): 2m
     burst, Push everyone back. C (8072): pulls them in instead.
   - *Indomitable Ascension* — L4 (C, 8060): clear your own Frightened/
@@ -434,7 +431,15 @@ translation to live keywords, not a straight port.
   - *Immolate Soul* — L5 capstone (C, 8102): pay Health, 3m burst,
     5 + Health-paid Brilliant damage. (Its fluff is a copy-paste of
     Whirlwind's; needs new flavor.)
-- **Great Old Oak** (live: none) — defensive/endurance
+- **Great Old Oak** (live: Channel Ki L2, Ignore Pain L2, Iron Skin
+  L2, Harmonious Mending L4, all moved in when the School split was
+  decided) — defensive/endurance, and home for the self-buff/
+  self-restoration Meditation Techniques: Protected, Ward, self-healing,
+  clearing your own debuffs, counters, Taunted.
+  - *Radiant Rebirth of the Phoenix* — L4 (A 1657, B 2084): Interrupt
+    when you'd be Downed; [Power] temp Health and Frighten everyone who
+    sees you. (Moved from Shugen: self-restoration. The Frighten could
+    become Taunted, Oak's Hearts debuff.)
   - *Tree Withstands the Storm* — L2. A (1313): ignore 1 Harried for
     [Power] rounds, no attack. B (1786): Unarmed attack, +[half
     Meditation ST] Dodge/Parry for a round.

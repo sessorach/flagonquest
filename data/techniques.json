@@ -3741,7 +3741,7 @@
   },
   {
     "id": "T082",
-    "name": "Channel Ki",
+    "name": "Great Old Oak School - Channel Ki",
     "level_min": 2,
     "level_max": 2,
     "tags": "Discipline",
@@ -3830,7 +3830,7 @@
   },
   {
     "id": "T084",
-    "name": "Ignore Pain",
+    "name": "Great Old Oak School - Ignore Pain",
     "level_min": 2,
     "level_max": 2,
     "tags": "Discipline, Encounter",
@@ -3910,7 +3910,7 @@
   },
   {
     "id": "T086",
-    "name": "Shugen School - Iron Skin",
+    "name": "Great Old Oak School - Iron Skin",
     "level_min": 2,
     "level_max": 2,
     "tags": "Discipline, Encounter",
@@ -4235,7 +4235,7 @@
   },
   {
     "id": "T093",
-    "name": "Harmonious Mending",
+    "name": "Great Old Oak School - Harmonious Mending",
     "level_min": 4,
     "level_max": 4,
     "tags": "Discipline",

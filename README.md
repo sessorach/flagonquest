@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-09-26 — Demon School finished, Shugen started
 
-Finished Demon School and started on Shugen, which now gets poetic names for its Techniques.
+Finished Demon School, started on Shugen (which now gets poetic names), and split the in-combat Meditation Techniques between the Demon, Shugen, and Great Old Oak Schools: offense, control, and defense.
 - Added Demon School - Hand of Defilement (Level 3), a Shadow punch that Cripples and Slows, and Wasting Claw (Level 4), a follow-up that strips every debuff off the target and makes it lose 1 Health per stack.
 - Added three Shugen School Techniques: Swallow Skims the Water (Level 2), which teleports you to a target and punches it for 1 AP; Hand Rings the Bell (Level 2), a 1 AP punch that drops the target's Dodge and Parry for your follow-up; and Tide Rolls Back the Shore (Level 3), a Brilliant punch that knocks the target back.
 
