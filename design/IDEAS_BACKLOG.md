@@ -123,6 +123,10 @@ cut, not just backfilled at a point in time.
   Weakened isn't a current debuff, and Hand of Defilement
   (Crippled/Slowed) and Plague Fist (Vulnerable) already cover both
   halves without the self-debuff.
+- **Pull Through the Void** (Shugen School, archive Pass A, L3) —
+  declined; a Mental attack that swaps places with the target, which is
+  what the live Water Fills the Empty Vessel (formerly Through the Void)
+  already does at Level 2.
 
 ## Downtime Meditation Techniques
 
@@ -353,7 +357,7 @@ deliberately when drafting, don't just take the first hit. Old
 **Level coverage (unarmed Schools), running note** — update as
 techniques get added. Live right now: L1 Firefly Leaves the Hand, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Ignore Pain,
-Channel Ki, Through the Void, Heelbiter, Chainbreaker, Shattering Slam,
+Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Swallow Skims the Water, Hand Rings the Bell · L3 Fist of
 the Third Dragon, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
@@ -397,7 +401,7 @@ translation to live keywords, not a straight port.
   - *Infinite Coiling* [Style] — L3 (10392): Parrying or being hit by
     your Unarmed attack Slows the target once. First read: about 5.5
     Value/encounter, so it fits L2 better than L3.
-- **Shugen** (live: Firefly Leaves the Hand L1, Through the Void L2, Spirit Hands
+- **Shugen** (live: Firefly Leaves the Hand L1, Water Fills the Empty Vessel L2, Spirit Hands
   L2, Swallow Skims the Water L2, Hand Rings the Bell L2, Fist of the
   Third Dragon L3, Tide Rolls Back the Shore L3). The control School:
   Crippled, Frightened, Slowed, Push, Teleport, Brilliant damage,
@@ -420,8 +424,6 @@ translation to live keywords, not a straight port.
   - *Empowered Blood* — L3 (A 1503, B 1956) / L4 (C 8044): Interrupt
     when an adjacent attacker makes you lose Health, Brilliant
     counterattack vs. Dodge.
-  - *Pull Through the Void* — L3 (A, 1519): vs. Mental, swap places
-    with the target.
   - *Slip Through Reality* — L3 (A 1531, B 1988, C 7928): Interrupt vs.
     an attack on your Dodge; Teleport [Power] and the attack is
     Countered.

@@ -7055,7 +7055,8 @@ Skill Total 6. The Unarmed attack costs 1 AP instead of an autoswing's
 | **[Meditation Skill Total] (6 m)** | 2.75 + 3.30 = 6.05 | **101%** |
 | [Meditation Skill Total] at Med ST 5 | 2.75 + 2.75 = 5.50 | 92% |
 
-Full range, per the designer. It sits next to the live Through the Void
+Full range, per the designer. It sits next to the live Through the Void (now Water Fills the Empty
+Vessel)
 (also a 1 AP teleport to the target) without doubling it: this one
 closes and hits, Through the Void repositions and swaps.
 
@@ -7135,3 +7136,24 @@ covers not being Buildable.
 > hits, it deals 2 + [Mind] Brilliant damage.
 
 Renamed in Shugen's poetic style.
+
+### Shugen School - Water Fills the Empty Vessel (T087, formerly Through the Void, Level 2)
+
+Anchored to its spell mirror, Shadow Jaunt (L1, 1 AP, Teleport up to
+[Skill Total] m), rather than the per-meter movement rate, which prices
+a 1 AP teleport at about zero and put this at 46-50%. Base is Jaunt's
+Target 3, discounted to 2.7-3.0 since you can only land next to a
+creature. The swap moves the target about as far as you went, ~4 m
+priced as Push (0.89375/m × P(hit)); Meditation attack +6 against
+Mental 11-12, P 0.62-0.69: +2.2-2.5. That's 87-92% of Target 6, so a
+small control rider was added: Slowed 1 + [Spades] (0.75 × 1.1 + 0.25 ×
+3.3 = 1.65, × P), +1.0-1.1.
+
+> *1 AP.* Target a creature within [Meditation Skill Total] meters.
+> Teleport to an empty space adjacent to the target. You may then make
+> a Meditation attack against its Mental Defense. If it hits, the
+> target Teleports into the space you left and is Slowed 1 + [Spades]
+> times.
+
+**99-110%**. Renamed from its own fluff ("just as water rushes to fill
+an empty vessel").

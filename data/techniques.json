@@ -3950,7 +3950,7 @@
   },
   {
     "id": "T087",
-    "name": "Shugen School - Through the Void",
+    "name": "Shugen School - Water Fills the Empty Vessel",
     "level_min": 2,
     "level_max": 2,
     "tags": "Discipline, Encounter",
@@ -3959,7 +3959,7 @@
     "action": "1 AP",
     "cost": null,
     "target": "A creature within [Meditation Skill Total] meters",
-    "effects": "Teleport to any empty space adjacent to the target. You may then make a Meditation attack against the target's Mental Defense; if it hits, the target Teleports into the space you were originally in.",
+    "effects": "Teleport to an empty space adjacent to the target. You may then make a Meditation attack against its Mental Defense. If it hits, the target Teleports into the space you left and is Slowed 1 + [Spades] times.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 3",
