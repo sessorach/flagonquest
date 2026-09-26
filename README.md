@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-09-26 — Demon School finished
+
+Added the last two Demon School Techniques: Hand of Defilement (Level 3), a Shadow punch that Cripples and Slows, and Wasting Claw (Level 4), a follow-up that strips every debuff off the target and makes it lose 1 Health per stack.
+
 ### 2026-09-25 — Demon School: Ripjaw Gambit rebuilt
 
 Rebuilt Demon School's Ripjaw Gambit as a Level 3 attack where you bleed yourself for a big Shadow hit to the target's Vital Defense, since all three old drafts priced out far below budget.

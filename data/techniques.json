@@ -6936,5 +6936,103 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T151",
+    "name": "Demon School - Hand of Defilement",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "A corruption of traditional hand-to-hand ki maneuvers, by twisting your body's energy before unleashing it on your victim you pollute their vitality and sap the strength from their limbs.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Vital Defense. It deals its damage as Shadow. If it hits, the target is Crippled 2 + [Clubs] times and Slowed 2 + [Spades] times.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Meditation 3",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T152",
+    "name": "Demon School - Wasting Claw",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "Abasi the Devil was known as a master of shadow magicks but also one of the pioneers of the Demon style of supernatural arts. Unlike his contemporaries, however, he studied not in a monastery but instead from the corpses of hundreds of foes, torturing each to their last breath as he ripped their life from them. In doing so he perfected one of the zenith practices of the form, his so-called Wasting Claw that renders its victim so broken that many monks refuse to acknowledge it as a meditative practice at all, referring to it simply as base and terrible necromancy.",
+    "condition": null,
+    "action": "1 AP - Interrupt (you hit with an Unarmed weapon attack, after the attack is resolved)",
+    "cost": null,
+    "target": "The creature you hit",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, remove all stacks of Bleeding, Crippled, Necrotic, Slowed, and Vulnerable from the target. It loses Health equal to the number of stacks removed.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 5, Meditation 4",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

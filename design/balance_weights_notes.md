@@ -6950,3 +6950,75 @@ and was passed over for the plain version. At Level 3, Demon's ladder
 reads Plague Fist (L2) → Ripjaw Gambit (L3) → Wasting Claw (L4,
 backlog), and Plague Fist's Vulnerable lowers the Vital Defense Ripjaw
 attacks.
+
+### Demon School - Hand of Defilement (T151, Level 3)
+
+The archive draft (Pass A, L3) was [Power] Necrotic for the scene. That
+overlaps Plague Fist, the live Level 2 Necrotic Technique, and Necrotic
+is worth about 0 against the roster since enemies don't heal. The
+redesign uses the two debuffs no Demon Technique applied yet, suit-matched
+per the suit table (Crippled on Clubs, Slowed on Spades):
+
+> *2 AP.* Make an Unarmed weapon attack against the target's Vital
+> Defense. It deals its damage as Shadow. If it hits, the target is
+> Crippled 2 + [Clubs] times and Slowed 2 + [Spades] times.
+
+Prereqs Brawl 4, Meditation 3, same as Ripjaw Gambit. Priced at Level 3
+(Target 9) on the same assumptions as Ripjaw (attack +9, Vital 11-12,
+Shadow credited +1 against armor), it comes to **129-141%**. The designer
+accepted it hot: a target rarely gets full use of both debuffs at once,
+since Slowed only matters if they want to move and Crippled only if
+they're attacking. It's also the main stack source for Wasting Claw.
+
+### Demon School - Wasting Claw (T152, Level 4)
+
+Two archive drafts (A 1575, C 7996): A gave [Power] Vulnerable or
+Bleeding; C gave Bleeding per Vulnerable+Necrotic stack and turned
+Bleeding ticks into Necrotic. The redesign makes it the kit's
+cash-in, the same idea as the War Magic feature that consumes Bleeding
+all at once:
+
+> *1 AP - Interrupt (you hit with an Unarmed weapon attack, after the
+> attack is resolved).* Make a Meditation attack against the target's
+> Vital Defense. If it hits, remove all stacks of Bleeding, Crippled,
+> Necrotic, Slowed, and Vulnerable from the target. It loses Health
+> equal to the number of stacks removed.
+
+Prereqs Brawl 5, Meditation 4.
+
+**Health loss, not Shadow damage.** Shadow damage would be reduced by
+Resist, which cuts a stack-count payoff down hard (5 Resist eats half of
+a 10-stack cash-in). Health loss is priced at the plain 4/point, times
+P(hit).
+
+**Consuming has a cost.** The removed stacks would still have done
+something. In the Demon kit's mix (mostly Vulnerable/Crippled, some
+Slowed) that leftover is worth about 2 per stack at full value. It's
+counted at full and at half, since a finisher's target often dies before
+the rest would matter, and the half end is the more honest read for the
+same both-debuffs-rarely-matter reason as Hand of Defilement. The
+leftover is only lost on a hit, so it takes the same 0.65 as the Health
+loss: `Value = 0.65 × (4 × stacks − leftover × stacks) − 2.75` (1 AP,
+"−" on Value). Level 4, Target 12, Meditation attack +8 vs Vital ~13.5,
+P(hit) 0.65.
+
+**How many stacks it sees.** Plague Fist puts on [half Med] + [Diamonds]
+each of Necrotic and Vulnerable (~6.5 at Med ST 6, ~8.5 at Med ST 8);
+Hand of Defilement puts on ~4.5. All are Encounter Techniques, and each
+debuff type loses 1 stack per round. The intended line is Plague Fist
+on turn 1, then Hand of Defilement on turn 2 with the Claw as an
+Interrupt off that hit (3 AP total), cashing in **~9-11 stacks**.
+Holding it a turn costs 4 stacks to decay (~5-7). Hand of Defilement
+plus the Claw alone is ~4.5.
+
+| Health lost | 4-5 stacks | 6-7 | 8-9 | 10-11 |
+|---|---|---|---|---|
+| **1 per stack (chosen)** | 20-42% | 42-75% | 64-107% | **85-140%** |
+| stacks + 2 | 64-85% | 85-118% | 107-150% | 129-183% |
+| stacks + [half Med] (Med ST 6-7, +3) | — | — | — | 150-221% |
+
+The designer passed on a Meditation kicker and on a flat +2. Plain 1 per
+stack is centred on rate at the combo it's built for and weak if fired
+early on a handful of stacks, which is the right incentive for a
+finisher. The Demon ladder now reads Plague Fist (L2) → Ripjaw Gambit /
+Hand of Defilement (L3) → Wasting Claw (L4).

@@ -118,6 +118,11 @@ cut, not just backfilled at a point in time.
 - **Chainbreaker, Level 4 variant** (Snake School, archive) — declined;
   regains its own use on a hit. The redirect Technique ended up as
   Slithering Hands at Level 4 instead.
+- **Corrupted Fist** (Demon School, archive Pass B) — declined; the
+  target takes your pick of Vulnerable/Weakened and you take the other.
+  Weakened isn't a current debuff, and Hand of Defilement
+  (Crippled/Slowed) and Plague Fist (Vulnerable) already cover both
+  halves without the self-debuff.
 
 ## Techniques with stale "Social Contest"-era mechanics, need real rework
 
@@ -341,8 +346,9 @@ deliberately when drafting, don't just take the first hit. Old
 techniques get added. Live right now: L1 Spirit Bolt, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Through the
 Void, Heelbiter, Chainbreaker, Shattering Slam, Spirit Hands · L3 Fist
-of the Third Dragon, Turn the Tables, Swatting Paw, Ripjaw Gambit · L4
-Slithering Hands, The Grizzly Awakens · **L5 none**. L2 is the most
+of the Third Dragon, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand
+of Defilement · L4 Slithering Hands, The Grizzly Awakens, Wasting Claw
+· **L5 none**. L2 is the most
 crowded; L1 is thin; L3-L4 are filling in; L5 is empty. Great Old Oak
 has none. Backlog candidates that could fill a thin level, flagged
 during review:
@@ -369,16 +375,12 @@ translation to live keywords, not a straight port.
     hit, and the disarm is a coin flip). It also runs on the same "your
     flip becomes your Parry" engine as Slithering Hands, with the same
     payoff moment as Swatting Paw, so it would need its own angle.
-- **Demon** (live: Plague Fist L2, Ripjaw Gambit L3)
-  - *Hand of Defilement* — L3 (A, 1449): [Power] Necrotic for the scene.
+- **Demon** (live: Plague Fist L2, Ripjaw Gambit L3, Hand of Defilement
+  L3, Wasting Claw L4). Corrupted Fist was declined (see "Reviewed and
+  declined").
   - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
-    1 Vulnerable. (Different technique from the singular one above.)
-  - *Corrupted Fist* — L3 (B, 1892): target takes your pick of
-    Vulnerable/Weakened, you take the other.
-  - *Wasting Claw* — L4 (A 1575 / C 7996): Interrupt after an Unarmed
-    hit, attack vs. Vital. A: target takes [Power] Vulnerable or
-    Bleeding. C: Bleeding per Vulnerable+Necrotic stack, and Bleeding
-    ticks add Necrotic for the encounter.
+    1 Vulnerable. (Different from the live Hand of Defilement.) Held
+    for the Styles pass.
 - **Snake** (live: Striking Constrictor L1, Heelbiter L2, Chainbreaker
   L2, Turn the Tables L3, Slithering Hands L4). Crashing Leg Sweep, Serpentine Redirection,
   and the L4 Chainbreaker variant were declined as old drafts of live
