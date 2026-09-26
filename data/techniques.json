@@ -3652,7 +3652,7 @@
   },
   {
     "id": "T080",
-    "name": "Shugen School - Spirit Bolt",
+    "name": "Shugen School - Firefly Leaves the Hand",
     "level_min": 1,
     "level_max": 1,
     "tags": "Discipline, Encounter",
@@ -3661,7 +3661,7 @@
     "action": "2 AP",
     "cost": null,
     "target": "A creature within [Meditation Skill Total] meters",
-    "effects": "Make a Meditation attack against the target's Dodge Defense. If the attack hits, it deals 3 + [Mind] Brilliant damage.",
+    "effects": "Make a Meditation attack against the target's Dodge Defense. If it hits, it deals 2 + [Mind] Brilliant damage.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 2",

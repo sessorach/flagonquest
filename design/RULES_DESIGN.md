@@ -2373,6 +2373,11 @@ tweaked as the Techniques get reviewed one by one:
 | Suits | Diamonds | Clubs, Hearts (Frightened), Spades | Hearts (Taunted) |
 | Pure Meditation | Shadow attacks, draining life (healing by harming) | Brilliant attacks, fear, repositioning | Self-buffs and self-restoration |
 
+The pure Meditation attacks mirror the equivalent spell, with
+Meditation to hit (Essence) and Mind for damage, so they don't run
+entirely off one stat. Firefly Leaves the Hand is War Magic at Level 1
+with its point spent on Range, dealing Brilliant instead of Fire.
+
 The damage types line up with the existing suit-element pairing
 (Diamonds↔Shadow, Hearts↔Brilliant). Hasted isn't assigned to any of
 the three.

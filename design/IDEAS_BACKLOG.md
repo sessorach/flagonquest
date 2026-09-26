@@ -351,7 +351,7 @@ deliberately when drafting, don't just take the first hit. Old
 `[Stance]` tags = current `[Style]`.
 
 **Level coverage (unarmed Schools), running note** — update as
-techniques get added. Live right now: L1 Spirit Bolt, Striking
+techniques get added. Live right now: L1 Firefly Leaves the Hand, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Ignore Pain,
 Channel Ki, Through the Void, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Swallow Skims the Water, Hand Rings the Bell · L3 Fist of
@@ -397,7 +397,7 @@ translation to live keywords, not a straight port.
   - *Infinite Coiling* [Style] — L3 (10392): Parrying or being hit by
     your Unarmed attack Slows the target once. First read: about 5.5
     Value/encounter, so it fits L2 better than L3.
-- **Shugen** (live: Spirit Bolt L1, Through the Void L2, Spirit Hands
+- **Shugen** (live: Firefly Leaves the Hand L1, Through the Void L2, Spirit Hands
   L2, Swallow Skims the Water L2, Hand Rings the Bell L2, Fist of the
   Third Dragon L3, Tide Rolls Back the Shore L3). The control School:
   Crippled, Frightened, Slowed, Push, Teleport, Brilliant damage,
@@ -405,7 +405,8 @@ translation to live keywords, not a straight port.
   supernatural martial Schools" for the full Demon/Shugen/Oak split.
   Shugen Techniques get poetic names in the style of real martial and
   meditative forms ("Fair Lady Plays at Shuttles", "Wasp Enters the
-  Nest"). Disintegrate Vitality and Shatter Mind both inflict Bleeding,
+  Nest"), as a nod to what the Technique does without spelling it out:
+  "Firefly Leaves the Hand" over "Arrow of the Morning Star". Disintegrate Vitality and Shatter Mind both inflict Bleeding,
   which none of the three supernatural Schools owns; rework or fold
   them into Demon when reviewed.
   - *Disintegrate Vitality* — L2 (A, 1351): ranged Meditation attack
@@ -468,7 +469,7 @@ translation to live keywords, not a straight port.
     **Set aside, revisit after the rest of Shugen.** As drafted (a 1 AP
     follow-up Meditation attack for 2 + [Will] Brilliant) it prices at
     31-38% at Level 3. It's meant as the Brilliant-aligned offensive
-    option for a monk who doesn't want Demon, but it crowds Spirit Bolt
+    option for a monk who doesn't want Demon, but it crowds Firefly Leaves the Hand (then Spirit Bolt)
     (a Meditation Brilliant attack) and Wasting Claw (same 1 AP
     Interrupt-after-hit shape). An "ignore the target's Resist" version
     was declined: per the designer, getting past Resist and armor

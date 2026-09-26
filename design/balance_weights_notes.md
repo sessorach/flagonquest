@@ -7117,3 +7117,21 @@ above), × 4 × P(hit).
 
 A character in the Spirit Hands Style gets nothing from the Brilliant
 half; that's logged for the Styles pass (see the backlog).
+
+### Shugen School - Firefly Leaves the Hand (T080, formerly Spirit Bolt, Level 1)
+
+Priced against War Magic rather than as a swap for an Unarmed swing,
+per the designer: the pure Meditation attacks mirror their spell
+counterpart, Meditation to hit and Mind for damage. As written it was
+War Magic Level 1 with Lance (+[Skill Total] m Range, its 1 point) but
+**3** + [Mind] damage instead of 2, about 2.5 Value (4 × P(hit)) over
+its mirror at a Target of 3. Dropped to 2 + [Mind]. Brilliant is a
+small upgrade on War Magic's Fire (Fire Resist is twice as common;
+Elemental Conversion credits Brilliant 2/attack vs. Fire's 1.5), which
+covers not being Buildable.
+
+> *2 AP.* Target a creature within [Meditation Skill Total] meters.
+> Make a Meditation attack against the target's Dodge Defense. If it
+> hits, it deals 2 + [Mind] Brilliant damage.
+
+Renamed in Shugen's poetic style.

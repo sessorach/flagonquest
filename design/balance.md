@@ -1594,7 +1594,7 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   casters there have been getting Gambles they shouldn't. Fixing that
   shifts results the Level 1 roster was tuned against, so it wants a
   deliberate pass rather than a quiet patch. Also open: whether
-  Discipline attacks like Spirit Bolt count (they aren't tagged
+  Discipline attacks like Firefly Leaves the Hand (formerly Spirit Bolt) count (they aren't tagged
   [Spell]).
 
 - ~~Crafting Schools' XP cost vs. payoff, broadly~~ — **reviewed
