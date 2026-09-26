@@ -7022,3 +7022,31 @@ stack is centred on rate at the combo it's built for and weak if fired
 early on a handful of stacks, which is the right incentive for a
 finisher. The Demon ladder now reads Plague Fist (L2) → Ripjaw Gambit /
 Hand of Defilement (L3) → Wasting Claw (L4).
+
+### Shugen School - Swallow Skims the Water (T153, Level 2)
+
+Shugen's combat Techniques split three ways, per the designer: hybrid
+Brawl/Meditation (the monk counterpart to Demon), pure Meditation
+attacks (the Sorcery equivalent), and self-only buffs/healing (the
+Theurgy equivalent). This is the first hybrid one. Drafted from the
+archive's Ki Style - Spirit Seeker (Pass A, L2), renamed in the poetic
+style Shugen now uses.
+
+> *1 AP.* Target a creature within [Meditation Skill Total] meters.
+> Teleport to any empty space adjacent to the target, then make an
+> Unarmed weapon attack against the target.
+
+Prereqs Brawl 3, Meditation 2. Priced at Level 2 (Target 6), Meditation
+Skill Total 6. The Unarmed attack costs 1 AP instead of an autoswing's
+2, so the saved AP is +2.75 Value. The teleport is movement at
+0.55/m, +0.55 × range to Value.
+
+| Teleport range | Value | Funded |
+|---|---|---|
+| [half Meditation Skill Total] (archive, 3 m) | 2.75 + 1.65 = 4.40 | 73% |
+| **[Meditation Skill Total] (6 m)** | 2.75 + 3.30 = 6.05 | **101%** |
+| [Meditation Skill Total] at Med ST 5 | 2.75 + 2.75 = 5.50 | 92% |
+
+Full range, per the designer. It sits next to the live Through the Void
+(also a 1 AP teleport to the target) without doubling it: this one
+closes and hits, Through the Void repositions and swaps.

@@ -353,7 +353,8 @@ deliberately when drafting, don't just take the first hit. Old
 **Level coverage (unarmed Schools), running note** — update as
 techniques get added. Live right now: L1 Spirit Bolt, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Through the
-Void, Heelbiter, Chainbreaker, Shattering Slam, Spirit Hands · L3 Fist
+Void, Heelbiter, Chainbreaker, Shattering Slam, Spirit Hands, Swallow
+Skims the Water · L3 Fist
 of the Third Dragon, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand
 of Defilement · L4 Slithering Hands, The Grizzly Awakens, Wasting Claw
 · **L5 none**. L2 is the most
@@ -397,7 +398,8 @@ translation to live keywords, not a straight port.
     your Unarmed attack Slows the target once. First read: about 5.5
     Value/encounter, so it fits L2 better than L3.
 - **Shugen** (live: Spirit Bolt L1, Iron Skin L2, Through the Void L2,
-  Spirit Hands L2, Fist of the Third Dragon L3)
+  Spirit Hands L2, Swallow Skims the Water L2, Fist of the Third Dragon
+  L3)
   Shugen is the broad School: it holds all the generic Meditation
   abilities. Per the designer, its combat Techniques fall into three
   rough groups: hybrid Brawl/Meditation abilities (the monk counterpart
@@ -453,8 +455,6 @@ translation to live keywords, not a straight port.
 - **Ki = Shugen.** "Ki Style" is the old name for what became Shugen
   School, per the designer — the entries below are more Shugen
   candidates, not a separate School. Leaning teleport/chakra-disruption.
-  - *Spirit Seeker* — L2 (A, 1337): Teleport adjacent to a target
-    within [Power] m, then Unarmed attack.
   - *Disrupt Chakra* — L2 (B, 1812): Unarmed attack, Dazed + Weakened.
   - *Dragon's Fang* [Style] — L2 (10075): your Unarmed attacks deal
     Spirit damage, but you can't Parry with Unarmed.
