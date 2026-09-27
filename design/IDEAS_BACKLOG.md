@@ -358,7 +358,7 @@ deliberately when drafting, don't just take the first hit. Old
 techniques get added. Live right now: L1 Firefly Leaves the Hand, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Ignore Pain,
 Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
-Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water, Fist of
+Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
 Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
 Grizzly Awakens, Wasting Claw, Harmonious Mending · **L5 none**. L2 is
