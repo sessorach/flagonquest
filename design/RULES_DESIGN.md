@@ -2405,7 +2405,9 @@ Shugen, and its names ape that convention with a sneer: each is a
 rotten twist on a Shugen one (Firefly Dies in the Hand answers Firefly
 Leaves the Hand), and the fluff carries the history of the split. Older
 Demon names (Plague Fist, Ripjaw Gambit, ...) can be brought in line
-once the Demon pass is done.
+once the Demon pass is done. For both Schools, names can be poetic but shouldn't be
+very abstract, and stay around five words or fewer so the full
+"School - Name" doesn't get unwieldy ("Fawn Left to the Wolves").
 
 Bleeding was added to Demon after the first pass (2026-09-27), shared
 with Bear: Bear applies it through physical slams and Extra Successes,

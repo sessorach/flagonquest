@@ -398,7 +398,7 @@ translation to live keywords, not a straight port.
 - **Demon** (live: Plague Fist L2, Ripjaw Gambit L3, Hand of Defilement
   L3, Wasting Claw L4, Firefly Dies in the Hand L1, Thief Empties the
   Vessel L2, Bell Tolls a Dirge L2, Dusk Wind Withers the Grass L3,
-  Disintegrate Vitality L4). Corrupted Fist was declined (see "Reviewed and
+  Fawn Left to the Wolves L4). Corrupted Fist was declined (see "Reviewed and
   declined").
   - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
     1 Vulnerable. (Different from the live Hand of Defilement.) Held
@@ -424,7 +424,7 @@ translation to live keywords, not a straight port.
   "Firefly Leaves the Hand" over "Arrow of the Morning Star". Disintegrate Vitality and Shatter Mind both inflict Bleeding,
   which is Demon's now (shared with Bear), so they belong there.
   - *Disintegrate Spirit* (B, 2072): the Mental version of Disintegrate
-    Vitality (now live in Demon as T162).
+    Vitality (now live in Demon as T162, Fawn Left to the Wolves).
   - *Unbreakable Spirit Meditation* — L2 (A 1377, B 1854) / L3 (C
     7938): Meditation vs. Mental, Frighten (C: twice).
   - *Spiritual Shurikens* — L2 (B, 1838): at-will ranged Meditation

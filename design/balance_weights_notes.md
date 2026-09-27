@@ -7475,3 +7475,5 @@ Prereqs Meditation 5. Level 4, Target 12, Meditation +8. Value = P ×
 curve, + 4 × total stacks). Existing stacks 0/1/2/3 at Vital 15
 (roster): 79/86/91/102%; 14: 90/99/104/117%; 13: 101/111/116/132%. On
 rate with no setup against the intended Vital, hot with setup.
+
+Renamed: Disintegrate Vitality (T162) is now **Fawn Left to the Wolves**.
