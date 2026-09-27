@@ -18,7 +18,7 @@ full log. See `git log` for the commit-by-commit detail.
 Kept going through Shugen School's Techniques under the new School split, making its Unarmed ones deal Brilliant damage against Mental Defense.
 - Swallow Skims the Water now deals Brilliant damage and moved from Level 2 to Level 3, Hand Rings the Bell became a 2 AP Brilliant punch that Slows, Fist of the Third Dragon became Dawn Wind Bends the Grass, a cone that Slows, and Tide Rolls Back the Shore now targets Mental Defense.
 - Added two Level 4 Shugen School Techniques: Lantern Gutters in the Wind, a Brilliant punch that Cripples, and Great Wind Scatters the Leaves, which blows everyone around you in one direction.
-- Reworked Demon to fit the split: Plague Fist targets Vital Defense, Ripjaw Gambit costs 1 Health, Hand of Defilement now leaves targets Harried and Vulnerable, and Wasting Claw's Health loss is capped.
+- Reworked Demon to fit the split and renamed its older Techniques in the new style: Plague Fist is now Sickness Takes the Flock and targets Vital Defense, Ripjaw Gambit costs 1 Health, Hand of Defilement is now Shepherd Opens the Gate and leaves targets Harried and Vulnerable, and Wasting Claw is now Circling Vulture with a cap on its Health loss.
 - Started Demon's pure Meditation Techniques, named to mock Shugen's: Firefly Dies in the Hand (Level 1), a Shadow touch, Thief Empties the Vessel (Level 2), which lets you discard a card to heal on a hit, Bell Tolls a Dirge (Level 2), a ranged curse, Dusk Wind Withers the Grass (Level 3), a cone that makes everything in it Bleed, and Fawn Left to the Wolves (Level 4), which hits harder the more a target is bleeding.
 
 ### 2026-09-26 — Demon School finished, Shugen started

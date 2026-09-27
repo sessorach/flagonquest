@@ -345,7 +345,7 @@ def enemy_defense_for_pc_attack(pc, target):
     was never meant to touch Parry/Dodge, same split Harried's own
     Dodge/Parry-only rule makes in the other direction) - harmless until
     now since nothing granted an enemy Vulnerable before Demon School -
-    Plague Fist (T083)."""
+    Plague Fist (T083, now Sickness Takes the Flock)."""
     harried = target.get('harried', 0)
     vulnerable = target.get('vulnerable', 0)
     if pc.get('opp_def') == 'Dodge':

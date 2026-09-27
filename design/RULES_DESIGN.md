@@ -2403,15 +2403,17 @@ Shugen, Vital for Demon.
 real martial and meditative forms. The Demon school broke away from
 Shugen, and its names ape that convention with a sneer: each is a
 rotten twist on a Shugen one (Firefly Dies in the Hand answers Firefly
-Leaves the Hand), and the fluff carries the history of the split. Older
-Demon names (Plague Fist, Ripjaw Gambit, ...) can be brought in line
-once the Demon pass is done. For both Schools, names can be poetic but shouldn't be
+Leaves the Hand), and the fluff carries the history of the split. The
+older Demon names were brought in line on 2026-09-27: Plague Fist became
+Sickness Takes the Flock, Hand of Defilement became Shepherd Opens the
+Gate, and Wasting Claw became Circling Vulture. Ripjaw Gambit kept its
+name. For both Schools, names can be poetic but shouldn't be
 very abstract, and stay around five words or fewer so the full
 "School - Name" doesn't get unwieldy ("Fawn Left to the Wolves").
 
 Bleeding was added to Demon after the first pass (2026-09-27), shared
 with Bear: Bear applies it through physical slams and Extra Successes,
-Demon through Meditation, and Demon's Wasting Claw cashes it in.
+Demon through Meditation, and Demon's Circling Vulture cashes it in.
 
 The damage types line up with the existing suit-element pairing
 (Diamonds↔Shadow, Hearts↔Brilliant). Hasted isn't assigned to any of

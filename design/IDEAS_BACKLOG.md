@@ -356,12 +356,12 @@ deliberately when drafting, don't just take the first hit. Old
 
 **Level coverage (unarmed Schools), running note** — update as
 techniques get added. Live right now: L1 Firefly Leaves the Hand, Firefly Dies in the Hand, Striking
-Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Ignore Pain,
+Constrictor · L2 Boulder Toss, Sickness Takes the Flock, Iron Skin, Ignore Pain,
 Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
 Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
-Grizzly Awakens, Wasting Claw, Harmonious Mending, Lantern Gutters in
+Grizzly Awakens, Circling Vulture, Harmonious Mending, Lantern Gutters in
 the Wind, Great Wind Scatters the Leaves · **L5 none**. L2 is
 the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
 **Coverage target, per the designer:** each supernatural School
@@ -395,13 +395,13 @@ translation to live keywords, not a straight port.
     hit, and the disarm is a coin flip). It also runs on the same "your
     flip becomes your Parry" engine as Slithering Hands, with the same
     payoff moment as Swatting Paw, so it would need its own angle.
-- **Demon** (live: Plague Fist L2, Ripjaw Gambit L3, Hand of Defilement
-  L3, Wasting Claw L4, Firefly Dies in the Hand L1, Thief Empties the
+- **Demon** (live: Sickness Takes the Flock L2, Ripjaw Gambit L3, Shepherd
+  Opens the Gate L3, Circling Vulture L4, Firefly Dies in the Hand L1, Thief Empties the
   Vessel L2, Bell Tolls a Dirge L2, Dusk Wind Withers the Grass L3,
   Fawn Left to the Wolves L4). Corrupted Fist was declined (see "Reviewed and
   declined").
   - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
-    1 Vulnerable. (Different from the live Hand of Defilement.) Held
+    1 Vulnerable. (Different from the old Hand of Defilement, now Shepherd Opens the Gate.) Held
     for the Styles pass. **Per the designer, add Bleeding to it** when
     it's drafted, now that Demon shares Bleeding with Bear.
 - **Snake** (live: Striking Constrictor L1, Heelbiter L2, Chainbreaker
@@ -479,7 +479,7 @@ translation to live keywords, not a straight port.
     follow-up Meditation attack for 2 + [Will] Brilliant) it prices at
     31-38% at Level 3. It's meant as the Brilliant-aligned offensive
     option for a monk who doesn't want Demon, but it crowds Firefly Leaves the Hand (then Spirit Bolt)
-    (a Meditation Brilliant attack) and Wasting Claw (same 1 AP
+    (a Meditation Brilliant attack) and Circling Vulture (formerly Wasting Claw; same 1 AP
     Interrupt-after-hit shape). An "ignore the target's Resist" version
     was declined: per the designer, getting past Resist and armor
     should come from an elemental damage type or Bleeding, not a raw

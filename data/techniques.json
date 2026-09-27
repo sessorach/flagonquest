@@ -3781,7 +3781,7 @@
   },
   {
     "id": "T083",
-    "name": "Demon School - Plague Fist",
+    "name": "Demon School - Sickness Takes the Flock",
     "level_min": 2,
     "level_max": 2,
     "tags": "Discipline, Martial, Encounter",
@@ -6939,7 +6939,7 @@
   },
   {
     "id": "T151",
-    "name": "Demon School - Hand of Defilement",
+    "name": "Demon School - Shepherd Opens the Gate",
     "level_min": 3,
     "level_max": 3,
     "tags": "Discipline, Martial, Encounter",
@@ -6988,7 +6988,7 @@
   },
   {
     "id": "T152",
-    "name": "Demon School - Wasting Claw",
+    "name": "Demon School - Circling Vulture",
     "level_min": 4,
     "level_max": 4,
     "tags": "Discipline, Martial, Encounter",

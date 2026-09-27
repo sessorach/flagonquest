@@ -7477,3 +7477,8 @@ curve, + 4 × total stacks). Existing stacks 0/1/2/3 at Vital 15
 rate with no setup against the intended Vital, hot with setup.
 
 Renamed: Disintegrate Vitality (T162) is now **Fawn Left to the Wolves**.
+
+Renamed in the Demon naming pass: Plague Fist (T083) is now **Sickness
+Takes the Flock**, Hand of Defilement (T151) is now **Shepherd Opens
+the Gate**, Wasting Claw (T152) is now **Circling Vulture**. Ripjaw
+Gambit keeps its name. Earlier write-ups in this file use the old names.

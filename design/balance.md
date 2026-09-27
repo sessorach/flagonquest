@@ -84,7 +84,7 @@ Per the designer: a Technique whose effect scales on a Skill Total, and
 that prices a bit hot against lower Defenses, is fine to leave there.
 Enemy Defenses climb with Level while the Technique's own Level is
 fixed, so the hit chance (and the price) comes down on its own as the
-character outgrows it. Plague Fist is the example: 127% against a
+character outgrows it. Sickness Takes the Flock (formerly Plague Fist) is the example: 127% against a
 Level 2 enemy's Vital 13, 113% at 14. Don't trim these just to hit
 100% at the Technique's own Level.
 
@@ -96,7 +96,7 @@ full value of both. Slowed only matters if the target wants to move,
 Crippled only if it's attacking, Necrotic only if it heals. So a pair
 that prices hot with both counted at full is fine as long as the more
 useful half is roughly on rate on its own. Hand of Defilement (first
-version) and Bell Tolls a Dirge were both accepted on this basis.
+version, now Shepherd Opens the Gate) and Bell Tolls a Dirge were both accepted on this basis.
 
 ### Estimating a genuinely hard-to-price effect: triangulate, don't guess once
 
@@ -1595,8 +1595,8 @@ per-item Masterwork level is outstanding.
 What genuinely remains, cross-cutting rather than slot-shaped:
 
 - **Is Vital Defense supposed to run lower than Dodge/Parry?** Per the
-  designer, Techniques attacking Vital (Ripjaw Gambit, Wasting Claw,
-  Plague Fist's Vulnerable setup) are priced on the assumption that an
+  designer, Techniques attacking Vital (Ripjaw Gambit, Circling Vulture,
+  Sickness Takes the Flock's Vulnerable setup) are priced on the assumption that an
   enemy's Vital is usually 1-2 below its Dodge/Parry. The roster
   doesn't match right now: the Level 3-5 archetypes have Vital 16-17
   against Dodge/Parry 13-16, since each archetype picks one Defense to
