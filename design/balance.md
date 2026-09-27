@@ -88,6 +88,16 @@ character outgrows it. Plague Fist is the example: 127% against a
 Level 2 enemy's Vital 13, 113% at 14. Don't trim these just to hit
 100% at the Technique's own Level.
 
+### Two-debuff Techniques: price for one, not both
+
+Per the designer: when a Technique applies two different debuffs, assume
+a player mostly gets use out of one or the other in a given fight, not
+full value of both. Slowed only matters if the target wants to move,
+Crippled only if it's attacking, Necrotic only if it heals. So a pair
+that prices hot with both counted at full is fine as long as the more
+useful half is roughly on rate on its own. Hand of Defilement (first
+version) and Bell Tolls a Dirge were both accepted on this basis.
+
 ### Estimating a genuinely hard-to-price effect: triangulate, don't guess once
 
 Most mechanics in this model trace back to a real derivation (a card-math

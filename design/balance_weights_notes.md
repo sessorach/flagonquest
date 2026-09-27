@@ -7436,3 +7436,23 @@ Value check, 2 targets, Meditation +7, less a 2.77 plain swing; enemy
 Bleeding 2 + [Clubs] = 0.75 × 8 + 0.25 × 10 = 8.5. Mind 2: 119/140/162%
 (Vital 14/13/12); Mind 1: 71/85/100%; Mind 3: 167-223%. 1 + [Clubs] was
 77/92/108% at Mind 2.
+
+### Demon School - Bell Tolls a Dirge (T161, Level 2)
+
+Demon's single-target curse, on War Magic's Tormenting Curse model: no
+damage, 3 extra points. Level 2 = 3 + 3 = 6 points: Lance (1), Corrupting
+× 2 (Vulnerable 4 + [Diamonds]), Necrotic × 2 (Necrotic 4 + [Diamonds]),
+with the spare point covering Shadow/Vital as in the other mirrors.
+Parodies Hand Rings the Bell.
+
+> *2 AP.* A creature within [Meditation Skill Total] meters. Make a
+> Meditation attack against the target's Vital Defense. If it hits,
+> the target gains 4 + [Diamonds] stacks each of Vulnerable and
+> Necrotic.
+
+Prereqs Meditation 3. Meditation +6; Vulnerable 4 + [D] = 0.75 × 10 +
+0.25 × 14 = 11 per hit. Vulnerable alone: Vital 13 (roster) 99%, 12
+113%, 11 127%. Necrotic is ~0 against the roster but up to 3/stack
+against a healer (213-274% if both count in full). Kept Necrotic over
+Harried (137-176%) per the designer's "price two-debuff Techniques for
+one of them" note in `balance.md`.

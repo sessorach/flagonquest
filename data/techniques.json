@@ -7390,5 +7390,45 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T161",
+    "name": "Demon School - Bell Tolls a Dirge",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Encounter",
+    "description": "The Shugen strike rings a clear bell in the mind. The Demon school learned to crack it, and a cracked bell never rings true again.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within [Meditation Skill Total] meters",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, the target gains 4 + [Diamonds] stacks each of Vulnerable and Necrotic.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 3",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
