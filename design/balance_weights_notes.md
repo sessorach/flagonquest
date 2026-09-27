@@ -7313,3 +7313,16 @@ Bell staggers instead, Slowed 2 + [Spades] (0.75 × 3.3 + 0.25 × 6.6 =
 4.125). Value = P × (4 + 4.125), Unarmed +8: Mental 13 (roster) 94%,
 12 104%, 11 115%. Shugen's Unarmed track now reads Slowed (L2),
 Teleport and Push (L3), Crippled (L4).
+
+### Demon pass: Plague Fist to Vital
+
+Demon's hybrids target Vital. Plague Fist was a plain Unarmed attack
+(Dodge/Parry); moved to Vital and reworded to the "If it hits, it deals
+[type] damage and ..." shape. Order doesn't matter: Vulnerable lowers
+Vital/Mental/Vigilant (not this hit's damage) and Necrotic only blocks
+healing. Level 2, Unarmed +8, Shadow +1 net, Vulnerable [half Med] +
+[Diamonds] (Med ST 6: 0.75 × 6 + 0.25 × 10 = 7), Necrotic ~0.
+P × (4 + 7): Vital 14 113%, **13 (roster) 127%**, 12 141%. Kept hot per
+the Skill-Total note in `balance.md`: it comes down as enemy Defenses
+climb. Its Vulnerable also lowers the Vital Defense the rest of
+Demon's kit attacks.

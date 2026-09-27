@@ -78,6 +78,16 @@ state their side explicitly in the Value column ("+2 to the
 Technique's own Target", "−1 to the weapon's own Target"). Keep new
 rows in that form.
 
+### Skill-Total-scaled Techniques can run a bit hot early
+
+Per the designer: a Technique whose effect scales on a Skill Total, and
+that prices a bit hot against lower Defenses, is fine to leave there.
+Enemy Defenses climb with Level while the Technique's own Level is
+fixed, so the hit chance (and the price) comes down on its own as the
+character outgrows it. Plague Fist is the example: 127% against a
+Level 2 enemy's Vital 13, 113% at 14. Don't trim these just to hit
+100% at the Technique's own Level.
+
 ### Estimating a genuinely hard-to-price effect: triangulate, don't guess once
 
 Most mechanics in this model trace back to a real derivation (a card-math

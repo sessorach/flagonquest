@@ -3790,7 +3790,7 @@
     "action": "2 AP",
     "cost": null,
     "target": null,
-    "effects": "Make an Unarmed weapon attack. If it hits, the target gains [half your Meditation Skill Total] + [Diamonds] stacks each of Necrotic and Vulnerable, then it deals Shadow damage.",
+    "effects": "Make an Unarmed weapon attack against the target's Vital Defense. If it hits, it deals Shadow damage and the target gains [half your Meditation Skill Total] + [Diamonds] stacks each of Necrotic and Vulnerable.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 3, Meditation 2",

@@ -295,8 +295,11 @@ which should stay a clean decision record.
     hybrid that uses the lower of two Resists would get its own
     carve-out if it ever exists, not a general rule.
   - **Batch effects by when they happen.** Everything that happens on a
-    hit goes in one "If it hits, ..." sentence ("If it hits, it deals
-    Brilliant damage and Pushes the target 3 meters."), and the same
+    hit goes in one "If it hits, ..." sentence, in the shape "If it
+    hits, it deals [type] damage and [other hit effects]" ("If it hits,
+    it deals Brilliant damage and Pushes the target 3 meters."). The
+    designer has asked for this twice; lead with the damage type, then
+    the riders, and the same
     for "If it's Parried, ..." or "If it hits or is Parried, ...".
     Split into separate sentences only when it's actually complicated.
 - **Whenever an idea gets binned** (cut from `items.csv`/`techniques.csv`,
