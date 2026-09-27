@@ -18,7 +18,7 @@ full log. See `git log` for the commit-by-commit detail.
 Kept going through Shugen School's Techniques under the new School split, making its Unarmed ones deal Brilliant damage against Mental Defense.
 - Swallow Skims the Water now deals Brilliant damage and moved from Level 2 to Level 3, Hand Rings the Bell became a 2 AP Brilliant punch that Slows, Fist of the Third Dragon became Dawn Wind Bends the Grass, a cone that Slows, and Tide Rolls Back the Shore now targets Mental Defense.
 - Added two Level 4 Shugen School Techniques: Lantern Gutters in the Wind, a Brilliant punch that Cripples, and Great Wind Scatters the Leaves, which blows everyone around you in one direction.
-- Started a second pass on Demon: Plague Fist now targets Vital Defense, and Ripjaw Gambit costs 1 Health instead of Bleeding you.
+- Reworked Demon to fit the split: Plague Fist targets Vital Defense, Ripjaw Gambit costs 1 Health, Hand of Defilement now leaves targets Harried and Vulnerable, and Wasting Claw's Health loss is capped.
 
 ### 2026-09-26 — Demon School finished, Shugen started
 

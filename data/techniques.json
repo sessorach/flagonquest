@@ -6997,7 +6997,7 @@
     "action": "1 AP - Interrupt (you hit with an Unarmed weapon attack, after the attack is resolved)",
     "cost": null,
     "target": "The creature you hit",
-    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, remove all stacks of Bleeding, Crippled, Necrotic, Slowed, and Vulnerable from the target. It loses Health equal to the number of stacks removed.",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, remove all stacks of Bleeding, Necrotic, and Vulnerable from the target. It loses Health equal to the number of stacks removed, up to [Meditation Skill Total].",
     "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 5, Meditation 4",

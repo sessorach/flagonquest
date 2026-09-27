@@ -7359,3 +7359,30 @@ Harried 3.25 × 1; Vulnerable 0.75 × 6 + 0.25 × 10 = 7. P × (4 + 3.25 +
 7): Vital 14 (roster) 110%, 13 122%, 12 134%. Picked by the designer
 over a flat-Vulnerable version (85/94/103%), in line with Plague Fist's
 hot-early pricing.
+
+### Demon pass: Wasting Claw's consume list and cap
+
+The consume list drops Crippled and Slowed (Shugen's now) and doesn't
+take Harried either, per the designer: Bleeding, Necrotic, Vulnerable.
+Bleeding stays for cross-School combos (Bear, War Magic's Sanguine);
+cashing it in is neutral, since it's already Health loss waiting to
+tick.
+
+With Hand of Defilement now adding Harried and Vulnerable at
+[half Med] + [Diamonds], the full chain at Level 4 (Med ST 8) is Plague
+Fist on turn 1, then Hand of Defilement plus the Claw as an Interrupt on
+turn 2: ~10.75 consumable stacks (Necrotic 3.25, Vulnerable 7.5), and
+the 7.5 Vulnerable drops Vital 15 to 7.5, so the Claw (+8) always hits.
+At 1 Health per stack that's 210-273% (leftover value at full/half). A
+single Plague Fist setup is 105-127%; Hand of Defilement alone 38-69%.
+
+Capped the Health loss at [Meditation Skill Total] (8 at Level 4):
+
+> *1 AP - Interrupt (you hit with an Unarmed weapon attack, after the
+> attack is resolved).* Make a Meditation attack against the target's
+> Vital Defense. If it hits, remove all stacks of Bleeding, Necrotic,
+> and Vulnerable from the target. It loses Health equal to the number
+> of stacks removed, up to [Meditation Skill Total].
+
+Full chain: **119-181%**; single setups unchanged (they never reach
+the cap).
