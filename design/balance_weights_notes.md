@@ -7304,3 +7304,12 @@ Defense like the hybrids do (Mental for Shugen, Vital for Demon).
 Firefly moved from Dodge to Mental. No price change: War Magic, its
 mirror, already picks between Dodge and Vital, and a typical enemy's
 untiered Mental equals its Dodge.
+
+### Hand Rings the Bell: Crippled to Slowed
+
+Per the designer, only one Shugen Unarmed Technique should Cripple.
+Lantern Gutters in the Wind keeps it (the direct Weakened translation);
+Bell staggers instead, Slowed 2 + [Spades] (0.75 × 3.3 + 0.25 × 6.6 =
+4.125). Value = P × (4 + 4.125), Unarmed +8: Mental 13 (roster) 94%,
+12 104%, 11 115%. Shugen's Unarmed track now reads Slowed (L2),
+Teleport and Push (L3), Crippled (L4).
