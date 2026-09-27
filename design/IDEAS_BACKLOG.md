@@ -447,6 +447,12 @@ translation to live keywords, not a straight port.
   decided) — defensive/endurance, and home for the self-buff/
   self-restoration Meditation Techniques: Protected, Ward, self-healing,
   clearing your own debuffs, counters, Taunted.
+  - **Queued, from the designer (2026-09-27):** a Level 2-ish Interrupt
+    that lets you Parry magic and grants Fire and Frost Ward. Good
+    against elementalists, not against other martial artists (whose
+    Shadow/Brilliant sits on the spiritual axis).
+  - **Idea:** Physical Resist boosts for Oak only if they're exclusive
+    with wearing armor, as an optional unarmored line.
   - *Radiant Rebirth of the Phoenix* — L4 (A 1657, B 2084): Interrupt
     when you'd be Downed; [Power] temp Health and Frighten everyone who
     sees you. (Moved from Shugen: self-restoration. The Frighten could
