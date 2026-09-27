@@ -367,7 +367,7 @@ the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
 **Coverage target, per the designer:** each supernatural School
 (Demon, Shugen, Great Old Oak) should have at least one Technique at
 each of Levels 2, 3, and 4 in both its Unarmed hybrid track and its
-pure Meditation track. Still missing as of the School split: Demon pure L2-4 (all of it), Oak hybrid L2-4 (backlog: Tree
+pure Meditation track. Still missing as of the School split: Demon pure L3-4, Oak hybrid L2-4 (backlog: Tree
 Withstands the Storm, Bark Over Flesh, River Stone Deflection, Thirsting
 Roots), Oak pure L3.
 Backlog candidates that could fill a thin level, flagged during
@@ -396,7 +396,8 @@ translation to live keywords, not a straight port.
     flip becomes your Parry" engine as Slithering Hands, with the same
     payoff moment as Swatting Paw, so it would need its own angle.
 - **Demon** (live: Plague Fist L2, Ripjaw Gambit L3, Hand of Defilement
-  L3, Wasting Claw L4, Firefly Dies in the Hand L1). Corrupted Fist was declined (see "Reviewed and
+  L3, Wasting Claw L4, Firefly Dies in the Hand L1, Thief Empties the
+  Vessel L2). Corrupted Fist was declined (see "Reviewed and
   declined").
   - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
     1 Vulnerable. (Different from the live Hand of Defilement.) Held

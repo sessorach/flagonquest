@@ -7400,3 +7400,21 @@ premium as Firefly's Brilliant. On rate by the mirror.
 
 Prereqs Meditation 2. Named as a parody of the Shugen one, per the
 Demon naming convention in `RULES_DESIGN.md`.
+
+### Demon School - Thief Empties the Vessel (T159, Level 2)
+
+Demon's "healing by harming," the parody of Water Fills the Empty
+Vessel. Per the designer's standing rule, healing costs a resource and
+pays a fixed amount, so the heal is an optional discard on a hit.
+
+> *2 AP.* An adjacent creature. Make a Meditation attack against the
+> target's Vital Defense. If it hits, it deals 2 + [Mind] Shadow damage,
+> and you may discard a card to heal 3 Health.
+
+Prereqs Meditation 3. The damage is War Magic's base (the mirror); the
+priced Value is the heal, value-when-used since you only discard when
+you want it: 3 × 4 − 2.7 (card) = 9.3, × P(hit), Meditation +6 vs
+Vital. Vital 13 (roster) 83%, **12 95%, 11 107%**. Heal 2 was 48-61%;
+a Heart bonus (3, or 4 on a Heart) was 92-119% and left off, since
+Hearts isn't Demon's suit. Richer per card than Second Wind (1, or 2 on
+a Heart), but it's the Technique's whole payload and needs a Vital hit.
