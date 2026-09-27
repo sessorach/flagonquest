@@ -7157,3 +7157,21 @@ small control rider was added: Slowed 1 + [Spades] (0.75 × 1.1 + 0.25 ×
 
 **99-110%**. Renamed from its own fluff ("just as water rushes to fill
 an empty vessel").
+
+### Shugen School - Swallow Skims the Water, moved to Level 3
+
+Per the designer, every Unarmed Technique in the three supernatural
+Schools deals its School's element, and Shugen's go against Mental.
+Brilliant adds about +1 net damage per hit (typical Level 2 enemy:
+Physical 3, elemental 2), +4 × P(hit) Value, which at Level 2's Target 6
+pushed it to 152-157% (Unarmed +8 vs Mental 11-12). Half range brought it
+to 125-130%. Moved to Level 3 at full range instead (L2 was the most
+crowded; Shugen's Unarmed track still covers 2/3/4):
+
+> *1 AP.* Target a creature within [Meditation Skill Total] meters.
+> Teleport to an empty space adjacent to the target, then make an
+> Unarmed weapon attack against its Mental Defense. If it hits, it
+> deals Brilliant damage.
+
+Prereqs Brawl 4, Meditation 3. Level 3, Target 9: +2.75 (1 AP attack) +
+7 m × 0.55 + 4 × P, Unarmed +9 vs Mental 12-13 (P 0.77-0.85): **108-111%**.

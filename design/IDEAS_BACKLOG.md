@@ -358,11 +358,20 @@ deliberately when drafting, don't just take the first hit. Old
 techniques get added. Live right now: L1 Firefly Leaves the Hand, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Ignore Pain,
 Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
-Spirit Hands, Swallow Skims the Water, Hand Rings the Bell · L3 Fist of
+Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water, Fist of
 the Third Dragon, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
 Grizzly Awakens, Wasting Claw, Harmonious Mending · **L5 none**. L2 is
 the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
+**Coverage target, per the designer:** each supernatural School
+(Demon, Shugen, Great Old Oak) should have at least one Technique at
+each of Levels 2, 3, and 4 in both its Unarmed hybrid track and its
+pure Meditation track. Still missing as of the School split: Shugen
+pure L4 (backlog: Whirlwind, Indomitable Ascension, Disintegrate
+Spirit), Demon pure L2-4 (all of it), Oak hybrid L2-4 (backlog: Tree
+Withstands the Storm, Bark Over Flesh, River Stone Deflection, Thirsting
+Roots), Oak pure L3. Shugen hybrid L4 is Chakral Overload, not yet
+added.
 Backlog candidates that could fill a thin level, flagged during
 review:
 - *(none flagged yet)*
@@ -402,7 +411,7 @@ translation to live keywords, not a straight port.
     your Unarmed attack Slows the target once. First read: about 5.5
     Value/encounter, so it fits L2 better than L3.
 - **Shugen** (live: Firefly Leaves the Hand L1, Water Fills the Empty Vessel L2, Spirit Hands
-  L2, Swallow Skims the Water L2, Hand Rings the Bell L2, Fist of the
+  L2, Hand Rings the Bell L2, Swallow Skims the Water L3, Fist of the
   Third Dragon L3, Tide Rolls Back the Shore L3). The control School:
   Crippled, Frightened, Slowed, Push, Teleport, Brilliant damage,
   hybrid attacks vs. Mental. See `RULES_DESIGN.md`'s "three

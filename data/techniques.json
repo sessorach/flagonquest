@@ -7038,18 +7038,18 @@
   {
     "id": "T153",
     "name": "Shugen School - Swallow Skims the Water",
-    "level_min": 2,
-    "level_max": 2,
+    "level_min": 3,
+    "level_max": 3,
     "tags": "Discipline, Martial, Encounter",
     "description": "Grasping the ephemeral threads of energy that flow around another's spirit you pull yourself towards them, seeming to flash and blink through the air as you do so.",
     "condition": null,
     "action": "1 AP",
     "cost": null,
     "target": "A creature within [Meditation Skill Total] meters",
-    "effects": "Teleport to any empty space adjacent to the target, then make an Unarmed weapon attack against the target.",
+    "effects": "Teleport to an empty space adjacent to the target, then make an Unarmed weapon attack against its Mental Defense. If it hits, it deals Brilliant damage.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Brawl 3, Meditation 2",
+    "prereqs": "Brawl 4, Meditation 3",
     "relevant_skills": "Brawl, Meditation",
     "use_cards": null,
     "healing": null,
@@ -7068,7 +7068,7 @@
           "Brawl"
         ],
         "threshold": {
-          "base": 3
+          "base": 4
         }
       },
       {
@@ -7077,7 +7077,7 @@
           "Meditation"
         ],
         "threshold": {
-          "base": 2
+          "base": 3
         }
       }
     ],

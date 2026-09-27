@@ -13,6 +13,11 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-09-27 — Shugen pass continues
+
+Kept going through Shugen School's Techniques under the new School split, making its Unarmed ones deal Brilliant damage against Mental Defense.
+- Swallow Skims the Water now deals Brilliant damage and moved from Level 2 to Level 3.
+
 ### 2026-09-26 — Demon School finished, Shugen started
 
 Finished Demon School, split the in-combat Meditation Techniques between the three supernatural Schools, and started on Shugen, which now gets poetic names.
