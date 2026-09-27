@@ -7341,3 +7341,21 @@ in `balance.md`.
 > *2 AP. Cost: 1 Health.* Make an Unarmed weapon attack against the
 > target's Vital Defense. If it hits, it deals Shadow damage plus an
 > extra [half your Meditation Skill Total].
+
+### Demon pass: Hand of Defilement to Harried and Vulnerable
+
+Crippled and Slowed went to Shugen in the School split. Demon's
+replacements match the fluff: Harried (limbs fail, -1 Dodge/Parry) and
+Vulnerable (vitality fouled, -1 Vital/Mental/Vigilant), both Diamonds.
+Between them the target is open on every Defense for the next hits.
+
+> *2 AP.* Make an Unarmed weapon attack against the target's Vital
+> Defense. If it hits, it deals Shadow damage and the target gains
+> [half your Meditation Skill Total] + [Diamonds] stacks each of
+> Harried and Vulnerable.
+
+Level 3, Target 9, Unarmed +9, Med ST 7 (half = 3), Shadow +1 net.
+Harried 3.25 × 1; Vulnerable 0.75 × 6 + 0.25 × 10 = 7. P × (4 + 3.25 +
+7): Vital 14 (roster) 110%, 13 122%, 12 134%. Picked by the designer
+over a flat-Vulnerable version (85/94/103%), in line with Plague Fist's
+hot-early pricing.

@@ -6948,7 +6948,7 @@
     "action": "2 AP",
     "cost": null,
     "target": "A creature within range of your Unarmed weapon",
-    "effects": "Make an Unarmed weapon attack against the target's Vital Defense. If it hits, it deals Shadow damage and the target is Crippled 2 + [Clubs] times and Slowed 2 + [Spades] times.",
+    "effects": "Make an Unarmed weapon attack against the target's Vital Defense. If it hits, it deals Shadow damage and the target gains [half your Meditation Skill Total] + [Diamonds] stacks each of Harried and Vulnerable.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 4, Meditation 3",
