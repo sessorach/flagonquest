@@ -400,7 +400,8 @@ translation to live keywords, not a straight port.
   declined").
   - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
     1 Vulnerable. (Different from the live Hand of Defilement.) Held
-    for the Styles pass.
+    for the Styles pass. **Per the designer, add Bleeding to it** when
+    it's drafted, now that Demon shares Bleeding with Bear.
 - **Snake** (live: Striking Constrictor L1, Heelbiter L2, Chainbreaker
   L2, Turn the Tables L3, Slithering Hands L4). Crashing Leg Sweep, Serpentine Redirection,
   and the L4 Chainbreaker variant were declined as old drafts of live
@@ -419,11 +420,13 @@ translation to live keywords, not a straight port.
   meditative forms ("Fair Lady Plays at Shuttles", "Wasp Enters the
   Nest"), as a nod to what the Technique does without spelling it out:
   "Firefly Leaves the Hand" over "Arrow of the Morning Star". Disintegrate Vitality and Shatter Mind both inflict Bleeding,
-  which none of the three supernatural Schools owns; rework or fold
-  them into Demon when reviewed.
+  which is Demon's now (shared with Bear), so they belong there.
   - *Disintegrate Vitality* — L2 (A, 1351): ranged Meditation attack
     vs. Vital, [Power] Bleeding. *Disintegrate Spirit* (B, 2072) looks
-    like the same idea moved to L4 and vs. Mental.
+    like the same idea moved to L4 and vs. Mental. **Moving to Demon's
+    pure Meditation track as a Level 3-4 attack**, per the designer,
+    drafted after the rest of that track. Mirror: War Magic's
+    Sanguine feature (+3 damage, turned into Bleeding + [Clubs]).
   - *Unbreakable Spirit Meditation* — L2 (A 1377, B 1854) / L3 (C
     7938): Meditation vs. Mental, Frighten (C: twice).
   - *Spiritual Shurikens* — L2 (B, 1838): at-will ranged Meditation

@@ -2369,8 +2369,8 @@ tweaked as the Techniques get reviewed one by one:
 |---|---|---|---|
 | Job | Offense: break them open | Control: stop them fighting back | Defense: outlast them (the closest thing to a tank) |
 | Hybrid attacks | vs. Vital, Shadow damage | vs. Mental, Brilliant damage | Normal Defenses; value is in the riders |
-| Owns | Vulnerable, Harried, Necrotic, Health loss, self-costs | Crippled, Frightened, Slowed, Push, Teleport | Protected, Ward, self-healing, clearing your own debuffs, counters, Taunted |
-| Suits | Diamonds | Clubs, Hearts (Frightened), Spades | Hearts (Taunted) |
+| Owns | Vulnerable, Harried, Necrotic, Bleeding (shared with Bear), Health loss, self-costs | Crippled, Frightened, Slowed, Push, Teleport | Protected, Ward, self-healing, clearing your own debuffs, counters, Taunted |
+| Suits | Diamonds, Clubs (Bleeding) | Clubs, Hearts (Frightened), Spades | Hearts (Taunted) |
 | Pure Meditation | Shadow attacks, draining life (healing by harming) | Brilliant attacks, fear, repositioning | Self-buffs and self-restoration |
 
 The hybrid Techniques share one structure: an Unarmed weapon attack
@@ -2385,6 +2385,10 @@ entirely off one stat. Firefly Leaves the Hand is War Magic at Level 1
 with its point spent on Range, dealing Brilliant instead of Fire. They
 also target the School's Defense, the same as the hybrids: Mental for
 Shugen, Vital for Demon.
+
+Bleeding was added to Demon after the first pass (2026-09-27), shared
+with Bear: Bear applies it through physical slams and Extra Successes,
+Demon through Meditation, and Demon's Wasting Claw cashes it in.
 
 The damage types line up with the existing suit-element pairing
 (Diamonds↔Shadow, Hearts↔Brilliant). Hasted isn't assigned to any of
