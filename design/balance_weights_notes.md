@@ -7326,3 +7326,18 @@ P × (4 + 7): Vital 14 113%, **13 (roster) 127%**, 12 141%. Kept hot per
 the Skill-Total note in `balance.md`: it comes down as enemy Defenses
 climb. Its Vulnerable also lowers the Vital Defense the rest of
 Demon's kit attacks.
+
+### Demon pass: Ripjaw Gambit's cost becomes 1 Health
+
+Repriced against the typical Level 3 Vital 14, Ripjaw came in at 79%
+(92% at 13, 106% at 12). The designer didn't want more damage on top.
+Two self-Bleeding (priced at 4, half assumed cleared) became a Cost of
+**1 Health** (4, guaranteed; nothing can mitigate it, which suits
+breaking the rules for extra damage). Same price, so 79/92/106% at
+Vital 14/13/12. Priced against the intended Vital (1-2 below Dodge/
+Parry, 12-13): **92-106%**. The roster's Vital is flagged for rework
+in `balance.md`.
+
+> *2 AP. Cost: 1 Health.* Make an Unarmed weapon attack against the
+> target's Vital Defense. If it hits, it deals Shadow damage plus an
+> extra [half your Meditation Skill Total].

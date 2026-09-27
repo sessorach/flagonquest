@@ -168,6 +168,13 @@ contradiction: same shape, more generous, and "Backup" renamed
 
 ## Defense tiering: Primary/Secondary/base — the core "intuitive weakness" mechanic
 
+> **Pending rework (2026-09-27):** per the designer, the average enemy
+> should have Dodge/Parry 1 higher than Vital/Mental/Vigilant, with room
+> to trade stats for higher Defenses and to specialize one Defense
+> above the rest at a cost (e.g. a necromancer with very high Vital,
+> lower Dodge/Parry). See `balance.md`'s Open balance work. The tiering
+> below predates that and will change.
+
 The original source spreadsheet gave enemies **three** Defense
 categories, not the PC's five — **Parry/Dodge** (combined into one,
 unlike PCs who pick between them per-attack), **Bodily** (= Vital

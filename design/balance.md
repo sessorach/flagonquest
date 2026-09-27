@@ -1594,6 +1594,17 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   `ENEMY_ENCOUNTER_DESIGN.md`'s Defense tiering and the roster before
   more Vital-targeting Techniques land.
 
+  **Direction from the designer (2026-09-27): re-evaluate enemy stat
+  blocks.** The average enemy should have Dodge/Parry 1 higher than
+  its other three Defenses (Vital, Mental, Vigilant). Stat blocks can
+  trade other things off to raise Defenses, and there should be a
+  system for staggering Defenses, including letting an enemy pump one
+  Defense above the rest at a cost (a necromancer with very high Vital
+  but lower Dodge/Parry). Until that lands, Vital- and Mental-targeting
+  Techniques (all of Demon's and Shugen's) are priced against the
+  intended 1-2 below Dodge/Parry and noted against the current
+  roster's numbers alongside.
+
 - **Gambling is weapon-attacks-only for damaging attacks: look deeper
   later, with the simulator.** Added to `rulebook.md`'s Gambling
   section on 2026-09-24. The intent is to give weapon users an edge
