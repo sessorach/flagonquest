@@ -136,6 +136,12 @@ learning something new, that kind of utility. Pranic Nourishment
 (T085) is the only one like it so far. Not for now; comes after the
 Shugen pass.
 
+## Check when reviewing Poison Techniques
+
+Deep Roots (T165) clears named Common Effects from yourself and shouldn't
+touch Poisons. Confirm the Poison rules say only specific effects clear
+a Poison, so a list like Deep Roots' can't be read as including them.
+
 ## Techniques with stale "Social Contest"-era mechanics, need real rework
 
 Found while doing the Social Contest → Social Encounter terminology
@@ -362,15 +368,13 @@ Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Sl
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
 Oak Draws the Lightning, Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
-Grizzly Awakens, Circling Vulture, Harmonious Mending, Lantern Gutters in
+Grizzly Awakens, Circling Vulture, Deep Roots, Harmonious Mending, Lantern Gutters in
 the Wind, Great Wind Scatters the Leaves · **L5 none**. L2 is
 the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
 **Coverage target, per the designer:** each supernatural School
 (Demon, Shugen, Great Old Oak) should have at least one Technique at
 each of Levels 2, 3, and 4 in both its Unarmed hybrid track and its
-pure Meditation track. Still missing as of the School split: Oak hybrid L2-4 (backlog: Tree
-Withstands the Storm, Bark Over Flesh, River Stone Deflection, Thirsting
-Roots), Oak pure L3.
+pure Meditation track. Still missing as of the School split: Oak pure L3.
 Backlog candidates that could fill a thin level, flagged during
 review:
 - *(none flagged yet)*
@@ -443,8 +447,8 @@ translation to live keywords, not a straight port.
     5 + Health-paid Brilliant damage. (Its fluff is a copy-paste of
     Whirlwind's; needs new flavor.)
 - **Great Old Oak** (live: Channel Ki L2, Ignore Pain L2, Iron Skin
-  L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Harmonious
-  Mending L4, all moved in when the School split was
+  L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Deep Roots
+  L4, Harmonious Mending L4, all moved in when the School split was
   decided) — defensive/endurance, and home for the self-buff/
   self-restoration Meditation Techniques: Protected, Ward, self-healing,
   clearing your own debuffs, counters, Taunted.

@@ -7523,3 +7523,26 @@ binds at 4+ attacks in a round, and taking that many is the setup
 paying off.
 
 Renamed: Bark Over Flesh (T164) is now **Oak Draws the Lightning**.
+
+### Great Old Oak School - Deep Roots (T165, Level 4)
+
+Oak's Level 4 Unarmed: shake off what they've done to you and hit back
+with it. "Debuff" isn't a defined term, so the effects are named
+(Harried left off since it clears on its own; Poisons untouched). One
+Meditation number caps both the cleanse and the damage, so it can't run
+away.
+
+> *2 AP.* Make an Unarmed weapon attack against the target's Vigilant
+> Defense. If it hits, remove up to [half your Meditation Skill Total]
+> total stacks of Bleeding, Crippled, Frightened, Necrotic, Slowed,
+> Taunted, and/or Vulnerable from yourself, and it deals extra damage
+> equal to the number of stacks removed. For the encounter, you can't
+> be moved, Pushed, Shifted, or Teleported against your will.
+
+Prereqs Brawl 5, Meditation 4. Level 4, Target 12, Unarmed +10 vs.
+Vigilant 14-15 (P 0.77-0.69). Self-cleanse alone is cheap against the
+roster (enemies apply 1-2 stacks a hit, a couple of times a fight; the
+Chainbreaker precedent put it at 2-3 per fight), which is why the
+damage was added. Per stack removed: ~2 cleanse + 4 damage, × P.
+Stacks 2: 69-77%; 3: 104-116%; 4+ (cap at Med ST 8): 138-154%. Rooted
+adds ~1-2 and isn't hit-gated.
