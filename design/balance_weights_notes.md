@@ -7498,3 +7498,26 @@ Protected is 3/stack (already realization-discounted), 3.25 stacks =
 9.75 × P: Vigilant 13 (roster untiered) 112%, 12 (the designer's
 "Dodge/Parry 1 higher" target) 125%. [half Med] alone was 104-115%;
 2 + [Hearts] 78-87%.
+
+### Great Old Oak School - Bark Over Flesh (T164, Level 3)
+
+Oak's Taunt tool, at Level 3 per the designer (the build takes some XP
+to get going). The archive's L3 B version gave temporary Health; Oak
+shouldn't lean on Protected for everything, and a Physical Resist boost
+is reserved for an armor-exclusive option, so the second half became
+ignoring Harried. Every attack you apply Parry or Dodge against Harries
+you once until the end of your turn, so a Taunted enemy (and whoever
+joins in) wears your Defense down; this keeps it steady.
+
+> *2 AP.* Make an Unarmed weapon attack against the target's Vigilant
+> Defense. If it hits, the target is Taunted by you [half your
+> Meditation Skill Total] + [Hearts] times, and you ignore Harried for 2
+> rounds.
+
+Prereqs Brawl 4, Meditation 3. Level 3, Target 9, Unarmed +9, Med ST 7.
+Taunted 3.25 × 2.2 = 7.15. Ignoring Harried at 1/stack: ~3 attacks
+between your turns face 0, 1, 2 stacks = ~3 per round, 6 for 2 rounds.
+P × (7.15 + 6): Vigilant 14 (roster) **101%**, 13 **112%**. A cap of
+[half Med] stacks was considered and dropped per the designer: it only
+binds at 4+ attacks in a round, and taking that many is the setup
+paying off.

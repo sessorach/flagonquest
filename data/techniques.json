@@ -7519,5 +7519,54 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T164",
+    "name": "Great Old Oak School - Bark Over Flesh",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "An ancient martial form that was the original cornerstone of the school, it is said to have been learned by a master who studied the energy of a great oak tree for an entire moon cycle. He taught his students to suffuse their bodies in power as they fought, dramatically improving their endurance.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Vigilant Defense. If it hits, the target is Taunted by you [half your Meditation Skill Total] + [Hearts] times, and you ignore Harried for 2 rounds.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Meditation 3",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
