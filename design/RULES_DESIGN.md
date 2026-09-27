@@ -2373,6 +2373,12 @@ tweaked as the Techniques get reviewed one by one:
 | Suits | Diamonds | Clubs, Hearts (Frightened), Spades | Hearts (Taunted) |
 | Pure Meditation | Shadow attacks, draining life (healing by harming) | Brilliant attacks, fear, repositioning | Self-buffs and self-restoration |
 
+The hybrid Techniques share one structure: an Unarmed weapon attack
+(Brawl to hit, same as any Unarmed attack) against the School's
+Defense, dealing the School's element if it has one, with any extra
+effects free to scale on Meditation. Keep new hybrids to that shape
+rather than swapping in Meditation for the attack itself.
+
 The pure Meditation attacks mirror the equivalent spell, with
 Meditation to hit (Essence) and Mind for damage, so they don't run
 entirely off one stat. Firefly Leaves the Hand is War Magic at Level 1

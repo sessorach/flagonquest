@@ -7144,7 +7144,7 @@
     "action": "2 AP",
     "cost": null,
     "target": "A creature within range of your Unarmed weapon",
-    "effects": "Make an Unarmed weapon attack against the target's Vital Defense, using your Meditation Skill Total in place of your Brawl Skill Total. If it hits, it deals Brilliant damage and Pushes the target [Meditation Skill Total] + [Spades] meters.",
+    "effects": "Make an Unarmed weapon attack against the target's Mental Defense. If it hits, it deals Brilliant damage and Pushes the target [Meditation Skill Total] + [Spades] meters.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 4, Meditation 3",

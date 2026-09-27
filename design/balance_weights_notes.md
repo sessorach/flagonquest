@@ -7225,3 +7225,19 @@ damage, 2.77), with 2 targets in the cone and a Meditation attack +7 vs
 Mental 12-13: 26-33% at Mind 1, 80-94% at Mind 2, 135-156% at Mind 3.
 Typical Level 3 elemental Resist is 3, so 2 + [Mind] nets 0 at Mind 1.
 That's War Magic's own curve; logged in `balance.md` Open balance work.
+
+### Shugen School - Tide Rolls Back the Shore, to Mental and a plain Unarmed attack
+
+Matched to the hybrid structure (`RULES_DESIGN.md`): a plain Unarmed
+weapon attack (dropped "using your Meditation Skill Total in place of
+your Brawl Skill Total") against Mental, with the Push still scaling on
+Meditation. At Level 3 both skills sit at Skill Total 7, so the attack
+stays +9 and the price doesn't move.
+
+> *2 AP.* Make an Unarmed weapon attack against the target's Mental
+> Defense. If it hits, it deals Brilliant damage and Pushes the target
+> [Meditation Skill Total] + [Spades] meters.
+
+P × (7.25 m × 0.89375 + 1 × 4): Mental 12 **99%**, 13 **90%**, 14
+(roster untiered) 81%. A 2 + [Med ST] + [Spades] Push would be
+115/105/94%.
