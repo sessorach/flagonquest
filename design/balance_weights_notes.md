@@ -7418,3 +7418,21 @@ Vital. Vital 13 (roster) 83%, **12 95%, 11 107%**. Heal 2 was 48-61%;
 a Heart bonus (3, or 4 on a Heart) was 92-119% and left off, since
 Hearts isn't Demon's suit. Richer per card than Second Wind (1, or 2 on
 a Heart), but it's the Technique's whole payload and needs a Vital hit.
+
+### Demon School - Dusk Wind Withers the Grass (T160, Level 3)
+
+Parody of Dawn Wind Bends the Grass, and the Bleeding setup for Demon's
+pure track (Disintegrate Vitality keys off it; Wasting Claw cashes it
+in). Mirror: War Magic Level 3, Funnel (3 points) plus a Bleeding rider.
+The designer picked 2 + [Clubs] over the one-point 1 + [Clubs], so it
+runs about a point over the mirror.
+
+> *2 AP.* All creatures in a 2-meter cone from you. Make a Meditation
+> attack against each target's Vital Defense. If it hits, it deals 2 +
+> [Mind] Shadow damage and the target gains 2 + [Clubs] stacks of
+> Bleeding.
+
+Value check, 2 targets, Meditation +7, less a 2.77 plain swing; enemy
+Bleeding 2 + [Clubs] = 0.75 × 8 + 0.25 × 10 = 8.5. Mind 2: 119/140/162%
+(Vital 14/13/12); Mind 1: 71/85/100%; Mind 3: 167-223%. 1 + [Clubs] was
+77/92/108% at Mind 2.

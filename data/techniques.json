@@ -7350,5 +7350,45 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T160",
+    "name": "Demon School - Dusk Wind Withers the Grass",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Encounter",
+    "description": "Where the Shugen breath rolls out like a warm dawn wind, the Demon school exhales something older and colder. Grass bends to the one and does not rise from the other.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "All creatures in a 2-meter cone from you",
+    "effects": "Make a Meditation attack against each target's Vital Defense. If it hits, it deals 2 + [Mind] Shadow damage and the target gains 2 + [Clubs] stacks of Bleeding.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 4",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
