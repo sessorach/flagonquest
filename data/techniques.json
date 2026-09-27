@@ -7571,7 +7571,7 @@
   },
   {
     "id": "T165",
-    "name": "Great Old Oak School - Deep Roots",
+    "name": "Great Old Oak School - Old Growth Digs Deep",
     "level_min": 4,
     "level_max": 4,
     "tags": "Discipline, Martial, Encounter",
@@ -7612,6 +7612,46 @@
         ],
         "threshold": {
           "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T166",
+    "name": "Great Old Oak School - Seasons Pass the Forest",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Encounter",
+    "description": "A forest has seen a thousand summers burn and a thousand winters freeze, and it is still standing. Steadying your breath like the slow turn of the year, you let the fire and frost of a sorcerer's spell wash over you and pass.",
+    "condition": null,
+    "action": "1 AP - Interrupt (a spell attack is made against your Dodge Defense, before it hits or misses)",
+    "cost": null,
+    "target": null,
+    "effects": "You may apply your Parry Defense against the attack instead, and you aren't Harried from applying your Defense to it. Then you gain [half your Meditation Skill Total] + [Hearts] stacks each of Fire Ward and Frost Ward.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 3",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
         }
       }
     ],

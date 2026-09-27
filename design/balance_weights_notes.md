@@ -7546,3 +7546,23 @@ Chainbreaker precedent put it at 2-3 per fight), which is why the
 damage was added. Per stack removed: ~2 cleanse + 4 damage, × P.
 Stacks 2: 69-77%; 3: 104-116%; 4+ (cap at Med ST 8): 138-154%. Rooted
 adds ~1-2 and isn't hit-gated.
+
+Renamed: Deep Roots (T165) is now **Old Growth Digs Deep**.
+
+### Great Old Oak School - Seasons Pass the Forest (T166, Level 2)
+
+The designer's magic-Parry idea: Fire and Frost Ward, good against
+elementalists and useless against the other martial Schools (Shadow and
+Brilliant sit on the spiritual axis). Oak's pure track.
+
+> *1 AP - Interrupt (a spell attack is made against your Dodge Defense,
+> before it hits or misses).* You may apply your Parry Defense against
+> the attack instead, and you aren't Harried from applying your Defense
+> to it. Then you gain [half your Meditation Skill Total] + [Hearts]
+> stacks each of Fire Ward and Frost Ward.
+
+Prereqs Meditation 3. Level 2, Target 6, Med ST 6. Priced when used
+(only fires against a caster), and for one element, since a given caster
+uses one (the two-debuff note in `balance.md`). Ward = 2/stack absorption
++ the Ward Resist table; Parry swap ~+0.5; no Harried +1; 1 AP −2.75.
+3.25 stacks: vs. Frost ~6.1 (**102%**), vs. Fire ~7.0 (**117%**).

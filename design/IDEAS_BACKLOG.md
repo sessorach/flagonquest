@@ -138,9 +138,9 @@ Shugen pass.
 
 ## Check when reviewing Poison Techniques
 
-Deep Roots (T165) clears named Common Effects from yourself and shouldn't
+Old Growth Digs Deep (T165) clears named Common Effects from yourself and shouldn't
 touch Poisons. Confirm the Poison rules say only specific effects clear
-a Poison, so a list like Deep Roots' can't be read as including them.
+a Poison, so a list like its own can't be read as including them.
 
 ## Techniques with stale "Social Contest"-era mechanics, need real rework
 
@@ -364,11 +364,11 @@ deliberately when drafting, don't just take the first hit. Old
 techniques get added. Live right now: L1 Firefly Leaves the Hand, Firefly Dies in the Hand, Striking
 Constrictor · L2 Boulder Toss, Sickness Takes the Flock, Iron Skin, Ignore Pain,
 Tree Withstands the Storm,
-Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
+Channel Ki, Seasons Pass the Forest, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
 Oak Draws the Lightning, Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
-Grizzly Awakens, Circling Vulture, Deep Roots, Harmonious Mending, Lantern Gutters in
+Grizzly Awakens, Circling Vulture, Old Growth Digs Deep, Harmonious Mending, Lantern Gutters in
 the Wind, Great Wind Scatters the Leaves · **L5 none**. L2 is
 the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
 **Coverage target, per the designer:** each supernatural School
@@ -447,15 +447,11 @@ translation to live keywords, not a straight port.
     5 + Health-paid Brilliant damage. (Its fluff is a copy-paste of
     Whirlwind's; needs new flavor.)
 - **Great Old Oak** (live: Channel Ki L2, Ignore Pain L2, Iron Skin
-  L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Deep Roots
-  L4, Harmonious Mending L4, all moved in when the School split was
+  L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Old Growth
+  Digs Deep L4, Seasons Pass the Forest L2, Harmonious Mending L4, all moved in when the School split was
   decided) — defensive/endurance, and home for the self-buff/
   self-restoration Meditation Techniques: Protected, Ward, self-healing,
   clearing your own debuffs, counters, Taunted.
-  - **Queued, from the designer (2026-09-27):** a Level 2-ish Interrupt
-    that lets you Parry magic and grants Fire and Frost Ward. Good
-    against elementalists, not against other martial artists (whose
-    Shadow/Brilliant sits on the spiritual axis).
   - **Idea:** Physical Resist boosts for Oak only if they're exclusive
     with wearing armor, as an optional unarmored line.
   - *Radiant Rebirth of the Phoenix* — L4 (A 1657, B 2084): Interrupt
