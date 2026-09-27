@@ -16,7 +16,7 @@ full log. See `git log` for the commit-by-commit detail.
 ### 2026-09-27 — Shugen pass continues
 
 Kept going through Shugen School's Techniques under the new School split, making its Unarmed ones deal Brilliant damage against Mental Defense.
-- Swallow Skims the Water now deals Brilliant damage and moved from Level 2 to Level 3.
+- Swallow Skims the Water now deals Brilliant damage and moved from Level 2 to Level 3, and Hand Rings the Bell became a 2 AP Brilliant punch that Cripples.
 
 ### 2026-09-26 — Demon School finished, Shugen started
 

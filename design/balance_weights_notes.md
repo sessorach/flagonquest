@@ -7175,3 +7175,31 @@ crowded; Shugen's Unarmed track still covers 2/3/4):
 
 Prereqs Brawl 4, Meditation 3. Level 3, Target 9: +2.75 (1 AP attack) +
 7 m × 0.55 + 4 × P, Unarmed +9 vs Mental 12-13 (P 0.77-0.85): **108-111%**.
+
+### Shugen School - Hand Rings the Bell, reworked for the School split
+
+Harried went to Demon in the School split, so Bell became Shugen's
+version: against Mental, Brilliant damage, and Crippled (a rung bell
+throws your swings off). At 1 AP the cheap attack (+2.75) plus Brilliant
+already filled ~97% of the budget before any Crippled, so it moved to
+2 AP like every other hybrid strike (only the gap-closer Swallow Skims
+the Water stays at 1 AP).
+
+> *2 AP.* Make an Unarmed weapon attack against the target's Mental
+> Defense. If it hits, it deals Brilliant damage and the target is
+> Crippled 2 + [Clubs] times.
+
+Level 2, Target 6. A 2 AP attack is the baseline action, so no AP
+adjustment; the Unarmed hit's own damage is what the AP buys and isn't
+counted, only what's added on top. Unarmed +8 (Brawl Skill Total 6 +
+the weapon's +2) vs Mental 12/11: hit on a card of 4+/3+, P 10/13 =
+0.769 / 11/13 = 0.846.
+
+- Brilliant: typical Level 2 enemy is Physical 3 / elemental 2, so +1
+  net damage per hit, × 4 × P = 3.08 / 3.38.
+- Crippled 2 + [Clubs]: 0.75 × 4.5 (2 stacks) + 0.25 × 9 (3 stacks) =
+  5.625, × P = 4.33 / 4.76.
+
+**7.40 / 8.14 = 123% / 136%.** At the roster's untiered Mental 13
+(P 9/13) it's 111%. Suit rider added per the designer, accepting the
+monk-hot range.
