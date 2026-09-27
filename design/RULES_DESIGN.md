@@ -2382,7 +2382,9 @@ rather than swapping in Meditation for the attack itself.
 The pure Meditation attacks mirror the equivalent spell, with
 Meditation to hit (Essence) and Mind for damage, so they don't run
 entirely off one stat. Firefly Leaves the Hand is War Magic at Level 1
-with its point spent on Range, dealing Brilliant instead of Fire.
+with its point spent on Range, dealing Brilliant instead of Fire. They
+also target the School's Defense, the same as the hybrids: Mental for
+Shugen, Vital for Demon.
 
 The damage types line up with the existing suit-element pairing
 (Diamonds↔Shadow, Hearts↔Brilliant). Hasted isn't assigned to any of

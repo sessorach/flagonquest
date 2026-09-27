@@ -3661,7 +3661,7 @@
     "action": "2 AP",
     "cost": null,
     "target": "A creature within [Meditation Skill Total] meters",
-    "effects": "Make a Meditation attack against the target's Dodge Defense. If it hits, it deals 2 + [Mind] Brilliant damage.",
+    "effects": "Make a Meditation attack against the target's Mental Defense. If it hits, it deals 2 + [Mind] Brilliant damage.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 2",

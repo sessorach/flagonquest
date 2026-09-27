@@ -7296,3 +7296,11 @@ useful (per the designer) at 0.89375/m; per target P × (net damage × 4 +
 Mind 1-2: 57/64/71% (Mental 15/14/13); Mind 3: 93/105/117%. Level 4
 elemental Resist is 4, so the damage only gets through at Mind 3; same
 War Magic curve logged in `balance.md`.
+
+### Firefly Leaves the Hand: Dodge to Mental
+
+Per the designer, the pure Meditation attacks target their School's
+Defense like the hybrids do (Mental for Shugen, Vital for Demon).
+Firefly moved from Dodge to Mental. No price change: War Magic, its
+mirror, already picks between Dodge and Vital, and a typical enemy's
+untiered Mental equals its Dodge.
