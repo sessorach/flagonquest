@@ -360,7 +360,7 @@ Constrictor · L2 Boulder Toss, Sickness Takes the Flock, Iron Skin, Ignore Pain
 Tree Withstands the Storm,
 Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
-Bark Over Flesh, Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
+Oak Draws the Lightning, Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
 Grizzly Awakens, Circling Vulture, Harmonious Mending, Lantern Gutters in
 the Wind, Great Wind Scatters the Leaves · **L5 none**. L2 is
@@ -443,7 +443,7 @@ translation to live keywords, not a straight port.
     5 + Health-paid Brilliant damage. (Its fluff is a copy-paste of
     Whirlwind's; needs new flavor.)
 - **Great Old Oak** (live: Channel Ki L2, Ignore Pain L2, Iron Skin
-  L2, Tree Withstands the Storm L2, Bark Over Flesh L3, Harmonious
+  L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Harmonious
   Mending L4, all moved in when the School split was
   decided) — defensive/endurance, and home for the self-buff/
   self-restoration Meditation Techniques: Protected, Ward, self-healing,
@@ -466,7 +466,7 @@ translation to live keywords, not a straight port.
     Parry vs. ranged attacks only.
   - *Bark Over Flesh* L4 (A 1591, a sustained "gain Protected when you
     lose Health") and L3 C (7900, auto-Parry Interrupt) are still
-    unused; the live Bark Over Flesh (T164) is the L3 B version.
+    unused; the live Oak Draws the Lightning (T164) grew out of the L3 B version.
   - *River Stone Deflection* — L4 (B, 2040): Counter, +Parry, Harry
     the attacker on a Parry.
   - *Thirsting Roots* — L4 (C, 8010): Interrupt after an Unarmed hit,

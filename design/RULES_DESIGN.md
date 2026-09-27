@@ -2416,7 +2416,8 @@ Great Old Oak's hybrids target Vigilant Defense (per the designer,
 opponent and outlasts them, so the hit pays off defensively rather than
 in damage. The damage stays Physical for now and may get a buff later. Oak names stay close to
 the archive's plain, natural imagery (Tree Withstands the Storm): a bit
-"boring," which fits the School.
+"boring," which fits the School. Since "Great Old Oak School - " is
+already long, Oak names stay at 3-4 words (Oak Draws the Lightning).
 
 Bleeding was added to Demon after the first pass (2026-09-27), shared
 with Bear: Bear applies it through physical slams and Extra Successes,

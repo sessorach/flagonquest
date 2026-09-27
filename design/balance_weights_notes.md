@@ -7521,3 +7521,5 @@ P × (7.15 + 6): Vigilant 14 (roster) **101%**, 13 **112%**. A cap of
 [half Med] stacks was considered and dropped per the designer: it only
 binds at 4+ attacks in a round, and taking that many is the setup
 paying off.
+
+Renamed: Bark Over Flesh (T164) is now **Oak Draws the Lightning**.
