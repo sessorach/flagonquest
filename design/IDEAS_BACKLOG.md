@@ -362,14 +362,12 @@ Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
 Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
 Grizzly Awakens, Wasting Claw, Harmonious Mending, Lantern Gutters in
-the Wind · **L5 none**. L2 is
+the Wind, Great Wind Scatters the Leaves · **L5 none**. L2 is
 the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
 **Coverage target, per the designer:** each supernatural School
 (Demon, Shugen, Great Old Oak) should have at least one Technique at
 each of Levels 2, 3, and 4 in both its Unarmed hybrid track and its
-pure Meditation track. Still missing as of the School split: Shugen
-pure L4 (backlog: Whirlwind, Indomitable Ascension, Disintegrate
-Spirit), Demon pure L2-4 (all of it), Oak hybrid L2-4 (backlog: Tree
+pure Meditation track. Still missing as of the School split: Demon pure L2-4 (all of it), Oak hybrid L2-4 (backlog: Tree
 Withstands the Storm, Bark Over Flesh, River Stone Deflection, Thirsting
 Roots), Oak pure L3.
 Backlog candidates that could fill a thin level, flagged during
@@ -413,7 +411,7 @@ translation to live keywords, not a straight port.
 - **Shugen** (live: Firefly Leaves the Hand L1, Water Fills the Empty Vessel L2, Spirit Hands
   L2, Hand Rings the Bell L2, Swallow Skims the Water L3, Fist of the
   Dawn Wind Bends the Grass L3, Tide Rolls Back the Shore L3, Lantern
-  Gutters in the Wind L4). The control School:
+  Gutters in the Wind L4, Great Wind Scatters the Leaves L4). The control School:
   Crippled, Frightened, Slowed, Push, Teleport, Brilliant damage,
   hybrid attacks vs. Mental. See `RULES_DESIGN.md`'s "three
   supernatural martial Schools" for the full Demon/Shugen/Oak split.
@@ -437,8 +435,6 @@ translation to live keywords, not a straight port.
   - *Slip Through Reality* — L3 (A 1531, B 1988, C 7928): Interrupt vs.
     an attack on your Dodge; Teleport [Power] and the attack is
     Countered.
-  - *Whirlwind of the Ethereal Emperor* — L4. A/B (1669/2096): 2m
-    burst, Push everyone back. C (8072): pulls them in instead.
   - *Indomitable Ascension* — L4 (C, 8060): clear your own Frightened/
     Taunted, Frighten each target twice.
   - *Immolate Soul* — L5 capstone (C, 8102): pay Health, 3m burst,

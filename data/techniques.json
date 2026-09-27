@@ -7230,5 +7230,45 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T157",
+    "name": "Shugen School - Great Wind Scatters the Leaves",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Discipline, Encounter",
+    "description": "Letting your energy burst from your body in a howling gale, you sweep your foes aside like autumn leaves while leaving your allies untouched.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "Any number of creatures within 2 meters of you",
+    "effects": "Choose a direction, then make a Meditation attack against each target's Mental Defense. If it hits, it deals 2 + [Mind] Brilliant damage and the target is Pushed [Meditation Skill Total] + [Spades] meters in that direction. If it misses, the target is Pushed 2 meters in that direction.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 5",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

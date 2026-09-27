@@ -7268,3 +7268,31 @@ elemental 4 (+1 net for Brilliant). Crippled 4 + [Clubs]: 0.75 × 15 +
 Accepted in the same hot band as Hand of Defilement and Hand Rings the
 Bell. Flat 3 + [Clubs] (84-102%) was the on-rate alternative, passed
 over to keep the Meditation scaling.
+
+### Shugen School - Great Wind Scatters the Leaves (T157, formerly Whirlwind of the Ethereal Emperor, Level 4)
+
+Fills Shugen's pure-Meditation Level 4 slot. The archive had a push-out
+version (A/B) and a pull-in version (C); per the designer this splits
+the difference: pick one direction and everyone goes that way, so the
+user can shove the group forward, drag it past them, or sweep it to the
+side (at the cost of needing to stand in the middle of it).
+
+> *2 AP.* Any number of creatures within 2 meters of you. Choose a
+> direction, then make a Meditation attack against each target's
+> Mental Defense. If it hits, it deals 2 + [Mind] Brilliant damage and
+> the target is Pushed [Meditation Skill Total] + [Spades] meters in
+> that direction. If it misses, the target is Pushed 2 meters in that
+> direction.
+
+Prereqs Meditation 5. **Mirror:** War Magic Level 4 (6 points) = Nova
+shape (3) + ~1 for the wider, ally-sparing 2 m radius + Kinetic × 2
+(Push 8 + [Spades] m, the same size as [Med ST] + [Spades] at Level 4's
+Med ST 8). The 2 m shove on a miss is covered by Brilliant over Fire.
+On rate by the mirror.
+
+**Value check:** 2 targets, Meditation attack +8, Push priced as always
+useful (per the designer) at 0.89375/m; per target P × (net damage × 4 +
+8.25 × 0.89375) + (1 − P) × 2 × 0.89375, less the 2.77 plain swing.
+Mind 1-2: 57/64/71% (Mental 15/14/13); Mind 3: 93/105/117%. Level 4
+elemental Resist is 4, so the damage only gets through at Mind 3; same
+War Magic curve logged in `balance.md`.
