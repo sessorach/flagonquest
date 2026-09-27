@@ -367,7 +367,7 @@ the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
 **Coverage target, per the designer:** each supernatural School
 (Demon, Shugen, Great Old Oak) should have at least one Technique at
 each of Levels 2, 3, and 4 in both its Unarmed hybrid track and its
-pure Meditation track. Still missing as of the School split: Demon pure L4, Oak hybrid L2-4 (backlog: Tree
+pure Meditation track. Still missing as of the School split: Oak hybrid L2-4 (backlog: Tree
 Withstands the Storm, Bark Over Flesh, River Stone Deflection, Thirsting
 Roots), Oak pure L3.
 Backlog candidates that could fill a thin level, flagged during
@@ -397,7 +397,8 @@ translation to live keywords, not a straight port.
     payoff moment as Swatting Paw, so it would need its own angle.
 - **Demon** (live: Plague Fist L2, Ripjaw Gambit L3, Hand of Defilement
   L3, Wasting Claw L4, Firefly Dies in the Hand L1, Thief Empties the
-  Vessel L2, Bell Tolls a Dirge L2, Dusk Wind Withers the Grass L3). Corrupted Fist was declined (see "Reviewed and
+  Vessel L2, Bell Tolls a Dirge L2, Dusk Wind Withers the Grass L3,
+  Disintegrate Vitality L4). Corrupted Fist was declined (see "Reviewed and
   declined").
   - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
     1 Vulnerable. (Different from the live Hand of Defilement.) Held
@@ -422,12 +423,8 @@ translation to live keywords, not a straight port.
   Nest"), as a nod to what the Technique does without spelling it out:
   "Firefly Leaves the Hand" over "Arrow of the Morning Star". Disintegrate Vitality and Shatter Mind both inflict Bleeding,
   which is Demon's now (shared with Bear), so they belong there.
-  - *Disintegrate Vitality* — L2 (A, 1351): ranged Meditation attack
-    vs. Vital, [Power] Bleeding. *Disintegrate Spirit* (B, 2072) looks
-    like the same idea moved to L4 and vs. Mental. **Moving to Demon's
-    pure Meditation track as a Level 3-4 attack**, per the designer,
-    drafted after the rest of that track. Mirror: War Magic's
-    Sanguine feature (+3 damage, turned into Bleeding + [Clubs]).
+  - *Disintegrate Spirit* (B, 2072): the Mental version of Disintegrate
+    Vitality (now live in Demon as T162).
   - *Unbreakable Spirit Meditation* — L2 (A 1377, B 1854) / L3 (C
     7938): Meditation vs. Mental, Frighten (C: twice).
   - *Spiritual Shurikens* — L2 (B, 1838): at-will ranged Meditation

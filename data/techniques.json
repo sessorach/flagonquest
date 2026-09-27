@@ -7430,5 +7430,45 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T162",
+    "name": "Demon School - Disintegrate Vitality",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Discipline, Encounter",
+    "description": "Forming your energy into a torrent of barbs and unleashing them upon an enemy, you shred their ki and cause their life force to drain from them.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within [Meditation Skill Total] meters",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, the target gains 2 + [Clubs] stacks of Bleeding, then it deals 2 + [Mind] Shadow damage plus 1 per stack of Bleeding the target has.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 5",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

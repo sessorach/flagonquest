@@ -7456,3 +7456,22 @@ Prereqs Meditation 3. Meditation +6; Vulnerable 4 + [D] = 0.75 × 10 +
 against a healer (213-274% if both count in full). Kept Necrotic over
 Harried (137-176%) per the designer's "price two-debuff Techniques for
 one of them" note in `balance.md`.
+
+### Demon School - Disintegrate Vitality (T162, Level 4)
+
+From the archive (Pass A, L2: ranged Meditation attack vs. Vital,
+[Power] Bleeding), moved to Demon's pure Level 4 and made to key off
+Bleeding. It widens existing wounds without removing them, so it
+doesn't repeat Wasting Claw's cash-in, and supplies its own Bleeding so
+it's never dead.
+
+> *2 AP.* A creature within [Meditation Skill Total] meters. Make a
+> Meditation attack against the target's Vital Defense. If it hits,
+> the target gains 2 + [Clubs] stacks of Bleeding, then it deals 2 +
+> [Mind] Shadow damage plus 1 per stack of Bleeding the target has.
+
+Prereqs Meditation 5. Level 4, Target 12, Meditation +8. Value = P ×
+(marginal enemy-Bleeding value of the new 2.25 stacks, from the taper
+curve, + 4 × total stacks). Existing stacks 0/1/2/3 at Vital 15
+(roster): 79/86/91/102%; 14: 90/99/104/117%; 13: 101/111/116/132%. On
+rate with no setup against the intended Vital, hot with setup.
