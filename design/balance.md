@@ -1597,6 +1597,18 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   Discipline attacks like Firefly Leaves the Hand (formerly Spirit Bolt) count (they aren't tagged
   [Spell]).
 
+- **War Magic's 2 + [Mind] damage against rising Resist.** Found
+  while pricing Dawn Wind Bends the Grass (a War Magic Level 3 mirror,
+  Funnel + Frigid) on 2026-09-27. A typical enemy's elemental Resist
+  is 1/2/3/4 at Levels 1-4, so 2 + [Mind] only gets anything through at
+  Level 3 once Mind is 2+; at Mind 1 the damage nets 0 and all the
+  Value is in the features. Against a plain 2 AP Unarmed swing, the
+  Level 3 cone priced at 26-33% (Mind 1), 80-94% (Mind 2), 135-156%
+  (Mind 3). That's War Magic's own curve, not something the Shugen
+  mirrors added, so it probably prices under Target for most casters
+  past Level 2. Check War Magic (and its Meditation mirrors) against
+  the roster before assuming the mirrors are on rate.
+
 - ~~Crafting Schools' XP cost vs. payoff, broadly~~ — **reviewed
   2026-09-15, resolved: no rebalance needed.** Flagged while grouping
   everyday-goods recipes on the assumption that a School's payoff was

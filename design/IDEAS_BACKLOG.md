@@ -359,7 +359,7 @@ techniques get added. Live right now: L1 Firefly Leaves the Hand, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Ignore Pain,
 Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water, Fist of
-the Third Dragon, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
+Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
 Grizzly Awakens, Wasting Claw, Harmonious Mending · **L5 none**. L2 is
 the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
@@ -412,7 +412,7 @@ translation to live keywords, not a straight port.
     Value/encounter, so it fits L2 better than L3.
 - **Shugen** (live: Firefly Leaves the Hand L1, Water Fills the Empty Vessel L2, Spirit Hands
   L2, Hand Rings the Bell L2, Swallow Skims the Water L3, Fist of the
-  Third Dragon L3, Tide Rolls Back the Shore L3). The control School:
+  Dawn Wind Bends the Grass L3, Tide Rolls Back the Shore L3). The control School:
   Crippled, Frightened, Slowed, Push, Teleport, Brilliant damage,
   hybrid attacks vs. Mental. See `RULES_DESIGN.md`'s "three
   supernatural martial Schools" for the full Demon/Shugen/Oak split.

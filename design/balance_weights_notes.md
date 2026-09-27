@@ -7203,3 +7203,25 @@ the weapon's +2) vs Mental 12/11: hit on a card of 4+/3+, P 10/13 =
 **7.40 / 8.14 = 123% / 136%.** At the roster's untiered Mental 13
 (P 9/13) it's 111%. Suit rider added per the designer, accepting the
 monk-hot range.
+
+### Shugen School - Dawn Wind Bends the Grass (T091, formerly Fist of the Third Dragon, Level 3)
+
+Priced as a War Magic mirror, like Firefly Leaves the Hand. Level 3 War
+Magic gets 4 points; Funnel (2 m cone) is 3, leaving one. As written,
+Third Dragon had a 3 m cone, Frightened 3 + [Hearts] *and* Slowed 3 +
+[Spades] (about two points over), and 1 + [Mind] damage (203-228% on
+the swing model). Frighten was dropped: Shugen keeps Slowed, and the
+one point buys Frigid's Slowed 2 + [Spades]. Moved off the Dragon theme
+with new fluff.
+
+> *2 AP.* All creatures in a 2-meter cone from you. Make a Meditation
+> attack against each target's Mental Defense. If it hits, it deals
+> 2 + [Mind] Brilliant damage and the target is Slowed 2 + [Spades]
+> times.
+
+On rate by the mirror (Brilliant over Fire is the same small premium as
+Firefly's). Against a plain 2 AP Unarmed swing (+9 vs Dodge 14, 1 net
+damage, 2.77), with 2 targets in the cone and a Meditation attack +7 vs
+Mental 12-13: 26-33% at Mind 1, 80-94% at Mind 2, 135-156% at Mind 3.
+Typical Level 3 elemental Resist is 3, so 2 + [Mind] nets 0 at Mind 1.
+That's War Magic's own curve; logged in `balance.md` Open balance work.
