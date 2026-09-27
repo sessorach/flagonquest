@@ -7270,5 +7270,45 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T158",
+    "name": "Demon School - Firefly Dies in the Hand",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Discipline, Encounter",
+    "description": "The Shugen masters teach their students to coax a firefly of ki from the palm and let it go. The first Demon monks found it simpler to close the fist. Held too close and soured with spite, that same mote of light rots whatever it touches.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "An adjacent creature",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, it deals 3 + [Mind] Shadow damage.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 2",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

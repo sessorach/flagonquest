@@ -355,7 +355,7 @@ deliberately when drafting, don't just take the first hit. Old
 `[Stance]` tags = current `[Style]`.
 
 **Level coverage (unarmed Schools), running note** — update as
-techniques get added. Live right now: L1 Firefly Leaves the Hand, Striking
+techniques get added. Live right now: L1 Firefly Leaves the Hand, Firefly Dies in the Hand, Striking
 Constrictor · L2 Boulder Toss, Plague Fist, Iron Skin, Ignore Pain,
 Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
@@ -396,7 +396,7 @@ translation to live keywords, not a straight port.
     flip becomes your Parry" engine as Slithering Hands, with the same
     payoff moment as Swatting Paw, so it would need its own angle.
 - **Demon** (live: Plague Fist L2, Ripjaw Gambit L3, Hand of Defilement
-  L3, Wasting Claw L4). Corrupted Fist was declined (see "Reviewed and
+  L3, Wasting Claw L4, Firefly Dies in the Hand L1). Corrupted Fist was declined (see "Reviewed and
   declined").
   - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
     1 Vulnerable. (Different from the live Hand of Defilement.) Held

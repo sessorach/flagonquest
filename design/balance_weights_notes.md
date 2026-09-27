@@ -7386,3 +7386,17 @@ Capped the Health loss at [Meditation Skill Total] (8 at Level 4):
 
 Full chain: **119-181%**; single setups unchanged (they never reach
 the cap).
+
+### Demon School - Firefly Dies in the Hand (T158, Level 1)
+
+First of Demon's pure Meditation Techniques, the counterpart to Shugen's
+Firefly Leaves the Hand. Priced as War Magic Level 1 with its one point
+on Destructive (+1 damage) instead of Range (Lance): adjacent, 3 +
+[Mind]. Shadow over Fire and Vital as the Defense are the same small
+premium as Firefly's Brilliant. On rate by the mirror.
+
+> *2 AP.* An adjacent creature. Make a Meditation attack against the
+> target's Vital Defense. If it hits, it deals 3 + [Mind] Shadow damage.
+
+Prereqs Meditation 2. Named as a parody of the Shugen one, per the
+Demon naming convention in `RULES_DESIGN.md`.

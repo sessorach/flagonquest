@@ -19,6 +19,7 @@ Kept going through Shugen School's Techniques under the new School split, making
 - Swallow Skims the Water now deals Brilliant damage and moved from Level 2 to Level 3, Hand Rings the Bell became a 2 AP Brilliant punch that Slows, Fist of the Third Dragon became Dawn Wind Bends the Grass, a cone that Slows, and Tide Rolls Back the Shore now targets Mental Defense.
 - Added two Level 4 Shugen School Techniques: Lantern Gutters in the Wind, a Brilliant punch that Cripples, and Great Wind Scatters the Leaves, which blows everyone around you in one direction.
 - Reworked Demon to fit the split: Plague Fist targets Vital Defense, Ripjaw Gambit costs 1 Health, Hand of Defilement now leaves targets Harried and Vulnerable, and Wasting Claw's Health loss is capped.
+- Started Demon's pure Meditation Techniques with Firefly Dies in the Hand (Level 1), a Shadow touch whose name mocks Shugen's Firefly Leaves the Hand.
 
 ### 2026-09-26 — Demon School finished, Shugen started
 

@@ -2386,6 +2386,14 @@ with its point spent on Range, dealing Brilliant instead of Fire. They
 also target the School's Defense, the same as the hybrids: Mental for
 Shugen, Vital for Demon.
 
+**Naming and story.** Shugen Techniques get poetic names in the style of
+real martial and meditative forms. The Demon school broke away from
+Shugen, and its names ape that convention with a sneer: each is a
+rotten twist on a Shugen one (Firefly Dies in the Hand answers Firefly
+Leaves the Hand), and the fluff carries the history of the split. Older
+Demon names (Plague Fist, Ripjaw Gambit, ...) can be brought in line
+once the Demon pass is done.
+
 Bleeding was added to Demon after the first pass (2026-09-27), shared
 with Bear: Bear applies it through physical slams and Extra Successes,
 Demon through Meditation, and Demon's Wasting Claw cashes it in.
