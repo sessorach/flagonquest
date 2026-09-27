@@ -7470,5 +7470,54 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T163",
+    "name": "Great Old Oak School - Tree Withstands the Storm",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "The ancient school of hand-to-hand combat teaches one to stand strong, resist all that comes at you, then defeat your enemies once they are worn down.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Vigilant Defense. If it hits, you gain [half your Meditation Skill Total] + [Hearts] stacks of Protected.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Meditation 2",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

@@ -7482,3 +7482,19 @@ Renamed in the Demon naming pass: Plague Fist (T083) is now **Sickness
 Takes the Flock**, Hand of Defilement (T151) is now **Shepherd Opens
 the Gate**, Wasting Claw (T152) is now **Circling Vulture**. Ripjaw
 Gambit keeps its name. Earlier write-ups in this file use the old names.
+
+### Great Old Oak School - Tree Withstands the Storm (T163, Level 2)
+
+First of Oak's Unarmed hybrids: vs. Vigilant, Physical damage, a
+defensive rider on a hit. The archive's "+[half Med] Dodge/Parry for 1
+round" became Protected, Oak's own mechanic, on Hearts (Oak's suit).
+
+> *2 AP.* Make an Unarmed weapon attack against the target's Vigilant
+> Defense. If it hits, you gain [half your Meditation Skill Total] +
+> [Hearts] stacks of Protected.
+
+Prereqs Brawl 3, Meditation 2. Level 2, Target 6, Unarmed +8, Med ST 6.
+Protected is 3/stack (already realization-discounted), 3.25 stacks =
+9.75 × P: Vigilant 13 (roster untiered) 112%, 12 (the designer's
+"Dodge/Parry 1 higher" target) 125%. [half Med] alone was 104-115%;
+2 + [Hearts] 78-87%.

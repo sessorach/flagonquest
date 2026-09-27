@@ -2414,7 +2414,9 @@ very abstract, and stay around five words or fewer so the full
 Great Old Oak's hybrids target Vigilant Defense (per the designer,
 2026-09-27): the fantasy is a steady, methodical fighter who reads the
 opponent and outlasts them, so the hit pays off defensively rather than
-in damage. The damage stays Physical for now and may get a buff later.
+in damage. The damage stays Physical for now and may get a buff later. Oak names stay close to
+the archive's plain, natural imagery (Tree Withstands the Storm): a bit
+"boring," which fits the School.
 
 Bleeding was added to Demon after the first pass (2026-09-27), shared
 with Bear: Bear applies it through physical slams and Extra Successes,

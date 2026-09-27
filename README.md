@@ -13,13 +13,14 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-09-27 — Shugen pass continues
+### 2026-09-27 — Shugen and Demon reworked, Oak started
 
-Kept going through Shugen School's Techniques under the new School split, making its Unarmed ones deal Brilliant damage against Mental Defense.
+Reworked Shugen and Demon under the new School split, filled out Demon's Meditation Techniques, and started on Great Old Oak.
 - Swallow Skims the Water now deals Brilliant damage and moved from Level 2 to Level 3, Hand Rings the Bell became a 2 AP Brilliant punch that Slows, Fist of the Third Dragon became Dawn Wind Bends the Grass, a cone that Slows, and Tide Rolls Back the Shore now targets Mental Defense.
 - Added two Level 4 Shugen School Techniques: Lantern Gutters in the Wind, a Brilliant punch that Cripples, and Great Wind Scatters the Leaves, which blows everyone around you in one direction.
 - Reworked Demon to fit the split and renamed its older Techniques in the new style: Plague Fist is now Sickness Takes the Flock and targets Vital Defense, Ripjaw Gambit costs 1 Health, Hand of Defilement is now Shepherd Opens the Gate and leaves targets Harried and Vulnerable, and Wasting Claw is now Circling Vulture with a cap on its Health loss.
 - Started Demon's pure Meditation Techniques, named to mock Shugen's: Firefly Dies in the Hand (Level 1), a Shadow touch, Thief Empties the Vessel (Level 2), which lets you discard a card to heal on a hit, Bell Tolls a Dirge (Level 2), a ranged curse, Dusk Wind Withers the Grass (Level 3), a cone that makes everything in it Bleed, and Fawn Left to the Wolves (Level 4), which hits harder the more a target is bleeding.
+- Started Great Old Oak's Unarmed Techniques, which target Vigilant Defense and protect you on a hit, with Tree Withstands the Storm (Level 2).
 
 ### 2026-09-26 — Demon School finished, Shugen started
 

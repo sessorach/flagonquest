@@ -357,6 +357,7 @@ deliberately when drafting, don't just take the first hit. Old
 **Level coverage (unarmed Schools), running note** — update as
 techniques get added. Live right now: L1 Firefly Leaves the Hand, Firefly Dies in the Hand, Striking
 Constrictor · L2 Boulder Toss, Sickness Takes the Flock, Iron Skin, Ignore Pain,
+Tree Withstands the Storm,
 Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
 Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
@@ -442,7 +443,7 @@ translation to live keywords, not a straight port.
     5 + Health-paid Brilliant damage. (Its fluff is a copy-paste of
     Whirlwind's; needs new flavor.)
 - **Great Old Oak** (live: Channel Ki L2, Ignore Pain L2, Iron Skin
-  L2, Harmonious Mending L4, all moved in when the School split was
+  L2, Tree Withstands the Storm L2, Harmonious Mending L4, all moved in when the School split was
   decided) — defensive/endurance, and home for the self-buff/
   self-restoration Meditation Techniques: Protected, Ward, self-healing,
   clearing your own debuffs, counters, Taunted.
@@ -450,9 +451,6 @@ translation to live keywords, not a straight port.
     when you'd be Downed; [Power] temp Health and Frighten everyone who
     sees you. (Moved from Shugen: self-restoration. The Frighten could
     become Taunted, Oak's Hearts debuff.)
-  - *Tree Withstands the Storm* — L2. A (1313): ignore 1 Harried for
-    [Power] rounds, no attack. B (1786): Unarmed attack, +[half
-    Meditation ST] Dodge/Parry for a round.
   - *Boughs Unbroken* [Style] — L2 (C, 7708): before each Unarmed
     attack, remove 1 Crippled or Slowed from yourself.
   - *Branch/Branches in the Wind* — three variants: L3 (A 1467)
