@@ -361,7 +361,8 @@ Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Sl
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
 Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
-Grizzly Awakens, Wasting Claw, Harmonious Mending · **L5 none**. L2 is
+Grizzly Awakens, Wasting Claw, Harmonious Mending, Lantern Gutters in
+the Wind · **L5 none**. L2 is
 the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
 **Coverage target, per the designer:** each supernatural School
 (Demon, Shugen, Great Old Oak) should have at least one Technique at
@@ -370,8 +371,7 @@ pure Meditation track. Still missing as of the School split: Shugen
 pure L4 (backlog: Whirlwind, Indomitable Ascension, Disintegrate
 Spirit), Demon pure L2-4 (all of it), Oak hybrid L2-4 (backlog: Tree
 Withstands the Storm, Bark Over Flesh, River Stone Deflection, Thirsting
-Roots), Oak pure L3. Shugen hybrid L4 is Chakral Overload, not yet
-added.
+Roots), Oak pure L3.
 Backlog candidates that could fill a thin level, flagged during
 review:
 - *(none flagged yet)*
@@ -412,7 +412,8 @@ translation to live keywords, not a straight port.
     Value/encounter, so it fits L2 better than L3.
 - **Shugen** (live: Firefly Leaves the Hand L1, Water Fills the Empty Vessel L2, Spirit Hands
   L2, Hand Rings the Bell L2, Swallow Skims the Water L3, Fist of the
-  Dawn Wind Bends the Grass L3, Tide Rolls Back the Shore L3). The control School:
+  Dawn Wind Bends the Grass L3, Tide Rolls Back the Shore L3, Lantern
+  Gutters in the Wind L4). The control School:
   Crippled, Frightened, Slowed, Push, Teleport, Brilliant damage,
   hybrid attacks vs. Mental. See `RULES_DESIGN.md`'s "three
   supernatural martial Schools" for the full Demon/Shugen/Oak split.
@@ -486,8 +487,7 @@ translation to live keywords, not a straight port.
     was declined: per the designer, getting past Resist and armor
     should come from an elemental damage type or Bleeding, not a raw
     bypass.
-  - *Chakral Overload* — L4 (A, 1627): Unarmed attack, Weakened
-    [Power] times. No L5 Ki content anywhere.
+  - No L5 Ki content anywhere.
 - **Lion / Tiger**: nothing in the archive. Neither name appears at
   all; their live techniques (Eternal Riposte, Storm of Blades) came
   from generic, unbranded "Stances" entries. Per the designer, **Lion =

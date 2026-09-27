@@ -7241,3 +7241,30 @@ stays +9 and the price doesn't move.
 P × (7.25 m × 0.89375 + 1 × 4): Mental 12 **99%**, 13 **90%**, 14
 (roster untiered) 81%. A 2 + [Med ST] + [Spades] Push would be
 115/105/94%.
+
+### Shugen School - Lantern Gutters in the Wind (T156, Level 4)
+
+Drafted from the archive's Ki Style - Chakral Overload (Pass A, L4): an
+Unarmed attack that Weakened the target [half Med] times. Weakened is
+gone; Crippled is the direct translation and Shugen's. Built to the
+hybrid structure: Unarmed attack vs. Mental, Brilliant, Meditation-
+scaled rider.
+
+> *2 AP.* Make an Unarmed weapon attack against the target's Mental
+> Defense. If it hits, it deals Brilliant damage and the target is
+> Crippled [half your Meditation Skill Total] + [Clubs] times.
+
+Prereqs Brawl 5, Meditation 4. Level 4, Target 12: Unarmed +10,
+Meditation Skill Total 8 (half = 4), typical Level 4 enemy Physical 5 /
+elemental 4 (+1 net for Brilliant). Crippled 4 + [Clubs]: 0.75 × 15 +
+0.25 × 21 = 16.5. Value = P × (16.5 + 4).
+
+| Mental | P | Funded |
+|---|---|---|
+| 15 (roster untiered) | 0.692 | 118% |
+| 14 | 0.769 | 131% |
+| 13 | 0.846 | 145% |
+
+Accepted in the same hot band as Hand of Defilement and Hand Rings the
+Bell. Flat 3 + [Clubs] (84-102%) was the on-rate alternative, passed
+over to keep the Meditation scaling.
