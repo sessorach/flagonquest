@@ -178,6 +178,19 @@ without a Skill flip attached. Landed on the broader phrasing in the
 table above — still cleanly excludes anything that grants or modifies
 an attack, which stays Held's job.
 
+### STANDING RULE — Some effects always cost a resource
+
+Per the designer (2026-09-27): a handful of effects should almost always
+be paid for with a spent resource, cards from hand or a consumable item.
+**Healing** is one. **Gaining a card in hand** is another (an on-demand
+card source with no cost is how infinite loops happen). Exceptions exist,
+but they're conditional triggers, not something a player can call on
+whenever they want. When a new Technique or item heals or hands out
+cards, put a discard or a consumable in its cost, and prefer a fixed
+amount over a scaling one for the payout. Precedent: Second Wind and Lay
+On Hands (discard a card, heal 1, or 2 on a Heart), Healing Magic
+(discard cards equal to its Level).
+
 ### Successes as the universal resolution currency
 
 The game is moving toward one unified idea of "success" behind every flip
