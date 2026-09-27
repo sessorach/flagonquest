@@ -2381,7 +2381,7 @@ tweaked as the Techniques get reviewed one by one:
 | | Demon | Shugen | Great Old Oak |
 |---|---|---|---|
 | Job | Offense: break them open | Control: stop them fighting back | Defense: outlast them (the closest thing to a tank) |
-| Hybrid attacks | vs. Vital, Shadow damage | vs. Mental, Brilliant damage | Normal Defenses; value is in the riders |
+| Hybrid attacks | vs. Vital, Shadow damage | vs. Mental, Brilliant damage | vs. Vigilant (8 + Insight), Physical damage; defensive riders on a hit |
 | Owns | Vulnerable, Harried, Necrotic, Bleeding (shared with Bear), Health loss, self-costs | Crippled, Frightened, Slowed, Push, Teleport | Protected, Ward, self-healing, clearing your own debuffs, counters, Taunted |
 | Suits | Diamonds, Clubs (Bleeding) | Clubs, Hearts (Frightened), Spades | Hearts (Taunted) |
 | Pure Meditation | Shadow attacks, draining life (healing by harming) | Brilliant attacks, fear, repositioning | Self-buffs and self-restoration |
@@ -2410,6 +2410,11 @@ Gate, and Wasting Claw became Circling Vulture. Ripjaw Gambit kept its
 name. For both Schools, names can be poetic but shouldn't be
 very abstract, and stay around five words or fewer so the full
 "School - Name" doesn't get unwieldy ("Fawn Left to the Wolves").
+
+Great Old Oak's hybrids target Vigilant Defense (per the designer,
+2026-09-27): the fantasy is a steady, methodical fighter who reads the
+opponent and outlasts them, so the hit pays off defensively rather than
+in damage. The damage stays Physical for now and may get a buff later.
 
 Bleeding was added to Demon after the first pass (2026-09-27), shared
 with Bear: Bear applies it through physical slams and Extra Successes,
