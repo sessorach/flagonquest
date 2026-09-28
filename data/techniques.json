@@ -3741,9 +3741,9 @@
   },
   {
     "id": "T082",
-    "name": "Great Old Oak School - Channel Ki",
-    "level_min": 2,
-    "level_max": 2,
+    "name": "Great Old Oak School - Willow Springs Back",
+    "level_min": 3,
+    "level_max": 3,
     "tags": "Discipline",
     "description": "\"It is told that, in the age before history, the ancient master Kodai was the first to temper the energy of the body. The tale is told across many villages, and few details are solidly known, save that Kodai's clan was a modest and self-reliant one pitted in war against a larger enemy clan. Kodai fasted and meditated in the harsh wilderness for many nights, and upon returning taught the secret to all the clan's warriors. With the overwhelming power of their greatest techniques, the clan fought off their enemy and lived in harmony into the mists of history.\"\r\n\r\n- Arcanists of Myth and Legend, Vol. I",
     "condition": null,
@@ -3753,7 +3753,7 @@
     "effects": "Regain the use of an Encounter Technique with a Level of X or less.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Meditation 2",
+    "prereqs": "Meditation 4",
     "relevant_skills": "Meditation",
     "use_cards": null,
     "healing": null,
@@ -3772,7 +3772,7 @@
           "Meditation"
         ],
         "threshold": {
-          "base": 2
+          "base": 4
         }
       }
     ],

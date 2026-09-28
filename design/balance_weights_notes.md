@@ -7607,3 +7607,15 @@ Health) and the rest:
 
 ~4-6 a fight, **~70-100%**. The cap at [Meditation Skill Total] (6 at
 Level 2) rarely binds; the designer wanted a limit on it anyway.
+
+### Oak review: Channel Ki becomes Willow Springs Back (Level 3)
+
+X AP (X up to [half Med]): regain the use of an Encounter Technique of
+Level X or less, no Encounter tag. Per use it's close to even (a regained
+Technique is worth ~3X net of its own AP; this costs X AP, ~2.75X). The
+designer kept it cost-free: it spends AP and doesn't generate cards or
+Health, so the resource rule doesn't apply. The one risk is always
+refreshing your hottest Technique (+3-4 surplus a use), so it moved to
+Level 3, which also fills Oak's pure-track Level 3 and thins out Level 2.
+Prereq Meditation 4 to match. Renamed for a willow bending and springing
+back.

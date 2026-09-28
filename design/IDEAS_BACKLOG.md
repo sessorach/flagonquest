@@ -364,8 +364,8 @@ deliberately when drafting, don't just take the first hit. Old
 techniques get added. Live right now: L1 Firefly Leaves the Hand, Firefly Dies in the Hand, Striking
 Constrictor · L2 Boulder Toss, Sickness Takes the Flock, Bark Turns the Blade, Oak Sheds Its Leaves,
 Tree Withstands the Storm,
-Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
-Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
+Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
+Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water, Willow Springs Back,
 Oak Draws the Lightning, Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
 Grizzly Awakens, Circling Vulture, Old Growth Digs Deep, Harmonious Mending, Lantern Gutters in
@@ -374,7 +374,8 @@ the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
 **Coverage target, per the designer:** each supernatural School
 (Demon, Shugen, Great Old Oak) should have at least one Technique at
 each of Levels 2, 3, and 4 in both its Unarmed hybrid track and its
-pure Meditation track. Still missing as of the School split: Oak pure L3.
+pure Meditation track. Nothing missing as of 2026-09-28: every School covers Levels 2-4 on both
+tracks.
 Backlog candidates that could fill a thin level, flagged during
 review:
 - *(none flagged yet)*
@@ -446,7 +447,7 @@ translation to live keywords, not a straight port.
   - *Immolate Soul* — L5 capstone (C, 8102): pay Health, 3m burst,
     5 + Health-paid Brilliant damage. (Its fluff is a copy-paste of
     Whirlwind's; needs new flavor.)
-- **Great Old Oak** (live: Channel Ki L2, Oak Sheds Its Leaves L2, Bark Turns the
+- **Great Old Oak** (live: Oak Sheds Its Leaves L2, Willow Springs Back L3, Bark Turns the
   Blade L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Old Growth
   Digs Deep L4, Seasons Pass the Forest L2 (Unarmed track), Harmonious Mending L4, all moved in when the School split was
   decided) — defensive/endurance, and home for the self-buff/
