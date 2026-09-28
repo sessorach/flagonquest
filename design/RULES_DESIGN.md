@@ -193,6 +193,19 @@ Style in ways nobody planned for. Goal for the Style catalogue: every
 character archetype has at least one Style it'd want, even if it's a
 basic Level 1 option.
 
+### PENCILED — Niche tools should be frictionless
+
+Per the designer (2026-09-28): when a Technique covers a niche or very
+specific job (taking prisoners, one kind of utility), make it as
+frictionless as possible and err on the side of the character who
+opts in "owning" that mechanic. No extra flip, no penalty to work
+around, just "you can do this now." Its value is usually small enough
+to treat as a rounding error next to whatever else the Technique does,
+so price the rest and don't try to squeeze a number out of the niche
+part. First case: Lawman's Hand, where leaving Downed creatures alive
+is automatic and free, while everyone else still takes Bad Luck on a
+non-lethal attack.
+
 ### Character archetypes
 
 Agreed 2026-09-28 as a starting list, expected to get small tweaks as
