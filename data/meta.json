@@ -1,3 +1,15 @@
 {
-  "currentPatch": "1.1"
+  "currentPatch": "1.1",
+  "versions": [
+    {
+      "version": "1.1",
+      "current": true,
+      "focus": "Rules overhaul: Technique review, the martial Schools (Snake, Bear, Demon, Shugen, Great Old Oak), Masterwork item balance passes."
+    },
+    {
+      "version": "1.0",
+      "current": false,
+      "focus": "Original release. Everything before patch tracking started; rows with a blank Patch date from here."
+    }
+  ]
 }

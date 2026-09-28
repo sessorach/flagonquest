@@ -115,25 +115,24 @@ which should stay a clean decision record.
   scanning prose. Unlike `archive/`, this is meant to be read and
   extended, not just kept for the record.
 - **Patch tracking**: `techniques.csv`/`items.csv` carry a `Patch`
-  column recording which release last touched each row, so the site can
-  badge recently-changed content and filter down to it. **Never
-  hand-edit `Patch`** — `scripts/stamp_patch_versions.py` derives it
-  from git (diffs the working-tree CSVs against the previous release, the
-  commit recorded in `scripts/last_release.txt`,
-  stamps every new-or-changed row with `scripts/version.txt`'s value —
-  a change to `Description (Fluff)` alone doesn't count, since the
-  badge means "the rules for this changed," not "the flavor text did"),
-  since a hand-maintained "remember to bump this" column is exactly the
-  silently-drifting kind of sync this project avoids everywhere else.
-  Blank means "unchanged since tracking began" — pre-existing rows were
-  deliberately left blank rather than seeded with the then-current
-  version, which would have badged every single row as "Updated" on
-  day one. `convert.py` writes `version.txt` into `data/meta.json`
-  (`{"currentPatch": ...}`), the one place the site learns the current
-  version; `UpdatedBadge` shows a blue "Updated" badge wherever a row's
-  `patch` exactly equals it, and the Techniques/Items tabs' Advanced
-  filters each get a "Recently updated" checkbox. See the release steps
-  under Git workflow, and PATCH TRACKING in `convert.py`'s docstring.
+  column recording which version last touched each row, so the site can
+  badge recently-changed content and filter down to it.
+  `scripts/versions.csv` is the version history — one row per version
+  (`Version`, `Current` yes/no, `Focus` note), exactly one marked
+  current. **Never hand-edit `Patch`** — every `convert.py` run first
+  calls `stamp_patch_versions.stamp()`, which diffs the working-tree
+  CSVs against HEAD and stamps each new-or-changed row with the current
+  version, so edits get tagged as they're made with nothing to remember
+  (a change to `Description (Fluff)` alone doesn't count — the badge
+  means "the rules for this changed," not "the flavor text did"). Blank
+  means "unchanged since tracking began" (1.0). `convert.py` writes the
+  current version plus the history into `data/meta.json`
+  (`{"currentPatch", "versions"}`); `UpdatedBadge` shows a blue
+  "Updated" badge wherever a row's `patch` equals `currentPatch` — i.e.
+  everything changed during the current version — and the
+  Techniques/Items tabs' Advanced filters each get a "Recently updated"
+  checkbox. See "Starting a new version" under Git workflow, and PATCH
+  TRACKING in `convert.py`'s docstring.
 
 ## Quick reference
 
@@ -878,26 +877,23 @@ Two recurring environment quirks worth knowing:
 - Before committing, always check `git status`/`git diff --stat`, and
   fetch + compare against `origin/<branch>` to confirm nothing else
   changed the remote branch since the last push.
-- **Cutting a release** (so players see what changed — see Patch
-  tracking under Architecture). A release is a big batch every few
-  weeks (a couple of weeks of Technique work going live), not every
-  commit: the site's "Updated" badge means "changed since the last
-  release," so small frequent releases would make it meaningless. The
-  version number is decided at release time. Steps: (1) bump
-  `scripts/version.txt`; (2) run `python scripts/stamp_patch_versions.py`
-  (diffs against `scripts/last_release.txt`; `--dry-run` to preview,
-  `--since <ref>` to override); (3) run `convert.py`; (4) commit the
-  release; (5) run `python scripts/stamp_patch_versions.py
-  --mark-release` and commit `scripts/last_release.txt`, so the next
-  release diffs against this one. The baseline lives in a file rather
-  than a git tag because this project's sessions can push commits but
-  not tags. v1.1 is `4ce43eb`.
+- **Starting a new version** (see Patch tracking under Architecture).
+  A version is a batch of related work the designer names — every few
+  weeks, not per commit — and the designer says when to move on
+  (usually +0.1) and what the new one's focus is. Don't bump it on my
+  own. To start one: add a row at the top of `scripts/versions.csv`
+  with `Current` = yes and the focus note, set the old row to no, run
+  `convert.py`, commit. From then on, every converted edit gets stamped
+  with the new version. If a CSV edit was ever committed without
+  running `convert.py`, catch it up with `python
+  scripts/stamp_patch_versions.py --since <older ref>`.
 - **Merging a branch cut before the `Patch` column existed** will
   conflict on every `techniques.csv`/`items.csv` row that branch edited
   (this side appended a field to every row). If that branch already
   contains current `main` (merge `main` into it first if not), resolve
   by taking its CSVs wholesale — every baseline `Patch` value was blank,
-  so nothing is lost — then run the stamping script, which re-adds a
+  so nothing is lost — then run the stamping script with `--since` set
+  to the merge base (it would otherwise only diff against HEAD), which re-adds a
   missing `Patch` column automatically before stamping. Taking its CSVs
   wholesale *without* that precondition would silently discard any CSV
   edits `main` gained after that branch was cut. The rules-overhaul

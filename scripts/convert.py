@@ -252,47 +252,40 @@ rather than two that can drift out of sync.
   have — Markdown is already meant to be hand-edited directly.
 
 PATCH TRACKING — techniques.csv/items.csv each carry a "Patch" column
-recording which released version last touched that row (new row or
-edited one), so the site can badge "recently updated" content and let
-players filter down to just what changed. Not hand-edited — this
-column is auto-stamped by scripts/stamp_patch_versions.py, which diffs
-the working-tree CSVs against their state at the previous release (the
-commit recorded in scripts/last_release.txt) and stamps every new-or-changed row with the
-version named in scripts/version.txt. This script (convert.py) reads
-that same version.txt and writes it into data/meta.json as
-{"currentPatch": "..."} — the one place the site looks up "what's the
-current version" — rather than hardcoding it in index.html, keeping
-with the data-over-prose principle in CLAUDE.md.
+recording which version last touched that row (new row or a rules
+edit), so the site can badge "Updated" content and let players filter
+down to just what changed. Not hand-edited.
 
-A blank Patch means "unchanged since patch tracking began" — every row
-that existed when this column was introduced was left blank rather than
-seeded with the then-current version, since seeding it would have made
-the site badge literally everything as "Updated" on day one. Only rows
-the stamping script actually finds changed ever get a value.
+scripts/versions.csv is the version history: one row per version
+(Version, Current, Focus — a short note on what that batch of work is
+about), with exactly one row marked Current = yes. A version is a batch
+of related work the designer names, not a release per commit; moving to
+a new one (usually +0.1) means adding a row at the top, marking it
+Current = yes, and setting the old row to no.
 
-Release workflow, in order. A release is a big batch (every few weeks,
-e.g. a couple of weeks of Technique work going live), not every commit:
-"Updated" on the site means "changed since the last release," so a
-release per small commit would make that meaningless.
-  1. Bump scripts/version.txt to the new version.
-  2. Run scripts/stamp_patch_versions.py — diffs against the commit in
-     scripts/last_release.txt (or pass --since <ref>) and stamps Patch on
-     every changed techniques.csv/items.csv row.
-  3. Run this script (convert.py) to regenerate data/*.json, including
-     the new data/meta.json.
-  4. Commit everything as the release.
-  5. Run scripts/stamp_patch_versions.py --mark-release, which writes
-     that commit into scripts/last_release.txt, and commit the file, so
-     the *next* release diffs against this one.
-Skipping step 5 doesn't break anything immediately, but the next
-stamping run would diff against an older release and re-flag changes
-that already shipped.
+Every run of this script first calls stamp_patch_versions.stamp(),
+which diffs the working-tree CSVs against HEAD and stamps every
+new-or-changed row with the current version — so an edit gets tagged
+the moment it's converted, with nothing to remember. Flavor-only edits
+(Description (Fluff)) don't count. If a CSV edit ever got committed
+without running this script, catch it up with
+`python scripts/stamp_patch_versions.py --since <older ref>`.
+
+This script then writes data/meta.json as {"currentPatch": ...,
+"versions": [...]} — the one place the site looks up the current
+version. The site's "Updated" badge shows on rows whose Patch equals
+currentPatch, i.e. everything changed during the current version.
+
+A blank Patch means "unchanged since patch tracking began" (version
+1.0) — rows that existed then were left blank rather than seeded, since
+seeding would have badged literally everything as "Updated" on day one.
 """
 
 import csv
 import json
 import os
 import re
+import sys
 
 # Maps each CSV's display header → the key name the app uses.
 # If you add or rename columns in the spreadsheet, update these maps.
@@ -915,6 +908,15 @@ def glossary_terms_from_heading(title):
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(os.path.join(script_dir, "../data"), exist_ok=True)
 
+# ── Patch tracking — see PATCH TRACKING at the top of this file. Stamps
+# before anything below reads techniques.csv/items.csv, so the JSON
+# written this run already carries the new Patch values.
+sys.path.insert(0, script_dir)
+import stamp_patch_versions
+patch_versions, current_patch = stamp_patch_versions.read_versions()
+stamped = stamp_patch_versions.stamp(current_patch, "HEAD")
+print(f"✓ Patch {current_patch}: {stamped} row(s) newly stamped")
+
 for csv_file, (json_file, col_map) in TABLES.items():
     csv_path  = os.path.join(script_dir, csv_file)
     json_path = os.path.join(script_dir, json_file)
@@ -1127,17 +1129,9 @@ if os.path.exists(glossary_md_path):
 else:
     print("⚠ Not found, skipping: glossary.md")
 
-# ── Patch tracking — see PATCH TRACKING at the top of this file. The
-# single place the site looks up "what's the current version," so a new
-# release is a one-line edit to version.txt, not a code change.
-version_path = os.path.join(script_dir, "version.txt")
-if os.path.exists(version_path):
-    with open(version_path, encoding="utf-8") as f:
-        current_patch = f.read().strip()
-    with open(os.path.join(script_dir, "../data/meta.json"), "w", encoding="utf-8") as f:
-        json.dump({"currentPatch": current_patch}, f, indent=2, ensure_ascii=False)
-    print(f"✓ version.txt → ../data/meta.json  (currentPatch: {current_patch!r})")
-else:
-    print("⚠ Not found, skipping: version.txt (no data/meta.json written)")
+# ── Patch tracking: the one place the site looks up the current version.
+with open(os.path.join(script_dir, "../data/meta.json"), "w", encoding="utf-8") as f:
+    json.dump({"currentPatch": current_patch, "versions": patch_versions}, f, indent=2, ensure_ascii=False)
+print(f"✓ versions.csv → ../data/meta.json  (currentPatch: {current_patch!r})")
 
 print("\nDone. Commit and push the data/ folder to update the live site.")
