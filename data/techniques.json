@@ -6007,18 +6007,18 @@
   {
     "id": "T128",
     "name": "Lawman's Hand",
-    "level_min": 1,
-    "level_max": 1,
+    "level_min": 2,
+    "level_max": 2,
     "tags": "Style",
     "description": "With some basic anatomic knowledge you know how to reliably incapacitate a foe instead of killing them, hopefully (for them) to stand trial in a formal legal process rather than for more nefarious purposes.",
     "condition": null,
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "You do not suffer Bad Luck as usual for making non-lethal attacks.",
+    "effects": "When one of your damaging attacks hits, the target gains Slowed 1 + [Spades]. Creatures you Down can be left incapacitated instead of killed.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Medicine 2",
+    "prereqs": "Medicine 3",
     "relevant_skills": "Medicine",
     "use_cards": null,
     "healing": null,
@@ -6038,7 +6038,7 @@
           "Medicine"
         ],
         "threshold": {
-          "base": 2
+          "base": 3
         }
       }
     ],

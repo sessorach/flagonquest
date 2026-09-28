@@ -7715,3 +7715,54 @@ Level 3 hit costs you ~3+, so it usually reaches the cap: Vital 14
 (roster) 90%, 13 99%, 12 107%; with 2 Health lost, 78-92%. An Unarmed
 version at Level 3 was 138-162%, and 104-129% at Level 4; at Level 2
 this version was 118-161%.
+
+## Styles pass — the live Styles, one at a time
+
+Budget used throughout: a Level 2 Style gets **12 per encounter** (the
+figure from Chainbreaker's Style option above). A Level 1 Style is
+assumed at about 6, scaling like Target = 3 × Level; no Level 1 Style
+has been priced against it yet.
+
+### Ritual Magic (T099) — wording only
+
+Kept as a Style (letting the party's hands pay for one caster's Spells
+is rule-breaking, and dangerous next to anything else that boosts
+card-scaled Spells). Reworded to "When you would discard cards for one
+of your Spells..." and tagged Sorcerer/Theurgist only.
+
+### Lawman's Hand (T128) — Level 1 → 2, now a Slowed Style
+
+Was "no Bad Luck on non-lethal attacks": too narrow to take a Style
+slot, and Bounty Hunter's Blade (I089) already does the same. Per the
+designer, the base non-lethal rule stays (Bad Luck, Downed creature is
+incapacitated), and the Style's user just gets it free: "Creatures you
+Down can be left incapacitated instead of killed." Priced at 0, per the
+penciled "niche tools should be frictionless" rule in RULES_DESIGN.md.
+
+> When one of your damaging attacks hits, the target gains Slowed 1 +
+> [Spades]. Creatures you Down can be left incapacitated instead of
+> killed.
+
+Any damaging attack counts, spells included.
+
+**Price.** 6-8 damaging attacks per encounter at ~60% to hit = 3.6-4.8
+hits, 4.2 typical. Per the designer, assume the user applies other
+Slowed too: half the hits land on a fresh target, half on one already
+at 1-2 stacks. Marginal value of stacks off the Slowed table (1.1 /
+3.3 / 6.6 / 11), with 1 + [Spades] = 1 stack 75%, 2 stacks 25%:
+
+| Target's stacks | +1 stack | +2 stacks | 1 + [Spades] |
+|---|---|---|---|
+| 0 | 1.1 | 3.3 | 1.65 |
+| 1 | 2.2 | 5.5 | 3.03 |
+| 2 | 3.3 | 7.7 | 4.40 |
+
+Per hit: 0.5 × 1.65 + 0.5 × (3.03 + 4.40)/2 = **2.68**. Per encounter:
+9.7 / **11.3** / 12.9 at 3.6 / 4.2 / 4.8 hits, against 12 = 80% /
+**94%** / 107%. Area spells give several stacks per cast, but each on a
+different target at the flat rate, so a cone every turn (4 casts × 2
+targets) lands in the same range rather than above it.
+
+Plain Slowed 1 was 8.1 typical: 135% at Level 1, 67% at Level 2. The
+Spades suit at Level 2 was the best fit. Medicine 3 prereq to match.
+Tagged Duelist, Guardian, Rogue.
