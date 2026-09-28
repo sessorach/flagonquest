@@ -7592,3 +7592,18 @@ by Level 4 as [half Med] and enemy damage both rise. Back to the
 original **2 AP**: ~70-110% at Level 2, ~175% later. A flat 2 + [Hearts]
 at 1 AP (~104%, stable) was the other option. Renamed **Bark Turns the
 Blade** (was Iron Skin).
+
+### Oak review: Ignore Pain becomes Oak Sheds Its Leaves
+
+The flagged small-stacks problem: it only cleared Crippled and Slowed,
+worth ~1.1-1.5 a stack to you, and enemies apply 1-2 stacks a hit a
+couple of times a fight, so ~2-3 a fight (35-50% of Target 6). Widened to
+Old Growth Digs Deep's list, which adds Bleeding (4/stack, straight
+Health) and the rest:
+
+> *0 AP - Interrupt (any time).* Remove up to [Meditation Skill Total]
+> total stacks of Bleeding, Crippled, Frightened, Necrotic, Slowed,
+> Taunted, and/or Vulnerable from yourself.
+
+~4-6 a fight, **~70-100%**. The cap at [Meditation Skill Total] (6 at
+Level 2) rarely binds; the designer wanted a limit on it anyway.

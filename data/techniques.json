@@ -3830,7 +3830,7 @@
   },
   {
     "id": "T084",
-    "name": "Great Old Oak School - Ignore Pain",
+    "name": "Great Old Oak School - Oak Sheds Its Leaves",
     "level_min": 2,
     "level_max": 2,
     "tags": "Discipline, Encounter",
@@ -3839,7 +3839,7 @@
     "action": "0 AP - Interrupt (any time)",
     "cost": null,
     "target": null,
-    "effects": "Remove up to [half your Meditation Skill Total] total stacks of Crippled and/or Slowed from yourself.",
+    "effects": "Remove up to [Meditation Skill Total] total stacks of Bleeding, Crippled, Frightened, Necrotic, Slowed, Taunted, and/or Vulnerable from yourself.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 3",
