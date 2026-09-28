@@ -2437,7 +2437,8 @@ Snake's and Bear's Pushes are physical shoves, while Shugen's is a ki
 wave. Snake's Chainbreaker clears debuffs as part of breaking a
 grapple, while Oak's clearing is Meditation endurance.
 
-Moved to Great Old Oak when this was decided: Iron Skin (from Shugen),
+Moved to Great Old Oak when this was decided: Iron Skin (from Shugen, now
+Bark Turns the Blade),
 Ignore Pain, Harmonious Mending, and Channel Ki (untagged before). Order
 of review from here: Shugen, then a pass back over Demon (adding
 its pure Meditation counterparts), then Great Old Oak last.

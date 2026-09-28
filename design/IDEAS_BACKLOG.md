@@ -362,7 +362,7 @@ deliberately when drafting, don't just take the first hit. Old
 
 **Level coverage (unarmed Schools), running note** — update as
 techniques get added. Live right now: L1 Firefly Leaves the Hand, Firefly Dies in the Hand, Striking
-Constrictor · L2 Boulder Toss, Sickness Takes the Flock, Iron Skin, Ignore Pain,
+Constrictor · L2 Boulder Toss, Sickness Takes the Flock, Bark Turns the Blade, Ignore Pain,
 Tree Withstands the Storm,
 Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
@@ -446,8 +446,8 @@ translation to live keywords, not a straight port.
   - *Immolate Soul* — L5 capstone (C, 8102): pay Health, 3m burst,
     5 + Health-paid Brilliant damage. (Its fluff is a copy-paste of
     Whirlwind's; needs new flavor.)
-- **Great Old Oak** (live: Channel Ki L2, Ignore Pain L2, Iron Skin
-  L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Old Growth
+- **Great Old Oak** (live: Channel Ki L2, Ignore Pain L2, Bark Turns the
+  Blade L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Old Growth
   Digs Deep L4, Seasons Pass the Forest L2 (Unarmed track), Harmonious Mending L4, all moved in when the School split was
   decided) — defensive/endurance, and home for the self-buff/
   self-restoration Meditation Techniques: Protected, Ward, self-healing,

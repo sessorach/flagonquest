@@ -7582,3 +7582,13 @@ Protected. Granted right before a hit, most stacks get used at once, so
 ~3-3.5 each rather than the banked rate: 9-10.5 at Med ST 6. At 2 AP
 (−5.5) that was 58-83% of Target 6; at 1 AP (−2.75), **104-129%**.
 Moved to 1 AP per the designer.
+
+**Correction, and back to 2 AP.** Per the designer, these stacks are
+spent at the full Health rate, not banked: an unarmored monk (Physical
+Resist ~Essence 3) takes 2-3 net from a Level 2 hit (enemy damage 5-6)
+and 3-5 from Level 3-4 hits, so 3 stacks absorb almost entirely. At
+1 AP that's ~9.5-12 − 2.75 = **113-154%** at Level 2, climbing past 200%
+by Level 4 as [half Med] and enemy damage both rise. Back to the
+original **2 AP**: ~70-110% at Level 2, ~175% later. A flat 2 + [Hearts]
+at 1 AP (~104%, stable) was the other option. Renamed **Bark Turns the
+Blade** (was Iron Skin).
