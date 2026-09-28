@@ -4614,7 +4614,7 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "Whenever you could discard cards for a cost or effect of one of your Spells, a willing ally within [Sorcery or Theurgy Skill Total] meters may discard any number of those cards instead of you. Treat those cards as though you had discarded them yourself.",
+    "effects": "When you would discard cards for one of your Spells, a willing ally within [Sorcery or Theurgy Skill Total] meters may discard some or all of them instead. They count as discarded by you.",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Theurgy) 3, (Meditation or Rapport) 2",
