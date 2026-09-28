@@ -6098,7 +6098,7 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "While in this Style: You may not Parry. If a target Parries or is hit by one of your attacks, they gain a stack of Bleeding. Ignore any stacks of Taunted or Frightened you have. Ignore any penalties from being Wounded.",
+    "effects": "You can't Parry. If one of your attacks hits, the target gains Bleeding. Ignore your stacks of Taunted and Frightened, and any penalties from being Wounded.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Might 3, Resilience 2",

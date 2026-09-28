@@ -7776,3 +7776,32 @@ Unarmored Condition is a giveback, +0.8 to Target: 12.8. **83%**
 typical (55-110%). Fits at Level 2 as-is. Kept generic rather than
 made a Snake School Style (Snake has Infinite Coiling in the backlog);
 tagged Monk, Rogue. Fluff reworded to drop the loose "style".
+
+### Furious Rage (T130) — Bleeding on a hit only
+
+> You can't Parry. If one of your attacks hits, the target gains
+> Bleeding. Ignore your stacks of Taunted and Frightened, and any
+> penalties from being Wounded.
+
+**Target.** Giving up Parry is a giveback, +Target. Per the designer a
+Barbarian uses a heavy weapon, so Parry sits only ~2 over Dodge (Melee
+over Acrobatics points). 4.8 attacks vs Dodge/Parry × 2/13 = 0.74 extra
+hits × 2.5 net damage × 4 = **+7.4 to Target**: 12 + 7.4 = **19.4**.
+
+**Value.**
+- Bleeding: 6-8 attacks at ~60% = 4.2 applications × ~3 each (4 fresh,
+  tapering on a focused target) = **12.6**. The old "hits or is
+  Parried" trigger landed ~90% of attacks (enemies mostly defend with
+  Parry) for ~19, which put the Style at ~124%.
+- Ignore Taunted/Frightened: ~1-2 stacks per encounter × 2.2 = **3**,
+  priced at the rate enemies should reach after the pending "threaten
+  through mechanics" rework (balance.md), above today's.
+- Ignore Wounded: per the designer, Wounded comes up in ~1/3 of fights
+  for about half of them (~2 rounds). Its full penalty is ~8.5/round
+  (Bad Luck on ~2 attacks 4.4, -2 Defenses 1.85, -2 Speed 2.2), ~5.7
+  per encounter, but Wounded clears on any healing, so the value is the
+  cheaper way out: a card + ~1 AP heal (~5.5) × 1/3 = **~2** (same
+  cost-of-avoiding logic as Cover).
+
+17.6 / 19.4 = **~91%**. Kept at Level 2 so Barbarian has a Style below
+Follow Through's Level 3. "While in this Style" dropped as redundant.
