@@ -6051,7 +6051,7 @@
     "level_min": 2,
     "level_max": 2,
     "tags": "Style",
-    "description": "Thanks to your training in the style of unarmored fighting, you easily flow like water around your weighed-down opponents.",
+    "description": "Thanks to your unarmored training, you easily flow like water around your weighed-down opponents.",
     "condition": "You are not wearing armor",
     "action": "Passive (Style)",
     "cost": null,

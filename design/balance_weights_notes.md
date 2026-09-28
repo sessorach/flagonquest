@@ -7766,3 +7766,13 @@ targets) lands in the same range rather than above it.
 Plain Slowed 1 was 8.1 typical: 135% at Level 1, 67% at Level 2. The
 Spades suit at Level 2 was the best fit. Medicine 3 prereq to match.
 Tagged Duelist, Guardian, Rogue.
+
+### Disciple of the Flowing Hand (T129) — unchanged numbers
+
+Bad Luck on an enemy attack flip = 2.2 (Locked card math). A
+front-line monk eats ~4-8 attacks per encounter (6 typical), ~80% of
+them against Dodge/Parry: 4.8 × 2.2 = **10.6** typical (7.0-14.1).
+Unarmored Condition is a giveback, +0.8 to Target: 12.8. **83%**
+typical (55-110%). Fits at Level 2 as-is. Kept generic rather than
+made a Snake School Style (Snake has Infinite Coiling in the backlog);
+tagged Monk, Rogue. Fluff reworded to drop the loose "style".
