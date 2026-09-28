@@ -4051,8 +4051,8 @@
     "effects": "Make an Unarmed weapon attack flip. Your Parry Defense against the attack is equal to its result. If you Parry the attack, it's redirected: it's made against the target instead, using your flip's result, and resolved normally.",
     "builder_notes": "This is a normal flip, so you can play cards from your hand on it after seeing the attacker's result. It's one of the few ways to spend a card on defense.",
     "special": null,
-    "prereqs": "Brawl 5, Insight 4, Meditation 2",
-    "relevant_skills": "Brawl, Insight, Meditation",
+    "prereqs": "Brawl 5, Insight 4",
+    "relevant_skills": "Brawl, Insight",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -4080,15 +4080,6 @@
         ],
         "threshold": {
           "base": 4
-        }
-      },
-      {
-        "type": "skill",
-        "options": [
-          "Meditation"
-        ],
-        "threshold": {
-          "base": 2
         }
       }
     ],
