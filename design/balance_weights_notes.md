@@ -7658,3 +7658,23 @@ X = 3: ~94%; X = 4: ~127%. A "3 a turn if any Heart" version was
 76-100%. About 2 Health a card over time plus 1 now on a Heart, against
 Second Wind's 1 (2 on a Heart) and Healing Magic's ~1: the good-value
 self-heal, paid for by waiting.
+
+### Shugen School - Gaze of Pale Moonlight (T167, Level 2)
+
+From the archive's Unbreakable Spirit Meditation (Pass A, L2: 1 AP,
+Meditation vs. Mental, Frighten once), rebuilt as Shugen's twin of Bell
+Tolls a Dirge: a ranged no-damage curse on War Magic's Tormenting Curse
+model (Level 2 = 6 points). It's Shugen's only Frightened and first
+Hearts. Per the designer, weighted to Crippled: 4 stacks of Frightened
+(which doesn't taper) is Bad Luck for most of a fight, too much for the
+lighter half.
+
+> *2 AP.* A creature within [Meditation Skill Total] meters. Make a
+> Meditation attack against the target's Mental Defense. If it hits,
+> the target is Crippled 3 + [Clubs] times and Frightened of you 2 +
+> [Hearts] times.
+
+Prereqs Meditation 3. Meditation +6. Crippled 3 + [Clubs] = 0.75 × 9 +
+0.25 × 15 = 10.5; Frightened 2.25 × 2.2 = 4.95. Priced on the heavier
+half (the two-debuff note): Mental 13 (roster) **94%**, 12 **108%**, 11
+**121%**; both at full 139-178%.

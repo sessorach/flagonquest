@@ -7657,5 +7657,45 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T167",
+    "name": "Shugen School - Gaze of Pale Moonlight",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Encounter",
+    "description": "Engaging your foe in a battle of wills, you meet their eyes with a stillness as cold and pale as moonlight. Their nerve falters, and their hands with it.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within [Meditation Skill Total] meters",
+    "effects": "Make a Meditation attack against the target's Mental Defense. If it hits, the target is Crippled 3 + [Clubs] times and Frightened of you 2 + [Hearts] times.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 3",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
