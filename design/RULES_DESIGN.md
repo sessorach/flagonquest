@@ -178,6 +178,21 @@ without a Skill flip attached. Landed on the broader phrasing in the
 table above — still cleanly excludes anything that grants or modifies
 an attack, which stays Held's job.
 
+### STANDING RULE — What belongs in a Style
+
+Per the designer (2026-09-28): a `[Style]` is for effects that are fun
+and powerful but amount to breaking a fundamental rule, and that
+shouldn't stack with more than one instance. You can only be in one
+Style at a time, so it's the safe home for anything that would get out
+of hand if it overlapped: defensive options that would be too good
+stacked, anything that adds to raw numbers or statistics, Good Luck, and
+so on. When an effect is uncomfortable as an always-on passive a
+character could just have (making Unarmed attacks deal elemental damage
+at baseline, for one), make it a Style so it can't interact with another
+Style in ways nobody planned for. Goal for the Style catalogue: every
+character archetype has at least one Style it'd want, even if it's a
+basic Level 1 option.
+
 ### STANDING RULE — Some effects always cost a resource
 
 Per the designer (2026-09-27): a handful of effects should almost always
