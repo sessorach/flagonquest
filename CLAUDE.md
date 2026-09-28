@@ -62,6 +62,23 @@ shouldn't be duplicated here.
 - `archive/` holds genuinely dead files — an old prototype, stale one-off
   outputs from completed migrations. Nothing in it is read by the site or
   by `convert.py`.
+- **Patch tracking**: `techniques.csv`/`items.csv` carry a `Patch`
+  column recording which release last touched each row, so the site can
+  badge recently-changed content and filter down to it. **Never
+  hand-edit `Patch`** — `scripts/stamp_patch_versions.py` derives it
+  from git (diffs the working-tree CSVs against the last release tag,
+  stamps every new-or-changed row with `scripts/version.txt`'s value),
+  since a hand-maintained "remember to bump this" column is exactly the
+  silently-drifting kind of sync this project avoids everywhere else.
+  Blank means "unchanged since tracking began" — pre-existing rows were
+  deliberately left blank rather than seeded with the then-current
+  version, which would have badged every single row as "Updated" on
+  day one. `convert.py` writes `version.txt` into `data/meta.json`
+  (`{"currentPatch": ...}`), the one place the site learns the current
+  version; `UpdatedBadge` shows a blue "Updated" badge wherever a row's
+  `patch` exactly equals it, and the Techniques/Items tabs' Advanced
+  filters each get a "Recently updated" checkbox. See the release steps
+  under Git workflow, and PATCH TRACKING in `convert.py`'s docstring.
 
 ## Editing content
 
@@ -630,6 +647,20 @@ Two recurring environment quirks worth knowing:
 - Before committing, always check `git status`/`git diff --stat`, and
   fetch + compare against `origin/<branch>` to confirm nothing else
   changed the remote branch since the last push.
+- **Cutting a release** (so players see what changed — see Patch
+  tracking under Architecture): (1) bump `scripts/version.txt`; (2) run
+  `python scripts/stamp_patch_versions.py` (diffs against the latest
+  git tag by default; `--dry-run` to preview, `--since <ref>` to
+  override); (3) run `convert.py`; (4) commit, then tag that commit with
+  the new version (`git tag v1.1`) and push the tag — without the tag,
+  the *next* release's stamping run diffs against an older baseline and
+  re-flags changes that already shipped.
+- **Merging a branch cut before the `Patch` column existed** will
+  conflict on every `techniques.csv`/`items.csv` row that branch edited
+  (this side appended a field to every row). Resolve by taking the other
+  branch's CSVs wholesale — every baseline `Patch` value was blank, so
+  nothing is lost — then run the stamping script, which re-adds a
+  missing `Patch` column automatically before stamping.
 
 ## Things considered and deliberately not done
 

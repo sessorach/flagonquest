@@ -222,6 +222,39 @@ rather than two that can drift out of sync.
 
   There's no draft-and-review script for these the way items/techniques
   have — Markdown is already meant to be hand-edited directly.
+
+PATCH TRACKING — techniques.csv/items.csv each carry a "Patch" column
+recording which released version last touched that row (new row or
+edited one), so the site can badge "recently updated" content and let
+players filter down to just what changed. Not hand-edited — this
+column is auto-stamped by scripts/stamp_patch_versions.py, which diffs
+the working-tree CSVs against their state at a given git ref (the most
+recent git tag by default) and stamps every new-or-changed row with the
+version named in scripts/version.txt. This script (convert.py) reads
+that same version.txt and writes it into data/meta.json as
+{"currentPatch": "..."} — the one place the site looks up "what's the
+current version" — rather than hardcoding it in index.html, keeping
+with the data-over-prose principle in CLAUDE.md.
+
+A blank Patch means "unchanged since patch tracking began" — every row
+that existed when this column was introduced was left blank rather than
+seeded with the then-current version, since seeding it would have made
+the site badge literally everything as "Updated" on day one. Only rows
+the stamping script actually finds changed ever get a value.
+
+Release workflow, in order:
+  1. Bump scripts/version.txt to the new version.
+  2. Run scripts/stamp_patch_versions.py — diffs against the last git
+     tag (or pass --since <ref> for something else) and stamps Patch on
+     every changed techniques.csv/items.csv row.
+  3. Run this script (convert.py) to regenerate data/*.json, including
+     the new data/meta.json.
+  4. Commit everything, then tag the commit with the new version (e.g.
+     `git tag v1.1`) so the *next* release's stamping script has a
+     baseline to diff against.
+Skipping step 4 doesn't break anything immediately, but the next
+stamping run would then diff against an older tag and could pick up
+changes that were already shipped in a prior release.
 """
 
 import csv
@@ -291,6 +324,10 @@ TECHNIQUE_MAP = {
     # place. A technique already in a build is unaffected either way —
     # same non-retroactive rule as Supplement itself.
     "Excluded By":          "excluded_by",
+    # Which released version last touched this row (new or edited) — see
+    # PATCH TRACKING below. Auto-stamped by stamp_patch_versions.py, not
+    # meant to be hand-edited.
+    "Patch":                "patch",
 }
 
 FEATURE_MAP = {
@@ -394,6 +431,9 @@ ITEM_MAP = {
     # raw string, split client-side the same way Tags is (splitCSV), not
     # parsed into a list here.
     "Material Types":     "material_types",
+    # Which released version last touched this row — see PATCH TRACKING
+    # below. Auto-stamped by stamp_patch_versions.py, not hand-edited.
+    "Patch":              "patch",
 }
 
 BACKGROUND_MAP = {
@@ -1047,5 +1087,18 @@ if os.path.exists(glossary_md_path):
     print(f"✓ glossary.md → ../data/glossary.json  ({len(glossary_entries)} mouseover terms)")
 else:
     print("⚠ Not found, skipping: glossary.md")
+
+# ── Patch tracking — see PATCH TRACKING at the top of this file. The
+# single place the site looks up "what's the current version," so a new
+# release is a one-line edit to version.txt, not a code change.
+version_path = os.path.join(script_dir, "version.txt")
+if os.path.exists(version_path):
+    with open(version_path, encoding="utf-8") as f:
+        current_patch = f.read().strip()
+    with open(os.path.join(script_dir, "../data/meta.json"), "w", encoding="utf-8") as f:
+        json.dump({"currentPatch": current_patch}, f, indent=2, ensure_ascii=False)
+    print(f"✓ version.txt → ../data/meta.json  (currentPatch: {current_patch!r})")
+else:
+    print("⚠ Not found, skipping: version.txt (no data/meta.json written)")
 
 print("\nDone. Commit and push the data/ folder to update the live site.")

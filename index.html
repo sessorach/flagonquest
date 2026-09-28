@@ -1552,6 +1552,11 @@ function TechCard({
   // remove/duplicate control — they're not manually removable, and
   // don't count toward XP (see App()'s knownXP/totalXP).
   grantedUids = EMPTY_SET,
+  // data/meta.json's currentPatch — compared against tech.patch for the
+  // "Updated" badge (see UpdatedBadge). Defaulting to "" (never matches
+  // a real patch value) means an omitted prop just shows no badge,
+  // rather than every card claiming to be updated.
+  currentPatch = "",
 }) {
   const tags   = splitCSV(tech.tags);
   const skills = splitCSV(tech.relevant_skills);
@@ -1649,6 +1654,7 @@ function TechCard({
           )}
         </span>
         <div style={{ display:"flex", flexDirection:"row", alignItems:"center", gap:4, flexShrink:0 }}>
+          <UpdatedBadge patch={tech.patch} currentPatch={currentPatch} />
           {hasEncounter && (
             <span style={{
               fontSize: 17, fontWeight: 500,
@@ -2975,6 +2981,33 @@ const statBadgeStyle = {
   color: "#e8c46a", background: "#20180a", border: "0.5px solid #6b5423",
 };
 
+// Shared look + component for a "recently changed" flag — a technique/
+// item whose own Patch column (see convert.py's PATCH TRACKING doc)
+// matches the site's current version (data/meta.json, App()'s
+// currentPatch). Reuses rulebookLinkStyle's blue rather than minting a
+// fourth badge color — amber (statBadgeStyle) already reads as "granted
+// bonus," red/green already read as pass/fail, so blue is what's left
+// for "here's a fact about this row, not a rules effect." Renders
+// nothing at all (not even a placeholder) when there's no match, so a
+// call site can drop `<UpdatedBadge patch={x.patch} currentPatch={currentPatch} />`
+// in without its own conditional. no-print: it's a "changed in the
+// latest release" notice, which goes stale the moment the next release
+// ships — not something that belongs baked into a printed sheet.
+const updatedBadgeStyle = {
+  color: "#7fb8d9", background: "#0f2230", border: "0.5px solid #3d6a8a",
+};
+function UpdatedBadge({ patch, currentPatch }) {
+  if (!currentPatch || !patch || patch !== currentPatch) return null;
+  return (
+    <span className="no-print" style={{
+      fontSize: 12, fontWeight: 600, padding: "1px 6px", borderRadius: 4,
+      whiteSpace: "nowrap", ...updatedBadgeStyle,
+    }}>
+      Updated
+    </span>
+  );
+}
+
 // A stable shared empty Set for a "granted uids" prop default (TechCard)
 // — avoids allocating a fresh one every render just to satisfy `.has()`
 // calls when there's nothing granted.
@@ -3011,6 +3044,7 @@ function InventoryTile({
   onBaseItemChange, onLevelChange,
   onDragStart, onDragEnd, onDragOver, onDrop, isDragging = false,
   statPoints = {}, skillPoints = {},
+  currentPatch = "",
 }) {
   if (!item) return null; // stale reference to a removed/renamed data row
   const baseItemOptions = (item.base_item_options || [])
@@ -3101,6 +3135,7 @@ function InventoryTile({
         <span style={{ fontSize: 12, color: TEXT.muted, background: "#0d1117", border: "0.5px solid #2d3555", borderRadius: 3, padding: "1px 5px" }}>
           {item.category}{item.slot ? ` · ${item.slot}` : ""}
         </span>
+        <UpdatedBadge patch={item.patch} currentPatch={currentPatch} />
         {hasLevel && (
           variableLevel && !readOnly ? (
             <select
@@ -4450,6 +4485,7 @@ function InventorySection({
   enabledSupplements = null,
   dragId, setDragId, onMoveInventoryItem, onMoveCustomItem,
   customMaterials = [], onAddCustomMaterial, onUpdateCustomMaterial, onToggleCustomMaterialType, onRemoveCustomMaterial,
+  currentPatch = "",
 }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
@@ -4465,6 +4501,7 @@ function InventorySection({
   const [slotFilter, setSlotFilter] = useState("");
   const [tagFilters, setTagFilters] = useState([]);
   const [supplementFilters, setSupplementFilters] = useState([]);
+  const [updatedOnly, setUpdatedOnly] = useState(false);
   const NO_SLOT = "__none__";
   const toggleTagFilter = tag => toggleInArray(setTagFilters, tag);
   const toggleSupplementFilter = s => toggleInArray(setSupplementFilters, s);
@@ -4488,17 +4525,18 @@ function InventorySection({
 
   const results = useMemo(() => {
     const q = search.trim().toLowerCase();
-    if (!q && !category && !slotFilter && tagFilters.length === 0 && supplementFilters.length === 0) return [];
+    if (!q && !category && !slotFilter && tagFilters.length === 0 && supplementFilters.length === 0 && !updatedOnly) return [];
     return visibleItems
       .filter(it =>
         (!category || it.category === category) &&
         (!slotFilter || (slotFilter === NO_SLOT ? !it.slot : it.slot === slotFilter)) &&
         (tagFilters.length === 0 || splitCSV(it.tags).some(t => tagFilters.includes(t))) &&
         (supplementFilters.length === 0 || supplementFilters.includes(it.supplement)) &&
+        (!updatedOnly || (currentPatch && it.patch === currentPatch)) &&
         (!q || it.name.toLowerCase().includes(q))
       )
       .slice(0, 40);
-  }, [visibleItems, search, category, slotFilter, tagFilters, supplementFilters]);
+  }, [visibleItems, search, category, slotFilter, tagFilters, supplementFilters, updatedOnly, currentPatch]);
 
   // Slot capacity used by everything currently equipped — real items and
   // custom items share the same per-slot capacity, since a custom Ring
@@ -4577,6 +4615,7 @@ function InventorySection({
               onDragOver={readOnly ? undefined : (e => { if (dragId) e.preventDefault(); })}
               onDrop={readOnly ? undefined : (e => { e.preventDefault(); if (dragId) onMoveInventoryItem(dragId, entry.uid); setDragId(null); })}
               isDragging={dragId === entry.uid}
+              currentPatch={currentPatch}
             />
           );
         })}
@@ -4699,6 +4738,22 @@ function InventorySection({
                 {slots.map(s => <option key={s} value={s}>{s}</option>)}
                 <option value={NO_SLOT}>No slot</option>
               </select>
+              {/* Only shown when there's an actual current version to
+                  compare against (data/meta.json loaded) — see the same
+                  guard on the Techniques tab's own checkbox. Counted as
+                  an "active filter" in results' own guard above, so
+                  turning this on alone (no search text) still surfaces
+                  matches instead of showing nothing. */}
+              {currentPatch && (
+                <label style={{ display: "flex", alignItems: "center", gap: 4, cursor: "pointer", alignSelf: "flex-start" }}>
+                  <input
+                    type="checkbox"
+                    checked={updatedOnly}
+                    onChange={e => setUpdatedOnly(e.target.checked)}
+                  />
+                  Recently updated
+                </label>
+              )}
               {tagOptions.length > 0 && (
                 <div>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
@@ -4747,8 +4802,9 @@ function InventorySection({
             }}>
               {results.map(it => (
                 <div key={it.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "3px 4px" }}>
-                  <span style={{ fontSize: 14, color: TEXT.body }}>
-                    {it.name} <span style={{ fontSize: 12, color: TEXT.faint }}>({it.category}{it.slot ? ` · ${it.slot}` : ""})</span>
+                  <span style={{ fontSize: 14, color: TEXT.body, display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+                    <span>{it.name} <span style={{ fontSize: 12, color: TEXT.faint }}>({it.category}{it.slot ? ` · ${it.slot}` : ""})</span></span>
+                    <UpdatedBadge patch={it.patch} currentPatch={currentPatch} />
                   </span>
                   <button
                     onClick={() => onAdd(it.id)}
@@ -4825,6 +4881,7 @@ function InventorySection({
                     onLevelChange={readOnly ? undefined : (lv => onLevelChange(entry.uid, lv))}
                     readOnly={readOnly}
                     statPoints={statPoints} skillPoints={skillPoints}
+                    currentPatch={currentPatch}
                   />
                 );
               })}
@@ -5229,6 +5286,12 @@ function App() {
   const [features,   setFeatures]   = useState([]);   // features.json — Feature-builder options
   const [glossary,   setGlossary]   = useState([]);   // glossary.json — capitalized game terms
   const [craftingRecipes, setCraftingRecipes] = useState([]); // crafting_recipes.json
+  // data/meta.json's currentPatch — what "recently updated" compares a
+  // technique/item's own patch field against, see the "Updated" badge/
+  // filter below. Empty string (never equals any real patch value) if
+  // meta.json is missing, same fail-soft treatment as glossary/crafting
+  // recipes: no badges show up, not a load error for the whole app.
+  const [currentPatch, setCurrentPatch] = useState("");
   const [items,       setItems]       = useState([]); // items.json — Inventory picker
   const [backgrounds, setBackgrounds] = useState([]); // backgrounds.json
   const [loading,    setLoading]    = useState(true);
@@ -5243,6 +5306,7 @@ function App() {
   const [levelMax,   setLevelMax]   = useState(5);
   const [healingOnly, setHealingOnly] = useState(false);
   const [cardsOnly,   setCardsOnly]   = useState(false);
+  const [updatedOnly, setUpdatedOnly] = useState(false);
   const [advancedOpen, setAdvancedOpen] = useState(false);
 
   // ── Character slots ────────────────────────────────────────────
@@ -5454,14 +5518,18 @@ function App() {
       // Same treatment as glossary — the Crafting section just shows
       // nothing resolvable if this fails, not a load error for the app.
       fetch("data/crafting_recipes.json").then(r => r.ok ? r.json() : []).catch(() => []),
+      // Same fail-soft treatment — missing meta.json just means no
+      // "Updated" badges show up anywhere, not a load error.
+      fetch("data/meta.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
     ])
-    .then(([techData, featData, itemData, backgroundData, glossaryData, craftingRecipeData]) => {
+    .then(([techData, featData, itemData, backgroundData, glossaryData, craftingRecipeData, metaData]) => {
       setTechniques(techData);
       setFeatures(featData);
       setItems(itemData);
       setBackgrounds(backgroundData);
       setGlossary(Array.isArray(glossaryData) ? glossaryData : []);
       setCraftingRecipes(Array.isArray(craftingRecipeData) ? craftingRecipeData : []);
+      setCurrentPatch((metaData && metaData.currentPatch) || "");
       setLoading(false);
     })
     .catch(err => {
@@ -5623,6 +5691,7 @@ function App() {
     if (!matchesLevel(t, levelMin, levelMax)) return false;
     if (healingOnly && !t.healing) return false;
     if (cardsOnly && !t.use_cards) return false;
+    if (updatedOnly && (!currentPatch || t.patch !== currentPatch)) return false;
     if (skillFilters.length > 0) {
       const techSkills = splitCSV(t.relevant_skills);
       if (!skillFilters.some(s => techSkills.includes(s))) return false;
@@ -5654,7 +5723,7 @@ function App() {
   }).sort((a, b) => {
     const diff = (a.level_min ?? Infinity) - (b.level_min ?? Infinity);
     return diff !== 0 ? diff : a.name.localeCompare(b.name);
-  }), [techniques, search, skillFilters, tagFilters, levelMin, levelMax, healingOnly, cardsOnly, enabledSupplements]);
+  }), [techniques, search, skillFilters, tagFilters, levelMin, levelMax, healingOnly, cardsOnly, updatedOnly, currentPatch, enabledSupplements]);
 
   // ── Build entries paired with their technique object ────────────
   const buildEntries = useMemo(() =>
@@ -6750,6 +6819,7 @@ function App() {
         items={items}
         grantedUids={grantedUids}
         backgrounds={backgrounds} backgroundType={backgroundType} enabledSupplements={enabledSupplements}
+        currentPatch={currentPatch}
         {...(readOnly ? {} : { statPoints, skillPoints, knownTechNames })}
       />
     );
@@ -6870,6 +6940,7 @@ function App() {
       items={items}
       backgrounds={backgrounds} backgroundType={backgroundType} enabledSupplements={enabledSupplements}
       grantedUids={grantedUids}
+      currentPatch={currentPatch}
     />
   );
 
@@ -7064,6 +7135,20 @@ function App() {
                   />
                   Uses cards
                 </label>
+                {/* Only shown when there's an actual current version to
+                    compare against (data/meta.json loaded) — a checkbox
+                    that could never match anything would just be
+                    confusing rather than an empty-but-honest no-op. */}
+                {currentPatch && (
+                  <label style={{ display:"flex", alignItems:"center", gap:4, cursor:"pointer" }}>
+                    <input
+                      type="checkbox"
+                      checked={updatedOnly}
+                      onChange={e => setUpdatedOnly(e.target.checked)}
+                    />
+                    Recently updated
+                  </label>
+                )}
               </div>
 
               {/* Related skills — click to toggle; matches techniques with ANY selected skill */}
@@ -7374,6 +7459,7 @@ function App() {
             customMaterials={customMaterials} onAddCustomMaterial={addCustomMaterial}
             onUpdateCustomMaterial={updateCustomMaterial} onToggleCustomMaterialType={toggleCustomMaterialType}
             onRemoveCustomMaterial={removeCustomMaterial}
+            currentPatch={currentPatch}
           />
 
           <div style={{ height:20 }} />
@@ -7567,6 +7653,7 @@ function App() {
                 customItems={customItems} onToggleCustomItemEquipped={toggleCustomItemEquipped}
                 customMaterials={customMaterials}
                 statPoints={statPoints} skillPoints={skillPoints}
+                currentPatch={currentPatch}
               />
             </>
           )}

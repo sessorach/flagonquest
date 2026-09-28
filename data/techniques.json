@@ -25,6 +25,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -65,6 +66,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -106,6 +108,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -147,6 +150,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -187,6 +191,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -227,6 +232,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -267,6 +273,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -307,6 +314,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -347,6 +355,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -387,6 +396,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -436,6 +446,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -476,6 +487,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -517,6 +529,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -558,6 +571,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -599,6 +613,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -639,6 +654,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -679,6 +695,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "technique",
@@ -724,6 +741,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -773,6 +791,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -814,6 +833,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -863,6 +883,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -905,6 +926,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "technique",
@@ -946,6 +968,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -987,6 +1010,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "choice",
@@ -1076,6 +1100,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [],
     "feature_budget": null,
     "choice_effects": null
@@ -1106,6 +1131,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1146,6 +1172,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "choice",
@@ -1417,6 +1444,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1466,6 +1494,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1506,6 +1535,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1546,6 +1576,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "technique",
@@ -1581,6 +1612,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1621,6 +1653,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1661,6 +1694,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1710,6 +1744,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1750,6 +1785,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1790,6 +1826,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1839,6 +1876,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1879,6 +1917,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1928,6 +1967,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -1970,6 +2010,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2010,6 +2051,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2050,6 +2092,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": "Goblin Game",
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2090,6 +2133,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2130,6 +2174,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2182,6 +2227,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2233,6 +2279,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2273,6 +2320,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2313,6 +2361,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2353,6 +2402,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2393,6 +2443,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2433,6 +2484,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2473,6 +2525,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2533,6 +2586,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2573,6 +2627,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2613,6 +2668,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2671,6 +2727,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2728,6 +2785,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2768,6 +2826,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2809,6 +2868,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "technique",
@@ -2844,6 +2904,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2885,6 +2946,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2925,6 +2987,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -2965,6 +3028,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3005,6 +3069,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3045,6 +3110,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3085,6 +3151,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3125,6 +3192,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3174,6 +3242,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3223,6 +3292,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3263,6 +3333,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3313,6 +3384,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3373,6 +3445,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3422,6 +3495,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3462,6 +3536,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3512,6 +3587,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3553,6 +3629,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3593,6 +3670,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3636,6 +3714,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3676,6 +3755,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3716,6 +3796,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3765,6 +3846,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3805,6 +3887,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3854,6 +3937,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3894,6 +3978,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": "Goblin Game",
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3934,6 +4019,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -3974,6 +4060,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4014,6 +4101,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4063,6 +4151,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4121,6 +4210,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4170,6 +4260,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4210,6 +4301,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4259,6 +4351,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4299,6 +4392,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4349,6 +4443,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4399,6 +4494,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4449,6 +4545,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4490,6 +4587,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4540,6 +4638,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4591,6 +4690,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4643,6 +4743,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4693,6 +4794,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4743,6 +4845,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4793,6 +4896,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4850,6 +4954,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4907,6 +5012,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4947,6 +5053,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -4996,6 +5103,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5045,6 +5153,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": "Goblin Game",
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5094,6 +5203,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5134,6 +5244,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5174,6 +5285,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5223,6 +5335,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5272,6 +5385,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5321,6 +5435,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5370,6 +5485,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5410,6 +5526,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5450,6 +5567,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5499,6 +5617,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5548,6 +5667,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5605,6 +5725,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5645,6 +5766,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5694,6 +5816,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5743,6 +5866,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5792,6 +5916,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5832,6 +5957,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5872,6 +5998,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5912,6 +6039,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5952,6 +6080,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -5993,6 +6122,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6042,6 +6172,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6082,6 +6213,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6132,6 +6264,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6174,6 +6307,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6224,6 +6358,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6273,6 +6408,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6324,6 +6460,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6365,6 +6502,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6415,6 +6553,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6464,6 +6603,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6505,6 +6645,7 @@
     "fullness_threshold_bonus": 5,
     "supplement": "Goblin Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6545,6 +6686,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Goblin Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",
@@ -6589,6 +6731,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Goblin Game",
     "excluded_by": null,
+    "patch": null,
     "prereq_check": [
       {
         "type": "skill",

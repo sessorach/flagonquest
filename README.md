@@ -13,6 +13,22 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 Notable changes, newest first. Each entry is a summary — see `git log` for
 the full commit-by-commit detail behind any of these.
 
+### 2026-09-28 — "Updated" badges and patch tracking
+
+- Techniques and items changed in the latest release now carry a blue
+  "Updated" badge — on technique cards, item search results, and
+  carried-item tiles — so players can spot what's different since the
+  last version without comparing rulebooks by hand. Screen-only; it
+  doesn't print, since it's stale the moment the next release ships.
+- New "Recently updated" filter in both the Techniques and Items tabs'
+  Advanced filters. On Items, it works on its own with no search text,
+  so it doubles as a "show me everything that changed" list.
+- Behind the scenes, which release last touched each technique/item is
+  worked out automatically from git history at release time rather than
+  tracked by hand — see "Cutting a release" in CLAUDE.md. Nothing is
+  badged yet: this is the baseline, and the first real badges show up
+  with the next release.
+
 ### 2026-08-19 — Hand-editable printed Character Sheet
 
 - Printed Stats & Skills now show filled/empty dots (●●●○○) instead of
