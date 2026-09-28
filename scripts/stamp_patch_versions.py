@@ -21,9 +21,12 @@ Usage: python scripts/stamp_patch_versions.py [--since REF] [--version VERSION] 
                      disagree about what version is being released.
   --dry-run         Print what would change without writing the CSVs.
 
-Compares every column except "Patch" itself (and "ID", the join key) —
-a row is "changed" if any of those differ from its value at --since, or
-if its ID didn't exist there at all (a brand-new row). Only touches
+Compares every column except "Patch" itself, "ID" (the join key), and
+"Description (Fluff)" — a row is "changed" if any of those differ from
+its value at --since, or if its ID didn't exist there at all (a
+brand-new row). Flavor-only rewrites deliberately don't count: the
+badge exists to tell players "the rules for this changed," and a new
+line of in-fiction dialogue isn't that. Only touches
 rows that actually changed; everything else keeps whatever Patch value
 it already had. Compares on the *intersection* of column names present
 in both the old and new header, so this still works even if a column
@@ -41,6 +44,8 @@ import sys
 script_dir = os.path.dirname(os.path.abspath(__file__))
 repo_root = os.path.dirname(script_dir)
 TARGET_FILES = ["techniques.csv", "items.csv"]
+# Never compared — see the module docstring for why Fluff is excluded.
+IGNORED_COLUMNS = ("ID", "Patch", "Description (Fluff)")
 
 
 def run_git(args):
@@ -123,9 +128,9 @@ def main():
 
         if old_fieldnames is None:
             print(f"⚠ {filename} didn't exist at {since!r} — every row will be stamped as new.")
-            compare_cols = [c for c in new_fieldnames if c not in ("ID", "Patch")]
+            compare_cols = [c for c in new_fieldnames if c not in IGNORED_COLUMNS]
         else:
-            compare_cols = [c for c in new_fieldnames if c in old_fieldnames and c not in ("ID", "Patch")]
+            compare_cols = [c for c in new_fieldnames if c in old_fieldnames and c not in IGNORED_COLUMNS]
 
         changed_ids = []
         for row in new_rows:

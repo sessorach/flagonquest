@@ -67,7 +67,9 @@ shouldn't be duplicated here.
   badge recently-changed content and filter down to it. **Never
   hand-edit `Patch`** — `scripts/stamp_patch_versions.py` derives it
   from git (diffs the working-tree CSVs against the last release tag,
-  stamps every new-or-changed row with `scripts/version.txt`'s value),
+  stamps every new-or-changed row with `scripts/version.txt`'s value —
+  a change to `Description (Fluff)` alone doesn't count, since the
+  badge means "the rules for this changed," not "the flavor text did"),
   since a hand-maintained "remember to bump this" column is exactly the
   silently-drifting kind of sync this project avoids everywhere else.
   Blank means "unchanged since tracking began" — pre-existing rows were
@@ -657,10 +659,14 @@ Two recurring environment quirks worth knowing:
   re-flags changes that already shipped.
 - **Merging a branch cut before the `Patch` column existed** will
   conflict on every `techniques.csv`/`items.csv` row that branch edited
-  (this side appended a field to every row). Resolve by taking the other
-  branch's CSVs wholesale — every baseline `Patch` value was blank, so
-  nothing is lost — then run the stamping script, which re-adds a
-  missing `Patch` column automatically before stamping.
+  (this side appended a field to every row). If that branch already
+  contains current `main` (merge `main` into it first if not), resolve
+  by taking its CSVs wholesale — every baseline `Patch` value was blank,
+  so nothing is lost — then run the stamping script, which re-adds a
+  missing `Patch` column automatically before stamping. Taking its CSVs
+  wholesale *without* that precondition would silently discard any CSV
+  edits `main` gained after that branch was cut. The rules-overhaul
+  merge that released v1.1 was resolved exactly this way.
 
 ## Things considered and deliberately not done
 
