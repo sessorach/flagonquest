@@ -12,12 +12,20 @@
     "description": "Look at the top X cards of your deck, and for each one choose to put it on the bottom of your deck or in your discard, then shuffle your deck.\n\nCan have extra mechanics tacked in, like “Sift X cards, and add their suits to the suit pool [for a flip]”.\n\nIf you would Sift more cards than are left in your deck, shuffle your discard back into your deck, then Sift that many cards."
   },
   {
+    "term": "Burst",
+    "description": "A Burst affects the indicated space, plus every space within X meters of it, in a circle centered on that space. Burst 0 only affects the indicated space itself."
+  },
+  {
     "term": "Countered",
     "description": "A Technique, attack, or other ability that is Countered is still expended as normal, as are any other resources spent to use it, but otherwise has no effect as though it were never used."
   },
   {
     "term": "Difficult Terrain",
     "description": "Sometimes conditions or features of terrain can give it degrees of Difficult Terrain. To cross a meter of space that has Difficult Terrain, a character takes an extra meter of Speed for each degree of Difficult Terrain on it. A character can still move at least 1 space in this way, no matter how many degrees of Difficult Terrain there are."
+  },
+  {
+    "term": "Outflank",
+    "description": "When you Outflank, your position in turn order moves up that many places, to a minimum of first."
   },
   {
     "term": "Pushed",
@@ -32,12 +40,20 @@
     "description": "Shifting is like moving, with two exceptions. Nobody may take any Interrupt actions to the movement, and when you Shift you ignore Difficult Terrain."
   },
   {
+    "term": "Stagger",
+    "description": "When a creature is Staggered, its position in turn order moves down that many places, to a maximum of last."
+  },
+  {
     "term": "Summon",
     "description": "A Summoned creature is under the command of the character who Summons it, has its own stats, acts on the turn of its summoner, and the summoner makes any flips for it. The Summoned creature does not gain AP as normal, but once per round the summoner may spend 2 AP at any time to grant the Summoned creature 4 AP. Once the summoner does this, they may not do so again for that creature until the end of their turn.\n\nA Summoned creature may only make a normal attack once during its turn."
   },
   {
     "term": "Teleport",
     "description": "When you teleport you disappear from your current location and reappear at your destination without moving through any other spaces. To Teleport you must be able to clearly see your destination, but don’t otherwise need a clear path to get there."
+  },
+  {
+    "term": "Vigor",
+    "description": "A pool of points, granted by certain items and abilities, that can be spent to recover an expended Technique. You may spend Vigor equal to an expended Encounter Technique’s Level to regain a use of it."
   },
   {
     "term": "Buildable",
@@ -49,7 +65,7 @@
   },
   {
     "term": "Fleeting",
-    "description": "At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. Outside of combat encounters, remove 1 stack roughly every 6 seconds."
+    "description": "At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. Outside of combat encounters, remove 1 stack roughly every 6 seconds. If you had no stacks of a Fleeting effect right before gaining some, skip the next removal that would apply to it — it starts losing stacks normally from the one after that."
   },
   {
     "term": "Food",
@@ -65,7 +81,7 @@
   },
   {
     "term": "Poison",
-    "description": "If an attack with a poisoned weapon successfully causes a creature to lose Health, that creature is exposed to the Poison. Make an attack, adding the Poison’s Concentration, against the target’s Vital Defense. If it hits, the target suffers the Poison’s effects. This is known as a poison attack, which occasionally has special interactions with some abilities and items.\n\nA Poison takes 2 AP to apply to a weapon or piece of ammunition. Weapons and ammunition remain poisoned for 1 hour or until they expose a creature to the Poison, and can only have one Poison at a time.\n\nEffects applied by Poisons do not expire normally. Instead, every hour 1 stack of each Poison effect is removed, and these stacks may not be removed any other way."
+    "description": "If an attack with a poisoned weapon successfully causes a creature to lose Health, that creature is exposed to the Poison. Make an attack, adding the Poison’s Concentration, against the target’s Vital Defense. If it hits, the target suffers the Poison’s effects. This is known as a poison attack, which occasionally has special interactions with some abilities and items.\n\nA Poison takes 2 AP to apply to a weapon or piece of ammunition. Weapons and ammunition remain poisoned until they expose a creature to the Poison or the wielder gets a full night’s rest, and can only have one Poison at a time.\n\nEffects applied by Poisons do not expire normally. Instead, every hour 1 stack of each Poison effect is removed, and these stacks may not be removed any other way."
   },
   {
     "term": "Potion",
@@ -76,8 +92,8 @@
     "description": "Abilities with this tag can be learned more than once, and generally have special features based on how many times you learn them. (Noun, not the verb)"
   },
   {
-    "term": "Stance",
-    "description": "You may enter or leave a Stance at the start of your turn, before anything else happens. You may only be in one Stance at a time, and entering a Stance will cause you to leave any other Stance you are in. If the Stance lists a condition, you may only enter the Stance while you meet the condition, and if you don’t meet it at any time then you immediately leave the Stance."
+    "term": "Style",
+    "description": "You may enter or leave a Style at the start of your turn, before anything else happens. You may only be in one Style at a time, and entering a Style will cause you to leave any other Style you are in. If the Style lists a condition, you may only enter the Style while you meet the condition, and if you don’t meet it at any time then you immediately leave the Style."
   },
   {
     "term": "Subtle",
@@ -85,7 +101,7 @@
   },
   {
     "term": "Bleeding",
-    "description": "When you remove a stack of Bleeding at the end of your turn, lose 1 Health."
+    "description": "Each stack of this that decays at the end of your turn deals 1 Health loss."
   },
   {
     "term": "Crippled",
@@ -109,7 +125,7 @@
   },
   {
     "term": "Protected",
-    "description": "Whenever you would lose Health, prevent 1 Health loss for each stack of Protected you have, then remove that many stacks of Protected.\n\nThis does not apply to Health paid as a cost."
+    "description": "If you would lose Health to something other than a cost, remove up to that many stacks of Protected instead."
   },
   {
     "term": "Slowed",
@@ -121,23 +137,23 @@
   },
   {
     "term": "Vulnerable",
-    "description": "For each stack of this, you suffer a -1 penalty to Vital, Mental, and Instinct Defenses."
+    "description": "For each stack of this, you suffer a -1 penalty to Vital, Mental, and Vigilant Defenses."
   },
   {
     "term": "Fire Ward",
-    "description": "While you have any stacks of this, you have +1 Resist against the specified type of damage."
+    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead."
   },
   {
     "term": "Frost Ward",
-    "description": "While you have any stacks of this, you have +1 Resist against the specified type of damage."
+    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead."
   },
   {
     "term": "Brilliant Ward",
-    "description": "While you have any stacks of this, you have +1 Resist against the specified type of damage."
+    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead."
   },
   {
     "term": "Shadow Ward",
-    "description": "While you have any stacks of this, you have +1 Resist against the specified type of damage."
+    "description": "While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead."
   },
   {
     "term": "Alcohol",
@@ -157,7 +173,7 @@
   },
   {
     "term": "Social",
-    "description": "Social abilities are specific conversational tactics, usually used in social contests."
+    "description": "Social abilities are specific conversational tactics, usually used in social encounters."
   },
   {
     "term": "Spell",
@@ -200,8 +216,8 @@
     "description": "A bonus success gained from Gambling or other sources, on top of the 1 success a flip already grants when it succeeds — only counts if the flip succeeds in the first place."
   },
   {
-    "term": "Concession",
-    "description": "A successful social statement causes the target’s group to suffer 1 Concession, plus 1 Concession for each Extra Success. A group that reaches 10 Concessions loses the social contest."
+    "term": "Pressure",
+    "description": "Circumstances piling up against the party during a social encounter, adding Bad Luck on Statements and Support checks alike, equal to the current total. Some effects let a character ignore Pressure (the Bad Luck doesn’t apply, but it keeps piling up toward the failure point) or remove it outright (it’s actually cleared) — removing is rarer and stronger. If it climbs high enough, the GM may end the check in failure outright."
   },
   {
     "term": "Bingus",

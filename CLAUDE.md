@@ -6,7 +6,15 @@ For what the project *is* and what's shipped, see `README.md`. For the
 data-format mini-syntaxes (Prereq Check, Feature Budget, Builder Notes,
 Choice Effects, Base Item Options), see the docstring at the top of
 `scripts/convert.py` — that documentation is authoritative and
-shouldn't be duplicated here.
+shouldn't be duplicated here. For the *why* behind a specific rules or
+balance decision, see `design/RULES_DESIGN.md` (a human-readable log of
+design reasoning as decisions get made — rules content, not workflow
+notes) and `design/balance.md` (aggregate balance-approach notes,
+building on the value-economy model explained in
+`archive/flagonquest_balance_notes_model.md`). This file (`CLAUDE.md`) is
+where *my own* working notes belong instead — file-location facts,
+standing verification habits, session workflow — not `RULES_DESIGN.md`,
+which should stay a clean decision record.
 
 ## Architecture
 
@@ -40,6 +48,15 @@ shouldn't be duplicated here.
   someone runs the converter. Run `python scripts/convert.py` from
   anywhere (it resolves paths off its own file location) after any CSV
   change, and commit the regenerated JSON alongside the CSV.
+- `items.csv` has an **`Archetype`** column (Potions only, so far) purely
+  for my own reference during balance work — informal groupings like
+  "Buff", "Healing/Protection", "Resource", "Utility" that don't
+  correspond to anything the site displays. `convert.py`'s `ITEM_MAP`
+  has no entry for it on purpose, so it's silently dropped during
+  conversion and never reaches `data/items.json` — confirmed empty diff
+  on `data/items.json` when this column was added. Keep it that way;
+  if a grouping like this ever needs to actually show up in the app, it
+  should get folded into the real `Tags` column instead, not this one.
 - **The data should be the source of truth, not prose.** Whenever the
   site needs a fact at runtime that could reasonably live as a real CSV
   column/JSON field, put it there instead of deriving it by
@@ -60,8 +77,43 @@ shouldn't be duplicated here.
   in `scripts/convert.py`'s docstring for the two this project has
   already done this for.
 - `archive/` holds genuinely dead files — an old prototype, stale one-off
-  outputs from completed migrations. Nothing in it is read by the site or
-  by `convert.py`.
+  outputs from completed migrations, and historical source documents
+  (old design docs, the designer's balance-notes spreadsheet, and its
+  reading-guide companion `flagonquest_balance_notes_model.md`, which
+  explains the value-economy model in that spreadsheet) kept for
+  reference. Nothing in it is read by the site or by `convert.py`.
+  **Standing habit**: whenever the designer uploads novel source
+  material (an old design doc, a spreadsheet, notes from outside this
+  repo), save a copy into `archive/` as part of handling it — don't
+  just read it from the upload location and let the copy disappear at
+  session end. The one exception: a large bulk upload (the ~100-file
+  archive-doc sweep this project already did once) is worth checking
+  with the designer first — scrape-and-summarize into a single doc
+  might serve better than uploading every original individually.
+- `design/` holds living design documentation — `RULES_DESIGN.md` (a
+  human-readable log of rules-design reasoning, growing as decisions get
+  made), `balance.md` (aggregate balance-approach notes),
+  `balance_weights_notes.md` (the full derivation behind every current
+  THE TABEL weight), `GM_GUIDE_NOTES.md` (loose notes toward an eventual
+  GM-facing guide — "how should a GM actually run X," out of scope for
+  the player-facing `rulebook.md`), `ENEMY_ENCOUNTER_DESIGN.md` (the
+  full point-buy model for building enemies — Level/Encounter Slots,
+  Role archetypes, Defense tiering, Battle Tactics/Fighting Style, the
+  Ability catalog, reconstructed from the designer's own
+  `archive/flagonquest_encounter_builder.xlsx` — its `enemy_sim/`
+  subfolder is a small Python Monte Carlo combat simulator that
+  validates the model empirically; `enemy_sim/tunables.py` holds every
+  number still subject to revision, kept separate from the mechanics
+  code specifically so a PC/enemy baseline retune doesn't need touching
+  anything else — see `enemy_sim/README.md`), and `IDEAS_BACKLOG.md`
+  (loose not-yet-drafted ideas for items/abilities/content — a holding
+  pen, not a commitment; move an idea out once it's actually drafted
+  into the real CSVs and given a proper writeup, don't leave it
+  duplicated in both places) — plus `balance_weights.csv`, a fast-lookup
+  index of the same weights (current value, Locked/Pencil status, which
+  markdown section has the derivation) for quick reference without
+  scanning prose. Unlike `archive/`, this is meant to be read and
+  extended, not just kept for the record.
 - **Patch tracking**: `techniques.csv`/`items.csv` carry a `Patch`
   column recording which release last touched each row, so the site can
   badge recently-changed content and filter down to it. **Never
@@ -81,6 +133,92 @@ shouldn't be duplicated here.
   `patch` exactly equals it, and the Techniques/Items tabs' Advanced
   filters each get a "Recently updated" checkbox. See the release steps
   under Git workflow, and PATCH TRACKING in `convert.py`'s docstring.
+
+## Quick reference
+
+- The full 25-skill list with its governing Stat lives in `index.html`'s
+  `STAT_SKILLS` constant (~line 488), not as a single table anywhere in
+  the rulebook prose — cross-check there, not from memory, if the skill
+  list ever seems off.
+- Skill descriptions (flavor + mechanical blurb) are `####` headers
+  under each Stat's `###` section in `rulebook.md`, roughly lines
+  13–151.
+- Common Effects keyword definitions (Bleeding, Crippled, Frightened,
+  Harried, Hasted, Necrotic, Protected, Slowed, Taunted, Vulnerable,
+  Ward) are in `glossary.md` under "# Common Effects", ~line 121–176.
+  The `[Style]` rules tag (renamed from `[Stance]`, then `[Form]`) is
+  ~line 129.
+- `parse_markdown_sections` in `convert.py` (~line 596) treats every
+  non-blank, non-heading line in `rulebook.md`/`glossary.md` as literal
+  rendered body text — no HTML-comment stripping exists. Never leave
+  draft/review markers inside those files; draft in chat first, commit
+  clean. Since a marker can't live inline, track "the designer still
+  wants to read this over" separately instead: append an entry to
+  `design/PROSE_REVIEW_QUEUE.md` (file/section/one-line summary/commit
+  hash) whenever a `rulebook.md`/`glossary.md` prose section gets
+  written or edited — a running checklist the designer deletes entries
+  from as they review them, not a permanent log (git history is that).
+- **Verify, don't assert, especially on any math** (crafting formulas,
+  worked examples, balance-model calculations) — standing instruction
+  from an explicit correction earlier in this project's history: a
+  worked example was presented with more confidence than had actually
+  been verified, and it took the user's correction to catch it, not a
+  self-check. When a claim involves arithmetic, actually compute it and
+  check the result is internally consistent before presenting it — don't
+  write plausible-looking numbers and trust they work out.
+- **Label the side and sign of every balance adjustment, every time.**
+  Before writing down any adjustment (a Condition allowance, a skill
+  discount, a cost), say explicitly whether it's "+N to Target" or
+  "±N to Value", and run the one-line check in `balance.md` ("Every
+  adjustment goes on one side of the ledger"): something the player
+  gives up means the Technique must deliver *more*, so the Target goes
+  up or the cost comes off Value. This has slipped twice. The second
+  time was mine: I wrote an unarmored allowance as `Target − 0.8` and
+  the designer caught it. Verify-the-arithmetic doesn't catch this;
+  the arithmetic was fine, the sign was wrong.
+- **When and how to delegate simulation/probability work to a subagent.**
+  Two shapes of work are good candidates for delegating out of the main
+  conversation: "go find out what already exists" (an archive sweep, a
+  codebase-wide grep-and-summarize — always a good background-Agent fit,
+  keeps the main context clean) and "run this exact, already-agreed
+  simulation/calculation and report the numbers" (fine to hand off once
+  the model's assumptions are actually locked, cheaper on a `haiku`-tier
+  Agent call for pure arithmetic with no judgment calls left). **Don't**
+  delegate the part where a model is still being *built* — the actual
+  back-and-forth of proposing assumptions and having the designer
+  correct them. The Social Encounter Baseline (`balance_weights_notes.
+  md`) took ~8-10 rounds of real corrections (Pressure hitting Support
+  checks too, all cards counting for suit-pool matching, the exact
+  card-rescue mechanic) before it was right — handing that off early
+  would have produced a confidently-wrong simulation and cost a
+  round-trip discovering it, not saved effort. Keep model-building
+  interactive; delegate research and confirmatory number-crunching once
+  the shape is agreed.
+- **Keep all three balance-tracking files in sync whenever a Masterwork
+  item's design gets committed** — they serve different readers and
+  none of them substitutes for the others: `design/balance_ledger.csv`
+  (a compact, spreadsheet-searchable ID/Value/Target/Net/Grants/Notes
+  row per item — the fastest way for a human to look something up or
+  scan for outliers, not just skim past), `design/balance.md`'s per-slot
+  "final lineup" section (a short narrative summary of the whole slot's
+  pass, one bullet per item), and `design/balance_weights_notes.md`
+  (the full worked derivation, for whenever the reasoning itself needs
+  reviewing, not just the number it landed on). This slipped once
+  already — the Feet/Head/Neck/most-of-Ring slot passes all got full
+  writeups in `balance_weights_notes.md` but no matching rows/summary
+  ever landed in the other two, silently going stale for several slots
+  before the gap got noticed and backfilled. When an item's Value/
+  Target/Net/Level changes (or it gets cut), update its `balance_ledger.
+  csv` row (or add a `-CUT` row) and its `balance.md` bullet in the same
+  commit as the `items.csv`/`balance_weights_notes.md` change — not as
+  a separate catch-up pass later.
+- **Old-term translations to apply on sight, from earlier eras of this
+  project**: "Bodily Defense" → **Vital Defense** (found live in
+  `items.csv`'s own schema and `index.html` until this got fixed, not
+  just an archive-only artifact — worth a second look if it turns up
+  anywhere else), "Soak" → **Resist**. When reading `archive/` source
+  material or old drafts, translate these automatically rather than
+  treating them as a different mechanic.
 
 ## Editing content
 
@@ -151,10 +289,47 @@ shouldn't be duplicated here.
   lists (steps, options, factors). Repeated-count phrasing is always
   spelled out as a word, never a numeral, and never "N times" for small
   N: once (or just the bare effect — "Good Luck", not "1 Good Luck"),
-  twice, thrice, then "four times"/"five times"/... from there on. This
-  applies both to stacking an effect (Good Luck twice, Protected thrice)
-  and to multiplying a value in a formula, bracketed or not (twice your
-  Speed, thrice the Level, [four times X]) — same convention either way.
+  twice, then "three times"/"four times"/"five times"/... from there on
+  — **not "thrice"**, per the designer: it reads as an archaic outlier
+  next to "four times"/"five times" the moment the pattern goes past 2,
+  where "twice" doesn't have the same problem since there's no plainer
+  two-word alternative competing with it. Every existing "thrice" across
+  `items.csv`/`techniques.csv`/`features.csv`/`rulebook.md` was swept to
+  "three times" in the same pass this got decided, so there's no
+  lingering mixed usage to match against by accident. This applies both
+  to stacking an effect (Good Luck twice, Protected three times) and to
+  multiplying a value in a formula, bracketed or not (twice your Speed,
+  three times the Level, [four times X]) — same convention either way.
+  For an effect that lasts until the end of the current encounter, say
+  "for the encounter" (or "lasting for the encounter") — not "until the
+  end of the encounter." Checked against existing usage before this got
+  decided: a dozen-plus items/techniques already phrase it that way,
+  zero use the "until the end of" wording, so this is naming the
+  existing convention, not introducing a new one.
+- **Rules text is as concise as it can be while still getting the
+  point across** (per the designer). Two specifics:
+  - **Damage type:** an attack only ever deals one type of damage, and
+    that's the Resist it checks. Say "it deals Shadow damage," not "it
+    deals its damage as Shadow" or "Shadow instead of Physical." A
+    hybrid that uses the lower of two Resists would get its own
+    carve-out if it ever exists, not a general rule.
+  - **Batch effects by when they happen.** Everything that happens on a
+    hit goes in one "If it hits, ..." sentence, in the shape "If it
+    hits, it deals [type] damage and [other hit effects]" ("If it hits,
+    it deals Brilliant damage and Pushes the target 3 meters."). The
+    designer has asked for this twice; lead with the damage type, then
+    the riders, and the same
+    for "If it's Parried, ..." or "If it hits or is Parried, ...".
+    Split into separate sentences only when it's actually complicated.
+- **Whenever an idea gets binned** (cut from `items.csv`/`techniques.csv`,
+  or considered and never drafted at all), log it in
+  `IDEAS_BACKLOG.md`'s "Reviewed and declined" section — a short note
+  on what it was and why it didn't make the cut, not a full writeup
+  (that still lives in `balance_ledger.csv`'s own `-CUT` row Notes, or
+  wherever else the idea got worked through). "Declined" isn't
+  "deleted forever" — the whole point of the section is a scannable
+  record of past no's that's still worth checking before assuming
+  something's genuinely new ground.
 
 ## Design conventions established so far
 
@@ -643,9 +818,62 @@ Two recurring environment quirks worth knowing:
   and confirm `main` has nothing the feature branch doesn't (a clean
   fast-forward) before merging — if `main` has diverged, that needs a real
   merge/rebase decision, not an assumed fast-forward.
-- Add a new dated entry to `README.md`'s changelog section for each
-  notable commit — skip pure internal housekeeping (file reorganization,
-  a stale comment fix) that doesn't change anything a user would notice.
+- **One `README.md` changelog entry per day, not per commit.** The
+  reader is a handful of people who skim this once a week out of
+  curiosity, not someone tracking every change — a growing wall of
+  same-day entries loses them before they finish reading. If today
+  already has an entry, extend that entry instead of adding a new one;
+  don't start a fresh entry just because it's a separate commit or a
+  separate piece of work. **Extending means rewriting** — fold the new
+  work into the existing summary/bullets as one merged entry, don't
+  leave the old summary+bullets in place and append a second
+  summary-plus-bullets block underneath. This slipped on 2026-09-21 (a
+  second "paragraph + 9 bullets" got tacked on below an already-full
+  first one, ballooning one day to ~19 bullets total) and got trimmed
+  back down after the fact — check the entry you're extending still
+  reads like ONE entry, not two stacked ones, before moving on.
+  - **Heading**: date + a short title for the day, same as before.
+  - **Body**: 1-2 plain sentences (an actual maximum, not a soft
+    target) giving the gist of everything that happened that day — what
+    changed and, if it fits in the same breath, why it matters. Business
+    executive-summary register: e.g. "Built new PC and enemy stat-block
+    estimates for the simulator, then retuned the simulator's own math
+    to match." That's the whole point of the entry; the reader should be
+    able to stop there.
+  - **Bullets** (optional, only if the summary alone loses something
+    worth keeping): one bullet per genuinely separate piece of work that
+    day, each a single plain sentence. A simple day-spanning change
+    (reviewed a dozen items in one slot) still gets just one bullet
+    ("reviewed all Belt items for X"), not one per item touched. A
+    complex day (the whole combat simulator got reworked) can stretch to
+    2-3 bullets, still one sentence each, still no more detail than
+    "here's roughly what happened and why" — not a change-by-change
+    account. New content worth naming by name (a few specific items or
+    techniques) is fine in a bullet; don't itemize a dozen.
+  - Skip pure internal housekeeping (file reorganization, a stale
+    comment fix) that doesn't change anything a reader would notice.
+  - Corrected from an earlier "one entry per notable commit" version of
+    this rule, which in practice produced 5-6 entries on a single busy
+    day — this is the stricter, day-level version, going forward.
+- **Voice for changelog entries (and any other human-facing prose, not
+  just code comments)**: write like the designer's own notes, not like
+  an AI summarizing a diff. Short, direct sentences. Contractions.
+  Skip the hedge-words a model defaults to — "notably," "genuinely,"
+  "deliberately," "surfaced," "consequential" — and the "X, not Y"
+  contrastive-clause habit stacked three deep in one sentence. When in
+  doubt, check `archive/flagonquest_manifesto_*.md` or the designer's
+  own chat messages for the actual register (plain, a little dry,
+  gets to the point) rather than reaching for polished exposition.
+  **Specific tic to watch for, flagged directly by the designer**:
+  reaching for "real"/"genuine(ly)" as an intensifier on an ordinary,
+  bread-and-butter change ("a real formula bug," "genuine ~50% fights"),
+  and "gap" as the default noun for anything missing. Most changes don't
+  need an intensifier at all — just state the fact plainly ("a formula
+  bug," not "a real formula bug"). If something actually is a big deal,
+  say that directly ("this was important") rather than doubling down
+  with "real"/"genuinely," and reach for a plain synonym instead of
+  "gap" each time (missing, hole, uncovered, wasn't covered) rather than
+  leaning on the one word repeatedly.
 - Before committing, always check `git status`/`git diff --stat`, and
   fetch + compare against `origin/<branch>` to confirm nothing else
   changed the remote branch since the last push.
@@ -667,6 +895,10 @@ Two recurring environment quirks worth knowing:
   wholesale *without* that precondition would silently discard any CSV
   edits `main` gained after that branch was cut. The rules-overhaul
   merge that released v1.1 was resolved exactly this way.
+- For rules/design prose specifically: draft in chat, matching voice per
+  this file's Rulebook/Glossary prose guidance, get confirmation, then
+  commit — one focused commit per section. No in-file review markers;
+  git diffs/commits are the review record.
 
 ## Things considered and deliberately not done
 

@@ -680,7 +680,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "After the first time you lose Health each encounter, you gain: Protected thrice; remove up to 2 total stacks of your choice of Bleeding/Crippled/Frightened/Slowed/Taunted/Vulnerable from yourself. Breaking your pact removes these benefits until atonement.",
+    "effects": "After the first time you lose Health each encounter, you gain: Protected three times; remove up to 2 total stacks of your choice of Bleeding/Crippled/Frightened/Slowed/Taunted/Vulnerable from yourself. Breaking your pact removes these benefits until atonement.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Solemn Pact, (Resilience or Presence) 3",
@@ -695,7 +695,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "technique",
@@ -726,7 +726,7 @@
     "action": "1 AP",
     "cost": null,
     "target": "An adjacent humanoid Downed this encounter by you or an ally",
-    "effects": "You remove and eat the target's heart (usually killing them instantly if still alive). You gain: sustained as from a full meal; Hasted and Protected thrice each; once this encounter Good Luck on one Athletics/Brawl/Melee/Might/Presence/Resilience flip.",
+    "effects": "You remove and eat the target's heart (usually killing them instantly if still alive). You gain: sustained as from a full meal; Hasted and Protected three times each; once this encounter Good Luck on one Athletics/Brawl/Melee/Might/Presence/Resilience flip.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Might 3, Resilience 3",
@@ -741,7 +741,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -818,7 +818,7 @@
     "action": "1 AP",
     "cost": "Discard a card",
     "target": "Yourself or an adjacent willing creature",
-    "effects": "Do each in order: 1. Reduce effects of each Poison as though an hour passed. 2. Remove up to 2 stacks of Bleeding. 3. Target heals 1 Health, or 2 if the discarded card was a Heart.",
+    "effects": "Do each in order: 1. Remove 1 stack of each Poison effect affecting the target. 2. Remove up to 2 stacks of Bleeding. 3. Target heals 1 Health, or 2 if the discarded card was a Heart.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Composure 3, Presence 3",
@@ -833,7 +833,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -906,12 +906,12 @@
     "level_min": 4,
     "level_max": 4,
     "tags": null,
-    "description": "\"As witnessed by the divine host, I solemnly pledge with all my heart -\n\nTo be kind: that I might love my fellow man thoroughly and completely, that I will stand before those in danger and defend them, that I shall show mercy and forgiveness to all men, even those with evil in their hearts.\n\nTo be strong: that the fires of conviction might burn bright within me, that I might fight for what I believe, that I can stay my hand and forgive an enemy, that I will hold firm and correct an ally's misdeed.\n\nTo be good: that I know this world is full of darkness, that all men including myself hold wickedness in their hearts, and that I might through my actions be a flame that burns brightly enough to hold evil at bay.\n\nI pledge my life to the cause. My arm is sworn to protect what is most important. Lend me your strength, and I will fight to my last breath to uphold my vow.\"",
+    "description": "\"As witnessed by the divine host, I solemnly pledge with all my heart -\r\n\r\nTo be kind: that I might love my fellow man thoroughly and completely, that I will stand before those in danger and defend them, that I shall show mercy and forgiveness to all men, even those with evil in their hearts.\r\n\r\nTo be strong: that the fires of conviction might burn bright within me, that I might fight for what I believe, that I can stay my hand and forgive an enemy, that I will hold firm and correct an ally's misdeed.\r\n\r\nTo be good: that I know this world is full of darkness, that all men including myself hold wickedness in their hearts, and that I might through my actions be a flame that burns brightly enough to hold evil at bay.\r\n\r\nI pledge my life to the cause. My arm is sworn to protect what is most important. Lend me your strength, and I will fight to my last breath to uphold my vow.\"",
     "condition": null,
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "At the start of each encounter, you gain 4 Covenant points. When you use an Encounter Technique, you may pay [that Technique's Level] Covenant points to not expend a use of it. Breaking your pact removes these benefits until atonement.",
+    "effects": "At the start of each encounter, you gain 4 Vigor that lasts for the encounter. Breaking your pact removes these benefits until atonement.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Solemn Perseverance, (Any Skill) 5",
@@ -926,7 +926,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "technique",
@@ -1172,7 +1172,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "choice",
@@ -1515,7 +1515,7 @@
     "level_min": 2,
     "level_max": 2,
     "tags": null,
-    "description": "\"This old girl? Found her hurt in the woods a few seasons back, nursed her back to health. Turns out she's pretty vicious in a scrap, and she's had my back ever since.\"\n\n\"You... tied a whiskey flask to your pet wolf?\"\n\n\"First off, she's not my 'pet'. Second... yeah, she picked up a couple of my bad habits. Nature o' the game.\"",
+    "description": "\"This old girl? Found her hurt in the woods a few seasons back, nursed her back to health. Turns out she's pretty vicious in a scrap, and she's had my back ever since.\"\r\n\r\n\"You... tied a whiskey flask to your pet wolf?\"\r\n\r\n\"First off, she's not my 'pet'. Second... yeah, she picked up a couple of my bad habits. Nature o' the game.\"",
     "condition": null,
     "action": "Passive",
     "cost": null,
@@ -1556,7 +1556,7 @@
     "level_min": 1,
     "level_max": 1,
     "tags": "Duplicate",
-    "description": "\"You know, I really wish your wolf would stop slobbering into our mugs.\"\n\n\"Well boy, you got two choices. You can either put up with a little drool in your mug, or you can pour your own damn beer. Either way, you could at least be a bit more supportive of her learning how to bartend.\"",
+    "description": "\"You know, I really wish your wolf would stop slobbering into our mugs.\"\r\n\r\n\"Well boy, you got two choices. You can either put up with a little drool in your mug, or you can pour your own damn beer. Either way, you could at least be a bit more supportive of her learning how to bartend.\"",
     "condition": null,
     "action": "Passive",
     "cost": null,
@@ -1806,7 +1806,7 @@
     "level_min": 2,
     "level_max": 2,
     "tags": null,
-    "description": "\"So it was that the arcanist Placeholder dealt a final, decisive strike to the Master of the School of the Fifth Dragon Fist, completing the trial that had been laid before her. The School's council gathered and summarily declared Placeholder worthy of learning the secret of the Fifth Dragon, the final chakra that completed one of Placeholder's great theses of power. With it unlocked, Placeholder had mastered the pathways which allowed him to freely manipulate energy between his corporeal being and his environment, forging a unified practice of the martial, arcane, and meditative arts.\n\nAnd the great wizard Placeholder, master of magicks, was said to know a hundred and one maneuvers, and could weave all manner of magicks; for every opponent placed in her way she employed a variety of spellcraft, bladecraft, or spirit-working seemingly designed to defeat that opponent in particular. Each of these was executed with the mastery of someone who had spent a lifetime perfecting it, cementing their position as the supreme master of the third sphere.\"\n\n- Arcanists of Myth and Legend, Vol. IV",
+    "description": "\"So it was that the arcanist Placeholder dealt a final, decisive strike to the Master of the School of the Fifth Dragon Fist, completing the trial that had been laid before her. The School's council gathered and summarily declared Placeholder worthy of learning the secret of the Fifth Dragon, the final chakra that completed one of Placeholder's great theses of power. With it unlocked, Placeholder had mastered the pathways which allowed him to freely manipulate energy between his corporeal being and his environment, forging a unified practice of the martial, arcane, and meditative arts.\r\n\r\nAnd the great wizard Placeholder, master of magicks, was said to know a hundred and one maneuvers, and could weave all manner of magicks; for every opponent placed in her way she employed a variety of spellcraft, bladecraft, or spirit-working seemingly designed to defeat that opponent in particular. Each of these was executed with the mastery of someone who had spent a lifetime perfecting it, cementing their position as the supreme master of the third sphere.\"\r\n\r\n- Arcanists of Myth and Legend, Vol. IV",
     "condition": null,
     "action": "0 AP - Interrupt (any time)",
     "cost": "Expend the use of any number of Discipline/Martial/Spell Encounter Techniques",
@@ -2159,7 +2159,7 @@
     "action": "1 AP - Interrupt (any time)",
     "cost": null,
     "target": "A creature you can see",
-    "effects": "The next attack against the target's Dodge or Parry Defense made by you or someone you choose has Good Luck. Then, make an Academics attack against the target's Instinct Defense. If it hits, gain [Spades] Extra Successes, then learn one of the following per success: Parry/Dodge Defense and Harried stacks; Accuracy and Damage with wielded weapons; Physical Resist; Fire/Frost/Brilliant/Shadow Resists; Vital/Mental/Instinct Defenses and Vulnerable stacks.",
+    "effects": "The next attack against the target's Dodge or Parry Defense made by you or someone you choose has Good Luck. Then, make an Academics attack against the target's Vigilant Defense. If it hits, gain [Spades] Extra Successes, then learn one of the following per success: Parry/Dodge Defense and Harried stacks; Accuracy and Damage with wielded weapons; Physical Resist; Fire/Frost/Brilliant/Shadow Resists; Vital/Mental/Vigilant Defenses and Vulnerable stacks.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Academics 3, (Acrobatics, Archery, Melee, or Meditation) 2",
@@ -2174,7 +2174,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -2300,7 +2300,7 @@
     "level_min": 3,
     "level_max": 3,
     "tags": null,
-    "description": "\"How on earth did you find a sealed bottle of rum in the desert?\"\n\n\"Well you see, greenhorn, there's an old code that us travelers live by. If you're low on water, you don't want to be drinkin', 'cause that'll dry you out even more, right? So, in such a case, you're honor-bound to stash your fullest hooch under a rock, pay it forward-like, and if you do then the land'll shine on you and you'll find water soon.\"\n\n\"That doesn't make a bit of sense. Why not just… not drink the booze? And how does stuffing a glass bottle under a rock make you more likely to find a stream?\"\n\n\"If you're so smart, why'd I find the rum back there? And why, unless my eyes mistake me, do I spot a little oasis just over that dune?\"",
+    "description": "\"How on earth did you find a sealed bottle of rum in the desert?\"\r\n\r\n\"Well you see, greenhorn, there's an old code that us travelers live by. If you're low on water, you don't want to be drinkin', 'cause that'll dry you out even more, right? So, in such a case, you're honor-bound to stash your fullest hooch under a rock, pay it forward-like, and if you do then the land'll shine on you and you'll find water soon.\"\r\n\r\n\"That doesn't make a bit of sense. Why not just… not drink the booze? And how does stuffing a glass bottle under a rock make you more likely to find a stream?\"\r\n\r\n\"If you're so smart, why'd I find the rum back there? And why, unless my eyes mistake me, do I spot a little oasis just over that dune?\"",
     "condition": null,
     "action": "Passive",
     "cost": null,
@@ -2469,7 +2469,7 @@
     "action": "1 AP",
     "cost": null,
     "target": "All onlookers who can see you",
-    "effects": "Make a Stealth attack against the Instinct Defense of each target. If it hits, the target cannot see you for 1 round or until you declare an attack against them. After this time you may hide as normal, with targets alerted to your likely presence.",
+    "effects": "Make a Stealth attack against the Vigilant Defense of each target. If it hits, the target cannot see you for 1 round or until you declare an attack against them. After this time you may hide as normal, with targets alerted to your likely presence.",
     "builder_notes": null,
     "special": "You may discard a card at any time to regain a use of this Technique.",
     "prereqs": "Stealth 4",
@@ -2484,7 +2484,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -2571,7 +2571,7 @@
     "action": "4 AP",
     "cost": null,
     "target": null,
-    "effects": "Instantly assume a disguise with Masquerade as though you flipped a 13, but as a generic nondescript person. While in this disguise, you have Good Luck on Masquerade flips, and for 2 AP in a social contest you may make a Strategic statement using Masquerade.",
+    "effects": "Instantly assume a disguise with Masquerade as though you flipped a 13, but as a generic nondescript person. While in this disguise, you have Good Luck on Masquerade flips, and for 2 AP in a social encounter you may make a Strategic statement using Masquerade.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Masquerade 5",
@@ -2586,7 +2586,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -2709,10 +2709,10 @@
     "tags": "Social, Buildable, Encounter",
     "description": null,
     "condition": null,
-    "action": "2 AP, during a social contest",
+    "action": "2 AP, during a social encounter",
     "cost": null,
     "target": null,
-    "effects": "Make a Strategic statement using Presence, Persuasion, or Rapport against a target in the social contest.",
+    "effects": "Make a Strategic statement using Presence, Persuasion, or Rapport against a target in the social encounter.",
     "builder_notes": "When you learn this, choose features that apply (see Features sheet). Points: Level 1: 2 basic; Level 2: 4 basic; Level 3: 6 basic/advanced; Level 4: 8 basic/advanced.",
     "special": null,
     "prereqs": "Insight [Level]",
@@ -2727,7 +2727,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -2772,7 +2772,7 @@
     "target": "A hostile creature within [Presence Skill Total] meters",
     "effects": "Make a Presence attack against the target's Mental Defense. If the attack hits, you Taunt the target 5 + [Hearts] times.",
     "builder_notes": null,
-    "special": "You may expend this during a social contest (while in the front, when you succeed on a Charismatic statement) to Taunt the target once.",
+    "special": "You may expend this during a social encounter (while in the front, when you succeed on a Charismatic statement) to Taunt the target once.",
     "prereqs": "Presence 2",
     "relevant_skills": "Presence",
     "use_cards": null,
@@ -2785,7 +2785,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -2884,12 +2884,12 @@
     "level_min": 2,
     "level_max": 2,
     "tags": "Social",
-    "description": "\"You understand that taking anything without permission is thievery, and punishable by law, yes?\"\n\n\"This? I bought this.\"\n\n\"So, despite the fact that the brewer from the market reported to the guard that a wildfolk was the one who stole a bottle of liquor from them, and also despite the fact that you're the only wildfolk we've seen in town for a week, you didn't steal it?\"\n\n\"Yeah, exactly. I would never steal, I have a deep appreciation for this kind of high quality handiwork. Guess there's another wildfolk running around who did it, and the merchant got mixed up. Happens all the time.\"",
+    "description": "\"You understand that taking anything without permission is thievery, and punishable by law, yes?\"\r\n\r\n\"This? I bought this.\"\r\n\r\n\"So, despite the fact that the brewer from the market reported to the guard that a wildfolk was the one who stole a bottle of liquor from them, and also despite the fact that you're the only wildfolk we've seen in town for a week, you didn't steal it?\"\r\n\r\n\"Yeah, exactly. I would never steal, I have a deep appreciation for this kind of high quality handiwork. Guess there's another wildfolk running around who did it, and the merchant got mixed up. Happens all the time.\"",
     "condition": null,
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "Whenever your party would gain Concessions in a social contest, as many times as you like you may discard a card and reduce those Concessions by 3 (or 4 if you discarded a Heart).",
+    "effects": "Whenever your party would gain Concessions in a social encounter, as many times as you like you may discard a card and reduce those Concessions by 3 (or 4 if you discarded a Heart).",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Persuasion or Rapport) 3",
@@ -2904,7 +2904,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -2933,7 +2933,7 @@
     "target": "Any number of hostile creatures within [Presence Skill Total] meters",
     "effects": "Make a Presence attack against the Mental Defense of each target. You Frighten each target hit 2 + [Hearts] times.",
     "builder_notes": null,
-    "special": "You may expend this during a social contest (while in front, when you succeed on a Charismatic statement) to Frighten the target once.",
+    "special": "You may expend this during a social encounter (while in front, when you succeed on a Charismatic statement) to Frighten the target once.",
     "prereqs": "Presence 3",
     "relevant_skills": "Presence",
     "use_cards": null,
@@ -2946,7 +2946,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -2972,7 +2972,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "You never suffer penalties for being a new or unfamiliar face in social situations. If your first statement in a social contest uses Rapport, it has Good Luck. If your party wins a social contest and chooses Disrespect, neither the other party nor onlookers will view your party poorly — they view you with sympathy and may grant Good Luck.",
+    "effects": "You never suffer penalties for being a new or unfamiliar face in social situations. If your first statement in a social encounter uses Rapport, it has Good Luck. If your party wins a social encounter and chooses Disrespect, neither the other party nor onlookers will view your party poorly — they view you with sympathy and may grant Good Luck.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Rapport 3",
@@ -2987,7 +2987,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3054,7 +3054,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "You have Good Luck on Streetwise flips to spread rumors and change opinions. Successful rumors spread to the immediate venue within an hour, then spread further each day. You also have Good Luck on flips to gather information about the rumor after the fact. Once per social contest, you can leverage the rumor for Good Luck twice on a social statement (if relevant and believed).",
+    "effects": "You have Good Luck on Streetwise flips to spread rumors and change opinions. Successful rumors spread to the immediate venue within an hour, then spread further each day. You also have Good Luck on flips to gather information about the rumor after the fact. Once per social encounter, you can leverage the rumor for Good Luck twice on a social statement (if relevant and believed).",
     "builder_notes": null,
     "special": null,
     "prereqs": "Streetwise 3",
@@ -3069,7 +3069,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3138,7 +3138,7 @@
     "target": "Any number of creatures within 2 meters of you",
     "effects": "Make a Presence attack against the Mental Defense of each target. You taunt each target hit 3 + [Hearts] times.",
     "builder_notes": null,
-    "special": "You may expend this during a social contest (while in front, when you succeed on a Charismatic statement) to Taunt every member of the other party once.",
+    "special": "You may expend this during a social encounter (while in front, when you succeed on a Charismatic statement) to Taunt every member of the other party once.",
     "prereqs": "Presence 4",
     "relevant_skills": "Presence",
     "use_cards": null,
@@ -3151,7 +3151,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3174,10 +3174,10 @@
     "tags": "Social, Theurgy Spell, Encounter, Subtle",
     "description": "A seemingly innocuous argument or remark serves as the vehicle for a powerful enchantment. The more you convince them, the more your enchantment warps their perception of everything you say, giving you incredibly powerful yet short-lived control over them.",
     "condition": null,
-    "action": "2 AP, during a social contest",
+    "action": "2 AP, during a social encounter",
     "cost": null,
     "target": null,
-    "effects": "Make a Strategic statement using Theurgy instead of the usual Skill. If the statement succeeds and your party ultimately wins the social contest, that person is dominated for the rest of the current encounter. At the start of each subsequent encounter you may Pitch a card to extend the effect. While dominated, the person treats anything you say as from a close trusted friend and will follow reasonable requests. Once the effect ends, they believe they acted of their own free will.",
+    "effects": "Make a Strategic statement using Theurgy instead of the usual Skill. If the statement succeeds and your party ultimately wins the social encounter, that person is dominated for the rest of the current encounter. At the start of each subsequent encounter you may Pitch a card to extend the effect. While dominated, the person treats anything you say as from a close trusted friend and will follow reasonable requests. Once the effect ends, they believe they acted of their own free will.",
     "builder_notes": null,
     "special": "Pitch a card at start of each encounter to extend the domination effect.",
     "prereqs": "Theurgy 5, Insight 4",
@@ -3192,7 +3192,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3313,7 +3313,7 @@
     "level_min": 5,
     "level_max": 5,
     "tags": "Encounter",
-    "description": "\"Your entire division was defeated by that band of rebels?\"\n\n\"It was their commander. She stood at the gate to their camp, attempting to block our way; as though we couldn't have easily scaled their walls! She spoke, in a calm voice that seemed to carry across the valley: \"Through me, first\". Our ladderbearers faltered, our archers couldn't take their eyes off of her. As our soldiers hesitated, a rebel battlemage from behind the walls sent fire raining onto our lines. They all broke and ran, constantly looking over their shoulders at the commander until they were back in the woods.\"",
+    "description": "\"Your entire division was defeated by that band of rebels?\"\r\n\r\n\"It was their commander. She stood at the gate to their camp, attempting to block our way; as though we couldn't have easily scaled their walls! She spoke, in a calm voice that seemed to carry across the valley: \"Through me, first\". Our ladderbearers faltered, our archers couldn't take their eyes off of her. As our soldiers hesitated, a rebel battlemage from behind the walls sent fire raining onto our lines. They all broke and ran, constantly looking over their shoulders at the commander until they were back in the woods.\"",
     "condition": null,
     "action": "1 AP",
     "cost": null,
@@ -3480,7 +3480,7 @@
     "action": "1 AP",
     "cost": null,
     "target": null,
-    "effects": "Make a weapon attack against the target's Instinct Defense. Instead of normal effects, if it hits then the target is Harried 3 + [Diamonds] times.",
+    "effects": "Make a weapon attack against the target's Vigilant Defense. Instead of normal effects, if it hits then the target is Harried 3 + [Diamonds] times.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Insight 2",
@@ -3495,7 +3495,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3694,12 +3694,12 @@
     "level_min": 3,
     "level_max": 3,
     "tags": "Martial",
-    "description": "\"Lord Radcliffe! How did you manage to convince the boss of that criminal gang to stop interfering in our trade routes?\"\n\n\"Well you see, my dear chamberlain, I agreed to meet the lady in her favorite ale house, and when I sat down at the table I projected an aura of firm confidence, never broke eye contact, and greeted her with a cordial yet strong voice. Then, when she was too busy trying to take the measure of my character, I stabbed her in the heart, arranged her cloak so it looked like she was simply napping on the table, and casually strolled out of the establishment.\"",
+    "description": "\"Lord Radcliffe! How did you manage to convince the boss of that criminal gang to stop interfering in our trade routes?\"\r\n\r\n\"Well you see, my dear chamberlain, I agreed to meet the lady in her favorite ale house, and when I sat down at the table I projected an aura of firm confidence, never broke eye contact, and greeted her with a cordial yet strong voice. Then, when she was too busy trying to take the measure of my character, I stabbed her in the heart, arranged her cloak so it looked like she was simply napping on the table, and casually strolled out of the establishment.\"",
     "condition": null,
     "action": "0 AP - Interrupt (you declare a weapon attack with a close-range weapon that isn't Heavy or two-handed)",
     "cost": "Discard a card",
     "target": null,
-    "effects": "Make a Stealth attack against the Instinct Defense of a target of the weapon attack (Good Luck if you discarded a Spade). If it hits, that target is unaware of the attack. You may not use this against a target more than once per attack.",
+    "effects": "Make a Stealth attack against the Vigilant Defense of a target of the weapon attack (Good Luck if you discarded a Spade). If it hits, that target is unaware of the attack. You may not use this against a target more than once per attack.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Stealth 4",
@@ -3714,7 +3714,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3731,7 +3731,7 @@
   },
   {
     "id": "T080",
-    "name": "Shugen Style - Spirit Bolt",
+    "name": "Shugen School - Firefly Leaves the Hand",
     "level_min": 1,
     "level_max": 1,
     "tags": "Discipline, Encounter",
@@ -3740,7 +3740,7 @@
     "action": "2 AP",
     "cost": null,
     "target": "A creature within [Meditation Skill Total] meters",
-    "effects": "Make a Meditation attack against the target's Dodge Defense. If the attack hits, it deals 3 + [Mind] Brilliant damage.",
+    "effects": "Make a Meditation attack against the target's Mental Defense. If it hits, it deals 2 + [Mind] Brilliant damage.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 2",
@@ -3755,7 +3755,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3772,7 +3772,7 @@
   },
   {
     "id": "T081",
-    "name": "Bear Style - Boulder Toss",
+    "name": "Bear School - Boulder Toss",
     "level_min": 2,
     "level_max": 2,
     "tags": "Martial, Encounter",
@@ -3781,7 +3781,7 @@
     "action": "0 AP - Interrupt (you hit with an attack to grapple a creature)",
     "cost": null,
     "target": "The creature you grappled",
-    "effects": "End the grapple and throw the target up to [half your Might Skill Total] meters in a straight line. If thrown into a sturdy object, the target strikes it (3 + [your Body] Physical damage to both). If thrown through a creature's space, make a Might attack against that creature's Dodge; if it hits they are struck for the same damage. Target lands in front of the obstacle.",
+    "effects": "End the grapple and throw the target up to [half your Brawl Skill Total] meters in a straight line. If thrown into a sturdy object, the target strikes it (3 + [your Body] Physical damage to both). If thrown through a creature's space, make a Brawl attack against that creature's Dodge; if it hits they are struck for the same damage. Target lands in front of the obstacle.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 3, Might 2",
@@ -3796,7 +3796,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3822,11 +3822,11 @@
   },
   {
     "id": "T082",
-    "name": "Channel Ki",
-    "level_min": 2,
-    "level_max": 2,
+    "name": "Great Old Oak School - Willow Springs Back",
+    "level_min": 3,
+    "level_max": 3,
     "tags": "Discipline",
-    "description": "\"It is told that, in the age before history, the ancient master Kodai was the first to temper the energy of the body. The tale is told across many villages, and few details are solidly known, save that Kodai's clan was a modest and self-reliant one pitted in war against a larger enemy clan. Kodai fasted and meditated in the harsh wilderness for many nights, and upon returning taught the secret to all the clan's warriors. With the overwhelming power of their greatest techniques, the clan fought off their enemy and lived in harmony into the mists of history.\"\n\n- Arcanists of Myth and Legend, Vol. I",
+    "description": "\"It is told that, in the age before history, the ancient master Kodai was the first to temper the energy of the body. The tale is told across many villages, and few details are solidly known, save that Kodai's clan was a modest and self-reliant one pitted in war against a larger enemy clan. Kodai fasted and meditated in the harsh wilderness for many nights, and upon returning taught the secret to all the clan's warriors. With the overwhelming power of their greatest techniques, the clan fought off their enemy and lived in harmony into the mists of history.\"\r\n\r\n- Arcanists of Myth and Legend, Vol. I",
     "condition": null,
     "action": "X AP (X must be [half your Meditation Skill Total] or less)",
     "cost": null,
@@ -3834,7 +3834,7 @@
     "effects": "Regain the use of an Encounter Technique with a Level of X or less.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Meditation 2",
+    "prereqs": "Meditation 4",
     "relevant_skills": "Meditation",
     "use_cards": null,
     "healing": null,
@@ -3846,7 +3846,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3854,7 +3854,7 @@
           "Meditation"
         ],
         "threshold": {
-          "base": 2
+          "base": 4
         }
       }
     ],
@@ -3863,7 +3863,7 @@
   },
   {
     "id": "T083",
-    "name": "Demon Style - Plague Fist",
+    "name": "Demon School - Sickness Takes the Flock",
     "level_min": 2,
     "level_max": 2,
     "tags": "Discipline, Martial, Encounter",
@@ -3872,7 +3872,7 @@
     "action": "2 AP",
     "cost": null,
     "target": null,
-    "effects": "Make an Unarmed weapon attack which deals its damage as Shadow. If the attack hits, before damage is dealt, the target gains [half your Meditation Skill Total] + [Spades] stacks of Necrotic, then [half your Meditation Skill Total] + [Diamonds] stacks of Vulnerable.",
+    "effects": "Make an Unarmed weapon attack against the target's Vital Defense. If it hits, it deals Shadow damage and the target gains [half your Meditation Skill Total] + [Diamonds] stacks each of Necrotic and Vulnerable.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 3, Meditation 2",
@@ -3887,7 +3887,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3913,21 +3913,21 @@
   },
   {
     "id": "T084",
-    "name": "Ignore Pain",
+    "name": "Great Old Oak School - Oak Sheds Its Leaves",
     "level_min": 2,
     "level_max": 2,
-    "tags": "Discipline, Encounter",
+    "tags": "Discipline",
     "description": "Fighting styles and magics that induce weakness in the body frequently rely on exploiting simple yet effective pressure points. For a master of bodily energy, revitalizing these points immediately restores function and pushes the body onward.",
     "condition": null,
     "action": "0 AP - Interrupt (any time)",
-    "cost": null,
+    "cost": "Discard X cards (maximum [half your Meditation Skill Total])",
     "target": null,
-    "effects": "Remove up to [half your Meditation Skill Total] total stacks of Crippled and/or Slowed from yourself.",
+    "effects": "You ignore the next [twice X] stacks of Bleeding, Crippled, Frightened, Necrotic, Slowed, Taunted, and/or Vulnerable you would gain this encounter.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 3",
     "relevant_skills": "Meditation",
-    "use_cards": null,
+    "use_cards": true,
     "healing": null,
     "features": null,
     "free_text": null,
@@ -3937,7 +3937,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3995,7 +3995,7 @@
   },
   {
     "id": "T086",
-    "name": "Shugen Style - Iron Skin",
+    "name": "Great Old Oak School - Bark Turns the Blade",
     "level_min": 2,
     "level_max": 2,
     "tags": "Discipline, Encounter",
@@ -4019,7 +4019,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -4036,7 +4036,7 @@
   },
   {
     "id": "T087",
-    "name": "Shugen Style - Through the Void",
+    "name": "Shugen School - Water Fills the Empty Vessel",
     "level_min": 2,
     "level_max": 2,
     "tags": "Discipline, Encounter",
@@ -4045,7 +4045,7 @@
     "action": "1 AP",
     "cost": null,
     "target": "A creature within [Meditation Skill Total] meters",
-    "effects": "Teleport to any empty space adjacent to the target. You may then make a Meditation attack against the target's Mental Defense; if it hits, the target Teleports into the space you were originally in.",
+    "effects": "Teleport to an empty space adjacent to the target. You may then make a Meditation attack against its Mental Defense. If it hits, the target Teleports into the space you left and is Slowed 1 + [Spades] times.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 3",
@@ -4060,7 +4060,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -4077,7 +4077,7 @@
   },
   {
     "id": "T088",
-    "name": "Snake Style - Heelbiter",
+    "name": "Snake School - Heelbiter",
     "level_min": 2,
     "level_max": 2,
     "tags": "Martial, Encounter",
@@ -4089,8 +4089,8 @@
     "effects": "Make an Unarmed weapon attack against that creature. If it hits, the creature does not move or is not Pushed; their movement for that action or effect is Countered.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Brawl 3, Acrobatics 2",
-    "relevant_skills": "Brawl, Acrobatics",
+    "prereqs": "Brawl 3, Insight 2",
+    "relevant_skills": "Brawl, Insight",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -4101,7 +4101,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -4115,7 +4115,7 @@
       {
         "type": "skill",
         "options": [
-          "Acrobatics"
+          "Insight"
         ],
         "threshold": {
           "base": 2
@@ -4127,20 +4127,20 @@
   },
   {
     "id": "T089",
-    "name": "Snake Style - Chainbreaker",
-    "level_min": 2,
-    "level_max": 2,
+    "name": "Snake School - Slithering Hands",
+    "level_min": 4,
+    "level_max": 4,
     "tags": "Martial, Encounter",
     "description": "\"One of the most historically esteemed practitioners of the martial tradition of the Snake, Master Raha, is said to have been imprisoned by a local warring nation when he was a young man. Though he was strong in the art of the Snake, he was not a Master then, and he toiled in labor camps for long years under their oppressive regime. Every night and morning he meditated, looking for guidance and a way to free himself and others. One day his consciousness flowed outward into the manacles and chains that kept him hobbled, and he understood all tools and weapons as an extension of the bodies of others, and therefore their spirits. He broke his chains and defeated the guards, fighting with the chains they had placed on him as well as turning their own weapons against each other. After he freed the camp and returned to his monastery he taught of what he had learned, and the art of the Snake flourished for his wisdom.\"",
     "condition": "Your hands are empty, and you are unarmored",
-    "action": "1 AP - Interrupt (a weapon attack flip is made targeting only you against your Parry Defense, before its effects are resolved)",
+    "action": "0 AP - Interrupt (a weapon attack flip is made against only your Parry Defense, before the attack hits or misses)",
     "cost": null,
-    "target": "A creature within range of the attack, or the attacker",
-    "effects": "Make an Unarmed weapon attack flip; its result becomes X. Your Parry Defense against the attack becomes X. If you Parry it, the attack is instead made against the target you chose as though it had a flip result of X, then resolved normally.",
-    "builder_notes": null,
+    "target": "Another enemy adjacent to the attacker",
+    "effects": "Make an Unarmed weapon attack flip. Your Parry Defense against the attack is equal to its result. If you Parry the attack, it's redirected: it's made against the target instead, using your flip's result, and resolved normally.",
+    "builder_notes": "This is a normal flip, so you can play cards from your hand on it after seeing the attacker's result. It's one of the few ways to spend a card on defense.",
     "special": null,
-    "prereqs": "Brawl 3, Acrobatics 2, Meditation 2",
-    "relevant_skills": "Brawl, Acrobatics, Meditation",
+    "prereqs": "Brawl 5, Insight 4",
+    "relevant_skills": "Brawl, Insight",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -4151,7 +4151,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -4159,25 +4159,16 @@
           "Brawl"
         ],
         "threshold": {
-          "base": 3
+          "base": 5
         }
       },
       {
         "type": "skill",
         "options": [
-          "Acrobatics"
+          "Insight"
         ],
         "threshold": {
-          "base": 2
-        }
-      },
-      {
-        "type": "skill",
-        "options": [
-          "Meditation"
-        ],
-        "threshold": {
-          "base": 2
+          "base": 4
         }
       }
     ],
@@ -4195,7 +4186,7 @@
     "action": "2 AP",
     "cost": "1 Health, discard a card",
     "target": null,
-    "effects": "Choose Bloody, Necrotic, Vulnerability, or Psychosis Poison; create a fresh dose with Concentration +X and Potency [half X] (X = your Meditation Skill Total). Extra +1 Potency if matching suit was Pitched (Clubs/Bloody, Spades/Necrotic, Diamonds/Vulnerability, Hearts/Psychosis). Spend 1 AP to coat a weapon instead. You are immune to this poison. After a full rest, the poison loses potency.",
+    "effects": "Choose Bloody, Necrotic, Vulnerability, or Psychosis Poison; create a fresh dose with Concentration +X and Potency [half X] (X = your Meditation Skill Total). Extra +1 Potency if matching suit was Pitched (Clubs/Bloody, Spades/Necrotic, Diamonds/Vulnerability, Hearts/Psychosis). Spend 1 AP to coat a weapon instead. You ignore the effects of this poison. After a full rest, the poison loses potency.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 4, Resilience 3",
@@ -4210,7 +4201,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -4236,16 +4227,16 @@
   },
   {
     "id": "T091",
-    "name": "Shugen Style - Fist of the Third Dragon",
+    "name": "Shugen School - Dawn Wind Bends the Grass",
     "level_min": 3,
     "level_max": 3,
     "tags": "Discipline, Encounter",
-    "description": "By studying the wisdom and technique of the dragons, acolytes have learned how to channel power in unusual and impressive ways. The Third Dragon ruled its domain through fear and grandeur, and through its methods you can stagger and cower lesser minds.",
+    "description": "Drawing your breath down to your center and letting it go all at once, you send a wave of bright ki rolling out from your palms. Those caught in it feel their limbs grow heavy, as though wading against a current.",
     "condition": null,
     "action": "2 AP",
     "cost": null,
-    "target": "All creatures in a 3-meter-cone from you",
-    "effects": "Make a Meditation attack against each target's Mental Defense. The attack deals 1 + [Mind] Brilliant damage. If it hits, you Frighten the target 3 + [Hearts] times and Slow the target 3 + [Spades] times.",
+    "target": "All creatures in a 2-meter cone from you",
+    "effects": "Make a Meditation attack against each target's Mental Defense. If it hits, it deals 2 + [Mind] Brilliant damage and the target is Slowed 2 + [Spades] times.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 4",
@@ -4260,7 +4251,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -4277,7 +4268,7 @@
   },
   {
     "id": "T092",
-    "name": "Snake Style - Turn the Tables",
+    "name": "Snake School - Turn the Tables",
     "level_min": 3,
     "level_max": 3,
     "tags": "Martial, Encounter",
@@ -4286,11 +4277,11 @@
     "action": "0 AP - Interrupt (you successfully grapple a creature)",
     "cost": null,
     "target": "The creature you grappled",
-    "effects": "You use the target as a shield until the grapple ends. You may Parry with them as a Brawl weapon (Defense +0). If you successfully Parry an attack with the target, the attack instead targets their Parry Defense and is resolved accordingly.",
+    "effects": "You use the target as a shield until the grapple ends. You may Parry with them as a Brawl weapon (Defense +1). If you successfully Parry an attack with the target, the attack instead targets their Parry Defense and is resolved accordingly.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Brawl 4, Acrobatics 3",
-    "relevant_skills": "Brawl, Acrobatics",
+    "prereqs": "Brawl 4, Insight 3",
+    "relevant_skills": "Brawl, Insight",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -4301,7 +4292,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -4315,7 +4306,7 @@
       {
         "type": "skill",
         "options": [
-          "Acrobatics"
+          "Insight"
         ],
         "threshold": {
           "base": 3
@@ -4327,16 +4318,16 @@
   },
   {
     "id": "T093",
-    "name": "Harmonious Mending",
+    "name": "Great Old Oak School - Sap Seals the Wound",
     "level_min": 4,
     "level_max": 4,
     "tags": "Discipline",
-    "description": "Bringing your physical and spiritual being into alignment, you restore harmony to your body as well as re-balance your energies.",
+    "description": "A wounded tree doesn't heal the way flesh does. It seals the cut with sap and grows slowly over it, season after season. Settling your breath into that same patient rhythm, you let your body close its wounds a little at a time.",
     "condition": null,
     "action": "1 AP",
     "cost": "Discard X cards (maximum [half your Meditation Skill Total])",
     "target": null,
-    "effects": "Do each in order: 1. Reduce effects of each poison as though X hours passed. 2. Heal X + [Hearts discarded] Health. 3. Remove a stack of Bleeding per Club discarded, Necrotic per Spade, Vulnerable per Diamond, and Frightened or Taunted per Heart discarded.",
+    "effects": "At the start of each of your next X turns, you heal 2 Health. You also heal 1 Health immediately for each Heart discarded.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 5",
@@ -4351,7 +4342,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -4617,10 +4608,10 @@
     "name": "Ritual Magic",
     "level_min": 2,
     "level_max": 2,
-    "tags": null,
+    "tags": "Style",
     "description": "An ancient practice from times of less refined spellcasting, certain magical techniques allow multiple casters to pool their energies to empower a single ritual.",
     "condition": null,
-    "action": "Passive",
+    "action": "Passive (Style)",
     "cost": null,
     "target": null,
     "effects": "Whenever you could discard cards for a cost or effect of one of your Spells, a willing ally within [Sorcery or Theurgy Skill Total] meters may discard any number of those cards instead of you. Treat those cards as though you had discarded them yourself.",
@@ -4638,7 +4629,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -4675,7 +4666,7 @@
     "action": "2 AP",
     "cost": "Expend the use of a Spell Encounter Technique; X is its Level",
     "target": null,
-    "effects": "Choose one option then make a weapon attack. General options: range +[6×X] meters; Push [6×X]+[Spades] meters; target gains [3×X]+[Clubs] Bleeding; you gain [3×X]+1+[Hearts] Fire/Frost/Shadow Ward. Sorcery options: target Slowed [3×X]+[Spades]; Vulnerable [3×X]+[Diamonds]; Necrotic [3×X]+[Diamonds]. Theurgy options: Shift [6×X]+[Clubs] meters; Protected [3×X]+1+[Spades]; target Crippled [3×X]+[Clubs].",
+    "effects": "Choose one option then make a weapon attack. General options: range +[7×X] meters; Push [7×X]+[Spades] meters; target gains [3×X]+[Clubs] Bleeding; you gain [3×X]+1+[Hearts] Fire/Frost/Shadow Ward. Sorcery options: target Slowed [2×X]+[Spades]; Vulnerable [2×X]+[Diamonds]; Necrotic [2×X]+[Diamonds]. Theurgy options: Shift [7×X]+[Clubs] meters; Protected X+1+[Spades]; target Crippled X+1+[Clubs].",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics, Archery, or Melee) 3, (Sorcery or Theurgy) 3",
@@ -4690,7 +4681,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -4774,7 +4765,7 @@
     "level_min": 2,
     "level_max": 2,
     "tags": "Duplicate",
-    "description": "\"What does this weird spell do again?\"\n\n\"As was explained in the mission briefing, this will allow our entire team to maintain telepathic communication even across the entire-\"\n\n\"Woah woah woah, listen we've worked together for a while now but I don't want no witch reading my mind.\"\n\n\"...if I were to explain the difference between psychic refraction and infiltration to you, in the medium of arcane transmission, would it mean a thing to you?\"\n\n\"Nope.\"\n\n\"Okay, well, all you need to know is that it's more like having two cans with a string tied between them and yelling into it, except there are 6 cans and we each have one, and if you don't pick one up you're not getting paid. Just don't stuff the can into the place in your mind where you keep memories of your first kiss, and we'll all be better for it.\"",
+    "description": "\"What does this weird spell do again?\"\r\n\r\n\"As was explained in the mission briefing, this will allow our entire team to maintain telepathic communication even across the entire-\"\r\n\r\n\"Woah woah woah, listen we've worked together for a while now but I don't want no witch reading my mind.\"\r\n\r\n\"...if I were to explain the difference between psychic refraction and infiltration to you, in the medium of arcane transmission, would it mean a thing to you?\"\r\n\r\n\"Nope.\"\r\n\r\n\"Okay, well, all you need to know is that it's more like having two cans with a string tied between them and yelling into it, except there are 6 cans and we each have one, and if you don't pick one up you're not getting paid. Just don't stuff the can into the place in your mind where you keep memories of your first kiss, and we'll all be better for it.\"",
     "condition": null,
     "action": "2 AP",
     "cost": null,
@@ -5137,7 +5128,7 @@
     "condition": null,
     "action": "2 AP",
     "cost": null,
-    "target": "A circular area 2 meters in radius, centered on a space within [Theurgy Skill Total] meters",
+    "target": "Burst 2, centered on a space within [Theurgy Skill Total] meters",
     "effects": "All plant life in target spaces grows as though for an entire season. In most climates, affected terrain has up to [Mind] levels of Difficult Terrain and additional effects may apply.",
     "builder_notes": null,
     "special": null,
@@ -5153,7 +5144,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": "Goblin Game",
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -5470,7 +5461,7 @@
     "action": "1 AP",
     "cost": null,
     "target": "Yourself or an ally within [Theurgy Skill Total] meters",
-    "effects": "Make a Theurgy spell attack against the Mental Defense of each enemy within 3 meters of the target. The target Frightens each creature hit 3 + [Hearts] times.",
+    "effects": "Make a Theurgy spell attack against the Mental Defense of each enemy in Burst 3 of the target. The target Frightens each creature hit 3 + [Hearts] times.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 4",
@@ -5485,7 +5476,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -5511,7 +5502,7 @@
     "action": "1 AP",
     "cost": null,
     "target": "Yourself or an ally within [Theurgy Skill Total] meters",
-    "effects": "Make a Theurgy spell attack against the Mental Defense of each enemy within 3 meters of the target. The target Taunts each creature hit 3 + [Hearts] times.",
+    "effects": "Make a Theurgy spell attack against the Mental Defense of each enemy in Burst 3 of the target. The target Taunts each creature hit 3 + [Hearts] times.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 4",
@@ -5526,7 +5517,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -5551,7 +5542,7 @@
     "condition": null,
     "action": "2 AP",
     "cost": null,
-    "target": "An area [Theurgy Skill Total] meters in radius, centered on a point within [twice Theurgy Skill Total] meters (no line of sight required)",
+    "target": "Burst [Theurgy Skill Total], centered on a point within [twice Theurgy Skill Total] meters (no line of sight required)",
     "effects": "Create powerful tremors lasting for the encounter. All affected terrain has 1 level of Difficult Terrain. Any creature in the area when the Spell begins, moves/is Pushed into it, or ends their turn there is Crippled twice and Harried twice. At encounter's end, structures and terrain may suffer permanent damage.",
     "builder_notes": null,
     "special": null,
@@ -5567,7 +5558,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -5746,7 +5737,7 @@
     "level_min": 1,
     "level_max": 1,
     "tags": "Sorcery Spell, Encounter",
-    "description": "\"Here we are at last, Conflagrator. We shall finally see, once and for all, whether my blade or your magic shall prove more nimble!\"\n\n\"Listen, Ikami, I really don't have time for this. How's this sound: you don't get that stupid toothpick of a sword anywhere near me, and I don't turn you into a fine pink mist. Fair?\"",
+    "description": "\"Here we are at last, Conflagrator. We shall finally see, once and for all, whether my blade or your magic shall prove more nimble!\"\r\n\r\n\"Listen, Ikami, I really don't have time for this. How's this sound: you don't get that stupid toothpick of a sword anywhere near me, and I don't turn you into a fine pink mist. Fair?\"",
     "condition": null,
     "action": "2 AP - Interrupt (A weapon attack is declared against you)",
     "cost": null,
@@ -5942,7 +5933,7 @@
     "action": "2 AP",
     "cost": null,
     "target": "Up to [Sorcery Skill Total] connected spaces within [Sorcery Skill Total] meters; each 3 meters tall",
-    "effects": "You summon a wall of ice that lasts for the encounter. Creatures that would be in a space the wall occupies are moved to the nearest unoccupied adjacent space. Each space of wall has 4 Health and [Mind] Soak against all damage except Fire. When a space loses all Health, that section is destroyed.",
+    "effects": "You summon a wall of ice that lasts for the encounter. Creatures that would be in a space the wall occupies are moved to the nearest unoccupied adjacent space. Each space of wall has 4 Health and [Mind] Resist against all damage except Fire. When a space loses all Health, that section is destroyed.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Sorcery 4",
@@ -5957,7 +5948,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6018,10 +6009,10 @@
     "name": "Lawman's Hand",
     "level_min": 1,
     "level_max": 1,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "With some basic anatomic knowledge you know how to reliably incapacitate a foe instead of killing them, hopefully (for them) to stand trial in a formal legal process rather than for more nefarious purposes.",
     "condition": null,
-    "action": "Passive (Stance)",
+    "action": "Passive (Style)",
     "cost": null,
     "target": null,
     "effects": "You do not suffer Bad Luck as usual for making non-lethal attacks.",
@@ -6039,7 +6030,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6059,10 +6050,10 @@
     "name": "Disciple of the Flowing Hand",
     "level_min": 2,
     "level_max": 2,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "Thanks to your training in the style of unarmored fighting, you easily flow like water around your weighed-down opponents.",
     "condition": "You are not wearing armor",
-    "action": "Passive (Stance)",
+    "action": "Passive (Style)",
     "cost": null,
     "target": null,
     "effects": "Attacks against your Dodge or Parry Defense have Bad Luck.",
@@ -6080,7 +6071,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6101,13 +6092,13 @@
     "name": "Furious Rage",
     "level_min": 2,
     "level_max": 2,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "You keep your bloodrage on a short leash, and at a moment's notice you can let loose and become a fearsome but reckless warrior.",
     "condition": null,
-    "action": "Passive (Stance)",
+    "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "While in this Stance: You may not Parry. If a target Parries or is hit by one of your attacks, they gain a stack of Bleeding. Ignore any stacks of Taunted or Frightened you have. Ignore any penalties from being Wounded.",
+    "effects": "While in this Style: You may not Parry. If a target Parries or is hit by one of your attacks, they gain a stack of Bleeding. Ignore any stacks of Taunted or Frightened you have. Ignore any penalties from being Wounded.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Might 3, Resilience 2",
@@ -6122,7 +6113,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6151,10 +6142,10 @@
     "name": "Hand of Chaos",
     "level_min": 2,
     "level_max": 2,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "Allowing your hand to be guided by the subtle winds of fate, your fighting sometimes turns up surprising results.",
     "condition": null,
-    "action": "Passive (Stance)",
+    "action": "Passive (Style)",
     "cost": null,
     "target": null,
     "effects": "Whenever you make an attack, Sift 1 card and add its suit to the pool.",
@@ -6172,7 +6163,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6192,10 +6183,10 @@
     "name": "Indomitable Phalanx",
     "level_min": 2,
     "level_max": 2,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "With a wide guard and intense focus, you can account for attacks from an entire squad of soldiers.",
     "condition": null,
-    "action": "Passive (Stance)",
+    "action": "Passive (Style)",
     "cost": null,
     "target": null,
     "effects": "At all times, you may ignore up to 2 stacks of Harried you have.",
@@ -6213,7 +6204,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6243,10 +6234,10 @@
     "name": "Placeholder's Lengthy Ley-weaving",
     "level_min": 2,
     "level_max": 2,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "\"...and so, as the story goes, the mighty Placeholder was so in-tune with the flow of magic that he could grasp the very lines of power that lie within the earth, controlling his spells through them as one does a marionette.\"",
     "condition": null,
-    "action": "Passive (Stance)",
+    "action": "Passive (Style)",
     "cost": null,
     "target": null,
     "effects": "Your Spells and non-weapon-attack Disciplines have their Ranges increased by 3 meters.",
@@ -6264,7 +6255,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6283,13 +6274,13 @@
   },
   {
     "id": "T134",
-    "name": "Lion Style - Eternal Riposte",
+    "name": "Lion School - Eternal Riposte",
     "level_min": 2,
     "level_max": 2,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "\"Our pirates boarded the ship to find the crew hiding belowdecks, and a single woman standing before us. She drew a solitary blade, a real modest affair, and simply said 'I always follow when dancing'. We thought she was trying to throw us so we just surrounded her and charged with our weapons, but she swept aside each attack and every poor bastard that took a swing at her got cut in return. By the end of it she was standing perfectly still, and we looked like we had all fallen into a pile of razors.\"",
     "condition": "You are wielding a non-shield weapon in one hand, and the other is empty",
-    "action": "Passive (Stance) + Interrupt reaction",
+    "action": "Passive (Style) + Interrupt reaction",
     "cost": null,
     "target": null,
     "effects": "As an Interrupt when you Parry an attack, choose one: (a) For 0 AP, make a weapon attack against the attacker. (b) For 1 AP, use a Technique that takes no more than 2 AP and has you make a weapon attack against the attacker but no other targets.",
@@ -6307,7 +6298,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6334,13 +6325,13 @@
   },
   {
     "id": "T135",
-    "name": "Shugen Style - Spirit Hands",
+    "name": "Shugen School - Spirit Hands",
     "level_min": 2,
     "level_max": 2,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "A fundamental practice of the spiritual arts, you actively circulate your energy throughout your body to deliver powerful blows backed by spiritual power.",
     "condition": "Your hands are empty",
-    "action": "Passive (Stance)",
+    "action": "Passive (Style)",
     "cost": null,
     "target": null,
     "effects": "If your Unarmed weapon attacks would deal Physical damage, they instead deal it as Brilliant damage.",
@@ -6358,7 +6349,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6384,13 +6375,13 @@
   },
   {
     "id": "T136",
-    "name": "Tiger Style - Storm of Blades",
+    "name": "Tiger School - Storm of Blades",
     "level_min": 2,
     "level_max": 2,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "As a fighter perfects the art of two-weapon fighting, their style takes on a certain beauty. Every step carries one attack into another, blades dance about in a mesmerizing rhythm, and anyone who stands still to watch is sure to be cut to ribbons.",
     "condition": "You are wielding two non-shield weapons",
-    "action": "Passive (Stance) + reaction",
+    "action": "Passive (Style) + reaction",
     "cost": null,
     "target": null,
     "effects": "Once per round immediately after you make an attack with one of your weapons (before anything else), you may spend 1 AP to make an identical attack with your other weapon, applying any ability (but not weapon) effects from the initial attack.",
@@ -6408,7 +6399,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6439,10 +6430,10 @@
     "name": "Eagle Eyes",
     "level_min": 3,
     "level_max": 3,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "Sharpening your focus for a moment, you guide each shot to your target with unerring precision.",
     "condition": null,
-    "action": "Passive (Stance) + reaction",
+    "action": "Passive (Style) + reaction",
     "cost": null,
     "target": null,
     "effects": "Whenever you take an action involving one or more attacks with a ranged weapon, you may spend an extra 1 AP. If you do, those attacks have Good Luck twice.",
@@ -6460,7 +6451,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6481,10 +6472,10 @@
     "name": "Follow Through",
     "level_min": 3,
     "level_max": 3,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "When your blows fell an enemy you can carry the force from the attack forward, striking another foe down.",
     "condition": "You are wielding a two-handed close-range weapon",
-    "action": "Passive (Stance) + reaction",
+    "action": "Passive (Style) + reaction",
     "cost": null,
     "target": null,
     "effects": "When one of your weapon attacks with a two-handed close-range weapon Downs a creature, you may immediately make an attack with that weapon against another creature next to the initial target.",
@@ -6502,7 +6493,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6532,10 +6523,10 @@
     "name": "Inexhaustible Guardian",
     "level_min": 3,
     "level_max": 3,
-    "tags": "Stance",
+    "tags": "Style",
     "description": "As a pillar of courage and resilience on the battlefield, you never tire or falter under duress.",
     "condition": "You are wielding a shield",
-    "action": "Passive (Stance) + reaction",
+    "action": "Passive (Style) + reaction",
     "cost": null,
     "target": null,
     "effects": "Whenever you Parry an enemy's attack, gain 1 stack of Protected.",
@@ -6553,7 +6544,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6582,10 +6573,10 @@
     "name": "Overchanneling",
     "level_min": 3,
     "level_max": 3,
-    "tags": "Stance",
-    "description": "Many styles of warmage training focus on overwhelming power and raw eldritch offense over all else, and each of those that do have built their practices with this stance as a foundation. With a series of motions that leverage your entire body to gather magical energy and intricate double-handed gestures to keep control over it, you wring every last measure of potency from your incantations.",
+    "tags": "Style",
+    "description": "Many styles of warmage training focus on overwhelming power and raw eldritch offense over all else, and each of those that do have built their practices with this Style as a foundation. With a series of motions that leverage your entire body to gather magical energy and intricate double-handed gestures to keep control over it, you wring every last measure of potency from your incantations.",
     "condition": null,
-    "action": "Passive (Stance)",
+    "action": "Passive (Style)",
     "cost": null,
     "target": null,
     "effects": "Your damaging spell attacks and non-weapon discipline attacks deal +1 damage. You may not Parry.",
@@ -6603,7 +6594,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6740,6 +6731,1216 @@
         ],
         "threshold": {
           "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T144",
+    "name": "Distraction",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Encounter",
+    "description": "Trained in advanced infiltration methodology, you have a trick up your sleeve for every situation. When you skulk into a guarded area, you know just how to draw their attention in a way that allows you to handily pass them.",
+    "condition": null,
+    "action": "1 AP",
+    "cost": null,
+    "target": "Choose a point within 10 meters; this Technique targets all creatures within 5 meters of that point.",
+    "effects": "Make a Stealth attack against the Vigilant Defense of each target. If it hits, the target is distracted for 3 rounds (roughly 10-15 seconds - a brief moment to investigate), plus 1 additional round for each Extra Success. A creature stops being distracted only if an imminent threat or the start of combat draws their attention away - not simply by any other distraction. While distracted, a creature has Bad Luck on any flips to notice anything other than the distraction. A creature already paying close or specific attention to something when the attack is made is immune to this Technique.",
+    "builder_notes": null,
+    "special": "You may discard a card at any time to regain a use of this Technique.",
+    "prereqs": "Stealth 2",
+    "relevant_skills": "Stealth",
+    "use_cards": true,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Stealth"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T145",
+    "name": "Snake School - Striking Constrictor",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Martial, Encounter",
+    "description": "One of the basic maneuvers of the Snake school, known to dozens of other martial arts across the world, trains the user to turn an unarmed attack effortlessly into a limb lock.",
+    "condition": "Your hands are empty, and you are unarmored",
+    "action": "1 AP - Interrupt (you hit with an Unarmed weapon attack, after the attack is resolved)",
+    "cost": null,
+    "target": "The creature you hit",
+    "effects": "Make an Unarmed weapon attack with Good Luck against the target's Dodge or Parry Defense. If it hits, you grapple the target, as the Grapple maneuver.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 2, Insight 1",
+    "relevant_skills": "Brawl, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T146",
+    "name": "Snake School - Chainbreaker",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Martial, Encounter",
+    "description": null,
+    "condition": "Your hands are empty, and you are unarmored",
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "If you are grappled, the grapple ends. Then remove up to [half your Brawl Skill Total] total stacks of Bleeding, Crippled, and/or Slowed from yourself, and make an Unarmed weapon attack against the target.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Insight 2",
+    "relevant_skills": "Brawl, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T147",
+    "name": "Bear School - Shattering Slam",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Martial, Encounter",
+    "description": "Throwing the weight of your entire body into some poor soul, you slam into them with enough force to rattle their bones.",
+    "condition": "Your hands are empty",
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target. If the attack is Parried, the target gains a stack of Bleeding. If it hits, it deals no damage; instead the target gains 2 stacks of Bleeding, plus 1 for each Extra Success, and is Slowed 2 + [Spades] times.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Might 2",
+    "relevant_skills": "Brawl, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T148",
+    "name": "Bear School - Swatting Paw",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Martial, Encounter",
+    "description": "While lesser men hide behind armor and swing bits of metal at you, with the might of a bear you brush aside their puny attacks.",
+    "condition": "Your hands are empty",
+    "action": "0 AP - Interrupt (a weapon attack flip is made against your Parry Defense by a creature within range of your Unarmed weapon, before the attack hits or misses)",
+    "cost": null,
+    "target": "The attacking creature",
+    "effects": "Make an Unarmed weapon attack against the target. If it hits, you Parry the target's attack, and they are Frightened of you 1 + [Hearts] times.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Might 3",
+    "relevant_skills": "Brawl, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T149",
+    "name": "Bear School - The Grizzly Awakens",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Martial, Encounter",
+    "description": "With true mastery over the Bear school, you shatter the earth with the force of several bears and send a shockwave forward to violently destroy all in its path.",
+    "condition": "Your hands are empty",
+    "action": "3 AP",
+    "cost": null,
+    "target": "All creatures and large, unattended objects in a 3-meter cone. The area passes through objects and isn't blocked by them.",
+    "effects": "Make an Unarmed weapon attack against the Dodge Defense of each target creature. If it hits, it deals no damage; instead the target gains 3 stacks of Bleeding, plus 1 for each Extra Success, and is Slowed once. Any target object large enough to be affected is treated as though you had tried to knock it over or batter it down, using your Brawl Skill Total.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 5, Might 4",
+    "relevant_skills": "Brawl, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T150",
+    "name": "Demon School - Ripjaw Gambit",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "By tearing loose your own spirit's energy to fuel your attacks, you devastate your victim at a cost to yourself.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": "1 Health",
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Vital Defense. If it hits, it deals Shadow damage plus an extra [half your Meditation Skill Total].",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Meditation 3",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T151",
+    "name": "Demon School - Shepherd Opens the Gate",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "A corruption of traditional hand-to-hand ki maneuvers, by twisting your body's energy before unleashing it on your victim you pollute their vitality and sap the strength from their limbs.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Vital Defense. If it hits, it deals Shadow damage and the target gains [half your Meditation Skill Total] + [Diamonds] stacks each of Harried and Vulnerable.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Meditation 3",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T152",
+    "name": "Demon School - Circling Vulture",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "Abasi the Devil was known as a master of shadow magicks, but not commonly credited as a pioneer of the Demon school of supernatural arts. Unlike his contemporaries, however, he studied not in a monastery but instead from the corpses of hundreds of foes, torturing each to their last breath as he ripped their life from them. In doing so he perfected one of the zenith practices of the form, his so-called Wasting Claw that renders its victim so broken that many monks refuse to acknowledge it as a meditative practice at all, referring to it simply as base and terrible necromancy. The school later concealed his wisdom under a different name, but all Demon students know the circling vulture is no less dangerous than Abasi himself.",
+    "condition": null,
+    "action": "1 AP - Interrupt (you hit with an Unarmed weapon attack, after the attack is resolved)",
+    "cost": null,
+    "target": "The creature you hit",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, remove all stacks of Bleeding, Necrotic, and Vulnerable from the target. It loses Health equal to the number of stacks removed, up to [Meditation Skill Total].",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 5, Meditation 4",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T153",
+    "name": "Shugen School - Swallow Skims the Water",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "Grasping the ephemeral threads of energy that flow around another's spirit you pull yourself towards them, seeming to flash and blink through the air as you do so.",
+    "condition": null,
+    "action": "1 AP",
+    "cost": null,
+    "target": "A creature within [Meditation Skill Total] meters",
+    "effects": "Teleport to an empty space adjacent to the target, then make an Unarmed weapon attack against its Mental Defense. If it hits, it deals Brilliant damage.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Meditation 3",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T154",
+    "name": "Shugen School - Hand Rings the Bell",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "By striking a target's chakras with your ki you can disrupt the flow of their energy, interrupting their focus.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Mental Defense. If it hits, it deals Brilliant damage and the target is Slowed 2 + [Spades] times.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Meditation 2",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T155",
+    "name": "Shugen School - Tide Rolls Back the Shore",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "A cornerstone of the Shugen school, you strike your opponent with a burst of your energy to overwhelm their senses and render them defenseless.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Mental Defense. If it hits, it deals Brilliant damage and Pushes the target [Meditation Skill Total] + [Spades] meters.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Meditation 3",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T156",
+    "name": "Shugen School - Lantern Gutters in the Wind",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "A mark of true mastery, you focus a great weight of energy into your fists and aim for your foe's spiritual center, striking their metaphysical self instead of their physical body.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Mental Defense. If it hits, it deals Brilliant damage and the target is Crippled [half your Meditation Skill Total] + [Clubs] times.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 5, Meditation 4",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T157",
+    "name": "Shugen School - Great Wind Scatters the Leaves",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Discipline, Encounter",
+    "description": "Letting your energy burst from your body in a howling gale, you sweep your foes aside like autumn leaves while leaving your allies untouched.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "Any number of creatures within 2 meters of you",
+    "effects": "Choose a direction, then make a Meditation attack against each target's Mental Defense. If it hits, it deals 2 + [Mind] Brilliant damage and the target is Pushed [Meditation Skill Total] + [Spades] meters in that direction. If it misses, the target is Pushed 2 meters in that direction.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 5",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T158",
+    "name": "Demon School - Firefly Dies in the Hand",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Discipline, Encounter",
+    "description": "The Shugen masters teach their students to coax a firefly of ki from the palm and let it go. The first Demon monks found it simpler to close the fist. Held too close and soured with spite, that same mote of light rots whatever it touches.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "An adjacent creature",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, it deals 3 + [Mind] Shadow damage.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 2",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T159",
+    "name": "Demon School - Thief Empties the Vessel",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Encounter",
+    "description": "Shugen teaches that ki flows like water to fill an empty vessel. The Demon school noticed the flow runs both ways, and that a full vessel is easier to drink from.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "An adjacent creature",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, it deals 2 + [Mind] Shadow damage, and you may discard a card to heal 3 Health.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 3",
+    "relevant_skills": "Meditation",
+    "use_cards": true,
+    "healing": true,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T160",
+    "name": "Demon School - Dusk Wind Withers the Grass",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Encounter",
+    "description": "Where the Shugen breath rolls out like a warm dawn wind, the Demon school exhales something older and colder. Grass bends to the one and does not rise from the other.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "All creatures in a 2-meter cone from you",
+    "effects": "Make a Meditation attack against each target's Vital Defense. If it hits, it deals 2 + [Mind] Shadow damage and the target gains 2 + [Clubs] stacks of Bleeding.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 4",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T161",
+    "name": "Demon School - Bell Tolls a Dirge",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Encounter",
+    "description": "The Shugen strike rings a clear bell in the mind. The Demon school learned to crack it, and a cracked bell never rings true again.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within [Meditation Skill Total] meters",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, the target gains 4 + [Diamonds] stacks each of Vulnerable and Necrotic.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 3",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T162",
+    "name": "Demon School - Fawn Left to the Wolves",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Discipline, Encounter",
+    "description": "Forming your energy into a torrent of barbs and unleashing them upon an enemy, you shred their ki and cause their life force to drain from them.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within [Meditation Skill Total] meters",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, the target gains 2 + [Clubs] stacks of Bleeding, then it deals 2 + [Mind] Shadow damage plus 1 per stack of Bleeding the target has.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 5",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T163",
+    "name": "Great Old Oak School - Tree Withstands the Storm",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "The ancient school of hand-to-hand combat teaches one to stand strong, resist all that comes at you, then defeat your enemies once they are worn down.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Vigilant Defense. If it hits, you gain [half your Meditation Skill Total] + [Hearts] stacks of Protected.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Meditation 2",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T164",
+    "name": "Great Old Oak School - Oak Draws the Lightning",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "An ancient martial form that was the original cornerstone of the school, it is said to have been learned by a master who studied the energy of a great oak tree for an entire moon cycle. He taught his students to suffuse their bodies in power as they fought, dramatically improving their endurance.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Vigilant Defense. If it hits, the target is Taunted by you [half your Meditation Skill Total] + [Hearts] times, and you ignore Harried for 2 rounds.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Meditation 3",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T165",
+    "name": "Great Old Oak School - Old Growth Digs Deep",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "The oldest oaks have weathered a thousand storms by reaching down, not up. Settling your stance and your breath into the earth, you let what your enemies have done to you drain away, and give it back to them.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within range of your Unarmed weapon",
+    "effects": "Make an Unarmed weapon attack against the target's Vigilant Defense. If it hits, remove up to [half your Meditation Skill Total] total stacks of Bleeding, Crippled, Frightened, Necrotic, Slowed, Taunted, and/or Vulnerable from yourself, and it deals extra damage equal to the number of stacks removed. For the encounter, you can't be moved, Pushed, Shifted, or Teleported against your will.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 5, Meditation 4",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T166",
+    "name": "Great Old Oak School - Seasons Pass the Forest",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Martial, Encounter",
+    "description": "A forest has seen a thousand summers burn and a thousand winters freeze, and it is still standing. Steadying your breath like the slow turn of the year, you let the fire and frost of a sorcerer's spell wash over you and pass.",
+    "condition": null,
+    "action": "1 AP - Interrupt (a spell attack is made against your Dodge Defense, before it hits or misses)",
+    "cost": null,
+    "target": null,
+    "effects": "You may apply your Parry Defense with your Unarmed weapon against the attack instead, and you aren't Harried from applying your Defense to it. Then you gain [half your Meditation Skill Total] + [Hearts] stacks each of Fire Ward and Frost Ward.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Meditation 2",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T167",
+    "name": "Shugen School - Gaze of Pale Moonlight",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Discipline, Encounter",
+    "description": "Engaging your foe in a battle of wills, you meet their eyes with a stillness as cold and pale as moonlight. Their nerve falters, and their hands with it.",
+    "condition": null,
+    "action": "2 AP",
+    "cost": null,
+    "target": "A creature within [Meditation Skill Total] meters",
+    "effects": "Make a Meditation attack against the target's Mental Defense. If it hits, the target is Crippled 3 + [Clubs] times and Frightened of you 2 + [Hearts] times.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 3",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T168",
+    "name": "Shugen School - Arrow Finds Only Mist",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Encounter",
+    "description": "By attuning your energies to those of the world around you, you can seemingly step through thin air as a volley of arrows fills the place you were standing just a moment ago.",
+    "condition": null,
+    "action": "1 AP - Interrupt (an attack is declared against your Dodge Defense, before the attack flip is made)",
+    "cost": null,
+    "target": null,
+    "effects": "Teleport up to [half your Meditation Skill Total] meters. The attack no longer targets you.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 4",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T169",
+    "name": "Demon School - Blood Answers Blood",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Encounter",
+    "description": "When an opponent draws your blood, you send your energy through it and turn it against them, opening wounds of their own to match yours.",
+    "condition": null,
+    "action": "1 AP - Interrupt (a creature's attack makes you lose Health, after you lose it)",
+    "cost": null,
+    "target": "The attacker, if it is within [Meditation Skill Total] meters",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, it deals 2 + [Mind] Shadow damage and the target gains stacks of Bleeding equal to the Health you lost, up to [half your Meditation Skill Total].",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 4",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
         }
       }
     ],

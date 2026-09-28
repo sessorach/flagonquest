@@ -18,7 +18,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "For the attack the chosen weapon's range is increased by [four times X].",
+    "effects": "For the attack the chosen weapon's range is increased by [twice X].",
     "prereq": null
   },
   {
@@ -29,7 +29,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + 1 + [Hearts] stacks of [chosen Element] Ward.",
+    "effects": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + [Hearts] stacks of [chosen Element] Ward.",
     "prereq": "(Academics, Sorcery, or Theurgy) 2"
   },
   {
@@ -73,7 +73,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the attack hits or is Parried, the target is Harried X + [Diamonds] times.",
+    "effects": "If the attack hits or is Parried, the target is Harried 1 + X + [Diamonds] times.",
     "prereq": null
   },
   {
@@ -95,7 +95,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the attack hits, you may adjust the target's position in turn order by up to X + [Spades] times.",
+    "effects": "If the attack hits, you may Stagger the target up to [twice X] + [Spades] times.",
     "prereq": null
   },
   {
@@ -117,7 +117,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the attack hits, you gain X + 1 + [Spades] stacks of Protected.",
+    "effects": "If the attack hits, you gain X + [Spades] stacks of Protected.",
     "prereq": null
   },
   {
@@ -148,9 +148,9 @@
     "technique_name": "Battle Maneuver",
     "feature_name": "Elemental",
     "tier": "Basic",
-    "point_cost": 3,
+    "point_cost": 2,
     "description": null,
-    "effects": "When you choose this feature, choose Fire, Frost, or Shadow — the attack deals its damage as that type instead.",
+    "effects": "When you choose this feature, choose Fire, Frost, or Shadow — the attack deals that type of damage.",
     "prereq": "Sorcery 2"
   },
   {
@@ -181,7 +181,7 @@
     "technique_name": "Battle Maneuver",
     "feature_name": "Ascended Blade",
     "tier": "Advanced",
-    "point_cost": 3,
+    "point_cost": 2,
     "description": null,
     "effects": "You may have the attack deal its damage as Brilliant damage.",
     "prereq": "Composure, Meditation, or Theurgy 3"
@@ -192,7 +192,7 @@
     "technique_name": "Battle Maneuver",
     "feature_name": "Whirlwind",
     "tier": "Advanced",
-    "point_cost": 6,
+    "point_cost": 5,
     "description": null,
     "effects": "If your chosen weapon is a close-range weapon, the attack may target an additional target.",
     "prereq": null
@@ -201,11 +201,11 @@
     "id": "F019",
     "technique_id": "T072",
     "technique_name": "Battle Maneuver",
-    "feature_name": "Piercing Shot",
+    "feature_name": "Ricochet Shot",
     "tier": "Advanced",
-    "point_cost": 6,
+    "point_cost": 5,
     "description": null,
-    "effects": "If your chosen weapon is a ranged weapon, the attack may target an additional target as long as all targets are in a line from you.",
+    "effects": "If your chosen weapon is a ranged weapon, the attack may target an additional enemy adjacent to the first.",
     "prereq": null
   },
   {
@@ -359,7 +359,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "If the statement succeeds, the other party may only make social statements of the same type as this statement for the rest of the social contest. This effect ends if any of your party members make a statement of a different type.",
+    "effects": "If the statement succeeds, the other party may only make social statements of the same type as this statement for the rest of the social encounter. This effect ends if any of your party members make a statement of a different type.",
     "prereq": "Persuasion 3"
   },
   {
@@ -381,7 +381,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "(Succession) If the statement succeeds, choose one member of the other party. If you win the social contest, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Succession feature at a time.",
+    "effects": "(Succession) If the statement succeeds, choose one member of the other party. If you win the social encounter, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Succession feature at a time.",
     "prereq": "Presence 3"
   },
   {
@@ -392,7 +392,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social contest, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Succession feature at a time.",
+    "effects": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social encounter, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Succession feature at a time.",
     "prereq": null
   },
   {
@@ -403,7 +403,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social contest and chooses Win Over, the shift in the target's opinion will be permanent — they will treat you with a favorable attitude as though you are a friend. You may only apply one Succession feature at a time.",
+    "effects": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social encounter and chooses Win Over, the shift in the target's opinion will be permanent — they will treat you with a favorable attitude as though you are a friend. You may only apply one Succession feature at a time.",
     "prereq": "Rapport 3"
   },
   {
@@ -590,7 +590,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "Remove 1 stack of Bleeding from the target. Reduce the effects of each poison afflicting the target as though an hour had passed.",
+    "effects": "Remove 1 stack of Bleeding from the target. Remove 1 stack of each Poison effect affecting the target.",
     "prereq": null
   },
   {
@@ -810,7 +810,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "Sift [thrice X] cards, adding each of their suits to the suit pool for all attacks made.",
+    "effects": "Sift [three times X] cards, adding each of their suits to the suit pool for all attacks made.",
     "prereq": null
   },
   {
@@ -877,6 +877,28 @@
     "point_cost": 3,
     "description": null,
     "effects": "Each time the spell attack hits, on your next turn you may spend the AP used to cast the Spell to make a spell attack with all the same features against one of the targets. You may only apply one Shape feature to the Spell.",
+    "prereq": null
+  },
+  {
+    "id": "F081",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Bare-Handed",
+    "tier": "Basic",
+    "point_cost": 0,
+    "description": null,
+    "effects": "The attack must be made with an Unarmed weapon. When you learn this Technique, you may choose 2 additional points worth of features. You may only apply one copy of this feature.",
+    "prereq": null
+  },
+  {
+    "id": "F082",
+    "technique_id": "T072",
+    "technique_name": "Battle Maneuver",
+    "feature_name": "Fleet Step",
+    "tier": "Basic",
+    "point_cost": 1,
+    "description": null,
+    "effects": "If the attack hits, you may Outflank up to [twice X] + [Spades] times.",
     "prereq": null
   }
 ]

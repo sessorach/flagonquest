@@ -20,6 +20,10 @@ If you would Sift more cards than are left in your deck, shuffle your discard ba
 
 These are specific terms used in many items and abilities, used to consistently refer to a mechanic.
 
+#### Burst (X)
+
+A Burst affects the indicated space, plus every space within X meters of it, in a circle centered on that space. Burst 0 only affects the indicated space itself.
+
 #### Countered
 
 A Technique, attack, or other ability that is Countered is still expended as normal, as are any other resources spent to use it, but otherwise has no effect as though it were never used.
@@ -27,6 +31,10 @@ A Technique, attack, or other ability that is Countered is still expended as nor
 #### Difficult Terrain
 
 Sometimes conditions or features of terrain can give it degrees of Difficult Terrain. To cross a meter of space that has Difficult Terrain, a character takes an extra meter of Speed for each degree of Difficult Terrain on it. A character can still move at least 1 space in this way, no matter how many degrees of Difficult Terrain there are.
+
+#### Outflank
+
+When you Outflank, your position in turn order moves up that many places, to a minimum of first.
 
 #### Pushing
 
@@ -44,6 +52,10 @@ If the same effect has its Range both increased and decreased, 1 meter of each e
 
 Shifting is like moving, with two exceptions. Nobody may take any Interrupt actions to the movement, and when you Shift you ignore Difficult Terrain.
 
+#### Stagger
+
+When a creature is Staggered, its position in turn order moves down that many places, to a maximum of last.
+
 #### Summon
 
 A Summoned creature is under the command of the character who Summons it, has its own stats, acts on the turn of its summoner, and the summoner makes any flips for it. The Summoned creature does not gain AP as normal, but once per round the summoner may spend 2 AP at any time to grant the Summoned creature 4 AP. Once the summoner does this, they may not do so again for that creature until the end of their turn.
@@ -53,6 +65,10 @@ A Summoned creature may only make a normal attack once during its turn.
 #### Teleport
 
 When you teleport you disappear from your current location and reappear at your destination without moving through any other spaces. To Teleport you must be able to clearly see your destination, but don’t otherwise need a clear path to get there.
+
+#### Vigor
+
+A pool of points, granted by certain items and abilities, that can be spent to recover an expended Technique. You may spend Vigor equal to an expended Encounter Technique’s Level to regain a use of it.
 
 # Rules Tags
 
@@ -78,7 +94,7 @@ Encounter abilities are expended when you use them, and you regain their use whe
 
 #### [Fleeting]
 
-At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. Outside of combat encounters, remove 1 stack roughly every 6 seconds.
+At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. Outside of combat encounters, remove 1 stack roughly every 6 seconds. If you had no stacks of a Fleeting effect right before gaining some, skip the next removal that would apply to it — it starts losing stacks normally from the one after that.
 
 #### [Food]
 
@@ -98,7 +114,7 @@ To use a weapon or other item as an Implement, you must be holding or wearing it
 
 If an attack with a poisoned weapon successfully causes a creature to lose Health, that creature is exposed to the Poison. Make an attack, adding the Poison’s Concentration, against the target’s Vital Defense. If it hits, the target suffers the Poison’s effects. This is known as a poison attack, which occasionally has special interactions with some abilities and items.
 
-A Poison takes 2 AP to apply to a weapon or piece of ammunition. Weapons and ammunition remain poisoned for 1 hour or until they expose a creature to the Poison, and can only have one Poison at a time.
+A Poison takes 2 AP to apply to a weapon or piece of ammunition. Weapons and ammunition remain poisoned until they expose a creature to the Poison or the wielder gets a full night’s rest, and can only have one Poison at a time.
 
 Effects applied by Poisons do not expire normally. Instead, every hour 1 stack of each Poison effect is removed, and these stacks may not be removed any other way.
 
@@ -110,9 +126,9 @@ A Potion can be consumed to provide the imbiber with an effect. It takes 1 AP to
 
 Abilities with this tag can be learned more than once, and generally have special features based on how many times you learn them. (Noun, not the verb)
 
-#### [Stance]
+#### [Style]
 
-You may enter or leave a Stance at the start of your turn, before anything else happens. You may only be in one Stance at a time, and entering a Stance will cause you to leave any other Stance you are in. If the Stance lists a condition, you may only enter the Stance while you meet the condition, and if you don’t meet it at any time then you immediately leave the Stance.
+You may enter or leave a Style at the start of your turn, before anything else happens. You may only be in one Style at a time, and entering a Style will cause you to leave any other Style you are in. If the Style lists a condition, you may only enter the Style while you meet the condition, and if you don’t meet it at any time then you immediately leave the Style.
 
 #### [Subtle]
 
@@ -122,7 +138,7 @@ Others cannot tell when this ability is being used, discern its effects, or take
 
 #### Bleeding [Fleeting]
 
-When you remove a stack of Bleeding at the end of your turn, lose 1 Health.
+Each stack of this that decays at the end of your turn deals 1 Health loss.
 
 #### Crippled [Fleeting]
 
@@ -150,9 +166,7 @@ At any time if you have stacks of both Necrotic and Protected, remove 1 stack of
 
 #### Protected [Fleeting]
 
-Whenever you would lose Health, prevent 1 Health loss for each stack of Protected you have, then remove that many stacks of Protected.
-
-This does not apply to Health paid as a cost.
+If you would lose Health to something other than a cost, remove up to that many stacks of Protected instead.
 
 #### Slowed [Fleeting]
 
@@ -168,11 +182,11 @@ If the creature who Taunted you is incapacitated or otherwise removed from comba
 
 #### Vulnerable [Fleeting]
 
-For each stack of this, you suffer a -1 penalty to Vital, Mental, and Instinct Defenses.
+For each stack of this, you suffer a -1 penalty to Vital, Mental, and Vigilant Defenses.
 
 #### (Fire/Frost/Brilliant/Shadow) Ward [Fleeting]
 
-While you have any stacks of this, you have +1 Resist against the specified type of damage.
+While you have any stacks of this, you have +2 Resist against the specified type of damage. If you would lose Health to that damage type from something other than a cost, remove up to that many stacks instead.
 
 # Type Tags
 
@@ -202,7 +216,7 @@ Martial abilities include swordsmanship, karate, and every kind of fighting with
 
 #### [Social]
 
-Social abilities are specific conversational tactics, usually used in social contests.
+Social abilities are specific conversational tactics, usually used in social encounters.
 
 #### [Spell]
 
@@ -249,9 +263,9 @@ Before making a flip, a character may Gamble on it, taking a -2 penalty per Gamb
 
 A bonus success gained from Gambling or other sources, on top of the 1 success a flip already grants when it succeeds — only counts if the flip succeeds in the first place.
 
-#### Concession
+#### Pressure
 
-A successful social statement causes the target’s group to suffer 1 Concession, plus 1 Concession for each Extra Success. A group that reaches 10 Concessions loses the social contest.
+Circumstances piling up against the party during a social encounter, adding Bad Luck on Statements and Support checks alike, equal to the current total. Some effects let a character ignore Pressure (the Bad Luck doesn’t apply, but it keeps piling up toward the failure point) or remove it outright (it’s actually cleared) — removing is rarer and stronger. If it climbs high enough, the GM may end the check in failure outright.
 
 # Goblin Game Terms {Goblin Game}
 

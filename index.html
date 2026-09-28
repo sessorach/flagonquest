@@ -2429,7 +2429,7 @@ function DerivedStats({
   // caption under the Shallow Health track below.
   const shallowCurrent = Math.max(0, Math.min(currentHealth.shallow ?? shallowMax, shallowMax));
   const wounded = shallowCurrent <= 0;
-  const WOUND_PENALTY_KEYS = new Set(["speed", "parry_defense", "dodge_defense", "bodily_defense", "mental_defense", "instinct_defense"]);
+  const WOUND_PENALTY_KEYS = new Set(["speed", "parry_defense", "dodge_defense", "vital_defense", "mental_defense", "instinct_defense"]);
   const woundedDesc = (glossary.find(g => g.term === "Wounded") || {}).description
     || "Missing all Shallow Health — Bad Luck on all flips, and -2 to all Defenses and Speed.";
 
@@ -2505,9 +2505,9 @@ function DerivedStats({
       {block("Defenses", [
         ["Parry Defense",    8 + Math.max(st("Melee"), st("Brawl")), "= 8 + Melee or Brawl", "parry_defense"],
         ["Dodge Defense",    8 + Math.max(st("Acrobatics"), st("Brawl")), "= 8 + Acrobatics or Brawl", "dodge_defense"],
-        ["Bodily Defense",   8 + st("Resilience"), "= 8 + Resilience", "bodily_defense"],
+        ["Vital Defense",    8 + st("Resilience"), "= 8 + Resilience", "vital_defense"],
         ["Mental Defense",   8 + st("Composure"), "= 8 + Composure", "mental_defense"],
-        ["Instinct Defense", 8 + st("Insight"), "= 8 + Insight", "instinct_defense"],
+        ["Vigilant Defense", 8 + st("Insight"), "= 8 + Insight", "instinct_defense"],
       ])}
       {block("Resists", [
         ["Physical Resist",  essence, "= Essence", "physical_resist"],
@@ -2891,8 +2891,8 @@ const ITEM_STAT_FIELDS = [
   ["frost_resist", "Frost Resist"], ["brilliant_resist", "Brilliant Resist"],
   ["shadow_resist", "Shadow Resist"], ["speed", "Speed"],
   ["parry_defense", "Parry Defense"], ["dodge_defense", "Dodge Defense"],
-  ["bodily_defense", "Bodily Defense"], ["mental_defense", "Mental Defense"],
-  ["instinct_defense", "Instinct Defense"],
+  ["vital_defense", "Vital Defense"], ["mental_defense", "Mental Defense"],
+  ["instinct_defense", "Vigilant Defense"],
   ["shallow_health", "Shallow Health"], ["deep_health", "Deep Health"],
 ];
 
@@ -4026,38 +4026,54 @@ function parseSchoolList(text) {
 
 // "Craft 3" → { skill: "Craft", value: 3 }. Doesn't match "Craft 3-5"
 // or "Varies" — those stay null (unresolvable), on purpose.
-function parseSkillTotalText(text) {
-  const m = /^(\w+)\s+(\d+)$/.exec((text || "").trim());
-  return m ? { skill: m[1], value: Number(m[2]) } : null;
-}
-
-// A dollar-figure-style "N Gold" cost string → N.
-function parseGoldNumber(costStr) {
-  const m = /(\d+)/.exec(costStr || "");
-  return m ? Number(m[1]) : null;
-}
-
-// An item's Gold price, for resolving a recipe's "[Item's base price in
-// Gold]" Total Materials token — either a flat Cost, or (for a
-// Masterwork item priced per level, see InventoryTile's displayCost)
-// its Value Per Level × its lowest buildable Level, as a stand-in
-// baseline price since this is a browsing/reference view with no
-// specific level picked. null if neither is set — some items (mostly
-// still-unpriced Masterwork/Alchemy entries) just don't have a price
-// in the data yet.
-function itemGoldValue(item) {
-  if (item.value_per_level && item.levels && item.levels.length) {
-    return item.levels[0] * item.value_per_level;
+// "Mixology [twice the item's Level]", "Craft 5 + [the item's Level]",
+// and "Craft [4/6/8/9/10 by Level]" all resolve the same way, but only
+// once the item has exactly one fixed Level to resolve against — a
+// buildable range like Travel Rations' "Level 1-5" can't produce one
+// number here any more than a level-scaling Prereq Check threshold can
+// for an unchosen technique Level (same "flag readiness, don't guess"
+// rule), so it falls through to null (no badge, raw text still shows).
+// Doesn't attempt "Mixology or Survival [...]" (Food's two-skill OR) —
+// that was already unparseable before Level-scaling existed, not a
+// regression this introduces.
+function parseSkillTotalText(text, itemLevels) {
+  const raw = (text || "").trim();
+  const flat = /^(\w+)\s+(\d+)$/.exec(raw);
+  if (flat) return { skill: flat[1], value: Number(flat[2]) };
+  // The shared Masterwork/Alchemy curve (see design/balance.md) — not a
+  // single linear formula (Skill Total caps at 10, so a slope-2 line
+  // like the old "twice the Level" has no room left for a low-end
+  // offset without blowing past the cap by Level 5), so this is a
+  // literal by-Level lookup rather than an arithmetic expression like
+  // the other two patterns.
+  const bentCurve = /^(\w+)\s+\[4\/6\/8\/9\/10 by Level\]$/.exec(raw);
+  if (bentCurve && itemLevels && itemLevels.length === 1) {
+    const CURVE = [4, 6, 8, 9, 10];
+    return { skill: bentCurve[1], value: CURVE[itemLevels[0] - 1] };
   }
-  return parseGoldNumber(item.cost);
+  const twice = /^(\w+)\s+\[twice the item's Level\]$/.exec(raw);
+  if (twice && itemLevels && itemLevels.length === 1) {
+    return { skill: twice[1], value: itemLevels[0] * 2 };
+  }
+  const plusLevel = /^(\w+)\s+(\d+)\s*\+\s*\[the item's Level\]$/.exec(raw);
+  if (plusLevel && itemLevels && itemLevels.length === 1) {
+    return { skill: plusLevel[1], value: Number(plusLevel[2]) + itemLevels[0] };
+  }
+  return null;
 }
 
 // "Wood or Bone (if Carving), Metal (if Smithing)" → ["Wood","Bone","Metal"]
 // — strips the "(if School)" qualifier (see the KNOWN SIMPLIFICATION
 // above) and flattens "X or Y" into separate entries. "Varies" resolves
-// to null, same idea as parseSchoolList/parseSkillTotalText.
+// to null, same idea as parseSchoolList/parseSkillTotalText. So does
+// the literal "None" (Travel Rations, Basic Poison, Energizing Brew,
+// Spirit Quest Ointment all use it for "no Optional Materials at all")
+// — without this, "None" would parse as one literal Type named "None"
+// and show up as "or up to half None" in the Crafting tab instead of
+// just omitting the Optional clause.
 function parseTypesList(text) {
   const stripped = (text || "").replace(/\(if [^)]*\)/gi, "");
+  if (/^none$/i.test(stripped.trim())) return null;
   const parts = stripped.split(/,|\bor\b|\band\b/i).map(s => s.trim()).filter(Boolean);
   if (parts.length === 0 || parts.every(p => /^varies$/i.test(p))) return null;
   return [...new Set(parts)];
@@ -4075,6 +4091,7 @@ function matchesRecipeApplies(item, appliesToRaw) {
     if (key === "Category") return item.category === val;
     if (key === "Name") return item.name === val;
     if (key === "NameContains") return item.name.toLowerCase().includes(val.toLowerCase());
+    if (key === "NameNotContains") return !item.name.toLowerCase().includes(val.toLowerCase());
     return false;
   });
 }
@@ -4090,58 +4107,86 @@ function matchesRecipeApplies(item, appliesToRaw) {
 // browser can show each as its own way to craft the same item, rather
 // than picking one School arbitrarily or merging them back together.
 function recipesForItem(item, recipes) {
-  if (item.school || item.skill_total || item.total_materials) {
+  const applicable = recipes.filter(r => matchesRecipeApplies(item, r.applies_to));
+  const hasOwnOverride = item.school || item.skill_total || item.total_materials != null || item.main_materials;
+  if (!hasOwnOverride) return applicable;
+  // A field-by-field merge, not all-or-nothing: an item can override
+  // just the one field that varies per item (e.g. a Weapon states its
+  // own Total Materials, since price differs weapon to weapon, but
+  // still wants School/Skill Total/Main/Optional Types from the
+  // matching table row(s), since those don't). Merges over every
+  // matching table row rather than just the first, so an item craftable
+  // via more than one School (e.g. Weapons via Carving or Smithing)
+  // still gets one variant per School, each carrying the item's own
+  // override alongside that School's own Types. Total Materials is the
+  // one field where a specific RECIPE row can in turn override the
+  // item's own default — e.g. an Armor tier's "Upgrade from" recipes
+  // (reinforcing an existing lower-tier suit instead of building fresh)
+  // need a smaller Total Materials than that same item's other, fresh-
+  // build recipes, so the recipe row's own value wins whenever it's set,
+  // falling back to the item's default only when the recipe leaves it
+  // blank — exactly the every-other-existing-recipe case, so this stays
+  // backward compatible with nothing else needing to change.
+  if (applicable.length === 0) {
     return [{
       id: `item:${item.id}`, source: "item",
       school: item.school, skill_total: item.skill_total,
       total_materials: item.total_materials,
-      base_materials: item.base_materials, extra_materials: item.extra_materials,
+      main_materials: item.main_materials, optional_materials: item.optional_materials,
     }];
   }
-  return recipes.filter(r => matchesRecipeApplies(item, r.applies_to));
+  return applicable.map(r => ({
+    ...r,
+    id: `item:${item.id}:${r.id}`, source: "item",
+    school: item.school || r.school,
+    skill_total: item.skill_total || r.skill_total,
+    total_materials: r.total_materials != null ? r.total_materials : item.total_materials,
+    main_materials: item.main_materials || r.main_materials,
+    optional_materials: item.optional_materials || r.optional_materials,
+  }));
 }
 
 // Turns a recipe's raw text/number fields into the concrete values
 // Skill/Materials eligibility actually check against, resolved for one
-// specific item. Two shapes, matching the two crafting models — see the
-// comment on CRAFTING_RECIPE_MAP in convert.py for why they're
-// separate: "value" (Total Materials tied to the item's Gold cost —
-// needed for the "[Item's base price in Gold]" token) for Masterwork/
-// Alchemy-style open-ended categories, "slots" (a small fixed Primary/
-// Leeway slot count) for the hand-authored Weapon/Armor/Tools table.
-// A per-item override (recipe.source === "item") is always "value";
-// a table-sourced recipe picks based on its own Kind column.
-function resolveRecipeRequirements(recipe, item) {
-  const skillParsed = parseSkillTotalText(recipe.skill_total);
+// specific item (and, for a Masterwork item, whichever base item is
+// currently selected — see the rulebook's "base item" rules). One
+// shape for every recipe now: gather Total Materials worth of
+// material, at least half a Main Type, up to half an Optional Type.
+// A Masterwork item doesn't list its own Optional Type (see ITEM_MAP's
+// comment in convert.py) — it comes from the chosen base item's own
+// Main Type instead. Takes that already-resolved list of Types
+// (baseItemMainTypes), not the base item object itself — a base item
+// like Light Armor doesn't carry its own Main Type directly (it's
+// craftable via three different Schools, each with its own Type, see
+// resolveBaseItemMainTypes), so the caller resolves that ambiguity
+// once per item rather than this function reaching back into the full
+// recipe table for every variant.
+function resolveRecipeRequirements(recipe, item, baseItemMainTypes) {
+  const skillParsed = parseSkillTotalText(recipe.skill_total, item.levels);
   const schools = parseSchoolList(recipe.school);
   const skillName = skillParsed ? skillParsed.skill : null;
   const skillValue = skillParsed ? skillParsed.value : null;
+  const totalMaterials = typeof recipe.total_materials === "number" ? recipe.total_materials : null;
+  const mainTypes = parseTypesList(recipe.main_materials);
+  const optionalTypes = recipe.optional_materials
+    ? parseTypesList(recipe.optional_materials)
+    : (baseItemMainTypes && baseItemMainTypes.length ? baseItemMainTypes : null);
+  return { schools, skillName, skillValue, totalMaterials, mainTypes, optionalTypes };
+}
 
-  if (recipe.source === "item" || recipe.kind_raw === "Value") {
-    // convert.py's clean() turns a pure-digit CSV cell into a real
-    // number (e.g. Total Materials = 3), so this can arrive as either
-    // a number or text like "[Item's base price in Gold]" — never
-    // assume a string.
-    let totalMaterials = null;
-    if (typeof recipe.total_materials === "number") {
-      totalMaterials = recipe.total_materials;
-    } else if (typeof recipe.total_materials === "string") {
-      const rawTotal = recipe.total_materials.trim();
-      if (/^\d+$/.test(rawTotal)) totalMaterials = Number(rawTotal);
-      else if (/base price in Gold/i.test(rawTotal)) totalMaterials = itemGoldValue(item);
-    }
-    return {
-      kind: "value", schools, skillName, skillValue, totalMaterials,
-      baseTypes: parseTypesList(recipe.base_materials),
-      extraTypes: parseTypesList(recipe.extra_materials),
-    };
-  }
-
-  const slots = [
-    { types: parseTypesList(recipe.primary_types), count: Number(recipe.primary_count) || 0 },
-    { types: parseTypesList(recipe.leeway_types), count: Number(recipe.leeway_count) || 0 },
-  ].filter(s => s.count > 0 && s.types);
-  return { kind: "slots", schools, skillName, skillValue, slots };
+// A base item's own Main Type(s), for feeding a Masterwork item's
+// Optional Type (see resolveRecipeRequirements). Unlike a Masterwork
+// item, a base item like a Weapon or Light Armor doesn't state one
+// fixed Main Type on itself — it's craftable via more than one School,
+// each with its own Type (Wood/Bone via Carving, Metal via Smithing,
+// etc.) — so this takes the union of every craftable variant's Main
+// Types rather than picking one arbitrarily.
+function resolveBaseItemMainTypes(baseItem, craftingRecipes) {
+  if (!baseItem) return [];
+  const variants = recipesForItem(baseItem, craftingRecipes);
+  const types = new Set();
+  variants.forEach(r => (parseTypesList(r.main_materials) || []).forEach(t => types.add(t)));
+  return [...types];
 }
 
 // Artisanal Training (Duplicate) lets a player choose a creation School
@@ -4198,31 +4243,20 @@ function gatherOwnedMaterials(inventory, items, customMaterials) {
   return owned;
 }
 
+// KNOWN SIMPLIFICATION: checks "at least 1 owned material of any listed
+// Main Type" (not one of *each* — Main Types are usually alternatives
+// tied to which School you use, e.g. Wood or Bone for Carving) and
+// "enough total qualifying quantity" against the combined Main+Optional
+// pool, not the precise "at least half must actually be Main" split a
+// real craft would enforce — flags clearly-not-ready reliably, not a
+// precise transaction (this is a reference browser, not a craft action;
+// see the CraftingSection doc comment).
 function craftingMaterialsEligibility(req, ownedMaterials, itemLevel) {
   const usable = ownedMaterials.filter(m => m.level >= itemLevel);
-  if (req.kind === "slots") {
-    // Each slot group just needs enough qualifying quantity on its own
-    // — small fixed counts (see Primary/Leeway Count in
-    // crafting_recipes.csv), no percentage math. KNOWN SIMPLIFICATION:
-    // a material matching more than one group's Types (e.g. one that's
-    // both Wood and Cloth) can count toward each group at once here,
-    // rather than being spent once — same "flags clearly-not-ready
-    // reliably, not a precise transaction" spirit as the value model.
-    if (req.slots.length === 0) return null;
-    return req.slots.every(slot => {
-      const qty = usable.reduce((sum, m) => sum + (m.types.some(t => slot.types.includes(t)) ? m.qty : 0), 0);
-      return qty >= slot.count;
-    });
-  }
-  // "value" kind — see the KNOWN SIMPLIFICATION note at the top of this
-  // section: checks "at least 1 owned material of any listed Base
-  // Type" (not one of *each* — Base Types are usually alternatives
-  // tied to which School you use) and "enough total qualifying
-  // quantity," not the precise per-slot/Extra-cap assignment.
-  if (req.totalMaterials == null || !req.baseTypes) return null;
-  const hasABaseType = req.baseTypes.some(t => usable.some(m => m.types.includes(t)));
-  if (!hasABaseType) return false;
-  const allowedTypes = new Set([...req.baseTypes, ...(req.extraTypes || [])]);
+  if (req.totalMaterials == null || !req.mainTypes) return null;
+  const hasAMainType = req.mainTypes.some(t => usable.some(m => m.types.includes(t)));
+  if (!hasAMainType) return false;
+  const allowedTypes = new Set([...req.mainTypes, ...(req.optionalTypes || [])]);
   const totalQty = usable.reduce((sum, m) => sum + (m.types.some(t => allowedTypes.has(t)) ? m.qty : 0), 0);
   return totalQty >= req.totalMaterials;
 }
@@ -4255,17 +4289,23 @@ function slotCost(item) {
 }
 
 // Which filter checkbox an item's row falls under — a browsing aid
-// derived from item.category (and req.kind for the hand-authored
-// Weapon/Armor/Tools set, which doesn't share one Category), not a new
-// data column, so it stays in sync with whatever's already in
-// items.csv/crafting_recipes.csv automatically instead of needing its
-// own tag maintained by hand.
-function craftingGroup(item, req) {
+// derived entirely from item.category, not a new data column, so it
+// stays in sync with whatever's already in items.csv automatically
+// instead of needing its own tag maintained by hand. Everything that
+// isn't Masterwork/Food/Potion/Poison/Grenade (Weapons, Armor, and the
+// Equipment-category hand-authored set — Basic Clothing, Basic
+// Jewelry, Unarmed Enhancer) falls into "Base." Medicinal Supply is a
+// deliberate name-based exception to that category rule: its own
+// item.category is "Pack/Gear" (it's a real inventory slot item, not a
+// Potion/Poison/Grenade), but it's crafted via the Alchemy School under
+// Alchemy's own flat-2-materials rule, same as the rest of the
+// Consumables — so it groups with them here rather than with Base Gear.
+function craftingGroup(item) {
   if (item.category === "Masterwork") return "Masterwork";
   if (item.category === "Food") return "Food";
   if (["Potion", "Poison", "Grenade"].includes(item.category)) return "Alchemy";
-  if (req.kind === "slots") return "Base";
-  return "Other";
+  if (item.name === "Medicinal Supply") return "Alchemy";
+  return "Base";
 }
 const CRAFTING_GROUPS = ["Base", "Masterwork", "Alchemy", "Food"];
 
@@ -4303,8 +4343,20 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
         const recipes = recipesForItem(item, craftingRecipes);
         if (recipes.length === 0) return null;
         const itemLevel = (item.levels && item.levels.length) ? item.levels[0] : (Number(item.level) || 1);
+        // Resolved before variants, not after — a Masterwork item's
+        // Optional Type depends on which base item is picked here, so
+        // resolveRecipeRequirements needs it up front (see its own
+        // comment). Defaults to the first option so materials
+        // eligibility has something to check against as soon as the
+        // row appears, not just once the player opens the picker.
+        const baseItemOptions = (item.base_item_options || [])
+          .map(id => items.find(i => i.id === id))
+          .filter(Boolean);
+        const selectedBaseId = selectedBaseItem[item.id] ?? baseItemOptions[0]?.id;
+        const selectedBase = baseItemOptions.find(b => b.id === selectedBaseId) || null;
+        const baseItemMainTypes = resolveBaseItemMainTypes(selectedBase, craftingRecipes);
         const variants = recipes.map(recipe => {
-          const req = resolveRecipeRequirements(recipe, item);
+          const req = resolveRecipeRequirements(recipe, item, baseItemMainTypes);
           const trained = hasSchoolTraining(req.schools, inventory, items, build, notes, techniques);
           const skillMet = craftingSkillEligibility(req, statPoints, skillPoints);
           const skillReady = andTri(trained, skillMet);
@@ -4319,17 +4371,14 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
         const picked = variants.find(v => v.recipe.id === pickedId)
           || variants.find(v => v.skillReady === true)
           || variants[0];
-        const baseItemOptions = (item.base_item_options || [])
-          .map(id => items.find(i => i.id === id))
-          .filter(Boolean);
-        return { item, variants, picked, baseItemOptions, group: craftingGroup(item, picked.req) };
+        return { item, variants, picked, baseItemOptions, group: craftingGroup(item) };
       })
       .filter(Boolean)
       .filter(r => !skillReadyFilter || r.picked.skillReady === true)
       .filter(r => !materialsFilter || r.picked.materialsReady === true)
       .filter(r => groupFilters.length === 0 || groupFilters.includes(r.group))
       .sort((a, b) => a.item.name.localeCompare(b.item.name));
-  }, [items, craftingRecipes, inventory, ownedMaterials, statPoints, skillPoints, build, notes, techniques, selectedRecipe, skillReadyFilter, materialsFilter, groupFilters]);
+  }, [items, craftingRecipes, inventory, ownedMaterials, statPoints, skillPoints, build, notes, techniques, selectedRecipe, selectedBaseItem, skillReadyFilter, materialsFilter, groupFilters]);
 
   const readyBadge = (label, state) => (
     <span style={{
@@ -4405,50 +4454,54 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
                     {readyBadge("Materials", materialsReady)}
                   </div>
                 </div>
-                {/* More than one way to make this item (one recipe row
-                    per School) — a picker instead of a separate card per
-                    School, so the item only shows up once. */}
+                {/* More than one way to make this item — usually one
+                    recipe row per School, but an Armor tier's "Upgrade
+                    from [lower tier]" recipes can share a School with
+                    that same tier's fresh-build recipe (e.g. Medium via
+                    Tailoring, fresh or upgraded from Light) — a picker
+                    instead of a separate card per recipe, so the item
+                    only shows up once. Labeling falls back to the
+                    recipe's own parenthesized name suffix (e.g.
+                    "Upgrade from Light, Tailoring") whenever more than
+                    one variant shares the same School, so two variants
+                    never render as identical, indistinguishable options. */}
                 {variants.length > 1 && (
                   <select
                     value={recipe.id}
                     onChange={e => setSelectedRecipe(s => ({ ...s, [item.id]: e.target.value }))}
                     style={{ fontSize: 13, alignSelf: "flex-start" }}
                   >
-                    {variants.map(v => (
-                      <option key={v.recipe.id} value={v.recipe.id}>
-                        via {v.recipe.school || v.recipe.name}
-                      </option>
-                    ))}
+                    {variants.map(v => {
+                      const schoolShared = v.recipe.school
+                        && variants.filter(x => x.recipe.school === v.recipe.school).length > 1;
+                      const nameSuffix = v.recipe.name && v.recipe.name.match(/\(([^)]+)\)\s*$/);
+                      const label = schoolShared && nameSuffix ? nameSuffix[1] : (v.recipe.school || v.recipe.name);
+                      return (
+                        <option key={v.recipe.id} value={v.recipe.id}>
+                          via {label}
+                        </option>
+                      );
+                    })}
                   </select>
                 )}
                 <div style={{ fontSize: 13, color: TEXT.faint, lineHeight: 1.5 }}>
                   {req.skillName && req.skillValue != null ? `${req.skillName} ${req.skillValue}` : (recipe.skill_total || "—")}
                   {"  ·  "}School: {recipe.school || "—"}
                   {"  ·  "}Materials:{" "}
-                  {req.kind === "slots" ? (
-                    req.slots.length > 0
-                      ? req.slots.map(s => `${s.count}× ${s.types.join("/")}`).join(" + ")
-                      : "—"
-                  ) : (
-                    <>
-                      {/* req.totalMaterials is the resolved number (the
-                          "[Item's base price in Gold]" token already
-                          turned into a real count) — showing the raw
-                          recipe.total_materials text here would print
-                          the token itself instead of what it resolved to. */}
-                      {req.totalMaterials != null ? req.totalMaterials : "—"}
-                      {req.baseTypes && (
-                        <> ({req.baseTypes.join(", ")}{req.extraTypes ? `, or up to half ${req.extraTypes.join(", ")}` : ""})</>
-                      )}
-                    </>
+                  {req.totalMaterials != null ? req.totalMaterials : "—"}
+                  {req.mainTypes && (
+                    <> ({req.mainTypes.join(", ")}{req.optionalTypes ? `, or up to half ${req.optionalTypes.join(", ")}` : ""})</>
                   )}
                 </div>
-                {/* Base item — a separate requirement from materials (see
-                    the rulebook's "base item" rules): crafted on its own,
-                    separately, before the enhancement. Reference-only for
-                    now — picking one here doesn't check inventory or
-                    consume anything, it's just previewing which base item
-                    this power would go on. */}
+                {/* Base item — feeds the Optional Type half of the
+                    materials check above (see resolveRecipeRequirements):
+                    picking a Metal-based sword here means Metal counts
+                    toward this enhancement's Materials, a Wood-based bow
+                    means Wood does instead. Still doesn't check the base
+                    item's own inventory/craftability, or consume
+                    anything — that's a real craft action, not this
+                    reference browser (see the CraftingSection doc
+                    comment). */}
                 {baseItemOptions.length > 0 && (
                   <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
                     <span style={{ fontSize: 13, color: TEXT.faint }}>Base item:</span>
@@ -4463,6 +4516,16 @@ function CraftingSection({ items, craftingRecipes, inventory, customMaterials, s
                     ) : (
                       <span style={{ fontSize: 13, color: TEXT.faint }}>{baseItemOptions[0].name}</span>
                     )}
+                  </div>
+                )}
+                {/* Crafting-time detail that doesn't fit School/Skill
+                    Total/Materials/Base Item — see the CRAFTING NOTES doc
+                    on ITEM_MAP in convert.py. Only shown here, not
+                    wherever the item's own Effects text is shown, since
+                    it's about how it's built, not what it does. */}
+                {item.crafting_notes && (
+                  <div style={{ fontSize: 13, color: TEXT.faint, fontStyle: "italic", lineHeight: 1.5 }}>
+                    {item.crafting_notes}
                   </div>
                 )}
               </div>
@@ -4526,7 +4589,7 @@ function InventorySection({
   const results = useMemo(() => {
     const q = search.trim().toLowerCase();
     if (!q && !category && !slotFilter && tagFilters.length === 0 && supplementFilters.length === 0 && !updatedOnly) return [];
-    return visibleItems
+    const matches = visibleItems
       .filter(it =>
         (!category || it.category === category) &&
         (!slotFilter || (slotFilter === NO_SLOT ? !it.slot : it.slot === slotFilter)) &&
@@ -4534,8 +4597,11 @@ function InventorySection({
         (supplementFilters.length === 0 || supplementFilters.includes(it.supplement)) &&
         (!updatedOnly || (currentPatch && it.patch === currentPatch)) &&
         (!q || it.name.toLowerCase().includes(q))
-      )
-      .slice(0, 40);
+      );
+    // "Recently updated" is a review-everything-that-changed list, not a
+    // type-ahead search — capping it would silently hide most of a big
+    // release (the list box scrolls, so the full set is fine to render).
+    return updatedOnly ? matches : matches.slice(0, 40);
   }, [visibleItems, search, category, slotFilter, tagFilters, supplementFilters, updatedOnly, currentPatch]);
 
   // Slot capacity used by everything currently equipped — real items and

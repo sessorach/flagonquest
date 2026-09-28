@@ -173,6 +173,34 @@ Masterwork item's own when it's equipped.
   doesn't carry any stats of its own — there's nothing useful to pick
   between, so no selector is needed.
 
+  This is also why a Masterwork item's own "School" column is normally
+  left blank when it has Base Item Options: applying the power onto a
+  base item needs no separate School requirement, since building that
+  base item already required the right training — the enchanting step
+  doesn't gate on School again. index.html doesn't dynamically resolve
+  School from whichever base item ends up chosen (it only pulls the
+  base item's Material Type, for the Optional Materials slot); "no
+  School requirement" here is the actual, intentional rule, not a
+  simplification of "inherits from the base item." A Masterwork item
+  with no valid base at all (nothing to apply it to, e.g. Evertoking
+  Bottle, Distant Scroll Cases, Unmovable Bar) has nothing to inherit
+  training from, so it states its own School directly instead.
+
+CRAFTING NOTES — items.csv can also have an optional "Crafting Notes"
+column: free text, same idea as techniques.csv's Builder Notes, for a
+crafting-time detail that doesn't fit the structured School/Skill
+Total/Main/Optional Materials/Base Item Options fields and isn't part of
+what the finished item actually does — so it stays out of Effects,
+which should read as just the completed item. Covers things like a base
+item restriction that can't be expressed as a Base Item Options list
+(Placeholder's Speedy Scepter: "can only be applied to a base item whose
+name begins with the letter S" — no list of IDs captures "starts with
+S," so it stays prose) or a one-off material substitution/equivalence
+rule (Wizardly Hat of Tam the Tipsy: a bottle of Alcohol counts as a
+Main Material of its own Level, once Alcohol had a real crafting recipe
+of its own to hang that on). Shown in the Crafting tab alongside the
+item's own recipe row, not wherever Effects is otherwise shown.
+
 MARKDOWN SOURCES — the Rulebook and Glossary tabs aren't spreadsheets,
 they're just hand-edited Markdown: scripts/rulebook.md and
 scripts/glossary.md, straight text files you can open and edit in
@@ -380,9 +408,20 @@ ITEM_MAP = {
     "Value Per Level":  "value_per_level",
     "School":           "school",
     "Skill Total":      "skill_total",
+    # An item's own override of the generic crafting_recipes.csv table —
+    # see the CRAFTING_RECIPE_MAP comment below for the full Main/Optional
+    # model these three feed into. Total Materials is a plain number here
+    # (no Gold-derived token — every craftable item just states its own
+    # count directly, weapons/armor mirroring their own Cost since they're
+    # Level 1 by default). Main Materials is the item's own defining
+    # Type(s); Optional Materials is only used outside Masterwork — a
+    # Masterwork item leaves this blank on purpose, since its Optional
+    # Type comes from whichever base item is chosen at craft time instead
+    # (see "base item" in the rulebook's Creating Items chapter).
     "Total Materials":  "total_materials",
-    "Base Materials":   "base_materials",
-    "Extra Materials":  "extra_materials",
+    "Main Materials":   "main_materials",
+    "Optional Materials": "optional_materials",
+    "Crafting Notes":   "crafting_notes",  # free-text crafting-time note — see CRAFTING NOTES doc above; shown in the Crafting tab, not with Effects
     "Base Item Options": "base_item_options_raw",  # parsed below into a list of item IDs
     # Flat stat bonuses an equipped/carried item grants, one column per
     # number the Character Sheet's Vitals/Defenses/Health/Resists boxes
@@ -399,9 +438,13 @@ ITEM_MAP = {
     "Speed":              "speed",
     "Parry Defense":      "parry_defense",
     "Dodge Defense":      "dodge_defense",
-    "Bodily Defense":     "bodily_defense",
+    "Vital Defense":      "vital_defense",
     "Mental Defense":     "mental_defense",
-    "Instinct Defense":   "instinct_defense",
+    # "Vigilant Defense" is the renamed Instinct Defense (RULES_DESIGN.md) —
+    # column header and every player-facing mention updated, but the JSON
+    # key stays instinct_defense on purpose, an internal identifier no
+    # player ever sees, to avoid churning every other file that references it.
+    "Vigilant Defense":   "instinct_defense",
     "Shallow Health":     "shallow_health",
     "Deep Health":        "deep_health",
     # Weapon/Armor-category items (Category = "Weapon"/"Armor") — their
@@ -475,53 +518,58 @@ CRAFTING_RECIPE_MAP = {
     # a Weapon can be made via Carving or Smithing) is one row per
     # School instead of one row with a "(if School)" conditional, so
     # every field here is a flat, unconditional value. See CR001/CR002
-    # for the Weapon example. Leave blank ("Varies") for a fallback
-    # recipe that's genuinely different per item (e.g. Masterwork).
+    # for the Weapon example. Leave blank for a fallback recipe that's
+    # genuinely different per item (e.g. Masterwork) — for Masterwork
+    # specifically this isn't "varies, check the item's own text," it's
+    # deliberately no School requirement at all when the power applies
+    # onto a base item (see the BASE ITEM OPTIONS doc below for why).
     "School":           "school",
     "Skill Total":      "skill_total",
-    # Kind picks which of the two material-requirement shapes the rest
-    # of this row uses — "Slots" (Primary/Leeway Types below) or "Value"
-    # (Total/Base/Extra Materials below). Blank defaults to Slots, since
-    # that's what every recipe used before Kind existed.
-    "Kind":             "kind_raw",
-    # Primary/Leeway ("Slots" kind) — a small fixed count of material
-    # "slots" instead of a count tied to the item's price. Primary is
-    # the type(s) that must fill most of the slots; Leeway is a
-    # broader, more forgiving list for the rest. E.g. Weapon (Smithing):
-    # 2 Primary slots needing Metal, 1 Leeway slot accepting Cloth or
-    # Leather too. Used for the fixed, hand-authored set (Weapons,
-    # Armor, Tools) where the small roster makes hand-authoring
-    # practical.
-    "Primary Types":    "primary_types",
-    "Primary Count":    "primary_count",
-    "Leeway Types":     "leeway_types",
-    "Leeway Count":     "leeway_count",
-    # Total/Base/Extra Materials ("Value" kind) — the same Gold-value
-    # model items.csv's ITEM_MAP uses for a per-item override (see its
-    # Total Materials/Base Materials/Extra Materials comment), just
-    # expressed as a table row instead of columns on one specific item.
-    # Used for large, open-ended categories (Masterwork, Potions,
-    # Poisons, Grenades, Food) where a formula scales and a hand-
-    # authored template per item doesn't. Total Materials can be a flat
-    # number or the "[Item's base price in Gold]" token.
+    # One shared shape for every recipe: gather Total Materials worth of
+    # material, at least half (rounded down) matching a Main Type, the
+    # rest optionally from an Optional Type (see "Materials" in the
+    # rulebook's Creating Items chapter for the full player-facing rule).
+    # Total Materials is a plain number, not a Gold-derived token — for
+    # the hand-authored set (Weapons, Armor, Tools) it's usually blank
+    # here and set per-item instead (see ITEM_MAP's comment), since it
+    # varies item to item; for the open-ended fallback categories
+    # (Masterwork, Potions, Poisons, Grenades, Food) it's a single flat
+    # number that covers every item in that category regardless of
+    # Level, by design (see design/RULES_DESIGN.md's Crafting section for why
+    # a flat count works — Masterwork's 20-Gold-per-Level pricing and a
+    # material's Level-equals-Gold-value rule are chosen so 20 materials
+    # at the item's own Level always produces the right price, so the
+    # count itself never needs to change with Level).
     "Total Materials":  "total_materials",
-    "Base Materials":   "base_materials",
-    "Extra Materials":  "extra_materials",
+    "Main Materials":   "main_materials",
+    "Optional Materials": "optional_materials",
     # Which items.csv rows this recipe covers, so index.html can resolve
     # "what does it take to craft this item" without guessing from name/
     # description text. Comma-separated clauses, ALL must match (AND):
     #   Category:X       — item.category === X
     #   Name:X            — item.name === X (exact)
     #   NameContains:X    — item.name includes X (case-insensitive)
+    #   NameNotContains:X — item.name excludes X (case-insensitive) — used to
+    #                       carve out an exception from an otherwise-generic
+    #                       Category clause on another row (e.g. CR002 Weapon
+    #                       (Smithing) excludes Bows, per the designer's call
+    #                       to make Bows Carving-only, without needing every
+    #                       other Weapon-category recipe to enumerate itself)
     # Blank means "reference only" (see Other Items) — too variable to
     # auto-match, not shown as a specific item's recipe in the browser.
     # Multiple rows can share the same Applies To (one per School) —
     # the browser shows each as its own way to craft the same item.
-    # A specific item's own School/Skill Total/Total Materials/*
-    # Materials columns (on the item itself, see ITEM_MAP) always take
-    # priority over anything here — "special items require you to find
-    # a specific recipe for them" per the rulebook, so a populated
-    # per-item override means this generic table doesn't apply at all.
+    # A specific item's own School/Skill Total/Total Materials/Main
+    # Materials/Optional Materials columns (on the item itself, see
+    # ITEM_MAP) take priority over this table field by field, not
+    # all-or-nothing — e.g. a Weapon item sets its own Total Materials
+    # but still inherits School/Skill Total/Main/Optional Types from
+    # here, since only the count actually varies per weapon. Total
+    # Materials is the one exception within that merge (see index.html's
+    # recipesForItem): a RECIPE row's own Total Materials, when set,
+    # wins over the item's default instead — used by Armor's "Upgrade
+    # from [lower tier]" recipes, which need a smaller count than that
+    # same item's fresh-build recipes.
     "Applies To":       "applies_to",
 }
 
@@ -993,7 +1041,13 @@ for csv_file, (json_file, col_map) in TABLES.items():
                 base = items_by_id.get(bid)
                 if not base:
                     item_errors.append(f"{r.get('id')} {r.get('name')!r}: Base Item Options references unknown item {bid!r}")
-                elif base.get("slot") != slot:
+                # A base item with no Slot of its own (Basic Clothing,
+                # Basic Jewelry) is a wildcard — it's meant to cover
+                # several slots at once, not tied to one — so only
+                # items that DO carry their own fixed Slot (actual
+                # Weapon/Armor pieces) need to match the referencing
+                # item's Slot exactly.
+                elif base.get("slot") and base.get("slot") != slot:
                     item_errors.append(f"{r.get('id')} {r.get('name')!r}: Base Item Options item {bid!r} has Slot {base.get('slot')!r}, expected {slot!r}")
             r["base_item_options"] = ids
 
@@ -1021,25 +1075,6 @@ for csv_file, (json_file, col_map) in TABLES.items():
         if item_errors:
             print(f"\n⚠ {len(item_errors)} issue(s) in {csv_file}:")
             for e in item_errors:
-                print(f"   {e}")
-            print()
-
-    if csv_file == "crafting_recipes.csv":
-        recipe_errors = []
-        slots_cols  = ("primary_types", "primary_count", "leeway_types", "leeway_count")
-        value_cols  = ("total_materials", "base_materials", "extra_materials")
-        for r in rows:
-            kind = r.get("kind_raw") or "Slots"
-            if kind not in ("Slots", "Value"):
-                recipe_errors.append(f"{r.get('id')} {r.get('name')!r}: unknown Kind {kind!r}, expected \"Slots\" or \"Value\"")
-            other_cols = value_cols if kind == "Slots" else slots_cols
-            populated = [c for c in other_cols if r.get(c) is not None]
-            if populated:
-                recipe_errors.append(f"{r.get('id')} {r.get('name')!r}: Kind is {kind!r} but has {', '.join(populated)} filled in — pick one shape")
-            r["kind_raw"] = kind
-        if recipe_errors:
-            print(f"\n⚠ {len(recipe_errors)} issue(s) in {csv_file}:")
-            for e in recipe_errors:
                 print(f"   {e}")
             print()
 

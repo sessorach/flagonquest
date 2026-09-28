@@ -1,23 +1,23 @@
 ID,Technique ID,Technique,Feature Name,Tier,Point Cost,Description (Fluff),Effects,Additional Prereq
 F001,T072,Battle Maneuver,Lunging,Basic,1,,"Up to X times, you may Shift up to 2 meters in a single direction, each either before or after the attack. You can declare the use of this Technique before being in range, but cannot make the attack unless you end up in range at some point.",
-F002,T072,Battle Maneuver,Wind Slash,Basic,1,,For the attack the chosen weapon's range is increased by [four times X].,
-F003,T072,Battle Maneuver,Turn Elements,Basic,1,,"When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + 1 + [Hearts] stacks of [chosen Element] Ward.","(Academics, Sorcery, or Theurgy) 2"
+F002,T072,Battle Maneuver,Wind Slash,Basic,1,,For the attack the chosen weapon's range is increased by [twice X].,
+F003,T072,Battle Maneuver,Turn Elements,Basic,1,,"When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + [Hearts] stacks of [chosen Element] Ward.","(Academics, Sorcery, or Theurgy) 2"
 F004,T072,Battle Maneuver,Distracting,Basic,1,,"If the attack hits or is Parried, you Taunt the target X + [Hearts] times.",Presence 2
 F005,T072,Battle Maneuver,Battering,Basic,1,,"If the attack hits or is Parried, the target gains X stacks of Bleeding + [Clubs] stacks.",Might 2
 F006,T072,Battle Maneuver,Wing Clip,Basic,1,,"If the attack hits, the target is Crippled X + [Clubs] times.",
-F007,T072,Battle Maneuver,Harrying,Basic,1,,"If the attack hits or is Parried, the target is Harried X + [Diamonds] times.",
+F007,T072,Battle Maneuver,Harrying,Basic,1,,"If the attack hits or is Parried, the target is Harried 1 + X + [Diamonds] times.",
 F008,T072,Battle Maneuver,Hamstring,Basic,1,,"If the attack hits, the target is Slowed X + [Spades] times.",
-F009,T072,Battle Maneuver,Backfoot,Basic,1,,"If the attack hits, you may adjust the target's position in turn order by up to X + [Spades] times.",
+F009,T072,Battle Maneuver,Backfoot,Basic,1,,"If the attack hits, you may Stagger the target up to [twice X] + [Spades] times.",
 F010,T072,Battle Maneuver,Lodestone,Basic,1,,"If the attack hits or is Parried, you Push the target (2 × [X + Spades]) meters.",
-F011,T072,Battle Maneuver,Half Guard,Basic,1,,"If the attack hits, you gain X + 1 + [Spades] stacks of Protected.",
+F011,T072,Battle Maneuver,Half Guard,Basic,1,,"If the attack hits, you gain X + [Spades] stacks of Protected.",
 F012,T072,Battle Maneuver,Blade of Four Fates,Basic,1,,"Sift X cards, adding each of their suits to the suit pool for all attacks made.",
 F013,T072,Battle Maneuver,Victorious,Basic,2,,"If the attack Downs the target, draw a card. You may only apply one copy of this feature, and cannot draw more than one card this way.",
-F014,T072,Battle Maneuver,Elemental,Basic,3,,"When you choose this feature, choose Fire, Frost, or Shadow — the attack deals its damage as that type instead.",Sorcery 2
+F014,T072,Battle Maneuver,Elemental,Basic,2,,"When you choose this feature, choose Fire, Frost, or Shadow — the attack deals that type of damage.",Sorcery 2
 F015,T072,Battle Maneuver,Viper's Sting,Basic,3,,The Technique takes 1 less AP to use. You may only apply one copy of this feature.,
 F016,T072,Battle Maneuver,Calculated,Basic,3,,You have Good Luck on the attack.,
-F017,T072,Battle Maneuver,Ascended Blade,Advanced,3,,You may have the attack deal its damage as Brilliant damage.,"Composure, Meditation, or Theurgy 3"
-F018,T072,Battle Maneuver,Whirlwind,Advanced,6,,"If your chosen weapon is a close-range weapon, the attack may target an additional target.",
-F019,T072,Battle Maneuver,Piercing Shot,Advanced,6,,"If your chosen weapon is a ranged weapon, the attack may target an additional target as long as all targets are in a line from you.",
+F017,T072,Battle Maneuver,Ascended Blade,Advanced,2,,You may have the attack deal its damage as Brilliant damage.,"Composure, Meditation, or Theurgy 3"
+F018,T072,Battle Maneuver,Whirlwind,Advanced,5,,"If your chosen weapon is a close-range weapon, the attack may target an additional target.",
+F019,T072,Battle Maneuver,Ricochet Shot,Advanced,5,,"If your chosen weapon is a ranged weapon, the attack may target an additional enemy adjacent to the first.",
 F020,T072,Battle Maneuver,Flurry,Advanced,6,,"You make an extra weapon attack against each target, which benefits from all features.",
 F021,T057,Social Maneuver,Brawn over Banter,Basic,1,,"(Style) Use Might for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",Might 2
 F022,T057,Social Maneuver,Unpleasant Insinuation,Basic,1,,"(Style) Use Streetwise for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",Streetwise 2
@@ -31,11 +31,11 @@ F029,T057,Social Maneuver,Friendly-Faced,Basic,1,,"If the statement succeeds, in
 F030,T057,Social Maneuver,Single Out,Basic,1,,"If the statement succeeds, the target must stay in the front on their next turn.",Persuasion 2
 F031,T057,Social Maneuver,Upstage,Basic,1,,"If the statement succeeds, choose Strategic or Charismatic statements. On the other party's next turn, any members who make that type of statement have Bad Luck on them.",Presence 2
 F032,T057,Social Maneuver,Setup & Follow,Advanced,1,,"If this statement is made to support someone, that person has Good Luck on the statement you're supporting.",
-F033,T057,Social Maneuver,Word for Word,Advanced,2,,"If the statement succeeds, the other party may only make social statements of the same type as this statement for the rest of the social contest. This effect ends if any of your party members make a statement of a different type.",Persuasion 3
+F033,T057,Social Maneuver,Word for Word,Advanced,2,,"If the statement succeeds, the other party may only make social statements of the same type as this statement for the rest of the social encounter. This effect ends if any of your party members make a statement of a different type.",Persuasion 3
 F034,T057,Social Maneuver,Practiced Comeback,Advanced,4,,"You instead make two social statements, and apply all features to each. You may only apply one copy of this feature.",
-F035,T057,Social Maneuver,Bully into Submission,Advanced,2,,"(Succession) If the statement succeeds, choose one member of the other party. If you win the social contest, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Succession feature at a time.",Presence 3
-F036,T057,Social Maneuver,Leading Question,Advanced,2,,"(Succession) If the statement succeeds, note its target. If your party ultimately wins the social contest, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Succession feature at a time.",
-F037,T057,Social Maneuver,New Best Friend,Advanced,2,,"(Succession) If the statement succeeds, note its target. If your party ultimately wins the social contest and chooses Win Over, the shift in the target's opinion will be permanent — they will treat you with a favorable attitude as though you are a friend. You may only apply one Succession feature at a time.",Rapport 3
+F035,T057,Social Maneuver,Bully into Submission,Advanced,2,,"(Succession) If the statement succeeds, choose one member of the other party. If you win the social encounter, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Succession feature at a time.",Presence 3
+F036,T057,Social Maneuver,Leading Question,Advanced,2,,"(Succession) If the statement succeeds, note its target. If your party ultimately wins the social encounter, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Succession feature at a time.",
+F037,T057,Social Maneuver,New Best Friend,Advanced,2,,"(Succession) If the statement succeeds, note its target. If your party ultimately wins the social encounter and chooses Win Over, the shift in the target's opinion will be permanent — they will treat you with a favorable attitude as though you are a friend. You may only apply one Succession feature at a time.",Rapport 3
 F038,T104,Spirit Blessing,Reach,Basic,1,,Increase the Range of the Spell by [Theurgy Skill Total] meters.,
 F039,T104,Spirit Blessing,Step of Air,Basic,1,,The target is Hasted X + 1 times.,
 F040,T104,Spirit Blessing,Shielding,Basic,1,,The target is Protected X + 1 times.,
@@ -52,7 +52,7 @@ F050,T104,Spirit Blessing,Alacrity,Advanced,2,,The target may adjust their posit
 F051,T104,Spirit Blessing,Steal Fate,Advanced,2,,"For the next X weapon attacks the target makes this encounter, if the attack Downs a creature the target may draw a card. They may only draw 1 card per casting of this Spell.",
 F052,T104,Spirit Blessing,Guided Hand,Advanced,2,,The target has Good Luck on the next X attacks they make.,
 F053,T105,Healing Magic,Reach,Basic,1,,Increase the Range of the Spell by [Theurgy Skill Total] meters.,
-F054,T105,Healing Magic,Purify,Basic,1,,Remove 1 stack of Bleeding from the target. Reduce the effects of each poison afflicting the target as though an hour had passed.,
+F054,T105,Healing Magic,Purify,Basic,1,,Remove 1 stack of Bleeding from the target. Remove 1 stack of each Poison effect affecting the target.,
 F055,T105,Healing Magic,Rejuvenate,Basic,1,,"Instead of healing immediately, the target heals 1 Shallow Health at the start of each of their turns for [Spell's healing amount] rounds.",
 F056,T105,Healing Magic,Guardian Angel,Basic,1,,"The next time this scene the target would be Downed, instead they are reduced to X Deep Health.",
 F057,T105,Healing Magic,Vitality,Basic,2,,The Spell's healing is increased by 1.,
@@ -72,10 +72,12 @@ F070,T120,War Magic,Kinetic,Basic,1,,"If the spell attack hits, the target is Pu
 F071,T120,War Magic,Frigid,Basic,1,,"If the attack hits, the target is Slowed [twice X] + [Spades] times. You may change the attack's damage type to Frost.",
 F072,T120,War Magic,Glacier,Basic,1,,"After the attack, every space occupied by or adjacent to any targeted creature gains [twice X] + [Spades] levels of Difficult Terrain, lasting for the encounter. You may change the attack's damage type to Frost.",
 F073,T120,War Magic,Reign of Blood,Basic,1,,"If the spell attack hits, remove up to [twice X] + [Clubs] stacks of Bleeding from the target, and they lose that much Health.",
-F074,T120,War Magic,Wild Magic,Basic,1,,"Sift [thrice X] cards, adding each of their suits to the suit pool for all attacks made.",
+F074,T120,War Magic,Wild Magic,Basic,1,,"Sift [three times X] cards, adding each of their suits to the suit pool for all attacks made.",
 F075,T120,War Magic,Piercing Elements,Advanced,1,,You have Good Luck on the spell attack.,
 F076,T120,War Magic,Draw Power,Advanced,1,,"If the attack Downs the target, they are instantly killed and you draw a card. You may only draw one card per casting. You may change the attack's damage type to Shadow.",
 F077,T120,War Magic,Furrow (Shape),Advanced,3,,"The spell attack instead targets all creatures in a line [half your Sorcery Skill Total] meters long, from your space. You may only apply one Shape feature to the Spell.",
 F078,T120,War Magic,Funnel (Shape),Advanced,3,,The spell attack instead targets all creatures within a 2-meter-long cone. You may only apply one Shape feature to the Spell.,
 F079,T120,War Magic,Nova (Shape),Advanced,3,,The spell attack instead targets all adjacent creatures. You may only apply one Shape feature to the Spell.,
 F080,T120,War Magic,Channel (Shape),Advanced,3,,"Each time the spell attack hits, on your next turn you may spend the AP used to cast the Spell to make a spell attack with all the same features against one of the targets. You may only apply one Shape feature to the Spell.",
+F081,T072,Battle Maneuver,Bare-Handed,Basic,0,,"The attack must be made with an Unarmed weapon. When you learn this Technique, you may choose 2 additional points worth of features. You may only apply one copy of this feature.",
+F082,T072,Battle Maneuver,Fleet Step,Basic,1,,"If the attack hits, you may Outflank up to [twice X] + [Spades] times.",

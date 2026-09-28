@@ -1,162 +1,19 @@
-# Your Character
+# Quick Start Guide
 
-A character is mainly composed of two halves: statistics, derived from your Stats and Skills, and abilities such as Techniques.
+This is a quick overview of the game, meant to give you the basic idea of how things work before you read through the full rules. If you only have time for one section before you sit down to play, make it this one.
 
-## Stats and Skills
+- You play a character in a fantasy world, working with the rest of your party while the GM runs everyone and everything else.
+- Five Stats and five Skills each define what your character can do. A Skill’s points plus its Stat’s points make that Skill’s Skill Total.
+- To make a check, flip a card and add your Skill Total to it. Beat the difficulty and you succeed.
+- Cards come in 4 suits, and a Skill’s suit can add to what a flip accomplishes.
+- Some flips call for more than a bare pass. Those earn Extra Successes, mostly for things that take extended effort, like a tough attack or a task you’re pushing hard on.
+- Techniques are the special abilities, spells, and maneuvers your character learns over time.
+- Health has two types, Shallow and Deep, and running out of Shallow first is what makes a fight dangerous.
+- Encounters use Action Points to structure combat and other tense scenes.
 
-Stats are traits which represent inherent parts of a character, such as Body making them tougher or Cunning making them more clever. Skills are specific knowledges and arts that one practices and trains; swordplay, schools of magic, and diplomacy are just some of the Skills that characters can develop to best the challenges they face.
+# Character Creation
 
-Your Stats increase some of your capabilities on their own. Your Skills are almost always used in the form of your Skill Total, which is the sum of points in that Skill and its corresponding Stat.
-
-Below is a list of the 5 Stats, and the 5 Skills that each corresponds to.
-
-### Agility
-
-Agility measures a character’s flexibility, quickness, and manual dexterity.
-
-It impacts a character’s ability to dodge and strike, balance and move nimbly, act silently and undetected.
-
-Agility determines your Speed, and governs the Skills that determine your Dodge and Parry Defenses, as well as ability to hit with weapon attacks.
-
-#### Acrobatics
-
-Balancing, gymnastics, and other finesse-based exercises. It can be used to determine Dodge Defense and attack with thrown weapons.
-
-#### Archery
-
-Marksmanship with bows and similar ranged weaponry. It can be used to attack with these weapons.
-
-#### Brawl
-
-All forms of unarmed combat, including grappling and wrestling, as well as the use of some special weapons. It can be used to determine Dodge and Parry Defense, and to attack with unarmed attacks and some other weapons.
-
-#### Melee
-
-Close-quarters combat with melee weapons. It can be used to determine Parry Defense, and to attack with melee weapons.
-
-#### Stealth
-
-Sneaking, hiding, and generally avoiding notice. Whenever you are trying to keep silent, stay out of sight, or do something without someone seeing or hearing you, Stealth comes into play.
-
-### Body
-
-Body represents the quality of your physical self, in many ways.
-
-Anything that involves raw brawn or resilience will be impacted by a character’s Body, as well as your physical senses and stature.
-
-Body determines your damage with heavier weapons, how fast you heal when resting, and governs the Skills that determine your Vital Defense and ability to use heavier equipment.
-
-#### Athletics
-
-Climbing, jumping, swimming, and other strength-based exercises. Whenever you are engaged in a physical feat that relies on your raw strength, Athletics is what you use.
-
-#### Awareness
-
-Sensing details and objects that might not be immediately apparent, using vision, hearing, and other senses. Whenever you are trying to spot someone who is hiding from you, you are searching through a room for clues, or otherwise trying to find or notice something physical, Awareness determines how well you do.
-
-#### Might
-
-Being very strong and carrying a lot of weight. It is required to use certain armaments and determines how much you can carry.
-
-#### Presence
-
-Impressing others with your bearing, stature, and conviction, for both intimidating them and commanding them. It can be used in both polite and impolite situations, social and otherwise, making it rather flexible.
-
-#### Resilience
-
-Resisting the adverse effects of poison, disease, exhaustion, and many other harmful bodily threats. It is used to determine Vital Defense.
-
-### Cunning
-
-Cunning is the sum of a character’s subconscious senses and mental reaction time.
-
-It affects a character’s gut feeling, interactions with others that involve reading their reactions, and knowledge that requires a feeling for the situation.
-
-Cunning determines how many cards you draw each morning, the damage of lighter weapons and bows, and governs a variety of more specialized Skills.
-
-#### Insight
-
-Sensing the motives of others, looming danger, and other things that are insubstantial or not directly perceivable. It represents a sort of “sixth sense”, and also determines your Reflex bonus and Instinct Defense.
-
-#### Masquerade
-
-Disguising yourself and acting in character, no matter who you might be impersonating. Whenever you are trying to specifically change your behavior or appearance to seem to be a different person, blend in with a crowd, or change your mannerisms in any way, you adopt a Masquerade.
-
-#### Persuasion
-
-Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and determines your Strategic statements in a social contest.
-
-#### Streetwise
-
-Knowledge of cities and their various social structures as well as your ability to exploit it in any given situation. Whether in a seedy Thieves’ Guild tavern or a high nobility ballroom, your Streetwise allows you to stay on top of the shifting power hierarchies and know who to talk to in order to get things done.
-
-#### Survival
-
-Knowledge of nature and survival as well as your ability to apply that knowledge in the middle of the wilderness. More than just knowing which plants are edible, it allows you to read the land like a book and learn all about it.
-
-### Mind
-
-Mind is a character’s ability to learn, retain, and apply information in both academic and practical settings.
-
-It reflects the amount of knowledge a character has absorbed from a variety of disciplines, as well as the extent to which a character can apply that information in a range of situations.
-
-Mind determines how many cards you draw each morning, the damage and power of many spells, and governs the Skills that determine Mental Defense and ability to create items from raw materials.
-
-#### Academics
-
-Knowledge of history, mathematics, literature, and other subjects frequently thought of as “book learning”. Generally, Academics is used to recall most knowledge that is not covered by other Skills.
-
-#### Craft
-
-Understanding of woodworking, metalworking, and other disciplines by which you create armaments and other objects. It is used both to create these items yourself and to better manipulate existing objects, such as disabling a tripwire or picking a lock.
-
-#### Composure
-
-Resist fear, compulsion, and other mental manipulations both mundane and magical. It is used to determine Mental Defense, as well as your staying power in social situations.
-
-#### Medicine
-
-Understanding of the body and how certain treatments can heal or harm it. It is mostly used to care for others and tend to their injuries and maladies, including poison and disease, although there are more mercenary uses for this knowledge as well.
-
-#### Mixology
-
-Understanding of chemical and alchemical principles and how to combine reagents to produce a variety of potions, grenades, and other goods. It is used primarily for the creation and identification of alchemical goods.
-
-### Essence
-
-Essence is the measure of a character’s connection to metaphysical energies.
-
-This manifests in the character’s ability to manage their own body’s energy, ambient forces around them, and connect spiritually with other people.
-
-Essence determines how well you can ignore damage, and governs Skills used for magical, supernatural, and social arts.
-
-#### Meditation
-
-Tap into your spiritual energies to reinforce your vitality and strike out at your enemies. Many formal martial arts make use of Meditation, in small or large ways, and some dramatic uses of it can allow you to fire bursts of energy to defeat your foes.
-
-#### Performance
-
-Put on any sort of entertaining or inspiring performance, both with instruments and spoken words. Whether you are giving an encouraging speech to a crowd or breathing life into a tavern party with your lute music, you are putting on a Performance.
-
-#### Rapport
-
-Interact with people amicably, endear yourself to others, and generally be likable and friendly. Whether you’re smoothing over a tense negotiation or simply making a good first impression, you’re building Rapport.
-
-#### Sorcery
-
-Manipulate ambient magical power to cast direct magic, shooting fireballs and teleporting through shadows. It also represents your knowledge of certain magic use and can help you identify those magical effects.
-
-#### Theurgy
-
-Manipulate spiritual energy to cast indirect magic, bolstering vital energy and communing with natural forces. It also represents your knowledge of certain magic use and can help you identify those magical effects.
-
-## Techniques
-
-Techniques are special abilities and powers that characters learn and develop over time. Special weapon maneuvers, impressive magical spells, a knack for talking your way past anyone; all of these and many more are Techniques that characters can learn.
-
-A Technique’s entry will have its name, Level, any tags for the Technique (such as [Encounter], [Martial], or [Spell], refer to the Glossary) that apply to it, a short description with no rules impact, and then the rules for how to use it and what it does.
-
-To learn a Technique, must have everything listed under its Prerequisites. You must know any Techniques listed, and have at least as many ranks as are listed for any Skills or Stats - this is the one place in the game where you care about the Skill points themselves, don’t use the Skill Total or include any other effects.
+This section comes first so it’s easy to find right away. Build a character now, and the rest of the book explains everything else - Stats, Skills, Techniques, and how it all plays out - in full detail as you go.
 
 ## Spending Experience
 
@@ -166,7 +23,9 @@ A Skill point costs Experience equal to the new point total (you buy each point 
 
 A Stat point costs Experience equal to twice the new point total (same).
 
-Learning a Technique costs Experience equal to thrice the Level of the Technique.
+Learning a Technique costs Experience equal to three times the Level of the Technique.
+
+Stats and Skills each cap at 5 ranks.
 
 Example: Beornhard just got some Experience, and wants to round out his stats. He decided that 1 Body is too low, so he buys a second point in that Stat. It costs 2 Experience times the new point total, so 2 x 2 = 4 Experience for that point.
 
@@ -182,13 +41,74 @@ Encounter Techniques can only be used once per encounter, you can learn them as 
 
 Duplicate Techniques are able to be learned multiple times. Unless otherwise stated, each copy applies its effects again, although many of these will instead include a special note that describes what benefits you get from each extra time you learn it.
 
+## Building a Character
+
+The basics of making a character are simple:
+
+- Choose whether your character is a **Settler** or a **Wildfolk**. Choose two backgrounds from the General list and/or the list you chose.
+- Spend **75 Experience** to buy Stats, Skills, and Techniques for your character. All your Stats and Skills start at 0, and at this point no Stat or Skill can be raised above 3 ranks.
+- You start with a **Camping Kit**, a coil of **Rope**, a **Firestarter**, and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
+
+## Calculated Statistics
+
+Below are the calculations for various statistics that your character has, that are determined from your Stats and Skills. Whenever a calculation leaves you with a fraction, round down.
+
+- **Health**: Each character begins with a maximum of five (5) Shallow and Deep Health (10 total).
+- **Speed**: Your Speed is equal to 1 + your Agility.
+- **Reflex**: Your Reflex is equal to your Insight Skill Total.
+- **Cards Per Day**: You draw cards after a full night’s rest equal to twice your total Cunning + Mind.
+- **Rest Health**: You heal Health after a full night’s rest equal to your Body.
+- **Parry Defense**: When you apply your Parry Defense, you pick a weapon you are wielding and then your Defense is equal to 8 + [Weapon’s relevant Skill Total] + Weapon’s Defense.
+- **Dodge Defense**: When you apply your Dodge Defense, you choose Acrobatics or Brawl and then your Defense is equal to 8 + [Acrobatics or Brawl Skill Total].
+- **Vital Defense**: Your Vital Defense is equal to 8 + your Resilience Skill Total.
+- **Mental Defense**: Your Mental Defense is equal to 8 + your Composure Skill Total.
+- **Vigilant Defense**: Your Vigilant Defense is equal to 8 + your Insight Skill Total.
+- **Resists**: Each of the five types of Resist (Physical, Fire, Frost, Brilliant, Shadow) starts equal to your Essence. Bonuses to any of them come from equipment and other effects.
+
+### Quick Creation References
+
+Each point separately — **Skill**: 1/2/3/4/5 (rank 1-5); **Stat**: 2/4/6/8/10; **Technique**: 3/6/9/12/15 (× Level).
+
+Total cost, from 0 — **Skill**: 1/3/6/10/15 (to reach rank 1-5); **Stat**: 2/6/12/20/30 (to reach rank 1-5).
+
+### “Okay, is there a quick way to make a character for now?”
+
+Yes! Just follow this handy guide:
+
+- Take a minute to think about your character idea, if you haven’t already. What kind of cool abilities would be fun for them to use? What kind of equipment and tools?
+- Skim through the Adventuring Gear and Techniques sections, noting what Stats and Skills those use, both for how effective they are and for any prerequisites to use them in the first place.
+- **Skills**: Time to pick out the Skills that your character will rely on
+  - Choose 2 Skills to have 3 ranks each; these should be your character’s primary focus
+  - Choose 5 Skills to have 2 ranks each; other useful things you want to be able to do, perhaps including Skills that determine your various Defenses
+  - Choose 2 Skills to have 1 rank each; anything you may have considered before, but didn’t make the cut yet
+- **Stats**: Choose how to arrange your Stats
+  - Choose 1 Stat to have 3 ranks; this is pretty important, pick one that boosts your damage, most of your Skills, or otherwise ties into your Favorite Thing to Do
+  - Choose 2 Stats to have 2 ranks each; pick ones to round out your character, peek back at Calculated Statistics for ideas
+  - Put 1 rank in each of the last 2 Stats; on the plus side, they’re easy to buy up higher with Experience in the future
+- **Techniques**: choose 6 total Levels’ worth of Techniques, making sure that you meet the prerequisites for them.
+- **Equipment**: You get a Camping Kit, a coil of Rope, and a Firestarter to cover the basics, and then 20 Gold to buy what you want. A bag of some kind is important - a Knapsack if you’re not very strong - plus some weapons, armor, and anything else that looks fun.
+- Verify that everything looks good, you can use all of your Techniques and equipment, and that you didn’t accidentally leave a Defense lower than you meant to.
+
+### “Okay that was helpful, but I’m having trouble making sure I did it right…”
+
+- 2 Skills at 3 ranks each, 5 Skills at 2 ranks, 2 Skills at 1 rank
+- 1 Stat at 3 ranks, 2 Stats at 2 ranks, the last 2 Stats at 1 rank each
+- Pick 6 total Levels’ worth of Techniques; make sure you meet the prereqs
+- Pick the two Backgrounds that fit best and/or look the funniest; anyone can have General ones, but you have to pick ONLY Settler OR Wildfolk options to choose from, on top of that.
+- You have a Camping Kit, a coil of Rope, and a Firestarter, plus 20 Gold to buy some kind of bag, weapon and armor, and anything else you want. Keep the rest to buy drinks with.
+- Make sure you can actually use all of your stuff, and that you didn’t pick the wrong Stats or Skills for anything
+- Double-check Calculated Statistics to make sure you didn’t accidentally end up with something too low for your tastes
+- Give your character a nice name :)
+
 # The Basics
 
 This is how the core of the system works.
 
 A tabletop roleplaying game (TTRPG) is a story a group tells together out loud, with each player controlling a character while one player, the GM, runs the world and everyone else in it. The rules exist for the moments where what happens next isn’t obvious - they’re how you find out.
 
-You use a deck of cards, a standard 52-card deck of playing cards.
+Characters are built around five Stats and the Skills tied to them. Stats are broad natural traits, and Skills are specific trained abilities. A Skill’s points combine with its Stat’s points to make that Skill’s Skill Total, the number used for almost every check you make. The “Your Character” section, later in this book, covers Stats and Skills in full detail - this is just enough to make sense of the checks below.
+
+You use a deck of cards, a standard 52-card deck of playing cards split evenly across 4 suits: Hearts, Clubs, Diamonds, and Spades. How the deck is used to make a flip is covered in detail below.
 
 Capitalized Words are terms used consistently to refer to a game element, as are most terms put in brackets to label things. When in doubt, check the Glossary.
 
@@ -216,21 +136,23 @@ Example: Browndog wants to jump off of a building and land on top of a criminal 
 
 Example: Browndog is trying to win an arm-wrestling contest in her favorite tavern, which is an opposed Might check. She has 3 Body and 3 Might, for a Skill Total of +6, and her opponent has 2 Body and 1 Might, +3 in total. She flips a 6, and her opponent flips an 8; her result is 6 +6 = 12, against 8 + 3 = 11, and since her 12 is greater than the opponent’s 11, she wins!
 
-### Gambling and Extra Successes
+### Successes
 
-In many cases, a character might easily succeed at an action, but require multiple successes to accomplish their goals. When this happens, the GM may allow a character to Gamble on a flip, taking a penalty to increase the amount they accomplish if successful. Before making the flip, the player declares how many times they want to Gamble - each applies a -2 penalty to the result of the flip, but grants an Extra Success on a successful result. In short, the number of successes for a flip is 1 if it is successful, plus the number of Extra Successes from Gambling or other sources, but only if the flip succeeds in the first place. The effects of this vary, depending on the situation, but are generally predictable for the characters and the GM should give an idea of what “succeeding harder” might look like in a case where Gambling is an option.
+Some flips only need a bare pass to succeed. Others call for more, usually because they represent extended effort, like a tough attack or a task you’re pushing hard on, and for those a flip can earn Extra Successes on top of succeeding at all. Gambling and a matching suit in your suit pool are the two ways to earn them. Adventuring covers exactly how Extra Successes get used once you’re ready for it.
 
-Example: Hilde is dispatching some knights from a petty tyrant’s army. They aren’t good combatants, so she knows she can easily hit them with her axe, but they are heavily armored and will take many blows to defeat. Based on past fights, she thinks and decides to attack and Gamble twice on it. She flips a total of a 15 on the attack, -4 for Gambling twice, for a final result of 11. This still hits, and deals an extra 1 damage for each time she Gambled; +2 in total!
+### Gambling
 
-Example: Carrick is infiltrating a noble’s inn room while the party keeps him distracted downstairs. She needs to pick the lock to get in, and knows both that this upscale inn has well-oiled locks that are easy to pick open and that she doesn’t have a lot of time. She Gambles thrice on the flip, and thankfully gets a 17 total, so even with the -6 she’s left with a result of 11. This is just enough to pick the lock with 4 total successes, and although normally she would require multiple successful attempts to get the lock all the way open, the GM says that her risky attempt got the lock open in one try.
+Before making a flip, you may Gamble on it, once or more, declaring how many times before the card is flipped. Each Gamble applies a -2 penalty to the result, but grants an Extra Success if the flip still succeeds - it’s a bet, since you’re wagering on a card you haven’t seen yet. A character with plenty of Skill Total to spare is making a safe bet and can usually Gamble freely; one working at the edge of their ability risks the whole flip to push for more. For attacks that deal damage, only weapon attacks can be Gambled on - spell attacks can’t.
+
+Example: Carrick is infiltrating a noble’s inn room while the party keeps him distracted downstairs. She needs to pick the lock to get in, and knows both that this upscale inn has well-oiled locks that are easy to pick open and that she doesn’t have a lot of time. She Gambles three times on the flip, and thankfully gets a 17 total, so even with the -6 she’s left with a result of 11. This is just enough to pick the lock with 4 total successes, and although normally she would require multiple successful attempts to get the lock all the way open, the GM says that her risky attempt got the lock open in one try.
 
 ### Supporting
 
-Not every character is going to have a good Skill for every check that comes up, but odds are somebody in the party does. Rather than take a check you have no business making, or just stand there while someone else struggles, you can Support them instead - lending a hand with a Skill of your own, even one that has nothing to do with the Skill they’re actually using.
+A check might come down to one character’s Skill, but that doesn’t mean the rest of the party has to sit it out. Supporting lets you lend a hand with a Skill of your own, even one that has nothing to do with the Skill actually being used. This way a scene can involve everyone, not just whoever happens to have the best Skill for the moment. When you don’t have something else going on, Supporting is something you’re encouraged to reach for rather than just watching.
 
-To Support a check, declare that you’re helping before the check is made, along with which of your Skills you’re using to do it - the GM has final say on whether your chosen Skill makes sense for what you’re doing. You then make a flip against a flat difficulty of 11. If it succeeds, the character you’re Supporting gets Good Luck on their check.
+To Support a check, declare that you’re helping and name the Skill you’re using before the check is made. The GM has final say on whether it makes sense for what you’re doing. Support has to happen before that check: once the flip’s already been made, it’s too late to add Support to it. You then make a flip of your own against a flat difficulty of 11, and if it succeeds the character you’re Supporting gets Good Luck on their check.
 
-Supporting exists for the moments where you don’t have a good Skill of your own for the job in front of you, but can still make yourself useful - a character with poor Survival can still keep watch with Awareness while someone else forages, or steady the rope with Might while someone else does the actual climbing. Between Supporting and your allies’ own Skills, the party has access to a much wider range of them than any one of you could build alone.
+Between Supporting and your allies’ own Skills, the party has access to a much wider range of them than any one of you could build alone. While one character leads a check with Survival, another can keep watch with Awareness at the same time. Someone else might steady the rope with Might while a different character does the actual climbing.
 
 Example: The party is foraging for herbs before a long trek, and Jackal takes the lead with her Survival. Carrick doesn’t have much Survival to speak of, but she’s got a sharp eye, so instead she Supports with Awareness, watching for anything Jackal might walk past. She flips a 9 against her Awareness Skill Total of 5, for a result of 14, clearing the difficulty of 11 with room to spare, and Jackal gets Good Luck on her check.
 
@@ -256,9 +178,182 @@ Cards may be played without replacing an existing card, and simply added to the 
 
 Each flip also has a suit pool, made up of the suits of cards flipped for that action, which may add extra results to the action. Any cards flipped for Good or Bad Luck (even if later replaced with a card played from hand), any cards played for the flip, and other effects that add suits all combine to determine the total suit pool. Some actions and many special abilities will get bonuses from specific suits - this will be listed as something like ‘if the flip succeeds, you gain [Clubs] bonus’.
 
-Example: Browndog makes an attack with her sword against a bandit, and it does extra damage for every Heart in her suit pool. She flips a 10 of Hearts, and the attack hits, so the attack deals an extra +1 damage.
+Each Skill is governed by one of the four suits, matching the suit’s temperament and talents. That’s the suit that matters for Extra Successes when you flip using that Skill. Some Techniques and items call out a suit directly no matter what Skill you’re using - Slowed always scales with Spades, for instance - but otherwise, matching suit means matching your Skill’s.
 
-Example: Browndog is facing a tough foe, so she uses a special attack that Slows a target down extra times for every Club she gets. She also applies a bonus to give it Good Luck twice. She flips a Heart, Club, and a Spade, and also plays a Club from her hand. The attack hits, and deals +1 damage (from the Heart), as well as Slows the target twice (from the two Clubs). Wow!
+- ♥ Hearts: Presence, Rapport, Performance, Survival, Theurgy
+- ♣ Clubs: Brawl, Athletics, Resilience, Might, Meditation, Sorcery
+- ◆ Diamonds: Acrobatics, Craft, Composure, Masquerade, Streetwise, Mixology, Stealth
+- ♠ Spades: Melee, Archery, Awareness, Insight, Persuasion, Academics, Medicine
+
+Example: Hilde swings her axe at a bandit - a Melee attack, so Spades matters here. She flips a 10 of Spades and hits: 2 successes, 1 Extra Success from the match, for +1 damage on top of her axe’s Damage.
+
+Example: Browndog is facing a tough foe, so she uses a special attack that Slows a target down extra times for every Club she gets. She also applies a bonus to give it Good Luck twice. She flips a Heart, Club, and a Spade, and also plays a Club from her hand. The attack hits, and Slows the target twice (from the two Clubs). Wow!
+
+# Your Character
+
+A character is mainly composed of two halves: statistics, derived from your Stats and Skills, and abilities such as Techniques.
+
+## Stats and Skills
+
+Stats are traits which represent inherent parts of a character, such as Body making them tougher or Cunning making them more clever. Skills are specific knowledges and arts that one practices and trains; swordplay, schools of magic, and diplomacy are just some of the Skills that characters can develop to best the challenges they face.
+
+Your Stats increase some of your capabilities on their own. Your Skills are almost always used in the form of your Skill Total, which is the sum of points in that Skill and its corresponding Stat.
+
+Below is a list of the 5 Stats, and the 5 Skills that each corresponds to.
+
+### Agility
+
+Agility measures a character’s flexibility, quickness, and manual dexterity.
+
+It impacts a character’s ability to dodge and strike, balance and move nimbly, act silently and undetected.
+
+Agility determines your Speed, and governs the Skills that determine your Dodge and Parry Defenses, as well as ability to hit with weapon attacks.
+
+#### Acrobatics
+
+Balancing, gymnastics, and other finesse-based exercises. It can be used to determine Dodge Defense and attack with thrown weapons. Acrobatics is governed by Diamonds.
+
+#### Archery
+
+Marksmanship with bows and similar ranged weaponry. It can be used to attack with these weapons. Archery is governed by Spades.
+
+#### Brawl
+
+All forms of unarmed combat, including grappling and wrestling, as well as the use of some special weapons. It can be used to determine Dodge and Parry Defense, and to attack with unarmed attacks and some other weapons. Brawl is governed by Clubs.
+
+#### Melee
+
+Close-quarters combat with melee weapons. It can be used to determine Parry Defense, and to attack with melee weapons. Melee is governed by Spades.
+
+#### Stealth
+
+Sneaking, hiding, and generally avoiding notice. Whenever you are trying to keep silent, stay out of sight, or do something without someone seeing or hearing you, Stealth comes into play. Stealth is governed by Diamonds.
+
+### Body
+
+Body represents the quality of your physical self, in many ways.
+
+Anything that involves raw brawn or resilience will be impacted by a character’s Body, as well as your physical senses and stature.
+
+Body determines your damage with heavier weapons, how fast you heal when resting, and governs the Skills that determine your Vital Defense and ability to use heavier equipment.
+
+#### Athletics
+
+Climbing, jumping, swimming, and other strength-based exercises. Whenever you are engaged in a physical feat that relies on your raw strength, Athletics is what you use. Athletics is governed by Clubs.
+
+#### Awareness
+
+Sensing details and objects that might not be immediately apparent, using vision, hearing, and other senses. Whenever you are trying to spot someone who is hiding from you, you are searching through a room for clues, or otherwise trying to find or notice something physical, Awareness determines how well you do. Awareness is governed by Spades.
+
+#### Might
+
+Being very strong and carrying a lot of weight. It is required to use certain armaments and determines how much you can carry. Might is governed by Clubs.
+
+#### Presence
+
+Impressing others with your bearing, stature, and conviction, for both intimidating them and commanding them. It can be used in both polite and impolite situations, social and otherwise, making it rather flexible. Presence is governed by Hearts.
+
+#### Resilience
+
+Resisting the adverse effects of poison, disease, exhaustion, and many other harmful bodily threats. It is used to determine Vital Defense. Resilience is governed by Clubs.
+
+### Cunning
+
+Cunning is the sum of a character’s subconscious senses and mental reaction time.
+
+It affects a character’s gut feeling, interactions with others that involve reading their reactions, and knowledge that requires a feeling for the situation.
+
+Cunning determines how many cards you draw each morning, the damage of lighter weapons and bows, and governs a variety of more specialized Skills.
+
+#### Insight
+
+Sensing the motives of others, looming danger, and other things that are insubstantial or not directly perceivable. It represents a sort of “sixth sense”, and also determines your Reflex bonus and Vigilant Defense. Insight is governed by Spades.
+
+#### Masquerade
+
+Disguising yourself and acting in character, no matter who you might be impersonating. Whenever you are trying to specifically change your behavior or appearance to seem to be a different person, blend in with a crowd, or change your mannerisms in any way, you adopt a Masquerade. Masquerade is governed by Diamonds.
+
+A Masquerade lives or dies on whether you actually have something to sell it. Attempting one with nothing to back up the part - no fitting clothes, no signet ring, no papers to wave around - gives you Bad Luck on the check, the same as picking a lock with a hairpin instead of proper tools. A Disguise Kit’s basic cosmetics and generic accessories are usually enough to clear that penalty for an everyday disguise - a common traveler, a servant, a face nobody’s looking too closely at - but they won’t convince someone who already knows exactly who they’re looking for. A specific item that actually belongs to the role you’re playing - a guard’s real uniform, a merchant’s own signet ring - can do better than just clearing the penalty: at the GM’s discretion, it grants Good Luck instead, for exactly the disguise that prop is suited to.
+
+Example: Jackal needs to walk into a garrison unnoticed, so he’s disguised himself as a guard using nothing but a Disguise Kit and a rough approximation of the uniform. It’s enough to pass a glance from someone who isn’t looking too hard, so the GM lets him flip Masquerade at his normal Skill Total without penalty. Later, Carrick swipes an actual guard’s uniform off a drying line - name tag and all - and the GM grants her Good Luck on top of her own Masquerade Skill Total, since she’s not just playing a guard, she’s playing a specific one nobody would think to question.
+
+#### Persuasion
+
+Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets Vigilant Defense in a social encounter. Persuasion is governed by Spades.
+
+#### Streetwise
+
+Knowledge of cities and their various social structures as well as your ability to exploit it in any given situation. Whether in a seedy Thieves’ Guild tavern or a high nobility ballroom, your Streetwise allows you to stay on top of the shifting power hierarchies and know who to talk to in order to get things done. Streetwise is governed by Diamonds.
+
+#### Survival
+
+Knowledge of nature and survival as well as your ability to apply that knowledge in the middle of the wilderness. More than just knowing which plants are edible, it allows you to read the land like a book and learn all about it. Survival is governed by Hearts.
+
+### Mind
+
+Mind is a character’s ability to learn, retain, and apply information in both academic and practical settings.
+
+It reflects the amount of knowledge a character has absorbed from a variety of disciplines, as well as the extent to which a character can apply that information in a range of situations.
+
+Mind determines how many cards you draw each morning, the damage and power of many spells, and governs the Skills that determine Mental Defense and ability to create items from raw materials.
+
+#### Academics
+
+Knowledge of history, mathematics, literature, and other subjects frequently thought of as “book learning”. Generally, Academics is used to recall most knowledge that is not covered by other Skills. Academics is governed by Spades.
+
+#### Craft
+
+Understanding of woodworking, metalworking, and other disciplines by which you create armaments and other objects. It is used both to create these items yourself and to better manipulate existing objects, such as disabling a tripwire or picking a lock. Craft is governed by Diamonds.
+
+#### Composure
+
+Resist fear, compulsion, and other mental manipulations both mundane and magical. It is used to determine Mental Defense, as well as your staying power in social situations. Composure is governed by Diamonds.
+
+#### Medicine
+
+Understanding of the body and how certain treatments can heal or harm it. It is mostly used to care for others and tend to their injuries and maladies, including poison and disease, although there are more mercenary uses for this knowledge as well. Medicine is governed by Spades.
+
+#### Mixology
+
+Understanding of chemical and alchemical principles and how to combine reagents to produce a variety of potions, grenades, and other goods. It is used primarily for the creation and identification of alchemical goods. Mixology is governed by Diamonds.
+
+### Essence
+
+Essence is the measure of a character’s connection to metaphysical energies.
+
+This manifests in the character’s ability to manage their own body’s energy, ambient forces around them, and connect spiritually with other people.
+
+Essence determines how well you can ignore damage, and governs Skills used for magical, supernatural, and social arts.
+
+#### Meditation
+
+Tap into your spiritual energies to reinforce your vitality and strike out at your enemies. Many formal martial arts make use of Meditation, in small or large ways, and some dramatic uses of it can allow you to fire bursts of energy to defeat your foes. Meditation is governed by Clubs.
+
+#### Performance
+
+Put on any sort of entertaining or inspiring performance, both with instruments and spoken words. Whether you are giving an encouraging speech to a crowd or breathing life into a tavern party with your lute music, you are putting on a Performance. Performance is governed by Hearts.
+
+#### Rapport
+
+Interact with people amicably, endear yourself to others, and generally be likable and friendly. Whether you’re smoothing over a tense negotiation or simply making a good first impression, you’re building Rapport. Rapport is governed by Hearts.
+
+#### Sorcery
+
+Manipulate ambient magical power to cast direct magic, shooting fireballs and teleporting through shadows. It also represents your knowledge of certain magic use and can help you identify those magical effects. Sorcery is governed by Clubs.
+
+#### Theurgy
+
+Manipulate spiritual energy to cast indirect magic, bolstering vital energy and communing with natural forces. It also represents your knowledge of certain magic use and can help you identify those magical effects. Theurgy is governed by Hearts.
+
+## Techniques
+
+Techniques are special abilities and powers that characters learn and develop over time. Special weapon maneuvers, impressive magical spells, a knack for talking your way past anyone; all of these and many more are Techniques that characters can learn.
+
+A Technique’s rules text can do things the rest of the game doesn’t - jump farther than normal, grant a bigger bonus, override a limitation entirely - simply by saying so. The rest of this book describes the baseline; Techniques are what’s meant to go beyond it.
+
+A Technique’s entry will have its name, Level, any tags for the Technique (such as [Encounter], [Martial], or [Spell], refer to the Glossary) that apply to it, a short description with no rules impact, and then the rules for how to use it and what it does.
+
+To learn a Technique, you must have everything listed under its Prerequisites. You must know any Techniques listed, and have at least as many ranks as are listed for any Skills or Stats - this is the one place in the game where you care about the Skill points themselves, don’t use the Skill Total or include any other effects.
 
 # Health and Resources
 
@@ -284,11 +379,25 @@ Example: To insult him further, an enemy warmage decides to take advantage of th
 
 A full night’s rest is a full 8 hours of rest, which may include up to 2 hours spent performing non-strenuous activities such as reading, maintaining equipment, and/or watching over a campsite. You may only get a full night’s rest once in a 24-hour period.
 
-After you get a full night’s rest, you do the following in order:
+Something that recharges or resets “once per day” follows this same rhythm - it comes back after your next full night’s rest, not simply after 24 hours pass on a clock. A long stretch without one, pushing well past a normal day, doesn’t grant an early refresh - it just risks Exhaustion instead.
 
-- Discard any cards in your hand
-- Heal an amount of Health equal to your Body, split as you choose between Shallow and Deep
-- Draw a number of cards equal to twice the total of your Cunning plus Mind
+After you get a full night’s rest, you go through the following Cycles in order. For each Cycle, first do the listed action, then apply anything else from your items or abilities tied to that Cycle.
+
+- **The Discard Cycle**: Discard any cards in your hand.
+- **The Recovery Cycle**: Heal an amount of Health equal to your Body, split as you choose between Shallow and Deep.
+- **The Draw Cycle**: Draw a number of cards equal to twice the total of your Cunning plus Mind.
+
+## Food and Exhaustion
+
+Between fights and difficult checks, your character also needs food, water, and rest to keep going. This rarely comes up in town, where all three are easy to come by, but it matters anywhere they’re not.
+
+If you go longer than 24 hours without getting a full night’s rest, you become exhausted. This lasts until you get a full night’s rest.
+
+If you go a full day without enough food and water, you become exhausted. This lasts until you eat or drink for the day, plus for each day you missed. A single Food item, either raw material or cooked, counts as enough food, and four liters of water is enough for a day.
+
+While exhausted, you suffer a -2 penalty to all flips, Speed, and Defenses. If you remain exhausted for a prolonged amount of time - subject to GM approval, and usually over a week’s time - eventually you will die.
+
+A few meals - Power Snack, Hearty Meal, and others like them - grant a bonus effect on top of the food itself. Only the first of these you eat in a day actually grants that bonus; eating a second still counts as your food for the day, but doesn’t grant its own extra effect on top.
 
 ## Costs and Commitment
 
@@ -314,7 +423,7 @@ Rather than listing money in specific amounts for prices and other purposes, ins
 
 # Adventuring
 
-Adventures are more or less divided up into separate encounters, which can involve all kinds of different challenges and situations - combat, exploration, and social intrigue all share the same basic structure of taking turns and spending Action Points, even as the specifics of each vary.
+Adventures are more or less divided up into separate encounters, which can involve all kinds of different challenges and situations - combat, exploration, and social intrigue among them. Combat runs on turns and Action Points, covered first since it’s the most detailed; Exploration and Social Challenges each have their own pacing, explained where they come up.
 
 ## Encounter Basics
 
@@ -346,37 +455,41 @@ Example: Enith is being attacked by a wolf, and needs to defend herself. Her Sou
 
 ### Moving
 
-Moving takes 1 AP, although the exact nature depends on the encounter. In combat or another fast-paced encounter, each action moves you up to your Speed in meters. In other situations, this represents a small but notable movement around the area in question. In any case, you can take other actions while moving, and you can always end a move action early.
+A move action takes 1 AP to make, representing a small but notable movement. In combat or other fast-paced encounters, this moves you up to your Speed in meters. You can always end a move action early.
 
-When climbing, jumping, or swimming as part of a move, you become limited by your Athletics Skill Total, and can only spend a certain amount of your movement for the action on it. You can continue moving across multiple actions this way by ending one move and starting another, spending AP appropriately, although for jumps this requires landing in between actions. In cases where a surface is not easy to move across, an Acrobatics or Athletics check may be required to avoid wasting the movement.
+A standing character occupies two vertical spaces, roughly their own height, and can reach into whatever’s in the space right next to their head without any special effort — pulling a lever, grabbing something off a shelf, or catching a hold to start a climb. Actually climbing up to stand somewhere, even somewhere already within reach, still takes movement.
 
-When moving horizontally - swimming or jumping - this is half your Athletics Skill Total. For jumping, this just applies against the total spaces that would be otherwise uncrossable, not the total movement required to go from one space to another.
+Climbing, jumping, and swimming all draw from the same budget: half your Athletics Skill Total. This is the most you can spend on climbing, jumping, or swimming in a single move action. Moving one space horizontally, such as swimming or jumping across a gap, costs 1 from that budget. Moving one space vertically, such as climbing or jumping upward, costs 2. A jump that combines both directions, like leaping up and across a gap, spends from the same budget for every space it covers, horizontal and vertical alike.
 
-When moving vertically - climbing or jumping - this is one fourth of your Athletics Skill Total, plus 2 meters for your vertical reach.
+This budget only applies against spaces that would otherwise be uncrossable, not your whole move - the rest of your movement still comes out of your Speed as normal. A climb, jump, or swim can’t cover more ground in a single move action than your Speed allows, the same as any other movement - if the distance you need is more than that, the budget alone won’t get you there in one action.
 
-When jumping in both directions, count any spaces vertically as two spaces moved horizontally, and combine the two.
+In cases where a surface is not easy to move across, an Acrobatics or Athletics check may be required to avoid wasting the movement.
 
 If you fall from a height, reduce the distance by either your Essence or half your Acrobatics Skill Total, then lose Health equal to the rest.
 
-Example: Hilde wants to run across a wooden floor then jump across a hole that’s been broken into it. She needs to get 5 spaces over to go where she wants, and the hole is 3 spaces wide. Thankfully, her Speed is 5, and her Athletics Skill Total is 7, which halved (rounded down) is 3, so she can use 3 of her movement to jump across the hole, getting where she needs in a single move action.
+Example: Hilde wants to run across a wooden floor then jump across a hole that’s been broken into it. She needs to get 5 spaces over to go where she wants, and the hole is 3 spaces wide. Her Speed is 5, and her Athletics Skill Total is 7, giving her a budget of 3. Since the hole only costs 3 from that budget, and her Speed of 5 covers the whole distance, she crosses it in a single move action.
 
-Example: Hilde needs to climb up the side of a building to chase a bandit. The building is a bit tall, so it’s 4 spaces tall. Since the last example, Hilde upped her Athletics Skill Total to 8, which even quartered is a 2, so combined with her default vertical reach is 4. With a single move, she manages to climb a bit then pull herself up onto the top of the roof, and pursue the bandit!
+Example: Hilde needs to climb up the side of a building to chase a bandit. The building is short, just 2 spaces tall. Her Athletics Skill Total is 8, giving her a budget of 4 - plenty, since each space costs 2. She scrambles up and over the edge in a single move action, and continues the chase across the rooftops.
 
 Example: Hilde is running after the bandit across city rooftops, but he throws a bottle of grease behind him. The GM says she needs to make an Acrobatics check to avoid slipping if she wants to jump across buildings after him. Hilde could easily make the jump with her Athletics, but unfortunately has bad Acrobatics and fails the skill flip for it. Instead of easily jumping across, she tumbles over the side and the bandit runs away. Better luck next time!
 
+Example: Felix needs to leap across a wide chasm, six spaces across. His Athletics Skill Total is 12, giving him a budget of 6 - just enough - but his Speed is only 3, so a single move action can’t cover that much ground, no matter how much budget he has to spare. He’ll need to find another way across - a narrower crossing point, a rope, going around - rather than trying to clear it in one leap.
+
 ### Making an Attack
 
-An attack is a flip made against a difficulty of the target’s Defense, causing damage or other ill effects to the target if it hits. The Defense they use depends on the attack you’re making. An attack has 3 steps: declaring the attack, making the flip, and resolving the effects.
+An attack is a check, made against a difficulty equal to the target’s Defense, that deals damage or other ill effects if it hits. It works the same as any other check - flip a card, add your Skill Total, and compare the result to the difficulty - but combat wraps its own pacing around it. An attack has 3 steps: declaring it, making the flip, and resolving the effects, and like any other action on your turn it costs AP.
 
-When you declare an attack, determine which creature(s) the attack targets - you must be aware of a creature to target it. Abilities and items will state what they target, and a normal weapon attack targets a single creature within the weapon’s range. You also determine how many times, if any, you are Gambling on the attack at this stage.
+When you declare an attack, determine which creature(s) it targets - you must be aware of a creature to target it. Abilities and items will state what they target, and a normal weapon attack targets a single creature within the weapon’s range. You also decide how many times, if any, you’re Gambling on the attack at this stage, the same as declaring Gambling before any other flip.
 
-The Skill (or other number) used for the flip will be stated by the ability or item in question, with regular weapon attacks using one of the weapon’s relevant Skills of your choice. The source of the attack also states the Defense the target used, with weapon attacks using the target’s Dodge or Parry Defense. If multiple Defenses are stated, the target chooses which to use. The target may choose not (or be unable) to apply any Defenses against an attack, in which case it is considered to be 8. If there are multiple targets for an attack, make separate flips for each target.
+The Skill used for the flip will be stated by the ability or item in question, with regular weapon attacks using one of the weapon’s relevant Skills of your choice - that Skill’s suit is also what matters for Extra Successes. The source of the attack also states the Defense the target used, with weapon attacks using the target’s Dodge or Parry Defense. If multiple Defenses are stated, the target chooses which to use. The target may choose not (or be unable) to apply any Defenses against an attack, in which case it is considered to be 8. If there are multiple targets for an attack, make separate flips for each target.
 
 Regardless of the attack’s result, a target who applied their Parry or Dodge Defense against it is Harried once.
 
 If the flip fails, the attack misses. In this case, a target who used Parry Defense is considered to have Parried the attack, and a target who used Dodge Defense is considered to have Dodged the attack.
 
-If the flip succeeds, the attack hits. Abilities and items will state what happens when they hit. Normal weapon attacks deal Physical damage equal to the weapon’s Damage. All damaging attacks (attacks that deal damage) also have their damage increased by [Hearts], and weapon attacks that hit also deal +1 damage for each Extra Success.
+If the flip succeeds, the attack hits, and earns successes the same way any check does: 1 for succeeding, plus an Extra Success for each time you Gambled and for each card in your suit pool matching the attack’s Skill. Abilities and items will state what happens when an attack hits. Normal weapon attacks deal Physical damage equal to the weapon’s Damage, and all damaging attacks deal +1 damage for each Extra Success.
+
+Example: Jackal is fighting off a pack of wolves. She spends 2 AP to attack one with her spear, a Melee weapon governed by Spades, Gambling once before she flips. Her Skill Total is +8, and she flips a 9, so with the -2 from Gambling her result is 8 + 9 - 2 = 15, clearing the wolf’s Dodge Defense of 12. That’s 1 success for the hit, plus 1 Extra Success from Gambling. The card she flipped wasn’t a Spade, so no suit match this time, but the Gamble alone is enough for +1 damage on top of her spear’s Damage.
 
 ### Retrieving Items
 
@@ -441,80 +554,77 @@ While grappling, the following apply to both you and your target:
 
 ## Traveling and Exploration
 
-While the party is traveling, they each get turns and action points and all that, although a round is about an hour instead of the usual. In many cases where the party is only moving and not doing anything else, such as simply moving along the road at a full traveling pace, this can be handwaved. Instead, this more elaborate framework is for situations such as those where the party is moving through uncharted territory and scouting for information about their surroundings.
+While the party is traveling through settled, familiar territory, this can usually be handwaved — they get where they’re going, and only stop for something worth stopping for. This more detailed approach is for uncharted territory, where the party breaks the journey into legs and actively scouts as they go.
 
-uses Survival outdoors, Streetwise in urban environments
+### Legs of a Journey
 
-The party takes turns declaring actions, resolve movement last?
+The GM breaks travel into legs. How much ground a leg covers depends on the terrain and how dangerous it is, anywhere from a couple of hours in hostile territory to a full day somewhere calmer. At the start of each leg, every character picks one action below and makes a single check for it. Once that check is made, it’s done for the leg, for better or worse — there’s no retrying until the next one.
 
-List of actions:
+On a failed check, the GM decides what that looks like. Most of the time, nothing happens — you just come away without whatever the action was for. Other times, the party fails to avoid a complication that was already brewing: a random encounter, lost time, spent supplies, or something specific to the region.
 
-- Move: 1 AP, you move
-- Stealth: 2 AP, you sneak while moving, considered to be group stealth check but anyone not stealthing automatically fails
-- Scout: 2 AP, make a check to reveal information about surrounding spaces
-  - Uh flat difficulty of 11, for each success you get a clue about a surrounding hex
-- Search: 2 AP, search for cool stuff
+*Example: The party pushes into unmapped forest, and the GM calls for a leg covering the next half-day. Felix chooses to Scout, flipping well enough on Survival to beat the difficulty of 11 — the GM warns him about a washed-out ravine on the stretch they’re already crossing, plus a hint of what’s waiting on the leg after it. Beornhard chooses to Search for food and comes up short on his check. The GM decides nothing comes of it this time — just no meal to show for the effort.*
 
-Choose one of the following to search for:
+While exploring, each character can:
 
-- Food (game or plants) and water
-- Raw materials (Medicinal, Wood, etc.)
-- Tracks, either looking for new ones or following ones you have already found
-- A particular object, landmark, or other specific objective
+### Scout
 
-If successful, you will find something. Water is usually in the form of a source that allows the party to drink and fill any containers they might have. Food or materials will generally yield a single unit. Other things vary, but you will either find something; if you would usually succeed but fail due to unusual circumstances, you will get a clue as to why you failed.
+Make a check — Survival outdoors, Streetwise in a settlement — against a flat difficulty of 11. Each success warns the party about anything worth noticing on the stretch they’re currently traveling, plus a clue about what’s coming up next.
 
-The item you turn up will not have a higher Level than the number of successes you get on the check.
+### Search
 
-### Food and Exhaustion
+Choose what you’re looking for: food or water, raw materials, tracks, or a specific object or landmark. Make a check the same way as Scouting, with a difficulty the GM sets based on the circumstances. On success, food or materials yield a single unit, water is generally a source you can drink from and refill containers at, and other results vary with the situation — capped at a Level equal to your successes.
 
-Usually, while staying in town, exhaustion isn’t much of a concern. However, while traveling the wilderness it can threaten even the hardiest of adventurers.
+### Stealth
 
-If you go longer than 24 hours without getting a full night’s rest, you become exhausted. This lasts until you get a full night’s rest.
+If the party wants to avoid drawing attention while exploring, this uses the group Stealth check described under Stealth and Being Aware. Anyone who isn’t making an effort to stay quiet automatically counts as a failure in that group check.
 
-If you go a full day without enough food and water, you become exhausted. This lasts until you eat or drink for the day, plus for each day you missed. A single Food item, either raw material or cooked, will count as enough food, and four liters of water is enough for a day.
+### Pushing the Pace
 
-While exhausted, suffer a -2 penalty to all flips, Speed, Defenses. If you remain exhausted for a prolonged amount of time - subject to GM approval, and usually over a week’s time - eventually you will die.
+If the whole party agrees, they can push the pace to close more ground than a leg would normally cover. Nobody takes a Scout, Search, or Stealth action that leg — everyone’s focus is on speed, not on reading the terrain — and any complication the GM has building simply catches up to the party, with nothing done to soften it.
 
 ## Social Challenges
 
-In many cases, social interactions to convince, impress, or trick someone are resolved with a single Rapport, Presence, or Persuasion check, and the GM determines a difficulty for the check as normal. However, sometimes a lengthy negotiation will unfold into its own encounter, where characters take turns and more specific stats are used.
+In many cases, social interactions to convince, impress, or trick someone are resolved with a single Rapport, Presence, or Persuasion check, and the GM determines a difficulty for the check as normal. However, sometimes convincing someone takes more than one check.
 
-### Social Contests
+### Social Encounters
 
-Social contests are effectively a “team check”, with each group accruing concessions until one loses.
+Some social goals take more than one Statement to pull off - winning someone over, talking your way past a guard, negotiating a good price. These work as an extended check, the same as any other: the GM sets a number of successes needed, and the party earns successes toward it with Statements.
 
-Social statements take 2 AP to make. There are two kinds:
+A Statement is a flip using Presence, Rapport, or Persuasion, made against the target’s Mental or Vigilant Defense. Persuasion targets Vigilant Defense; Presence and Rapport both target Mental Defense.
 
-- Charismatic statements are made against Mental or Instinct Defense. A character can use Presence or Rapport to make one.
-- Strategic statements are made against your choice of either Mental or Instinct Defense. A character can use Persuasion to make one.
+### Pressure
 
-A successful statement causes the target’s group to suffer 1 Concession, plus 1 Concession for each Extra Success. Once the party is at 10 Concessions, they lose and the other group isn’t willing to hear them out anymore. Once the other group hits their limit of Concessions, the party wins (per the ‘One Party Wins’ outcome below).
+The GM can track Pressure over a social encounter - circumstances piling up against the party, like a mismatched disguise, a story straining under scrutiny, or simply taking too long. The party has Bad Luck on Statements equal to their current Pressure, added for things like:
 
-Characters can be in front or back, 1 AP to move between them.
+- A rough starting circumstance, such as impersonating a guard without the uniform.
+- An NPC actively working against the party: a check of their own (any fitting Skill) against the party’s Mental or Vigilant Defense, adding Pressure on a hit.
+- Simply taking too long - Pressure may build up the longer a scene drags on.
 
-- In front, you can make statements against the other party. You must choose a target in the front, if there are any.
-- In back, you can only support members of your party.
+This Bad Luck applies to Support checks made toward a Statement just as much as the Statement itself - the same mounting tension makes it just as hard to find your opening to back someone up as it is to speak up yourself.
 
-### Ending the Contest
+Some abilities and items let a character shrug off Pressure’s weight without truly resolving the underlying trouble - the wearer of a certain charm might feel steady and unbothered even as the room keeps closing in around them. These effects say specifically whether they let you ignore Pressure or remove it. Ignoring Pressure means the Bad Luck it would cause doesn’t apply, but the Pressure itself is still there, piling up the same as ever toward the point where the GM may end the encounter outright. Removing Pressure actually clears it away, buying the party real breathing room, not just a personal sense of calm - a rarer and more valuable trick.
 
-There are three ways that social contest can end:
+Once Pressure stacks high enough, the GM may end the check in failure outright.
+
+### Ending the Encounter
+
+There are three ways that a social encounter can end:
 
 #### One Party Wins
 
-When a side wins the social contest, they may choose what outcome will occur (based on their initial goal): Win Over, Disrespect, or Agreement.
+When a side wins the social encounter, they may choose what outcome will occur (based on their initial goal): Win Over, Disrespect, or Agreement.
 
-#### Interrupted Contest
+#### Interrupted Encounter
 
-If one side deliberately interrupts and ends the social contest, violently or otherwise, that side suffers the Disrespected result. That side may also suffer additional consequences depending on how they interrupt the social contest.
+If one side deliberately interrupts and ends the social encounter, violently or otherwise, that side suffers the Disrespected result. That side may also suffer additional consequences depending on how they interrupt the encounter.
 
 #### Mutual Ending
 
-When both sides agree to end the social contest, or when some outside event interrupts the social contest, then the social contest ends and neither side suffers any consequences as a result. This may occur if the sides decide to reach an Agreement, as per the result.
+When both sides agree to end the social encounter, or when some outside event interrupts it, then the encounter ends and neither side suffers any consequences as a result. This may occur if the sides decide to reach an Agreement, as per the result.
 
-In some situations, this ending can occur when the contest no longer represents interest from both sides - if one side no longer has a stake in the discussion, or a side begins acting ridiculously or unreasonably, they might choose to simply end the conversation. This represents a dramatic case, such as one side in a negotiation suddenly demanding twice their previous suggested offer, where the other side wouldn’t lose face by just shrugging and leaving.
+In some situations, this ending can occur when the encounter no longer represents interest from both sides - if one side no longer has a stake in the discussion, or a side begins acting ridiculously or unreasonably, they might choose to simply end the conversation. This represents a dramatic case, such as one side in a negotiation suddenly demanding twice their previous suggested offer, where the other side wouldn’t lose face by just shrugging and leaving.
 
-### Results of a Social Contest
+### Results of a Social Encounter
 
 #### Win Over
 
@@ -522,11 +632,11 @@ The winning side has earned the respect of the other side for the rest of the da
 
 #### Disrespect
 
-The winning side has made the other side look foolish, unrefined, or otherwise at odds with the overall social fabric of the surroundings for the next hour. All members of the other side have Bad Luck on any Persuasion, Diplomacy, or Intimidate flips during this time, and may suffer additional consequences. They will also likely avoid all members of the winning side, and depending on how the contest ended might be Frightened of the winning side.
+The winning side has made the other side look foolish, unrefined, or otherwise at odds with the overall social fabric of the surroundings for the next hour. All members of the other side have Bad Luck on any Persuasion, Presence, or Rapport flips during this time, and may suffer additional consequences. They will also likely avoid all members of the winning side, and depending on how the encounter ended might be Frightened of the winning side.
 
 #### Agreement
 
-The winning side has convinced the other side to agree with them or otherwise accomplish the goal they declared at the start of social contest. The exact nature of this outcome will depend on the goal declared and the overall situation, but will represent that the other side has genuinely been convinced to agree with the winning side, or at least work with them towards their goal.
+The winning side has convinced the other side to agree with them or otherwise accomplish the goal they declared at the start of the social encounter. The exact nature of this outcome will depend on the goal declared and the overall situation, but will represent that the other side has genuinely been convinced to agree with the winning side, or at least work with them towards their goal.
 
 # Creating Items
 
@@ -551,19 +661,15 @@ The standard creation Schools are:
 
 #### Materials
 
-To create an item you must use a number of materials equal to the Total Materials listed for that item. All Materials used must be at least the same Level as the item being created (but can be higher). These materials must have certain Types, depending on the item.
+Gather a number of materials equal to the item’s Total Materials. Every material used must be at least the item’s Level.
 
-For each Base Material Type an item lists, you must include at least 1 material that matches that type.
+A recipe lists Main material Types and, if it has any, Optional material Types. At least half your materials (rounded down) must be Main Types; the rest can be Optional Types instead, up to half. If a Type entry lists more than one option (such as “Wood or Bone”), any of those count. If instead a recipe lists several Main Types with no “or” joining them, and each Type ties to a separate part of what the item does - such as an enchantment granting a bonus to several different kinds of Resist all at once - you need at least one material of each of those Types among what you gather, not just enough of any single one. If a School requirement is attached to a Type (“Metal, if using Smithing”), you need that School to use materials of that Type. For a material with more than one Type of its own, choose which Type it counts as when you use it.
 
-If Extra Material Types are listed, you may use materials of these Types for up to half of the item’s Total Materials.
+Example: Carrick wants to forge a set of Robes of the Elemental Lord, which grants a bonus to Fire, Frost, Brilliant, and Shadow Resist all at once, and lists all four as Main Types. Of the 20 materials she gathers, at least 10 must be Main Types - but since the robes work through all four elements together, she can’t just bring 10 Fire-aligned materials and call it done. She needs at least one material of each of the four, spending the rest of her 10 across those Types however she likes.
 
-If a series of materials is listed that only requires one of the types (such as ‘either Metal, Wood, or Bone’), you may use any of those types. If a School requirement is included, you must fulfill that for any material type you would use - if the listing says ‘Metal (if using Smithing)’, you would need to have Smithing if you wanted to use Metal Materials to create the item.
+Masterwork items are built onto a base item. Rather than listing their own Optional Types, a Masterwork entry lists only its own Main Type - usually just one - and the chosen base item’s own Main Type becomes this item’s Optional Type instead. A Fire-aligned weapon enhancement always lists Fire as its Main Type; built onto a Metal-based sword, Metal becomes its Optional Type, or Wood if it’s built onto a Carving-based bow instead.
 
-For each material with multiple Types, choose one of their Types to determine how to use them.
-
-Some items require a ‘base item’ as an additional component, usually ones that are an enhancement on a piece of equipment. The base item must be created for this purpose, separately from the final product, using its usual materials and other requirements. Then, the final product is created using its own materials and requirements. The base item and final product can be created back-to-back or in separate sessions, but the final product must be determined first and the base item cannot be used for any other purposes without ruining it as a base item, rendering it a completely normal item of its kind.
-
-In some rare cases, heirlooms, sacred objects, and other special items can be used as base items, removing the need to craft one.
+If you already have a suitable item to enhance - bought, found, or crafted earlier - you can use that instead of gathering Optional-Type materials for it. You only need to cover the Main-Type portion yourself, and the item must be at least the enhancement’s own Level.
 
 #### Tools
 
@@ -575,13 +681,12 @@ In order to work the materials into an item you need three things:
 
 #### Time
 
-Creating an item takes time, depending on the item type, relevant Skill, materials, and creation School used.
+Creating an item takes time. Unless a specific item says otherwise, everything falls into one of two categories:
 
-Most Alchemy items take an hour to make, and multiple items can be prepared simultaneously.
+- Clothing, armor, weapons, and similar equipment take 8 hours of work to prepare.
+- Alchemy and Food items are consumables, and take 1 hour - any number of the same item can be prepared together in that time.
 
-Items from the Schools related to the Craft Skill - Smithing, Carving, Tailoring, and Jewelrymaking - require more time. Larger items, including weapons and armor, take 8 hours of work to prepare; smaller items such as tools and jewelry take 4 hours of work.
-
-Masterwork enhancements require a full 8 hours of work to create, in addition to any time required for a base item.
+These are baseline expectations, not fixed rules - the GM is welcome to adjust them for a specific item if it makes more sense to.
 
 #### Levels
 
@@ -596,7 +701,7 @@ A material has a Level as well as one or more Types, which represent its makeup 
 - Leather: Fur, hide, skin, and similar materials harvested from creatures.
 - Metal: Iron, steel, copper, etc. Can include some kinds of stone, if they can be properly worked into a new form.
 - Wood: Maple, oak, cedar, pine, and other material harvested from trees and similar plants.
-- Food: Meat, fruit, grains, and similar raw foods. Food materials spoil one week after being gathered, and cannot be used.
+- Food: Meat, fruit, grains, and similar raw foods. Food materials spoil one week after being gathered, and cannot be used. A rodent, fish, bird, or fistful of insects is good for a single Food; a person-sized kill yields about five, and a larger beast - a boar, elk, or bear, say - can yield ten or more, scaling up further for anything truly massive.
 - Medicinal: Herbs, venom, fungus, and other natural materials harvested from plants and animals. Used in medicines, poisons, and everything in between.
 - Precious: Gold, silver, silk, and any other material primarily known for being valuable. Precious materials can usually be sold for full value to merchants and others.
 - Brilliant: Material aligned in a spiritually positive way.
@@ -612,74 +717,9 @@ The exception to this is Precious Materials, which are almost always bought and 
 
 Let’s walk through the whole process, start to finish.
 
-Example: Enith wants to forge a blade wreathed in shadow. She settles on Elemental-Forged Weaponry - a Level 3 Masterwork enhancement, costing 20 Gold per Level - with Shadow chosen as its element, built onto a Light One-Handed Melee Weapon as the base item.
+Example: Enith wants to forge a blade wreathed in shadow. She settles on Elemental-Forged Weaponry, a Level 3 Masterwork enhancement (Main Type: Shadow, Total Materials 20), built onto a Metal-based sword as her base item, giving Metal as her Optional Type. She has a Craft Skill Total of 4 and is trained in Smithing. She gathers at least 10 Shadow-aligned materials - including a Level 5 one saved from a shade she put down last week - and rounds out the rest with up to 10 Metal, all Level 3 or higher. With her smithing tools, a forge, and the recipe in hand, she spends 8 hours at the workbench, and the enhancement is done - the finished weapon deals Shadow damage instead of Physical with every attack she makes with it.
 
-First, the base item. A Light One-Handed Melee Weapon is a Weapon, and Enith has a Craft Skill Total of 4 and is trained in Carving (from her Artisanal Training), so she uses the Weapon (Carving) recipe: 2 materials of Wood or Bone, plus 1 of Cloth or Leather. She spends 2 Bone and 1 Leather, all Level 1, along with her carving tools, a workbench, and the recipe itself, and puts in the full 8 hours weapons require.
-
-Then the enhancement. At Level 3, Elemental-Forged Weaponry costs 3 × 20 = 60 Gold, so Enith needs 60 Gold worth of materials, at least one of which must be Shadow. She still has a Level 5 Shadow-aligned material saved from a shade she put down last week, and rounds the rest out with what else she has on hand until she reaches 60. Another 8 hours at the workbench, and the enhancement is done - the finished weapon deals Shadow damage instead of Physical with every attack she makes with it.
-
-# Character Creation
-
-This section comes last since it leans on terms and mechanics explained throughout the rest of the book — skim ahead (or get someone to summarize it for you) if something here doesn’t make sense yet.
-
-## Building a Character
-
-The basics of making a character are simple:
-
-- Choose whether your character is a **Settler** or a **Wildfolk**. Choose two backgrounds from the General list and/or the list you chose.
-- Spend **75 Experience** to build your character. All your Stats and Skills start at 0, and at this point no Stat or Skill can be raised above 3 ranks.
-- You start with an **Adventurer’s Kit** and **20 Gold**, which may be spent immediately on weapons, armor, adventuring goods, any other purpose, or simply kept for later.
-
-## Calculated Statistics
-
-Below are the calculations for various statistics that your character has, that are determined from your Stats and Skills.
-
-- **Health**: Each character begins with a maximum of five (5) Shallow and Deep Health (10 total).
-- **Speed**: Your Speed is equal to 1 + your Agility.
-- **Reflex**: Your Reflex is equal to your Insight Skill Total.
-- **Cards Per Day**: You draw cards after a full night’s rest equal to twice your total Cunning + Mind.
-- **Rest Health**: You heal Health after a full night’s rest equal to your Body.
-- **Parry Defense**: When you apply your Parry Defense, you pick a weapon you are wielding and then your Defense is equal to 8 + [Weapon’s relevant Skill Total] + Weapon’s Defense.
-- **Dodge Defense**: When you apply your Dodge Defense, you choose Acrobatics or Brawl and then your Defense is equal to 8 + [Acrobatics or Brawl Skill Total].
-- **Vital Defense**: Your Vital Defense is equal to 8 + your Resilience Skill Total.
-- **Mental Defense**: Your Mental Defense is equal to 8 + your Composure Skill Total.
-- **Instinct Defense**: Your Instinct Defense is equal to 8 + your Insight Skill Total.
-- **Resists**: Each of the five types of Resist (Physical, Fire, Frost, Brilliant, Shadow) starts equal to your Essence. Bonuses to any of them come from equipment and other effects.
-
-### Quick Creation References
-
-Each point separately — **Skill**: 1/2/3/4/5 (rank 1-5); **Stat**: 2/4/6/8/10; **Technique**: 3/6/9/12/15 (× Level).
-
-Total cost, from 0 — **Skill**: 1/3/6/10/15 (to reach rank 1-5); **Stat**: 2/6/12/20/30 (to reach rank 1-5).
-
-### “Okay, is there a quick way to make a character for now?”
-
-Yes! Just follow this handy guide:
-
-- Take a minute to think about your character idea, if you haven’t already. What kind of cool abilities would be fun for them to use? What kind of equipment and tools?
-- Skim through the Adventuring Gear and Techniques sections, noting what Stats and Skills those use, both for how effective they are and for any prerequisites to use them in the first place.
-- **Skills**: Time to pick out the Skills that your character will rely on
-  - Choose 2 Skills to have 3 ranks each; these should be your character’s primary focus
-  - Choose 5 Skills to have 2 ranks each; other useful things you want to be able to do, perhaps including Skills that determine your various Defenses
-  - Choose 2 Skills to have 1 rank each; anything you may have considered before, but didn’t make the cut yet
-- **Stats**: Choose how to arrange your Stats
-  - Choose 1 Stat to have 3 ranks; this is pretty important, pick one that boosts your damage, most of your Skills, or otherwise ties into your Favorite Thing to Do
-  - Choose 2 Stats to have 2 ranks each; pick ones to round out your character, peek back at Calculated Statistics for ideas
-  - Put 1 rank in each of the last 2 Stats; on the plus side, they’re easy to buy up higher with Experience in the future
-- **Techniques**: choose 6 total Levels’ worth of Techniques, making sure that you meet the prerequisites for them.
-- **Equipment**: You get an Adventurer’s Kit with all the basics, and then 20 Gold to buy what you want. A bag of some kind is important - a Knapsack if you’re not very strong - plus some weapons, armor, and anything else that looks fun.
-- Verify that everything looks good, you can use all of your Techniques and equipment, and that you didn’t accidentally leave a Defense lower than you meant to.
-
-### “Okay that was helpful, but I’m having trouble making sure I did it right…”
-
-- 2 Skills at 3 ranks each, 5 Skills at 2 ranks, 2 Skills at 1 rank
-- 1 Stat at 3 ranks, 2 Stats at 2 ranks, the last 2 Stats at 1 rank each
-- Pick 6 total Levels’ worth of Techniques; make sure you meet the prereqs
-- Pick the two Backgrounds that fit best and/or look the funniest; anyone can have General ones, but you have to pick ONLY Settler OR Wildfolk options to choose from, on top of that.
-- You have an Adventurer’s Kit, plus 20 Gold to buy some kind of bag, weapon and armor, and anything else you want. Keep the rest to buy drinks with.
-- Make sure you can actually use all of your stuff, and that you didn’t pick the wrong Stats or Skills for anything
-- Double-check Calculated Statistics to make sure you didn’t accidentally end up with something too low for your tastes
-- Give your character a nice name :)
+Example: If Enith already had a suitable Metal-based sword on hand, she could skip the Metal materials entirely and enhance that sword directly - gathering only the 10 Shadow-aligned materials the enhancement itself needs, as long as the sword is Level 3 or higher.
 
 # Goblin Game {Goblin Game}
 
