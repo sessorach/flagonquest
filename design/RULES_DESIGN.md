@@ -2364,7 +2364,11 @@ and real worked examples from the designer's own roster).
 
 ## The three supernatural martial Schools: Demon, Shugen, Great Old Oak
 
-Snake and Bear are the "normal" unarmed Schools and scale on Brawl.
+Snake and Bear are the "normal" unarmed Schools and scale on Brawl, with
+a secondary skill as a Prereq only: Might for Bear, and Insight for
+Snake (changed from Acrobatics on 2026-09-28, per the designer:
+Acrobatics was close to useless for a Brawl build and punishing to
+buy, and reading an opponent suits Snake's grapples and redirects).
 Demon, Shugen, and Great Old Oak are the supernatural ones and scale on
 Meditation. Each of the three gets both a hybrid Brawl/Meditation track
 (Techniques that power up an Unarmed strike) and a pure Meditation track

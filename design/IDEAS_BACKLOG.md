@@ -364,7 +364,7 @@ deliberately when drafting, don't just take the first hit. Old
 techniques get added. Live right now: L1 Firefly Leaves the Hand, Firefly Dies in the Hand, Striking
 Constrictor · L2 Boulder Toss, Sickness Takes the Flock, Iron Skin, Ignore Pain,
 Tree Withstands the Storm,
-Channel Ki, Seasons Pass the Forest, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
+Channel Ki, Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water,
 Oak Draws the Lightning, Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
@@ -448,7 +448,7 @@ translation to live keywords, not a straight port.
     Whirlwind's; needs new flavor.)
 - **Great Old Oak** (live: Channel Ki L2, Ignore Pain L2, Iron Skin
   L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Old Growth
-  Digs Deep L4, Seasons Pass the Forest L2, Harmonious Mending L4, all moved in when the School split was
+  Digs Deep L4, Seasons Pass the Forest L2 (Unarmed track), Harmonious Mending L4, all moved in when the School split was
   decided) — defensive/endurance, and home for the self-buff/
   self-restoration Meditation Techniques: Protected, Ward, self-healing,
   clearing your own debuffs, counters, Taunted.
@@ -508,7 +508,7 @@ that much extra value on average. For unarmed: Brawl gets a -1 skill
 adjustment (putting Unarmed on rate with one-handed weapons), and a
 Technique that requires *both* hands empty gets +2 on top (see
 `balance_weights.csv`). And per the designer, every unarmed School
-works like Snake: the secondary skill (Acrobatics, Might, ...) is a
+works like Snake: the secondary skill (Insight for Snake, Might for Bear) is a
 Prereq, and the effects scale on **Brawl**. That's for the "normal"
 Schools, **Snake and Bear**, the bread and butter for a pure brawler.
 **Demon** (evil), **Shugen** (neutral/good), and **Great Old Oak**

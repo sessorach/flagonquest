@@ -7566,3 +7566,11 @@ Prereqs Meditation 3. Level 2, Target 6, Med ST 6. Priced when used
 uses one (the two-debuff note in `balance.md`). Ward = 2/stack absorption
 + the Ward Resist table; Parry swap ~+0.5; no Harried +1; 1 AP −2.75.
 3.25 stacks: vs. Frost ~6.1 (**102%**), vs. Fire ~7.0 (**117%**).
+
+**Seasons Pass the Forest moved to Oak's Unarmed track** (2026-09-28):
+it now applies Parry "with your Unarmed weapon," so it needs Brawl
+(Prereqs Brawl 3, Meditation 2, Martial tag). Price unchanged.
+
+**Snake School's secondary skill is now Insight instead of Acrobatics**
+(2026-09-28, per the designer). Prereqs only; nothing in Snake's
+Effects referenced Acrobatics, so no price changes.

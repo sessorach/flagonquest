@@ -4002,8 +4002,8 @@
     "effects": "Make an Unarmed weapon attack against that creature. If it hits, the creature does not move or is not Pushed; their movement for that action or effect is Countered.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Brawl 3, Acrobatics 2",
-    "relevant_skills": "Brawl, Acrobatics",
+    "prereqs": "Brawl 3, Insight 2",
+    "relevant_skills": "Brawl, Insight",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -4027,7 +4027,7 @@
       {
         "type": "skill",
         "options": [
-          "Acrobatics"
+          "Insight"
         ],
         "threshold": {
           "base": 2
@@ -4051,8 +4051,8 @@
     "effects": "Make an Unarmed weapon attack flip. Your Parry Defense against the attack is equal to its result. If you Parry the attack, it's redirected: it's made against the target instead, using your flip's result, and resolved normally.",
     "builder_notes": "This is a normal flip, so you can play cards from your hand on it after seeing the attacker's result. It's one of the few ways to spend a card on defense.",
     "special": null,
-    "prereqs": "Brawl 5, Acrobatics 4, Meditation 2",
-    "relevant_skills": "Brawl, Acrobatics, Meditation",
+    "prereqs": "Brawl 5, Insight 4, Meditation 2",
+    "relevant_skills": "Brawl, Insight, Meditation",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -4076,7 +4076,7 @@
       {
         "type": "skill",
         "options": [
-          "Acrobatics"
+          "Insight"
         ],
         "threshold": {
           "base": 4
@@ -4198,8 +4198,8 @@
     "effects": "You use the target as a shield until the grapple ends. You may Parry with them as a Brawl weapon (Defense +1). If you successfully Parry an attack with the target, the attack instead targets their Parry Defense and is resolved accordingly.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Brawl 4, Acrobatics 3",
-    "relevant_skills": "Brawl, Acrobatics",
+    "prereqs": "Brawl 4, Insight 3",
+    "relevant_skills": "Brawl, Insight",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -4223,7 +4223,7 @@
       {
         "type": "skill",
         "options": [
-          "Acrobatics"
+          "Insight"
         ],
         "threshold": {
           "base": 3
@@ -6657,8 +6657,8 @@
     "effects": "Make an Unarmed weapon attack with Good Luck against the target's Dodge or Parry Defense. If it hits, you grapple the target, as the Grapple maneuver.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Brawl 2, Acrobatics 1",
-    "relevant_skills": "Brawl, Acrobatics",
+    "prereqs": "Brawl 2, Insight 1",
+    "relevant_skills": "Brawl, Insight",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -6682,7 +6682,7 @@
       {
         "type": "skill",
         "options": [
-          "Acrobatics"
+          "Insight"
         ],
         "threshold": {
           "base": 1
@@ -6706,8 +6706,8 @@
     "effects": "If you are grappled, the grapple ends. Then remove up to [half your Brawl Skill Total] total stacks of Bleeding, Crippled, and/or Slowed from yourself, and make an Unarmed weapon attack against the target.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Brawl 3, Acrobatics 2",
-    "relevant_skills": "Brawl, Acrobatics",
+    "prereqs": "Brawl 3, Insight 2",
+    "relevant_skills": "Brawl, Insight",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -6731,7 +6731,7 @@
       {
         "type": "skill",
         "options": [
-          "Acrobatics"
+          "Insight"
         ],
         "threshold": {
           "base": 2
@@ -7623,17 +7623,17 @@
     "name": "Great Old Oak School - Seasons Pass the Forest",
     "level_min": 2,
     "level_max": 2,
-    "tags": "Discipline, Encounter",
+    "tags": "Discipline, Martial, Encounter",
     "description": "A forest has seen a thousand summers burn and a thousand winters freeze, and it is still standing. Steadying your breath like the slow turn of the year, you let the fire and frost of a sorcerer's spell wash over you and pass.",
     "condition": null,
     "action": "1 AP - Interrupt (a spell attack is made against your Dodge Defense, before it hits or misses)",
     "cost": null,
     "target": null,
-    "effects": "You may apply your Parry Defense against the attack instead, and you aren't Harried from applying your Defense to it. Then you gain [half your Meditation Skill Total] + [Hearts] stacks each of Fire Ward and Frost Ward.",
+    "effects": "You may apply your Parry Defense with your Unarmed weapon against the attack instead, and you aren't Harried from applying your Defense to it. Then you gain [half your Meditation Skill Total] + [Hearts] stacks each of Fire Ward and Frost Ward.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Meditation 3",
-    "relevant_skills": "Meditation",
+    "prereqs": "Brawl 3, Meditation 2",
+    "relevant_skills": "Brawl, Meditation",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -7648,10 +7648,19 @@
       {
         "type": "skill",
         "options": [
-          "Meditation"
+          "Brawl"
         ],
         "threshold": {
           "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
         }
       }
     ],

@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-09-28 — Snake uses Insight
+
+Snake School's Techniques now need Insight instead of Acrobatics, and Seasons Pass the Forest moved to Great Old Oak's Unarmed Techniques.
+
 ### 2026-09-27 — Shugen and Demon reworked, Oak started
 
 Reworked Shugen and Demon under the new School split, filled out Demon's Meditation Techniques, and started on Great Old Oak.
