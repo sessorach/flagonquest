@@ -376,7 +376,7 @@ Water Fills the Empty Vessel, Heelbiter, Chainbreaker, Shattering Slam,
 Spirit Hands, Hand Rings the Bell · L3 Swallow Skims the Water, Willow Springs Back,
 Oak Draws the Lightning, Dawn Wind Bends the Grass, Turn the Tables, Swatting Paw, Ripjaw Gambit, Hand of
 Defilement, Tide Rolls Back the Shore · L4 Slithering Hands, The
-Grizzly Awakens, Circling Vulture, Old Growth Digs Deep, Harmonious Mending, Lantern Gutters in
+Grizzly Awakens, Circling Vulture, Old Growth Digs Deep, Sap Seals the Wound Mending, Lantern Gutters in
 the Wind, Great Wind Scatters the Leaves · **L5 none**. L2 is
 the most crowded; L1 is thin; L3-L4 are filling in; L5 is empty.
 **Coverage target, per the designer:** each supernatural School
@@ -457,7 +457,7 @@ translation to live keywords, not a straight port.
     Whirlwind's; needs new flavor.)
 - **Great Old Oak** (live: Oak Sheds Its Leaves L2, Willow Springs Back L3, Bark Turns the
   Blade L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Old Growth
-  Digs Deep L4, Seasons Pass the Forest L2 (Unarmed track), Harmonious Mending L4, all moved in when the School split was
+  Digs Deep L4, Seasons Pass the Forest L2 (Unarmed track), Sap Seals the Wound L4, all moved in when the School split was
   decided) — defensive/endurance, and home for the self-buff/
   self-restoration Meditation Techniques: Protected, Ward, self-healing,
   clearing your own debuffs, counters, Taunted.

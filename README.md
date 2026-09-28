@@ -13,9 +13,11 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-09-28 — Snake uses Insight
+### 2026-09-28 — Great Old Oak finished
 
-Snake School's Techniques now need Insight instead of Acrobatics, and Seasons Pass the Forest moved to Great Old Oak's Unarmed Techniques.
+Finished Great Old Oak: Snake now needs Insight instead of Acrobatics, and Oak's older Meditation Techniques got new names and new jobs.
+- Iron Skin is now Bark Turns the Blade, Channel Ki is now Willow Springs Back (Level 3), Ignore Pain is now Oak Sheds Its Leaves (spend cards to block incoming debuffs), and Harmonious Mending is now Sap Seals the Wound (spend cards to heal over a few turns).
+- Seasons Pass the Forest moved to Oak's Unarmed Techniques.
 
 ### 2026-09-27 — Shugen and Demon reworked, Oak started
 

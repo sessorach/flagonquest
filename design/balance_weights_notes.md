@@ -7640,3 +7640,21 @@ X = 1 covers 2 stacks, both usually used (the triggering application
 plus one more): ~5 − 2.7 = **+2.3**, level with Second Wind. Larger X
 has diminishing returns, since the roster only puts ~3-4 stacks on a
 monk a fight: X = 3 covers 6, realizes ~4, ~10 − 8.1 = +1.9.
+
+### Oak review: Harmonious Mending becomes Sap Seals the Wound (heal over time)
+
+The heal-over-time half of the split. Debuff removal moved to Oak Sheds
+Its Leaves; the "advance poisons X hours" clause is dropped pending the
+Poison pass.
+
+> *1 AP. Cost: discard X cards (maximum [half your Meditation Skill
+> Total]).* At the start of each of your next X turns, you heal 2
+> Health. You also heal 1 Health immediately for each Heart discarded.
+
+Level 4, Target 12, X up to 4. Healing counted at 80% realized (some
+lands after the fight or on a full bar), 4/Health, cards 2.7, 1 AP 2.75.
+X = 3: ~94%; X = 4: ~127%. A "3 a turn if any Heart" version was
+116-173% (the bonus multiplied across every turn); no Heart clause was
+76-100%. About 2 Health a card over time plus 1 now on a Heart, against
+Second Wind's 1 (2 on a Heart) and Healing Magic's ~1: the good-value
+self-heal, paid for by waiting.
