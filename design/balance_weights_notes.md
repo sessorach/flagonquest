@@ -7619,3 +7619,24 @@ refreshing your hottest Technique (+3-4 surplus a use), so it moved to
 Level 3, which also fills Oak's pure-track Level 3 and thins out Level 2.
 Prereq Meditation 4 to match. Renamed for a willow bending and springing
 back.
+
+### Oak Sheds Its Leaves, reworked as a card sink (2026-09-28)
+
+Per the designer, Oak's pure track splits into a debuff card sink (this)
+and a heal-over-time card sink (Harmonious Mending's rework). Pure
+prevention, usable in response to gaining an effect, so the triggering
+application is covered too:
+
+> *0 AP - Interrupt (any time). Cost: discard X cards (maximum [half
+> your Meditation Skill Total]).* You ignore the next [twice X] stacks
+> of Bleeding, Crippled, Frightened, Necrotic, Slowed, Taunted, and/or
+> Vulnerable you would gain this encounter.
+
+Encounter tag dropped: the cards are the limit, like Second Wind.
+Priced per use the way Second Wind is (discard a card, heal 1 or 2 on a
+Heart: 4 × 1.25 − 2.7 ≈ +2.3 a use). A stack prevented is worth ~2.5 on
+average (Bleeding 4, Frightened/Taunted 2.2, Crippled/Slowed ~1.1-1.5).
+X = 1 covers 2 stacks, both usually used (the triggering application
+plus one more): ~5 − 2.7 = **+2.3**, level with Second Wind. Larger X
+has diminishing returns, since the roster only puts ~3-4 stacks on a
+monk a fight: X = 3 covers 6, realizes ~4, ~10 − 8.1 = +1.9.
