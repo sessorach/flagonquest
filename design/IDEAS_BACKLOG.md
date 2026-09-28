@@ -136,6 +136,14 @@ learning something new, that kind of utility. Pranic Nourishment
 (T085) is the only one like it so far. Not for now; comes after the
 Shugen pass.
 
+## More generic card-spending Techniques
+
+Per the designer (2026-09-28): characters should have a couple of ways
+to spend cards even at creation, like Second Wind (0 AP, discard a card,
+heal 1 or 2 on a Heart). Add a few more generic ones at Levels 1-2. All
+of Meditation lacked one as of this note; the Oak review is adding the
+first two (a debuff-clearing card sink and a heal-over-time).
+
 ## Check when reviewing Poison Techniques
 
 Old Growth Digs Deep (T165) clears named Common Effects from yourself and shouldn't
