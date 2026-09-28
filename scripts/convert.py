@@ -256,8 +256,8 @@ recording which released version last touched that row (new row or
 edited one), so the site can badge "recently updated" content and let
 players filter down to just what changed. Not hand-edited — this
 column is auto-stamped by scripts/stamp_patch_versions.py, which diffs
-the working-tree CSVs against their state at a given git ref (the most
-recent git tag by default) and stamps every new-or-changed row with the
+the working-tree CSVs against their state at the previous release (the
+commit recorded in scripts/last_release.txt) and stamps every new-or-changed row with the
 version named in scripts/version.txt. This script (convert.py) reads
 that same version.txt and writes it into data/meta.json as
 {"currentPatch": "..."} — the one place the site looks up "what's the
@@ -270,19 +270,23 @@ seeded with the then-current version, since seeding it would have made
 the site badge literally everything as "Updated" on day one. Only rows
 the stamping script actually finds changed ever get a value.
 
-Release workflow, in order:
+Release workflow, in order. A release is a big batch (every few weeks,
+e.g. a couple of weeks of Technique work going live), not every commit:
+"Updated" on the site means "changed since the last release," so a
+release per small commit would make that meaningless.
   1. Bump scripts/version.txt to the new version.
-  2. Run scripts/stamp_patch_versions.py — diffs against the last git
-     tag (or pass --since <ref> for something else) and stamps Patch on
+  2. Run scripts/stamp_patch_versions.py — diffs against the commit in
+     scripts/last_release.txt (or pass --since <ref>) and stamps Patch on
      every changed techniques.csv/items.csv row.
   3. Run this script (convert.py) to regenerate data/*.json, including
      the new data/meta.json.
-  4. Commit everything, then tag the commit with the new version (e.g.
-     `git tag v1.1`) so the *next* release's stamping script has a
-     baseline to diff against.
-Skipping step 4 doesn't break anything immediately, but the next
-stamping run would then diff against an older tag and could pick up
-changes that were already shipped in a prior release.
+  4. Commit everything as the release.
+  5. Run scripts/stamp_patch_versions.py --mark-release, which writes
+     that commit into scripts/last_release.txt, and commit the file, so
+     the *next* release diffs against this one.
+Skipping step 5 doesn't break anything immediately, but the next
+stamping run would diff against an older release and re-flag changes
+that already shipped.
 """
 
 import csv

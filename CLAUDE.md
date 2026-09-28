@@ -118,7 +118,8 @@ which should stay a clean decision record.
   column recording which release last touched each row, so the site can
   badge recently-changed content and filter down to it. **Never
   hand-edit `Patch`** — `scripts/stamp_patch_versions.py` derives it
-  from git (diffs the working-tree CSVs against the last release tag,
+  from git (diffs the working-tree CSVs against the previous release, the
+  commit recorded in `scripts/last_release.txt`,
   stamps every new-or-changed row with `scripts/version.txt`'s value —
   a change to `Description (Fluff)` alone doesn't count, since the
   badge means "the rules for this changed," not "the flavor text did"),
@@ -878,13 +879,19 @@ Two recurring environment quirks worth knowing:
   fetch + compare against `origin/<branch>` to confirm nothing else
   changed the remote branch since the last push.
 - **Cutting a release** (so players see what changed — see Patch
-  tracking under Architecture): (1) bump `scripts/version.txt`; (2) run
-  `python scripts/stamp_patch_versions.py` (diffs against the latest
-  git tag by default; `--dry-run` to preview, `--since <ref>` to
-  override); (3) run `convert.py`; (4) commit, then tag that commit with
-  the new version (`git tag v1.1`) and push the tag — without the tag,
-  the *next* release's stamping run diffs against an older baseline and
-  re-flags changes that already shipped.
+  tracking under Architecture). A release is a big batch every few
+  weeks (a couple of weeks of Technique work going live), not every
+  commit: the site's "Updated" badge means "changed since the last
+  release," so small frequent releases would make it meaningless. The
+  version number is decided at release time. Steps: (1) bump
+  `scripts/version.txt`; (2) run `python scripts/stamp_patch_versions.py`
+  (diffs against `scripts/last_release.txt`; `--dry-run` to preview,
+  `--since <ref>` to override); (3) run `convert.py`; (4) commit the
+  release; (5) run `python scripts/stamp_patch_versions.py
+  --mark-release` and commit `scripts/last_release.txt`, so the next
+  release diffs against this one. The baseline lives in a file rather
+  than a git tag because this project's sessions can push commits but
+  not tags. v1.1 is `4ce43eb`.
 - **Merging a branch cut before the `Patch` column existed** will
   conflict on every `techniques.csv`/`items.csv` row that branch edited
   (this side appended a field to every row). If that branch already

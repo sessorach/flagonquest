@@ -9,12 +9,21 @@ CLAUDE.md's data-over-prose principle warns about elsewhere) — this
 script derives it directly from what git says actually changed.
 
 Usage: python scripts/stamp_patch_versions.py [--since REF] [--version VERSION] [--dry-run]
+       python scripts/stamp_patch_versions.py --mark-release
 
   --since REF       Git ref to diff the working-tree CSVs against.
-                     Defaults to the most recent git tag (`git describe
-                     --tags --abbrev=0`) — see the release workflow in
-                     convert.py's PATCH TRACKING doc for why a release
-                     should end with a tag.
+                     Defaults to the commit recorded in
+                     scripts/last_release.txt (the previous release),
+                     falling back to the most recent git tag if that
+                     file is missing. A file rather than a tag because
+                     a release is a big batch every few weeks, not every
+                     commit, and a file is something any session can
+                     update with an ordinary commit (sessions can't
+                     always push tags).
+  --mark-release    Write the current commit (HEAD) into
+                     scripts/last_release.txt and exit. Run it right
+                     after committing a release, then commit that file,
+                     so the next release diffs against this one.
   --version VERSION The value to stamp onto changed rows. Defaults to
                      the contents of scripts/version.txt — bump that
                      file first, then run this script, so the two never
@@ -53,16 +62,33 @@ def run_git(args):
     return result
 
 
-def latest_tag():
+LAST_RELEASE_PATH = os.path.join(script_dir, "last_release.txt")
+
+
+def last_release():
+    if os.path.exists(LAST_RELEASE_PATH):
+        with open(LAST_RELEASE_PATH, encoding="utf-8") as f:
+            ref = f.read().strip()
+        if ref:
+            return ref
     result = run_git(["describe", "--tags", "--abbrev=0"])
     if result.returncode != 0:
         sys.exit(
-            "No git tags found, and no --since ref was given.\n"
-            "This script needs a baseline to diff against — tag the commit you want to\n"
-            "treat as \"the last release\" (e.g. `git tag v1.0`) and try again, or pass\n"
-            "--since <ref> explicitly."
+            "No scripts/last_release.txt and no git tags, and no --since ref was given.\n"
+            "This script needs a baseline to diff against: put the commit of the last\n"
+            "release in scripts/last_release.txt, or pass --since <ref> explicitly."
         )
     return result.stdout.strip()
+
+
+def mark_release():
+    result = run_git(["rev-parse", "HEAD"])
+    if result.returncode != 0:
+        sys.exit("Couldn't read the current commit: " + result.stderr.strip())
+    head = result.stdout.strip()
+    with open(LAST_RELEASE_PATH, "w", encoding="utf-8") as f:
+        f.write(head + "\n")
+    print(f"Recorded {head} in scripts/last_release.txt. Commit that file to finish the release.")
 
 
 def read_csv_at_ref(ref, filename):
@@ -95,18 +121,32 @@ def read_working_csv(filename):
     return fieldnames, rows, added_column
 
 
+def _norm(value):
+    # `git show` output goes through text-mode universal newlines, which
+    # turns a CRLF inside a quoted multi-line field into LF, while the
+    # working-tree file is read with newline="" and keeps it. Without
+    # this, any row with a multi-line field (T027 Profession's Choice
+    # Effects) would look "changed" on every release.
+    return (value or "").replace("\r\n", "\n")
+
+
 def row_changed(new_row, old_row, compare_cols):
-    return any((new_row.get(c) or "") != (old_row.get(c) or "") for c in compare_cols)
+    return any(_norm(new_row.get(c)) != _norm(old_row.get(c)) for c in compare_cols)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--since", help="Git ref to diff against (default: latest tag)")
+    parser.add_argument("--since", help="Git ref to diff against (default: scripts/last_release.txt)")
     parser.add_argument("--version", help="Version to stamp (default: scripts/version.txt)")
     parser.add_argument("--dry-run", action="store_true", help="Report changes without writing files")
+    parser.add_argument("--mark-release", action="store_true", help="Record HEAD in scripts/last_release.txt and exit")
     args = parser.parse_args()
 
-    since = args.since or latest_tag()
+    if args.mark_release:
+        mark_release()
+        return
+
+    since = args.since or last_release()
 
     if args.version:
         version = args.version
@@ -164,7 +204,8 @@ def main():
     if args.dry_run:
         print("Dry run — no files written." if any_changes else "Dry run — nothing would change.")
     else:
-        print("Done. Run convert.py next to regenerate data/*.json, then commit and tag the release.")
+        print("Done. Run convert.py next to regenerate data/*.json, commit the release,\n"
+              "then run this script with --mark-release and commit scripts/last_release.txt.")
 
 
 if __name__ == "__main__":
