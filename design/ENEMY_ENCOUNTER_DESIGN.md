@@ -172,8 +172,10 @@ contradiction: same shape, more generous, and "Backup" renamed
 > should have Dodge/Parry 1 higher than Vital/Mental/Vigilant, with room
 > to trade stats for higher Defenses and to specialize one Defense
 > above the rest at a cost (e.g. a necromancer with very high Vital,
-> lower Dodge/Parry). See `balance.md`'s Open balance work. The tiering
-> below predates that and will change.
+> lower Dodge/Parry). Also (2026-09-28): enemies should threaten the
+> party more through mechanics (debuffs) and less through raw numbers.
+> See `balance.md`'s Open balance work. The tiering below predates that
+> and will change.
 
 The original source spreadsheet gave enemies **three** Defense
 categories, not the PC's five — **Parry/Dodge** (combined into one,

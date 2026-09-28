@@ -1615,6 +1615,16 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   intended 1-2 below Dodge/Parry and noted against the current
   roster's numbers alongside.
 
+  **Also for that rework (2026-09-28): threaten through mechanics, not
+  raw numbers.** Per the designer, enemies across the board should lean
+  more on debuffs (Taunted, Frightened, Bleeding, Slowed and the like)
+  and less on bigger damage and Defense numbers, so that player
+  abilities that shrug off or clean up effects have something to do.
+  Taunted/Frightened are uncommon on enemies today. Until the rework
+  lands, immunity to them is priced at the intended rate (about 1-2
+  stacks per encounter, ~3), not today's lower one. First case: Furious
+  Rage.
+
 - **Gambling is weapon-attacks-only for damaging attacks: look deeper
   later, with the simulator.** Added to `rulebook.md`'s Gambling
   section on 2026-09-24. The intent is to give weapon users an edge
