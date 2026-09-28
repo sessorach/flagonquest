@@ -7574,3 +7574,11 @@ it now applies Parry "with your Unarmed weapon," so it needs Brawl
 **Snake School's secondary skill is now Insight instead of Acrobatics**
 (2026-09-28, per the designer). Prereqs only; nothing in Snake's
 Effects referenced Acrobatics, so no price changes.
+
+### Oak review: Iron Skin to 1 AP
+
+2 AP Interrupt (you're hit, before it resolves): gain [half Med]
+Protected. Granted right before a hit, most stacks get used at once, so
+~3-3.5 each rather than the banked rate: 9-10.5 at Med ST 6. At 2 AP
+(−5.5) that was 58-83% of Target 6; at 1 AP (−2.75), **104-129%**.
+Moved to 1 AP per the designer.

@@ -3916,7 +3916,7 @@
     "tags": "Discipline, Encounter",
     "description": "As an attack weaves its way past your guard, you concentrate your energy into your skin to deflect the force of the blow.",
     "condition": null,
-    "action": "2 AP - Interrupt (you are hit by an attack, before the attack is resolved)",
+    "action": "1 AP - Interrupt (you are hit by an attack, before the attack is resolved)",
     "cost": null,
     "target": null,
     "effects": "You gain [half your Meditation Skill Total] stacks of Protected.",
