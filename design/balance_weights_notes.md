@@ -7678,3 +7678,18 @@ Prereqs Meditation 3. Meditation +6. Crippled 3 + [Clubs] = 0.75 × 9 +
 0.25 × 15 = 10.5; Frightened 2.25 × 2.2 = 4.95. Priced on the heavier
 half (the two-debuff note): Mental 13 (roster) **94%**, 12 **108%**, 11
 **121%**; both at full 139-178%.
+
+### Shugen School - Arrow Finds Only Mist (T168, Level 3)
+
+The archive's Slip Through Reality (Pass A/C, L3), nearly as written;
+"as though it were Countered" (an old term) became "the attack no longer
+targets you."
+
+> *1 AP - Interrupt (an attack is declared against your Dodge Defense,
+> before the attack flip is made).* Teleport up to [half your
+> Meditation Skill Total] meters. The attack no longer targets you.
+
+Prereqs Meditation 4. Level 3, Target 9, Med ST 7. Negates one attack:
+~60% to hit × ~4 net (7 damage − 3 Resist) × 4 = ~9.6; no Harried from
+it +1; 3 m teleport × 0.55 = +1.65; 1 AP −2.75. **~9.5, ~106%**, a bit
+more against attacks that carry riders.

@@ -449,7 +449,7 @@ translation to live keywords, not a straight port.
   L2, Hand Rings the Bell L2, Swallow Skims the Water L3,
   Dawn Wind Bends the Grass L3, Tide Rolls Back the Shore L3, Lantern
   Gutters in the Wind L4, Great Wind Scatters the Leaves L4, Gaze of Pale
-  Moonlight L2). The control School:
+  Moonlight L2, Arrow Finds Only Mist L3). The control School:
   Crippled, Frightened, Slowed, Push, Teleport, Brilliant damage,
   hybrid attacks vs. Mental. See `RULES_DESIGN.md`'s "three
   supernatural martial Schools" for the full Demon/Shugen/Oak split.
@@ -458,10 +458,6 @@ translation to live keywords, not a straight port.
   Nest"), as a nod to what the Technique does without spelling it out:
   "Firefly Leaves the Hand" over "Arrow of the Morning Star". Disintegrate Vitality and Shatter Mind both inflict Bleeding,
   which is Demon's now (shared with Bear), so they belong there.
-  - *Slip Through Reality* — **to draft** for Shugen's pure track (a
-    reactive teleport; "Countered" is an old term) — L3 (A 1531, B 1988, C 7928): Interrupt vs.
-    an attack on your Dodge; Teleport [Power] and the attack is
-    Countered.
   - *Immolate Soul* — **parked for a future Level 5 pass** — L5 capstone (C, 8102): pay Health, 3m burst,
     5 + Health-paid Brilliant damage. (Its fluff is a copy-paste of
     Whirlwind's; needs new flavor.)

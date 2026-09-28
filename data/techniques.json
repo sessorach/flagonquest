@@ -7697,5 +7697,45 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T168",
+    "name": "Shugen School - Arrow Finds Only Mist",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Encounter",
+    "description": "By attuning your energies to those of the world around you, you can seemingly step through thin air as a volley of arrows fills the place you were standing just a moment ago.",
+    "condition": null,
+    "action": "1 AP - Interrupt (an attack is declared against your Dodge Defense, before the attack flip is made)",
+    "cost": null,
+    "target": null,
+    "effects": "Teleport up to [half your Meditation Skill Total] meters. The attack no longer targets you.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 4",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
