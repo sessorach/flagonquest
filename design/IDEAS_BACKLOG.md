@@ -123,6 +123,22 @@ cut, not just backfilled at a point in time.
   Weakened isn't a current debuff, and Hand of Defilement
   (Crippled/Slowed) and Plague Fist (Vulnerable) already cover both
   halves without the self-debuff.
+- **Old martial-School drafts, declined in the 2026-09-28 backlog
+  triage** as redundant with live Techniques or out of step with the
+  School split: *Disintegrate Spirit* (its Vital version is live as Fawn
+  Left to the Wolves); *Shatter Mind* (Bleeding is Demon's, which
+  already has two sources); *Spiritual Shurikens* (an at-will ranged
+  attack crowding Firefly Leaves the Hand, and needing its own at-will
+  pricing); *Indomitable Ascension* (Shugen's Level 4 is full; its AoE
+  Frighten folds into Unbreakable Spirit Meditation); *Prana
+  Disintegration Methodology* (crowded Firefly and Circling Vulture; the
+  Resist-bypass version was already declined); *Radiant Rebirth of the
+  Phoenix* (overlaps Mind and Body Unbroken); *Bark Over Flesh* versions
+  A and C (more Protected; an auto-Parry that overlaps Swatting Paw and
+  Slithering Hands); *River Stone Deflection* (another physical counter,
+  with Demon's Harried); *Thirsting Roots* (healing is Sap Seals the
+  Wound's job, and Bleeding isn't Oak's); the non-Style *Branches in
+  the Wind* counterattacks (counter overlap).
 - **Pull Through the Void** (Shugen School, archive Pass A, L3) —
   declined; a Mental attack that swaps places with the target, which is
   what the live Water Fills the Empty Vessel (formerly Through the Void)
@@ -418,6 +434,10 @@ translation to live keywords, not a straight port.
     1 Vulnerable. (Different from the old Hand of Defilement, now Shepherd Opens the Gate.) Held
     for the Styles pass. **Per the designer, add Bleeding to it** when
     it's drafted, now that Demon shares Bleeding with Bear.
+  - *Empowered Blood* (A 1503 / B 1956 L3, C 8044 L4; was Shugen):
+    Interrupt when an adjacent attacker makes you lose Health, then a
+    counterattack. **To draft as a Demon counter**, per the designer
+    (2026-09-28): Shadow, vs. Vital, Demon riders.
 - **Snake** (live: Striking Constrictor L1, Heelbiter L2, Chainbreaker
   L2, Turn the Tables L3, Slithering Hands L4). Crashing Leg Sweep, Serpentine Redirection,
   and the L4 Chainbreaker variant were declined as old drafts of live
@@ -426,7 +446,7 @@ translation to live keywords, not a straight port.
     your Unarmed attack Slows the target once. First read: about 5.5
     Value/encounter, so it fits L2 better than L3.
 - **Shugen** (live: Firefly Leaves the Hand L1, Water Fills the Empty Vessel L2, Spirit Hands
-  L2, Hand Rings the Bell L2, Swallow Skims the Water L3, Fist of the
+  L2, Hand Rings the Bell L2, Swallow Skims the Water L3,
   Dawn Wind Bends the Grass L3, Tide Rolls Back the Shore L3, Lantern
   Gutters in the Wind L4, Great Wind Scatters the Leaves L4). The control School:
   Crippled, Frightened, Slowed, Push, Teleport, Brilliant damage,
@@ -437,22 +457,15 @@ translation to live keywords, not a straight port.
   Nest"), as a nod to what the Technique does without spelling it out:
   "Firefly Leaves the Hand" over "Arrow of the Morning Star". Disintegrate Vitality and Shatter Mind both inflict Bleeding,
   which is Demon's now (shared with Bear), so they belong there.
-  - *Disintegrate Spirit* (B, 2072): the Mental version of Disintegrate
-    Vitality (now live in Demon as T162, Fawn Left to the Wolves).
   - *Unbreakable Spirit Meditation* — L2 (A 1377, B 1854) / L3 (C
-    7938): Meditation vs. Mental, Frighten (C: twice).
-  - *Spiritual Shurikens* — L2 (B, 1838): at-will ranged Meditation
-    attack, 3 + stat Physical damage.
-  - *Shatter Mind* — L2 (C, 7778): 3 AP, vs. Mental, [Mind] Bleeding.
-  - *Empowered Blood* — L3 (A 1503, B 1956) / L4 (C 8044): Interrupt
-    when an adjacent attacker makes you lose Health, Brilliant
-    counterattack vs. Dodge.
-  - *Slip Through Reality* — L3 (A 1531, B 1988, C 7928): Interrupt vs.
+    7938): Meditation vs. Mental, Frighten (C: twice). **To draft** for
+    Shugen's pure track (its only Frightened); folds in Indomitable
+    Ascension's AoE Frighten.
+  - *Slip Through Reality* — **to draft** for Shugen's pure track (a
+    reactive teleport; "Countered" is an old term) — L3 (A 1531, B 1988, C 7928): Interrupt vs.
     an attack on your Dodge; Teleport [Power] and the attack is
     Countered.
-  - *Indomitable Ascension* — L4 (C, 8060): clear your own Frightened/
-    Taunted, Frighten each target twice.
-  - *Immolate Soul* — L5 capstone (C, 8102): pay Health, 3m burst,
+  - *Immolate Soul* — **parked for a future Level 5 pass** — L5 capstone (C, 8102): pay Health, 3m burst,
     5 + Health-paid Brilliant damage. (Its fluff is a copy-paste of
     Whirlwind's; needs new flavor.)
 - **Great Old Oak** (live: Oak Sheds Its Leaves L2, Willow Springs Back L3, Bark Turns the
@@ -463,41 +476,16 @@ translation to live keywords, not a straight port.
   clearing your own debuffs, counters, Taunted.
   - **Idea:** Physical Resist boosts for Oak only if they're exclusive
     with wearing armor, as an optional unarmored line.
-  - *Radiant Rebirth of the Phoenix* — L4 (A 1657, B 2084): Interrupt
-    when you'd be Downed; [Power] temp Health and Frighten everyone who
-    sees you. (Moved from Shugen: self-restoration. The Frighten could
-    become Taunted, Oak's Hearts debuff.)
   - *Boughs Unbroken* [Style] — L2 (C, 7708): before each Unarmed
     attack, remove 1 Crippled or Slowed from yourself.
-  - *Branch/Branches in the Wind* — three variants: L3 (A 1467)
-    counterattack for temp Health; L2 (C 7718) counterattack, then
-    ignore 1 Harried for a few rounds; L2 [Style] (10266) 1 AP auto-
-    Parry vs. ranged attacks only.
-  - *Bark Over Flesh* L4 (A 1591, a sustained "gain Protected when you
-    lose Health") and L3 C (7900, auto-Parry Interrupt) are still
-    unused; the live Oak Draws the Lightning (T164) grew out of the L3 B version.
-  - *River Stone Deflection* — L4 (B, 2040): Counter, +Parry, Harry
-    the attacker on a Parry.
-  - *Thirsting Roots* — L4 (C, 8010): Interrupt after an Unarmed hit,
-    attack vs. Vital; target Bleeds, you gain the same number of
-    Protected.
+  - *Branches in the Wind* [Style] — L2 (10266): 1 AP auto-Parry vs.
+    ranged attacks only. Held for the Styles pass (the non-Style
+    counterattack versions were declined).
 - **Ki = Shugen.** "Ki Style" is the old name for what became Shugen
   School, per the designer — the entries below are more Shugen
   candidates, not a separate School. Leaning teleport/chakra-disruption.
   - *Dragon's Fang* [Style] — L2 (10075): your Unarmed attacks deal
     Spirit damage, but you can't Parry with Unarmed.
-  - *Prana Disintegration Methodology* — L3 (A 1485) / L4 (B 2056):
-    free-ish follow-up after an Unarmed hit, Meditation attack vs.
-    Vital.
-    **Set aside, revisit after the rest of Shugen.** As drafted (a 1 AP
-    follow-up Meditation attack for 2 + [Will] Brilliant) it prices at
-    31-38% at Level 3. It's meant as the Brilliant-aligned offensive
-    option for a monk who doesn't want Demon, but it crowds Firefly Leaves the Hand (then Spirit Bolt)
-    (a Meditation Brilliant attack) and Circling Vulture (formerly Wasting Claw; same 1 AP
-    Interrupt-after-hit shape). An "ignore the target's Resist" version
-    was declined: per the designer, getting past Resist and armor
-    should come from an elemental damage type or Bleeding, not a raw
-    bypass.
   - No L5 Ki content anywhere.
 - **Lion / Tiger**: nothing in the archive. Neither name appears at
   all; their live techniques (Eternal Riposte, Storm of Blades) came
