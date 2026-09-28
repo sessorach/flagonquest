@@ -428,16 +428,12 @@ translation to live keywords, not a straight port.
 - **Demon** (live: Sickness Takes the Flock L2, Ripjaw Gambit L3, Shepherd
   Opens the Gate L3, Circling Vulture L4, Firefly Dies in the Hand L1, Thief Empties the
   Vessel L2, Bell Tolls a Dirge L2, Dusk Wind Withers the Grass L3,
-  Fawn Left to the Wolves L4). Corrupted Fist was declined (see "Reviewed and
+  Fawn Left to the Wolves L4, Blood Answers Blood L3). Corrupted Fist was declined (see "Reviewed and
   declined").
   - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
     1 Vulnerable. (Different from the old Hand of Defilement, now Shepherd Opens the Gate.) Held
     for the Styles pass. **Per the designer, add Bleeding to it** when
     it's drafted, now that Demon shares Bleeding with Bear.
-  - *Empowered Blood* (A 1503 / B 1956 L3, C 8044 L4; was Shugen):
-    Interrupt when an adjacent attacker makes you lose Health, then a
-    counterattack. **To draft as a Demon counter**, per the designer
-    (2026-09-28): Shadow, vs. Vital, Demon riders.
 - **Snake** (live: Striking Constrictor L1, Heelbiter L2, Chainbreaker
   L2, Turn the Tables L3, Slithering Hands L4). Crashing Leg Sweep, Serpentine Redirection,
   and the L4 Chainbreaker variant were declined as old drafts of live

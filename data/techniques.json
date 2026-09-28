@@ -7737,5 +7737,45 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T169",
+    "name": "Demon School - Blood Answers Blood",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline, Encounter",
+    "description": "When an opponent draws your blood, you send your energy through it and turn it against them, opening wounds of their own to match yours.",
+    "condition": null,
+    "action": "1 AP - Interrupt (a creature's attack makes you lose Health, after you lose it)",
+    "cost": null,
+    "target": "The attacker, if it is within [Meditation Skill Total] meters",
+    "effects": "Make a Meditation attack against the target's Vital Defense. If it hits, it deals 2 + [Mind] Shadow damage and the target gains stacks of Bleeding equal to the Health you lost, up to [half your Meditation Skill Total].",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 4",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

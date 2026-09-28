@@ -18,7 +18,7 @@ full log. See `git log` for the commit-by-commit detail.
 Finished Great Old Oak: Snake now needs Insight instead of Acrobatics, and Oak's older Meditation Techniques got new names and new jobs.
 - Iron Skin is now Bark Turns the Blade, Channel Ki is now Willow Springs Back (Level 3), Ignore Pain is now Oak Sheds Its Leaves (spend cards to block incoming debuffs), and Harmonious Mending is now Sap Seals the Wound (spend cards to heal over a few turns).
 - Seasons Pass the Forest moved to Oak's Unarmed Techniques.
-- Went through the old martial drafts in the backlog, declined the ones made redundant by the School split, and turned two into Shugen Techniques: Gaze of Pale Moonlight (Level 2), a ranged curse that Cripples and Frightens, and Arrow Finds Only Mist (Level 3), which teleports you out of an attack's way.
+- Went through the old martial drafts in the backlog, declined the ones made redundant by the School split, and turned three into new Techniques: Gaze of Pale Moonlight (Level 2), a ranged curse that Cripples and Frightens, Arrow Finds Only Mist (Level 3), which teleports you out of an attack's way, and one into Demon: Blood Answers Blood (Level 3), which makes an attacker Bleed as much as they hurt you.
 
 ### 2026-09-27 — Shugen and Demon reworked, Oak started
 

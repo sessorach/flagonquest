@@ -7693,3 +7693,25 @@ Prereqs Meditation 4. Level 3, Target 9, Med ST 7. Negates one attack:
 ~60% to hit × ~4 net (7 damage − 3 Resist) × 4 = ~9.6; no Harried from
 it +1; 3 m teleport × 0.55 = +1.65; 1 AP −2.75. **~9.5, ~106%**, a bit
 more against attacks that carry riders.
+
+### Demon School - Blood Answers Blood (T169, Level 3)
+
+The archive's Empowered Blood (a Brilliant counter when an adjacent
+attacker makes you lose Health), kept by the designer as a Demon counter
+and made pure Meditation. Your blood becomes theirs: Bleeding equal to
+the Health you lost.
+
+> *1 AP - Interrupt (a creature's attack makes you lose Health, after you
+> lose it).* The attacker, if within [Meditation Skill Total] meters.
+> Make a Meditation attack against the target's Vital Defense. If it
+> hits, it deals 2 + [Mind] Shadow damage and the target gains stacks of
+> Bleeding equal to the Health you lost, up to [half your Meditation
+> Skill Total].
+
+Prereqs Meditation 4. Level 3, Target 9, Meditation +7, cap 3. War Magic
+damage as the mirror baseline; the attack at 1 AP instead of 2 is
++2.75; enemy Bleeding at 3 stacks is 10 (4 at 2 stacks = 8), × P. A
+Level 3 hit costs you ~3+, so it usually reaches the cap: Vital 14
+(roster) 90%, 13 99%, 12 107%; with 2 Health lost, 78-92%. An Unarmed
+version at Level 3 was 138-162%, and 104-129% at Level 4; at Level 2
+this version was 118-161%.
