@@ -22,8 +22,8 @@ Usage: python scripts/stamp_patch_versions.py [--since REF] [--version VERSION] 
                      Current = yes row of scripts/versions.csv.
   --dry-run         Print what would change without writing the CSVs.
 
-Compares every column except "Patch" itself, "ID" (the join key), and
-"Description (Fluff)" — a row is "changed" if any of those differ from
+Compares every column except "Patch" itself, "ID" (the join key),
+"Archetype" (never reaches the site), and "Description (Fluff)" — a row is "changed" if any of those differ from
 its value at --since, or if its ID didn't exist there at all (a
 brand-new row). Flavor-only rewrites don't count: the badge exists to
 tell players "the rules for this changed," and a new line of in-fiction
@@ -47,7 +47,9 @@ repo_root = os.path.dirname(script_dir)
 TARGET_FILES = ["techniques.csv", "items.csv"]
 VERSIONS_PATH = os.path.join(script_dir, "versions.csv")
 # Never compared — see the module docstring for why Fluff is excluded.
-IGNORED_COLUMNS = ("ID", "Patch", "Description (Fluff)")
+# Archetype is a design-reference tag convert.py drops, so players never
+# see it; retagging shouldn't badge a row "Updated".
+IGNORED_COLUMNS = ("ID", "Patch", "Description (Fluff)", "Archetype")
 
 
 def run_git(args):

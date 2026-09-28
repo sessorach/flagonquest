@@ -193,6 +193,37 @@ Style in ways nobody planned for. Goal for the Style catalogue: every
 character archetype has at least one Style it'd want, even if it's a
 basic Level 1 option.
 
+### Character archetypes
+
+Agreed 2026-09-28 as a starting list, expected to get small tweaks as
+the Styles pass goes on. These are the values of `techniques.csv`'s
+`Archetype` column, a design-reference tag the site never shows. A
+Technique can carry several, so hybrids (spellblade, paladin) are two
+tags rather than their own archetype.
+
+- **Monk**: unarmed Schools and Meditation, vows.
+- **Duelist**: precise weapon fighting, Parries, the Lion and Tiger
+  weapon Schools.
+- **Barbarian**: brute force, two-handers, rage.
+- **Guardian**: taking hits, protecting allies.
+- **Archer**: ranged weapons.
+- **Sorcerer**: damage caster, and the summons that go with it.
+- **Theurgist**: support and utility caster, and its summons.
+- **Healer**: magical and mundane healing.
+- **Leader**: buffing and rallying allies, Followers, performance.
+- **Face**: social maneuvers.
+- **Rogue**: stealth, trickery, disguise, luck.
+- **Scout**: wilderness, travel, exploration, animal companions.
+- **Crafter**: making things, Craft and Mixology.
+- **Scholar**: knowledge, analysis, investigation.
+- *General*: anyone. Not an archetype, just a tag for universal picks.
+
+Folded in from the older, longer list: Ascetic → Monk, Performer →
+Leader, Tactician/Detective → Scholar, Spy/Gambler → Rogue, Alchemist
+→ Crafter, Beastmaster → Scout. Paladin and Spellblade became
+two-tag hybrids. Summoner and Necromancer were dropped; summons sit
+with whichever caster casts them.
+
 ### STANDING RULE — Some effects always cost a resource
 
 Per the designer (2026-09-27): a handful of effects should almost always
