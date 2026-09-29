@@ -7912,3 +7912,15 @@ fight this Style is for, and unspent Vigor is lost at the encounter's
 end, so no cap. Considered and dropped along the way: +1 damage after
 losing Health (the designer doesn't want flat damage), and immunity to
 Crippled/Slowed.
+
+### Indomitable Phalanx (T132) — Guardian only
+
+Harried is 1/stack; every attack you defend with Dodge/Parry Harries
+you once, cleared at the end of your turn, so ignoring 2 saves 0 on the
+first attack between your turns, 1 on the second, 2 on each after. At 2
+attacks a round that's 5 per encounter (69% of 7.2); a 2-3 mix is 10
+(139%). Only a Guardian drawing fire gets anything from it, so it's
+tagged Guardian only, with Melee or Brawl 3, Insight 2 (a shield wall,
+not footwork). Unchanged at Level 2. Doesn't conflict with Oak Draws
+the Lightning, which ignores all Harried for 2 rounds as an Encounter
+Technique.

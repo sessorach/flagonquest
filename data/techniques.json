@@ -6189,11 +6189,11 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "At all times, you may ignore up to 2 stacks of Harried you have.",
+    "effects": "Ignore up to 2 of your stacks of Harried.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "(Acrobatics or Brawl) 3, Insight 2",
-    "relevant_skills": "Acrobatics, Brawl, Insight",
+    "prereqs": "(Melee or Brawl) 3, Insight 2",
+    "relevant_skills": "Melee, Brawl, Insight",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -6209,7 +6209,7 @@
       {
         "type": "skill",
         "options": [
-          "Acrobatics",
+          "Melee",
           "Brawl"
         ],
         "threshold": {
