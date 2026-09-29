@@ -7856,3 +7856,28 @@ always use Extra Successes, so no 50% discount); [Suit] riders gain
 (estimate: the Locked 0.60 is for a once-per-day Sift, and this one
 fires ~11 times a day; not simulated). ~1.0 × 6.25 = **~6.3, ~104%**.
 Wording tightened to name the pool.
+
+### Furious Rage (T130) — reworked around one mechanic, Level 2
+
+Per the designer, Barbarian gets two Styles with separate benefits: this
+Level 2 one beats armored, shield-using tanks, and a Level 4 one handles
+the charge-in fantasy. Bleeding skips Resist entirely, and triggering on
+a Parry means a shield doesn't stop it, so the Level 2 is just that:
+
+> You can't Parry. If one of your attacks hits or is Parried, the
+> target gains Bleeding.
+
+The Wounded and Taunted/Frightened immunities moved to the Level 4.
+
+**Price.** Target 6 + 7.4 (can't Parry, heavy-weapon gap of 2) = 13.4;
+7.2 + 7.4 = 14.6 with the proposed 1.2× Style premium (below). Enemies
+mostly defend with Parry, so the trigger lands ~90% of 6.25 attacks =
+5.6 applications. A killing blow's Bleeding is wasted: ~1 Down per
+encounter, and a Parried attack never Downs, so 4.6 useful applications
+× ~3 (4 on a fresh target, tapering as stacks build) = **13.9**. **104%**
+at the plain budget, **95%** with the premium.
+
+**Proposed: a 1.2× Style premium** (+Target: Style Target = Level × 3.6
+per encounter). Styles are exclusive with each other, which is something
+the player gives up, and the premium keeps a second Style from being a
+waste of XP. Not yet confirmed by the designer.
