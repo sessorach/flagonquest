@@ -42,7 +42,7 @@ When you are pushed you are forcibly moved a certain distance, although this doe
 
 #### Range
 
-If something increases an effect’s Range by X, you may choose any point within X meters to be your location for the purposes of determining area of effects and targets; you must still be able to see or otherwise target the new location. For most (non-area) effects, this simply lets you target creatures that are X meters farther away than usual.
+If something increases an effect’s Range by X, you may choose any point within X meters to be your location for the purposes of determining area of effects and targets; you must still be able to see or otherwise target the new location. For most (non-area) effects, this simply lets you target creatures that are X meters farther away than usual. This includes effects that target something adjacent to you - they can target something adjacent to your chosen point instead, up to X meters farther away than usual.
 
 If something decreases an effect’s Range by X, it reduces the distance the effect could target something by X meters, to a minimum of 1 meter / close range.
 

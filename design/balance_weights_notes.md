@@ -7924,3 +7924,25 @@ tagged Guardian only, with Melee or Brawl 3, Insight 2 (a shield wall,
 not footwork). Unchanged at Level 2. Doesn't conflict with Oak Draws
 the Lightning, which ignores all Harried for 2 rounds as an Encounter
 Technique.
+
+### Placeholder's Lengthy Ley-weaving (T133) — unchanged, Level 2
+
+Per the designer: keep the name (see RULES_DESIGN.md's Placeholder
+naming convention), keep adjacent Techniques included. It's meant as a
+generally useful early pickup, not a powerhouse. War Magic, Healing
+Magic, Spirit Blessing, From the Brink of Death, Firefly Dies in the
+Hand and Thief Empties the Vessel are all adjacent-only, so for most
+casters this mainly turns their staple attack/heal into a 4 m one.
+
+Priced like Reaching Weapon's Range (permanent), **3.44/meter per
+encounter** (0.55 × 6.25 uses). Typical caster, ~60% of casts
+adjacent: 0.6 × 3 × 3.44 = 6.2; the other 40% already reach [Skill
+Total] meters, and +3 m only matters ~30% of the time: 0.4 × 3 × 3.44 ×
+0.3 = 1.2. **7.4 against 7.2, ~103%.** Pure War Magic Sorcerer 10.3
+(~143%, accepted on the same grounds as Reaching Weapon's 115%); only
+long-range spells 3.1 (~43%). The 60%/30% splits are estimates, not
+simulated. Firefly/Thief's extra damage partly pays for standing in
+melee, which this lets a Demon caster skip; accepted per the designer.
+
+How Range applies to adjacent targets is now spelled out in the
+glossary's Range entry rather than on the card.
