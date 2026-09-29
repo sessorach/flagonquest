@@ -7837,8 +7837,12 @@ of the time: 3.3 hits × 1.93 per stack (half on already-Slowed targets)
 Slowing several targets at once. Uncapped plain Slowed would be 7.2
 (120%).
 
-Disciple and Furious Rage are pending the designer's pick (Level 3 for
-both, or drop Furious Rage's Taunted/Frightened immunity at Level 2).
+**Disciple of the Flowing Hand** moves to Level 3 (Acrobatics or Brawl
+4): 10.6 against 9 + 0.8 unarmored = 9.8, **108%**. Players pick Dodge
+or Parry per attack, so narrowing the trigger to one Defense wouldn't
+cut anything.
+
+Furious Rage is pending the designer's pick.
 
 ### Hand of Chaos (T131) — on rate at Level 2
 

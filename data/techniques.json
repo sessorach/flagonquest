@@ -6048,8 +6048,8 @@
   {
     "id": "T129",
     "name": "Disciple of the Flowing Hand",
-    "level_min": 2,
-    "level_max": 2,
+    "level_min": 3,
+    "level_max": 3,
     "tags": "Style",
     "description": "Thanks to your unarmored training, you easily flow like water around your weighed-down opponents.",
     "condition": "You are not wearing armor",
@@ -6059,7 +6059,7 @@
     "effects": "Attacks against your Dodge or Parry Defense have Bad Luck.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "(Acrobatics or Brawl) 3",
+    "prereqs": "(Acrobatics or Brawl) 4",
     "relevant_skills": "Acrobatics, Brawl",
     "use_cards": null,
     "healing": null,
@@ -6080,7 +6080,7 @@
           "Brawl"
         ],
         "threshold": {
-          "base": 3
+          "base": 4
         }
       }
     ],
