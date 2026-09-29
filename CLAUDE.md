@@ -212,6 +212,12 @@ which should stay a clean decision record.
   csv` row (or add a `-CUT` row) and its `balance.md` bullet in the same
   commit as the `items.csv`/`balance_weights_notes.md` change — not as
   a separate catch-up pass later.
+- **Never rename a "Placeholder's [Alliterative Name]" item or
+  Technique.** It's a deliberate in-fiction pseudonym, not a dev stub —
+  see RULES_DESIGN.md's "Naming convention — Placeholder". I suggested
+  renaming Placeholder's Lengthy Ley-weaving once during the Styles
+  pass without checking that section first; the designer had to
+  re-explain it.
 - **Old-term translations to apply on sight, from earlier eras of this
   project**: "Bodily Defense" → **Vital Defense** (found live in
   `items.csv`'s own schema and `index.html` until this got fixed, not
