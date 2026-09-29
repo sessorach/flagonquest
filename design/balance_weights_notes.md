@@ -6673,7 +6673,8 @@ Meditation-keyed ones (`T084 Ignore Pain`). Three shapes were priced:
   only apply 1-2 stacks per landed hit (`ENEMY_ENCOUNTER_DESIGN.md`:
   Strike gives 1, Poison (Bleeding) gives 2), and a monk only gets hit
   by those a couple of times a fight, so it's about 1.4 per encounter
-  against a Level 2 Style budget of 12.
+  against a Level 2 Style budget of 6 (Level × 3 per encounter; an
+  earlier draft of this note said 12, which is the per-day figure).
 - **Tied to an attack, and breaks grapples. Taken.**
 
 > *2 AP.* If you are grappled, the grapple ends. Then remove up to
@@ -7718,10 +7719,13 @@ this version was 118-161%.
 
 ## Styles pass — the live Styles, one at a time
 
-Budget used throughout: a Level 2 Style gets **12 per encounter** (the
-figure from Chainbreaker's Style option above). A Level 1 Style is
-assumed at about 6, scaling like Target = 3 × Level; no Level 1 Style
-has been priced against it yet.
+Budget: a Style is worth **Level × 3 per encounter** (Level × 6 per
+day), same as any Technique: 6 at Level 2. The first passes below were
+priced against 12 by mistake (the per-day figure, from an earlier draft
+of the Chainbreaker note) and are corrected in "Budget correction"
+further down. Always-on effects that ride your own attacks use
+`balance.md`'s **1.25 attacks/turn** baseline: × 5 rounds = **6.25
+attacks per encounter**.
 
 ### Ritual Magic (T099) — wording only
 
@@ -7805,3 +7809,46 @@ hits × 2.5 net damage × 4 = **+7.4 to Target**: 12 + 7.4 = **19.4**.
 
 17.6 / 19.4 = **~91%**. Kept at Level 2 so Barbarian has a Style below
 Follow Through's Level 3. "While in this Style" dropped as redundant.
+
+### Budget correction (2026-09-29)
+
+Caught by the designer: Styles get Level × 3 per encounter, so 6 at
+Level 2, not 12. Rechecked everything above against 6 and 6.25 attacks
+per encounter (hits at ~60% = 3.75):
+
+| Style | Value | Budget | Result |
+|---|---|---|---|
+| Lawman's Hand (Slowed 1 + [Spades]) | 3.75 × 2.68 = 10.1 | 6 | 168% |
+| Disciple of the Flowing Hand | 4.8 × 2.2 = 10.6 | 6.8 | 156% |
+| Furious Rage | 11.25 + 3 + 2 = 16.25 | 13.4 | 121% |
+| Hand of Chaos | 6.25 × ~1.0 | 6 | ~104% |
+
+**Lawman's Hand**, kept at Level 2 per the designer, now once per turn
+with no suit:
+
+> The first time each turn one of your damaging attacks hits, you may
+> Slow the target once. Creatures you Down can be left incapacitated
+> instead of killed.
+
+At 1.25 attacks/turn, 75% of turns have one attack and 25% two, so a
+turn lands at least one hit 0.75 × 0.6 + 0.25 × (1 − 0.4²) = **0.66**
+of the time: 3.3 hits × 1.93 per stack (half on already-Slowed targets)
+= **6.35, 106%**. The once-per-turn limit also stops an area spell from
+Slowing several targets at once. Uncapped plain Slowed would be 7.2
+(120%).
+
+Disciple and Furious Rage are pending the designer's pick (Level 3 for
+both, or drop Furious Rage's Taunted/Frightened immunity at Level 2).
+
+### Hand of Chaos (T131) — on rate at Level 2
+
+> When you make an attack, Sift 1 card and add its suit to that
+> attack's suit pool.
+
+Per attack: the extra suit in the pool raises P(at least one match)
+from 25% to 44%, 0.191 × 2 per Extra Success = **0.38** (attacks
+always use Extra Successes, so no 50% discount); [Suit] riders gain
+0.25 of a rider on about half of attacks, ~**0.15**; the Sift ~**0.5**
+(estimate: the Locked 0.60 is for a once-per-day Sift, and this one
+fires ~11 times a day; not simulated). ~1.0 × 6.25 = **~6.3, ~104%**.
+Wording tightened to name the pool.
