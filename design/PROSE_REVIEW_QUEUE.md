@@ -130,6 +130,10 @@ things off in order.
   space, plus every space within X meters of it" for area effects, used
   going forward instead of ad hoc "adjacent to"/"within X meters of"
   phrasing. Commit `4ab9a21`.
+- **`#### Range`** (`# Keywords`) — added a sentence saying a Range
+  increase also works on effects that target something adjacent (they
+  can target something adjacent to your chosen point instead). Came up
+  pricing Placeholder's Lengthy Ley-weaving. Commit `315d5ea`.
 - **`#### Vigor`** (new entry, `# Keywords`) — added to name the
   pay-a-Technique's-Level-to-refund-it mechanic, unifying Soul Soup's
   "Nutrition points" and Solemn Covenant's "Covenant points" (two
