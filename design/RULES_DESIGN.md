@@ -504,7 +504,7 @@ GM-adjudicated case-by-case handling does that job better. Bolstered
 on any healing. Their absence from Hearts/Diamonds' defensive portfolio
 is intentional, not unfinished.
 
-One deliberate exception: Furious Rage (a Barbarian Style) ignores
+One deliberate exception: Warpath (a Level 4 Barbarian Style) ignores
 Taunted, Frightened and Wounded's penalties. A Style is where
 rule-breaking that shouldn't stack belongs, so it gets to do what the
 cut keywords would have (2026-09-28).

@@ -7877,7 +7877,38 @@ encounter, and a Parried attack never Downs, so 4.6 useful applications
 × ~3 (4 on a fresh target, tapering as stacks build) = **13.9**. **104%**
 at the plain budget, **95%** with the premium.
 
-**Proposed: a 1.2× Style premium** (+Target: Style Target = Level × 3.6
-per encounter). Styles are exclusive with each other, which is something
+**The 1.2× Style premium** (+Target: Style Target = Level × 3.6 per
+encounter), confirmed by the designer 2026-09-29 and logged in
+`balance.md`. Styles are exclusive with each other, which is something
 the player gives up, and the premium keeps a second Style from being a
-waste of XP. Not yet confirmed by the designer.
+waste of XP. With it, the earlier passes land a little under: Lawman's
+Hand 6.35 / 7.2 = 88%, Hand of Chaos 6.3 / 7.2 = 87%, Disciple 10.6 /
+11.6 = 91%.
+
+### Warpath (T170, new) — Level 4 Barbarian Style
+
+The charge-in fantasy, with nothing shared with Furious Rage but "can't
+Parry". Per the designer: no flat damage, immunity to the things that
+would stop you, and most of the budget in Vigor from Downing creatures,
+so a Barbarian can reuse one big Technique mid-fight.
+
+> You can't Parry. Ignore your stacks of Taunted and Frightened, and any
+> penalties from being Wounded. When you Down a creature, gain 3 Vigor
+> lasting for the encounter, and each enemy within 3 meters of you gains
+> Frightened.
+
+**Price.** Target 14.4 + 7.4 (can't Parry) = **21.8**.
+- Ignore Taunted/Frightened: **3** (post-rework rate).
+- Ignore Wounded: **2** (the heal it saves).
+- Frighten on a Down: ~1.5 other enemies within 3 m × 2.2 = **3.3**. A
+  flat single stack rather than a suit, since it isn't clear which card
+  a Down would flip.
+- Vigor: 4.5/point × ~1 Down per encounter. The rest of the budget,
+  13.5, buys exactly **3 Vigor** (enough to refund a Level 3
+  Technique). **21.8 / 21.8 = 100%.** Two Vigor would be 79%.
+
+More Downs means more Vigor (9 from three Downs), but that's the mob
+fight this Style is for, and unspent Vigor is lost at the encounter's
+end, so no cap. Considered and dropped along the way: +1 damage after
+losing Health (the designer doesn't want flat damage), and immunity to
+Crippled/Slowed.

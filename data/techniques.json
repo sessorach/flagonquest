@@ -7946,5 +7946,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T170",
+    "name": "Warpath",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Style",
+    "description": "Once you've committed to the charge, nothing turns you aside. Every foe that falls only feeds the fury, and the ones still standing start looking for a way out.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "You can't Parry. Ignore your stacks of Taunted and Frightened, and any penalties from being Wounded. When you Down a creature, gain 3 Vigor lasting for the encounter, and each enemy within 3 meters of you gains Frightened.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Might 5, Resilience 4",
+    "relevant_skills": "Might, Resilience",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Resilience"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

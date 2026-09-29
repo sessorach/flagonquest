@@ -98,6 +98,17 @@ that prices hot with both counted at full is fine as long as the more
 useful half is roughly on rate on its own. Hand of Defilement (first
 version, now Shepherd Opens the Gate) and Bell Tolls a Dirge were both accepted on this basis.
 
+### Styles: Level × 3.6 per encounter (a 1.2× premium)
+
+Per the designer (2026-09-29): a Style's Target is **Level × 3 × 1.2 =
+Level × 3.6** per encounter (7.2 at Level 2, 14.4 at Level 4), not the
+plain Level × 3. You can only be in one Style at a time, which is
+something the player gives up, so this is **+Target**. It also keeps a
+second Style from being a waste of XP. Always-on effects that ride your
+own attacks use the 1.25 attacks/turn baseline, × 5 rounds = 6.25
+attacks per encounter. Worked passes: `balance_weights_notes.md`,
+"Styles pass".
+
 ### Estimating a genuinely hard-to-price effect: triangulate, don't guess once
 
 Most mechanics in this model trace back to a real derivation (a card-math
