@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-09-29 — Styles pass started, Barbarian gets two Styles
+
+Started going through every Style one at a time, repricing them against a proper Style budget and giving Barbarian a Level 2 and a Level 4 Style that do different jobs.
+- Lawman's Hand is now a Level 2 Style that Slows the first target you hit each turn and lets you leave anyone you Down alive, and Hand of Chaos and Ritual Magic got clearer wording.
+- Disciple of the Flowing Hand moved to Level 3.
+- Furious Rage is now just "can't Parry, and anything you hit or that Parries you Bleeds", built for grinding down armored enemies, and the new Level 4 Warpath ignores fear, taunts and wounds and gives you Vigor every time you Down something.
+
 ### 2026-09-28 — Great Old Oak finished, "Updated" badges
 
 Finished Great Old Oak: Snake now needs Insight instead of Acrobatics, and Oak's older Meditation Techniques got new names and new jobs.
