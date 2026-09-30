@@ -8048,3 +8048,18 @@ Masterwork weapon, 105%). Target 7.2 + 4.4 dual-wield allowance =
 11.6. 6.25 attacks × (60% hit + ~20% Parried) = 5 triggers × 2.25
 stacks × 1/stack = **11.25, ~97%**. Stacking with Numbing Edge just
 runs into Harried's cap of 6 sooner; no rule needed.
+
+### Follow Through (T138) — Level 3 → 1, any melee weapon
+
+> When one of your melee weapon attacks Downs a creature, you may
+> immediately make an attack with the same weapon against another
+> creature adjacent to it.
+
+~1 Down per encounter, another enemy adjacent to it and in reach about
+half the time: 0.5 × 5.5 (a free autoswing) = 2.75, ~3 with the
+occasional chain. Was ~28% of Level 3. At Level 1 (3.6): **~83%**. Per
+the designer, the two-handed Condition had no balance reason behind it
+(a two-hander's +1 damage already pays for its hands), so it's open to
+any melee weapon; ranged is left out since "the next one in line"
+doesn't read for a shot. Brawl or Melee 2, tagged Duelist, Barbarian,
+Guardian, Monk.

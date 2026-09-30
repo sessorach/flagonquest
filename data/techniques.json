@@ -6470,19 +6470,19 @@
   {
     "id": "T138",
     "name": "Follow Through",
-    "level_min": 3,
-    "level_max": 3,
+    "level_min": 1,
+    "level_max": 1,
     "tags": "Style",
     "description": "When your blows fell an enemy you can carry the force from the attack forward, striking another foe down.",
-    "condition": "You are wielding a two-handed close-range weapon",
+    "condition": null,
     "action": "Passive (Style) + reaction",
     "cost": null,
     "target": null,
-    "effects": "When one of your weapon attacks with a two-handed close-range weapon Downs a creature, you may immediately make an attack with that weapon against another creature next to the initial target.",
+    "effects": "When one of your melee weapon attacks Downs a creature, you may immediately make an attack with the same weapon against another creature adjacent to it.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "(Brawl or Melee) 4, Might 3",
-    "relevant_skills": "Brawl, Melee, Might",
+    "prereqs": "(Brawl or Melee) 2",
+    "relevant_skills": "Brawl, Melee",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -6502,16 +6502,7 @@
           "Melee"
         ],
         "threshold": {
-          "base": 4
-        }
-      },
-      {
-        "type": "skill",
-        "options": [
-          "Might"
-        ],
-        "threshold": {
-          "base": 3
+          "base": 2
         }
       }
     ],
