@@ -249,6 +249,22 @@ WEAPON = {
     # the Technique's own name suggests, not just Hanforth's fists.
     "1H Light Melee":    {"skill": "Melee",       "accuracy": 1, "damage_base": 3, "damage_stat": None,
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
+    "1H Heavy Melee":    {"skill": "Melee",       "accuracy": 0, "damage_base": 4, "damage_stat": "Body",
+                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
+    "2H Light Melee":    {"skill": ("Melee", "Brawl"), "accuracy": 1, "damage_base": 4, "damage_stat": None,
+                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
+    "Shield":            {"skill": "Melee",       "accuracy": 0, "damage_base": 2, "damage_stat": "Body",
+                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
+}
+
+# Each weapon's own Defense (weapon_categories.csv's Defense column),
+# added to Parry when that weapon is the one Parried with (rulebook.md:
+# "8 + [Weapon's relevant Skill Total] + Weapon's Defense"). None = can't
+# Parry with it at all (bows, thrown weapons, spells).
+WEAPON_DEFENSE = {
+    "1H Light Melee": 1, "1H Heavy Melee": 0, "2H Light Melee": 1, "2H Heavy Melee": 0,
+    "Unarmed": 1, "Shield": 2,
+    "Light Bow": None, "Light Thrown": None, "War Magic (Lance)": None,
 }
 
 # Bottled Fire (I030): 4 Gold - items.csv's real Cost, per the

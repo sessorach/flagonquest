@@ -129,7 +129,7 @@ def _pc_dict(row, index, good_luck):
     skills = {k: v for k, v in row.items() if k not in
               ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
                "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus",
-               "Heal Range", "Passives", "Battle Tactic")}
+               "Heal Range", "Passives", "Battle Tactic", "Parry Weapons")}
     parry = 8 + skill_total(stats, skills, "Melee")
     # Raw Acrobatics Skill Total - captured before Armor's own Dodge
     # modifier folds into `dodge` below, since Blinkstep (T077, "Shift
@@ -185,7 +185,9 @@ def _pc_dict(row, index, good_luck):
     attack_range = None
     if weapon and weapon in T.WEAPON:
         w = T.WEAPON[weapon]
-        atk_skill_total = skill_total(stats, skills, w["skill"]) + w["accuracy"]
+        w_skills = w["skill"] if isinstance(w["skill"], tuple) else (w["skill"],)
+        w_skill = max(w_skills, key=lambda sk: skill_total(stats, skills, sk))
+        atk_skill_total = skill_total(stats, skills, w_skill) + w["accuracy"]
         # `damage_stat: None` (Unarmed) means "Body or Cunning" per
         # weapon_categories.csv - pick whichever this PC's own build
         # actually has higher, rather than hardcoding one.
@@ -198,12 +200,33 @@ def _pc_dict(row, index, good_luck):
         elif "range_per_body" in w:
             attack_range = w["range_per_body"] * int(stats["Body"])
         elif "range_per_skill" in w:
-            attack_range = w["range_per_skill"] * skill_total(stats, skills, w["skill"])
+            attack_range = w["range_per_skill"] * skill_total(stats, skills, w_skill)
     else:
         atk_skill_total = skill_total(stats, skills, "Melee")
         damage = 4 + int(stats["Body"])
         dmg_type = "Physical"
         opp_def = "Parry/Dodge"
+
+    # Parry uses whichever held weapon gives the best result (rulebook.md:
+    # 8 + that weapon's Skill Total + its Defense). `Parry Weapons` lists
+    # what's held for Parrying (a Shield in the off hand, say); blank means
+    # just the attacking Weapon (1H Heavy Melee when that's blank too, the
+    # Roster default, so Roster rows read exactly as before). A weapon that
+    # can't Parry (bow, thrown, spell) falls back to Unarmed.
+    parry_weapons = [w.strip() for w in (row.get("Parry Weapons") or "").split(",") if w.strip()]
+    if not parry_weapons:
+        parry_weapons = [weapon or "1H Heavy Melee"]
+    parry_options = []
+    for pw in parry_weapons:
+        wd = T.WEAPON_DEFENSE.get(pw)
+        if wd is None:
+            continue
+        pw_skills = T.WEAPON[pw]["skill"]
+        pw_skills = pw_skills if isinstance(pw_skills, tuple) else (pw_skills,)
+        parry_options.append(8 + max(skill_total(stats, skills, sk) for sk in pw_skills) + wd)
+    if not parry_options:
+        parry_options.append(8 + skill_total(stats, skills, "Brawl") + T.WEAPON_DEFENSE["Unarmed"])
+    parry = max(parry_options)
 
     # A plain display name for this PC's own base attack, for
     # narrate_fight.py/replay_html.py's combat log ("who attacked with

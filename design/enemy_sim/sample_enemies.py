@@ -182,6 +182,10 @@ def all_enemies():
 # falls back to make_level_encounter's own old behavior below.
 MIXED_ROSTER = {
     1: ["Hedge Knight", "Marsh Archer", "Skulking Footpad", "Fen Warden"],
+    # Levels 2-3: the same four archetypes and the same HealthBonus=2
+    # balance point, built at the higher Level (2026-09-30).
+    2: ["Hedge Knight (L2)", "Marsh Archer (L2)", "Skulking Footpad (L2)", "Fen Warden (L2)"],
+    3: ["Hedge Knight (L3)", "Marsh Archer (L3)", "Skulking Footpad (L3)", "Fen Warden (L3)"],
 }
 
 
