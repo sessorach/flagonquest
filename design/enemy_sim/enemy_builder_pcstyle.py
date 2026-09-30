@@ -97,6 +97,16 @@ PC_STAT_SPREAD_BY_LEVEL = {
 # Settled from margin_sweep.py (balance_weights_notes.md, "Enemy margin").
 ENEMY_STAT_LAG = 1
 ENEMY_HEALTH_BASE = 10
+
+# 2026-09-30, per the designer: gear that's an overall gain costs the
+# enemy something, the way it costs a player XP (the Might to wear it).
+# Heavy Armor is Level 3+ only and paid from the Ability budget (two
+# picks). Medium Armor is paid with a trade for now, until ability
+# values get worked out: -2 Health, about what +1 Physical Resist less
+# 1 Dodge came to in archetype_compare.py (ENEMY_ENCOUNTER_DESIGN.md).
+HEAVY_ARMOR_MIN_LEVEL = 3
+HEAVY_ARMOR_ABILITY_COST = 10
+MEDIUM_ARMOR_HEALTH_TRADE = 2
 DEFAULT_STAT_ORDER = ["body", "agility", "essence", "cunning", "mind"]
 
 # sample_pcs.csv's own Baseline Health by Tier - the PC-equivalent
@@ -196,7 +206,10 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     physres = stat["essence"] + T.ARMOR[armor]["physres"] + resist_adj
     elemres = stat["essence"] + resist_adj
 
-    health = math.ceil((ENEMY_HEALTH_BASE + health_bonus) * T.SLOT_MULTIPLIER[slots])
+    if armor == "Heavy" and level < HEAVY_ARMOR_MIN_LEVEL:
+        raise ValueError(f"{name}: Heavy Armor is Level {HEAVY_ARMOR_MIN_LEVEL}+ only")
+    armor_trade = MEDIUM_ARMOR_HEALTH_TRADE if armor == "Medium" else 0
+    health = math.ceil((ENEMY_HEALTH_BASE + health_bonus - armor_trade) * T.SLOT_MULTIPLIER[slots])
     speed = math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"]
     reflex = 2 + level
 
@@ -206,6 +219,8 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     # isn't part of that curve, so there's no reason to reinvent it.
     ability_budget = math.ceil(T.ABILITY_RATE[level] * slots) * 5
     ability_cost = sum(T.ABILITY_COST[a] for a in abilities)
+    if armor == "Heavy":
+        ability_cost += HEAVY_ARMOR_ABILITY_COST
     if ability_cost > ability_budget:
         raise ValueError(f"{name}: abilities cost {ability_cost}, only {ability_budget} available")
 
