@@ -269,14 +269,16 @@ exactly the flat, melee-clash default this system exists to avoid.
 
 | Armor | Effect |
 |---|---|
-| Unarmored | Dodge +1, Speed +1 |
+| Unarmored | — |
 | Light | Physical Resist +1 |
-| Medium | Physical Resist +2, Dodge −1, Speed −1 |
-| Heavy | Physical Resist +3, Dodge −2, Speed −2 |
+| Medium | Physical Resist +2, Dodge −1 |
+| Heavy | Physical Resist +3, Dodge −1, Speed −1 |
 
-Same Resist-for-mobility trade-off shape as the PC armor tiers
-(`weapon_categories.csv`/`armor_categories.csv`), applied to enemies
-directly rather than reinvented.
+These are the live PC numbers from `armor_categories.csv`, which the
+simulator already uses. The spreadsheet had Medium at Dodge −1, Speed −1
+and Heavy at −2/−2. Per the designer (2026-09-30), enemies match live,
+and Medium or Heavy Armor costs an ability pick (Heavy is two, Level 3+
+only). See the hand-build draft in `GM_GUIDE_NOTES.md`.
 
 ## The Ability catalog
 
@@ -849,28 +851,28 @@ Full numbers and the sweep that settled the margin:
 `balance_weights_notes.md`, "Enemy margin".
 
 **The hand-build version (draft, 2026-09-30)** lives in
-`GM_GUIDE_NOTES.md`, "Enemy stat blocks by hand". The designer's
-direction from the old spreadsheet:
+`GM_GUIDE_NOTES.md`, "Enemy stat blocks by hand". It keeps the
+spreadsheet's structure: a Level baseline, one archetype (the
+spreadsheet's Roles) on top, then a fixed number of ability picks. The
+numbers are moving over to match the simulator.
 
-- **XP anchor.** Level N enemies match a midpoint player of that tier:
-  Level 1 ≈ 75 XP, Level 2 ≈ 125 XP, then up 50 per Level.
+The designer's rules for it:
+
+- **XP anchor.** Level N matches a midpoint player of that tier: Level
+  1 ≈ 75 XP, Level 2 ≈ 125 XP, then up 50 per Level.
+- **Costs.** An overall gain costs an ability pick: better armor, a
+  heavier weapon, an on-hit debuff. A trade is a free choice or comes
+  with the archetype: a shield (Defender), a two-hander (Bruiser),
+  Defense tiers, the main Action.
+- **Weapons.** Enemies start from light-weapon numbers: a one-hander, a
+  Light Bow, or a spell.
 - **Health.** It's the only stat that breaks from player numbers. It's
-  low early and padded late, as part of the XP budget: penciled at
-  8/10/12/15/18. Levels 1-2 are from the sim; the rest is untested.
-- **Weapons.** Melee enemies start with a light one-hander and archers
-  with a Light Bow. The archetype picks a shield (Parry) or a two-hander
-  (Damage), both free. A Heavy Weapon upgrade costs budget.
-- **Armor.** Medium Armor costs budget. Heavy Armor costs more and is
-  Level 3+ only.
-- **Rule of thumb.** Anything a PC needs extra Might for, the enemy pays
-  for out of its Ability points.
-- **Stats.** They collapse to a High/Mid/Low column that the archetype
-  assigns to Damage and Resist.
+  low early and padded late: penciled at 8/10/12/15/18.
+- **Ability values.** We'll settle what one pick is worth later, at a
+  size that keeps the math clean without getting granular.
 
-Differences from the current sim roster, to fix in the next sim round:
-
-- The Hedge Knight wears Heavy Armor at Levels 1-2.
-- The Brute and the Warpriest get Medium Armor for free.
-- The Brute, Marsh Archer, Footpad and Goblin Cutthroat have Essence
-  fourth in their Stat order (Resist 1 at Levels 1-3), where the
-  hand-build's Low column is 2.
+Still to do in the simulator: build the sample roster the hand-build
+way, and calibrate the baseline table until the fights land on target
+(most or all fights won, about 5 rounds). At Level 2, the hand-built
+heavy hitters currently come out about 1 damage lower and 1-2 Resist
+tougher than the projection model's.

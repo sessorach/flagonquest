@@ -295,9 +295,12 @@ than a GM_GUIDE_NOTES.md section — reach for it directly.
 
 **Status: penciled in, being ironed out with the designer.** This is the
 quick-build version a GM can use at the table without a calculator. The
-simulator builds enemies the long way (a PC's Stat spread, the players'
-own weapon and armor tables) and this is meant to land on the same
-numbers. `ENEMY_ENCOUNTER_DESIGN.md` has the full reasoning.
+structure comes from the designer's first drafts in
+`archive/flagonquest_encounter_builder.xlsx`: a baseline by Level, one
+archetype on top, then a few ability picks for variety. The numbers are
+being moved over to match the simulator, which builds enemies the long
+way from a PC's Stat spread and the players' own weapon and armor
+tables. `ENEMY_ENCOUNTER_DESIGN.md` has the full reasoning.
 
 ### What an enemy's Level means
 
@@ -312,85 +315,93 @@ the fight. That's the sense of progression the Levels are for.
 We can't control how players spend XP, so enemies are built against a
 midpoint player: somebody who spent a fair share on combat and the rest
 on everything else. An enemy puts everything into combat, so it matches
-that player's fighting strength with fewer total XP. That's why its
-Stats run one Level behind a PC's (the old spreadsheet put a player's
-combat share at about 70%).
+that player's fighting strength with fewer total XP (the old
+spreadsheet put a player's combat share at about 70%).
+
+### The rule for what costs something
+
+- **Anything that's an overall gain costs an ability pick.** Better
+  armor or a heavier weapon counts, and so does a debuff on hit. For a
+  player these cost XP, like the Might it takes to wear Medium Armor.
+- **A trade is a free choice:** a shield or a two-hander, which Defense
+  is strong, or what the enemy does on its turn. The archetype and the
+  enemy's other picks cover these.
+
+The baseline plus an archetype gets an enemy most of the way to its
+Level's budget. The ability picks are the planned remainder, there to
+make enemies of the same Level play differently. We'll work out what
+one pick is worth once the rest of the numbers settle. The aim is a
+size that keeps the math clean without getting granular.
 
 ### Step 1: Level baseline
 
-| Level | Poor / Secondary / Primary Skill | Defense (8 + Skill) | High / Mid / Low Stat | Health (1 slot) | Ability points (1 slot) |
+| Level | Attack Skill | Defense: Poor / Okay / Good | Damage bonus & Resist | Health (1 slot) | Ability picks (1 slot) |
 |---|---|---|---|---|---|
-| 1 | 4 / 5 / 6 | 12 / 13 / 14 | 2 / 2 / 2 | 8 | 10 |
-| 2 | 6 / 7 / 8 | 14 / 15 / 16 | 3 / 2 / 2 | 10 | 15 |
-| 3 | 7 / 8 / 9 | 15 / 16 / 17 | 4 / 3 / 2 | 12 | 20 |
-| 4 | 8 / 9 / 10 | 16 / 17 / 18 | 4 / 4 / 2 | 15 | 25 |
-| 5 | 9 / 10 / 11 | 17 / 18 / 19 | 5 / 4 / 2 | 18 | 40 |
+| 1 | 5 | 12 / 13 / 14 | 1 | 8 | 2 |
+| 2 | 7 | 14 / 15 / 16 | 2 | 10 | 3 |
+| 3 | 8 | 15 / 16 / 17 | 3 | 12 | 4 |
+| 4 | 9 | 16 / 17 / 18 | 4 | 15 | 5 |
+| 5 | 10 | 17 / 18 / 19 | 4 | 18 | 8 |
 
-- **Defenses:** each of Parry, Dodge, Vital, Mental and Vigilant is Poor,
-  Secondary or Primary. Usually one Primary, one or two Secondary, and
-  the rest Poor, so every enemy has a weak spot a player can read from
-  the fiction.
-- **Attack:** the Secondary Skill plus the weapon's Accuracy. Bruisers
-  and other heavy hitters attack at Primary.
-- **Stats:** only two matter on an enemy's sheet. Its **Damage Stat**
-  goes into its weapon or spell damage, and its **Resist Stat** is its
-  Resist against everything (armor adds to Physical). The archetype
-  says which of High/Mid/Low each one uses. They're the top three
-  numbers of a PC's Stat spread one Level behind.
+- **Defenses:** pick one Good and two Okay out of Parry, Dodge, Vital,
+  Mental and Vigilant, and the rest are Poor. Every enemy has a weak
+  spot a player can read from the fiction.
+- **Damage bonus & Resist:** one number, the way the spreadsheet had it.
+  It's added to the weapon's base damage, and it's the enemy's Resist
+  against everything. Every enemy wears Light Armor by default, so its
+  Physical Resist is 1 higher.
+- **Weapons:** use the players' numbers for a light weapon, from
+  `weapon_categories.csv`:
+  - Melee: a one-hander. Accuracy +1, Damage 3 + bonus, Parry +1.
+  - Archers: a Light Bow. Accuracy +1, Damage 3 + bonus, Range 15.
+  - Casters: a spell. Accuracy +0, Damage 2 + bonus.
 - **Health** is the one place enemies break from player stats on
   purpose. It's a bit low early (a PC starts at 10) and padded more at
-  high Levels. It's part of the enemy's overall XP budget. Minions and
-  bosses still scale it by Encounter Slots.
-- **Ability points** are spent on Abilities and loadout upgrades (Step
-  3). Multiply by Encounter Slots and round up to the next 5.
+  high Levels, as part of the XP budget. Minions and bosses still scale
+  it by Encounter Slots.
+- **Ability picks** scale by Encounter Slots, rounded up. A half-slot
+  Level 2 minion gets 2.
+- **Speed and Reflex:** Speed is 2 + half the Level, rounded up. Reflex
+  is 2 + Level.
 
-### Step 2: Archetype
+### Step 2: Archetype (pick one)
 
-The archetype sets the enemy's weapon grip, which Stat drives what, and
-its strong Defense. Weapons use the players' own weapon table, with a
-light weapon as the baseline:
+These are the spreadsheet's Roles. Each one is a trade, so no archetype
+should come out ahead of the others. The two weapon archetypes stand in
+for the off-hand choice a player makes: a shield or a two-hander.
 
-- Melee: one-handed light weapon. Accuracy +1, Damage 3 + Damage Stat,
-  Parry +1.
-- Archers: Light Bow. Accuracy +1, Damage 3 + Damage Stat, Range 15.
-- Casters: a spell. Accuracy +0, Damage 2 + Damage Stat.
-
-| Archetype | Grip | Damage Stat | Resist Stat | Usual Primary Defense | Sim examples |
-|---|---|---|---|---|---|
-| Defender | Shield: Parry +2 instead of +1 | High | Low | Parry | Hedge Knight |
-| Bruiser | Two-hander: Damage +1 | High | Low | Vital; attacks at Primary | Brute |
-| Skirmisher | One-hander or Light Bow | High | Low | Dodge | Footpad, Marsh Archer, Goblin Cutthroat |
-| Caster | Spell | High | Mid | Mental | Grave Caller, Ember Caster, the Hexers |
-| Support | One-hander, or a spell | Mid | High | Mental or Vital | Warpriest, Field Medic |
-
-Shield and two-hander are free because a player doesn't need any extra
-Might for them either. They're a trade, not an upgrade.
-
-### Step 3: Loadout upgrades
-
-Anything a player would need extra Might for costs an enemy some of its
-Ability points. That's the enemy's version of a player spending XP to
-wear heavier gear.
-
-| Upgrade | Cost | Effect | Player's Might need |
+| Archetype | Adds | Stands in for | Sim examples |
 |---|---|---|---|
-| Heavy Weapon | 5 | Damage +1, Accuracy −1, Parry −1 (a bow gets Range +5 instead of the Parry change) | 4 (6 for a heavy two-hander) |
-| Medium Armor | 5 | Physical Resist +2 instead of Light's +1, Dodge −1 | 5 |
-| Heavy Armor | 10, Level 3+ only | Physical Resist +3 instead of +1, Dodge −1, Speed −1 | 7 |
+| Defender | Parry +1, Dodge +1, Resist +1 | A shield | Hedge Knight |
+| Bruiser | Damage +1, Resist +1, Parry −1, Dodge −1 | A two-hander | Brute |
+| Striker | Accuracy +1, Damage +1 | Skill and focus | Marsh Archer, Footpad, Grave Caller, Ember Caster |
+| Strategist | Accuracy +1, Vital +1, Mental +1 | A trained mind | Bog Hexer, Mire Witch |
+| Backup | Parry +1, Dodge +1, Vital +1, Mental +1 | Staying up | Warpriest, Field Medic |
 
-Light Armor is the baseline (Physical Resist +1). Casters can go without
-it.
+### Step 3: Ability picks
 
-Heavy Armor is gated to Level 3 enemies and up, the way a player can't
-wear it out of the gate. That's roughly when a PC can reach Might 7.
+Each pick below costs one, except Heavy Armor.
 
-Whatever's left goes to the Ability catalog in
-`ENEMY_ENCOUNTER_DESIGN.md`. That covers on-hit riders, Durable and
-Enhanced Health.
+- **Loadout upgrades**, using the players' live armor numbers (`armor_categories.csv`):
+
+  | Upgrade | Picks | Effect |
+  |---|---|---|
+  | Heavy Weapon | 1 | Damage +1, Accuracy −1, Parry −1 (a Heavy Bow gets Range 20 instead of the Parry change) |
+  | Medium Armor | 1 | Physical Resist +2 instead of Light's +1, Dodge −1 |
+  | Heavy Armor | 2, Level 3+ only | Physical Resist +3 instead of +1, Dodge −1, Speed −1 |
+
+  Heavy Armor is gated to Level 3 enemies and up, the way a player
+  can't wear it out of the gate (it takes Might 7).
+- **On-hit riders:** Strike (Crippling), (Vulnerable), (Slowing),
+  (Frightening) or (Taunting), or Poison (Bleeding).
+- **Everything else** in the Ability catalog in
+  `ENEMY_ENCOUNTER_DESIGN.md`, like Durable, Enhanced Health and
+  Powerful Spell.
 
 ### Step 4: The one thing it does
 
-This follows the enemy variety standard in `ENEMY_ENCOUNTER_DESIGN.md`:
+This follows the enemy variety standard in `ENEMY_ENCOUNTER_DESIGN.md`,
+and each part is a free choice:
 
 - Each enemy gets one main Action: an attack, a Hex, Shield Ally or Mend
   Ally.
@@ -398,20 +409,31 @@ This follows the enemy variety standard in `ENEMY_ENCOUNTER_DESIGN.md`:
   attack.
 - Each enemy gets a Fighting Style and a Battle Tactic.
 - Each enemy puts something on the fight, either a debuff on the party
-  or a buff on its allies.
+  or a buff on its allies. That usually takes one of the ability picks.
 
-### Where the numbers came from
+### How close this gets to the simulator's enemies
 
-Levels 1-2 were checked in the simulator against the Level 1 and Level 2
-sample parties.
+Level 2, built both ways:
 
-- **Health:** 8 at Level 1 and 10 at Level 2 kept most mixes at 80-100%
-  party wins in about 4-8 rounds. The one exception is the Warband mix
-  at Level 1, still near 55-65%. Its Hedge Knight wears Heavy Armor at
-  Level 1, which Step 3 now rules out. Raising Level 2 Health to 12 took
-  party A down to 53-73%.
-- **Levels 3-5:** the Health values there are penciled until the sample
-  parties are leveled past Level 2.
-- **Loadout costs:** also penciled. The current sim roster gets Medium
-  and Heavy Armor free, so it needs a pass under these rules before the
-  costs can be checked.
+| Enemy | Built by hand | Simulator now |
+|---|---|---|
+| Hedge Knight (Defender; Medium Armor, Durable, Taunting) | Damage 5, Accuracy 8, Parry 18, Dodge 14, Resist 3 / Physical 5 | Damage 6, Accuracy 8, Parry 18, Dodge 13, Resist 2 / Physical 5 (Heavy Armor for free) |
+| Brute (Bruiser; Heavy Weapon, Medium Armor, Crippling) | Damage 7, Accuracy 7, Parry 14, Resist 3 / Physical 5 | Damage 8, Accuracy 8, Parry 15, Resist 1 / Physical 3 |
+| Grave Caller (Striker; Vulnerable + 2 open) | Damage 5, Accuracy 8, Resist 2 / Physical 3 | Damage 5, Accuracy 8, Resist 2 / Physical 2 (unarmored) |
+
+These are close but not exact. Heavy hitters come out about 1 damage
+lower and 1-2 Resist tougher. Only the simulator can say whether that
+matters.
+
+Health was checked in the simulator against the Level 1 and Level 2
+sample parties:
+
+- **Level 1 at 8:** most mixes landed at 80-100% party wins in about
+  5-8 rounds.
+- **Level 1 Warband:** still near 55%. Its Hedge Knight wears Heavy
+  Armor at Level 1, which Step 3 rules out.
+- **Level 2:** 10 held most mixes at 70-100% wins. Raising it to 12 took
+  one party down to 53-73%.
+
+The Health values for Levels 3-5 are penciled until the sample parties
+are leveled past Level 2.
