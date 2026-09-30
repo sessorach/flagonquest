@@ -8,7 +8,7 @@ The measure is the party's expected Health left: its Health left on a win,
 times the win rate. Losses count as zero, so it captures both "did they
 win" and "what did it cost them".
 
-Usage: python3 archetype_compare.py [trials]"""
+Usage: python3 archetype_compare.py [trials] [--revised]"""
 import sys, os, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, party, sample_enemies as se
@@ -32,6 +32,24 @@ ARCHETYPES = {
     "Backup (Resist)": {"parry": 1, "dodge": 1, "mental": 1, "res": 1},
     "Skirmisher": {"speed": 1, "dodge": 1, "acc": 1, "res": -1},
     "Ambusher": {"reflex": 3, "acc": 1, "parry": -1, "dodge": -1},
+}
+
+# Second round, aiming every archetype at roughly Striker's worth (+3):
+# Resist off the Defender and Backup (it's the dominant stat, see
+# ENEMY_ENCOUNTER_DESIGN.md), Skirmisher without its Resist -1, Ambusher
+# cut. Striker and Bruiser stay in as reference points.
+REVISED = {
+    "Plain": {},
+    "Health -2": {"health": -2},
+    "Health +2": {"health": 2},
+    "Health +4": {"health": 4},
+    "Striker": {"acc": 1, "dmg": 1},
+    "Bruiser": {"dmg": 1, "res": 1, "parry": -1, "dodge": -1},
+    "Defender (shield)": {"parry": 2, "dodge": 2},
+    "Skirmisher": {"speed": 1, "dodge": 1, "acc": 1},
+    "Backup (+Accuracy)": {"parry": 1, "dodge": 1, "vital": 1, "mental": 1, "acc": 1},
+    "Backup (Resist)": {"res": 1, "vital": 1, "mental": 1},
+    "Strategist (Dodge)": {"acc": 1, "dodge": 1, "mental": 1},
 }
 
 MIXES = ("Classic", "Warband", "Horde")
@@ -88,7 +106,10 @@ def health_equivalent(score, ladder):
 
 
 if __name__ == "__main__":
-    trials = int(sys.argv[1]) if len(sys.argv) > 1 else 300
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    trials = int(args[0]) if args else 300
+    if "--revised" in sys.argv:
+        ARCHETYPES = REVISED
     results = {}
     print(f"Level 2 parties vs Level 2 mixes, every enemy given the archetype. {trials} fights per cell.")
     print("Cells: win% / rounds / expected party Health left (losses count as 0)")
