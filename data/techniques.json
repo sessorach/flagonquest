@@ -6326,18 +6326,18 @@
   {
     "id": "T135",
     "name": "Shugen School - Spirit Hands",
-    "level_min": 2,
-    "level_max": 2,
+    "level_min": 3,
+    "level_max": 3,
     "tags": "Style",
     "description": "A fundamental practice of the spiritual arts, you actively circulate your energy throughout your body to deliver powerful blows backed by spiritual power.",
     "condition": "Your hands are empty",
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "If your Unarmed weapon attacks would deal Physical damage, they instead deal it as Brilliant damage.",
+    "effects": "Your Unarmed weapon attacks deal Brilliant damage and are made against the target's Mental Defense. If an attack would already do both, it has Good Luck instead.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Brawl 3, Meditation 2",
+    "prereqs": "Brawl 4, Meditation 3",
     "relevant_skills": "Brawl, Meditation",
     "use_cards": null,
     "healing": null,
@@ -6357,7 +6357,7 @@
           "Brawl"
         ],
         "threshold": {
-          "base": 3
+          "base": 4
         }
       },
       {
@@ -6366,7 +6366,7 @@
           "Meditation"
         ],
         "threshold": {
-          "base": 2
+          "base": 3
         }
       }
     ],

@@ -7973,3 +7973,27 @@ allowance is probably a bit generous, so landing under is right.
 
 The old, unused "Countered" glossary keyword was renamed **Negated** at
 the same time, so it doesn't read as related to Counterattack.
+
+### Shugen School - Spirit Hands (T135) — mirrors Shugen, Level 2 → 3
+
+> Your Unarmed weapon attacks deal Brilliant damage and are made against
+> the target's Mental Defense. If an attack would already do both, it
+> has Good Luck instead.
+
+The old version (Physical → Brilliant only) did nothing for Shugen's own
+Unarmed Techniques, which already deal Brilliant vs Mental. Per the
+designer, every Unarmed attack now fights like a Shugen one, and the
+ones that already do get a different bonus.
+
+**Per attack.** Brilliant conversion 2.0 (Locked weapon rate). Mental
+instead of Dodge/Parry: priced at 1-2 below the enemy's better of the
+two, +1.5 to hit = 1.5/13 × ~4 net damage × 4 = +1.85, minus the ~1
+Harried an attack against Dodge/Parry would have given = **+0.85**.
+Converted attack **2.85**; already-Shugen attack with Good Luck **2.4**.
+
+**Per encounter** (6.25 attacks): autoswing/Bear/Snake 17.8, half
+Shugen Techniques 16.4. Target 10.8 + 8.9 empty-hands allowance (the
+flagged-generous shield value) = **19.7: 90% / 83%**. At Level 2 (16.1)
+it was 111% / 102%. Considered: Slowed instead of Good Luck (doesn't
+fix the autoswing case), and dropping the Mental retargeting (loses the
+point).
