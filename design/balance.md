@@ -109,21 +109,18 @@ own attacks use the 1.25 attacks/turn baseline, × 5 rounds = 6.25
 attacks per encounter. Worked passes: `balance_weights_notes.md`,
 "Styles pass".
 
-### Empty off-hand: price what's given up, but keep an eye on it
+### Empty off-hand: half a shield's worth
 
 Per the designer (2026-09-30): a Condition that keeps your off-hand
-empty (a one-handed weapon and nothing else) means giving up either a
-two-hander (+1 damage, ~15 per encounter: 3.75 hits × 4) or a shield
-(+2 Parry, ~8.9: 4.8 attacks × 2/13 × ~3 net damage × 4). That goes on
-**+Target**, priced at whichever the character would realistically
-carry instead (a shield for a Parry-triggered Style). Dual-wielding
-is smaller: per the designer, the best dual-wield setup is a heavy
-weapon plus a light one, and the light weapon's Weapon Defense 1 means
-it only gives up **1 Parry** against a shield (~4.4). The designer flagged this allowance as
-probably **a little generous**: when a Technique or Style leans on it,
-look closely and don't hand it too big a budget or let it creep well
-over on top. Landing a bit under is about right for these. First case:
-Eternal Riposte (~81%).
+empty (a one-handed weapon only, or both hands empty for Unarmed)
+means giving up a shield or a two-hander. That's **+Target**. A
+shield's +2 Parry is worth ~8.9 per encounter (4.8 attacks × 2/13 × ~3
+net damage × 4), but the designer called that a bit generous, so the
+allowance is **half: ~4.5**. Dual-wielding (a heavy weapon plus a light
+one) only gives up 1 Parry against a shield: **~2.2**. This replaces
+`balance_weights.csv`'s older "+2 to Target", which mixed the weapon
+model's raw points with per-encounter Targets. Still worth a close eye:
+landing a bit under on these is about right.
 
 ### Estimating a genuinely hard-to-price effect: triangulate, don't guess once
 

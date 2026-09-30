@@ -8094,3 +8094,17 @@ of 10.8 for a single-target caster; area spells run hotter (+1 per
 target hit). A Monk using pure-Meditation attacks gives up an Unarmed
 Parry for it, which is their call. Wording tidied only. Spellblade
 Styles to come after this pass.
+
+### Empty off-hand allowance settled at half a shield (2026-09-30)
+
+`balance_weights.csv` already had a "+2 to Target" both-hands-empty
+premium from the Martial Schools pass, which I missed. It's in the
+weapon model's raw points; per encounter a shield's +2 Parry is ~8.9.
+Per the designer: split the difference, **~4.5 for a shield, ~2.2 for
+dual-wielding.** Rechecked:
+
+| Style | Value | New Target | Result |
+|---|---|---|---|
+| Eternal Riposte (L2) | ~13 | 7.2 + 4.5 = 11.7 | ~112% |
+| Spirit Hands (L3) | 16.4-17.8 | 10.8 + 4.5 = 15.3 | ~108-117% |
+| Rending Claws (L2) | 11.25 | 7.2 + 2.2 = 9.4 | ~120% |
