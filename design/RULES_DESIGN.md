@@ -215,12 +215,40 @@ theme only shuts out other archetypes who'd enjoy the Style, so drop
 it and let the archetype tag carry the theme. Follow Through and
 Inexhaustible Guardian lost their weapon Conditions this way.
 
-### Archetype secondary Skills for Style prereqs
+### PENCILED — Archetype prereq Skills
 
-Per the designer (2026-09-30), a martial archetype's Styles pair their
-main weapon Skill (Melee, Brawl, Archery...) with a secondary Skill
-that reads as that archetype: **Duelist → Insight, Barbarian →
-Resilience, Guardian → Might**.
+Per the designer (2026-09-30). Many Techniques are built around one
+Skill and don't need a second prereq at all (most of Masquerade, for
+one). A secondary is for flavor, mostly on special combat Techniques
+and Styles, pairing the main Skill with one that reads as the
+archetype. Where the table says *pencil*, there wasn't much existing
+content to go on yet.
+
+| Archetype | Main Skill(s) | Secondary |
+|---|---|---|
+| Monk | Brawl (Unarmed track), Meditation (supernatural track) | Per School: Snake Insight, Bear Might, Shugen/Demon/Oak Meditation |
+| Duelist | Melee / Acrobatics / Archery | Insight (Tiger: Acrobatics) |
+| Barbarian | Might | Resilience |
+| Guardian | Resilience (defensive Techniques), Melee/Brawl (Styles and attacks), Presence (taunts) | Might |
+| Archer | Archery (Acrobatics for thrown) | Awareness |
+| Sorcerer | Sorcery | Resilience *(pencil)* |
+| Theurgist | Theurgy | *(none settled)* |
+| Druid | Theurgy | Survival |
+| Healer | Medicine (mundane), Theurgy (magic) | Composure *(pencil)* |
+| Leader | Performance / Presence | Rapport *(pencil)* |
+| Face | Presence / Rapport / Persuasion | Insight *(pencil)* |
+| Rogue | Stealth / Masquerade / Streetwise | Acrobatics *(pencil)* |
+| Scout | Survival / Athletics / Awareness | Athletics *(pencil)* |
+| Crafter | Craft / Mixology | Academics *(pencil)* |
+| Scholar | Academics | Insight *(pencil)* |
+
+Guardian and Barbarian both touch Resilience; if they need pulling
+apart later, Guardian's defensive Techniques could lead with Composure.
+Older outliers to sort out against this table: Bladeslinging (Might 2,
+Academics 1), Magehunter (reads as Scholar), Hand of Chaos (Insight
+only), Solemn Covenant (AnySkill 5), Blood-Powered Spirit (Resilience
+only). Soulblade's Composure/Meditation and Lawman's Hand's Medicine
+are fine as they are.
 
 ### Character archetypes
 
@@ -238,6 +266,8 @@ tags rather than their own archetype.
 - **Archer**: ranged weapons.
 - **Sorcerer**: damage caster, and the summons that go with it.
 - **Theurgist**: support and utility caster, and its summons.
+- **Druid**: nature Theurgy (weather, earth, beasts), marked by a
+  Survival prereq. Added 2026-09-30.
 - **Healer**: magical and mundane healing.
 - **Leader**: buffing and rallying allies, Followers, performance.
 - **Face**: social maneuvers.
