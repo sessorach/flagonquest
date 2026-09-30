@@ -327,6 +327,12 @@ which should stay a clean decision record.
     the riders, and the same
     for "If it's Parried, ..." or "If it hits or is Parried, ...".
     Split into separate sentences only when it's actually complicated.
+  - **Limited triggers say "Once per round," and are optional.** Per
+    the designer (2026-09-30): "Once per round, when X, you may Y," not
+    "The first time each round/turn X." Letting the player pick which
+    trigger to spend it on gives them more control, and being inflexible
+    is rarely something to balance with. Only make a trigger mandatory
+    when that's a balance point.
 - **Whenever an idea gets binned** (cut from `items.csv`/`techniques.csv`,
   or considered and never drafted at all), log it in
   `IDEAS_BACKLOG.md`'s "Reviewed and declined" section — a short note

@@ -206,6 +206,22 @@ part. First case: Lawman's Hand, where leaving Downed creatures alive
 is automatic and free, while everyone else still takes Bad Luck on a
 non-lethal attack.
 
+### Style Conditions only when they pay for something
+
+Per the designer (2026-09-30): a Condition on a Style (wielding a
+shield, two-handed weapon, and so on) only earns its place when it's a
+giveback that funds the Style's budget. A Condition added just for
+theme only shuts out other archetypes who'd enjoy the Style, so drop
+it and let the archetype tag carry the theme. Follow Through and
+Inexhaustible Guardian lost their weapon Conditions this way.
+
+### Archetype secondary Skills for Style prereqs
+
+Per the designer (2026-09-30), a martial archetype's Styles pair their
+main weapon Skill (Melee, Brawl, Archery...) with a secondary Skill
+that reads as that archetype: **Duelist → Insight, Barbarian →
+Resilience, Guardian → Might**.
+
 ### Character archetypes
 
 Agreed 2026-09-28 as a starting list, expected to get small tweaks as

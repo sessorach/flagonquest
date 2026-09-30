@@ -8063,3 +8063,19 @@ the designer, the two-handed Condition had no balance reason behind it
 any melee weapon; ranged is left out since "the next one in line"
 doesn't read for a shot. Brawl or Melee 2, tagged Duelist, Barbarian,
 Guardian, Monk.
+
+### Inexhaustible Guardian (T139) — once per round, no shield Condition
+
+> Once per round, when you Parry an attack, you may gain Protected.
+
+A Guardian drawing ~2 attacks a round, about half missing against
+Parry, got ~5 Protected an encounter uncapped (15, ~139% of 10.8). Once
+per round: P(at least one Parry in a round) = 1 − 0.5² = 0.75, 3.75 × 3
+= **11.25, ~104%**. The shield Condition was worth ~0 (a shield pays
+for its own hand), so per the designer it's gone and any archetype can
+take it; still tagged Guardian. Prereqs Brawl or Melee 4, Might 3
+(Might is the Guardian secondary Skill; Indomitable Phalanx moved from
+Insight 2 to Might 2 to match).
+
+Lawman's Hand reworded to the new standard ("Once per round, ... you
+may Slow the target once"); same price.

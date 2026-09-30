@@ -6015,7 +6015,7 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "The first time each turn one of your damaging attacks hits, you may Slow the target once. Creatures you Down can be left incapacitated instead of killed.",
+    "effects": "Once per round, when one of your damaging attacks hits, you may Slow the target once. Creatures you Down can be left incapacitated instead of killed.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Medicine 3",
@@ -6192,8 +6192,8 @@
     "effects": "Ignore up to 2 of your stacks of Harried.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "(Melee or Brawl) 3, Insight 2",
-    "relevant_skills": "Melee, Brawl, Insight",
+    "prereqs": "(Melee or Brawl) 3, Might 2",
+    "relevant_skills": "Melee, Brawl, Might",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -6219,7 +6219,7 @@
       {
         "type": "skill",
         "options": [
-          "Insight"
+          "Might"
         ],
         "threshold": {
           "base": 2
@@ -6516,15 +6516,15 @@
     "level_max": 3,
     "tags": "Style",
     "description": "As a pillar of courage and resilience on the battlefield, you never tire or falter under duress.",
-    "condition": "You are wielding a shield",
+    "condition": null,
     "action": "Passive (Style) + reaction",
     "cost": null,
     "target": null,
-    "effects": "Whenever you Parry an enemy's attack, gain 1 stack of Protected.",
+    "effects": "Once per round, when you Parry an attack, you may gain Protected.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Melee 4, Athletics 3",
-    "relevant_skills": "Melee, Athletics",
+    "prereqs": "(Brawl or Melee) 4, Might 3",
+    "relevant_skills": "Brawl, Melee, Might",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -6540,6 +6540,7 @@
       {
         "type": "skill",
         "options": [
+          "Brawl",
           "Melee"
         ],
         "threshold": {
@@ -6549,7 +6550,7 @@
       {
         "type": "skill",
         "options": [
-          "Athletics"
+          "Might"
         ],
         "threshold": {
           "base": 3
