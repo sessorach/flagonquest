@@ -6283,7 +6283,7 @@
     "action": "Passive (Style) + Interrupt reaction",
     "cost": null,
     "target": null,
-    "effects": "As an Interrupt when you Parry an attack, choose one: (a) For 0 AP, make a weapon attack against the attacker. (b) For 1 AP, use a Technique that takes no more than 2 AP and has you make a weapon attack against the attacker but no other targets.",
+    "effects": "When you Parry an attack, you may Counterattack the attacker as a 0 AP Interrupt.",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Brawl or Melee) 3, Insight 2",

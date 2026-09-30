@@ -24,13 +24,17 @@ These are specific terms used in many items and abilities, used to consistently 
 
 A Burst affects the indicated space, plus every space within X meters of it, in a circle centered on that space. Burst 0 only affects the indicated space itself.
 
-#### Countered
+#### Counterattack
 
-A Technique, attack, or other ability that is Countered is still expended as normal, as are any other resources spent to use it, but otherwise has no effect as though it were never used.
+When something lets you Counterattack a creature, you may make a weapon attack against it, or use a Technique of up to 2 AP that makes a weapon attack against only that creature.
 
 #### Difficult Terrain
 
 Sometimes conditions or features of terrain can give it degrees of Difficult Terrain. To cross a meter of space that has Difficult Terrain, a character takes an extra meter of Speed for each degree of Difficult Terrain on it. A character can still move at least 1 space in this way, no matter how many degrees of Difficult Terrain there are.
+
+#### Negated
+
+A Technique, attack, or other ability that is Negated is still expended as normal, as are any other resources spent to use it, but otherwise has no effect as though it were never used.
 
 #### Outflank
 

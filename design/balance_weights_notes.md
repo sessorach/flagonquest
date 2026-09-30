@@ -7946,3 +7946,30 @@ melee, which this lets a Demon caster skip; accepted per the designer.
 
 How Range applies to adjacent targets is now spelled out in the
 glossary's Range entry rather than on the card.
+
+### Lion School - Eternal Riposte (T134) — Counterattack keyword, Level 2
+
+> When you Parry an attack, you may Counterattack the attacker as a 0
+> AP Interrupt.
+
+The old (a) free weapon attack / (b) 1 AP Technique options became the
+new **Counterattack** glossary keyword (a weapon attack, or a Technique
+of up to 2 AP that makes a weapon attack against only that creature),
+so a Duelist can Battle Maneuver instead of just swinging. "Parry an
+attack" already means an attack against your Parry misses (rulebook,
+attack section), so the trigger wording didn't need changing.
+
+**Target.** 7.2 + the empty off-hand (Condition: one-handed non-shield
+weapon, other hand empty). Priced as giving up a shield, since Parry is
+the Style's trigger: 4.8 attacks × 2/13 × ~3 net damage × 4 = **+8.9 to
+Target**, 16.1. (A two-hander's +1 damage would be ~15.)
+
+**Value.** ~4.8 attacks against Dodge/Parry per encounter, ~45% miss
+against Parry = 2.2 triggers × an autoswing (5.5) = 12.1; the Technique
+option adds a little, ~13. **~81%.** Considered and dropped: both
+options at 1 AP (6.05, ~38% once the off-hand was priced in), and
+adding Good Luck to the counter (~114%). Per the designer the off-hand
+allowance is probably a bit generous, so landing under is right.
+
+The old, unused "Countered" glossary keyword was renamed **Negated** at
+the same time, so it doesn't read as related to Counterattack.

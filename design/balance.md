@@ -109,6 +109,20 @@ own attacks use the 1.25 attacks/turn baseline, × 5 rounds = 6.25
 attacks per encounter. Worked passes: `balance_weights_notes.md`,
 "Styles pass".
 
+### Empty off-hand: price what's given up, but keep an eye on it
+
+Per the designer (2026-09-30): a Condition that keeps your off-hand
+empty (a one-handed weapon and nothing else) means giving up either a
+two-hander (+1 damage, ~15 per encounter: 3.75 hits × 4) or a shield
+(+2 Parry, ~8.9: 4.8 attacks × 2/13 × ~3 net damage × 4). That goes on
+**+Target**, priced at whichever the character would realistically
+carry instead (a shield for a Parry-triggered Style). Dual-wielding
+gets the same treatment. The designer flagged this allowance as
+probably **a little generous**: when a Technique or Style leans on it,
+look closely and don't hand it too big a budget or let it creep well
+over on top. Landing a bit under is about right for these. First case:
+Eternal Riposte (~81%).
+
 ### Estimating a genuinely hard-to-price effect: triangulate, don't guess once
 
 Most mechanics in this model trace back to a real derivation (a card-math
