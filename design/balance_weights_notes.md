@@ -8128,3 +8128,29 @@ Dodge/Parry); Demon attack 0.6 × ~3 Bleeding = 1.8. Half Demon
 Techniques: 6.25 × 2.325 = **14.5**; autoswing-heavy 17.8. Target 10.8
 + 4.5 = 15.3: **~95% / ~116%**, matching Spirit Hands. Vulnerable
 dropped; Demon's Techniques already carry it.
+
+## Incoming attacks per PC — simulator check (2026-09-30)
+
+Run to settle how many attacks a character takes per fight, which every
+Style that triggers on being attacked is priced from. Level 2 versions
+of nine sample PCs (+50 XP, 125 total; Felix benched), weapon Defense
+now in Parry (Browndog's Shield +2), Level 2-3 enemies = the Level 1
+mixed roster's four archetypes at the higher Level with the same
+HealthBonus=2. Movement on, 3000 fights each. `enemy_sim/
+incoming_attacks.py` reproduces it.
+
+| Party | vs | Win | Rounds | Attacks on party | Most-hit PC | Least-hit PC |
+|---|---|---|---|---|---|---|
+| Hilde/Browndog/Carrick/Sable L1 | L1 | 99.6% | 5.5 | 9.9 | Hilde 5.6 | Carrick 0.5 |
+| same, L2 | L2 | 93.4% | 8.0 | 15.5 | Hilde 5.8 | Browndog 2.4 |
+| same, L2 | L3 | 42.0% | 9.6 | 21.8 | Browndog 7.6 | Sable 3.4 |
+| Rook/Jackal/Wren/Hanforth L1 | L1 | 90.6% | 7.8 | 15.1 | Hanforth 5.4 | Wren 1.4 |
+| same, L2 | L2 | 88.6% | 10.5 | 20.4 | Jackal 6.9 | Wren 3.2 |
+| same, L2 | L3 | 24.0% | 11.3 | 26.7 | Hanforth 10.4 | Rook 3.7 |
+| Hilde/Browndog/Beornhard/Hanforth L1 | L1 | 97.8% | 7.9 | 15.6 | Hilde 7.9 | Beornhard 1.3 |
+| same, L2 | L2 | 99.2% | 8.2 | 16.2 | Hilde 8.2 | Beornhard 0.9 |
+| same, L2 | L3 | 57.8% | 14.3 | 30.3 | Browndog 9.1 | Hanforth 6.6 |
+
+Parries per fight: Browndog (Shield) 0.8-1.2 at an even Level, 2.4-3.2
+a Level up; Hilde 1.2-1.8. Every enemy Action in the sim targets Dodge
+or Parry, so "vs Dodge/Parry" = all attacks here.
