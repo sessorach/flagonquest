@@ -117,7 +117,9 @@ two-hander (+1 damage, ~15 per encounter: 3.75 hits × 4) or a shield
 (+2 Parry, ~8.9: 4.8 attacks × 2/13 × ~3 net damage × 4). That goes on
 **+Target**, priced at whichever the character would realistically
 carry instead (a shield for a Parry-triggered Style). Dual-wielding
-gets the same treatment. The designer flagged this allowance as
+is smaller: per the designer, the best dual-wield setup is a heavy
+weapon plus a light one, and the light weapon's Weapon Defense 1 means
+it only gives up **1 Parry** against a shield (~4.4). The designer flagged this allowance as
 probably **a little generous**: when a Technique or Style leans on it,
 look closely and don't hand it too big a budget or let it creep well
 over on top. Landing a bit under is about right for these. First case:

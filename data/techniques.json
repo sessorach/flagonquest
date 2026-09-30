@@ -6381,10 +6381,10 @@
     "tags": "Style",
     "description": "As a fighter perfects the art of two-weapon fighting, their style takes on a certain beauty. Every step carries one attack into another, blades dance about in a mesmerizing rhythm, and anyone who stands still to watch is sure to be cut to ribbons.",
     "condition": "You are wielding two non-shield weapons",
-    "action": "Passive (Style)",
+    "action": "Passive (Style) + reaction",
     "cost": null,
     "target": null,
-    "effects": "Once per round, after you make an attack with one of your weapons, you may spend 1 AP to make an attack with your other weapon against the same target.",
+    "effects": "Once per round immediately after you make an attack with one of your weapons (before anything else), you may spend 1 AP to make an identical attack with your other weapon, applying any ability (but not weapon) effects from the initial attack.",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics, Brawl, or Melee) 3, Acrobatics 2",
@@ -6428,8 +6428,8 @@
   {
     "id": "T137",
     "name": "Eagle Eyes",
-    "level_min": 3,
-    "level_max": 3,
+    "level_min": 1,
+    "level_max": 1,
     "tags": "Style",
     "description": "Sharpening your focus for a moment, you guide each shot to your target with unerring precision.",
     "condition": null,
@@ -6439,7 +6439,7 @@
     "effects": "Whenever you take an action involving one or more attacks with a ranged weapon, you may spend an extra 1 AP. If you do, those attacks have Good Luck twice.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "(Acrobatics or Archery) 4",
+    "prereqs": "(Acrobatics or Archery) 2",
     "relevant_skills": "Acrobatics, Archery",
     "use_cards": null,
     "healing": null,
@@ -6460,7 +6460,7 @@
           "Archery"
         ],
         "threshold": {
-          "base": 4
+          "base": 2
         }
       }
     ],

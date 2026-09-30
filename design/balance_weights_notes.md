@@ -8012,3 +8012,26 @@ Encounter Techniques included: with 2 of 5 rounds copying a Level 3
 Technique (9 − 2.75 = 6.25 each) it was ~129% at Level 2. Per the
 designer, that version is parked in IDEAS_BACKLOG.md for a Level 3-4
 Tiger Style.
+
+**Storm of Blades, revised (2026-09-30).** Per the designer, the
+Technique-copying version is the better one, as a Level 3-4 Style, so
+T136's original text is back and it's queued for review at the end of
+the Styles pass. A new, simpler Level 2 Tiger Style built on Harried
+takes the low slot. The dual-wield allowance is also smaller than
+assumed above: a heavy weapon plus a light one is the best setup, and
+the light weapon's Weapon Defense 1 means only 1 Parry is given up
+against a shield: 4.8 × 1/13 × ~3 × 4 = **~4.4**, not 8.9. With that,
+the copying version is ~137% at Level 3 (20.75 / 15.2) and ~110% at
+Level 4 (20.75 / 18.8), before accounting for it copying higher-Level
+Techniques at higher Levels.
+
+### Eagle Eyes (T137) — Level 3 → 1
+
+Good Luck twice = 2.4 + ~1.2 (the second stack is worth about half) =
+3.6 per attack, less the 1 AP (2.75) = ~0.85 per use, ~1 on a big
+Technique attack; ~5 uses per encounter = **~4.25**. Was 39% of a
+Level 3 budget; at Level 1 (3.6) it's **~118%**, and counting Archery
+as a narrow Skill would bring it closer to 100%. Acrobatics or Archery
+2. An always-on "your ranged weapon attacks have Good Luck" (15, ~104%
+at Level 4) is the candidate juiced-up Archer Style for the coverage
+check.
