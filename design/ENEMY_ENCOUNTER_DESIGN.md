@@ -973,3 +973,40 @@ Defensive archetypes (Defender, Backup with Resist) stretch fights well
 past the 5-round target. Offensive ones hold or shorten them. That's
 worth a GM note: a room full of Defenders makes a slog, not just a
 harder fight.
+
+**Round 3, with Party D and the new mixes** (`archetype_compare.py 300
+--revised`, parties A, B and D against Frontline, Shield Wall, Warband
+and Horde).
+
+Party D (Browndog, Hanforth with Reckoning, Felix as a Shugen monk,
+Beornhard splitting War Magic between Dodge and Vital) makes about 8 of
+its ~35 attacks per fight against Vital or Mental, so those Defenses
+count for something now. Plain enemies leave the party 71% of its Health
+on average. That's higher than rounds 1-2, because the new mixes are
+easier (see below).
+
+| Archetype | Worth, round 3 | Round 2 (parties A and B only) |
+|---|---|---|
+| Bruiser | +4.4 | +3.4 |
+| Striker | +3.7 | +2.7 |
+| Backup (Resist) | +3.5 | +3.5 |
+| Defender (shield) | +3.3 | +4.8 |
+| Backup (+Accuracy) | +2.7 | +2.6 |
+| Skirmisher | +2.3 | +1.7 |
+| Strategist (Dodge) | +1.9 | +1.4 |
+
+The spread is now +1.9 to +4.4. Defender dropped, because many of Party
+D's attacks skip Parry/Dodge entirely. The offensive archetypes rose,
+because extra damage matters more against the softer new mixes.
+
+The defensive archetypes still stretch fights the most: Party D against
+Warband and Shield Wall runs 12-19 rounds with Defender or Backup
+(Resist).
+
+**The new mixes aren't even with each other.** Shield Wall (two Hedge
+Knights in free Heavy Armor plus two archers) beats party A about 78% of
+the time. Frontline, Warband and Horde are 95-100% party wins in 3-5
+rounds. It's armor again: Shield Wall is the only mix with Physical
+Resist 5 enemies. Applying the hand-build's loadout costs to the roster
+(Heavy Armor only at Level 3+, Medium Armor for a pick) is the obvious
+next lever.
