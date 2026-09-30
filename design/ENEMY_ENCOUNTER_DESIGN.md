@@ -1010,3 +1010,35 @@ rounds. It's armor again: Shield Wall is the only mix with Physical
 Resist 5 enemies. Applying the hand-build's loadout costs to the roster
 (Heavy Armor only at Level 3+, Medium Armor for a pick) is the obvious
 next lever.
+
+### Armor costs and Health by Level (2026-09-30)
+
+Enemies now pay for armor:
+- **Heavy Armor:** Level 3+ only, 10 ability points.
+- **Medium Armor:** traded for 2 Health until ability values settle.
+  It keeps the live penalties (−1 Dodge, no Speed penalty), same as
+  players.
+
+That took Shield Wall from a wall (party A: 22%) to a hard fight (81%
+at Health 10). With less armor around, Level 2 fights at Health 10 ended
+in 3-4 rounds, so enemy Health became a per-Level table,
+`ENEMY_HEALTH_BY_LEVEL`:
+
+| Level | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| Health | 10 | 12 | 14 (penciled) | 16 (penciled) | 18 (penciled) |
+
+`level_baseline.py 300` results, every party against every current mix:
+
+- **Level 1 at 10:** Frontline, Warband and Horde are 85-100% wins in
+  3.5-7 rounds, and the party keeps 74-89% of its Health. Shield Wall is
+  61-91% wins in 6-14 rounds. At 8, everything is shorter (about 3-5
+  rounds) and easier, so 10 stays.
+- **Level 2 at 12:** Frontline and Warband are 94-100% wins in about
+  4-7 rounds. Horde is 100% in 3.4-4.6. Party Health left is 63-88%.
+  Shield Wall is 66% (party A) to 96% in 5-10 rounds, keeping 49-86%.
+- **What's still off:** outside Shield Wall, fights are about the right
+  length, but the party barely spends resources. Enemies only get 5-12
+  attacks off per fight. Horde's 4-Health minions mostly die before
+  swinging, and Aimed Shot casters attack once a turn. The next lever is
+  enemy offense in the softer mixes, not more Health.

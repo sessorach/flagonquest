@@ -18,7 +18,8 @@ full log. See `git log` for the commit-by-commit detail.
 Finished another batch of Styles, then rebuilt the simulator's enemies from the same Stats, weapons and armor players use, and started a quick way for GMs to build enemy stat blocks by hand.
 - New Styles: Rending Claws for dual-wielders, Hands of Defilement for Demon School, and Spirit Hands reworked; Follow Through, Eagle Eyes, Inexhaustible Guardian and Indomitable Phalanx got cleaned up.
 - Enemies now come in more kinds (casters, hexers, healers, shield-bearers, minions), and the sample party is Level 2, with Browndog taunting.
-- The by-hand enemy build is in the GM guide notes: a Level table, five archetypes, and heavier gear paid for out of the enemy's budget.
+- The by-hand enemy build is in the GM guide notes: a Level table, archetypes priced against each other in the simulator, and heavier gear paid for out of the enemy's budget.
+- The simulator's party can now attack Vital and Mental (Felix is back as a monk), fights use two or three kinds of enemy like a real table, and Level 2 enemies got a little tougher.
 
 ### 2026-09-29 — Styles pass started, Barbarian gets two Styles
 
