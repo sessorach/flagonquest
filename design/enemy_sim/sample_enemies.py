@@ -151,7 +151,7 @@ def _build_from_row(row):
             abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
         )
     e["battle_tactic"] = row["BattleTactic"]
-    e["fighting_style"] = row["FightingStyle"]
+    e["fighting_style"] = row["FightingStyle"] if FIGHTING_STYLES_ENABLED else "None"
     return e
 
 
@@ -160,6 +160,16 @@ def make_enemy(level):
         if row["Roster"].strip().upper() == "TRUE" and int(row["Level"]) == level:
             return _build_from_row(row)
     raise ValueError(f"no Roster row for Level {level}")
+
+
+# 2026-09-30, per the designer: Fighting Styles are off for now. They
+# were meant to stop fights being piles of double attacks, but the
+# baseline turned out to need more enemy offense, not less, and Guarded
+# on a stand-still tank was the uncosted combination behind Shield
+# Wall's difficulty. With this off, every enemy just spends its AP
+# moving and attacking (up to two attacks). The FightingStyle column
+# stays in the CSV for when they come back.
+FIGHTING_STYLES_ENABLED = False
 
 
 def get_enemy(name):

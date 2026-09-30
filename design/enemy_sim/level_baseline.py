@@ -4,7 +4,7 @@ enemy Health per ENEMY_HEALTH_BY_LEVEL, plus alternatives. Target, per
 the designer: the party wins most or all fights, spends resources
 (Health left well under full), and fights last about 5 rounds.
 
-Usage: python3 level_baseline.py [trials] [--enemy-damage N] [--current-only]"""
+Usage: python3 level_baseline.py [trials] [--enemy-damage N] [--defense-lag] [--current-only]"""
 import sys, os, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, party, sample_enemies as se, enemy_builder_pcstyle as eb
@@ -36,6 +36,10 @@ if __name__ == "__main__":
         args = [a for a in args if a != str(eb.ENEMY_DAMAGE_BONUS)]
         trials = int(args[0]) if args else 300
         print(f"Enemy damage bonus: +{eb.ENEMY_DAMAGE_BONUS}")
+    if "--defense-lag" in sys.argv:
+        eb.ENEMY_DEFENSE_LAG = 1
+        print("Enemy Defenses one Level behind")
+    print(f"Fighting Styles: {'on' if se.FIGHTING_STYLES_ENABLED else 'off'}")
     print("Cells: win% / rounds / party Health left on a win / enemy attacks per fight")
     only = "--current-only" in sys.argv
     for level, healths in ((1, (8, 10)), (2, (10, 12))):

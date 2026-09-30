@@ -109,6 +109,12 @@ ENEMY_HEALTH_BASE = None
 # rule - tested 2026-09-30 as the designer's "buff enemies' default
 # damage by 1" (level_baseline.py --enemy-damage 1).
 ENEMY_DAMAGE_BONUS = 0
+# Enemy Stats already run one Level behind a PC's; Skill tiers don't, so
+# a Level 2 enemy's Primary Defense matches a Level 2 PC specialist's
+# (Hedge Knight Parry 18 = Browndog's). Set to 1 to put Defenses one
+# Level behind too (accuracy stays on-Level). Off by default; tested via
+# level_baseline.py --defense-lag.
+ENEMY_DEFENSE_LAG = 0
 
 # 2026-09-30, per the designer: gear that's an overall gain costs the
 # enemy something, the way it costs a player XP (the Might to wear it).
@@ -192,9 +198,14 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     defense_tiers = defense_tiers or {}
     act = ACTIONS[action]
 
+    def_tiers = SKILL_TOTAL_BY_LEVEL[max(1, level - ENEMY_DEFENSE_LAG)] if ENEMY_DEFENSE_LAG else tiers
+    if ENEMY_DEFENSE_LAG and level - ENEMY_DEFENSE_LAG < 1:
+        # Below Level 1: one less than Level 1's tiers, same step size.
+        def_tiers = {k: v - 1 for k, v in SKILL_TOTAL_BY_LEVEL[1].items()}
+
     def def_total(category):
         tier = defense_tiers.get(category, "poor")
-        return 8 + tiers[tier] + defense_adj
+        return 8 + def_tiers[tier] + defense_adj
 
     # Accuracy is a plain Skill Total (no +8 - that's Defense's own
     # baseline, per party.py's real attack-roll formula), plus the
