@@ -6571,7 +6571,7 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "Your damaging spell attacks and non-weapon discipline attacks deal +1 damage. You may not Parry.",
+    "effects": "Your damaging Spell attacks and non-weapon Discipline attacks deal +1 damage. You can't Parry.",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Sorcery or Meditation) 4",

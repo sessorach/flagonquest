@@ -8079,3 +8079,18 @@ Insight 2 to Might 2 to match).
 
 Lawman's Hand reworded to the new standard ("Once per round, ... you
 may Slow the target once"); same price.
+
+### Overchanneling (T140) — unchanged, Level 3
+
+Per the designer, this is the caster's heavy two-handed weapon: +1
+damage for giving up Parry, the same trade a heavy two-hander makes
+against a shield. It's one of the few places a flat damage bonus is
+fine, and it's a Style (not a free passive) for exactly that reason. A
+Sorcerer rarely Parries, but a spellblade with some Melee and a shield
+can, so "can't Parry" is a real cost for hybrids.
+
+~80% of 6.25 casts deal damage, ~60% hit: 3 hits × 4 = **~12, ~111%**
+of 10.8 for a single-target caster; area spells run hotter (+1 per
+target hit). A Monk using pure-Meditation attacks gives up an Unarmed
+Parry for it, which is their call. Wording tidied only. Spellblade
+Styles to come after this pass.
