@@ -7997,3 +7997,18 @@ flagged-generous shield value) = **19.7: 90% / 83%**. At Level 2 (16.1)
 it was 111% / 102%. Considered: Slowed instead of Good Luck (doesn't
 fix the autoswing case), and dropping the Mental retargeting (loses the
 point).
+
+### Tiger School - Storm of Blades (T136) — plain extra attack, Level 2
+
+> Once per round, after you make an attack with one of your weapons,
+> you may spend 1 AP to make an attack with your other weapon against
+> the same target.
+
+Target 7.2 + 8.9 dual-wield allowance (giving up a shield, the
+flagged-generous value) = 16.1. Attack + extra = 3 of 4 AP, so ~5 uses
+per encounter, each an autoswing (5.5) for 1 AP (2.75) = 2.75: **13.75,
+~85%.** The old version copied the first attack's ability effects,
+Encounter Techniques included: with 2 of 5 rounds copying a Level 3
+Technique (9 − 2.75 = 6.25 each) it was ~129% at Level 2. Per the
+designer, that version is parked in IDEAS_BACKLOG.md for a Level 3-4
+Tiger Style.

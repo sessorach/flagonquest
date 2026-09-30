@@ -144,6 +144,18 @@ cut, not just backfilled at a point in time.
   what the live Water Fills the Empty Vessel (formerly Through the Void)
   already does at Level 2.
 
+## Tiger School: a Level 3-4 Style that copies Techniques
+
+From the Styles pass (2026-09-30). Storm of Blades used to let the
+off-hand attack copy the first attack's Technique effects, Encounter
+Techniques included. Per the designer, the Level 2 Style keeps just the
+plain extra attack, and the Technique-copying version is a candidate
+for a juiced-up Tiger Style in the Tiger pass. Priced then at ~105% of
+a Level 3 budget (with the dual-wield allowance), assuming 2 of 5
+rounds copy a Level 3 Technique; the value swings with what gets
+copied, so an Encounter-Technique limit or a Level 4 slot may be
+needed.
+
 ## Downtime Meditation Techniques
 
 Meditation Techniques that aren't martial at all: meditate for ten
