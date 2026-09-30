@@ -831,3 +831,19 @@ into three mixes per Level in `sample_enemies.ENCOUNTERS` (Classic,
 Warband, Coven). PCs now feel Slowed (Speed), Frightened and Taunted
 (Bad Luck), and Browndog's Challenge Taunts the enemy nearest the
 party's most fragile member. `encounter_grid.py` runs the comparison.
+
+
+## Projection model: enemies built like players (2026-09-30)
+
+For getting projections solid before simplifying into a hand-buildable
+"low baseline, archetypes add" system (the designer's original
+spreadsheet shape, where upgrades like a Heavy weapon or Medium/Heavy
+armor come out of an ability-point budget). In the simulator today an
+enemy is built from real player rules: the Stat spread of a PC one
+Level behind it, ordered by archetype; damage from the players' weapon
+and spell table; Resist from Essence plus the players' armor table;
+Health 10, a PC's base without Toughened Body; Defenses and accuracy
+from the Level's Skill Total tiers. Protect and heal Actions can't miss,
+so they grant what an average enemy attack delivers (2 at Levels 1-3).
+Full numbers and the sweep that settled the margin:
+`balance_weights_notes.md`, "Enemy margin".

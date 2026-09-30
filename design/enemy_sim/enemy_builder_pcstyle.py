@@ -81,13 +81,22 @@ STAT_BASELINE_BY_LEVEL = {
 # Resist is Essence plus worn Armor, same as a PC. This is for getting
 # projections solid before it gets simplified into a low-baseline-plus-
 # archetype-upgrades system for building stat blocks by hand.
-STAT_SPREAD_BY_LEVEL = {
+PC_STAT_SPREAD_BY_LEVEL = {
+    0: [2, 2, 2, 1, 1],  # below chargen - only reached by an enemy's lag at Level 1
     1: [3, 2, 2, 1, 1],
     2: [4, 3, 2, 1, 1],
     3: [4, 4, 2, 2, 1],
     4: [5, 4, 2, 2, 1],
     5: [5, 4, 3, 2, 1],
 }
+
+# The party's margin, per the designer: PC-modeled enemies, minus a bit
+# so the party is projected to win while spending resources. Both knobs
+# are real stats, not fudge factors - an enemy has the Stat spread of a
+# PC one Level behind it, and a PC's base Health (10, no Toughened Body).
+# Settled from margin_sweep.py (balance_weights_notes.md, "Enemy margin").
+ENEMY_STAT_LAG = 1
+ENEMY_HEALTH_BASE = 10
 DEFAULT_STAT_ORDER = ["body", "agility", "essence", "cunning", "mind"]
 
 # sample_pcs.csv's own Baseline Health by Tier - the PC-equivalent
@@ -156,7 +165,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     around that build, not part of it."""
     tiers = SKILL_TOTAL_BY_LEVEL[level]
     order = [x.strip().lower() for x in (stat_order or DEFAULT_STAT_ORDER)]
-    stat = dict(zip(order, STAT_SPREAD_BY_LEVEL[level]))
+    stat = dict(zip(order, PC_STAT_SPREAD_BY_LEVEL[max(0, level - ENEMY_STAT_LAG)]))
     stat["body_or_cunning"] = max(stat["body"], stat["cunning"])
     defense_tiers = defense_tiers or {}
     act = ACTIONS[action]
@@ -187,7 +196,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     physres = stat["essence"] + T.ARMOR[armor]["physres"] + resist_adj
     elemres = stat["essence"] + resist_adj
 
-    health = math.ceil((HEALTH_BASELINE_BY_LEVEL[level] + health_bonus) * T.SLOT_MULTIPLIER[slots])
+    health = math.ceil((ENEMY_HEALTH_BASE + health_bonus) * T.SLOT_MULTIPLIER[slots])
     speed = math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"]
     reflex = 2 + level
 

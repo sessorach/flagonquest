@@ -8177,3 +8177,49 @@ Anything that raises net damage per hit by ~2 lands fights at ~5-6
 rounds with win rates within a few points, and the spread of leftover
 HP widens a little (±18 → ±21), i.e. slightly swingier. Cutting Health
 barely shortens fights and costs more win rate. Not adopted yet.
+
+## Enemy margin — PC-modeled enemies (sim, 2026-09-30)
+
+Per the designer: model enemies after player options so they read
+intuitively, benchmark them so the party wins most or all fights while
+spending resources, and aim for ~5 rounds. Every lever has to be a real
+stat - no fudge numbers; if more damage is needed, every weapon's and
+damaging ability's base goes up for everyone.
+
+**Projection model** (`enemy_builder_pcstyle.py`): an enemy's Stats are
+a PC's typical spread (chargen shape plus the Tier XP table: 3/2/2/1/1,
+4/3/2/1/1, 4/4/2/2/1, 5/4/2/2/1, 5/4/3/2/1 at Levels 1-5), ordered by
+archetype (`StatOrder`); damage comes from the players' weapon/spell
+table (Heavy 1H 4 + Body, 2H Heavy 5 + Body, Light Bow 3 + Cunning,
+spells 2 + Mind, a Shield's +2 Parry); Resist is Essence plus the
+players' armor table, worn by archetype (Heavy knight, Medium brute and
+Warpriest, Unarmored casters). At full PC strength with Health 15 the
+enemies win most attacker fights (party A 12-27% against Classic/
+Warband/Horde) - a mirror match, as expected.
+
+**Guaranteed effects**: Shield Ally and Mend Ally never miss, so they
+grant what an enemy attack delivers on average, misses included - ~1.6
+Health at Level 1, ~2.1-2.6 at Level 2 - so **2** at Levels 1-3
+(`GUARANTEED_STACKS`), down from 3.
+
+**Margin sweep** (`enemy_sim/margin_sweep.py`, Level 2 parties A/B/C vs
+Level 2 mixes, 300 fights each; win% / rounds):
+
+| Enemy build | Classic | Warband | Horde | Coven | Chapel |
+|---|---|---|---|---|---|
+| PC-modeled, Health 15 | 27-74% / 8-12 | 12-58% / 11-17 | 24-76% / 6-9 | 78-99% / 6-11 | 93-100% / 8-12 |
+| Health 10 | 67-94% / 5-7 | 37-87% / 8-12 | 76-94% / 5-7 | 97-100% / 4-6 | 98-100% / 6-8 |
+| Stats one Level behind | 56-97% / 7-11 | 31-81% / 9-15 | 47-97% / 6-9 | 99-100% / 5-6 | 98-100% / 7-9 |
+| **Health 10 + Stats one Level behind** | 85-100% / 4-7 | 70-96% / 5-10 | 89-98% / 4-6 | 100% / 4 | 100% / 5-6 |
+| ...+ all weapons +1 | 90-99% / 3.5-5 | 86-98% / 4-6 | 86-97% / 3.5-5.5 | 100% / 3-4 | 100% / 4-6 |
+| ...+ all weapons +2 | 90-99% / 3-4 | 92-99% / 3-5 | 78-96% / 3-4.5 | 97-100% / 3-4.5 | 99-100% / 3.5-5 |
+
+**Adopted as the sim default: Health 10 (a PC's base, no Toughened Body)
+and the Stat spread of a PC one Level behind** (`ENEMY_HEALTH_BASE`,
+`ENEMY_STAT_LAG`). Skill tiers (accuracy, Defenses) stay at the enemy's
+own Level. The "+1 to every weapon" row hits ~5 rounds with 86-99% wins
+and 64-80% party HP left in the attacker mixes; it's a rules change
+(weapon table, spells, damaging Techniques), so it's held for the
+designer. Coven and Chapel are still too easy: their casters are
+single-attack (Guarded/Aimed Shot) and two of Chapel's four don't deal
+damage.
