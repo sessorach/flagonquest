@@ -928,3 +928,31 @@ Caveats:
   ladder, so their prices are extrapolated.
 - **Resist's price** depends on the PC damage baseline. It will move if
   the +1-to-all-weapons change goes in.
+
+**Round 2, revised set** (`archetype_compare.py 400 --revised`). Plain
+enemies and the Health ladder reproduced within about 1 point of round
+1.
+
+| Archetype | Adds | Health left | Worth | Rounds (typical) |
+|---|---|---|---|---|
+| Defender (shield) | Parry +2, Dodge +2 | 36.5% | +4.8 (just past the ladder) | 7-14 |
+| Backup (Resist) | Resist +1, Vital +1, Mental +1 | 42.0% | +3.5 | 6-14 |
+| Bruiser | Damage +1, Resist +1, Parry −1, Dodge −1 | 42.5% | +3.4 | 5-10 |
+| Striker | Accuracy +1, Damage +1 | 45.1% | +2.7 | 4.5-8.5 |
+| Backup (+Accuracy) | Parry +1, Dodge +1, Vital +1, Mental +1, Accuracy +1 | 45.7% | +2.6 | 5.5-11.5 |
+| Skirmisher | Speed +1, Dodge +1, Accuracy +1 | 50.0% | +1.7 | 5-9 |
+| Strategist (Dodge) | Accuracy +1, Dodge +1, Mental +1 | 52.5% | +1.4 | 5-9 |
+
+The spread narrowed from −0.9 to +6.8 down to +1.4 to +4.8. The
+second point of Parry/Dodge is worth more than the first: +1 was about
+1.9 Health, +2 is about 4.8. Each point cuts a bigger share of the hits
+still landing.
+
+Skirmisher and Strategist sit low for the reasons in the caveats above
+(Speed, Mental and Vital are barely exercised). They shouldn't be buffed
+off this number alone.
+
+Defensive archetypes (Defender, Backup with Resist) stretch fights well
+past the 5-round target. Offensive ones hold or shorten them. That's
+worth a GM note: a room full of Defenders makes a slog, not just a
+harder fight.
