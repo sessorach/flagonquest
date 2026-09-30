@@ -1067,3 +1067,45 @@ Rounds barely moved (about 4-6, Shield Wall 6-10).
 
 This points at a per-Level damage bonus (0 at Level 1, +1 at Level 2),
 the same "low early" shape as Health. Not applied yet.
+
+### Fighting Styles off, and the Defense lag test (2026-09-30)
+
+Per the designer, Fighting Styles are off for now
+(`sample_enemies.FIGHTING_STYLES_ENABLED`). They were meant to stop fights
+being piles of double attacks, but the baseline needs more enemy offense,
+not less. Guarded on a stand-still tank was also the uncosted combination
+behind Shield Wall. With Guarded's stand-still bonus switched off, party
+A's Shield Wall win rate went from 64% to 98%. The other pieces mattered
+much less (archers' Aimed Shot/targeting 92%, shield 89%, Durable 87%,
+Light Armor 81%).
+
+**Why a Level 2 enemy has Parry 18:** enemy Stats run one Level behind a
+PC's, but Skill tiers don't. A Level 2 enemy's Primary Defense matches a
+Level 2 PC specialist's: Hedge Knight Parry 18 = Browndog's Agility 4 +
+Melee 4 + Shield 2. `ENEMY_DEFENSE_LAG = 1` puts Defenses one Level
+behind too (Hedge Knight Parry 16). Accuracy stays on-Level either way.
+
+`level_baseline.py 300 --current-only`, Fighting Styles off, Health
+10/12:
+
+| Level 2 mix | Styles off | Styles off + Defense lag |
+|---|---|---|
+| Frontline | 88-97% wins, 4.0-5.2 rounds, 51-68% Health left | 97-100%, 3.0-4.1 rounds, 56-73% |
+| Warband | 96-100%, 4.5-5.6 rounds, 59-85% | 100%, 3.4-4.2 rounds, 70-88% |
+| Horde | 100%, 3.4-4.7 rounds, 82-88% | 100%, 3.0-3.9 rounds, 86-91% |
+| Shield Wall | 68-87%, 5.3-7.3 rounds, 37-71% | 93-99%, 3.7-4.9 rounds, 50-79% |
+
+**Level 1, styles off:** 70-100% wins in 3.5-8 rounds. Party D (Level 1
+Felix is a fresh, thin build) is the one that struggles, at 70-76%
+against Frontline and Shield Wall.
+
+- **Styles off alone** lands Frontline and Warband near the target
+  (most fights won, about 5 rounds, real Health spent). It brings Shield
+  Wall back from 40% to 68% for party A. Enemies get more attacks off
+  (Frontline 11-18 a fight, up from 7-13).
+- **Adding the Defense lag** makes everything too short and too easy.
+  It stays off.
+- **Horde is still easy.** Its minions die before they swing, which
+  needs a structural fix rather than a stat change.
+- **Enemy damage +1** was tested before styles came off. With styles
+  off it's likely no longer needed; it stays off.
