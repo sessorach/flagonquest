@@ -203,6 +203,7 @@ from movement import distance as _distance  # run_fight's own `movement` param (
 import tactics
 from sample_enemies import make_level_encounter
 from party import make_party
+import cards
 
 
 def flip():
@@ -379,7 +380,7 @@ def pc_resist_for_enemy_attack(e, target):
     a Fire-damage enemy Action (Melee/Ranged Spell) is in play, since a
     PC's `elemres` gets no Armor bonus (party.py's Armor paragraph) and
     is usually lower than `physres`."""
-    if e.get('dmg_type') == 'Fire':
+    if e.get('dmg_type') not in (None, 'Physical'):
         return target.get('elemres', 0)
     return target.get('physres', 0)
 
@@ -626,6 +627,51 @@ def _find_extra_target(pc, primary, enemies, movement_on, mode):
     return None
 
 
+def _pc_status_bad_luck(pc, target):
+    """Frightened (glossary.md): Bad Luck on actions targeting the
+    creature who Frightened you. Taunted: Bad Luck on hostile actions
+    that don't target the creature who Taunted you. Both only while
+    that creature's still up."""
+    fr = pc.get('frightened_by') if pc.get('frightened', 0) > 0 else None
+    if fr is not None and fr is target:
+        return True
+    ta = pc.get('taunted_by') if pc.get('taunted', 0) > 0 else None
+    return ta is not None and ta['health'] > 0 and ta is not target
+
+
+def _try_challenge(pc, pcs, enemies, movement_on, log=None):
+    """Challenge (T058, 1 AP, Encounter): "Make a Presence attack
+    against the target's Mental Defense. If the attack hits, you Taunt
+    the target 5 + [Hearts] times." Range [Presence Skill Total]
+    meters. Used on an enemy nobody's already Taunting, picking the one
+    closest to the party's most fragile member (lowest max Health, then
+    lowest current Health) - the whole point is pulling attacks off
+    whoever can't take them. Returns the AP spent (0 or 1)."""
+    if pc.get('challenge_uses_left', 0) <= 0:
+        return 0
+    pool = [e for e in enemies if e['health'] > 0 and not (e.get('taunted', 0) > 0)]
+    if movement_on:
+        pool = [e for e in pool if _distance(pc['pos'], e['pos']) <= pc['presence_skill_total']]
+    if not pool:
+        return 0
+    others = [p for p in pcs if p['health'] > 0 and p is not pc]
+    if movement_on and others:
+        ward = min(others, key=lambda p: (p['max_health'], p['health']))
+        target = min(pool, key=lambda e: _distance(e['pos'], ward['pos']))
+    else:
+        target = pool[0]
+    pc['challenge_uses_left'] -= 1
+    roll = pc['presence_skill_total'] + flip()
+    hit = roll >= target['mental'] - target.get('vulnerable', 0)
+    if hit:
+        target['taunted'] = 5 + (1 if cards.flipped_matches('Hearts') else 0)
+        target['taunted_by'] = pc
+    if log:
+        log(unit=pc['name'], action='taunt', target=target['name'], roll=roll, defense=target['mental'], hit=hit,
+            via='Challenge')
+    return 1
+
+
 def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=None):
     """One PC's full turn (see module docstring's "How a turn works") -
     strategy (a healer's own heal), Second Wind, movement, then attacks.
@@ -658,7 +704,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         defense = enemy_defense_for_pc_attack(pc, bonus_target)
         resist = enemy_resist_for_pc_attack(pc, bonus_target)
         crippled = pc.get('crippled', 0)
-        bad_luck = tactics.defense_has_bad_luck(bonus_target, pc.get('opp_def', 'Parry/Dodge'))
+        bad_luck = tactics.defense_has_bad_luck(bonus_target, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, bonus_target)
         luck_bonus = tactics.perfect_strike_bonus(pc)
         card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
         roll = pc['skill_total'] - crippled + card
@@ -704,9 +750,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         else:
             ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
         tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
+        ap -= _try_challenge(pc, pcs, enemies, movement_on, log=party_log)
         targets = [e for e in enemies if e['health'] > 0]
         if targets:
             target = tactics.select_target(pc, targets, movement_on, allies=[p for p in pcs if p['health'] > 0])
+            # A Taunted PC goes for its Taunter - anything else has Bad Luck.
+            taunter = pc.get('taunted_by') if pc.get('taunted', 0) > 0 else None
+            if taunter is not None and taunter['health'] > 0:
+                target = taunter
             in_range = True
             if movement_on:
                 # Blinkstep (T077, synthetic test field, 0 AP, once per
@@ -866,7 +917,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 gambles = 0 if (substitute or feint_active) else pc_gamble_count(
                     pc, target, defense_override=8 if cloak_dagger_hit else None)
                 crippled = pc.get('crippled', 0)
-                bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge'))
+                bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, target)
                 luck_bonus = tactics.perfect_strike_bonus(pc)
                 card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
                 roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
@@ -991,6 +1042,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         if pc.get('bleeding', 0) > 0:
             pc['bleeding'] -= 1
             pc['health'] -= 1
+        for key in ('slowed', 'frightened', 'taunted'):
+            if pc.get(key, 0) > 0:
+                pc[key] -= 1
+                if pc[key] == 0:
+                    pc[key + '_by'] = None
         if pc.get('harried', 0) > 0:
             pc['harried'] = 0
         if _has_interrupt_tech(pc):
@@ -1062,7 +1118,7 @@ def _magehunter_interrupt(e, pcs, movement_on, party_log):
         resist = enemy_resist_for_pc_attack(pc, e)
         gambles = pc_gamble_count(pc, e)
         crippled = pc.get('crippled', 0)
-        bad_luck = tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge'))
+        bad_luck = tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, e)
         luck_bonus = tactics.perfect_strike_bonus(pc)
         card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
         roll = pc['skill_total'] - crippled + card - 2 * gambles
@@ -1128,7 +1184,7 @@ def _parting_shot_interrupt(e, pcs, movement_on, party_log):
         resist = enemy_resist_for_pc_attack(pc, e)
         gambles = pc_gamble_count(pc, e)
         crippled = pc.get('crippled', 0)
-        bad_luck = tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge'))
+        bad_luck = tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, e)
         luck_bonus = tactics.perfect_strike_bonus(pc)
         card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
         roll = pc['skill_total'] - crippled + card - 2 * gambles
@@ -1153,12 +1209,68 @@ def _parting_shot_interrupt(e, pcs, movement_on, party_log):
     return total_dmg
 
 
+def _enemy_plan(e, enemies, living_pcs, movement_on):
+    """Decides what an enemy does this turn - its main Action, or its
+    backup attack when the main one has nothing useful to do - and at
+    whom. Returns (mode, profile, target). `profile` carries the
+    Action's own accuracy/damage/opp_def/range (the enemy's main stats
+    for an attacker, `e['backup']` for a fallback attack).
+
+    Per the designer's enemy philosophy: no "activated" abilities, just
+    the one thing each enemy does. A support enemy Protects whichever
+    ally is hurt worst and isn't already carrying a full grant; a Hex
+    enemy puts its debuff on whoever doesn't already have a full stack
+    of it; either falls back on its backup attack otherwise. Enemies
+    don't read the party's Defenses - targeting is still just position
+    or visible wounds (tactics.TARGETING). A Taunted enemy goes for its
+    Taunter while it can, since anything else would have Bad Luck."""
+    kind = e.get('kind', 'attack')
+    main = dict(action=e['action'], accuracy=e['accuracy'], attack_damage=e['attack_damage'],
+                dmg_type=e.get('dmg_type'), opp_def=e['opp_def'], attack_range=e.get('attack_range', 0))
+    taunter = e.get('taunted_by') if e.get('taunted', 0) > 0 else None
+    if taunter is not None and taunter['health'] <= 0:
+        taunter = None
+    if kind == 'support':
+        allies = [a for a in enemies if a['health'] > 0 and a.get('protected', 0) < e['effect_stacks']]
+        if allies and taunter is None:
+            return 'support', main, min(allies, key=lambda a: (a['health'] / a['max_health'], a is not e))
+        return 'attack', e['backup'], taunter or tactics.select_target(e, living_pcs, movement_on)
+    if kind == 'hex':
+        effect = e['main_effect']
+        fresh = [p for p in living_pcs if p.get(effect.lower(), 0) < e['effect_stacks']]
+        if taunter is not None:
+            return ('hex', main, taunter) if taunter in fresh else ('attack', e['backup'], taunter)
+        if fresh:
+            return 'hex', main, tactics.select_target(e, fresh, movement_on)
+        return 'attack', e['backup'], tactics.select_target(e, living_pcs, movement_on)
+    return 'attack', main, taunter or tactics.select_target(e, living_pcs, movement_on)
+
+
+# Debuffs an enemy can put on a PC, by name - Hex MainEffects and the
+# Strike riders both land through here. Frightened/Taunted remember who
+# did it, since their Bad Luck only cares about that one creature.
+def _apply_to_pc(target, effect, stacks, source):
+    key = effect.lower()
+    target[key] = target.get(key, 0) + stacks
+    if key in ('frightened', 'taunted'):
+        target[key + '_by'] = source
+
+
+STRIKE_RIDERS = {
+    'Strike (Crippling)': ('Crippled', 1),
+    'Strike (Vulnerable)': ('Vulnerable', 1),
+    'Poison (Bleeding)': ('Bleeding', 2),
+    'Strike (Slowing)': ('Slowed', 1),
+    'Strike (Frightening)': ('Frightened', 1),
+    'Strike (Taunting)': ('Taunted', 1),
+}
+
+
 def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_log=None):
     """One enemy's full turn (see module docstring's "How a turn
-    works"). Returns any damage a Magehunter/Parting Shot Interrupt
-    dealt to `e` this turn (0 normally), for run_fight's own party
-    damage tally - everything else about a plain enemy turn stays a
-    side-effect-only call, same as before."""
+    works" and _enemy_plan). Returns any damage a Magehunter/Parting
+    Shot Interrupt dealt to `e` this turn (0 normally), for run_fight's
+    own party damage tally."""
     if e['health'] <= 0:
         return 0
     abilities = e.get('abilities', [])
@@ -1170,72 +1282,62 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     interrupt_dmg = 0
     fighting_style = e.get('fighting_style', 'Guarded')
     ap = T.AP_PER_TURN
-    target = tactics.select_target(e, living_pcs, movement_on)
+    mode, prof, target = _enemy_plan(e, enemies, living_pcs, movement_on)
+    reach = prof.get('attack_range') or T.MELEE_RANGE
     moved = False
     in_range = True
     start_pos = e.get('pos')
     if movement_on:
         # Parting Shot (T076): checked against `e`'s position BEFORE its
-        # own retreat step, since the trigger is the creature trying to
-        # move away, not having already moved - only Kiting units ever
-        # move away from their target at all (tactics.move_kite is the
-        # only "retreat" Battle Tactic; everything else only closes
-        # distance) - see _parting_shot_interrupt's own docstring.
+        # own retreat step - see _parting_shot_interrupt's own docstring.
         if e.get('battle_tactic') == 'Kiting':
             interrupt_dmg += _parting_shot_interrupt(e, pcs, movement_on, party_log)
             if e['health'] <= 0:
                 return interrupt_dmg
-        ap, in_range, moved = spend_movement_ap(e, target, ap, effective_range(e))
-    # Guarded's own stand-still bonus (tactics.defense_has_bad_luck) -
-    # set here, at the end of resolving this enemy's own movement, so
-    # it's ready for whoever attacks this enemy next (in initiative
-    # order, not necessarily "next round") to check - a "held its
-    # ground last turn" bonus that lags by however long it takes this
-    # enemy's turn to come back around, same idea as before real
-    # initiative, just no longer tied to a fixed "one round" gap.
+        if target is not e:
+            ap, in_range, moved = spend_movement_ap(e, target, ap, reach)
+    # Guarded's own stand-still bonus (tactics.defense_has_bad_luck).
     e['guarded_active'] = (fighting_style == 'Guarded' and not moved)
     if moved:
         _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
              in_range=in_range, spaces=_distance(start_pos, e['pos']))
-    if movement_on and not in_range:
-        return interrupt_dmg
 
     cap = tactics.attack_cap(e)
-    attacks_made = 0
-    while ap >= T.ATTACK_AP_COST and (cap is None or attacks_made < cap) and target is not None:
-        # Magehunter (T075): "a creature within your weapon's range
-        # declares a Spell, before it is cast" - checked right before
-        # this attack resolves, only for a Spell Action (tunables.
-        # ACTIONS' "Melee Spell"/"Ranged Spell") - see
-        # _magehunter_interrupt's own docstring. A kill here (e['health']
-        # <= 0) ends this enemy's turn immediately, same as any other
-        # kill mid-attack-sequence - a dead caster's own attack never
-        # goes off.
-        if e['action'] in ('Melee Spell', 'Ranged Spell'):
+    actions_made = 0
+    while (not movement_on or in_range) and ap >= T.ATTACK_AP_COST and (cap is None or actions_made < cap) \
+            and target is not None:
+        ap -= T.ATTACK_AP_COST
+        actions_made += 1
+        if mode == 'support':
+            target['protected'] = target.get('protected', 0) + e['effect_stacks']
+            if enemy_log:
+                enemy_log(unit=e['name'], action='support', target=target['name'], stacks=e['effect_stacks'],
+                          via=e['action'])
+            # A Flurry support picks the next ally in need for its second go.
+            mode, prof, target = _enemy_plan(e, enemies, [p for p in pcs if p['health'] > 0], movement_on)
+            if mode != 'support' or (movement_on and _distance(e['pos'], target['pos']) > reach):
+                break
+            continue
+        # Magehunter (T075): checked right before a Spell resolves.
+        if prof['action'] in ('Melee Spell', 'Ranged Spell', 'Vital Spell', 'Hex'):
             interrupt_dmg += _magehunter_interrupt(e, pcs, movement_on, party_log)
             if e['health'] <= 0:
                 break
-        roll = e['accuracy'] + (flip_best_of(2) if fighting_style == 'Aimed Shot' else flip())
-        opp_def_val = pc_defense_for(target, e['opp_def'])
-        # rulebook.md's Harried trigger (see enemy_defense_for_pc_attack's
-        # own comment) - only when this attack was actually opposed by
-        # Parry or Dodge, not Bodily/Mental (e.g. a Fire Spell opposed
-        # by Dodge alone still counts; Melee Spell/Ranged Spell here are
-        # both opp_def='Dodge', so this fires for every Action in
-        # tunables.ACTIONS today, but the check stays explicit rather
-        # than assuming that never changes).
+        taunter = e.get('taunted_by') if e.get('taunted', 0) > 0 else None
+        off_taunt = taunter is not None and taunter['health'] > 0 and taunter is not target
+        card = resolve_card(1 if fighting_style == 'Aimed Shot' else 0, off_taunt)
+        roll = prof['accuracy'] + card
+        opp_def_val = pc_defense_for(target, prof['opp_def'])
         # Parried = a miss where Parry was the Defense actually used
         # (rulebook.md: "a target who used Parry Defense is considered to
         # have Parried"); pc_defense_for picks the better of the two.
-        used_parry = e['opp_def'] == 'Parry/Dodge' and target['parry'] >= target['dodge']
-        if e['opp_def'] in ('Parry/Dodge', 'Dodge'):
+        used_parry = prof['opp_def'] == 'Parry/Dodge' and target['parry'] >= target['dodge']
+        if prof['opp_def'] in ('Parry/Dodge', 'Dodge'):
             target['harried'] = target.get('harried', 0) + 1
             target['attacks_vs_parry_dodge'] = target.get('attacks_vs_parry_dodge', 0) + 1
         target['attacks_received'] = target.get('attacks_received', 0) + 1
         hit = roll >= opp_def_val
-        dmg = 0
-        raw_dmg = 0
-        resist = 0
+        dmg = raw_dmg = resist = 0
         if not hit and used_parry:
             target['parries'] = target.get('parries', 0) + 1
             # Inexhaustible Guardian (T139): "Once per round, when you
@@ -1245,36 +1347,42 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
                 target['ig_round'] = rnd
         if hit:
             target['hits_received'] = target.get('hits_received', 0) + 1
-            resist = pc_resist_for_enemy_attack(e, target)
-            raw_dmg = e['attack_damage']
-            dmg = max(0, raw_dmg - resist)
-            # PC-side Protected (Inexhaustible Guardian is the only PC
-            # source modeled): each stack absorbs 1 Health loss.
-            if target.get('protected', 0) > 0 and dmg > 0:
-                absorbed = min(dmg, target['protected'])
-                target['protected'] -= absorbed
-                dmg -= absorbed
-            target['health'] -= dmg
-            if 'Strike (Crippling)' in abilities:
-                target['crippled'] = target.get('crippled', 0) + 1
-            if 'Strike (Vulnerable)' in abilities:
-                target['vulnerable'] = target.get('vulnerable', 0) + 1
-            if 'Poison (Bleeding)' in abilities:
-                target['bleeding'] = target.get('bleeding', 0) + 2
-        ap -= T.ATTACK_AP_COST
-        attacks_made += 1
+            if mode == 'hex':
+                _apply_to_pc(target, e['main_effect'], e['effect_stacks'], e)
+            else:
+                resist = pc_resist_for_enemy_attack(prof, target)
+                raw_dmg = prof['attack_damage']
+                dmg = max(0, raw_dmg - resist)
+                # PC-side Protected: each stack absorbs 1 Health loss.
+                if target.get('protected', 0) > 0 and dmg > 0:
+                    absorbed = min(dmg, target['protected'])
+                    target['protected'] -= absorbed
+                    dmg -= absorbed
+                target['health'] -= dmg
+                for ability in abilities:
+                    if ability in STRIKE_RIDERS:
+                        effect, stacks = STRIKE_RIDERS[ability]
+                        _apply_to_pc(target, effect, stacks, e)
         if enemy_log:
-            enemy_log(unit=e['name'], action='attack', target=target['name'], roll=roll, defense=opp_def_val,
-                       hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, target_hp_after=target['health'],
-                       target_harried_after=target.get('harried', 0), via=e['action'])
+            enemy_log(unit=e['name'], action='hex' if mode == 'hex' else 'attack', target=target['name'],
+                      roll=roll, defense=opp_def_val, hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist,
+                      target_hp_after=target['health'], target_harried_after=target.get('harried', 0),
+                      via=prof['action'])
         if target['health'] <= 0:
             target = _retarget(e, [p for p in pcs if p['health'] > 0], movement_on)
-    # Harried clears at the end of its own bearer's turn (glossary.md) -
-    # this enemy can only have taken damage from its own past turns, not
-    # this one (only the acting unit deals damage on its own turn), so
-    # e['health'] is still whatever it was on entry if we got this far.
+        elif mode == 'hex':
+            # A Flurry Hexer spreads its second Hex to someone fresh.
+            mode, prof, target = _enemy_plan(e, enemies, [p for p in pcs if p['health'] > 0], movement_on)
+            if movement_on and target is not None and _distance(e['pos'], target['pos']) > (prof.get('attack_range') or T.MELEE_RANGE):
+                break
+    # End of this enemy's own turn: Harried clears entirely, Taunted
+    # decays by 1 (both Fleeting-style, glossary.md).
     if e.get('harried', 0) > 0:
         e['harried'] = 0
+    if e.get('taunted', 0) > 0:
+        e['taunted'] -= 1
+        if e['taunted'] == 0:
+            e['taunted_by'] = None
     return interrupt_dmg
 
 

@@ -5,7 +5,7 @@ import sys, random, collections
 sys.path.insert(0, __import__('os').path.dirname(__import__('os').path.abspath(__file__)))
 import combat_sim, party, sample_enemies as se
 
-def run(names, level, trials=3000, movement=True):
+def run(names, level, trials=3000, movement=True, encounter=None):
     holder = {}
     def mp(tier, good_luck=0):
         holder['pcs'] = party.make_party_from(names, good_luck)
@@ -14,14 +14,15 @@ def run(names, level, trials=3000, movement=True):
     wins = 0; rounds = 0; hp = []
     agg = collections.defaultdict(lambda: collections.Counter())
     for _ in range(trials):
-        r = combat_sim.run_fight(1, level, movement=movement, enemies=se.make_level_encounter(level))
+        enemies = se.build_encounter(se.ENCOUNTERS[level][encounter]) if encounter else se.make_level_encounter(level)
+        r = combat_sim.run_fight(1, level, movement=movement, enemies=enemies)
         wins += r['winner'] == 'party'; rounds += r['rounds']
         if r['winner'] == 'party': hp.append(r['party_hp_pct'])
         for p in holder['pcs']:
             key = p['name'][:-1]
             for k in ('attacks_received', 'attacks_vs_parry_dodge', 'hits_received', 'parries'):
                 agg[key][k] += p.get(k, 0)
-    print(f"\n== {', '.join(names)} vs Level {level}: win {100*wins/trials:.1f}%  rounds {rounds/trials:.1f}  HP left on win {100*sum(hp)/max(1,len(hp)):.0f}%")
+    print(f"\n== {', '.join(names)} vs Level {level} {encounter or ''}: win {100*wins/trials:.1f}%  rounds {rounds/trials:.1f}  HP left on win {100*sum(hp)/max(1,len(hp)):.0f}%")
     tot = 0
     for k, c in agg.items():
         tot += c['attacks_received']
@@ -32,5 +33,8 @@ A1 = ['Hilde', 'Browndog', 'Carrick', 'Sable']
 B1 = ['Rook', 'Jackal', 'Wren', 'Hanforth']
 C1 = ['Hilde', 'Browndog', 'Beornhard', 'Hanforth']
 L2 = lambda xs: [x + ' (L2)' for x in xs]
-for names, lvl in [(A1, 1), (L2(A1), 2), (L2(A1), 3), (B1, 1), (L2(B1), 2), (L2(B1), 3), (C1, 1), (L2(C1), 2), (L2(C1), 3)]:
-    run(names, lvl)
+if __name__ == "__main__":
+    trials = int(sys.argv[1]) if len(sys.argv) > 1 else 2000
+    for enc in ('Classic', 'Warband', 'Coven'):
+        for names, lvl in [(A1, 1), (L2(A1), 2), (L2(A1), 3), (L2(B1), 2), (L2(C1), 2)]:
+            run(names, lvl, trials, encounter=enc)

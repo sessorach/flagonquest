@@ -140,6 +140,13 @@ ABILITY_COST = {
     "Strike (Vulnerable)": 5,
     "Poison (Bleeding)": 5,
     "Durable": 5,
+    # 2026-09-30: more on-hit debuffs, so every enemy puts something on
+    # the party (the designer's standard: each enemy either debuffs or
+    # buffs an ally). Same 5-point cost as the existing Strike riders -
+    # one stack per hit.
+    "Strike (Slowing)": 5,
+    "Strike (Frightening)": 5,
+    "Strike (Taunting)": 5,
 }
 
 # ---- PC power per Tier (1-5) ----

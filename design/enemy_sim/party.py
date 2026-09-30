@@ -129,7 +129,7 @@ def _pc_dict(row, index, good_luck):
     skills = {k: v for k, v in row.items() if k not in
               ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
                "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus",
-               "Heal Range", "Passives", "Battle Tactic", "Parry Weapons")}
+               "Heal Range", "Passives", "Battle Tactic", "Parry Weapons", "Encounter Techniques")}
     parry = 8 + skill_total(stats, skills, "Melee")
     # Raw Acrobatics Skill Total - captured before Armor's own Dodge
     # modifier folds into `dodge` below, since Blinkstep (T077, "Shift
@@ -315,6 +315,10 @@ def _pc_dict(row, index, good_luck):
     # PC, not just ones with a Card Technique - harmless, one less
     # special case.
     card_techniques = [t.strip() for t in (row.get("Card Techniques") or "").split(",") if t.strip()]
+    # `Encounter Techniques` (comma-separated, one entry per known copy):
+    # AP-costing Encounter Techniques the sim runs on its own - so far
+    # just Challenge (T058), a Taunt that pulls attacks off the fragile.
+    encounter_techs = [t.strip() for t in (row.get("Encounter Techniques") or "").split(",") if t.strip()]
     card_uses_left = hand_size // 3
 
     # `Weapon Uses`: blank/absent means unlimited (every existing PC),
@@ -396,7 +400,9 @@ def _pc_dict(row, index, good_luck):
               heal_cards=heal_cards, heal_bonus=heal_bonus, heal_range=heal_range,
               passives=passives, battle_tactic=battle_tactic,
               card_techniques=card_techniques, card_uses_left=card_uses_left,
-              attacks_received=0, attacks_vs_parry_dodge=0, hits_received=0, parries=0)
+              attacks_received=0, attacks_vs_parry_dodge=0, hits_received=0, parries=0,
+              challenge_uses_left=encounter_techs.count("Challenge"),
+              presence_skill_total=skill_total(stats, skills, "Presence"))
     if attack_range is not None:
         pc["attack_range"] = attack_range
     if weapon_uses_left is not None:

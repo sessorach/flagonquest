@@ -793,3 +793,41 @@ Builds"** and **"Example Enemies"** documents in `design/` — a proper,
 game-ready roster, not just `enemy_sim/sample_enemies.py`'s simulator
 fixtures. Revisit this section once the tunables are locked down rather
 than starting that work against numbers still in flux.
+
+
+## Enemy variety standard (2026-09-30)
+
+Per the designer: earlier drafts suffered from generic stat blocks, so
+enemies should have mechanical breadth while staying simple to run.
+
+- **No activated abilities.** An enemy has one thing it does: its main
+  **Action**. Attackers attack; support enemies Protect or heal an ally;
+  debuffers attack a Defense (usually Mental) for no damage and land a
+  big stack of one debuff. Support and debuffer enemies carry a
+  **backup attack** for when there's nothing useful to buff or debuff.
+  Plus its **Fighting Style** (Flurry / Guarded / Aimed Shot /
+  Skirmisher) and **Battle Tactic** (nearest, the most hurt, kiting).
+- **Every enemy puts something on the fight:** a debuff on the party (an
+  on-hit rider from its Ability budget, or a debuffer's whole Action) or
+  a buff on its allies. On-hit riders so far, 5 points each: Crippling,
+  Vulnerable, Bleeding (Poison, 2 stacks), Slowing, Frightening,
+  Taunting. Durable (self-Protected each turn) is the buff option.
+- **More attack types:** Shadow casters against Vital Defense, Fire
+  casters against Dodge, debuffers against Mental, alongside the melee
+  and ranged weapon attackers against Parry/Dodge.
+- **Enemies don't know the party's Defenses.** Targeting is position
+  (nearest) or visible wounds (the most hurt), never "who's easiest to
+  hit." A Taunted enemy goes for its Taunter.
+- **Debuff/buff size:** a debuffer's Hex or a support's Shield Ally
+  lands `EFFECT_STACKS` = 3 at Levels 1-2, 4 at 3-4, 5 at 5, priced to
+  trade roughly evenly with an enemy hit (~2 net Health, ~8 value).
+
+In the simulator: `enemy_builder_pcstyle.ACTIONS` gains **Vital Spell**
+(Shadow vs Bodily), **Hex** (no damage, vs Mental, `MainEffect`
+stacks) and **Shield Ally** (Protected on the most-hurt ally), each
+non-attack Action with a `BackupAction`. New archetypes: Brute,
+Warpriest, Grave Caller, Bog Hexer, Mire Witch (Levels 1-3), grouped
+into three mixes per Level in `sample_enemies.ENCOUNTERS` (Classic,
+Warband, Coven). PCs now feel Slowed (Speed), Frightened and Taunted
+(Bad Luck), and Browndog's Challenge Taunts the enemy nearest the
+party's most fragile member. `encounter_grid.py` runs the comparison.

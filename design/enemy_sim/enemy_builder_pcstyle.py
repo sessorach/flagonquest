@@ -90,13 +90,31 @@ ACTIONS = {
     "Ranged Weapon":    {"acc_mod": 1, "dmg_base": 3, "stat": "body",    "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 3},
     "Melee Spell":      {"acc_mod": 0, "dmg_base": 2, "stat": "essence", "dmg_type": "Fire",     "opp_def": "Dodge",      "range": 0},
     "Ranged Spell":     {"acc_mod": 0, "dmg_base": 1, "stat": "essence", "dmg_type": "Fire",     "opp_def": "Dodge",      "range": 2},
+    # 2026-09-30 enemy-variety pass, per the designer: casters that go
+    # after Vital Defense with Shadow, a no-damage debuffer that attacks
+    # Mental Defense and lands a big stack of one debuff (its
+    # `main_effect`), and a support Action that Protects an ally. The
+    # last two aren't damaging attacks, so each enemy using one also
+    # carries a `backup_action` - a plain attack it falls back on when
+    # there's nothing useful to Hex or Protect.
+    "Vital Spell":      {"acc_mod": 0, "dmg_base": 2, "stat": "essence", "dmg_type": "Shadow",   "opp_def": "Bodily",     "range": 2},
+    "Hex":              {"acc_mod": 1, "dmg_base": 0, "stat": "essence", "dmg_type": None,       "opp_def": "Mental",     "range": 2,
+                         "kind": "hex"},
+    "Shield Ally":      {"acc_mod": 0, "dmg_base": 0, "stat": "essence", "dmg_type": None,       "opp_def": None,         "range": 1,
+                         "kind": "support"},
 }
+
+# How many stacks a Hex lands on a hit, or how much Protected a Shield
+# Ally grants, by Level. Priced to trade roughly evenly with a damaging
+# attack: an L1-2 enemy hit nets ~2 Health (~8 value), about what 3
+# stacks of Slowed/Frightened/Protected or 2-3 of Crippled are worth.
+EFFECT_STACKS = {1: 3, 2: 3, 3: 4, 4: 4, 5: 5}
 
 
 def build_enemy_pcstyle(name, level, slots, action, armor="Light",
                          defense_tiers=None, attack_tier="secondary",
                          health_bonus=0, defense_adj=0, accuracy_adj=0,
-                         damage_adj=0, resist_adj=0, abilities=()):
+                         damage_adj=0, resist_adj=0, abilities=(), main_effect=None, backup_action=None):
     """`defense_adj`/`accuracy_adj`/`damage_adj`/`resist_adj`: flat,
     across-the-board sensitivity-testing knobs - NOT a per-archetype
     Ability or a per-build design choice, just a uniform nudge to
@@ -160,7 +178,26 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
         attack_damage += 1
         parry = -99
 
+    def _profile(action_name):
+        a = ACTIONS[action_name]
+        return dict(action=action_name,
+                    accuracy=tiers[attack_tier] + a["acc_mod"] + accuracy_adj,
+                    attack_damage=a["dmg_base"] + stat[a["stat"]] + damage_adj if a["dmg_base"] else 0,
+                    dmg_type=a["dmg_type"], opp_def=a["opp_def"],
+                    attack_range=a["range"] * level + (2 if a["range"] else 0))
+
+    kind = act.get("kind", "attack")
+    if kind != "attack" and not backup_action:
+        raise ValueError(f"{name}: a {action} enemy needs a BackupAction to fall back on")
+    if kind == "hex" and not main_effect:
+        raise ValueError(f"{name}: a Hex enemy needs a MainEffect (the debuff it lands)")
+    backup = _profile(backup_action) if backup_action else None
+    if kind != "attack":
+        attack_damage = 0
+
     return dict(name=name, level=level, slots=slots, role="None", action=action,
+                kind=kind, main_effect=main_effect or ("Protected" if kind == "support" else None),
+                effect_stacks=EFFECT_STACKS[level], backup=backup,
                 accuracy=accuracy, attack_damage=attack_damage, dmg_type=dmg_type,
                 opp_def=opp_def, attack_range=attack_range,
                 parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,

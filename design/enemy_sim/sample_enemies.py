@@ -123,6 +123,8 @@ def _build_from_row(row):
             attack_tier=row["AttackTier"].strip().lower(),
             health_bonus=int(row["HealthBonus"]) if row.get("HealthBonus", "").strip() else 0,
             abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
+            main_effect=(row.get("MainEffect") or "").strip() or None,
+            backup_action=(row.get("BackupAction") or "").strip() or None,
         )
     else:
         # SecondaryDef/SecondaryDef2: up to two Secondary picks now that
@@ -186,6 +188,25 @@ MIXED_ROSTER = {
     # balance point, built at the higher Level (2026-09-30).
     2: ["Hedge Knight (L2)", "Marsh Archer (L2)", "Skulking Footpad (L2)", "Fen Warden (L2)"],
     3: ["Hedge Knight (L3)", "Marsh Archer (L3)", "Skulking Footpad (L3)", "Fen Warden (L3)"],
+}
+
+
+# 2026-09-30 enemy-variety pass: named encounter mixes per Level, every
+# enemy in each putting a debuff on the party or a buff on its allies.
+# "Classic" is the MIXED_ROSTER four (now with Hedge Knight Taunting and
+# Fen Warden Slowing on hit); "Warband" is melee-heavy with a Protecting
+# support; "Coven" is casters and debuffers.
+def _lv(name, level):
+    return name if level == 1 else f"{name} (L{level})"
+
+
+ENCOUNTERS = {
+    level: {
+        "Classic": [_lv(n, level) for n in ("Hedge Knight", "Marsh Archer", "Skulking Footpad", "Fen Warden")],
+        "Warband": [_lv(n, level) for n in ("Hedge Knight", "Brute", "Marsh Archer", "Warpriest")],
+        "Coven": [_lv(n, level) for n in ("Skulking Footpad", "Grave Caller", "Bog Hexer", "Mire Witch")],
+    }
+    for level in (1, 2, 3)
 }
 
 

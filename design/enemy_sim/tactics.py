@@ -164,11 +164,16 @@ def select_target(unit, targets, movement_on, allies=None):
 # action - up to `speed` meters) - combat_sim.spend_movement_ap is what
 # decides how many of these a unit's turn actually gets to spend.
 
+def _speed(unit):
+    """Speed after Slowed (glossary.md: -1 Speed per stack), floored at 0."""
+    return max(0, unit['speed'] - unit.get('slowed', 0))
+
+
 def move_approach(unit, target, reach):
     """Close the distance, stopping `reach` meters short rather than
     walking on top of the target - the default for every Battle Tactic
     without its own entry in MOVEMENT_TACTICS."""
-    unit['pos'] = movement.move_toward(unit['pos'], target['pos'], unit['speed'], stop_at=reach)
+    unit['pos'] = movement.move_toward(unit['pos'], target['pos'], _speed(unit), stop_at=reach)
 
 
 def move_kite(unit, target, reach):
@@ -181,7 +186,7 @@ def move_kite(unit, target, reach):
     exactly 1 move action (see combat_sim.spend_movement_ap) rather than
     however many AP allows - "keeps max range" is a positioning
     preference, not "flee as far as possible every turn."""
-    unit['pos'] = movement.move_away(unit['pos'], target['pos'], unit['speed'])
+    unit['pos'] = movement.move_away(unit['pos'], target['pos'], _speed(unit))
 
 
 MOVEMENT_TACTICS = {
