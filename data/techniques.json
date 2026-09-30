@@ -8040,5 +8040,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T172",
+    "name": "Demon School - Hands of Defilement",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "The Demon school's answer to Spirit Hands: the same circulation of energy through the body, turned rotten. Whatever your fists touch, the shadow follows in after them.",
+    "condition": "Your hands are empty",
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "Your Unarmed weapon attacks deal Shadow damage and are made against the target's Vital Defense. If an attack would already do both, the target gains Bleeding if it hits.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Meditation 3",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

@@ -430,10 +430,6 @@ translation to live keywords, not a straight port.
   Vessel L2, Bell Tolls a Dirge L2, Dusk Wind Withers the Grass L3,
   Fawn Left to the Wolves L4, Blood Answers Blood L3). Corrupted Fist was declined (see "Reviewed and
   declined").
-  - *Hands of Defilement* [Style] — L2 (C, 7672): your Unarmed hits give
-    1 Vulnerable. (Different from the old Hand of Defilement, now Shepherd Opens the Gate.) Held
-    for the Styles pass. **Per the designer, add Bleeding to it** when
-    it's drafted, now that Demon shares Bleeding with Bear.
 - **Snake** (live: Striking Constrictor L1, Heelbiter L2, Chainbreaker
   L2, Turn the Tables L3, Slithering Hands L4). Crashing Leg Sweep, Serpentine Redirection,
   and the L4 Chainbreaker variant were declined as old drafts of live

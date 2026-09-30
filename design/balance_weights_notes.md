@@ -8108,3 +8108,23 @@ dual-wielding.** Rechecked:
 | Eternal Riposte (L2) | ~13 | 7.2 + 4.5 = 11.7 | ~112% |
 | Spirit Hands (L3) | 16.4-17.8 | 10.8 + 4.5 = 15.3 | ~108-117% |
 | Rending Claws (L2) | 11.25 | 7.2 + 2.2 = 9.4 | ~120% |
+
+### Demon School - Hands of Defilement (T172, new) — Demon's Spirit Hands, Level 3
+
+> *Condition: your hands are empty.* Your Unarmed weapon attacks deal
+> Shadow damage and are made against the target's Vital Defense. If an
+> attack would already do both, the target gains Bleeding if it hits.
+
+The backlog draft (Unarmed hits give Vulnerable, plus the designer's
+Bleeding) came to ~152% at Level 2; Bleeding alone was just Furious
+Rage, Vulnerable alone ~57%. Per the designer, it's now built exactly
+like Spirit Hands, so each supernatural School has a signature Style:
+every Unarmed attack fights like that School, and the School's own
+attacks get its trademark (Shugen Good Luck, Demon Bleeding). Oak can
+get the third later (Physical vs Vigilant, Protected-flavored rider).
+
+Converted attack 2.85 (2.0 Shadow conversion + 0.85 for Vital over
+Dodge/Parry); Demon attack 0.6 × ~3 Bleeding = 1.8. Half Demon
+Techniques: 6.25 × 2.325 = **14.5**; autoswing-heavy 17.8. Target 10.8
++ 4.5 = 15.3: **~95% / ~116%**, matching Spirit Hands. Vulnerable
+dropped; Demon's Techniques already carry it.
