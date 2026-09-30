@@ -130,6 +130,11 @@ things off in order.
   space, plus every space within X meters of it" for area effects, used
   going forward instead of ad hoc "adjacent to"/"within X meters of"
   phrasing. Commit `4ab9a21`.
+- **`#### Counterattack`** (new entry, `# Keywords`) — a weapon attack,
+  or a Technique of up to 2 AP that makes a weapon attack against only
+  that creature. First used by Eternal Riposte. Replaced the unused
+  `#### Countered` entry, which moved to **`#### Negated`** (same text,
+  new name, so it doesn't read as related). Commit `3f37c96`.
 - **`#### Range`** (`# Keywords`) — added a sentence saying a Range
   increase also works on effects that target something adjacent (they
   can target something adjacent to your chosen point instead). Came up
