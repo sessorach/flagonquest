@@ -204,7 +204,12 @@ ENCOUNTERS = {
     level: {
         "Classic": [_lv(n, level) for n in ("Hedge Knight", "Marsh Archer", "Skulking Footpad", "Fen Warden")],
         "Warband": [_lv(n, level) for n in ("Hedge Knight", "Brute", "Marsh Archer", "Warpriest")],
-        "Coven": [_lv(n, level) for n in ("Skulking Footpad", "Grave Caller", "Bog Hexer", "Mire Witch")],
+        # At most one Hex debuffer per encounter (the designer's cap).
+        "Coven": [_lv(n, level) for n in ("Skulking Footpad", "Grave Caller", "Cinder Adept", "Bog Hexer")],
+        "Chapel": [_lv(n, level) for n in ("Brute", "Shade Stalker", "Mire Witch", "Field Medic")],
+        # The Slot rule: 4 PCs = 4 Slots; each Minion is 0.5.
+        "Horde": [_lv(n, level) for n in ("Hedge Knight", "Ember Caster",
+                                          "Goblin Cutthroat", "Goblin Cutthroat", "Goblin Cutthroat", "Goblin Cutthroat")],
     }
     for level in (1, 2, 3)
 }

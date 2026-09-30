@@ -102,7 +102,18 @@ def render_event(event):
             extra += f" (target now Harried {harried})"
         if event.get('turn_shift'):
             extra += f" [{event['turn_shift']}]"
+        if event.get('effects'):
+            extra += f" [{event['effects']}]"
         return f"  {unit} attacks {event['target']}{via}: rolls {event['roll']} vs {event['defense']} - {verb}{extra}"
+    if action in ('hex', 'taunt'):
+        via = f" with {event['via']}" if event.get('via') else ""
+        verb = 'lands' if event['hit'] else 'misses'
+        effects = f" [{event['effects']}]" if event.get('effects') else ""
+        what = 'Taunts' if action == 'taunt' else 'Hexes'
+        return f"  {unit} {what} {event['target']}{via}: rolls {event['roll']} vs {event['defense']} - {verb}{effects}"
+    if action == 'support':
+        via = f" with {event['via']}" if event.get('via') else ""
+        return f"  {unit} shields {event['target']}{via} (Protected +{event['stacks']})"
     if action == 'heal':
         via = f" with {event['via']}" if event.get('via') else ""
         return f"  {unit} heals {event['target']}{via} for {event['amount']} (-> {event['target_hp_after']} HP)"

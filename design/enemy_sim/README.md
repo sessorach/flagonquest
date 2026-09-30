@@ -31,6 +31,17 @@ module docstring for the full mechanical write-up (Resist by damage
 type, Good Luck/Bad Luck, Fighting Style, Card Techniques, initiative)
 before making changes — this README stays to usage and a file map.
 
+## Start here: `replays/latest/`
+
+The newest replays live in **`replays/latest/`** - one or two typical
+fights from the most recent round of design work, as HTML pages you can
+open in a browser, plus a `notes.md` saying what changed and how each
+fight compares to its matchup's average. `make_replays.py` regenerates
+them (older rounds move to `replays/archive/`). `encounter_grid.py` runs
+every sample party against every encounter mix in
+`sample_enemies.ENCOUNTERS`; `incoming_attacks.py` counts who gets
+attacked.
+
 ## Files
 
 - **`tunables.py`** — every number that's still subject to revision:

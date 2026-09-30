@@ -224,7 +224,19 @@ function logLine(e) {
     // earlier attack this same round).
     const harried = e.target_harried_after ? ` <span class="via">(target now Harried ${e.target_harried_after})</span>` : '';
     const turnShift = e.turn_shift ? ` <span class="via">[${e.turn_shift}]</span>` : '';
-    return `<div class="line ${cls}"><span class="who">${e.unit}</span> attacks <b>${e.target}</b>${via} <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}${harried}${turnShift}</div>`;
+    const effects = e.effects ? ` <span class="via">[${e.effects}]</span>` : '';
+    return `<div class="line ${cls}"><span class="who">${e.unit}</span> attacks <b>${e.target}</b>${via} <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}${effects}${harried}${turnShift}</div>`;
+  }
+  if (e.action === 'hex' || e.action === 'taunt') {
+    const cls = e.hit ? 'hit' : 'miss';
+    const via = e.via ? ` <span class="via">with ${e.via}</span>` : '';
+    const what = e.action === 'taunt' ? 'Taunts' : 'Hexes';
+    const verdict = e.hit ? `<span class="dmg">lands</span>${e.effects ? ` <span class="via">[${e.effects}]</span>` : ''}` : 'misses';
+    return `<div class="line ${cls}"><span class="who">${e.unit}</span> ${what} <b>${e.target}</b>${via} <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}</div>`;
+  }
+  if (e.action === 'support') {
+    const via = e.via ? ` <span class="via">with ${e.via}</span>` : '';
+    return `<div class="line heal"><span class="who">${e.unit}</span> shields <b>${e.target}</b>${via} (Protected +${e.stacks})</div>`;
   }
   if (e.action === 'heal') {
     const via = e.via ? ` <span class="via">with ${e.via}</span>` : '';

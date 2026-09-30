@@ -102,6 +102,13 @@ ACTIONS = {
                          "kind": "hex"},
     "Shield Ally":      {"acc_mod": 0, "dmg_base": 0, "stat": "essence", "dmg_type": None,       "opp_def": None,         "range": 1,
                          "kind": "support"},
+    # Heals the most-hurt ally EFFECT_STACKS Health instead of Protecting.
+    "Mend Ally":        {"acc_mod": 0, "dmg_base": 0, "stat": "essence", "dmg_type": None,       "opp_def": None,         "range": 1,
+                         "kind": "heal"},
+    # Fire and Shadow against both Dodge and Vital (Ranged Spell is Fire
+    # vs Dodge, Vital Spell Shadow vs Vital).
+    "Shadow Bolt":      {"acc_mod": 0, "dmg_base": 1, "stat": "essence", "dmg_type": "Shadow",   "opp_def": "Dodge",      "range": 2},
+    "Vital Fire":       {"acc_mod": 0, "dmg_base": 2, "stat": "essence", "dmg_type": "Fire",     "opp_def": "Bodily",     "range": 2},
 }
 
 # How many stacks a Hex lands on a hit, or how much Protected a Shield
@@ -196,7 +203,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
         attack_damage = 0
 
     return dict(name=name, level=level, slots=slots, role="None", action=action,
-                kind=kind, main_effect=main_effect or ("Protected" if kind == "support" else None),
+                kind=kind, main_effect=main_effect or {"support": "Protected", "heal": "Health"}.get(kind),
                 effect_stacks=EFFECT_STACKS[level], backup=backup,
                 accuracy=accuracy, attack_damage=attack_damage, dmg_type=dmg_type,
                 opp_def=opp_def, attack_range=attack_range,

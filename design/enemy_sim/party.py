@@ -402,6 +402,7 @@ def _pc_dict(row, index, good_luck):
               card_techniques=card_techniques, card_uses_left=card_uses_left,
               attacks_received=0, attacks_vs_parry_dodge=0, hits_received=0, parries=0,
               challenge_uses_left=encounter_techs.count("Challenge"),
+              taunting_strike_uses_left=encounter_techs.count("Taunting Strike"),
               presence_skill_total=skill_total(stats, skills, "Presence"))
     if attack_range is not None:
         pc["attack_range"] = attack_range

@@ -668,7 +668,7 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
         target['taunted_by'] = pc
     if log:
         log(unit=pc['name'], action='taunt', target=target['name'], roll=roll, defense=target['mental'], hit=hit,
-            via='Challenge')
+            via='Challenge', effects=f"Taunted +{target['taunted']}" if hit else None)
     return 1
 
 
@@ -926,6 +926,20 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if pc.get('weapon_uses_left') is not None and not substitute:
                     pc['weapon_uses_left'] -= 1
                 hit = roll >= defense
+                # Taunting Strike (synthetic - a Guardian taunt-on-hit
+                # the designer wants tanks to carry alongside Challenge,
+                # not a real Technique yet): spent on the first attack at
+                # an enemy she isn't already Taunting; on a hit, Taunt it
+                # 3 + [Hearts] times.
+                taunt_note = None
+                if (pc.get('taunting_strike_uses_left', 0) > 0 and not substitute
+                        and not (target.get('taunted', 0) > 0 and target.get('taunted_by') is pc)):
+                    pc['taunting_strike_uses_left'] -= 1
+                    taunt_note = 'Taunting Strike missed'
+                    if hit:
+                        target['taunted'] = 3 + (1 if cards.flipped_matches('Hearts') else 0)
+                        target['taunted_by'] = pc
+                        taunt_note = f"Taunting Strike: Taunted +{target['taunted']}"
                 # rulebook.md: "Regardless of the attack's result, a
                 # target who applied their Parry or Dodge Defense
                 # against it is Harried once" - a PC's own weapon attack
@@ -976,7 +990,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
                                hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
                                target_hp_after=target['health'], target_harried_after=target.get('harried', 0),
-                               via=via, turn_shift=turn_shift_note)
+                               via=via, turn_shift=turn_shift_note, effects=taunt_note)
                 if saved_opp_def is not None:
                     pc['opp_def'] = saved_opp_def
                 # Unlike most Features on this sheet, none of these three
@@ -1235,6 +1249,12 @@ def _enemy_plan(e, enemies, living_pcs, movement_on):
         if allies and taunter is None:
             return 'support', main, min(allies, key=lambda a: (a['health'] / a['max_health'], a is not e))
         return 'attack', e['backup'], taunter or tactics.select_target(e, living_pcs, movement_on)
+    if kind == 'heal':
+        # Only worth a heal once someone's missing at least half a grant.
+        hurt = [a for a in enemies if a['health'] > 0 and a['max_health'] - a['health'] >= (e['effect_stacks'] + 1) // 2]
+        if hurt and taunter is None:
+            return 'heal', main, min(hurt, key=lambda a: a['health'] / a['max_health'])
+        return 'attack', e['backup'], taunter or tactics.select_target(e, living_pcs, movement_on)
     if kind == 'hex':
         effect = e['main_effect']
         fresh = [p for p in living_pcs if p.get(effect.lower(), 0) < e['effect_stacks']]
@@ -1308,6 +1328,13 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             and target is not None:
         ap -= T.ATTACK_AP_COST
         actions_made += 1
+        if mode == 'heal':
+            amount = min(e['effect_stacks'], target['max_health'] - target['health'])
+            target['health'] += amount
+            if enemy_log:
+                enemy_log(unit=e['name'], action='heal', target=target['name'], amount=amount,
+                          target_hp_after=target['health'], via=e['action'])
+            break
         if mode == 'support':
             target['protected'] = target.get('protected', 0) + e['effect_stacks']
             if enemy_log:
@@ -1338,6 +1365,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         target['attacks_received'] = target.get('attacks_received', 0) + 1
         hit = roll >= opp_def_val
         dmg = raw_dmg = resist = 0
+        applied = []
         if not hit and used_parry:
             target['parries'] = target.get('parries', 0) + 1
             # Inexhaustible Guardian (T139): "Once per round, when you
@@ -1349,6 +1377,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             target['hits_received'] = target.get('hits_received', 0) + 1
             if mode == 'hex':
                 _apply_to_pc(target, e['main_effect'], e['effect_stacks'], e)
+                applied.append(f"{e['main_effect']} +{e['effect_stacks']}")
             else:
                 resist = pc_resist_for_enemy_attack(prof, target)
                 raw_dmg = prof['attack_damage']
@@ -1363,11 +1392,12 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
                     if ability in STRIKE_RIDERS:
                         effect, stacks = STRIKE_RIDERS[ability]
                         _apply_to_pc(target, effect, stacks, e)
+                        applied.append(f"{effect} +{stacks}")
         if enemy_log:
             enemy_log(unit=e['name'], action='hex' if mode == 'hex' else 'attack', target=target['name'],
                       roll=roll, defense=opp_def_val, hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist,
                       target_hp_after=target['health'], target_harried_after=target.get('harried', 0),
-                      via=prof['action'])
+                      via=prof['action'], effects=', '.join(applied) or None)
         if target['health'] <= 0:
             target = _retarget(e, [p for p in pcs if p['health'] > 0], movement_on)
         elif mode == 'hex':

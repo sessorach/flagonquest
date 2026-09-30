@@ -212,6 +212,15 @@ which should stay a clean decision record.
   csv` row (or add a `-CUT` row) and its `balance.md` bullet in the same
   commit as the `items.csv`/`balance_weights_notes.md` change — not as
   a separate catch-up pass later.
+- **Every round of simulator/enemy-design work ends with fresh
+  replays.** Run `python3 design/enemy_sim/make_replays.py "<one line on
+  what changed>"` before wrapping up the round and committing. It moves
+  the previous `replays/latest/` into `replays/archive/<date-time>/` and
+  writes 1-2 typical fights (a result closest to the matchup's own
+  average) plus `notes.md` into `replays/latest/`, which is where the
+  designer looks to check progress. Edit its `MATCHUPS` list when the
+  interesting matchups change. The designer asked for this more than
+  once before it became a habit.
 - **Never rename a "Placeholder's [Alliterative Name]" item or
   Technique.** It's a deliberate in-fiction pseudonym, not a dev stub —
   see RULES_DESIGN.md's "Naming convention — Placeholder". I suggested
