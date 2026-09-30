@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-09-30 — More Styles, and enemies rebuilt like players
+
+Finished another batch of Styles, then rebuilt the simulator's enemies from the same Stats, weapons and armor players use, and started a quick way for GMs to build enemy stat blocks by hand.
+- New Styles: Rending Claws for dual-wielders, Hands of Defilement for Demon School, and Spirit Hands reworked; Follow Through, Eagle Eyes, Inexhaustible Guardian and Indomitable Phalanx got cleaned up.
+- Enemies now come in more kinds (casters, hexers, healers, shield-bearers, minions), and the sample party is Level 2, with Browndog taunting.
+- The by-hand enemy build is in the GM guide notes: a Level table, five archetypes, and heavier gear paid for out of the enemy's budget.
+
 ### 2026-09-29 — Styles pass started, Barbarian gets two Styles
 
 Started going through every Style one at a time, repricing them against a proper Style budget and giving Barbarian a Level 2 and a Level 4 Style that do different jobs.

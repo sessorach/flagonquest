@@ -290,3 +290,128 @@ collapsing into melee-clash-and-double-attack, a full Ability catalog,
 and real worked examples), well beyond what a from-scratch pass could
 reconstruct. Big enough on its own to warrant a dedicated file rather
 than a GM_GUIDE_NOTES.md section — reach for it directly.
+
+## Enemy stat blocks by hand (draft, 2026-09-30)
+
+**Status: penciled in, being ironed out with the designer.** This is the
+quick-build version a GM can use at the table without a calculator. The
+simulator builds enemies the long way (a PC's Stat spread, the players'
+own weapon and armor tables) and this is meant to land on the same
+numbers. `ENEMY_ENCOUNTER_DESIGN.md` has the full reasoning.
+
+### What an enemy's Level means
+
+An enemy's Level is a rough match for a player at a certain XP. A Level
+1 enemy is about on par with a 75 XP player, Level 2 with 125 XP, Level
+3 with 175, and so on up in steps of 50. Player tiers run 50-100 XP,
+100-150, and so on, so each tier's midpoint lines up with that Level's
+enemies. At the bottom of a tier the party is on the back foot against
+on-Level enemies. By the top of it they're clearly getting better at
+the fight. That's the sense of progression the Levels are for.
+
+We can't control how players spend XP, so enemies are built against a
+midpoint player: somebody who spent a fair share on combat and the rest
+on everything else. An enemy puts everything into combat, so it matches
+that player's fighting strength with fewer total XP. That's why its
+Stats run one Level behind a PC's (the old spreadsheet put a player's
+combat share at about 70%).
+
+### Step 1: Level baseline
+
+| Level | Poor / Secondary / Primary Skill | Defense (8 + Skill) | High / Mid / Low Stat | Health (1 slot) | Ability points (1 slot) |
+|---|---|---|---|---|---|
+| 1 | 4 / 5 / 6 | 12 / 13 / 14 | 2 / 2 / 2 | 8 | 10 |
+| 2 | 6 / 7 / 8 | 14 / 15 / 16 | 3 / 2 / 2 | 10 | 15 |
+| 3 | 7 / 8 / 9 | 15 / 16 / 17 | 4 / 3 / 2 | 12 | 20 |
+| 4 | 8 / 9 / 10 | 16 / 17 / 18 | 4 / 4 / 2 | 15 | 25 |
+| 5 | 9 / 10 / 11 | 17 / 18 / 19 | 5 / 4 / 2 | 18 | 40 |
+
+- **Defenses:** each of Parry, Dodge, Vital, Mental and Vigilant is Poor,
+  Secondary or Primary. Usually one Primary, one or two Secondary, and
+  the rest Poor, so every enemy has a weak spot a player can read from
+  the fiction.
+- **Attack:** the Secondary Skill plus the weapon's Accuracy. Bruisers
+  and other heavy hitters attack at Primary.
+- **Stats:** only two matter on an enemy's sheet. Its **Damage Stat**
+  goes into its weapon or spell damage, and its **Resist Stat** is its
+  Resist against everything (armor adds to Physical). The archetype
+  says which of High/Mid/Low each one uses. They're the top three
+  numbers of a PC's Stat spread one Level behind.
+- **Health** is the one place enemies break from player stats on
+  purpose. It's a bit low early (a PC starts at 10) and padded more at
+  high Levels. It's part of the enemy's overall XP budget. Minions and
+  bosses still scale it by Encounter Slots.
+- **Ability points** are spent on Abilities and loadout upgrades (Step
+  3). Multiply by Encounter Slots and round up to the next 5.
+
+### Step 2: Archetype
+
+The archetype sets the enemy's weapon grip, which Stat drives what, and
+its strong Defense. Weapons use the players' own weapon table, with a
+light weapon as the baseline:
+
+- Melee: one-handed light weapon. Accuracy +1, Damage 3 + Damage Stat,
+  Parry +1.
+- Archers: Light Bow. Accuracy +1, Damage 3 + Damage Stat, Range 15.
+- Casters: a spell. Accuracy +0, Damage 2 + Damage Stat.
+
+| Archetype | Grip | Damage Stat | Resist Stat | Usual Primary Defense | Sim examples |
+|---|---|---|---|---|---|
+| Defender | Shield: Parry +2 instead of +1 | High | Low | Parry | Hedge Knight |
+| Bruiser | Two-hander: Damage +1 | High | Low | Vital; attacks at Primary | Brute |
+| Skirmisher | One-hander or Light Bow | High | Low | Dodge | Footpad, Marsh Archer, Goblin Cutthroat |
+| Caster | Spell | High | Mid | Mental | Grave Caller, Ember Caster, the Hexers |
+| Support | One-hander, or a spell | Mid | High | Mental or Vital | Warpriest, Field Medic |
+
+Shield and two-hander are free because a player doesn't need any extra
+Might for them either. They're a trade, not an upgrade.
+
+### Step 3: Loadout upgrades
+
+Anything a player would need extra Might for costs an enemy some of its
+Ability points. That's the enemy's version of a player spending XP to
+wear heavier gear.
+
+| Upgrade | Cost | Effect | Player's Might need |
+|---|---|---|---|
+| Heavy Weapon | 5 | Damage +1, Accuracy −1, Parry −1 (a bow gets Range +5 instead of the Parry change) | 4 (6 for a heavy two-hander) |
+| Medium Armor | 5 | Physical Resist +2 instead of Light's +1, Dodge −1 | 5 |
+| Heavy Armor | 10, Level 3+ only | Physical Resist +3 instead of +1, Dodge −1, Speed −1 | 7 |
+
+Light Armor is the baseline (Physical Resist +1). Casters can go without
+it.
+
+Heavy Armor is gated to Level 3 enemies and up, the way a player can't
+wear it out of the gate. That's roughly when a PC can reach Might 7.
+
+Whatever's left goes to the Ability catalog in
+`ENEMY_ENCOUNTER_DESIGN.md`. That covers on-hit riders, Durable and
+Enhanced Health.
+
+### Step 4: The one thing it does
+
+This follows the enemy variety standard in `ENEMY_ENCOUNTER_DESIGN.md`:
+
+- Each enemy gets one main Action: an attack, a Hex, Shield Ally or Mend
+  Ally.
+- An enemy whose main Action doesn't deal damage also gets a backup
+  attack.
+- Each enemy gets a Fighting Style and a Battle Tactic.
+- Each enemy puts something on the fight, either a debuff on the party
+  or a buff on its allies.
+
+### Where the numbers came from
+
+Levels 1-2 were checked in the simulator against the Level 1 and Level 2
+sample parties.
+
+- **Health:** 8 at Level 1 and 10 at Level 2 kept most mixes at 80-100%
+  party wins in about 4-8 rounds. The one exception is the Warband mix
+  at Level 1, still near 55-65%. Its Hedge Knight wears Heavy Armor at
+  Level 1, which Step 3 now rules out. Raising Level 2 Health to 12 took
+  party A down to 53-73%.
+- **Levels 3-5:** the Health values there are penciled until the sample
+  parties are leveled past Level 2.
+- **Loadout costs:** also penciled. The current sim roster gets Medium
+  and Heavy Armor free, so it needs a pass under these rules before the
+  costs can be checked.

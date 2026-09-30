@@ -847,3 +847,30 @@ from the Level's Skill Total tiers. Protect and heal Actions can't miss,
 so they grant what an average enemy attack delivers (2 at Levels 1-3).
 Full numbers and the sweep that settled the margin:
 `balance_weights_notes.md`, "Enemy margin".
+
+**The hand-build version (draft, 2026-09-30)** lives in
+`GM_GUIDE_NOTES.md`, "Enemy stat blocks by hand". The designer's
+direction from the old spreadsheet:
+
+- **XP anchor.** Level N enemies match a midpoint player of that tier:
+  Level 1 ≈ 75 XP, Level 2 ≈ 125 XP, then up 50 per Level.
+- **Health.** It's the only stat that breaks from player numbers. It's
+  low early and padded late, as part of the XP budget: penciled at
+  8/10/12/15/18. Levels 1-2 are from the sim; the rest is untested.
+- **Weapons.** Melee enemies start with a light one-hander and archers
+  with a Light Bow. The archetype picks a shield (Parry) or a two-hander
+  (Damage), both free. A Heavy Weapon upgrade costs budget.
+- **Armor.** Medium Armor costs budget. Heavy Armor costs more and is
+  Level 3+ only.
+- **Rule of thumb.** Anything a PC needs extra Might for, the enemy pays
+  for out of its Ability points.
+- **Stats.** They collapse to a High/Mid/Low column that the archetype
+  assigns to Damage and Resist.
+
+Differences from the current sim roster, to fix in the next sim round:
+
+- The Hedge Knight wears Heavy Armor at Levels 1-2.
+- The Brute and the Warpriest get Medium Armor for free.
+- The Brute, Marsh Archer, Footpad and Goblin Cutthroat have Essence
+  fourth in their Stat order (Resist 1 at Levels 1-3), where the
+  hand-build's Low column is 2.
