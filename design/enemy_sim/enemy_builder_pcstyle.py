@@ -96,7 +96,14 @@ PC_STAT_SPREAD_BY_LEVEL = {
 # PC one Level behind it, and a PC's base Health (10, no Toughened Body).
 # Settled from margin_sweep.py (balance_weights_notes.md, "Enemy margin").
 ENEMY_STAT_LAG = 1
-ENEMY_HEALTH_BASE = 10
+# Health is the one stat that breaks from player numbers on purpose, per
+# the designer: a bit low early, padded more at high Levels. Level 2's 12
+# comes from the 2026-09-30 armor-cost round (fights were ending in 3-4
+# rounds at 10). Levels 3-5 are penciled until the sample parties go
+# past Level 2. ENEMY_HEALTH_BASE, when set, overrides every Level
+# (margin_sweep.py and other sweeps use it).
+ENEMY_HEALTH_BY_LEVEL = {1: 10, 2: 12, 3: 14, 4: 16, 5: 18}
+ENEMY_HEALTH_BASE = None
 
 # 2026-09-30, per the designer: gear that's an overall gain costs the
 # enemy something, the way it costs a player XP (the Might to wear it).
@@ -209,7 +216,8 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     if armor == "Heavy" and level < HEAVY_ARMOR_MIN_LEVEL:
         raise ValueError(f"{name}: Heavy Armor is Level {HEAVY_ARMOR_MIN_LEVEL}+ only")
     armor_trade = MEDIUM_ARMOR_HEALTH_TRADE if armor == "Medium" else 0
-    health = math.ceil((ENEMY_HEALTH_BASE + health_bonus - armor_trade) * T.SLOT_MULTIPLIER[slots])
+    base_health = ENEMY_HEALTH_BASE if ENEMY_HEALTH_BASE is not None else ENEMY_HEALTH_BY_LEVEL[level]
+    health = math.ceil((base_health + health_bonus - armor_trade) * T.SLOT_MULTIPLIER[slots])
     speed = math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"]
     reflex = 2 + level
 
