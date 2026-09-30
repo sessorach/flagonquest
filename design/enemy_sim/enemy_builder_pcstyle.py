@@ -104,6 +104,11 @@ ENEMY_STAT_LAG = 1
 # (margin_sweep.py and other sweeps use it).
 ENEMY_HEALTH_BY_LEVEL = {1: 10, 2: 12, 3: 14, 4: 16, 5: 18}
 ENEMY_HEALTH_BASE = None
+# Flat bonus on every damaging enemy attack, on top of the weapon/spell
+# table. Part of the enemy baseline (like Health above), not a player
+# rule - tested 2026-09-30 as the designer's "buff enemies' default
+# damage by 1" (level_baseline.py --enemy-damage 1).
+ENEMY_DAMAGE_BONUS = 0
 
 # 2026-09-30, per the designer: gear that's an overall gain costs the
 # enemy something, the way it costs a player XP (the Might to wear it).
@@ -196,7 +201,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     # Action's small weapon-proficiency bonus, same shape as
     # tunables.WEAPON's own `accuracy` field.
     accuracy = tiers[attack_tier] + act["acc_mod"] + accuracy_adj
-    attack_damage = act["dmg_base"] + stat[act["stat"]] + damage_adj
+    attack_damage = act["dmg_base"] + stat[act["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS
     dmg_type = act["dmg_type"]
     opp_def = act["opp_def"]
     attack_range = act["range"] * level + (2 if act["range"] else 0)
@@ -246,7 +251,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
         a = ACTIONS[action_name]
         return dict(action=action_name,
                     accuracy=tiers[attack_tier] + a["acc_mod"] + accuracy_adj,
-                    attack_damage=a["dmg_base"] + stat[a["stat"]] + damage_adj if a["dmg_base"] else 0,
+                    attack_damage=a["dmg_base"] + stat[a["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS if a["dmg_base"] else 0,
                     dmg_type=a["dmg_type"], opp_def=a["opp_def"],
                     attack_range=a["range"] * level + (2 if a["range"] else 0))
 

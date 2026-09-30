@@ -4,7 +4,7 @@ enemy Health per ENEMY_HEALTH_BY_LEVEL, plus alternatives. Target, per
 the designer: the party wins most or all fights, spends resources
 (Health left well under full), and fights last about 5 rounds.
 
-Usage: python3 level_baseline.py [trials]"""
+Usage: python3 level_baseline.py [trials] [--enemy-damage N] [--current-only]"""
 import sys, os, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, party, sample_enemies as se, enemy_builder_pcstyle as eb
@@ -29,9 +29,18 @@ def run(names, level, mix, trials):
 
 
 if __name__ == "__main__":
-    trials = int(sys.argv[1]) if len(sys.argv) > 1 else 300
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    trials = int(args[0]) if args else 300
+    if "--enemy-damage" in sys.argv:
+        eb.ENEMY_DAMAGE_BONUS = int(sys.argv[sys.argv.index("--enemy-damage") + 1])
+        args = [a for a in args if a != str(eb.ENEMY_DAMAGE_BONUS)]
+        trials = int(args[0]) if args else 300
+        print(f"Enemy damage bonus: +{eb.ENEMY_DAMAGE_BONUS}")
     print("Cells: win% / rounds / party Health left on a win / enemy attacks per fight")
+    only = "--current-only" in sys.argv
     for level, healths in ((1, (8, 10)), (2, (10, 12))):
+        if only:
+            healths = (eb.ENEMY_HEALTH_BY_LEVEL[level],)
         for h in healths:
             eb.ENEMY_HEALTH_BASE = h
             print(f"\nLevel {level} parties vs Level {level} mixes, enemy Health {h}"
