@@ -73,6 +73,23 @@ STAT_BASELINE_BY_LEVEL = {
     5: {"body": 4, "essence": 4},
 }
 
+# 2026-09-30 projection model, per the designer: enemies built from the
+# same Stat spread a real PC has at that Level (chargen's one Stat at 3,
+# two at 2, two at 1, then the Tier XP table's Stat share: 28/43/55/64/70
+# XP), with the archetype choosing which Stat leads (`StatOrder`). Damage
+# comes from that Stat through the players' own weapon/spell table, and
+# Resist is Essence plus worn Armor, same as a PC. This is for getting
+# projections solid before it gets simplified into a low-baseline-plus-
+# archetype-upgrades system for building stat blocks by hand.
+STAT_SPREAD_BY_LEVEL = {
+    1: [3, 2, 2, 1, 1],
+    2: [4, 3, 2, 1, 1],
+    3: [4, 4, 2, 2, 1],
+    4: [5, 4, 2, 2, 1],
+    5: [5, 4, 3, 2, 1],
+}
+DEFAULT_STAT_ORDER = ["body", "agility", "essence", "cunning", "mind"]
+
 # sample_pcs.csv's own Baseline Health by Tier - the PC-equivalent
 # starting point build_enemy_pcstyle's own `health_bonus` param adds on
 # top of, rather than a fresh guess.
@@ -84,31 +101,30 @@ HEALTH_BASELINE_BY_LEVEL = {1: 10, 2: 13, 3: 13, 4: 14, 5: 14}
 # Cunning-based ranged option yet, unlike Sable's real Light Bow) except
 # Spell actions, which draw on Essence the same way party.py's War Magic
 # draws on Mind (a caster's own casting Stat, not raw muscle).
+# Each Action's attack uses the players' own weapon/spell numbers
+# (tunables.WEAPON / weapon_categories.csv, War Magic's 2 + Mind for
+# spells): `acc_mod` is the weapon's Accuracy, `dmg_base` + `stat` its
+# Damage, `wd` the Weapon Defense it adds to Parry (Defensive Melee is a
+# light blade plus a Shield, so it Parries with the Shield's +2).
 ACTIONS = {
-    "Defensive Melee": {"acc_mod": 1, "dmg_base": 3, "stat": "body",    "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
-    "Offensive Melee":  {"acc_mod": 0, "dmg_base": 4, "stat": "body",    "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
-    "Ranged Weapon":    {"acc_mod": 1, "dmg_base": 3, "stat": "body",    "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 3},
-    "Melee Spell":      {"acc_mod": 0, "dmg_base": 2, "stat": "essence", "dmg_type": "Fire",     "opp_def": "Dodge",      "range": 0},
-    "Ranged Spell":     {"acc_mod": 0, "dmg_base": 1, "stat": "essence", "dmg_type": "Fire",     "opp_def": "Dodge",      "range": 2},
-    # 2026-09-30 enemy-variety pass, per the designer: casters that go
-    # after Vital Defense with Shadow, a no-damage debuffer that attacks
-    # Mental Defense and lands a big stack of one debuff (its
-    # `main_effect`), and a support Action that Protects an ally. The
-    # last two aren't damaging attacks, so each enemy using one also
-    # carries a `backup_action` - a plain attack it falls back on when
-    # there's nothing useful to Hex or Protect.
-    "Vital Spell":      {"acc_mod": 0, "dmg_base": 2, "stat": "essence", "dmg_type": "Shadow",   "opp_def": "Bodily",     "range": 2},
-    "Hex":              {"acc_mod": 1, "dmg_base": 0, "stat": "essence", "dmg_type": None,       "opp_def": "Mental",     "range": 2,
-                         "kind": "hex"},
-    "Shield Ally":      {"acc_mod": 0, "dmg_base": 0, "stat": "essence", "dmg_type": None,       "opp_def": None,         "range": 1,
-                         "kind": "support"},
-    # Heals the most-hurt ally EFFECT_STACKS Health instead of Protecting.
-    "Mend Ally":        {"acc_mod": 0, "dmg_base": 0, "stat": "essence", "dmg_type": None,       "opp_def": None,         "range": 1,
-                         "kind": "heal"},
-    # Fire and Shadow against both Dodge and Vital (Ranged Spell is Fire
-    # vs Dodge, Vital Spell Shadow vs Vital).
-    "Shadow Bolt":      {"acc_mod": 0, "dmg_base": 1, "stat": "essence", "dmg_type": "Shadow",   "opp_def": "Dodge",      "range": 2},
-    "Vital Fire":       {"acc_mod": 0, "dmg_base": 2, "stat": "essence", "dmg_type": "Fire",     "opp_def": "Bodily",     "range": 2},
+    "Defensive Melee": {"acc_mod": 1, "dmg_base": 3, "stat": "body_or_cunning", "wd": 2, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
+    "Offensive Melee": {"acc_mod": 0, "dmg_base": 4, "stat": "body",            "wd": 0, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
+    "Light Melee":     {"acc_mod": 1, "dmg_base": 3, "stat": "body_or_cunning", "wd": 1, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
+    "Heavy Melee":     {"acc_mod": 0, "dmg_base": 5, "stat": "body",            "wd": 0, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
+    "Ranged Weapon":   {"acc_mod": 1, "dmg_base": 3, "stat": "cunning",         "wd": None, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 3},
+    "Melee Spell":     {"acc_mod": 0, "dmg_base": 2, "stat": "mind",            "wd": None, "dmg_type": "Fire",     "opp_def": "Dodge",       "range": 0},
+    "Ranged Spell":    {"acc_mod": 0, "dmg_base": 2, "stat": "mind",            "wd": None, "dmg_type": "Fire",     "opp_def": "Dodge",       "range": 2},
+    "Vital Spell":     {"acc_mod": 0, "dmg_base": 2, "stat": "mind",            "wd": None, "dmg_type": "Shadow",   "opp_def": "Bodily",      "range": 2},
+    "Shadow Bolt":     {"acc_mod": 0, "dmg_base": 2, "stat": "mind",            "wd": None, "dmg_type": "Shadow",   "opp_def": "Dodge",       "range": 2},
+    "Vital Fire":      {"acc_mod": 0, "dmg_base": 2, "stat": "mind",            "wd": None, "dmg_type": "Fire",     "opp_def": "Bodily",      "range": 2},
+    # Non-damaging main Actions (see ENEMY_ENCOUNTER_DESIGN.md's enemy
+    # variety standard) - each enemy using one carries a BackupAction.
+    "Hex":             {"acc_mod": 0, "dmg_base": 0, "stat": "mind",            "wd": None, "dmg_type": None,       "opp_def": "Mental",      "range": 2,
+                        "kind": "hex"},
+    "Shield Ally":     {"acc_mod": 0, "dmg_base": 0, "stat": "essence",         "wd": None, "dmg_type": None,       "opp_def": None,          "range": 1,
+                        "kind": "support"},
+    "Mend Ally":       {"acc_mod": 0, "dmg_base": 0, "stat": "essence",         "wd": None, "dmg_type": None,       "opp_def": None,          "range": 1,
+                        "kind": "heal"},
 }
 
 # How many stacks a Hex lands on a hit, or how much Protected a Shield
@@ -117,11 +133,18 @@ ACTIONS = {
 # stacks of Slowed/Frightened/Protected or 2-3 of Crippled are worth.
 EFFECT_STACKS = {1: 3, 2: 3, 3: 4, 4: 4, 5: 5}
 
+# Shield Ally / Mend Ally never miss, so they're priced against what an
+# attacker's action actually delivers on average (hit chance included),
+# not against a hit: see GUARANTEED_STACKS' calibration note in
+# balance_weights_notes.md.
+GUARANTEED_STACKS = {1: 2, 2: 2, 3: 2, 4: 3, 5: 3}
+
 
 def build_enemy_pcstyle(name, level, slots, action, armor="Light",
                          defense_tiers=None, attack_tier="secondary",
                          health_bonus=0, defense_adj=0, accuracy_adj=0,
-                         damage_adj=0, resist_adj=0, abilities=(), main_effect=None, backup_action=None):
+                         damage_adj=0, resist_adj=0, abilities=(), main_effect=None, backup_action=None,
+                         stat_order=None):
     """`defense_adj`/`accuracy_adj`/`damage_adj`/`resist_adj`: flat,
     across-the-board sensitivity-testing knobs - NOT a per-archetype
     Ability or a per-build design choice, just a uniform nudge to
@@ -132,7 +155,9 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     above are the actual build; these four are a dial for exploring
     around that build, not part of it."""
     tiers = SKILL_TOTAL_BY_LEVEL[level]
-    stat = STAT_BASELINE_BY_LEVEL[level]
+    order = [x.strip().lower() for x in (stat_order or DEFAULT_STAT_ORDER)]
+    stat = dict(zip(order, STAT_SPREAD_BY_LEVEL[level]))
+    stat["body_or_cunning"] = max(stat["body"], stat["cunning"])
     defense_tiers = defense_tiers or {}
     act = ACTIONS[action]
 
@@ -150,7 +175,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     opp_def = act["opp_def"]
     attack_range = act["range"] * level + (2 if act["range"] else 0)
 
-    parry = def_total("parry")
+    parry = def_total("parry") + (act["wd"] or 0)
     dodge = def_total("dodge") + T.ARMOR[armor]["dodge"]
     bodily = def_total("bodily")
     mental = def_total("mental")
@@ -194,6 +219,10 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
                     attack_range=a["range"] * level + (2 if a["range"] else 0))
 
     kind = act.get("kind", "attack")
+    if kind in ("support", "heal"):
+        effect_stacks = GUARANTEED_STACKS[level]
+    else:
+        effect_stacks = EFFECT_STACKS[level]
     if kind != "attack" and not backup_action:
         raise ValueError(f"{name}: a {action} enemy needs a BackupAction to fall back on")
     if kind == "hex" and not main_effect:
@@ -204,7 +233,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
 
     return dict(name=name, level=level, slots=slots, role="None", action=action,
                 kind=kind, main_effect=main_effect or {"support": "Protected", "heal": "Health"}.get(kind),
-                effect_stacks=EFFECT_STACKS[level], backup=backup,
+                effect_stacks=effect_stacks, backup=backup, stats=stat,
                 accuracy=accuracy, attack_damage=attack_damage, dmg_type=dmg_type,
                 opp_def=opp_def, attack_range=attack_range,
                 parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,

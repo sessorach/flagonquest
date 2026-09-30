@@ -125,6 +125,7 @@ def _build_from_row(row):
             abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
             main_effect=(row.get("MainEffect") or "").strip() or None,
             backup_action=(row.get("BackupAction") or "").strip() or None,
+            stat_order=[x for x in (row.get("StatOrder") or "").split(",") if x.strip()] or None,
         )
     else:
         # SecondaryDef/SecondaryDef2: up to two Secondary picks now that
