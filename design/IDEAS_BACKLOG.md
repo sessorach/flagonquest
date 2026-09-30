@@ -861,3 +861,16 @@ again, not as Cloth/Leather items.
   fitting material/slot comes up (Ring on a real Jewelry material is
   the obvious first option, since the mechanic was built for Ring's
   own "active ability" lane specifically).
+
+## Abasi the Devil, and Felix's full concept
+
+Per the designer (2026-09-30): Felix's real concept is a hybrid, a monk
+with a little Sorcery. The simulator plays him as a straight Shugen monk
+for now, since the roster had no monk at all.
+
+Abasi the Devil (named in Circling Vulture's fluff) is the dark mirror of
+that concept: a monk-sorcerer hybrid built on Demon School and shadow
+magic. He's pure debuff and damage, closer to a glass-cannon sorcerer
+than a tanky monk. He'd make a good model for a Demon School caster
+enemy, or a named villain, once hybrid builds get looked at.
+

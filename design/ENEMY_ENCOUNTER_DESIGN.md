@@ -820,6 +820,23 @@ enemies should have mechanical breadth while staying simple to run.
 - **Enemies don't know the party's Defenses.** Targeting is position
   (nearest) or visible wounds (the most hurt), never "who's easiest to
   hit." A Taunted enemy goes for its Taunter.
+- **How the designer builds a fight** (2026-09-30): usually two stat
+  blocks, three for a complicated one, and rarely four different enemies.
+  At most one enemy that doesn't attack (a healer or a debuffer). Two or
+  more non-attackers made the old Chapel mix drag. A basic fight might be
+  bruisers that Slow on a hit to bog down the party's front line, plus a
+  damage caster in the back throwing spells at Vital. A complicated one
+  might be minions plus a damage caster and a debuffer. Enemy groups are
+  meant to stay simpler than the party. The sim's current mixes
+  (`sample_enemies.CURRENT_MIXES`) follow this:
+
+  | Mix | Enemies |
+  |---|---|
+  | Frontline | 2 Brutes + 2 Grave Callers |
+  | Shield Wall | 2 Hedge Knights + 2 Marsh Archers |
+  | Warband | a Brute + 2 Footpads + a Warpriest |
+  | Horde | 4 Goblin minions + an Ember Caster + a Bog Hexer |
+
 - **Debuff/buff size:** a debuffer's Hex or a support's Shield Ally
   lands `EFFECT_STACKS` = 3 at Levels 1-2, 4 at 3-4, 5 at 5, priced to
   trade roughly evenly with an enemy hit (~2 net Health, ~8 value).

@@ -411,6 +411,20 @@ and each part is a free choice:
 - Each enemy puts something on the fight, either a debuff on the party
   or a buff on its allies. That usually takes one of the ability picks.
 
+### Putting a fight together
+
+Keep it simpler than the party. Most fights are two stat blocks, and a
+complicated one is three. More than that gets hard to run and doesn't
+play any better.
+
+Have at most one enemy that doesn't attack: one healer or one debuffer.
+Two or more and the fight drags, since fewer enemies are pushing damage.
+
+Give each stat block a job. A basic fight might be bruisers that Slow on
+a hit, there to bog down the party's front line, plus a damage caster in
+the back throwing spells at Vital. A complicated one might be a pack of
+minions, with a damage caster and a debuffer behind them.
+
 ### How close this gets to the simulator's enemies
 
 Level 2, built both ways:
