@@ -8154,3 +8154,26 @@ incoming_attacks.py` reproduces it.
 Parries per fight: Browndog (Shield) 0.8-1.2 at an even Level, 2.4-3.2
 a Level up; Hilde 1.2-1.8. Every enemy Action in the sim targets Dodge
 or Parry, so "vs Dodge/Parry" = all attacks here.
+
+## Fight length — where the rounds go (sim, 2026-09-30)
+
+With the enemy variety pass in, Level 2 parties against Level 2 mixes
+run ~6-14 rounds. Traces show fights aren't slow to start (everyone's
+attacking in round 1); **Resist eats ~4 of a party hit's ~6-7 damage**
+(Level 2 enemies: Essence 3 + Light Armor 1), and the Warpriest's
+Protected soaks ~20 more per fight. Each lever below is applied to both
+sides equally so win rates hold (`enemy_sim/fight_length.py`, 600
+fights per cell, "hp" = party HP left on a win, ± its spread):
+
+| Change (both sides) | A/Classic | A/Warband | A/Horde | B/Classic | B/Warband | B/Horde |
+|---|---|---|---|---|---|---|
+| none | 94% 8.1r 54±18 | 98% 8.6r 69±13 | 94% 6.2r 62±15 | 88% 10.3r 60±19 | 75% 13.9r 64±16 | 87% 9.1r 62±17 |
+| damage +2 | 87% 5.5r 52±21 | 98% 5.4r 67±17 | 90% 4.6r 56±19 | 87% 5.6r 62±22 | 86% 6.4r 66±21 | 89% 4.8r 64±23 |
+| Resist −2 | 88% 5.5r 54±19 | 98% 5.5r 67±17 | 92% 4.5r 56±19 | 85% 5.7r 63±22 | 84% 6.1r 70±20 | 90% 4.7r 63±21 |
+| damage +1, Resist −1 | 88% 5.4r 53±19 | 97% 5.5r 68±16 | 89% 4.6r 56±18 | 85% 5.7r 63±21 | 87% 6.1r 70±20 | 90% 4.7r 65±21 |
+| Health −4 | 85% 7.1r 49±20 | 95% 7.9r 63±16 | 80% 5.8r 57±18 | 84% 7.9r 63±19 | 72% 10.6r 70±17 | 79% 7.3r 66±17 |
+
+Anything that raises net damage per hit by ~2 lands fights at ~5-6
+rounds with win rates within a few points, and the spread of leftover
+HP widens a little (±18 → ±21), i.e. slightly swingier. Cutting Health
+barely shortens fights and costs more win rate. Not adopted yet.
