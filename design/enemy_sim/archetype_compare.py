@@ -52,10 +52,14 @@ REVISED = {
     "Strategist (Dodge)": {"acc": 1, "dodge": 1, "mental": 1},
 }
 
-MIXES = ("Classic", "Warband", "Horde")
+MIXES = se.CURRENT_MIXES
 L2 = lambda xs: [x + " (L2)" for x in xs]
 PARTIES = {"A": L2(["Hilde", "Browndog", "Carrick", "Sable"]),
-           "B": L2(["Rook", "Jackal", "Wren", "Hanforth"])}
+           "B": L2(["Rook", "Jackal", "Wren", "Hanforth"]),
+           # Party D attacks Vital and Mental too (Felix's Shugen strikes,
+           # Hanforth's Reckoning, Beornhard's War Magic split, Browndog's
+           # Challenge), so those Defenses get priced properly.
+           "D": L2(["Browndog", "Hanforth", "Felix", "Beornhard"])}
 
 
 def apply(e, adds):

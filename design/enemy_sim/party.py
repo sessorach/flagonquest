@@ -111,6 +111,36 @@ import math
 import os
 import tunables as T
 
+# Encounter Techniques that replace a normal attack, from techniques.csv.
+# Each builds the attack profile combat_sim's attack loop overlays for
+# one use: (stats, skills, weapon Skill Total, weapon Damage) -> profile.
+# `effect` is what a hit puts on the target: (key, stacks, bonus suit),
+# the suit adding 1 more stack when it's flipped.
+def _unarmed_vs_mental(effect=None):
+    # Shugen School weapon strikes: "Make an Unarmed weapon attack against
+    # the target's Mental Defense. If it hits, it deals Brilliant damage"
+    # - the PC's own Unarmed attack, redirected. Assumes the PC's Weapon
+    # is Unarmed, which holds for every row that knows one.
+    return lambda st, sk, atk, dmg: dict(skill_total=atk, damage=dmg, dmg_type="Brilliant",
+                                         opp_def="Mental", effect=effect)
+
+
+TECH_ATTACKS = {
+    # T154, Level 2, 2 AP: "...and the target is Slowed 2 + [Spades] times."
+    "Hand Rings the Bell": _unarmed_vs_mental(("slowed", 2, "Spades")),
+    # T080, Level 1, 2 AP: "Make a Meditation attack against the target's
+    # Mental Defense. If it hits, it deals 2 + [Mind] Brilliant damage."
+    "Firefly Leaves the Hand": lambda st, sk, atk, dmg: dict(
+        skill_total=skill_total(st, sk, "Meditation"), damage=2 + int(st["Mind"]),
+        dmg_type="Brilliant", opp_def="Mental", effect=None),
+    # T111, Level 2, 2 AP: "Make a Theurgy spell attack against the
+    # target's Mental Defense. If it hits, they are Crippled 5 + [Clubs]
+    # times." No damage.
+    "Reckoning": lambda st, sk, atk, dmg: dict(
+        skill_total=skill_total(st, sk, "Theurgy"), damage=0,
+        dmg_type=None, opp_def="Mental", effect=("crippled", 5, "Clubs")),
+}
+
 _CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sample_pcs.csv")
 
 
@@ -129,7 +159,8 @@ def _pc_dict(row, index, good_luck):
     skills = {k: v for k, v in row.items() if k not in
               ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
                "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus",
-               "Heal Range", "Passives", "Battle Tactic", "Parry Weapons", "Encounter Techniques")}
+               "Heal Range", "Passives", "Battle Tactic", "Parry Weapons", "Encounter Techniques",
+               "Defense Choices")}
     parry = 8 + skill_total(stats, skills, "Melee")
     # Raw Acrobatics Skill Total - captured before Armor's own Dodge
     # modifier folds into `dodge` below, since Blinkstep (T077, "Shift
@@ -321,6 +352,23 @@ def _pc_dict(row, index, good_luck):
     encounter_techs = [t.strip() for t in (row.get("Encounter Techniques") or "").split(",") if t.strip()]
     card_uses_left = hand_size // 3
 
+    # Technique attacks from `Encounter Techniques` (TECH_ATTACKS below):
+    # one use per known copy, each swapped in for a normal attack by
+    # combat_sim's attack loop. These are what give the sim's party
+    # attacks against Vital and Mental, not just Parry/Dodge.
+    tech_attacks = []
+    for tname in dict.fromkeys(encounter_techs):
+        if tname in TECH_ATTACKS:
+            prof = TECH_ATTACKS[tname](stats, skills, atk_skill_total, damage)
+            prof.update(via=tname, uses=encounter_techs.count(tname))
+            tech_attacks.append(prof)
+
+    # `Defense Choices` ("Dodge|Vital"): each attack picks one of these at
+    # random. Stands in for a War Magic caster whose copies are split
+    # between the two Defenses War Magic can be learned against (T120:
+    # "Dodge or Vital, chosen when you learn this"), per the designer.
+    defense_choices = [d.strip() for d in (row.get("Defense Choices") or "").split("|") if d.strip()]
+
     # `Weapon Uses`: blank/absent means unlimited (every existing PC),
     # matching the sim's original always-available attack. A number
     # means this PC's own Weapon is an Encounter Technique with that
@@ -408,6 +456,10 @@ def _pc_dict(row, index, good_luck):
         pc["attack_range"] = attack_range
     if weapon_uses_left is not None:
         pc["weapon_uses_left"] = weapon_uses_left
+    if tech_attacks:
+        pc["tech_attacks"] = tech_attacks
+    if defense_choices:
+        pc["opp_def_choices"] = defense_choices
     if bottled_fire_profile is not None:
         pc["bottled_fire_profile"] = bottled_fire_profile
         pc["bottled_fire_uses_left"] = bottled_fire_uses

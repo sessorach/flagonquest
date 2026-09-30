@@ -21,14 +21,15 @@ def run(names, level, enc, trials, challenge=True):
     tot=sum(per.values())/trials
     return w/trials*100, r/trials, tot, {k:v/trials for k,v in per.items()}
 A=['Hilde','Browndog','Carrick','Sable']; B=['Rook','Jackal','Wren','Hanforth']; C=['Hilde','Browndog','Beornhard','Hanforth']
+D=['Browndog','Hanforth','Felix','Beornhard']  # attacks Vital and Mental too
 L2=lambda xs:[x+' (L2)' for x in xs]
 T=int(sys.argv[1]) if len(sys.argv)>1 else 1000
 print("party   lvl  enc      win   rnds  atk/fight  per-PC attacks")
-for pname,names,lvl in [('A',A,1),('A',L2(A),2),('A',L2(A),3),('B',L2(B),2),('C',L2(C),2)]:
-    for enc in ('Classic','Warband','Coven','Chapel','Horde'):
+for pname,names,lvl in [('A',A,1),('A',L2(A),2),('A',L2(A),3),('B',L2(B),2),('C',L2(C),2),('D',L2(D),2)]:
+    for enc in se.CURRENT_MIXES:
         wv,rv,tot,per=run(names,lvl,enc,T)
-        print(f"{pname}  L{'1' if lvl==1 and pname=='A' else '2'}vL{lvl} {enc:8} {wv:5.1f} {rv:5.1f} {tot:6.1f}   "+'  '.join(f"{k[:6]} {v:.1f}" for k,v in per.items()))
+        print(f"{pname}  L{'1' if lvl==1 and pname=='A' else '2'}vL{lvl} {enc:11} {wv:5.1f} {rv:5.1f} {tot:6.1f}   "+'  '.join(f"{k[:6]} {v:.1f}" for k,v in per.items()))
 print("\nChallenge on vs off (party A L2 vs L2): Browndog / whole-party attacks")
-for enc in ('Classic','Warband','Horde'):
+for enc in se.CURRENT_MIXES:
     on=run(L2(A),2,enc,T,True); off=run(L2(A),2,enc,T,False)
-    print(f"  {enc:8} on: win {on[0]:.1f} Browndog {on[3]['Browndog']:.1f} of {on[2]:.1f}  | off: win {off[0]:.1f} Browndog {off[3]['Browndog']:.1f} of {off[2]:.1f}")
+    print(f"  {enc:11} on: win {on[0]:.1f} Browndog {on[3]['Browndog']:.1f} of {on[2]:.1f}  | off: win {off[0]:.1f} Browndog {off[3]['Browndog']:.1f} of {off[2]:.1f}")

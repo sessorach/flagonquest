@@ -353,6 +353,12 @@ def enemy_defense_for_pc_attack(pc, target):
         return target['dodge'] - harried
     if pc.get('opp_def') == 'Vigilant':
         return target['vigilant'] - vulnerable
+    # Vital and Mental (Shugen/Demon School strikes, Reckoning, War Magic
+    # learned against Vital) - Vulnerable applies, Harried doesn't.
+    if pc.get('opp_def') in ('Vital', 'Bodily'):
+        return target['bodily'] - vulnerable
+    if pc.get('opp_def') == 'Mental':
+        return target['mental'] - vulnerable
     return max(target['parry'], target['dodge']) - harried
 
 
@@ -367,8 +373,8 @@ def enemy_resist_for_pc_attack(pc, target):
     come out ahead against a Tank/Heavy-Armor build in a way a
     same-Damage weapon attack doesn't. That's the real
     armor-doesn't-stop-magic tradeoff this is modeling, not a bug."""
-    if pc.get('dmg_type') == 'Fire':
-        return target['elemres']
+    if pc.get('dmg_type') not in (None, 'Physical'):
+        return target['elemres']  # Fire, Brilliant, Shadow - one elemental pool here
     return target['physres']
 
 
@@ -672,6 +678,31 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
     return 1
 
 
+def _tech_attack_choice(pc, target):
+    """A Technique attack (party.TECH_ATTACKS) to use in place of this
+    normal attack, or None. Encounter Techniques get used early, since an
+    unused one is wasted at the fight's end; a debuff-only one (no
+    damage) is held while the target still has that debuff, and a
+    damage-only one is skipped when the normal attack's expected damage
+    is better (Felix's Firefly Leaves the Hand, rolling a low Meditation
+    against a high Mental Defense). Spends the use and returns an overlay
+    profile for the attack loop."""
+    def expected(prof):
+        need = enemy_defense_for_pc_attack(prof, target) - (prof['skill_total'] - pc.get('crippled', 0))
+        return _p_flip_at_least(need) * max(0, prof['damage'] - enemy_resist_for_pc_attack(prof, target))
+    for t in pc.get('tech_attacks', ()):
+        if t['uses'] <= 0:
+            continue
+        if t.get('effect'):
+            if not t['damage'] and target.get(t['effect'][0], 0) > 0:
+                continue
+        elif expected(t) < expected(pc):
+            continue
+        t['uses'] -= 1
+        return t
+    return None
+
+
 def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=None):
     """One PC's full turn (see module docstring's "How a turn works") -
     strategy (a healer's own heal), Second Wind, movement, then attacks.
@@ -802,6 +833,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0:
                     break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
                 substitute = tactics.bottomless_bottles_choice(pc)
+                if not substitute:
+                    substitute = _tech_attack_choice(pc, target)
+                if not substitute and pc.get('opp_def_choices'):
+                    pc['opp_def'] = random.choice(pc['opp_def_choices'])
                 # A Bottled-Fire substitution temporarily overlays this PC's
                 # own attack profile with the thrown item's numbers for one
                 # iteration, restored right after logging - everything below
@@ -951,7 +986,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # Unaware) - so this generic grant doesn't fire for
                 # either (Feint's own explicit Harried effect below is
                 # separate from this rule).
-                if not feint_active and not cloak_dagger_hit:
+                if not feint_active and not cloak_dagger_hit and pc.get('opp_def') in ('Parry/Dodge', 'Dodge'):
                     target['harried'] = target.get('harried', 0) + 1
                 dmg = 0
                 raw_dmg = 0
@@ -977,6 +1012,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         dmg -= protected_absorbed
                     target['health'] -= dmg
                     damage_dealt += dmg
+                    if substitute and substitute.get('effect'):
+                        key, stacks, suit = substitute['effect']
+                        stacks += 1 if cards.flipped_matches(suit) else 0
+                        target[key] = target.get(key, 0) + stacks
+                        taunt_note = f"{key.capitalize()} +{stacks}"
                     if order is not None and pc.get('turn_order_shift'):
                         moved = _shift_in_order(order, target, pc['turn_order_shift'])
                         if moved:
@@ -1353,7 +1393,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         taunter = e.get('taunted_by') if e.get('taunted', 0) > 0 else None
         off_taunt = taunter is not None and taunter['health'] > 0 and taunter is not target
         card = resolve_card(1 if fighting_style == 'Aimed Shot' else 0, off_taunt)
-        roll = prof['accuracy'] + card
+        roll = prof['accuracy'] - e.get('crippled', 0) + card
         opp_def_val = pc_defense_for(target, prof['opp_def'])
         # Parried = a miss where Parry was the Defense actually used
         # (rulebook.md: "a target who used Parry Defense is considered to
@@ -1413,6 +1453,11 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         e['taunted'] -= 1
         if e['taunted'] == 0:
             e['taunted_by'] = None
+    # Crippled and Slowed from the party (Reckoning, Hand Rings the Bell)
+    # are Fleeting too: one stack off per bearer's own turn.
+    for key in ('crippled', 'slowed'):
+        if e.get(key, 0) > 0:
+            e[key] -= 1
     return interrupt_dmg
 
 
