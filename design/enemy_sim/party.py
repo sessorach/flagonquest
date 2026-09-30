@@ -262,6 +262,15 @@ def _pc_dict(row, index, good_luck):
     # Card Techniques above - see tactics.sift_bonus.
     passives = [t.strip() for t in (row.get("Passives") or "").split(",") if t.strip()]
 
+    # Overchanneling (T140, a Style): "+1 damage on damaging Spell
+    # attacks... You can't Parry." Only War Magic is a Spell attack in
+    # this sim; Parry drops out by making it lose every max() against
+    # Dodge in pc_defense_for.
+    if "Overchanneling" in passives:
+        if weapon.startswith("War Magic"):
+            damage += 1
+        parry = -99
+
     # `Battle Tactic` - the same tactics.TARGETING registry enemies'
     # own sample_enemies.csv BattleTactic column already dispatches
     # through (tactics.select_target doesn't care which side a unit's
@@ -333,7 +342,12 @@ def _pc_dict(row, index, good_luck):
     bottled_fire_profile = None
     bottled_fire_uses = None
     if "Bottomless Bottles" in card_techniques:
-        bottled_fire_profile = dict(skill_total=skill_total(stats, skills, "Acrobatics"), damage=8,
+        # Mighty Mixologist (T035): +1 damage with a damaging Grenade of
+        # Level 3 or lower - Bottled Fire is Level 2. Its Grenade-range
+        # rider isn't modeled (Range isn't overlaid for Bottled Fire at
+        # all, see above).
+        bottled_fire_profile = dict(skill_total=skill_total(stats, skills, "Acrobatics"),
+                                     damage=8 + (1 if "Mighty Mixologist" in passives else 0),
                                      dmg_type="Fire", opp_def="Dodge")
         cards_for_gold = hand_size * 2 // 3
         gold_budget = 4 * cards_for_gold
@@ -358,7 +372,8 @@ def _pc_dict(row, index, good_luck):
               strategy=strategy, heal_uses_left=hand_size // 4,
               heal_cards=heal_cards, heal_bonus=heal_bonus, heal_range=heal_range,
               passives=passives, battle_tactic=battle_tactic,
-              card_techniques=card_techniques, card_uses_left=card_uses_left)
+              card_techniques=card_techniques, card_uses_left=card_uses_left,
+              attacks_received=0, attacks_vs_parry_dodge=0, hits_received=0, parries=0)
     if attack_range is not None:
         pc["attack_range"] = attack_range
     if weapon_uses_left is not None:

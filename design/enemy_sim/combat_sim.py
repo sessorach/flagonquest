@@ -1224,16 +1224,36 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         # both opp_def='Dodge', so this fires for every Action in
         # tunables.ACTIONS today, but the check stays explicit rather
         # than assuming that never changes).
+        # Parried = a miss where Parry was the Defense actually used
+        # (rulebook.md: "a target who used Parry Defense is considered to
+        # have Parried"); pc_defense_for picks the better of the two.
+        used_parry = e['opp_def'] == 'Parry/Dodge' and target['parry'] >= target['dodge']
         if e['opp_def'] in ('Parry/Dodge', 'Dodge'):
             target['harried'] = target.get('harried', 0) + 1
+            target['attacks_vs_parry_dodge'] = target.get('attacks_vs_parry_dodge', 0) + 1
+        target['attacks_received'] = target.get('attacks_received', 0) + 1
         hit = roll >= opp_def_val
         dmg = 0
         raw_dmg = 0
         resist = 0
+        if not hit and used_parry:
+            target['parries'] = target.get('parries', 0) + 1
+            # Inexhaustible Guardian (T139): "Once per round, when you
+            # Parry an attack, you may gain Protected."
+            if 'Inexhaustible Guardian' in target.get('passives', ()) and target.get('ig_round') != rnd:
+                target['protected'] = target.get('protected', 0) + 1
+                target['ig_round'] = rnd
         if hit:
+            target['hits_received'] = target.get('hits_received', 0) + 1
             resist = pc_resist_for_enemy_attack(e, target)
             raw_dmg = e['attack_damage']
             dmg = max(0, raw_dmg - resist)
+            # PC-side Protected (Inexhaustible Guardian is the only PC
+            # source modeled): each stack absorbs 1 Health loss.
+            if target.get('protected', 0) > 0 and dmg > 0:
+                absorbed = min(dmg, target['protected'])
+                target['protected'] -= absorbed
+                dmg -= absorbed
             target['health'] -= dmg
             if 'Strike (Crippling)' in abilities:
                 target['crippled'] = target.get('crippled', 0) + 1
