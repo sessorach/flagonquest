@@ -876,3 +876,55 @@ way, and calibrate the baseline table until the fights land on target
 (most or all fights won, about 5 rounds). At Level 2, the hand-built
 heavy hitters currently come out about 1 damage lower and 1-2 Resist
 tougher than the projection model's.
+
+### Archetype comparison (2026-09-30)
+
+`enemy_sim/archetype_compare.py` applies each archetype's adds to every
+enemy in the Level 2 Classic, Warband and Horde mixes. It runs those
+against parties A and B, 400 fights per matchup.
+
+The measure is the party's expected Health left (losses count as 0).
+Each archetype is then priced against a ladder of plain enemies with
+−2/+2/+4 Health, so the result reads as "worth about N Health per
+enemy". Plain enemies leave the party 62% of its Health on average.
+
+| Archetype | Adds | Health left | Worth (Health per enemy) |
+|---|---|---|---|
+| Defender | Parry +1, Dodge +1, Resist +1 | 30% | +6.8 (past the ladder's end, extrapolated) |
+| Backup (Resist) | Parry +1, Dodge +1, Mental +1, Resist +1 | 31% | +6.6 (extrapolated) |
+| Bruiser | Damage +1, Resist +1, Parry −1, Dodge −1 | 43% | +3.6 |
+| Striker | Accuracy +1, Damage +1 | 45% | +2.9 |
+| Backup | Parry +1, Dodge +1, Vital +1, Mental +1 | 49% | +1.9 |
+| Strategist (Dodge) | Accuracy +1, Dodge +1, Mental +1 | 53% | +1.3 |
+| Strategist | Accuracy +1, Vital +1, Mental +1 | 58% | +0.6 |
+| Striker (glass) | Accuracy +1, Damage +1, Resist −1 | 63% | −0.2 |
+| Skirmisher | Speed +1, Dodge +1, Accuracy +1, Resist −1 | 65% | −0.5 |
+| Ambusher | Reflex +3, Accuracy +1, Parry −1, Dodge −1 | 66% | −0.9 |
+
+Rough per-stat values, backed out of the rows above:
+
+| Stat | Worth (Health per enemy) |
+|---|---|
+| Resist +1 | ~3-5 |
+| Damage +1 | ~2.4 |
+| Parry/Dodge +1 | ~1.9 |
+| Accuracy +1 | ~0.5 |
+| Reflex +3 | ~0.5 |
+| Vital and Mental | about 0 |
+
+Resist is by far the biggest lever, for the same reason fights ran long
+earlier: at Level 2, Resist already eats most of each hit, so one more
+point takes a large share of what's left.
+
+Caveats:
+
+- **Vital/Mental** read as 0 only because the sample parties barely
+  attack them. Nothing targets Vital, and only Browndog's Challenge
+  targets Mental.
+- **Speed** is undersold. The 20m arena leaves most enemies in reach
+  already, and Dodge +1 only helps an enemy whose Dodge is its better
+  defense.
+- **Defender and Backup (Resist)** run past the +4 Health end of the
+  ladder, so their prices are extrapolated.
+- **Resist's price** depends on the PC damage baseline. It will move if
+  the +1-to-all-weapons change goes in.
