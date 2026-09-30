@@ -1042,3 +1042,28 @@ in 3-4 rounds, so enemy Health became a per-Level table,
   attacks off per fight. Horde's 4-Health minions mostly die before
   swinging, and Aimed Shot casters attack once a turn. The next lever is
   enemy offense in the softer mixes, not more Health.
+
+**Enemy damage +1 test** (`level_baseline.py 300 --enemy-damage 1
+--current-only`, Health 10/12). Wins, then party Health left on a win,
+without → with the +1:
+
+| Level 2 mix | Wins | Party Health left |
+|---|---|---|
+| Frontline | 94-99% → 81-92% | 63-74% → 51-65% |
+| Warband | 96-100% → 88-97% | 68-88% → 59-85% |
+| Horde | 100% → 96-100% | 83-87% → 77-81% |
+| Shield Wall | 66-96% → 40-84% | 49-86% → 42-75% |
+
+Rounds barely moved (about 4-6, Shield Wall 6-10).
+
+- **At Level 2** it puts Frontline and Warband about where the designer
+  wants them: most fights won, and the party spends a real share of
+  its Health.
+- **Shield Wall gets too hard** for the all-weapon party A (40%).
+- **Horde stays easy**, because its minions still die before they
+  swing.
+- **At Level 1** it's too much. Party D wins Frontline 59%, and Shield
+  Wall drops to 33-78%.
+
+This points at a per-Level damage bonus (0 at Level 1, +1 at Level 2),
+the same "low early" shape as Health. Not applied yet.
