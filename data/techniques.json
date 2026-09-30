@@ -7996,5 +7996,57 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T171",
+    "name": "Tiger School - Rending Claws",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "A tiger doesn't need one perfect blow. With a blade in each hand you keep cutting at the same guard from both sides until it gives way.",
+    "condition": "You are wielding two non-shield weapons",
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When one of your weapon attacks hits or is Parried, the target gains 2 + [Diamonds] stacks of Harried.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Acrobatics, Brawl, or Melee) 3, Acrobatics 2",
+    "relevant_skills": "Acrobatics, Brawl, Melee",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics",
+          "Brawl",
+          "Melee"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

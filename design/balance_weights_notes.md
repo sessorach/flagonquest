@@ -8035,3 +8035,16 @@ as a narrow Skill would bring it closer to 100%. Acrobatics or Archery
 2. An always-on "your ranged weapon attacks have Good Luck" (15, ~104%
 at Level 4) is the candidate juiced-up Archer Style for the coverage
 check.
+
+### Tiger School - Rending Claws (T171, new) — Level 2 Tiger Style
+
+> *Condition: you are wielding two non-shield weapons.* When one of your
+> weapon attacks hits or is Parried, the target gains 2 + [Diamonds]
+> stacks of Harried.
+
+The designer's pick for Tiger's low-Level Style: two weapons wearing a
+guard down. Built like Numbing Edge (I246, the same effect on one
+Masterwork weapon, 105%). Target 7.2 + 4.4 dual-wield allowance =
+11.6. 6.25 attacks × (60% hit + ~20% Parried) = 5 triggers × 2.25
+stacks × 1/stack = **11.25, ~97%**. Stacking with Numbing Edge just
+runs into Harried's cap of 6 sooner; no rule needed.
