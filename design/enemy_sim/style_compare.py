@@ -5,7 +5,8 @@ Value, so a Style's worth comes out in Value and can be checked against
 the Style budget: Level x 3.6 per encounter (Level x 3 with the 1.2x
 Style premium; balance.md).
 
-Level 2 party against the four current Level 2 mixes. The measure is the
+A party of four copies of the carrier, all carrying the Style, against
+the four current Level 2 mixes. The measure is the
 party's expected Health left (losses count as 0), so it covers both "did
 they win" and "what did it cost".
 
@@ -66,16 +67,24 @@ def run(names, carrier, passives_add, health, trials):
 
 
 def price(group, trials):
-    names, carrier, styles = GROUPS[group]
+    # Four copies of the carrier, every one carrying the Style. With one
+    # carrier in a mixed party, the Style moved results by about as much
+    # as fight-to-fight luck, and the Health ladder wasn't even
+    # monotonic: one PC's Health changes who Challenge protects, who
+    # Assassins chase and who gets healed, so paired fights split apart
+    # from turn 1. Four copies give four times the signal, and raising
+    # every PC's Health together keeps the targeting order intact.
+    _, carrier, styles = GROUPS[group]
+    names = [carrier] * 4
     base = run(names, carrier, (), 0, trials)
+    plus1 = run(names, carrier, (), 1, trials)
     plus2 = run(names, carrier, (), 2, trials)
-    plus4 = run(names, carrier, (), 4, trials)
-    slope = (base - plus4) / 4  # party-Health points per carrier Health (negative: more Health, more left)
-    print(f"{carrier}: base {base:.1f}, +2 Health {plus2:.1f}, +4 Health {plus4:.1f} "
-          f"(1 Health = {-slope:.2f} points)", flush=True)
+    slope = (base - plus2) / 2  # party-Health points per +1 Health on every PC
+    print(f"4x {carrier}: base {base:.1f}, +1 Health each {plus1:.1f}, +2 Health each {plus2:.1f} "
+          f"(1 Health per PC = {-slope:.2f} points)", flush=True)
     for style, level in styles:
         score = run(names, carrier, (style,), 0, trials)
-        health_eq = (score - base) / -slope
+        health_eq = (score - base) / -slope  # per PC
         value = health_eq * HEALTH_VALUE
         target = level * STYLE_BUDGET_PER_LEVEL
         print(f"  {style:24} L{level}: {score:.1f} -> {health_eq:+.2f} Health = {value:+.1f} Value "
