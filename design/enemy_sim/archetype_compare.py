@@ -43,6 +43,7 @@ REVISED = {
     "Health -2": {"health": -2},
     "Health +2": {"health": 2},
     "Health +4": {"health": 4},
+    "Health +6": {"health": 6},
     "Striker": {"acc": 1, "dmg": 1},
     "Bruiser": {"dmg": 1, "res": 1, "parry": -1, "dodge": -1},
     "Defender (shield)": {"parry": 2, "dodge": 2},
@@ -52,7 +53,9 @@ REVISED = {
     "Strategist (Dodge)": {"acc": 1, "dodge": 1, "mental": 1},
 }
 
-MIXES = se.CURRENT_MIXES
+# Horde is left out until the baseline settles (per the designer), so
+# these prices sit on the same scale as ability_compare.py's.
+MIXES = ("Frontline", "Shield Wall", "Warband")
 L2 = lambda xs: [x + " (L2)" for x in xs]
 PARTIES = {"A": L2(["Hilde", "Browndog", "Carrick", "Sable"]),
            "B": L2(["Rook", "Jackal", "Wren", "Hanforth"]),
@@ -127,7 +130,7 @@ if __name__ == "__main__":
         results[name] = st.mean(scores)
         print(f"{name:20} avg {results[name]:5.1f} | " + " | ".join(cells), flush=True)
 
-    ladder = [(0, results["Plain"])] + [(d, results[f"Health {d:+d}"]) for d in (-2, 2, 4)]
+    ladder = [(0, results["Plain"])] + [(d, results[f"Health {d:+d}"]) for d in (-2, 2, 4, 6) if f"Health {d:+d}" in results]
     print("\nWorth, in Health per enemy (from the ladder):")
     for name in ARCHETYPES:
         if name.startswith("Health") or name == "Plain":
