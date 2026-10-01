@@ -1325,3 +1325,33 @@ so the sim shouldn't tune around party A's result. The way to cover this
 in the sim is to model weapon-based elemental options (elemental
 strikes and the like) when they come up, not to soften the mix.
 
+
+### Horde and the minion Health ratio (2026-10-01)
+
+`horde_ratio.py 300`: Horde (4 Goblin minions, an Ember Caster, a Bog
+Hexer) at Levels 1-2, all four parties, with half-slot minions at 1/3,
+0.4 or 1/2 of a full enemy's Health. Under the draft rules a Level 2
+minion comes to 4 / 5 / 6 Health.
+
+| Level 2 Horde | 1/3 (Health 4) | 0.4 (Health 5) | 1/2 (Health 6) |
+|---|---|---|---|
+| Party wins | 98-100% | 98-100% | 96-100% |
+| Rounds | 3.3-4.4 | 3.8-5.2 | 4.2-5.4 |
+| Party Health left | 81-84% | 76-85% | 70-79% |
+| Minion attacks per fight (all four) | 0.7-2.3 | 1.2-3.3 | 2.0-4.0 |
+
+The minion attack counts are the real finding. Goblins average 2-5 move
+actions per fight between them, so most die in their first turn or two,
+often before reaching anyone. Almost any PC hit kills a 4-Health minion,
+and the party gets free shots while they close in. At 1/3, twice the
+bodies buys almost no extra actions, which is what the slot rule is
+supposed to pay for. Switching them from Assassin to nearest-target
+targeting helped only a little (party D: 2.0 → 4.1 attacks).
+
+**Applied: half-slot minions at 1/2 Health** (`tunables.SLOT_MULTIPLIER`),
+the top of the designer's 1/3-1/2 range. Minion attacks roughly double,
+and fights run about a round longer and cost more, but Horde stays
+easy. What's left is structural: the minions still drop before acting,
+and the Hexer doesn't attack, so most of Horde's damage comes from one
+caster. Candidates to test: start the minions closer (an ambush), or
+swap the Hexer for a second damage caster.
