@@ -1390,3 +1390,30 @@ itself: same stats and archetype, half-slot Health and picks.
   Ember Caster puts it on target: 79-92% wins in 4-5.5 rounds, with the
   party keeping about half its Health. The ambush start adds a little
   on top; it's a GM tool, not a default.
+
+**Round 2 of the Horde experiments** (after the designer's go-ahead):
+minions back at 1/3 Health, half-slot picks rounded down (1 pick at
+Level 2), and Horde's Hexer swapped for a second Ember Caster.
+
+| Variant (Level 2) | Wins | Rounds | Health left |
+|---|---|---|---|
+| Horde (2 casters) | 90-99% | 3.0-4.2 | 60-73% |
+| Horde, minions ambush | 83-96% | 2.7-4.5 | 56-66% |
+| Frontline | 82-92% | 3.5-4.5 | 52-60% |
+| Frontline, minion version | 73-90% | 3.0-4.2 | 53-60% |
+| Shield Wall | 38-89% | 4.6-5.5 | 34-66% |
+| Shield Wall, minion version | 23-64% | 3.6-4.5 | 33-53% |
+
+- **Melee minions are now about even with the enemy they replace.**
+  Frontline split into minions lands within a few points of full
+  Frontline.
+- **Ranged minions are still stronger.** Shield Wall's split doubles
+  the archers. Halving a back-line shooter's Health matters less than
+  doubling its shots, because the party has to walk past the front line
+  to reach it. GM rule of thumb: minions work best as front-line fodder,
+  and a pack of minion archers is a hard fight.
+- **The 1/4 bracket was a no-op at Level 2.** 9 × 1/4 rounds up to 3,
+  the same as 9 × 1/3, so those rows only show run-to-run noise.
+- **Horde is easier than Frontline but in range.** Most fights won,
+  with the party spending about a third of its Health, but the fights
+  are short, at 3-4 rounds.
