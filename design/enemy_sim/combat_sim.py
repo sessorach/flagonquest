@@ -480,6 +480,8 @@ def pc_defense_for(target, opp_def):
     enemy_defense_for_pc_attack."""
     vulnerable = target.get('vulnerable', 0)
     harried = target.get('harried', 0)
+    if 'Indomitable Phalanx' in target.get('passives', ()):
+        harried = max(0, harried - 2)  # T132: "Ignore up to 2 of your stacks of Harried."
     if opp_def == 'Parry/Dodge':
         return max(target['parry'], target['dodge']) - harried
     if opp_def == 'Dodge':
@@ -988,6 +990,20 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # separate from this rule).
                 if not feint_active and not cloak_dagger_hit and pc.get('opp_def') in ('Parry/Dodge', 'Dodge'):
                     target['harried'] = target.get('harried', 0) + 1
+                passives = pc.get('passives', ())
+                # Furious Rage (T130): "If one of your attacks hits or is
+                # Parried, the target gains Bleeding." Parried = a miss
+                # where Parry was the Defense the target used.
+                parried = (not hit and pc.get('opp_def') == 'Parry/Dodge'
+                           and target['parry'] - target.get('harried', 0) >= target['dodge'] - target.get('harried', 0))
+                if 'Furious Rage' in passives and (hit or parried):
+                    target['bleeding'] = target.get('bleeding', 0) + 1
+                # Lawman's Hand (T128): "Once per round, when one of your
+                # damaging attacks hits, you may Slow the target once."
+                if ('Lawman\'s Hand' in passives and hit and pc['damage'] > 0
+                        and pc.get('lh_round') != rnd):
+                    target['slowed'] = target.get('slowed', 0) + 1
+                    pc['lh_round'] = rnd
                 dmg = 0
                 raw_dmg = 0
                 protected_absorbed = 0
@@ -1456,10 +1472,14 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         if e['taunted'] == 0:
             e['taunted_by'] = None
     # Crippled and Slowed from the party (Reckoning, Hand Rings the Bell)
-    # are Fleeting too: one stack off per bearer's own turn.
+    # are Fleeting too: one stack off per bearer's own turn. Bleeding (from
+    # Furious Rage) loses a stack the same way, and that stack deals 1.
     for key in ('crippled', 'slowed'):
         if e.get(key, 0) > 0:
             e[key] -= 1
+    if e.get('bleeding', 0) > 0 and e['health'] > 0:
+        e['bleeding'] -= 1
+        e['health'] -= 1
     return interrupt_dmg
 
 

@@ -324,6 +324,9 @@ def _pc_dict(row, index, good_luck):
         if weapon.startswith("War Magic"):
             damage += 1
         parry = -99
+    # Furious Rage (T130, a Style): "You can't Parry."
+    if "Furious Rage" in passives:
+        parry = -99
 
     # `Battle Tactic` - the same tactics.TARGETING registry enemies'
     # own sample_enemies.csv BattleTactic column already dispatches
