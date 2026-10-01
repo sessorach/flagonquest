@@ -1355,3 +1355,38 @@ easy. What's left is structural: the minions still drop before acting,
 and the Hexer doesn't attack, so most of Horde's damage comes from one
 caster. Candidates to test: start the minions closer (an ambush), or
 swap the Hexer for a second damage caster.
+
+**Horde experiments** (`horde_experiments.py 300`, Level 2, all four
+parties). Wins, rounds, and party Health left on a win:
+
+| Variant | Wins | Rounds | Health left |
+|---|---|---|---|
+| Horde as is (minions at 1/2) | 97-99% | 4.1-5.6 | 71-78% |
+| Horde, minions ambush | 93-98% | 4.3-5.7 | 65-71% |
+| Horde, 2nd Ember Caster for the Hexer | 79-92% | 4.0-5.5 | 46-61% |
+| Horde, 2nd caster + ambush | 67-83% | 3.9-5.5 | 46-50% |
+| Shield Wall | 36-89% | 4.6-5.3 | 34-66% |
+| Shield Wall, minion version (1/2) | 0-28% | 3.3-4.9 | 21-50% |
+| Shield Wall, minion version (1/3) | 15-54% | 3.6-4.7 | 28-50% |
+| Frontline | 82-93% | 3.4-4.7 | 53-60% |
+| Frontline, minion version (1/2) | 5-29% | 3.5-4.9 | 27-43% |
+| Frontline, minion version (1/3) | 57-75% | 3.2-4.1 | 45-51% |
+
+A "minion version" splits every enemy into two half-slot copies of
+itself: same stats and archetype, half-slot Health and picks.
+
+- **The controlled test reverses the earlier read.** Split into
+  minions, real enemies get much harder. At 1/2 Health, Frontline drops
+  from 82-93% party wins to 5-29%. Even at 1/3, both mixes are harder as
+  minions than as full enemies. Twice the bodies means twice the
+  attacks at full damage, and a minion with real Resist (a Hedge
+  Knight's Medium Armor) doesn't die to one hit.
+- **So Horde's goblins were weak for their own reasons**, not because
+  of the slot rule: Light Armor, Resist 1-2, and a Hexer that doesn't
+  attack. Half-slot picks also round up (2 picks each at Level 2, so 4
+  per slot against a full enemy's 3), which makes minions a little more
+  generous still.
+- **The Horde fix is composition.** Swapping the Hexer for a second
+  Ember Caster puts it on target: 79-92% wins in 4-5.5 rounds, with the
+  party keeping about half its Health. The ambush start adds a little
+  on top; it's a GM tool, not a default.
