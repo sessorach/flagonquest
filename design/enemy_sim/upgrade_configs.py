@@ -21,7 +21,7 @@ so it puts those 2 Upgrades into Health instead.
 Usage: python3 upgrade_configs.py [trials]"""
 import sys, os, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import combat_sim as cs, party, sample_enemies as se
+import combat_sim as cs, party, sample_enemies as se, enemy_builder_pcstyle as eb
 from level_baseline import PARTIES
 
 WEAPON_ACTIONS = {"Light Melee", "Ranged Weapon", "Defensive Melee", "Offensive Melee", "Heavy Melee"}
@@ -65,6 +65,9 @@ def build(names, loadout):
 
 
 def run(names, mix, loadout, trials):
+    # Glass cannon breaks the Health floor on purpose - it's the loadout
+    # that showed the floor was needed.
+    eb.HEALTH_FLOOR_FRACTION = 0 if loadout is LOADOUTS["Glass cannon"] else 1 / 3
     cs.make_party = lambda t, good_luck=0: party.make_party_from(names, good_luck)
     wins, rounds, hp = 0, [], []
     for _ in range(trials):

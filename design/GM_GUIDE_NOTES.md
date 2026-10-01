@@ -291,16 +291,16 @@ and real worked examples), well beyond what a from-scratch pass could
 reconstruct. Big enough on its own to warrant a dedicated file rather
 than a GM_GUIDE_NOTES.md section — reach for it directly.
 
-## Enemy stat blocks by hand (draft, 2026-09-30)
+## Enemy stat blocks by hand (draft, updated 2026-10-01)
 
-**Status: penciled in, being ironed out with the designer.** This is the
-quick-build version a GM can use at the table without a calculator. The
-structure comes from the designer's first drafts in
+**Status: penciled in, matched to the simulator at Levels 1-2.** This is
+the quick-build version a GM can use at the table without a calculator.
+The structure comes from the designer's first drafts in
 `archive/flagonquest_encounter_builder.xlsx`: a baseline by Level, one
-archetype on top, then a few ability picks for variety. The numbers are
-being moved over to match the simulator, which builds enemies the long
-way from a PC's Stat spread and the players' own weapon and armor
-tables. `ENEMY_ENCOUNTER_DESIGN.md` has the full reasoning.
+archetype on top, then an allotment of Upgrades. The numbers come from
+the simulator, which builds the same enemies the long way.
+`ENEMY_ENCOUNTER_DESIGN.md` has the tests behind every number. Levels
+3-5 are penciled until the sample parties go past Level 2.
 
 ### What an enemy's Level means
 
@@ -320,96 +320,117 @@ spreadsheet put a player's combat share at about 70%).
 
 ### The rule for what costs something
 
-- **Anything that's an overall gain costs an ability pick.** Better
-  armor or a heavier weapon counts, and so does a debuff on hit. For a
-  player these cost XP, like the Might it takes to wear Medium Armor.
-- **A trade is a free choice:** a shield or a two-hander, which Defense
-  is strong, or what the enemy does on its turn. The archetype and the
-  enemy's other picks cover these.
-
-The baseline plus an archetype gets an enemy most of the way to its
-Level's budget. The ability picks are the planned remainder, there to
-make enemies of the same Level play differently. We'll work out what
-one pick is worth once the rest of the numbers settle. The aim is a
-size that keeps the math clean without getting granular.
+- **Anything that's an overall gain costs Upgrades:** more Health,
+  better armor, a heavier weapon, a debuff on hit. For a player these
+  cost XP, like the Might it takes to wear Medium Armor.
+- **A trade is a free choice:** the archetype, which Defenses are
+  strong, the main Action, and the element of a spell.
+- **One Upgrade is worth about 1 Health.** That's what lets +1 Health
+  sit on the menu next to everything else.
 
 ### Step 1: Level baseline
 
-| Level | Attack Skill | Defense: Poor / Okay / Good | Damage bonus & Resist | Health (1 slot) | Ability picks (1 slot) |
+| Level | 1 | 2 | 3 | 4 | 5 |
 |---|---|---|---|---|---|
-| 1 | 5 | 12 / 13 / 14 | 1 | 8 | 2 |
-| 2 | 7 | 14 / 15 / 16 | 2 | 10 | 3 |
-| 3 | 8 | 15 / 16 / 17 | 3 | 12 | 4 |
-| 4 | 9 | 16 / 17 / 18 | 4 | 15 | 5 |
-| 5 | 10 | 17 / 18 / 19 | 4 | 18 | 8 |
+| Attack Skill (Primary for a focused attacker) | 5 (6) | 7 (8) | 8 (9) | 9 (10) | 10 (11) |
+| Defense: Poor / Secondary / Primary | 11/12/13 | 13/14/15 | 14/15/16 | 15/16/17 | 16/17/18 |
+| Damage Stat | 2 | 3 | 4 | 4 | 5 |
+| Resist: Low / Mid / High | 1/2/2 | 1/2/3 | 1/3/4 | 2/4/4 | 2/4/5 |
+| Health | 6 | 6 | 7 | 8 | 9 |
+| Upgrades | 4 | 6 | 8 | 10 | 14 |
+| Speed / Reflex | 3 / 3 | 3 / 4 | 4 / 5 | 4 / 6 | 5 / 7 |
 
-- **Defenses:** pick one Good and two Okay out of Parry, Dodge, Vital,
-  Mental and Vigilant, and the rest are Poor. Every enemy has a weak
-  spot a player can read from the fiction.
-- **Damage bonus & Resist:** one number, the way the spreadsheet had it.
-  It's added to the weapon's base damage, and it's the enemy's Resist
-  against everything. Every enemy wears Light Armor by default, so its
-  Physical Resist is 1 higher.
-- **Weapons:** use the players' numbers for a light weapon, from
-  `weapon_categories.csv`:
-  - Melee: a one-hander. Accuracy +1, Damage 3 + bonus, Parry +1.
-  - Archers: a Light Bow. Accuracy +1, Damage 3 + bonus, Range 15.
-  - Casters: a spell. Accuracy +0, Damage 2 + bonus.
-- **Health** is the one place enemies break from player stats on
-  purpose. It's a bit low early (a PC starts at 10) and padded more at
-  high Levels, as part of the XP budget. Minions and bosses still scale
-  it by Encounter Slots.
-- **Ability picks** scale by Encounter Slots, rounded up. A half-slot
-  Level 2 minion gets 2.
-- **Speed and Reflex:** Speed is 2 + half the Level, rounded up. Reflex
-  is 2 + Level.
+- **Defenses:** pick one Primary and one or two Secondary out of Parry,
+  Dodge, Vital, Mental and Vigilant; the rest are Poor. Every enemy
+  should have a weak spot a player can read from the fiction.
+- **Damage Stat** is added to the Action's base damage (Step 3). A
+  support enemy uses the Mid Resist value as its Damage Stat instead.
+- **Resist** is the same against everything; armor adds to Physical
+  only. Fighters usually take Low, casters Mid, supports High.
+- **Upgrades** are spent in Step 4. At least a third of them stay as
+  +1 Health (2 of 6 at Level 2). Any left unspent become +1 Health too.
 
 ### Step 2: Archetype (pick one)
 
-These are the spreadsheet's Roles. Each one is a trade, so no archetype
-should come out ahead of the others. The two weapon archetypes stand in
-for the off-hand choice a player makes: a shield or a two-hander.
+Each one is a trade, roughly even with the others. Defender stands in
+for a shield and Bruiser for a two-hander; otherwise a melee enemy
+fights with a light one-hander.
 
-| Archetype | Adds | Stands in for | Sim examples |
-|---|---|---|---|
-| Defender | Parry +1, Dodge +1, Resist +1 | A shield | Hedge Knight |
-| Bruiser | Damage +1, Resist +1, Parry −1, Dodge −1 | A two-hander | Brute |
-| Striker | Accuracy +1, Damage +1 | Skill and focus | Marsh Archer, Footpad, Grave Caller, Ember Caster |
-| Strategist | Accuracy +1, Vital +1, Mental +1 | A trained mind | Bog Hexer, Mire Witch |
-| Backup | Parry +1, Dodge +1, Vital +1, Mental +1 | Staying up | Warpriest, Field Medic |
+| Archetype | Adds | Good for |
+|---|---|---|
+| Defender | Parry +2 | Shield-bearers, line-holders |
+| Bruiser | Damage +1, Parry −1, Dodge −1 | Two-handers, brutes |
+| Striker | Damage +1 | Archers, damage casters |
+| Skirmisher | Speed +1, Dodge +1, Accuracy +1 | Flankers, hit-and-run |
+| Strategist | Accuracy +1, Dodge +1, Mental +1 | Hexers, controllers |
+| Backup | Resist +1, Vital +1, Mental +1 | Healers, shield-casters |
 
-### Step 3: Ability picks
+### Step 3: The one thing it does
 
-Each pick below costs one, except Heavy Armor.
+Each enemy gets one main Action. One that doesn't deal damage also gets
+a backup attack.
 
-- **Loadout upgrades**, using the players' live armor numbers (`armor_categories.csv`):
+| Action | Accuracy | Damage | Against | Range |
+|---|---|---|---|---|
+| Melee weapon (light one-hander) | +1 | 3 + Damage Stat, Physical | Parry/Dodge | Melee; Parry +1 |
+| Ranged weapon (light bow) | +1 | 3 + Damage Stat, Physical | Parry/Dodge | 3 × Level + 2 |
+| Fire spell | +0 | 2 + Damage Stat, Fire | Dodge | Melee, or 2 × Level + 2 |
+| Shadow spell | +0 | 2 + Damage Stat, Shadow | Vital or Dodge | 2 × Level + 2 |
+| Fire against Vital | +0 | 2 + Damage Stat, Fire | Vital | 2 × Level + 2 |
+| Hex | +0 | none; lands a debuff | Mental | 2 × Level + 2 |
+| Shield Ally | never misses | Protected to an ally | — | adjacent |
+| Mend Ally | never misses | heals an ally | — | adjacent |
 
-  | Upgrade | Picks | Effect |
-  |---|---|---|
-  | Heavy Weapon | 1 | Damage +1, Accuracy −1, Parry −1 (a Heavy Bow gets Range 20 instead of the Parry change) |
-  | Medium Armor | 1 | Physical Resist +2 instead of Light's +1, Dodge −1 |
-  | Heavy Armor | 2, Level 3+ only | Physical Resist +3 instead of +1, Dodge −1, Speed −1 |
+- **Hex** lands 3 stacks of one debuff at Levels 1-2, 4 at Levels 3-4,
+  and 5 at Level 5. Crippled and Slowed work best.
+- **Shield Ally and Mend Ally** can't miss, so they're priced like an
+  average enemy hit: 2 at Levels 1-3, 3 at Levels 4-5.
+- **Battle Tactic:** attack whatever's nearest, go for the weak or
+  isolated (Assassin), keep at range (Kiting), or for supports, help
+  the most hurt ally. The Fighting Style picker (Guarded, Flurry and the
+  rest) is shelved for now: enemies just move and attack, up to twice a
+  turn.
 
-  Heavy Armor is gated to Level 3 enemies and up, the way a player
-  can't wear it out of the gate (it takes Might 7).
-- **On-hit riders:** Strike (Crippling), (Vulnerable), (Slowing),
-  (Frightening) or (Taunting), or Poison (Bleeding).
-- **Everything else** in the Ability catalog in
-  `ENEMY_ENCOUNTER_DESIGN.md`, like Durable, Enhanced Health and
-  Powerful Spell.
+### Step 4: Upgrades
 
-### Step 4: The one thing it does
+| Upgrade | Cost | Effect |
+|---|---|---|
+| Health | 1 | +1 Health (as many as you like) |
+| Strike (Crippling) | 1 | A hit Cripples once |
+| Strike (Frightening) | 1 | A hit Frightens once |
+| Strike (Vulnerable) | 1 | A hit makes the target Vulnerable twice |
+| Strike (Slowing) | 1 | A hit Slows twice |
+| Strike (Taunting) | 1 | A hit Taunts twice |
+| Poison (Bleeding) | 1 | A hit adds 2 Bleeding |
+| Medium Armor | 1 | Physical Resist +2 instead of Light's +1, Dodge −1 |
+| Heavy Weapon | 2 | Damage +1, Accuracy −1, Parry −1 (a bow gets Range +5 instead of the Parry change) |
+| Powerful Spell | 2 | Damage +1 on its spell, but it can't Parry |
+| Durable | 2 | +1 Protected at the start of its turn, up to 4 |
+| Heavy Armor | 2, Level 3+ | Physical Resist +3 instead of +1, Dodge −1, Speed −1 |
 
-This follows the enemy variety standard in `ENEMY_ENCOUNTER_DESIGN.md`,
-and each part is a free choice:
+The rest of the old spreadsheet's abilities have draft costs in
+`ENEMY_ENCOUNTER_DESIGN.md` ("Draft: the ability catalog at 1 pick = 1
+Health"). They haven't been tested yet.
 
-- Each enemy gets one main Action: an attack, a Hex, Shield Ally or Mend
-  Ally.
-- An enemy whose main Action doesn't deal damage also gets a backup
-  attack.
-- Each enemy gets a Fighting Style and a Battle Tactic.
-- Each enemy puts something on the fight, either a debuff on the party
-  or a buff on its allies. That usually takes one of the ability picks.
+Some things worth knowing when spending Upgrades:
+- **Picks that fit the enemy's job punch a little above their price.**
+  Taunting on the shield tank, Medium Armor on the front line, Bleeding
+  on skirmishers: the sim's roster runs about 1.5 Health stronger than
+  the same Upgrades spent on Health.
+- **Upgrades set fight length.** Offense-heavy loadouts end fights in
+  2-4 rounds. Health and Durable stretch them toward 5-6.
+- **Match riders to the fight.** Vulnerable only matters if someone in
+  the fight attacks Vital or Mental.
+
+### Minions and big enemies
+
+An enemy's Encounter Slots scale its Health and Upgrades together: a
+third of each for a half-slot minion (rounded up), three times for a
+2-slot boss. Two minions are about as dangerous as the one full enemy
+they replace, as long as they're front-line fodder. A pack of minion
+archers or casters is a lot harder: halving a back-line shooter's Health
+matters less than doubling its shots. Starting minions close (an
+ambush) makes them hit before they can be picked off.
 
 ### Putting a fight together
 
@@ -432,29 +453,11 @@ some variety (a caster, elemental damage on a weapon) instead of every
 fight being tuned around whatever the party happens to be. Don't soften
 a counter-fight just because one lopsided party struggles with it.
 
-### How close this gets to the simulator's enemies
+### Where the numbers came from
 
-Level 2, built both ways:
-
-| Enemy | Built by hand | Simulator now |
-|---|---|---|
-| Hedge Knight (Defender; Medium Armor, Durable, Taunting) | Damage 5, Accuracy 8, Parry 18, Dodge 14, Resist 3 / Physical 5 | Damage 6, Accuracy 8, Parry 18, Dodge 13, Resist 2 / Physical 5 (Heavy Armor for free) |
-| Brute (Bruiser; Heavy Weapon, Medium Armor, Crippling) | Damage 7, Accuracy 7, Parry 14, Resist 3 / Physical 5 | Damage 8, Accuracy 8, Parry 15, Resist 1 / Physical 3 |
-| Grave Caller (Striker; Vulnerable + 2 open) | Damage 5, Accuracy 8, Resist 2 / Physical 3 | Damage 5, Accuracy 8, Resist 2 / Physical 2 (unarmored) |
-
-These are close but not exact. Heavy hitters come out about 1 damage
-lower and 1-2 Resist tougher. Only the simulator can say whether that
-matters.
-
-Health was checked in the simulator against the Level 1 and Level 2
-sample parties:
-
-- **Level 1 at 8:** most mixes landed at 80-100% party wins in about
-  5-8 rounds.
-- **Level 1 Warband:** still near 55%. Its Hedge Knight wears Heavy
-  Armor at Level 1, which Step 3 rules out.
-- **Level 2:** 10 held most mixes at 70-100% wins. Raising it to 12 took
-  one party down to 53-73%.
-
-The Health values for Levels 3-5 are penciled until the sample parties
-are leveled past Level 2.
+All of these come from the simulator's sample parties at Levels 1-2,
+with fights aimed at the party winning most of the time, in about 5
+rounds, while spending part of its Health. Health and Upgrades were
+priced against each other: generic ways of spending the allotment
+(heavier weapons, a stack of riders, armor and Durable) all land within
+half a Health of spending it all on Health.

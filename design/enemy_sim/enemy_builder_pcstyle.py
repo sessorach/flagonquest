@@ -150,6 +150,11 @@ PICK_COST = {
     "Enhanced Health": 1,  # +1 Health per copy
 }
 ARMOR_PICKS = {"Unarmored": 0, "Light": 0, "Medium": 1, "Heavy": 2}
+# At least this share of the Upgrades has to stay as +1 Health (rounded
+# up: 2 of 6 at Level 2). Spending everything on effects left a 6-Health
+# enemy that dropped before its effects paid off - weaker than its price
+# (upgrade_configs.py, "Glass cannon"). Set to 0 to test past it.
+HEALTH_FLOOR_FRACTION = 1 / 3
 # The draft archetypes (the spreadsheet's Roles, evened out to roughly
 # 3-4 picks each). Defender stands in for a shield, Bruiser for a
 # two-hander; every melee enemy's weapon is a light one-hander otherwise.
@@ -288,6 +293,9 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     picks_used = sum(PICK_COST[a] for a in abilities) + ARMOR_PICKS[armor]
     if picks_used > picks:
         raise ValueError(f"{name}: abilities and armor cost {picks_used} Upgrades, only {picks} available")
+    health_floor = math.ceil(picks * HEALTH_FLOOR_FRACTION)
+    if picks - picks_used < health_floor:
+        raise ValueError(f"{name}: {picks_used} of {picks} Upgrades on effects leaves fewer than {health_floor} for Health")
     ability_budget, ability_cost = picks * 5, picks_used * 5  # in points, for older scripts' printouts
 
     # Enhanced Health copies, plus every unspent Upgrade, at +1 Health each.
