@@ -1153,3 +1153,91 @@ Health) reads +3.1, so the scale checks out.
 - **What it means for the budget:** the current target is hit at
   baseline + about one pick (~1 Health). An archetype plus two more
   picks would add roughly +4 to +9.
+
+### Draft: the ability catalog at 1 pick = 1 Health (2026-10-01)
+
+**Status: draft for the designer to review.** The spreadsheet charged a
+flat 5 points (one pick) for almost everything, and 10 for Omniguard,
+Strike (Cleaving) and Resilient. Here each ability is re-costed in
+picks, where one pick is worth about 1 Health per enemy on the
+`ability_compare.py` scale (Level 2, Fighting Styles off). "Measured"
+rows come from that test. "Estimate" rows aren't modeled in the sim
+yet and are reasoned from the nearest measured thing; test before
+trusting them.
+
+**Rules behind the costs** (the designer's: an overall gain costs a
+pick, a trade is a free choice):
+- A pick's worth is about 1 Health. Anything worth well under that gets
+  more stacks rather than a fractional cost, so every pick is a whole
+  number.
+- Leftover picks can always go to +1 Health each (Enhanced Health,
+  re-scaled).
+- Trades and reflavors (choosing the element of a spell) cost nothing.
+
+| Ability | Spreadsheet | Measured / estimate | Draft cost | Draft change |
+|---|---|---|---|---|
+| **On-hit riders** | | | | |
+| Strike (Crippling) | 5 | 1.0 measured | 1 pick | — |
+| Poison (Bleeding), 2 stacks | 5 | 1.3 measured | 1 pick | — |
+| Strike (Vulnerable) | 5 | 0.5 measured | 1 pick | 2 stacks instead of 1 |
+| Strike (Slowing) | 5 | 0.3 measured | 1 pick | 2 stacks; Slowed is likely undersold, since sim PCs barely move |
+| Strike (Frightening) | new in sim | 0.7 measured | 1 pick | — |
+| Strike (Taunting) | new in sim | 0.2 measured | 1 pick | 2 stacks; Taunted is likely undersold, same reason |
+| Strike (Necrotic), Poison (Crippling/Necrotic/Slowing/Vulnerable) | 5 | estimate, like the riders above | 1 pick | same stack rules as the matching Strike |
+| Strike (Harrying) | 5 | estimate ~1 | 1 pick | — |
+| Strike (Battering) | 5 | estimate ~1 | 1 pick | — |
+| Strike (Grappling) | 5 | estimate 1-2, positional | 1 pick | test later |
+| Strike (Devastating) | 5 | estimate ~2 (+1 damage, as Bleeding) | 2 picks | — |
+| Strike (Cleaving) | 10 | estimate ~2 | 2 picks | — |
+| **Defense and durability** | | | | |
+| Enhanced Health | 5 (+3 Health) | 3.1 measured | 1 pick | **+1 Health per pick** (any number of times) |
+| Durable | 5 | 1.6 measured | 2 picks | — |
+| Medium Armor (from Light) | separate armor pick | 1.1 measured | 1 pick | replaces the roster's 2-Health trade |
+| Heavy Armor (from Light) | separate armor pick | estimate ~2 (two steps, Speed −1) | 2 picks, Level 3+ | — |
+| Resist (one element, +2) | 5 | estimate ~1; Resist +1 to all is worth ~4 | 1 pick | — |
+| Attunement (+4 one element, −1 opposite) | 5 | estimate 1-2 | 1 pick | — |
+| Omniguard (ignore Harried) | 10 | estimate ~2; every PC weapon attack Harries | 2 picks | — |
+| Resilient (shed 1 of each debuff a turn) | 10 | estimate ~2 | 2 picks | — |
+| Retribution Aura | 5 | estimate ~1 | 1 pick | — |
+| Sturdy | 5 | estimate under 1, niche | 1 pick | — |
+| **Offense** | | | | |
+| Heavy Weapon (was Powerful Weapon) | 5 | 1.9 measured | 2 picks | renamed |
+| Powerful Spell (+1 damage, no Parry) | 5 | estimate ~2.5; casters rarely Parry | 2 picks | — |
+| Elemental Spell | 5 | a reflavor | free | — |
+| Elemental Weapon (−1 damage) | 5 | a trade | free | — |
+| Enhanced Range | 5 | estimate ~1 | 1 pick | — |
+| Improved Support (+50% heals/Protected) | 5 | estimate 1-2 | 1 pick | test with a support enemy |
+| **Movement and timing** | | | | |
+| Enhanced Speed (+1) | 5 | estimate under 1 (Skirmisher's Speed barely registered) | 1 pick | — |
+| Enhanced Reflexes (+3) | 5 | ~0.5 (from the Ambusher test) | 1 pick | — |
+| Shadow Jaunt | 5 | estimate ~1, positional | 1 pick | — |
+| Action (Parting Shot) | 5 | estimate ~1 | 1 pick | — |
+| Action (Intimidating / Taunting), 0 AP at range | 5 | estimate ~1; no hit needed | 1 pick | — |
+
+The main Actions stay free picks, as they were on the spreadsheet: the
+attacks, Curse/Hex, Great Heal, Shield Ally and Shielding Nova.
+
+**Archetypes in the same currency.** Measured with styles off, they're
+worth 2.6-6.8 picks. The draft evens them at about 3-4 each by taking
+Damage out of the two offensive ones' freebies:
+
+| Archetype | Draft | Measured worth (current version) |
+|---|---|---|
+| Defender | Parry +2, Dodge +2 | 4.0 |
+| Backup | Resist +1, Vital +1, Mental +1 | 4.1 |
+| Striker | Damage +1 (drops Accuracy +1) | 6.5 with Accuracy; untested without |
+| Bruiser | Damage +1, Parry −1, Dodge −1 (drops Resist +1) | 6.8 with Resist; untested without |
+| Skirmisher | Speed +1, Dodge +1, Accuracy +1 | 2.8 |
+| Strategist | Accuracy +1, Dodge +1, Mental +1 | 2.6 |
+
+**What the baseline gives up.** Today's target is hit at baseline + 1
+pick, with no archetype. The spreadsheet's structure (an archetype worth
+~3.5, plus 3 picks at Level 2) adds ~5.5 Health-worth per enemy on top
+of that. Two ways to make room:
+- **Keep the spreadsheet's pick counts (2/3/4/5/8)** and trim the
+  baseline by ~5.5 Health-worth at Level 2. Health alone would mean 12
+  → ~7, which undoes the padding, so a mix is likelier: Health 12 → 9
+  and every Defense −1.
+- **Keep this baseline** and cut the allotment to the archetype plus 1
+  pick at Level 2. That's the smallest change, but it leaves little
+  room for variety.
