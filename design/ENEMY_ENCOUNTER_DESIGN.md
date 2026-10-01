@@ -1218,8 +1218,9 @@ The main Actions stay free picks, as they were on the spreadsheet: the
 attacks, Curse/Hex, Great Heal, Shield Ally and Shielding Nova.
 
 **Archetypes in the same currency.** Measured with styles off, they're
-worth 2.6-6.8 picks. The draft evens them at about 3-4 each by taking
-Damage out of the two offensive ones' freebies:
+worth 2.6-6.8 picks. The draft evens them at about 3-4 each. The two
+offensive ones keep their Damage +1 but lose the extra freebie riding
+on it (Striker's Accuracy, Bruiser's Resist):
 
 | Archetype | Draft | Measured worth (current version) |
 |---|---|---|
