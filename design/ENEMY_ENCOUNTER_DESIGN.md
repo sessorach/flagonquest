@@ -1109,3 +1109,47 @@ against Frontline and Shield Wall.
   needs a structural fix rather than a stat change.
 - **Enemy damage +1** was tested before styles came off. With styles
   off it's likely no longer needed; it stays off.
+
+### Pricing an ability pick, and archetypes with styles off (2026-10-01)
+
+`ability_compare.py 300` and `archetype_compare.py 300 --revised`, both
+on the same scale: Level 2, Fighting Styles off, parties A, B and D
+against Frontline, Shield Wall and Warband (Horde left out until the
+baseline settles). The added pick or archetype goes on every enemy, and
+"worth" is read off a −2/+2/+4/+6 Health ladder. Enhanced Health (+3
+Health) reads +3.1, so the scale checks out.
+
+| One ability pick | Worth (Health per enemy) |
+|---|---|
+| Enhanced Health (+3) | +3.1 |
+| Heavy Weapon | +1.9 |
+| Durable | +1.6 |
+| Poison (Bleeding) | +1.3 |
+| Medium Armor (one step from Light) | +1.1 |
+| Strike (Crippling) | +1.0 |
+| Strike (Frightening) | +0.7 |
+| Strike (Vulnerable) | +0.5 |
+| Strike (Slowing) | +0.3 |
+| Strike (Taunting) | +0.2 |
+
+| Archetype | Styles off | Styles on (round 3) |
+|---|---|---|
+| Bruiser | +6.8 | +4.4 |
+| Striker | +6.5 | +3.7 |
+| Backup (Resist) | +4.1 | +3.5 |
+| Defender (shield) | +4.0 | +3.3 |
+| Backup (+Accuracy) | +3.7 | +2.7 |
+| Skirmisher | +2.8 | +2.3 |
+| Strategist (Dodge) | +2.6 | +1.9 |
+
+- **Picks are cheap and uneven.** Most on-hit riders are worth well
+  under 1 Health. The sim's PCs shrug off Slowed and Taunted, so those
+  may be undersold. Enhanced Health is worth three riders.
+- **The roster overcharges Medium Armor.** It's worth about 1.1, but the
+  roster trades it for 2 Health.
+- **Archetypes are worth 3-7 picks each**, and offense got much more
+  valuable with styles off: Striker and Bruiser nearly doubled, since
+  every enemy now attacks twice a turn.
+- **What it means for the budget:** the current target is hit at
+  baseline + about one pick (~1 Health). An archetype plus two more
+  picks would add roughly +4 to +9.
