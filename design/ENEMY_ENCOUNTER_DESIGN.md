@@ -1417,3 +1417,33 @@ Level 2), and Horde's Hexer swapped for a second Ember Caster.
 - **Horde is easier than Frontline but in range.** Most fights won,
   with the party spending about a third of its Health, but the fights
   are short, at 3-4 rounds.
+
+**Goblins with Medium Armor: tested and reverted** (`goblin_armor.py
+300`). At Levels 1-2 a goblin's one pick would buy Medium Armor in
+place of Strike (Slowing). Horde before → after:
+
+| Level | Wins | Party Health left | Goblin attacks per fight (all four) |
+|---|---|---|---|
+| 1 | 81-100% → 90-100% | 65-74% → 61-73% | 0.8-2.3 → 0.8-2.8 |
+| 2 | 89-99% → 91-99% | 59-73% → 60-74% | 0.6-2.1 → 0.6-2.1 |
+
+There was no consistent effect, just a few points either way by party.
+
+- **One hit still kills.** A 3-Health goblin dies to nearly every hit.
+  The extra point of Resist only saves it from the weakest physical
+  hits (Sable's 5-damage bow now leaves it at 1 Health).
+- **Elemental hits ignore armor anyway.**
+- **Level 1 Felix's 4-damage punches got worse** against them, which is
+  why party D dipped.
+
+It also cost the goblins their Slowing, against the "every enemy puts
+something on the fight" standard, so the roster keeps Light Armor +
+Slowing.
+
+Horde as it stands: 89-99% party wins, the party spends about a third
+of its Health, and fights run 3-4 rounds. The goblins work as a speed
+bump that soaks the party's attacks for a round or two while the casters
+fire. A minion that survives a hit would need about 6 Health at Level 2,
+the 1/2 ratio, which made minion versions of normal enemies far too
+strong. If the designer wants sturdier fodder, it likely needs its own
+minion trade-off (more Health, weaker attack), not more armor.

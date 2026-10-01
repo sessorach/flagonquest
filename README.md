@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-01 — Enemy stat blocks get a price list
+
+Priced every enemy ability and archetype in the simulator and rebuilt the sample enemies on those prices, so a stat block is now a Level baseline, an archetype and a few ability picks.
+- One ability pick is worth about one point of enemy Health, so the old spreadsheet's abilities got re-costed on that scale and leftover picks just become Health.
+- Every enemy now has an archetype, and Medium or Heavy Armor and heavy weapons cost picks; Defender is a plain shield (Parry +2).
+- Minions stay at a third of a normal enemy's Health, and Horde swapped its Hexer for a second caster so the fight costs the party some Health.
+
 ### 2026-09-30 — More Styles, and enemies rebuilt like players
 
 Finished another batch of Styles, then rebuilt the simulator's enemies from the same Stats, weapons and armor players use, and started a quick way for GMs to build enemy stat blocks by hand.

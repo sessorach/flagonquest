@@ -1,9 +1,11 @@
 """Horde with Medium-armored goblins (2026-10-01, per the designer). At
-Levels 1-2 a goblin's one pick now buys Medium Armor instead of Strike
-(Slowing); Level 3 has room for both. This compares Horde as it was
-(Light Armor + Slowing, rebuilt in memory) with the new goblins, at
-Levels 1-2 for all four parties. Health is the same either way, since
-the pick gets spent both times.
+Levels 1-2 a goblin's one pick would buy Medium Armor instead of Strike
+(Slowing); Level 3 has room for both. Tested and reverted: it made no
+consistent difference (a 3-Health goblin still dies to almost any hit),
+and it cost the goblins their Slowing rider. The roster keeps Light
+Armor + Slowing; this script builds the Medium version in memory so the
+comparison can be rerun. Health is the same either way, since the pick
+gets spent both times.
 
 Usage: python3 goblin_armor.py [trials]"""
 import sys, os, statistics as st
@@ -12,15 +14,15 @@ import combat_sim as cs, party, sample_enemies as se
 from level_baseline import PARTIES
 
 
-def as_before(enemies):
-    """Undo the armor pick on Level 1-2 goblins: Light Armor (Physical
-    Resist -1, Dodge +1 from Medium) and Strike (Slowing) back."""
+def with_medium(enemies):
+    """Level 1-2 goblins spend their pick on Medium Armor (Physical
+    Resist +1, Dodge -1 over Light) instead of Strike (Slowing)."""
     for e in enemies:
-        if e["name"].startswith("Goblin") and e["armor"] == "Medium" and e["level"] < 3:
-            e["armor"] = "Light"
-            e["physres"] -= 1
-            e["dodge"] += 1
-            e["abilities"] = list(e["abilities"]) + ["Strike (Slowing)"]
+        if e["name"].startswith("Goblin") and e["armor"] == "Light" and e["level"] < 3:
+            e["armor"] = "Medium"
+            e["physres"] += 1
+            e["dodge"] -= 1
+            e["abilities"] = [a for a in e["abilities"] if a != "Strike (Slowing)"]
     return enemies
 
 
@@ -45,7 +47,7 @@ if __name__ == "__main__":
     trials = int(sys.argv[1]) if len(sys.argv) > 1 else 300
     print("Horde. Cells: win% / rounds / party Health left on a win / goblin attacks per fight (all four)")
     for level in (1, 2):
-        for label, mutate in (("before (Light + Slowing)", as_before), ("Medium Armor", lambda es: es)):
+        for label, mutate in (("Light + Slowing (roster)", lambda es: es), ("Medium Armor (tested)", with_medium)):
             cells = []
             for pn, names in PARTIES.items():
                 names = names if level == 1 else [n + " (L2)" for n in names]
