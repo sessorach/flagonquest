@@ -1569,6 +1569,13 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             pc['pos'] = pos
         for e, pos in zip(enemies, _start_positions(len(enemies), x=enemy_x)):
             e['pos'] = pos
+        # Ambushers (e['ambush'], a per-fight test flag) start right in
+        # front of the party's front row instead of across the gap - for
+        # minions that would otherwise die walking in (horde_experiments.py).
+        ambushers = [e for e in enemies if e.get('ambush')]
+        front_x = party_x + T.PARTY_FORMATION_SPACING // 2 + 1
+        for e, pos in zip(ambushers, _start_positions(len(ambushers), x=front_x, spread=2)):
+            e['pos'] = pos
 
     # Rolled once at encounter start, fixed for the whole fight (see
     # _roll_initiative's own docstring) - every round replays this same
