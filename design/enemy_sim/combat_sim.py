@@ -1317,12 +1317,14 @@ def _apply_to_pc(target, effect, stacks, source):
 
 
 STRIKE_RIDERS = {
+    # 2026-10-01 draft: riders measured at well under one pick's worth
+    # (~1 Health) get 2 stacks instead of a fractional cost.
     'Strike (Crippling)': ('Crippled', 1),
-    'Strike (Vulnerable)': ('Vulnerable', 1),
+    'Strike (Vulnerable)': ('Vulnerable', 2),
     'Poison (Bleeding)': ('Bleeding', 2),
-    'Strike (Slowing)': ('Slowed', 1),
+    'Strike (Slowing)': ('Slowed', 2),
     'Strike (Frightening)': ('Frightened', 1),
-    'Strike (Taunting)': ('Taunted', 1),
+    'Strike (Taunting)': ('Taunted', 2),
 }
 
 

@@ -102,7 +102,11 @@ ENEMY_STAT_LAG = 1
 # rounds at 10). Levels 3-5 are penciled until the sample parties go
 # past Level 2. ENEMY_HEALTH_BASE, when set, overrides every Level
 # (margin_sweep.py and other sweeps use it).
-ENEMY_HEALTH_BY_LEVEL = {1: 10, 2: 12, 3: 14, 4: 16, 5: 18}
+# 2026-10-01 draft rules (option 1): 3 lower at every Level than the
+# pre-draft 10/12/14/16/18, to make room for an archetype plus a full
+# ability allotment (ENEMY_ENCOUNTER_DESIGN.md, "Draft: the ability
+# catalog at 1 pick = 1 Health").
+ENEMY_HEALTH_BY_LEVEL = {1: 7, 2: 9, 3: 11, 4: 13, 5: 15}
 ENEMY_HEALTH_BASE = None
 # Flat bonus on every damaging enemy attack, on top of the weapon/spell
 # table. Part of the enemy baseline (like Health above), not a player
@@ -123,8 +127,33 @@ ENEMY_DEFENSE_LAG = 0
 # values get worked out: -2 Health, about what +1 Physical Resist less
 # 1 Dodge came to in archetype_compare.py (ENEMY_ENCOUNTER_DESIGN.md).
 HEAVY_ARMOR_MIN_LEVEL = 3
-HEAVY_ARMOR_ABILITY_COST = 10
-MEDIUM_ARMOR_HEALTH_TRADE = 2
+
+# ---- 2026-10-01 draft rules: one ability pick = about 1 Health ----
+# Every Defense one lower than the Level's Skill tier (the other half of
+# option 1's baseline trim, alongside Health above).
+ENEMY_DEFENSE_SHIFT = -1
+# Picks per Level per Encounter Slot, rounded up - the spreadsheet's
+# ability counts (tunables.ABILITY_RATE: 2/3/4/5/8). Costs from the
+# draft table. Armor is priced from Light, the free baseline. Leftover
+# picks become +1 Health each, so every enemy spends its full allotment.
+PICK_COST = {
+    "Strike (Crippling)": 1, "Strike (Vulnerable)": 1, "Strike (Slowing)": 1,
+    "Strike (Frightening)": 1, "Strike (Taunting)": 1, "Poison (Bleeding)": 1,
+    "Durable": 2, "Heavy Weapon": 2, "Powerful Weapon": 2, "Powerful Spell": 2,
+    "Enhanced Health": 1,  # +1 Health per copy
+}
+ARMOR_PICKS = {"Unarmored": 0, "Light": 0, "Medium": 1, "Heavy": 2}
+# The draft archetypes (the spreadsheet's Roles, evened out to roughly
+# 3-4 picks each). Defender stands in for a shield, Bruiser for a
+# two-hander; every melee enemy's weapon is a light one-hander otherwise.
+ROLE_ADDS = {
+    "Defender": {"parry": 2, "dodge": 2},
+    "Backup": {"res": 1, "bodily": 1, "mental": 1},
+    "Striker": {"dmg": 1},
+    "Bruiser": {"dmg": 1, "parry": -1, "dodge": -1},
+    "Skirmisher": {"speed": 1, "dodge": 1, "acc": 1},
+    "Strategist": {"acc": 1, "dodge": 1, "mental": 1},
+}
 DEFAULT_STAT_ORDER = ["body", "agility", "essence", "cunning", "mind"]
 
 # sample_pcs.csv's own Baseline Health by Tier - the PC-equivalent
@@ -181,7 +210,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
                          defense_tiers=None, attack_tier="secondary",
                          health_bonus=0, defense_adj=0, accuracy_adj=0,
                          damage_adj=0, resist_adj=0, abilities=(), main_effect=None, backup_action=None,
-                         stat_order=None):
+                         stat_order=None, role=None):
     """`defense_adj`/`accuracy_adj`/`damage_adj`/`resist_adj`: flat,
     across-the-board sensitivity-testing knobs - NOT a per-archetype
     Ability or a per-build design choice, just a uniform nudge to
@@ -203,16 +232,18 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
         # Below Level 1: one less than Level 1's tiers, same step size.
         def_tiers = {k: v - 1 for k, v in SKILL_TOTAL_BY_LEVEL[1].items()}
 
+    adds = ROLE_ADDS.get(role or "", {})
+
     def def_total(category):
         tier = defense_tiers.get(category, "poor")
-        return 8 + def_tiers[tier] + defense_adj
+        return 8 + def_tiers[tier] + defense_adj + ENEMY_DEFENSE_SHIFT + adds.get(category, 0)
 
     # Accuracy is a plain Skill Total (no +8 - that's Defense's own
     # baseline, per party.py's real attack-roll formula), plus the
     # Action's small weapon-proficiency bonus, same shape as
     # tunables.WEAPON's own `accuracy` field.
-    accuracy = tiers[attack_tier] + act["acc_mod"] + accuracy_adj
-    attack_damage = act["dmg_base"] + stat[act["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS
+    accuracy = tiers[attack_tier] + act["acc_mod"] + accuracy_adj + adds.get("acc", 0)
+    attack_damage = act["dmg_base"] + stat[act["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS + adds.get("dmg", 0)
     dmg_type = act["dmg_type"]
     opp_def = act["opp_def"]
     attack_range = act["range"] * level + (2 if act["range"] else 0)
@@ -226,31 +257,31 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     # Resist - Essence alone (party.py: "Resist starts equal to your
     # Essence"), completely decoupled from attack_damage above, unlike
     # enemy_builder.py's shared DMG_RESIST curve.
-    physres = stat["essence"] + T.ARMOR[armor]["physres"] + resist_adj
-    elemres = stat["essence"] + resist_adj
+    physres = stat["essence"] + T.ARMOR[armor]["physres"] + resist_adj + adds.get("res", 0)
+    elemres = stat["essence"] + resist_adj + adds.get("res", 0)
 
     if armor == "Heavy" and level < HEAVY_ARMOR_MIN_LEVEL:
         raise ValueError(f"{name}: Heavy Armor is Level {HEAVY_ARMOR_MIN_LEVEL}+ only")
-    armor_trade = MEDIUM_ARMOR_HEALTH_TRADE if armor == "Medium" else 0
     base_health = ENEMY_HEALTH_BASE if ENEMY_HEALTH_BASE is not None else ENEMY_HEALTH_BY_LEVEL[level]
-    health = math.ceil((base_health + health_bonus - armor_trade) * T.SLOT_MULTIPLIER[slots])
-    speed = math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"]
+    health = math.ceil((base_health + health_bonus) * T.SLOT_MULTIPLIER[slots])
+    speed = math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"] + adds.get("speed", 0)
     reflex = 2 + level
 
     # Same Ability-budget formula/check as enemy_builder.build_enemy -
     # this builder skips the synthetic Level curve for Accuracy/Damage/
     # Resist/Defense, but the Ability catalog itself (and its budget)
     # isn't part of that curve, so there's no reason to reinvent it.
-    ability_budget = math.ceil(T.ABILITY_RATE[level] * slots) * 5
-    ability_cost = sum(T.ABILITY_COST[a] for a in abilities)
-    if armor == "Heavy":
-        ability_cost += HEAVY_ARMOR_ABILITY_COST
-    if ability_cost > ability_budget:
-        raise ValueError(f"{name}: abilities cost {ability_cost}, only {ability_budget} available")
+    picks = math.ceil(T.ABILITY_RATE[level] * slots)
+    picks_used = sum(PICK_COST[a] for a in abilities) + ARMOR_PICKS[armor]
+    if picks_used > picks:
+        raise ValueError(f"{name}: abilities and armor cost {picks_used} picks, only {picks} available")
+    ability_budget, ability_cost = picks * 5, picks_used * 5  # in points, for older scripts' printouts
 
-    if "Enhanced Health" in abilities:
-        health += 3
-    if "Powerful Weapon" in abilities:
+    # Enhanced Health copies, plus every leftover pick, at +1 Health each.
+    # Applied after the slot multiplier, so a minion's leftover picks
+    # still count in full.
+    health += abilities.count("Enhanced Health") + (picks - picks_used)
+    if "Powerful Weapon" in abilities or "Heavy Weapon" in abilities:
         attack_damage += 1
         accuracy -= 1
         parry -= 1
@@ -261,8 +292,9 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     def _profile(action_name):
         a = ACTIONS[action_name]
         return dict(action=action_name,
-                    accuracy=tiers[attack_tier] + a["acc_mod"] + accuracy_adj,
-                    attack_damage=a["dmg_base"] + stat[a["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS if a["dmg_base"] else 0,
+                    accuracy=tiers[attack_tier] + a["acc_mod"] + accuracy_adj + adds.get("acc", 0),
+                    attack_damage=a["dmg_base"] + stat[a["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS + adds.get("dmg", 0)
+                    if a["dmg_base"] else 0,
                     dmg_type=a["dmg_type"], opp_def=a["opp_def"],
                     attack_range=a["range"] * level + (2 if a["range"] else 0))
 
@@ -279,7 +311,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     if kind != "attack":
         attack_damage = 0
 
-    return dict(name=name, level=level, slots=slots, role="None", action=action,
+    return dict(name=name, level=level, slots=slots, role=role or "None", action=action,
                 kind=kind, main_effect=main_effect or {"support": "Protected", "heal": "Health"}.get(kind),
                 effect_stacks=effect_stacks, backup=backup, stats=stat,
                 accuracy=accuracy, attack_damage=attack_damage, dmg_type=dmg_type,
