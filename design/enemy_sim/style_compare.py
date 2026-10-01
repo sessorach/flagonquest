@@ -9,6 +9,9 @@ Level 2 party against the four current Level 2 mixes. The measure is the
 party's expected Health left (losses count as 0), so it covers both "did
 they win" and "what did it cost".
 
+Unpaired runs were too noisy for this (2026-10-01: one PC's +2 Health
+read as worse than +0), so every variant now uses the same seeds.
+
 Usage: python3 style_compare.py GROUP [trials]
 GROUP: hilde, carrick, browndog, beornhard (or all)"""
 import sys, os, statistics as st
@@ -49,9 +52,15 @@ def make_party(names, carrier, passives_add=(), health=0):
 def run(names, carrier, passives_add, health, trials):
     cs.make_party = lambda t, good_luck=0: make_party(names, carrier, passives_add, health)
     scores = []
-    for mix in se.CURRENT_MIXES:
-        for _ in range(trials):
-            r = cs.run_fight(1, 2, movement=True, enemies=se.build_encounter(se.ENCOUNTERS[2][mix]))
+    # Paired seeds: every variant replays the same fights (same starting
+    # gap, initiative, card flips until the Style first changes
+    # something), so the comparison isn't swamped by fight-to-fight luck.
+    # One PC's Style only moves the party's result by a point or two,
+    # about the size of that luck across a few thousand unpaired fights.
+    for mi, mix in enumerate(se.CURRENT_MIXES):
+        for k in range(trials):
+            r = cs.run_fight(1, 2, movement=True, enemies=se.build_encounter(se.ENCOUNTERS[2][mix]),
+                             seed=100_000 * mi + k)
             scores.append(100 * r["party_hp_pct"] if r["winner"] == "party" else 0.0)
     return st.mean(scores)
 
