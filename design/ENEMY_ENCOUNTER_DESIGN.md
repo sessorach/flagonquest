@@ -1309,3 +1309,19 @@ Armor, while two Striker archers hit back. The archers' Vulnerable is
 wasted there, since nothing in the mix attacks Vital or Mental. Open
 question: accept Shield Wall as the hard counter to a weapon party, or
 make its archers Skirmishers.
+
+**Shield Wall is staying as a counter-fight** (designer, 2026-10-01). At
+Level 2, every party with any elemental damage wins it most of the time:
+
+| Party | Elemental damage | Shield Wall wins |
+|---|---|---|
+| B | Wren's Fire War Magic, Jackal's Bottled Fire | 72% |
+| C | Beornhard's Fire War Magic | 89% |
+| D | Beornhard's Fire, Felix's Brilliant strikes | 83% |
+| A | none (all weapons) | 40% |
+
+A fight that counters a lopsided party is fine and encourages variety,
+so the sim shouldn't tune around party A's result. The way to cover this
+in the sim is to model weapon-based elemental options (elemental
+strikes and the like) when they come up, not to soften the mix.
+

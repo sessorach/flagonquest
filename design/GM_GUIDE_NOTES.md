@@ -425,6 +425,13 @@ a hit, there to bog down the party's front line, plus a damage caster in
 the back throwing spells at Vital. A complicated one might be a pack of
 minions, with a damage caster and a debuffer behind them.
 
+It's fine for a fight to be built to counter a kind of party. A shield
+wall of armored Defenders backed by archers is hard on a party that only
+deals weapon damage, and that's on purpose: it pushes players to bring
+some variety (a caster, elemental damage on a weapon) instead of every
+fight being tuned around whatever the party happens to be. Don't soften
+a counter-fight just because one lopsided party struggles with it.
+
 ### How close this gets to the simulator's enemies
 
 Level 2, built both ways:
