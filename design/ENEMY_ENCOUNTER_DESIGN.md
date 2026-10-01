@@ -1242,3 +1242,46 @@ of that. Two ways to make room:
 - **Keep this baseline** and cut the allotment to the archetype plus 1
   pick at Level 2. That's the smallest change, but it leaves little
   room for variety.
+
+### The roster under the draft rules (2026-10-01)
+
+Option 1 applied: baseline Health 7/9/11/13/15, every Defense −1, the
+draft archetypes on every enemy, abilities and armor bought with picks
+(2/3/4/5/8 per slot) at the draft costs, and leftover picks as +1 Health
+each. Melee enemies swing a light one-hander. Defender stands in for a
+shield and Bruiser for a two-hander, and Heavy Weapon is a 2-pick buy.
+
+At Level 2, per enemy:
+
+| Enemy | Archetype | Picks |
+|---|---|---|
+| Hedge Knight | Defender | Medium Armor, Taunting, +1 Health |
+| Brute | Bruiser | Heavy Weapon, Crippling |
+| Warpriest | Backup | Medium Armor, Frightening, +1 Health |
+| Marsh Archer | Striker | Vulnerable, +2 Health |
+| Footpad | Skirmisher | Bleeding, +2 Health |
+| Grave Caller, Ember Caster | Striker | Vulnerable, +2 Health |
+| Bog Hexer | Strategist | +3 Health |
+| Goblin | Striker, 2 picks | Slowing, +1 Health |
+
+`level_baseline.py 300 --current-only` (Fighting Styles off), against
+the styles-off baseline from before the draft:
+
+| Level 2 mix | Before the draft | Draft rules |
+|---|---|---|
+| Frontline | 88-97% wins, 4.0-5.2 rounds, 51-68% Health left | 83-90%, 3.5-4.6 rounds, 52-62% |
+| Warband | 96-100%, 4.5-5.6 rounds, 59-85% | 94-97%, 4.7-5.9 rounds, 58-84% |
+| Shield Wall | 68-87%, 5.3-7.3 rounds, 37-71% | 38-87%, 5.0-5.5 rounds, 35-65% |
+| Horde | 100%, 3.4-4.7 rounds, 82-88% | 99-100%, 3.3-4.5 rounds, 81-84% |
+
+**Level 1 (Health 7):** Frontline and Warband are 79-100% wins but
+short, at 2.5-4.9 rounds. Shield Wall is 71-92% in 4.4-6 rounds.
+
+- **The conversion mostly holds.** Frontline and Warband land about
+  where they were, so baseline − (Health 3 + Defense 1) + archetype +
+  full picks comes out close to the old balance point.
+- **Shield Wall got harder for the weapon parties** (party A 38%, B
+  65%). The Hedge Knights still reach Parry 18, and the archers now hit
+  harder (Striker +1 Damage, 2 stacks of Vulnerable).
+- **Level 1 fights are on the short side** at Health 7. The Level 1 trim
+  may want to be smaller than Level 2's.
