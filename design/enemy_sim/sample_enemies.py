@@ -222,8 +222,11 @@ ENCOUNTERS = {
         "Shield Wall": [_lv(n, level) for n in ("Hedge Knight", "Hedge Knight", "Marsh Archer", "Marsh Archer")],
         "Warband": [_lv(n, level) for n in ("Brute", "Skulking Footpad", "Skulking Footpad", "Warpriest")],
         # The Slot rule: 4 PCs = 4 Slots; each Minion is 0.5.
+        # Two casters behind the minions: with a Hexer in the second
+        # slot, nearly all of Horde's damage came from one caster
+        # (2026-10-01 horde_experiments.py).
         "Horde": [_lv(n, level) for n in ("Goblin Cutthroat", "Goblin Cutthroat", "Goblin Cutthroat",
-                                          "Goblin Cutthroat", "Ember Caster", "Bog Hexer")],
+                                          "Goblin Cutthroat", "Ember Caster", "Ember Caster")],
         # Retired mixes (four different stat blocks, or two non-attackers),
         # kept so older scripts and their recorded numbers still run.
         "Classic": [_lv(n, level) for n in ("Hedge Knight", "Marsh Archer", "Skulking Footpad", "Fen Warden")],

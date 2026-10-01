@@ -134,7 +134,7 @@ HEAVY_ARMOR_MIN_LEVEL = 3
 # Every Defense one lower than the Level's Skill tier (the other half of
 # option 1's baseline trim, alongside Health above).
 ENEMY_DEFENSE_SHIFT = -1
-# Picks per Level per Encounter Slot, rounded up - the spreadsheet's
+# Picks per Level per Encounter Slot, rounded down - the spreadsheet's
 # ability counts (tunables.ABILITY_RATE: 2/3/4/5/8). Costs from the
 # draft table. Armor is priced from Light, the free baseline. Leftover
 # picks become +1 Health each, so every enemy spends its full allotment.
@@ -275,7 +275,10 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     # this builder skips the synthetic Level curve for Accuracy/Damage/
     # Resist/Defense, but the Ability catalog itself (and its budget)
     # isn't part of that curve, so there's no reason to reinvent it.
-    picks = math.ceil(T.ABILITY_RATE[level] * slots)
+    # Rounded down, so a half-slot minion gets 1 pick at Level 2, not 2
+    # (two of them would otherwise out-pick the one full enemy they stand
+    # in for).
+    picks = math.floor(T.ABILITY_RATE[level] * slots)
     picks_used = sum(PICK_COST[a] for a in abilities) + ARMOR_PICKS[armor]
     if picks_used > picks:
         raise ValueError(f"{name}: abilities and armor cost {picks_used} picks, only {picks} available")

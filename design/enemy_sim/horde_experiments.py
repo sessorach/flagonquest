@@ -10,6 +10,10 @@ half-slot minions at 1/2 Health:
    Health and picks). Everything else is the same. Minion versions also
    run at 1/3 Health, the old ratio, for reference.
 
+Second round (after the designer's go-ahead): minions back at 1/3 Health
+with picks rounded down, Horde's Hexer swapped for a second Ember Caster,
+and a 1/4 Health bracket for the minion versions.
+
 Usage: python3 horde_experiments.py [trials]"""
 import sys, os, copy, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -57,16 +61,14 @@ H = se.ENCOUNTERS[2]["Horde"]
 H2 = [n if n != "Bog Hexer (L2)" else "Ember Caster (L2)" for n in H]
 SW, FL = se.ENCOUNTERS[2]["Shield Wall"], se.ENCOUNTERS[2]["Frontline"]
 VARIANTS = [
-    ("Horde as is", full(H), 0.5),
-    ("Horde, minions ambush", ambush(full(H)), 0.5),
-    ("Horde, 2nd caster for the Hexer", full(H2), 0.5),
-    ("Horde, 2nd caster + ambush", ambush(full(H2)), 0.5),
-    ("Shield Wall", full(SW), 0.5),
-    ("Shield Wall, minion version (1/2)", minions(SW), 0.5),
+    ("Horde (2 casters, current)", full(H), 1 / 3),
+    ("Horde, minions ambush", ambush(full(H)), 1 / 3),
+    ("Shield Wall", full(SW), 1 / 3),
     ("Shield Wall, minion version (1/3)", minions(SW), 1 / 3),
-    ("Frontline", full(FL), 0.5),
-    ("Frontline, minion version (1/2)", minions(FL), 0.5),
+    ("Shield Wall, minion version (1/4)", minions(SW), 1 / 4),
+    ("Frontline", full(FL), 1 / 3),
     ("Frontline, minion version (1/3)", minions(FL), 1 / 3),
+    ("Frontline, minion version (1/4)", minions(FL), 1 / 4),
 ]
 
 
@@ -95,4 +97,4 @@ if __name__ == "__main__":
             w, r, h, a = run(L2(names), build, trials)
             cells.append(f"{pn}: {w:3.0f}% {r:4.1f}r {h:3.0f}% {a:4.1f}a")
         print(f"{label:36} " + " | ".join(cells), flush=True)
-    T.SLOT_MULTIPLIER[0.5] = 0.5
+    T.SLOT_MULTIPLIER[0.5] = 1 / 3
