@@ -1447,3 +1447,49 @@ fire. A minion that survives a hit would need about 6 Health at Level 2,
 the 1/2 ratio, which made minion versions of normal enemies far too
 strong. If the designer wants sturdier fodder, it likely needs its own
 minion trade-off (more Health, weaker attack), not more armor.
+
+### Baseline + Upgrades (2026-10-01)
+
+Per the designer: a bare baseline plus an allotment of **Upgrades**,
+where +1 Health is one Upgrade among the rest. Upgrades climb faster
+than baseline Health, so higher Levels get more room to customize and
+stack effects:
+
+| Level | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| Baseline Health | 6 | 6 | 7 | 8 | 9 |
+| Upgrades | 4 | 6 | 8 | 10 | 14 |
+
+Each Level's baseline + Upgrades matches the earlier baseline + picks,
+so all 45 roster enemies build identically. Minions get a third of the
+Upgrades, rounded up like their Health. At these numbers a pair of
+minions still gets fewer than the one enemy they stand in for (Level 2:
+2 × 2 = 4 against 6). The `level_baseline.py` rerun matched the
+previous baseline within noise. Levels 3-5 are penciled.
+
+**Does the model hold?** `upgrade_configs.py 200`: every full-size
+enemy in Frontline, Shield Wall and Warband gets the same Level 2
+loadout (6 Upgrades, archetype and Action kept), against parties A-D.
+Each result is read against all-Health on a ±2 Health scale (1 enemy
+Health ≈ 3.9 points of party Health here; noise about ±0.3):
+
+| Loadout | vs all-Health | Rounds |
+|---|---|---|
+| Roster (each enemy's own role-fitted picks) | +1.5 stronger | 3.4-6.2 |
+| Heavy hitter (Heavy Weapon / Powerful Spell, +4 Health) | +0.1 | 3.4-5.4 |
+| Turtle (Medium Armor, Durable, +3 Health) | −0.2 | 3.5-6.6 |
+| Rider stack (4 riders, +2 Health) | −0.4 | 2.7-5.2 |
+| Glass cannon (offense buy + 4 riders, no extra Health) | −1.8 weaker | 2.3-4.1 |
+
+- **Generic loadouts come out even,** so the costs are about right.
+  Stacked riders don't snowball.
+- **Glass cannon is weaker than its price.** At 6 Health an enemy drops
+  in one or two hits before its effects pay off; the 1:1 rate breaks
+  down at the bottom of the Health range. Proposed fix: a Health floor
+  of a third of the Upgrades (2 at Level 2).
+- **Role-fitted loadouts run about 1.5 Health above their price**
+  (Taunting on the shield tank, Medium Armor on the front line,
+  Bleeding on skirmishers; most visible in Warband). That's a reward for
+  building to the enemy's job, worth a GM-guide note rather than a fix.
+- **Upgrades set fight length.** Offense-heavy loadouts shorten fights
+  to 2-4 rounds; Health and Turtle stretch them toward 5-6.
