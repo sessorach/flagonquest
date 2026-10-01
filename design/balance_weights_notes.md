@@ -8223,3 +8223,43 @@ and 64-80% party HP left in the attacker mixes; it's a rules change
 designer. Coven and Chapel are still too easy: their casters are
 single-attack (Guarded/Aimed Shot) and two of Chapel's four don't deal
 damage.
+
+## Styles in the simulator (2026-10-01)
+
+`enemy_sim/style_compare.py GROUP 600`: each Style on a party of four
+copies of the carrier (all carrying it), against the four current Level 2
+mixes, priced on a ladder of +1/+2 Health on every PC at THE TABEL's 4
+Value per Health, against the Style budget of Level × 3.6.
+
+Two earlier attempts were too noisy to use. Both put the Style on one
+carrier in a mixed party, first unpaired and then with paired seeds. One
+PC's Health changes who Challenge protects, who Assassins chase and who
+gets healed, so even paired fights split apart from turn 1, and the
+Health ladder wasn't monotonic. With four copies the ladders came out
+clean.
+
+| Style | Level | Carrier | Worth (Value) | Target | Share |
+|---|---|---|---|---|---|
+| Indomitable Phalanx | 2 | Browndog | +8.0 | 7.2 | 111% |
+| Hand of Chaos | 2 | Carrick | +6.8 | 7.2 | 94% |
+| Inexhaustible Guardian | 3 | Browndog | +7.3 | 10.8 | 68% (on target for Level 2) |
+| Overchanneling | 3 | Beornhard | +1.8 | 10.8 | 16% |
+| Lawman's Hand | 2 | Hilde | 0.0 | 7.2 | not measurable (see below) |
+| Furious Rage | 2 | Hilde | −10.0 | 7.2 | net loss |
+
+- **Phalanx and Hand of Chaos are on budget.** Phalanx had been flagged
+  as probably weak; the sim says it isn't.
+- **Inexhaustible Guardian prices like a Level 2 Style.** Browndog
+  already runs it at Level 2.
+- **Overchanneling comes out far under its Level.** The +1 damage only
+  applies to War Magic casts, which run out partway through a fight,
+  while losing Parry (13 → Dodge 10) lasts the whole fight. Caveat: four
+  Beornhards win easily (78% Health left), which compresses the scale,
+  so read it as "well under" rather than an exact figure.
+- **Furious Rage is a net loss as written.** Losing Parry costs a 2H
+  fighter about 3 Defense against every melee attack (Hilde: Parry 15 →
+  Dodge 12). One Bleeding per hit or Parry doesn't make that back.
+- **Lawman's Hand can't be measured here.** In 200 fights a Slowed enemy
+  took a move action only twice, because once enemies reach melee they
+  never move again. The sim has no disengaging, chasing or
+  repositioning, which is where Slowed pays off.
