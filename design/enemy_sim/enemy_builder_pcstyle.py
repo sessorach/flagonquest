@@ -155,6 +155,22 @@ ARMOR_PICKS = {"Unarmored": 0, "Light": 0, "Medium": 1, "Heavy": 2}
 # enemy that dropped before its effects paid off - weaker than its price
 # (upgrade_configs.py, "Glass cannon"). Set to 0 to test past it.
 HEALTH_FLOOR_FRACTION = 1 / 3
+
+# Codified hand-build rules (2026-10-01). Damage Stat and Resist come from
+# the main Action's category, as positions in the Stat spread (0 = High,
+# 1 = Mid, 3 = Low): fighters put their best Stat into damage and their
+# worst into Resist, casters keep Mid Resist, supports lead with Resist.
+CATEGORY_STATS = {"weapon": (0, 3), "spell": (0, 1), "support": (1, 0)}
+STRONG_DEFENSE_CHOICES = ("Dodge", "Vital", "Mental", "Vigilant")
+
+
+def action_category(action):
+    a = ACTIONS[action]
+    if a.get("kind") in ("support", "heal"):
+        return "support"
+    if a.get("kind") == "hex" or a["dmg_type"] not in (None, "Physical"):
+        return "spell"
+    return "weapon"
 # The draft archetypes (the spreadsheet's Roles, evened out to roughly
 # 3-4 picks each). Defender stands in for a shield, Bruiser for a
 # two-hander; every melee enemy's weapon is a light one-hander otherwise.
@@ -224,7 +240,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
                          defense_tiers=None, attack_tier="secondary",
                          health_bonus=0, defense_adj=0, accuracy_adj=0,
                          damage_adj=0, resist_adj=0, abilities=(), main_effect=None, backup_action=None,
-                         stat_order=None, role=None):
+                         stat_order=None, role=None, strong_defense=None):
     """`defense_adj`/`accuracy_adj`/`damage_adj`/`resist_adj`: flat,
     across-the-board sensitivity-testing knobs - NOT a per-archetype
     Ability or a per-build design choice, just a uniform nudge to
@@ -235,11 +251,27 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     above are the actual build; these four are a dial for exploring
     around that build, not part of it."""
     tiers = SKILL_TOTAL_BY_LEVEL[level]
-    order = [x.strip().lower() for x in (stat_order or DEFAULT_STAT_ORDER)]
-    stat = dict(zip(order, PC_STAT_SPREAD_BY_LEVEL[max(0, level - ENEMY_STAT_LAG)]))
-    stat["body_or_cunning"] = max(stat["body"], stat["cunning"])
-    defense_tiers = defense_tiers or {}
     act = ACTIONS[action]
+    if strong_defense:
+        # The codified hand-build rules (GM_GUIDE_NOTES.md, "Enemy stat
+        # blocks by hand"): no per-enemy judgment calls. Attack is always
+        # the Secondary tier; Parry is always Secondary and every other
+        # Defense Poor, except the one Strong Defense, which is Primary;
+        # Damage Stat and Resist come from the main Action's category.
+        if strong_defense not in STRONG_DEFENSE_CHOICES:
+            raise ValueError(f"{name}: Strong Defense must be one of {STRONG_DEFENSE_CHOICES}")
+        attack_tier = "secondary"
+        defense_tiers = {"parry": "secondary", strong_defense.lower().replace("vital", "bodily"): "primary"}
+        spread = PC_STAT_SPREAD_BY_LEVEL[max(0, level - ENEMY_STAT_LAG)]
+        dmg_col, res_col = CATEGORY_STATS[action_category(action)]
+        dmg_val, res_val = spread[dmg_col], spread[res_col]
+        stat = {k: dmg_val for k in ("body", "cunning", "mind", "agility", "body_or_cunning")}
+        stat["essence"] = res_val
+    else:
+        order = [x.strip().lower() for x in (stat_order or DEFAULT_STAT_ORDER)]
+        stat = dict(zip(order, PC_STAT_SPREAD_BY_LEVEL[max(0, level - ENEMY_STAT_LAG)]))
+        stat["body_or_cunning"] = max(stat["body"], stat["cunning"])
+    defense_tiers = defense_tiers or {}
 
     def_tiers = SKILL_TOTAL_BY_LEVEL[max(1, level - ENEMY_DEFENSE_LAG)] if ENEMY_DEFENSE_LAG else tiers
     if ENEMY_DEFENSE_LAG and level - ENEMY_DEFENSE_LAG < 1:
