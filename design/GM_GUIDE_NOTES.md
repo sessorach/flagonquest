@@ -323,38 +323,44 @@ spreadsheet put a player's combat share at about 70%).
 - **Anything that's an overall gain costs Upgrades:** more Health,
   better armor, a heavier weapon, a debuff on hit. For a player these
   cost XP, like the Might it takes to wear Medium Armor.
-- **A trade is a free choice:** the archetype, which Defenses are
-  strong, the main Action, and the element of a spell.
-- **One Upgrade is worth about 1 Health.** That's what lets +1 Health
-  sit on the menu next to everything else.
+- **A trade is a free choice:** the archetype, the main Action, the
+  Strong Defense.
+- **One Upgrade is worth about 1 Health.** That's why +1 Health sits on
+  the Upgrade menu next to everything else.
 
-### Step 1: Level baseline
+### The process
+
+Every step is a pick from a list or a lookup. The GM decides what the
+enemy is and how it spends its Upgrades; the budget is never a judgment
+call.
+
+```mermaid
+flowchart TD
+    L["1. Level<br/>look up the baseline row"] --> A["2. Archetype<br/>pick 1 of 6"]
+    A --> X["3. Main Action<br/>pick 1; its type sets Damage Stat and Resist"]
+    X --> D["4. Strong Defense<br/>pick Dodge, Vital, Mental or Vigilant"]
+    D --> U["5. Upgrades<br/>spend the allotment, a third stays Health"]
+    U --> S["6. Write the stat block"]
+```
+
+#### Step 1: Level
 
 | Level | 1 | 2 | 3 | 4 | 5 |
 |---|---|---|---|---|---|
-| Attack Skill (Primary for a focused attacker) | 5 (6) | 7 (8) | 8 (9) | 9 (10) | 10 (11) |
-| Defense: Poor / Secondary / Primary | 11/12/13 | 13/14/15 | 14/15/16 | 15/16/17 | 16/17/18 |
-| Damage Stat | 2 | 3 | 4 | 4 | 5 |
-| Resist: Low / Mid / High | 1/2/2 | 1/2/3 | 1/3/4 | 2/4/4 | 2/4/5 |
+| Attack | 6 | 8 | 9 | 10 | 11 |
+| Parry | 12 | 14 | 15 | 16 | 17 |
+| Other Defenses | 11 | 13 | 14 | 15 | 16 |
+| Strong Defense | 13 | 15 | 16 | 17 | 18 |
+| Stat: High / Mid / Low | 2/2/1 | 3/2/1 | 4/3/1 | 4/4/2 | 5/4/2 |
 | Health | 6 | 6 | 7 | 8 | 9 |
 | Upgrades | 4 | 6 | 8 | 10 | 14 |
 | Speed / Reflex | 3 / 3 | 3 / 4 | 4 / 5 | 4 / 6 | 5 / 7 |
 
-- **Defenses:** pick one Primary and one or two Secondary out of Parry,
-  Dodge, Vital, Mental and Vigilant; the rest are Poor. Every enemy
-  should have a weak spot a player can read from the fiction.
-- **Damage Stat** is added to the Action's base damage (Step 3). A
-  support enemy uses the Mid Resist value as its Damage Stat instead.
-- **Resist** is the same against everything; armor adds to Physical
-  only. Fighters usually take Low, casters Mid, supports High.
-- **Upgrades** are spent in Step 4. At least a third of them stay as
-  +1 Health (2 of 6 at Level 2). Any left unspent become +1 Health too.
+"Other Defenses" covers Dodge, Vital, Mental and Vigilant. Parry starts
+one higher than those, so an option that lowers or removes Parry (Heavy
+Weapon, Powerful Spell, Bruiser) makes the enemy easier to hit.
 
-### Step 2: Archetype (pick one)
-
-Each one is a trade, roughly even with the others. Defender stands in
-for a shield and Bruiser for a two-hander; otherwise a melee enemy
-fights with a light one-hander.
+#### Step 2: Archetype (pick one)
 
 | Archetype | Adds | Good for |
 |---|---|---|
@@ -365,62 +371,116 @@ fights with a light one-hander.
 | Strategist | Accuracy +1, Dodge +1, Mental +1 | Hexers, controllers |
 | Backup | Resist +1, Vital +1, Mental +1 | Healers, shield-casters |
 
-### Step 3: The one thing it does
+#### Step 3: Main Action (pick one)
 
-Each enemy gets one main Action. One that doesn't deal damage also gets
-a backup attack.
+Any Action works with any archetype. The Action's type decides which
+Stat column (from Step 1) is its Damage Stat and which is its Resist:
+
+| Type | Actions | Damage Stat | Resist |
+|---|---|---|---|
+| Weapon | Melee weapon, Ranged weapon | High | Low |
+| Spell | Fire spell, Shadow spell, Fire against Vital, Hex | High | Mid |
+| Support | Shield Ally, Mend Ally | Mid | High |
 
 | Action | Accuracy | Damage | Against | Range |
 |---|---|---|---|---|
-| Melee weapon (light one-hander) | +1 | 3 + Damage Stat, Physical | Parry/Dodge | Melee; Parry +1 |
+| Melee weapon (light one-hander) | +1 | 3 + Damage Stat, Physical | Parry/Dodge | Melee; also Parry +1 |
 | Ranged weapon (light bow) | +1 | 3 + Damage Stat, Physical | Parry/Dodge | 3 × Level + 2 |
 | Fire spell | +0 | 2 + Damage Stat, Fire | Dodge | Melee, or 2 × Level + 2 |
 | Shadow spell | +0 | 2 + Damage Stat, Shadow | Vital or Dodge | 2 × Level + 2 |
 | Fire against Vital | +0 | 2 + Damage Stat, Fire | Vital | 2 × Level + 2 |
-| Hex | +0 | none; lands a debuff | Mental | 2 × Level + 2 |
-| Shield Ally | never misses | Protected to an ally | — | adjacent |
-| Mend Ally | never misses | heals an ally | — | adjacent |
+| Hex | +0 | none; lands 3 stacks of a debuff (4 at Levels 3-4, 5 at Level 5) | Mental | 2 × Level + 2 |
+| Shield Ally | never misses | 2 Protected to an ally (3 at Levels 4-5) | — | adjacent |
+| Mend Ally | never misses | heals an ally 2 (3 at Levels 4-5) | — | adjacent |
 
-- **Hex** lands 3 stacks of one debuff at Levels 1-2, 4 at Levels 3-4,
-  and 5 at Level 5. Crippled and Slowed work best.
-- **Shield Ally and Mend Ally** can't miss, so they're priced like an
-  average enemy hit: 2 at Levels 1-3, 3 at Levels 4-5.
-- **Battle Tactic:** attack whatever's nearest, go for the weak or
-  isolated (Assassin), keep at range (Kiting), or for supports, help
-  the most hurt ally. The Fighting Style picker (Guarded, Flurry and the
-  rest) is shelved for now: enemies just move and attack, up to twice a
-  turn.
+A Hex or support enemy also picks a backup attack from the first five
+rows, used when there's nothing to hex or help. It uses the same Damage
+Stat. For a Hex, Crippled and Slowed work best.
 
-### Step 4: Upgrades
+Pick a Battle Tactic too: attack whatever's nearest, go for the weak or
+isolated (Assassin), keep at range (Kiting), or for supports, help the
+most hurt ally. (The Fighting Style picker is shelved for now: enemies
+just move and attack, up to twice a turn.)
+
+#### Step 4: Strong Defense (pick one)
+
+Raise one of Dodge, Vital, Mental or Vigilant to the Strong Defense
+value from Step 1. It's the enemy's other defensive strength, the thing
+a player can read from the fiction: Dodge for something quick, Vital for
+something hardy, Mental for a strong will, Vigilant for something hard
+to fool. Parry isn't on the list; it's already the highest Defense, and
+Defender raises it further.
+
+#### Step 5: Upgrades
+
+Spend the Level's allotment. At least a third of it (rounded up) has to
+stay as +1 Health: 2 at Levels 1-2, 3 at Level 3, 4 at Level 4, 5 at
+Level 5. Anything left unspent becomes +1 Health too.
 
 | Upgrade | Cost | Effect |
 |---|---|---|
-| Health | 1 | +1 Health (as many as you like) |
+| Health | 1 | +1 Health |
 | Strike (Crippling) | 1 | A hit Cripples once |
 | Strike (Frightening) | 1 | A hit Frightens once |
 | Strike (Vulnerable) | 1 | A hit makes the target Vulnerable twice |
 | Strike (Slowing) | 1 | A hit Slows twice |
 | Strike (Taunting) | 1 | A hit Taunts twice |
 | Poison (Bleeding) | 1 | A hit adds 2 Bleeding |
-| Medium Armor | 1 | Physical Resist +2 instead of Light's +1, Dodge −1 |
-| Heavy Weapon | 2 | Damage +1, Accuracy −1, Parry −1 (a bow gets Range +5 instead of the Parry change) |
+| Medium Armor | 1 | Physical Resist +2 instead of Light Armor's +1, Dodge −1 |
+| Heavy Weapon | 2 | Damage +1, Accuracy −1, Parry −1 |
 | Powerful Spell | 2 | Damage +1 on its spell, but it can't Parry |
 | Durable | 2 | +1 Protected at the start of its turn, up to 4 |
 | Heavy Armor | 2, Level 3+ | Physical Resist +3 instead of +1, Dodge −1, Speed −1 |
 
-The rest of the old spreadsheet's abilities have draft costs in
-`ENEMY_ENCOUNTER_DESIGN.md` ("Draft: the ability catalog at 1 pick = 1
-Health"). They haven't been tested yet.
+Light Armor is free (Physical Resist +1); a caster can go without. The
+rest of the old spreadsheet's abilities have draft costs in
+`ENEMY_ENCOUNTER_DESIGN.md` but haven't been tested yet.
 
-Some things worth knowing when spending Upgrades:
+Things worth knowing:
 - **Picks that fit the enemy's job punch a little above their price.**
   Taunting on the shield tank, Medium Armor on the front line, Bleeding
-  on skirmishers: the sim's roster runs about 1.5 Health stronger than
-  the same Upgrades spent on Health.
+  on skirmishers.
 - **Upgrades set fight length.** Offense-heavy loadouts end fights in
-  2-4 rounds. Health and Durable stretch them toward 5-6.
-- **Match riders to the fight.** Vulnerable only matters if someone in
-  the fight attacks Vital or Mental.
+  2-4 rounds; Health and Durable stretch them toward 5-6.
+- **Match riders to the fight.** Vulnerable only matters if something
+  in the fight attacks Vital or Mental.
+
+#### Step 6: The stat block
+
+- **Accuracy** = Attack + the Action's Accuracy + archetype + Upgrades
+- **Damage** = the Action's base + Damage Stat + archetype + Upgrades
+- **Parry** = Parry + 1 if its main Action is a melee weapon + archetype
+  + Upgrades
+- **Dodge, Vital, Mental, Vigilant** = Other Defenses (Strong Defense
+  for the one picked) + archetype + armor
+- **Resist** = the Resist column + archetype; Physical adds armor
+- **Health** = Health + Health Upgrades
+- **Speed** = Speed + archetype + armor; **Reflex** as listed
+
+**Worked example: a Level 2 shield knight.** Defender, melee weapon,
+Strong Defense Vital. Upgrades: Medium Armor, Strike (Taunting), and 4
+Health.
+
+| | |
+|---|---|
+| Accuracy | 8 + 1 (weapon) = **9** |
+| Damage | 3 + 3 (High) = **6** Physical, against Parry/Dodge; a hit Taunts twice |
+| Parry | 14 + 1 (weapon) + 2 (Defender) = **17** |
+| Dodge | 13 − 1 (Medium Armor) = **12** |
+| Vital / Mental / Vigilant | **15** / 13 / 13 |
+| Resist | 1 (Low); Physical 1 + 2 (Medium Armor) = **3** |
+| Health | 6 + 4 = **10** |
+| Speed / Reflex | 3 / 4 |
+
+Two more at Level 2, built the same way:
+- **A Shadow caster** (Striker, Shadow spell against Vital, Strong
+  Defense Mental, Unarmored, with Powerful Spell, Strike (Vulnerable)
+  and 3 Health): Accuracy 8, 7 Shadow damage against Vital at range 6,
+  no Parry, Dodge 13, Mental 15, Resist 2, Health 9.
+- **A field medic** (Backup, Mend Ally with a bow as backup, Strong
+  Defense Mental, all 6 Upgrades on Health): heals 2, or shoots at
+  Accuracy 9 for 5; Parry 14, Dodge 13, Vital 14, Mental 16, Resist 4
+  (5 Physical), Health 12.
 
 ### Minions and big enemies
 

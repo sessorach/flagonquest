@@ -162,8 +162,11 @@ HEALTH_FLOOR_FRACTION = 1 / 3
 # worst into Resist, casters keep Mid Resist, supports lead with Resist.
 CATEGORY_STATS = {"weapon": (0, 3), "spell": (0, 1), "support": (1, 0)}
 STRONG_DEFENSE_CHOICES = ("Dodge", "Vital", "Mental", "Vigilant")
-# Every codified enemy attacks at this Skill tier.
-CODIFIED_ATTACK_TIER = "secondary"
+# Every codified enemy attacks at this Skill tier. Primary, because
+# Secondary came out softer than the hand-built roster (which had about
+# half its enemies attacking at Primary); with Primary, Level 2 lands
+# back on the hand-built numbers (level_baseline.py, 2026-10-01).
+CODIFIED_ATTACK_TIER = "primary"
 
 
 def action_category(action):

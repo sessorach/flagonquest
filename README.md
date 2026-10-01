@@ -15,8 +15,8 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-10-01 — Enemy stat blocks get a price list
 
-Priced every enemy ability and archetype in the simulator and rebuilt the sample enemies on those prices, so a stat block is now a Level baseline, an archetype and a few ability picks.
-- One ability pick is worth about one point of enemy Health, so the old spreadsheet's abilities got re-costed on that scale and leftover picks just become Health.
+Priced every enemy ability and archetype in the simulator, then turned enemy building into a step-by-step process: a Level baseline, an archetype, a main Action, one strong Defense, and a set of Upgrades.
+- One Upgrade is worth about one point of enemy Health, so the old spreadsheet's abilities got re-costed on that scale and +1 Health is just another Upgrade.
 - Every enemy now has an archetype, and Medium or Heavy Armor and heavy weapons cost picks; Defender is a plain shield (Parry +2).
 - Minions stay at a third of a normal enemy's Health, and Horde swapped its Hexer for a second caster so the fight costs the party some Health.
 

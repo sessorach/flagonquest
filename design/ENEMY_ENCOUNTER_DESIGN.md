@@ -1493,3 +1493,40 @@ Health ≈ 3.9 points of party Health here; noise about ±0.3):
   building to the enemy's job, worth a GM-guide note rather than a fix.
 - **Upgrades set fight length.** Offense-heavy loadouts shorten fights
   to 2-4 rounds; Health and Turtle stretch them toward 5-6.
+
+### Codified hand-build rules (2026-10-01)
+
+Per the designer: replace every remaining judgment call with a pick
+from a list or a lookup, so the GM only decides what the enemy is and
+how it spends its Upgrades. The step-by-step version is in
+`GM_GUIDE_NOTES.md` ("The process"). What changed from the hand-picked
+roster:
+
+- **Attack tier:** the roster had about half its enemies at Primary,
+  picked case by case. Now everyone attacks at Primary
+  (`CODIFIED_ATTACK_TIER`). Secondary for everyone was tested first and
+  came out softer than the hand-built roster at Level 2.
+- **Defenses:** the roster spent 3 tier-steps per enemy, placed by
+  hand. Now Parry is always Secondary, every other Defense is Poor, and
+  one Strong Defense (Dodge, Vital, Mental or Vigilant) is Primary. It's
+  the same 3 steps, but Parry sits one above Dodge (two for a melee
+  weapon), so Bruiser, Heavy Weapon and Powerful Spell cost defense.
+- **Damage Stat and Resist:** the roster used a hand-ordered Stat list.
+  Now they come from the main Action's type: weapon (High damage, Low
+  Resist), spell or Hex (High, Mid), support (Mid, High). Any Action
+  works with any archetype.
+
+`level_baseline.py 300 --current-only`, Level 2 party wins:
+
+| Mix | Hand-picked roster | Codified, Attack at Secondary | Codified, Attack at Primary (adopted) |
+|---|---|---|---|
+| Frontline | 81-91% | 89-97% | 82-91% |
+| Warband | 93-97% | 94-99% | 94-99% |
+| Horde | 91-98% | 89-100% | 78-97% |
+| Shield Wall | 43-91% | 85-98% | 72-93% |
+
+With Attack at Primary, the codified rules land on the hand-built
+numbers. The exception is Shield Wall, which is now a milder counter to
+the all-weapon party (72% against 43%): the codified Hedge Knight has 1
+less Parry and Resist than the hand-picked one. A GM who wants the old
+wall can spend Upgrades on Durable or a second rider.
