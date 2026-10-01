@@ -30,8 +30,8 @@ PARTY_D = L2(["Browndog", "Hanforth", "Felix", "Beornhard"])
 GROUPS = {
     "hilde": (PARTY_A, "Hilde (L2)", [("Furious Rage", 2), ("Lawman's Hand", 2)]),
     "carrick": (PARTY_A, "Carrick (L2)", [("Hand of Chaos", 2)]),
-    "browndog": (PARTY_A, "Browndog (L2)", [("Inexhaustible Guardian", 3), ("Indomitable Phalanx", 2)]),
-    "beornhard": (PARTY_D, "Beornhard (L2)", [("Overchanneling", 3)]),
+    "browndog": (PARTY_A, "Browndog (L2)", [("Inexhaustible Guardian", 2), ("Indomitable Phalanx", 2)]),
+    "beornhard": (PARTY_D, "Beornhard (L2)", [("Overchanneling", 2)]),
 }
 STYLES = {"Furious Rage", "Lawman's Hand", "Hand of Chaos", "Inexhaustible Guardian",
           "Indomitable Phalanx", "Overchanneling"}

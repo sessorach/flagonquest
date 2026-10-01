@@ -6512,8 +6512,8 @@
   {
     "id": "T139",
     "name": "Inexhaustible Guardian",
-    "level_min": 3,
-    "level_max": 3,
+    "level_min": 2,
+    "level_max": 2,
     "tags": "Style",
     "description": "As a pillar of courage and resilience on the battlefield, you never tire or falter under duress.",
     "condition": null,
@@ -6523,7 +6523,7 @@
     "effects": "Once per round, when you Parry an attack, you may gain Protected.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "(Brawl or Melee) 4, Might 3",
+    "prereqs": "(Brawl or Melee) 3, Might 2",
     "relevant_skills": "Brawl, Melee, Might",
     "use_cards": null,
     "healing": null,
@@ -6544,7 +6544,7 @@
           "Melee"
         ],
         "threshold": {
-          "base": 4
+          "base": 3
         }
       },
       {
@@ -6553,7 +6553,7 @@
           "Might"
         ],
         "threshold": {
-          "base": 3
+          "base": 2
         }
       }
     ],
@@ -6563,8 +6563,8 @@
   {
     "id": "T140",
     "name": "Overchanneling",
-    "level_min": 3,
-    "level_max": 3,
+    "level_min": 2,
+    "level_max": 2,
     "tags": "Style",
     "description": "Many styles of warmage training focus on overwhelming power and raw eldritch offense over all else, and each of those that do have built their practices with this Style as a foundation. With a series of motions that leverage your entire body to gather magical energy and intricate double-handed gestures to keep control over it, you wring every last measure of potency from your incantations.",
     "condition": null,
@@ -6574,7 +6574,7 @@
     "effects": "Your damaging Spell attacks and non-weapon Discipline attacks deal +1 damage. You can't Parry.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "(Sorcery or Meditation) 4",
+    "prereqs": "(Sorcery or Meditation) 3",
     "relevant_skills": "Sorcery, Meditation",
     "use_cards": null,
     "healing": null,
@@ -6595,7 +6595,7 @@
           "Meditation"
         ],
         "threshold": {
-          "base": 4
+          "base": 3
         }
       }
     ],

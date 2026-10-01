@@ -8263,3 +8263,16 @@ clean.
   took a move action only twice, because once enemies reach melee they
   never move again. The sim has no disengaging, chasing or
   repositioning, which is where Slowed pays off.
+
+**Follow-up (designer, 2026-10-01): Inexhaustible Guardian and
+Overchanneling moved to Level 2.** Against the Level 2 budget of 7.2,
+Guardian's measured +7.3 is right on target. Overchanneling's +1.8 is
+still well under, read loosely given the saturated four-caster party.
+Prereqs dropped to the Level 2 pattern (a main Skill at 3, a secondary at
+2):
+- Guardian: (Brawl or Melee) 3, Might 2, matching Indomitable Phalanx.
+- Overchanneling: (Sorcery or Meditation) 3.
+
+The rest of the Styles pass goes back to value estimates. The simulator
+can't see positioning (Slowed, kiting) and needs four-copy parties to
+read a single Style at all.
