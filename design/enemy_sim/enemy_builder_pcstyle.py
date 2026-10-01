@@ -106,7 +106,9 @@ ENEMY_STAT_LAG = 1
 # pre-draft 10/12/14/16/18, to make room for an archetype plus a full
 # ability allotment (ENEMY_ENCOUNTER_DESIGN.md, "Draft: the ability
 # catalog at 1 pick = 1 Health").
-ENEMY_HEALTH_BY_LEVEL = {1: 7, 2: 9, 3: 11, 4: 13, 5: 15}
+# Level 1 trimmed by 2 rather than 3 (it only gets 2 picks to make up
+# for it); 7 left Level 1 fights a bit short.
+ENEMY_HEALTH_BY_LEVEL = {1: 8, 2: 9, 3: 11, 4: 13, 5: 15}
 ENEMY_HEALTH_BASE = None
 # Flat bonus on every damaging enemy attack, on top of the weapon/spell
 # table. Part of the enemy baseline (like Health above), not a player
@@ -147,7 +149,9 @@ ARMOR_PICKS = {"Unarmored": 0, "Light": 0, "Medium": 1, "Heavy": 2}
 # 3-4 picks each). Defender stands in for a shield, Bruiser for a
 # two-hander; every melee enemy's weapon is a light one-hander otherwise.
 ROLE_ADDS = {
-    "Defender": {"parry": 2, "dodge": 2},
+    # A shield's real numbers. Parry/Dodge +2 and the spreadsheet's Tank
+    # (Parry/Dodge +1, Resist +1) both tested worse against Shield Wall.
+    "Defender": {"parry": 2},
     "Backup": {"res": 1, "bodily": 1, "mental": 1},
     "Striker": {"dmg": 1},
     "Bruiser": {"dmg": 1, "parry": -1, "dodge": -1},

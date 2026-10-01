@@ -1285,3 +1285,27 @@ short, at 2.5-4.9 rounds. Shield Wall is 71-92% in 4.4-6 rounds.
   harder (Striker +1 Damage, 2 stacks of Vulnerable).
 - **Level 1 fights are on the short side** at Health 7. The Level 1 trim
   may want to be smaller than Level 2's.
+
+**Follow-up: Defender variants and Level 1 Health** (`level_baseline.py
+300 --current-only --defender ... --health 1:N`).
+
+Shield Wall at Level 2, party wins A / B / C / D:
+
+| Defender | A | B | C | D |
+|---|---|---|---|---|
+| Draft (Parry/Dodge +2) | 38% | 65% | 87% | 76% |
+| Parry +2 only | 40% | 72% | 89% | 83% |
+| Tank (Parry/Dodge +1, Resist +1) | 30% | 58% | 71% | 64% |
+
+Level 1, enemy Health:
+- **7:** fights run 2.5-4.9 rounds.
+- **8:** 69-100% wins in 2.8-6.4 rounds.
+- **9:** party D drops to 57-62% against Frontline and Shield Wall.
+
+Applied: **Defender = Parry +2** (a shield's own numbers) and **Level 1
+Health 8**. The Defender barely moves Shield Wall. Its difficulty for
+party A is the matchup: an all-weapon party into Parry 18 and Medium
+Armor, while two Striker archers hit back. The archers' Vulnerable is
+wasted there, since nothing in the mix attacks Vital or Mental. Open
+question: accept Shield Wall as the hard counter to a weapon party, or
+make its archers Skirmishers.
