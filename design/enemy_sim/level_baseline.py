@@ -5,7 +5,8 @@ the designer: the party wins most or all fights, spends resources
 (Health left well under full), and fights last about 5 rounds.
 
 Usage: python3 level_baseline.py [trials] [--enemy-damage N] [--defense-lag] [--current-only]
-       [--defender parry|tank] [--health LEVEL:HP ...] [--levels 1,2]"""
+       [--defender parry|tank] [--health LEVEL:HP ...] [--levels 1,2]
+       [--attack-tier secondary|primary]"""
 import sys, os, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, party, sample_enemies as se, enemy_builder_pcstyle as eb
@@ -52,6 +53,11 @@ if __name__ == "__main__":
     levels = [int(x) for x in (opt_values("--levels") or ["1,2"])[0].split(",")]
     for flag in ("--defender", "--health", "--levels"):
         args = [a for a in args if a not in opt_values(flag)]
+    trials = int(args[0]) if args else 300
+    for v in opt_values("--attack-tier"):
+        eb.CODIFIED_ATTACK_TIER = v
+        print(f"Codified Attack tier: {v}")
+    args = [a for a in args if a not in opt_values("--attack-tier")]
     trials = int(args[0]) if args else 300
     if "--defense-lag" in sys.argv:
         eb.ENEMY_DEFENSE_LAG = 1

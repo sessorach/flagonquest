@@ -162,6 +162,8 @@ HEALTH_FLOOR_FRACTION = 1 / 3
 # worst into Resist, casters keep Mid Resist, supports lead with Resist.
 CATEGORY_STATS = {"weapon": (0, 3), "spell": (0, 1), "support": (1, 0)}
 STRONG_DEFENSE_CHOICES = ("Dodge", "Vital", "Mental", "Vigilant")
+# Every codified enemy attacks at this Skill tier.
+CODIFIED_ATTACK_TIER = "secondary"
 
 
 def action_category(action):
@@ -260,7 +262,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
         # Damage Stat and Resist come from the main Action's category.
         if strong_defense not in STRONG_DEFENSE_CHOICES:
             raise ValueError(f"{name}: Strong Defense must be one of {STRONG_DEFENSE_CHOICES}")
-        attack_tier = "secondary"
+        attack_tier = CODIFIED_ATTACK_TIER
         defense_tiers = {"parry": "secondary", strong_defense.lower().replace("vital", "bodily"): "primary"}
         spread = PC_STAT_SPREAD_BY_LEVEL[max(0, level - ENEMY_STAT_LAG)]
         dmg_col, res_col = CATEGORY_STATS[action_category(action)]
