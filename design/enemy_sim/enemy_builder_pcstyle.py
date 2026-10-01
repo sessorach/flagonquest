@@ -106,9 +106,15 @@ ENEMY_STAT_LAG = 1
 # pre-draft 10/12/14/16/18, to make room for an archetype plus a full
 # ability allotment (ENEMY_ENCOUNTER_DESIGN.md, "Draft: the ability
 # catalog at 1 pick = 1 Health").
-# Level 1 trimmed by 2 rather than 3 (it only gets 2 picks to make up
-# for it); 7 left Level 1 fights a bit short.
-ENEMY_HEALTH_BY_LEVEL = {1: 8, 2: 9, 3: 11, 4: 13, 5: 15}
+#
+# 2026-10-01, per the designer: a bare baseline plus an allotment of
+# Upgrades, where +1 Health is one Upgrade among the rest. Each Level's
+# baseline + Upgrades total matches the earlier baseline + picks
+# (10/12/15/18/23 if everything went to Health), so the split is neutral
+# for full-size enemies; Upgrades climb faster than Health so higher
+# Levels get more room to stack effects. Levels 3-5 are penciled.
+ENEMY_HEALTH_BY_LEVEL = {1: 6, 2: 6, 3: 7, 4: 8, 5: 9}
+UPGRADES_BY_LEVEL = {1: 4, 2: 6, 3: 8, 4: 10, 5: 14}
 ENEMY_HEALTH_BASE = None
 # Flat bonus on every damaging enemy attack, on top of the weapon/spell
 # table. Part of the enemy baseline (like Health above), not a player
@@ -134,10 +140,9 @@ HEAVY_ARMOR_MIN_LEVEL = 3
 # Every Defense one lower than the Level's Skill tier (the other half of
 # option 1's baseline trim, alongside Health above).
 ENEMY_DEFENSE_SHIFT = -1
-# Picks per Level per Encounter Slot, rounded down - the spreadsheet's
-# ability counts (tunables.ABILITY_RATE: 2/3/4/5/8). Costs from the
-# draft table. Armor is priced from Light, the free baseline. Leftover
-# picks become +1 Health each, so every enemy spends its full allotment.
+# Upgrade costs (UPGRADES_BY_LEVEL above is the allotment). Armor is
+# priced from Light, the free baseline. Unspent Upgrades become +1 Health
+# each, so every enemy spends its full allotment.
 PICK_COST = {
     "Strike (Crippling)": 1, "Strike (Vulnerable)": 1, "Strike (Slowing)": 1,
     "Strike (Frightening)": 1, "Strike (Taunting)": 1, "Poison (Bleeding)": 1,
@@ -275,16 +280,17 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     # this builder skips the synthetic Level curve for Accuracy/Damage/
     # Resist/Defense, but the Ability catalog itself (and its budget)
     # isn't part of that curve, so there's no reason to reinvent it.
-    # Rounded down, so a half-slot minion gets 1 pick at Level 2, not 2
-    # (two of them would otherwise out-pick the one full enemy they stand
-    # in for).
-    picks = math.floor(T.ABILITY_RATE[level] * slots)
+    # Upgrades scale by Encounter Slots the same way Health does (1/3 for
+    # a half-slot minion, x3 for a 2-slot boss), rounded up like Health.
+    # At these allotments a pair of minions still gets fewer Upgrades than
+    # the one full enemy they stand in for (Level 2: 2 x 2 = 4 against 6).
+    picks = math.ceil(UPGRADES_BY_LEVEL[level] * T.SLOT_MULTIPLIER[slots])
     picks_used = sum(PICK_COST[a] for a in abilities) + ARMOR_PICKS[armor]
     if picks_used > picks:
-        raise ValueError(f"{name}: abilities and armor cost {picks_used} picks, only {picks} available")
+        raise ValueError(f"{name}: abilities and armor cost {picks_used} Upgrades, only {picks} available")
     ability_budget, ability_cost = picks * 5, picks_used * 5  # in points, for older scripts' printouts
 
-    # Enhanced Health copies, plus every leftover pick, at +1 Health each.
+    # Enhanced Health copies, plus every unspent Upgrade, at +1 Health each.
     # Applied after the slot multiplier, so a minion's leftover picks
     # still count in full.
     health += abilities.count("Enhanced Health") + (picks - picks_used)
