@@ -17,7 +17,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 Went back to estimating Styles on paper after the simulator couldn't read them well, and added Styles for Snake and Bear.
 - Styles that copy or boost your other Techniques are now priced off the Level 2 Techniques you'd actually have, so Storm of Blades moves to Level 3.
-- New Styles: Infinite Coiling for Snake (your grapples don't leave you open) and Furious Swipes for Bear (Unarmed hits Bleed, Slow or Push).
+- New Styles: Infinite Coiling for Snake (your grapples don't leave you open) and Furious Swipes for Bear (every Unarmed hit shoves, then Bleeds or Slows).
 
 ### 2026-10-01 — Enemy stat blocks get a price list
 

@@ -8352,34 +8352,38 @@ attacks run about a point of damage under a two-hander's), and the
 School Styles all land around 105-120%, in line with School Styles
 getting a bit extra.
 
-### Bear School - Furious Swipes (T174, new) — choose two, Level 3
+### Bear School - Furious Swipes (T174, new) — every hit, Level 3
 
-> *Condition: your hands are empty.* Once per round, when one of your
-> Unarmed attacks hits, choose two: the target gains Bleeding, the
-> target is Slowed once, or you Push the target 1 meter.
+> *Condition: your hands are empty.* When one of your Unarmed attacks
+> hits, you may Push the target 1 meter, and it either gains Bleeding
+> or is Slowed once.
 
 Per the designer: a Bear Style that controls and wears down opponents,
 useful on any Unarmed hit rather than only off Bear Techniques, with
 the Bear Condition and its premium. The old versions ("can't be
 Parried", Bleeding on every hit or Parry) sat too close to Furious Rage
-and are in IDEAS_BACKLOG's declined list. Once per round is what keeps
-this from being Furious Rage, which triggers on every hit or Parry.
+and are in IDEAS_BACKLOG's declined list. This one triggers on hits
+only and never deals the damage Furious Rage adds.
 
-Hands empty is giving up a shield: **+4.5 to Target**. Triggers: 1.25
-attacks a round at ~60% to hit gives ~70% odds of at least one hit a
-round, × 5 rounds = **~3.5 triggers per encounter**. Per trigger:
-Bleeding (1 stack) ~3 (the tapered rate Furious Rage used, on a focused
-target), Slowed once ~1.6 (between a fresh target's 1.1 and an already
-Slowed one's up to 3.3), Push 1 meter 0.9.
+Hands empty is giving up a shield: **+4.5 to Target**. Triggers: 6.25
+attacks × ~60% to hit = **3.75 per encounter**. Per hit: Bleeding (1
+stack) ~3 (the tapered rate Furious Rage used, on a focused target),
+Slowed once ~1.6 (between a fresh target's 1.1 and an already Slowed
+one's up to 3.3), Push 1 meter 0.9.
 
-| Version | Per trigger | Value | Level | Target | Share |
+| Version | Per hit | Value | Level | Target | Share |
 |---|---|---|---|---|---|
-| Choose one | 3.2 | 11.2 | 2 | 11.7 | ~96% |
-| **Choose two** | **4.6** | **16.1** | **3** | **15.3** | **~105%** |
-| All three | 5.5 | 19.3 | 4 | 18.9 | ~102% |
+| Choose one of the three | 3.2 | 12.0 | 2 | 11.7 | ~103% |
+| Choose two of the three | 4.6 | 17.25 | 3 | 15.3 | ~113% |
+| **Push, plus Bleeding or Slowed** | **3.9** | **14.6** | **3** | **15.3** | **~96%** |
 
-Choose two is priced at the usual pick (Bleeding + Slowed, 4.6); taking
-the Push instead is a situational swap, not extra value. The designer
-went with choose two at Level 3, which puts Bear's Style alongside
-Shugen's and Demon's. Prereqs follow the Bear Level 3 pattern
-(Swatting Paw): Brawl 4, Might 3. Tagged Monk.
+First committed as "once per round, choose two" (~105%). Per the
+designer, once-per-round triggers are avoided where possible. The cap
+barely bound anyway: about 70% odds of at least one hit a round gives
+~3.5 triggers against 3.75 uncapped, so it only mattered for builds
+making lots of extra Unarmed attacks, which Furious Rage and Hands of
+Defilement already allow. The designer picked the fixed Push plus
+Bleeding-or-Slowed version: the same thing on every hit, no picking two
+of three each time, and a little under budget, which is where a
+hands-empty Condition should land. Prereqs follow the Bear Level 3
+pattern (Swatting Paw): Brawl 4, Might 3. Tagged Monk.

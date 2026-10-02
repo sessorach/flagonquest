@@ -336,7 +336,17 @@ which should stay a clean decision record.
     the riders, and the same
     for "If it's Parried, ..." or "If it hits or is Parried, ...".
     Split into separate sentences only when it's actually complicated.
-  - **Limited triggers say "Once per round," and are optional.** Per
+  - **Avoid once-per-round triggers.** Per the designer (2026-10-02),
+    they don't like the structure in general. Before capping a trigger,
+    check whether it actually binds: at the 1.25 attacks/round baseline,
+    "once per round, on a hit" is ~3.5 triggers an encounter against
+    3.75 uncapped, so the cap mostly just adds bookkeeping. Balance an
+    every-trigger version by trimming the per-trigger effect instead
+    (Furious Swipes went from "once per round, choose two" to "every
+    hit: Push, plus Bleeding or Slowed"). Keep a cap only when the
+    uncapped version actually breaks, and say why in the notes.
+  - **When a trigger does need a limit, say "Once per round," and make
+    it optional.** Per
     the designer (2026-09-30): "Once per round, when X, you may Y," not
     "The first time each round/turn X." Letting the player pick which
     trigger to spend it on gives them more control, and being inflexible

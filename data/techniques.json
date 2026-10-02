@@ -8152,7 +8152,7 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "Once per round, when one of your Unarmed attacks hits, choose two: the target gains Bleeding, the target is Slowed once, or you Push the target 1 meter.",
+    "effects": "When one of your Unarmed attacks hits, you may Push the target 1 meter, and it either gains Bleeding or is Slowed once.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 4, Might 3",
