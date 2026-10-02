@@ -8277,7 +8277,7 @@ The rest of the Styles pass goes back to value estimates. The simulator
 can't see positioning (Slowed, kiting) and needs four-copy parties to
 read a single Style at all.
 
-### Tiger School - Storm of Blades (T136) — re-estimated, Level 3 Level 3 (2026-10-02)
+### Tiger School - Storm of Blades (T136) — re-estimated, Level 3 (2026-10-02)
 
 > *Condition: two non-shield weapons.* Once per round immediately after
 > you make an attack with one of your weapons (before anything else),
