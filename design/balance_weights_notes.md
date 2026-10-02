@@ -8309,3 +8309,27 @@ a little. Proposed: Level 3, text unchanged (no once-per-encounter limit
 on copying needed), prereqs to the Level 3 pattern: (Acrobatics, Brawl,
 or Melee) 4, Acrobatics 3. Applied per the designer.
 
+### Snake School - Infinite Coiling (T173, new) — grapple Style, Level 2
+
+> While you're grappling, the grapple doesn't give creatures Good Luck
+> on attacks against your Dodge or Parry Defense.
+
+Rebuilt from the backlog's Slowed version, which duplicated Lawman's
+Hand and used Shugen's keyword. Snake is the grapple School, so this
+makes its grapples one-sided: the Snake keeps the grapple's Good Luck
+against the creature it's holding, and nobody gets it back.
+
+A front-line monk takes ~6 attacks per encounter, ~80% against
+Dodge/Parry = 4.8. A grappling build has its hold (Striking Constrictor
+or the Grapple maneuver) by round 1-2 and keeps it ~70% of the fight:
+3.4 attacks × 2.4 (Good Luck denied) = **8.1**. No Condition (being in a
+grapple is the gate; a Condition would only add Target). Target 7.2:
+
+| Grapple uptime | Value | Share |
+|---|---|---|
+| 60% | 6.9 | 96% |
+| 70% | 8.1 | **112%** |
+| 80% | 9.2 | 128% |
+
+Brawl 3, Insight 2 (the Snake prereq pattern). Tagged Monk.
+

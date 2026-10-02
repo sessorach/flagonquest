@@ -8090,5 +8090,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T173",
+    "name": "Snake School - Infinite Coiling",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "A grapple is supposed to leave both wrestlers open. A Snake master's coils never loosen enough for anyone to find the gap.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "While you're grappling, the grapple doesn't give creatures Good Luck on attacks against your Dodge or Parry Defense.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Insight 2",
+    "relevant_skills": "Brawl, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

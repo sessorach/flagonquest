@@ -143,6 +143,11 @@ cut, not just backfilled at a point in time.
   declined; a Mental attack that swaps places with the target, which is
   what the live Water Fills the Empty Vessel (formerly Through the Void)
   already does at Level 2.
+- **Infinite Coiling, Slowed version** (Snake Style) — replaced, not
+  drafted. "Parrying or being hit by your Unarmed attack Slows the
+  target once" duplicated Lawman's Hand, and Slowed belongs to Shugen
+  since the School split; Snake's Techniques don't apply debuffs. The
+  live Infinite Coiling (T173) is a grapple Style instead.
 
 ## Downtime Meditation Techniques
 
@@ -434,9 +439,6 @@ translation to live keywords, not a straight port.
   L2, Turn the Tables L3, Slithering Hands L4). Crashing Leg Sweep, Serpentine Redirection,
   and the L4 Chainbreaker variant were declined as old drafts of live
   techniques (see "Reviewed and declined").
-  - *Infinite Coiling* [Style] — L3 (10392): Parrying or being hit by
-    your Unarmed attack Slows the target once. First read: about 5.5
-    Value/encounter, so it fits L2 better than L3.
 - **Shugen** (live: Firefly Leaves the Hand L1, Water Fills the Empty Vessel L2, Spirit Hands
   L2, Hand Rings the Bell L2, Swallow Skims the Water L3,
   Dawn Wind Bends the Grass L3, Tide Rolls Back the Shore L3, Lantern
