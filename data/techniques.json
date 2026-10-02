@@ -6015,7 +6015,7 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "Once per round, when one of your damaging attacks hits, you may Slow the target once. Creatures you Down can be left incapacitated instead of killed.",
+    "effects": "When one of your damaging attacks hits, you may Slow the target once. Creatures you Down can be left incapacitated instead of killed.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Medicine 3",

@@ -8387,3 +8387,25 @@ Bleeding-or-Slowed version: the same thing on every hit, no picking two
 of three each time, and a little under budget, which is where a
 hands-empty Condition should land. Prereqs follow the Bear Level 3
 pattern (Swatting Paw): Brawl 4, Might 3. Tagged Monk.
+
+### Lawman's Hand (T128) — uncapped (2026-10-02)
+
+> When one of your damaging attacks hits, you may Slow the target once.
+> Creatures you Down can be left incapacitated instead of killed.
+
+Per the designer's no-once-per-round preference. The cap barely bound:
+the 9/29 pass had 3.3 capped hits against 3.75 uncapped. Same 1.93 per
+stack (half on already-Slowed targets): 3.75 × 1.93 = **7.2, ~101%** of
+7.2, up from 88% capped.
+
+The cap was also there to stop area spells Slowing several targets at
+once. Uncapped, a cone every turn (4 casts × 2 targets × 60%) is 4.8
+stacks, but spread over different targets, so most land fresh at 1.1:
+~5.3 if all fresh, ~9.3 (129%) if every one landed at the mixed rate.
+The real figure sits toward the low end, so no carve-out for area
+attacks.
+
+The other two capped Styles keep their caps, since uncapping them
+breaks something: Storm of Blades would turn every attack into two, and
+Inexhaustible Guardian ran ~139% uncapped (a Guardian Parries a lot, and
+Protected is already the smallest effect to trim to).
