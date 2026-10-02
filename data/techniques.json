@@ -8140,5 +8140,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T174",
+    "name": "Bear School - Furious Swipes",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "A bear doesn't fight neatly. Every swipe that lands tears something open, staggers its prey or shoves it back, and the next one is already coming.",
+    "condition": "Your hands are empty",
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "Once per round, when one of your Unarmed attacks hits, choose two: the target gains Bleeding, the target is Slowed once, or you Push the target 1 meter.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 4, Might 3",
+    "relevant_skills": "Brawl, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

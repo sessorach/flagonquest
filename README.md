@@ -13,6 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-02 — Styles pass: Tiger, Snake and Bear
+
+Went back to estimating Styles on paper after the simulator couldn't read them well, and added Styles for Snake and Bear.
+- Styles that copy or boost your other Techniques are now priced off the Level 2 Techniques you'd actually have, so Storm of Blades moves to Level 3.
+- New Styles: Infinite Coiling for Snake (your grapples don't leave you open) and Furious Swipes for Bear (Unarmed hits Bleed, Slow or Push).
+
 ### 2026-10-01 — Enemy stat blocks get a price list
 
 Priced every enemy ability and archetype in the simulator, then turned enemy building into a step-by-step process: a Level baseline, an archetype, a main Action, one strong Defense, and a set of Upgrades.

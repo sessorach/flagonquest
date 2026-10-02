@@ -8044,9 +8044,10 @@ check.
 
 The designer's pick for Tiger's low-Level Style: two weapons wearing a
 guard down. Built like Numbing Edge (I246, the same effect on one
-Masterwork weapon, 105%). Target 7.2 + 4.4 dual-wield allowance =
-11.6. 6.25 attacks × (60% hit + ~20% Parried) = 5 triggers × 2.25
-stacks × 1/stack = **11.25, ~97%**. Stacking with Numbing Edge just
+Masterwork weapon, 105%). Target 7.2 + 2.2 dual-wield allowance =
+9.4. 6.25 attacks × (60% hit + ~20% Parried) = 5 triggers × 2.25
+stacks × 1/stack = **11.25, ~120%**. (First written against the
+unhalved 4.4 allowance, ~97%; corrected 2026-10-02.) Stacking with Numbing Edge just
 runs into Harried's cap of 6 sooner; no rule needed.
 
 ### Follow Through (T138) — Level 3 → 1, any melee weapon
@@ -8294,14 +8295,15 @@ Value per copy.
 
 About 5 uses per encounter: 3 plain (3 × 2.75 = 8.25) + 2 copying a
 Level 2 Technique (2 × 3.25 = 6.5) = **14.75**. Target = Level × 3.6
-**+4.4 to Target** (the dual-wield allowance, a giveback for giving up
-a shield's Parry):
+**+2.2 to Target** (the dual-wield allowance, a giveback for giving up
+one point of a shield's Parry; first written with the unhalved 4.4,
+corrected 2026-10-02):
 
 | Level | Target | Share |
 |---|---|---|
-| 2 | 11.6 | ~127% |
-| 3 | 15.2 | **~97%** |
-| 4 | 18.8 | ~78% |
+| 2 | 9.4 | ~157% |
+| 3 | 13.0 | **~113%** |
+| 4 | 16.6 | ~89% |
 
 Treat these as a ceiling. Every attack involved is a one-hander's, about
 a point of damage under a two-hander's, which shaves the per-attack value
@@ -8333,3 +8335,51 @@ grapple is the gate; a Condition would only add Target). Target 7.2:
 
 Brawl 3, Insight 2 (the Snake prereq pattern). Tagged Monk.
 
+### Dual-wield allowance corrected to 2.2 (2026-10-02)
+
+Rending Claws and Storm of Blades were both priced with a 4.4
+dual-wield allowance, the unhalved one Parry a light weapon gives up
+against a shield. `balance.md` halves it to ~2.2, same as the empty
+off-hand allowance is halved. Corrected per the designer:
+
+| Style | Value | Target | Share |
+|---|---|---|---|
+| Rending Claws (L2) | 11.25 | 7.2 + 2.2 = 9.4 | ~120% |
+| Storm of Blades (L3) | 14.75 | 10.8 + 2.2 = 13.0 | ~113% |
+
+Both stay as they are. Storm's figure is a ceiling anyway (one-hander
+attacks run about a point of damage under a two-hander's), and the
+School Styles all land around 105-120%, in line with School Styles
+getting a bit extra.
+
+### Bear School - Furious Swipes (T174, new) — choose two, Level 3
+
+> *Condition: your hands are empty.* Once per round, when one of your
+> Unarmed attacks hits, choose two: the target gains Bleeding, the
+> target is Slowed once, or you Push the target 1 meter.
+
+Per the designer: a Bear Style that controls and wears down opponents,
+useful on any Unarmed hit rather than only off Bear Techniques, with
+the Bear Condition and its premium. The old versions ("can't be
+Parried", Bleeding on every hit or Parry) sat too close to Furious Rage
+and are in IDEAS_BACKLOG's declined list. Once per round is what keeps
+this from being Furious Rage, which triggers on every hit or Parry.
+
+Hands empty is giving up a shield: **+4.5 to Target**. Triggers: 1.25
+attacks a round at ~60% to hit gives ~70% odds of at least one hit a
+round, × 5 rounds = **~3.5 triggers per encounter**. Per trigger:
+Bleeding (1 stack) ~3 (the tapered rate Furious Rage used, on a focused
+target), Slowed once ~1.6 (between a fresh target's 1.1 and an already
+Slowed one's up to 3.3), Push 1 meter 0.9.
+
+| Version | Per trigger | Value | Level | Target | Share |
+|---|---|---|---|---|---|
+| Choose one | 3.2 | 11.2 | 2 | 11.7 | ~96% |
+| **Choose two** | **4.6** | **16.1** | **3** | **15.3** | **~105%** |
+| All three | 5.5 | 19.3 | 4 | 18.9 | ~102% |
+
+Choose two is priced at the usual pick (Bleeding + Slowed, 4.6); taking
+the Push instead is a situational swap, not extra value. The designer
+went with choose two at Level 3, which puts Bear's Style alongside
+Shugen's and Demon's. Prereqs follow the Bear Level 3 pattern
+(Swatting Paw): Brawl 4, Might 3. Tagged Monk.

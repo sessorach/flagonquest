@@ -425,11 +425,8 @@ Fire/Frost/Brilliant/Shadow) and a **Will** stat. Those need a
 translation to live keywords, not a straight port.
 
 - **Bear** (live: Boulder Toss L2, Shattering Slam L2, Swatting Paw
-  L3, The Grizzly Awakens L4). Bear Techniques need hands empty but
+  L3, The Grizzly Awakens L4, Furious Swipes L3 Style). Bear Techniques need hands empty but
   allow armor.
-  - *Furious Swipes* [Style] — being drafted as "when one of your Unarmed
-    attacks gives a creature Bleeding, it gains 1 more stack" (2026-10-02).
-    The old versions are in "Reviewed and declined".
   - *Grizzly De-Fangs the Tiger* — L4 (B, 2012): Counter; Unarmed flip
     replaces your Parry, ignoring Harried; on Parry, opposed Might flip
     to disarm and fling their weapon. **Parked, revisit later for fun**
