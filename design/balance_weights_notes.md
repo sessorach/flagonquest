@@ -8276,3 +8276,36 @@ Prereqs dropped to the Level 2 pattern (a main Skill at 3, a secondary at
 The rest of the Styles pass goes back to value estimates. The simulator
 can't see positioning (Slowed, kiting) and needs four-copy parties to
 read a single Style at all.
+
+### Tiger School - Storm of Blades (T136) — re-estimated, Level 3 proposed (2026-10-02)
+
+> *Condition: two non-shield weapons.* Once per round immediately after
+> you make an attack with one of your weapons (before anything else),
+> you may spend 1 AP to make an identical attack with your other weapon,
+> applying any ability (but not weapon) effects from the initial attack.
+
+The 9/30 estimate (137% at Level 3, 142% at Level 4) assumed the copy
+duplicated a Technique of the Style's own Level. Per the designer, a
+player rushing this Style copies their own Techniques, mostly Level 2
+and smaller for most of the game (balance.md, "Effects that use other
+Techniques"). A Level 2 copy is worth 6 − 2.75 (1 AP, off Value) = 3.25,
+against 2.75 for a plain extra attack, so copying adds only about 0.5
+Value per copy.
+
+About 5 uses per encounter: 3 plain (3 × 2.75 = 8.25) + 2 copying a
+Level 2 Technique (2 × 3.25 = 6.5) = **14.75**. Target = Level × 3.6
+**+4.4 to Target** (the dual-wield allowance, a giveback for giving up
+a shield's Parry):
+
+| Level | Target | Share |
+|---|---|---|
+| 2 | 11.6 | ~127% |
+| 3 | 15.2 | **~97%** |
+| 4 | 18.8 | ~78% |
+
+Treat these as a ceiling. Every attack involved is a one-hander's, about
+a point of damage under a two-hander's, which shaves the per-attack value
+a little. Proposed: Level 3, text unchanged (no once-per-encounter limit
+on copying needed), prereqs to the Level 3 pattern: (Acrobatics, Brawl,
+or Melee) 4, Acrobatics 3. Waiting on the designer.
+

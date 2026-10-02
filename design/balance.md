@@ -122,6 +122,23 @@ one) only gives up 1 Parry against a shield: **~2.2**. This replaces
 model's raw points with per-encounter Targets. Still worth a close eye:
 landing a bit under on these is about right.
 
+### Effects that use other Techniques: price them off what the character actually has
+
+Per the designer (2026-10-02): a Technique's Level isn't the character's
+Level. A player who wants a defining Style, like Storm of Blades for a
+dual-wielder, rushes it: they round out the basics, push the prereq
+Skills just far enough, bank XP for it, and build the rest of the
+character afterward. So for most of the game, a Style that copies,
+repeats or boosts the character's Techniques is working with Level 2 and
+smaller ones, not Techniques at the Style's own Level. Price those
+effects off a Level 2 Technique (6 Value), not off the Style's Level.
+That makes copying a Technique worth only a little more than a plain
+attack, close to a ribbon on top of the Style's main effect.
+
+Also count what the Style's Condition costs on every attack, not just at
+the Condition. A dual-wield Style's attacks are all one-hander attacks,
+about a point of damage under a two-hander's.
+
 ### Estimating a genuinely hard-to-price effect: triangulate, don't guess once
 
 Most mechanics in this model trace back to a real derivation (a card-math
