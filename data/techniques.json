@@ -6376,8 +6376,8 @@
   {
     "id": "T136",
     "name": "Tiger School - Storm of Blades",
-    "level_min": 2,
-    "level_max": 2,
+    "level_min": 3,
+    "level_max": 3,
     "tags": "Style",
     "description": "As a fighter perfects the art of two-weapon fighting, their style takes on a certain beauty. Every step carries one attack into another, blades dance about in a mesmerizing rhythm, and anyone who stands still to watch is sure to be cut to ribbons.",
     "condition": "You are wielding two non-shield weapons",
@@ -6387,7 +6387,7 @@
     "effects": "Once per round immediately after you make an attack with one of your weapons (before anything else), you may spend 1 AP to make an identical attack with your other weapon, applying any ability (but not weapon) effects from the initial attack.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "(Acrobatics, Brawl, or Melee) 3, Acrobatics 2",
+    "prereqs": "(Acrobatics, Brawl, or Melee) 4, Acrobatics 3",
     "relevant_skills": "Acrobatics, Brawl, Melee",
     "use_cards": null,
     "healing": null,
@@ -6409,7 +6409,7 @@
           "Melee"
         ],
         "threshold": {
-          "base": 3
+          "base": 4
         }
       },
       {
@@ -6418,7 +6418,7 @@
           "Acrobatics"
         ],
         "threshold": {
-          "base": 2
+          "base": 3
         }
       }
     ],

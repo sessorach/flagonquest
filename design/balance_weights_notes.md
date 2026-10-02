@@ -8277,7 +8277,7 @@ The rest of the Styles pass goes back to value estimates. The simulator
 can't see positioning (Slowed, kiting) and needs four-copy parties to
 read a single Style at all.
 
-### Tiger School - Storm of Blades (T136) — re-estimated, Level 3 proposed (2026-10-02)
+### Tiger School - Storm of Blades (T136) — re-estimated, Level 3 Level 3 (2026-10-02)
 
 > *Condition: two non-shield weapons.* Once per round immediately after
 > you make an attack with one of your weapons (before anything else),
@@ -8307,5 +8307,5 @@ Treat these as a ceiling. Every attack involved is a one-hander's, about
 a point of damage under a two-hander's, which shaves the per-attack value
 a little. Proposed: Level 3, text unchanged (no once-per-encounter limit
 on copying needed), prereqs to the Level 3 pattern: (Acrobatics, Brawl,
-or Melee) 4, Acrobatics 3. Waiting on the designer.
+or Melee) 4, Acrobatics 3. Applied per the designer.
 
