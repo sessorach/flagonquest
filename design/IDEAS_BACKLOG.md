@@ -148,6 +148,15 @@ cut, not just backfilled at a point in time.
   target once" duplicated Lawman's Hand, and Slowed belongs to Shugen
   since the School split; Snake's Techniques don't apply debuffs. The
   live Infinite Coiling (T173) is a grapple Style instead.
+- **Furious Swipes, old versions** (Bear Style) — declined. "Your Unarmed
+  attacks can't be Parried" (L3) and "Parrying or being hit by your
+  Unarmed attack gives 1 Bleeding, but you can't Parry with Unarmed"
+  (L4) both sit too close to Furious Rage. Per the designer, steer
+  players toward that instead of duplicating it for Unarmed.
+- **"Roar on a Parry"** (Bear Style candidate) — not drafted. "Once per
+  round, when you Parry with your Unarmed weapon, Frighten the attacker"
+  is Swatting Paw's payoff made passive, on Inexhaustible Guardian's
+  trigger.
 
 ## Downtime Meditation Techniques
 
@@ -418,9 +427,9 @@ translation to live keywords, not a straight port.
 - **Bear** (live: Boulder Toss L2, Shattering Slam L2, Swatting Paw
   L3, The Grizzly Awakens L4). Bear Techniques need hands empty but
   allow armor.
-  - *Furious Swipes* [Style] — L3 (C, 7846): your Unarmed attacks can't
-    be Parried. L4 (10420): Parrying or being hit by your Unarmed attack
-    gives 1 Bleeding, but you can't Parry with Unarmed.
+  - *Furious Swipes* [Style] — being drafted as "when one of your Unarmed
+    attacks gives a creature Bleeding, it gains 1 more stack" (2026-10-02).
+    The old versions are in "Reviewed and declined".
   - *Grizzly De-Fangs the Tiger* — L4 (B, 2012): Counter; Unarmed flip
     replaces your Parry, ignoring Harried; on Parry, opposed Might flip
     to disarm and fling their weapon. **Parked, revisit later for fun**
@@ -875,4 +884,15 @@ that concept: a monk-sorcerer hybrid built on Demon School and shadow
 magic. He's pure debuff and damage, closer to a glass-cannon sorcerer
 than a tanky monk. He'd make a good model for a Demon School caster
 enemy, or a named villain, once hybrid builds get looked at.
+
+## Generic Style idea: Bleeding creatures fear you
+
+Per the designer (2026-10-02), a generic Style along the lines of
+"creatures with Bleeding are Frightened of you" (or have Bad Luck on
+attacks against you), not tied to Bear. It cashes in Bleeding instead
+of applying it, so it pairs with any Bleeding source: Furious Rage,
+Bear's Slams, Demon, Bleeding poisons. First read as the Bad Luck
+version: a front-liner takes ~6 attacks per encounter, 40-60% of them
+from bleeding creatures, × 2.2 = 5.3-7.9, so about Level 2. Doesn't
+stack with Frightened from other sources on the same attacker.
 
