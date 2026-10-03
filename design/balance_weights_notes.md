@@ -8465,9 +8465,10 @@ the Style.
 
 ### Drunken Brawling (T176, new) — Level 2 (2026-10-03)
 
-> When you move or Shift, each creature you're adjacent to at any point
-> during that movement is Harried. A creature can only be Harried by
-> this once per turn.
+> When you move or Shift, each enemy you're adjacent to at any point
+> during that movement is Harried. An enemy can only be Harried by this
+> once per turn. ("Each creature" at first, which would have Harried
+> allies too; fixed per the designer.)
 
 Rebuilt from the archived Stance, whose "Bad Luck on Counter attacks
 against you" does nothing now. Per the designer, the drunken master

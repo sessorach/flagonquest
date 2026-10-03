@@ -8252,7 +8252,7 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "When you move or Shift, each creature you're adjacent to at any point during that movement is Harried. A creature can only be Harried by this once per turn.",
+    "effects": "When you move or Shift, each enemy you're adjacent to at any point during that movement is Harried. An enemy can only be Harried by this once per turn.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Acrobatics 3, Insight 2",
