@@ -142,6 +142,10 @@ cut, not just backfilled at a point in time.
   Wind* Style ("1 AP auto-Parry against ranged attacks"), out of date
   now that any weapon attack can be Parried; its not-Harried half went
   into Boughs Unbroken (T175).
+- **Dragon's Fang** (Ki/Shugen Style, archive 10075, L2) — retired
+  (2026-10-03). "Your Unarmed attacks deal Spirit damage, but you can't
+  Parry with Unarmed" is Spirit Hands' (T135) job: the Brilliant Brawl
+  Style was built from this draft.
 - **Pull Through the Void** (Shugen School, archive Pass A, L3) —
   declined; a Mental attack that swaps places with the target, which is
   what the live Water Fills the Empty Vessel (formerly Through the Void)
@@ -475,8 +479,6 @@ translation to live keywords, not a straight port.
 - **Ki = Shugen.** "Ki Style" is the old name for what became Shugen
   School, per the designer — the entries below are more Shugen
   candidates, not a separate School. Leaning teleport/chakra-disruption.
-  - *Dragon's Fang* [Style] — L2 (10075): your Unarmed attacks deal
-    Spirit damage, but you can't Parry with Unarmed.
   - No L5 Ki content anywhere.
 - **Lion / Tiger**: nothing in the archive. Neither name appears at
   all; their live techniques (Eternal Riposte, Storm of Blades) came
