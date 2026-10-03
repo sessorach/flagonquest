@@ -8496,3 +8496,42 @@ moves/encounter), Harried at 1/stack:
 Harried twice would be ~128% at Level 2 typical, or about on budget at
 Level 3; the designer went with once at Level 2. Acrobatics 3, Insight
 2 (the archive's prereqs, Martial Arts dropped). Tagged Monk, Rogue.
+
+### Doubleshot (T177, new) — ranged Flurry, Level 4 (2026-10-03)
+
+> *Condition: you are wielding a ranged weapon.* Your ranged weapon
+> attacks are made twice against the same target, with Bad Luck on
+> both. Each attack applies its own effects to the target; everything
+> else about the action happens once. If the attacks are made with
+> Grenades, each one uses up its own Grenade.
+
+The archive's second version (every ranged weapon attack made twice at
+Bad Luck); the first was built on Full actions, which are gone. It's
+the declined Flurry of Blows for ranged, and unlike Flurry it isn't
+redundant: a bow is two-handed, so an archer can't use Storm of Blades.
+Per the designer, it says plainly that Techniques get duplicated.
+
+Card math, same as Flurry: a normal attack hits ~61.5%, each Bad Luck
+attack ~37.4%, the second ~47.5% thanks to the first one's Harried. Two
+attacks land 0.85 hits against 0.61 (1.38 times). Per plain attack
++1.7 to +2.7 (mid 2.2); a Technique's on-hit rider (~4) gains 1.5 on
+top. The Condition is ~0: an archer holds the bow anyway. With no
+hands-empty allowance it runs hotter than Flurry:
+
+| Level | Target | Plain attacks | Half Level 2 Techniques |
+|---|---|---|---|
+| 2 | 7.2 | 192% | 258% |
+| 3 | 10.8 | 128% | 172% |
+| **4** | **14.4** | **96%** | **129%** |
+
+Level 4, per the designer. Good Luck from other sources cancels the
+Bad Luck, one more reason not to go lower (Eagle Eyes is a Style, so it
+can't combine).
+
+**Grenades.** Per the designer, a thrower can double them, but each
+attack uses up its own Grenade. Burning through Grenades twice as fast
+is the balancing cost, so there's no carve-out beyond that.
+
+Prereqs (Acrobatics or Archery) 5, Legerdemain 4: Level 4 pattern, the
+archive's Legerdemain secondary, and Acrobatics in the main slot so
+throwers qualify. Tagged Archer, Rogue.

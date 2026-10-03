@@ -8290,5 +8290,47 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T177",
+    "name": "Doubleshot",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Style",
+    "description": "Through much practice you have learned how to handle multiple projectiles at once, throwing handfuls of daggers, firing multiple arrows, and single-handedly pinning foes down with your volleys.",
+    "condition": "You are wielding a ranged weapon",
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "Your ranged weapon attacks are made twice against the same target, with Bad Luck on both. Each attack applies its own effects to the target; everything else about the action happens once. If the attacks are made with Grenades, each one uses up its own Grenade.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Acrobatics or Archery) 5, Legerdemain 4",
+    "relevant_skills": "Acrobatics, Archery, Legerdemain",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics",
+          "Archery"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

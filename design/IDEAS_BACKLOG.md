@@ -402,7 +402,7 @@ sample: Alacritous Posture (Main/Move as Extra/Counter if unused),
 Half-Guard/Shifting Ground (Speed-for-defense; Drunken Brawling is live
 as T176, rebuilt),
 Breaching Blows/Earthen Fist Posture (offense-for-defense, two-
-handers), Doubleshot (double ranged attack as a Full action), Group
+handers), Doubleshot (live as T177, Level 4), Group
 Bulwark/Lend Bulwark (share your shield's Defense with an adjacent
 ally), Sentinel (shadow an adjacent enemy's movement), Iron Vanguard
 (shield-tank, Bad Luck to attackers), Raptor's Precision/Swashbuckler's
