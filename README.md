@@ -13,9 +13,11 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-10-03 — Oak gets a Style
+### 2026-10-03 — Oak gets a Style, and Drunken Brawling
 
-Great Old Oak, the last School without a Style, got Boughs Unbroken: Parrying with your fists doesn't wear you down, and every Unarmed hit shakes off one debuff completely.
+Great Old Oak, the last School without a Style, got Boughs Unbroken, and the old Drunken Brawling Stance came back as a Style that leaves everyone you stagger past off-balance.
+- Boughs Unbroken: Parrying with your fists doesn't wear you down, and every Unarmed hit shakes off one debuff completely.
+- An empty hand now counts as an Unarmed weapon, so monks can use the dual-wield Styles; Flurry of Blows and Dragon's Fang were dropped as repeats of Styles we already have.
 
 ### 2026-10-02 — Styles pass: Tiger, Snake and Bear
 

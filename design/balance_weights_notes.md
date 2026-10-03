@@ -8462,3 +8462,36 @@ instead of ~2: 3.75 × 0.5 × 3 = 5.6.
 The tank case runs hot, but that's the build piling every attack onto
 itself, and a tank that cleanses and holds its Parry is the point of
 the Style.
+
+### Drunken Brawling (T176, new) — Level 2 (2026-10-03)
+
+> When you move or Shift, each creature you're adjacent to at any point
+> during that movement is Harried. A creature can only be Harried by
+> this once per turn.
+
+Rebuilt from the archived Stance, whose "Bad Luck on Counter attacks
+against you" does nothing now. Per the designer, the drunken master
+staggers through a fight leaving everyone off-balance. Harried lasts
+until the end of the affected creature's own turn, so weaving through
+enemies sets up your own next attack and every ally who acts before
+them. No Condition (footwork works with any weapon) and no Speed
+halving (the Style is about moving).
+
+The once-per-turn limit is per creature, and it's the case CLAUDE.md
+keeps a cap for: uncapped, stepping back and forth for 1 AP a step
+Harries every adjacent enemy again each time, up to Harried's cap of 6,
+which sets up guaranteed hits for allies for almost nothing. Normal
+movement never runs into it.
+
+Target 7.2. ~4.6 moves per encounter (Speed permanent's own
+moves/encounter), Harried at 1/stack:
+
+| Creatures passed per move | Value | Share |
+|---|---|---|
+| 1 (moving in to attack) | 4.6 | 64% |
+| **1.5 (weaving through a melee)** | **6.9** | **~96%** |
+| 2 | 9.25 | 128% |
+
+Harried twice would be ~128% at Level 2 typical, or about on budget at
+Level 3; the designer went with once at Level 2. Acrobatics 3, Insight
+2 (the archive's prereqs, Martial Arts dropped). Tagged Monk, Rogue.

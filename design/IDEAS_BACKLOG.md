@@ -150,6 +150,15 @@ cut, not just backfilled at a point in time.
   than it looks (two swings land 1.38 times the hits of one, and the
   first Harries the target for the second), ~121% at Level 3 with half
   the attacks being Level 2 Techniques.
+- **Drunken Brawling, archived and first-draft versions** — declined
+  (2026-10-03). The archive's "Bad Luck on attacks made against you as
+  part of a Counter action; your Speed is halved" does nothing now:
+  Counter actions are gone and enemies almost never attack you with an
+  Interrupt. The first redraft folded in Half-Guard and Shifting Ground
+  ("Speed halved, +2 Dodge and Parry, Shift 1 meter when an attack
+  against either misses", ~82% at Level 2). Per the designer, a flat
+  Defense bonus is too good and crowds Disciple of the Flowing Hand.
+  The live version (T176) Harries creatures you move past instead.
 - **Dragon's Fang** (Ki/Shugen Style, archive 10075, L2) — retired
   (2026-10-03). "Your Unarmed attacks deal Spirit damage, but you can't
   Parry with Unarmed" is Spirit Hands' (T135) job: the Brilliant Brawl
@@ -390,7 +399,8 @@ Main action — no current technique grants one).
 **Combat Stances** (general Martial, not tied to a named Style) — a
 whole unported family, ~20 tradeoff-based postures. Representative
 sample: Alacritous Posture (Main/Move as Extra/Counter if unused),
-Half-Guard/Drunken Brawling/Shifting Ground (Speed-for-defense),
+Half-Guard/Shifting Ground (Speed-for-defense; Drunken Brawling is live
+as T176, rebuilt),
 Breaching Blows/Earthen Fist Posture (offense-for-defense, two-
 handers), Doubleshot (double ranged attack as a Full action), Group
 Bulwark/Lend Bulwark (share your shield's Defense with an adjacent

@@ -8240,5 +8240,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T176",
+    "name": "Drunken Brawling",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "With a style of close quarters combat known affectionately as \"drunken brawling\", you sway and stagger through a fight, bumping and jostling everyone you pass until none of them can keep their guard straight.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When you move or Shift, each creature you're adjacent to at any point during that movement is Harried. A creature can only be Harried by this once per turn.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Acrobatics 3, Insight 2",
+    "relevant_skills": "Acrobatics, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
