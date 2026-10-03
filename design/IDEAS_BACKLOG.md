@@ -142,6 +142,14 @@ cut, not just backfilled at a point in time.
   Wind* Style ("1 AP auto-Parry against ranged attacks"), out of date
   now that any weapon attack can be Parried; its not-Harried half went
   into Boughs Unbroken (T175).
+- **Flurry of Blows** (archived Stance, L2) — declined (2026-10-03).
+  "Your Unarmed attacks are made twice, with Bad Luck on both, and each
+  applies the action's effects" is Storm of Blades for Unarmed: per the
+  designer, empty hands count as dual-wielding Unarmed weapons, so
+  Storm already covers it. Priced before declining: Bad Luck costs less
+  than it looks (two swings land 1.38 times the hits of one, and the
+  first Harries the target for the second), ~121% at Level 3 with half
+  the attacks being Level 2 Techniques.
 - **Dragon's Fang** (Ki/Shugen Style, archive 10075, L2) — retired
   (2026-10-03). "Your Unarmed attacks deal Spirit damage, but you can't
   Parry with Unarmed" is Spirit Hands' (T135) job: the Brilliant Brawl
