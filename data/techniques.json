@@ -8190,5 +8190,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T175",
+    "name": "Great Old Oak School - Boughs Unbroken",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "Branches bend in a storm and spring back. An Oak master holds the line the same way, giving a little to every blow and never breaking.",
+    "condition": "Your hands are empty",
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "You aren't Harried from applying your Parry Defense with your Unarmed weapon. When one of your Unarmed attacks hits, remove one stack of Bleeding, Crippled, Frightened, Necrotic, Slowed, Taunted, or Vulnerable from yourself.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Brawl 3, Meditation 2",
+    "relevant_skills": "Brawl, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

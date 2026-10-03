@@ -138,7 +138,10 @@ cut, not just backfilled at a point in time.
   Slithering Hands); *River Stone Deflection* (another physical counter,
   with Demon's Harried); *Thirsting Roots* (healing is Sap Seals the
   Wound's job, and Bleeding isn't Oak's); the non-Style *Branches in
-  the Wind* counterattacks (counter overlap).
+  the Wind* counterattacks (counter overlap); the *Branches in the
+  Wind* Style ("1 AP auto-Parry against ranged attacks"), out of date
+  now that any weapon attack can be Parried; its not-Harried half went
+  into Boughs Unbroken (T175).
 - **Pull Through the Void** (Shugen School, archive Pass A, L3) —
   declined; a Mental attack that swaps places with the target, which is
   what the live Water Fills the Empty Vessel (formerly Through the Void)
@@ -463,17 +466,12 @@ translation to live keywords, not a straight port.
     Whirlwind's; needs new flavor.)
 - **Great Old Oak** (live: Oak Sheds Its Leaves L2, Willow Springs Back L3, Bark Turns the
   Blade L2, Tree Withstands the Storm L2, Oak Draws the Lightning L3, Old Growth
-  Digs Deep L4, Seasons Pass the Forest L2 (Unarmed track), Sap Seals the Wound L4, all moved in when the School split was
-  decided) — defensive/endurance, and home for the self-buff/
+  Digs Deep L4, Seasons Pass the Forest L2 (Unarmed track), Sap Seals the Wound L4, Boughs Unbroken L2 Style (new 2026-10-03; the rest moved in when the School split was
+  decided)) — defensive/endurance, and home for the self-buff/
   self-restoration Meditation Techniques: Protected, Ward, self-healing,
   clearing your own debuffs, counters, Taunted.
   - **Idea:** Physical Resist boosts for Oak only if they're exclusive
     with wearing armor, as an optional unarmored line.
-  - *Boughs Unbroken* [Style] — L2 (C, 7708): before each Unarmed
-    attack, remove 1 Crippled or Slowed from yourself.
-  - *Branches in the Wind* [Style] — L2 (10266): 1 AP auto-Parry vs.
-    ranged attacks only. Held for the Styles pass (the non-Style
-    counterattack versions were declined).
 - **Ki = Shugen.** "Ki Style" is the old name for what became Shugen
   School, per the designer — the entries below are more Shugen
   candidates, not a separate School. Leaning teleport/chakra-disruption.

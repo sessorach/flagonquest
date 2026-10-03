@@ -8409,3 +8409,40 @@ The other two capped Styles keep their caps, since uncapping them
 breaks something: Storm of Blades would turn every attack into two, and
 Inexhaustible Guardian ran ~139% uncapped (a Guardian Parries a lot, and
 Protected is already the smallest effect to trim to).
+
+### Great Old Oak School - Boughs Unbroken (T175, new) — Level 2 (2026-10-03)
+
+> *Condition: your hands are empty.* You aren't Harried from applying
+> your Parry Defense with your Unarmed weapon. When one of your Unarmed
+> attacks hits, remove one stack of Bleeding, Crippled, Frightened,
+> Necrotic, Slowed, Taunted, or Vulnerable from yourself.
+
+Two backlog drafts combined. Boughs Unbroken ("before each Unarmed
+attack, remove 1 Crippled or Slowed") gave the cleanse, widened to Oak
+Sheds Its Leaves' debuff list. Branches in the Wind ("1 AP auto-Parry
+against ranged attacks") was out of date, since any weapon attack can
+be Parried now; what's kept is not being Harried, which Oak already
+gives in pieces (Oak Draws the Lightning, Seasons Pass the Forest). Oak
+is the defensive School, and this is the only Style that keeps your
+Parry from wearing down over a round.
+
+Hands empty is giving up a shield: **+4.5 to Target**, 7.2 + 4.5 =
+**11.7**.
+
+- Harried: a front-line monk takes ~4.8 attacks per encounter against
+  Dodge/Parry, and with this Style Parries all of them with Unarmed.
+  Each one is a Harried stack not taken, at 1/stack: **4.8**.
+- Cleanse: 3.75 hits per encounter. About half the time you have
+  something to remove, worth ~2 a stack (the debuffs run 1-4 a stack
+  applied fresh, and a stack removed partway through its window is worth
+  less): 3.75 × 0.5 × 2 = **3.75**.
+
+| Case | Parries | Hits with a debuff on you | Value | Share |
+|---|---|---|---|---|
+| Light | 4 | 25% | 5.9 | 50% |
+| **Typical** | **4.8** | **50%** | **8.55** | **~73%** |
+| Tank drawing attacks | 7.2 | 75% | 12.8 | 110% |
+
+It scales with how much you're attacked, and Oak Draws the Lightning
+taunts enemies onto you, so an Oak tank sits toward the high end. Still
+under at the typical case.

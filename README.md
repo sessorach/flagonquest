@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-03 — Oak gets a Style
+
+Great Old Oak, the last School without a Style, got Boughs Unbroken: Parrying with your fists doesn't wear you down, and every Unarmed hit shakes off a debuff.
+
 ### 2026-10-02 — Styles pass: Tiger, Snake and Bear
 
 Went back to estimating Styles on paper after the simulator couldn't read them well, and added Styles for Snake and Bear.
