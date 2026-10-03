@@ -5657,7 +5657,7 @@
     "tags": null,
     "level": null,
     "description": "Fighting with fists, claws, or whatever's on hand — no weapon required, and doesn't occupy a Held slot.",
-    "effects": null,
+    "effects": "Each of your empty hands counts as an Unarmed weapon.",
     "cost": null,
     "value_per_level": null,
     "school": null,
@@ -5688,7 +5688,7 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "patch": null,
+    "patch": "1.1",
     "base_item_options": [],
     "levels": []
   },
