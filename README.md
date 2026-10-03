@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-10-03 — Oak gets a Style
 
-Great Old Oak, the last School without a Style, got Boughs Unbroken: Parrying with your fists doesn't wear you down, and every Unarmed hit shakes off a debuff.
+Great Old Oak, the last School without a Style, got Boughs Unbroken: Parrying with your fists doesn't wear you down, and every Unarmed hit shakes off one debuff completely.
 
 ### 2026-10-02 — Styles pass: Tiger, Snake and Bear
 

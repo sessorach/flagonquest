@@ -8414,8 +8414,9 @@ Protected is already the smallest effect to trim to).
 
 > *Condition: your hands are empty.* You aren't Harried from applying
 > your Parry Defense with your Unarmed weapon. When one of your Unarmed
-> attacks hits, remove one stack of Bleeding, Crippled, Frightened,
-> Necrotic, Slowed, Taunted, or Vulnerable from yourself.
+> attacks hits, choose Bleeding, Crippled, Frightened, Necrotic,
+> Slowed, Taunted, or Vulnerable, then remove all stacks of it from
+> yourself.
 
 Two backlog drafts combined. Boughs Unbroken ("before each Unarmed
 attack, remove 1 Crippled or Slowed") gave the cleanse, widened to Oak
@@ -8446,3 +8447,18 @@ Hands empty is giving up a shield: **+4.5 to Target**, 7.2 + 4.5 =
 It scales with how much you're attacked, and Oak Draws the Lightning
 taunts enemies onto you, so an Oak tank sits toward the high end. Still
 under at the typical case.
+
+**Topped up: all stacks of one effect (2026-10-03).** Per the designer,
+the cleanse removes every stack of the chosen effect, not one stack.
+You'd usually pick your worst debuff, so a useful cleanse is worth ~3
+instead of ~2: 3.75 × 0.5 × 3 = 5.6.
+
+| Case | Value | Share |
+|---|---|---|
+| Light | 6.8 | 58% |
+| **Typical** | **10.4** | **~89%** |
+| Tank drawing attacks | 15.6 | 134% |
+
+The tank case runs hot, but that's the build piling every attack onto
+itself, and a tank that cleanses and holds its Parry is the point of
+the Style.

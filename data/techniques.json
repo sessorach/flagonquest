@@ -8202,7 +8202,7 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "You aren't Harried from applying your Parry Defense with your Unarmed weapon. When one of your Unarmed attacks hits, remove one stack of Bleeding, Crippled, Frightened, Necrotic, Slowed, Taunted, or Vulnerable from yourself.",
+    "effects": "You aren't Harried from applying your Parry Defense with your Unarmed weapon. When one of your Unarmed attacks hits, choose Bleeding, Crippled, Frightened, Necrotic, Slowed, Taunted, or Vulnerable, then remove all stacks of it from yourself.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Brawl 3, Meditation 2",
