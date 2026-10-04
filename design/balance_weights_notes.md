@@ -8633,3 +8633,38 @@ says it follows Shifts anyway, so a Shift doesn't shake you.
 
 Level 1 per the designer. Acrobatics 2, Insight 1 (the archive's
 Skills). Tagged Guardian, Duelist. Pairs with Parting Shot.
+
+## Social Maneuver Features priced against the Social Encounter Baseline (2026-10-04)
+
+`design/social_sim/baseline.py` rebuilds the Baseline as an exact
+recursion (reproduces the locked 57.03%). Each Feature is one use per
+encounter (one copy of Social Maneuver), spent at the start of
+whichever round helps most from the current state.
+
+There's no settled rate from win-rate points to Value (Stoic Collar's
++6pp ≈ 3 Value was a labeled judgment call), so costs are set
+relative to Careful Delivery = 1 point (Good Luck on one Statement,
++6.71pp): 1 point ≈ 6.7pp.
+
+| Feature | Win-rate change | Points by the model | Current cost |
+|---|---|---|---|
+| Careful Delivery (Good Luck) | +6.71pp | 1.0 | 1 |
+| Approach Skill swaps ([Suit] extra successes) | +9.51pp | 1.4 | 1 |
+| Emotional Appeal (+1 success) | +18.84pp | 2.8 | 1 |
+| Airtight Argument (all four suits, +4) | +0.70pp | 0.1 | 1 |
+| Clear the Air | +9.72pp | 1.45 | 1 |
+| Friendly-Faced | +12.61pp | 1.9 | 1 |
+| Setup & Follow (Supports Good Luck) | +3.37pp | 0.5 | 1 |
+| Practiced Comeback (alone, before doubling other Features) | +22.55pp | 3.4 | 4 |
+
+Variants checked: Airtight at 3+ suits for +2 = +4.80pp (0.7);
+Setup & Follow giving Supports Good Luck twice = +5.41pp (0.8).
+Single Out and Upstage act on the other side's Pressure checks, which
+the Baseline doesn't model (its Pressure is +1 a round from time).
+Preventing 1 Pressure once is +26.15pp, since with failure at Pressure
+5 it buys a whole extra round; Upstage's Bad Luck on one opposing check
+prevents ~0.25 of a Pressure, ~1 point.
+
+**That last number flags A Perfectly Good Explanation.** "Discard a
+card to prevent 1 Pressure" is +26pp per card, with no limit beyond the
+hand. Needs a decision.
