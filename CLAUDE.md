@@ -811,6 +811,18 @@ which should stay a clean decision record.
   line than a silent reintroduction of the overflow this exists to
   prevent.
 
+- **Suit glyphs on Skills** (`SUIT_SKILLS`/`SKILL_SUIT`/`SUIT_GLYPH` in
+  `index.html`, next to `STAT_SKILLS`): every Skill row in `StatsPanel`
+  shows its governing suit (♥ ♣ ◆ ♠, matching `rulebook.md`'s list,
+  ◆ not ♦), red suits in the pass/fail red, black suits pale. The
+  mapping is a hand-kept copy of the rulebook list, same as the skill
+  list itself; if a Skill's suit ever changes, change both. The
+  glyph made the editable Builder grid too wide for 5-across in the
+  1120px content column (it was already ~20px over), so the Builder
+  (`builder-stat-grid`) stays 3-across above 1100px; the read-only
+  Sheet still goes 5-across. Checked at 1280/1024/430/414/390px and in
+  print.
+
 ## Verifying UI changes before committing
 
 There's no CI here, so every UI change gets manually verified in a

@@ -257,6 +257,14 @@
     @media (min-width: 560px)  { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 840px)  { .stat-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 1100px) { .stat-grid { grid-template-columns: repeat(5, 1fr); } }
+    /* The editable Builder grid stays at 3-across even on wide screens:
+       its rows carry a PointStepper as well as the suit glyph, name and
+       Skill Total badge, and five of those don't fit the page's
+       1120px-wide content column (they already ran ~20px over before
+       the suit glyphs went in, and ~110px over after, scrolling the
+       whole page sideways). The read-only Sheet has no stepper and
+       still fits 5-across. */
+    @media (min-width: 1100px) { .stat-grid.builder-stat-grid { grid-template-columns: repeat(3, 1fr); } }
 
     /* Read-only Character Sheet only (StatsPanel adds this class
        alongside stat-grid when readOnly) — below the 560px breakpoint
@@ -752,6 +760,24 @@ const STATS = Object.keys(STAT_SKILLS);
 const SKILL_STAT = {};
 STATS.forEach(stat => STAT_SKILLS[stat].forEach(skill => { SKILL_STAT[skill] = stat; }));
 const ALL_STAT_SKILLS = Object.keys(SKILL_STAT);
+
+// The suit that governs each Skill (rulebook.md, "Each Skill is
+// governed by one of the four suits") — the one that counts for Extra
+// Successes when you flip with it. Shown next to every Skill so nobody
+// has to look it up mid-flip. Glyphs match the rulebook's list,
+// including ◆ rather than ♦ for Diamonds.
+const SUIT_SKILLS = {
+  Hearts:   ["Presence", "Rapport", "Performance", "Survival", "Theurgy"],
+  Clubs:    ["Brawl", "Athletics", "Resilience", "Might", "Meditation", "Sorcery"],
+  Diamonds: ["Acrobatics", "Craft", "Composure", "Masquerade", "Streetwise", "Mixology", "Stealth"],
+  Spades:   ["Melee", "Archery", "Awareness", "Insight", "Persuasion", "Academics", "Medicine"],
+};
+const SUIT_GLYPH = { Hearts: "♥", Clubs: "♣", Diamonds: "◆", Spades: "♠" };
+// Red suits red, black suits a pale ink, like a real deck read against
+// the dark card background.
+const SUIT_COLOR = { Hearts: "#e0645f", Diamonds: "#e0645f", Clubs: "#c9cfdf", Spades: "#c9cfdf" };
+const SKILL_SUIT = {};
+Object.entries(SUIT_SKILLS).forEach(([suit, skills]) => skills.forEach(skill => { SKILL_SUIT[skill] = suit; }));
 
 // Points are bought one at a time starting from 0: a skill point at
 // level N costs N XP, a stat point costs double that (2N). The total
@@ -2314,7 +2340,7 @@ function StatsPanel({
         </div>
       )}
 
-      <div className={readOnly ? "stat-grid sheet-stat-grid" : "stat-grid"}>
+      <div className={readOnly ? "stat-grid sheet-stat-grid" : "stat-grid builder-stat-grid"}>
         {STATS.map(stat => (
           <div key={stat} className="sheet-box" style={{
             ...cardBoxStyle, padding: "10px 12px",
@@ -2353,6 +2379,12 @@ function StatsPanel({
                       forcing the row wider than its column, since a flex
                       item's default min-width is its own content size,
                       not 0. */}
+                  <span className="skill-suit" title={`Governed by ${SKILL_SUIT[skill]}`} style={{
+                    fontSize: 13, width: 12, textAlign: "center", flexShrink: 0,
+                    color: SUIT_COLOR[SKILL_SUIT[skill]],
+                  }}>
+                    {SUIT_GLYPH[SKILL_SUIT[skill]]}
+                  </span>
                   <span style={{ fontSize: 14, color: TEXT.body, flex: 1, minWidth: 0 }}>{skill}</span>
                   {readOnly ? (
                     <>
