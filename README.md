@@ -13,9 +13,11 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-10-04 — Two new keywords, and two guardian Styles
+### 2026-10-04 — Keywords, guardian Styles and a social overhaul
 
-Attacks that copy their Technique now share a Repeat keyword, and Counterattack became Opportunity Attack since not every user answers an attack. Two old Stances came back as Styles: Lend Bulwark takes hits meant for an adjacent ally on your own Parry, and Sentinel follows an enemy every step it takes away from you.
+Attacks that copy their Technique now share a Repeat keyword, Counterattack became Opportunity Attack, and the social Techniques got rebuilt for the current Statement and Pressure rules.
+- Two old Stances came back as Styles: Lend Bulwark takes hits meant for an adjacent ally on your own Parry, and Sentinel follows an enemy every step it takes away from you.
+- Social Maneuver now adds Features to a Statement instead of costing AP, with every Feature priced against a model of a social encounter; Persuasion can target either Mental or Vigilant Defense, and Taunt and Frighten now work in social encounters.
 
 ### 2026-10-03 — Oak, drunks and archers get Styles
 
