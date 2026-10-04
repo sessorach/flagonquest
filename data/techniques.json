@@ -8433,5 +8433,109 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T180",
+    "name": "Earthen Fist Posture",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Style",
+    "description": "By standing firmly and leveraging your strength to deliver strikes with as much force as possible, you drive your foes back with every blow that lands.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When one of your weapon attacks hits, you may Push the target 1 meter.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Acrobatics, Archery, Brawl, or Melee) 2, Might 1",
+    "relevant_skills": "Acrobatics, Archery, Brawl, Melee, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics",
+          "Archery",
+          "Brawl",
+          "Melee"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T181",
+    "name": "Lion School - Swashbuckler's Focus",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "Versed in the art of singling an opponent out and reading their every move, when you are going toe-to-toe with a single foe you are at your peak... assuming there isn't anyone else trying to bash your head in at the same time.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "At the start of each of your turns, choose a creature. Your attacks against it have Good Luck, and other creatures' attacks against you have Good Luck.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Brawl or Melee) 3, Insight 2",
+    "relevant_skills": "Brawl, Melee, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl",
+          "Melee"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

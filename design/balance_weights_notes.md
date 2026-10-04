@@ -8758,3 +8758,27 @@ extended a day at a time by Pitching a card. Raise Spirits and Wisdom
 of the Woods: "Assist" is "Support" now. Stoic Collar (I259) drops its
 1 AP cost, since social encounters don't run on AP; same effect and
 price.
+
+### Earthen Fist Posture (T180) and Lion School - Swashbuckler's Focus (T181), new (2026-10-04)
+
+**Earthen Fist Posture**, Level 1:
+> When one of your weapon attacks hits, you may Push the target 1 meter.
+
+The archive (Level 2) Pushed on a hit or Parry for -1 Dodge/Parry:
+losing ~1 Defense is +4.4 to Target (11.6), against 5 triggers × 0.89
+= 4.5, ~39%. Without the penalty, hit only (per the designer): 3.75
+hits × 0.89 = 3.3 against 3.6, **~93%**. Any weapon, ranged included.
+Bear's Furious Swipes also Pushes, but only Unarmed and inside a bigger
+package. (Acrobatics, Archery, Brawl, or Melee) 2, Might 1.
+
+**Lion School - Swashbuckler's Focus**, Level 2:
+> At the start of each of your turns, choose a creature. Your attacks
+> against it have Good Luck, and other creatures' attacks against you
+> have Good Luck.
+
+The archive's ±1 Dodge/Parry against the focus and everyone else was
+a flat Defense bonus. Value: ~5 of 6.25 attacks at the focus × 2.4 =
+12. Cost: about half the ~4.8 attacks on you come from others, and
+their Good Luck is +2.4 × 2.4 = **+5.8 to Target**, 13.0. **~92%.**
+No Condition, so it isn't tied to Lion's one-weapon dueling setup;
+(Brawl or Melee) 3, Insight 2 to match Eternal Riposte.

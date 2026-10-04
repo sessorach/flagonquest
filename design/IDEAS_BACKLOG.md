@@ -150,6 +150,19 @@ cut, not just backfilled at a point in time.
   than it looks (two swings land 1.38 times the hits of one, and the
   first Harries the target for the second), ~121% at Level 3 with half
   the attacks being Level 2 Techniques.
+- **Archived Stances, declined in the Styles pass** (2026-10-04):
+  *Breaching Blows* (two-hander, must Gamble, Bleeding when Parried;
+  Furious Rage already does Bleeding on a hit or Parry); *Raptor's
+  Precision* (re-flip 4 or lower, attacks take Full actions; built on
+  the old action types, and Eagle Eyes is the pay-more-for-accuracy
+  Style); *Alacritous Posture* (Main/Move usable as Extra/Counter
+  actions; leftover AP is already available for Interrupts, since you
+  get your 4 AP at the end of your turn); *Iron Vanguard* (shield, 1 AP
+  Interrupt for Bad Luck against your Parry; Bad Luck is 2.2 for 2.75
+  of AP, and Disciple of the Flowing Hand, Lend Bulwark and
+  Inexhaustible Guardian cover it; the +2 Parry version is a flat
+  Defense bonus). Earthen Fist Posture lost its -1 Dodge/Parry and
+  Swashbuckler's Focus its flat +1/-1 Defense in their live versions.
 - **Sentinel, archived versions** — declined (2026-10-04). Level 2
   ("you haven't moved this turn; leave if you move") and Level 3 ("your
   Speed is reduced to 0"). Speed 0 is +10.2 to Target, close to a whole
@@ -391,17 +404,21 @@ Channel Ki/Warmage's Reserves — expend one Encounter Technique to
 regain another), Moment of Celerity (spend Soul for a genuine extra
 Main action — no current technique grants one).
 
-**Combat Stances** (general Martial, not tied to a named Style) — a
-whole unported family, ~20 tradeoff-based postures. Representative
-sample: Alacritous Posture (Main/Move as Extra/Counter if unused),
-Half-Guard/Shifting Ground (Speed-for-defense; Drunken Brawling is live
-as T176, rebuilt),
-Breaching Blows/Earthen Fist Posture (offense-for-defense, two-
-handers), Doubleshot (live as T177, Level 4), Group
-Bulwark/Lend Bulwark (live as T178, rebuilt as a bodyguard Style), Sentinel (live as T179, Level 1), Iron Vanguard
-(shield-tank, Bad Luck to attackers), Raptor's Precision/Swashbuckler's
-Focus (accuracy/speed or single-target tradeoffs), Earthen Mantle
-Approach (elemental Resist for defense).
+**Combat Stances** (general Martial, not tied to a named Style) — an
+old family of tradeoff-based postures, worked through in the 2026-10
+Styles pass. Live now, rebuilt: Drunken Brawling (T176), Doubleshot
+(T177), Lend Bulwark (T178), Sentinel (T179), Earthen Fist Posture
+(T180), Lion School - Swashbuckler's Focus (T181). Declined: see
+"Reviewed and declined". Still to review: Earthen Mantle Approach
+(+2 Fire/Frost/Shadow Resist, -2 Dodge/Parry), and these archived
+Stances the old sample never listed (all in
+`archive/flagonquest_site_techniques.md`): Adrenaline High, Aura of
+Death, Battering Blows, Concussive Swings, Crashing Wave / Crashing
+Wave Approach, Deadeye's Shadow, Defensive Roll, Distancing Draw,
+Duelist's Dance, Elemental Blend (spell), Flowing Iron, Flurry of
+Strikes, Immaculate Precision, One-Man Phalanx, Oppressive Presence,
+Reaping Dervish, Sixth Sense Blade Rhythm, Steel Wind, Stone Fist
+Posture, Swashbuckler's Rhythm, Swashbuckler's Speed.
 
 **Discipline/Martial-Arts Schools** (the archive calls them "X Style";
 live game renamed them "X School") — only 1-5 techniques per School
