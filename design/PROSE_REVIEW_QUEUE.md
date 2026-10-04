@@ -184,3 +184,9 @@ things off in order.
   Counterattack and moved to its alphabetical spot; the 2 AP cap now
   covers the plain weapon attack too, and extra AP spent on top doesn't
   count toward it. Commit `3fbe5d3`.
+- **`#### [Fleeting]`** (glossary.md, Rules Tags) — new sentence: in
+  social encounters, remove 1 stack after each Statement your party
+  makes. Commit `4621cd6`.
+- **`#### Frightened`, `#### Taunted`** (glossary.md, Common Effects)
+  — new paragraph each: in a social encounter they cover the checks one
+  side makes to add Pressure to the other. Commit `4621cd6`.
