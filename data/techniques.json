@@ -8344,7 +8344,7 @@
     "action": "Passive (Style) + reaction",
     "cost": null,
     "target": null,
-    "effects": "When an ally adjacent to you is attacked, before the flip, you may have the attack made against your Parry Defense instead of their Dodge or Parry Defense.",
+    "effects": "When an ally adjacent to you is the target of an attack that could be Parried, before the flip, you may have the attack made against your Parry Defense instead.",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Brawl or Melee) 3, Might 2",

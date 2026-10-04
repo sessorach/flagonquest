@@ -8560,9 +8560,9 @@ only; no prices change.
 
 ### Lend Bulwark (T178, new) — bodyguard Style, Level 2 (2026-10-04)
 
-> When an ally adjacent to you is attacked, before the flip, you may
-> have the attack made against your Parry Defense instead of their Dodge
-> or Parry Defense.
+> When an ally adjacent to you is the target of an attack that could be
+> Parried, before the flip, you may have the attack made against your
+> Parry Defense instead.
 
 Rebuilt from the archived Lend/Group Bulwark (an adjacent ally gets
 your shield's Defense to Parry and you can't Parry with it). That
@@ -8591,3 +8591,18 @@ the time):
 It's worth most next to the most fragile ally, which is the play it's
 for. (Brawl or Melee) 3, Might 2, matching the other Guardian Styles.
 Tagged Guardian.
+
+**Only attacks that could be Parried (2026-10-04).** Per the designer,
+you can't step in front of an attack the ally could only Dodge, like
+most spells. Assuming ~75% of the attacks on an adjacent ally could be
+Parried (enemy weapon attacks; enemy casters mostly go after Dodge,
+Vital or Mental), that's ~2.25 attacks taken over, not 3:
+
+| Typical gap | Value | Share |
+|---|---|---|
+| 3 (guarding a fighter) | 4.0 | 55% |
+| **4** | **6.1** | **~84%** |
+| 5 (guarding a caster) | 8.1 | 113% |
+
+Under at the typical case now, but still on budget for its main job,
+guarding the party's most fragile member against weapon attacks.
