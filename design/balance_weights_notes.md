@@ -8727,12 +8727,8 @@ third card isn't worth spending. No cap needed; left as written.
 
 ### Social Defenses and two passives checked (2026-10-04)
 
-Per the designer, Persuasion now targets the speaker's choice of
-Mental or Vigilant Defense (rulebook.md, the Persuasion Skill and the
-Social Encounters section), rewarding it as the social specialist's
-Skill. Presence and Rapport stay on Mental. The Baseline doesn't model
-which Defense a Statement hits, so it's unchanged; in play a
-Persuasion lead just picks the target's weaker one. One of Many Faces'
+Persuasion briefly targeted either Defense; per the designer it's back
+to Vigilant only. One of Many Faces'
 Masquerade Statements go against Vigilant Defense, Dominate Mind's
 Theurgy against Mental.
 

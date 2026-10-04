@@ -279,7 +279,7 @@ Example: Jackal needs to walk into a garrison unnoticed, so he’s disguised him
 
 #### Persuasion
 
-Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets your choice of Mental or Vigilant Defense in a social encounter. Persuasion is governed by Spades.
+Convincing others of what you say, whether you’re telling the truth or not. It is used in many social situations, and targets Vigilant Defense in a social encounter. Persuasion is governed by Spades.
 
 #### Streetwise
 
@@ -590,7 +590,7 @@ In many cases, social interactions to convince, impress, or trick someone are re
 
 Some social goals take more than one Statement to pull off - winning someone over, talking your way past a guard, negotiating a good price. These work as an extended check, the same as any other: the GM sets a number of successes needed, and the party earns successes toward it with Statements.
 
-A Statement is a flip using Presence, Rapport, or Persuasion, made against the target’s Mental or Vigilant Defense. Persuasion targets your choice of the two; Presence and Rapport both target Mental Defense.
+A Statement is a flip using Presence, Rapport, or Persuasion, made against the target’s Mental or Vigilant Defense. Persuasion targets Vigilant Defense; Presence and Rapport both target Mental Defense.
 
 ### Pressure
 

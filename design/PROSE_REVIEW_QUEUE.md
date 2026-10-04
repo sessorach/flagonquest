@@ -190,6 +190,3 @@ things off in order.
 - **`#### Frightened`, `#### Taunted`** (glossary.md, Common Effects)
   — new paragraph each: in a social encounter they cover the checks one
   side makes to add Pressure to the other. Commit `4621cd6`.
-- **`#### Persuasion`** and **`### Social Encounters`** (rulebook.md)
-  — Persuasion now targets your choice of Mental or Vigilant Defense in
-  a social encounter (was Vigilant only). Commit `e7fd13c`.

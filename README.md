@@ -17,7 +17,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 Attacks that copy their Technique now share a Repeat keyword, Counterattack became Opportunity Attack, and the social Techniques got rebuilt for the current Statement and Pressure rules.
 - Two old Stances came back as Styles: Lend Bulwark takes hits meant for an adjacent ally on your own Parry, and Sentinel follows an enemy every step it takes away from you.
-- Social Maneuver now adds Features to a Statement instead of costing AP, with every Feature priced against a model of a social encounter; Persuasion can target either Mental or Vigilant Defense, and Taunt and Frighten now work in social encounters.
+- Social Maneuver now adds Features to a Statement instead of costing AP, with every Feature priced against a model of a social encounter, and Taunt and Frighten now work in social encounters.
 
 ### 2026-10-03 — Oak, drunks and archers get Styles
 
