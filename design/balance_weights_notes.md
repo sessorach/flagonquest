@@ -8546,3 +8546,14 @@ Repeat). The Repeat isn't tied to the original weapon; it uses any
 weapon you're wielding that could make the attack. Storm of Blades,
 Doubleshot and Battle Maneuver's Flurry Feature now use it. Wording
 only; no prices change.
+
+### Counterattack renamed Opportunity Attack (2026-10-04)
+
+Per the designer: its three users don't all answer an attack (Eternal
+Riposte after a Parry, Magehunter on a spell, Parting Shot on someone
+leaving your reach), so the keyword is now Opportunity Attack.
+Magehunter and Parting Shot, which spelled the same rule out in prose,
+now use it. The glossary entry says the 2 AP cap covers a plain weapon
+attack as well as a Technique, and only the base cost counts: extra AP
+another effect lets you spend on top (Eagle Eyes) doesn't. Wording
+only; no prices change.

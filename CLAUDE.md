@@ -345,6 +345,12 @@ which should stay a clean decision record.
     (Furious Swipes went from "once per round, choose two" to "every
     hit: Push, plus Bleeding or Slowed"). Keep a cap only when the
     uncapped version actually breaks, and say why in the notes.
+  - **Paying more AP for an effect says "spend an extra N AP."** Per
+    the designer (2026-10-04): the extra AP goes on top of the action's
+    own cost, never replacing it, so a cap on an action's cost (the
+    Opportunity Attack keyword's 2 AP) only ever looks at the base cost.
+    Eagle Eyes and the weapon item with the same rider already read
+    this way ("you may spend an extra 1 AP"); keep new ones matching.
   - **When a trigger does need a limit, say "Once per round," and make
     it optional.** Per
     the designer (2026-09-30): "Once per round, when X, you may Y," not

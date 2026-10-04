@@ -3521,7 +3521,7 @@
     "action": "1 AP - Interrupt (a creature within your weapon's range declares a Spell, before it is cast)",
     "cost": null,
     "target": "The creature trying to cast a Spell",
-    "effects": "Make a weapon attack against the target. You may use a Technique instead, as long as it has you make a weapon attack against the target and takes no more than 2 AP to use.",
+    "effects": "Make an Opportunity Attack against the target.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Academics 2, (Sorcery or Theurgy) 1",
@@ -3536,7 +3536,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -3572,7 +3572,7 @@
     "action": "1 AP - Interrupt (a creature within range of a close-range weapon you are wielding would move or be Pushed outside your range)",
     "cost": null,
     "target": "The creature trying to move or being Pushed",
-    "effects": "Make an attack with a close-range weapon against the target. You may use a Technique instead, as long as it has you make a weapon attack with a close-range weapon against the target and takes no more than 2 AP.",
+    "effects": "Make an Opportunity Attack against the target with a close-range weapon.",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics or Insight) 2",
@@ -3587,7 +3587,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.1",
     "prereq_check": [
       {
         "type": "skill",
@@ -6283,7 +6283,7 @@
     "action": "Passive (Style) + Interrupt reaction",
     "cost": null,
     "target": null,
-    "effects": "When you Parry an attack, you may Counterattack the attacker as a 0 AP Interrupt.",
+    "effects": "When you Parry an attack, you may make an Opportunity Attack against the attacker as a 0 AP Interrupt.",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Brawl or Melee) 3, Insight 2",

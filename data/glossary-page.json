@@ -42,13 +42,6 @@
     "body": "A Burst affects the indicated space, plus every space within X meters of it, in a circle centered on that space. Burst 0 only affects the indicated space itself."
   },
   {
-    "id": "counterattack",
-    "level": 4,
-    "title": "Counterattack",
-    "supplement": "Base Game",
-    "body": "When something lets you Counterattack a creature, you may make a weapon attack against it, or use a Technique of up to 2 AP that makes a weapon attack against only that creature."
-  },
-  {
     "id": "difficult-terrain",
     "level": 4,
     "title": "Difficult Terrain",
@@ -61,6 +54,13 @@
     "title": "Negated",
     "supplement": "Base Game",
     "body": "A Technique, attack, or other ability that is Negated is still expended as normal, as are any other resources spent to use it, but otherwise has no effect as though it were never used."
+  },
+  {
+    "id": "opportunity-attack",
+    "level": 4,
+    "title": "Opportunity Attack",
+    "supplement": "Base Game",
+    "body": "When something lets you make an Opportunity Attack against a creature, you may make a weapon attack against it, or use a Technique that makes a weapon attack against only that creature. Either way, its AP cost can’t be more than 2 - any extra AP another effect lets you spend on top of that cost doesn’t count toward it."
   },
   {
     "id": "outflank",
