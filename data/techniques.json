@@ -8383,5 +8383,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T179",
+    "name": "Sentinel",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Style",
+    "description": "You focus on enemies around you, matching their every step and following their movements carefully to keep them under control.",
+    "condition": null,
+    "action": "Passive (Style) + reaction",
+    "cost": null,
+    "target": null,
+    "effects": "When an enemy adjacent to you moves or Shifts, you may Shift into each space it leaves, as long as it keeps moving.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Acrobatics 2, Insight 1",
+    "relevant_skills": "Acrobatics, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

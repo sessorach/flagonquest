@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-10-04 — Two new keywords, and a bodyguard Style
+### 2026-10-04 — Two new keywords, and two guardian Styles
 
-Attacks that copy their Technique now share a Repeat keyword, Counterattack became Opportunity Attack since not every user answers an attack, and the old Lend Bulwark Stance came back as a Style that takes hits meant for an adjacent ally on your own Parry.
+Attacks that copy their Technique now share a Repeat keyword, and Counterattack became Opportunity Attack since not every user answers an attack. Two old Stances came back as Styles: Lend Bulwark takes hits meant for an adjacent ally on your own Parry, and Sentinel follows an enemy every step it takes away from you.
 
 ### 2026-10-03 — Oak, drunks and archers get Styles
 

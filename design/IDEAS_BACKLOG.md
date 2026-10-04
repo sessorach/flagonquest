@@ -150,6 +150,11 @@ cut, not just backfilled at a point in time.
   than it looks (two swings land 1.38 times the hits of one, and the
   first Harries the target for the second), ~121% at Level 3 with half
   the attacks being Level 2 Techniques.
+- **Sentinel, archived versions** — declined (2026-10-04). Level 2
+  ("you haven't moved this turn; leave if you move") and Level 3 ("your
+  Speed is reduced to 0"). Speed 0 is +10.2 to Target, close to a whole
+  Level 3 budget, and the Level 2 Condition charged twice for the same
+  thing. The live Sentinel (T179) drops both at Level 1.
 - **Lend Bulwark / Group Bulwark, archived versions** — declined
   (2026-10-04). Both say "an adjacent ally you focus on gains your
   shield's Defense to Parry, and you can't Parry with that shield".
@@ -410,7 +415,7 @@ Half-Guard/Shifting Ground (Speed-for-defense; Drunken Brawling is live
 as T176, rebuilt),
 Breaching Blows/Earthen Fist Posture (offense-for-defense, two-
 handers), Doubleshot (live as T177, Level 4), Group
-Bulwark/Lend Bulwark (live as T178, rebuilt as a bodyguard Style), Sentinel (shadow an adjacent enemy's movement), Iron Vanguard
+Bulwark/Lend Bulwark (live as T178, rebuilt as a bodyguard Style), Sentinel (live as T179, Level 1), Iron Vanguard
 (shield-tank, Bad Luck to attackers), Raptor's Precision/Swashbuckler's
 Focus (accuracy/speed or single-target tradeoffs), Earthen Mantle
 Approach (elemental Resist for defense).

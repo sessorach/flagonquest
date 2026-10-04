@@ -8606,3 +8606,30 @@ Vital or Mental), that's ~2.25 attacks taken over, not 3:
 
 Under at the typical case now, but still on budget for its main job,
 guarding the party's most fragile member against weapon attacks.
+
+### Sentinel (T179, new) — Level 1 (2026-10-04)
+
+> When an enemy adjacent to you moves or Shifts, you may Shift into each
+> space it leaves, as long as it keeps moving.
+
+Rebuilt from the archived Stance. Its Level 3 version reduced your
+Speed to 0, which is +10.2 to Target (Speed permanent 2.54/point × 4),
+close to a whole Level 3 budget; the Level 2 version's "you haven't
+moved; leave if you move" Condition charged twice for the same thing.
+Both costs are dropped.
+
+It doesn't stop the enemy moving; it keeps you on it. Each follow saves
+a move action on your next turn (1 AP = 2.75). Enemies in the simulator
+mostly stand still once in melee; the ones that leave are casters,
+archers and skirmishers trying to get out, so ~1-2 follows per
+encounter. Shifting normally can't be answered with an Interrupt; this
+says it follows Shifts anyway, so a Shift doesn't shake you.
+
+| Follows per encounter | Value | Share of 3.6 |
+|---|---|---|
+| 1 | 2.75 | 76% |
+| **1.5** | **4.1** | **~115%** |
+| 2 | 5.5 | 153% |
+
+Level 1 per the designer. Acrobatics 2, Insight 1 (the archive's
+Skills). Tagged Guardian, Duelist. Pairs with Parting Shot.
