@@ -8724,3 +8724,29 @@ There's no settled rate from win-rate points to Value, so both anchors:
 
 It caps itself: after two uses the party's almost certain to win, so a
 third card isn't worth spending. No cap needed; left as written.
+
+### Social Defenses and two passives checked (2026-10-04)
+
+Per the designer, Persuasion now targets the speaker's choice of
+Mental or Vigilant Defense (rulebook.md, the Persuasion Skill and the
+Social Encounters section), rewarding it as the social specialist's
+Skill. Presence and Rapport stay on Mental. The Baseline doesn't model
+which Defense a Statement hits, so it's unchanged; in play a
+Persuasion lead just picks the target's weaker one. One of Many Faces'
+Masquerade Statements go against Vigilant Defense, Dominate Mind's
+Theurgy against Mental.
+
+Checked with the model, per day against a Level 2 Technique's 12:
+
+| Technique | Social effect | Win rate | Per day (0.5 / 0.36 per pp) | Share |
+|---|---|---|---|---|
+| Favorite Face (T063) | Good Luck on your first Statement, if Rapport | +4.71pp | 2.4 / 1.7 | 14-20% |
+| Rumormonger (T065) | Good Luck twice on one Statement a social encounter | +13.67pp | 6.8 / 4.9 | 41-57% |
+
+Both are well under on their social-encounter effect alone. Favorite
+Face's Good Luck lands on round 1, where the lead nearly always
+succeeds anyway (card rescue), so it mostly adds a card to the suit
+pool. Both carry out-of-encounter effects the model can't see
+(Favorite Face never being an unfamiliar face, Rumormonger's Good Luck
+on spreading and tracking rumors), which may be most of their worth.
+Left for the designer.
