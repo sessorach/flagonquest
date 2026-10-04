@@ -218,37 +218,20 @@ a Poison, so a list like its own can't be read as including them.
 
 ## Techniques with stale "Social Contest"-era mechanics, need real rework
 
-Found while doing the Social Contest → Social Encounter terminology
-rename across the codebase (see `scripts/rulebook.md`'s Pressure/Social
-Encounter sections, `design/balance_weights_notes.md`'s Social Encounter
-Baseline). These four `techniques.csv` rows got the plain text rename
-("social contest" → "social encounter") since that much is unambiguous,
-but each also references a mechanic that no longer exists in the
-current Statement/Support/Pressure system — a real design decision, not
-a find-and-replace, so flagging here instead of guessing:
+Mostly resolved 2026-10-04. Challenge, Cry of Victory and Exert
+Pressure lost their "while in front, on a Charismatic statement"
+Specials: their Presence attack already works in a social encounter,
+and Taunted/Frightened apply to an NPC's Pressure-adding check, which is
+an attack against the party. A Perfectly Good Explanation now prevents
+Pressure instead of Concessions (still unpriced against the Social
+Encounter Baseline). One of Many Faces and Dominate Mind say "Statement"
+instead of "Strategic statement".
 
-- **T058 Challenge, T062 Cry of Victory, T067 Exert Pressure** all key
-  their social-encounter Interrupt off "while in the front, when you
-  succeed on a Charismatic statement." Neither "front" positioning nor
-  a "Charismatic" statement type exists anywhere in the current rules —
-  Support doesn't require "back" positioning, and statements aren't
-  typed Charismatic/Strategic/etc. in the current text (Strategic shows
-  up elsewhere, e.g. T054/T057/T068, so that half might still map, but
-  "front" doesn't map to anything). These three all currently read as
-  combat Techniques with a bolted-on social side-effect (Taunt/Frighten
-  a target once) gated on a condition that can't currently be
-  satisfied. Needs a decision on what the trigger should actually be —
-  maybe "when your Statement succeeds" with no positioning clause, maybe
-  something else entirely — before these are usable as written.
-- **T061 A Perfectly Good Explanation**: "Whenever your party would
-  gain Concessions in a social encounter, as many times as you like you
-  may discard a card and reduce those Concessions by 3 (or 4 if you
-  discarded a Heart)." This predates the Pressure rework entirely —
-  "Concessions" was the old mechanic Pressure replaced. The shape of
-  the effect (discard a card to blunt the party's rising social cost)
-  actually maps reasonably well onto "discard a card to remove some
-  Pressure," but that's a judgment call on the conversion rate, not a
-  literal rename, so it's flagged here rather than silently converted.
+Still open: **Social Maneuver (T057)** and its Features. Its base
+effect is just a Statement now, and F025 (Charismatic), F028/F029
+(Concessions), F030 (front), F031/F033 (statement types, the other
+party's turn) and F032 (Support already gives Good Luck) are dead. Being
+redesigned.
 
 ## Source material to mine: cut FlagonQuest content in `archive/`
 
