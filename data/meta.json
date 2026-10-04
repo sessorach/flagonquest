@@ -1,10 +1,15 @@
 {
-  "currentPatch": "1.1",
+  "currentPatch": "1.2",
   "versions": [
     {
-      "version": "1.1",
+      "version": "1.2",
       "current": true,
-      "focus": "Rules overhaul: Technique review, the martial Schools (Snake, Bear, Demon, Shugen, Great Old Oak), Masterwork item balance passes."
+      "focus": "Styles pass: the remaining archived Stances rebuilt as Styles."
+    },
+    {
+      "version": "1.1",
+      "current": false,
+      "focus": "Rules overhaul: Technique review, the martial Schools (Snake, Bear, Demon, Shugen, Great Old Oak), Masterwork item balance passes, most of the Styles pass, and the social Techniques rebuilt for Statements and Pressure."
     },
     {
       "version": "1.0",
