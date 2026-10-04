@@ -150,6 +150,22 @@ cut, not just backfilled at a point in time.
   than it looks (two swings land 1.38 times the hits of one, and the
   first Harries the target for the second), ~121% at Level 3 with half
   the attacks being Level 2 Techniques.
+- **More archived Stances, declined** (2026-10-04): *Flurry of
+  Strikes* and *Flowing Iron* (dual-wield, Harried once on a hit, Parry
+  or Dodge; Rending Claws does more); *Battering Blows* (Breaching Blows
+  again; Furious Rage); *One-Man Phalanx* (ignore all Harried, -1
+  Defense; became Indomitable Phalanx); *Steel Wind*, all three versions
+  (answer a Parry with your other weapon, or Cripple the attacker;
+  Eternal Riposte and Opportunity Attack, and the Cripple version is
+  ~52%); *Crashing Wave* (shield, Harry the attacker on a Parry; tiny at
+  Level 4, Inexhaustible Guardian's job); *Sixth Sense Blade Rhythm*,
+  *Swashbuckler's Rhythm*, *Reaping Dervish* (flat Defense bonuses);
+  *Concussive Swings* (damage becomes twice as many Harried; loses
+  Value on every hit, and Lawman's Hand covers non-lethal); *Swashbuckler's
+  Speed* (Harried per attack made last round; Rending Claws again);
+  *Immaculate Precision* (Gambling raises a Technique's "Power", which
+  isn't a mechanic any more); *Stone Fist Posture* (same text as Earthen
+  Fist Posture).
 - **Archived Stances, declined in the Styles pass** (2026-10-04):
   *Breaching Blows* (two-hander, must Gamble, Bleeding when Parried;
   Furious Rage already does Bleeding on a hit or Parry); *Raptor's
@@ -409,15 +425,10 @@ old family of tradeoff-based postures, worked through in the 2026-10
 Styles pass. Live now, rebuilt: Drunken Brawling (T176), Doubleshot
 (T177), Lend Bulwark (T178), Sentinel (T179), Earthen Fist Posture
 (T180), Lion School - Swashbuckler's Focus (T181), Earthen Mantle Approach (T182). Declined: see
-"Reviewed and declined". Earthen Mantle Approach is live as T182. Still to review: these archived
-Stances the old sample never listed (all in
-`archive/flagonquest_site_techniques.md`): Adrenaline High, Aura of
-Death, Battering Blows, Concussive Swings, Crashing Wave / Crashing
-Wave Approach, Deadeye's Shadow, Defensive Roll, Distancing Draw,
-Duelist's Dance, Elemental Blend (spell), Flowing Iron, Flurry of
-Strikes, Immaculate Precision, One-Man Phalanx, Oppressive Presence,
-Reaping Dervish, Sixth Sense Blade Rhythm, Steel Wind, Stone Fist
-Posture, Swashbuckler's Rhythm, Swashbuckler's Speed.
+"Reviewed and declined". Earthen Mantle Approach is live as T182, and Duelist's Dance (T183)
+merges Duelist's Dance and Distancing Draw. Still to rework: Crashing
+Wave Approach, Deadeye's Shadow, Oppressive Presence, Elemental Blend,
+Aura of Death, Adrenaline High. The rest are declined.
 
 **Discipline/Martial-Arts Schools** (the archive calls them "X Style";
 live game renamed them "X School") — only 1-5 techniques per School

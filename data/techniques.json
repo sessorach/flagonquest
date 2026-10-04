@@ -8587,5 +8587,57 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T183",
+    "name": "Duelist's Dance",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Style",
+    "description": "You never stand still in a fight. Every thrust, shot and parry comes with a step, keeping you just where you want to be.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When you make a weapon attack, you may Shift 1 meter, either before or after the attack.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Archery, Brawl, or Melee) 2, Acrobatics 1",
+    "relevant_skills": "Acrobatics, Archery, Brawl, Melee",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Archery",
+          "Brawl",
+          "Melee"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

@@ -8802,3 +8802,19 @@ dropped (giving up your other Style is the cost) and Brilliant is
 added, since the archive predates it. **~93% at Level 3** (10 / 10.8).
 Athletics 4, Resilience 3 (archive's Skills, Resistance → Resilience).
 Tagged Guardian.
+
+### Duelist's Dance (T183, new) — Level 1 (2026-10-04)
+
+> When you make a weapon attack, you may Shift 1 meter, either before or
+> after the attack.
+
+Merges two archived Stances: Duelist's Dance (one hand empty, Shift 1
+meter around an attack) and Distancing Draw (ranged, Shift 1 meter when
+attacking, Speed -1). Both conditions and the Speed penalty dropped:
+it's footwork for anyone, a duelist circling or an archer backing off.
+
+6.25 attacks, a 1-meter Shift each at Speed's single-instance rate
+(0.55/m) = **3.4, ~95%** of 3.6; at Push's base rate (0.69/m, Shift
+also ignores Interrupts and Difficult Terrain) 4.3, ~119%. Not every
+attack needs a step, so read it toward the low end. (Archery, Brawl,
+or Melee) 2, Acrobatics 1. Tagged Duelist, Archer, Rogue.
