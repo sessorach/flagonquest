@@ -227,7 +227,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Style) Use Might for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",
+    "effects": "(Approach) Make the Statement with Might against the target’s Mental Defense. If it succeeds, it gains [Diamonds] extra successes. You may only apply one Approach feature at a time.",
     "prereq": "Might 2"
   },
   {
@@ -238,7 +238,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Style) Use Streetwise for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",
+    "effects": "(Approach) Make the Statement with Streetwise against the target’s Vigilant Defense. If it succeeds, it gains [Diamonds] extra successes. You may only apply one Approach feature at a time.",
     "prereq": "Streetwise 2"
   },
   {
@@ -249,7 +249,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Style) Use Academics for the statement, and if successful gain [Spades] extra successes. You may only apply one Style feature at a time.",
+    "effects": "(Approach) Make the Statement with Academics against the target’s Vigilant Defense. If it succeeds, it gains [Spades] extra successes. You may only apply one Approach feature at a time.",
     "prereq": "Academics 2"
   },
   {
@@ -260,7 +260,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Style) Use Performance for the statement, and if successful gain [Hearts] extra successes. You may only apply one Style feature at a time.",
+    "effects": "(Approach) Make the Statement with Performance against the target’s Mental Defense. If it succeeds, it gains [Hearts] extra successes. You may only apply one Approach feature at a time.",
     "prereq": "Performance 2"
   },
   {
@@ -271,7 +271,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Style) Instead make a Charismatic statement, and if successful you gain an extra success.",
+    "effects": "(Approach) If the Statement succeeds, it gains an extra success. You may only apply one Approach feature at a time.",
     "prereq": null
   },
   {
@@ -282,7 +282,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "You have Good Luck on the statement.",
+    "effects": "The Statement has Good Luck.",
     "prereq": null
   },
   {
@@ -293,18 +293,18 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the statement is successful and its suit pool has at least one of each suit, you gain 4 extra successes.",
+    "effects": "If the Statement succeeds and its suit pool has at least one of each suit, it gains 4 extra successes.",
     "prereq": null
   },
   {
     "id": "F028",
     "technique_id": "T057",
     "technique_name": "Social Maneuver",
-    "feature_name": "Edgy Remark",
+    "feature_name": "Clear the Air",
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the statement succeeds, you may have each party gain any number of Concessions up to your total successes on the statement.",
+    "effects": "If the Statement succeeds, you may give up any number of its successes to remove that much Pressure.",
     "prereq": null
   },
   {
@@ -315,7 +315,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the statement succeeds, instead of its normal effect, for each success your party ignores the next Concession they would gain this encounter.",
+    "effects": "If the Statement succeeds, your party ignores Pressure on its next Statement and the Support checks made toward it.",
     "prereq": "Rapport 2"
   },
   {
@@ -326,7 +326,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the statement succeeds, the target must stay in the front on their next turn.",
+    "effects": "If the Statement succeeds, its target is Taunted by you twice.",
     "prereq": "Persuasion 2"
   },
   {
@@ -337,7 +337,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the statement succeeds, choose Strategic or Charismatic statements. On the other party's next turn, any members who make that type of statement have Bad Luck on them.",
+    "effects": "If the Statement succeeds, the next check the other side makes against your party has Bad Luck.",
     "prereq": "Presence 2"
   },
   {
@@ -348,19 +348,8 @@
     "tier": "Advanced",
     "point_cost": 1,
     "description": null,
-    "effects": "If this statement is made to support someone, that person has Good Luck on the statement you're supporting.",
+    "effects": "Allies Supporting the Statement have Good Luck on their Support checks.",
     "prereq": null
-  },
-  {
-    "id": "F033",
-    "technique_id": "T057",
-    "technique_name": "Social Maneuver",
-    "feature_name": "Word for Word",
-    "tier": "Advanced",
-    "point_cost": 2,
-    "description": null,
-    "effects": "If the statement succeeds, the other party may only make social statements of the same type as this statement for the rest of the social encounter. This effect ends if any of your party members make a statement of a different type.",
-    "prereq": "Persuasion 3"
   },
   {
     "id": "F034",
@@ -370,7 +359,7 @@
     "tier": "Advanced",
     "point_cost": 4,
     "description": null,
-    "effects": "You instead make two social statements, and apply all features to each. You may only apply one copy of this feature.",
+    "effects": "Make the Statement twice, applying all features to each. You may only apply one copy of this feature.",
     "prereq": null
   },
   {
@@ -381,7 +370,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "(Succession) If the statement succeeds, choose one member of the other party. If you win the social encounter, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Succession feature at a time.",
+    "effects": "(Resolution) If the Statement succeeds, choose one member of the other side. If your party wins the social encounter, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Resolution feature at a time.",
     "prereq": "Presence 3"
   },
   {
@@ -392,7 +381,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social encounter, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Succession feature at a time.",
+    "effects": "(Resolution) If the Statement succeeds, note its target. If your party wins the social encounter, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Resolution feature at a time.",
     "prereq": null
   },
   {
@@ -403,7 +392,7 @@
     "tier": "Advanced",
     "point_cost": 2,
     "description": null,
-    "effects": "(Succession) If the statement succeeds, note its target. If your party ultimately wins the social encounter and chooses Win Over, the shift in the target's opinion will be permanent — they will treat you with a favorable attitude as though you are a friend. You may only apply one Succession feature at a time.",
+    "effects": "(Resolution) If the Statement succeeds, note its target. If your party wins the social encounter and chooses Win Over, the shift in the target’s opinion is permanent - they treat you with a favorable attitude as though you are a friend. You may only apply one Resolution feature at a time.",
     "prereq": "Rapport 3"
   },
   {

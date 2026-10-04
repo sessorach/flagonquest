@@ -19,23 +19,22 @@ F017,T072,Battle Maneuver,Ascended Blade,Advanced,2,,You may have the attack dea
 F018,T072,Battle Maneuver,Whirlwind,Advanced,5,,"If your chosen weapon is a close-range weapon, the attack may target an additional target.",
 F019,T072,Battle Maneuver,Ricochet Shot,Advanced,5,,"If your chosen weapon is a ranged weapon, the attack may target an additional enemy adjacent to the first.",
 F020,T072,Battle Maneuver,Flurry,Advanced,6,,"You Repeat the weapon attack against each target, and the Repeat benefits from all features.",
-F021,T057,Social Maneuver,Brawn over Banter,Basic,1,,"(Style) Use Might for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",Might 2
-F022,T057,Social Maneuver,Unpleasant Insinuation,Basic,1,,"(Style) Use Streetwise for the statement, and if successful gain [Diamonds] extra successes. You may only apply one Style feature at a time.",Streetwise 2
-F023,T057,Social Maneuver,"""Well, Actually...""",Basic,1,,"(Style) Use Academics for the statement, and if successful gain [Spades] extra successes. You may only apply one Style feature at a time.",Academics 2
-F024,T057,Social Maneuver,Witty Quote,Basic,1,,"(Style) Use Performance for the statement, and if successful gain [Hearts] extra successes. You may only apply one Style feature at a time.",Performance 2
-F025,T057,Social Maneuver,Emotional Appeal,Basic,1,,"(Style) Instead make a Charismatic statement, and if successful you gain an extra success.",
-F026,T057,Social Maneuver,Careful Delivery,Basic,1,,You have Good Luck on the statement.,
-F027,T057,Social Maneuver,Airtight Argument,Basic,1,,"If the statement is successful and its suit pool has at least one of each suit, you gain 4 extra successes.",
-F028,T057,Social Maneuver,Edgy Remark,Basic,1,,"If the statement succeeds, you may have each party gain any number of Concessions up to your total successes on the statement.",
-F029,T057,Social Maneuver,Friendly-Faced,Basic,1,,"If the statement succeeds, instead of its normal effect, for each success your party ignores the next Concession they would gain this encounter.",Rapport 2
-F030,T057,Social Maneuver,Single Out,Basic,1,,"If the statement succeeds, the target must stay in the front on their next turn.",Persuasion 2
-F031,T057,Social Maneuver,Upstage,Basic,1,,"If the statement succeeds, choose Strategic or Charismatic statements. On the other party's next turn, any members who make that type of statement have Bad Luck on them.",Presence 2
-F032,T057,Social Maneuver,Setup & Follow,Advanced,1,,"If this statement is made to support someone, that person has Good Luck on the statement you're supporting.",
-F033,T057,Social Maneuver,Word for Word,Advanced,2,,"If the statement succeeds, the other party may only make social statements of the same type as this statement for the rest of the social encounter. This effect ends if any of your party members make a statement of a different type.",Persuasion 3
-F034,T057,Social Maneuver,Practiced Comeback,Advanced,4,,"You instead make two social statements, and apply all features to each. You may only apply one copy of this feature.",
-F035,T057,Social Maneuver,Bully into Submission,Advanced,2,,"(Succession) If the statement succeeds, choose one member of the other party. If you win the social encounter, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Succession feature at a time.",Presence 3
-F036,T057,Social Maneuver,Leading Question,Advanced,2,,"(Succession) If the statement succeeds, note its target. If your party ultimately wins the social encounter, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Succession feature at a time.",
-F037,T057,Social Maneuver,New Best Friend,Advanced,2,,"(Succession) If the statement succeeds, note its target. If your party ultimately wins the social encounter and chooses Win Over, the shift in the target's opinion will be permanent — they will treat you with a favorable attitude as though you are a friend. You may only apply one Succession feature at a time.",Rapport 3
+F021,T057,Social Maneuver,Brawn over Banter,Basic,1,,"(Approach) Make the Statement with Might against the target’s Mental Defense. If it succeeds, it gains [Diamonds] extra successes. You may only apply one Approach feature at a time.",Might 2
+F022,T057,Social Maneuver,Unpleasant Insinuation,Basic,1,,"(Approach) Make the Statement with Streetwise against the target’s Vigilant Defense. If it succeeds, it gains [Diamonds] extra successes. You may only apply one Approach feature at a time.",Streetwise 2
+F023,T057,Social Maneuver,"""Well, Actually...""",Basic,1,,"(Approach) Make the Statement with Academics against the target’s Vigilant Defense. If it succeeds, it gains [Spades] extra successes. You may only apply one Approach feature at a time.",Academics 2
+F024,T057,Social Maneuver,Witty Quote,Basic,1,,"(Approach) Make the Statement with Performance against the target’s Mental Defense. If it succeeds, it gains [Hearts] extra successes. You may only apply one Approach feature at a time.",Performance 2
+F025,T057,Social Maneuver,Emotional Appeal,Basic,1,,"(Approach) If the Statement succeeds, it gains an extra success. You may only apply one Approach feature at a time.",
+F026,T057,Social Maneuver,Careful Delivery,Basic,1,,The Statement has Good Luck.,
+F027,T057,Social Maneuver,Airtight Argument,Basic,1,,"If the Statement succeeds and its suit pool has at least one of each suit, it gains 4 extra successes.",
+F028,T057,Social Maneuver,Clear the Air,Basic,1,,"If the Statement succeeds, you may give up any number of its successes to remove that much Pressure.",
+F029,T057,Social Maneuver,Friendly-Faced,Basic,1,,"If the Statement succeeds, your party ignores Pressure on its next Statement and the Support checks made toward it.",Rapport 2
+F030,T057,Social Maneuver,Single Out,Basic,1,,"If the Statement succeeds, its target is Taunted by you twice.",Persuasion 2
+F031,T057,Social Maneuver,Upstage,Basic,1,,"If the Statement succeeds, the next check the other side makes against your party has Bad Luck.",Presence 2
+F032,T057,Social Maneuver,Setup & Follow,Advanced,1,,Allies Supporting the Statement have Good Luck on their Support checks.,
+F034,T057,Social Maneuver,Practiced Comeback,Advanced,4,,"Make the Statement twice, applying all features to each. You may only apply one copy of this feature.",
+F035,T057,Social Maneuver,Bully into Submission,Advanced,2,,"(Resolution) If the Statement succeeds, choose one member of the other side. If your party wins the social encounter, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Resolution feature at a time.",Presence 3
+F036,T057,Social Maneuver,Leading Question,Advanced,2,,"(Resolution) If the Statement succeeds, note its target. If your party wins the social encounter, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Resolution feature at a time.",
+F037,T057,Social Maneuver,New Best Friend,Advanced,2,,"(Resolution) If the Statement succeeds, note its target. If your party wins the social encounter and chooses Win Over, the shift in the target’s opinion is permanent - they treat you with a favorable attitude as though you are a friend. You may only apply one Resolution feature at a time.",Rapport 3
 F038,T104,Spirit Blessing,Reach,Basic,1,,Increase the Range of the Spell by [Theurgy Skill Total] meters.,
 F039,T104,Spirit Blessing,Step of Air,Basic,1,,The target is Hasted X + 1 times.,
 F040,T104,Spirit Blessing,Shielding,Basic,1,,The target is Protected X + 1 times.,

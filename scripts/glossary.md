@@ -102,7 +102,7 @@ Encounter abilities are expended when you use them, and you regain their use whe
 
 #### [Fleeting]
 
-At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. Outside of combat encounters, remove 1 stack roughly every 6 seconds. If you had no stacks of a Fleeting effect right before gaining some, skip the next removal that would apply to it — it starts losing stacks normally from the one after that.
+At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. In social encounters, remove 1 stack after each Statement your party makes. Outside of either, remove 1 stack roughly every 6 seconds. If you had no stacks of a Fleeting effect right before gaining some, skip the next removal that would apply to it — it starts losing stacks normally from the one after that.
 
 #### [Food]
 
@@ -156,6 +156,8 @@ For each stack of this, you suffer a -1 penalty to attacks.
 
 While you have any stacks of this, you have Bad Luck on any actions targeting the creature who Frightened you.
 
+In a social encounter, this includes the checks one side makes to add Pressure to the other, so you have Bad Luck on them when they target the creature who Frightened you.
+
 If you are Frightened of a creature who has also Taunted you, remove those stacks of Taunted.
 
 #### Harried [Fleeting]
@@ -183,6 +185,8 @@ For each stack of this, you suffer a -1 penalty to Speed.
 #### Taunted [Fleeting]
 
 While you have any stacks of this, you have Bad Luck on any non-friendly actions which do not target the creature who Taunted you.
+
+In a social encounter, this includes the checks one side makes to add Pressure to the other, so you have Bad Luck on them unless they target the creature who Taunted you.
 
 If you are already Taunted by another creature, remove those stacks of Taunted. If you are already Frightened of the creature who Taunted you, remove those stacks of Frightened.
 
