@@ -8782,3 +8782,23 @@ a flat Defense bonus. Value: ~5 of 6.25 attacks at the focus × 2.4 =
 their Good Luck is +2.4 × 2.4 = **+5.8 to Target**, 13.0. **~92%.**
 No Condition, so it isn't tied to Lion's one-weapon dueling setup;
 (Brawl or Melee) 3, Insight 2 to match Eternal Riposte.
+
+### Earthen Mantle Approach (T182, new) — Level 3 (2026-10-04)
+
+> You gain a +2 bonus to Fire, Frost, Brilliant, and Shadow Resist.
+
+Archive (Level 4): +2 Fire/Frost/Shadow Soak (Resist), -2 Dodge/Parry.
+Over a typical fight +2 Resist is 2 × 1.0 (Fire) + 2 × 0.5 × 2 (Frost,
+Shadow) = 4.0; against a Target of 14.4 + 8.9 (-2 Dodge/Parry is a
+giveback) = 23.3, that's 17%.
+
+A Style can be entered at the start of any turn, so nobody sits in this
+one through an ordinary fight; they switch in when a fight is built
+around an element. Priced there: that element is ~2/3 of the damage,
+so Resist is worth about the Physical rate, 5/point, and +2 = **10**.
+That's also why it can work where the always-on flat Resist items
+(balance.md's open Resist question) don't. The Defense penalty is
+dropped (giving up your other Style is the cost) and Brilliant is
+added, since the archive predates it. **~93% at Level 3** (10 / 10.8).
+Athletics 4, Resilience 3 (archive's Skills, Resistance → Resilience).
+Tagged Guardian.

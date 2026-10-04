@@ -8537,5 +8537,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T182",
+    "name": "Earthen Mantle Approach",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "Solidly planting your feet on the ground, specifically guarding more delicate areas of your body, and applying a number of other small techniques allows you to better stand against bursts of fire, howling blizzards, and other phenomena.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "You gain a +2 bonus to Fire, Frost, Brilliant, and Shadow Resist.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Athletics 4, Resilience 3",
+    "relevant_skills": "Athletics, Resilience",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Athletics"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Resilience"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

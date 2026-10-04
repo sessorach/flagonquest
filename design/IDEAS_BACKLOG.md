@@ -408,9 +408,8 @@ Main action — no current technique grants one).
 old family of tradeoff-based postures, worked through in the 2026-10
 Styles pass. Live now, rebuilt: Drunken Brawling (T176), Doubleshot
 (T177), Lend Bulwark (T178), Sentinel (T179), Earthen Fist Posture
-(T180), Lion School - Swashbuckler's Focus (T181). Declined: see
-"Reviewed and declined". Still to review: Earthen Mantle Approach
-(+2 Fire/Frost/Shadow Resist, -2 Dodge/Parry), and these archived
+(T180), Lion School - Swashbuckler's Focus (T181), Earthen Mantle Approach (T182). Declined: see
+"Reviewed and declined". Earthen Mantle Approach is live as T182. Still to review: these archived
 Stances the old sample never listed (all in
 `archive/flagonquest_site_techniques.md`): Adrenaline High, Aura of
 Death, Battering Blows, Concussive Swings, Crashing Wave / Crashing
