@@ -8746,3 +8746,15 @@ pool. Both carry out-of-encounter effects the model can't see
 (Favorite Face never being an unfamiliar face, Rumormonger's Good Luck
 on spreading and tracking rumors), which may be most of their worth.
 Left for the designer.
+
+**Other social Techniques tidied (2026-10-04).** Favorite Face: being an
+unfamiliar face never adds Pressure (was "never suffer penalties"),
+and once per social encounter one of your Rapport Statements has Good
+Luck twice (+13.67pp, ~41-57% a day with its out-of-encounter effects
+on top; was Good Luck on the first Statement, 14-20%). Rumormonger:
+wording only. Dominate Mind lasted "the rest of the current encounter",
+which ends the moment your party wins it; now the rest of the day,
+extended a day at a time by Pitching a card. Raise Spirits and Wisdom
+of the Woods: "Assist" is "Support" now. Stoic Collar (I259) drops its
+1 AP cost, since social encounters don't run on AP; same effect and
+price.

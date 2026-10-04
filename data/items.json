@@ -11174,7 +11174,7 @@
     "tags": null,
     "level": 1,
     "description": "A plain iron collar, cold and unyielding against the skin - a small, private reminder to stay steady no matter how loud the room gets.",
-    "effects": "Once per encounter, for 1 AP, the party ignores 1 Pressure they would otherwise apply this round.",
+    "effects": "Once per social encounter, your party ignores 1 Pressure on one of its Statements and the Support checks made toward it.",
     "cost": "20 Gold",
     "value_per_level": null,
     "school": null,

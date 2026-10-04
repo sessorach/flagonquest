@@ -2224,8 +2224,10 @@ What genuinely remains, cross-cutting rather than slot-shaped:
     items) rather than floating a bespoke Main Material with no
     underlying base — this item's `I002,I003` + Wood now matches that.
   - **Follow-up: Stoic Collar (`I259`, Level 1, 20 Gold, Neck) — "Once
-    per encounter, for 1 AP, the party ignores 1 Pressure they would
-    otherwise apply this round."** Renamed and moved from Head (where
+    per social encounter, your party ignores 1 Pressure on one of its
+    Statements and the Support checks made toward it."** (Reworded
+    2026-10-04: social encounters don't run on AP; same effect and
+    price.) Renamed and moved from Head (where
     it started life as "Stoic Skullcap," a name that stopped making
     sense once it became a Neck item) as part of pricing it properly:
     doing so required building an entirely new **Social Encounter
