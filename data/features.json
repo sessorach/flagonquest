@@ -216,7 +216,7 @@
     "tier": "Advanced",
     "point_cost": 6,
     "description": null,
-    "effects": "You make an extra weapon attack against each target, which benefits from all features.",
+    "effects": "You Repeat the weapon attack against each target, and the Repeat benefits from all features.",
     "prereq": null
   },
   {

@@ -52,6 +52,10 @@ If something decreases an effect’s Range by X, it reduces the distance the eff
 
 If the same effect has its Range both increased and decreased, 1 meter of each effect cancels out until only one remains.
 
+#### Repeat
+
+When something lets you Repeat an attack, you make that attack again against the same target as part of the same action, with any weapon you’re wielding that could make it. If the attack is part of a Technique, the Repeat applies all of that Technique’s effects to the target as well - extra damage, stacks of an effect, anything that happens when it hits or is Parried. Everything else about the action happens only once, including its AP cost, using up an Encounter Technique, and any effects on you. A Grenade is used up by each attack, so Repeating one uses up another Grenade. A Repeat can’t itself be Repeated.
+
 #### Shift
 
 Shifting is like moving, with two exceptions. Nobody may take any Interrupt actions to the movement, and when you Shift you ignore Difficult Terrain.

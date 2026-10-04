@@ -8535,3 +8535,14 @@ is the balancing cost, so there's no carve-out beyond that.
 Prereqs (Acrobatics or Archery) 5, Legerdemain 4: Level 4 pattern, the
 archive's Legerdemain secondary, and Acrobatics in the main slot so
 throwers qualify. Tagged Archer, Rogue.
+
+### Repeat keyword (2026-10-04)
+
+Per the designer, effects that make an attack twice and copy its
+Technique's effects now share one glossary keyword, Repeat, instead of
+each Style restating the edge cases (AP and Encounter uses spent once,
+effects on you once, a Grenade used up per attack, no Repeating a
+Repeat). The Repeat isn't tied to the original weapon; it uses any
+weapon you're wielding that could make the attack. Storm of Blades,
+Doubleshot and Battle Maneuver's Flurry Feature now use it. Wording
+only; no prices change.
