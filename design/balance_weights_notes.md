@@ -8557,3 +8557,37 @@ now use it. The glossary entry says the 2 AP cap covers a plain weapon
 attack as well as a Technique, and only the base cost counts: extra AP
 another effect lets you spend on top (Eagle Eyes) doesn't. Wording
 only; no prices change.
+
+### Lend Bulwark (T178, new) — bodyguard Style, Level 2 (2026-10-04)
+
+> When an ally adjacent to you is attacked, before the flip, you may
+> have the attack made against your Parry Defense instead of their Dodge
+> or Parry Defense.
+
+Rebuilt from the archived Lend/Group Bulwark (an adjacent ally gets
+your shield's Defense to Parry and you can't Parry with it). That
+version skipped casters (no Parry) and archers (Dodge), stacked with an
+ally's own shield, and came to ~47%: ~3 attacks × 1.85 = 5.5 Value
+against 7.2 + 4.4 (losing ~1 Parry is a giveback, +Target) = 11.6.
+
+The rework lets the tank take the attack on their own Parry. Harried
+lands on whoever applied their Defense, so stepping in costs you a
+point of Parry against later attacks that round; that's the trade. No
+Condition: a shield is what makes your Parry worth borrowing, but a
+shield pays for itself (see Inexhaustible Guardian).
+
+Target 7.2. Level 2 sample party: Browndog's Parry 18 against Carrick,
+Sable and Hilde's 15, Wren's 13, Beornhard's 10. Each attack taken over
+is worth gap/13 × 3 net damage × 4, less ~1 for the Harried stack. ~3
+attacks taken over per encounter (an ally takes ~4, adjacent ~75% of
+the time):
+
+| Typical gap | Value | Share |
+|---|---|---|
+| 3 (guarding a fighter) | 5.3 | 74% |
+| **4** | **8.1** | **~112%** |
+| 5 (guarding a caster) | 10.8 | 151% |
+
+It's worth most next to the most fragile ally, which is the play it's
+for. (Brawl or Melee) 3, Might 2, matching the other Guardian Styles.
+Tagged Guardian.

@@ -8332,5 +8332,56 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T178",
+    "name": "Lend Bulwark",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "You keep close to your friends-in-arms and put yourself in the way of the blows meant for them.",
+    "condition": null,
+    "action": "Passive (Style) + reaction",
+    "cost": null,
+    "target": null,
+    "effects": "When an ally adjacent to you is attacked, before the flip, you may have the attack made against your Parry Defense instead of their Dodge or Parry Defense.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Brawl or Melee) 3, Might 2",
+    "relevant_skills": "Brawl, Melee, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl",
+          "Melee"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

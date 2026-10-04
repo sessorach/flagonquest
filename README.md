@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-04 — Two new keywords, and a bodyguard Style
+
+Attacks that copy their Technique now share a Repeat keyword, Counterattack became Opportunity Attack since not every user answers an attack, and the old Lend Bulwark Stance came back as a Style that takes hits meant for an adjacent ally on your own Parry.
+
 ### 2026-10-03 — Oak, drunks and archers get Styles
 
 Great Old Oak, the last School without a Style, got Boughs Unbroken, and two old Stances came back as Styles: Drunken Brawling leaves every enemy you stagger past off-balance, and Doubleshot makes every ranged attack twice.

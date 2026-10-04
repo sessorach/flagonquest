@@ -150,6 +150,13 @@ cut, not just backfilled at a point in time.
   than it looks (two swings land 1.38 times the hits of one, and the
   first Harries the target for the second), ~121% at Level 3 with half
   the attacks being Level 2 Techniques.
+- **Lend Bulwark / Group Bulwark, archived versions** — declined
+  (2026-10-04). Both say "an adjacent ally you focus on gains your
+  shield's Defense to Parry, and you can't Parry with that shield".
+  It skipped the allies who most need it (casters don't Parry, archers
+  use Dodge), stacked with an ally's own shield, and priced at ~47% of
+  Level 2. The live Lend Bulwark (T178) has you take the attack on your
+  own Parry instead.
 - **Drunken Brawling, archived and first-draft versions** — declined
   (2026-10-03). The archive's "Bad Luck on attacks made against you as
   part of a Counter action; your Speed is halved" does nothing now:
@@ -403,8 +410,7 @@ Half-Guard/Shifting Ground (Speed-for-defense; Drunken Brawling is live
 as T176, rebuilt),
 Breaching Blows/Earthen Fist Posture (offense-for-defense, two-
 handers), Doubleshot (live as T177, Level 4), Group
-Bulwark/Lend Bulwark (share your shield's Defense with an adjacent
-ally), Sentinel (shadow an adjacent enemy's movement), Iron Vanguard
+Bulwark/Lend Bulwark (live as T178, rebuilt as a bodyguard Style), Sentinel (shadow an adjacent enemy's movement), Iron Vanguard
 (shield-tank, Bad Luck to attackers), Raptor's Precision/Swashbuckler's
 Focus (accuracy/speed or single-target tradeoffs), Earthen Mantle
 Approach (elemental Resist for defense).
