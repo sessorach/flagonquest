@@ -175,3 +175,7 @@ things off in order.
   fuller Pressure section, so the two stay consistent. Commit `8e7e60d`.
 - **`#### [Social]`** (Rules Tags) — "social contest" → "social
   encounter". Commit `8e7e60d`.
+- **`#### Repeat`** (glossary.md, Keywords) — new keyword: make an
+  attack again against the same target, applying its Technique's
+  effects; AP, Encounter use and self-effects happen once; Grenades are
+  used up per attack. Commit `ac08d16`.
