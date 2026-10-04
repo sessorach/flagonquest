@@ -130,7 +130,8 @@ things off in order.
   space, plus every space within X meters of it" for area effects, used
   going forward instead of ad hoc "adjacent to"/"within X meters of"
   phrasing. Commit `4ab9a21`.
-- **`#### Counterattack`** (new entry, `# Keywords`) — a weapon attack,
+- **`#### Counterattack`** (new entry, `# Keywords`; since renamed
+  Opportunity Attack, see below) — a weapon attack,
   or a Technique of up to 2 AP that makes a weapon attack against only
   that creature. First used by Eternal Riposte. Replaced the unused
   `#### Countered` entry, which moved to **`#### Negated`** (same text,
