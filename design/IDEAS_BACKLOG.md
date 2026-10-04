@@ -426,8 +426,7 @@ Styles pass. Live now, rebuilt: Drunken Brawling (T176), Doubleshot
 (T177), Lend Bulwark (T178), Sentinel (T179), Earthen Fist Posture
 (T180), Lion School - Swashbuckler's Focus (T181), Earthen Mantle Approach (T182). Declined: see
 "Reviewed and declined". Earthen Mantle Approach is live as T182, and Duelist's Dance (T183)
-merges Duelist's Dance and Distancing Draw. Still to rework: Crashing
-Wave Approach, Deadeye's Shadow, Oppressive Presence, Elemental Blend,
+merges Duelist's Dance and Distancing Draw. Crashing Wave Approach is live as T184. Still to rework: Deadeye's Shadow, Oppressive Presence, Elemental Blend,
 Aura of Death, Adrenaline High. The rest are declined.
 
 **Discipline/Martial-Arts Schools** (the archive calls them "X Style";

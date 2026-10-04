@@ -8639,5 +8639,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T184",
+    "name": "Crashing Wave Approach",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "Driving forth with your shield, you descend on your foes like a rushing river of iron.",
+    "condition": "You are wielding a shield",
+    "action": "Passive (Style) + reaction",
+    "cost": null,
+    "target": null,
+    "effects": "Once per round, right after you make an attack with a weapon other than your shield, you may spend 1 AP to Repeat it with your shield. If the Repeat hits, you may Push the target 1 meter.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Melee 3, Athletics 2",
+    "relevant_skills": "Melee, Athletics",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.1",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Melee"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Athletics"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

@@ -8818,3 +8818,22 @@ it's footwork for anyone, a duelist circling or an archer backing off.
 also ignores Interrupts and Difficult Terrain) 4.3, ~119%. Not every
 attack needs a step, so read it toward the low end. (Archery, Brawl,
 or Melee) 2, Acrobatics 1. Tagged Duelist, Archer, Rogue.
+
+### Crashing Wave Approach (T184, new) — Level 2 (2026-10-04)
+
+> *Condition: you are wielding a shield.* Once per round, right after
+> you make an attack with a weapon other than your shield, you may
+> spend 1 AP to Repeat it with your shield. If the Repeat hits, you may
+> Push the target 1 meter.
+
+Storm of Blades for sword and board, on the Repeat keyword. The archive
+(Level 3) was a separate 1 AP shield attack once per turn, Pushing on a
+hit or Parry. A shield deals 2 + [Body], 2 under a heavy one-handed
+weapon and 1 under a light one, at 2 Value per point of damage: a
+shield Repeat is worth 1.5 (behind a heavy weapon) to 3.5 (light), +0.5
+for the Push (0.6 × 0.89), +~0.5 when it copies a Level 2 Technique,
+less 2.75 for the AP: ~0.75-2.25 per use, ~5 uses, **~4-11, ~104% at
+Level 2** at the midpoint. No Condition allowance (a shield pays for
+itself). The once-per-round cap stays for the same reason as Storm's:
+uncapped, a 1 AP Technique could be Repeated for 1 AP after every use.
+Melee 3, Athletics 2. Tagged Guardian.
