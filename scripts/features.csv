@@ -19,11 +19,11 @@ F017,T072,Battle Maneuver,Ascended Blade,Advanced,2,,You may have the attack dea
 F018,T072,Battle Maneuver,Whirlwind,Advanced,5,,"If your chosen weapon is a close-range weapon, the attack may target an additional target.",
 F019,T072,Battle Maneuver,Ricochet Shot,Advanced,5,,"If your chosen weapon is a ranged weapon, the attack may target an additional enemy adjacent to the first.",
 F020,T072,Battle Maneuver,Flurry,Advanced,6,,"You Repeat the weapon attack against each target, and the Repeat benefits from all features.",
-F021,T057,Social Maneuver,Brawn over Banter,Basic,1,,"(Approach) Make the Statement with Might against the target’s Mental Defense. If it succeeds, it gains [Diamonds] extra successes. You may only apply one Approach feature at a time.",Might 2
-F022,T057,Social Maneuver,Unpleasant Insinuation,Basic,1,,"(Approach) Make the Statement with Streetwise against the target’s Vigilant Defense. If it succeeds, it gains [Diamonds] extra successes. You may only apply one Approach feature at a time.",Streetwise 2
-F023,T057,Social Maneuver,"""Well, Actually...""",Basic,1,,"(Approach) Make the Statement with Academics against the target’s Vigilant Defense. If it succeeds, it gains [Spades] extra successes. You may only apply one Approach feature at a time.",Academics 2
-F024,T057,Social Maneuver,Witty Quote,Basic,1,,"(Approach) Make the Statement with Performance against the target’s Mental Defense. If it succeeds, it gains [Hearts] extra successes. You may only apply one Approach feature at a time.",Performance 2
-F025,T057,Social Maneuver,Emotional Appeal,Basic,1,,"(Approach) If the Statement succeeds, it gains [Hearts] extra successes. You may only apply one Approach feature at a time.",
+F021,T057,Social Maneuver,Brawn over Banter,Basic,1,,(Approach) Make the Statement with Might against the target’s Mental Defense. You may only apply one Approach feature at a time.,Might 2
+F022,T057,Social Maneuver,Unpleasant Insinuation,Basic,1,,(Approach) Make the Statement with Streetwise against the target’s Vigilant Defense. You may only apply one Approach feature at a time.,Streetwise 2
+F023,T057,Social Maneuver,"""Well, Actually...""",Basic,1,,(Approach) Make the Statement with Academics against the target’s Vigilant Defense. You may only apply one Approach feature at a time.,Academics 2
+F024,T057,Social Maneuver,Witty Quote,Basic,1,,(Approach) Make the Statement with Performance against the target’s Mental Defense. You may only apply one Approach feature at a time.,Performance 2
+F025,T057,Social Maneuver,Emotional Appeal,Basic,1,,(Approach) Make the Statement with Insight against the target’s Mental Defense. You may only apply one Approach feature at a time.,
 F026,T057,Social Maneuver,Careful Delivery,Basic,1,,The Statement has Good Luck.,
 F027,T057,Social Maneuver,Airtight Argument,Basic,1,,"If the Statement succeeds and its suit pool has at least three different suits, it gains 2 extra successes.",
 F028,T057,Social Maneuver,Clear the Air,Basic,1,,"If the Statement succeeds, you may give up any number of its successes to remove that much Pressure.",

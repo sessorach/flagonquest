@@ -8686,3 +8686,41 @@ budget stands.
   Upstage stay at 1 (~1, estimated, no opposing checks in the
   Baseline); Practiced Comeback stays 4 (3.4 alone, plus it doubles the
   other Features); Resolution stays 2 (story effects).
+
+**Approaches are plain Skill swaps (2026-10-04).** Per the designer,
+the [Suit] extra successes were redundant: a Statement's own suit pool
+already gives Extra Successes by default, using the swapped Skill's
+suit. Emotional Appeal, which had no Skill to swap, now uses Insight
+against Mental Defense. Their value is whatever the swapped Skill is
+worth over your social Skill on one Statement, so it varies by
+character; cost stays 1 as a judgment call.
+
+### A Perfectly Good Explanation, priced per day (2026-10-04)
+
+> When your party would gain Pressure, you may discard a card to
+> prevent 1 of it, or all of it if you discard a Heart.
+
+Per the designer: a social encounter comes up about once a day, half
+as often as combat (two a day), so a social Technique's per-encounter
+value only has to match about twice a combat Technique's. Level 2
+Target 6 per combat encounter = 12 a day.
+
+Using it after seeing each round's result, with the party spending
+cards only while it pays (a card is 2.7 Value):
+
+| Uses | Win rate | Added by this use |
+|---|---|---|
+| 0 | 57.03% | |
+| 1 | 83.17% | +26.15pp |
+| 2 | 96.60% | +13.43pp |
+| 3 | 99.77% | +3.17pp |
+
+There's no settled rate from win-rate points to Value, so both anchors:
+
+| Anchor | 1st use, less its card | 2nd use, less its card | 3rd use | Per day | Share of 12 |
+|---|---|---|---|---|---|
+| Stoic Collar (0.5/pp) | 10.4 | 4.0 | not worth a card | 14.4 | ~120% |
+| Good Luck = Careful Delivery (0.36/pp) | 6.7 | 2.1 | not worth a card | 8.8 | ~73% |
+
+It caps itself: after two uses the party's almost certain to win, so a
+third card isn't worth spending. No cap needed; left as written.

@@ -227,7 +227,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Approach) Make the Statement with Might against the target’s Mental Defense. If it succeeds, it gains [Diamonds] extra successes. You may only apply one Approach feature at a time.",
+    "effects": "(Approach) Make the Statement with Might against the target’s Mental Defense. You may only apply one Approach feature at a time.",
     "prereq": "Might 2"
   },
   {
@@ -238,7 +238,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Approach) Make the Statement with Streetwise against the target’s Vigilant Defense. If it succeeds, it gains [Diamonds] extra successes. You may only apply one Approach feature at a time.",
+    "effects": "(Approach) Make the Statement with Streetwise against the target’s Vigilant Defense. You may only apply one Approach feature at a time.",
     "prereq": "Streetwise 2"
   },
   {
@@ -249,7 +249,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Approach) Make the Statement with Academics against the target’s Vigilant Defense. If it succeeds, it gains [Spades] extra successes. You may only apply one Approach feature at a time.",
+    "effects": "(Approach) Make the Statement with Academics against the target’s Vigilant Defense. You may only apply one Approach feature at a time.",
     "prereq": "Academics 2"
   },
   {
@@ -260,7 +260,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Approach) Make the Statement with Performance against the target’s Mental Defense. If it succeeds, it gains [Hearts] extra successes. You may only apply one Approach feature at a time.",
+    "effects": "(Approach) Make the Statement with Performance against the target’s Mental Defense. You may only apply one Approach feature at a time.",
     "prereq": "Performance 2"
   },
   {
@@ -271,7 +271,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Approach) If the Statement succeeds, it gains [Hearts] extra successes. You may only apply one Approach feature at a time.",
+    "effects": "(Approach) Make the Statement with Insight against the target’s Mental Defense. You may only apply one Approach feature at a time.",
     "prereq": null
   },
   {
