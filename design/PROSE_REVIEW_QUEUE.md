@@ -179,3 +179,7 @@ things off in order.
   attack again against the same target, applying its Technique's
   effects; AP, Encounter use and self-effects happen once; Grenades are
   used up per attack. Commit `ac08d16`.
+- **`#### Opportunity Attack`** (glossary.md, Keywords) — renamed from
+  Counterattack and moved to its alphabetical spot; the 2 AP cap now
+  covers the plain weapon attack too, and extra AP spent on top doesn't
+  count toward it. Commit `3fbe5d3`.
