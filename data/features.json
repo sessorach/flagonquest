@@ -271,7 +271,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "(Approach) If the Statement succeeds, it gains an extra success. You may only apply one Approach feature at a time.",
+    "effects": "(Approach) If the Statement succeeds, it gains [Hearts] extra successes. You may only apply one Approach feature at a time.",
     "prereq": null
   },
   {
@@ -293,7 +293,7 @@
     "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "If the Statement succeeds and its suit pool has at least one of each suit, it gains 4 extra successes.",
+    "effects": "If the Statement succeeds and its suit pool has at least three different suits, it gains 2 extra successes.",
     "prereq": null
   },
   {
@@ -313,7 +313,7 @@
     "technique_name": "Social Maneuver",
     "feature_name": "Friendly-Faced",
     "tier": "Basic",
-    "point_cost": 1,
+    "point_cost": 2,
     "description": null,
     "effects": "If the Statement succeeds, your party ignores Pressure on its next Statement and the Support checks made toward it.",
     "prereq": "Rapport 2"
@@ -345,10 +345,10 @@
     "technique_id": "T057",
     "technique_name": "Social Maneuver",
     "feature_name": "Setup & Follow",
-    "tier": "Advanced",
+    "tier": "Basic",
     "point_cost": 1,
     "description": null,
-    "effects": "Allies Supporting the Statement have Good Luck on their Support checks.",
+    "effects": "Allies Supporting the Statement have Good Luck twice on their Support checks.",
     "prereq": null
   },
   {

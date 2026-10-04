@@ -8668,3 +8668,21 @@ prevents ~0.25 of a Pressure, ~1 point.
 **That last number flags A Perfectly Good Explanation.** "Discard a
 card to prevent 1 Pressure" is +26pp per card, with no limit beyond the
 hand. Needs a decision.
+
+**Costs settled (2026-10-04).** Per the designer, against the table
+above (1 point ≈ +6.7pp). Combinations on one Statement come out close
+to additive (Careful Delivery ×2 = 2.04 points, Careful Delivery + an
+Approach = 2.59, three Good Luck = 2.73), so the existing 2/4/6/8
+budget stands.
+
+- Emotional Appeal: now [Hearts] extra successes, the Approach for
+  keeping your own Skill (1.4, cost 1). The flat +1 success was 2.8.
+- Airtight Argument: three different suits, +2 (0.7, cost 1); all four
+  suits almost never fired.
+- Friendly-Faced: cost 1 → 2 (1.9).
+- Setup & Follow: Supporters get Good Luck twice (0.8), moved from
+  Advanced to Basic at 1.
+- Approaches (1.4) and Clear the Air (1.45) stay at 1; Single Out and
+  Upstage stay at 1 (~1, estimated, no opposing checks in the
+  Baseline); Practiced Comeback stays 4 (3.4 alone, plus it doubles the
+  other Features); Resolution stays 2 (story effects).

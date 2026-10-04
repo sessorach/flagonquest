@@ -23,14 +23,14 @@ F021,T057,Social Maneuver,Brawn over Banter,Basic,1,,"(Approach) Make the Statem
 F022,T057,Social Maneuver,Unpleasant Insinuation,Basic,1,,"(Approach) Make the Statement with Streetwise against the target’s Vigilant Defense. If it succeeds, it gains [Diamonds] extra successes. You may only apply one Approach feature at a time.",Streetwise 2
 F023,T057,Social Maneuver,"""Well, Actually...""",Basic,1,,"(Approach) Make the Statement with Academics against the target’s Vigilant Defense. If it succeeds, it gains [Spades] extra successes. You may only apply one Approach feature at a time.",Academics 2
 F024,T057,Social Maneuver,Witty Quote,Basic,1,,"(Approach) Make the Statement with Performance against the target’s Mental Defense. If it succeeds, it gains [Hearts] extra successes. You may only apply one Approach feature at a time.",Performance 2
-F025,T057,Social Maneuver,Emotional Appeal,Basic,1,,"(Approach) If the Statement succeeds, it gains an extra success. You may only apply one Approach feature at a time.",
+F025,T057,Social Maneuver,Emotional Appeal,Basic,1,,"(Approach) If the Statement succeeds, it gains [Hearts] extra successes. You may only apply one Approach feature at a time.",
 F026,T057,Social Maneuver,Careful Delivery,Basic,1,,The Statement has Good Luck.,
-F027,T057,Social Maneuver,Airtight Argument,Basic,1,,"If the Statement succeeds and its suit pool has at least one of each suit, it gains 4 extra successes.",
+F027,T057,Social Maneuver,Airtight Argument,Basic,1,,"If the Statement succeeds and its suit pool has at least three different suits, it gains 2 extra successes.",
 F028,T057,Social Maneuver,Clear the Air,Basic,1,,"If the Statement succeeds, you may give up any number of its successes to remove that much Pressure.",
-F029,T057,Social Maneuver,Friendly-Faced,Basic,1,,"If the Statement succeeds, your party ignores Pressure on its next Statement and the Support checks made toward it.",Rapport 2
+F029,T057,Social Maneuver,Friendly-Faced,Basic,2,,"If the Statement succeeds, your party ignores Pressure on its next Statement and the Support checks made toward it.",Rapport 2
 F030,T057,Social Maneuver,Single Out,Basic,1,,"If the Statement succeeds, its target is Taunted by you twice.",Persuasion 2
 F031,T057,Social Maneuver,Upstage,Basic,1,,"If the Statement succeeds, the next check the other side makes against your party has Bad Luck.",Presence 2
-F032,T057,Social Maneuver,Setup & Follow,Advanced,1,,Allies Supporting the Statement have Good Luck on their Support checks.,
+F032,T057,Social Maneuver,Setup & Follow,Basic,1,,Allies Supporting the Statement have Good Luck twice on their Support checks.,
 F034,T057,Social Maneuver,Practiced Comeback,Advanced,4,,"Make the Statement twice, applying all features to each. You may only apply one copy of this feature.",
 F035,T057,Social Maneuver,Bully into Submission,Advanced,2,,"(Resolution) If the Statement succeeds, choose one member of the other side. If your party wins the social encounter, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Resolution feature at a time.",Presence 3
 F036,T057,Social Maneuver,Leading Question,Advanced,2,,"(Resolution) If the Statement succeeds, note its target. If your party wins the social encounter, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Resolution feature at a time.",
