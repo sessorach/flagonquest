@@ -13,6 +13,11 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-05 — Version 1.2 and the last of the old Stances
+
+Started version 1.2 and finished turning the archived Stances into Styles: Deadeye's Shadow, Oppressive Presence, Aura of Death and Adrenaline High.
+- Card costs now always say discard; a few Techniques still said "pitch."
+
 ### 2026-10-04 — Keywords, guardian Styles and a social overhaul
 
 Attacks that copy their Technique now share a Repeat keyword, Counterattack became Opportunity Attack, and the social Techniques got rebuilt for the current Statement and Pressure rules.
