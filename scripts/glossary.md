@@ -6,7 +6,7 @@ Take the top card of your deck, put it into your hand.
 
 #### Play
 
-Pitch a card from your hand to add its suit to the pool for a flip you’re aware of, or add +1 to that flip’s card. Specific to the default use of cards from hand.
+Discard a card from your hand to add its suit to the pool for a flip you’re aware of, or add +1 to that flip’s card. Specific to the default use of cards from hand.
 
 #### Sift (X cards)
 

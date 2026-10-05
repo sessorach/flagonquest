@@ -3093,7 +3093,7 @@
     "description": "Your words and songs uplift your allies, pushing away their weariness and straightening their backs to fight anew.",
     "condition": null,
     "action": "2 AP",
-    "cost": "Pitch 2 cards",
+    "cost": "Discard 2 cards",
     "target": "Up to [half your Performance Skill Total] allies who can see or hear you",
     "effects": "Each target heals 1 Shallow Health.",
     "builder_notes": null,
@@ -3110,7 +3110,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",
@@ -3177,7 +3177,7 @@
     "action": "Statement",
     "cost": null,
     "target": null,
-    "effects": "Make the Statement using Theurgy against the target’s Mental Defense. If the Statement succeeds and your party ultimately wins the social encounter, that person is dominated for the rest of the day, and at the start of each later day you may Pitch a card to extend it. While dominated, the person treats anything you say as from a close trusted friend and will follow reasonable requests. Once the effect ends, they believe they acted of their own free will.",
+    "effects": "Make the Statement using Theurgy against the target’s Mental Defense. If the Statement succeeds and your party ultimately wins the social encounter, that person is dominated for the rest of the day, and at the start of each later day you may discard a card to extend it. While dominated, the person treats anything you say as from a close trusted friend and will follow reasonable requests. Once the effect ends, they believe they acted of their own free will.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 5, Insight 4",
@@ -3192,7 +3192,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": "1.1",
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",
@@ -4186,7 +4186,7 @@
     "action": "2 AP",
     "cost": "1 Health, discard a card",
     "target": null,
-    "effects": "Choose Bloody, Necrotic, Vulnerability, or Psychosis Poison; create a fresh dose with Concentration +X and Potency [half X] (X = your Meditation Skill Total). Extra +1 Potency if matching suit was Pitched (Clubs/Bloody, Spades/Necrotic, Diamonds/Vulnerability, Hearts/Psychosis). Spend 1 AP to coat a weapon instead. You ignore the effects of this poison. After a full rest, the poison loses potency.",
+    "effects": "Choose Bloody, Necrotic, Vulnerability, or Psychosis Poison; create a fresh dose with Concentration +X and Potency [half X] (X = your Meditation Skill Total). +1 Potency if the discarded card matches the Poison (Clubs/Bloody, Spades/Necrotic, Diamonds/Vulnerability, Hearts/Psychosis). Spend 1 AP to coat a weapon instead. You ignore the effects of this poison. After a full rest, the poison loses potency.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Meditation 4, Resilience 3",
@@ -4201,7 +4201,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": "1.1",
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",
@@ -8681,6 +8681,57 @@
         "type": "skill",
         "options": [
           "Athletics"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T185",
+    "name": "Deadeye's Shadow",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "Once you've drawn a bead on someone, they can feel it. Every shot that lands tells them the same thing: deal with you first, or keep getting shot.",
+    "condition": "You are wielding a ranged weapon",
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When one of your ranged weapon attacks hits, the target is Taunted by you.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Acrobatics or Archery) 3, Awareness 2",
+    "relevant_skills": "Acrobatics, Archery, Awareness",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics",
+          "Archery"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Awareness"
         ],
         "threshold": {
           "base": 2

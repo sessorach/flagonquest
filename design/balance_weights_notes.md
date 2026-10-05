@@ -8837,3 +8837,18 @@ Level 2** at the midpoint. No Condition allowance (a shield pays for
 itself). The once-per-round cap stays for the same reason as Storm's:
 uncapped, a 1 AP Technique could be Repeated for 1 AP after every use.
 Melee 3, Athletics 2. Tagged Guardian.
+
+### Deadeye's Shadow (T185, new) — Level 2 (2026-10-05)
+
+> *Condition: you are wielding a ranged weapon.* When one of your ranged
+> weapon attacks hits, the target is Taunted by you.
+
+Covering fire: an enemy pinned by your shot has Bad Luck on anything
+not aimed at you until the end of its turn. The archive (Level 4)
+Taunted on a hit or Parry for 1 round, but every ranged attack cost an
+extra 1 AP, ~5 × 2.75 = 14 an encounter, most of a Level 4 budget, and
+Taunted is Fleeting now anyway. 3.75 hits × 2.2 (Taunted) = **8.25,
+~115%** of 7.2. Taunted replaces any Taunt the enemy has from someone
+else, so shooting an enemy your tank has Taunted takes it over; the
+archer can just pick another target. (Acrobatics or Archery) 3,
+Awareness 2. Tagged Archer.

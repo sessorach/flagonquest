@@ -18,7 +18,7 @@
     "level": 4,
     "title": "Play",
     "supplement": "Base Game",
-    "body": "Pitch a card from your hand to add its suit to the pool for a flip you’re aware of, or add +1 to that flip’s card. Specific to the default use of cards from hand."
+    "body": "Discard a card from your hand to add its suit to the pool for a flip you’re aware of, or add +1 to that flip’s card. Specific to the default use of cards from hand."
   },
   {
     "id": "sift-x-cards",
