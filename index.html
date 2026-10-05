@@ -656,7 +656,8 @@ function isRepeatable(tech) {
 // Add/Remove button? True for Feature-built techniques (obviously), but
 // also for anything with a variable level range even without Features —
 // e.g. Temper Soulblade, which just needs a fixed level chosen for XP
-// cost/display purposes, with the rest handled by its free-text notes.
+// cost/display purposes, with the rest handled by its per-copy
+// Masterwork power dropdown (which that level filters).
 function needsLevelPicker(tech) {
   return !!tech.features || (tech.level_min != null && tech.level_max != null && tech.level_min !== tech.level_max);
 }
@@ -1611,10 +1612,10 @@ function TechCard({
   const anyChoicePending = !readOnly && (instances.length === 0 || instances.some(uid => !notes[uid]));
 
   // A technique's Free Text column is either TRUE (a plain free-text
-  // note — Temper Soulblade) or a specific value naming a structured
-  // dropdown to show instead — same per-copy notes[uid] string either
-  // way, just picked from a fixed list instead of typed. null means
-  // "render the plain textarea", matching today's only other case.
+  // note) or a specific value naming a structured dropdown to show
+  // instead — same per-copy notes[uid] string either way, just picked
+  // from a fixed list instead of typed. null means "render the plain
+  // textarea".
   //
   // The "Weapon" list is Base Game Weapon items specifically (not just
   // Category === "Weapon") — Soulblade conjures "a specific type of
@@ -1628,6 +1629,43 @@ function TechCard({
     tech.free_text === "Profession" ? PROFESSIONS :
     tech.free_text === "Background" ? eligibleBackgrounds(backgrounds, backgroundType, enabledSupplements).map(b => b.name) :
     null;
+  // Temper Soulblade's pick is the one whose options differ per copy:
+  // "This Technique's Level equals the chosen Masterwork's Level," so
+  // each copy only offers Held Masterwork powers (the ones that can go
+  // on a conjured weapon) whose own Level list includes that copy's
+  // configs[uid].level. A "1-5" power like Reaching Weapon shows at
+  // every Level, which is also how the rules' "re-purchase at a higher
+  // Level" works here — Upgrade the copy and the same pick stays valid.
+  const isMasterworkChoice = tech.free_text === "Masterwork";
+  const hasChoiceList = choiceOptions != null || isMasterworkChoice;
+  const choiceLabel = isMasterworkChoice ? "Masterwork power" : tech.free_text;
+  const masterworkItemsByName = useMemo(() => {
+    if (!isMasterworkChoice) return null;
+    const map = {};
+    items.forEach(i => { if (i.category === "Masterwork" && i.slot === "Held") map[i.name] = i; });
+    return map;
+  }, [isMasterworkChoice, items]);
+  const masterworkOptionsFor = uid => {
+    const level = configs[uid]?.level;
+    if (level == null) return [];
+    return Object.values(masterworkItemsByName)
+      .filter(i => (i.levels || []).includes(level)
+        && (!enabledSupplements || enabledSupplements.includes(i.supplement)))
+      .map(i => i.name)
+      .sort();
+  };
+  // A pick that's no longer on its copy's list — the copy's Level changed
+  // after picking a fixed-Level power, its Supplement got switched off,
+  // or it's a typed note from before this was a dropdown — stays selected
+  // as-is rather than silently vanishing (same never-retroactive rule as
+  // enabledSupplements everywhere else). Only a known Masterwork at the
+  // wrong Level gets flagged, since that's the one case that's actually
+  // against the rules rather than just unusual.
+  const masterworkMismatch = uid => {
+    const item = masterworkItemsByName?.[notes[uid]];
+    const level = configs[uid]?.level;
+    return item && level != null && !(item.levels || []).includes(level) ? item : null;
+  };
 
   // "Encounter" is important enough to live in the corner with the level
   // badge — everything else stays in the tags line.
@@ -1870,9 +1908,10 @@ function TechCard({
 
       {/* Per-copy choice — one box per copy in the build, since e.g. each
           Soulblade you learn can choose a different weapon type. A
-          structured pick (choiceOptions set) renders as a dropdown; a
-          genuinely open-ended one (Temper Soulblade) stays free text —
-          either way it's the same notes[uid] string underneath. Editable
+          structured pick (choiceOptions set, or Temper Soulblade's
+          per-Level Masterwork list) renders as a dropdown; a Free Text:
+          TRUE one stays a textarea — either way it's the same notes[uid]
+          string underneath. Editable
           everywhere except the read-only Character Sheet, where it's
           just a static record of what was already chosen/written — and
           skipped there entirely when the technique has Choice Effects
@@ -1887,40 +1926,94 @@ function TechCard({
         instances.length > 0 && !tech.choice_effects && (
           <div>
             <div style={{ fontSize:13, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
-              {choiceOptions ? tech.free_text : "Notes"}
+              {hasChoiceList ? choiceLabel : "Notes"}
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
-              {instances.map((uid, i) => (
-                <div key={uid} style={{
-                  fontSize:14, color: notes[uid] ? TEXT.body : TEXT.faint, lineHeight:1.5,
-                  fontStyle: notes[uid] ? "normal" : "italic",
-                  background:"#0d1117", border:"0.5px solid #2d3555", borderRadius:6, padding:"6px 10px",
-                }}>
-                  {instances.length > 1 && (
-                    <span style={{ color:TEXT.faint, fontStyle:"normal" }}>Copy {i + 1}: </span>
-                  )}
-                  {notes[uid] || (choiceOptions ? "Not chosen yet" : "No notes")}
-                </div>
-              ))}
+              {instances.map((uid, i) => {
+                // A Masterwork power's own Effects text is what the pick
+                // actually does, so the Sheet shows it under the name —
+                // the name alone means a trip to the Items tab mid-fight.
+                const power = masterworkItemsByName?.[notes[uid]];
+                const level = configs[uid]?.level;
+                return (
+                  <div key={uid} style={{
+                    fontSize:14, color: notes[uid] ? TEXT.body : TEXT.faint, lineHeight:1.5,
+                    fontStyle: notes[uid] ? "normal" : "italic",
+                    background:"#0d1117", border:"0.5px solid #2d3555", borderRadius:6, padding:"6px 10px",
+                  }}>
+                    {instances.length > 1 && (
+                      <span style={{ color:TEXT.faint, fontStyle:"normal" }}>Copy {i + 1}: </span>
+                    )}
+                    {power ? <strong style={{ color:TEXT.name }}>{power.name}</strong> : (notes[uid] || (hasChoiceList ? "Not chosen yet" : "No notes"))}
+                    {isMasterworkChoice && level != null && (
+                      <span style={{ color:TEXT.faint, fontStyle:"normal" }}> (Lv {level})</span>
+                    )}
+                    {power && power.effects && (
+                      <div>{withSkillTotals(power.effects, glossary, skillTotals)}</div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         )
       ) : (
         <div>
           <div style={{ fontSize:13, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
-            {choiceOptions ? tech.free_text : "Notes"}
+            {hasChoiceList ? choiceLabel : "Notes"}
           </div>
           {instances.length === 0 ? (
             <div style={{ fontSize:14, color:TEXT.faint, fontStyle:"italic" }}>
-              {choiceOptions
-                ? `Add this to your build, then choose a ${tech.free_text.toLowerCase()} for each copy you learn.`
+              {hasChoiceList
+                ? `Add this to your build, then choose a ${choiceLabel.toLowerCase()} for each copy you learn.`
                 : "Add this to your build, then note your choices for each copy you learn."}
             </div>
           ) : (
             <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
               {instances.map((uid, i) => (
                 <div key={uid} style={{ display:"flex", gap:6, alignItems:"flex-start" }}>
-                  {choiceOptions ? (
+                  {isMasterworkChoice ? (() => {
+                    const level = configs[uid]?.level;
+                    const options = masterworkOptionsFor(uid);
+                    const picked = notes[uid] || "";
+                    const offList = picked && !options.includes(picked);
+                    const power = masterworkItemsByName[picked];
+                    const mismatch = masterworkMismatch(uid);
+                    const prompt = level == null
+                      ? "pick this copy's Level above first"
+                      : `choose a Level ${level} Masterwork power…`;
+                    // minWidth: 0 on both — otherwise the select sizes to its
+                    // longest option and pushes past the card edge on a phone.
+                    return (
+                      <div style={{ flex:1, minWidth:0, display:"flex", flexDirection:"column", gap:4 }}>
+                        {instances.length > 1 && (
+                          <div style={{ fontSize:13, color:TEXT.faint }}>
+                            Copy {i + 1}{level != null ? ` · Level ${level}` : ""}
+                          </div>
+                        )}
+                        <select
+                          value={picked}
+                          onChange={e => onNoteChange(uid, e.target.value)}
+                          disabled={level == null && !picked}
+                          style={{ fontSize:14, width:"100%", minWidth:0 }}
+                        >
+                          <option value="">{prompt[0].toUpperCase() + prompt.slice(1)}</option>
+                          {offList && <option value={picked}>{picked}</option>}
+                          {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                        </select>
+                        {mismatch && (
+                          <div style={{ fontSize:13, color:"#e0645f", lineHeight:1.4 }}>
+                            {mismatch.name} is Level {mismatch.level}, but this copy is Level {level}.
+                          </div>
+                        )}
+                        {power && power.effects && (
+                          <div style={{ fontSize:14, color:TEXT.muted, lineHeight:1.5 }}>
+                            {withGlossary(power.effects, glossary)}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })() : choiceOptions ? (
                     <select
                       value={notes[uid] || ""}
                       onChange={e => onNoteChange(uid, e.target.value)}
@@ -6977,9 +7070,9 @@ function App() {
   // technique-shaped tiles. Everything else that just needs the level
   // picker without Features data — a Buildable/Duplicate technique like
   // Temper Soulblade — stays a single merged card like any other plain
-  // repeatable technique: one "(known N×)" badge, no rename, no per-copy
-  // level shown (that distinction lives in each copy's own Notes entry
-  // instead, same as it always has). Order follows first appearance in
+  // repeatable technique: one "(known N×)" badge, no rename, with each
+  // copy's level and Masterwork pick listed in its per-copy choice block
+  // instead. Order follows first appearance in
   // `build`.
   const sheetCards = useMemo(() => {
     const cards = [];

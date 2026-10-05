@@ -428,13 +428,22 @@ which should stay a clean decision record.
   per-copy `notes[uid]` a plain free-text note would, just with a
   `<select>` swapped in for the `<textarea>` — see `Free Text` in
   `convert.py`'s `TECHNIQUE_MAP` comment and `choiceOptions` in
-  `TechCard`. `Free Text` is `TRUE` for a genuinely open-ended pick
-  that doesn't fit a fixed list (Temper Soulblade's GM-approved
-  Masterwork power), or a specific value (`"School"`, `"Weapon"`)
-  naming which dropdown to render and which existing data to populate
-  it from — `CREATION_SCHOOLS` for School, Base Game `Category:
-  "Weapon"` items for Weapon, `PROFESSIONS` for Profession,
-  `eligibleBackgrounds(...)` for Background. No new state, no new
+  `TechCard`. `Free Text` is `TRUE` for an open-ended pick that
+  doesn't fit a fixed list, or a specific value (`"School"`,
+  `"Weapon"`) naming which dropdown to render and which existing data
+  to populate it from — `CREATION_SCHOOLS` for School, Base Game
+  `Category: "Weapon"` items for Weapon, `PROFESSIONS` for Profession,
+  `eligibleBackgrounds(...)` for Background, and Held-slot Masterwork
+  items for Masterwork (Temper Soulblade). Masterwork is the one whose
+  options differ per copy: each copy only lists powers whose `levels`
+  include that copy's own `configs[uid].level`, so the Level picked in
+  `FeaturesSection` filters the dropdown under it. A pick that drops
+  off its copy's list (Level changed, Supplement switched off, or an
+  old typed note from before this was a dropdown) stays selected
+  rather than vanishing, with a red note only for a known power at the
+  wrong Level. The Sheet shows the picked power's own Effects text
+  under its name, since that's what the copy actually does. No new
+  state, no new
   storage — a dropdown is just a pickier textarea. When a technique
   needs a new kind of structured pick, prefer this pattern (reuse
   `notes[uid]`, add one more `Free Text` value, source the options from

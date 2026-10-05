@@ -311,12 +311,13 @@ TECHNIQUE_MAP = {
     "Uses Cards":           "use_cards",
     "Healing":              "healing",
     "Features":             "features",
-    # TRUE for a plain free-text note per copy (Temper Soulblade —
-    # "choose a Masterwork power (GM approval)" is too open-ended for a
-    # fixed list); or a specific value telling the site which structured
-    # dropdown to show instead of a textarea: "School" (Artisanal
-    # Training, options from CREATION_SCHOOLS) or "Weapon" (Soulblade,
-    # options from the Category:Weapon items). Either way it's still
+    # TRUE for a plain free-text note per copy; or a specific value
+    # telling the site which structured dropdown to show instead of a
+    # textarea: "School" (Artisanal Training, options from
+    # CREATION_SCHOOLS), "Weapon" (Soulblade, options from the
+    # Category:Weapon items), or "Masterwork" (Temper Soulblade —
+    # Held-slot Masterwork items whose Level list includes that copy's
+    # own chosen Level, so each copy's options differ). Either way it's still
     # just a string landing in the same per-copy notes[uid] — a dropdown
     # is just a pickier textarea, not a different storage mechanism.
     "Free Text":            "free_text",

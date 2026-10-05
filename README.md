@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-05 — Temper Soulblade power picker
+
+Each copy of Temper Soulblade now has a dropdown of the Held Masterwork powers at that copy's Level, and the Character Sheet shows what the picked power does.
+
 ### 2026-10-04 — Keywords, guardian Styles and a social overhaul
 
 Attacks that copy their Technique now share a Repeat keyword, Counterattack became Opportunity Attack, and the social Techniques got rebuilt for the current Statement and Pressure rules.
