@@ -426,8 +426,8 @@ Styles pass. Live now, rebuilt: Drunken Brawling (T176), Doubleshot
 (T177), Lend Bulwark (T178), Sentinel (T179), Earthen Fist Posture
 (T180), Lion School - Swashbuckler's Focus (T181), Earthen Mantle Approach (T182). Declined: see
 "Reviewed and declined". Earthen Mantle Approach is live as T182, and Duelist's Dance (T183)
-merges Duelist's Dance and Distancing Draw. Crashing Wave Approach is live as T184. Deadeye's Shadow (T185) and Oppressive Presence (T186) are live. Aura of Death is live as T187. Still to rework:
-Adrenaline High. The rest are declined.
+merges Duelist's Dance and Distancing Draw. Crashing Wave Approach is live as T184. Deadeye's Shadow (T185) and Oppressive Presence (T186) are live. Aura of Death (T187) and Adrenaline High (T188) are live. Elemental
+Blend is parked (below); the rest are declined.
 
 **Elemental Blend** (archived Stance, Level 2) — parked, not declined
 (2026-10-05). "When you make a damaging spell attack, choose Fire,

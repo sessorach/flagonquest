@@ -8883,3 +8883,35 @@ reapplied each turn, not piling up) and a flat 3 meters: **~3-4, ~100%**
 of 3.6, worth much more against healers, which is when you'd switch in.
 (Meditation, Sorcery, or Theurgy) 2, Presence 1. Tagged Theurgist,
 Sorcerer, Monk.
+
+### Adrenaline High (T188, new) — Level 3 (2026-10-05)
+
+> When you Gamble on a melee weapon attack, its Gambles add no Extra
+> Successes. If it hits, you gain 2 + [times Gambled] stacks of
+> Protected.
+
+Archive (Level 4): two-handed close-range weapon only, Gambles add no
+damage, a hit gives 1 + [times Gambled] Protected. Per the designer the
+two-hander Condition went (nothing about it needs one); melee weapons
+only.
+
+Priced against the best normal play, not against never Gambling (the
+first estimate, ~98%, made that mistake). Players already Gamble when
+it pays, and a normal Gamble is +1 damage on a hit (4); this trades it
+for Protected (3 a stack). A normal attack hits ~61.5%, one Gamble
+~46%, two ~31%; net damage per hit ~1 (Unarmed) to ~4 (heavy
+two-hander), +0.25 for suit matches. Light weapons already Gamble, so
+the swap is cheap for them; a heavy two-hander normally doesn't, so it
+mostly pays in hit chance. Per fight (6.25 attacks):
+
+| Weapon | 1 + Gambles | 2 + Gambles | Share at Level 3 (2 +) |
+|---|---|---|---|
+| Unarmed / light one-hander | 5.8 | 14.4 | 134% |
+| Heavy one-hander / light two-hander | 4.8 | 13.5 | 125% |
+| Heavy two-hander | 1.0 | 9.6 | 89% |
+
+"1 +" was ~45-53% at Level 3 (and near nothing for a heavy
+two-hander). "2 +" makes ~8.7 Protected stacks a fight against ~9
+Health a front-liner loses, close to all it can use, so the later
+stacks are worth less than 3 each; read it as ~100%. (Brawl or Melee)
+4, Might 3. Tagged Barbarian, Guardian.

@@ -8842,5 +8842,56 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T188",
+    "name": "Adrenaline High",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "Pushing your strength to its limit with every swing, you turn that energy inward and revitalize yourself in the midst of a frenzied fracas.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When you Gamble on a melee weapon attack, its Gambles add no Extra Successes. If it hits, you gain 2 + [times Gambled] stacks of Protected.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Brawl or Melee) 4, Might 3",
+    "relevant_skills": "Brawl, Melee, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Brawl",
+          "Melee"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
