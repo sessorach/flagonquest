@@ -426,8 +426,18 @@ Styles pass. Live now, rebuilt: Drunken Brawling (T176), Doubleshot
 (T177), Lend Bulwark (T178), Sentinel (T179), Earthen Fist Posture
 (T180), Lion School - Swashbuckler's Focus (T181), Earthen Mantle Approach (T182). Declined: see
 "Reviewed and declined". Earthen Mantle Approach is live as T182, and Duelist's Dance (T183)
-merges Duelist's Dance and Distancing Draw. Crashing Wave Approach is live as T184. Deadeye's Shadow (T185) and Oppressive Presence (T186) are live. Still to rework: Elemental Blend,
+merges Duelist's Dance and Distancing Draw. Crashing Wave Approach is live as T184. Deadeye's Shadow (T185) and Oppressive Presence (T186) are live. Still to rework:
 Aura of Death, Adrenaline High. The rest are declined.
+
+**Elemental Blend** (archived Stance, Level 2) — parked, not declined
+(2026-10-05). "When you make a damaging spell attack, choose Fire,
+Frost, or Shadow; the spell costs an extra 1 AP." Under the GM guide's
+enemy rules a creature has one Resist for every element (only Physical
+adds armor), so picking the element does nothing against ordinary
+enemies and ~20 Value against one with an elemental resistance.
+Per the designer, worth coming back to with a more interesting idea
+than a plain element swap; it'd also want the GM guide to cover
+creatures with their own elemental Resists.
 
 **Discipline/Martial-Arts Schools** (the archive calls them "X Style";
 live game renamed them "X School") — only 1-5 techniques per School
