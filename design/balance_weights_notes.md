@@ -8866,3 +8866,20 @@ caster or archer backing off ≈ **4**. The Speed penalty is a giveback,
 **~111%** of 3.6. Shifting ignores Difficult Terrain, so it doesn't
 stop a Shift. Pairs with Sentinel and Parting Shot. Presence 2,
 Awareness 1. Tagged Guardian, Leader.
+
+### Aura of Death (T187, new) — Level 1 (2026-10-05)
+
+> At the start of your turn, each enemy within 3 meters of you gains
+> Necrotic.
+
+Archive (Level 3): you and each enemy within [half your Presence Skill
+Total] meters gain a Necrotic stack each turn, lasting the scene. Necrotic
+is 3 a stack when it actually blocks a heal or a Protected stack. Only
+fights with an enemy healer, shield-caster or Defender give it anything
+to block (~1/3), ~4 averaged; the self-stacks cost ~2-3 blocked heals
+or Protected a fight at 3-4 each, ~-9, a net loss for a front-liner.
+Now enemies only, normal Fleeting Necrotic (one stack a round,
+reapplied each turn, not piling up) and a flat 3 meters: **~3-4, ~100%**
+of 3.6, worth much more against healers, which is when you'd switch in.
+(Meditation, Sorcery, or Theurgy) 2, Presence 1. Tagged Theurgist,
+Sorcerer, Monk.

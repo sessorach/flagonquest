@@ -8790,5 +8790,57 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T187",
+    "name": "Aura of Death",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Style",
+    "description": "Something cold hangs around you. Wounds near you close slowly, and wards thin out as if something were feeding on them.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "At the start of your turn, each enemy within 3 meters of you gains Necrotic.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Meditation, Sorcery, or Theurgy) 2, Presence 1",
+    "relevant_skills": "Meditation, Sorcery, Theurgy, Presence",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation",
+          "Sorcery",
+          "Theurgy"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Presence"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
