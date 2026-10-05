@@ -98,6 +98,16 @@ that prices hot with both counted at full is fine as long as the more
 useful half is roughly on rate on its own. Hand of Defilement (first
 version, now Shepherd Opens the Gate) and Bell Tolls a Dirge were both accepted on this basis.
 
+### Early, late, and Level 5
+
+Per the designer (2026-10-05): balance and coverage work happens in two
+buckets, **early** (Levels 1-2) and **late** (Levels 3-4). **Level 5 is
+rare**: most Level 5 ideas live in IDEAS_BACKLOG.md, and a character
+buys at most one, late in a campaign (around 200+ XP), if at all. Don't
+plan an archetype's progression around Level 5, and don't treat an
+empty Level 5 slot as missing coverage. See IDEAS_BACKLOG.md's "Style
+coverage by archetype".
+
 ### Styles: Level × 3.6 per encounter (a 1.2× premium)
 
 Per the designer (2026-09-29): a Style's Target is **Level × 3 × 1.2 =

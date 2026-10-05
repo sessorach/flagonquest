@@ -223,6 +223,86 @@ cut, not just backfilled at a point in time.
   is Swatting Paw's payoff made passive, on Inexhaustible Guardian's
   trigger.
 
+## Style coverage by archetype (2026-10-05)
+
+Per the designer: each combat archetype should have a few **early**
+Styles (Levels 1-2) and a few **late** ones (Levels 3-4). **Level 5 is
+rare** - most live in this backlog, and a character buys at most one,
+late, around 200+ XP if at all - so balance and coverage work happens
+in the early and late buckets. Target used below: 3+ early, 2+ late.
+A Style tagged with several archetypes counts for each.
+
+| Archetype | Early (L1-2) | Late (L3-4) | Needs |
+|---|---|---|---|
+| Monk | 6 | 5 | — |
+| Guardian | 9 | 2 | — |
+| Duelist | 8 | 1 (Storm of Blades) | +1 late |
+| Rogue | 4 | 2 (Disciple, Doubleshot) | — |
+| Archer | 4 | 1 (Doubleshot) | +1 late (nothing at L3) |
+| Barbarian | 3 | 2 (Adrenaline High, Warpath) | — |
+| Sorcerer | 4 | 0 | +2 late |
+| Theurgist | 3 | 0 | +2 late |
+| Leader | 1 (Oppressive Presence) | 0 | +2 early, +2 late |
+| Healer | 0 | 0 | +3 early, +2 late |
+| Druid | 0 | 0 | +3 early, +2 late |
+| Scout | 0 | 0 | +3 early, +2 late |
+| Face (combat) | 0 | 0 | +3 early, +2 late |
+| Crafter, Scholar, General | 0 | 0 | non-combat, none needed |
+
+About 26 slots, but most new Styles can cover two archetypes at once
+(Healer/Theurgist, Druid/Sorcerer, Scout/Rogue, Leader/Face), so
+roughly 13-15 new Styles. Candidate ideas per slot (none drafted):
+
+**Early**
+- Healer/Theurgist: your heals also give Protected; or your heals
+  ignore Necrotic (a counter to Aura of Death-type effects).
+- Healer: bigger heals on a Wounded ally.
+- Druid/Sorcerer: Summoner Style - your Summoned creatures get Good
+  Luck or extra Health (9 Summon Techniques, no Style uses them).
+- Druid: your area spells leave Difficult Terrain behind.
+- Scout/Rogue: first strike - Good Luck on attacks against a creature
+  that hasn't acted yet this round; or Stagger on a hit (first real use
+  of the turn-order keywords).
+- Scout/Archer: a Hidden-based Style (needs a Hidden keyword, below).
+- Leader/Face: allies who start their turn near you are Hasted (Hasted
+  is in one Technique total).
+- Face: your hits Frighten, or your Taunts and Frightens land an extra
+  stack (Challenge, Cry of Victory, Exert Pressure have no Style).
+- Leader: Support allies' attacks (needs combat Support, below).
+
+**Late**
+- Duelist: a Lion or Tiger capstone (Stagger on a hit, or a dueling
+  finisher).
+- Archer (L3): pinning shots - ranged hits Slow or Cripple.
+- Sorcerer: area spells (Burst) or a Teleport Style (5 Teleport
+  Techniques, no Style).
+- Theurgist: a Ward Style (3 Ward Techniques, no Style), and a healing
+  aura.
+- Healer: overflow healing turns into Protected; a pick-up-the-Downed
+  capstone.
+- Druid: summon capstone.
+- Scout: Hidden capstone; Outflank the party.
+- Leader: a teamwork capstone around Hasted or Support.
+- Face: Taunt/Frighten mastery (The Gatekeeper is the Level 5 version).
+
+**Rules that would unlock more of these**
+- **Support in combat.** Support is only defined for checks (flat 11,
+  Good Luck). "Spend 1 AP to Support an ally's attack" would give
+  Leader and Face a whole Style family; Raise Spirits already does a
+  version as a Technique.
+- **A Hidden keyword.** rulebook.md has unaware-attack rules (they skip
+  Shallow Health) but no "you're hidden" state for a Style to switch
+  on. Scout and Rogue need it.
+- **Flanking.** No position-based bonus exists (Outflank is turn
+  order). Rogue and Duelist identity usually hangs on one.
+- **Per-element Resists on enemies.** The GM guide gives every element
+  the same Resist, so Ward and element-picking (Elemental Blend, parked)
+  have little to work with.
+
+Suggested order: Healer and Scout first (most common combat roles with
+nothing), then decide combat Support (it shapes Leader), then caster
+and Duelist/Archer late Styles.
+
 ## Downtime Meditation Techniques
 
 Meditation Techniques that aren't martial at all: meditate for ten
