@@ -8852,3 +8852,17 @@ Taunted is Fleeting now anyway. 3.75 hits × 2.2 (Taunted) = **8.25,
 else, so shooting an enemy your tank has Taunted takes it over; the
 archer can just pick another target. (Acrobatics or Archery) 3,
 Awareness 2. Tagged Archer.
+
+### Oppressive Presence (T186, new) — Level 1 (2026-10-05)
+
+> Spaces within 2 meters of you have 1 degree of Difficult Terrain for
+> your enemies.
+
+Archive (Level 2): the same zone, plus your Speed -1. A melee enemy
+closing on you crosses ~2 meters of it, an extra 2 meters of Speed,
+about half a move (~1.4); ~2.5 approaches an encounter plus the odd
+caster or archer backing off ≈ **4**. The Speed penalty is a giveback,
++2.54 to Target: 4 / 9.7 = ~41% at Level 2. Dropped, at Level 1:
+**~111%** of 3.6. Shifting ignores Difficult Terrain, so it doesn't
+stop a Shift. Pairs with Sentinel and Parting Shot. Presence 2,
+Awareness 1. Tagged Guardian, Leader.

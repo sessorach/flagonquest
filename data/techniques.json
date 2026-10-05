@@ -8740,5 +8740,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T186",
+    "name": "Oppressive Presence",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Style",
+    "description": "On the battlefield you cast a long shadow, and no matter the weapons you employ your opponents find it difficult to maneuver around you.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "Spaces within 2 meters of you have 1 degree of Difficult Terrain for your enemies.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Presence 2, Awareness 1",
+    "relevant_skills": "Presence, Awareness",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Presence"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Awareness"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
