@@ -321,6 +321,21 @@ Taunted sits with both Guardian and Face (and Oak on the School side),
 and Protected is Guardian's with Healer and Theurgist sharing it; both
 can be narrowed later if identities blur.
 
+### STANDING RULE — No counters to counters
+
+Per the designer (2026-10-05): two levels of strategy is enough. A
+mechanic can counter another (Necrotic counters healing and Protected),
+but nothing should be built specifically to counter the counter (a
+healer whose heals ignore Necrotic). Players are welcome to dream up
+deeper plays themselves, but niche counter-counters either end up
+useless or feel bad when they're used against you. Protected already
+soaks up Necrotic to an extent, which is the intended interaction.
+
+General cleanses that happen to list Necrotic among many debuffs (Oak's
+Oak Sheds Its Leaves, Old Growth Digs Deep, Boughs Unbroken) aren't
+this: they clear whatever's on you, and clearing your own debuffs is
+Oak's home mechanic.
+
 ### STANDING RULE — Some effects always cost a resource
 
 Per the designer (2026-09-27): a handful of effects should almost always

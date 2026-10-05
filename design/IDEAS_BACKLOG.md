@@ -150,6 +150,11 @@ cut, not just backfilled at a point in time.
   than it looks (two swings land 1.38 times the hits of one, and the
   first Harries the target for the second), ~121% at Level 3 with half
   the attacks being Level 2 Techniques.
+- **Steady Hands** (Healer Style idea, Level 1) — declined
+  (2026-10-05). "Your heals ignore Necrotic, and the creature you heal
+  removes a stack of Bleeding." Necrotic is already the counter to
+  healing, and per the designer there are no counters to counters
+  (RULES_DESIGN.md).
 - **More archived Stances, declined** (2026-10-04): *Flurry of
   Strikes* and *Flowing Iron* (dual-wield, Harried once on a hit, Parry
   or Dodge; Rending Claws does more); *Battering Blows* (Breaching Blows
@@ -229,7 +234,9 @@ Per the designer: each combat archetype should have a few **early**
 Styles (Levels 1-2) and a few **late** ones (Levels 3-4). **Level 5 is
 rare** - most live in this backlog, and a character buys at most one,
 late, around 200+ XP if at all - so balance and coverage work happens
-in the early and late buckets. Target used below: 3+ early, 2+ late.
+in the early and late buckets. Long-run target: 3+ early, 2+ late.
+For the current pass, per the designer, a couple per archetype is
+enough.
 A Style tagged with several archetypes counts for each.
 
 | Archetype | Early (L1-2) | Late (L3-4) | Needs |
@@ -243,7 +250,7 @@ A Style tagged with several archetypes counts for each.
 | Sorcerer | 4 | 0 | +2 late |
 | Theurgist | 3 | 0 | +2 late |
 | Leader | 1 (Oppressive Presence) | 0 | +2 early, +2 late |
-| Healer | 1 (Field Medic) | 1 (Lifeward) | +2 early, +1 late |
+| Healer | 1 (Field Medic) | 1 (Lifeward) | done for this pass |
 | Druid | 0 | 0 | +3 early, +2 late |
 | Scout | 0 | 0 | +3 early, +2 late |
 | Face (combat) | 0 | 0 | +3 early, +2 late |

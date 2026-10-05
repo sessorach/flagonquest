@@ -8948,7 +8948,7 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "When you heal a creature that isn't Wounded, it also gains Protected equal to the Health it healed.",
+    "effects": "When you heal a creature, it also gains Protected equal to the Health it healed.",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Medicine, Performance, or Theurgy) 4, Composure 3",

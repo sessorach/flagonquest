@@ -8953,3 +8953,9 @@ Revitalization (Level 4). Per the designer that's fine: item-based
 characters trade convenience for flexibility (Medicinal Supplies in
 place of cards, at the cost of time), so these Styles don't need to
 cater to them.
+
+**Lifeward unconditioned (2026-10-05).** Per the designer, the "isn't
+Wounded" clause is gone: any heal you make also gives Protected equal
+to the Health healed, Wounded or not, so it now stacks with Field
+Medic's +1. A dedicated healer's ~3-4 combat heals at ~1.25-2 Health
+each come to ~4 Health a fight, 3 a stack: **~12, ~111%** at Level 3.
