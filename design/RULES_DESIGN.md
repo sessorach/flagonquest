@@ -283,6 +283,44 @@ Leader, Tactician/Detective → Scholar, Spy/Gambler → Rogue, Alchemist
 two-tag hybrids. Summoner and Necromancer were dropped; summons sit
 with whichever caster casts them.
 
+### Archetypes: jobs and home mechanics
+
+Agreed 2026-10-05, the archetype-level version of the Demon/Shugen/Oak
+"Owns" table further down. Expect mechanics to move around as content
+gets built, the way they did for the martial Schools.
+
+- Every mechanic has 1-2 **home** archetypes, where it's central and
+  gets the strong or stacking versions. Elsewhere it shows up only as
+  a small rider (a Healer can still clear a stack of Bleeding).
+- Every combat archetype has 2-4 home mechanics, at least one of them
+  available early (Levels 1-2).
+- Generalist Styles (no archetype-specific Condition) spread on
+  purpose: tag them with every archetype where their mechanic is home
+  or shared.
+- The martial Schools keep their own table; Monk inherits from it.
+- A coverage check looks for an archetype with no early home mechanic,
+  a mechanic with no home, or a home nothing's built on yet.
+
+| Archetype | Job | Home | Shares |
+|---|---|---|---|
+| Guardian | Protect others | Taunted, Protected, holding ground (Sentinel, Difficult Terrain, Lend Bulwark) | Push |
+| Barbarian | Hit hard, ignore pain | Bleeding, Gambling, ignoring debuffs and Wounded, Vigor | Push, Protected |
+| Duelist | Win one-on-one | Harried, Opportunity Attack, Repeat, focusing one target | Shift |
+| Rogue | Exploit openings | Vulnerable, Crippled, hidden/unaware attacks (needs a keyword) | Bad Luck on enemies, Shift |
+| Archer | Control from range | Good Luck on accuracy, pinning (Slowed, Crippled), covering fire (Taunted) | Repeat |
+| Scout | Tempo and information | Outflank/Stagger, first strike, hidden | Shift |
+| Sorcerer | Damage and area | Burst, elements, Teleport | Summon |
+| Theurgist | Support magic | Ward, healing, Necrotic as anti-healing | Protected, Summon |
+| Healer | Keep everyone up | Healing, clearing Bleeding and Poison, getting the Downed back up | Protected |
+| Druid | Shape the battlefield | Summon, terrain (Difficult Terrain) | Slowed, Hasted |
+| Leader | Make allies better | Hasted, Good Luck for allies, Support in combat (needs a rule) | Outflank for allies |
+| Face | Pressure, in and out of combat | Frightened, Taunted, Presence attacks, Pressure | — |
+| Monk | See the martial Schools table | — | — |
+
+Taunted sits with both Guardian and Face (and Oak on the School side),
+and Protected is Guardian's with Healer and Theurgist sharing it; both
+can be narrowed later if identities blur.
+
 ### STANDING RULE — Some effects always cost a resource
 
 Per the designer (2026-09-27): a handful of effects should almost always
