@@ -190,3 +190,6 @@ things off in order.
 - **`#### Frightened`, `#### Taunted`** (glossary.md, Common Effects)
   — new paragraph each: in a social encounter they cover the checks one
   side makes to add Pressure to the other. Commit `4621cd6`.
+- **`#### Play`** (glossary.md, Card Terms) — "Pitch a card from your
+  hand" → "Discard a card from your hand", matching every Technique's
+  card costs. Commit `5f5cb85`.
