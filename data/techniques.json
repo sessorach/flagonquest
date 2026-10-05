@@ -8988,5 +8988,66 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T191",
+    "name": "Minor Oracle",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "General Spell",
+    "description": "By using a primitive form of divination magic you can attempt to tell a person's fortune. Though it usually doesn't give a terribly specific result, there's always some knowledge to be gleaned... assuming you do it right.",
+    "condition": null,
+    "action": "1 minute",
+    "cost": null,
+    "target": "A willing creature adjacent to you",
+    "effects": "Choose a divining tool and something in the target's near future to read. Make a Sorcery or Theurgy flip against a hidden difficulty. The fortune is always about that subject; a better result makes it more accurate, and a poor one gives vague, generic advice. The first time each day you tell a creature's fortune, it may Sift 2 cards.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Insight 1, (Survival or Academics) 1, (Sorcery or Theurgy) 1",
+    "relevant_skills": "Sorcery, Theurgy, Insight",
+    "use_cards": true,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Survival",
+          "Academics"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Sorcery",
+          "Theurgy"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

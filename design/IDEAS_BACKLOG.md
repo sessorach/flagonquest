@@ -657,7 +657,7 @@ Phalanx, Eternal Riposte, Storm of Blades, Follow Through.
 **Card/luck-economy techniques** — nothing currently manipulates cards
 beyond Grim Resolve's "spend Health, draw a card": Intuitive Maneuver
 (swap a played card for deck-top), Lucky (passive card draw after a
-rest), Minor Oracle (peek/cull your own top cards), Focus and
+rest), Minor Oracle (live as T191), Focus and
 Conviction/Strength and Conviction/Words of Encouragement/Roll the
 Dice (spend Soul or Focus to draw 2 discard 1, self or ally), Font of
 Inspiration (nearby allies reflip low cards when you spend Soul),

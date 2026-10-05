@@ -8959,3 +8959,23 @@ Wounded" clause is gone: any heal you make also gives Protected equal
 to the Health healed, Wounded or not, so it now stacks with Field
 Medic's +1. A dedicated healer's ~3-4 combat heals at ~1.25-2 Health
 each come to ~4 Health a fight, 3 a stack: **~12, ~111%** at Level 3.
+
+### Minor Oracle (T191, new) — Level 1 (2026-10-05)
+
+> *1 minute, a willing creature adjacent to you.* Choose a divining tool
+> and something in the target's near future to read. Make a Sorcery or
+> Theurgy flip against a hidden difficulty. The fortune is always about
+> that subject; a better result makes it more accurate, and a poor one
+> gives vague, generic advice. The first time each day you tell a
+> creature's fortune, it may Sift 2 cards.
+
+Pulled from the backlog per the designer, into 1.2. Archive text
+translated: Elementalism → Sorcery, Nature Lore → Survival, and "look
+at the top 2 cards, discard any, then shuffle" is the Sift keyword. The
+hidden-difficulty flip follows Gather the Evidence's wording. Mostly a
+narrative tool; the mechanical part is one Sift 2 per creature per day,
+~0.6 a card at the daily rate (Sift's own weight) = ~1.2 per creature,
+so a party of four gets ~5 a day from one caster's minute of
+fortune-telling, against Level 1's 3. Narrative utility on top; no
+change made. Tagged General Spell (either caster can use it) and
+Theurgist, Sorcerer, Druid, Scholar.
