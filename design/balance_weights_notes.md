@@ -8915,3 +8915,41 @@ two-hander). "2 +" makes ~8.7 Protected stacks a fight against ~9
 Health a front-liner loses, close to all it can use, so the later
 stacks are worth less than 3 each; read it as ~100%. (Brawl or Melee)
 4, Might 3. Tagged Barbarian, Guardian.
+
+### Healer Styles: Field Medic (T189, Level 1) and Lifeward (T190, Level 3) (2026-10-05)
+
+> **Field Medic:** When you heal a Wounded creature, it heals 1 extra
+> Health.
+>
+> **Lifeward:** When you heal a creature that isn't Wounded, it also
+> gains Protected equal to the Health it healed.
+
+Per the designer, combat healing is usually a mistake (the AP is better
+spent ending the fight), so it happens when someone's Wounded or the
+party's in danger. The pair splits along that line: Field Medic is the
+reaction (make the emergency heal count), Lifeward the preparation (top
+someone up before they're in trouble, and the heal also braces them).
+
+Heals come in different shapes (Bolstering Refrain: 3 allies × 1 for 2
+cards; high-Level Healing Magic: ~2, up to 5, for 4 cards; Lay on
+Hands: ~1.25 for 1 card). A flat bonus per heal mostly rewards
+spreading heals around and is worth ~0.25 a card on a big Healing
+Magic; Protected equal to the Health healed pays the same per point of
+healing whatever the shape, so Lifeward scales and is uncapped. The
+Protected rides on healing already paid for with cards, so it doesn't
+bend the "healing always costs a resource" rule.
+
+- **Field Medic:** ~1 heal an encounter lands on a Wounded creature
+  (Second Wind counts for a non-healer): +1 Health (4), **~111%** of 3.6.
+  Generalist; tagged Healer, Guardian, Scout.
+- **Lifeward:** ~1-2 top-up heals an encounter at ~2 Health each, 3 a
+  stack: 6-12, **~56-111%** of 10.8. It roughly doubles what a top-up
+  heal is worth (4 + 3 per point), so healers in it will top up more
+  than they would otherwise; read it toward the high end. Tagged
+  Healer, Theurgist, Leader (Bolstering Refrain is Leader's).
+
+A Medicine Doctor has no in-combat heal before Pressure Point
+Revitalization (Level 4). Per the designer that's fine: item-based
+characters trade convenience for flexibility (Medicinal Supplies in
+place of cards, at the cost of time), so these Styles don't need to
+cater to them.

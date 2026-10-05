@@ -8893,5 +8893,100 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T189",
+    "name": "Field Medic",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Style",
+    "description": "You've learned to work fastest on whoever's in the worst shape, and to make every bit of help count when it matters most.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When you heal a Wounded creature, it heals 1 extra Health.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Medicine, Performance, or Theurgy) 2",
+    "relevant_skills": "Medicine, Performance, Theurgy",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Medicine",
+          "Performance",
+          "Theurgy"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T190",
+    "name": "Lifeward",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "Your care doesn't wait for wounds. A healer who keeps the party topped up sends them into each blow with something to spare.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When you heal a creature that isn't Wounded, it also gains Protected equal to the Health it healed.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Medicine, Performance, or Theurgy) 4, Composure 3",
+    "relevant_skills": "Medicine, Performance, Theurgy, Composure",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Medicine",
+          "Performance",
+          "Theurgy"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Composure"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

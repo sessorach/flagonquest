@@ -243,7 +243,7 @@ A Style tagged with several archetypes counts for each.
 | Sorcerer | 4 | 0 | +2 late |
 | Theurgist | 3 | 0 | +2 late |
 | Leader | 1 (Oppressive Presence) | 0 | +2 early, +2 late |
-| Healer | 0 | 0 | +3 early, +2 late |
+| Healer | 1 (Field Medic) | 1 (Lifeward) | +2 early, +1 late |
 | Druid | 0 | 0 | +3 early, +2 late |
 | Scout | 0 | 0 | +3 early, +2 late |
 | Face (combat) | 0 | 0 | +3 early, +2 late |
