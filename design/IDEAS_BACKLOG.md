@@ -252,7 +252,7 @@ A Style tagged with several archetypes counts for each.
 | Leader | 1 (Oppressive Presence) | 0 | +2 early, +2 late |
 | Healer | 1 (Field Medic) | 1 (Lifeward) | done for this pass |
 | Druid | 0 | 0 | +3 early, +2 late |
-| Scout | 0 | 0 | +3 early, +2 late |
+| Scout | 2 (Quick Draw, Lie in Wait) | 1 (Ambush Predator) | done for this pass |
 | Face (combat) | 0 | 0 | +3 early, +2 late |
 | Crafter, Scholar, General | 0 | 0 | non-combat, none needed |
 

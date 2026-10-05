@@ -8979,3 +8979,36 @@ so a party of four gets ~5 a day from one caster's minute of
 fortune-telling, against Level 1's 3. Narrative utility on top; no
 change made. Tagged General Spell (either caster can use it) and
 Theurgist, Sorcerer, Druid, Scholar.
+
+**Minor Oracle reworked (2026-10-05).** Per the designer, the flip now
+scales: difficulty is how much the reading matters (7 everyday
+fortunes, 11 current events, 15 kingdom-shaping, 19 world-ending), and
+successes are detail (each Extra Success adds more). Still made in
+secret, as the archive had it, so the teller doesn't know how much to
+trust a reading. Same price; the mechanical part is still Sift 2.
+
+### Turn-order Styles: Quick Draw (T192), Lie in Wait (T193), Ambush Predator (T194) (2026-10-05)
+
+Scout had no Styles, and Outflank/Stagger (Scout's home mechanics,
+Spades in the suit table) had no Style using them. Priced at the
+penciled 1.0 per place of turn order (roughly half a Good Luck: it pays
+off only when there's a window worth getting into), so treat these as
+estimates until the simulator checks the rate.
+
+- **Quick Draw** (Level 1): "At the end of each of your turns, you may
+  Outflank once." ~4 places a fight, **~111%** of 3.6. Savage Worlds'
+  Quick/Level Headed were the inspiration.
+- **Lie in Wait** (Level 2): "When your turn would start, you may first
+  Stagger yourself up to three times. If you do, your attacks on that
+  turn have Good Luck that many times." Pathfinder's Delay / Savage
+  Worlds' On Hold. Good Luck once/twice/three times on ~1.25 attacks is
+  3.0/4.5/5.4 a round, less 1/2/3 for the places given up (they stick):
+  2.0/2.5/2.4, best at two. Used ~3 rounds a fight: **~7.5, ~104%** of
+  7.2. Capped at three since a fourth Good Luck adds next to nothing.
+- **Ambush Predator** (Level 3): "When one of your attacks hits, you may
+  Stagger the target 1 + [Spades] times. Your attacks against a creature
+  that hasn't taken its turn yet this round have Good Luck." Stagger
+  3.75 hits × (1 + ~0.35 Spades) = 5.1; Good Luck on ~half of 6.25
+  attacks × 2.4 = 7.5; **12.6, ~116%** of 10.8. The halves feed each
+  other: a Staggered enemy is more likely to still be waiting when you
+  next swing.

@@ -9000,7 +9000,7 @@
     "action": "1 minute",
     "cost": null,
     "target": "A willing creature adjacent to you",
-    "effects": "Choose a divining tool and something in the target's near future to read. Make a Sorcery or Theurgy flip against a hidden difficulty. The fortune is always about that subject; a better result makes it more accurate, and a poor one gives vague, generic advice. The first time each day you tell a creature's fortune, it may Sift 2 cards.",
+    "effects": "Choose a divining tool and something in the target's near future to read, then make a Sorcery or Theurgy flip in secret. The difficulty depends on how much is riding on it: 7 for everyday fortunes, 11 for current events, 15 for events that shape kingdoms, and 19 for the end of the world. On a success you learn something true about it, and each Extra Success adds more detail. On a failure the fortune is vague and generic. The first time each day you tell a creature's fortune, it may Sift 2 cards.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Insight 1, (Survival or Academics) 1, (Sorcery or Theurgy) 1",
@@ -9044,6 +9044,158 @@
         ],
         "threshold": {
           "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T192",
+    "name": "Quick Draw",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Style",
+    "description": "However slow you start, you're always a step ahead by the time it matters.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "At the end of each of your turns, you may Outflank once.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Awareness 2, Insight 1",
+    "relevant_skills": "Awareness, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Awareness"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T193",
+    "name": "Lie in Wait",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "Let them make the first move. Once they've shown you where they're going, you'll be waiting there.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When your turn would start, you may first Stagger yourself up to three times. If you do, your attacks on that turn have Good Luck that many times.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Awareness or Stealth) 3, Insight 2",
+    "relevant_skills": "Awareness, Stealth, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Awareness",
+          "Stealth"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T194",
+    "name": "Ambush Predator",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "You strike before your prey is ready, and every blow knocks it further behind.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When one of your attacks hits, you may Stagger the target 1 + [Spades] times. Your attacks against a creature that hasn't taken its turn yet this round have Good Luck.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Awareness or Stealth) 4, Insight 3",
+    "relevant_skills": "Awareness, Stealth, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Awareness",
+          "Stealth"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 3
         }
       }
     ],
