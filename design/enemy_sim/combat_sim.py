@@ -1044,11 +1044,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     if order is not None:
                         # Turn-order Styles (2026-10-06). 'Staggering Blows'
                         # is a test-only passive (Stagger once on a hit), used
-                        # to check the 1.0-per-place weight directly.
-                        if 'Staggering Blows' in passives:
+                        # to check the per-place weight directly.
+                        if 'Staggering Blows' in passives or 'Ambush Predator' in passives:
                             _shift_in_order(order, target, 1)
-                        if 'Ambush Predator' in passives:
-                            _shift_in_order(order, target, 1 + (1 if cards.flipped_matches('Spades') else 0))
                         if 'Command the Tempo' in passives:
                             _shift_in_order(order, target, 1)
                             # "an ally of your choice Outflanks once": the

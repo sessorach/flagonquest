@@ -9193,5 +9193,18 @@ down (Lie in Wait) costs more than 1.0 a place for ranged characters,
 whose Good Luck doesn't make up for enemies reaching them first.
 Enemies never use turn order themselves, and the AI just waits two
 places every round, so Lie in Wait's real use (waiting when it pays)
-is better than measured. Pending the designer's call on Levels and on
-updating the 1.0 weight.
+is better than measured.
+
+**Decisions (designer, 2026-10-06).** Turn-order weight goes to 1.35 a
+place (balance_weights.csv). Quick Draw to Level 2 (204% of L1 = ~102%
+of L2), Command the Tempo to Level 3 (153% of L2 = ~102% of L3), Lie in
+Wait to Level 1 (51% of L2 = ~102% of L1; still weak for ranged
+characters, accepted). Prereqs moved with each Level. Ambush Predator
+lost its [Spades], so it Staggers once on a hit.
+
+**Ambush Predator re-run without [Spades]** (800 per mix): Hilde 16.2
+(150%), Sable 23.5 (218%), Carrick 7.9 (73%), average 15.9 (**147%**),
+against 149% before. The Spades bonus was only ~0.25 places a hit, ~1.3
+Value, inside the noise. Most of its Value is the Good Luck against
+creatures that haven't acted, so trimming the Stagger was never going
+to bring it down to its Level 3 Target. Still open.

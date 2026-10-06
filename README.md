@@ -19,6 +19,7 @@ Leader, Face and Druid got their first real sets of Styles, so every combat arch
 - Leader: Forward!, Lead by Example, Command the Tempo and Commander's Gambit.
 - Face: Intimidating Presence and Dread Reputation. Druid: Grasping Earth, and Pack Leader, which makes every Summoned creature hit more reliably.
 - Late Styles for Sorcerer (Twin Spell), Duelist (Exploit the Opening) and Archer (Suppressing Fire); Storm of Blades and Crashing Wave were repriced after a pricing mistake on copied Techniques, and Crashing Wave became a shield charge.
+- Ran the turn-order Styles through the simulator: Quick Draw and Command the Tempo each went up a Level, and Lie in Wait went down one.
 
 ### 2026-10-05 — Version 1.2 and the last of the old Stances
 

@@ -7,14 +7,14 @@ the Style sits on one PC of Party A. The Health ladder raises every PC
 together (stable targeting, see style_compare.py), and one PC's share
 of it is a quarter of the slope. Paired seeds, more fights per mix.
 
-Usage: python3 turnorder_single.py [trials per mix]"""
+Usage: python3 turnorder_single.py [trials per mix] [Style name ...]"""
 import sys, os, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, party, sample_enemies as se
 from style_compare import PARTY_A, STYLES, HEALTH_VALUE
 
-STYLE_LEVELS = [("Staggering Blows", 1), ("Quick Draw", 1), ("Lie in Wait", 2),
-                ("Command the Tempo", 2), ("Ambush Predator", 3)]
+STYLE_LEVELS = [("Staggering Blows", 1), ("Quick Draw", 2), ("Lie in Wait", 1),
+                ("Command the Tempo", 3), ("Ambush Predator", 3)]
 CARRIERS = ["Hilde (L2)", "Sable (L2)", "Carrick (L2)"]
 
 
@@ -45,12 +45,15 @@ def run(carrier, style, health, trials):
 
 if __name__ == "__main__":
     trials = int(sys.argv[1]) if len(sys.argv) > 1 else 800
+    only = set(sys.argv[2:])
     base = run(CARRIERS[0], None, 0, trials)
     plus2 = run(CARRIERS[0], None, 2, trials)
     per_pc = (plus2 - base) / 2 / 4  # one PC's +1 Health, in party-score points
     print(f"Party A base {base:.1f}, +2 Health each {plus2:.1f}; one PC's +1 Health = {per_pc:.2f} points", flush=True)
     for carrier in CARRIERS:
         for style, level in STYLE_LEVELS:
+            if only and style not in only:
+                continue
             score = run(carrier, style, 0, trials)
             value = (score - base) / per_pc * HEALTH_VALUE
             print(f"  {carrier:13} {style:18} L{level}: {score:5.1f} -> {value:+5.1f} Value "
