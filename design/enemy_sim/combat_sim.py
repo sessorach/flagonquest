@@ -1045,7 +1045,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         # Turn-order Styles (2026-10-06). 'Staggering Blows'
                         # is a test-only passive (Stagger once on a hit), used
                         # to check the per-place weight directly.
-                        if 'Staggering Blows' in passives or 'Ambush Predator' in passives:
+                        if 'Staggering Blows' in passives:
                             _shift_in_order(order, target, 1)
                         if 'Command the Tempo' in passives:
                             _shift_in_order(order, target, 1)
@@ -1680,9 +1680,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 made, dealt = _take_pc_turn(unit, pcs, enemies, rnd, movement, trace, party_log, order)
                 pc_attacks += made
                 pc_damage_dealt += dealt
-                # Quick Draw (T192): "At the end of each of your turns, you
+                # Seize the Moment (T192): "At the end of each of your turns, you
                 # may Outflank once."
-                if 'Quick Draw' in unit.get('passives', ()):
+                if 'Seize the Moment' in unit.get('passives', ()):
                     _shift_in_order(order, unit, -1)
             else:
                 pc_damage_dealt += _take_enemy_turn(unit, enemies, pcs, rnd, movement, trace, enemy_log, party_log)

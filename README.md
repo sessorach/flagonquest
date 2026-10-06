@@ -19,13 +19,13 @@ Leader, Face and Druid got their first real sets of Styles, so every combat arch
 - Leader: Forward!, Lead by Example, Command the Tempo and Commander's Gambit.
 - Face: Intimidating Presence and Dread Reputation. Druid: Grasping Earth, and Pack Leader, which makes every Summoned creature hit more reliably.
 - Late Styles for Sorcerer (Twin Spell), Duelist (Exploit the Opening) and Archer (Suppressing Fire); Storm of Blades and Crashing Wave were repriced after a pricing mistake on copied Techniques, and Crashing Wave became a shield charge.
-- Ran the turn-order Styles through the simulator: Quick Draw and Command the Tempo each went up a Level, and Lie in Wait went down one.
+- Ran the turn-order Styles through the simulator: Seize the Moment (renamed from Quick Draw) and Command the Tempo each went up a Level, Lie in Wait went down one, and Ambush Predator now just gives Good Luck against enemies who haven't acted yet.
 
 ### 2026-10-05 — Version 1.2 and the last of the old Stances
 
 Started version 1.2, finished turning the archived Stances into Styles, and gave Healer and Scout their first Styles.
 - From the old Stances: Deadeye's Shadow, Oppressive Presence, Aura of Death and Adrenaline High.
-- Healer got Field Medic and Lifeward, and Scout got Quick Draw, Lie in Wait and Ambush Predator, which play with turn order.
+- Healer got Field Medic and Lifeward, and Scout got Seize the Moment, Lie in Wait and Ambush Predator, which play with turn order.
 - Minor Oracle is back as a fortune-telling spell, and card costs now always say discard instead of pitch.
 
 ### 2026-10-04 — Keywords, guardian Styles and a social overhaul

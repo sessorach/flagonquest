@@ -9207,4 +9207,13 @@ lost its [Spades], so it Staggers once on a hit.
 against 149% before. The Spades bonus was only ~0.25 places a hit, ~1.3
 Value, inside the noise. Most of its Value is the Good Luck against
 creatures that haven't acted, so trimming the Stagger was never going
-to bring it down to its Level 3 Target. Still open.
+to bring it down to its Level 3 Target.
+
+**Ambush Predator, final (designer, 2026-10-06):** the Stagger is cut,
+leaving "Your attacks against a creature that hasn't taken its turn yet
+this round have Good Luck." Level 3 stays. Re-run (800 per mix): Hilde
+12.5 (115%), Sable 17.0 (157%), Carrick 2.2 (21%), average 10.6
+(**98%**). It now leans on the carrier or an ally getting ahead in the
+order (Seize the Moment, Command the Tempo, Lie in Wait on enemies),
+which is fine for a Scout Style. Quick Draw (T192) was renamed **Seize
+the Moment** in the same pass, since T039 already uses the name.

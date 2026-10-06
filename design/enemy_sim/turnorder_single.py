@@ -1,7 +1,7 @@
 """Turn-order Styles priced on ONE carrier in a normal party (2026-10-06).
 
 style_compare.py's four-copy method distorts these: turn order is
-relative, so four Quick Draws move the whole party to the front at
+relative, so four copies of Seize the Moment move the whole party to the front at
 once, which one character never could (melee 308% vs ranged 70%). Here
 the Style sits on one PC of Party A. The Health ladder raises every PC
 together (stable targeting, see style_compare.py), and one PC's share
@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, party, sample_enemies as se
 from style_compare import PARTY_A, STYLES, HEALTH_VALUE
 
-STYLE_LEVELS = [("Staggering Blows", 1), ("Quick Draw", 2), ("Lie in Wait", 1),
+STYLE_LEVELS = [("Staggering Blows", 1), ("Seize the Moment", 2), ("Lie in Wait", 1),
                 ("Command the Tempo", 3), ("Ambush Predator", 3)]
 CARRIERS = ["Hilde (L2)", "Sable (L2)", "Carrick (L2)"]
 

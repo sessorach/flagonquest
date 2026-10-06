@@ -35,13 +35,13 @@ GROUPS = {
     # Turn-order Styles (2026-10-06). 'Staggering Blows' is a test-only
     # passive (Stagger once on a hit) checking the per-place weight. These
     # four-copy groups distort turn order; see turnorder_single.py.
-    "turnorder_melee": (PARTY_A, "Hilde (L2)", [("Staggering Blows", 1), ("Quick Draw", 2), ("Lie in Wait", 1),
+    "turnorder_melee": (PARTY_A, "Hilde (L2)", [("Staggering Blows", 1), ("Seize the Moment", 2), ("Lie in Wait", 1),
                                                  ("Command the Tempo", 3), ("Ambush Predator", 3)]),
-    "turnorder_ranged": (PARTY_A, "Sable (L2)", [("Staggering Blows", 1), ("Quick Draw", 2), ("Lie in Wait", 1),
+    "turnorder_ranged": (PARTY_A, "Sable (L2)", [("Staggering Blows", 1), ("Seize the Moment", 2), ("Lie in Wait", 1),
                                                   ("Command the Tempo", 3), ("Ambush Predator", 3)]),
 }
 STYLES = {"Furious Rage", "Lawman's Hand", "Hand of Chaos", "Inexhaustible Guardian",
-          "Indomitable Phalanx", "Overchanneling", "Staggering Blows", "Quick Draw", "Lie in Wait",
+          "Indomitable Phalanx", "Overchanneling", "Staggering Blows", "Seize the Moment", "Lie in Wait",
           "Command the Tempo", "Ambush Predator"}
 
 
