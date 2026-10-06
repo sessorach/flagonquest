@@ -251,7 +251,7 @@ A Style tagged with several archetypes counts for each.
 |---|---|---|---|
 | Monk | 6 | 5 | — |
 | Guardian | 9 | 2 | — |
-| Duelist | 8 | 1 (Storm of Blades) | +1 late |
+| Duelist | 8 | 2 (Storm of Blades, Exploit the Opening) | done for this pass |
 | Rogue | 4 | 2 (Disciple, Doubleshot) | — |
 | Archer | 4 | 1 (Doubleshot) | +1 late (nothing at L3) |
 | Barbarian | 3 | 2 (Adrenaline High, Warpath) | — |

@@ -9126,3 +9126,15 @@ Level 2. Per the designer, it's now a shield-charge Style at Level 3:
 high side, accepted by the designer; Level 4 would be ~101%. Protected
 lands on the shield-bearer, the Guardian who's taking the hits. Melee
 4, Athletics 3.
+
+### Exploit the Opening (T204, new) — Level 3 (2026-10-06)
+
+> Your melee weapon attacks against a Harried creature have Good Luck.
+
+Pathfinder 2e's flat-footed. Any attack against Dodge or Parry leaves
+the target Harried until the end of its turn, so once anyone's swung at
+it this round, it's open. ~65% of attacks qualify: 6.25 × 0.65 × 2.4 =
+**9.75, ~90%**. Melee only, per the designer. Pays off Harried
+(Duelist's home) and stacks with Rending Claws and allies focusing a
+target. No Lion Condition: with it, ~64%. (Brawl or Melee) 4, Insight 3.
+Tagged Duelist, Rogue.
