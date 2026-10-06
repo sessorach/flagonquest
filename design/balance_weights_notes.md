@@ -9145,3 +9145,17 @@ Tagged Duelist, Rogue.
 Crashing Wave Approach is melee only, per the designer: a shield can't
 be part of a ranged attack. Price unchanged for a sword-and-board
 fighter, who makes melee attacks anyway.
+
+### Suppressing Fire (T205, new) — Level 3 (2026-10-06)
+
+> *Condition: you are wielding a ranged weapon.* When you make a ranged
+> weapon attack, the target is Crippled once, whether it hits or not.
+
+Archer's late pinning Style. The first draft (Slowed 1 + [Spades] on a
+ranged hit) was too close to Lawman's Hand; Crippled (-1 to attacks a
+stack, shared with Rogue on the archetype map) pins their offense
+instead of their movement, and "hit or not" sets it apart from every
+on-hit Style. Crippled is 1.5 a stack and builds on a focused target
+(peaks ~4.7 at 7 stacks); ~2 a stack averaged over 6.25 attacks =
+**~12.5, ~116%** of 10.8. Hits only would be ~69%. (Acrobatics or
+Archery) 4, Awareness 3. Tagged Archer, Scout.

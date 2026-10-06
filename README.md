@@ -15,9 +15,10 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-10-06 — Leader, Face and Druid Styles
 
-Leader, Face and Druid got their first real sets of Styles, so every combat archetype now has at least an early and a late one.
+Leader, Face and Druid got their first real sets of Styles, so every combat archetype now has early and late options.
 - Leader: Forward!, Lead by Example, Command the Tempo and Commander's Gambit.
 - Face: Intimidating Presence and Dread Reputation. Druid: Grasping Earth, and Pack Leader, which makes every Summoned creature hit more reliably.
+- Late Styles for Sorcerer (Twin Spell), Duelist (Exploit the Opening) and Archer (Suppressing Fire); Storm of Blades and Crashing Wave were repriced after a pricing mistake on copied Techniques, and Crashing Wave became a shield charge.
 
 ### 2026-10-05 — Version 1.2 and the last of the old Stances
 

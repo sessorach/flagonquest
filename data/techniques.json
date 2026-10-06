@@ -9709,5 +9709,56 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T205",
+    "name": "Suppressing Fire",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "You don't need to hit them to keep their heads down. Every shot that whistles past makes the next swing a little less sure.",
+    "condition": "You are wielding a ranged weapon",
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When you make a ranged weapon attack, the target is Crippled once, whether it hits or not.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Acrobatics or Archery) 4, Awareness 3",
+    "relevant_skills": "Acrobatics, Archery, Awareness",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics",
+          "Archery"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Awareness"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

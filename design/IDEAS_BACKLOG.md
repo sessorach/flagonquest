@@ -150,6 +150,13 @@ cut, not just backfilled at a point in time.
   than it looks (two swings land 1.38 times the hits of one, and the
   first Harries the target for the second), ~121% at Level 3 with half
   the attacks being Level 2 Techniques.
+- **Pinning Shots** (Archer Style draft, Level 3) — declined
+  (2026-10-06). "Ranged hits Slow the target 1 + [Spades] times" was
+  Lawman's Hand with more stacks. Suppressing Fire (T205) took the slot.
+  Also considered: Sniper's Nest (Good Luck on ranged attacks if you
+  haven't moved, ~97%) and Overwatch (2 AP Interrupt Opportunity Attack
+  when an enemy in range moves; timing value unpriced, would need the
+  simulator).
 - **Crashing Wave Approach, shield-Repeat version** — replaced
   (2026-10-06). "Once per round, after an attack with another weapon,
   spend 1 AP to Repeat it with your shield." Repeating a Technique
@@ -253,7 +260,7 @@ A Style tagged with several archetypes counts for each.
 | Guardian | 9 | 2 | — |
 | Duelist | 8 | 2 (Storm of Blades, Exploit the Opening) | done for this pass |
 | Rogue | 4 | 2 (Disciple, Doubleshot) | — |
-| Archer | 4 | 1 (Doubleshot) | +1 late (nothing at L3) |
+| Archer | 4 | 2 (Suppressing Fire, Doubleshot) | done for this pass |
 | Barbarian | 3 | 2 (Adrenaline High, Warpath) | — |
 | Sorcerer | 4 | 2 (Pack Leader, Twin Spell) | done for this pass |
 | Theurgist | 3 | 0 | +2 late |
