@@ -9119,8 +9119,9 @@ as was (198% at Level 3, 127% even at Level 5).
 version was mispriced (see "Repeat pricing corrected"): ~146-253% at
 Level 2. Per the designer, it's now a shield-charge Style at Level 3:
 
-> *Condition: you are wielding a shield.* When one of your attacks
-> hits, you may Push the target 1 meter, and you gain Protected.
+> *Condition: you are wielding a shield.* When one of your melee
+> weapon attacks hits, you may Push the target 1 meter, and you gain
+> Protected.
 
 3.75 hits × (Push 0.89 + Protected 3) = **14.6, ~135%** of 10.8. On the
 high side, accepted by the designer; Level 4 would be ~101%. Protected
@@ -9129,12 +9130,18 @@ lands on the shield-bearer, the Guardian who's taking the hits. Melee
 
 ### Exploit the Opening (T204, new) — Level 3 (2026-10-06)
 
-> Your melee weapon attacks against a Harried creature have Good Luck.
+> Your attacks against the Dodge or Parry Defense of a Harried creature
+> have Good Luck.
 
 Pathfinder 2e's flat-footed. Any attack against Dodge or Parry leaves
 the target Harried until the end of its turn, so once anyone's swung at
 it this round, it's open. ~65% of attacks qualify: 6.25 × 0.65 × 2.4 =
-**9.75, ~90%**. Melee only, per the designer. Pays off Harried
+**9.75, ~90%**. Any attack against Dodge or Parry, per the designer
+(that's what Harried opens up); first drafted as melee only. Pays off Harried
 (Duelist's home) and stacks with Rending Claws and allies focusing a
 target. No Lion Condition: with it, ~64%. (Brawl or Melee) 4, Insight 3.
 Tagged Duelist, Rogue.
+
+Crashing Wave Approach is melee only, per the designer: a shield can't
+be part of a ranged attack. Price unchanged for a sword-and-board
+fighter, who makes melee attacks anyway.
