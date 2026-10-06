@@ -247,13 +247,13 @@ A Style tagged with several archetypes counts for each.
 | Rogue | 4 | 2 (Disciple, Doubleshot) | — |
 | Archer | 4 | 1 (Doubleshot) | +1 late (nothing at L3) |
 | Barbarian | 3 | 2 (Adrenaline High, Warpath) | — |
-| Sorcerer | 4 | 0 | +2 late |
+| Sorcerer | 4 | 1 (Pack Leader) | +1 late |
 | Theurgist | 3 | 0 | +2 late |
 | Leader | 4 (Oppressive Presence, Forward!, Lead by Example, Command the Tempo) | 1 (Commander's Gambit) | done for this pass |
 | Healer | 1 (Field Medic) | 1 (Lifeward) | done for this pass |
-| Druid | 0 | 0 | +3 early, +2 late |
+| Druid | 2 (Forward!, Grasping Earth) | 1 (Pack Leader) | done for this pass |
 | Scout | 2 (Quick Draw, Lie in Wait) | 1 (Ambush Predator) | done for this pass |
-| Face (combat) | 0 | 0 | +3 early, +2 late |
+| Face (combat) | 1 (Intimidating Presence) | 1 (Dread Reputation) | done for this pass |
 | Crafter, Scholar, General | 0 | 0 | non-combat, none needed |
 
 About 26 slots, but most new Styles can cover two archetypes at once

@@ -9406,5 +9406,207 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T199",
+    "name": "Intimidating Presence",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "Once you've landed a blow, nobody's eager to give you a reason to land another.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When one of your attacks hits, the target is Frightened of you.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Presence 3, Might 2",
+    "relevant_skills": "Presence, Might",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Presence"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Might"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T200",
+    "name": "Dread Reputation",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "Stories travel ahead of you, and they aren't kind ones. Anyone who recognizes you thinks twice about getting close.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "At the start of your turn, each enemy within 3 meters of you that can see you is Frightened of you.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Presence 4, Insight 3",
+    "relevant_skills": "Presence, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Presence"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T201",
+    "name": "Pack Leader",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "Whatever answers your call fights better for it, sharper and surer with you behind it.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "Your Summoned creatures' attacks have Good Luck.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Sorcery, Survival, or Theurgy) 4, Insight 3",
+    "relevant_skills": "Sorcery, Survival, Theurgy, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Sorcery",
+          "Survival",
+          "Theurgy"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T202",
+    "name": "Grasping Earth",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "Roots, mud and loose stone answer to you. Anyone caught in the rough ground finds it clinging to their every step.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "Enemies that start their turn in Difficult Terrain are Slowed once.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Theurgy 3, Survival 2",
+    "relevant_skills": "Theurgy, Survival",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Theurgy"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Survival"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

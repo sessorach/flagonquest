@@ -9038,3 +9038,30 @@ Hasted, Good Luck for allies, Outflank for allies.
   = ~15, **~104%** of 14.4. The cap stays (uncapped, every hit hands out
   a cheap extra attack, same reason as Storm of Blades). Pathfinder
   2e's Commander tactics.
+
+### Face and Druid Styles (2026-10-06)
+
+- **Intimidating Presence** (T199, Level 2; Face, Barbarian): "When one
+  of your attacks hits, the target is Frightened of you." 3.75 hits ×
+  2.2 = 8.25, **~115%**. The push-them-off-you mirror of Deadeye's
+  Shadow. Presence 3, Might 2.
+- **Dread Reputation** (T200, Level 3; Face, Guardian): "At the start of
+  your turn, each enemy within 3 meters of you that can see you is
+  Frightened of you." ~2 enemies × 5 rounds × 2.2 = 22 on paper, but
+  Frightened only pays when the enemy would have gone after you; ~half,
+  **~11, ~102%**. Presence 4, Insight 3.
+- **Pack Leader** (T201, Level 3; Druid, Sorcerer, Theurgist, Scout):
+  "Your Summoned creatures' attacks have Good Luck." A Summon makes one
+  normal attack a turn; summons usually come out in round 1-2 (Animal
+  Companion's always out): ~4 attacks × 2.4 = 9.6, **~89%**. First
+  Style for the 9 Summon Techniques, and Sorcerer's first late Style.
+  (Sorcery, Survival, or Theurgy) 4, Insight 3.
+- **Grasping Earth** (T202, Level 2; Druid): "Enemies that start their
+  turn in Difficult Terrain are Slowed once." Depends on the ground:
+  Land's Bounty, Earthquake and Oppressive Presence make it. ~2 enemies
+  in it for 3 rounds = 6 Slows × ~1.5 (fresh and stacked mixed) = 9,
+  **~125%** once the terrain's set; nothing without it, so it's a Style
+  to switch into. Theurgy 3, Survival 2.
+
+Dropped: a Druid "Slow on a spell hit" Style; Lawman's Hand already
+Slows on any damaging hit, spells included.

@@ -13,9 +13,11 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-10-06 — Leader Styles
+### 2026-10-06 — Leader, Face and Druid Styles
 
-Leader got four Styles: Forward! speeds up nearby allies, Lead by Example gives an ally Good Luck on whatever you just hit, Command the Tempo trades the enemy's turn order for an ally's, and Commander's Gambit lets an ally attack your target.
+Leader, Face and Druid got their first real sets of Styles, so every combat archetype now has at least an early and a late one.
+- Leader: Forward!, Lead by Example, Command the Tempo and Commander's Gambit.
+- Face: Intimidating Presence and Dread Reputation. Druid: Grasping Earth, and Pack Leader, which makes every Summoned creature hit more reliably.
 
 ### 2026-10-05 — Version 1.2 and the last of the old Stances
 
