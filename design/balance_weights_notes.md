@@ -9097,3 +9097,20 @@ leaves only the action as the gain: ~5.5 per twin. A caster has ~4-5
 Encounter spells a fight, so ~2 twins: **~11, ~102%** of 10.8. Caps
 itself; no once-per-round. "Single target" keeps it off area spells.
 Sorcery 4, Resilience 3. Tagged Sorcerer.
+
+**Storm of Blades fixed (2026-10-06).** Per the designer, Storm keeps
+full Technique copying (it fits dual-wielding); the Repeat now costs 2
+AP instead of 1:
+
+> *Condition: two non-shield weapons.* Right after you make an attack
+> with one of your weapons, you may spend 2 AP to Repeat it with your
+> other weapon.
+
+At 2 AP a plain Repeat nets 5.5 - 5.5 = 0 (nobody bothers), and a
+Repeat of a Level 2 Technique nets 11.5 - 5.5 = 6. ~2 a fight = **12,
+~92%** of 13.0 at Level 3. The once-per-round cap is gone: AP bounds it
+(4 a turn, and a 1 AP Technique's copy at 2 AP is worth ~0). A Level 3
+Technique's copy nets 9, past the rushed-Style window this is priced
+around; accepted. Alternatives considered: 1 AP with Bad Luck on the
+Repeat (~77% at Level 3, but a worse copy undercuts the fantasy); 1 AP
+as was (198% at Level 3, 127% even at Level 5).

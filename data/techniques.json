@@ -6384,7 +6384,7 @@
     "action": "Passive (Style) + reaction",
     "cost": null,
     "target": null,
-    "effects": "Once per round, right after you make an attack with one of your weapons, you may spend 1 AP to Repeat it with your other weapon.",
+    "effects": "Right after you make an attack with one of your weapons, you may spend 2 AP to Repeat it with your other weapon.",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Acrobatics, Brawl, or Melee) 4, Acrobatics 3",
@@ -6399,7 +6399,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": "1.1",
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",
