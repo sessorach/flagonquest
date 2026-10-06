@@ -247,7 +247,7 @@ A Style tagged with several archetypes counts for each.
 | Rogue | 4 | 2 (Disciple, Doubleshot) | — |
 | Archer | 4 | 1 (Doubleshot) | +1 late (nothing at L3) |
 | Barbarian | 3 | 2 (Adrenaline High, Warpath) | — |
-| Sorcerer | 4 | 1 (Pack Leader) | +1 late |
+| Sorcerer | 4 | 2 (Pack Leader, Twin Spell) | done for this pass |
 | Theurgist | 3 | 0 | +2 late |
 | Leader | 4 (Oppressive Presence, Forward!, Lead by Example, Command the Tempo) | 1 (Commander's Gambit) | done for this pass |
 | Healer | 1 (Field Medic) | 1 (Lifeward) | done for this pass |

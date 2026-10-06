@@ -9065,3 +9065,35 @@ Hasted, Good Luck for allies, Outflank for allies.
 
 Dropped: a Druid "Slow on a spell hit" Style; Lawman's Hand already
 Slows on any damaging hit, spells included.
+
+### Repeat pricing corrected (2026-10-06)
+
+Caught by the designer while reviewing Twin Spell: a Level 2 attack
+Technique's effects are worth its 2 AP (5.5) plus its Level budget (6)
+= 11.5, so a 1 AP Repeat of one nets 8.75, not the 3.25 used for Storm
+of Blades and Crashing Wave Approach (balance.md, "Effects that use
+other Techniques", now corrected). A plain attack's Repeat still nets
+2.75.
+
+- **Storm of Blades** (Level 3): ~3 plain Repeats (8.25) + ~2 Repeats
+  of a Level 2 Technique (17.5) = 25.75 against 10.8 + 2.2 = 13.0,
+  **~198%**, not ~113%. Pending a fix.
+- **Crashing Wave Approach** (Level 2): Technique copies were credited
+  +0.5 each; at the real rate, two a fight add ~+12 on top of the
+  ~4-11 already counted. Well over Level 2. Pending a fix.
+- **Doubleshot** isn't affected: priced by hit ratio (two Bad Luck
+  attacks land 1.38 times one), which already scales the whole attack.
+
+### Twin Spell (T203, new) — Level 3 (2026-10-06)
+
+> When you make a damaging Spell attack against a single target, you
+> may expend another of your Encounter Spells of the same Level or
+> higher to Repeat it.
+
+D&D's Twinned Spell on the Repeat keyword. The first draft (1 AP,
+once per round) came to ~4 Repeats × 8.75 = 35, ~240% of Level 4, and
+doubled a caster's Encounter spells. Paying with a second spell instead
+leaves only the action as the gain: ~5.5 per twin. A caster has ~4-5
+Encounter spells a fight, so ~2 twins: **~11, ~102%** of 10.8. Caps
+itself; no once-per-round. "Single target" keeps it off area spells.
+Sorcery 4, Resilience 3. Tagged Sorcerer.

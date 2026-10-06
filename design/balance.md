@@ -141,9 +141,17 @@ Skills just far enough, bank XP for it, and build the rest of the
 character afterward. So for most of the game, a Style that copies,
 repeats or boosts the character's Techniques is working with Level 2 and
 smaller ones, not Techniques at the Style's own Level. Price those
-effects off a Level 2 Technique (6 Value), not off the Style's Level.
-That makes copying a Technique worth only a little more than a plain
-attack, close to a ribbon on top of the Style's main effect.
+effects off a Level 2 Technique, not off the Style's Level.
+
+**Correction (2026-10-06), caught by the designer:** a Technique's Level
+budget (6 at Level 2) is what it's worth *on top of* its AP. A plain
+2 AP attack's effects are worth exactly its AP (5.5, Autoswing), so a
+Level 2 attack Technique's effects are worth 5.5 + 6 = **11.5**. Copying
+them (Repeat) for 1 AP nets 11.5 - 2.75 = **8.75**, not the 6 - 2.75 =
+3.25 used before; a plain attack's copy nets 2.75. So copying a
+Technique is worth about three times a plain copy, not a ribbon. Storm
+of Blades and Crashing Wave Approach were priced with the wrong number
+(see balance_weights_notes.md, "Repeat pricing corrected").
 
 Also count what the Style's Condition costs on every attack, not just at
 the Condition. A dual-wield Style's attacks are all one-hander attacks,

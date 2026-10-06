@@ -9608,5 +9608,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T203",
+    "name": "Twin Spell",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "You pour two spells' worth of power into a single casting, and it lands twice.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When you make a damaging Spell attack against a single target, you may expend another of your Encounter Spells of the same Level or higher to Repeat it.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Sorcery 4, Resilience 3",
+    "relevant_skills": "Sorcery, Resilience",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Sorcery"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Resilience"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
