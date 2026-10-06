@@ -150,6 +150,14 @@ cut, not just backfilled at a point in time.
   than it looks (two swings land 1.38 times the hits of one, and the
   first Harries the target for the second), ~121% at Level 3 with half
   the attacks being Level 2 Techniques.
+- **Crashing Wave Approach, shield-Repeat version** — replaced
+  (2026-10-06). "Once per round, after an attack with another weapon,
+  spend 1 AP to Repeat it with your shield." Repeating a Technique
+  copies its full effects (11.5 at Level 2), so it ran ~146-253% at
+  Level 2; at 2 AP like Storm of Blades it swung 69-125% depending on
+  the main weapon, since a shield hits 1-2 under it. Rewritten as a
+  shield-charge Style (Push and Protected on a hit), leaving Repeat to
+  Storm of Blades.
 - **Steady Hands** (Healer Style idea, Level 1) — declined
   (2026-10-05). "Your heals ignore Necrotic, and the creature you heal
   removes a stack of Bleeding." Necrotic is already the counter to

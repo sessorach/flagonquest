@@ -9114,3 +9114,15 @@ Technique's copy nets 9, past the rushed-Style window this is priced
 around; accepted. Alternatives considered: 1 AP with Bad Luck on the
 Repeat (~77% at Level 3, but a worse copy undercuts the fantasy); 1 AP
 as was (198% at Level 3, 127% even at Level 5).
+
+**Crashing Wave Approach rewritten (2026-10-06).** The shield-Repeat
+version was mispriced (see "Repeat pricing corrected"): ~146-253% at
+Level 2. Per the designer, it's now a shield-charge Style at Level 3:
+
+> *Condition: you are wielding a shield.* When one of your attacks
+> hits, you may Push the target 1 meter, and you gain Protected.
+
+3.75 hits × (Push 0.89 + Protected 3) = **14.6, ~135%** of 10.8. On the
+high side, accepted by the designer; Level 4 would be ~101%. Protected
+lands on the shield-bearer, the Guardian who's taking the hits. Melee
+4, Athletics 3.
