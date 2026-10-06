@@ -9012,3 +9012,29 @@ estimates until the simulator checks the rate.
   attacks × 2.4 = 7.5; **12.6, ~116%** of 10.8. The halves feed each
   other: a Staggered enemy is more likely to still be waiting when you
   next swing.
+
+### Leader Styles: Forward! (T195), Lead by Example (T196), Command the Tempo (T197), Commander's Gambit (T198) (2026-10-06)
+
+Built on Leader's home mechanics from RULES_DESIGN.md's archetype map:
+Hasted, Good Luck for allies, Outflank for allies.
+
+- **Forward!** (Level 1): "At the start of your turn, each ally within
+  3 meters of you is Hasted." Hasted 0.55 a stack × ~2 allies × 5
+  rounds = 5.5, ~150% on paper; read closer to ~100%, since fights
+  settle into melee and Speed mostly matters early (the simulator's
+  enemies barely move once engaged). First Style to use Hasted.
+- **Lead by Example** (Level 2): "When one of your attacks hits, the
+  next attack an ally makes against that creature this round has Good
+  Luck." 3.75 hits × ~70% an ally follows up that round × 2.4 = 6.3,
+  **~88%**. D&D's Help action / Lancer's Lock On.
+- **Command the Tempo** (Level 2): "When one of your attacks hits, you
+  may Stagger the target once, and an ally of your choice Outflanks
+  once." Two places per hit at the penciled 1.0: 3.75 × 2 = 7.5,
+  **~104%**. Shared with Scout.
+- **Commander's Gambit** (Level 4): "Once per round, when one of your
+  attacks hits, an ally within 5 meters of you may spend 1 AP to make an
+  Opportunity Attack against the target." The ally pays from leftover
+  AP; an attack or ≤2 AP Technique for 1 AP is ~2.75-3.25, ~5 a fight
+  = ~15, **~104%** of 14.4. The cap stays (uncapped, every hit hands out
+  a cheap extra attack, same reason as Storm of Blades). Pathfinder
+  2e's Commander tactics.

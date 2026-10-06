@@ -9201,5 +9201,210 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T195",
+    "name": "Forward!",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Style",
+    "description": "Where you go, the line goes with you.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "At the start of your turn, each ally within 3 meters of you is Hasted.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Performance or Presence) 2, Rapport 1",
+    "relevant_skills": "Performance, Presence, Rapport",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Performance",
+          "Presence"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Rapport"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T196",
+    "name": "Lead by Example",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "You don't call the target. You hit it, and everyone knows where to swing next.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When one of your attacks hits, the next attack an ally makes against that creature this round has Good Luck.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Archery, Brawl, or Melee) 3, Presence 2",
+    "relevant_skills": "Archery, Brawl, Melee, Presence",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Archery",
+          "Brawl",
+          "Melee"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Presence"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T197",
+    "name": "Command the Tempo",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Style",
+    "description": "Every blow you land buys your side a moment, and you spend it where it counts.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When one of your attacks hits, you may Stagger the target once, and an ally of your choice Outflanks once.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Performance or Presence) 3, Insight 2",
+    "relevant_skills": "Performance, Presence, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Performance",
+          "Presence"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T198",
+    "name": "Commander's Gambit",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Style",
+    "description": "The opening you make is never just for you. One shout, and someone's already moving to take it.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "Once per round, when one of your attacks hits, an ally within 5 meters of you may spend 1 AP to make an Opportunity Attack against the target.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Performance or Presence) 5, Rapport 4",
+    "relevant_skills": "Performance, Presence, Rapport",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Performance",
+          "Presence"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Rapport"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

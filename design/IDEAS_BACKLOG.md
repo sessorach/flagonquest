@@ -249,7 +249,7 @@ A Style tagged with several archetypes counts for each.
 | Barbarian | 3 | 2 (Adrenaline High, Warpath) | — |
 | Sorcerer | 4 | 0 | +2 late |
 | Theurgist | 3 | 0 | +2 late |
-| Leader | 1 (Oppressive Presence) | 0 | +2 early, +2 late |
+| Leader | 4 (Oppressive Presence, Forward!, Lead by Example, Command the Tempo) | 1 (Commander's Gambit) | done for this pass |
 | Healer | 1 (Field Medic) | 1 (Lifeward) | done for this pass |
 | Druid | 0 | 0 | +3 early, +2 late |
 | Scout | 2 (Quick Draw, Lie in Wait) | 1 (Ambush Predator) | done for this pass |
