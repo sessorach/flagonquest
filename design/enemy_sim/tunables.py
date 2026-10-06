@@ -322,3 +322,7 @@ START_GAP_RANGE = (5, 10)
 # designer's original framing, same as before. If this gets picked up
 # further, the enemy-side Gold÷7 XP-equivalent rate is still the natural
 # starting point for whatever's still missing.
+
+# Lie in Wait (T193): how many places a PC waits each round. Two is where
+# the paper pricing peaks (Good Luck twice for 2 places).
+LIE_IN_WAIT_PLACES = 2

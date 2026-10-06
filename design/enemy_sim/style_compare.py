@@ -32,9 +32,17 @@ GROUPS = {
     "carrick": (PARTY_A, "Carrick (L2)", [("Hand of Chaos", 2)]),
     "browndog": (PARTY_A, "Browndog (L2)", [("Inexhaustible Guardian", 2), ("Indomitable Phalanx", 2)]),
     "beornhard": (PARTY_D, "Beornhard (L2)", [("Overchanneling", 2)]),
+    # Turn-order Styles (2026-10-06). 'Staggering Blows' is a test-only
+    # passive (Stagger once on a hit) checking the 1.0-per-place weight:
+    # 3.75 hits a fight should price at ~3.75 Value.
+    "turnorder_melee": (PARTY_A, "Hilde (L2)", [("Staggering Blows", 1), ("Quick Draw", 1), ("Lie in Wait", 2),
+                                                 ("Command the Tempo", 2), ("Ambush Predator", 3)]),
+    "turnorder_ranged": (PARTY_A, "Sable (L2)", [("Staggering Blows", 1), ("Quick Draw", 1), ("Lie in Wait", 2),
+                                                  ("Command the Tempo", 2), ("Ambush Predator", 3)]),
 }
 STYLES = {"Furious Rage", "Lawman's Hand", "Hand of Chaos", "Inexhaustible Guardian",
-          "Indomitable Phalanx", "Overchanneling"}
+          "Indomitable Phalanx", "Overchanneling", "Staggering Blows", "Quick Draw", "Lie in Wait",
+          "Command the Tempo", "Ambush Predator"}
 
 
 def make_party(names, carrier, passives_add=(), health=0):

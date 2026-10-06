@@ -956,6 +956,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 crippled = pc.get('crippled', 0)
                 bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, target)
                 luck_bonus = tactics.perfect_strike_bonus(pc)
+                pcp = pc.get('passives', ())
+                # Ambush Predator (T194): Good Luck against a creature that
+                # hasn't taken its turn yet this round.
+                if 'Ambush Predator' in pcp and target.get('acted_round') != rnd:
+                    luck_bonus += 1
+                # Lie in Wait (T193): Good Luck once per place waited.
+                if 'Lie in Wait' in pcp and pc.get('liw_round') == rnd:
+                    luck_bonus += pc.get('liw_luck', 0)
                 card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
                 roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
                 attacks_made += 1
@@ -1033,6 +1041,21 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         stacks += 1 if cards.flipped_matches(suit) else 0
                         target[key] = target.get(key, 0) + stacks
                         taunt_note = f"{key.capitalize()} +{stacks}"
+                    if order is not None:
+                        # Turn-order Styles (2026-10-06). 'Staggering Blows'
+                        # is a test-only passive (Stagger once on a hit), used
+                        # to check the 1.0-per-place weight directly.
+                        if 'Staggering Blows' in passives:
+                            _shift_in_order(order, target, 1)
+                        if 'Ambush Predator' in passives:
+                            _shift_in_order(order, target, 1 + (1 if cards.flipped_matches('Spades') else 0))
+                        if 'Command the Tempo' in passives:
+                            _shift_in_order(order, target, 1)
+                            # "an ally of your choice Outflanks once": the
+                            # ally furthest back in the order gains most.
+                            allies = [u for sd, u in order if sd == 'party' and u is not pc and u['health'] > 0]
+                            if allies:
+                                _shift_in_order(order, allies[-1], -1)
                     if order is not None and pc.get('turn_order_shift'):
                         moved = _shift_in_order(order, target, pc['turn_order_shift'])
                         if moved:
@@ -1621,13 +1644,48 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                  party=[{'unit': p['name'], 'pos': p['pos'], 'health': p['health']} for p in pcs if p['health'] > 0],
                  enemies=[{'unit': e['name'], 'pos': e['pos'], 'health': e['health']} for e in enemies if e['health'] > 0])
 
-        for side, unit in list(order):
-            if unit['health'] <= 0:
+        # Each step takes the first living unit in the CURRENT order that
+        # hasn't acted this round (2026-10-06). A shift applied mid-round
+        # now takes effect at once, the way Outflank/Stagger read in
+        # glossary.md: Staggering an enemy that hasn't acted yet pushes
+        # its turn later this round, which is most of what Stagger is
+        # for. The old loop walked a snapshot of the order, so every
+        # shift waited until next round. `acted` stops a unit moved
+        # earlier past units that already went from acting twice.
+        acted = set()
+        while True:
+            nxt = None
+            for side, unit in order:
+                if id(unit) in acted or unit['health'] <= 0:
+                    continue
+                # Lie in Wait (T193): "When your turn would start, you may
+                # first Stagger yourself up to three times. If you do,
+                # your attacks on that turn have Good Luck that many
+                # times." The PC always waits LIE_IN_WAIT_PLACES (two is
+                # the priced sweet spot), once per round.
+                if (side == 'party' and 'Lie in Wait' in unit.get('passives', ())
+                        and unit.get('liw_round') != rnd):
+                    unit['liw_round'] = rnd
+                    unit['liw_luck'] = _shift_in_order(order, unit, T.LIE_IN_WAIT_PLACES)
+                    if unit['liw_luck'] > 0:
+                        break  # rescan from the top; someone else is next now
+                nxt = (side, unit)
+                break
+            else:
+                break  # everyone alive has acted
+            if nxt is None:
                 continue
+            side, unit = nxt
+            acted.add(id(unit))
+            unit['acted_round'] = rnd
             if side == 'party':
                 made, dealt = _take_pc_turn(unit, pcs, enemies, rnd, movement, trace, party_log, order)
                 pc_attacks += made
                 pc_damage_dealt += dealt
+                # Quick Draw (T192): "At the end of each of your turns, you
+                # may Outflank once."
+                if 'Quick Draw' in unit.get('passives', ()):
+                    _shift_in_order(order, unit, -1)
             else:
                 pc_damage_dealt += _take_enemy_turn(unit, enemies, pcs, rnd, movement, trace, enemy_log, party_log)
             winner = _winner()
