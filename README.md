@@ -13,10 +13,16 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-06 — Leader Styles
+
+Leader got four Styles: Forward! speeds up nearby allies, Lead by Example gives an ally Good Luck on whatever you just hit, Command the Tempo trades the enemy's turn order for an ally's, and Commander's Gambit lets an ally attack your target.
+
 ### 2026-10-05 — Version 1.2 and the last of the old Stances
 
-Started version 1.2 and finished turning the archived Stances into Styles: Deadeye's Shadow, Oppressive Presence, Aura of Death and Adrenaline High.
-- Card costs now always say discard; a few Techniques still said "pitch."
+Started version 1.2, finished turning the archived Stances into Styles, and gave Healer and Scout their first Styles.
+- From the old Stances: Deadeye's Shadow, Oppressive Presence, Aura of Death and Adrenaline High.
+- Healer got Field Medic and Lifeward, and Scout got Quick Draw, Lie in Wait and Ambush Predator, which play with turn order.
+- Minor Oracle is back as a fortune-telling spell, and card costs now always say discard instead of pitch.
 
 ### 2026-10-04 — Keywords, guardian Styles and a social overhaul
 
