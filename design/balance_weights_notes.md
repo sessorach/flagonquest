@@ -9159,3 +9159,39 @@ on-hit Style. Crippled is 1.5 a stack and builds on a focused target
 (peaks ~4.7 at 7 stacks); ~2 a stack averaged over 6.25 attacks =
 **~12.5, ~116%** of 10.8. Hits only would be ~69%. (Acrobatics or
 Archery) 4, Awareness 3. Tagged Archer, Scout.
+
+## Turn-order Styles in the simulator (2026-10-06)
+
+**Simulator fix first.** The round loop walked a snapshot of the turn
+order, so a Stagger on an enemy that hadn't acted yet only delayed it
+from next round on. Each step now takes the first living unit in the
+current order that hasn't acted this round (`combat_sim.run_fight`), so
+shifts land at once, the way glossary.md reads.
+
+**Four copies don't work for these.** Turn order is relative: four Quick
+Draws move the whole party to the front together, which one character
+never could. style_compare.py's four-copy runs swung wildly by party
+(Quick Draw 308% with four Hildes, 70% with four Sables; Lie in Wait
+235% vs 18%). `turnorder_single.py` puts the Style on one PC of Party
+A, with a party-wide Health ladder (one PC's +1 Health = 0.94 points),
+800 fights per mix, paired seeds. Each cell is still ±~2 Value of noise,
+so read the averages.
+
+| Style (Level, Target) | Hilde (melee) | Sable (bow) | Carrick (thrown) | Average |
+|---|---|---|---|---|
+| Staggering Blows (test, L1, 3.6) | 3.0 (84%) | 6.4 (177%) | 5.7 (159%) | 5.0 (**140%**) |
+| Quick Draw (L1, 3.6) | 12.3 (341%) | 4.3 (119%) | 5.4 (149%) | 7.3 (**204%**) |
+| Lie in Wait (L2, 7.2) | 7.4 (103%) | 2.6 (36%) | 1.0 (14%) | 3.7 (**51%**) |
+| Command the Tempo (L2, 7.2) | 8.8 (122%) | 12.4 (172%) | 11.9 (165%) | 11.0 (**153%**) |
+| Ambush Predator (L3, 10.8) | 16.6 (154%) | 24.5 (226%) | 7.3 (68%) | 16.1 (**149%**) |
+
+What it says about the weight: Staggering Blows (~3.75 places a fight)
+measures ~1.35 a place pushing an enemy back, above the penciled 1.0.
+Moving yourself up is worth more again for a heavy melee hitter (Quick
+Draw on Hilde: she finishes enemies before they act). Moving yourself
+down (Lie in Wait) costs more than 1.0 a place for ranged characters,
+whose Good Luck doesn't make up for enemies reaching them first.
+Enemies never use turn order themselves, and the AI just waits two
+places every round, so Lie in Wait's real use (waiting when it pays)
+is better than measured. Pending the designer's call on Levels and on
+updating the 1.0 weight.
