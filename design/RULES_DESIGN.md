@@ -419,6 +419,23 @@ Vial redesign considered granting a direct Extra Success) — rejected
 for exactly this reason, redirected toward turn-order adjustment
 instead (see below).
 
+### STANDING RULE — Bleeding is extra damage that runs out on its own
+
+Per the designer (2026-10-07). Extra damage isn't meant to be easy to
+get: the closest players come is elemental damage and Gambling, per the
+rule above. Bleeding is the exception, and it's how things like
+"damage when Parried" are done. It's meant as about one extra point of
+damage most of the time, with the diminishing return built into how it
+works: stacks tick one a turn, so piling more on a target, or having
+several party members apply it, mostly stacks up without paying off.
+That's on purpose, so it can't become a reliable damage strategy.
+
+Pricing follows from that: the first stack is worth a bit under a full
+point of damage, and anything past one stack drops off sharply. Few
+effects apply more than one. Acidic Flask and Bloody Poison are the
+big ones, and they're crafted, niche tools rather than something to
+build around.
+
 ### STANDING RULE — Reward cleverness and risk, not raw power
 
 Stated directly by the designer while finalizing Insanity Potion (a

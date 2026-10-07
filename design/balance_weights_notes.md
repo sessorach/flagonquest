@@ -9494,3 +9494,39 @@ application. Shorter fights make Bleeding worth even less than under the
 old targeting (5.1 and 2.1 by the same pooled method). Retuning the
 encounters back to their old difficulty would lengthen fights again, so
 the Bleeding number isn't locked until that's decided.
+
+### How much extra damage Bleeding actually lands (2026-10-07)
+
+Per the designer, Bleeding is meant as about one extra point of damage
+most of the time, with diminishing returns built in (RULES_DESIGN.md,
+"Bleeding is extra damage that runs out on its own"). So this counts
+damage instead of reading Value off the Health ladder:
+`enemy_sim/bleed_points.py` counts Bleeding ticks that land on living
+enemies per fight, and, for comparison, Plus One Damage's +1s that land
+on live Health (overkill excluded). New test passive: 'Bleeding Once',
+a single stack on the carrier's first hit each fight. Party targeting
+is the new threat default; 800 fights per mix.
+
+| Carrier | Once (1 stack) | Strikes (1 per hit or Parry) | Dump (5 stacks) | Plus One Damage |
+|---|---|---|---|---|
+| Hilde | 0.15 | 0.90 | 0.16 | 0.93 |
+| Browndog | 0.20 | 1.02 | 0.23 | 1.22 |
+| Carrick | 0.12 | 0.75 | 0.13 | 1.90 |
+| Sable | 0.20 | 1.10 | 0.21 | 2.90 |
+| Average | **0.17** | **0.94** | **0.18** | 1.74 |
+
+- **A per-hit Bleeding source lands about one extra point a fight**,
+  right on the designer's intent.
+- **Each application ticks about 17% of the time**, single stack or
+  stream alike (0.94 points over ~5.6 applications = 0.17). Stacks go
+  on the focus target, which usually dies before the end of its own
+  next turn, when the stack would tick.
+- **Extra stacks in one application add almost nothing**: 5 stacks land
+  0.18 points against one stack's 0.17. The drop-off past the first
+  stack isn't just sharp; in these fights it's nearly total.
+- Plus One Damage lands only 1.74 of its ~3.75 hits' worth, since the
+  rest is overkill on a target that was dying anyway.
+
+Realization depends on fight length. These are the current encounters
+under the new targeting (3.6 rounds, easier than they were tuned to be),
+so retuning the encounters would raise it somewhat.

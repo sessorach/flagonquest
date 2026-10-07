@@ -1020,6 +1020,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if 'Bleeding Dump' in passives and hit and not pc.get('dump_used'):
                     target['bleeding'] = target.get('bleeding', 0) + 5
                     pc['dump_used'] = True
+                # 'Bleeding Once' (test-only): a single stack on the first
+                # hit each fight, the "one extra point" case on its own.
+                if 'Bleeding Once' in passives and hit and not pc.get('once_used'):
+                    target['bleeding'] = target.get('bleeding', 0) + 1
+                    pc['once_used'] = True
                 # Lawman's Hand (T128): "Once per round, when one of your
                 # damaging attacks hits, you may Slow the target once."
                 if ('Lawman\'s Hand' in passives and hit and pc['damage'] > 0
@@ -1048,6 +1053,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         protected_absorbed = min(dmg, protected)
                         target['protected'] -= protected_absorbed
                         dmg -= protected_absorbed
+                    # Counts the +1 only when it lands on live Health (not
+                    # overkill), to compare with Bleeding ticks (bleed_dealt).
+                    if 'Plus One Damage' in passives and dmg > 0 and target['health'] >= dmg:
+                        pc['extra_dmg'] = pc.get('extra_dmg', 0) + 1
                     target['health'] -= dmg
                     damage_dealt += dmg
                     if substitute and substitute.get('effect'):
@@ -1515,6 +1524,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     if e.get('bleeding', 0) > 0 and e['health'] > 0:
         e['bleeding'] -= 1
         e['health'] -= 1
+        e['bleed_dealt'] = e.get('bleed_dealt', 0) + 1
     return interrupt_dmg
 
 
@@ -1708,7 +1718,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 party_hp_pct = (sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs)
                                 if winner == 'party' else 0.0)
                 return dict(winner=winner, rounds=rnd, party_hp_pct=party_hp_pct,
-                            pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
+                            pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt,
+                            bleed_dealt=sum(e.get('bleed_dealt', 0) for e in enemies),
+                            plus_one_dealt=sum(p.get('extra_dmg', 0) for p in pcs))
 
     _log(trace, round=max_rounds, type='result', winner='draw')
     return dict(winner='draw', rounds=max_rounds,
