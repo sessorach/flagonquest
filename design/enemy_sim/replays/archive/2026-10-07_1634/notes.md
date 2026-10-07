@@ -1,12 +1,12 @@
 # Latest replays (2026-10-07)
 
-Bleed Spreader targeting test (carrier-only); 4-slot boss marked as a rare exception
+4-slot two-turn solo boss (Brute Warlord); Solo Boss replay added
 
 ## partyD_L2_vs_L2_frontline.html
 - Party: Browndog (L2), Hanforth (L2), Felix (L2), Beornhard (L2)
 - Enemies: Level 2 Frontline (Brute (L2), Brute (L2), Grave Caller (L2), Grave Caller (L2))
 - This fight (seed 4): party won in 4 rounds, 63% party HP left
-- Matchup average over 1000 fights: 84.4% wins, 4.5 rounds, 58% HP left on a win
+- Matchup average over 1000 fights: 86.2% wins, 4.4 rounds, 59% HP left on a win
 
 ## partyA_L2_vs_L2_horde.html
 - Party: Hilde (L2), Browndog (L2), Carrick (L2), Sable (L2)

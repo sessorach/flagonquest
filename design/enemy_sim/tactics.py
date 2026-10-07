@@ -107,6 +107,8 @@ def target_kiter(unit, targets):
 # Test toggle (2026-10-07): when True, the party's default targeting skips
 # an enemy whose Bleeding stacks already cover its remaining Health. Off
 # by default, so every recorded number keeps the plain focus-fire rule.
+# Measured as a bad idea: Bleeding deals 1 a turn, so an enemy left to
+# "bleed out" keeps acting for as many turns as it has Health left.
 LET_BLEED_OUT = False
 
 
@@ -141,10 +143,24 @@ def target_focus_wounded(unit, targets, allies):
     return min(targets, key=lambda t: (t['health'], party_reach(t)))
 
 
+def target_bleed_spreader(unit, targets):
+    """A Bleeding carrier playing to its strength (2026-10-07 test): put
+    stacks where they'll have time to tick. Prefer an enemy with no
+    Bleeding yet, then the one with the most Health left after its
+    Bleeding, then the closest. Costs the carrier its share of focus
+    fire, which is the tradeoff being measured."""
+    if 'pos' in unit:
+        dist = lambda c: movement.distance(unit['pos'], c['pos'])
+    else:
+        dist = lambda c: 0
+    return min(targets, key=lambda c: (c.get('bleeding', 0) > 0, -(c['health'] - c.get('bleeding', 0)), dist(c)))
+
+
 TARGETING = {
     'Assassin': target_lowest_health,
     'Straggler Hunter': target_straggler,
     'Kite Hunter': target_kiter,
+    'Bleed Spreader': target_bleed_spreader,
 }
 
 

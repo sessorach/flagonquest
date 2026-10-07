@@ -9374,3 +9374,62 @@ else to hit), so both targeting modes read the same.
   the rules as written.
 - The Bleeding weight stays pending the designer's call on how to blend
   boss and ordinary fights.
+
+**Designer (2026-10-07):** a 4-slot boss would be a rare exception;
+they've never run one, and 2 Slots is the usual ceiling. So the solo
+boss doesn't carry weight in pricing. What matters is Bleeding in an
+average fight, with the party playing to it (next section).
+
+### Bleeding in an average fight, with the party playing to it (2026-10-07)
+
+Per the designer: how does Bleeding do in an ordinary fight when the
+party tries to make the most of it? Script: `enemy_sim/bleed_strategy.py`,
+the standard four mixes, 800 fights each, one carrier at a time.
+
+The carrier plays **Bleed Spreader** (`tactics.target_bleed_spreader`):
+enemies with no Bleeding first, then the one with the most Health left
+after its Bleeding, so stacks land where they have time to tick. A
+second variant also has the whole party leave enemies whose Bleeding
+covers their Health (`tactics.LET_BLEED_OUT`).
+
+**A finding about the sim's party, first.** The spread rule alone, with
+no Bleeding at all, is worth a lot: Hilde +19.9, Browndog +14.6, Carrick
++33.8, Sable +49.1, against the default focus fire. The default goes for
+the lowest current Health, and at the start of a fight that's the front
+line (Brutes 9, Hedge Knights 10), while the casters and archers behind
+them (11 each) get left alone. Shooting the back line first is much
+better, most of all for ranged PCs; Sable gains ~15–20 points of party
+Health left in Frontline, Shield Wall and Warband, and loses ~8 in Horde,
+where the "healthiest" enemies are the casters behind a screen of
+goblins. Every recorded baseline uses the default, so this hasn't been
+changed; flagged for the designer.
+
+So each Bleeding variant below is measured against the same spread rule
+without Bleeding:
+
+| Carrier | Strikes, spread | Dump, spread | Strikes, spread + bleed out | Dump, spread + bleed out |
+|---|---|---|---|---|
+| Hilde | +1.4 | +1.4 | +1.0 | −27.9 |
+| Browndog | +4.3 | +3.3 | +3.2 | −2.7 |
+| Carrick | +1.0 | +2.1 | +0.3 | −22.9 |
+| Sable | +4.8 | +0.7 | +3.0 | −55.0 |
+| Average | **2.9** | **1.9** | 1.9 | −27.1 |
+
+Against focus fire (earlier sections): Strikes 5.6, Dump 2.3.
+
+- **Spreading Bleeding makes it worse.** On the focus target a stack
+  speeds up a kill the party is already making; on a fresh target it's
+  1 damage that doesn't change when that enemy drops.
+- **Letting enemies bleed out is a trap.** Bleeding deals 1 a turn, so
+  an enemy with 5 Health and 5 stacks keeps acting for five more turns.
+  With the 5-stack dose the party walks away from a live enemy for most
+  of the fight.
+- **So the best play is the plain one,** focus fire, and Bleeding in an
+  average fight is worth what the focus-fire runs measured: about **1 a
+  stack** when stacks come one per hit, and about **2 for a 5-stack
+  dose** on one target.
+
+A curve that fits both: `value(n) = 1 + 0.25 × (n − 1)` for n stacks on
+one target from one application (1 stack = 1, 5 stacks = 2.0), and 1 per
+application for a per-hit stream. THE TABEL's current curve gives 4 and
+11.5. Not applied; pending the designer.

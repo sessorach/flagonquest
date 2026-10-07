@@ -18,7 +18,7 @@ STYLE_LEVELS = [("Staggering Blows", 1), ("Seize the Moment", 2), ("Lie in Wait"
 CARRIERS = ["Hilde (L2)", "Sable (L2)", "Carrick (L2)"]
 
 
-def build(carrier, style, health):
+def build(carrier, style, health, tactic=None):
     rows = {r["Name"]: r for r in party._load_rows()}
     pcs = []
     for i, n in enumerate(PARTY_A, 1):
@@ -26,6 +26,8 @@ def build(carrier, style, health):
         kept = [p.strip() for p in (row.get("Passives") or "").split(",") if p.strip() and p.strip() not in STYLES]
         if n == carrier and style:
             kept.append(style)
+        if n == carrier and tactic:
+            row["Battle Tactic"] = tactic
         row["Passives"] = ", ".join(kept)
         row["Health"] = str(int(row["Health"]) + health)
         pcs.append(party._pc_dict(row, i, 0))
