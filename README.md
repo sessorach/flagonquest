@@ -16,7 +16,7 @@ full log. See `git log` for the commit-by-commit detail.
 ### 2026-10-07 — Active Style on the sheet
 
 Style cards on the Character Sheet now have an Enter Style button, so you can mark which Style you're in and switch with one tap at the table. Furious Rage also lost its "can't Parry" drawback after the simulator showed it cost more than the Style gave back.
-- The simulator got a solo boss (four slots, two turns a round), which showed Bleeding is worth its full price against a boss but much less against groups.
+- The simulator's party now picks targets more like players do (mostly focus fire, but not perfectly), and a closer look at Bleeding found it's worth well under its current price in ordinary fights.
 
 ### 2026-10-06 — Leader, Face and Druid Styles
 
