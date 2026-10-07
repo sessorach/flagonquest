@@ -9564,3 +9564,54 @@ lands about one point a fight in every mode, a single stack about a
 fifth of a point, and a 5-stack dose only a little more than one stack.
 Sloppier focus helps Bleeding a touch (more enemies survive to the end
 of their turn), but not enough to change its price.
+
+### Bleeding valuation, step by step (2026-10-07)
+
+Party targeting is now `'table'` by default, per the designer. Every
+number below uses it.
+
+**1. The mechanic, checked against the sim.** glossary.md: Bleeding is
+Fleeting, so one stack comes off at the end of the bearer's own turn,
+and that stack deals 1 Health loss. combat_sim does exactly that at the
+end of `_take_enemy_turn`, after the enemy has acted. So a stack only
+pays if its target lives to the end of its own next turn.
+
+**2. How often that happens** (`enemy_sim/bleed_fate.py`, the four
+carriers × four mixes × 400 fights). For the single stack from Bleeding
+Once: it ticked 23.8% of the time, its target died before the end of its
+next turn 71.1%, and the carrier never hit 5.1%. Half the time the
+target had already acted that round, so it had to survive the rest of
+the round and its own next turn. Across every enemy, not just Bleeding
+targets, the number of its own turns it finished after first taking
+damage: none 59.7%, one 32.3%, two 5.9%, three or more 2.1%.
+
+**3. What a tick is worth.** A Bleeding tick is 1 guaranteed Health
+loss on an enemy, which THE TABEL prices at Health's rate, 4. (The
+Value-ladder runs suggest a tick is worth a bit less than an immediate
+point, since it lands after the enemy has acted; 4 is kept for
+simplicity.)
+
+**4. Per stack.** The first stack in an application: 0.24 × 4 ≈ **1.0**.
+Each further stack in the same application needs another turn survived:
+Bleeding Dump (5 stacks) landed 0.28 points against Bleeding Once's 0.24,
+so stacks 2–5 add 0.04 points together, about 0.04 Value each. Old
+curve: 4, 4, 2, 1, 0.5 (assumed every stack ticks until the 2-stack
+taper).
+
+**5. Per-hit sources.** Bleeding Strikes (one stack per hit or Parry,
+~5.6 applications a fight) landed 1.04 points, so ~0.19 a stack, a bit
+below a single stack's 0.24 since repeat stacks pile on the same target.
+That's ~4.2 Value a fight, about one extra point of damage, as designed.
+
+**6. Cross-check with the Value ladder** (party Health left, not a damage
+count): Bleeding Strikes measured 4.3 a fight under 'threat' targeting
+and 5.6 under the old 'wounded' rule, both rescaled to THE TABEL's
+damage weight. The count says 4.2. Two different methods agree within
+the ladder's noise.
+
+**7. The main uncertainty** is step 2: how often a hit enemy lives
+through its next turn. The sim's enemies have 9–11 Health against PC
+hits of ~5–8 after Resist, so most die within a round of being focused.
+If enemies at the table last longer, the first stack is worth
+4 × (that chance): 50% → 2, 75% → 3. The old "a bit below full price"
+matches about 75%.

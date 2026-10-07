@@ -160,10 +160,11 @@ def target_bleed_spreader(unit, targets):
 # Per the designer: the party should go after enemies the way players
 # would, not just whoever has the least Health (which, at the start of a
 # fight, is the front line, leaving the casters and archers behind it
-# alone). 'threat' is the new default; 'wounded' is the old rule, kept
+# alone). 'table' is the default (2026-10-07, per the designer); 'threat'
+# is perfect focus fire on the same rating; 'wounded' is the old rule, kept
 # so older recorded numbers can be reproduced; 'table' is focus fire
 # done imperfectly (see target_table).
-PARTY_TARGETING = 'threat'
+PARTY_TARGETING = 'table'
 
 
 def _party_defense(pc, opp_def):

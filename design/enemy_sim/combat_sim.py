@@ -1025,6 +1025,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if 'Bleeding Once' in passives and hit and not pc.get('once_used'):
                     target['bleeding'] = target.get('bleeding', 0) + 1
                     pc['once_used'] = True
+                    pc['once_target'] = target  # for tracing the stack's fate
+                    target['acted_at_apply'] = target.get('acted_round') == rnd
                 # Lawman's Hand (T128): "Once per round, when one of your
                 # damaging attacks hits, you may Slow the target once."
                 if ('Lawman\'s Hand' in passives and hit and pc['damage'] > 0
