@@ -6098,7 +6098,7 @@
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "You can't Parry. If one of your attacks hits or is Parried, the target gains Bleeding.",
+    "effects": "If one of your attacks hits or is Parried, the target gains Bleeding.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Might 3, Resilience 2",
@@ -6113,7 +6113,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": "1.1",
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",

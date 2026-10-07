@@ -324,9 +324,9 @@ def _pc_dict(row, index, good_luck):
         if weapon.startswith("War Magic"):
             damage += 1
         parry = -99
-    # Furious Rage (T130, a Style): "You can't Parry."
-    # 'No Parry' is a test-only passive: just this cost, priced apart.
-    if "Furious Rage" in passives or "No Parry" in passives:
+    # 'No Parry' is a test-only passive pricing a can't-Parry cost
+    # (Furious Rage had one until 2026-10-07).
+    if "No Parry" in passives:
         parry = -99
     # 'Plus One Damage' is a test-only passive: +1 damage on every hit,
     # to check the sim's read of THE TABEL's Damage weight (2 a point).

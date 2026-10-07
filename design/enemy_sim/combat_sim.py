@@ -1008,6 +1008,13 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # without the can't-Parry cost, to price the two halves apart.
                 if ('Furious Rage' in passives or 'Bleeding Strikes' in passives) and (hit or parried):
                     target['bleeding'] = target.get('bleeding', 0) + 1
+                # 'Bleeding Dump' is a test-only passive: the first hit each
+                # fight adds 5 Bleeding (Acidic Flask's stack count, as a
+                # rider so it doesn't replace an attack), to check how a big
+                # single dose prices against the tapered Bleeding curve.
+                if 'Bleeding Dump' in passives and hit and not pc.get('dump_used'):
+                    target['bleeding'] = target.get('bleeding', 0) + 5
+                    pc['dump_used'] = True
                 # Lawman's Hand (T128): "Once per round, when one of your
                 # damaging attacks hits, you may Slow the target once."
                 if ('Lawman\'s Hand' in passives and hit and pc['damage'] > 0

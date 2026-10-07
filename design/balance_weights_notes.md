@@ -9253,4 +9253,44 @@ prices that at 2 a point per attack, ~12.5 a fight.
   measured, so the 4-a-stack Bleeding weight stays as it is until
   another Bleeding source gets checked.
 - **Furious Rage as written:** ~6.8 − 7.7 ≈ −1 Value, against a Level 2
-  Target of 7.2. Pending the designer's call.
+  Target of 7.2.
+
+**Decision (designer, 2026-10-07): "You can't Parry" is cut.** Furious
+Rage is now just "If one of your attacks hits or is Parried, the target
+gains Bleeding." Re-run on Hilde: +4.2, identical to Bleeding Strikes on
+the same seeds, as it should be.
+
+### A second Bleeding source: one big dose (2026-10-07)
+
+'Bleeding Dump' (test-only): the first hit each fight adds 5 Bleeding,
+Acidic Flask's stack count, as a rider so it doesn't cost an attack.
+THE TABEL's tapered curve prices 5 stacks at 4 + 4 + 2 + 1 + 0.5 = 11.5.
+Bleeding Strikes was also run on Sable to complete the four carriers.
+
+| Carrier | Bleeding Dump | Bleeding Strikes | Plus One Damage |
+|---|---|---|---|
+| Hilde | +1.5 | +4.2 | +5.2 |
+| Browndog | +1.6 | +6.2 | +6.8 |
+| Carrick | +3.3 | +4.9 | +16.4 |
+| Sable | +2.9 | +7.0 | +26.6 |
+| Sum | 9.3 | 22.3 | 55.0 |
+
+Two ways to read it, which agree closely: the plain average (the sim's
++1 damage averages 13.75 against THE TABEL's 12.5, so its scale is about
+right on average), or pooled against Plus One Damage and rescaled to 12.5.
+
+- **Bleeding Dump:** average 2.3, pooled 9.3 / 55.0 × 12.5 = 2.1. About
+  **19%** of the 11.5 the curve gives it.
+- **Bleeding Strikes over four carriers:** average 5.6, pooled 22.3 /
+  55.0 × 12.5 = 5.1. That's ~0.9–1.0 a stack over ~5.6 applications a
+  fight. Furious Rage (now just this) is **~70–77%** of its Level 2
+  Target, lower than the three-carrier 6.8 above because Sable reads
+  damage high and Bleeding comparatively low.
+
+Why so low: these fights last ~3.2 rounds and the party focus-fires, so
+the target a Bleeding stack is on usually dies before most of its stacks
+tick, and ticks land on the enemy's turn, after the party has acted. A
+5-stack dose needs five of the target's turns to pay out in full. The
+sim has no solo-boss encounter, which is where Bleeding should realize
+the most, so this reads Bleeding in ordinary four-enemy fights only.
+The 4-a-stack weight stays as it is pending the designer's call.
