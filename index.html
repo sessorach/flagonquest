@@ -1159,6 +1159,10 @@ function emptyCharacterData() {
     // haven't just topped out). Same session-tracking exclusion from
     // doExport() as currentHealth, for the same reason.
     currentFullness: null,
+    // Character Sheet only — the technique id of the Style the character
+    // is currently in, or null. Session-tracking like `expended`, so it's
+    // left out of doExport() for the same reason.
+    activeStyle: null,
   };
 }
 
@@ -1550,6 +1554,11 @@ function TechCard({
   renames, onRenameChange, expended, onExpendedChange,
   glossary,
   readOnly = false,
+  // The Style the character is currently in, by technique id (or null),
+  // and its setter — Character Sheet only, like Expended. The rules let
+  // you be in one Style at a time, so this is one id rather than a
+  // per-card flag; picking another card replaces it.
+  activeStyle = null, onActiveStyleChange = null,
   // Set only by the read-only Character Sheet, which gives every distinct
   // build of a Feature-built technique its own card instead of nesting
   // them all under one — see the sheetCards note in App(). When present,
@@ -1633,6 +1642,8 @@ function TechCard({
   // badge — everything else stays in the tags line.
   const hasEncounter = tags.includes("Encounter");
   const otherTags     = tags.filter(t => t !== "Encounter");
+  const showStyleToggle = readOnly && !!onActiveStyleChange && tags.includes("Style");
+  const isActiveStyle   = showStyleToggle && activeStyle === tech.id;
 
   // Duplicate/Encounter techniques can be learned more than once —
   // each purchase is its own build entry, so "Add to build" stays
@@ -1652,6 +1663,7 @@ function TechCard({
   return (
     <div className="tech-card" style={{
       ...cardBoxStyle,
+      ...(isActiveStyle ? { border: "1px solid #d4a843", boxShadow: "0 0 8px #d4a84355" } : {}),
       padding: "12px 14px",
       display: "flex",
       flexDirection: "column",
@@ -1710,7 +1722,7 @@ function TechCard({
 
       {/* Remaining tags (left) and Expended checkboxes (right), sharing
           one line — this row shows up whenever either side has content. */}
-      {(otherTags.length > 0 || (readOnly && hasEncounter && expendedUids.length > 0)) && (
+      {(otherTags.length > 0 || showStyleToggle || (readOnly && hasEncounter && expendedUids.length > 0)) && (
         <div style={{ display:"flex", gap:10, flexWrap:"wrap", alignItems:"center", justifyContent:"space-between" }}>
           <div style={{ display:"flex", gap:6, flexWrap:"wrap", alignItems:"center" }}>
             {otherTags.map(tag => (
@@ -1729,6 +1741,16 @@ function TechCard({
               </span>
             ))}
           </div>
+          {showStyleToggle && (
+            <button
+              className="no-print"
+              title={isActiveStyle ? "Click to leave this Style" : "Enter this Style (leaves any other)"}
+              onClick={() => onActiveStyleChange(isActiveStyle ? null : tech.id)}
+              style={{ ...chipStyle(isActiveStyle), fontSize: 13 }}
+            >
+              {isActiveStyle ? "✓ Active Style" : "Enter Style"}
+            </button>
+          )}
           {readOnly && hasEncounter && expendedUids.length > 0 && (
             <div style={{ display:"flex", gap:6, alignItems:"center" }}>
               {expendedUids.map((uid, i) => (
@@ -5476,6 +5498,7 @@ function App() {
   const [currentHealth, setCurrentHealth] = useState(initialCharacter.data.currentHealth);
   // Current Fullness (Goblin Game) — same session-state reasoning.
   const [currentFullness, setCurrentFullness] = useState(initialCharacter.data.currentFullness);
+  const [activeStyle, setActiveStyle] = useState(initialCharacter.data.activeStyle);
   const importRef = useRef();
 
   // Loads one character's data into all of the state above — used by
@@ -5507,6 +5530,7 @@ function App() {
     setEnabledSupplements(data.enabledSupplements);
     setCurrentHealth(data.currentHealth);
     setCurrentFullness(data.currentFullness);
+    setActiveStyle(data.activeStyle);
   };
 
   // The active character's data, in the same shape emptyCharacterData/
@@ -5518,7 +5542,7 @@ function App() {
     statPoints, skillPoints, xpBudget,
     charName, charConcept, charNotes, noteRows, customTechniques,
     selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials,
-    customAttacks, sheetSectionOrder, enabledSupplements, currentHealth, currentFullness,
+    customAttacks, sheetSectionOrder, enabledSupplements, currentHealth, currentFullness, activeStyle,
   });
 
   // Switches to an existing character slot.
@@ -5711,7 +5735,7 @@ function App() {
   // ── Persist the active character, and keep the switcher list synced ─
   useEffect(() => {
     saveCharacterData(activeId, currentCharacterData());
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials, customAttacks, sheetSectionOrder, enabledSupplements, currentHealth, currentFullness]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials, customAttacks, sheetSectionOrder, enabledSupplements, currentHealth, currentFullness, activeStyle]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -7031,6 +7055,8 @@ function App() {
       onRenameChange={setRename}
       expended={expended}
       onExpendedChange={setExpendedFor}
+      activeStyle={activeStyle}
+      onActiveStyleChange={setActiveStyle}
       glossary={glossary}
       readOnly
       group={card.tech.features ? { name: card.name, cfg: card.cfg, uids: card.uids } : null}

@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-07 — Active Style on the sheet
+
+Style cards on the Character Sheet now have an Enter Style button, so you can mark which Style you're in and switch with one tap at the table.
+
 ### 2026-10-06 — Leader, Face and Druid Styles
 
 Leader, Face and Druid got their first real sets of Styles, so every combat archetype now has early and late options.

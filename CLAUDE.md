@@ -553,7 +553,8 @@ which should stay a clean decision record.
   (met/good) — established by the Might Requirement badge, reused for
   Wounded. Keep using these two colors for any future met/unmet indicator
   rather than inventing new ones.
-- "Session-tracking" state (Expended checkboxes, current Health) persists
+- "Session-tracking" state (Expended checkboxes, current Health, the
+  active Style) persists
   to localStorage like everything else, but is deliberately excluded from
   `doExport()`/single-character `doImport()` — sharing or exporting a
   build shouldn't hand off someone else's mid-encounter state. It's
