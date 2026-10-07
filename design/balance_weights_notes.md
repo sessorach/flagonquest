@@ -9433,3 +9433,64 @@ A curve that fits both: `value(n) = 1 + 0.25 × (n − 1)` for n stacks on
 one target from one application (1 stack = 1, 5 stacks = 2.0), and 1 per
 application for a per-hit stream. THE TABEL's current curve gives 4 and
 11.5. Not applied; pending the designer.
+
+## Party targeting: threat per Health (2026-10-07)
+
+Per the designer: fix the party's default targeting before repricing
+Bleeding. The old default (`target_focus_wounded`, the designer's
+earlier "focus the most wounded, closest to the party" order) goes for
+the lowest current Health, which at the start of a fight is the front
+line, so the casters and archers behind it got left alone.
+
+**New default, `tactics.target_threat`** (`tactics.PARTY_TARGETING =
+'threat'`; `'wounded'` restores the old rule): rate each enemy by the
+damage it's expected to take off the party per attack (its chance to
+beat the party's average Defense against it, times its damage after the
+party's average Resist to that type) divided by its current Health.
+Multiply by how many attacks this PC can make on it this turn after
+walking into range, and take the best. That's still focus fire (a
+wounded enemy rates higher), goblin minions with 3 Health still go first,
+and a melee PC won't walk past one enemy to reach another. A support
+enemy is rated on its backup attack.
+
+Party results, 400 fights per cell, old → new:
+
+| Party | Mix | Win % | Health left | Rounds |
+|---|---|---|---|---|
+| A | Frontline | 90 → 98 | 47.5 → 65.1 | 3.4 → 2.8 |
+| A | Shield Wall | 72 → 96 | 29.0 → 57.5 | 5.1 → 4.2 |
+| A | Warband | 97 → 100 | 56.5 → 79.3 | 4.7 → 4.2 |
+| A | Horde | 94 → 95 | 54.6 → 55.2 | 3.2 → 3.1 |
+| D | Frontline | 84 → 85 | 48.5 → 51.3 | 4.5 → 4.4 |
+| D | Shield Wall | 88 → 93 | 60.8 → 66.7 | 4.6 → 4.5 |
+| D | Warband | 94 → 98 | 78.7 → 85.1 | 6.0 → 6.5 |
+| D | Horde | 92 → 88 | 51.4 → 49.8 | 4.4 → 4.5 |
+
+Party A gains a lot, Party D a little (its melee-heavy lineup mostly
+can't reach the back line anyway). Every encounter and Style result
+recorded before this used the old rule. The encounters are now easier
+than they were tuned to be; not retuned yet.
+
+### Bleeding under the new targeting (2026-10-07)
+
+`enemy_sim/bleed_reprice.py`, standard four mixes, 800 fights each.
+Party A base 62.6 (was 42.6), 3.6 rounds (was 4.2); one PC's +1 Health =
+0.63 points.
+
+| Carrier | Bleeding Strikes | Bleeding Dump | Plus One Damage |
+|---|---|---|---|
+| Hilde | +2.0 | +0.3 | +3.4 |
+| Browndog | +2.9 | +0.7 | +4.0 |
+| Carrick | +2.8 | +0.7 | +8.3 |
+| Sable | +4.4 | +1.9 | +19.3 |
+| Sum | 12.1 | 3.6 | 35.0 |
+
+Plus One Damage averages 8.75, under THE TABEL's 12.5, since easier
+fights compress the scale. Pooled against it and rescaled to 12.5:
+Bleeding Strikes 12.1 / 35.0 × 12.5 = **4.3** a fight (~0.8 a stack over
+~5.6 applications), Bleeding Dump 3.6 / 35.0 × 12.5 = **1.3** for 5
+stacks. A curve that fits: `0.8 + 0.125 × (n − 1)` for n stacks in one
+application. Shorter fights make Bleeding worth even less than under the
+old targeting (5.1 and 2.1 by the same pooled method). Retuning the
+encounters back to their old difficulty would lengthen fights again, so
+the Bleeding number isn't locked until that's decided.

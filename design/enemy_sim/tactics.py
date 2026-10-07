@@ -156,6 +156,80 @@ def target_bleed_spreader(unit, targets):
     return min(targets, key=lambda c: (c.get('bleeding', 0) > 0, -(c['health'] - c.get('bleeding', 0)), dist(c)))
 
 
+# ---- The party's default targeting (2026-10-07) ----
+# Per the designer: the party should go after enemies the way players
+# would, not just whoever has the least Health (which, at the start of a
+# fight, is the front line, leaving the casters and archers behind it
+# alone). 'threat' is the new default; 'wounded' is the old rule, kept
+# so older recorded numbers can be reproduced.
+PARTY_TARGETING = 'threat'
+
+
+def _party_defense(pc, opp_def):
+    """A PC's Defense against an attack aimed at `opp_def` - the same
+    routing as combat_sim.pc_defense_for, minus its stack modifiers
+    (this is a planning estimate, not the attack itself)."""
+    if opp_def == 'Parry/Dodge':
+        return max(pc['parry'], pc['dodge'])
+    if opp_def == 'Bodily':
+        return pc['bodily']
+    if opp_def == 'Mental':
+        return pc['mental']
+    return pc['dodge']
+
+
+def enemy_threat(e, allies):
+    """Expected damage from one of `e`'s attacks against the party on
+    average: its chance to beat the party's average Defense (Accuracy +
+    a 1-13 flip, ties hit) times its damage after the party's average
+    Resist to that damage type. A support enemy with no damaging main
+    action is rated on its backup attack - a crude stand-in for what its
+    support is worth, but it keeps a healer from reading as harmless."""
+    dmg, acc, opp, dtype = e.get('attack_damage', 0), e.get('accuracy', 0), e.get('opp_def'), e.get('dmg_type')
+    if not dmg and isinstance(e.get('backup'), dict):
+        b = e['backup']
+        dmg, acc = b.get('attack_damage', 0), b.get('accuracy', acc)
+        opp, dtype = b.get('opp_def', opp), b.get('dmg_type', dtype)
+    if not allies or not dmg:
+        return 0.0
+    defense = sum(_party_defense(p, opp) for p in allies) / len(allies)
+    resist = sum(p['physres'] if dtype == 'Physical' else p['elemres'] for p in allies) / len(allies)
+    p_hit = sum(1 for f in range(1, 14) if acc + f >= defense) / 13
+    return p_hit * max(0, dmg - resist)
+
+
+def _attacks_this_turn(unit, target):
+    """How many 2-AP attacks `unit` could still make on `target` this
+    turn after walking into range (no pos means no movement model, so
+    both attacks)."""
+    if 'pos' not in unit or 'pos' not in target:
+        return T.AP_PER_TURN // T.ATTACK_AP_COST
+    reach = unit.get('attack_range') or T.MELEE_RANGE
+    gap = max(0, movement.distance(unit['pos'], target['pos']) - reach)
+    speed = max(1, unit['speed'] - unit.get('slowed', 0))
+    moves = -(-gap // speed)
+    return max(0, (T.AP_PER_TURN - moves * T.MOVE_AP_COST) // T.ATTACK_AP_COST)
+
+
+def target_threat(unit, targets, allies):
+    """The party's default (PARTY_TARGETING 'threat'): kill whatever
+    takes the most damage off the party per point of Health it has left
+    - the usual focus-fire order, so a wounded enemy still gets finished
+    and a goblin minion with 3 Health goes before a full-Health caster -
+    weighted by how many attacks this PC can actually make on it this
+    turn, so a melee PC doesn't walk past one enemy to reach another.
+    If nothing is in reach this turn, head for the best target by the
+    same rating, nearest first on ties."""
+    def rating(t):
+        return enemy_threat(t, allies) / max(1, t['health'])
+    reachable = [t for t in targets if _attacks_this_turn(unit, t) > 0]
+    if reachable:
+        return max(reachable, key=lambda t: (rating(t) * _attacks_this_turn(unit, t), -t['health']))
+    if 'pos' in unit:
+        return max(targets, key=lambda t: (rating(t), -movement.distance(unit['pos'], t['pos'])))
+    return max(targets, key=rating)
+
+
 TARGETING = {
     'Assassin': target_lowest_health,
     'Straggler Hunter': target_straggler,
@@ -180,6 +254,8 @@ def select_target(unit, targets, movement_on, allies=None):
     if fn:
         return fn(unit, targets)
     if allies is not None:
+        if PARTY_TARGETING == 'threat':
+            return target_threat(unit, targets, allies)
         return target_focus_wounded(unit, targets, allies)
     return (target_closest if movement_on else target_first)(unit, targets)
 
