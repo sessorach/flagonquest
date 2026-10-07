@@ -55,7 +55,11 @@ table (see "The Level-based base stats" below).
 slots this specific creature counts as in an encounter's budget. Three
 values are used in practice: **0.5** (a minion — expect several of
 these per encounter), **1** (a standard threat, one enemy = one slot),
-**2** (an elite/boss-tier threat worth two standard enemies). This
+**2** (an elite/boss-tier threat worth two standard enemies), plus
+**4** for a solo boss (per the designer, 2026-10-07: a whole party's
+encounter in one creature, with nine times a standard enemy's Health and
+Upgrades and two turns a round, each with its own place in the turn
+order). This
 is a genuinely different axis from Level — a Level 2 minion and a
 Level 2 standard enemy share the same base Accuracy/Defense/Damage/
 Resist, but scale apart on Health and ability budget (below).
