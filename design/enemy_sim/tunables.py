@@ -334,3 +334,12 @@ START_GAP_RANGE = (5, 10)
 # Lie in Wait (T193): how many places a PC waits each round. Two is where
 # the paper pricing peaks (Good Luck twice for 2 places).
 LIE_IN_WAIT_PLACES = 2
+
+# ---- Bleeding timing (test variants, 2026-10-07) ----
+# 'own_turn' is the rule as written (glossary.md): a stack comes off at
+# the end of the bearer's own turn and deals 1. 'round_end': every
+# Bleeding enemy ticks once at the end of each round instead.
+# 'on_damage': a damaging hit on a Bleeding enemy takes a stack off for
+# 1 more Health loss; stacks still fall off at the end of its own turn,
+# for nothing. Only the party's Bleeding on enemies follows this switch.
+BLEED_MODE = 'own_turn'

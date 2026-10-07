@@ -1007,6 +1007,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # Furious Rage (T130): "If one of your attacks hits or is
                 # Parried, the target gains Bleeding." Parried = a miss
                 # where Parry was the Defense the target used.
+                pre_bleed = target.get('bleeding', 0)  # before this attack's own riders
                 parried = (not hit and pc.get('opp_def') == 'Parry/Dodge'
                            and target['parry'] - target.get('harried', 0) >= target['dodge'] - target.get('harried', 0))
                 # 'Bleeding Strikes' is a test-only passive: this trigger
@@ -1026,6 +1027,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     target['bleeding'] = target.get('bleeding', 0) + 1
                     pc['once_used'] = True
                     pc['once_target'] = target  # for tracing the stack's fate
+                    pc['once_applied'] = True
                     target['acted_at_apply'] = target.get('acted_round') == rnd
                 # Lawman's Hand (T128): "Once per round, when one of your
                 # damaging attacks hits, you may Slow the target once."
@@ -1057,8 +1059,19 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         dmg -= protected_absorbed
                     # Counts the +1 only when it lands on live Health (not
                     # overkill), to compare with Bleeding ticks (bleed_dealt).
-                    if 'Plus One Damage' in passives and dmg > 0 and target['health'] >= dmg:
-                        pc['extra_dmg'] = pc.get('extra_dmg', 0) + 1
+                    if 'Plus One Damage' in passives and dmg > 0:
+                        pc['p1_hits'] = pc.get('p1_hits', 0) + 1
+                        if target['health'] >= dmg:
+                            pc['extra_dmg'] = pc.get('extra_dmg', 0) + 1
+                    # Test variant (tunables.BLEED_MODE 'on_damage'): a hit
+                    # that deals damage to a Bleeding target also takes 1
+                    # stack off it for 1 more Health loss. Stacks this same
+                    # attack applied don't count.
+                    if (T.BLEED_MODE == 'on_damage' and dmg > 0 and pre_bleed > 0
+                            and target['health'] > dmg):
+                        target['bleeding'] -= 1
+                        dmg += 1
+                        target['bleed_dealt'] = target.get('bleed_dealt', 0) + 1
                     target['health'] -= dmg
                     damage_dealt += dmg
                     if substitute and substitute.get('effect'):
@@ -1523,10 +1536,15 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     for key in ('crippled', 'slowed'):
         if e.get(key, 0) > 0:
             e[key] -= 1
-    if e.get('bleeding', 0) > 0 and e['health'] > 0:
+    # Only the rules-as-written mode ticks here; the test variants
+    # (tunables.BLEED_MODE) deal the Health loss elsewhere. In 'on_damage'
+    # the stack still falls off here, for nothing; 'round_end' does its
+    # own decay at the end of the round.
+    if e.get('bleeding', 0) > 0 and e['health'] > 0 and T.BLEED_MODE != 'round_end':
         e['bleeding'] -= 1
-        e['health'] -= 1
-        e['bleed_dealt'] = e.get('bleed_dealt', 0) + 1
+        if T.BLEED_MODE == 'own_turn':
+            e['health'] -= 1
+            e['bleed_dealt'] = e.get('bleed_dealt', 0) + 1
     return interrupt_dmg
 
 
@@ -1723,6 +1741,14 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                             pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt,
                             bleed_dealt=sum(e.get('bleed_dealt', 0) for e in enemies),
                             plus_one_dealt=sum(p.get('extra_dmg', 0) for p in pcs))
+        # Test variant (tunables.BLEED_MODE 'round_end'): enemies' Bleeding
+        # ticks once at the end of each round instead of their own turn.
+        if T.BLEED_MODE == 'round_end':
+            for e in enemies:
+                if e.get('bleeding', 0) > 0 and e['health'] > 0:
+                    e['bleeding'] -= 1
+                    e['health'] -= 1
+                    e['bleed_dealt'] = e.get('bleed_dealt', 0) + 1
 
     _log(trace, round=max_rounds, type='result', winner='draw')
     return dict(winner='draw', rounds=max_rounds,

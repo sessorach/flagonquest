@@ -9615,3 +9615,55 @@ hits of ~5–8 after Resist, so most die within a round of being focused.
 If enemies at the table last longer, the first stack is worth
 4 × (that chance): 50% → 2, 75% → 3. The old "a bit below full price"
 matches about 75%.
+
+### Enemy toughness, and Bleeding against a +1 damage (2026-10-07)
+
+The designer's read of their table: once an enemy has taken a hit, it
+gets another full turn **about half the time**. Bleeding is a core
+mechanic (the stand-in for raw damage), so the sim's enemy toughness got
+checked against that before repricing.
+
+**Toughness** (`enemy_sim/enemy_toughness.py`, Party A, 'table'
+targeting, 200 fights per mix; the multiplier scales every enemy's
+Health):
+
+| Enemy Health | Acts again after its first hit | After any hit | Hits to kill | Party wins | Health left |
+|---|---|---|---|---|---|
+| ×1 (as built) | 40% | 27% | 2.44 | 94% | 60.4 |
+| ×1.25 | 52% | 36% | 2.97 | 84% | 45.8 |
+| ×1.5 | 63% | 45% | 3.46 | 66% | 32.4 |
+| ×2 | 73% | 56% | 4.22 | 42% | 19.0 |
+
+The enemies are built to the design's own Health formula, so the gap is
+the party's offense: Party A hits 65% of the time for 4.2 after Resist
+(Hilde 54% / 5.9, Browndog 56% / 4.3, Carrick 81% / 4.0, Sable 68% /
+3.5), against the value economy's baseline of ~50% for ~2.25 (RULES_
+DESIGN.md, "Baseline damage-over-Resist assumption"). The designer's
+"about half" matches **×1.25**, which also puts the fights back near the
+difficulty the encounters were tuned to under the old targeting (88% /
+46.9).
+
+**Changing when Bleeding ticks doesn't help** (`tunables.BLEED_MODE`
+test variants): ticking at the end of each round, or on the next
+damaging hit, lands about the same as the rule as written (one stack:
+0.25–0.27 points at ×1, 0.34 at ×1.25). The stack's problem isn't its
+timing; an extra point on an enemy that's about to die is wasted
+whenever it arrives.
+
+**That applies to plain damage too**, so the fair price compares
+Bleeding with a +1 on a hit measured the same way, not with a point that
+always counts. THE TABEL prices damage nominally (4 per point on a hit
+that lands). `enemy_sim/bleed_vs_damage.py`, 400 fights per mix:
+
+| Enemy Health | A Bleeding stack lands | A +1 on a hit lands | Stack, as a share of a point | Value |
+|---|---|---|---|---|
+| ×1 | 25% | 62% | 0.40 | 1.6 |
+| ×1.25 | 34% | 71% | 0.48 | **1.9** |
+
+At the designer's table toughness, a first stack is worth about half a
+nominal point of damage: ~2, against THE TABEL's 4. Further stacks in
+the same application: Bleeding Dump landed 0.43 against Bleeding Once's
+0.32 at ×1.25, so stacks 2–5 add 0.11 together, ~0.04 of a point each,
+~0.15 Value each. A per-hit source (Bleeding Strikes) landed 1.51 points
+at ×1.25, 1.51 / 0.71 = 2.1 nominal points, ~8.5 Value a fight
+(Furious Rage: ~118% of its Level 2 Target).
