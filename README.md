@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-10-07 — Active Style on the sheet
 
-Style cards on the Character Sheet now have an Enter Style button, so you can mark which Style you're in and switch with one tap at the table.
+Style cards on the Character Sheet now have an Enter Style button, so you can mark which Style you're in and switch with one tap at the table. Furious Rage also lost its "can't Parry" drawback after the simulator showed it cost more than the Style gave back.
 
 ### 2026-10-06 — Leader, Face and Druid Styles
 
