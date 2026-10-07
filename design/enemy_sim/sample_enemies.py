@@ -242,6 +242,14 @@ ENCOUNTERS = {
 # The mixes current scripts should run.
 CURRENT_MIXES = ("Frontline", "Shield Wall", "Warband", "Horde")
 
+# Boss fights (2026-10-07), Level 2 only: a long-lived target, which is
+# where Bleeding should pay off most. Solo Boss is one 2-slot boss alone,
+# so it's 2 Slots against 4 PCs and easy on purpose; Boss and Guards adds
+# two standard Brutes for a full 4 Slots. Not in CURRENT_MIXES.
+ENCOUNTERS[2]["Solo Boss"] = ["Brute Boss (L2)"]
+ENCOUNTERS[2]["Boss and Guards"] = ["Brute Boss (L2)", "Brute (L2)", "Brute (L2)"]
+BOSS_MIXES = ("Solo Boss", "Boss and Guards")
+
 
 def make_level_encounter(level, n_enemies=4):
     """What combat_sim.run_fight builds by default when no explicit

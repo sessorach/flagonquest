@@ -104,6 +104,12 @@ def target_kiter(unit, targets):
     return target_closest(unit, pool)
 
 
+# Test toggle (2026-10-07): when True, the party's default targeting skips
+# an enemy whose Bleeding stacks already cover its remaining Health. Off
+# by default, so every recorded number keeps the plain focus-fire rule.
+LET_BLEED_OUT = False
+
+
 def target_focus_wounded(unit, targets, allies):
     """The base party strategy (the designer's own priority order, "in
     order: attack twice if possible, focus fire on the most wounded
@@ -122,6 +128,11 @@ def target_focus_wounded(unit, targets, allies):
     go for that one" without any real multi-turn coordination. Falls
     back to Health alone (list order breaks any remaining tie) when
     there's no `pos` to measure with (movement=False)."""
+    if LET_BLEED_OUT:
+        # Leave an enemy that its Bleeding will finish on its own, as
+        # long as something else is still worth hitting.
+        alive = [t for t in targets if t.get('bleeding', 0) < t['health']]
+        targets = alive or targets
     if 'pos' not in unit:
         return min(targets, key=lambda t: t['health'])
 

@@ -9294,3 +9294,45 @@ tick, and ticks land on the enemy's turn, after the party has acted. A
 sim has no solo-boss encounter, which is where Bleeding should realize
 the most, so this reads Bleeding in ordinary four-enemy fights only.
 The 4-a-stack weight stays as it is pending the designer's call.
+
+### Bleeding on a boss, and letting enemies bleed out (2026-10-07)
+
+Per the designer: add a solo-boss fight, and test a party that leaves
+Bleeding enemies alone instead of focus-firing them. Script:
+`enemy_sim/bleed_check.py`. New pieces:
+- **Brute Boss (L2)**, the Brute as a 2-slot boss per
+  ENEMY_ENCOUNTER_DESIGN.md (three times the Health and Upgrades): 33
+  Health, otherwise a Brute. Two Level 2 mixes, not in CURRENT_MIXES:
+  **Solo Boss** (the boss alone, 2 Slots) and **Boss and Guards** (the
+  boss plus two Brutes, 4 Slots).
+- **`tactics.LET_BLEED_OUT`** (off by default): the party's default
+  targeting skips an enemy whose Bleeding already covers its Health, as
+  long as another target is left.
+
+Results, Value per carrier (Hilde, Browndog, Carrick, Sable), 800
+fights per mix:
+
+| Fight | Targeting | Bleeding Strikes avg | Bleeding Dump avg | Plus One Damage avg |
+|---|---|---|---|---|
+| Standard four (4.2 rounds) | focus fire | 5.6 | 2.3 | 13.75 |
+| Standard four | bleed out | 6.8 | 2.7 | 13.6 |
+| Boss and Guards (2.8 rounds) | focus fire | 1.4 | 1.0 | 13.9 |
+| Boss and Guards | bleed out | −7.7 | −27.7 | — |
+| Solo Boss (2.0 rounds) | either | 1.4 | 1.3 | 6.4 |
+
+- **The boss doesn't live long enough.** Four PCs kill a 33-Health boss
+  in 2 rounds and keep 93% of their Health, so the Health ladder is
+  nearly flat (one PC's +1 Health = 0.13 points) and every number on
+  that row is mostly noise. Boss and Guards ends in 2.8 rounds, faster
+  than the standard four. Neither is the long fight Bleeding needs.
+- **Letting enemies bleed out barely helps in standard fights**
+  (+1.2 and +0.4, inside the ±2 noise), and **hurts badly with the
+  boss's guards.** Bleeding ticks at the end of the bearer's own turn,
+  so an enemy left to bleed out still gets one more full turn, and a
+  Brute's turn hits hard. The −27.7 is also inflated by that mix's
+  small ladder (0.33 a point), but the sign is clear.
+- **Conclusion so far:** the sim's fights are too short for Bleeding in
+  every mix tried. A boss that lasts needs a design call on how a solo
+  boss works for four PCs (more Health and more turns per round, or a
+  higher Level), since a 2-slot boss alone is half an encounter by the
+  Slot rules. The Bleeding weight stays at 4 a stack until then.
