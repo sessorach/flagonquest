@@ -9530,3 +9530,37 @@ is the new threat default; 800 fights per mix.
 Realization depends on fight length. These are the current encounters
 under the new targeting (3.6 rounds, easier than they were tuned to be),
 so retuning the encounters would raise it somewhat.
+
+### Imperfect focus fire (2026-10-07)
+
+Per the designer: what if the party mostly focuses fire, but not
+perfectly - some stay at range, some just attack twice if they can
+instead of trying to drop one target? New mode `tactics.PARTY_TARGETING
+= 'table'` (`target_table`): a PC that can already attack something
+twice without moving picks the best of those by threat per Health
+(melee swings at whoever's next to it, ranged shoots what's in range
+from where it stands); only a PC with nothing in reach uses the full
+threat rule; and a quarter of turns (`TABLE_SLOPPINESS`) just go for
+the nearest enemy. Script: `enemy_sim/party_targeting_compare.py`, 400
+fights per mix.
+
+| Mode | Party A win / Health left / rounds | Party D win / Health left / rounds |
+|---|---|---|
+| wounded (old) | 88% / 46.9 / 4.1 | 89% / 59.8 / 4.9 |
+| threat (current default) | 97% / 64.3 / 3.6 | 91% / 63.2 / 5.0 |
+| table | 94% / 60.6 / 3.6 | 93% / 62.5 / 4.9 |
+
+Extra damage Bleeding lands per fight, Party A carriers (Hilde,
+Browndog, Carrick, Sable):
+
+| Mode | Once (1 stack) | Strikes (per hit or Parry) | Dump (5 stacks) |
+|---|---|---|---|
+| wounded | 0.20 | 0.95 | 0.23 |
+| threat | 0.16 | 0.94 | 0.18 |
+| table | 0.24 | 1.04 | 0.28 |
+
+**Bleeding barely moves with how the party targets.** A per-hit source
+lands about one point a fight in every mode, a single stack about a
+fifth of a point, and a 5-stack dose only a little more than one stack.
+Sloppier focus helps Bleeding a touch (more enemies survive to the end
+of their turn), but not enough to change its price.

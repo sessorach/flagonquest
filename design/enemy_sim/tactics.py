@@ -161,7 +161,8 @@ def target_bleed_spreader(unit, targets):
 # would, not just whoever has the least Health (which, at the start of a
 # fight, is the front line, leaving the casters and archers behind it
 # alone). 'threat' is the new default; 'wounded' is the old rule, kept
-# so older recorded numbers can be reproduced.
+# so older recorded numbers can be reproduced; 'table' is focus fire
+# done imperfectly (see target_table).
 PARTY_TARGETING = 'threat'
 
 
@@ -230,6 +231,28 @@ def target_threat(unit, targets, allies):
     return max(targets, key=rating)
 
 
+# How often a 'table' party PC skips the plan and swings at the nearest
+# enemy (see target_table).
+TABLE_SLOPPINESS = 0.25
+
+
+def target_table(unit, targets, allies):
+    """PARTY_TARGETING 'table' (2026-10-07): the party mostly focuses
+    fire, but not perfectly, per the designer. A PC that can already
+    attack something without moving takes two attacks on the best of
+    those (by target_threat's rating) rather than walking to the best
+    target overall - melee PCs swing at whoever's next to them, ranged
+    PCs shoot whatever's in range from where they stand. Only a PC with
+    nothing in reach goes by the full threat rule. On top of that, a
+    TABLE_SLOPPINESS share of turns just goes for the nearest enemy."""
+    if 'pos' in unit and random.random() < TABLE_SLOPPINESS:
+        return min(targets, key=lambda t: movement.distance(unit['pos'], t['pos']))
+    in_reach = [t for t in targets if _attacks_this_turn(unit, t) == T.AP_PER_TURN // T.ATTACK_AP_COST]
+    if in_reach:
+        return max(in_reach, key=lambda t: (enemy_threat(t, allies) / max(1, t['health']), -t['health']))
+    return target_threat(unit, targets, allies)
+
+
 TARGETING = {
     'Assassin': target_lowest_health,
     'Straggler Hunter': target_straggler,
@@ -256,6 +279,8 @@ def select_target(unit, targets, movement_on, allies=None):
     if allies is not None:
         if PARTY_TARGETING == 'threat':
             return target_threat(unit, targets, allies)
+        if PARTY_TARGETING == 'table':
+            return target_table(unit, targets, allies)
         return target_focus_wounded(unit, targets, allies)
     return (target_closest if movement_on else target_first)(unit, targets)
 
