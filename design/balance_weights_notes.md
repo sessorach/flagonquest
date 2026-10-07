@@ -9217,3 +9217,40 @@ this round have Good Luck." Level 3 stays. Re-run (800 per mix): Hilde
 order (Seize the Moment, Command the Tempo, Lie in Wait on enemies),
 which is fine for a Scout Style. Quick Draw (T192) was renamed **Seize
 the Moment** in the same pass, since T039 already uses the name.
+
+## Furious Rage re-measured on single carriers (2026-10-07)
+
+The 10-01 four-Hilde run read Furious Rage as −10.0. Re-run with
+`turnorder_single.py`'s method (one carrier in Party A, paired seeds,
+800 fights per mix, ±~2 Value of noise), with its two halves split
+into test-only passives: 'Bleeding Strikes' (the trigger, no cost) and
+'No Parry' (the cost, no trigger). 'Plus One Damage' (+1 damage on
+every hit) checks how each carrier reads extra damage, since THE TABEL
+prices that at 2 a point per attack, ~12.5 a fight.
+
+| Carrier | Furious Rage | Bleeding Strikes | No Parry | Plus One Damage |
+|---|---|---|---|---|
+| Hilde (2H melee) | −3.1 | +4.2 | −7.7 | +5.2 |
+| Browndog (shield) | −8.8 | +6.2 | −13.9 | +6.8 |
+| Carrick (thrown) | +4.9 | +4.9 | +0.1 | +16.4 |
+| Sable (bow) | | | | +26.6 |
+
+- **The can't-Parry estimate holds.** Losing Parry costs Hilde 7.7
+  against the 7.4 it was priced at. A shield fighter loses more and a
+  thrower loses nothing, as expected.
+- **Extra damage reads very differently by carrier.** Melee carriers
+  read low (Hilde's big hits rarely change when an enemy drops; Browndog
+  isn't a damage dealer), ranged high. Averaged over all four, +1 damage
+  reads 13.8, close to THE TABEL's 12.5, so the Damage weight is fine on
+  average.
+- **Bleeding is worth about half its weight here.** Pooled over the
+  three carriers, Bleeding Strikes reads 0.54× of Plus One Damage
+  (15.3 / 28.4; per carrier Hilde 0.81, Browndog 0.91, Carrick 0.30),
+  so on THE TABEL's scale it's worth
+  ~6.8 a fight, against the 13.9 estimated on 9/29. Stacks on a target
+  that's about to die are wasted, and they tick on the enemy's own
+  turn, after the party has often finished it. Only one Technique
+  measured, so the 4-a-stack Bleeding weight stays as it is until
+  another Bleeding source gets checked.
+- **Furious Rage as written:** ~6.8 − 7.7 ≈ −1 Value, against a Level 2
+  Target of 7.2. Pending the designer's call.

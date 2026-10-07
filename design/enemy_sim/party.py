@@ -325,8 +325,13 @@ def _pc_dict(row, index, good_luck):
             damage += 1
         parry = -99
     # Furious Rage (T130, a Style): "You can't Parry."
-    if "Furious Rage" in passives:
+    # 'No Parry' is a test-only passive: just this cost, priced apart.
+    if "Furious Rage" in passives or "No Parry" in passives:
         parry = -99
+    # 'Plus One Damage' is a test-only passive: +1 damage on every hit,
+    # to check the sim's read of THE TABEL's Damage weight (2 a point).
+    if "Plus One Damage" in passives:
+        damage += 1
 
     # `Battle Tactic` - the same tactics.TARGETING registry enemies'
     # own sample_enemies.csv BattleTactic column already dispatches

@@ -40,7 +40,7 @@ GROUPS = {
     "turnorder_ranged": (PARTY_A, "Sable (L2)", [("Staggering Blows", 1), ("Seize the Moment", 2), ("Lie in Wait", 1),
                                                   ("Command the Tempo", 3), ("Ambush Predator", 3)]),
 }
-STYLES = {"Furious Rage", "Lawman's Hand", "Hand of Chaos", "Inexhaustible Guardian",
+STYLES = {"Furious Rage", "Bleeding Strikes", "No Parry", "Plus One Damage", "Lawman's Hand", "Hand of Chaos", "Inexhaustible Guardian",
           "Indomitable Phalanx", "Overchanneling", "Staggering Blows", "Seize the Moment", "Lie in Wait",
           "Command the Tempo", "Ambush Predator"}
 

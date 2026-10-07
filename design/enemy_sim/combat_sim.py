@@ -1004,7 +1004,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # where Parry was the Defense the target used.
                 parried = (not hit and pc.get('opp_def') == 'Parry/Dodge'
                            and target['parry'] - target.get('harried', 0) >= target['dodge'] - target.get('harried', 0))
-                if 'Furious Rage' in passives and (hit or parried):
+                # 'Bleeding Strikes' is a test-only passive: this trigger
+                # without the can't-Parry cost, to price the two halves apart.
+                if ('Furious Rage' in passives or 'Bleeding Strikes' in passives) and (hit or parried):
                     target['bleeding'] = target.get('bleeding', 0) + 1
                 # Lawman's Hand (T128): "Once per round, when one of your
                 # damaging attacks hits, you may Slow the target once."
