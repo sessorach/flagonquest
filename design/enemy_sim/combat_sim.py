@@ -562,7 +562,12 @@ def _roll_initiative(pcs, enemies, trace):
     reorder turn order mid-fight) isn't modeled, since it's an
     of-the-moment tactical choice this sim has no basis to make for a
     player."""
-    entries = [('party', p) for p in pcs] + [('enemy', e) for e in enemies]
+    # A unit with more than one turn a round (a 4-slot boss, see
+    # tunables.TURNS_BY_SLOTS) gets one entry per turn, each flipped
+    # separately. The entries are separate tuples on purpose: run_fight
+    # tracks who's acted by entry, not by unit.
+    entries = [('party', p) for p in pcs] + [('enemy', e) for e in enemies
+                                             for _ in range(T.TURNS_BY_SLOTS.get(e.get('slots'), 1))]
     scores = {}
     for i, (_, u) in enumerate(entries):
         flipper = flip_best_of(2) if 'One Eye Behind You' in u.get('passives', ()) else flip()
@@ -1658,12 +1663,14 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
         # its turn later this round, which is most of what Stagger is
         # for. The old loop walked a snapshot of the order, so every
         # shift waited until next round. `acted` stops a unit moved
-        # earlier past units that already went from acting twice.
+        # earlier past units that already went from acting twice. It holds
+        # order entries, not units, so a two-turn boss gets both turns.
         acted = set()
         while True:
             nxt = None
-            for side, unit in order:
-                if id(unit) in acted or unit['health'] <= 0:
+            for entry in order:
+                side, unit = entry
+                if id(entry) in acted or unit['health'] <= 0:
                     continue
                 # Lie in Wait (T193): "When your turn would start, you may
                 # first Stagger yourself up to three times. If you do,
@@ -1676,14 +1683,14 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                     unit['liw_luck'] = _shift_in_order(order, unit, T.LIE_IN_WAIT_PLACES)
                     if unit['liw_luck'] > 0:
                         break  # rescan from the top; someone else is next now
-                nxt = (side, unit)
+                nxt = entry
                 break
             else:
                 break  # everyone alive has acted
             if nxt is None:
                 continue
             side, unit = nxt
-            acted.add(id(unit))
+            acted.add(id(nxt))
             unit['acted_round'] = rnd
             if side == 'party':
                 made, dealt = _take_pc_turn(unit, pcs, enemies, rnd, movement, trace, party_log, order)

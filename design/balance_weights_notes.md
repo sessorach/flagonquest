@@ -9336,3 +9336,41 @@ fights per mix:
   boss works for four PCs (more Health and more turns per round, or a
   higher Level), since a 2-slot boss alone is half an encounter by the
   Slot rules. The Bleeding weight stays at 4 a stack until then.
+
+### Solo boss: 4 Slots, two turns a round (2026-10-07)
+
+Per the designer: a solo boss for a party of four is a **4-slot** enemy
+that takes **two turns a round**. In the sim: `tunables.SLOT_MULTIPLIER`
+gets 4 → 9 (the same curve, each doubling of Slots triples Health and
+Upgrades), and `tunables.TURNS_BY_SLOTS = {4: 2}` gives the boss a
+second place in the turn order with its own Reflex flip. `run_fight`
+now tracks who's acted by order entry instead of by unit, so both turns
+happen. **Brute Warlord (L2)** is the Brute at 4 Slots: 105 Health.
+Party A beats it 71% of the time, in 4.9 rounds, with 37% of its
+Health left on average (losses count as 0), a hard fight but a fair one. The 2-slot boss
+alone stays as the **Lone Elite** mix for the record.
+
+Results (Hilde, Browndog, Carrick, Sable), 800 fights each:
+
+| Test | Values | Sum | Pooled, rescaled to 12.5 | Curve |
+|---|---|---|---|---|
+| Bleeding Strikes | +18.2 +16.4 +25.9 +29.2 | 89.7 | 14.6 | ~13.9 (9/29 estimate) |
+| Bleeding Dump (5 stacks) | +18.3 +18.6 +19.4 +19.8 | 76.1 | 12.4 | 11.5 |
+| Plus One Damage | +14.8 +12.5 +24.3 +25.4 | 77.0 | 12.5 | 12.5 |
+
+Letting the boss bleed out changes nothing here (one enemy, nothing
+else to hit), so both targeting modes read the same.
+
+- **Against a solo boss, THE TABEL's Bleeding weight is right.** The
+  5-stack dose reads 12.4 against the curve's 11.5 (107%), and Bleeding
+  on every hit 14.6 against ~13.9. Every stack gets to tick.
+- **So Bleeding is a boss effect.** Against the standard four-enemy
+  fights it's worth about a fifth (the dose) to two-fifths (per hit) of
+  the curve; against a solo boss, all of it.
+- **Rules question this raised:** Fleeting effects lose a stack at the
+  end of the bearer's turn, so a two-turn boss loses two a round. That
+  speeds up its Bleeding (good for the party) but halves how long its
+  Crippled, Slowed or Harried last. The sim does it that way, matching
+  the rules as written.
+- The Bleeding weight stays pending the designer's call on how to blend
+  boss and ordinary fights.

@@ -243,10 +243,13 @@ ENCOUNTERS = {
 CURRENT_MIXES = ("Frontline", "Shield Wall", "Warband", "Horde")
 
 # Boss fights (2026-10-07), Level 2 only: a long-lived target, which is
-# where Bleeding should pay off most. Solo Boss is one 2-slot boss alone,
-# so it's 2 Slots against 4 PCs and easy on purpose; Boss and Guards adds
-# two standard Brutes for a full 4 Slots. Not in CURRENT_MIXES.
-ENCOUNTERS[2]["Solo Boss"] = ["Brute Boss (L2)"]
+# where Bleeding should pay off most. Solo Boss is one 4-slot boss with
+# two turns a round (tunables.TURNS_BY_SLOTS); Boss and Guards is a
+# 2-slot boss plus two standard Brutes. Both are 4 Slots. Lone Elite (the
+# 2-slot boss alone, 2 Slots) is kept for the record: it died in two
+# rounds. Not in CURRENT_MIXES.
+ENCOUNTERS[2]["Solo Boss"] = ["Brute Warlord (L2)"]
+ENCOUNTERS[2]["Lone Elite"] = ["Brute Boss (L2)"]
 ENCOUNTERS[2]["Boss and Guards"] = ["Brute Boss (L2)", "Brute (L2)", "Brute (L2)"]
 BOSS_MIXES = ("Solo Boss", "Boss and Guards")
 

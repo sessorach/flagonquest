@@ -6,7 +6,8 @@ Health ladder, with the party either focus-firing (the default) or
 leaving an enemy its Bleeding will finish (tactics.LET_BLEED_OUT).
 
 Usage: python3 bleed_check.py boss   (Solo Boss, Boss and Guards; both modes)
-       python3 bleed_check.py std    (the standard four mixes; bleed-out only)"""
+       python3 bleed_check.py std    (the standard four mixes; bleed-out only)
+       python3 bleed_check.py solo   (Solo Boss only; both modes)"""
 import sys, statistics as st
 import os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, sample_enemies as se, tactics
@@ -23,9 +24,9 @@ def run(mixes, carrier, style, health, trials=800):
     return st.mean(sc), st.mean(rounds)
 groups=[("Standard four",se.CURRENT_MIXES)]+[(m,(m,)) for m in se.BOSS_MIXES]
 which=sys.argv[1]
-for bleed_out in ([False,True] if which!="std" else [True]):
+for bleed_out in ([True] if which=="std" else [False,True]):
   tactics.LET_BLEED_OUT=bleed_out
-  for name,mixes in (groups[:1] if which=="std" else groups[1:]):
+  for name,mixes in {"std": groups[:1], "boss": groups[1:], "solo": groups[1:2]}[which]:
     base,rd=run(mixes,CARRIERS[0],None,0); plus2,_=run(mixes,CARRIERS[0],None,2); per=(plus2-base)/8
     print(f"== {name} | bleed-out={bleed_out} | base {base:.1f} (rounds {rd:.1f}) +2H {plus2:.1f} per {per:.2f}",flush=True)
     for t in TESTS:

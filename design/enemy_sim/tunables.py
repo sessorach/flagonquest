@@ -24,7 +24,15 @@ ABILITY_RATE = {1: 2, 2: 3, 3: 4, 4: 5, 5: 8}
 # Half-slot minions: 1/3 of a full enemy's Health. 1/2 was tried
 # (2026-10-01) and was far too generous: split into minions, real
 # enemies got much harder (horde_experiments.py; ENEMY_ENCOUNTER_DESIGN.md).
-SLOT_MULTIPLIER = {1: 1, 0.5: 1 / 3, 2: 3}
+# 4 Slots (2026-10-07, a solo boss for a party of four): 9, continuing
+# the same curve (each doubling of Slots triples Health and Upgrades).
+SLOT_MULTIPLIER = {1: 1, 0.5: 1 / 3, 2: 3, 4: 9}
+
+# ---- Encounter Slots -> turns per round ----
+# Per the designer (2026-10-07): a 4-slot solo boss takes two turns each
+# round, so it isn't out-acted four to one. Each turn gets its own place
+# in the turn order (its own Reflex flip). Anything not listed takes one.
+TURNS_BY_SLOTS = {4: 2}
 
 # ---- Movement mode (combat_sim.run_fight(..., movement=True)) ----
 # A bounded square arena, in meters ("space" and "meter" are the same

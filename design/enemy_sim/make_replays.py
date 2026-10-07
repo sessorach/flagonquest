@@ -35,6 +35,7 @@ ARCHIVE = os.path.join(HERE, "replays", "archive")
 MATCHUPS = [
     ("partyD_L2_vs_L2_frontline", ["Browndog (L2)", "Hanforth (L2)", "Felix (L2)", "Beornhard (L2)"], 2, "Frontline"),
     ("partyA_L2_vs_L2_horde", ["Hilde (L2)", "Browndog (L2)", "Carrick (L2)", "Sable (L2)"], 2, "Horde"),
+    ("partyA_L2_vs_L2_solo_boss", ["Hilde (L2)", "Browndog (L2)", "Carrick (L2)", "Sable (L2)"], 2, "Solo Boss"),
 ]
 
 
