@@ -15,7 +15,8 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-10-08 — Teaching the simulator to play like a real table
 
-The simulator now plays more like the designer's table: real Wounded rules, a 6–10 meter start with some line-of-sight trouble, and players who either dive in or hang back depending on their character. Checked against how fights actually go at the table, enemies last about as long as they should, but the party gets hurt a lot more than it does in real play.
+The simulator now plays more like the designer's table: real Wounded rules, a 6–10 meter start with some line-of-sight trouble, and players who dive in or hang back depending on their character. Enemies last about as long as they do at the table, but the party takes about a third more damage than in real play, so the next step is finding where that third goes.
+- First real player build (HOLE, ~90 XP) added for comparison: about a quarter of its XP goes outside combat, and it hits noticeably less often than the sample characters.
 
 ### 2026-10-07 — Active Style on the sheet
 

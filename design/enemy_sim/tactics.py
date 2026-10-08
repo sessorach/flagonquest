@@ -59,7 +59,14 @@ def target_first(unit, targets):
 
 def target_lowest_health(unit, targets):
     """Assassin: go for whoever's already hurt worst, unaffected by
-    position - registered under 'Assassin' below."""
+    position - registered under 'Assassin' below. With
+    T.ASSASSIN_READS = 'looks' (2026-10-08 test), it goes for whoever
+    *looks* squishiest instead, the way the designer describes writing
+    the tactic ("I go for the most squishy looking party member"): the
+    lowest max Health, then the lightest armor, current Health only as a
+    tiebreak - what a GM can see from across the table."""
+    if T.ASSASSIN_READS == 'looks':
+        return min(targets, key=lambda c: (c.get('max_health', c['health']), c.get('physres', 0), c['health']))
     return min(targets, key=lambda c: c['health'])
 
 

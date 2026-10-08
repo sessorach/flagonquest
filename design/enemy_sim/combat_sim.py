@@ -1239,6 +1239,17 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         if moved:
                             _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                                  in_range=in_range, spaces=_distance(ap_start, pc['pos']))
+        # A cautious melee PC uses spare movement to work round the edge
+        # of the fight, staying next to its target.
+        if plan is not None and plan.edge and movement_on and ap >= T.MOVE_AP_COST:
+            living = [e for e in enemies if e['health'] > 0]
+            spot = play_styles.edge_pos(pc, target, living) if living else None
+            if spot is not None:
+                start = pc['pos']
+                pc['pos'] = spot
+                ap -= T.MOVE_AP_COST
+                _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                     spaces=_distance(start, pc['pos']), via=f"{pc.get('play_style')}: round the edge")
         # A planned "attack, then back off": spend what AP is left
         # stepping away, until clear of the enemies the style minds.
         if plan is not None and plan.retreat and movement_on:
@@ -1746,6 +1757,14 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     # game logic on it), so it's safe to suffix here unconditionally.
     for i, e in enumerate(enemies, 1):
         e['name'] = f"{e['name']} {i}"
+        if T.ENEMY_ACCURACY_ADJ or T.ENEMY_DAMAGE_ADJ:
+            e['accuracy'] = e.get('accuracy', 0) + T.ENEMY_ACCURACY_ADJ
+            if e.get('attack_damage'):
+                e['attack_damage'] = max(0, e['attack_damage'] + T.ENEMY_DAMAGE_ADJ)
+            if isinstance(e.get('backup'), dict):
+                e['backup']['accuracy'] = e['backup'].get('accuracy', 0) + T.ENEMY_ACCURACY_ADJ
+                if e['backup'].get('attack_damage'):
+                    e['backup']['attack_damage'] = max(0, e['backup']['attack_damage'] + T.ENEMY_DAMAGE_ADJ)
     pc_attacks = 0
     pc_damage_dealt = 0
 

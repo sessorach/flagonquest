@@ -379,3 +379,16 @@ LOS_BLOCKED_TURN_CHANCE = 0.5
 PLAY_STYLES = True
 BACKLINE_KEEP_AWAY = 3   # spaces a ranged Back-liner keeps from every enemy
 RECKLESS_CHANCE = 0.05   # share of turns any PC plays like a Diver anyway
+
+# ---- How the Assassin tactic reads "squishy" (2026-10-08 test) ----
+# 'current': whoever has the least Health right now (finishes off the
+# hurt). 'looks': whoever looks squishiest - lowest max Health, then
+# lightest armor - the designer's own wording for the tactic.
+ASSASSIN_READS = 'current'
+
+# ---- Enemy offense dials (2026-10-08, measurement only) ----
+# Flat changes to every enemy's Accuracy and attack damage, applied to
+# the fight's own copies in run_fight - for sizing the gap between the
+# sim's encounters and the designer's table, not a design change.
+ENEMY_ACCURACY_ADJ = 0
+ENEMY_DAMAGE_ADJ = 0

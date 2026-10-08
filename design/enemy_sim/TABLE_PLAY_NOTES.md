@@ -226,3 +226,66 @@ party takes. Candidates: encounter difficulty itself, PC tools the sim
 doesn't model (Brace, healing items, most Techniques that aren't
 attacks), and how the GM runs enemies (every sim enemy attacks twice a
 turn when it can).
+
+## Second round (2026-10-08, after the designer's answers)
+
+**Designer's answers.** Enemies double attack like players unless
+there's a reason not to (the Fighting Styles that capped them didn't pan
+out; every current enemy already attacks twice). A PC going Down should
+be a bit uncommon. Between fights players top off their Health, and they
+have some Techniques that help defensively. A melee character who can
+double attack prefers that to playing safe, but won't close in on
+several enemies just to attack once, and uses spare movement to work
+round the edges of a fight.
+
+**Melee play style reworked to match.** A melee Skirmisher (Felix)
+double attacks whenever something's in reach, crowd or not; otherwise it
+only steps in where it ends up next to its target alone, attacks once,
+and spends the spare move working round the edge (`play_styles.
+_plan_melee_cautious`, `edge_pos`). A melee Back-liner (Hanforth) does
+the same, but only for enemies an ally is already fighting. A ranged
+Skirmisher (Carrick) attacks once and steps away only with two or more
+enemies on it. Party D's turn mix afterwards: Felix double attacks 40%
+of his turns and steps in beside one enemy 47%; Hanforth double attacks
+45% and holds off 27%.
+
+| | Party A: rounds / loses / Down / Wounded | Party D |
+|---|---|---|
+| First play styles | 4.3 / 10% / 71% / 95% | 8.8 / 41% / 78% / 99% |
+| Melee reworked | 4.3 / 10% / 70% / 94% | 5.9 / 17% / 62% / 96% |
+
+**The first real build: HOLE** (~90 XP; archive/player_builds/
+HOLE_2026-10-08.md, sample_pcs.csv's `HOLE (90 XP)`). About a quarter of
+its XP is outside combat (Spacious Gut, Gorger, Vow of Poverty, Survival,
+Theurgy with no Theurgy Technique), and its best attack is +5 against
+the Level 2 samples' +7 to +9. The share link carries no gear or
+per-Technique choices, so its weapon (Soulblade's type), armor and
+Temper Soulblade's Level and power are assumptions for now.
+
+**Two checks on the damage the party takes:**
+
+- *How Assassins read "squishy"* (`ASSASSIN_READS`). Half the enemies in
+  these mixes are Assassins, which go for the PC with the least Health
+  right now. Going for whoever *looks* squishiest instead (lowest max
+  Health, then lightest armor, the designer's own wording) made Party A
+  worse, Down 82%: the same two light PCs get chased all fight. Kept as
+  it was.
+- *How far off the enemies' offense is* (`ENEMY_ACCURACY_ADJ`,
+  `ENEMY_DAMAGE_ADJ`, measurement only, 300 fights per mix):
+
+| Enemy offense | Party A: loses / Down / Wounded / Health left | Party D |
+|---|---|---|
+| As built | 10% / 70% / 94% / 54 | 17% / 62% / 96% / 57 |
+| Accuracy −1 | 7% / 61% / 90% / 60 | 10% / 54% / 93% / 65 |
+| Accuracy −2 | 4% / 56% / 84% / 66 | 5% / 46% / 89% / 71 |
+| Damage −1 | 2% / 52% / 88% / 68 | 2% / 31% / 92% / 78 |
+| Damage −2 | 0% / 27% / 73% / 80 | 0% / 9% / 64% / 89 |
+| **Table** | **~0 / uncommon / ~half** | |
+
+The table sits between −1 and −2 damage per enemy hit, roughly a third
+less incoming damage. A hit enemy acting again barely moves with any of
+these (47–57% after a hit it survived), so it stays on target. Where
+that third goes at the table is the open question: PC defensive
+Techniques the sim doesn't model (Brace's 3 Protected soaks a hit and a
+half), heavier armor or more Resist on real builds, or enemy damage in
+the encounter builder running a bit hot.

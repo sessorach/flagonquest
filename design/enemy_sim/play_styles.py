@@ -6,17 +6,19 @@ fragile ones hang back and do what they safely can; some sit in between.
 - **Diver** - the sim's default turn (tactics.PARTY_TARGETING): goes for
   the best target it can reach and doesn't mind where it ends up.
   `plan_turn` returns None for a Diver, so combat_sim runs its usual turn.
-- **Skirmisher** - attacks twice from where it stands if it can; if it's
-  standing next to more enemies than it's comfortable with, attacks once
-  and steps away. Otherwise moves only as far in as it safely can: a
-  melee skirmisher will end next to its own target but not next to a
-  second enemy; a ranged one won't end next to any enemy.
+- **Skirmisher** - attacks twice from where it stands if it can. A
+  melee skirmisher, per the designer (2026-10-08), takes a double attack
+  over playing safe, but won't close in on a crowd for a single attack:
+  it only moves in where it ends up next to its target alone, and uses
+  any spare movement to work around the edge of the fight. A ranged
+  skirmisher attacks once and steps away if two or more enemies are on
+  it, and otherwise won't end its turn next to an enemy.
 - **Back-liner** - keeps BACKLINE_KEEP_AWAY spaces from every enemy if it
   can. Shoots twice when something's in range; with an enemy closing in,
   attacks once and backs off; otherwise approaches only as far as is
   safe, keeping enough AP for one attack. A melee back-liner (Hanforth,
-  a healer with fists) only fights hit-and-run: step in, hit once, step
-  back out.
+  a healer with fists) plays like a melee skirmisher, but only goes
+  after enemies an ally is already fighting.
 
 Plus RECKLESS_CHANCE of any turn played like a Diver regardless, since
 real players get reckless for the fun of it.
@@ -49,6 +51,7 @@ class Plan:
     pre_moves: int = 0           # move actions that costs
     max_attacks: int = 2
     retreat: bool = False        # spend leftover AP backing away afterwards
+    edge: bool = False           # spend leftover AP working round the edge (melee)
     note: str = ""
 
 
@@ -149,11 +152,13 @@ def _moves_for(spaces, speed):
 def _plan_skirmisher(pc, targets, allies, ap):
     reach, speed, here = _reach(pc), max(1, tactics._speed(pc)), pc['pos']
     melee = reach <= T.MELEE_RANGE
-    limit = 1 if melee else 0  # enemies it'll end its turn next to
+    if melee:
+        return _plan_melee_cautious(pc, targets, allies, ap, speed, here, engaged_only=False)
+    limit = 0  # enemies a ranged skirmisher will end its turn next to
     in_reach = [t for t in targets if _dist(here, t['pos']) <= reach]
     if in_reach:
         t = _best(pc, in_reach, allies)
-        if len(_adjacent(here, targets)) > limit:
+        if len(_adjacent(here, targets)) >= 2:
             return Plan(target=t, max_attacks=1, retreat=True, note="attack, then step away")
         return Plan(target=t, max_attacks=2, note="double attack from here")
     # One move, then one attack, ending somewhere comfortable.
@@ -178,7 +183,7 @@ def _plan_skirmisher(pc, targets, allies, ap):
 def _plan_backliner(pc, targets, allies, ap):
     reach, speed, here = _reach(pc), max(1, tactics._speed(pc)), pc['pos']
     if reach <= T.MELEE_RANGE:
-        return _plan_hit_and_run(pc, targets, allies, ap, speed, here)
+        return _plan_melee_cautious(pc, targets, allies, ap, speed, here, engaged_only=True)
     keep = T.BACKLINE_KEEP_AWAY
     in_reach = [t for t in targets if _dist(here, t['pos']) <= reach]
     threatened = bool(_within(here, targets, keep))
@@ -210,18 +215,62 @@ def _plan_backliner(pc, targets, allies, ap):
                 note="edge closer, nothing safe to hit")
 
 
-def _plan_hit_and_run(pc, targets, allies, ap, speed, here):
+def _spots_next_to(t, here, max_spaces, enemies):
+    """Spaces adjacent to `t` within `max_spaces` of `here` that are next
+    to no other enemy, best first: fewest enemies within 2 spaces (the
+    edge of the fight), then the shortest walk."""
+    spots = []
+    for dx in (-1, 0, 1):
+        for dy in (-1, 0, 1):
+            if dx == dy == 0:
+                continue
+            sq = movement.clamp((t['pos'][0] + dx, t['pos'][1] + dy))
+            if _dist(sq, t['pos']) != T.MELEE_RANGE or _dist(here, sq) > max_spaces:
+                continue
+            if len(_adjacent(sq, enemies)) != 1:
+                continue
+            spots.append((len(_within(sq, enemies, 2)), _dist(here, sq), sq))
+    return [sq for _, _, sq in sorted(spots)]
+
+
+def edge_pos(pc, target, enemies):
+    """Where a cautious melee PC steps with spare movement after its
+    attack: another space next to its target (if it's still up) that's
+    further from the rest of the fight, or None to stay put."""
+    if target is None or target['health'] <= 0:
+        return None
+    speed = max(1, tactics._speed(pc))
+    here_score = len(_within(pc['pos'], enemies, 2))
+    spots = [sq for sq in _spots_next_to(target, pc['pos'], speed, enemies)
+             if len(_within(sq, enemies, 2)) < here_score]
+    return spots[0] if spots else None
+
+
+def _plan_melee_cautious(pc, targets, allies, ap, speed, here, engaged_only):
+    """A melee PC that isn't a Diver (designer, 2026-10-08): double attack
+    whenever something's already in reach, crowd or not; otherwise only
+    move in where it ends up next to its target alone (a Back-liner only
+    for enemies an ally is already fighting), attack once, and use the
+    spare movement to work round the edge. With nothing like that
+    available, edge closer without ending next to any enemy."""
     adjacent = _adjacent(here, targets)
     if adjacent:
-        return Plan(target=_best(pc, adjacent, allies), max_attacks=1, retreat=True, note="hit, then step back")
-    if ap >= 2 * T.MOVE_AP_COST + T.ATTACK_AP_COST:
-        options = []
-        for t in targets:
-            dest = movement.move_toward(here, t['pos'], speed, stop_at=T.MELEE_RANGE)
-            if _dist(dest, t['pos']) <= T.MELEE_RANGE and len(_adjacent(dest, targets)) <= 1:
-                options.append((rating(pc, t, allies), t, dest))
-        if options:
-            _, t, dest = max(options, key=lambda o: (o[0], -o[1]['health']))
-            return Plan(target=t, pre_pos=dest, pre_moves=1, max_attacks=1, retreat=True,
-                        note="step in, hit, step back")
-    return Plan(target=None, max_attacks=0, note="hold back")
+        return Plan(target=_best(pc, adjacent, allies), max_attacks=2, edge=True, note="double attack from here")
+    pool = targets
+    if engaged_only:
+        pool = [t for t in targets if any(_dist(t['pos'], a['pos']) <= T.MELEE_RANGE for a in allies if a is not pc)]
+    max_moves = (ap - T.ATTACK_AP_COST) // T.MOVE_AP_COST
+    options = []
+    for t in pool:
+        spots = _spots_next_to(t, here, speed * max_moves, targets)
+        if spots:
+            options.append((rating(pc, t, allies), t, spots[0]))
+    if options and max_moves >= 1:
+        _, t, sq = max(options, key=lambda o: (o[0], -o[1]['health']))
+        return Plan(target=t, pre_pos=sq, pre_moves=_moves_for(_dist(here, sq), speed), max_attacks=1, edge=True,
+                    note="move in beside one enemy, attack once")
+    t = _best(pc, pool or targets, allies)
+    dest, spaces = _safe_approach(here, t['pos'], speed * (ap // T.MOVE_AP_COST), targets, T.MELEE_RANGE,
+                                  T.MELEE_RANGE)
+    return Plan(target=None, pre_pos=dest, pre_moves=_moves_for(spaces, speed), max_attacks=0,
+                note="edge closer, nothing safe to hit")
