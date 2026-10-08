@@ -335,3 +335,38 @@ count, Party A carriers): a single stack lands 24% of the time against
 **1.6 Value**. Bleeding on every hit or Parry lands 0.97 points a fight;
 a 5-stack dose 0.26, barely more than one stack. That matches the Level
 2 reads (1.6 as built, 1.9 at enemy Health ×1.25).
+
+## The sample roster (agreed 2026-10-08)
+
+Ten Level 1 characters as the sim's representative sample, only real
+builds from the designer (Builder Export files, which keep armor,
+weapons and Technique choices; share links drop those). The designer
+will level them to Level 2 and Level 3 too: around 125 and 175 XP puts
+each in the middle of its band (Level 1 enemies up to ~100 XP, Level 2
+from 100 to 150, and so on).
+
+| # | Character | Archetype | Status |
+|---|---|---|---|
+| 1 | Hilde | Barbarian | uploaded (export, 2026-09-20) |
+| 2 | Browndog | Guardian | uploaded (export, 2026-09-20) |
+| 3 | Carrick | Rogue | uploaded (export, 2026-09-20) |
+| 4 | Jackal | Alchemist | uploaded (export, 2026-09-20) |
+| 5 | Beornhard | Sorcerer | uploaded (export, 2026-09-21) |
+| 6 | Sable | Archer | uploaded (export, 2026-09-21) |
+| 7 | Hanforth | Healer | uploaded (export, 2026-09-21) |
+| 8 | Felix | Monk ("a monk with a little sorcery") | designer building; the current row is a stand-in |
+| 9 | Enith | Duelist (Soulblade, Smithing) | designer building |
+| 10 | (to be named) | Leader | designer building |
+
+Not part of the sample: Rook and Wren (reference builds made to test
+movement), HOLE (a real ~90 XP build, set aside for now), the Baseline
+Tier rows, and every current `(L2)` row (extrapolated from the Level 1
+builds, mostly into combat, not built by the designer).
+
+Sample parties to build from it once the last three are in:
+
+- **Typical table**: Browndog, Hanforth, Sable, Beornhard (one
+  front-liner, a healer, an archer, a mage).
+- **Two front-liners**: Hilde, Browndog, Carrick, Sable (today's Party A).
+- **Skirmishers**: Enith, Felix, Jackal, Hanforth.
+- **Support-heavy**: Browndog, the Leader, Sable, Beornhard.
