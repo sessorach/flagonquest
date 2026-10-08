@@ -42,6 +42,19 @@ every sample party against every encounter mix in
 `sample_enemies.ENCOUNTERS`; `incoming_attacks.py` counts who gets
 attacked.
 
+## How the table actually plays: `TABLE_PLAY_NOTES.md`
+
+The designer's notes on how real players fight (who dives in, who hangs
+back, how cards get used, how builds spread their XP), the calibration
+targets the sim is checked against (fight length, how often someone
+goes Down or is Wounded, how often a hit enemy acts again), and the
+results so far. `calibrate.py` prints those checks for the sample
+parties; every table-play change is a switch in `tunables.py`
+(`WOUNDED_RULES`, `RETARGET_RANGE_FIX`, `LINE_OF_SIGHT`, `PLAY_STYLES`)
+so `calibrate.py -s NAME=False` shows what one change does on its own.
+`play_styles.py` holds the Diver / Skirmisher / Back-liner turn plans
+(sample_pcs.csv's Play Style column).
+
 ## Files
 
 - **`tunables.py`** — every number that's still subject to revision:
@@ -348,6 +361,8 @@ python3 sample_enemies.py     # print every stat block in sample_enemies.csv
 python3 party.py              # print every stat block in sample_pcs.csv
 python3 narrate_fight.py 1 1 3 --party Hilde,Browndog,Sable,Beornhard --html out.html
                                # narrate one seeded fight, and save a graphical replay to open yourself
+python3 calibrate.py           # the sample parties against the table's calibration targets
+python3 calibrate.py -s PLAY_STYLES=False   # ...with one table-play switch turned off
 ```
 
 Testing one specific build against another (an item-balancing check, an

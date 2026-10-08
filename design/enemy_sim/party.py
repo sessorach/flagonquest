@@ -110,6 +110,7 @@ import csv
 import math
 import os
 import tunables as T
+import play_styles
 
 # Encounter Techniques that replace a normal attack, from techniques.csv.
 # Each builds the attack profile combat_sim's attack loop overlays for
@@ -160,7 +161,7 @@ def _pc_dict(row, index, good_luck):
               ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
                "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus",
                "Heal Range", "Passives", "Battle Tactic", "Parry Weapons", "Encounter Techniques",
-               "Defense Choices")}
+               "Defense Choices", "Play Style")}
     parry = 8 + skill_total(stats, skills, "Melee")
     # Raw Acrobatics Skill Total - captured before Armor's own Dodge
     # modifier folds into `dodge` below, since Blinkstep (T077, "Shift
@@ -452,6 +453,7 @@ def _pc_dict(row, index, good_luck):
               physres=physres, elemres=elemres, armor=armor,
               health=health, max_health=health, speed=speed, reflex=reflex,
               crippled=0, vulnerable=0, bleeding=0, good_luck=good_luck,
+              shallow_max=T.BASE_SHALLOW_HEALTH,
               strategy=strategy, heal_uses_left=hand_size // 4,
               heal_cards=heal_cards, heal_bonus=heal_bonus, heal_range=heal_range,
               passives=passives, battle_tactic=battle_tactic,
@@ -462,6 +464,11 @@ def _pc_dict(row, index, good_luck):
               presence_skill_total=skill_total(stats, skills, "Presence"))
     if attack_range is not None:
         pc["attack_range"] = attack_range
+    # How cautiously this PC plays (play_styles.py); a blank cell falls
+    # back to what the build suggests.
+    pc["play_style"] = ((row.get("Play Style") or "").strip()
+                        or play_styles.default_style(attack_range, armor, "Shield" in parry_weapons,
+                                                     strategy == "support_healer"))
     if weapon_uses_left is not None:
         pc["weapon_uses_left"] = weapon_uses_left
     if tech_attacks:

@@ -314,7 +314,7 @@ PARTY_FORMATION_SPACING = 2
 # original fixed 16m corner-to-corner start this mode shipped with.
 # run_fight's own `start_gap` param can override this with a fixed
 # distance instead, for a controlled before/after comparison.
-START_GAP_RANGE = (5, 10)
+START_GAP_RANGE = (6, 10)  # was (5, 10); 6-10 per the designer, 2026-10-08
 
 # ---- TODO: PC power budget from loot - partially resolved, not fully ----
 # The designer's own point: PCs get a small power bump from the loot they
@@ -343,3 +343,39 @@ LIE_IN_WAIT_PLACES = 2
 # 1 more Health loss; stacks still fall off at the end of its own turn,
 # for nothing. Only the party's Bleeding on enemies follows this switch.
 BLEED_MODE = 'own_turn'
+
+# ---- Wounded (2026-10-08) ----
+# rulebook.md: you lose Shallow Health first, then Deep; while all your
+# Shallow Health is gone you're Wounded (Bad Luck on all flips, -2 to all
+# Defenses and Speed). Every sample PC has the base 5 Shallow (Toughened
+# Body adds Deep). The sim keeps one `health` number and tracks Shallow
+# alongside it (tactics.sync_wounded). WOUNDED_RULES off still tracks it
+# for the calibration counts, but applies no penalties and keeps the old
+# half-Health trigger for heals.
+BASE_SHALLOW_HEALTH = 5
+WOUNDED_RULES = True
+
+# ---- Retargeting after a kill (2026-10-08) ----
+# A PC that kills its target mid-turn has to walk to the next one before
+# attacking it. Off reproduces the old behavior (it attacked the new
+# target from wherever it stood, ~2% of PC attacks out of range).
+RETARGET_RANGE_FIX = True
+
+# ---- Line of sight (2026-10-08) ----
+# Per the designer: there are some line-of-sight issues, not many, and
+# whether an archer has to move to get a shot is about a coin toss -
+# sometimes they can sit back and double attack all fight. Modeled as:
+# half of fights are cluttered; in a cluttered fight, a ranged attacker
+# (either side) that hasn't moved this turn spends a move action
+# repositioning half the time (combat_sim._los_blocked).
+LINE_OF_SIGHT = True
+LOS_CLUTTERED_FIGHT_CHANCE = 0.5
+LOS_BLOCKED_TURN_CHANCE = 0.5
+
+# ---- Play styles (2026-10-08, play_styles.py) ----
+# Per the designer: tanky PCs dive in, fragile ones hang back, some sit
+# in between. sample_pcs.csv's Play Style column (Diver, Skirmisher,
+# Back-liner); off makes every PC a Diver (the old behavior).
+PLAY_STYLES = True
+BACKLINE_KEEP_AWAY = 3   # spaces a ranged Back-liner keeps from every enemy
+RECKLESS_CHANCE = 0.05   # share of turns any PC plays like a Diver anyway

@@ -132,9 +132,97 @@ play-style pieces are in.
 7. **A fast mode.** Once the rich version reads right, keep only the
    pieces that move the results, so batch runs stay quick.
 
-### Calibration targets (to fill in with the designer)
+### Calibration targets (designer, 2026-10-08)
 
-- An enemy that's taken a hit gets another turn: **about half the time**.
-- Typical fight length in rounds: ?
-- How often the party loses an on-level fight, and how often someone
-  goes Down or ends Wounded: ?
+For an on-level fight (most fights are on level):
+
+- **Length: about three rounds, five at the outside.** Some fights end
+  fast: the party takes a couple of bad hits, piles on, and drops them.
+- **The party basically never loses.** Losing outright is very rare.
+- **Someone goes Down less than once every few fights.** It happens:
+  a dangerous enemy lands a couple of hits, or the enemies focus one PC
+  and drop them before the party mops up.
+- **Someone ends up Wounded about every other fight.** Often near the
+  end, so it's not a big worry; sometimes they need topping up. Something
+  the party keeps in mind, not usually a problem.
+- **A hit enemy gets another turn about half the time,** after its first
+  hit and after any hit alike. The usual shape: the party lands a hit,
+  the enemy takes its turn, the party piles onto it because it's hurt,
+  and about half the time it's dropped before it acts again. Focus isn't
+  perfect: one enemy gets focused down while another takes a few
+  incidental hits, then that one gets focused next.
+
+Real party builds (~90 XP, the current campaign) are on their way, for
+a more realistic spread of what players actually build.
+
+## First calibration runs (2026-10-08)
+
+`enemy_sim/calibrate.py`, 400 fights per mix on the standard four Level 2
+mixes, Party A (Hilde, Browndog, Carrick, Sable) and Party D (Browndog,
+Hanforth, Felix, Beornhard). Each stage adds one piece to the one
+before; all are switches in tunables.py.
+
+1. **Wounded** (`WOUNDED_RULES`): the sim had no Shallow/Deep split, so
+   PCs never suffered Wounded's Bad Luck and -2 to Defenses and Speed.
+   Now tracked (every sample PC has 5 Shallow), and heals go to whoever
+   is Wounded.
+2. **Retarget fix** (`RETARGET_RANGE_FIX`): after a kill, a PC used to
+   attack its next target from wherever it stood, in range or not (~2%
+   of all PC attacks). Now it has to walk there first.
+3. **Battlefield**: 6–10 m start (was 5–10), and line of sight
+   (`LINE_OF_SIGHT`): half of fights are cluttered, and in those a ranged
+   attacker on either side that hasn't moved spends a move action
+   repositioning half the time.
+4. **Play styles** (`PLAY_STYLES`, `play_styles.py`, the Play Style
+   column in sample_pcs.csv): Hilde and Browndog are Divers; Carrick and
+   Felix Skirmishers; Sable, Beornhard and Hanforth Back-liners (Hanforth
+   fights hit-and-run, since his weapon is his fists).
+
+| Stage | Party A: rounds / loses / Down / Wounded | Party D: rounds / loses / Down / Wounded |
+|---|---|---|
+| Before | 3.6 / 6% / 60% / 88% | 4.9 / 7% / 55% / 94% |
+| + Wounded | 3.8 / 10% / 66% / 92% | 5.4 / 14% / 61% / 94% |
+| + retarget fix | 3.9 / 11% / 67% / 93% | 5.4 / 15% / 62% / 94% |
+| + battlefield | 4.1 / 10% / 66% / 94% | 5.6 / 14% / 60% / 95% |
+| + play styles | 4.3 / 10% / 71% / 95% | 8.8 / 41% / 78% / 99% |
+| **Table** | **~3 (5 max) / ~0 / < 1 in 3 / ~1 in 2** | same |
+
+"Down" and "Wounded" are the share of fights where at least one PC got
+there at some point.
+
+A hit enemy acting again (after its first hit / a hit it survived):
+
+| Stage | Party A | Party D |
+|---|---|---|
+| Before | 39% / 44% | 48% / 54% |
+| + play styles (all stages) | 45% / 53% | 57% / 68% |
+| **Table** | **about half** | |
+
+**What it says.**
+
+- **Enemies last about as long as at the table.** A hit enemy that
+  survives the hit acts again 44–57% of the time, right around "about
+  half," before any change to enemy Health. (Counting killing blows as
+  hits drags "any hit" down to 26–34%, but a killing blow can't be
+  followed by a turn, so it's not the comparison the designer meant.)
+- **The party gets hurt far more than at the table**: someone Down in
+  55–78% of fights against under a third, someone Wounded in nearly
+  every fight against about half, and losses of 6–41% against roughly
+  never. Party A loses about half its total Health in an average fight.
+  Per PC (before play styles): Carrick goes Down in about half of all
+  fights, Hilde and Browndog in about a quarter.
+- **Every step toward real play makes the party weaker**, which widens
+  that gap instead of closing it. Play styles hit Party D hard: with
+  Hanforth holding back (56% of his turns) and Felix refusing to stand
+  next to two enemies (25%), Browndog is the only PC in melee and gets
+  swarmed (Down 64% of fights).
+- **The encounters were tuned to a harder target.** The Level 2 mixes
+  were settled in the Horde experiments (ENEMY_ENCOUNTER_DESIGN.md) at
+  "79–92% wins, with the party keeping about half its Health." The table
+  is easier than that.
+
+So the next question isn't enemy Health; it's how much damage the
+party takes. Candidates: encounter difficulty itself, PC tools the sim
+doesn't model (Brace, healing items, most Techniques that aren't
+attacks), and how the GM runs enemies (every sim enemy attacks twice a
+turn when it can).

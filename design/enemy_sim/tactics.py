@@ -156,6 +156,48 @@ def target_bleed_spreader(unit, targets):
     return min(targets, key=lambda c: (c.get('bleeding', 0) > 0, -(c['health'] - c.get('bleeding', 0)), dist(c)))
 
 
+# ---- Wounded (2026-10-08) ----
+
+def sync_wounded(unit):
+    """Brings a PC's Shallow Health up to date with its `health` and
+    returns whether it's Wounded (all Shallow gone, still standing).
+    The sim keeps one Health number; Shallow is tracked from how it
+    changes: a loss comes off Shallow first, a heal restores Shallow
+    first (a player heals Shallow to shake off Wounded). Also records
+    `was_wounded`/`was_downed` for the calibration counts. Enemies have
+    no `shallow_max`, so they're never Wounded."""
+    smax = unit.get('shallow_max')
+    if smax is None:
+        return False
+    cur = unit['health']
+    last = unit.get('_last_health', unit['max_health'])
+    lost = unit.get('shallow_lost', 0)
+    if cur < last:
+        lost = min(smax, lost + (last - cur))
+    elif cur > last:
+        lost = max(0, lost - (cur - last))
+    unit['shallow_lost'], unit['_last_health'] = lost, cur
+    if cur <= 0:
+        unit['was_downed'] = True
+    wounded = lost >= smax and cur > 0
+    if wounded:
+        unit['was_wounded'] = True
+    return wounded
+
+
+def pc_wounded(unit):
+    """Wounded for rules purposes - only when T.WOUNDED_RULES is on."""
+    return bool(T.WOUNDED_RULES) and sync_wounded(unit)
+
+
+def needs_healing(unit):
+    """When a heal is worth spending on `unit`: Wounded, with the
+    Wounded rules on; otherwise the older half-Health stand-in."""
+    if T.WOUNDED_RULES and 'shallow_max' in unit:
+        return unit['health'] > 0 and sync_wounded(unit)
+    return 0 < unit['health'] <= unit['max_health'] / 2
+
+
 # ---- The party's default targeting (2026-10-07) ----
 # Per the designer: the party should go after enemies the way players
 # would, not just whoever has the least Health (which, at the start of a
@@ -294,8 +336,9 @@ def select_target(unit, targets, movement_on, allies=None):
 # decides how many of these a unit's turn actually gets to spend.
 
 def _speed(unit):
-    """Speed after Slowed (glossary.md: -1 Speed per stack), floored at 0."""
-    return max(0, unit['speed'] - unit.get('slowed', 0))
+    """Speed after Slowed (glossary.md: -1 Speed per stack) and Wounded
+    (-2), floored at 0."""
+    return max(0, unit['speed'] - unit.get('slowed', 0) - (2 if pc_wounded(unit) else 0))
 
 
 def move_approach(unit, target, reach):
@@ -451,7 +494,7 @@ def strategy_support_healer(pc, party, log):
     spend one on."""
     if pc.get('heal_uses_left', 0) <= 0:
         return 0
-    wounded = [p for p in party if 0 < p['health'] <= p['max_health'] / 2]
+    wounded = [p for p in party if needs_healing(p)]
     heal_range = pc.get('heal_range')
     if heal_range is not None and 'pos' in pc:
         wounded = [p for p in wounded if 'pos' in p and movement.distance(pc['pos'], p['pos']) <= heal_range]
@@ -516,7 +559,7 @@ def try_second_wind(pc, log=None):
         return False
     if pc.get('card_uses_left', 0) <= 0:
         return False
-    if not (0 < pc['health'] <= pc['max_health'] / 2):
+    if not needs_healing(pc):
         return False
     pc['card_uses_left'] -= 1
     heal = min(2, pc['max_health'] - pc['health'])

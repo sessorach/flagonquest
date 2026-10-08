@@ -204,6 +204,7 @@ import tactics
 from sample_enemies import make_level_encounter
 from party import make_party
 import cards
+import play_styles
 
 
 def flip():
@@ -482,15 +483,16 @@ def pc_defense_for(target, opp_def):
     harried = target.get('harried', 0)
     if 'Indomitable Phalanx' in target.get('passives', ()):
         harried = max(0, harried - 2)  # T132: "Ignore up to 2 of your stacks of Harried."
+    wounded = 2 if tactics.pc_wounded(target) else 0  # Wounded: -2 to all Defenses
     if opp_def == 'Parry/Dodge':
-        return max(target['parry'], target['dodge']) - harried
+        return max(target['parry'], target['dodge']) - harried - wounded
     if opp_def == 'Dodge':
-        return target['dodge'] - harried
+        return target['dodge'] - harried - wounded
     if opp_def == 'Bodily':
-        return target['bodily'] - vulnerable
+        return target['bodily'] - vulnerable - wounded
     if opp_def == 'Mental':
-        return target['mental'] - vulnerable
-    return target['dodge']
+        return target['mental'] - vulnerable - wounded
+    return target['dodge'] - wounded
 
 
 def _log(trace, **event):
@@ -640,11 +642,31 @@ def _find_extra_target(pc, primary, enemies, movement_on, mode):
     return None
 
 
+def _los_blocked(unit, reach, moved):
+    """Line of sight (2026-10-08, per the designer: whether an archer has
+    to move to get a shot is about a coin toss). In a cluttered fight
+    (tunables.LOS_CLUTTERED_FIGHT_CHANCE, rolled once per fight), a
+    ranged attacker that hasn't moved this turn has no clear shot
+    LOS_BLOCKED_TURN_CHANCE of the time and spends a move action
+    repositioning. One that already moved picked a spot with a clear
+    shot on the way. Melee attackers are never blocked."""
+    return (T.LINE_OF_SIGHT and unit.get('los_cluttered') and not moved
+            and reach > T.MELEE_RANGE and random.random() < T.LOS_BLOCKED_TURN_CHANCE)
+
+
+# The current step of run_fight's turn loop (one step = one unit's
+# turn), for the calibration counts: which enemy turns came after which
+# hits. A one-item list so the turn functions can read it.
+_STEP = [0]
+
+
 def _pc_status_bad_luck(pc, target):
     """Frightened (glossary.md): Bad Luck on actions targeting the
     creature who Frightened you. Taunted: Bad Luck on hostile actions
     that don't target the creature who Taunted you. Both only while
-    that creature's still up."""
+    that creature's still up. Wounded: Bad Luck on all flips."""
+    if tactics.pc_wounded(pc):
+        return True
     fr = pc.get('frightened_by') if pc.get('frightened', 0) > 0 else None
     if fr is not None and fr is target:
         return True
@@ -758,6 +780,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 bonus_target['protected'] -= protected_absorbed
                 dmg -= protected_absorbed
             bonus_target['health'] -= dmg
+            if dmg > 0:
+                bonus_target.setdefault('hit_steps', []).append((_STEP[0], bonus_target['health'] <= 0))
         if party_log:
             party_log(unit=pc['name'], action='attack', target=bonus_target['name'], roll=roll, defense=defense,
                        hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
@@ -790,53 +814,93 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
         ap -= _try_challenge(pc, pcs, enemies, movement_on, log=party_log)
         targets = [e for e in enemies if e['health'] > 0]
+        allies = [p for p in pcs if p['health'] > 0]
+        # Play styles (play_styles.py): a Skirmisher or Back-liner plans
+        # where to stand and how many attacks to make; a Diver (plan None)
+        # takes the usual turn below.
+        plan = (play_styles.plan_turn(pc, targets, allies, ap)
+                if (targets and movement_on and T.PLAY_STYLES) else None)
+        max_attacks = None
         if targets:
-            target = tactics.select_target(pc, targets, movement_on, allies=[p for p in pcs if p['health'] > 0])
-            # A Taunted PC goes for its Taunter - anything else has Bad Luck.
-            taunter = pc.get('taunted_by') if pc.get('taunted', 0) > 0 else None
-            if taunter is not None and taunter['health'] > 0:
-                target = taunter
-            in_range = True
-            if movement_on:
-                # Blinkstep (T077, synthetic test field, 0 AP, once per
-                # encounter): "Shift up to [half your Acrobatics Skill
-                # Total] meters" - glossary.md's [Shift] (ordinary
-                # movement, just Interrupt-immune and ignores Difficult
-                # Terrain, neither of which this simulator models).
-                # Applied BEFORE spend_movement_ap, not as a rescue after
-                # it - the Technique's real value is covering ground for
-                # FREE so AP-funded movement needs less (or none), not
-                # "you'd have failed to close the gap otherwise" (rare
-                # here - spend_movement_ap already burns up to all 4 AP
-                # closing any reachable distance, so it usually succeeds
-                # regardless; what it can't do is leave AP left over for
-                # an attack this same turn, which is exactly what
-                # Blinkstep buys). Only spent when there's an actual gap
-                # to close (`not already in range`) - a player wouldn't
-                # burn a once-per-encounter charge for nothing - and
-                # consumed on use, not just on offer, same rule as every
-                # other once-per-encounter field in this file.
-                reach = effective_range(pc)
-                if pc.get('blinkstep') and _distance(pc['pos'], target['pos']) > reach:
-                    shift_dist = pc.get('acrobatics_skill_total', 0) // 2  # rulebook.md: round fractions down
-                    if shift_dist > 0:
-                        blink_start = pc['pos']
-                        pc['pos'] = movement.move_toward(pc['pos'], target['pos'], shift_dist, stop_at=reach)
-                        pc['blinkstep'] = False
-                        # Logged as its own event (not folded into the
-                        # AP-funded move below) so `spaces` on each event
-                        # reflects only that phase's own distance, not
-                        # both combined under one misleading label.
-                        _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
-                             in_range=_distance(pc['pos'], target['pos']) <= reach,
-                             spaces=_distance(blink_start, pc['pos']), via='Blinkstep')
-                ap_start = pc['pos']
-                ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
-                if moved:
+            if plan is not None:
+                if party_log:
+                    party_log(unit=pc['name'], action='plan', note=plan.note, style=pc.get('play_style'))
+                in_range = False
+                moved = False
+                if plan.pre_pos is not None and plan.pre_pos != pc['pos']:
+                    start = pc['pos']
+                    pc['pos'] = plan.pre_pos
+                    ap -= plan.pre_moves * T.MOVE_AP_COST
+                    moved = True
                     _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
-                         in_range=in_range, spaces=_distance(ap_start, pc['pos']))
+                         spaces=_distance(start, pc['pos']), via=f"{pc.get('play_style')}: {plan.note}")
+                target = plan.target
+                # A Taunted PC turns on its Taunter if it can reach it from
+                # here; otherwise it accepts the Bad Luck.
+                taunter = pc.get('taunted_by') if pc.get('taunted', 0) > 0 else None
+                if (taunter is not None and taunter['health'] > 0 and target is not None
+                        and _distance(pc['pos'], taunter['pos']) <= effective_range(pc)):
+                    target = taunter
+                if target is not None:
+                    in_range = _distance(pc['pos'], target['pos']) <= effective_range(pc)
+                    if in_range and _los_blocked(pc, effective_range(pc), moved):
+                        ap -= T.MOVE_AP_COST
+                        _log(trace, round=rnd, side='party', unit=pc['name'], action='reposition',
+                             note='no clear shot')
+                max_attacks = plan.max_attacks
+            else:
+                target = tactics.select_target(pc, targets, movement_on, allies=[p for p in pcs if p['health'] > 0])
+                # A Taunted PC goes for its Taunter - anything else has Bad Luck.
+                taunter = pc.get('taunted_by') if pc.get('taunted', 0) > 0 else None
+                if taunter is not None and taunter['health'] > 0:
+                    target = taunter
+                in_range = True
+                moved = False
+                if movement_on:
+                    # Blinkstep (T077, synthetic test field, 0 AP, once per
+                    # encounter): "Shift up to [half your Acrobatics Skill
+                    # Total] meters" - glossary.md's [Shift] (ordinary
+                    # movement, just Interrupt-immune and ignores Difficult
+                    # Terrain, neither of which this simulator models).
+                    # Applied BEFORE spend_movement_ap, not as a rescue after
+                    # it - the Technique's real value is covering ground for
+                    # FREE so AP-funded movement needs less (or none), not
+                    # "you'd have failed to close the gap otherwise" (rare
+                    # here - spend_movement_ap already burns up to all 4 AP
+                    # closing any reachable distance, so it usually succeeds
+                    # regardless; what it can't do is leave AP left over for
+                    # an attack this same turn, which is exactly what
+                    # Blinkstep buys). Only spent when there's an actual gap
+                    # to close (`not already in range`) - a player wouldn't
+                    # burn a once-per-encounter charge for nothing - and
+                    # consumed on use, not just on offer, same rule as every
+                    # other once-per-encounter field in this file.
+                    reach = effective_range(pc)
+                    if pc.get('blinkstep') and _distance(pc['pos'], target['pos']) > reach:
+                        shift_dist = pc.get('acrobatics_skill_total', 0) // 2  # rulebook.md: round fractions down
+                        if shift_dist > 0:
+                            blink_start = pc['pos']
+                            pc['pos'] = movement.move_toward(pc['pos'], target['pos'], shift_dist, stop_at=reach)
+                            pc['blinkstep'] = False
+                            # Logged as its own event (not folded into the
+                            # AP-funded move below) so `spaces` on each event
+                            # reflects only that phase's own distance, not
+                            # both combined under one misleading label.
+                            _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                                 in_range=_distance(pc['pos'], target['pos']) <= reach,
+                                 spaces=_distance(blink_start, pc['pos']), via='Blinkstep')
+                    ap_start = pc['pos']
+                    ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
+                    if moved:
+                        _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                             in_range=in_range, spaces=_distance(ap_start, pc['pos']))
+                    if in_range and _los_blocked(pc, effective_range(pc), moved):
+                        ap -= T.MOVE_AP_COST
+                        _log(trace, round=rnd, side='party', unit=pc['name'], action='reposition',
+                             note='no clear shot')
 
-            while in_range and ap >= T.ATTACK_AP_COST and target is not None:
+            while in_range and ap >= T.ATTACK_AP_COST and target is not None \
+                    and (max_attacks is None or attacks_made < max_attacks):
                 if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0:
                     break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
                 substitute = tactics.bottomless_bottles_choice(pc)
@@ -1074,6 +1138,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         target['bleed_dealt'] = target.get('bleed_dealt', 0) + 1
                     target['health'] -= dmg
                     damage_dealt += dmg
+                    if dmg > 0:
+                        target.setdefault('hit_steps', []).append((_STEP[0], target['health'] <= 0))
                     if substitute and substitute.get('effect'):
                         key, stacks, suit = substitute['effect']
                         stacks += 1 if cards.flipped_matches(suit) else 0
@@ -1155,8 +1221,38 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         pc['ricochet_shot'] = False
                 if saved_profile:
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
-                if target['health'] <= 0:
+                if target['health'] <= 0 and plan is not None:
+                    # A planned turn doesn't walk after a kill: it turns on
+                    # whatever's in reach from where it stands, or stops.
+                    here = [e for e in enemies if e['health'] > 0
+                            and _distance(pc['pos'], e['pos']) <= effective_range(pc)]
+                    target = play_styles._best(pc, here, allies) if here else None
+                elif target['health'] <= 0:
                     target = _retarget(pc, [e for e in enemies if e['health'] > 0], movement_on)
+                    # The new target may be out of reach (2026-10-08 fix:
+                    # this used to attack whatever got picked, in range or
+                    # not, ~2% of all PC attacks). Walk toward it with the
+                    # AP that's left; keep attacking only if that gets there.
+                    if target is not None and movement_on and T.RETARGET_RANGE_FIX:
+                        ap_start = pc['pos']
+                        ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
+                        if moved:
+                            _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                                 in_range=in_range, spaces=_distance(ap_start, pc['pos']))
+        # A planned "attack, then back off": spend what AP is left
+        # stepping away, until clear of the enemies the style minds.
+        if plan is not None and plan.retreat and movement_on:
+            keep = (T.BACKLINE_KEEP_AWAY if (pc.get('play_style') == 'Back-liner'
+                                              and effective_range(pc) > T.MELEE_RANGE) else T.MELEE_RANGE)
+            while ap >= T.MOVE_AP_COST:
+                living = [e for e in enemies if e['health'] > 0]
+                if not living or not any(_distance(pc['pos'], e['pos']) <= keep for e in living):
+                    break
+                start = pc['pos']
+                pc['pos'] = play_styles.retreat_pos(pc['pos'], living, max(1, tactics._speed(pc)))
+                ap -= T.MOVE_AP_COST
+                _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                     spaces=_distance(start, pc['pos']), via=f"{pc.get('play_style')}: back off")
     # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
     # [Fleeting] rule), not all stacks at once - Bleeding's decaying
     # stack is what actually deals its 1 damage. Harried is the one
@@ -1433,6 +1529,11 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
                 return interrupt_dmg
         if target is not e:
             ap, in_range, moved = spend_movement_ap(e, target, ap, reach)
+    if movement_on and in_range and target is not None and target is not e \
+            and _los_blocked(e, prof.get('attack_range') or T.MELEE_RANGE, moved):
+        ap -= T.MOVE_AP_COST
+        moved = True
+        _log(trace, round=rnd, side='enemy', unit=e['name'], action='reposition', note='no clear shot')
     # Guarded's own stand-still bonus (tactics.defense_has_bad_luck).
     e['guarded_active'] = (fighting_style == 'Guarded' and not moved)
     if moved:
@@ -1657,6 +1758,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
         # Ambushers (e['ambush'], a per-fight test flag) start right in
         # front of the party's front row instead of across the gap - for
         # minions that would otherwise die walking in (horde_experiments.py).
+        cluttered = T.LINE_OF_SIGHT and random.random() < T.LOS_CLUTTERED_FIGHT_CHANCE
+        for u in pcs + enemies:
+            u['los_cluttered'] = cluttered
         ambushers = [e for e in enemies if e.get('ambush')]
         front_x = party_x + T.PARTY_FORMATION_SPACING // 2 + 1
         for e, pos in zip(ambushers, _start_positions(len(ambushers), x=front_x, spread=2)):
@@ -1722,6 +1826,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             side, unit = nxt
             acted.add(id(nxt))
             unit['acted_round'] = rnd
+            _STEP[0] += 1
+            if side == 'enemy':
+                unit.setdefault('turn_steps', []).append(_STEP[0])
             if side == 'party':
                 made, dealt = _take_pc_turn(unit, pcs, enemies, rnd, movement, trace, party_log, order)
                 pc_attacks += made
@@ -1732,6 +1839,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                     _shift_in_order(order, unit, -1)
             else:
                 pc_damage_dealt += _take_enemy_turn(unit, enemies, pcs, rnd, movement, trace, enemy_log, party_log)
+            for p in pcs:
+                tactics.sync_wounded(p)
             winner = _winner()
             if winner:
                 _log(trace, round=rnd, type='result', winner=winner)
@@ -1740,7 +1849,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 return dict(winner=winner, rounds=rnd, party_hp_pct=party_hp_pct,
                             pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt,
                             bleed_dealt=sum(e.get('bleed_dealt', 0) for e in enemies),
-                            plus_one_dealt=sum(p.get('extra_dmg', 0) for p in pcs))
+                            plus_one_dealt=sum(p.get('extra_dmg', 0) for p in pcs),
+                            **_calibration_counts(pcs, enemies))
         # Test variant (tunables.BLEED_MODE 'round_end'): enemies' Bleeding
         # ticks once at the end of each round instead of their own turn.
         if T.BLEED_MODE == 'round_end':
@@ -1753,7 +1863,36 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     _log(trace, round=max_rounds, type='result', winner='draw')
     return dict(winner='draw', rounds=max_rounds,
                 party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs),
-                pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt)
+                pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt,
+                **_calibration_counts(pcs, enemies))
+
+
+def _calibration_counts(pcs, enemies):
+    """The designer's at-the-table checks (TABLE_PLAY_NOTES.md's
+    calibration targets), counted for one fight: whether any PC went
+    Down or was Wounded at some point, and for every damaging party hit
+    on an enemy, whether that enemy got another turn afterwards - for
+    each enemy's first hit, every hit, and every hit it survived (a
+    killing blow can't be followed by a turn, so it drags "every hit"
+    down). The hit counts come back as (acted again, hits) pairs so
+    callers can pool them."""
+    first, every, survived = [0, 0], [0, 0], [0, 0]
+    for e in enemies:
+        hits, turns = e.get('hit_steps', []), e.get('turn_steps', [])
+        for i, (h, lethal) in enumerate(hits):
+            again = any(t > h for t in turns)
+            every[0] += again
+            every[1] += 1
+            if not lethal:
+                survived[0] += again
+                survived[1] += 1
+            if i == 0:
+                first[0] += again
+                first[1] += 1
+    return dict(pc_downed=any(p.get('was_downed') for p in pcs),
+                pc_wounded=any(p.get('was_wounded') for p in pcs),
+                acts_again_first=tuple(first), acts_again_any=tuple(every),
+                acts_again_survived=tuple(survived))
 
 
 def simulate(tier, enemy_level, n_enemies=4, trials=4000, good_luck=0, movement=False, start_gap=None, enemies=None):
