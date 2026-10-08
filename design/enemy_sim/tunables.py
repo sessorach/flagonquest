@@ -236,6 +236,12 @@ WEAPON = {
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
     "Light Thrown":      {"skill": "Acrobatics",  "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range_per_body": 3,
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
+    # Heavy Thrown (weapon_categories.csv WC006, added 2026-10-08 for
+    # HOLE's Soulblade): Accuracy +0, Damage 4 + [Body], Range Close or
+    # 3 x Body, Skill Acrobatics or Melee (whichever is higher), Might 4.
+    # Thrown weapons can't Parry, so Parry falls back to Unarmed.
+    "Heavy Thrown":      {"skill": ("Acrobatics", "Melee"), "accuracy": 0, "damage_base": 4, "damage_stat": "Body",
+                           "range_per_body": 3, "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
     "War Magic (Lance)": {"skill": "Sorcery",     "accuracy": 0, "damage_base": 2, "damage_stat": "Mind",    "range_per_skill": 1,
                            "dmg_type": "Fire", "opp_def": "Dodge"},
     # 2H Heavy Melee (weapon_categories.csv WC004): Accuracy +0, Damage

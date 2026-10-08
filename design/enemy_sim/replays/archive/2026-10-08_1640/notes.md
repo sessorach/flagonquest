@@ -1,12 +1,12 @@
 # Latest replays (2026-10-08)
 
-Level 1 calibration; HOLE updated (Heavy Thrown, Fatestealer noted); Heavy Thrown weapon added
+Melee play style reworked per the designer; HOLE (90 XP) added; enemy offense dials (measurement only)
 
 ## partyD_L2_vs_L2_frontline.html
 - Party: Browndog (L2), Hanforth (L2), Felix (L2), Beornhard (L2)
 - Enemies: Level 2 Frontline (Brute (L2), Brute (L2), Grave Caller (L2), Grave Caller (L2))
 - This fight (seed 12): party won in 6 rounds, 33% party HP left
-- Matchup average over 1000 fights: 73.4% wins, 5.5 rounds, 57% HP left on a win
+- Matchup average over 1000 fights: 69.2% wins, 5.8 rounds, 59% HP left on a win
 
 ## partyA_L2_vs_L2_horde.html
 - Party: Hilde (L2), Browndog (L2), Carrick (L2), Sable (L2)

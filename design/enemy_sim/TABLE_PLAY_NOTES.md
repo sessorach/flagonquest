@@ -289,3 +289,49 @@ that third goes at the table is the open question: PC defensive
 Techniques the sim doesn't model (Brace's 3 Protected soaks a hit and a
 half), heavier armor or more Resist on real builds, or enemy damage in
 the encounter builder running a bit hot.
+
+## Third round: Level 1 (2026-10-08)
+
+**Designer's answers.** Enemies are about the party's Level: Level 1 up
+to ~100 XP, Level 2 from 100 to 150, and so on. Difficulty is mostly
+managed with more enemies, or a more complicated battlefield. HOLE wears
+Light armor, Soulblade likely makes a Heavy Thrown weapon, and Temper
+Soulblade is Fatestealer at Level 2 (81 XP spent). The sim now has Heavy
+Thrown (tunables.WEAPON); Fatestealer pays out in cards, which the sim
+doesn't track yet.
+
+**So the table's fights are a ~90 XP party against Level 1 enemies**,
+well into the Level 1 band. Every run above was Level 2: 125 XP
+characters whose builds were extrapolated from the Level 1 ones, mostly
+into combat. The Level 1 sample characters are the players' own starting
+builds (75 XP), and HOLE fits right among them (attack +5, Health 10,
+against +5 to +7 and 10).
+
+`calibrate.py -L 1`, 400 fights per mix, everything on:
+
+| Level 1 | Rounds | Loses | Someone Down | Someone Wounded | Acts again (first hit / hit it survived) |
+|---|---|---|---|---|---|
+| Party A (Hilde, Browndog, Carrick, Sable) | 3.6 | 1% | 35% | 78% | 38% / 43% |
+| Party H (A with HOLE for Carrick) | 3.4 | 1% | 32% | 74% | 33% / 40% |
+| Party D (Browndog, Hanforth, Felix, Beornhard) | 5.9 | 25% | 62% | 95% | 53% / 60% |
+| **Table** | **~3** | **~0** | **uncommon** | **~half** | **~half** |
+
+- **Party A at Level 1 is close to the table** on fight length, losses
+  and Downs, and its party sits at 75 XP, the bottom of the band; the
+  table's ~90 XP party should have it a little easier still. Wounded
+  (74–78% against ~half) is the one that's still high.
+- **Party D is weak at Level 1 for its own reasons**: about 35 damage a
+  fight between four PCs (Felix hits for 4, Hanforth for 5), one
+  front-liner, and fights that run to 6 rounds. It's a made-up mix, not
+  a real party.
+- **The "third more damage" gap was a Level 2 result**, with the
+  extrapolated Level 2 builds. Whether Level 2 encounters run hot, or
+  those builds are off, waits for real Level 2 data (the campaign
+  passing 100 XP).
+
+**Bleeding at Level 1** (`bleed_vs_damage.py 1 1`, plus a points
+count, Party A carriers): a single stack lands 24% of the time against
+61% for a +1 on a hit, so a first stack is worth 0.40 of a nominal point,
+**1.6 Value**. Bleeding on every hit or Parry lands 0.97 points a fight;
+a 5-stack dose 0.26, barely more than one stack. That matches the Level
+2 reads (1.6 as built, 1.9 at enemy Health ×1.25).

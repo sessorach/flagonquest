@@ -9667,3 +9667,24 @@ the same application: Bleeding Dump landed 0.43 against Bleeding Once's
 ~0.15 Value each. A per-hit source (Bleeding Strikes) landed 1.51 points
 at ×1.25, 1.51 / 0.71 = 2.1 nominal points, ~8.5 Value a fight
 (Furious Rage: ~118% of its Level 2 Target).
+
+### Bleeding at Level 1, the table-matched setup (2026-10-08)
+
+Per the designer, a ~90 XP party fights Level 1 enemies, and at Level 1
+the sim's sample characters (the players' starting builds) come out
+close to the table's fight length, losses and Downs (TABLE_PLAY_NOTES.md,
+"Third round"), with every table-play stage on. In that setup, Party A
+carriers, 400 fights per mix:
+
+- A single stack lands **24%** of the time; a +1 on a hit lands **61%**.
+  First stack = 0.24 / 0.61 = 0.40 of a nominal point = **1.6 Value**.
+- Bleeding on every hit or Parry (Bleeding Strikes): **0.97** points a
+  fight, about one extra point, as designed. In nominal points 0.97 /
+  0.61 = 1.6, so **~6.4 Value** a fight (Furious Rage: ~88% of its Level 2
+  Target of 7.2).
+- A 5-stack dose: **0.26** points, so stacks 2–5 add next to nothing.
+
+Three setups now agree on the first stack: 1.6 (Level 2 as built), 1.9
+(Level 2, enemy Health ×1.25), 1.6 (Level 1). Proposed: **~1.6 for the
+first stack in an application, ~0.1 for each further stack in it**,
+against THE TABEL's current 4 and 4, 2, 1, 0.5. Pending the designer.
