@@ -221,6 +221,14 @@ which should stay a clean decision record.
   designer looks to check progress. Edit its `MATCHUPS` list when the
   interesting matchups change. The designer asked for this more than
   once before it became a habit.
+- **Refactoring the simulator: prove the old path didn't move.** Put
+  every new behavior behind a `tunables.py` switch, save a fixed-seed
+  `calibrate.py` run first, then run it again with the new switches off
+  and `diff` the two: they should be identical, not just close. That's
+  how the real-cards change (2026-10-09) was checked, and it keeps the
+  random calls on the old path in the same order (`_suit_extra`/
+  `_suit_count` call the old stand-ins at the same spot for that
+  reason).
 - **Never rename a "Placeholder's [Alliterative Name]" item or
   Technique.** It's a deliberate in-fiction pseudonym, not a dev stub —
   see RULES_DESIGN.md's "Naming convention — Placeholder". I suggested

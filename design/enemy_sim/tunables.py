@@ -438,7 +438,16 @@ ENEMY_SUIT_EXTRA = False
 # right before gaining some, skip the next removal that would apply to
 # it." In the rules since 2026-08-29; the sim decayed every stack at the
 # next turn end. Protected is Fleeting too, and the sim never decayed it.
-FLEETING_SKIP = True
+# True: as written, every fresh effect skips. 'own_turn': only one
+# gained during the bearer's own turn skips (the same-turn snag the rule
+# was added for; on a target's own turn end it otherwise lost a stack the
+# instant it was granted). Which one the designer meant is open: as
+# written, a fresh Bleeding stack only deals its point at the end of the
+# target's second turn, and per-hit Bleeding lands 0.02-0.05 points a
+# Level 1 fight against 0.3-0.6 for 'own_turn' (TABLE_PLAY_NOTES.md,
+# 2026-10-09). 'own_turn' is the default until the designer says which;
+# it's what the commit adding the rule describes. False: no skip.
+FLEETING_SKIP = 'own_turn'
 PROTECTED_DECAYS = True
 
 # rulebook.md: "For attacks that deal damage, only weapon attacks can be

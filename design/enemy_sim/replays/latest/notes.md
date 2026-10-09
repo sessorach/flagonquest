@@ -1,21 +1,21 @@
 # Latest replays (2026-10-09)
 
-Real Felix, Enith and Ashleigh added (partly modeled); Dodge now uses Acrobatics or Brawl
+The sim now plays with real cards (decks, hands, suit pool, rescues, Gambles backed by a card), and Felix, Enith and Ashleigh's own mechanics are in: Battle Maneuver's lunge and Half Guard, Enith's Slow and Push hexes, Ashleigh's Raise Spirits. Card plays and boosts show under each attack.
 
-## partyD_L2_vs_L2_frontline.html
-- Party: Browndog (L2), Hanforth (L2), Felix (L2), Beornhard (L2)
-- Enemies: Level 2 Frontline (Brute (L2), Brute (L2), Grave Caller (L2), Grave Caller (L2))
-- This fight (seed 12): party won in 6 rounds, 33% party HP left
-- Matchup average over 1000 fights: 71.9% wins, 5.6 rounds, 59% HP left on a win
+## partyS_L1_vs_L1_frontline.html
+- Party: Enith, Felix, Jackal, Hanforth
+- Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
+- This fight (seed 8): party won in 3 rounds, 68% party HP left
+- Matchup average over 600 fights: 98.3% wins, 3.4 rounds, 76% HP left on a win
 
-## partyA_L2_vs_L2_horde.html
-- Party: Hilde (L2), Browndog (L2), Carrick (L2), Sable (L2)
-- Enemies: Level 2 Horde (Goblin Cutthroat (L2), Goblin Cutthroat (L2), Goblin Cutthroat (L2), Goblin Cutthroat (L2), Ember Caster (L2), Ember Caster (L2))
-- This fight (seed 5): party won in 4 rounds, 50% party HP left
-- Matchup average over 1000 fights: 85.4% wins, 3.7 rounds, 54% HP left on a win
+## partyU_L1_vs_L1_shield_wall.html
+- Party: Browndog, Ashleigh, Sable, Beornhard
+- Enemies: Level 1 Shield Wall (Hedge Knight, Hedge Knight, Marsh Archer, Marsh Archer)
+- This fight (seed 1): party won in 3 rounds, 90% party HP left
+- Matchup average over 600 fights: 100.0% wins, 2.8 rounds, 89% HP left on a win
 
-## partyA_L2_vs_L2_solo_boss.html
-- Party: Hilde (L2), Browndog (L2), Carrick (L2), Sable (L2)
-- Enemies: Level 2 Solo Boss (Brute Warlord (L2))
-- This fight (seed 5): enemies won in 5 rounds
-- Matchup average over 1000 fights: 40.0% wins, 5.4 rounds, 52% HP left on a win
+## partyT_L1_vs_L1_warband.html
+- Party: Browndog, Hanforth, Sable, Beornhard
+- Enemies: Level 1 Warband (Brute, Skulking Footpad, Skulking Footpad, Warpriest)
+- This fight (seed 2): party won in 3 rounds, 100% party HP left
+- Matchup average over 600 fights: 100.0% wins, 3.0 rounds, 93% HP left on a win

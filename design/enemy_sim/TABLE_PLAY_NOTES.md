@@ -354,9 +354,9 @@ from 100 to 150, and so on).
 | 5 | Beornhard | Sorcerer | uploaded (export, 2026-09-21) |
 | 6 | Sable | Archer | uploaded (export, 2026-09-21) |
 | 7 | Hanforth | Healer | uploaded (export, 2026-09-21) |
-| 8 | Felix | Monk, cat Wildfolk (he/him) | uploaded (export, 2026-10-08), partly modeled |
-| 9 | Enith | Duelist, the Warlock stand-in, Settler (she/her) | uploaded (export, 2026-10-08), partly modeled |
-| 10 | Ashleigh | Leader, a bard, cat Wildfolk (she/her) | uploaded (export, 2026-10-08), partly modeled |
+| 8 | Felix | Monk, cat Wildfolk (he/him) | uploaded (export, 2026-10-08), modeled 2026-10-09 |
+| 9 | Enith | Duelist, the Warlock stand-in, Settler (she/her) | uploaded (export, 2026-10-08), modeled 2026-10-09 |
+| 10 | Ashleigh | Leader, a bard, cat Wildfolk (she/her) | uploaded (export, 2026-10-08), modeled 2026-10-09 |
 
 Not part of the sample: Rook and Wren (reference builds made to test
 movement), HOLE (a real ~90 XP build, set aside for now), the Baseline
@@ -406,3 +406,175 @@ no Push), and Fatestealer (cards).
   Party A 3.6 rounds, loses 1%, Down 34%, Wounded 77% (no real change,
   since Browndog Parries); Party D, now with the real Felix, 6.0 rounds,
   loses 24%, Down 60%, Wounded 96%.
+
+## Fourth round: real cards, and the last three builds (2026-10-09)
+
+**Designer's answers.** Felix's Battle Maneuver splits Bare-Handed's 2
+extra points evenly: Lunging x2 and Half Guard x3, used as his opening
+move. Enith's hexes are Lance plus the rest on the one effect (Tormenting
+Curse's 3 points): Hex of Sloth is Slowed 6 + [Spades], Hex of Rebuking
+is Pushed 12 + [Spades] meters, range 5. She's a tactical skirmisher,
+almost a disabler: the hexes split enemies up and isolate them so the
+party can divide and conquer. Ashleigh boosts anyone's attack with Raise
+Spirits, puts big attacks (Beornhard's Encounter spells) first, stays in
+range of the party, and throws a knife with what's left. Felix's Thief
+heal goes when he's missing 3 or more. Boughs Unbroken clears Bleeding,
+then Crippled, then anything else. Fatestealer needs real cards. And:
+get the sim playing with cards as close to the table as it can while
+still running lots of fights.
+
+### The card model (cards.py, tunables.CARDS)
+
+Straight from the rulebook's card rules (Flips, Your Hand and Playing
+Cards, The Suit Pool; the glossary's Card Terms):
+
+- Every PC has its own 52-card deck; the GM has one for every enemy.
+  Flips are real cards off the top, Good and Bad Luck flip extra cards
+  and cancel one for one, and used cards go to the discard.
+- Every card flipped or played is in the suit pool. A card matching the
+  attack Skill's suit is an Extra Success, +1 damage. Riders like
+  "Slowed 6 + [Spades]" count that suit in the pool.
+- A PC draws the day's hand (twice Cunning plus Mind) and commits a
+  third of it to a fight (CARDS_FIGHT_SHARE). Half of fights are the
+  day's second fight, with a third of the hand already gone. Bottomless
+  Bottles' crafting comes out of the hand first: Jackal throws her six
+  lowest cards into it and fights with four.
+
+How players spend it, following the table notes above:
+
+- **Rescues.** A miss can be fixed by playing the cheapest hand card
+  that clears it (with Bad Luck, every low card needs replacing). How
+  freely depends on how much the hit matters (RESCUE_RESERVE): a kill
+  shot or an Encounter attack gets a card whenever there's one in the
+  budget, a hit on a hurt or Harried target only with a card to spare,
+  a plain hit only with plenty. On a kill shot an ally can throw in a
+  card too.
+- **Gambles behind a card.** Holding a card that still clears the attack
+  after a Gamble or two, a player Gambles (at most twice) when the hit
+  would kill or it's on a focus target, and plays the card if the flip
+  comes up short.
+- **Kill top-ups.** A hit that leaves the target a point or two short
+  gets matching-suit cards added to the pool to finish it.
+- **Card Techniques**, all from the real hand: Perfect Strike with a
+  low card (a high one is worth more as a rescue), Second Wind and
+  Healing Magic with Hearts first, Warmage's Reserves when War Magic
+  runs out, Thief's heal, Cloak and Dagger with a Spade if there is one.
+- **Enemies** have no Skill, so they get no suit Extra Successes
+  (ENEMY_SUIT_EXTRA, an assumption).
+
+With every new switch off, the sim reproduces the old numbers exactly
+(checked on fixed seeds). A fight still takes about 5 ms.
+
+### Three rules fixes found along the way
+
+- **Fleeting's skip.** Since 2026-08-29 the glossary has said a Fleeting
+  effect gained from zero skips its next removal. The sim never did
+  this. Read literally, it applies to everything: a fresh Bleeding stack
+  then only deals its point at the end of the target's second turn. The
+  commit that added it describes the same-turn snag (getting a stack on
+  your own turn and losing it that same turn end). The sim uses that
+  narrower reading for now (FLEETING_SKIP = 'own_turn'), pending the
+  designer. Harried is left out either way: its own "remove all stacks"
+  clear plus a skip would make it last a whole extra round.
+- **Protected decays.** It's Fleeting, and the sim never took stacks off.
+  It now does, for PCs and enemies (PROTECTED_DECAYS).
+- **No Gambling on spells.** The rulebook says only weapon attacks can
+  be Gambled on; Beornhard's War Magic was Gambling.
+
+All three barely move the party numbers (a point or two at most).
+
+### The three builds, modeled
+
+- **Felix**: Battle Maneuver on his first attack of the fight. Its two
+  free Shifts carry him 4 m in, often leaving the AP for both attacks; a
+  hit gives him 3 + [Spades] Protected (3.4 on average). It lands 99% of
+  the time, since it's worth a card. Thief Empties the Vessel heals 3
+  for a card when he's missing 3 or more. Used early, the heal almost
+  never fired (0.02 a fight), so he now saves Thief until he's hurt or
+  it's round 3 (my call). Boughs Unbroken: no Harried from Parrying,
+  and an unarmed hit cleanses.
+- **Enith**: at the start of her turn, with both hexes ready, the
+  biggest fresh melee threat that's engaged with the party gets Slowed,
+  then Pushed away from the party (a Speed 4 enemy with 6+ Slowed can't
+  move for about three turns). Otherwise she Pushes an enemy off a
+  fragile ally, or Slows one still walking in. A Push needs two enemies
+  standing. Watching replays showed the party walking over to the enemy
+  she'd just stranded, so the party now leaves an enemy that's stuck
+  (Slowed to 0 Speed, nobody in reach) for last (tactics.
+  STUCK_DISCOUNT). She lands about 1.3 hexes a fight. Fatestealer at
+  Level 1 needs three kills to draw a card, which hardly happens in one
+  fight; the sim starts each fight at 0 charges.
+- **Ashleigh**: Raise Spirits spends her Interrupt AP on Good Luck for
+  allies' attacks, about 8 a fight, holding her last AP for an
+  Encounter attack while an ally still has one. Leftover AP on her own
+  turn goes on staying in range of the party.
+
+### Results
+
+`calibrate.py -L 1`, 300 fights per mix, everything on, against the
+same with no cards and no rules fixes:
+
+| Level 1 | Rounds | Loses | Someone Down | Someone Wounded | Acts again (first hit / hit it survived) |
+|---|---|---|---|---|---|
+| A, two front-liners (Hilde, Browndog, Carrick, Sable) | 2.7 (was 3.6) | 0% (1%) | 14% (34%) | 54% (77%) | 20% / 27% (38% / 43%) |
+| T, typical (Browndog, Hanforth, Sable, Beornhard) | 2.7 (4.3) | 0.2% (4%) | 15% (35%) | 51% (84%) | 21% / 27% (44% / 48%) |
+| S, skirmishers (Enith, Felix, Jackal, Hanforth) | 3.8 (6.0) | 0.5% (16%) | 28% (67%) | 74% (96%) | 25% / 36% (50% / 58%) |
+| U, support-heavy (Browndog, Ashleigh, Sable, Beornhard) | 2.9 (4.6) | 0.1% (3%) | 17% (49%) | 51% (84%) | 24% / 32% (45% / 49%) |
+| D (Browndog, Hanforth, Felix, Beornhard) | 3.0 | 0.8% | 18% | 59% | 27% / 34% |
+| H (A with HOLE for Carrick) | 2.6 | 0% | 12% | 48% | 18% / 24% |
+| **Table** | **~3 (5 max)** | **~0** | **uncommon** | **~half** | **~half** |
+
+**What it says.**
+
+- **Cards are a big share of the party's strength**, and the sim was
+  missing it. Each PC spends most of its third of a hand: about 6 cards
+  a fight across the party out of a 7-10 card budget, mostly rescuing
+  misses, backing Gambles and Perfect Strike (`card_stats.py` breaks it
+  down per PC). Without the hand (suit pool
+  only) Party A runs 4.1 rounds with someone Down in half of fights.
+- **Four of the five targets now land** at the encounters' own Health:
+  about three rounds, the party almost never loses, someone goes Down
+  in 12-28% of fights, someone's Wounded in about half. Party S, with no
+  front-liner, is the hard case: 3.8 rounds, Wounded 74%.
+- **A hit enemy acting again is now too rare**: 18-27% after its first
+  hit against the table's "about half". Cards make hits more lethal
+  (kill shots get rescued and topped up), so fewer hit enemies survive
+  to act. Raising enemy Health brings it up, but takes the other targets
+  with it: at x1.25 it's 32-40% with fights of 3.4-4.7 rounds and Down
+  25-38%; at x1.5 it's 43-51% with 4.0-5.7 rounds and Down 34-51%.
+  Spending fewer cards (a quarter of the hand, or rescues only for kill
+  shots) barely moves it, and neither does looser focus fire. The
+  targets pull against each other here; which one to trust is the
+  designer's call.
+
+### Bleeding, with cards and the skip
+
+Same setup as "Bleeding at Level 1" in balance_weights_notes.md:
+
+| | First stack lands | A +1 on a hit lands | First stack worth |
+|---|---|---|---|
+| Before cards (2026-10-08) | 24% | 61% | 1.6 Value |
+| Cards, no skip or same-turn skip | 12% | 54% | 0.9 Value |
+| Cards, skip as written | 1% | 54% | ~0.05 Value |
+
+Shorter fights mean fewer stacks get to tick. Bleeding on every hit
+(Hilde, Sable carrying it) lands 0.3-0.6 points a fight now, and
+0.02-0.05 with the skip read literally. The pending reprice's 1.6 for a
+first stack is out of date either way.
+
+### Open questions for the designer
+
+1. Fleeting's skip: every fresh effect (as written), or only one gained
+   on your own turn? As written, a single Bleeding stack almost never
+   deals its point. And should Harried skip at all?
+2. The glossary's Play entry says a played card adds +1 to the flip;
+   the rulebook says it replaces a flipped card. The sim uses the
+   rulebook (it's also your "throw in the 12" example).
+3. Enemy suits: the sim gives enemy attacks no suit Extra Successes.
+4. "A hit enemy acts again about half the time" against the other
+   targets (above).
+5. Durable (+1 Protected each turn, max 4) was written as if Protected
+   builds up; with Protected decaying it hovers at 1-2.
+6. Which Defense each of Enith's hexes targets (still Dodge).
+7. The card budget is a hard third of the hand for everyone. A healer
+   might spend more than a third on healing.

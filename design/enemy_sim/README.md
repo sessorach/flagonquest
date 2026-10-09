@@ -179,14 +179,16 @@ so `calibrate.py -s NAME=False` shows what one change does on its own.
   always-on Technique effect with no AP/card cost (`Passives`), Hand of
   Chaos's own flat 1-in-4-chance-of-+1-damage stand-in for real
   suit-pool tracking.
-- **`cards.py`** — the one place "which suit is this card" gets decided:
-  `flipped_matches(suit)` (a genuinely random flipped card, a 1-in-4
-  roll) vs. `chosen_matches(suit)` (a discarded/played card, chosen by
-  the player from their hand — always true, a deliberate stand-in for a
-  cost that's a small slice of a full hand). `tactics.
-  strategy_support_healer` uses `chosen_matches('Hearts')` for Healing
-  Magic's own Hearts-discard bonus; a future suit-keyed mechanic
-  reaches for this instead of a fresh `random.random() < 0.25`.
+- **`cards.py`** — the cards themselves (2026-10-09, `tunables.CARDS`):
+  a 52-card `Deck` per PC and one for the GM, the day's hand and this
+  fight's budget (`start_fight`), and the suit for each Skill. How
+  players spend the hand (rescues, Gambles behind a card, kill
+  top-ups, card Techniques) lives in `combat_sim.py`'s "Real cards"
+  section, since it needs the fight. With `CARDS` off, the old
+  stand-ins (`flipped_matches`, `chosen_matches`, the flat use
+  counters) come back and the old numbers reproduce exactly.
+  `card_stats.py` shows where each PC's cards go, per fight.
+  TABLE_PLAY_NOTES.md's "Fourth round" has the whole model.
 - **`sample_enemies.csv`** — every enemy stat block that's been built for
   a reason, one row per build (Level/Slots/Role/Defense-tier/Action/
   Armor/Battle Tactic/Fighting Style/Abilities/Archetype). The `Roster`

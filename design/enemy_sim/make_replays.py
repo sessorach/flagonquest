@@ -33,9 +33,9 @@ ARCHIVE = os.path.join(HERE, "replays", "archive")
 
 # (file stem, party names, encounter Level, sample_enemies.ENCOUNTERS key)
 MATCHUPS = [
-    ("partyD_L2_vs_L2_frontline", ["Browndog (L2)", "Hanforth (L2)", "Felix (L2)", "Beornhard (L2)"], 2, "Frontline"),
-    ("partyA_L2_vs_L2_horde", ["Hilde (L2)", "Browndog (L2)", "Carrick (L2)", "Sable (L2)"], 2, "Horde"),
-    ("partyA_L2_vs_L2_solo_boss", ["Hilde (L2)", "Browndog (L2)", "Carrick (L2)", "Sable (L2)"], 2, "Solo Boss"),
+    ("partyS_L1_vs_L1_frontline", ["Enith", "Felix", "Jackal", "Hanforth"], 1, "Frontline"),
+    ("partyU_L1_vs_L1_shield_wall", ["Browndog", "Ashleigh", "Sable", "Beornhard"], 1, "Shield Wall"),
+    ("partyT_L1_vs_L1_warband", ["Browndog", "Hanforth", "Sable", "Beornhard"], 1, "Warband"),
 ]
 
 

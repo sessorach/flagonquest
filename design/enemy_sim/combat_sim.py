@@ -686,11 +686,24 @@ def _pc_status_bad_luck(pc, target):
 # a skipped removal (tunables.FLEETING_SKIP). Harried keeps its own
 # all-at-once clear and no skip, pending the designer.
 
+# Whose turn it is right now, for FLEETING_SKIP = 'own_turn'.
+_ACTOR = [None]
+
+
+def _skips(unit):
+    """Whether a fresh Fleeting effect on `unit` skips its next removal:
+    always (the glossary as written), or only when it's gained during
+    `unit`'s own turn (the snag the rule was added for: losing a stack
+    at the end of the same turn you got it)."""
+    mode = T.FLEETING_SKIP
+    return bool(mode) and (mode != 'own_turn' or unit is _ACTOR[0])
+
+
 def _gain(unit, key, n):
     """Adds `n` stacks of a Fleeting effect to `unit`."""
     if n <= 0:
         return
-    if T.FLEETING_SKIP and unit.get(key, 0) <= 0:
+    if unit.get(key, 0) <= 0 and _skips(unit):
         unit['skip_' + key] = True
     unit[key] = unit.get(key, 0) + n
 
@@ -1139,7 +1152,7 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
     hit = roll >= defense
     if hit:
         stacks = 5 + _suit_count(pool, 'Hearts')
-        if T.FLEETING_SKIP and target.get('taunted', 0) <= 0:
+        if target.get('taunted', 0) <= 0 and _skips(target):
             target['skip_taunted'] = True
         target['taunted'] = stacks
         target['taunted_by'] = pc
@@ -1548,7 +1561,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     taunt_note = 'Taunting Strike missed'
                     if hit:
                         stacks = 3 + _suit_count(pool, 'Hearts')
-                        if T.FLEETING_SKIP and target.get('taunted', 0) <= 0:
+                        if target.get('taunted', 0) <= 0 and _skips(target):
                             target['skip_taunted'] = True
                         target['taunted'] = stacks
                         target['taunted_by'] = pc
@@ -2402,6 +2415,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             side, unit = nxt
             acted.add(id(nxt))
             unit['acted_round'] = rnd
+            _ACTOR[0] = unit
             _STEP[0] += 1
             if side == 'enemy':
                 unit.setdefault('turn_steps', []).append(_STEP[0])

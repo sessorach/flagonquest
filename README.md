@@ -13,9 +13,11 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-10-09 — The sample roster is complete
+### 2026-10-09 — The simulator gets a hand of cards
 
-The designer's last three sample characters are in: Felix (monk), Enith (duelist) and Ashleigh (bard), rounding the simulator's roster out to ten real builds. Setting them up also fixed the Feature builder, which now enforces once-only Features and gives Bare-Handed and Tormenting Curse their extra points.
+The simulator now deals every character a hand from their own deck and plays it the way the table does, and the last three sample characters (Felix, Enith and Ashleigh) are in with their own abilities. With cards, Level 1 fights come out close to the table on length, losses, Downs and Wounded.
+- Setting up the new characters fixed the Feature builder, which now enforces once-only Features and gives Bare-Handed and Tormenting Curse their extra points. Doubleshot now asks for Acrobatics instead of an old Skill name.
+- Once the party has its cards, Bleeding comes out at about 0.9 Value for a first stack, and an open question about the Fleeting rule could take it close to zero.
 
 ### 2026-10-08 — Teaching the simulator to play like a real table
 

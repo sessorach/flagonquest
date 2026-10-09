@@ -9688,3 +9688,24 @@ Three setups now agree on the first stack: 1.6 (Level 2 as built), 1.9
 (Level 2, enemy Health ×1.25), 1.6 (Level 1). Proposed: **~1.6 for the
 first stack in an application, ~0.1 for each further stack in it**,
 against THE TABEL's current 4 and 4, 2, 1, 0.5. Pending the designer.
+
+### Bleeding with real cards, and Fleeting's skip (2026-10-09)
+
+The sim now plays with real cards (TABLE_PLAY_NOTES.md, "Fourth
+round"), which makes Level 1 fights shorter: Party A 2.7 rounds, from
+3.6. Same setup as above (Party A carriers, 400 fights per mix):
+
+- A single stack lands **12%** of the time; a +1 on a hit lands **54%**.
+  First stack = 0.12 / 0.54 = 0.23 of a nominal point = **0.9 Value**.
+- Bleeding on every hit or Parry lands **0.3** points a fight on Hilde
+  and **0.6** on Sable, down from 0.97.
+
+That's with Fleeting's skip read as the same-turn case (a stack the party
+puts on an enemy on its own turn decays as before). The glossary's text
+as written skips the first removal of every fresh effect, and then a
+first stack only deals its point at the end of the target's second turn:
+it lands **1%** of the time (**~0.05 Value**), and every-hit Bleeding
+0.02-0.05 points a fight. Which reading is meant is with the designer.
+
+Either way the proposed ~1.6 for a first stack no longer holds once the
+party has its cards; it's ~0.9 or close to nothing. Still pending.
