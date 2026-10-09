@@ -568,17 +568,38 @@ first stack is out of date either way.
 
 1. ~~Fleeting's skip~~: answered, same-turn only, Bleeding and Harried
    exempt. The glossary wording still needs updating to match.
-2. The glossary's Play entry says a played card adds +1 to the flip;
-   the rulebook says it replaces a flipped card. The sim uses the
-   rulebook (it's also your "throw in the 12" example).
-3. Enemy suits: the sim gives enemy attacks no suit Extra Successes.
+2. ~~The glossary's Play entry~~: answered, a played card either
+   replaces a flipped card (its suit joins the pool too) or just adds
+   its suit to the pool. The glossary now says so; the sim already
+   worked that way.
+3. ~~Enemy suits~~: answered, for now +1 damage per Heart in an enemy's
+   flip (ENEMY_SUIT_EXTRA), something more detailed later.
 4. "A hit enemy acts again about half the time" against the other
    targets (above).
-5. Durable (+1 Protected each turn, max 4) was written as if Protected
-   builds up; with Protected decaying it hovers at 1-2.
+5. ~~Durable with decaying Protected~~: fine as is. It's meant to give
+   1-2 rolling Protected until the enemy gets focused down.
 6. ~~Which Defense each of Enith's hexes targets~~: answered, Sloth
    against Dodge, Rebuking against Vital. With the split nothing in the
    party numbers moved (Party S still 3.8 rounds, Down 28%); she still
    lands about 1.3 hexes a fight, spending cards to make them stick.
-7. The card budget is a hard third of the hand for everyone. A healer
-   might spend more than a third on healing.
+7. ~~A healer's card budget~~: fine as is. The point is what a party
+   does with average resources.
+
+### Enemy Hearts (2026-10-09, later)
+
+With +1 damage per Heart on enemy attacks, `calibrate.py -L 1`, 300 fights
+per mix (before → after):
+
+| Level 1 | Rounds | Loses | Someone Down | Someone Wounded | Acts again (first hit / hit it survived) |
+|---|---|---|---|---|---|
+| A | 2.7 → 2.8 | 0% → 0.3% | 14% → 20% | 54% → 59% | 21% / 28% |
+| T | 2.7 → 2.8 | 0.2% → 0.5% | 15% → 19% | 51% → 55% | 21% / 28% |
+| S | 3.8 → 3.8 | 0.6% → 1.1% | 28% → 35% | 74% → 76% | 25% / 37% |
+| U | 2.9 → 2.9 | 0.1% → 0.1% | 17% → 24% | 51% → 58% | 25% / 32% |
+| D | 3.0 → 3.1 | 0.8% → 1.8% | 18% → 24% | 59% → 63% | 27% / 35% |
+| H | 2.6 → 2.6 | 0% → 0% | 12% → 18% | 48% → 55% | 19% / 25% |
+
+Fights are no longer and the party still almost never loses, but someone
+goes Down about 5 points more often. Party S, with no front-liner, is
+just over one fight in three. A hit enemy acting again is unchanged and
+still the one target the sim misses (open question 4).

@@ -193,3 +193,7 @@ things off in order.
 - **`#### Play`** (glossary.md, Card Terms) — "Pitch a card from your
   hand" → "Discard a card from your hand", matching every Technique's
   card costs. Commit `5f5cb85`.
+- **`#### Play`** (glossary.md, Card Terms) — rewritten to match the
+  rulebook, per the designer: a played card either replaces one of the
+  flipped cards (its suit joins the pool too) or just adds its suit to
+  the pool; the old "+1 to that flip's card" is gone. Commit `c73f600`.
