@@ -442,11 +442,12 @@ ENEMY_SUIT_EXTRA = False
 # during the bearer's own turn (a player putting Protected on themselves
 # shouldn't lose a stack at the end of that same turn), and Bleeding
 # never skips, so it always deals its damage. Harried is exempt too: it
-# just clears at the end of the turn. 'own_turn' is that rule; True
-# (every fresh effect skips, the glossary read literally) and False (no
-# skip) stay for measuring.
+# just clears at the end of the turn. 'own_turn' is that rule, with
+# FLEETING_SKIP_EXEMPT; True (every fresh effect skips, Bleeding
+# included: the glossary read literally) and False (no skip) stay for
+# measuring.
 FLEETING_SKIP = 'own_turn'
-FLEETING_SKIP_EXEMPT = ('bleeding',)  # Harried never goes through the skip at all
+FLEETING_SKIP_EXEMPT = ('bleeding',)  # 'own_turn' only; Harried never goes through the skip at all
 PROTECTED_DECAYS = True
 
 # rulebook.md: "For attacks that deal damage, only weapon attacks can be

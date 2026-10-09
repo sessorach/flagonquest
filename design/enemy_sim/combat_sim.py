@@ -704,7 +704,8 @@ def _gain(unit, key, n):
     """Adds `n` stacks of a Fleeting effect to `unit`."""
     if n <= 0:
         return
-    if unit.get(key, 0) <= 0 and key not in T.FLEETING_SKIP_EXEMPT and _skips(unit):
+    exempt = T.FLEETING_SKIP == 'own_turn' and key in T.FLEETING_SKIP_EXEMPT
+    if unit.get(key, 0) <= 0 and not exempt and _skips(unit):
         unit['skip_' + key] = True
     unit[key] = unit.get(key, 0) + n
 
@@ -1060,7 +1061,7 @@ def _cast_hex(pc, hx, e, pcs, allies, rnd, trace, log):
     pc['hexes_hit'] = pc.get('hexes_hit', 0) + hit
     if log:
         log(unit=pc['name'], action='hex', target=e['name'], roll=mod + value, defense=defense, hit=hit,
-            dmg=0, raw_dmg=0, resist=0, target_hp_after=e['health'], target_harried_after=e['harried'],
+            dmg=0, raw_dmg=0, resist=0, target_hp_after=e['health'], target_harried_after=e.get('harried', 0),
             via=hx['via'], effects=note, cards=_take_notes(pc), opp_def=hx['opp_def'])
     pc.pop('_notes', None)
     if start is not None:
