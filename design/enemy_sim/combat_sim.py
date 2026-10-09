@@ -2270,6 +2270,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
                     target['protected'] -= absorbed
                     dmg -= absorbed
                 target['health'] -= dmg
+                _bleed_out(target)
                 for ability in abilities:
                     if ability in STRIKE_RIDERS:
                         effect, stacks = STRIKE_RIDERS[ability]
@@ -2531,9 +2532,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 tactics.sync_wounded(p)
             for e in enemies:
                 _bleed_out(e)
-            if T.BLEED_OUT_PCS:
-                for p in pcs:
-                    _bleed_out(p)
+            # Bleeding works the same on everyone (designer, 2026-10-09).
+            for p in pcs:
+                _bleed_out(p)
             winner = _winner()
             if winner:
                 _log(trace, round=rnd, type='result', winner=winner)

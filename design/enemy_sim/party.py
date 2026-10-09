@@ -477,9 +477,10 @@ def _pc_dict(row, index, good_luck):
         # instead - "On a hit, the target gains 5 + [Clubs] stacks of
         # Bleeding." No damage, so Mighty Mixologist doesn't apply.
         if (row.get("Bottles Item") or "").strip() == "Acidic Flask":
-            bottled_fire_profile = dict(skill_total=skill_total(stats, skills, "Acrobatics"), damage=0,
-                                         dmg_type=None, opp_def="Dodge", skill="Acrobatics",
-                                         effect=("bleeding", 5, "Clubs"), item="Acidic Flask")
+            bottled_fire_profile = dict(skill_total=skill_total(stats, skills, "Acrobatics"),
+                                         damage=T.ACID_FLASK_DAMAGE, dmg_type="Fire" if T.ACID_FLASK_DAMAGE else None,  # elemental materials; one elemental Resist in this sim
+                                         opp_def="Dodge", skill="Acrobatics",
+                                         effect=("bleeding", T.ACID_FLASK_STACKS, "Clubs"), item="Acidic Flask")
             item_cost = 2
         cards_for_gold = hand_size * 2 // 3
         gold_budget = 4 * cards_for_gold

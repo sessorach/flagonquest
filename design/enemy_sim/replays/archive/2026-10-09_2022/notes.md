@@ -1,20 +1,20 @@
 # Latest replays (2026-10-09)
 
-Bleeding's half-the-stacks execute now applies to everyone, PCs included. The Bleeding party is shown with 7-stack Acidic Flasks and Furious Rage at 2 stacks.
+Bleeding builds tested in parties (Hilde with Furious Rage, Felix with Battering, Jackal with Acidic Flasks, Beornhard with a Sanguine War Magic), under the half-the-stacks execute with Furious Rage at 2 stacks. Enemies that bleed out show as their own line.
 
-Settings: BLEED_OUT=x1/2, FURIOUS_RAGE_STACKS=2, ACID_FLASK_STACKS=7
+Settings: BLEED_OUT=x1/2, FURIOUS_RAGE_STACKS=2
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
-- This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 500 fights: 95.6% wins, 3.5 rounds, 72% HP left on a win
+- This fight (seed 9): party won in 3 rounds, 85% party HP left
+- Matchup average over 500 fights: 96.6% wins, 3.4 rounds, 74% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
 - Enemies: Level 1 Shield Wall (Hedge Knight, Hedge Knight, Marsh Archer, Marsh Archer)
 - This fight (seed 1): party won in 3 rounds, 90% party HP left
-- Matchup average over 500 fights: 100.0% wins, 2.9 rounds, 86% HP left on a win
+- Matchup average over 500 fights: 100.0% wins, 2.9 rounds, 85% HP left on a win
 
 ## partyT_L1_vs_L1_warband.html
 - Party: Browndog, Hanforth, Sable, Beornhard
@@ -26,4 +26,4 @@ Settings: BLEED_OUT=x1/2, FURIOUS_RAGE_STACKS=2, ACID_FLASK_STACKS=7
 - Party: Hilde (Bleed), Felix (Bleed), Jackal (Bleed), Beornhard (Bleed)
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 3 rounds, 68% party HP left
-- Matchup average over 500 fights: 94.8% wins, 3.1 rounds, 70% HP left on a win
+- Matchup average over 500 fights: 95.0% wins, 3.1 rounds, 71% HP left on a win

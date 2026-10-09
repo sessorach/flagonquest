@@ -9847,3 +9847,38 @@ In the sample parties (base → Bleeding builds):
   a point or two to "someone Down". All of it is Warband, whose two
   Skulking Footpads Poison for 2 Bleeding a hit: there a PC bleeds out
   in about one fight in three (party S, 0.33 a fight).
+
+### The execute on everyone, and stronger Acidic Flasks (2026-10-09)
+
+Per the designer, Bleeding works identically for every creature: the
+execute now applies to PCs too, with no PC switch. Level 1, 300 fights
+per mix (200 for the builds below), half-the-stacks execute.
+
+**On the sample parties** (no Bleeding builds; the only Bleeding is
+Warband's Skulking Footpads Poisoning PCs for 2 a hit): someone Down
+moves A 20% → 20%, T 19% → 20%, S 35% → 38%, U 24% → 24%, D 24% → 25%,
+H 18% → 19%. Rounds and losses don't move.
+
+**Acidic Flask strength**, Jackal's Bottomless Bottles making flasks (six
+a fight) in place of Bottled Fire (three), in a party of Hilde, Felix,
+Jackal and Beornhard (with Bottled Fire: 2.45 rounds, Down 20%):
+
+| Flask | As written: rounds / Down | Execute: rounds / Down / bled out a fight |
+|---|---|---|
+| 5 + [Clubs], no damage (current) | 3.34 / 36% | 3.14 / 34% / 0.50 |
+| 7 + [Clubs] | 3.33 / 36% | 2.97 / 31% / 0.88 |
+| 9 + [Clubs] | 3.33 / 36% | 2.83 / 29% / 1.14 |
+| 5 + [Clubs] and 4 damage | 2.77 / 27% | 2.69 / 27% / 0.34 |
+| 7 + [Clubs] and 2 damage | 3.19 / 33% | 2.90 / 31% / 0.79 |
+| 9 + [Clubs] and 2 damage | | 2.79 / 29% / 0.99 |
+
+- As written, a flask's size doesn't matter at all (5, 7 and 9 stacks
+  all land 0.93 points a fight). The execute is what makes stacks count.
+- No flask version catches Bottled Fire, a Level 2, 4-Gold item against
+  a Level 1, 2-Gold one, even with twice as many thrown.
+
+**The other builds** with the execute on everyone, same party:
+Beornhard's Sanguine 2.65 rounds / Down 22%; Felix's Battering 2.49 /
+23%; Hilde's Furious Rage at 2 stacks 2.44 / 20%. All four together, with
+7-stack flasks and Furious Rage at 2: 3.12 rounds, Down 36%, 6.7 Bleeding
+a fight and 1.65 enemies bled out.

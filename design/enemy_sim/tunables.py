@@ -357,9 +357,12 @@ BLEED_MODE = 'own_turn'
 # Bleeding stacks; 'stacks2' the same but never above 2; 'x1/2' half its
 # stacks rounded down ('x1/2up' rounded up), and so on for any fraction.
 BLEED_OUT = 0
-# The same execute for PCs (enemy Poison puts Bleeding on them); off means
-# only the party's Bleeding on enemies can execute.
-BLEED_OUT_PCS = False
+# The execute applies to every creature alike, PCs included: no Bleeding
+# rule is PC-specific (designer, 2026-10-09).
+# Acidic Flask's numbers (I028: 5 + [Clubs] Bleeding, no damage), as dials
+# for testing stronger versions.
+ACID_FLASK_STACKS = 5
+ACID_FLASK_DAMAGE = 0
 # Stacks Furious Rage (T130) gives on each hit or Parry (test dial).
 FURIOUS_RAGE_STACKS = 1
 
