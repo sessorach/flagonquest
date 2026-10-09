@@ -1,0 +1,80 @@
+{
+  "charName": "Ashleigh the Bard",
+  "charConcept": "A feline wanderer who delights others with her stories",
+  "xpBudget": "75",
+  "statPoints": {
+    "Agility": 2,
+    "Body": 2,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 3
+  },
+  "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 1,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 3,
+    "Rapport": 3,
+    "Sorcery": 0,
+    "Theurgy": 0
+  },
+  "charNotes": "",
+  "noteRows": [],
+  "customTechniques": [],
+  "backgroundType": "Settler",
+  "backgrounds": [],
+  "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+  ],
+  "enabledSupplements": [
+    "Base Game"
+  ],
+  "gold": "",
+  "inventory": [
+    {
+      "id": "I128",
+      "qty": 1
+    },
+    {
+      "id": "I121",
+      "qty": 1
+    }
+  ],
+  "customItems": [],
+  "customMaterials": [],
+  "customAttacks": [],
+  "exportedAt": "2026-10-09T01:47:45.474Z",
+  "techniques": [
+    {
+      "id": "T069",
+      "name": "Raise Spirits",
+      "xp": 12,
+      "level": "Lv 4"
+    },
+    {
+      "id": "T063",
+      "name": "Favorite Face",
+      "xp": 6,
+      "level": "Lv 2"
+    }
+  ]
+}

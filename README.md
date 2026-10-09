@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-09 — Builder fix for once-only Features
+
+The Feature builder now enforces Features that can only be taken once, and Bare-Handed and Tormenting Curse now add their extra points to spend, the way their text says.
+
 ### 2026-10-08 — Teaching the simulator to play like a real table
 
 The simulator now plays more like the designer's table: real Wounded rules, a 6–10 meter start with some line-of-sight trouble, and players who dive in or hang back depending on their character. At Level 1, with the players' own starting characters, it now lands close to how fights actually go at the table.

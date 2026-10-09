@@ -120,6 +120,21 @@ the real source of truth for the Feature-builder's level picker.
   scripts/draft_feature_budget.py will attempt to auto-fill this column
   from the existing Effects text, same idea as draft_prereq_check.py.
 
+FEATURE LIMITS — features.csv has two optional columns for Features that
+change how their own Technique gets built, so the Feature-builder can
+enforce them instead of leaving them in the Effects prose:
+
+  Max Copies    How many copies of this Feature one build can take.
+                Blank means no limit. "1" for anything whose text says
+                "You may only apply one copy of this feature".
+  Bonus Points  Extra budget points this Feature adds while it's picked,
+                on top of the level's own budget (Tormenting Curse's
+                "you may choose 3 additional points worth of features"
+                is 3). Blank means none.
+
+  Both go through as plain integers (`max_copies`, `bonus_points`), null
+  when blank.
+
 BUILDER NOTES — techniques.csv can also have an optional "Builder Notes"
 column: free text, just like Effects, but for reference notes about how
 a technique works mechanically rather than what it does — originally
@@ -362,6 +377,9 @@ FEATURE_MAP = {
     "Feature Name":         "feature_name",
     "Tier":                 "tier",
     "Point Cost":           "point_cost",
+    # See FEATURE LIMITS at the top of this file.
+    "Max Copies":           "max_copies",
+    "Bonus Points":         "bonus_points",
     # Flavor/rules split, same as ITEM_MAP/TECHNIQUE_MAP — usually blank
     # in practice, since a Feature is a small modular rule snippet with
     # little room for its own flavor text, but the column exists so one
@@ -1011,6 +1029,10 @@ for csv_file, (json_file, col_map) in TABLES.items():
             tid = r.get("technique_id")
             if technique_ids and tid not in technique_ids:
                 feature_errors.append(f"{r.get('id')}: Technique ID {tid!r} doesn't match any row in techniques.csv")
+            for key, label in (("max_copies", "Max Copies"), ("bonus_points", "Bonus Points")):
+                v = r.get(key)
+                if v is not None and (not isinstance(v, int) or isinstance(v, bool) or v < 1):
+                    feature_errors.append(f"{r.get('id')}: {label} is {v!r}, expected a whole number of 1 or more, or blank")
         if feature_errors:
             print(f"\n⚠ {len(feature_errors)} issue(s) in {csv_file}:")
             for e in feature_errors:

@@ -1,0 +1,119 @@
+{
+  "charName": "Enith the Shade",
+  "charConcept": "A ",
+  "xpBudget": "75",
+  "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+  },
+  "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 2,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 2,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+  },
+  "charNotes": "",
+  "noteRows": [],
+  "customTechniques": [],
+  "backgroundType": "Settler",
+  "backgrounds": [],
+  "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+  ],
+  "enabledSupplements": [
+    "Base Game"
+  ],
+  "gold": "",
+  "inventory": [
+    {
+      "id": "I128",
+      "qty": 1
+    }
+  ],
+  "customItems": [],
+  "customMaterials": [],
+  "customAttacks": [],
+  "exportedAt": "2026-10-09T01:41:44.469Z",
+  "techniques": [
+    {
+      "id": "T002",
+      "name": "Soulblade",
+      "xp": 3,
+      "level": "Lv 1",
+      "note": "Light One-Handed Melee Weapon"
+    },
+    {
+      "id": "T003",
+      "name": "Temper Soulblade",
+      "xp": 3,
+      "level": 1,
+      "features": [],
+      "note": "Fatestealer"
+    },
+    {
+      "id": "T131",
+      "name": "Hand of Chaos",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T120",
+      "name": "War Magic",
+      "xp": 3,
+      "level": 1,
+      "features": [
+        {
+          "name": "Tormenting Curse",
+          "count": 1
+        },
+        {
+          "name": "Frigid",
+          "count": 1
+        }
+      ],
+      "customName": "Hex of Sloth"
+    },
+    {
+      "id": "T120",
+      "name": "War Magic",
+      "xp": 3,
+      "level": 1,
+      "features": [
+        {
+          "name": "Kinetic",
+          "count": 1
+        },
+        {
+          "name": "Tormenting Curse",
+          "count": 1
+        }
+      ],
+      "customName": "Hex of Rebuking"
+    }
+  ]
+}

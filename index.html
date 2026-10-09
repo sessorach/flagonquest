@@ -1261,18 +1261,31 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
   const [counts, setCounts] = useState(() => ({ ...(initial?.picks ?? {}) }));
 
   const budget           = budgetMap ? budgetMap[level] : null;
-  const points            = budget ? budget.points : null;
   const advancedUnlocked = budget ? budget.advanced : true;
 
   const basicFeatures    = features.filter(f => f.tier === "Basic");
   const advancedFeatures = features.filter(f => f.tier === "Advanced");
+
+  // A Feature like Bare-Handed or Tormenting Curse adds points to spend
+  // while it's picked (features.csv's Bonus Points), so the budget is the
+  // level's own plus whatever the current picks grant. Dropping one can
+  // leave the build over budget, which the usual over-budget warning and
+  // disabled Save already cover.
+  const bonusPoints = Object.entries(counts).reduce((sum, [id, n]) =>
+    sum + n * (features.find(f => f.id === id)?.bonus_points ?? 0), 0);
+  const points      = budget ? budget.points + bonusPoints : null;
 
   const spent      = Object.entries(counts).reduce((sum, [id, n]) =>
     sum + n * (features.find(f => f.id === id)?.point_cost ?? 0), 0);
   const remaining  = points != null ? points - spent : null;
   const overBudget = remaining != null && remaining < 0;
 
+  // features.csv's Max Copies ("You may only apply one copy of this
+  // feature"); blank means no limit.
+  const atMax = f => f.max_copies != null && (counts[f.id] || 0) >= f.max_copies;
+
   const incFeature = f => {
+    if (atMax(f)) return;
     if (remaining != null && f.point_cost > remaining) return;
     setCounts(c => ({ ...c, [f.id]: (c[f.id] || 0) + 1 }));
   };
@@ -1291,7 +1304,12 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
 
   const featureRow = f => {
     const count    = counts[f.id] || 0;
-    const disabled = remaining != null && f.point_cost > remaining;
+    const disabled = atMax(f) || (remaining != null && f.point_cost > remaining);
+    const costLabel = [
+      `${f.point_cost} pt${f.point_cost !== 1 ? "s" : ""}${f.max_copies === 1 ? "" : " each"}`,
+      f.bonus_points ? `+${f.bonus_points} pts to spend` : null,
+      f.max_copies === 1 ? "once only" : f.max_copies != null ? `up to ${f.max_copies}` : null,
+    ].filter(Boolean).join(", ");
     return (
       <div key={f.id} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0, marginTop: 2 }}>
@@ -1302,7 +1320,7 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 14, color: TEXT.body }}>
             <strong>{f.feature_name}</strong>
-            <span style={{ color: TEXT.faint }}> ({f.point_cost} pt{f.point_cost !== 1 ? "s" : ""} each)</span>
+            <span style={{ color: TEXT.faint }}> ({costLabel})</span>
           </div>
           {f.description && (
             <div style={{ fontSize: 14, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.4 }}>
@@ -1344,7 +1362,7 @@ function FeatureBuilder({ tech, features, budgetMap, initial, saveLabel, onSave,
         ))}
         {points != null && (
           <span style={{ fontSize: 14, color: overBudget ? "#c0392b" : TEXT.muted, marginLeft: "auto" }}>
-            {spent} / {points} pts{overBudget ? ` — over by ${-remaining}` : ""}
+            {spent} / {points} pts{bonusPoints ? ` (${bonusPoints} from Features)` : ""}{overBudget ? ` — over by ${-remaining}` : ""}
           </span>
         )}
       </div>

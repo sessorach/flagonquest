@@ -6,6 +6,8 @@
     "feature_name": "Lunging",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Up to X times, you may Shift up to 2 meters in a single direction, each either before or after the attack. You can declare the use of this Technique before being in range, but cannot make the attack unless you end up in range at some point.",
     "prereq": null
@@ -17,6 +19,8 @@
     "feature_name": "Wind Slash",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "For the attack the chosen weapon's range is increased by [twice X].",
     "prereq": null
@@ -28,6 +32,8 @@
     "feature_name": "Turn Elements",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. If the attack hits, you gain X + [Hearts] stacks of [chosen Element] Ward.",
     "prereq": "(Academics, Sorcery, or Theurgy) 2"
@@ -39,6 +45,8 @@
     "feature_name": "Distracting",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits or is Parried, you Taunt the target X + [Hearts] times.",
     "prereq": "Presence 2"
@@ -50,6 +58,8 @@
     "feature_name": "Battering",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits or is Parried, the target gains X stacks of Bleeding + [Clubs] stacks.",
     "prereq": "Might 2"
@@ -61,6 +71,8 @@
     "feature_name": "Wing Clip",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits, the target is Crippled X + [Clubs] times.",
     "prereq": null
@@ -72,6 +84,8 @@
     "feature_name": "Harrying",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits or is Parried, the target is Harried 1 + X + [Diamonds] times.",
     "prereq": null
@@ -83,6 +97,8 @@
     "feature_name": "Hamstring",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits, the target is Slowed X + [Spades] times.",
     "prereq": null
@@ -94,6 +110,8 @@
     "feature_name": "Backfoot",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits, you may Stagger the target up to [twice X] + [Spades] times.",
     "prereq": null
@@ -105,6 +123,8 @@
     "feature_name": "Lodestone",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits or is Parried, you Push the target (2 × [X + Spades]) meters.",
     "prereq": null
@@ -116,6 +136,8 @@
     "feature_name": "Half Guard",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits, you gain X + [Spades] stacks of Protected.",
     "prereq": null
@@ -127,6 +149,8 @@
     "feature_name": "Blade of Four Fates",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Sift X cards, adding each of their suits to the suit pool for all attacks made.",
     "prereq": null
@@ -138,6 +162,8 @@
     "feature_name": "Victorious",
     "tier": "Basic",
     "point_cost": 2,
+    "max_copies": 1,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack Downs the target, draw a card. You may only apply one copy of this feature, and cannot draw more than one card this way.",
     "prereq": null
@@ -149,6 +175,8 @@
     "feature_name": "Elemental",
     "tier": "Basic",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "When you choose this feature, choose Fire, Frost, or Shadow — the attack deals that type of damage.",
     "prereq": "Sorcery 2"
@@ -160,6 +188,8 @@
     "feature_name": "Viper's Sting",
     "tier": "Basic",
     "point_cost": 3,
+    "max_copies": 1,
+    "bonus_points": null,
     "description": null,
     "effects": "The Technique takes 1 less AP to use. You may only apply one copy of this feature.",
     "prereq": null
@@ -171,6 +201,8 @@
     "feature_name": "Calculated",
     "tier": "Basic",
     "point_cost": 3,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "You have Good Luck on the attack.",
     "prereq": null
@@ -182,6 +214,8 @@
     "feature_name": "Ascended Blade",
     "tier": "Advanced",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "You may have the attack deal its damage as Brilliant damage.",
     "prereq": "Composure, Meditation, or Theurgy 3"
@@ -193,6 +227,8 @@
     "feature_name": "Whirlwind",
     "tier": "Advanced",
     "point_cost": 5,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If your chosen weapon is a close-range weapon, the attack may target an additional target.",
     "prereq": null
@@ -204,6 +240,8 @@
     "feature_name": "Ricochet Shot",
     "tier": "Advanced",
     "point_cost": 5,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If your chosen weapon is a ranged weapon, the attack may target an additional enemy adjacent to the first.",
     "prereq": null
@@ -215,6 +253,8 @@
     "feature_name": "Flurry",
     "tier": "Advanced",
     "point_cost": 6,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "You Repeat the weapon attack against each target, and the Repeat benefits from all features.",
     "prereq": null
@@ -226,6 +266,8 @@
     "feature_name": "Brawn over Banter",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "(Approach) Make the Statement with Might against the target’s Mental Defense. You may only apply one Approach feature at a time.",
     "prereq": "Might 2"
@@ -237,6 +279,8 @@
     "feature_name": "Unpleasant Insinuation",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "(Approach) Make the Statement with Streetwise against the target’s Vigilant Defense. You may only apply one Approach feature at a time.",
     "prereq": "Streetwise 2"
@@ -248,6 +292,8 @@
     "feature_name": "\"Well, Actually...\"",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "(Approach) Make the Statement with Academics against the target’s Vigilant Defense. You may only apply one Approach feature at a time.",
     "prereq": "Academics 2"
@@ -259,6 +305,8 @@
     "feature_name": "Witty Quote",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "(Approach) Make the Statement with Performance against the target’s Mental Defense. You may only apply one Approach feature at a time.",
     "prereq": "Performance 2"
@@ -270,6 +318,8 @@
     "feature_name": "Emotional Appeal",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "(Approach) Make the Statement with Insight against the target’s Mental Defense. You may only apply one Approach feature at a time.",
     "prereq": null
@@ -281,6 +331,8 @@
     "feature_name": "Careful Delivery",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The Statement has Good Luck.",
     "prereq": null
@@ -292,6 +344,8 @@
     "feature_name": "Airtight Argument",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the Statement succeeds and its suit pool has at least three different suits, it gains 2 extra successes.",
     "prereq": null
@@ -303,6 +357,8 @@
     "feature_name": "Clear the Air",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the Statement succeeds, you may give up any number of its successes to remove that much Pressure.",
     "prereq": null
@@ -314,6 +370,8 @@
     "feature_name": "Friendly-Faced",
     "tier": "Basic",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the Statement succeeds, your party ignores Pressure on its next Statement and the Support checks made toward it.",
     "prereq": "Rapport 2"
@@ -325,6 +383,8 @@
     "feature_name": "Single Out",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the Statement succeeds, its target is Taunted by you twice.",
     "prereq": "Persuasion 2"
@@ -336,6 +396,8 @@
     "feature_name": "Upstage",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the Statement succeeds, the next check the other side makes against your party has Bad Luck.",
     "prereq": "Presence 2"
@@ -347,6 +409,8 @@
     "feature_name": "Setup & Follow",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Allies Supporting the Statement have Good Luck twice on their Support checks.",
     "prereq": null
@@ -358,6 +422,8 @@
     "feature_name": "Practiced Comeback",
     "tier": "Advanced",
     "point_cost": 4,
+    "max_copies": 1,
+    "bonus_points": null,
     "description": null,
     "effects": "Make the Statement twice, applying all features to each. You may only apply one copy of this feature.",
     "prereq": null
@@ -369,6 +435,8 @@
     "feature_name": "Bully into Submission",
     "tier": "Advanced",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "(Resolution) If the Statement succeeds, choose one member of the other side. If your party wins the social encounter, that person removes themselves from the scene as much as reasonably possible for at least the rest of the day. You may only apply one Resolution feature at a time.",
     "prereq": "Presence 3"
@@ -380,6 +448,8 @@
     "feature_name": "Leading Question",
     "tier": "Advanced",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "(Resolution) If the Statement succeeds, note its target. If your party wins the social encounter, that person lets slip a piece of information about the subject they were otherwise trying to keep secret. You may only apply one Resolution feature at a time.",
     "prereq": null
@@ -391,6 +461,8 @@
     "feature_name": "New Best Friend",
     "tier": "Advanced",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "(Resolution) If the Statement succeeds, note its target. If your party wins the social encounter and chooses Win Over, the shift in the target’s opinion is permanent - they treat you with a favorable attitude as though you are a friend. You may only apply one Resolution feature at a time.",
     "prereq": "Rapport 3"
@@ -402,6 +474,8 @@
     "feature_name": "Reach",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Increase the Range of the Spell by [Theurgy Skill Total] meters.",
     "prereq": null
@@ -413,6 +487,8 @@
     "feature_name": "Step of Air",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The target is Hasted X + 1 times.",
     "prereq": null
@@ -424,6 +500,8 @@
     "feature_name": "Shielding",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The target is Protected X + 1 times.",
     "prereq": null
@@ -435,6 +513,8 @@
     "feature_name": "Turn Elements",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. The target gains X + 1 stacks of [chosen Element] Ward.",
     "prereq": null
@@ -446,6 +526,8 @@
     "feature_name": "Steady",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Remove a stack of either Slowed or Crippled from the target.",
     "prereq": null
@@ -457,6 +539,8 @@
     "feature_name": "Embolden",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Remove a stack of either Taunted or Frightened from the target.",
     "prereq": null
@@ -468,6 +552,8 @@
     "feature_name": "Retribution",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The next X times this encounter that a damaging attack hits the target, the attacker gains a stack of Bleeding.",
     "prereq": null
@@ -479,6 +565,8 @@
     "feature_name": "River's Might",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "For the next X damaging attacks the target hits with this encounter, the creature hit is Pushed back 3 meters.",
     "prereq": null
@@ -490,6 +578,8 @@
     "feature_name": "Touch of Chaos",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "For the next [twice X] flips the target makes this encounter, they Sift a card and add its suit to the pool for that flip.",
     "prereq": null
@@ -501,6 +591,8 @@
     "feature_name": "Quickened",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The Spell only takes 1 AP to cast.",
     "prereq": null
@@ -512,6 +604,8 @@
     "feature_name": "Elemental Enhancement",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "When you choose this feature, choose Fire, Frost, Brilliant, or Shadow. The next X damaging attacks the target hits with this encounter may deal their damage as the chosen type.",
     "prereq": null
@@ -523,6 +617,8 @@
     "feature_name": "Mass Blessing",
     "tier": "Advanced",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The Spell may target an additional target.",
     "prereq": null
@@ -534,6 +630,8 @@
     "feature_name": "Alacrity",
     "tier": "Advanced",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The target may adjust their position in turn order by up to 2.",
     "prereq": null
@@ -545,6 +643,8 @@
     "feature_name": "Steal Fate",
     "tier": "Advanced",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "For the next X weapon attacks the target makes this encounter, if the attack Downs a creature the target may draw a card. They may only draw 1 card per casting of this Spell.",
     "prereq": null
@@ -556,6 +656,8 @@
     "feature_name": "Guided Hand",
     "tier": "Advanced",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The target has Good Luck on the next X attacks they make.",
     "prereq": null
@@ -567,6 +669,8 @@
     "feature_name": "Reach",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Increase the Range of the Spell by [Theurgy Skill Total] meters.",
     "prereq": null
@@ -578,6 +682,8 @@
     "feature_name": "Purify",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Remove 1 stack of Bleeding from the target. Remove 1 stack of each Poison effect affecting the target.",
     "prereq": null
@@ -589,6 +695,8 @@
     "feature_name": "Rejuvenate",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Instead of healing immediately, the target heals 1 Shallow Health at the start of each of their turns for [Spell's healing amount] rounds.",
     "prereq": null
@@ -600,6 +708,8 @@
     "feature_name": "Guardian Angel",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The next time this scene the target would be Downed, instead they are reduced to X Deep Health.",
     "prereq": null
@@ -611,6 +721,8 @@
     "feature_name": "Vitality",
     "tier": "Basic",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The Spell's healing is increased by 1.",
     "prereq": null
@@ -622,6 +734,8 @@
     "feature_name": "Triage",
     "tier": "Basic",
     "point_cost": 3,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The Spell's healing for each target is increased by 2 if that target is Wounded.",
     "prereq": null
@@ -633,6 +747,8 @@
     "feature_name": "Deep Mending",
     "tier": "Advanced",
     "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Any healing from the Spell may apply to Deep or Shallow Health.",
     "prereq": null
@@ -644,6 +760,8 @@
     "feature_name": "Healing Pact",
     "tier": "Advanced",
     "point_cost": 5,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The Spell may target an additional target.",
     "prereq": null
@@ -655,6 +773,8 @@
     "feature_name": "Tormenting Curse",
     "tier": "Basic",
     "point_cost": 0,
+    "max_copies": 1,
+    "bonus_points": 3,
     "description": null,
     "effects": "The spell attack deals no damage. When you learn this Spell, you may choose 3 additional points worth of features. You may only apply one copy of this feature.",
     "prereq": null
@@ -666,6 +786,8 @@
     "feature_name": "Destructive",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The spell attack deals an extra X damage.",
     "prereq": null
@@ -677,6 +799,8 @@
     "feature_name": "Arcane Chant",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "When you declare the Spell, you may spend any amount of extra AP. For each AP spent, choose 2 points' worth of features from among those the Spell already has, and apply them in addition to the existing ones.",
     "prereq": null
@@ -688,6 +812,8 @@
     "feature_name": "Lance",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Increase the Range of the spell attack by [Sorcery Skill Total] meters.",
     "prereq": null
@@ -699,6 +825,8 @@
     "feature_name": "Abjuring",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "After the spell attack is resolved, you gain X + 1 stacks of [attack's damage type] Ward + [Hearts] stacks. X is the number of copies of this feature.",
     "prereq": null
@@ -710,6 +838,8 @@
     "feature_name": "Barraging",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits, or if the target Dodges the attack, they are Harried X + [Hearts] stacks.",
     "prereq": null
@@ -721,6 +851,8 @@
     "feature_name": "Sanguine",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": 1,
+    "bonus_points": null,
     "description": null,
     "effects": "The spell attack deals an extra 3 damage. If it would cause the target to lose Health, instead they gain that many stacks of Bleeding + [Clubs] stacks. You may only apply one copy of this feature.",
     "prereq": null
@@ -732,6 +864,8 @@
     "feature_name": "Corrupting",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits, the target gains [twice X] + [Diamonds] stacks of Vulnerable. You may change the attack's damage type to Shadow.",
     "prereq": null
@@ -743,6 +877,8 @@
     "feature_name": "Necrotic",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits, before damage or other effects, the target gains [twice X] + [Diamonds] stacks of Necrotic. You may change the attack's damage type to Shadow.",
     "prereq": null
@@ -754,6 +890,8 @@
     "feature_name": "Kinetic",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the spell attack hits, the target is Pushed up to [four times X] + Spades meters in a direction of your choice.",
     "prereq": null
@@ -765,6 +903,8 @@
     "feature_name": "Frigid",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits, the target is Slowed [twice X] + [Spades] times. You may change the attack's damage type to Frost.",
     "prereq": null
@@ -776,6 +916,8 @@
     "feature_name": "Glacier",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "After the attack, every space occupied by or adjacent to any targeted creature gains [twice X] + [Spades] levels of Difficult Terrain, lasting for the encounter. You may change the attack's damage type to Frost.",
     "prereq": null
@@ -787,6 +929,8 @@
     "feature_name": "Reign of Blood",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the spell attack hits, remove up to [twice X] + [Clubs] stacks of Bleeding from the target, and they lose that much Health.",
     "prereq": null
@@ -798,6 +942,8 @@
     "feature_name": "Wild Magic",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Sift [three times X] cards, adding each of their suits to the suit pool for all attacks made.",
     "prereq": null
@@ -809,6 +955,8 @@
     "feature_name": "Piercing Elements",
     "tier": "Advanced",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "You have Good Luck on the spell attack.",
     "prereq": null
@@ -820,6 +968,8 @@
     "feature_name": "Draw Power",
     "tier": "Advanced",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack Downs the target, they are instantly killed and you draw a card. You may only draw one card per casting. You may change the attack's damage type to Shadow.",
     "prereq": null
@@ -831,6 +981,8 @@
     "feature_name": "Furrow (Shape)",
     "tier": "Advanced",
     "point_cost": 3,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The spell attack instead targets all creatures in a line [half your Sorcery Skill Total] meters long, from your space. You may only apply one Shape feature to the Spell.",
     "prereq": null
@@ -842,6 +994,8 @@
     "feature_name": "Funnel (Shape)",
     "tier": "Advanced",
     "point_cost": 3,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The spell attack instead targets all creatures within a 2-meter-long cone. You may only apply one Shape feature to the Spell.",
     "prereq": null
@@ -853,6 +1007,8 @@
     "feature_name": "Nova (Shape)",
     "tier": "Advanced",
     "point_cost": 3,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "The spell attack instead targets all adjacent creatures. You may only apply one Shape feature to the Spell.",
     "prereq": null
@@ -864,6 +1020,8 @@
     "feature_name": "Channel (Shape)",
     "tier": "Advanced",
     "point_cost": 3,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "Each time the spell attack hits, on your next turn you may spend the AP used to cast the Spell to make a spell attack with all the same features against one of the targets. You may only apply one Shape feature to the Spell.",
     "prereq": null
@@ -875,6 +1033,8 @@
     "feature_name": "Bare-Handed",
     "tier": "Basic",
     "point_cost": 0,
+    "max_copies": 1,
+    "bonus_points": 2,
     "description": null,
     "effects": "The attack must be made with an Unarmed weapon. When you learn this Technique, you may choose 2 additional points worth of features. You may only apply one copy of this feature.",
     "prereq": null
@@ -886,6 +1046,8 @@
     "feature_name": "Fleet Step",
     "tier": "Basic",
     "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
     "description": null,
     "effects": "If the attack hits, you may Outflank up to [twice X] + [Spades] times.",
     "prereq": null

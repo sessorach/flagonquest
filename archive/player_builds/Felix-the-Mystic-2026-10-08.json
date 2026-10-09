@@ -1,0 +1,106 @@
+{
+  "charName": "Felix the Mystic",
+  "charConcept": "A practitioner of the mystic and martial arts",
+  "xpBudget": "75",
+  "statPoints": {
+    "Agility": 3,
+    "Body": 2,
+    "Cunning": 1,
+    "Mind": 2,
+    "Essence": 2
+  },
+  "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 0,
+    "Stealth": 2,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 2,
+    "Sorcery": 0,
+    "Theurgy": 0
+  },
+  "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+  "noteRows": [],
+  "customTechniques": [],
+  "backgroundType": "Settler",
+  "backgrounds": [],
+  "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+  ],
+  "enabledSupplements": [
+    "Base Game"
+  ],
+  "gold": "",
+  "inventory": [
+    {
+      "id": "I125",
+      "qty": 1
+    },
+    {
+      "id": "I128",
+      "qty": 1
+    }
+  ],
+  "customItems": [],
+  "customMaterials": [],
+  "customAttacks": [],
+  "exportedAt": "2026-10-09T01:31:31.047Z",
+  "techniques": [
+    {
+      "id": "T159",
+      "name": "Demon School - Thief Empties the Vessel",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T080",
+      "name": "Shugen School - Firefly Leaves the Hand",
+      "xp": 3,
+      "level": "Lv 1"
+    },
+    {
+      "id": "T175",
+      "name": "Great Old Oak School - Boughs Unbroken",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+        {
+          "name": "Bare-Handed",
+          "count": 1
+        },
+        {
+          "name": "Half Guard",
+          "count": 2
+        },
+        {
+          "name": "Lunging",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}
