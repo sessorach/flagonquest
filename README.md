@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-10-09 — Builder fix for once-only Features
+### 2026-10-09 — The sample roster is complete
 
-The Feature builder now enforces Features that can only be taken once, and Bare-Handed and Tormenting Curse now add their extra points to spend, the way their text says.
+The designer's last three sample characters are in: Felix (monk), Enith (duelist) and Ashleigh (bard), rounding the simulator's roster out to ten real builds. Setting them up also fixed the Feature builder, which now enforces once-only Features and gives Bare-Handed and Tormenting Curse their extra points.
 
 ### 2026-10-08 — Teaching the simulator to play like a real table
 
