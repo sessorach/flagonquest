@@ -470,12 +470,12 @@ With every new switch off, the sim reproduces the old numbers exactly
 - **Fleeting's skip.** Since 2026-08-29 the glossary has said a Fleeting
   effect gained from zero skips its next removal. The sim never did
   this. Read literally, it applies to everything: a fresh Bleeding stack
-  then only deals its point at the end of the target's second turn. The
-  commit that added it describes the same-turn snag (getting a stack on
-  your own turn and losing it that same turn end). The sim uses that
-  narrower reading for now (FLEETING_SKIP = 'own_turn'), pending the
-  designer. Harried is left out either way: its own "remove all stacks"
-  clear plus a skip would make it last a whole extra round.
+  then only deals its point at the end of the target's second turn.
+  Settled by the designer later the same day: the skip only applies to
+  an effect gained during the bearer's own turn (a player putting
+  Protected on themselves), Bleeding never skips, and Harried just
+  clears at the end of the turn (FLEETING_SKIP = 'own_turn',
+  FLEETING_SKIP_EXEMPT).
 - **Protected decays.** It's Fleeting, and the sim never took stacks off.
   It now does, for PCs and enemies (PROTECTED_DECAYS).
 - **No Gambling on spells.** The rulebook says only weapon attacks can
@@ -493,8 +493,10 @@ All three barely move the party numbers (a point or two at most).
   never fired (0.02 a fight), so he now saves Thief until he's hurt or
   it's round 3 (my call). Boughs Unbroken: no Harried from Parrying,
   and an unarmed hit cleanses.
-- **Enith**: at the start of her turn, with both hexes ready, the
-  biggest fresh melee threat that's engaged with the party gets Slowed,
+- **Enith**: Hex of Sloth is against Dodge, Hex of Rebuking against
+  Vital (the designer's split). At the start of her turn, with both
+  hexes ready, the biggest fresh melee threat that's engaged with the
+  party gets Slowed,
   then Pushed away from the party (a Speed 4 enemy with 6+ Slowed can't
   move for about three turns). Otherwise she Pushes an enemy off a
   fragile ally, or Slows one still walking in. A Push needs two enemies
@@ -564,9 +566,8 @@ first stack is out of date either way.
 
 ### Open questions for the designer
 
-1. Fleeting's skip: every fresh effect (as written), or only one gained
-   on your own turn? As written, a single Bleeding stack almost never
-   deals its point. And should Harried skip at all?
+1. ~~Fleeting's skip~~: answered, same-turn only, Bleeding and Harried
+   exempt. The glossary wording still needs updating to match.
 2. The glossary's Play entry says a played card adds +1 to the flip;
    the rulebook says it replaces a flipped card. The sim uses the
    rulebook (it's also your "throw in the 12" example).
@@ -575,6 +576,9 @@ first stack is out of date either way.
    targets (above).
 5. Durable (+1 Protected each turn, max 4) was written as if Protected
    builds up; with Protected decaying it hovers at 1-2.
-6. Which Defense each of Enith's hexes targets (still Dodge).
+6. ~~Which Defense each of Enith's hexes targets~~: answered, Sloth
+   against Dodge, Rebuking against Vital. With the split nothing in the
+   party numbers moved (Party S still 3.8 rounds, Down 28%); she still
+   lands about 1.3 hexes a fight, spending cards to make them stick.
 7. The card budget is a hard third of the hand for everyone. A healer
    might spend more than a third on healing.

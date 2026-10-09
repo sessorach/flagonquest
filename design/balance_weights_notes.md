@@ -9705,7 +9705,9 @@ puts on an enemy on its own turn decays as before). The glossary's text
 as written skips the first removal of every fresh effect, and then a
 first stack only deals its point at the end of the target's second turn:
 it lands **1%** of the time (**~0.05 Value**), and every-hit Bleeding
-0.02-0.05 points a fight. Which reading is meant is with the designer.
+0.02-0.05 points a fight. The designer settled it the same day: the skip
+is same-turn only and Bleeding never skips, so the **~0.9** above is the
+number (re-run after the change: 12% against 54%, 0.92 Value).
 
-Either way the proposed ~1.6 for a first stack no longer holds once the
-party has its cards; it's ~0.9 or close to nothing. Still pending.
+So the proposed ~1.6 for a first stack no longer holds once the party
+has its cards; it's ~0.9. The reprice itself is still pending.
