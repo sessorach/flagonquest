@@ -157,13 +157,14 @@ TECH_ATTACKS = {
 # copies, each Tormenting Curse ("deals no damage", +3 points) plus Lance
 # ("Increase the Range... by [Sorcery Skill Total] meters", the same
 # range the sim gives Beornhard's Lance) and the rest on one effect
-# (designer, 2026-10-09). Against Dodge until the designer says which
-# Defense each was learned against. `effect` is (kind, amount, bonus
-# suit): Frigid x3 is "Slowed [twice X] + [Spades] times", Kinetic x3 is
-# "Pushed up to [four times X] + Spades meters".
+# (designer, 2026-10-09). War Magic is learned against Dodge or Vital;
+# per the designer, she split them: Sloth against Dodge, Rebuking against
+# Vital. Each is (kind, amount, bonus suit, Defense): Frigid x3 is "Slowed
+# [twice X] + [Spades] times", Kinetic x3 is "Pushed up to [four times X]
+# + Spades meters".
 HEXES = {
-    "Hex of Sloth": ("slowed", 6, "Spades"),
-    "Hex of Rebuking": ("push", 12, "Spades"),
+    "Hex of Sloth": ("slowed", 6, "Spades", "Dodge"),
+    "Hex of Rebuking": ("push", 12, "Spades", "Vital"),
 }
 
 _CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sample_pcs.csv")
@@ -470,7 +471,7 @@ def _pc_dict(row, index, good_luck):
 
     # Ranged hexes (HEXES above), one use per known copy.
     hexes = [dict(via=h, kind=HEXES[h][0], amount=HEXES[h][1], suit=HEXES[h][2], uses=encounter_techs.count(h),
-                  skill="Sorcery", skill_total=skill_total(stats, skills, "Sorcery"), opp_def="Dodge",
+                  skill="Sorcery", skill_total=skill_total(stats, skills, "Sorcery"), opp_def=HEXES[h][3],
                   range=skill_total(stats, skills, "Sorcery"))
              for h in dict.fromkeys(encounter_techs) if h in HEXES]
 

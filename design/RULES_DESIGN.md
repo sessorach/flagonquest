@@ -1728,6 +1728,17 @@ the full list going into the balance pass.
   check is "was this at zero right before the grant?"), and every
   existing "+1 free stack" item-level patch becomes safe to remove as a
   follow-up cleanup, not required to keep working around this anymore.
+- **The Fleeting skip is same-turn only, and Bleeding and Harried never
+  skip** (per the designer, 2026-10-09). The glossary's wording ("skip
+  the next removal") read literally covers an effect gained on anyone's
+  turn, and the simulator showed what that does to Bleeding: a fresh
+  stack on an enemy only ticks at the end of its second turn, so a
+  single stack almost never dealt its point. The skip is for the case
+  above, like a player putting Protected on themselves: it only applies
+  when the effect was gained during the bearer's own turn. Bleeding
+  never skips, so it always deals its damage, and Harried is exempt too,
+  since it just clears at the end of the turn. Might get re-evaluated.
+  The glossary wording still needs updating to match.
 - **Ward reimagined: flat Resist + a self-limiting absorption charge**
   (`glossary.md`'s `(Fire/Frost/Brilliant/Shadow) Ward [Fleeting]`
   entry). Surfaced fixing Elemental-Attuned Tincture — even after the

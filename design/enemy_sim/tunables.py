@@ -433,21 +433,20 @@ SIFT_KEEP_RANK = 7
 # gives an enemy attack a suit); flip to True to see what it would do.
 ENEMY_SUIT_EXTRA = False
 
-# ---- Fleeting, as written (2026-10-09) ----
+# ---- Fleeting (2026-10-09) ----
 # glossary.md [Fleeting]: "If you had no stacks of a Fleeting effect
 # right before gaining some, skip the next removal that would apply to
 # it." In the rules since 2026-08-29; the sim decayed every stack at the
 # next turn end. Protected is Fleeting too, and the sim never decayed it.
-# True: as written, every fresh effect skips. 'own_turn': only one
-# gained during the bearer's own turn skips (the same-turn snag the rule
-# was added for; on a target's own turn end it otherwise lost a stack the
-# instant it was granted). Which one the designer meant is open: as
-# written, a fresh Bleeding stack only deals its point at the end of the
-# target's second turn, and per-hit Bleeding lands 0.02-0.05 points a
-# Level 1 fight against 0.3-0.6 for 'own_turn' (TABLE_PLAY_NOTES.md,
-# 2026-10-09). 'own_turn' is the default until the designer says which;
-# it's what the commit adding the rule describes. False: no skip.
+# Per the designer (2026-10-09): the skip is only for an effect gained
+# during the bearer's own turn (a player putting Protected on themselves
+# shouldn't lose a stack at the end of that same turn), and Bleeding
+# never skips, so it always deals its damage. Harried is exempt too: it
+# just clears at the end of the turn. 'own_turn' is that rule; True
+# (every fresh effect skips, the glossary read literally) and False (no
+# skip) stay for measuring.
 FLEETING_SKIP = 'own_turn'
+FLEETING_SKIP_EXEMPT = ('bleeding',)  # Harried never goes through the skip at all
 PROTECTED_DECAYS = True
 
 # rulebook.md: "For attacks that deal damage, only weapon attacks can be

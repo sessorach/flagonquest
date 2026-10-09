@@ -682,9 +682,11 @@ def _pc_status_bad_luck(pc, target):
 # ---- Fleeting effects (glossary.md [Fleeting]) ----
 # "At the end of your turn... remove 1 stack of each Fleeting effect you
 # have... If you had no stacks of a Fleeting effect right before gaining
-# some, skip the next removal that would apply to it." `skip_<key>` marks
-# a skipped removal (tunables.FLEETING_SKIP). Harried keeps its own
-# all-at-once clear and no skip, pending the designer.
+# some, skip the next removal that would apply to it." Per the designer
+# (2026-10-09) that skip is only for an effect gained on the bearer's own
+# turn, and never for Bleeding (tunables.FLEETING_SKIP,
+# FLEETING_SKIP_EXEMPT). `skip_<key>` marks a skipped removal. Harried
+# keeps its own all-at-once clear and never skips.
 
 # Whose turn it is right now, for FLEETING_SKIP = 'own_turn'.
 _ACTOR = [None]
@@ -692,9 +694,8 @@ _ACTOR = [None]
 
 def _skips(unit):
     """Whether a fresh Fleeting effect on `unit` skips its next removal:
-    always (the glossary as written), or only when it's gained during
-    `unit`'s own turn (the snag the rule was added for: losing a stack
-    at the end of the same turn you got it)."""
+    only when it's gained during `unit`'s own turn (the designer's rule,
+    'own_turn'), or always (the glossary read literally, True)."""
     mode = T.FLEETING_SKIP
     return bool(mode) and (mode != 'own_turn' or unit is _ACTOR[0])
 
@@ -703,7 +704,7 @@ def _gain(unit, key, n):
     """Adds `n` stacks of a Fleeting effect to `unit`."""
     if n <= 0:
         return
-    if unit.get(key, 0) <= 0 and _skips(unit):
+    if unit.get(key, 0) <= 0 and key not in T.FLEETING_SKIP_EXEMPT and _skips(unit):
         unit['skip_' + key] = True
     unit[key] = unit.get(key, 0) + n
 
@@ -1028,18 +1029,21 @@ def _fatestealer(pc):
 
 
 def _cast_hex(pc, hx, e, pcs, allies, rnd, trace, log):
-    """One of Enith's hexes at `e`: a Sorcery spell attack against Dodge,
-    no damage; on a hit, Slowed or Pushed by its amount plus the suit.
-    Raise Spirits and Hand of Chaos apply (it's an attack); a miss is
-    worth a card. A Push goes straight away from the middle of the party
-    (glossary.md [Pushing]: "forcibly moved", not moving). Returns AP."""
+    """One of Enith's hexes at `e`: a Sorcery spell attack against the
+    hex's own Defense (Sloth Dodge, Rebuking Vital), no damage; on a hit,
+    Slowed or Pushed by its amount plus the suit. Raise Spirits and Hand
+    of Chaos apply (it's an attack); a miss is worth a card. Only the
+    Dodge one Harries its target. A Push goes straight away from the
+    middle of the party (glossary.md [Pushing]: "forcibly moved", not
+    moving). Returns AP."""
     hx['uses'] -= 1
-    defense = e['dodge'] - e.get('harried', 0)
+    defense = enemy_defense_for_pc_attack(hx, e)
     mod = hx['skill_total'] - pc.get('crippled', 0)
     good = pc.get('good_luck', 0) + _raise_spirits(pc, pcs, defense - mod, True)
     value, pool = _pc_flip(pc, mod, defense, good, _pc_status_bad_luck(pc, e), BIG, pcs, _hand_of_chaos(pc))
     hit = mod + value >= defense
-    e['harried'] = e.get('harried', 0) + 1
+    if hx['opp_def'] in ('Parry/Dodge', 'Dodge'):
+        e['harried'] = e.get('harried', 0) + 1
     note = start = None
     if hit:
         n = hx['amount'] + _suit_count(pool, hx['suit'])
@@ -1057,7 +1061,7 @@ def _cast_hex(pc, hx, e, pcs, allies, rnd, trace, log):
     if log:
         log(unit=pc['name'], action='hex', target=e['name'], roll=mod + value, defense=defense, hit=hit,
             dmg=0, raw_dmg=0, resist=0, target_hp_after=e['health'], target_harried_after=e['harried'],
-            via=hx['via'], effects=note, cards=_take_notes(pc))
+            via=hx['via'], effects=note, cards=_take_notes(pc), opp_def=hx['opp_def'])
     pc.pop('_notes', None)
     if start is not None:
         _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
