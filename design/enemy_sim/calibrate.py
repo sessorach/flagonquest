@@ -31,7 +31,13 @@ PARTIES = {2: {"A": ["Hilde (L2)", "Browndog (L2)", "Carrick (L2)", "Sable (L2)"
                "D": ["Browndog (L2)", "Hanforth (L2)", "Felix (L2)", "Beornhard (L2)"]},
            1: {"A": ["Hilde", "Browndog", "Carrick", "Sable"],
                "D": ["Browndog", "Hanforth", "Felix", "Beornhard"],
-               "H": ["Hilde", "Browndog", "HOLE (90 XP)", "Sable"]}}
+               "H": ["Hilde", "Browndog", "HOLE (90 XP)", "Sable"],
+               # The agreed sample parties (TABLE_PLAY_NOTES.md, 2026-10-08):
+               # typical table, skirmishers, support-heavy. "A" is the
+               # two-front-liner one.
+               "T": ["Browndog", "Hanforth", "Sable", "Beornhard"],
+               "S": ["Enith", "Felix", "Jackal", "Hanforth"],
+               "U": ["Browndog", "Ashleigh", "Sable", "Beornhard"]}}
 TARGETS = ("Targets: ~3 rounds (5 at most), losses ~never, someone Down < 1 in 3 fights, "
            "someone Wounded ~1 in 2, a hit enemy acts again ~50%")
 

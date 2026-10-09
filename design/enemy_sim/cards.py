@@ -183,6 +183,14 @@ def cheapest_at_least(hand, need, k=1):
     return ok[:k] if len(ok) >= k else None
 
 
+_RANKS = {1: "A", 11: "J", 12: "Q", 13: "K"}
+_GLYPHS = ("♠", "♥", "◆", "♣")  # the rulebook's own glyphs, ◆ not ♦
+
+
+def card_str(c):
+    return f"{_RANKS.get(rank(c), rank(c))}{_GLYPHS[suit(c)]}"
+
+
 def highest(hand):
     return max(hand, key=rank) if hand else None
 

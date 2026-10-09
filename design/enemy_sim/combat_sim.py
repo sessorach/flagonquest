@@ -714,6 +714,17 @@ def _decay(unit, key):
 NORMAL, FOCUS, BIG, KILL, PLANNED = 1, 2, 3, 4, 5
 
 
+def _note(pc, text):
+    """Something worth showing on this attack's log line (a card played,
+    a boost), for the replays."""
+    pc.setdefault('_notes', []).append(text)
+
+
+def _take_notes(pc):
+    notes = pc.pop('_notes', None)
+    return '; '.join(notes) if notes else None
+
+
 def _importance(target, net_on_hit, big=False):
     """KILL if a hit drops the target, BIG for an Encounter attack or a
     hex, FOCUS for a target that's hurt or already being hit this round,
@@ -744,6 +755,8 @@ def _rescue(pc, need, k, importance, allies):
             for c in play:
                 cards.spend(h, c)
             h['rescues_given' if h is not pc else 'rescues'] = h.get('rescues_given' if h is not pc else 'rescues', 0) + 1
+            _note(pc, ("plays " if h is pc else f"{h['name']} plays ") + ", ".join(cards.card_str(c) for c in play)
+                  + " to turn the miss into a hit")
             return play
     return None
 
@@ -831,6 +844,7 @@ def _choose_gambles(pc, target, mod, defense, resist, good):
         imp = _importance(target, pc['damage'] + n_back - resist - target.get('protected', 0))
         if imp == KILL or (imp == FOCUS and cards.can_spend(pc, 1 + T.RESCUE_RESERVE[FOCUS])):
             pc['backed'] = pc.get('backed', 0) + 1
+            _note(pc, f"Gambles {n_back}x, holding {cards.card_str(cards.highest(pc['hand']))}")
             return n_back, True
     return n, False
 
@@ -856,7 +870,9 @@ def _perfect_strike(pc, need, importance, skill):
     cards.spend(pc, low)
     pc['perfect_strikes'] = pc.get('perfect_strikes', 0) + 1
     if cards.suit(low) == cards.SKILL_SUIT[skill] and _p_flip_at_least(need, 2) >= 0.75:
+        _note(pc, f"Perfect Strike ({cards.card_str(low)}, into the suit pool)")
         return 1, [cards.suit(low)]
+    _note(pc, f"Perfect Strike ({cards.card_str(low)}, Good Luck twice)")
     return 2, []
 
 
@@ -881,6 +897,7 @@ def _raise_spirits(attacker, pcs, need, big):
             continue
         b['ap_bank'] -= 1
         b['raises'] = b.get('raises', 0) + 1
+        _note(attacker, f"Good Luck from {b['name']}'s Raise Spirits")
         return 1
     return 0
 
@@ -910,6 +927,8 @@ def _kill_topup(pc, target, raw, resist, skill, allies):
             for c in matching[:x]:
                 cards.spend(h, c)
             h['topups'] = h.get('topups', 0) + 1
+            _note(pc, ("adds " if h is pc else f"{h['name']} adds ") + ", ".join(cards.card_str(c) for c in matching[:x])
+                  + f" to the suit pool for +{x} damage")
             return x
     return 0
 
@@ -935,6 +954,156 @@ def _has_big_attacks(p):
             or any(t['uses'] > 0 for t in p.get('tech_attacks', ()))
             or any(h['uses'] > 0 for h in p.get('hexes', ()))
             or (p.get('maneuver') or {}).get('uses', 0) > 0)
+
+
+# ---- Felix, Enith and Ashleigh (2026-10-09) ----
+
+def _thief_heal(pc, amount, log=None):
+    """Thief Empties the Vessel (T159): "If it hits, ... you may discard a
+    card to heal 3 Health." Taken when he's missing 3 or more (designer,
+    2026-10-09), with the cheapest card in hand."""
+    if pc['max_health'] - pc['health'] < amount:
+        return
+    if T.CARDS:
+        if not cards.can_spend(pc):
+            return
+        cards.spend(pc, cards.lowest(pc['hand']))
+    else:
+        if pc.get('card_uses_left', 0) <= 0:
+            return
+        pc['card_uses_left'] -= 1
+    pc['health'] += amount
+    if log:
+        log(unit=pc['name'], action='heal', target=pc['name'], amount=amount, target_hp_after=pc['health'],
+            via='Thief Empties the Vessel')
+
+
+def _boughs_cleanse(pc):
+    """Great Old Oak School - Boughs Unbroken (T175): "When one of your
+    Unarmed attacks hits, choose Bleeding, Crippled, Frightened, Necrotic,
+    Slowed, Taunted, or Vulnerable, then remove all stacks of it from
+    yourself." Per the designer: Bleeding first, then Crippled, then
+    whichever of the rest he has most of. Returns the effect cleared."""
+    have = [k for k in ('bleeding', 'crippled') if pc.get(k, 0) > 0]
+    if not have:
+        rest = [k for k in ('slowed', 'vulnerable', 'taunted', 'frightened') if pc.get(k, 0) > 0]
+        have = sorted(rest, key=lambda k: -pc[k])
+    if not have:
+        return None
+    key = have[0]
+    pc[key] = 0
+    pc.pop('skip_' + key, None)
+    if key in ('taunted', 'frightened'):
+        pc[key + '_by'] = None
+    pc['cleansed'] = pc.get('cleansed', 0) + 1
+    return key
+
+
+def _fatestealer(pc):
+    """Fatestealer (I092) at Level 1, Enith's Temper Soulblade power: a
+    creature Downed by the weapon gives 1 charge (max 8); "For 1 charge,
+    the wielder may Sift 2 cards. For 3 charges, the wielder may draw a
+    card." She saves them for the draw: a Sift only thins low cards out
+    of the deck. A drawn card joins this fight's budget. Charges last the
+    day; the sim starts each fight at 0."""
+    pc['fate_charges'] = min(8, pc.get('fate_charges', 0) + 1)
+    if T.CARDS and pc['fate_charges'] >= 3:
+        pc['fate_charges'] -= 3
+        pc['hand'].append(pc['deck'].draw())
+        pc['budget'] += 1
+        pc['fate_draws'] = pc.get('fate_draws', 0) + 1
+
+
+def _cast_hex(pc, hx, e, pcs, allies, rnd, trace, log):
+    """One of Enith's hexes at `e`: a Sorcery spell attack against Dodge,
+    no damage; on a hit, Slowed or Pushed by its amount plus the suit.
+    Raise Spirits and Hand of Chaos apply (it's an attack); a miss is
+    worth a card. A Push goes straight away from the middle of the party
+    (glossary.md [Pushing]: "forcibly moved", not moving). Returns AP."""
+    hx['uses'] -= 1
+    defense = e['dodge'] - e.get('harried', 0)
+    mod = hx['skill_total'] - pc.get('crippled', 0)
+    good = pc.get('good_luck', 0) + _raise_spirits(pc, pcs, defense - mod, True)
+    value, pool = _pc_flip(pc, mod, defense, good, _pc_status_bad_luck(pc, e), BIG, pcs, _hand_of_chaos(pc))
+    hit = mod + value >= defense
+    e['harried'] = e.get('harried', 0) + 1
+    note = start = None
+    if hit:
+        n = hx['amount'] + _suit_count(pool, hx['suit'])
+        if hx['kind'] == 'slowed':
+            _gain(e, 'slowed', n)
+            note = f"Slowed +{n}"
+        else:
+            cx = round(sum(p['pos'][0] for p in allies) / len(allies))
+            cy = round(sum(p['pos'][1] for p in allies) / len(allies))
+            start = e['pos']
+            e['pos'] = movement.move_away(e['pos'], (cx, cy), n)
+            note = f"Pushed {_distance(start, e['pos'])} m (up to {n})"
+    pc['hexes_cast'] = pc.get('hexes_cast', 0) + 1
+    pc['hexes_hit'] = pc.get('hexes_hit', 0) + hit
+    if log:
+        log(unit=pc['name'], action='hex', target=e['name'], roll=mod + value, defense=defense, hit=hit,
+            dmg=0, raw_dmg=0, resist=0, target_hp_after=e['health'], target_harried_after=e['harried'],
+            via=hx['via'], effects=note, cards=_take_notes(pc))
+    pc.pop('_notes', None)
+    if start is not None:
+        _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
+             spaces=_distance(start, e['pos']), in_range=False, via=f"Pushed by {hx['via']}")
+    return T.ATTACK_AP_COST
+
+
+def _try_hexes(pc, pcs, enemies, rnd, movement_on, trace, log, ap):
+    """Enith's hexes (Hex of Sloth, Slowed 6 + [Spades]; Hex of Rebuking,
+    Pushed 12 + [Spades] meters), each once a fight, range 5. Per the
+    designer (2026-10-09) she's a tactical disabler: the hexes split
+    enemies up and isolate them so the party can divide and conquer. At
+    the start of her turn, in order:
+
+    1. With both left and 4 AP: the biggest melee threat that's engaged
+       with the party and still fresh gets Slowed, then Pushed away. A
+       Speed 4 enemy with 6+ Slowed can't move for about three turns.
+    2. An enemy in melee with a fragile ally (a back-liner, someone
+       Wounded, or Enith) gets Pushed off them.
+    3. A melee enemy still on its way in gets Slowed.
+
+    A Push needs at least two enemies standing: with one left there's
+    nothing to split up. Returns the AP spent."""
+    ready = {h['kind']: h for h in pc.get('hexes', ()) if h['uses'] > 0}
+    if not ready or not movement_on or ap < T.ATTACK_AP_COST:
+        return 0
+    living = [e for e in enemies if e['health'] > 0]
+    allies = [p for p in pcs if p['health'] > 0]
+    in_range = [e for e in living if _distance(pc['pos'], e['pos']) <= max(h['range'] for h in ready.values())
+                and (e.get('attack_range') or 0) <= T.MELEE_RANGE]
+    if not in_range:
+        return 0
+
+    def engaged(e):
+        return [p for p in allies if _distance(p['pos'], e['pos']) <= T.MELEE_RANGE]
+
+    def fragile(p):
+        return p is pc or p.get('play_style') == 'Back-liner' or tactics.pc_wounded(p)
+
+    def threat(e):
+        return tactics.enemy_threat(e, allies)
+    slow, push = ready.get('slowed'), ready.get('push')
+    if len(living) < 2:
+        push = None
+    if slow and push and ap >= 2 * T.ATTACK_AP_COST:
+        fresh = [e for e in in_range if engaged(e) and e['health'] > e['max_health'] / 2]
+        if fresh:
+            e = max(fresh, key=threat)
+            return (_cast_hex(pc, slow, e, pcs, allies, rnd, trace, log)
+                    + _cast_hex(pc, push, e, pcs, allies, rnd, trace, log))
+    if push:
+        on_fragile = [e for e in in_range if any(fragile(p) for p in engaged(e))]
+        if on_fragile:
+            return _cast_hex(pc, push, max(on_fragile, key=threat), pcs, allies, rnd, trace, log)
+    if slow:
+        coming = [e for e in in_range if not engaged(e)]
+        if coming:
+            return _cast_hex(pc, slow, max(coming, key=threat), pcs, allies, rnd, trace, log)
+    return 0
 
 
 def _try_challenge(pc, pcs, enemies, movement_on, log=None):
@@ -976,7 +1145,8 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
         target['taunted_by'] = pc
     if log:
         log(unit=pc['name'], action='taunt', target=target['name'], roll=roll, defense=target['mental'], hit=hit,
-            via='Challenge', effects=f"Taunted +{target['taunted']}" if hit else None)
+            via='Challenge', effects=f"Taunted +{target['taunted']}" if hit else None, cards=_take_notes(pc))
+    pc.pop('_notes', None)
     return 1
 
 
@@ -994,6 +1164,11 @@ def _tech_attack_choice(pc, target):
         return _p_flip_at_least(need) * max(0, prof['damage'] - enemy_resist_for_pc_attack(prof, target))
     for t in pc.get('tech_attacks', ()):
         if t['uses'] <= 0:
+            continue
+        # A drain that heals (Thief Empties the Vessel) is saved until it
+        # would heal, or the fight's into its third round.
+        if (t.get('heal_on_hit') and pc['max_health'] - pc['health'] < t['heal_on_hit']
+                and pc.get('acted_round', 1) <= 2):
             continue
         if t.get('effect'):
             if not t['damage'] and target.get(t['effect'][0], 0) > 0:
@@ -1088,6 +1263,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
             ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
         tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
         ap -= _try_challenge(pc, pcs, enemies, movement_on, log=party_log)
+        ap -= _try_hexes(pc, pcs, enemies, rnd, movement_on, trace, party_log, ap)
         targets = [e for e in enemies if e['health'] > 0]
         allies = [p for p in pcs if p['health'] > 0]
         # Play styles (play_styles.py): a Skirmisher or Back-liner plans
@@ -1164,6 +1340,15 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                             _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                                  in_range=_distance(pc['pos'], target['pos']) <= reach,
                                  spaces=_distance(blink_start, pc['pos']), via='Blinkstep')
+                    # Battle Maneuver's Lunging (Felix): free Shifts in, when
+                    # they and the AP left still get him there to attack.
+                    lunge = play_styles.lunge_spaces(pc)
+                    gap = _distance(pc['pos'], target['pos']) - reach
+                    if lunge and 0 < gap <= lunge + tactics._speed(pc) * max(0, ap - T.ATTACK_AP_COST):
+                        lunge_start = pc['pos']
+                        pc['pos'] = movement.move_toward(pc['pos'], target['pos'], lunge, stop_at=reach)
+                        _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                             spaces=_distance(lunge_start, pc['pos']), via='Battle Maneuver: Lunging')
                     ap_start = pc['pos']
                     ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
                     if moved:
@@ -1179,8 +1364,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0 \
                         and not _warmage_reserves(pc, party_log):
                     break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
-                substitute = tactics.bottomless_bottles_choice(pc)
-                if not substitute:
+                pc.pop('_notes', None)  # anything left from a bonus attack or Interrupt
+                # Battle Maneuver (T072, Encounter) is Felix's opening move
+                # (designer, 2026-10-09): his first attack of the fight.
+                maneuver_now = bool(pc.get('maneuver')) and pc['maneuver']['uses'] > 0
+                if maneuver_now:
+                    pc['maneuver']['uses'] -= 1
+                substitute = None if maneuver_now else tactics.bottomless_bottles_choice(pc)
+                if not substitute and not maneuver_now:
                     substitute = _tech_attack_choice(pc, target)
                 if not substitute and pc.get('opp_def_choices'):
                     pc['opp_def'] = random.choice(pc['opp_def_choices'])
@@ -1321,7 +1512,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # flip; a miss that matters can be rescued from the hand.
                     luck = pc.get('good_luck', 0) + luck_extra
                     mod0 = pc['skill_total'] - crippled
-                    big = ('uses' in substitute) if substitute else pc.get('weapon_uses_left') is not None
+                    big = (('uses' in substitute) if substitute else pc.get('weapon_uses_left') is not None) or maneuver_now
                     if (substitute and not substitute.get('weapon')) or feint_active or spell:
                         gambles, backed = 0, False
                     else:
@@ -1453,6 +1644,17 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     damage_dealt += dmg
                     if dmg > 0:
                         target.setdefault('hit_steps', []).append((_STEP[0], target['health'] <= 0))
+                    # Half Guard (F011): "If the attack hits, you gain X +
+                    # [Spades] stacks of Protected."
+                    if maneuver_now and pc['maneuver']['guard']:
+                        _gain(pc, 'protected', pc['maneuver']['guard'] + _suit_count(pool, 'Spades'))
+                    if substitute and substitute.get('heal_on_hit'):
+                        _thief_heal(pc, substitute['heal_on_hit'], party_log)
+                    if ('Boughs Unbroken' in passives and pc.get('weapon_name') == 'Unarmed'
+                            and (not substitute or substitute.get('weapon'))):
+                        _boughs_cleanse(pc)
+                    if 'Fatestealer' in passives and not substitute and target['health'] <= 0:
+                        _fatestealer(pc)
                     if substitute and substitute.get('effect'):
                         key, stacks, suit = substitute['effect']
                         stacks += _suit_count(pool, suit)
@@ -1480,11 +1682,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         if moved:
                             turn_shift_note = f"{pc['name']} advanced {-moved} earlier in turn order"
                 if party_log:
-                    via = substitute['via'] if substitute else ('Feint' if feint_active else pc['weapon_name'])
+                    via = substitute['via'] if substitute else ('Feint' if feint_active else (
+                        'Battle Maneuver' if maneuver_now else pc['weapon_name']))
                     party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
                                hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
                                target_hp_after=target['health'], target_harried_after=target.get('harried', 0),
-                               via=via, turn_shift=turn_shift_note, effects=taunt_note)
+                               via=via, turn_shift=turn_shift_note, effects=taunt_note, cards=_take_notes(pc),
+                               gambles=gambles)
+                pc.pop('_notes', None)
                 if saved_opp_def is not None:
                     pc['opp_def'] = saved_opp_def
                 # Unlike most Features on this sheet, none of these three
@@ -1577,6 +1782,21 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 ap -= T.MOVE_AP_COST
                 _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                      spaces=_distance(start, pc['pos']), via=f"{pc.get('play_style')}: back off")
+        # Raise Spirits (Ashleigh): whatever AP her own turn didn't use goes
+        # on staying in range of the party (designer, 2026-10-09); her pool
+        # refills at the end of the turn either way.
+        if 'raise_range' in pc and movement_on:
+            living = [e for e in enemies if e['health'] > 0]
+            while ap >= T.MOVE_AP_COST and living:
+                spot = play_styles.support_pos(pc, pcs, living, pc['raise_range'], max(1, tactics._speed(pc)),
+                                               T.BACKLINE_KEEP_AWAY)
+                if spot is None:
+                    break
+                start = pc['pos']
+                pc['pos'] = spot
+                ap -= T.MOVE_AP_COST
+                _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                     spaces=_distance(start, pc['pos']), via='staying in range of the party')
     # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
     # [Fleeting] rule), not all stacks at once - Bleeding's decaying
     # stack is what actually deals its 1 damage. Harried is the one
@@ -1907,8 +2127,11 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         # (rulebook.md: "a target who used Parry Defense is considered to
         # have Parried"); pc_defense_for picks the better of the two.
         used_parry = prof['opp_def'] == 'Parry/Dodge' and target['parry'] >= target['dodge']
+        # Boughs Unbroken (T175): "You aren't Harried from applying your
+        # Parry Defense with your Unarmed weapon."
         if prof['opp_def'] in ('Parry/Dodge', 'Dodge'):
-            target['harried'] = target.get('harried', 0) + 1
+            if not (used_parry and 'Boughs Unbroken' in target.get('passives', ())):
+                target['harried'] = target.get('harried', 0) + 1
             target['attacks_vs_parry_dodge'] = target.get('attacks_vs_parry_dodge', 0) + 1
         target['attacks_received'] = target.get('attacks_received', 0) + 1
         hit = roll >= opp_def_val
@@ -2081,6 +2304,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     # game logic on it), so it's safe to suffix here unconditionally.
     for i, e in enumerate(enemies, 1):
         e['name'] = f"{e['name']} {i}"
+        if T.ENEMY_HEALTH_MULT != 1:
+            e['health'] = e['max_health'] = -(-e['max_health'] * T.ENEMY_HEALTH_MULT // 1)
         if T.ENEMY_ACCURACY_ADJ or T.ENEMY_DAMAGE_ADJ:
             e['accuracy'] = e.get('accuracy', 0) + T.ENEMY_ACCURACY_ADJ
             if e.get('attack_damage'):

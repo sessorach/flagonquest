@@ -246,7 +246,20 @@ def enemy_threat(e, allies):
     defense = sum(_party_defense(p, opp) for p in allies) / len(allies)
     resist = sum(p['physres'] if dtype == 'Physical' else p['elemres'] for p in allies) / len(allies)
     p_hit = sum(1 for f in range(1, 14) if acc + f >= defense) / 13
-    return p_hit * max(0, dmg - resist)
+    threat = p_hit * max(0, dmg - resist)
+    # A melee enemy Slowed to a standstill with nobody in reach is out of
+    # the fight for now (Enith's hexes, 2026-10-09): the party leaves it
+    # for last rather than walking over to it, which is the point of
+    # isolating it. Still above zero, so it gets cleaned up at the end.
+    if (STUCK_DISCOUNT < 1 and 'pos' in e and (e.get('attack_range') or 0) <= T.MELEE_RANGE
+            and e['speed'] - e.get('slowed', 0) <= 0
+            and not any('pos' in p and movement.distance(p['pos'], e['pos']) <= T.MELEE_RANGE for p in allies)):
+        threat *= STUCK_DISCOUNT
+    return threat
+
+
+# How much the party discounts an enemy that's stuck (see enemy_threat).
+STUCK_DISCOUNT = 0.1
 
 
 def _attacks_this_turn(unit, target):

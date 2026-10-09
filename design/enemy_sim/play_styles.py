@@ -52,6 +52,7 @@ class Plan:
     max_attacks: int = 2
     retreat: bool = False        # spend leftover AP backing away afterwards
     edge: bool = False           # spend leftover AP working round the edge (melee)
+    lunge: int = 0               # spaces of pre_pos covered by Battle Maneuver's free Shifts
     note: str = ""
 
 
@@ -246,13 +247,23 @@ def edge_pos(pc, target, enemies):
     return spots[0] if spots else None
 
 
+def lunge_spaces(pc):
+    """Free movement from an unused Battle Maneuver's Lunging (F001: "Up
+    to X times, you may Shift up to 2 meters in a single direction, each
+    either before or after the attack")."""
+    m = pc.get('maneuver')
+    return 2 * m['lunges'] if m and m['uses'] > 0 else 0
+
+
 def _plan_melee_cautious(pc, targets, allies, ap, speed, here, engaged_only):
     """A melee PC that isn't a Diver (designer, 2026-10-08): double attack
     whenever something's already in reach, crowd or not; otherwise only
     move in where it ends up next to its target alone (a Back-liner only
     for enemies an ally is already fighting), attack once, and use the
     spare movement to work round the edge. With nothing like that
-    available, edge closer without ending next to any enemy."""
+    available, edge closer without ending next to any enemy. A PC with
+    Battle Maneuver's Lunging ready (Felix) opens with it: the free
+    Shifts carry it in, often leaving the AP for both attacks."""
     adjacent = _adjacent(here, targets)
     if adjacent:
         return Plan(target=_best(pc, adjacent, allies), max_attacks=2, edge=True, note="double attack from here")
@@ -260,17 +271,53 @@ def _plan_melee_cautious(pc, targets, allies, ap, speed, here, engaged_only):
     if engaged_only:
         pool = [t for t in targets if any(_dist(t['pos'], a['pos']) <= T.MELEE_RANGE for a in allies if a is not pc)]
     max_moves = (ap - T.ATTACK_AP_COST) // T.MOVE_AP_COST
+    bonus = lunge_spaces(pc)
     options = []
     for t in pool:
-        spots = _spots_next_to(t, here, speed * max_moves, targets)
+        spots = _spots_next_to(t, here, speed * max(0, max_moves) + bonus, targets)
         if spots:
-            options.append((rating(pc, t, allies), t, spots[0]))
-    if options and max_moves >= 1:
+            # With a Lunge, the spot that needs the fewest move actions
+            # (keeping the edge-most order among equals).
+            sq = min(spots, key=lambda q: _moves_for(max(0, _dist(here, q) - bonus), speed)) if bonus else spots[0]
+            options.append((rating(pc, t, allies), t, sq))
+    if options and (max_moves >= 1 or bonus):
         _, t, sq = max(options, key=lambda o: (o[0], -o[1]['health']))
-        return Plan(target=t, pre_pos=sq, pre_moves=_moves_for(_dist(here, sq), speed), max_attacks=1, edge=True,
-                    note="move in beside one enemy, attack once")
+        d = _dist(here, sq)
+        lunge = min(bonus, d)
+        moves = _moves_for(d - lunge, speed)
+        attacks = max(1, min(2, (ap - moves * T.MOVE_AP_COST) // T.ATTACK_AP_COST))
+        return Plan(target=t, pre_pos=sq, pre_moves=moves, max_attacks=attacks, edge=True, lunge=lunge,
+                    note=("lunge in, " if lunge else "move in ") + "beside one enemy, attack "
+                    + ("twice" if attacks == 2 else "once"))
     t = _best(pc, pool or targets, allies)
     dest, spaces = _safe_approach(here, t['pos'], speed * (ap // T.MOVE_AP_COST), targets, T.MELEE_RANGE,
                                   T.MELEE_RANGE)
     return Plan(target=None, pre_pos=dest, pre_moves=_moves_for(spaces, speed), max_attacks=0,
                 note="edge closer, nothing safe to hit")
+
+
+def support_pos(pc, allies, enemies, radius, spaces, keep):
+    """Where a support PC (Ashleigh, whose Raise Spirits reaches allies
+    within `radius`) steps with spare movement, per the designer: stay in
+    range of the party. The spot within `spaces` that has the most allies
+    in range, never within `keep` of an enemy unless it's already there;
+    ties go to fewer enemies close, then the shorter step. None to stay."""
+    here = pc['pos']
+    others = [a for a in allies if a is not pc and a['health'] > 0]
+    if not others:
+        return None
+
+    def score(sq):
+        near = len(_within(sq, enemies, keep))
+        return (sum(1 for a in others if _dist(sq, a['pos']) <= radius), -near, -_dist(here, sq))
+    best, best_s = here, score(here)
+    here_near = -best_s[1]
+    for dx in range(-spaces, spaces + 1):
+        for dy in range(-spaces, spaces + 1):
+            sq = movement.clamp((here[0] + dx, here[1] + dy))
+            s = score(sq)
+            if -s[1] > here_near:
+                continue  # don't walk closer to enemies to do it
+            if s > best_s:
+                best, best_s = sq, s
+    return None if best == here else best

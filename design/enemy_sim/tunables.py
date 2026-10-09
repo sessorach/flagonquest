@@ -398,6 +398,9 @@ ASSASSIN_READS = 'current'
 # sim's encounters and the designer's table, not a design change.
 ENEMY_ACCURACY_ADJ = 0
 ENEMY_DAMAGE_ADJ = 0
+# Every enemy's Health times this, rounded up (2026-10-09, measurement
+# only, same idea as the offense dials).
+ENEMY_HEALTH_MULT = 1
 
 # ---- Real cards (2026-10-09, cards.py) ----
 # Every PC has its own 52-card deck and a hand; the GM has one deck for

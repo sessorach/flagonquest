@@ -79,6 +79,8 @@ def render_event(event):
         pos = tuple(event['pos'])  # whole spaces already - movement.py's own docstring
         spaces = event.get('spaces')
         moved = f" ({spaces} space{'s' if spaces != 1 else ''})" if spaces is not None else ""
+        if event.get('via'):
+            return f"  {unit} moves{moved} ({event['via']}), ends at {pos}."
         if event.get('in_range'):
             return f"  {unit} moves{moved} toward its target, ends at {pos} - now in range."
         return f"  {unit} moves{moved} toward its target, ends at {pos} - still out of range, no attack."
@@ -104,11 +106,17 @@ def render_event(event):
             extra += f" [{event['turn_shift']}]"
         if event.get('effects'):
             extra += f" [{event['effects']}]"
+        if event.get('gambles'):
+            extra += f" (Gambled {event['gambles']}x)"
+        if event.get('cards'):
+            extra += f" {{{event['cards']}}}"
         return f"  {unit} attacks {event['target']}{via}: rolls {event['roll']} vs {event['defense']} - {verb}{extra}"
     if action in ('hex', 'taunt'):
         via = f" with {event['via']}" if event.get('via') else ""
         verb = 'lands' if event['hit'] else 'misses'
         effects = f" [{event['effects']}]" if event.get('effects') else ""
+        if event.get('cards'):
+            effects += f" {{{event['cards']}}}"
         what = 'Taunts' if action == 'taunt' else 'Hexes'
         return f"  {unit} {what} {event['target']}{via}: rolls {event['roll']} vs {event['defense']} - {verb}{effects}"
     if action == 'support':
@@ -117,6 +125,12 @@ def render_event(event):
     if action == 'heal':
         via = f" with {event['via']}" if event.get('via') else ""
         return f"  {unit} heals {event['target']}{via} for {event['amount']} (-> {event['target_hp_after']} HP)"
+    if action == 'plan':
+        return f"  {unit} ({event.get('style')}) plans: {event.get('note')}"
+    if action == 'reposition':
+        return f"  {unit} spends a move: {event.get('note')}"
+    if action == 'card':
+        return f"  {unit} discards a card for {event.get('via')}: {event.get('note')}"
     return f"  {unit} {action} {event}"
 
 

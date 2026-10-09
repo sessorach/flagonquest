@@ -18,7 +18,7 @@ import combat_sim as cs, sample_enemies as se, party, tunables as T, tactics
 from calibrate import PARTIES
 
 KEYS = ("budget0", "cards_spent", "rescues", "rescues_given", "backed", "topups", "perfect_strikes",
-        "raises", "suit_extras")
+        "raises", "suit_extras", "hexes_cast", "hexes_hit", "cleansed", "fate_draws")
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
