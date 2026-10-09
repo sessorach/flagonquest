@@ -348,7 +348,14 @@ LIE_IN_WAIT_PLACES = 2
 # 'on_damage': a damaging hit on a Bleeding enemy takes a stack off for
 # 1 more Health loss; stacks still fall off at the end of its own turn,
 # for nothing. Only the party's Bleeding on enemies follows this switch.
+# Added 2026-10-09: 'start_turn', a stack comes off as the bearer's turn
+# starts; 'on_attack', a stack comes off each time the bearer attacks (and
+# at the end of a turn it didn't).
 BLEED_MODE = 'own_turn'
+# Test variant (2026-10-09): a Bleeding enemy at this much Health or less
+# bleeds out and is Downed. 0 is off; 'stacks' means at or below its own
+# Bleeding stacks; 'stacks2' the same but never above 2.
+BLEED_OUT = 0
 
 # ---- Wounded (2026-10-08) ----
 # rulebook.md: you lose Shallow Health first, then Deep; while all your

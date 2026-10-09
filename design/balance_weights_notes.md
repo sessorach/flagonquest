@@ -9740,3 +9740,31 @@ with longer fights and the two alternative tick timings in BLEED_MODE:
 Every-hit Bleeding with the alternative timings (Hilde / Sable): end of
 round 0.43 / 0.39, on a damaging hit 0.32 / 0.54, against 0.30 / 0.61 as
 built.
+
+### Other ways Bleeding could work (2026-10-09)
+
+The designer asked whether a different rule could get Bleeding to its
+goal (about one extra point a fight, feels effective, not free damage).
+Each candidate is a test switch in tunables.py (BLEED_MODE, BLEED_OUT);
+the party's Bleeding on enemies only. Level 1, Party A, 300 fights per
+mix; extra points a fight on Hilde / Sable.
+
+| Rule | First stack worth | Every hit or Parry | 5 stacks on first hit |
+|---|---|---|---|
+| As written (ticks at the end of the bearer's turn) | 0.9 Value | 0.30 / 0.61 | 0.06 / 0.17 |
+| Ticks at the start of the bearer's turn | 0.9 | 0.30 / 0.61 | 0.06 / 0.17 |
+| Ticks each time the bearer attacks | 0.9 | 0.35 / 0.68 | 0.09 / 0.20 |
+| Bleeds out (Downed) at 1 Health | 1.0 | 0.34 / 0.70 | 0.07 / 0.18 |
+| Bleeds out at its stacks, at most 2 | 1.0 | 0.38 / 0.82 | 0.23 / 0.31 |
+| Bleeds out at 2 Health | 1.5 | 0.64 / 1.08 | 0.23 / 0.31 |
+| Bleeds out at its stacks, no cap | 1.0 | 0.39 / 0.83 | 0.88 / 1.64 |
+| (A plain +1 damage on every hit) | | 0.63 / 1.74 | |
+
+- When in the bearer's turn the stack comes off doesn't matter at all:
+  the trouble is that a bleeding enemy usually dies before its next
+  turn, not when in that turn it bleeds.
+- Only a rule that pays out before that turn helps, and bleeding out is
+  the one that does it without becoming flat damage: it only ever
+  finishes an enemy that's already at 1-2 Health, once.
+- Uncapped "bleed out at its stacks" makes a 5-stack dose worth almost a
+  +1 on every hit: that's free damage, the thing to avoid.

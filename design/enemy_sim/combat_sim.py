@@ -1660,6 +1660,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         target['bleed_dealt'] = target.get('bleed_dealt', 0) + 1
                     target['health'] -= dmg
                     damage_dealt += dmg
+                    _bleed_out(target)
                     if dmg > 0:
                         target.setdefault('hit_steps', []).append((_STEP[0], target['health'] <= 0))
                     # Half Guard (F011): "If the attack hits, you gain X +
@@ -2062,6 +2063,30 @@ STRIKE_RIDERS = {
 }
 
 
+def _bleed_tick(e):
+    """One Bleeding stack comes off an enemy and deals 1 (the party's
+    Bleeding; the test timings in tunables.BLEED_MODE call this)."""
+    if e.get('bleeding', 0) > 0 and e['health'] > 0:
+        e['bleeding'] -= 1
+        e['health'] -= 1
+        e['bleed_dealt'] = e.get('bleed_dealt', 0) + 1
+        _bleed_out(e)
+
+
+def _bleed_out(e):
+    """Test variant (tunables.BLEED_OUT): a Bleeding enemy that's down to
+    BLEED_OUT Health or less (or to its own Bleeding stacks, for
+    'stacks'; its stacks but at most 2, for 'stacks2') bleeds out and is
+    Downed. What it had left counts as
+    Bleeding damage."""
+    if not T.BLEED_OUT or e['health'] <= 0 or e.get('bleeding', 0) <= 0:
+        return
+    limit = {'stacks': e['bleeding'], 'stacks2': min(e['bleeding'], 2)}.get(T.BLEED_OUT, T.BLEED_OUT)
+    if e['health'] <= limit:
+        e['bleed_dealt'] = e.get('bleed_dealt', 0) + e['health']
+        e['health'] = 0
+
+
 def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_log=None):
     """One enemy's full turn (see module docstring's "How a turn
     works" and _enemy_plan). Returns any damage a Magehunter/Parting
@@ -2069,6 +2094,12 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     own party damage tally."""
     if e['health'] <= 0:
         return 0
+    # Test variant (BLEED_MODE 'start_turn'): the stack comes off as its
+    # turn starts, before it acts.
+    if T.BLEED_MODE == 'start_turn':
+        _bleed_tick(e)
+        if e['health'] <= 0:
+            return 0
     abilities = e.get('abilities', [])
     if 'Durable' in abilities and e.get('protected', 0) < 4:
         _gain(e, 'protected', 1)
@@ -2139,6 +2170,13 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             card = cards.used_value(flipped, net)
         else:
             card = resolve_card(good, off_taunt)
+        # Test variant (BLEED_MODE 'on_attack'): exerting itself opens the
+        # wound - a stack comes off each time it attacks.
+        if T.BLEED_MODE == 'on_attack' and e.get('bleeding', 0) > 0:
+            _bleed_tick(e)
+            e['_bled_turn'] = True
+            if e['health'] <= 0:
+                break
         roll = prof['accuracy'] - e.get('crippled', 0) + card
         opp_def_val = pc_defense_for(target, prof['opp_def'])
         # Parried = a miss where Parry was the Defense actually used
@@ -2216,7 +2254,11 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     # (tunables.BLEED_MODE) deal the Health loss elsewhere. In 'on_damage'
     # the stack still falls off here, for nothing; 'round_end' does its
     # own decay at the end of the round.
-    if e.get('bleeding', 0) > 0 and e['health'] > 0 and T.BLEED_MODE != 'round_end':
+    # 'on_attack' still takes a stack off at the end of a turn it didn't
+    # attack on.
+    if T.BLEED_MODE == 'on_attack' and not e.pop('_bled_turn', False):
+        _bleed_tick(e)
+    if e.get('bleeding', 0) > 0 and e['health'] > 0 and T.BLEED_MODE in ('own_turn', 'on_damage'):
         if _decay(e, 'bleeding') and T.BLEED_MODE == 'own_turn':
             e['health'] -= 1
             e['bleed_dealt'] = e.get('bleed_dealt', 0) + 1
@@ -2434,6 +2476,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 pc_damage_dealt += _take_enemy_turn(unit, enemies, pcs, rnd, movement, trace, enemy_log, party_log)
             for p in pcs:
                 tactics.sync_wounded(p)
+            for e in enemies:
+                _bleed_out(e)
             winner = _winner()
             if winner:
                 _log(trace, round=rnd, type='result', winner=winner)
@@ -2448,10 +2492,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
         # ticks once at the end of each round instead of their own turn.
         if T.BLEED_MODE == 'round_end':
             for e in enemies:
-                if e.get('bleeding', 0) > 0 and e['health'] > 0:
-                    e['bleeding'] -= 1
-                    e['health'] -= 1
-                    e['bleed_dealt'] = e.get('bleed_dealt', 0) + 1
+                _bleed_tick(e)
 
     _log(trace, round=max_rounds, type='result', winner='draw')
     return dict(winner='draw', rounds=max_rounds,
