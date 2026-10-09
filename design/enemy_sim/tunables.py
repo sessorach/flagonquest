@@ -357,6 +357,11 @@ BLEED_MODE = 'own_turn'
 # Bleeding stacks; 'stacks2' the same but never above 2; 'x1/2' half its
 # stacks rounded down ('x1/2up' rounded up), and so on for any fraction.
 BLEED_OUT = 0
+# The same execute for PCs (enemy Poison puts Bleeding on them); off means
+# only the party's Bleeding on enemies can execute.
+BLEED_OUT_PCS = False
+# Stacks Furious Rage (T130) gives on each hit or Parry (test dial).
+FURIOUS_RAGE_STACKS = 1
 
 # ---- Wounded (2026-10-08) ----
 # rulebook.md: you lose Shallow Health first, then Deep; while all your

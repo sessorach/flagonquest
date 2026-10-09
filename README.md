@@ -17,7 +17,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 The simulator now deals every character a hand from their own deck and plays it the way the table does, and the last three sample characters (Felix, Enith and Ashleigh) are in with their own abilities. With cards, Level 1 fights come out close to the table on length, losses, Downs and Wounded.
 - Setting up the new characters fixed the Feature builder, which now enforces once-only Features and gives Bare-Handed and Tormenting Curse their extra points. Doubleshot now asks for Acrobatics instead of an old Skill name.
-- Once the party has its cards, Bleeding comes out at about 0.9 Value for a first stack. Fleeting effects now only skip their first removal when gained on your own turn, and Bleeding never skips, so it always deals its damage.
+- Once the party has its cards, Bleeding comes out at about 0.9 Value for a first stack, so the simulator's been testing fixes: the best so far drops a creature whose Health falls to half its Bleeding stacks. Fleeting effects now only skip their first removal when gained on your own turn, and Bleeding never skips.
 - The glossary's Play entry now matches the rulebook (a played card replaces a flipped card or just adds its suit), and enemies deal +1 damage on a Heart for now.
 
 ### 2026-10-08 — Teaching the simulator to play like a real table

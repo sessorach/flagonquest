@@ -603,3 +603,10 @@ Fights are no longer and the party still almost never loses, but someone
 goes Down about 5 points more often. Party S, with no front-liner, is
 just over one fight in three. A hit enemy acting again is unchanged and
 still the one target the sim misses (open question 4).
+
+## Still to do
+
+- **Items.** The sim doesn't model items yet beyond weapons, armor and
+  Jackal's Bottomless Bottles. They matter more as characters level, so
+  per the designer (2026-10-09): test their impact once the sample roster
+  reaches about Level 3.

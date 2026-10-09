@@ -8,7 +8,7 @@ Settings: BLEED_OUT=x1/2, FURIOUS_RAGE_STACKS=2
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 9): party won in 3 rounds, 85% party HP left
-- Matchup average over 500 fights: 96.6% wins, 3.4 rounds, 74% HP left on a win
+- Matchup average over 500 fights: 97.2% wins, 3.5 rounds, 74% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

@@ -1183,6 +1183,9 @@ def _tech_attack_choice(pc, target):
     for t in pc.get('tech_attacks', ()):
         if t['uses'] <= 0:
             continue
+        # A Sanguine spell goes on a target that isn't bleeding yet.
+        if t.get('sanguine') and target.get('bleeding', 0) > 0:
+            continue
         # A drain that heals (Thief Empties the Vessel) is saved until it
         # would heal, or the fight's into its third round.
         if (t.get('heal_on_hit') and pc['max_health'] - pc['health'] < t['heal_on_hit']
@@ -1380,6 +1383,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
             while in_range and ap >= T.ATTACK_AP_COST and target is not None \
                     and (max_attacks is None or attacks_made < max_attacks):
                 if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0 \
+                        and not any(t['uses'] > 0 for t in pc.get('tech_attacks', ())) \
                         and not _warmage_reserves(pc, party_log):
                     break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
                 pc.pop('_notes', None)  # anything left from a bonus attack or Interrupt
@@ -1388,7 +1392,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 maneuver_now = bool(pc.get('maneuver')) and pc['maneuver']['uses'] > 0
                 if maneuver_now:
                     pc['maneuver']['uses'] -= 1
-                substitute = None if maneuver_now else tactics.bottomless_bottles_choice(pc)
+                substitute = None if maneuver_now else tactics.bottomless_bottles_choice(pc, target)
                 if not substitute and not maneuver_now:
                     substitute = _tech_attack_choice(pc, target)
                 if not substitute and pc.get('opp_def_choices'):
@@ -1594,7 +1598,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # 'Bleeding Strikes' is a test-only passive: this trigger
                 # without the can't-Parry cost, to price the two halves apart.
                 if ('Furious Rage' in passives or 'Bleeding Strikes' in passives) and (hit or parried):
-                    _gain(target, 'bleeding', 1)
+                    _gain(target, 'bleeding', T.FURIOUS_RAGE_STACKS)
+                # Battering (F005, a Battle Maneuver Feature): "If the attack
+                # hits or is Parried, the target gains X stacks of Bleeding
+                # + [Clubs] stacks."
+                if maneuver_now and pc['maneuver'].get('battering') and (hit or parried):
+                    batter = pc['maneuver']['battering'] + _suit_count(pool, 'Clubs')
+                    _gain(target, 'bleeding', batter)
+                    taunt_note = f"Bleeding +{batter} (Battering)"
                 # 'Bleeding Strikes 2' (test-only): the same trigger, 2 stacks.
                 if 'Bleeding Strikes 2' in passives and (hit or parried):
                     _gain(target, 'bleeding', 2)
@@ -1635,7 +1646,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     target['harried'] = target.get('harried', 0) + feint_stacks + (
                         _suit_count(pool, 'Diamonds') if T.CARDS else 0.25)
                 elif hit:
-                    raw_dmg = pc['damage'] + gambles + _suit_extra(pc, pool, skill)
+                    # A no-damage attack (Acidic Flask, Reckoning) gets
+                    # nothing from Extra Successes.
+                    raw_dmg = pc['damage'] + gambles + _suit_extra(pc, pool, skill) if pc['damage'] > 0 else 0
                     # A hit that leaves the target a point or two short: play
                     # matching-suit cards for the Extra Successes to finish it.
                     if T.CARDS:
@@ -1670,6 +1683,13 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         target['bleeding'] -= 1
                         dmg += 1
                         target['bleed_dealt'] = target.get('bleed_dealt', 0) + 1
+                    # Sanguine (F067): the Health it would lose becomes that
+                    # many Bleeding stacks, + [Clubs].
+                    if substitute and substitute.get('sanguine') and dmg > 0:
+                        sang = dmg + _suit_count(pool, 'Clubs')
+                        _gain(target, 'bleeding', sang)
+                        taunt_note = f"Bleeding +{sang} (Sanguine)"
+                        dmg = 0
                     target['health'] -= dmg
                     damage_dealt += dmg
                     _bleed_out(target)
@@ -2085,6 +2105,11 @@ def _bleed_tick(e):
         _bleed_out(e)
 
 
+# The running fight's trace and round, so _bleed_out can log from wherever
+# it's called.
+_CTX = {'trace': None, 'rnd': 0}
+
+
 def _bleed_out(e):
     """Test variant (tunables.BLEED_OUT): a Bleeding enemy that's down to
     BLEED_OUT Health or less (or to its own Bleeding stacks, for
@@ -2106,6 +2131,8 @@ def _bleed_out(e):
         limit = spec
     if e['health'] <= limit:
         # "Remove all stacks and it drops to 0 Health" (designer's wording).
+        _log(_CTX['trace'], round=_CTX['rnd'], side='party' if 'shallow_max' in e else 'enemy', unit=e['name'],
+             action='bleed_out', note=f"{e['health']} Health, {b} Bleeding")
         e['bleed_dealt'] = e.get('bleed_dealt', 0) + e['health']
         e['health'] = 0
         e['bleeding'] = 0
@@ -2442,6 +2469,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
         # side per round, not per unit - cheap enough that a caller who
         # isn't tracing (every Monte Carlo trial) pays nothing beyond
         # the `is not None` checks inside _log itself.
+        _CTX['trace'], _CTX['rnd'] = trace, rnd
         party_log = (lambda **kw: _log(trace, round=rnd, side='party', **kw)) if trace is not None else None
         enemy_log = (lambda **kw: _log(trace, round=rnd, side='enemy', **kw)) if trace is not None else None
         if movement:
@@ -2503,6 +2531,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 tactics.sync_wounded(p)
             for e in enemies:
                 _bleed_out(e)
+            if T.BLEED_OUT_PCS:
+                for p in pcs:
+                    _bleed_out(p)
             winner = _winner()
             if winner:
                 _log(trace, round=rnd, type='result', winner=winner)
@@ -2512,6 +2543,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                             pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt,
                             bleed_dealt=sum(e.get('bleed_dealt', 0) for e in enemies),
                             plus_one_dealt=sum(p.get('extra_dmg', 0) for p in pcs),
+                            executes=sum(e.get('bled_out', 0) for e in enemies),
+                            pc_executes=sum(p.get('bled_out', 0) for p in pcs),
                             **_calibration_counts(pcs, enemies))
         # Test variant (tunables.BLEED_MODE 'round_end'): enemies' Bleeding
         # ticks once at the end of each round instead of their own turn.

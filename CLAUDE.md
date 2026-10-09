@@ -221,6 +221,10 @@ which should stay a clean decision record.
   designer looks to check progress. Edit its `MATCHUPS` list when the
   interesting matchups change. The designer asked for this more than
   once before it became a habit.
+- **Test items in the simulator once the sample roster reaches about
+  Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
+  "Still to do"). Until then the sim models only weapons, armor and
+  Jackal's Bottomless Bottles.
 - **Refactoring the simulator: prove the old path didn't move.** Put
   every new behavior behind a `tunables.py` switch, save a fixed-seed
   `calibrate.py` run first, then run it again with the new switches off

@@ -147,6 +147,14 @@ TECH_ATTACKS = {
     # T111, Level 2, 2 AP: "Make a Theurgy spell attack against the
     # target's Mental Defense. If it hits, they are Crippled 5 + [Clubs]
     # times." No damage.
+    # War Magic (T120) at Level 2 with Lance, Sanguine and Destructive x1
+    # (Beornhard's Bleeding variant, 2026-10-09): "deals an extra 3
+    # damage. If it would cause the target to lose Health, instead they
+    # gain that many stacks of Bleeding + [Clubs] stacks", +1 from
+    # Destructive. combat_sim converts the hit's damage on landing.
+    "Sanguine War Magic": lambda st, sk, atk, dmg: dict(
+        skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]) + 3 + 1,
+        dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery", sanguine=True),
     "Reckoning": lambda st, sk, atk, dmg: dict(
         skill_total=skill_total(st, sk, "Theurgy"), damage=0,
         dmg_type=None, opp_def="Mental", effect=("crippled", 5, "Clubs"), skill="Theurgy"),
@@ -186,7 +194,7 @@ def _pc_dict(row, index, good_luck):
               ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
                "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus",
                "Heal Range", "Passives", "Battle Tactic", "Parry Weapons", "Encounter Techniques",
-               "Defense Choices", "Play Style", "Maneuver Features")}
+               "Defense Choices", "Play Style", "Maneuver Features", "Bottles Item")}
     parry = 8 + skill_total(stats, skills, "Melee")
     # Raw Acrobatics Skill Total - captured before Armor's own Dodge
     # modifier folds into `dodge` below, since Blinkstep (T077, "Shift
@@ -463,10 +471,19 @@ def _pc_dict(row, index, good_luck):
         # all, see above).
         bottled_fire_profile = dict(skill_total=skill_total(stats, skills, "Acrobatics"),
                                      damage=8 + (1 if "Mighty Mixologist" in passives else 0),
-                                     dmg_type="Fire", opp_def="Dodge")
+                                     dmg_type="Fire", opp_def="Dodge", skill="Acrobatics")
+        item_cost = T.BOTTLED_FIRE_GOLD_COST
+        # `Bottles Item` (2026-10-09): Acidic Flask (I028, Level 1, 2 Gold)
+        # instead - "On a hit, the target gains 5 + [Clubs] stacks of
+        # Bleeding." No damage, so Mighty Mixologist doesn't apply.
+        if (row.get("Bottles Item") or "").strip() == "Acidic Flask":
+            bottled_fire_profile = dict(skill_total=skill_total(stats, skills, "Acrobatics"), damage=0,
+                                         dmg_type=None, opp_def="Dodge", skill="Acrobatics",
+                                         effect=("bleeding", 5, "Clubs"), item="Acidic Flask")
+            item_cost = 2
         cards_for_gold = hand_size * 2 // 3
         gold_budget = 4 * cards_for_gold
-        daily_count = int(gold_budget // T.BOTTLED_FIRE_GOLD_COST)
+        daily_count = int(gold_budget // item_cost)
         bottled_fire_uses = daily_count // 2
 
     # Ranged hexes (HEXES above), one use per known copy.
@@ -491,7 +508,8 @@ def _pc_dict(row, index, good_luck):
             elif f.strip():
                 feats[f.strip()] = 1
         maneuver = dict(uses=encounter_techs.count("Battle Maneuver"),
-                        lunges=feats.get("Lunging", 0), guard=feats.get("Half Guard", 0))
+                        lunges=feats.get("Lunging", 0), guard=feats.get("Half Guard", 0),
+                        battering=feats.get("Battering", 0))
 
     # Every copy gets its own suffix, Roster rows included (a Roster
     # build used to keep its bare row Name - "Baseline Tier 1 Party

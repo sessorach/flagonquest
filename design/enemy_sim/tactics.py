@@ -639,7 +639,7 @@ def sift_bonus(pc):
     return 'Hand of Chaos' in pc.get('passives', ()) and random.random() < 0.25
 
 
-def bottomless_bottles_choice(pc):
+def bottomless_bottles_choice(pc, target=None):
     """Bottomless Bottles (T053): the 10-minute crafting Action that
     actually creates the items happens before the fight (not AP-costed
     here at all) - what this models is spending one of THIS PC's own
@@ -660,5 +660,10 @@ def bottomless_bottles_choice(pc):
         return None
     if pc.get('bottled_fire_uses_left', 0) <= 0:
         return None
+    prof = pc['bottled_fire_profile']
+    # An Acidic Flask isn't wasted on a target that's already bleeding a
+    # full flask's worth.
+    if prof.get('effect') and target is not None and target.get(prof['effect'][0], 0) >= prof['effect'][1]:
+        return None
     pc['bottled_fire_uses_left'] -= 1
-    return {'via': 'Bottled Fire', **pc['bottled_fire_profile']}
+    return {'via': prof.get('item', 'Bottled Fire'), **prof}

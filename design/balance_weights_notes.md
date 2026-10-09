@@ -9804,3 +9804,46 @@ damage lands (+1 on the first hit 0.31 / 0.55, +1 on every hit
   an execute the second stack is worth nothing (0.62 against 0.61).
 - Flat 2 is the only rule that reaches straight-damage parity (Hilde's
   every-hit Bleeding, 102%).
+
+### Bleeding builds in real parties (2026-10-09)
+
+Per the designer: give some sample characters Bleeding options and see
+how they work out. sample_pcs.csv's "(Bleed)" rows, each within the
+character's real XP: Hilde with Furious Rage (on her real export, never
+modeled before), Felix's Battle Maneuver with Battering x3 in place of
+Half Guard x3, Jackal's Bottomless Bottles making Acidic Flasks (Level 1,
+2 Gold, 5 + [Clubs] Bleeding, no damage) instead of Bottled Fire (8 Fire
+damage), and Beornhard with two Level 1 War Magic copies swapped for one
+Level 2 copy with Lance, Sanguine and Destructive. `bleed_builds.py`,
+Level 1, 200 fights per mix.
+
+One swap at a time, in a party of all four (base: 2.45 rounds, Down 18%,
+Wounded 55%):
+
+| Swapped in | As written: rounds / Down / Bleeding a fight | Half-stacks execute, Furious Rage 2 stacks: rounds / Down / Bleeding / bled out |
+|---|---|---|
+| Hilde, Furious Rage | 2.44 / 18% / 0.18 | 2.43 / 18% / 0.22 / 0.03 |
+| Felix, Battering | 2.47 / 22% / 0.23 | 2.46 / 22% / 0.29 / 0.04 |
+| Jackal, Acidic Flasks | 3.34 / 36% / 0.93 | 3.13 / 33% / 1.96 / 0.50 |
+| Beornhard, Sanguine | 2.93 / 28% / 0.38 | 2.64 / 21% / 2.44 / 0.69 |
+
+In the sample parties (base → Bleeding builds):
+
+| Party | As written | Half-stacks execute |
+|---|---|---|
+| A (Hilde with Furious Rage) | 2.78 → 2.75 rounds | 2.78 → 2.75 |
+| S (Felix and Jackal) | 3.75 → 5.42 rounds, loses 1% → 13% | 3.75 → 5.12, loses 1% → 9% |
+| T (Beornhard) | 2.78 → 3.29 rounds | 2.78 → 3.02 |
+| All four | 2.45 → 3.93 rounds, Down 18% → 49% | 2.45 → 3.33, Down 18% → 38% |
+
+- Furious Rage on Hilde and Battering on Felix barely register either
+  way: a fifth of a point to a third of a point a fight.
+- The trades are the problem: an Acidic Flask replaces an 8-damage
+  Bottled Fire, and Sanguine turns a 9-damage spell into stacks. As
+  written, both are big losses. The execute nearly makes Sanguine even
+  (Down 21% against 18%) and halves the Acidic Flask's loss.
+- With the execute applying to PCs too (enemy Poison on them), PCs bled
+  out 0.01-0.08 times a fight averaged over the four mixes, and it added
+  a point or two to "someone Down". All of it is Warband, whose two
+  Skulking Footpads Poison for 2 Bleeding a hit: there a PC bleeds out
+  in about one fight in three (party S, 0.33 a fight).

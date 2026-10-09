@@ -36,6 +36,9 @@ MATCHUPS = [
     ("partyS_L1_vs_L1_frontline", ["Enith", "Felix", "Jackal", "Hanforth"], 1, "Frontline"),
     ("partyU_L1_vs_L1_shield_wall", ["Browndog", "Ashleigh", "Sable", "Beornhard"], 1, "Shield Wall"),
     ("partyT_L1_vs_L1_warband", ["Browndog", "Hanforth", "Sable", "Beornhard"], 1, "Warband"),
+    # The Bleeding builds together (sample_pcs.csv's "(Bleed)" rows).
+    ("bleed_party_L1_vs_L1_frontline", ["Hilde (Bleed)", "Felix (Bleed)", "Jackal (Bleed)", "Beornhard (Bleed)"], 1,
+     "Frontline"),
 ]
 
 
@@ -60,7 +63,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("summary", help="one line on what changed this round")
     ap.add_argument("--trials", type=int, default=1000)
+    ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE, for this round's replays")
     args = ap.parse_args()
+    for kv in args.s:
+        k, v = kv.split("=", 1)
+        try:
+            v = __import__("ast").literal_eval(v)
+        except (ValueError, SyntaxError):
+            pass
+        setattr(T, k, v)
 
     if os.path.isdir(LATEST) and os.listdir(LATEST):
         stamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M")
@@ -69,6 +80,8 @@ def main():
     os.makedirs(LATEST, exist_ok=True)
 
     notes = [f"# Latest replays ({datetime.date.today()})", "", args.summary, ""]
+    if args.s:
+        notes += ["Settings: " + ", ".join(args.s), ""]
     for stem, names, level, enc_key in MATCHUPS:
         _use_party(names)
         encounter = se.ENCOUNTERS[level][enc_key]
