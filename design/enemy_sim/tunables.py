@@ -398,3 +398,47 @@ ASSASSIN_READS = 'current'
 # sim's encounters and the designer's table, not a design change.
 ENEMY_ACCURACY_ADJ = 0
 ENEMY_DAMAGE_ADJ = 0
+
+# ---- Real cards (2026-10-09, cards.py) ----
+# Every PC has its own 52-card deck and a hand; the GM has one deck for
+# all enemies. Flips are real cards, the suit pool is real (a card
+# matching the attack's Skill suit is +1 damage), and hand cards rescue
+# misses, back Gambles and pay for card Techniques. Off falls back to the
+# old stand-ins (uniform 1-13 flips, no suit pool, flat use counters).
+CARDS = True
+# Per the designer: two fights a day, and a player commits about a third
+# (a quarter to a third) of the day's hand to a fight.
+CARDS_FIGHT_SHARE = 1 / 3
+CARDS_SECOND_FIGHT_SHARE = 0.5
+# Cards a player keeps back after a rescue, by how much the flip matters
+# (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when
+# there are plenty left; a kill shot or an Encounter attack gets one
+# whenever there's one to give.
+RESCUE_RESERVE = {1: 2, 2: 1, 3: 0, 4: 0, 5: 0}
+# An ally can throw a card onto someone else's kill shot ("the party
+# talks"); the rulebook lets you play cards on an ally's flip.
+CARDS_ALLY_RESCUE = True
+# "Knowing they hold a queen, they may Gamble once or twice" (designer).
+BACKED_GAMBLES_MAX = 2
+# Perfect Strike gets thrown with a low card, one that's no good for a
+# rescue anyway, unless the hand is deep.
+PERFECT_STRIKE_MAX_RANK = 7
+# Hand of Chaos's Sift 1 keeps a card this high, discards anything lower.
+SIFT_KEEP_RANK = 7
+# Enemies attack with Accuracy, not a Skill, so they have no suit to
+# match and get no Extra Successes. An assumption (nothing in the rules
+# gives an enemy attack a suit); flip to True to see what it would do.
+ENEMY_SUIT_EXTRA = False
+
+# ---- Fleeting, as written (2026-10-09) ----
+# glossary.md [Fleeting]: "If you had no stacks of a Fleeting effect
+# right before gaining some, skip the next removal that would apply to
+# it." In the rules since 2026-08-29; the sim decayed every stack at the
+# next turn end. Protected is Fleeting too, and the sim never decayed it.
+FLEETING_SKIP = True
+PROTECTED_DECAYS = True
+
+# rulebook.md: "For attacks that deal damage, only weapon attacks can be
+# Gambled on - spell attacks can't." The sim let War Magic Gamble until
+# 2026-10-09; off reproduces that.
+NO_SPELL_GAMBLES = True

@@ -123,9 +123,12 @@ def _unarmed_vs_mental(effect=None):
     # - the PC's own Unarmed attack, redirected. Assumes the PC's Weapon
     # is Unarmed, which holds for every row that knows one.
     return lambda st, sk, atk, dmg: dict(skill_total=atk, damage=dmg, dmg_type="Brilliant",
-                                         opp_def="Mental", effect=effect)
+                                         opp_def="Mental", effect=effect, skill="Brawl", weapon=True)
 
 
+# `skill` is the attack's Skill, for its suit (cards.SKILL_SUIT); `weapon`
+# marks a weapon attack, the only kind that can be Gambled on
+# (rulebook.md). `big` marks an Encounter attack, worth a card to land.
 TECH_ATTACKS = {
     # T154, Level 2, 2 AP: "...and the target is Slowed 2 + [Spades] times."
     "Hand Rings the Bell": _unarmed_vs_mental(("slowed", 2, "Spades")),
@@ -133,27 +136,34 @@ TECH_ATTACKS = {
     # Mental Defense. If it hits, it deals 2 + [Mind] Brilliant damage."
     "Firefly Leaves the Hand": lambda st, sk, atk, dmg: dict(
         skill_total=skill_total(st, sk, "Meditation"), damage=2 + int(st["Mind"]),
-        dmg_type="Brilliant", opp_def="Mental", effect=None),
+        dmg_type="Brilliant", opp_def="Mental", effect=None, skill="Meditation"),
     # T159, Level 2, 2 AP (Felix): "Make a Meditation attack against the
     # target's Vital Defense. If it hits, it deals 2 + [Mind] Shadow
-    # damage, and you may discard a card to heal 3 Health." The heal
-    # isn't modeled yet.
+    # damage, and you may discard a card to heal 3 Health." The heal is
+    # taken when he's missing 3 or more (designer, 2026-10-09).
     "Thief Empties the Vessel": lambda st, sk, atk, dmg: dict(
         skill_total=skill_total(st, sk, "Meditation"), damage=2 + int(st["Mind"]),
-        dmg_type="Shadow", opp_def="Vital", effect=None),
-    # Enith's War Magic (T120) Level 1 with Tormenting Curse ("deals no
-    # damage") and Frigid ("Slowed [twice X] + [Spades] times", X = 1).
-    # Against Dodge until the designer says which Defense she learned it
-    # against.
-    "Hex of Sloth": lambda st, sk, atk, dmg: dict(
-        skill_total=skill_total(st, sk, "Sorcery"), damage=0,
-        dmg_type=None, opp_def="Dodge", effect=("slowed", 2, "Spades")),
+        dmg_type="Shadow", opp_def="Vital", effect=None, skill="Meditation", heal_on_hit=3),
     # T111, Level 2, 2 AP: "Make a Theurgy spell attack against the
     # target's Mental Defense. If it hits, they are Crippled 5 + [Clubs]
     # times." No damage.
     "Reckoning": lambda st, sk, atk, dmg: dict(
         skill_total=skill_total(st, sk, "Theurgy"), damage=0,
-        dmg_type=None, opp_def="Mental", effect=("crippled", 5, "Clubs")),
+        dmg_type=None, opp_def="Mental", effect=("crippled", 5, "Clubs"), skill="Theurgy"),
+}
+
+# Ranged hexes cast at the start of a turn by combat_sim._try_hexes (not
+# swapped in for a weapon attack): Enith's War Magic (T120) Level 1
+# copies, each Tormenting Curse ("deals no damage", +3 points) plus Lance
+# ("Increase the Range... by [Sorcery Skill Total] meters", the same
+# range the sim gives Beornhard's Lance) and the rest on one effect
+# (designer, 2026-10-09). Against Dodge until the designer says which
+# Defense each was learned against. `effect` is (kind, amount, bonus
+# suit): Frigid x3 is "Slowed [twice X] + [Spades] times", Kinetic x3 is
+# "Pushed up to [four times X] + Spades meters".
+HEXES = {
+    "Hex of Sloth": ("slowed", 6, "Spades"),
+    "Hex of Rebuking": ("push", 12, "Spades"),
 }
 
 _CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sample_pcs.csv")
@@ -175,7 +185,7 @@ def _pc_dict(row, index, good_luck):
               ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
                "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus",
                "Heal Range", "Passives", "Battle Tactic", "Parry Weapons", "Encounter Techniques",
-               "Defense Choices", "Play Style")}
+               "Defense Choices", "Play Style", "Maneuver Features")}
     parry = 8 + skill_total(stats, skills, "Melee")
     # Raw Acrobatics Skill Total - captured before Armor's own Dodge
     # modifier folds into `dodge` below, since Blinkstep (T077, "Shift
@@ -251,6 +261,7 @@ def _pc_dict(row, index, good_luck):
         elif "range_per_skill" in w:
             attack_range = w["range_per_skill"] * skill_total(stats, skills, w_skill)
     else:
+        w_skill = "Melee"
         atk_skill_total = skill_total(stats, skills, "Melee")
         damage = 4 + int(stats["Body"])
         dmg_type = "Physical"
@@ -409,7 +420,9 @@ def _pc_dict(row, index, good_luck):
     # Encounter Technique use' effect can fire in one fight.
     weapon_uses_raw = (row.get("Weapon Uses") or "").strip()
     weapon_uses_left = int(weapon_uses_raw) if weapon_uses_raw else None
-    if weapon_uses_left is not None and "Warmage's Reserves" in card_techniques:
+    # With real cards (T.CARDS) Warmage's Reserves discards from the hand
+    # in the fight instead (combat_sim._warmage_reserves).
+    if weapon_uses_left is not None and "Warmage's Reserves" in card_techniques and not T.CARDS:
         weapon_uses_left += math.ceil(hand_size / 3)
 
     # Bottomless Bottles (T053) - Jackal only makes Bottled Fire (I030)
@@ -455,6 +468,30 @@ def _pc_dict(row, index, good_luck):
         daily_count = int(gold_budget // T.BOTTLED_FIRE_GOLD_COST)
         bottled_fire_uses = daily_count // 2
 
+    # Ranged hexes (HEXES above), one use per known copy.
+    hexes = [dict(via=h, kind=HEXES[h][0], amount=HEXES[h][1], suit=HEXES[h][2], uses=encounter_techs.count(h),
+                  skill="Sorcery", skill_total=skill_total(stats, skills, "Sorcery"), opp_def="Dodge",
+                  range=skill_total(stats, skills, "Sorcery"))
+             for h in dict.fromkeys(encounter_techs) if h in HEXES]
+
+    # Battle Maneuver (T072, Encounter, "Make a weapon attack") with its
+    # Features (`Maneuver Features`, e.g. "Bare-Handed, Lunging 2, Half
+    # Guard 3"): Lunging X is X free Shifts of up to 2 meters, Half Guard
+    # X is X + [Spades] Protected on a hit. Bare-Handed just makes it an
+    # Unarmed attack, which is already the PC's weapon for every row
+    # that has it.
+    maneuver = None
+    if "Battle Maneuver" in encounter_techs:
+        feats = {}
+        for f in (row.get("Maneuver Features") or "").split(","):
+            parts = f.strip().rsplit(" ", 1)
+            if len(parts) == 2 and parts[1].isdigit():
+                feats[parts[0]] = int(parts[1])
+            elif f.strip():
+                feats[f.strip()] = 1
+        maneuver = dict(uses=encounter_techs.count("Battle Maneuver"),
+                        lunges=feats.get("Lunging", 0), guard=feats.get("Half Guard", 0))
+
     # Every copy gets its own suffix, Roster rows included (a Roster
     # build used to keep its bare row Name - "Baseline Tier 1 Party
     # Member" x4, all identical - since nothing needed to tell 4
@@ -478,9 +515,22 @@ def _pc_dict(row, index, good_luck):
               attacks_received=0, attacks_vs_parry_dodge=0, hits_received=0, parries=0,
               challenge_uses_left=encounter_techs.count("Challenge"),
               taunting_strike_uses_left=encounter_techs.count("Taunting Strike"),
-              presence_skill_total=skill_total(stats, skills, "Presence"))
+              presence_skill_total=skill_total(stats, skills, "Presence"),
+              # The attack's Skill (for its suit) and the day's hand size,
+              # for real cards (cards.start_fight).
+              attack_skill=w_skill, hand_size=hand_size, weapon_is_spell=weapon.startswith("War Magic"))
     if attack_range is not None:
         pc["attack_range"] = attack_range
+    if "Bottomless Bottles" in card_techniques:
+        pc["bottles_cards"] = hand_size * 2 // 3  # discarded crafting before the day's first fight
+    if hexes:
+        pc["hexes"] = hexes
+    if maneuver:
+        pc["maneuver"] = maneuver
+    # Raise Spirits (T069): "an ally within [Performance Skill Total]
+    # meters".
+    if "Raise Spirits" in passives:
+        pc["raise_range"] = skill_total(stats, skills, "Performance")
     # How cautiously this PC plays (play_styles.py); a blank cell falls
     # back to what the build suggests.
     pc["play_style"] = ((row.get("Play Style") or "").strip()

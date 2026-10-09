@@ -499,7 +499,8 @@ def strategy_support_healer(pc, party, log):
     the static default. Returns 0 (spent nothing, proceed to a normal
     turn) if there's no use left or nobody in range is wounded enough to
     spend one on."""
-    if pc.get('heal_uses_left', 0) <= 0:
+    k = pc.get('heal_cards', 1)
+    if (not cards.can_spend(pc, k)) if T.CARDS else pc.get('heal_uses_left', 0) <= 0:
         return 0
     wounded = [p for p in party if needs_healing(p)]
     heal_range = pc.get('heal_range')
@@ -508,11 +509,20 @@ def strategy_support_healer(pc, party, log):
     if not wounded:
         return 0
     target = min(wounded, key=lambda p: p['health'])
-    hearts = sum(1 for _ in range(pc.get('heal_cards', 1)) if cards.chosen_matches('Hearts'))
+    if T.CARDS:
+        # Real cards: the cheapest Hearts in hand first, then the
+        # cheapest of the rest.
+        hearts = 0
+        for _ in range(k):
+            c = cards.lowest(pc['hand'], prefer_suit=cards.HEARTS)
+            hearts += cards.suit(c) == cards.HEARTS
+            cards.spend(pc, c)
+    else:
+        hearts = sum(1 for _ in range(k) if cards.chosen_matches('Hearts'))
+        pc['heal_uses_left'] -= 1
     heal = 1 + hearts + pc.get('heal_bonus', 0)
     before = target['health']
     target['health'] = min(target['max_health'], target['health'] + heal)
-    pc['heal_uses_left'] -= 1
     if log:
         log(unit=pc['name'], action='heal', target=target['name'],
             amount=target['health'] - before, target_hp_after=target['health'], via='Healing Magic')
@@ -564,12 +574,19 @@ def try_second_wind(pc, log=None):
     turn, before movement/attacks, regardless of `ap`."""
     if 'Second Wind' not in pc.get('card_techniques', ()):
         return False
-    if pc.get('card_uses_left', 0) <= 0:
+    if (not cards.can_spend(pc)) if T.CARDS else pc.get('card_uses_left', 0) <= 0:
         return False
     if not needs_healing(pc):
         return False
-    pc['card_uses_left'] -= 1
-    heal = min(2, pc['max_health'] - pc['health'])
+    if T.CARDS:
+        # Real cards: a Heart if there's one in hand (2 Health), else the
+        # cheapest card (1).
+        c = cards.lowest(pc['hand'], prefer_suit=cards.HEARTS)
+        cards.spend(pc, c)
+        heal = min(2 if cards.suit(c) == cards.HEARTS else 1, pc['max_health'] - pc['health'])
+    else:
+        pc['card_uses_left'] -= 1
+        heal = min(2, pc['max_health'] - pc['health'])
     pc['health'] += heal
     if log:
         log(unit=pc['name'], action='heal', target=pc['name'], amount=heal, target_hp_after=pc['health'], via='Second Wind')

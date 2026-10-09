@@ -431,22 +431,27 @@ def pc_gamble_count(pc, target, defense_override=None):
     effective_skill = pc['skill_total'] - pc.get('crippled', 0)
     defense = defense_override if defense_override is not None else enemy_defense_for_pc_attack(pc, target)
     resist = enemy_resist_for_pc_attack(pc, target)
-    sift = 1 if tactics.sift_bonus(pc) else 0
+    if T.CARDS:
+        sift = _expected_suit(pc, pc.get('good_luck', 0))
+    else:
+        sift = 1 if tactics.sift_bonus(pc) else 0
     best_n, _ = _gamble_search(effective_skill, defense, pc['damage'], resist, sift)
     return best_n
 
 
-def _gamble_search(effective_skill, defense, damage, resist, sift):
+def _gamble_search(effective_skill, defense, damage, resist, sift, flips=1):
     """The EV-maximizing search itself, factored out of pc_gamble_count
     so a caller that also needs the resulting EV (not just the best `n`)
     - Cloak and Dagger's own "is this attempt even worth it" check below
     - can reuse the identical search rather than a second, possibly
-    drifting copy. Returns (best_n, best_ev)."""
+    drifting copy. Returns (best_n, best_ev). `flips` > 1 is Good Luck
+    (the real-cards path counts it; the old path never did)."""
     max_possible = max(0, int((effective_skill + 13 - defense) // 2))
     best_n, best_ev = 0, 0.0
     for n in range(max_possible + 1):
         threshold = defense - effective_skill + 2 * n  # min card needed to hit
-        p_hit = max(0.0, min(1.0, (14 - threshold) / 13))
+        p_hit = (max(0.0, min(1.0, (14 - threshold) / 13)) if flips == 1
+                 else _p_flip_at_least(threshold, flips))
         net_dmg = max(0, damage + n + sift - resist)
         ev = p_hit * net_dmg
         if ev > best_ev:
@@ -533,7 +538,7 @@ def _resolve_group_order(indices, entries):
     new_scores = {}
     for i in indices:
         _, u = entries[i]
-        flipper = flip_best_of(2) if 'One Eye Behind You' in u.get('passives', ()) else flip()
+        flipper = _unit_flip(u, 1 if 'One Eye Behind You' in u.get('passives', ()) else 0)
         new_scores[i] = flipper + u['reflex']
     new_groups = {}
     for i in indices:
@@ -572,7 +577,7 @@ def _roll_initiative(pcs, enemies, trace):
                                              for _ in range(T.TURNS_BY_SLOTS.get(e.get('slots'), 1))]
     scores = {}
     for i, (_, u) in enumerate(entries):
-        flipper = flip_best_of(2) if 'One Eye Behind You' in u.get('passives', ()) else flip()
+        flipper = _unit_flip(u, 1 if 'One Eye Behind You' in u.get('passives', ()) else 0)
         scores[i] = flipper + u['reflex']
     groups = {}
     for i in range(len(entries)):
@@ -674,6 +679,264 @@ def _pc_status_bad_luck(pc, target):
     return ta is not None and ta['health'] > 0 and ta is not target
 
 
+# ---- Fleeting effects (glossary.md [Fleeting]) ----
+# "At the end of your turn... remove 1 stack of each Fleeting effect you
+# have... If you had no stacks of a Fleeting effect right before gaining
+# some, skip the next removal that would apply to it." `skip_<key>` marks
+# a skipped removal (tunables.FLEETING_SKIP). Harried keeps its own
+# all-at-once clear and no skip, pending the designer.
+
+def _gain(unit, key, n):
+    """Adds `n` stacks of a Fleeting effect to `unit`."""
+    if n <= 0:
+        return
+    if T.FLEETING_SKIP and unit.get(key, 0) <= 0:
+        unit['skip_' + key] = True
+    unit[key] = unit.get(key, 0) + n
+
+
+def _decay(unit, key):
+    """One end-of-turn removal; returns the stacks removed (0 or 1)."""
+    if unit.get(key, 0) <= 0:
+        return 0
+    if unit.pop('skip_' + key, False):
+        return 0
+    unit[key] -= 1
+    return 1
+
+
+# ---- Real cards: flips, suits and spending the hand (2026-10-09) ----
+# See cards.py for the rules and TABLE_PLAY_NOTES.md for how players
+# spend. How much a flip matters decides whether a card gets played on
+# it; tunables.RESCUE_RESERVE says how many cards a player keeps back at
+# each level. PLANNED is a flip the player Gambled on because they held
+# the card to cover it.
+NORMAL, FOCUS, BIG, KILL, PLANNED = 1, 2, 3, 4, 5
+
+
+def _importance(target, net_on_hit, big=False):
+    """KILL if a hit drops the target, BIG for an Encounter attack or a
+    hex, FOCUS for a target that's hurt or already being hit this round,
+    NORMAL otherwise. Reads true Health for the kill check; players read
+    "badly hurt" from context, which the sim doesn't try to model."""
+    if net_on_hit > 0 and target['health'] <= net_on_hit:
+        return KILL
+    if big:
+        return BIG
+    if target['health'] < target['max_health'] or target.get('harried', 0) > 0:
+        return FOCUS
+    return NORMAL
+
+
+def _rescue(pc, need, k, importance, allies):
+    """Plays the `k` cheapest hand cards of at least `need` onto a missed
+    flip. The flipper's own hand first; on a kill shot, an ally's too.
+    Returns the cards played, or None."""
+    holders = [pc]
+    if importance == KILL and T.CARDS_ALLY_RESCUE:
+        holders += [a for a in allies if a is not pc and a['health'] > 0 and a.get('hand')]
+    reserve = T.RESCUE_RESERVE[importance]
+    for h in holders:
+        if not cards.can_spend(h, k + reserve):
+            continue
+        play = cards.cheapest_at_least(h['hand'], need, k)
+        if play:
+            for c in play:
+                cards.spend(h, c)
+            h['rescues_given' if h is not pc else 'rescues'] = h.get('rescues_given' if h is not pc else 'rescues', 0) + 1
+            return play
+    return None
+
+
+def _pc_flip(pc, mod, defense, good, bad, importance=0, allies=(), pool_extra=()):
+    """One PC flip against `defense`, `mod` being everything added to the
+    card (Skill Total, Crippled, Gambles). Returns (card value, suit
+    pool). With cards, a miss can be rescued from the hand per
+    `importance`; with Bad Luck every low card needs replacing."""
+    if not T.CARDS:
+        return resolve_card(good, bad), []
+    flipped, net = cards.flip_for(pc['deck'], good, 1 if bad else 0)
+    ranks = [cards.rank(c) for c in flipped]
+    value = max(ranks) if net >= 0 else min(ranks)
+    pool = [cards.suit(c) for c in flipped]
+    pool.extend(pool_extra)
+    need = defense - mod
+    if value < need <= 13 and importance:
+        k = 1 if net >= 0 else sum(1 for r in ranks if r < need)
+        played = _rescue(pc, need, k, importance, allies)
+        if played:
+            pool.extend(cards.suit(c) for c in played)
+            pr = [cards.rank(c) for c in played]
+            value = max(ranks + pr) if net >= 0 else min([r for r in ranks if r >= need] + pr)
+    return value, pool
+
+
+def _unit_flip(u, good=0):
+    """A flip nobody plays cards on (Reflex, an enemy's attack): from the
+    unit's own deck with cards (the GM's for enemies), else uniform."""
+    if T.CARDS and u.get('deck') is not None:
+        flipped, net = cards.flip_for(u['deck'], good, 0)
+        return cards.used_value(flipped, net)
+    return flip_best_of(1 + good) if good else flip()
+
+
+def _suit_count(pool, suit_name):
+    """How many of `suit_name` a flip's suit pool holds, for riders like
+    "Slowed 2 + [Spades]". Without cards, a flat 1-in-4 for one."""
+    if T.CARDS:
+        return pool.count(cards.SUIT_INDEX[suit_name])
+    return 1 if cards.flipped_matches(suit_name) else 0
+
+
+def _suit_extra(pc, pool, skill):
+    """Extra Successes from the suit pool: one per card matching the
+    attack Skill's suit. Without cards, only Hand of Chaos's old flat
+    stand-in."""
+    if T.CARDS:
+        n = pool.count(cards.SKILL_SUIT[skill])
+        pc['suit_extras'] = pc.get('suit_extras', 0) + n
+        return n
+    return 1 if tactics.sift_bonus(pc) else 0
+
+
+def _hand_of_chaos(pc):
+    """Hand of Chaos (T131): "When you make an attack, Sift 1 card and add
+    its suit to that attack's suit pool." Keeps a high card, discards a
+    low one. Returns the suits it adds (none without cards: the old
+    stand-in is in _suit_extra)."""
+    if not T.CARDS or 'Hand of Chaos' not in pc.get('passives', ()):
+        return []
+    return [cards.suit(c) for c in pc['deck'].sift(1, lambda c: cards.rank(c) >= T.SIFT_KEEP_RANK)]
+
+
+def _expected_suit(pc, good):
+    """Expected Extra Successes from suits on a hit: a quarter per card
+    flipped, plus Hand of Chaos's sifted card."""
+    return 0.25 * (1 + good) + (0.25 if 'Hand of Chaos' in pc.get('passives', ()) else 0)
+
+
+def _choose_gambles(pc, target, mod, defense, resist, good):
+    """With cards: the EV-best Gamble count (pc_gamble_count's search,
+    now counting luck and the suit pool), or more if the player holds a
+    card that covers a miss and the hit matters - "knowing they hold a
+    queen, they may Gamble once or twice on an attack that hits on an
+    8+, and play the queen if the flip comes up short" (designer).
+    Returns (gambles, backed)."""
+    n, _ = _gamble_search(mod, defense, pc['damage'], resist, _expected_suit(pc, good), flips=1 + good)
+    if not cards.can_spend(pc):
+        return n, False
+    best = cards.rank(cards.highest(pc['hand']))
+    n_back = min(T.BACKED_GAMBLES_MAX, (best - (defense - mod)) // 2)
+    if n_back > n:
+        imp = _importance(target, pc['damage'] + n_back - resist - target.get('protected', 0))
+        if imp == KILL or (imp == FOCUS and cards.can_spend(pc, 1 + T.RESCUE_RESERVE[FOCUS])):
+            pc['backed'] = pc.get('backed', 0) + 1
+            return n_back, True
+    return n, False
+
+
+def _perfect_strike(pc, need, importance, skill):
+    """Perfect Strike (T078, 0 AP Interrupt on declaring a weapon attack,
+    discard a card): "You have Good Luck on the weapon attack, then choose
+    one: have Good Luck a second time on the attack; or add the
+    discarded card to the attack's suit pool." With cards it's thrown
+    with a low card on an attack that matters (a high card is worth more
+    as a rescue), taking the suit when the card matches and one Good Luck
+    already makes the hit likely. Returns (Good Luck, suits added)."""
+    if 'Perfect Strike' not in pc.get('card_techniques', ()):
+        return 0, []
+    if not T.CARDS:
+        return tactics.perfect_strike_bonus(pc), []
+    if need <= 1 or not cards.can_spend(pc):
+        return 0, []
+    deep = cards.can_spend(pc, 3)
+    low = cards.lowest(pc['hand'])
+    if (cards.rank(low) > T.PERFECT_STRIKE_MAX_RANK or importance < FOCUS) and not deep:
+        return 0, []
+    cards.spend(pc, low)
+    pc['perfect_strikes'] = pc.get('perfect_strikes', 0) + 1
+    if cards.suit(low) == cards.SKILL_SUIT[skill] and _p_flip_at_least(need, 2) >= 0.75:
+        return 1, [cards.suit(low)]
+    return 2, []
+
+
+def _raise_spirits(attacker, pcs, need, big):
+    """Raise Spirits (T069): "For 1 AP as an interrupt when an ally within
+    [Performance Skill Total] meters declares an attack, you may give them
+    Good Luck on the attack." Per the designer (2026-10-09) she boosts
+    anyone, but holds her last AP for a big attack (an Encounter
+    Technique, like Beornhard's War Magic) while an ally still has one.
+    Spends from her persistent AP pool. Returns the Good Luck given."""
+    if need <= 1:
+        return 0
+    for b in pcs:
+        if b is attacker or b['health'] <= 0 or 'raise_range' not in b:
+            continue
+        if b.get('ap_bank', 0) < 1:
+            continue
+        if 'pos' in b and 'pos' in attacker and _distance(b['pos'], attacker['pos']) > b['raise_range']:
+            continue
+        reserve = 0 if big else (1 if any(p is not b and p['health'] > 0 and _has_big_attacks(p) for p in pcs) else 0)
+        if b['ap_bank'] - 1 < reserve:
+            continue
+        b['ap_bank'] -= 1
+        b['raises'] = b.get('raises', 0) + 1
+        return 1
+    return 0
+
+
+def _kill_topup(pc, target, raw, resist, skill, allies):
+    """Cards played into a hit's suit pool just to finish the target
+    (rulebook.md: a card "may be played without replacing an existing
+    card, and simply added to the suit pool"): each card of the attack
+    Skill's suit is an Extra Success, +1 damage. Only for a point or two,
+    from the attacker's hand or an ally's. Returns the damage added."""
+    s = cards.SKILL_SUIT[skill]
+    prot = target.get('protected', 0)
+
+    def dealt(x):
+        net = max(0, raw + x - resist)
+        return net - min(net, prot)
+    if dealt(0) >= target['health']:
+        return 0
+    x = next((x for x in (1, 2) if dealt(x) >= target['health']), None)
+    if x is None:
+        return 0
+    for h in [pc] + [a for a in allies if a is not pc and a['health'] > 0 and a.get('hand')]:
+        if not cards.can_spend(h, x):
+            continue
+        matching = sorted((c for c in h['hand'] if cards.suit(c) == s), key=cards.rank)
+        if len(matching) >= x:
+            for c in matching[:x]:
+                cards.spend(h, c)
+            h['topups'] = h.get('topups', 0) + 1
+            return x
+    return 0
+
+
+def _warmage_reserves(pc, log=None):
+    """Warmage's Reserves (T124, 0 AP any time, discard X cards): "Regain
+    the use of a Sorcery Spell Encounter Technique with Level [X + 1] or
+    less." War Magic is Level 1, so one card buys one more cast. With
+    real cards it's paid from the hand when the last use runs out (no
+    reserve: it's this PC's whole offense); without, party.py added the
+    uses up front. Returns whether a use was regained."""
+    if not T.CARDS or "Warmage's Reserves" not in pc.get('card_techniques', ()) or not cards.can_spend(pc):
+        return False
+    cards.spend(pc, cards.lowest(pc['hand']))
+    pc['weapon_uses_left'] += 1
+    if log:
+        log(unit=pc['name'], action='card', via="Warmage's Reserves", note='regained a War Magic use')
+    return True
+
+
+def _has_big_attacks(p):
+    return ((p.get('weapon_uses_left') or 0) > 0
+            or any(t['uses'] > 0 for t in p.get('tech_attacks', ()))
+            or any(h['uses'] > 0 for h in p.get('hexes', ()))
+            or (p.get('maneuver') or {}).get('uses', 0) > 0)
+
+
 def _try_challenge(pc, pcs, enemies, movement_on, log=None):
     """Challenge (T058, 1 AP, Encounter): "Make a Presence attack
     against the target's Mental Defense. If the attack hits, you Taunt
@@ -696,10 +959,20 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
     else:
         target = pool[0]
     pc['challenge_uses_left'] -= 1
-    roll = pc['presence_skill_total'] + flip()
-    hit = roll >= target['mental'] - target.get('vulnerable', 0)
+    defense = target['mental'] - target.get('vulnerable', 0)
+    if T.CARDS:
+        good = _raise_spirits(pc, pcs, defense - pc['presence_skill_total'], True)
+        value, pool = _pc_flip(pc, pc['presence_skill_total'], defense, good, tactics.pc_wounded(pc), BIG,
+                               allies=pcs)
+    else:
+        value, pool = flip(), []
+    roll = pc['presence_skill_total'] + value
+    hit = roll >= defense
     if hit:
-        target['taunted'] = 5 + (1 if cards.flipped_matches('Hearts') else 0)
+        stacks = 5 + _suit_count(pool, 'Hearts')
+        if T.FLEETING_SKIP and target.get('taunted', 0) <= 0:
+            target['skip_taunted'] = True
+        target['taunted'] = stacks
         target['taunted_by'] = pc
     if log:
         log(unit=pc['name'], action='taunt', target=target['name'], roll=roll, defense=target['mental'], hit=hit,
@@ -765,14 +1038,16 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         resist = enemy_resist_for_pc_attack(pc, bonus_target)
         crippled = pc.get('crippled', 0)
         bad_luck = tactics.defense_has_bad_luck(bonus_target, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, bonus_target)
-        luck_bonus = tactics.perfect_strike_bonus(pc)
-        card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
+        luck_bonus = tactics.perfect_strike_bonus(pc) if not T.CARDS else 0
+        imp = _importance(bonus_target, pc['damage'] - resist - bonus_target.get('protected', 0))
+        card, pool = _pc_flip(pc, pc['skill_total'] - crippled, defense, pc.get('good_luck', 0) + luck_bonus, bad_luck,
+                              imp, pcs, _hand_of_chaos(pc))
         roll = pc['skill_total'] - crippled + card
         hit = roll >= defense
         bonus_target['harried'] = bonus_target.get('harried', 0) + 1
         dmg = raw_dmg = protected_absorbed = 0
         if hit:
-            raw_dmg = pc['damage'] + (1 if tactics.sift_bonus(pc) else 0)
+            raw_dmg = pc['damage'] + _suit_extra(pc, pool, pc['attack_skill'])
             dmg = max(0, raw_dmg - resist)
             protected = bonus_target.get('protected', 0)
             if protected > 0 and dmg > 0:
@@ -901,7 +1176,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
 
             while in_range and ap >= T.ATTACK_AP_COST and target is not None \
                     and (max_attacks is None or attacks_made < max_attacks):
-                if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0:
+                if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0 \
+                        and not _warmage_reserves(pc, party_log):
                     break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
                 substitute = tactics.bottomless_bottles_choice(pc)
                 if not substitute:
@@ -974,7 +1250,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 close_range_weapon = not pc.get('attack_range') and pc.get('weapon_name') not in ('Melee', '2H Heavy Melee')
                 cloak_dagger_hit = False
                 if (pc.get('cloak_and_dagger') and not substitute and not feint_active and close_range_weapon
-                        and pc.get('card_uses_left', 0) > 0):
+                        and (cards.can_spend(pc) if T.CARDS else pc.get('card_uses_left', 0) > 0)):
                     # Worth attempting at all? A real player wouldn't
                     # discard a card chasing a target that's already easy
                     # to hit - against an already-Harried-softened target
@@ -994,15 +1270,21 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     eff_skill = pc['skill_total'] - pc.get('crippled', 0)
                     real_defense = enemy_defense_for_pc_attack(pc, target)
                     resist_for_ev = enemy_resist_for_pc_attack(pc, target)
-                    sift_for_ev = 1 if tactics.sift_bonus(pc) else 0
+                    sift_for_ev = _expected_suit(pc, 0) if T.CARDS else (1 if tactics.sift_bonus(pc) else 0)
                     _, normal_ev = _gamble_search(eff_skill, real_defense, pc['damage'], resist_for_ev, sift_for_ev)
                     _, unaware_ev = _gamble_search(eff_skill, 8, pc['damage'], resist_for_ev, sift_for_ev)
                     stealth_threshold = target['vigilant'] - pc.get('stealth_skill_total', 0)
                     q = _p_flip_at_least(stealth_threshold, n_flips=2)  # guaranteed Good Luck, per the Spade assumption below
                     worth_it = q * (unaware_ev - normal_ev) * 4 - T.CARD_VALUE > 0
-                    if worth_it:
+                    if worth_it and T.CARDS:
+                        # Real cards: Good Luck only if there's a Spade to throw.
+                        thrown = cards.lowest(pc['hand'], prefer_suit=cards.SPADES)
+                        cards.spend(pc, thrown)
+                        stealth_card, _ = _pc_flip(pc, 0, 0, 1 if cards.suit(thrown) == cards.SPADES else 0, False)
+                    elif worth_it:
                         pc['card_uses_left'] -= 1
                         stealth_card = resolve_card(1, False)  # guaranteed Good Luck, per the Spade assumption above
+                    if worth_it:
                         stealth_roll = pc.get('stealth_skill_total', 0) - pc.get('crippled', 0) + stealth_card
                         cloak_dagger_hit = stealth_roll >= target['vigilant']
                         if party_log:
@@ -1020,20 +1302,43 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # attack this round correctly makes gambling look more
                 # attractive (lower Defense to clear), but this attack's
                 # own upcoming stack doesn't get counted a turn early.
-                gambles = 0 if (substitute or feint_active) else pc_gamble_count(
-                    pc, target, defense_override=8 if cloak_dagger_hit else None)
+                # rulebook.md: "only weapon attacks can be Gambled on - spell
+                # attacks can't" (Beornhard's War Magic used to Gamble).
+                spell = T.NO_SPELL_GAMBLES and pc.get('weapon_is_spell') and not substitute
+                skill = (substitute or {}).get('skill') or pc['attack_skill']
                 crippled = pc.get('crippled', 0)
                 bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, target)
-                luck_bonus = tactics.perfect_strike_bonus(pc)
                 pcp = pc.get('passives', ())
                 # Ambush Predator (T194): Good Luck against a creature that
-                # hasn't taken its turn yet this round.
-                if 'Ambush Predator' in pcp and target.get('acted_round') != rnd:
-                    luck_bonus += 1
-                # Lie in Wait (T193): Good Luck once per place waited.
-                if 'Lie in Wait' in pcp and pc.get('liw_round') == rnd:
-                    luck_bonus += pc.get('liw_luck', 0)
-                card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
+                # hasn't taken its turn yet this round. Lie in Wait (T193):
+                # Good Luck once per place waited.
+                luck_extra = ((1 if 'Ambush Predator' in pcp and target.get('acted_round') != rnd else 0)
+                              + (pc.get('liw_luck', 0) if 'Lie in Wait' in pcp and pc.get('liw_round') == rnd else 0))
+                pool = []
+                if T.CARDS:
+                    # Real cards: Gamble (with a card behind it if it
+                    # matters), then Raise Spirits and Perfect Strike, then
+                    # flip; a miss that matters can be rescued from the hand.
+                    luck = pc.get('good_luck', 0) + luck_extra
+                    mod0 = pc['skill_total'] - crippled
+                    big = ('uses' in substitute) if substitute else pc.get('weapon_uses_left') is not None
+                    if (substitute and not substitute.get('weapon')) or feint_active or spell:
+                        gambles, backed = 0, False
+                    else:
+                        gambles, backed = _choose_gambles(pc, target, mod0, defense, resist, luck)
+                    need = defense - (mod0 - 2 * gambles)
+                    imp = PLANNED if backed else _importance(
+                        target, pc['damage'] + gambles - resist - target.get('protected', 0), big)
+                    luck += _raise_spirits(pc, pcs, need, big)
+                    ps_luck, ps_pool = (0, []) if (substitute and not substitute.get('weapon')) else \
+                        _perfect_strike(pc, need, imp, skill)
+                    card, pool = _pc_flip(pc, mod0 - 2 * gambles, defense, luck + ps_luck, bad_luck, imp, pcs,
+                                          _hand_of_chaos(pc) + ps_pool)
+                else:
+                    gambles = 0 if (substitute or feint_active or spell) else pc_gamble_count(
+                        pc, target, defense_override=8 if cloak_dagger_hit else None)
+                    luck_bonus = tactics.perfect_strike_bonus(pc) + luck_extra
+                    card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
                 roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
                 attacks_made += 1
                 ap -= 1 if feint_active else T.ATTACK_AP_COST
@@ -1051,7 +1356,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     pc['taunting_strike_uses_left'] -= 1
                     taunt_note = 'Taunting Strike missed'
                     if hit:
-                        target['taunted'] = 3 + (1 if cards.flipped_matches('Hearts') else 0)
+                        stacks = 3 + _suit_count(pool, 'Hearts')
+                        if T.FLEETING_SKIP and target.get('taunted', 0) <= 0:
+                            target['skip_taunted'] = True
+                        target['taunted'] = stacks
                         target['taunted_by'] = pc
                         taunt_note = f"Taunting Strike: Taunted +{target['taunted']}"
                 # rulebook.md: "Regardless of the attack's result, a
@@ -1077,18 +1385,18 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # 'Bleeding Strikes' is a test-only passive: this trigger
                 # without the can't-Parry cost, to price the two halves apart.
                 if ('Furious Rage' in passives or 'Bleeding Strikes' in passives) and (hit or parried):
-                    target['bleeding'] = target.get('bleeding', 0) + 1
+                    _gain(target, 'bleeding', 1)
                 # 'Bleeding Dump' is a test-only passive: the first hit each
                 # fight adds 5 Bleeding (Acidic Flask's stack count, as a
                 # rider so it doesn't replace an attack), to check how a big
                 # single dose prices against the tapered Bleeding curve.
                 if 'Bleeding Dump' in passives and hit and not pc.get('dump_used'):
-                    target['bleeding'] = target.get('bleeding', 0) + 5
+                    _gain(target, 'bleeding', 5)
                     pc['dump_used'] = True
                 # 'Bleeding Once' (test-only): a single stack on the first
                 # hit each fight, the "one extra point" case on its own.
                 if 'Bleeding Once' in passives and hit and not pc.get('once_used'):
-                    target['bleeding'] = target.get('bleeding', 0) + 1
+                    _gain(target, 'bleeding', 1)
                     pc['once_used'] = True
                     pc['once_target'] = target  # for tracing the stack's fate
                     pc['once_applied'] = True
@@ -1097,7 +1405,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # damaging attacks hits, you may Slow the target once."
                 if ('Lawman\'s Hand' in passives and hit and pc['damage'] > 0
                         and pc.get('lh_round') != rnd):
-                    target['slowed'] = target.get('slowed', 0) + 1
+                    _gain(target, 'slowed', 1)
                     pc['lh_round'] = rnd
                 dmg = 0
                 raw_dmg = 0
@@ -1112,9 +1420,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # for the sweep this was built to run). +0.25 for the
                     # suit-pool average, same convention as every other
                     # suit-bonus Feature this session.
-                    target['harried'] = target.get('harried', 0) + feint_stacks + 0.25
+                    target['harried'] = target.get('harried', 0) + feint_stacks + (
+                        _suit_count(pool, 'Diamonds') if T.CARDS else 0.25)
                 elif hit:
-                    raw_dmg = pc['damage'] + gambles + (1 if tactics.sift_bonus(pc) else 0)
+                    raw_dmg = pc['damage'] + gambles + _suit_extra(pc, pool, skill)
+                    # A hit that leaves the target a point or two short: play
+                    # matching-suit cards for the Extra Successes to finish it.
+                    if T.CARDS:
+                        raw_dmg += _kill_topup(pc, target, raw_dmg, resist, skill, pcs)
                     dmg = max(0, raw_dmg - resist)
                     protected = target.get('protected', 0)
                     if protected > 0 and dmg > 0:
@@ -1142,8 +1455,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         target.setdefault('hit_steps', []).append((_STEP[0], target['health'] <= 0))
                     if substitute and substitute.get('effect'):
                         key, stacks, suit = substitute['effect']
-                        stacks += 1 if cards.flipped_matches(suit) else 0
-                        target[key] = target.get(key, 0) + stacks
+                        stacks += _suit_count(pool, suit)
+                        _gain(target, key, stacks)
                         taunt_note = f"{key.capitalize()} +{stacks}"
                     if order is not None:
                         # Turn-order Styles (2026-10-06). 'Staggering Blows'
@@ -1271,18 +1584,15 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
     # "remove all stacks of Harried you have" at the end of your turn,
     # not decay by 1 like the others.
     if pc['health'] > 0:
-        if pc.get('crippled', 0) > 0:
-            pc['crippled'] -= 1
-        if pc.get('vulnerable', 0) > 0:
-            pc['vulnerable'] -= 1
-        if pc.get('bleeding', 0) > 0:
-            pc['bleeding'] -= 1
+        _decay(pc, 'crippled')
+        _decay(pc, 'vulnerable')
+        if _decay(pc, 'bleeding'):
             pc['health'] -= 1
         for key in ('slowed', 'frightened', 'taunted'):
-            if pc.get(key, 0) > 0:
-                pc[key] -= 1
-                if pc[key] == 0:
-                    pc[key + '_by'] = None
+            if _decay(pc, key) and pc[key] == 0:
+                pc[key + '_by'] = None
+        if T.PROTECTED_DECAYS:
+            _decay(pc, 'protected')
         if pc.get('harried', 0) > 0:
             pc['harried'] = 0
         if _has_interrupt_tech(pc):
@@ -1301,7 +1611,7 @@ def _has_interrupt_tech(pc):
     (Magehunter T075, Parting Shot T076) - both share the one real AP
     pool (`pc['ap_bank']`) rather than each getting its own, since
     rulebook.md's AP economy is a single number per PC."""
-    return bool(pc.get('magehunter') or pc.get('parting_shot'))
+    return bool(pc.get('magehunter') or pc.get('parting_shot') or 'raise_range' in pc)
 
 
 def _magehunter_interrupt(e, pcs, movement_on, party_log):
@@ -1355,14 +1665,16 @@ def _magehunter_interrupt(e, pcs, movement_on, party_log):
         gambles = pc_gamble_count(pc, e)
         crippled = pc.get('crippled', 0)
         bad_luck = tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, e)
-        luck_bonus = tactics.perfect_strike_bonus(pc)
-        card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
+        luck_bonus = tactics.perfect_strike_bonus(pc) if not T.CARDS else 0
+        imp = _importance(e, pc['damage'] + gambles - resist - e.get('protected', 0))
+        card, pool = _pc_flip(pc, pc['skill_total'] - crippled - 2 * gambles, defense,
+                              pc.get('good_luck', 0) + luck_bonus, bad_luck, imp, pcs, _hand_of_chaos(pc))
         roll = pc['skill_total'] - crippled + card - 2 * gambles
         hit = roll >= defense
         e['harried'] = e.get('harried', 0) + 1
         dmg = raw_dmg = protected_absorbed = 0
         if hit:
-            raw_dmg = pc['damage'] + gambles + (1 if tactics.sift_bonus(pc) else 0)
+            raw_dmg = pc['damage'] + gambles + _suit_extra(pc, pool, pc['attack_skill'])
             dmg = max(0, raw_dmg - resist)
             protected = e.get('protected', 0)
             if protected > 0 and dmg > 0:
@@ -1421,14 +1733,16 @@ def _parting_shot_interrupt(e, pcs, movement_on, party_log):
         gambles = pc_gamble_count(pc, e)
         crippled = pc.get('crippled', 0)
         bad_luck = tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, e)
-        luck_bonus = tactics.perfect_strike_bonus(pc)
-        card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
+        luck_bonus = tactics.perfect_strike_bonus(pc) if not T.CARDS else 0
+        imp = _importance(e, pc['damage'] + gambles - resist - e.get('protected', 0))
+        card, pool = _pc_flip(pc, pc['skill_total'] - crippled - 2 * gambles, defense,
+                              pc.get('good_luck', 0) + luck_bonus, bad_luck, imp, pcs, _hand_of_chaos(pc))
         roll = pc['skill_total'] - crippled + card - 2 * gambles
         hit = roll >= defense
         e['harried'] = e.get('harried', 0) + 1
         dmg = raw_dmg = protected_absorbed = 0
         if hit:
-            raw_dmg = pc['damage'] + gambles + (1 if tactics.sift_bonus(pc) else 0)
+            raw_dmg = pc['damage'] + gambles + _suit_extra(pc, pool, pc['attack_skill'])
             dmg = max(0, raw_dmg - resist)
             protected = e.get('protected', 0)
             if protected > 0 and dmg > 0:
@@ -1493,7 +1807,7 @@ def _enemy_plan(e, enemies, living_pcs, movement_on):
 # did it, since their Bad Luck only cares about that one creature.
 def _apply_to_pc(target, effect, stacks, source):
     key = effect.lower()
-    target[key] = target.get(key, 0) + stacks
+    _gain(target, key, stacks)
     if key in ('frightened', 'taunted'):
         target[key + '_by'] = source
 
@@ -1519,7 +1833,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         return 0
     abilities = e.get('abilities', [])
     if 'Durable' in abilities and e.get('protected', 0) < 4:
-        e['protected'] = e.get('protected', 0) + 1
+        _gain(e, 'protected', 1)
     living_pcs = [p for p in pcs if p['health'] > 0]
     if not living_pcs:
         return 0
@@ -1565,7 +1879,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
                           target_hp_after=target['health'], via=e['action'])
             break
         if mode == 'support':
-            target['protected'] = target.get('protected', 0) + e['effect_stacks']
+            _gain(target, 'protected', e['effect_stacks'])
             if enemy_log:
                 enemy_log(unit=e['name'], action='support', target=target['name'], stacks=e['effect_stacks'],
                           via=e['action'])
@@ -1581,7 +1895,12 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
                 break
         taunter = e.get('taunted_by') if e.get('taunted', 0) > 0 else None
         off_taunt = taunter is not None and taunter['health'] > 0 and taunter is not target
-        card = resolve_card(1 if fighting_style == 'Aimed Shot' else 0, off_taunt)
+        good = 1 if fighting_style == 'Aimed Shot' else 0
+        if T.CARDS:
+            flipped, net = cards.flip_for(e['deck'], good, 1 if off_taunt else 0)
+            card = cards.used_value(flipped, net)
+        else:
+            card = resolve_card(good, off_taunt)
         roll = prof['accuracy'] - e.get('crippled', 0) + card
         opp_def_val = pc_defense_for(target, prof['opp_def'])
         # Parried = a miss where Parry was the Defense actually used
@@ -1600,7 +1919,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             # Inexhaustible Guardian (T139): "Once per round, when you
             # Parry an attack, you may gain Protected."
             if 'Inexhaustible Guardian' in target.get('passives', ()) and target.get('ig_round') != rnd:
-                target['protected'] = target.get('protected', 0) + 1
+                _gain(target, 'protected', 1)
                 target['ig_round'] = rnd
         if hit:
             target['hits_received'] = target.get('hits_received', 0) + 1
@@ -1610,6 +1929,11 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             else:
                 resist = pc_resist_for_enemy_attack(prof, target)
                 raw_dmg = prof['attack_damage']
+                if T.CARDS and T.ENEMY_SUIT_EXTRA:
+                    # An assumed suit: Clubs for a spell (Sorcery's), Spades
+                    # for a weapon (Melee and Archery's).
+                    es = cards.CLUBS if ('Spell' in prof['action'] or prof['action'] == 'Hex') else cards.SPADES
+                    raw_dmg += sum(1 for c in flipped if cards.suit(c) == es)
                 dmg = max(0, raw_dmg - resist)
                 # PC-side Protected: each stack absorbs 1 Health loss.
                 if target.get('protected', 0) > 0 and dmg > 0:
@@ -1638,23 +1962,23 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     # decays by 1 (both Fleeting-style, glossary.md).
     if e.get('harried', 0) > 0:
         e['harried'] = 0
-    if e.get('taunted', 0) > 0:
-        e['taunted'] -= 1
-        if e['taunted'] == 0:
-            e['taunted_by'] = None
-    # Crippled and Slowed from the party (Reckoning, Hand Rings the Bell)
-    # are Fleeting too: one stack off per bearer's own turn. Bleeding (from
-    # Furious Rage) loses a stack the same way, and that stack deals 1.
-    for key in ('crippled', 'slowed'):
-        if e.get(key, 0) > 0:
-            e[key] -= 1
+    if _decay(e, 'taunted') and e['taunted'] == 0:
+        e['taunted_by'] = None
+    # Crippled, Slowed and Vulnerable from the party (Reckoning, Hand Rings
+    # the Bell, the hexes, Sickness Takes the Flock) are Fleeting too: one
+    # stack off per bearer's own turn. Bleeding (from Furious Rage) loses a
+    # stack the same way, and that stack deals 1. Vulnerable never decayed
+    # on enemies until 2026-10-09.
+    for key in ('crippled', 'slowed', 'vulnerable'):
+        _decay(e, key)
+    if T.PROTECTED_DECAYS:
+        _decay(e, 'protected')
     # Only the rules-as-written mode ticks here; the test variants
     # (tunables.BLEED_MODE) deal the Health loss elsewhere. In 'on_damage'
     # the stack still falls off here, for nothing; 'round_end' does its
     # own decay at the end of the round.
     if e.get('bleeding', 0) > 0 and e['health'] > 0 and T.BLEED_MODE != 'round_end':
-        e['bleeding'] -= 1
-        if T.BLEED_MODE == 'own_turn':
+        if _decay(e, 'bleeding') and T.BLEED_MODE == 'own_turn':
             e['health'] -= 1
             e['bleed_dealt'] = e.get('bleed_dealt', 0) + 1
     return interrupt_dmg
@@ -1767,6 +2091,14 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                     e['backup']['attack_damage'] = max(0, e['backup']['attack_damage'] + T.ENEMY_DAMAGE_ADJ)
     pc_attacks = 0
     pc_damage_dealt = 0
+    # Real cards (cards.py): each PC's hand for this fight, and one GM deck
+    # shared by every enemy.
+    if T.CARDS:
+        for p in pcs:
+            cards.start_fight(p)
+        gm_deck = cards.Deck()
+        for e in enemies:
+            e['deck'] = gm_deck
 
     if movement:
         party_x, enemy_x = _random_front_lines(start_gap)
