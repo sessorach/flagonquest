@@ -2171,10 +2171,8 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
                 resist = pc_resist_for_enemy_attack(prof, target)
                 raw_dmg = prof['attack_damage']
                 if T.CARDS and T.ENEMY_SUIT_EXTRA:
-                    # An assumed suit: Clubs for a spell (Sorcery's), Spades
-                    # for a weapon (Melee and Archery's).
-                    es = cards.CLUBS if ('Spell' in prof['action'] or prof['action'] == 'Hex') else cards.SPADES
-                    raw_dmg += sum(1 for c in flipped if cards.suit(c) == es)
+                    # +1 damage per Heart flipped (tunables.ENEMY_SUIT_EXTRA).
+                    raw_dmg += sum(1 for c in flipped if cards.suit(c) == cards.HEARTS)
                 dmg = max(0, raw_dmg - resist)
                 # PC-side Protected: each stack absorbs 1 Health loss.
                 if target.get('protected', 0) > 0 and dmg > 0:

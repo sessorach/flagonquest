@@ -18,7 +18,7 @@
     "level": 4,
     "title": "Play",
     "supplement": "Base Game",
-    "body": "Discard a card from your hand to add its suit to the pool for a flip you’re aware of, or add +1 to that flip’s card. Specific to the default use of cards from hand."
+    "body": "Discard a card from your hand onto a flip you’re aware of, after its cards are flipped but before the result is decided. Either it replaces one of the flipped cards, adding its suit to the pool as well, or it just adds its suit to the pool. Specific to the default use of cards from hand."
   },
   {
     "id": "sift-x-cards",

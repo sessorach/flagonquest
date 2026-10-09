@@ -428,10 +428,11 @@ BACKED_GAMBLES_MAX = 2
 PERFECT_STRIKE_MAX_RANK = 7
 # Hand of Chaos's Sift 1 keeps a card this high, discards anything lower.
 SIFT_KEEP_RANK = 7
-# Enemies attack with Accuracy, not a Skill, so they have no suit to
-# match and get no Extra Successes. An assumption (nothing in the rules
-# gives an enemy attack a suit); flip to True to see what it would do.
-ENEMY_SUIT_EXTRA = False
+# Enemies attack with Accuracy, not a Skill, so the rules give them no
+# suit. Per the designer (2026-10-09), for now: an enemy's damaging attack
+# deals +1 damage for each Heart in its flip, the same as a suit match;
+# something more detailed may come later. False gives them no suit.
+ENEMY_SUIT_EXTRA = True
 
 # ---- Fleeting (2026-10-09) ----
 # glossary.md [Fleeting]: "If you had no stacks of a Fleeting effect
