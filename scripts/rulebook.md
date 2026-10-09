@@ -112,7 +112,7 @@ You use a deck of cards, a standard 52-card deck of playing cards split evenly a
 
 Capitalized Words are terms used consistently to refer to a game element, as are most terms put in brackets to label things. When in doubt, check the Glossary.
 
-The most specific rule always wins.
+The most specific rule always wins. The rules in this book cover the general case, and when an ability, item or effect says it works differently, it does.
 
 Numbers don’t go negative, things can only be reduced to 0.
 

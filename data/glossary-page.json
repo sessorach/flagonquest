@@ -151,7 +151,7 @@
     "level": 4,
     "title": "[Fleeting]",
     "supplement": "Base Game",
-    "body": "At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. In social encounters, remove 1 stack after each Statement your party makes. Outside of either, remove 1 stack roughly every 6 seconds. If you had no stacks of a Fleeting effect right before gaining some, skip the next removal that would apply to it — it starts losing stacks normally from the one after that."
+    "body": "At the end of your turn in combat encounters, remove 1 stack of each Fleeting effect you have. In social encounters, remove 1 stack after each Statement your party makes. Outside of either, remove 1 stack roughly every 6 seconds. If you gain a Fleeting effect during your own turn and had no stacks of it right before, skip that turn’s removal — it starts losing stacks normally from your next turn."
   },
   {
     "id": "food",
@@ -221,7 +221,7 @@
     "level": 4,
     "title": "Bleeding [Fleeting]",
     "supplement": "Base Game",
-    "body": "Each stack of this that decays at the end of your turn deals 1 Health loss."
+    "body": "Each stack of this that decays at the end of your turn deals 1 Health loss. Bleeding always loses a stack at the end of your turn, even on the turn you gained it."
   },
   {
     "id": "crippled-fleeting",
@@ -242,7 +242,7 @@
     "level": 4,
     "title": "Harried [Fleeting]",
     "supplement": "Base Game",
-    "body": "For each stack of this, you suffer a -1 penalty to Dodge and Parry Defense. At the end of your turn, remove all stacks of Harried you have."
+    "body": "For each stack of this, you suffer a -1 penalty to Dodge and Parry Defense. At the end of your turn, remove all stacks of Harried you have, including any you gained that turn."
   },
   {
     "id": "hasted-fleeting",

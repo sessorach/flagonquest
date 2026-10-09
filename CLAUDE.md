@@ -370,6 +370,14 @@ which should stay a clean decision record.
     trigger to spend it on gives them more control, and being inflexible
     is rarely something to balance with. Only make a trigger mandatory
     when that's a balance point.
+- **General rules stay general; exceptions live on the specific thing**
+  (per the designer, 2026-10-09). Write a general rule (a keyword, a
+  rulebook section) for the plain case with no carve-outs, and put "this
+  one works differently" in the specific effect's, item's or Technique's
+  own text, leaning on the rulebook's "the most specific rule always
+  wins." Don't list exceptions inside the general rule. `[Fleeting]` vs.
+  Bleeding/Harried is the worked example; see RULES_DESIGN.md's standing
+  rule.
 - **Whenever an idea gets binned** (cut from `items.csv`/`techniques.csv`,
   or considered and never drafted at all), log it in
   `IDEAS_BACKLOG.md`'s "Reviewed and declined" section — a short note

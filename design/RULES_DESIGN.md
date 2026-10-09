@@ -419,6 +419,18 @@ Vial redesign considered granting a direct Extra Success) — rejected
 for exactly this reason, redirected toward turn-order adjustment
 instead (see below).
 
+### STANDING RULE — General rules stay general; the specific case says how it differs
+
+Per the designer (2026-10-09). A general rule is written for the general
+case, stated simply, with no list of carve-outs. When something works
+differently, the specific thing says so in its own text, and the
+rulebook's "the most specific rule always wins" (The Basics) does the
+rest. First applied to Fleeting: the `[Fleeting]` tag just says an effect
+gained on your own turn skips that turn's removal, and Bleeding's and
+Harried's own entries say they still come off that turn. Write new
+content the same way, and when a general rule has grown carve-outs, move
+each one onto the thing it's about.
+
 ### STANDING RULE — Bleeding is extra damage that runs out on its own
 
 Per the designer (2026-10-07). Extra damage isn't meant to be easy to
@@ -1738,7 +1750,9 @@ the full list going into the balance pass.
   when the effect was gained during the bearer's own turn. Bleeding
   never skips, so it always deals its damage, and Harried is exempt too,
   since it just clears at the end of the turn. Might get re-evaluated.
-  The glossary wording still needs updating to match.
+  Written the way the standing rule below asks: `[Fleeting]` states the
+  plain same-turn skip, and Bleeding's and Harried's own entries each say
+  how they work instead.
 - **Ward reimagined: flat Resist + a self-limiting absorption charge**
   (`glossary.md`'s `(Fire/Frost/Brilliant/Shadow) Ward [Fleeting]`
   entry). Surfaced fixing Elemental-Attuned Tincture — even after the
