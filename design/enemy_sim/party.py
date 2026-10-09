@@ -134,6 +134,20 @@ TECH_ATTACKS = {
     "Firefly Leaves the Hand": lambda st, sk, atk, dmg: dict(
         skill_total=skill_total(st, sk, "Meditation"), damage=2 + int(st["Mind"]),
         dmg_type="Brilliant", opp_def="Mental", effect=None),
+    # T159, Level 2, 2 AP (Felix): "Make a Meditation attack against the
+    # target's Vital Defense. If it hits, it deals 2 + [Mind] Shadow
+    # damage, and you may discard a card to heal 3 Health." The heal
+    # isn't modeled yet.
+    "Thief Empties the Vessel": lambda st, sk, atk, dmg: dict(
+        skill_total=skill_total(st, sk, "Meditation"), damage=2 + int(st["Mind"]),
+        dmg_type="Shadow", opp_def="Vital", effect=None),
+    # Enith's War Magic (T120) Level 1 with Tormenting Curse ("deals no
+    # damage") and Frigid ("Slowed [twice X] + [Spades] times", X = 1).
+    # Against Dodge until the designer says which Defense she learned it
+    # against.
+    "Hex of Sloth": lambda st, sk, atk, dmg: dict(
+        skill_total=skill_total(st, sk, "Sorcery"), damage=0,
+        dmg_type=None, opp_def="Dodge", effect=("slowed", 2, "Spades")),
     # T111, Level 2, 2 AP: "Make a Theurgy spell attack against the
     # target's Mental Defense. If it hits, they are Crippled 5 + [Clubs]
     # times." No damage.
@@ -170,7 +184,10 @@ def _pc_dict(row, index, good_luck):
     # anyone in anything but Unarmored/Light Armor - Medium/Heavy's own
     # -1 would otherwise silently leak into a PC's Shift distance too).
     acrobatics_skill_total = skill_total(stats, skills, "Acrobatics")
-    dodge = 8 + acrobatics_skill_total
+    # rulebook.md: "you choose Acrobatics or Brawl" for Dodge - the sim
+    # used Acrobatics alone until 2026-10-08, shortchanging Brawl builds
+    # (Felix, Hanforth).
+    dodge = 8 + max(acrobatics_skill_total, skill_total(stats, skills, "Brawl"))
     # Stealth Skill Total - no Defense formula reads Stealth at all (it
     # isn't a Defense-governing Skill the way Melee/Acrobatics/
     # Resilience/Composure/Insight are), so unlike acrobatics_skill_total

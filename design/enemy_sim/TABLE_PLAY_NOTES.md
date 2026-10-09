@@ -354,9 +354,9 @@ from 100 to 150, and so on).
 | 5 | Beornhard | Sorcerer | uploaded (export, 2026-09-21) |
 | 6 | Sable | Archer | uploaded (export, 2026-09-21) |
 | 7 | Hanforth | Healer | uploaded (export, 2026-09-21) |
-| 8 | Felix | Monk ("a monk with a little sorcery") | designer building; the current row is a stand-in |
-| 9 | Enith | Duelist (Soulblade, Smithing) | designer building |
-| 10 | (to be named) | Leader | designer building |
+| 8 | Felix | Monk, cat Wildfolk (he/him) | uploaded (export, 2026-10-08), partly modeled |
+| 9 | Enith | Duelist, the Warlock stand-in, Settler (she/her) | uploaded (export, 2026-10-08), partly modeled |
+| 10 | Ashleigh | Leader, a bard, cat Wildfolk (she/her) | uploaded (export, 2026-10-08), partly modeled |
 
 Not part of the sample: Rook and Wren (reference builds made to test
 movement), HOLE (a real ~90 XP build, set aside for now), the Baseline
@@ -370,3 +370,39 @@ Sample parties to build from it once the last three are in:
 - **Two front-liners**: Hilde, Browndog, Carrick, Sable (today's Party A).
 - **Skirmishers**: Enith, Felix, Jackal, Hanforth.
 - **Support-heavy**: Browndog, the Leader, Sable, Beornhard.
+
+### The last three builds (2026-10-08)
+
+Exports in archive/player_builds/; rows `Felix` (replacing the stand-in),
+`Enith` and `Ashleigh` in sample_pcs.csv, all 75 XP. Per the designer:
+Enith's spells are non-damaging Sorcery debuffs she pairs with her
+blade as her bread-and-butter offense; Felix plays carefully but tries
+to take targets out tactically, and can hold the front line.
+
+| | Attack | Damage | Parry / Dodge / Vital / Mental | Health | Speed | Reflex | Plays as |
+|---|---|---|---|---|---|---|---|
+| Felix (Unarmed) | +8 | 4 | 15 / 14 / 11 / 11 | 10 | 4 | 3 | Skirmisher |
+| Enith (Soulblade, 1H Light) | +5 | 5 | 13 / 12 / 10 / 12 | 10 | 3 | 5 | Skirmisher |
+| Ashleigh (Light Thrown, 6 m) | +5 | 4 | 11 / 12 / 11 / 11 | 10 | 3 | 2 | Back-liner |
+
+Modeled so far: Felix's Firefly Leaves the Hand and Thief Empties the
+Vessel as Encounter attacks; Enith's Hand of Chaos and Hex of Sloth
+(no damage, Slowed 2 + [Spades]). Still to wire up, each needing new
+logic: Raise Spirits (Ashleigh's Interrupt Good Luck for allies), Thief
+Empties the Vessel's card-for-3-Health heal, Boughs Unbroken (Felix's
+Style), Battle Maneuver's Features, Hex of Rebuking's Push (the sim has
+no Push), and Fatestealer (cards).
+
+**Two fixes these builds turned up.**
+
+- *The Feature builder* didn't enforce once-only Features or the extra
+  points Bare-Handed (+2) and Tormenting Curse (+3) grant, so Felix's
+  and Enith's exports were built on smaller budgets than their Features
+  allow. features.csv now has Max Copies and Bonus Points columns the
+  builder reads (see convert.py's FEATURE LIMITS).
+- *Dodge in the sim* used Acrobatics alone; the rulebook lets you pick
+  Acrobatics or Brawl. Fixed in party.py: Felix 11 → 14, Hanforth and
+  Beornhard up 2–3, Browndog up 1. Level 1 calibration after the fix:
+  Party A 3.6 rounds, loses 1%, Down 34%, Wounded 77% (no real change,
+  since Browndog Parries); Party D, now with the real Felix, 6.0 rounds,
+  loses 24%, Down 60%, Wounded 96%.
