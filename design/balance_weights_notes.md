@@ -9711,3 +9711,32 @@ number (re-run after the change: 12% against 54%, 0.92 Value).
 
 So the proposed ~1.6 for a first stack no longer holds once the party
 has its cards; it's ~0.9. The reprice itself is still pending.
+
+### Bleeding, full breakdown on the current sim (2026-10-09)
+
+Level 1, Party A (Hilde, Browndog, Carrick, Sable), 300 fights per mix,
+with cards, the same-turn Fleeting skip (Bleeding exempt) and enemy
+Hearts. Extra points of damage landing on live Health per fight, the
+test effect on one carrier:
+
+| Carrier | One stack, first hit | Every hit or Parry | 5 stacks, first hit | +1 damage on every hit |
+|---|---|---|---|---|
+| Hilde | 0.05 | 0.30 | 0.06 | 0.63 |
+| Browndog | 0.15 | 0.57 | 0.16 | 0.90 |
+| Carrick | 0.11 | 0.52 | 0.12 | 1.40 |
+| Sable | 0.16 | 0.61 | 0.17 | 1.74 |
+
+First stack against a +1 on a hit (bleed_vs_damage.py), and how it moves
+with longer fights and the two alternative tick timings in BLEED_MODE:
+
+| Setup | First stack lands | +1 on a hit lands | First stack worth |
+|---|---|---|---|
+| As built | 12% | 54% | 0.9 Value |
+| Enemy Health x1.25 | 20% | 64% | 1.2 Value |
+| Enemy Health x1.5 | 25% | 70% | 1.4 Value |
+| Ticks at the end of the round | 14% | 54% | 1.1 Value |
+| A damaging hit takes a stack off for +1 | 2% | 54% | 0.2 Value |
+
+Every-hit Bleeding with the alternative timings (Hilde / Sable): end of
+round 0.43 / 0.39, on a damaging hit 0.32 / 0.54, against 0.30 / 0.61 as
+built.
