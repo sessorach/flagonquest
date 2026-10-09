@@ -197,3 +197,12 @@ things off in order.
   rulebook, per the designer: a played card either replaces one of the
   flipped cards (its suit joins the pool too) or just adds its suit to
   the pool; the old "+1 to that flip's card" is gone. Commit `c73f600`.
+- **`#### [Fleeting]`** (glossary.md, Rules Tags) — the skip is now just
+  "gain it during your own turn from zero, skip that turn's removal", with
+  no exceptions listed in the tag. Commit `f5468f5`.
+- **`#### Bleeding`, `#### Harried`** (glossary.md, Common Effects) — each
+  gets a sentence saying it still comes off at the end of the turn you
+  gained it (Bleeding loses a stack, Harried clears). Commit `f5468f5`.
+- **The Basics** (rulebook.md) — "The most specific rule always wins"
+  gets a second sentence: rules cover the general case, and an ability,
+  item or effect that says it works differently does. Commit `f5468f5`.
