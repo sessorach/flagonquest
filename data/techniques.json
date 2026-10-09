@@ -8305,8 +8305,8 @@
     "effects": "Your ranged weapon attacks have Bad Luck, and you Repeat each one.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "(Acrobatics or Archery) 5, Legerdemain 4",
-    "relevant_skills": "Acrobatics, Archery, Legerdemain",
+    "prereqs": "(Acrobatics or Archery) 5, Acrobatics 4",
+    "relevant_skills": "Acrobatics, Archery",
     "use_cards": null,
     "healing": null,
     "features": null,
@@ -8317,7 +8317,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": "1.1",
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",
@@ -8327,6 +8327,15 @@
         ],
         "threshold": {
           "base": 5
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics"
+        ],
+        "threshold": {
+          "base": 4
         }
       }
     ],

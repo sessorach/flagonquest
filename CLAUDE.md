@@ -231,7 +231,11 @@ which should stay a clean decision record.
   project**: "Bodily Defense" → **Vital Defense** (found live in
   `items.csv`'s own schema and `index.html` until this got fixed, not
   just an archive-only artifact — worth a second look if it turns up
-  anywhere else), "Soak" → **Resist**. When reading `archive/` source
+  anywhere else), "Soak" → **Resist**, and the Skill "Legerdemain"
+  (sleight of hand) → **Stealth**, which absorbed it - not to be
+  confused with today's Legerdemain *Technique* (T034). Doubleshot
+  carried a "Legerdemain 4" prereq over from its archived Stance until
+  the designer swapped it for Acrobatics 4. When reading `archive/` source
   material or old drafts, translate these automatically rather than
   treating them as a different mechanic.
 
