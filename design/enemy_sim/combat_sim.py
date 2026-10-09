@@ -1595,6 +1595,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # without the can't-Parry cost, to price the two halves apart.
                 if ('Furious Rage' in passives or 'Bleeding Strikes' in passives) and (hit or parried):
                     _gain(target, 'bleeding', 1)
+                # 'Bleeding Strikes 2' (test-only): the same trigger, 2 stacks.
+                if 'Bleeding Strikes 2' in passives and (hit or parried):
+                    _gain(target, 'bleeding', 2)
                 # 'Bleeding Dump' is a test-only passive: the first hit each
                 # fight adds 5 Bleeding (Acidic Flask's stack count, as a
                 # rider so it doesn't replace an attack), to check how a big
@@ -1649,6 +1652,15 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         pc['p1_hits'] = pc.get('p1_hits', 0) + 1
                         if target['health'] >= dmg:
                             pc['extra_dmg'] = pc.get('extra_dmg', 0) + 1
+                    # 'Damage Once' / 'Damage Dump' (test-only): +1 / +5
+                    # damage on the first hit each fight, after Resist - the
+                    # straight-damage twins of Bleeding Once / Bleeding Dump,
+                    # counted on live Health the same way.
+                    for test_name, bonus in (('Damage Once', 1), ('Damage Dump', 5)):
+                        if test_name in passives and not pc.get('dmg_test_used'):
+                            pc['dmg_test_used'] = True
+                            pc['extra_dmg'] = pc.get('extra_dmg', 0) + min(bonus, max(0, target['health'] - dmg))
+                            dmg += bonus
                     # Test variant (tunables.BLEED_MODE 'on_damage'): a hit
                     # that deals damage to a Bleeding target also takes 1
                     # stack off it for 1 more Health loss. Stacks this same
@@ -2081,10 +2093,23 @@ def _bleed_out(e):
     Bleeding damage."""
     if not T.BLEED_OUT or e['health'] <= 0 or e.get('bleeding', 0) <= 0:
         return
-    limit = {'stacks': e['bleeding'], 'stacks2': min(e['bleeding'], 2)}.get(T.BLEED_OUT, T.BLEED_OUT)
+    b = e['bleeding']
+    spec = T.BLEED_OUT
+    if spec == 'stacks2':
+        limit = min(b, 2)
+    elif isinstance(spec, str):
+        # 'x1/2' is half its stacks rounded down, 'x1/2up' rounded up;
+        # 'stacks' is x1/1.
+        num, den = (1, 1) if spec == 'stacks' else map(int, spec[1:].replace('up', '').split('/'))
+        limit = -(-b * num // den) if spec.endswith('up') else b * num // den
+    else:
+        limit = spec
     if e['health'] <= limit:
+        # "Remove all stacks and it drops to 0 Health" (designer's wording).
         e['bleed_dealt'] = e.get('bleed_dealt', 0) + e['health']
         e['health'] = 0
+        e['bleeding'] = 0
+        e['bled_out'] = e.get('bled_out', 0) + 1
 
 
 def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_log=None):

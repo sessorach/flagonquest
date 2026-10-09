@@ -354,7 +354,8 @@ LIE_IN_WAIT_PLACES = 2
 BLEED_MODE = 'own_turn'
 # Test variant (2026-10-09): a Bleeding enemy at this much Health or less
 # bleeds out and is Downed. 0 is off; 'stacks' means at or below its own
-# Bleeding stacks; 'stacks2' the same but never above 2.
+# Bleeding stacks; 'stacks2' the same but never above 2; 'x1/2' half its
+# stacks rounded down ('x1/2up' rounded up), and so on for any fraction.
 BLEED_OUT = 0
 
 # ---- Wounded (2026-10-08) ----

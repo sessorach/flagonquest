@@ -9768,3 +9768,39 @@ mix; extra points a fight on Hilde / Sable.
   finishes an enemy that's already at 1-2 Health, once.
 - Uncapped "bleed out at its stacks" makes a 5-stack dose worth almost a
   +1 on every hit: that's free damage, the thing to avoid.
+
+### Bleeding executes: breakpoints against straight damage (2026-10-09)
+
+The designer's idea: when a creature's Health is at or below some
+share of its Bleeding stacks, the stacks and the Health cancel out (all
+stacks removed, Health to 0), and Bleeding should never be as useful as
+the same amount of straight damage. Each breakpoint is BLEED_OUT in
+tunables.py ('x1/2' = half the stacks rounded down, 'x1/2up' rounded
+up). Level 1, Party A, 300 fights per mix, Hilde / Sable as carrier;
+extra points landing a fight, with the share of what the same straight
+damage lands (+1 on the first hit 0.31 / 0.55, +1 on every hit
+0.63 / 1.74, +5 on the first hit 0.89 / 2.17).
+
+| Execute at Health at or below | 1 stack, first hit | 1 stack every hit or Parry | 2 stacks every hit or Parry | 5 stacks, first hit |
+|---|---|---|---|---|
+| Never (as written) | 0.05 / 0.16 (16% / 29%) | 0.30 / 0.61 (48% / 35%) | 0.31 / 0.62 (49% / 36%) | 0.06 / 0.17 (7% / 8%) |
+| A third of its stacks | same as never | 0.30 / 0.61 | | 0.07 / 0.18 (8% / 8%) |
+| **Half its stacks, rounded down** | same as never | 0.31 / 0.65 (49% / 37%) | 0.41 / 0.85 (65% / 49%) | 0.23 / 0.31 (26% / 14%) |
+| Half its stacks, rounded up | same as never | 0.34 / 0.70 (54% / 40%) | 0.49 / 0.99 (78% / 57%) | 0.83 / 0.57 (93% / 26%) |
+| Two thirds of its stacks | same as never | 0.31 / 0.65 | | 0.83 / 0.57 (93% / 26%) |
+| All its stacks | same as never | 0.39 / 0.83 (62% / 48%) | | 0.88 / 1.64 (99% / 76%) |
+| 2, flat | 0.16 / 0.22 (52% / 40%) | 0.64 / 1.08 (102% / 62%) | | 0.23 / 0.31 (26% / 14%) |
+
+- A share of the stacks only does anything once stacks pile up, so a
+  single stack never executes (half of 1 rounds to 0) and one stack per
+  hit barely moves: it decays about as fast as it's applied.
+- Rounded down, half the stacks stays at or under two thirds of
+  straight damage everywhere measured. Rounding up, or any share above
+  a half, puts a 5-stack dose at 93% of a straight +5 on Hilde: her big
+  hit leaves a typical enemy at about 3 Health, and a threshold of 3
+  finishes it there.
+- A source that applies 2 stacks per trigger is what half-the-stacks
+  pays off: 0.85 a fight on Sable, against 0.62 with no execute. Without
+  an execute the second stack is worth nothing (0.62 against 0.61).
+- Flat 2 is the only rule that reaches straight-damage parity (Hilde's
+  every-hit Bleeding, 102%).
