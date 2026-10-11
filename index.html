@@ -1084,6 +1084,181 @@ function withSkillTotals(text, glossary, skillTotals) {
 
 
 // ══════════════════════════════════════════════════════════════════
+// CARDS FOR CARD BUILDER — the Character Sheet's "Make cards" button.
+// Card Builder (https://sessorach.github.io/Card-Builder/, its own repo)
+// draws poker-size cards and Tabletop Simulator decks from a table of
+// rows. This builds that table from exactly what the Character Sheet
+// shows — one row per technique card (sheetCards: each distinct build
+// of a Feature-built technique is its own card, and a card's copies
+// become its count) and per item tile, already resolved for this
+// character: built level and Feature lines (X filled in via
+// applyFeatureCount), only the picked Choice Effects, per-copy picks,
+// "[... Skill Total]" with the number in front, combined item bonuses.
+// Card Builder's FlagonQuest layout reads these column names (the same
+// ones as our CSVs, plus built_features / picks / powers, which only
+// this export fills) — renaming one here means updating its layout too.
+// Text can use Card Builder's **bold** markup.
+//
+// The table travels in the link itself: Card Builder's page +
+// "#import=" + base64url(deflate-raw(JSON)), so nothing is uploaded and
+// no server sees it (browsers never send the "#" part). Format: { v: 1,
+// title, layout, columns, rows } — see js/handoff.js in Card Builder.
+// ══════════════════════════════════════════════════════════════════
+const CARD_BUILDER_URL = "https://sessorach.github.io/Card-Builder/";
+// A function, not a constant: ITEM_STAT_FIELDS is defined further down
+// this file, so it doesn't exist yet when this part first runs.
+const cardColumns = () => [
+  "name", "count", "deck",
+  // techniques
+  "level_min", "level_max", "tags", "condition", "action", "cost", "target",
+  "text", "choice_effects", "built_features", "picks", "special",
+  "relevant_skills", "prereqs", "flavor",
+  // items
+  "category", "slot", "level", "accuracy", "damage", "range", "weapon_defense",
+  "might_requirement", "held_slots",
+  ...ITEM_STAT_FIELDS.map(([, label]) => label.toLowerCase().replace(/\s+/g, "_")),
+  "material_types", "powers", "main_materials",
+];
+// Choice types with a fixed list (TechCard's choiceOptions/Masterwork);
+// any other Free Text value is a plain note.
+const LISTED_CHOICES = ["School", "Weapon", "Profession", "Background", "Masterwork"];
+
+// "[Might Skill Total]" → "**5** [Might Skill Total]", the plain-text
+// version of withSkillTotals.
+function skillTotalsText(text, statPoints, skillPoints) {
+  if (!text) return text || "";
+  return String(text).replace(/\[([^\[\]]*Skill Total)\]/gi, (match, inner) => {
+    const value = resolveSkillTotalToken(inner.replace(/\s*Skill Total\s*$/i, ""), statPoints, skillPoints);
+    return value == null ? match : `**${value}** [${inner}]`;
+  });
+}
+
+function characterCardTable({
+  charName, sheetCards, techFeaturesById, notes, configs, customTechniques,
+  items, inventory, customItems, statPoints, skillPoints,
+}) {
+  const who = charName.trim() || "Character";
+  const sk = text => skillTotalsText(text, statPoints, skillPoints);
+  const itemByName = name => items.find(i => i.name === name);
+  const columns = cardColumns();
+  const rows = [];
+  const add = fields => rows.push(columns.map(c => fields[c] ?? ""));
+
+  // ── Techniques: the same cards as the sheet's Techniques section ──
+  sheetCards.forEach(card => {
+    const { tech, cfg, uids } = card;
+    const picked = [...new Set(uids.map(uid => notes[uid]).filter(Boolean))];
+    const choiceLines = tech.choice_effects
+      ? picked.filter(p => tech.choice_effects[p]).map(p => `${p}: ${tech.choice_effects[p]}`)
+      : [];
+    const features = tech.features && cfg
+      ? Object.entries(cfg.picks).map(([fid, n]) => {
+          const f = (techFeaturesById[tech.id] || []).find(x => x.id === fid);
+          return f ? `**${f.feature_name}${n > 1 ? ` ×${n}` : ""}** — ${applyFeatureCount(f.effects, n)}` : null;
+        }).filter(Boolean)
+      : [];
+    // Per-copy picks, shown on the sheet only when there are no Choice
+    // Effects to say it in prose instead (see TechCard).
+    let picks = "";
+    if (tech.free_text && !tech.choice_effects && uids.length > 0) {
+      const listed = LISTED_CHOICES.includes(tech.free_text);
+      const label = tech.free_text === "Masterwork" ? "Masterwork power" : listed ? tech.free_text : "Notes";
+      const lines = uids.map((uid, i) => {
+        const power = tech.free_text === "Masterwork" ? itemByName(notes[uid]) : null;
+        const level = configs[uid]?.level;
+        let line = power ? `**${power.name}**` : (notes[uid] || (listed ? "Not chosen yet" : "No notes"));
+        if (tech.free_text === "Masterwork" && level != null) line += ` (Lv ${level})`;
+        if (power?.effects) line += `\n${sk(power.effects)}`;
+        return uids.length > 1 ? `Copy ${i + 1}: ${line}` : line;
+      });
+      picks = uids.length > 1 ? `**${label}:**\n${lines.join("\n")}` : `**${label}:** ${lines[0]}`;
+    }
+    add({
+      name: card.name || tech.name,
+      count: uids.length,
+      deck: `${who}: Techniques`,
+      level_min: cfg ? cfg.level : tech.level_min,
+      level_max: cfg ? cfg.level : tech.level_max,
+      tags: tech.tags,
+      condition: sk(tech.condition), action: sk(tech.action), cost: sk(tech.cost), target: sk(tech.target),
+      text: sk(tech.effects),
+      choice_effects: sk(choiceLines.join("\n")),
+      built_features: sk(features.join("\n")),
+      picks,
+      special: sk(tech.special),
+      relevant_skills: tech.relevant_skills, prereqs: tech.prereqs, flavor: tech.description,
+    });
+  });
+  customTechniques.forEach(c => {
+    if (!c.title.trim() && !c.text.trim()) return;
+    add({ name: c.title.trim() || "Untitled technique", count: 1, deck: `${who}: Techniques`, text: c.text });
+  });
+
+  // ── Items: the sheet's item tiles (Materials sit in their own box there) ──
+  const itemDeck = `${who}: Items`;
+  inventory.forEach(entry => {
+    const item = items.find(i => i.id === entry.itemId);
+    if (!item || item.category === "Material") return;
+    const base = entry.baseItemId ? items.find(i => i.id === entry.baseItemId) : null;
+    const levels = item.category === "Masterwork" ? (item.levels || []) : [];
+    const level = levels.length ? (entry.level ?? levels[0]) : "";
+    const fields = {
+      name: item.name, count: entry.qty, deck: itemDeck,
+      category: item.category, slot: item.slot, level, tags: item.tags,
+      text: item.effects, flavor: item.description, main_materials: item.main_materials, held_slots: item.held_slots,
+      cost: item.value_per_level && level !== "" ? `${level * item.value_per_level} Gold` : item.cost,
+    };
+    if (item.category === "Weapon") {
+      Object.assign(fields, {
+        accuracy: item.accuracy, damage: item.damage, range: item.range,
+        relevant_skills: item.relevant_skills, weapon_defense: item.weapon_defense,
+      });
+    }
+    if (typeof item.might_requirement === "number") fields.might_requirement = item.might_requirement;
+    ITEM_STAT_FIELDS.forEach(([key, label]) => {
+      const v = (typeof item[key] === "number" ? item[key] : 0) + (base && typeof base[key] === "number" ? base[key] : 0);
+      if (v !== 0) fields[label.toLowerCase().replace(/\s+/g, "_")] = v;
+    });
+    add(fields);
+  });
+  customItems.forEach(entry => {
+    if (!entry.name.trim() && !entry.text.trim()) return;
+    const powers = (entry.powers || [])
+      .map(p => ({ ...p, item: items.find(i => i.id === p.itemId) }))
+      .filter(p => p.item);
+    const fields = {
+      name: entry.name.trim() || "Untitled item", count: entry.qty, deck: itemDeck,
+      category: "Custom", slot: entry.slot || "", text: entry.text,
+      powers: powers.map(p => `**${p.item.name}**${p.level != null ? ` (Lv ${p.level})` : ""}${p.item.effects ? `\n${p.item.effects}` : ""}`).join("\n"),
+    };
+    ITEM_STAT_FIELDS.forEach(([key, label]) => {
+      let v = typeof (entry.stats || {})[key] === "number" ? entry.stats[key] : 0;
+      powers.forEach(p => { if (typeof p.item[key] === "number") v += p.item[key]; });
+      if (v !== 0) fields[label.toLowerCase().replace(/\s+/g, "_")] = v;
+    });
+    const w = entry.weapon;
+    if (w) {
+      Object.assign(fields, {
+        accuracy: customWeaponAccuracy(w), damage: customWeaponDamage(w, statPoints),
+        range: customWeaponRange(w), relevant_skills: w.skill, weapon_defense: customWeaponParry(w),
+      });
+    }
+    add(fields);
+  });
+
+  return { title: charName.trim() || "FlagonQuest character", layout: "flagonquest", columns, rows };
+}
+async function cardBuilderLink(table) {
+  const json = new TextEncoder().encode(JSON.stringify({ v: 1, ...table }));
+  const packed = new Uint8Array(await new Response(
+    new Blob([json]).stream().pipeThrough(new CompressionStream("deflate-raw"))
+  ).arrayBuffer());
+  let bin = "";
+  for (let i = 0; i < packed.length; i += 0x8000) bin += String.fromCharCode(...packed.subarray(i, i + 0x8000));
+  return `${CARD_BUILDER_URL}#import=${btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "")}`;
+}
+
+// ══════════════════════════════════════════════════════════════════
 // CHARACTER SLOTS — localStorage holds any number of characters, each
 // under its own `flagonquest-char-<id>` key, plus a small registry
 // (`flagonquest-characters`, an [{id, name}] list) so the switcher can
@@ -6967,6 +7142,25 @@ function App() {
     transition: "all 0.15s",
   };
 
+  // "Make cards" on the Character Sheet — see CARDS FOR CARD BUILDER.
+  // The tab is opened before the (async) compression so the click still
+  // counts as the user's own action and isn't stopped as a pop-up; it's
+  // named, so sending again reuses the same Card Builder tab.
+  async function sendToCardBuilder() {
+    const table = characterCardTable({
+      charName, sheetCards, techFeaturesById, notes, configs, customTechniques,
+      items, inventory, customItems, statPoints, skillPoints,
+    });
+    if (table.rows.length === 0) {
+      alert("Add some techniques or items first — there's nothing to make cards from yet.");
+      return;
+    }
+    const tab = window.open("", "flagonquest-cards");
+    const link = await cardBuilderLink(table);
+    if (tab) tab.location.href = link;
+    else window.location.assign(link); // pop-ups blocked: open it here instead
+  }
+
   const actionBtn = (danger = false) => ({
     padding: "6px 14px", fontSize: 16, fontWeight: 500, borderRadius: 6,
     background: "transparent",
@@ -7748,6 +7942,9 @@ function App() {
               </button>
               <button onClick={() => window.print()} style={actionBtn()}>
                 <i className="ti ti-printer" aria-hidden="true" /> Print / Save as PDF
+              </button>
+              <button onClick={sendToCardBuilder} style={actionBtn()} title="Open this character's techniques and items as printable cards and Tabletop Simulator decks in Card Builder">
+                <i className="ti ti-cards" aria-hidden="true" /> Make cards
               </button>
             </div>
           </div>
