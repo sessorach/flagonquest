@@ -7977,7 +7977,10 @@ function App() {
               </div>
             </div>
 
-            <div className="no-print" style={{ display:"flex", gap:8, flexShrink:0, flexWrap:"wrap" }}>
+            {/* Shrinkable so the buttons can wrap on a phone — with
+                flexShrink 0 the row kept its full one-line width and ran
+                off the right edge once Make cards made it three wide. */}
+            <div className="no-print" style={{ display:"flex", gap:8, minWidth:0, flexWrap:"wrap" }}>
               <button
                 onClick={() => { if (confirm("Uncheck all expended techniques for a new encounter?")) setExpended({}); }}
                 style={actionBtn()}
