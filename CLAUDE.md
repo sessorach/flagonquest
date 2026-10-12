@@ -27,6 +27,26 @@ which should stay a clean decision record.
   `qrcode-generator` from CDN (the "Show QR code" share overlay) — same
   pattern as React/ReactDOM/Babel, a plain `<script>` tag exposing a
   global, no bundler involved.
+- **"Make cards" on the Character Sheet** hands the character's
+  techniques and items to Card Builder (`sessorach/Card-Builder`, its own
+  repo and GitHub Pages site), which draws poker-size cards, image ZIPs
+  and Tabletop Simulator decks. The site only builds the table:
+  `characterCardTable()` (the "CARDS FOR CARD BUILDER" block, just before
+  CHARACTER SLOTS) turns exactly what the sheet shows — `sheetCards`,
+  custom techniques, the item tiles (Materials excluded, as on the sheet)
+  and custom items — into rows, already resolved for the character
+  (built level and Feature lines via `applyFeatureCount`, picked Choice
+  Effects only, per-copy picks, `[... Skill Total]` numbers, combined
+  item bonuses). `cardBuilderLink()` packs it into Card Builder's link as
+  `#import=` + base64url(deflate-raw(JSON `{ v: 1, title, layout,
+  columns, rows }`)) — nothing is uploaded; the `#` part never reaches a
+  server. The column names are a contract with Card Builder's
+  `layouts/flagonquest.js` (same names as our CSV headers in snake_case,
+  plus `built_features` / `picks` / `powers`): when TechCard or
+  InventoryTile change what the sheet shows, update `characterCardTable`
+  to match, and Card Builder's layout if a new column is needed. The tab
+  is opened before the async compression (so it isn't blocked as a
+  pop-up) under the name `flagonquest-cards`, so sending again reuses it.
 - `index.html`'s tab is deep-linkable via a `?tab=<build|techniques|
   items|sheet|notes>` query param, read once by a lazy `useState`
   initializer (`initialViewFromUrl`/`VALID_VIEWS`) — deliberately the
@@ -452,13 +472,22 @@ which should stay a clean decision record.
   per-copy `notes[uid]` a plain free-text note would, just with a
   `<select>` swapped in for the `<textarea>` — see `Free Text` in
   `convert.py`'s `TECHNIQUE_MAP` comment and `choiceOptions` in
-  `TechCard`. `Free Text` is `TRUE` for a genuinely open-ended pick
-  that doesn't fit a fixed list (Temper Soulblade's GM-approved
-  Masterwork power), or a specific value (`"School"`, `"Weapon"`)
-  naming which dropdown to render and which existing data to populate
-  it from — `CREATION_SCHOOLS` for School, Base Game `Category:
-  "Weapon"` items for Weapon, `PROFESSIONS` for Profession,
-  `eligibleBackgrounds(...)` for Background. No new state, no new
+  `TechCard`. `Free Text` is `TRUE` for an open-ended pick that
+  doesn't fit a fixed list, or a specific value (`"School"`,
+  `"Weapon"`) naming which dropdown to render and which existing data
+  to populate it from — `CREATION_SCHOOLS` for School, Base Game
+  `Category: "Weapon"` items for Weapon, `PROFESSIONS` for Profession,
+  `eligibleBackgrounds(...)` for Background, and Held-slot Masterwork
+  items for Masterwork (Temper Soulblade). Masterwork is the one whose
+  options differ per copy: each copy only lists powers whose `levels`
+  include that copy's own `configs[uid].level`, so the Level picked in
+  `FeaturesSection` filters the dropdown under it. A pick that drops
+  off its copy's list (Level changed, Supplement switched off, or an
+  old typed note from before this was a dropdown) stays selected
+  rather than vanishing, with a red note only for a known power at the
+  wrong Level. The Sheet shows the picked power's own Effects text
+  under its name, since that's what the copy actually does. No new
+  state, no new
   storage — a dropdown is just a pickier textarea. When a technique
   needs a new kind of structured pick, prefer this pattern (reuse
   `notes[uid]`, add one more `Free Text` value, source the options from
@@ -978,6 +1007,13 @@ Two recurring environment quirks worth knowing:
   git diffs/commits are the review record.
 
 ## Things considered and deliberately not done
+
+- **Drawing cards / TTS decks inside this site**: Card Builder already
+  does it (card drawing, image ZIPs, TTS decks, the Steam Cloud upload
+  steps), and porting it would add roughly two thousand lines here plus a
+  second copy to keep in step. The Steam Cloud upload is a TTS limit
+  either way. So the sheet only sends its cards over (see "Make cards"
+  under Architecture).
 
 - **Persistent/live character links** (so a shared link always shows the
   latest edit): would need external storage since GitHub Pages is static

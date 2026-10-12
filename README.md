@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-11 — Cards from the Character Sheet
+
+A new "Make cards" button on the Character Sheet opens your techniques and items in Card Builder as poker-size cards, ready to download as pictures or as a Tabletop Simulator deck.
+
 ### 2026-10-09 — The simulator gets a hand of cards
 
 The simulator now deals every character a hand from their own deck and plays it the way the table does, and the last three sample characters (Felix, Enith and Ashleigh) are in with their own abilities. With cards, Level 1 fights come out close to the table on length, losses, Downs and Wounded.
@@ -45,6 +49,7 @@ Started version 1.2, finished turning the archived Stances into Styles, and gave
 - From the old Stances: Deadeye's Shadow, Oppressive Presence, Aura of Death and Adrenaline High.
 - Healer got Field Medic and Lifeward, and Scout got Seize the Moment, Lie in Wait and Ambush Predator, which play with turn order.
 - Minor Oracle is back as a fortune-telling spell, and card costs now always say discard instead of pitch.
+- Each copy of Temper Soulblade now has a dropdown of the Held Masterwork powers at that copy's Level, and the Character Sheet shows what the picked power does.
 
 ### 2026-10-04 — Keywords, guardian Styles and a social overhaul
 
