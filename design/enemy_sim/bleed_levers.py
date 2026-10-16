@@ -48,6 +48,7 @@ RULES = {
     "tick2 + execute x1/2": {"BLEED_TICK": 2, "BLEED_OUT": 'x1/2'},
     "tick2 + execute x1/3": {"BLEED_TICK": 2, "BLEED_OUT": 'x1/3'},
     "tick3 + execute x1/2": {"BLEED_TICK": 3, "BLEED_OUT": 'x1/2'},
+    "tick half + execute x1/2": {"BLEED_TICK": 'half', "BLEED_OUT": 'x1/2'},
     "wound +1": {"BLEED_WOUND": 1},
     "wound +1 + execute x1/2": {"BLEED_WOUND": 1, "BLEED_OUT": 'x1/2'},
 }

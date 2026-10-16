@@ -9882,3 +9882,123 @@ Beornhard's Sanguine 2.65 rounds / Down 22%; Felix's Battering 2.49 /
 23%; Hilde's Furious Rage at 2 stacks 2.44 / 20%. All four together, with
 7-stack flasks and Furious Rage at 2: 3.12 rounds, Down 36%, 6.7 Bleeding
 a fight and 1.65 enemies bled out.
+
+### Bleeding levers: tick size, execute thresholds, and others (2026-10-16)
+
+Per the designer: move Bleeding's levers (the execute threshold, how many
+stacks a tick takes off, anything else) and see which gets it near its
+goal: effective, about one extra point a fight, never as good as the same
+straight damage. Two new test switches in tunables.py: `BLEED_TICK` (how
+many stacks come off per tick, each dealing 1: 1 as written, 2, 3, half
+rounded up, or all) and `BLEED_WOUND` (a damaging hit on a Bleeding
+creature deals +1, stacks stay). Both apply to every creature.
+`bleed_levers.py` runs the grid. Level 1, Party A, 500 fights per mix,
+Hilde / Sable as carrier; extra points landing on live Health a fight,
+with the share of the same straight damage in brackets (+1 on the first
+hit 0.30 / 0.54, +1 on every hit 0.62 / 1.72, +5 on the first hit
+0.86 / 2.12). A big tick only counts what lands on live Health, like the
+twins.
+
+**Why the tick barely matters as written.** A Level 1 enemy that's been
+hurt finishes another of its own turns 21% of the time, a second one
+under 1% (×1 Health, Party A). Bleeding gets one tick at most, so a 5-stack
+dose deals 1 and the rest falls off with the body. That gives a hand
+formula that matches the sim: a dose of S stacks with a tick of N is
+worth about **p × min(S, N, h) / h** of the same straight damage, where p
+is the chance a single stack ticks for that carrier (Hilde 16%, Sable
+30%) and h is what a +5 lands against a +1 (2.9 for Hilde, 3.9 for
+Sable).
+
+| 5-stack dose, share of a straight +5 | Tick 1 | Tick 2 | Tick 3 | All |
+|---|---|---|---|---|
+| Hilde, hand estimate | 6% | 11% | 16% | 16% |
+| Hilde, sim | 6% | 11% | 15% | 17% |
+| Sable, hand estimate | 8% | 15% | 23% | 30% |
+| Sable, sim | 8% | 16% | 22% | 29% |
+
+So no tick size can reach straight damage: at most it's p of it, the
+chance the target lives through its turn.
+
+**The grid**, as built (×1 enemy Health):
+
+| Rule | 1 stack, first hit | 1 stack every hit or Parry | 2 stacks every hit or Parry | 5 stacks, first hit |
+|---|---|---|---|---|
+| As written | 0.05 / 0.16 (16% / 30%) | 0.30 / 0.63 (48% / 37%) | 0.31 / 0.63 | 0.05 / 0.17 (6% / 8%) |
+| Tick 2 | same | 0.36 / 0.79 (58% / 46%) | 0.58 / 1.21 | 0.10 / 0.33 (11% / 16%) |
+| Tick 3 | same | 0.36 / 0.79 (58% / 46%) | 0.62 / 1.34 | 0.13 / 0.47 (15% / 22%) |
+| Tick half, rounded up | same | 0.30 / 0.64 (49% / 37%) | 0.38 / 0.81 | 0.13 / 0.47 (15% / 22%) |
+| Tick all | same | 0.35 / 0.79 (58% / 46%) | 0.65 / 1.43 | 0.14 / 0.61 (17% / 29%) |
+| Execute at half the stacks | same | 0.31 / 0.66 (49% / 38%) | 0.41 / 0.86 | 0.23 / 0.30 (26% / 14%) |
+| Execute at a third | same | 0.30 / 0.63 (48% / 37%) | 0.33 / 0.71 | 0.07 / 0.19 (8% / 9%) |
+| Tick 2 + execute at half | same | 0.37 / 0.82 (59% / 48%) | 0.67 / 1.43 | 0.23 / 0.40 (27% / 19%) |
+| Tick 3 + execute at half | same | 0.36 / 0.82 (59% / 48%) | 0.69 / 1.51 | 0.24 / 0.57 (28% / 27%) |
+| **Tick half + execute at half** | same | 0.31 / 0.67 (50% / 39%) | 0.47 / 1.02 | 0.24 / 0.56 (28% / 27%) |
+| Wound +1 | 0.05 / 0.18 | 0.61 / 1.14 (98% / 67%) | 0.70 / 1.24 | 0.06 / 0.18 (7% / 9%) |
+
+**At the table's toughness.** The designer's table has a hit enemy act
+again about half the time (TABLE_PLAY_NOTES.md, open question 4); the sim
+gets there with enemy Health ×1.75 (×1 21%, ×1.25 33%, ×1.5 43%, ×1.75
+53%, ×2 60%). Same grid at ×1.75 (twins: +1 on the first hit 0.49 /
+0.81, +1 on every hit 1.36 / 3.78, +5 on the first hit 2.31 / 3.65):
+
+| Rule | 1 stack, first hit | 1 stack every hit or Parry | 2 stacks every hit or Parry | 5 stacks, first hit |
+|---|---|---|---|---|
+| As written | 0.18 / 0.46 (36% / 57%) | 1.01 / 2.17 (74% / 57%) | 1.12 / 2.25 | 0.25 / 0.54 (11% / 15%) |
+| Tick 2 | same | 1.20 / 3.02 (91% / 79%) | 1.84 / 4.04 | 0.42 / 1.00 (18% / 27%) |
+| Tick 3 | same | 1.19 / 3.05 (91% / 80%) | 2.01 / 4.77 | 0.56 / 1.42 (24% / 39%) |
+| Tick half, rounded up | same | 1.03 / 2.31 (77% / 61%) | 1.44 / 3.36 | 0.55 / 1.39 (24% / 38%) |
+| Tick all | same | 1.18 / 3.09 (91% / 80%) | 2.18 / 5.34 | 0.79 / 2.02 (35% / 55%) |
+| Execute at half the stacks | same | 1.03 / 2.34 (77% / 61%) | 1.40 / 3.07 | 0.41 / 0.86 (18% / 23%) |
+| Execute at a third | same | 1.00 / 2.22 (75% / 59%) | 1.22 / 2.59 | 0.28 / 0.57 (12% / 16%) |
+| Tick 2 + execute at half | same | 1.21 / 3.15 (94% / 81%) | 2.04 / 4.65 | 0.52 / 1.15 (23% / 31%) |
+| Tick 3 + execute at half | same | 1.20 / 3.16 (94% / 81%) | 2.14 / 5.12 | 0.66 / 1.55 (29% / 42%) |
+| **Tick half + execute at half** | same | 1.04 / 2.46 (80% / 64%) | 1.62 / 3.88 | 0.65 / 1.52 (29% / 42%) |
+| Wound +1 | 0.39 / 0.79 (80% / 98%) | 2.08 / 4.40 (158% / 114%) | 2.52 / 5.00 | 0.54 / 1.02 (24% / 28%) |
+
+**The real builds** (`bleed_builds.py`, 200 fights per mix, ×1 Health;
+rounds, with how often the party loses or someone goes Down; base
+parties A 2.8, S 3.8 / loses 1%, T 2.8, X 2.5 / Down 20%):
+
+| Rule | A, Hilde with Furious Rage | S, Felix Battering and Jackal's flasks | T, Beornhard's Sanguine | X, all four |
+|---|---|---|---|---|
+| As written | 2.75 | 5.42 / loses 13% | 3.29 | 3.93 / Down 49% |
+| Tick 2 | 2.76 | 5.28 / 10% | 3.27 | 3.77 / 51% |
+| Tick 3 | 2.76 | 5.11 / 9% | 3.25 | 3.58 / 52% |
+| Tick half | 2.76 | 5.13 / 10% | 3.18 | 3.50 / 49% |
+| Tick all | 2.77 | 4.70 / 6% | 3.12 | 3.20 / 47% |
+| Execute at half | 2.76 | 5.14 / 9% | 3.03 | 3.34 / 39% |
+| Tick 2 + execute at half | 2.77 | 5.03 / 9% | 3.02 | 3.25 / 40% |
+| Tick 3 + execute at half | 2.77 | 4.89 / 8% | 3.02 | 3.15 / 40% |
+| Tick half + execute at half | 2.77 | 4.88 / 8% | 2.98 | 3.15 / 39% |
+
+Bigger ticks hit PCs too (Warband's Footpads Poison for 2 a hit): base
+parties' someone Down stayed within 18-21% under every rule, and PCs bled
+out 0.05 times a fight or less.
+
+- **Two kinds of source want different things.** A trickle (one stack a
+  hit, Furious Rage) already lands about one extra point a fight at the
+  table's toughness as written (1.0 Hilde, 2.2 Sable, 74% / 57% of a +1
+  on every hit). Bigger ticks push it toward straight damage (tick 2:
+  91% on Hilde). A dose (Acidic Flask, Battering, Sanguine) is what's
+  weak: 11-15% of the same straight damage as written.
+- **Tick half, rounded up, separates them.** One or two stacks still
+  tick 1, so a trickle barely moves (77% / 61%); a 5-stack dose ticks 3,
+  so it lands two to three times as much (2.2-2.8x). With the half-stacks execute on
+  top it's the best rule on the real builds (T 2.98 rounds against 2.81
+  base; X 3.15) while trickles stay at 80% / 64%.
+- **On a dose, no tick rule can beat straight damage** (the hand formula:
+  at most p of it). Trickles get closer because Furious Rage-style
+  triggers also fire on a Parry, where straight damage gets nothing. Only
+  the execute and the wound can pass straight damage, and the wound does: +1 on
+  a hit against a Bleeding creature is just +1 damage once anything has
+  applied a stack (158% of a +1 on every hit on Hilde at ×1.75). Out.
+- **No rule makes the trade builds even.** Sanguine turns damage into
+  stacks one for one, and a stack is worth at most p of a point, so the
+  trade loses under every rule (T: 2.98 at best, against 2.81). The fix
+  there is the Feature (more stacks per point, or stacks on top of
+  some damage), not the Bleeding rule. Same for the Acidic Flask against
+  Bottled Fire, a Level 2 item against a Level 1 one.
+- **Enemy toughness matters more than any Bleeding rule.** Going from
+  ×1 to ×1.75 triples a trickle's payout as written (0.30 → 1.01 on
+  Hilde). Open question 4 should be settled before Bleeding's prices
+  are.

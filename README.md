@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-16 — Bleeding's levers
+
+Tested different ways Bleeding could tick and execute. The best so far takes off half the stacks (rounded up) each turn and drops a creature whose Health falls to half its stacks, which lets a big dose of Bleeding pay off without making one-stack-a-hit sources as good as straight damage.
+
 ### 2026-10-11 — Cards from the Character Sheet
 
 A new "Make cards" button on the Character Sheet opens your techniques and items in Card Builder as poker-size cards, ready to download as pictures or as a Tabletop Simulator deck.
