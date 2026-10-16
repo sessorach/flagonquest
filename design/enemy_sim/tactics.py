@@ -316,6 +316,20 @@ def target_table(unit, targets, allies):
     return target_threat(unit, targets, allies)
 
 
+def cashout_target(unit, targets):
+    """A PC holding an unspent cash-out (Reign of Blood, Open the Wound)
+    goes for the enemy with the most Bleeding, once one has
+    tunables.CASHOUT_MIN or more (tunables.CASHOUT_SEEK; 2026-10-16).
+    None otherwise."""
+    if not T.CASHOUT_SEEK:
+        return None
+    m = unit.get('maneuver') or {}
+    ready = (m.get('cashout') and m.get('uses', 0) > 0) or any(
+        t.get('cashout') and t['uses'] > 0 for t in unit.get('tech_attacks', ()))
+    bled = [t for t in targets if t.get('bleeding', 0) >= T.CASHOUT_MIN]
+    return max(bled, key=lambda t: (t['bleeding'], -t['health'])) if ready and bled else None
+
+
 TARGETING = {
     'Assassin': target_lowest_health,
     'Straggler Hunter': target_straggler,
@@ -340,6 +354,9 @@ def select_target(unit, targets, movement_on, allies=None):
     if fn:
         return fn(unit, targets)
     if allies is not None:
+        cash = cashout_target(unit, targets)
+        if cash is not None:
+            return cash
         if PARTY_TARGETING == 'threat':
             return target_threat(unit, targets, allies)
         if PARTY_TARGETING == 'table':

@@ -366,6 +366,11 @@ BLEED_TICK = 1
 # Test variant (2026-10-16): a damaging hit on a Bleeding creature deals
 # this much more, and the stacks stay. 0 is off. Every creature alike.
 BLEED_WOUND = 0
+# A cash-out (Reign of Blood, Open the Wound) is held until its target has
+# at least this many Bleeding stacks (2026-10-16).
+CASHOUT_MIN = 2
+# ...and the PC holding it goes for the enemy with the most stacks.
+CASHOUT_SEEK = True
 # Acidic Flask's numbers (I028: 5 + [Clubs] Bleeding, no damage), as dials
 # for testing stronger versions.
 ACID_FLASK_STACKS = 5

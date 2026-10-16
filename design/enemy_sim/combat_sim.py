@@ -1186,6 +1186,11 @@ def _tech_attack_choice(pc, target):
         # A Sanguine spell goes on a target that isn't bleeding yet.
         if t.get('sanguine') and target.get('bleeding', 0) > 0:
             continue
+        # A cash-out spell waits for stacks to cash in, unless it's the
+        # only attack left.
+        if (t.get('cashout') and target.get('bleeding', 0) < T.CASHOUT_MIN
+                and pc.get('weapon_uses_left') != 0):
+            continue
         # A drain that heals (Thief Empties the Vessel) is saved until it
         # would heal, or the fight's into its third round.
         if (t.get('heal_on_hit') and pc['max_health'] - pc['health'] < t['heal_on_hit']
@@ -1390,6 +1395,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # Battle Maneuver (T072, Encounter) is Felix's opening move
                 # (designer, 2026-10-09): his first attack of the fight.
                 maneuver_now = bool(pc.get('maneuver')) and pc['maneuver']['uses'] > 0
+                # A cash-out Maneuver waits for stacks, or until round 3.
+                if (maneuver_now and pc['maneuver'].get('cashout')
+                        and target.get('bleeding', 0) < T.CASHOUT_MIN and rnd < 3):
+                    maneuver_now = False
                 if maneuver_now:
                     pc['maneuver']['uses'] -= 1
                 substitute = None if maneuver_now else tactics.bottomless_bottles_choice(pc, target)
@@ -1701,6 +1710,21 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     _bleed_out(target)
                     if dmg > 0:
                         target.setdefault('hit_steps', []).append((_STEP[0], target['health'] <= 0))
+                    # Reign of Blood (F073, War Magic) and its Battle Maneuver
+                    # twin: "remove up to [twice X] + [Clubs] stacks of
+                    # Bleeding from the target, and they lose that much
+                    # Health." `cashout` is the twice-X part.
+                    cash = (substitute or {}).get('cashout', 0) or (
+                        pc['maneuver'].get('cashout', 0) if maneuver_now else 0)
+                    if cash and target['health'] > 0 and target.get('bleeding', 0) > 0:
+                        n = min(target['bleeding'], cash + _suit_count(pool, 'Clubs'))
+                        landed = min(n, target['health'])
+                        target['bleeding'] -= n
+                        target['health'] -= n
+                        target['bleed_dealt'] = target.get('bleed_dealt', 0) + landed
+                        target['cashed'] = target.get('cashed', 0) + landed
+                        taunt_note = f"cashed in {n} Bleeding"
+                        _bleed_out(target)
                     # Half Guard (F011): "If the attack hits, you gain X +
                     # [Spades] stacks of Protected."
                     if maneuver_now and pc['maneuver']['guard']:
@@ -2569,6 +2593,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 return dict(winner=winner, rounds=rnd, party_hp_pct=party_hp_pct,
                             pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt,
                             bleed_dealt=sum(e.get('bleed_dealt', 0) for e in enemies),
+                            cashed=sum(e.get('cashed', 0) for e in enemies),
                             plus_one_dealt=sum(p.get('extra_dmg', 0) for p in pcs),
                             executes=sum(e.get('bled_out', 0) for e in enemies),
                             pc_executes=sum(p.get('bled_out', 0) for p in pcs),

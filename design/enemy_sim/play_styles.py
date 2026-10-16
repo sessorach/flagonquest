@@ -102,6 +102,9 @@ def rating(pc, t, allies):
 
 
 def _best(pc, ts, allies):
+    cash = tactics.cashout_target(pc, ts) if ts else None
+    if cash is not None:
+        return cash
     return max(ts, key=lambda t: (rating(pc, t, allies), -t['health'])) if ts else None
 
 

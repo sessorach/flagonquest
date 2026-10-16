@@ -155,6 +155,16 @@ TECH_ATTACKS = {
     "Sanguine War Magic": lambda st, sk, atk, dmg: dict(
         skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]) + 3 + 1,
         dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery", sanguine=True),
+    # War Magic at Level 2 with Lance and Reign of Blood x2 (F073: "remove
+    # up to [twice X] + [Clubs] stacks of Bleeding from the target, and
+    # they lose that much Health"), 2026-10-16 cash-out test.
+    "Reign War Magic": lambda st, sk, atk, dmg: dict(
+        skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]),
+        dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery", cashout=4),
+    # The straight-damage yardstick for it: Lance and Destructive x2.
+    "Destructive War Magic": lambda st, sk, atk, dmg: dict(
+        skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]) + 2,
+        dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery"),
     "Reckoning": lambda st, sk, atk, dmg: dict(
         skill_total=skill_total(st, sk, "Theurgy"), damage=0,
         dmg_type=None, opp_def="Mental", effect=("crippled", 5, "Clubs"), skill="Theurgy"),
@@ -510,7 +520,10 @@ def _pc_dict(row, index, good_luck):
                 feats[f.strip()] = 1
         maneuver = dict(uses=encounter_techs.count("Battle Maneuver"),
                         lunges=feats.get("Lunging", 0), guard=feats.get("Half Guard", 0),
-                        battering=feats.get("Battering", 0))
+                        battering=feats.get("Battering", 0),
+                        # Open the Wound X (draft, 2026-10-16): Reign of
+                        # Blood's text as a Battle Maneuver Feature.
+                        cashout=2 * feats.get("Open the Wound", 0))
 
     # Every copy gets its own suffix, Roster rows included (a Roster
     # build used to keep its bare row Name - "Baseline Tier 1 Party
