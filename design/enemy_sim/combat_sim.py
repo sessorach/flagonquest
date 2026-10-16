@@ -1678,6 +1678,12 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # that deals damage to a Bleeding target also takes 1
                     # stack off it for 1 more Health loss. Stacks this same
                     # attack applied don't count.
+                    # Test variant (tunables.BLEED_WOUND): a damaging hit on
+                    # a target already Bleeding deals more; stacks stay.
+                    if T.BLEED_WOUND and dmg > 0 and pre_bleed > 0:
+                        target['bleed_dealt'] = target.get('bleed_dealt', 0) + min(
+                            T.BLEED_WOUND, max(0, target['health'] - dmg))
+                        dmg += T.BLEED_WOUND
                     if (T.BLEED_MODE == 'on_damage' and dmg > 0 and pre_bleed > 0
                             and target['health'] > dmg):
                         target['bleeding'] -= 1
@@ -1858,7 +1864,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         _decay(pc, 'crippled')
         _decay(pc, 'vulnerable')
         if _decay(pc, 'bleeding'):
-            pc['health'] -= 1
+            pc['health'] -= 1 + _bleed_extra(pc)
         for key in ('slowed', 'frightened', 'taunted'):
             if _decay(pc, key) and pc[key] == 0:
                 pc[key + '_by'] = None
@@ -2095,13 +2101,30 @@ STRIKE_RIDERS = {
 }
 
 
+def _bleed_extra(unit):
+    """Test variant (tunables.BLEED_TICK): after a tick's first stack has
+    come off, takes off the extra stacks a bigger tick removes and
+    returns how many (each deals 1 more)."""
+    tick = T.BLEED_TICK
+    left = unit.get('bleeding', 0)
+    if tick == 1 or left <= 0:
+        return 0
+    before = left + 1
+    n = before if tick == 'all' else -(-before // 2) if tick == 'half' else tick
+    extra = min(left, n - 1)
+    unit['bleeding'] -= extra
+    return extra
+
+
 def _bleed_tick(e):
-    """One Bleeding stack comes off an enemy and deals 1 (the party's
-    Bleeding; the test timings in tunables.BLEED_MODE call this)."""
+    """One Bleeding tick on an enemy (the party's Bleeding; the test
+    timings in tunables.BLEED_MODE call this)."""
     if e.get('bleeding', 0) > 0 and e['health'] > 0:
         e['bleeding'] -= 1
-        e['health'] -= 1
-        e['bleed_dealt'] = e.get('bleed_dealt', 0) + 1
+        loss = 1 + _bleed_extra(e)
+        # Only what lands on live Health counts, like the damage twins.
+        e['bleed_dealt'] = e.get('bleed_dealt', 0) + min(loss, e['health'])
+        e['health'] -= loss
         _bleed_out(e)
 
 
@@ -2269,6 +2292,8 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
                     absorbed = min(dmg, target['protected'])
                     target['protected'] -= absorbed
                     dmg -= absorbed
+                if T.BLEED_WOUND and dmg > 0 and target.get('bleeding', 0) > 0:
+                    dmg += T.BLEED_WOUND
                 target['health'] -= dmg
                 _bleed_out(target)
                 for ability in abilities:
@@ -2313,8 +2338,9 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         _bleed_tick(e)
     if e.get('bleeding', 0) > 0 and e['health'] > 0 and T.BLEED_MODE in ('own_turn', 'on_damage'):
         if _decay(e, 'bleeding') and T.BLEED_MODE == 'own_turn':
-            e['health'] -= 1
-            e['bleed_dealt'] = e.get('bleed_dealt', 0) + 1
+            loss = 1 + _bleed_extra(e)
+            e['bleed_dealt'] = e.get('bleed_dealt', 0) + min(loss, e['health'])
+            e['health'] -= loss
     return interrupt_dmg
 
 

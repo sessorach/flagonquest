@@ -359,6 +359,13 @@ BLEED_MODE = 'own_turn'
 BLEED_OUT = 0
 # The execute applies to every creature alike, PCs included: no Bleeding
 # rule is PC-specific (designer, 2026-10-09).
+# Test variant (2026-10-16): how many stacks come off at each tick, each
+# dealing 1. 1 is the rule as written; an int N is "up to N"; 'half' is
+# half the stacks rounded up; 'all' is every stack at once.
+BLEED_TICK = 1
+# Test variant (2026-10-16): a damaging hit on a Bleeding creature deals
+# this much more, and the stacks stay. 0 is off. Every creature alike.
+BLEED_WOUND = 0
 # Acidic Flask's numbers (I028: 5 + [Clubs] Bleeding, no damage), as dials
 # for testing stronger versions.
 ACID_FLASK_STACKS = 5
