@@ -10002,3 +10002,89 @@ out 0.05 times a fight or less.
   ×1 to ×1.75 triples a trickle's payout as written (0.30 → 1.01 on
   Hilde). Open question 4 should be settled before Bleeding's prices
   are.
+
+### Half-the-stacks ticks with cash-outs (2026-10-16)
+
+Per the designer: the middle road. Bleeding ticks off half its stacks,
+rounded up (`BLEED_TICK = 'half'`, no execute), and a few techniques cash
+in the stacks the way War Magic's Reign of Blood does (F073: "If the
+spell attack hits, remove up to [twice X] + [Clubs] stacks of Bleeding
+from the target, and they lose that much Health"). Modeled:
+
+- **Beornhard (Cash)**: his Level 2 War Magic copy has Lance and Reign of
+  Blood x2 (up to 4 + [Clubs] stacks) on top of its 2 + [Mind] Fire.
+  Yardstick: the same copy with Destructive x2 (+2 damage), Beornhard
+  (Destr). Same XP.
+- **Felix (Cash)**: a draft Battle Maneuver Feature, **Open the Wound**
+  (Basic, 1 point), Reign of Blood's text for a weapon attack: "If the
+  attack hits, remove up to [twice X] + [Clubs] stacks of Bleeding from
+  the target, and it loses that much Health." Open the Wound x3 (up to
+  6 + [Clubs]) in place of his real Half Guard x3.
+- A cash-out is held until its target has 2 or more stacks (Felix's
+  Maneuver until round 3 at the latest), and the PC holding one goes for
+  the enemy with the most Bleeding (`CASHOUT_MIN`, `CASHOUT_SEEK`).
+
+`bleed_cashout.py`, Level 1, the Frontline/Shield Wall/Warband/Horde
+mixes. Hilde (Furious Rage) and Jackal (Acidic Flasks) apply the
+Bleeding in every version below; the yardstick party has Felix's Half
+Guard and Beornhard's Destructive. Rounds / loses / someone Down /
+points cashed in a fight, 400 fights per mix:
+
+| ×1 Health | As written | Tick half |
+|---|---|---|
+| Yardstick | 3.40 / 2.5% / 34% | 3.17 / 1.6% / 34% |
+| Reign of Blood on Beornhard | 3.39 / 2.4% / 35% / 0.80 | 3.20 / 1.8% / 36% / 0.66 |
+| Open the Wound on Felix | 3.22 / 2.9% / 34% / 0.90 | 3.07 / 2.2% / 34% / 0.71 |
+| Battering x3 on Felix | 3.46 / 3.9% / 38% | 3.23 / 2.7% / 39% |
+
+| ×1.75 Health | As written | Tick half |
+|---|---|---|
+| Yardstick | 7.26 / 39% / 79% | 7.01 / 35% / 82% |
+| Reign of Blood on Beornhard | 7.46 / 42% / 81% / 1.38 | 7.20 / 38% / 83% / 1.23 |
+| Open the Wound on Felix | 7.08 / 41% / 78% / 1.43 | 6.80 / 37% / 79% / 1.25 |
+| Battering x3 on Felix | 7.28 / 45% / 82% | 7.02 / 39% / 83% |
+
+(×1.75 is the table's toughness for "a hit enemy acts again"; the
+encounters weren't built for it, so every party loses a lot there. Only
+the comparisons between rows mean anything.)
+
+The whole party, 300 fights per mix (base = the real builds; bleed = all
+four Bleeding builds; cash = Hilde and Jackal applying, both cash-outs):
+
+| ×1 Health | Base | Bleed | Cash | Yardstick |
+|---|---|---|---|---|
+| As written | 2.47 / 0.1% / 19% | 3.94 / 6.8% / 50% | 3.29 / 3.2% / 37% | 3.43 / 2.6% / 35% |
+| Tick half | 2.48 / 0.1% / 20% | 3.50 / 3.8% / 49% | 3.16 / 2.7% / 37% | 3.17 / 1.5% / 36% |
+| Tick half + execute at half | 2.48 / 0.1% / 21% | 3.18 / 2.1% / 40% | 3.06 / 2.3% / 36% | 3.05 / 1.1% / 33% |
+
+**Per use** (×1, 300 fights per mix):
+
+| | Uses a fight | Hits | Cashes in on | Stacks when it does |
+|---|---|---|---|---|
+| Reign of Blood, as written | 0.99 | 99% | 24% of uses | 3.9 |
+| Reign of Blood, tick half | 0.99 | 99% | 20% | 3.7 |
+| Open the Wound, as written | 0.69 | 85% | 35% | 4.9 |
+| Open the Wound, tick half | 0.64 | 85% | 30% | 4.6 |
+
+Hand check for Reign of Blood under tick half: 0.99 × 0.20 × 3.7 = 0.73
+stacks a fight, against 0.66 measured as landing on live Health.
+
+- **Reign of Blood x2 is just under Destructive x2**, the same points on
+  straight damage: 3.20 rounds against 3.17 at ×1, 7.20 against 7.01 at
+  ×1.75. That's the line the designer wants (never as good as straight
+  damage), held by a cash-out that only fires one cast in five. Most
+  casts either kill with the spell's own damage first or find nothing
+  with 2 stacks.
+- **When a cash-out fires it's big**: about 4 Health in one go, which is
+  the "feels effective" part a single tick never gives.
+- **Open the Wound x3 speeds fights up** against Felix's real Half Guard
+  x3 (3.07 against 3.17 rounds) for about the same losses, and beats
+  Battering x3 for the same points (3.23). An applier and a cash-out on
+  the same team beat two appliers.
+- **Tick half and cash-outs pull against each other a little**: stacks
+  drain faster, so a cash-out finds a bit less (0.66 against 0.80 a
+  fight on Reign of Blood). The party still comes out faster overall
+  (3.16 against 3.29 rounds).
+- Felix leaves Open the Wound unused in about a third of fights; the sim
+  holds it for 2 stacks or round 3, and many fights are over by then. A
+  player would probably fire it sooner.

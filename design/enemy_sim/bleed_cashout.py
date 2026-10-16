@@ -16,6 +16,8 @@ Beornhard, four ways:
 - yard:  the same appliers, with the cash-outs' points spent on straight
          damage or the real build instead (Felix's Half Guard x3,
          Beornhard's Destructive x2)
+- cashB / cashF: the yardstick with only Beornhard's / only Felix's
+         cash-out swapped in; battF the yardstick with Felix's Battering
 
     python3 bleed_cashout.py               # every rule, x1 and x1.75 Health
     python3 bleed_cashout.py -n 100 -m 1"""
@@ -33,6 +35,10 @@ PARTIES = {
     "bleed": ["Hilde (Bleed)", "Felix (Bleed)", "Jackal (Bleed)", "Beornhard (Bleed)"],
     "cash": ["Hilde (Bleed)", "Felix (Cash)", "Jackal (Bleed)", "Beornhard (Cash)"],
     "yard": ["Hilde (Bleed)", "Felix", "Jackal (Bleed)", "Beornhard (Destr)"],
+    # One cash-out at a time, against the yardstick party.
+    "cashB": ["Hilde (Bleed)", "Felix", "Jackal (Bleed)", "Beornhard (Cash)"],
+    "cashF": ["Hilde (Bleed)", "Felix (Cash)", "Jackal (Bleed)", "Beornhard (Destr)"],
+    "battF": ["Hilde (Bleed)", "Felix (Bleed)", "Jackal (Bleed)", "Beornhard (Destr)"],
 }
 RULES = {
     "as written": {},
@@ -67,14 +73,17 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("-n", type=int, default=300, help="fights per mix")
     ap.add_argument("-m", type=float, action="append", help="enemy Health multiplier(s); default 1 and 1.75")
+    ap.add_argument("-r", action="append", help="rule name(s); default all")
+    ap.add_argument("-p", action="append", help="party name(s); default all")
     a = ap.parse_args()
     mults = a.m or [1.0, 1.75]
-    jobs = [(r, p, a.n, m) for m in mults for r in RULES for p in PARTIES]
+    rules, parties = a.r or list(RULES), a.p or list(PARTIES)
+    jobs = [(r, p, a.n, m) for m in mults for r in rules for p in parties]
     with Pool() as pool:
         res = dict(pool.map(one, jobs))
     for m in mults:
         print(f"== enemy Health x{m}")
-        for r in RULES:
+        for r in rules:
             print(f"-- {r}")
-            for p in PARTIES:
+            for p in parties:
                 print(f"   {p:5}: {res[(r, p, m)]}")

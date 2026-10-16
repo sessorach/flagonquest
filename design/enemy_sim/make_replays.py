@@ -31,7 +31,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LATEST = os.path.join(HERE, "replays", "latest")
 ARCHIVE = os.path.join(HERE, "replays", "archive")
 
-# (file stem, party names, encounter Level, sample_enemies.ENCOUNTERS key)
+# (file stem, party names, encounter Level, sample_enemies.ENCOUNTERS key),
+# plus optionally a run_fight result key that must be above 0 in the
+# picked fight, to show something that doesn't happen every fight.
 MATCHUPS = [
     ("partyS_L1_vs_L1_frontline", ["Enith", "Felix", "Jackal", "Hanforth"], 1, "Frontline"),
     ("partyU_L1_vs_L1_shield_wall", ["Browndog", "Ashleigh", "Sable", "Beornhard"], 1, "Shield Wall"),
@@ -39,6 +41,10 @@ MATCHUPS = [
     # The Bleeding builds together (sample_pcs.csv's "(Bleed)" rows).
     ("bleed_party_L1_vs_L1_frontline", ["Hilde (Bleed)", "Felix (Bleed)", "Jackal (Bleed)", "Beornhard (Bleed)"], 1,
      "Frontline"),
+    # Bleeding appliers with the two cash-outs (2026-10-16): Felix's Open
+    # the Wound and Beornhard's Reign of Blood.
+    ("cash_party_L1_vs_L1_frontline", ["Hilde (Bleed)", "Felix (Cash)", "Jackal (Bleed)", "Beornhard (Cash)"], 1,
+     "Frontline", "cashed"),
 ]
 
 
@@ -46,12 +52,12 @@ def _use_party(names):
     cs.make_party = lambda tier, good_luck=0: party.make_party_from(names, good_luck)
 
 
-def _pick_seed(level, encounter, avg_rounds, win_pct, tries=300):
+def _pick_seed(level, encounter, avg_rounds, win_pct, tries=300, need=None):
     want = "party" if win_pct >= 50 else "enemies"
     best = None
     for seed in range(1, tries + 1):
         r = cs.run_fight(1, level, seed=seed, movement=True, enemies=se.build_encounter(encounter))
-        if r["winner"] != want:
+        if r["winner"] != want or (need and not r.get(need, 0) > 0):
             continue
         gap = abs(r["rounds"] - avg_rounds)
         if best is None or gap < best[0]:
@@ -82,12 +88,13 @@ def main():
     notes = [f"# Latest replays ({datetime.date.today()})", "", args.summary, ""]
     if args.s:
         notes += ["Settings: " + ", ".join(args.s), ""]
-    for stem, names, level, enc_key in MATCHUPS:
+    for stem, names, level, enc_key, *need in MATCHUPS:
+        need = need[0] if need else None
         _use_party(names)
         encounter = se.ENCOUNTERS[level][enc_key]
         win_pct, avg_rounds, avg_hp, _, _ = cs.simulate(1, level, trials=args.trials, movement=True,
                                                         enemies=se.build_encounter(encounter))
-        seed = _pick_seed(level, encounter, avg_rounds, win_pct)
+        seed = _pick_seed(level, encounter, avg_rounds, win_pct, need=need)
         trace = []
         result = cs.run_fight(1, level, seed=seed, movement=True, trace=trace, enemies=se.build_encounter(encounter))
         result["vs_average"] = {"trials": args.trials, "win_pct": win_pct, "avg_rounds": avg_rounds,
@@ -100,7 +107,10 @@ def main():
                   f"- Enemies: Level {level} {enc_key} ({', '.join(encounter)})",
                   f"- This fight (seed {seed}): {result['winner']} won in {result['rounds']} rounds{this_hp}",
                   f"- Matchup average over {args.trials} fights: {win_pct:.1f}% wins, {avg_rounds:.1f} rounds, "
-                  f"{avg_hp:.0f}% HP left on a win", ""]
+                  f"{avg_hp:.0f}% HP left on a win"]
+        if need:
+            notes += [f"- Picked from fights with {need} above 0"]
+        notes += [""]
     with open(os.path.join(LATEST, "notes.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(notes))
     print("\n".join(notes))

@@ -1043,3 +1043,19 @@ version: a front-liner takes ~6 attacks per encounter, 40-60% of them
 from bleeding creatures, × 2.2 = 5.3-7.9, so about Level 2. Doesn't
 stack with Frightened from other sources on the same attacker.
 
+## Bleeding cash-outs beyond Reign of Blood (2026-10-16)
+
+Reign of Blood (F073, War Magic) and Circling Vulture (T152, Demon School)
+are the only ways to cash in a target's Bleeding. With Bleeding ticking
+off half its stacks (a test rule so far), the designer asked for more in
+line with Reign of Blood. Drafted and simulated, not yet in the CSVs:
+
+- **Open the Wound** — Battle Maneuver Feature, Basic, 1 point: "If the
+  attack hits, remove up to [twice X] + [Clubs] stacks of Bleeding from
+  the target, and it loses that much Health." Reign of Blood's text for a
+  weapon attack. Sim results in balance_weights_notes.md ("Half-the-stacks
+  ticks with cash-outs").
+
+Not drafted yet: a cash-out for the Furious Rage/Barbarian side (an
+Encounter weapon attack that cashes in all stacks up to a Skill Total,
+like Circling Vulture), and an alchemical one for Jackal's line.

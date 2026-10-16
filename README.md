@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-10-16 — Bleeding's levers
 
-Tested different ways Bleeding could tick and execute. The best so far takes off half the stacks (rounded up) each turn and drops a creature whose Health falls to half its stacks, which lets a big dose of Bleeding pay off without making one-stack-a-hit sources as good as straight damage.
+Tested different ways Bleeding could tick and execute, then a middle road: Bleeding loses half its stacks (rounded up) each turn, and a few techniques cash in the rest the way War Magic's Reign of Blood does. Reign of Blood comes out just under spending the same points on straight damage, and a draft Battle Maneuver version (Open the Wound) speeds fights up more than one that puts Bleeding on.
 
 ### 2026-10-11 — Cards from the Character Sheet
 
