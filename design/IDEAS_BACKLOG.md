@@ -17,6 +17,15 @@ for two ideas that got exactly that treatment, on material grounds
 only). New entries append here going forward whenever something gets
 cut, not just backfilled at a point in time.
 
+- **Open the Wound** (Battle Maneuver Feature, 2026-10-16) — declined;
+  Reign of Blood's cash-in text for any weapon attack ("remove up to
+  [twice X] + [Clubs] stacks of Bleeding from the target, and it loses
+  that much Health"). It tested fine (faster fights than Half Guard or
+  Battering for the same points; balance_weights_notes.md, "Half-the-
+  stacks ticks with cash-outs"), but cashing in Bleeding is meant to stay
+  in a few lanes like the Sorcerer's, not open to every weapon user
+  (RULES_DESIGN.md, "Bleeding is extra damage that runs out on its
+  own"). A Style that cashes in stacks is still worth a look.
 - **Immaculate Spice Rack** (Masterwork) — cut; the game has too few
   Craft flips in actual play for a cooking-specific Good Luck bonus to
   matter, and Placeholder's Wondrous Workspace already covers the
@@ -1042,20 +1051,3 @@ Bear's Slams, Demon, Bleeding poisons. First read as the Bad Luck
 version: a front-liner takes ~6 attacks per encounter, 40-60% of them
 from bleeding creatures, × 2.2 = 5.3-7.9, so about Level 2. Doesn't
 stack with Frightened from other sources on the same attacker.
-
-## Bleeding cash-outs beyond Reign of Blood (2026-10-16)
-
-Reign of Blood (F073, War Magic) and Circling Vulture (T152, Demon School)
-are the only ways to cash in a target's Bleeding. With Bleeding ticking
-off half its stacks (a test rule so far), the designer asked for more in
-line with Reign of Blood. Drafted and simulated, not yet in the CSVs:
-
-- **Open the Wound** — Battle Maneuver Feature, Basic, 1 point: "If the
-  attack hits, remove up to [twice X] + [Clubs] stacks of Bleeding from
-  the target, and it loses that much Health." Reign of Blood's text for a
-  weapon attack. Sim results in balance_weights_notes.md ("Half-the-stacks
-  ticks with cash-outs").
-
-Not drafted yet: a cash-out for the Furious Rage/Barbarian side (an
-Encounter weapon attack that cashes in all stacks up to a Skill Total,
-like Circling Vulture), and an alchemical one for Jackal's line.

@@ -10088,3 +10088,8 @@ stacks a fight, against 0.66 measured as landing on live Health.
 - Felix leaves Open the Wound unused in about a third of fights; the sim
   holds it for 2 stacks or round 3, and many fights are over by then. A
   player would probably fire it sooner.
+
+**The designer's call (2026-10-17):** cash-outs stay rare (RULES_DESIGN.md,
+"Bleeding is extra damage that runs out on its own"). Reign of Blood stays
+with the Sorcerer; Open the Wound, a version for any weapon attack, is
+declined. Felix (Cash) stays in sample_pcs.csv as a test row only.

@@ -448,6 +448,18 @@ effects apply more than one. Acidic Flask and Bloody Poison are the
 big ones, and they're crafted, niche tools rather than something to
 build around.
 
+**Cashing in stacks stays rare** (designer, 2026-10-17). An effect that
+removes a target's Bleeding and has it lose that much Health at once
+(War Magic's Reign of Blood, F073; the Demon School's Circling Vulture,
+T152) sidesteps the limit above and turns Bleeding back into straight
+damage. That's fun and worth having, but it's borderline rule-breaking,
+so it's kept to a few specific lanes rather than handed to every
+archetype. A Sorcerer fits: War Magic already reaches for Vital, and
+Sanguine sets it up. A Style might be a fun home for one later. A
+version any weapon user could pick up isn't wanted: a Battle Maneuver
+Feature with Reign of Blood's text (a draft Open the Wound,
+2026-10-16) was turned down for that reason.
+
 ### STANDING RULE — Reward cleverness and risk, not raw power
 
 Stated directly by the designer while finalizing Insanity Potion (a
