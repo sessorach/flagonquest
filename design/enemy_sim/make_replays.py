@@ -45,6 +45,10 @@ MATCHUPS = [
     # the Wound and Beornhard's Reign of Blood.
     ("cash_party_L1_vs_L1_frontline", ["Hilde (Bleed)", "Felix (Cash)", "Jackal (Bleed)", "Beornhard (Cash)"], 1,
      "Frontline", "cashed"),
+    # Both sides bleeding (2026-10-19): the Bleeding builds against
+    # Warband's Skulking Footpads, who Poison for 2 Bleeding a hit.
+    ("bleed_party_L1_vs_L1_warband", ["Hilde (Bleed)", "Felix (Bleed)", "Jackal (Bleed)", "Beornhard (Bleed)"], 1,
+     "Warband", "pc_bleed_taken"),
 ]
 
 

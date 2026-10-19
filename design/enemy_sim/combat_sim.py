@@ -2204,6 +2204,10 @@ def _resolve_leftover_bleeding(pcs):
         p['bleed_after'] = lost
         if p['health'] <= 0:
             p['downed_after'] = True
+        if lost:
+            _log(_CTX['trace'], round=_CTX['rnd'], side='party', unit=p['name'], action='bleed_after',
+                 note=f"leftover Bleeding costs {lost} Health, {max(0, p['health'])} left"
+                      + ("; Down" if p['health'] <= 0 else ""))
 
 
 def _bleed_tick(e):
@@ -2663,9 +2667,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 _bleed_out(p)
             winner = _winner()
             if winner:
-                _log(trace, round=rnd, type='result', winner=winner)
                 if T.BLEED_RESOLVE_AFTER and winner == 'party':
                     _resolve_leftover_bleeding(pcs)
+                _log(trace, round=rnd, type='result', winner=winner)
                 party_hp_pct = (sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs)
                                 if winner == 'party' else 0.0)
                 return dict(winner=winner, rounds=rnd, party_hp_pct=party_hp_pct,
@@ -2683,9 +2687,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             for e in enemies:
                 _bleed_tick(e)
 
-    _log(trace, round=max_rounds, type='result', winner='draw')
     if T.BLEED_RESOLVE_AFTER:
         _resolve_leftover_bleeding(pcs)
+    _log(trace, round=max_rounds, type='result', winner='draw')
     return dict(winner='draw', rounds=max_rounds,
                 party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs),
                 pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt,

@@ -125,6 +125,8 @@ def render_event(event):
     if action == 'heal':
         via = f" with {event['via']}" if event.get('via') else ""
         return f"  {unit} heals {event['target']}{via} for {event['amount']} (-> {event['target_hp_after']} HP)"
+    if action == 'bleed_after':
+        return f"  After the fight, {unit}: {event.get('note')}"
     if action == 'bleed_out':
         return f"  {unit} bleeds out ({event.get('note')}) and drops."
     if action == 'plan':

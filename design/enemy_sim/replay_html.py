@@ -239,6 +239,9 @@ function logLine(e) {
     const played = e.cards ? `<div class="cards">${e.cards}</div>` : '';
     return `<div class="line ${cls}"><span class="who">${e.unit}</span> ${what} <b>${e.target}</b>${via} <span class="arrow">(${e.roll} vs ${e.defense})</span> ${verdict}${played}</div>`;
   }
+  if (e.action === 'bleed_after') {
+    return `<div class="line hit"><span class="who">${e.unit}</span> <span class="dmg">after the fight</span> <span class="via">(${e.note})</span></div>`;
+  }
   if (e.action === 'bleed_out') {
     return `<div class="line hit"><span class="who">${e.unit}</span> <span class="dmg">bleeds out</span> <span class="via">(${e.note})</span></div>`;
   }
