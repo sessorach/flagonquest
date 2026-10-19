@@ -612,6 +612,28 @@ Per the designer, a PC's leftover Bleeding now ticks out after the fight
 moved only Health left: Party A 81.0 → 80.3, Party D 81.2 → 80.7. A PC it
 drops after the fight is counted apart from someone Down during it.
 
+### The new Bleeding rule (2026-10-19, later)
+
+Per the designer, Bleeding now loses half its stacks, rounded up, each
+time it decays, and Protected stops its ticks (tunables.BLEED_TICK
+'half', BLEED_PROTECTED 'ticks'). `calibrate.py`, 300 fights per mix,
+old rule → new:
+
+| Level 1 | Rounds | Loses | Someone Down | Someone Wounded | Health left |
+|---|---|---|---|---|---|
+| A | 2.8 → 2.8 | 0.3% → 0.3% | 20% → 21% | 59% → 62% | 80.3 → 80.3 |
+| T | 2.8 → 2.8 | 0.5% → 0.5% | 19% → 19% | 55% → 57% | 83.3 → 83.4 |
+| S | 3.8 → 3.8 | 1.1% → 1.1% | 35% → 37% | 76% → 76% | 77.9 → 77.9 |
+| U | 2.9 → 2.9 | 0.1% → 0.1% | 24% → 25% | 58% → 60% | 81.1 → 81.1 |
+| D | 3.1 → 3.1 | 1.8% → 1.9% | 24% → 24% | 63% → 64% | 80.7 → 80.7 |
+| H | 2.6 → 2.6 | 0% → 0% | 18% → 19% | 55% → 57% | 82.1 → 82.2 |
+
+Level 2: someone Down goes 45% → 47% (A) and 35% → 36% (D); nothing
+else moves. The only Bleeding in these parties is Warband's Footpads
+Poisoning the PCs. With half ticks it lands during the fight instead of
+after it, so someone is Down or Wounded a point or two more often, and
+Health left stays put.
+
 ## Still to do
 
 - **Items.** The sim doesn't model items yet beyond weapons, armor and

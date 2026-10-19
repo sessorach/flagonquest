@@ -52,8 +52,12 @@ RULES = {
     "wound +1": {"BLEED_WOUND": 1},
     "wound +1 + execute x1/2": {"BLEED_WOUND": 1, "BLEED_OUT": 'x1/2'},
 }
+# These tables were made (2026-10-16) under the rule then: one stack a
+# tick, straight through Protected. Pinned, so they still reproduce now
+# that the defaults follow the 2026-10-19 rule.
+BASE = {"BLEED_TICK": 1, "BLEED_PROTECTED": 'through'}
 # Pool workers run many jobs, so each one starts from the defaults.
-DEFAULTS = {k: getattr(T, k) for rule in RULES.values() for k in rule}
+DEFAULTS = {**{k: getattr(T, k) for rule in RULES.values() for k in rule}, **BASE}
 
 
 def encounter(mix, mult):

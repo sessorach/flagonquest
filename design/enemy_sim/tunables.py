@@ -359,10 +359,12 @@ BLEED_MODE = 'own_turn'
 BLEED_OUT = 0
 # The execute applies to every creature alike, PCs included: no Bleeding
 # rule is PC-specific (designer, 2026-10-09).
-# Test variant (2026-10-16): how many stacks come off at each tick, each
-# dealing 1. 1 is the rule as written; an int N is "up to N"; 'half' is
-# half the stacks rounded up; 'all' is every stack at once.
-BLEED_TICK = 1
+# How many stacks come off at each tick, each dealing 1. 'half' is half the
+# stacks rounded up, the rule since 2026-10-19 (glossary.md: "When Bleeding
+# decays, remove half your stacks of it, rounded up, instead of 1"); 1 was
+# the rule before it. Test variants: an int N is "up to N"; 'all' is every
+# stack at once.
+BLEED_TICK = 'half'
 # Test variant (2026-10-16): a damaging hit on a Bleeding creature deals
 # this much more, and the stacks stay. 0 is off. Every creature alike.
 BLEED_WOUND = 0
@@ -373,14 +375,15 @@ CASHOUT_MIN = 2
 CASHOUT_SEEK = True
 
 # ---- Bleeding and Protected (test variants, 2026-10-19) ----
-# How Protected meets Bleeding. 'through': Bleeding's Health loss goes
-# straight past Protected, what the sim has always done. 'ticks': the
-# glossary as written, where Protected stops a tick's Health loss like any
-# other ("If you would lose Health to something other than a cost...").
+# How Protected meets Bleeding. 'ticks' is the rule (the designer,
+# 2026-10-19, and glossary.md's Protected as written: Protected stops a
+# tick's Health loss like any other, "If you would lose Health to
+# something other than a cost..."). 'through': Bleeding's Health loss goes
+# straight past Protected, what the sim did until then.
 # 'apply': Protected stops stacks from being gained instead, one for one,
 # after the attack's own damage has used what it needs; once a stack is on,
 # it ticks through Protected. Either way it works the same on everyone.
-BLEED_PROTECTED = 'through'
+BLEED_PROTECTED = 'ticks'
 # Per the designer: a PC's leftover Bleeding at the end of a fight still
 # costs its Health, ticked out under the rules above as if the turns kept
 # coming. It counts toward Health left, and a PC it drops counts as Down

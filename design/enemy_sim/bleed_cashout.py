@@ -45,7 +45,11 @@ RULES = {
     "tick half": {"BLEED_TICK": 'half'},
     "tick half + execute x1/2": {"BLEED_TICK": 'half', "BLEED_OUT": 'x1/2'},
 }
-DEFAULTS = {k: getattr(T, k) for rule in RULES.values() for k in rule}
+# These tables were made (2026-10-16) under the rule then: one stack a
+# tick, straight through Protected. Pinned, so they still reproduce now
+# that the defaults follow the 2026-10-19 rule.
+BASE = {"BLEED_TICK": 1, "BLEED_PROTECTED": 'through'}
+DEFAULTS = {**{k: getattr(T, k) for rule in RULES.values() for k in rule}, **BASE}
 
 
 def encounter(mix, mult):
