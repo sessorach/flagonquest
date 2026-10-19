@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-10-19 — Bleeding against Protected
+### 2026-10-19 — Bleeding's new rule
 
-Ran Bleeding through a dozen setups, on the party and on enemies, with and without Protected: losing half its stacks each turn makes big doses pay off without changing what Bleeding costs the party overall, and Protected stopping its ticks blunts it rather than shutting it off. The same Bleeding still hits the party about twice as hard as it helps them, so that part has to come from how it's priced.
+After a dozen setups in the simulator, Bleeding now loses half its stacks (rounded up) each time it decays, and Protected stops its ticks: big doses pay off without changing what Bleeding costs the party overall, and Protected blunts it rather than shutting it off. Bleeding still hits the party harder than it helps them, so the next step is pricing each side for what it actually lands.
 
 ### 2026-10-16 — Bleeding's levers
 
