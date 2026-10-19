@@ -604,6 +604,14 @@ goes Down about 5 points more often. Party S, with no front-liner, is
 just over one fight in three. A hit enemy acting again is unchanged and
 still the one target the sim misses (open question 4).
 
+### Leftover Bleeding counts (2026-10-19)
+
+Per the designer, a PC's leftover Bleeding now ticks out after the fight
+(tick size and Protected as in it) before Health left is measured
+(tunables.BLEED_RESOLVE_AFTER). On the standard Level 1 calibration that
+moved only Health left: Party A 81.0 → 80.3, Party D 81.2 → 80.7. A PC it
+drops after the fight is counted apart from someone Down during it.
+
 ## Still to do
 
 - **Items.** The sim doesn't model items yet beyond weapons, armor and

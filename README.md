@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-19 — Bleeding against Protected
+
+Ran Bleeding through a dozen setups, on the party and on enemies, with and without Protected: losing half its stacks each turn makes big doses pay off without changing what Bleeding costs the party overall, and Protected stopping its ticks blunts it rather than shutting it off. The same Bleeding still hits the party about twice as hard as it helps them, so that part has to come from how it's priced.
+
 ### 2026-10-16 — Bleeding's levers
 
 Tested different ways Bleeding could tick and execute, then a middle road: Bleeding loses half its stacks (rounded up) each turn, and a few techniques cash in the rest the way War Magic's Reign of Blood does. Reign of Blood comes out just under spending the same points on straight damage, and a draft Battle Maneuver version (Open the Wound) speeds fights up more than one that puts Bleeding on.

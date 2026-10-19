@@ -10093,3 +10093,150 @@ stacks a fight, against 0.66 measured as landing on live Health.
 "Bleeding is extra damage that runs out on its own"). Reign of Blood stays
 with the Sorcerer; Open the Wound, a version for any weapon attack, is
 declined. Felix (Cash) stays in sample_pcs.csv as a test row only.
+
+### Bleeding against Protected, on both sides (2026-10-19)
+
+The designer's next step on Bleeding as rare, honestly priced Health loss:
+try it several ways, leaning toward half the stacks ticking off each turn,
+on PCs, on enemies and both, with and without Protected on the side being
+bled, and with Protected either letting Bleeding through, stopping its
+ticks, or stopping stacks from going on. Bleeding is likely to land harder
+against players than for them, so the question is which rules make that
+worse. Test switches in tunables.py: `BLEED_PROTECTED` ('through', what
+the sim always did; 'ticks', the glossary's Protected as written; 'apply',
+Protected stops stacks being gained, after the hit's own damage has used
+what it needs, and once on they tick regardless), `PC_TEST_BLEED` /
+`ENEMY_TEST_BLEED` (stacks on every PC / enemy hit), `TEST_DURABLE`
+(1 Protected at the start of each turn, up to 4, on either side) and
+`TEST_DUMP_STACKS`. `bleed_protected.py` runs everything below; all of it
+Level 1, 400 fights per mix unless noted.
+
+**Leftover Bleeding now counts.** Per the designer, a PC's leftover stacks
+tick out after the fight, under the same rules as in it, before Health
+left is measured (`BLEED_RESOLVE_AFTER`, now on). On the standard
+calibration that moved only Health left: Party A 81.0 → 80.3, Party D
+81.2 → 80.7. A PC those ticks drop counts as "Down after"; the tables
+below give someone Down during the fight or after it.
+
+**The same rider on both sides**, Party A, against the same party with no
+test Bleeding. PC columns: Bleeding landing on enemies a fight / change in
+rounds. Enemy columns: Bleeding the PCs lose a fight (during and after) /
+change in Health left / change in someone Down, during or after. Stacks
+Protected stopped in brackets.
+
+No Protected anywhere (base: 2.77 rounds, Health left 80.8, Down 22%):
+
+| Rule | PCs, 1 a hit | PCs, 2 a hit | Enemies, 1 a hit | Enemies, 2 a hit |
+|---|---|---|---|---|
+| Tick 1, through | 0.94 / −0.06 | 0.95 / −0.06 | 2.12 / −5.3 / +17 | 3.50 / −8.8 / +37 |
+| Tick 1, stops ticks | 0.80 (0.15) / −0.06 | 0.81 (0.15) / −0.06 | 2.12 / −5.3 / +17 | 3.50 / −8.8 / +37 |
+| Tick 1, stops gaining | 0.94 / −0.06 | 0.95 / −0.06 | 2.12 / −5.3 / +17 | 3.50 / −8.8 / +37 |
+| Half, through | 0.96 / −0.07 | 1.06 / −0.09 | 2.18 / −5.4 / +17 | 3.79 / −9.3 / +36 |
+| Half, stops ticks | 0.80 (0.16) / −0.06 | 0.87 (0.21) / −0.08 | 2.18 / −5.4 / +17 | 3.79 / −9.3 / +36 |
+| Half, stops gaining | 0.96 / −0.07 | 1.06 / −0.09 | 2.18 / −5.4 / +17 | 3.79 / −9.3 / +36 |
+
+(The little Protected here is Warband's Warpriest shielding its own side.)
+The PCs' Bleeding never moved their Health left (+0.0 in every row).
+
+Durable on the side being bled (bases: 3.04 rounds with Durable enemies;
+Health left 84.3-85.8 and Down 14-15% with Durable PCs):
+
+| Rule | PCs, 1 a hit | PCs, 2 a hit | Enemies, 1 a hit | Enemies, 2 a hit |
+|---|---|---|---|---|
+| Tick 1, through | 1.15 / −0.10 | 1.18 / −0.10 | 2.30 / −5.7 / +17 | 3.88 / −9.7 / +32 |
+| Tick 1, stops ticks | 0.00 (1.16) / −0.08 | 0.00 (1.18) / −0.08 | 0.00 (2.47) / −1.0 / +4 | 0.00 (4.75) / −1.1 / +4 |
+| Tick 1, stops gaining | 1.12 (0.12) / −0.10 | 1.17 (0.12) / −0.11 | 2.30 / −5.7 / +17 | 3.88 / −9.7 / +32 |
+| Half, through | 1.18 / −0.10 | 1.42 / −0.15 | 2.34 / −5.8 / +17 | 4.10 / −10.1 / +32 |
+| Half, stops ticks | 0.01 (1.19) / −0.08 | 0.19 (1.31) / −0.10 | 0.47 (1.96) / −2.1 / +7 | 1.49 (2.91) / −4.5 / +19 |
+| Half, stops gaining | 1.14 (0.13) / −0.10 | 1.39 (0.12) / −0.15 | 2.34 / −5.8 / +17 | 4.10 / −10.1 / +32 |
+
+Party T (Browndog, Hanforth, Sable, Beornhard) follows the same pattern:
+PCs at 1 a hit land 0.99 and Health left doesn't move; enemies at 1 a hit
+cost −4.7 Health left and +13 Down, at 2 a hit −8.2 / +28 (tick 1) and
+−8.3 / +26 (half). With Durable PCs and Protected stopping ticks, 2 a hit
+costs −0.9 (tick 1) or −3.8 (half).
+
+**When the PCs' Health goes** (Party A, no Protected, enemies' test rider;
+Bleeding lost during / after the fight):
+
+| Rule | Enemies | Down during | Down, or after | Health left if leftovers drop off | Health left if they tick | Lost during / after |
+|---|---|---|---|---|---|---|
+| Tick 1 | none | 20% | 22% | 81.4 | 80.8 | 0.39 / 0.26 |
+| Tick 1 | 1 a hit | 28% | 39% | 78.0 | 75.4 | 1.74 / 1.03 |
+| Tick 1 | 2 a hit | 29% | 59% | 77.5 | 72.0 | 1.95 / 2.20 |
+| Half | none | 21% | 22% | 81.1 | 80.8 | 0.53 / 0.12 |
+| Half | 1 a hit | 33% | 39% | 76.9 | 75.3 | 2.21 / 0.61 |
+| Half | 2 a hit | 41% | 57% | 74.8 | 71.4 | 3.10 / 1.34 |
+
+Warband's Skulking Footpads (Poison, 2 stacks a hit) land 1.55 hits a
+Warband fight on Party A and 1.16 on Party T, and each hit costs the
+party 1.81-1.87 Health under either tick rule (800 Warband fights each):
+about 0.9 Health a stack. Against an enemy the same stack is worth 0.2-0.6 (below).
+
+**The Bleeding builds** (party X: Hilde, Felix, Jackal, Beornhard; rounds /
+loses / Down, or after / Health left / Bleeding landing a fight):
+
+| Rule | Base builds | Bleeding builds | Bleeding builds, Durable enemies |
+|---|---|---|---|
+| Tick 1, through | 2.46 / 0.2% / 21% / 83.6 | 3.92 / 6.4% / 52% / 70.9 / 2.09 | 4.57 / 10.9% / 60% / 67.6 / 2.63 |
+| Tick 1, stops ticks | same | 3.94 / 6.5% / 52% / 71.0 / 1.77 | 4.89 / 16.0% / 60% / 69.8 / 0.00 |
+| Tick 1, stops gaining | same | 3.92 / 6.5% / 52% / 71.0 / 2.05 | 4.59 / 12.0% / 59% / 67.9 / 2.49 |
+| Half, through | 2.47 / 0.2% / 21% / 83.6 | 3.49 / 3.7% / 49% / 71.9 / 5.03 | 4.00 / 7.0% / 58% / 68.9 / 5.83 |
+| Half, stops ticks | same | 3.52 / 3.7% / 49% / 72.0 / 4.62 | 4.36 / 10.2% / 58% / 69.4 / 3.39 |
+| Half, stops gaining | same | 3.47 / 3.7% / 49% / 72.0 / 4.94 | 4.04 / 7.9% / 57% / 69.5 / 5.45 |
+
+(Base builds with Durable enemies: 2.72-2.74 rounds, loses 0.6%.)
+
+**Dose size** (one dose of N stacks on the carrier's first hit, Party A,
+300 fights per mix; extra points landing a fight for Hilde / Sable, and the
+share of a +N on the same hit):
+
+| Rule | 1 stack | 2 | 3 | 5 | 8 |
+|---|---|---|---|---|---|
+| Tick 1 | 0.05 / 0.16 (17% / 30%) | 0.06 / 0.17 (9% / 15%) | 0.06 / 0.17 (6% / 10%) | 0.06 / 0.17 (6% / 8%) | 0.06 / 0.17 (6% / 7%) |
+| Half | 0.05 / 0.16 (17% / 30%) | 0.06 / 0.17 (9% / 15%) | 0.11 / 0.33 (12% / 20%) | 0.15 / 0.47 (16% / 22%) | 0.15 / 0.57 (17% / 25%) |
+| Half, Durable, stops ticks | 0.00 / 0.00 | 0.00 / 0.00 | 0.06 / 0.16 (5% / 10%) | 0.12 / 0.32 (9% / 14%) | 0.18 / 0.47 (13% / 19%) |
+| Half, Durable, through or stops gaining | 0.07 / 0.17 (18% / 30%) | 0.07 / 0.17 (10% / 16%) | 0.14 / 0.34 (12% / 21%) | 0.20 / 0.48 (15% / 21%) | 0.24 / 0.59 (18% / 24%) |
+| Tick 1, enemy Health ×1.75 | 0.19 / 0.46 (38% / 57%) | 0.22 / 0.51 (23% / 31%) | 0.24 / 0.53 (17% / 22%) | 0.26 / 0.54 (11% / 15%) | 0.26 / 0.54 (8% / 10%) |
+| Half, enemy Health ×1.75 | 0.19 / 0.46 (38% / 57%) | 0.22 / 0.51 (23% / 31%) | 0.40 / 0.96 (27% / 40%) | 0.57 / 1.40 (25% / 38%) | 0.74 / 1.78 (22% / 33%) |
+
+(Tick 1 with Durable enemies and Protected stopping ticks: 0.00 at every
+size. Tick 1 with Durable enemies otherwise: 0.07 / 0.17-0.18.)
+
+- **The tilt toward enemies is structural.** A PC outlives its stacks, so
+  each costs it about 0.9 Health; an enemy usually dies first, so each is
+  worth 0.2-0.6. The same rider on both sides: the PCs' version lands
+  about 1 a fight, shortens fights by under a tenth of a round and
+  doesn't move their Health left; the enemies' costs the party about 2
+  Health and adds 13-17 points to someone Down. No tick or
+  Protected rule changes that.
+- **The tick rule decides when PCs pay, not how much.** With leftovers
+  counted, a PC loses about the same either way; half ticks move it into
+  the fight (Down during, enemies at 2 a hit: 29% → 41%), tick 1 leaves
+  37-53% of it for after the fight. For the PCs' own Bleeding, half ticks
+  are what make doses pay: about 1.8 times as much from 3 stacks and
+  2.2-3.4 times from 5-8, and the Bleeding builds lose 3.7% of fights
+  instead of 6.4%.
+- **Half ticks still scale less than linearly.** A bigger dose lands a
+  smaller share of the same straight damage: at table toughness one stack
+  lands 38-57% of a +1, eight stacks 22-33% of a +8. Two stacks are the
+  low point, since half of 2 rounds up to 1 and the second stack only
+  pays on a later tick. Tick 1 stops at one stack's worth whatever the
+  dose.
+- **Protected stopping ticks is a hard counter at tick 1 and a blunt one
+  with half ticks.** One rolling stack of Protected cancels a 1-a-turn
+  tick outright: Durable creatures take no Bleeding at all. With half
+  ticks it takes about one off each tick, so a big pile still gets
+  through (8 stacks: 0.18 / 0.47 against 0.24 / 0.59). That works the
+  same for PCs, who get a way to play against enemy Bleeding, and for
+  enemies.
+- **Protected stopping stacks from going on barely changes anything.** On
+  a damaging hit the damage uses the Protected first. It does stop
+  no-damage doses (Acidic Flask: 2.3 stacks a fight against Durable
+  enemies in the real builds), but those stacks mostly wouldn't have
+  ticked anyway (5.45 landing against 5.83 with half ticks).
+- **The tilt has two levers outside the tick rule**: price enemy Bleeding
+  at about 0.9 Health a stack (Poison's 2 stacks a hit is nearly +2
+  damage that ignores Resist, against PCs), or let leftover stacks drop
+  off when the encounter ends (Party A, enemies at 2 a hit: Health left
+  72.0 → 77.5 under tick 1, 71.4 → 74.8 under half).
