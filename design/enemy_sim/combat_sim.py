@@ -1266,6 +1266,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         return dmg
 
     if pc['health'] > 0:
+        # Test (tunables.TEST_DURABLE): Durable on PCs, as enemies have it.
+        if T.TEST_DURABLE in ('pcs', 'both') and pc.get('protected', 0) < 4:
+            _gain(pc, 'protected', 1)
         if _has_interrupt_tech(pc):
             # Magehunter (T075) / Parting Shot (T076), synthetic test
             # fields, share one real persistent AP pool (`pc['ap_bank']`)
@@ -1623,7 +1626,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # rider so it doesn't replace an attack), to check how a big
                 # single dose prices against the tapered Bleeding curve.
                 if 'Bleeding Dump' in passives and hit and not pc.get('dump_used'):
-                    _gain(target, 'bleeding', 5)
+                    _gain(target, 'bleeding', T.TEST_DUMP_STACKS)
                     pc['dump_used'] = True
                 # 'Bleeding Once' (test-only): a single stack on the first
                 # hit each fight, the "one extra point" case on its own.
@@ -1633,6 +1636,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     pc['once_target'] = target  # for tracing the stack's fate
                     pc['once_applied'] = True
                     target['acted_at_apply'] = target.get('acted_round') == rnd
+                # Test rider (tunables.PC_TEST_BLEED): every hit adds this
+                # many stacks; ENEMY_TEST_BLEED is the enemies' twin.
+                if T.PC_TEST_BLEED and hit:
+                    _gain(target, 'bleeding', T.PC_TEST_BLEED)
                 # Lawman's Hand (T128): "Once per round, when one of your
                 # damaging attacks hits, you may Slow the target once."
                 if ('Lawman\'s Hand' in passives and hit and pc['damage'] > 0
@@ -1678,7 +1685,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # damage on the first hit each fight, after Resist - the
                     # straight-damage twins of Bleeding Once / Bleeding Dump,
                     # counted on live Health the same way.
-                    for test_name, bonus in (('Damage Once', 1), ('Damage Dump', 5)):
+                    for test_name, bonus in (('Damage Once', 1), ('Damage Dump', T.TEST_DUMP_STACKS)):
                         if test_name in passives and not pc.get('dmg_test_used'):
                             pc['dmg_test_used'] = True
                             pc['extra_dmg'] = pc.get('extra_dmg', 0) + min(bonus, max(0, target['health'] - dmg))
@@ -1762,6 +1769,13 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         moved = _shift_in_order(order, pc, -pc['self_turn_order_advance'])
                         if moved:
                             turn_shift_note = f"{pc['name']} advanced {-moved} earlier in turn order"
+                # Test variant (BLEED_PROTECTED 'apply'): whatever Protected
+                # the hit's damage left stops this attack's new stacks. The
+                # riders above go on before the damage, so this waits.
+                if T.BLEED_PROTECTED == 'apply':
+                    stopped = _protected_blocks_gain(target, pre_bleed)
+                    if stopped:
+                        taunt_note = (f"{taunt_note}; " if taunt_note else "") + f"Protected stopped {stopped} Bleeding"
                 if party_log:
                     via = substitute['via'] if substitute else ('Feint' if feint_active else (
                         'Battle Maneuver' if maneuver_now else pc['weapon_name']))
@@ -1888,7 +1902,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         _decay(pc, 'crippled')
         _decay(pc, 'vulnerable')
         if _decay(pc, 'bleeding'):
-            pc['health'] -= 1 + _bleed_extra(pc)
+            h0 = pc['health']
+            lost = _bleed_loss(pc, 1 + _bleed_extra(pc))
+            pc['bleed_taken'] = pc.get('bleed_taken', 0) + min(lost, h0)
         for key in ('slowed', 'frightened', 'taunted'):
             if _decay(pc, key) and pc[key] == 0:
                 pc[key + '_by'] = None
@@ -2140,15 +2156,65 @@ def _bleed_extra(unit):
     return extra
 
 
+def _bleed_loss(unit, loss):
+    """A Bleeding tick's Health loss on `unit`; returns what it actually
+    lost. Under tunables.BLEED_PROTECTED 'ticks' Protected stops it first,
+    one stack per point, like any other Health loss."""
+    if T.BLEED_PROTECTED == 'ticks' and unit.get('protected', 0) > 0:
+        stopped = min(loss, unit['protected'])
+        unit['protected'] -= stopped
+        unit['bleed_blocked'] = unit.get('bleed_blocked', 0) + stopped
+        loss -= stopped
+    unit['health'] -= loss
+    return loss
+
+
+def _protected_blocks_gain(unit, before):
+    """tunables.BLEED_PROTECTED 'apply': Protected stops the Bleeding
+    `unit` gained from one attack (anything above `before`), one stack
+    for one, after that attack's damage has had its go at the Protected.
+    Returns the stacks stopped."""
+    stopped = min(max(0, unit.get('bleeding', 0) - before), unit.get('protected', 0))
+    if stopped:
+        unit['bleeding'] -= stopped
+        unit['protected'] -= stopped
+        unit['bleed_blocked'] = unit.get('bleed_blocked', 0) + stopped
+    return stopped
+
+
+def _resolve_leftover_bleeding(pcs):
+    """tunables.BLEED_RESOLVE_AFTER: each standing PC's leftover Bleeding
+    ticks out after the fight, one turn at a time under the same rules as
+    in it (tick size, Protected, Protected's own decay, and the test
+    Durable's Protected at the start of each turn), so Health left counts
+    it. Protected from actions (Half Guard, a Parry) stops with the fight."""
+    for p in pcs:
+        if p['health'] <= 0:
+            continue
+        lost = 0
+        _ACTOR[0] = p  # each extra turn is its own
+        while p['health'] > 0 and p.get('bleeding', 0) > 0:
+            if T.TEST_DURABLE in ('pcs', 'both') and p.get('protected', 0) < 4:
+                _gain(p, 'protected', 1)
+            if _decay(p, 'bleeding'):
+                h0 = p['health']
+                lost += min(_bleed_loss(p, 1 + _bleed_extra(p)), h0)
+            if T.PROTECTED_DECAYS:
+                _decay(p, 'protected')
+        p['bleed_after'] = lost
+        if p['health'] <= 0:
+            p['downed_after'] = True
+
+
 def _bleed_tick(e):
     """One Bleeding tick on an enemy (the party's Bleeding; the test
     timings in tunables.BLEED_MODE call this)."""
     if e.get('bleeding', 0) > 0 and e['health'] > 0:
         e['bleeding'] -= 1
-        loss = 1 + _bleed_extra(e)
+        h0 = e['health']
+        lost = _bleed_loss(e, 1 + _bleed_extra(e))
         # Only what lands on live Health counts, like the damage twins.
-        e['bleed_dealt'] = e.get('bleed_dealt', 0) + min(loss, e['health'])
-        e['health'] -= loss
+        e['bleed_dealt'] = e.get('bleed_dealt', 0) + min(lost, h0)
         _bleed_out(e)
 
 
@@ -2200,7 +2266,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         if e['health'] <= 0:
             return 0
     abilities = e.get('abilities', [])
-    if 'Durable' in abilities and e.get('protected', 0) < 4:
+    if ('Durable' in abilities or T.TEST_DURABLE in ('enemies', 'both')) and e.get('protected', 0) < 4:
         _gain(e, 'protected', 1)
     living_pcs = [p for p in pcs if p['health'] > 0]
     if not living_pcs:
@@ -2320,11 +2386,19 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
                     dmg += T.BLEED_WOUND
                 target['health'] -= dmg
                 _bleed_out(target)
+                pre_bleed = target.get('bleeding', 0)
                 for ability in abilities:
                     if ability in STRIKE_RIDERS:
                         effect, stacks = STRIKE_RIDERS[ability]
                         _apply_to_pc(target, effect, stacks, e)
                         applied.append(f"{effect} +{stacks}")
+                if T.ENEMY_TEST_BLEED:
+                    _apply_to_pc(target, 'Bleeding', T.ENEMY_TEST_BLEED, e)
+                    applied.append(f"Bleeding +{T.ENEMY_TEST_BLEED}")
+                if T.BLEED_PROTECTED == 'apply':
+                    stopped = _protected_blocks_gain(target, pre_bleed)
+                    if stopped:
+                        applied.append(f"Protected stopped {stopped} Bleeding")
         if enemy_log:
             enemy_log(unit=e['name'], action='hex' if mode == 'hex' else 'attack', target=target['name'],
                       roll=roll, defense=opp_def_val, hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist,
@@ -2350,8 +2424,6 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     # on enemies until 2026-10-09.
     for key in ('crippled', 'slowed', 'vulnerable'):
         _decay(e, key)
-    if T.PROTECTED_DECAYS:
-        _decay(e, 'protected')
     # Only the rules-as-written mode ticks here; the test variants
     # (tunables.BLEED_MODE) deal the Health loss elsewhere. In 'on_damage'
     # the stack still falls off here, for nothing; 'round_end' does its
@@ -2362,9 +2434,13 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         _bleed_tick(e)
     if e.get('bleeding', 0) > 0 and e['health'] > 0 and T.BLEED_MODE in ('own_turn', 'on_damage'):
         if _decay(e, 'bleeding') and T.BLEED_MODE == 'own_turn':
-            loss = 1 + _bleed_extra(e)
-            e['bleed_dealt'] = e.get('bleed_dealt', 0) + min(loss, e['health'])
-            e['health'] -= loss
+            h0 = e['health']
+            lost = _bleed_loss(e, 1 + _bleed_extra(e))
+            e['bleed_dealt'] = e.get('bleed_dealt', 0) + min(lost, h0)
+    # Protected comes off after Bleeding's tick, the same order as a PC's
+    # turn, so under BLEED_PROTECTED 'ticks' it can still stop that tick.
+    if T.PROTECTED_DECAYS:
+        _decay(e, 'protected')
     return interrupt_dmg
 
 
@@ -2588,6 +2664,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             winner = _winner()
             if winner:
                 _log(trace, round=rnd, type='result', winner=winner)
+                if T.BLEED_RESOLVE_AFTER and winner == 'party':
+                    _resolve_leftover_bleeding(pcs)
                 party_hp_pct = (sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs)
                                 if winner == 'party' else 0.0)
                 return dict(winner=winner, rounds=rnd, party_hp_pct=party_hp_pct,
@@ -2597,6 +2675,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                             plus_one_dealt=sum(p.get('extra_dmg', 0) for p in pcs),
                             executes=sum(e.get('bled_out', 0) for e in enemies),
                             pc_executes=sum(p.get('bled_out', 0) for p in pcs),
+                            **_bleed_counts(pcs, enemies),
                             **_calibration_counts(pcs, enemies))
         # Test variant (tunables.BLEED_MODE 'round_end'): enemies' Bleeding
         # ticks once at the end of each round instead of their own turn.
@@ -2605,10 +2684,24 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 _bleed_tick(e)
 
     _log(trace, round=max_rounds, type='result', winner='draw')
+    if T.BLEED_RESOLVE_AFTER:
+        _resolve_leftover_bleeding(pcs)
     return dict(winner='draw', rounds=max_rounds,
                 party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs),
                 pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt,
+                **_bleed_counts(pcs, enemies),
                 **_calibration_counts(pcs, enemies))
+
+
+def _bleed_counts(pcs, enemies):
+    """Bleeding on the party's side of the ledger (2026-10-19): Health it
+    cost the PCs during and after the fight, PCs it dropped after the
+    fight, and stacks or Health Protected stopped on each side."""
+    return dict(pc_bleed_taken=sum(p.get('bleed_taken', 0) for p in pcs),
+                pc_bleed_after=sum(p.get('bleed_after', 0) for p in pcs),
+                pc_downed_after=any(p.get('downed_after') for p in pcs),
+                bleed_blocked=sum(e.get('bleed_blocked', 0) for e in enemies),
+                pc_bleed_blocked=sum(p.get('bleed_blocked', 0) for p in pcs))
 
 
 def _calibration_counts(pcs, enemies):

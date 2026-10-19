@@ -371,6 +371,30 @@ BLEED_WOUND = 0
 CASHOUT_MIN = 2
 # ...and the PC holding it goes for the enemy with the most stacks.
 CASHOUT_SEEK = True
+
+# ---- Bleeding and Protected (test variants, 2026-10-19) ----
+# How Protected meets Bleeding. 'through': Bleeding's Health loss goes
+# straight past Protected, what the sim has always done. 'ticks': the
+# glossary as written, where Protected stops a tick's Health loss like any
+# other ("If you would lose Health to something other than a cost...").
+# 'apply': Protected stops stacks from being gained instead, one for one,
+# after the attack's own damage has used what it needs; once a stack is on,
+# it ticks through Protected. Either way it works the same on everyone.
+BLEED_PROTECTED = 'through'
+# Per the designer: a PC's leftover Bleeding at the end of a fight still
+# costs its Health, ticked out under the rules above as if the turns kept
+# coming. It counts toward Health left, and a PC it drops counts as Down
+# after the fight (pc_downed_after), apart from Down during it.
+BLEED_RESOLVE_AFTER = True
+# Test riders: stacks of Bleeding every PC hit / every enemy hit adds.
+PC_TEST_BLEED = 0
+ENEMY_TEST_BLEED = 0
+# Test: Durable (1 Protected at the start of each of its turns, up to 4) on
+# every 'enemies', 'pcs' or 'both'. None is off.
+TEST_DURABLE = None
+# Stacks the 'Bleeding Dump' test passive adds (and the +N damage of its
+# 'Damage Dump' twin).
+TEST_DUMP_STACKS = 5
 # Acidic Flask's numbers (I028: 5 + [Clubs] Bleeding, no damage), as dials
 # for testing stronger versions.
 ACID_FLASK_STACKS = 5
