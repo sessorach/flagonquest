@@ -431,22 +431,35 @@ Harried's own entries say they still come off that turn. Write new
 content the same way, and when a general rule has grown carve-outs, move
 each one onto the thing it's about.
 
-### STANDING RULE — Bleeding is extra damage that runs out on its own
+### STANDING RULE — Bleeding is Health loss over time
 
-Per the designer (2026-10-07). Extra damage isn't meant to be easy to
-get: the closest players come is elemental damage and Gambling, per the
-rule above. Bleeding is the exception, and it's how things like
-"damage when Parried" are done. It's meant as about one extra point of
-damage most of the time, with the diminishing return built into how it
-works: stacks tick one a turn, so piling more on a target, or having
-several party members apply it, mostly stacks up without paying off.
-That's on purpose, so it can't become a reliable damage strategy.
+Per the designer (2026-10-07, reworked 2026-10-19; until then this rule
+was "Bleeding is extra damage that runs out on its own"). Extra damage
+isn't meant to be easy to get: the closest players come is elemental
+damage and Gambling, per the rule above. Bleeding is the exception, and
+it's honest about what it is: Health loss that goes around Resist and
+arrives over time, whether that's a wound, a fire or a poison. It's rare
+and powerful as a main tool, and otherwise shows up as small add-ons,
+like a stack on someone who Parries your attack.
 
-Pricing follows from that: the first stack is worth a bit under a full
-point of damage, and anything past one stack drops off sharply. Few
-effects apply more than one. Acidic Flask and Bloody Poison are the
-big ones, and they're crafted, niche tools rather than something to
-build around.
+How it works keeps it from scaling straight up. When Bleeding decays,
+half the stacks come off, rounded up, and the bearer loses that much
+Health. A big pile pays out fast, but each stack is worth less than the
+same straight damage, and less the bigger the pile, since the later
+ticks only land if the target lives through more turns. Protected stops
+a tick's Health loss like any other Health loss, so it blunts Bleeding
+without making anyone immune to a big pile. Leftover stacks keep
+decaying after a fight, so a PC still pays for them.
+
+The 2026-10-07 version ticked one stack a turn, which capped it at about
+a point a turn whatever the pile. In the simulator that made doses
+nearly worthless for the party, while every stack on a PC still cost it
+about a point (balance_weights_notes.md, 2026-10-09 to 2026-10-19).
+
+Pricing follows what it actually lands, and that differs by side: a PC
+outlives its stacks and pays about 0.9 Health for each, while a stack on
+an enemy that dies first is worth much less (balance_weights_notes.md,
+2026-10-19).
 
 **Cashing in stacks stays rare** (designer, 2026-10-17). An effect that
 removes a target's Bleeding and has it lose that much Health at once

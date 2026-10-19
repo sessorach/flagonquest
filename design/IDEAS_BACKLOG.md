@@ -24,8 +24,8 @@ cut, not just backfilled at a point in time.
   Battering for the same points; balance_weights_notes.md, "Half-the-
   stacks ticks with cash-outs"), but cashing in Bleeding is meant to stay
   in a few lanes like the Sorcerer's, not open to every weapon user
-  (RULES_DESIGN.md, "Bleeding is extra damage that runs out on its
-  own"). A Style that cashes in stacks is still worth a look.
+  (RULES_DESIGN.md, "Bleeding is Health loss over
+  time"). A Style that cashes in stacks is still worth a look.
 - **Immaculate Spice Rack** (Masterwork) — cut; the game has too few
   Craft flips in actual play for a cooking-specific Good Luck bonus to
   matter, and Placeholder's Wondrous Workspace already covers the

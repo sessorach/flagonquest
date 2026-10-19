@@ -203,6 +203,11 @@ things off in order.
 - **`#### Bleeding`, `#### Harried`** (glossary.md, Common Effects) — each
   gets a sentence saying it still comes off at the end of the turn you
   gained it (Bleeding loses a stack, Harried clears). Commit `f5468f5`.
+- **`#### Bleeding [Fleeting]`** (glossary.md, Common Effects) — per the
+  designer, Bleeding now loses half its stacks, rounded up, each time it
+  decays, and you lose that much Health; still tied to decay so cleanses
+  don't hurt, and it still decays on the turn you gained it. Commit
+  `d1c8364`.
 - **The Basics** (rulebook.md) — "The most specific rule always wins"
   gets a second sentence: rules cover the general case, and an ability,
   item or effect that says it works differently does. Commit `f5468f5`.
