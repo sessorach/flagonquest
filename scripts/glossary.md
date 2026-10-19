@@ -146,7 +146,7 @@ Others cannot tell when this ability is being used, discern its effects, or take
 
 #### Bleeding [Fleeting]
 
-Each stack of this that decays at the end of your turn deals 1 Health loss. Bleeding always loses a stack at the end of your turn, even on the turn you gained it.
+When Bleeding decays, remove half your stacks of it, rounded up, instead of 1, and lose that much Health. Bleeding always decays at the end of your turn, even on the turn you gained it.
 
 #### Crippled [Fleeting]
 
