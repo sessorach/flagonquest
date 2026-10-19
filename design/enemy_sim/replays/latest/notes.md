@@ -1,20 +1,18 @@
 # Latest replays (2026-10-19)
 
-Bleeding loses half its stacks (rounded up) each turn, Protected stops its ticks (the glossary as written), and a PC's leftover Bleeding ticks out after the fight
-
-Settings: BLEED_TICK='half', BLEED_PROTECTED='ticks'
+Bleeding's new rule is the default: half its stacks (rounded up) come off each time it decays, Protected stops its ticks, and a PC's leftover Bleeding ticks out after the fight
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
-- This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 1000 fights: 96.5% wins, 3.5 rounds, 73% HP left on a win
+- This fight (seed 9): party won in 3 rounds, 85% party HP left
+- Matchup average over 1000 fights: 97.7% wins, 3.5 rounds, 73% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
 - Enemies: Level 1 Shield Wall (Hedge Knight, Hedge Knight, Marsh Archer, Marsh Archer)
 - This fight (seed 1): party won in 3 rounds, 90% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.9 rounds, 86% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.8 rounds, 86% HP left on a win
 
 ## partyT_L1_vs_L1_warband.html
 - Party: Browndog, Hanforth, Sable, Beornhard

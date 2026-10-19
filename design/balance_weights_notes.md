@@ -10240,3 +10240,66 @@ size. Tick 1 with Durable enemies otherwise: 0.07 / 0.17-0.18.)
   damage that ignores Resist, against PCs), or let leftover stacks drop
   off when the encounter ends (Party A, enemies at 2 a hit: Health left
   72.0 → 77.5 under tick 1, 71.4 → 74.8 under half).
+
+### Bleeding's worth under the new rule (2026-10-19, later)
+
+The designer settled the rule: half the stacks, rounded up, come off each
+time Bleeding decays; Protected stops its ticks; the name stays. Now the
+default in the sim (tunables.BLEED_TICK 'half', BLEED_PROTECTED 'ticks').
+Next is pricing it for what it lands, which differs by side.
+
+**PC side** (Party A, Level 1, Hilde and Sable as carriers, 400 fights per
+mix). The THE TABEL convention as before: what a test lands, over what a
++1 on the same first hit lands, times 4 Value.
+
+| Enemy Health | 1 stack | 2 | 3 | 5 | 8 | 1 stack on every hit or Parry, a fight |
+|---|---|---|---|---|---|---|
+| ×1 (sim as built) | 0.83 | 0.87 | 1.67 | 2.45 | 2.90 | 3.5 (a +1 on every hit: 10.6) |
+| ×1.75 (table toughness) | 1.84 | 2.11 | 3.88 | 5.69 | 7.29 | 8.0 (a +1 on every hit: 14.9) |
+
+(Hilde / Sable apart, at ×1.75: one stack 1.40 / 2.27, five 4.46 / 6.93,
+eight 5.76 / 8.82, every hit 6.72 / 9.31.) A 5-stack dose lands 31% of a
++5 on the same hit at table toughness, 18% as built.
+
+At table toughness the dose curve fits **about 1.8 for the first stack and
+0.8 for each stack after it in the same application** (1.8, 2.6, 3.4, 5.0,
+7.4 against the measured 1.84, 2.11, 3.88, 5.69, 7.29). The second stack
+is the low point, since half of 2 rounds up to 1 and it only pays on a
+later tick. THE TABEL's current curve is 4 a stack with a taper (4, 4, 2,
+1, 0.5, about 11.5 for five), so every offensive Bleeding source is priced
+at about twice what it lands.
+
+**Enemy side.** Poison (Bleeding), 2 stacks a hit, on every enemy, read off
+the encounter builder's Health ladder (ability_compare.py's method: Level
+2, parties A, B and D against Frontline, Shield Wall and Warband, 600
+fights per cell with paired seeds):
+
+| Poison (Bleeding) worth, Health per enemy | Leftovers not counted | Leftovers count |
+|---|---|---|
+| Old rule (one stack a tick, through Protected) | +1.09 | +2.11 |
+| New rule (half ticks, Protected stops them) | +1.80 | +2.30 |
+
+The +1.09 is the conditions of the original measurement (+1.3 in the
+ability table above, unpaired seeds), and it missed the leftover stacks a
+PC carries out of the fight. Counting them, Poison was always worth about
+two Health per enemy; the new rule adds about 0.2 on top, by landing more
+of it during the fight. A stack on a PC is about 0.9 Health either way
+(the Footpads above).
+
+**Proposed, pending the designer** (nothing in the CSVs has changed):
+
+- **Bleeding the party puts on enemies**, priced at table toughness:
+  about 1.8 Value for the first stack in an application and 0.8 for each
+  stack after it, and about 8 a fight for a stack on every hit or Parry.
+  That replaces THE TABEL's 4 a stack with its taper, which credits a
+  5-stack dose with about 11.5 when it lands about 5.7. Most offensive
+  Bleeding sources (Acidic Flask, Battering, Spellblade's Bleeding option,
+  the Bear and Demon School doses, Bloody Poison, Conflagration Brand,
+  Sanguine Iron Weapon) are weaker than their current prices say, so the
+  repricing would mostly give them more for the same cost.
+- **Bleeding on PCs**, which is what the defensive items price (Coat of
+  Knit Flesh, Kiss of the Earth, Muscular Feast prevent or remove it): 4
+  Value a stack still fits, about one Health each.
+- **The encounter builder**: Poison (Bleeding) at 2 stacks a hit is worth
+  about 2 picks, not 1. Either charge 2 picks, or make the 1-pick version
+  1 stack a hit.
