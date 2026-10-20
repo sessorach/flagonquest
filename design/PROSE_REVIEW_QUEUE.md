@@ -124,6 +124,11 @@ things off in order.
   Materials/Time changes; also touched during the Quick Start Guide add.
   Commits `e2156ca`, `413f9b3`.
 
+- **`## Costs and Commitment`** — new paragraph defining "spend" as plain
+  cost wording (what you spend is paid and gone, spent Bleeding causes no
+  Health loss, "for each" counts only what you actually spend), with a
+  Beornhard example. Commit `47261bc`.
+
 ## glossary.md
 
 - **`#### Burst (X)`** (new entry, `# Keywords`) — added to name "this
