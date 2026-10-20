@@ -403,6 +403,10 @@ A few meals - Power Snack, Hearty Meal, and others like them - grant a bonus eff
 
 Some abilities and items have costs such as spending Health, expending Encounter Techniques, or discarding cards from your hand. If something has a cost, you have to pay the cost in order to use it. If a variable cost is listed, like ‘Discard X cards’, then X must be at least 1. If you pay Health, you choose how much Shallow and/or Deep to make up the total.
 
+Spending something just means paying it as a cost: it’s removed and has no other effect. A card you spend from your hand goes into your discard pile, Health you spend is simply lost, and stacks of an effect you spend come off without doing what they normally would - spent Bleeding causes no Health loss. When something lets you spend up to an amount and does something for each one, it only counts the ones you actually spend, and you can’t spend more than there is.
+
+Example: Beornhard hits a bandit with a spell that lets him spend up to 4 of the bandit’s Bleeding, and the bandit loses 1 Health for each one. The bandit only has 3 stacks of Bleeding, so Beornhard spends all 3 and the bandit loses 3 Health.
+
 Some of these also require that you commit the resource. This means that you both spend the resource and you cannot regain it while it stays committed. At any time, you may choose to un-commit the resource and regain it like usual. Committing resources allows you to keep certain effects active for longer than usual, and these will explain how it works in particular for that item or ability.
 
 ## Equipment
