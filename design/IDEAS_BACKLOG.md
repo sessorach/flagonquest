@@ -1051,3 +1051,23 @@ Bear's Slams, Demon, Bleeding poisons. First read as the Bad Luck
 version: a front-liner takes ~6 attacks per encounter, 40-60% of them
 from bleeding creatures, × 2.2 = 5.3-7.9, so about Level 2. Doesn't
 stack with Frightened from other sources on the same attacker.
+
+## Spending Bleeding (2026-10-20)
+
+Abilities that spend a target's Bleeding for something in their own lane
+(RULES_DESIGN.md, "Bleeding is Health loss over time", Spending Bleeding),
+per the designer and a friend's idea. Not drafted yet:
+
+- **Barbarian:** spend Bleeding on someone to gain Protected. Protected is
+  3 Value a stack against about 0.8 for a spent stack on an enemy at table
+  toughness, so 1:1 nets about +2.2 a stack; 2 stacks per Protected nets
+  about +1.4 for each Protected gained.
+- **Striker (Duelist home):** spend Bleeding to Harry the target ahead of
+  the party's attacks. Harried is 1 Value a stack, so 1:1 barely beats
+  keeping the stack (+0.2); Harried twice per stack spent nets about +1.2.
+- **War Magic:** Reign of Blood restated with "spend" (same numbers), plus
+  maybe a sibling Feature that spends Bleeding for Crippled, Slowed or
+  Vulnerable, chosen when learned like Turn Elements.
+- **Fawn Left to the Wolves** (T162) adds +1 damage per stack the target
+  has without spending any; worth turning into a spend.
+

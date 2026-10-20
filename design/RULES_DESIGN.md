@@ -473,6 +473,20 @@ version any weapon user could pick up isn't wanted: a Battle Maneuver
 Feature with Reign of Blood's text (a draft Open the Wound,
 2026-10-16) was turned down for that reason.
 
+**Spending Bleeding** (designer, 2026-10-20). "Spend" is plain cost
+wording, not a new mechanic: the rulebook's Costs and Commitment section
+says that whatever you spend is paid and gone with no other effect (spent
+Bleeding causes no Health loss), and that an effect which does something
+"for each" one you spend only counts what you actually spend. That keeps
+cards short, like "you may spend up to 3 of the target's Bleeding, and for
+each...", without lawyer wording on every one. Abilities that spend a
+target's Bleeding widen the role Bleeding plays in a party, but never give
+anything an effect outside its own lane: a Barbarian spending it to gain
+Protected (shared with Barbarian), a Duelist or other striker spending it
+to Harry the target before the party's attacks (a roundabout cash-in
+through Gambling). A straight exchange of stacks for Health, like Reign of
+Blood's, is fine where the balance numbers support it.
+
 ### STANDING RULE — Reward cleverness and risk, not raw power
 
 Stated directly by the designer while finalizing Insanity Potion (a
