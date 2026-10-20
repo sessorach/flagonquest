@@ -10303,3 +10303,124 @@ of it during the fight. A stack on a PC is about 0.9 Health either way
 - **The encounter builder**: Poison (Bleeding) at 2 stacks a hit is worth
   about 2 picks, not 1. Either charge 2 picks, or make the 1-pick version
   1 stack a hit.
+
+### Bleeding's value under half ticks, and spending it (2026-10-20)
+
+Per the designer: review Bleeding's value under the adopted rule (half the
+stacks, rounded up, each time it decays; Protected stops its Health loss;
+leftover stacks tick out after the fight), show how it's worked out, and
+price ways to swap Bleeding for other effects or spend it as a cost, for
+characters built around it.
+
+**How a stack is valued.** A stack does nothing until the target's turn
+ends; then the tick takes off half the pile, rounded up, 1 Health each. A
+point of Health loss is worth 4 Value (THE TABEL's Health), so a dose is
+worth about 4 times the chance the target lives through each of its turns,
+times what that turn's tick takes off:
+
+    Value(S) ≈ 4 × (p1 × tick1 + p2 × tick2 + ...)
+
+p1, p2, ... are the chances a hit enemy lives through one, two, ... more of
+its own turns (Level 1, measured: 0.21, 0.01 as built; 0.53, 0.15, 0.05 at
+table toughness, enemy Health ×1.75). The ticks are 1 for one stack, 1 + 1
+for two, 2 + 1 for three, 3 + 1 + 1 for five, 4 + 2 + 1 + 1 for eight.
+
+| Stacks in one application | 1 | 2 | 3 | 5 | 8 |
+|---|---|---|---|---|---|
+| Hand, as built | 0.82 | 0.86 | 1.68 | 2.51 | 3.37 |
+| Sim, as built | 0.83 | 0.87 | 1.67 | 2.45 | 2.90 |
+| Hand, table toughness | 2.13 | 2.71 | 4.84 | 7.18 | 9.98 |
+| Sim, table toughness | 1.84 | 2.11 | 3.88 | 5.69 | 7.29 |
+
+The hand model matches the sim as built (until eight stacks, where a tick
+bigger than the Health left wastes the rest) and runs 15-35% high at table
+toughness, where overkill and Protected take more off. The sim's numbers
+are the price:
+
+- **On an enemy**, at table toughness: about **1.8 for the first stack** of
+  an application and **0.8 for each stack after it**; a stack on every hit
+  or Parry is about **8 a fight** (a +1 on every hit is 14.9).
+- **On a PC**: about **0.9 Health a stack**, 3.6 Value, since a PC outlives
+  its stacks.
+- The second stack is the low point: half of 2 rounds up to 1, so it only
+  pays if the target lives through a second turn.
+
+**What a hit finds to spend.** Recorded on every hit: the target's Bleeding
+at that moment (Level 1, table toughness, 400 fights per mix). Share of a
+PC's hits whose target has at least 1 / 2 / 3 stacks, the average
+spendable with a cap of 2 / 3 / 4, and how often a bleeding target lives
+through the hit:
+
+| Party | Who | ≥1 | ≥2 | ≥3 | Cap 2 / 3 / 4 | Lives through the hit |
+|---|---|---|---|---|---|---|
+| One applier (Party A, Hilde on Furious Rage) | Hilde | 100% | 25% | 2% | 1.25 / 1.27 / 1.27 | 55% |
+| | Browndog, Carrick, Sable | 13-17% | 4-6% | 1% | 0.16-0.23 / 0.17-0.24 / same | 64-67% |
+| All four Bleeding builds (party X) | Hilde | 100% | 61% | 49% | 1.61 / 2.10 / 2.54 | 53% |
+| | Felix (Battering) | 75% | 68% | 62% | 1.43 / 2.05 / 2.48 | 79% |
+| | Jackal (Acidic Flasks) | 62% | 54% | 44% | 1.16 / 1.60 / 1.96 | 83% |
+| | Beornhard (Sanguine) | 58% | 50% | 42% | 1.08 / 1.50 / 1.86 | 80% |
+
+As built (enemy Health ×1) the pattern is the same and a little thinner.
+Furious Rage puts its stack on before the hit's damage, so Hilde's own
+hits always find one: a spend on the applier's own attacks mostly turns
+its own Bleeding into the payoff.
+
+**Spending, priced.** A spent stack would have been worth about 0.8 left
+where it was (the later-stack value), or nothing if the hit kills the
+target anyway. Net per stack spent, at table toughness:
+
+| Spend 1 stack for | Payoff | Net |
+|---|---|---|
+| 1 Health loss | 4 | +3.2 |
+| Protected once (yourself) | 3 | +2.2 |
+| Good Luck once | 2.4 | +1.6 |
+| Frightened or Taunted once | 2.2 | +1.4 |
+| Slowed twice | 2.2 | +1.4 |
+| Harried or Vulnerable twice | 2 | +1.2 |
+| Push 2 meters | 1.8 | +1.0 |
+| Crippled once | 1.5 | +0.7 |
+| Slowed once | 1.1 | +0.3 |
+| Harried or Vulnerable once | 1 | +0.2 |
+
+**Swapping Bleeding for something else**, equal Value at table toughness
+against THE TABEL's weights:
+
+- One stack on its own (1.8) ≈ Harried or Vulnerable twice (2), Slowed
+  twice (2.2), Frightened or Taunted once (2.2), Push 2 meters (1.8), or
+  Crippled once (1.5, a little under). Furious Swipes' "Bleeding or Slowed
+  once" leans toward Bleeding at the table (1.8 against 1.1); "or Slowed
+  twice" would be even.
+- Each further stack in the same application (0.8) is worth less than one
+  stack of any of those.
+- A stack on every hit or Parry is about one first stack's worth per
+  trigger, so the same swaps hold per trigger.
+- THE TABEL's debuff weights are model-based (Pencil) and haven't been
+  measured in the sim the way Bleeding has. If they share Bleeding's "the
+  enemy dies first" problem, these swaps favor the debuffs. Measuring them
+  the same way would put everything on one footing.
+
+**Sketches**, per hit the ability rides on, at table toughness (self
+payoffs count a spent stack's cost only when the target lives; target
+payoffs only count when it lives):
+
+- **Barbarian**: "If it hits, you may spend up to 2 of the target's
+  Bleeding, and gain Protected once for each." 3.2 per hit with only her
+  own Furious Rage feeding it, 4.2 in a Bleeding party.
+- **Striker** (Duelist home): spend up to 3 of the target's Bleeding ahead
+  of the party's attacks, and it's Harried twice for each. 1.6 per hit in
+  a Bleeding party, 0.2 with one applier.
+- **Sorcerer**: Reign of Blood ×2 (spend up to 4 + [Clubs], 1 Health each):
+  4.8 per hit in a Bleeding party, 0.4 with one applier. The sim had it
+  just under Destructive ×2 with two appliers (3.20 against 3.17 rounds,
+  2026-10-16).
+- **Demon School**: Fawn Left to the Wolves adds +1 damage per stack the
+  target has without spending any; spending them instead removes the
+  double dip.
+- **As a Cost**: a technique whose cost is "spend 3 of a creature's
+  Bleeding" can only be used on a target with 3 or more: about half the
+  hits in a Bleeding party, about 1% with one applier. Its effect needs
+  pricing at its Target plus about 2.4 (three stacks at 0.8).
+
+Spend abilities only pay in parties that put Bleeding on in quantity, or on
+the applier's own attacks: the uncommon, Bleeding-character shape the
+designer expected.
