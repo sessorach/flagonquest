@@ -82,6 +82,10 @@ things off in order.
   special-effect meal (Power Snack, Hearty Meal, and the like) they eat
   in a day, closing a stacking gap the once/day Food Target formula
   assumed but never actually enforced. Commit `29ff816`.
+- **`## Costs and Commitment`** — new paragraph defining "spend" as plain
+  cost wording (what you spend is paid and gone, spent Bleeding causes no
+  Health loss, "for each" counts only what you actually spend), with a
+  Beornhard example. Commit `47261bc`.
 - **`# Adventuring`** — intro sentence's stale "combat/exploration/
   social all share turns and AP" claim fixed to correctly scope turns/AP
   to combat only. Commit `6eb02a5`.
@@ -123,11 +127,6 @@ things off in order.
 - **`## Examples`** (Creating Items) — rewritten alongside the
   Materials/Time changes; also touched during the Quick Start Guide add.
   Commits `e2156ca`, `413f9b3`.
-
-- **`## Costs and Commitment`** — new paragraph defining "spend" as plain
-  cost wording (what you spend is paid and gone, spent Bleeding causes no
-  Health loss, "for each" counts only what you actually spend), with a
-  Beornhard example. Commit `47261bc`.
 
 ## glossary.md
 
