@@ -42,6 +42,7 @@ use (2026-10-19); x1 is the sim as built.
     python3 effect_check.py -n 500 -m 1.75   # fights per mix, one setting
     python3 effect_check.py --csv out.csv    # also every cell, for digging"""
 import argparse
+import ast
 import csv
 import math
 import os
@@ -49,7 +50,7 @@ import statistics as st
 import sys
 from multiprocessing import Pool
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import combat_sim as cs, sample_enemies as se, party
+import combat_sim as cs, sample_enemies as se, party, tunables as T
 
 NAMES = ["Hilde", "Browndog", "Carrick", "Sable"]
 PARTIES = {"A": NAMES, "AV": NAMES}
@@ -101,6 +102,9 @@ def variants():
             ("goodluck 2, first attack", "goodluck", "Test:goodluck:2:first"),
             ("goodluck 1, every turn", "goodluck", "Test:goodluck:1:turn")]
     out += [("Health +2", "stat", {"health": 2}),
+            # Health is Deep Health in the sim (Shallow is a flat 5); THE
+            # TABEL prices a point of Shallow at 5 and Deep at 4.
+            ("Shallow Health +1", "stat", {"health": 1, "shallow_max": 1}),
             ("Damage +1", "stat", {"damage": 1}),
             ("Accuracy +1", "stat", {"skill_total": 1}),
             ("Parry/Dodge +1", "stat", {"parry": 1, "dodge": 1}),
@@ -242,7 +246,8 @@ def tabel_estimate(eff, label, spec, pf, cpf):
     nothing. The stat tests use the carrier's own counts from the base
     fights (attacks made, attacks and hits taken)."""
     if eff == "stat":
-        return {"Health +2": 8.0, "Damage +1": 2 * cpf["c_attacks"], "Accuracy +1": cpf["c_attacks"],
+        return {"Health +2": 8.0, "Shallow Health +1": 5.0, "Damage +1": 2 * cpf["c_attacks"],
+                "Accuracy +1": cpf["c_attacks"],
                 "Parry/Dodge +1": cpf["c_received_pd"], "Physical Resist +1": 4 * cpf["c_hits"],
                 "Speed +1": 2.54, "Autoswing": 5.5, "Damage +1, first hit": 4 * pf["c_dmg_once"]}.get(label)
     n, mode = int(spec.split(":")[2]), spec.split(":")[3]
@@ -382,12 +387,17 @@ if __name__ == "__main__":
     ap.add_argument("-n", type=int, default=1000, help="fights per mix")
     ap.add_argument("-m", type=float, action="append", help="enemy Health multiplier(s); default 1.75 and 1")
     ap.add_argument("-e", action="append", help="only these effects (crippled, ..., stat, vulnerable)")
+    ap.add_argument("-t", action="append", help="only tests whose name contains this")
+    ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE (repeatable)")
     ap.add_argument("--csv", help="write every cell here")
     a = ap.parse_args()
+    for kv in a.s:
+        k, v = kv.split("=", 1)
+        setattr(T, k, ast.literal_eval(v))  # the Pool's workers fork after this
     mults = a.m or [1.75, 1.0]
-    want = lambda eff: not a.e or eff in a.e
-    vlist = [v for v in variants() if want(v[1])]
-    vuln = [v for v in VULN if want(v[1])]
+    want = lambda v: (not a.e or v[1] in a.e) and (not a.t or any(t in v[0] for t in a.t))
+    vlist = [v for v in variants() if want(v)]
+    vuln = [v for v in VULN if want(v)]
     cells = []
     for mult in mults:
         for pname, vl in (("A", vlist), ("AV", vuln)):

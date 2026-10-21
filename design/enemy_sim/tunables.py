@@ -510,3 +510,11 @@ PROTECTED_DECAYS = True
 # Gambled on - spell attacks can't." The sim let War Magic Gamble until
 # 2026-10-09; off reproduces that.
 NO_SPELL_GAMBLES = True
+
+# ---- The effect check (2026-10-21, effect_check.py) ----
+# Whether the party's threat rating (tactics.enemy_threat) takes an
+# enemy's Crippled stacks off its hit chance, so a Crippled enemy gets
+# left for later. THE TABEL's Crippled weight assumes that ("a creature
+# Crippled hard enough stops being a threat and gets left alive on
+# purpose"); off is how the party has always picked targets.
+THREAT_READS_CRIPPLED = False

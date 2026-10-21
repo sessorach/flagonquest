@@ -243,6 +243,8 @@ def enemy_threat(e, allies):
         opp, dtype = b.get('opp_def', opp), b.get('dmg_type', dtype)
     if not allies or not dmg:
         return 0.0
+    if T.THREAT_READS_CRIPPLED:
+        acc -= e.get('crippled', 0)
     defense = sum(_party_defense(p, opp) for p in allies) / len(allies)
     resist = sum(p['physres'] if dtype == 'Physical' else p['elemres'] for p in allies) / len(allies)
     p_hit = sum(1 for f in range(1, 14) if acc + f >= defense) / 13
