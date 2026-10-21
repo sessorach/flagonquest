@@ -10747,3 +10747,120 @@ every time and the GM's Assassins break ties by seat order, both of which
 push these numbers around; a table that spreads its attacks would get
 more out of debuffs on enemies. Push and Speed have no terrain or
 objectives to work with.
+
+## Control against dangerous enemies (2026-10-21, later)
+
+Per the designer: the check above surprised them, so test enemies more
+dangerous than the party, with a big threat that makes control worth
+using, and see how far apart the average use and the silver-bullet use
+of each effect are.
+
+**Stagger fix first.** Each creature has its own place in the turn
+order, and a Stagger moves one creature down past whoever is next,
+enemies included, so it pays when it puts an enemy that hasn't acted
+yet behind a PC who hasn't either (20% of places, in the check above).
+The sim also left the dead in the order and counted them as places
+(35% of places). `tunables.SHIFT_SKIPS_DEAD` (on) counts only the
+living. No sample character uses turn order, so ordinary fights don't
+change; Stagger on every hit goes from 2.37 to about 3.1.
+
+**The fights**, against the Level 1 Party A at the encounters' built
+Health (at ×1.75 these are near-certain losses):
+
+| Set | What | Party wins | Rounds |
+|---|---|---|---|
+| Level 1 mixes (the check above) | standard, enemy Health ×1.75 | 89% | 4.9 |
+| Level 2 mixes | up a level | 18-82% (55% overall) | 5.4 |
+| Chief | each Level 1 mix at 1.5 times the slots, led by a 2-slot Brute Chief (the Brute at 2 slots: 28 Health, two swings of 7) | 87% | 4.7 |
+| Ogre | the same with the Chief hitting 3 harder (10 a swing) | 71% | 5.1 |
+
+Each effect runs two ways, on each PC in turn: riding the carrier's
+hits as before, and **aimed**: at the start of the carrier's turn, on
+the biggest threat (the 2-slot boss while it's up, otherwise the most
+dangerous enemy), no roll. Aimed is the most a player could get: the
+control always lands, on the enemy that matters. 500 fights per mix.
+
+Per fight, average over the four carriers, (share of THE TABEL):
+
+| Effect | Level 1 mixes | Level 2 | Chief | Ogre |
+|---|---|---|---|---|
+| Crippled 1, on a hit | 0.34 (24%) | 0.37 (29%) | 0.52 (36%) | 0.94 (67%) |
+| Crippled 4, on a hit | 2.00 (14%) | 1.64 (13%) | 2.20 (15%) | 4.63 (33%) |
+| Crippled 1, aimed | 1.33 (89%) | 2.01 (137%) | 1.69 (113%) | 3.25 (218%) |
+| Crippled 4, aimed | 8.03 (54%) | 12.1 (82%) | 13.0 (87%) | 26.2 (176%) |
+| Crippled 1 aimed every turn | 3.31 (58%) | 4.12 (78%) | 4.92 (91%) | 8.71 (163%) |
+| Slowed 4, on a hit | 1.70 (16%) | 1.18 (13%) | 0.90 (9%) | 1.68 (16%) |
+| Slowed 4, aimed | 9.71 (88%) | 6.68 (62%) | 13.0 (119%) | 24.4 (223%) |
+| Bad Luck 1, on a hit | 0.79 (38%) | 0.20 (11%) | 0.61 (29%) | 1.47 (71%) |
+| Bad Luck 1, aimed | 3.25 (148%) | 2.26 (105%) | 3.20 (146%) | 7.54 (345%) |
+| Bad Luck 1 aimed every turn | 5.44 (65%) | 3.88 (50%) | 7.69 (97%) | 16.0 (203%) |
+| Taunted 1, on Browndog's hits | 0.40 (19%) | −0.04 | −0.12 | 0.42 (21%) |
+| Taunted 1, Browndog aimed | 3.78 (172%) | 5.28 (247%) | 3.38 (155%) | 6.42 (296%) |
+| Taunted 4, Browndog aimed | 4.22 (48%) | 6.21 (73%) | 5.59 (64%) | 9.97 (115%) |
+| Frightened 1, aimed | 1.25 (57%) | 2.52 (117%) | 1.07 (49%) | 2.68 (122%) |
+| Frightened 1 aimed every turn, Hilde | 5.46 (69%) | 8.04 (123%) | 3.58 (48%) | 9.02 (119%) |
+| Harried 1 aimed every turn | 3.76 (104%) | 6.51 (199%) | 1.82 (52%) | 3.64 (106%) |
+| Bleeding 4, aimed | 4.17 (38%) | 6.59 (61%) | 3.17 (29%) | 6.53 (60%) |
+| Stagger 1, on every hit | 3.09 (95%) | 5.23 (249%) | 3.82 (125%) | 6.31 (212%) |
+| Stagger 1 aimed every turn | 3.89 (77%) | 9.66 (209%) | 5.56 (116%) | 9.27 (194%) |
+| +1 Parry and Dodge (anchor) | 2.17 (93%) | 2.70 (124%) | 3.00 (117%) | 4.52 (162%) |
+| Autoswing (anchor) | 4.80 (87%) | 6.42 (117%) | 4.09 (74%) | 6.47 (118%) |
+
+**The spread is wide.** Four stacks of Crippled are worth 2.0 riding a
+hit in an ordinary fight and 26 aimed at the Ogre, thirteen times as
+much; one stack of Bad Luck 0.8 against 7.5, nine times. Two things do
+it, about equally:
+
+- **Aiming.** On a hit, a debuff goes on whatever the carrier hits,
+  which is usually something about to die. Aimed at the biggest threat
+  in the same ordinary fights, Crippled 4 goes from 2.0 to 8.0, Slowed 4
+  from 1.7 to 9.7, Bad Luck 1 from 0.8 to 3.3.
+- **A threat that lives and hits hard.** The Ogre lives long enough to
+  carry the stacks (four of Crippled get 6.7-7.6 stack-turns against
+  4.3-4.8 in the ordinary fights, and THE TABEL's 10), and every attack
+  point taken off it is worth more: +1 Parry and Dodge is worth twice as
+  much in the Ogre fights.
+
+**THE TABEL sits between the two.** Its curves read about right for
+control aimed at a boss in a dangerous fight (Crippled 4: 87% against
+the Chief, 176% against the Ogre) and about three to seven times too
+high for a rider on hits in an ordinary fight. Being able to choose the target
+is most of the difference.
+
+- **Taunted** is the plainest case: on whatever Browndog hits it's worth
+  nothing, and aimed at the boss it's worth 3.4-6.4 for one stack, over
+  THE TABEL's 2.2. Extra stacks still add less than the first. Aimed
+  from anyone but the tank it can lose (Chief: −2.1 a fight on average
+  for one every turn), since it pulls the boss onto them.
+- **Frightened** aimed at the boss protects its carrier: worth most on
+  Hilde, whom the enemies focus (up to 9 a fight against the Ogre).
+- **Harried** aimed only helps if the party is hitting that enemy that
+  round; the party saves the Chief and Ogre for later (they have the
+  lowest threat per Health), so it's weaker there than against the Level
+  2 mixes.
+- **Bleeding** aimed at a boss is worth three to six times what it is on
+  a hit, but mostly 30-60% of THE TABEL's current curve (95% at best, one
+  stack against the Level 2 mixes): still the weakest of the lot for its
+  price, since even a boss is often dying when the late ticks come.
+- **Stagger** holds up everywhere once the dead stop counting, and is
+  worth 1.2-2.5 times THE TABEL's 1.35 a place against dangerous
+  enemies.
+
+**What it means for pricing.** A single weight per effect can't fit
+both cases; delivery decides most of it. A suggestion, pending the
+designer:
+
+- **Riders that land on whatever you hit** (most weapon and item
+  riders): the low numbers from the check above (Crippled about 0.5 a
+  stack, Bad Luck 0.8, Taunted and Frightened next to nothing).
+- **Control you aim** (a Hex, Challenge, a technique that targets a
+  creature you choose, or a rider the player can save for the big one):
+  about THE TABEL's current curves. Aimed control measures 54-148% of
+  THE TABEL in the ordinary fights and 87-146% against the Chief.
+- **The encounter's share.** Against an Ogre-like threat aimed control
+  is worth about twice THE TABEL. That belongs to how often a GM builds
+  that fight (Rate of Use), not to the effect's base price.
+
+Caveats as above: one party at one Level, the sim's party focus-fires
+the hurt enemy, and the Ogre is a deliberately over-tuned stand-in
+rather than a built enemy.

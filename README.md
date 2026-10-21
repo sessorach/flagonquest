@@ -15,10 +15,11 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-10-21 — Every buff and debuff, measured
 
-Fixed how the simulator scores fights when it prices things (it was reading Styles and effects 2-6 times too high), then measured every buff and debuff against THE TABEL. Debuffs on enemies come in well under their prices, mostly because the enemy you just hit rarely lives long enough to feel them, so new weights are proposed for a look before anything changes.
+Fixed how the simulator scores fights when it prices things (it was reading Styles and effects 2-6 times too high), then measured every buff and debuff against THE TABEL, in ordinary fights and against enemies tougher than the party. Control riding whatever you hit is worth a fraction of its price, the same control aimed at a big threat is worth about its price or well over it, and new weights are proposed for a look before anything changes.
 
-- Crippled, Slowed and Bad Luck are worth about a third of their price for one stack and much less for big doses; Taunted only pays when a tank aims it at whoever's threatening the squishy one.
-- On the fixed scoring, Seize the Moment reads like a Level 1 Style again, and the other turn-order Styles come in under their Levels.
+- In ordinary fights, Crippled, Slowed and Bad Luck are worth about a third of their price for one stack and much less for big doses, since the enemy you just hit rarely lives to feel them.
+- Against a 2-slot Brute Chief or a harder-hitting Ogre, the same effects aimed at the boss are worth up to ten or more times as much, and Taunted pays only when the tank aims it.
+- On the fixed scoring, Seize the Moment reads like a Level 1 Style again, and Stagger no longer wastes places on the dead.
 
 ### 2026-10-20 — What "spend" means, and what Bleeding's worth
 

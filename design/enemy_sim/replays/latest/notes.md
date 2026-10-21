@@ -1,18 +1,18 @@
 # Latest replays (2026-10-21)
 
-Buff and debuff check (2026-10-21): new test-only hooks and a scoring fix for the Value scripts; how fights play is unchanged, so these are the same typical fights as before.
+Control against dangerous enemies (2026-10-21, later): Stagger now counts only living creatures as places, and a Chief's Frontline fight (Frontline at 1.5 times the slots, led by a 2-slot Brute Chief) joins the replays.
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
-- This fight (seed 9): party won in 3 rounds, 85% party HP left
-- Matchup average over 1000 fights: 96.8% wins, 3.5 rounds, 73% HP left on a win
+- This fight (seed 1): party won in 4 rounds, 90% party HP left
+- Matchup average over 1000 fights: 96.1% wins, 3.6 rounds, 71% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
 - Enemies: Level 1 Shield Wall (Hedge Knight, Hedge Knight, Marsh Archer, Marsh Archer)
 - This fight (seed 1): party won in 3 rounds, 90% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.8 rounds, 86% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.9 rounds, 86% HP left on a win
 
 ## partyT_L1_vs_L1_warband.html
 - Party: Browndog, Hanforth, Sable, Beornhard
@@ -39,3 +39,9 @@ Buff and debuff check (2026-10-21): new test-only hooks and a scoring fix for th
 - This fight (seed 1): party won in 4 rounds, 78% party HP left
 - Matchup average over 1000 fights: 98.9% wins, 3.9 rounds, 82% HP left on a win
 - Picked from fights with pc_bleed_taken above 0
+
+## partyA_L1_vs_chief_frontline.html
+- Party: Hilde, Browndog, Carrick, Sable
+- Enemies: Level 1 Chief's Frontline (Brute Chief, Brute, Brute, Grave Caller, Grave Caller)
+- This fight (seed 1): party won in 4 rounds, 75% party HP left
+- Matchup average over 1000 fights: 82.9% wins, 4.4 rounds, 60% HP left on a win
