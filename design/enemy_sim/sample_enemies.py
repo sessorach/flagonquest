@@ -253,6 +253,11 @@ ENCOUNTERS[2]["Lone Elite"] = ["Brute Boss (L2)"]
 ENCOUNTERS[2]["Boss and Guards"] = ["Brute Boss (L2)", "Brute (L2)", "Brute (L2)"]
 BOSS_MIXES = ("Solo Boss", "Boss and Guards")
 
+# Dangerous fights (2026-10-21, effect_check.py's --set chief): a Level 1
+# mix at 1.5 times the slots, with a 2-slot Brute Chief leading it. Here
+# for the replays; the effect check builds all four itself.
+ENCOUNTERS[1]["Chief's Frontline"] = ["Brute Chief"] + ENCOUNTERS[1]["Frontline"]
+
 
 def make_level_encounter(level, n_enemies=4):
     """What combat_sim.run_fight builds by default when no explicit

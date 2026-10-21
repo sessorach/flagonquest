@@ -49,6 +49,9 @@ MATCHUPS = [
     # Warband's Skulking Footpads, who Poison for 2 Bleeding a hit.
     ("bleed_party_L1_vs_L1_warband", ["Hilde (Bleed)", "Felix (Bleed)", "Jackal (Bleed)", "Beornhard (Bleed)"], 1,
      "Warband", "pc_bleed_taken"),
+    # A dangerous fight (2026-10-21): Frontline at 1.5 times the slots,
+    # led by a 2-slot Brute Chief, the kind of fight control is for.
+    ("partyA_L1_vs_chief_frontline", ["Hilde", "Browndog", "Carrick", "Sable"], 1, "Chief's Frontline"),
 ]
 
 
