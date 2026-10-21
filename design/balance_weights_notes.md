@@ -10691,7 +10691,7 @@ last columns sit close together. At table toughness in points:
 
 None of these Levels are changed.
 
-### What's notably off
+### The biggest misses
 
 1. **Every multi-stack curve for a debuff on an enemy** (Crippled,
    Slowed, Vulnerable, Bad Luck, Taunted, Frightened): THE TABEL's
