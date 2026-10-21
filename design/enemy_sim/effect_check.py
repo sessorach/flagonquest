@@ -61,6 +61,34 @@ import combat_sim as cs, sample_enemies as se, party, tunables as T
 
 NAMES = ["Hilde", "Browndog", "Carrick", "Sable"]
 PARTIES = {"A": NAMES, "AV": NAMES}
+
+# Encounter sets (--set), each a list of (mix name, enemies); an enemy is a
+# sample_enemies.csv name or (name, {"dmg": +N}). "standard" is the four
+# Level 1 mixes. The other three are the 2026-10-21 dangerous fights, per
+# the designer (enemies a bit more dangerous than the party, and a big
+# threat that makes control pay): the Level 2 mixes, and each standard mix
+# at 1.5 times the slots with a 2-slot Brute Chief added, or an Ogre (the
+# Chief hitting 3 harder: 10 a swing, two swings a turn).
+OGRE = ("Brute Chief", {"dmg": 3})
+SETS = {
+    "standard": [(m, se.ENCOUNTERS[1][m]) for m in se.CURRENT_MIXES],
+    "level2": [(m, se.ENCOUNTERS[2][m]) for m in se.CURRENT_MIXES],
+    "chief": [(m, ["Brute Chief"] + se.ENCOUNTERS[1][m]) for m in se.CURRENT_MIXES],
+    "ogre": [(m, [OGRE] + se.ENCOUNTERS[1][m]) for m in se.CURRENT_MIXES],
+}
+MIXES = list(SETS["standard"])
+
+
+def build_mix(enemies, mult):
+    names = [x if isinstance(x, str) else x[0] for x in enemies]
+    en = se.build_encounter(names)
+    for e, x in zip(en, enemies):
+        if not isinstance(x, str):
+            for prof in (e, e.get("backup")):
+                if prof and prof.get("attack_damage"):
+                    prof["attack_damage"] += x[1].get("dmg", 0)
+        e["health"] = e["max_health"] = math.ceil(e["health"] * mult)
+    return en
 HEALTH_VALUE = 4
 CHUNK = 250
 
@@ -123,11 +151,37 @@ def variants():
     return out
 
 
+def danger_variants():
+    """--variants danger: the control effects ridden on hits the usual way,
+    and aimed at the boss (combat_sim._aim_target) at the start of the
+    carrier's turn with no roll - the most a player could get out of
+    them - plus a few anchors."""
+    out = []
+    for eff in ("crippled", "slowed", "badluck", "fright", "taunt", "harried", "bleeding"):
+        out += [(f"{eff} 1, first hit", eff, f"Test:{eff}:1:first"),
+                (f"{eff} 4, first hit", eff, f"Test:{eff}:4:first"),
+                (f"{eff} 1, every hit", eff, f"Test:{eff}:1:hit"),
+                (f"{eff} 1 on the boss, first turn", "aim_" + eff, f"Test:aim_{eff}:1:first"),
+                (f"{eff} 4 on the boss, first turn", "aim_" + eff, f"Test:aim_{eff}:4:first"),
+                (f"{eff} 1 on the boss, every turn", "aim_" + eff, f"Test:aim_{eff}:1:turn")]
+    out += [("stagger 1, every hit", "stagger", "Test:stagger:1:hit"),
+            ("stagger 2 on the boss, first turn", "aim_stagger", "Test:aim_stagger:2:first"),
+            ("stagger 1 on the boss, every turn", "aim_stagger", "Test:aim_stagger:1:turn"),
+            ("tauntguard 1, every turn", "tauntguard", "Test:tauntguard:1:turn"),
+            ("protected 1, first turn", "protected", "Test:protected:1:first"),
+            ("protected 1, every turn", "protected", "Test:protected:1:turn"),
+            ("Health +2", "stat", {"health": 2}),
+            ("Parry/Dodge +1", "stat", {"parry": 1, "dodge": 1}),
+            ("Autoswing", "stat", {"bonus_attack_control": True})]
+    return out
+
+
 VULN = [(f"vulnerable {n}, first hit", "vulnerable", f"Test:vulnerable:{n}:first") for n in (1, 2, 4)] + \
        [("vulnerable 1, every hit", "vulnerable", "Test:vulnerable:1:hit")]
 
 _LAST = [None]
 PCT = [False]
+SET_NAME = ["standard"]
 
 
 def make(pname, carrier, spec, health_all):
@@ -171,14 +225,11 @@ def job(args):
     cell, mi, k0, k1 = args
     pname, carrier, label, mult, spec, health_all = cell
     cs.make_party = make(pname, carrier, spec, health_all)
-    mix = se.CURRENT_MIXES[mi]
+    mix = MIXES[mi][1]
     scores, counts = [], dict.fromkeys(COUNT_KEYS + ("c_attacks", "c_received", "c_received_pd", "c_hits",
                                                      "c_dmg_once", "received", "losses"), 0.0)
     for k in range(k0, k1):
-        en = se.build_encounter(se.ENCOUNTERS[1][mix])
-        for e in en:
-            e["health"] = e["max_health"] = math.ceil(e["health"] * mult)
-        r = cs.run_fight(1, 1, movement=True, enemies=en, seed=100_000 * mi + k)
+        r = cs.run_fight(1, 1, movement=True, enemies=build_mix(mix, mult), seed=100_000 * mi + k)
         won = r["winner"] == "party"
         if PCT[0]:
             scores.append(100 * r["party_hp_pct"] if won else 0.0)
@@ -200,7 +251,7 @@ def job(args):
 
 
 def run(cells, n):
-    jobs = [(cell, mi, k, min(n, k + CHUNK)) for cell in cells for mi in range(len(se.CURRENT_MIXES))
+    jobs = [(cell, mi, k, min(n, k + CHUNK)) for cell in cells for mi in range(len(MIXES))
             for k in range(0, n, CHUNK)]
     out = {}
     with Pool() as pool:
@@ -212,7 +263,7 @@ def run(cells, n):
     for cell in cells:
         key = cell[:4]
         by_mix, counts_by_mix = [], []
-        for mi in range(len(se.CURRENT_MIXES)):
+        for mi in range(len(MIXES)):
             s, c = [], {}
             for k in range(0, n, CHUNK):
                 sc, ct = out[(key, mi, k)]
@@ -234,7 +285,7 @@ def per_fight(res, key, mixes=None):
 def value(res, base_key, ladder_key, key, mixes=None):
     """Value and its standard error against the paired base, on the ladder.
     `mixes` restricts it to some mixes (indexes), with their own ladder."""
-    mixes = range(len(se.CURRENT_MIXES)) if mixes is None else mixes
+    mixes = range(len(MIXES)) if mixes is None else mixes
     pick = lambda k: [x for mi in mixes for x in res[k]["by_mix"][mi]]
     base, ladder, test = pick(base_key), pick(ladder_key), pick(key)
     per_pc = (st.mean(ladder) - st.mean(base)) / 2 / 4
@@ -242,9 +293,15 @@ def value(res, base_key, ladder_key, key, mixes=None):
     return st.mean(d) / per_pc * HEALTH_VALUE, st.stdev(d) / math.sqrt(len(d)) / per_pc * HEALTH_VALUE, per_pc
 
 
+def base_effect(eff):
+    """An aimed test ("aim_crippled") prices and counts like its plain one."""
+    return eff[4:] if eff.startswith("aim_") else eff
+
+
 def applications(eff, spec, pf):
     """Applications a fight: the stacks the test put on, over the stacks
     each application adds (Good Luck counts when it's used)."""
+    eff = base_effect(eff)
     if eff == "stat":
         return None
     n = int(spec.split(":")[2])
@@ -257,6 +314,7 @@ def tabel_estimate(eff, label, spec, pf, cpf):
     delivers an effect separately, so a fight where it never lands counts
     nothing. The stat tests use the carrier's own counts from the base
     fights (attacks made, attacks and hits taken)."""
+    eff = base_effect(eff)
     if eff == "stat":
         return {"Health +2": 8.0, "Shallow Health +1": 5.0, "Damage +1": 2 * cpf["c_attacks"],
                 "Accuracy +1": cpf["c_attacks"],
@@ -279,6 +337,7 @@ def exposure_price(eff, spec, pf, bpf):
     loss stopped or landed (4), Necrotic resolved (3 a Protected stack
     cancelled, 4 a point of healing blocked) and Good Luck used. None
     where there's no clean count."""
+    eff = base_effect(eff)
     d = lambda k: pf[k] - bpf[k]
     if eff == "crippled":
         return d("crip_points")
@@ -308,6 +367,7 @@ def exposure_price(eff, spec, pf, bpf):
 
 def mechanism(eff, pf, bpf):
     """A few counts behind each number, a fight."""
+    eff = base_effect(eff)
     d = lambda k: pf[k] - bpf[k]
     att = f"enemy attacks {d('received'):+.2f}, carrier attacked {d('c_received'):+.2f}"
     if eff == "crippled":
@@ -348,7 +408,7 @@ def report(res, pname, mult, vlist, carriers, rows_out, own_mix=False):
     ladder_key = (pname, None, "ladder", mult)
     fmt = lambda x: "-" if x is None else f"{x:.2f}"
     if own_mix:
-        vlist = [v for v in vlist if v[1] in OWN_MIX]
+        vlist = [v for v in vlist if v[1] in OWN_MIX and SET_NAME[0] == "standard"]
         if not vlist:
             return
         print(f"\n== Party {pname}, enemy Health x{mult}, Ward and Necrotic in the one mix where they come up "
@@ -357,13 +417,13 @@ def report(res, pname, mult, vlist, carriers, rows_out, own_mix=False):
         bpf = per_fight(res, base_key)
         bscores = [x for s in res[base_key]["by_mix"] for x in s]
         _, _, per_pc = value(res, base_key, ladder_key, base_key)
-        print(f"\n== Party {pname}, enemy Health x{mult}: base {st.mean(bscores):.1f} expected Health left, "
+        print(f"\n== Party {pname}, {SET_NAME[0]} fights, enemy Health x{mult}: base {st.mean(bscores):.1f} expected Health left, "
               f"{bpf['rounds']:.2f} rounds, losses {100 * bpf['losses']:.1f}%; one PC's +1 Health = {per_pc:.3f}")
     print("| Test | Applied a fight | THE TABEL | TABEL rates x sim counts | Measured | Measured / TABEL | "
           + " | ".join(carriers) + " |")
     print("|---|---|---|---|---|---|" + "---|" * len(carriers))
     for label, eff, spec in vlist:
-        mixes = [se.CURRENT_MIXES.index(OWN_MIX[eff])] if own_mix else None
+        mixes = [[m for m, _ in MIXES].index(OWN_MIX[eff])] if own_mix else None
         vals, ses, ests, exps, apps = [], [], [], [], []
         for c in carriers:
             key = (pname, c, label, mult)
@@ -401,17 +461,21 @@ if __name__ == "__main__":
     ap.add_argument("-e", action="append", help="only these effects (crippled, ..., stat, vulnerable)")
     ap.add_argument("-t", action="append", help="only tests whose name contains this")
     ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE (repeatable)")
+    ap.add_argument("--set", default="standard", choices=sorted(SETS), help="which encounters")
+    ap.add_argument("--variants", default="all", choices=("all", "danger"), help="which tests")
     ap.add_argument("--csv", help="write every cell here")
     ap.add_argument("--pct", action="store_true", help="score Health left as a share of max Health (before 2026-10-21)")
     a = ap.parse_args()
     PCT[0] = a.pct
+    MIXES[:] = SETS[a.set]  # the Pool's workers fork after this
+    SET_NAME[0] = a.set
     for kv in a.s:
         k, v = kv.split("=", 1)
         setattr(T, k, ast.literal_eval(v))  # the Pool's workers fork after this
     mults = a.m or [1.75, 1.0]
     want = lambda v: (not a.e or v[1] in a.e) and (not a.t or any(t in v[0] for t in a.t))
-    vlist = [v for v in variants() if want(v)]
-    vuln = [v for v in VULN if want(v)]
+    vlist = [v for v in (danger_variants() if a.variants == "danger" else variants()) if want(v)]
+    vuln = [v for v in VULN if want(v)] if a.variants == "all" else []
     cells = []
     for mult in mults:
         for pname, vl in (("A", vlist), ("AV", vuln)):

@@ -518,3 +518,10 @@ NO_SPELL_GAMBLES = True
 # Crippled hard enough stops being a threat and gets left alive on
 # purpose"); off is how the party has always picked targets.
 THREAT_READS_CRIPPLED = False
+
+# Whether Stagger / Outflank count only living creatures as places
+# (glossary.md: "its position in turn order moves down that many
+# places"). The dead stay in run_fight's order list, and until
+# 2026-10-21 they counted, so about a third of a Stagger's places went
+# past the dead. Off reproduces that.
+SHIFT_SKIPS_DEAD = True

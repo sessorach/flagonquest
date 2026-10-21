@@ -605,9 +605,24 @@ def _shift_in_order(order, unit, places):
     for the rest of the fight same as any other initiative result.
     Returns the actual signed distance moved (0 if `unit` wasn't found,
     or already at the clamped bound), for `_take_pc_turn`'s own log
-    annotation."""
+    annotation. With tunables.SHIFT_SKIPS_DEAD, only living creatures
+    count as places (the dead stay in the list but no longer hold a spot
+    in the order), and it returns living places passed."""
     for i, (side, u) in enumerate(order):
         if u is unit:
+            if T.SHIFT_SKIPS_DEAD and places:
+                step, left, j = (1 if places > 0 else -1), abs(places), i
+                while left and 0 <= j + step < len(order):
+                    j += step
+                    if order[j][1]['health'] > 0:
+                        left -= 1
+                entry = order.pop(i)
+                # Delaying lands just after the last creature passed (it
+                # moves up one when the entry comes out); advancing lands
+                # just before it. Either way that's index j.
+                order.insert(j, entry)
+                passed = abs(places) - left
+                return passed if places > 0 else -passed
             entry = order.pop(i)
             new_i = max(0, min(i + places, len(order)))
             order.insert(new_i, entry)
@@ -729,7 +744,9 @@ def _test_effects(pc):
     'first' at the start of its first): protected, hasted, ward_fire,
     ward_shadow, goodluck (Good Luck n times on its next attack), and
     tauntguard (Taunts the enemy closest to the party's most fragile
-    member, Challenge's pick, with no roll)."""
+    member, Challenge's pick, with no roll). "aim_<debuff>" (and
+    aim_stagger) puts one of the on-hit debuffs on _aim_target at the start
+    of the PC's turn instead, no roll: control aimed at the big threat."""
     tests = pc.get('_tests')
     if tests is None:
         tests = []
@@ -739,6 +756,50 @@ def _test_effects(pc):
                 tests.append((eff, int(n), mode))
         pc['_tests'] = tests
     return tests
+
+
+# The effect check's test effects by when they land (see _test_effects).
+TEST_ON_HIT = ('crippled', 'vulnerable', 'slowed', 'bleeding', 'necrotic', 'harried', 'badluck', 'taunt', 'fright')
+TEST_ON_SELF = ('protected', 'hasted', 'ward_fire', 'ward_shadow', 'goodluck', 'tauntguard')
+
+
+def _test_rider(pc, target, eff, n):
+    """Puts one of the effect check's debuffs (TEST_ON_HIT) on `target`."""
+    if eff in ('crippled', 'vulnerable', 'slowed', 'bleeding', 'necrotic'):
+        _gain(target, eff, n)
+    elif eff == 'harried':
+        target['harried'] = target.get('harried', 0) + n
+    elif eff == 'badluck':
+        target['bad_luck_next'] = target.get('bad_luck_next', 0) + n
+    elif eff == 'taunt':
+        # glossary.md, Taunted: a new Taunter replaces the old one's stacks,
+        # and it ends Frightened of this PC.
+        if target.get('taunted_by') is not pc:
+            target['taunted'] = 0
+        if target.get('taunted', 0) <= 0 and _skips(target):
+            target['skip_taunted'] = True
+        target['taunted'] = target.get('taunted', 0) + n
+        target['taunted_by'] = pc
+        if target.get('frightened_by') is pc:
+            target['frightened'], target['frightened_by'] = 0, None
+    elif eff == 'fright':
+        # glossary.md, Frightened: it ends Taunted by this PC.
+        if target.get('frightened_by') is not pc:
+            target['frightened'] = 0
+        _gain(target, 'frightened', n)
+        target['frightened_by'] = pc
+        if target.get('taunted_by') is pc:
+            target['taunted'], target['taunted_by'] = 0, None
+
+
+def _aim_target(enemies, pcs):
+    """The enemy a player aims control at: the biggest (most Encounter
+    Slots), then the most dangerous to the party (tactics.enemy_threat)."""
+    living = [e for e in enemies if e['health'] > 0]
+    allies = [p for p in pcs if p['health'] > 0]
+    if not living or not allies:
+        return None
+    return max(living, key=lambda e: (e.get('slots', 1), tactics.enemy_threat(e, allies)))
 
 
 def _decay(unit, key):
@@ -1301,8 +1362,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         if T.TEST_DURABLE in ('pcs', 'both') and pc.get('protected', 0) < 4:
             _gain(pc, 'protected', 1)
         for eff, n, mode in _test_effects(pc):
-            if (eff not in ('protected', 'hasted', 'ward_fire', 'ward_shadow', 'goodluck', 'tauntguard')
-                    or mode not in ('turn', 'first')):
+            if (eff not in TEST_ON_SELF and not eff.startswith('aim_')) or mode not in ('turn', 'first'):
                 continue
             if mode == 'first':
                 if pc.get('_tfirst_' + eff):
@@ -1313,6 +1373,17 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 _gain(pc, 'ward', n)
             elif eff == 'goodluck':
                 pc['gl_next'] = pc.get('gl_next', 0) + n
+            elif eff.startswith('aim_'):
+                # The same thing, aimed: at the start of the PC's turn, on the
+                # enemy a player would aim control at (_aim_target), no roll.
+                tg = _aim_target(enemies, pcs)
+                if tg is None:
+                    continue
+                if eff == 'aim_stagger':
+                    if order is not None:
+                        _shift_in_order(order, tg, n)
+                else:
+                    _test_rider(pc, tg, eff[4:], n)
             elif eff == 'tauntguard':
                 # Challenge's pick (the enemy closest to the party's most
                 # fragile member), with no roll and no AP.
@@ -1711,39 +1782,13 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # The effect check's test riders (_test_effects). Push and
                 # stagger wait until after the damage.
                 for eff, n, mode in _test_effects(pc):
-                    if not hit or eff in ('push', 'pushmay', 'stagger') or mode not in ('hit', 'first'):
+                    if not hit or eff not in TEST_ON_HIT or mode not in ('hit', 'first'):
                         continue
                     if mode == 'first':
                         if pc.get('_tfirst_' + eff):
                             continue
                         pc['_tfirst_' + eff] = True
-                    if eff in ('crippled', 'vulnerable', 'slowed', 'bleeding', 'necrotic'):
-                        _gain(target, eff, n)
-                    elif eff == 'harried':
-                        target['harried'] = target.get('harried', 0) + n
-                    elif eff == 'badluck':
-                        target['bad_luck_next'] = target.get('bad_luck_next', 0) + n
-                    elif eff == 'taunt':
-                        # glossary.md, Taunted: a new Taunter replaces the old
-                        # one's stacks, and it ends Frightened of this PC.
-                        if target.get('taunted_by') is not pc:
-                            target['taunted'] = 0
-                        if target.get('taunted', 0) <= 0 and _skips(target):
-                            target['skip_taunted'] = True
-                        target['taunted'] = target.get('taunted', 0) + n
-                        target['taunted_by'] = pc
-                        if target.get('frightened_by') is pc:
-                            target['frightened'], target['frightened_by'] = 0, None
-                    elif eff == 'fright':
-                        # glossary.md, Frightened: it ends Taunted by this PC.
-                        if target.get('frightened_by') is not pc:
-                            target['frightened'] = 0
-                        _gain(target, 'frightened', n)
-                        target['frightened_by'] = pc
-                        if target.get('taunted_by') is pc:
-                            target['taunted'], target['taunted_by'] = 0, None
-                    else:
-                        continue
+                    _test_rider(pc, target, eff, n)
                     pc['test_applied'] = pc.get('test_applied', 0) + n
                 # Lawman's Hand (T128): "Once per round, when one of your
                 # damaging attacks hits, you may Slow the target once."
