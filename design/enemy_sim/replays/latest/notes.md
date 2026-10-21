@@ -1,12 +1,12 @@
-# Latest replays (2026-10-19)
+# Latest replays (2026-10-21)
 
-Bleeding's new rule is the default: half its stacks (rounded up) come off each time it decays, Protected stops its ticks, and a PC's leftover Bleeding ticks out after the fight
+Buff and debuff check (2026-10-21): new test-only hooks and a scoring fix for the Value scripts; how fights play is unchanged, so these are the same typical fights as before.
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 9): party won in 3 rounds, 85% party HP left
-- Matchup average over 1000 fights: 97.7% wins, 3.5 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 96.8% wins, 3.5 rounds, 73% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
