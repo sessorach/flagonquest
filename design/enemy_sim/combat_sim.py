@@ -727,7 +727,9 @@ def _test_effects(pc):
     (Bad Luck on the target's next flip), push and pushmay (meters, away
     from the PC; pushmay only when it helps) and stagger (places). On the PC itself ('turn' at the start of each of its turns,
     'first' at the start of its first): protected, hasted, ward_fire,
-    ward_shadow, and goodluck (Good Luck n times on its next attack)."""
+    ward_shadow, goodluck (Good Luck n times on its next attack), and
+    tauntguard (Taunts the enemy closest to the party's most fragile
+    member, Challenge's pick, with no roll)."""
     tests = pc.get('_tests')
     if tests is None:
         tests = []
@@ -1299,7 +1301,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         if T.TEST_DURABLE in ('pcs', 'both') and pc.get('protected', 0) < 4:
             _gain(pc, 'protected', 1)
         for eff, n, mode in _test_effects(pc):
-            if eff not in ('protected', 'hasted', 'ward_fire', 'ward_shadow', 'goodluck') or mode not in ('turn', 'first'):
+            if (eff not in ('protected', 'hasted', 'ward_fire', 'ward_shadow', 'goodluck', 'tauntguard')
+                    or mode not in ('turn', 'first')):
                 continue
             if mode == 'first':
                 if pc.get('_tfirst_' + eff):
@@ -1310,6 +1313,18 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 _gain(pc, 'ward', n)
             elif eff == 'goodluck':
                 pc['gl_next'] = pc.get('gl_next', 0) + n
+            elif eff == 'tauntguard':
+                # Challenge's pick (the enemy closest to the party's most
+                # fragile member), with no roll and no AP.
+                pool = [e for e in enemies if e['health'] > 0 and e.get('taunted_by') is not pc]
+                others = [p for p in pcs if p['health'] > 0 and p is not pc]
+                if not pool or not others or 'pos' not in pc:
+                    continue
+                ward = min(others, key=lambda p: (p['max_health'], p['health']))
+                tg = min(pool, key=lambda e: _distance(e['pos'], ward['pos']))
+                tg['taunted'], tg['taunted_by'] = n, pc
+                if tg.get('frightened_by') is pc:
+                    tg['frightened'], tg['frightened_by'] = 0, None
             else:
                 _gain(pc, eff, n)
             pc['test_applied'] = pc.get('test_applied', 0) + n

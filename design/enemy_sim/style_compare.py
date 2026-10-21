@@ -13,7 +13,7 @@ they win" and "what did it cost".
 Unpaired runs were too noisy for this (2026-10-01: one PC's +2 Health
 read as worse than +0), so every variant now uses the same seeds.
 
-Usage: python3 style_compare.py GROUP [trials]
+Usage: python3 style_compare.py GROUP [trials] [--pct]
 GROUP: hilde, carrick, browndog, beornhard (or all)"""
 import sys, os, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +21,18 @@ import combat_sim as cs, party, sample_enemies as se
 
 HEALTH_VALUE = 4
 STYLE_BUDGET_PER_LEVEL = 3.6
+# Score Health left as a share of max Health, the way this did before
+# 2026-10-21 (--pct). A share shrinks its own yardstick: the Health ladder
+# adds max Health, so the ladder read low and every Style read 2-6 times
+# too high (effect_check.py's docstring).
+PCT = [False]
+
+
+def score_fight(r, pcs):
+    """The party's Health left in points, 0 on a loss."""
+    if r["winner"] != "party":
+        return 0.0
+    return 100 * r["party_hp_pct"] if PCT[0] else float(sum(max(0, p["health"]) for p in pcs))
 L2 = lambda xs: [x + " (L2)" for x in xs]
 PARTY_A = L2(["Hilde", "Browndog", "Carrick", "Sable"])
 PARTY_D = L2(["Browndog", "Hanforth", "Felix", "Beornhard"])
@@ -59,7 +71,12 @@ def make_party(names, carrier, passives_add=(), health=0):
 
 
 def run(names, carrier, passives_add, health, trials):
-    cs.make_party = lambda t, good_luck=0: make_party(names, carrier, passives_add, health)
+    last = [None]
+
+    def mk(t, good_luck=0):
+        last[0] = make_party(names, carrier, passives_add, health)
+        return last[0]
+    cs.make_party = mk
     scores = []
     # Paired seeds: every variant replays the same fights (same starting
     # gap, initiative, card flips until the Style first changes
@@ -70,7 +87,7 @@ def run(names, carrier, passives_add, health, trials):
         for k in range(trials):
             r = cs.run_fight(1, 2, movement=True, enemies=se.build_encounter(se.ENCOUNTERS[2][mix]),
                              seed=100_000 * mi + k)
-            scores.append(100 * r["party_hp_pct"] if r["winner"] == "party" else 0.0)
+            scores.append(score_fight(r, last[0]))
     return st.mean(scores)
 
 
@@ -100,6 +117,8 @@ def price(group, trials):
 
 
 if __name__ == "__main__":
+    PCT[0] = "--pct" in sys.argv
+    sys.argv = [a for a in sys.argv if a != "--pct"]
     group = sys.argv[1] if len(sys.argv) > 1 else "all"
     trials = int(sys.argv[2]) if len(sys.argv) > 2 else 500
     for g in (GROUPS if group == "all" else [group]):

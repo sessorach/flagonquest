@@ -14,6 +14,13 @@ ladder (+2 Health on every PC) turns the difference into Value: one PC's
 (THE TABEL's Health). Every PC in the party takes a turn as the carrier,
 since what an effect is worth depends a lot on who has it.
 
+The score is Health left in points, not as a share of max Health. A
+share shrinks its own yardstick: the ladder adds max Health, so +8 max
+Health moved the share far less than saving 8 Health did, and every
+other test read 2.7 times too high at table toughness (6 times as
+built). --pct scores it the old way, to reproduce numbers from before
+2026-10-21.
+
 The tests are combat_sim's "Test:<effect>:<n>:<mode>" passives (see
 _test_effects): n stacks on the carrier's first hit each fight, or a
 stack on every hit; buffs on the carrier at the start of its first turn,
@@ -67,6 +74,7 @@ TABEL = {
     "hasted": {1: 0.55, 2: 1.65, 4: 5.5},
     "harried": {1: 1, 2: 2, 4: 4},
     "taunt": {1: 2.2, 2: 4.4, 4: 8.8},
+    "tauntguard": {1: 2.2, 2: 4.4, 4: 8.8},
     "fright": {1: 2.2, 2: 4.4, 4: 8.8},
     "badluck": {1: 2.2, 2: 4.4, 4: 8.8},
     "push": {n: 0.89375 * n for n in (1, 2, 3, 4)},
@@ -81,7 +89,7 @@ TABEL = {
 }
 ON_HIT = ("crippled", "slowed", "harried", "taunt", "fright", "badluck", "push", "pushmay", "stagger", "necrotic",
           "bleeding")
-ON_SELF = ("protected", "hasted", "ward_fire", "ward_shadow")
+ON_SELF = ("protected", "hasted", "ward_fire", "ward_shadow", "tauntguard")
 
 
 def variants():
@@ -119,6 +127,7 @@ VULN = [(f"vulnerable {n}, first hit", "vulnerable", f"Test:vulnerable:{n}:first
        [("vulnerable 1, every hit", "vulnerable", "Test:vulnerable:1:hit")]
 
 _LAST = [None]
+PCT = [False]
 
 
 def make(pname, carrier, spec, health_all):
@@ -171,7 +180,10 @@ def job(args):
             e["health"] = e["max_health"] = math.ceil(e["health"] * mult)
         r = cs.run_fight(1, 1, movement=True, enemies=en, seed=100_000 * mi + k)
         won = r["winner"] == "party"
-        scores.append(100 * r["party_hp_pct"] if won else 0.0)
+        if PCT[0]:
+            scores.append(100 * r["party_hp_pct"] if won else 0.0)
+        else:
+            scores.append(float(sum(max(0, p["health"]) for p in _LAST[0])) if won else 0.0)
         counts["losses"] += not won
         for key in COUNT_KEYS:
             counts[key] += float(r.get(key, 0))
@@ -276,8 +288,8 @@ def exposure_price(eff, spec, pf, bpf):
         return d("harried_points")
     if eff == "badluck":
         return 2.2 * pf["badluck_used"]
-    if eff in ("taunt", "fright"):
-        return 2.2 * d("st_taunted" if eff == "taunt" else "st_frightened")
+    if eff in ("taunt", "tauntguard", "fright"):
+        return 2.2 * d("st_frightened" if eff == "fright" else "st_taunted")
     if eff == "slowed":
         return 1.1 * d("st_slowed")
     if eff == "protected":
@@ -306,7 +318,7 @@ def mechanism(eff, pf, bpf):
         return f"{d('harried_points'):.2f} party attack points"
     if eff == "slowed":
         return f"{d('st_slowed'):.2f} stack-turns; {att}"
-    if eff == "taunt":
+    if eff in ("taunt", "tauntguard"):
         return f"{d('st_taunted'):+.2f} Taunted stack-turns; {att}"
     if eff == "fright":
         return f"{d('st_frightened'):.2f} stack-turns, {pf['fright_badluck']:.2f} Bad Luck flips; {att}"
@@ -390,7 +402,9 @@ if __name__ == "__main__":
     ap.add_argument("-t", action="append", help="only tests whose name contains this")
     ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE (repeatable)")
     ap.add_argument("--csv", help="write every cell here")
+    ap.add_argument("--pct", action="store_true", help="score Health left as a share of max Health (before 2026-10-21)")
     a = ap.parse_args()
+    PCT[0] = a.pct
     for kv in a.s:
         k, v = kv.split("=", 1)
         setattr(T, k, ast.literal_eval(v))  # the Pool's workers fork after this
