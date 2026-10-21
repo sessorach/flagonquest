@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-21 — Every buff and debuff, measured
+
+Fixed how the simulator scores fights when it prices things (it was reading Styles and effects 2-6 times too high), then measured every buff and debuff against THE TABEL. Debuffs on enemies come in well under their prices, mostly because the enemy you just hit rarely lives long enough to feel them, so new weights are proposed for a look before anything changes.
+
+- Crippled, Slowed and Bad Luck are worth about a third of their price for one stack and much less for big doses; Taunted only pays when a tank aims it at whoever's threatening the squishy one.
+- On the fixed scoring, Seize the Moment reads like a Level 1 Style again, and the other turn-order Styles come in under their Levels.
+
 ### 2026-10-20 — What "spend" means, and what Bleeding's worth
 
 The rulebook's section on costs now says what spending something means (it's paid and does nothing else), so an ability can say "spend up to 3 of the target's Bleeding" without spelling out the rest. Bleeding got priced under its new rule, about 1.8 Value for the first stack in a dose and 0.8 for each one after, along with what spending it on other effects would be worth.

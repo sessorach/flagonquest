@@ -55,6 +55,20 @@ so `calibrate.py -s NAME=False` shows what one change does on its own.
 `play_styles.py` holds the Diver / Skirmisher / Back-liner turn plans
 (sample_pcs.csv's Play Style column).
 
+## Pricing effects and Styles: `effect_check.py`
+
+`effect_check.py` puts one buff, debuff or stat change on one PC of
+Party A at a time (combat_sim's "Test:" passives) and reads its worth off
+a Health ladder, next to THE TABEL's price and THE TABEL's rates times
+what the sim counted it doing. `turnorder_single.py` and
+`style_compare.py` do the same for Styles. All three score a fight by
+the party's Health left in points, losses counting 0. Until 2026-10-21
+they scored it as a share of max Health, which made the ladder shrink
+its own yardstick and read every other test 2-6 times too high; `--pct`
+reproduces those numbers. `-m 1.75` (`--mult 1.75` for the other two)
+runs at the table's toughness. Results are in
+`design/balance_weights_notes.md`, "Every buff and debuff in the sim".
+
 ## Files
 
 - **`tunables.py`** — every number that's still subject to revision:

@@ -10424,3 +10424,326 @@ payoffs only count when it lives):
 Spend abilities only pay in parties that put Bleeding on in quantity, or on
 the applier's own attacks: the uncommon, Bleeding-character shape the
 designer expected.
+
+## Every buff and debuff in the sim (2026-10-21)
+
+Per the designer: check all the buffs and debuffs in the sim, since some
+were never measured and the rest haven't been in a while, and flag
+anything well outside THE TABEL's estimates, so the table can be updated
+before pricing ways to spend Bleeding. `enemy_sim/effect_check.py` does
+the measuring. Nothing in `balance_weights.csv` has changed yet.
+
+### A scoring fix first
+
+The Value scripts (`style_compare.py`, `turnorder_single.py` and the new
+`effect_check.py`) scored a fight by the share of max Health the party
+had left, losses counting 0, and priced a test off a ladder that adds 2
+max Health to every PC. Adding max Health also grows the share's
+denominator, so the ladder moved the score far less than saving the same
+Health would have, and any test that doesn't add max Health read too
+high, by about (max Health + the ladder's 8) / (Health lost). That's 2.7
+times at table toughness in this check, 6 times at the encounters' built
+Health, and about 3.4 times in the turn-order runs.
+
+Scored in points of Health left instead, +1 max Health and a point of
+Health loss prevented both come out at 4, which is THE TABEL's own
+premise (Protected = Health × how often it gets used). All three scripts
+score that way now; `--pct` brings back the old score to reproduce older
+numbers. Everything below is in points. The turn-order weight and the
+Styles priced on 10-01 and 10-06 came from the old score, so they're
+re-measured at the end of this section.
+
+Scripts that put the ladder on the enemies (`archetype_compare.py`,
+`ability_compare.py`, the encounter builder's picks) aren't affected,
+since the PCs' max Health never changes there. Neither are the Bleeding
+prices from 10-16 to 10-20, which compared Health landed.
+
+### How the check works
+
+Level 1 Party A (Hilde, Browndog, Carrick, Sable) against the four
+Level 1 mixes, 1,000 fights per mix with paired seeds. Each test sits on
+one PC at a time and every PC takes a turn; the tables give the average
+over the four, with the spread by PC where it matters. Enemy Health
+×1.75: the toughness where a hit enemy acts again about half the time,
+as at the designer's table, and where fights run 4.9 rounds against THE
+TABEL's 5. At the encounters' built Health (2.8 rounds) almost every
+offensive effect reads close to nothing, since enemies die before
+anything past the hit matters; those numbers are in the script's output.
+
+The tests: n stacks of a debuff on the carrier's first hit each fight
+(n = 1, 2, 4), or one stack on every hit; a buff on the carrier at the
+start of its first turn, or every turn; plain stat changes. Value comes
+off the Health ladder (+2 Health on every PC; one PC's +1 Health is
+worth 4). Each test gets three numbers, a fight's worth each:
+
+- **THE TABEL**: its value for one application, times how often the test
+  went off.
+- **Rates × counts**: THE TABEL's own unit rates times what the sim
+  counted the effect doing: enemy attack points Crippled took away, party
+  attack points Harried or Vulnerable added, Bad Luck flips taken,
+  stack-turns spent Slowed, Health stopped or landed. It's what THE TABEL
+  would say if it knew how much use the effect gets.
+- **Measured.**
+
+When measured matches rates × counts, THE TABEL's rate for one use is
+right and only its guess at how much use the effect gets is off.
+
+### The anchors
+
+| One PC gets | THE TABEL | Measured | Share |
+|---|---|---|---|
+| +2 Health | 8 | 7.1 | 89% |
+| +1 Shallow Health | 5 | 3.6 | 71% |
+| +1 Parry and Dodge | 2.3 (1 per attack faced) | 2.2 | 96% |
+| +1 Physical Resist | 7.1 (4 per hit taken) | 5.5 | 77% |
+| One extra attack (Autoswing) | 5.5 | 4.8 | 88% |
+| +1 Accuracy | 5.5 (1 per attack) | 2.5 | 45% |
+| +1 Damage | 11.0 (2 per attack) | 5.4 | 49% |
+| +1 Damage on the first hit | 3.8 (4 when it hits) | 1.1 | 29% |
+| +1 Speed | 2.54 | 0.86 | 34% |
+
+Health, Defense and an extra attack land within about 12% of THE TABEL.
+A point of extra damage or Accuracy lands at about half. That's the
+mismatch noted on 10-07: the sample characters hit 65% of the time for
+4.2 after Resist, against the value economy's baseline of about 50% for
+2.25, so a hit enemy is much closer to dead than THE TABEL assumes and
+an extra point is a smaller share of the kill. An extra attack escapes
+it because it brings all that damage at once. Every offense-side effect
+below carries this factor of about two. It comes from the baseline, not
+from the effects, so the proposals below keep THE TABEL's offense rates
+and fix only how much use an effect gets.
+
+Shallow Health is worth the same as Deep per point here (3.6 against
+3.5), not THE TABEL's 5 against 4. Speed is worth something only to a
+melee PC closing in (Hilde 2.3, Sable nothing).
+
+**Who carries it matters a lot.** At this toughness Hilde takes 3.4 hits
+a fight, Browndog 2.4, Carrick 0.8 and Sable 0.6: the Assassins go for
+whoever has the least Health, ties to the first PC in line, and Hilde is
+first and in front. +1 Physical Resist is worth 12.1 on Hilde and
+nothing on Sable, and most defensive numbers below spread the same way.
+THE TABEL's ×1.5 for a tank-coded item is on the low side for the PC the
+enemies actually focus.
+
+### Debuffs on enemies
+
+| Debuff (THE TABEL's 1 / 2 / 4 stacks) | 1 stack | 2 | 4 | 1 on every hit |
+|---|---|---|---|---|
+| Crippled (1.5 / 4.5 / 15) | 0.45 (31%) | 0.92 (21%) | 2.14 (15%) | 1.58 (30%) |
+| Slowed (1.1 / 3.3 / 11) | 0.34 (32%) | 0.62 (20%) | 1.62 (15%) | 0.49 (13%) |
+| Bad Luck on its next flip (2.2 each) | 0.85 (40%) | 1.18 (28%) | 1.29 (15%) | 2.16 (28%) |
+| Harried (1 each) | 0.49 (51%) | 0.84 (44%) | 1.54 (40%) | 1.35 (39%) |
+| Vulnerable, party attacking Vital (1 / 3 / 10) | 0.51 (53%) | 1.18 (41%) | 2.20 (23%) | 1.37 (39%) |
+| Taunted, on whatever the carrier hits (2.2 each) | 0.11 (5%) | 0.11 (3%) | 0.08 (1%) | −0.20 |
+| Taunted like Challenge, on Browndog | 2.60 (118%) | 2.84 (65%) | 2.93 (33%) | 3.87 (every turn) |
+| Frightened (2.2 each) | 0.16 (7%) | 0.12 (3%) | 0.09 (1%) | 0.52 (6%) |
+| Necrotic, in Warband (3 each when it resolves) | 0.15 (5%) | 0.34 (6%) | 0.37 (3%) | 0.51 (4%) |
+| Bleeding (THE TABEL now: 4 / 8 / 11) | 0.44 (11%) | 0.56 (7%) | 1.15 (11%) | 1.26 (9%) |
+
+**An enemy you've just hit rarely gets another turn.** The party piles
+onto whoever it just hurt, so a debuff riding a hit is often gone with
+its target before that enemy's turn comes. A stack of Crippled gets 0.30
+enemy turns on average (0.18 from Hilde's hits, 0.46 from Sable's), and
+four stacks get 1.47 stack-turns. THE TABEL's windows assume the target
+lives through them: one stack-turn for one stack, ten for four in
+Crippled's 4-turn window.
+
+**THE TABEL's rate per use holds up.** Against rates × counts, Crippled
+measures 88-104%, Slowed's doses 81-106% and Bad Luck 98-142%. For these
+three, what's off is the window, not the rate.
+
+**Leaving a Crippled enemy alone doesn't pay.** THE TABEL's Crippled
+curve assumes the party leaves a well-Crippled enemy for later. With the
+party's threat rating counting Crippled (`tunables.THREAT_READS_CRIPPLED`)
+the Crippled enemy does get more turns (four stacks: 2.1 stack-turns
+against 1.5), but leaving a hurt enemy standing costs more than the
+penalty saves, and every dose is worth less: 0.37, 0.75 and 1.72 for
+one, two and four stacks.
+
+- **Crippled**: about 0.5 a stack and close to linear.
+- **Slowed**: about 0.35-0.4 a stack in a dose. A stack on every hit is
+  worth only 0.14 each, since most land on an enemy that's already
+  Slowed or already next to its target. Nearly all of it is the
+  archer's: Sable gets 0.96 for one stack and 4.5 for four, Hilde
+  nothing. Slowed keeps enemies off a back-liner and does little once
+  they're in melee.
+- **Bad Luck on the target's next flip**: the target makes another
+  attack only about a quarter of the time, so most of it is never used.
+  The uses that happen are worth THE TABEL's 2.2 or a bit more.
+- **Harried** (extra stacks on top of the attack's own): a stack adds 0.69
+  party attack points, close to THE TABEL's "one follow-up attack". Each
+  point is worth 0.6-0.75 rather than 1, the offense factor from the
+  anchors.
+- **Vulnerable**: measured in Party A with every weapon attack against
+  Vital, since as written nobody in it attacks Vital, Mental or Vigilant
+  with a weapon and there Vulnerable does nothing. A stack adds 0.8 party
+  attack points for one, about 1.1 each in a bigger dose, which lasts
+  longer and catches more attacks.
+- **Taunted** mostly moves attacks around. On whatever the carrier hits
+  it's worth about nothing, since that enemy is usually busy with the
+  carrier already. Aimed the way Challenge aims (at the enemy closest to
+  the party's most fragile member, at the start of the carrier's turn,
+  no roll) it's worth 2.6 on Browndog, about one stack's worth on THE
+  TABEL, and extra stacks add almost nothing (2.6, 2.8 and 2.9 for one,
+  two and four). On anyone else it hurts: Sable loses 2.4 for one stack
+  and 7.1 for one every turn, since it pulls enemies onto the archer.
+- **Frightened**: a Frightened enemy goes after someone else, so it's
+  worth something to the PC the enemies focus (Hilde 0.8) and costs
+  something on the tank (Browndog −0.3 to −0.5), whose attackers move to
+  softer targets. Extra stacks add nothing.
+- **Necrotic**: at Level 1 only Warband has anything for it to cancel (the
+  Warpriest's Protected). Even there one stack resolves about one time in
+  five, and a cancelled stack is worth about 0.8, one more point landing
+  on an enemy that's often about to die anyway. In the other three mixes
+  it does nothing.
+- **Bleeding**: as a share of a +1 on the same first hit (1.13 here),
+  priced at THE TABEL's 4 for that point the way the 10-19 numbers were:
+  1.6, 2.0 and 4.1 for one, two and four stacks, close to the proposal of
+  1.8 for the first stack and 0.8 for each after (1.8, 2.6, 4.2).
+
+### Push and Stagger
+
+| (THE TABEL) | 1 | 2 | 4 | 1 on every hit |
+|---|---|---|---|---|
+| Push every time, meters (0.89 a meter) | −0.19 | −0.24 | −0.02 | 0.03; 3 meters −0.46 |
+| Push when it helps, meters | −0.03 | 0.14 | 0.31 | 0.45; 3 meters 0.71 |
+| Stagger, places (1.35 a place) | 0.58 | 1.14 | 1.79 | 2.37 |
+
+The doses ride the first hit that leaves the target standing (0.65 a
+fight). Push follows the rulebook: up to N meters away from the pusher.
+
+- **Pushed every time it can be**, Push is worth about nothing. Pushing an
+  enemy away makes the party's own melee walk after it, and an archer
+  pushing away from herself sends enemies away from the whole party.
+- **Pushed when it helps** (only a melee enemy that still has to act this
+  round, or one that's on a ranged PC; about a third of hits): about 0.6
+  for a 1-meter push and 0.9 for 3 meters.
+- **Stagger**: about 0.9 a place at Level 1 (0.7-1.0 across the tests;
+  2.37 a fight for 2.4 places on every hit). At Level 2 it's about 1.8
+  (below).
+
+### Buffs on the party
+
+| Buff (THE TABEL) | 1 stack, first turn | 2 | 4 | 1 every turn |
+|---|---|---|---|---|
+| Protected (3 each) | 1.72 (57%) | 3.84 (64%) | 7.95 (66%) | 4.92 (42%) |
+| Protected on Hilde only | 3.91 | 8.41 | 15.36 | 9.54 |
+| Ward (Fire), in Horde (2.7 / 5.3 / 9.9) | 4.81 (177%) | 10.26 (195%) | 18.28 (185%) | 14.61 (152%) |
+| Ward (Shadow), in Frontline (2.4 / 4.6 / 8.9) | 3.88 (165%) | 7.23 (156%) | 12.66 (142%) | 10.48 (137%) |
+| Hasted (0.55 / 1.65 / 5.5) | 0.80 (145%) | 1.49 (90%) | 1.58 (29%) | 0.99 (48%) |
+| Good Luck on the first attack (2.4; twice 3.6) | 2.12 (90%) | 3.93, twice (110%) | | 5.43 (64%) |
+
+- **Protected**: a point it absorbs is worth about 5.5, a bit over
+  Health's 4. What's off is how often it absorbs anything. THE TABEL
+  assumes 75-84%; on a random PC it's 31-38%, since a stack decays at the
+  end of the carrier's next turn whether or not anything hit. On the PC
+  the enemies focus it's 64-71%, and a stack on Hilde is worth 3.9,
+  right around THE TABEL's 3. On Carrick or Sable it's 0.35-0.64.
+- **Ward**, in a fight where its damage type comes up, beats THE TABEL by
+  about half again to double: it stops more than assumed and each point
+  stopped early is worth a bit more. Over all four mixes it's about 40%
+  of THE TABEL, since only one mix in four has each type.
+- **Hasted**: one stack early is worth about as much as +1 Speed all fight
+  (0.86). Speed matters while the party closes in, and almost only to the
+  melee PC (Hilde 2.15 for one stack, 4.0 for two). THE TABEL's curve is
+  backward: early stacks are worth more than it says and stacks past two
+  add nothing.
+- **Good Luck**: right at THE TABEL on the first attack, about two thirds
+  of it (1.5 a use) on later attacks.
+
+### Turn order and the Styles, re-measured
+
+The 10-06 turn-order Styles (`turnorder_single.py`, one carrier in Party
+A) and the 10-01 Styles (`style_compare.py`, four copies of the carrier)
+were priced with the old score at the encounters' built Health. On
+today's sim, Level 2, against each Style's current Level:
+
+| Style (Level, Target) | Old score, built Health | Points, built Health | Points, ×1.75 |
+|---|---|---|---|
+| Staggering Blows (test, L1, 3.6) | 5.5 (152%) | 1.6 (44%) | 4.9 (137%) |
+| Seize the Moment (L2, 7.2) | 5.8 (81%) | 1.7 (24%) | 3.3 (45%) |
+| Lie in Wait (L1, 3.6) | −1.0 | −0.3 | 2.5 (70%) |
+| Command the Tempo (L3, 10.8) | 11.6 (107%) | 3.4 (31%) | 9.2 (85%) |
+| Ambush Predator (L3, 10.8) | 10.0 (93%) | 2.9 (27%) | 7.3 (67%) |
+| Indomitable Phalanx (L2, 7.2) | 4.1 (57%) | 1.4 (19%) | 2.7 (37%) |
+| Inexhaustible Guardian (L2, 7.2) | 3.3 (46%) | 1.1 (15%) | 2.6 (36%) |
+| Hand of Chaos (L2, 7.2) | 1.4 (20%) | 0.3 (4%) | 2.2 (31%) |
+| Overchanneling (L2, 7.2) | 3.1 (44%) | 0.4 (5%) | 8.9 (123%) |
+| Furious Rage (L2, 7.2) | 0.6 (8%) | 0.2 (2%) | 0.6 (8%) |
+| Lawman's Hand (L2, 7.2) | 0.1 | 0.0 | 0.0 |
+
+At built Health the old score's inflation roughly made up for fights
+being too short to matter, which is why the turn-order Styles' first and
+last columns sit close together. At table toughness in points:
+
+- **Turn order**: Staggering Blows moves 2.8 places a fight at ×1.75, so
+  about 1.8 a place at Level 2, against 0.9 at Level 1. THE TABEL's 1.35
+  sits between them.
+- **Seize the Moment** reads like a Level 1 again (45% of Level 2, 91% of
+  Level 1). It went to Level 2 on 10-06 off the old score.
+- **Command the Tempo** (85%) and **Ambush Predator** (67%) are under
+  their Level 3 Targets; **Lie in Wait** is at 70% of Level 1.
+- **The four-copy Styles** land at 31-37% (Phalanx, Inexhaustible
+  Guardian, Hand of Chaos), Overchanneling at 123%, Furious Rage at 8%.
+  Four copies of one PC distort these the way 10-06 found for turn order,
+  so read them as rough. Furious Rage is the Bleeding problem again: its
+  stacks land on enemies the party is about to kill.
+
+None of these Levels are changed.
+
+### What's notably off
+
+1. **Every multi-stack curve for a debuff on an enemy** (Crippled,
+   Slowed, Vulnerable, Bad Luck, Taunted, Frightened): THE TABEL's
+   windows assume the enemy lives through them. Four stacks measure 15%
+   of THE TABEL for Crippled and Slowed, 23% for Vulnerable. Single
+   stacks run 31-53%.
+2. **Taunted and Frightened** come in at 1-7%, except a well-aimed Taunt
+   from the tank (about one stack's worth, whatever the stacks).
+3. **Necrotic** has nothing to work on in three of the four Level 1 mixes,
+   and resolves about one stack in five in the fourth.
+4. **Push**, pushed every time, is worth nothing. It holds about its
+   price only when the player picks when to push.
+5. **Hasted** is shaped backward: worth more than THE TABEL early and less
+   in big stacks.
+6. **Protected** is right on the PC the enemies focus and about half that
+   on anyone else. **Ward** is worth more than THE TABEL in a fight with
+   its damage type.
+7. **The 10-06 turn-order Style Levels** came from the old score; Seize the
+   Moment reads like a Level 1 again.
+8. **Offense in general** reads at about half, from the 10-07 baseline
+   mismatch (the sample characters out-damage the value economy's
+   baseline about 2.4 times). That's for the designer: either the
+   baseline moves toward the characters, or the characters toward the
+   baseline. Until then the proposals keep THE TABEL's offense rates.
+
+### Proposed (pending the designer)
+
+Per application, at table toughness, on THE TABEL's own footing (its
+rates per use kept, the window or rate of use from the sim). Nothing in
+`balance_weights.csv` or the CSVs has changed.
+
+| Effect | THE TABEL now | Proposed | Basis |
+|---|---|---|---|
+| Crippled | 1.5 a stack, compounding over 4 turns (1.5 / 4.5 / 15) | 0.5 a stack, flat | measured, matches rates × counts |
+| Slowed | 1.1 a stack, compounding (1.1 / 3.3 / 11) | 0.35-0.4 a stack in a dose; 0.15 a stack from every hit | measured; about three times that on an archer's hits |
+| Vulnerable | 1 a stack, compounding (1 / 3 / 10) | 1 a stack, flat, only where the party attacks Vital, Mental or Vigilant | rates × counts |
+| Harried | 1 a stack | 0.7 a stack | rates × counts |
+| Bad Luck on an enemy's next flip | 2.2 | 0.8 for the first, 0.3 for a second, nothing after | measured; 2.2 stays right for a flip that's sure to happen |
+| Taunted | 2.2 a stack | about 2.5 for a well-aimed Taunt from a tank, whatever the stacks; nothing from anyone else | measured |
+| Frightened | 2.2 a stack | about 0.2 whatever the stacks; up to 0.8 for the PC the enemies focus | measured |
+| Necrotic | 3 when it resolves | keep 3 a resolution, with a low Rate of Use: about one stack in five resolves in a fight with enemy Protected or healing, none otherwise | rates × counts |
+| Bleeding | 4 a stack, tapered | 1.8 for the first stack, 0.8 for each after (the 10-19 proposal) | re-measured: 1.6 / 2.0 / 4.1 |
+| Push | 0.89 a meter | about 0.6 for the first meter and 0.15-0.2 for each after, when the player chooses when | measured |
+| Turn order | 1.35 a place | keep | 0.9 at Level 1, 1.8 at Level 2 |
+| Protected | 3 | keep, for Protected on whoever the enemies are hitting; about 1.5 on anyone else | measured |
+| Ward | Fire 0.72-2.0 + 2 a stack; others 0.36-1.0 + 2 a stack | in a fight with its type, about 4.5 a stack (Fire) and 3.5 (others), Rate of Use for how often that is | measured |
+| Hasted | 0.55 a stack-turn, compounding (0.55 / 1.65 / 5.5) | 0.8 for the first stack, 0.7 for the second, nothing after | measured |
+| Good Luck | 2.4 | keep | 2.1 on the first attack, 1.5 a use later |
+| Speed (permanent) | 2.54 a point | flagged: 0.86 measured (2.3 for a melee PC closing in, nothing for an archer); the sim has no terrain, objectives or retreats, so treat it as a floor | measured |
+
+Caveats: one party at one Level. The sim's party piles onto hurt enemies
+every time and the GM's Assassins break ties by seat order, both of which
+push these numbers around; a table that spreads its attacks would get
+more out of debuffs on enemies. Push and Speed have no terrain or
+objectives to work with.
