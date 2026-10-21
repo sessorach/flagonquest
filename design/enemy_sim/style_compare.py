@@ -13,7 +13,7 @@ they win" and "what did it cost".
 Unpaired runs were too noisy for this (2026-10-01: one PC's +2 Health
 read as worse than +0), so every variant now uses the same seeds.
 
-Usage: python3 style_compare.py GROUP [trials] [--pct]
+Usage: python3 style_compare.py GROUP [trials] [--pct] [--mult X]
 GROUP: hilde, carrick, browndog, beornhard (or all)"""
 import sys, os, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +26,17 @@ STYLE_BUDGET_PER_LEVEL = 3.6
 # adds max Health, so the ladder read low and every Style read 2-6 times
 # too high (effect_check.py's docstring).
 PCT = [False]
+
+
+def take_mult(argv):
+    """--mult X: every enemy's Health times X (tunables.ENEMY_HEALTH_MULT);
+    1.75 is the table's toughness for "a hit enemy acts again" (the
+    Bleeding pricing and effect_check.py use it)."""
+    if "--mult" in argv:
+        i = argv.index("--mult")
+        import tunables
+        tunables.ENEMY_HEALTH_MULT = float(argv[i + 1])
+        del argv[i:i + 2]
 
 
 def score_fight(r, pcs):
@@ -119,6 +130,7 @@ def price(group, trials):
 if __name__ == "__main__":
     PCT[0] = "--pct" in sys.argv
     sys.argv = [a for a in sys.argv if a != "--pct"]
+    take_mult(sys.argv)
     group = sys.argv[1] if len(sys.argv) > 1 else "all"
     trials = int(sys.argv[2]) if len(sys.argv) > 2 else 500
     for g in (GROUPS if group == "all" else [group]):

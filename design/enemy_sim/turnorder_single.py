@@ -7,7 +7,7 @@ the Style sits on one PC of Party A. The Health ladder raises every PC
 together (stable targeting, see style_compare.py), and one PC's share
 of it is a quarter of the slope. Paired seeds, more fights per mix.
 
-Usage: python3 turnorder_single.py [trials per mix] [Style name ...] [--pct]"""
+Usage: python3 turnorder_single.py [trials per mix] [Style name ...] [--pct] [--mult X]"""
 import sys, os, statistics as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, party, sample_enemies as se
@@ -54,6 +54,7 @@ def run(carrier, style, health, trials):
 if __name__ == "__main__":
     style_compare.PCT[0] = "--pct" in sys.argv  # the old score, see style_compare.PCT
     sys.argv = [a for a in sys.argv if a != "--pct"]
+    style_compare.take_mult(sys.argv)
     trials = int(sys.argv[1]) if len(sys.argv) > 1 else 800
     only = set(sys.argv[2:])
     base = run(CARRIERS[0], None, 0, trials)
