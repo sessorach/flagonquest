@@ -252,7 +252,7 @@ def enemy_threat(e, allies):
     # for last rather than walking over to it, which is the point of
     # isolating it. Still above zero, so it gets cleaned up at the end.
     if (STUCK_DISCOUNT < 1 and 'pos' in e and (e.get('attack_range') or 0) <= T.MELEE_RANGE
-            and e['speed'] - e.get('slowed', 0) <= 0
+            and e['speed'] + e.get('hasted', 0) - e.get('slowed', 0) <= 0
             and not any('pos' in p and movement.distance(p['pos'], e['pos']) <= T.MELEE_RANGE for p in allies)):
         threat *= STUCK_DISCOUNT
     return threat
@@ -270,7 +270,7 @@ def _attacks_this_turn(unit, target):
         return T.AP_PER_TURN // T.ATTACK_AP_COST
     reach = unit.get('attack_range') or T.MELEE_RANGE
     gap = max(0, movement.distance(unit['pos'], target['pos']) - reach)
-    speed = max(1, unit['speed'] - unit.get('slowed', 0))
+    speed = max(1, unit['speed'] + unit.get('hasted', 0) - unit.get('slowed', 0))
     moves = -(-gap // speed)
     return max(0, (T.AP_PER_TURN - moves * T.MOVE_AP_COST) // T.ATTACK_AP_COST)
 
@@ -373,9 +373,9 @@ def select_target(unit, targets, movement_on, allies=None):
 # decides how many of these a unit's turn actually gets to spend.
 
 def _speed(unit):
-    """Speed after Slowed (glossary.md: -1 Speed per stack) and Wounded
-    (-2), floored at 0."""
-    return max(0, unit['speed'] - unit.get('slowed', 0) - (2 if pc_wounded(unit) else 0))
+    """Speed after Hasted and Slowed (glossary.md: +1 / -1 Speed per stack)
+    and Wounded (-2), floored at 0."""
+    return max(0, unit['speed'] + unit.get('hasted', 0) - unit.get('slowed', 0) - (2 if pc_wounded(unit) else 0))
 
 
 def move_approach(unit, target, reach):

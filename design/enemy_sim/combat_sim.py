@@ -708,6 +708,35 @@ def _gain(unit, key, n):
     if unit.get(key, 0) <= 0 and not exempt and _skips(unit):
         unit['skip_' + key] = True
     unit[key] = unit.get(key, 0) + n
+    # glossary.md, Necrotic: "At any time if you have stacks of both
+    # Necrotic and Protected, remove 1 stack of each until one effect is
+    # gone." (Only the effect check's test riders give out Necrotic.)
+    if key in ('protected', 'necrotic') and unit.get('necrotic', 0) > 0 and unit.get('protected', 0) > 0:
+        m = min(unit['necrotic'], unit['protected'])
+        unit['necrotic'] -= m
+        unit['protected'] -= m
+        unit['necrotic_cancelled'] = unit.get('necrotic_cancelled', 0) + m
+
+
+def _test_effects(pc):
+    """The effect check's test passives on a PC (2026-10-21), parsed once:
+    "Test:<effect>:<n>:<mode>" -> (effect, n, mode). On the PC's hits
+    ('hit' every hit, 'first' the first hit each fight): crippled,
+    vulnerable, slowed, bleeding, necrotic and harried stacks on the
+    target, taunt and fright (Taunted / Frightened by this PC), badluck
+    (Bad Luck on the target's next flip), push and pushmay (meters, away
+    from the PC; pushmay only when it helps) and stagger (places). On the PC itself ('turn' at the start of each of its turns,
+    'first' at the start of its first): protected, hasted, ward_fire,
+    ward_shadow, and goodluck (Good Luck n times on its next attack)."""
+    tests = pc.get('_tests')
+    if tests is None:
+        tests = []
+        for p in pc.get('passives', ()):
+            if p.startswith('Test:'):
+                _, eff, n, mode = p.split(':')
+                tests.append((eff, int(n), mode))
+        pc['_tests'] = tests
+    return tests
 
 
 def _decay(unit, key):
@@ -1269,6 +1298,21 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         # Test (tunables.TEST_DURABLE): Durable on PCs, as enemies have it.
         if T.TEST_DURABLE in ('pcs', 'both') and pc.get('protected', 0) < 4:
             _gain(pc, 'protected', 1)
+        for eff, n, mode in _test_effects(pc):
+            if eff not in ('protected', 'hasted', 'ward_fire', 'ward_shadow', 'goodluck') or mode not in ('turn', 'first'):
+                continue
+            if mode == 'first':
+                if pc.get('_tfirst_' + eff):
+                    continue
+                pc['_tfirst_' + eff] = True
+            if eff.startswith('ward'):
+                pc['ward_type'] = 'Fire' if eff == 'ward_fire' else 'Shadow'
+                _gain(pc, 'ward', n)
+            elif eff == 'goodluck':
+                pc['gl_next'] = pc.get('gl_next', 0) + n
+            else:
+                _gain(pc, eff, n)
+            pc['test_applied'] = pc.get('test_applied', 0) + n
         if _has_interrupt_tech(pc):
             # Magehunter (T075) / Parting Shot (T076), synthetic test
             # fields, share one real persistent AP pool (`pc['ap_bank']`)
@@ -1537,8 +1581,13 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # Ambush Predator (T194): Good Luck against a creature that
                 # hasn't taken its turn yet this round. Lie in Wait (T193):
                 # Good Luck once per place waited.
+                # The effect check's goodluck test: Good Luck on the next attack.
+                gl = pc.pop('gl_next', 0)
+                if gl:
+                    pc['gl_used'] = pc.get('gl_used', 0) + gl
                 luck_extra = ((1 if 'Ambush Predator' in pcp and target.get('acted_round') != rnd else 0)
-                              + (pc.get('liw_luck', 0) if 'Lie in Wait' in pcp and pc.get('liw_round') == rnd else 0))
+                              + (pc.get('liw_luck', 0) if 'Lie in Wait' in pcp and pc.get('liw_round') == rnd else 0)
+                              + gl)
                 pool = []
                 if T.CARDS:
                     # Real cards: Gamble (with a card behind it if it
@@ -1570,6 +1619,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if pc.get('weapon_uses_left') is not None and not substitute:
                     pc['weapon_uses_left'] -= 1
                 hit = roll >= defense
+                if target.get('vulnerable', 0) > 0 and pc.get('opp_def') in ('Vital', 'Bodily', 'Mental', 'Vigilant'):
+                    pc['vuln_points'] = pc.get('vuln_points', 0) + target['vulnerable']
+                if target.get('harried', 0) > 0 and pc.get('opp_def') in ('Parry/Dodge', 'Dodge'):
+                    pc['harried_points'] = pc.get('harried_points', 0) + target['harried']
                 # Taunting Strike (synthetic - a Guardian taunt-on-hit
                 # the designer wants tanks to carry alongside Challenge,
                 # not a real Technique yet): spent on the first attack at
@@ -1640,6 +1693,43 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # many stacks; ENEMY_TEST_BLEED is the enemies' twin.
                 if T.PC_TEST_BLEED and hit:
                     _gain(target, 'bleeding', T.PC_TEST_BLEED)
+                # The effect check's test riders (_test_effects). Push and
+                # stagger wait until after the damage.
+                for eff, n, mode in _test_effects(pc):
+                    if not hit or eff in ('push', 'pushmay', 'stagger') or mode not in ('hit', 'first'):
+                        continue
+                    if mode == 'first':
+                        if pc.get('_tfirst_' + eff):
+                            continue
+                        pc['_tfirst_' + eff] = True
+                    if eff in ('crippled', 'vulnerable', 'slowed', 'bleeding', 'necrotic'):
+                        _gain(target, eff, n)
+                    elif eff == 'harried':
+                        target['harried'] = target.get('harried', 0) + n
+                    elif eff == 'badluck':
+                        target['bad_luck_next'] = target.get('bad_luck_next', 0) + n
+                    elif eff == 'taunt':
+                        # glossary.md, Taunted: a new Taunter replaces the old
+                        # one's stacks, and it ends Frightened of this PC.
+                        if target.get('taunted_by') is not pc:
+                            target['taunted'] = 0
+                        if target.get('taunted', 0) <= 0 and _skips(target):
+                            target['skip_taunted'] = True
+                        target['taunted'] = target.get('taunted', 0) + n
+                        target['taunted_by'] = pc
+                        if target.get('frightened_by') is pc:
+                            target['frightened'], target['frightened_by'] = 0, None
+                    elif eff == 'fright':
+                        # glossary.md, Frightened: it ends Taunted by this PC.
+                        if target.get('frightened_by') is not pc:
+                            target['frightened'] = 0
+                        _gain(target, 'frightened', n)
+                        target['frightened_by'] = pc
+                        if target.get('taunted_by') is pc:
+                            target['taunted'], target['taunted_by'] = 0, None
+                    else:
+                        continue
+                    pc['test_applied'] = pc.get('test_applied', 0) + n
                 # Lawman's Hand (T128): "Once per round, when one of your
                 # damaging attacks hits, you may Slow the target once."
                 if ('Lawman\'s Hand' in passives and hit and pc['damage'] > 0
@@ -1732,6 +1822,34 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         target['cashed'] = target.get('cashed', 0) + landed
                         taunt_note = f"cashed in {n} Bleeding"
                         _bleed_out(target)
+                    for eff, n, mode in _test_effects(pc):
+                        if eff not in ('push', 'pushmay', 'stagger') or mode not in ('hit', 'first'):
+                            continue
+                        if mode == 'first':
+                            if pc.get('_tfirst_' + eff):
+                                continue
+                            pc['_tfirst_' + eff] = True
+                        if target['health'] <= 0:
+                            continue
+                        # rulebook.md: "you may Push them up to 2 meters away
+                        # from you". 'push' always does; 'pushmay' only pushes
+                        # a melee enemy, and only one that still has to act
+                        # this round (it walks back on its own AP) or that's on
+                        # a ranged PC.
+                        if eff == 'pushmay' and 'pos' in target:
+                            ranged = lambda p: (p.get('attack_range') or 0) > T.MELEE_RANGE
+                            on_ranged = any(p['health'] > 0 and ranged(p) and 'pos' in p
+                                            and _distance(p['pos'], target['pos']) <= T.MELEE_RANGE for p in pcs)
+                            if ((target.get('attack_range') or 0) > T.MELEE_RANGE
+                                    or not (target.get('acted_round') != rnd or on_ranged)):
+                                continue
+                        if eff in ('push', 'pushmay') and 'pos' in target and 'pos' in pc:
+                            target['pos'] = movement.move_away(target['pos'], pc['pos'], n)
+                        elif eff == 'stagger' and order is not None:
+                            _shift_in_order(order, target, n)
+                        else:
+                            continue
+                        pc['test_applied'] = pc.get('test_applied', 0) + n
                     # Half Guard (F011): "If the attack hits, you gain X +
                     # [Spades] stacks of Protected."
                     if maneuver_now and pc['maneuver']['guard']:
@@ -1901,6 +2019,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
     if pc['health'] > 0:
         _decay(pc, 'crippled')
         _decay(pc, 'vulnerable')
+        _decay(pc, 'hasted')
+        if _decay(pc, 'ward') and pc['ward'] == 0:
+            pc['ward_type'] = None
         if _decay(pc, 'bleeding'):
             h0 = pc['health']
             lost = _bleed_loss(pc, 1 + _bleed_extra(pc))
@@ -2092,6 +2213,11 @@ def _enemy_plan(e, enemies, living_pcs, movement_on):
     or visible wounds (tactics.TARGETING). A Taunted enemy goes for its
     Taunter while it can, since anything else would have Bad Luck."""
     kind = e.get('kind', 'attack')
+    # glossary.md, Frightened: Bad Luck on actions targeting whoever
+    # Frightened it, so it picks on anyone else it can (the effect check).
+    fr = e.get('frightened_by') if e.get('frightened', 0) > 0 else None
+    if fr is not None and fr['health'] > 0:
+        living_pcs = [p for p in living_pcs if p is not fr] or living_pcs
     main = dict(action=e['action'], accuracy=e['accuracy'], attack_damage=e['attack_damage'],
                 dmg_type=e.get('dmg_type'), opp_def=e['opp_def'], attack_range=e.get('attack_range', 0))
     taunter = e.get('taunted_by') if e.get('taunted', 0) > 0 else None
@@ -2272,6 +2398,10 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     abilities = e.get('abilities', [])
     if ('Durable' in abilities or T.TEST_DURABLE in ('enemies', 'both')) and e.get('protected', 0) < 4:
         _gain(e, 'protected', 1)
+    # The effect check's exposure count: stacks up as the turn starts.
+    for key in STACK_TURN_KEYS:
+        if e.get(key, 0) > 0:
+            e['st_' + key] = e.get('st_' + key, 0) + e[key]
     living_pcs = [p for p in pcs if p['health'] > 0]
     if not living_pcs:
         return 0
@@ -2311,6 +2441,11 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         actions_made += 1
         if mode == 'heal':
             amount = min(e['effect_stacks'], target['max_health'] - target['health'])
+            blocked = min(amount, target.get('necrotic', 0))
+            if blocked:
+                target['necrotic'] -= blocked
+                amount -= blocked
+                target['necrotic_heal_blocked'] = target.get('necrotic_heal_blocked', 0) + blocked
             target['health'] += amount
             if enemy_log:
                 enemy_log(unit=e['name'], action='heal', target=target['name'], amount=amount,
@@ -2334,11 +2469,22 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         taunter = e.get('taunted_by') if e.get('taunted', 0) > 0 else None
         off_taunt = taunter is not None and taunter['health'] > 0 and taunter is not target
         good = 1 if fighting_style == 'Aimed Shot' else 0
+        bad = 1 if off_taunt else 0
+        fr = e.get('frightened_by') if e.get('frightened', 0) > 0 else None
+        if fr is not None and fr is target:
+            bad += 1
+            e['fright_badluck'] = e.get('fright_badluck', 0) + 1
+        if e.get('bad_luck_next', 0) > 0:
+            e['bad_luck_next'] -= 1
+            bad += 1
+            e['badluck_used'] = e.get('badluck_used', 0) + 1
+        if e.get('crippled', 0) > 0:
+            e['crip_points'] = e.get('crip_points', 0) + e['crippled']
         if T.CARDS:
-            flipped, net = cards.flip_for(e['deck'], good, 1 if off_taunt else 0)
+            flipped, net = cards.flip_for(e['deck'], good, bad)
             card = cards.used_value(flipped, net)
         else:
-            card = resolve_card(good, off_taunt)
+            card = resolve_card(good, bad > 0)
         # Test variant (BLEED_MODE 'on_attack'): exerting itself opens the
         # wound - a stack comes off each time it attacks.
         if T.BLEED_MODE == 'on_attack' and e.get('bleeding', 0) > 0:
@@ -2376,16 +2522,29 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
                 applied.append(f"{e['main_effect']} +{e['effect_stacks']}")
             else:
                 resist = pc_resist_for_enemy_attack(prof, target)
+                ward_on = target.get('ward', 0) > 0 and target.get('ward_type') == prof.get('dmg_type')
+                if ward_on:
+                    resist += 2
                 raw_dmg = prof['attack_damage']
                 if T.CARDS and T.ENEMY_SUIT_EXTRA:
                     # +1 damage per Heart flipped (tunables.ENEMY_SUIT_EXTRA).
                     raw_dmg += sum(1 for c in flipped if cards.suit(c) == cards.HEARTS)
                 dmg = max(0, raw_dmg - resist)
+                if ward_on:
+                    target['ward_resist_saved'] = target.get('ward_resist_saved', 0) + max(0, raw_dmg - resist + 2) - dmg
+                # glossary.md, Ward: "If you would lose Health to that damage
+                # type..., remove up to that many stacks instead."
+                if ward_on and dmg > 0:
+                    soaked = min(dmg, target['ward'])
+                    target['ward'] -= soaked
+                    dmg -= soaked
+                    target['ward_absorbed'] = target.get('ward_absorbed', 0) + soaked
                 # PC-side Protected: each stack absorbs 1 Health loss.
                 if target.get('protected', 0) > 0 and dmg > 0:
                     absorbed = min(dmg, target['protected'])
                     target['protected'] -= absorbed
                     dmg -= absorbed
+                    target['prot_absorbed'] = target.get('prot_absorbed', 0) + absorbed
                 if T.BLEED_WOUND and dmg > 0 and target.get('bleeding', 0) > 0:
                     dmg += T.BLEED_WOUND
                 target['health'] -= dmg
@@ -2428,6 +2587,9 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     # on enemies until 2026-10-09.
     for key in ('crippled', 'slowed', 'vulnerable'):
         _decay(e, key)
+    for key in ('frightened', 'necrotic'):
+        if _decay(e, key) and key == 'frightened' and e['frightened'] == 0:
+            e['frightened_by'] = None
     # Only the rules-as-written mode ticks here; the test variants
     # (tunables.BLEED_MODE) deal the Health loss elsewhere. In 'on_damage'
     # the stack still falls off here, for nothing; 'round_end' does its
@@ -2651,6 +2813,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             if side == 'party':
                 made, dealt = _take_pc_turn(unit, pcs, enemies, rnd, movement, trace, party_log, order)
                 pc_attacks += made
+                unit['attacks_made'] = unit.get('attacks_made', 0) + made
                 pc_damage_dealt += dealt
                 # Seize the Moment (T192): "At the end of each of your turns, you
                 # may Outflank once."
@@ -2680,6 +2843,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                             executes=sum(e.get('bled_out', 0) for e in enemies),
                             pc_executes=sum(p.get('bled_out', 0) for p in pcs),
                             **_bleed_counts(pcs, enemies),
+                            **_test_counts(pcs, enemies),
                             **_calibration_counts(pcs, enemies))
         # Test variant (tunables.BLEED_MODE 'round_end'): enemies' Bleeding
         # ticks once at the end of each round instead of their own turn.
@@ -2694,7 +2858,32 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 party_hp_pct=sum(max(0, p['health']) for p in pcs) / sum(p['max_health'] for p in pcs),
                 pc_attacks=pc_attacks, pc_damage_dealt=pc_damage_dealt,
                 **_bleed_counts(pcs, enemies),
+                **_test_counts(pcs, enemies),
                 **_calibration_counts(pcs, enemies))
+
+
+STACK_TURN_KEYS = ('crippled', 'slowed', 'vulnerable', 'taunted', 'frightened')
+
+
+def _test_counts(pcs, enemies):
+    """The effect check's counts (2026-10-21): test stacks applied, Good
+    Luck used, enemy attack points lost to Crippled, PC attack points
+    gained from Vulnerable and Harried, damage Ward's Resist stopped, Bad Luck flips the badluck rider and
+    Frightened caused, Protected / Ward / Necrotic at work, and stacks of
+    each debuff on enemies as their turns start (st_*)."""
+    return dict(test_applied=sum(p.get('test_applied', 0) for p in pcs),
+                vuln_points=sum(p.get('vuln_points', 0) for p in pcs),
+                harried_points=sum(p.get('harried_points', 0) for p in pcs),
+                ward_resist_saved=sum(p.get('ward_resist_saved', 0) for p in pcs),
+                **{'st_' + k: sum(e.get('st_' + k, 0) for e in enemies) for k in STACK_TURN_KEYS},
+                gl_used=sum(p.get('gl_used', 0) for p in pcs),
+                crip_points=sum(e.get('crip_points', 0) for e in enemies),
+                badluck_used=sum(e.get('badluck_used', 0) for e in enemies),
+                fright_badluck=sum(e.get('fright_badluck', 0) for e in enemies),
+                prot_absorbed=sum(p.get('prot_absorbed', 0) for p in pcs),
+                ward_absorbed=sum(p.get('ward_absorbed', 0) for p in pcs),
+                necrotic_cancelled=sum(e.get('necrotic_cancelled', 0) for e in enemies),
+                necrotic_heal_blocked=sum(e.get('necrotic_heal_blocked', 0) for e in enemies))
 
 
 def _bleed_counts(pcs, enemies):
