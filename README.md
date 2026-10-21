@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-20 — What "spend" means, and what Bleeding's worth
+
+The rulebook's section on costs now says what spending something means (it's paid and does nothing else), so an ability can say "spend up to 3 of the target's Bleeding" without spelling out the rest. Bleeding got priced under its new rule, about 1.8 Value for the first stack in a dose and 0.8 for each one after, along with what spending it on other effects would be worth.
+
 ### 2026-10-19 — Bleeding's new rule
 
 After a dozen setups in the simulator, Bleeding now loses half its stacks (rounded up) each time it decays, and Protected stops its ticks: big doses pay off without changing what Bleeding costs the party overall, and Protected blunts it rather than shutting it off. Bleeding still hits the party harder than it helps them, so the next step is pricing each side for what it actually lands.
