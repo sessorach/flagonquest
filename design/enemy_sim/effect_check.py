@@ -63,7 +63,7 @@ NAMES = ["Hilde", "Browndog", "Carrick", "Sable"]
 PARTIES = {"A": NAMES, "AV": NAMES}
 
 # Encounter sets (--set), each a list of (mix name, enemies); an enemy is a
-# sample_enemies.csv name or (name, {"dmg": +N}). "standard" is the four
+# sample_enemies.csv name or (name, {"dmg": +N, "abilities": [...]}). "standard" is the four
 # Level 1 mixes. The other three are the 2026-10-21 dangerous fights, per
 # the designer (enemies a bit more dangerous than the party, and a big
 # threat that makes control pay): the Level 2 mixes, and each standard mix
@@ -75,6 +75,10 @@ SETS = {
     "level2": [(m, se.ENCOUNTERS[2][m]) for m in se.CURRENT_MIXES],
     "chief": [(m, ["Brute Chief"] + se.ENCOUNTERS[1][m]) for m in se.CURRENT_MIXES],
     "ogre": [(m, [OGRE] + se.ENCOUNTERS[1][m]) for m in se.CURRENT_MIXES],
+    # The Ogre with Durable (1 Protected at the start of each of its turns,
+    # up to 4), so Necrotic has something to cancel.
+    "ogre_durable": [(m, [("Brute Chief", {"dmg": 3, "abilities": ["Durable"]})] + se.ENCOUNTERS[1][m])
+                     for m in se.CURRENT_MIXES],
 }
 MIXES = list(SETS["standard"])
 
@@ -87,6 +91,7 @@ def build_mix(enemies, mult):
             for prof in (e, e.get("backup")):
                 if prof and prof.get("attack_damage"):
                     prof["attack_damage"] += x[1].get("dmg", 0)
+            e["abilities"] = list(e.get("abilities", [])) + x[1].get("abilities", [])
         e["health"] = e["max_health"] = math.ceil(e["health"] * mult)
     return en
 HEALTH_VALUE = 4
@@ -175,6 +180,33 @@ def danger_variants():
             ("Autoswing", "stat", {"bonus_attack_control": True})]
     return out
 
+
+def fill_variants():
+    """--variants fill (2026-10-22): the cells the weak / average / strong
+    columns still needed - Push, Hasted, Good Luck and Protected in the
+    boss fights, Necrotic on and aimed at a Durable boss. Aimed and
+    on-hit Vulnerable are in FILL_VULN (party AV)."""
+    out = [("pushmay 1, every hit", "pushmay", "Test:pushmay:1:hit"),
+           ("pushmay 3, every hit", "pushmay", "Test:pushmay:3:hit"),
+           ("push 3, every hit", "push", "Test:push:3:hit")]
+    for eff in ("hasted", "protected"):
+        out += [(f"{eff} {n}, first turn", eff, f"Test:{eff}:{n}:first") for n in (1, 4)]
+        out.append((f"{eff} 1, every turn", eff, f"Test:{eff}:1:turn"))
+    out += [("goodluck 1, first attack", "goodluck", "Test:goodluck:1:first"),
+            ("goodluck 1, every turn", "goodluck", "Test:goodluck:1:turn")]
+    for eff in ("necrotic",):
+        out += [(f"{eff} {n}, first hit", eff, f"Test:{eff}:{n}:first") for n in (1, 4)]
+        out.append((f"{eff} 1, every hit", eff, f"Test:{eff}:1:hit"))
+        out += [(f"{eff} {n} on the boss, first turn", "aim_" + eff, f"Test:aim_{eff}:{n}:first") for n in (1, 4)]
+        out.append((f"{eff} 1 on the boss, every turn", "aim_" + eff, f"Test:aim_{eff}:1:turn"))
+    return out
+
+
+FILL_VULN = ([(f"vulnerable {n}, first hit", "vulnerable", f"Test:vulnerable:{n}:first") for n in (1, 4)]
+             + [("vulnerable 1, every hit", "vulnerable", "Test:vulnerable:1:hit")]
+             + [(f"vulnerable {n} on the boss, first turn", "aim_vulnerable", f"Test:aim_vulnerable:{n}:first")
+                for n in (1, 4)]
+             + [("vulnerable 1 on the boss, every turn", "aim_vulnerable", "Test:aim_vulnerable:1:turn")])
 
 VULN = [(f"vulnerable {n}, first hit", "vulnerable", f"Test:vulnerable:{n}:first") for n in (1, 2, 4)] + \
        [("vulnerable 1, every hit", "vulnerable", "Test:vulnerable:1:hit")]
@@ -462,7 +494,7 @@ if __name__ == "__main__":
     ap.add_argument("-t", action="append", help="only tests whose name contains this")
     ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE (repeatable)")
     ap.add_argument("--set", default="standard", choices=sorted(SETS), help="which encounters")
-    ap.add_argument("--variants", default="all", choices=("all", "danger"), help="which tests")
+    ap.add_argument("--variants", default="all", choices=("all", "danger", "fill"), help="which tests")
     ap.add_argument("--csv", help="write every cell here")
     ap.add_argument("--pct", action="store_true", help="score Health left as a share of max Health (before 2026-10-21)")
     a = ap.parse_args()
@@ -474,8 +506,9 @@ if __name__ == "__main__":
         setattr(T, k, ast.literal_eval(v))  # the Pool's workers fork after this
     mults = a.m or [1.75, 1.0]
     want = lambda v: (not a.e or v[1] in a.e) and (not a.t or any(t in v[0] for t in a.t))
-    vlist = [v for v in (danger_variants() if a.variants == "danger" else variants()) if want(v)]
-    vuln = [v for v in VULN if want(v)] if a.variants == "all" else []
+    vlist = [v for v in {"all": variants, "danger": danger_variants, "fill": fill_variants}[a.variants]()
+             if want(v)]
+    vuln = [v for v in {"all": VULN, "danger": [], "fill": FILL_VULN}[a.variants] if want(v)]
     cells = []
     for mult in mults:
         for pname, vl in (("A", vlist), ("AV", vuln)):
