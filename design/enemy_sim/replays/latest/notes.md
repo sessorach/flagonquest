@@ -1,12 +1,12 @@
-# Latest replays (2026-10-21)
+# Latest replays (2026-10-22)
 
-Control against dangerous enemies (2026-10-21, later): Stagger now counts only living creatures as places, and a Chief's Frontline fight (Frontline at 1.5 times the slots, led by a 2-slot Brute Chief) joins the replays.
+No change to how fights play. This round measured weak, average and strong cases for every buff and debuff (effect_check.py --variants fill) for the new columns in balance_weights.csv.
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 1000 fights: 96.1% wins, 3.6 rounds, 71% HP left on a win
+- Matchup average over 1000 fights: 96.2% wins, 3.5 rounds, 73% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
