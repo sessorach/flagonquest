@@ -132,8 +132,12 @@ which should stay a clean decision record.
   duplicated in both places) — plus `balance_weights.csv`, a fast-lookup
   index of the same weights (current value, Locked/Pencil status, which
   markdown section has the derivation) for quick reference without
-  scanning prose. Unlike `archive/`, this is meant to be read and
-  extended, not just kept for the record.
+  scanning prose. Its Weak/Average/Strong columns (2026-10-22) hold the
+  sim-measured cases for each buff and debuff; `balance.md` says which
+  to use, and `effect_check.py` re-measures them (re-run them when the
+  sim's effects or the sample party change). It's CRLF; write it with
+  `csv` and `lineterminator='\r\n'`. Unlike `archive/`, this is meant
+  to be read and extended, not just kept for the record.
 - **Patch tracking**: `techniques.csv`/`items.csv` carry a `Patch`
   column recording which version last touched each row, so the site can
   badge recently-changed content and filter down to it.

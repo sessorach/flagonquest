@@ -10837,11 +10837,15 @@ is most of the difference.
 - **Harried** aimed only helps if the party is hitting that enemy that
   round; the party saves the Chief and Ogre for later (they have the
   lowest threat per Health), so it's weaker there than against the Level
-  2 mixes.
+  2 mixes. (Corrected 10-22: these numbers include a card-play side
+  effect of aimed Harried. See "Weak, Average and Strong".)
 - **Bleeding** aimed at a boss is worth three to six times what it is on
   a hit, but mostly 30-60% of THE TABEL's current curve (95% at best, one
   stack against the Level 2 mixes): still the weakest of the lot for its
   price, since even a boss is often dying when the late ticks come.
+  (Corrected 10-22: that compares raw numbers. On THE TABEL's footing
+  it's about 60-190%, in line with the other aimed control. See "Weak,
+  Average and Strong".)
 - **Stagger** holds up everywhere once the dead stop counting, and is
   worth 1.2-2.5 times THE TABEL's 1.35 a place against dangerous
   enemies.
@@ -10863,4 +10867,186 @@ designer:
 
 Caveats as above: one party at one Level, the sim's party focus-fires
 the hurt enemy, and the Ogre is a deliberately over-tuned stand-in
+rather than a built enemy.
+
+## Weak, Average and Strong (2026-10-22)
+
+Per the designer: rather than one weight per effect, `balance_weights.csv`
+gets a Weak, an Average and a Strong column, with the detail here for when
+a case needs designing. Average is the expected value with no real
+context. For an effect that's only worth much in specific cases, that can
+sit close to Weak. Value hasn't changed; switching it to Average is the
+designer's call. Which column to use is in `balance.md`, "Weak, Average
+and Strong: which number to use".
+
+### The cases
+
+All three are per application, at table toughness, in the Level 1 Party
+A (Hilde, Browndog, Carrick, Sable). Each PC takes a turn as the
+carrier, and the numbers average over the four unless noted. Ordinary
+fights are the four Level 1 mixes at enemy Health ×1.75. Dangerous
+fights are the 10-21 sets at built Health: the Level 2 mixes, the Chief
+and the Ogre.
+
+| Column | Debuffs on enemies | Buffs and the rest |
+|---|---|---|
+| Weak | one stack on the carrier's first hit, ordinary fights | on the PC it helps least (Carrick and Sable for Protected, Sable for Hasted and Speed); Push used every time; Ward and Necrotic in a fight with nothing for them |
+| Average | aimed at the biggest threat at the start of the carrier's turn, ordinary fights | on any PC, ordinary fights; Push when it helps; Ward and Necrotic averaged over the four mixes |
+| Strong | aimed at the boss, in the best of the dangerous fights | on the PC the enemies focus (Hilde), in the fight it's built for |
+
+The four-stack numbers in brackets come from the same tests with four
+stacks at once. Taunted is Browndog's. From others it varies a lot:
+Carrick's aimed Taunt is worth about the tank's, and Sable's can lose
+7 a fight, since it pulls the threat onto her. Ward is a whole stack (both components), so it goes on
+the two type rows. Aimed tests land without a roll, so a Hex that has
+to hit gets its hit chance on top.
+
+### Offense on THE TABEL's footing
+
+Harried and Vulnerable add party attack points, and Bleeding and
+Necrotic add damage. All four carry the 10-07 mismatch: in the ordinary
+fights a point of Accuracy or Damage measures about half of THE TABEL.
+To read next to the other weights, they're scaled by THE TABEL's +1
+over its measured value: ×2.24 for Harried and Vulnerable (+1 Accuracy,
+5.49 / 2.45) and ×2.05 for Bleeding and Necrotic (+1 Damage,
+10.97 / 5.36).
+
+The same factor goes on every column, dangerous fights included. The
+anchors move with the fight (measured, with share of THE TABEL):
+
+| One PC gets | Ordinary | Level 2 | Chief | Ogre |
+|---|---|---|---|---|
+| +1 Accuracy | 2.45 (45%) | 4.76 (95%) | 2.61 (50%) | 3.85 (76%) |
+| +1 Damage | 5.36 (49%) | 7.49 (75%) | 4.49 (43%) | 6.66 (65%) |
+| +1 Parry and Dodge | 2.24 (96%) | 2.70 (124%) | 3.00 (117%) | 4.52 (162%) |
+| +2 Health | 7.09 (89%) | 6.06 (76%) | 7.17 (90%) | 5.95 (74%) |
+
+A dangerous fight raises Accuracy and Defense by up to about twice, and
+Health not at all. Using the ordinary-fight factor everywhere keeps
+that rise in the offense rows, the same as it's in the defense rows.
+Scaling each fight by its own anchor would have taken it out of offense
+only.
+
+### New runs for the missing cells
+
+`effect_check.py --variants fill`, 500 fights a mix: Vulnerable aimed
+in ordinary fights (Party AV, everyone attacking Vital as on 10-21);
+Push, Hasted, Good Luck, Protected and Vulnerable in the Ogre fights;
+and Necrotic against the Ogre with Durable (1 Protected at the start of
+each of its turns, up to 4), `--set ogre_durable`, so it has something
+to cancel. Plus the anchors above. Raw means measured, before the
+offense factor.
+
+- **Push** gains the most from a dangerous enemy. In the Ogre fights,
+  pushing a melee enemy when it helps is worth 3.8 a push for 1 meter
+  and 4.4 for 3 meters, and pushing every time is worth 2.9 for 3
+  meters. In ordinary fights it's 0.6 and 0.9 when it helps, and nothing
+  every time.
+- **Hasted** is worth about the same against the Ogre as in ordinary
+  fights: 0.73 a stack against 0.80, and Hilde 1.5 against 2.2. It
+  matters while closing in, and a boss doesn't change that.
+- **Good Luck**: 2.46 on the first attack against the Ogre and 2.35 a
+  use every turn, against 2.15 and 1.54 in ordinary fights.
+- **Protected**: one stack is 1.71 in the Ogre fights, the same as
+  ordinary (1.69). Hilde gets 3.40 against 3.89. Four stacks on Hilde or
+  Browndog against the Ogre are 16.7, the Strong cell.
+- **Vulnerable**: one stack aimed is worth the same in ordinary and Ogre
+  fights (raw 1.09 and 1.04). The party leaves the Ogre for last, so one
+  stack has usually worn off before anyone attacks it. Four stacks last
+  long enough: raw 6.02 ordinary and 20.98 against the Ogre. That's 47
+  on THE TABEL's footing, the biggest number in the table.
+- **Necrotic** against the Durable Ogre, aimed: one stack cancels a
+  Protected 0.98 times a fight and is worth raw 1.63, or 3.3 on THE
+  TABEL's footing, right at THE TABEL's 3 a resolution. Four stacks
+  cancel 2.1 and are worth 6.4. On a hit, a stack cancels about one time
+  in five and is worth 1.0. THE TABEL's rate holds. What decides
+  Necrotic's worth is whether there's anything to cancel.
+
+**Aimed Harried had a side effect.** The sim's card play (`_importance`
+in `combat_sim.py`) treats an enemy with Harried on it as one the party
+is already hitting this round, so the PCs play hand cards to rescue
+misses against it. That's right for Harried from the party's own
+attacks, but Harried aimed at an unhurt enemy turns it on too. A rerun
+with that read switched off for an unhurt target (a scratch patch,
+nothing committed) drops one aimed stack in ordinary fights from raw
+1.88 to 1.24, and at Level 2 from 2.69 to 1.71. Four stacks move less:
+3.77 to 3.81 ordinary, 8.23 to 6.74 at Level 2. On a hit nothing moves,
+since the target's already hurt. The Harried cells use the clean runs. It
+only matters for Harried applied without an attack. If a Technique ever
+does that, the sim needs the same switch.
+
+### The cells
+
+Value now (one stack / four), then the cells (four stacks in brackets):
+
+| Effect (THE TABEL now) | Weak | Average | Strong |
+|---|---|---|---|
+| Crippled (1.5 / 15) | 0.43 (2.2) | 1.3 (8.0) | 3.3 (26), Ogre |
+| Slowed (1.1 / 11) | 0.37 (1.7) | 0.8 (9.7) | 4.3 (24.5), Ogre |
+| Bad Luck on an enemy (2.2 / 8.8) | 0.9 (1.3) | 3.3 (5.1) | 7.6 (22), Ogre |
+| Taunted, from the tank (2.2 / 8.8) | 0.1 | 3.8 (4.2) | 6.5 (10.1), Ogre |
+| Frightened (2.2 / 8.8) | 0.16 (0.1) | 1.3 (1.9) | 2.7 (5.0), Ogre |
+| Harried (1 / 4) | 1.1 (3.4) | 2.8 (8.6) | 3.9 (15.4), Level 2 |
+| Vulnerable (1 / 10) | 1.1 (5.1) | 2.5 (13.5) | 2.3 (47), Ogre |
+| Bleeding (4 / 11) | 1.0 (2.5) | 3.3 (8.5) | 7.8 (13.7), Level 2 |
+| Necrotic (3 / 12 when they resolve) | 0 | 0.1 (0.2) | 3.3 (6.4), Durable Ogre |
+| Protected (3 / 12) | 0.5 (3.0) | 1.7 (8.0) | 4.0 (16.7) |
+| Ward (Fire), whole stack (2.7 / 9.9) | 0 | 1.1 (4.2) | 7.3 (28), Horde |
+| Ward (Shadow), whole stack (2.4 / 9.0) | 0 | 1.0 (3.4) | 10.0 (26), Frontline |
+| Hasted (0.55 / 5.5) | 0 | 0.8 (1.6) | 2.2 (3.7) |
+| Good Luck (2.4) | 1.5 | 2.2 | 2.5, Ogre |
+| Push, per push (0.89 a meter) | 0 | 0.6 for 1 m, 0.9 for 3 m | 3.8 and 4.4, Ogre |
+| Turn order, per place (1.35) | 0.7 | 1.3 | 3.4 |
+| Speed, permanent (2.54) | 0 | 0.86 | 2.3 |
+| Physical Resist (5.0) | 0 | 5.5 | 12.1 |
+
+- **Strong comes from the Ogre for most of them.** Harried and Bleeding
+  do best against the Level 2 mixes, which have no 2-slot boss. Against
+  the Chief and the Ogre the party leaves the boss for last (it has the
+  lowest threat per Health, 10-21). Anything that pays off when the
+  party attacks it waits, so Harried (0.6) and Bleeding (2.3) on the
+  Chief are worth less than in ordinary fights. The Chief sits between
+  Average and the Ogre for Crippled and Slowed (1.7 and 2.2; four stacks
+  13.1 and 13.0). For one stack of Bad Luck or Taunted it's about at
+  Average (3.2, 3.4), and for four stacks it's above (10.2, 5.6).
+- **Turn order** has no rider-or-aimed split in ordinary fights. A place
+  is worth 0.7 to 1.3 however it's moved: two places at once on the
+  first turn 0.7, one on every hit 1.3, aimed every turn 1.0. Weak and
+  Average are the two ends of that. In the dangerous fights it's 1.6 to
+  3.4, highest at Level 2 and against the Ogre.
+- **Average against Value now.** For a single stack, Average lands
+  close to THE TABEL for Crippled (1.3 against 1.5), Slowed (0.8
+  against 1.1), Good Luck and turn order. It lands well above for Bad
+  Luck (3.3 against 2.2), Taunted from the tank (3.8 against 2.2),
+  Harried (2.8 against 1) and Vulnerable (2.5 against 1). It lands
+  below for Frightened (1.3 against 2.2), Protected (1.7 against 3),
+  Speed, Necrotic and Ward, which all depend on who carries them or
+  what the fight has in it. For four stacks, Average is close to THE
+  TABEL's curve for Slowed (9.7 against 11), above it for Vulnerable
+  and Harried, half of it for Crippled, and well under for Bad Luck,
+  Taunted, Frightened and Hasted.
+- **What this replaces in the 10-21 proposal table.** Most of its
+  numbers match a cell here. Its riders are Weak (Crippled 0.5 against
+  0.43, Bad Luck 0.8 against 0.9), and its buffs on any PC are Average
+  (Protected 1.5 against 1.7, Hasted 0.8). Three don't match. Harried
+  was 0.7 a stack from rates ×
+  counts, which values each extra attack point at THE TABEL's 1. But
+  the points Harried adds land on the enemy the party's already hitting,
+  and they measure about one and a half times an average +1 Accuracy
+  point, so Weak is 1.1. Bleeding was 1.8 for a first stack, from the
+  10-19 method of comparing it with a +1 on the same hit, which strips
+  out the discount for riding a hit. Weak keeps that discount in, like
+  every other rider, so it's 1.0. Taunted's "about 2.5 well aimed" was
+  Challenge's aim (the enemy closest to the most fragile PC). Aimed at
+  the biggest threat it's 3.8.
+- **Corrections to the 10-21 dangerous-fight section.** Its table
+  compared Harried and Bleeding with THE TABEL raw, without the offense
+  factor. On THE TABEL's footing, aimed Bleeding comes to about
+  60-190% of its curve (not the 30-95% given there). That puts it in
+  line with the rest of the aimed control, not the weakest of the lot.
+  The aimed Harried numbers there also include the card side effect
+  above.
+
+Caveats as on 10-21: one party at one Level, the sim's party
+focus-fires the hurt enemy, and the Ogre is an over-tuned stand-in
 rather than a built enemy.

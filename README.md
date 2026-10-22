@@ -13,6 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-22 — A weak, an average and a strong price
+
+The weights table now gives each buff and debuff three numbers: a weak case (riding whatever you hit), an average one (aimed in an ordinary fight) and a strong one (aimed at a boss in a hard fight), with a short guide to which one to use. The old single number stays until the designer decides whether the average should replace it.
+
+- Filled the missing cases in the simulator: Push turns out to gain the most against a hard-hitting boss, and Necrotic is worth its price once the enemy has Protected to cancel.
+
 ### 2026-10-21 — Every buff and debuff, measured
 
 Fixed how the simulator scores fights when it prices things (it was reading Styles and effects 2-6 times too high), then measured every buff and debuff against THE TABEL, in ordinary fights and against enemies tougher than the party. Control riding whatever you hit is worth a fraction of its price, the same control aimed at a big threat is worth about its price or well over it, and new weights are proposed for a look before anything changes.

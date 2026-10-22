@@ -78,6 +78,66 @@ state their side explicitly in the Value column ("+2 to the
 Technique's own Target", "−1 to the weapon's own Target"). Keep new
 rows in that form.
 
+### Weak, Average and Strong: which number to use
+
+Per the designer (2026-10-22): one weight per effect can't cover both a
+rider that lands on whatever you hit and control aimed at the thing
+that's winning the fight. The sim puts about ten times between those.
+So `balance_weights.csv` has three columns next to Value for every
+effect the sim could measure (the debuffs on enemies, the party buffs,
+Push, turn order, Speed and Physical Resist). Value hasn't changed yet,
+since everything already priced used it. The derivation is in
+`balance_weights_notes.md`, "Weak, Average and Strong (2026-10-22)".
+
+- **Weak** is the effect's poor ordinary use. For a debuff, that's riding
+  a hit: it lands on whatever the carrier hit, which is usually about to
+  die. For a buff, it's on a PC it barely helps, like one the enemies
+  leave alone, or an archer for movement.
+- **Average** is the effect with no context. A debuff is aimed at the
+  biggest threat in an ordinary fight. A buff goes on any PC. Ward needs
+  its damage type and Necrotic needs enemy Protected or healing, so for
+  those two it's averaged over ordinary fights, which puts it near Weak.
+- **Strong** is the best case measured. For a debuff, that's aimed at a
+  boss in a dangerous fight, usually the Ogre test (a 2-slot enemy hitting
+  for 10 twice a turn, at 1.5 times the slots). For a buff, it's on the
+  PC the enemies are hitting, in the fight it's built for.
+
+All three are per application: one stack, with the four-stack dose in
+brackets. They're measured at table toughness. Harried, Vulnerable,
+Bleeding and Necrotic add to the party's own attacks, where the sample
+characters out-damage THE TABEL's baseline (the 10-07 mismatch). Those
+four are scaled up to THE TABEL's footing so they read next to Damage
+and Accuracy: ×2.2 for Harried and Vulnerable, ×2.0 for Bleeding and
+Necrotic.
+
+Which one to use:
+
+- **Delivery decides most of it.** A rider on a weapon or an attack
+  Technique that hits whatever gets hit: **Weak**. Control the player
+  aims (a Hex, Challenge, a Technique that targets a creature you
+  choose), or a rider they can hold for the right target: **Average**.
+- **Strong is a ceiling, not a price.** It includes the fight being
+  dangerous, which lifts plain stats too: +1 Parry and Dodge is worth
+  twice as much against the Ogre as in an ordinary fight. A Technique
+  that only works against a boss is priced at its value when used (see
+  above), and that lands between Average and Strong. The Chief and
+  Level 2 numbers in the notes are a better guide there than the Ogre's.
+- **Check the carrier.** Taunted's numbers are the tank's. From a
+  fragile PC it can cost the party: Sable's aimed Taunt loses 7 a fight
+  against the Level 2 mixes, since it pulls the threat onto her.
+  Protected and Physical Resist are worth little on a PC the enemies
+  leave alone, and two to three times Average on the one they focus.
+  Hasted and Speed are for melee characters closing in.
+- **Extra stacks pay only on a target that lives.** Riding a hit, four
+  stacks are worth four to five times one stack for Crippled, Slowed and
+  Vulnerable, and less for the rest. Aimed, Crippled, Slowed and
+  Vulnerable compound the way THE TABEL's curves do: in an ordinary
+  fight, four stacks of Crippled are worth six times one, and Slowed
+  twelve times. For the others, each extra stack still adds less than
+  the first one did.
+- Rate of Use applies on top, the same as before. None of the columns
+  says how often the effect comes up.
+
 ### Skill-Total-scaled Techniques can run a bit hot early
 
 Per the designer: a Technique whose effect scales on a Skill Total, and
