@@ -248,6 +248,10 @@ function logLine(e) {
   if (e.action === 'card') {
     return `<div class="line heal"><span class="who">${e.unit}</span> discards a card for ${e.via} <span class="via">(${e.note})</span></div>`;
   }
+  if (e.action === 'technique') {
+    const on = e.target ? ` on <b>${e.target}</b>` : '';
+    return `<div class="line heal"><span class="who">${e.unit}</span> uses ${e.via}${on} <span class="via">(${e.effects})</span></div>`;
+  }
   if (e.action === 'support') {
     const via = e.via ? ` <span class="via">with ${e.via}</span>` : '';
     return `<div class="line heal"><span class="who">${e.unit}</span> shields <b>${e.target}</b>${via} (Protected +${e.stacks})</div>`;

@@ -1260,6 +1260,93 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
     return 1
 
 
+def _next_maneuver(pc):
+    """A spent Battle Maneuver copy makes way for the next one, for a PC
+    who built each copy differently (party.py's `maneuver_queue`)."""
+    m = pc.get('maneuver')
+    if m and m['uses'] <= 0 and pc.get('maneuver_queue'):
+        pc['maneuver'] = pc['maneuver_queue'].pop(0)
+
+
+def _try_brace(pc, enemies, movement_on, ap, start, log=None):
+    """Brace (T001, 1 AP, Encounter): "You gain 3 stacks of Protected."
+    Taken with AP left over at the end of a turn while an enemy is close
+    enough to come for this PC, or at the start of a turn spent in melee
+    unprotected (round 2 on, giving up the second attack). Returns the AP
+    spent."""
+    if pc.get('brace_uses_left', 0) <= 0 or ap < 1 or pc.get('protected', 0) > 0:
+        return 0
+    living = [e for e in enemies if e['health'] > 0]
+    if not living:
+        return 0
+    if movement_on:
+        near = min(_distance(pc['pos'], e['pos']) for e in living)
+        if start and not (near <= T.MELEE_RANGE and ap >= T.ATTACK_AP_COST + 1 and pc.get('acted_round', 1) >= 2):
+            return 0
+        if not start and near > T.BRACE_THREAT_RANGE:
+            return 0
+    elif start:
+        return 0
+    pc['brace_uses_left'] -= 1
+    _gain(pc, 'protected', 3)
+    if log:
+        log(unit=pc['name'], action='technique', via='Brace', effects='Protected +3')
+    return 1
+
+
+def _try_exert_pressure(pc, pcs, enemies, movement_on, ap=1, log=None):
+    """Exert Pressure (T067, 1 AP, Encounter): "Make a Presence attack
+    against the Mental Defense of each target [any number of creatures
+    within 2 meters]. You Taunt each target hit 3 + [Hearts] times."
+    Used at the start of a turn or with AP left at its end, once two or
+    more enemies are that close and at least one isn't already Taunted by
+    this PC; it goes on the ones that aren't. Returns the AP spent."""
+    if pc.get('pressure_uses_left', 0) <= 0 or ap < 1:
+        return 0
+    near = [e for e in enemies if e['health'] > 0]
+    if movement_on:
+        near = [e for e in near if _distance(pc['pos'], e['pos']) <= 2]
+    pool = [e for e in near if e.get('taunted_by') is not pc]
+    if len(near) < 2 or not pool:
+        return 0
+    pc['pressure_uses_left'] -= 1
+    for target in pool:
+        defense = target['mental'] - target.get('vulnerable', 0)
+        if T.CARDS:
+            good = _raise_spirits(pc, pcs, defense - pc['presence_skill_total'], True)
+            value, flipped = _pc_flip(pc, pc['presence_skill_total'], defense, good, tactics.pc_wounded(pc), BIG,
+                                      allies=pcs)
+        else:
+            value, flipped = flip(), []
+        roll = pc['presence_skill_total'] + value
+        hit = roll >= defense
+        if hit:
+            if target.get('taunted', 0) <= 0 and _skips(target):
+                target['skip_taunted'] = True
+            target['taunted'] = 3 + _suit_count(flipped, 'Hearts')
+            target['taunted_by'] = pc
+        if log:
+            log(unit=pc['name'], action='taunt', target=target['name'], roll=roll, defense=target['mental'],
+                hit=hit, via='Exert Pressure', effects=f"Taunted +{target['taunted']}" if hit else None,
+                cards=_take_notes(pc))
+        pc.pop('_notes', None)
+    return 1
+
+
+def _strength_from_slain(pc, corpse, log=None):
+    """Strength from the Slain (T018, 1 AP, Level 3): eat the heart of an
+    adjacent creature just Downed - Hasted and Protected three times each,
+    and Good Luck on one Melee (or other Body/Agility-skill) flip this
+    encounter, which the next attack takes."""
+    pc['slain_uses_left'] -= 1
+    _gain(pc, 'hasted', 3)
+    _gain(pc, 'protected', 3)
+    pc['gl_next'] = pc.get('gl_next', 0) + 1
+    if log:
+        log(unit=pc['name'], action='technique', target=corpse['name'], via='Strength from the Slain',
+            effects='Hasted +3, Protected +3, Good Luck')
+
+
 def _tech_attack_choice(pc, target):
     """A Technique attack (party.TECH_ATTACKS) to use in place of this
     normal attack, or None. Encounter Techniques get used early, since an
@@ -1422,6 +1509,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
             ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
         tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
         ap -= _try_challenge(pc, pcs, enemies, movement_on, log=party_log)
+        ap -= _try_exert_pressure(pc, pcs, enemies, movement_on, ap, log=party_log)
+        ap -= _try_brace(pc, enemies, movement_on, ap, True, log=party_log)
         ap -= _try_hexes(pc, pcs, enemies, rnd, movement_on, trace, party_log, ap)
         targets = [e for e in enemies if e['health'] > 0]
         allies = [p for p in pcs if p['health'] > 0]
@@ -1532,8 +1621,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if (maneuver_now and pc['maneuver'].get('cashout')
                         and target.get('bleeding', 0) < T.CASHOUT_MIN and rnd < 3):
                     maneuver_now = False
+                mv = None
                 if maneuver_now:
-                    pc['maneuver']['uses'] -= 1
+                    mv = pc['maneuver']
+                    mv['uses'] -= 1
+                    _next_maneuver(pc)
                 substitute = None if maneuver_now else tactics.bottomless_bottles_choice(pc, target)
                 if not substitute and not maneuver_now:
                     substitute = _tech_attack_choice(pc, target)
@@ -1602,6 +1694,13 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # if you discarded a Spade" uses the same guaranteed-
                 # favorable-discard simplification as Second Wind's own
                 # "assumed a Heart."
+                # Ascended Blade (F017, Hilde's Level 3 Battle Maneuver):
+                # "You may have the attack deal its damage as Brilliant
+                # damage" - taken when the target resists Brilliant less.
+                saved_dmg_type = None
+                if maneuver_now and mv.get('ascended') and pc.get('dmg_type') == 'Physical' \
+                        and target['elemres'] < target['physres']:
+                    saved_dmg_type, pc['dmg_type'] = pc['dmg_type'], 'Brilliant'
                 close_range_weapon = not pc.get('attack_range') and pc.get('weapon_name') not in ('Melee', '2H Heavy Melee')
                 cloak_dagger_hit = False
                 if (pc.get('cloak_and_dagger') and not substitute and not feint_active and close_range_weapon
@@ -1753,8 +1852,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # Battering (F005, a Battle Maneuver Feature): "If the attack
                 # hits or is Parried, the target gains X stacks of Bleeding
                 # + [Clubs] stacks."
-                if maneuver_now and pc['maneuver'].get('battering') and (hit or parried):
-                    batter = pc['maneuver']['battering'] + _suit_count(pool, 'Clubs')
+                if maneuver_now and mv.get('battering') and (hit or parried):
+                    batter = mv['battering'] + _suit_count(pool, 'Clubs')
                     _gain(target, 'bleeding', batter)
                     taunt_note = f"Bleeding +{batter} (Battering)"
                 # 'Bleeding Strikes 2' (test-only): the same trigger, 2 stacks.
@@ -1872,7 +1971,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # Bleeding from the target, and they lose that much
                     # Health." `cashout` is the twice-X part.
                     cash = (substitute or {}).get('cashout', 0) or (
-                        pc['maneuver'].get('cashout', 0) if maneuver_now else 0)
+                        mv.get('cashout', 0) if maneuver_now else 0)
                     if cash and target['health'] > 0 and target.get('bleeding', 0) > 0:
                         n = min(target['bleeding'], cash + _suit_count(pool, 'Clubs'))
                         landed = min(n, target['health'])
@@ -1912,8 +2011,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         pc['test_applied'] = pc.get('test_applied', 0) + n
                     # Half Guard (F011): "If the attack hits, you gain X +
                     # [Spades] stacks of Protected."
-                    if maneuver_now and pc['maneuver']['guard']:
-                        _gain(pc, 'protected', pc['maneuver']['guard'] + _suit_count(pool, 'Spades'))
+                    if maneuver_now and mv['guard']:
+                        _gain(pc, 'protected', mv['guard'] + _suit_count(pool, 'Spades'))
                     if substitute and substitute.get('heal_on_hit'):
                         _thief_heal(pc, substitute['heal_on_hit'], party_log)
                     if ('Boughs Unbroken' in passives and pc.get('weapon_name') == 'Unarmed'
@@ -1921,6 +2020,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         _boughs_cleanse(pc)
                     if 'Fatestealer' in passives and not substitute and target['health'] <= 0:
                         _fatestealer(pc)
+                    # Victorious (F013): "If the attack Downs the target,
+                    # draw a card."
+                    if maneuver_now and mv.get('victorious') and target['health'] <= 0:
+                        if T.CARDS:
+                            pc['hand'].append(pc['deck'].draw())
+                            pc['budget'] += 1
+                        else:
+                            pc['card_uses_left'] = pc.get('card_uses_left', 0) + 1
                     if substitute and substitute.get('effect'):
                         key, stacks, suit = substitute['effect']
                         stacks += _suit_count(pool, suit)
@@ -2005,6 +2112,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     if extra:
                         damage_dealt += _bonus_attack(extra, 'Whirlwind')
                         pc['whirlwind'] = False
+                # Whirlwind on a Battle Maneuver copy (Hilde's Level 3 one).
+                if maneuver_now and mv.get('whirlwind'):
+                    extra = _find_extra_target(pc, target, enemies, movement_on, 'melee')
+                    if extra:
+                        damage_dealt += _bonus_attack(extra, 'Whirlwind')
                 if pc.get('ricochet_shot'):
                     extra = _find_extra_target(pc, target, enemies, movement_on, 'adjacent')
                     if extra:
@@ -2012,6 +2124,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         pc['ricochet_shot'] = False
                 if saved_profile:
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
+                if saved_dmg_type is not None:
+                    pc['dmg_type'] = saved_dmg_type
+                # Strength from the Slain right after a kill, while the
+                # body's adjacent and there's an AP for it.
+                if (target['health'] <= 0 and pc.get('slain_uses_left', 0) > 0 and ap >= 1
+                        and (not movement_on or _distance(pc['pos'], target['pos']) <= T.MELEE_RANGE)):
+                    _strength_from_slain(pc, target, party_log)
+                    ap -= 1
                 if target['health'] <= 0 and plan is not None:
                     # A planned turn doesn't walk after a kill: it turns on
                     # whatever's in reach from where it stands, or stops.
@@ -2070,6 +2190,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 ap -= T.MOVE_AP_COST
                 _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                      spaces=_distance(start, pc['pos']), via='staying in range of the party')
+        ap -= _try_exert_pressure(pc, pcs, enemies, movement_on, ap, log=party_log)
+        ap -= _try_brace(pc, enemies, movement_on, ap, False, log=party_log)
     # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
     # [Fleeting] rule), not all stacks at once - Bleeding's decaying
     # stack is what actually deals its 1 damage. Harried is the one

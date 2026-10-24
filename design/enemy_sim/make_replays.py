@@ -52,6 +52,10 @@ MATCHUPS = [
     # A dangerous fight (2026-10-21): Frontline at 1.5 times the slots,
     # led by a 2-slot Brute Chief, the kind of fight control is for.
     ("partyA_L1_vs_chief_frontline", ["Hilde", "Browndog", "Carrick", "Sable"], 1, "Chief's Frontline"),
+    # The designer's 175 XP builds (2026-10-24): Strength from the Slain,
+    # Hilde's Level 3 Battle Maneuver, Exert Pressure. Sable isn't leveled
+    # past her extrapolated Level 2 row yet.
+    ("partyA_L3_vs_L3_frontline", ["Hilde (L3)", "Browndog (L3)", "Carrick (L3)", "Sable (L2)"], 3, "Frontline"),
 ]
 
 

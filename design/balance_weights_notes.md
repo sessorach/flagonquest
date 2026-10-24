@@ -11050,3 +11050,86 @@ Value now (one stack / four), then the cells (four stacks in brackets):
 Caveats as on 10-21: one party at one Level, the sim's party
 focus-fires the hurt enemy, and the Ogre is an over-tuned stand-in
 rather than a built enemy.
+
+## The sample characters, as built (2026-10-24)
+
+Per the designer: the simulator's Hilde, Browndog and Carrick were
+thinner than their Builder exports, and thrown weapons were a point too
+strong, so bring them up to their builds and add the designer's new 125
+and 175 XP versions, aiming at solid benchmarks rather than exact
+characters (a prereq a build misses is fine to leave).
+
+**What changed.**
+
+- Light Thrown is 2 + Cunning and Heavy Thrown 3 + Body in the sim and
+  in `weapon_categories.csv`, matching `items.csv` since the base weapons
+  pass. The sim had kept 3 and 4. That's Carrick, Jackal, Ashleigh, Rook
+  and HOLE.
+- Hilde gets Furious Rage and both Battle Maneuver copies (Lunging 3,
+  then Half Guard 3). Browndog gets his second Challenge, Brace and both
+  Battle Maneuver copies. His Shield was already in.
+- New in the sim: Brace, Strength from the Slain, Exert Pressure,
+  Toughened Resolve, Cloak and Dagger from a build, a different Feature
+  set per Battle Maneuver copy, and the Whirlwind, Victorious and
+  Ascended Blade Features. A fixed-seed run of every older party shape
+  is identical before and after with the old rows and thrown damage.
+- The `(L2)` rows for the three are the designer's 125 XP builds, and new
+  `(L3)` rows are the 175 XP ones. Exert Pressure goes off about once in
+  a dozen fights at most: two enemies are seldom within 2 meters of
+  Browndog at once. Cloak and Dagger never does for Carrick, who throws from range
+  and the Technique needs a close-range weapon.
+
+**Party A before and after**, at enemy Health ×1.75 (losses and rounds
+from 1,000 fights a mix, hit rate and damage from 250):
+
+| | Losses | Rounds | Party hit rate | Damage a hit after Resist |
+|---|---|---|---|---|
+| Before | 11.1% | 4.9 | 63% | 4.7 |
+| After | 3.6% | 4.4 | 65% | 4.7 |
+
+Most of it is Hilde (hit rate 59% to 66% with her Maneuvers and Furious
+Rage's Bleeding) and Browndog (Brace and his Maneuvers). Carrick's base
+damage is a point lower, and he lands about half a point less a hit
+after Resist.
+
+**Table toughness moves.** ×1.75 was picked because it gave THE TABEL's
+5-round fights with the old party. The new one needs ×2.0 for that (5.0
+rounds, 6% losses; ×1.75 gives 4.4, ×2.25 gives 6.1). The anchors at
+both:
+
+| One PC gets (THE TABEL) | Old party, ×1.75 | New party, ×1.75 | New party, ×2.0 |
+|---|---|---|---|
+| +2 Health (8) | 89% | 104% | 101% |
+| +1 Parry and Dodge | 96% | 81% | 83% |
+| Autoswing (5.5) | 88% | 43% | 60% |
+| +1 Accuracy | 45% | 35% | 39% |
+| +1 Damage | 49% | 35% | 41% |
+
+THE TABEL's +1 over the measured value is now about 2.6 for Accuracy
+and 2.4 for Damage at ×2.0, against 2.24 and 2.05. And a whole extra
+attack doesn't escape any more: it's 60%. A stronger party wins with
+attacks to spare, so one more is worth less. The 10-22 scaling (×2.2 and
+×2.0) and the Weak/Average/Strong columns were all measured on the old
+party at ×1.75. They want a re-run once the roster's complete, and the
+toughness to run them at is the designer's call.
+
+**Leveled parties against their own Level** (×1.75, 250 fights a mix):
+
+| Party | Enemies | Wins | Rounds | Hit rate | Damage a hit after Resist |
+|---|---|---|---|---|---|
+| Party A, Level 1 | Level 1 | 96% | 4.5 | 65% | 4.7 |
+| Party A, Level 2 (designer's builds, Sable extrapolated) | Level 2 | 96% | 4.2 | 73% | 5.6 |
+| Party A, Level 3 (Sable still Level 2) | Level 3 | 70% | 5.2 | 73% | 6.1 |
+| Party A, Level 1 | Level 2 | 12% | 6.5 | 48% | 4.0 |
+
+Built the way players build them, the party pulls further ahead of
+same-Level enemies as it levels, not closer: hit rate up 8 points and a
+point and a half more damage a hit by Level 3. Hilde leads it (79% and
+82% hit rate, 7.6 and 8.2 a hit). So the 10-07 mismatch grows with
+Level. Wins are lower at Level 3; Sable is still her Level 2 build
+there, which may be part of it. Against enemies a Level up, the Level 1 party
+lands close to THE TABEL's baseline hit rate (48% against about 50%), but
+still at nearly twice its damage.
+
+Caveats: one party, three of its four leveled by the designer, and no
+items yet.

@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-24 — The sample characters, as built
+
+The simulator's Hilde, Browndog and Carrick now play the way their players built them, at Level 1 and at the designer's new 125 and 175 XP versions. Thrown weapons now hit as hard as the item list says, a point less than the simulator had them.
+
+- Added Brace, both Challenges and every Battle Maneuver copy, Furious Rage, Strength from the Slain, Exert Pressure and the Level 3 Maneuver Features.
+- Leveled the right way, the party pulls further ahead of same-Level enemies, not closer: more hits and bigger ones at Levels 2 and 3.
+
 ### 2026-10-22 — A weak, an average and a strong price
 
 The weights table now gives each buff and debuff three numbers: a weak case (riding whatever you hit), an average one (aimed in an ordinary fight) and a strong one (aimed at a boss in a hard fight), with a short guide to which one to use. The old single number stays until the designer decides whether the average should replace it.

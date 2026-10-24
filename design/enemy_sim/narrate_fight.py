@@ -133,6 +133,9 @@ def render_event(event):
         return f"  {unit} ({event.get('style')}) plans: {event.get('note')}"
     if action == 'reposition':
         return f"  {unit} spends a move: {event.get('note')}"
+    if action == 'technique':
+        on = f" on {event['target']}" if event.get('target') else ""
+        return f"  {unit} uses {event.get('via')}{on}: {event.get('effects')}"
     if action == 'card':
         return f"  {unit} discards a card for {event.get('via')}: {event.get('note')}"
     return f"  {unit} {action} {event}"

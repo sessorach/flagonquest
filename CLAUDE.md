@@ -245,6 +245,13 @@ which should stay a clean decision record.
   designer looks to check progress. Edit its `MATCHUPS` list when the
   interesting matchups change. The designer asked for this more than
   once before it became a habit.
+- **The sample characters' source of truth is the Builder exports in
+  `archive/player_builds/`**, not `sample_pcs.csv`. Every row built from
+  one names its file in Notes, and its Stats and Skills should match it
+  exactly. Save an export there the moment it's uploaded (the 09-20
+  ones weren't, and went missing for a month), named by XP when there's
+  more than one per character. A prereq the build misses is fine to
+  leave: these are benchmarks, per the designer (2026-10-24).
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and

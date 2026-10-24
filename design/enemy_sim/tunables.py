@@ -202,7 +202,9 @@ PC_SKILL_STAT = {
 #   for a real equipped item, so it wins per this project's own
 #   data-over-prose/data-over-abstraction principle. Sable (Deadeye)'s
 #   Notes flags this correction.
-# - Light Thrown (WC005): Accuracy +1, Damage 3 + [Cunning], Range
+# - Light Thrown (WC005): Accuracy +1, Damage 2 + [Cunning] (items.csv's
+#   I121; the base weapons pass cut it from 3, and the sim kept 3 until
+#   2026-10-24), Range
 #   "Close, or 3 x Body" - modeled as the ranged option (3 x Body), the
 #   whole point of a thrown weapon's own scaling being worth testing
 #   here; Skill "Acrobatics or Melee" - Acrobatics chosen (Dodge's own
@@ -234,13 +236,14 @@ PC_SKILL_STAT = {
 WEAPON = {
     "Light Bow":         {"skill": "Archery",    "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range": 19,
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
-    "Light Thrown":      {"skill": "Acrobatics",  "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range_per_body": 3,
+    "Light Thrown":      {"skill": "Acrobatics",  "accuracy": 1, "damage_base": 2, "damage_stat": "Cunning", "range_per_body": 3,
                            "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
     # Heavy Thrown (weapon_categories.csv WC006, added 2026-10-08 for
-    # HOLE's Soulblade): Accuracy +0, Damage 4 + [Body], Range Close or
+    # HOLE's Soulblade): Accuracy +0, Damage 3 + [Body] (items.csv's I122,
+    # cut from 4 in the base weapons pass), Range Close or
     # 3 x Body, Skill Acrobatics or Melee (whichever is higher), Might 4.
     # Thrown weapons can't Parry, so Parry falls back to Unarmed.
-    "Heavy Thrown":      {"skill": ("Acrobatics", "Melee"), "accuracy": 0, "damage_base": 4, "damage_stat": "Body",
+    "Heavy Thrown":      {"skill": ("Acrobatics", "Melee"), "accuracy": 0, "damage_base": 3, "damage_stat": "Body",
                            "range_per_body": 3, "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
     "War Magic (Lance)": {"skill": "Sorcery",     "accuracy": 0, "damage_base": 2, "damage_stat": "Mind",    "range_per_skill": 1,
                            "dmg_type": "Fire", "opp_def": "Dodge"},
@@ -439,6 +442,9 @@ LOS_BLOCKED_TURN_CHANCE = 0.5
 # Back-liner); off makes every PC a Diver (the old behavior).
 PLAY_STYLES = True
 BACKLINE_KEEP_AWAY = 3   # spaces a ranged Back-liner keeps from every enemy
+# Brace (T001) with AP left at the end of a turn: only when an enemy is
+# this close, near enough to reach this PC next round (2026-10-24).
+BRACE_THREAT_RANGE = 6
 RECKLESS_CHANCE = 0.05   # share of turns any PC plays like a Diver anyway
 
 # ---- How the Assassin tactic reads "squishy" (2026-10-08 test) ----

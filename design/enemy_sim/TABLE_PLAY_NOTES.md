@@ -347,9 +347,9 @@ from 100 to 150, and so on).
 
 | # | Character | Archetype | Status |
 |---|---|---|---|
-| 1 | Hilde | Barbarian | uploaded (export, 2026-09-20) |
-| 2 | Browndog | Guardian | uploaded (export, 2026-09-20) |
-| 3 | Carrick | Rogue | uploaded (export, 2026-09-20) |
+| 1 | Hilde | Barbarian | uploaded (export, 2026-09-20); 125 and 175 XP uploaded and modeled 2026-10-24 |
+| 2 | Browndog | Guardian | uploaded (export, 2026-09-20); 125 and 175 XP uploaded and modeled 2026-10-24 |
+| 3 | Carrick | Rogue | uploaded (export, 2026-09-20); 125 and 175 XP uploaded and modeled 2026-10-24 |
 | 4 | Jackal | Alchemist | uploaded (export, 2026-09-20) |
 | 5 | Beornhard | Sorcerer | uploaded (export, 2026-09-21) |
 | 6 | Sable | Archer | uploaded (export, 2026-09-21) |
@@ -360,8 +360,12 @@ from 100 to 150, and so on).
 
 Not part of the sample: Rook and Wren (reference builds made to test
 movement), HOLE (a real ~90 XP build, set aside for now), the Baseline
-Tier rows, and every current `(L2)` row (extrapolated from the Level 1
-builds, mostly into combat, not built by the designer).
+Tier rows, and the `(L2)` rows other than Hilde's, Browndog's and
+Carrick's (extrapolated from the Level 1 builds, mostly into combat, not
+built by the designer). The 09-20 exports were saved to
+archive/player_builds/ on 2026-10-24; their Stats and Skills match the
+rows exactly. The designer's 125 and 175 XP builds are the `(L2)` and
+`(L3)` rows for those three.
 
 Sample parties to build from it once the last three are in:
 

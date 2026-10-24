@@ -139,6 +139,19 @@ runs at the table's toughness. Results are in
   through — a PC can have a non-default targeting rule too now
   (Hanforth's own "Straggler Hunter") — see `party.py`'s own paragraph
   on all these columns.
+  **`Encounter Techniques`** lists one entry per known copy. Besides
+  Challenge, Battle Maneuver and the technique attacks, it takes Brace
+  (3 Protected, with AP left at the end of a turn while an enemy's near,
+  or at the start of a turn spent unprotected in melee), Strength from
+  the Slain (eaten right after a kill) and Exert Pressure (Taunts
+  everyone within 2 meters, once two are there). **`Maneuver Features`**
+  is one Feature set for every Battle Maneuver copy, or one per copy
+  split by `|` ("Lunging 3 | Half Guard 3"), used in the order written;
+  Whirlwind, Victorious and Ascended Blade work as Features too. Passives
+  also take Toughened Resolve (+2 Shallow; `Health` already counts both
+  halves) and Cloak and Dagger. All of these came with the designer's
+  leveled builds (2026-10-24), and none changes a row that doesn't use
+  it.
 - **`party.py`** — loads `sample_pcs.csv`. `make_party(tier, good_luck=N)`
   pulls the Roster row and duplicates it x4; `get_pc(name)` pulls any
   row by name; `make_party_of(name)` duplicates one row x4; `make_party_

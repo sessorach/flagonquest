@@ -198,6 +198,28 @@ def skill_total(stats, skills, skill):
     return int(stats[stat]) + int(skills[skill])
 
 
+def _maneuver_features(text):
+    """One Battle Maneuver copy's Features ("Lunging 3, Half Guard 1",
+    a trailing number being how many copies of that Feature)."""
+    feats = {}
+    for f in text.split(","):
+        parts = f.strip().rsplit(" ", 1)
+        if len(parts) == 2 and parts[1].isdigit():
+            feats[parts[0]] = int(parts[1])
+        elif f.strip():
+            feats[f.strip()] = 1
+    return dict(lunges=feats.get("Lunging", 0), guard=feats.get("Half Guard", 0),
+                battering=feats.get("Battering", 0),
+                # Open the Wound X (draft, 2026-10-16): Reign of
+                # Blood's text as a Battle Maneuver Feature.
+                cashout=2 * feats.get("Open the Wound", 0),
+                # Hilde's Level 3 copy (2026-10-24): Whirlwind (F018) hits
+                # a second target, Victorious (F013) draws a card on a
+                # Down, Ascended Blade (F017) may deal Brilliant damage.
+                whirlwind=bool(feats.get("Whirlwind")), victorious=bool(feats.get("Victorious")),
+                ascended=bool(feats.get("Ascended Blade")))
+
+
 def _pc_dict(row, index, good_luck):
     stats = {s: row[s] for s in ("Agility", "Body", "Cunning", "Mind", "Essence")}
     skills = {k: v for k, v in row.items() if k not in
@@ -510,20 +532,19 @@ def _pc_dict(row, index, good_luck):
     # Unarmed attack, which is already the PC's weapon for every row
     # that has it.
     maneuver = None
+    maneuver_queue = []
     if "Battle Maneuver" in encounter_techs:
-        feats = {}
-        for f in (row.get("Maneuver Features") or "").split(","):
-            parts = f.strip().rsplit(" ", 1)
-            if len(parts) == 2 and parts[1].isdigit():
-                feats[parts[0]] = int(parts[1])
-            elif f.strip():
-                feats[f.strip()] = 1
-        maneuver = dict(uses=encounter_techs.count("Battle Maneuver"),
-                        lunges=feats.get("Lunging", 0), guard=feats.get("Half Guard", 0),
-                        battering=feats.get("Battering", 0),
-                        # Open the Wound X (draft, 2026-10-16): Reign of
-                        # Blood's text as a Battle Maneuver Feature.
-                        cashout=2 * feats.get("Open the Wound", 0))
+        uses = encounter_techs.count("Battle Maneuver")
+        raw = row.get("Maneuver Features") or ""
+        # One Feature set for every copy, or one per copy split by "|"
+        # (Hilde and Browndog build each copy differently), used in the
+        # order written; combat_sim moves to the next once one's spent.
+        groups = [_maneuver_features(g) for g in raw.split("|")]
+        if len(groups) == 1:
+            maneuver = dict(uses=uses, **groups[0])
+        else:
+            copies = [dict(uses=1, **groups[min(i, len(groups) - 1)]) for i in range(uses)]
+            maneuver, maneuver_queue = copies[0], copies[1:]
 
     # Every copy gets its own suffix, Roster rows included (a Roster
     # build used to keep its bare row Name - "Baseline Tier 1 Party
@@ -560,6 +581,23 @@ def _pc_dict(row, index, good_luck):
         pc["hexes"] = hexes
     if maneuver:
         pc["maneuver"] = maneuver
+    if maneuver_queue:
+        pc["maneuver_queue"] = maneuver_queue
+    # Encounter Techniques the sim runs at its own moments (2026-10-24,
+    # the designer's leveled builds): Brace (T001, 3 Protected), Strength
+    # from the Slain (T018, eaten after a kill) and Exert Pressure (T067,
+    # a Taunt on everyone close). One use per known copy.
+    for tname, key in (("Brace", "brace_uses_left"), ("Strength from the Slain", "slain_uses_left"),
+                       ("Exert Pressure", "pressure_uses_left")):
+        if tname in encounter_techs:
+            pc[key] = encounter_techs.count(tname)
+    # Toughened Resolve (T019): +2 Shallow and +2 Deep Health. `Health`
+    # already counts both; this moves where Wounded starts.
+    if "Toughened Resolve" in passives:
+        pc["shallow_max"] += 2
+    # Cloak and Dagger (T079) was a test-only field; Carrick has it now.
+    if "Cloak and Dagger" in passives:
+        pc["cloak_and_dagger"] = True
     # Raise Spirits (T069): "an ally within [Performance Skill Total]
     # meters".
     if "Raise Spirits" in passives:
