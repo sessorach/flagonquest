@@ -1,12 +1,12 @@
 # Latest replays (2026-10-24)
 
-Hilde, Browndog and Carrick now play as built (Brace, both Challenges, every Battle Maneuver copy, Furious Rage), thrown weapons hit a point softer, and the designer's 125 and 175 XP builds are the (L2) and (L3) rows.
+Jackal and Beornhard's leveled builds join Hilde's and Browndog's; the Level 3 replay is now all four of the designer's 175 XP builds.
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 1000 fights: 96.3% wins, 3.5 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 94.5% wins, 3.6 rounds, 73% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
@@ -46,8 +46,8 @@ Hilde, Browndog and Carrick now play as built (Brace, both Challenges, every Bat
 - This fight (seed 1): party won in 4 rounds, 75% party HP left
 - Matchup average over 1000 fights: 97.3% wins, 3.8 rounds, 73% HP left on a win
 
-## partyA_L3_vs_L3_frontline.html
-- Party: Hilde (L3), Browndog (L3), Carrick (L3), Sable (L2)
+## partyB_L3_vs_L3_frontline.html
+- Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
 - Enemies: Level 3 Frontline (Brute (L3), Brute (L3), Grave Caller (L3), Grave Caller (L3))
-- This fight (seed 2): party won in 3 rounds, 79% party HP left
-- Matchup average over 1000 fights: 96.7% wins, 3.0 rounds, 61% HP left on a win
+- This fight (seed 1): party won in 2 rounds, 83% party HP left
+- Matchup average over 1000 fights: 99.9% wins, 2.1 rounds, 77% HP left on a win
