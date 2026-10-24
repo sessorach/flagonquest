@@ -19,6 +19,7 @@ The simulator's Hilde, Browndog, Carrick, Jackal and Beornhard now play the way 
 
 - Added the Techniques those builds use that the simulator didn't have yet, from Brace and Furious Rage to Beornhard's Level 4 line spell.
 - Leveled the right way, the party pulls further ahead of same-Level enemies, not closer: at Levels 2 and 3 it hits close to nine times in ten.
+- Light Two-Handed weapons (a spear, a staff) can use Brawl as well as Melee.
 - Fixed a rulebook example that called Jackal "he".
 
 ### 2026-10-22 — A weak, an average and a strong price

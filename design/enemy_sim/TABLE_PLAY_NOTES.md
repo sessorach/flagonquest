@@ -638,9 +638,62 @@ Poisoning the PCs. With half ticks it lands during the fight instead of
 after it, so someone is Down or Wounded a point or two more often, and
 Health left stays put.
 
+## Where things stand (2026-10-24)
+
+The sections above are dated and describe the sim on their day. Since
+then:
+
+- **Everything the 10-08 notes left to wire up is in**: Raise Spirits,
+  Thief Empties the Vessel's heal, Boughs Unbroken, Hex of Rebuking's
+  Push, Fatestealer and Battle Maneuver's Features. So are Brace, Furious
+  Rage on Hilde, Strength from the Slain, Exert Pressure, Eagle Eyes,
+  Grim Resolve and Beornhard's Destructive and Furrow War Magic.
+- **Thrown weapons hit a point softer** (2 + Cunning, 3 + Body for
+  Heavy), matching `items.csv`. Ashleigh's damage in the 10-08 table is
+  3 now, not 4.
+- **The designer's own builds** are the `(L2)` and `(L3)` rows for
+  Hilde, Browndog, Carrick, Jackal and Beornhard; Party B is Hilde,
+  Browndog, Jackal and Beornhard, the designer's at every Level. Sable,
+  Hanforth, Felix, Enith and Ashleigh are still Level 1 builds plus
+  extrapolated `(L2)` rows (none for Enith and Ashleigh).
+- **Calibration against built Health** (`calibrate.py`, 200 fights a
+  mix), next to the targets above:
+
+| | Rounds | Losses | Someone Down | Someone Wounded | Hit enemy acts again |
+|---|---|---|---|---|---|
+| Level 2, Party A | 2.6 | 0.1% | 14% | 40% | 21-28% |
+| Level 2, Party B | 2.1 | 0% | 7% | 31% | 12-22% |
+| Level 3, Party A | 3.0 | 4.2% | 60% | 90% | 20-37% |
+| Level 3, Party B | 2.2 | 1.1% | 40% | 68% | 11-25% |
+
+The leveled builds end Level 2 fights fast and almost never lose, and a
+hit enemy gets another turn far less than the table's half. Level 3 is
+rougher on Party A (Sable is still her Level 2 build there).
+
+- **Table toughness** for the as-built Level 1 Party A is ×2.0 enemy
+  Health, not ×1.75 (`balance_weights_notes.md`, "The sample
+  characters, as built"). Scripts still default to 1.75.
+
 ## Still to do
 
 - **Items.** The sim doesn't model items yet beyond weapons, armor and
   Jackal's Bottomless Bottles. They matter more as characters level, so
   per the designer (2026-10-09): test their impact once the sample roster
   reaches about Level 3.
+- **The other five leveled builds** (Sable, Hanforth, Felix, Enith,
+  Ashleigh), from the designer.
+- **Pick table toughness** (×1.75 or ×2.0) with the designer, then move
+  the scripts' defaults.
+- **Re-run the Weak/Average/Strong columns** (`effect_check.py`) once
+  the roster's complete; they're on the old Party A.
+- **Level 2 and 3 enemy tuning**: the leveled builds outrun their own
+  Level's encounters (table above, and `balance_weights_notes.md`). Fix
+  the enemies, the characters or THE TABEL's baseline: the designer's
+  call.
+- **Card rescues on Encounter attacks**: the party spends cards to save
+  any big attack that misses, so Beornhard's War Magic lands 96-99% of
+  the time. Check that against how the table spends cards.
+- **Not modeled yet**: Wall of Shadows, Gainsay, Shadow Jaunt, Distraction
+  and Patch Up (out of combat), Bound Across Mountains, Follower; Cloak
+  and Dagger never fires for a thrower at range; Furrow seldom has a
+  target in its 4-meter line.

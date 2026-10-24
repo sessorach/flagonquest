@@ -17,7 +17,10 @@ sample_enemies.csv:
   leaning into each of the 5 Stats, built to rulebook.md's own Quick
   Creation Reference shape (2 Skills@3, 5@2, 2@1; 1 Stat@3, 2@2, 2@1) and
   verified to cost exactly 57 XP in Skills+Stats (75 total chargen
-  budget minus 18 XP/6 Levels of Techniques, which aren't modeled here).
+  budget minus 18 XP/6 Levels of Techniques). That was the original
+  reference set; the named rows now are mostly the designer's Builder
+  exports (archive/player_builds/), at Level 1 and leveled, and model
+  whichever of their Techniques fight.
   `get_pc(name)` pulls these by name; `make_party_of(name)` duplicates
   one x4 into a full party, for testing a single build's own attack
   profile against the validated Roster; `make_party_from([names])`

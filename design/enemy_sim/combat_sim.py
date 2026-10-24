@@ -5,11 +5,13 @@ resolve, and party Health remaining on a win.
 
 Deliberately simplified, not a full combat engine - see design/
 ENEMY_ENCOUNTER_DESIGN.md's Analysis section for the full list of
-what's NOT modeled (no Extra Successes from suit-pool matching beyond
-tactics.sift_bonus's own flat-probability stand-in, no Techniques/items
-beyond Weapon/Armor/Support/Card Techniques/Passives, rough Battle
-Tactics targeting proxies, no Shallow/Deep Health split - so "Wounded"
-is approximated as half max Health, see tactics.strategy_support_healer).
+what's NOT modeled. As of 2026-10-24: no items beyond weapons, armor
+and Jackal's Bottomless Bottles; only the Techniques a sample_pcs.csv
+row names (see party.py and the README's sample_pcs paragraph); rough
+Battle Tactics targeting proxies; one Health number per unit, with
+Shallow tracked alongside it for Wounded (tactics.sync_wounded). Real
+hands and suits are in (cards.py, tunables.CARDS); the flat stand-ins
+described below are what runs with it off.
 Good for catching relative differences between builds and Tiers; the
 exact win percentages aren't precise predictions of real play.
 
@@ -1447,7 +1449,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
     def _bonus_attack(bonus_target, via_suffix):
         """Resolves one additional weapon attack against `bonus_target`,
         granted for free by a doubling Feature (Whirlwind/Piercing
-        Shot/Flurry's own synthetic test fields - see the Advanced
+        Shot/Flurry's own synthetic test fields, and since 2026-10-24
+        Whirlwind on a real Battle Maneuver copy - see the Advanced
         Cost-6 trio's balance_weights_notes.md pass) - no AP cost, no
         Gambling (a per-attack player choice, not sensible to auto-apply
         to a bonus swing), same hit/damage/Harried/Protected resolution
@@ -1719,7 +1722,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # Technique is expended by using it (rulebook.md), a
                     # missed attack doesn't refund the attempt.
                     pc['feint'] = False
-                # Cloak and Dagger (T079, synthetic test field, "0 AP -
+                # Cloak and Dagger (T079, a test field, and a row's Passive since 2026-10-24, "0 AP -
                 # Interrupt (you declare a weapon attack with a
                 # close-range weapon that isn't Heavy or two-handed)"):
                 # a separate Stealth attack against the target's own

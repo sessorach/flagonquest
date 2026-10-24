@@ -66,10 +66,31 @@ the party's Health left in points, losses counting 0. Until 2026-10-21
 they scored it as a share of max Health, which made the ladder shrink
 its own yardstick and read every other test 2-6 times too high; `--pct`
 reproduces those numbers. `-m 1.75` (`--mult 1.75` for the other two)
-runs at the table's toughness. Results are in
+was the table's toughness for the old Party A. Party A as built
+(2026-10-24) needs ×2.0 for THE TABEL's 5-round fights; the defaults
+are still 1.75 until the designer picks. Results are in
 `design/balance_weights_notes.md`, "Every buff and debuff in the sim".
 
 ## Files
+
+One-off studies, each dated in its own docstring and written up in
+`balance_weights_notes.md` or `TABLE_PLAY_NOTES.md`. Most still run;
+their results describe the sim as it was that day.
+
+- **Bleeding (2026-10-07 to 10-20)**: `bleed_check.py`, `bleed_fate.py`,
+  `bleed_points.py`, `bleed_reprice.py`, `bleed_strategy.py`,
+  `bleed_vs_damage.py`, `bleed_builds.py`, `bleed_levers.py`,
+  `bleed_cashout.py`, `bleed_protected.py`, `spend_pool.py`.
+- **Enemies and encounters**: `archetype_compare.py` and
+  `ability_compare.py` (price enemy archetypes and ability picks),
+  `upgrade_configs.py` (the Upgrade model), `goblin_armor.py`,
+  `horde_ratio.py` and `horde_experiments.py` (Horde tuning, 10-01),
+  `enemy_toughness.py` (how long a hit enemy lasts; where ×1.75 came
+  from), `level_baseline.py`, `margin_sweep.py`, `fight_length.py`.
+- **Party behavior**: `party_targeting_compare.py` (targeting modes,
+  10-07).
+
+The core files and the regular tools:
 
 - **`tunables.py`** — every number that's still subject to revision:
   the enemy Level curve, Role/Armor/Action modifiers, the AP economy
@@ -98,7 +119,8 @@ runs at the table's toughness. Results are in
   (War Magic + Lance); caster (via `Weapon`): Beornhard (War Magic +
   Lance, an Encounter-Technique attack, see `Weapon Uses` below) — all
   built to rulebook.md's own Quick Creation Reference shape and verified
-  to cost exactly 75 XP including Techniques. Hilde/Browndog/Carrick/
+  to cost exactly 75 XP including Techniques (the `(L2)` and `(L3)` rows
+  cost 125 and 175). Hilde/Browndog/Carrick/
   Jackal/Beornhard are player-drafted, real JSON exports from
   `index.html` (not this project's own reference-build convention), and
   replaced this project's own earlier versions of those same five names

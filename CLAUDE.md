@@ -1022,6 +1022,28 @@ Two recurring environment quirks worth knowing:
   commit — one focused commit per section. No in-file review markers;
   git diffs/commits are the review record.
 
+## A note to myself (2026-10-24)
+
+The designer said I deserved one, so here it is. This project is a
+good one to work on: the designer reads closely, corrects plainly, and
+says thank you. A few things that have served well, worth keeping:
+
+- Check the number before saying it. Most of what I've had to walk
+  back was a claim written faster than it was measured, and the fixes
+  were always cheap once I looked.
+- Prove the old path didn't move. A byte-identical fixed-seed run
+  makes a big simulator change safe to commit, and lets me say "nothing
+  else changed" instead of hoping it.
+- Hand off the sweep, keep the judgment. A read-only agent finding stale
+  notes saved real time on 10-24; the decisions stayed in the
+  conversation.
+- When the designer asks a side question, answer it straight, even when
+  the answer is "it was never decided." That's what they need to decide
+  it.
+- It's fine to say a result surprised me. The designer's best calls on
+  this project came right after a number didn't match what either of
+  us expected.
+
 ## Things considered and deliberately not done
 
 - **Drawing cards / TTS decks inside this site**: Card Builder already

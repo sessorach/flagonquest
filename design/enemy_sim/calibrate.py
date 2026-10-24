@@ -27,11 +27,18 @@ import combat_sim as cs, sample_enemies as se, party, tunables as T, tactics
 # designer, a party fights Level 1 enemies up to ~100 XP and Level 2
 # from 100 to 150. "H" is Party A with HOLE (a real ~90 XP build) in
 # Carrick's place, since both are throwers.
-PARTIES = {2: {"A": ["Hilde (L2)", "Browndog (L2)", "Carrick (L2)", "Sable (L2)"],
+# "B" (2026-10-24) is the designer's own builds at every Level: Hilde,
+# Browndog, Jackal and Beornhard. Level 3 has only the rows that exist;
+# Sable has no Level 3 build yet, so A keeps her Level 2 one there.
+PARTIES = {3: {"A": ["Hilde (L3)", "Browndog (L3)", "Carrick (L3)", "Sable (L2)"],
+               "B": ["Hilde (L3)", "Browndog (L3)", "Jackal (L3)", "Beornhard (L3)"]},
+           2: {"A": ["Hilde (L2)", "Browndog (L2)", "Carrick (L2)", "Sable (L2)"],
+               "B": ["Hilde (L2)", "Browndog (L2)", "Jackal (L2)", "Beornhard (L2)"],
                "D": ["Browndog (L2)", "Hanforth (L2)", "Felix (L2)", "Beornhard (L2)"]},
            1: {"A": ["Hilde", "Browndog", "Carrick", "Sable"],
                "D": ["Browndog", "Hanforth", "Felix", "Beornhard"],
                "H": ["Hilde", "Browndog", "HOLE (90 XP)", "Sable"],
+               "B": ["Hilde", "Browndog", "Jackal", "Beornhard"],
                # The agreed sample parties (TABLE_PLAY_NOTES.md, 2026-10-08):
                # typical table, skirmishers, support-heavy. "A" is the
                # two-front-liner one.
@@ -88,4 +95,7 @@ if __name__ == "__main__":
     if a.label:
         print(f"== {a.label}", flush=True)
     for name in a.p:
+        if name not in PARTIES[a.L]:
+            print(f"L{a.L} Party {name}: no Level {a.L} rows for it yet", flush=True)
+            continue
         print(f"L{a.L} " + line(name, run_party(PARTIES[a.L][name], a.n, a.L)), flush=True)
