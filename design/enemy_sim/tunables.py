@@ -445,6 +445,9 @@ BACKLINE_KEEP_AWAY = 3   # spaces a ranged Back-liner keeps from every enemy
 # Brace (T001) with AP left at the end of a turn: only when an enemy is
 # this close, near enough to reach this PC next round (2026-10-24).
 BRACE_THREAT_RANGE = 6
+# Warmage's Reserves regains the best spent War Magic copy instead of a
+# plain cast (2026-10-24). Off reproduces the older runs exactly.
+RESERVES_REGAIN_BEST = True
 RECKLESS_CHANCE = 0.05   # share of turns any PC plays like a Diver anyway
 
 # ---- How the Assassin tactic reads "squishy" (2026-10-08 test) ----

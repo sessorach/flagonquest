@@ -350,8 +350,8 @@ from 100 to 150, and so on).
 | 1 | Hilde | Barbarian | uploaded (export, 2026-09-20); 125 and 175 XP uploaded and modeled 2026-10-24 |
 | 2 | Browndog | Guardian | uploaded (export, 2026-09-20); 125 and 175 XP uploaded and modeled 2026-10-24 |
 | 3 | Carrick | Rogue | uploaded (export, 2026-09-20); 125 and 175 XP uploaded and modeled 2026-10-24 |
-| 4 | Jackal | Alchemist | uploaded (export, 2026-09-20) |
-| 5 | Beornhard | Sorcerer | uploaded (export, 2026-09-21) |
+| 4 | Jackal | Alchemist | uploaded (export, 2026-09-20); 125 and 175 XP uploaded and modeled 2026-10-24 |
+| 5 | Beornhard | Sorcerer | uploaded (export, 2026-09-21); 125 and 175 XP uploaded and modeled 2026-10-24 |
 | 6 | Sable | Archer | uploaded (export, 2026-09-21) |
 | 7 | Hanforth | Healer | uploaded (export, 2026-09-21) |
 | 8 | Felix | Monk, cat Wildfolk (he/him) | uploaded (export, 2026-10-08), modeled 2026-10-09 |
@@ -360,12 +360,12 @@ from 100 to 150, and so on).
 
 Not part of the sample: Rook and Wren (reference builds made to test
 movement), HOLE (a real ~90 XP build, set aside for now), the Baseline
-Tier rows, and the `(L2)` rows other than Hilde's, Browndog's and
-Carrick's (extrapolated from the Level 1 builds, mostly into combat, not
+Tier rows, and the `(L2)` rows other than Hilde's, Browndog's,
+Carrick's, Jackal's and Beornhard's (extrapolated from the Level 1 builds, mostly into combat, not
 built by the designer). The 09-20 exports were saved to
 archive/player_builds/ on 2026-10-24; their Stats and Skills match the
 rows exactly. The designer's 125 and 175 XP builds are the `(L2)` and
-`(L3)` rows for those three.
+`(L3)` rows for those five.
 
 Sample parties to build from it once the last three are in:
 

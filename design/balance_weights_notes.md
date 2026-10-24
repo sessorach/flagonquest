@@ -11133,3 +11133,31 @@ still at nearly twice its damage.
 
 Caveats: one party, three of its four leveled by the designer, and no
 items yet.
+
+**Jackal and Beornhard (later the same day).** The designer's 125 and
+175 XP builds of both are the `(L2)` and `(L3)` rows now, with Eagle
+Eyes, Grim Resolve, Wind Slash, Beornhard's Destructive copies and his
+Level 4 Furrow line spell modeled. Warmage's Reserves takes back his best
+spent copy (`tunables.RESERVES_REGAIN_BEST`; off reproduces the older
+runs). Furrow goes off about once in 40 fights: its line is 4 meters,
+and Beornhard stands further back than that. Eagle Eyes almost never
+does, since Jackal throws Bottled Fire, which isn't a weapon, nearly
+every turn.
+
+All four of Hilde, Browndog, Jackal and Beornhard are the designer's own
+builds at every Level, so they make a cleaner benchmark party than Party
+A (×1.75, 250 fights a mix):
+
+| Level | Wins | Rounds | Hit rate | Damage a hit after Resist |
+|---|---|---|---|---|
+| 1 | 95% | 4.3 | 72% | 5.1 |
+| 2 | 99.8% | 3.0 | 87% | 7.4 |
+| 3 | 93% | 3.7 | 93% | 7.5 |
+
+Against its own Level, this party hits 72% at Level 1 and close to
+nine times in ten after that, for about half again as much damage a
+hit as at Level 1. The Level 2 and Level 3 encounters at ×1.75 are
+over in about three rounds. Beornhard's hit rate is 96-99% at every
+Level: his War Magic is an Encounter attack, so the party plays hand
+cards to rescue its misses, the same rule that makes any big attack
+nearly sure to land.

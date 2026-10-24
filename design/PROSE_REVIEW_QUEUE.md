@@ -215,3 +215,5 @@ things off in order.
 - **The Basics** (rulebook.md) — "The most specific rule always wins"
   gets a second sentence: rules cover the general case, and an ability,
   item or effect that says it works differently does. Commit `f5468f5`.
+- **Masquerade example** (rulebook.md, Skills) — Jackal's disguise
+  example used he/him; now she/her, per the designer. Commit `db616e7`.

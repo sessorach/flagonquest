@@ -15,10 +15,11 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-10-24 — The sample characters, as built
 
-The simulator's Hilde, Browndog and Carrick now play the way their players built them, at Level 1 and at the designer's new 125 and 175 XP versions. Thrown weapons now hit as hard as the item list says, a point less than the simulator had them.
+The simulator's Hilde, Browndog, Carrick, Jackal and Beornhard now play the way their players built them, at Level 1 and at the designer's new 125 and 175 XP versions. Thrown weapons now hit as hard as the item list says, a point less than the simulator had them.
 
-- Added Brace, both Challenges and every Battle Maneuver copy, Furious Rage, Strength from the Slain, Exert Pressure and the Level 3 Maneuver Features.
-- Leveled the right way, the party pulls further ahead of same-Level enemies, not closer: more hits and bigger ones at Levels 2 and 3.
+- Added the Techniques those builds use that the simulator didn't have yet, from Brace and Furious Rage to Beornhard's Level 4 line spell.
+- Leveled the right way, the party pulls further ahead of same-Level enemies, not closer: at Levels 2 and 3 it hits close to nine times in ten.
+- Fixed a rulebook example that called Jackal "he".
 
 ### 2026-10-22 — A weak, an average and a strong price
 

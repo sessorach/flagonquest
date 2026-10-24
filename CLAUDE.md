@@ -252,6 +252,11 @@ which should stay a clean decision record.
   ones weren't, and went missing for a month), named by XP when there's
   more than one per character. A prereq the build misses is fine to
   leave: these are benchmarks, per the designer (2026-10-24).
+- **The named cast's pronouns** (for rulebook examples): Hilde,
+  Browndog, Carrick, Jackal, Sable, Enith and Ashleigh are she/her;
+  Beornhard (an old wizard), Felix and Hanforth are he/him. Per the
+  designer (2026-10-24); `sample_pcs.csv`'s Pronouns column has the
+  same. A Masquerade example once had Jackal as "he".
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and

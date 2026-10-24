@@ -149,9 +149,14 @@ runs at the table's toughness. Results are in
   split by `|` ("Lunging 3 | Half Guard 3"), used in the order written;
   Whirlwind, Victorious and Ascended Blade work as Features too. Passives
   also take Toughened Resolve (+2 Shallow; `Health` already counts both
-  halves) and Cloak and Dagger. All of these came with the designer's
-  leveled builds (2026-10-24), and none changes a row that doesn't use
-  it.
+  halves), Cloak and Dagger, Eagle Eyes (an extra AP for Good Luck
+  twice on a ranged weapon attack, when the AP left only covers one) and
+  Grim Resolve (a card at the start of each fight for 1 Health). Wind
+  Slash works as a Maneuver Feature, and "Furrow War Magic" is
+  Beornhard's Level 4 line spell (with Draw Power). All of these came with
+  the designer's leveled builds (2026-10-24), and none changes a row that
+  doesn't use it. `tunables.RESERVES_REGAIN_BEST` has Warmage's Reserves
+  take back the best spent War Magic copy instead of a plain cast.
 - **`party.py`** — loads `sample_pcs.csv`. `make_party(tier, good_luck=N)`
   pulls the Roster row and duplicates it x4; `get_pc(name)` pulls any
   row by name; `make_party_of(name)` duplicates one row x4; `make_party_

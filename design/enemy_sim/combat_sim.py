@@ -241,7 +241,14 @@ def effective_range(unit):
     a real ranged Action, or MELEE_RANGE if it's 0 (a melee Action, per
     enemy_builder's own formula - 0 doesn't mean 'must be standing on
     the same point,' see tunables.MELEE_RANGE's comment)."""
-    return unit.get('attack_range') or T.MELEE_RANGE
+    r = unit.get('attack_range') or T.MELEE_RANGE
+    # Wind Slash (a Battle Maneuver Feature, Jackal's Level 3 build):
+    # "For the attack the chosen weapon's range is increased by [twice
+    # X]" - while that copy's still unused.
+    m = unit.get('maneuver')
+    if m and m['uses'] > 0 and m.get('wind') and unit.get('attack_range'):
+        r += 2 * m['wind']
+    return r
 
 
 def spend_movement_ap(unit, target, ap, reach):
@@ -1050,7 +1057,16 @@ def _warmage_reserves(pc, log=None):
     if not T.CARDS or "Warmage's Reserves" not in pc.get('card_techniques', ()) or not cards.can_spend(pc):
         return False
     cards.spend(pc, cards.lowest(pc['hand']))
-    pc['weapon_uses_left'] += 1
+    # tunables.RESERVES_REGAIN_BEST: a player takes back the best spent
+    # copy (Beornhard's Destructive War Magic), not a plain one. Leaves
+    # out the special-purpose spells (Sanguine, a cash-out) and any copy
+    # with its own shorter reach.
+    best = [t for t in pc.get('tech_attacks', ()) if T.RESERVES_REGAIN_BEST and t.get('skill') == 'Sorcery'
+            and t['damage'] > 0 and not (t.get('sanguine') or t.get('cashout') or t.get('range'))]
+    if best:
+        max(best, key=lambda t: t['damage'])['uses'] += 1
+    else:
+        pc['weapon_uses_left'] += 1
     if log:
         log(unit=pc['name'], action='card', via="Warmage's Reserves", note='regained a War Magic use')
     return True
@@ -1260,6 +1276,24 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
     return 1
 
 
+def _draw_card(pc):
+    """One more card for this fight (Victorious, Draw Power)."""
+    if T.CARDS:
+        pc['hand'].append(pc['deck'].draw())
+        pc['budget'] += 1
+    else:
+        pc['card_uses_left'] = pc.get('card_uses_left', 0) + 1
+
+
+def _line_targets(pc, target, enemies, length):
+    """The other enemies in a line `length` spaces long from `pc`
+    through `target`."""
+    (x0, y0), (x1, y1) = pc['pos'], target['pos']
+    d = max(abs(x1 - x0), abs(y1 - y0)) or 1
+    cells = {(round(x0 + (x1 - x0) * k / d), round(y0 + (y1 - y0) * k / d)) for k in range(1, length + 1)}
+    return [e for e in enemies if e is not target and e['health'] > 0 and tuple(e['pos']) in cells]
+
+
 def _next_maneuver(pc):
     """A spent Battle Maneuver copy makes way for the next one, for a PC
     who built each copy differently (party.py's `maneuver_queue`)."""
@@ -1374,6 +1408,12 @@ def _tech_attack_choice(pc, target):
         # would heal, or the fight's into its third round.
         if (t.get('heal_on_hit') and pc['max_health'] - pc['health'] < t['heal_on_hit']
                 and pc.get('acted_round', 1) <= 2):
+            continue
+        # A shorter-ranged copy (Beornhard's Furrow, which has no Lance)
+        # waits for a target in reach; the attack loop stops rather than
+        # cast a spell he hasn't got if nothing else is left.
+        if t.get('range') and 'pos' in pc and _distance(pc['pos'], target['pos']) > t['range']:
+            pc['_range_skip'] = True
             continue
         if t.get('effect'):
             if not t['damage'] and target.get(t['effect'][0], 0) > 0:
@@ -1629,6 +1669,20 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 substitute = None if maneuver_now else tactics.bottomless_bottles_choice(pc, target)
                 if not substitute and not maneuver_now:
                     substitute = _tech_attack_choice(pc, target)
+                if (pc.pop('_range_skip', False) and not substitute and not maneuver_now
+                        and pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0):
+                    if _warmage_reserves(pc, party_log):
+                        substitute = _tech_attack_choice(pc, target)
+                        pc.pop('_range_skip', None)
+                    if not substitute and pc['weapon_uses_left'] <= 0:
+                        break
+                # Eagle Eyes (T137, a Style): "spend an extra 1 AP. If you
+                # do, those attacks have Good Luck twice." Taken when the AP
+                # left only covers one attack anyway.
+                if ('Eagle Eyes' in pc.get('passives', ()) and not substitute and pc.get('attack_range')
+                        and T.ATTACK_AP_COST < ap < 2 * T.ATTACK_AP_COST):
+                    ap -= 1
+                    pc['gl_next'] = pc.get('gl_next', 0) + 2
                 if not substitute and pc.get('opp_def_choices'):
                     pc['opp_def'] = random.choice(pc['opp_def_choices'])
                 # A Bottled-Fire substitution temporarily overlays this PC's
@@ -2023,11 +2077,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # Victorious (F013): "If the attack Downs the target,
                     # draw a card."
                     if maneuver_now and mv.get('victorious') and target['health'] <= 0:
-                        if T.CARDS:
-                            pc['hand'].append(pc['deck'].draw())
-                            pc['budget'] += 1
-                        else:
-                            pc['card_uses_left'] = pc.get('card_uses_left', 0) + 1
+                        _draw_card(pc)
                     if substitute and substitute.get('effect'):
                         key, stacks, suit = substitute['effect']
                         stacks += _suit_count(pool, suit)
@@ -2117,6 +2167,17 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     extra = _find_extra_target(pc, target, enemies, movement_on, 'melee')
                     if extra:
                         damage_dealt += _bonus_attack(extra, 'Whirlwind')
+                # Furrow (Beornhard's Level 4 War Magic): "targets all
+                # creatures in a line [half your Sorcery Skill Total] meters
+                # long". Aimed past the party; Draw Power draws a card if it
+                # Downs anyone, once per casting.
+                if substitute and substitute.get('line') and 'pos' in pc:
+                    downed = target['health'] <= 0
+                    for extra in _line_targets(pc, target, enemies, substitute['line']):
+                        damage_dealt += _bonus_attack(extra, substitute['via'])
+                        downed = downed or extra['health'] <= 0
+                    if substitute.get('draw_power') and downed:
+                        _draw_card(pc)
                 if pc.get('ricochet_shot'):
                     extra = _find_extra_target(pc, target, enemies, movement_on, 'adjacent')
                     if extra:
@@ -2906,6 +2967,12 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     if T.CARDS:
         for p in pcs:
             cards.start_fight(p)
+            # Grim Resolve (T010, 0 AP, 1 Health committed until a full
+            # rest): "You draw a card." Jackal takes it once a fight.
+            if p.get('grim_resolve'):
+                _draw_card(p)
+                p['health'] -= 1
+                p['max_health'] -= 1
         gm_deck = cards.Deck()
         for e in enemies:
             e['deck'] = gm_deck

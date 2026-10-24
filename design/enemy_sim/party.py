@@ -165,6 +165,14 @@ TECH_ATTACKS = {
     "Destructive War Magic": lambda st, sk, atk, dmg: dict(
         skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]) + 2,
         dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery"),
+    # Beornhard's Level 4 copy (2026-10-24): Destructive x2, Draw Power and
+    # Furrow (Shape), no Lance - a line [half his Sorcery Skill Total]
+    # meters long from his space, which is also its reach. Draw Power's
+    # Shadow damage is the same elemental Resist here.
+    "Furrow War Magic": lambda st, sk, atk, dmg: dict(
+        skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]) + 2,
+        dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery",
+        line=skill_total(st, sk, "Sorcery") // 2, range=skill_total(st, sk, "Sorcery") // 2, draw_power=True),
     "Reckoning": lambda st, sk, atk, dmg: dict(
         skill_total=skill_total(st, sk, "Theurgy"), damage=0,
         dmg_type=None, opp_def="Mental", effect=("crippled", 5, "Clubs"), skill="Theurgy"),
@@ -217,7 +225,9 @@ def _maneuver_features(text):
                 # a second target, Victorious (F013) draws a card on a
                 # Down, Ascended Blade (F017) may deal Brilliant damage.
                 whirlwind=bool(feats.get("Whirlwind")), victorious=bool(feats.get("Victorious")),
-                ascended=bool(feats.get("Ascended Blade")))
+                ascended=bool(feats.get("Ascended Blade")),
+                # Wind Slash X (Jackal): +[twice X] range for the attack.
+                wind=feats.get("Wind Slash", 0))
 
 
 def _pc_dict(row, index, good_luck):
@@ -440,6 +450,12 @@ def _pc_dict(row, index, good_luck):
             prof = TECH_ATTACKS[tname](stats, skills, atk_skill_total, damage)
             prof.update(via=tname, uses=encounter_techs.count(tname))
             tech_attacks.append(prof)
+    # Overchanneling's +1 goes on damaging Spell attacks, the technique
+    # ones included.
+    if "Overchanneling" in passives:
+        for prof in tech_attacks:
+            if prof.get("skill") == "Sorcery" and prof["damage"] > 0:
+                prof["damage"] += 1
 
     # `Defense Choices` ("Dodge|Vital"): each attack picks one of these at
     # random. Stands in for a War Magic caster whose copies are split
@@ -598,6 +614,8 @@ def _pc_dict(row, index, good_luck):
     # Cloak and Dagger (T079) was a test-only field; Carrick has it now.
     if "Cloak and Dagger" in passives:
         pc["cloak_and_dagger"] = True
+    if "Grim Resolve" in passives:
+        pc["grim_resolve"] = True
     # Raise Spirits (T069): "an ally within [Performance Skill Total]
     # meters".
     if "Raise Spirits" in passives:
