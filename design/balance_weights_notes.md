@@ -11161,3 +11161,17 @@ over in about three rounds. Beornhard's hit rate is 96-99% at every
 Level: his War Magic is an Encounter attack, so the party plays hand
 cards to rescue its misses, the same rule that makes any big attack
 nearly sure to land.
+
+## Light Two-Handed takes Brawl (2026-10-24)
+
+Per the designer: the Light Two-Handed Melee Weapon (`I119`) can use
+Brawl as well as Melee. `weapon_categories.csv` already said "Melee or
+Brawl" and the sim already used whichever was higher; `items.csv` said
+Melee, so that's the one that changed. On the base weapons model its
+raw stays 10 (Accuracy 1, Damage 4 × 2, Weapon Defense 1). Brawl feeds
+Parry and Dodge as well as the attack, which is the Brawl discount:
+**−1 to Target** for a Brawl user (something the player gets lowers
+the Target). Target 10 → 9, Net +1 for a Brawl user; a Melee user is
+unchanged at Net 0. Left at +1. Beornhard and Hanforth both carry one
+with Brawl and no Melee, though neither fights with it in the sim. The
+Character Sheet now reads an "X or Y" Skill as the higher of the two.

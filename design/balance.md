@@ -1630,6 +1630,11 @@ Full derivation in `balance_weights_notes.md`; headline results:
   designer — only Range was in scope for this fix.
 - **Unarmed, Shield, Handgun, Blunderbuss, Musket**: all confirmed
   as-is, no changes needed.
+- **Light Two-Handed** (`I119`) Skill `Melee → Melee or Brawl`
+  (2026-10-24, per the designer). A Brawl user gets the Brawl discount,
+  **−1 to Target** (10 → 9), so the weapon runs a point hot for them
+  (Net +1) and stays on rate for a Melee user. Left as is: a staff for
+  a Brawl fighter who isn't going Unarmed.
 
 ### Baseline Armor pass — three tiers, a genuinely different balance shape than Weapons
 

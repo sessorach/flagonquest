@@ -987,8 +987,12 @@ function resolveDamage(raw, statPoints) {
 // Skill, or freeform custom-item text that doesn't match one).
 function resolveAccuracy(flat, skillName, statPoints, skillPoints) {
   if (flat == null) return null;
-  const total = skillName && ALL_STAT_SKILLS.includes(skillName)
-    ? skillTotalValue(statPoints, skillPoints, skillName)
+  // "Melee or Brawl" (the Light Two-Handed weapon): the wielder uses
+  // whichever Skill Total is higher.
+  const options = String(skillName || "").split(/\s+or\s+/i).map(s => s.trim())
+    .filter(s => ALL_STAT_SKILLS.includes(s));
+  const total = options.length
+    ? Math.max(...options.map(s => skillTotalValue(statPoints, skillPoints, s)))
     : 0;
   return flat + total;
 }

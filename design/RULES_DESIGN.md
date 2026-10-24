@@ -2688,6 +2688,15 @@ the Wound), and Channel Ki (untagged before; now Willow Springs Back, Level 3). 
 of review from here: Shugen, then a pass back over Demon (adding
 its pure Meditation counterparts), then Great Old Oak last.
 
+## Light Two-Handed weapons can use Brawl
+
+Per the designer (2026-10-24): a Light Two-Handed Melee Weapon (a
+spear, a quarterstaff) attacks with Melee or Brawl, whichever the
+wielder picks. It gives a Brawl fighter a weapon that isn't their fists
+without making them buy Melee. `weapon_categories.csv` already read this
+way; `items.csv` now matches. Pricing is in `balance.md` (Baseline
+Weapons pass): it runs a point hot for a Brawl user, left as is.
+
 ## Things considered and deliberately not done
 
 - Reviving Embolden/Bolstered as literal mechanics — see above, superseded by simpler existing rules (case-by-case GM ruling; healing-clears-Wounded).

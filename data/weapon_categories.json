@@ -65,7 +65,7 @@
     "accuracy": 1,
     "damage": "3 + [Cunning]",
     "defense": "N/A",
-    "range": 15,
+    "range": 19,
     "skill": "Archery",
     "might_str": "-"
   },
@@ -75,7 +75,7 @@
     "accuracy": 0,
     "damage": "4 + [Cunning]",
     "defense": "N/A",
-    "range": 20,
+    "range": 17,
     "skill": "Archery",
     "might_str": 4
   },
