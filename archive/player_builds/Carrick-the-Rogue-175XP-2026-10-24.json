@@ -1,0 +1,110 @@
+{
+  "charName": "Carrick the Rogue",
+  "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+  "xpBudget": "175",
+  "statPoints": {
+    "Agility": 4,
+    "Body": 3,
+    "Cunning": 4,
+    "Mind": 3,
+    "Essence": 2
+  },
+  "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 4,
+    "Athletics": 0,
+    "Awareness": 2,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 3,
+    "Streetwise": 3,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 3,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+  },
+  "charNotes": "",
+  "noteRows": [],
+  "customTechniques": [],
+  "backgroundType": "Settler",
+  "backgrounds": [],
+  "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+  ],
+  "enabledSupplements": [
+    "Base Game"
+  ],
+  "gold": "",
+  "inventory": [
+    {
+      "id": "I128",
+      "qty": 1
+    },
+    {
+      "id": "I121",
+      "qty": 1
+    }
+  ],
+  "customItems": [],
+  "customMaterials": [],
+  "customAttacks": [],
+  "exportedAt": "2026-10-24T15:54:06.623Z",
+  "techniques": [
+    {
+      "id": "T034",
+      "name": "Legerdemain",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T065",
+      "name": "Rumormonger",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T078",
+      "name": "Perfect Strike",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T144",
+      "name": "Distraction",
+      "xp": 3,
+      "level": "Lv 1"
+    },
+    {
+      "id": "T128",
+      "name": "Lawman's Hand",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T036",
+      "name": "Patch Up",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T079",
+      "name": "Cloak and Dagger",
+      "xp": 9,
+      "level": "Lv 3"
+    }
+  ]
+}

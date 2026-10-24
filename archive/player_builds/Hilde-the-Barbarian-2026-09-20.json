@@ -1,0 +1,104 @@
+{
+  "charName": "Hilde the Barbarian",
+  "charConcept": "A powerful melee fighter who charges into battle with no fear",
+  "xpBudget": "75",
+  "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 2
+  },
+  "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 1,
+    "Might": 3,
+    "Presence": 2,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+  },
+  "charNotes": "",
+  "noteRows": [],
+  "customTechniques": [],
+  "backgroundType": "Settler",
+  "backgrounds": [],
+  "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+  ],
+  "enabledSupplements": [
+    "Base Game"
+  ],
+  "gold": "",
+  "inventory": [
+    {
+      "id": "I120",
+      "qty": 1
+    },
+    {
+      "id": "I129",
+      "qty": 1
+    }
+  ],
+  "customItems": [],
+  "customMaterials": [],
+  "customAttacks": [],
+  "exportedAt": "2026-09-20T20:26:55.832Z",
+  "techniques": [
+    {
+      "id": "T012",
+      "name": "Second Wind",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+        {
+          "name": "Lunging",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "T130",
+      "name": "Furious Rage",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+        {
+          "name": "Half Guard",
+          "count": 3
+        }
+      ]
+    }
+  ]
+}

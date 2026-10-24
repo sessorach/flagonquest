@@ -1,0 +1,86 @@
+{
+  "charName": "Sable, Deadeye",
+  "charConcept": "Big dick chaos archer, extreme violence",
+  "xpBudget": "75",
+  "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 1
+  },
+  "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 3,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 2,
+    "Athletics": 0,
+    "Awareness": 2,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 2,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+  },
+  "charNotes": "",
+  "noteRows": [],
+  "customTechniques": [],
+  "backgroundType": "Settler",
+  "backgrounds": [],
+  "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+  ],
+  "enabledSupplements": [
+    "Base Game"
+  ],
+  "gold": "",
+  "inventory": [
+    {
+      "id": "I128",
+      "qty": 1
+    },
+    {
+      "id": "I123",
+      "qty": 1
+    }
+  ],
+  "customItems": [],
+  "customMaterials": [],
+  "customAttacks": [],
+  "exportedAt": "2026-09-20T23:52:29.737Z",
+  "techniques": [
+    {
+      "id": "T131",
+      "name": "Hand of Chaos",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T078",
+      "name": "Perfect Strike",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T011",
+      "name": "One Eye Behind You",
+      "xp": 6,
+      "level": "Lv 2"
+    }
+  ]
+}
