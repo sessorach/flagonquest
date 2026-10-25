@@ -61,6 +61,13 @@ MATCHUPS = [
     # Sable's Blinkstep and Parting Shot, against the Level 2 Solo Boss.
     ("partyD2_L2_vs_solo_boss", ["Browndog (L2)", "Rook (L2)", "Sable (L2)", "Hanforth (L2)"], 2, "Solo Boss",
      "lifeline_taken"),
+    # Variant builds (2026-10-25, sample_characters.md "Variants"): the
+    # Frost Beornhard Slowing what he hits, and the two Level 3 swaps that
+    # helped, Hilde's Flurry and Beornhard's Piercing Elements.
+    ("partyB_L2_frost_vs_L2_warband", ["Hilde (L2)", "Browndog (L2)", "Jackal (L2)", "Beornhard (L2, Frost)"], 2,
+     "Warband"),
+    ("partyB_L3_flurry_piercing_vs_L3_frontline",
+     ["Hilde (L3, Flurry)", "Browndog (L3)", "Jackal (L3)", "Beornhard (L3, Piercing)"], 3, "Frontline"),
 ]
 
 

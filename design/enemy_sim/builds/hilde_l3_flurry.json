@@ -1,0 +1,16 @@
+{
+ "base": "hilde_l3.json",
+ "simNotes": [
+  "Variant of Hilde (L3) (2026-10-25, drafted for comparisons): The Level 3 copy as Flurry and Calculated (9 points): the attack with Good Luck, then a Repeat of it."
+ ],
+ "replace": [
+  {
+   "id": "T072",
+   "copy": 2,
+   "features": {
+    "Flurry": 1,
+    "Calculated": 1
+   }
+  }
+ ]
+}

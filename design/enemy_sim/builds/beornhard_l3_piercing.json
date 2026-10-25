@@ -1,0 +1,18 @@
+{
+ "base": "beornhard_l3.json",
+ "simNotes": [
+  "Variant of Beornhard (L3) (2026-10-25, drafted for comparisons): The Level 4 copy single-target instead of Furrow: Lance, Destructive 3, Piercing Elements (Good Luck) and Draw Power."
+ ],
+ "replace": [
+  {
+   "id": "T120",
+   "copy": 3,
+   "features": {
+    "Lance": 1,
+    "Destructive": 3,
+    "Piercing Elements": 1,
+    "Draw Power": 1
+   }
+  }
+ ]
+}

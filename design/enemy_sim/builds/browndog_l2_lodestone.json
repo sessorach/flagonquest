@@ -1,0 +1,15 @@
+{
+ "base": "browndog_l2.json",
+ "simNotes": [
+  "Variant of Browndog (L2) (2026-10-25, drafted for comparisons): The second Lunging 3 copy as Lodestone 3: Pushes its target 2 x (3 + Spades) meters on a hit or a Parry."
+ ],
+ "replace": [
+  {
+   "id": "T072",
+   "copy": 3,
+   "features": {
+    "Lodestone": 3
+   }
+  }
+ ]
+}

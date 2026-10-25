@@ -241,3 +241,42 @@ Yardstick for Beornhard (Cash) (2026-10-16): the same Level 2 War Magic copy wit
 Build: `builds/felix_cash.json`.
 
 Bleeding cash-out test (2026-10-16): Felix's Battle Maneuver with a draft Feature, Open the Wound x3 (Reign of Blood's text for Battle Maneuver: on a hit, remove up to 6 + [Clubs] stacks of Bleeding from the target, and it loses that much Health) in place of Half Guard x3. Held until the target has 2 or more stacks, or round 3. Everything else as Felix.
+
+## Variants (2026-10-25)
+
+Alternate builds of the sample characters, for "what if they'd picked this instead?" Each is a file in `builds/` that names its base export and lists only what changes (README, `builds/`), so when the base export is updated, the variant follows. Its own `sample_pcs.csv` row copies the base row's Weapon, Play Style and Choices. Every swap stays inside the copy's Feature Budget. They're drafts: reasonable picks a player might make, not tuned.
+
+Each was run with `compare_builds.py` against its base party, 300 fights a mix over the four standard mixes, same seeds both ways. Two enemy toughnesses: ×1.75 (the effect check's) and a tougher one that gives fights of about five rounds, THE TABEL's length (×2.75 for Party B at Level 2, ×2.25 for Party B at Level 3 and Party A at Level 2). Parties D and S already go 4.5 to 7 rounds at ×1.75. Change in the party's Health left at the end (losses count 0), with its 95% margin, and in win rate:
+
+| Variant | Party | Swap | ×1.75 | ~5 rounds |
+|---|---|---|---|---|
+| Beornhard (L2, Frost) | B, L2 | both Level 2 copies Lance + Frigid 2 (was Destructive 2) | -1.3 ±0.4, wins -0.8 | -4.8 ±1.0, wins -5.8 |
+| Beornhard (L2, Kinetic) | B, L2 | Lance + Kinetic 1 + Destructive 1 | -0.9 ±0.3, wins -0.2 | -3.4 ±0.8, wins -3.6 |
+| Beornhard (L2, Corrupting) | B, L2 | Lance + Corrupting 1 + Destructive 1, all against Vital | -1.0 ±0.3, wins -0.2 | -1.8 ±0.8, wins -0.2 |
+| Beornhard (L2, Vital) | B, L2 | as built, all three copies against Vital | -0.7 ±0.3, wins -0.3 | +0.4 ±0.7, wins +1.7 |
+| Beornhard (L3, Frost) | B, L3 | the Frost build, Level 4 copy Furrow + Frigid 2 + Destructive | -3.0 ±0.7, wins -2.9 | -2.3 ±0.8, wins -2.6 |
+| Beornhard (L3, Piercing) | B, L3 | Level 4 copy Lance + Destructive 3 + Piercing Elements + Draw Power, no Furrow | +0.6 ±0.2, wins +0.9 | +1.8 ±0.4, wins +2.8 |
+| Hilde (L2, Wing Clip) | B, L2 | Half Guard 3 copy as Wing Clip 3 | -0.9 ±0.2, wins 0 | -2.8 ±0.5, wins -3.2 |
+| Hilde (L2, Battering) | B, L2 | Half Guard 3 copy as Battering 3 | -1.4 ±0.2, wins -0.2 | -3.4 ±0.5, wins -3.8 |
+| Hilde (L3, Flurry) | B, L3 | Level 3 copy as Flurry + Calculated | +1.4 ±0.5, wins +0.3 | +1.4 ±0.7, wins +1.6 |
+| Hilde (L3, Viper) | B, L3 | opening Lunging 3 copy as Viper's Sting | -0.6 ±0.3, wins -0.3 | -0.3 ±0.3, wins -0.2 |
+| Browndog (L2, Distracting) | B, L2 | second Lunging 3 copy as Distracting 3 | 0.0 ±0.1 | -0.3 ±0.2, wins -0.4 |
+| Browndog (L2, Lodestone) | B, L2 | second Lunging 3 copy as Lodestone 3 | -0.1 ±0.1 | -0.8 ±0.3, wins -0.9 |
+| Jackal (L3, Hamstring) | B, L3 | second Wind Slash 3 copy as Hamstring 3 | +0.2 ±0.1 | +0.3 ±0.3, wins +0.3 |
+| Sable (L2, Viper) | A, L2 | Level 2 Maneuver as Viper's Sting + Wing Clip 3 (was Calculated) | +0.1 ±0.7 | -0.1 ±0.9, wins -0.3 |
+| Felix (Viper) | D, L1 | Viper's Sting + Lunging 2 (was Lunging 2 + Half Guard 3) | -0.5 ±1.2, wins -0.8 | |
+| Enith (Corrupting) | S, L1 | Kinetic hex as Corrupting 3 | -5.4 ±1.5, wins -7.1 | |
+| Hanforth (L2, Triage) | D, L2 | Healing Magic Triage + Reach (was Vitality 2) | +0.9 ±0.3, wins +0.1 | |
+| Hanforth (L2, Guardian Angel) | D, L2 | Guardian Angel 2 + Vitality 1 | -0.6 ±0.2, wins +0.1 | |
+| Hanforth (L2, Rejuvenate) | D, L2 | Rejuvenate + Vitality 1 + Reach | -2.9 ±0.5, wins -0.8 | |
+| Hanforth (L2, Retribution) | D, L2 | Spirit Blessing Retribution 2 + Shielding 1 + Reach | -0.5 ±0.4, wins -0.7 | |
+| Hanforth (L2, River's Might) | D, L2 | River's Might 2 + Quickened + Reach | -2.2 ±0.6, wins -0.8 | |
+| Hanforth (L2, Touch of Chaos) | D, L2 | Touch of Chaos 2 + Quickened + Reach | -1.5 ±0.6, wins -0.4 | |
+
+What it says, roughly:
+
+- **Damage beats control.** Beornhard's Frost and Kinetic copies give up damage for Slowed or a Push, and the longer the fight, the more the lost damage shows. I guessed it was because Party B's Hilde and Browndog are already on whatever he'd slow, but in Party D at Level 2 (Browndog the only one up front) the swap still costs 1.9 Health (Frost) and 2.1 (Kinetic) a fight, ±0.6. So the trade itself looks short, at least at 2 damage for Slowed 4 + [Spades]. Enith's Kinetic hex is the exception: Party S has nobody holding the line, and her Kinetic hex beats a Corrupting one by 5 Health a fight.
+- **Kinetic is "up to", so the sim now chooses.** Pushing every time dragged enemies off Hilde and Browndog and cost 5.7 Health a fight. Now Beornhard pushes only a target that's next to a ranged ally or next to nobody, and the cost is 3.4. Lodestone and River's Might say "Pushed", no "up to", so they push every time, and it shows: River's Might is the worst of Hanforth's blessings.
+- **Dodge or Vital for Beornhard's War Magic is a wash**: Vital is a hair worse in short fights and a hair better in long ones. Piercing Elements (Good Luck on the cast) over Furrow is a clear win at Level 3.
+- **Flurry is the one Maneuver swap that helps.** Calculated's Good Luck plus a free Repeat beats the Level 3 copy Hilde built. Viper's Sting saves 1 AP, but most turns have nothing to spend it on: Sable is usually already in range, and Hilde's Viper copy gives up Lunging's free Shifts.
+- **Hanforth's heal as built is about right.** Triage edges out Vitality 2, and Rejuvenate's heal-over-time is too slow to keep up at Level 2.

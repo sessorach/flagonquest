@@ -1,0 +1,26 @@
+{
+ "base": "beornhard_l2.json",
+ "simNotes": [
+  "Variant of Beornhard (L2) (2026-10-25, drafted for comparisons): Level 2 copies Lance, Kinetic 1 and Destructive 1: a hit Pushes the target 4 + Spades meters away from the party, for 1 less damage."
+ ],
+ "replace": [
+  {
+   "id": "T120",
+   "copy": 1,
+   "features": {
+    "Lance": 1,
+    "Kinetic": 1,
+    "Destructive": 1
+   }
+  },
+  {
+   "id": "T120",
+   "copy": 2,
+   "features": {
+    "Lance": 1,
+    "Kinetic": 1,
+    "Destructive": 1
+   }
+  }
+ ]
+}

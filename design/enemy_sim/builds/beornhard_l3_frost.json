@@ -1,0 +1,33 @@
+{
+ "base": "beornhard_l3.json",
+ "simNotes": [
+  "Variant of Beornhard (L3) (2026-10-25, drafted for comparisons): The Frost version at Level 3: both Level 2 copies Lance and Frigid 2, and the Level 4 copy Furrow, Frigid 2 and Destructive 1 (a line that Slows everything in it)."
+ ],
+ "replace": [
+  {
+   "id": "T120",
+   "copy": 1,
+   "features": {
+    "Lance": 1,
+    "Frigid": 2
+   }
+  },
+  {
+   "id": "T120",
+   "copy": 2,
+   "features": {
+    "Lance": 1,
+    "Frigid": 2
+   }
+  },
+  {
+   "id": "T120",
+   "copy": 3,
+   "features": {
+    "Furrow (Shape)": 1,
+    "Frigid": 2,
+    "Destructive": 1
+   }
+  }
+ ]
+}

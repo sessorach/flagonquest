@@ -1,0 +1,17 @@
+{
+ "base": "enith.json",
+ "simNotes": [
+  "Variant of Enith (2026-10-25, drafted for comparisons): Her Kinetic hex as Corrupting 3 (Tormenting Curse and Lance as before, against Vital): Vulnerable 6 + [Diamonds] instead of a Push."
+ ],
+ "replace": [
+  {
+   "id": "T120",
+   "copy": 2,
+   "features": {
+    "Tormenting Curse": 1,
+    "Lance": 1,
+    "Corrupting": 3
+   }
+  }
+ ]
+}

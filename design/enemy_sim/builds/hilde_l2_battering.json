@@ -1,0 +1,15 @@
+{
+ "base": "hilde_l2.json",
+ "simNotes": [
+  "Variant of Hilde (L2) (2026-10-25, drafted for comparisons): The Half Guard 3 copy as Battering 3: Bleeding 3 + [Clubs] on a hit or a Parry."
+ ],
+ "replace": [
+  {
+   "id": "T072",
+   "copy": 2,
+   "features": {
+    "Battering": 3
+   }
+  }
+ ]
+}

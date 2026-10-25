@@ -1,0 +1,15 @@
+{
+ "base": "jackal_l3.json",
+ "simNotes": [
+  "Variant of Jackal (L3) (2026-10-25, drafted for comparisons): The second Wind Slash 3 copy as Hamstring 3: Slowed 3 + [Spades] on a hit."
+ ],
+ "replace": [
+  {
+   "id": "T072",
+   "copy": 2,
+   "features": {
+    "Hamstring": 3
+   }
+  }
+ ]
+}

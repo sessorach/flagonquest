@@ -1,0 +1,17 @@
+{
+ "base": "felix.json",
+ "simNotes": [
+  "Variant of Felix (2026-10-25, drafted for comparisons): Bare-Handed's points as Viper's Sting and Lunging 2 instead of Lunging 2 and Half Guard 3."
+ ],
+ "replace": [
+  {
+   "id": "T072",
+   "copy": 1,
+   "features": {
+    "Bare-Handed": 1,
+    "Viper's Sting": 1,
+    "Lunging": 2
+   }
+  }
+ ]
+}

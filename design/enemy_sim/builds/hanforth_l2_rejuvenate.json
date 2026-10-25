@@ -1,0 +1,17 @@
+{
+ "base": "hanforth_l2.json",
+ "simNotes": [
+  "Variant of Hanforth (L2) (2026-10-25, drafted for comparisons): Healing Magic as Rejuvenate, Vitality 1 and Reach: the heal comes 1 a turn instead of all at once, from further off."
+ ],
+ "replace": [
+  {
+   "id": "T105",
+   "copy": 1,
+   "features": {
+    "Rejuvenate": 1,
+    "Vitality": 1,
+    "Reach": 1
+   }
+  }
+ ]
+}

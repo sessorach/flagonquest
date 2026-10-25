@@ -1,0 +1,24 @@
+{
+ "base": "beornhard_l2.json",
+ "simNotes": [
+  "Variant of Beornhard (L2) (2026-10-25, drafted for comparisons): Both Level 2 War Magic copies Lance and Frigid 2 instead of Lance and Destructive 2: Slowed 4 + [Spades] on a hit, and Frost damage when it's resisted less, for 2 less damage."
+ ],
+ "replace": [
+  {
+   "id": "T120",
+   "copy": 1,
+   "features": {
+    "Lance": 1,
+    "Frigid": 2
+   }
+  },
+  {
+   "id": "T120",
+   "copy": 2,
+   "features": {
+    "Lance": 1,
+    "Frigid": 2
+   }
+  }
+ ]
+}

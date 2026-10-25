@@ -1,0 +1,15 @@
+{
+ "base": "browndog_l2.json",
+ "simNotes": [
+  "Variant of Browndog (L2) (2026-10-25, drafted for comparisons): The second Lunging 3 copy as Distracting 3: Taunts its target 3 + [Hearts] times on a hit or a Parry."
+ ],
+ "replace": [
+  {
+   "id": "T072",
+   "copy": 3,
+   "features": {
+    "Distracting": 3
+   }
+  }
+ ]
+}

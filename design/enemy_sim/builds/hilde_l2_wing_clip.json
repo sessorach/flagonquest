@@ -1,0 +1,15 @@
+{
+ "base": "hilde_l2.json",
+ "simNotes": [
+  "Variant of Hilde (L2) (2026-10-25, drafted for comparisons): The Half Guard 3 copy as Wing Clip 3: Crippled 3 + [Clubs] on the target instead of Protected on her."
+ ],
+ "replace": [
+  {
+   "id": "T072",
+   "copy": 2,
+   "features": {
+    "Wing Clip": 3
+   }
+  }
+ ]
+}

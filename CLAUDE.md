@@ -261,6 +261,14 @@ which should stay a clean decision record.
   Beornhard (an old wizard), Felix and Hanforth are he/him. Per the
   designer (2026-10-24); `sample_pcs.csv`'s Pronouns column has the
   same. A Masquerade example once had Jackal as "he".
+- **"What if this character had X instead?"** (2026-10-25): a
+  variant file in `design/enemy_sim/builds/` names its `"base"` export
+  and lists only the edits (`party.apply_edits`), plus a
+  `sample_pcs.csv` row copying the base row's Weapon/Play Style/Choices;
+  `compare_builds.py --swap "Base=Variant"` runs the paired comparison
+  (`--edit` for a throwaway). Pick `-m` for ~5-round fights: at ×1.75
+  the Level 2-3 parties finish in three and a debuff has no time to pay.
+  Results go in `sample_characters.md`'s "Variants" table.
 - **Adding a Technique or enemy Ability to the sim**: its entry goes in
   `design/enemy_sim/techniques.py` (build, setup, hooks) or
   `enemy_abilities.py` (hooks; build-time numbers and cost in

@@ -1,0 +1,16 @@
+{
+ "base": "sable_l2.json",
+ "simNotes": [
+  "Variant of Sable (L2) (2026-10-25, drafted for comparisons): Her Level 2 Maneuver as Viper's Sting and Wing Clip 3: the same Crippled shot for 1 AP, without Calculated's Good Luck."
+ ],
+ "replace": [
+  {
+   "id": "T072",
+   "copy": 1,
+   "features": {
+    "Viper's Sting": 1,
+    "Wing Clip": 3
+   }
+  }
+ ]
+}

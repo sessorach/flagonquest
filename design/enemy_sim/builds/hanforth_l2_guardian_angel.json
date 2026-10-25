@@ -1,0 +1,16 @@
+{
+ "base": "hanforth_l2.json",
+ "simNotes": [
+  "Variant of Hanforth (L2) (2026-10-25, drafted for comparisons): Healing Magic as Guardian Angel 2 and Vitality 1: the healed ally's next Down stops at 2 Health."
+ ],
+ "replace": [
+  {
+   "id": "T105",
+   "copy": 1,
+   "features": {
+    "Guardian Angel": 2,
+    "Vitality": 1
+   }
+  }
+ ]
+}
