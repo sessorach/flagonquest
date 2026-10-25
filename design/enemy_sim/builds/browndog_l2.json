@@ -1,0 +1,147 @@
+{
+ "charName": "Browndog the Fighter",
+ "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+ "xpBudget": "125",
+ "statPoints": {
+  "Agility": 3,
+  "Body": 4,
+  "Cunning": 2,
+  "Mind": 2,
+  "Essence": 3
+ },
+ "skillPoints": {
+  "Acrobatics": 0,
+  "Archery": 0,
+  "Brawl": 2,
+  "Melee": 3,
+  "Stealth": 1,
+  "Athletics": 1,
+  "Awareness": 1,
+  "Might": 3,
+  "Presence": 3,
+  "Resilience": 3,
+  "Insight": 2,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 0,
+  "Academics": 0,
+  "Composure": 2,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 0,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 0
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I118",
+   "qty": 1
+  },
+  {
+   "id": "I126",
+   "qty": 1
+  },
+  {
+   "id": "I129",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-24T15:44:07.014Z",
+ "techniques": [
+  {
+   "id": "T001",
+   "name": "Brace",
+   "xp": 3,
+   "level": "Lv 1"
+  },
+  {
+   "id": "T058",
+   "name": "Challenge",
+   "xp": 3,
+   "level": "Lv 1"
+  },
+  {
+   "id": "T058",
+   "name": "Challenge",
+   "xp": 3,
+   "level": "Lv 1"
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Lunging",
+     "count": 3
+    }
+   ]
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Half Guard",
+     "count": 3
+    }
+   ]
+  },
+  {
+   "id": "T059",
+   "name": "Follower",
+   "xp": 3,
+   "level": "Lv 1"
+  },
+  {
+   "id": "T139",
+   "name": "Inexhaustible Guardian",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Lunging",
+     "count": 3
+    }
+   ]
+  },
+  {
+   "id": "T012",
+   "name": "Second Wind",
+   "xp": 6,
+   "level": "Lv 2"
+  }
+ ],
+ "simNotes": [
+  "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json."
+ ]
+}

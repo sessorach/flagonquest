@@ -657,6 +657,13 @@ then:
   The rest are out of combat: Follower, Legerdemain, Rumormonger,
   Distraction, Patch Up, Bound Across Mountains, Quick Draw, Shadow's
   Path, Favorite Face, Spacious Gut, Gorger, Vow of Poverty.
+- **The sample characters load from their Builder exports** (later on
+  10-25): `builds/`, one file per character, with `sample_pcs.csv`
+  down to the play choices an export doesn't carry. A Technique, Feature
+  or item the sim doesn't know stops the load instead of being skipped.
+  Technique and Ability effects live in `techniques.py` and
+  `enemy_abilities.py`, plugged into `hooks.py`'s points; combat_sim no
+  longer tests for each one by name.
 - **So is the whole enemy Ability catalog**, at the draft's pick costs:
   the rest of the Strike and Poison riders, Cleaving, Grappling (with
   the rulebook's grapple rules on both sides), Devastating, Omniguard,

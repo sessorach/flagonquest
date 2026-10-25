@@ -245,21 +245,30 @@ which should stay a clean decision record.
   designer looks to check progress. Edit its `MATCHUPS` list when the
   interesting matchups change. The designer asked for this more than
   once before it became a habit.
-- **The sample characters' source of truth is the Builder exports in
-  `archive/player_builds/`**, not `sample_pcs.csv`. Every row built from
-  one names its file in Notes, and its Stats and Skills should match it
-  exactly. Save an export there the moment it's uploaded (the 09-20
-  ones weren't, and went missing for a month), named by XP when there's
-  more than one per character. A prereq the build misses is fine to
-  leave: these are benchmarks, per the designer (2026-10-24).
+- **The sim reads the sample characters straight from Builder exports**
+  (2026-10-25): `design/enemy_sim/builds/<name>.json`, named in the
+  row's `Build` column; `sample_pcs.csv` keeps only what an export
+  doesn't say (Weapon, Choices, Play Style...). When the designer
+  uploads an export, save the original to `archive/player_builds/`
+  (named by XP when there's more than one per character; the 09-20 ones
+  weren't saved and went missing for a month) and copy it into
+  `builds/`. Any edit to a `builds/` copy (a designer decision the export
+  doesn't carry) goes in that file's `simNotes`, never silently. A
+  prereq the build misses is fine to leave: these are benchmarks, per
+  the designer (2026-10-24).
 - **The named cast's pronouns** (for rulebook examples): Hilde,
   Browndog, Carrick, Jackal, Sable, Enith and Ashleigh are she/her;
   Beornhard (an old wizard), Felix and Hanforth are he/him. Per the
   designer (2026-10-24); `sample_pcs.csv`'s Pronouns column has the
   same. A Masquerade example once had Jackal as "he".
-- **A new `sample_pcs.csv` column goes in `party._pc_dict`'s list of
-  non-Skill columns**, or it's silently read as a Skill. Blessing
-  Features (2026-10-25) was the latest.
+- **Adding a Technique or enemy Ability to the sim**: its entry goes in
+  `design/enemy_sim/techniques.py` (build, setup, hooks) or
+  `enemy_abilities.py` (hooks; build-time numbers and cost in
+  `enemy_builder_pcstyle.py`), plugged in at a `hooks.py` point. A new
+  point in combat_sim only if none fits. An export naming a Technique,
+  Feature or item the sim doesn't know stops the load on purpose: add
+  it, or list it as out of combat / `Unmodeled`, but never let it drop
+  quietly.
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and

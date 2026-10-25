@@ -1,0 +1,63 @@
+{
+ "charName": "Hilde (Bleed)",
+ "xpBudget": "75",
+ "statPoints": {
+  "Agility": 2,
+  "Body": 3,
+  "Cunning": 1,
+  "Mind": 1,
+  "Essence": 2
+ },
+ "skillPoints": {
+  "Acrobatics": 2,
+  "Archery": 0,
+  "Brawl": 0,
+  "Melee": 3,
+  "Stealth": 0,
+  "Athletics": 1,
+  "Awareness": 1,
+  "Might": 3,
+  "Presence": 2,
+  "Resilience": 2,
+  "Insight": 2,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 0,
+  "Academics": 0,
+  "Composure": 2,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 0,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 0
+ },
+ "techniques": [
+  {
+   "id": "T012",
+   "name": "Second Wind",
+   "level": "Lv 1"
+  },
+  {
+   "id": "T130",
+   "name": "Furious Rage",
+   "level": "Lv 1"
+  }
+ ],
+ "inventory": [
+  {
+   "id": "I120",
+   "qty": 1
+  },
+  {
+   "id": "I127",
+   "qty": 1
+  }
+ ],
+ "simNotes": [
+  "Hand-made for the sim, not a Builder export: written 2026-10-25 from this character's old sample_pcs.csv row, Techniques and all."
+ ]
+}

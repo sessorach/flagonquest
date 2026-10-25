@@ -1,0 +1,59 @@
+{
+ "charName": "Wren (L2)",
+ "xpBudget": "125",
+ "statPoints": {
+  "Agility": 2,
+  "Body": 1,
+  "Cunning": 1,
+  "Mind": 3,
+  "Essence": 4
+ },
+ "skillPoints": {
+  "Acrobatics": 3,
+  "Archery": 0,
+  "Brawl": 0,
+  "Melee": 1,
+  "Stealth": 1,
+  "Athletics": 0,
+  "Awareness": 2,
+  "Might": 0,
+  "Presence": 0,
+  "Resilience": 1,
+  "Insight": 2,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 0,
+  "Academics": 3,
+  "Composure": 4,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 2,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 4,
+  "Theurgy": 0
+ },
+ "techniques": [
+  {
+   "id": "T124",
+   "name": "Warmage's Reserves",
+   "level": "Lv 1"
+  },
+  {
+   "id": "T140",
+   "name": "Overchanneling",
+   "level": "Lv 1"
+  },
+  {
+   "id": "T014",
+   "name": "Toughened Body",
+   "level": "Lv 2"
+  }
+ ],
+ "inventory": [],
+ "simNotes": [
+  "Hand-made for the sim, not a Builder export: written 2026-10-25 from this character's old sample_pcs.csv row, Techniques and all."
+ ]
+}

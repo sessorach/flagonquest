@@ -106,100 +106,55 @@ The core files and the regular tools:
   `archive/flagonquest_encounter_builder.xlsx`'s own formulas exactly
   (`python3 enemy_builder.py` re-runs the cross-check against the
   spreadsheet's own live worked example).
-- **`sample_pcs.csv`** — real named PC Stat/Skill builds (all 5 Stats,
-  all 25 Skills, matching `index.html`'s `STAT_SKILLS`), same
-  Roster/reference split as the enemy CSV below: the `TRUE` "Baseline
-  Tier N Party Member" rows are what `party.py`'s `make_party(tier)`
-  actually uses (4 copies, the smoothed PC_SKILLS_COMBAT variant
-  migrated from `tunables.py`); the `FALSE` rows are named reference
-  characters — melee: Hilde, Browndog, Carrick, Felix (one leaning into
-  each of the 4 physical Stats, Cunning covered by Carrick's Acrobatics
-  lean); ranged/utility (via `Weapon`, see below): Sable (Light Bow),
-  Rook (Light Thrown), Jackal (Light Thrown + Bottomless Bottles), Wren
-  (War Magic + Lance); caster (via `Weapon`): Beornhard (War Magic +
-  Lance, an Encounter-Technique attack, see `Weapon Uses` below) — all
-  built to rulebook.md's own Quick Creation Reference shape and verified
-  to cost exactly 75 XP including Techniques (the `(L2)` and `(L3)` rows
-  cost 125 and 175). Hilde/Browndog/Carrick/
-  Jackal/Beornhard are player-drafted, real JSON exports from
-  `index.html` (not this project's own reference-build convention), and
-  replaced this project's own earlier versions of those same five names
-  — a row's own Notes says so and gives the full derivation. A row's
-  `Armor` cell (`Unarmored`/`Light`/`Medium`/`Heavy`, blank =
-  `Unarmored`) is the real `tunables.ARMOR` table — see each row's own
-  Notes for why that tier was picked (usually whether the build's Might
-  Skill Total actually clears that armor's real Might Requirement).
-  **Worth knowing**: a blank `Weapon` cell still means a PC's attack
-  only uses Melee/Physical — a non-melee, no-`Weapon` reference
-  character like Felix reads as weak in a real fight regardless of how
-  coherent the build is on paper; that's `Weapon` not being set for
-  that character, not a limit of the sim (see Wren for the same
-  Essence-primary concept built to attack through Sorcery instead, with
-  Fire damage). `Pronouns` (blank unless specified) is reference-only —
-  useful for consistent rulebook prose, read by nothing in the sim
-  itself.
-  **`Card Techniques`** (comma-separated tags — "Second Wind", "Perfect
-  Strike", "Bottomless Bottles", "Warmage's Reserves") names which of
-  `tactics.py`'s Card Techniques (see its own section below) this PC
-  has — a technique whose real cost is "discard a card" rather than AP,
-  drawing on a shared per-fight budget (`card_uses_left`, `party.py`'s
-  `hand_size // 3` — "say 1/3 of" a full hand, the designer's own quick-
-  check framing). **`Weapon Uses`** (blank = unlimited, the default) is
-  the separate idea of a PC whose own `Weapon` is itself an Encounter
-  Technique with a limited number of known copies (Beornhard's 3x War
-  Magic). **`Heal Cards`**/**`Heal Bonus`** (blank = 1/0, matching the
-  original hardcoded numbers) let a Support PC's own Healing Magic (T105)
-  build read its real Level (Cost is "Discard [Level] cards") and any
-  flat healing-boost feature total (Vitality, say) from the CSV instead
-  of one universal amount. **`Heal Range`** (blank = no check) caps how
-  far away an ally can be and still get healed, enforced only under
-  `movement=True`. **`Passives`** (comma-separated tags, e.g. "Hand of
-  Chaos") are always-on Technique effects with no AP/card cost, unlike
-  Card Techniques above — see `tactics.sift_bonus`. **`Battle Tactic`**
-  reuses the exact same `tactics.TARGETING` registry
-  `sample_enemies.csv`'s own BattleTactic column already dispatches
-  through — a PC can have a non-default targeting rule too now
-  (Hanforth's own "Straggler Hunter") — see `party.py`'s own paragraph
-  on all these columns.
-  **`Encounter Techniques`** lists one entry per known copy. Besides
-  Challenge, Battle Maneuver and the technique attacks, it takes Brace
-  (3 Protected, with AP left at the end of a turn while an enemy's near,
-  or at the start of a turn spent unprotected in melee), Strength from
-  the Slain (eaten right after a kill) and Exert Pressure (Taunts
-  everyone within 2 meters, once two are there). **`Maneuver Features`**
-  is one Feature set for every Battle Maneuver copy, or one per copy
-  split by `|` ("Lunging 3 | Half Guard 3"), used in the order written;
-  Whirlwind, Victorious and Ascended Blade work as Features too. Passives
-  also take Toughened Resolve (+2 Shallow; `Health` already counts both
-  halves), Cloak and Dagger, Eagle Eyes (an extra AP for Good Luck
-  twice on a ranged weapon attack, when the AP left only covers one) and
-  Grim Resolve (a card at the start of each fight for 1 Health). Wind
-  Slash works as a Maneuver Feature, and "Furrow War Magic" is
-  Beornhard's Level 4 line spell (with Draw Power). All of these came with
-  the designer's leveled builds (2026-10-24), and none changes a row that
-  doesn't use it. `tunables.RESERVES_REGAIN_BEST` has Warmage's Reserves
-  take back the best spent War Magic copy instead of a plain cast.
-  Since 2026-10-25 every combat Technique on the roster's sheets is in.
-  Encounter Techniques also take Shadow Jaunt (Teleport clear of
-  melee), Gainsay (a War Magic copy cast at an attacker, from the
-  Interrupt AP), Wall of Shadows (Heavy Cover across the shooters'
-  lines), Blinkstep, Parting Shot (any enemy walking or Pushed out of
-  reach; a bow-only PC uses Unarmed), Lifeline, Spirit Blessing and Gust
-  of Wind; Reckoning is a ranged hex. **`Blessing Features`** is Spirit
-  Blessing's Feature set, same shape as Maneuver Features (Shielding,
-  Step of Air, Guided Hand, Quickened, Reach, Mass Blessing). Passives
-  take Placeholder's Lengthy Ley-weaving (+3 meters on Spell ranges),
-  and One Eye Behind You discards a card to move up the turn order once
-  as the fight starts. Calculated, Wing Clip, Hamstring, Harrying and
-  Distracting work as Maneuver Features. A new column has to go in
-  `party._pc_dict`'s list of non-Skill columns, or it's read as a Skill.
-- **`party.py`** — loads `sample_pcs.csv`. `make_party(tier, good_luck=N)`
-  pulls the Roster row and duplicates it x4; `get_pc(name)` pulls any
-  row by name; `make_party_of(name)` duplicates one row x4; `make_party_
-  from([names])` assembles a custom 4-person mix from any named rows,
-  for testing party composition itself; `all_pcs()` returns every row
-  built. See its own module docstring for exactly how `Weapon`/`Armor`/
-  `Support` each change a built PC dict.
+- **`builds/`** — every sample character's build, as a Builder export
+  (`index.html`'s Export file): Stats, Skills, each Technique copy with
+  its Level and Features, and the inventory. The designer's exports are
+  copied in from `archive/player_builds/`; characters with no export
+  (the Baselines, Rook, Wren, the extrapolated `(L2)` rows, the test
+  variants) are hand-made in the same format. Each file's `simNotes`
+  says where it came from and any edit made to it (Felix's and Enith's
+  Features per the designer, the 09-20 exports' "Heavy Armor" read as
+  Medium, Maneuver copies listed in the order the sim uses them).
+- **`sample_pcs.csv`** — one row per sample character, holding only what
+  an export doesn't: `Build` (the file in `builds/`), `Tier`, `Roster`
+  (the "Baseline Tier N" rows `make_party(tier)` uses), `Weapon` (which
+  weapon or War Magic the sim attacks with; blank is the 1H Heavy Melee
+  default), `Choices` (picks the Builder keeps outside the export, per
+  copy in the export's order: "War Magic: Dodge, Vital; Temper
+  Soulblade: Fatestealer"), `Unmodeled` (Techniques the row knowingly
+  carries unplayed), `Play Style`, `Battle Tactic`, `Bottles Item`,
+  `Health` (blank works it out: 5 Shallow and 5 Deep plus techniques.csv's
+  and items.csv's Health bonuses; a number overrides it), `Pronouns`, and
+  short `Notes`. Each character's longer history is in
+  `sample_characters.md`.
+- **`techniques.py`** — every Technique the sim knows, by techniques.csv
+  ID: what it adds to the sheet (`build`), what it puts on the fight dict
+  (`setup`), and what it does in the fight (its hooks). War Magic,
+  Battle Maneuver, Spirit Blessing and Healing Magic read each copy's
+  Features; War Magic builds every copy from them (Destructive,
+  Sanguine, Reign of Blood, Furrow, Draw Power; Tormenting Curse with
+  Frigid or Kinetic makes a hex). Out-of-combat IDs are listed in
+  `OUT_OF_COMBAT`. **An ID, Feature or item the sim doesn't know stops
+  the load with its name** — add it here (or to `game_data.py` for an
+  item) rather than finding out later it was ignored.
+- **`enemy_abilities.py`** — the enemy Ability catalog's hooks: Strike
+  and Poison riders, Grappling, Devastating, Harrying, Battering,
+  Resilient, the 0 AP Actions, Retribution Aura, Action (Parting Shot).
+  Build-time numbers stay in `enemy_builder_pcstyle._apply_catalog`.
+- **`hooks.py`** — the hook points a Technique, Ability or rule plugs
+  into (`POINTS` lists them with what each one's ctx carries), and the
+  order handlers run in. combat_sim calls `hooks.run(point, unit, ctx)`
+  where it used to test each Technique by name.
+- **`game_data.py`** — reads `scripts/techniques.csv` and
+  `scripts/items.csv` (names, Health bonuses), and maps weapon and armor
+  items to the sim's tables.
+- **`party.py`** — `load_sheet(row)` reads a row and its build;
+  `make_pc(name, ..., health=, add_passives=, drop_passives=,
+  battle_tactic=)` is the one way to build a character changed for a
+  test. `make_party(tier, good_luck=N)` pulls the Roster row x4;
+  `get_pc(name)`, `make_party_of(name)`, `make_party_from([names])` and
+  `all_pcs()` as before. The Defense, weapon, armor and Card Technique
+  formulas are in `_pc_dict`; see its module docstring.
 - **`tactics.py`** — the pluggable "AI" every unit's turn is dispatched
   through: `select_target`/`TARGETING` (who a unit attacks), `move_unit`/
   `MOVEMENT_TACTICS` (how it moves), `attack_cap`/`ATTACK_CAP` (an enemy

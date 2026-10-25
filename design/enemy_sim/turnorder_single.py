@@ -20,18 +20,13 @@ CARRIERS = ["Hilde (L2)", "Sable (L2)", "Carrick (L2)"]
 
 
 def build(carrier, style, health, tactic=None, party_names=None):
-    rows = {r["Name"]: r for r in party._load_rows()}
+    rows = party._rows()
     pcs = []
     for i, n in enumerate(party_names or PARTY_A, 1):
-        row = dict(rows[n])
-        kept = [p.strip() for p in (row.get("Passives") or "").split(",") if p.strip() and p.strip() not in STYLES]
-        if n == carrier and style:
-            kept.append(style)
-        if n == carrier and tactic:
-            row["Battle Tactic"] = tactic
-        row["Passives"] = ", ".join(kept)
-        row["Health"] = str(int(row["Health"]) + health)
-        pcs.append(party._pc_dict(row, i, 0))
+        mine = n == carrier
+        pcs.append(party.make_pc(n, i, health=health, drop_passives=STYLES,
+                                 add_passives=[style] if mine and style else (),
+                                 battle_tactic=tactic if mine else None, rows=rows))
     return pcs
 
 

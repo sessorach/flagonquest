@@ -1,205 +1,50 @@
 """
-Loads PC stat blocks from sample_pcs.csv - real named Stat/Skill builds
-(all 5 Stats, all 25 Skills, matching index.html's own STAT_SKILLS),
-not one abstract number per Tier. Same Roster/reference split as
-sample_enemies.csv:
+Builds the sample characters for a fight. Each `sample_pcs.csv` row
+names a Builder export in `builds/` (Stats, Skills, every Technique copy
+with its Level and Features, the inventory); `load_sheet` reads it,
+hands each Technique ID to its entry in techniques.py, maps the items
+through game_data.py, and adds what only the row says: which weapon the
+sim attacks with (`Weapon`), picks an export doesn't carry (`Choices`),
+Techniques carried knowingly unplayed (`Unmodeled`), `Play Style`,
+`Battle Tactic`, `Bottles Item`, and a `Health` override for the abstract
+builds. Anything it can't place stops the load with a BuildError.
 
-- **Roster** (`Roster` column TRUE) - exactly one per Tier 1-5, "Baseline
-  Tier N Party Member." This is `tunables.py`'s old PC_SKILLS_COMBAT (the
-  smoothed variant) migrated into full character-sheet form - see
-  ENEMY_ENCOUNTER_DESIGN.md's Analysis section for the derivation, and
-  the smoothing rationale (avoids PC_SKILLS' real Tier-4 capstone spike
-  swinging enemy calibration depending on whether a fight lands before or
-  after it). `make_party(tier)` pulls this row and duplicates it x4 -
-  still 4 identical party members, no distinct roles, no Techniques or
-  items layered on top, no gear-based Resist bonus (just raw Essence).
-- **Reference builds** (`Roster` FALSE) - named Level 1 characters, one
-  leaning into each of the 5 Stats, built to rulebook.md's own Quick
-  Creation Reference shape (2 Skills@3, 5@2, 2@1; 1 Stat@3, 2@2, 2@1) and
-  verified to cost exactly 57 XP in Skills+Stats (75 total chargen
-  budget minus 18 XP/6 Levels of Techniques). That was the original
-  reference set; the named rows now are mostly the designer's Builder
-  exports (archive/player_builds/), at Level 1 and leveled, and model
-  whichever of their Techniques fight.
-  `get_pc(name)` pulls these by name; `make_party_of(name)` duplicates
-  one x4 into a full party, for testing a single build's own attack
-  profile against the validated Roster; `make_party_from([names])`
-  assembles a custom 4-person mix instead, for testing party
-  composition itself (see combat_sim.py's own note on what both showed).
-  Melee-attacking: Hilde, Browndog, Carrick, Jackal, Felix (Felix,
-  Essence-primary with barely any Melee, reads as a weak attacker
-  despite being a coherent character on paper - see the Weapon
-  paragraph below for why, and Wren for the same Essence-primary
-  concept actually built to attack through Sorcery instead).
-  Ranged-attacking (see `Weapon` below): Sable (Archery/Light Bow), Rook
-  (Acrobatics/Light Thrown), Wren (Sorcery/War Magic + Lance).
-  Support: Beornhard (weak Melee attacker, solid Theurgy - see
-  `Support` below).
+`_pc_dict` turns the sheet into the fight dict - the rulebook formulas:
+- Defense = 8 + [governing Skill Total]: Parry from the best held weapon
+  (8 + its Skill Total + its Weapon Defense, Unarmed if none can Parry),
+  Dodge from Acrobatics or Brawl plus Armor's penalty, Vital from
+  Resilience, Mental from Composure, Vigilant from Insight
+- the attack from `Weapon` (tunables.WEAPON): its Skill, Accuracy,
+  Damage, damage type, Defense and Range; blank is 1H Heavy Melee
+- Resist starts at Essence; Armor adds to Physical Resist only
+- Speed = 1 + Agility, plus Armor's penalty; Reflex = Insight Skill Total
+- Health = 5 Shallow + 5 Deep + Technique and item bonuses
+- a day's hand = twice (Cunning + Mind), which sets the Card Technique,
+  healing and Bottomless Bottles budgets
 
-**`Weapon`** (blank for most rows) switches which Skill/Stat combo
-governs a PC's own attack roll, Damage, damage type, opposed Defense,
-and attack range - a real capability this sim didn't have originally,
-when every PC's attack was hardcoded to Melee/Physical regardless of
-build. A blank cell keeps that original 1H Heavy Melee default (Melee
-Skill Total, Damage = 4 + Body, Physical, opposed by Parry/Dodge, no
-attack_range - falls back to `MELEE_RANGE` under `movement=True`); a
-name from `tunables.WEAPON` (`"Light Bow"`, `"Light Thrown"`, `"War
-Magic (Lance)"`) switches to that weapon's own real numbers - see
-`tunables.WEAPON`'s own comment for the weapon_categories.csv/
-features.csv sourcing, including why War Magic's damage is Fire (so it
-draws on a target's `elemres`, not `physres` - see combat_sim.
-enemy_resist_for_pc_attack) and opposed by Dodge alone rather than
-Parry/Dodge. This is fully decoupled from
-parry/dodge/bodily/mental/vigilant, which always come from
-Melee/Acrobatics/Resilience/Composure/Insight regardless of `Weapon` -
-a War Magic caster's Sorcery Skill Total drives their own attack and
-Range without touching their (separately tracked) Parry.
-
-**`Support`** (`TRUE`/blank) flags a PC who spends *some* of their turns
-healing an ally instead of attacking - a hard-capped resource, not a
-per-round coin flip, so a support PC still fights their own weapon
-attack most rounds rather than sitting idle. Translated here into
-`strategy="support_healer"` (`"attacker"` otherwise) - a name from
-`tactics.PC_STRATEGIES`, the pluggable-"AI" registry combat_sim.py
-dispatches every PC's turn through (see tactics.py's own module
-docstring for the pattern and why it exists - adding a future strategy
-means writing one function and registering it there, not adding a new
-boolean CSV column and a matching `if` in combat_sim.py). `heal_uses_left`
-(every PC dict, not just Support ones) is `hand_size // 4`, `hand_size`
-being rulebook.md's own "Cards Per Day"/Draw Cycle formula (twice
-Cunning plus Mind) standing in for how many cards this PC carries into
-a fresh encounter - one use of Healing Magic at Level 1 costs 1 card,
-so a quarter of a full hand caps how many times they can afford to cast
-it in one fight. `tactics.strategy_support_healer` spends a use (and
-only a use) once a living ally drops to half Health or below - "if
-necessary, ESPECIALLY if wounded" (the designer's own framing) reads as
-"only when it's actually needed," given how few uses there usually are
-- approximating T105 Healing Magic, 1 Shallow Health + 1 more since the
-discarded card is assumed to always be a Heart (cards.chosen_matches -
-a player choosing from their whole hand, not flipping blind, on a cost
-that's only ever a quarter of it). See combat_sim.py's own docstring
-for what all of this showed. Doesn't change anything else in this file
-- `strategy`/`heal_uses_left` just get threaded onto the PC dict for
-tactics.py/combat_sim.py to read.
-
-**`Armor`** (`Unarmored`/`Light`/`Medium`/`Heavy`, blank = `Unarmored`)
-is the real armor_categories.csv table (`tunables.ARMOR`, shared with
-enemy_builder.py - see its own comment), applied the same way on both
-sides: Physical Resist gets the armor bonus, Dodge/Speed take the
-penalty, elemental Resist (`elemres` - Fire/Frost/Brilliant/Shadow, one
-pool in this sim) stays Essence-only regardless of Armor. Every
-existing row defaults to Unarmored (bare Essence Physical Resist, no
-Dodge/Speed change) unless its `Armor` cell says otherwise - see each
-row's own Notes for why that tier was picked (usually: does this
-character's Might Skill Total actually clear that armor's real
-Might Requirement, per weapon_categories.csv - not mechanically
-enforced here, just used as the judgment call for which tier reads as
-plausible for that build).
-
-Every Stat/Skill/Defense formula here is straight from rulebook.md:
-- Defense = 8 + [governing Skill Total], plus Armor's Dodge penalty for
-  Dodge specifically
-- Weapon Damage = 4 + Body (Heavy 1H Melee formula, weapon_categories.csv)
-  unless `Weapon` names a ranged option (see above)
-- Resist starts equal to Essence (rulebook.md's Calculated Statistics:
-  "Resists... starts equal to your Essence"); Physical Resist then adds
-  Armor's own bonus, elemental Resist (`elemres`) doesn't
-- Speed = 1 + Agility (rulebook.md's Calculated Statistics), plus
-  Armor's Speed penalty - only used by combat_sim.py's optional
-  movement mode (run_fight(..., movement=True), see movement.py);
-  ignored entirely otherwise, same as before Armor existed.
+Each Technique's own fight fields (uses, ranges, profiles) come from its
+`setup` in techniques.py. Use `make_pc` to build a character changed for
+a test, `make_party(tier)` for the Roster, `make_party_from([names])`
+for a chosen party. Older notes on the Roster's derivation are in
+sample_characters.md and ENEMY_ENCOUNTER_DESIGN.md's Analysis section.
 """
+import collections
 import csv
+import json
 import math
 import os
+from types import SimpleNamespace
+
 import tunables as T
 import play_styles
+import game_data
+import techniques
+from techniques import BuildError
 
-# Encounter Techniques that replace a normal attack, from techniques.csv.
-# Each builds the attack profile combat_sim's attack loop overlays for
-# one use: (stats, skills, weapon Skill Total, weapon Damage) -> profile.
-# `effect` is what a hit puts on the target: (key, stacks, bonus suit),
-# the suit adding 1 more stack when it's flipped.
-def _unarmed_vs_mental(effect=None):
-    # Shugen School weapon strikes: "Make an Unarmed weapon attack against
-    # the target's Mental Defense. If it hits, it deals Brilliant damage"
-    # - the PC's own Unarmed attack, redirected. Assumes the PC's Weapon
-    # is Unarmed, which holds for every row that knows one.
-    return lambda st, sk, atk, dmg: dict(skill_total=atk, damage=dmg, dmg_type="Brilliant",
-                                         opp_def="Mental", effect=effect, skill="Brawl", weapon=True)
-
-
-# `skill` is the attack's Skill, for its suit (cards.SKILL_SUIT); `weapon`
-# marks a weapon attack, the only kind that can be Gambled on
-# (rulebook.md). `big` marks an Encounter attack, worth a card to land.
-TECH_ATTACKS = {
-    # T154, Level 2, 2 AP: "...and the target is Slowed 2 + [Spades] times."
-    "Hand Rings the Bell": _unarmed_vs_mental(("slowed", 2, "Spades")),
-    # T080, Level 1, 2 AP: "Make a Meditation attack against the target's
-    # Mental Defense. If it hits, it deals 2 + [Mind] Brilliant damage."
-    "Firefly Leaves the Hand": lambda st, sk, atk, dmg: dict(
-        skill_total=skill_total(st, sk, "Meditation"), damage=2 + int(st["Mind"]),
-        dmg_type="Brilliant", opp_def="Mental", effect=None, skill="Meditation"),
-    # T159, Level 2, 2 AP (Felix): "Make a Meditation attack against the
-    # target's Vital Defense. If it hits, it deals 2 + [Mind] Shadow
-    # damage, and you may discard a card to heal 3 Health." The heal is
-    # taken when he's missing 3 or more (designer, 2026-10-09).
-    "Thief Empties the Vessel": lambda st, sk, atk, dmg: dict(
-        skill_total=skill_total(st, sk, "Meditation"), damage=2 + int(st["Mind"]),
-        dmg_type="Shadow", opp_def="Vital", effect=None, skill="Meditation", heal_on_hit=3),
-    # T111, Level 2, 2 AP: "Make a Theurgy spell attack against the
-    # target's Mental Defense. If it hits, they are Crippled 5 + [Clubs]
-    # times." No damage.
-    # War Magic (T120) at Level 2 with Lance, Sanguine and Destructive x1
-    # (Beornhard's Bleeding variant, 2026-10-09): "deals an extra 3
-    # damage. If it would cause the target to lose Health, instead they
-    # gain that many stacks of Bleeding + [Clubs] stacks", +1 from
-    # Destructive. combat_sim converts the hit's damage on landing.
-    "Sanguine War Magic": lambda st, sk, atk, dmg: dict(
-        skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]) + 3 + 1,
-        dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery", sanguine=True),
-    # War Magic at Level 2 with Lance and Reign of Blood x2 (F073: "remove
-    # up to [twice X] + [Clubs] stacks of Bleeding from the target, and
-    # they lose that much Health"), 2026-10-16 cash-out test.
-    "Reign War Magic": lambda st, sk, atk, dmg: dict(
-        skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]),
-        dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery", cashout=4),
-    # The straight-damage yardstick for it: Lance and Destructive x2.
-    "Destructive War Magic": lambda st, sk, atk, dmg: dict(
-        skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]) + 2,
-        dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery"),
-    # Beornhard's Level 4 copy (2026-10-24): Destructive x2, Draw Power and
-    # Furrow (Shape), no Lance - a line [half his Sorcery Skill Total]
-    # meters long from his space, which is also its reach. Draw Power's
-    # Shadow damage is the same elemental Resist here.
-    "Furrow War Magic": lambda st, sk, atk, dmg: dict(
-        skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]) + 2,
-        dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery",
-        line=skill_total(st, sk, "Sorcery") // 2, range=skill_total(st, sk, "Sorcery") // 2, draw_power=True),
-}
-
-# Ranged hexes cast at the start of a turn by combat_sim._try_hexes (not
-# swapped in for a weapon attack): Enith's War Magic (T120) Level 1
-# copies, each Tormenting Curse ("deals no damage", +3 points) plus Lance
-# ("Increase the Range... by [Sorcery Skill Total] meters", the same
-# range the sim gives Beornhard's Lance) and the rest on one effect
-# (designer, 2026-10-09). War Magic is learned against Dodge or Vital;
-# per the designer, she split them: Sloth against Dodge, Rebuking against
-# Vital. Each is (kind, amount, bonus suit, Defense): Frigid x3 is "Slowed
-# [twice X] + [Spades] times", Kinetic x3 is "Pushed up to [four times X]
-# + Spades meters".
-HEXES = {
-    "Hex of Sloth": ("slowed", 6, "Spades", "Dodge"),
-    "Hex of Rebuking": ("push", 12, "Spades", "Vital"),
-    # Reckoning (T111, Level 2, 2 AP, "A creature within [Theurgy Skill
-    # Total] meters"): "Make a Theurgy spell attack against the target's
-    # Mental Defense. If it hits, they are Crippled 5 + [Clubs] times."
-    # A ranged cast at the start of the turn since 2026-10-25; it used to
-    # stand in for Hanforth's Unarmed attack, so he only cast it in melee.
-    "Reckoning": ("crippled", 5, "Clubs", "Mental", "Theurgy"),
-}
-
-_CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sample_pcs.csv")
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_CSV_PATH = os.path.join(_HERE, "sample_pcs.csv")
+BUILDS_DIR = os.path.join(_HERE, "builds")
+STATS = ("Agility", "Body", "Cunning", "Mind", "Essence")
 
 
 def _load_rows():
@@ -207,21 +52,123 @@ def _load_rows():
         return list(csv.DictReader(f))
 
 
+def _level(raw):
+    # The Builder writes a Buildable copy's Level as a number and a fixed
+    # one as "Lv 2".
+    return int(str(raw).replace("Lv", "").strip())
+
+
+def _choices(cell):
+    """The Choices column: picks a Builder export doesn't carry, per copy
+    in the export's order - "War Magic: Dodge, Vital; Temper Soulblade:
+    Fatestealer"."""
+    out = {}
+    for part in (cell or "").split(";"):
+        if part.strip():
+            name, _, picks = part.partition(":")
+            out[name.strip()] = [p.strip() for p in picks.split(",")]
+    return out
+
+
+def read_build(filename):
+    with open(os.path.join(BUILDS_DIR, filename), encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_sheet(row, build=None):
+    """Everything about one sample character the fight needs: the Builder
+    export named in `Build` (builds/), read through techniques.py, plus
+    the row's own columns for what an export doesn't say - which weapon
+    the sim swings, picks the Builder keeps outside the export, how the
+    character plays. Stops with a BuildError on anything it can't place:
+    an unknown Technique, Feature or item, a pick that names nothing."""
+    build = build or read_build(row["Build"])
+    sheet = SimpleNamespace(
+        name=row["Name"],
+        stats={s: int(build["statPoints"][s]) for s in STATS},
+        skills={k: int(v) for k, v in build["skillPoints"].items()},
+        weapon=(row.get("Weapon") or "").strip(), armor="Unarmored", parry_weapons=[],
+        passives=[], card_techniques=[], encounter_techs=[], tech_attacks=[], hexes=[], maneuvers=[],
+        blessing_features={}, weapon_uses=None, defense_choices=[],
+        support=False, heal_cards=1, heal_bonus=0, heal_reach=None, heal_range=None,
+        battle_tactic=(row.get("Battle Tactic") or "").strip() or None,
+        play_style=(row.get("Play Style") or "").strip(),
+        bottles_item=(row.get("Bottles Item") or "").strip())
+    if set(sheet.skills) != set(T.PC_SKILL_STAT):
+        raise BuildError(f"{row['Name']}: the export's Skills don't match the sim's 25")
+
+    # Items: armor and held weapons. The Weapon column says which one the
+    # sim attacks with; every held weapon counts for Parry (rulebook.md:
+    # the best of what you're holding).
+    for it in build.get("inventory", ()):
+        iid = it["id"]
+        if iid in game_data.ARMOR_ITEMS:
+            sheet.armor = game_data.ARMOR_ITEMS[iid]
+        elif iid in game_data.WEAPON_ITEMS:
+            sheet.parry_weapons.append(game_data.WEAPON_ITEMS[iid])
+        elif iid not in game_data.NOT_MODELED_ITEMS:
+            raise BuildError(f"{row['Name']}: item {iid} {game_data.items().get(iid, {}).get('Name', '?')} "
+                             "isn't modeled (game_data.py)")
+    if sheet.weapon and sheet.weapon not in sheet.parry_weapons:
+        sheet.parry_weapons.append(sheet.weapon)
+
+    # Techniques, grouped by ID in the export's order.
+    copies = {}
+    for t in build.get("techniques", ()):
+        copies.setdefault(t["id"], []).append(
+            dict(level=_level(t.get("level", 1)), features={f["name"]: int(f["count"]) for f in t.get("features", ())}))
+    choices = _choices(row.get("Choices"))
+    # Unmodeled: Techniques this row carries knowingly unplayed (a power
+    # the sim doesn't have yet). Their Health bonus still counts.
+    unmodeled = {t.strip() for t in (row.get("Unmodeled") or "").split(",") if t.strip()}
+    names_in_build = {game_data.technique_name(tid) for tid in copies}
+    for name in unmodeled - names_in_build:
+        raise BuildError(f"{row['Name']}: Unmodeled names {name!r}, which the build doesn't have")
+    known = set()
+    shallow = deep = 5  # rulebook.md: 5 Shallow and 5 Deep Health to start
+    for tid, cs in copies.items():
+        tech = techniques.get(tid)
+        bonus = game_data.health_bonus(tid)
+        shallow += bonus[0] * len(cs)
+        deep += bonus[1] * len(cs)
+        if tech is None or game_data.technique_name(tid) in unmodeled:
+            continue
+        tech.check_features(cs)
+        tech.build(sheet, cs, choices.get(tech.name, []))
+        known.add(tech.name)
+    for name in choices:
+        if name not in known:
+            raise BuildError(f"{row['Name']}: Choices names {name!r}, which the build doesn't have")
+    for it in build.get("inventory", ()):
+        if it["id"] in game_data.items():
+            bonus = game_data.item_health_bonus(it["id"])
+            shallow += bonus[0]
+            deep += bonus[1]
+    override = (row.get("Health") or "").strip()
+    sheet.health = int(override) if override else shallow + deep
+
+    # A War Magic Weapon on a sheet with no War Magic copies (Wren, a
+    # reference build that never picked Techniques) stands in as an
+    # attack that's always there.
+    if sheet.weapon.startswith("War Magic") and "T120" not in copies:
+        sheet.weapon_uses = None
+    elif sheet.weapon.startswith("War Magic") and sheet.weapon_uses is None:
+        sheet.weapon_uses = 0
+    if sheet.support:
+        ley = 3 if any("Ley-weaving" in p for p in sheet.passives) else 0
+        theurgy = skill_total(sheet.stats, sheet.skills, "Theurgy")
+        sheet.heal_range = 1 + (theurgy if sheet.heal_reach else 0) + ley
+    return sheet
+
+
 def skill_total(stats, skills, skill):
     stat = T.PC_SKILL_STAT[skill]
     return int(stats[stat]) + int(skills[skill])
 
 
-def _maneuver_features(text):
-    """One Battle Maneuver copy's Features ("Lunging 3, Half Guard 1",
-    a trailing number being how many copies of that Feature)."""
-    feats = {}
-    for f in text.split(","):
-        parts = f.strip().rsplit(" ", 1)
-        if len(parts) == 2 and parts[1].isdigit():
-            feats[parts[0]] = int(parts[1])
-        elif f.strip():
-            feats[f.strip()] = 1
+def _maneuver_features(feats):
+    """One Battle Maneuver copy's Features ({name: copies}), as the
+    numbers combat_sim reads."""
     return dict(lunges=feats.get("Lunging", 0), guard=feats.get("Half Guard", 0),
                 battering=feats.get("Battering", 0),
                 # Open the Wound X (draft, 2026-10-16): Reign of
@@ -242,34 +189,9 @@ def _maneuver_features(text):
                 distracting=feats.get("Distracting", 0))
 
 
-def _blessing_features(text, theurgy, ley):
-    """Spirit Blessing's Features ("Shielding 2, Quickened, Reach", same
-    shape as Maneuver Features): Shielding X is Protected X + 1, Step of
-    Air X Hasted X + 1, Guided Hand X Good Luck on the next X attacks,
-    Quickened makes it 1 AP, Reach adds [Theurgy Skill Total] meters to
-    "yourself or an adjacent ally", and Mass Blessing a second target."""
-    feats = {}
-    for f in text.split(","):
-        parts = f.strip().rsplit(" ", 1)
-        if len(parts) == 2 and parts[1].isdigit():
-            feats[parts[0]] = int(parts[1])
-        elif f.strip():
-            feats[f.strip()] = 1
-    return dict(protected=feats["Shielding"] + 1 if "Shielding" in feats else 0,
-                hasted=feats["Step of Air"] + 1 if "Step of Air" in feats else 0,
-                guided=feats.get("Guided Hand", 0),
-                ap=1 if "Quickened" in feats else 2,
-                range=1 + (theurgy if "Reach" in feats else 0) + ley,
-                targets=2 if "Mass Blessing" in feats else 1)
-
-
-def _pc_dict(row, index, good_luck):
-    stats = {s: row[s] for s in ("Agility", "Body", "Cunning", "Mind", "Essence")}
-    skills = {k: v for k, v in row.items() if k not in
-              ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
-               "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus",
-               "Heal Range", "Passives", "Battle Tactic", "Parry Weapons", "Encounter Techniques",
-               "Defense Choices", "Play Style", "Maneuver Features", "Bottles Item", "Blessing Features")}
+def _pc_dict(sheet, index, good_luck):
+    """One PC's fight dict from a loaded sheet (load_sheet)."""
+    stats, skills = sheet.stats, sheet.skills
     parry = 8 + skill_total(stats, skills, "Melee")
     # Raw Acrobatics Skill Total - captured before Armor's own Dodge
     # modifier folds into `dodge` below, since Blinkstep (T077, "Shift
@@ -292,7 +214,7 @@ def _pc_dict(row, index, good_luck):
     bodily = 8 + skill_total(stats, skills, "Resilience")
     mental = 8 + skill_total(stats, skills, "Composure")
     vigilant = 8 + skill_total(stats, skills, "Insight")
-    health = int(row["Health"])
+    health = sheet.health
     speed = 1 + int(stats["Agility"])  # rulebook.md: "Your Speed is equal to 1 + your Agility"
     reflex = skill_total(stats, skills, "Insight")  # rulebook.md: "Your Reflex is equal to your Insight Skill Total"
 
@@ -306,7 +228,7 @@ def _pc_dict(row, index, good_luck):
     # defaults to Unarmored (T.ARMOR's own all-zero baseline), so an
     # existing row with no Armor set reads exactly as it used to (raw
     # Essence, no Dodge/Speed change) rather than silently changing.
-    armor = (row.get("Armor") or "Unarmored").strip() or "Unarmored"
+    armor = sheet.armor
     armor_mod = T.ARMOR[armor]
     physres = int(stats["Essence"]) + armor_mod["physres"]
     elemres = int(stats["Essence"])
@@ -324,7 +246,7 @@ def _pc_dict(row, index, good_luck):
     # above - a caster's Sorcery Skill Total (or an archer's Archery)
     # drives their own attack roll and Range without touching their
     # Melee-based Parry or any other Defense.
-    weapon = (row.get("Weapon") or "").strip()
+    weapon = sheet.weapon
     attack_range = None
     if weapon and weapon in T.WEAPON:
         w = T.WEAPON[weapon]
@@ -357,7 +279,7 @@ def _pc_dict(row, index, good_luck):
     # just the attacking Weapon (1H Heavy Melee when that's blank too, the
     # Roster default, so Roster rows read exactly as before). A weapon that
     # can't Parry (bow, thrown, spell) falls back to Unarmed.
-    parry_weapons = [w.strip() for w in (row.get("Parry Weapons") or "").split(",") if w.strip()]
+    parry_weapons = list(sheet.parry_weapons)
     if not parry_weapons:
         parry_weapons = [weapon or "1H Heavy Melee"]
     parry_options = []
@@ -397,7 +319,7 @@ def _pc_dict(row, index, good_luck):
     # translating it into a named strategy here is what lets a future
     # third strategy (a PC who always maximizes Gambling, say) just add
     # another registry entry instead of a new boolean CSV column.
-    strategy = "support_healer" if (row.get("Support") or "").strip().upper() == "TRUE" else "attacker"
+    strategy = "support_healer" if sheet.support else "attacker"
 
     # `Heal Cards`/`Heal Bonus` (blank = 1/0, matching the original
     # hardcoded Level-1-with-no-features numbers exactly) - a Support
@@ -409,10 +331,8 @@ def _pc_dict(row, index, good_luck):
     # hardcoded in tactics.strategy_support_healer. Computed for every
     # PC, not just Support ones - harmless, same reasoning as
     # card_uses_left above.
-    heal_cards_raw = (row.get("Heal Cards") or "").strip()
-    heal_cards = int(heal_cards_raw) if heal_cards_raw else 1
-    heal_bonus_raw = (row.get("Heal Bonus") or "").strip()
-    heal_bonus = int(heal_bonus_raw) if heal_bonus_raw else 0
+    heal_cards = sheet.heal_cards
+    heal_bonus = sheet.heal_bonus
 
     # `Heal Range` (blank = no check, the original "adjacent ally,
     # assumed reachable" behavior) - Healing Magic's own Target text
@@ -421,13 +341,12 @@ def _pc_dict(row, index, good_luck):
     # can heal from farther off. Only enforced under movement=True
     # (positions exist to check at all) - see tactics.
     # strategy_support_healer.
-    heal_range_raw = (row.get("Heal Range") or "").strip()
-    heal_range = int(heal_range_raw) if heal_range_raw else None
+    heal_range = sheet.heal_range
 
     # `Passives` (comma-separated tags, e.g. "Hand of Chaos") - an
     # always-on Technique effect with no AP/card cost of its own, unlike
     # Card Techniques above - see tactics.sift_bonus.
-    passives = [t.strip() for t in (row.get("Passives") or "").split(",") if t.strip()]
+    passives = list(sheet.passives)
 
     # Overchanneling (T140, a Style): "+1 damage on damaging Spell
     # attacks... You can't Parry." Only War Magic is a Spell attack in
@@ -453,7 +372,7 @@ def _pc_dict(row, index, good_luck):
     # targeting rule (Hanforth's own Straggler Hunter - see tactics.
     # target_straggler). Blank/absent falls through to the same
     # movement-aware closest/first default every other PC already uses.
-    battle_tactic = (row.get("Battle Tactic") or "").strip() or None
+    battle_tactic = sheet.battle_tactic
 
     # `Card Techniques` (comma-separated tags from tactics.py's
     # try_second_wind/perfect_strike_bonus/bottomless_bottles_choice -
@@ -466,11 +385,11 @@ def _pc_dict(row, index, good_luck):
     # designer's own framing ("say 1/3 of those"). Computed for every
     # PC, not just ones with a Card Technique - harmless, one less
     # special case.
-    card_techniques = [t.strip() for t in (row.get("Card Techniques") or "").split(",") if t.strip()]
+    card_techniques = list(sheet.card_techniques)
     # `Encounter Techniques` (comma-separated, one entry per known copy):
     # AP-costing Encounter Techniques the sim runs on its own - so far
     # just Challenge (T058), a Taunt that pulls attacks off the fragile.
-    encounter_techs = [t.strip() for t in (row.get("Encounter Techniques") or "").split(",") if t.strip()]
+    encounter_techs = list(sheet.encounter_techs)
     card_uses_left = hand_size // 3
 
     # Technique attacks from `Encounter Techniques` (TECH_ATTACKS below):
@@ -478,11 +397,10 @@ def _pc_dict(row, index, good_luck):
     # combat_sim's attack loop. These are what give the sim's party
     # attacks against Vital and Mental, not just Parry/Dodge.
     tech_attacks = []
-    for tname in dict.fromkeys(encounter_techs):
-        if tname in TECH_ATTACKS:
-            prof = TECH_ATTACKS[tname](stats, skills, atk_skill_total, damage)
-            prof.update(via=tname, uses=encounter_techs.count(tname))
-            tech_attacks.append(prof)
+    for tname, factory, uses in sheet.tech_attacks:
+        prof = factory(stats, skills, atk_skill_total, damage)
+        prof.update(via=tname, uses=uses)
+        tech_attacks.append(prof)
     # Overchanneling's +1 goes on damaging Spell attacks, the technique
     # ones included.
     if "Overchanneling" in passives:
@@ -494,7 +412,7 @@ def _pc_dict(row, index, good_luck):
     # random. Stands in for a War Magic caster whose copies are split
     # between the two Defenses War Magic can be learned against (T120:
     # "Dodge or Vital, chosen when you learn this"), per the designer.
-    defense_choices = [d.strip() for d in (row.get("Defense Choices") or "").split("|") if d.strip()]
+    defense_choices = list(sheet.defense_choices)
 
     # `Weapon Uses`: blank/absent means unlimited (every existing PC),
     # matching the sim's original always-available attack. A number
@@ -508,8 +426,7 @@ def _pc_dict(row, index, good_luck):
     # budget above, since this is a bonus on an already-scarce resource
     # rather than a fresh one) for how many times its own 'regain an
     # Encounter Technique use' effect can fire in one fight.
-    weapon_uses_raw = (row.get("Weapon Uses") or "").strip()
-    weapon_uses_left = int(weapon_uses_raw) if weapon_uses_raw else None
+    weapon_uses_left = sheet.weapon_uses
     # With real cards (T.CARDS) Warmage's Reserves discards from the hand
     # in the fight instead (combat_sim._warmage_reserves).
     if weapon_uses_left is not None and "Warmage's Reserves" in card_techniques and not T.CARDS:
@@ -557,7 +474,7 @@ def _pc_dict(row, index, good_luck):
         # `Bottles Item` (2026-10-09): Acidic Flask (I028, Level 1, 2 Gold)
         # instead - "On a hit, the target gains 5 + [Clubs] stacks of
         # Bleeding." No damage, so Mighty Mixologist doesn't apply.
-        if (row.get("Bottles Item") or "").strip() == "Acidic Flask":
+        if sheet.bottles_item == "Acidic Flask":
             bottled_fire_profile = dict(skill_total=skill_total(stats, skills, "Acrobatics"),
                                          damage=T.ACID_FLASK_DAMAGE, dmg_type="Fire" if T.ACID_FLASK_DAMAGE else None,  # elemental materials; one elemental Resist in this sim
                                          opp_def="Dodge", skill="Acrobatics",
@@ -574,15 +491,16 @@ def _pc_dict(row, index, good_luck):
     ley = 3 if any("Ley-weaving" in p for p in passives) else 0
 
     # Ranged hexes (HEXES above), one use per known copy.
+    # A ranged hex reaches [its Skill Total] meters (Reckoning's Target,
+    # War Magic with Lance); without Lance War Magic is "An adjacent
+    # creature".
     hexes = []
-    for h in dict.fromkeys(encounter_techs):
-        if h not in HEXES:
-            continue
-        hskill = HEXES[h][4] if len(HEXES[h]) > 4 else "Sorcery"
-        hexes.append(dict(via=h, kind=HEXES[h][0], amount=HEXES[h][1], suit=HEXES[h][2],
-                          uses=encounter_techs.count(h), skill=hskill,
-                          skill_total=skill_total(stats, skills, hskill), opp_def=HEXES[h][3],
-                          range=skill_total(stats, skills, hskill) + ley))
+    for h in sheet.hexes:
+        h = dict(h)
+        ranged = h.pop("ranged")
+        h["skill_total"] = skill_total(stats, skills, h["skill"])
+        h["range"] = (h["skill_total"] if ranged else 1) + ley
+        hexes.append(h)
 
     # Battle Maneuver (T072, Encounter, "Make a weapon attack") with its
     # Features (`Maneuver Features`, e.g. "Bare-Handed, Lunging 2, Half
@@ -592,17 +510,15 @@ def _pc_dict(row, index, good_luck):
     # that has it.
     maneuver = None
     maneuver_queue = []
-    if "Battle Maneuver" in encounter_techs:
-        uses = encounter_techs.count("Battle Maneuver")
-        raw = row.get("Maneuver Features") or ""
-        # One Feature set for every copy, or one per copy split by "|"
-        # (Hilde and Browndog build each copy differently), used in the
-        # order written; combat_sim moves to the next once one's spent.
-        groups = [_maneuver_features(g) for g in raw.split("|")]
-        if len(groups) == 1:
-            maneuver = dict(uses=uses, **groups[0])
+    if sheet.maneuvers:
+        # Copies built the same way share one entry; copies built
+        # differently (Hilde, Browndog) are used in the sheet's order,
+        # combat_sim moving to the next once one's spent.
+        groups = [_maneuver_features(f) for f in sheet.maneuvers]
+        if all(g == groups[0] for g in groups):
+            maneuver = dict(uses=len(groups), **groups[0])
         else:
-            copies = [dict(uses=1, **groups[min(i, len(groups) - 1)]) for i in range(uses)]
+            copies = [dict(uses=1, **g) for g in groups]
             maneuver, maneuver_queue = copies[0], copies[1:]
 
     # Every copy gets its own suffix, Roster rows included (a Roster
@@ -612,7 +528,7 @@ def _pc_dict(row, index, good_luck):
     # (narrate_fight.py's stable per-fight labels collapse into one if
     # two units share a name), and `name` is cosmetic everywhere else in
     # this file/combat_sim.py, so it's safe to always suffix.
-    pc = dict(name=f"{row['Name']}{index}",
+    pc = dict(name=f"{sheet.name}{index}",
               parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
               skill_total=atk_skill_total,  # the PC's own attacking Skill Total - see the Weapon block above
               acrobatics_skill_total=acrobatics_skill_total, stealth_skill_total=stealth_skill_total,
@@ -642,68 +558,22 @@ def _pc_dict(row, index, good_luck):
         pc["maneuver"] = maneuver
     if maneuver_queue:
         pc["maneuver_queue"] = maneuver_queue
-    # Encounter Techniques the sim runs at its own moments (2026-10-24,
-    # the designer's leveled builds): Brace (T001, 3 Protected), Strength
-    # from the Slain (T018, eaten after a kill) and Exert Pressure (T067,
-    # a Taunt on everyone close). One use per known copy.
-    for tname, key in (("Brace", "brace_uses_left"), ("Strength from the Slain", "slain_uses_left"),
-                       ("Exert Pressure", "pressure_uses_left")):
-        if tname in encounter_techs:
-            pc[key] = encounter_techs.count(tname)
-    # Toughened Resolve (T019): +2 Shallow and +2 Deep Health. `Health`
-    # already counts both; this moves where Wounded starts.
-    if "Toughened Resolve" in passives:
-        pc["shallow_max"] += 2
-    # Encounter Techniques modeled 2026-10-25 (see combat_sim's helpers of
-    # the same names): Shadow Jaunt, Gainsay, Wall of Shadows, Blinkstep,
-    # Parting Shot, Lifeline, Spirit Blessing and Gust of Wind.
-    sorcery, theurgy = skill_total(stats, skills, "Sorcery"), skill_total(stats, skills, "Theurgy")
-    if "Shadow Jaunt" in encounter_techs:
-        pc["jaunt_uses_left"] = encounter_techs.count("Shadow Jaunt")
-        pc["jaunt_range"] = max(sorcery, theurgy)
-    if "Gainsay" in encounter_techs:
-        pc["gainsay_uses_left"] = encounter_techs.count("Gainsay")
-    if "Wall of Shadows" in encounter_techs:
-        pc["wall_uses_left"] = encounter_techs.count("Wall of Shadows")
-        pc["sorcery_skill_total"] = sorcery
-    if "Blinkstep" in encounter_techs:
-        pc["blinkstep"] = True
-    if "Parting Shot" in encounter_techs:
-        pc["parting_shot"] = True
-        # "a close-range weapon you are wielding": the Weapon itself if it
-        # works up close (thrown weapons and melee), else Unarmed.
-        if weapon in ("Light Bow", "War Magic (Lance)") or weapon.startswith("War Magic"):
-            u = T.WEAPON["Unarmed"]
-            pc["close_profile"] = dict(skill_total=skill_total(stats, skills, "Brawl") + u["accuracy"],
-                                       damage=u["damage_base"] + max(int(stats["Body"]), int(stats["Cunning"])),
-                                       dmg_type="Physical", opp_def="Parry/Dodge", skill="Brawl", via="Unarmed")
-        else:
-            pc["close_profile"] = dict(skill_total=atk_skill_total, damage=damage, dmg_type=dmg_type,
-                                       opp_def=opp_def, skill=w_skill, via=weapon_name)
-    if "Lifeline" in encounter_techs:
-        pc["lifeline_uses_left"] = encounter_techs.count("Lifeline")
-        pc["lifeline_range"] = theurgy + ley
-    if "Spirit Blessing" in encounter_techs:
-        pc["blessing"] = dict(uses=encounter_techs.count("Spirit Blessing"),
-                              **_blessing_features(row.get("Blessing Features") or "", theurgy, ley))
-    if "Gust of Wind" in encounter_techs:
-        pc["gust_uses_left"] = encounter_techs.count("Gust of Wind")
-        pc["theurgy_skill_total"] = theurgy
-        pc["gust_push"] = 2 * int(stats["Mind"])
+    # What each Technique needs on the fight dict (its uses, a range, a
+    # profile) is set by its own entry in techniques.py. Run for every
+    # name the PC carries, a test's added passive included. `techs` is the
+    # Card and Encounter Techniques by name, which hooks.py checks
+    # alongside `passives`.
+    pc["techs"] = list(dict.fromkeys(encounter_techs + card_techniques))
+    setup = SimpleNamespace(stats=stats, skills=skills, uses=collections.Counter(encounter_techs), ley=ley,
+                            sheet=sheet, weapon=weapon, weapon_name=weapon_name, w_skill=w_skill,
+                            atk_skill_total=atk_skill_total, damage=damage, dmg_type=dmg_type, opp_def=opp_def)
+    for name in dict.fromkeys(list(passives) + pc["techs"]):
+        techniques.setup(name, pc, setup)
     # rulebook.md, Grapple: no "actions that require two hands".
     pc["two_handed"] = weapon in ("2H Heavy Melee", "2H Light Melee", "Light Bow")
-    # Cloak and Dagger (T079) was a test-only field; Carrick has it now.
-    if "Cloak and Dagger" in passives:
-        pc["cloak_and_dagger"] = True
-    if "Grim Resolve" in passives:
-        pc["grim_resolve"] = True
-    # Raise Spirits (T069): "an ally within [Performance Skill Total]
-    # meters".
-    if "Raise Spirits" in passives:
-        pc["raise_range"] = skill_total(stats, skills, "Performance")
     # How cautiously this PC plays (play_styles.py); a blank cell falls
     # back to what the build suggests.
-    pc["play_style"] = ((row.get("Play Style") or "").strip()
+    pc["play_style"] = (sheet.play_style
                         or play_styles.default_style(attack_range, armor, "Shield" in parry_weapons,
                                                      strategy == "support_healer"))
     if weapon_uses_left is not None:
@@ -718,6 +588,26 @@ def _pc_dict(row, index, good_luck):
     return pc
 
 
+def _rows():
+    return {r["Name"]: r for r in _load_rows()}
+
+
+def make_pc(name, index=1, good_luck=0, health=0, add_passives=(), drop_passives=(), battle_tactic=None,
+            rows=None):
+    """One sample character's fight dict, optionally changed for a test:
+    `health` more max Health, test passives added (effect_check's
+    "Test:..." ones, a Style being priced) or dropped, a different Battle
+    Tactic. The one way scripts should build a modified character, so none
+    of them depend on the CSV's columns."""
+    row = (rows or _rows())[name]
+    sheet = load_sheet(row)
+    sheet.health += health
+    sheet.passives = [p for p in sheet.passives if p not in drop_passives] + list(add_passives)
+    if battle_tactic:
+        sheet.battle_tactic = battle_tactic
+    return _pc_dict(sheet, index, good_luck)
+
+
 def make_party(tier, good_luck=0):
     """4 copies of the Roster row for this Tier. `good_luck`: how many
     stacks of Good Luck every PC has on their own attack roll (rulebook.md:
@@ -726,15 +616,16 @@ def make_party(tier, good_luck=0):
     it on without a second copy of this function."""
     for row in _load_rows():
         if row["Roster"].strip().upper() == "TRUE" and int(row["Tier"]) == tier:
-            return [_pc_dict(row, i + 1, good_luck) for i in range(4)]
+            sheet = load_sheet(row)
+            return [_pc_dict(sheet, i + 1, good_luck) for i in range(4)]
     raise ValueError(f"no Roster row for Tier {tier}")
 
 
 def get_pc(name, good_luck=0):
-    for row in _load_rows():
-        if row["Name"] == name:
-            return _pc_dict(row, 1, good_luck)
-    raise KeyError(f"no sample_pcs.csv row named {name!r}")
+    rows = _rows()
+    if name not in rows:
+        raise KeyError(f"no sample_pcs.csv row named {name!r}")
+    return make_pc(name, 1, good_luck, rows=rows)
 
 
 def make_party_of(name, good_luck=0):
@@ -752,12 +643,13 @@ def make_party_from(names, good_luck=0):
     is asked for (e.g. ["Hilde", "Browndog", "Sable", "Beornhard"]) -
     for testing party composition itself, not just one build cloned x4.
     Same monkeypatch-combat_sim.make_party usage as make_party_of."""
-    rows = {r["Name"]: r for r in _load_rows()}
-    return [_pc_dict(rows[name], i + 1, good_luck) for i, name in enumerate(names)]
+    rows = _rows()
+    return [make_pc(name, i + 1, good_luck, rows=rows) for i, name in enumerate(names)]
 
 
 def all_pcs():
-    return [_pc_dict(row, 1, 0) for row in _load_rows()]
+    rows = _rows()
+    return [make_pc(name, 1, 0, rows=rows) for name in rows]
 
 
 if __name__ == "__main__":

@@ -217,14 +217,12 @@ SET_NAME = ["standard"]
 
 
 def make(pname, carrier, spec, health_all):
-    rows = {r["Name"]: r for r in party._load_rows()}
+    rows = party._rows()
 
     def mk(t, good_luck=0):
         pcs = []
         for i, n in enumerate(PARTIES[pname], 1):
-            row = dict(rows[n])
-            row["Health"] = str(int(row["Health"]) + health_all)
-            pc = party._pc_dict(row, i, good_luck)
+            pc = party.make_pc(n, i, good_luck, health=health_all, rows=rows)
             if pname == "AV":
                 pc["opp_def"] = "Vital"
             if n == carrier and spec:

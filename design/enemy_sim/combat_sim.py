@@ -207,6 +207,8 @@ from sample_enemies import make_level_encounter
 from party import make_party
 import cards
 import play_styles
+import hooks
+from types import SimpleNamespace
 
 
 def flip():
@@ -601,7 +603,8 @@ def _roll_initiative(pcs, enemies, trace):
         group = groups[s]
         order_idx.extend(group if len(group) == 1 else _resolve_group_order(group, entries))
     result = [entries[i] for i in order_idx]
-    _one_eye_reorder(result, pcs)
+    for p in pcs:
+        hooks.run('fight_start_order', p, SimpleNamespace(order=result))
     if trace is not None:
         _log(trace, round=0, type='initiative', order=[{'side': side, 'unit': u['name']} for side, u in result])
     return result
@@ -1110,198 +1113,6 @@ def _thief_heal(pc, amount, log=None):
             via='Thief Empties the Vessel')
 
 
-def _boughs_cleanse(pc):
-    """Great Old Oak School - Boughs Unbroken (T175): "When one of your
-    Unarmed attacks hits, choose Bleeding, Crippled, Frightened, Necrotic,
-    Slowed, Taunted, or Vulnerable, then remove all stacks of it from
-    yourself." Per the designer: Bleeding first, then Crippled, then
-    whichever of the rest he has most of. Returns the effect cleared."""
-    have = [k for k in ('bleeding', 'crippled') if pc.get(k, 0) > 0]
-    if not have:
-        rest = [k for k in ('slowed', 'vulnerable', 'taunted', 'frightened') if pc.get(k, 0) > 0]
-        have = sorted(rest, key=lambda k: -pc[k])
-    if not have:
-        return None
-    key = have[0]
-    pc[key] = 0
-    pc.pop('skip_' + key, None)
-    if key in ('taunted', 'frightened'):
-        pc[key + '_by'] = None
-    pc['cleansed'] = pc.get('cleansed', 0) + 1
-    return key
-
-
-def _fatestealer(pc):
-    """Fatestealer (I092) at Level 1, Enith's Temper Soulblade power: a
-    creature Downed by the weapon gives 1 charge (max 8); "For 1 charge,
-    the wielder may Sift 2 cards. For 3 charges, the wielder may draw a
-    card." She saves them for the draw: a Sift only thins low cards out
-    of the deck. A drawn card joins this fight's budget. Charges last the
-    day; the sim starts each fight at 0."""
-    pc['fate_charges'] = min(8, pc.get('fate_charges', 0) + 1)
-    if T.CARDS and pc['fate_charges'] >= 3:
-        pc['fate_charges'] -= 3
-        pc['hand'].append(pc['deck'].draw())
-        pc['budget'] += 1
-        pc['fate_draws'] = pc.get('fate_draws', 0) + 1
-
-
-def _cast_hex(pc, hx, e, pcs, allies, rnd, trace, log):
-    """One of Enith's hexes at `e`: a Sorcery spell attack against the
-    hex's own Defense (Sloth Dodge, Rebuking Vital), no damage; on a hit,
-    Slowed or Pushed by its amount plus the suit. Raise Spirits and Hand
-    of Chaos apply (it's an attack); a miss is worth a card. Only the
-    Dodge one Harries its target. A Push goes straight away from the
-    middle of the party (glossary.md [Pushing]: "forcibly moved", not
-    moving). Returns AP."""
-    hx['uses'] -= 1
-    defense = enemy_defense_for_pc_attack(hx, e)
-    mod = hx['skill_total'] - pc.get('crippled', 0)
-    good = pc.get('good_luck', 0) + _raise_spirits(pc, pcs, defense - mod, True)
-    bad = _pc_status_bad_luck(pc, e)
-    cover = _cover_bad_luck(pc, e, hx['opp_def'])
-    if cover:
-        bad = int(bad) + cover
-    value, pool = _pc_flip(pc, mod, defense, good, bad, BIG, pcs, _hand_of_chaos(pc))
-    hit = mod + value >= defense
-    if hx['opp_def'] in ('Parry/Dodge', 'Dodge'):
-        e['harried'] = e.get('harried', 0) + 1
-    note = start = None
-    if hit:
-        n = hx['amount'] + _suit_count(pool, hx['suit'])
-        if hx['kind'] in ('slowed', 'crippled'):
-            _gain(e, hx['kind'], n)
-            note = f"{hx['kind'].capitalize()} +{n}"
-        else:
-            cx = round(sum(p['pos'][0] for p in allies) / len(allies))
-            cy = round(sum(p['pos'][1] for p in allies) / len(allies))
-            start = _push(e, (cx, cy), n)
-            note = f"Pushed {_distance(start, e['pos'])} m (up to {n})"
-    pc['hexes_cast'] = pc.get('hexes_cast', 0) + 1
-    pc['hexes_hit'] = pc.get('hexes_hit', 0) + hit
-    if log:
-        log(unit=pc['name'], action='hex', target=e['name'], roll=mod + value, defense=defense, hit=hit,
-            dmg=0, raw_dmg=0, resist=0, target_hp_after=e['health'], target_harried_after=e.get('harried', 0),
-            via=hx['via'], effects=note, cards=_take_notes(pc), opp_def=hx['opp_def'])
-    pc.pop('_notes', None)
-    if start is not None:
-        _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
-             spaces=_distance(start, e['pos']), in_range=False, via=f"Pushed by {hx['via']}")
-        # Parting Shot: "would move or be Pushed outside your range".
-        if _CTX.get('ps_pcs'):
-            _pc_parting_shots(e, start, pcs, log, pushed=True)
-    return T.ATTACK_AP_COST
-
-
-def _try_hexes(pc, pcs, enemies, rnd, movement_on, trace, log, ap):
-    """Enith's hexes (Hex of Sloth, Slowed 6 + [Spades]; Hex of Rebuking,
-    Pushed 12 + [Spades] meters), each once a fight, range 5. Per the
-    designer (2026-10-09) she's a tactical disabler: the hexes split
-    enemies up and isolate them so the party can divide and conquer. At
-    the start of her turn, in order:
-
-    1. With both left and 4 AP: the biggest melee threat that's engaged
-       with the party and still fresh gets Slowed, then Pushed away. A
-       Speed 4 enemy with 6+ Slowed can't move for about three turns.
-    2. An enemy in melee with a fragile ally (a back-liner, someone
-       Wounded, or Enith) gets Pushed off them.
-    3. A melee enemy still on its way in gets Slowed.
-
-    A Push needs at least two enemies standing: with one left there's
-    nothing to split up. Returns the AP spent."""
-    ready = {h['kind']: h for h in pc.get('hexes', ()) if h['uses'] > 0}
-    if not ready or not movement_on or ap < T.ATTACK_AP_COST:
-        return 0
-    living = [e for e in enemies if e['health'] > 0]
-    allies = [p for p in pcs if p['health'] > 0]
-    # Reckoning (T111, Hanforth's Level 2 build): Crippled 5 + [Clubs] on
-    # the biggest threat in reach that isn't Crippled yet - any enemy, not
-    # just a melee one.
-    crip = ready.pop('crippled', None)
-    if crip:
-        pool = [e for e in living if _distance(pc['pos'], e['pos']) <= crip['range'] and e.get('crippled', 0) <= 0]
-        if pool:
-            return _cast_hex(pc, crip, max(pool, key=lambda e: tactics.enemy_threat(e, allies)),
-                             pcs, allies, rnd, trace, log)
-        if not ready:
-            return 0
-    in_range = [e for e in living if _distance(pc['pos'], e['pos']) <= max(h['range'] for h in ready.values())
-                and (e.get('attack_range') or 0) <= T.MELEE_RANGE]
-    if not in_range:
-        return 0
-
-    def engaged(e):
-        return [p for p in allies if _distance(p['pos'], e['pos']) <= T.MELEE_RANGE]
-
-    def fragile(p):
-        return p is pc or p.get('play_style') == 'Back-liner' or tactics.pc_wounded(p)
-
-    def threat(e):
-        return tactics.enemy_threat(e, allies)
-    slow, push = ready.get('slowed'), ready.get('push')
-    if len(living) < 2:
-        push = None
-    if slow and push and ap >= 2 * T.ATTACK_AP_COST:
-        fresh = [e for e in in_range if engaged(e) and e['health'] > e['max_health'] / 2]
-        if fresh:
-            e = max(fresh, key=threat)
-            return (_cast_hex(pc, slow, e, pcs, allies, rnd, trace, log)
-                    + _cast_hex(pc, push, e, pcs, allies, rnd, trace, log))
-    if push:
-        on_fragile = [e for e in in_range if any(fragile(p) for p in engaged(e))]
-        if on_fragile:
-            return _cast_hex(pc, push, max(on_fragile, key=threat), pcs, allies, rnd, trace, log)
-    if slow:
-        coming = [e for e in in_range if not engaged(e)]
-        if coming:
-            return _cast_hex(pc, slow, max(coming, key=threat), pcs, allies, rnd, trace, log)
-    return 0
-
-
-def _try_challenge(pc, pcs, enemies, movement_on, log=None):
-    """Challenge (T058, 1 AP, Encounter): "Make a Presence attack
-    against the target's Mental Defense. If the attack hits, you Taunt
-    the target 5 + [Hearts] times." Range [Presence Skill Total]
-    meters. Used on an enemy nobody's already Taunting, picking the one
-    closest to the party's most fragile member (lowest max Health, then
-    lowest current Health) - the whole point is pulling attacks off
-    whoever can't take them. Returns the AP spent (0 or 1)."""
-    if pc.get('challenge_uses_left', 0) <= 0:
-        return 0
-    pool = [e for e in enemies if e['health'] > 0 and not (e.get('taunted', 0) > 0)]
-    if movement_on:
-        pool = [e for e in pool if _distance(pc['pos'], e['pos']) <= pc['presence_skill_total']]
-    if not pool:
-        return 0
-    others = [p for p in pcs if p['health'] > 0 and p is not pc]
-    if movement_on and others:
-        ward = min(others, key=lambda p: (p['max_health'], p['health']))
-        target = min(pool, key=lambda e: _distance(e['pos'], ward['pos']))
-    else:
-        target = pool[0]
-    pc['challenge_uses_left'] -= 1
-    defense = target['mental'] - target.get('vulnerable', 0)
-    if T.CARDS:
-        good = _raise_spirits(pc, pcs, defense - pc['presence_skill_total'], True)
-        value, pool = _pc_flip(pc, pc['presence_skill_total'], defense, good, tactics.pc_wounded(pc), BIG,
-                               allies=pcs)
-    else:
-        value, pool = flip(), []
-    roll = pc['presence_skill_total'] + value
-    hit = roll >= defense
-    if hit:
-        stacks = 5 + _suit_count(pool, 'Hearts')
-        if target.get('taunted', 0) <= 0 and _skips(target):
-            target['skip_taunted'] = True
-        target['taunted'] = stacks
-        target['taunted_by'] = pc
-    if log:
-        log(unit=pc['name'], action='taunt', target=target['name'], roll=roll, defense=target['mental'], hit=hit,
-            via='Challenge', effects=f"Taunted +{target['taunted']}" if hit else None, cards=_take_notes(pc))
-    pc.pop('_notes', None)
-    return 1
-
-
 def _draw_card(pc):
     """One more card for this fight (Victorious, Draw Power)."""
     if T.CARDS:
@@ -1326,85 +1137,6 @@ def _next_maneuver(pc):
     m = pc.get('maneuver')
     if m and m['uses'] <= 0 and pc.get('maneuver_queue'):
         pc['maneuver'] = pc['maneuver_queue'].pop(0)
-
-
-def _try_brace(pc, enemies, movement_on, ap, start, log=None):
-    """Brace (T001, 1 AP, Encounter): "You gain 3 stacks of Protected."
-    Taken with AP left over at the end of a turn while an enemy is close
-    enough to come for this PC, or at the start of a turn spent in melee
-    unprotected (round 2 on, giving up the second attack). Returns the AP
-    spent."""
-    if pc.get('brace_uses_left', 0) <= 0 or ap < 1 or pc.get('protected', 0) > 0:
-        return 0
-    living = [e for e in enemies if e['health'] > 0]
-    if not living:
-        return 0
-    if movement_on:
-        near = min(_distance(pc['pos'], e['pos']) for e in living)
-        if start and not (near <= T.MELEE_RANGE and ap >= T.ATTACK_AP_COST + 1 and pc.get('acted_round', 1) >= 2):
-            return 0
-        if not start and near > T.BRACE_THREAT_RANGE:
-            return 0
-    elif start:
-        return 0
-    pc['brace_uses_left'] -= 1
-    _gain(pc, 'protected', 3)
-    if log:
-        log(unit=pc['name'], action='technique', via='Brace', effects='Protected +3')
-    return 1
-
-
-def _try_exert_pressure(pc, pcs, enemies, movement_on, ap=1, log=None):
-    """Exert Pressure (T067, 1 AP, Encounter): "Make a Presence attack
-    against the Mental Defense of each target [any number of creatures
-    within 2 meters]. You Taunt each target hit 3 + [Hearts] times."
-    Used at the start of a turn or with AP left at its end, once two or
-    more enemies are that close and at least one isn't already Taunted by
-    this PC; it goes on the ones that aren't. Returns the AP spent."""
-    if pc.get('pressure_uses_left', 0) <= 0 or ap < 1:
-        return 0
-    near = [e for e in enemies if e['health'] > 0]
-    if movement_on:
-        near = [e for e in near if _distance(pc['pos'], e['pos']) <= 2]
-    pool = [e for e in near if e.get('taunted_by') is not pc]
-    if len(near) < 2 or not pool:
-        return 0
-    pc['pressure_uses_left'] -= 1
-    for target in pool:
-        defense = target['mental'] - target.get('vulnerable', 0)
-        if T.CARDS:
-            good = _raise_spirits(pc, pcs, defense - pc['presence_skill_total'], True)
-            value, flipped = _pc_flip(pc, pc['presence_skill_total'], defense, good, tactics.pc_wounded(pc), BIG,
-                                      allies=pcs)
-        else:
-            value, flipped = flip(), []
-        roll = pc['presence_skill_total'] + value
-        hit = roll >= defense
-        if hit:
-            if target.get('taunted', 0) <= 0 and _skips(target):
-                target['skip_taunted'] = True
-            target['taunted'] = 3 + _suit_count(flipped, 'Hearts')
-            target['taunted_by'] = pc
-        if log:
-            log(unit=pc['name'], action='taunt', target=target['name'], roll=roll, defense=target['mental'],
-                hit=hit, via='Exert Pressure', effects=f"Taunted +{target['taunted']}" if hit else None,
-                cards=_take_notes(pc))
-        pc.pop('_notes', None)
-    return 1
-
-
-def _strength_from_slain(pc, corpse, log=None):
-    """Strength from the Slain (T018, 1 AP, Level 3): eat the heart of an
-    adjacent creature just Downed - Hasted and Protected three times each,
-    and Good Luck on one Melee (or other Body/Agility-skill) flip this
-    encounter, which the next attack takes."""
-    pc['slain_uses_left'] -= 1
-    _gain(pc, 'hasted', 3)
-    _gain(pc, 'protected', 3)
-    pc['gl_next'] = pc.get('gl_next', 0) + 1
-    if log:
-        log(unit=pc['name'], action='technique', target=corpse['name'], via='Strength from the Slain',
-            effects='Hasted +3, Protected +3, Good Luck')
 
 
 def _tech_attack_choice(pc, target):
@@ -1507,7 +1239,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 bonus_target['protected'] -= protected_absorbed
                 dmg -= protected_absorbed
             bonus_target['health'] -= dmg
-            _retribution(pc, bonus_target, dmg)
+            _damaged_by_pc(pc, bonus_target, dmg)
             if dmg > 0:
                 bonus_target.setdefault('hit_steps', []).append((_STEP[0], bonus_target['health'] <= 0))
         if party_log:
@@ -1581,15 +1313,12 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         else:
             ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
         tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
-        ap -= _try_shadow_jaunt(pc, enemies, movement_on, ap, log=party_log)
-        ap -= _try_break_grapple(pc, enemies, ap, log=party_log)
-        ap -= _try_challenge(pc, pcs, enemies, movement_on, log=party_log)
-        ap -= _try_exert_pressure(pc, pcs, enemies, movement_on, ap, log=party_log)
-        ap -= _try_brace(pc, enemies, movement_on, ap, True, log=party_log)
-        ap -= _try_spirit_blessing(pc, pcs, enemies, movement_on, ap, log=party_log)
-        ap -= _try_gust_of_wind(pc, pcs, enemies, movement_on, ap, rnd, trace, log=party_log)
-        ap -= _try_wall_of_shadows(pc, pcs, enemies, movement_on, ap, log=party_log)
-        ap -= _try_hexes(pc, pcs, enemies, rnd, movement_on, trace, party_log, ap)
+        # Techniques taken at the start of the turn (hooks.py's
+        # pc_turn_start, in their ORDER).
+        turn = SimpleNamespace(pcs=pcs, enemies=enemies, rnd=rnd, movement_on=movement_on, trace=trace,
+                               log=party_log, ap=ap, order=order)
+        hooks.run('pc_turn_start', pc, turn)
+        ap = turn.ap
         targets = [e for e in enemies if e['health'] > 0]
         allies = [p for p in pcs if p['health'] > 0]
         # Play styles (play_styles.py): a Skirmisher or Back-liner plans
@@ -1741,13 +1470,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         pc.pop('_range_skip', None)
                     if not substitute and pc['weapon_uses_left'] <= 0:
                         break
-                # Eagle Eyes (T137, a Style): "spend an extra 1 AP. If you
-                # do, those attacks have Good Luck twice." Taken when the AP
-                # left only covers one attack anyway.
-                if ('Eagle Eyes' in pc.get('passives', ()) and not substitute and pc.get('attack_range')
-                        and T.ATTACK_AP_COST < ap < 2 * T.ATTACK_AP_COST):
-                    ap -= 1
-                    pc['gl_next'] = pc.get('gl_next', 0) + 2
+                # Anything that spends extra AP on this attack (Eagle Eyes).
+                pre = SimpleNamespace(substitute=substitute, ap=ap)
+                hooks.run('before_attack', pc, pre)
+                ap = pre.ap
                 if not substitute and pc.get('opp_def_choices'):
                     pc['opp_def'] = random.choice(pc['opp_def_choices'])
                 # A Bottled-Fire substitution temporarily overlays this PC's
@@ -1884,22 +1610,15 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 cover = _cover_bad_luck(pc, target, pc.get('opp_def'))
                 if cover:
                     bad_luck = int(bad_luck) + cover
-                pcp = pc.get('passives', ())
-                # Ambush Predator (T194): Good Luck against a creature that
-                # hasn't taken its turn yet this round. Lie in Wait (T193):
-                # Good Luck once per place waited.
-                # The effect check's goodluck test: Good Luck on the next attack.
+                # Good Luck saved up for this attack (Strength from the
+                # Slain, Eagle Eyes, the effect check's goodluck test), and
+                # whatever the attack_luck hooks give.
                 gl = pc.pop('gl_next', 0)
                 if gl:
                     pc['gl_used'] = pc.get('gl_used', 0) + gl
-                luck_extra = ((1 if 'Ambush Predator' in pcp and target.get('acted_round') != rnd else 0)
-                              + (pc.get('liw_luck', 0) if 'Lie in Wait' in pcp and pc.get('liw_round') == rnd else 0)
-                              + gl
-                              # A grappled target (rulebook.md, Grapple) and
-                              # Calculated (F016: "Good Luck on the attack").
-                              + (1 if _grappled(target) is not None
-                                 and pc.get('opp_def') in ('Parry/Dodge', 'Dodge') else 0)
-                              + (mv.get('calculated', 0) if maneuver_now else 0))
+                atk = SimpleNamespace(target=target, rnd=rnd, order=order, substitute=substitute,
+                                      mv=mv if maneuver_now else None, pool=None, hit=None, parried=None, notes=[])
+                luck_extra = gl + hooks.run('attack_luck', pc, atk)
                 pool = []
                 if T.CARDS:
                     # Real cards: Gamble (with a card behind it if it
@@ -1972,43 +1691,16 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 pre_bleed = target.get('bleeding', 0)  # before this attack's own riders
                 parried = (not hit and pc.get('opp_def') == 'Parry/Dodge'
                            and target['parry'] - target.get('harried', 0) >= target['dodge'] - target.get('harried', 0))
-                # 'Bleeding Strikes' is a test-only passive: this trigger
-                # without the can't-Parry cost, to price the two halves apart.
-                if ('Furious Rage' in passives or 'Bleeding Strikes' in passives) and (hit or parried):
+                # On-hit (and on-Parry) riders: Furious Rage, a Battle
+                # Maneuver's Features, Lawman's Hand (hooks.py hit_riders).
+                atk.pool, atk.hit, atk.parried = pool, hit, parried
+                if hit or parried:
+                    hooks.run('hit_riders', pc, atk)
+                # 'Bleeding Strikes' is a test-only passive: Furious Rage's
+                # trigger without the can't-Parry cost, to price the two
+                # halves apart.
+                if 'Bleeding Strikes' in passives and (hit or parried):
                     _gain(target, 'bleeding', T.FURIOUS_RAGE_STACKS)
-                # Battering (F005, a Battle Maneuver Feature): "If the attack
-                # hits or is Parried, the target gains X stacks of Bleeding
-                # + [Clubs] stacks."
-                if maneuver_now and mv.get('battering') and (hit or parried):
-                    batter = mv['battering'] + _suit_count(pool, 'Clubs')
-                    _gain(target, 'bleeding', batter)
-                    taunt_note = f"Bleeding +{batter} (Battering)"
-                # Wing Clip (F006): "If the attack hits, the target is
-                # Crippled X + [Clubs] times." Hamstring (F008): "...Slowed
-                # X + [Spades] times." Harrying (F007): "If the attack hits
-                # or is Parried, the target is Harried 1 + X + [Diamonds]
-                # times." Distracting (F004): "...you Taunt the target X +
-                # [Hearts] times."
-                if maneuver_now:
-                    riders = []
-                    if mv.get('wing_clip') and hit:
-                        n = mv['wing_clip'] + _suit_count(pool, 'Clubs')
-                        _gain(target, 'crippled', n)
-                        riders.append(f"Crippled +{n}")
-                    if mv.get('hamstring') and hit:
-                        n = mv['hamstring'] + _suit_count(pool, 'Spades')
-                        _gain(target, 'slowed', n)
-                        riders.append(f"Slowed +{n}")
-                    if mv.get('harrying') and (hit or parried):
-                        n = 1 + mv['harrying'] + _suit_count(pool, 'Diamonds')
-                        target['harried'] = target.get('harried', 0) + n
-                        riders.append(f"Harried +{n}")
-                    if mv.get('distracting') and (hit or parried):
-                        n = mv['distracting'] + _suit_count(pool, 'Hearts')
-                        _test_rider(pc, target, 'taunt', n)
-                        riders.append(f"Taunted +{n}")
-                    if riders:
-                        taunt_note = ', '.join(([taunt_note] if taunt_note else []) + riders)
                 # 'Bleeding Strikes 2' (test-only): the same trigger, 2 stacks.
                 if 'Bleeding Strikes 2' in passives and (hit or parried):
                     _gain(target, 'bleeding', 2)
@@ -2042,12 +1734,6 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         pc['_tfirst_' + eff] = True
                     _test_rider(pc, target, eff, n)
                     pc['test_applied'] = pc.get('test_applied', 0) + n
-                # Lawman's Hand (T128): "Once per round, when one of your
-                # damaging attacks hits, you may Slow the target once."
-                if ('Lawman\'s Hand' in passives and hit and pc['damage'] > 0
-                        and pc.get('lh_round') != rnd):
-                    _gain(target, 'slowed', 1)
-                    pc['lh_round'] = rnd
                 dmg = 0
                 raw_dmg = 0
                 protected_absorbed = 0
@@ -2116,7 +1802,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         dmg = 0
                     target['health'] -= dmg
                     damage_dealt += dmg
-                    _retribution(pc, target, dmg)
+                    _damaged_by_pc(pc, target, dmg)
                     _bleed_out(target)
                     if dmg > 0:
                         target.setdefault('hit_steps', []).append((_STEP[0], target['health'] <= 0))
@@ -2163,21 +1849,12 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         else:
                             continue
                         pc['test_applied'] = pc.get('test_applied', 0) + n
-                    # Half Guard (F011): "If the attack hits, you gain X +
-                    # [Spades] stacks of Protected."
-                    if maneuver_now and mv['guard']:
-                        _gain(pc, 'protected', mv['guard'] + _suit_count(pool, 'Spades'))
                     if substitute and substitute.get('heal_on_hit'):
                         _thief_heal(pc, substitute['heal_on_hit'], party_log)
-                    if ('Boughs Unbroken' in passives and pc.get('weapon_name') == 'Unarmed'
-                            and (not substitute or substitute.get('weapon'))):
-                        _boughs_cleanse(pc)
-                    if 'Fatestealer' in passives and not substitute and target['health'] <= 0:
-                        _fatestealer(pc)
-                    # Victorious (F013): "If the attack Downs the target,
-                    # draw a card."
-                    if maneuver_now and mv.get('victorious') and target['health'] <= 0:
-                        _draw_card(pc)
+                    # After a hit lands: Half Guard, Boughs Unbroken,
+                    # Fatestealer, Victorious, Command the Tempo (hooks.py
+                    # after_hit).
+                    hooks.run('after_hit', pc, atk)
                     if substitute and substitute.get('effect'):
                         key, stacks, suit = substitute['effect']
                         stacks += _suit_count(pool, suit)
@@ -2189,13 +1866,6 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         # to check the per-place weight directly.
                         if 'Staggering Blows' in passives:
                             _shift_in_order(order, target, 1)
-                        if 'Command the Tempo' in passives:
-                            _shift_in_order(order, target, 1)
-                            # "an ally of your choice Outflanks once": the
-                            # ally furthest back in the order gains most.
-                            allies = [u for sd, u in order if sd == 'party' and u is not pc and u['health'] > 0]
-                            if allies:
-                                _shift_in_order(order, allies[-1], -1)
                     if order is not None and pc.get('turn_order_shift'):
                         moved = _shift_in_order(order, target, pc['turn_order_shift'])
                         if moved:
@@ -2217,7 +1887,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     party_log(unit=pc['name'], action='attack', target=target['name'], roll=roll, defense=defense,
                                hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
                                target_hp_after=target['health'], target_harried_after=target.get('harried', 0),
-                               via=via, turn_shift=turn_shift_note, effects=taunt_note, cards=_take_notes(pc),
+                               via=via, turn_shift=turn_shift_note,
+                               effects='; '.join(x for x in [taunt_note] + atk.notes if x) or None,
+                               cards=_take_notes(pc),
                                gambles=gambles)
                 pc.pop('_notes', None)
                 if saved_opp_def is not None:
@@ -2287,12 +1959,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
                 if saved_dmg_type is not None:
                     pc['dmg_type'] = saved_dmg_type
-                # Strength from the Slain right after a kill, while the
-                # body's adjacent and there's an AP for it.
-                if (target['health'] <= 0 and pc.get('slain_uses_left', 0) > 0 and ap >= 1
-                        and (not movement_on or _distance(pc['pos'], target['pos']) <= T.MELEE_RANGE)):
-                    _strength_from_slain(pc, target, party_log)
-                    ap -= 1
+                # Anything spent once the attack's done (Strength from the
+                # Slain, right after a kill).
+                post = SimpleNamespace(target=target, ap=ap, movement_on=movement_on, log=party_log)
+                hooks.run('after_attack', pc, post)
+                ap = post.ap
                 if target['health'] <= 0 and plan is not None:
                     # A planned turn doesn't walk after a kill: it turns on
                     # whatever's in reach from where it stands, or stops.
@@ -2366,8 +2037,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                      spaces=_distance(start, pc['pos']), via='staying in range of the party')
                 _left_melee(pc, start, enemies, pcs, rnd)
-        ap -= _try_exert_pressure(pc, pcs, enemies, movement_on, ap, log=party_log)
-        ap -= _try_brace(pc, enemies, movement_on, ap, False, log=party_log)
+        turn.ap = ap
+        hooks.run('pc_turn_end', pc, turn)
+        ap = turn.ap
     # Fleeting decay: 1 stack of each per bearer's own turn (glossary.md's
     # [Fleeting] rule), not all stacks at once - Bleeding's decaying
     # stack is what actually deals its 1 damage. Harried is the one
@@ -2480,7 +2152,7 @@ def _magehunter_interrupt(e, pcs, movement_on, party_log):
                 e['protected'] -= protected_absorbed
                 dmg -= protected_absorbed
             e['health'] -= dmg
-            _retribution(pc, e, dmg)
+            _damaged_by_pc(pc, e, dmg)
             total_dmg += dmg
         if party_log:
             party_log(unit=pc['name'], action='attack', target=e['name'], roll=roll, defense=defense,
@@ -2548,7 +2220,7 @@ def _parting_shot_interrupt(e, pcs, movement_on, party_log):
                 e['protected'] -= protected_absorbed
                 dmg -= protected_absorbed
             e['health'] -= dmg
-            _retribution(pc, e, dmg)
+            _damaged_by_pc(pc, e, dmg)
             total_dmg += dmg
         if party_log:
             party_log(unit=pc['name'], action='attack', target=e['name'], roll=roll, defense=defense,
@@ -2621,25 +2293,6 @@ def _apply_to_pc(target, effect, stacks, source):
     _gain(target, key, stacks)
     if key in ('frightened', 'taunted'):
         target[key + '_by'] = source
-
-
-STRIKE_RIDERS = {
-    # 2026-10-01 draft: riders measured at well under one pick's worth
-    # (~1 Health) get 2 stacks instead of a fractional cost.
-    'Strike (Crippling)': ('Crippled', 1),
-    'Strike (Vulnerable)': ('Vulnerable', 2),
-    'Poison (Bleeding)': ('Bleeding', 2),
-    'Strike (Slowing)': ('Slowed', 2),
-    'Strike (Frightening)': ('Frightened', 1),
-    'Strike (Taunting)': ('Taunted', 2),
-    # The rest of the catalog's riders (2026-10-25), at its own stacks:
-    # "2 for Bleeding/Necrotic, 1 for the others".
-    'Strike (Necrotic)': ('Necrotic', 2),
-    'Poison (Crippling)': ('Crippled', 1),
-    'Poison (Necrotic)': ('Necrotic', 2),
-    'Poison (Slowing)': ('Slowed', 1),
-    'Poison (Vulnerable)': ('Vulnerable', 1),
-}
 
 
 def _bleed_extra(unit):
@@ -2812,8 +2465,12 @@ def _lose_health(unit, loss, notes=None, attack=False):
     if loss <= 0:
         return
     link = unit.get('lifeline')
-    if link is None and attack and loss >= unit['health']:
-        link = _try_lifeline(unit, loss)
+    if link is None and attack and loss >= unit['health'] and 'shallow_max' in unit:
+        ctx = SimpleNamespace(ally=unit, loss=loss)
+        for c in _CTX.get('pcs') or ():
+            if c is not unit and hooks.run('ally_would_drop', c, ctx):
+                link = unit.get('lifeline')
+                break
     if link is not None:
         if link['health'] > loss and unit['health'] > 0:
             link['health'] -= loss
@@ -2823,33 +2480,6 @@ def _lose_health(unit, loss, notes=None, attack=False):
             return
         unit['lifeline'] = None
     unit['health'] -= loss
-
-
-def _try_lifeline(unit, loss):
-    """Lifeline's Interrupt (1 AP from the caster's Interrupt pool), cast
-    to save an ally from a hit that would Down them, by a caster who can
-    take it. Range [Theurgy Skill Total] meters (plus Ley-weaving)."""
-    for c in _CTX.get('pcs') or ():
-        if (c is unit or c['health'] <= loss or c.get('lifeline_uses_left', 0) <= 0
-                or c.get('ap_bank', 0) < 1 or 'shallow_max' not in unit):
-            continue
-        if 'pos' in c and 'pos' in unit and _distance(c['pos'], unit['pos']) > c['lifeline_range']:
-            continue
-        c['lifeline_uses_left'] -= 1
-        c['ap_bank'] -= 1
-        unit['lifeline'] = c
-        _log(_CTX['trace'], round=_CTX['rnd'], side='party', unit=c['name'], action='technique',
-             target=unit['name'], via='Lifeline', effects='linked (Interrupt)')
-        return c
-    return None
-
-
-def _retribution(pc, target, dmg):
-    """Retribution Aura: "Attacker who damages this NPC gains a stack of
-    Bleeding themselves." """
-    if dmg > 0 and 'Retribution Aura' in target.get('abilities', ()) and pc['health'] > 0:
-        _gain(pc, 'bleeding', 1)
-        pc['retribution_taken'] = pc.get('retribution_taken', 0) + 1
 
 
 def _push(unit, origin, n):
@@ -2907,7 +2537,7 @@ def _reaction_attack(pc, e, pcs, via, prof=None, log=None):
             e['protected'] -= absorbed
             dmg -= absorbed
         e['health'] -= dmg
-        _retribution(pc, e, dmg)
+        _damaged_by_pc(pc, e, dmg)
         if dmg > 0:
             e.setdefault('hit_steps', []).append((_STEP[0], e['health'] <= 0))
     if log:
@@ -2919,124 +2549,47 @@ def _reaction_attack(pc, e, pcs, via, prof=None, log=None):
     return dmg
 
 
-def _gainsay(pc, e, pcs, enemies, movement_on, log):
-    """Gainsay (T122, 2 AP Interrupt, Encounter): "Cast a Sorcery Spell
-    against the target" when a weapon attack is declared against you -
-    one of Beornhard's War Magic uses, from his Interrupt AP. Taken
-    against a melee attacker, or one whose hit could Down him; a line
-    copy (Furrow) is saved for a line."""
-    if pc['health'] <= 0 or pc.get('ap_bank', 0) < 2:
-        return 0
-    dist = _distance(pc['pos'], e['pos']) if movement_on else 0
-    if dist > T.MELEE_RANGE and e.get('attack_damage', 0) - pc.get('physres', 0) < pc['health']:
-        return 0
-    copies = [t for t in pc.get('tech_attacks', ()) if t['uses'] > 0 and t.get('skill') == 'Sorcery'
-              and t['damage'] > 0 and dist <= (t.get('range') or effective_range(pc))]
-    prof = None
-    if copies:
-        prof = max(copies, key=lambda t: (not t.get('line'), t['damage']))
-        prof['uses'] -= 1
-    elif pc.get('weapon_is_spell') and pc.get('weapon_uses_left', 0) > 0 and dist <= effective_range(pc):
-        pc['weapon_uses_left'] -= 1
-    else:
-        return 0
-    pc['ap_bank'] -= 2
-    pc['gainsay_uses_left'] -= 1
-    return _reaction_attack(pc, e, pcs, 'Gainsay' + (f" ({prof['via']})" if prof else ''),
-                            dict(prof, spell=True) if prof else None, log)
+# Rules that sit at hook points alongside the Techniques (hooks.py):
+# breaking a grapple at the start of the turn, and Good Luck against a
+# grappled creature (rulebook.md, Grapple).
+@hooks.on('pc_turn_start', order=15)
+def _break_grapple_hook(pc, c):
+    return _try_break_grapple(pc, c.enemies, c.ap, log=c.log)
 
 
-def _pc_parting_shots(e, start, pcs, party_log, pushed=False):
-    """Parting Shot (T076) on a sheet that names it: "a creature within
-    range of a close-range weapon you are wielding would move or be
-    Pushed outside your range" - any enemy that walks or is Pushed out of
-    reach, not just a Kiting one. Resolved with the enemy back where it
-    started. A Shadow Jaunt enemy's own movement is a Teleport, which
-    doesn't trigger it."""
-    if 'Shadow Jaunt' in e.get('abilities', ()) and not pushed:
-        return 0
-    total = 0
-    for pc in pcs:
-        prof = pc.get('close_profile')
-        if (prof is None or pc['health'] <= 0 or e['health'] <= 0 or pc.get('parting_shot_charge_used')
-                or not pc.get('parting_shot') or pc.get('ap_bank', 0) < T.PARTING_SHOT_AP_COST):
-            continue
-        if _distance(pc['pos'], start) > T.MELEE_RANGE or _distance(pc['pos'], e['pos']) <= T.MELEE_RANGE:
-            continue
-        pc['ap_bank'] -= T.PARTING_SHOT_AP_COST
-        pc['parting_shot_charge_used'] = True
-        now, e['pos'] = e['pos'], start
-        total += _reaction_attack(pc, e, pcs, f"{prof['via']} (Parting Shot)", prof, party_log)
-        e['pos'] = now
-    return total
+@hooks.on('attack_luck', order=40)
+def _grappled_target_luck(pc, c):
+    return 1 if _grappled(c.target) is not None and pc.get('opp_def') in ('Parry/Dodge', 'Dodge') else 0
 
 
-def _enemy_parting_shots(pc, start, enemies, pcs, rnd):
-    """Action (Parting Shot), an enemy Ability: "Enemy moves out of melee
-    -> free attack against them", with its melee attack, once a round.
-    Called after each of a PC's ordinary moves (not a Shift or Teleport);
-    the attack resolves with the PC back where it started."""
-    if pc['health'] <= 0:
-        return
-    for e in enemies:
-        if (e['health'] <= 0 or 'Action (Parting Shot)' not in e.get('abilities', ())
-                or e.get('ps_round') == rnd or 'pos' not in e):
-            continue
-        if _distance(e['pos'], start) > T.MELEE_RANGE or _distance(e['pos'], pc['pos']) <= T.MELEE_RANGE:
-            continue
-        prof = _melee_profile(e)
-        if prof is None:
-            continue
-        e['ps_round'] = rnd
-        log = (lambda **kw: _log(_CTX['trace'], round=rnd, side='enemy', **kw)) if _CTX['trace'] is not None else None
-        now, pc['pos'] = pc['pos'], start
-        _enemy_attack(e, prof, pc, 'attack', rnd, pcs, enemies, True, log, None, via_suffix=' (Parting Shot)')
-        pc['pos'] = now
-        if pc['health'] <= 0:
-            return
-
-
-def _melee_profile(e):
-    """An enemy's melee attack (its main Action, else its backup), or None."""
-    if e.get('kind', 'attack') == 'attack' and not e.get('attack_range'):
-        return dict(action=e['action'], accuracy=e['accuracy'], attack_damage=e['attack_damage'],
-                    dmg_type=e.get('dmg_type'), opp_def=e['opp_def'], attack_range=0)
-    b = e.get('backup')
-    if b and not b.get('attack_range') and b.get('attack_damage'):
-        return b
-    return None
+def _damaged_by_pc(pc, e, dmg):
+    """A PC's attack took Health off enemy `e` (Retribution Aura answers)."""
+    if dmg > 0:
+        hooks.run('pc_damaged_enemy', e, SimpleNamespace(pc=pc, dmg=dmg))
 
 
 def _left_melee(pc, start, enemies, pcs, rnd):
+    """A PC's ordinary move (not a Shift or Teleport) took it from `start`:
+    any enemy whose reach it left may answer (Action (Parting Shot))."""
     if start != pc.get('pos') and _CTX.get('ps_enemies'):
-        _enemy_parting_shots(pc, start, enemies, pcs, rnd)
+        ctx = SimpleNamespace(pc=pc, start=start, pcs=pcs, enemies=enemies, rnd=rnd)
+        for e in enemies:
+            if pc['health'] <= 0:
+                return
+            if e['health'] > 0:
+                hooks.run('pc_left_reach', e, ctx)
 
 
-def _try_shadow_jaunt(pc, enemies, movement_on, ap, log=None):
-    """Shadow Jaunt (T097, 1 AP, Encounter): "You Teleport up to [Sorcery
-    or Theurgy Skill Total] meters." A caster taken in melee (or grappled
-    - Teleporting ends a grapple) Teleports clear, still in reach of what
-    it was fighting, before its attacks. Returns the AP spent."""
-    if pc.get('jaunt_uses_left', 0) <= 0 or not movement_on or ap < 1 + T.ATTACK_AP_COST:
-        return 0
-    living = [e for e in enemies if e['health'] > 0]
-    near = [e for e in living if _distance(pc['pos'], e['pos']) <= T.MELEE_RANGE]
-    grappler = _grappled(pc)
-    if not living or (not near and grappler is None):
-        return 0
-    if effective_range(pc) <= T.MELEE_RANGE and grappler is None:
-        return 0  # a melee fighter is where it wants to be
-    nearest = grappler or min(near, key=lambda e: _distance(pc['pos'], e['pos']))
-    spaces = max(2, min(pc['jaunt_range'], effective_range(pc) - 1))
-    start = pc['pos']
-    pc['pos'] = movement.move_away(pc['pos'], nearest['pos'], spaces)
-    if pc['pos'] == start:
-        return 0
-    pc['jaunt_uses_left'] -= 1
-    _end_grapple(pc)
-    if log:
-        log(unit=pc['name'], action='move', pos=pc['pos'], spaces=_distance(start, pc['pos']), via='Shadow Jaunt')
-    return 1
+def _parting_shots_on(e, start, pcs, log, pushed=False):
+    """Enemy `e` walked or was Pushed from `start`: each PC whose reach it
+    left may answer (Parting Shot). Returns the damage dealt."""
+    ctx = SimpleNamespace(enemy=e, start=start, pushed=pushed, pcs=pcs, log=log)
+    total = 0
+    for pc in pcs:
+        if e['health'] <= 0:
+            break
+        total += hooks.run('enemy_left_reach', pc, ctx)
+    return total
 
 
 def _try_break_grapple(pc, enemies, ap, log=None):
@@ -3062,197 +2615,6 @@ def _try_break_grapple(pc, enemies, ap, log=None):
     return 2
 
 
-def _wall_cells(pc, toward, length):
-    """A straight wall `length` spaces long across the line from `pc` to
-    `toward`, two spaces short of it (as close as reach allows), so it
-    cuts the shooters' lines to the whole party. Every space in reach."""
-    (x0, y0), (x1, y1) = pc['pos'], toward
-    d = max(abs(x1 - x0), abs(y1 - y0)) or 1
-    reach = pc['sorcery_skill_total']
-    k = max(1, min(reach, d - 2))
-    cx, cy = x0 + (x1 - x0) * k / d, y0 + (y1 - y0) * k / d
-    nx, ny = -(y1 - y0), (x1 - x0)
-    norm = max(abs(nx), abs(ny)) or 1
-    cells = set()
-    for t in range(-(length // 2), length - length // 2):
-        c = movement.clamp((round(cx + nx * t / norm), round(cy + ny * t / norm)))
-        if _distance(pc['pos'], c) <= reach:
-            cells.add(c)
-    return cells
-
-
-def _try_wall_of_shadows(pc, pcs, enemies, movement_on, ap, log=None):
-    """Wall of Shadows (T123, 2 AP, Encounter, lasts the scene): up to
-    [Sorcery Skill Total] connected spaces, each within [Sorcery Skill
-    Total] meters; "Attacks into or through the wall treat it as Heavy
-    Cover." Cast across the line to the enemies' shooters when the wall
-    would block more of their shots than of the party's own (the party's
-    archers and casters shoot through it too). Returns the AP spent."""
-    if (pc.get('wall_uses_left', 0) <= 0 or not movement_on or ap < 2 or _CTX.get('walls')):
-        return 0
-    living = [e for e in enemies if e['health'] > 0]
-    allies = [p for p in pcs if p['health'] > 0]
-    shooters = [e for e in living if (e.get('attack_range') or 0) > T.MELEE_RANGE and e.get('kind', 'attack') != 'support']
-    if not shooters:
-        return 0
-    cx = round(sum(e['pos'][0] for e in shooters) / len(shooters))
-    cy = round(sum(e['pos'][1] for e in shooters) / len(shooters))
-    cells = _wall_cells(pc, (cx, cy), pc['sorcery_skill_total'])
-
-    def blocked(a, b):
-        return tuple(b['pos']) in cells or bool(_cells_between(a['pos'], b['pos']) & cells)
-    gain = sum(sum(blocked(e, p) for p in allies) / len(allies) for e in shooters)
-    archers = [p for p in allies if effective_range(p) > T.MELEE_RANGE]
-    loss = sum(sum(blocked(p, e) for e in living) / len(living) for p in archers)
-    if gain - loss < 1:
-        return 0
-    pc['wall_uses_left'] -= 1
-    _CTX['walls'] = cells
-    if log:
-        log(unit=pc['name'], action='technique', via='Wall of Shadows',
-            effects=f"{len(cells)} spaces: {sorted(cells)}")
-    return 2
-
-
-def _try_spirit_blessing(pc, pcs, enemies, movement_on, ap, log=None):
-    """Spirit Blessing (T104, Encounter; Hanforth's Level 2 copy is
-    Shielding 2, Quickened and Reach - Protected three times, 1 AP,
-    [Theurgy Skill Total] meters more range). Cast on the ally (or
-    himself) in reach with the most enemies on them and no Protected,
-    once someone's actually in a fight. Returns the AP spent."""
-    b = pc.get('blessing')
-    if not b or b['uses'] <= 0 or ap < b['ap']:
-        return 0
-    living = [e for e in enemies if e['health'] > 0]
-    pool = [p for p in pcs if p['health'] > 0 and p.get('protected', 0) == 0
-            and (not movement_on or _distance(pc['pos'], p['pos']) <= b['range'])]
-
-    def pressed(p):
-        return sum(1 for e in living if _distance(e['pos'], p['pos']) <= T.MELEE_RANGE) if movement_on else 1
-    pool = [p for p in pool if pressed(p) > 0]
-    if not pool:
-        return 0
-    chosen = sorted(pool, key=lambda p: (-pressed(p), p['health'] / p['max_health']))[:b['targets']]
-    b['uses'] -= 1
-    for p in chosen:
-        if b['protected']:
-            _gain(p, 'protected', b['protected'])
-        if b['hasted']:
-            _gain(p, 'hasted', b['hasted'])
-        if b['guided']:
-            p['gl_next'] = p.get('gl_next', 0) + b['guided']
-        if log:
-            log(unit=pc['name'], action='technique', target=p['name'], via='Spirit Blessing',
-                effects=', '.join(f"{k.capitalize()} +{b[k]}" for k in ('protected', 'hasted', 'guided') if b[k]))
-    return b['ap']
-
-
-def _try_gust_of_wind(pc, pcs, enemies, movement_on, ap, rnd, trace, log=None):
-    """Gust of Wind (T107, 1 AP, Encounter): "Make a Theurgy spell attack
-    against the Dodge Defense of each target [all creatures within a
-    3-meter-long cone]. Each target hit is Pushed back [twice your Mind]
-    + [Spades] meters." Cast to clear enemies off himself, aimed so no
-    ally is in the cone, and not when an ally is fighting something in it
-    (pushing that away cost the party more than it saved). Returns the AP
-    spent."""
-    if pc.get('gust_uses_left', 0) <= 0 or not movement_on or ap < 1:
-        return 0
-    living = [e for e in enemies if e['health'] > 0]
-    near = [e for e in living if _distance(pc['pos'], e['pos']) <= T.MELEE_RANGE]
-    if not near:
-        return 0
-    near = [e for e in near if tuple(e['pos']) != tuple(pc['pos'])]  # no direction to blow one on his square
-    if not near:
-        return 0
-    aim = min(near, key=lambda e: e['health'])['pos']
-    ax, ay = aim[0] - pc['pos'][0], aim[1] - pc['pos'][1]
-
-    def in_cone(u):
-        dx, dy = u['pos'][0] - pc['pos'][0], u['pos'][1] - pc['pos'][1]
-        if (dx, dy) == (0, 0) or max(abs(dx), abs(dy)) > 3:
-            return False
-        return (dx * ax + dy * ay) / ((dx * dx + dy * dy) ** 0.5 * (ax * ax + ay * ay) ** 0.5) >= 0.7071 - 1e-9
-    others = [p for p in pcs if p['health'] > 0 and p is not pc]
-    if any(in_cone(p) for p in others):
-        return 0
-    targets = [e for e in living if in_cone(e)]
-    # Not when it would blow away something an ally is already fighting.
-    if any(_distance(e['pos'], p['pos']) <= T.MELEE_RANGE for e in targets for p in others):
-        return 0
-    pc['gust_uses_left'] -= 1
-    for e in targets:
-        defense = e['dodge'] - e.get('harried', 0)
-        mod = pc['theurgy_skill_total'] - pc.get('crippled', 0)
-        value, pool = _pc_flip(pc, mod, defense, pc.get('good_luck', 0), _pc_status_bad_luck(pc, e), BIG, pcs,
-                               _hand_of_chaos(pc))
-        hit = mod + value >= defense
-        e['harried'] = e.get('harried', 0) + 1
-        note = None
-        if hit:
-            n = pc['gust_push'] + _suit_count(pool, 'Spades')
-            start = _push(e, pc['pos'], n)
-            note = f"Pushed {_distance(start, e['pos'])} m (up to {n})"
-            _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
-                 spaces=_distance(start, e['pos']), in_range=False, via='Pushed by Gust of Wind')
-            if _CTX.get('ps_pcs'):
-                _pc_parting_shots(e, start, pcs, log, pushed=True)
-        if log:
-            log(unit=pc['name'], action='hex', target=e['name'], roll=mod + value, defense=defense, hit=hit,
-                dmg=0, raw_dmg=0, resist=0, target_hp_after=e['health'], target_harried_after=e.get('harried', 0),
-                via='Gust of Wind', effects=note, cards=_take_notes(pc), opp_def='Dodge')
-        pc.pop('_notes', None)
-    return 1
-
-
-def _one_eye_reorder(order, pcs):
-    """One Eye Behind You (T011): "At any time, you may discard a card to
-    adjust your position in turn order by up to [half your Insight Skill
-    Total] places." Taken once, as the fight starts, to get ahead of an
-    enemy - the order holds from there."""
-    if not T.CARDS:
-        return
-    for pc in pcs:
-        if 'One Eye Behind You' not in pc.get('passives', ()) or not cards.can_spend(pc):
-            continue
-        idx = next(i for i, (s, u) in enumerate(order) if u is pc)
-        places = pc['reflex'] // 2
-        ahead = [i for i in range(max(0, idx - places), idx) if order[i][0] == 'enemy']
-        if not ahead:
-            continue
-        cards.spend(pc, cards.lowest(pc['hand']))
-        _shift_in_order(order, pc, -(idx - ahead[0]))
-        pc['one_eye_moves'] = pc.get('one_eye_moves', 0) + idx - ahead[0]
-
-
-def _enemy_turn_start_abilities(e, pcs, movement_on, enemy_log):
-    """Resilient ("Turn start -> remove 1 of each debuff") and the 0-AP
-    Actions, once a turn at Range x2: Intimidating (a PC Frightened once,
-    the nearest - the one likeliest to attack it) and Taunting (a PC
-    Taunted once, the hardest hitter not already Taunted by it)."""
-    abilities = e.get('abilities', ())
-    if 'Resilient' in abilities:
-        for key in ('crippled', 'slowed', 'vulnerable', 'necrotic', 'bleeding', 'frightened', 'taunted'):
-            if e.get(key, 0) > 0:
-                e[key] -= 1
-                if e[key] == 0 and key in ('frightened', 'taunted'):
-                    e[key + '_by'] = None
-    for ability, key in (('Action (Intimidating)', 'Frightened'), ('Action (Taunting)', 'Taunted')):
-        if ability not in abilities:
-            continue
-        reach = 2 * e.get('level', 1) + 2
-        pool = [p for p in pcs if p['health'] > 0 and (not movement_on or _distance(e['pos'], p['pos']) <= reach)
-                and not (p.get(key.lower(), 0) > 0 and p.get(key.lower() + '_by') is e)]
-        if not pool:
-            continue
-        if key == 'Frightened':
-            tg = min(pool, key=lambda p: (_distance(e['pos'], p['pos']) if movement_on else 0, -p['damage']))
-        else:
-            tg = max(pool, key=lambda p: p['damage'])
-        _apply_to_pc(tg, key, 1, e)
-        if enemy_log:
-            enemy_log(unit=e['name'], action='technique', target=tg['name'], via=ability, effects=f"{key} +1")
-
-
 WEAPON_ACTIONS = ('Defensive Melee', 'Offensive Melee', 'Light Melee', 'Heavy Melee', 'Ranged Weapon')
 
 
@@ -3269,10 +2631,10 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
     # Gainsay (T122, Beornhard's Level 3 build): "2 AP - Interrupt (A
     # weapon attack is declared against you)" - a War Magic cast at the
     # attacker before the attack resolves.
-    if prof['action'] in WEAPON_ACTIONS and target.get('gainsay_uses_left', 0) > 0:
-        interrupt_dmg += _gainsay(target, e, pcs, enemies, movement_on, party_log)
-        if e['health'] <= 0:
-            return interrupt_dmg
+    interrupt_dmg += hooks.run('attack_declared', target, SimpleNamespace(
+        attacker=e, prof=prof, pcs=pcs, enemies=enemies, movement_on=movement_on, log=party_log))
+    if e['health'] <= 0:
+        return interrupt_dmg
     taunter = e.get('taunted_by') if e.get('taunted', 0) > 0 else None
     off_taunt = taunter is not None and taunter['health'] > 0 and taunter is not target
     good = 1 if fighting_style == 'Aimed Shot' else 0
@@ -3323,11 +2685,7 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
     parried = not hit and used_parry
     if parried:
         target['parries'] = target.get('parries', 0) + 1
-        # Inexhaustible Guardian (T139): "Once per round, when you
-        # Parry an attack, you may gain Protected."
-        if 'Inexhaustible Guardian' in target.get('passives', ()) and target.get('ig_round') != rnd:
-            _gain(target, 'protected', 1)
-            target['ig_round'] = rnd
+        hooks.run('pc_parried', target, SimpleNamespace(rnd=rnd, attacker=e))
     if hit:
         target['hits_received'] = target.get('hits_received', 0) + 1
         if mode == 'hex':
@@ -3360,25 +2718,13 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
                 target['prot_absorbed'] = target.get('prot_absorbed', 0) + absorbed
             if T.BLEED_WOUND and dmg > 0 and target.get('bleeding', 0) > 0:
                 dmg += T.BLEED_WOUND
-            # Strike (Devastating): "attacks deal their damage as Bleeding
-            # instead of direct Health loss" (its +1 Damage is in the build).
-            if 'Strike (Devastating)' in abilities and dmg > 0:
-                _apply_to_pc(target, 'Bleeding', dmg, e)
-                applied.append(f"Bleeding +{dmg} (Devastating)")
-                dmg = 0
+            hit_ctx = SimpleNamespace(target=target, prof=prof, dmg=dmg, applied=applied, hit=hit, parried=parried)
+            hooks.run('enemy_hit_damage', e, hit_ctx)
+            dmg = hit_ctx.dmg
             _lose_health(target, dmg, applied, attack=True)
             _bleed_out(target)
             pre_bleed = target.get('bleeding', 0)
-            for ability in abilities:
-                if ability in STRIKE_RIDERS:
-                    effect, stacks = STRIKE_RIDERS[ability]
-                    _apply_to_pc(target, effect, stacks, e)
-                    applied.append(f"{effect} +{stacks}")
-            # Strike (Grappling): "Attack hits -> target is now grappled."
-            if ('Strike (Grappling)' in abilities and e.get('grapple') is None and target['health'] > 0
-                    and target.get('grapple') is None):
-                e['grapple'], target['grapple'] = target, e
-                applied.append("grappled")
+            hooks.run('enemy_hit_riders', e, hit_ctx)
             if T.ENEMY_TEST_BLEED:
                 _apply_to_pc(target, 'Bleeding', T.ENEMY_TEST_BLEED, e)
                 applied.append(f"Bleeding +{T.ENEMY_TEST_BLEED}")
@@ -3386,16 +2732,9 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
                 stopped = _protected_blocks_gain(target, pre_bleed)
                 if stopped:
                     applied.append(f"Protected stopped {stopped} Bleeding")
-    if mode != 'hex' and target['health'] > 0:
-        # Strike (Harrying): "Attack hits *or* is Parried -> target
-        # Harried once either way." Strike (Battering): "Attack is
-        # Parried -> target still gains a Bleeding stack."
-        if 'Strike (Harrying)' in abilities and (hit or parried):
-            target['harried'] = target.get('harried', 0) + 1
-            applied.append("Harried +1")
-        if 'Strike (Battering)' in abilities and parried:
-            _apply_to_pc(target, 'Bleeding', 1, e)
-            applied.append("Bleeding +1 (Battering)")
+    if mode != 'hex' and target['health'] > 0 and (hit or parried):
+        hooks.run('enemy_hit_or_parried', e, SimpleNamespace(target=target, prof=prof, applied=applied,
+                                                            hit=hit, parried=parried))
     if enemy_log:
         enemy_log(unit=e['name'], action='hex' if mode == 'hex' else 'attack', target=target['name'],
                   roll=roll, defense=opp_def_val, hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist,
@@ -3421,8 +2760,8 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     abilities = e.get('abilities', [])
     if ('Durable' in abilities or T.TEST_DURABLE in ('enemies', 'both')) and e.get('protected', 0) < 4:
         _gain(e, 'protected', 1)
-    if abilities:
-        _enemy_turn_start_abilities(e, pcs, movement_on, enemy_log)
+    hooks.run('enemy_turn_start', e, SimpleNamespace(pcs=pcs, enemies=enemies, movement_on=movement_on,
+                                                     log=enemy_log))
     # The effect check's exposure count: stacks up as the turn starts.
     for key in STACK_TURN_KEYS:
         if e.get(key, 0) > 0:
@@ -3453,7 +2792,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             # Parting Shot on a sheet that names it (2026-10-25): any
             # enemy walking out of a close-range weapon's reach.
             if moved and _CTX.get('ps_pcs') and e.get('battle_tactic') != 'Kiting':
-                interrupt_dmg += _pc_parting_shots(e, start_pos, pcs, party_log)
+                interrupt_dmg += _parting_shots_on(e, start_pos, pcs, party_log)
                 if e['health'] <= 0:
                     return interrupt_dmg
     if movement_on and in_range and target is not None and target is not e \
@@ -3782,10 +3121,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
                 pc_attacks += made
                 unit['attacks_made'] = unit.get('attacks_made', 0) + made
                 pc_damage_dealt += dealt
-                # Seize the Moment (T192): "At the end of each of your turns, you
-                # may Outflank once."
-                if 'Seize the Moment' in unit.get('passives', ()):
-                    _shift_in_order(order, unit, -1)
+                # Turn-order Techniques taken as the turn ends (Seize the Moment).
+                hooks.run('pc_after_turn', unit, SimpleNamespace(order=order))
             else:
                 pc_damage_dealt += _take_enemy_turn(unit, enemies, pcs, rnd, movement, trace, enemy_log, party_log)
             for p in pcs:
@@ -3921,3 +3258,12 @@ def simulate(tier, enemy_level, n_enemies=4, trials=4000, good_luck=0, movement=
 if __name__ == "__main__":
     win, rnds, hp, res, dpa = simulate(2, 2, trials=4000)
     print(f"Tier2 vs Level2: win={win:.1f}% rounds={rnds:.1f} hp_on_win={hp:.1f}% dmg/attack={dpa:.3f} raw={res}")
+
+
+# The Technique and Ability handlers (hooks.py) call back into this
+# module; they can't import it themselves (this module imports party,
+# which imports techniques), so it hands itself over once it's loaded.
+import sys as _sys  # noqa: E402
+import techniques as _techniques  # noqa: E402
+import enemy_abilities as _enemy_abilities  # noqa: E402
+_techniques.cs = _enemy_abilities.cs = _sys.modules[__name__]

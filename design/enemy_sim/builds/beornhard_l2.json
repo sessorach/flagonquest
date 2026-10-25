@@ -1,0 +1,133 @@
+{
+ "charName": "Arcanist Beornhard",
+ "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+ "xpBudget": "125",
+ "statPoints": {
+  "Agility": 2,
+  "Body": 3,
+  "Cunning": 2,
+  "Mind": 4,
+  "Essence": 4
+ },
+ "skillPoints": {
+  "Acrobatics": 0,
+  "Archery": 0,
+  "Brawl": 3,
+  "Melee": 0,
+  "Stealth": 2,
+  "Athletics": 0,
+  "Awareness": 1,
+  "Might": 1,
+  "Presence": 0,
+  "Resilience": 2,
+  "Insight": 1,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 0,
+  "Academics": 2,
+  "Composure": 2,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 0,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 4,
+  "Theurgy": 0
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I119",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-24T16:13:55.670Z",
+ "techniques": [
+  {
+   "id": "T124",
+   "name": "Warmage's Reserves",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T120",
+   "name": "War Magic",
+   "xp": 6,
+   "level": 2,
+   "features": [
+    {
+     "name": "Lance",
+     "count": 1
+    },
+    {
+     "name": "Destructive",
+     "count": 2
+    }
+   ]
+  },
+  {
+   "id": "T097",
+   "name": "Shadow Jaunt",
+   "xp": 3,
+   "level": "Lv 1"
+  },
+  {
+   "id": "T140",
+   "name": "Overchanneling",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T120",
+   "name": "War Magic",
+   "xp": 6,
+   "level": 2,
+   "features": [
+    {
+     "name": "Lance",
+     "count": 1
+    },
+    {
+     "name": "Destructive",
+     "count": 2
+    }
+   ]
+  },
+  {
+   "id": "T120",
+   "name": "War Magic",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Lance",
+     "count": 1
+    }
+   ]
+  }
+ ],
+ "simNotes": [
+  "Copied from archive/player_builds/Arcanist-Beornhard-125XP-2026-10-24.json."
+ ]
+}

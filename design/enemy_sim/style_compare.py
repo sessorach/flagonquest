@@ -69,15 +69,13 @@ STYLES = {"Furious Rage", "Bleeding Strikes", "No Parry", "Plus One Damage", "Bl
 
 
 def make_party(names, carrier, passives_add=(), health=0):
-    rows = {r["Name"]: r for r in party._load_rows()}
+    rows = party._rows()
     pcs = []
     for i, n in enumerate(names, 1):
-        row = dict(rows[n])
         if n == carrier:
-            kept = [p.strip() for p in (row.get("Passives") or "").split(",") if p.strip() and p.strip() not in STYLES]
-            row["Passives"] = ", ".join(kept + list(passives_add))
-            row["Health"] = str(int(row["Health"]) + health)
-        pcs.append(party._pc_dict(row, i, 0))
+            pcs.append(party.make_pc(n, i, health=health, drop_passives=STYLES, add_passives=passives_add, rows=rows))
+        else:
+            pcs.append(party.make_pc(n, i, rows=rows))
     return pcs
 
 

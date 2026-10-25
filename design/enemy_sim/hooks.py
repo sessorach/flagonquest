@@ -1,0 +1,99 @@
+"""
+Hook points: where a Technique, an enemy Ability or a rule plugs into a
+fight, so combat_sim's turn code doesn't carry a named `if` for each one.
+
+A handler registers for a point with `@on(point, key, order)`. `key` is
+the name a unit has to carry for the handler to run - a PC's passive,
+Card or Encounter Technique, or an enemy's Ability - or None for a rule
+every unit gets. Handlers at one point run in `order`, then in the order
+they were registered, so a point's sequence is written down in one place
+(the ORDER numbers next to each handler) rather than implied by where
+calls happen to sit in combat_sim.
+
+`run(point, unit, ctx)` calls every handler that applies to `unit` and
+adds up whatever they return (AP spent, Good Luck, ...; None counts as
+0). When ctx has an `ap` field, each handler's return comes off it as
+it goes, since those points' handlers return AP spent. `ctx` is a SimpleNamespace the call site fills with what the point
+offers - see POINTS for each one's fields.
+
+Which handlers apply to a unit is worked out once per fight and kept on
+the unit (`_hooks`), since a unit's Techniques and Abilities don't
+change mid-fight. Tests that add a passive do it before the fight
+starts, so they're picked up.
+"""
+import collections
+
+POINTS = {
+    # PC turn. ctx: pcs, enemies, rnd, movement_on, trace, log, ap, order
+    "pc_turn_start": "start of a PC's turn, before it moves; returns AP spent",
+    "pc_turn_end": "after its attacks and movement; returns AP spent",
+    "pc_after_turn": "once the turn is over (turn-order changes); returns nothing",
+    # A PC's attack. ctx: target, hit, parried, pool, mv (the Battle
+    # Maneuver copy, or None), substitute, rnd, order, notes (log text)
+    "attack_luck": "Good Luck on the attack; returns how many",
+    "before_attack": "just before the flip; returns extra AP spent",
+    "hit_riders": "a hit or a Parry, before damage (ctx.hit / ctx.parried say which)",
+    "after_hit": "after a hit's damage has landed",
+    "after_attack": "after the attack and its bonus attacks; returns AP spent",
+    # Enemy turn. ctx: pcs, enemies, movement_on, log
+    "enemy_turn_start": "start of an enemy's turn",
+    # An enemy's attack on a PC. ctx: target, prof, dmg, applied (log
+    # text), hit, parried
+    "enemy_hit_damage": "a hit's damage before it lands; returns the new damage",
+    "enemy_hit_riders": "after a hit's damage has landed",
+    "enemy_hit_or_parried": "after a hit or a Parry",
+    # Reactions. ctx varies; see each call site.
+    "pc_damaged_enemy": "a PC's attack took Health off this enemy (unit = the enemy; ctx: pc, dmg)",
+    "pc_parried": "this PC Parried an enemy attack (ctx: rnd)",
+    "fight_start_order": "the turn order's just been rolled (unit = a PC; ctx: order)",
+    "attack_declared": "an enemy weapon attack is declared on this PC, before the flip "
+                       "(ctx: attacker, prof, pcs, enemies, movement_on, log); returns damage dealt to the attacker",
+    "ally_would_drop": "a hit is about to Down an ally (unit = a PC who might step in; ctx: ally, loss); "
+                       "returns 1 if this PC took it on",
+    "enemy_left_reach": "an enemy walked or was Pushed out of this PC's reach (ctx: enemy, start, pushed, pcs, log); "
+                        "returns damage dealt",
+    "pc_left_reach": "a PC walked out of this enemy's reach (ctx: pc, start, pcs, enemies, rnd)",
+}
+
+_REG = collections.defaultdict(list)
+_SEQ = [0]
+
+
+def on(point, key=None, order=50):
+    if point not in POINTS:
+        raise KeyError(f"unknown hook point {point!r}")
+
+    def deco(fn):
+        _SEQ[0] += 1
+        _REG[point].append((order, _SEQ[0], key, fn))
+        _REG[point].sort(key=lambda h: (h[0], h[1]))
+        return fn
+    return deco
+
+
+def has(unit, key):
+    return (key in unit.get("passives", ()) or key in unit.get("techs", ())
+            or key in unit.get("abilities", ()))
+
+
+def handlers(point, unit):
+    cache = unit.get("_hooks")
+    if cache is None:
+        cache = unit["_hooks"] = {}
+    hs = cache.get(point)
+    if hs is None:
+        hs = cache[point] = [fn for _, _, key, fn in _REG[point] if key is None or has(unit, key)]
+    return hs
+
+
+def run(point, unit, ctx=None):
+    total = 0
+    for fn in handlers(point, unit):
+        r = fn(unit, ctx)
+        if r:
+            total += r
+            # Points that spend AP keep the running total on ctx.ap, so
+            # each handler sees what the ones before it left.
+            if ctx is not None and hasattr(ctx, "ap"):
+                ctx.ap -= r
+    return total

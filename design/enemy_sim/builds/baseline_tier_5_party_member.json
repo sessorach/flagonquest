@@ -1,0 +1,48 @@
+{
+ "charName": "Baseline Tier 5 Party Member",
+ "xpBudget": "",
+ "statPoints": {
+  "Agility": 4,
+  "Body": 4,
+  "Cunning": 4,
+  "Mind": 4,
+  "Essence": 4
+ },
+ "skillPoints": {
+  "Acrobatics": 4,
+  "Archery": 0,
+  "Brawl": 0,
+  "Melee": 5,
+  "Stealth": 2,
+  "Athletics": 3,
+  "Awareness": 3,
+  "Might": 2,
+  "Presence": 0,
+  "Resilience": 4,
+  "Insight": 4,
+  "Masquerade": 0,
+  "Persuasion": 4,
+  "Streetwise": 3,
+  "Survival": 2,
+  "Academics": 0,
+  "Composure": 4,
+  "Craft": 3,
+  "Medicine": 2,
+  "Mixology": 0,
+  "Meditation": 0,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 0
+ },
+ "techniques": [],
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  }
+ ],
+ "simNotes": [
+  "Hand-made for the sim, not a Builder export: written 2026-10-25 from this character's old sample_pcs.csv row, Techniques and all."
+ ]
+}

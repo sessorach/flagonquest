@@ -1,0 +1,69 @@
+{
+ "charName": "Felix (L2)",
+ "xpBudget": "125",
+ "statPoints": {
+  "Agility": 3,
+  "Body": 1,
+  "Cunning": 3,
+  "Mind": 1,
+  "Essence": 3
+ },
+ "skillPoints": {
+  "Acrobatics": 4,
+  "Archery": 0,
+  "Brawl": 4,
+  "Melee": 0,
+  "Stealth": 2,
+  "Athletics": 2,
+  "Awareness": 2,
+  "Might": 0,
+  "Presence": 0,
+  "Resilience": 3,
+  "Insight": 2,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 0,
+  "Academics": 0,
+  "Composure": 3,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 3,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 0
+ },
+ "techniques": [
+  {
+   "id": "T080",
+   "name": "Shugen School - Firefly Leaves the Hand",
+   "level": "Lv 1"
+  },
+  {
+   "id": "T154",
+   "name": "Shugen School - Hand Rings the Bell",
+   "level": "Lv 1"
+  },
+  {
+   "id": "T154",
+   "name": "Shugen School - Hand Rings the Bell",
+   "level": "Lv 1"
+  },
+  {
+   "id": "T014",
+   "name": "Toughened Body",
+   "level": "Lv 2"
+  }
+ ],
+ "inventory": [
+  {
+   "id": "I125",
+   "qty": 1
+  }
+ ],
+ "simNotes": [
+  "Hand-made for the sim, not a Builder export: written 2026-10-25 from this character's old sample_pcs.csv row, Techniques and all."
+ ]
+}

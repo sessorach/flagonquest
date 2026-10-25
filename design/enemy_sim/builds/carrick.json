@@ -1,0 +1,89 @@
+{
+ "charName": "Carrick the Rogue",
+ "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+ "xpBudget": "75",
+ "statPoints": {
+  "Agility": 2,
+  "Body": 2,
+  "Cunning": 2,
+  "Mind": 2,
+  "Essence": 2
+ },
+ "skillPoints": {
+  "Acrobatics": 3,
+  "Archery": 0,
+  "Brawl": 0,
+  "Melee": 0,
+  "Stealth": 2,
+  "Athletics": 0,
+  "Awareness": 1,
+  "Might": 1,
+  "Presence": 0,
+  "Resilience": 1,
+  "Insight": 2,
+  "Masquerade": 0,
+  "Persuasion": 2,
+  "Streetwise": 3,
+  "Survival": 0,
+  "Academics": 0,
+  "Composure": 0,
+  "Craft": 2,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 0,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 0
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I121",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-09-20T20:39:35.211Z",
+ "techniques": [
+  {
+   "id": "T034",
+   "name": "Legerdemain",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T065",
+   "name": "Rumormonger",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T078",
+   "name": "Perfect Strike",
+   "xp": 6,
+   "level": "Lv 2"
+  }
+ ],
+ "simNotes": [
+  "Copied from archive/player_builds/Carrick-the-Rogue-2026-09-20.json."
+ ]
+}
