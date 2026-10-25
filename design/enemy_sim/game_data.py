@@ -68,3 +68,24 @@ def health_bonus(tid):
 def item_health_bonus(iid):
     row = items()[iid]
     return _int(row.get("Shallow Health")), _int(row.get("Deep Health"))
+
+
+@functools.lru_cache(maxsize=None)
+def features():
+    """features.csv by (Technique ID, Feature name)."""
+    with open(os.path.join(_SCRIPTS, "features.csv"), newline="", encoding="utf-8") as f:
+        return {(r["Technique ID"], r["Feature Name"]): r for r in csv.DictReader(f)}
+
+
+def feature_budget(tid):
+    """techniques.csv's Feature Budget ("1:3, 2:6, 3:9/adv") as {level:
+    (points, advanced allowed)}, or None for a Technique with no Features."""
+    cell = (techniques()[tid].get("Feature Budget") or "").strip()
+    if not cell:
+        return None
+    out = {}
+    for part in cell.split(","):
+        lvl, _, rest = part.strip().partition(":")
+        pts, _, adv = rest.partition("/")
+        out[int(lvl)] = (int(pts), adv.strip() == "adv")
+    return out

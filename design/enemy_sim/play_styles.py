@@ -149,6 +149,14 @@ def plan_turn(pc, targets, allies, ap):
     return None
 
 
+def _attack_ap(pc):
+    """AP the turn's first attack needs: 1 for a Battle Maneuver copy with
+    Viper's Sting ready ("The Technique takes 1 less AP to use"), so the
+    plan can spend the other on moving."""
+    m = pc.get('maneuver')
+    return T.ATTACK_AP_COST - 1 if m and m['uses'] > 0 and m.get('viper') else T.ATTACK_AP_COST
+
+
 def _moves_for(spaces, speed):
     return math.ceil(spaces / speed) if spaces > 0 else 0
 
@@ -171,7 +179,7 @@ def _plan_skirmisher(pc, targets, allies, ap):
         dest = movement.move_toward(here, t['pos'], speed, stop_at=reach)
         if _dist(dest, t['pos']) <= reach and len(_adjacent(dest, targets)) <= limit:
             options.append((rating(pc, t, allies), t, dest))
-    if options and ap >= T.MOVE_AP_COST + T.ATTACK_AP_COST:
+    if options and ap >= T.MOVE_AP_COST + _attack_ap(pc):
         _, t, dest = max(options, key=lambda o: (o[0], -o[1]['health']))
         return Plan(target=t, pre_pos=dest, pre_moves=1, max_attacks=1, note="move in, attack once")
     # Nothing safe to hit this turn: close in as far as is comfortable.
@@ -203,7 +211,7 @@ def _plan_backliner(pc, targets, allies, ap):
         return Plan(target=_best(pc, in_reach, allies), max_attacks=2, note="double attack from here")
     # Approach just far enough to shoot, never within `keep` of an enemy,
     # keeping 2 AP for one attack.
-    max_moves = max(0, (ap - T.ATTACK_AP_COST) // T.MOVE_AP_COST)
+    max_moves = max(0, (ap - _attack_ap(pc)) // T.MOVE_AP_COST)
     options = []
     for t in targets:
         dest, spaces = _safe_approach(here, t['pos'], speed * max_moves, targets, keep, reach)
@@ -273,7 +281,7 @@ def _plan_melee_cautious(pc, targets, allies, ap, speed, here, engaged_only):
     pool = targets
     if engaged_only:
         pool = [t for t in targets if any(_dist(t['pos'], a['pos']) <= T.MELEE_RANGE for a in allies if a is not pc)]
-    max_moves = (ap - T.ATTACK_AP_COST) // T.MOVE_AP_COST
+    max_moves = (ap - _attack_ap(pc)) // T.MOVE_AP_COST
     bonus = lunge_spaces(pc)
     options = []
     for t in pool:

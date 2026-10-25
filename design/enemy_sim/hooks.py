@@ -13,8 +13,9 @@ calls happen to sit in combat_sim.
 `run(point, unit, ctx)` calls every handler that applies to `unit` and
 adds up whatever they return (AP spent, Good Luck, ...; None counts as
 0). When ctx has an `ap` field, each handler's return comes off it as
-it goes, since those points' handlers return AP spent. `ctx` is a SimpleNamespace the call site fills with what the point
-offers - see POINTS for each one's fields.
+it goes, since those points' handlers return AP spent. `ctx` is a
+SimpleNamespace the call site fills with what the point offers - see
+POINTS for each one's fields.
 
 Which handlers apply to a unit is worked out once per fight and kept on
 the unit (`_hooks`), since a unit's Techniques and Abilities don't
@@ -34,6 +35,7 @@ POINTS = {
     "before_attack": "just before the flip; returns extra AP spent",
     "hit_riders": "a hit or a Parry, before damage (ctx.hit / ctx.parried say which)",
     "after_hit": "after a hit's damage has landed",
+    "attack_resolved": "after the attack, hit or not, before it's logged (ctx also: dodged, dmg, repeat)",
     "after_attack": "after the attack and its bonus attacks; returns AP spent",
     # Enemy turn. ctx: pcs, enemies, movement_on, log
     "enemy_turn_start": "start of an enemy's turn",
@@ -45,6 +47,7 @@ POINTS = {
     # Reactions. ctx varies; see each call site.
     "pc_damaged_enemy": "a PC's attack took Health off this enemy (unit = the enemy; ctx: pc, dmg)",
     "pc_parried": "this PC Parried an enemy attack (ctx: rnd)",
+    "pc_hit": "a damaging enemy attack hit this PC (ctx: attacker, dmg, prof, applied)",
     "fight_start_order": "the turn order's just been rolled (unit = a PC; ctx: order)",
     "attack_declared": "an enemy weapon attack is declared on this PC, before the flip "
                        "(ctx: attacker, prof, pcs, enemies, movement_on, log); returns damage dealt to the attacker",

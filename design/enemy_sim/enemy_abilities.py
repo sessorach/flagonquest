@@ -101,6 +101,10 @@ def _rider(ability):
     def apply(e, c):
         cs._apply_to_pc(c.target, effect, stacks, e)
         c.applied.append(f"{effect} +{stacks}")
+        # What Healing Magic's Purify can take off ("1 stack of each Poison
+        # effect").
+        if ability.startswith('Poison ('):
+            c.target.setdefault('poisons', set()).add(effect.lower())
     hooks.on('enemy_hit_riders', ability, order=10)(apply)
 
 

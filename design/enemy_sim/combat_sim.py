@@ -1200,9 +1200,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
     (Backfoot's own version), `self_turn_order_advance` moves the PC
     itself earlier instead (tested as a separate mechanic)."""
     attacks_made = 0
+    viper_free = 0  # Viper's Sting attacks, outside a plan's attack count
     damage_dealt = 0
 
-    def _bonus_attack(bonus_target, via_suffix):
+    def _bonus_attack(bonus_target, via_suffix, sub=None):
         """Resolves one additional weapon attack against `bonus_target`,
         granted for free by a doubling Feature (Whirlwind/Piercing
         Shot/Flurry's own synthetic test fields, and since 2026-10-24
@@ -1224,12 +1225,21 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         if _grappled(bonus_target) is not None and pc.get('opp_def') in ('Parry/Dodge', 'Dodge'):
             luck_bonus += 1
         imp = _importance(bonus_target, pc['damage'] - resist - bonus_target.get('protected', 0))
+        if sub and sub.get('piercing'):
+            luck_bonus += sub['piercing']
         card, pool = _pc_flip(pc, pc['skill_total'] - crippled, defense, pc.get('good_luck', 0) + luck_bonus, bad_luck,
-                              imp, pcs, _hand_of_chaos(pc))
+                              imp, pcs, _hand_of_chaos(pc) + list(pc.get('_action_sift', ())))
         roll = pc['skill_total'] - crippled + card
         hit = roll >= defense
         bonus_target['harried'] = bonus_target.get('harried', 0) + 1
         dmg = raw_dmg = protected_absorbed = 0
+        # A shaped War Magic copy's riders reach every target it hits.
+        extra_ctx = None
+        if sub:
+            extra_ctx = SimpleNamespace(target=bonus_target, substitute=sub, pool=pool, hit=hit, notes=[],
+                                        dodged=not hit, pcs=pcs, enemies=enemies, log=party_log, trace=trace)
+            if hit:
+                _techniques.spell_riders(pc, extra_ctx, before_damage=True)
         if hit:
             raw_dmg = pc['damage'] + _suit_extra(pc, pool, pc['attack_skill'])
             dmg = max(0, raw_dmg - resist)
@@ -1242,6 +1252,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
             _damaged_by_pc(pc, bonus_target, dmg)
             if dmg > 0:
                 bonus_target.setdefault('hit_steps', []).append((_STEP[0], bonus_target['health'] <= 0))
+        if extra_ctx is not None:
+            _techniques.spell_riders(pc, extra_ctx, before_damage=False)
         if party_log:
             party_log(unit=pc['name'], action='attack', target=bonus_target['name'], roll=roll, defense=defense,
                        hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
@@ -1437,8 +1449,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         _log(trace, round=rnd, side='party', unit=pc['name'], action='reposition',
                              note='no clear shot')
 
-            while in_range and ap >= T.ATTACK_AP_COST and target is not None and pc['health'] > 0 \
-                    and (max_attacks is None or attacks_made < max_attacks):
+            # A Repeat (Flurry) comes free; a Viper's Sting Maneuver costs
+            # 1 AP. Both only for a sheet that has them.
+            while in_range and target is not None and pc['health'] > 0 \
+                    and (ap >= T.ATTACK_AP_COST or pc.get('_repeat') or (ap >= 1 and _viper_ready(pc))) \
+                    and (max_attacks is None or attacks_made - viper_free < max_attacks or pc.get('_repeat')):
                 # rulebook.md, Grapple: no "actions that require two hands,
                 # including weapon attacks".
                 if pc.get('two_handed') and _grappled(pc) is not None:
@@ -1455,11 +1470,21 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if (maneuver_now and pc['maneuver'].get('cashout')
                         and target.get('bleeding', 0) < T.CASHOUT_MIN and rnd < 3):
                     maneuver_now = False
+                # Only a Viper's Sting Maneuver fits in 1 AP.
+                if maneuver_now and ap < T.ATTACK_AP_COST and not pc['maneuver'].get('viper'):
+                    maneuver_now = False
                 mv = None
-                if maneuver_now:
+                repeating = pc.get('_repeat') is not None
+                if repeating:
+                    # glossary.md, Repeat: the same attack again "as part of
+                    # the same action": no AP, no use spent.
+                    mv, maneuver_now = pc.pop('_repeat'), True
+                elif maneuver_now:
                     mv = pc['maneuver']
                     mv['uses'] -= 1
                     _next_maneuver(pc)
+                elif ap < T.ATTACK_AP_COST:
+                    break
                 substitute = None if maneuver_now else tactics.bottomless_bottles_choice(pc, target)
                 if not substitute and not maneuver_now:
                     substitute = _tech_attack_choice(pc, target)
@@ -1546,6 +1571,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if maneuver_now and mv.get('ascended') and pc.get('dmg_type') == 'Physical' \
                         and target['elemres'] < target['physres']:
                     saved_dmg_type, pc['dmg_type'] = pc['dmg_type'], 'Brilliant'
+                # Any other damage-type pick: a War Magic copy that "may
+                # change the attack's damage type", an Elemental Maneuver,
+                # Elemental Enhancement (techniques.damage_type_choice).
+                new_type = _techniques.damage_type_choice(pc, target, substitute, mv if maneuver_now else None)
+                if new_type and new_type != pc.get('dmg_type'):
+                    if not substitute and saved_dmg_type is None:
+                        saved_dmg_type = pc['dmg_type']
+                    pc['dmg_type'] = new_type
                 close_range_weapon = not pc.get('attack_range') and pc.get('weapon_name') not in ('Melee', '2H Heavy Melee')
                 cloak_dagger_hit = False
                 if (pc.get('cloak_and_dagger') and not substitute and not feint_active and close_range_weapon
@@ -1617,7 +1650,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if gl:
                     pc['gl_used'] = pc.get('gl_used', 0) + gl
                 atk = SimpleNamespace(target=target, rnd=rnd, order=order, substitute=substitute,
-                                      mv=mv if maneuver_now else None, pool=None, hit=None, parried=None, notes=[])
+                                      mv=mv if maneuver_now else None, pool=None, hit=None, parried=None, notes=[],
+                                      repeat=repeating, dodged=None, dmg=0, pcs=pcs, enemies=enemies, log=party_log,
+                                      trace=trace)
                 luck_extra = gl + hooks.run('attack_luck', pc, atk)
                 pool = []
                 if T.CARDS:
@@ -1638,7 +1673,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     ps_luck, ps_pool = (0, []) if (substitute and not substitute.get('weapon')) else \
                         _perfect_strike(pc, need, imp, skill)
                     card, pool = _pc_flip(pc, mod0 - 2 * gambles, defense, luck + ps_luck, bad_luck, imp, pcs,
-                                          _hand_of_chaos(pc) + ps_pool)
+                                          _hand_of_chaos(pc) + ps_pool + _techniques.sift_extras(
+                                              pc, substitute, mv if maneuver_now else None, repeating))
                 else:
                     gambles = 0 if (substitute or feint_active or spell) else pc_gamble_count(
                         pc, target, defense_override=8 if cloak_dagger_hit else None)
@@ -1646,7 +1682,12 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     card = resolve_card(pc.get('good_luck', 0) + luck_bonus, bad_luck)
                 roll = pc['skill_total'] - crippled + card - 2 * gambles  # PCs attack vs. the enemy's opposed Defense (pc['opp_def'])
                 attacks_made += 1
-                ap -= 1 if feint_active else T.ATTACK_AP_COST
+                # A Viper's Sting Maneuver is the cheap extra a plan's
+                # attack count doesn't include.
+                if maneuver_now and not repeating and mv.get('viper'):
+                    viper_free += 1
+                ap -= 0 if repeating else (1 if feint_active or (maneuver_now and mv.get('viper'))
+                                           else T.ATTACK_AP_COST)
                 if pc.get('weapon_uses_left') is not None and not substitute:
                     pc['weapon_uses_left'] -= 1
                 hit = roll >= defense
@@ -1881,6 +1922,12 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     stopped = _protected_blocks_gain(target, pre_bleed)
                     if stopped:
                         taunt_note = (f"{taunt_note}; " if taunt_note else "") + f"Protected stopped {stopped} Bleeding"
+                # Whatever happens once the attack's resolved, hit or not
+                # (Barraging on a Dodge, Lodestone on a Parry, Abjuring,
+                # Steal Fate's count).
+                atk.dmg = dmg
+                atk.dodged = not hit and not parried and pc.get('opp_def') in ('Dodge', 'Parry/Dodge')
+                hooks.run('attack_resolved', pc, atk)
                 if party_log:
                     via = substitute['via'] if substitute else ('Feint' if feint_active else (
                         'Battle Maneuver' if maneuver_now else pc['weapon_name']))
@@ -1939,14 +1986,25 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     extra = _find_extra_target(pc, target, enemies, movement_on, 'melee')
                     if extra:
                         damage_dealt += _bonus_attack(extra, 'Whirlwind')
+                # Ricochet Shot (a ranged Maneuver): "an additional enemy
+                # adjacent to the first".
+                if maneuver_now and mv.get('ricochet') and pc.get('attack_range'):
+                    extra = _find_extra_target(pc, target, enemies, movement_on, 'adjacent')
+                    if extra:
+                        damage_dealt += _bonus_attack(extra, 'Ricochet Shot')
                 # Furrow (Beornhard's Level 4 War Magic): "targets all
                 # creatures in a line [half your Sorcery Skill Total] meters
                 # long". Aimed past the party; Draw Power draws a card if it
                 # Downs anyone, once per casting.
-                if substitute and substitute.get('line') and 'pos' in pc:
+                # Funnel (a 2-meter cone) and Nova (everything adjacent) the
+                # same way. Each extra target takes the copy's riders too.
+                if substitute and (substitute.get('line') or substitute.get('cone') or substitute.get('nova')) \
+                        and 'pos' in pc:
                     downed = target['health'] <= 0
-                    for extra in _line_targets(pc, target, enemies, substitute['line']):
-                        damage_dealt += _bonus_attack(extra, substitute['via'])
+                    extras = (_line_targets(pc, target, enemies, substitute['line']) if substitute.get('line')
+                              else _techniques.shape_targets(pc, target, enemies, substitute))
+                    for extra in extras:
+                        damage_dealt += _bonus_attack(extra, substitute['via'], sub=substitute)
                         downed = downed or extra['health'] <= 0
                     if substitute.get('draw_power') and downed:
                         _draw_card(pc)
@@ -1955,6 +2013,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     if extra:
                         damage_dealt += _bonus_attack(extra, 'Ricochet Shot')
                         pc['ricochet_shot'] = False
+                # Flurry (F-Advanced): "You Repeat the weapon attack against
+                # each target" - the primary one, straight away.
+                if maneuver_now and mv.get('flurry') and not repeating and target['health'] > 0:
+                    pc['_repeat'] = mv
                 if saved_profile:
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = saved_profile
                 if saved_dmg_type is not None:
@@ -2037,6 +2099,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                      spaces=_distance(start, pc['pos']), via='staying in range of the party')
                 _left_melee(pc, start, enemies, pcs, rnd)
+        pc.pop('_repeat', None)
+        pc.pop('_action_sift', None)
         turn.ap = ap
         hooks.run('pc_turn_end', pc, turn)
         ap = turn.ap
@@ -2464,6 +2528,15 @@ def _lose_health(unit, loss, notes=None, attack=False):
     ("may be used as an Interrupt when the target is hit by an attack")."""
     if loss <= 0:
         return
+    # Healing Magic's Guardian Angel: "The next time this scene the target
+    # would be Downed, instead they are reduced to X Deep Health."
+    if unit.get('guardian_angel') and loss >= unit['health'] and unit.get('lifeline') is None:
+        x = unit.pop('guardian_angel')
+        unit['guardian_saved'] = unit.get('guardian_saved', 0) + 1
+        if notes is not None:
+            notes.append(f"Guardian Angel: left at {x} Health")
+        unit['health'] = x
+        return
     link = unit.get('lifeline')
     if link is None and attack and loss >= unit['health'] and 'shallow_max' in unit:
         ctx = SimpleNamespace(ally=unit, loss=loss)
@@ -2560,6 +2633,13 @@ def _break_grapple_hook(pc, c):
 @hooks.on('attack_luck', order=40)
 def _grappled_target_luck(pc, c):
     return 1 if _grappled(c.target) is not None and pc.get('opp_def') in ('Parry/Dodge', 'Dodge') else 0
+
+
+def _viper_ready(pc):
+    """A Battle Maneuver copy with Viper's Sting ("The Technique takes 1
+    less AP to use") still unspent."""
+    m = pc.get('maneuver')
+    return bool(m) and m['uses'] > 0 and m.get('viper')
 
 
 def _damaged_by_pc(pc, e, dmg):
@@ -2725,6 +2805,9 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
             _bleed_out(target)
             pre_bleed = target.get('bleeding', 0)
             hooks.run('enemy_hit_riders', e, hit_ctx)
+            # The PC side of a damaging hit (Spirit Blessing's Retribution).
+            if prof.get('attack_damage'):
+                hooks.run('pc_hit', target, SimpleNamespace(attacker=e, dmg=dmg, prof=prof, applied=applied))
             if T.ENEMY_TEST_BLEED:
                 _apply_to_pc(target, 'Bleeding', T.ENEMY_TEST_BLEED, e)
                 applied.append(f"Bleeding +{T.ENEMY_TEST_BLEED}")

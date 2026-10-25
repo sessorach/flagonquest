@@ -24,6 +24,7 @@ Adding a Technique means adding those here, and a new hook point in
 combat_sim only if it does something none of the existing points cover.
 """
 import collections
+from types import SimpleNamespace
 
 import game_data
 import hooks
@@ -165,8 +166,10 @@ def _war_magic_name(feats):
     return "War Magic (" + ", ".join(f if n == 1 else f"{f} {n}" for f, n in feats.items()) + ")"
 
 
-@technique("T120", "War Magic", features=("Lance", "Destructive", "Sanguine", "Reign of Blood", "Draw Power",
-                                           "Furrow (Shape)", "Tormenting Curse", "Frigid", "Kinetic"))
+@technique("T120", "War Magic", features=(
+        "Lance", "Destructive", "Sanguine", "Reign of Blood", "Draw Power", "Furrow (Shape)", "Funnel (Shape)",
+        "Nova (Shape)", "Tormenting Curse", "Frigid", "Kinetic", "Corrupting", "Necrotic", "Barraging", "Abjuring",
+        "Piercing Elements", "Wild Magic"))
 def _war_magic(sheet, copies, choices):
     """Copies with the same Features and Defense are one profile with that
     many uses. A plain Lance copy is the row's own War Magic (Lance)
@@ -178,7 +181,12 @@ def _war_magic(sheet, copies, choices):
     becomes Bleeding, Reign of Blood cashing in [twice X] stacks, Furrow
     a line [half your Sorcery Skill Total] long (which is also its reach
     without Lance), Draw Power a card on a Down. Lance is the reach of
-    the Weapon itself, so a Lance copy needs no range of its own.
+    the Weapon itself, so a Lance copy needs no range of its own. The
+    rest of the Features ride on the hit (combat_sim and this file's
+    War Magic hooks): Frigid, Kinetic, Corrupting, Necrotic, Barraging,
+    Abjuring, Piercing Elements, Wild Magic, Funnel and Nova. Arcane
+    Chant, Glacier (no Difficult Terrain in the sim) and Channel aren't
+    modeled, so a copy with one stops the load.
     War Magic is learned against Dodge or Vital (the Choices column, per
     copy; Dodge when blank)."""
     groups = collections.OrderedDict()
@@ -192,17 +200,25 @@ def _war_magic(sheet, copies, choices):
             sheet.weapon_uses = (sheet.weapon_uses or 0) + n
             continue
         if "Tormenting Curse" in feats:
-            if "Frigid" in feats:
-                kind, amount = "slowed", 2 * feats["Frigid"]
-            elif "Kinetic" in feats:
-                kind, amount = "push", 4 * feats["Kinetic"]
+            # The hex lands its first rider of these: Frigid "Slowed [twice
+            # X] + [Spades]", Kinetic "Pushed up to [four times X] + Spades
+            # meters", Corrupting "[twice X] + [Diamonds] Vulnerable",
+            # Necrotic "[twice X] + [Diamonds] Necrotic", Barraging "Harried
+            # X + [Hearts]".
+            for feat, kind, mult, suit in (("Frigid", "slowed", 2, "Spades"), ("Kinetic", "push", 4, "Spades"),
+                                           ("Corrupting", "vulnerable", 2, "Diamonds"),
+                                           ("Necrotic", "necrotic", 2, "Diamonds"),
+                                           ("Barraging", "harried", 1, "Hearts")):
+                if feat in feats:
+                    break
             else:
-                raise BuildError(f"{name}: a Tormenting Curse copy needs Frigid or Kinetic to do anything here")
-            sheet.hexes.append(dict(via=name, kind=kind, amount=amount, suit="Spades", opp_def=defense,
+                raise BuildError(f"{name}: a Tormenting Curse copy needs a rider (Frigid, Kinetic, Corrupting, "
+                                 "Necrotic or Barraging) to do anything here")
+            sheet.hexes.append(dict(via=name, kind=kind, amount=mult * feats[feat], suit=suit, opp_def=defense,
                                     skill="Sorcery", uses=n, ranged="Lance" in feats))
             continue
-        if "Frigid" in feats or "Kinetic" in feats:
-            raise BuildError(f"{name}: Frigid/Kinetic on a damaging copy isn't modeled")
+        if sum(1 for f in feats if f.endswith("(Shape)")) > 1:
+            raise BuildError(f"{name}: only one Shape feature per Spell")
         sheet.tech_attacks.append((name, _war_magic_factory(feats, defense), n))
 
 
@@ -222,6 +238,33 @@ def _war_magic_factory(feats, defense):
                 prof["range"] = sorcery // 2
         if feats.get("Draw Power"):
             prof["draw_power"] = True
+        # Funnel: "all creatures within a 2-meter-long cone". Nova: "all
+        # adjacent creatures", so it reaches only what's next to you.
+        if feats.get("Funnel (Shape)"):
+            prof["cone"] = 2
+            prof["range"] = 2
+        if feats.get("Nova (Shape)"):
+            prof["nova"] = True
+            prof["range"] = 1
+        # Riders on the hit, each [twice X] or the like + its suit:
+        # Frigid "Slowed [twice X] + [Spades] times", Kinetic "Pushed up to
+        # [four times X] + Spades meters", Corrupting "[twice X] +
+        # [Diamonds] stacks of Vulnerable", Necrotic "[twice X] +
+        # [Diamonds] stacks of Necrotic" (before damage), Barraging
+        # "Harried X + [Hearts] stacks" on a hit or a Dodge, Abjuring "X + 1
+        # stacks of [attack's damage type] Ward + [Hearts]" afterwards.
+        for key, feat in (("frigid", "Frigid"), ("kinetic", "Kinetic"), ("corrupting", "Corrupting"),
+                          ("necrotic", "Necrotic"), ("barraging", "Barraging"), ("abjuring", "Abjuring"),
+                          ("wild", "Wild Magic")):
+            if feats.get(feat):
+                prof[key] = feats[feat]
+        if feats.get("Piercing Elements"):
+            prof["piercing"] = feats["Piercing Elements"]  # Good Luck on the spell attack
+        # "You may change the attack's damage type to Frost / Shadow."
+        types = ["Fire"] + (["Frost"] if feats.get("Frigid") else []) + (
+            ["Shadow"] if any(feats.get(f) for f in ("Corrupting", "Necrotic", "Draw Power")) else [])
+        if len(types) > 1:
+            prof["dmg_types"] = types
         return prof
     return build
 
@@ -230,25 +273,50 @@ def _war_magic_factory(feats, defense):
 
 @technique("T072", "Battle Maneuver", features=(
         "Lunging", "Half Guard", "Battering", "Whirlwind", "Victorious", "Ascended Blade", "Wind Slash",
-        "Calculated", "Wing Clip", "Hamstring", "Harrying", "Distracting", "Bare-Handed",
+        "Calculated", "Wing Clip", "Hamstring", "Harrying", "Distracting", "Bare-Handed", "Turn Elements",
+        "Backfoot", "Lodestone", "Blade of Four Fates", "Elemental", "Viper's Sting", "Fleet Step",
+        "Ricochet Shot", "Flurry",
         # A draft Feature (2026-10-16): Reign of Blood's text on a Battle
         # Maneuver, only on the Felix (Cash) test build.
         "Open the Wound"))
 def _battle_maneuver(sheet, copies, choices):
+    """Each copy keeps its own Features, used in the sheet's order. Turn
+    Elements and Elemental need an element, per copy in the Choices
+    column ("Battle Maneuver: , Frost" for the second copy)."""
     sheet.encounter_techs.extend(["Battle Maneuver"] * len(copies))
-    sheet.maneuvers.extend(c["features"] for c in copies)
+    for i, c in enumerate(copies):
+        feats = dict(c["features"])
+        if "Turn Elements" in feats or "Elemental" in feats:
+            element = choices[i] if i < len(choices) else ""
+            if element not in ("Fire", "Frost", "Brilliant", "Shadow"):
+                raise BuildError(f"Battle Maneuver copy {i + 1}: Turn Elements/Elemental needs an element in Choices")
+            if "Elemental" in feats and element == "Brilliant":
+                raise BuildError("Battle Maneuver: Elemental is Fire, Frost or Shadow")
+            feats["_element"] = element
+        sheet.maneuvers.append(feats)
 
 
-@technique("T104", "Spirit Blessing", features=("Shielding", "Step of Air", "Guided Hand", "Quickened", "Reach",
-                                                 "Mass Blessing"))
+@technique("T104", "Spirit Blessing", features=(
+        "Shielding", "Step of Air", "Guided Hand", "Quickened", "Reach", "Mass Blessing", "Turn Elements",
+        "Steady", "Embolden", "Retribution", "River's Might", "Touch of Chaos", "Elemental Enhancement",
+        "Alacrity", "Steal Fate"))
 def _spirit_blessing(sheet, copies, choices):
+    """Copies built the same way share one entry. Turn Elements and
+    Elemental Enhancement take their element from Choices."""
     if any(c["features"] != copies[0]["features"] for c in copies):
         raise BuildError("Spirit Blessing: copies built differently aren't modeled")
     sheet.encounter_techs.extend(["Spirit Blessing"] * len(copies))
-    sheet.blessing_features = copies[0]["features"]
+    feats = dict(copies[0]["features"])
+    if "Turn Elements" in feats or "Elemental Enhancement" in feats:
+        element = choices[0] if choices else ""
+        if element not in ("Fire", "Frost", "Brilliant", "Shadow"):
+            raise BuildError("Spirit Blessing: Turn Elements/Elemental Enhancement needs an element in Choices")
+        feats["_element"] = element
+    sheet.blessing_features = feats
 
 
-@technique("T105", "Healing Magic", features=("Vitality", "Reach"))
+@technique("T105", "Healing Magic", features=("Vitality", "Reach", "Purify", "Rejuvenate", "Guardian Angel",
+                                               "Triage", "Deep Mending", "Healing Pact"))
 def _healing_magic(sheet, copies, choices):
     """A Support PC's Healing Magic: "Discard [this Spell's Level] cards"
     (Heal Cards), Vitality "+1 healing" per copy (Heal Bonus), and
@@ -260,6 +328,11 @@ def _healing_magic(sheet, copies, choices):
     sheet.heal_cards = c["level"]
     sheet.heal_bonus = c["features"].get("Vitality", 0)
     sheet.heal_reach = "Reach" in c["features"]
+    # Read by tactics.strategy_support_healer. Deep Mending ("may apply to
+    # Deep or Shallow Health") changes nothing here: the sim keeps one
+    # Health pool and heals it up to the top.
+    sheet.heal_features = {f: n for f, n in c["features"].items()
+                           if f in ("Purify", "Rejuvenate", "Guardian Angel", "Triage", "Healing Pact")}
 
 
 @technique("T003", "Temper Soulblade")
@@ -360,16 +433,25 @@ def _lifeline_setup(name, pc, s):
 
 
 def _blessing_features(feats, theurgy, ley):
-    """Spirit Blessing's Features: Shielding X is Protected X + 1, Step of
-    Air X Hasted X + 1, Guided Hand X Good Luck on the next X attacks,
-    Quickened makes it 1 AP, Reach adds [Theurgy Skill Total] meters to
-    "yourself or an adjacent ally", and Mass Blessing a second target."""
+    """Spirit Blessing's Features as numbers: Shielding X is Protected
+    X + 1, Step of Air X Hasted X + 1, Guided Hand X Good Luck on the next
+    X attacks, Quickened makes it 1 AP, Reach adds [Theurgy Skill Total]
+    meters to "yourself or an adjacent ally", Mass Blessing a second
+    target. The rest (2026-10-25): Turn Elements X Ward X + 1, Steady and
+    Embolden one stack off, Retribution / River's Might / Steal Fate / Elemental
+    Enhancement X charges, Touch of Chaos [twice X] Sifted flips, Alacrity
+    2 places up the turn order."""
     return dict(protected=feats["Shielding"] + 1 if "Shielding" in feats else 0,
                 hasted=feats["Step of Air"] + 1 if "Step of Air" in feats else 0,
                 guided=feats.get("Guided Hand", 0),
                 ap=1 if "Quickened" in feats else 2,
                 range=1 + (theurgy if "Reach" in feats else 0) + ley,
-                targets=2 if "Mass Blessing" in feats else 1)
+                targets=2 if "Mass Blessing" in feats else 1,
+                ward=feats["Turn Elements"] + 1 if "Turn Elements" in feats else 0, element=feats.get("_element"),
+                steady=feats.get("Steady", 0), embolden=feats.get("Embolden", 0),
+                retribution=feats.get("Retribution", 0), rivers=feats.get("River's Might", 0),
+                chaos=2 * feats.get("Touch of Chaos", 0), enhance=feats.get("Elemental Enhancement", 0),
+                alacrity=2 if "Alacrity" in feats else 0, steal=feats.get("Steal Fate", 0))
 
 
 @setup_for("Spirit Blessing")
@@ -436,9 +518,12 @@ def _cast_hex(pc, hx, e, pcs, allies, rnd, trace, log):
     note = start = None
     if hit:
         n = hx['amount'] + cs._suit_count(pool, hx['suit'])
-        if hx['kind'] in ('slowed', 'crippled'):
+        if hx['kind'] in ('slowed', 'crippled', 'vulnerable', 'necrotic'):
             cs._gain(e, hx['kind'], n)
             note = f"{hx['kind'].capitalize()} +{n}"
+        elif hx['kind'] == 'harried':
+            e['harried'] = e.get('harried', 0) + n
+            note = f"Harried +{n}"
         else:
             cx = round(sum(p['pos'][0] for p in allies) / len(allies))
             cy = round(sum(p['pos'][1] for p in allies) / len(allies))
@@ -484,14 +569,18 @@ def _try_hexes(pc, pcs, enemies, rnd, movement_on, trace, log, ap):
     # Reckoning (T111, Hanforth's Level 2 build): Crippled 5 + [Clubs] on
     # the biggest threat in reach that isn't Crippled yet - any enemy, not
     # just a melee one.
-    crip = ready.pop('crippled', None)
-    if crip:
-        pool = [e for e in living if cs._distance(pc['pos'], e['pos']) <= crip['range'] and e.get('crippled', 0) <= 0]
+    # A Tormenting Curse with Corrupting, Necrotic or Barraging goes the
+    # same way: the biggest threat in reach that hasn't got it yet.
+    for kind in ('crippled', 'vulnerable', 'necrotic', 'harried'):
+        hx = ready.pop(kind, None)
+        if not hx:
+            continue
+        pool = [e for e in living if cs._distance(pc['pos'], e['pos']) <= hx['range'] and e.get(kind, 0) <= 0]
         if pool:
-            return _cast_hex(pc, crip, max(pool, key=lambda e: cs.tactics.enemy_threat(e, allies)),
+            return _cast_hex(pc, hx, max(pool, key=lambda e: cs.tactics.enemy_threat(e, allies)),
                              pcs, allies, rnd, trace, log)
-        if not ready:
-            return 0
+    if not ready:
+        return 0
     in_range = [e for e in living if cs._distance(pc['pos'], e['pos']) <= max(h['range'] for h in ready.values())
                 and (e.get('attack_range') or 0) <= cs.T.MELEE_RANGE]
     if not in_range:
@@ -763,36 +852,84 @@ def _try_wall_of_shadows(pc, pcs, enemies, movement_on, ap, log=None):
     return 2
 
 
-def _try_spirit_blessing(pc, pcs, enemies, movement_on, ap, log=None):
-    """Spirit Blessing (T104, Encounter; Hanforth's Level 2 copy is
-    Shielding 2, Quickened and Reach - Protected three times, 1 AP,
-    [Theurgy Skill Total] meters more range). Cast on the ally (or
-    himself) in reach with the most enemies on them and no Protected,
-    once someone's actually in a fight. Returns the AP spent."""
+def _try_spirit_blessing(pc, pcs, enemies, movement_on, ap, log=None, rnd=None, order=None):
+    """Spirit Blessing (T104, Encounter). Who gets it depends on what the
+    copy does:
+    - defensive (Shielding, Turn Elements, Retribution): the ally (or
+      himself) in reach with the most enemies on them and no Protected,
+      once someone's in a fight - Hanforth's Level 2 copy (Shielding 2,
+      Quickened, Reach);
+    - a cleanse only (Steady, Embolden): whoever in reach carries the
+      most of what it removes;
+    - offensive (Guided Hand, Step of Air, River's Might, Touch of Chaos,
+      Elemental Enhancement, Steal Fate, Alacrity): the hardest hitter in
+      reach who hasn't acted yet this round, as early as it can go.
+    Returns the AP spent."""
     b = pc.get('blessing')
     if not b or b['uses'] <= 0 or ap < b['ap']:
         return 0
     living = [e for e in enemies if e['health'] > 0]
-    pool = [p for p in pcs if p['health'] > 0 and p.get('protected', 0) == 0
-            and (not movement_on or cs._distance(pc['pos'], p['pos']) <= b['range'])]
+    if not living:
+        return 0
+    reach = [p for p in pcs if p['health'] > 0
+             and (not movement_on or cs._distance(pc['pos'], p['pos']) <= b['range'])]
 
     def pressed(p):
         return sum(1 for e in living if cs._distance(e['pos'], p['pos']) <= cs.T.MELEE_RANGE) if movement_on else 1
-    pool = [p for p in pool if pressed(p) > 0]
-    if not pool:
+
+    def cleansable(p):
+        return ((p.get('slowed', 0) + p.get('crippled', 0) if b['steady'] else 0)
+                + (p.get('taunted', 0) + p.get('frightened', 0) if b['embolden'] else 0))
+    if b['protected'] or b['ward'] or b['retribution']:
+        pool = [p for p in reach if p.get('protected', 0) == 0 and pressed(p) > 0]
+        chosen = sorted(pool, key=lambda p: (-pressed(p), p['health'] / p['max_health']))[:b['targets']]
+    elif b['steady'] or b['embolden']:
+        pool = [p for p in reach if cleansable(p) > 0]
+        chosen = sorted(pool, key=lambda p: -cleansable(p))[:b['targets']]
+    else:
+        pool = [p for p in reach if p.get('acted_round') != rnd or p is pc]
+        chosen = sorted(pool, key=lambda p: (-p['damage'], p is pc))[:b['targets']]
+    if not chosen:
         return 0
-    chosen = sorted(pool, key=lambda p: (-pressed(p), p['health'] / p['max_health']))[:b['targets']]
     b['uses'] -= 1
     for p in chosen:
+        notes = []
         if b['protected']:
             cs._gain(p, 'protected', b['protected'])
+            notes.append(f"Protected +{b['protected']}")
         if b['hasted']:
             cs._gain(p, 'hasted', b['hasted'])
+            notes.append(f"Hasted +{b['hasted']}")
         if b['guided']:
             p['gl_next'] = p.get('gl_next', 0) + b['guided']
+            notes.append(f"Guided +{b['guided']}")
+        if b['ward']:
+            p['ward_type'] = b['element']
+            cs._gain(p, 'ward', b['ward'])
+            notes.append(f"{b['element']} Ward +{b['ward']}")
+        for flag, pair in (('steady', ('slowed', 'crippled')), ('embolden', ('taunted', 'frightened'))):
+            if b[flag]:
+                key = max(pair, key=lambda k: p.get(k, 0))
+                if p.get(key, 0) > 0:
+                    p[key] -= 1
+                    if p[key] == 0 and key in ('taunted', 'frightened'):
+                        p[key + '_by'] = None
+                    notes.append(f"{key.capitalize()} -1")
+        # Charges the fight's hooks spend (this file's Spirit Blessing hooks).
+        for key, field in (('retribution', 'retribution_charges'), ('rivers', 'rivers_might'),
+                           ('chaos', 'touch_chaos'), ('steal', 'steal_fate')):
+            if b[key]:
+                p[field] = p.get(field, 0) + b[key]
+                notes.append(f"{field.replace('_', ' ')} {b[key]}")
+        if b['enhance']:
+            p['enhance'] = [b['element'], b['enhance']]
+            notes.append(f"{b['element']} on the next {b['enhance']}")
+        if b['alacrity'] and order is not None:
+            cs._shift_in_order(order, p, -b['alacrity'])
+            notes.append(f"Outflanks {b['alacrity']}")
         if log:
             log(unit=pc['name'], action='technique', target=p['name'], via='Spirit Blessing',
-                effects=', '.join(f"{k.capitalize()} +{b[k]}" for k in ('protected', 'hasted', 'guided') if b[k]))
+                effects=', '.join(notes))
     return b['ap']
 
 
@@ -904,7 +1041,7 @@ def _brace_start_hook(pc, c):
 
 @hooks.on('pc_turn_start', 'Spirit Blessing', order=50)
 def _blessing_hook(pc, c):
-    return _try_spirit_blessing(pc, c.pcs, c.enemies, c.movement_on, c.ap, log=c.log)
+    return _try_spirit_blessing(pc, c.pcs, c.enemies, c.movement_on, c.ap, log=c.log, rnd=c.rnd, order=c.order)
 
 
 @hooks.on('pc_turn_start', 'Gust of Wind', order=60)
@@ -1020,7 +1157,8 @@ def _lawmans_hand(pc, c):
 def _half_guard(pc, c):
     # Half Guard (F011): "If the attack hits, you gain X + [Spades] stacks
     # of Protected."
-    if c.mv and c.mv['guard']:
+    # A Repeat (Flurry) applies "any effects on you" only once.
+    if c.mv and c.mv['guard'] and not getattr(c, 'repeat', False):
         cs._gain(pc, 'protected', c.mv['guard'] + cs._suit_count(c.pool, 'Spades'))
 
 
@@ -1142,3 +1280,253 @@ def _parting_shot(pc, c):
     dmg = cs._reaction_attack(pc, e, c.pcs, f"{prof['via']} (Parting Shot)", prof, c.log)
     e['pos'] = now
     return dmg
+
+
+# ---- Features modeled 2026-10-25: War Magic, Battle Maneuver, Spirit
+# Blessing and Healing Magic beyond what the sample sheets had ----
+
+def _resist_for(target, dmg_type):
+    return cs.enemy_resist_for_pc_attack({'dmg_type': dmg_type}, target)
+
+
+def damage_type_choice(pc, target, substitute, mv):
+    """The damage type for this attack, when a Feature offers one, or None
+    to keep it. A War Magic copy that "may change the attack's damage
+    type" (Frigid to Frost; Corrupting, Necrotic, Draw Power to Shadow)
+    takes whichever the target resists least; Elemental (a Maneuver
+    Feature) is that type, full stop; Elemental Enhancement (Spirit
+    Blessing) is taken when the target resists it less, and a charge
+    goes when the attack hits."""
+    if substitute:
+        opts = substitute.get('dmg_types')
+        if not opts:
+            return None
+        current = pc['dmg_type']
+        return min(opts, key=lambda t: (_resist_for(target, t), t != current))
+    if mv and mv.get('elemental'):
+        return mv['element']
+    enh = pc.get('enhance')
+    if enh and enh[1] > 0 and pc.get('damage', 0) > 0 and \
+            _resist_for(target, enh[0]) < _resist_for(target, pc['dmg_type']):
+        pc['_enh_used'] = True
+        return enh[0]
+    return None
+
+
+def sift_extras(pc, substitute, mv, repeating):
+    """Suits a Feature Sifts into this attack's pool (glossary.md, Sift:
+    "Look at the top X cards of your deck"; a high card stays, a low one
+    goes): Wild Magic [three times X] and Blade of Four Fates X, once per
+    action and shared with its bonus attacks and Repeat; Touch of Chaos
+    one card a flip while its charges last."""
+    if not cs.T.CARDS:
+        return []
+
+    def sift(n):
+        return [cs.cards.suit(c) for c in pc['deck'].sift(n, lambda c: cs.cards.rank(c) >= cs.T.SIFT_KEEP_RANK)]
+    if repeating:
+        suits = list(pc.get('_action_sift', ()))
+    else:
+        n = (3 * substitute.get('wild', 0) if substitute else 0) + (mv.get('blade', 0) if mv else 0)
+        suits = sift(n) if n else []
+        pc['_action_sift'] = suits
+    if pc.get('touch_chaos', 0) > 0:
+        pc['touch_chaos'] -= 1
+        suits = suits + sift(1)
+    return suits
+
+
+def _in_cone(origin, aim, pos, length):
+    ax, ay = aim[0] - origin[0], aim[1] - origin[1]
+    dx, dy = pos[0] - origin[0], pos[1] - origin[1]
+    if (dx, dy) == (0, 0) or (ax, ay) == (0, 0) or max(abs(dx), abs(dy)) > length:
+        return False
+    return (dx * ax + dy * ay) / ((dx * dx + dy * dy) ** 0.5 * (ax * ax + ay * ay) ** 0.5) >= 0.7071 - 1e-9
+
+
+def shape_targets(pc, target, enemies, sub):
+    """A shaped War Magic copy's other targets: Funnel, "all creatures
+    within a 2-meter-long cone" aimed at the target; Nova, "all adjacent
+    creatures". Only enemies are counted - the sim assumes the caster
+    aims it clear of the party, the same simplification as Furrow."""
+    others = [e for e in enemies if e is not target and e['health'] > 0 and 'pos' in e]
+    if sub.get('cone'):
+        return [e for e in others if _in_cone(pc['pos'], target['pos'], e['pos'], sub['cone'])]
+    if sub.get('nova'):
+        return [e for e in others if cs._distance(pc['pos'], e['pos']) <= cs.T.MELEE_RANGE]
+    return []
+
+
+def _push_away_from_party(pc, e, n, ctx):
+    allies = [p for p in ctx.pcs if p['health'] > 0 and 'pos' in p] or [pc]
+    cx = round(sum(p['pos'][0] for p in allies) / len(allies))
+    cy = round(sum(p['pos'][1] for p in allies) / len(allies))
+    start = cs._push(e, (cx, cy), n)
+    cs._log(ctx.trace, round=cs._CTX['rnd'], side='enemy', unit=e['name'], action='move', pos=e['pos'],
+            spaces=cs._distance(start, e['pos']), in_range=False, via='Pushed')
+    if cs._CTX.get('ps_pcs'):
+        cs._parting_shots_on(e, start, ctx.pcs, ctx.log, pushed=True)
+    return start
+
+
+def kinetic_helps(target, pcs):
+    """Kinetic's Push is "up to", so a player picks when to use it: off a
+    ranged ally the target is standing next to, yes; away from party melee
+    already on it, no (they'd only have to chase it); anything else, yes,
+    since it has to walk back. Pushing every time cost Beornhard's Level 2
+    party 6 Health a fight next to Hilde and Browndog (2026-10-25)."""
+    near = [p for p in pcs if p['health'] > 0 and 'pos' in p
+            and cs._distance(p['pos'], target['pos']) <= cs.T.MELEE_RANGE]
+    return any(cs.effective_range(p) > cs.T.MELEE_RANGE for p in near) or not near
+
+
+def spell_riders(pc, c, before_damage):
+    """A War Magic copy's riders on one target (the main one through the
+    hooks below, each extra one of a Shape through combat_sim's bonus
+    attack). Before damage, on a hit: Necrotic ("before damage or other
+    effects"), Frigid, Corrupting. After: Kinetic on a hit, Barraging on
+    a hit or a Dodge."""
+    sub, t, pool = c.substitute, c.target, c.pool
+    if before_damage:
+        for key, effect, suit in (('necrotic', 'necrotic', 'Diamonds'), ('frigid', 'slowed', 'Spades'),
+                                  ('corrupting', 'vulnerable', 'Diamonds')):
+            if sub.get(key):
+                n = 2 * sub[key] + cs._suit_count(pool, suit)
+                cs._gain(t, effect, n)
+                c.notes.append(f"{effect.capitalize()} +{n}")
+        return
+    if sub.get('kinetic') and c.hit and t['health'] > 0 and 'pos' in t and kinetic_helps(t, c.pcs):
+        n = 4 * sub['kinetic'] + cs._suit_count(pool, 'Spades')
+        start = _push_away_from_party(pc, t, n, c)
+        c.notes.append(f"Pushed {cs._distance(start, t['pos'])} m")
+    if sub.get('barraging') and (c.hit or c.dodged):
+        n = sub['barraging'] + cs._suit_count(pool, 'Hearts')
+        t['harried'] = t.get('harried', 0) + n
+        c.notes.append(f"Harried +{n}")
+
+
+@hooks.on('attack_luck', order=35)
+def _piercing_elements(pc, c):
+    # Piercing Elements (F075): "You have Good Luck on the spell attack."
+    return c.substitute.get('piercing', 0) if c.substitute else 0
+
+
+@hooks.on('hit_riders', order=25)
+def _war_magic_before(pc, c):
+    if c.substitute and c.hit:
+        spell_riders(pc, c, before_damage=True)
+
+
+@hooks.on('after_hit', order=60)
+def _war_magic_kinetic(pc, c):
+    if c.substitute and c.substitute.get('kinetic'):
+        # Barraging waits for attack_resolved, which also sees a Dodge.
+        sub = dict(c.substitute, barraging=0)
+        spell_riders(pc, SimpleNamespace(**dict(vars(c), substitute=sub, dodged=False)), before_damage=False)
+
+
+@hooks.on('attack_resolved', order=10)
+def _war_magic_after(pc, c):
+    sub = c.substitute
+    if not sub:
+        return
+    if sub.get('barraging') and (c.hit or c.dodged):
+        n = sub['barraging'] + cs._suit_count(c.pool, 'Hearts')
+        c.target['harried'] = c.target.get('harried', 0) + n
+        c.notes.append(f"Harried +{n}")
+    # Abjuring (F065): "After the spell attack is resolved, you gain X + 1
+    # stacks of [attack's damage type] Ward + [Hearts] stacks."
+    if sub.get('abjuring'):
+        n = sub['abjuring'] + 1 + cs._suit_count(c.pool, 'Hearts')
+        pc['ward_type'] = pc['dmg_type']
+        cs._gain(pc, 'ward', n)
+        c.notes.append(f"{pc['dmg_type']} Ward +{n}")
+
+
+@hooks.on('after_hit', 'Battle Maneuver', order=15)
+def _turn_elements(pc, c):
+    # Turn Elements (F003): "If the attack hits, you gain X + [Hearts]
+    # stacks of [chosen Element] Ward."
+    if c.mv and c.mv.get('turn_elements') and not getattr(c, 'repeat', False):
+        n = c.mv['turn_elements'] + cs._suit_count(c.pool, 'Hearts')
+        pc['ward_type'] = c.mv['element']
+        cs._gain(pc, 'ward', n)
+        c.notes.append(f"{c.mv['element']} Ward +{n}")
+
+
+@hooks.on('after_hit', 'Battle Maneuver', order=45)
+def _backfoot_fleet_step(pc, c):
+    # Backfoot (F009): "you may Stagger the target up to [twice X] +
+    # [Spades] times." Fleet Step (F082): "you may Outflank up to [twice
+    # X] + [Spades] times."
+    if not c.mv or c.order is None:
+        return
+    if c.mv.get('backfoot') and c.target['health'] > 0:
+        moved = cs._shift_in_order(c.order, c.target, 2 * c.mv['backfoot'] + cs._suit_count(c.pool, 'Spades'))
+        c.notes.append(f"Staggered {moved}")
+    if c.mv.get('fleet') and not getattr(c, 'repeat', False):
+        moved = cs._shift_in_order(c.order, pc, -(2 * c.mv['fleet'] + cs._suit_count(c.pool, 'Spades')))
+        c.notes.append(f"Outflanked {-moved}")
+
+
+@hooks.on('attack_resolved', 'Battle Maneuver', order=20)
+def _lodestone(pc, c):
+    # Lodestone (F010): "If the attack hits or is Parried, you Push the
+    # target (2 x [X + Spades]) meters." Straight away from the attacker.
+    if c.mv and c.mv.get('lodestone') and (c.hit or c.parried) and c.target['health'] > 0 and 'pos' in c.target:
+        n = 2 * (c.mv['lodestone'] + cs._suit_count(c.pool, 'Spades'))
+        start = cs._push(c.target, pc['pos'], n)
+        c.notes.append(f"Pushed {cs._distance(start, c.target['pos'])} m")
+        if cs._CTX.get('ps_pcs'):
+            cs._parting_shots_on(c.target, start, c.pcs, c.log, pushed=True)
+
+
+@hooks.on('pc_hit', order=10)
+def _retribution_blessing(pc, c):
+    # Spirit Blessing's Retribution: "The next X times this encounter that
+    # a damaging attack hits the target, the attacker gains a stack of
+    # Bleeding."
+    if pc.get('retribution_charges', 0) > 0 and c.attacker['health'] > 0:
+        pc['retribution_charges'] -= 1
+        cs._gain(c.attacker, 'bleeding', 1)
+        c.applied.append("Bleeding +1 to the attacker (Retribution)")
+
+
+@hooks.on('after_hit', order=70)
+def _blessing_after_hit(pc, c):
+    # River's Might: "For the next X damaging attacks the target hits this
+    # encounter, the creature hit is Pushed back 3 meters." Elemental
+    # Enhancement spends a charge on the hit that used it.
+    if pc.pop('_enh_used', False) and pc.get('enhance'):
+        pc['enhance'][1] -= 1
+    if pc.get('rivers_might', 0) > 0 and pc['damage'] > 0:
+        pc['rivers_might'] -= 1
+        if c.target['health'] > 0 and 'pos' in c.target and 'pos' in pc:
+            start = cs._push(c.target, pc['pos'], 3)
+            c.notes.append(f"Pushed {cs._distance(start, c.target['pos'])} m (River's Might)")
+            if cs._CTX.get('ps_pcs'):
+                cs._parting_shots_on(c.target, start, c.pcs, c.log, pushed=True)
+
+
+@hooks.on('attack_resolved', order=30)
+def _blessing_resolved(pc, c):
+    # Steal Fate: "For the next X weapon attacks the target makes this
+    # encounter, if the attack Downs a creature the target may draw a card.
+    # They may only draw 1 card per casting."
+    pc.pop('_enh_used', None)  # a miss spends no Elemental Enhancement charge
+    if pc.get('steal_fate', 0) > 0 and (not c.substitute or c.substitute.get('weapon')):
+        pc['steal_fate'] -= 1
+        if c.target['health'] <= 0:
+            cs._draw_card(pc)
+            pc['steal_fate'] = 0
+            c.notes.append("drew a card (Steal Fate)")
+
+
+@hooks.on('pc_turn_start', order=1)
+def _rejuvenate(pc, c):
+    # Healing Magic's Rejuvenate: "the target heals 1 Shallow Health at the
+    # start of each of their turns for [Spell's healing amount] rounds."
+    if pc.get('regen', 0) > 0:
+        pc['regen'] -= 1
+        pc['health'] = min(pc['max_health'], pc['health'] + cs.tactics.necrotic_cut(pc, 1))
+    return 0

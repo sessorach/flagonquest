@@ -115,6 +115,14 @@ The core files and the regular tools:
   says where it came from and any edit made to it (Felix's and Enith's
   Features per the designer, the 09-20 exports' "Heavy Armor" read as
   Medium, Maneuver copies listed in the order the sim uses them).
+  A **variant** file (2026-10-25) names a `"base"` export and lists only
+  what changes, in `party.apply_edits`' format: `"replace"` a copy's
+  Level or Features (the Nth copy of an ID, in the export's order),
+  `"remove"` or `"add"` a Technique, or change `"stats"`, `"skills"` or
+  the `"inventory"`. So when the base export is updated, every variant
+  follows it. Every build is checked against techniques.csv's Feature
+  Budget and features.csv's costs, Max Copies and Advanced tier when it
+  loads; one over budget stops with the copy and its Features.
 - **`sample_pcs.csv`** — one row per sample character, holding only what
   an export doesn't: `Build` (the file in `builds/`), `Tier`, `Roster`
   (the "Baseline Tier N" rows `make_party(tier)` uses), `Weapon` (which
@@ -128,15 +136,26 @@ The core files and the regular tools:
   short `Notes`. Each character's longer history is in
   `sample_characters.md`.
 - **`techniques.py`** — every Technique the sim knows, by techniques.csv
-  ID: what it adds to the sheet (`build`), what it puts on the fight dict
-  (`setup`), and what it does in the fight (its hooks). War Magic,
-  Battle Maneuver, Spirit Blessing and Healing Magic read each copy's
-  Features; War Magic builds every copy from them (Destructive,
-  Sanguine, Reign of Blood, Furrow, Draw Power; Tormenting Curse with
-  Frigid or Kinetic makes a hex). Out-of-combat IDs are listed in
-  `OUT_OF_COMBAT`. **An ID, Feature or item the sim doesn't know stops
-  the load with its name** — add it here (or to `game_data.py` for an
-  item) rather than finding out later it was ignored.
+  ID: what it adds to the sheet (`build`), what it puts on the fight
+  dict (`setup`), and what it does in the fight (its hooks). War
+  Magic, Battle Maneuver, Spirit Blessing and Healing Magic read each
+  copy's Features. War Magic builds every copy from them: Destructive,
+  Sanguine, Reign of Blood, Draw Power, the Furrow, Funnel and Nova
+  Shapes, the Frigid, Kinetic, Corrupting, Necrotic, Barraging and
+  Abjuring riders (a rider that offers Frost or Shadow damage takes
+  whichever the target resists least), Piercing Elements and Wild
+  Magic; Tormenting Curse with a rider makes a hex. Battle Maneuver
+  has every Feature features.csv lists, Viper's Sting and Flurry
+  included; Turn Elements and Elemental take their element from
+  `Choices`. Spirit Blessing adds Steady, Embolden, Retribution,
+  River's Might, Touch of Chaos, Elemental Enhancement, Alacrity and
+  Steal Fate; Healing Magic adds Purify, Rejuvenate, Guardian Angel,
+  Triage, Deep Mending (no effect: the sim keeps one Health pool) and
+  Healing Pact. Arcane Chant, Glacier and Channel aren't modeled and
+  stop the load. Out-of-combat IDs are listed in `OUT_OF_COMBAT`. **An
+  ID, Feature or item the sim doesn't know stops the load with its
+  name** — add it here (or to `game_data.py` for an item) rather than
+  finding out later it was ignored.
 - **`enemy_abilities.py`** — the enemy Ability catalog's hooks: Strike
   and Poison riders, Grappling, Devastating, Harrying, Battering,
   Resilient, the 0 AP Actions, Retribution Aura, Action (Parting Shot).
@@ -145,9 +164,18 @@ The core files and the regular tools:
   into (`POINTS` lists them with what each one's ctx carries), and the
   order handlers run in. combat_sim calls `hooks.run(point, unit, ctx)`
   where it used to test each Technique by name.
-- **`game_data.py`** — reads `scripts/techniques.csv` and
-  `scripts/items.csv` (names, Health bonuses), and maps weapon and armor
-  items to the sim's tables.
+- **`game_data.py`** — reads `scripts/techniques.csv`,
+  `scripts/items.csv` and `scripts/features.csv` (names, Health
+  bonuses, Feature Budgets and costs), and maps weapon and armor items
+  to the sim's tables.
+- **`compare_builds.py`** (2026-10-25) — "what if this character had
+  that instead?" Runs a party, then the same party with one or more
+  characters swapped for a variant row or an inline edit, on the same
+  seeds against the same encounters, and prints the change in wins,
+  Health left, how often someone goes Down, and fight length, each with
+  its 95% margin (paired fight by fight, so the noise the two runs share
+  cancels out). Results for the drafted variants are in
+  `sample_characters.md`, "Variants".
 - **`party.py`** — `load_sheet(row)` reads a row and its build;
   `make_pc(name, ..., health=, add_passives=, drop_passives=,
   battle_tactic=)` is the one way to build a character changed for a
@@ -393,7 +421,20 @@ python3 narrate_fight.py 1 1 3 --party Hilde,Browndog,Sable,Beornhard --html out
                                # narrate one seeded fight, and save a graphical replay to open yourself
 python3 calibrate.py           # the sample parties against the table's calibration targets
 python3 calibrate.py -s PLAY_STYLES=False   # ...with one table-play switch turned off
+python3 compare_builds.py -L 2 -p B --swap "Beornhard (L2)=Beornhard (L2, Frost)"
+                               # one character swapped for a variant row
+python3 compare_builds.py -L 2 -p B --edit 'Beornhard (L2)={"replace": [{"id": "T120", "copy": 1, "features": {"Lance": 1, "Frigid": 2}}]}'
+                               # ...or for an edit, with no file
 ```
+
+**Trying a swap.** For a one-off, `--edit` takes the edit as JSON.
+For one worth keeping, add a variant file to `builds/` (`"base"` plus
+the edits and a `simNotes` line on what changed) and a `sample_pcs.csv`
+row pointing at it, copying the base row's Weapon, Play Style and
+Choices. A swap that changes a War Magic copy's Defense or a Maneuver's
+element changes `Choices` too. Pick an enemy Health multiplier (`-m`)
+that gives fights of about five rounds: at the default ×1.75 the Level
+2 and 3 parties win in about three, too short for a debuff to pay off.
 
 Testing one specific build against another (an item-balancing check, an
 archetype comparison, a custom Slots mix) without touching the Roster:

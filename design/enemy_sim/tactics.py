@@ -555,6 +555,11 @@ def strategy_support_healer(pc, party, log):
     if not wounded:
         return 0
     target = min(wounded, key=lambda p: p['health'])
+    feats = pc.get('heal_features') or {}
+    # Healing Pact: "The Spell may target an additional target" - the next
+    # most hurt in reach.
+    targets = [target] + (sorted((p for p in wounded if p is not target), key=lambda p: p['health'])[:1]
+                          if feats.get('Healing Pact') else [])
     if T.CARDS:
         # Real cards: the cheapest Hearts in hand first, then the
         # cheapest of the rest.
@@ -566,13 +571,37 @@ def strategy_support_healer(pc, party, log):
     else:
         hearts = sum(1 for _ in range(k) if cards.chosen_matches('Hearts'))
         pc['heal_uses_left'] -= 1
-    heal = necrotic_cut(target, 1 + hearts + pc.get('heal_bonus', 0))
+    for target in targets:
+        _heal_one(pc, target, 1 + hearts + pc.get('heal_bonus', 0), feats, log)
+    return T.HEALING_MAGIC_AP_COST
+
+
+def _heal_one(pc, target, amount, feats, log):
+    """One target of Healing Magic, with the Spell's Features (2026-10-25):
+    Triage "+2 if that target is Wounded" per copy; Purify takes off 1
+    Bleeding and 1 stack of each Poison effect; Rejuvenate heals 1 at the
+    start of each of the target's turns for the amount instead (the
+    combat_sim hook); Guardian Angel X stops the next Down at X Health."""
+    if feats.get('Triage') and pc_wounded(target):
+        amount += 2 * feats['Triage']
+    if feats.get('Purify'):
+        for key in ['bleeding'] + sorted(target.get('poisons', ())):
+            if target.get(key, 0) > 0:
+                target[key] -= 1
+    if feats.get('Guardian Angel') and not target.get('guardian_angel'):
+        target['guardian_angel'] = feats['Guardian Angel']
+    if feats.get('Rejuvenate'):
+        target['regen'] = target.get('regen', 0) + amount
+        if log:
+            log(unit=pc['name'], action='heal', target=target['name'], amount=0, target_hp_after=target['health'],
+                via='Healing Magic (Rejuvenate)')
+        return
+    heal = necrotic_cut(target, amount)
     before = target['health']
     target['health'] = min(target['max_health'], target['health'] + heal)
     if log:
         log(unit=pc['name'], action='heal', target=target['name'],
             amount=target['health'] - before, target_hp_after=target['health'], via='Healing Magic')
-    return T.HEALING_MAGIC_AP_COST
 
 
 PC_STRATEGIES = {

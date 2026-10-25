@@ -71,8 +71,95 @@ def _choices(cell):
 
 
 def read_build(filename):
+    """A build file from builds/. A variant (2026-10-25) names a `base`
+    file and lists only what it changes (apply_edits), so it follows its
+    base when that export is replaced."""
     with open(os.path.join(BUILDS_DIR, filename), encoding="utf-8") as f:
-        return json.load(f)
+        build = json.load(f)
+    if "base" in build:
+        base = read_build(build["base"])
+        notes = base.get("simNotes", []) + build.get("simNotes", [])
+        build = dict(apply_edits(base, build), simNotes=notes)
+    return build
+
+
+def _entry(t):
+    """A Technique entry as an export writes it, from the shorthand a
+    variant can use ({"id", "level", "features": {name: count}})."""
+    feats = t.get("features", [])
+    if isinstance(feats, dict):
+        feats = [{"name": k, "count": v} for k, v in feats.items()]
+    e = {"id": t["id"], "name": game_data.technique_name(t["id"]), "level": t.get("level", 1)}
+    if feats or "features" in t:
+        e["features"] = feats
+    return e
+
+
+def apply_edits(build, edits):
+    """A copy of `build` with `edits` applied - the format a variant file
+    or make_pc(edits=...) uses:
+      "replace": [{"id": "T120", "copy": 2, "level": 2, "features": {"Lance": 1, "Frigid": 2}}]
+          (the 2nd copy of that ID, in the export's order; a key left out
+          keeps the copy's own)
+      "remove":  [{"id": "T097", "copy": 1}]
+      "add":     [{"id": "T104", "level": 2, "features": {...}}]
+      "stats" / "skills": {"Mind": 4}   (only the ones that change)
+      "inventory": [...]                 (the whole list)
+    """
+    b = json.loads(json.dumps(build))
+    techs = b["techniques"]
+
+    def find(spec):
+        hits = [i for i, t in enumerate(techs) if t["id"] == spec["id"]]
+        n = spec.get("copy", 1)
+        if n > len(hits):
+            raise BuildError(f"edit names copy {n} of {spec['id']}, the build has {len(hits)}")
+        return hits[n - 1]
+    for spec in edits.get("replace", ()):
+        i = find(spec)
+        new = _entry(dict(techs[i], **{k: v for k, v in spec.items() if k != "copy"}))
+        techs[i] = new
+    for spec in sorted(edits.get("remove", ()), key=lambda s: -s.get("copy", 1)):
+        del techs[find(spec)]
+    techs.extend(_entry(t) for t in edits.get("add", ()))
+    b["statPoints"].update(edits.get("stats", {}))
+    b["skillPoints"].update(edits.get("skills", {}))
+    if "inventory" in edits:
+        b["inventory"] = edits["inventory"]
+    return b
+
+
+def check_budget(name, build):
+    """Every Buildable copy within its Level's Feature Budget
+    (techniques.csv), Advanced Features only where the Level allows them,
+    no Feature past its Max Copies, bonus points from Tormenting Curse /
+    Bare-Handed counted (features.csv). A Feature features.csv doesn't
+    list (a draft) isn't priced. Raises a BuildError on anything over."""
+    for t in build.get("techniques", ()):
+        budget = game_data.feature_budget(t["id"])
+        feats = t.get("features") or []
+        if budget is None or not feats:
+            continue
+        level = _level(t.get("level", 1))
+        if level not in budget:
+            raise BuildError(f"{name}: {t.get('name', t['id'])} at Level {level} has no Feature Budget")
+        points, adv_ok = budget[level]
+        spent = 0
+        for f in feats:
+            row = game_data.features().get((t["id"], f["name"]))
+            if row is None:
+                continue
+            n = int(f["count"])
+            if row["Max Copies"].strip() and n > int(row["Max Copies"]):
+                raise BuildError(f"{name}: {f['name']} x{n} is over its Max Copies ({row['Max Copies']})")
+            if row["Tier"].strip() == "Advanced" and not adv_ok:
+                raise BuildError(f"{name}: {f['name']} is Advanced, not open at Level {level}")
+            spent += int(row["Point Cost"]) * n
+            if row["Bonus Points"].strip():
+                points += int(row["Bonus Points"])
+        if spent > points:
+            raise BuildError(f"{name}: {t.get('name', t['id'])} Level {level} spends {spent} of {points} points "
+                             f"({', '.join(f['name'] + ' ' + str(f['count']) for f in feats)})")
 
 
 def load_sheet(row, build=None):
@@ -83,6 +170,7 @@ def load_sheet(row, build=None):
     character plays. Stops with a BuildError on anything it can't place:
     an unknown Technique, Feature or item, a pick that names nothing."""
     build = build or read_build(row["Build"])
+    check_budget(row["Name"], build)
     sheet = SimpleNamespace(
         name=row["Name"],
         stats={s: int(build["statPoints"][s]) for s in STATS},
@@ -90,7 +178,7 @@ def load_sheet(row, build=None):
         weapon=(row.get("Weapon") or "").strip(), armor="Unarmored", parry_weapons=[],
         passives=[], card_techniques=[], encounter_techs=[], tech_attacks=[], hexes=[], maneuvers=[],
         blessing_features={}, weapon_uses=None, defense_choices=[],
-        support=False, heal_cards=1, heal_bonus=0, heal_reach=None, heal_range=None,
+        support=False, heal_cards=1, heal_bonus=0, heal_reach=None, heal_range=None, heal_features={},
         battle_tactic=(row.get("Battle Tactic") or "").strip() or None,
         play_style=(row.get("Play Style") or "").strip(),
         bottles_item=(row.get("Bottles Item") or "").strip())
@@ -186,7 +274,18 @@ def _maneuver_features(feats):
                 # and Distracting (F004, Taunt X), all + their suit.
                 calculated=feats.get("Calculated", 0), wing_clip=feats.get("Wing Clip", 0),
                 hamstring=feats.get("Hamstring", 0), harrying=feats.get("Harrying", 0),
-                distracting=feats.get("Distracting", 0))
+                distracting=feats.get("Distracting", 0),
+                # 2026-10-25, the rest of the basic list and the Advanced
+                # doubling ones (techniques.py's Battle Maneuver hooks):
+                # Turn Elements X (Ward), Backfoot X (Stagger [twice X]),
+                # Lodestone X (Push 2 x X), Blade of Four Fates X (Sift X),
+                # Elemental (damage type), Viper's Sting (1 AP), Fleet Step
+                # X (Outflank [twice X]), Ricochet Shot, Flurry (Repeat).
+                turn_elements=feats.get("Turn Elements", 0), element=feats.get("_element"),
+                backfoot=feats.get("Backfoot", 0), lodestone=feats.get("Lodestone", 0),
+                blade=feats.get("Blade of Four Fates", 0), elemental=bool(feats.get("Elemental")),
+                viper=bool(feats.get("Viper's Sting")), fleet=feats.get("Fleet Step", 0),
+                ricochet=bool(feats.get("Ricochet Shot")), flurry=bool(feats.get("Flurry")))
 
 
 def _pc_dict(sheet, index, good_luck):
@@ -578,6 +677,8 @@ def _pc_dict(sheet, index, good_luck):
                                                      strategy == "support_healer"))
     if weapon_uses_left is not None:
         pc["weapon_uses_left"] = weapon_uses_left
+    if sheet.heal_features:
+        pc["heal_features"] = dict(sheet.heal_features)
     if tech_attacks:
         pc["tech_attacks"] = tech_attacks
     if defense_choices:
@@ -593,14 +694,20 @@ def _rows():
 
 
 def make_pc(name, index=1, good_luck=0, health=0, add_passives=(), drop_passives=(), battle_tactic=None,
-            rows=None):
+            rows=None, edits=None, row_changes=None):
     """One sample character's fight dict, optionally changed for a test:
     `health` more max Health, test passives added (effect_check's
     "Test:..." ones, a Style being priced) or dropped, a different Battle
-    Tactic. The one way scripts should build a modified character, so none
-    of them depend on the CSV's columns."""
+    Tactic. `edits` changes the build itself for one run (apply_edits'
+    format: swap a Feature, a Technique, a Stat) and `row_changes` the
+    row's own columns (a Choices pick, the Weapon). The one way scripts
+    should build a modified character, so none of them depend on the
+    CSV's columns."""
     row = (rows or _rows())[name]
-    sheet = load_sheet(row)
+    if row_changes:
+        row = dict(row, **row_changes)
+    build = apply_edits(read_build(row["Build"]), edits) if edits else None
+    sheet = load_sheet(row, build)
     sheet.health += health
     sheet.passives = [p for p in sheet.passives if p not in drop_passives] + list(add_passives)
     if battle_tactic:
