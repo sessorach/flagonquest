@@ -15,10 +15,11 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-10-25 — Every Technique and Ability in the simulator
 
-The simulator now plays every combat Technique on the sample characters' sheets and every Ability in the enemy catalog, the way they'd work at the table. Hanforth's Lifeline turned out to be the big one: with him in the party, someone goes Down in 2% of Level 2 fights instead of 19%.
+The simulator now plays every combat Technique on the sample characters' sheets and every Ability in the enemy catalog, and it reads the characters straight from their Builder exports, so a sheet and its benchmark can't drift apart. Hanforth's Lifeline turned out to be the big one: with him in the party, someone goes Down in 2% of Level 2 fights instead of 19%.
 
 - New on the party side: Beornhard's Shadow Jaunt, Gainsay and Wall of Shadows, Hanforth's Gust of Wind, Lifeline and Spirit Blessing, and Blinkstep and Parting Shot.
 - New on the enemy side: grappling, cleaving, Retribution Aura and the rest of the catalog. No sample enemy uses them yet. Retribution Aura looks far stronger than its draft price.
+- Reorganized the simulator so each Technique and Ability lives in one place, and a sheet naming one the simulator doesn't know stops with an error instead of being skipped.
 
 ### 2026-10-24 — The sample characters, as built
 

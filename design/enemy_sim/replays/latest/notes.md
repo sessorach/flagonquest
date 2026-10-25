@@ -1,12 +1,12 @@
 # Latest replays (2026-10-25)
 
-Every combat Technique on the sample sheets and the whole enemy Ability catalog are in the sim; new Level 2 Solo Boss replay shows Hanforth's Lifeline, Spirit Blessing and Gust of Wind.
+Characters now load from their Builder exports and every Technique/Ability runs through hooks.py; Sable, Rook and Wren (L2) get Toughened Body's Health 13.
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 1000 fights: 93.7% wins, 3.8 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 94.8% wins, 3.7 rounds, 72% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
@@ -55,6 +55,6 @@ Every combat Technique on the sample sheets and the whole enemy Ability catalog 
 ## partyD2_L2_vs_solo_boss.html
 - Party: Browndog (L2), Rook (L2), Sable (L2), Hanforth (L2)
 - Enemies: Level 2 Solo Boss (Brute Warlord (L2))
-- This fight (seed 18): party won in 5 rounds, 88% party HP left
-- Matchup average over 1000 fights: 99.3% wins, 4.7 rounds, 91% HP left on a win
+- This fight (seed 66): party won in 5 rounds, 80% party HP left
+- Matchup average over 1000 fights: 99.5% wins, 4.7 rounds, 92% HP left on a win
 - Picked from fights with lifeline_taken above 0

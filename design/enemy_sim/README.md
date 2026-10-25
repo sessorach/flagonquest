@@ -217,12 +217,13 @@ The core files and the regular tools:
   Armor/Battle Tactic/Fighting Style/Abilities/Archetype). The `Roster`
   column tells two kinds apart: the five `TRUE` rows are the validated
   one-per-Level on-level roster; everything else is a `FALSE` reference
-  build tagged with an `Archetype` label — **Neutral**, **Power-Attack**,
-  **Max-Damage**, **Ranged Caster**, **Tank** (one of each at every
-  Level 1-5), **Minion** (0.5 Slots, one per Level — see
-  `sample_enemies.py`'s own note on why), plus **Mixed-Style** (6 Level 1
-  builds — Hedge Knight, Marsh Archer, Skulking Footpad, Bog Caster, Fen
-  Warden, Bog Skirmisher — drafted with deliberately varied Fighting
+  build. The old builder's Generic archetype rows (Neutral, Power-Attack,
+  Max-Damage, Ranged Caster, Tank and Minion at every Level), Bog Caster
+  and Marsh Viper Scout, which nothing used, moved to
+  `archive/sample_enemies_retired_2026-10-25.csv`; only the four old
+  Roster rows still use the old builder, since `make_enemy` and every
+  default encounter read them. The **Mixed-Style** builds (Hedge Knight,
+  Marsh Archer, Skulking Footpad, Fen Warden, Bog Skirmisher) were drafted with deliberately varied Fighting
   Styles rather than defaulting every enemy to Flurry, each row's own
   Notes explains its particular combo and the retuning pass that gave
   them their `DamageBonus`/`AccuracyBonus`/`DefenseBonus`). Bog
@@ -308,8 +309,7 @@ The core files and the regular tools:
   default now (no explicit `enemies=`) — a real varied 4-archetype mix
   for whichever Levels have one defined in `MIXED_ROSTER` (Level 1 so
   far: Hedge Knight/Marsh Archer/Skulking Footpad/Fen Warden, replacing
-  the old 4x-clone Marsh Viper Scout default — still reachable via
-  `get_enemy`, just no longer `Roster=TRUE`), falling back to the
+  the old 4x-clone Marsh Viper Scout default, since retired), falling back to the
   original `n_enemies` clones of `make_enemy(level)` for every other
   Level. Simulator fixtures for now, not a finished in-game roster.
 - **`combat_sim.py`** — the Monte Carlo fight loop (`run_fight`) and

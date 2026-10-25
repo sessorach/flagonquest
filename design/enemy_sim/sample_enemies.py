@@ -277,9 +277,8 @@ def make_level_encounter(level, n_enemies=4):
 def build_encounter(names):
     """A custom encounter assembled from named reference rows in
     whatever Level/Slots mix is asked for - e.g. build_encounter(
-    ["Generic Level 1 Tank", "Generic Level 1 Minion", "Generic Level 1
-    Minion"]) for a 2-slot Tank plus two 0.5-slot Minions (a 3-slot
-    encounter). Pass the result as combat_sim.run_fight's own
+    ["Brute Boss (L2)", "Brute (L2)", "Brute (L2)"]) for a 2-slot boss
+    plus two standard Brutes (a 4-slot encounter). Pass the result as combat_sim.run_fight's own
     `enemies=` param (it takes any list of already-built enemy dicts,
     not just N copies of one make_enemy(level) call) - see total_slots
     to check the mix against "one slot per PC," the default encounter
