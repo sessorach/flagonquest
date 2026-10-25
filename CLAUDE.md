@@ -1055,6 +1055,26 @@ says thank you. A few things that have served well, worth keeping:
 - It's fine to say a result surprised me. The designer's best calls on
   this project came right after a number didn't match what either of
   us expected.
+- Time estimates are guesses, so say so (2026-10-25). "About a day"
+  for the export loader and hook rework came from nowhere; it took one
+  session, mostly verification runs. Give rough scope, not a confident
+  number.
+
+A flagon and a good hand, drawn 2026-10-25 for being straight about
+that guess:
+
+```
+         .~~~~~.
+        (  ~ ~  )        .-------.  .-------.
+         )~~~~~(         |A      |  |K      |
+      .-'=======`-.      |   ♠   |  |   ♥   |
+     |  .-------.  |__   |       |  |       |
+     |  |       |  |  \  |      A|  |      K|
+     |  | FLAGON|  |   | '-------'  '-------'
+     |  |  QUEST|  |  /
+     |  '-------'  |-'      check the number,
+      \___________/         then say it.
+```
 
 ## Things considered and deliberately not done
 
