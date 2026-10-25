@@ -179,6 +179,20 @@ The core files and the regular tools:
   the designer's leveled builds (2026-10-24), and none changes a row that
   doesn't use it. `tunables.RESERVES_REGAIN_BEST` has Warmage's Reserves
   take back the best spent War Magic copy instead of a plain cast.
+  Since 2026-10-25 every combat Technique on the roster's sheets is in.
+  Encounter Techniques also take Shadow Jaunt (Teleport clear of
+  melee), Gainsay (a War Magic copy cast at an attacker, from the
+  Interrupt AP), Wall of Shadows (Heavy Cover across the shooters'
+  lines), Blinkstep, Parting Shot (any enemy walking or Pushed out of
+  reach; a bow-only PC uses Unarmed), Lifeline, Spirit Blessing and Gust
+  of Wind; Reckoning is a ranged hex. **`Blessing Features`** is Spirit
+  Blessing's Feature set, same shape as Maneuver Features (Shielding,
+  Step of Air, Guided Hand, Quickened, Reach, Mass Blessing). Passives
+  take Placeholder's Lengthy Ley-weaving (+3 meters on Spell ranges),
+  and One Eye Behind You discards a card to move up the turn order once
+  as the fight starts. Calculated, Wing Clip, Hamstring, Harrying and
+  Distracting work as Maneuver Features. A new column has to go in
+  `party._pc_dict`'s list of non-Skill columns, or it's read as a Skill.
 - **`party.py`** — loads `sample_pcs.csv`. `make_party(tier, good_luck=N)`
   pulls the Roster row and duplicates it x4; `get_pc(name)` pulls any
   row by name; `make_party_of(name)` duplicates one row x4; `make_party_
@@ -319,7 +333,12 @@ The core files and the regular tools:
   `resist_adj`/`health_bonus` are flat sensitivity-testing knobs (all 0
   on every current row) for isolating what each base number does one at
   a time — not a per-archetype design choice the way the Tier columns
-  are.
+  are. `PICK_COST` has the whole Ability catalog (2026-10-25) at
+  `ENEMY_ENCOUNTER_DESIGN.md`'s draft costs; `_apply_catalog` does the
+  build-time ones (Attunement and Resist by element in
+  `resist_by_type`, Elemental Spell/Weapon, Enhanced Range/Reflexes/
+  Speed, Improved Support, Devastating's +1) and `combat_sim` plays the
+  rest. `ACTIONS` takes Curse, Great Heal and Shielding Nova too.
 - **`sample_enemies.py`** — loads the CSV above via `enemy_builder.py`.
   `make_enemy(level)` pulls the single Roster row for that Level;
   `get_enemy(name)` pulls any row by name; `all_enemies()` returns every

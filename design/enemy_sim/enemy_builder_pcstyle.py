@@ -148,7 +148,23 @@ PICK_COST = {
     "Strike (Frightening)": 1, "Strike (Taunting)": 1, "Poison (Bleeding)": 1,
     "Durable": 2, "Heavy Weapon": 2, "Powerful Weapon": 2, "Powerful Spell": 2,
     "Enhanced Health": 1,  # +1 Health per copy
+    # The rest of the catalog (2026-10-25), at ENEMY_ENCOUNTER_DESIGN.md's
+    # draft costs ("Draft: the ability catalog at 1 pick = 1 Health").
+    # Most are estimates the draft says to test before trusting.
+    "Strike (Necrotic)": 1, "Strike (Harrying)": 1, "Strike (Battering)": 1, "Strike (Grappling)": 1,
+    "Strike (Devastating)": 2, "Strike (Cleaving)": 2,
+    "Poison (Crippling)": 1, "Poison (Necrotic)": 1, "Poison (Slowing)": 1, "Poison (Vulnerable)": 1,
+    "Omniguard": 2, "Resilient": 2, "Retribution Aura": 1, "Sturdy": 1,
+    "Enhanced Range": 1, "Improved Support": 1, "Enhanced Speed": 1, "Enhanced Reflexes": 1,
+    "Shadow Jaunt": 1, "Action (Parting Shot)": 1, "Action (Intimidating)": 1, "Action (Taunting)": 1,
 }
+ELEMENTS = ("Brilliant", "Fire", "Frost", "Shadow")
+OPPOSITE = {"Brilliant": "Shadow", "Shadow": "Brilliant", "Fire": "Frost", "Frost": "Fire"}
+for _el in ELEMENTS:
+    PICK_COST[f"Resist ({_el})"] = 1
+    PICK_COST[f"Attunement ({_el})"] = 1
+    PICK_COST[f"Elemental Spell ({_el})"] = 0  # a reflavor
+    PICK_COST[f"Elemental Weapon ({_el})"] = 0  # a trade: -1 Damage
 ARMOR_PICKS = {"Unarmored": 0, "Light": 0, "Medium": 1, "Heavy": 2}
 # At least this share of the Upgrades has to stay as +1 Health (rounded
 # up: 2 of 6 at Level 2). Spending everything on effects left a 6-Health
@@ -171,7 +187,7 @@ CODIFIED_ATTACK_TIER = "primary"
 
 def action_category(action):
     a = ACTIONS[action]
-    if a.get("kind") in ("support", "heal"):
+    if a.get("kind") in ("support", "heal", "nova"):
         return "support"
     if a.get("kind") == "hex" or a["dmg_type"] not in (None, "Physical"):
         return "spell"
@@ -226,6 +242,17 @@ ACTIONS = {
                         "kind": "support"},
     "Mend Ally":       {"acc_mod": 0, "dmg_base": 0, "stat": "essence",         "wd": None, "dmg_type": None,       "opp_def": None,          "range": 1,
                         "kind": "heal"},
+    # The catalog's other main Actions (2026-10-25), at its own numbers:
+    # Curse "Target is debuffed +2 times" (Dodge, Range x2), Great Heal
+    # "Target ally heals 2 Health" (Range x3), Shielding Nova "Allies in
+    # range gain 2 Protected" (Range x3). `stacks` overrides the Level
+    # tables below; none of the three is priced against the others yet.
+    "Curse":           {"acc_mod": 0, "dmg_base": 0, "stat": "mind",            "wd": None, "dmg_type": None,       "opp_def": "Dodge",       "range": 2,
+                        "kind": "hex", "stacks": 2},
+    "Great Heal":      {"acc_mod": 0, "dmg_base": 0, "stat": "essence",         "wd": None, "dmg_type": None,       "opp_def": None,          "range": 3,
+                        "kind": "heal", "stacks": 2},
+    "Shielding Nova":  {"acc_mod": 0, "dmg_base": 0, "stat": "essence",         "wd": None, "dmg_type": None,       "opp_def": None,          "range": 3,
+                        "kind": "nova", "stacks": 2},
 }
 
 # How many stacks a Hex lands on a hit, or how much Protected a Shield
@@ -357,7 +384,9 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
                     attack_range=a["range"] * level + (2 if a["range"] else 0))
 
     kind = act.get("kind", "attack")
-    if kind in ("support", "heal"):
+    if "stacks" in act:
+        effect_stacks = act["stacks"]
+    elif kind in ("support", "heal"):
         effect_stacks = GUARANTEED_STACKS[level]
     else:
         effect_stacks = EFFECT_STACKS[level]
@@ -369,13 +398,60 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     if kind != "attack":
         attack_damage = 0
 
-    return dict(name=name, level=level, slots=slots, role=role or "None", action=action,
-                kind=kind, main_effect=main_effect or {"support": "Protected", "heal": "Health"}.get(kind),
-                effect_stacks=effect_stacks, backup=backup, stats=stat,
-                accuracy=accuracy, attack_damage=attack_damage, dmg_type=dmg_type,
-                opp_def=opp_def, attack_range=attack_range,
-                parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
-                physres=physres, elemres=elemres,
-                health=health, max_health=health, speed=speed, reflex=reflex,
-                ability_budget=ability_budget, ability_cost=ability_cost, abilities=list(abilities),
-                protected=0, armor=armor)
+    enemy = dict(name=name, level=level, slots=slots, role=role or "None", action=action,
+                 kind=kind, main_effect=main_effect or {"support": "Protected", "heal": "Health",
+                                                        "nova": "Protected"}.get(kind),
+                 effect_stacks=effect_stacks, backup=backup, stats=stat,
+                 accuracy=accuracy, attack_damage=attack_damage, dmg_type=dmg_type,
+                 opp_def=opp_def, attack_range=attack_range,
+                 parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
+                 physres=physres, elemres=elemres,
+                 health=health, max_health=health, speed=speed, reflex=reflex,
+                 ability_budget=ability_budget, ability_cost=ability_cost, abilities=list(abilities),
+                 protected=0, armor=armor)
+    _apply_catalog(enemy, abilities)
+    return enemy
+
+
+def _apply_catalog(e, abilities):
+    """The catalog's build-time numbers (the rest play out in combat_sim):
+    Attunement "+4 Resist to that element, -1 Resist to its opposite",
+    Resist "+2 Resist to that element alone", Elemental Spell/Weapon
+    retypes the attack (Weapon "at -1 Damage"), Enhanced Range "Range x2
+    on the enemy's action", Enhanced Reflexes +3, Enhanced Speed +1,
+    Improved Support "+50% (round up)" on heals and Protected grants,
+    and Strike (Devastating)'s "Damage +1". Per-element Resist sits in
+    `resist_by_type`, on top of the one `elemres` pool."""
+    for a in abilities:
+        if a.startswith("Attunement ("):
+            el = a[len("Attunement ("):-1]
+            rbt = e.setdefault("resist_by_type", {})
+            rbt[el] = rbt.get(el, 0) + 4
+            rbt[OPPOSITE[el]] = rbt.get(OPPOSITE[el], 0) - 1
+        elif a.startswith("Resist ("):
+            el = a[len("Resist ("):-1]
+            rbt = e.setdefault("resist_by_type", {})
+            rbt[el] = rbt.get(el, 0) + 2
+        elif a.startswith("Elemental Spell (") or a.startswith("Elemental Weapon ("):
+            el = a[a.index("(") + 1:-1]
+            spell = a.startswith("Elemental Spell")
+            for prof in (e, e.get("backup")):
+                if not prof or not prof.get("attack_damage"):
+                    continue
+                is_spell = action_category(prof["action"]) == "spell"
+                if is_spell == spell:
+                    prof["dmg_type"] = el
+                    if not spell:
+                        prof["attack_damage"] -= 1
+        elif a == "Enhanced Range" and e.get("attack_range"):
+            e["attack_range"] *= 2
+        elif a == "Enhanced Reflexes":
+            e["reflex"] += 3
+        elif a == "Enhanced Speed":
+            e["speed"] += 1
+        elif a == "Improved Support" and e["kind"] in ("support", "heal", "nova"):
+            e["effect_stacks"] = math.ceil(e["effect_stacks"] * 1.5)
+        elif a == "Strike (Devastating)":
+            for prof in (e, e.get("backup")):
+                if prof and prof.get("attack_damage"):
+                    prof["attack_damage"] += 1

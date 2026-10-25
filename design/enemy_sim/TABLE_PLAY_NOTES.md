@@ -638,7 +638,7 @@ Poisoning the PCs. With half ticks it lands during the fight instead of
 after it, so someone is Down or Wounded a point or two more often, and
 Health left stays put.
 
-## Where things stand (2026-10-24)
+## Where things stand (2026-10-25)
 
 The sections above are dated and describe the sim on their day. Since
 then:
@@ -648,6 +648,23 @@ then:
   Push, Fatestealer and Battle Maneuver's Features. So are Brace, Furious
   Rage on Hilde, Strength from the Slain, Exert Pressure, Eagle Eyes,
   Grim Resolve and Beornhard's Destructive and Furrow War Magic.
+- **Every combat Technique on the roster's sheets is in** (2026-10-25):
+  Shadow Jaunt, Gainsay and Wall of Shadows (Beornhard), Gust of Wind,
+  Ley-weaving, Lifeline and Spirit Blessing (Hanforth), Blinkstep and
+  Parting Shot (Sable and Rook at Level 2), Sable's Level 2 Battle
+  Maneuver, and One Eye Behind You's discard to move up the order.
+  Reckoning is a ranged cast now, not a stand-in for Hanforth's punch.
+  The rest are out of combat: Follower, Legerdemain, Rumormonger,
+  Distraction, Patch Up, Bound Across Mountains, Quick Draw, Shadow's
+  Path, Favorite Face, Spacious Gut, Gorger, Vow of Poverty.
+- **So is the whole enemy Ability catalog**, at the draft's pick costs:
+  the rest of the Strike and Poison riders, Cleaving, Grappling (with
+  the rulebook's grapple rules on both sides), Devastating, Omniguard,
+  Resilient, Retribution Aura, Sturdy, Shadow Jaunt, the three 0 AP
+  Actions, Attunement and Resist by element, Elemental Spell and Weapon,
+  Enhanced Range/Reflexes/Speed, Improved Support, and the Curse, Great
+  Heal and Shielding Nova actions. No sample enemy carries the new ones
+  yet.
 - **Thrown weapons hit a point softer** (2 + Cunning, 3 + Body for
   Heavy), matching `items.csv`. Ashleigh's damage in the 10-08 table is
   3 now, not 4.
@@ -661,14 +678,21 @@ then:
 
 | | Rounds | Losses | Someone Down | Someone Wounded | Hit enemy acts again |
 |---|---|---|---|---|---|
-| Level 2, Party A | 2.6 | 0.1% | 14% | 40% | 21-28% |
-| Level 2, Party B | 2.1 | 0% | 7% | 31% | 12-22% |
-| Level 3, Party A | 3.0 | 4.2% | 60% | 90% | 20-37% |
-| Level 3, Party B | 2.2 | 1.1% | 40% | 68% | 11-25% |
+| Level 2, Party A | 2.5 | 0% | 13% | 38% | 21-31% |
+| Level 2, Party B | 2.1 | 0% | 7% | 31% | 13-22% |
+| Level 2, Party D | 2.8 | 0% | 2% | 42% | 23-34% |
+| Level 3, Party A | 2.9 | 3.1% | 56% | 86% | 21-39% |
+| Level 3, Party B | 2.2 | 0.2% | 36% | 65% | 10-24% |
 
 The leveled builds end Level 2 fights fast and almost never lose, and a
 hit enemy gets another turn far less than the table's half. Level 3 is
-rougher on Party A (Sable is still her Level 2 build there).
+rougher on Party A (Sable is still her Level 2 build there). The
+10-25 Techniques moved these a little: Health left went up 1-3 points
+for every leveled party. The big one is Lifeline: Party D's someone-Down
+fell from 19% to 2%, because Hanforth takes any hit that would Down an
+ally and keeps taking them while he can. Gust of Wind costs Hanforth's
+Level 1 party about a point of Health: a pushed enemy walks back on 2 AP
+and still attacks, so the push rarely takes anything off it.
 
 - **Table toughness** for the as-built Level 1 Party A is ×2.0 enemy
   Health, not ×1.75 (`balance_weights_notes.md`, "The sample
@@ -693,7 +717,14 @@ rougher on Party A (Sable is still her Level 2 build there).
 - **Card rescues on Encounter attacks**: the party spends cards to save
   any big attack that misses, so Beornhard's War Magic lands 96-99% of
   the time. Check that against how the table spends cards.
-- **Not modeled yet**: Wall of Shadows, Gainsay, Shadow Jaunt, Distraction
-  and Patch Up (out of combat), Bound Across Mountains, Follower; Cloak
-  and Dagger never fires for a thrower at range; Furrow seldom has a
-  target in its 4-meter line.
+- **Lifeline** is strong enough to look at (Party D above).
+- **Retribution Aura** cost the Level 2 Party A a fifth of its Health
+  when all four Warband enemies had it, far over the draft's one-pick
+  estimate. Worth pricing before a sample enemy carries it.
+- **Wall of Shadows** seldom pays: Beornhard (L3) put it up in 9 of 240
+  fights against Level 2 encounters, since it blocks his own spells too,
+  and the shooters it would block die fast anyway.
+- **Not modeled**: Cloak and Dagger never fires for a thrower at range;
+  Furrow seldom has a target in its 4-meter line; the PCs don't steer
+  around an enemy's Parting Shot; enemies can't Teleport out of a
+  grapple, and a Heavy Melee enemy doesn't count as two-handed.

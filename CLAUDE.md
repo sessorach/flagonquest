@@ -257,6 +257,9 @@ which should stay a clean decision record.
   Beornhard (an old wizard), Felix and Hanforth are he/him. Per the
   designer (2026-10-24); `sample_pcs.csv`'s Pronouns column has the
   same. A Masquerade example once had Jackal as "he".
+- **A new `sample_pcs.csv` column goes in `party._pc_dict`'s list of
+  non-Skill columns**, or it's silently read as a Skill. Blessing
+  Features (2026-10-25) was the latest.
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and

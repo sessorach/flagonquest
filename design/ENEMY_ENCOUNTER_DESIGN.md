@@ -382,14 +382,21 @@ sections above; picked from this same master catalog, just broken out
 here for clarity since they're structural picks rather than optional
 extras.
 
-**Wired into the combat simulator**: a subset with a single, clean
-numeric effect the simulator's round loop can represent — Enhanced
-Health, Powerful Weapon, Powerful Spell, Strike (Crippling), Strike
-(Vulnerable), Poison (Bleeding), and Durable. `design/enemy_sim/
-tunables.py`'s `ABILITY_COST` has the full list and why the rest
-(Slowed, Omniguard, the support/targeting abilities, anything
-positional) aren't modeled yet. `enemy_builder.build_enemy` takes an
-`abilities` list and checks its cost against the Level's own budget.
+**Wired into the combat simulator**: all of it, since 2026-10-25, through
+`enemy_builder_pcstyle.py` (`PICK_COST` at the draft costs below, and
+`ACTIONS` for Curse, Great Heal and Shielding Nova). A few readings the
+sim had to pick: Curse lands 2 stacks of its MainEffect and Great Heal
+and Shielding Nova 2 each, at the catalog's own numbers, not the Level
+tables the sim's Hex, Shield Ally and Mend Ally use. Enhanced Range
+doubles a ranged action and does nothing for a melee one. Poison
+riders land on any hit, as Poison (Bleeding) always has. Cleaving's
+extra target is another PC next to the attacker. Grappling uses the
+rulebook's Grapple rules on both sides; a grappled PC who can't fight
+from inside it (two-handed weapon, a bow or spell, a cautious play
+style) spends 2 AP to try to break free, and the enemy contests with
+its attack's Accuracy. Intimidating and Taunting need no roll. The old
+`enemy_builder.build_enemy` still knows only the spreadsheet subset in
+`tunables.ABILITY_COST`.
 
 Testing this against `sample_enemies.py`'s roster turned up two things
 worth knowing before picking abilities for a real enemy:

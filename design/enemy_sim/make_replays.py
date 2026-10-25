@@ -56,6 +56,11 @@ MATCHUPS = [
     # the Slain, Hilde's Level 3 Battle Maneuver, Exert Pressure, Jackal's
     # Wind Slash Maneuvers, Beornhard's Destructive War Magic.
     ("partyB_L3_vs_L3_frontline", ["Hilde (L3)", "Browndog (L3)", "Jackal (L3)", "Beornhard (L3)"], 3, "Frontline"),
+    # Every Technique on the sheets (2026-10-25): Hanforth's Lifeline,
+    # Spirit Blessing, Gust of Wind and ranged Reckoning, with Rook's and
+    # Sable's Blinkstep and Parting Shot, against the Level 2 Solo Boss.
+    ("partyD2_L2_vs_solo_boss", ["Browndog (L2)", "Rook (L2)", "Sable (L2)", "Hanforth (L2)"], 2, "Solo Boss",
+     "lifeline_taken"),
 ]
 
 

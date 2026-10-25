@@ -374,9 +374,23 @@ def select_target(unit, targets, movement_on, allies=None):
 # action - up to `speed` meters) - combat_sim.spend_movement_ap is what
 # decides how many of these a unit's turn actually gets to spend.
 
+def necrotic_cut(unit, heal):
+    """glossary.md, Necrotic: "If you would heal any Health, instead for
+    each stack of Necrotic you have you reduce that amount by 1 and
+    remove a stack of Necrotic." Returns what's left of the heal."""
+    n = min(heal, unit.get('necrotic', 0))
+    if n > 0:
+        unit['necrotic'] -= n
+        unit['necrotic_heal_blocked'] = unit.get('necrotic_heal_blocked', 0) + n
+    return heal - n
+
+
 def _speed(unit):
     """Speed after Hasted and Slowed (glossary.md: +1 / -1 Speed per stack)
-    and Wounded (-2), floored at 0."""
+    and Wounded (-2), floored at 0. A grapple (rulebook.md) holds it at 0."""
+    g = unit.get('grapple')
+    if g is not None and g['health'] > 0 and unit['health'] > 0:
+        return 0
     return max(0, unit['speed'] + unit.get('hasted', 0) - unit.get('slowed', 0) - (2 if pc_wounded(unit) else 0))
 
 
@@ -552,7 +566,7 @@ def strategy_support_healer(pc, party, log):
     else:
         hearts = sum(1 for _ in range(k) if cards.chosen_matches('Hearts'))
         pc['heal_uses_left'] -= 1
-    heal = 1 + hearts + pc.get('heal_bonus', 0)
+    heal = necrotic_cut(target, 1 + hearts + pc.get('heal_bonus', 0))
     before = target['health']
     target['health'] = min(target['max_health'], target['health'] + heal)
     if log:
@@ -619,6 +633,7 @@ def try_second_wind(pc, log=None):
     else:
         pc['card_uses_left'] -= 1
         heal = min(2, pc['max_health'] - pc['health'])
+    heal = necrotic_cut(pc, heal)
     pc['health'] += heal
     if log:
         log(unit=pc['name'], action='heal', target=pc['name'], amount=heal, target_hp_after=pc['health'], via='Second Wind')

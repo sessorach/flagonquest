@@ -176,9 +176,6 @@ TECH_ATTACKS = {
         skill_total=skill_total(st, sk, "Sorcery"), damage=2 + int(st["Mind"]) + 2,
         dmg_type="Fire", opp_def="Dodge", effect=None, skill="Sorcery",
         line=skill_total(st, sk, "Sorcery") // 2, range=skill_total(st, sk, "Sorcery") // 2, draw_power=True),
-    "Reckoning": lambda st, sk, atk, dmg: dict(
-        skill_total=skill_total(st, sk, "Theurgy"), damage=0,
-        dmg_type=None, opp_def="Mental", effect=("crippled", 5, "Clubs"), skill="Theurgy"),
 }
 
 # Ranged hexes cast at the start of a turn by combat_sim._try_hexes (not
@@ -194,6 +191,12 @@ TECH_ATTACKS = {
 HEXES = {
     "Hex of Sloth": ("slowed", 6, "Spades", "Dodge"),
     "Hex of Rebuking": ("push", 12, "Spades", "Vital"),
+    # Reckoning (T111, Level 2, 2 AP, "A creature within [Theurgy Skill
+    # Total] meters"): "Make a Theurgy spell attack against the target's
+    # Mental Defense. If it hits, they are Crippled 5 + [Clubs] times."
+    # A ranged cast at the start of the turn since 2026-10-25; it used to
+    # stand in for Hanforth's Unarmed attack, so he only cast it in melee.
+    "Reckoning": ("crippled", 5, "Clubs", "Mental", "Theurgy"),
 }
 
 _CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sample_pcs.csv")
@@ -230,7 +233,34 @@ def _maneuver_features(text):
                 whirlwind=bool(feats.get("Whirlwind")), victorious=bool(feats.get("Victorious")),
                 ascended=bool(feats.get("Ascended Blade")),
                 # Wind Slash X (Jackal): +[twice X] range for the attack.
-                wind=feats.get("Wind Slash", 0))
+                wind=feats.get("Wind Slash", 0),
+                # Calculated (F016, Good Luck), Wing Clip (F006, Crippled X),
+                # Hamstring (F008, Slowed X), Harrying (F007, Harried 1 + X)
+                # and Distracting (F004, Taunt X), all + their suit.
+                calculated=feats.get("Calculated", 0), wing_clip=feats.get("Wing Clip", 0),
+                hamstring=feats.get("Hamstring", 0), harrying=feats.get("Harrying", 0),
+                distracting=feats.get("Distracting", 0))
+
+
+def _blessing_features(text, theurgy, ley):
+    """Spirit Blessing's Features ("Shielding 2, Quickened, Reach", same
+    shape as Maneuver Features): Shielding X is Protected X + 1, Step of
+    Air X Hasted X + 1, Guided Hand X Good Luck on the next X attacks,
+    Quickened makes it 1 AP, Reach adds [Theurgy Skill Total] meters to
+    "yourself or an adjacent ally", and Mass Blessing a second target."""
+    feats = {}
+    for f in text.split(","):
+        parts = f.strip().rsplit(" ", 1)
+        if len(parts) == 2 and parts[1].isdigit():
+            feats[parts[0]] = int(parts[1])
+        elif f.strip():
+            feats[f.strip()] = 1
+    return dict(protected=feats["Shielding"] + 1 if "Shielding" in feats else 0,
+                hasted=feats["Step of Air"] + 1 if "Step of Air" in feats else 0,
+                guided=feats.get("Guided Hand", 0),
+                ap=1 if "Quickened" in feats else 2,
+                range=1 + (theurgy if "Reach" in feats else 0) + ley,
+                targets=2 if "Mass Blessing" in feats else 1)
 
 
 def _pc_dict(row, index, good_luck):
@@ -239,7 +269,7 @@ def _pc_dict(row, index, good_luck):
               ("Name", "Tier", "Agility", "Body", "Cunning", "Mind", "Essence", "Health", "Roster", "Notes",
                "Weapon", "Support", "Armor", "Pronouns", "Card Techniques", "Weapon Uses", "Heal Cards", "Heal Bonus",
                "Heal Range", "Passives", "Battle Tactic", "Parry Weapons", "Encounter Techniques",
-               "Defense Choices", "Play Style", "Maneuver Features", "Bottles Item")}
+               "Defense Choices", "Play Style", "Maneuver Features", "Bottles Item", "Blessing Features")}
     parry = 8 + skill_total(stats, skills, "Melee")
     # Raw Acrobatics Skill Total - captured before Armor's own Dodge
     # modifier folds into `dodge` below, since Blinkstep (T077, "Shift
@@ -538,11 +568,21 @@ def _pc_dict(row, index, good_luck):
         daily_count = int(gold_budget // item_cost)
         bottled_fire_uses = daily_count // 2
 
+    # Placeholder's Lengthy Ley-weaving (T133, a Style): "Your Spells and
+    # non-weapon-attack Disciplines have their Ranges increased by 3
+    # meters." Hanforth's Heal Range of 4 already counts it.
+    ley = 3 if any("Ley-weaving" in p for p in passives) else 0
+
     # Ranged hexes (HEXES above), one use per known copy.
-    hexes = [dict(via=h, kind=HEXES[h][0], amount=HEXES[h][1], suit=HEXES[h][2], uses=encounter_techs.count(h),
-                  skill="Sorcery", skill_total=skill_total(stats, skills, "Sorcery"), opp_def=HEXES[h][3],
-                  range=skill_total(stats, skills, "Sorcery"))
-             for h in dict.fromkeys(encounter_techs) if h in HEXES]
+    hexes = []
+    for h in dict.fromkeys(encounter_techs):
+        if h not in HEXES:
+            continue
+        hskill = HEXES[h][4] if len(HEXES[h]) > 4 else "Sorcery"
+        hexes.append(dict(via=h, kind=HEXES[h][0], amount=HEXES[h][1], suit=HEXES[h][2],
+                          uses=encounter_techs.count(h), skill=hskill,
+                          skill_total=skill_total(stats, skills, hskill), opp_def=HEXES[h][3],
+                          range=skill_total(stats, skills, hskill) + ley))
 
     # Battle Maneuver (T072, Encounter, "Make a weapon attack") with its
     # Features (`Maneuver Features`, e.g. "Bare-Handed, Lunging 2, Half
@@ -614,6 +654,44 @@ def _pc_dict(row, index, good_luck):
     # already counts both; this moves where Wounded starts.
     if "Toughened Resolve" in passives:
         pc["shallow_max"] += 2
+    # Encounter Techniques modeled 2026-10-25 (see combat_sim's helpers of
+    # the same names): Shadow Jaunt, Gainsay, Wall of Shadows, Blinkstep,
+    # Parting Shot, Lifeline, Spirit Blessing and Gust of Wind.
+    sorcery, theurgy = skill_total(stats, skills, "Sorcery"), skill_total(stats, skills, "Theurgy")
+    if "Shadow Jaunt" in encounter_techs:
+        pc["jaunt_uses_left"] = encounter_techs.count("Shadow Jaunt")
+        pc["jaunt_range"] = max(sorcery, theurgy)
+    if "Gainsay" in encounter_techs:
+        pc["gainsay_uses_left"] = encounter_techs.count("Gainsay")
+    if "Wall of Shadows" in encounter_techs:
+        pc["wall_uses_left"] = encounter_techs.count("Wall of Shadows")
+        pc["sorcery_skill_total"] = sorcery
+    if "Blinkstep" in encounter_techs:
+        pc["blinkstep"] = True
+    if "Parting Shot" in encounter_techs:
+        pc["parting_shot"] = True
+        # "a close-range weapon you are wielding": the Weapon itself if it
+        # works up close (thrown weapons and melee), else Unarmed.
+        if weapon in ("Light Bow", "War Magic (Lance)") or weapon.startswith("War Magic"):
+            u = T.WEAPON["Unarmed"]
+            pc["close_profile"] = dict(skill_total=skill_total(stats, skills, "Brawl") + u["accuracy"],
+                                       damage=u["damage_base"] + max(int(stats["Body"]), int(stats["Cunning"])),
+                                       dmg_type="Physical", opp_def="Parry/Dodge", skill="Brawl", via="Unarmed")
+        else:
+            pc["close_profile"] = dict(skill_total=atk_skill_total, damage=damage, dmg_type=dmg_type,
+                                       opp_def=opp_def, skill=w_skill, via=weapon_name)
+    if "Lifeline" in encounter_techs:
+        pc["lifeline_uses_left"] = encounter_techs.count("Lifeline")
+        pc["lifeline_range"] = theurgy + ley
+    if "Spirit Blessing" in encounter_techs:
+        pc["blessing"] = dict(uses=encounter_techs.count("Spirit Blessing"),
+                              **_blessing_features(row.get("Blessing Features") or "", theurgy, ley))
+    if "Gust of Wind" in encounter_techs:
+        pc["gust_uses_left"] = encounter_techs.count("Gust of Wind")
+        pc["theurgy_skill_total"] = theurgy
+        pc["gust_push"] = 2 * int(stats["Mind"])
+    # rulebook.md, Grapple: no "actions that require two hands".
+    pc["two_handed"] = weapon in ("2H Heavy Melee", "2H Light Melee", "Light Bow")
     # Cloak and Dagger (T079) was a test-only field; Carrick has it now.
     if "Cloak and Dagger" in passives:
         pc["cloak_and_dagger"] = True

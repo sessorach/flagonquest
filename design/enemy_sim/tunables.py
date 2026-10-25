@@ -128,21 +128,11 @@ ACTIONS = {
     "Ranged Spell":     {"accuracy": 0, "damage": 2, "dmg_type": "Fire", "opp_def": "Dodge", "range": 2},
 }
 
-# ---- Ability catalog: the subset wired into the simulator ----
-# The full Ability catalog (ENEMY_ENCOUNTER_DESIGN.md's "The Ability
-# catalog" section) has ~30 entries; only the ones with a single, clean
-# numeric effect that this simulator's simplified round loop can
-# actually represent are implemented here - flat stat modifiers, an
-# on-hit debuff with one real number attached (Crippled's -1 to
-# attacks, Vulnerable's -1 to Vital/Mental/Vigilant Defenses, Bleeding's
-# 1 damage per decaying stack), and Durable's Protected regen. Left out
-# for now: anything needing Speed/initiative (Slowed, Enhanced Speed -
-# no turn-order model here), healing (Necrotic - no PC healing action
-# exists in this sim), targeting-choice effects (Omniguard,
-# Action abilities, Frightened/Taunted), multi-target hits (Strike
-# (Cleaving)), and anything positional (Sturdy, Shadow Jaunt,
-# Retribution Aura). Costs match the real catalog exactly, for the
-# budget-validation check in enemy_builder.build_enemy.
+# ---- Ability catalog: the old builder's subset ----
+# The original enemy_builder.build_enemy (rows with no AttackTier) only
+# knows these, at the spreadsheet's 5-point costs. Every row built since
+# 2026-10-01 goes through enemy_builder_pcstyle instead, whose PICK_COST
+# has the whole catalog (since 2026-10-25; combat_sim plays each one).
 ABILITY_COST = {
     "Enhanced Health": 5,
     "Powerful Weapon": 5,

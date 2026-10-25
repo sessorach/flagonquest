@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-25 — Every Technique and Ability in the simulator
+
+The simulator now plays every combat Technique on the sample characters' sheets and every Ability in the enemy catalog, the way they'd work at the table. Hanforth's Lifeline turned out to be the big one: with him in the party, someone goes Down in 2% of Level 2 fights instead of 19%.
+
+- New on the party side: Beornhard's Shadow Jaunt, Gainsay and Wall of Shadows, Hanforth's Gust of Wind, Lifeline and Spirit Blessing, and Blinkstep and Parting Shot.
+- New on the enemy side: grappling, cleaving, Retribution Aura and the rest of the catalog. No sample enemy uses them yet. Retribution Aura looks far stronger than its draft price.
+
 ### 2026-10-24 — The sample characters, as built
 
 The simulator's Hilde, Browndog, Carrick, Jackal and Beornhard now play the way their players built them, at Level 1 and at the designer's new 125 and 175 XP versions. Thrown weapons now hit as hard as the item list says, a point less than the simulator had them.
