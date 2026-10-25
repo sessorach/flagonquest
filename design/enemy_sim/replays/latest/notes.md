@@ -1,24 +1,24 @@
-# Latest replays (2026-10-24)
+# Latest replays (2026-10-25)
 
-Jackal and Beornhard's leveled builds join Hilde's and Browndog's; the Level 3 replay is now all four of the designer's 175 XP builds.
+Every combat Technique on the sample sheets and the whole enemy Ability catalog are in the sim; new Level 2 Solo Boss replay shows Hanforth's Lifeline, Spirit Blessing and Gust of Wind.
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 1000 fights: 94.5% wins, 3.6 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 93.7% wins, 3.8 rounds, 73% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
 - Enemies: Level 1 Shield Wall (Hedge Knight, Hedge Knight, Marsh Archer, Marsh Archer)
 - This fight (seed 1): party won in 3 rounds, 98% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.7 rounds, 92% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.8 rounds, 92% HP left on a win
 
 ## partyT_L1_vs_L1_warband.html
 - Party: Browndog, Hanforth, Sable, Beornhard
 - Enemies: Level 1 Warband (Brute, Skulking Footpad, Skulking Footpad, Warpriest)
 - This fight (seed 1): party won in 3 rounds, 92% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 3.0 rounds, 95% HP left on a win
+- Matchup average over 1000 fights: 99.9% wins, 3.1 rounds, 95% HP left on a win
 
 ## bleed_party_L1_vs_L1_frontline.html
 - Party: Hilde (Bleed), Felix (Bleed), Jackal (Bleed), Beornhard (Bleed)
@@ -44,10 +44,17 @@ Jackal and Beornhard's leveled builds join Hilde's and Browndog's; the Level 3 r
 - Party: Hilde, Browndog, Carrick, Sable
 - Enemies: Level 1 Chief's Frontline (Brute Chief, Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 75% party HP left
-- Matchup average over 1000 fights: 97.3% wins, 3.8 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 95.9% wins, 3.8 rounds, 74% HP left on a win
 
 ## partyB_L3_vs_L3_frontline.html
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
 - Enemies: Level 3 Frontline (Brute (L3), Brute (L3), Grave Caller (L3), Grave Caller (L3))
 - This fight (seed 1): party won in 2 rounds, 83% party HP left
-- Matchup average over 1000 fights: 99.9% wins, 2.1 rounds, 77% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.0 rounds, 77% HP left on a win
+
+## partyD2_L2_vs_solo_boss.html
+- Party: Browndog (L2), Rook (L2), Sable (L2), Hanforth (L2)
+- Enemies: Level 2 Solo Boss (Brute Warlord (L2))
+- This fight (seed 18): party won in 5 rounds, 88% party HP left
+- Matchup average over 1000 fights: 99.3% wins, 4.7 rounds, 91% HP left on a win
+- Picked from fights with lifeline_taken above 0
