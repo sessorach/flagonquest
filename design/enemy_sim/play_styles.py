@@ -138,6 +138,10 @@ def plan_turn(pc, targets, allies, ap):
     turn. `targets` are the living enemies; `ap` is what's left after
     healing/Challenge."""
     style = pc.get('play_style') or "Diver"
+    if T.SHAPE_SETUP and 'pos' in pc and targets:
+        shaped = plan_shape(pc, targets, ap)
+        if shaped:
+            return shaped
     if style == "Diver" or 'pos' not in pc or not targets:
         return None
     if random.random() < T.RECKLESS_CHANCE:
@@ -155,6 +159,52 @@ def _attack_ap(pc):
     plan can spend the other on moving."""
     m = pc.get('maneuver')
     return T.ATTACK_AP_COST - 1 if m and m['uses'] > 0 and m.get('viper') else T.ATTACK_AP_COST
+
+
+def plan_shape(pc, targets, ap):
+    """A shaped War Magic copy still unspent (Furrow, Funnel, Nova): step to
+    where it catches the most enemies, at least two, and cast it there
+    (tunables.SHAPE_SETUP, 2026-10-26). Without this a Back-liner never
+    gets close enough for a 4-meter line or a 2-meter cone. Furrow and
+    Funnel stop short of ending next to an enemy; Nova needs to. Marks
+    the turn so the attack loop picks that copy (combat_sim's
+    _tech_attack_choice). None when no spot works."""
+    import combat_sim as cs, techniques  # they import this module
+    sub = next((t for t in pc.get('tech_attacks', ()) if t['uses'] > 0
+                and (t.get('line') or t.get('cone') or t.get('nova'))), None)
+    if sub is None:
+        return None
+    speed = max(1, tactics._speed(pc))
+    reach_moves = max(0, (ap - sub.get('ap', T.ATTACK_AP_COST)) // T.MOVE_AP_COST)
+    radius = speed * reach_moves
+    here = pc['pos']
+    taken = {tuple(u['pos']) for u in targets} | {tuple(a['pos']) for a in cs._CTX.get('pcs', ()) if 'pos' in a
+                                                   and a is not pc and a['health'] > 0}
+    reach = sub.get('range') or cs.effective_range(pc)
+    best = None
+    for dx in range(-radius, radius + 1):
+        for dy in range(-radius, radius + 1):
+            pos = movement.clamp((here[0] + dx, here[1] + dy))
+            if pos != tuple(here) and pos in taken:
+                continue
+            adjacent = len(_adjacent(pos, targets))
+            if (adjacent > 0) != bool(sub.get('nova')):
+                continue
+            probe = dict(pc, pos=pos)
+            for t in targets:
+                if _dist(pos, t['pos']) > reach:
+                    continue
+                extra = (cs._line_targets(probe, t, targets, sub['line']) if sub.get('line')
+                         else techniques.shape_targets(probe, t, targets, sub))
+                key = (1 + len(extra), -_dist(here, pos))
+                if key[0] >= 2 and (best is None or key > best[0]):
+                    best = (key, t, pos)
+    if best is None:
+        return None
+    (hits, _), t, pos = best
+    pc['_shape_now'] = True
+    return Plan(target=t, pre_pos=pos, pre_moves=_moves_for(_dist(here, pos), speed), max_attacks=2,
+                note=f"step in for {sub['via']}, {hits} in it")
 
 
 def _moves_for(spaces, speed):

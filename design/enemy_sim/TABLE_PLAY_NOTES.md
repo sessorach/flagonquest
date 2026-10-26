@@ -873,6 +873,103 @@ What it says, roughly:
   someone-Down by 6-11 points, so Reckoning's Crippled is worth about
   as much Health as Lifeline is.
 
+## Beornhard's War Magic options (2026-10-26, later)
+
+The same broad sweep for the designer's 125 and 175 XP Beornhard
+(`beornhard_sweep.py`): other Features on his War Magic copies, the
+Defense they're learned against, and his other Techniques traded for
+more War Magic or Force Missiles. Party B and Party D at each Level,
+100 fights a mix, paired. "WM" is a Level 2 copy at Level 2 (both
+rebuilt the same), "WM2"/"WM4" his Level 2 or Level 4 copies at Level 3.
+
+Three things changed in the sim to run it. Force Missiles is modeled (a
+1 AP Encounter spell against the target's better of Parry and Dodge,
+3 + Mind Physical). A War Magic copy with neither Lance nor a Shape now
+reaches only an adjacent creature, as its Target says; before, it had
+his full range, which no sample build had tripped over. And
+`tunables.SHAPE_SETUP` (off) lets a caster step in to catch two or more
+enemies with a Furrow, Funnel or Nova copy: as a Back-liner, Beornhard
+(L3) cast his Level 4 Furrow copy 0.14 times a fight, since a 4-meter
+line from his own space rarely reaches anyone. With it on, 0.46. The
+Level 3 table is with it on; with it off, the Shape rows all read zero.
+
+Change in Health left at the end of the fight, and in wins (points):
+
+Level 2. Party B, ×2.75: wins 90%, Health left 69.0, someone Down 40%, 5.2 rounds. Party D, ×1.75: wins 96%, Health left 78.7, someone Down 33%, 4.6 rounds.
+
+| Swap | Party B, ×2.75 | Party D, ×1.75 |
+|---|---|---|
+| XP: Shadow Jaunt for Force Missiles | +1.3 ±0.8, wins +0 | +1.6 ±0.8, wins +2 |
+| XP: Shadow Jaunt for a Level 1 Lance | +0.9 ±0.8, wins +1 | +0.7 ±0.7, wins +2 |
+| WM: as built, all vs Vital | +0.2 ±1.2, wins +1 | +1.0 ±1.0, wins +2 |
+| XP: Overchanneling for Force Missiles and a Level 1 Lance | -1.8 ±1.3, wins -2 | +0.6 ±1.2, wins +1 |
+| XP: Overchanneling for a Level 2 Lance, Destructive 2 | -1.8 ±1.2, wins -2 | +0.1 ±1.2, wins -0 |
+| WM: Lance, Wild Magic 2 | -3.0 ±1.5, wins -2 | +1.2 ±1.1, wins +2 |
+| WM: Lance, Destructive 1, Corrupting 1, all vs Vital | -2.0 ±1.3, wins -0 | +0.1 ±1.1, wins +2 |
+| WM: Lance, Destructive 1, Wild Magic 1 | -1.8 ±1.5, wins -2 | -0.4 ±1.2, wins +0 |
+| WM: one copy Frigid 2, one Destructive 2 | -2.1 ±1.5, wins -3 | -0.6 ±1.0, wins +0 |
+| WM: a Tormenting Curse hex, Lance, Frigid 5 | -2.7 ±1.5, wins -3 | -1.1 ±1.4, wins -2 |
+| XP: Warmage's Reserves for a Level 2 Lance, Destructive 2 | -2.3 ±1.1, wins -2 | -1.7 ±1.1, wins -2 |
+| WM: Lance, Destructive 1, Barraging 1 | -2.2 ±1.1, wins -2 | -2.1 ±0.9, wins -2 |
+| WM: Lance, Corrupting 2, all vs Vital | -3.6 ±1.7, wins -2 | -1.2 ±1.3, wins +2 |
+| WM: Lance, Destructive 1, Frigid 1 | -2.7 ±1.2, wins -2 | -2.1 ±0.9, wins -2 |
+| WM: Lance, Destructive 1, Kinetic 1 | -4.2 ±1.5, wins -4 | -2.6 ±1.3, wins -2 |
+| WM: Lance, Frigid 2 | -5.7 ±1.8, wins -8 | -2.4 ±1.3, wins -1 |
+| WM: Lance, Abjuring 2 | -6.3 ±1.9, wins -7 | -2.3 ±1.5, wins -2 |
+| WM: Lance, Barraging 2 | -5.6 ±1.9, wins -6 | -3.3 ±1.3, wins -2 |
+| WM: Lance, Necrotic 2 | -6.9 ±1.9, wins -8 | -3.5 ±1.3, wins -2 |
+| WM: Destructive 3, no Lance | -11.4 ±2.1, wins -12 | -8.5 ±1.9, wins -8 |
+| WM: Lance, Sanguine, Destructive 1 | -9.1 ±2.0, wins -10 | -11.6 ±2.2, wins -9 |
+
+Level 3, with Shape setup on. Party B, ×2.25: wins 82%, Health left 50.8, someone Down 77%, 4.7 rounds. Party D, ×2.25: wins 80%, Health left 54.2, someone Down 63%, 5.2 rounds.
+
+| Swap | Party B, ×2.25 | Party D, ×2.25 |
+|---|---|---|
+| WM4: Lance, Destructive 5 | +4.2 ±1.3, wins +5 | +3.7 ±1.4, wins +5 |
+| WM4: Lance, Destructive 3, Wild Magic 2 | +2.5 ±1.2, wins +1 | +2.7 ±1.3, wins +3 |
+| WM4: Lance, Destructive 3, Piercing Elements, Draw Power | +2.0 ±1.1, wins +2 | +2.2 ±1.2, wins +2 |
+| XP: Shadow Jaunt for Force Missiles | +2.7 ±1.2, wins +3 | +1.0 ±0.9, wins +1 |
+| XP: Wall of Shadows for a Level 2 Lance, Destructive 2 | +0.9 ±0.8, wins +3 | +1.6 ±1.6, wins +4 |
+| WM4: Lance, Piercing Elements, Destructive 2, Barraging 2 | +1.5 ±1.1, wins +0 | +0.6 ±1.2, wins +0 |
+| XP: the Level 4 copy at Level 3 (Lance, Destructive 2, Piercing) and a Level 1 Lance | +1.5 ±1.0, wins +1 | +0.5 ±1.2, wins +1 |
+| WM4: Furrow, Destructive 3 | +0.3 ±0.3, wins +0 | +0.4 ±0.4, wins +0 |
+| WM2: both Lance, Destructive 1, Wild Magic 1 | +0.0 ±1.3, wins +2 | +0.5 ±1.2, wins +2 |
+| WM4: Funnel, Destructive 3 | +0.6 ±0.6, wins +0 | -0.4 ±0.9, wins -1 |
+| WM4: Furrow, Frigid 2, Destructive 1 | -0.3 ±0.4, wins -0 | +0.3 ±0.7, wins +1 |
+| WM4: Furrow, Necrotic 1, Destructive 2 | -0.1 ±0.1, wins +0 | +0.0 ±0.1, wins +0 |
+| WM4: Nova, Destructive 3 | +0.2 ±0.6, wins -0 | -0.6 ±1.2, wins -1 |
+| XP: Wall of Shadows and Gainsay for a Level 3 Lance, Destructive 2, Piercing | -0.5 ±1.3, wins +1 | -0.4 ±1.8, wins +2 |
+| XP: Overchanneling for a Level 2 Lance, Destructive 2 | -1.0 ±0.9, wins -1 | -0.9 ±1.0, wins -0 |
+| WM2: both Lance, Destructive 1, Barraging 1 | -1.2 ±0.8, wins -2 | -0.7 ±0.9, wins -1 |
+| WM2: both Lance, Frigid 2 | -2.0 ±1.3, wins -3 | -0.0 ±1.5, wins -1 |
+| XP: Gainsay for a Level 1 Lance | -1.2 ±1.2, wins -0 | -1.1 ±1.5, wins +0 |
+| WM: as built, all vs Vital | -3.5 ±1.3, wins -4 | -1.4 ±1.3, wins -2 |
+
+What it says, roughly:
+
+- **Damage beats every rider.** Each Level 2 swap of Destructive for
+  Frigid, Kinetic, Barraging, Necrotic or Abjuring costs 2-7 Health in
+  Party B and 0.6-3.5 in Party D. Wild Magic and Corrupting (against
+  Vital) come out even in Party D and behind in Party B. Sanguine costs
+  9-12: it turns the hit's damage into Bleeding.
+- **Lance is a must.** Without it War Magic only reaches next to him,
+  and the copy costs 8.5-11.4 Health.
+- **The Level 4 copy is best as one big single-target spell.** Lance
+  and Destructive 5 is the best swap in the sweep (+3.7 to +4.2 Health,
+  +5 points of wins); Destructive 3 with Wild Magic or Piercing Elements
+  and Draw Power is next. The Shapes all land within a point of his own
+  Furrow even when he steps in for them: stepping into a 4-meter line
+  costs about what the second target pays.
+- **Dodge or Vital**: a wash at Level 2, 1.4-3.5 Health worse at Level
+  3 (and 6-7 with Shape setup off). The front line keeps about 2 Harried
+  on his targets at both Levels, and Harried lowers Dodge, not Vital.
+  Why the gap only opens at Level 3, I don't know.
+- **His other Techniques**: Force Missiles for Shadow Jaunt gains 1-2.7
+  Health at both Levels, and Wall of Shadows traded for another War
+  Magic copy gains about a point. Trading Overchanneling, Warmage's
+  Reserves or Gainsay for War Magic copies loses up to 2 (Overchanneling's
+  trade breaks even in Party D at Level 2).
+
 ## Still to do
 
 - **Items.** The sim doesn't model items yet beyond weapons, armor and
@@ -900,6 +997,9 @@ What it says, roughly:
 - **Retribution Aura** cost the Level 2 Party A a fifth of its Health
   when all four Warband enemies had it, far over the draft's one-pick
   estimate. Worth pricing before a sample enemy carries it.
+- **Shape setup** (`tunables.SHAPE_SETUP`): turn it on? It's how a
+  player would use a Furrow, Funnel or Nova copy, but it moves Party B's
+  Level 3 numbers a little, so it waits for the designer.
 - **Wall of Shadows** seldom pays: Beornhard (L3) put it up in 9 of 240
   fights against Level 2 encounters, since it blocks his own spells too,
   and the shooters it would block die fast anyway.

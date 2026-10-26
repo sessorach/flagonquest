@@ -150,6 +150,15 @@ _tech_attack("T159", "Thief Empties the Vessel", lambda st, sk, atk, dmg: dict(
     skill_total=_st(st, sk, "Meditation"), damage=2 + int(st["Mind"]),
     dmg_type="Shadow", opp_def="Vital", effect=None, skill="Meditation", heal_on_hit=3))
 
+# T121, Level 1, 1 AP, Encounter, "A creature within [Sorcery Skill Total]
+# meters": "Make a Sorcery spell attack against the target's Dodge or
+# Parry Defense. The spell attack deals 3 + [Mind] Physical damage." Two
+# Defenses named, so the target picks (its better one). `ap` 1: the
+# attack loop charges it 1 AP (2026-10-26), though it still starts an
+# attack only with 2 AP in hand.
+_tech_attack("T121", "Force Missiles", lambda st, sk, atk, dmg: dict(
+    skill_total=_st(st, sk, "Sorcery"), damage=3 + int(st["Mind"]), dmg_type="Physical",
+    opp_def="Parry/Dodge", effect=None, skill="Sorcery", range=_st(st, sk, "Sorcery"), ap=1))
 
 # ---- Hexes: cast at the start of a turn (combat_sim._try_hexes) ----
 
@@ -238,6 +247,11 @@ def _war_magic_factory(feats, defense):
             prof["line"] = sorcery // 2
             if "Lance" not in feats:
                 prof["range"] = sorcery // 2
+        # War Magic's Target is "An adjacent creature": a copy with neither
+        # Lance nor a Shape reaches only that far (2026-10-26; before, it
+        # had the weapon's full range).
+        if "Lance" not in feats and not any(f.endswith("(Shape)") for f in feats):
+            prof["range"] = cs.T.MELEE_RANGE
         if feats.get("Draw Power"):
             prof["draw_power"] = True
         # Funnel: "all creatures within a 2-meter-long cone". Nova: "all

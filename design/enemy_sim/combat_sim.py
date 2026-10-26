@@ -1157,6 +1157,13 @@ def _tech_attack_choice(pc, target):
     def expected(prof):
         need = enemy_defense_for_pc_attack(prof, target) - (prof['skill_total'] - pc.get('crippled', 0))
         return _p_flip_at_least(need) * max(0, prof['damage'] - enemy_resist_for_pc_attack(prof, target))
+    # A turn planned around a Shape (play_styles.plan_shape) casts it.
+    if pc.pop('_shape_now', False):
+        for t in pc.get('tech_attacks', ()):
+            if t['uses'] > 0 and (t.get('line') or t.get('cone') or t.get('nova')) and (
+                    not t.get('range') or 'pos' not in pc or _distance(pc['pos'], target['pos']) <= t['range']):
+                t['uses'] -= 1
+                return t
     for t in pc.get('tech_attacks', ()):
         if t['uses'] <= 0:
             continue
@@ -1693,7 +1700,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if maneuver_now and not repeating and mv.get('viper'):
                     viper_free += 1
                 ap -= 0 if repeating else (1 if feint_active or (maneuver_now and mv.get('viper'))
-                                           else T.ATTACK_AP_COST)
+                                           or (substitute or {}).get('ap') == 1 else T.ATTACK_AP_COST)
                 if pc.get('weapon_uses_left') is not None and not substitute:
                     pc['weapon_uses_left'] -= 1
                 hit = roll >= defense
@@ -2107,6 +2114,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 _left_melee(pc, start, enemies, pcs, rnd)
         pc.pop('_repeat', None)
         pc.pop('_action_sift', None)
+        pc.pop('_shape_now', None)
         turn.ap = ap
         hooks.run('pc_turn_end', pc, turn)
         ap = turn.ap

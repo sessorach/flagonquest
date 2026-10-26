@@ -477,6 +477,10 @@ RESCUE_RESERVE = {1: 2, 2: 1, 3: 0, 4: 0, 5: 0}
 # Off, Hanforth spent about 2.4 cards a Level 1 fight on attacks and under
 # 1 on healing.
 HEALER_KEEPS_CARDS = False
+# A caster with a shaped War Magic copy (Furrow, Funnel, Nova) steps in to
+# catch two or more enemies with it (play_styles.plan_shape, 2026-10-26).
+# Off, Beornhard (L3) cast his Furrow copy 0.2 times a fight.
+SHAPE_SETUP = False
 # An ally can throw a card onto someone else's kill shot ("the party
 # talks"); the rulebook lets you play cards on an ally's flip.
 CARDS_ALLY_RESCUE = True

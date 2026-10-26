@@ -11,13 +11,11 @@ are in TABLE_PLAY_NOTES.md, "Hanforth's options".
     python3 hanforth_sweep.py 2 0       # Level 2, first party
     python3 hanforth_sweep.py 3 1 -n 150
 """
-import argparse
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import compare_builds as cb  # noqa: E402
-import tunables as T  # noqa: E402
 
 HM, SB, LIFELINE = "T105", "T104", "T110"
 
@@ -153,16 +151,4 @@ PARTIES = {
 }
 
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("level", type=int, choices=(2, 3))
-    ap.add_argument("party", type=int, choices=(0, 1))
-    ap.add_argument("-n", type=int, default=100, help="fights per mix")
-    ap.add_argument("--only", help="run only swaps whose label contains this")
-    a = ap.parse_args()
-    names, mult = PARTIES[a.level][a.party]
-    T.ENEMY_HEALTH_MULT = mult
-    who = f"Hanforth (L{a.level})"
-    variants = [v for v in (L2 if a.level == 2 else L3) if not a.only or a.only in v[0]]
-    means, results = cb.sweep(names, who, variants, a.level, a.n)
-    print(f"Level {a.level}, {', '.join(names)}; enemy Health x{mult}; {a.n} fights a mix\n")
-    print(cb.sweep_table(means, results))
+    cb.sweep_main(__doc__, {2: ("Hanforth (L2)", L2), 3: ("Hanforth (L3)", L3)}, PARTIES)

@@ -152,7 +152,8 @@ The core files and the regular tools:
   River's Might, Touch of Chaos, Elemental Enhancement, Alacrity and
   Steal Fate; Healing Magic adds Purify, Rejuvenate, Guardian Angel,
   Triage, Deep Mending (no effect: the sim keeps one Health pool) and
-  Healing Pact, and the healer Styles Field Medic and Lifeward. Arcane
+  Healing Pact, and the healer Styles Field Medic and Lifeward. Force Missiles is a 1 AP
+  Technique attack. Arcane
   Chant, Glacier and Channel aren't modeled and stop the load. Out-of-combat
   IDs are listed in `OUT_OF_COMBAT`. **An ID, Feature or item
   the sim doesn't know stops the load with its name** — add it here
@@ -179,8 +180,10 @@ The core files and the regular tools:
   cancels out). Results for the drafted variants are in
   `sample_characters.md`, "Variants". `sweep()` tries many swaps for one
   character against a single base run, for a broad look at modest reps;
-  `hanforth_sweep.py` (2026-10-26) is the worked example, 45 swaps of
-  Hanforth's Healing Magic, Spirit Blessing and spare XP.
+  `hanforth_sweep.py` and `beornhard_sweep.py` (2026-10-26) are the
+  worked examples: Hanforth's Healing Magic, Spirit Blessing and spare
+  XP, and Beornhard's War Magic. A new study is a list of
+  (label, swap) pairs and parties, run through `sweep_main`.
 - **`party.py`** — `load_sheet(row)` reads a row and its build;
   `make_pc(name, ..., health=, add_passives=, drop_passives=,
   battle_tactic=)` is the one way to build a character changed for a

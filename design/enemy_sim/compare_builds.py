@@ -111,6 +111,34 @@ def sweep_table(means, results):
     return "\n".join(lines)
 
 
+def sweep_main(doc, variants, parties):
+    """The command line a sweep study shares (hanforth_sweep.py,
+    beornhard_sweep.py): `variants` {level: (who, [(label, swap)])},
+    `parties` {level: [(names, enemy Health multiplier)]}."""
+    ap = argparse.ArgumentParser(description=doc, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("level", type=int, choices=sorted(variants))
+    ap.add_argument("party", type=int, help="index into the Level's parties")
+    ap.add_argument("-n", type=int, default=100, help="fights per mix")
+    ap.add_argument("--only", help="run only swaps whose label contains this")
+    ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE")
+    a = ap.parse_args()
+    for kv in a.s:
+        k, v = kv.split("=", 1)
+        try:
+            v = ast.literal_eval(v)
+        except (ValueError, SyntaxError):
+            pass
+        setattr(T if hasattr(T, k) else tactics, k, v)
+    names, mult = parties[a.level][a.party]
+    T.ENEMY_HEALTH_MULT = mult
+    who, vs = variants[a.level]
+    vs = [v for v in vs if not a.only or a.only in v[0]]
+    means, results = sweep(names, who, vs, a.level, a.n)
+    print(f"Level {a.level}, {', '.join(names)}; enemy Health x{mult}; {a.n} fights a mix"
+          + (f"; {', '.join(a.s)}" if a.s else "") + "\n")
+    print(sweep_table(means, results))
+
+
 def report(summary):
     lines = []
     for key, label, scale in (('win', 'wins', 100), ('hp', 'Health left', 1), ('down', 'someone Down', 100),

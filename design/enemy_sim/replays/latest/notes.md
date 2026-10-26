@@ -1,12 +1,12 @@
 # Latest replays (2026-10-26)
 
-Spirit Blessing copies can be built differently, Field Medic and Lifeward are in, and hanforth_sweep.py tried 45 alternate picks for Hanforth; no change to how the sample characters play.
+Force Missiles is in, War Magic without Lance reaches only adjacent creatures, and beornhard_sweep.py tried 40 War Magic options; SHAPE_SETUP is off, so the sample characters play as before.
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 1000 fights: 92.5% wins, 3.7 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 94.0% wins, 3.7 rounds, 72% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

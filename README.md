@@ -20,6 +20,7 @@ Hanforth's own 125 and 175 XP builds are in the simulator, and he heals about on
 - Put in Jackal's seat, the healer starts a step behind her at Level 1 and ends a step ahead by Level 3, mostly by keeping people standing.
 - Notes for the Healing and Blessing magic pass: the heal barely grows from Level 1 to 2, cards do more saving a hit than healing, and Spirit Blessing's budget only grows a point a Level.
 - Tried 45 other picks for Hanforth. Keeping him standing (Lifeline, Toughened Body) beats any Healing Magic or Spirit Blessing swap, Guardian Angel and Triage beat Vitality, and Shielding is as good as any blessing.
+- Did the same for Beornhard's War Magic: plain damage beats every rider, and his Level 4 spell does best as one big Lance shot, since he seldom gets close enough to use a Shape.
 
 ### 2026-10-25 — Every Technique and Ability in the simulator
 
