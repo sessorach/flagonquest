@@ -1,0 +1,16 @@
+{
+ "base": "hanforth_l2.json",
+ "simNotes": [
+  "Variant of Hanforth (L2) (2026-10-26, drafted for comparisons; rebased on the 125/175 XP exports): Spirit Blessing as Shielding 2 and Quickened: Protected three times instead of four, for 1 AP instead of 2."
+ ],
+ "replace": [
+  {
+   "id": "T104",
+   "copy": 1,
+   "features": {
+    "Shielding": 2,
+    "Quickened": 1
+   }
+  }
+ ]
+}

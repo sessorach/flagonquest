@@ -1,0 +1,17 @@
+{
+ "base": "hanforth_l3.json",
+ "simNotes": [
+  "Variant of Hanforth (L3) (2026-10-26, drafted for comparisons; rebased on the 125/175 XP exports): Level 3 Healing Magic as Triage, Vitality 2 and Reach (8 points): +2, and +2 more on a Wounded ally, instead of +4."
+ ],
+ "replace": [
+  {
+   "id": "T105",
+   "copy": 1,
+   "features": {
+    "Triage": 1,
+    "Vitality": 2,
+    "Reach": 1
+   }
+  }
+ ]
+}

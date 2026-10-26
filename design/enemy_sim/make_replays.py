@@ -59,8 +59,10 @@ MATCHUPS = [
     # Every Technique on the sheets (2026-10-25): Hanforth's Lifeline,
     # Spirit Blessing, Gust of Wind and ranged Reckoning, with Rook's and
     # Sable's Blinkstep and Parting Shot, against the Level 2 Solo Boss.
-    ("partyD2_L2_vs_solo_boss", ["Browndog (L2)", "Rook (L2)", "Sable (L2)", "Hanforth (L2)"], 2, "Solo Boss",
-     "lifeline_taken"),
+    # The designer's own Hanforth (L2) doesn't take Lifeline (10-26); this
+    # shows the variant that does.
+    ("partyD2_L2_vs_solo_boss", ["Browndog (L2)", "Rook (L2)", "Sable (L2)", "Hanforth (L2, Lifeline)"], 2,
+     "Solo Boss", "lifeline_taken"),
     # Variant builds (2026-10-25, sample_characters.md "Variants"): the
     # Frost Beornhard Slowing what he hits, and the two Level 3 swaps that
     # helped, Hilde's Flurry and Beornhard's Piercing Elements.
@@ -68,6 +70,9 @@ MATCHUPS = [
      "Warband"),
     ("partyB_L3_flurry_piercing_vs_L3_frontline",
      ["Hilde (L3, Flurry)", "Browndog (L3)", "Jackal (L3)", "Beornhard (L3, Piercing)"], 3, "Frontline"),
+    # Hanforth's own 175 XP build (2026-10-26).
+    ("partyD_L3_vs_L3_frontline", ["Browndog (L3)", "Hanforth (L3)", "Hilde (L3)", "Beornhard (L3)"], 3,
+     "Frontline"),
 ]
 
 

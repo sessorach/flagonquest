@@ -677,9 +677,10 @@ then:
   3 now, not 4.
 - **The designer's own builds** are the `(L2)` and `(L3)` rows for
   Hilde, Browndog, Carrick, Jackal and Beornhard; Party B is Hilde,
-  Browndog, Jackal and Beornhard, the designer's at every Level. Sable,
-  Hanforth, Felix, Enith and Ashleigh are still Level 1 builds plus
-  extrapolated `(L2)` rows (none for Enith and Ashleigh).
+  Browndog, Jackal and Beornhard, the designer's at every Level. So are
+  Hanforth's `(L2)` and `(L3)` since 10-26. Sable and Felix are still
+  Level 1 builds plus extrapolated `(L2)` rows; Enith and Ashleigh are
+  Level 1 only.
 - **Calibration against built Health** (`calibrate.py`, 200 fights a
   mix), next to the targets above:
 
@@ -687,9 +688,10 @@ then:
 |---|---|---|---|---|---|
 | Level 2, Party A | 2.5 | 0% | 13% | 38% | 21-31% |
 | Level 2, Party B | 2.1 | 0% | 7% | 31% | 13-22% |
-| Level 2, Party D | 2.8 | 0% | 2% | 42% | 23-34% |
+| Level 2, Party D | 2.8 | 0% | 16% | 43% | 15-35% |
 | Level 3, Party A | 2.9 | 3.1% | 56% | 86% | 21-39% |
 | Level 3, Party B | 2.2 | 0.2% | 36% | 65% | 10-24% |
+| Level 3, Party D | 2.6 | 0.5% | 38% | 76% | 12-31% |
 
 The leveled builds end Level 2 fights fast and almost never lose, and a
 hit enemy gets another turn far less than the table's half. Level 3 is
@@ -697,7 +699,11 @@ rougher on Party A (Sable is still her Level 2 build there). The
 10-25 Techniques moved these a little: Health left went up 1-3 points
 for every leveled party. The big one is Lifeline: Party D's someone-Down
 fell from 19% to 2%, because Hanforth takes any hit that would Down an
-ally and keeps taking them while he can. Gust of Wind costs Hanforth's
+ally and keeps taking them while he can. That was the extrapolated
+Hanforth (L2), though. The designer's real 125 XP build (10-26) doesn't
+take Lifeline, and Party D's someone-Down is 16% with it. Party D at
+Level 3 is Party B with Hanforth for Jackal, since
+there's no Felix (L3) yet. Gust of Wind costs Hanforth's
 Level 1 party about a point of Health: a pushed enemy walks back on 2 AP
 and still attacks, so the push rarely takes anything off it.
 
@@ -705,14 +711,73 @@ and still attacks, so the push rarely takes anything off it.
   Health, not ×1.75 (`balance_weights_notes.md`, "The sample
   characters, as built"). Scripts still default to 1.75.
 
+## Healing and blessing at Levels 1-3 (2026-10-26)
+
+Groundwork for the Healing and Blessing magic pass, from Hanforth's real
+75, 125 and 175 XP builds in Party D (Browndog, Hanforth, Felix and
+Beornhard; Hilde for Felix at Level 3), at about five-round toughness.
+`compare_builds.py` and the `Hanforth (L2, ...)`/`(L3, ...)` variants
+reproduce it.
+
+What Hanforth does in a fight, 240 fights a Level:
+
+| | Party max Health | Rounds | Damage taken | Healed | Shielding stacks given | Protected soaked (all sources) |
+|---|---|---|---|---|---|---|
+| Level 1, ×1.75 | 40 | 7.0 | 21.5 | 2.3 | none | 4.4 |
+| Level 2, ×1.75 | 43 | 4.4 | 10.8 | 1.8 | 3.8 | 3.6 |
+| Level 3, ×2.25 | 47 | 5.4 | 26.2 | 3.3 | 4.3 | 6.8 |
+
+He casts Healing Magic about once every two fights at every Level, and
+at Level 3 nearly all of it goes on himself. Why so little:
+
+- **There's seldom anyone to heal.** The sim heals only a Wounded ally,
+  and on 2-3 of his turns a fight nobody is. Healing anyone down 4 or
+  more instead moved Health left by -0.1 to +1.3, so the trigger isn't
+  what's holding him back.
+- **The cards do more elsewhere.** A cast costs its Level in cards and
+  only the Hearts add healing. At Level 1 he spends about 2.4 cards a
+  fight on his own attacks (rescuing misses, topping up kills) and under
+  1 on healing. Making him keep a cast's worth back
+  (`tunables.HEALER_KEEPS_CARDS`, off) costs the party 0.4-1.1 Health
+  at every Level: a card saving a hit beats the same card as healing.
+- **The heal barely grows.** 1 + Hearts + Vitality: 5 at most at Levels 1
+  and 2 (Vitality 2 both times), 8 at Level 3 (Vitality 4, three cards).
+  Vitality costs 2 points for +1.
+- **Spirit Blessing's budget grows a point a Level** (3, 4, 5, 6), so
+  two Level 1 copies (6 points, two casts) beat one Level 2 copy (4
+  points, one cast) for the same 6 XP. The 175 XP build takes two Level
+  1 copies.
+
+Hanforth in Jackal's seat in Party B (paired, 300 fights a mix):
+
+| | Hanforth for Jackal | With Lifeline |
+|---|---|---|
+| Level 1, ×2.0 | -6.4 ±2.0 Health, wins -8 points | |
+| Level 2, ×2.75 | +3.2 ±1.4 Health, someone Down -6 points | +6.9 ±1.4, Down -19 points |
+| Level 3, ×2.25 | +5.5 ±1.6 Health, someone Down -14 points | +7.5 ±1.5, Down -20 points |
+
+So the healer goes from a step behind a damage dealer at Level 1 to a
+step ahead at Level 3, by keeping people standing more than by winning
+more. Lifeline is still the biggest single piece: swapped in for
+Minor Oracle and Profession (same XP), it takes Level 2 Party D's
+someone-Down from 33% to 16% at ×1.75.
+
+Directions the numbers point, for the pass: heals that cost fewer
+cards, or count more than Hearts; Vitality at 1 point; a Spirit Blessing
+budget that grows like Healing Magic's (1, 4, 8, 11); and a look at
+whether Lifeline is doing the job Healing Magic should.
+
 ## Still to do
 
 - **Items.** The sim doesn't model items yet beyond weapons, armor and
   Jackal's Bottomless Bottles. They matter more as characters level, so
   per the designer (2026-10-09): test their impact once the sample roster
   reaches about Level 3.
-- **The other five leveled builds** (Sable, Hanforth, Felix, Enith,
-  Ashleigh), from the designer.
+- **The other four leveled builds** (Sable, Felix, Enith, Ashleigh),
+  from the designer.
+- **Healing and Blessing magic pass** (designer, 2026-10-26): how
+  healers and support scale. Groundwork in "Healing and blessing at
+  Levels 1-3" above.
 - **Pick table toughness** (×1.75 or ×2.0) with the designer, then move
   the scripts' defaults.
 - **Re-run the Weak/Average/Strong columns** (`effect_check.py`) once
@@ -724,7 +789,8 @@ and still attacks, so the push rarely takes anything off it.
 - **Card rescues on Encounter attacks**: the party spends cards to save
   any big attack that misses, so Beornhard's War Magic lands 96-99% of
   the time. Check that against how the table spends cards.
-- **Lifeline** is strong enough to look at (Party D above).
+- **Lifeline** is strong enough to look at: at ×1.75, Level 2 Party D's
+  someone-Down is 16% with it and 33% without.
 - **Retribution Aura** cost the Level 2 Party A a fifth of its Health
   when all four Warband enemies had it, far over the draft's one-pick
   estimate. Worth pricing before a sample enemy carries it.

@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-26 — Hanforth as built, and how healers scale
+
+Hanforth's own 125 and 175 XP builds are in the simulator, and he heals about once every two fights at every Level. Yesterday's Lifeline numbers came from a made-up Level 2 Hanforth: the real one doesn't take Lifeline, and someone goes Down in 16% of his party's Level 2 fights, not 2%.
+
+- Put in Jackal's seat, the healer starts a step behind her at Level 1 and ends a step ahead by Level 3, mostly by keeping people standing.
+- Notes for the Healing and Blessing magic pass: the heal barely grows from Level 1 to 2, cards do more saving a hit than healing, and Spirit Blessing's budget only grows a point a Level.
+
 ### 2026-10-25 — Every Technique and Ability in the simulator
 
 The simulator now plays every combat Technique and Feature a character can pick and every Ability in the enemy catalog, reads the characters straight from their Builder exports, and can swap one character's build for another and show what changed. Hanforth's Lifeline turned out to be the big one: with him in the party, someone goes Down in 2% of Level 2 fights instead of 19%.

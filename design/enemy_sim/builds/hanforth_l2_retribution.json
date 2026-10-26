@@ -1,7 +1,7 @@
 {
  "base": "hanforth_l2.json",
  "simNotes": [
-  "Variant of Hanforth (L2) (2026-10-25, drafted for comparisons): Spirit Blessing as Retribution 2, Shielding 1 and Reach (2 AP now): Protected twice, and the next two hits on the ally give the attacker Bleeding."
+  "Variant of Hanforth (L2) (2026-10-26, drafted for comparisons; rebased on the 125/175 XP exports): Spirit Blessing as Retribution 2 and Shielding 1: Protected twice, and the next two hits on the ally give the attacker Bleeding."
  ],
  "replace": [
   {
@@ -9,8 +9,7 @@
    "copy": 1,
    "features": {
     "Retribution": 2,
-    "Shielding": 1,
-    "Reach": 1
+    "Shielding": 1
    }
   }
  ]

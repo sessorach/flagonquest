@@ -1,0 +1,17 @@
+{
+ "base": "hanforth_l3.json",
+ "simNotes": [
+  "Variant of Hanforth (L3) (2026-10-26, drafted for comparisons; rebased on the 125/175 XP exports): Level 3 Healing Magic as Healing Pact, Vitality 1 and Reach (8 points): two allies healed for 1 + Hearts + 1 each, instead of one for 1 + Hearts + 4."
+ ],
+ "replace": [
+  {
+   "id": "T105",
+   "copy": 1,
+   "features": {
+    "Healing Pact": 1,
+    "Vitality": 1,
+    "Reach": 1
+   }
+  }
+ ]
+}

@@ -1,0 +1,123 @@
+{
+  "charName": "Hanforth of Epione",
+  "charConcept": "He's the healer, what else do you need to know?",
+  "xpBudget": "125",
+  "statPoints": {
+    "Agility": 3,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 3
+  },
+  "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 0,
+    "Stealth": 2,
+    "Athletics": 1,
+    "Awareness": 2,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 2,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 4
+  },
+  "charNotes": "",
+  "noteRows": [],
+  "customTechniques": [],
+  "backgroundType": "Settler",
+  "backgrounds": [],
+  "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+  ],
+  "enabledSupplements": [
+    "Base Game"
+  ],
+  "gold": "",
+  "inventory": [
+    {
+      "id": "I119",
+      "qty": 1
+    },
+    {
+      "id": "I128",
+      "qty": 1
+    }
+  ],
+  "customItems": [],
+  "customMaterials": [],
+  "customAttacks": [],
+  "exportedAt": "2026-10-26T05:29:17.376Z",
+  "techniques": [
+    {
+      "id": "T105",
+      "name": "Healing Magic",
+      "xp": 6,
+      "level": 2,
+      "features": [
+        {
+          "name": "Vitality",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "T133",
+      "name": "Placeholder's Lengthy Ley-weaving",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T107",
+      "name": "Gust of Wind",
+      "xp": 3,
+      "level": "Lv 1"
+    },
+    {
+      "id": "T104",
+      "name": "Spirit Blessing",
+      "xp": 3,
+      "level": 1,
+      "features": [
+        {
+          "name": "Shielding",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "T111",
+      "name": "Reckoning",
+      "xp": 6,
+      "level": "Lv 2"
+    },
+    {
+      "id": "T191",
+      "name": "Minor Oracle",
+      "xp": 3,
+      "level": "Lv 1"
+    },
+    {
+      "id": "T027",
+      "name": "Profession",
+      "xp": 3,
+      "level": "Lv 1",
+      "note": "Theologian"
+    }
+  ]
+}

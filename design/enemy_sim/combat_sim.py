@@ -864,6 +864,12 @@ def _importance(target, net_on_hit, big=False):
     return NORMAL
 
 
+def _held_back(h):
+    """Cards `h` won't spend on an attack: a healer's next cast
+    (tunables.HEALER_KEEPS_CARDS)."""
+    return h.get('heal_cards', 1) if T.HEALER_KEEPS_CARDS and h.get('strategy') == 'support_healer' else 0
+
+
 def _rescue(pc, need, k, importance, allies):
     """Plays the `k` cheapest hand cards of at least `need` onto a missed
     flip. The flipper's own hand first; on a kill shot, an ally's too.
@@ -873,7 +879,7 @@ def _rescue(pc, need, k, importance, allies):
         holders += [a for a in allies if a is not pc and a['health'] > 0 and a.get('hand')]
     reserve = T.RESCUE_RESERVE[importance]
     for h in holders:
-        if not cards.can_spend(h, k + reserve):
+        if not cards.can_spend(h, k + reserve + _held_back(h)):
             continue
         play = cards.cheapest_at_least(h['hand'], need, k)
         if play:
@@ -1045,7 +1051,7 @@ def _kill_topup(pc, target, raw, resist, skill, allies):
     if x is None:
         return 0
     for h in [pc] + [a for a in allies if a is not pc and a['health'] > 0 and a.get('hand')]:
-        if not cards.can_spend(h, x):
+        if not cards.can_spend(h, x + _held_back(h)):
             continue
         matching = sorted((c for c in h['hand'] if cards.suit(c) == s), key=cards.rank)
         if len(matching) >= x:

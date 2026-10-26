@@ -1,16 +1,14 @@
 {
  "base": "hanforth_l2.json",
  "simNotes": [
-  "Variant of Hanforth (L2) (2026-10-25, drafted for comparisons): Spirit Blessing as Touch of Chaos 2, Quickened and Reach: the hardest hitter Sifts a card into each of its next four flips."
+  "Variant of Hanforth (L2) (2026-10-26, drafted for comparisons; rebased on the 125/175 XP exports): Spirit Blessing as Touch of Chaos 3: the hardest hitter Sifts a card into each of its next six flips."
  ],
  "replace": [
   {
    "id": "T104",
    "copy": 1,
    "features": {
-    "Touch of Chaos": 2,
-    "Quickened": 1,
-    "Reach": 1
+    "Touch of Chaos": 3
    }
   }
  ]

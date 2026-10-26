@@ -37,7 +37,7 @@ OUT_OF_COMBAT = {
     "T004": "Vow of Poverty", "T007": "Bound Across Mountains", "T034": "Legerdemain",
     "T036": "Patch Up", "T039": "Quick Draw", "T042": "Shadow's Path", "T059": "Follower",
     "T063": "Favorite Face", "T065": "Rumormonger", "T141": "Spacious Gut", "T142": "Gorger",
-    "T144": "Distraction",
+    "T144": "Distraction", "T027": "Profession", "T068": "Dominate Mind",
     # Health only: the loader adds techniques.csv's Health bonus columns
     # for every Technique, so these need nothing else.
     "T014": "Toughened Body", "T023": "Toughened Spirit",

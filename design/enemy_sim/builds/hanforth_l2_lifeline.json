@@ -1,0 +1,23 @@
+{
+ "base": "hanforth_l2.json",
+ "simNotes": [
+  "Variant of Hanforth (L2) (2026-10-26, drafted for comparisons; rebased on the 125/175 XP exports): Lifeline (Level 2, 6 XP) instead of Minor Oracle and Profession (3 XP each, both out of combat): the same XP, nothing given up in a fight."
+ ],
+ "remove": [
+  {
+   "id": "T191",
+   "copy": 1
+  },
+  {
+   "id": "T027",
+   "copy": 1
+  }
+ ],
+ "add": [
+  {
+   "id": "T110",
+   "name": "Lifeline",
+   "level": "Lv 2"
+  }
+ ]
+}

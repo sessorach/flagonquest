@@ -1,0 +1,23 @@
+{
+ "base": "hanforth_l3.json",
+ "simNotes": [
+  "Variant of Hanforth (L3) (2026-10-26, drafted for comparisons; rebased on the 125/175 XP exports): Lifeline instead of Minor Oracle and Profession, as at Level 2."
+ ],
+ "remove": [
+  {
+   "id": "T191",
+   "copy": 1
+  },
+  {
+   "id": "T027",
+   "copy": 1
+  }
+ ],
+ "add": [
+  {
+   "id": "T110",
+   "name": "Lifeline",
+   "level": "Lv 2"
+  }
+ ]
+}

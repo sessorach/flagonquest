@@ -192,7 +192,15 @@ Level 2 version of Felix (+50 XP, 125 total; ~+15 Stats/+15 Skills/+20 Technique
 
 Build: `builds/hanforth_l2.json`.
 
-Level 2 version of Hanforth (+50 XP, 125 total, the Tier schedule the Baseline Tier 2 row uses; split ~+15 Stats/+15 Skills/+20 Techniques). New Techniques: Lifeline, Spirit Blessing, Toughened Body, Brace. Toughened Body shows up as Health 13. Only Techniques this sim models change anything beyond Stats/Skills - see the Hanforth row's own Notes for the Level 1 build. 2026-09-30: Reckoning (T111, Theurgy vs Mental, Crippled 5 + [Clubs]) swapped in for Brace, per the designer, so the party's healer has a debuff on an enemy's Mental Defense. 2026-10-25: everything on the sheet is modeled now. Reckoning is a ranged cast at the start of his turn (Theurgy Skill Total + 3 meters, on the biggest threat not yet Crippled), not a stand-in for his Unarmed attack. Gust of Wind and Ley-weaving as at Level 1. Lifeline (T110) links an ally whose hit would Down them, from his Interrupt AP, and he takes their Health loss while he can stand it. Spirit Blessing (T104) at Level 2 is extrapolated like the rest of this row: Shielding 2, Quickened and Reach (4 points), so 1 AP for Protected three times on whoever has the most enemies on them.
+The designer's own 125 XP build of Hanforth (archive/player_builds/Hanforth-of-Epione-125XP-2026-10-25.json, 2026-10-26). New since Level 1: Spirit Blessing (Level 1, Shielding 3: Protected four times, 2 AP), Reckoning (Level 2), Minor Oracle and Profession (Theologian). Healing Magic stays Level 2 with Vitality 2; Theurgy 4. No Lifeline and no Toughened Body, so Health 10. Weapon is the staff he carries (I119, Light Two-Handed, Brawl since 2026-10-24): +1 to hit and 4 damage, where Unarmed was +2 and 2 + Cunning. Profession and Dominate Mind are out of combat. Minor Oracle is in `Unmodeled`: a fortune told that day lets the creature Sift 2 cards once, which the sim doesn't play.
+
+Until 10-26 this row was a hand-made extrapolation with Lifeline, a Level 2 Spirit Blessing (Shielding 2, Quickened, Reach) and Toughened Body. The 10-25 notes and the first Variants results rest on that one. `Hanforth (L2, Lifeline)` is the real build with Lifeline in place of Minor Oracle and Profession.
+
+## Hanforth (L3)
+
+Build: `builds/hanforth_l3.json`.
+
+The designer's own 175 XP build of Hanforth (archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json, 2026-10-26). Healing Magic at Level 3 with Vitality 4 (a cast discards three cards and heals 1 + Hearts + 4), a second Level 1 Spirit Blessing (Shielding 3), Dominate Mind (out of combat), Theurgy 5, Insight 4, Mind 4. Same weapon and `Unmodeled` as the Level 2 row. In Party D at Level 3 (Browndog, Hanforth, Hilde and Beornhard, there's no Felix (L3)).
 
 ## HOLE (90 XP)
 
@@ -246,7 +254,7 @@ Bleeding cash-out test (2026-10-16): Felix's Battle Maneuver with a draft Featur
 
 Alternate builds of the sample characters, for "what if they'd picked this instead?" Each is a file in `builds/` that names its base export and lists only what changes (README, `builds/`), so when the base export is updated, the variant follows. Its own `sample_pcs.csv` row copies the base row's Weapon, Play Style and Choices. Every swap stays inside the copy's Feature Budget. They're drafts: reasonable picks a player might make, not tuned.
 
-Each was run with `compare_builds.py` against its base party, 300 fights a mix over the four standard mixes, same seeds both ways. Two enemy toughnesses: ×1.75 (the effect check's) and a tougher one that gives fights of about five rounds, THE TABEL's length (×2.75 for Party B at Level 2, ×2.25 for Party B at Level 3 and Party A at Level 2). Parties D and S already go 4.5 to 7 rounds at ×1.75. Change in the party's Health left at the end (losses count 0), with its 95% margin, and in win rate:
+Each was run with `compare_builds.py` against its base party, 300 fights a mix over the four standard mixes, same seeds both ways. Two enemy toughnesses: ×1.75 (the effect check's) and a tougher one that gives fights of about five rounds, THE TABEL's length (×2.75 for Party B at Level 2, ×2.25 for Parties B and D at Level 3 and Party A at Level 2). Parties D and S at Levels 1 and 2 already go 4.5 to 7 rounds at ×1.75. Change in the party's Health left at the end (losses count 0), with its 95% margin, and in win rate:
 
 | Variant | Party | Swap | ×1.75 | ~5 rounds |
 |---|---|---|---|---|
@@ -266,17 +274,22 @@ Each was run with `compare_builds.py` against its base party, 300 fights a mix o
 | Sable (L2, Viper) | A, L2 | Level 2 Maneuver as Viper's Sting + Wing Clip 3 (was Calculated) | +0.1 ±0.7 | -0.1 ±0.9, wins -0.3 |
 | Felix (Viper) | D, L1 | Viper's Sting + Lunging 2 (was Lunging 2 + Half Guard 3) | -0.5 ±1.2, wins -0.8 | |
 | Enith (Corrupting) | S, L1 | Kinetic hex as Corrupting 3 | -5.4 ±1.5, wins -7.1 | |
-| Hanforth (L2, Triage) | D, L2 | Healing Magic Triage + Reach (was Vitality 2) | +0.9 ±0.3, wins +0.1 | |
-| Hanforth (L2, Guardian Angel) | D, L2 | Guardian Angel 2 + Vitality 1 | -0.6 ±0.2, wins +0.1 | |
-| Hanforth (L2, Rejuvenate) | D, L2 | Rejuvenate + Vitality 1 + Reach | -2.9 ±0.5, wins -0.8 | |
-| Hanforth (L2, Retribution) | D, L2 | Spirit Blessing Retribution 2 + Shielding 1 + Reach | -0.5 ±0.4, wins -0.7 | |
-| Hanforth (L2, River's Might) | D, L2 | River's Might 2 + Quickened + Reach | -2.2 ±0.6, wins -0.8 | |
-| Hanforth (L2, Touch of Chaos) | D, L2 | Touch of Chaos 2 + Quickened + Reach | -1.5 ±0.6, wins -0.4 | |
+| Hanforth (L2, Triage) | D, L2 | Healing Magic Triage + Reach (was Vitality 2) | +1.1 ±0.3, wins +0.4 | |
+| Hanforth (L2, Guardian Angel) | D, L2 | Guardian Angel 2 + Vitality 1 | -0.4 ±0.2, wins +0.2 | |
+| Hanforth (L2, Rejuvenate) | D, L2 | Rejuvenate + Vitality 1 + Reach | -3.2 ±0.6, wins -1.6 | |
+| Hanforth (L2, Retribution) | D, L2 | Spirit Blessing Retribution 2 + Shielding 1 (was Shielding 3) | -1.1 ±0.3, wins -0.2 | |
+| Hanforth (L2, River's Might) | D, L2 | River's Might 3 | -1.3 ±0.8, wins -0.7 | |
+| Hanforth (L2, Touch of Chaos) | D, L2 | Touch of Chaos 3 | -1.4 ±0.9, wins -0.8 | |
+| Hanforth (L2, Quickened) | D, L2 | Shielding 2 + Quickened (1 AP) | -0.7 ±0.5, wins -0.2 | |
+| Hanforth (L2, Lifeline) | D, L2 | Lifeline for Minor Oracle + Profession (same XP) | +2.0 ±0.6, wins +1.6, Down -16 points | |
+| Hanforth (L3, Lifeline) | D, L3 | the same at 175 XP | | +1.5 ±0.5, wins +2.5, Down -5 points |
+| Hanforth (L3, Pact) | D, L3 | Healing Magic Healing Pact + Vitality 1 + Reach (was Vitality 4) | | -1.6 ±0.5, wins -0.7 |
+| Hanforth (L3, Triage) | D, L3 | Triage + Vitality 2 + Reach | | +0.1 ±0.3, wins +0.2 |
 
 What it says, roughly:
 
 - **Damage beats control.** Beornhard's Frost and Kinetic copies give up damage for Slowed or a Push, and the longer the fight, the more the lost damage shows. I guessed it was because Party B's Hilde and Browndog are already on whatever he'd slow, but in Party D at Level 2 (Browndog the only one up front) the swap still costs 1.9 Health (Frost) and 2.1 (Kinetic) a fight, ±0.6. So the trade itself looks short, at least at 2 damage for Slowed 4 + [Spades]. Enith's Kinetic hex is the exception: Party S has nobody holding the line, and her Kinetic hex beats a Corrupting one by 5 Health a fight.
-- **Kinetic is "up to", so the sim now chooses.** Pushing every time dragged enemies off Hilde and Browndog and cost 5.7 Health a fight. Now Beornhard pushes only a target that's next to a ranged ally or next to nobody, and the cost is 3.4. Lodestone and River's Might say "Pushed", no "up to", so they push every time, and it shows: River's Might is the worst of Hanforth's blessings.
+- **Kinetic is "up to", so the sim now chooses.** Pushing every time dragged enemies off Hilde and Browndog and cost 5.7 Health a fight. Now Beornhard pushes only a target that's next to a ranged ally or next to nobody, and the cost is 3.4. Lodestone and River's Might say "Pushed", no "up to", so they push every time, and it costs them.
 - **Dodge or Vital for Beornhard's War Magic is a wash**: Vital is a hair worse in short fights and a hair better in long ones. Piercing Elements (Good Luck on the cast) over Furrow is a clear win at Level 3.
 - **Flurry is the one Maneuver swap that helps.** Calculated's Good Luck plus a free Repeat beats the Level 3 copy Hilde built. Viper's Sting saves 1 AP, but most turns have nothing to spend it on: Sable is usually already in range, and Hilde's Viper copy gives up Lunging's free Shifts.
-- **Hanforth's heal as built is about right.** Triage edges out Vitality 2, and Rejuvenate's heal-over-time is too slow to keep up at Level 2.
+- **Hanforth's own picks hold up** (rebased 10-26 on his real 125 and 175 XP builds, Party D at ×1.75 for Level 2, 4.6 rounds, and ×2.25 for Level 3). Triage edges out Vitality by about a point, every blessing swap costs about a point, and Rejuvenate's heal-over-time is too slow. Lifeline is the one swap that matters. More on how the healer scales in TABLE_PLAY_NOTES.md, "Healing and blessing at Levels 1-3".

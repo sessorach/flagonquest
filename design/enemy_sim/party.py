@@ -215,11 +215,15 @@ def load_sheet(row, build=None):
     known = set()
     shallow = deep = 5  # rulebook.md: 5 Shallow and 5 Deep Health to start
     for tid, cs in copies.items():
-        tech = techniques.get(tid)
         bonus = game_data.health_bonus(tid)
         shallow += bonus[0] * len(cs)
         deep += bonus[1] * len(cs)
-        if tech is None or game_data.technique_name(tid) in unmodeled:
+        # Checked first, so a Technique the sim has no entry for at all
+        # can be carried unplayed too.
+        if game_data.technique_name(tid) in unmodeled:
+            continue
+        tech = techniques.get(tid)
+        if tech is None:
             continue
         tech.check_features(cs)
         tech.build(sheet, cs, choices.get(tech.name, []))

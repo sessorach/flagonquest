@@ -1,7 +1,7 @@
 {
  "base": "hanforth_l2.json",
  "simNotes": [
-  "Variant of Hanforth (L2) (2026-10-25, drafted for comparisons): Healing Magic as Triage and Reach instead of Vitality 2: +2 on a Wounded ally (+2 on everyone before), and a longer reach."
+  "Variant of Hanforth (L2) (2026-10-26, drafted for comparisons; rebased on the 125/175 XP exports): Healing Magic as Triage and Reach instead of Vitality 2: +2 on a Wounded ally (+2 on everyone before), and a longer reach."
  ],
  "replace": [
   {

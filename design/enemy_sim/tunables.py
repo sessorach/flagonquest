@@ -472,6 +472,11 @@ CARDS_SECOND_FIGHT_SHARE = 0.5
 # there are plenty left; a kill shot or an Encounter attack gets one
 # whenever there's one to give.
 RESCUE_RESERVE = {1: 2, 2: 1, 3: 0, 4: 0, 5: 0}
+# A healer keeps one Healing Magic cast's worth of cards (its Level) out
+# of attack rescues and kill top-ups, its own or an ally's (2026-10-26).
+# Off, Hanforth spent about 2.4 cards a Level 1 fight on attacks and under
+# 1 on healing.
+HEALER_KEEPS_CARDS = False
 # An ally can throw a card onto someone else's kill shot ("the party
 # talks"); the rulebook lets you play cards on an ally's flip.
 CARDS_ALLY_RESCUE = True

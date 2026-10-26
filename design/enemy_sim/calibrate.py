@@ -31,7 +31,10 @@ import combat_sim as cs, sample_enemies as se, party, tunables as T, tactics
 # Browndog, Jackal and Beornhard. Level 3 has only the rows that exist;
 # Sable has no Level 3 build yet, so A keeps her Level 2 one there.
 PARTIES = {3: {"A": ["Hilde (L3)", "Browndog (L3)", "Carrick (L3)", "Sable (L2)"],
-               "B": ["Hilde (L3)", "Browndog (L3)", "Jackal (L3)", "Beornhard (L3)"]},
+               "B": ["Hilde (L3)", "Browndog (L3)", "Jackal (L3)", "Beornhard (L3)"],
+               # No Felix at Level 3 yet: Party B with Hanforth for Jackal
+               # (2026-10-26), so the healer has a Level 3 party too.
+               "D": ["Browndog (L3)", "Hanforth (L3)", "Hilde (L3)", "Beornhard (L3)"]},
            2: {"A": ["Hilde (L2)", "Browndog (L2)", "Carrick (L2)", "Sable (L2)"],
                "B": ["Hilde (L2)", "Browndog (L2)", "Jackal (L2)", "Beornhard (L2)"],
                "D": ["Browndog (L2)", "Hanforth (L2)", "Felix (L2)", "Beornhard (L2)"]},

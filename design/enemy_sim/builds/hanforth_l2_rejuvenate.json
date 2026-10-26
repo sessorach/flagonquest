@@ -1,7 +1,7 @@
 {
  "base": "hanforth_l2.json",
  "simNotes": [
-  "Variant of Hanforth (L2) (2026-10-25, drafted for comparisons): Healing Magic as Rejuvenate, Vitality 1 and Reach: the heal comes 1 a turn instead of all at once, from further off."
+  "Variant of Hanforth (L2) (2026-10-26, drafted for comparisons; rebased on the 125/175 XP exports): Healing Magic as Rejuvenate, Vitality 1 and Reach: the heal comes 1 a turn instead of all at once, from further off."
  ],
  "replace": [
   {

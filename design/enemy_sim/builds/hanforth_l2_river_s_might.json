@@ -1,16 +1,14 @@
 {
  "base": "hanforth_l2.json",
  "simNotes": [
-  "Variant of Hanforth (L2) (2026-10-25, drafted for comparisons): Spirit Blessing as River's Might 2, Quickened and Reach: the party's hardest hitter Pushes the next two things it hits 3 meters."
+  "Variant of Hanforth (L2) (2026-10-26, drafted for comparisons; rebased on the 125/175 XP exports): Spirit Blessing as River's Might 3: the party's hardest hitter Pushes the next three things it hits 3 meters."
  ],
  "replace": [
   {
    "id": "T104",
    "copy": 1,
    "features": {
-    "River's Might": 2,
-    "Quickened": 1,
-    "Reach": 1
+    "River's Might": 3
    }
   }
  ]
