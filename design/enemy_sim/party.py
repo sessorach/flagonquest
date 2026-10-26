@@ -177,7 +177,7 @@ def load_sheet(row, build=None):
         skills={k: int(v) for k, v in build["skillPoints"].items()},
         weapon=(row.get("Weapon") or "").strip(), armor="Unarmored", parry_weapons=[],
         passives=[], card_techniques=[], encounter_techs=[], tech_attacks=[], hexes=[], maneuvers=[],
-        blessing_features={}, weapon_uses=None, defense_choices=[],
+        blessing_features={}, blessing_groups=[], weapon_uses=None, defense_choices=[],
         support=False, heal_cards=1, heal_bonus=0, heal_reach=None, heal_range=None, heal_features={},
         battle_tactic=(row.get("Battle Tactic") or "").strip() or None,
         play_style=(row.get("Play Style") or "").strip(),

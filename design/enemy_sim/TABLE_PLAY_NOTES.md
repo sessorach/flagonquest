@@ -767,6 +767,112 @@ cards, or count more than Hearts; Vitality at 1 point; a Spirit Blessing
 budget that grows like Healing Magic's (1, 4, 8, 11); and a look at
 whether Lifeline is doing the job Healing Magic should.
 
+## Hanforth's options (2026-10-26, later)
+
+A broad look at what else Hanforth could take, for the Healing Magic
+and Spirit Blessing pass (`hanforth_sweep.py`, `compare_builds.sweep`).
+Each swap fits its copy's Feature Budget and spends XP the build
+already spends: "XP" rows move his out-of-combat XP (Minor Oracle and
+Profession, 6; Dominate Mind, 12 more at Level 3) into combat. Two
+parties a Level, 100 fights a mix, paired on the same seeds, so the
+margins are wide (±0.4 to ±2.4 Health) and anything inside about a
+point is a wash. "HM" is Healing Magic, "SB" Spirit Blessing.
+
+Change in Health left at the end of the fight, and in how often someone
+goes Down (points):
+
+Level 2. Party D, ×1.75: wins 96%, Health left 78.7, someone Down 33%, 4.6 rounds. Hilde, Browndog, Hanforth, Beornhard, ×2.5: wins 94%, Health left 76.4, someone Down 29%, 5.1 rounds.
+
+| Swap | Party D, ×1.75 | Hilde, Browndog, Hanforth, Beornhard, ×2.5 |
+|---|---|---|
+| XP: Toughened Body | +3.3 ±1.0, Down -6 | +2.3 ±0.8, Down -2 |
+| XP: HM to Level 3 (Triage, Vitality 2, Reach), one more SB Step of Air 3 | +2.1 ±1.5, Down -8 | +3.5 ±1.3, Down -5 |
+| XP: Lifeline | +2.4 ±1.1, Down -16 | +2.5 ±1.2, Down -13 |
+| XP: more SB, Shielding 3 and Step of Air 3 | +1.3 ±1.5, Down -5 | +2.9 ±1.2, Down -4 |
+| HM: Triage, Reach | +1.0 ±0.6, Down -3 | +1.4 ±0.9, Down -1 |
+| XP: a Level 2 SB, Shielding 2, Quickened, Reach | +0.6 ±0.6, Down -3 | +1.6 ±0.8, Down -1 |
+| XP: two more SB Shielding 3 | +0.9 ±0.7, Down -2 | +1.0 ±0.6, Down -1 |
+| XP: HM to Level 3 (Vitality 4), one more SB Shielding 3 | +0.6 ±0.8, Down -2 | +1.0 ±0.8, Down -0 |
+| HM: Vitality 1, Guardian Angel 1, Reach | +0.1 ±0.6, Down -4 | +1.1 ±1.0, Down -2 |
+| SB: Shielding 2, Reach | +0.1 ±0.6, Down -1 | +0.2 ±0.9, Down +0 |
+| SB: Elemental Enhancement 3 (Fire) | -0.5 ±1.3, Down -2 | +0.4 ±1.4, Down -1 |
+| SB: Touch of Chaos 3 | -0.6 ±1.5, Down -0 | +0.4 ±1.5, Down -0 |
+| SB: Step of Air 3 | -0.7 ±1.5, Down -2 | +0.3 ±1.4, Down -0 |
+| SB: Shielding 2, Quickened | -0.3 ±0.7, Down -1 | -0.3 ±0.8, Down +2 |
+| HM: Guardian Angel 2, Vitality 1 | -0.5 ±0.4, Down -1 | -0.1 ±0.5, Down -1 |
+| HM: Vitality 1, Purify, Reach | -0.6 ±0.6, Down -1 | -0.0 ±0.9, Down +0 |
+| SB: Step of Air 2, Quickened | -0.6 ±1.4, Down -2 | -0.1 ±1.4, Down +3 |
+| SB: Shielding 1, Step of Air 1, Quickened | -0.5 ±0.9, Down -2 | -0.6 ±0.8, Down +2 |
+| Lifeline for Reckoning | -0.5 ±1.3, Down -11 | -0.9 ±1.4, Down -6 |
+| SB: Turn Elements 3 (Shadow Ward) | -0.7 ±0.6, Down -0 | -0.7 ±0.8, Down +2 |
+| SB: River's Might 3 | -0.8 ±1.5, Down -1 | -0.8 ±1.7, Down +0 |
+| SB: Retribution 2, Shielding 1 | -0.9 ±0.6, Down +1 | -1.1 ±0.6, Down +2 |
+| HM: Rejuvenate, Vitality 1, Reach | -3.2 ±1.0, Down +3 | -1.9 ±1.0, Down +4 |
+| Field Medic and an SB Shielding 3 for Ley-weaving | -2.4 ±1.3, Down +1 | -3.0 ±1.6, Down +8 |
+
+Level 3. Browndog, Hanforth, Hilde, Beornhard, ×2.25: wins 79%, Health left 53.8, someone Down 64%, 5.5 rounds. Hilde, Hanforth, Jackal, Beornhard, ×2.0: wins 75%, Health left 45.9, someone Down 80%, 5.1 rounds.
+
+| Swap | Browndog, Hanforth, Hilde, Beornhard, ×2.25 | Hilde, Hanforth, Jackal, Beornhard, ×2.0 |
+|---|---|---|
+| XP 12: Lifeline, Toughened Body | +6.5 ±2.4, Down -23 | +10.2 ±2.2, Down -30 |
+| XP 18: Lifeline, SB L3 Mass Blessing, Shielding 3, SB L1 Step of Air 3 | +1.1 ±1.6, Down -4 | +8.2 ±2.3, Down -22 |
+| XP 6: Lifeline | +1.4 ±0.9, Down -4 | +6.6 ±2.0, Down -21 |
+| HM: Triage, Vitality 1, Guardian Angel 2, Reach | +1.5 ±0.8, Down -2 | +2.4 ±1.1, Down -6 |
+| HM: Vitality 2, Guardian Angel 2, Reach, Purify | +0.9 ±0.7, Down -1 | +2.3 ±1.2, Down -6 |
+| XP 12: HM to Level 4 (Vitality 5, Reach), SB L3 Guided Hand 2, Quickened | +1.1 ±1.3, Down -0 | +1.8 ±1.3, Down -1 |
+| HM: Vitality 3, Guardian Angel 2 | +1.1 ±0.7, Down -1 | +0.8 ±0.7, Down -1 |
+| HM: Triage, Vitality 2, Reach | +0.4 ±0.5, Down -0 | +1.0 ±0.9, Down -4 |
+| XP 12: SB L3 Guided Hand 2, Quickened, SB L1 Step of Air 3 | +0.6 ±1.1, Down -0 | +0.4 ±1.3, Down +0 |
+| XP 12: SB L3 Alacrity, Shielding 3, SB L1 Shielding 3 | +0.4 ±0.4, Down -0 | +0.5 ±0.4, Down +0 |
+| XP 12: SB L3 Mass Blessing, Shielding 3, SB L1 Shielding 3 | +0.4 ±0.4, Down -0 | +0.4 ±0.4, Down +0 |
+| SB: both Shielding 2, Quickened | +1.2 ±1.0, Down +1 | -1.2 ±1.2, Down +1 |
+| SB: second copy Shielding 2, Quickened | -0.0 ±0.2, Down +0 | -0.2 ±0.5, Down +0 |
+| Lifeward for Ley-weaving and Minor Oracle | +1.8 ±1.3, Down -3 | -2.4 ±1.7, Down +7 |
+| SB: second copy Retribution 2, Shielding 1 | -0.5 ±0.3, Down +0 | -0.7 ±0.7, Down +1 |
+| SB: second copy Elemental Enhancement 3 (Fire) | -1.4 ±1.5, Down +1 | +0.2 ±1.6, Down -2 |
+| SB: second copy Touch of Chaos 3 | -1.7 ±1.6, Down +2 | -0.5 ±1.9, Down +0 |
+| SB: second copy Step of Air 3 | -1.3 ±1.6, Down +0 | -1.0 ±1.6, Down -0 |
+| XP 12: HM to Level 4 (Healing Pact, Vitality 3), SB L3 Mass Blessing, Shielding 3 | -0.9 ±0.8, Down +2 | -1.5 ±0.7, Down +2 |
+| HM: Healing Pact, Vitality 1, Reach | -1.5 ±0.9, Down +3 | -1.6 ±1.1, Down +0 |
+| Field Medic for Ley-weaving (3 XP spare unspent) | -0.7 ±1.1, Down +0 | -4.7 ±1.5, Down +8 |
+
+How the sim plays them: a defensive blessing (Shielding, Retribution,
+Turn Elements) goes to whoever has the most enemies next to them, often
+Hanforth himself; an offensive one (Step of Air, Touch of Chaos,
+Elemental Enhancement, Guided Hand) to the hardest hitter who hasn't
+acted yet. One blessing a turn. Copies built differently are new as of
+today (`techniques.py`), and so are Field Medic and Lifeward.
+
+What it says, roughly:
+
+- **Keeping Hanforth up beats everything else.** Toughened Body and
+  Lifeline top both Levels, and Lifeline plus Toughened Body at Level 3
+  is worth 6-10 Health and 23-30 points off someone-Down. No Feature
+  swap comes close at Level 3. At Level 2, putting the 6 XP into a
+  Level 3 Healing Magic and one more blessing does about as well as
+  Lifeline. At Level 3 he goes Down himself in 47-66% of fights (Health
+  10, like Beornhard and Jackal); at Level 2, in about 1 in 6.
+- **Healing Magic: Guardian Angel and Triage beat Vitality**, more so at
+  Level 3, where Triage, Vitality 1, Guardian Angel 2 and Reach is the
+  best of the Feature swaps (+1.5 to +2.4). Healing Pact is the worst
+  Level 3 pick, even at Level 4. Rejuvenate is the worst at Level 2.
+- **Spirit Blessing: Shielding 3 as built is as good as anything at
+  Level 1.** Step of Air, Touch of Chaos, Elemental Enhancement and
+  River's Might land within about a point and a half of it, either
+  way. Retribution and a
+  Shadow Ward come out a little behind. Quickened's saved AP doesn't buy
+  back the Protected it costs. More copies help a little (about a point
+  for two more). The Advanced Features at Level 3 (Mass Blessing,
+  Alacrity, Guided Hand) add about half a point for 12 XP, where
+  Lifeline adds 1.4-6.6 for 6.
+- **The Styles mostly measure Ley-weaving.** Swapping it out drops his
+  heal's reach from 4 meters to 1, so Field Medic costs 1-5 Health.
+  Lifeward (Protected equal to what's healed) splits: +1.8 in one party,
+  -2.4 in the other.
+- **Lifeline for Reckoning** leaves Health about even but cuts
+  someone-Down by 6-11 points, so Reckoning's Crippled is worth about
+  as much Health as Lifeline is.
+
 ## Still to do
 
 - **Items.** The sim doesn't model items yet beyond weapons, armor and

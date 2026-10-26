@@ -147,15 +147,17 @@ The core files and the regular tools:
   Magic; Tormenting Curse with a rider makes a hex. Battle Maneuver
   has every Feature features.csv lists, Viper's Sting and Flurry
   included; Turn Elements and Elemental take their element from
-  `Choices`. Spirit Blessing adds Steady, Embolden, Retribution,
+  `Choices`. Spirit Blessing copies built differently each keep their
+  own Features (2026-10-26). It adds Steady, Embolden, Retribution,
   River's Might, Touch of Chaos, Elemental Enhancement, Alacrity and
   Steal Fate; Healing Magic adds Purify, Rejuvenate, Guardian Angel,
   Triage, Deep Mending (no effect: the sim keeps one Health pool) and
-  Healing Pact. Arcane Chant, Glacier and Channel aren't modeled and
-  stop the load. Out-of-combat IDs are listed in `OUT_OF_COMBAT`. **An
-  ID, Feature or item the sim doesn't know stops the load with its
-  name** — add it here (or to `game_data.py` for an item) rather than
-  finding out later it was ignored.
+  Healing Pact, and the healer Styles Field Medic and Lifeward. Arcane
+  Chant, Glacier and Channel aren't modeled and stop the load. Out-of-combat
+  IDs are listed in `OUT_OF_COMBAT`. **An ID, Feature or item
+  the sim doesn't know stops the load with its name** — add it here
+  (or to `game_data.py` for an item) rather than finding out later it
+  was ignored.
 - **`enemy_abilities.py`** — the enemy Ability catalog's hooks: Strike
   and Poison riders, Grappling, Devastating, Harrying, Battering,
   Resilient, the 0 AP Actions, Retribution Aura, Action (Parting Shot).
@@ -175,7 +177,10 @@ The core files and the regular tools:
   Health left, how often someone goes Down, and fight length, each with
   its 95% margin (paired fight by fight, so the noise the two runs share
   cancels out). Results for the drafted variants are in
-  `sample_characters.md`, "Variants".
+  `sample_characters.md`, "Variants". `sweep()` tries many swaps for one
+  character against a single base run, for a broad look at modest reps;
+  `hanforth_sweep.py` (2026-10-26) is the worked example, 45 swaps of
+  Hanforth's Healing Magic, Spirit Blessing and spare XP.
 - **`party.py`** — `load_sheet(row)` reads a row and its build;
   `make_pc(name, ..., health=, add_passives=, drop_passives=,
   battle_tactic=)` is the one way to build a character changed for a

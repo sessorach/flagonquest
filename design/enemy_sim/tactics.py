@@ -584,6 +584,10 @@ def _heal_one(pc, target, amount, feats, log):
     combat_sim hook); Guardian Angel X stops the next Down at X Health."""
     if feats.get('Triage') and pc_wounded(target):
         amount += 2 * feats['Triage']
+    # Field Medic (T189, Style): "When you heal a Wounded creature, it heals
+    # 1 extra Health."
+    if 'Field Medic' in pc.get('passives', ()) and pc_wounded(target):
+        amount += 1
     if feats.get('Purify'):
         for key in ['bleeding'] + sorted(target.get('poisons', ())):
             if target.get(key, 0) > 0:
@@ -599,6 +603,11 @@ def _heal_one(pc, target, amount, feats, log):
     heal = necrotic_cut(target, amount)
     before = target['health']
     target['health'] = min(target['max_health'], target['health'] + heal)
+    # Lifeward (T190, Style): "it also gains Protected equal to the Health
+    # it healed."
+    if 'Lifeward' in pc.get('passives', ()) and target['health'] > before:
+        import combat_sim  # a Fleeting gain; imported here, combat_sim imports this module
+        combat_sim._gain(target, 'protected', target['health'] - before)
     if log:
         log(unit=pc['name'], action='heal', target=target['name'],
             amount=target['health'] - before, target_hp_after=target['health'], via='Healing Magic')

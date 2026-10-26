@@ -93,7 +93,9 @@ for _tid, _name in (("T010", "Grim Resolve"), ("T011", "One Eye Behind You"), ("
                     ("T132", "Indomitable Phalanx"), ("T133", "Placeholder's Lengthy Ley-weaving"),
                     ("T137", "Eagle Eyes"), ("T139", "Inexhaustible Guardian"), ("T140", "Overchanneling"),
                     ("T175", "Boughs Unbroken"), ("T192", "Seize the Moment"), ("T193", "Lie in Wait"),
-                    ("T194", "Ambush Predator"), ("T197", "Command the Tempo")):
+                    ("T194", "Ambush Predator"), ("T197", "Command the Tempo"),
+                    # Healer Styles (2026-10-26), read by tactics._heal_one.
+                    ("T189", "Field Medic"), ("T190", "Lifeward")):
     _passive(_tid, _name)
 
 for _tid, _name in (("T012", "Second Wind"), ("T053", "Bottomless Bottles"), ("T078", "Perfect Strike"),
@@ -301,18 +303,28 @@ def _battle_maneuver(sheet, copies, choices):
         "Steady", "Embolden", "Retribution", "River's Might", "Touch of Chaos", "Elemental Enhancement",
         "Alacrity", "Steal Fate"))
 def _spirit_blessing(sheet, copies, choices):
-    """Copies built the same way share one entry. Turn Elements and
-    Elemental Enhancement take their element from Choices."""
-    if any(c["features"] != copies[0]["features"] for c in copies):
-        raise BuildError("Spirit Blessing: copies built differently aren't modeled")
+    """Copies built the same way share one entry; copies built differently
+    (2026-10-26) are separate entries, tried in the sheet's order, one cast
+    a turn. Turn Elements and Elemental Enhancement take their element from
+    Choices, per copy."""
     sheet.encounter_techs.extend(["Spirit Blessing"] * len(copies))
-    feats = dict(copies[0]["features"])
-    if "Turn Elements" in feats or "Elemental Enhancement" in feats:
-        element = choices[0] if choices else ""
-        if element not in ("Fire", "Frost", "Brilliant", "Shadow"):
-            raise BuildError("Spirit Blessing: Turn Elements/Elemental Enhancement needs an element in Choices")
-        feats["_element"] = element
-    sheet.blessing_features = feats
+    groups = []
+    for i, c in enumerate(copies):
+        feats = dict(c["features"])
+        if "Turn Elements" in feats or "Elemental Enhancement" in feats:
+            element = choices[i] if i < len(choices) else ""
+            if element not in ("Fire", "Frost", "Brilliant", "Shadow"):
+                raise BuildError(f"Spirit Blessing copy {i + 1}: Turn Elements/Elemental Enhancement needs an "
+                                 "element in Choices")
+            feats["_element"] = element
+        for g in groups:
+            if g[0] == feats:
+                g[1] += 1
+                break
+        else:
+            groups.append([feats, 1])
+    sheet.blessing_features = groups[0][0]
+    sheet.blessing_groups = groups
 
 
 @technique("T105", "Healing Magic", features=("Vitality", "Reach", "Purify", "Rejuvenate", "Guardian Angel",
@@ -456,8 +468,10 @@ def _blessing_features(feats, theurgy, ley):
 
 @setup_for("Spirit Blessing")
 def _blessing_setup(name, pc, s):
-    pc["blessing"] = dict(uses=s.uses[name],
-                          **_blessing_features(s.sheet.blessing_features, _skill(s, "Theurgy"), s.ley))
+    groups = s.sheet.blessing_groups
+    pc["blessings"] = [dict(uses=s.uses[name] if len(groups) == 1 else n,
+                            **_blessing_features(feats, _skill(s, "Theurgy"), s.ley)) for feats, n in groups]
+    pc["blessing"] = pc["blessings"][0]
 
 
 @setup_for("Gust of Wind")
@@ -864,9 +878,17 @@ def _try_spirit_blessing(pc, pcs, enemies, movement_on, ap, log=None, rnd=None, 
     - offensive (Guided Hand, Step of Air, River's Might, Touch of Chaos,
       Elemental Enhancement, Steal Fate, Alacrity): the hardest hitter in
       reach who hasn't acted yet this round, as early as it can go.
-    Returns the AP spent."""
-    b = pc.get('blessing')
-    if not b or b['uses'] <= 0 or ap < b['ap']:
+    Returns the AP spent. A sheet with copies built differently tries
+    each in turn and casts the first that has a target."""
+    for b in pc.get('blessings') or ([pc['blessing']] if pc.get('blessing') else []):
+        spent = _cast_blessing(pc, b, pcs, enemies, movement_on, ap, log, rnd, order)
+        if spent:
+            return spent
+    return 0
+
+
+def _cast_blessing(pc, b, pcs, enemies, movement_on, ap, log, rnd, order):
+    if b['uses'] <= 0 or ap < b['ap']:
         return 0
     living = [e for e in enemies if e['health'] > 0]
     if not living:

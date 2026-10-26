@@ -20,7 +20,9 @@ for as-built enemies. `-s NAME=VALUE` overrides a tunable, as in
 calibrate.py.
 
 From a script: compare(names, swaps, level, n) returns the two runs'
-per-fight results and the summary.
+per-fight results and the summary; sweep(names, who, variants, level, n)
+tries many swaps for one character against one base run (2026-10-26,
+hanforth_sweep.py uses it), and sweep_table prints them.
 """
 import argparse
 import ast
@@ -37,7 +39,8 @@ import calibrate  # noqa: E402
 
 def _builder(names, swaps):
     """A make_party stand-in: each name built as itself, or as its swap -
-    a row name (str) or a dict of build edits."""
+    a row name (str), a dict of build edits, or {"edits": ..., "row": ...}
+    when a row column changes too (a Choices pick for a new element)."""
     rows = party._rows()
 
     def make(tier, good_luck=0):
@@ -46,6 +49,8 @@ def _builder(names, swaps):
             swap = swaps.get(n)
             if isinstance(swap, str):
                 pc = party.make_pc(swap, i, good_luck, rows=rows)
+            elif swap and ("edits" in swap or "row" in swap):
+                pc = party.make_pc(n, i, good_luck, rows=rows, edits=swap.get("edits"), row_changes=swap.get("row"))
             elif swap:
                 pc = party.make_pc(n, i, good_luck, rows=rows, edits=swap)
             else:
@@ -78,6 +83,32 @@ def compare(names, swaps, level=2, n=300, mixes=None):
     base = run(names, {}, level, n, mixes)
     var = run(names, swaps, level, n, mixes)
     return base, var, {k: _paired(base, var, k) for k in ('win', 'hp', 'down', 'rounds')}
+
+
+def sweep(names, who, variants, level=2, n=100, mixes=None):
+    """Many swaps for one character (`who`), each against the same base
+    run, for a broad look rather than a precise one: `variants` is a list
+    of (label, swap) in _builder's swap formats. Returns the base run's
+    means and [(label, summary)]."""
+    base = run(names, {}, level, n, mixes)
+    out = []
+    for label, swap in variants:
+        var = run(names, {who: swap}, level, n, mixes)
+        out.append((label, {k: _paired(base, var, k) for k in ('win', 'hp', 'down', 'rounds')}))
+    means = {k: st.mean(float(b[k]) for b in base) for k in ('win', 'hp', 'down', 'rounds')}
+    return means, out
+
+
+def sweep_table(means, results):
+    """Markdown rows, best Health change first."""
+    lines = [f"Base: wins {100 * means['win']:.0f}%, Health left {means['hp']:.1f}, "
+             f"someone Down {100 * means['down']:.0f}%, {means['rounds']:.1f} rounds", "",
+             "| Swap | Health left | Wins | Someone Down | Rounds |", "|---|---|---|---|---|"]
+    for label, sm in sorted(results, key=lambda r: -r[1]['hp'][2]):
+        hp, win, down, rnd = sm['hp'], sm['win'], sm['down'], sm['rounds']
+        lines.append(f"| {label} | {hp[2]:+.1f} ±{hp[3]:.1f} | {100 * win[2]:+.1f} | {100 * down[2]:+.1f} | "
+                     f"{rnd[2]:+.1f} |")
+    return "\n".join(lines)
 
 
 def report(summary):
