@@ -213,9 +213,12 @@ def main():
     ap.add_argument("-c", action="append", help="carrier key(s); default all")
     ap.add_argument("-n", type=int, default=100, help="fights per mix")
     ap.add_argument("-j", type=int, default=4, help="processes")
+    ap.add_argument("--only", help="run only Features whose label contains this")
     ap.add_argument("--csv")
     a = ap.parse_args()
     carriers = {k: v for k, v in CARRIERS.items() if not a.c or k in a.c}
+    if a.only:
+        carriers = {k: v[:4] + ([t for t in v[4] if a.only in t[0]],) for k, v in carriers.items()}
     pkeys = sorted({p for c in carriers.values() for p in c[3]})
     tasks = {}
     for p in pkeys:

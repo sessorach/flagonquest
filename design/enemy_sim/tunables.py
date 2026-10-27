@@ -481,6 +481,13 @@ HEALER_KEEPS_CARDS = False
 # catch two or more enemies with it (play_styles.plan_shape, 2026-10-26).
 # Off, Beornhard (L3) cast his Furrow copy 0.2 times a fight.
 SHAPE_SETUP = False
+# Range checked before every attack in a PC's turn, not just the first
+# (2026-10-27): a Wind Slash attack or a Push mid-turn used to leave the
+# next attack going off from out of reach.
+RECHECK_RANGE = True
+# Wind Slash ("the chosen weapon's range is increased by [twice X]")
+# gives a melee weapon reach too, per the designer (2026-10-27).
+WIND_SLASH_MELEE = True
 # An ally can throw a card onto someone else's kill shot ("the party
 # talks"); the rulebook lets you play cards on an ally's flip.
 CARDS_ALLY_RESCUE = True

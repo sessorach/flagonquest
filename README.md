@@ -18,7 +18,7 @@ full log. See `git log` for the commit-by-commit detail.
 Put every combat Feature of every Buildable Technique into the simulator and measured what each one is worth in a fight, next to THE TABEL's price. Damage and healing land close to their weights; most debuff riders land at a tenth to a third, and who carries an effect matters as much as what it is.
 
 - Hilde's and Browndog's Battle Maneuvers got the same broad sweep as Hanforth and Beornhard: Half Guard is the standout Feature, and Viper's Sting is the best addition to Hilde's Level 3 copy.
-- New in the simulator: Arcane Chant, Glacier (with Difficult Terrain) and Channel for War Magic.
+- New in the simulator: Arcane Chant, Glacier (with Difficult Terrain) and Channel for War Magic, and Wind Slash giving a melee weapon reach.
 - The last two days' sweep tables reported "Health" that was really a share of the party's max Health, about half a point each; they're relabeled, and the comparison tool now counts points.
 
 ### 2026-10-26 — Hanforth as built, and how healers scale

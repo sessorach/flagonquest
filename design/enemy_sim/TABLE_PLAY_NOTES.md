@@ -1161,7 +1161,7 @@ now; Social Maneuver's are social.
 | Feature | Points | B2: Value (±) | A2: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
 |---|---|---|---|---|---|---|---|
 | Lunging | 3 | +1.2 ±0.7 | +1.0 ±0.8 | +0.4 | - | -0.1 | +0.6 |
-| Wind Slash | 3 | +0.0 ±0.0 | +0.0 ±0.0 | +0.0 | - | +0.0 | +0.0 |
+| Wind Slash (melee, rerun 10-27) | 3 | -1.0 ±1.4 | -0.2 ±1.5 | -0.2 | - | -0.1 | -0.1 |
 | Distracting | 3 | -1.7 ±1.2 | -2.4 ±1.3 | -0.7 | Taunted +3.3, healed +0.1 | +7.6 | -0.8 |
 | Battering | 3 | +0.6 ±0.5 | +0.6 ±0.6 | +0.2 | Bleeding +3.3 | +13.1 | -0.1 |
 | Wing Clip | 3 | +1.4 ±0.8 | +1.6 ±0.9 | +0.5 | Crippled +3.2 | +4.7 | +0.3 |
@@ -1183,7 +1183,7 @@ now; Social Maneuver's are social.
 | Feature | Points | B2: Value (±) | D2: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
 |---|---|---|---|---|---|---|---|
 | Lunging | 3 | +2.3 ±1.2 | +3.0 ±1.2 | +0.9 | Protected +0.1, Taunted -0.1 | -0.0 | +1.7 |
-| Wind Slash | 3 | +0.0 ±0.0 | +0.0 ±0.0 | +0.0 | - | +0.0 | +0.0 |
+| Wind Slash (melee, rerun 10-27) | 3 | +2.8 ±1.7 | +3.1 ±1.9 | +1.0 | - | +0.0 | +1.5 |
 | Distracting | 3 | +0.3 ±0.5 | +0.1 ±0.1 | +0.1 | Taunted +2.5 | +5.5 | -0.2 |
 | Battering | 3 | +0.3 ±0.3 | +0.2 ±0.2 | +0.1 | Bleeding +2.5 | +9.9 | -0.2 |
 | Wing Clip | 3 | +1.0 ±0.4 | +0.6 ±0.3 | +0.3 | Crippled +2.0 | +3.0 | +0.0 |
@@ -1366,9 +1366,17 @@ What it says, roughly:
   story.
 - **Glacier costs the party** (-3 to -4.8): its Difficult Terrain sits
   around the enemies the front-liners are walking up to.
-- **Wind Slash** does nothing on a melee weapon in the sim (it only
-  extends a weapon with a range stat), and nothing measurable on a
-  thrown weapon or a bow, since extra range rarely comes up.
+- **Wind Slash** on a melee weapon gives reach, per the designer
+  (10-27; the first run had it doing nothing, and the two melee rows are
+  the rerun). It's worth about 1 Value a Feature point for Browndog and nothing
+  for Hilde, whose Wind Slash copy comes after her Lunging opener, when
+  she's already in melee. On a thrown weapon or a bow the extra range
+  rarely comes up. A Diver takes the long reach only when it gets as
+  many attacks that turn as walking up (`combat_sim._diver_reach`), and
+  every attack now checks range again first (`tunables.RECHECK_RANGE`),
+  so an attack after the reach one walks in or stops; before, it went
+  off from wherever she stood. That changed nothing in the regression
+  or the Level 3 calibration.
 
 Where the weights could move, for the designer: on-hit debuff riders
 priced off their Average or Weak columns instead of the base rates
@@ -1404,10 +1412,6 @@ costs or budget looked at against the rest.
 - **Retribution Aura** cost the Level 2 Party A a fifth of its Health
   when all four Warband enemies had it, far over the draft's one-pick
   estimate. Worth pricing before a sample enemy carries it.
-- **Wind Slash on a melee weapon**: does "the chosen weapon's range is
-  increased by [twice X]" give a melee weapon reach? The sim says no
-  (only weapons with a range stat), so it does nothing for Hilde or
-  Browndog.
 - **Weights from the mechanic baseline** (2026-10-27): the designer's
   call on the adjustments listed there.
 - **Shape setup** (`tunables.SHAPE_SETUP`): turn it on? It's how a

@@ -197,6 +197,7 @@ sanity-check a low win rate against the raw party/enemies/draw counts
 (`simulate()`'s 4th return value) before assuming it means "this build
 loses," not just "this build is slow to resolve."
 """
+import math
 import random
 import copy
 import tunables as T
@@ -250,10 +251,37 @@ def effective_range(unit):
     # Wind Slash (a Battle Maneuver Feature, Jackal's Level 3 build):
     # "For the attack the chosen weapon's range is increased by [twice
     # X]" - while that copy's still unused.
+    # A melee weapon gets the reach too (designer, 2026-10-27).
     m = unit.get('maneuver')
-    if m and m['uses'] > 0 and m.get('wind') and unit.get('attack_range'):
+    if m and m['uses'] > 0 and m.get('wind') and (unit.get('attack_range') or T.WIND_SLASH_MELEE):
         r += 2 * m['wind']
     return r
+
+
+def _diver_reach(pc, target, ap):
+    """How close a Diver walks in. With a Wind Slash Maneuver ready the
+    reach is longer for that one attack, but stopping at it can leave the
+    next attack a walk away; a player takes the long reach only when it
+    gets at least as many attacks this turn as walking up does."""
+    reach = effective_range(pc)
+    m = pc.get('maneuver')
+    if not (m and m['uses'] > 0 and m.get('wind')):
+        return reach
+    plain = reach - 2 * m['wind']
+    speed = max(1, tactics._speed(pc))
+    d = _distance(pc['pos'], target['pos'])
+
+    def moves(gap):
+        return math.ceil(max(0, gap) / speed)
+    close = moves(d - plain)
+    walk_up = (ap - close * T.MOVE_AP_COST) // T.ATTACK_AP_COST if close * T.MOVE_AP_COST <= ap else 0
+    first = moves(d - reach)
+    left = ap - first * T.MOVE_AP_COST - T.ATTACK_AP_COST
+    if left < 0:
+        return plain
+    after = moves(min(d, reach) - plain)
+    long_reach = 1 + (1 if left - after * T.MOVE_AP_COST >= T.ATTACK_AP_COST else 0)
+    return reach if long_reach > walk_up else plain
 
 
 def spend_movement_ap(unit, target, ap, reach):
@@ -1460,7 +1488,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                              spaces=_distance(lunge_start, pc['pos']), via='Battle Maneuver: Lunging')
                     ap_start = pc['pos']
-                    ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
+                    ap, in_range, moved = spend_movement_ap(pc, target, ap, _diver_reach(pc, target, ap))
                     if moved:
                         _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                              in_range=in_range, spaces=_distance(ap_start, pc['pos']))
@@ -1483,6 +1511,21 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         and not any(t['uses'] > 0 for t in pc.get('tech_attacks', ())) \
                         and not _warmage_reserves(pc, party_log):
                     break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
+                # Range is checked again before each attack (2026-10-27):
+                # after a Wind Slash attack, or once the target's been
+                # pushed off, the next one has to close in first or stop.
+                if T.RECHECK_RANGE and movement_on and 'pos' in pc and not pc.get('_repeat') \
+                        and _distance(pc['pos'], target['pos']) > effective_range(pc):
+                    start = pc['pos']
+                    spare, in_reach, stepped = spend_movement_ap(pc, target, ap - T.ATTACK_AP_COST,
+                                                                 effective_range(pc))
+                    ap = spare + T.ATTACK_AP_COST if stepped else ap
+                    if stepped:
+                        _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
+                             in_range=in_reach, spaces=_distance(start, pc['pos']), via='closing in again')
+                        _left_melee(pc, start, enemies, pcs, rnd)
+                    if not in_reach:
+                        break
                 pc.pop('_notes', None)  # anything left from a bonus attack or Interrupt
                 # Battle Maneuver (T072, Encounter) is Felix's opening move
                 # (designer, 2026-10-09): his first attack of the fight.

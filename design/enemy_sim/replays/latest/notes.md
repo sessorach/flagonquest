@@ -1,12 +1,12 @@
 # Latest replays (2026-10-27)
 
-Arcane Chant, Glacier (Difficult Terrain) and Channel are in, so every combat Feature is; mechanic_baseline.py measured each one. No change to how the sample characters play.
+Wind Slash gives a melee weapon reach, a Diver takes the long reach only when it pays, and every attack checks range again first. No change to how the sample characters play.
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 1000 fights: 94.2% wins, 3.6 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 94.1% wins, 3.7 rounds, 72% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
