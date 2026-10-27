@@ -44,17 +44,15 @@ OUT_OF_COMBAT.update({
 
 DEFERRED.update({
     "T005": "vision rules (darkness, hidden or invisible creatures)",
-    "T006": "Technique Levels on attack profiles, and casting an expended use (_tech_attack_choice skips 0 uses)",
-    "T022": "Vigor: each Encounter use carrying its Technique's Level, to buy back by Level",
+    "T006": "casting an expended use (_tech_attack_choice skips 0 uses) and a rule for when Health is worth paying; "
+            "each use's Level is in encounter.py now",
     "T030": "summoned companions",
     "T031": "summoned companions (Animal Companion)",
     "T032": "Masterwork item rules",
-    "T037": "each Encounter use carrying its Technique's Level, to trade uses by Level",
     "T041": "item rules (crafting an item mid-fight)",
     "T052": "a can't-see state that enemy targeting respects, and hiding",
     "T056": "surprise rounds",
     "T081": "PC grapple attacks, and throwing a creature into objects",
-    "T082": "each Encounter use carrying its Technique's Level, to regain by Level",
     "T084": "a hook where a PC gains an effect (_apply_to_pc), to ignore the stacks",
     "T087": "a Teleport-and-swap move the PC's turn plans around",
     "T088": "enemy_left_reach firing without Parting Shot (_CTX['ps_pcs']), and a Countered move",
@@ -142,10 +140,6 @@ def _missing(p):
     return p['max_health'] - p['health']
 
 
-def _skill(s, skill):
-    return tq._st(s.stats, s.skills, skill)
-
-
 # ---- Solemn Pact (T013) ----
 
 @technique("T013", "Solemn Pact")
@@ -164,11 +158,13 @@ def _solemn_pact(sheet, copies, choices):
     sheet.encounter_techs.extend(["Solemn Pact"] * len(copies))
 
 
+tq.ENCOUNTER_NAMES.add("Solemn Pact")
+
+
 @setup_for("Solemn Pact")
 def _pact_setup(name, pc, s):
     pact = getattr(s.sheet, 'pact', "")
     pc['pact_skill'] = (pact or s.w_skill) if pact is not None else None
-    pc['pact_uses_left'] = s.uses[name] or 1
 
 
 @hooks.on('attack_luck', 'Solemn Pact', order=50)
@@ -177,7 +173,7 @@ def _pact_luck(pc, c):
     # goes on a Battle Maneuver or Technique attack when one of the pact's
     # Skill is still to come, else on the first attack with that Skill.
     skill = pc.get('pact_skill')
-    if not skill or pc.get('pact_uses_left', 0) <= 0:
+    if not skill or tq.encounter.left(pc, 'Solemn Pact') <= 0:
         return 0
     if ((c.substitute or {}).get('skill') or pc['attack_skill']) != skill:
         return 0
@@ -186,7 +182,7 @@ def _pact_luck(pc, c):
         t['uses'] > 0 and t.get('skill') == skill for t in pc.get('tech_attacks', ()))
     if not big and pending:
         return 0
-    pc['pact_uses_left'] -= 1
+    tq.encounter.spend(pc, 'Solemn Pact')
     c.notes.append("Good Luck twice (Solemn Pact)")
     return 2
 
@@ -196,20 +192,13 @@ def _pact_luck(pc, c):
 tq._encounter("T016", "Skin of Stone")
 
 
-@setup_for("Skin of Stone")
-def _skin_setup(name, pc, s):
-    # "You gain 1 + [half your Resilience Skill Total] stacks of Protected."
-    pc['skin_uses_left'] = s.uses[name] or 1
-    pc['skin_amount'] = 1 + _skill(s, "Resilience") // 2
-
-
 def _try_skin(pc, enemies, movement_on, ap, start, log):
     """Skin of Stone (1 AP, Encounter) is taken when Brace would be: with
     AP left over at the end of a turn while an enemy's close enough to
     come for this PC, or at the start of a turn spent in melee
     unprotected (round 2 on). Returns the AP spent."""
     cs = tq.cs
-    if pc.get('skin_uses_left', 0) <= 0 or ap < 1 or pc.get('protected', 0) > 0:
+    if tq.encounter.left(pc, 'Skin of Stone') <= 0 or ap < 1 or pc.get('protected', 0) > 0:
         return 0
     living = [e for e in enemies if e['health'] > 0]
     if not living:
@@ -222,10 +211,11 @@ def _try_skin(pc, enemies, movement_on, ap, start, log):
             return 0
     elif start:
         return 0
-    pc['skin_uses_left'] -= 1
-    cs._gain(pc, 'protected', pc['skin_amount'])
+    tq.encounter.spend(pc, 'Skin of Stone')
+    amount = 1 + tq.half(pc, 'Resilience')  # "1 + [half your Resilience Skill Total]"
+    cs._gain(pc, 'protected', amount)
     if log:
-        log(unit=pc['name'], action='technique', via='Skin of Stone', effects=f"Protected +{pc['skin_amount']}")
+        log(unit=pc['name'], action='technique', via='Skin of Stone', effects=f"Protected +{amount}")
     return 1
 
 
@@ -333,25 +323,20 @@ def _unbroken(pc, c):
 tq._passive("T033", "Hand of the Chirurgeon")
 
 
-@setup_for("Hand of the Chirurgeon")
-def _chirurgeon_setup(name, pc, s):
-    pc['chirurgeon'] = _skill(s, "Medicine") // 2
-
-
 def _try_chirurgeon(pc, c, start):
     """T033, 2 AP, yourself or an adjacent willing patient: "Remove up to
     [half your Medicine Skill Total] stacks of Bleeding from the target."
     Each stack is a Health it won't lose, so it's worth an attack's AP at
     the start of a turn when it clears 3 or more, and any AP left at the
     end of one. Returns the AP spent."""
-    if c.ap < 2 or pc.get('chirurgeon', 0) <= 0:
+    if c.ap < 2 or tq.half(pc, 'Medicine') <= 0:
         return 0
     pool = [p for p in c.pcs if p['health'] > 0 and p.get('bleeding', 0) > 0
             and (p is pc or _near(pc, p, c.movement_on))]
     if not pool:
         return 0
     p = max(pool, key=lambda p: p['bleeding'])
-    n = min(pc['chirurgeon'], p['bleeding'])
+    n = min(tq.half(pc, 'Medicine'), p['bleeding'])
     if start and n < 3:
         return 0
     p['bleeding'] -= n
@@ -423,11 +408,6 @@ def _analyzed_luck(pc, c):
 tq._passive("T050", "Optimize Blood")
 
 
-@setup_for("Optimize Blood")
-def _optimize_setup(name, pc, s):
-    pc['ob_amount'] = _skill(s, "Medicine") // 2
-
-
 @hooks.on('fight_start_order', 'Optimize Blood')
 def _optimize_blood(pc, c):
     """T050, 10 minutes, yourself or a willing patient: "For the next [half
@@ -438,20 +418,15 @@ def _optimize_blood(pc, c):
     healer could dose more."""
     cs = tq.cs
     party = [u for side, u in c.order if side == 'party' and u['health'] > 0]
-    if not party or pc.get('ob_amount', 0) <= 0:
+    if not party or tq.half(pc, 'Medicine') <= 0:
         return
     p = min(party, key=lambda u: (cs.effective_range(u) > cs.T.MELEE_RANGE, -u['max_health']))
-    p['optimize_blood'] = max(p.get('optimize_blood', 0), pc['ob_amount'])
+    p['optimize_blood'] = max(p.get('optimize_blood', 0), tq.half(pc, 'Medicine'))
 
 
 # ---- Pressure Point Revitalization (T055) ----
 
 tq._passive("T055", "Pressure Point Revitalization")
-
-
-@setup_for("Pressure Point Revitalization")
-def _ppr_setup(name, pc, s):
-    pc['medicine_skill_total'] = _skill(s, "Medicine")
 
 
 @hooks.on('pc_turn_start', 'Pressure Point Revitalization', order=46)
@@ -472,7 +447,7 @@ def _pressure_points(pc, c):
             and _near(pc, p, c.movement_on) and cs.cards.can_spend(p)]
     if not pool:
         return 0
-    mod = pc['medicine_skill_total'] - pc.get('crippled', 0)
+    mod = pc['skill_totals']['Medicine'] - pc.get('crippled', 0)
     # Not when the flip's more likely to miss than make it.
     if cs._p_flip_at_least(11 - mod, 1 + pc.get('good_luck', 0)) < 0.5:
         return 0
@@ -509,11 +484,6 @@ def _pressure_points(pc, c):
 tq._passive("T062", "Cry of Victory")
 
 
-@setup_for("Cry of Victory")
-def _cry_setup(name, pc, s):
-    pc['cry_range'] = _skill(s, "Presence")
-
-
 @hooks.on('after_hit', 'Cry of Victory', order=80)
 def _cry_of_victory(pc, c):
     """T062, "0 AP - Interrupt (you Down a hostile creature)", any number
@@ -530,7 +500,7 @@ def _cry_of_victory(pc, c):
     for e in c.enemies:
         if e['health'] <= 0 or (e.get('taunted', 0) > 0 and e.get('taunted_by') is pc):
             continue
-        if not _near(pc, e, True, pc['cry_range']):
+        if not _near(pc, e, True, pc['skill_totals']['Presence']):
             continue
         defense = e['mental'] - e.get('vulnerable', 0)
         mod = pc['presence_skill_total'] - pc.get('crippled', 0)
@@ -551,12 +521,6 @@ def _cry_of_victory(pc, c):
 tq._encounter("T064", "Heroic Inspiration")
 
 
-@setup_for("Heroic Inspiration")
-def _inspiration_setup(name, pc, s):
-    pc['inspire_uses_left'] = s.uses[name] or 1
-    pc['inspire_picks'] = _skill(s, "Performance") // 2
-
-
 @hooks.on('pc_turn_start', 'Heroic Inspiration', order=55)
 def _heroic_inspiration(pc, c):
     """T064, 2 AP, Encounter, any number of allies who can see or hear
@@ -567,7 +531,7 @@ def _heroic_inspiration(pc, c):
     pressed. Its other two picks (a stack of Taunted or Frightened off, a
     place in turn order) aren't used. Returns the AP spent."""
     cs = tq.cs
-    if pc.get('inspire_uses_left', 0) <= 0 or pc.get('inspire_picks', 0) <= 0 or c.ap < 2:
+    if tq.encounter.left(pc, 'Heroic Inspiration') <= 0 or tq.half(pc, 'Performance') <= 0 or c.ap < 2:
         return 0
     living = [e for e in c.enemies if e['health'] > 0]
     allies = [p for p in c.pcs if p['health'] > 0]
@@ -577,13 +541,13 @@ def _heroic_inspiration(pc, c):
     pool = sorted((p for p in allies if pressed(p) > 0), key=lambda p: (-pressed(p), p['health']))
     if not living or len(pool) < min(2, len(allies)):
         return 0
-    picks = pc['inspire_picks']
+    picks = tq.half(pc, 'Performance')
     given = {}
     for p in pool[:picks]:
         given[p['name']] = [p, 2]
     for _ in range(picks - len(given)):
         given[pool[0]['name']][1] += 1
-    pc['inspire_uses_left'] -= 1
+    tq.encounter.spend(pc, 'Heroic Inspiration')
     for p, n in given.values():
         cs._gain(p, 'protected', n)
     if c.log:
@@ -597,11 +561,6 @@ def _heroic_inspiration(pc, c):
 tq._passive("T066", "Bolstering Refrain")
 
 
-@setup_for("Bolstering Refrain")
-def _refrain_setup(name, pc, s):
-    pc['refrain_targets'] = _skill(s, "Performance") // 2
-
-
 @hooks.on('pc_turn_start', 'Bolstering Refrain', order=56)
 def _bolstering_refrain(pc, c):
     """T066, 2 AP, discard 2 cards, up to [half your Performance Skill
@@ -610,7 +569,7 @@ def _bolstering_refrain(pc, c):
     only when it reaches three hurt allies (or all it can, if that's
     fewer) and one of them is Wounded. Returns the AP spent."""
     cs = tq.cs
-    cap = pc.get('refrain_targets', 0)
+    cap = tq.half(pc, 'Performance')
     if cap <= 0 or c.ap < 2 or not _can_pay(pc, 2):
         return 0
     hurt = sorted((p for p in c.pcs if p is not pc and p['health'] > 0 and _missing(p) > 0),
@@ -631,11 +590,6 @@ def _bolstering_refrain(pc, c):
 tq._passive("T070", "Rally to Victory")
 
 
-@setup_for("Rally to Victory")
-def _rally_setup(name, pc, s):
-    pc['rally_x'] = _skill(s, "Performance") // 2
-
-
 @hooks.on('pc_turn_end', 'Rally to Victory', order=35)
 def _rally_to_victory(pc, c):
     """T070, 1 AP, discard a card for each target, willing allies who can
@@ -647,7 +601,7 @@ def _rally_to_victory(pc, c):
     swap those for draws off a freshly Sifted deck. Real cards only.
     Returns the AP spent."""
     cs = tq.cs
-    x = pc.get('rally_x', 0)
+    x = tq.half(pc, 'Performance')
     if not cs.T.CARDS or x <= 0:
         return 0
     keep = lambda card: cs.cards.rank(card) >= cs.T.SIFT_KEEP_RANK  # noqa: E731
@@ -679,11 +633,6 @@ def _rally_to_victory(pc, c):
 tq._encounter("T071", "The Gatekeeper")
 
 
-@setup_for("The Gatekeeper")
-def _gatekeeper_setup(name, pc, s):
-    pc['gatekeeper_uses_left'] = s.uses[name] or 1
-
-
 @hooks.on('pc_turn_start', 'The Gatekeeper', order=31)
 def _gatekeeper(pc, c):
     """T071, 1 AP, Encounter, any number of creatures who can see or hear
@@ -695,12 +644,12 @@ def _gatekeeper(pc, c):
     decays away within a fight; another Taunter or this PC's own Frighten
     still replaces it (glossary.md). Returns the AP spent."""
     cs = tq.cs
-    if pc.get('gatekeeper_uses_left', 0) <= 0 or c.ap < 1 or pc.get('play_style') == 'Back-liner':
+    if tq.encounter.left(pc, 'The Gatekeeper') <= 0 or c.ap < 1 or pc.get('play_style') == 'Back-liner':
         return 0
     pool = [e for e in c.enemies if e['health'] > 0 and e.get('taunted_by') is not pc]
     if len(pool) < 2:
         return 0
-    pc['gatekeeper_uses_left'] -= 1
+    tq.encounter.spend(pc, 'The Gatekeeper')
     for e in pool:
         defense = e['mental'] - e.get('vulnerable', 0)
         mod = pc['presence_skill_total'] - pc.get('crippled', 0)
@@ -745,7 +694,7 @@ def _bladeslinging(name, pc, s):
 # ---- Feint (T074) and Magehunter (T075): combat_sim's own fields ----
 
 tq._passive("T074", "Feint")
-tq._passive("T075", "Magehunter")
+tq._encounter("T075", "Magehunter")
 
 
 @setup_for("Feint")
@@ -795,12 +744,6 @@ def _flock_necrotic(pc, c):
 tq._encounter("T086", "Great Old Oak School - Bark Turns the Blade")
 
 
-@setup_for("Great Old Oak School - Bark Turns the Blade")
-def _bark_setup(name, pc, s):
-    pc['bark_uses_left'] = s.uses[name] or 1
-    pc['bark_amount'] = _skill(s, "Meditation") // 2
-
-
 @hooks.on('enemy_hit_damage', order=40)
 def _bark_turns_the_blade(e, c):
     """T086, "2 AP - Interrupt (you are hit by an attack, before the attack
@@ -809,14 +752,16 @@ def _bark_turns_the_blade(e, c):
     stays. Taken on a hit that would cost 2 Health or more, or Down the
     PC. Runs before Strike (Devastating) turns what's left into Bleeding."""
     t = c.target
-    n = t.get('bark_amount', 0)
-    if t.get('bark_uses_left', 0) <= 0 or n <= 0 or c.dmg <= 0:
+    if tq.encounter.left(t, 'Great Old Oak School - Bark Turns the Blade') <= 0 or c.dmg <= 0:
+        return
+    n = tq.half(t, 'Meditation')
+    if n <= 0:
         return
     if c.dmg < min(n, 2) and c.dmg < t['health']:
         return
     if not _interrupt_ap(t, 2):
         return
-    t['bark_uses_left'] -= 1
+    tq.encounter.spend(t, 'Great Old Oak School - Bark Turns the Blade')
     soaked = min(c.dmg, n)
     c.dmg -= soaked
     t['prot_absorbed'] = t.get('prot_absorbed', 0) + soaked
@@ -861,11 +806,6 @@ tq._tech_attack("T091", "Shugen School - Dawn Wind Bends the Grass", _dawn_wind)
 tq._passive("T093", "Great Old Oak School - Sap Seals the Wound")
 
 
-@setup_for("Great Old Oak School - Sap Seals the Wound")
-def _sap_setup(name, pc, s):
-    pc['sap_cap'] = _skill(s, "Meditation") // 2
-
-
 @hooks.on('pc_turn_end', 'Great Old Oak School - Sap Seals the Wound', order=32)
 def _sap_seals(pc, c):
     """T093, 1 AP, discard X cards (at most [half your Meditation Skill
@@ -880,7 +820,7 @@ def _sap_seals(pc, c):
     budget = pc.get('budget', 0) if cs.T.CARDS else pc.get('card_uses_left', 0)
     if cs.T.CARDS:
         budget = min(budget, len(pc['hand']))
-    x = min(pc.get('sap_cap', 0), budget, math.ceil(_missing(pc) / 2))
+    x = min(tq.half(pc, 'Meditation'), budget, math.ceil(_missing(pc) / 2))
     if x <= 0:
         return 0
     hearts = sum(1 for _ in range(x) if _pay_card(pc, cs.cards.HEARTS) == cs.cards.HEARTS)
@@ -900,4 +840,59 @@ def _sap_tick(pc, c):
         if c.log and healed:
             c.log(unit=pc['name'], action='heal', target=pc['name'], amount=healed, target_hp_after=pc['health'],
                   via='Sap Seals the Wound')
+    return 0
+
+
+# ---- Regaining Encounter uses (2026-10-27): encounter.py's rules ----
+
+@hooks.on('pc_turn_start', order=1)
+def _spend_vigor(pc, c):
+    # Any Vigor a PC has, from any source (Solemn Covenant below; Warpath
+    # and items once they're in), is spent the one way: encounter.py.
+    if pc.get('vigor'):
+        tq.encounter.spend_vigor(pc, c.log)
+    return 0
+
+
+tq._passive("T022", "Solemn Covenant")
+
+
+@setup_for("Solemn Covenant")
+def _covenant_setup(name, pc, s):
+    # T022: "At the start of each encounter, you gain 4 Vigor that lasts
+    # for the encounter." Breaking the pact is out of combat.
+    pc['vigor'] = pc.get('vigor', 0) + 4
+
+
+tq._passive("T082", "Great Old Oak School - Willow Springs Back")
+
+
+@hooks.on('pc_turn_end', 'Great Old Oak School - Willow Springs Back', order=15)
+def _willow(pc, c):
+    """T082, "X AP (X must be [half your Meditation Skill Total] or
+    less)": "Regain the use of an Encounter Technique with a Level of X or
+    less." Not an Encounter Technique itself. Paid from AP left at the end
+    of a turn: at the start of one it costs an attack, which a regained
+    use seldom beats (Felix's fights ran 0.6 rounds longer). X is the
+    regained use's Level. Returns the AP spent."""
+    enc = tq.encounter
+    g = enc.wanted(pc, max_level=min(c.ap, pc['skill_totals']['Meditation'] // 2))
+    if g is None:
+        return 0
+    enc.regain(pc, g, "Willow Springs Back", c.log)
+    return max(1, g['level'])
+
+
+tq._passive("T037", "Placeholder's Alacritous Adaptation")
+
+
+@hooks.on('pc_turn_start', "Placeholder's Alacritous Adaptation", order=4)
+def _alacritous_adaptation(pc, c):
+    """T037, "0 AP - Interrupt (any time)", Cost: "Expend the use of any
+    number of Discipline/Martial/Spell Encounter Techniques": "You regain
+    the use of one Discipline, Martial, or Spell Encounter Technique. The
+    regained Technique's Level must be lower than the total Levels of
+    Techniques you expended as a cost." encounter.trade_for says which
+    uses are worth trading."""
+    tq.encounter.trade_for(pc, tq.encounter.KINDS, c.rnd, c.log, "Placeholder's Alacritous Adaptation")
     return 0

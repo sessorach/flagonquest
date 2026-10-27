@@ -32,6 +32,26 @@ ARMOR_ITEMS = {"I127": "Medium", "I128": "Light", "I129": "Heavy"}
 NOT_MODELED_ITEMS = set()
 
 
+_FILES = {}
+
+
+def cached_file(path, parse):
+    """`parse(open file)` for `path`, read once and kept while the file's
+    unchanged (its modification time), so a fight loop doesn't re-read
+    the same CSV or build for every unit of every fight. Callers mustn't
+    change what comes back: copy it first."""
+    stamp = os.stat(path).st_mtime_ns
+    hit = _FILES.get(path)
+    if hit is None or hit[0] != stamp:
+        with open(path, newline="", encoding="utf-8") as f:
+            hit = _FILES[path] = (stamp, parse(f))
+    return hit[1]
+
+
+def csv_rows(path):
+    return cached_file(path, lambda f: tuple(csv.DictReader(f)))
+
+
 def _read(name):
     with open(os.path.join(_SCRIPTS, name), newline="", encoding="utf-8") as f:
         return {r["ID"]: r for r in csv.DictReader(f)}
@@ -63,6 +83,34 @@ def health_bonus(tid):
     Character Sheet sums."""
     row = techniques()[tid]
     return _int(row.get("Shallow Health Bonus")), _int(row.get("Deep Health Bonus"))
+
+
+@functools.lru_cache(maxsize=None)
+def _tags_by_name():
+    out = {}
+    for r in techniques().values():
+        out.setdefault(r["Name"], set()).update(t.strip() for t in (r.get("Tags") or "").split(",") if t.strip())
+    return out
+
+
+def fixed_level(tid):
+    """A Technique's Level when techniques.csv gives it just one (Level
+    Min = Level Max), else None (a Buildable one, whose Level is each
+    copy's own)."""
+    row = techniques().get(tid) or {}
+    lo, hi = (row.get("Level Min") or "").strip(), (row.get("Level Max") or "").strip()
+    return int(lo) if lo and lo == hi else None
+
+
+def tags_of(tid):
+    return {t.strip() for t in (techniques().get(tid, {}).get("Tags") or "").split(",") if t.strip()}
+
+
+def technique_tags(name):
+    """techniques.csv's Tags for a Technique, by name (a name used by more
+    than one row gets all their Tags). Empty for a name the CSV doesn't
+    have, such as a test's made-up Technique."""
+    return _tags_by_name().get(name, set())
 
 
 def item_health_bonus(iid):

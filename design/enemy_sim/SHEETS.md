@@ -90,7 +90,7 @@ Row: Weapon 2H Heavy Melee; Play Style Diver.
 
 In a fight: Health 10, Speed 3, Reflex 3; Parry 13, Dodge 11, Vital 13, Mental 11, Vigilant 11; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 5, 8 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; guard 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 1: guard 3
 - Passives: Furious Rage
 - Encounter Techniques: Battle Maneuver, Second Wind
 
@@ -114,7 +114,7 @@ Row: Play Style Diver.
 
 In a fight: Health 10, Speed 4, Reflex 3; Parry 16, Dodge 12, Vital 12, Mental 10, Vigilant 11; Resist 4 Physical, 2 elemental. Attacks with Melee: Melee 6, 6 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; guard 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 1: guard 3
 - Encounter Techniques: Brace, Challenge, Battle Maneuver
 
 ## Carrick
@@ -173,7 +173,7 @@ In a fight: Health 10, Speed 4, Reflex 3; Parry 15, Dodge 14, Vital 11, Mental 1
 
 - Firefly Leaves the Hand x1 (5, 4 Brilliant vs Mental)
 - Thief Empties the Vessel x1 (5, 4 Shadow vs Vital)
-- Battle Maneuver copies in order: lunges 2, guard 3
+- Battle Maneuver copies in order: Level 1: lunges 2, guard 3
 - Passives: Boughs Unbroken
 - Encounter Techniques: Battle Maneuver
 
@@ -328,7 +328,7 @@ Row: Weapon 2H Heavy Melee; Play Style Diver.
 
 In a fight: Health 13, Speed 4, Reflex 4; Parry 15, Dodge 12, Vital 15, Mental 12, Vigilant 12; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 7, 9 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; guard 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 1: guard 3
 - Passives: Furious Rage
 - Encounter Techniques: Battle Maneuver, Strength from the Slain, Second Wind
 
@@ -355,7 +355,7 @@ Row: Weapon 2H Heavy Melee; Play Style Diver.
 
 In a fight: Health 13, Speed 5, Reflex 5; Parry 17, Dodge 13, Vital 16, Mental 12, Vigilant 13; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 9, 10 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; whirlwind, victorious, ascended; guard 3; lunges 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 3: whirlwind, victorious, ascended; Level 1: guard 3; Level 1: lunges 3
 - Passives: Furious Rage
 - Encounter Techniques: Battle Maneuver, Strength from the Slain, Second Wind
 
@@ -382,7 +382,7 @@ Row: Play Style Diver.
 
 In a fight: Health 10, Speed 3, Reflex 4; Parry 16, Dodge 12, Vital 15, Mental 12, Vigilant 12; Resist 6 Physical, 3 elemental. Attacks with Melee: Melee 6, 8 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; guard 3; lunges 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 1: guard 3; Level 1: lunges 3
 - Passives: Inexhaustible Guardian
 - Encounter Techniques: Brace, Challenge, Battle Maneuver, Second Wind
 
@@ -411,7 +411,7 @@ Row: Play Style Diver.
 
 In a fight: Health 14, Speed 4, Reflex 4; Parry 19, Dodge 13, Vital 16, Mental 13, Vigilant 12; Resist 6 Physical, 3 elemental. Attacks with Melee: Melee 9, 8 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; guard 3; lunges 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 1: guard 3; Level 1: lunges 3
 - Passives: Inexhaustible Guardian, Toughened Resolve
 - Encounter Techniques: Brace, Challenge, Battle Maneuver, Exert Pressure, Second Wind
 
@@ -502,7 +502,7 @@ Row: Weapon Light Thrown; Play Style Skirmisher.
 
 In a fight: Health 10, Speed 5, Reflex 6; Parry 13, Dodge 17, Vital 14, Mental 14, Vigilant 14; Resist 4 Physical, 3 elemental. Attacks with Light Thrown: Acrobatics 10, 6 Physical damage vs Parry/Dodge, reach 9. Play Style Skirmisher.
 
-- Battle Maneuver copies in order: wind 3
+- Battle Maneuver copies in order: Level 1: wind 3
 - Passives: Eagle Eyes, Mighty Mixologist, Grim Resolve
 - Encounter Techniques: Battle Maneuver, Bottomless Bottles
 
@@ -527,7 +527,7 @@ Row: Weapon Light Bow; Play Style Back-liner.
 
 In a fight: Health 13, Speed 5, Reflex 6; Parry 13, Dodge 15, Vital 12, Mental 11, Vigilant 14; Resist 2 Physical, 1 elemental. Attacks with Light Bow: Archery 9, 5 Physical damage vs Parry/Dodge, reach 19. Play Style Back-liner.
 
-- Battle Maneuver copies in order: calculated 1, wing_clip 3
+- Battle Maneuver copies in order: Level 2: calculated 1, wing_clip 3
 - Passives: Hand of Chaos, One Eye Behind You
 - Encounter Techniques: Battle Maneuver, Blinkstep, Parting Shot, Perfect Strike
 
@@ -755,7 +755,7 @@ In a fight: Health 10, Speed 4, Reflex 3; Parry 15, Dodge 14, Vital 11, Mental 1
 
 - Firefly Leaves the Hand x1 (5, 4 Brilliant vs Mental)
 - Thief Empties the Vessel x1 (5, 4 Shadow vs Vital)
-- Battle Maneuver copies in order: lunges 2, battering 3
+- Battle Maneuver copies in order: Level 1: lunges 2, battering 3
 - Passives: Boughs Unbroken
 - Encounter Techniques: Battle Maneuver
 
@@ -856,7 +856,7 @@ In a fight: Health 10, Speed 4, Reflex 3; Parry 15, Dodge 14, Vital 11, Mental 1
 
 - Firefly Leaves the Hand x1 (5, 4 Brilliant vs Mental)
 - Thief Empties the Vessel x1 (5, 4 Shadow vs Vital)
-- Battle Maneuver copies in order: lunges 2, cashout 6
+- Battle Maneuver copies in order: Level 1: lunges 2, cashout 6
 - Passives: Boughs Unbroken
 - Encounter Techniques: Battle Maneuver
 
@@ -1032,7 +1032,7 @@ Row: Weapon 2H Heavy Melee; Play Style Diver.
 
 In a fight: Health 13, Speed 4, Reflex 4; Parry 15, Dodge 12, Vital 15, Mental 12, Vigilant 12; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 7, 9 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; wing_clip 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 1: wing_clip 3
 - Passives: Furious Rage
 - Encounter Techniques: Battle Maneuver, Strength from the Slain, Second Wind
 
@@ -1056,7 +1056,7 @@ Row: Weapon 2H Heavy Melee; Play Style Diver.
 
 In a fight: Health 13, Speed 4, Reflex 4; Parry 15, Dodge 12, Vital 15, Mental 12, Vigilant 12; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 7, 9 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; battering 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 1: battering 3
 - Passives: Furious Rage
 - Encounter Techniques: Battle Maneuver, Strength from the Slain, Second Wind
 
@@ -1083,7 +1083,7 @@ Row: Weapon 2H Heavy Melee; Play Style Diver.
 
 In a fight: Health 13, Speed 5, Reflex 5; Parry 17, Dodge 13, Vital 16, Mental 12, Vigilant 13; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 9, 10 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; calculated 1, flurry; guard 3; lunges 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 3: calculated 1, flurry; Level 1: guard 3; Level 1: lunges 3
 - Passives: Furious Rage
 - Encounter Techniques: Battle Maneuver, Strength from the Slain, Second Wind
 
@@ -1110,7 +1110,7 @@ Row: Weapon 2H Heavy Melee; Play Style Diver.
 
 In a fight: Health 13, Speed 5, Reflex 5; Parry 17, Dodge 13, Vital 16, Mental 12, Vigilant 13; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 9, 10 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: viper; whirlwind, victorious, ascended; guard 3; lunges 3
+- Battle Maneuver copies in order: Level 1: viper; Level 3: whirlwind, victorious, ascended; Level 1: guard 3; Level 1: lunges 3
 - Passives: Furious Rage
 - Encounter Techniques: Battle Maneuver, Strength from the Slain, Second Wind
 
@@ -1137,7 +1137,7 @@ Row: Play Style Diver.
 
 In a fight: Health 10, Speed 3, Reflex 4; Parry 16, Dodge 12, Vital 15, Mental 12, Vigilant 12; Resist 6 Physical, 3 elemental. Attacks with Melee: Melee 6, 8 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; guard 3; distracting 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 1: guard 3; Level 1: distracting 3
 - Passives: Inexhaustible Guardian
 - Encounter Techniques: Brace, Challenge, Battle Maneuver, Second Wind
 
@@ -1164,7 +1164,7 @@ Row: Play Style Diver.
 
 In a fight: Health 10, Speed 3, Reflex 4; Parry 16, Dodge 12, Vital 15, Mental 12, Vigilant 12; Resist 6 Physical, 3 elemental. Attacks with Melee: Melee 6, 8 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
 
-- Battle Maneuver copies in order: lunges 3; guard 3; lodestone 3
+- Battle Maneuver copies in order: Level 1: lunges 3; Level 1: guard 3; Level 1: lodestone 3
 - Passives: Inexhaustible Guardian
 - Encounter Techniques: Brace, Challenge, Battle Maneuver, Second Wind
 
@@ -1188,7 +1188,7 @@ Row: Weapon Light Thrown; Play Style Skirmisher.
 
 In a fight: Health 10, Speed 5, Reflex 6; Parry 13, Dodge 17, Vital 14, Mental 14, Vigilant 14; Resist 4 Physical, 3 elemental. Attacks with Light Thrown: Acrobatics 10, 6 Physical damage vs Parry/Dodge, reach 9. Play Style Skirmisher.
 
-- Battle Maneuver copies in order: wind 3; hamstring 3
+- Battle Maneuver copies in order: Level 1: wind 3; Level 1: hamstring 3
 - Passives: Eagle Eyes, Mighty Mixologist, Grim Resolve
 - Encounter Techniques: Battle Maneuver, Bottomless Bottles
 
@@ -1213,7 +1213,7 @@ Row: Weapon Light Bow; Play Style Back-liner.
 
 In a fight: Health 13, Speed 5, Reflex 6; Parry 13, Dodge 15, Vital 12, Mental 11, Vigilant 14; Resist 2 Physical, 1 elemental. Attacks with Light Bow: Archery 9, 5 Physical damage vs Parry/Dodge, reach 19. Play Style Back-liner.
 
-- Battle Maneuver copies in order: wing_clip 3, viper
+- Battle Maneuver copies in order: Level 2: wing_clip 3, viper
 - Passives: Hand of Chaos, One Eye Behind You
 - Encounter Techniques: Battle Maneuver, Blinkstep, Parting Shot, Perfect Strike
 
@@ -1237,7 +1237,7 @@ In a fight: Health 10, Speed 4, Reflex 3; Parry 15, Dodge 14, Vital 11, Mental 1
 
 - Firefly Leaves the Hand x1 (5, 4 Brilliant vs Mental)
 - Thief Empties the Vessel x1 (5, 4 Shadow vs Vital)
-- Battle Maneuver copies in order: lunges 2, viper
+- Battle Maneuver copies in order: Level 1: lunges 2, viper
 - Passives: Boughs Unbroken
 - Encounter Techniques: Battle Maneuver
 

@@ -9,7 +9,8 @@ def run(names, level, enc, trials, challenge=True):
     def mp(tier,good_luck=0):
         h['p']=party.make_party_from(names,good_luck)
         if not challenge:
-            for p in h['p']: p['challenge_uses_left']=0
+            for p in h['p']:
+                for g in p.get('_enc', {}).get('Challenge', ()): g['uses'] = 0
         return h['p']
     combat_sim.make_party=mp
     w=r=0; agg=collections.Counter(); per=collections.Counter()

@@ -99,11 +99,6 @@ HEALING_MAGIC_AP_COST = 1
 # T075 Magehunter's own techniques.csv row: "1 AP - Interrupt" - see
 # combat_sim._magehunter_interrupt.
 MAGEHUNTER_AP_COST = 1
-# Only a PC who knows Magehunter gets its Interrupt (2026-10-27). Before
-# this, any PC with an Interrupt AP pool (Parting Shot, Raise Spirits,
-# Gainsay, Lifeline) took a free Magehunter attack on enemy Spells.
-# False is the old behavior, kept for the fixed-seed check.
-MAGEHUNTER_NEEDS_TECH = True
 # T076 Parting Shot's own techniques.csv row: "1 AP - Interrupt" - see
 # combat_sim._parting_shot_interrupt.
 PARTING_SHOT_AP_COST = 1
@@ -443,6 +438,10 @@ BRACE_THREAT_RANGE = 6
 # Warmage's Reserves regains the best spent War Magic copy instead of a
 # plain cast (2026-10-24). Off reproduces the older runs exactly.
 RESERVES_REGAIN_BEST = True
+# Warmage's Reserves by its own text and encounter.py's rule (2026-10-27):
+# regains the best spent Sorcery use of Level [X + 1] or less, a Club
+# counting double, instead of the hand-picked copy above.
+RESERVES_BY_LEVEL = True
 RECKLESS_CHANCE = 0.05   # share of turns any PC plays like a Diver anyway
 
 # ---- How the Assassin tactic reads "squishy" (2026-10-08 test) ----

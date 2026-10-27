@@ -70,6 +70,7 @@ def on(point, key=None, order=50):
         _SEQ[0] += 1
         _REG[point].append((order, _SEQ[0], key, fn))
         _REG[point].sort(key=lambda h: (h[0], h[1]))
+        _SHARED.clear()
         return fn
     return deco
 
@@ -79,13 +80,26 @@ def has(unit, key):
             or key in unit.get("abilities", ()))
 
 
+# Handler lists shared by every unit that knows the same names
+# (2026-10-27): a fight makes fresh unit dicts, and building each one's
+# lists from _REG was a tenth of a fight's run time.
+_SHARED = {}
+
+
 def handlers(point, unit):
     cache = unit.get("_hooks")
     if cache is None:
         cache = unit["_hooks"] = {}
+        unit["_hook_names"] = (frozenset(unit.get("passives", ())) | frozenset(unit.get("techs", ()))
+                               | frozenset(unit.get("abilities", ())))
     hs = cache.get(point)
     if hs is None:
-        hs = cache[point] = [fn for _, _, key, fn in _REG[point] if key is None or has(unit, key)]
+        names = unit["_hook_names"]
+        key = (point, names)
+        hs = _SHARED.get(key)
+        if hs is None:
+            hs = _SHARED[key] = [fn for _, _, k, fn in _REG[point] if k is None or k in names]
+        cache[point] = hs
     return hs
 
 

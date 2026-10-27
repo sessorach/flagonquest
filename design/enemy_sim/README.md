@@ -200,6 +200,15 @@ The core files and the regular tools:
   `tunables.PARTY_TACTIC`. `tactics_compare.py` runs a party under every
   preset. The Play Styles themselves (Diver, Skirmisher, Back-liner,
   Kiter, Holder, Guardian) are `play_styles.py`'s `PLANNERS`.
+- **`encounter.py`** (2026-10-27) — every Encounter use a PC has, in one
+  list: each Technique copy's uses with its Level (techniques.csv's for a
+  fixed-Level Technique, the export's for a Buildable copy) and its kinds
+  (Martial, Discipline, Spell and school, from Tags). `left`/`spend` by
+  name, and one rule for which spent use a PC wants back (attacks first,
+  then Level, then damage) and when it's worth it (it outranks every
+  attack use still in hand). Vigor (Solemn Covenant), Willow Springs
+  Back, Placeholder's Alacritous Adaptation and Warmage's Reserves all
+  regain through it.
 - **`coverage.py`** (2026-10-27) — where every techniques.csv ID stands:
   modeled, out of combat or deferred (with the reasons). Exits 1 if one
   is missing or listed twice, so run it after adding Techniques to the

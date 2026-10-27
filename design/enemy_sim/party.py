@@ -29,6 +29,7 @@ for a chosen party. Older notes on the Roster's derivation are in
 sample_characters.md and ENEMY_ENCOUNTER_DESIGN.md's Analysis section.
 """
 import collections
+import copy
 import csv
 import json
 import math
@@ -38,6 +39,7 @@ from types import SimpleNamespace
 import tunables as T
 import party_tactics
 import play_styles
+import encounter
 import game_data
 import techniques
 from techniques import BuildError
@@ -49,8 +51,7 @@ STATS = ("Agility", "Body", "Cunning", "Mind", "Essence")
 
 
 def _load_rows():
-    with open(_CSV_PATH, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+    return [dict(r) for r in game_data.csv_rows(_CSV_PATH)]
 
 
 def _level(raw):
@@ -74,14 +75,29 @@ def _choices(cell):
 def read_build(filename):
     """A build file from builds/. A variant (2026-10-25) names a `base`
     file and lists only what it changes (apply_edits), so it follows its
-    base when that export is replaced."""
-    with open(os.path.join(BUILDS_DIR, filename), encoding="utf-8") as f:
-        build = json.load(f)
+    base when that export is replaced. Read once and shared (2026-10-27):
+    don't change what comes back; apply_edits makes a copy."""
+    return _read_build(filename)[0]
+
+
+_VARIANTS = {}
+
+
+def _read_build(filename):
+    """read_build's build, and the modification times of the file and its
+    base chain (what a cached sheet depends on)."""
+    path = os.path.join(BUILDS_DIR, filename)
+    build = game_data.cached_file(path, json.load)
+    stamps = (os.stat(path).st_mtime_ns,)
     if "base" in build:
-        base = read_build(build["base"])
-        notes = base.get("simNotes", []) + build.get("simNotes", [])
-        build = dict(apply_edits(base, build), simNotes=notes)
-    return build
+        base, base_stamps = _read_build(build["base"])
+        stamps += base_stamps
+        hit = _VARIANTS.get(filename)
+        if hit is None or hit[0] != stamps:
+            notes = base.get("simNotes", []) + build.get("simNotes", [])
+            hit = _VARIANTS[filename] = (stamps, dict(apply_edits(base, build), simNotes=notes))
+        build = hit[1]
+    return build, stamps
 
 
 def _entry(t):
@@ -178,7 +194,8 @@ def load_sheet(row, build=None):
         skills={k: int(v) for k, v in build["skillPoints"].items()},
         weapon=(row.get("Weapon") or "").strip(), armor="Unarmored", parry_weapons=[],
         passives=[], card_techniques=[], encounter_techs=[], tech_attacks=[], hexes=[], maneuvers=[],
-        blessing_features={}, blessing_groups=[], weapon_uses=None, defense_choices=[],
+        blessing_features={}, blessing_groups=[], weapon_uses=None, weapon_level=None, defense_choices=[],
+        levels={},
         support=False, heal_cards=1, heal_bonus=0, heal_reach=None, heal_range=None, heal_features={},
         battle_tactic=(row.get("Battle Tactic") or "").strip() or None,
         play_style=(row.get("Play Style") or "").strip(),
@@ -204,8 +221,12 @@ def load_sheet(row, build=None):
     # Techniques, grouped by ID in the export's order.
     copies = {}
     for t in build.get("techniques", ()):
+        # A fixed-Level Technique's Level is techniques.csv's (an export
+        # can carry an older one: Felix's Hand Rings the Bell says Lv 1, the
+        # CSV 2); a Buildable copy's is its own.
+        level = game_data.fixed_level(t["id"]) or _level(t.get("level", 1))
         copies.setdefault(t["id"], []).append(
-            dict(level=_level(t.get("level", 1)), features={f["name"]: int(f["count"]) for f in t.get("features", ())}))
+            dict(level=level, features={f["name"]: int(f["count"]) for f in t.get("features", ())}))
     choices = _choices(row.get("Choices"))
     # Unmodeled: Techniques this row carries knowingly unplayed (a power
     # the sim doesn't have yet). Their Health bonus still counts.
@@ -229,6 +250,8 @@ def load_sheet(row, build=None):
         tech.check_features(cs)
         tech.build(sheet, cs, choices.get(tech.name, []))
         known.add(tech.name)
+        # Each copy's Level, for its Encounter uses (encounter.py).
+        sheet.levels.setdefault(tech.name, []).extend(c["level"] for c in cs)
     for name in choices:
         if name not in known:
             raise BuildError(f"{row['Name']}: Choices names {name!r}, which the build doesn't have")
@@ -501,9 +524,13 @@ def _pc_dict(sheet, index, good_luck):
     # combat_sim's attack loop. These are what give the sim's party
     # attacks against Vital and Mental, not just Parry/Dodge.
     tech_attacks = []
-    for tname, factory, uses in sheet.tech_attacks:
+    for entry in sheet.tech_attacks:
+        tname, factory, uses = entry[:3]
+        meta = entry[3] if len(entry) > 3 else {}
         prof = factory(stats, skills, atk_skill_total, damage)
-        prof.update(via=tname, uses=uses)
+        tech = meta.get("tech", tname)
+        prof.update(encounter.group(tech, meta.get("level") or _level_of(sheet, tech), uses, attack=True))
+        prof.update(via=tname)
         tech_attacks.append(prof)
     # Overchanneling's +1 goes on damaging Spell attacks, the technique
     # ones included.
@@ -601,6 +628,7 @@ def _pc_dict(sheet, index, good_luck):
     hexes = []
     for h in sheet.hexes:
         h = dict(h)
+        h.update(encounter.group(h.pop("tech"), h.pop("level"), h["uses"], attack=True))
         ranged = h.pop("ranged")
         h["skill_total"] = skill_total(stats, skills, h["skill"])
         h["range"] = (h["skill_total"] if ranged else 1) + ley
@@ -612,18 +640,17 @@ def _pc_dict(sheet, index, good_luck):
     # X is X + [Spades] Protected on a hit. Bare-Handed just makes it an
     # Unarmed attack, which is already the PC's weapon for every row
     # that has it.
-    maneuver = None
-    maneuver_queue = []
+    maneuvers = []
     if sheet.maneuvers:
-        # Copies built the same way share one entry; copies built
-        # differently (Hilde, Browndog) are used in the sheet's order,
-        # combat_sim moving to the next once one's spent.
-        groups = [_maneuver_features(f) for f in sheet.maneuvers]
+        # Copies built the same way (and at the same Level) share one
+        # entry; copies built differently (Hilde, Browndog) are used in the
+        # sheet's order, combat_sim moving to the next once one's spent.
+        groups = [(_maneuver_features(f), level) for f, level in sheet.maneuvers]
         if all(g == groups[0] for g in groups):
-            maneuver = dict(uses=len(groups), **groups[0])
+            maneuvers = [dict(_maneuver_features(sheet.maneuvers[0][0]),
+                              **encounter.group("Battle Maneuver", groups[0][1], len(groups), attack=True))]
         else:
-            copies = [dict(uses=1, **g) for g in groups]
-            maneuver, maneuver_queue = copies[0], copies[1:]
+            maneuvers = [dict(g, **encounter.group("Battle Maneuver", level, 1, attack=True)) for g, level in groups]
 
     # Every copy gets its own suffix, Roster rows included (a Roster
     # build used to keep its bare row Name - "Baseline Tier 1 Party
@@ -646,8 +673,6 @@ def _pc_dict(sheet, index, good_luck):
               passives=passives, battle_tactic=battle_tactic,
               card_techniques=card_techniques, card_uses_left=card_uses_left,
               attacks_received=0, attacks_vs_parry_dodge=0, hits_received=0, parries=0,
-              challenge_uses_left=encounter_techs.count("Challenge"),
-              taunting_strike_uses_left=encounter_techs.count("Taunting Strike"),
               presence_skill_total=skill_total(stats, skills, "Presence"),
               # The attack's Skill (for its suit) and the day's hand size,
               # for real cards (cards.start_fight).
@@ -658,15 +683,20 @@ def _pc_dict(sheet, index, good_luck):
         pc["bottles_cards"] = hand_size * 2 // 3  # discarded crafting before the day's first fight
     if hexes:
         pc["hexes"] = hexes
-    if maneuver:
-        pc["maneuver"] = maneuver
-    if maneuver_queue:
-        pc["maneuver_queue"] = maneuver_queue
+    if maneuvers:
+        pc["maneuvers"] = maneuvers
+        pc["maneuver"] = maneuvers[0]
     # What each Technique needs on the fight dict (its uses, a range, a
     # profile) is set by its own entry in techniques.py. Run for every
     # name the PC carries, a test's added passive included. `techs` is the
     # Card and Encounter Techniques by name, which hooks.py checks
     # alongside `passives`.
+    # Every Skill Total, the Stats and Ley-weaving's reach, so a
+    # Technique's hooks can read whichever they need without a setup of
+    # their own copying it over.
+    pc["skill_totals"] = {k: skill_total(stats, skills, k) for k in T.PC_SKILL_STAT}
+    pc["stats"] = {k: int(v) for k, v in stats.items()}
+    pc["ley"] = ley
     pc["techs"] = list(dict.fromkeys(encounter_techs + card_techniques))
     setup = SimpleNamespace(stats=stats, skills=skills, uses=collections.Counter(encounter_techs), ley=ley,
                             sheet=sheet, weapon=weapon, weapon_name=weapon_name, w_skill=w_skill,
@@ -686,7 +716,11 @@ def _pc_dict(sheet, index, good_luck):
             party_tactics.role(attack_range, armor, "Shield" in parry_weapons, strategy == "support_healer"),
             pc["play_style"])
     if weapon_uses_left is not None:
-        pc["weapon_uses_left"] = weapon_uses_left
+        # The War Magic Weapon's casts are Encounter uses too; Warmage's
+        # Reserves' up-front uses (cards off) sit on top of the copies.
+        pc["weapon_spell"] = encounter.group("War Magic", sheet.weapon_level or 1, sheet.weapon_uses, attack=True,
+                                             via=weapon_name, damage=damage)
+        pc["weapon_spell"]["uses"] = weapon_uses_left
     if sheet.heal_features:
         pc["heal_features"] = dict(sheet.heal_features)
     if tech_attacks:
@@ -696,7 +730,30 @@ def _pc_dict(sheet, index, good_luck):
     if bottled_fire_profile is not None:
         pc["bottled_fire_profile"] = bottled_fire_profile
         pc["bottled_fire_uses_left"] = bottled_fire_uses
+    _attach_encounter(pc, sheet, encounter_techs)
     return pc
+
+
+def _level_of(sheet, tech):
+    return max(sheet.levels.get(tech) or [1])
+
+
+def _attach_encounter(pc, sheet, encounter_techs):
+    """Every Encounter use this PC has, as encounter.py groups: the
+    profiles that carry their own uses, then one plain group for each
+    other Encounter Technique (one use a copy; a test that adds one by
+    name gets one use)."""
+    for b in pc.get("blessings", ()):
+        b.update(encounter.group("Spirit Blessing", b.pop("level"), b["uses"]))
+    groups = ([pc["weapon_spell"]] if "weapon_spell" in pc else []) + pc.get("tech_attacks", []) \
+        + pc.get("hexes", []) + pc.get("maneuvers", []) + pc.get("blessings", [])
+    counts = collections.Counter(encounter_techs)
+    for name in pc["passives"]:
+        if name in techniques.ENCOUNTER_NAMES and name not in counts:
+            counts[name] = 1
+    owned = {g["tech"] for g in groups}
+    groups += [encounter.group(name, _level_of(sheet, name), n) for name, n in counts.items() if name not in owned]
+    encounter.attach(pc, groups)
 
 
 def _rows():
@@ -716,13 +773,28 @@ def make_pc(name, index=1, good_luck=0, health=0, add_passives=(), drop_passives
     row = (rows or _rows())[name]
     if row_changes:
         row = dict(row, **row_changes)
-    build = apply_edits(read_build(row["Build"]), edits) if edits else None
-    sheet = load_sheet(row, build)
+    sheet = copy.copy(_cached_sheet(row, edits))
     sheet.health += health
     sheet.passives = [p for p in sheet.passives if p not in drop_passives] + list(add_passives)
     if battle_tactic:
         sheet.battle_tactic = battle_tactic
     return _pc_dict(sheet, index, good_luck)
+
+
+_SHEETS = {}
+
+
+def _cached_sheet(row, edits):
+    # load_sheet is the same for the same row, build files and edits, and
+    # was a fifth of a fight's run time when redone every fight
+    # (2026-10-27). make_pc copies the sheet before changing it.
+    _, stamps = _read_build(row["Build"])
+    key = (tuple(sorted(row.items())), stamps, json.dumps(edits, sort_keys=True) if edits else None)
+    sheet = _SHEETS.get(key)
+    if sheet is None:
+        build = apply_edits(read_build(row["Build"]), edits) if edits else None
+        sheet = _SHEETS[key] = load_sheet(row, build)
+    return sheet
 
 
 def make_party(tier, good_luck=0):

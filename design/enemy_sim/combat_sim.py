@@ -174,7 +174,7 @@ or suits. This is deliberately a rough stand-in, same spirit as Good
 Luck/Bad Luck's `resolve_card` above: good enough to make a Technique
 that's otherwise completely invisible to this sim show up as a
 real, budget-limited effect, not a claim that it's tracking actual
-cards. `weapon_uses_left` is the separate, related idea of an
+cards. `weapon_spell` (encounter.py) is the separate, related idea of an
 Encounter-Technique Weapon (a PC whose own attack is itself a
 Technique with a limited number of known copies, like Beornhard's 3x
 War Magic) running out of charges partway through a long fight -
@@ -210,6 +210,7 @@ from party import make_party
 import cards
 import play_styles
 import hooks
+import encounter
 from types import SimpleNamespace
 
 
@@ -1102,6 +1103,18 @@ def _warmage_reserves(pc, log=None):
     uses up front. Returns whether a use was regained."""
     if not T.CARDS or "Warmage's Reserves" not in pc.get('card_techniques', ()) or not cards.can_spend(pc):
         return False
+    if T.RESERVES_BY_LEVEL:
+        # encounter.py's rule, by Level: one card is X = 1, a Club X = 2
+        # ("X is increased by 1 for each Club"), regaining the best spent
+        # Sorcery use of Level X + 1 or less.
+        for card in (cards.lowest(pc['hand']), cards.lowest(pc['hand'], prefer_suit=cards.CLUBS)):
+            x = 1 + (cards.suit(card) == cards.CLUBS)
+            g = encounter.wanted(pc, max_level=x + 1, kinds=frozenset(("Sorcery",)))
+            if g is not None:
+                cards.spend(pc, card)
+                encounter.regain(pc, g, "Warmage's Reserves", log)
+                return True
+        return False
     cards.spend(pc, cards.lowest(pc['hand']))
     # tunables.RESERVES_REGAIN_BEST: a player takes back the best spent
     # copy (Beornhard's Destructive War Magic), not a plain one. Leaves
@@ -1112,14 +1125,14 @@ def _warmage_reserves(pc, log=None):
     if best:
         max(best, key=lambda t: t['damage'])['uses'] += 1
     else:
-        pc['weapon_uses_left'] += 1
+        pc['weapon_spell']['uses'] += 1
     if log:
         log(unit=pc['name'], action='card', via="Warmage's Reserves", note='regained a War Magic use')
     return True
 
 
 def _has_big_attacks(p):
-    return ((p.get('weapon_uses_left') or 0) > 0
+    return ((encounter.weapon_left(p) or 0) > 0
             or any(t['uses'] > 0 for t in p.get('tech_attacks', ()))
             or any(h['uses'] > 0 for h in p.get('hexes', ()))
             or (p.get('maneuver') or {}).get('uses', 0) > 0)
@@ -1168,10 +1181,11 @@ def _line_targets(pc, target, enemies, length):
 
 def _next_maneuver(pc):
     """A spent Battle Maneuver copy makes way for the next one, for a PC
-    who built each copy differently (party.py's `maneuver_queue`)."""
+    who built each copy differently (party.py's `maneuvers`, in the
+    sheet's order)."""
     m = pc.get('maneuver')
-    if m and m['uses'] <= 0 and pc.get('maneuver_queue'):
-        pc['maneuver'] = pc['maneuver_queue'].pop(0)
+    if m and m['uses'] <= 0:
+        pc['maneuver'] = next((g for g in pc.get('maneuvers', ()) if g['uses'] > 0), m)
 
 
 def _tech_attack_choice(pc, target):
@@ -1209,7 +1223,7 @@ def _tech_attack_choice(pc, target):
         # A cash-out spell waits for stacks to cash in, unless it's the
         # only attack left.
         if (t.get('cashout') and target.get('bleeding', 0) < T.CASHOUT_MIN
-                and pc.get('weapon_uses_left') != 0):
+                and encounter.weapon_left(pc) != 0):
             continue
         # A drain that heals (Thief Empties the Vessel) is saved until it
         # would heal, or the fight's into its third round.
@@ -1507,7 +1521,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # including weapon attacks".
                 if pc.get('two_handed') and _grappled(pc) is not None:
                     break
-                if pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0 \
+                if encounter.weapon_left(pc) is not None and encounter.weapon_left(pc) <= 0 \
                         and not any(t['uses'] > 0 for t in pc.get('tech_attacks', ())) \
                         and not _warmage_reserves(pc, party_log):
                     break  # an Encounter-Technique Weapon (Beornhard's War Magic) out of charges this fight
@@ -1553,11 +1567,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 if not substitute and not maneuver_now:
                     substitute = _tech_attack_choice(pc, target)
                 if (pc.pop('_range_skip', False) and not substitute and not maneuver_now
-                        and pc.get('weapon_uses_left') is not None and pc['weapon_uses_left'] <= 0):
+                        and encounter.weapon_left(pc) is not None and encounter.weapon_left(pc) <= 0):
                     if _warmage_reserves(pc, party_log):
                         substitute = _tech_attack_choice(pc, target)
                         pc.pop('_range_skip', None)
-                    if not substitute and pc['weapon_uses_left'] <= 0:
+                    if not substitute and encounter.weapon_left(pc) <= 0:
                         break
                 # Anything that spends extra AP on this attack (Eagle Eyes).
                 pre = SimpleNamespace(substitute=substitute, ap=ap)
@@ -1727,7 +1741,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # flip; a miss that matters can be rescued from the hand.
                     luck = pc.get('good_luck', 0) + luck_extra
                     mod0 = pc['skill_total'] - crippled
-                    big = (('uses' in substitute) if substitute else pc.get('weapon_uses_left') is not None) or maneuver_now
+                    big = (('uses' in substitute) if substitute else encounter.weapon_left(pc) is not None) or maneuver_now
                     if (substitute and not substitute.get('weapon')) or feint_active or spell:
                         gambles, backed = 0, False
                     else:
@@ -1754,8 +1768,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     viper_free += 1
                 ap -= 0 if repeating else (1 if feint_active or (maneuver_now and mv.get('viper'))
                                            or (substitute or {}).get('ap') == 1 else T.ATTACK_AP_COST)
-                if pc.get('weapon_uses_left') is not None and not substitute:
-                    pc['weapon_uses_left'] -= 1
+                if 'weapon_spell' in pc and not substitute:
+                    pc['weapon_spell']['uses'] -= 1
                 hit = roll >= defense
                 if target.get('vulnerable', 0) > 0 and pc.get('opp_def') in ('Vital', 'Bodily', 'Mental', 'Vigilant'):
                     pc['vuln_points'] = pc.get('vuln_points', 0) + target['vulnerable']
@@ -1767,9 +1781,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # an enemy she isn't already Taunting; on a hit, Taunt it
                 # 3 + [Hearts] times.
                 taunt_note = None
-                if (pc.get('taunting_strike_uses_left', 0) > 0 and not substitute
+                if (encounter.left(pc, 'Taunting Strike') > 0 and not substitute
                         and not (target.get('taunted', 0) > 0 and target.get('taunted_by') is pc)):
-                    pc['taunting_strike_uses_left'] -= 1
+                    encounter.spend(pc, 'Taunting Strike')
                     taunt_note = 'Taunting Strike missed'
                     if hit:
                         stacks = 3 + _suit_count(pool, 'Hearts')
@@ -2213,7 +2227,7 @@ def _has_interrupt_tech(pc):
     pool (`pc['ap_bank']`) rather than each getting its own, since
     rulebook.md's AP economy is a single number per PC."""
     return bool(pc.get('magehunter') or pc.get('parting_shot') or 'raise_range' in pc
-                or pc.get('gainsay_uses_left') or pc.get('lifeline_uses_left'))
+                or encounter.left(pc, 'Gainsay') or encounter.left(pc, 'Lifeline'))
 
 
 def _magehunter_interrupt(e, pcs, movement_on, party_log):
@@ -2223,8 +2237,8 @@ def _magehunter_interrupt(e, pcs, movement_on, party_log):
     Melee Spell/Ranged Spell attack resolves, so a real Interrupt: the
     PC's attack lands (and can kill/interrupt the caster) BEFORE the
     enemy's own attack roll happens, not just some other bonus-damage
-    add-on after the fact. Any living PC with an unused Magehunter
-    charge (`pc['magehunter_charge_used']` not yet set - see below) AND
+    add-on after the fact. Any living PC with a Magehunter use left
+    (encounter.py) AND
     at least T.MAGEHUNTER_AP_COST (1) AP left in `pc['ap_bank']` - the
     pool granted at this PC's own last turn-end refresh (or the initial
     Reflex-flip refresh, for their very first turn), NOT a per-turn
@@ -2248,12 +2262,11 @@ def _magehunter_interrupt(e, pcs, movement_on, party_log):
         # encounter ends" - a real once-per-encounter charge (same
         # rule Whirlwind/Flurry/Ricochet Shot already follow), NOT
         # repeatable every time AP and a valid target line up.
-        # `magehunter_charge_used` is a separate flag from `ap_bank` on
-        # purpose - the AP this PC's next own turn loses from actually
-        # using the Interrupt is real and persists even after the
-        # charge itself is spent, so ap_bank keeps tracking regardless.
-        if (pc['health'] <= 0 or pc.get('magehunter_charge_used')
-                or (T.MAGEHUNTER_NEEDS_TECH and not pc.get('magehunter'))
+        # The use is separate from `ap_bank` on purpose - the AP this
+        # PC's next own turn loses from actually using the Interrupt is
+        # real and persists even after the use itself is spent, so
+        # ap_bank keeps tracking regardless.
+        if (pc['health'] <= 0 or encounter.left(pc, 'Magehunter') <= 0
                 or pc.get('ap_bank', 0) < T.MAGEHUNTER_AP_COST):
             continue
         if e['health'] <= 0:
@@ -2262,7 +2275,7 @@ def _magehunter_interrupt(e, pcs, movement_on, party_log):
         if movement_on and _distance(pc['pos'], e['pos']) > reach:
             continue
         pc['ap_bank'] -= T.MAGEHUNTER_AP_COST
-        pc['magehunter_charge_used'] = True
+        encounter.spend(pc, 'Magehunter')
         defense = enemy_defense_for_pc_attack(pc, e)
         resist = enemy_resist_for_pc_attack(pc, e)
         gambles = pc_gamble_count(pc, e)
@@ -2309,7 +2322,7 @@ def _parting_shot_interrupt(e, pcs, movement_on, party_log):
     enemy that walks or is Pushed out of reach).
 
     Same `ap_bank`/once-per-encounter-charge shape as
-    _magehunter_interrupt (`pc['parting_shot_charge_used']`,
+    _magehunter_interrupt (its encounter.py use,
     T.PARTING_SHOT_AP_COST), but gated on "close-range weapon"
     specifically (`not pc.get('attack_range')` - party.py only sets
     `attack_range` for a real ranged `Weapon` pick; the blank default,
@@ -2320,7 +2333,7 @@ def _parting_shot_interrupt(e, pcs, movement_on, party_log):
     damage tally."""
     total_dmg = 0
     for pc in pcs:
-        if (pc['health'] <= 0 or pc.get('parting_shot_charge_used')
+        if (pc['health'] <= 0 or encounter.left(pc, 'Parting Shot') <= 0
                 or pc.get('ap_bank', 0) < T.PARTING_SHOT_AP_COST
                 or pc.get('attack_range')):
             continue
@@ -2330,7 +2343,7 @@ def _parting_shot_interrupt(e, pcs, movement_on, party_log):
         if movement_on and _distance(pc['pos'], e['pos']) > reach:
             continue
         pc['ap_bank'] -= T.PARTING_SHOT_AP_COST
-        pc['parting_shot_charge_used'] = True
+        encounter.spend(pc, 'Parting Shot')
         defense = enemy_defense_for_pc_attack(pc, e)
         resist = enemy_resist_for_pc_attack(pc, e)
         gambles = pc_gamble_count(pc, e)
@@ -2712,7 +2725,7 @@ def _arcane_chant(pc, sub, ap, log):
     all of it once no cast or weapon use is left. Returns this cast's
     profile (a copy, so the boost lasts one cast) and the AP left."""
     left = ap - T.ATTACK_AP_COST
-    more = (pc.get('weapon_uses_left') is None or pc['weapon_uses_left'] > 0
+    more = (encounter.weapon_left(pc) is None or encounter.weapon_left(pc) > 0
             or any(t['uses'] > 0 for t in pc.get('tech_attacks', ())))
     k = left - T.ATTACK_AP_COST if more and left >= T.ATTACK_AP_COST else left
     if k <= 0:

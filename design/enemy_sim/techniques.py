@@ -22,14 +22,29 @@ Each Technique has up to three parts, all in this file:
   the points and the order they run in).
 Adding a Technique means adding those here, and a new hook point in
 combat_sim only if it does something none of the existing points cover.
+
+Most need less than that (2026-10-27):
+- An Encounter Technique registered with `_encounter(tid, name)` gets
+  its uses from encounter.py, one a copy, each carrying its Level and
+  kinds (Martial/Discipline/Spell, from techniques.csv's Tags). Its hooks
+  call `encounter.left(pc, name)` and `encounter.spend(pc, name)`; no
+  setup. Anything that regains or trades uses (Vigor, Willow Springs
+  Back, Warmage's Reserves...) then works on it with nothing more.
+- Every PC carries `skill_totals` (all 25), `stats` and `ley`
+  (Ley-weaving's +3 meters), so a hook reads "[half your Meditation Skill
+  Total]" as `half(pc, "Meditation")` rather than a setup copying it.
+- A setup is for what the sheet alone knows: a pick from the Choices
+  column, a profile built from the Weapon.
 """
 import collections
 from types import SimpleNamespace
 
+import encounter
 import game_data
 import hooks
 
 REGISTRY = {}
+ID_BY_NAME = {}  # the sim's name for a Technique -> its ID (encounter.py's Tags)
 
 # IDs that never matter in a fight: the loader accepts them and moves on.
 OUT_OF_COMBAT = {
@@ -68,6 +83,7 @@ def technique(tid, name, features=()):
     this Technique (Choices column), one string per copy, if any."""
     def deco(fn):
         REGISTRY[tid] = Technique(tid, name, fn, features)
+        ID_BY_NAME.setdefault(name, tid)
         return fn
     return deco
 
@@ -82,8 +98,15 @@ def _card(tid, name):
     technique(tid, name)(lambda sheet, copies, choices: sheet.card_techniques.append(name))
 
 
+# Every Technique whose only fight state is its uses: party.py gives each
+# one an encounter.py group, so its hooks need only encounter.left() and
+# encounter.spend() by name.
+ENCOUNTER_NAMES = set()
+
+
 def _encounter(tid, name):
     # One entry per known copy: each copy is one use a fight.
+    ENCOUNTER_NAMES.add(name)
     technique(tid, name)(lambda sheet, copies, choices: sheet.encounter_techs.extend([name] * len(copies)))
 
 
@@ -168,7 +191,8 @@ def _reckoning(sheet, copies, choices):
     # meters": "Make a Theurgy spell attack against the target's Mental
     # Defense. If it hits, they are Crippled 5 + [Clubs] times."
     sheet.hexes.append(dict(via="Reckoning", kind="crippled", amount=5, suit="Clubs", opp_def="Mental",
-                            skill="Theurgy", uses=len(copies), ranged=True))
+                            skill="Theurgy", uses=len(copies), ranged=True, tech="Reckoning",
+                            level=max(c["level"] for c in copies)))
 
 
 # ---- War Magic (T120): every copy is built from its own Features ----
@@ -203,12 +227,13 @@ def _war_magic(sheet, copies, choices):
     groups = collections.OrderedDict()
     for i, c in enumerate(copies):
         defense = choices[i] if i < len(choices) and choices[i] else "Dodge"
-        key = (tuple(sorted(c["features"].items())), defense)
-        groups.setdefault(key, [c["features"], defense, 0])[2] += 1
-    for feats, defense, n in groups.values():
+        key = (tuple(sorted(c["features"].items())), defense, c["level"])
+        groups.setdefault(key, [c["features"], defense, 0, c["level"]])[2] += 1
+    for feats, defense, n, level in groups.values():
         name = _war_magic_name(feats)
         if set(feats) == {"Lance"} and sheet.weapon.startswith("War Magic") and defense == "Dodge":
             sheet.weapon_uses = (sheet.weapon_uses or 0) + n
+            sheet.weapon_level = max(sheet.weapon_level or 0, level)
             continue
         if "Tormenting Curse" in feats:
             # The hex lands its first rider of these: Frigid "Slowed [twice
@@ -226,11 +251,11 @@ def _war_magic(sheet, copies, choices):
                 raise BuildError(f"{name}: a Tormenting Curse copy needs a rider (Frigid, Kinetic, Corrupting, "
                                  "Necrotic or Barraging) to do anything here")
             sheet.hexes.append(dict(via=name, kind=kind, amount=mult * feats[feat], suit=suit, opp_def=defense,
-                                    skill="Sorcery", uses=n, ranged="Lance" in feats))
+                                    skill="Sorcery", uses=n, ranged="Lance" in feats, tech="War Magic", level=level))
             continue
         if sum(1 for f in feats if f.endswith("(Shape)")) > 1:
             raise BuildError(f"{name}: only one Shape feature per Spell")
-        sheet.tech_attacks.append((name, _war_magic_factory(feats, defense), n))
+        sheet.tech_attacks.append((name, _war_magic_factory(feats, defense), n, dict(tech="War Magic", level=level)))
 
 
 def _war_magic_factory(feats, defense):
@@ -325,7 +350,7 @@ def _battle_maneuver(sheet, copies, choices):
             if "Elemental" in feats and element == "Brilliant":
                 raise BuildError("Battle Maneuver: Elemental is Fire, Frost or Shadow")
             feats["_element"] = element
-        sheet.maneuvers.append(feats)
+        sheet.maneuvers.append((feats, c["level"]))
 
 
 @technique("T104", "Spirit Blessing", features=(
@@ -348,11 +373,11 @@ def _spirit_blessing(sheet, copies, choices):
                                  "element in Choices")
             feats["_element"] = element
         for g in groups:
-            if g[0] == feats:
+            if g[0] == feats and g[2] == c["level"]:
                 g[1] += 1
                 break
         else:
-            groups.append([feats, 1])
+            groups.append([feats, 1, c["level"]])
     sheet.blessing_features = groups[0][0]
     sheet.blessing_groups = groups
 
@@ -413,14 +438,11 @@ def _skill(s, skill):
     return _st(s.stats, s.skills, skill)
 
 
-@setup_for("Brace", "Strength from the Slain", "Exert Pressure")
-def _uses(name, pc, s):
-    # Brace (T001, 3 Protected), Strength from the Slain (T018, eaten
-    # after a kill), Exert Pressure (T067, a Taunt on everyone close): one
-    # use per known copy.
-    key = {"Brace": "brace_uses_left", "Strength from the Slain": "slain_uses_left",
-           "Exert Pressure": "pressure_uses_left"}[name]
-    pc[key] = s.uses[name]
+def half(pc, skill):
+    """[half your X Skill Total], off the PC's own Skill Totals (party.py
+    puts all of them on every PC), so a Technique needs no setup to read
+    one."""
+    return pc['skill_totals'][skill] // 2
 
 
 @setup_for("Toughened Resolve")
@@ -432,18 +454,11 @@ def _toughened_resolve(name, pc, s):
 
 @setup_for("Shadow Jaunt")
 def _shadow_jaunt_setup(name, pc, s):
-    pc["jaunt_uses_left"] = s.uses[name]
     pc["jaunt_range"] = max(_skill(s, "Sorcery"), _skill(s, "Theurgy"))
-
-
-@setup_for("Gainsay")
-def _gainsay_setup(name, pc, s):
-    pc["gainsay_uses_left"] = s.uses[name]
 
 
 @setup_for("Wall of Shadows")
 def _wall_setup(name, pc, s):
-    pc["wall_uses_left"] = s.uses[name]
     pc["sorcery_skill_total"] = _skill(s, "Sorcery")
 
 
@@ -470,7 +485,6 @@ def _parting_shot_setup(name, pc, s):
 
 @setup_for("Lifeline")
 def _lifeline_setup(name, pc, s):
-    pc["lifeline_uses_left"] = s.uses[name]
     pc["lifeline_range"] = _skill(s, "Theurgy") + s.ley
 
 
@@ -499,14 +513,13 @@ def _blessing_features(feats, theurgy, ley):
 @setup_for("Spirit Blessing")
 def _blessing_setup(name, pc, s):
     groups = s.sheet.blessing_groups
-    pc["blessings"] = [dict(uses=s.uses[name] if len(groups) == 1 else n,
-                            **_blessing_features(feats, _skill(s, "Theurgy"), s.ley)) for feats, n in groups]
+    pc["blessings"] = [dict(uses=s.uses[name] if len(groups) == 1 else n, level=level,
+                            **_blessing_features(feats, _skill(s, "Theurgy"), s.ley)) for feats, n, level in groups]
     pc["blessing"] = pc["blessings"][0]
 
 
 @setup_for("Gust of Wind")
 def _gust_setup(name, pc, s):
-    pc["gust_uses_left"] = s.uses[name]
     pc["theurgy_skill_total"] = _skill(s, "Theurgy")
     pc["gust_push"] = 2 * int(s.stats["Mind"])
 
@@ -674,7 +687,7 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
     closest to the party's most fragile member (lowest max Health, then
     lowest current Health) - the whole point is pulling attacks off
     whoever can't take them. Returns the AP spent (0 or 1)."""
-    if pc.get('challenge_uses_left', 0) <= 0:
+    if encounter.left(pc, 'Challenge') <= 0:
         return 0
     pool = [e for e in enemies if e['health'] > 0 and not (e.get('taunted', 0) > 0)]
     if movement_on:
@@ -687,7 +700,7 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
         target = min(pool, key=lambda e: cs._distance(e['pos'], ward['pos']))
     else:
         target = pool[0]
-    pc['challenge_uses_left'] -= 1
+    encounter.spend(pc, 'Challenge')
     defense = target['mental'] - target.get('vulnerable', 0)
     if cs.T.CARDS:
         good = cs._raise_spirits(pc, pcs, defense - pc['presence_skill_total'], True)
@@ -716,7 +729,7 @@ def _try_brace(pc, enemies, movement_on, ap, start, log=None):
     enough to come for this PC, or at the start of a turn spent in melee
     unprotected (round 2 on, giving up the second attack). Returns the AP
     spent."""
-    if pc.get('brace_uses_left', 0) <= 0 or ap < 1 or pc.get('protected', 0) > 0:
+    if encounter.left(pc, 'Brace') <= 0 or ap < 1 or pc.get('protected', 0) > 0:
         return 0
     living = [e for e in enemies if e['health'] > 0]
     if not living:
@@ -729,7 +742,7 @@ def _try_brace(pc, enemies, movement_on, ap, start, log=None):
             return 0
     elif start:
         return 0
-    pc['brace_uses_left'] -= 1
+    encounter.spend(pc, 'Brace')
     cs._gain(pc, 'protected', 3)
     if log:
         log(unit=pc['name'], action='technique', via='Brace', effects='Protected +3')
@@ -743,7 +756,7 @@ def _try_exert_pressure(pc, pcs, enemies, movement_on, ap=1, log=None):
     Used at the start of a turn or with AP left at its end, once two or
     more enemies are that close and at least one isn't already Taunted by
     this PC; it goes on the ones that aren't. Returns the AP spent."""
-    if pc.get('pressure_uses_left', 0) <= 0 or ap < 1:
+    if encounter.left(pc, 'Exert Pressure') <= 0 or ap < 1:
         return 0
     near = [e for e in enemies if e['health'] > 0]
     if movement_on:
@@ -751,7 +764,7 @@ def _try_exert_pressure(pc, pcs, enemies, movement_on, ap=1, log=None):
     pool = [e for e in near if e.get('taunted_by') is not pc]
     if len(near) < 2 or not pool:
         return 0
-    pc['pressure_uses_left'] -= 1
+    encounter.spend(pc, 'Exert Pressure')
     for target in pool:
         defense = target['mental'] - target.get('vulnerable', 0)
         if cs.T.CARDS:
@@ -780,7 +793,7 @@ def _strength_from_slain(pc, corpse, log=None):
     adjacent creature just Downed - Hasted and Protected three times each,
     and Good Luck on one Melee (or other Body/Agility-skill) flip this
     encounter, which the next attack takes."""
-    pc['slain_uses_left'] -= 1
+    encounter.spend(pc, 'Strength from the Slain')
     cs._gain(pc, 'hasted', 3)
     cs._gain(pc, 'protected', 3)
     pc['gl_next'] = pc.get('gl_next', 0) + 1
@@ -830,7 +843,7 @@ def _try_shadow_jaunt(pc, enemies, movement_on, ap, log=None):
     or Theurgy Skill Total] meters." A caster taken in melee (or grappled
     - Teleporting ends a grapple) Teleports clear, still in reach of what
     it was fighting, before its attacks. Returns the AP spent."""
-    if pc.get('jaunt_uses_left', 0) <= 0 or not movement_on or ap < 1 + cs.T.ATTACK_AP_COST:
+    if encounter.left(pc, 'Shadow Jaunt') <= 0 or not movement_on or ap < 1 + cs.T.ATTACK_AP_COST:
         return 0
     living = [e for e in enemies if e['health'] > 0]
     near = [e for e in living if cs._distance(pc['pos'], e['pos']) <= cs.T.MELEE_RANGE]
@@ -845,7 +858,7 @@ def _try_shadow_jaunt(pc, enemies, movement_on, ap, log=None):
     pc['pos'] = cs.movement.move_away(pc['pos'], nearest['pos'], spaces)
     if pc['pos'] == start:
         return 0
-    pc['jaunt_uses_left'] -= 1
+    encounter.spend(pc, 'Shadow Jaunt')
     cs._end_grapple(pc)
     if log:
         log(unit=pc['name'], action='move', pos=pc['pos'], spaces=cs._distance(start, pc['pos']), via='Shadow Jaunt')
@@ -878,7 +891,7 @@ def _try_wall_of_shadows(pc, pcs, enemies, movement_on, ap, log=None):
     Cover." Cast across the line to the enemies' shooters when the wall
     would block more of their shots than of the party's own (the party's
     archers and casters shoot through it too). Returns the AP spent."""
-    if (pc.get('wall_uses_left', 0) <= 0 or not movement_on or ap < 2 or cs._CTX.get('walls')):
+    if (encounter.left(pc, 'Wall of Shadows') <= 0 or not movement_on or ap < 2 or cs._CTX.get('walls')):
         return 0
     living = [e for e in enemies if e['health'] > 0]
     allies = [p for p in pcs if p['health'] > 0]
@@ -896,7 +909,7 @@ def _try_wall_of_shadows(pc, pcs, enemies, movement_on, ap, log=None):
     loss = sum(sum(blocked(p, e) for e in living) / len(living) for p in archers)
     if gain - loss < 1:
         return 0
-    pc['wall_uses_left'] -= 1
+    encounter.spend(pc, 'Wall of Shadows')
     cs._CTX['walls'] = cells
     if log:
         log(unit=pc['name'], action='technique', via='Wall of Shadows',
@@ -1001,7 +1014,7 @@ def _try_gust_of_wind(pc, pcs, enemies, movement_on, ap, rnd, trace, log=None):
     ally is in the cone, and not when an ally is fighting something in it
     (pushing that away cost the party more than it saved). Returns the AP
     spent."""
-    if pc.get('gust_uses_left', 0) <= 0 or not movement_on or ap < 1:
+    if encounter.left(pc, 'Gust of Wind') <= 0 or not movement_on or ap < 1:
         return 0
     living = [e for e in enemies if e['health'] > 0]
     near = [e for e in living if cs._distance(pc['pos'], e['pos']) <= cs.T.MELEE_RANGE]
@@ -1025,7 +1038,7 @@ def _try_gust_of_wind(pc, pcs, enemies, movement_on, ap, rnd, trace, log=None):
     # Not when it would blow away something an ally is already fighting.
     if any(cs._distance(e['pos'], p['pos']) <= cs.T.MELEE_RANGE for e in targets for p in others):
         return 0
-    pc['gust_uses_left'] -= 1
+    encounter.spend(pc, 'Gust of Wind')
     for e in targets:
         defense = e['dodge'] - e.get('harried', 0)
         mod = pc['theurgy_skill_total'] - pc.get('crippled', 0)
@@ -1067,12 +1080,12 @@ def _gainsay(pc, e, pcs, enemies, movement_on, log):
     if copies:
         prof = max(copies, key=lambda t: (not t.get('line'), t['damage']))
         prof['uses'] -= 1
-    elif pc.get('weapon_is_spell') and pc.get('weapon_uses_left', 0) > 0 and dist <= cs.effective_range(pc):
-        pc['weapon_uses_left'] -= 1
+    elif pc.get('weapon_is_spell') and (encounter.weapon_left(pc) or 0) > 0 and dist <= cs.effective_range(pc):
+        pc['weapon_spell']['uses'] -= 1
     else:
         return 0
     pc['ap_bank'] -= 2
-    pc['gainsay_uses_left'] -= 1
+    encounter.spend(pc, 'Gainsay')
     return cs._reaction_attack(pc, e, pcs, 'Gainsay' + (f" ({prof['via']})" if prof else ''),
                             dict(prof, spell=True) if prof else None, log)
 
@@ -1257,7 +1270,7 @@ def _command_the_tempo(pc, c):
 def _slain_hook(pc, c):
     # Eaten right after a kill, while the body's adjacent and there's an AP.
     t = c.target
-    if (t['health'] <= 0 and pc.get('slain_uses_left', 0) > 0 and c.ap >= 1
+    if (t['health'] <= 0 and encounter.left(pc, 'Strength from the Slain') > 0 and c.ap >= 1
             and (not c.movement_on or cs._distance(pc['pos'], t['pos']) <= cs.T.MELEE_RANGE)):
         _strength_from_slain(pc, t, c.log)
         return 1
@@ -1295,7 +1308,7 @@ def _one_eye(pc, c):
 
 @hooks.on('attack_declared', 'Gainsay')
 def _gainsay_hook(pc, c):
-    if c.prof['action'] in cs.WEAPON_ACTIONS and pc.get('gainsay_uses_left', 0) > 0:
+    if c.prof['action'] in cs.WEAPON_ACTIONS and encounter.left(pc, 'Gainsay') > 0:
         return _gainsay(pc, c.attacker, c.pcs, c.enemies, c.movement_on, c.log)
     return 0
 
@@ -1306,11 +1319,11 @@ def _lifeline(caster, c):
     to save an ally from a hit that would Down them, by a caster who can
     take it. Range [Theurgy Skill Total] meters (plus Ley-weaving)."""
     unit, loss = c.ally, c.loss
-    if caster['health'] <= loss or caster.get('lifeline_uses_left', 0) <= 0 or caster.get('ap_bank', 0) < 1:
+    if caster['health'] <= loss or encounter.left(caster, 'Lifeline') <= 0 or caster.get('ap_bank', 0) < 1:
         return 0
     if 'pos' in caster and 'pos' in unit and cs._distance(caster['pos'], unit['pos']) > caster['lifeline_range']:
         return 0
-    caster['lifeline_uses_left'] -= 1
+    encounter.spend(caster, 'Lifeline')
     caster['ap_bank'] -= 1
     unit['lifeline'] = caster
     cs._log(cs._CTX['trace'], round=cs._CTX['rnd'], side='party', unit=caster['name'], action='technique',
@@ -1329,13 +1342,13 @@ def _parting_shot(pc, c):
     if 'Shadow Jaunt' in e.get('abilities', ()) and not c.pushed:
         return 0
     prof = pc.get('close_profile')
-    if (prof is None or pc['health'] <= 0 or e['health'] <= 0 or pc.get('parting_shot_charge_used')
+    if (prof is None or pc['health'] <= 0 or e['health'] <= 0 or encounter.left(pc, 'Parting Shot') <= 0
             or not pc.get('parting_shot') or pc.get('ap_bank', 0) < cs.T.PARTING_SHOT_AP_COST):
         return 0
     if cs._distance(pc['pos'], start) > cs.T.MELEE_RANGE or cs._distance(pc['pos'], e['pos']) <= cs.T.MELEE_RANGE:
         return 0
     pc['ap_bank'] -= cs.T.PARTING_SHOT_AP_COST
-    pc['parting_shot_charge_used'] = True
+    encounter.spend(pc, 'Parting Shot')
     now, e['pos'] = e['pos'], start
     dmg = cs._reaction_attack(pc, e, c.pcs, f"{prof['via']} (Parting Shot)", prof, c.log)
     e['pos'] = now

@@ -31,7 +31,8 @@ OUT_OF_COMBAT.update({
 # ---- Deferred: matters in a fight, needs something the sim doesn't have ----
 
 DEFERRED.update({
-    "T100": "a shared pool of Spell Encounter uses to spend, and a rule for picking one of its eight options",
+    "T100": "a rule for picking one of its eight options (the Spell use it spends, and that use's Level, are "
+            "encounter.py's)",
     "T101": "summoned creatures",
     "T103": "summoned creatures",
     "T106": "bringing a Downed PC back (the sim never revives one)",
@@ -176,14 +177,6 @@ def _push_from(pc, e, origin, n, pcs, log, notes, via):
         cs._parting_shots_on(e, start, pcs, log, pushed=True)
 
 
-def _uses_left(pc, name):
-    return pc.get('uses_b', {}).get(name, 0)
-
-
-def _spend_use(pc, name):
-    pc['uses_b'][name] -= 1
-
-
 # ---- Interrupt AP off the PC's own turn ----
 # One pool for both files' Interrupts: techniques_more_a's (its docstring
 # says how it works), so a PC with Interrupts from each can't spend two
@@ -221,14 +214,7 @@ def _encounter(tid, name, unarmed=False):
                              f"{sheet.weapon or '1H Heavy Melee'}")
         sheet.encounter_techs.extend([name] * len(copies))
     technique(tid, name)(build)
-
-    @setup_for(name)
-    def _setup(n, pc, s):
-        pc.setdefault('uses_b', {})[n] = s.uses[n]
-        pc.setdefault('skills_b', {}).update(
-            {k: _st(s.stats, s.skills, k) for k in ("Meditation", "Theurgy", "Sorcery", "Brawl")})
-        pc['mind_b'] = int(s.stats["Mind"])
-        pc['ley_b'] = s.ley
+    tq.ENCOUNTER_NAMES.add(name)
 
 
 # ======================================================================
@@ -256,7 +242,7 @@ def _lands_bounty(pc, c):
     ally is standing or about to be."""
     cs = tq.cs
     name = "Land's Bounty"
-    if _uses_left(pc, name) <= 0 or not c.movement_on or c.ap < 2:
+    if tq.encounter.left(pc, name) <= 0 or not c.movement_on or c.ap < 2:
         return 0
     allies = [p for p in c.pcs if p['health'] > 0]
     coming = [e for e in c.enemies if e['health'] > 0 and (e.get('attack_range') or 0) <= cs.T.MELEE_RANGE
@@ -265,14 +251,14 @@ def _lands_bounty(pc, c):
         return 0
     center = (round(sum(e['pos'][0] for e in coming) / len(coming)),
               round(sum(e['pos'][1] for e in coming) / len(coming)))
-    reach = pc['skills_b']["Theurgy"] + pc['ley_b']
+    reach = pc['skill_totals']["Theurgy"] + pc['ley']
     if cs._distance(pc['pos'], center) > reach:
         return 0
     caught = [e for e in coming if cs._distance(e['pos'], center) <= 2]
     if len(caught) < 2 or any(cs._distance(p['pos'], center) <= 3 for p in allies):
         return 0
-    _spend_use(pc, name)
-    n = pc['mind_b']
+    tq.encounter.spend(pc, name)
+    n = pc['stats']['Mind']
     for dx in range(-2, 3):
         for dy in range(-2, 3):
             cell = cs._movement.clamp((center[0] + dx, center[1] + dy))
@@ -293,9 +279,9 @@ def _cloak(pc, c, name, kind):
     whoever has the most enemies around them (their attacks on that ally
     get Bad Luck)."""
     cs = tq.cs
-    if _uses_left(pc, name) <= 0 or not c.movement_on or c.ap < 1:
+    if tq.encounter.left(pc, name) <= 0 or not c.movement_on or c.ap < 1:
         return 0
-    reach = pc['skills_b']["Theurgy"] + pc['ley_b']
+    reach = pc['skill_totals']["Theurgy"] + pc['ley']
     living = [e for e in c.enemies if e['health'] > 0]
     key = 'taunted_by' if kind == 'taunt' else 'frightened_by'
     best = None
@@ -311,9 +297,9 @@ def _cloak(pc, c, name, kind):
     if best is None:
         return 0
     _, ally, around = best
-    _spend_use(pc, name)
+    tq.encounter.spend(pc, name)
     for e in around:
-        r = _resolve(pc, e, c.pcs, skill_total=pc['skills_b']["Theurgy"], opp_def='Mental', damage=0,
+        r = _resolve(pc, e, c.pcs, skill_total=pc['skill_totals']["Theurgy"], opp_def='Mental', damage=0,
                      dmg_type='Brilliant', skill='Theurgy')
         notes = []
         if r.hit:
@@ -742,7 +728,7 @@ def _twin_spell(pc, c):
     last = pc.get('_last_b')
     if (last and not last.repeat and last.sub is None and pc.get('weapon_is_spell') and pc['damage'] > 0
             and last.target is c.target and c.target['health'] > 0 and not pc.get('_repeat')
-            and (pc.get('weapon_uses_left') or 0) >= 1):
+            and (tq.encounter.weapon_left(pc) or 0) >= 1):
         pc['_repeat'] = _plain_repeat()
         pc['repeats_b'] = pc.get('repeats_b', 0) + 1
     return 0
@@ -979,10 +965,10 @@ def _striking_constrictor(pc, c):
     name = "Snake School - Striking Constrictor"
     last, t = pc.get('_last_b'), c.target
     if (not last or not last.hit or last.target is not t or t['health'] <= 0 or c.ap < 1
-            or _uses_left(pc, name) <= 0 or not _is_unarmed_weapon(pc, last.sub) or not _keeps_grapple(pc)
+            or tq.encounter.left(pc, name) <= 0 or not _is_unarmed_weapon(pc, last.sub) or not _keeps_grapple(pc)
             or pc.get('grapple') is not None or t.get('grapple') is not None):
         return 0
-    _spend_use(pc, name)
+    tq.encounter.spend(pc, name)
     r = _resolve(pc, t, cs._CTX['pcs'], skill_total=pc['skill_total'], opp_def='Parry/Dodge',
                  damage=pc['damage'], dmg_type=pc['dmg_type'], skill=pc['attack_skill'], weapon=True, good=1)
     notes = []
@@ -1006,13 +992,13 @@ def _circling_vulture(pc, c):
     name = "Demon School - Circling Vulture"
     last, t = pc.get('_last_b'), c.target
     if (not last or not last.hit or last.target is not t or t['health'] <= 0 or c.ap < 1
-            or _uses_left(pc, name) <= 0 or not _is_unarmed_weapon(pc, last.sub)):
+            or tq.encounter.left(pc, name) <= 0 or not _is_unarmed_weapon(pc, last.sub)):
         return 0
     stacks = sum(t.get(k, 0) for k in ('bleeding', 'necrotic', 'vulnerable'))
     if stacks < 4:
         return 0
-    _spend_use(pc, name)
-    med = pc['skills_b']["Meditation"]
+    tq.encounter.spend(pc, name)
+    med = pc['skill_totals']["Meditation"]
     r = _resolve(pc, t, cs._CTX['pcs'], skill_total=med, opp_def='Vital', damage=0, dmg_type='Shadow',
                  skill='Meditation')
     notes = []
@@ -1048,7 +1034,7 @@ def _chainbreaker(pc, c):
     next to it (before the break-grapple roll, which it makes moot)."""
     cs = tq.cs
     name = "Snake School - Chainbreaker"
-    if _uses_left(pc, name) <= 0 or c.ap < 2 or not c.movement_on:
+    if tq.encounter.left(pc, name) <= 0 or c.ap < 2 or not c.movement_on:
         return 0
     held = cs._grappled(pc)
     stacks = sum(pc.get(k, 0) for k in ('bleeding', 'crippled', 'slowed'))
@@ -1057,10 +1043,10 @@ def _chainbreaker(pc, c):
         held = None
     if not near or not (held is not None or stacks >= 2):
         return 0
-    _spend_use(pc, name)
+    tq.encounter.spend(pc, name)
     if held is not None:
         cs._end_grapple(pc)
-    budget = pc['skills_b']["Brawl"] // 2
+    budget = pc['skill_totals']["Brawl"] // 2
     removed = 0
     for k in ('bleeding', 'crippled', 'slowed'):
         n = min(budget - removed, pc.get(k, 0))
@@ -1087,17 +1073,17 @@ def _swallow(pc, c):
     so nothing gets a Parting Shot."""
     cs = tq.cs
     name = "Shugen School - Swallow Skims the Water"
-    if _uses_left(pc, name) <= 0 or c.ap < 1 or not c.movement_on or cs.effective_range(pc) > cs.T.MELEE_RANGE:
+    if tq.encounter.left(pc, name) <= 0 or c.ap < 1 or not c.movement_on or cs.effective_range(pc) > cs.T.MELEE_RANGE:
         return 0
     living = [e for e in c.enemies if e['health'] > 0]
     if any(cs._distance(pc['pos'], e['pos']) <= cs.T.MELEE_RANGE for e in living):
         return 0
-    reach = pc['skills_b']["Meditation"]
+    reach = pc['skill_totals']["Meditation"]
     pool = [e for e in living if cs._distance(pc['pos'], e['pos']) <= reach]
     if not pool:
         return 0
     t = min(pool, key=lambda e: e['health'])
-    _spend_use(pc, name)
+    tq.encounter.spend(pc, name)
     start = pc['pos']
     pc['pos'] = cs._movement.clamp(cs._movement._step_toward(t['pos'][0], t['pos'][1], start[0], start[1]))
     if c.log:
@@ -1139,12 +1125,12 @@ def _grizzly(pc, c):
     come up in the sim."""
     cs = tq.cs
     name = "Bear School - The Grizzly Awakens"
-    if _uses_left(pc, name) <= 0 or c.ap < 3 or not c.movement_on:
+    if tq.encounter.left(pc, name) <= 0 or c.ap < 3 or not c.movement_on:
         return 0
     targets = _cone_targets(pc, c, 3)
     if not targets:
         return 0
-    _spend_use(pc, name)
+    tq.encounter.spend(pc, name)
     for e in targets:
         r = _resolve(pc, e, c.pcs, skill_total=pc['skill_total'], opp_def='Dodge', damage=0,
                      dmg_type=pc['dmg_type'], skill=pc['attack_skill'], weapon=True)
@@ -1165,15 +1151,15 @@ def _dusk_wind(pc, c):
     Shadow damage and the target gains 2 + [Clubs] stacks of Bleeding."""
     cs = tq.cs
     name = "Demon School - Dusk Wind Withers the Grass"
-    if _uses_left(pc, name) <= 0 or c.ap < 2 or not c.movement_on:
+    if tq.encounter.left(pc, name) <= 0 or c.ap < 2 or not c.movement_on:
         return 0
     targets = _cone_targets(pc, c, 2)
     if not targets:
         return 0
-    _spend_use(pc, name)
+    tq.encounter.spend(pc, name)
     for e in targets:
-        r = _resolve(pc, e, c.pcs, skill_total=pc['skills_b']["Meditation"], opp_def='Vital',
-                     damage=2 + pc['mind_b'], dmg_type='Shadow', skill='Meditation')
+        r = _resolve(pc, e, c.pcs, skill_total=pc['skill_totals']["Meditation"], opp_def='Vital',
+                     damage=2 + pc['stats']['Mind'], dmg_type='Shadow', skill='Meditation')
         notes = []
         if r.hit:
             n = 2 + cs._suit_count(r.pool, 'Clubs')
@@ -1194,7 +1180,7 @@ def _great_wind(pc, c):
     of the party; two or more, or one from round 3."""
     cs = tq.cs
     name = "Shugen School - Great Wind Scatters the Leaves"
-    if _uses_left(pc, name) <= 0 or c.ap < 2 or not c.movement_on:
+    if tq.encounter.left(pc, name) <= 0 or c.ap < 2 or not c.movement_on:
         return 0
     targets = [e for e in c.enemies if e['health'] > 0 and cs._distance(pc['pos'], e['pos']) <= 2]
     if not (len(targets) >= 2 or (targets and c.rnd >= 3)):
@@ -1207,10 +1193,10 @@ def _great_wind(pc, c):
     dx, dy = (ex > ax) - (ex < ax), (ey > ay) - (ey < ay)
     if (dx, dy) == (0, 0):
         dx = 1
-    _spend_use(pc, name)
-    med = pc['skills_b']["Meditation"]
+    tq.encounter.spend(pc, name)
+    med = pc['skill_totals']["Meditation"]
     for e in targets:
-        r = _resolve(pc, e, c.pcs, skill_total=med, opp_def='Mental', damage=2 + pc['mind_b'],
+        r = _resolve(pc, e, c.pcs, skill_total=med, opp_def='Mental', damage=2 + pc['stats']['Mind'],
                      dmg_type='Brilliant', skill='Meditation')
         notes = []
         if e['health'] > 0:
@@ -1234,14 +1220,14 @@ def _blood_answers_blood(pc, c):
     cs = tq.cs
     name = "Demon School - Blood Answers Blood"
     e = c.attacker
-    if (c.dmg <= 0 or pc['health'] <= 0 or e['health'] <= 0 or _uses_left(pc, name) <= 0 or _irq_ap(pc) < 1):
+    if (c.dmg <= 0 or pc['health'] <= 0 or e['health'] <= 0 or tq.encounter.left(pc, name) <= 0 or _irq_ap(pc) < 1):
         return
-    med = pc['skills_b']["Meditation"]
-    if 'pos' in pc and cs._distance(pc['pos'], e['pos']) > med + pc['ley_b']:
+    med = pc['skill_totals']["Meditation"]
+    if 'pos' in pc and cs._distance(pc['pos'], e['pos']) > med + pc['ley']:
         return
-    _spend_use(pc, name)
+    tq.encounter.spend(pc, name)
     _irq_spend(pc, 1)
-    r = _resolve(pc, e, cs._CTX.get('pcs') or [pc], skill_total=med, opp_def='Vital', damage=2 + pc['mind_b'],
+    r = _resolve(pc, e, cs._CTX.get('pcs') or [pc], skill_total=med, opp_def='Vital', damage=2 + pc['stats']['Mind'],
                  dmg_type='Shadow', skill='Meditation')
     notes = []
     if r.hit and e['health'] > 0:

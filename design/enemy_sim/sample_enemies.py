@@ -85,6 +85,8 @@ close to the target win rate/Health-cost shape on their own).
 """
 import csv
 import os
+
+import game_data
 from enemy_builder import build_enemy
 from enemy_builder_pcstyle import build_enemy_pcstyle
 
@@ -92,8 +94,20 @@ _CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sample_ene
 
 
 def _load_rows():
-    with open(_CSV_PATH, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+    return [dict(r) for r in game_data.csv_rows(_CSV_PATH)]
+
+
+def _row_named(name):
+    # Read-only lookup into the cached rows (game_data.cached_file).
+    rows = game_data.csv_rows(_CSV_PATH)
+    index = _INDEX.get(id(rows))
+    if index is None:
+        _INDEX.clear()
+        index = _INDEX[id(rows)] = {r["Name"]: r for r in rows}
+    return index.get(name)
+
+
+_INDEX = {}
 
 
 def _build_from_row(row):
@@ -175,9 +189,9 @@ FIGHTING_STYLES_ENABLED = False
 
 
 def get_enemy(name):
-    for row in _load_rows():
-        if row["Name"] == name:
-            return _build_from_row(row)
+    row = _row_named(name)
+    if row is not None:
+        return _build_from_row(row)
     raise KeyError(f"no sample_enemies.csv row named {name!r}")
 
 

@@ -77,10 +77,11 @@ def sheet(name, row):
     for h in pc.get("hexes", ()) or ():
         extra.append(f"{h['via']} x{h['uses']} ({h['kind']} {h['amount']} + {h['suit']})")
     if pc.get("maneuver"):
-        q = [pc["maneuver"]] + pc.get("maneuver_queue", [])
+        skip = {"uses", "max", "tech", "level", "kinds", "attack"}
         extra.append("Battle Maneuver copies in order: " + "; ".join(
-            ", ".join(f"{k} {v}" if v is not True else k for k, v in m.items() if v and k != "uses") or "no Features"
-            for m in q))
+            f"Level {m['level']}: " + (", ".join(f"{k} {v}" if v is not True else k for k, v in m.items()
+                                                 if v and k not in skip) or "no Features")
+            for m in pc["maneuvers"]))
     if pc.get("strategy") == "support_healer":
         extra.append(f"Healing Magic: discards {pc.get('heal_cards', 1)}, heals 1 + Hearts + {pc.get('heal_bonus', 0)}, "
                      f"reach {pc.get('heal_range')}")

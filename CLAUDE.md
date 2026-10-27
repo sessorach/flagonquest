@@ -289,7 +289,13 @@ which should stay a clean decision record.
   quietly. Since 2026-10-27 every techniques.csv ID is modeled, out of
   combat or `DEFERRED` (the rest of the catalog is in
   `techniques_more_a.py`/`_b.py`); `coverage.py` checks that after a
-  new Technique lands in the CSV.
+  new Technique lands in the CSV. Prefer the broad pieces over a
+  Technique-specific field (designer, 2026-10-27): uses go through
+  `encounter.py` (`_encounter()` plus `left`/`spend`), Skill Totals come
+  off `pc['skill_totals']`/`techniques.half()`, and a setup is only for
+  what the sheet alone knows. The fixed-seed checks for a refactor like
+  that: `regress.py` plus a run of every calibrate party, and the
+  agents' fire tests (they cover Techniques no sample carries).
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and

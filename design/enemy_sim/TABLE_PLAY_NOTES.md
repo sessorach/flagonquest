@@ -1470,11 +1470,20 @@ does to these builds rather than which one is right.
 - **Wall of Shadows** seldom pays: Beornhard (L3) put it up in 9 of 240
   fights against Level 2 encounters, since it blocks his own spells too,
   and the shooters it would block die fast anyway.
-- **The deferred Techniques** (`coverage.py` lists all 46 with what
-  each needs). The one most worth building: each Encounter use carrying
-  its Technique's Level would unlock Solemn Covenant, Placeholder's
-  Alacritous Adaptation and Willow Springs Back at once. Summons (seven
-  Techniques) are the biggest group, and the most work.
+- **The deferred Techniques** (`coverage.py` lists all 43 with what
+  each needs). Summons (seven Techniques) are the biggest group, and the
+  most work. Blood-Powered Spirit and Spellblade only need a rule for
+  when to use them now that every use carries its Level.
+- **Regaining uses, my rules to confirm** (2026-10-27, `encounter.py`):
+  a spent use comes back when it outranks every attack use still in hand
+  (attacks first, then Level, then damage); Vigor is spent that way as
+  soon as it covers one. Willow Springs Back is paid only from AP left at
+  the end of a turn: paying at the start cost Felix an attack, and his
+  fights ran 0.6 rounds longer. Placeholder's Alacritous Adaptation only
+  trades away utility uses not touched by round 3, for a spent attack.
+- **Felix (L2)'s export** has Hand Rings the Bell at "Lv 1"; techniques.csv
+  says Level 2. The sim takes the CSV's Level for a fixed-Level
+  Technique, so it's 2 there.
 - **Rules readings to confirm** for the Techniques wired in 2026-10-27
   (each one's docstring says what it assumes). The ones most likely to
   matter: Solemn Perseverance and Mind and Body Unbroken only trigger off
