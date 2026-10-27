@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-27 — Battle Maneuver options
+
+Ran Hilde's and Browndog's Battle Maneuvers through the same broad sweep as Hanforth and Beornhard got yesterday. Half Guard is the standout Feature, the debuff riders all land about the same behind it, and Viper's Sting is the best addition to Hilde's Level 3 copy.
+
 ### 2026-10-26 — Hanforth as built, and how healers scale
 
 Hanforth's own 125 and 175 XP builds are in the simulator, and he heals about once every two fights at every Level. Yesterday's Lifeline numbers came from a made-up Level 2 Hanforth: the real one doesn't take Lifeline, and someone goes Down in 16% of his party's Level 2 fights, not 2%.

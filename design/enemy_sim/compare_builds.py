@@ -29,6 +29,7 @@ import ast
 import json
 import math
 import os
+import re
 import statistics as st
 import sys
 
@@ -113,11 +114,15 @@ def sweep_table(means, results):
 
 def sweep_main(doc, variants, parties):
     """The command line a sweep study shares (hanforth_sweep.py,
-    beornhard_sweep.py): `variants` {level: (who, [(label, swap)])},
-    `parties` {level: [(names, enemy Health multiplier)]}."""
+    beornhard_sweep.py, maneuver_sweep.py): `variants` {key: (who,
+    [(label, swap)])}, `parties` {key: [(names, enemy Health
+    multiplier)]}. A key is the Level, or any name ("hilde2") when one
+    study covers more than one character; the Level is read off `who`."""
+    variants = {str(k): v for k, v in variants.items()}
+    parties = {str(k): v for k, v in parties.items()}
     ap = argparse.ArgumentParser(description=doc, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("level", type=int, choices=sorted(variants))
-    ap.add_argument("party", type=int, help="index into the Level's parties")
+    ap.add_argument("level", choices=sorted(variants), help="which list of swaps (a Level, or a study's own key)")
+    ap.add_argument("party", type=int, help="index into the key's parties")
     ap.add_argument("-n", type=int, default=100, help="fights per mix")
     ap.add_argument("--only", help="run only swaps whose label contains this")
     ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE")
@@ -132,9 +137,10 @@ def sweep_main(doc, variants, parties):
     names, mult = parties[a.level][a.party]
     T.ENEMY_HEALTH_MULT = mult
     who, vs = variants[a.level]
+    level = int(re.search(r"\(L(\d)", who).group(1)) if "(L" in who else 1
     vs = [v for v in vs if not a.only or a.only in v[0]]
-    means, results = sweep(names, who, vs, a.level, a.n)
-    print(f"Level {a.level}, {', '.join(names)}; enemy Health x{mult}; {a.n} fights a mix"
+    means, results = sweep(names, who, vs, level, a.n)
+    print(f"Level {level}, {', '.join(names)}; {who} swapped; enemy Health x{mult}; {a.n} fights a mix"
           + (f"; {', '.join(a.s)}" if a.s else "") + "\n")
     print(sweep_table(means, results))
 

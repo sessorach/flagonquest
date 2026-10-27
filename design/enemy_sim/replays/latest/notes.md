@@ -1,12 +1,12 @@
-# Latest replays (2026-10-26)
+# Latest replays (2026-10-27)
 
-Force Missiles is in, War Magic without Lance reaches only adjacent creatures, and beornhard_sweep.py tried 40 War Magic options; SHAPE_SETUP is off, so the sample characters play as before.
+maneuver_sweep.py tried 77 Battle Maneuver options for Hilde and Browndog; no change to how the sample characters play.
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 1000 fights: 94.0% wins, 3.7 rounds, 72% HP left on a win
+- Matchup average over 1000 fights: 94.4% wins, 3.6 rounds, 73% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

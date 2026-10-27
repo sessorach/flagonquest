@@ -180,9 +180,10 @@ The core files and the regular tools:
   cancels out). Results for the drafted variants are in
   `sample_characters.md`, "Variants". `sweep()` tries many swaps for one
   character against a single base run, for a broad look at modest reps;
-  `hanforth_sweep.py` and `beornhard_sweep.py` (2026-10-26) are the
-  worked examples: Hanforth's Healing Magic, Spirit Blessing and spare
-  XP, and Beornhard's War Magic. A new study is a list of
+  `hanforth_sweep.py`, `beornhard_sweep.py` (2026-10-26) and
+  `maneuver_sweep.py` (2026-10-27) are the worked examples: Hanforth's
+  Healing Magic, Spirit Blessing and spare XP, Beornhard's War Magic,
+  and Hilde's and Browndog's Battle Maneuvers. A new study is a list of
   (label, swap) pairs and parties, run through `sweep_main`.
 - **`party.py`** — `load_sheet(row)` reads a row and its build;
   `make_pc(name, ..., health=, add_passives=, drop_passives=,

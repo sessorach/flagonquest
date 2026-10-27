@@ -970,6 +970,156 @@ What it says, roughly:
   Reserves or Gainsay for War Magic copies loses up to 2 (Overchanneling's
   trade breaks even in Party D at Level 2).
 
+## Battle Maneuver options (2026-10-27)
+
+The same broad sweep for Hilde's and Browndog's Battle Maneuvers at 125
+and 175 XP (`maneuver_sweep.py`): each copy swapped through the
+Features, copies merged into a higher-Level one, and out-of-combat XP
+(Hilde's Bound Across Mountains, Browndog's Follower) spent on more
+Maneuvers. Party B and Party A, 100 fights a mix, paired. The sim uses
+the copies in sheet order, the first as the opener. Hilde (L2) has
+Lunging 3 then Half Guard 3; Browndog has Lunging 3, Half Guard 3,
+Lunging 3 at both Levels; Hilde (L3) adds a Level 3 copy (Whirlwind,
+Victorious, Ascended Blade) and a second Lunging. No sim changes this
+round.
+
+Change in Health left at the end of the fight, and in wins (points):
+
+**Hilde (L2).** Party B ×2.75: wins 90%, Health left 69.0, someone Down 40%, 5.2 rounds. Party A ×2.25: wins 92%, Health left 69.1, someone Down 46%, 5.1 rounds.
+
+| Swap | Party B, ×2.75 | Party A, ×2.25 |
+|---|---|---|
+| both as one Level 2 copy: Lunging 3, Half Guard 3 | +0.7 ±1.0, wins +1 | +1.1 ±0.8, wins +2 |
+| copy 2: Turn Elements 3 (Fire Ward) | -0.5 ±0.7, wins -0 | +0.1 ±0.8, wins +0 |
+| copy 2: Viper's Sting | -1.4 ±1.3, wins -1 | +0.5 ±1.2, wins +0 |
+| copy 1: Viper's Sting | -0.4 ±0.4, wins +0 | -1.1 ±0.6, wins -2 |
+| copy 2: Fleet Step 3 | -1.6 ±1.2, wins -2 | -0.2 ±1.0, wins -1 |
+| copy 2: Victorious, Half Guard 1 | -2.2 ±0.8, wins -3 | -0.7 ±0.7, wins -1 |
+| copy 2: Elemental (Fire), Half Guard 1 | -2.0 ±0.9, wins -3 | -1.3 ±0.6, wins -2 |
+| copy 2: Backfoot 3 | -2.1 ±1.2, wins -3 | -1.4 ±0.8, wins -2 |
+| copy 2: Wing Clip 3 | -2.9 ±0.9, wins -3 | -1.8 ±0.8, wins -2 |
+| copy 2: Harrying 3 | -3.2 ±1.0, wins -4 | -1.6 ±0.8, wins -2 |
+| copy 2: Lunging 3 | -3.1 ±1.0, wins -3 | -2.1 ±0.7, wins -2 |
+| copy 2: Blade of Four Fates 3 | -2.9 ±1.3, wins -3 | -2.5 ±1.3, wins -2 |
+| copy 2: Battering 3 | -3.4 ±0.9, wins -3 | -2.3 ±0.7, wins -2 |
+| copy 2: Calculated | -3.0 ±1.0, wins -3 | -3.1 ±0.9, wins -4 |
+| both as one Level 2 copy: Lunging 3, Calculated | -3.3 ±1.2, wins -4 | -2.8 ±1.0, wins -3 |
+| copy 2: Hamstring 3 | -3.8 ±0.9, wins -4 | -2.6 ±0.7, wins -2 |
+| copy 2: Wind Slash 3 | -3.8 ±0.9, wins -4 | -2.7 ±0.7, wins -2 |
+| copy 1: Wing Clip 3 | -3.9 ±1.6, wins -4 | -2.7 ±1.4, wins -3 |
+| copy 1: Harrying 3 | -4.0 ±1.5, wins -4 | -2.9 ±1.4, wins -3 |
+| copy 2: Lodestone 3 | -4.3 ±1.3, wins -5 | -3.5 ±1.0, wins -4 |
+| copy 1: Calculated | -4.4 ±1.6, wins -4 | -3.9 ±1.5, wins -3 |
+| copy 2: Distracting 3 | -4.8 ±1.1, wins -4 | -3.9 ±0.9, wins -3 |
+| both as one Level 2 copy: Calculated, Wing Clip 3 | -5.5 ±1.8, wins -6 | -5.4 ±1.6, wins -5 |
+
+**Browndog (L2).** Party B ×2.75: wins 90%, Health left 69.0, someone Down 40%, 5.2 rounds. Party A ×2.25: wins 92%, Health left 69.1, someone Down 46%, 5.1 rounds.
+
+| Swap | Party B, ×2.75 | Party A, ×2.25 |
+|---|---|---|
+| copies 2-3 as one Level 2 copy: Half Guard 3, Lunging 3 | +1.3 ±0.9, wins +0 | +1.1 ±0.6, wins +1 |
+| Follower's XP: one more copy, Half Guard 3 | +1.0 ±0.3, wins +0 | +1.0 ±0.3, wins +0 |
+| copies 2-3 as one Level 2 copy: Calculated, Half Guard 3 | +0.1 ±0.7, wins -1 | +1.0 ±0.6, wins +0 |
+| Follower's XP: one more copy, Calculated | +0.2 ±0.3, wins +0 | +0.5 ±0.3, wins +0 |
+| copy 3: Viper's Sting | -0.1 ±0.5, wins -1 | +0.4 ±0.4, wins +0 |
+| copy 2: Viper's Sting | -0.6 ±1.5, wins +0 | +0.5 ±1.3, wins +0 |
+| copy 3: Harrying 3 | -0.1 ±0.6, wins -1 | +0.0 ±0.2, wins -0 |
+| copy 3: Calculated | -0.3 ±0.5, wins -1 | +0.1 ±0.3, wins -0 |
+| copy 2: Elemental (Fire), Half Guard 1 | -1.2 ±0.5, wins -0 | -1.1 ±0.4, wins -1 |
+| copy 2: Lunging 3 | -1.3 ±0.8, wins +0 | -1.1 ±0.8, wins +0 |
+| copy 2: Victorious, Half Guard 1 | -1.4 ±0.3, wins -1 | -1.1 ±0.4, wins -0 |
+| copy 2: Turn Elements 3 (Fire Ward) | -1.2 ±0.6, wins +0 | -1.8 ±0.5, wins -0 |
+| copy 2: Backfoot 3 | -2.0 ±0.5, wins -0 | -2.0 ±0.5, wins -1 |
+| copy 2: Fleet Step 3 | -2.0 ±0.7, wins +0 | -2.1 ±0.6, wins -1 |
+| copy 2: Blade of Four Fates 3 | -1.9 ±0.9, wins +0 | -2.3 ±0.8, wins -0 |
+| copy 2: Wing Clip 3 | -2.1 ±0.5, wins -0 | -2.3 ±0.5, wins -2 |
+| copy 2: Harrying 3 | -2.3 ±0.6, wins -0 | -2.3 ±0.6, wins -0 |
+| copy 2: Battering 3 | -2.5 ±0.5, wins -0 | -2.3 ±0.6, wins -1 |
+| copy 2: Lodestone 3 | -2.4 ±0.7, wins -1 | -2.5 ±0.7, wins -1 |
+| copy 2: Calculated | -2.6 ±0.7, wins -1 | -2.3 ±0.6, wins -1 |
+| copy 2: Distracting 3 | -2.5 ±0.6, wins -0 | -2.6 ±0.6, wins -2 |
+| copy 2: Hamstring 3 | -2.6 ±0.5, wins -0 | -2.6 ±0.5, wins -1 |
+| copy 2: Wind Slash 3 | -2.6 ±0.5, wins -0 | -2.7 ±0.5, wins -2 |
+
+**Hilde (L3).** Party B ×2.25: wins 81%, Health left 51.2, someone Down 76%, 4.8 rounds. Party A ×2.0: wins 68%, Health left 42.5, someone Down 82%, 5.7 rounds.
+
+| Swap | Party B, ×2.25 | Party A, ×2.0 |
+|---|---|---|
+| Level 3 copy: Whirlwind, Viper's Sting, Half Guard 1 | +2.9 ±1.5, wins +4 | +3.2 ±1.6, wins +4 |
+| Level 3 copy: Calculated, Viper's Sting, Lunging 3 | +2.6 ±1.4, wins +3 | +3.1 ±1.4, wins +4 |
+| Level 3 copy: Flurry, Calculated | +1.2 ±1.1, wins +4 | +1.8 ±1.4, wins +3 |
+| Bound Across Mountains' XP: a Level 2 copy, Calculated, Half Guard 3 | +1.1 ±0.4, wins +0 | +1.9 ±0.7, wins +3 |
+| Bound Across Mountains' XP: two more copies, Half Guard 3 and Calculated | +0.7 ±0.3, wins +0 | +1.7 ±0.6, wins +3 |
+| Level 3 copy: Flurry, Wing Clip 3 | +0.8 ±1.1, wins +2 | +1.2 ±1.3, wins +2 |
+| Level 3 copy: Flurry, Lunging 3 | +0.6 ±1.1, wins +2 | +1.0 ±1.3, wins +1 |
+| Level 3 copy: Whirlwind, Calculated, Half Guard 1 | -0.3 ±0.8, wins +0 | +1.0 ±1.0, wins +2 |
+| Level 3 copy: Whirlwind, Victorious, Elemental (Fire) | +0.0 ±0.0, wins +0 | +0.0 ±0.0, wins +0 |
+| Level 3 copy: Calculated, Wing Clip 3, Harrying 3 | -0.6 ±0.9, wins -0 | -0.7 ±1.2, wins -1 |
+| Level 3 copy: Whirlwind, Wing Clip 4 | -0.9 ±0.8, wins -1 | -0.8 ±0.9, wins -0 |
+| Level 3 copy: Whirlwind, Harrying 4 | -1.2 ±0.7, wins -2 | -1.3 ±0.9, wins -1 |
+| copy 3: Wing Clip 3 | -0.8 ±0.7, wins -0 | -1.9 ±0.9, wins -3 |
+| Level 3 copy: Whirlwind, Battering 4 | -1.7 ±0.8, wins -2 | -1.3 ±0.8, wins -2 |
+| copy 3: Calculated | -1.3 ±0.7, wins -1 | -2.3 ±1.0, wins -3 |
+| copy 3: Harrying 3 | -1.7 ±0.6, wins -2 | -2.0 ±0.8, wins -3 |
+| copy 3: Battering 3 | -1.4 ±0.5, wins -1 | -2.4 ±0.9, wins -3 |
+
+**Browndog (L3).** Party B ×2.25: wins 81%, Health left 51.2, someone Down 76%, 4.8 rounds. Party A ×2.0: wins 68%, Health left 42.5, someone Down 82%, 5.7 rounds.
+
+| Swap | Party B, ×2.25 | Party A, ×2.0 |
+|---|---|---|
+| Follower's XP: one more copy, Half Guard 3 | +0.8 ±0.3, wins +1 | +1.0 ±0.3, wins +1 |
+| copies 2-3 and Follower's XP as one Level 3 copy: Flurry, Half Guard 3 | +0.2 ±0.8, wins +0 | +1.2 ±0.8, wins +2 |
+| Follower's XP: one more copy, Calculated | +0.1 ±0.3, wins +0 | +0.7 ±0.4, wins +2 |
+| copies 2-3 and Follower's XP as one Level 3 copy: Whirlwind, Half Guard 3, Lunging 1 | -0.8 ±0.7, wins -1 | -0.1 ±0.7, wins -1 |
+| all three as one Level 3 copy: Flurry, Calculated | -1.7 ±1.5, wins +0 | +0.5 ±1.6, wins +1 |
+| all three as one Level 3 copy: Flurry, Lunging 3 | -0.8 ±1.4, wins +1 | -0.5 ±1.4, wins -1 |
+| copy 2: Fleet Step 3 | -0.7 ±0.7, wins +1 | -1.1 ±1.0, wins -2 |
+| copy 2: Wing Clip 3 | -1.7 ±0.4, wins -1 | -1.3 ±0.5, wins -2 |
+| copy 2: Backfoot 3 | -1.9 ±0.6, wins -1 | -1.3 ±0.9, wins -2 |
+| copy 2: Calculated | -2.2 ±0.5, wins -2 | -1.3 ±0.8, wins -2 |
+| copy 2: Battering 3 | -2.2 ±0.4, wins -1 | -1.4 ±0.6, wins -1 |
+| copy 2: Harrying 3 | -2.1 ±0.4, wins -2 | -1.9 ±0.7, wins -2 |
+| all three as one Level 3 copy: Calculated 3 | -3.5 ±1.2, wins -2 | -1.1 ±1.5, wins -2 |
+| all three as one Level 3 copy: Whirlwind, Calculated, Lunging 1 | -3.4 ±1.1, wins -2 | -2.9 ±1.4, wins -5 |
+
+What it says, roughly:
+
+- **Half Guard is the standout.** Swapping a Half Guard 3 copy for
+  another 3-point pick costs up to 5 Health for Hilde and up to 2.7 for
+  Browndog; only Viper's Sting, Fleet Step and a Fire Ward come out
+  about even, and only for Hilde. An extra Half Guard copy bought with Follower's 3 XP gains about a
+  point. Protected is used up stack for stack, so Half Guard 3 + Spades
+  blocks about 3.5 damage on a front-liner who's being hit; none of the
+  3-stack debuffs do as much.
+- **The debuff riders bunch up.** Wing Clip, Harrying, Hamstring,
+  Battering, Backfoot, Lodestone, Fleet Step, Blade of Four Fates and
+  Wind Slash land within a point or two of each other, all behind Half
+  Guard. Distracting and Lodestone come last for Hilde. These reps can't
+  rank them further.
+- **Calculated** (Good Luck on one attack, 3 points) is no better than
+  the riders on a Level 1 copy, and Calculated 3 is among the worst ways
+  to merge Browndog's copies.
+- **Hilde's opening Lunging is worth keeping**: swapping it for a rider
+  or Calculated costs 3-4, for Viper's Sting about 1.
+  Browndog's second Lunging copy isn't: anything in its place comes out
+  even.
+- **Viper's Sting** is a wash on a Level 1 copy, but it's the best thing
+  for Hilde's Level 3 copy: Whirlwind + Viper's Sting + Half Guard 1,
+  or Calculated + Viper's Sting + Lunging 3, gain 2.6-3.2 Health. The
+  turn she uses that copy she can move and still attack twice, about
+  half an attack more a fight. Victorious and Ascended Blade add little,
+  and Elemental (Fire) in place of Ascended Blade changes nothing,
+  since enemies have one Resist for every element. Flurry with
+  Calculated gains 1.2-1.8 again.
+- **One Level 2 copy with Lunging 3 and Half Guard 3** beats two Level 1
+  copies a little (+0.7 to +1.3 for both of them), presumably because the
+  Half Guard comes with the opener. Merging all three of Browndog's
+  copies into one Level 3 copy loses up to 3.5; the two Flurry versions
+  come out about even.
+- **Out-of-combat XP into Maneuvers** gains 0.1-1.9 (Bound Across
+  Mountains for Hilde, Follower for Browndog), with Half Guard copies at
+  the top.
+
 ## Still to do
 
 - **Items.** The sim doesn't model items yet beyond weapons, armor and
