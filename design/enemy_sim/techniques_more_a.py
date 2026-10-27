@@ -5,18 +5,8 @@ techniques.py), listed in techniques.OUT_OF_COMBAT, or listed in
 techniques.DEFERRED with what it would need. combat_sim is `tq.cs` at
 fight time (techniques.py's `cs`), not at import.
 
-A few things the modeled ones share:
-- Interrupt AP (`_interrupt_ap`): a PC that already keeps an Interrupt
-  pool (combat_sim._has_interrupt_tech: Magehunter, Parting Shot, Raise
-  Spirits, Gainsay, Lifeline) pays from `ap_bank`. Anyone else runs a
-  debt that comes off the start of their next turn (`_pay_ap_debt`),
-  which is the same thing: rulebook.md refreshes AP at the end of your
-  turn, and an Interrupt spends from that pool.
-- Cards: with real cards (tunables.CARDS) a cost is the lowest card in
-  hand, out of the fight's budget (cards.spend); with CARDS off it comes
-  out of `card_uses_left` and a suit the cost wants is assumed (the
-  cards.chosen_matches convention).
-- Healing goes through tactics.necrotic_cut, like every other heal.
+The helpers they share (Interrupt AP, paying cards, healing, reach) are
+in tech_common.py.
 """
 import math
 
@@ -44,8 +34,6 @@ OUT_OF_COMBAT.update({
 
 DEFERRED.update({
     "T005": "vision rules (darkness, hidden or invisible creatures)",
-    "T006": "casting an expended use (_tech_attack_choice skips 0 uses) and a rule for when Health is worth paying; "
-            "each use's Level is in encounter.py now",
     "T030": "summoned companions",
     "T031": "summoned companions (Animal Companion)",
     "T032": "Masterwork item rules",
@@ -66,78 +54,8 @@ DEFERRED.update({
 
 # ---- Shared helpers ----
 
-def interrupt_ap_left(pc):
-    """AP this PC has for an Interrupt right now (see the module
-    docstring). techniques_more_b's Interrupts use the same pool."""
-    if tq.cs._has_interrupt_tech(pc):
-        return pc.get('ap_bank', 0)
-    return tq.cs.T.AP_PER_TURN - pc.get('_ap_debt', 0)
-
-
-def _interrupt_ap(pc, n):
-    """Pays `n` AP for an Interrupt, or returns False if the pool won't
-    cover it."""
-    if interrupt_ap_left(pc) < n:
-        return False
-    if tq.cs._has_interrupt_tech(pc):
-        pc['ap_bank'] -= n
-    else:
-        pc['_ap_debt'] = pc.get('_ap_debt', 0) + n
-    return True
-
-
-@hooks.on('pc_turn_start', order=0)
-def _pay_ap_debt(pc, c):
-    # Interrupt AP spent since this PC's last turn ended (_interrupt_ap).
-    return pc.pop('_ap_debt', 0)
-
-
-@hooks.on('pc_after_turn', order=90)
-def _clear_ap_debt(pc, c):
-    # AP refreshes at the end of the turn, so an Interrupt taken during
-    # the PC's own turn came out of that turn's AP, not the next one's.
-    pc.pop('_ap_debt', None)
-
-
-def _can_pay(pc, k=1):
-    if tq.cs.T.CARDS:
-        return tq.cs.cards.can_spend(pc, k)
-    return pc.get('card_uses_left', 0) >= k
-
-
-def _pay_card(pc, suit=None):
-    """Discards one card for a cost, the lowest of `suit` if held. Returns
-    the suit discarded (None if it couldn't pay); with CARDS off, the suit
-    asked for is assumed."""
-    cs = tq.cs
-    if cs.T.CARDS:
-        if not cs.cards.can_spend(pc):
-            return None
-        c = cs.cards.lowest(pc['hand'], prefer_suit=suit)
-        cs.cards.spend(pc, c)
-        return cs.cards.suit(c)
-    if pc.get('card_uses_left', 0) <= 0:
-        return None
-    pc['card_uses_left'] -= 1
-    return suit if suit is not None else -1
-
-
-def _heal(p, n):
-    n = tq.cs.tactics.necrotic_cut(p, n)
-    n = max(0, min(n, p['max_health'] - p['health']))
-    p['health'] += n
-    return n
-
-
-def _near(a, b, movement_on, reach=None):
-    cs = tq.cs
-    if not movement_on or 'pos' not in a or 'pos' not in b:
-        return True
-    return cs._distance(a['pos'], b['pos']) <= (cs.T.MELEE_RANGE if reach is None else reach)
-
-
-def _missing(p):
-    return p['max_health'] - p['health']
+from tech_common import (interrupt_ap_left, _interrupt_ap, _can_pay, _pay_card, _heal,  # noqa: E402,F401
+                         _near, _missing)
 
 
 # ---- Solemn Pact (T013) ----
@@ -503,7 +421,7 @@ def _cry_of_victory(pc, c):
         if not _near(pc, e, True, pc['skill_totals']['Presence']):
             continue
         defense = e['mental'] - e.get('vulnerable', 0)
-        mod = pc['presence_skill_total'] - pc.get('crippled', 0)
+        mod = pc['skill_totals']['Presence'] - pc.get('crippled', 0)
         value, pool = cs._pc_flip(pc, mod, defense, pc.get('good_luck', 0), cs._pc_status_bad_luck(pc, e))
         hit = mod + value >= defense
         if hit:
@@ -652,7 +570,7 @@ def _gatekeeper(pc, c):
     tq.encounter.spend(pc, 'The Gatekeeper')
     for e in pool:
         defense = e['mental'] - e.get('vulnerable', 0)
-        mod = pc['presence_skill_total'] - pc.get('crippled', 0)
+        mod = pc['skill_totals']['Presence'] - pc.get('crippled', 0)
         value, _ = cs._pc_flip(pc, mod, defense, pc.get('good_luck', 0), cs._pc_status_bad_luck(pc, e),
                                cs.BIG, c.pcs)
         hit = mod + value >= defense
@@ -693,24 +611,18 @@ def _bladeslinging(name, pc, s):
 
 # ---- Feint (T074) and Magehunter (T075): combat_sim's own fields ----
 
-tq._passive("T074", "Feint")
+tq._encounter("T074", "Feint")
 tq._encounter("T075", "Magehunter")
 
 
-@setup_for("Feint")
-def _feint_setup(name, pc, s):
-    # T074, 1 AP, Encounter: combat_sim's `feint` field turns this PC's
-    # first weapon attack of the fight into the Feint (Vigilant Defense,
-    # Harried 3 + [Diamonds] on a hit, no damage).
-    pc['feint'] = True
+# Feint (T074, 1 AP, Encounter) is in combat_sim's attack loop: a use
+# left turns the next weapon attack into the Feint (Vigilant Defense,
+# Harried 3 + [Diamonds] on a hit, no damage).
 
 
-@setup_for("Magehunter")
-def _magehunter_setup(name, pc, s):
-    # T075, 1 AP Interrupt, Encounter: combat_sim._magehunter_interrupt
-    # (an Opportunity Attack on an enemy declaring a Spell in reach). The
-    # field also gives this PC its Interrupt AP pool.
-    pc['magehunter'] = True
+# Magehunter (T075, 1 AP Interrupt, Encounter) is combat_sim.
+# _magehunter_interrupt: an Opportunity Attack on an enemy declaring a
+# Spell in reach. Knowing it also gives the PC its Interrupt AP pool.
 
 
 # ---- Demon School - Sickness Takes the Flock (T083) ----
@@ -895,4 +807,75 @@ def _alacritous_adaptation(pc, c):
     Techniques you expended as a cost." encounter.trade_for says which
     uses are worth trading."""
     tq.encounter.trade_for(pc, tq.encounter.KINDS, c.rnd, c.log, "Placeholder's Alacritous Adaptation")
+    return 0
+
+
+# ---- Blood-Powered Spirit (T006) ----
+
+tq._passive("T006", "Blood-Powered Spirit")
+_SPELLISH = frozenset(("Spell", "Discipline"))
+
+
+def _can_bleed(pc, x):
+    return (pc['health'] - x) / pc['max_health'] >= tq.cs.T.BLOOD_SPIRIT_HEALTH
+
+
+@hooks.on('before_attack', 'Blood-Powered Spirit', order=70)
+def _blood_spirit_damage(pc, c):
+    """T006, "0 AP - Interrupt (you declare a Spell or Discipline
+    Technique)", Cost X Health: "(a) Any attack from the Technique deals
+    extra X damage if it hits, or [twice X] if single-target". Health is
+    paid only to finish a target: the least X that turns this attack's
+    hit into a Down, on a damaging Spell or Discipline attack (a
+    Technique attack or a War Magic Weapon cast), while the PC stays
+    above tunables.BLOOD_SPIRIT_HEALTH. (Paying 1 every cast cost Felix's
+    and Beornhard's parties Health for next to nothing.) Its "may change
+    it to Shadow" does nothing here: the sim has one elemental Resist."""
+    cs, sub, t = tq.cs, c.substitute, c.target
+    if c.repeat:
+        return 0
+    if sub:
+        kinds, prof = sub.get('kinds', frozenset()), sub
+    elif pc.get('weapon_is_spell'):
+        kinds, prof = tq.encounter.kinds_of("War Magic"), pc
+    else:
+        return 0
+    if not kinds & _SPELLISH or prof['damage'] <= 0:
+        return 0
+    net = prof['damage'] - cs.enemy_resist_for_pc_attack(prof, t) - t.get('protected', 0)
+    short = t['health'] - max(0, net)
+    if short <= 0:
+        return 0
+    single = not (sub and (sub.get('line') or sub.get('cone') or sub.get('nova')))
+    x = math.ceil(short / 2) if single else short
+    if not _can_bleed(pc, x):
+        return 0
+    pc['health'] -= x
+    pc['_attack_bonus'] = pc.get('_attack_bonus', 0) + (2 * x if single else x)
+    pc['blood_spirit_paid'] = pc.get('blood_spirit_paid', 0) + x
+    cs._note(pc, f"{x} Health for +{pc['_attack_bonus']} damage on a hit (Blood-Powered Spirit)")
+    return 0
+
+
+@hooks.on('pc_turn_start', 'Blood-Powered Spirit', order=5)
+def _blood_spirit_cast(pc, c):
+    """T006 "(b) If the Technique's Level is [twice X] or lower, you may
+    cast it without expending a use, even if already expended": X is half
+    the Level, rounded up. Taken for a spent Spell or Discipline attack
+    worth having back (encounter.worth_regaining), on the same Health
+    rule as (a); getting the use back now and casting it is the same
+    thing as casting it without one. Only for one that hits harder than
+    the PC's own attack: Felix paid a Health a turn to get back Hand
+    Rings the Bell, no bigger than his punch, and lost by it."""
+    enc = tq.encounter
+    g = enc.wanted(pc, kinds=_SPELLISH)
+    if (g is None or not g['attack'] or not enc.worth_regaining(pc, g)
+            or g.get('damage', 0) <= pc['damage']):
+        return 0
+    x = max(1, math.ceil(g['level'] / 2))
+    if not _can_bleed(pc, x):
+        return 0
+    pc['health'] -= x
+    pc['blood_spirit_paid'] = pc.get('blood_spirit_paid', 0) + x
+    enc.regain(pc, g, f"Blood-Powered Spirit ({x} Health)", c.log)
     return 0

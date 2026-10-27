@@ -476,17 +476,6 @@ def attack_cap(unit):
 # sample_enemies.csv row.
 
 
-def max_move_actions(unit):
-    """How many move actions (MOVE_AP_COST each) a unit is willing to
-    spend approaching its target before it must stop and preserve
-    ATTACK_AP_COST for its (at least one) attack - 2 for everything
-    except Skirmisher, which trades its own capped-at-1 attack for real
-    extra mobility instead ("can move up to 3 times"), per the table
-    above. Kiting ignores this entirely (always exactly 1 retreat
-    action, see move_kite) - this only governs closing distance."""
-    return 3 if unit.get('fighting_style') == 'Skirmisher' else 2
-
-
 def guarded_bonus_active(unit):
     """Whether `unit` is currently benefiting from Guarded's stand-still
     bonus - set at the end of its own last turn (combat_sim.run_fight)

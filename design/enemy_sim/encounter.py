@@ -149,19 +149,27 @@ def spend_vigor(pc, log=None):
     return regained
 
 
+def idle(pc, kinds, rnd):
+    """Uses of `kinds` the PC can spare: utility uses (not attacks) still
+    untouched by round 3. What wasn't needed by then is worth less than
+    an attack, so it's what a trade pays with."""
+    if rnd < 3:
+        return []
+    return [g for g in pc.get('encounter', ()) if not g['attack'] and g['kinds'] & kinds and g['uses'] == g['max'] > 0]
+
+
 def trade_for(pc, target_kinds, rnd, log=None, via=None):
     """Expend unspent uses to regain a better spent one, the cost being
     more total Level than the regained use's (Placeholder's Alacritous
     Adaptation). Only uses the PC hasn't touched by round 3 are traded
     away, and only for a spent attack: what wasn't needed by then is worth
     less than the offense that's run out. Returns whether it traded."""
-    if rnd < 3:
-        return False
     w = wanted(pc, kinds=target_kinds)
     if w is None or not w['attack'] or not worth_regaining(pc, w):
         return False
-    donors = sorted((g for g in pc.get('encounter', ()) if g is not w and not g['attack'] and g['kinds'] & target_kinds
-                     and g['uses'] == g['max'] > 0), key=lambda g: g['level'])
+    donors = sorted((g for g in idle(pc, target_kinds, rnd) if g is not w), key=lambda g: g['level'])
+    if not donors:
+        return False
     paid, total = [], 0
     for g in donors:
         for _ in range(g['uses']):

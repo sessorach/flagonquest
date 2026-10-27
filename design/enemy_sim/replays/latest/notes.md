@@ -1,12 +1,12 @@
 # Latest replays (2026-10-27)
 
-Sim reads weapons and armor from items.csv; exports the CSVs moved past are listed for a rebuild; Battle Maneuver regain fix
+Blood-Powered Spirit and Spellblade wired in; shared Technique helpers (tech_common.py), dead code out; no results moved
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 500 fights: 93.8% wins, 3.7 rounds, 74% HP left on a win
+- Matchup average over 500 fights: 93.8% wins, 3.8 rounds, 72% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

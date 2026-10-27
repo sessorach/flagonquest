@@ -348,6 +348,10 @@ RESERVES_REGAIN_BEST = True
 # regains the best spent Sorcery use of Level [X + 1] or less, a Club
 # counting double, instead of the hand-picked copy above.
 RESERVES_BY_LEVEL = True
+# Blood-Powered Spirit (T006) pays Health only while the PC keeps this
+# share of its max Health after paying (2026-10-27, my reading of how a
+# player would ration it).
+BLOOD_SPIRIT_HEALTH = 0.5
 RECKLESS_CHANCE = 0.05   # share of turns any PC plays like a Diver anyway
 
 # ---- How the Assassin tactic reads "squishy" (2026-10-08 test) ----

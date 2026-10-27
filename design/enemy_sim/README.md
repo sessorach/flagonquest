@@ -217,6 +217,11 @@ The core files and the regular tools:
   past still plays, by the CSVs, and is listed for a rebuild
   (`party.rebuild_list`, shown by `coverage.py` and SHEETS.md); a
   script's own `edits` that go over a Feature budget still stop.
+- **`tech_common.py`** (2026-10-27) — the helpers every Technique file
+  shares: attacks made off the attack loop (`_resolve`, `_log_strike`),
+  paying cards, healing, reach, the one Interrupt AP pool. A new
+  Technique is usually a registration line plus a hook built from these
+  and encounter.py (techniques.py's docstring lists them).
 - **`coverage.py`** (2026-10-27) — where every techniques.csv ID stands:
   modeled, out of combat or deferred (with the reasons). Exits 1 if one
   is missing or listed twice, so run it after adding Techniques to the

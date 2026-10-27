@@ -31,8 +31,6 @@ OUT_OF_COMBAT.update({
 # ---- Deferred: matters in a fight, needs something the sim doesn't have ----
 
 DEFERRED.update({
-    "T100": "a rule for picking one of its eight options (the Spell use it spends, and that use's Level, are "
-            "encounter.py's)",
     "T101": "summoned creatures",
     "T103": "summoned creatures",
     "T106": "bringing a Downed PC back (the sim never revives one)",
@@ -71,117 +69,12 @@ def _med(stats, skills):
     return _st(stats, skills, "Meditation")
 
 
-def _ctx_log():
-    """A party log for a hook point whose ctx has none (pc_parried,
-    pc_hit): the round's trace, if the fight is being traced."""
-    cs = tq.cs
-    trace = cs._CTX.get('trace')
-    if trace is None:
-        return None
-    rnd = cs._CTX['rnd']
-    return lambda **kw: cs._log(trace, round=rnd, side='party', **kw)
+from tech_common import (_ctx_log, _extra_successes, _is_unarmed_weapon, _is_weapon_attack,  # noqa: F401
+                         _is_ranged_weapon, _resolve, _log_strike, _push_from, _within)
 
 
-def _extra_successes(pool, skill):
-    """Extra Successes a no-damage hit gets from its suit pool: one per
-    card of the attack Skill's suit. The attack's Gambles aren't at the
-    hook points, and a no-damage attack doesn't Gamble anyway (its EV
-    search sees no damage to gain)."""
-    cs = tq.cs
-    if not cs.T.CARDS:
-        return 0
-    return pool.count(cs.cards.SKILL_SUIT[skill])
-
-
-def _is_unarmed_weapon(pc, sub):
-    # "Your Unarmed weapon attacks": the PC's own Unarmed attack, or a
-    # Technique strike that makes one (Boughs Unbroken reads it the same way).
-    return pc.get('weapon_name') == 'Unarmed' and (not sub or sub.get('weapon'))
-
-
-def _is_weapon_attack(pc, sub):
-    # War Magic is a Spell attack even when it's the row's Weapon.
-    return (sub.get('weapon') if sub else not pc.get('weapon_is_spell'))
-
-
-def _is_ranged_weapon(pc, sub):
-    return bool(pc.get('attack_range')) and _is_weapon_attack(pc, sub)
-
-
-def _resolve(pc, e, pcs, *, skill_total, opp_def, damage, dmg_type, skill, weapon=False, good=0):
-    """One attack this file resolves itself, off the attack loop (a cone,
-    a burst, an Interrupt): the flip, Harried on a Dodge or Parry, and on
-    a hit the damage less Resist and Protected. Only a weapon attack
-    Gambles (rulebook.md: spell attacks can't). Returns what happened;
-    the caller puts on its riders, then logs it (_log_strike)."""
-    cs = tq.cs
-    prof = dict(opp_def=opp_def, dmg_type=dmg_type)
-    defense = cs.enemy_defense_for_pc_attack(prof, e)
-    resist = cs.enemy_resist_for_pc_attack(prof, e)
-    mod = skill_total - pc.get('crippled', 0)
-    good = pc.get('good_luck', 0) + good + cs._raise_spirits(pc, pcs, defense - mod, True)
-    bad = cs._pc_status_bad_luck(pc, e)
-    cover = cs._cover_bad_luck(pc, e, opp_def)
-    if cover:
-        bad = int(bad) + cover
-    gambles, imp = 0, cs.BIG
-    if weapon and damage > 0 and cs.T.CARDS:
-        saved = pc['damage']
-        pc['damage'] = damage  # _choose_gambles reads the attack's damage off the PC
-        gambles, backed = cs._choose_gambles(pc, e, mod, defense, resist, good)
-        pc['damage'] = saved
-        if backed:
-            imp = cs.PLANNED
-    if imp != cs.PLANNED:
-        imp = cs._importance(e, damage + gambles - resist - e.get('protected', 0), True)
-    value, pool = cs._pc_flip(pc, mod - 2 * gambles, defense, good, bad, imp, pcs, cs._hand_of_chaos(pc))
-    roll = mod - 2 * gambles + value
-    hit = roll >= defense
-    if opp_def in ('Parry/Dodge', 'Dodge'):
-        e['harried'] = e.get('harried', 0) + 1
-    raw = dmg = absorbed = 0
-    if hit and damage > 0:
-        raw = damage + gambles + cs._suit_extra(pc, pool, skill)
-        dmg = max(0, raw - resist)
-        if e.get('protected', 0) > 0 and dmg > 0:
-            absorbed = min(dmg, e['protected'])
-            e['protected'] -= absorbed
-            dmg -= absorbed
-        e['health'] -= dmg
-        cs._damaged_by_pc(pc, e, dmg)
-        if dmg > 0:
-            e.setdefault('hit_steps', []).append((cs._STEP[0], e['health'] <= 0))
-    return SimpleNamespace(hit=hit, dmg=dmg, raw=raw, resist=resist, absorbed=absorbed, pool=pool, roll=roll,
-                           defense=defense, opp_def=opp_def, gambles=gambles)
-
-
-def _log_strike(log, pc, e, r, via, notes=()):
-    cs = tq.cs
-    if log:
-        log(unit=pc['name'], action='attack', target=e['name'], roll=r.roll, defense=r.defense, hit=r.hit,
-            dmg=r.dmg, raw_dmg=r.raw, resist=r.resist, protected_absorbed=r.absorbed, target_hp_after=e['health'],
-            target_harried_after=e.get('harried', 0), via=via, effects='; '.join(notes) or None,
-            cards=cs._take_notes(pc), opp_def=r.opp_def, gambles=r.gambles)
-    pc.pop('_notes', None)
-
-
-def _push_from(pc, e, origin, n, pcs, log, notes, via):
-    """A Push straight away from `origin`, with Parting Shot's "would be
-    Pushed outside your range" check, as techniques._push_away_from_party."""
-    cs = tq.cs
-    start = cs._push(e, origin, n)
-    notes.append(f"Pushed {cs._distance(start, e['pos'])} m")
-    cs._log(cs._CTX['trace'], round=cs._CTX['rnd'], side='enemy', unit=e['name'], action='move', pos=e['pos'],
-            spaces=cs._distance(start, e['pos']), in_range=False, via=f"Pushed by {via}")
-    if cs._CTX.get('ps_pcs'):
-        cs._parting_shots_on(e, start, pcs, log, pushed=True)
-
-
-# ---- Interrupt AP off the PC's own turn ----
-# One pool for both files' Interrupts: techniques_more_a's (its docstring
-# says how it works), so a PC with Interrupts from each can't spend two
-# turns' worth.
-from techniques_more_a import interrupt_ap_left as _irq_ap, _interrupt_ap as _irq_spend  # noqa: E402
+# Interrupt AP: tech_common's one pool.
+from tech_common import interrupt_ap_left as _irq_ap, _interrupt_ap as _irq_spend  # noqa: E402
 
 
 # ---- Builders ----
@@ -206,15 +99,7 @@ def _unarmed(atk, dmg, **kw):
     return prof
 
 
-def _encounter(tid, name, unarmed=False):
-    """An Encounter Technique this file casts itself: one use per copy."""
-    def build(sheet, copies, choices):
-        if unarmed and sheet.weapon != "Unarmed":
-            raise BuildError(f"{name} makes an Unarmed weapon attack; the row's Weapon is "
-                             f"{sheet.weapon or '1H Heavy Melee'}")
-        sheet.encounter_techs.extend([name] * len(copies))
-    technique(tid, name)(build)
-    tq.ENCOUNTER_NAMES.add(name)
+_encounter = tq._encounter
 
 
 # ======================================================================
@@ -404,12 +289,6 @@ def _defilement_bleed(pc, c):
         c.notes.append("Bleeding +1 (Hands of Defilement)")
 
 
-@setup_for("Follow Through")
-def _follow_through_setup(name, pc, s):
-    # The Weapon's own attack, for a Follow Through after a Technique strike
-    # (the attack loop has the strike's numbers on the PC at that point).
-    pc['base_prof_b'] = dict(skill_total=s.atk_skill_total, damage=s.damage, dmg_type=s.dmg_type,
-                             opp_def=s.opp_def, skill=s.w_skill)
 
 
 @hooks.on('after_hit', "Follow Through", order=55)
@@ -431,7 +310,7 @@ def _follow_through(pc, c):
     e = min(near, key=lambda u: u['health'])
     pc['follow_throughs'] = pc.get('follow_throughs', 0) + 1
     cs._reaction_attack(pc, e, c.pcs, f"{pc['weapon_name']} (Follow Through)",
-                        pc['base_prof_b'] if sub else None, c.log)
+                        pc['base_profile'] if sub else None, c.log)
 
 
 @hooks.on('hit_riders', "Tiger School - Rending Claws", order=32)
@@ -548,13 +427,6 @@ def _doubleshot_luck(pc, c):
     return -1 if _is_ranged_weapon(pc, c.substitute) else 0
 
 
-def _within_3(pc, c, units):
-    cs = tq.cs
-    if not c.movement_on:
-        return []
-    return [u for u in units if u is not pc and u['health'] > 0 and cs._distance(pc['pos'], u['pos']) <= 3]
-
-
 def _aura_log(pc, c, via, units, effect):
     if units and c.log:
         c.log(unit=pc['name'], action='technique', via=via, target=', '.join(u['name'] for u in units),
@@ -565,7 +437,7 @@ def _aura_log(pc, c, via, units, effect):
 def _aura_of_death(pc, c):
     # T187: "At the start of your turn, each enemy within 3 meters of you
     # gains Necrotic."
-    near = _within_3(pc, c, c.enemies)
+    near = _within(pc, c.enemies, 3, c.movement_on)
     for e in near:
         tq.cs._gain(e, 'necrotic', 1)
     _aura_log(pc, c, "Aura of Death", near, "Necrotic +1")
@@ -576,7 +448,7 @@ def _aura_of_death(pc, c):
 def _dread_reputation(pc, c):
     # T200: "At the start of your turn, each enemy within 3 meters of you
     # that can see you is Frightened of you." Line of sight isn't checked.
-    near = _within_3(pc, c, c.enemies)
+    near = _within(pc, c.enemies, 3, c.movement_on)
     for e in near:
         tq.cs._test_rider(pc, e, 'fright', 1)
     _aura_log(pc, c, "Dread Reputation", near, "Frightened +1")
@@ -587,7 +459,7 @@ def _dread_reputation(pc, c):
 def _forward(pc, c):
     # T195: "At the start of your turn, each ally within 3 meters of you is
     # Hasted."
-    near = _within_3(pc, c, c.pcs)
+    near = _within(pc, c.pcs, 3, c.movement_on)
     for p in near:
         tq.cs._gain(p, 'hasted', 1)
     _aura_log(pc, c, "Forward!", near, "Hasted +1")
@@ -1235,3 +1107,55 @@ def _blood_answers_blood(pc, c):
         cs._gain(e, 'bleeding', n)
         notes.append(f"Bleeding +{n}")
     _log_strike(_ctx_log(), pc, e, r, "Blood Answers Blood", notes)
+
+
+# ---- Spellblade (T100) ----
+
+tq._passive("T100", "Spellblade")
+
+
+@hooks.on('before_attack', "Spellblade", order=72)
+def _spellblade(pc, c):
+    """T100, 2 AP (a weapon attack's), Cost "Expend the use of a Spell
+    Encounter Technique; X is its Level": "Choose one option then make a
+    weapon attack." Laid on a plain weapon attack (not a Technique
+    attack, a Battle Maneuver or a Repeat) when the PC has a Spell use to
+    spare: a utility Spell untouched by round 3 (encounter.idle), the
+    highest Level first, else a Spell attack this attack just passed over
+    (the least valuable). The option is picked when the attack lands
+    (_spellblade_rider)."""
+    enc = tq.encounter
+    if c.substitute or c.mv or c.repeat or pc.get('weapon_is_spell'):
+        return 0
+    spell = frozenset(("Spell",))
+    idle = enc.idle(pc, spell, tq.cs._CTX['rnd'])
+    passed = [g for g in pc.get('encounter', ()) if g['attack'] and 'Spell' in g['kinds'] and g['uses'] > 0]
+    g = max(idle, key=lambda g: g['level']) if idle else (min(passed, key=enc.value) if passed else None)
+    if g is None:
+        return 0
+    g['uses'] -= 1
+    pc['_spellblade'] = (g['level'], g['kinds'], g.get('via', g['tech']))
+    return 0
+
+
+@hooks.on('attack_resolved', "Spellblade", order=41)
+def _spellblade_rider(pc, c):
+    """The option, on a hit: Bleeding [3 x X] + [Clubs] (General), unless
+    the target already has that much, then the school's: Sorcery's
+    Vulnerable [2 x X] + [Diamonds], Theurgy's Crippled X + 1 + [Clubs].
+    The rest (range, Push, Ward, Slowed, Necrotic, Shift, Protected)
+    aren't picked: the attack loop only swings at what's in reach, and
+    the others need a rule for when each beats Bleeding."""
+    paid = pc.pop('_spellblade', None)
+    if paid is None or not c.hit or c.target['health'] <= 0:
+        return
+    cs, (x, kinds, via) = tq.cs, paid
+    t = c.target
+    if t.get('bleeding', 0) < 3 * x or not kinds & {"Sorcery", "Theurgy"}:
+        key, n = 'bleeding', 3 * x + cs._suit_count(c.pool, 'Clubs')
+    elif "Sorcery" in kinds:
+        key, n = 'vulnerable', 2 * x + cs._suit_count(c.pool, 'Diamonds')
+    else:
+        key, n = 'crippled', x + 1 + cs._suit_count(c.pool, 'Clubs')
+    cs._gain(t, key, n)
+    c.notes.append(f"{key.capitalize()} +{n} (Spellblade, {via})")

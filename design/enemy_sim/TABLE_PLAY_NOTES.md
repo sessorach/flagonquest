@@ -1481,6 +1481,28 @@ does to these builds rather than which one is right.
   the end of a turn: paying at the start cost Felix an attack, and his
   fights ran 0.6 rounds longer. Placeholder's Alacritous Adaptation only
   trades away utility uses not touched by round 3, for a spent attack.
+- **Blood-Powered Spirit and Spellblade, my rules to confirm**
+  (2026-10-27). Blood-Powered Spirit pays Health only to finish a target
+  (the least X that turns this hit into a Down), and casts a spent use
+  only for an attack that hits harder than the PC's own, always keeping
+  half its max Health (`BLOOD_SPIRIT_HEALTH`). Paying 1 Health every
+  cast, my first try, cost Felix's party 3.3 Health left and 3.5% of
+  wins; as it stands Beornhard (L3) gains 2.8% wins (±2.1) and 0.3
+  rounds for 0.7 Health, and Felix about breaks even. Spellblade spends
+  a utility Spell untouched by round 3 (else a Spell attack the turn
+  passed over) and puts Bleeding [3 x X] on the hit, or the school's
+  Vulnerable / Crippled once the target's bleeding that much; on
+  Hanforth (L2) it's +0.7% wins (±0.7). Its range, Push, Ward, Slowed,
+  Necrotic, Shift and Protected options aren't used.
+- **Two Interrupt questions for the designer** (2026-10-27 review).
+  A PC with Gainsay or Lifeline keeps the Interrupt AP pool only while
+  a use is left (`_has_interrupt_tech`); Magehunter and Parting Shot
+  count as long as they're known, so a Gainsay caster's Interrupt AP
+  works one way, then the other. And Parting Shot has two paths: the
+  general one (any enemy walking or Pushed out of reach, with
+  `close_profile`) and an older one for a Kiting enemy's retreat, with
+  the PC's own Weapon. Both spend the same use, so it can't fire twice,
+  but they swing different weapons. Changing either moves the numbers.
 - **Exports to rebuild** (designer, 2026-10-27: the sim always plays
   the live CSVs; rebuild the characters later). Twelve sample exports
   were made before some fixed-Level Techniques went up a Level (Felix

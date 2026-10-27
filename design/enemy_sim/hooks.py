@@ -32,7 +32,8 @@ POINTS = {
     # A PC's attack. ctx: target, hit, parried, pool, mv (the Battle
     # Maneuver copy, or None), substitute, rnd, order, notes (log text)
     "attack_luck": "Good Luck on the attack; returns how many",
-    "before_attack": "just before the flip; returns extra AP spent",
+    "before_attack": "just before the flip (ctx also: mv, repeat); returns extra AP spent. "
+                     "pc['_attack_bonus'] set here is extra damage on this attack if it hits",
     "hit_riders": "a hit or a Parry, before damage (ctx.hit / ctx.parried say which)",
     "after_hit": "after a hit's damage has landed",
     "attack_resolved": "after the attack, hit or not, before it's logged (ctx also: dodged, dmg, repeat)",

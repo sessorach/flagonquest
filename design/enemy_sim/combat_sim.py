@@ -30,7 +30,7 @@ Interrupts (rulebook.md: "Some abilities let you act on other turns,
 and interrupt their actions with your own... when such an action is
 declared, but before any of its effects happen, you may use the
 Interrupt ability") are now modeled too, specifically for Magehunter
-(T075, synthetic test field `pc['magehunter']`, real persistent AP
+(T075, its encounter.py use, real persistent AP
 via `pc['ap_bank']`) - see _take_pc_turn's own end-of-turn AP-refresh
 step and _magehunter_interrupt/_take_enemy_turn for the actual
 off-turn preemptive attack. This is a genuine Interrupt, not another
@@ -47,10 +47,8 @@ broken by re-flipping just the tied units - rulebook.md's own worked
 example) and that order is fixed for the whole fight, interleaved
 across both sides - not "all 4 PCs, then all enemies," which is what
 this file did before real initiative existed. Every round just replays
-that same order, skipping whoever's already dead. A PC's own
-`turn_order_shift` field (not read from any real build yet - see
-`_shift_in_order`) can push a hit target later in this same order,
-modeling Backfoot/Alacrity/Heroic Inspiration's shared mechanic.
+that same order, skipping whoever's already dead. `_shift_in_order`
+moves a unit within it (Backfoot, Alacrity).
 
 ## How a turn works (rulebook.md's "Actions on a Turn")
 
@@ -1047,11 +1045,11 @@ def _raise_spirits(attacker, pcs, need, big):
     if need <= 1:
         return 0
     for b in pcs:
-        if b is attacker or b['health'] <= 0 or 'raise_range' not in b:
+        if b is attacker or b['health'] <= 0 or not hooks.has(b, 'Raise Spirits'):
             continue
         if b.get('ap_bank', 0) < 1:
             continue
-        if 'pos' in b and 'pos' in attacker and _distance(b['pos'], attacker['pos']) > b['raise_range']:
+        if 'pos' in b and 'pos' in attacker and _distance(b['pos'], attacker['pos']) > b['skill_totals']['Performance']:
             continue
         reserve = 0 if big else (1 if any(p is not b and p['health'] > 0 and _has_big_attacks(p) for p in pcs) else 0)
         if b['ap_bank'] - 1 < reserve:
@@ -1255,13 +1253,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
     with a real initiative order this genuinely IS "their own turn" now,
     not a once-a-round batch step after every PC's gone.
 
-    `order`: this fight's live turn-order list, passed through only so a
-    PC with `turn_order_shift` or `self_turn_order_advance` set (both
-    synthetic test fields, not read from any real build yet - see
-    balance_weights_notes.md's Backfoot pass) can shift a unit in it via
-    `_shift_in_order` on a hit - `turn_order_shift` delays the target
-    (Backfoot's own version), `self_turn_order_advance` moves the PC
-    itself earlier instead (tested as a separate mechanic)."""
+    `order`: this fight's live turn-order list, for whatever shifts a
+    unit in it on a hit (`_shift_in_order`: Backfoot, Alacrity)."""
     attacks_made = 0
     viper_free = 0  # Viper's Sting attacks, outside a plan's attack count
     damage_dealt = 0
@@ -1305,16 +1298,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 _techniques.spell_riders(pc, extra_ctx, before_damage=True)
         if hit:
             raw_dmg = pc['damage'] + _suit_extra(pc, pool, pc['attack_skill'])
-            dmg = max(0, raw_dmg - resist)
-            protected = bonus_target.get('protected', 0)
-            if protected > 0 and dmg > 0:
-                protected_absorbed = min(dmg, protected)
-                bonus_target['protected'] -= protected_absorbed
-                dmg -= protected_absorbed
-            bonus_target['health'] -= dmg
-            _damaged_by_pc(pc, bonus_target, dmg)
-            if dmg > 0:
-                bonus_target.setdefault('hit_steps', []).append((_STEP[0], bonus_target['health'] <= 0))
+            dmg, protected_absorbed = _land_damage(pc, bonus_target, raw_dmg, resist)
         if extra_ctx is not None:
             _techniques.spell_riders(pc, extra_ctx, before_damage=False)
         if party_log:
@@ -1387,7 +1371,6 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
             ap = pc['ap_bank'] - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
         else:
             ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
-        tactics.try_second_wind(pc, log=party_log)  # 0 AP - see tactics.py's own docstring
         # Techniques taken at the start of the turn (hooks.py's
         # pc_turn_start, in their ORDER).
         turn = SimpleNamespace(pcs=pcs, enemies=enemies, rnd=rnd, movement_on=movement_on, trace=trace,
@@ -1416,11 +1399,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # Blinkstep (T077): a free Shift of [half Acrobatics
                     # Skill Total] meters carries the first part of the
                     # planned move, when that saves a move action.
-                    if pc.get('blinkstep') and moves > 0:
-                        left = max(0, _distance(start, plan.pre_pos) - pc.get('acrobatics_skill_total', 0) // 2)
+                    if encounter.left(pc, 'Blinkstep') > 0 and moves > 0:
+                        left = max(0, _distance(start, plan.pre_pos) - pc['skill_totals']['Acrobatics'] // 2)
                         need = play_styles._moves_for(left, max(1, tactics._speed(pc)))
                         if need < moves:
-                            pc['blinkstep'] = False
+                            encounter.spend(pc, 'Blinkstep')
                             blinked = True
                             moves = need
                     ap -= moves * T.MOVE_AP_COST
@@ -1447,7 +1430,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # AP a Blinkstep saved goes on a second attack; a planned
                 # "attack, then back off" with Blinkstep ready attacks
                 # twice and Shifts away afterward instead.
-                if (blinked and not plan.retreat) or (plan.retreat and pc.get('blinkstep')):
+                if (blinked and not plan.retreat) or (plan.retreat and encounter.left(pc, 'Blinkstep') > 0):
                     max_attacks = max(max_attacks, min(2, ap // T.ATTACK_AP_COST))
             else:
                 target = tactics.select_target(pc, targets, movement_on, allies=[p for p in pcs if p['health'] > 0])
@@ -1479,12 +1462,12 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # consumed on use, not just on offer, same rule as every
                     # other once-per-encounter field in this file.
                     reach = effective_range(pc)
-                    if pc.get('blinkstep') and _distance(pc['pos'], target['pos']) > reach:
-                        shift_dist = pc.get('acrobatics_skill_total', 0) // 2  # rulebook.md: round fractions down
+                    if encounter.left(pc, 'Blinkstep') > 0 and _distance(pc['pos'], target['pos']) > reach:
+                        shift_dist = pc['skill_totals']['Acrobatics'] // 2  # rulebook.md: round fractions down
                         if shift_dist > 0:
                             blink_start = pc['pos']
                             pc['pos'] = movement.move_toward(pc['pos'], target['pos'], shift_dist, stop_at=reach)
-                            pc['blinkstep'] = False
+                            encounter.spend(pc, 'Blinkstep')
                             # Logged as its own event (not folded into the
                             # AP-funded move below) so `spaces` on each event
                             # reflects only that phase's own distance, not
@@ -1573,8 +1556,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         pc.pop('_range_skip', None)
                     if not substitute and encounter.weapon_left(pc) <= 0:
                         break
-                # Anything that spends extra AP on this attack (Eagle Eyes).
-                pre = SimpleNamespace(substitute=substitute, ap=ap)
+                # Anything that spends extra AP on this attack (Eagle Eyes),
+                # or pays for something riding on it (Spellblade).
+                pre = SimpleNamespace(substitute=substitute, ap=ap, mv=mv, repeat=repeating, target=target)
                 hooks.run('before_attack', pc, pre)
                 ap = pre.ap
                 if not substitute and pc.get('opp_def_choices'):
@@ -1599,22 +1583,16 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # the usual 2 - see balance_weights_notes.md's Martial
                 # Techniques pass for why that AP discount needed checking
                 # directly rather than assumed away.
-                feint_active = bool(pc.get('feint')) and not substitute
+                feint_active = encounter.left(pc, 'Feint') > 0 and not substitute
                 saved_opp_def = None
                 feint_stacks = 3
                 if feint_active:
                     saved_opp_def = pc['opp_def']
                     pc['opp_def'] = 'Vigilant'
-                    # A numeric value overrides the default 3 stacks (a
-                    # plain True/1 test field keeps that default) - read
-                    # before the charge is consumed below, since pc['feint']
-                    # is gone by the time the hit/miss result is known.
-                    if isinstance(pc['feint'], (int, float)) and pc['feint'] is not True:
-                        feint_stacks = pc['feint']
-                    # Charge consumed on use, not on hit - an Encounter
-                    # Technique is expended by using it (rulebook.md), a
-                    # missed attack doesn't refund the attempt.
-                    pc['feint'] = False
+                    # Spent on use, not on hit - an Encounter Technique is
+                    # expended by using it (rulebook.md), a missed attack
+                    # doesn't refund the attempt.
+                    encounter.spend(pc, 'Feint')
                 # Cloak and Dagger (T079, a test field, and a row's Passive since 2026-10-24, "0 AP -
                 # Interrupt (you declare a weapon attack with a
                 # close-range weapon that isn't Heavy or two-handed)"):
@@ -1661,7 +1639,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     pc['dmg_type'] = new_type
                 close_range_weapon = not pc.get('attack_range') and pc.get('weapon_name') not in ('Melee', '2H Heavy Melee')
                 cloak_dagger_hit = False
-                if (pc.get('cloak_and_dagger') and not substitute and not feint_active and close_range_weapon
+                if (hooks.has(pc, 'Cloak and Dagger') and not substitute and not feint_active and close_range_weapon
                         and (cards.can_spend(pc) if T.CARDS else pc.get('card_uses_left', 0) > 0)):
                     # Worth attempting at all? A real player wouldn't
                     # discard a card chasing a target that's already easy
@@ -1685,7 +1663,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     sift_for_ev = _expected_suit(pc, 0) if T.CARDS else (1 if tactics.sift_bonus(pc) else 0)
                     _, normal_ev = _gamble_search(eff_skill, real_defense, pc['damage'], resist_for_ev, sift_for_ev)
                     _, unaware_ev = _gamble_search(eff_skill, 8, pc['damage'], resist_for_ev, sift_for_ev)
-                    stealth_threshold = target['vigilant'] - pc.get('stealth_skill_total', 0)
+                    stealth_threshold = target['vigilant'] - pc['skill_totals']['Stealth']
                     q = _p_flip_at_least(stealth_threshold, n_flips=2)  # guaranteed Good Luck, per the Spade assumption below
                     worth_it = q * (unaware_ev - normal_ev) * 4 - T.CARD_VALUE > 0
                     if worth_it and T.CARDS:
@@ -1697,7 +1675,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         pc['card_uses_left'] -= 1
                         stealth_card = resolve_card(1, False)  # guaranteed Good Luck, per the Spade assumption above
                     if worth_it:
-                        stealth_roll = pc.get('stealth_skill_total', 0) - pc.get('crippled', 0) + stealth_card
+                        stealth_roll = pc['skill_totals']['Stealth'] - pc.get('crippled', 0) + stealth_card
                         cloak_dagger_hit = stealth_roll >= target['vigilant']
                         if party_log:
                             party_log(unit=pc['name'], action='stealth_check', target=target['name'],
@@ -1859,13 +1837,13 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 raw_dmg = 0
                 protected_absorbed = 0
                 turn_shift_note = None
+                # Extra damage on this one attack if it hits, set before the
+                # flip by whatever paid for it (Blood-Powered Spirit).
+                attack_bonus = pc.pop('_attack_bonus', 0)
                 if feint_active and hit:
                     # "Instead of normal effects" - no damage, Harried N
-                    # times instead (feint_stacks, default 3 matching the
-                    # CSV's own "3 + [Diamonds]", overridable by setting
-                    # pc['feint'] to a number instead of True - see
-                    # balance_weights_notes.md's Martial Techniques pass
-                    # for the sweep this was built to run). +0.25 for the
+                    # times instead (feint_stacks, the CSV's own "3 +
+                    # [Diamonds]"). +0.25 for the
                     # suit-pool average, same convention as every other
                     # suit-bonus Feature this session.
                     target['harried'] = target.get('harried', 0) + feint_stacks + (
@@ -1873,7 +1851,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 elif hit:
                     # A no-damage attack (Acidic Flask, Reckoning) gets
                     # nothing from Extra Successes.
-                    raw_dmg = pc['damage'] + gambles + _suit_extra(pc, pool, skill) if pc['damage'] > 0 else 0
+                    raw_dmg = pc['damage'] + gambles + _suit_extra(pc, pool, skill) + attack_bonus if pc['damage'] > 0 else 0
                     # A hit that leaves the target a point or two short: play
                     # matching-suit cards for the Extra Successes to finish it.
                     if T.CARDS:
@@ -1987,14 +1965,6 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         # to check the per-place weight directly.
                         if 'Staggering Blows' in passives:
                             _shift_in_order(order, target, 1)
-                    if order is not None and pc.get('turn_order_shift'):
-                        moved = _shift_in_order(order, target, pc['turn_order_shift'])
-                        if moved:
-                            turn_shift_note = f"{target['name']} pushed {moved} later in turn order"
-                    if order is not None and pc.get('self_turn_order_advance'):
-                        moved = _shift_in_order(order, pc, -pc['self_turn_order_advance'])
-                        if moved:
-                            turn_shift_note = f"{pc['name']} advanced {-moved} earlier in turn order"
                 # Test variant (BLEED_PROTECTED 'apply'): whatever Protected
                 # the hit's damage left stops this attack's new stacks. The
                 # riders above go on before the damage, so this waits.
@@ -2053,14 +2023,6 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # for a worked example.
                     damage_dealt += _bonus_attack(target, 'Control')
                     pc['bonus_attack_control'] = False
-                if pc.get('flurry'):
-                    damage_dealt += _bonus_attack(target, 'Flurry')
-                    pc['flurry'] = False
-                if pc.get('whirlwind'):
-                    extra = _find_extra_target(pc, target, enemies, movement_on, 'melee')
-                    if extra:
-                        damage_dealt += _bonus_attack(extra, 'Whirlwind')
-                        pc['whirlwind'] = False
                 # Whirlwind on a Battle Maneuver copy (Hilde's Level 3 one).
                 if maneuver_now and mv.get('whirlwind'):
                     extra = _find_extra_target(pc, target, enemies, movement_on, 'melee')
@@ -2088,11 +2050,6 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         downed = downed or extra['health'] <= 0
                     if substitute.get('draw_power') and downed:
                         _draw_card(pc)
-                if pc.get('ricochet_shot'):
-                    extra = _find_extra_target(pc, target, enemies, movement_on, 'adjacent')
-                    if extra:
-                        damage_dealt += _bonus_attack(extra, 'Ricochet Shot')
-                        pc['ricochet_shot'] = False
                 # Flurry (F-Advanced): "You Repeat the weapon attack against
                 # each target" - the primary one, straight away.
                 if maneuver_now and mv.get('flurry') and not repeating and target['health'] > 0:
@@ -2145,12 +2102,12 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
             # Blinkstep's free Shift goes first (a Shift can't be
             # Interrupted, so no Parting Shot either).
             living = [e for e in enemies if e['health'] > 0]
-            if (pc.get('blinkstep') and pc['health'] > 0 and living
+            if (encounter.left(pc, 'Blinkstep') > 0 and pc['health'] > 0 and living
                     and any(_distance(pc['pos'], e['pos']) <= keep for e in living)):
                 start = pc['pos']
-                pc['pos'] = play_styles.retreat_pos(pc['pos'], living, pc.get('acrobatics_skill_total', 0) // 2)
+                pc['pos'] = play_styles.retreat_pos(pc['pos'], living, pc['skill_totals']['Acrobatics'] // 2)
                 if pc['pos'] != start:
-                    pc['blinkstep'] = False
+                    encounter.spend(pc, 'Blinkstep')
                     _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                          spaces=_distance(start, pc['pos']), via=f"{pc.get('play_style')}: back off (Blinkstep)")
             while ap >= T.MOVE_AP_COST and pc['health'] > 0:
@@ -2166,10 +2123,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         # Raise Spirits (Ashleigh): whatever AP her own turn didn't use goes
         # on staying in range of the party (designer, 2026-10-09); her pool
         # refills at the end of the turn either way.
-        if 'raise_range' in pc and movement_on:
+        if hooks.has(pc, 'Raise Spirits') and movement_on:
             living = [e for e in enemies if e['health'] > 0]
             while ap >= T.MOVE_AP_COST and living:
-                spot = play_styles.support_pos(pc, pcs, living, pc['raise_range'], max(1, tactics._speed(pc)),
+                spot = play_styles.support_pos(pc, pcs, living, pc['skill_totals']['Performance'], max(1, tactics._speed(pc)),
                                                T.BACKLINE_KEEP_AWAY)
                 if spot is None:
                     break
@@ -2226,34 +2183,19 @@ def _has_interrupt_tech(pc):
     (Magehunter T075, Parting Shot T076) - both share the one real AP
     pool (`pc['ap_bank']`) rather than each getting its own, since
     rulebook.md's AP economy is a single number per PC."""
-    return bool(pc.get('magehunter') or pc.get('parting_shot') or 'raise_range' in pc
+    return bool(hooks.has(pc, 'Magehunter') or hooks.has(pc, 'Parting Shot') or hooks.has(pc, 'Raise Spirits')
                 or encounter.left(pc, 'Gainsay') or encounter.left(pc, 'Lifeline'))
 
 
-def _magehunter_interrupt(e, pcs, movement_on, party_log):
-    """Magehunter (T075): "Make a weapon attack against the target [...]
-    a creature within your weapon's range declares a Spell, before it
-    is cast" - called from _take_enemy_turn right before an enemy's own
-    Melee Spell/Ranged Spell attack resolves, so a real Interrupt: the
-    PC's attack lands (and can kill/interrupt the caster) BEFORE the
-    enemy's own attack roll happens, not just some other bonus-damage
-    add-on after the fact. Any living PC with a Magehunter use left
-    (encounter.py) AND
-    at least T.MAGEHUNTER_AP_COST (1) AP left in `pc['ap_bank']` - the
-    pool granted at this PC's own last turn-end refresh (or the initial
-    Reflex-flip refresh, for their very first turn), NOT a per-turn
-    "reserved" flag - within their own weapon range of `e` gets this
-    attack, spending 1 AP from that pool AND the charge on use, not on
-    hit (same "an Encounter/Interrupt ability is expended by using it"
-    rule as Feint).
-
-    Unlike _take_pc_turn's own `_bonus_attack` closure (Whirlwind/
-    Flurry/Ricochet Shot - a genuinely free extra swing layered on top
-    of an already-resolved primary attack, deliberately no Gambling),
-    Magehunter's Interrupt IS a full, independent weapon attack - so it
-    keeps Gambling (pc_gamble_count), same as any normal attack.
-    Returns the total damage dealt, for run_fight's own party damage
-    tally."""
+def _weapon_interrupt(e, pcs, movement_on, party_log, tech, cost, close_only=False):
+    """A weapon attack a PC makes as an Interrupt against enemy `e`, for
+    an Encounter Technique (`tech`) that costs `cost` AP from the
+    Interrupt pool (`ap_bank`): Magehunter and Parting Shot. Any living
+    PC with a use left, the AP, and `e` within reach takes it, spending
+    the AP and the use on use, not on hit. A full, independent weapon
+    attack, so it Gambles (pc_gamble_count). `close_only`: only a
+    close-range weapon (no `attack_range`). Returns the total damage
+    dealt, for run_fight's own party damage tally."""
     total_dmg = 0
     for pc in pcs:
         # techniques.csv's own Tags column has Magehunter as
@@ -2266,16 +2208,16 @@ def _magehunter_interrupt(e, pcs, movement_on, party_log):
         # PC's next own turn loses from actually using the Interrupt is
         # real and persists even after the use itself is spent, so
         # ap_bank keeps tracking regardless.
-        if (pc['health'] <= 0 or encounter.left(pc, 'Magehunter') <= 0
-                or pc.get('ap_bank', 0) < T.MAGEHUNTER_AP_COST):
+        if (pc['health'] <= 0 or encounter.left(pc, tech) <= 0
+                or pc.get('ap_bank', 0) < cost or (close_only and pc.get('attack_range'))):
             continue
         if e['health'] <= 0:
             break
         reach = effective_range(pc)
         if movement_on and _distance(pc['pos'], e['pos']) > reach:
             continue
-        pc['ap_bank'] -= T.MAGEHUNTER_AP_COST
-        encounter.spend(pc, 'Magehunter')
+        pc['ap_bank'] -= cost
+        encounter.spend(pc, tech)
         defense = enemy_defense_for_pc_attack(pc, e)
         resist = enemy_resist_for_pc_attack(pc, e)
         gambles = pc_gamble_count(pc, e)
@@ -2291,89 +2233,36 @@ def _magehunter_interrupt(e, pcs, movement_on, party_log):
         dmg = raw_dmg = protected_absorbed = 0
         if hit:
             raw_dmg = pc['damage'] + gambles + _suit_extra(pc, pool, pc['attack_skill'])
-            dmg = max(0, raw_dmg - resist)
-            protected = e.get('protected', 0)
-            if protected > 0 and dmg > 0:
-                protected_absorbed = min(dmg, protected)
-                e['protected'] -= protected_absorbed
-                dmg -= protected_absorbed
-            e['health'] -= dmg
-            _damaged_by_pc(pc, e, dmg)
+            dmg, protected_absorbed = _land_damage(pc, e, raw_dmg, resist, steps=False)
             total_dmg += dmg
         if party_log:
             party_log(unit=pc['name'], action='attack', target=e['name'], roll=roll, defense=defense,
                        hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
                        target_hp_after=e['health'], target_harried_after=e.get('harried', 0),
-                       via=f"{pc['weapon_name']} (Magehunter)", turn_shift=None)
+                       via=f"{pc['weapon_name']} ({tech})", turn_shift=None)
     return total_dmg
+
+
+
+
+def _magehunter_interrupt(e, pcs, movement_on, party_log):
+    """Magehunter (T075): "Make a weapon attack against the target [...]
+    a creature within your weapon's range declares a Spell, before it is
+    cast". Called from _take_enemy_turn right before an enemy's Melee
+    Spell/Ranged Spell attack resolves, so it lands (and can Down the
+    caster) before the Spell does."""
+    return _weapon_interrupt(e, pcs, movement_on, party_log, 'Magehunter', T.MAGEHUNTER_AP_COST)
 
 
 def _parting_shot_interrupt(e, pcs, movement_on, party_log):
     """Parting Shot (T076): "Make an attack with a close-range weapon
     against the target [...] a creature within range of a close-range
-    weapon you are wielding would move [...] outside your range" -
-    called from _take_enemy_turn right before a Kiting enemy's own
-    retreat step (`tactics.move_kite`, the only "moves away from its
-    target" behavior this simulator has - every other Battle Tactic
-    only closes distance, never retreats, so this is Parting Shot's one
-    real trigger here) actually moves `e`, checked against `e`'s
-    CURRENT position (before that retreat). A row that names Parting
-    Shot gets the general version instead (_pc_parting_shots: any
-    enemy that walks or is Pushed out of reach).
-
-    Same `ap_bank`/once-per-encounter-charge shape as
-    _magehunter_interrupt (its encounter.py use,
-    T.PARTING_SHOT_AP_COST), but gated on "close-range weapon"
-    specifically (`not pc.get('attack_range')` - party.py only sets
-    `attack_range` for a real ranged `Weapon` pick; the blank default,
-    2H Heavy Melee, and Unarmed all leave it unset, falling back to
-    T.MELEE_RANGE, which IS a close-range weapon for this purpose) -
-    a PC with a bow or War Magic doesn't get to punish a retreat this
-    way. Returns the total damage dealt, for run_fight's own party
-    damage tally."""
-    total_dmg = 0
-    for pc in pcs:
-        if (pc['health'] <= 0 or encounter.left(pc, 'Parting Shot') <= 0
-                or pc.get('ap_bank', 0) < T.PARTING_SHOT_AP_COST
-                or pc.get('attack_range')):
-            continue
-        if e['health'] <= 0:
-            break
-        reach = effective_range(pc)
-        if movement_on and _distance(pc['pos'], e['pos']) > reach:
-            continue
-        pc['ap_bank'] -= T.PARTING_SHOT_AP_COST
-        encounter.spend(pc, 'Parting Shot')
-        defense = enemy_defense_for_pc_attack(pc, e)
-        resist = enemy_resist_for_pc_attack(pc, e)
-        gambles = pc_gamble_count(pc, e)
-        crippled = pc.get('crippled', 0)
-        bad_luck = tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, e)
-        luck_bonus = tactics.perfect_strike_bonus(pc) if not T.CARDS else 0
-        imp = _importance(e, pc['damage'] + gambles - resist - e.get('protected', 0))
-        card, pool = _pc_flip(pc, pc['skill_total'] - crippled - 2 * gambles, defense,
-                              pc.get('good_luck', 0) + luck_bonus, bad_luck, imp, pcs, _hand_of_chaos(pc))
-        roll = pc['skill_total'] - crippled + card - 2 * gambles
-        hit = roll >= defense
-        e['harried'] = e.get('harried', 0) + 1
-        dmg = raw_dmg = protected_absorbed = 0
-        if hit:
-            raw_dmg = pc['damage'] + gambles + _suit_extra(pc, pool, pc['attack_skill'])
-            dmg = max(0, raw_dmg - resist)
-            protected = e.get('protected', 0)
-            if protected > 0 and dmg > 0:
-                protected_absorbed = min(dmg, protected)
-                e['protected'] -= protected_absorbed
-                dmg -= protected_absorbed
-            e['health'] -= dmg
-            _damaged_by_pc(pc, e, dmg)
-            total_dmg += dmg
-        if party_log:
-            party_log(unit=pc['name'], action='attack', target=e['name'], roll=roll, defense=defense,
-                       hit=hit, dmg=dmg, raw_dmg=raw_dmg, resist=resist, protected_absorbed=protected_absorbed,
-                       target_hp_after=e['health'], target_harried_after=e.get('harried', 0),
-                       via=f"{pc['weapon_name']} (Parting Shot)", turn_shift=None)
-    return total_dmg
+    weapon you are wielding would move [...] outside your range". Called
+    from _take_enemy_turn right before a Kiting enemy's retreat step
+    (tactics.move_kite), against its position before it moves. A row
+    that names Parting Shot also gets the general version
+    (_pc_parting_shots: any enemy that walks or is Pushed out of reach)."""
+    return _weapon_interrupt(e, pcs, movement_on, party_log, 'Parting Shot', T.PARTING_SHOT_AP_COST, close_only=True)
 
 
 def _enemy_plan(e, enemies, living_pcs, movement_on):
@@ -2655,6 +2544,17 @@ def _push(unit, origin, n):
     return start
 
 
+def _after_push(e, start, pcs, log, via=None):
+    """What follows any Push of enemy `e` from `start` (2026-10-27, one
+    place for it): the move in the trace when `via` names what pushed it,
+    then Parting Shot, "would move or be Pushed outside your range"."""
+    if via:
+        _log(_CTX['trace'], round=_CTX['rnd'], side='enemy', unit=e['name'], action='move', pos=e['pos'],
+             spaces=_distance(start, e['pos']), in_range=False, via=via)
+    if _CTX.get('ps_pcs'):
+        _parting_shots_on(e, start, pcs, log, pushed=True)
+
+
 def _reaction_attack(pc, e, pcs, via, prof=None, log=None):
     """One attack a PC makes off its own turn (Gainsay, Parting Shot with
     a sheet's close-range weapon). `prof` overlays the PC's attack for it:
@@ -2686,15 +2586,7 @@ def _reaction_attack(pc, e, pcs, via, prof=None, log=None):
     dmg = raw_dmg = absorbed = 0
     if hit:
         raw_dmg = pc['damage'] + gambles + _suit_extra(pc, pool, pc['attack_skill'])
-        dmg = max(0, raw_dmg - resist)
-        if e.get('protected', 0) > 0 and dmg > 0:
-            absorbed = min(dmg, e['protected'])
-            e['protected'] -= absorbed
-            dmg -= absorbed
-        e['health'] -= dmg
-        _damaged_by_pc(pc, e, dmg)
-        if dmg > 0:
-            e.setdefault('hit_steps', []).append((_STEP[0], e['health'] <= 0))
+        dmg, absorbed = _land_damage(pc, e, raw_dmg, resist)
     if log:
         log(unit=pc['name'], action='attack', target=e['name'], roll=roll, defense=defense, hit=hit, dmg=dmg,
             raw_dmg=raw_dmg, resist=resist, protected_absorbed=absorbed, target_hp_after=e['health'],
@@ -2745,6 +2637,25 @@ def _viper_ready(pc):
     less AP to use") still unspent."""
     m = pc.get('maneuver')
     return bool(m) and m['uses'] > 0 and m.get('viper')
+
+
+def _land_damage(pc, e, raw, resist, steps=True):
+    """A PC's hit for `raw` damage landing on enemy `e`: Resist, then
+    Protected soaks what it can, then the Health. `steps` records the
+    hit for the acts-again calibration (the main attack, bonus and
+    reaction attacks do; Interrupts never have). Returns (damage dealt,
+    Protected absorbed)."""
+    dmg = max(0, raw - resist)
+    absorbed = 0
+    if e.get('protected', 0) > 0 and dmg > 0:
+        absorbed = min(dmg, e['protected'])
+        e['protected'] -= absorbed
+        dmg -= absorbed
+    e['health'] -= dmg
+    _damaged_by_pc(pc, e, dmg)
+    if steps and dmg > 0:
+        e.setdefault('hit_steps', []).append((_STEP[0], e['health'] <= 0))
+    return dmg, absorbed
 
 
 def _damaged_by_pc(pc, e, dmg):
@@ -3162,8 +3073,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     enemies.csv's Action column - "Offensive Melee", "Ranged Weapon",
     ...) on the enemy side. A party-side `action='attack'` event also
     carries `turn_shift` - a plain description string when this hit
-    triggered a `turn_order_shift`/`self_turn_order_advance` test field
-    (`None` otherwise), for spotting these in a replay. A final
+    moved someone in the turn order (`None` otherwise), for spotting
+    these in a replay. A final
     `type='result'` event carries `winner`."""
     if seed is not None:
         random.seed(seed)
@@ -3206,7 +3117,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     _CTX['walls'] = set()
     _movement.TERRAIN.clear()  # run_fight's `movement` argument shadows the module
     _CTX['pcs'] = pcs
-    _CTX['ps_pcs'] = any(p.get('close_profile') and p.get('parting_shot') for p in pcs)
+    _CTX['ps_pcs'] = any(p.get('close_profile') and hooks.has(p, 'Parting Shot') for p in pcs)
     _CTX['ps_enemies'] = any('Action (Parting Shot)' in e.get('abilities', ()) for e in enemies)
     # Real cards (cards.py): each PC's hand for this fight, and one GM deck
     # shared by every enemy.
@@ -3215,7 +3126,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             cards.start_fight(p)
             # Grim Resolve (T010, 0 AP, 1 Health committed until a full
             # rest): "You draw a card." Jackal takes it once a fight.
-            if p.get('grim_resolve'):
+            if hooks.has(p, 'Grim Resolve'):
                 _draw_card(p)
                 p['health'] -= 1
                 p['max_health'] -= 1

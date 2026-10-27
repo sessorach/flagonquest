@@ -30,11 +30,19 @@ Most need less than that (2026-10-27):
   call `encounter.left(pc, name)` and `encounter.spend(pc, name)`; no
   setup. Anything that regains or trades uses (Vigor, Willow Springs
   Back, Warmage's Reserves...) then works on it with nothing more.
-- Every PC carries `skill_totals` (all 25), `stats` and `ley`
-  (Ley-weaving's +3 meters), so a hook reads "[half your Meditation Skill
-  Total]" as `half(pc, "Meditation")` rather than a setup copying it.
+- Every PC carries `skill_totals` (all 25), `stats`, `ley`
+  (Ley-weaving's +3 meters) and `base_profile` (its Weapon's attack), so
+  a hook reads "[half your Meditation Skill Total]" as
+  `half(pc, "Meditation")` rather than a setup copying it. Whether a PC
+  knows a Technique is `hooks.has(pc, name)`, not a flag.
 - A setup is for what the sheet alone knows: a pick from the Choices
   column, a profile built from the Weapon.
+- The pieces a hook reuses (tech_common.py, combat_sim): `_resolve` and
+  `_log_strike` for an attack made off the attack loop, `_pay_card`,
+  `_heal`, `_near`/`_within`, the Interrupt AP pool (`_interrupt_ap`),
+  `cs._after_push` after any Push (it logs the move and runs Parting
+  Shot), `cs._land_damage`, and `pc['_attack_bonus']` set in
+  `before_attack` for extra damage on that one attack.
 """
 import collections
 from types import SimpleNamespace
@@ -104,10 +112,18 @@ def _card(tid, name):
 ENCOUNTER_NAMES = set()
 
 
-def _encounter(tid, name):
-    # One entry per known copy: each copy is one use a fight.
+def _encounter(tid, name, unarmed=False):
+    """One entry per known copy: each copy is one use a fight. `unarmed`:
+    the Technique makes an Unarmed weapon attack, built from the row's
+    Weapon, so the row has to be swinging Unarmed."""
     ENCOUNTER_NAMES.add(name)
-    technique(tid, name)(lambda sheet, copies, choices: sheet.encounter_techs.extend([name] * len(copies)))
+
+    def build(sheet, copies, choices):
+        if unarmed and sheet.weapon != "Unarmed":
+            raise BuildError(f"{name} makes an Unarmed weapon attack; the row's Weapon is "
+                             f"{sheet.weapon or '1H Heavy Melee'}")
+        sheet.encounter_techs.extend([name] * len(copies))
+    technique(tid, name)(build)
 
 
 for _tid, _name in (("T010", "Grim Resolve"), ("T011", "One Eye Behind You"), ("T019", "Toughened Resolve"),
@@ -452,24 +468,8 @@ def _toughened_resolve(name, pc, s):
     pc["shallow_max"] += 2
 
 
-@setup_for("Shadow Jaunt")
-def _shadow_jaunt_setup(name, pc, s):
-    pc["jaunt_range"] = max(_skill(s, "Sorcery"), _skill(s, "Theurgy"))
-
-
-@setup_for("Wall of Shadows")
-def _wall_setup(name, pc, s):
-    pc["sorcery_skill_total"] = _skill(s, "Sorcery")
-
-
-@setup_for("Blinkstep")
-def _blinkstep_setup(name, pc, s):
-    pc["blinkstep"] = True
-
-
 @setup_for("Parting Shot")
 def _parting_shot_setup(name, pc, s):
-    pc["parting_shot"] = True
     # "a close-range weapon you are wielding": the Weapon itself if it
     # works up close (thrown weapons and melee), else Unarmed.
     if s.weapon == "Light Bow" or s.weapon.startswith("War Magic"):
@@ -479,13 +479,7 @@ def _parting_shot_setup(name, pc, s):
                                    damage=u["damage_base"] + max(int(s.stats["Body"]), int(s.stats["Cunning"])),
                                    dmg_type="Physical", opp_def="Parry/Dodge", skill="Brawl", via="Unarmed")
     else:
-        pc["close_profile"] = dict(skill_total=s.atk_skill_total, damage=s.damage, dmg_type=s.dmg_type,
-                                   opp_def=s.opp_def, skill=s.w_skill, via=s.weapon_name)
-
-
-@setup_for("Lifeline")
-def _lifeline_setup(name, pc, s):
-    pc["lifeline_range"] = _skill(s, "Theurgy") + s.ley
+        pc["close_profile"] = pc["base_profile"]
 
 
 def _blessing_features(feats, theurgy, ley):
@@ -518,22 +512,12 @@ def _blessing_setup(name, pc, s):
     pc["blessing"] = pc["blessings"][0]
 
 
-@setup_for("Gust of Wind")
-def _gust_setup(name, pc, s):
-    pc["theurgy_skill_total"] = _skill(s, "Theurgy")
-    pc["gust_push"] = 2 * int(s.stats["Mind"])
-
-
-@setup_for("Cloak and Dagger", "Grim Resolve")
-def _flag_setup(name, pc, s):
-    # Cloak and Dagger (T079) was a test-only field before Carrick had it.
-    pc["cloak_and_dagger" if name == "Cloak and Dagger" else "grim_resolve"] = True
-
-
-@setup_for("Raise Spirits")
-def _raise_spirits_setup(name, pc, s):
-    # T069: "an ally within [Performance Skill Total] meters".
-    pc["raise_range"] = _skill(s, "Performance")
+@hooks.on('pc_turn_start', 'Second Wind', order=-1)
+def _second_wind(pc, c):
+    # T012, 0 AP (tactics.try_second_wind): first thing in the turn, before
+    # any other Technique. Returns 0: it spends a card, not AP.
+    cs.tactics.try_second_wind(pc, log=c.log)
+    return 0
 
 
 # Techniques knowingly not modeled yet, {ID: why} (2026-10-27): a build
@@ -602,11 +586,7 @@ def _cast_hex(pc, hx, e, pcs, allies, rnd, trace, log):
             via=hx['via'], effects=note, cards=cs._take_notes(pc), opp_def=hx['opp_def'])
     pc.pop('_notes', None)
     if start is not None:
-        cs._log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
-             spaces=cs._distance(start, e['pos']), in_range=False, via=f"Pushed by {hx['via']}")
-        # Parting Shot: "would move or be Pushed outside your range".
-        if cs._CTX.get('ps_pcs'):
-            cs._parting_shots_on(e, start, pcs, log, pushed=True)
+        cs._after_push(e, start, pcs, log, f"Pushed by {hx['via']}")
     return cs.T.ATTACK_AP_COST
 
 
@@ -691,7 +671,7 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
         return 0
     pool = [e for e in enemies if e['health'] > 0 and not (e.get('taunted', 0) > 0)]
     if movement_on:
-        pool = [e for e in pool if cs._distance(pc['pos'], e['pos']) <= pc['presence_skill_total']]
+        pool = [e for e in pool if cs._distance(pc['pos'], e['pos']) <= pc['skill_totals']['Presence']]
     if not pool:
         return 0
     others = [p for p in pcs if p['health'] > 0 and p is not pc]
@@ -703,12 +683,12 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
     encounter.spend(pc, 'Challenge')
     defense = target['mental'] - target.get('vulnerable', 0)
     if cs.T.CARDS:
-        good = cs._raise_spirits(pc, pcs, defense - pc['presence_skill_total'], True)
-        value, pool = cs._pc_flip(pc, pc['presence_skill_total'], defense, good, cs.tactics.pc_wounded(pc), cs.BIG,
+        good = cs._raise_spirits(pc, pcs, defense - pc['skill_totals']['Presence'], True)
+        value, pool = cs._pc_flip(pc, pc['skill_totals']['Presence'], defense, good, cs.tactics.pc_wounded(pc), cs.BIG,
                                allies=pcs)
     else:
         value, pool = cs.flip(), []
-    roll = pc['presence_skill_total'] + value
+    roll = pc['skill_totals']['Presence'] + value
     hit = roll >= defense
     if hit:
         stacks = 5 + cs._suit_count(pool, 'Hearts')
@@ -768,12 +748,12 @@ def _try_exert_pressure(pc, pcs, enemies, movement_on, ap=1, log=None):
     for target in pool:
         defense = target['mental'] - target.get('vulnerable', 0)
         if cs.T.CARDS:
-            good = cs._raise_spirits(pc, pcs, defense - pc['presence_skill_total'], True)
-            value, flipped = cs._pc_flip(pc, pc['presence_skill_total'], defense, good, cs.tactics.pc_wounded(pc), cs.BIG,
+            good = cs._raise_spirits(pc, pcs, defense - pc['skill_totals']['Presence'], True)
+            value, flipped = cs._pc_flip(pc, pc['skill_totals']['Presence'], defense, good, cs.tactics.pc_wounded(pc), cs.BIG,
                                       allies=pcs)
         else:
             value, flipped = cs.flip(), []
-        roll = pc['presence_skill_total'] + value
+        roll = pc['skill_totals']['Presence'] + value
         hit = roll >= defense
         if hit:
             if target.get('taunted', 0) <= 0 and cs._skips(target):
@@ -853,7 +833,7 @@ def _try_shadow_jaunt(pc, enemies, movement_on, ap, log=None):
     if cs.effective_range(pc) <= cs.T.MELEE_RANGE and grappler is None:
         return 0  # a melee fighter is where it wants to be
     nearest = grappler or min(near, key=lambda e: cs._distance(pc['pos'], e['pos']))
-    spaces = max(2, min(pc['jaunt_range'], cs.effective_range(pc) - 1))
+    spaces = max(2, min(max(pc['skill_totals']['Sorcery'], pc['skill_totals']['Theurgy']), cs.effective_range(pc) - 1))
     start = pc['pos']
     pc['pos'] = cs.movement.move_away(pc['pos'], nearest['pos'], spaces)
     if pc['pos'] == start:
@@ -871,7 +851,7 @@ def _wall_cells(pc, toward, length):
     cuts the shooters' lines to the whole party. Every space in reach."""
     (x0, y0), (x1, y1) = pc['pos'], toward
     d = max(abs(x1 - x0), abs(y1 - y0)) or 1
-    reach = pc['sorcery_skill_total']
+    reach = pc['skill_totals']['Sorcery']
     k = max(1, min(reach, d - 2))
     cx, cy = x0 + (x1 - x0) * k / d, y0 + (y1 - y0) * k / d
     nx, ny = -(y1 - y0), (x1 - x0)
@@ -900,7 +880,7 @@ def _try_wall_of_shadows(pc, pcs, enemies, movement_on, ap, log=None):
         return 0
     cx = round(sum(e['pos'][0] for e in shooters) / len(shooters))
     cy = round(sum(e['pos'][1] for e in shooters) / len(shooters))
-    cells = _wall_cells(pc, (cx, cy), pc['sorcery_skill_total'])
+    cells = _wall_cells(pc, (cx, cy), pc['skill_totals']['Sorcery'])
 
     def blocked(a, b):
         return tuple(b['pos']) in cells or bool(cs._cells_between(a['pos'], b['pos']) & cells)
@@ -1024,13 +1004,10 @@ def _try_gust_of_wind(pc, pcs, enemies, movement_on, ap, rnd, trace, log=None):
     if not near:
         return 0
     aim = min(near, key=lambda e: e['health'])['pos']
-    ax, ay = aim[0] - pc['pos'][0], aim[1] - pc['pos'][1]
 
     def in_cone(u):
-        dx, dy = u['pos'][0] - pc['pos'][0], u['pos'][1] - pc['pos'][1]
-        if (dx, dy) == (0, 0) or max(abs(dx), abs(dy)) > 3:
-            return False
-        return (dx * ax + dy * ay) / ((dx * dx + dy * dy) ** 0.5 * (ax * ax + ay * ay) ** 0.5) >= 0.7071 - 1e-9
+        return _in_cone(pc['pos'], aim, u['pos'], 3)
+
     others = [p for p in pcs if p['health'] > 0 and p is not pc]
     if any(in_cone(p) for p in others):
         return 0
@@ -1041,20 +1018,17 @@ def _try_gust_of_wind(pc, pcs, enemies, movement_on, ap, rnd, trace, log=None):
     encounter.spend(pc, 'Gust of Wind')
     for e in targets:
         defense = e['dodge'] - e.get('harried', 0)
-        mod = pc['theurgy_skill_total'] - pc.get('crippled', 0)
+        mod = pc['skill_totals']['Theurgy'] - pc.get('crippled', 0)
         value, pool = cs._pc_flip(pc, mod, defense, pc.get('good_luck', 0), cs._pc_status_bad_luck(pc, e), cs.BIG, pcs,
                                cs._hand_of_chaos(pc))
         hit = mod + value >= defense
         e['harried'] = e.get('harried', 0) + 1
         note = None
         if hit:
-            n = pc['gust_push'] + cs._suit_count(pool, 'Spades')
+            n = 2 * pc['stats']['Mind'] + cs._suit_count(pool, 'Spades')  # "[twice Mind]"
             start = cs._push(e, pc['pos'], n)
             note = f"Pushed {cs._distance(start, e['pos'])} m (up to {n})"
-            cs._log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
-                 spaces=cs._distance(start, e['pos']), in_range=False, via='Pushed by Gust of Wind')
-            if cs._CTX.get('ps_pcs'):
-                cs._parting_shots_on(e, start, pcs, log, pushed=True)
+            cs._after_push(e, start, pcs, log, 'Pushed by Gust of Wind')
         if log:
             log(unit=pc['name'], action='hex', target=e['name'], roll=mod + value, defense=defense, hit=hit,
                 dmg=0, raw_dmg=0, resist=0, target_hp_after=e['health'], target_harried_after=e.get('harried', 0),
@@ -1321,7 +1295,7 @@ def _lifeline(caster, c):
     unit, loss = c.ally, c.loss
     if caster['health'] <= loss or encounter.left(caster, 'Lifeline') <= 0 or caster.get('ap_bank', 0) < 1:
         return 0
-    if 'pos' in caster and 'pos' in unit and cs._distance(caster['pos'], unit['pos']) > caster['lifeline_range']:
+    if 'pos' in caster and 'pos' in unit and cs._distance(caster['pos'], unit['pos']) > caster['skill_totals']['Theurgy'] + caster['ley']:
         return 0
     encounter.spend(caster, 'Lifeline')
     caster['ap_bank'] -= 1
@@ -1343,7 +1317,7 @@ def _parting_shot(pc, c):
         return 0
     prof = pc.get('close_profile')
     if (prof is None or pc['health'] <= 0 or e['health'] <= 0 or encounter.left(pc, 'Parting Shot') <= 0
-            or not pc.get('parting_shot') or pc.get('ap_bank', 0) < cs.T.PARTING_SHOT_AP_COST):
+            or pc.get('ap_bank', 0) < cs.T.PARTING_SHOT_AP_COST):
         return 0
     if cs._distance(pc['pos'], start) > cs.T.MELEE_RANGE or cs._distance(pc['pos'], e['pos']) <= cs.T.MELEE_RANGE:
         return 0
@@ -1435,10 +1409,7 @@ def _push_away_from_party(pc, e, n, ctx):
     cx = round(sum(p['pos'][0] for p in allies) / len(allies))
     cy = round(sum(p['pos'][1] for p in allies) / len(allies))
     start = cs._push(e, (cx, cy), n)
-    cs._log(ctx.trace, round=cs._CTX['rnd'], side='enemy', unit=e['name'], action='move', pos=e['pos'],
-            spaces=cs._distance(start, e['pos']), in_range=False, via='Pushed')
-    if cs._CTX.get('ps_pcs'):
-        cs._parting_shots_on(e, start, ctx.pcs, ctx.log, pushed=True)
+    cs._after_push(e, start, ctx.pcs, ctx.log, 'Pushed')
     return start
 
 
@@ -1579,8 +1550,7 @@ def _lodestone(pc, c):
         n = 2 * (c.mv['lodestone'] + cs._suit_count(c.pool, 'Spades'))
         start = cs._push(c.target, pc['pos'], n)
         c.notes.append(f"Pushed {cs._distance(start, c.target['pos'])} m")
-        if cs._CTX.get('ps_pcs'):
-            cs._parting_shots_on(c.target, start, c.pcs, c.log, pushed=True)
+        cs._after_push(c.target, start, c.pcs, c.log)
 
 
 @hooks.on('pc_hit', order=10)
@@ -1606,8 +1576,7 @@ def _blessing_after_hit(pc, c):
         if c.target['health'] > 0 and 'pos' in c.target and 'pos' in pc:
             start = cs._push(c.target, pc['pos'], 3)
             c.notes.append(f"Pushed {cs._distance(start, c.target['pos'])} m (River's Might)")
-            if cs._CTX.get('ps_pcs'):
-                cs._parting_shots_on(c.target, start, c.pcs, c.log, pushed=True)
+            cs._after_push(c.target, start, c.pcs, c.log)
 
 
 @hooks.on('attack_resolved', order=30)

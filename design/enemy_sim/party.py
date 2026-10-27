@@ -343,24 +343,12 @@ def _pc_dict(sheet, index, good_luck):
     """One PC's fight dict from a loaded sheet (load_sheet)."""
     stats, skills = sheet.stats, sheet.skills
     parry = 8 + skill_total(stats, skills, "Melee")
-    # Raw Acrobatics Skill Total - captured before Armor's own Dodge
-    # modifier folds into `dodge` below, since Blinkstep (T077, "Shift
-    # up to [half your Acrobatics Skill Total] meters") needs the real
-    # Skill Total itself, not Dodge (which isn't the same number for
-    # anyone in anything but Unarmored/Light Armor - Medium/Heavy's own
-    # -1 would otherwise silently leak into a PC's Shift distance too).
-    acrobatics_skill_total = skill_total(stats, skills, "Acrobatics")
     # rulebook.md: "you choose Acrobatics or Brawl" for Dodge - the sim
     # used Acrobatics alone until 2026-10-08, shortchanging Brawl builds
-    # (Felix, Hanforth).
-    dodge = 8 + max(acrobatics_skill_total, skill_total(stats, skills, "Brawl"))
-    # Stealth Skill Total - no Defense formula reads Stealth at all (it
-    # isn't a Defense-governing Skill the way Melee/Acrobatics/
-    # Resilience/Composure/Insight are), so unlike acrobatics_skill_total
-    # above there's no existing "+8" field to derive it from - Cloak and
-    # Dagger (T079, "Make a Stealth attack against the Vigilant Defense")
-    # needs it exposed directly.
-    stealth_skill_total = skill_total(stats, skills, "Stealth")
+    # (Felix, Hanforth). (A Technique that needs a Skill Total itself, like
+    # Blinkstep's Acrobatics or Cloak and Dagger's Stealth, reads it off
+    # `skill_totals`, so Armor's Dodge penalty can't leak into it.)
+    dodge = 8 + max(skill_total(stats, skills, "Acrobatics"), skill_total(stats, skills, "Brawl"))
     bodily = 8 + skill_total(stats, skills, "Resilience")
     mental = 8 + skill_total(stats, skills, "Composure")
     vigilant = 8 + skill_total(stats, skills, "Insight")
@@ -685,7 +673,6 @@ def _pc_dict(sheet, index, good_luck):
     pc = dict(name=f"{sheet.name}{index}",
               parry=parry, dodge=dodge, bodily=bodily, mental=mental, vigilant=vigilant,
               skill_total=atk_skill_total,  # the PC's own attacking Skill Total - see the Weapon block above
-              acrobatics_skill_total=acrobatics_skill_total, stealth_skill_total=stealth_skill_total,
               damage=damage, dmg_type=dmg_type, opp_def=opp_def, weapon_name=weapon_name,
               physres=physres, elemres=elemres, armor=armor,
               health=health, max_health=health, speed=speed, reflex=reflex,
@@ -696,7 +683,6 @@ def _pc_dict(sheet, index, good_luck):
               passives=passives, battle_tactic=battle_tactic,
               card_techniques=card_techniques, card_uses_left=card_uses_left,
               attacks_received=0, attacks_vs_parry_dodge=0, hits_received=0, parries=0,
-              presence_skill_total=skill_total(stats, skills, "Presence"),
               # The attack's Skill (for its suit) and the day's hand size,
               # for real cards (cards.start_fight).
               attack_skill=w_skill, hand_size=hand_size, weapon_is_spell=weapon.startswith("War Magic"))
@@ -718,6 +704,10 @@ def _pc_dict(sheet, index, good_luck):
     # Technique's hooks can read whichever they need without a setup of
     # their own copying it over.
     pc["skill_totals"] = {k: skill_total(stats, skills, k) for k in T.PC_SKILL_STAT}
+    # The Weapon's own attack, for anything that swings it off the normal
+    # attack loop (Parting Shot, Follow Through after a Technique strike).
+    pc["base_profile"] = dict(skill_total=atk_skill_total, damage=damage, dmg_type=dmg_type, opp_def=opp_def,
+                              skill=w_skill, via=weapon_name)
     pc["stats"] = {k: int(v) for k, v in stats.items()}
     pc["ley"] = ley
     pc["techs"] = list(dict.fromkeys(encounter_techs + card_techniques))
@@ -834,13 +824,6 @@ def make_party(tier, good_luck=0):
             sheet = load_sheet(row)
             return [_pc_dict(sheet, i + 1, good_luck) for i in range(4)]
     raise ValueError(f"no Roster row for Tier {tier}")
-
-
-def get_pc(name, good_luck=0):
-    rows = _rows()
-    if name not in rows:
-        raise KeyError(f"no sample_pcs.csv row named {name!r}")
-    return make_pc(name, 1, good_luck, rows=rows)
 
 
 def make_party_of(name, good_luck=0):

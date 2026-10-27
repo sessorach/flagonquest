@@ -292,10 +292,12 @@ which should stay a clean decision record.
   new Technique lands in the CSV. Prefer the broad pieces over a
   Technique-specific field (designer, 2026-10-27): uses go through
   `encounter.py` (`_encounter()` plus `left`/`spend`), Skill Totals come
-  off `pc['skill_totals']`/`techniques.half()`, and a setup is only for
-  what the sheet alone knows. The fixed-seed checks for a refactor like
-  that: `regress.py` plus a run of every calibrate party, and the
-  agents' fire tests (they cover Techniques no sample carries).
+  off `pc['skill_totals']`/`techniques.half()`, "knows X" is
+  `hooks.has(pc, X)`, shared helpers live in `tech_common.py`, and a
+  setup is only for what the sheet alone knows. The fixed-seed checks for a refactor like
+  that: `regress.py` plus a run of every calibrate party, the agents'
+  fire tests (they cover Techniques no sample carries), and a hash of
+  full traces (a refactor can move the log without moving a result).
   **The sim always plays the live CSVs** (designer, 2026-10-27): read
   a game fact through `game_data.py`, never copy it into tunables or a
   comment's number. An export that disagrees still loads and plays by
