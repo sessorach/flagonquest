@@ -1470,6 +1470,20 @@ does to these builds rather than which one is right.
 - **Wall of Shadows** seldom pays: Beornhard (L3) put it up in 9 of 240
   fights against Level 2 encounters, since it blocks his own spells too,
   and the shooters it would block die fast anyway.
+- **The deferred Techniques** (`coverage.py` lists all 46 with what
+  each needs). The one most worth building: each Encounter use carrying
+  its Technique's Level would unlock Solemn Covenant, Placeholder's
+  Alacritous Adaptation and Willow Springs Back at once. Summons (seven
+  Techniques) are the biggest group, and the most work.
+- **Rules readings to confirm** for the Techniques wired in 2026-10-27
+  (each one's docstring says what it assumes). The ones most likely to
+  matter: Solemn Perseverance and Mind and Body Unbroken only trigger off
+  an attack's hit, not a Bleeding tick; Optimize Blood doses one patient
+  a fight; Crashing Wave's Protected comes on every hit, Push or not;
+  Oak Draws the Lightning's "2 rounds" is this round and the next; and
+  Twin Spell only Repeats a War Magic Weapon with no Features of its
+  own. When to use the cones and bursts (two targets, or one from round
+  3) is my rule, not the designer's.
 - **Not modeled**: Cloak and Dagger never fires for a thrower at range;
   Furrow seldom has a target in its 4-meter line; the PCs don't steer
   around an enemy's Parting Shot; enemies can't Teleport out of a

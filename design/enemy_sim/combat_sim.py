@@ -2253,6 +2253,7 @@ def _magehunter_interrupt(e, pcs, movement_on, party_log):
         # using the Interrupt is real and persists even after the
         # charge itself is spent, so ap_bank keeps tracking regardless.
         if (pc['health'] <= 0 or pc.get('magehunter_charge_used')
+                or (T.MAGEHUNTER_NEEDS_TECH and not pc.get('magehunter'))
                 or pc.get('ap_bank', 0) < T.MAGEHUNTER_AP_COST):
             continue
         if e['health'] <= 0:

@@ -13,12 +13,14 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-10-27 — What each mechanic is worth
+### 2026-10-27 — What each mechanic is worth, and the whole catalog in the sim
 
-Put every combat Feature of every Buildable Technique into the simulator and measured what each one is worth in a fight, next to THE TABEL's price. Damage and healing land close to their weights; most debuff riders land at a tenth to a third, and who carries an effect matters as much as what it is.
+Measured what every combat Feature of every Buildable Technique is worth in a fight, next to THE TABEL's price, then wired the rest of the Technique catalog into the simulator. Damage and healing land close to their weights; most debuff riders land at a tenth to a third, and who carries an effect matters as much as what it is.
 
 - Hilde's and Browndog's Battle Maneuvers got the same broad sweep as Hanforth and Beornhard: Half Guard is the standout Feature, and Viper's Sting is the best addition to Hilde's Level 3 copy.
-- New in the simulator: Arcane Chant, Glacier (with Difficult Terrain) and Channel for War Magic, and Wind Slash giving a melee weapon reach.
+- The simulator now plays 115 of the 205 Techniques, War Magic's Arcane Chant, Glacier and Channel and Wind Slash's melee reach among them, with 44 out of combat and 46 waiting on something it doesn't have yet (summons, walls, Encounter uses that know their Level), each with a note on what.
+- The party can switch tactics in one setting (all in, cautious, max range, hold the line, bodyguard, focus fire...); playing as built or all in does best, and holding the line costs the most.
+- Every sample character's sheet, as the simulator builds it, is now written out for reference. A Magehunter bug that gave free attacks to anyone with an Interrupt is fixed; it barely moved the numbers.
 - The last two days' sweep tables reported "Health" that was really a share of the party's max Health, about half a point each; they're relabeled, and the comparison tool now counts points.
 
 ### 2026-10-26 — Hanforth as built, and how healers scale

@@ -286,7 +286,10 @@ which should stay a clean decision record.
   point in combat_sim only if none fits. An export naming a Technique,
   Feature or item the sim doesn't know stops the load on purpose: add
   it, or list it as out of combat / `Unmodeled`, but never let it drop
-  quietly.
+  quietly. Since 2026-10-27 every techniques.csv ID is modeled, out of
+  combat or `DEFERRED` (the rest of the catalog is in
+  `techniques_more_a.py`/`_b.py`); `coverage.py` checks that after a
+  new Technique lands in the CSV.
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and

@@ -99,6 +99,11 @@ HEALING_MAGIC_AP_COST = 1
 # T075 Magehunter's own techniques.csv row: "1 AP - Interrupt" - see
 # combat_sim._magehunter_interrupt.
 MAGEHUNTER_AP_COST = 1
+# Only a PC who knows Magehunter gets its Interrupt (2026-10-27). Before
+# this, any PC with an Interrupt AP pool (Parting Shot, Raise Spirits,
+# Gainsay, Lifeline) took a free Magehunter attack on enemy Spells.
+# False is the old behavior, kept for the fixed-seed check.
+MAGEHUNTER_NEEDS_TECH = True
 # T076 Parting Shot's own techniques.csv row: "1 AP - Interrupt" - see
 # combat_sim._parting_shot_interrupt.
 PARTING_SHOT_AP_COST = 1
