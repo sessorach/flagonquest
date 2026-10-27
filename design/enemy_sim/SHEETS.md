@@ -510,15 +510,17 @@ In a fight: Health 10, Speed 5, Reflex 6; Parry 13, Dodge 17, Vital 14, Mental 1
 
 Build: `builds/sable_l2.json`. XP 125. Tier 2.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Perfect Strike: techniques.csv now says Level 2 (Lv 1 when exported); Hand of Chaos: techniques.csv now says Level 2 (Lv 1 when exported); One Eye Behind You: techniques.csv now says Level 2 (Lv 1 when exported); Blinkstep: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 4, Body 2, Cunning 2, Mind 1, Essence 1.
 Skills (points, Skill Total): Acrobatics 3 (7), Archery 4 (8), Stealth 3 (7), Awareness 3 (5), Might 2 (4), Resilience 2 (4), Insight 4 (6), Persuasion 2 (4), Composure 2 (3).
 
 Techniques:
-- Perfect Strike (T078), Lv 1
-- Hand of Chaos (T131), Lv 1
-- One Eye Behind You (T011), Lv 1
+- Perfect Strike (T078), Lv 2
+- Hand of Chaos (T131), Lv 2
+- One Eye Behind You (T011), Lv 2
 - Battle Maneuver (T072), Lv 2: Calculated, Wing Clip 3
-- Blinkstep (T077), Lv 1
+- Blinkstep (T077), Lv 2
 - Parting Shot (T076), Lv 1
 - Toughened Body (T014), Lv 2
 
@@ -535,12 +537,14 @@ In a fight: Health 13, Speed 5, Reflex 6; Parry 13, Dodge 15, Vital 12, Mental 1
 
 Build: `builds/rook_l2.json`. XP 125. Tier 2.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Perfect Strike: techniques.csv now says Level 2 (Lv 1 when exported); Blinkstep: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 3, Body 4, Cunning 2, Mind 1, Essence 1.
 Skills (points, Skill Total): Acrobatics 4 (7), Melee 1 (4), Stealth 1 (4), Athletics 4 (8), Awareness 3 (7), Might 2 (6), Resilience 1 (5), Insight 3 (5), Survival 2 (4), Composure 2 (3).
 
 Techniques:
-- Perfect Strike (T078), Lv 1
-- Blinkstep (T077), Lv 1
+- Perfect Strike (T078), Lv 2
+- Blinkstep (T077), Lv 2
 - Parting Shot (T076), Lv 1
 - Toughened Body (T014), Lv 2
 
@@ -555,12 +559,14 @@ In a fight: Health 13, Speed 4, Reflex 5; Parry 12, Dodge 15, Vital 13, Mental 1
 
 Build: `builds/wren_l2.json`. XP 125. Tier 2.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Warmage's Reserves: techniques.csv now says Level 2 (Lv 1 when exported); Overchanneling: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 2, Body 1, Cunning 1, Mind 3, Essence 4.
 Skills (points, Skill Total): Acrobatics 3 (5), Melee 1 (3), Stealth 1 (3), Awareness 2 (3), Resilience 1 (2), Insight 2 (3), Academics 3 (6), Composure 4 (7), Meditation 2 (6), Sorcery 4 (8).
 
 Techniques:
-- Warmage's Reserves (T124), Lv 1
-- Overchanneling (T140), Lv 1
+- Warmage's Reserves (T124), Lv 2
+- Overchanneling (T140), Lv 2
 - Toughened Body (T014), Lv 2
 
 Items: none.
@@ -626,13 +632,15 @@ In a fight: Health 10, Speed 4, Reflex 5; Parry -99, Dodge 14, Vital 14, Mental 
 
 Build: `builds/felix_l2.json`. XP 125. Tier 2.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Shugen School - Hand Rings the Bell: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 3, Body 1, Cunning 3, Mind 1, Essence 3.
 Skills (points, Skill Total): Acrobatics 4 (7), Brawl 4 (7), Stealth 2 (5), Athletics 2 (3), Awareness 2 (3), Resilience 3 (4), Insight 2 (5), Composure 3 (4), Meditation 3 (6).
 
 Techniques:
 - Shugen School - Firefly Leaves the Hand (T080), Lv 1
-- Shugen School - Hand Rings the Bell (T154), Lv 1
-- Shugen School - Hand Rings the Bell (T154), Lv 1
+- Shugen School - Hand Rings the Bell (T154), Lv 2
+- Shugen School - Hand Rings the Bell (T154), Lv 2
 - Toughened Body (T014), Lv 2
 
 Items: Unarmed.
@@ -720,12 +728,14 @@ In a fight: Health 10, Speed 3, Reflex 3; Parry 13, Dodge 13, Vital 13, Mental 1
 
 Build: `builds/hilde_bleed.json`. XP 75. Tier 1.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Second Wind: techniques.csv now says Level 2 (Lv 1 when exported); Furious Rage: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 2, Body 3, Cunning 1, Mind 1, Essence 2.
 Skills (points, Skill Total): Acrobatics 2 (4), Melee 3 (5), Athletics 1 (4), Awareness 1 (4), Might 3 (6), Presence 2 (5), Resilience 2 (5), Insight 2 (3), Composure 2 (3).
 
 Techniques:
-- Second Wind (T012), Lv 1
-- Furious Rage (T130), Lv 1
+- Second Wind (T012), Lv 2
+- Furious Rage (T130), Lv 2
 
 Items: Heavy Two-Handed Melee Weapon, Medium Armor.
 Row: Weapon 2H Heavy Melee; Play Style Diver.
@@ -739,14 +749,16 @@ In a fight: Health 10, Speed 3, Reflex 3; Parry 13, Dodge 11, Vital 13, Mental 1
 
 Build: `builds/felix_bleed.json`. XP 75. Tier 1.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Great Old Oak School - Boughs Unbroken: techniques.csv now says Level 2 (Lv 1 when exported); Demon School - Thief Empties the Vessel: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 3, Body 2, Cunning 1, Mind 2, Essence 2.
 Skills (points, Skill Total): Brawl 3 (6), Stealth 2 (5), Awareness 1 (3), Might 1 (3), Resilience 1 (3), Insight 2 (3), Composure 1 (3), Meditation 3 (5), Rapport 2 (4).
 
 Techniques:
-- Great Old Oak School - Boughs Unbroken (T175), Lv 1
+- Great Old Oak School - Boughs Unbroken (T175), Lv 2
 - Battle Maneuver (T072), Lv 1: Bare-Handed, Lunging 2, Battering 3
 - Shugen School - Firefly Leaves the Hand (T080), Lv 1
-- Demon School - Thief Empties the Vessel (T159), Lv 1
+- Demon School - Thief Empties the Vessel (T159), Lv 2
 
 Items: Unarmed, Light Armor.
 Row: Weapon Unarmed; Play Style Skirmisher.
@@ -763,11 +775,13 @@ In a fight: Health 10, Speed 4, Reflex 3; Parry 15, Dodge 14, Vital 11, Mental 1
 
 Build: `builds/jackal_bleed.json`. XP 75. Tier 1.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Bottomless Bottles: techniques.csv now says Level 4 (Lv 1 when exported).
+
 Stats: Agility 2, Body 2, Cunning 2, Mind 3, Essence 2.
 Skills (points, Skill Total): Acrobatics 3 (5), Stealth 1 (3), Athletics 1 (3), Awareness 1 (3), Might 1 (3), Resilience 2 (4), Insight 2 (4), Academics 2 (5), Composure 1 (4), Mixology 3 (6), Rapport 1 (3).
 
 Techniques:
-- Bottomless Bottles (T053), Lv 1
+- Bottomless Bottles (T053), Lv 4
 
 Items: Light Thrown Weapon, Light Armor.
 Row: Weapon Light Thrown; Play Style Skirmisher; Bottles Item Acidic Flask.
@@ -780,11 +794,13 @@ In a fight: Health 10, Speed 3, Reflex 4; Parry 11, Dodge 13, Vital 12, Mental 1
 
 Build: `builds/beornhard_bleed.json`. XP 75. Tier 1.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Warmage's Reserves: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 2, Body 2, Cunning 1, Mind 3, Essence 3.
 Skills (points, Skill Total): Brawl 2 (4), Stealth 1 (3), Might 1 (3), Resilience 1 (3), Insight 1 (2), Academics 2 (5), Composure 2 (5), Sorcery 3 (6).
 
 Techniques:
-- Warmage's Reserves (T124), Lv 1
+- Warmage's Reserves (T124), Lv 2
 - War Magic (T120), Lv 2: Lance, Sanguine, Destructive
 - War Magic (T120), Lv 1: Lance
 
@@ -800,11 +816,13 @@ In a fight: Health 10, Speed 3, Reflex 2; Parry 13, Dodge 12, Vital 11, Mental 1
 
 Build: `builds/beornhard_cash.json`. XP 75. Tier 1.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Warmage's Reserves: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 2, Body 2, Cunning 1, Mind 3, Essence 3.
 Skills (points, Skill Total): Brawl 2 (4), Stealth 1 (3), Might 1 (3), Resilience 1 (3), Insight 1 (2), Academics 2 (5), Composure 2 (5), Sorcery 3 (6).
 
 Techniques:
-- Warmage's Reserves (T124), Lv 1
+- Warmage's Reserves (T124), Lv 2
 - War Magic (T120), Lv 2: Lance, Reign of Blood 2
 - War Magic (T120), Lv 1: Lance
 
@@ -820,11 +838,13 @@ In a fight: Health 10, Speed 3, Reflex 2; Parry 13, Dodge 12, Vital 11, Mental 1
 
 Build: `builds/beornhard_destr.json`. XP 75. Tier 1.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Warmage's Reserves: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 2, Body 2, Cunning 1, Mind 3, Essence 3.
 Skills (points, Skill Total): Brawl 2 (4), Stealth 1 (3), Might 1 (3), Resilience 1 (3), Insight 1 (2), Academics 2 (5), Composure 2 (5), Sorcery 3 (6).
 
 Techniques:
-- Warmage's Reserves (T124), Lv 1
+- Warmage's Reserves (T124), Lv 2
 - War Magic (T120), Lv 2: Lance, Destructive 2
 - War Magic (T120), Lv 1: Lance
 
@@ -840,14 +860,16 @@ In a fight: Health 10, Speed 3, Reflex 2; Parry 13, Dodge 12, Vital 11, Mental 1
 
 Build: `builds/felix_cash.json`. XP 75. Tier 1.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Great Old Oak School - Boughs Unbroken: techniques.csv now says Level 2 (Lv 1 when exported); Demon School - Thief Empties the Vessel: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 3, Body 2, Cunning 1, Mind 2, Essence 2.
 Skills (points, Skill Total): Brawl 3 (6), Stealth 2 (5), Awareness 1 (3), Might 1 (3), Resilience 1 (3), Insight 2 (3), Composure 1 (3), Meditation 3 (5), Rapport 2 (4).
 
 Techniques:
-- Great Old Oak School - Boughs Unbroken (T175), Lv 1
+- Great Old Oak School - Boughs Unbroken (T175), Lv 2
 - Battle Maneuver (T072), Lv 1: Bare-Handed, Lunging 2, Open the Wound 3
 - Shugen School - Firefly Leaves the Hand (T080), Lv 1
-- Demon School - Thief Empties the Vessel (T159), Lv 1
+- Demon School - Thief Empties the Vessel (T159), Lv 2
 
 Items: Unarmed, Light Armor.
 Row: Weapon Unarmed; Play Style Skirmisher.
@@ -1196,15 +1218,17 @@ In a fight: Health 10, Speed 5, Reflex 6; Parry 13, Dodge 17, Vital 14, Mental 1
 
 Build: `builds/sable_l2_viper.json (a variant of sable_l2.json)`. XP 125. Tier 2.
 
+Needs a rebuild in the Builder (the sim plays it by the current CSVs): Perfect Strike: techniques.csv now says Level 2 (Lv 1 when exported); Hand of Chaos: techniques.csv now says Level 2 (Lv 1 when exported); One Eye Behind You: techniques.csv now says Level 2 (Lv 1 when exported); Blinkstep: techniques.csv now says Level 2 (Lv 1 when exported).
+
 Stats: Agility 4, Body 2, Cunning 2, Mind 1, Essence 1.
 Skills (points, Skill Total): Acrobatics 3 (7), Archery 4 (8), Stealth 3 (7), Awareness 3 (5), Might 2 (4), Resilience 2 (4), Insight 4 (6), Persuasion 2 (4), Composure 2 (3).
 
 Techniques:
-- Perfect Strike (T078), Lv 1
-- Hand of Chaos (T131), Lv 1
-- One Eye Behind You (T011), Lv 1
+- Perfect Strike (T078), Lv 2
+- Hand of Chaos (T131), Lv 2
+- One Eye Behind You (T011), Lv 2
 - Battle Maneuver (T072), Lv 2: Viper's Sting, Wing Clip 3
-- Blinkstep (T077), Lv 1
+- Blinkstep (T077), Lv 2
 - Parting Shot (T076), Lv 1
 - Toughened Body (T014), Lv 2
 

@@ -209,6 +209,14 @@ The core files and the regular tools:
   attack use still in hand). Vigor (Solemn Covenant), Willow Springs
   Back, Placeholder's Alacritous Adaptation and Warmage's Reserves all
   regain through it.
+- **Live data** (2026-10-27): the sim reads the game's CSVs every run
+  (`game_data.py`, re-read when a file changes): Technique Levels, Tags,
+  Health bonuses and Feature budgets, and every weapon's and armor's
+  numbers from items.csv (`tunables.WEAPON`/`ARMOR` are built from it;
+  only War Magic's Lance is kept by hand). An export the CSVs have moved
+  past still plays, by the CSVs, and is listed for a rebuild
+  (`party.rebuild_list`, shown by `coverage.py` and SHEETS.md); a
+  script's own `edits` that go over a Feature budget still stop.
 - **`coverage.py`** (2026-10-27) — where every techniques.csv ID stands:
   modeled, out of combat or deferred (with the reasons). Exits 1 if one
   is missing or listed twice, so run it after adding Techniques to the

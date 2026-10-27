@@ -10,8 +10,8 @@ mapping from a weapon or armor item to the sim's own tables
 (`tunables.WEAPON` / `tunables.ARMOR`).
 """
 import csv
-import functools
 import os
+import re
 
 _SCRIPTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "scripts")
 
@@ -53,16 +53,13 @@ def csv_rows(path):
 
 
 def _read(name):
-    with open(os.path.join(_SCRIPTS, name), newline="", encoding="utf-8") as f:
-        return {r["ID"]: r for r in csv.DictReader(f)}
+    return cached_file(os.path.join(_SCRIPTS, name), lambda f: {r["ID"]: r for r in csv.DictReader(f)})
 
 
-@functools.lru_cache(maxsize=None)
 def techniques():
     return _read("techniques.csv")
 
 
-@functools.lru_cache(maxsize=None)
 def items():
     return _read("items.csv")
 
@@ -85,12 +82,18 @@ def health_bonus(tid):
     return _int(row.get("Shallow Health Bonus")), _int(row.get("Deep Health Bonus"))
 
 
-@functools.lru_cache(maxsize=None)
 def _tags_by_name():
-    out = {}
-    for r in techniques().values():
-        out.setdefault(r["Name"], set()).update(t.strip() for t in (r.get("Tags") or "").split(",") if t.strip())
-    return out
+    rows = techniques()
+    hit = _TAGS.get("rows")
+    if hit is None or hit[0] is not rows:
+        out = {}
+        for r in rows.values():
+            out.setdefault(r["Name"], set()).update(t.strip() for t in (r.get("Tags") or "").split(",") if t.strip())
+        hit = _TAGS["rows"] = (rows, out)
+    return hit[1]
+
+
+_TAGS = {}
 
 
 def fixed_level(tid):
@@ -100,6 +103,13 @@ def fixed_level(tid):
     row = techniques().get(tid) or {}
     lo, hi = (row.get("Level Min") or "").strip(), (row.get("Level Max") or "").strip()
     return int(lo) if lo and lo == hi else None
+
+
+def level_range(tid):
+    """(Level Min, Level Max) from techniques.csv, or (None, None)."""
+    row = techniques().get(tid) or {}
+    lo, hi = (row.get("Level Min") or "").strip(), (row.get("Level Max") or "").strip()
+    return (int(lo), int(hi or lo)) if lo else (None, None)
 
 
 def tags_of(tid):
@@ -113,16 +123,72 @@ def technique_tags(name):
     return _tags_by_name().get(name, set())
 
 
+def item_gold(iid):
+    """An item's Cost in Gold ("4 Gold")."""
+    m = re.match(r"\s*(\d+)", items()[iid].get("Cost") or "")
+    return int(m.group(1)) if m else 0
+
+
+def _choices(cell):
+    # "Acrobatics or Melee", "Body or Cunning" -> a tuple of the options.
+    return tuple(p.strip() for p in cell.split(" or ") if p.strip())
+
+
+def weapon_table():
+    """The weapons items.csv lists (WEAPON_ITEMS), in the shape the sim's
+    tunables.WEAPON uses (2026-10-27; it was a hand-kept copy before):
+    `skill` (a tuple when the item says "X or Y": the PC's better one),
+    `accuracy`, `damage_base` and `damage_stat` ("N + [Stat]"; a tuple
+    for "[Stat or Stat]", the higher one), the range ("19", or "Close, or
+    3 × Body"; "Close" is melee) and `defense` (Weapon Defense, None for
+    one that can't Parry). Weapons all deal Physical damage against
+    Parry/Dodge (rulebook.md)."""
+    out = {}
+    for iid, name in WEAPON_ITEMS.items():
+        r = items()[iid]
+        skills = _choices(r.get("Relevant Skills") or "")
+        dmg = (r.get("Damage") or "").strip()
+        m = re.match(r"(\d+)\s*(?:\+\s*\[([^\]]+)\])?$", dmg)
+        if not m or not skills:
+            raise ValueError(f"items.csv {iid} {r['Name']}: can't read Damage {dmg!r} / Relevant Skills")
+        stats = _choices(m.group(2)) if m.group(2) else ()
+        w = dict(skill=skills if len(skills) > 1 else skills[0], accuracy=_int(r.get("Accuracy")),
+                 damage_base=int(m.group(1)), damage_stat=stats if len(stats) > 1 else (stats[0] if stats else None),
+                 dmg_type="Physical", opp_def="Parry/Dodge")
+        rng = (r.get("Range") or "").strip()
+        per_body = re.search(r"(\d+)\s*[×x]\s*Body", rng)
+        if per_body:
+            w["range_per_body"] = int(per_body.group(1))
+        elif rng.isdigit():
+            w["range"] = int(rng)
+        elif rng != "Close":
+            raise ValueError(f"items.csv {iid} {r['Name']}: can't read Range {rng!r}")
+        wd = (r.get("Weapon Defense") or "").strip()
+        w["defense"] = int(wd) if wd else None
+        out[name] = w
+    return out
+
+
+def armor_table():
+    """Worn armor from items.csv (ARMOR_ITEMS): Physical Resist, Dodge and
+    Speed, with Unarmored all zeroes."""
+    out = {"Unarmored": dict(dodge=0, speed=0, physres=0)}
+    for iid, name in ARMOR_ITEMS.items():
+        r = items()[iid]
+        out[name] = dict(dodge=_int(r.get("Dodge Defense")), speed=_int(r.get("Speed")),
+                         physres=_int(r.get("Physical Resist")))
+    return out
+
+
 def item_health_bonus(iid):
     row = items()[iid]
     return _int(row.get("Shallow Health")), _int(row.get("Deep Health"))
 
 
-@functools.lru_cache(maxsize=None)
 def features():
     """features.csv by (Technique ID, Feature name)."""
-    with open(os.path.join(_SCRIPTS, "features.csv"), newline="", encoding="utf-8") as f:
-        return {(r["Technique ID"], r["Feature Name"]): r for r in csv.DictReader(f)}
+    return cached_file(os.path.join(_SCRIPTS, "features.csv"),
+                       lambda f: {(r["Technique ID"], r["Feature Name"]): r for r in csv.DictReader(f)})
 
 
 def feature_budget(tid):

@@ -13,6 +13,7 @@ PC-side curves are this project's own estimate (see design/
 ENEMY_ENCOUNTER_DESIGN.md's "Analysis" section for the derivation) and
 are the piece most likely to move as the PC/enemy models get revisited.
 """
+import game_data  # items.csv's weapons and armor (WEAPON, ARMOR below)
 
 # ---- Enemy Level curve (Design sheet) ----
 ACCURACY = {1: 4, 2: 6, 3: 7, 4: 8, 5: 9}
@@ -71,12 +72,9 @@ MELEE_RANGE = 1
 # already on Light Armor (all 5 Roster enemies are, so the validated
 # grid's own enemy side is unaffected - only Medium/Heavy archetype
 # rows, like the Tank archetype, see a small Dodge/Speed change).
-ARMOR = {
-    "Unarmored": {"dodge": 0, "speed": 0, "physres": 0},
-    "Light":     {"dodge": 0, "speed": 0, "physres": 1},
-    "Medium":    {"dodge": -1, "speed": 0, "physres": 2},
-    "Heavy":     {"dodge": -1, "speed": -1, "physres": 3},
-}
+# Read from items.csv (Medium/Light/Heavy Armor, I127-I129) since
+# 2026-10-27, so a change there reaches the sim with nothing copied over.
+ARMOR = game_data.armor_table()
 
 # ---- Action Points (rulebook.md's "Actions on a Turn") ----
 # "When you flip Reflex to join an encounter, and again at the end of
@@ -177,119 +175,27 @@ PC_SKILL_STAT = {
     "Meditation": "Essence", "Performance": "Essence", "Rapport": "Essence", "Sorcery": "Essence", "Theurgy": "Essence",
 }
 
-# ---- PC ranged attack options (sample_pcs.csv's `Weapon` column) ----
-# A PC row with a blank Weapon uses the original hardcoded default (1H
-# Heavy Melee: Melee Skill Total, no accuracy bonus, Damage = 4 + Body,
-# no attack_range - falls back to MELEE_RANGE via combat_sim.
-# effective_range) - every pre-existing PC row still does this, so this
-# table only needs entries for the ranged options actually in use.
-# Numbers are real weapon_categories.csv/rulebook.md values, not
-# invented for the simulator:
-# - Light Bow: Accuracy +1, Damage 3 + [Cunning], Skill Archery - Range
-#   19m from the actual craftable item (items.csv I123 "Light Bow", the
-#   one PCs actually carry), not weapon_categories.csv WC007's more
-#   abstract 15m category value - items.csv is the more specific source
-#   for a real equipped item, so it wins per this project's own
-#   data-over-prose/data-over-abstraction principle. Sable (Deadeye)'s
-#   Notes flags this correction.
-# - Light Thrown (WC005): Accuracy +1, Damage 2 + [Cunning] (items.csv's
-#   I121; the base weapons pass cut it from 3, and the sim kept 3 until
-#   2026-10-24), Range
-#   "Close, or 3 x Body" - modeled as the ranged option (3 x Body), the
-#   whole point of a thrown weapon's own scaling being worth testing
-#   here; Skill "Acrobatics or Melee" - Acrobatics chosen (Dodge's own
-#   governing Skill, an agile-skirmisher lean).
-# - War Magic (Lance) - War Magic (T120) itself is Range "An adjacent
-#   creature"; its own Lance feature (features.csv F064) reads "Increase
-#   the Range of the spell attack by [Sorcery Skill Total] meters" - so
-#   a War Magic build that's taken Lance has Range == Sorcery Skill
-#   Total exactly, per the designer's own framing. No Accuracy bonus (a
-#   Spell attack roll, not a weapon-category one); Damage 2 + [Mind]
-#   straight from T120's own Effects text (the spell's damage stat is
-#   Mind, distinct from Essence, which governs the Sorcery Skill Total
-#   that resolves the attack roll and this Range - the two track
-#   separately here the same way melee's own Skill Total (Agility) and
-#   Damage stat (Body) already do). `dmg_type` selects which of the
-#   target's own Resist pools the hit is reduced by (see combat_sim.
-#   enemy_resist_for_pc_attack) - Fire for War Magic, matching T120's own
-#   Effects text ("...Fire damage"), Physical for both real weapons
-#   (matching tunables.ACTIONS' own Physical/Fire split for the enemy
-#   side of the same Actions). `opp_def` selects which of the target's
-#   Defenses the attack roll is opposed by - "Parry/Dodge" (the
-#   target's own choice, rulebook.md's real rule for a weapon attack)
-#   for both real weapons; War Magic's own rule reads "against the
-#   target's Defense (Dodge or Vital, chosen when you learn this)" - a
-#   one-time pick at chargen, not a per-attack target choice like
-#   Parry/Dodge - Dodge was picked here to match how tunables.ACTIONS
-#   already resolves the enemy side's own Melee/Ranged Spell (opp_def
-#   "Dodge", no Bodily/Vital option modeled).
-WEAPON = {
-    "Light Bow":         {"skill": "Archery",    "accuracy": 1, "damage_base": 3, "damage_stat": "Cunning", "range": 19,
-                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
-    "Light Thrown":      {"skill": "Acrobatics",  "accuracy": 1, "damage_base": 2, "damage_stat": "Cunning", "range_per_body": 3,
-                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
-    # Heavy Thrown (weapon_categories.csv WC006, added 2026-10-08 for
-    # HOLE's Soulblade): Accuracy +0, Damage 3 + [Body] (items.csv's I122,
-    # cut from 4 in the base weapons pass), Range Close or
-    # 3 x Body, Skill Acrobatics or Melee (whichever is higher), Might 4.
-    # Thrown weapons can't Parry, so Parry falls back to Unarmed.
-    "Heavy Thrown":      {"skill": ("Acrobatics", "Melee"), "accuracy": 0, "damage_base": 3, "damage_stat": "Body",
-                           "range_per_body": 3, "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
-    "War Magic (Lance)": {"skill": "Sorcery",     "accuracy": 0, "damage_base": 2, "damage_stat": "Mind",    "range_per_skill": 1,
-                           "dmg_type": "Fire", "opp_def": "Dodge"},
-    # 2H Heavy Melee (weapon_categories.csv WC004): Accuracy +0, Damage
-    # 5 + [Body] (one higher than the 1H Heavy Melee default every blank
-    # `Weapon` cell already gets), Skill Melee, no attack_range (falls
-    # back to MELEE_RANGE like the blank default) - the only real
-    # difference from leaving `Weapon` blank is the +1 Damage.
-    "2H Heavy Melee":    {"skill": "Melee",       "accuracy": 0, "damage_base": 5, "damage_stat": "Body",
-                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
-    # Unarmed (weapon_categories.csv WC009): Accuracy +2, Damage
-    # 2 + [Body or Cunning], Skill Brawl - for a Brawl-built PC (Hanforth)
-    # who doesn't actually invest in Melee, so the blank-Weapon default
-    # (Melee Skill Total) would badly understate them; "Body or Cunning"
-    # picked per-PC as whichever's actually higher (Hanforth's own
-    # Cunning) rather than hardcoded, same "pick the one that matches
-    # the build" call Light Thrown's own Acrobotics-vs-Melee choice
-    # already makes - see party.py's own handling.
-    "Unarmed":           {"skill": "Brawl",       "accuracy": 2, "damage_base": 2, "damage_stat": None,
-                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
-    # 1H Light Melee (weapon_categories.csv WC001): Accuracy +1, Damage
-    # 3 + [Body or Cunning], Skill Melee, no attack_range (falls back to
-    # MELEE_RANGE, same close-range shape as the blank default) - added
-    # specifically for Cloak and Dagger (T079, "a close-range weapon
-    # that isn't Heavy or two-handed"), since the blank default is 1H
-    # HEAVY Melee (WC002) and "2H Heavy Melee" above is both Heavy and
-    # two-handed - neither qualifies. WC001 and Unarmed (WC009) are the
-    # only two close-range, non-Heavy, non-two-handed options in the
-    # real weapon_categories.csv table; this is the "actual dagger" one
-    # the Technique's own name suggests, not just Hanforth's fists.
-    "1H Light Melee":    {"skill": "Melee",       "accuracy": 1, "damage_base": 3, "damage_stat": None,
-                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
-    "1H Heavy Melee":    {"skill": "Melee",       "accuracy": 0, "damage_base": 4, "damage_stat": "Body",
-                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
-    "2H Light Melee":    {"skill": ("Melee", "Brawl"), "accuracy": 1, "damage_base": 4, "damage_stat": None,
-                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
-    "Shield":            {"skill": "Melee",       "accuracy": 0, "damage_base": 2, "damage_stat": "Body",
-                           "dmg_type": "Physical", "opp_def": "Parry/Dodge"},
-}
+# ---- PC weapons (sample_pcs.csv's `Weapon` column) ----
+# Every weapon item is read from items.csv (game_data.weapon_table,
+# 2026-10-27): Relevant Skills, Accuracy, Damage, Range and Weapon
+# Defense, so the sim always plays the current numbers. "X or Y" takes
+# the PC's better one. A blank Weapon is 1H Heavy Melee (party.py).
+# The one entry kept by hand is War Magic (Lance), which isn't an item:
+# War Magic (T120) is "2 + [Mind]" Fire damage, a Sorcery spell attack
+# against Dodge (or Vital, chosen when learned: the Choices column), and
+# Lance (F064) adds [Sorcery Skill Total] meters of range.
+WEAPON = dict(game_data.weapon_table(), **{
+    "War Magic (Lance)": {"skill": "Sorcery", "accuracy": 0, "damage_base": 2, "damage_stat": "Mind",
+                          "range_per_skill": 1, "dmg_type": "Fire", "opp_def": "Dodge", "defense": None},
+})
+# Each weapon's own Defense, added to Parry when that weapon is the one
+# Parried with (rulebook.md: "8 + [Weapon's relevant Skill Total] +
+# Weapon's Defense"). None = can't Parry with it (bows, thrown, spells).
+WEAPON_DEFENSE = {name: w["defense"] for name, w in WEAPON.items()}
 
-# Each weapon's own Defense (weapon_categories.csv's Defense column),
-# added to Parry when that weapon is the one Parried with (rulebook.md:
-# "8 + [Weapon's relevant Skill Total] + Weapon's Defense"). None = can't
-# Parry with it at all (bows, thrown weapons, spells).
-WEAPON_DEFENSE = {
-    "1H Light Melee": 1, "1H Heavy Melee": 0, "2H Light Melee": 1, "2H Heavy Melee": 0,
-    "Unarmed": 1, "Shield": 2,
-    "Light Bow": None, "Light Thrown": None, "War Magic (Lance)": None,
-}
-
-# Bottled Fire (I030): 4 Gold - items.csv's real Cost, per the
-# designer's own general rule for alchemy items without a specific
-# price (Grenades/Potions default to 2 x Level Gold; Bottled Fire is
-# Level 2). See party.py's own Bottomless Bottles paragraph for how
-# this turns into Jackal's actual per-fight use count.
-BOTTLED_FIRE_GOLD_COST = 4
+# Bottled Fire's Cost (I030), for Bottomless Bottles' per-fight count
+# (party.py), from items.csv.
+BOTTLED_FIRE_GOLD_COST = game_data.item_gold("I030")
 
 # Card (drawn/hand) = 2.7, THE TABEL's own established rate
 # (balance_weights_notes.md) for a "discard a card" activation cost -

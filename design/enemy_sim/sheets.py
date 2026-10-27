@@ -30,8 +30,9 @@ def _features(t):
 
 
 def _level(t):
-    lv = t.get("level", 1)
-    return lv if isinstance(lv, str) else f"Lv {lv}"
+    # The Level the sim plays: techniques.csv's for a fixed-Level
+    # Technique, the copy's own for a Buildable one.
+    return f"Lv {game_data.fixed_level(t['id']) or party._level(t.get('level', 1))}"
 
 
 def sheet(name, row):
@@ -47,6 +48,10 @@ def sheet(name, row):
         src += f" (a variant of {json.loads(raw)['base']})"
     lines.append(f"Build: `builds/{src}`. XP {build.get('xpBudget', '?')}. Tier {row['Tier']}.")
     lines.append("")
+    notes = party.rebuild_list({name: row}).get(name)
+    if notes:
+        lines.append("Needs a rebuild in the Builder (the sim plays it by the current CSVs): " + "; ".join(notes) + ".")
+        lines.append("")
     lines.append("Stats: " + ", ".join(f"{k} {v}" for k, v in stats.items()) + ".")
     trained = [(k, v, party.skill_total(stats, skills, k)) for k, v in skills.items() if int(v)]
     lines.append("Skills (points, Skill Total): " + ", ".join(f"{k} {v} ({tot})" for k, v, tot in trained) + ".")

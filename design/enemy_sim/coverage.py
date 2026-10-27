@@ -3,9 +3,10 @@
 Every techniques.csv ID lands in exactly one of techniques.py's lists:
 REGISTRY (modeled), OUT_OF_COMBAT (nothing to do in a fight) or DEFERRED
 (not modeled yet, with what it would need). This prints the counts, the
-deferred ones with their reasons, and anything missing or listed twice,
-and exits 1 if there's any of the last two, so a new Technique in the
-CSV shows up here before a build trips on it.
+deferred ones with their reasons, and the sample characters whose
+exports the CSVs have moved past (party.rebuild_list). An ID missing or
+listed twice is printed too and exits 1, so a new Technique in the CSV
+shows up here before a build trips on it.
 
     python3 coverage.py          # counts, deferred, problems
     python3 coverage.py --all    # every ID and where it is
@@ -17,6 +18,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim  # noqa: E402,F401  (sets techniques.cs)
 import game_data  # noqa: E402
+import party  # noqa: E402
 import techniques as tq  # noqa: E402
 
 LISTS = (("modeled", tq.REGISTRY), ("out of combat", tq.OUT_OF_COMBAT), ("deferred", tq.DEFERRED))
@@ -47,6 +49,11 @@ if __name__ == "__main__":
     print("\nDeferred:")
     for tid, why in sorted(tq.DEFERRED.items()):
         print(f"- {tid} {game_data.technique_name(tid)}: {why}")
+    stale = party.rebuild_list()
+    if stale:
+        print(f"\nSample characters to rebuild in the Builder ({len(stale)}; they play by the current CSVs meanwhile):")
+        for name, notes in stale.items():
+            print(f"- {name}: " + "; ".join(notes))
     if problems:
         print("\nProblems:")
         print("\n".join("- " + p for p in problems))

@@ -124,7 +124,7 @@ def regain(pc, g, via, log=None):
     # A Battle Maneuver copy back in hand goes back in line (the attack
     # loop reads pc['maneuver'], the copy in use).
     m = pc.get('maneuver')
-    if g.get('maneuver') and (m is None or m['uses'] <= 0):
+    if g['tech'] == 'Battle Maneuver' and (m is None or m['uses'] <= 0):
         pc['maneuver'] = g
     if log:
         log(unit=pc['name'], action='technique', via=via, note=f"regained a use of {g.get('via', g['tech'])} "

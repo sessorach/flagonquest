@@ -296,6 +296,11 @@ which should stay a clean decision record.
   what the sheet alone knows. The fixed-seed checks for a refactor like
   that: `regress.py` plus a run of every calibrate party, and the
   agents' fire tests (they cover Techniques no sample carries).
+  **The sim always plays the live CSVs** (designer, 2026-10-27): read
+  a game fact through `game_data.py`, never copy it into tunables or a
+  comment's number. An export that disagrees still loads and plays by
+  the CSVs, with a "needs a rebuild" note (`party.rebuild_list`);
+  rebuilding the character in the Builder comes later.
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and

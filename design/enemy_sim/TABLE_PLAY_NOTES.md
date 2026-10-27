@@ -1481,9 +1481,11 @@ does to these builds rather than which one is right.
   the end of a turn: paying at the start cost Felix an attack, and his
   fights ran 0.6 rounds longer. Placeholder's Alacritous Adaptation only
   trades away utility uses not touched by round 3, for a spent attack.
-- **Felix (L2)'s export** has Hand Rings the Bell at "Lv 1"; techniques.csv
-  says Level 2. The sim takes the CSV's Level for a fixed-Level
-  Technique, so it's 2 there.
+- **Exports to rebuild** (designer, 2026-10-27: the sim always plays
+  the live CSVs; rebuild the characters later). Twelve sample exports
+  were made before some fixed-Level Techniques went up a Level (Felix
+  (L2)'s Hand Rings the Bell was Lv 1, it's Level 2 now), so their XP
+  may be off. `coverage.py` and SHEETS.md list them.
 - **Rules readings to confirm** for the Techniques wired in 2026-10-27
   (each one's docstring says what it assumes). The ones most likely to
   matter: Solemn Perseverance and Mind and Body Unbroken only trigger off

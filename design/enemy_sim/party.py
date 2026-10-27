@@ -151,7 +151,9 @@ def check_budget(name, build):
     (techniques.csv), Advanced Features only where the Level allows them,
     no Feature past its Max Copies, bonus points from Tormenting Curse /
     Bare-Handed counted (features.csv). A Feature features.csv doesn't
-    list (a draft) isn't priced. Raises a BuildError on anything over."""
+    list (a draft) isn't priced. Returns what's over, as text (an export
+    made before the CSVs changed: load_sheet notes it for a rebuild)."""
+    out = []
     for t in build.get("techniques", ()):
         budget = game_data.feature_budget(t["id"])
         feats = t.get("features") or []
@@ -159,7 +161,8 @@ def check_budget(name, build):
             continue
         level = _level(t.get("level", 1))
         if level not in budget:
-            raise BuildError(f"{name}: {t.get('name', t['id'])} at Level {level} has no Feature Budget")
+            out.append(f"{t.get('name', t['id'])} at Level {level} has no Feature Budget")
+            continue
         points, adv_ok = budget[level]
         spent = 0
         for f in feats:
@@ -168,26 +171,36 @@ def check_budget(name, build):
                 continue
             n = int(f["count"])
             if row["Max Copies"].strip() and n > int(row["Max Copies"]):
-                raise BuildError(f"{name}: {f['name']} x{n} is over its Max Copies ({row['Max Copies']})")
+                out.append(f"{f['name']} x{n} is over its Max Copies ({row['Max Copies']})")
             if row["Tier"].strip() == "Advanced" and not adv_ok:
-                raise BuildError(f"{name}: {f['name']} is Advanced, not open at Level {level}")
+                out.append(f"{f['name']} is Advanced, not open at Level {level}")
             spent += int(row["Point Cost"]) * n
             if row["Bonus Points"].strip():
                 points += int(row["Bonus Points"])
         if spent > points:
-            raise BuildError(f"{name}: {t.get('name', t['id'])} Level {level} spends {spent} of {points} points "
-                             f"({', '.join(f['name'] + ' ' + str(f['count']) for f in feats)})")
+            out.append(f"{t.get('name', t['id'])} Level {level} spends {spent} of {points} points "
+                       f"({', '.join(f['name'] + ' ' + str(f['count']) for f in feats)})")
+    return out
 
 
-def load_sheet(row, build=None):
+def load_sheet(row, build=None, strict=False):
     """Everything about one sample character the fight needs: the Builder
     export named in `Build` (builds/), read through techniques.py, plus
     the row's own columns for what an export doesn't say - which weapon
     the sim swings, picks the Builder keeps outside the export, how the
     character plays. Stops with a BuildError on anything it can't place:
-    an unknown Technique, Feature or item, a pick that names nothing."""
+    an unknown Technique, Feature or item, a pick that names nothing.
+
+    The game's data always comes from the live CSVs. Where an export
+    disagrees with them (made before a Level or a Feature cost changed),
+    the character still plays, by the CSVs, and `sheet.rebuild` lists
+    what to fix when it's next rebuilt in the Builder (SHEETS.md and
+    coverage.py show them). `strict` stops instead: for a script's own
+    edits, where it's a mistake in the script."""
     build = build or read_build(row["Build"])
-    check_budget(row["Name"], build)
+    rebuild = check_budget(row["Name"], build)
+    if strict and rebuild:
+        raise BuildError(f"{row['Name']}: " + "; ".join(rebuild))
     sheet = SimpleNamespace(
         name=row["Name"],
         stats={s: int(build["statPoints"][s]) for s in STATS},
@@ -195,7 +208,7 @@ def load_sheet(row, build=None):
         weapon=(row.get("Weapon") or "").strip(), armor="Unarmored", parry_weapons=[],
         passives=[], card_techniques=[], encounter_techs=[], tech_attacks=[], hexes=[], maneuvers=[],
         blessing_features={}, blessing_groups=[], weapon_uses=None, weapon_level=None, defense_choices=[],
-        levels={},
+        levels={}, rebuild=rebuild,
         support=False, heal_cards=1, heal_bonus=0, heal_reach=None, heal_range=None, heal_features={},
         battle_tactic=(row.get("Battle Tactic") or "").strip() or None,
         play_style=(row.get("Play Style") or "").strip(),
@@ -224,7 +237,17 @@ def load_sheet(row, build=None):
         # A fixed-Level Technique's Level is techniques.csv's (an export
         # can carry an older one: Felix's Hand Rings the Bell says Lv 1, the
         # CSV 2); a Buildable copy's is its own.
-        level = game_data.fixed_level(t["id"]) or _level(t.get("level", 1))
+        # A fixed-Level Technique's export "level" is just the CSV's label
+        # when it was exported; the CSV's Level now is what counts.
+        fixed = game_data.fixed_level(t["id"])
+        level = fixed or _level(t.get("level", 1))
+        lo, hi = game_data.level_range(t["id"])
+        if fixed and _level(t.get("level", fixed)) != fixed:
+            rebuild.append(f"{game_data.technique_name(t['id'])}: techniques.csv now says Level {fixed} "
+                           f"(Lv {_level(t['level'])} when exported)")
+        elif lo is not None and not lo <= level <= hi:
+            rebuild.append(f"{game_data.technique_name(t['id'])}: built at Level {level}, techniques.csv now allows "
+                           f"{lo}-{hi}")
         copies.setdefault(t["id"], []).append(
             dict(level=level, features={f["name"]: int(f["count"]) for f in t.get("features", ())}))
     choices = _choices(row.get("Choices"))
@@ -380,10 +403,10 @@ def _pc_dict(sheet, index, good_luck):
         w_skills = w["skill"] if isinstance(w["skill"], tuple) else (w["skill"],)
         w_skill = max(w_skills, key=lambda sk: skill_total(stats, skills, sk))
         atk_skill_total = skill_total(stats, skills, w_skill) + w["accuracy"]
-        # `damage_stat: None` (Unarmed) means "Body or Cunning" per
-        # weapon_categories.csv - pick whichever this PC's own build
-        # actually has higher, rather than hardcoding one.
-        damage_stat = w["damage_stat"] or max(("Body", "Cunning"), key=lambda s: int(stats[s]))
+        # "[Body or Cunning]" (a tuple) is whichever this PC has higher.
+        ds = w["damage_stat"]
+        damage_stat = max(ds, key=lambda s: int(stats[s])) if isinstance(ds, tuple) else ds
+        damage_stat = damage_stat or max(("Body", "Cunning"), key=lambda s: int(stats[s]))
         damage = w["damage_base"] + int(stats[damage_stat])
         dmg_type = w["dmg_type"]
         opp_def = w["opp_def"]
@@ -610,7 +633,7 @@ def _pc_dict(sheet, index, good_luck):
                                          damage=T.ACID_FLASK_DAMAGE, dmg_type="Fire" if T.ACID_FLASK_DAMAGE else None,  # elemental materials; one elemental Resist in this sim
                                          opp_def="Dodge", skill="Acrobatics",
                                          effect=("bleeding", T.ACID_FLASK_STACKS, "Clubs"), item="Acidic Flask")
-            item_cost = 2
+            item_cost = game_data.item_gold("I028")
         cards_for_gold = hand_size * 2 // 3
         gold_budget = 4 * cards_for_gold
         daily_count = int(gold_budget // item_cost)
@@ -789,11 +812,14 @@ def _cached_sheet(row, edits):
     # was a fifth of a fight's run time when redone every fight
     # (2026-10-27). make_pc copies the sheet before changing it.
     _, stamps = _read_build(row["Build"])
-    key = (tuple(sorted(row.items())), stamps, json.dumps(edits, sort_keys=True) if edits else None)
+    # The game's CSVs are part of the key too (each read is replaced when
+    # its file changes), so a cached sheet never outlives the data.
+    data = (id(game_data.techniques()), id(game_data.items()), id(game_data.features()))
+    key = (tuple(sorted(row.items())), stamps, data, json.dumps(edits, sort_keys=True) if edits else None)
     sheet = _SHEETS.get(key)
     if sheet is None:
         build = apply_edits(read_build(row["Build"]), edits) if edits else None
-        sheet = _SHEETS[key] = load_sheet(row, build)
+        sheet = _SHEETS[key] = load_sheet(row, build, strict=bool(edits))
     return sheet
 
 
@@ -847,3 +873,14 @@ if __name__ == "__main__":
         print(p["name"], "| Parry", p["parry"], "| Dodge", p["dodge"], "| Vital", p["bodily"],
               "| Mental", p["mental"], "| Vigilant", p["vigilant"],
               "| Damage", p["damage"], "| PhysRes", p["physres"], "| Health", p["health"])
+
+
+def rebuild_list(rows=None):
+    """{row Name: [what to fix]} for every sample character whose export
+    disagrees with the live CSVs (load_sheet's `rebuild`)."""
+    out = {}
+    for name, row in (rows or _rows()).items():
+        notes = _cached_sheet(row, None).rebuild
+        if notes:
+            out[name] = list(dict.fromkeys(notes))
+    return out
