@@ -1385,6 +1385,56 @@ self-on-a-hit (keep 3) and handed-out (much lower); 1 AP split by melee
 and ranged; a term for stopping a Down; and Spirit Blessing's Feature
 costs or budget looked at against the rest.
 
+## Party tactics (2026-10-27, later)
+
+Per the designer: the sim should switch the whole party between playing
+cautious, staying at max range, diving in and so on, as one switch.
+`party_tactics.py` holds the presets: each hands out a Play Style by
+role (front-liner, other melee, ranged, support), and can set the
+party's targeting and a few tunables. They combine with "+" ("max
+range+focus fire"). `tunables.PARTY_TACTIC`, `-t` on `calibrate.py`,
+`compare_builds.py` and the sweep studies, or `tactics_compare.py` to
+run a party under every preset. With none set, each PC plays its own
+Play Style column, as before, and the regression is unchanged.
+
+Three new Play Styles in `play_styles.py` for the presets to hand out
+(the turn planners are a table now, `PLANNERS`):
+
+- **Kiter**: a shooter that keeps 6 spaces (KITE_KEEP_AWAY) from every
+  enemy, or one less than its reach, and backs off when anything gets
+  close.
+- **Holder**: attacks what's in reach, takes one step for a target at
+  most, and otherwise waits, but only while a melee enemy within 8
+  spaces is on its way. The first version also waited on archers and
+  casters who never walk in, and lost a fifth to a third more fights.
+- **Guardian**: sticks with the frailest ally who hangs back and fights
+  whatever gets within 2 of them, staying by them while a melee enemy is
+  coming; with none coming it skirmishes.
+
+Each preset against the party as built, paired, 100 fights a mix:
+change in Health left (points) and in how often someone goes Down.
+
+As built: Party A, L2, ×2.25: wins 92%, Health left 31.8, someone Down 46%, 5.1 rounds; Party B, L2, ×2.75: wins 90%, Health left 29.6, someone Down 40%, 5.2 rounds; Party D, L2, ×1.75: wins 96%, Health left 33.9, someone Down 33%, 4.6 rounds; Party B, L3, ×2.25: wins 81%, Health left 23.6, someone Down 76%, 4.8 rounds.
+
+| Tactic | Party A, L2, ×2.25 | Party B, L2, ×2.75 | Party D, L2, ×1.75 | Party B, L3, ×2.25 |
+|---|---|---|---|---|
+| all in | +0.4 ±0.7, Down -3 | +0.3 ±0.6, Down +0 | +1.2 ±0.7, Down -4 | -0.3 ±0.7, Down -2 |
+| focus fire | +0.8 ±0.6, Down -3 | -0.5 ±0.6, Down +2 | -0.3 ±0.5, Down -1 | +0.1 ±0.7, Down -2 |
+| finish the weakest | -0.5 ±0.8, Down +1 | -1.6 ±0.8, Down +5 | -0.5 ±0.7, Down -1 | -0.9 ±0.8, Down +3 |
+| nearest first | -0.4 ±0.7, Down +2 | -1.4 ±0.7, Down +4 | -0.3 ±0.6, Down -1 | -1.8 ±0.9, Down +2 |
+| bodyguard | -1.2 ±0.9, Down +0 | -1.8 ±0.8, Down +5 | -1.3 ±0.8, Down +1 | -0.9 ±0.8, Down -1 |
+| cautious | -1.2 ±0.9, Down +2 | -2.3 ±0.9, Down +10 | -0.8 ±0.8, Down -2 | -1.4 ±0.9, Down +0 |
+| max range | -0.9 ±0.5, Down +2 | -2.6 ±0.6, Down +4 | -1.9 ±0.6, Down +5 | -2.0 ±0.7, Down +2 |
+| hold the line | -2.5 ±1.0, Down +4 | -3.2 ±1.0, Down +13 | -1.3 ±0.8, Down -0 | -2.4 ±0.9, Down +0 |
+
+The sample parties are built to fight forward, and it shows: the party
+as built, "all in" and "focus fire" land within about a point of each
+other, and every more careful preset costs 1-3 Health a fight and makes
+fights longer. "Hold the line" costs the most, and Party B at Level 2 goes
+Down 13 points more often with it. That's the sim's turn planners, not
+how a table plays a careful party, so read these as what each style
+does to these builds rather than which one is right.
+
 ## Still to do
 
 - **Items.** The sim doesn't model items yet beyond weapons, armor and

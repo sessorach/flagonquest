@@ -146,3 +146,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # The resolved sheets for every sample character, refreshed with the
+    # replays so they never drift from builds/.
+    import sheets
+    sheets.main()

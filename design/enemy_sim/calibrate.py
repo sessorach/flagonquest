@@ -21,6 +21,7 @@ import statistics as st
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, sample_enemies as se, party, tunables as T, tactics
+import party_tactics
 
 # Level 2 (125 XP) parties against Level 2 encounters, and Level 1
 # (75 XP, the players' own starting builds) against Level 1. Per the
@@ -81,8 +82,11 @@ if __name__ == "__main__":
     ap.add_argument("-p", default="AD", help="which parties (letters)")
     ap.add_argument("-L", type=int, default=2, help="Level: the parties' and the encounters'")
     ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE (repeatable)")
+    ap.add_argument("-t", help="party tactic preset(s), party_tactics.py (\"cautious\", \"max range+focus fire\")")
     ap.add_argument("--label", default="")
     a = ap.parse_args()
+    if a.t:
+        party_tactics.use(a.t)
     for kv in a.s:
         k, v = kv.split("=", 1)
         try:

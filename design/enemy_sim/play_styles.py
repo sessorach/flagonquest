@@ -41,7 +41,7 @@ import movement
 import tactics
 import tunables as T
 
-STYLES = ("Diver", "Skirmisher", "Back-liner")
+STYLES = ("Diver", "Skirmisher", "Back-liner", "Kiter", "Holder", "Guardian")
 
 
 @dataclass
@@ -146,11 +146,8 @@ def plan_turn(pc, targets, allies, ap):
         return None
     if random.random() < T.RECKLESS_CHANCE:
         return None  # a reckless turn: play it like a Diver
-    if style == "Skirmisher":
-        return _plan_skirmisher(pc, targets, allies, ap)
-    if style == "Back-liner":
-        return _plan_backliner(pc, targets, allies, ap)
-    return None
+    planner = PLANNERS.get(style)
+    return planner(pc, targets, allies, ap) if planner else None
 
 
 def _attack_ap(pc):
@@ -242,11 +239,11 @@ def _plan_skirmisher(pc, targets, allies, ap):
                 note="close in, nothing safe to hit")
 
 
-def _plan_backliner(pc, targets, allies, ap):
+def _plan_backliner(pc, targets, allies, ap, keep=None):
     reach, speed, here = _reach(pc), max(1, tactics._speed(pc)), pc['pos']
     if reach <= T.MELEE_RANGE:
         return _plan_melee_cautious(pc, targets, allies, ap, speed, here, engaged_only=True)
-    keep = T.BACKLINE_KEEP_AWAY
+    keep = T.BACKLINE_KEEP_AWAY if keep is None else keep
     in_reach = [t for t in targets if _dist(here, t['pos']) <= reach]
     threatened = bool(_within(here, targets, keep))
     if threatened:
@@ -275,6 +272,117 @@ def _plan_backliner(pc, targets, allies, ap):
     dest, spaces = _safe_approach(here, t['pos'], speed * (ap // T.MOVE_AP_COST), targets, keep, reach)
     return Plan(target=None, pre_pos=dest, pre_moves=_moves_for(spaces, speed), max_attacks=0,
                 note="edge closer, nothing safe to hit")
+
+
+# ---- Styles a party tactic can hand out (party_tactics.py, 2026-10-27) ----
+
+def _plan_kiter(pc, targets, allies, ap):
+    """Stays at the edge of its own reach: a Back-liner that keeps
+    KITE_KEEP_AWAY spaces from every enemy (or one less than its reach,
+    if that's shorter), so it backs off whenever anything gets close. A
+    melee Kiter can't, and skirmishes instead."""
+    reach = _reach(pc)
+    if reach <= T.MELEE_RANGE:
+        return _plan_skirmisher(pc, targets, allies, ap)
+    keep = max(T.BACKLINE_KEEP_AWAY, min(reach - 1, T.KITE_KEEP_AWAY))
+    return _plan_backliner(pc, targets, allies, ap, keep=keep)
+
+
+def _coming(targets, allies, pos, radius):
+    """Enemies that will walk in on `pos`: melee ones within `radius`
+    that aren't already fighting someone. A shooter or a caster at range
+    won't come, so holding for one stalls the fight."""
+    held = [a['pos'] for a in allies if a['health'] > 0 and 'pos' in a]
+    return [t for t in targets if (t.get('attack_range') or 0) <= T.MELEE_RANGE
+            and _dist(t['pos'], pos) <= radius and not any(_dist(t['pos'], q) <= T.MELEE_RANGE for q in held)]
+
+
+def _plan_holder(pc, targets, allies, ap):
+    """Holds its ground and lets the enemy come: attacks whatever's in
+    reach, takes at most one step for a target that ends it next to no
+    more than one enemy, and otherwise waits, but only while a melee enemy
+    within HOLD_RANGE is on its way (_coming). With none, it closes in like
+    a Skirmisher (or a Back-liner, with a ranged weapon) rather than stall
+    the fight against shooters who never come."""
+    reach, speed, here = _reach(pc), max(1, tactics._speed(pc)), pc['pos']
+    in_reach = [t for t in targets if _dist(here, t['pos']) <= reach]
+    if in_reach:
+        return Plan(target=_best(pc, in_reach, allies), max_attacks=2, note="hold, attack what's here")
+    if not _coming(targets, allies, here, T.HOLD_RANGE):
+        return (_plan_backliner if reach > T.MELEE_RANGE else _plan_skirmisher)(pc, targets, allies, ap)
+    options = []
+    if ap >= T.MOVE_AP_COST + _attack_ap(pc):
+        for t in targets:
+            dest = movement.move_toward(here, t['pos'], speed, stop_at=reach)
+            if _dist(dest, t['pos']) <= reach and len(_adjacent(dest, targets)) <= 1:
+                options.append((rating(pc, t, allies), t, dest))
+    if options:
+        _, t, dest = max(options, key=lambda o: (o[0], -o[1]['health']))
+        return Plan(target=t, pre_pos=dest, pre_moves=1, max_attacks=1, note="one step in, attack once")
+    return Plan(target=None, max_attacks=0, note="hold, nothing in reach")
+
+
+def _ward(pc, allies):
+    """Who a Guardian looks after: the frailest ally that hangs back
+    (support, a shooter), else the frailest ally."""
+    others = [a for a in allies if a is not pc and a['health'] > 0 and 'pos' in a]
+    if not others:
+        return None
+    back = [a for a in others if a.get('strategy') == 'support_healer' or _reach(a) > T.MELEE_RANGE]
+    return min(back or others, key=lambda a: (a['max_health'], a['health']))
+
+
+def _plan_guardian(pc, targets, allies, ap):
+    """Sticks with the ally it's guarding and fights whatever is on them
+    (within GUARD_RADIUS spaces of the ward): next to that enemy if it can
+    get there, the spot nearest the ward first. With a melee enemy on its
+    way to the ward (within GUARD_LEASH, _coming) it stays by the ward;
+    with none coming, it fights like a Skirmisher."""
+    ward = _ward(pc, allies)
+    reach, speed, here = _reach(pc), max(1, tactics._speed(pc)), pc['pos']
+    if ward is None:
+        return _plan_skirmisher(pc, targets, allies, ap)
+    threats = [t for t in targets if _dist(t['pos'], ward['pos']) <= T.GUARD_RADIUS]
+    if not threats:
+        # On a leash: only what's near the ward, so it's close when
+        # something does come for them.
+        if not _coming(targets, allies, ward['pos'], T.GUARD_LEASH):
+            return (_plan_backliner if reach > T.MELEE_RANGE else _plan_skirmisher)(pc, targets, allies, ap)
+        in_reach = [t for t in targets if _dist(here, t['pos']) <= reach]
+        if _dist(here, ward['pos']) <= T.GUARD_RADIUS:
+            if in_reach:
+                return Plan(target=_best(pc, in_reach, allies), max_attacks=2,
+                            note=f"stay with {ward['name']}, attack here")
+            return Plan(target=None, max_attacks=0, note=f"stay with {ward['name']}")
+        dest = movement.move_toward(here, ward['pos'], speed * (ap // T.MOVE_AP_COST), stop_at=1)
+        return Plan(target=None, pre_pos=dest, pre_moves=_moves_for(_dist(here, dest), speed), max_attacks=0,
+                    note=f"back to {ward['name']}")
+    in_reach = [t for t in threats if _dist(here, t['pos']) <= reach]
+    if in_reach:
+        return Plan(target=_best(pc, in_reach, allies), max_attacks=2, note=f"guard {ward['name']}, attack here")
+    max_moves = max(0, (ap - _attack_ap(pc)) // T.MOVE_AP_COST)
+    best = None
+    for t in threats:
+        if reach > T.MELEE_RANGE:
+            dest = movement.move_toward(here, t['pos'], speed * max_moves, stop_at=reach)
+            spots = [dest] if _dist(dest, t['pos']) <= reach else []
+        else:
+            spots = [sq for dx in (-1, 0, 1) for dy in (-1, 0, 1) if (dx or dy)
+                     for sq in [movement.clamp((t['pos'][0] + dx, t['pos'][1] + dy))]
+                     if _dist(here, sq) <= speed * max_moves and sq != tuple(t['pos'])]
+        for sq in spots:
+            key = (rating(pc, t, allies), -_dist(sq, ward['pos']), -_dist(here, sq))
+            if best is None or key > best[0]:
+                best = (key, t, sq)
+    if best is None:
+        dest = movement.move_toward(here, ward['pos'], speed * (ap // T.MOVE_AP_COST), stop_at=1)
+        return Plan(target=None, pre_pos=dest, pre_moves=_moves_for(_dist(here, dest), speed), max_attacks=0,
+                    note=f"back to {ward['name']}")
+    _, t, sq = best
+    moves = _moves_for(_dist(here, sq), speed)
+    attacks = max(1, min(2, (ap - moves * T.MOVE_AP_COST) // T.ATTACK_AP_COST))
+    return Plan(target=t, pre_pos=sq, pre_moves=moves, max_attacks=attacks,
+                note=f"guard {ward['name']}, step in on {t['name']}")
 
 
 def _spots_next_to(t, here, max_spaces, enemies):
@@ -382,3 +490,9 @@ def support_pos(pc, allies, enemies, radius, spaces, keep):
             if s > best_s:
                 best, best_s = sq, s
     return None if best == here else best
+
+
+# Play Style -> its turn planner; a Diver (or an unknown style) has none
+# and plays combat_sim's default turn.
+PLANNERS = {"Skirmisher": _plan_skirmisher, "Back-liner": _plan_backliner, "Kiter": _plan_kiter,
+            "Holder": _plan_holder, "Guardian": _plan_guardian}

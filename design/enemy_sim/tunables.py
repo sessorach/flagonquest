@@ -485,6 +485,14 @@ SHAPE_SETUP = False
 # (2026-10-27): a Wind Slash attack or a Push mid-turn used to leave the
 # next attack going off from out of reach.
 RECHECK_RANGE = True
+# Party tactics (party_tactics.py, 2026-10-27): None plays every PC by its
+# own Play Style column; a preset name ("cautious", "max range+focus fire")
+# hands out styles by role and sets its own switches.
+PARTY_TACTIC = None
+KITE_KEEP_AWAY = 6     # a Kiter keeps this far from every enemy (or reach - 1)
+HOLD_RANGE = 8         # a Holder waits while a melee enemy this close is on its way
+GUARD_RADIUS = 2       # a Guardian fights what's within this of its ward
+GUARD_LEASH = 6        # ...and stays by the ward while a melee enemy within this is coming
 # Wind Slash ("the chosen weapon's range is increased by [twice X]")
 # gives a melee weapon reach too, per the designer (2026-10-27).
 WIND_SLASH_MELEE = True

@@ -36,6 +36,7 @@ import os
 from types import SimpleNamespace
 
 import tunables as T
+import party_tactics
 import play_styles
 import game_data
 import techniques
@@ -679,6 +680,11 @@ def _pc_dict(sheet, index, good_luck):
     pc["play_style"] = (sheet.play_style
                         or play_styles.default_style(attack_range, armor, "Shield" in parry_weapons,
                                                      strategy == "support_healer"))
+    # A party tactic (party_tactics.py) hands out styles by role instead.
+    if T.PARTY_TACTIC:
+        pc["play_style"] = party_tactics.style_for(
+            party_tactics.role(attack_range, armor, "Shield" in parry_weapons, strategy == "support_healer"),
+            pc["play_style"])
     if weapon_uses_left is not None:
         pc["weapon_uses_left"] = weapon_uses_left
     if sheet.heal_features:
@@ -765,6 +771,7 @@ def all_pcs():
 
 if __name__ == "__main__":
     for p in all_pcs():
-        print(p["name"], "| Parry", p["parry"], "| Dodge", p["dodge"], "| Bodily", p["bodily"],
+        # The fight dict still calls Vital Defense `bodily`, its old name.
+        print(p["name"], "| Parry", p["parry"], "| Dodge", p["dodge"], "| Vital", p["bodily"],
               "| Mental", p["mental"], "| Vigilant", p["vigilant"],
               "| Damage", p["damage"], "| PhysRes", p["physres"], "| Health", p["health"])

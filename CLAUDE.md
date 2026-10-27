@@ -273,6 +273,12 @@ which should stay a clean decision record.
   reported two days of sweeps as "Health" when they were percentage
   points of the party's max Health (about 0.45 Health each). Check the
   unit before quoting a number.
+- **Party tactics and the sheets** (2026-10-27): how the whole party
+  plays is one switch, `party_tactics.py`'s presets (`-t "cautious"` on
+  calibrate/compare_builds/the sweeps, or `tactics_compare.py` for all
+  of them); per-character Play Styles still live in `sample_pcs.csv`.
+  `design/enemy_sim/SHEETS.md` is every sample character resolved, for
+  reference; it's generated, so edit `builds/`, never the sheet.
 - **Adding a Technique or enemy Ability to the sim**: its entry goes in
   `design/enemy_sim/techniques.py` (build, setup, hooks) or
   `enemy_abilities.py` (hooks; build-time numbers and cost in

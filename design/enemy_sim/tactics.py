@@ -363,6 +363,8 @@ def select_target(unit, targets, movement_on, allies=None):
             return target_threat(unit, targets, allies)
         if PARTY_TARGETING == 'table':
             return target_table(unit, targets, allies)
+        if PARTY_TARGETING == 'closest':
+            return target_closest(unit, targets)
         return target_focus_wounded(unit, targets, allies)
     return (target_closest if movement_on else target_first)(unit, targets)
 

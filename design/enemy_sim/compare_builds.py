@@ -36,6 +36,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, sample_enemies as se, party, tunables as T, tactics  # noqa: E402
 import calibrate  # noqa: E402
+import party_tactics  # noqa: E402
 
 
 def _builder(names, swaps):
@@ -141,8 +142,11 @@ def sweep_main(doc, variants, parties):
     ap.add_argument("-n", type=int, default=100, help="fights per mix")
     ap.add_argument("--only", help="run only swaps whose label contains this")
     ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE")
+    ap.add_argument("-t", help="party tactic preset(s), party_tactics.py (\"cautious\", \"max range+focus fire\")")
     ap.add_argument("--pct", action="store_true", help="score Health left as a share of max Health (before 2026-10-27)")
     a = ap.parse_args()
+    if a.t:
+        party_tactics.use(a.t)
     global PCT
     PCT = a.pct
     for kv in a.s:
@@ -197,7 +201,10 @@ if __name__ == "__main__":
     ap.add_argument("--pct", action="store_true", help="score Health left as a share of max Health (before 2026-10-27)")
     ap.add_argument("--mixes", help="comma-separated encounter names (default: the four standard mixes)")
     ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE")
+    ap.add_argument("-t", help="party tactic preset(s), party_tactics.py (\"cautious\", \"max range+focus fire\")")
     a = ap.parse_args()
+    if a.t:
+        party_tactics.use(a.t)
     for kv in a.s:
         k, v = kv.split("=", 1)
         try:
