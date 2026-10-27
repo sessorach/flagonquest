@@ -523,8 +523,16 @@ def _raise_spirits_setup(name, pc, s):
     pc["raise_range"] = _skill(s, "Performance")
 
 
+# Techniques knowingly not modeled yet, {ID: why} (2026-10-27): a build
+# naming one stops with the reason, the same as an unknown one, but the
+# list says what each would need.
+DEFERRED = {}
+
+
 def get(tid):
     t = REGISTRY.get(tid)
+    if t is None and tid in DEFERRED:
+        raise BuildError(f"{tid} {game_data.technique_name(tid)} isn't modeled yet: {DEFERRED[tid]}")
     if t is None and tid not in OUT_OF_COMBAT:
         raise BuildError(f"{tid} {game_data.technique_name(tid)} isn't in techniques.py: add an entry "
                          "(or list it in OUT_OF_COMBAT)")
@@ -1611,3 +1619,10 @@ def _rejuvenate(pc, c):
         pc['regen'] -= 1
         pc['health'] = min(pc['max_health'], pc['health'] + cs.tactics.necrotic_cut(pc, 1))
     return 0
+
+
+# The rest of the catalog (2026-10-27), split in two files so they could be
+# written side by side. They register into REGISTRY, OUT_OF_COMBAT and
+# DEFERRED above, and reach combat_sim as techniques.cs at fight time.
+import techniques_more_a  # noqa: E402,F401
+import techniques_more_b  # noqa: E402,F401
