@@ -1,12 +1,12 @@
 # Latest replays (2026-10-27)
 
-maneuver_sweep.py tried 77 Battle Maneuver options for Hilde and Browndog; no change to how the sample characters play.
+Arcane Chant, Glacier (Difficult Terrain) and Channel are in, so every combat Feature is; mechanic_baseline.py measured each one. No change to how the sample characters play.
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 1000 fights: 94.4% wins, 3.6 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 94.2% wins, 3.6 rounds, 73% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

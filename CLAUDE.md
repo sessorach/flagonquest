@@ -268,7 +268,11 @@ which should stay a clean decision record.
   `compare_builds.py --swap "Base=Variant"` runs the paired comparison
   (`--edit` for a throwaway). Pick `-m` for ~5-round fights: at ×1.75
   the Level 2-3 parties finish in three and a debuff has no time to pay.
-  Results go in `sample_characters.md`'s "Variants" table.
+  Results go in `sample_characters.md`'s "Variants" table. Its "Health
+  left" is in points since 2026-10-27, like `effect_check.py`; I
+  reported two days of sweeps as "Health" when they were percentage
+  points of the party's max Health (about 0.45 Health each). Check the
+  unit before quoting a number.
 - **Adding a Technique or enemy Ability to the sim**: its entry goes in
   `design/enemy_sim/techniques.py` (build, setup, hooks) or
   `enemy_abilities.py` (hooks; build-time numbers and cost in

@@ -180,7 +180,7 @@ def _war_magic_name(feats):
 @technique("T120", "War Magic", features=(
         "Lance", "Destructive", "Sanguine", "Reign of Blood", "Draw Power", "Furrow (Shape)", "Funnel (Shape)",
         "Nova (Shape)", "Tormenting Curse", "Frigid", "Kinetic", "Corrupting", "Necrotic", "Barraging", "Abjuring",
-        "Piercing Elements", "Wild Magic"))
+        "Piercing Elements", "Wild Magic", "Arcane Chant", "Glacier", "Channel (Shape)"))
 def _war_magic(sheet, copies, choices):
     """Copies with the same Features and Defense are one profile with that
     many uses. A plain Lance copy is the row's own War Magic (Lance)
@@ -195,9 +195,9 @@ def _war_magic(sheet, copies, choices):
     the Weapon itself, so a Lance copy needs no range of its own. The
     rest of the Features ride on the hit (combat_sim and this file's
     War Magic hooks): Frigid, Kinetic, Corrupting, Necrotic, Barraging,
-    Abjuring, Piercing Elements, Wild Magic, Funnel and Nova. Arcane
-    Chant, Glacier (no Difficult Terrain in the sim) and Channel aren't
-    modeled, so a copy with one stops the load.
+    Abjuring, Piercing Elements, Wild Magic, Funnel and Nova, and since
+    2026-10-27 Arcane Chant (combat_sim spends the AP), Glacier
+    (movement.TERRAIN) and Channel.
     War Magic is learned against Dodge or Vital (the Choices column, per
     copy; Dodge when blank)."""
     groups = collections.OrderedDict()
@@ -250,7 +250,7 @@ def _war_magic_factory(feats, defense):
         # War Magic's Target is "An adjacent creature": a copy with neither
         # Lance nor a Shape reaches only that far (2026-10-26; before, it
         # had the weapon's full range).
-        if "Lance" not in feats and not any(f.endswith("(Shape)") for f in feats):
+        if "Lance" not in feats and not any(f in feats for f in ("Furrow (Shape)", "Funnel (Shape)", "Nova (Shape)")):
             prof["range"] = cs.T.MELEE_RANGE
         if feats.get("Draw Power"):
             prof["draw_power"] = True
@@ -276,8 +276,24 @@ def _war_magic_factory(feats, defense):
                 prof[key] = feats[feat]
         if feats.get("Piercing Elements"):
             prof["piercing"] = feats["Piercing Elements"]  # Good Luck on the spell attack
+        # Glacier: "every space occupied by or adjacent to any targeted
+        # creature gains [twice X] + [Spades] levels of Difficult Terrain,
+        # lasting for the encounter." Channel: a hit lets him cast it
+        # again next turn for the same AP, without spending a use. Arcane
+        # Chant: extra AP buys 2 points of a Feature the Spell already
+        # has; combat_sim spends AP that wouldn't buy another attack on its
+        # Destructive, or else its first rider.
+        if feats.get("Glacier"):
+            prof["glacier"] = feats["Glacier"]
+        if feats.get("Channel (Shape)"):
+            prof["channel"] = True
+        if feats.get("Arcane Chant"):
+            rider = next((k for k, f in (("frigid", "Frigid"), ("corrupting", "Corrupting"), ("necrotic", "Necrotic"),
+                                         ("kinetic", "Kinetic"), ("barraging", "Barraging"), ("glacier", "Glacier"),
+                                         ("abjuring", "Abjuring"), ("wild", "Wild Magic")) if feats.get(f)), None)
+            prof["chant"] = "damage" if feats.get("Destructive") else rider
         # "You may change the attack's damage type to Frost / Shadow."
-        types = ["Fire"] + (["Frost"] if feats.get("Frigid") else []) + (
+        types = ["Fire"] + (["Frost"] if feats.get("Frigid") or feats.get("Glacier") else []) + (
             ["Shadow"] if any(feats.get(f) for f in ("Corrupting", "Necrotic", "Draw Power")) else [])
         if len(types) > 1:
             prof["dmg_types"] = types
@@ -1439,6 +1455,21 @@ def spell_riders(pc, c, before_damage):
         n = sub['barraging'] + cs._suit_count(pool, 'Hearts')
         t['harried'] = t.get('harried', 0) + n
         c.notes.append(f"Harried +{n}")
+    if sub.get('glacier'):
+        _glacier(t, sub['glacier'] + 0, pool, c)
+
+
+def _glacier(t, x, pool, c):
+    """Glacier on one targeted creature's space and those around it."""
+    if 'pos' not in t:
+        return
+    n = 2 * x + cs._suit_count(pool, 'Spades')
+    tx, ty = t['pos']
+    for dx in (-1, 0, 1):
+        for dy in (-1, 0, 1):
+            cell = cs._movement.clamp((tx + dx, ty + dy))
+            cs._movement.TERRAIN[cell] = cs._movement.TERRAIN.get(cell, 0) + n
+    c.notes.append(f"Difficult Terrain +{n}")
 
 
 @hooks.on('attack_luck', order=35)
@@ -1457,7 +1488,7 @@ def _war_magic_before(pc, c):
 def _war_magic_kinetic(pc, c):
     if c.substitute and c.substitute.get('kinetic'):
         # Barraging waits for attack_resolved, which also sees a Dodge.
-        sub = dict(c.substitute, barraging=0)
+        sub = dict(c.substitute, barraging=0, glacier=0)
         spell_riders(pc, SimpleNamespace(**dict(vars(c), substitute=sub, dodged=False)), before_damage=False)
 
 
@@ -1470,6 +1501,13 @@ def _war_magic_after(pc, c):
         n = sub['barraging'] + cs._suit_count(c.pool, 'Hearts')
         c.target['harried'] = c.target.get('harried', 0) + n
         c.notes.append(f"Harried +{n}")
+    if sub.get('glacier') and not getattr(c, 'extra', False):
+        _glacier(c.target, sub['glacier'], c.pool, c)
+    # Channel: "Each time the spell attack hits, on your next turn you may
+    # spend the AP used to cast the Spell to make a spell attack with all
+    # the same features against one of the targets."
+    if sub.get('channel') and c.hit:
+        pc['_channel_next'] = (sub, c.target)
     # Abjuring (F065): "After the spell attack is resolved, you gain X + 1
     # stacks of [attack's damage type] Ward + [Hearts] stacks."
     if sub.get('abjuring'):
@@ -1477,6 +1515,13 @@ def _war_magic_after(pc, c):
         pc['ward_type'] = pc['dmg_type']
         cs._gain(pc, 'ward', n)
         c.notes.append(f"{pc['dmg_type']} Ward +{n}")
+
+
+@hooks.on('pc_turn_start', order=1)
+def _channel_ready(pc, c):
+    # Last turn's Channel hit is this turn's free cast (_tech_attack_choice).
+    if '_channel_next' in pc or pc.get('_channel_ready'):
+        pc['_channel_ready'] = pc.pop('_channel_next', None)
 
 
 @hooks.on('after_hit', 'Battle Maneuver', order=15)

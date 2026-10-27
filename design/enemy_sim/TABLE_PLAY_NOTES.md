@@ -748,6 +748,8 @@ at Level 3 nearly all of it goes on himself. Why so little:
   points, one cast) for the same 6 XP. The 175 XP build takes two Level
   1 copies.
 
+**Units (corrected 2026-10-27):** "Health" in the table below (not the per-fight one above, which is in points) is the party's Health left as a share of its max Health, in percentage points (compare_builds.py scored it that way until 10-27). At these party sizes, 40-47 max Health, a point is about 0.45 Health, about 1.8 Value. Rankings within a table hold; a swap that adds max Health (Toughened Body) reads low.
+
 Hanforth in Jackal's seat in Party B (paired, 300 fights a mix):
 
 | | Hanforth for Jackal | With Lifeline |
@@ -777,6 +779,8 @@ Profession, 6; Dominate Mind, 12 more at Level 3) into combat. Two
 parties a Level, 100 fights a mix, paired on the same seeds, so the
 margins are wide (±0.4 to ±2.4 Health) and anything inside about a
 point is a wash. "HM" is Healing Magic, "SB" Spirit Blessing.
+
+**Units (corrected 2026-10-27):** "Health" in this section's tables and bullets is the party's Health left as a share of its max Health, in percentage points (compare_builds.py scored it that way until 10-27). At these party sizes, 40-47 max Health, a point is about 0.45 Health, about 1.8 Value. Rankings within a table hold; a swap that adds max Health (Toughened Body) reads low.
 
 Change in Health left at the end of the fight, and in how often someone
 goes Down (points):
@@ -875,6 +879,8 @@ What it says, roughly:
 
 ## Beornhard's War Magic options (2026-10-26, later)
 
+**Units (corrected 2026-10-27):** "Health" in this section's tables and bullets is the party's Health left as a share of its max Health, in percentage points (compare_builds.py scored it that way until 10-27). At these party sizes, 40-47 max Health, a point is about 0.45 Health, about 1.8 Value. Rankings within a table hold; a swap that adds max Health (Toughened Body) reads low.
+
 The same broad sweep for the designer's 125 and 175 XP Beornhard
 (`beornhard_sweep.py`): other Features on his War Magic copies, the
 Defense they're learned against, and his other Techniques traded for
@@ -971,6 +977,8 @@ What it says, roughly:
   trade breaks even in Party D at Level 2).
 
 ## Battle Maneuver options (2026-10-27)
+
+**Units (corrected 2026-10-27):** "Health" in this section's tables and bullets is the party's Health left as a share of its max Health, in percentage points (compare_builds.py scored it that way until 10-27). At these party sizes, 40-47 max Health, a point is about 0.45 Health, about 1.8 Value. Rankings within a table hold; a swap that adds max Health (Toughened Body) reads low.
 
 The same broad sweep for Hilde's and Browndog's Battle Maneuvers at 125
 and 175 XP (`maneuver_sweep.py`): each copy swapped through the
@@ -1120,6 +1128,255 @@ What it says, roughly:
   Mountains for Hilde, Follower for Browndog), with Half Guard copies at
   the top.
 
+## Mechanic baseline (2026-10-27)
+
+Per the designer: a broad pulse on what each mechanic the Buildable
+Techniques deliver is worth, for adjusting the weights
+(`mechanic_baseline.py`). Each test character carries one Technique copy
+with its Feature points left unspent; each test spends them on one
+Feature, paired on the same seeds against that bare copy, in one or two
+parties at table toughness (fights of about five rounds). Scored the
+effect check's way: the party's Health left in points, losses 0, turned
+into Value with a Health ladder (+2 Health on every PC; one PC's +1
+Health is 4). The ladders put one point of party Health left at 3.7-4.8
+Value. 100 fights a mix, so margins run ±0.5 to ±3: read the patterns,
+not single cells.
+
+"Stacks landed" is what the Feature added over the bare copy, counted
+from the trace (healing too). "THE TABEL for them" prices those stacks
+at THE TABEL's base rates with no realization discount (healing at
+Health's 4), so it's the most THE TABEL would credit them. Half Guard's
+Protected on the carrier isn't in the count. "Own damage dealt" is the
+carrier's change in damage landed.
+
+To run it, the sim needed the last three War Magic Features: Arcane
+Chant (spends AP that won't buy another attack on more of the Spell's
+own Destructive or rider), Glacier (Difficult Terrain, now in
+`movement.py`; the Play Style plans that set a PC's spot directly don't
+pay it yet) and Channel. Every combat Feature of every Buildable is in
+now; Social Maneuver's are social.
+
+#### Hilde (L2) (hilde2)
+
+| Feature | Points | B2: Value (±) | A2: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
+|---|---|---|---|---|---|---|---|
+| Lunging | 3 | +1.2 ±0.7 | +1.0 ±0.8 | +0.4 | - | -0.1 | +0.6 |
+| Wind Slash | 3 | +0.0 ±0.0 | +0.0 ±0.0 | +0.0 | - | +0.0 | +0.0 |
+| Distracting | 3 | -1.7 ±1.2 | -2.4 ±1.3 | -0.7 | Taunted +3.3, healed +0.1 | +7.6 | -0.8 |
+| Battering | 3 | +0.6 ±0.5 | +0.6 ±0.6 | +0.2 | Bleeding +3.3 | +13.1 | -0.1 |
+| Wing Clip | 3 | +1.4 ±0.8 | +1.6 ±0.9 | +0.5 | Crippled +3.2 | +4.7 | +0.3 |
+| Harrying | 3 | +0.9 ±0.7 | +1.9 ±0.9 | +0.5 | Harried +4.2 | +4.1 | +0.0 |
+| Hamstring | 3 | +0.0 ±0.0 | +0.1 ±0.3 | +0.0 | Slowed +3.1 | +3.4 | +0.0 |
+| Backfoot | 3 | +2.9 ±1.5 | +2.3 ±1.0 | +0.9 | Staggered +2.1 | +2.8 | +0.5 |
+| Lodestone | 3 | -0.9 ±2.0 | -1.5 ±1.4 | -0.4 | Pushed +4.4, Hasted +0.1, Protected +0.1 | +4.3 | +0.3 |
+| Half Guard | 3 | +6.4 ±1.6 | +5.0 ±1.3 | +1.9 | , healed -0.1 | -0.4 | +1.6 |
+| Blade of Four Fates | 3 | +1.4 ±1.9 | +0.3 ±2.2 | +0.3 | Hasted +0.1, Protected +0.1 | +0.1 | +1.3 |
+| Fleet Step | 3 | +3.6 ±1.6 | +4.7 ±1.7 | +1.4 | Outflanked +2.5, Hasted +0.1, Protected +0.1 | +3.7 | +2.2 |
+| Turn Elements (Fire) | 3 | +5.5 ±1.7 | +5.1 ±1.4 | +1.8 | Ward +3.2 | +3.1 | +1.1 |
+| Calculated | 3 | +1.3 ±0.7 | -0.8 ±1.2 | +0.1 | - | +0.1 | +0.6 |
+| Viper's Sting | 3 | +4.0 ±1.9 | +6.0 ±2.3 | +1.7 | Hasted +0.2, Protected +0.2 | +0.6 | +2.2 |
+| Victorious | 2 | +0.9 ±0.6 | +1.4 ±0.8 | +0.6 | - | +0.2 | +0.3 |
+| Elemental (Fire) | 2 | +0.8 ±0.8 | +0.4 ±0.5 | +0.3 | - | -0.1 | +0.7 |
+
+#### Browndog (L2) (browndog2)
+
+| Feature | Points | B2: Value (±) | D2: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
+|---|---|---|---|---|---|---|---|
+| Lunging | 3 | +2.3 ±1.2 | +3.0 ±1.2 | +0.9 | Protected +0.1, Taunted -0.1 | -0.0 | +1.7 |
+| Wind Slash | 3 | +0.0 ±0.0 | +0.0 ±0.0 | +0.0 | - | +0.0 | +0.0 |
+| Distracting | 3 | +0.3 ±0.5 | +0.1 ±0.1 | +0.1 | Taunted +2.5 | +5.5 | -0.2 |
+| Battering | 3 | +0.3 ±0.3 | +0.2 ±0.2 | +0.1 | Bleeding +2.5 | +9.9 | -0.2 |
+| Wing Clip | 3 | +1.0 ±0.4 | +0.6 ±0.3 | +0.3 | Crippled +2.0 | +3.0 | +0.0 |
+| Harrying | 3 | +0.5 ±0.7 | +0.3 ±0.4 | +0.1 | Harried +3.2 | +3.2 | +0.1 |
+| Hamstring | 3 | +0.0 ±0.1 | +0.0 ±0.0 | +0.0 | Slowed +2.0 | +2.2 | +0.0 |
+| Backfoot | 3 | +1.1 ±0.5 | +0.5 ±0.3 | +0.3 | Staggered +1.1 | +1.5 | +0.1 |
+| Lodestone | 3 | +0.4 ±1.1 | -0.9 ±1.0 | -0.1 | Pushed +3.8 | +3.4 | +0.3 |
+| Half Guard | 3 | +4.5 ±0.8 | +3.9 ±1.1 | +1.4 | , healed -0.1 | -0.4 | +0.7 |
+| Blade of Four Fates | 3 | +1.2 ±1.4 | +1.0 ±1.3 | +0.4 | - | -0.2 | +0.6 |
+| Fleet Step | 3 | +1.1 ±1.0 | +0.9 ±0.8 | +0.3 | Outflanked +1.3 | +1.6 | +0.8 |
+| Turn Elements (Fire) | 3 | +2.4 ±1.0 | +1.1 ±0.5 | +0.6 | Ward +2.0 | +1.9 | +0.5 |
+| Calculated | 3 | +0.0 ±1.0 | +0.6 ±0.7 | +0.1 | - | +0.1 | +0.6 |
+| Viper's Sting | 3 | +3.5 ±2.5 | +6.8 ±2.1 | +1.7 | Taunted -0.8, Protected -0.3, healed -0.1 | -3.0 | +4.4 |
+| Victorious | 2 | -0.1 ±0.4 | +0.1 ±0.5 | -0.0 | - | +0.1 | +0.2 |
+| Elemental (Fire) | 2 | +0.4 ±0.6 | +0.1 ±0.4 | +0.1 | - | -0.0 | +0.6 |
+
+#### Sable (L2) (sable2)
+
+| Feature | Points | A2: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
+|---|---|---|---|---|---|---|
+| Lunging | 3 | +0.0 ±0.0 | +0.0 | - | +0.0 | +0.0 |
+| Wind Slash | 3 | +0.0 ±0.0 | +0.0 | - | +0.0 | +0.0 |
+| Distracting | 3 | -9.7 ±2.8 | -3.2 | Taunted +3.9 | +8.5 | -3.5 |
+| Battering | 3 | +1.5 ±1.2 | +0.5 | Bleeding +3.9 | +15.6 | -0.2 |
+| Wing Clip | 3 | +2.1 ±1.2 | +0.7 | Crippled +3.8 | +5.7 | +0.0 |
+| Harrying | 3 | +2.5 ±1.8 | +0.8 | Harried +4.9 | +4.9 | +1.1 |
+| Hamstring | 3 | +6.2 ±2.5 | +2.1 | Slowed +4.0 | +4.4 | +0.0 |
+| Backfoot | 3 | +1.9 ±2.0 | +0.6 | Staggered +2.9 | +4.0 | +0.1 |
+| Lodestone | 3 | +2.8 ±2.6 | +0.9 | Pushed +5.8 | +5.1 | -0.1 |
+| Half Guard | 3 | +3.6 ±1.5 | +1.2 | - | +0.0 | +0.7 |
+| Blade of Four Fates | 3 | -0.2 ±3.3 | -0.1 | - | +0.0 | +1.2 |
+| Fleet Step | 3 | +0.2 ±1.4 | +0.1 | Outflanked +0.6 | +0.8 | -0.3 |
+| Turn Elements (Fire) | 3 | +4.3 ±1.7 | +1.4 | Ward +3.8 | +3.8 | +0.8 |
+| Calculated | 3 | -0.3 ±3.0 | -0.1 | - | +0.0 | +1.3 |
+| Viper's Sting | 3 | +2.5 ±2.1 | +0.8 | - | +0.0 | +0.6 |
+| Victorious | 2 | +0.0 ±1.0 | +0.0 | - | +0.0 | +0.0 |
+| Elemental (Fire) | 2 | +1.9 ±1.7 | +0.9 | - | +0.0 | +0.6 |
+
+#### Jackal (L3) (jackal3)
+
+| Feature | Points | B3: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
+|---|---|---|---|---|---|---|
+| Lunging | 3 | +0.0 ±0.0 | +0.0 | - | +0.0 | +0.0 |
+| Wind Slash | 3 | -0.1 ±0.1 | -0.0 | - | +0.0 | +0.0 |
+| Distracting | 3 | -0.8 ±1.6 | -0.3 | Taunted +2.6 | +5.6 | -0.8 |
+| Battering | 3 | +0.6 ±0.5 | +0.2 | Bleeding +2.7 | +10.6 | +0.0 |
+| Wing Clip | 3 | +1.3 ±0.6 | +0.4 | Crippled +2.6 | +4.0 | +0.2 |
+| Harrying | 3 | +0.5 ±0.5 | +0.2 | Harried +3.4 | +3.4 | +0.1 |
+| Hamstring | 3 | +0.1 ±0.6 | +0.0 | Slowed +2.6 | +2.9 | +0.1 |
+| Backfoot | 3 | +1.9 ±1.4 | +0.6 | Staggered +2.0 | +2.7 | +0.7 |
+| Lodestone | 3 | -3.0 ±2.4 | -1.0 | Pushed +3.4 | +3.1 | +0.1 |
+| Half Guard | 3 | +5.4 ±1.6 | +1.8 | - | +0.0 | +2.4 |
+| Blade of Four Fates | 3 | -2.0 ±2.3 | -0.7 | - | +0.0 | +0.1 |
+| Fleet Step | 3 | +1.1 ±1.5 | +0.4 | Outflanked +1.5 | +2.0 | +1.4 |
+| Turn Elements (Fire) | 3 | +1.8 ±1.1 | +0.6 | Ward +2.5 | +2.5 | +0.6 |
+| Calculated | 3 | +0.5 ±1.2 | +0.2 | - | +0.0 | +0.5 |
+| Viper's Sting | 3 | +0.2 ±0.6 | +0.1 | - | +0.0 | +0.2 |
+| Victorious | 2 | +0.7 ±0.7 | +0.3 | - | +0.0 | +0.5 |
+| Elemental (Fire) | 2 | +0.7 ±1.2 | +0.4 | - | +0.0 | +1.0 |
+
+#### Beornhard (L2) (beornhard2)
+
+| Feature | Points | B2: Value (±) | D2: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
+|---|---|---|---|---|---|---|---|
+| Destructive | 2 | +12.0 ±3.2 | +5.8 ±2.1 | +4.4 | - | +0.0 | +7.1 |
+| Frigid | 2 | +2.4 ±1.9 | +2.0 ±1.3 | +1.1 | Slowed +16.6 | +18.2 | +0.2 |
+| Glacier | 2 | -4.8 ±2.5 | -3.0 ±1.8 | -1.9 | - | +0.0 | +0.2 |
+| Kinetic | 2 | +2.2 ±2.4 | -0.5 ±1.9 | +0.4 | Pushed +6.3 | +5.6 | +0.2 |
+| Corrupting (all vs Vital) | 2 | +5.8 ±1.8 | +3.9 ±1.6 | +2.4 | Vulnerable +11.2 | +11.2 | +7.7 |
+| Necrotic | 2 | +0.4 ±0.3 | +0.3 ±0.2 | +0.2 | Necrotic +16.4 | +49.2 | +0.2 |
+| Barraging | 2 | +2.5 ±1.1 | +0.6 ±0.4 | +0.8 | Harried +9.2 | +9.2 | +0.3 |
+| Abjuring | 2 | +1.3 ±1.1 | +2.2 ±1.0 | +0.9 | Ward +13.1 | +13.1 | +0.4 |
+| Wild Magic | 2 | +6.9 ±3.2 | +7.7 ±2.4 | +3.6 | - | +0.0 | +6.2 |
+| Sanguine | 1 | -3.3 ±2.4 | -13.0 ±3.1 | -8.2 | Bleeding +17.5 | +69.8 | -9.1 |
+| Arcane Chant, Destructive 1 | 2 | +9.6 ±2.9 | +4.9 ±2.2 | +3.6 | - | +0.0 | +6.3 |
+| Destructive 1 (half) | 1 | +6.9 ±2.6 | +2.1 ±1.9 | +4.5 | - | +0.0 | +2.7 |
+
+#### Beornhard (L3) (beornhard3)
+
+| Feature | Points | B3: Value (±) | D3: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
+|---|---|---|---|---|---|---|---|
+| Destructive 5 | 5 | +8.3 ±2.2 | +9.2 ±2.6 | +1.8 | - | +0.0 | +8.1 |
+| Piercing Elements | 1 | +0.3 ±0.9 | +0.2 ±0.7 | +0.3 | - | +0.0 | +0.1 |
+| Draw Power | 1 | +0.0 ±0.0 | +0.0 ±0.0 | +0.0 | - | +0.0 | +0.0 |
+| Channel | 3 | -0.0 ±0.3 | +0.0 ±0.5 | +0.0 | - | +0.0 | +0.0 |
+| Furrow (no Lance) | 3 | -1.2 ±2.1 | -0.3 ±2.9 | -0.3 | - | +0.0 | +0.8 |
+| Funnel (no Lance) | 3 | -1.0 ±2.1 | -1.0 ±2.5 | -0.3 | - | +0.0 | +0.7 |
+| Nova (no Lance) | 3 | -2.1 ±2.0 | -2.4 ±2.4 | -0.7 | - | +0.0 | +0.0 |
+
+#### Hanforth (L2) (hanforth2sb)
+
+| Feature | Points | D2: Value (±) | H2: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
+|---|---|---|---|---|---|---|---|
+| Shielding | 3 | +1.7 ±2.0 | -0.1 ±2.2 | +0.3 | Protected +3.6, Pushed +0.2, Crippled +0.1, healed +0.1 | +11.5 | -1.5 |
+| Step of Air | 3 | +0.6 ±1.6 | +0.4 ±0.9 | +0.2 | Hasted +4.0, Pushed +0.2 | +2.4 | -0.5 |
+| Turn Elements (Fire) | 3 | -1.3 ±2.0 | -1.3 ±2.0 | -0.4 | Ward +3.6, Pushed +0.2, healed +0.1 | +4.2 | -1.9 |
+| Retribution | 3 | -1.7 ±1.9 | -2.8 ±1.9 | -0.8 | Pushed +0.2, healed +0.2 | +0.8 | -2.0 |
+| River's Might | 3 | +0.4 ±1.5 | -1.4 ±2.1 | -0.2 | Pushed +0.5 | +0.5 | -0.8 |
+| Touch of Chaos | 3 | +0.8 ±1.7 | +0.4 ±2.1 | +0.2 | - | +0.2 | -0.2 |
+| Elemental Enhancement (Fire) | 3 | +0.9 ±0.5 | +0.4 ±0.6 | +0.2 | - | -0.2 | +0.0 |
+| Steady, Embolden | 2 | -0.8 ±2.0 | -0.9 ±1.9 | -0.4 | Pushed +0.1 | +0.1 | -0.3 |
+| Quickened, Shielding 2 | 3 | +1.1 ±2.1 | -0.6 ±2.2 | +0.1 | Protected +2.7, Crippled +0.2, Pushed +0.2 | +8.5 | -0.5 |
+
+#### Hanforth (L2) (hanforth2hm)
+
+| Feature | Points | D2: Value (±) | H2: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
+|---|---|---|---|---|---|---|---|
+| Vitality 2 | 4 | +3.9 ±1.0 | +2.7 ±0.9 | +0.8 | , healed +0.7 | +2.9 | +0.2 |
+| Triage, Reach | 4 | +5.4 ±1.3 | +5.0 ±1.6 | +1.3 | , healed +1.0 | +4.1 | -0.3 |
+| Guardian Angel 4 | 4 | +2.2 ±1.1 | +2.1 ±1.2 | +0.5 | - | +0.1 | +0.2 |
+| Purify 4 | 4 | +0.1 ±0.1 | +0.1 ±0.1 | +0.0 | - | +0.0 | +0.0 |
+| Rejuvenate, Vitality 1, Reach | 4 | -1.2 ±1.4 | -0.4 ±1.1 | -0.2 | , healed -0.9 | -3.8 | -0.4 |
+| Reach | 1 | -0.0 ±0.7 | +1.4 ±1.1 | +0.7 | , healed +0.2 | +0.6 | -0.4 |
+
+#### Hanforth (L3) (hanforth3hm)
+
+| Feature | Points | D3: Value (±) | Value/point | Stacks landed a fight | THE TABEL for them | Own damage dealt |
+|---|---|---|---|---|---|---|
+| Vitality 4 | 8 | +7.7 ±2.0 | +1.0 | Protected +0.2, Crippled +0.1, Pushed +0.1, healed +1.6 | +7.3 | +0.3 |
+| Healing Pact, Vitality 1, Reach | 8 | +4.2 ±1.6 | +0.5 | Protected +0.1, Crippled +0.1, healed +0.6 | +2.8 | +0.1 |
+| Triage, Vitality 2, Reach | 8 | +8.6 ±2.2 | +1.1 | Protected +0.2, Crippled +0.1, Pushed +0.1, healed +1.7 | +7.6 | +0.2 |
+| Guardian Angel 8 | 8 | +11.0 ±2.7 | +1.4 | Protected +0.4, Crippled +0.2, Pushed +0.1 | +1.6 | +0.9 |
+
+Value per point of Health left: A2 4.1, B2 3.9, B3 4.5, D2 3.7, D3 4.8, H2 3.7
+
+### What each mechanic did, against THE TABEL
+
+Measured Value a fight, against THE TABEL's price for the stacks it
+landed, across the carriers above:
+
+| Mechanic (Feature) | Measured | THE TABEL for the stacks | Roughly |
+|---|---|---|---|
+| Damage (Destructive, War Magic) | +2 to +12 | about 12-14 (2 a point a cast, about 3.5 casts) | 0.7x |
+| Bleeding (Battering) | +0.2 to +1.5 | 10-16 | 0.1x |
+| Crippled (Wing Clip) | +0.6 to +2.1 | 3-6 | 0.3x |
+| Harried (Harrying, Barraging) | +0.3 to +2.5 | 3-9 | 0.3x |
+| Taunt (Distracting) | -9.7 to +0.3 | 5.5-8.5 | 0 from a tank, worse from anyone else |
+| Slowed (Hamstring, Frigid) | 0 (melee) to +6.2 (Sable, a bow) | 2-18 | depends on whether the target has to walk |
+| Push (Lodestone, Kinetic) | -3 to +2.8 | 3-6 | about 0 |
+| Stagger (Backfoot) | +0.5 to +2.9 | 1.5-4 | 0.7x |
+| Outflank (Fleet Step) | +0.2 to +4.7 | 0.8-3.7 | about 1x |
+| Ward (Turn Elements, Abjuring) | -1.3 to +5.5 | 2-13 | about 1x on a Maneuver; 0.1x from Abjuring; below 0 from a blessing |
+| Protected, self on a hit (Half Guard) | +3.6 to +6.4 | about 6 (3.25 stacks x 3 x hit chance) | about 1x |
+| Protected, from a blessing (Shielding) | -0.1 to +1.7 | 8.5-11.5 | 0.1x |
+| Hasted (Step of Air) | +0.4 to +0.6 | 2.4 | 0.2x |
+| Vulnerable (Corrupting, all vs Vital) | +3.9 to +5.8 | 11 | 0.4x |
+| Necrotic | +0.3 to +0.4 | 49 | about 0, as its Weak column says |
+| Good Luck once (Calculated) | -0.8 to +1.3 | 2.4 | 0.2x |
+| Sift (Blade of Four Fates; Wild Magic on a spell) | -2 to +1.4; +6.9 to +7.7 | not counted; about 13-34 by hand (21 sifts a fight at 0.6-1.62) | about 0 on a Maneuver; good on a spell |
+| 1 AP once (Viper's Sting) | +3.5 to +6.8 melee; +0.2 to +2.5 ranged | 2.75 | 2x melee, 0.5x ranged |
+| A card (Victorious, Draw Power) | 0 to +1.4 | up to 2.7 | small |
+| Healing (Vitality, Triage) | +2.7 to +8.6 | +2.9 to +7.6 (healing x 4) | about 1x |
+| Stopping a Down (Guardian Angel) | +2.1 to +11 | none | not in THE TABEL |
+
+What it says, roughly:
+
+- **Damage and healing land close to their weights; most debuffs don't.**
+  Damage realizes about 0.7 of THE TABEL's 2 a point at table toughness
+  (×2-2.75 enemy Health, which dilutes every point of damage), and
+  healing lands at about its 4 a point. Bleeding, Crippled, Harried,
+  Hasted, Good Luck once and Shielding realize a tenth to a third of
+  their base rates as one-a-fight riders. That's the base rate against
+  what actually happened, so it's consistent with the Weak/Average
+  columns being well below the base rates.
+- **Who carries it matters as much as what it is.** Taunt is about zero
+  from Browndog and a big loss from Sable or Hilde. Slowed is nothing
+  from a melee carrier (the target's already next to her) and the best
+  Maneuver pick for Sable (+6.2). The 1 AP from Viper's Sting is worth
+  twice its 2.75 to a melee carrier and half to an archer. Protected on
+  the person being hit (Half Guard) is worth its full 3 a stack; handed
+  out by a blessing, a tenth.
+- **A Feature point isn't worth the same across Techniques.** The best
+  picks buy about 2 Value a point on a Battle Maneuver (Half Guard,
+  Hamstring on an archer, Viper's Sting), 3.6-4.5 on War Magic
+  (Destructive, Wild Magic, Arcane Chant), 1-1.4 on Healing Magic
+  (Triage, Guardian Angel) and 0.3 on Spirit Blessing. Spirit Blessing's Features are the cheapest in
+  practice, and its budget grows slowest.
+- **Down prevention needs a term.** Guardian Angel 8 is +11, the best
+  healing pick, and THE TABEL has nothing for it. Lifeline is the same
+  story.
+- **Glacier costs the party** (-3 to -4.8): its Difficult Terrain sits
+  around the enemies the front-liners are walking up to.
+- **Wind Slash** does nothing on a melee weapon in the sim (it only
+  extends a weapon with a range stat), and nothing measurable on a
+  thrown weapon or a bow, since extra range rarely comes up.
+
+Where the weights could move, for the designer: on-hit debuff riders
+priced off their Average or Weak columns instead of the base rates
+(Bleeding hardest); Taunt priced by who's taunting; Protected split into
+self-on-a-hit (keep 3) and handed-out (much lower); 1 AP split by melee
+and ranged; a term for stopping a Down; and Spirit Blessing's Feature
+costs or budget looked at against the rest.
+
 ## Still to do
 
 - **Items.** The sim doesn't model items yet beyond weapons, armor and
@@ -1147,6 +1404,12 @@ What it says, roughly:
 - **Retribution Aura** cost the Level 2 Party A a fifth of its Health
   when all four Warband enemies had it, far over the draft's one-pick
   estimate. Worth pricing before a sample enemy carries it.
+- **Wind Slash on a melee weapon**: does "the chosen weapon's range is
+  increased by [twice X]" give a melee weapon reach? The sim says no
+  (only weapons with a range stat), so it does nothing for Hilde or
+  Browndog.
+- **Weights from the mechanic baseline** (2026-10-27): the designer's
+  call on the adjustments listed there.
 - **Shape setup** (`tunables.SHAPE_SETUP`): turn it on? It's how a
   player would use a Furrow, Funnel or Nova copy, but it moves Party B's
   Level 3 numbers a little, so it waits for the designer.

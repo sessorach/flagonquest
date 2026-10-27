@@ -201,6 +201,7 @@ import random
 import copy
 import tunables as T
 import movement
+import movement as _movement
 from movement import distance as _distance  # run_fight's own `movement` param (bool) shadows the module name
 import tactics
 from sample_enemies import make_level_encounter
@@ -1157,6 +1158,13 @@ def _tech_attack_choice(pc, target):
     def expected(prof):
         need = enemy_defense_for_pc_attack(prof, target) - (prof['skill_total'] - pc.get('crippled', 0))
         return _p_flip_at_least(need) * max(0, prof['damage'] - enemy_resist_for_pc_attack(prof, target))
+    # Channel: last turn's hit buys this cast, no use spent, if its target
+    # is this attack's.
+    ch = pc.get('_channel_ready')
+    if ch and ch[1] is target and target['health'] > 0 and (
+            not ch[0].get('range') or 'pos' not in pc or _distance(pc['pos'], target['pos']) <= ch[0]['range']):
+        pc['_channel_ready'] = None
+        return ch[0]
     # A turn planned around a Shape (play_styles.plan_shape) casts it.
     if pc.pop('_shape_now', False):
         for t in pc.get('tech_attacks', ()):
@@ -1525,6 +1533,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     saved_profile = (pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'])
                     pc['skill_total'], pc['damage'], pc['dmg_type'], pc['opp_def'] = (
                         substitute['skill_total'], substitute['damage'], substitute['dmg_type'], substitute['opp_def'])
+                    if substitute.get('chant'):
+                        substitute, ap = _arcane_chant(pc, substitute, ap, party_log)
                 # Feint (T074, synthetic test field, once-per-encounter):
                 # "Make a weapon attack against the target's Vigilant
                 # Defense. Instead of normal effects, if it hits then the
@@ -2115,6 +2125,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         pc.pop('_repeat', None)
         pc.pop('_action_sift', None)
         pc.pop('_shape_now', None)
+        pc.pop('_channel_ready', None)
         turn.ap = ap
         hooks.run('pc_turn_end', pc, turn)
         ap = turn.ap
@@ -2649,6 +2660,29 @@ def _grappled_target_luck(pc, c):
     return 1 if _grappled(c.target) is not None and pc.get('opp_def') in ('Parry/Dodge', 'Dodge') else 0
 
 
+def _arcane_chant(pc, sub, ap, log):
+    """Arcane Chant (War Magic): "When you declare the Spell, you may spend
+    any amount of extra AP. For each AP spent, choose 2 points' worth of
+    features from among those the Spell already has." Spends the AP left
+    after this cast that won't buy another attack this turn: the odd 1, or
+    all of it once no cast or weapon use is left. Returns this cast's
+    profile (a copy, so the boost lasts one cast) and the AP left."""
+    left = ap - T.ATTACK_AP_COST
+    more = (pc.get('weapon_uses_left') is None or pc['weapon_uses_left'] > 0
+            or any(t['uses'] > 0 for t in pc.get('tech_attacks', ())))
+    k = left - T.ATTACK_AP_COST if more and left >= T.ATTACK_AP_COST else left
+    if k <= 0:
+        return sub, ap
+    key = sub['chant']
+    if key == 'damage':
+        pc['damage'] += 2 * k
+    elif key:
+        sub = dict(sub, **{key: sub.get(key, 0) + 2 * k})
+    if log:
+        log(unit=pc['name'], action='technique', via='Arcane Chant', effects=f"{k} AP for +{2 * k} {key}")
+    return sub, ap - k
+
+
 def _viper_ready(pc):
     """A Battle Maneuver copy with Viper's Sting ("The Technique takes 1
     less AP to use") still unspent."""
@@ -3113,6 +3147,7 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     # Fight-wide state for the 2026-10-25 Techniques and Abilities: the
     # Wall of Shadows' spaces, and who can make or draw a Parting Shot.
     _CTX['walls'] = set()
+    _movement.TERRAIN.clear()  # run_fight's `movement` argument shadows the module
     _CTX['pcs'] = pcs
     _CTX['ps_pcs'] = any(p.get('close_profile') and p.get('parting_shot') for p in pcs)
     _CTX['ps_enemies'] = any('Action (Parting Shot)' in e.get('abilities', ()) for e in enemies)

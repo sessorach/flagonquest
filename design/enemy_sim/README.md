@@ -152,13 +152,14 @@ The core files and the regular tools:
   River's Might, Touch of Chaos, Elemental Enhancement, Alacrity and
   Steal Fate; Healing Magic adds Purify, Rejuvenate, Guardian Angel,
   Triage, Deep Mending (no effect: the sim keeps one Health pool) and
-  Healing Pact, and the healer Styles Field Medic and Lifeward. Force Missiles is a 1 AP
-  Technique attack. Arcane
-  Chant, Glacier and Channel aren't modeled and stop the load. Out-of-combat
-  IDs are listed in `OUT_OF_COMBAT`. **An ID, Feature or item
-  the sim doesn't know stops the load with its name** — add it here
-  (or to `game_data.py` for an item) rather than finding out later it
-  was ignored.
+  Healing Pact, and the healer Styles Field Medic and Lifeward. Force
+  Missiles is a 1 AP Technique attack. War Magic's Arcane Chant,
+  Glacier (Difficult Terrain, `movement.TERRAIN`) and Channel are in
+  since 2026-10-27, so every combat Feature of every Buildable is.
+  Out-of-combat IDs are listed in `OUT_OF_COMBAT`. **An ID, Feature or
+  item the sim doesn't know stops the load with its name** — add it
+  here (or to `game_data.py` for an item) rather than finding out
+  later it was ignored.
 - **`enemy_abilities.py`** — the enemy Ability catalog's hooks: Strike
   and Poison riders, Grappling, Devastating, Harrying, Battering,
   Resilient, the 0 AP Actions, Retribution Aura, Action (Parting Shot).
@@ -183,7 +184,13 @@ The core files and the regular tools:
   `hanforth_sweep.py`, `beornhard_sweep.py` (2026-10-26) and
   `maneuver_sweep.py` (2026-10-27) are the worked examples: Hanforth's
   Healing Magic, Spirit Blessing and spare XP, Beornhard's War Magic,
-  and Hilde's and Browndog's Battle Maneuvers. A new study is a list of
+  and Hilde's and Browndog's Battle Maneuvers. "Health left" is in
+  points since 2026-10-27; the sweeps' write-ups before that are in
+  percentage points of the party's max Health (`--pct` reproduces them).
+- **`mechanic_baseline.py`** (2026-10-27) — every Buildable Feature on a
+  bare Technique copy, in Value through a Health ladder, next to THE
+  TABEL's price for the stacks it landed. Results in
+  `TABLE_PLAY_NOTES.md`, "Mechanic baseline". A new study is a list of
   (label, swap) pairs and parties, run through `sweep_main`.
 - **`party.py`** — `load_sheet(row)` reads a row and its build;
   `make_pc(name, ..., health=, add_passives=, drop_passives=,

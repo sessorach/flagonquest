@@ -15,6 +15,18 @@ Speed/Range matchup," which is what this mode exists to test.
 """
 import tunables as T
 
+# Difficult Terrain (glossary.md): {space: degrees}. "To cross a meter of
+# space that has Difficult Terrain, a character takes an extra meter of
+# Speed for each degree... A character can still move at least 1 space."
+# combat_sim resets it each fight; War Magic's Glacier adds to it
+# (2026-10-27). Shifts ignore it, and so do the Play Style plans that set
+# a PC's spot directly (play_styles), a known shortcut.
+TERRAIN = {}
+
+
+def _cost(cell):
+    return 1 + TERRAIN.get(clamp(cell), 0)
+
 
 def distance(a, b):
     """Chebyshev distance - max(|dx|, |dy|), since a diagonal step
@@ -53,10 +65,16 @@ def move_toward(pos, target, speed, stop_at=0):
     the way."""
     x, y = pos
     tx, ty = target
-    for _ in range(speed):
+    budget, moved = speed, False
+    while budget > 0:
         if distance((x, y), (tx, ty)) <= stop_at:
             break
-        x, y = _step_toward(x, y, tx, ty)
+        nx, ny = _step_toward(x, y, tx, ty)
+        cost = _cost((nx, ny)) if TERRAIN else 1
+        if cost > budget and moved:
+            break
+        budget -= cost
+        x, y, moved = nx, ny, True
     return clamp((x, y))
 
 
@@ -72,11 +90,16 @@ def move_away(pos, threat, speed):
     bounded arena, not a bug to route around."""
     x, y = pos
     hx, hy = threat
-    for _ in range(speed):
+    budget, moved = speed, False
+    while budget > 0:
         if x == hx and y == hy:
             dx, dy = 1, 0  # can't compute a direction standing exactly on the threat; retreat +x arbitrarily
         else:
             dx = (x > hx) - (x < hx)
             dy = (y > hy) - (y < hy)
-        x, y = clamp((x + dx, y + dy))
+        cost = _cost((x + dx, y + dy)) if TERRAIN else 1
+        if cost > budget and moved:
+            break
+        budget -= cost
+        x, y, moved = *clamp((x + dx, y + dy)), True
     return (x, y)

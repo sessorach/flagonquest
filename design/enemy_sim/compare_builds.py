@@ -61,15 +61,30 @@ def _builder(names, swaps):
     return make
 
 
+# "Health left" is the party's Health in points at the end of a won fight
+# (losses 0), effect_check.py's score since 2026-10-21. Until 2026-10-27
+# this file scored it as a share of the party's max Health (x100), which
+# reads about half as large at these party sizes and undercounts anything
+# that adds max Health; PCT = True (--pct) scores it that way again.
+PCT = False
+
+
 def run(names, swaps, level, n, mixes=None):
-    cs.make_party = _builder(names, swaps)
+    make = _builder(names, swaps)
+    last = []
+
+    def keep(tier, good_luck=0):
+        last[:] = make(tier, good_luck)
+        return last
+    cs.make_party = keep
     out = []
     for mi, mix in enumerate(mixes or se.CURRENT_MIXES):
         for k in range(n):
             r = cs.run_fight(1, level, movement=True, enemies=se.build_encounter(se.ENCOUNTERS[level][mix]),
                              seed=100_000 * mi + k)
-            out.append(dict(win=r['winner'] == 'party', hp=100 * r['party_hp_pct'] if r['winner'] == 'party' else 0,
-                            down=bool(r['pc_downed']), rounds=r['rounds']))
+            won = r['winner'] == 'party'
+            hp = (100 * r['party_hp_pct'] if PCT else sum(max(0, p['health']) for p in last)) if won else 0
+            out.append(dict(win=won, hp=hp, down=bool(r['pc_downed']), rounds=r['rounds']))
     return out
 
 
@@ -126,7 +141,10 @@ def sweep_main(doc, variants, parties):
     ap.add_argument("-n", type=int, default=100, help="fights per mix")
     ap.add_argument("--only", help="run only swaps whose label contains this")
     ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE")
+    ap.add_argument("--pct", action="store_true", help="score Health left as a share of max Health (before 2026-10-27)")
     a = ap.parse_args()
+    global PCT
+    PCT = a.pct
     for kv in a.s:
         k, v = kv.split("=", 1)
         try:
@@ -176,6 +194,7 @@ if __name__ == "__main__":
     ap.add_argument("--edit", action="append", default=[], help='"Name={json edits}"')
     ap.add_argument("-n", type=int, default=300, help="fights per mix")
     ap.add_argument("-m", type=float, default=1.75, help="enemy Health multiplier (default 1.75)")
+    ap.add_argument("--pct", action="store_true", help="score Health left as a share of max Health (before 2026-10-27)")
     ap.add_argument("--mixes", help="comma-separated encounter names (default: the four standard mixes)")
     ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE")
     a = ap.parse_args()
@@ -187,6 +206,7 @@ if __name__ == "__main__":
             pass
         setattr(T if hasattr(T, k) else tactics, k, v)
     T.ENEMY_HEALTH_MULT = a.m
+    PCT = a.pct
     names = [x.strip() for x in a.party.split(",")] if a.party else calibrate.PARTIES[a.L][a.p]
     swaps = _parse_swaps(a.swap, a.edit)
     unknown = [n for n in swaps if n not in names]
