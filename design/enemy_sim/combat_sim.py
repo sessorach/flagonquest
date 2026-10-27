@@ -30,8 +30,8 @@ Interrupts (rulebook.md: "Some abilities let you act on other turns,
 and interrupt their actions with your own... when such an action is
 declared, but before any of its effects happen, you may use the
 Interrupt ability") are now modeled too, specifically for Magehunter
-(T075, its encounter.py use, real persistent AP
-via `pc['ap_bank']`) - see _take_pc_turn's own end-of-turn AP-refresh
+(T075, its encounter.py use, paid from the PC's AP pool
+`pc['ap_bank']`) - see _take_pc_turn's own end-of-turn AP-refresh
 step and _magehunter_interrupt/_take_enemy_turn for the actual
 off-turn preemptive attack. This is a genuine Interrupt, not another
 `_bonus_attack`-style synthetic flag layered onto a PC's own turn
@@ -1350,27 +1350,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
             else:
                 _gain(pc, eff, n)
             pc['test_applied'] = pc.get('test_applied', 0) + n
-        if _has_interrupt_tech(pc):
-            # Magehunter (T075) / Parting Shot (T076), synthetic test
-            # fields, share one real persistent AP pool (`pc['ap_bank']`)
-            # since rulebook.md's AP economy is a single number per PC,
-            # not one pool per Interrupt Technique known. Refresh trigger
-            # is "when you flip Reflex to join an encounter, AND AGAIN AT
-            # THE END of each of your turns" - not at the start of a
-            # turn. So a PC's own-turn AP is whatever's left of the pool
-            # granted at their *last* turn-end (run_fight's own initial
-            # `ap_bank = T.AP_PER_TURN` models the Reflex-flip refresh for
-            # their very first turn), minus whatever Interrupts actually
-            # spent from that same pool since then (_magehunter_interrupt/
-            # _parting_shot_interrupt) - not a blanket "give up a whole
-            # attack every turn whether or not the trigger ever fires"
-            # cost. If no Interrupt fired, this pool is still the full
-            # T.AP_PER_TURN, so a PC who never got a trigger loses nothing
-            # relative to a normal PC (see balance_weights_notes.md's
-            # re-check of this pass, per the designer's own correction).
-            ap = pc['ap_bank'] - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
-        else:
-            ap = T.AP_PER_TURN - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
+        # rulebook.md: AP comes "when you flip Reflex to join an encounter,
+        # and again at the end of each of your turns" - so every PC holds
+        # its pool between turns, free for Interrupts (designer,
+        # 2026-10-27), and its own turn spends what's left of it.
+        ap = pc['ap_bank'] - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
         # Techniques taken at the start of the turn (hooks.py's
         # pc_turn_start, in their ORDER).
         turn = SimpleNamespace(pcs=pcs, enemies=enemies, rnd=rnd, movement_on=movement_on, trace=trace,
@@ -2167,24 +2151,11 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
             _decay(pc, 'protected')
         if pc.get('harried', 0) > 0:
             pc['harried'] = 0
-        if _has_interrupt_tech(pc):
-            # rulebook.md's refresh happens at the END of your own turn
-            # - a flat reset to T.AP_PER_TURN (4), discarding whatever
-            # was left, not an accumulation - this fresh pool is what's
-            # now available for Interrupts until the NEXT end-of-turn
-            # refresh (this same assignment, next time this PC's own
-            # turn comes around).
-            pc['ap_bank'] = T.AP_PER_TURN
+        # The end-of-turn refresh: a flat reset to T.AP_PER_TURN (4),
+        # discarding what was left, and the pool for Interrupts until the
+        # PC's next turn.
+        pc['ap_bank'] = T.AP_PER_TURN
     return attacks_made, damage_dealt
-
-
-def _has_interrupt_tech(pc):
-    """Whether `pc` knows any synthetic-test-field Interrupt Technique
-    (Magehunter T075, Parting Shot T076) - both share the one real AP
-    pool (`pc['ap_bank']`) rather than each getting its own, since
-    rulebook.md's AP economy is a single number per PC."""
-    return bool(hooks.has(pc, 'Magehunter') or hooks.has(pc, 'Parting Shot') or hooks.has(pc, 'Raise Spirits')
-                or encounter.left(pc, 'Gainsay') or encounter.left(pc, 'Lifeline'))
 
 
 def _weapon_interrupt(e, pcs, movement_on, party_log, tech, cost, close_only=False):
@@ -3080,13 +3051,10 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
         random.seed(seed)
     pcs = make_party(tier, good_luck=good_luck)
     for p in pcs:
-        if _has_interrupt_tech(p):
-            # rulebook.md: "When you flip Reflex to join an encounter...
-            # you lose any existing Action Points and gain 4 Action
-            # Points in their place" - the same refresh _take_pc_turn's
-            # own end-of-turn step re-applies from here on (see
-            # ap_bank's own comment there).
-            p['ap_bank'] = T.AP_PER_TURN
+        # rulebook.md: "When you flip Reflex to join an encounter... you
+        # gain 4 Action Points" - every PC's pool, refreshed at the end of
+        # each of its turns (_take_pc_turn).
+        p['ap_bank'] = T.AP_PER_TURN
     if enemies is not None:
         enemies = [copy.deepcopy(e) for e in enemies]
     else:

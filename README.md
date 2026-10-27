@@ -20,7 +20,7 @@ Measured what every combat Feature of every Buildable Technique is worth in a fi
 - Hilde's and Browndog's Battle Maneuvers got the same broad sweep as Hanforth and Beornhard: Half Guard is the standout Feature, and Viper's Sting is the best addition to Hilde's Level 3 copy.
 - The simulator now plays 120 of the 205 Techniques, with 44 out of combat and 41 waiting on something it doesn't have yet; every Encounter use carries its Level, which brought in Vigor, Willow Springs Back, Placeholder's Alacritous Adaptation, Blood-Powered Spirit and Spellblade.
 - The party can switch tactics in one setting (all in, cautious, max range, hold the line, bodyguard, focus fire...); playing as built or all in does best, and holding the line costs the most.
-- The simulator runs about two and a half times faster, always plays the current CSVs (weapons and armor included), writes out every sample character's sheet, and lists the ones whose exports need a rebuild; a Magehunter bug that gave free attacks to anyone with an Interrupt is fixed, and barely moved the numbers.
+- The simulator runs about two and a half times faster, always plays the current CSVs (weapons and armor included), writes out every sample character's sheet, and lists the ones whose exports need a rebuild; every character now holds its AP between turns for Interrupts, per the rules, and a Magehunter bug that gave free attacks to anyone with an Interrupt is fixed; neither moved the numbers much.
 - The last two days' sweep tables reported "Health" that was really a share of the party's max Health, about half a point each; they're relabeled, and the comparison tool now counts points.
 
 ### 2026-10-26 — Hanforth as built, and how healers scale

@@ -1494,15 +1494,18 @@ does to these builds rather than which one is right.
   Vulnerable / Crippled once the target's bleeding that much; on
   Hanforth (L2) it's +0.7% wins (±0.7). Its range, Push, Ward, Slowed,
   Necrotic, Shift and Protected options aren't used.
-- **Two Interrupt questions for the designer** (2026-10-27 review).
-  A PC with Gainsay or Lifeline keeps the Interrupt AP pool only while
-  a use is left (`_has_interrupt_tech`); Magehunter and Parting Shot
-  count as long as they're known, so a Gainsay caster's Interrupt AP
-  works one way, then the other. And Parting Shot has two paths: the
-  general one (any enemy walking or Pushed out of reach, with
+- **Every PC holds its AP pool between turns** (designer, 2026-10-27:
+  AP comes at the start of the fight and at the end of each turn, so
+  it's free for Interrupts). The sim used to give the pool only to a PC
+  with an Interrupt, and counted Gainsay and Lifeline only while a use
+  was left, so Beornhard's last Gainsay never came off his next turn.
+  Now every PC has it; Level 3 Parties B and D lose 0.2 and 0.4 points
+  of party Health, nothing else moves.
+- **Parting Shot has two paths, for the designer** (2026-10-27 review):
+  the general one (any enemy walking or Pushed out of reach, with
   `close_profile`) and an older one for a Kiting enemy's retreat, with
   the PC's own Weapon. Both spend the same use, so it can't fire twice,
-  but they swing different weapons. Changing either moves the numbers.
+  but they swing different weapons. Changing it moves the numbers.
 - **Exports to rebuild** (designer, 2026-10-27: the sim always plays
   the live CSVs; rebuild the characters later). Twelve sample exports
   were made before some fixed-Level Techniques went up a Level (Felix

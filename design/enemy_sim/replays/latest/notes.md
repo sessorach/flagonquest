@@ -1,12 +1,12 @@
 # Latest replays (2026-10-27)
 
-Blood-Powered Spirit and Spellblade wired in; shared Technique helpers (tech_common.py), dead code out; no results moved
+Every PC holds its AP pool between turns for Interrupts (rulebook.md), not only Interrupt-Technique holders
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 500 fights: 93.8% wins, 3.8 rounds, 72% HP left on a win
+- Matchup average over 500 fights: 93.6% wins, 3.7 rounds, 74% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
@@ -55,15 +55,15 @@ Blood-Powered Spirit and Spellblade wired in; shared Technique helpers (tech_com
 ## partyD2_L2_vs_solo_boss.html
 - Party: Browndog (L2), Rook (L2), Sable (L2), Hanforth (L2, Lifeline)
 - Enemies: Level 2 Solo Boss (Brute Warlord (L2))
-- This fight (seed 29): party won in 4 rounds, 78% party HP left
-- Matchup average over 500 fights: 100.0% wins, 4.5 rounds, 94% HP left on a win
+- This fight (seed 66): party won in 5 rounds, 78% party HP left
+- Matchup average over 500 fights: 99.8% wins, 4.5 rounds, 93% HP left on a win
 - Picked from fights with lifeline_taken above 0
 
 ## partyB_L2_frost_vs_L2_warband.html
 - Party: Hilde (L2), Browndog (L2), Jackal (L2), Beornhard (L2, Frost)
 - Enemies: Level 2 Warband (Brute (L2), Skulking Footpad (L2), Skulking Footpad (L2), Warpriest (L2))
 - This fight (seed 3): party won in 2 rounds, 98% party HP left
-- Matchup average over 500 fights: 100.0% wins, 2.3 rounds, 98% HP left on a win
+- Matchup average over 500 fights: 100.0% wins, 2.3 rounds, 97% HP left on a win
 
 ## partyB_L3_flurry_piercing_vs_L3_frontline.html
 - Party: Hilde (L3, Flurry), Browndog (L3), Jackal (L3), Beornhard (L3, Piercing)
@@ -75,4 +75,4 @@ Blood-Powered Spirit and Spellblade wired in; shared Technique helpers (tech_com
 - Party: Browndog (L3), Hanforth (L3), Hilde (L3), Beornhard (L3)
 - Enemies: Level 3 Frontline (Brute (L3), Brute (L3), Grave Caller (L3), Grave Caller (L3))
 - This fight (seed 1): party won in 3 rounds, 91% party HP left
-- Matchup average over 500 fights: 99.4% wins, 2.6 rounds, 74% HP left on a win
+- Matchup average over 500 fights: 99.2% wins, 2.6 rounds, 73% HP left on a win

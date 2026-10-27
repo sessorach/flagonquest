@@ -2,13 +2,10 @@
 techniques_more_a.py and techniques_more_b.py all reach for these,
 rather than each keeping its own. combat_sim is `tq.cs` at fight time.
 
-- Interrupt AP (`_interrupt_ap`): a PC that already keeps an Interrupt
-  pool (combat_sim._has_interrupt_tech: Magehunter, Parting Shot, Raise
-  Spirits, Gainsay, Lifeline) pays from `ap_bank`. Anyone else runs a
-  debt that comes off the start of their next turn (`_pay_ap_debt`),
-  which is the same thing: rulebook.md refreshes AP at the end of your
-  turn, and an Interrupt spends from that pool. One pool for every
-  Interrupt, so a PC can't spend two turns' worth.
+- Interrupt AP (`_interrupt_ap`): every PC's AP pool, `ap_bank`.
+  rulebook.md gives AP at the start of the fight and again at the end
+  of each of your turns, so it's there for Interrupts until your next
+  turn, which spends what's left (combat_sim._take_pc_turn).
 - Cards: with real cards (tunables.CARDS) a cost is the lowest card in
   hand, out of the fight's budget (cards.spend); with CARDS off it comes
   out of `card_uses_left` and a suit the cost wants is assumed (the
@@ -23,40 +20,20 @@ rather than each keeping its own. combat_sim is `tq.cs` at fight time.
 from types import SimpleNamespace
 
 import techniques as tq
-from techniques import hooks
 
 
 def interrupt_ap_left(pc):
-    """AP this PC has for an Interrupt right now (see the module
-    docstring). techniques_more_b's Interrupts use the same pool."""
-    if tq.cs._has_interrupt_tech(pc):
-        return pc.get('ap_bank', 0)
-    return tq.cs.T.AP_PER_TURN - pc.get('_ap_debt', 0)
+    """AP this PC has for an Interrupt right now: its pool."""
+    return pc.get('ap_bank', 0)
 
 
 def _interrupt_ap(pc, n):
-    """Pays `n` AP for an Interrupt, or returns False if the pool won't
-    cover it."""
+    """Pays `n` AP for an Interrupt from the pool, or returns False if
+    it won't cover it."""
     if interrupt_ap_left(pc) < n:
         return False
-    if tq.cs._has_interrupt_tech(pc):
-        pc['ap_bank'] -= n
-    else:
-        pc['_ap_debt'] = pc.get('_ap_debt', 0) + n
+    pc['ap_bank'] -= n
     return True
-
-
-@hooks.on('pc_turn_start', order=0)
-def _pay_ap_debt(pc, c):
-    # Interrupt AP spent since this PC's last turn ended (_interrupt_ap).
-    return pc.pop('_ap_debt', 0)
-
-
-@hooks.on('pc_after_turn', order=90)
-def _clear_ap_debt(pc, c):
-    # AP refreshes at the end of the turn, so an Interrupt taken during
-    # the PC's own turn came out of that turn's AP, not the next one's.
-    pc.pop('_ap_debt', None)
 
 
 def _can_pay(pc, k=1):
