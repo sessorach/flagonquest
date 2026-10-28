@@ -14,9 +14,9 @@
   "Archery": 4,
   "Brawl": 0,
   "Melee": 0,
-  "Stealth": 2,
+  "Stealth": 3,
   "Athletics": 1,
-  "Awareness": 3,
+  "Awareness": 2,
   "Might": 2,
   "Presence": 0,
   "Resilience": 3,
@@ -103,8 +103,8 @@
    "level": "Lv 2"
   },
   {
-   "id": "T014",
-   "name": "Toughened Body",
+   "id": "T042",
+   "name": "Shadow's Path",
    "level": "Lv 2"
   }
  ],

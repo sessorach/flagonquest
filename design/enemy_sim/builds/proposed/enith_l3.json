@@ -10,22 +10,22 @@
   "Essence": 4
  },
  "skillPoints": {
-  "Acrobatics": 4,
+  "Acrobatics": 3,
   "Archery": 0,
   "Brawl": 0,
   "Melee": 4,
-  "Stealth": 1,
+  "Stealth": 2,
   "Athletics": 0,
-  "Awareness": 2,
+  "Awareness": 1,
   "Might": 2,
   "Presence": 0,
-  "Resilience": 2,
+  "Resilience": 1,
   "Insight": 4,
   "Masquerade": 0,
-  "Persuasion": 2,
+  "Persuasion": 3,
   "Streetwise": 0,
-  "Survival": 0,
-  "Academics": 2,
+  "Survival": 2,
+  "Academics": 3,
   "Composure": 3,
   "Craft": 0,
   "Medicine": 0,
@@ -134,8 +134,8 @@
    "level": "Lv 1"
   },
   {
-   "id": "T074",
-   "name": "Feint",
+   "id": "T096",
+   "name": "Placeholder's Wizardly Witchlight",
    "level": "Lv 1"
   },
   {
@@ -157,11 +157,6 @@
    "id": "T014",
    "name": "Toughened Body",
    "level": "Lv 2"
-  },
-  {
-   "id": "T076",
-   "name": "Parting Shot",
-   "level": "Lv 1"
   }
  ],
  "simNotes": [

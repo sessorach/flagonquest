@@ -15,9 +15,10 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-10-28 — Proposed builds for the last four characters
 
-Drafted Level 2 and 3 builds for Felix, Enith, Ashleigh and Sable, grown from their Level 1 exports and checked against the rules, for the designer to tweak; they're in the simulator as "proposed" rows.
+Drafted Level 2 and 3 builds for Felix, Enith, Ashleigh and Sable, grown from their Level 1 exports and checked against the rules, then redid them so 10-20% of each level-up goes to side interests the way players actually spend XP.
 
-- In the simulator Felix and Sable hold up, Enith needed a damage spell at Level 3 to keep her party's fights short, and Ashleigh's new support Techniques seldom come up in fights this short.
+- Next to the designer's own builds they hit harder but have lower Mental, Vital and Vigilant, since they pile Stats into one or two instead of spreading them.
+- In the simulator Enith needed a damage spell at Level 3, Ashleigh's support Techniques seldom come up in fights this short, and Feint turned out to cost Enith's party: the sim spends it on her first swing every fight.
 
 ### 2026-10-27 — What each mechanic is worth, and the whole catalog in the sim
 

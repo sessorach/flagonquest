@@ -16,15 +16,15 @@
   "Melee": 3,
   "Stealth": 1,
   "Athletics": 0,
-  "Awareness": 2,
+  "Awareness": 1,
   "Might": 2,
   "Presence": 0,
-  "Resilience": 2,
+  "Resilience": 1,
   "Insight": 4,
   "Masquerade": 0,
-  "Persuasion": 2,
+  "Persuasion": 3,
   "Streetwise": 0,
-  "Survival": 0,
+  "Survival": 1,
   "Academics": 2,
   "Composure": 2,
   "Craft": 0,
@@ -134,8 +134,8 @@
    "level": "Lv 1"
   },
   {
-   "id": "T074",
-   "name": "Feint",
+   "id": "T096",
+   "name": "Placeholder's Wizardly Witchlight",
    "level": "Lv 1"
   }
  ],

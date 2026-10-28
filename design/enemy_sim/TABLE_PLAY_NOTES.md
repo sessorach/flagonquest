@@ -1512,6 +1512,15 @@ does to these builds rather than which one is right.
   switches) Styles itself.
 - **Proposed builds for Felix, Enith, Ashleigh and Sable** (2026-10-28,
   PROPOSED_BUILDS.md): Levels 2 and 3, waiting on the designer's tweaks.
+  Second pass the same day put 10-20% of the new XP out of combat, per the
+  designer; they're still spikier than the designer's own (13-14 Stat
+  points with a 1 left in, against 15-18 with nothing below 2).
+- **Feint costs Enith's party** (2026-10-28). The sim spends it on her
+  first weapon attack every fight, a no-damage attack for Harried 3 +
+  Diamonds, and her allies don't focus that target. Adding it back to
+  Enith (L2, proposed): +0.24 rounds (±0.04), -3.4 points of Health left
+  (±0.5), 500 fights a mix. Either Feint is weak or the sim should save
+  it for a target someone else is about to hit.
 - **Exports to rebuild** (designer, 2026-10-27: the sim always plays
   the live CSVs; rebuild the characters later). Twelve sample exports
   were made before some fixed-Level Techniques went up a Level (Felix

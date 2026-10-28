@@ -82,9 +82,10 @@
    "level": "Lv 2"
   },
   {
-   "id": "T195",
-   "name": "Forward!",
-   "level": "Lv 1"
+   "id": "T027",
+   "name": "Profession",
+   "level": "Lv 1",
+   "note": "Busker"
   },
   {
    "id": "T062",
