@@ -878,6 +878,34 @@ def _take_notes(pc):
     return '; '.join(notes) if notes else None
 
 
+def _followers(pc, target, pcs, order):
+    """Living allies who act after `pc` and before `target`'s next turn
+    (the whole party when there's no turn order), `pc` left out."""
+    if order is None:
+        return [p for p in pcs if p is not pc and p['health'] > 0]
+    units = [u for _, u in order]
+    i = next((k for k, u in enumerate(units) if u is pc), None)
+    j = next((k for k, u in enumerate(units) if u is target), None)
+    if i is None or j is None:
+        return [p for p in pcs if p is not pc and p['health'] > 0]
+    out, k = [], (i + 1) % len(units)
+    while k != j and k != i:
+        side, u = order[k]
+        if side == 'party' and u['health'] > 0:
+            out.append(u)
+        k = (k + 1) % len(units)
+    return out
+
+
+def _setup_pays(pc, target, pcs, order):
+    """Whether setting `target` up now pays: at least FEINT_FOLLOWUPS of
+    the allies who act before its next turn can attack it against Parry
+    or Dodge this turn (tunables.FEINT_SETUP)."""
+    ready = [a for a in _followers(pc, target, pcs, order)
+             if a.get('opp_def') in ('Parry/Dodge', 'Dodge') and tactics._attacks_this_turn(a, target) > 0]
+    return len(ready) >= T.FEINT_FOLLOWUPS
+
+
 def _importance(target, net_on_hit, big=False):
     """KILL if a hit drops the target, BIG for an Encounter attack or a
     hex, FOCUS for a target that's hurt or already being hit this round,
@@ -1567,7 +1595,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # the usual 2 - see balance_weights_notes.md's Martial
                 # Techniques pass for why that AP discount needed checking
                 # directly rather than assumed away.
-                feint_active = encounter.left(pc, 'Feint') > 0 and not substitute
+                feint_active = (encounter.left(pc, 'Feint') > 0 and not substitute
+                                and (not T.FEINT_SETUP or _setup_pays(pc, target, pcs, order)))
                 saved_opp_def = None
                 feint_stacks = 3
                 if feint_active:
@@ -1832,6 +1861,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # suit-bonus Feature this session.
                     target['harried'] = target.get('harried', 0) + feint_stacks + (
                         _suit_count(pool, 'Diamonds') if T.CARDS else 0.25)
+                    if T.FEINT_SETUP and T.FEINT_CALLS:
+                        target['called'] = True
                 elif hit:
                     # A no-damage attack (Acidic Flask, Reckoning) gets
                     # nothing from Extra Successes.
@@ -2942,6 +2973,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     # decays by 1 (both Fleeting-style, glossary.md).
     if e.get('harried', 0) > 0:
         e['harried'] = 0
+    e.pop('called', None)
     if _decay(e, 'taunted') and e['taunted'] == 0:
         e['taunted_by'] = None
     # Crippled, Slowed and Vulnerable from the party (Reckoning, Hand Rings

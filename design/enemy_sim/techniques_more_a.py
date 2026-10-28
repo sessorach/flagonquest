@@ -617,7 +617,9 @@ tq._encounter("T075", "Magehunter")
 
 # Feint (T074, 1 AP, Encounter) is in combat_sim's attack loop: a use
 # left turns the next weapon attack into the Feint (Vigilant Defense,
-# Harried 3 + [Diamonds] on a hit, no damage).
+# Harried 3 + [Diamonds] on a hit, no damage). It's a setup for the party
+# (designer, 2026-10-28): with tunables.FEINT_SETUP it waits for allies
+# who can follow up, and a hit calls the target for them.
 
 
 # Magehunter (T075, 1 AP Interrupt, Encounter) is combat_sim.

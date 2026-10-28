@@ -273,6 +273,19 @@ CASHOUT_MIN = 2
 # ...and the PC holding it goes for the enemy with the most stacks.
 CASHOUT_SEEK = True
 
+# ---- Setting up a target (2026-10-28) ----
+# Per the designer: Feint is only worth it "specifically aimed at setting
+# up a target for the party to Gamble and wallop." With FEINT_SETUP the
+# Feinter waits until at least FEINT_FOLLOWUPS allies who act before the
+# target's next turn can attack it against Parry or Dodge, and a Feint
+# that hits "calls" the target: those allies go for it (tactics.
+# select_target) and Gamble harder on the lower Defense, as they already
+# do. The call ends with the target's turn, like its Harried. Off is the
+# old play: Feint on the first swing of the fight.
+FEINT_SETUP = True
+FEINT_FOLLOWUPS = 2
+FEINT_CALLS = True  # off: the timing alone, allies pick targets as usual
+
 # ---- Bleeding and Protected (test variants, 2026-10-19) ----
 # How Protected meets Bleeding. 'ticks' is the rule (the designer,
 # 2026-10-19, and glossary.md's Protected as written: Protected stops a

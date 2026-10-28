@@ -4,9 +4,9 @@
  "xpBudget": 175,
  "statPoints": {
   "Agility": 4,
-  "Body": 1,
+  "Body": 2,
   "Cunning": 3,
-  "Mind": 2,
+  "Mind": 3,
   "Essence": 4
  },
  "skillPoints": {
@@ -15,18 +15,18 @@
   "Brawl": 0,
   "Melee": 4,
   "Stealth": 2,
-  "Athletics": 0,
+  "Athletics": 1,
   "Awareness": 1,
   "Might": 2,
   "Presence": 0,
-  "Resilience": 1,
-  "Insight": 4,
+  "Resilience": 2,
+  "Insight": 3,
   "Masquerade": 0,
   "Persuasion": 3,
   "Streetwise": 0,
   "Survival": 2,
   "Academics": 3,
-  "Composure": 3,
+  "Composure": 2,
   "Craft": 0,
   "Medicine": 0,
   "Mixology": 0,
@@ -152,11 +152,6 @@
      "count": 3
     }
    ]
-  },
-  {
-   "id": "T014",
-   "name": "Toughened Body",
-   "level": "Lv 2"
   }
  ],
  "simNotes": [

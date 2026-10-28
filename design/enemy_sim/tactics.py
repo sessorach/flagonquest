@@ -352,6 +352,11 @@ def select_target(unit, targets, movement_on, allies=None):
     strategy), otherwise the plain movement-aware default (closest/
     first, used for enemies and any other caller without an `allies`
     list)."""
+    if allies is not None and T.FEINT_SETUP and unit.get('opp_def') in ('Parry/Dodge', 'Dodge'):
+        # A target an ally set up (FEINT_SETUP): go for it if it's in reach.
+        called = [t for t in targets if t.get('called') and _attacks_this_turn(unit, t) > 0]
+        if called:
+            return max(called, key=lambda t: (t.get('harried', 0), -t['health']))
     fn = TARGETING.get(unit.get('battle_tactic'))
     if fn:
         return fn(unit, targets)

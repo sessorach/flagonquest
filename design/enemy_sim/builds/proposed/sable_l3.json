@@ -3,11 +3,11 @@
  "charConcept": "Big dick chaos archer, extreme violence",
  "xpBudget": 175,
  "statPoints": {
-  "Agility": 5,
-  "Body": 1,
-  "Cunning": 4,
-  "Mind": 1,
-  "Essence": 2
+  "Agility": 4,
+  "Body": 3,
+  "Cunning": 3,
+  "Mind": 2,
+  "Essence": 3
  },
  "skillPoints": {
   "Acrobatics": 3,
@@ -23,10 +23,10 @@
   "Insight": 3,
   "Masquerade": 0,
   "Persuasion": 2,
-  "Streetwise": 0,
+  "Streetwise": 1,
   "Survival": 3,
   "Academics": 0,
-  "Composure": 2,
+  "Composure": 3,
   "Craft": 0,
   "Medicine": 0,
   "Mixology": 0,
@@ -96,11 +96,6 @@
      "count": 3
     }
    ]
-  },
-  {
-   "id": "T077",
-   "name": "Blinkstep",
-   "level": "Lv 2"
   },
   {
    "id": "T042",

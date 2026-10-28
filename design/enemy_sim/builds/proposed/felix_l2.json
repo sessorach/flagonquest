@@ -5,7 +5,7 @@
  "statPoints": {
   "Agility": 3,
   "Body": 3,
-  "Cunning": 1,
+  "Cunning": 2,
   "Mind": 2,
   "Essence": 3
  },
@@ -16,15 +16,15 @@
   "Melee": 0,
   "Stealth": 2,
   "Athletics": 0,
-  "Awareness": 2,
+  "Awareness": 1,
   "Might": 1,
   "Presence": 0,
   "Resilience": 3,
-  "Insight": 2,
+  "Insight": 3,
   "Masquerade": 0,
   "Persuasion": 0,
   "Streetwise": 0,
-  "Survival": 0,
+  "Survival": 1,
   "Academics": 0,
   "Composure": 2,
   "Craft": 0,
@@ -110,11 +110,6 @@
   {
    "id": "T085",
    "name": "Pranic Nourishment",
-   "level": "Lv 2"
-  },
-  {
-   "id": "T154",
-   "name": "Shugen School - Hand Rings the Bell",
    "level": "Lv 2"
   }
  ],

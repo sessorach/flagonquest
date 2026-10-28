@@ -4,9 +4,9 @@
  "xpBudget": 125,
  "statPoints": {
   "Agility": 3,
-  "Body": 3,
-  "Cunning": 1,
-  "Mind": 1,
+  "Body": 2,
+  "Cunning": 2,
+  "Mind": 2,
   "Essence": 4
  },
  "skillPoints": {
@@ -20,7 +20,7 @@
   "Might": 1,
   "Presence": 4,
   "Resilience": 2,
-  "Insight": 2,
+  "Insight": 1,
   "Masquerade": 0,
   "Persuasion": 0,
   "Streetwise": 0,

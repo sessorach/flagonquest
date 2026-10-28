@@ -1512,15 +1512,18 @@ does to these builds rather than which one is right.
   switches) Styles itself.
 - **Proposed builds for Felix, Enith, Ashleigh and Sable** (2026-10-28,
   PROPOSED_BUILDS.md): Levels 2 and 3, waiting on the designer's tweaks.
-  Second pass the same day put 10-20% of the new XP out of combat, per the
-  designer; they're still spikier than the designer's own (13-14 Stat
-  points with a 1 left in, against 15-18 with nothing below 2).
-- **Feint costs Enith's party** (2026-10-28). The sim spends it on her
-  first weapon attack every fight, a no-damage attack for Harried 3 +
-  Diamonds, and her allies don't focus that target. Adding it back to
-  Enith (L2, proposed): +0.24 rounds (±0.04), -3.4 points of Health left
-  (±0.5), 500 fights a mix. Either Feint is weak or the sim should save
-  it for a target someone else is about to hit.
+  Third pass the same day: Stats spread like the designer's (nothing
+  below 2), one Technique each traded for Resilience/Composure/Insight,
+  10-20% of each level-up out of combat.
+- **Feint as a setup** (designer, 2026-10-28: only worth it "specifically
+  aimed at setting up a target for the party to Gamble and wallop").
+  `tunables.FEINT_SETUP` waits for two allies who can follow up before the
+  target's turn and calls the target for them. That cuts Feint's cost to
+  Enith's party from -3.5 to -1.3 points of Health left, but it never pays:
+  Harried clears at the end of the target's turn, so only about 1.6 ally
+  attacks follow a Feint. Waiting for three allies costs -0.7, because it
+  fires half as often. What would make it pay is a rules call (longer
+  Harried, damage too, cheaper); PROPOSED_BUILDS.md lists the levers.
 - **Exports to rebuild** (designer, 2026-10-27: the sim always plays
   the live CSVs; rebuild the characters later). Twelve sample exports
   were made before some fixed-Level Techniques went up a Level (Felix

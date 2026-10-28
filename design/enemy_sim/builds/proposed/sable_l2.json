@@ -4,9 +4,9 @@
  "xpBudget": 125,
  "statPoints": {
   "Agility": 4,
-  "Body": 1,
+  "Body": 2,
   "Cunning": 3,
-  "Mind": 1,
+  "Mind": 2,
   "Essence": 2
  },
  "skillPoints": {
@@ -19,12 +19,12 @@
   "Awareness": 2,
   "Might": 2,
   "Presence": 0,
-  "Resilience": 3,
+  "Resilience": 2,
   "Insight": 3,
   "Masquerade": 0,
   "Persuasion": 2,
   "Streetwise": 0,
-  "Survival": 0,
+  "Survival": 1,
   "Academics": 0,
   "Composure": 2,
   "Craft": 0,
@@ -96,11 +96,6 @@
      "count": 3
     }
    ]
-  },
-  {
-   "id": "T077",
-   "name": "Blinkstep",
-   "level": "Lv 2"
   },
   {
    "id": "T042",
