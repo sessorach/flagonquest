@@ -1470,10 +1470,9 @@ does to these builds rather than which one is right.
 - **Wall of Shadows** seldom pays: Beornhard (L3) put it up in 9 of 240
   fights against Level 2 encounters, since it blocks his own spells too,
   and the shooters it would block die fast anyway.
-- **The deferred Techniques** (`coverage.py` lists all 43 with what
+- **The deferred Techniques** (`coverage.py` lists all 41 with what
   each needs). Summons (seven Techniques) are the biggest group, and the
-  most work. Blood-Powered Spirit and Spellblade only need a rule for
-  when to use them now that every use carries its Level.
+  most work.
 - **Regaining uses, my rules to confirm** (2026-10-27, `encounter.py`):
   a spent use comes back when it outranks every attack use still in hand
   (attacks first, then Level, then damage); Vigor is spent that way as
