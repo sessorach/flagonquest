@@ -214,7 +214,7 @@ if __name__ == "__main__":
         setattr(T if hasattr(T, k) else tactics, k, v)
     T.ENEMY_HEALTH_MULT = a.m
     PCT = a.pct
-    names = [x.strip() for x in a.party.split(",")] if a.party else calibrate.PARTIES[a.L][a.p]
+    names = [x.strip() for x in re.split(r",(?![^()]*\))", a.party)] if a.party else calibrate.PARTIES[a.L][a.p]
     swaps = _parse_swaps(a.swap, a.edit)
     unknown = [n for n in swaps if n not in names]
     if unknown:

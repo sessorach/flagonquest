@@ -1577,3 +1577,218 @@ In a fight: Health 10, Speed 4, Reflex 7; Parry 16, Dodge 15, Vital 14, Mental 1
 - Healing Magic: discards 3, heals 1 + Hearts + 2, reach 12
 - Passives: Placeholder's Lengthy Ley-weaving
 - Encounter Techniques: Gust of Wind, Spirit Blessing
+
+## Felix (L2, proposed)
+
+Build: `builds/proposed/felix_l2.json`. XP 125. Tier 2.
+
+Stats: Agility 3, Body 3, Cunning 1, Mind 2, Essence 3.
+Skills (points, Skill Total): Acrobatics 2 (5), Brawl 4 (7), Stealth 2 (5), Awareness 2 (5), Might 1 (4), Resilience 3 (6), Insight 2 (3), Composure 2 (4), Meditation 4 (7), Rapport 2 (5).
+
+Techniques:
+- Shugen School - Firefly Leaves the Hand (T080), Lv 1
+- Demon School - Thief Empties the Vessel (T159), Lv 2
+- Great Old Oak School - Boughs Unbroken (T175), Lv 2
+- Battle Maneuver (T072), Lv 1: Bare-Handed, Lunging 2, Half Guard 3
+- Demon School - Sickness Takes the Flock (T083), Lv 2
+- Great Old Oak School - Bark Turns the Blade (T086), Lv 2
+- Shugen School - Hand Rings the Bell (T154), Lv 2
+
+Items: Unarmed, Light Armor.
+Row: Weapon Unarmed; Play Style Skirmisher.
+
+In a fight: Health 10, Speed 4, Reflex 3; Parry 16, Dodge 15, Vital 14, Mental 12, Vigilant 11; Resist 4 Physical, 3 elemental. Attacks with Unarmed: Brawl 9, 5 Physical damage vs Parry/Dodge, reach 1. Play Style Skirmisher.
+
+- Firefly Leaves the Hand x1 (7, 4 Brilliant vs Mental)
+- Thief Empties the Vessel x1 (7, 4 Shadow vs Vital)
+- Demon School - Sickness Takes the Flock x1 (9, 5 Shadow vs Vital)
+- Hand Rings the Bell x1 (9, 5 Brilliant vs Mental)
+- Battle Maneuver copies in order: Level 1: lunges 2, guard 3
+- Passives: Boughs Unbroken
+- Encounter Techniques: Battle Maneuver, Great Old Oak School - Bark Turns the Blade
+
+## Felix (L3, proposed)
+
+Build: `builds/proposed/felix_l3.json`. XP 175. Tier 3.
+
+Stats: Agility 4, Body 3, Cunning 1, Mind 2, Essence 4.
+Skills (points, Skill Total): Acrobatics 2 (6), Brawl 5 (9), Stealth 2 (6), Awareness 2 (5), Might 1 (4), Resilience 3 (6), Insight 2 (3), Composure 2 (4), Meditation 5 (9), Rapport 2 (6).
+
+Techniques:
+- Shugen School - Firefly Leaves the Hand (T080), Lv 1
+- Demon School - Thief Empties the Vessel (T159), Lv 2
+- Great Old Oak School - Boughs Unbroken (T175), Lv 2
+- Battle Maneuver (T072), Lv 1: Bare-Handed, Lunging 2, Half Guard 3
+- Demon School - Sickness Takes the Flock (T083), Lv 2
+- Great Old Oak School - Bark Turns the Blade (T086), Lv 2
+- Shugen School - Hand Rings the Bell (T154), Lv 2
+- Shugen School - Swallow Skims the Water (T153), Lv 3
+- Great Old Oak School - Willow Springs Back (T082), Lv 3
+- Toughened Body (T014), Lv 2
+
+Items: Unarmed, Light Armor.
+Row: Weapon Unarmed; Play Style Skirmisher.
+
+In a fight: Health 13, Speed 5, Reflex 3; Parry 18, Dodge 17, Vital 14, Mental 12, Vigilant 11; Resist 5 Physical, 4 elemental. Attacks with Unarmed: Brawl 11, 5 Physical damage vs Parry/Dodge, reach 1. Play Style Skirmisher.
+
+- Firefly Leaves the Hand x1 (9, 4 Brilliant vs Mental)
+- Thief Empties the Vessel x1 (9, 4 Shadow vs Vital)
+- Demon School - Sickness Takes the Flock x1 (11, 5 Shadow vs Vital)
+- Hand Rings the Bell x1 (11, 5 Brilliant vs Mental)
+- Battle Maneuver copies in order: Level 1: lunges 2, guard 3
+- Passives: Boughs Unbroken, Great Old Oak School - Willow Springs Back
+- Encounter Techniques: Battle Maneuver, Great Old Oak School - Bark Turns the Blade, Shugen School - Swallow Skims the Water
+
+## Enith (L2, proposed)
+
+Build: `builds/proposed/enith_l2.json`. XP 125. Tier 2.
+
+Stats: Agility 3, Body 1, Cunning 3, Mind 2, Essence 3.
+Skills (points, Skill Total): Acrobatics 3 (6), Melee 3 (6), Stealth 1 (4), Awareness 2 (3), Might 2 (3), Resilience 2 (3), Insight 4 (7), Persuasion 2 (5), Academics 2 (4), Composure 2 (4), Sorcery 4 (7).
+
+Techniques:
+- Soulblade (T002), Lv 1
+- Temper Soulblade (T003), Lv 1
+- Hand of Chaos (T131), Lv 2
+- War Magic (T120), Lv 1: Tormenting Curse, Lance, Frigid 3
+- War Magic (T120), Lv 1: Tormenting Curse, Lance, Kinetic 3
+- Spellblade (T100), Lv 2
+- Magehunter (T075), Lv 1
+- Feint (T074), Lv 1
+
+Items: Light Armor.
+Row: Weapon 1H Light Melee; Choices War Magic: Dodge, Vital; Temper Soulblade: Fatestealer; Play Style Skirmisher.
+
+In a fight: Health 10, Speed 4, Reflex 7; Parry 15, Dodge 14, Vital 11, Mental 12, Vigilant 15; Resist 4 Physical, 3 elemental. Attacks with 1H Light Melee: Melee 7, 6 Physical damage vs Parry/Dodge, reach 1. Play Style Skirmisher.
+
+- War Magic (Tormenting Curse, Lance, Frigid 3) x1 (slowed 6 + Spades)
+- War Magic (Tormenting Curse, Lance, Kinetic 3) x1 (push 12 + Spades)
+- Passives: Fatestealer, Hand of Chaos, Spellblade
+- Encounter Techniques: Magehunter, Feint
+
+## Enith (L3, proposed)
+
+Build: `builds/proposed/enith_l3.json`. XP 175. Tier 3.
+
+Stats: Agility 4, Body 1, Cunning 3, Mind 2, Essence 4.
+Skills (points, Skill Total): Acrobatics 4 (8), Melee 4 (8), Stealth 1 (5), Awareness 2 (3), Might 2 (3), Resilience 2 (3), Insight 4 (7), Persuasion 2 (5), Academics 2 (4), Composure 3 (5), Sorcery 5 (9).
+
+Techniques:
+- Soulblade (T002), Lv 1
+- Temper Soulblade (T003), Lv 1
+- Hand of Chaos (T131), Lv 2
+- War Magic (T120), Lv 1: Tormenting Curse, Lance, Frigid 3
+- War Magic (T120), Lv 1: Tormenting Curse, Lance, Kinetic 3
+- Spellblade (T100), Lv 2
+- Magehunter (T075), Lv 1
+- Feint (T074), Lv 1
+- War Magic (T120), Lv 3: Lance, Destructive 3
+- Toughened Body (T014), Lv 2
+- Parting Shot (T076), Lv 1
+
+Items: Light Armor.
+Row: Weapon 1H Light Melee; Choices War Magic: Dodge, Vital, Dodge; Temper Soulblade: Fatestealer; Play Style Skirmisher.
+
+In a fight: Health 13, Speed 5, Reflex 7; Parry 17, Dodge 16, Vital 11, Mental 13, Vigilant 15; Resist 5 Physical, 4 elemental. Attacks with 1H Light Melee: Melee 9, 6 Physical damage vs Parry/Dodge, reach 1. Play Style Skirmisher.
+
+- War Magic (Lance, Destructive 3) x1 (9, 7 Fire vs Dodge)
+- War Magic (Tormenting Curse, Lance, Frigid 3) x1 (slowed 6 + Spades)
+- War Magic (Tormenting Curse, Lance, Kinetic 3) x1 (push 12 + Spades)
+- Passives: Fatestealer, Hand of Chaos, Spellblade
+- Encounter Techniques: Magehunter, Feint, Parting Shot
+
+## Ashleigh (L2, proposed)
+
+Build: `builds/proposed/ashleigh_l2.json`. XP 125. Tier 2.
+
+Stats: Agility 3, Body 3, Cunning 1, Mind 1, Essence 4.
+Skills (points, Skill Total): Acrobatics 3 (6), Stealth 1 (4), Awareness 1 (4), Might 1 (4), Presence 4 (7), Resilience 2 (5), Insight 2 (3), Composure 2 (3), Performance 4 (8), Rapport 3 (7).
+
+Techniques:
+- Raise Spirits (T069), Lv 4
+- Favorite Face (T063), Lv 2
+- Heroic Inspiration (T064), Lv 2
+- Forward! (T195), Lv 1
+- Cry of Victory (T062), Lv 2
+
+Items: Light Armor, Light Thrown Weapon.
+Row: Weapon Light Thrown; Play Style Back-liner.
+
+In a fight: Health 10, Speed 4, Reflex 3; Parry 12, Dodge 14, Vital 13, Mental 11, Vigilant 11; Resist 5 Physical, 4 elemental. Attacks with Light Thrown: Acrobatics 7, 3 Physical damage vs Parry/Dodge, reach 9. Play Style Back-liner.
+
+- Passives: Raise Spirits, Forward!, Cry of Victory
+- Encounter Techniques: Heroic Inspiration
+
+## Ashleigh (L3, proposed)
+
+Build: `builds/proposed/ashleigh_l3.json`. XP 175. Tier 3.
+
+Stats: Agility 3, Body 3, Cunning 2, Mind 1, Essence 5.
+Skills (points, Skill Total): Acrobatics 3 (6), Stealth 1 (4), Awareness 1 (4), Might 1 (4), Presence 4 (7), Resilience 2 (5), Insight 3 (5), Composure 3 (4), Performance 5 (10), Rapport 4 (9).
+
+Techniques:
+- Raise Spirits (T069), Lv 4
+- Favorite Face (T063), Lv 2
+- Heroic Inspiration (T064), Lv 2
+- Forward! (T195), Lv 1
+- Cry of Victory (T062), Lv 2
+- Bolstering Refrain (T066), Lv 3
+- Rally to Victory (T070), Lv 4
+
+Items: Light Armor, Light Thrown Weapon.
+Row: Weapon Light Thrown; Play Style Back-liner.
+
+In a fight: Health 10, Speed 4, Reflex 5; Parry 12, Dodge 14, Vital 13, Mental 12, Vigilant 13; Resist 6 Physical, 5 elemental. Attacks with Light Thrown: Acrobatics 7, 4 Physical damage vs Parry/Dodge, reach 9. Play Style Back-liner.
+
+- Passives: Raise Spirits, Forward!, Cry of Victory, Bolstering Refrain, Rally to Victory
+- Encounter Techniques: Heroic Inspiration
+
+## Sable (L2, proposed)
+
+Build: `builds/proposed/sable_l2.json`. XP 125. Tier 2.
+
+Stats: Agility 4, Body 1, Cunning 3, Mind 1, Essence 2.
+Skills (points, Skill Total): Acrobatics 3 (7), Archery 4 (8), Stealth 2 (6), Athletics 1 (2), Awareness 3 (4), Might 2 (3), Resilience 3 (4), Insight 3 (6), Persuasion 2 (5), Composure 2 (3).
+
+Techniques:
+- Hand of Chaos (T131), Lv 2
+- Perfect Strike (T078), Lv 2
+- One Eye Behind You (T011), Lv 2
+- Battle Maneuver (T072), Lv 2: Calculated, Wing Clip 3
+- Blinkstep (T077), Lv 2
+- Toughened Body (T014), Lv 2
+
+Items: Light Armor, Light Bow.
+Row: Weapon Light Bow; Play Style Back-liner.
+
+In a fight: Health 13, Speed 5, Reflex 6; Parry 13, Dodge 15, Vital 12, Mental 11, Vigilant 14; Resist 3 Physical, 2 elemental. Attacks with Light Bow: Archery 9, 6 Physical damage vs Parry/Dodge, reach 19. Play Style Back-liner.
+
+- Battle Maneuver copies in order: Level 2: calculated 1, wing_clip 3
+- Passives: Hand of Chaos, One Eye Behind You
+- Encounter Techniques: Battle Maneuver, Blinkstep, Perfect Strike
+
+## Sable (L3, proposed)
+
+Build: `builds/proposed/sable_l3.json`. XP 175. Tier 3.
+
+Stats: Agility 5, Body 1, Cunning 4, Mind 1, Essence 2.
+Skills (points, Skill Total): Acrobatics 4 (9), Archery 5 (10), Stealth 2 (7), Athletics 1 (2), Awareness 3 (4), Might 2 (3), Resilience 3 (4), Insight 4 (8), Persuasion 2 (6), Survival 1 (5), Composure 2 (3).
+
+Techniques:
+- Hand of Chaos (T131), Lv 2
+- Perfect Strike (T078), Lv 2
+- One Eye Behind You (T011), Lv 2
+- Battle Maneuver (T072), Lv 2: Calculated, Wing Clip 3
+- Blinkstep (T077), Lv 2
+- Toughened Body (T014), Lv 2
+- Suppressing Fire (T205), Lv 3
+- Battle Maneuver (T072), Lv 3: Ricochet Shot, Calculated, Wing Clip
+
+Items: Light Armor, Light Bow.
+Row: Weapon Light Bow; Unmodeled Hand of Chaos; Play Style Back-liner.
+
+In a fight: Health 13, Speed 6, Reflex 8; Parry 14, Dodge 17, Vital 12, Mental 11, Vigilant 16; Resist 3 Physical, 2 elemental. Attacks with Light Bow: Archery 11, 7 Physical damage vs Parry/Dodge, reach 19. Play Style Back-liner.
+
+- Battle Maneuver copies in order: Level 2: calculated 1, wing_clip 3; Level 3: calculated 1, wing_clip 1, ricochet
+- Passives: One Eye Behind You, Suppressing Fire
+- Encounter Techniques: Battle Maneuver, Blinkstep, Perfect Strike

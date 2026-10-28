@@ -222,6 +222,10 @@ The core files and the regular tools:
   paying cards, healing, reach, the one Interrupt AP pool. A new
   Technique is usually a registration line plus a hook built from these
   and encounter.py (techniques.py's docstring lists them).
+- **`PROPOSED_BUILDS.md`** and **`builds/proposed/`** (2026-10-28) — my
+  proposed Level 2 and 3 builds for Felix, Enith, Ashleigh and Sable, grown
+  from the designer's Level 1 exports, as "(L2, proposed)" / "(L3,
+  proposed)" rows. Not the designer's; an export replaces each one.
 - **`coverage.py`** (2026-10-27) — where every techniques.csv ID stands:
   modeled, out of combat or deferred (with the reasons). Exits 1 if one
   is missing or listed twice, so run it after adding Techniques to the

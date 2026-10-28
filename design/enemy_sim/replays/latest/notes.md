@@ -1,12 +1,12 @@
-# Latest replays (2026-10-27)
+# Latest replays (2026-10-28)
 
-Every PC holds its AP pool between turns for Interrupts (rulebook.md), not only Interrupt-Technique holders
+Proposed Level 2 and 3 builds for Felix, Enith, Ashleigh and Sable added as rows (no existing results changed)
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 500 fights: 93.6% wins, 3.7 rounds, 74% HP left on a win
+- Matchup average over 500 fights: 94.0% wins, 3.7 rounds, 72% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

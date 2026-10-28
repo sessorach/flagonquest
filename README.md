@@ -13,6 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-28 — Proposed builds for the last four characters
+
+Drafted Level 2 and 3 builds for Felix, Enith, Ashleigh and Sable, grown from their Level 1 exports and checked against the rules, for the designer to tweak; they're in the simulator as "proposed" rows.
+
+- In the simulator Felix and Sable hold up, Enith needed a damage spell at Level 3 to keep her party's fights short, and Ashleigh's new support Techniques seldom come up in fights this short.
+
 ### 2026-10-27 — What each mechanic is worth, and the whole catalog in the sim
 
 Measured what every combat Feature of every Buildable Technique is worth in a fight, next to THE TABEL's price, then wired the rest of the Technique catalog into the simulator. Damage and healing land close to their weights; most debuff riders land at a tenth to a third, and who carries an effect matters as much as what it is.

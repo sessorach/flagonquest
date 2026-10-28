@@ -9,6 +9,7 @@ Down and fight length.
     python3 tactics_compare.py -L 3 -p B -m 2.25 -t cautious -t "max range+focus fire"
 """
 import argparse
+import re
 import os
 import statistics as st
 import sys
@@ -45,7 +46,7 @@ if __name__ == "__main__":
     ap.add_argument("-m", type=float, default=1.75, help="enemy Health multiplier")
     a = ap.parse_args()
     T.ENEMY_HEALTH_MULT = a.m
-    names = [x.strip() for x in a.party.split(",")] if a.party else calibrate.PARTIES[a.L][a.p]
+    names = [x.strip() for x in re.split(r",(?![^()]*\))", a.party)] if a.party else calibrate.PARTIES[a.L][a.p]
     specs = a.t or [p for p in party_tactics.PRESETS if p != "as built"]
     base, out = compare(names, a.L, specs, a.n)
     print(f"Level {a.L}, {', '.join(names)}; enemy Health x{a.m}; {a.n} fights a mix")

@@ -1505,6 +1505,13 @@ does to these builds rather than which one is right.
   `close_profile`) and an older one for a Kiting enemy's retreat, with
   the PC's own Weapon. Both spend the same use, so it can't fire twice,
   but they swing different weapons. Changing it moves the numbers.
+- **One Style at a time isn't enforced** (2026-10-28). glossary.md: "You
+  may only be in one Style at a time"; the sim plays every Style a
+  character knows. No sample knows two yet; a build that does should list
+  the one it doesn't fight in under Unmodeled until the sim picks (or
+  switches) Styles itself.
+- **Proposed builds for Felix, Enith, Ashleigh and Sable** (2026-10-28,
+  PROPOSED_BUILDS.md): Levels 2 and 3, waiting on the designer's tweaks.
 - **Exports to rebuild** (designer, 2026-10-27: the sim always plays
   the live CSVs; rebuild the characters later). Twelve sample exports
   were made before some fixed-Level Techniques went up a Level (Felix
