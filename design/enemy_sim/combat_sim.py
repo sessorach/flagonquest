@@ -2529,6 +2529,11 @@ def _lose_health(unit, loss, notes=None, attack=False):
                 notes.append(f"{loss} Health goes to {link['name']} (Lifeline)")
             return
         unit['lifeline'] = None
+    # "You would become Downed" Interrupts (Mind and Body Unbroken), before
+    # the Down, from any source: an attack or a Bleeding tick.
+    if loss >= unit['health'] > 0 and 'shallow_max' in unit and hooks.run(
+            'pc_would_drop', unit, SimpleNamespace(loss=loss, notes=notes)):
+        return
     unit['health'] -= loss
 
 

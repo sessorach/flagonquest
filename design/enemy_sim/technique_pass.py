@@ -29,9 +29,10 @@ write-up is TECHNIQUE_PASS.md.
     python3 technique_pass.py            # everything, N fights a mix
     python3 technique_pass.py -n 50 --only T07   # a slice
 
-The committed technique_pass.csv is `-n 200 -s ASSASSIN_READS=hurt`
-(the Assassin tie, TECHNIQUE_PASS.md); technique_pass_current.csv is the
-Techniques and the added Features under the default reading.
+The committed technique_pass.csv is `-n 200` under the default
+Assassin reading ('softest'); technique_pass_current.csv is the same
+under the old one ('current'), for comparison (its Features predate the
+traded-point designs for Spirit Blessing and Beornhard's War Magic).
 `--seed 50000` reruns on a fresh set of fights.
 """
 import argparse
@@ -69,10 +70,14 @@ HOSTS = {"Enith (L3, proposed)": "S", "Felix (L3, proposed)": "S", "Jackal (L3)"
 # A string instead of a dict swaps points of that Feature for the one
 # being tested, at the Level's whole budget: Spirit Blessing, where an
 # empty copy still gets cast and moves which Blessing the healer casts
-# when, so it's measured against a point of Shielding instead.
+# when, so it's measured against a point of Shielding instead. A (dict,
+# string) pair does the same on top of the dict's Features: Beornhard's
+# War Magic, where a plain Lance copy is one more use of his War Magic
+# Weapon but any Feature makes it a Technique attack of its own, which
+# the sim spends differently (about -0.35 Health whatever the Feature).
 FEATURE_HOSTS = {
     "T072": [("Hilde (L3)", 1, {}), ("Sable (L3, proposed)", 1, {})],
-    "T120": [("Beornhard (L3)", 1, {"Lance": 1}), ("Enith (L3, proposed)", 3, {"Lance": 1})],
+    "T120": [("Beornhard (L3)", 1, ({"Lance": 1}, "Destructive")), ("Enith (L3, proposed)", 3, {"Lance": 1})],
     "T104": [("Hanforth (L3)", 1, "Shielding")],
     "T105": [("Hanforth (L3)", 1, {})],
 }
@@ -222,14 +227,22 @@ def feature_probes():
         rows = [r for r in csv.DictReader(open(os.path.join(HERE, "..", "..", "scripts", "features.csv"),
                                                encoding="utf-8-sig")) if r["Technique ID"] == tid]
         for host, copy_no, core in hosts:
-            if isinstance(core, str):
+            if isinstance(core, (str, tuple)):
+                fixed, swap_from = core if isinstance(core, tuple) else ({}, core)
+                fixed_cost = sum(int(next(r["Point Cost"] for r in rows if r["Feature Name"] == k)) * v
+                                 for k, v in fixed.items())
                 for r in rows:
                     fname, cost = r["Feature Name"], int(r["Point Cost"] or 0)
-                    if fname == core:
+                    if fname == swap_from or fname in fixed:
                         continue
-                    lvl = 3 if r["Tier"] == "Advanced" else 1
-                    total = budget[lvl][0]
-                    out.append((tid, host, copy_no, lvl, {core: total}, fname, 1, cost))
+                    # The lowest Level with room for the fixed Features, the
+                    # tested one and a point of swap_from (Advanced: Level 3).
+                    lvl = next((L for L, (pts, adv) in sorted(budget.items())
+                                if pts >= fixed_cost + cost + 1 and (adv or r["Tier"] != "Advanced")), None)
+                    if lvl is None:
+                        continue
+                    base = dict(fixed, **{swap_from: budget[lvl][0] - fixed_cost})
+                    out.append((tid, host, copy_no, lvl, base, fname, 1, cost))
                 continue
             core_cost = sum(int(next(r["Point Cost"] for r in rows if r["Feature Name"] == k)) * v
                             for k, v in core.items())
@@ -254,7 +267,8 @@ def job_feature(args):
     b = party.read_build(rows[host]["Build"])
     key = HOSTS[host]
     spec = {"id": tid, "copy": copy_no, "level": lvl}
-    swap_from = next((c for h, n, c in FEATURE_HOSTS[tid] if h == host and isinstance(c, str)), None)
+    spec_core = next((c for h, n, c in FEATURE_HOSTS[tid] if h == host), None)
+    swap_from = spec_core if isinstance(spec_core, str) else spec_core[1] if isinstance(spec_core, tuple) else None
     var_f = dict(core, **{fname: k})
     if swap_from:
         # Points of swap_from traded for this Feature, the budget kept.

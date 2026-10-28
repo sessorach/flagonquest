@@ -58,6 +58,8 @@ POINTS = {
     "attack_flipped": "an enemy attack's flip is made, before it hits or misses (unit = the target; ctx: attacker, "
                       "prof, roll, defense, opp_def, used_parry, mode, pcs, movement_on, log). A handler may set "
                       "ctx.defense, or ctx.parry (the attack is Parried)",
+    "pc_would_drop": "this PC is about to be Downed by a Health loss, any source (ctx: loss, notes); "
+                     "returns 1 if it stopped the Down (it sets the PC's Health itself)",
     "ally_would_drop": "a hit is about to Down an ally (unit = a PC who might step in; ctx: ally, loss); "
                        "returns 1 if this PC took it on",
     "enemy_left_reach": "an enemy walked or was Pushed out of this PC's reach (ctx: enemy, start, pushed, pcs, log); "

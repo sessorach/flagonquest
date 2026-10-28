@@ -382,7 +382,7 @@ RECKLESS_CHANCE = 0.05   # share of turns any PC plays like a Diver anyway
 # the party's list order picks, so a Technique that takes a point off a
 # PC's max Health makes every Assassin go for that PC instead (the broad
 # pass, TECHNIQUE_PASS.md).
-ASSASSIN_READS = 'current'
+ASSASSIN_READS = 'softest'
 
 # ---- Enemy offense dials (2026-10-08, measurement only) ----
 # Flat changes to every enemy's Accuracy and attack damage, applied to

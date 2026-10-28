@@ -57,6 +57,10 @@ def target_first(unit, targets):
     return targets[0]
 
 
+# How heavy each armor category looks, lightest first (the Assassin's read).
+ARMOR_WEIGHT = {'Unarmored': 0, 'Light': 1, 'Medium': 2, 'Heavy': 3}
+
+
 def target_lowest_health(unit, targets):
     """Assassin: go for whoever's already hurt worst, unaffected by
     position - registered under 'Assassin' below. With
@@ -67,6 +71,14 @@ def target_lowest_health(unit, targets):
     tiebreak - what a GM can see from across the table."""
     if T.ASSASSIN_READS == 'looks':
         return min(targets, key=lambda c: (c.get('max_health', c['health']), c.get('physres', 0), c['health']))
+    if T.ASSASSIN_READS == 'softest':
+        # Per the designer (2026-10-28): all else equal, an Assassin reads
+        # "softest target" off the lightest armor, the context clue players
+        # and NPCs both can see. Hurt worst first (the share of Health
+        # lost), then the lightest armor, then chance, so nobody is picked
+        # for being listed first.
+        return min(targets, key=lambda c: (c['health'] / max(1, c.get('max_health', c['health'])),
+                                           ARMOR_WEIGHT.get(c.get('armor'), 0), random.random()))
     if T.ASSASSIN_READS == 'hurt':
         # 'hurt' (2026-10-28): the share of Health lost, so nobody is "hurt
         # worst" at the start of a fight; ties go to whoever looks

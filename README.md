@@ -19,7 +19,8 @@ Drafted Level 2 and 3 builds for Felix, Enith, Ashleigh and Sable that level the
 
 - The proposed builds now sit close to the designer's in a fight (best attack 10, other Defenses about half a point lower).
 - The simulator gained Interrupts that cancel, redirect or re-aim an enemy's attack (five Techniques, plus Storm of Blades for a two-weapon striker).
-- Each reading repeats well, but a Technique's worth depends a lot on who carries it, and its XP cost barely predicts it. Sanguine on its own costs a caster's party a lot; Feint still never pays.
+- Each reading repeats well, but a Technique's worth depends a lot on who carries it, and its XP cost barely predicts it. Sanguine on its own costs a caster's party a lot (down for an overhaul); Feint still never pays.
+- Assassin enemies now go for the most hurt PC and, all else equal, the one in the lightest armor, instead of whoever happened to be listed first; Level 1-2 fights got rougher. Interrupts are checked to happen before what triggers them.
 
 ### 2026-10-27 — What each mechanic is worth, and the whole catalog in the sim
 

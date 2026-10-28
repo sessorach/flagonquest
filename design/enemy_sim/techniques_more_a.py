@@ -222,18 +222,21 @@ def _lay_on_hands(pc, c):
 tq._passive("T021", "Mind and Body Unbroken")
 
 
-@hooks.on('pc_hit', 'Mind and Body Unbroken', order=90)
+@hooks.on('pc_would_drop', 'Mind and Body Unbroken')
 def _unbroken(pc, c):
     """T021, "0 AP - Interrupt (you would become Downed)", discard a card:
     "You are not Downed. Instead you have 1 Shallow and 1 Deep Health
     remaining." Not an Encounter Technique: it works as long as the cards
-    last. Checked right after an attack's damage lands (pc_hit), before
-    the enemy moves on; a Down from a Bleeding tick isn't caught."""
-    if pc['health'] > 0 or _pay_card(pc) is None:
-        return
+    last. Before the Down, from any source (2026-10-28: an Interrupt
+    happens before what triggers it, per the designer), so a Bleeding
+    tick is caught too."""
+    if _pay_card(pc) is None:
+        return 0
     pc['health'] = 2
     pc['unbroken'] = pc.get('unbroken', 0) + 1
-    c.applied.append("not Downed: 2 Health left (Mind and Body Unbroken)")
+    if c.notes is not None:
+        c.notes.append("not Downed: 2 Health left (Mind and Body Unbroken)")
+    return 1
 
 
 # ---- Hand of the Chirurgeon (T033) ----

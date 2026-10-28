@@ -1473,16 +1473,31 @@ does to these builds rather than which one is right.
 - **The deferred Techniques** (`coverage.py` lists all 35 with what
   each needs). Summons (seven Techniques) are the biggest group, and the
   most work.
-- **The Assassin tie** (2026-10-28, TECHNIQUE_PASS.md). Assassins go for
-  the least current Health, so at full Health they all pick whoever's
-  first in the party list, and a point off one PC's max Health moves all
-  of them onto that PC (Felix's party +6.4 Health from Felix having 9
-  instead of 10). `ASSASSIN_READS = 'hurt'` (share of Health lost, ties
-  to the squishiest-looking, then chance) takes that out; the broad pass
-  uses it. Default unchanged until the designer says.
-- **Sanguine on its own** costs a caster's party 6.6 Health a fight
-  (Beornhard; Enith 1.4): it turns the whole hit into Bleeding. Rules
-  call, or a note that it wants Reign of Blood alongside.
+- **Sanguine wants an overhaul** (designer, 2026-10-28; not now). Under
+  the current Bleeding rule (half the stacks, rounded up, at the end of
+  the target's turn) it costs a caster's party 6.6 Health a fight
+  (Beornhard; Enith 1.4): it turns the whole hit into Bleeding, which
+  pays out over the target's next few turns, some of it after the target
+  is Down or the fight is over.
+- **The Assassin tactic** (designer, 2026-10-28): "all else equal,
+  assassin enemies are going to intuit 'softest target' by whichever PC
+  is wearing the lightest armor". `ASSASSIN_READS = 'softest'` is the
+  default: hurt worst first (share of Health lost), then the lightest
+  armor, then chance. The old reading ('current') went for the least
+  current Health, so at full Health every Assassin picked whoever was
+  first in the party list, and a point off one PC's max Health moved them
+  all onto that PC (Felix's party +6.4 Health with Felix on 9 instead of
+  10). Level 1-2 calibrate parties got rougher (someone Wounded 36-47% ->
+  55-76%); Level 3 about the same.
+- **Interrupts happen before their trigger** (designer, 2026-10-28;
+  RULES_DESIGN.md). Checked every modeled one: Gainsay, Magehunter, Bark
+  Turns the Blade, Lifeline, Raise Spirits, Arrow Finds Only Mist and
+  Lend Bulwark all resolve before their trigger, and an attacker Downed
+  by one never attacks. Mind and Body Unbroken used to restore the PC
+  after the Down landed and missed Downs from Bleeding; it's now at
+  `pc_would_drop`, before the Health comes off, from any source. Parting
+  Shot resolves after the enemy has stepped away, which comes out the
+  same (a Downed enemy doesn't attack).
 - **Attack Interrupts, my rules to confirm** (2026-10-28). A once-a-fight
   save (Arrow Finds Only Mist before the flip, Swatting Paw and
   Slithering Hands after it) goes on an attack whose expected Health

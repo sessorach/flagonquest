@@ -431,6 +431,16 @@ Harried's own entries say they still come off that turn. Write new
 content the same way, and when a general rule has grown carve-outs, move
 each one onto the thing it's about.
 
+### STANDING RULE — An Interrupt happens before what triggers it
+
+Per the designer (2026-10-28). Interrupts are priced on the chance to act
+before the triggering action happens: Gainsay lets a battlemage blast an
+enemy before its attack lands, and if that Downs it, the attack never
+comes. "You would become Downed" catches the Down before it happens, from
+any source. Where a trigger names a later point ("before the attack hits
+or misses", "after the attack is resolved"), the Interrupt goes there.
+The simulator follows this (TABLE_PLAY_NOTES.md, 2026-10-28).
+
 ### STANDING RULE — Bleeding is Health loss over time
 
 Per the designer (2026-10-07, reworked 2026-10-19; until then this rule
