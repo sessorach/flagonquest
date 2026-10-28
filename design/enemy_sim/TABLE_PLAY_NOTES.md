@@ -1470,9 +1470,31 @@ does to these builds rather than which one is right.
 - **Wall of Shadows** seldom pays: Beornhard (L3) put it up in 9 of 240
   fights against Level 2 encounters, since it blocks his own spells too,
   and the shooters it would block die fast anyway.
-- **The deferred Techniques** (`coverage.py` lists all 41 with what
+- **The deferred Techniques** (`coverage.py` lists all 35 with what
   each needs). Summons (seven Techniques) are the biggest group, and the
   most work.
+- **The Assassin tie** (2026-10-28, TECHNIQUE_PASS.md). Assassins go for
+  the least current Health, so at full Health they all pick whoever's
+  first in the party list, and a point off one PC's max Health moves all
+  of them onto that PC (Felix's party +6.4 Health from Felix having 9
+  instead of 10). `ASSASSIN_READS = 'hurt'` (share of Health lost, ties
+  to the squishiest-looking, then chance) takes that out; the broad pass
+  uses it. Default unchanged until the designer says.
+- **Sanguine on its own** costs a caster's party 6.6 Health a fight
+  (Beornhard; Enith 1.4): it turns the whole hit into Bleeding. Rules
+  call, or a note that it wants Reign of Blood alongside.
+- **Attack Interrupts, my rules to confirm** (2026-10-28). A once-a-fight
+  save (Arrow Finds Only Mist before the flip, Swatting Paw and
+  Slithering Hands after it) goes on an attack whose expected Health
+  loss is at least `INTERRUPT_SAVE_MIN` (1.5), or that could Down the PC;
+  after the flip only one that would hit. Slithering Hands' redirect
+  checks the attacker's own Defense of the kind its attack named, with
+  the attacker's own damage less its Resist. Seasons Pass the Forest has
+  no flip of its own, so no Hearts in its Wards; it's used on the first
+  damaging spell at the PC. Lend Bulwark takes an adjacent ally's attack
+  when this PC's Parry is 2 better than the ally's Defense against it, or
+  when the hit could Down the ally. Storm of Blades assumes the row's
+  one-handed Weapon is in both hands.
 - **Regaining uses, my rules to confirm** (2026-10-27, `encounter.py`):
   a spent use comes back when it outranks every attack use still in hand
   (attacks first, then Level, then damage); Vigor is spent that way as

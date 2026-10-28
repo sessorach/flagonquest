@@ -52,6 +52,12 @@ POINTS = {
     "fight_start_order": "the turn order's just been rolled (unit = a PC; ctx: order)",
     "attack_declared": "an enemy weapon attack is declared on this PC, before the flip "
                        "(ctx: attacker, prof, pcs, enemies, movement_on, log); returns damage dealt to the attacker",
+    "attack_targeting": "an enemy attack (or Hex) at a PC, before its flip; run for the target, then each ally "
+                        "(ctx: attacker, prof, target, opp_def, mode, pcs, enemies, movement_on, log). A handler may "
+                        "set ctx.target (move it to this PC), ctx.opp_def, ctx.no_harried, or ctx.cancel",
+    "attack_flipped": "an enemy attack's flip is made, before it hits or misses (unit = the target; ctx: attacker, "
+                      "prof, roll, defense, opp_def, used_parry, mode, pcs, movement_on, log). A handler may set "
+                      "ctx.defense, or ctx.parry (the attack is Parried)",
     "ally_would_drop": "a hit is about to Down an ally (unit = a PC who might step in; ctx: ally, loss); "
                        "returns 1 if this PC took it on",
     "enemy_left_reach": "an enemy walked or was Pushed out of this PC's reach (ctx: enemy, start, pushed, pcs, log); "

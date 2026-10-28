@@ -1,12 +1,12 @@
 # Latest replays (2026-10-28)
 
-Proposed builds third pass (Stats spread out); Feint plays as a party setup (FEINT_SETUP)
+Attack Interrupts (five Techniques), Storm of Blades, party.fit, and the broad pass over every Technique (TECHNIQUE_PASS.md)
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 90% party HP left
-- Matchup average over 1000 fights: 93.4% wins, 3.7 rounds, 72% HP left on a win
+- Matchup average over 1000 fights: 95.1% wins, 3.6 rounds, 74% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

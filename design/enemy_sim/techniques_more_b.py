@@ -43,12 +43,7 @@ DEFERRED.update({
     "T125": "summoned creatures",
     "T126": "walls with their own Health that block movement",
     "T127": "a damaging wall that hits whoever enters or ends a turn in it",
-    "T136": "a second wielded weapon (the sim gives a PC one)",
-    "T148": "an Interrupt that turns an enemy's attack into a Parry (attack_declared can't stop the attack)",
-    "T166": "an Interrupt that swaps the Defense an enemy spell attack checks, and two Ward types at once",
-    "T168": "an Interrupt that takes the PC out of an enemy's attack (attack_declared can't cancel it)",
     "T170": "ignoring Wounded's penalties (tactics.pc_wounded is read everywhere) and Vigor",
-    "T178": "a hook that moves an enemy's attack onto another PC's Parry Defense",
     "T179": "an enemy-move hook that fires without Parting Shot in the fight",
     "T181": "Good Luck on enemies' attacks against the PC (there's no enemy-side Good Luck field)",
     "T183": "a rule for where a free 1-meter Shift per attack should go",
@@ -70,7 +65,7 @@ def _med(stats, skills):
 
 
 from tech_common import (_ctx_log, _extra_successes, _is_unarmed_weapon, _is_weapon_attack,  # noqa: F401
-                         _is_ranged_weapon, _resolve, _log_strike, _push_from, _within)
+                         _is_ranged_weapon, _resolve, _log_strike, _push_from, _within, _near, _worth_stopping)
 
 
 # Interrupt AP: tech_common's one pool.
@@ -569,7 +564,8 @@ def _record_last(pc, c):
                                     repeat=bool(getattr(c, 'repeat', False)))
 
 
-for _key in ("Doubleshot", "Twin Spell", "Snake School - Striking Constrictor", "Demon School - Circling Vulture"):
+for _key in ("Doubleshot", "Twin Spell", "Snake School - Striking Constrictor", "Demon School - Circling Vulture",
+             "Tiger School - Storm of Blades"):
     hooks.on('attack_resolved', _key, order=45)(_record_last)
 
 
@@ -586,6 +582,34 @@ def _doubleshot(pc, c):
             and not pc.get('_repeat') and _is_ranged_weapon(pc, last.sub)):
         pc['_repeat'] = last.mv or _plain_repeat()
         pc['repeats_b'] = pc.get('repeats_b', 0) + 1
+    return 0
+
+
+def _storm_build(sheet, copies, choices):
+    # A second weapon to Repeat with: the row's Weapon, one-handed, carried
+    # in each hand (designer, 2026-10-28: a striker with two weapons for
+    # the broad pass). The sim has no separate off-hand weapon.
+    w = sheet.weapon or "1H Heavy Melee"
+    if w.startswith("2H") or w in ("Unarmed", "War Magic") or "Bow" in w:
+        raise BuildError(f"Storm of Blades needs a one-handed weapon in each hand; the row's Weapon is {w}")
+    sheet.passives.append("Tiger School - Storm of Blades")
+
+
+technique("T136", "Tiger School - Storm of Blades")(_storm_build)
+
+
+@hooks.on('after_attack', "Tiger School - Storm of Blades", order=22)
+def _storm_of_blades(pc, c):
+    """T136 (Style): "Right after you make an attack with one of your
+    weapons, you may spend 2 AP to Repeat it with your other weapon." Like
+    Doubleshot's Repeat, with 2 AP: on any weapon attack whose target is
+    still standing, when the AP is there."""
+    last = pc.get('_last_b')
+    if (last and not last.repeat and last.target is c.target and c.target['health'] > 0 and c.ap >= 2
+            and not pc.get('_repeat') and _is_weapon_attack(pc, last.sub)):
+        pc['_repeat'] = last.mv or _plain_repeat()
+        pc['repeats_b'] = pc.get('repeats_b', 0) + 1
+        return 2
     return 0
 
 
@@ -1159,3 +1183,119 @@ def _spellblade_rider(pc, c):
         key, n = 'crippled', x + 1 + cs._suit_count(c.pool, 'Clubs')
     cs._gain(t, key, n)
     c.notes.append(f"{key.capitalize()} +{n} (Spellblade, {via})")
+
+
+# ---- Interrupts on an enemy's attack (2026-10-28) ----
+# combat_sim._enemy_attack runs `attack_targeting` before the flip (move,
+# cancel or re-Defense the attack) and `attack_flipped` after it, before it
+# hits or misses. A once-a-fight save goes on an attack worth stopping
+# (tech_common._worth_stopping).
+
+_encounter("T148", "Bear School - Swatting Paw", unarmed=True)
+_encounter("T166", "Great Old Oak School - Seasons Pass the Forest", unarmed=True)
+_encounter("T168", "Shugen School - Arrow Finds Only Mist")
+tq._passive("T178", "Lend Bulwark")
+
+
+def _weapon_attack(c):
+    return c.mode != 'hex' and c.prof.get('action') in tq.cs.WEAPON_ACTIONS
+
+
+@hooks.on('attack_flipped', "Bear School - Swatting Paw")
+def _swatting_paw(pc, c):
+    """T148 (0 AP Interrupt, a weapon attack flip against your Parry by a
+    creature in your Unarmed reach, before it hits or misses): "Make an
+    Unarmed weapon attack against the target. If it hits, you Parry the
+    target's attack, and they are Frightened of you 1 + [Hearts] times."
+    Spent on a flip that would hit for enough to matter."""
+    cs = tq.cs
+    name, e = "Bear School - Swatting Paw", c.attacker
+    if (not c.used_parry or not _weapon_attack(c) or tq.encounter.left(pc, name) <= 0
+            or not _near(pc, e, c.movement_on) or not _worth_stopping(pc, e, c.prof, c.opp_def, c.roll)):
+        return
+    tq.encounter.spend(pc, name)
+    r = _resolve(pc, e, c.pcs, skill_total=pc['skill_total'], opp_def=pc['opp_def'], damage=pc['damage'],
+                 dmg_type=pc['dmg_type'], skill=pc['attack_skill'], weapon=True)
+    notes = []
+    if r.hit:
+        c.parry = True
+        if e['health'] > 0:
+            n = 1 + cs._suit_count(r.pool, 'Hearts')
+            cs._test_rider(pc, e, 'fright', n)
+            notes.append(f"Parries the attack; Frightened +{n}")
+        else:
+            notes.append("Parries the attack")
+    _log_strike(c.log, pc, e, r, "Swatting Paw", notes)
+
+
+@hooks.on('attack_targeting', "Great Old Oak School - Seasons Pass the Forest")
+def _seasons_pass(pc, c):
+    """T166 (1 AP Interrupt, a spell attack against your Dodge, before it
+    hits or misses): "You may apply your Parry Defense with your Unarmed
+    weapon against the attack instead, and you aren't Harried from applying
+    your Defense to it. Then you gain [half your Meditation Skill Total] +
+    [Hearts] stacks each of Fire Ward and Frost Ward." Taken before the
+    flip (nothing it does depends on the flip); no flip of its own, so no
+    Hearts. On the first spell at the PC that deals damage."""
+    name = "Great Old Oak School - Seasons Pass the Forest"
+    if (c.target is not pc or c.mode == 'hex' or c.prof.get('action') in tq.cs.WEAPON_ACTIONS
+            or c.opp_def != 'Dodge' or not c.prof.get('attack_damage') or tq.encounter.left(pc, name) <= 0
+            or not _irq_spend(pc, 1)):
+        return
+    tq.encounter.spend(pc, name)
+    if pc['parry'] >= pc['dodge']:
+        c.opp_def = 'Parry'
+    c.no_harried = True
+    n = tq.half(pc, 'Meditation')
+    wards = pc.setdefault('wards', {})
+    for k in ('Fire', 'Frost'):
+        wards[k] = max(wards.get(k, 0), n)
+    if c.log:
+        c.log(unit=pc['name'], action='technique', target=c.attacker['name'], via="Seasons Pass the Forest",
+              note=f"{'Parry' if c.opp_def == 'Parry' else 'Dodge'}, not Harried; Fire and Frost Ward {n}")
+
+
+@hooks.on('attack_targeting', "Shugen School - Arrow Finds Only Mist")
+def _arrow_finds_mist(pc, c):
+    """T168 (1 AP Interrupt, an attack declared against your Dodge, before
+    the flip): "Teleport up to [half your Meditation Skill Total] meters.
+    The attack no longer targets you." The attack is spent. The PC goes
+    straight away from the attacker."""
+    cs = tq.cs
+    name, e = "Shugen School - Arrow Finds Only Mist", c.attacker
+    dodge = c.opp_def == 'Dodge' or (c.opp_def == 'Parry/Dodge' and pc['dodge'] > pc['parry'])
+    if (c.target is not pc or not dodge or tq.encounter.left(pc, name) <= 0 or _irq_ap(pc) < 1
+            or not _worth_stopping(pc, e, c.prof, c.opp_def)):
+        return
+    _irq_spend(pc, 1)
+    tq.encounter.spend(pc, name)
+    c.cancel = True
+    if c.movement_on and 'pos' in pc and 'pos' in e:
+        cs._push(pc, e['pos'], tq.half(pc, 'Meditation'))
+    pc['mists'] = pc.get('mists', 0) + 1
+    if c.log:
+        c.log(unit=pc['name'], action='technique', target=e['name'], via="Arrow Finds Only Mist",
+              note="Teleports away; the attack is called off")
+
+
+@hooks.on('attack_targeting', "Lend Bulwark")
+def _lend_bulwark(pc, c):
+    """T178 (Style): "When an ally adjacent to you is the target of an
+    attack that could be Parried, before the flip, you may have the attack
+    made against your Parry Defense instead." Taken when this PC's Parry is
+    at least 2 better than the ally's Defense against it, or when the hit
+    could Down the ally and this PC would stay up."""
+    cs = tq.cs
+    t = c.target
+    if (t is pc or pc['health'] <= 0 or c.mode == 'hex' or c.opp_def != 'Parry/Dodge'
+            or not _near(pc, t, c.movement_on)):
+        return
+    mine, theirs = cs.pc_defense_for(pc, 'Parry'), cs.pc_defense_for(t, c.opp_def)
+    dmg_t = max(0, c.prof.get('attack_damage', 0) - cs.pc_resist_for_enemy_attack(c.prof, t))
+    dmg_me = max(0, c.prof.get('attack_damage', 0) - cs.pc_resist_for_enemy_attack(c.prof, pc))
+    if mine >= theirs + 2 or (dmg_t >= t['health'] and dmg_me < pc['health'] and mine >= theirs):
+        c.target, c.opp_def = pc, 'Parry'
+        pc['bulwarks'] = pc.get('bulwarks', 0) + 1
+        if c.log:
+            c.log(unit=pc['name'], action='technique', target=c.attacker['name'], via="Lend Bulwark",
+                  note=f"takes the attack meant for {t['name']} on Parry")

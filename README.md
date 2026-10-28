@@ -13,12 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-10-28 — Proposed builds for the last four characters
+### 2026-10-28 — Proposed builds, and a pass over every Technique
 
-Drafted Level 2 and 3 builds for Felix, Enith, Ashleigh and Sable, then reworked them twice so they level the way the designer's own characters do: some XP on side interests, Stats spread out, fewer Techniques and more Defense.
+Drafted Level 2 and 3 builds for Felix, Enith, Ashleigh and Sable that level the way the designer's own characters do, then ran every Technique and Feature the simulator plays through a broad test to see how well it can tell what each is worth.
 
-- They now sit close to the designer's builds in a fight (best attack 10, other Defenses about half a point lower) and the parties do about as well as before.
-- Feint now waits to set up a target for the party, which cuts what it costs, but with Harried gone after the target's turn it still never pays for itself.
+- The proposed builds now sit close to the designer's in a fight (best attack 10, other Defenses about half a point lower).
+- The simulator gained Interrupts that cancel, redirect or re-aim an enemy's attack (five Techniques, plus Storm of Blades for a two-weapon striker).
+- Each reading repeats well, but a Technique's worth depends a lot on who carries it, and its XP cost barely predicts it. Sanguine on its own costs a caster's party a lot; Feint still never pays.
 
 ### 2026-10-27 — What each mechanic is worth, and the whole catalog in the sim
 

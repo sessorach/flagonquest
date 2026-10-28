@@ -539,6 +539,8 @@ def pc_defense_for(target, opp_def):
         return max(target['parry'], target['dodge']) - harried - wounded
     if opp_def == 'Dodge':
         return target['dodge'] - harried - wounded
+    if opp_def == 'Parry':  # an attack moved onto a PC's Parry alone (Lend Bulwark, Seasons Pass the Forest)
+        return target['parry'] - harried - wounded
     if opp_def == 'Bodily':
         return target['bodily'] - vulnerable - wounded
     if opp_def == 'Mental':
@@ -2170,6 +2172,8 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         _decay(pc, 'hasted')
         if _decay(pc, 'ward') and pc['ward'] == 0:
             pc['ward_type'] = None
+        if pc.get('wards'):
+            pc['wards'] = {k: v - 1 for k, v in pc['wards'].items() if v > 1}
         if _decay(pc, 'bleeding'):
             h0 = pc['health']
             lost = _bleed_loss(pc, 1 + _bleed_extra(pc))
@@ -2733,6 +2737,17 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
         attacker=e, prof=prof, pcs=pcs, enemies=enemies, movement_on=movement_on, log=party_log))
     if e['health'] <= 0:
         return interrupt_dmg
+    # Interrupts that move this attack to another PC, call it off, or change
+    # the Defense it checks, before the flip (2026-10-28): the target's own
+    # first, then its allies' (Lend Bulwark).
+    tc = SimpleNamespace(attacker=e, prof=prof, target=target, opp_def=prof['opp_def'], cancel=False,
+                         no_harried=False, mode=mode, pcs=pcs, enemies=enemies, movement_on=movement_on,
+                         log=party_log)
+    for p in [target] + [p for p in pcs if p is not target and p['health'] > 0]:
+        hooks.run('attack_targeting', p, tc)
+        if tc.cancel:
+            return interrupt_dmg
+    target, opp_def = tc.target, tc.opp_def
     taunter = e.get('taunted_by') if e.get('taunted', 0) > 0 else None
     off_taunt = taunter is not None and taunter['health'] > 0 and taunter is not target
     good = 1 if fighting_style == 'Aimed Shot' else 0
@@ -2749,9 +2764,9 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
         e['crip_points'] = e.get('crip_points', 0) + e['crippled']
     # rulebook.md, Grapple: "Creatures have Good Luck on any attacks
     # against your Dodge or Parry Defense."
-    if target.get('grapple') is not None and prof['opp_def'] in ('Parry/Dodge', 'Dodge'):
+    if target.get('grapple') is not None and opp_def in ('Parry/Dodge', 'Dodge', 'Parry'):
         good += 1
-    bad += _cover_bad_luck(e, target, prof['opp_def'])
+    bad += _cover_bad_luck(e, target, opp_def)
     if T.CARDS:
         flipped, net = cards.flip_for(e['deck'], good, bad)
         card = cards.used_value(flipped, net)
@@ -2765,22 +2780,30 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
         if e['health'] <= 0:
             return interrupt_dmg
     roll = prof['accuracy'] - e.get('crippled', 0) + card
-    opp_def_val = pc_defense_for(target, prof['opp_def'])
+    opp_def_val = pc_defense_for(target, opp_def)
     # Parried = a miss where Parry was the Defense actually used
     # (rulebook.md: "a target who used Parry Defense is considered to
     # have Parried"); pc_defense_for picks the better of the two.
-    used_parry = prof['opp_def'] == 'Parry/Dodge' and target['parry'] >= target['dodge']
+    used_parry = opp_def == 'Parry' or (opp_def == 'Parry/Dodge' and target['parry'] >= target['dodge'])
     # Boughs Unbroken (T175): "You aren't Harried from applying your
     # Parry Defense with your Unarmed weapon."
-    if prof['opp_def'] in ('Parry/Dodge', 'Dodge'):
-        if not (used_parry and 'Boughs Unbroken' in target.get('passives', ())):
+    if opp_def in ('Parry/Dodge', 'Dodge', 'Parry'):
+        if not (tc.no_harried or (used_parry and 'Boughs Unbroken' in target.get('passives', ()))):
             target['harried'] = target.get('harried', 0) + 1
         target['attacks_vs_parry_dodge'] = target.get('attacks_vs_parry_dodge', 0) + 1
     target['attacks_received'] = target.get('attacks_received', 0) + 1
-    hit = roll >= opp_def_val
+    # Interrupts after the flip and before it hits or misses (2026-10-28):
+    # Swatting Paw and Slithering Hands. A handler can set the Defense or
+    # turn the attack into a Parry (a redirect resolves itself first).
+    fc = SimpleNamespace(attacker=e, prof=prof, roll=roll, defense=opp_def_val, opp_def=opp_def,
+                         used_parry=used_parry, parry=False, mode=mode, pcs=pcs,
+                         movement_on=movement_on, log=party_log)
+    hooks.run('attack_flipped', target, fc)
+    opp_def_val = fc.defense
+    hit = roll >= opp_def_val and not fc.parry
     dmg = raw_dmg = resist = 0
-    applied = []
-    parried = not hit and used_parry
+    applied = ['Parried by an Interrupt'] if fc.parry else []
+    parried = fc.parry or (not hit and used_parry)
     if parried:
         target['parries'] = target.get('parries', 0) + 1
         hooks.run('pc_parried', target, SimpleNamespace(rnd=rnd, attacker=e))
@@ -2792,7 +2815,10 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
         else:
             resist = pc_resist_for_enemy_attack(prof, target)
             ward_on = target.get('ward', 0) > 0 and target.get('ward_type') == prof.get('dmg_type')
-            if ward_on:
+            # A second Ward type held at the same time (Seasons Pass the
+            # Forest's Fire and Frost Ward) lives in `wards`.
+            extra = target.get('wards', {}).get(prof.get('dmg_type'), 0) if not ward_on else 0
+            if ward_on or extra:
                 resist += 2
             raw_dmg = prof['attack_damage']
             if T.CARDS and T.ENEMY_SUIT_EXTRA:
@@ -2806,6 +2832,11 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
             if ward_on and dmg > 0:
                 soaked = min(dmg, target['ward'])
                 target['ward'] -= soaked
+                dmg -= soaked
+                target['ward_absorbed'] = target.get('ward_absorbed', 0) + soaked
+            elif extra and dmg > 0:
+                soaked = min(dmg, extra)
+                target['wards'][prof['dmg_type']] -= soaked
                 dmg -= soaked
                 target['ward_absorbed'] = target.get('ward_absorbed', 0) + soaked
             # PC-side Protected: each stack absorbs 1 Health loss.

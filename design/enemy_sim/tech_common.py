@@ -172,6 +172,22 @@ def _push_from(pc, e, origin, n, pcs, log, notes, via):
     cs._after_push(e, start, pcs, log, f"Pushed by {via}")
 
 
+def _worth_stopping(pc, e, prof, opp_def, roll=None):
+    """Whether a once-a-fight Interrupt that stops this enemy attack is
+    worth spending on it (tunables.INTERRUPT_SAVE_MIN). `roll` is the
+    attack's flip when it's already made."""
+    cs = tq.cs
+    dmg = max(0, prof.get('attack_damage', 0) - cs.pc_resist_for_enemy_attack(prof, pc))
+    if not dmg:
+        return False
+    defense = cs.pc_defense_for(pc, opp_def)
+    if roll is not None:
+        return roll >= defense and (dmg >= cs.T.INTERRUPT_SAVE_MIN or dmg >= pc['health'])
+    acc = prof['accuracy'] - e.get('crippled', 0)
+    p_hit = sum(1 for f in range(1, 14) if acc + f >= defense) / 13
+    return p_hit * dmg >= cs.T.INTERRUPT_SAVE_MIN or (p_hit >= 0.5 and dmg >= pc['health'])
+
+
 def _within(pc, units, reach, movement_on):
     cs = tq.cs
     if not movement_on:

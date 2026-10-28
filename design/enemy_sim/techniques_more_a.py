@@ -44,7 +44,6 @@ DEFERRED.update({
     "T084": "a hook where a PC gains an effect (_apply_to_pc), to ignore the stacks",
     "T087": "a Teleport-and-swap move the PC's turn plans around",
     "T088": "enemy_left_reach firing without Parting Shot (_CTX['ps_pcs']), and a Countered move",
-    "T089": "a hook between an enemy's flip and its hit, to set the PC's Parry and redirect the attack",
     "T090": "poison item rules",
     "T092": "PC grapples, and redirecting a Parried attack",
     "T098": "summoned creatures",
@@ -55,7 +54,8 @@ DEFERRED.update({
 # ---- Shared helpers ----
 
 from tech_common import (interrupt_ap_left, _interrupt_ap, _can_pay, _pay_card, _heal,  # noqa: E402,F401
-                         _near, _missing)
+                         _near, _missing, _log_strike, _worth_stopping)
+from types import SimpleNamespace  # noqa: E402
 
 
 # ---- Solemn Pact (T013) ----
@@ -881,3 +881,48 @@ def _blood_spirit_cast(pc, c):
     pc['blood_spirit_paid'] = pc.get('blood_spirit_paid', 0) + x
     enc.regain(pc, g, f"Blood-Powered Spirit ({x} Health)", c.log)
     return 0
+
+
+# ---- Snake School - Slithering Hands (T089), on an enemy's flip ----
+
+tq._encounter("T089", "Snake School - Slithering Hands", unarmed=True)
+
+
+@hooks.on('attack_flipped', "Snake School - Slithering Hands")
+def _slithering_hands(pc, c):
+    """T089 (0 AP Interrupt, a weapon attack flip against only your Parry,
+    before it hits or misses): "Make an Unarmed weapon attack flip. Your
+    Parry Defense against the attack is equal to its result. If you Parry
+    the attack, it's redirected: it's made against the target instead,
+    using your flip's result, and resolved normally." Only on a flip that
+    would hit anyway (the new Parry can come out lower), and worth stopping.
+    The redirected attack checks the attacker's own Defense of the kind it
+    named and deals its own damage, less the attacker's Resist."""
+    cs = tq.cs
+    name, e = "Snake School - Slithering Hands", c.attacker
+    if (not c.used_parry or c.mode == 'hex' or c.prof.get('action') not in cs.WEAPON_ACTIONS
+            or tq.encounter.left(pc, name) <= 0 or not _worth_stopping(pc, e, c.prof, c.opp_def, c.roll)):
+        return
+    tq.encounter.spend(pc, name)
+    mod = pc['skill_total'] - pc.get('crippled', 0)
+    value, pool = cs._pc_flip(pc, mod, c.roll + 1, pc.get('good_luck', 0), cs._pc_status_bad_luck(pc, e),
+                              cs.BIG, c.pcs)
+    result = mod + value
+    c.defense = result
+    if c.roll >= result:
+        if c.log:
+            c.log(unit=pc['name'], action='technique', target=e['name'], via="Slithering Hands",
+                  note=f"Parry {result}: not enough")
+        return
+    c.parry = True
+    prof = dict(opp_def=c.prof['opp_def'], dmg_type=c.prof.get('dmg_type'))
+    defense = cs.enemy_defense_for_pc_attack(prof, e)
+    resist = cs.enemy_resist_for_pc_attack(prof, e)
+    dmg = absorbed = 0
+    if result >= defense:
+        dmg, absorbed = cs._land_damage(pc, e, c.prof.get('attack_damage', 0), resist)
+    pc['redirects'] = pc.get('redirects', 0) + 1
+    _log_strike(c.log, pc, e, SimpleNamespace(roll=result, defense=defense, hit=result >= defense, dmg=dmg,
+                                              raw=c.prof.get('attack_damage', 0), resist=resist, absorbed=absorbed,
+                                              opp_def=prof['opp_def'], gambles=0),
+                "Slithering Hands (redirected)", ["Parries the attack"])

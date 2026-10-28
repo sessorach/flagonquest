@@ -67,6 +67,12 @@ def target_lowest_health(unit, targets):
     tiebreak - what a GM can see from across the table."""
     if T.ASSASSIN_READS == 'looks':
         return min(targets, key=lambda c: (c.get('max_health', c['health']), c.get('physres', 0), c['health']))
+    if T.ASSASSIN_READS == 'hurt':
+        # 'hurt' (2026-10-28): the share of Health lost, so nobody is "hurt
+        # worst" at the start of a fight; ties go to whoever looks
+        # squishiest, then to chance rather than the party's list order.
+        return min(targets, key=lambda c: (c['health'] / max(1, c.get('max_health', c['health'])),
+                                           c.get('max_health', c['health']), c.get('physres', 0), random.random()))
     return min(targets, key=lambda c: c['health'])
 
 

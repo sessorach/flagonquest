@@ -97,6 +97,12 @@ HEALING_MAGIC_AP_COST = 1
 # T075 Magehunter's own techniques.csv row: "1 AP - Interrupt" - see
 # combat_sim._magehunter_interrupt.
 MAGEHUNTER_AP_COST = 1
+# A once-a-fight Interrupt that stops an enemy attack (Arrow Finds Only
+# Mist, Swatting Paw, Slithering Hands; 2026-10-28) is spent on an attack
+# whose expected Health loss is at least this much, or that could Down
+# the PC. Before the flip that's hit chance x damage after Resist; after
+# the flip the hit is known, so it's the damage.
+INTERRUPT_SAVE_MIN = 1.5
 # T076 Parting Shot's own techniques.csv row: "1 AP - Interrupt" - see
 # combat_sim._parting_shot_interrupt.
 PARTING_SHOT_AP_COST = 1
@@ -370,7 +376,12 @@ RECKLESS_CHANCE = 0.05   # share of turns any PC plays like a Diver anyway
 # ---- How the Assassin tactic reads "squishy" (2026-10-08 test) ----
 # 'current': whoever has the least Health right now (finishes off the
 # hurt). 'looks': whoever looks squishiest - lowest max Health, then
-# lightest armor - the designer's own wording for the tactic.
+# lightest armor - the designer's own wording for the tactic. 'hurt'
+# (2026-10-28): the lowest share of max Health, ties to the squishiest
+# looking, then chance. Under 'current' everyone at full Health ties and
+# the party's list order picks, so a Technique that takes a point off a
+# PC's max Health makes every Assassin go for that PC instead (the broad
+# pass, TECHNIQUE_PASS.md).
 ASSASSIN_READS = 'current'
 
 # ---- Enemy offense dials (2026-10-08, measurement only) ----

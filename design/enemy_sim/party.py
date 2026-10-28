@@ -109,6 +109,8 @@ def _entry(t):
     e = {"id": t["id"], "name": game_data.technique_name(t["id"]), "level": t.get("level", 1)}
     if feats or "features" in t:
         e["features"] = feats
+    if t.get("note"):
+        e["note"] = t["note"]
     return e
 
 
@@ -122,7 +124,10 @@ def apply_edits(build, edits):
       "add":     [{"id": "T104", "level": 2, "features": {...}}]
       "stats" / "skills": {"Mind": 4}   (only the ones that change)
       "inventory": [...]                 (the whole list)
+      "build": {...}                     (a whole build instead: fit()'s result)
     """
+    if "build" in edits:
+        return json.loads(json.dumps(edits["build"]))
     b = json.loads(json.dumps(build))
     techs = b["techniques"]
 
@@ -144,6 +149,166 @@ def apply_edits(build, edits):
     if "inventory" in edits:
         b["inventory"] = edits["inventory"]
     return b
+
+
+# ---- XP and prereqs, for swaps (2026-10-28) ----
+# The rulebook's costs: a Skill rank costs its new rank, a Stat point twice
+# its new rank, a Technique three times its Level. Prereqs are Prereq Check
+# (techniques.csv; convert.py's PREREQ CHECK) against raw points.
+
+def tech_level(t):
+    return game_data.fixed_level(t["id"]) or _level(t.get("level", 1))
+
+
+def xp_spent(build):
+    """(Stats, Skills, Techniques) XP of a build."""
+    st = sum(v * (v + 1) for v in map(int, build["statPoints"].values()))
+    sk = sum(v * (v + 1) // 2 for v in map(int, build["skillPoints"].values()))
+    te = sum(3 * tech_level(t) for t in build["techniques"])
+    return st, sk, te
+
+
+def _points(build):
+    return {**{k: int(v) for k, v in build["skillPoints"].items()},
+            **{k: int(v) for k, v in build["statPoints"].items()}}
+
+
+def _threshold(n, level):
+    n = n.strip()
+    if "[Level]" in n:
+        rest = n.replace("[Level]", "").strip()
+        return level + (int(rest.replace(" ", "")) if rest else 0)
+    return int(n)
+
+
+def prereq_needs(build):
+    """Every unmet Prereq Check clause in `build`: a list of (options, N,
+    what) - raise any one of `options` (Skill or Stat names) to N - or
+    (None, None, what) for one no rank can fix (a Technique it needs)."""
+    pts, out = _points(build), []
+    names = {game_data.technique_name(t["id"]) for t in build["techniques"]}
+    skills = list(build["skillPoints"])
+    for t in build["techniques"]:
+        cell = (game_data.techniques()[t["id"]].get("Prereq Check") or "").strip()
+        if not cell or cell == "None":
+            continue
+        level = tech_level(t)
+        what = game_data.technique_name(t["id"])
+        clauses = []
+        for raw in cell.split(","):
+            raw = raw.strip()
+            if "{" in raw:
+                # ChoiceField{a|b=Skill:N&Skill:N; c=...}: the branch for this copy's pick.
+                body = raw[raw.index("{") + 1:raw.rindex("}")]
+                for branch in body.split(";"):
+                    when, _, cl = branch.partition("=")
+                    if t.get("note") and t["note"] in [w.strip() for w in when.split("|")]:
+                        clauses += cl.split("&")
+                continue
+            clauses.append(raw)
+        for cl in clauses:
+            cl = cl.strip()
+            if not cl:
+                continue
+            if cl.startswith("Technique:"):
+                if cl.split(":", 1)[1] not in names:
+                    out.append((None, None, f"{what} needs {cl.split(':', 1)[1]}"))
+                continue
+            who, _, n = cl.rpartition(":")
+            n = _threshold(n, level)
+            opts = skills if who == "AnySkill" else who.strip("()").split("|")
+            if max(pts.get(o, 0) for o in opts) < n:
+                out.append((opts, n, f"{what} needs {cl}"))
+    return out
+
+
+def _rank_cost(kind_stat, frm, to):
+    k = 2 if kind_stat else 1
+    return sum(k * r for r in range(frm + 1, to + 1))
+
+
+DONORS = ("Resilience", "Composure", "Insight", "Awareness", "Athletics", "Might")
+
+
+def fit(build, add=(), remove=(), donors=DONORS, budget=None, cap=None, free=False):
+    """A copy of `build` with Techniques added/removed and the XP total
+    kept: prereq ranks the new Techniques need are bought (the cheapest
+    option of an OR), then the XP over budget comes off `donors` (Skill or
+    Stat names; the highest rank first, never below what a prereq needs),
+    and anything left under budget goes back into donors, then into an
+    untrained Skill at 1 XP, so the total lands exactly. `free` skips the
+    trimming: the Techniques and their prereq ranks come on top. Returns
+    (build, notes, prereq XP bought); raises BuildError when it can't (a
+    Technique prereq, the rank cap, or not enough donor ranks)."""
+    b = apply_edits(build, {"add": list(add), "remove": list(remove)})
+    budget = budget if budget is not None else sum(xp_spent(build))
+    stats = set(b["statPoints"])
+    notes = []
+    before = sum(xp_spent(b))
+    for _ in range(30):
+        need = prereq_needs(b)
+        if not need:
+            break
+        opts, n, what = need[0]
+        if opts is None:
+            raise BuildError(what)
+        pts = _points(b)
+        o = min(opts, key=lambda x: _rank_cost(x in stats, pts.get(x, 0), n))
+        if cap is not None and n > cap:
+            raise BuildError(f"{what}: over the rank cap {cap}")
+        (b["statPoints"] if o in stats else b["skillPoints"])[o] = n
+        notes.append(f"{o} {pts.get(o, 0)}->{n} for a prereq")
+    bought = sum(xp_spent(b)) - before
+    if free:
+        return b, notes, bought
+
+    def spent():
+        return sum(xp_spent(b))
+
+    def floor(name):
+        # The lowest a donor can go without breaking a prereq.
+        lo = 1 if name in stats else 0
+        for v in range((b["statPoints"] if name in stats else b["skillPoints"]).get(name, 0) - 1, lo - 1, -1):
+            box = b["statPoints"] if name in stats else b["skillPoints"]
+            old = box[name]
+            box[name] = v
+            ok = not prereq_needs(b)
+            box[name] = old
+            if not ok:
+                return v + 1
+        return lo
+    trimmed = collections.Counter()
+    while spent() > budget:
+        cands = [d for d in donors if (b["statPoints"] if d in stats else b["skillPoints"]).get(d, 0) > floor(d)]
+        if not cands:
+            raise BuildError(f"not enough donor ranks to pay {spent() - budget} XP")
+        d = max(cands, key=lambda x: (b["statPoints"] if x in stats else b["skillPoints"]).get(x, 0))
+        box = b["statPoints"] if d in stats else b["skillPoints"]
+        box[d] -= 1
+        trimmed[d] += 1
+    left = budget - spent()
+    while left > 0:
+        pts = _points(b)
+        grow = [d for d in reversed(donors) if trimmed[d] > 0 and _rank_cost(d in stats, pts[d], pts[d] + 1) <= left]
+        # XP freed up (a Technique taken off) goes into the donors too, the
+        # lowest rank first, within the cap.
+        grow = grow or sorted((d for d in donors if _rank_cost(d in stats, pts.get(d, 0), pts.get(d, 0) + 1) <= left
+                               and (cap is None or pts.get(d, 0) + 1 <= cap)), key=lambda d: pts.get(d, 0))
+        if grow:
+            d = grow[0]
+            (b["statPoints"] if d in stats else b["skillPoints"])[d] = pts.get(d, 0) + 1
+            trimmed[d] -= 1
+        else:
+            # A Skill no fight reads, so the last XP or two changes nothing.
+            fresh = [k for k in ("Craft", "Streetwise", "Masquerade", "Medicine", "Mixology", "Academics",
+                                 "Persuasion", "Survival") if int(b["skillPoints"].get(k, 0)) == 0]
+            if not fresh:
+                break
+            b["skillPoints"][fresh[0]] = 1
+            notes.append(f"{fresh[0]} 0->1 to land on the XP")
+        left = budget - spent()
+    notes += [f"{d} {-n:+d}" for d, n in trimmed.items() if n]
+    return b, notes, bought
 
 
 def check_budget(name, build):

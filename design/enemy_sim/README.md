@@ -173,7 +173,12 @@ The core files and the regular tools:
 - **`hooks.py`** — the hook points a Technique, Ability or rule plugs
   into (`POINTS` lists them with what each one's ctx carries), and the
   order handlers run in. combat_sim calls `hooks.run(point, unit, ctx)`
-  where it used to test each Technique by name.
+  where it used to test each Technique by name. Since 2026-10-28 an enemy
+  attack has two Interrupt points: `attack_targeting` before its flip (a
+  PC can move it onto itself, call it off, or change the Defense it
+  checks: Lend Bulwark, Arrow Finds Only Mist, Seasons Pass the Forest)
+  and `attack_flipped` after it, before it hits or misses (set the
+  Defense, or make it a Parry: Swatting Paw, Slithering Hands).
 - **`game_data.py`** — reads `scripts/techniques.csv`,
   `scripts/items.csv` and `scripts/features.csv` (names, Health
   bonuses, Feature Budgets and costs), and maps weapon and armor items
@@ -226,6 +231,11 @@ The core files and the regular tools:
   proposed Level 2 and 3 builds for Felix, Enith, Ashleigh and Sable, grown
   from the designer's Level 1 exports, as "(L2, proposed)" / "(L3,
   proposed)" rows. Not the designer's; an export replaces each one.
+- **`technique_pass.py`** (2026-10-28) — the broad pass: every modeled
+  Technique on up to three Level 3 hosts (taken off whoever knows it,
+  added to whoever needs the fewest prereq ranks), read "free" and as
+  an XP-matched swap, and every Feature of the four Buildables in a copy
+  at a fixed Level. `technique_pass.csv` and `TECHNIQUE_PASS.md`.
 - **`coverage.py`** (2026-10-27) — where every techniques.csv ID stands:
   modeled, out of combat or deferred (with the reasons). Exits 1 if one
   is missing or listed twice, so run it after adding Techniques to the
@@ -247,7 +257,13 @@ The core files and the regular tools:
   test. `make_party(tier, good_luck=N)` pulls the Roster row x4;
   `get_pc(name)`, `make_party_of(name)`, `make_party_from([names])` and
   `all_pcs()` as before. The Defense, weapon, armor and Card Technique
-  formulas are in `_pc_dict`; see its module docstring.
+  formulas are in `_pc_dict`; see its module docstring. For swaps
+  (2026-10-28): `xp_spent(build)`, `prereq_needs(build)` (every unmet
+  Prereq Check clause, Choice branches included) and `fit(build, add=,
+  remove=)`, which buys the prereq ranks a new Technique needs and takes
+  the XP back out of `DONORS` (Defense and side Skills) so the total
+  lands exactly; `free=True` skips that. `make_pc(edits={"build": b})`
+  plays a whole build.
 - **`tactics.py`** — the pluggable "AI" every unit's turn is dispatched
   through: `select_target`/`TARGETING` (who a unit attacks), `move_unit`/
   `MOVEMENT_TACTICS` (how it moves), `attack_cap`/`ATTACK_CAP` (an enemy
