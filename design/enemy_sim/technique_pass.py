@@ -48,6 +48,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, sample_enemies as se, party, tunables as T  # noqa: E402
 import game_data  # noqa: E402
 import resume  # noqa: E402
+import day_sim  # noqa: E402
 import techniques as tq  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -55,6 +56,10 @@ LEVEL = 3
 MULT = 1.75
 MAX_PREREQ_XP = 6
 SEED = 0  # --seed: another set of fights, to see how well a reading repeats
+# --score day (2026-10-29): every reading is day_sim.py's morning Health
+# (two fights, healing, a night's rest, enemy Health x1.0) instead of
+# Health left after one fight; set before the Pool forks.
+SCORE = 'fight'
 BUILDABLES = ("T072", "T120", "T104", "T105")
 PARTIES = {
     "S": ["Enith (L3, proposed)", "Felix (L3, proposed)", "Jackal (L3)", "Hanforth (L3)"],
@@ -112,7 +117,12 @@ def short(name):
 
 def run(names, who, edits, n, watch=None, row_changes=None):
     """Per-fight results for `names`, `who` built with `edits` (None: as
-    is), and how many log lines named `watch` per fight."""
+    is), and how many log lines named `watch` per fight. With the day
+    score, one entry per day: (morning Health, day won, 0), and no count."""
+    if SCORE == 'day':
+        swaps = {who: (edits, row_changes)} if who and edits is not None else {}
+        recs = day_sim.run(names, swaps, LEVEL, n, seed=SEED)
+        return [(r['morning'], not r['lost'], 0) for r in recs], 0.0
     rows = party._rows()
     last = []
 
@@ -351,9 +361,11 @@ def main():
     ap.add_argument("--level", type=int, default=3, choices=(2, 3), help="the hosts' and encounters' Level")
     ap.add_argument("--all-hosts", action="store_true", help="every host that fits (the deep pass)")
     ap.add_argument("--free-only", action="store_true", help="skip the swap reading")
+    ap.add_argument("--score", choices=("fight", "day"), default="fight",
+                    help="Health left after one fight, or day_sim.py's morning Health")
     a = ap.parse_args()
-    global ALL_HOSTS, FREE_ONLY
-    ALL_HOSTS, FREE_ONLY = a.all_hosts, a.free_only
+    global ALL_HOSTS, FREE_ONLY, SCORE
+    ALL_HOSTS, FREE_ONLY, SCORE = a.all_hosts, a.free_only, a.score
     set_level(a.level)  # before the Pool forks
     _init(a.seed, a.s)
     ids = [t for t in sorted(tq.REGISTRY) if t not in BUILDABLES and (not a.only or t.startswith(a.only))
@@ -392,7 +404,7 @@ def main():
 
 def _job_key(job):
     fn, args = job
-    return [fn.__name__, args]
+    return [fn.__name__, args, SCORE]
 
 
 def _call(job):

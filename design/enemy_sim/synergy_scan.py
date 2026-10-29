@@ -108,7 +108,10 @@ def main():
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("--pass-csv", default=os.path.join(HERE, "technique_pass.csv"))
     ap.add_argument("-o", default=os.path.join(HERE, "synergy_scan.csv"))
+    ap.add_argument("--score", choices=("fight", "day"), default="fight",
+                    help="Health left after one fight, or day_sim.py's morning Health")
     a = ap.parse_args()
+    tp.SCORE = a.score  # before the Pool forks
     tp._init()
     rows = list(csv.DictReader(open(a.pass_csv)))
     best = {}
@@ -147,9 +150,9 @@ def main():
     # Every reading is kept as it comes in, so a restart picks up where it
     # stopped (resume.py).
     part = resume.Partial(a.o + ".partial")
-    work = ([(("base", k, a.n), "_base", (k, a.n)) for k in sorted(base_keys)]
-            + [(("eval", j[0], j[1], a.n), "evaluate", j) for j in jobs.values()]
-            + [(("cross", c, a.n), "_cross", (c, a.n)) for c in cross])
+    work = ([(("base", k, a.n, a.score), "_base", (k, a.n)) for k in sorted(base_keys)]
+            + [(("eval", j[0], j[1], a.n, a.score), "evaluate", j) for j in jobs.values()]
+            + [(("cross", c, a.n, a.score), "_cross", (c, a.n)) for c in cross])
     todo = [w for w in work if w[0] not in part]
     if len(todo) < len(work):
         print(f"picking up: {len(work) - len(todo)} of {len(work)} readings already done", flush=True)
@@ -158,12 +161,12 @@ def main():
             part.add(k, r)
             if i % 50 == 0:
                 print(f"{i}/{len(todo)}", flush=True)
-    bases = {k: part.get(("base", k, a.n)) for k in sorted(base_keys)}
+    bases = {k: part.get(("base", k, a.n, a.score)) for k in sorted(base_keys)}
     res = {}
     for j in jobs.values():
-        host, label, r = part.get(("eval", j[0], j[1], a.n))
+        host, label, r = part.get(("eval", j[0], j[1], a.n, a.score))
         res[(host, label)] = r
-    cross_res = [part.get(("cross", c, a.n)) for c in cross]
+    cross_res = [part.get(("cross", c, a.n, a.score)) for c in cross]
 
     def val(host, items):
         r = res.get((host, "+".join(sorted(items))))
@@ -247,6 +250,12 @@ def _cross(args):
                 won = r["winner"] == "party"
                 out.append((sum(max(0, p["health"]) for p in last) if won else 0, won, r["rounds"]))
         return out
+    if tp.SCORE == 'day':
+        import day_sim
+
+        def go(edits):  # noqa: F811 - the day score's version
+            swaps = {m: ({"build": b}, tp.choices_for(rows[m], b)) for m, b in edits.items()}
+            return [(r['morning'], not r['lost'], 0) for r in day_sim.run(names, swaps, tp.LEVEL, n, seed=tp.SEED)]
     try:
         return go({h1: bx}), go({h2: by}), go({h1: bx, h2: by})
     except party.BuildError:

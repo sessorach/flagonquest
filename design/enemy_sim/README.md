@@ -236,6 +236,8 @@ The core files and the regular tools:
   added to whoever needs the fewest prereq ranks), read "free" and as
   an XP-matched swap, and every Feature of the four Buildables in a copy
   at a fixed Level. `technique_pass.csv` and `TECHNIQUE_PASS.md`.
+  `--score day` (2026-10-29) reads each one by day_sim.py's morning
+  Health instead (synergy_scan.py takes the same switch).
 - **`build_optimizer.py`** (2026-10-28) — searches everything XP buys for
   one sample character (legal builds only) for the most party Health left.
   Its finds go in `hall_of_fame/`, one folder per version. `--score day`
