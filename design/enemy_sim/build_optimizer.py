@@ -38,6 +38,7 @@ import csv
 import json
 import multiprocessing as mp
 import os
+import pickle
 import random
 import re
 import statistics as st
@@ -355,7 +356,10 @@ def _key(build):
                        sorted(json.dumps(t, sort_keys=True) for t in build["techniques"])])
 
 
-def search(arch, level, gens, n, kids, popsize, seed, pool_):
+def search(arch, level, gens, n, kids, popsize, seed, pool_, ckpt=None):
+    """`ckpt`: a file the search saves itself to after every generation
+    and picks up from, so a restart costs one generation at most and the
+    result is the same as an unbroken run."""
     rng = random.Random(seed)
     name = row_name(arch, level)
     key = PARTY_OF[arch]
@@ -365,8 +369,15 @@ def search(arch, level, gens, n, kids, popsize, seed, pool_):
     seen = {}
     pop = [(base, start)]
     seen[_key(start)] = base
+    first = 0
+    if ckpt and os.path.exists(ckpt):
+        with open(ckpt, "rb") as f:
+            st_ = pickle.load(f)
+        first, pop, seen, base = st_["gen"], st_["pop"], st_["seen"], st_["base"]
+        rng.setstate(st_["rng"])
+        print(f"  picking up {arch} L{level} after generation {first}", flush=True)
     t0 = time.time()
-    for g in range(gens):
+    for g in range(first, gens):
         children = []
         for _ in range(kids * 3):
             if len(children) >= kids:
@@ -389,6 +400,10 @@ def search(arch, level, gens, n, kids, popsize, seed, pool_):
         pop = sorted(pop, key=lambda p: -p[0])[:popsize]
         print(f"  {arch} L{level} gen {g + 1}/{gens}: best {pop[0][0]:.2f} (base {base:.2f}), "
               f"{len(seen)} tried, {time.time() - t0:.0f}s", flush=True)
+        if ckpt:
+            with open(ckpt + ".tmp", "wb") as f:
+                pickle.dump(dict(gen=g + 1, pop=pop, seen=seen, base=base, rng=rng.getstate()), f)
+            os.replace(ckpt + ".tmp", ckpt)
     # The finalists, scored again on fresh fights (with the sample itself).
     finals = pop[:max(popsize, 6)]
     val = pool_.map(score, [(name, b, level, key, 3 * n, VALIDATE_SEED) for _, b in finals]
@@ -500,9 +515,12 @@ def main():
                     print(f"{arch}, Level {level}: already in {a.o}", flush=True)
                     continue
                 print(f"{arch} ({ARCHES[arch]}), Level {level}", flush=True)
-                res = search(arch, level, a.g, a.n, a.k, a.p, a.seed, pool_)
+                ckpt = path[:-5] + ".ckpt"
+                res = search(arch, level, a.g, a.n, a.k, a.p, a.seed, pool_, ckpt=ckpt)
                 with open(path, "w") as f:
                     json.dump(res, f, indent=1)
+                if os.path.exists(ckpt):
+                    os.remove(ckpt)
                 if res:
                     print(f"  best validated {res[0]['validated']:.2f} vs the sample {res[0]['base_validated']:.2f}",
                           flush=True)
