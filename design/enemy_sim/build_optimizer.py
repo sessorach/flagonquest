@@ -479,6 +479,7 @@ def main():
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("-o", default=os.path.join(HERE, "hall_of_fame", "runs"))
     ap.add_argument("--hall", action="store_true", help="write hall_of_fame/v<version>/ from the runs in -o")
+    ap.add_argument("--redo", action="store_true", help="search again even if -o already has a result")
     ap.add_argument("--flavor", help="a JSON of names and concepts, keyed <archetype>_l<Level>_<rank>")
     a = ap.parse_args()
     if a.hall:
@@ -493,9 +494,13 @@ def main():
     with mp.Pool(a.j) as pool_:
         for level in levels:
             for arch in archs:
+                path = os.path.join(a.o, f"{arch.lower()}_l{level}.json")
+                # A long run that gets cut off picks up where it stopped.
+                if os.path.exists(path) and not a.redo:
+                    print(f"{arch}, Level {level}: already in {a.o}", flush=True)
+                    continue
                 print(f"{arch} ({ARCHES[arch]}), Level {level}", flush=True)
                 res = search(arch, level, a.g, a.n, a.k, a.p, a.seed, pool_)
-                path = os.path.join(a.o, f"{arch.lower()}_l{level}.json")
                 with open(path, "w") as f:
                     json.dump(res, f, indent=1)
                 if res:
