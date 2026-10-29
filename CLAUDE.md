@@ -307,6 +307,17 @@ which should stay a clean decision record.
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and
   Jackal's Bottomless Bottles.
+- **Long runs have to survive a worker restart** (2026-10-29). A restart
+  kills every process in the container (files stay); it took the
+  optimizer four times in one day. So: every long script resumes from
+  its own files (`resume.Partial`, the optimizer's `.ckpt`), checked
+  byte-identical against an unbroken run; the jobs go through one queue
+  script in the scratchpad (a `flock` so a second start does nothing,
+  a done-marker per step); a SessionStart hook in
+  `.claude/settings.local.json` (git-excluded) restarts the queue; and an
+  hourly scheduled task does the same, as a backstop. Never `pkill -f` or
+  `awk`-kill by a script's name in a command that also names it: it
+  matches its own shell (exit 144).
 - **Refactoring the simulator: prove the old path didn't move.** Put
   every new behavior behind a `tunables.py` switch, save a fixed-seed
   `calibrate.py` run first, then run it again with the new switches off

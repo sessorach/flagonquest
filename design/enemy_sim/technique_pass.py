@@ -47,6 +47,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, sample_enemies as se, party, tunables as T  # noqa: E402
 import game_data  # noqa: E402
+import resume  # noqa: E402
 import techniques as tq  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -362,15 +363,21 @@ def main():
         jobs += [(job_technique, (t, a.n)) for t in ids]
     if not a.techniques:
         jobs += [(job_feature, (p, a.n)) for p in feature_probes() if not a.only or p[0].startswith(a.only)]
-    results = []
     if a.ids:
         a.techniques = True
         jobs = [j for j in jobs if j[0] is job_technique]
+    # Each finished job is kept as it comes in, so a restart picks up
+    # where it stopped (resume.py).
+    part = resume.Partial(a.o + ".partial")
+    todo = [j for j in jobs if _job_key(j) not in part]
+    if len(todo) < len(jobs):
+        print(f"picking up: {len(jobs) - len(todo)} of {len(jobs)} jobs already done", flush=True)
     with mp.Pool(a.j, initializer=_init, initargs=(a.seed, a.s)) as pool:
-        for i, res in enumerate(pool.imap_unordered(_call, jobs), 1):
-            results += res
+        for i, (k, res) in enumerate(pool.imap_unordered(_call, todo), 1):
+            part.add(k, res)
             if i % 20 == 0:
-                print(f"{i}/{len(jobs)}", flush=True)
+                print(f"{i}/{len(todo)}", flush=True)
+    results = [r for j in jobs for r in part.get(_job_key(j))]
     keys = ["kind", "id", "name", "host", "party", "mode", "level", "style", "points", "free", "free_margin",
             "free_wins", "swap", "swap_margin", "swap_wins", "per_point", "fires", "notes"]
     results.sort(key=lambda r: (r["kind"], r["id"], r.get("name", ""), r.get("host", "")))
@@ -379,12 +386,18 @@ def main():
         w.writeheader()
         for r in results:
             w.writerow({k: r.get(k, "") for k in keys})
+    part.finish()
     print(f"wrote {a.o}: {len(results)} rows")
+
+
+def _job_key(job):
+    fn, args = job
+    return [fn.__name__, args]
 
 
 def _call(job):
     fn, args = job
-    return fn(args)
+    return resume.Partial.key(_job_key(job)), fn(args)
 
 
 if __name__ == "__main__":

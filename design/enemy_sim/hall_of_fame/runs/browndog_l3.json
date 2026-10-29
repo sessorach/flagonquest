@@ -1,0 +1,1154 @@
+[
+ {
+  "arch": "Browndog",
+  "level": 3,
+  "name": "Browndog (L3)",
+  "search": 37.77,
+  "validated": 37.5,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 5,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:45:49.654Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 3
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 4
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 2
+      },
+      {
+       "name": "Lodestone",
+       "count": 2
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T076",
+     "name": "Parting Shot",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Browndog",
+  "level": 3,
+  "name": "Browndog (L3)",
+  "search": 37.77,
+  "validated": 37.5,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 5,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:45:49.654Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 3
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 4
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 2
+      },
+      {
+       "name": "Lodestone",
+       "count": 2
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T076",
+     "name": "Parting Shot",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Browndog",
+  "level": 3,
+  "name": "Browndog (L3)",
+  "search": 37.93,
+  "validated": 37.36083333333333,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 5,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:45:49.654Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 3
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 4
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 2
+      },
+      {
+       "name": "Lodestone",
+       "count": 2
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T076",
+     "name": "Parting Shot",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Browndog",
+  "level": 3,
+  "name": "Browndog (L3)",
+  "search": 37.68,
+  "validated": 37.204166666666666,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 5,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:45:49.654Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 3
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 4
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 2
+      },
+      {
+       "name": "Lodestone",
+       "count": 2
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T076",
+     "name": "Parting Shot",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Browndog",
+  "level": 3,
+  "name": "Browndog (L3)",
+  "search": 37.68,
+  "validated": 37.204166666666666,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 5,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:45:49.654Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 3
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 4
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 2
+      },
+      {
+       "name": "Lodestone",
+       "count": 2
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T076",
+     "name": "Parting Shot",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Browndog",
+  "level": 3,
+  "name": "Browndog (L3)",
+  "search": 37.825,
+  "validated": 37.19166666666667,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 5,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:45:49.654Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 3
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 4
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 2
+      },
+      {
+       "name": "Lodestone",
+       "count": 2
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T076",
+     "name": "Parting Shot",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
+   ]
+  }
+ }
+]

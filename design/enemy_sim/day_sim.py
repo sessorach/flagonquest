@@ -50,7 +50,6 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, sample_enemies as se, party, tunables as T, tactics, cards  # noqa: E402
-import build_optimizer as bo  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 # The day standard (designer, 2026-10-29): two fights at ×1.75, the
@@ -333,6 +332,7 @@ def summary(recs):
 
 def swap_arg(text, level):
     """'Hilde (L3)=path.json' or 'path.json:0' (an optimizer run's entry)."""
+    import build_optimizer as bo  # it imports this module
     name, _, spec = text.partition("=")
     path, _, idx = spec.partition(":")
     data = json.load(open(spec if os.path.exists(spec) else path))
@@ -342,6 +342,7 @@ def swap_arg(text, level):
 
 
 def main():
+    import build_optimizer as bo  # it imports this module
     ap = argparse.ArgumentParser()
     ap.add_argument("-L", type=int, default=3)
     ap.add_argument("-p", default="H", help="party: S, U or H (build_optimizer.PARTIES)")

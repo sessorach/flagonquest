@@ -38,6 +38,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import technique_pass as tp  # noqa: E402
 import party  # noqa: E402
 import game_data  # noqa: E402
+import resume  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 # (host, A, B): each an add spec, a Technique ID or a War Magic copy
@@ -143,14 +144,26 @@ def main():
         pairs.append(("targeted", host, None, x, y))
     base_keys = {tp.HOSTS[h] for h in best} | {tp.HOSTS[h] for h, _, _ in TARGETED}
     print(f"{len(jobs)} single-character readings, {len(cross)} cross pairs", flush=True)
+    # Every reading is kept as it comes in, so a restart picks up where it
+    # stopped (resume.py).
+    part = resume.Partial(a.o + ".partial")
+    work = ([(("base", k, a.n), "_base", (k, a.n)) for k in sorted(base_keys)]
+            + [(("eval", j[0], j[1], a.n), "evaluate", j) for j in jobs.values()]
+            + [(("cross", c, a.n), "_cross", (c, a.n)) for c in cross])
+    todo = [w for w in work if w[0] not in part]
+    if len(todo) < len(work):
+        print(f"picking up: {len(work) - len(todo)} of {len(work)} readings already done", flush=True)
     with mp.Pool(a.j, initializer=tp._init) as pool:
-        bases = dict(zip(sorted(base_keys), pool.map(_base, [(k, a.n) for k in sorted(base_keys)])))
-        res = {}
-        for i, (host, label, r) in enumerate(pool.imap_unordered(evaluate, list(jobs.values())), 1):
-            res[(host, label)] = r
+        for i, (k, r) in enumerate(pool.imap_unordered(_keyed, todo), 1):
+            part.add(k, r)
             if i % 50 == 0:
-                print(f"{i}/{len(jobs)}", flush=True)
-        cross_res = pool.map(_cross, [(c, a.n) for c in cross])
+                print(f"{i}/{len(todo)}", flush=True)
+    bases = {k: part.get(("base", k, a.n)) for k in sorted(base_keys)}
+    res = {}
+    for j in jobs.values():
+        host, label, r = part.get(("eval", j[0], j[1], a.n))
+        res[(host, label)] = r
+    cross_res = [part.get(("cross", c, a.n)) for c in cross]
 
     def val(host, items):
         r = res.get((host, "+".join(sorted(items))))
@@ -185,7 +198,13 @@ def main():
         w = csv.DictWriter(f, list(out[0].keys()))
         w.writeheader()
         w.writerows(out)
+    part.finish()
     print(f"wrote {a.o}: {len(out)} pairs")
+
+
+def _keyed(w):
+    k, fn, args = w
+    return resume.Partial.key(k), globals()[fn](args)
 
 
 def _n(x):

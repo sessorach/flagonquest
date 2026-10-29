@@ -28,6 +28,13 @@ spending ranks at random, scored on one fixed set of fights. The best
 few are then scored again on a fresh set, since the winners of a search
 are flattered by the fights they were picked on.
 
+The day score (--score day, 2026-10-29, the designer's pick): the same
+search on day_sim.py's morning Health (two fights, the party's healing,
+a night's rest, at enemy Health x1.0), so healing and Health a night
+count. Morning Health counts a bigger pool in full, so the finalists are
+then scored on days in a row before a fight is lost (up to ten, fresh
+days), which doesn't, and ranked by that.
+
     python3 build_optimizer.py --arch Hilde -L 3            # one search
     python3 build_optimizer.py --all -g 60 -n 100           # everything
     python3 build_optimizer.py --hall                       # write hall_of_fame/ from saved results
@@ -49,6 +56,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, sample_enemies as se, party, tunables as T  # noqa: E402
 import game_data  # noqa: E402
 import techniques as tq  # noqa: E402
+import day_sim  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MULT = 1.75
@@ -56,6 +64,10 @@ BUDGET = {2: 125, 3: 175}
 CAP = {2: 4, 3: 5}
 SLACK = 2
 VALIDATE_SEED = 50_000
+# 'fight' (Health left after one fight) or 'day' (day_sim.py); set by
+# --score before the Pool forks.
+SCORE = 'fight'
+DAYS = 10  # the day score's days in a row, at most
 # Archetype: the sample character (Level 3 name; Level 2 swaps "(L3" for "(L2"), and its party.
 ARCHES = {
     "Hilde": "heavy front-liner", "Browndog": "armored tank", "Jackal": "thrown skirmisher",
@@ -335,6 +347,9 @@ def score(args):
         party.make_pc(name, rows=rows, edits=edits, row_changes=row)
     except (party.BuildError, KeyError, ValueError) as e:
         return None
+    if SCORE == 'day':
+        recs = day_sim.run(names, {name: (edits, row)} if build else {}, level, n, seed=seed)
+        return st.mean(r["morning"] for r in recs)
     last = []
 
     def make(tier, good_luck=0):
@@ -411,7 +426,24 @@ def search(arch, level, gens, n, kids, popsize, seed, pool_, ckpt=None):
     base_val = val[-1]
     out = [dict(arch=arch, level=level, name=name, search=s, validated=v, base_search=base, base_validated=base_val,
                 build=b) for (s, b), v in zip(finals, val[:-1]) if v is not None]
+    if SCORE == 'day':
+        # Days in a row, on fresh days, for the finalists and the sample.
+        builds = [r["build"] for r in out] + [None]
+        days = pool_.map(score_days, [(name, b, level, key, 3 * n, VALIDATE_SEED) for b in builds])
+        for r, d in zip(out, days):
+            r.update(days=d, base_days=days[-1], score="day", mult=day_sim.MULT)
+        return sorted(out, key=lambda r: -r["days"])
     return sorted(out, key=lambda r: -r["validated"])
+
+
+def score_days(args):
+    """Mean days won in a row (up to DAYS) with `build` in `name`'s place."""
+    name, build, level, key, n, seed = args
+    rows = party._rows()
+    row = choices_for(rows[name], build) if build else None
+    swaps = {name: ({"build": build}, row)} if build else {}
+    recs = day_sim.run(PARTIES[level][key], swaps, level, n, days=DAYS, seed=seed)
+    return st.mean(r["days"] for r in recs)
 
 
 def current_version():
@@ -441,7 +473,9 @@ def finalists(runs_dir, keep=2):
             # An exact tie on 1,200 fights is the same build in a fight
             # (they differ in a rank no fight reads).
             c = _content(r["build"])
-            if c in seen or round(r["validated"], 6) in seen or r["validated"] <= r["base_validated"]:
+            # The day score ranks by days in a row (search() sorts them).
+            beats = r["days"] > r["base_days"] if "days" in r else r["validated"] > r["base_validated"]
+            if c in seen or round(r["validated"], 6) in seen or not beats:
                 continue
             seen.update((c, round(r["validated"], 6)))
             picks.append(r)
@@ -450,11 +484,11 @@ def finalists(runs_dir, keep=2):
     return out
 
 
-def write_hall(runs_dir, flavor, version):
+def write_hall(runs_dir, flavor, version, sub=""):
     """hall_of_fame/v<version>/: each finalist as a Builder export (the
     sample's export with the searched Stats, Skills and Techniques, and its
     flavor name and concept), named <archetype>_l<Level>_<rank>.json."""
-    folder = os.path.join(HERE, "hall_of_fame", f"v{version}")
+    folder = os.path.join(HERE, "hall_of_fame", f"v{version}", sub)
     os.makedirs(folder, exist_ok=True)
     written = []
     for key, picks in finalists(runs_dir).items():
@@ -469,10 +503,16 @@ def write_hall(runs_dir, flavor, version):
             b["charConcept"] = fl.get("concept", "")
             b["xpBudget"] = BUDGET[r["level"]]
             b["exportedAt"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+            if "days" in r:
+                how = (f"Days won in a row (up to {DAYS}) {r['days']:.2f} against the sample's {r['base_days']:.2f}; "
+                       f"morning Health {r['validated']:.2f} against {r['base_validated']:.2f}, on fresh days "
+                       f"(day_sim.py, enemy Health x{r['mult']})")
+            else:
+                how = (f"Party Health left {r['validated']:.2f} against the sample's {r['base_validated']:.2f} on "
+                       f"fresh fights (enemy Health x{MULT})")
             b["simNotes"] = [f"Hall of Fame v{version}: build_optimizer.py's #{i} for {r['arch']} ({ARCHES[r['arch']]}), "
-                             f"Level {r['level']}, in {name}'s place in party {PARTY_OF[r['arch']]}. Party Health left "
-                             f"{r['validated']:.2f} against the sample's {r['base_validated']:.2f} on fresh fights "
-                             f"(enemy Health x{MULT}). Items, background and row are the sample's."]
+                             f"Level {r['level']}, in {name}'s place in party {PARTY_OF[r['arch']]}. {how}. "
+                             "Items, background and row are the sample's."]
             out = os.path.join(folder, f"{key}_{i}.json")
             with open(out, "w") as f:
                 json.dump(b, f, indent=1, ensure_ascii=False)
@@ -494,14 +534,19 @@ def main():
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("-o", default=os.path.join(HERE, "hall_of_fame", "runs"))
     ap.add_argument("--hall", action="store_true", help="write hall_of_fame/v<version>/ from the runs in -o")
+    ap.add_argument("--score", choices=("fight", "day"), default="fight",
+                    help="Health left after one fight, or day_sim.py's morning Health (then days in a row)")
+    ap.add_argument("--hall-sub", default="", help="a subfolder of hall_of_fame/v<version>/ for --hall")
     ap.add_argument("--redo", action="store_true", help="search again even if -o already has a result")
     ap.add_argument("--flavor", help="a JSON of names and concepts, keyed <archetype>_l<Level>_<rank>")
     a = ap.parse_args()
     if a.hall:
         flavor = json.load(open(a.flavor)) if a.flavor else {}
-        for p in write_hall(a.o, flavor, current_version()):
+        for p in write_hall(a.o, flavor, current_version(), a.hall_sub):
             print(p)
         return
+    global SCORE
+    SCORE = a.score
     POOL[:] = pool()
     archs = list(ARCHES) if a.all else a.arch
     levels = a.L or [3, 2]
@@ -522,8 +567,9 @@ def main():
                 if os.path.exists(ckpt):
                     os.remove(ckpt)
                 if res:
-                    print(f"  best validated {res[0]['validated']:.2f} vs the sample {res[0]['base_validated']:.2f}",
-                          flush=True)
+                    print(f"  best validated {res[0]['validated']:.2f} vs the sample {res[0]['base_validated']:.2f}"
+                          + (f"; days in a row {res[0]['days']:.2f} vs {res[0]['base_days']:.2f}" if "days" in res[0]
+                             else ""), flush=True)
 
 
 if __name__ == "__main__":

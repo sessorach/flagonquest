@@ -238,7 +238,15 @@ The core files and the regular tools:
   at a fixed Level. `technique_pass.csv` and `TECHNIQUE_PASS.md`.
 - **`build_optimizer.py`** (2026-10-28) — searches everything XP buys for
   one sample character (legal builds only) for the most party Health left.
-  Its finds go in `hall_of_fame/`, one folder per version.
+  Its finds go in `hall_of_fame/`, one folder per version. `--score day`
+  searches on day_sim.py's morning Health instead, then ranks the
+  finalists by days won in a row (morning Health favors a big pool; days
+  in a row doesn't). Saves itself every generation (`.ckpt`).
+- **`resume.py`** (2026-10-29) — the worker restarts now and then and
+  takes every process with it. Long scripts (technique_pass.py,
+  synergy_scan.py) keep each finished job in a `.partial` file next to
+  their output and skip those on a restart, with the same results as an
+  unbroken run.
 - **`synergy_scan.py`** (2026-10-28) — pairs of Techniques worth more, or
   less, together than apart, on one character or across the party.
 - **`day_sim.py`** and **`day_checks.py`** (2026-10-29) — a whole day: two fights, the party's
