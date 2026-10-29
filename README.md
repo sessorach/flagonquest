@@ -17,6 +17,8 @@ full log. See `git log` for the commit-by-commit detail.
 
 The simulator can now play a whole day (two fights, healing afterwards, a night's rest) and score the party by how much Health it wakes up with. A build optimizer has started looking for the strongest legal build for each sample character.
 
+- By the day, at normal enemy Health, healing is worth nearly six times what a single fight showed: without Healing Magic, Hanforth's party wakes up 11 Health worse off and lasts two fewer days in a row.
+
 - Effect weights were re-measured after the Assassin change. Taunted came out stronger, Physical Resist weaker.
 - The optimizer's first find is a Hilde with a huge Health pool who takes her friends' hits through Lifeline. She wakes up a few Health short, but her party wins far more days in a row, so it's on the watch list.
 

@@ -1,12 +1,12 @@
 # Latest replays (2026-10-29)
 
-Day sim added (no change to single fights); party.py records known Techniques and rest bonuses
+Day standard set to enemy Health x1.0; day_checks.py; no change to single fights
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 68% party HP left
-- Matchup average over 1000 fights: 96.0% wins, 3.6 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 95.9% wins, 3.5 rounds, 74% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

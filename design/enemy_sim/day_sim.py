@@ -53,7 +53,11 @@ import combat_sim as cs, sample_enemies as se, party, tunables as T, tactics, ca
 import build_optimizer as bo  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-MULT = 1.75
+# The day standard (designer, 2026-10-29): two fights at ×1.75, the
+# single-fight standard, lose most days.
+MULT = 1.0
+# Off: nobody heals between fights or before bed (what care is worth).
+CARE = True
 CARRY_KEYS = ("health", "max_health", "shallow_lost", "_last_health")
 
 
@@ -253,10 +257,11 @@ def play_day(names, swaps, level, mixes, seed, rows, start=None, log=None):
             _settle(p)
         rec['fights'].append(sum(p['health'] for p in pcs))
         final = f == len(mixes)
-        rec['care'] += care(pcs, (lambda p: 0) if final else
-                            (lambda p: math.ceil(p['hand_size'] * T.CARDS_FIGHT_SHARE)), log)
-        if final:
-            patch_up(pcs, log)
+        if CARE:
+            rec['care'] += care(pcs, (lambda p: 0) if final else
+                                (lambda p: math.ceil(p['hand_size'] * T.CARDS_FIGHT_SHARE)), log)
+            if final:
+                patch_up(pcs, log)
         carry = [dict({k: p[k] for k in CARRY_KEYS}, deck=p.get('deck'), hand=p.get('hand')) for p in pcs]
     night(pcs, full)
     rec['morning'] = sum(p['health'] for p in pcs)
@@ -280,8 +285,9 @@ def set_mult(m):
 
 
 def _job(args):
-    names, swaps, level, mi, ks, days, seed, mult = args
-    T.ENEMY_HEALTH_MULT = mult
+    names, swaps, level, mi, ks, days, seed, mult, care_on = args
+    global CARE
+    T.ENEMY_HEALTH_MULT, CARE = mult, care_on
     rows = party._rows()
     out = []
     for k in ks:
@@ -301,7 +307,7 @@ def _job(args):
 
 
 def run(names, swaps, level, n, days=0, seed=0, pool=None):
-    jobs = [(names, swaps, level, mi, range(c, min(n, c + 25)), days, seed, MULT)
+    jobs = [(names, swaps, level, mi, range(c, min(n, c + 25)), days, seed, MULT, CARE)
             for mi in range(len(se.CURRENT_MIXES)) for c in range(0, n, 25)]
     res = (pool.map if pool else map)(_job, jobs)
     return [r for chunk in res for r in chunk]

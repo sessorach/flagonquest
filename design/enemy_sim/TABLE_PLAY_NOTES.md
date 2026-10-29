@@ -1665,3 +1665,49 @@ against the sample party's morning):
 Lifeline is worth about +9.4 on the big pool and +2.6 on the sample:
 most of what it does here comes from having Health to spare. Watch list
 material for the Hall of Fame.
+
+### The day standard, and standard checks (2026-10-29, later)
+
+Per the designer, days are measured at enemy Health ×1.0 (`day_sim.MULT`);
+the other multipliers are worth a look now and then. `day_checks.py` runs
+a set of plain swaps, each read three ways against the party as built on
+the same fights. Level 3, ×1.0, 1,000 fights and days each; 400 runs of
+up to ten days:
+
+| Check | One fight: Health left | A day: morning Health | Days won | Ten days in a row: days |
+|---|---|---|---|---|
+| repeat (other fights) | - | +0.12 ± 1.21 | -0.4 pts | +0.33 ± 0.37 |
+| nobody heals after fights | - | -8.10 ± 0.77 | -10.0 pts | -1.66 ± 0.26 |
+| Carrick without Patch Up | +0.00 ± 0.00 | -0.76 ± 0.05 | +0.0 pts | -0.10 ± 0.18 |
+| +1 Body, Beornhard | +0.14 ± 0.07 | +0.26 ± 0.20 | +0.0 pts | +0.07 ± 0.12 |
+| +1 Body, Hilde | +0.25 ± 0.13 | +0.60 ± 0.39 | +0.9 pts | +0.24 ± 0.20 |
+| +1 Body, Hanforth | +0.15 ± 0.08 | +0.62 ± 0.22 | +0.6 pts | +0.42 ± 0.17 |
+| Toughened Body, Beornhard | +3.21 ± 0.16 | +3.45 ± 0.42 | +3.3 pts | +0.53 ± 0.18 |
+| Lifeline, Hanforth | +1.06 ± 0.29 | +1.13 ± 0.72 | +4.0 pts | +0.11 ± 0.26 |
+| Hanforth without Healing Magic | -1.97 ± 0.24 | -11.18 ± 0.88 | -16.4 pts | -2.04 ± 0.26 |
+| +1 Body, Hanforth (Enith's party) | +0.09 ± 0.08 | +0.79 ± 0.34 | +1.3 pts | +0.01 ± 0.16 |
+
+The rest is Hilde's party (Hilde, Carrick, Hanforth, Beornhard). As built,
+it has 32.5 Health left after one fight, wins 87.1% of days, wakes up with
+34.0 of 43 and lasts 3.05 days in a row. Enith's party: 30.4, 82.4%, 28.9
+of 40, 2.67 days. "repeat" isn't paired (other fights), so it's the noise
+between two runs; every other line is paired and much tighter.
+
+- **Healing is worth far more by the day.** Taking Healing Magic off
+  Hanforth costs about 2 Health after one fight, and 11 by the next morning,
+  16 points of days won and two days of the three. Healing between fights
+  alone (everything else the same) is worth 8 Health in the morning. The
+  one-fight score has been underpricing healers.
+- **Patch Up shows up now:** nothing in a fight, 0.76 Health a morning.
+- **+1 Body is small either way.** It's worth a little more by the morning,
+  from the extra Health a night, but it's under a Health in every reading.
+- **Morning Health counts a bigger pool in full.** Toughened Body's +3
+  Health reads +3.45 by the morning. Most of that is Beornhard simply having
+  3 more to wake up with, used or not, as with Health left after a fight.
+  Days in a row has no such lean, so it's the one to trust for a pool:
+  +0.53 days for Toughened Body, against +2.04 days lost without Healing
+  Magic.
+- **Days in a row is the noisier reading** (±0.2-0.3 days on about 3), and
+  it costs the most per run. At ×1.0 parties last two to three days, so a
+  run is around seven fights
+  (the days won, plus the one lost).
