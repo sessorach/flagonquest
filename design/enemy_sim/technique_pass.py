@@ -84,6 +84,26 @@ FEATURE_HOSTS = {
 ELEMENT_FEATURES = ("Turn Elements", "Elemental", "Elemental Enhancement")
 
 
+ALL_HOSTS = False  # --all-hosts: every host that fits, not just the best three
+FREE_ONLY = False  # --free-only: skip the XP-matched swap reading
+
+
+def set_level(level):
+    """Parties, hosts and Feature hosts at Level 2 or 3 (--level): the
+    same characters' Level 2 rows."""
+    global LEVEL, PARTIES, HOSTS, FEATURE_HOSTS
+    if level == LEVEL:
+        return
+    swap = lambda n: n.replace(f"(L{LEVEL}", f"(L{level}")
+    PARTIES = {k: [swap(n) for n in v] for k, v in PARTIES.items()}
+    HOSTS = {swap(h): k for h, k in HOSTS.items()}
+    FEATURE_HOSTS = {t: [(swap(h), c, core) for h, c, core in v] for t, v in FEATURE_HOSTS.items()}
+    if level == 2:
+        # Enith has two War Magic copies at Level 2: the probe takes the second.
+        FEATURE_HOSTS["T120"] = [(h, 2 if h.startswith("Enith") else c, core) for h, c, core in FEATURE_HOSTS["T120"]]
+    LEVEL = level
+
+
 def short(name):
     # "Shugen School - Arrow Finds Only Mist" logs as "Arrow Finds Only Mist".
     return name.split(" - ", 1)[-1]
@@ -178,7 +198,7 @@ def plan_technique(tid):
         except party.BuildError as e:
             skipped.append(f"{host}: {e}")
     others.sort(key=lambda o: o[5])
-    picked = knowers[:2] + others[:3 - min(2, len(knowers))]
+    picked = knowers + others if ALL_HOSTS else knowers[:2] + others[:3 - min(2, len(knowers))]
     return name, picked, skipped
 
 
@@ -193,7 +213,7 @@ def job_technique(args):
         row = choices_for(rows[host], free)
         try:
             fv, fires = run(PARTIES[key], host, {"build": free}, n, watch=short(name), row_changes=row)
-            sv, _ = run(PARTIES[key], host, {"build": swap}, n, row_changes=row)
+            sv = fv if FREE_ONLY else run(PARTIES[key], host, {"build": swap}, n, row_changes=row)[0]
         except party.BuildError as e:
             out.append(dict(kind="technique", id=tid, name=name, host=host, party=key, mode=mode,
                             notes=f"doesn't load: {e}"))
@@ -209,7 +229,8 @@ def job_technique(args):
                         level=game_data.fixed_level(tid) or (game_data.level_range(tid) or (1, 1))[0],
                         style="Style" in (game_data.techniques()[tid].get("Tags") or ""),
                         free=round(f[0], 2), free_margin=round(f[1], 2), free_wins=round(f[2], 1),
-                        swap=round(s[0], 2), swap_margin=round(s[1], 2), swap_wins=round(s[2], 1),
+                        **({} if FREE_ONLY else dict(swap=round(s[0], 2), swap_margin=round(s[1], 2),
+                                                      swap_wins=round(s[2], 1))),
                         fires=round(fires, 2), notes="; ".join(notes)))
     if not picked:
         out.append(dict(kind="technique", id=tid, name=name, host="", notes="no host: " + " | ".join(skipped)))
@@ -326,7 +347,13 @@ def main():
     ap.add_argument("--seed", type=int, default=0, help="offset every fight's seed (50000: a fresh set)")
     ap.add_argument("--ids", help="comma-separated IDs (Techniques only)")
     ap.add_argument("-s", action="append", default=[], help="tunables override NAME=VALUE")
+    ap.add_argument("--level", type=int, default=3, choices=(2, 3), help="the hosts' and encounters' Level")
+    ap.add_argument("--all-hosts", action="store_true", help="every host that fits (the deep pass)")
+    ap.add_argument("--free-only", action="store_true", help="skip the swap reading")
     a = ap.parse_args()
+    global ALL_HOSTS, FREE_ONLY
+    ALL_HOSTS, FREE_ONLY = a.all_hosts, a.free_only
+    set_level(a.level)  # before the Pool forks
     _init(a.seed, a.s)
     ids = [t for t in sorted(tq.REGISTRY) if t not in BUILDABLES and (not a.only or t.startswith(a.only))
            and (not a.ids or t in a.ids.split(","))]

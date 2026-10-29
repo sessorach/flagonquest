@@ -11051,6 +11051,66 @@ Caveats as on 10-21: one party at one Level, the sim's party
 focus-fires the hurt enemy, and the Ogre is an over-tuned stand-in
 rather than a built enemy.
 
+## Weak, Average and Strong, re-measured (2026-10-29)
+
+The Assassin tactic changed on 2026-10-28 (it used to break full-Health
+ties by party order; now it's hurt worst, then the lightest armor, then
+chance), and CLAUDE.md says to re-measure these cells when the sim's
+effects change. Same runs as 10-22 (Party A at Level 1, the same sets
+and fight counts, `effect_check.py`), done twice: under the new rule and
+under the old one, so the Assassin's own share shows apart from
+everything else the sim gained since 10-22 (the AP pool between turns,
+the new Techniques). The cells now in `balance_weights.csv` are the new
+rule's. 90 of 287 tests moved past their margins between the two rules.
+
+**What moved, and why.** Under the old rule the Assassins in Party A
+(Hilde first in the list) all went for Hilde at the start of a fight.
+Several Strong cells were Hilde's, "the PC the enemies focus", and that
+focus was mostly the tie:
+
+| Cell | 10-22 | Old rule today | New rule |
+|---|---|---|---|
+| Physical Resist +1, strongest carrier | 12.1 (Hilde) | 7.6 (Hilde) | 2.3 (Hilde) |
+| Speed +1, strongest carrier | 2.3 (Hilde) | 0.6 (Carrick) | 0.4 (Carrick) |
+| Protected x1, on Hilde | 3.9 | 3.2 | 1.7 |
+| Ward (Shadow) x1, strongest carrier | 10.0 (Hilde) | - | 4.0 (Carrick) |
+| Taunted from the tank, aimed (Average) | 3.8 | 4.0 | 6.5 |
+
+Taunt is the mirror image: with Assassins now going after the lightly
+armored, a tank who pulls them off is worth much more.
+
+**Two that changed since 10-22 for other reasons** (the same under the
+old rule today, so not the Assassin):
+
+- **Hasted** is about worth nothing now (0.08 a stack on average) and
+  costs the heavy front-liner (-0.4 a stack, -1.2 for four). On 10-22
+  it was 0.8 on average and 2.2 on Hilde. Getting to the enemy a step
+  sooner seems to get her hit sooner without getting her more attacks;
+  I haven't dug further.
+- **Pushing every time** costs about 0.8 a push now (it was 0); pushing
+  when it helps is about nothing in ordinary fights (0.6 on 10-22) and
+  still pays against the Ogre (2.6 for 1 m, 3.3 for 3 m).
+
+**The buff cells, defined more plainly.** 10-22 named a PC for each
+case (Carrick and Sable as the PCs Protected helps least, Hilde as the
+one enemies focus). With the focus gone those names stopped being right,
+so the buff rows now use: Weak, the carrier it helps least in ordinary
+fights; Average, the mean over carriers; Strong, the carrier it helps
+most in the best fight set. Protected's Weak is now the tank (Browndog,
+-0.3 a stack: he's rarely hit hard enough to use it), and its Strong is
+Sable in the Level 2 fights (4.4).
+
+**Offense on THE TABEL's footing.** The anchors moved: +1 Accuracy is
+2.10 in ordinary fights (2.45 on 10-22), +1 Damage 4.46 (5.36), so the
+factors are x2.61 (Harried, Vulnerable) and x2.46 (Bleeding, Necrotic).
+
+**Not re-measured: Harried's Average and Strong.** Those came from a
+scratch-patched run that switched off the card-play side effect of
+aimed Harried (see 10-22). Raw, under the new rule, aimed Harried is 2.9
+(4 stacks: 7.6) on average and 4.75 (19.4) at Level 2, against raw 4.2
+and 6.2 on 10-22, so the clean values are probably lower too. Weak (on a
+hit, which the side effect doesn't touch) is re-measured: 1.25 (4.1).
+
 ## The sample characters, as built (2026-10-24)
 
 Per the designer: the simulator's Hilde, Browndog and Carrick were

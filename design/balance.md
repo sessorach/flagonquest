@@ -87,28 +87,30 @@ So `balance_weights.csv` has three columns next to Value for every
 effect the sim could measure (the debuffs on enemies, the party buffs,
 Push, turn order, Speed and Physical Resist). Value hasn't changed yet,
 since everything already priced used it. The derivation is in
-`balance_weights_notes.md`, "Weak, Average and Strong (2026-10-22)".
+`balance_weights_notes.md`, "Weak, Average and Strong (2026-10-22)";
+the cells were re-measured on 2026-10-29 after the Assassin tactic
+changed ("... re-measured (2026-10-29)").
 
 - **Weak** is the effect's poor ordinary use. For a debuff, that's riding
   a hit: it lands on whatever the carrier hit, which is usually about to
   die. For a buff, it's on a PC it barely helps, like one the enemies
-  leave alone, or an archer for movement.
+  leave alone. Since 2026-10-29 it's the carrier it helps least.
 - **Average** is the effect with no context. A debuff is aimed at the
   biggest threat in an ordinary fight. A buff goes on any PC. Ward needs
   its damage type and Necrotic needs enemy Protected or healing, so for
   those two it's averaged over ordinary fights, which puts it near Weak.
 - **Strong** is the best case measured. For a debuff, that's aimed at a
   boss in a dangerous fight, usually the Ogre test (a 2-slot enemy hitting
-  for 10 twice a turn, at 1.5 times the slots). For a buff, it's on the
-  PC the enemies are hitting, in the fight it's built for.
+  for 10 twice a turn, at 1.5 times the slots). For a buff, it's the
+  carrier it helps most, in the fight set it does best in.
 
 All three are per application: one stack, with the four-stack dose in
 brackets. They're measured at table toughness. Harried, Vulnerable,
 Bleeding and Necrotic add to the party's own attacks, where the sample
 characters out-damage THE TABEL's baseline (the 10-07 mismatch). Those
 four are scaled up to THE TABEL's footing so they read next to Damage
-and Accuracy: ×2.2 for Harried and Vulnerable, ×2.0 for Bleeding and
-Necrotic.
+and Accuracy: ×2.6 for Harried and Vulnerable, ×2.5 for Bleeding and
+Necrotic (×2.2 and ×2.0 on 10-22).
 
 Which one to use:
 
