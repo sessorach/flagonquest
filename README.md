@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-29 — A whole day, and a build optimizer
+
+The simulator can now play a whole day (two fights, healing afterwards, a night's rest) and score the party by how much Health it wakes up with. A build optimizer has started looking for the strongest legal build for each sample character.
+
+- Effect weights were re-measured after the Assassin change. Taunted came out stronger, Physical Resist weaker.
+- The optimizer's first find is a Hilde with a huge Health pool who takes her friends' hits through Lifeline. She wakes up a few Health short, but her party wins far more days in a row, so it's on the watch list.
+
 ### 2026-10-28 — Proposed builds, and a pass over every Technique
 
 Drafted Level 2 and 3 builds for Felix, Enith, Ashleigh and Sable that level the way the designer's own characters do, then ran every Technique and Feature the simulator plays through a broad test to see how well it can tell what each is worth.

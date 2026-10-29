@@ -236,6 +236,17 @@ The core files and the regular tools:
   added to whoever needs the fewest prereq ranks), read "free" and as
   an XP-matched swap, and every Feature of the four Buildables in a copy
   at a fixed Level. `technique_pass.csv` and `TECHNIQUE_PASS.md`.
+- **`build_optimizer.py`** (2026-10-28) — searches everything XP buys for
+  one sample character (legal builds only) for the most party Health left.
+  Its finds go in `hall_of_fame/`, one folder per version.
+- **`synergy_scan.py`** (2026-10-28) — pairs of Techniques worth more, or
+  less, together than apart, on one character or across the party.
+- **`day_sim.py`** (2026-10-29) — a whole day: two fights, the party's
+  healing between and after them, and a full night's rest. Scores the
+  party's Health the next morning (losses 0), what each PC is still
+  missing, and with `--days` how many days in a row a party wins before
+  it loses a fight. The rules it follows for the time between fights are
+  in TABLE_PLAY_NOTES.md, "Between fights".
 - **`coverage.py`** (2026-10-27) — where every techniques.csv ID stands:
   modeled, out of combat or deferred (with the reasons). Exits 1 if one
   is missing or listed twice, so run it after adding Techniques to the

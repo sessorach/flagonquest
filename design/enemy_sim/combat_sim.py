@@ -3043,7 +3043,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
 
 
 def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0, movement=False, start_gap=None,
-              trace=None, enemies=None):
+              trace=None, enemies=None, carry=None, day_fight=None):
     """`enemies`: pass a pre-built list of enemy dicts (e.g. from
     sample_enemies.build_encounter([...])) to fight that exact mix
     instead of `n_enemies` identical copies of `make_enemy(enemy_level)`
@@ -3114,10 +3114,19 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     carries `turn_shift` - a plain description string when this hit
     moved someone in the turn order (`None` otherwise), for spotting
     these in a replay. A final
-    `type='result'` event carries `winner`."""
+    `type='result'` event carries `winner`.
+
+    `carry` and `day_fight` are day_sim.py's: `carry` is one dict per PC
+    (party order) laid over the fresh sheet - Health, Shallow lost,
+    committed Health, the hand and deck - so the second fight of a day
+    starts where the first left off; `day_fight` (1 or 2) is passed on to
+    cards.start_fight."""
     if seed is not None:
         random.seed(seed)
     pcs = make_party(tier, good_luck=good_luck)
+    if carry is not None:
+        for p, c in zip(pcs, carry):
+            p.update(c)
     for p in pcs:
         # rulebook.md: "When you flip Reflex to join an encounter... you
         # gain 4 Action Points" - every PC's pool, refreshed at the end of
@@ -3159,10 +3168,11 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     # shared by every enemy.
     if T.CARDS:
         for p in pcs:
-            cards.start_fight(p)
+            cards.start_fight(p, day_fight)
             # Grim Resolve (T010, 0 AP, 1 Health committed until a full
-            # rest): "You draw a card." Jackal takes it once a fight.
-            if hooks.has(p, 'Grim Resolve'):
+            # rest): "You draw a card." Jackal takes it once a fight (not
+            # with her last Health, later in a day).
+            if hooks.has(p, 'Grim Resolve') and (day_fight is None or p['health'] > 1):
                 _draw_card(p)
                 p['health'] -= 1
                 p['max_health'] -= 1

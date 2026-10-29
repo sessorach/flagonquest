@@ -54,6 +54,30 @@ difficulty.
   Knowing they hold a queen, they may Gamble once or twice on an attack
   that hits on an 8+, and play the queen if the flip comes up short.
   Players see this as reasonable strategy, and it is.
+- **Healing after a fight is part of what healers are for** (designer,
+  2026-10-29). It's why healing costs cards: it stops Wounded in a fight,
+  and it tops the party up so they go to bed full or close to it. Carrick's
+  Patch Up is for this too.
+
+### Between fights (day_sim.py, my play rules, 2026-10-29)
+
+- Anyone up who knows From the Brink of Death uses it on each Downed ally
+  first (no cost).
+- Then each PC spends the cards they can spare: Healing Magic on the
+  Downed first, then whoever's missing the most it can restore; Lay On
+  Hands the same; Bolstering Refrain when two or more allies are missing
+  Shallow; Second Wind on themselves.
+- After the first fight a PC keeps a fight's budget (a third of the
+  morning's hand) for the second. After the second they spend everything,
+  since the Discard Cycle takes the hand at night anyway.
+- Patch Up goes on the most hurt before bed, with one card.
+- Healing Magic, Second Wind and Bolstering Refrain heal Shallow only, as
+  written ("heals 1 Shallow Health"), unless Healing Magic has Deep
+  Mending. In a fight the sim still heals its one Health number up to the
+  top, which is a little generous; between fights it's exact.
+- The night: committed Health comes back, then Body plus any "extra 1
+  Health" (Gritty, Pranic Nourishment, Shawl of the Land, Patch Up), Deep
+  first.
 
 ## Builds
 
@@ -1579,3 +1603,65 @@ does to these builds rather than which one is right.
   Furrow seldom has a target in its 4-meter line; the PCs don't steer
   around an enemy's Parting Shot; enemies can't Teleport out of a
   grapple, and a Heavy Melee enemy doesn't count as two-handed.
+
+## A whole day (2026-10-29)
+
+Per the designer: Health left after one fight isn't the whole story. A
+party that goes to bed short starts the next day short, and one that
+keeps doing that loses a fight eventually. `day_sim.py` plays two fights,
+the care between and after them ("Between fights" above) and the night,
+and scores the party's Health in the morning. With `--days` it keeps
+going, day after day, until a fight is lost (up to ten days here).
+
+The sample parties at Level 3 (600 days each; 240 runs of up to ten days):
+
+| Party | Enemy Health | Days won | Morning Health (of full) | More nights to full, won days | Days in a row |
+|---|---|---|---|---|---|
+| Enith, Felix, Jackal, Hanforth | ×1.0 | 83.5% | 29.2 of 40 | 1.55 | 2.67 |
+| Browndog, Ashleigh, Sable, Beornhard | ×1.0 | 90.0% | 31.1 of 44 | 2.56 | 1.75 |
+| Hilde, Carrick, Hanforth, Beornhard | ×1.0 | 87.5% | 34.2 of 43 | 0.98 | 3.08 |
+| Enith, Felix, Jackal, Hanforth | ×1.25 | 63.5% | 21.5 of 40 | 1.77 | 1.11 |
+| Browndog, Ashleigh, Sable, Beornhard | ×1.25 | 71.0% | 23.4 of 44 | 2.73 | 1.02 |
+| Hilde, Carrick, Hanforth, Beornhard | ×1.25 | 67.7% | 25.0 of 43 | 1.34 | 1.29 |
+| Hilde, Carrick, Hanforth, Beornhard | ×1.75 | 35.2% | 12.4 of 43 | 1.66 | 0.46 |
+
+- Two fights at ×1.75, the single-fight standard, is a hard day: most
+  lost days go in the second fight. ×1.0 or ×1.25 reads better for days.
+- The days in a row are well short of what the day's win rate would give
+  if days didn't carry over (83.5% a day would average about five days).
+  That's the morning shortfall at work.
+- Hanforth is often the one Downed (the Assassins read the softest
+  target), and a Downed healer heals nobody after the fight.
+
+### The optimizer's Hilde, by the morning
+
+The optimizer's best Level 3 Hilde (`hall_of_fame/runs/hilde_l3.json`,
+first entry: two Toughened Resolve, Toughened Body, Earthen Mantle
+Approach, Lifeline, Essence 5) was found on Health left after one fight.
+The question was whether a big pool that soaks the party's hits through
+Lifeline can get its Health back. It can, well enough (1,000 days each;
+400 runs of up to ten days):
+
+| Enemy Health | Days won, sample / optimizer | Morning, optimizer less sample | Hilde still missing in the morning | Ten days in a row |
+|---|---|---|---|---|
+| ×1.0 | 87.1% / 99.5% | +13.97 ± 0.89 | 0.35 / 1.97 | 6% / 90% |
+| ×1.25 | 68.3% / 96.4% | +18.76 ± 1.19 | 0.57 / 3.78 | 0% / 54% |
+| ×1.75 | 35.2% / 81.4% | +21.87 ± 1.39 | 0.82 / 6.63 | 0% / 4% |
+
+She does wake up short (Body 3 heals 3 a night), but the rest of the
+party wakes up nearly full, and they win so much more often that it
+doesn't catch up with them. What each part is worth (×1.25, 600 days,
+against the sample party's morning):
+
+| Build | Days won | Morning | Against the sample |
+|---|---|---|---|
+| The optimizer's build | 96.7% | 44.0 of 51 | +19.06 ± 1.53 |
+| without Lifeline | 80.5% | 34.6 of 51 | +9.64 ± 1.77 |
+| without Earthen Mantle Approach | 90.7% | 39.9 of 51 | +14.93 ± 1.60 |
+| without both Toughened Resolve | 88.2% | 34.4 of 43 | +9.44 ± 1.66 |
+| without Toughened Body | 95.3% | 41.1 of 48 | +16.17 ± 1.55 |
+| The sample, plus Lifeline (free) | 70.0% | 27.5 of 43 | +2.56 ± 1.13 |
+
+Lifeline is worth about +9.4 on the big pool and +2.6 on the sample:
+most of what it does here comes from having Health to spare. Watch list
+material for the Hall of Fame.

@@ -415,6 +415,13 @@ def load_sheet(row, build=None, strict=False):
                            f"{lo}-{hi}")
         copies.setdefault(t["id"], []).append(
             dict(level=level, features={f["name"]: int(f["count"]) for f in t.get("features", ())}))
+    # For day_sim.py's time between fights and its night's rest: which
+    # Techniques the sheet knows (Patch Up, Second Wind...), and the extra
+    # Health a full night's rest gives (Gritty, Pranic Nourishment, Shawl
+    # of the Land: "heal an extra 1 Health").
+    sheet.known_ids = {tid: len(cs) for tid, cs in copies.items()}
+    sheet.rest_bonus = (("B016" in (build.get("backgrounds") or ())) + ("T085" in copies)
+                        + any(it["id"] == "I150" for it in build.get("inventory", ())))
     choices = _choices(row.get("Choices"))
     # Unmodeled: Techniques this row carries knowingly unplayed (a power
     # the sim doesn't have yet). Their Health bonus still counts.
@@ -876,7 +883,8 @@ def _pc_dict(sheet, index, good_luck):
     pc["stats"] = {k: int(v) for k, v in stats.items()}
     pc["ley"] = ley
     pc["techs"] = list(dict.fromkeys(encounter_techs + card_techniques))
-    setup = SimpleNamespace(stats=stats, skills=skills, uses=collections.Counter(encounter_techs), ley=ley,
+    pc["known_ids"], pc["rest_bonus"] = sheet.known_ids, sheet.rest_bonus
+    setup =SimpleNamespace(stats=stats, skills=skills, uses=collections.Counter(encounter_techs), ley=ley,
                             sheet=sheet, weapon=weapon, weapon_name=weapon_name, w_skill=w_skill,
                             atk_skill_total=atk_skill_total, damage=damage, dmg_type=dmg_type, opp_def=opp_def)
     for name in dict.fromkeys(list(passives) + pc["techs"]):

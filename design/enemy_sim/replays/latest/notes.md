@@ -1,12 +1,12 @@
-# Latest replays (2026-10-28)
+# Latest replays (2026-10-29)
 
-Assassins read the softest target (lightest armor); Interrupts before their trigger (Mind and Body Unbroken); broad pass rerun
+Day sim added (no change to single fights); party.py records known Techniques and rest bonuses
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 68% party HP left
-- Matchup average over 1000 fights: 96.1% wins, 3.6 rounds, 74% HP left on a win
+- Matchup average over 1000 fights: 96.0% wins, 3.6 rounds, 73% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

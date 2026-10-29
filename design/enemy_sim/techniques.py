@@ -412,10 +412,11 @@ def _healing_magic(sheet, copies, choices):
     sheet.heal_bonus = c["features"].get("Vitality", 0)
     sheet.heal_reach = "Reach" in c["features"]
     # Read by tactics.strategy_support_healer. Deep Mending ("may apply to
-    # Deep or Shallow Health") changes nothing here: the sim keeps one
-    # Health pool and heals it up to the top.
+    # Deep or Shallow Health") changes nothing in a fight: the sim keeps
+    # one Health pool and heals it up to the top. day_sim.py reads it for
+    # healing after a fight, which is Shallow only without it.
     sheet.heal_features = {f: n for f, n in c["features"].items()
-                           if f in ("Purify", "Rejuvenate", "Guardian Angel", "Triage", "Healing Pact")}
+                           if f in ("Purify", "Rejuvenate", "Guardian Angel", "Triage", "Healing Pact", "Deep Mending")}
 
 
 @technique("T003", "Temper Soulblade")

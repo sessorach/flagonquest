@@ -127,7 +127,7 @@ def _stochastic_round(x):
     return whole + (1 if random.random() < x - whole else 0)
 
 
-def start_fight(pc):
+def start_fight(pc, day_fight=None):
     """Deals this PC's hand for the fight and sets how many cards it's
     willing to spend in it. Two fights a day (TABLE_PLAY_NOTES.md): the
     hand is the day's draw - twice Cunning plus Mind (rulebook.md's Draw
@@ -135,7 +135,15 @@ def start_fight(pc):
     Bottles' crafting), and the budget is CARDS_FIGHT_SHARE of that. In
     a second fight (CARDS_SECOND_FIGHT_SHARE of fights) a budget's worth
     of cards is already gone. The budget is rounded at random, so a hand
-    of 4 averages 1.33 cards a fight rather than always 1."""
+    of 4 averages 1.33 cards a fight rather than always 1.
+
+    `day_fight` (day_sim.py, which plays the whole day): 1 deals the
+    morning's hand with no second-fight guess; 2 keeps the hand left from
+    the first fight and sets a fresh budget off the morning's hand size."""
+    if day_fight == 2:
+        pc['budget'] = min(len(pc['hand']), _stochastic_round(pc['hand_size'] * T.CARDS_FIGHT_SHARE))
+        pc['cards_spent'] = 0
+        return
     deck = Deck()
     hand = [deck.draw() for _ in range(pc['hand_size'])]
     # Bottomless Bottles (T053): the day's crafting discards the lowest
@@ -145,7 +153,7 @@ def start_fight(pc):
         hand.remove(low)
         deck.discard.append(low)
     budget = min(len(hand), _stochastic_round(len(hand) * T.CARDS_FIGHT_SHARE))
-    if random.random() < T.CARDS_SECOND_FIGHT_SHARE:
+    if day_fight is None and random.random() < T.CARDS_SECOND_FIGHT_SHARE:
         for _ in range(min(budget, len(hand))):
             c = hand.pop(random.randrange(len(hand)))
             deck.discard.append(c)
