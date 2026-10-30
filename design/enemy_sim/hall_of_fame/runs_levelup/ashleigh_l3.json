@@ -1,0 +1,1298 @@
+[
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.508,
+  "validated": 0.49533333333333335,
+  "base_search": 0.034,
+  "base_validated": 0.034,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 2,
+    "Presence": 1,
+    "Resilience": 2,
+    "Insight": 4,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T197",
+     "name": "Command the Tempo",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T069",
+     "name": "Raise Spirits",
+     "xp": 12,
+     "level": "Lv 4"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T062",
+     "name": "Cry of Victory",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  }
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.508,
+  "validated": 0.49533333333333335,
+  "base_search": 0.034,
+  "base_validated": 0.034,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 1,
+    "Resilience": 2,
+    "Insight": 4,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T197",
+     "name": "Command the Tempo",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T069",
+     "name": "Raise Spirits",
+     "xp": 12,
+     "level": "Lv 4"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T062",
+     "name": "Cry of Victory",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  }
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.508,
+  "validated": 0.492,
+  "base_search": 0.034,
+  "base_validated": 0.034,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 2,
+    "Presence": 1,
+    "Resilience": 1,
+    "Insight": 4,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T197",
+     "name": "Command the Tempo",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T069",
+     "name": "Raise Spirits",
+     "xp": 12,
+     "level": "Lv 4"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T062",
+     "name": "Cry of Victory",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  }
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.508,
+  "validated": 0.492,
+  "base_search": 0.034,
+  "base_validated": 0.034,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 2,
+    "Presence": 1,
+    "Resilience": 1,
+    "Insight": 4,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T197",
+     "name": "Command the Tempo",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T069",
+     "name": "Raise Spirits",
+     "xp": 12,
+     "level": "Lv 4"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T062",
+     "name": "Cry of Victory",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  }
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.508,
+  "validated": 0.492,
+  "base_search": 0.034,
+  "base_validated": 0.034,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 1,
+    "Resilience": 1,
+    "Insight": 4,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 2,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T197",
+     "name": "Command the Tempo",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T069",
+     "name": "Raise Spirits",
+     "xp": 12,
+     "level": "Lv 4"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T062",
+     "name": "Cry of Victory",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  }
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.506,
+  "validated": 0.48933333333333334,
+  "base_search": 0.034,
+  "base_validated": 0.034,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 0,
+    "Insight": 4,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T197",
+     "name": "Command the Tempo",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T069",
+     "name": "Raise Spirits",
+     "xp": 12,
+     "level": "Lv 4"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T062",
+     "name": "Cry of Victory",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+   ]
+  }
+ }
+]

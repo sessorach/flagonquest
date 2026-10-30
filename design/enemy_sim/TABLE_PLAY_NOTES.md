@@ -2015,3 +2015,83 @@ Beornhard an Agility rank are the rule picking the highest rank, and a
 designer would likely trim differently. Sable's Level 3 build is the
 proposed one (PROPOSED_BUILDS.md), since there's no export of the
 designer's at that Level.
+
+### A scorecard at 145 combat XP: proof of concept (2026-10-30)
+
+The designer asked for a short pass on optimized builds, judged on more
+than one number. Every archetype started from its normalized build with
+the non-combat XP taken off, so 145 XP of pure combat. The search
+(`build_optimizer.py --combat-budget --start normalized --party standin
+--score levelup`, 25 generations, 500 days a score) put each candidate
+with three plain stand-ins and scored days won with every enemy one
+Level up. `scorecard.py` then played every normalized and optimized
+build again (1,000 days a reading, same seeds for all), with the new
+per-character counters (`tunables.TRACK_SHARES`: damage on each
+character's own turn, healing on their own turn, hits taken, Downs; on or
+off, fights play the same). Results: `hall_of_fame/runs_levelup/`.
+
+Four stand-ins win 86% of days at their own Level and 14% one up.
+Contribution is days won one up with the build and three stand-ins,
+minus that 14%, in points:
+
+| Archetype | Normalized | Optimized | Optimized: damage share, own Level | Downs per 10 days |
+|---|---|---|---|---|
+| Sable | +7 | +76 | 50% | 0.8 |
+| Felix | -4 | +61 | 32% | 0.1 |
+| Hanforth | +15 | +51 | 4% | 0.4 |
+| Enith | -10 | +44 | 19% | 0.4 |
+| Carrick | -3 | +36 | 27% | 0.2 |
+| Ashleigh | -10 | +36 | 39% | 2.6 |
+| Hilde | +7 | +29 | 42% | 2.2 |
+| Beornhard | -3 | +26 | 36% | 2.5 |
+| Browndog | -4 | +20 | 18% | 4.3 |
+| Jackal | -3 | +15 | 36% | 4.0 |
+
+What it says:
+
+- **At the same combat XP, the normalized characters sit close
+  together** (-10 to +15) and about level with a plain fighter. The
+  designer's archetypes, as built, are roughly even per XP.
+- **The search finds far more than that, for everyone.** Every optimized
+  build beats its normalized one, by 18 (Jackal) to 69 (Sable) points, and four of them
+  (Sable, Felix, Hanforth, Enith) win more than half their days one
+  Level up with three plain fighters for company. All seven parties of
+  four optimized builds tried (the top four and six random mixes) win
+  80-100% of days one Level up, and three of them win half their first
+  fights in two rounds with nobody Wounded.
+  By the flags, that's GM pressure across the board: the optimized
+  ceiling is a Level or more above what the normalized builds do.
+- **The spread between archetypes grows when optimized:** +15 (Jackal)
+  to +76 (Sable). Jackal's search found little (it traded Eagle Eyes and
+  two Battle Maneuvers for Forward! and moved Stats); Browndog's
+  contribution comes with 4.3 Downs per 10 days.
+- **What the searches agree on:** Cunning at 4-5 in eight of ten builds
+  (it sets the day's hand, twice Cunning plus Mind, and adds to Insight,
+  which is Reflex), and Essence at 3-5 in seven. Healing Magic in five
+  builds, four of them not the healer (Carrick, Enith, Felix, Sable each
+  bought Theurgy 3-4 for it), and a multi-Feature Battle Maneuver in
+  five. Sable's optimized build is an archer with a Level 4 Battle
+  Maneuver (Whirlwind, Calculated, Half Guard, Hamstring, Ascended Blade),
+  Exploit the Opening and Healing Magic, and takes half the party's
+  damage.
+- **The eclipse reading doesn't work yet.** Fifteen pairs flag, but
+  they're a ceiling: Sable alone wins 90% one up and Felix 74%, so
+  together they can't add what each adds alone (the reading is -51).
+  Pairs need a yardstick where neither is near 100%: two Levels up, or
+  reading the change in odds instead of in points.
+- **The per-XP and carry flags were set against the sample builds,** so
+  every optimized build trips them. That's the finding, not noise; but
+  the thresholds need a second look once the yardstick is settled.
+
+Caveats:
+
+- These are search results, not table builds. The mutations also buy
+  stray non-combat ranks (Performance, Masquerade, Craft) that cost XP
+  and do nothing in a fight, so the optimized numbers are if anything a
+  little low.
+- Healing between fights isn't in the healing counter, only healing on a
+  character's own turn in a fight.
+- "Damage on a character's own turn" credits Bleeding that ticks then,
+  and gives Retribution-style damage on enemy turns to nobody.
+- One search per archetype, one seed; a second seed would show how
+  stable the picks are.

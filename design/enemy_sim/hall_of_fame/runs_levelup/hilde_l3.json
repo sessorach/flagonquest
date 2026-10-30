@@ -1,0 +1,1790 @@
+[
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 0.428,
+  "validated": 0.402,
+  "base_search": 0.222,
+  "base_validated": 0.21066666666666667,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 3,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 5,
+    "Stealth": 1,
+    "Athletics": 2,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 4,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 5,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 3,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T130",
+     "name": "Furious Rage",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T018",
+     "name": "Strength from the Slain",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  }
+ },
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 0.416,
+  "validated": 0.37866666666666665,
+  "base_search": 0.222,
+  "base_validated": 0.21066666666666667,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 3,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 5,
+    "Stealth": 1,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 4,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 5,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 3,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T130",
+     "name": "Furious Rage",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T018",
+     "name": "Strength from the Slain",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  }
+ },
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 0.412,
+  "validated": 0.37466666666666665,
+  "base_search": 0.222,
+  "base_validated": 0.21066666666666667,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 3,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 5,
+    "Stealth": 1,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 3,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 4,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 5,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 3,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T130",
+     "name": "Furious Rage",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T018",
+     "name": "Strength from the Slain",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  }
+ },
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 0.412,
+  "validated": 0.37466666666666665,
+  "base_search": 0.222,
+  "base_validated": 0.21066666666666667,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 3,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 5,
+    "Stealth": 1,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 3,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 4,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 5,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 3,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T130",
+     "name": "Furious Rage",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T018",
+     "name": "Strength from the Slain",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  }
+ },
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 0.412,
+  "validated": 0.37466666666666665,
+  "base_search": 0.222,
+  "base_validated": 0.21066666666666667,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 3,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 5,
+    "Stealth": 1,
+    "Athletics": 2,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 4,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 5,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 3,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T130",
+     "name": "Furious Rage",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T018",
+     "name": "Strength from the Slain",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  }
+ },
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 0.412,
+  "validated": 0.37133333333333335,
+  "base_search": 0.222,
+  "base_validated": 0.21066666666666667,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 3,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 5,
+    "Stealth": 1,
+    "Athletics": 2,
+    "Awareness": 0,
+    "Might": 3,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 4,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 5,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 3,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T130",
+     "name": "Furious Rage",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T018",
+     "name": "Strength from the Slain",
+     "xp": 9,
+     "level": "Lv 3"
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+   ]
+  }
+ }
+]

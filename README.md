@@ -13,13 +13,14 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-10-30 — Is Health left the right yardstick?
+### 2026-10-30 — New yardsticks, and every character at the same combat XP
 
-Compared two kinds of measure on the same changes: how much tougher a fight the party can take, and how much Health it spends. Health left gives extra Health credit just for being there; by what the party can take, Toughened Resolve still helps, but +1 Essence and healing do more per XP.
+Switched to judging builds by days won against enemies a Level up, with every sample character rebuilt to the same 145 XP of combat. At that budget the characters as built come out about even, but an optimizer finds builds for every one of them that win most days a Level up, so the ceiling sits far above the norm.
 
 - With enemies that hit harder instead of having more Health, Essence's edge halves, and an optimizer that gives Health no credit stops stacking Toughened Resolve for three of four characters (finding stronger builds), so the next pass moves to a composite enemy-Level yardstick.
 - Started measuring each character against a plain fighter of the same XP, with enemies built a Level up: a party of four plain fighters wins about as often as our sample parties.
 - A deep pass put every Technique on every character it fits, by the day; healing between fights is what moves. A synergy scan of 599 pairs found nothing outsized: most pairs just add up, and healing on healing overlaps.
+- A first scorecard (days won a Level up, damage share, Downs, pairs, whole parties) on optimized builds: Cunning, Essence and Healing Magic on non-healers show up again and again, and the optimized Sable wins 90% of days a Level up with three plain fighters.
 - The build optimizer finished both runs, and the first Hall of Fame is in (`design/enemy_sim/hall_of_fame/v1.2/`): 39 of the most broken legal builds, ranked by the toughest day they can win, with a watch list. Nearly all of them stack Toughened Resolve and max Essence.
 
 ### 2026-10-29 — A whole day, and a build optimizer

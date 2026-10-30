@@ -1,0 +1,1850 @@
+[
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.378,
+  "validated": 0.4026666666666667,
+  "base_search": 0.104,
+  "base_validated": 0.08466666666666667,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 5,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 0,
+    "Presence": 1,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 2,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Wild Magic",
+       "count": 3
+      },
+      {
+       "name": "Reign of Blood",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T123",
+     "name": "Wall of Shadows",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 12,
+     "level": 4,
+     "features": [
+      {
+       "name": "Destructive",
+       "count": 2
+      },
+      {
+       "name": "Draw Power",
+       "count": 1
+      },
+      {
+       "name": "Furrow (Shape)",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.368,
+  "validated": 0.3406666666666667,
+  "base_search": 0.104,
+  "base_validated": 0.08466666666666667,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 2,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Wild Magic",
+       "count": 3
+      },
+      {
+       "name": "Reign of Blood",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T123",
+     "name": "Wall of Shadows",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 12,
+     "level": 4,
+     "features": [
+      {
+       "name": "Destructive",
+       "count": 2
+      },
+      {
+       "name": "Draw Power",
+       "count": 1
+      },
+      {
+       "name": "Furrow (Shape)",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.368,
+  "validated": 0.3406666666666667,
+  "base_search": 0.104,
+  "base_validated": 0.08466666666666667,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 3,
+    "Composure": 0,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Wild Magic",
+       "count": 3
+      },
+      {
+       "name": "Reign of Blood",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T123",
+     "name": "Wall of Shadows",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 12,
+     "level": 4,
+     "features": [
+      {
+       "name": "Destructive",
+       "count": 2
+      },
+      {
+       "name": "Draw Power",
+       "count": 1
+      },
+      {
+       "name": "Furrow (Shape)",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.368,
+  "validated": 0.3406666666666667,
+  "base_search": 0.104,
+  "base_validated": 0.08466666666666667,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 2,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Wild Magic",
+       "count": 3
+      },
+      {
+       "name": "Reign of Blood",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T123",
+     "name": "Wall of Shadows",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 12,
+     "level": 4,
+     "features": [
+      {
+       "name": "Destructive",
+       "count": 2
+      },
+      {
+       "name": "Draw Power",
+       "count": 1
+      },
+      {
+       "name": "Furrow (Shape)",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.368,
+  "validated": 0.3406666666666667,
+  "base_search": 0.104,
+  "base_validated": 0.08466666666666667,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 2,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Wild Magic",
+       "count": 3
+      },
+      {
+       "name": "Reign of Blood",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T123",
+     "name": "Wall of Shadows",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 12,
+     "level": 4,
+     "features": [
+      {
+       "name": "Destructive",
+       "count": 2
+      },
+      {
+       "name": "Draw Power",
+       "count": 1
+      },
+      {
+       "name": "Furrow (Shape)",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.368,
+  "validated": 0.3406666666666667,
+  "base_search": 0.104,
+  "base_validated": 0.08466666666666667,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 3,
+    "Composure": 0,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Wild Magic",
+       "count": 3
+      },
+      {
+       "name": "Reign of Blood",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 5,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T123",
+     "name": "Wall of Shadows",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 12,
+     "level": 4,
+     "features": [
+      {
+       "name": "Destructive",
+       "count": 2
+      },
+      {
+       "name": "Draw Power",
+       "count": 1
+      },
+      {
+       "name": "Furrow (Shape)",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T122",
+     "name": "Gainsay",
+     "xp": 3,
+     "level": "Lv 1"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+    "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+   ]
+  }
+ }
+]
