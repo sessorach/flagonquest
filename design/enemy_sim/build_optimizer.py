@@ -57,6 +57,7 @@ import combat_sim as cs, sample_enemies as se, party, tunables as T  # noqa: E40
 import game_data  # noqa: E402
 import techniques as tq  # noqa: E402
 import day_sim  # noqa: E402
+import threshold  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MULT = 1.75
@@ -436,6 +437,47 @@ def search(arch, level, gens, n, kids, popsize, seed, pool_, ckpt=None):
     return sorted(out, key=lambda r: -r["validated"])
 
 
+def day_threshold(args):
+    """The toughest day (enemy Health multiplier) the party wins half
+    the time with `build` in `name`'s place (threshold.py): the ranking
+    the designer picked, 2026-10-30, since it counts no resource."""
+    name, build, level, key, n, seed = args
+    rows = party._rows()
+    row = choices_for(rows[name], build) if build else None
+    swaps = {name: ({"build": build}, row)} if build else {}
+
+    def rate(m):
+        day_sim.set_mult(m)
+        recs = day_sim.run(PARTIES[level][key], swaps, level, n, seed=seed)
+        return sum(not r["lost"] for r in recs), len(recs)
+    return threshold.find(rate, 0.5, 6.0)[0]
+
+
+def rescore(runs_dir, n, pool_):
+    """Adds the toughest day (`day_x`, the sample's `base_day_x`) to every
+    entry in `runs_dir`'s results and ranks each file by it. A file
+    already rescored is skipped, so a restart picks up where it stopped."""
+    for path in sorted(os.listdir(runs_dir)):
+        if not path.endswith(".json"):
+            continue
+        full = os.path.join(runs_dir, path)
+        res = json.load(open(full))
+        if not res or all("day_x" in r for r in res):
+            continue
+        r0 = res[0]
+        key = PARTY_OF[r0["arch"]]
+        jobs = [(r0["name"], r["build"], r0["level"], key, n, VALIDATE_SEED) for r in res]
+        jobs.append((r0["name"], None, r0["level"], key, n, VALIDATE_SEED))
+        xs = pool_.map(day_threshold, jobs)
+        for r, x in zip(res, xs):
+            r.update(day_x=x, base_day_x=xs[-1], day_x_n=n)
+        res.sort(key=lambda r: -r["day_x"])
+        with open(full + ".tmp", "w") as f:
+            json.dump(res, f, indent=1)
+        os.replace(full + ".tmp", full)
+        print(f"{path}: toughest day x{res[0]['day_x']:.2f} vs the sample's x{xs[-1]:.2f}", flush=True)
+
+
 def score_days(args):
     """Mean days won in a row (up to DAYS) with `build` in `name`'s place."""
     name, build, level, key, n, seed = args
@@ -474,7 +516,14 @@ def finalists(runs_dir, keep=2):
             # (they differ in a rank no fight reads).
             c = _content(r["build"])
             # The day score ranks by days in a row (search() sorts them).
-            beats = r["days"] > r["base_days"] if "days" in r else r["validated"] > r["base_validated"]
+            # Ranked by the toughest day once rescored (rescore()), else by
+            # the run's own score.
+            if "day_x" in r:
+                beats = r["day_x"] > r["base_day_x"]
+            elif "days" in r:
+                beats = r["days"] > r["base_days"]
+            else:
+                beats = r["validated"] > r["base_validated"]
             if c in seen or round(r["validated"], 6) in seen or not beats:
                 continue
             seen.update((c, round(r["validated"], 6)))
@@ -510,6 +559,9 @@ def write_hall(runs_dir, flavor, version, sub=""):
             else:
                 how = (f"Party Health left {r['validated']:.2f} against the sample's {r['base_validated']:.2f} on "
                        f"fresh fights (enemy Health x{MULT})")
+            if "day_x" in r:
+                how = (f"Toughest day it wins half the time: enemy Health x{r['day_x']:.2f}, against the sample's "
+                       f"x{r['base_day_x']:.2f} ({100 * (r['day_x'] / r['base_day_x'] - 1):+.0f}%). " + how)
             b["simNotes"] = [f"Hall of Fame v{version}: build_optimizer.py's #{i} for {r['arch']} ({ARCHES[r['arch']]}), "
                              f"Level {r['level']}, in {name}'s place in party {PARTY_OF[r['arch']]}. {how}. "
                              "Items, background and row are the sample's."]
@@ -536,10 +588,16 @@ def main():
     ap.add_argument("--hall", action="store_true", help="write hall_of_fame/v<version>/ from the runs in -o")
     ap.add_argument("--score", choices=("fight", "day"), default="fight",
                     help="Health left after one fight, or day_sim.py's morning Health (then days in a row)")
+    ap.add_argument("--rescore", action="store_true",
+                    help="add the toughest day (threshold.py) to every result in -o and rank by it; -n is days a mix")
     ap.add_argument("--hall-sub", default="", help="a subfolder of hall_of_fame/v<version>/ for --hall")
     ap.add_argument("--redo", action="store_true", help="search again even if -o already has a result")
     ap.add_argument("--flavor", help="a JSON of names and concepts, keyed <archetype>_l<Level>_<rank>")
     a = ap.parse_args()
+    if a.rescore:
+        with mp.Pool(a.j) as pool_:
+            rescore(a.o, a.n, pool_)
+        return
     if a.hall:
         flavor = json.load(open(a.flavor)) if a.flavor else {}
         for p in write_hall(a.o, flavor, current_version(), a.hall_sub):

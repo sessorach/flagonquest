@@ -20,6 +20,13 @@ enemy Health x1.75 against that Level's four encounter mixes. The best
 are then rescored on fresh fights, so the number in each entry is honest
 rather than the lucky draw that got it picked.
 
+**How the Hall ranks them** (2026-10-30, the designer's pick): by the
+toughest day the party still wins half the time with the build in its
+sample's place (`--rescore`, threshold.py), against the sample's own.
+The search scores (Health left after a fight, Health in the morning)
+give a bigger pool credit just for being bigger, so they only find the
+candidates.
+
 Each `.json` is a Builder export: open it in the Builder's Import to see
 the whole sheet. The `simNotes` field says what it scored against the
 sample. The names and concepts are flavor, in the spirit of the

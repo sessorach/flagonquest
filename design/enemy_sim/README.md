@@ -244,6 +244,15 @@ The core files and the regular tools:
   searches on day_sim.py's morning Health instead, then ranks the
   finalists by days won in a row (morning Health favors a big pool; days
   in a row doesn't). Saves itself every generation (`.ckpt`).
+- **`threshold.py`** and **`measure_compare.py`** (2026-10-30) — the
+  headline measure, per the designer: the toughest enemies (an enemy
+  Health multiplier) a party still beats half the time, for one fight
+  or a whole day, found by halving with a curve fitted through every
+  point. It counts no resource, so a bigger pool gets no credit for its
+  size. `measure_compare.py` reads a set of changes by it and by what
+  the party spends (Health lost, Health missing in the morning);
+  `build_optimizer.py --rescore` ranks the optimizer's finalists by the
+  toughest day.
 - **`resume.py`** (2026-10-29) — the worker restarts now and then and
   takes every process with it. Long scripts (technique_pass.py,
   synergy_scan.py) keep each finished job in a `.partial` file next to

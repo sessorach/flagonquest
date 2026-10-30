@@ -1773,9 +1773,12 @@ Resilience rank they need.)
 - **Healing is the best buy per XP by the day:** losing Healing Magic
   costs 21% of the toughest day the party can take, about 2.3% per XP.
 - **The thresholds are coarse.** Several changes land exactly on +0%
-  because eight halvings on 600 fights only see steps of about 2%. A
-  finer reading (win rates at a grid of multipliers, and a fitted curve
-  through them) would cost the same and give a smooth number.
+  because eight halvings on 600 fights only see steps of about 2%.
+  Fixed the same day: threshold.py fits a curve through every point the
+  halving tried (on made-up data with a known answer, about two to three
+  times tighter than the halving's own answer, no bias), and the table
+  is being rerun with it, with a row for the noise between two sets of
+  fights.
 - Both optimizer runs search on scores that count the pool (Health
   left; Health in the morning), which is part of why every build they
   find stacks Toughened Resolve.
