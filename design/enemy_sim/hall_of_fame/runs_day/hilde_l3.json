@@ -1,0 +1,1200 @@
+[
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 53.8,
+  "validated": 53.093333333333334,
+  "base_search": 33.91,
+  "base_validated": 34.946666666666665,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 1,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 3,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T086",
+     "name": "Great Old Oak School - Bark Turns the Blade",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning."
+   ]
+  },
+  "days": 9.341666666666667,
+  "base_days": 3.4516666666666667,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 53.8,
+  "validated": 53.093333333333334,
+  "base_search": 33.91,
+  "base_validated": 34.946666666666665,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 1,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 3,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T086",
+     "name": "Great Old Oak School - Bark Turns the Blade",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning."
+   ]
+  },
+  "days": 9.341666666666667,
+  "base_days": 3.4516666666666667,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 53.72,
+  "validated": 53.01833333333333,
+  "base_search": 33.91,
+  "base_validated": 34.946666666666665,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 4,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 3,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 3,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T086",
+     "name": "Great Old Oak School - Bark Turns the Blade",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning."
+   ]
+  },
+  "days": 9.283333333333333,
+  "base_days": 3.4516666666666667,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 53.525,
+  "validated": 52.86833333333333,
+  "base_search": 33.91,
+  "base_validated": 34.946666666666665,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 2,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 2,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning."
+   ]
+  },
+  "days": 9.245,
+  "base_days": 3.4516666666666667,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 53.525,
+  "validated": 52.86833333333333,
+  "base_search": 33.91,
+  "base_validated": 34.946666666666665,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 2,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 0,
+    "Presence": 2,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 2,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning."
+   ]
+  },
+  "days": 9.245,
+  "base_days": 3.4516666666666667,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Hilde",
+  "level": 3,
+  "name": "Hilde (L3)",
+  "search": 53.59,
+  "validated": 52.98,
+  "base_search": 33.91,
+  "base_validated": 34.946666666666665,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 3,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:40:21.231Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T086",
+     "name": "Great Old Oak School - Bark Turns the Blade",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+    "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning."
+   ]
+  },
+  "days": 9.223333333333333,
+  "base_days": 3.4516666666666667,
+  "score": "day",
+  "mult": 1.0
+ }
+]

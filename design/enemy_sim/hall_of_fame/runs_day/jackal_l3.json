@@ -1,0 +1,810 @@
+[
+ {
+  "arch": "Jackal",
+  "level": 3,
+  "name": "Jackal (L3)",
+  "search": 47.46,
+  "validated": 47.25833333333333,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Jackal the Alchemist",
+   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 4,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 1,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 1,
+    "Athletics": 3,
+    "Awareness": 2,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 4,
+    "Craft": 1,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:06:41.613Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 2
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.391666666666667,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Jackal",
+  "level": 3,
+  "name": "Jackal (L3)",
+  "search": 47.36,
+  "validated": 47.14833333333333,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Jackal the Alchemist",
+   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 4,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 1,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 1,
+    "Athletics": 3,
+    "Awareness": 2,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:06:41.613Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 2
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.343333333333334,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Jackal",
+  "level": 3,
+  "name": "Jackal (L3)",
+  "search": 47.35,
+  "validated": 47.16166666666667,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Jackal the Alchemist",
+   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 4,
+    "Cunning": 5,
+    "Mind": 3,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 1,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 1,
+    "Athletics": 3,
+    "Awareness": 2,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 3,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:06:41.613Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.19,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Jackal",
+  "level": 3,
+  "name": "Jackal (L3)",
+  "search": 47.35,
+  "validated": 47.16166666666667,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Jackal the Alchemist",
+   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 4,
+    "Cunning": 5,
+    "Mind": 3,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 1,
+    "Brawl": 2,
+    "Melee": 0,
+    "Stealth": 1,
+    "Athletics": 3,
+    "Awareness": 2,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 3,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:06:41.613Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.19,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Jackal",
+  "level": 3,
+  "name": "Jackal (L3)",
+  "search": 47.35,
+  "validated": 47.16166666666667,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Jackal the Alchemist",
+   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 4,
+    "Cunning": 5,
+    "Mind": 3,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 1,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 1,
+    "Athletics": 3,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 3,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:06:41.613Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.19,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Jackal",
+  "level": 3,
+  "name": "Jackal (L3)",
+  "search": 47.24,
+  "validated": 46.785,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Jackal the Alchemist",
+   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 4,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 1,
+    "Athletics": 2,
+    "Awareness": 3,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 5,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 2,
+    "Meditation": 2,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:06:41.613Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Whirlwind",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 8.88,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ }
+]
