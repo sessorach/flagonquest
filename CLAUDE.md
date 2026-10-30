@@ -315,7 +315,12 @@ which should stay a clean decision record.
   script in the scratchpad (a `flock` so a second start does nothing,
   a done-marker per step); a SessionStart hook in
   `.claude/settings.local.json` (git-excluded) restarts the queue; and an
-  hourly scheduled task does the same, as a backstop. Never `pkill -f` or
+  hourly scheduled task does the same, as a backstop. The container also
+  goes to sleep a few minutes after the session goes idle, taking
+  detached (`setsid`) processes with it; a harness-tracked background
+  Bash task (`run_in_background`, up to 2h, relaunched when it ends)
+  holds it awake, so the queue runs under a keepalive loop launched
+  that way. Never `pkill -f` or
   `awk`-kill by a script's name in a command that also names it: it
   matches its own shell (exit 144).
 - **Refactoring the simulator: prove the old path didn't move.** Put
