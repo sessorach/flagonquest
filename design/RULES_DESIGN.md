@@ -17,6 +17,23 @@ last update, before the compaction happens.
 
 ## Design philosophy established so far
 
+### STANDING RULE — What the game is for, and what balance is for
+
+Per the designer (2026-10-30). FlagonQuest is a way to tell a story
+together. Instead of deciding freely where the story goes, the table uses
+the game to decide it. Every player gets an equal share of resources (XP,
+gold, cards) to spend shaping the story through their character. A player
+who wants a brave knight spends XP on being good at brave-knight things:
+maybe winning people over with sheer righteousness, at the cost of being
+bad at sneaking.
+
+Balance keeps those shares equal. Combat is where the rules press hardest,
+so the balance work aims to make each way of spending XP roughly as strong
+in a fight as any other. Strength is measured by how much harder a fight a
+party can take for what it spent, not by any single resource it has left
+over. (In the simulator: the toughest day a party can still win half the
+time, `design/enemy_sim/TABLE_PLAY_NOTES.md`, "Two kinds of measure".)
+
 ### STANDING RULE — Techniques and items are assumed to break the baseline, and that's fine
 
 This applies to every section of the book, not just one, and should shape how
