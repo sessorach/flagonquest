@@ -1845,3 +1845,34 @@ mixes, Level 2 to Level 3 enemies go from 8.7 to 11.2 Health on average
 (×1.29), from 6.33 to 7.28 damage a hit (+0.95), and +1 to hit; Level 1
 to 2 is ×1.19 Health and +0.94 damage. A GM levelling a fight up does all
 of it at once. The headline yardstick does only the first.
+
+### The unbiased search (2026-10-30)
+
+Both optimizer runs searched on scores that count a bigger pool in full
+(Health left; Health in the morning), and the Hall only re-ranked what
+they found. `build_optimizer.py --score daywin` searches on the share of
+days won at a fixed hard setting (enemy Health ×1.52-1.54, where the
+sample party wins about half its days), which gives Health no credit for
+being there. Four Level 3 characters, rescored by the toughest day like
+the Hall (`hall_of_fame/runs_daywin/`):
+
+| Character | Hall's best (old searches) | Unbiased search's best |
+|---|---|---|
+| Hilde | +44%: 2 Toughened Resolve, Essence 5, 21 Health | +80%: no Toughened Resolve, Essence 5, 13 Health (4 Battle Maneuvers, Toughened Body, Earthen Mantle Approach, Healing Magic) |
+| Beornhard | +59%: 3 Toughened Resolve, Essence 5, 22 Health | +93%: no Toughened Resolve, Essence 5, 10 Health (One Eye Behind You, Magehunter, Earthen Mantle Approach, Shadow Jaunt, Force Missiles, Lay On Hands, Brace) |
+| Carrick | +43%: 2 Toughened Resolve, Essence 2, 18 Health | +45%: 1 Toughened Resolve, Essence 3, 14 Health (Arrow Finds Only Mist, Lifeline, Doubleshot, Healing Magic, Bark Turns the Blade) |
+| Ashleigh | +93%: 5 Toughened Resolve, Lifeline, Earthen Mantle Approach, Essence 5, 30 Health | +26%: no Toughened Resolve, Essence 5, 10 Health |
+
+- **The old scores steered the search into Toughened Resolve.** Without
+  Health credit, three of four drop it, and two of them find much
+  stronger builds than the Hall's (Hilde +80% against +44%, Beornhard
+  +93% against +59%).
+- **Ashleigh's search got stuck.** It never found the five-Resolve
+  Lifeline build, which is still the best anyone's found for her: one
+  Toughened Resolve alone does little, so a search with no Health credit
+  has nothing pulling it toward five. Searches need several starts,
+  including the best builds already known.
+- **Essence stays at the cap either way,** and Earthen Mantle Approach
+  (+2 to four elemental Resists) keeps turning up: Resist is the common
+  thread. These are still ranked by the more-enemy-Health yardstick,
+  which favors it ("Does the yardstick favor durability?").

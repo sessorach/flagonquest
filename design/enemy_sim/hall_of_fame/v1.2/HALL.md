@@ -98,7 +98,11 @@ Across the 39 builds:
 None of these are decisions, just what this pass turned up. Measured
 singly on Hilde's party (TABLE_PLAY_NOTES.md, "Two kinds of measure"):
 
-1. **Toughened Resolve stacking.** A copy is an ordinary buy, about
+1. **Toughened Resolve stacking.** (Update, later 2026-10-30: mostly the
+   search's doing. Searching on days won, with no credit for Health,
+   three of four characters drop it and two find stronger builds; see
+   TABLE_PLAY_NOTES.md, "The unbiased search". Ashleigh's five-copy
+   build is still her best.) A copy is an ordinary buy, about
    0.4-0.6% tougher enemies per XP, but nothing stops a build taking six.
    Every copy also raises the Health-left and morning scores in full,
    which is why both searches leaned on it. Worth deciding whether

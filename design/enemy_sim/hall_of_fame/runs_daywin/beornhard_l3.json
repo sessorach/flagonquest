@@ -1,0 +1,758 @@
+[
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.99,
+  "validated": 0.9816666666666667,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 2.975141819650305,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.99,
+  "validated": 0.9766666666666667,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T076",
+     "name": "Parting Shot",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 2.8459145614768167,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.99,
+  "validated": 0.9766666666666667,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T076",
+     "name": "Parting Shot",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 2.8459145614768167,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.99,
+  "validated": 0.9766666666666667,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 2,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T076",
+     "name": "Parting Shot",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 2.8440664013190196,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.985,
+  "validated": 0.9783333333333334,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 2,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T076",
+     "name": "Parting Shot",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 2.761188706916669,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.99,
+  "validated": 0.965,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 4,
+    "Resilience": 3,
+    "Insight": 4,
+    "Masquerade": 1,
+    "Persuasion": 1,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 2,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T097",
+     "name": "Shadow Jaunt",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 2.5703669645950926,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ }
+]

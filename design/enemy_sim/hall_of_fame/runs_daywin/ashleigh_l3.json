@@ -1,0 +1,740 @@
+[
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.91,
+  "validated": 0.855,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 3,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 4,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T063",
+     "name": "Favorite Face",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 3
+      },
+      {
+       "name": "Purify",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 1.941322401188661,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.91,
+  "validated": 0.8483333333333334,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 1,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 2,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 4,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T063",
+     "name": "Favorite Face",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 3
+      },
+      {
+       "name": "Purify",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 1.934638541300644,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.91,
+  "validated": 0.8483333333333334,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 2,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 4,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T063",
+     "name": "Favorite Face",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 3
+      },
+      {
+       "name": "Purify",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 1.934638541300644,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.91,
+  "validated": 0.8483333333333334,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 3,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 2,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 4,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T063",
+     "name": "Favorite Face",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 3
+      },
+      {
+       "name": "Purify",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 1.934638541300644,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.91,
+  "validated": 0.8483333333333334,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 2,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 5,
+    "Rapport": 4,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T063",
+     "name": "Favorite Face",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 3
+      },
+      {
+       "name": "Purify",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 1.934638541300644,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 0.91,
+  "validated": 0.8483333333333334,
+  "base_search": 0.51,
+  "base_validated": 0.525,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 2,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 2,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 1,
+    "Performance": 5,
+    "Rapport": 4,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T063",
+     "name": "Favorite Face",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2"
+    },
+    {
+     "id": "T070",
+     "name": "Rally to Victory",
+     "level": "Lv 4"
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 3
+      },
+      {
+       "name": "Purify",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T137",
+     "name": "Eagle Eyes",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "score": "daywin",
+  "at_x": 1.54,
+  "day_x": 1.934638541300644,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
+ }
+]
