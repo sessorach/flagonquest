@@ -121,7 +121,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.336343453415029,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Felix",
@@ -245,7 +248,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.336343453415029,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Felix",
@@ -363,7 +369,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.289594105747463,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Felix",
@@ -481,7 +490,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.289594105747463,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Felix",
@@ -599,7 +611,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.289594105747463,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Felix",
@@ -717,6 +732,9 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.289594105747463,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  }
 ]

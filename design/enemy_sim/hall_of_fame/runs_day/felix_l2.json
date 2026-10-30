@@ -1,0 +1,686 @@
+[
+ {
+  "arch": "Felix",
+  "level": 2,
+  "name": "Felix (L2, proposed)",
+  "search": 44.06,
+  "validated": 43.965,
+  "base_search": 30.24,
+  "base_validated": 32.24333333333333,
+  "build": {
+   "charName": "Felix (Level 2, proposed)",
+   "charConcept": "A practitioner of the mystic and martial arts",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 2,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:31:31.047Z",
+   "techniques": [
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T163",
+     "name": "Great Old Oak School - Tree Withstands the Storm",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 7.706666666666667,
+  "base_days": 3.055,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Felix",
+  "level": 2,
+  "name": "Felix (L2, proposed)",
+  "search": 44.06,
+  "validated": 43.965,
+  "base_search": 30.24,
+  "base_validated": 32.24333333333333,
+  "build": {
+   "charName": "Felix (Level 2, proposed)",
+   "charConcept": "A practitioner of the mystic and martial arts",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 2,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:31:31.047Z",
+   "techniques": [
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T163",
+     "name": "Great Old Oak School - Tree Withstands the Storm",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 7.706666666666667,
+  "base_days": 3.055,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Felix",
+  "level": 2,
+  "name": "Felix (L2, proposed)",
+  "search": 44.06,
+  "validated": 43.965,
+  "base_search": 30.24,
+  "base_validated": 32.24333333333333,
+  "build": {
+   "charName": "Felix (Level 2, proposed)",
+   "charConcept": "A practitioner of the mystic and martial arts",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 2,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:31:31.047Z",
+   "techniques": [
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T163",
+     "name": "Great Old Oak School - Tree Withstands the Storm",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 7.706666666666667,
+  "base_days": 3.055,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Felix",
+  "level": 2,
+  "name": "Felix (L2, proposed)",
+  "search": 44.06,
+  "validated": 43.965,
+  "base_search": 30.24,
+  "base_validated": 32.24333333333333,
+  "build": {
+   "charName": "Felix (Level 2, proposed)",
+   "charConcept": "A practitioner of the mystic and martial arts",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 2,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:31:31.047Z",
+   "techniques": [
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T163",
+     "name": "Great Old Oak School - Tree Withstands the Storm",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 7.706666666666667,
+  "base_days": 3.055,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Felix",
+  "level": 2,
+  "name": "Felix (L2, proposed)",
+  "search": 44.06,
+  "validated": 43.965,
+  "base_search": 30.24,
+  "base_validated": 32.24333333333333,
+  "build": {
+   "charName": "Felix (Level 2, proposed)",
+   "charConcept": "A practitioner of the mystic and martial arts",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 2,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:31:31.047Z",
+   "techniques": [
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T163",
+     "name": "Great Old Oak School - Tree Withstands the Storm",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 7.706666666666667,
+  "base_days": 3.055,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Felix",
+  "level": 2,
+  "name": "Felix (L2, proposed)",
+  "search": 44.06,
+  "validated": 43.965,
+  "base_search": 30.24,
+  "base_validated": 32.24333333333333,
+  "build": {
+   "charName": "Felix (Level 2, proposed)",
+   "charConcept": "A practitioner of the mystic and martial arts",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 2,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:31:31.047Z",
+   "techniques": [
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T163",
+     "name": "Great Old Oak School - Tree Withstands the Storm",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 7.706666666666667,
+  "base_days": 3.055,
+  "score": "day",
+  "mult": 1.0
+ }
+]

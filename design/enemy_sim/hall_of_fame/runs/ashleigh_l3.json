@@ -140,7 +140,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.982195326683548,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Ashleigh",
@@ -283,7 +286,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.982195326683548,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Ashleigh",
@@ -426,7 +432,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.982195326683548,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Ashleigh",
@@ -569,7 +578,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.982195326683548,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Ashleigh",
@@ -712,7 +724,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.982195326683548,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Ashleigh",
@@ -855,6 +870,9 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.982195326683548,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  }
 ]

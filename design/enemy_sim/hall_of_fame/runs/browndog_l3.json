@@ -189,7 +189,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.6819391748172863,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Browndog",
@@ -381,7 +384,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.6819391748172863,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Browndog",
@@ -573,7 +579,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.6683748360329969,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Browndog",
@@ -765,7 +774,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.6567282956155207,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Browndog",
@@ -957,7 +969,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.6567282956155207,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Browndog",
@@ -1149,6 +1164,9 @@
    "simNotes": [
     "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.6529779228184573,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  }
 ]

@@ -1,0 +1,692 @@
+[
+ {
+  "arch": "Ashleigh",
+  "level": 2,
+  "name": "Ashleigh (L2, proposed)",
+  "search": 54.29,
+  "validated": 54.358333333333334,
+  "base_search": 32.735,
+  "base_validated": 32.77333333333333,
+  "build": {
+   "charName": "Ashleigh (Level 2, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 2,
+    "Athletics": 1,
+    "Awareness": 1,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 0,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 2,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 9.696666666666667,
+  "base_days": 3.4316666666666666,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 2,
+  "name": "Ashleigh (L2, proposed)",
+  "search": 54.135,
+  "validated": 54.04666666666667,
+  "base_search": 32.735,
+  "base_validated": 32.77333333333333,
+  "build": {
+   "charName": "Ashleigh (Level 2, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 1,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 0,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 4,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 9.653333333333334,
+  "base_days": 3.4316666666666666,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 2,
+  "name": "Ashleigh (L2, proposed)",
+  "search": 54.205,
+  "validated": 54.23833333333334,
+  "base_search": 32.735,
+  "base_validated": 32.77333333333333,
+  "build": {
+   "charName": "Ashleigh (Level 2, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 2,
+    "Athletics": 1,
+    "Awareness": 1,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 0,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 4,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 9.63,
+  "base_days": 3.4316666666666666,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 2,
+  "name": "Ashleigh (L2, proposed)",
+  "search": 54.29,
+  "validated": 54.14,
+  "base_search": 32.735,
+  "base_validated": 32.77333333333333,
+  "build": {
+   "charName": "Ashleigh (Level 2, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 2,
+    "Athletics": 1,
+    "Awareness": 1,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 0,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 4,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 9.621666666666666,
+  "base_days": 3.4316666666666666,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 2,
+  "name": "Ashleigh (L2, proposed)",
+  "search": 53.775,
+  "validated": 53.365,
+  "base_search": 32.735,
+  "base_validated": 32.77333333333333,
+  "build": {
+   "charName": "Ashleigh (Level 2, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 4,
+    "Mind": 1,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 3,
+    "Athletics": 1,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 0,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 9.055,
+  "base_days": 3.4316666666666666,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 2,
+  "name": "Ashleigh (L2, proposed)",
+  "search": 53.76,
+  "validated": 53.446666666666665,
+  "base_search": 32.735,
+  "base_validated": 32.77333333333333,
+  "build": {
+   "charName": "Ashleigh (Level 2, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 3,
+    "Athletics": 1,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 1,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 8.825,
+  "base_days": 3.4316666666666666,
+  "score": "day",
+  "mult": 1.0
+ }
+]

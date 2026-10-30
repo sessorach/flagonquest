@@ -125,7 +125,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.397174896610704,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Beornhard",
@@ -229,7 +232,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.3902342063504265,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Beornhard",
@@ -333,7 +339,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.38622027440759,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Beornhard",
@@ -437,7 +446,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.38622027440759,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Beornhard",
@@ -541,7 +553,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.38622027440759,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  },
  {
   "arch": "Beornhard",
@@ -645,6 +660,9 @@
    "simNotes": [
     "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.38622027440759,
+  "base_day_x": 1.5422940799163916,
+  "day_x_n": 100
  }
 ]

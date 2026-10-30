@@ -3,6 +3,130 @@
   "arch": "Enith",
   "level": 2,
   "name": "Enith (L2, proposed)",
+  "search": 38.0125,
+  "validated": 36.44583333333333,
+  "base_search": 20.965,
+  "base_validated": 20.14666666666667,
+  "build": {
+   "charName": "Enith (Level 2, proposed)",
+   "charConcept": "A ",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:41:44.469Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Tormenting Curse",
+       "count": 1
+      },
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 3
+      }
+     ],
+     "customName": "Hex of Sloth"
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/enith.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "day_x": 2.389338885569439,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Enith",
+  "level": 2,
+  "name": "Enith (L2, proposed)",
   "search": 38.045,
   "validated": 36.600833333333334,
   "base_search": 20.965,
@@ -118,7 +242,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/enith.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.362066400670721,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Enith",
@@ -239,7 +366,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/enith.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.362066400670721,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Enith",
@@ -360,7 +490,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/enith.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.362066400670721,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Enith",
@@ -481,7 +614,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/enith.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.362066400670721,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Enith",
@@ -602,127 +738,9 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/enith.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
- },
- {
-  "arch": "Enith",
-  "level": 2,
-  "name": "Enith (L2, proposed)",
-  "search": 38.0125,
-  "validated": 36.44583333333333,
-  "base_search": 20.965,
-  "base_validated": 20.14666666666667,
-  "build": {
-   "charName": "Enith (Level 2, proposed)",
-   "charConcept": "A ",
-   "xpBudget": 125,
-   "statPoints": {
-    "Agility": 3,
-    "Body": 1,
-    "Cunning": 3,
-    "Mind": 2,
-    "Essence": 4
-   },
-   "skillPoints": {
-    "Acrobatics": 0,
-    "Archery": 1,
-    "Brawl": 0,
-    "Melee": 4,
-    "Stealth": 1,
-    "Athletics": 1,
-    "Awareness": 0,
-    "Might": 0,
-    "Presence": 0,
-    "Resilience": 4,
-    "Insight": 1,
-    "Masquerade": 0,
-    "Persuasion": 0,
-    "Streetwise": 0,
-    "Survival": 0,
-    "Academics": 2,
-    "Composure": 0,
-    "Craft": 0,
-    "Medicine": 0,
-    "Mixology": 0,
-    "Meditation": 0,
-    "Performance": 0,
-    "Rapport": 0,
-    "Sorcery": 4,
-    "Theurgy": 0
-   },
-   "charNotes": "",
-   "noteRows": [],
-   "customTechniques": [],
-   "backgroundType": "Settler",
-   "backgrounds": [],
-   "sheetSectionOrder": [
-    "backgrounds",
-    "techniques"
-   ],
-   "enabledSupplements": [
-    "Base Game"
-   ],
-   "gold": "",
-   "inventory": [
-    {
-     "id": "I128",
-     "qty": 1
-    }
-   ],
-   "customItems": [],
-   "customMaterials": [],
-   "customAttacks": [],
-   "exportedAt": "2026-10-09T01:41:44.469Z",
-   "techniques": [
-    {
-     "id": "T120",
-     "name": "War Magic",
-     "xp": 3,
-     "level": 1,
-     "features": [
-      {
-       "name": "Tormenting Curse",
-       "count": 1
-      },
-      {
-       "name": "Lance",
-       "count": 1
-      },
-      {
-       "name": "Frigid",
-       "count": 3
-      }
-     ],
-     "customName": "Hex of Sloth"
-    },
-    {
-     "id": "T133",
-     "name": "Placeholder's Lengthy Ley-weaving",
-     "level": "Lv 2",
-     "xp": 6
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    }
-   ],
-   "simNotes": [
-    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/enith.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
-   ]
-  }
+  },
+  "day_x": 2.362066400670721,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  }
 ]
