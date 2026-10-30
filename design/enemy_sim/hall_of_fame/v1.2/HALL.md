@@ -111,6 +111,11 @@ singly on Hilde's party (TABLE_PLAY_NOTES.md, "Two kinds of measure"):
    sample Hilde and +9.4 on the optimizer's, with its Toughened Resolves
    (TABLE_PLAY_NOTES.md, "A whole day"). A cross-character synergy: one big pool paying for the
    party's soft targets.
+3b. **Lifeline and self-healing.** The synergy scan's one repeated
+   positive: a Lifeline holder with Second Wind keeps the shared pool
+   going (+1.1 to +1.4 morning Health on top of the two alone;
+   SYNERGY_SCAN.md). Otherwise the scan found nothing outsized, on one
+   character or across the party.
 4. **Agility and Body as dump stats.** Could be a sim blind spot
    (whatever else Agility and Body do at the table) or a design point.
    Body heals at night, and the day measure still let builds drop it.

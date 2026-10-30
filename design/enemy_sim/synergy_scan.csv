@@ -1,0 +1,600 @@
+kind,party,host,other,a,b,a_name,b_name,a_alone,b_alone,together,synergy,margin
+targeted,U,Beornhard (L3),,"W:Lance=1,Sanguine=1,Destructive=1","W:Lance=1,Reign of Blood=1,Destructive=1","W:Lance=1,Sanguine=1,Destructive=1","W:Lance=1,Reign of Blood=1,Destructive=1",-6.87,-0.34,-3.52,3.7,0.52
+same,U,"Ashleigh (L3, proposed)",,T020,T066,Lay On Hands,Bolstering Refrain,7.27,3.59,7.28,-3.58,0.33
+same,U,"Ashleigh (L3, proposed)",,T020,T012,Lay On Hands,Second Wind,7.27,2.36,7.92,-1.72,0.23
+same,H,Carrick (L3),,T019,T086,Toughened Resolve,Great Old Oak School - Bark Turns the Blade,5.19,1.27,4.97,-1.5,0.56
+same,U,"Ashleigh (L3, proposed)",,T012,T110,Second Wind,Lifeline,2.36,1.39,5.11,1.36,0.23
+same,S,"Felix (L3, proposed)",,T156,T165,Shugen School - Lantern Gutters in the Wind,Great Old Oak School - Old Growth Digs Deep,1.38,1.31,1.36,-1.33,0.38
+targeted,H,Carrick (L3),,T019,T019,Toughened Resolve,Toughened Resolve,5.19,5.19,9.07,-1.32,0.64
+same,U,"Ashleigh (L3, proposed)",,T012,T086,Second Wind,Great Old Oak School - Bark Turns the Blade,2.36,1.39,2.46,-1.29,0.28
+same,S,"Felix (L3, proposed)",,T152,T156,Demon School - Circling Vulture,Shugen School - Lantern Gutters in the Wind,1.42,1.38,1.52,-1.28,0.37
+same,S,"Felix (L3, proposed)",,T152,T165,Demon School - Circling Vulture,Great Old Oak School - Old Growth Digs Deep,1.42,1.31,1.51,-1.23,0.37
+same,U,"Ashleigh (L3, proposed)",,T020,T110,Lay On Hands,Lifeline,7.27,1.39,7.45,-1.21,0.35
+same,H,Hilde (L3),,T110,T011,Lifeline,One Eye Behind You,3.0,1.72,3.51,-1.21,0.62
+same,H,Hilde (L3),,T011,T192,One Eye Behind You,Seize the Moment,1.72,1.47,1.98,-1.21,0.52
+same,U,"Ashleigh (L3, proposed)",,T080,T011,Shugen School - Firefly Leaves the Hand,One Eye Behind You,0.74,0.72,2.63,1.17,0.43
+cross,S,"Enith (L3, proposed)","Felix (L3, proposed)",T129,T110,Disciple of the Flowing Hand,Lifeline,1.74,4.14,4.71,-1.17,0.54
+same,S,Jackal (L3),,T011,T192,One Eye Behind You,Seize the Moment,3.52,0.7,3.06,-1.16,0.56
+cross,S,"Enith (L3, proposed)",Jackal (L3),T129,T011,Disciple of the Flowing Hand,One Eye Behind You,1.74,3.52,4.12,-1.15,0.68
+same,S,"Felix (L3, proposed)",,T110,T011,Lifeline,One Eye Behind You,4.14,2.62,5.67,-1.09,0.57
+same,U,"Sable (L3, proposed)",,T012,T110,Second Wind,Lifeline,1.47,0.74,3.28,1.07,0.19
+targeted,S,Jackal (L3),,T074,T129,Feint,Disciple of the Flowing Hand,-1.72,0.76,0.1,1.06,0.52
+same,H,Hilde (L3),,T110,T192,Lifeline,Seize the Moment,3.0,1.47,3.42,-1.05,0.44
+same,H,Hilde (L3),,T011,T013,One Eye Behind You,Solemn Pact,1.72,0.34,3.11,1.05,0.62
+same,U,"Ashleigh (L3, proposed)",,T020,T011,Lay On Hands,One Eye Behind You,7.27,0.72,6.99,-1.0,0.47
+same,H,Hilde (L3),,T077,T176,Blinkstep,Drunken Brawling,1.88,1.29,2.18,-0.98,0.38
+cross,H,Hilde (L3),Hanforth (L3),T110,T086,Lifeline,Great Old Oak School - Bark Turns the Blade,3.0,1.46,3.49,-0.97,0.41
+same,S,"Felix (L3, proposed)",,T021,T148,Mind and Body Unbroken,Bear School - Swatting Paw,1.58,1.21,1.83,-0.96,0.36
+same,H,Hilde (L3),,T110,T077,Lifeline,Blinkstep,3.0,1.88,3.92,-0.96,0.39
+same,S,Hanforth (L3),,T129,T109,Disciple of the Flowing Hand,Land's Bounty,1.34,0.98,1.38,-0.95,0.43
+same,S,Hanforth (L3),,T001,T077,Brace,Blinkstep,0.67,0.05,1.65,0.94,0.28
+cross,S,"Felix (L3, proposed)",Jackal (L3),T110,T011,Lifeline,One Eye Behind You,4.14,3.52,6.73,-0.93,0.56
+cross,S,"Felix (L3, proposed)",Hanforth (L3),T110,T086,Lifeline,Great Old Oak School - Bark Turns the Blade,4.14,2.21,5.42,-0.93,0.44
+cross,H,Carrick (L3),Beornhard (L3),T011,T075,One Eye Behind You,Magehunter,2.94,1.54,3.59,-0.9,0.52
+same,H,Carrick (L3),,T177,T075,Doubleshot,Magehunter,0.64,0.53,2.01,0.84,0.51
+same,U,"Ashleigh (L3, proposed)",,T020,T019,Lay On Hands,Toughened Resolve,7.27,4.12,12.22,0.83,0.25
+cross,H,Hilde (L3),Carrick (L3),T110,T011,Lifeline,One Eye Behind You,3.0,2.94,5.11,-0.83,0.59
+cross,S,"Felix (L3, proposed)",Jackal (L3),T011,T011,One Eye Behind You,One Eye Behind You,2.62,3.52,5.35,-0.79,0.78
+same,S,"Felix (L3, proposed)",,T021,T129,Mind and Body Unbroken,Disciple of the Flowing Hand,1.58,1.02,1.81,-0.78,0.42
+same,S,"Felix (L3, proposed)",,T110,T012,Lifeline,Second Wind,4.14,0.62,5.51,0.76,0.3
+cross,S,"Felix (L3, proposed)",Jackal (L3),T110,T086,Lifeline,Great Old Oak School - Bark Turns the Blade,4.14,1.04,4.42,-0.75,0.38
+same,S,"Felix (L3, proposed)",,T110,T148,Lifeline,Bear School - Swatting Paw,4.14,1.21,6.08,0.74,0.35
+same,U,"Ashleigh (L3, proposed)",,T110,T086,Lifeline,Great Old Oak School - Bark Turns the Blade,1.39,1.39,3.49,0.71,0.28
+same,S,"Enith (L3, proposed)",,T011,T122,One Eye Behind You,Gainsay,0.91,0.72,2.34,0.71,0.45
+cross,U,Browndog (L3),"Ashleigh (L3, proposed)",T192,T020,Seize the Moment,Lay On Hands,1.54,7.27,8.1,-0.71,0.36
+cross,H,Hilde (L3),Beornhard (L3),T110,T129,Lifeline,Disciple of the Flowing Hand,3.0,-0.24,2.05,-0.7,0.61
+same,S,Hanforth (L3),,T086,T110,Great Old Oak School - Bark Turns the Blade,Lifeline,2.21,1.11,4.0,0.67,0.35
+targeted,S,Hanforth (L3),,T110,T086,Lifeline,Great Old Oak School - Bark Turns the Blade,1.11,2.21,4.0,0.67,0.35
+same,S,"Felix (L3, proposed)",,T011,T129,One Eye Behind You,Disciple of the Flowing Hand,2.62,1.02,2.98,-0.66,0.63
+same,S,"Felix (L3, proposed)",,T021,T166,Mind and Body Unbroken,Great Old Oak School - Seasons Pass the Forest,1.58,0.76,1.67,-0.66,0.27
+same,U,"Sable (L3, proposed)",,T012,T086,Second Wind,Great Old Oak School - Bark Turns the Blade,1.47,0.77,1.58,-0.66,0.24
+cross,U,Browndog (L3),Beornhard (L3),T192,T075,Seize the Moment,Magehunter,1.54,1.39,2.27,-0.66,0.38
+cross,H,Hanforth (L3),Beornhard (L3),T110,T075,Lifeline,Magehunter,0.95,1.54,1.83,-0.66,0.48
+same,U,Beornhard (L3),,T075,T192,Magehunter,Seize the Moment,1.39,0.07,0.83,-0.64,0.46
+same,S,"Felix (L3, proposed)",,T011,T169,One Eye Behind You,Demon School - Blood Answers Blood,2.62,0.83,2.83,-0.62,0.46
+same,U,"Ashleigh (L3, proposed)",,T012,T129,Second Wind,Disciple of the Flowing Hand,2.36,1.0,2.75,-0.61,0.28
+same,U,"Ashleigh (L3, proposed)",,T086,T159,Great Old Oak School - Bark Turns the Blade,Demon School - Thief Empties the Vessel,1.39,0.81,1.6,-0.6,0.22
+same,S,"Felix (L3, proposed)",,T152,T135,Demon School - Circling Vulture,Shugen School - Spirit Hands,1.42,1.12,1.95,-0.6,0.47
+cross,S,Jackal (L3),Hanforth (L3),T011,T110,One Eye Behind You,Lifeline,3.52,1.11,4.04,-0.6,0.51
+same,U,Browndog (L3),,T077,T176,Blinkstep,Drunken Brawling,1.23,0.65,1.29,-0.59,0.22
+cross,S,"Felix (L3, proposed)",Hanforth (L3),T011,T086,One Eye Behind You,Great Old Oak School - Bark Turns the Blade,2.62,2.21,4.25,-0.59,0.51
+same,H,Hilde (L3),,T110,T075,Lifeline,Magehunter,3.0,1.11,3.52,-0.58,0.31
+same,S,"Felix (L3, proposed)",,T110,T021,Lifeline,Mind and Body Unbroken,4.14,1.58,6.29,0.57,0.38
+same,U,"Ashleigh (L3, proposed)",,T019,T066,Toughened Resolve,Bolstering Refrain,4.12,3.59,8.26,0.55,0.19
+same,S,"Enith (L3, proposed)",,T129,T122,Disciple of the Flowing Hand,Gainsay,1.74,0.72,1.92,-0.55,0.41
+same,S,"Felix (L3, proposed)",,T156,T148,Shugen School - Lantern Gutters in the Wind,Bear School - Swatting Paw,1.38,1.21,2.04,-0.55,0.36
+same,S,"Felix (L3, proposed)",,T011,T148,One Eye Behind You,Bear School - Swatting Paw,2.62,1.21,3.3,-0.54,0.52
+same,S,"Felix (L3, proposed)",,T011,T166,One Eye Behind You,Great Old Oak School - Seasons Pass the Forest,2.62,0.76,2.83,-0.54,0.31
+same,S,Hanforth (L3),,T086,T109,Great Old Oak School - Bark Turns the Blade,Land's Bounty,2.21,0.98,2.66,-0.54,0.31
+same,U,Beornhard (L3),,T075,T131,Magehunter,Hand of Chaos,1.39,0.22,1.08,-0.53,0.53
+cross,H,Hilde (L3),Beornhard (L3),T011,T129,One Eye Behind You,Disciple of the Flowing Hand,1.72,-0.24,2.01,0.53,0.74
+same,S,"Felix (L3, proposed)",,T011,T021,One Eye Behind You,Mind and Body Unbroken,2.62,1.58,3.68,-0.52,0.5
+same,S,"Felix (L3, proposed)",,T148,T165,Bear School - Swatting Paw,Great Old Oak School - Old Growth Digs Deep,1.21,1.31,2.0,-0.52,0.36
+same,U,"Ashleigh (L3, proposed)",,T020,T159,Lay On Hands,Demon School - Thief Empties the Vessel,7.27,0.81,7.57,-0.51,0.21
+same,S,"Felix (L3, proposed)",,T165,T135,Great Old Oak School - Old Growth Digs Deep,Shugen School - Spirit Hands,1.31,1.12,1.92,-0.51,0.46
+cross,H,Hilde (L3),Hanforth (L3),T011,T110,One Eye Behind You,Lifeline,1.72,0.95,3.18,0.51,0.62
+same,H,Carrick (L3),,T177,T016,Doubleshot,Skin of Stone,0.64,0.44,1.59,0.5,0.26
+same,S,"Enith (L3, proposed)",,T001,T077,Brace,Blinkstep,0.62,0.1,1.22,0.5,0.27
+same,H,Hilde (L3),,T011,T176,One Eye Behind You,Drunken Brawling,1.72,1.29,3.51,0.5,0.52
+cross,S,"Enith (L3, proposed)","Felix (L3, proposed)",T129,T011,Disciple of the Flowing Hand,One Eye Behind You,1.74,2.62,3.86,-0.5,0.67
+same,H,Carrick (L3),,T019,T012,Toughened Resolve,Second Wind,5.19,0.51,6.19,0.49,0.27
+same,S,"Felix (L3, proposed)",,T110,T135,Lifeline,Shugen School - Spirit Hands,4.14,1.12,4.77,-0.49,0.46
+same,S,"Felix (L3, proposed)",,T152,T148,Demon School - Circling Vulture,Bear School - Swatting Paw,1.42,1.21,2.15,-0.48,0.37
+same,H,Hilde (L3),,T011,T077,One Eye Behind You,Blinkstep,1.72,1.88,4.08,0.48,0.58
+same,S,Jackal (L3),,T192,T110,Seize the Moment,Lifeline,0.7,0.77,0.99,-0.48,0.37
+same,U,Browndog (L3),,T077,T175,Blinkstep,Great Old Oak School - Boughs Unbroken,1.23,0.43,1.18,-0.48,0.17
+same,U,Browndog (L3),,T077,T136,Blinkstep,Tiger School - Storm of Blades,1.23,0.34,1.09,-0.48,0.18
+same,U,"Ashleigh (L3, proposed)",,T019,T012,Toughened Resolve,Second Wind,4.12,2.36,6.94,0.47,0.28
+same,U,"Ashleigh (L3, proposed)",,T066,T012,Bolstering Refrain,Second Wind,3.59,2.36,5.49,-0.47,0.16
+same,S,"Felix (L3, proposed)",,T021,T165,Mind and Body Unbroken,Great Old Oak School - Old Growth Digs Deep,1.58,1.31,2.42,-0.47,0.34
+same,S,Jackal (L3),,T011,T075,One Eye Behind You,Magehunter,3.52,0.97,4.02,-0.47,0.51
+same,S,"Felix (L3, proposed)",,T156,T135,Shugen School - Lantern Gutters in the Wind,Shugen School - Spirit Hands,1.38,1.12,2.04,-0.46,0.48
+same,S,Jackal (L3),,T075,T110,Magehunter,Lifeline,0.97,0.77,2.2,0.46,0.38
+cross,S,"Enith (L3, proposed)",Hanforth (L3),T129,T110,Disciple of the Flowing Hand,Lifeline,1.74,1.11,2.39,-0.46,0.48
+same,S,"Felix (L3, proposed)",,T148,T129,Bear School - Swatting Paw,Disciple of the Flowing Hand,1.21,1.02,1.78,-0.45,0.48
+same,S,Jackal (L3),,T075,T077,Magehunter,Blinkstep,0.97,0.77,1.29,-0.45,0.29
+same,S,"Felix (L3, proposed)",,T148,T166,Bear School - Swatting Paw,Great Old Oak School - Seasons Pass the Forest,1.21,0.76,1.52,-0.44,0.25
+same,S,Jackal (L3),,T075,T192,Magehunter,Seize the Moment,0.97,0.7,1.23,-0.44,0.49
+same,S,Jackal (L3),,T075,T131,Magehunter,Hand of Chaos,0.97,0.36,0.88,-0.44,0.6
+cross,S,Jackal (L3),Hanforth (L3),T086,T110,Great Old Oak School - Bark Turns the Blade,Lifeline,1.04,1.11,1.72,-0.43,0.38
+cross,H,Hanforth (L3),Beornhard (L3),T086,T129,Great Old Oak School - Bark Turns the Blade,Disciple of the Flowing Hand,1.46,-0.24,1.65,0.43,0.49
+same,S,"Felix (L3, proposed)",,T021,T156,Mind and Body Unbroken,Shugen School - Lantern Gutters in the Wind,1.58,1.38,2.54,-0.42,0.34
+same,S,"Enith (L3, proposed)",,T001,T011,Brace,One Eye Behind You,0.62,0.91,1.94,0.41,0.42
+same,U,Browndog (L3),,T077,T204,Blinkstep,Exploit the Opening,1.23,0.27,1.91,0.41,0.35
+cross,U,"Ashleigh (L3, proposed)",Beornhard (L3),T020,T075,Lay On Hands,Magehunter,7.27,1.39,8.25,-0.41,0.39
+same,U,"Ashleigh (L3, proposed)",,T066,T110,Bolstering Refrain,Lifeline,3.59,1.39,4.58,-0.4,0.29
+same,S,"Enith (L3, proposed)",,T011,T204,One Eye Behind You,Exploit the Opening,0.91,0.4,0.91,-0.4,0.72
+cross,U,Browndog (L3),Beornhard (L3),T197,T075,Command the Tempo,Magehunter,1.39,1.39,2.38,-0.4,0.48
+cross,U,"Ashleigh (L3, proposed)","Sable (L3, proposed)",T020,T086,Lay On Hands,Great Old Oak School - Bark Turns the Blade,7.27,0.77,7.65,-0.4,0.28
+same,U,"Ashleigh (L3, proposed)",,T066,T011,Bolstering Refrain,One Eye Behind You,3.59,0.72,3.92,-0.39,0.37
+same,S,"Felix (L3, proposed)",,T110,T156,Lifeline,Shugen School - Lantern Gutters in the Wind,4.14,1.38,5.12,-0.39,0.36
+same,H,Hilde (L3),,T110,T182,Lifeline,Earthen Mantle Approach,3.0,0.92,3.54,-0.39,0.43
+cross,U,Browndog (L3),"Ashleigh (L3, proposed)",T197,T020,Command the Tempo,Lay On Hands,1.39,7.27,8.27,-0.39,0.46
+cross,U,"Ashleigh (L3, proposed)","Sable (L3, proposed)",T020,T012,Lay On Hands,Second Wind,7.27,1.47,8.35,-0.39,0.23
+cross,H,Carrick (L3),Hanforth (L3),T011,T110,One Eye Behind You,Lifeline,2.94,0.95,3.5,-0.39,0.56
+cross,H,Carrick (L3),Beornhard (L3),T011,T129,One Eye Behind You,Disciple of the Flowing Hand,2.94,-0.24,3.09,0.39,0.63
+same,U,"Ashleigh (L3, proposed)",,T012,T011,Second Wind,One Eye Behind You,2.36,0.72,2.71,-0.38,0.3
+same,S,"Felix (L3, proposed)",,T110,T152,Lifeline,Demon School - Circling Vulture,4.14,1.42,5.18,-0.38,0.37
+same,S,"Felix (L3, proposed)",,T129,T166,Disciple of the Flowing Hand,Great Old Oak School - Seasons Pass the Forest,1.02,0.76,1.39,-0.38,0.3
+same,H,Hilde (L3),,T077,T175,Blinkstep,Great Old Oak School - Boughs Unbroken,1.88,0.46,1.95,-0.38,0.22
+same,H,Carrick (L3),,T019,T129,Toughened Resolve,Disciple of the Flowing Hand,5.19,1.17,6.73,0.37,0.53
+same,S,"Felix (L3, proposed)",,T021,T152,Mind and Body Unbroken,Demon School - Circling Vulture,1.58,1.42,2.63,-0.37,0.34
+same,H,Hilde (L3),,T110,T178,Lifeline,Lend Bulwark,3.0,0.49,3.12,-0.37,0.22
+same,H,Hilde (L3),,T077,T134,Blinkstep,Lion School - Eternal Riposte,1.88,0.47,1.99,-0.37,0.25
+targeted,S,"Felix (L3, proposed)",,T074,T171,Feint,Tiger School - Rending Claws,-0.83,0.1,-1.1,-0.37,0.33
+same,U,"Ashleigh (L3, proposed)",,T012,T159,Second Wind,Demon School - Thief Empties the Vessel,2.36,0.81,2.81,-0.36,0.19
+same,S,"Felix (L3, proposed)",,T135,T169,Shugen School - Spirit Hands,Demon School - Blood Answers Blood,1.12,0.83,1.59,-0.36,0.4
+same,H,Hilde (L3),,T011,T001,One Eye Behind You,Brace,1.72,0.44,2.52,0.36,0.38
+same,S,Jackal (L3),,T011,T131,One Eye Behind You,Hand of Chaos,3.52,0.36,3.52,-0.36,0.79
+same,U,"Sable (L3, proposed)",,T077,T013,Blinkstep,Solemn Pact,0.28,-0.18,0.45,0.36,0.29
+same,U,"Ashleigh (L3, proposed)",,T020,T134,Lay On Hands,Lion School - Eternal Riposte,7.27,0.79,7.72,-0.35,0.23
+same,U,"Ashleigh (L3, proposed)",,T086,T129,Great Old Oak School - Bark Turns the Blade,Disciple of the Flowing Hand,1.39,1.0,2.03,-0.35,0.38
+same,S,Hanforth (L3),,T086,T129,Great Old Oak School - Bark Turns the Blade,Disciple of the Flowing Hand,2.21,1.34,3.21,-0.35,0.52
+same,S,Jackal (L3),,T086,T075,Great Old Oak School - Bark Turns the Blade,Magehunter,1.04,0.97,1.66,-0.35,0.42
+cross,U,"Ashleigh (L3, proposed)",Beornhard (L3),T020,T129,Lay On Hands,Disciple of the Flowing Hand,7.27,0.38,7.3,-0.35,0.38
+same,U,"Ashleigh (L3, proposed)",,T110,T197,Lifeline,Command the Tempo,1.39,0.69,1.74,-0.34,0.22
+same,H,Carrick (L3),,T019,T011,Toughened Resolve,One Eye Behind You,5.19,2.94,7.79,-0.34,0.53
+same,S,"Enith (L3, proposed)",,T129,T076,Disciple of the Flowing Hand,Parting Shot,1.74,0.18,1.59,-0.34,0.28
+same,S,"Felix (L3, proposed)",,T011,T012,One Eye Behind You,Second Wind,2.62,0.62,2.9,-0.34,0.32
+same,S,"Felix (L3, proposed)",,T110,T165,Lifeline,Great Old Oak School - Old Growth Digs Deep,4.14,1.31,5.12,-0.33,0.36
+same,U,"Sable (L3, proposed)",,T086,T110,Great Old Oak School - Bark Turns the Blade,Lifeline,0.77,0.74,1.84,0.33,0.23
+cross,S,"Enith (L3, proposed)",Jackal (L3),T129,T086,Disciple of the Flowing Hand,Great Old Oak School - Bark Turns the Blade,1.74,1.04,2.45,-0.33,0.45
+cross,S,"Enith (L3, proposed)",Hanforth (L3),T129,T086,Disciple of the Flowing Hand,Great Old Oak School - Bark Turns the Blade,1.74,2.21,3.62,-0.33,0.47
+same,U,"Ashleigh (L3, proposed)",,T020,T080,Lay On Hands,Shugen School - Firefly Leaves the Hand,7.27,0.74,7.7,-0.32,0.24
+same,U,"Ashleigh (L3, proposed)",,T066,T080,Bolstering Refrain,Shugen School - Firefly Leaves the Hand,3.59,0.74,4.02,-0.32,0.21
+same,H,Carrick (L3),,T110,T177,Lifeline,Doubleshot,1.73,0.64,2.7,0.32,0.36
+same,S,"Enith (L3, proposed)",,T129,T011,Disciple of the Flowing Hand,One Eye Behind You,1.74,0.91,2.33,-0.32,0.77
+same,U,"Sable (L3, proposed)",,T086,T013,Great Old Oak School - Bark Turns the Blade,Solemn Pact,0.77,-0.18,0.91,0.32,0.26
+cross,S,Jackal (L3),Hanforth (L3),T011,T086,One Eye Behind You,Great Old Oak School - Bark Turns the Blade,3.52,2.21,5.42,-0.32,0.51
+cross,U,"Ashleigh (L3, proposed)",Beornhard (L3),T019,T075,Toughened Resolve,Magehunter,4.12,1.39,5.19,-0.32,0.29
+same,H,Carrick (L3),,T110,T129,Lifeline,Disciple of the Flowing Hand,1.73,1.17,3.2,0.31,0.3
+same,H,Carrick (L3),,T110,T012,Lifeline,Second Wind,1.73,0.51,2.55,0.31,0.21
+same,H,Carrick (L3),,T086,T075,Great Old Oak School - Bark Turns the Blade,Magehunter,1.27,0.53,1.49,-0.31,0.41
+same,S,Hanforth (L3),,T110,T129,Lifeline,Disciple of the Flowing Hand,1.11,1.34,2.77,0.31,0.5
+same,H,Hilde (L3),,T077,T001,Blinkstep,Brace,1.88,0.44,2.01,-0.31,0.27
+same,S,Jackal (L3),,T011,T077,One Eye Behind You,Blinkstep,3.52,0.77,4.6,0.31,0.41
+cross,H,Carrick (L3),Beornhard (L3),T019,T075,Toughened Resolve,Magehunter,5.19,1.54,6.43,-0.31,0.47
+same,U,"Ashleigh (L3, proposed)",,T012,T134,Second Wind,Lion School - Eternal Riposte,2.36,0.79,2.85,-0.3,0.2
+same,U,"Ashleigh (L3, proposed)",,T011,T197,One Eye Behind You,Command the Tempo,0.72,0.69,1.72,0.3,0.39
+same,H,Carrick (L3),,T086,T177,Great Old Oak School - Bark Turns the Blade,Doubleshot,1.27,0.64,2.22,0.3,0.49
+same,S,"Enith (L3, proposed)",,T001,T204,Brace,Exploit the Opening,0.62,0.4,0.72,-0.3,0.37
+same,S,Jackal (L3),,T110,T012,Lifeline,Second Wind,0.77,0.49,1.55,0.3,0.26
+cross,H,Hilde (L3),Beornhard (L3),T110,T075,Lifeline,Magehunter,3.0,1.54,4.24,-0.3,0.51
+same,H,Carrick (L3),,T019,T110,Toughened Resolve,Lifeline,5.19,1.73,7.21,0.29,0.29
+same,H,Carrick (L3),,T011,T086,One Eye Behind You,Great Old Oak School - Bark Turns the Blade,2.94,1.27,3.93,-0.29,0.53
+same,S,"Felix (L3, proposed)",,T021,T169,Mind and Body Unbroken,Demon School - Blood Answers Blood,1.58,0.83,2.11,-0.29,0.37
+same,H,Hilde (L3),,T011,T178,One Eye Behind You,Lend Bulwark,1.72,0.49,1.91,-0.29,0.25
+same,H,Hilde (L3),,T077,T075,Blinkstep,Magehunter,1.88,1.11,2.69,-0.29,0.27
+cross,S,"Felix (L3, proposed)",Hanforth (L3),T110,T110,Lifeline,Lifeline,4.14,1.11,5.54,0.29,0.41
+cross,U,Browndog (L3),"Sable (L3, proposed)",T197,T086,Command the Tempo,Great Old Oak School - Bark Turns the Blade,1.39,0.77,2.45,0.29,0.37
+same,U,"Ashleigh (L3, proposed)",,T086,T134,Great Old Oak School - Bark Turns the Blade,Lion School - Eternal Riposte,1.39,0.79,1.9,-0.28,0.24
+same,S,"Felix (L3, proposed)",,T148,T169,Bear School - Swatting Paw,Demon School - Blood Answers Blood,1.21,0.83,1.76,-0.28,0.37
+same,H,Hilde (L3),,T110,T134,Lifeline,Lion School - Eternal Riposte,3.0,0.47,3.19,-0.28,0.31
+same,U,"Sable (L3, proposed)",,T086,T045,Great Old Oak School - Bark Turns the Blade,Analyze Stance,0.77,0.03,1.07,0.27,0.25
+cross,S,"Felix (L3, proposed)",Jackal (L3),T011,T086,One Eye Behind You,Great Old Oak School - Bark Turns the Blade,2.62,1.04,3.39,-0.27,0.48
+cross,U,Browndog (L3),Beornhard (L3),T192,T129,Seize the Moment,Disciple of the Flowing Hand,1.54,0.38,2.19,0.27,0.4
+cross,U,Browndog (L3),"Ashleigh (L3, proposed)",T197,T019,Command the Tempo,Toughened Resolve,1.39,4.12,5.23,-0.27,0.34
+same,U,"Ashleigh (L3, proposed)",,T020,T086,Lay On Hands,Great Old Oak School - Bark Turns the Blade,7.27,1.39,8.92,0.26,0.35
+same,U,"Ashleigh (L3, proposed)",,T019,T110,Toughened Resolve,Lifeline,4.12,1.39,5.76,0.26,0.24
+same,U,"Ashleigh (L3, proposed)",,T086,T080,Great Old Oak School - Bark Turns the Blade,Shugen School - Firefly Leaves the Hand,1.39,0.74,1.87,-0.26,0.24
+same,S,"Felix (L3, proposed)",,T011,T165,One Eye Behind You,Great Old Oak School - Old Growth Digs Deep,2.62,1.31,3.68,-0.26,0.5
+same,H,Hilde (L3),,T011,T134,One Eye Behind You,Lion School - Eternal Riposte,1.72,0.47,2.46,0.26,0.38
+same,U,"Sable (L3, proposed)",,T086,T077,Great Old Oak School - Bark Turns the Blade,Blinkstep,0.77,0.28,1.3,0.26,0.21
+same,U,"Sable (L3, proposed)",,T013,T045,Solemn Pact,Analyze Stance,-0.18,0.03,0.11,0.26,0.37
+same,U,Browndog (L3),,T204,T062,Exploit the Opening,Cry of Victory,0.27,0.25,0.78,0.26,0.41
+same,U,"Ashleigh (L3, proposed)",,T129,T159,Disciple of the Flowing Hand,Demon School - Thief Empties the Vessel,1.0,0.81,1.55,-0.25,0.24
+same,H,Hilde (L3),,T192,T013,Seize the Moment,Solemn Pact,1.47,0.34,2.05,0.25,0.47
+same,H,Hilde (L3),,T075,T182,Magehunter,Earthen Mantle Approach,1.11,0.92,1.78,-0.25,0.29
+same,S,Jackal (L3),,T011,T129,One Eye Behind You,Disciple of the Flowing Hand,3.52,0.76,4.03,-0.25,0.54
+same,S,Jackal (L3),,T086,T192,Great Old Oak School - Bark Turns the Blade,Seize the Moment,1.04,0.7,1.99,0.25,0.39
+same,S,Jackal (L3),,T086,T012,Great Old Oak School - Bark Turns the Blade,Second Wind,1.04,0.49,1.28,-0.25,0.28
+same,S,Jackal (L3),,T086,T131,Great Old Oak School - Bark Turns the Blade,Hand of Chaos,1.04,0.36,1.65,0.25,0.49
+same,U,"Sable (L3, proposed)",,T064,T013,Heroic Inspiration,Solemn Pact,0.31,-0.18,0.38,0.25,0.27
+same,U,Browndog (L3),,T192,T062,Seize the Moment,Cry of Victory,1.54,0.25,1.54,-0.25,0.36
+cross,U,Browndog (L3),"Ashleigh (L3, proposed)",T192,T019,Seize the Moment,Toughened Resolve,1.54,4.12,5.4,-0.25,0.27
+same,U,"Ashleigh (L3, proposed)",,T019,T086,Toughened Resolve,Great Old Oak School - Bark Turns the Blade,4.12,1.39,5.26,-0.24,0.29
+same,U,"Ashleigh (L3, proposed)",,T159,T080,Demon School - Thief Empties the Vessel,Shugen School - Firefly Leaves the Hand,0.81,0.74,1.31,-0.24,0.19
+same,H,Carrick (L3),,T019,T075,Toughened Resolve,Magehunter,5.19,0.53,5.48,-0.24,0.41
+same,S,"Enith (L3, proposed)",,T011,T199,One Eye Behind You,Intimidating Presence,0.91,0.57,1.25,-0.24,0.73
+same,S,"Felix (L3, proposed)",,T011,T152,One Eye Behind You,Demon School - Circling Vulture,2.62,1.42,3.8,-0.24,0.51
+same,S,"Felix (L3, proposed)",,T011,T156,One Eye Behind You,Shugen School - Lantern Gutters in the Wind,2.62,1.38,3.76,-0.24,0.5
+same,H,Hilde (L3),,T192,T075,Seize the Moment,Magehunter,1.47,1.11,2.34,-0.24,0.32
+cross,H,Carrick (L3),Beornhard (L3),T019,T129,Toughened Resolve,Disciple of the Flowing Hand,5.19,-0.24,5.18,0.24,0.56
+same,U,"Ashleigh (L3, proposed)",,T066,T086,Bolstering Refrain,Great Old Oak School - Bark Turns the Blade,3.59,1.39,5.21,0.23,0.27
+same,H,Carrick (L3),,T110,T205,Lifeline,Suppressing Fire,1.73,0.4,1.9,-0.23,0.16
+same,S,Jackal (L3),,T192,T013,Seize the Moment,Solemn Pact,0.7,0.75,1.22,-0.23,0.56
+same,S,Jackal (L3),,T131,T045,Hand of Chaos,Analyze Stance,0.36,0.15,0.73,0.23,0.47
+same,U,"Ashleigh (L3, proposed)",,T066,T159,Bolstering Refrain,Demon School - Thief Empties the Vessel,3.59,0.81,4.19,-0.22,0.17
+same,U,"Ashleigh (L3, proposed)",,T110,T011,Lifeline,One Eye Behind You,1.39,0.72,2.33,0.22,0.41
+same,H,Carrick (L3),,T086,T050,Great Old Oak School - Bark Turns the Blade,Optimize Blood,1.27,0.65,2.14,0.22,0.32
+same,S,"Enith (L3, proposed)",,T129,T013,Disciple of the Flowing Hand,Solemn Pact,1.74,0.18,1.7,-0.22,0.42
+same,S,"Felix (L3, proposed)",,T011,T135,One Eye Behind You,Shugen School - Spirit Hands,2.62,1.12,3.96,0.22,0.61
+same,S,"Felix (L3, proposed)",,T169,T166,Demon School - Blood Answers Blood,Great Old Oak School - Seasons Pass the Forest,0.83,0.76,1.36,-0.22,0.23
+same,U,"Sable (L3, proposed)",,T086,T001,Great Old Oak School - Bark Turns the Blade,Brace,0.77,0.28,0.84,-0.22,0.14
+same,U,Browndog (L3),,T192,T077,Seize the Moment,Blinkstep,1.54,1.23,2.55,-0.22,0.27
+same,U,Browndog (L3),,T197,T075,Command the Tempo,Magehunter,1.39,0.43,1.6,-0.22,0.27
+same,U,Browndog (L3),,T077,T062,Blinkstep,Cry of Victory,1.23,0.25,1.26,-0.22,0.21
+cross,S,"Felix (L3, proposed)",Hanforth (L3),T011,T110,One Eye Behind You,Lifeline,2.62,1.11,3.52,-0.22,0.51
+cross,U,Browndog (L3),"Sable (L3, proposed)",T197,T012,Command the Tempo,Second Wind,1.39,1.47,2.64,-0.22,0.24
+cross,H,Hilde (L3),Hanforth (L3),T110,T110,Lifeline,Lifeline,3.0,0.95,4.17,0.22,0.54
+same,U,"Ashleigh (L3, proposed)",,T020,T129,Lay On Hands,Disciple of the Flowing Hand,7.27,1.0,8.06,-0.21,0.36
+same,U,"Ashleigh (L3, proposed)",,T020,T197,Lay On Hands,Command the Tempo,7.27,0.69,7.75,-0.21,0.25
+same,H,Hilde (L3),,T110,T176,Lifeline,Drunken Brawling,3.0,1.29,4.07,-0.21,0.41
+same,H,Hilde (L3),,T011,T182,One Eye Behind You,Earthen Mantle Approach,1.72,0.92,2.85,0.21,0.49
+same,S,Jackal (L3),,T075,T013,Magehunter,Solemn Pact,0.97,0.75,1.51,-0.21,0.46
+cross,H,Hilde (L3),Hanforth (L3),T011,T086,One Eye Behind You,Great Old Oak School - Bark Turns the Blade,1.72,1.46,2.98,-0.21,0.48
+same,S,"Enith (L3, proposed)",,T001,T199,Brace,Intimidating Presence,0.62,0.57,0.99,-0.2,0.36
+same,S,"Enith (L3, proposed)",,T132,T076,Indomitable Phalanx,Parting Shot,0.57,0.18,0.55,-0.2,0.27
+same,S,"Enith (L3, proposed)",,T199,T013,Intimidating Presence,Solemn Pact,0.57,0.18,0.55,-0.2,0.43
+same,S,"Felix (L3, proposed)",,T110,T169,Lifeline,Demon School - Blood Answers Blood,4.14,0.83,4.76,-0.2,0.33
+same,U,Browndog (L3),,T176,T062,Drunken Brawling,Cry of Victory,0.65,0.25,0.7,-0.2,0.26
+cross,U,Browndog (L3),Beornhard (L3),T197,T129,Command the Tempo,Disciple of the Flowing Hand,1.39,0.38,1.97,0.2,0.48
+cross,H,Carrick (L3),Hanforth (L3),T019,T110,Toughened Resolve,Lifeline,5.19,0.95,5.94,-0.2,0.52
+same,H,Carrick (L3),,T019,T177,Toughened Resolve,Doubleshot,5.19,0.64,5.65,-0.19,0.46
+same,H,Carrick (L3),,T110,T194,Lifeline,Ambush Predator,1.73,0.54,2.08,-0.19,0.3
+same,S,"Enith (L3, proposed)",,T122,T204,Gainsay,Exploit the Opening,0.72,0.4,0.93,-0.19,0.37
+same,S,"Enith (L3, proposed)",,T013,T204,Solemn Pact,Exploit the Opening,0.18,0.4,0.39,-0.19,0.44
+same,S,Hanforth (L3),,T110,T013,Lifeline,Solemn Pact,1.11,0.15,1.07,-0.19,0.28
+same,S,Hanforth (L3),,T129,T001,Disciple of the Flowing Hand,Brace,1.34,0.67,2.21,0.19,0.35
+same,H,Hilde (L3),,T110,T013,Lifeline,Solemn Pact,3.0,0.34,3.52,0.19,0.51
+same,H,Hilde (L3),,T011,T175,One Eye Behind You,Great Old Oak School - Boughs Unbroken,1.72,0.46,2.37,0.19,0.31
+same,H,Hilde (L3),,T175,T013,Great Old Oak School - Boughs Unbroken,Solemn Pact,0.46,0.34,0.98,0.19,0.26
+same,S,Jackal (L3),,T086,T077,Great Old Oak School - Bark Turns the Blade,Blinkstep,1.04,0.77,1.63,-0.19,0.24
+same,S,Jackal (L3),,T013,T045,Solemn Pact,Analyze Stance,0.75,0.15,0.71,-0.19,0.4
+same,S,Jackal (L3),,T045,T001,Analyze Stance,Brace,0.15,0.12,0.07,-0.19,0.13
+cross,U,"Ashleigh (L3, proposed)","Sable (L3, proposed)",T019,T012,Toughened Resolve,Second Wind,4.12,1.47,5.4,-0.19,0.16
+same,U,"Ashleigh (L3, proposed)",,T110,T134,Lifeline,Lion School - Eternal Riposte,1.39,0.79,2.0,-0.18,0.18
+same,U,"Ashleigh (L3, proposed)",,T134,T011,Lion School - Eternal Riposte,One Eye Behind You,0.79,0.72,1.33,-0.18,0.31
+same,H,Carrick (L3),,T019,T016,Toughened Resolve,Skin of Stone,5.19,0.44,5.46,-0.18,0.23
+same,H,Carrick (L3),,T086,T194,Great Old Oak School - Bark Turns the Blade,Ambush Predator,1.27,0.54,1.63,-0.18,0.39
+same,H,Carrick (L3),,T050,T075,Optimize Blood,Magehunter,0.65,0.53,1.35,0.18,0.3
+same,S,"Enith (L3, proposed)",,T011,T132,One Eye Behind You,Indomitable Phalanx,0.91,0.57,1.3,-0.18,0.73
+same,S,"Felix (L3, proposed)",,T152,T166,Demon School - Circling Vulture,Great Old Oak School - Seasons Pass the Forest,1.42,0.76,2.0,-0.18,0.24
+same,S,"Felix (L3, proposed)",,T148,T012,Bear School - Swatting Paw,Second Wind,1.21,0.62,1.65,-0.18,0.25
+same,H,Hilde (L3),,T077,T182,Blinkstep,Earthen Mantle Approach,1.88,0.92,2.63,-0.18,0.36
+same,S,Jackal (L3),,T011,T086,One Eye Behind You,Great Old Oak School - Bark Turns the Blade,3.52,1.04,4.38,-0.18,0.46
+same,S,Jackal (L3),,T012,T131,Second Wind,Hand of Chaos,0.49,0.36,0.67,-0.18,0.29
+same,U,"Sable (L3, proposed)",,T064,T045,Heroic Inspiration,Analyze Stance,0.31,0.03,0.52,0.18,0.24
+cross,S,Jackal (L3),Hanforth (L3),T086,T086,Great Old Oak School - Bark Turns the Blade,Great Old Oak School - Bark Turns the Blade,1.04,2.21,3.07,-0.18,0.34
+same,U,Beornhard (L3),,T075,T129,Magehunter,Disciple of the Flowing Hand,1.39,0.38,1.6,-0.17,0.44
+same,H,Carrick (L3),,T075,T194,Magehunter,Ambush Predator,0.53,0.54,0.9,-0.17,0.43
+same,S,"Felix (L3, proposed)",,T012,T129,Second Wind,Disciple of the Flowing Hand,0.62,1.02,1.47,-0.17,0.28
+same,S,Hanforth (L3),,T086,T154,Great Old Oak School - Bark Turns the Blade,Shugen School - Hand Rings the Bell,2.21,0.15,2.2,-0.17,0.17
+same,S,Hanforth (L3),,T086,T083,Great Old Oak School - Bark Turns the Blade,Demon School - Sickness Takes the Flock,2.21,0.17,2.21,-0.17,0.17
+same,S,Hanforth (L3),,T001,T076,Brace,Parting Shot,0.67,0.28,1.12,0.17,0.23
+same,H,Hilde (L3),,T077,T013,Blinkstep,Solemn Pact,1.88,0.34,2.04,-0.17,0.45
+same,H,Hilde (L3),,T075,T013,Magehunter,Solemn Pact,1.11,0.34,1.61,0.17,0.36
+same,H,Hilde (L3),,T134,T001,Lion School - Eternal Riposte,Brace,0.47,0.44,0.74,-0.17,0.19
+same,S,Jackal (L3),,T129,T045,Disciple of the Flowing Hand,Analyze Stance,0.76,0.15,1.08,0.17,0.37
+same,S,Jackal (L3),,T077,T131,Blinkstep,Hand of Chaos,0.77,0.36,1.3,0.17,0.39
+same,U,"Sable (L3, proposed)",,T064,T001,Heroic Inspiration,Brace,0.31,0.28,0.42,-0.17,0.16
+same,U,"Ashleigh (L3, proposed)",,T110,T080,Lifeline,Shugen School - Firefly Leaves the Hand,1.39,0.74,1.97,-0.16,0.19
+same,H,Carrick (L3),,T011,T075,One Eye Behind You,Magehunter,2.94,0.53,3.31,-0.16,0.48
+same,H,Carrick (L3),,T110,T086,Lifeline,Great Old Oak School - Bark Turns the Blade,1.73,1.27,3.16,0.16,0.27
+same,S,"Enith (L3, proposed)",,T132,T013,Indomitable Phalanx,Solemn Pact,0.57,0.18,0.59,-0.16,0.43
+same,S,Hanforth (L3),,T154,T083,Shugen School - Hand Rings the Bell,Demon School - Sickness Takes the Flock,0.15,0.17,0.16,-0.16,0.25
+same,S,Jackal (L3),,T011,T045,One Eye Behind You,Analyze Stance,3.52,0.15,3.51,-0.16,0.35
+same,U,Browndog (L3),,T197,T062,Command the Tempo,Cry of Victory,1.39,0.25,1.49,-0.16,0.42
+same,H,Carrick (L3),,T011,T129,One Eye Behind You,Disciple of the Flowing Hand,2.94,1.17,3.96,-0.15,0.53
+same,H,Carrick (L3),,T011,T177,One Eye Behind You,Doubleshot,2.94,0.64,3.44,-0.15,0.61
+same,H,Carrick (L3),,T110,T050,Lifeline,Optimize Blood,1.73,0.65,2.23,-0.15,0.2
+same,H,Carrick (L3),,T129,T075,Disciple of the Flowing Hand,Magehunter,1.17,0.53,1.84,0.15,0.38
+same,S,"Enith (L3, proposed)",,T122,T132,Gainsay,Indomitable Phalanx,0.72,0.57,1.15,-0.15,0.36
+same,S,Hanforth (L3),,T086,T001,Great Old Oak School - Bark Turns the Blade,Brace,2.21,0.67,3.04,0.15,0.37
+same,S,Hanforth (L3),,T129,T076,Disciple of the Flowing Hand,Parting Shot,1.34,0.28,1.48,-0.15,0.36
+same,H,Hilde (L3),,T110,T001,Lifeline,Brace,3.0,0.44,3.58,0.15,0.29
+same,H,Hilde (L3),,T192,T001,Seize the Moment,Brace,1.47,0.44,2.05,0.15,0.31
+same,S,Jackal (L3),,T110,T013,Lifeline,Solemn Pact,0.77,0.75,1.36,-0.15,0.38
+same,S,Jackal (L3),,T077,T013,Blinkstep,Solemn Pact,0.77,0.75,1.37,-0.15,0.33
+same,U,"Sable (L3, proposed)",,T086,T064,Great Old Oak School - Bark Turns the Blade,Heroic Inspiration,0.77,0.31,1.24,0.15,0.24
+same,U,"Sable (L3, proposed)",,T077,T075,Blinkstep,Magehunter,0.28,0.4,0.52,-0.15,0.21
+same,U,Browndog (L3),,T136,T062,Tiger School - Storm of Blades,Cry of Victory,0.34,0.25,0.44,-0.15,0.17
+cross,H,Hilde (L3),Carrick (L3),T110,T019,Lifeline,Toughened Resolve,3.0,5.19,8.04,-0.15,0.52
+same,U,Beornhard (L3),,T129,T121,Disciple of the Flowing Hand,Force Missiles,0.38,0.07,0.6,0.14,0.23
+same,H,Carrick (L3),,T011,T016,One Eye Behind You,Skin of Stone,2.94,0.44,3.52,0.14,0.26
+same,H,Carrick (L3),,T011,T194,One Eye Behind You,Ambush Predator,2.94,0.54,3.62,0.14,0.5
+same,S,"Enith (L3, proposed)",,T001,T134,Brace,Lion School - Eternal Riposte,0.62,0.4,1.15,0.14,0.38
+same,S,"Enith (L3, proposed)",,T011,T076,One Eye Behind You,Parting Shot,0.91,0.18,1.24,0.14,0.32
+same,S,"Enith (L3, proposed)",,T011,T134,One Eye Behind You,Lion School - Eternal Riposte,0.91,0.4,1.45,0.14,0.75
+same,S,"Felix (L3, proposed)",,T165,T129,Great Old Oak School - Old Growth Digs Deep,Disciple of the Flowing Hand,1.31,1.02,2.19,-0.14,0.45
+same,S,"Felix (L3, proposed)",,T165,T166,Great Old Oak School - Old Growth Digs Deep,Great Old Oak School - Seasons Pass the Forest,1.31,0.76,1.92,-0.14,0.21
+same,S,"Felix (L3, proposed)",,T169,T129,Demon School - Blood Answers Blood,Disciple of the Flowing Hand,0.83,1.02,1.71,-0.14,0.42
+same,S,Hanforth (L3),,T076,T154,Parting Shot,Shugen School - Hand Rings the Bell,0.28,0.15,0.3,-0.14,0.18
+same,S,Hanforth (L3),,T076,T083,Parting Shot,Demon School - Sickness Takes the Flock,0.28,0.17,0.31,-0.14,0.17
+same,H,Hilde (L3),,T182,T001,Earthen Mantle Approach,Brace,0.92,0.44,1.5,0.14,0.29
+same,H,Hilde (L3),,T182,T013,Earthen Mantle Approach,Solemn Pact,0.92,0.34,1.4,0.14,0.41
+same,S,Jackal (L3),,T011,T012,One Eye Behind You,Second Wind,3.52,0.49,3.88,-0.14,0.25
+same,U,"Sable (L3, proposed)",,T110,T013,Lifeline,Solemn Pact,0.74,-0.18,0.7,0.14,0.3
+cross,H,Carrick (L3),Hanforth (L3),T019,T086,Toughened Resolve,Great Old Oak School - Bark Turns the Blade,5.19,1.46,6.52,-0.14,0.39
+same,H,Carrick (L3),,T011,T205,One Eye Behind You,Suppressing Fire,2.94,0.4,3.22,-0.13,0.24
+same,H,Carrick (L3),,T086,T016,Great Old Oak School - Bark Turns the Blade,Skin of Stone,1.27,0.44,1.58,-0.13,0.27
+same,S,"Enith (L3, proposed)",,T122,T073,Gainsay,Bladeslinging,0.72,0.26,1.11,0.13,0.17
+same,S,"Felix (L3, proposed)",,T110,T129,Lifeline,Disciple of the Flowing Hand,4.14,1.02,5.02,-0.13,0.47
+same,S,"Felix (L3, proposed)",,T165,T169,Great Old Oak School - Old Growth Digs Deep,Demon School - Blood Answers Blood,1.31,0.83,2.01,-0.13,0.35
+same,S,"Felix (L3, proposed)",,T169,T012,Demon School - Blood Answers Blood,Second Wind,0.83,0.62,1.58,0.13,0.29
+same,U,"Sable (L3, proposed)",,T077,T045,Blinkstep,Analyze Stance,0.28,0.03,0.44,0.13,0.26
+same,U,"Sable (L3, proposed)",,T001,T045,Brace,Analyze Stance,0.28,0.03,0.45,0.13,0.16
+cross,U,Browndog (L3),"Sable (L3, proposed)",T192,T012,Seize the Moment,Second Wind,1.54,1.47,2.88,-0.13,0.18
+cross,U,"Sable (L3, proposed)",Beornhard (L3),T086,T075,Great Old Oak School - Bark Turns the Blade,Magehunter,0.77,1.39,2.03,-0.13,0.32
+cross,H,Carrick (L3),Hanforth (L3),T011,T086,One Eye Behind You,Great Old Oak School - Bark Turns the Blade,2.94,1.46,4.28,-0.13,0.44
+same,U,"Ashleigh (L3, proposed)",,T019,T159,Toughened Resolve,Demon School - Thief Empties the Vessel,4.12,0.81,5.05,0.12,0.19
+same,U,"Ashleigh (L3, proposed)",,T086,T197,Great Old Oak School - Bark Turns the Blade,Command the Tempo,1.39,0.69,2.2,0.12,0.25
+same,H,Carrick (L3),,T012,T075,Second Wind,Magehunter,0.51,0.53,1.15,0.12,0.21
+same,H,Carrick (L3),,T075,T205,Magehunter,Suppressing Fire,0.53,0.4,0.81,-0.12,0.17
+same,S,"Enith (L3, proposed)",,T122,T199,Gainsay,Intimidating Presence,0.72,0.57,1.17,-0.12,0.36
+same,S,"Enith (L3, proposed)",,T132,T077,Indomitable Phalanx,Blinkstep,0.57,0.1,0.79,0.12,0.18
+same,S,"Felix (L3, proposed)",,T152,T169,Demon School - Circling Vulture,Demon School - Blood Answers Blood,1.42,0.83,2.13,-0.12,0.35
+same,S,"Felix (L3, proposed)",,T156,T169,Shugen School - Lantern Gutters in the Wind,Demon School - Blood Answers Blood,1.38,0.83,2.09,-0.12,0.34
+same,S,"Felix (L3, proposed)",,T156,T166,Shugen School - Lantern Gutters in the Wind,Great Old Oak School - Seasons Pass the Forest,1.38,0.76,2.01,-0.12,0.21
+same,S,"Felix (L3, proposed)",,T012,T166,Second Wind,Great Old Oak School - Seasons Pass the Forest,0.62,0.76,1.25,-0.12,0.19
+same,S,Hanforth (L3),,T110,T075,Lifeline,Magehunter,1.11,0.14,1.14,-0.12,0.14
+same,S,Hanforth (L3),,T001,T013,Brace,Solemn Pact,0.67,0.15,0.94,0.12,0.22
+same,S,Hanforth (L3),,T064,T083,Heroic Inspiration,Demon School - Sickness Takes the Flock,0.11,0.17,0.4,0.12,0.17
+same,H,Hilde (L3),,T077,T178,Blinkstep,Lend Bulwark,1.88,0.49,2.25,-0.12,0.15
+same,S,Jackal (L3),,T086,T129,Great Old Oak School - Bark Turns the Blade,Disciple of the Flowing Hand,1.04,0.76,1.92,0.12,0.4
+same,U,"Sable (L3, proposed)",,T064,T159,Heroic Inspiration,Demon School - Thief Empties the Vessel,0.31,-0.03,0.39,0.12,0.12
+cross,H,Hanforth (L3),Beornhard (L3),T086,T075,Great Old Oak School - Bark Turns the Blade,Magehunter,1.46,1.54,3.13,0.12,0.36
+same,U,"Ashleigh (L3, proposed)",,T066,T197,Bolstering Refrain,Command the Tempo,3.59,0.69,4.18,-0.11,0.18
+same,U,"Ashleigh (L3, proposed)",,T086,T011,Great Old Oak School - Bark Turns the Blade,One Eye Behind You,1.39,0.72,2.23,0.11,0.45
+same,H,Carrick (L3),,T019,T194,Toughened Resolve,Ambush Predator,5.19,0.54,5.62,-0.11,0.38
+same,H,Carrick (L3),,T016,T194,Skin of Stone,Ambush Predator,0.44,0.54,1.09,0.11,0.19
+same,H,Carrick (L3),,T016,T205,Skin of Stone,Suppressing Fire,0.44,0.4,0.73,-0.11,0.1
+same,S,"Enith (L3, proposed)",,T011,T073,One Eye Behind You,Bladeslinging,0.91,0.26,1.06,-0.11,0.29
+same,S,"Felix (L3, proposed)",,T148,T135,Bear School - Swatting Paw,Shugen School - Spirit Hands,1.21,1.12,2.44,0.11,0.42
+same,S,Hanforth (L3),,T086,T076,Great Old Oak School - Bark Turns the Blade,Parting Shot,2.21,0.28,2.38,-0.11,0.3
+same,S,Hanforth (L3),,T110,T076,Lifeline,Parting Shot,1.11,0.28,1.29,-0.11,0.24
+same,S,Hanforth (L3),,T154,T077,Shugen School - Hand Rings the Bell,Blinkstep,0.15,0.05,0.09,-0.11,0.14
+same,S,Jackal (L3),,T110,T077,Lifeline,Blinkstep,0.77,0.77,1.43,-0.11,0.22
+same,S,Jackal (L3),,T013,T001,Solemn Pact,Brace,0.75,0.12,0.76,-0.11,0.15
+same,U,Browndog (L3),,T077,T075,Blinkstep,Magehunter,1.23,0.43,1.54,-0.11,0.21
+same,U,Browndog (L3),,T075,T136,Magehunter,Tiger School - Storm of Blades,0.43,0.34,0.65,-0.11,0.14
+cross,U,"Sable (L3, proposed)",Beornhard (L3),T086,T129,Great Old Oak School - Bark Turns the Blade,Disciple of the Flowing Hand,0.77,0.38,1.26,0.11,0.33
+same,U,"Ashleigh (L3, proposed)",,T110,T129,Lifeline,Disciple of the Flowing Hand,1.39,1.0,2.28,-0.1,0.31
+same,U,"Ashleigh (L3, proposed)",,T110,T159,Lifeline,Demon School - Thief Empties the Vessel,1.39,0.81,2.1,-0.1,0.17
+same,U,"Ashleigh (L3, proposed)",,T080,T134,Shugen School - Firefly Leaves the Hand,Lion School - Eternal Riposte,0.74,0.79,1.44,-0.1,0.19
+same,U,Beornhard (L3),,T129,T001,Disciple of the Flowing Hand,Brace,0.38,0.49,0.78,-0.1,0.18
+same,H,Carrick (L3),,T011,T110,One Eye Behind You,Lifeline,2.94,1.73,4.58,-0.1,0.39
+same,H,Carrick (L3),,T011,T050,One Eye Behind You,Optimize Blood,2.94,0.65,3.49,-0.1,0.33
+same,H,Carrick (L3),,T110,T016,Lifeline,Skin of Stone,1.73,0.44,2.08,-0.1,0.13
+same,H,Carrick (L3),,T075,T016,Magehunter,Skin of Stone,0.53,0.44,0.87,-0.1,0.2
+same,S,"Enith (L3, proposed)",,T073,T134,Bladeslinging,Lion School - Eternal Riposte,0.26,0.4,0.75,0.1,0.32
+same,S,"Enith (L3, proposed)",,T013,T077,Solemn Pact,Blinkstep,0.18,0.1,0.38,0.1,0.14
+same,S,"Felix (L3, proposed)",,T135,T012,Shugen School - Spirit Hands,Second Wind,1.12,0.62,1.64,-0.1,0.29
+same,S,Hanforth (L3),,T086,T077,Great Old Oak School - Bark Turns the Blade,Blinkstep,2.21,0.05,2.15,-0.1,0.11
+same,S,Hanforth (L3),,T110,T064,Lifeline,Heroic Inspiration,1.11,0.11,1.33,0.1,0.23
+same,S,Hanforth (L3),,T109,T064,Land's Bounty,Heroic Inspiration,0.98,0.11,1.2,0.1,0.18
+same,S,Hanforth (L3),,T109,T013,Land's Bounty,Solemn Pact,0.98,0.15,1.04,-0.1,0.24
+same,S,Hanforth (L3),,T064,T013,Heroic Inspiration,Solemn Pact,0.11,0.15,0.36,0.1,0.27
+same,S,Hanforth (L3),,T083,T077,Demon School - Sickness Takes the Flock,Blinkstep,0.17,0.05,0.11,-0.1,0.13
+same,H,Hilde (L3),,T075,T175,Magehunter,Great Old Oak School - Boughs Unbroken,1.11,0.46,1.46,-0.1,0.15
+same,S,Jackal (L3),,T086,T013,Great Old Oak School - Bark Turns the Blade,Solemn Pact,1.04,0.75,1.69,-0.1,0.36
+same,S,Jackal (L3),,T131,T001,Hand of Chaos,Brace,0.36,0.12,0.58,0.1,0.19
+same,U,"Sable (L3, proposed)",,T110,T064,Lifeline,Heroic Inspiration,0.74,0.31,0.96,-0.1,0.18
+same,U,"Sable (L3, proposed)",,T075,T045,Magehunter,Analyze Stance,0.4,0.03,0.53,0.1,0.31
+same,U,"Sable (L3, proposed)",,T159,T013,Demon School - Thief Empties the Vessel,Solemn Pact,-0.03,-0.18,-0.12,0.1,0.19
+same,U,Browndog (L3),,T175,T062,Great Old Oak School - Boughs Unbroken,Cry of Victory,0.43,0.25,0.58,-0.1,0.16
+cross,S,"Enith (L3, proposed)","Felix (L3, proposed)",T001,T110,Brace,Lifeline,0.62,4.14,4.65,-0.1,0.29
+cross,U,"Sable (L3, proposed)",Beornhard (L3),T012,T129,Second Wind,Disciple of the Flowing Hand,1.47,0.38,1.75,-0.1,0.19
+same,H,Carrick (L3),,T129,T050,Disciple of the Flowing Hand,Optimize Blood,1.17,0.65,1.72,-0.09,0.33
+same,H,Carrick (L3),,T050,T016,Optimize Blood,Skin of Stone,0.65,0.44,1.0,-0.09,0.14
+same,S,"Enith (L3, proposed)",,T122,T076,Gainsay,Parting Shot,0.72,0.18,1.0,0.09,0.2
+same,S,"Felix (L3, proposed)",,T165,T012,Great Old Oak School - Old Growth Digs Deep,Second Wind,1.31,0.62,1.84,-0.09,0.26
+same,S,"Felix (L3, proposed)",,T135,T166,Shugen School - Spirit Hands,Great Old Oak School - Seasons Pass the Forest,1.12,0.76,1.97,0.09,0.26
+same,S,Hanforth (L3),,T086,T064,Great Old Oak School - Bark Turns the Blade,Heroic Inspiration,2.21,0.11,2.41,0.09,0.24
+same,S,Hanforth (L3),,T001,T154,Brace,Shugen School - Hand Rings the Bell,0.67,0.15,0.74,-0.09,0.13
+same,H,Hilde (L3),,T110,T175,Lifeline,Great Old Oak School - Boughs Unbroken,3.0,0.46,3.37,-0.09,0.22
+same,S,Jackal (L3),,T012,T045,Second Wind,Analyze Stance,0.49,0.15,0.55,-0.09,0.18
+same,U,"Sable (L3, proposed)",,T012,T077,Second Wind,Blinkstep,1.47,0.28,1.84,0.09,0.16
+same,U,"Sable (L3, proposed)",,T110,T159,Lifeline,Demon School - Thief Empties the Vessel,0.74,-0.03,0.8,0.09,0.11
+same,U,"Sable (L3, proposed)",,T077,T001,Blinkstep,Brace,0.28,0.28,0.66,0.09,0.11
+same,U,"Sable (L3, proposed)",,T159,T045,Demon School - Thief Empties the Vessel,Analyze Stance,-0.03,0.03,0.09,0.09,0.16
+same,U,Browndog (L3),,T184,T062,Crashing Wave Approach,Cry of Victory,0.32,0.25,0.49,-0.09,0.22
+cross,H,Hanforth (L3),Beornhard (L3),T110,T129,Lifeline,Disciple of the Flowing Hand,0.95,-0.24,0.61,-0.09,0.56
+same,H,Carrick (L3),,T086,T205,Great Old Oak School - Bark Turns the Blade,Suppressing Fire,1.27,0.4,1.59,-0.08,0.18
+same,S,"Enith (L3, proposed)",,T129,T001,Disciple of the Flowing Hand,Brace,1.74,0.62,2.28,-0.08,0.35
+same,S,"Enith (L3, proposed)",,T001,T073,Brace,Bladeslinging,0.62,0.26,0.95,0.08,0.2
+same,S,"Enith (L3, proposed)",,T001,T076,Brace,Parting Shot,0.62,0.18,0.72,-0.08,0.19
+same,S,"Enith (L3, proposed)",,T001,T013,Brace,Solemn Pact,0.62,0.18,0.71,-0.08,0.26
+same,S,"Enith (L3, proposed)",,T132,T073,Indomitable Phalanx,Bladeslinging,0.57,0.26,0.75,-0.08,0.28
+same,S,"Enith (L3, proposed)",,T199,T076,Intimidating Presence,Parting Shot,0.57,0.18,0.68,-0.08,0.3
+same,S,"Felix (L3, proposed)",,T021,T135,Mind and Body Unbroken,Shugen School - Spirit Hands,1.58,1.12,2.78,0.08,0.4
+same,S,"Felix (L3, proposed)",,T152,T129,Demon School - Circling Vulture,Disciple of the Flowing Hand,1.42,1.02,2.36,-0.08,0.46
+same,S,Hanforth (L3),,T110,T077,Lifeline,Blinkstep,1.11,0.05,1.08,-0.08,0.1
+same,S,Hanforth (L3),,T109,T083,Land's Bounty,Demon School - Sickness Takes the Flock,0.98,0.17,1.23,0.08,0.12
+same,S,Hanforth (L3),,T064,T077,Heroic Inspiration,Blinkstep,0.11,0.05,0.08,-0.08,0.09
+same,H,Hilde (L3),,T011,T075,One Eye Behind You,Magehunter,1.72,1.11,2.91,0.08,0.41
+same,H,Hilde (L3),,T077,T192,Blinkstep,Seize the Moment,1.88,1.47,3.27,-0.08,0.39
+same,H,Hilde (L3),,T176,T001,Drunken Brawling,Brace,1.29,0.44,1.65,-0.08,0.24
+same,S,Jackal (L3),,T110,T131,Lifeline,Hand of Chaos,0.77,0.36,1.21,0.08,0.49
+same,S,Jackal (L3),,T077,T001,Blinkstep,Brace,0.77,0.12,0.81,-0.08,0.11
+same,S,Jackal (L3),,T013,T131,Solemn Pact,Hand of Chaos,0.75,0.36,1.19,0.08,0.67
+same,U,"Sable (L3, proposed)",,T086,T075,Great Old Oak School - Bark Turns the Blade,Magehunter,0.77,0.4,1.25,0.08,0.29
+same,U,Browndog (L3),,T077,T132,Blinkstep,Indomitable Phalanx,1.23,0.29,1.6,0.08,0.18
+same,U,Browndog (L3),,T075,T175,Magehunter,Great Old Oak School - Boughs Unbroken,0.43,0.43,0.78,-0.08,0.14
+same,U,Browndog (L3),,T075,T062,Magehunter,Cry of Victory,0.43,0.25,0.75,0.08,0.22
+cross,H,Hilde (L3),Carrick (L3),T011,T011,One Eye Behind You,One Eye Behind You,1.72,2.94,4.75,0.08,0.74
+cross,H,Hilde (L3),Beornhard (L3),T011,T075,One Eye Behind You,Magehunter,1.72,1.54,3.18,-0.08,0.62
+same,U,"Ashleigh (L3, proposed)",,T019,T129,Toughened Resolve,Disciple of the Flowing Hand,4.12,1.0,5.18,0.07,0.29
+same,U,"Ashleigh (L3, proposed)",,T129,T011,Disciple of the Flowing Hand,One Eye Behind You,1.0,0.72,1.66,-0.07,0.46
+same,U,Beornhard (L3),,T001,T192,Brace,Seize the Moment,0.49,0.07,0.5,-0.07,0.18
+same,H,Carrick (L3),,T019,T050,Toughened Resolve,Optimize Blood,5.19,0.65,5.91,0.07,0.3
+same,H,Carrick (L3),,T011,T012,One Eye Behind You,Second Wind,2.94,0.51,3.38,-0.07,0.25
+same,H,Carrick (L3),,T086,T012,Great Old Oak School - Bark Turns the Blade,Second Wind,1.27,0.51,1.71,-0.07,0.27
+same,H,Carrick (L3),,T050,T012,Optimize Blood,Second Wind,0.65,0.51,1.22,0.07,0.13
+same,S,"Enith (L3, proposed)",,T001,T132,Brace,Indomitable Phalanx,0.62,0.57,1.12,-0.07,0.36
+same,S,"Enith (L3, proposed)",,T073,T076,Bladeslinging,Parting Shot,0.26,0.18,0.37,-0.07,0.11
+same,S,"Enith (L3, proposed)",,T134,T077,Lion School - Eternal Riposte,Blinkstep,0.4,0.1,0.56,0.07,0.19
+same,S,"Felix (L3, proposed)",,T110,T166,Lifeline,Great Old Oak School - Seasons Pass the Forest,4.14,0.76,4.96,0.07,0.23
+same,S,Hanforth (L3),,T129,T077,Disciple of the Flowing Hand,Blinkstep,1.34,0.05,1.32,-0.07,0.16
+same,S,Hanforth (L3),,T075,T083,Magehunter,Demon School - Sickness Takes the Flock,0.14,0.17,0.25,-0.07,0.09
+same,H,Hilde (L3),,T176,T013,Drunken Brawling,Solemn Pact,1.29,0.34,1.55,-0.07,0.45
+same,S,Jackal (L3),,T129,T013,Disciple of the Flowing Hand,Solemn Pact,0.76,0.75,1.57,0.07,0.5
+same,S,Jackal (L3),,T129,T012,Disciple of the Flowing Hand,Second Wind,0.76,0.49,1.31,0.07,0.25
+same,S,Jackal (L3),,T129,T001,Disciple of the Flowing Hand,Brace,0.76,0.12,0.81,-0.07,0.15
+same,S,Jackal (L3),,T110,T045,Lifeline,Analyze Stance,0.77,0.15,0.99,0.07,0.27
+same,S,Jackal (L3),,T013,T012,Solemn Pact,Second Wind,0.75,0.49,1.17,-0.07,0.25
+same,U,"Sable (L3, proposed)",,T110,T045,Lifeline,Analyze Stance,0.74,0.03,0.84,0.07,0.24
+same,U,Browndog (L3),,T077,T184,Blinkstep,Crashing Wave Approach,1.23,0.32,1.49,-0.07,0.21
+same,U,Browndog (L3),,T132,T062,Indomitable Phalanx,Cry of Victory,0.29,0.25,0.47,-0.07,0.15
+cross,H,Hilde (L3),Carrick (L3),T011,T019,One Eye Behind You,Toughened Resolve,1.72,5.19,6.98,0.07,0.58
+same,U,"Ashleigh (L3, proposed)",,T129,T080,Disciple of the Flowing Hand,Shugen School - Firefly Leaves the Hand,1.0,0.74,1.68,-0.06,0.26
+same,U,"Ashleigh (L3, proposed)",,T080,T197,Shugen School - Firefly Leaves the Hand,Command the Tempo,0.74,0.69,1.49,0.06,0.25
+same,H,Carrick (L3),,T110,T075,Lifeline,Magehunter,1.73,0.53,2.19,-0.06,0.31
+same,H,Carrick (L3),,T012,T205,Second Wind,Suppressing Fire,0.51,0.4,0.85,-0.06,0.12
+same,S,"Enith (L3, proposed)",,T076,T013,Parting Shot,Solemn Pact,0.18,0.18,0.3,-0.06,0.22
+same,S,Hanforth (L3),,T109,T077,Land's Bounty,Blinkstep,0.98,0.05,0.97,-0.06,0.11
+same,S,Hanforth (L3),,T064,T076,Heroic Inspiration,Parting Shot,0.11,0.28,0.46,0.06,0.23
+same,S,Hanforth (L3),,T076,T013,Parting Shot,Solemn Pact,0.28,0.15,0.37,-0.06,0.25
+same,S,Hanforth (L3),,T013,T077,Solemn Pact,Blinkstep,0.15,0.05,0.14,-0.06,0.11
+same,H,Hilde (L3),,T001,T013,Brace,Solemn Pact,0.44,0.34,0.83,0.06,0.29
+same,H,Hilde (L3),,T013,T178,Solemn Pact,Lend Bulwark,0.34,0.49,0.88,0.06,0.2
+same,S,Jackal (L3),,T011,T001,One Eye Behind You,Brace,3.52,0.12,3.58,-0.06,0.18
+same,S,Jackal (L3),,T192,T045,Seize the Moment,Analyze Stance,0.7,0.15,0.79,-0.06,0.43
+same,S,Jackal (L3),,T012,T001,Second Wind,Brace,0.49,0.12,0.55,-0.06,0.1
+same,U,Browndog (L3),,T075,T132,Magehunter,Indomitable Phalanx,0.43,0.29,0.66,-0.06,0.12
+same,U,Browndog (L3),,T075,T204,Magehunter,Exploit the Opening,0.43,0.27,0.75,0.06,0.29
+same,U,Browndog (L3),,T062,T178,Cry of Victory,Lend Bulwark,0.25,0.28,0.47,-0.06,0.15
+same,U,"Ashleigh (L3, proposed)",,T019,T134,Toughened Resolve,Lion School - Eternal Riposte,4.12,0.79,4.86,-0.05,0.2
+same,U,"Ashleigh (L3, proposed)",,T019,T011,Toughened Resolve,One Eye Behind You,4.12,0.72,4.79,-0.05,0.33
+same,H,Carrick (L3),,T129,T086,Disciple of the Flowing Hand,Great Old Oak School - Bark Turns the Blade,1.17,1.27,2.48,0.05,0.53
+same,S,"Enith (L3, proposed)",,T129,T077,Disciple of the Flowing Hand,Blinkstep,1.74,0.1,1.89,0.05,0.17
+same,S,"Enith (L3, proposed)",,T073,T077,Bladeslinging,Blinkstep,0.26,0.1,0.41,0.05,0.14
+same,S,"Enith (L3, proposed)",,T204,T077,Exploit the Opening,Blinkstep,0.4,0.1,0.55,0.05,0.2
+same,S,"Felix (L3, proposed)",,T021,T012,Mind and Body Unbroken,Second Wind,1.58,0.62,2.15,-0.05,0.25
+same,S,"Felix (L3, proposed)",,T156,T012,Shugen School - Lantern Gutters in the Wind,Second Wind,1.38,0.62,1.94,-0.05,0.26
+same,S,Hanforth (L3),,T109,T075,Land's Bounty,Magehunter,0.98,0.14,1.08,-0.05,0.1
+same,S,Hanforth (L3),,T109,T154,Land's Bounty,Shugen School - Hand Rings the Bell,0.98,0.15,1.19,0.05,0.12
+same,S,Hanforth (L3),,T001,T064,Brace,Heroic Inspiration,0.67,0.11,0.84,0.05,0.21
+same,S,Hanforth (L3),,T075,T154,Magehunter,Shugen School - Hand Rings the Bell,0.14,0.15,0.24,-0.05,0.09
+same,H,Hilde (L3),,T075,T134,Magehunter,Lion School - Eternal Riposte,1.11,0.47,1.63,0.05,0.19
+same,S,Jackal (L3),,T086,T110,Great Old Oak School - Bark Turns the Blade,Lifeline,1.04,0.77,1.86,0.05,0.33
+same,S,Jackal (L3),,T075,T012,Magehunter,Second Wind,0.97,0.49,1.4,-0.05,0.21
+same,S,Jackal (L3),,T129,T077,Disciple of the Flowing Hand,Blinkstep,0.76,0.77,1.58,0.05,0.28
+same,S,Jackal (L3),,T192,T012,Seize the Moment,Second Wind,0.7,0.49,1.24,0.05,0.25
+same,S,Jackal (L3),,T077,T045,Blinkstep,Analyze Stance,0.77,0.15,0.88,-0.05,0.26
+same,U,"Sable (L3, proposed)",,T012,T013,Second Wind,Solemn Pact,1.47,-0.18,1.24,-0.05,0.21
+same,U,"Sable (L3, proposed)",,T110,T001,Lifeline,Brace,0.74,0.28,0.97,-0.05,0.04
+same,U,"Sable (L3, proposed)",,T064,T075,Heroic Inspiration,Magehunter,0.31,0.4,0.66,-0.05,0.19
+same,U,"Sable (L3, proposed)",,T001,T013,Brace,Solemn Pact,0.28,-0.18,0.15,0.05,0.1
+same,U,Browndog (L3),,T176,T075,Drunken Brawling,Magehunter,0.65,0.43,1.03,-0.05,0.2
+cross,U,"Ashleigh (L3, proposed)","Sable (L3, proposed)",T019,T086,Toughened Resolve,Great Old Oak School - Bark Turns the Blade,4.12,0.77,4.84,-0.05,0.23
+same,U,"Ashleigh (L3, proposed)",,T012,T197,Second Wind,Command the Tempo,2.36,0.69,3.02,-0.04,0.21
+same,U,"Ashleigh (L3, proposed)",,T159,T197,Demon School - Thief Empties the Vessel,Command the Tempo,0.81,0.69,1.55,0.04,0.2
+same,U,Beornhard (L3),,T131,T121,Hand of Chaos,Force Missiles,0.22,0.07,0.25,-0.04,0.23
+same,H,Carrick (L3),,T129,T012,Disciple of the Flowing Hand,Second Wind,1.17,0.51,1.63,-0.04,0.25
+same,S,"Felix (L3, proposed)",,T156,T129,Shugen School - Lantern Gutters in the Wind,Disciple of the Flowing Hand,1.38,1.02,2.36,-0.04,0.44
+same,S,Hanforth (L3),,T129,T013,Disciple of the Flowing Hand,Solemn Pact,1.34,0.15,1.54,0.04,0.41
+same,S,Hanforth (L3),,T064,T154,Heroic Inspiration,Shugen School - Hand Rings the Bell,0.11,0.15,0.31,0.04,0.18
+same,S,Hanforth (L3),,T013,T075,Solemn Pact,Magehunter,0.15,0.14,0.25,-0.04,0.15
+same,S,Hanforth (L3),,T013,T083,Solemn Pact,Demon School - Sickness Takes the Flock,0.15,0.17,0.28,-0.04,0.23
+same,H,Hilde (L3),,T075,T001,Magehunter,Brace,1.11,0.44,1.59,0.04,0.21
+same,S,Jackal (L3),,T075,T001,Magehunter,Brace,0.97,0.12,1.04,-0.04,0.11
+same,S,Jackal (L3),,T077,T012,Blinkstep,Second Wind,0.77,0.49,1.22,-0.04,0.16
+same,U,"Sable (L3, proposed)",,T012,T159,Second Wind,Demon School - Thief Empties the Vessel,1.47,-0.03,1.4,-0.04,0.09
+same,U,"Sable (L3, proposed)",,T064,T077,Heroic Inspiration,Blinkstep,0.31,0.28,0.63,0.04,0.25
+same,U,"Sable (L3, proposed)",,T013,T033,Solemn Pact,Hand of the Chirurgeon,-0.18,-0.01,-0.15,0.04,0.05
+cross,U,"Sable (L3, proposed)",Beornhard (L3),T012,T075,Second Wind,Magehunter,1.47,1.39,2.9,0.04,0.22
+same,U,"Ashleigh (L3, proposed)",,T019,T080,Toughened Resolve,Shugen School - Firefly Leaves the Hand,4.12,0.74,4.83,-0.03,0.17
+same,U,"Ashleigh (L3, proposed)",,T012,T080,Second Wind,Shugen School - Firefly Leaves the Hand,2.36,0.74,3.13,0.03,0.17
+same,U,Beornhard (L3),,T001,T121,Brace,Force Missiles,0.49,0.07,0.59,0.03,0.07
+same,U,Beornhard (L3),,T192,T121,Seize the Moment,Force Missiles,0.07,0.07,0.18,0.03,0.27
+same,H,Carrick (L3),,T050,T205,Optimize Blood,Suppressing Fire,0.65,0.4,1.03,-0.03,0.13
+same,H,Carrick (L3),,T012,T194,Second Wind,Ambush Predator,0.51,0.54,1.08,0.03,0.19
+same,S,"Enith (L3, proposed)",,T011,T077,One Eye Behind You,Blinkstep,0.91,0.1,1.04,0.03,0.19
+same,S,"Enith (L3, proposed)",,T199,T073,Intimidating Presence,Bladeslinging,0.57,0.26,0.86,0.03,0.27
+same,S,Hanforth (L3),,T086,T075,Great Old Oak School - Bark Turns the Blade,Magehunter,2.21,0.14,2.32,-0.03,0.11
+same,S,Hanforth (L3),,T110,T109,Lifeline,Land's Bounty,1.11,0.98,2.13,0.03,0.29
+same,S,Hanforth (L3),,T129,T064,Disciple of the Flowing Hand,Heroic Inspiration,1.34,0.11,1.43,-0.03,0.37
+same,S,Hanforth (L3),,T129,T083,Disciple of the Flowing Hand,Demon School - Sickness Takes the Flock,1.34,0.17,1.49,-0.03,0.25
+same,S,Hanforth (L3),,T075,T077,Magehunter,Blinkstep,0.14,0.05,0.16,-0.03,0.04
+same,H,Hilde (L3),,T075,T178,Magehunter,Lend Bulwark,1.11,0.49,1.56,-0.03,0.11
+same,H,Hilde (L3),,T134,T013,Lion School - Eternal Riposte,Solemn Pact,0.47,0.34,0.83,0.03,0.36
+same,H,Hilde (L3),,T175,T001,Great Old Oak School - Boughs Unbroken,Brace,0.46,0.44,0.92,0.03,0.19
+same,S,Jackal (L3),,T011,T110,One Eye Behind You,Lifeline,3.52,0.77,4.26,-0.03,0.48
+same,U,"Sable (L3, proposed)",,T012,T075,Second Wind,Magehunter,1.47,0.4,1.9,0.03,0.19
+same,U,"Sable (L3, proposed)",,T012,T045,Second Wind,Analyze Stance,1.47,0.03,1.53,0.03,0.18
+same,U,"Sable (L3, proposed)",,T012,T033,Second Wind,Hand of the Chirurgeon,1.47,-0.01,1.49,0.03,0.05
+same,U,"Sable (L3, proposed)",,T086,T159,Great Old Oak School - Bark Turns the Blade,Demon School - Thief Empties the Vessel,0.77,-0.03,0.71,-0.03,0.13
+same,U,"Sable (L3, proposed)",,T110,T075,Lifeline,Magehunter,0.74,0.4,1.11,-0.03,0.29
+same,U,"Sable (L3, proposed)",,T077,T159,Blinkstep,Demon School - Thief Empties the Vessel,0.28,-0.03,0.28,0.03,0.12
+same,U,"Sable (L3, proposed)",,T045,T033,Analyze Stance,Hand of the Chirurgeon,0.03,-0.01,0.06,0.03,0.04
+same,U,Browndog (L3),,T077,T178,Blinkstep,Lend Bulwark,1.23,0.28,1.48,-0.03,0.09
+cross,S,"Enith (L3, proposed)",Jackal (L3),T001,T011,Brace,One Eye Behind You,0.62,3.52,4.12,-0.03,0.34
+cross,S,"Enith (L3, proposed)",Jackal (L3),T001,T086,Brace,Great Old Oak School - Bark Turns the Blade,0.62,1.04,1.62,-0.03,0.26
+cross,S,"Enith (L3, proposed)",Hanforth (L3),T001,T110,Brace,Lifeline,0.62,1.11,1.7,-0.03,0.3
+same,U,"Ashleigh (L3, proposed)",,T066,T134,Bolstering Refrain,Lion School - Eternal Riposte,3.59,0.79,4.37,-0.02,0.17
+same,U,"Ashleigh (L3, proposed)",,T159,T134,Demon School - Thief Empties the Vessel,Lion School - Eternal Riposte,0.81,0.79,1.58,-0.02,0.15
+same,U,Beornhard (L3),,T075,T121,Magehunter,Force Missiles,1.39,0.07,1.48,0.02,0.2
+same,S,"Enith (L3, proposed)",,T011,T013,One Eye Behind You,Solemn Pact,0.91,0.18,1.1,0.02,0.4
+same,S,"Enith (L3, proposed)",,T122,T134,Gainsay,Lion School - Eternal Riposte,0.72,0.4,1.14,0.02,0.39
+same,S,"Enith (L3, proposed)",,T122,T013,Gainsay,Solemn Pact,0.72,0.18,0.88,-0.02,0.26
+same,S,"Enith (L3, proposed)",,T199,T077,Intimidating Presence,Blinkstep,0.57,0.1,0.7,0.02,0.18
+same,S,"Felix (L3, proposed)",,T152,T012,Demon School - Circling Vulture,Second Wind,1.42,0.62,2.06,0.02,0.26
+same,S,Hanforth (L3),,T110,T154,Lifeline,Shugen School - Hand Rings the Bell,1.11,0.15,1.25,-0.02,0.2
+same,S,Hanforth (L3),,T110,T083,Lifeline,Demon School - Sickness Takes the Flock,1.11,0.17,1.26,-0.02,0.2
+same,S,Hanforth (L3),,T129,T154,Disciple of the Flowing Hand,Shugen School - Hand Rings the Bell,1.34,0.15,1.52,0.02,0.24
+same,S,Hanforth (L3),,T109,T001,Land's Bounty,Brace,0.98,0.67,1.64,-0.02,0.19
+same,S,Hanforth (L3),,T109,T076,Land's Bounty,Parting Shot,0.98,0.28,1.25,-0.02,0.19
+same,S,Hanforth (L3),,T064,T075,Heroic Inspiration,Magehunter,0.11,0.14,0.24,-0.02,0.08
+same,S,Hanforth (L3),,T076,T075,Parting Shot,Magehunter,0.28,0.14,0.45,0.02,0.09
+same,S,Hanforth (L3),,T013,T154,Solemn Pact,Shugen School - Hand Rings the Bell,0.15,0.15,0.28,-0.02,0.24
+same,H,Hilde (L3),,T001,T178,Brace,Lend Bulwark,0.44,0.49,0.94,0.02,0.13
+same,S,Jackal (L3),,T011,T013,One Eye Behind You,Solemn Pact,3.52,0.75,4.25,-0.02,0.57
+same,S,Jackal (L3),,T075,T129,Magehunter,Disciple of the Flowing Hand,0.97,0.76,1.7,-0.02,0.44
+same,S,Jackal (L3),,T075,T045,Magehunter,Analyze Stance,0.97,0.15,1.1,-0.02,0.32
+same,S,Jackal (L3),,T192,T001,Seize the Moment,Brace,0.7,0.12,0.84,0.02,0.17
+same,U,"Sable (L3, proposed)",,T012,T064,Second Wind,Heroic Inspiration,1.47,0.31,1.8,0.02,0.17
+same,U,"Sable (L3, proposed)",,T012,T001,Second Wind,Brace,1.47,0.28,1.73,-0.02,0.11
+same,U,"Sable (L3, proposed)",,T077,T033,Blinkstep,Hand of the Chirurgeon,0.28,-0.01,0.28,0.02,0.04
+same,U,"Sable (L3, proposed)",,T001,T075,Brace,Magehunter,0.28,0.4,0.66,-0.02,0.07
+same,U,"Sable (L3, proposed)",,T075,T159,Magehunter,Demon School - Thief Empties the Vessel,0.4,-0.03,0.38,0.02,0.12
+same,U,"Sable (L3, proposed)",,T075,T013,Magehunter,Solemn Pact,0.4,-0.18,0.23,0.02,0.39
+same,U,Browndog (L3),,T075,T184,Magehunter,Crashing Wave Approach,0.43,0.32,0.73,-0.02,0.16
+cross,S,"Enith (L3, proposed)","Felix (L3, proposed)",T001,T011,Brace,One Eye Behind You,0.62,2.62,3.21,-0.02,0.37
+cross,S,"Enith (L3, proposed)",Hanforth (L3),T001,T086,Brace,Great Old Oak School - Bark Turns the Blade,0.62,2.21,2.85,0.02,0.26
+cross,U,Browndog (L3),"Sable (L3, proposed)",T192,T086,Seize the Moment,Great Old Oak School - Bark Turns the Blade,1.54,0.77,2.33,0.02,0.27
+same,U,"Ashleigh (L3, proposed)",,T066,T129,Bolstering Refrain,Disciple of the Flowing Hand,3.59,1.0,4.58,-0.01,0.28
+same,U,"Ashleigh (L3, proposed)",,T159,T011,Demon School - Thief Empties the Vessel,One Eye Behind You,0.81,0.72,1.53,-0.01,0.25
+same,U,Beornhard (L3),,T075,T001,Magehunter,Brace,1.39,0.49,1.89,0.01,0.19
+same,U,Beornhard (L3),,T001,T131,Brace,Hand of Chaos,0.49,0.22,0.73,0.01,0.22
+same,H,Carrick (L3),,T019,T205,Toughened Resolve,Suppressing Fire,5.19,0.4,5.61,0.01,0.18
+same,H,Carrick (L3),,T129,T016,Disciple of the Flowing Hand,Skin of Stone,1.17,0.44,1.62,0.01,0.24
+same,H,Carrick (L3),,T177,T012,Doubleshot,Second Wind,0.64,0.51,1.14,-0.01,0.27
+same,H,Carrick (L3),,T012,T016,Second Wind,Skin of Stone,0.51,0.44,0.94,-0.01,0.16
+same,S,"Enith (L3, proposed)",,T001,T122,Brace,Gainsay,0.62,0.72,1.33,-0.01,0.24
+same,S,"Enith (L3, proposed)",,T122,T077,Gainsay,Blinkstep,0.72,0.1,0.81,-0.01,0.11
+same,S,"Enith (L3, proposed)",,T073,T013,Bladeslinging,Solemn Pact,0.26,0.18,0.44,0.01,0.27
+same,S,"Enith (L3, proposed)",,T073,T204,Bladeslinging,Exploit the Opening,0.26,0.4,0.67,0.01,0.28
+same,S,"Enith (L3, proposed)",,T076,T204,Parting Shot,Exploit the Opening,0.18,0.4,0.57,-0.01,0.28
+same,S,Hanforth (L3),,T086,T013,Great Old Oak School - Bark Turns the Blade,Solemn Pact,2.21,0.15,2.37,0.01,0.24
+same,S,Hanforth (L3),,T129,T075,Disciple of the Flowing Hand,Magehunter,1.34,0.14,1.49,0.01,0.15
+same,S,Hanforth (L3),,T001,T075,Brace,Magehunter,0.67,0.14,0.83,0.01,0.1
+same,S,Hanforth (L3),,T001,T083,Brace,Demon School - Sickness Takes the Flock,0.67,0.17,0.83,-0.01,0.14
+same,S,Hanforth (L3),,T076,T077,Parting Shot,Blinkstep,0.28,0.05,0.34,0.01,0.1
+same,S,Jackal (L3),,T086,T045,Great Old Oak School - Bark Turns the Blade,Analyze Stance,1.04,0.15,1.2,0.01,0.26
+same,S,Jackal (L3),,T086,T001,Great Old Oak School - Bark Turns the Blade,Brace,1.04,0.12,1.15,-0.01,0.14
+same,S,Jackal (L3),,T129,T110,Disciple of the Flowing Hand,Lifeline,0.76,0.77,1.52,-0.01,0.35
+same,S,Jackal (L3),,T110,T001,Lifeline,Brace,0.77,0.12,0.9,0.01,0.1
+same,U,"Sable (L3, proposed)",,T086,T033,Great Old Oak School - Bark Turns the Blade,Hand of the Chirurgeon,0.77,-0.01,0.77,0.01,0.04
+same,U,"Sable (L3, proposed)",,T110,T077,Lifeline,Blinkstep,0.74,0.28,1.01,-0.01,0.22
+same,U,"Sable (L3, proposed)",,T064,T033,Heroic Inspiration,Hand of the Chirurgeon,0.31,-0.01,0.3,-0.01,0.01
+same,U,"Sable (L3, proposed)",,T001,T159,Brace,Demon School - Thief Empties the Vessel,0.28,-0.03,0.23,-0.01,0.07
+same,U,"Sable (L3, proposed)",,T001,T033,Brace,Hand of the Chirurgeon,0.28,-0.01,0.28,0.01,0.04
+same,U,Browndog (L3),,T197,T077,Command the Tempo,Blinkstep,1.39,1.23,2.63,0.01,0.33
+same,U,Browndog (L3),,T075,T178,Magehunter,Lend Bulwark,0.43,0.28,0.7,-0.01,0.1
+targeted,H,Hilde (L3),,T019,T014,Toughened Resolve,Toughened Body,4.8,3.06,7.87,0.01,0.31
+cross,U,"Ashleigh (L3, proposed)",Beornhard (L3),T019,T129,Toughened Resolve,Disciple of the Flowing Hand,4.12,0.38,4.49,-0.01,0.31
+same,U,"Ashleigh (L3, proposed)",,T019,T197,Toughened Resolve,Command the Tempo,4.12,0.69,4.81,0.0,0.21
+same,H,Carrick (L3),,T177,T050,Doubleshot,Optimize Blood,0.64,0.65,1.29,-0.0,0.29
+same,H,Carrick (L3),,T050,T194,Optimize Blood,Ambush Predator,0.65,0.54,1.19,0,0.24
+same,S,"Enith (L3, proposed)",,T129,T073,Disciple of the Flowing Hand,Bladeslinging,1.74,0.26,2.0,-0.0,0.27
+same,S,"Enith (L3, proposed)",,T076,T134,Parting Shot,Lion School - Eternal Riposte,0.18,0.4,0.57,-0.0,0.29
+same,S,"Enith (L3, proposed)",,T076,T077,Parting Shot,Blinkstep,0.18,0.1,0.28,0.0,0.07
+same,S,"Enith (L3, proposed)",,T134,T013,Lion School - Eternal Riposte,Solemn Pact,0.4,0.18,0.57,-0.0,0.45
+same,S,Hanforth (L3),,T110,T001,Lifeline,Brace,1.11,0.67,1.78,-0.0,0.22
+same,H,Hilde (L3),,T176,T075,Drunken Brawling,Magehunter,1.29,1.11,2.4,0.0,0.3
+same,S,Jackal (L3),,T192,T077,Seize the Moment,Blinkstep,0.7,0.77,1.47,-0.0,0.35
+same,U,"Sable (L3, proposed)",,T110,T033,Lifeline,Hand of the Chirurgeon,0.74,-0.01,0.73,0,0.0
+same,U,"Sable (L3, proposed)",,T075,T033,Magehunter,Hand of the Chirurgeon,0.4,-0.01,0.39,-0.0,0.0
+same,U,"Sable (L3, proposed)",,T159,T033,Demon School - Thief Empties the Vessel,Hand of the Chirurgeon,-0.03,-0.01,-0.04,0.0,0.05
+same,U,Browndog (L3),,T192,T075,Seize the Moment,Magehunter,1.54,0.43,1.97,0,0.24
