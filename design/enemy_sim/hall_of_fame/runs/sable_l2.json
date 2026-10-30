@@ -1,0 +1,794 @@
+[
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 44.9425,
+  "validated": 44.48166666666667,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 1,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 1,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 4,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T050",
+     "name": "Optimize Blood",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 44.9425,
+  "validated": 44.48166666666667,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 1,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 1,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 4,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T050",
+     "name": "Optimize Blood",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 44.9425,
+  "validated": 44.48166666666667,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 1,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 4,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 1,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 4,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T050",
+     "name": "Optimize Blood",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 43.21,
+  "validated": 43.471666666666664,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 1,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 1,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 4,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T050",
+     "name": "Optimize Blood",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 43.3975,
+  "validated": 43.401666666666664,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 1,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 3,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 1,
+    "Might": 2,
+    "Presence": 1,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 4,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T050",
+     "name": "Optimize Blood",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 43.1375,
+  "validated": 42.638333333333335,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 1,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 4,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 4,
+    "Mixology": 1,
+    "Meditation": 1,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T050",
+     "name": "Optimize Blood",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  }
+ }
+]

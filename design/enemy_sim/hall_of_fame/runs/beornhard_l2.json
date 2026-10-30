@@ -1,0 +1,908 @@
+[
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 39.1425,
+  "validated": 39.30833333333333,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 1,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 3,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:55.670Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T074",
+     "name": "Feint",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-125XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 38.72,
+  "validated": 38.81166666666667,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 3,
+    "Composure": 0,
+    "Craft": 2,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:55.670Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Kinetic",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T074",
+     "name": "Feint",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-125XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 38.72,
+  "validated": 38.81166666666667,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 3,
+    "Composure": 0,
+    "Craft": 2,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:55.670Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Kinetic",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-125XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 38.67,
+  "validated": 38.73833333333334,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 3,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:55.670Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Kinetic",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T074",
+     "name": "Feint",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-125XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 38.67,
+  "validated": 38.73833333333334,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 3,
+    "Composure": 0,
+    "Craft": 2,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:55.670Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Kinetic",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T074",
+     "name": "Feint",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-125XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 38.6475,
+  "validated": 38.72,
+  "base_search": 29.295,
+  "base_validated": 29.458333333333332,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 3,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:55.670Z",
+   "techniques": [
+    {
+     "id": "T124",
+     "name": "Warmage's Reserves",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 6,
+     "level": 2,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Kinetic",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T074",
+     "name": "Feint",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-125XP-2026-10-24.json."
+   ]
+  }
+ }
+]
