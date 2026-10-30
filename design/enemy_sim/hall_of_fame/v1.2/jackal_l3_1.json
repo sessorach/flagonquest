@@ -1,0 +1,137 @@
+{
+ "charName": "Ashen Vex",
+ "charConcept": "Two loaded Battle Maneuvers, Suppressing Fire and One Eye Behind You. Acrobatics 5, Resilience 5. Refers to every throwing knife as 'my children.'",
+ "xpBudget": 175,
+ "statPoints": {
+  "Agility": 3,
+  "Body": 3,
+  "Cunning": 5,
+  "Mind": 2,
+  "Essence": 3
+ },
+ "skillPoints": {
+  "Acrobatics": 5,
+  "Archery": 1,
+  "Brawl": 0,
+  "Melee": 0,
+  "Stealth": 0,
+  "Athletics": 0,
+  "Awareness": 3,
+  "Might": 0,
+  "Presence": 1,
+  "Resilience": 5,
+  "Insight": 3,
+  "Masquerade": 1,
+  "Persuasion": 0,
+  "Streetwise": 2,
+  "Survival": 0,
+  "Academics": 1,
+  "Composure": 1,
+  "Craft": 1,
+  "Medicine": 0,
+  "Mixology": 2,
+  "Meditation": 0,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 1,
+  "Theurgy": 3
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I121",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "level": 2,
+   "xp": 6,
+   "features": [
+    {
+     "name": "Backfoot",
+     "count": 2
+    },
+    {
+     "name": "Blade of Four Fates",
+     "count": 1
+    },
+    {
+     "name": "Viper's Sting",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "level": 4,
+   "xp": 12,
+   "features": [
+    {
+     "name": "Ascended Blade",
+     "count": 1
+    },
+    {
+     "name": "Wind Slash",
+     "count": 1
+    },
+    {
+     "name": "Harrying",
+     "count": 1
+    },
+    {
+     "name": "Whirlwind",
+     "count": 1
+    },
+    {
+     "name": "Viper's Sting",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T011",
+   "name": "One Eye Behind You",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T205",
+   "name": "Suppressing Fire",
+   "level": "Lv 3",
+   "xp": 9
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #1 for Jackal (thrown skirmisher), Level 3, in Jackal (L3)'s place in party S. Toughest day it wins half the time: enemy Health x2.24, against the sample's x1.48 (+51%). Party Health left 32.58 against the sample's 19.07 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+ ]
+}

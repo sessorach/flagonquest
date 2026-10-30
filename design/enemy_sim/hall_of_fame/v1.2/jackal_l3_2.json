@@ -1,0 +1,127 @@
+{
+ "charName": "Scar Whitlock",
+ "charConcept": "One huge Maneuver (six Features), Lay On Hands, Eagle Eyes, two Toughened Resolves. Got the scar 'in a fight you wouldn't believe.' It's from a cat.",
+ "xpBudget": 175,
+ "statPoints": {
+  "Agility": 2,
+  "Body": 4,
+  "Cunning": 5,
+  "Mind": 2,
+  "Essence": 2
+ },
+ "skillPoints": {
+  "Acrobatics": 5,
+  "Archery": 1,
+  "Brawl": 1,
+  "Melee": 0,
+  "Stealth": 1,
+  "Athletics": 3,
+  "Awareness": 2,
+  "Might": 1,
+  "Presence": 3,
+  "Resilience": 2,
+  "Insight": 2,
+  "Masquerade": 0,
+  "Persuasion": 1,
+  "Streetwise": 0,
+  "Survival": 1,
+  "Academics": 1,
+  "Composure": 4,
+  "Craft": 1,
+  "Medicine": 3,
+  "Mixology": 0,
+  "Meditation": 1,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 1
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I121",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "level": 4,
+   "xp": 12,
+   "features": [
+    {
+     "name": "Fleet Step",
+     "count": 2
+    },
+    {
+     "name": "Backfoot",
+     "count": 1
+    },
+    {
+     "name": "Whirlwind",
+     "count": 1
+    },
+    {
+     "name": "Wing Clip",
+     "count": 1
+    },
+    {
+     "name": "Ascended Blade",
+     "count": 1
+    },
+    {
+     "name": "Blade of Four Fates",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T020",
+   "name": "Lay On Hands",
+   "level": "Lv 4",
+   "xp": 12
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T137",
+   "name": "Eagle Eyes",
+   "level": "Lv 1",
+   "xp": 3
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #2 for Jackal (thrown skirmisher), Level 3, in Jackal (L3)'s place in party S. Toughest day it wins half the time: enemy Health x2.08, against the sample's x1.48 (+40%). Days won in a row (up to 10) 9.39 against the sample's 2.65; morning Health 47.26 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+ ]
+}

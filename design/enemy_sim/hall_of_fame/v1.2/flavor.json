@@ -1,0 +1,158 @@
+{
+ "ashleigh_l2_1": {
+  "name": "Ravenna Nightsong",
+  "concept": "A bard who doesn't sing, because songs are for people who still have something to lose. Took Toughened Resolve four times and Lay On Hands once. Plays the lute only at funerals. Usually her own, almost."
+ },
+ "ashleigh_l2_2": {
+  "name": "Lyric Bloodmoon",
+  "concept": "Overchanneling, four Toughened Resolves and a heart that 'died the day the music did.' Dresses entirely in black velvet. Refers to the party as 'mortals.'"
+ },
+ "ashleigh_l3_1": {
+  "name": "Seraph Ashenveil, the Requiem Unending",
+  "concept": "Five Toughened Resolves, Earthen Mantle and Lifeline: she takes your hits so you don't have to, and wants you to feel bad about it. Has written a 40-page backstory about an angel who fell to earth and became a bard. The GM has read two of the pages."
+ },
+ "ashleigh_l3_2": {
+  "name": "Echo Vanitas",
+  "concept": "Guardian Angel on the healing, Lifeline on whoever looks weakest, Field Medic for style. Insists the One Eye Behind You is because 'they're always watching.' Who? 'You wouldn't understand.'"
+ },
+ "beornhard_l2_1": {
+  "name": "Malachai Darkfyre",
+  "concept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'"
+ },
+ "beornhard_l2_2": {
+  "name": "Zephyrus Vex",
+  "concept": "Malachai's rival, which is to say the same build with Rejuvenate instead of Guardian Angel. They insist they've never met. They have the same trench coat."
+ },
+ "beornhard_l3_1": {
+  "name": "Archmage Kaelith Shadowbane",
+  "concept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards."
+ },
+ "beornhard_l3_2": {
+  "name": "Valdris the Unspoken",
+  "concept": "Same fists, plus Force Missiles 'for range.' Has taken a vow of silence that lasts until someone asks about the vow."
+ },
+ "browndog_l2_1": {
+  "name": "Gunnar Steelfang",
+  "concept": "Four Toughened Resolves, one Battle Maneuver and a shield. Says 'I am the wall' before every fight and once after a nap. Has never once considered a third Technique."
+ },
+ "browndog_l2_2": {
+  "name": "Brutus Ironwolf",
+  "concept": "Gunnar plus Eagle Eyes, because a wall should see things coming. Refers to his shield by name (it's 'Vengeance')."
+ },
+ "browndog_l3_1": {
+  "name": "Sir Gallant Grimhelm",
+  "concept": "A tank who heals and sings: Second Wind, Bolstering Refrain, Heroic Inspiration and four Toughened Resolves. The war cry is in a language he made up. It has seventeen verses."
+ },
+ "browndog_l3_2": {
+  "name": "Magnus Dreadbulwark",
+  "concept": "Three Battle Maneuvers, Parting Shot, Magehunter, Brace: punishes anyone who looks at the party funny. Agility 5 in full armor, physics be damned. Keeps a list of every enemy who ever got away. It's empty, and he's proud of that."
+ },
+ "carrick_l2_1": {
+  "name": "Shade Vantablack",
+  "concept": "A rogue with five Toughened Resolves and Lifeline, so the stealth plan is to just not die. Carries six daggers, uses one. Cunning 3, Agility 1. 'Sneaking is a state of mind.'"
+ },
+ "carrick_l2_2": {
+  "name": "Kage Nightwhisper",
+  "concept": "Three Toughened Resolves and nothing else. Nothing. Every other XP is in Skills. Calls it 'minimalism.' The GM calls it 'please take one Technique, any Technique.'"
+ },
+ "carrick_l3_1": {
+  "name": "Zero Kurogane",
+  "concept": "Arrow Finds Only Mist, One Eye Behind You, Lifeline and Placeholder's Alacritous Adaptation: never where you aimed. Theurgy 5 'for spiritual reasons.' Wears a katana that's never drawn, next to the knives that are."
+ },
+ "carrick_l3_2": {
+  "name": "Raze Kurogane",
+  "concept": "Zero's twin, who also took Bladeslinging and Academics. Claims to be the evil twin. Is not noticeably eviler."
+ },
+ "enith_l2_1": {
+  "name": "Lilith Frostbourne",
+  "concept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality."
+ },
+ "enith_l2_2": {
+  "name": "Morrigan Ironheart",
+  "concept": "Six Toughened Resolves, Lifeline and Second Wind: 34 Health at Level 2. Forgot to learn any spells. Does not see this as a problem. 'My blade is my spell.'"
+ },
+ "enith_l3_1": {
+  "name": "Kuroi Hime, Blade of the Frozen Eclipse",
+  "concept": "Two War Magic copies (Frigid and Kinetic), Witchlight, Inexhaustible Guardian and four Toughened Resolves. Two swords, one of them made of ice, both named after her ex."
+ },
+ "enith_l3_2": {
+  "name": "Yuki Shiroyasha",
+  "concept": "The same two spells with Follow Through instead of the Guardian. Sorcery 5. Monologues mid-swing. The swing still lands, which is the annoying part."
+ },
+ "felix_l2_1": {
+  "name": "Ryu Kaminari",
+  "concept": "A monk with Swallow Skims the Water, Spirit Hands, Brace and a Lunging Maneuver. Fights shirtless in the snow. Says 'hmph' a lot."
+ },
+ "felix_l2_2": {
+  "name": "Jin Kazekiri",
+  "concept": "Ryu without the Brace, because 'blocking is admitting the blow exists.' Taught himself kung fu from a scroll he found. The scroll was a menu."
+ },
+ "felix_l3_1": {
+  "name": "Kenji Shadowfist",
+  "concept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing."
+ },
+ "felix_l3_2": {
+  "name": "Daisuke Kurotora",
+  "concept": "Kenji's sparring partner, with Viper's Sting and Harrying on the Maneuver. Composure 5. Has not blinked since Level 1."
+ },
+ "hanforth_l2_1": {
+  "name": "Brother Requiem",
+  "concept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy."
+ },
+ "hanforth_l2_2": {
+  "name": "Father Absolution",
+  "concept": "Brother Requiem's build, but Brace instead of the Blessing. Hears confessions mid-combat. Charges for them."
+ },
+ "hanforth_l3_1": {
+  "name": "Saint Lazarus Graves",
+  "concept": "Six Toughened Resolves, Lifeline and Lifeward: 34 Health and the whole party's pain is his. 'I suffer so you don't have to' is printed on the back of his trench coat."
+ },
+ "hanforth_l3_2": {
+  "name": "Cardinal Mortis",
+  "concept": "Lazarus with Guardian Angel and Vitality on the Healing Magic. Has a tragic backstory, which he'll tell you, at length, while healing you, slowly."
+ },
+ "hilde_l2_1": {
+  "name": "Brunhilde Doomhammer",
+  "concept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone."
+ },
+ "hilde_l3_1": {
+  "name": "Valkyrie Grimsdottir, the Unbroken",
+  "concept": "Earthen Mantle, Lifeline, two Toughened Resolves and Toughened Body, plus Force Missiles because 'barbarians can do magic if they're angry enough.' Essence 5. The original Hall of Famer."
+ },
+ "hilde_l3_2": {
+  "name": "Ragnhild Stormbreaker",
+  "concept": "Valkyrie without the Force Missiles and with Melee 5 instead. 'Magic is for people who can't lift.'"
+ },
+ "jackal_l2_1": {
+  "name": "Syd Ravage",
+  "concept": "Three Toughened Resolves and Healing Magic with Guardian Angel: a skirmisher who refuses to die and won't say why. Carries a skateboard in a world without pavement."
+ },
+ "jackal_l2_2": {
+  "name": "Damien Thornwood",
+  "concept": "Three Toughened Resolves and Field Medic, healing nobody in particular. Composure 4: has never once been surprised, or so he claims, loudly."
+ },
+ "jackal_l3_1": {
+  "name": "Ashen Vex",
+  "concept": "Two loaded Battle Maneuvers, Suppressing Fire and One Eye Behind You. Acrobatics 5, Resilience 5. Refers to every throwing knife as 'my children.'"
+ },
+ "jackal_l3_2": {
+  "name": "Scar Whitlock",
+  "concept": "One huge Maneuver (six Features), Lay On Hands, Eagle Eyes, two Toughened Resolves. Got the scar 'in a fight you wouldn't believe.' It's from a cat."
+ },
+ "sable_l2_1": {
+  "name": "Artemis Nyx",
+  "concept": "An archer with a seven-Feature Battle Maneuver, four Toughened Resolves, Healing Magic and Field Medic. Shoots the enemy, then heals the enemy's victims, then broods about it."
+ },
+ "sable_l2_2": {
+  "name": "Diana Ravencroft",
+  "concept": "Artemis with One Eye Behind You and Reach instead of Purify. Essence 1, because 'magic resistance is for people who expect to be hit.'"
+ },
+ "sable_l3_1": {
+  "name": "Kite Shinobi",
+  "concept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it."
+ },
+ "sable_l3_2": {
+  "name": "Kestrel Darkarrow",
+  "concept": "Hawkeye with a leaner first Maneuver. Has a pet raven that's mostly for show. The raven is also wearing a trench coat."
+ }
+}

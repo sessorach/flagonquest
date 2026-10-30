@@ -1,0 +1,147 @@
+{
+ "charName": "Zero Kurogane",
+ "charConcept": "Arrow Finds Only Mist, One Eye Behind You, Lifeline and Placeholder's Alacritous Adaptation: never where you aimed. Theurgy 5 'for spiritual reasons.' Wears a katana that's never drawn, next to the knives that are.",
+ "xpBudget": 175,
+ "statPoints": {
+  "Agility": 3,
+  "Body": 2,
+  "Cunning": 4,
+  "Mind": 2,
+  "Essence": 2
+ },
+ "skillPoints": {
+  "Acrobatics": 4,
+  "Archery": 1,
+  "Brawl": 0,
+  "Melee": 1,
+  "Stealth": 0,
+  "Athletics": 0,
+  "Awareness": 0,
+  "Might": 0,
+  "Presence": 1,
+  "Resilience": 4,
+  "Insight": 4,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 0,
+  "Academics": 2,
+  "Composure": 0,
+  "Craft": 2,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 4,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 5
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I121",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T168",
+   "name": "Shugen School - Arrow Finds Only Mist",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T110",
+   "name": "Lifeline",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T011",
+   "name": "One Eye Behind You",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T037",
+   "name": "Placeholder's Alacritous Adaptation",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "level": 2,
+   "xp": 6,
+   "features": [
+    {
+     "name": "Wind Slash",
+     "count": 2
+    },
+    {
+     "name": "Harrying",
+     "count": 1
+    },
+    {
+     "name": "Half Guard",
+     "count": 1
+    },
+    {
+     "name": "Backfoot",
+     "count": 1
+    },
+    {
+     "name": "Wing Clip",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T137",
+   "name": "Eagle Eyes",
+   "level": "Lv 1",
+   "xp": 3
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T012",
+   "name": "Second Wind",
+   "level": "Lv 2",
+   "xp": 6
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #1 for Carrick (knife-throwing rogue), Level 3, in Carrick (L3)'s place in party H. Toughest day it wins half the time: enemy Health x2.19, against the sample's x1.52 (+43%). Party Health left 35.94 against the sample's 21.64 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+ ]
+}

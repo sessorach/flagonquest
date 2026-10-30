@@ -1,0 +1,113 @@
+{
+ "charName": "Shade Vantablack",
+ "charConcept": "A rogue with five Toughened Resolves and Lifeline, so the stealth plan is to just not die. Carries six daggers, uses one. Cunning 3, Agility 1. 'Sneaking is a state of mind.'",
+ "xpBudget": 125,
+ "statPoints": {
+  "Agility": 1,
+  "Body": 1,
+  "Cunning": 3,
+  "Mind": 1,
+  "Essence": 4
+ },
+ "skillPoints": {
+  "Acrobatics": 2,
+  "Archery": 0,
+  "Brawl": 1,
+  "Melee": 0,
+  "Stealth": 1,
+  "Athletics": 0,
+  "Awareness": 0,
+  "Might": 0,
+  "Presence": 1,
+  "Resilience": 4,
+  "Insight": 0,
+  "Masquerade": 0,
+  "Persuasion": 1,
+  "Streetwise": 0,
+  "Survival": 1,
+  "Academics": 1,
+  "Composure": 1,
+  "Craft": 1,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 1,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 3
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I121",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T012",
+   "name": "Second Wind",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T110",
+   "name": "Lifeline",
+   "level": "Lv 2",
+   "xp": 6
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #1 for Carrick (knife-throwing rogue), Level 2, in Carrick (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.73, against the sample's x2.07 (+32%). Days won in a row (up to 10) 9.94 against the sample's 7.13; morning Health 61.16 against 39.68, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+ ]
+}

@@ -1,0 +1,137 @@
+{
+ "charName": "Saint Lazarus Graves",
+ "charConcept": "Six Toughened Resolves, Lifeline and Lifeward: 34 Health and the whole party's pain is his. 'I suffer so you don't have to' is printed on the back of his trench coat.",
+ "xpBudget": 175,
+ "statPoints": {
+  "Agility": 2,
+  "Body": 1,
+  "Cunning": 3,
+  "Mind": 1,
+  "Essence": 5
+ },
+ "skillPoints": {
+  "Acrobatics": 0,
+  "Archery": 2,
+  "Brawl": 4,
+  "Melee": 1,
+  "Stealth": 0,
+  "Athletics": 0,
+  "Awareness": 0,
+  "Might": 0,
+  "Presence": 0,
+  "Resilience": 4,
+  "Insight": 1,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 1,
+  "Academics": 0,
+  "Composure": 3,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 1,
+  "Meditation": 2,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 4
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I119",
+   "qty": 1
+  },
+  {
+   "id": "I128",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T105",
+   "name": "Healing Magic",
+   "level": 1,
+   "xp": 3,
+   "features": [
+    {
+     "name": "Reach",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T191",
+   "name": "Minor Oracle",
+   "xp": 3,
+   "level": "Lv 1"
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T190",
+   "name": "Lifeward",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T110",
+   "name": "Lifeline",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 3, in Hanforth (L3)'s place in party S. Toughest day it wins half the time: enemy Health x2.33, against the sample's x1.48 (+57%). Party Health left 44.47 against the sample's 19.07 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+ ]
+}

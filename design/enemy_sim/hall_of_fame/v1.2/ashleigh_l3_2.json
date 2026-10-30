@@ -1,0 +1,137 @@
+{
+ "charName": "Echo Vanitas",
+ "charConcept": "Guardian Angel on the healing, Lifeline on whoever looks weakest, Field Medic for style. Insists the One Eye Behind You is because 'they're always watching.' Who? 'You wouldn't understand.'",
+ "xpBudget": 175,
+ "statPoints": {
+  "Agility": 1,
+  "Body": 3,
+  "Cunning": 5,
+  "Mind": 3,
+  "Essence": 5
+ },
+ "skillPoints": {
+  "Acrobatics": 3,
+  "Archery": 2,
+  "Brawl": 0,
+  "Melee": 1,
+  "Stealth": 1,
+  "Athletics": 0,
+  "Awareness": 1,
+  "Might": 0,
+  "Presence": 1,
+  "Resilience": 1,
+  "Insight": 3,
+  "Masquerade": 0,
+  "Persuasion": 1,
+  "Streetwise": 0,
+  "Survival": 1,
+  "Academics": 0,
+  "Composure": 4,
+  "Craft": 2,
+  "Medicine": 0,
+  "Mixology": 1,
+  "Meditation": 1,
+  "Performance": 1,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 3
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I121",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T105",
+   "name": "Healing Magic",
+   "level": 2,
+   "xp": 6,
+   "features": [
+    {
+     "name": "Guardian Angel",
+     "count": 2
+    },
+    {
+     "name": "Vitality",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T011",
+   "name": "One Eye Behind You",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "level": 2,
+   "xp": 6,
+   "features": [
+    {
+     "name": "Harrying",
+     "count": 2
+    },
+    {
+     "name": "Viper's Sting",
+     "count": 1
+    },
+    {
+     "name": "Half Guard",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T189",
+   "name": "Field Medic",
+   "level": "Lv 1",
+   "xp": 3
+  },
+  {
+   "id": "T110",
+   "name": "Lifeline",
+   "level": "Lv 2",
+   "xp": 6
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #2 for Ashleigh (bard), Level 3, in Ashleigh (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.72, against the sample's x1.54 (+76%). Days won in a row (up to 10) 10.00 against the sample's 1.76; morning Health 51.81 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+ ]
+}

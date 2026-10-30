@@ -1,0 +1,139 @@
+{
+ "charName": "Zephyrus Vex",
+ "charConcept": "Malachai's rival, which is to say the same build with Rejuvenate instead of Guardian Angel. They insist they've never met. They have the same trench coat.",
+ "xpBudget": 125,
+ "statPoints": {
+  "Agility": 1,
+  "Body": 2,
+  "Cunning": 2,
+  "Mind": 3,
+  "Essence": 4
+ },
+ "skillPoints": {
+  "Acrobatics": 0,
+  "Archery": 0,
+  "Brawl": 0,
+  "Melee": 0,
+  "Stealth": 0,
+  "Athletics": 1,
+  "Awareness": 0,
+  "Might": 0,
+  "Presence": 0,
+  "Resilience": 4,
+  "Insight": 1,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 1,
+  "Survival": 0,
+  "Academics": 0,
+  "Composure": 0,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 2,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 3,
+  "Theurgy": 2
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I119",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T120",
+   "name": "War Magic",
+   "level": 2,
+   "xp": 6,
+   "features": [
+    {
+     "name": "Lance",
+     "count": 1
+    },
+    {
+     "name": "Destructive",
+     "count": 1
+    },
+    {
+     "name": "Abjuring",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T105",
+   "name": "Healing Magic",
+   "level": 1,
+   "xp": 3,
+   "features": [
+    {
+     "name": "Rejuvenate",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T080",
+   "name": "Shugen School - Firefly Leaves the Hand",
+   "level": "Lv 1",
+   "xp": 3
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T140",
+   "name": "Overchanneling",
+   "level": "Lv 2",
+   "xp": 6
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #2 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.73, against the sample's x2.05 (+33%). Days won in a row (up to 10) 9.95 against the sample's 3.43; morning Health 54.58 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+ ]
+}

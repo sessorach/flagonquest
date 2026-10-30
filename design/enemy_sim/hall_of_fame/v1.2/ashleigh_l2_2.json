@@ -1,0 +1,107 @@
+{
+ "charName": "Lyric Bloodmoon",
+ "charConcept": "Overchanneling, four Toughened Resolves and a heart that 'died the day the music did.' Dresses entirely in black velvet. Refers to the party as 'mortals.'",
+ "xpBudget": 125,
+ "statPoints": {
+  "Agility": 1,
+  "Body": 1,
+  "Cunning": 3,
+  "Mind": 2,
+  "Essence": 4
+ },
+ "skillPoints": {
+  "Acrobatics": 0,
+  "Archery": 1,
+  "Brawl": 0,
+  "Melee": 0,
+  "Stealth": 0,
+  "Athletics": 1,
+  "Awareness": 1,
+  "Might": 0,
+  "Presence": 3,
+  "Resilience": 0,
+  "Insight": 0,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 1,
+  "Survival": 0,
+  "Academics": 1,
+  "Composure": 4,
+  "Craft": 1,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 3,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 1,
+  "Theurgy": 0
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I121",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T020",
+   "name": "Lay On Hands",
+   "level": "Lv 4",
+   "xp": 12
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T140",
+   "name": "Overchanneling",
+   "level": "Lv 2",
+   "xp": 6
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #2 for Ashleigh (bard), Level 2, in Ashleigh (L2, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.55, against the sample's x2.05 (+24%). Days won in a row (up to 10) 9.65 against the sample's 3.43; morning Health 54.05 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+ ]
+}

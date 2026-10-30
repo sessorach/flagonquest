@@ -1,0 +1,115 @@
+{
+ "charName": "Morrigan Ironheart",
+ "charConcept": "Six Toughened Resolves, Lifeline and Second Wind: 34 Health at Level 2. Forgot to learn any spells. Does not see this as a problem. 'My blade is my spell.'",
+ "xpBudget": 125,
+ "statPoints": {
+  "Agility": 2,
+  "Body": 3,
+  "Cunning": 1,
+  "Mind": 1,
+  "Essence": 3
+ },
+ "skillPoints": {
+  "Acrobatics": 0,
+  "Archery": 0,
+  "Brawl": 0,
+  "Melee": 1,
+  "Stealth": 0,
+  "Athletics": 0,
+  "Awareness": 0,
+  "Might": 1,
+  "Presence": 0,
+  "Resilience": 0,
+  "Insight": 0,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 1,
+  "Academics": 2,
+  "Composure": 4,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 2,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 3
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T110",
+   "name": "Lifeline",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T012",
+   "name": "Second Wind",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #2 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x1.95, against the sample's x1.66 (+17%). Days won in a row (up to 10) 6.55 against the sample's 3.06; morning Health 55.77 against 32.24, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+ ]
+}

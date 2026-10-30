@@ -1,0 +1,133 @@
+{
+ "charName": "Ragnhild Stormbreaker",
+ "charConcept": "Valkyrie without the Force Missiles and with Melee 5 instead. 'Magic is for people who can't lift.'",
+ "xpBudget": 175,
+ "statPoints": {
+  "Agility": 2,
+  "Body": 3,
+  "Cunning": 2,
+  "Mind": 1,
+  "Essence": 5
+ },
+ "skillPoints": {
+  "Acrobatics": 1,
+  "Archery": 0,
+  "Brawl": 1,
+  "Melee": 5,
+  "Stealth": 0,
+  "Athletics": 4,
+  "Awareness": 3,
+  "Might": 3,
+  "Presence": 0,
+  "Resilience": 4,
+  "Insight": 4,
+  "Masquerade": 1,
+  "Persuasion": 0,
+  "Streetwise": 2,
+  "Survival": 0,
+  "Academics": 0,
+  "Composure": 0,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 1,
+  "Performance": 0,
+  "Rapport": 1,
+  "Sorcery": 2,
+  "Theurgy": 3
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I120",
+   "qty": 1
+  },
+  {
+   "id": "I127",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Lunging",
+     "count": 3
+    }
+   ]
+  },
+  {
+   "id": "T014",
+   "name": "Toughened Body",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "level": 1,
+   "xp": 3,
+   "features": [
+    {
+     "name": "Wind Slash",
+     "count": 1
+    },
+    {
+     "name": "Backfoot",
+     "count": 1
+    },
+    {
+     "name": "Fleet Step",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T182",
+   "name": "Earthen Mantle Approach",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T110",
+   "name": "Lifeline",
+   "level": "Lv 2",
+   "xp": 6
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #2 for Hilde (heavy front-liner), Level 3, in Hilde (L3)'s place in party H. Toughest day it wins half the time: enemy Health x2.15, against the sample's x1.52 (+41%). Party Health left 35.70 against the sample's 21.64 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+ ]
+}

@@ -1,0 +1,145 @@
+{
+ "charName": "Cardinal Mortis",
+ "charConcept": "Lazarus with Guardian Angel and Vitality on the Healing Magic. Has a tragic backstory, which he'll tell you, at length, while healing you, slowly.",
+ "xpBudget": 175,
+ "statPoints": {
+  "Agility": 2,
+  "Body": 1,
+  "Cunning": 3,
+  "Mind": 2,
+  "Essence": 4
+ },
+ "skillPoints": {
+  "Acrobatics": 1,
+  "Archery": 1,
+  "Brawl": 4,
+  "Melee": 0,
+  "Stealth": 1,
+  "Athletics": 0,
+  "Awareness": 0,
+  "Might": 0,
+  "Presence": 1,
+  "Resilience": 4,
+  "Insight": 1,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 2,
+  "Survival": 1,
+  "Academics": 0,
+  "Composure": 3,
+  "Craft": 1,
+  "Medicine": 1,
+  "Mixology": 1,
+  "Meditation": 1,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 4
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I119",
+   "qty": 1
+  },
+  {
+   "id": "I128",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T105",
+   "name": "Healing Magic",
+   "level": 2,
+   "xp": 6,
+   "features": [
+    {
+     "name": "Reach",
+     "count": 1
+    },
+    {
+     "name": "Guardian Angel",
+     "count": 1
+    },
+    {
+     "name": "Vitality",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T191",
+   "name": "Minor Oracle",
+   "xp": 3,
+   "level": "Lv 1"
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T190",
+   "name": "Lifeward",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T110",
+   "name": "Lifeline",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #2 for Hanforth (healer), Level 3, in Hanforth (L3)'s place in party S. Toughest day it wins half the time: enemy Health x2.22, against the sample's x1.48 (+50%). Party Health left 43.30 against the sample's 19.07 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+ ]
+}

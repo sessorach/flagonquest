@@ -1,0 +1,112 @@
+{
+ "charName": "Lilith Frostbourne",
+ "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+ "xpBudget": 125,
+ "statPoints": {
+  "Agility": 3,
+  "Body": 1,
+  "Cunning": 3,
+  "Mind": 2,
+  "Essence": 4
+ },
+ "skillPoints": {
+  "Acrobatics": 0,
+  "Archery": 1,
+  "Brawl": 0,
+  "Melee": 4,
+  "Stealth": 1,
+  "Athletics": 1,
+  "Awareness": 0,
+  "Might": 0,
+  "Presence": 0,
+  "Resilience": 4,
+  "Insight": 1,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 0,
+  "Academics": 2,
+  "Composure": 0,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 0,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 4,
+  "Theurgy": 0
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T120",
+   "name": "War Magic",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Tormenting Curse",
+     "count": 1
+    },
+    {
+     "name": "Lance",
+     "count": 1
+    },
+    {
+     "name": "Frigid",
+     "count": 3
+    }
+   ],
+   "customName": "Hex of Sloth"
+  },
+  {
+   "id": "T133",
+   "name": "Placeholder's Lengthy Ley-weaving",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+ ]
+}

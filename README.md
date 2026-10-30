@@ -17,7 +17,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 Compared two kinds of measure on the same changes: how much tougher a fight the party can take, and how much Health it spends. Health left gives extra Health credit just for being there; by what the party can take, Toughened Resolve still helps, but +1 Essence and healing do more per XP.
 
-- The build optimizer finished its first run (all ten characters at Levels 2 and 3), and every build it found stacks Toughened Resolve.
+- The build optimizer finished both runs, and the first Hall of Fame is in (`design/enemy_sim/hall_of_fame/v1.2/`): 39 of the most broken legal builds, ranked by the toughest day they can win, with a watch list. Nearly all of them stack Toughened Resolve and max Essence.
 
 ### 2026-10-29 — A whole day, and a build optimizer
 

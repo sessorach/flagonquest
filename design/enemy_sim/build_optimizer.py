@@ -502,34 +502,47 @@ def _content(build):
                               for t in build["techniques"])])
 
 
-def finalists(runs_dir, keep=2):
-    """The best `keep` distinct builds per archetype and Level that beat
-    their sample on the fresh fights."""
+def _techs(build):
+    """A build's Techniques, Levels and Features, without its ranks."""
+    return json.dumps(sorted((t["id"], party.tech_level(t), json.dumps(sorted((f["name"], f["count"])
+                                                                              for f in t.get("features") or [])))
+                             for t in build["techniques"]))
+
+
+def finalists(runs_dirs, keep=2):
+    """The best `keep` builds per archetype and Level that beat their
+    sample, from one or more runs' results (merged by file name). Once
+    rescored, all are ranked by the toughest day (rescore()); each pick
+    after the first must differ from the ones before it in its
+    Techniques, not just a rank, so the Hall shows different builds."""
+    if isinstance(runs_dirs, str):
+        runs_dirs = [runs_dirs]
+    merged = {}
+    for d in runs_dirs:
+        for path in sorted(os.listdir(d)):
+            if path.endswith(".json"):
+                for r in json.load(open(os.path.join(d, path))):
+                    r.setdefault("score", "fight")
+                    merged.setdefault(path[:-5], []).append(r)
     out = {}
-    for path in sorted(os.listdir(runs_dir)):
-        if not path.endswith(".json"):
-            continue
-        res = json.load(open(os.path.join(runs_dir, path)))
+    for key, res in sorted(merged.items()):
+        if all("day_x" in r for r in res):
+            res = sorted(res, key=lambda r: -r["day_x"])
         seen, picks = set(), []
         for r in res:
-            # An exact tie on 1,200 fights is the same build in a fight
-            # (they differ in a rank no fight reads).
-            c = _content(r["build"])
-            # The day score ranks by days in a row (search() sorts them).
-            # Ranked by the toughest day once rescored (rescore()), else by
-            # the run's own score.
             if "day_x" in r:
                 beats = r["day_x"] > r["base_day_x"]
             elif "days" in r:
                 beats = r["days"] > r["base_days"]
             else:
                 beats = r["validated"] > r["base_validated"]
-            if c in seen or round(r["validated"], 6) in seen or not beats:
+            t = _techs(r["build"])
+            if t in seen or not beats:
                 continue
-            seen.update((c, round(r["validated"], 6)))
+            seen.add(t)
             picks.append(r)
         if picks:
-            out[path[:-5]] = picks[:keep]
+            out[key] = picks[:keep]
     return out
 
 
@@ -562,6 +575,9 @@ def write_hall(runs_dir, flavor, version, sub=""):
             if "day_x" in r:
                 how = (f"Toughest day it wins half the time: enemy Health x{r['day_x']:.2f}, against the sample's "
                        f"x{r['base_day_x']:.2f} ({100 * (r['day_x'] / r['base_day_x'] - 1):+.0f}%). " + how)
+            found = ("Health in the morning (day_sim.py)" if r.get("score") == "day"
+                     else "Health left after one fight")
+            how += f". Found by the search on {found}"
             b["simNotes"] = [f"Hall of Fame v{version}: build_optimizer.py's #{i} for {r['arch']} ({ARCHES[r['arch']]}), "
                              f"Level {r['level']}, in {name}'s place in party {PARTY_OF[r['arch']]}. {how}. "
                              "Items, background and row are the sample's."]
@@ -600,7 +616,7 @@ def main():
         return
     if a.hall:
         flavor = json.load(open(a.flavor)) if a.flavor else {}
-        for p in write_hall(a.o, flavor, current_version(), a.hall_sub):
+        for p in write_hall(a.o.split(","), flavor, current_version(), a.hall_sub):
             print(p)
         return
     global SCORE

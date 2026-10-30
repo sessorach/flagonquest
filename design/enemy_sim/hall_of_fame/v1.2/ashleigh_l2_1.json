@@ -1,0 +1,101 @@
+{
+ "charName": "Ravenna Nightsong",
+ "charConcept": "A bard who doesn't sing, because songs are for people who still have something to lose. Took Toughened Resolve four times and Lay On Hands once. Plays the lute only at funerals. Usually her own, almost.",
+ "xpBudget": 125,
+ "statPoints": {
+  "Agility": 1,
+  "Body": 2,
+  "Cunning": 4,
+  "Mind": 1,
+  "Essence": 3
+ },
+ "skillPoints": {
+  "Acrobatics": 0,
+  "Archery": 0,
+  "Brawl": 0,
+  "Melee": 1,
+  "Stealth": 3,
+  "Athletics": 1,
+  "Awareness": 1,
+  "Might": 1,
+  "Presence": 3,
+  "Resilience": 0,
+  "Insight": 0,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 1,
+  "Survival": 0,
+  "Academics": 0,
+  "Composure": 4,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 1,
+  "Meditation": 3,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 1
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I121",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T020",
+   "name": "Lay On Hands",
+   "level": "Lv 4",
+   "xp": 12
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #1 for Ashleigh (bard), Level 2, in Ashleigh (L2, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.60, against the sample's x2.05 (+27%). Days won in a row (up to 10) 9.05 against the sample's 3.43; morning Health 53.37 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+ ]
+}

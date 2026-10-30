@@ -1,0 +1,147 @@
+{
+ "charName": "Kestrel Darkarrow",
+ "charConcept": "Hawkeye with a leaner first Maneuver. Has a pet raven that's mostly for show. The raven is also wearing a trench coat.",
+ "xpBudget": 175,
+ "statPoints": {
+  "Agility": 4,
+  "Body": 1,
+  "Cunning": 5,
+  "Mind": 2,
+  "Essence": 4
+ },
+ "skillPoints": {
+  "Acrobatics": 3,
+  "Archery": 5,
+  "Brawl": 1,
+  "Melee": 1,
+  "Stealth": 1,
+  "Athletics": 0,
+  "Awareness": 1,
+  "Might": 2,
+  "Presence": 0,
+  "Resilience": 1,
+  "Insight": 3,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 1,
+  "Survival": 1,
+  "Academics": 2,
+  "Composure": 3,
+  "Craft": 0,
+  "Medicine": 1,
+  "Mixology": 3,
+  "Meditation": 0,
+  "Performance": 1,
+  "Rapport": 2,
+  "Sorcery": 1,
+  "Theurgy": 0
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I123",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T131",
+   "name": "Hand of Chaos",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T011",
+   "name": "One Eye Behind You",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "level": 3,
+   "xp": 9,
+   "features": [
+    {
+     "name": "Whirlwind",
+     "count": 1
+    },
+    {
+     "name": "Victorious",
+     "count": 1
+    },
+    {
+     "name": "Backfoot",
+     "count": 1
+    },
+    {
+     "name": "Half Guard",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "level": 3,
+   "xp": 9,
+   "features": [
+    {
+     "name": "Half Guard",
+     "count": 1
+    },
+    {
+     "name": "Lodestone",
+     "count": 1
+    },
+    {
+     "name": "Backfoot",
+     "count": 1
+    },
+    {
+     "name": "Lunging",
+     "count": 1
+    },
+    {
+     "name": "Whirlwind",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T013",
+   "name": "Solemn Pact",
+   "level": "Lv 2",
+   "xp": 6
+  },
+  {
+   "id": "T075",
+   "name": "Magehunter",
+   "level": "Lv 1",
+   "xp": 3
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #2 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.13, against the sample's x1.54 (+38%). Party Health left 32.73 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+ ]
+}

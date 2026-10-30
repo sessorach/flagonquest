@@ -1,0 +1,131 @@
+{
+ "charName": "Valdris the Unspoken",
+ "charConcept": "Same fists, plus Force Missiles 'for range.' Has taken a vow of silence that lasts until someone asks about the vow.",
+ "xpBudget": 175,
+ "statPoints": {
+  "Agility": 1,
+  "Body": 2,
+  "Cunning": 4,
+  "Mind": 4,
+  "Essence": 5
+ },
+ "skillPoints": {
+  "Acrobatics": 1,
+  "Archery": 1,
+  "Brawl": 5,
+  "Melee": 1,
+  "Stealth": 0,
+  "Athletics": 0,
+  "Awareness": 0,
+  "Might": 0,
+  "Presence": 0,
+  "Resilience": 4,
+  "Insight": 3,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 1,
+  "Survival": 1,
+  "Academics": 0,
+  "Composure": 1,
+  "Craft": 1,
+  "Medicine": 0,
+  "Mixology": 2,
+  "Meditation": 0,
+  "Performance": 1,
+  "Rapport": 1,
+  "Sorcery": 3,
+  "Theurgy": 3
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I128",
+   "qty": 1
+  },
+  {
+   "id": "I119",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-30T07:54:08Z",
+ "techniques": [
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "level": 3,
+   "xp": 9,
+   "features": [
+    {
+     "name": "Blade of Four Fates",
+     "count": 1
+    },
+    {
+     "name": "Harrying",
+     "count": 1
+    },
+    {
+     "name": "Fleet Step",
+     "count": 1
+    },
+    {
+     "name": "Flurry",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T105",
+   "name": "Healing Magic",
+   "level": 1,
+   "xp": 3,
+   "features": [
+    {
+     "name": "Guardian Angel",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T019",
+   "name": "Toughened Resolve",
+   "level": "Lv 3",
+   "xp": 9
+  },
+  {
+   "id": "T121",
+   "name": "Force Missiles",
+   "level": "Lv 1",
+   "xp": 3
+  }
+ ],
+ "simNotes": [
+  "Hall of Fame v1.2: build_optimizer.py's #2 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.41, against the sample's x1.54 (+56%). Days won in a row (up to 10) 9.88 against the sample's 1.76; morning Health 54.73 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+ ]
+}
