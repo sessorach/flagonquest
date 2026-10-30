@@ -1,0 +1,1242 @@
+[
+ {
+  "arch": "Carrick",
+  "level": 2,
+  "name": "Carrick (L2)",
+  "search": 0.702,
+  "validated": 0.736,
+  "base_search": 0.196,
+  "base_validated": 0.18733333333333332,
+  "build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      },
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  }
+ },
+ {
+  "arch": "Carrick",
+  "level": 2,
+  "name": "Carrick (L2)",
+  "search": 0.702,
+  "validated": 0.736,
+  "base_search": 0.196,
+  "base_validated": 0.18733333333333332,
+  "build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      },
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  }
+ },
+ {
+  "arch": "Carrick",
+  "level": 2,
+  "name": "Carrick (L2)",
+  "search": 0.676,
+  "validated": 0.7033333333333334,
+  "base_search": 0.196,
+  "base_validated": 0.18733333333333332,
+  "build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Triage",
+       "count": 1
+      },
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  }
+ },
+ {
+  "arch": "Carrick",
+  "level": 2,
+  "name": "Carrick (L2)",
+  "search": 0.674,
+  "validated": 0.6906666666666667,
+  "base_search": 0.196,
+  "base_validated": 0.18733333333333332,
+  "build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Triage",
+       "count": 1
+      },
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  }
+ },
+ {
+  "arch": "Carrick",
+  "level": 2,
+  "name": "Carrick (L2)",
+  "search": 0.676,
+  "validated": 0.682,
+  "base_search": 0.196,
+  "base_validated": 0.18733333333333332,
+  "build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 4,
+    "Mind": 3,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 0,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Vitality",
+       "count": 1
+      },
+      {
+       "name": "Rejuvenate",
+       "count": 1
+      },
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  }
+ },
+ {
+  "arch": "Carrick",
+  "level": 2,
+  "name": "Carrick (L2)",
+  "search": 0.67,
+  "validated": 0.6786666666666666,
+  "base_search": 0.196,
+  "base_validated": 0.18733333333333332,
+  "build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 4,
+    "Mind": 3,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 0,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Vitality",
+       "count": 1
+      },
+      {
+       "name": "Rejuvenate",
+       "count": 1
+      },
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 4,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 3,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:52:51.157Z",
+   "techniques": [
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T128",
+     "name": "Lawman's Hand",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 83: Agility +1, Essence +1 x2."
+   ]
+  }
+ }
+]

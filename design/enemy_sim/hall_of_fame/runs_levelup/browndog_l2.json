@@ -1,0 +1,1838 @@
+[
+ {
+  "arch": "Browndog",
+  "level": 2,
+  "name": "Browndog (L2)",
+  "search": 0.638,
+  "validated": 0.6346666666666667,
+  "base_search": 0.258,
+  "base_validated": 0.2773333333333333,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 1,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T139",
+     "name": "Inexhaustible Guardian",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  }
+ },
+ {
+  "arch": "Browndog",
+  "level": 2,
+  "name": "Browndog (L2)",
+  "search": 0.638,
+  "validated": 0.6346666666666667,
+  "base_search": 0.258,
+  "base_validated": 0.2773333333333333,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T139",
+     "name": "Inexhaustible Guardian",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  }
+ },
+ {
+  "arch": "Browndog",
+  "level": 2,
+  "name": "Browndog (L2)",
+  "search": 0.642,
+  "validated": 0.632,
+  "base_search": 0.258,
+  "base_validated": 0.2773333333333333,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T139",
+     "name": "Inexhaustible Guardian",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  }
+ },
+ {
+  "arch": "Browndog",
+  "level": 2,
+  "name": "Browndog (L2)",
+  "search": 0.642,
+  "validated": 0.632,
+  "base_search": 0.258,
+  "base_validated": 0.2773333333333333,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T139",
+     "name": "Inexhaustible Guardian",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  }
+ },
+ {
+  "arch": "Browndog",
+  "level": 2,
+  "name": "Browndog (L2)",
+  "search": 0.642,
+  "validated": 0.632,
+  "base_search": 0.258,
+  "base_validated": 0.2773333333333333,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T139",
+     "name": "Inexhaustible Guardian",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  }
+ },
+ {
+  "arch": "Browndog",
+  "level": 2,
+  "name": "Browndog (L2)",
+  "search": 0.642,
+  "validated": 0.632,
+  "base_search": 0.258,
+  "base_validated": 0.2773333333333333,
+  "build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Wind Slash",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Browndog the Fighter",
+   "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 3,
+    "Body": 3,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 3,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I118",
+     "qty": 1
+    },
+    {
+     "id": "I126",
+     "qty": 1
+    },
+    {
+     "id": "I129",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:44:07.014Z",
+   "techniques": [
+    {
+     "id": "T001",
+     "name": "Brace",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T139",
+     "name": "Inexhaustible Guardian",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Lunging",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Browndog-the-Fighter-125XP-2026-10-24.json.",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 119: Body -1, Might -1, Presence -1."
+   ]
+  }
+ }
+]

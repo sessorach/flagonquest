@@ -1,0 +1,6541 @@
+{
+ "level": 3,
+ "days_per_job": 2000,
+ "base": {
+  "up": 0.135,
+  "own": 0.866
+ },
+ "by_arch": {
+  "Ashleigh": 0.030940476190476192,
+  "Beornhard": 0.06916666666666667,
+  "Browndog": 0.07434523809523809,
+  "Carrick": 0.06691071428571428,
+  "Enith": 0.05664285714285714,
+  "Felix": 0.06538690476190476,
+  "Hanforth": 0.09615476190476191,
+  "Hilde": 0.13089880952380953,
+  "Jackal": 0.06595833333333334,
+  "Sable": 0.0859047619047619
+ },
+ "mixes": [
+  {
+   "party": [
+    "Browndog",
+    "Hanforth",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.2715,
+   "own": 0.859,
+   "walkover": 0.026,
+   "dmg_share": {
+    "Browndog": 0.1814575198494414,
+    "Hanforth": 0.06317935136769559,
+    "Hilde": 0.4206934662363999,
+    "Sable": 0.3346696625464631
+   },
+   "hits_share": {
+    "Browndog": 0.2512062726176116,
+    "Hanforth": 0.28317249698431846,
+    "Hilde": 0.17015983112183353,
+    "Sable": 0.29546139927623644
+   },
+   "downs_per_10": {
+    "Browndog": 3.195,
+    "Hanforth": 5.68,
+    "Hilde": 2.53,
+    "Sable": 6.2
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Hanforth",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.2685,
+   "own": 0.8545,
+   "walkover": 0.101,
+   "dmg_share": {
+    "Beornhard": 0.31936298620157927,
+    "Hanforth": 0.03396166219126366,
+    "Hilde": 0.33208731023848137,
+    "Sable": 0.31458804136867574
+   },
+   "hits_share": {
+    "Beornhard": 0.2237239758226998,
+    "Hanforth": 0.2943250503693754,
+    "Hilde": 0.20726997985224982,
+    "Sable": 0.27468099395567497
+   },
+   "downs_per_10": {
+    "Beornhard": 3.285,
+    "Hanforth": 5.49,
+    "Hilde": 2.68,
+    "Sable": 5.145
+   }
+  },
+  {
+   "party": [
+    "Felix",
+    "Hanforth",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.2655,
+   "own": 0.8945,
+   "walkover": 0.055,
+   "dmg_share": {
+    "Felix": 0.25189809779820654,
+    "Hanforth": 0.05287997865922475,
+    "Hilde": 0.3731506371452609,
+    "Sable": 0.32207128639730775
+   },
+   "hits_share": {
+    "Felix": 0.24623202135905606,
+    "Hanforth": 0.2740504693824821,
+    "Hilde": 0.1908535009904401,
+    "Sable": 0.2888640082680217
+   },
+   "downs_per_10": {
+    "Felix": 2.885,
+    "Hanforth": 5.295,
+    "Hilde": 2.29,
+    "Sable": 5.505
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.265,
+   "own": 0.7905,
+   "walkover": 0.0325,
+   "dmg_share": {
+    "Beornhard": 0.325159997773944,
+    "Browndog": 0.17906394345817797,
+    "Hanforth": 0.0657632589459625,
+    "Hilde": 0.43001279982191554
+   },
+   "hits_share": {
+    "Beornhard": 0.2687333333333333,
+    "Browndog": 0.2902666666666667,
+    "Hanforth": 0.2482,
+    "Hilde": 0.1928
+   },
+   "downs_per_10": {
+    "Beornhard": 5.485,
+    "Browndog": 3.95,
+    "Hanforth": 6.04,
+    "Hilde": 3.42
+   }
+  },
+  {
+   "party": [
+    "Hanforth",
+    "Hilde",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.2645,
+   "own": 0.899,
+   "walkover": 0.141,
+   "dmg_share": {
+    "Hanforth": 0.03260969787622043,
+    "Hilde": 0.3309428433853436,
+    "Jackal": 0.32552838365314674,
+    "Sable": 0.31091907508528926
+   },
+   "hits_share": {
+    "Hanforth": 0.2611464968152866,
+    "Hilde": 0.2923180853117159,
+    "Jackal": 0.16425400501833623,
+    "Sable": 0.28228141285466124
+   },
+   "downs_per_10": {
+    "Hanforth": 4.18,
+    "Hilde": 2.935,
+    "Jackal": 3.005,
+    "Sable": 4.095
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Felix",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.2475,
+   "own": 0.803,
+   "walkover": 0.057,
+   "dmg_share": {
+    "Beornhard": 0.3078349483941836,
+    "Felix": 0.25956801200691704,
+    "Hanforth": 0.055080644284207204,
+    "Hilde": 0.37751639531469217
+   },
+   "hits_share": {
+    "Beornhard": 0.26635134136427463,
+    "Felix": 0.27854556204271674,
+    "Hanforth": 0.23819377725223562,
+    "Hilde": 0.21690931934077304
+   },
+   "downs_per_10": {
+    "Beornhard": 4.96,
+    "Felix": 4.81,
+    "Hanforth": 5.895,
+    "Hilde": 3.49
+   }
+  },
+  {
+   "party": [
+    "Enith",
+    "Hanforth",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.244,
+   "own": 0.8515,
+   "walkover": 0.0165,
+   "dmg_share": {
+    "Enith": 0.18669075259676435,
+    "Hanforth": 0.04443322795738915,
+    "Hilde": 0.4084159073400101,
+    "Sable": 0.3604601121058364
+   },
+   "hits_share": {
+    "Enith": 0.26327486308437176,
+    "Hanforth": 0.25771886657671245,
+    "Hilde": 0.2160488927692674,
+    "Sable": 0.2629573775696484
+   },
+   "downs_per_10": {
+    "Enith": 4.71,
+    "Hanforth": 4.99,
+    "Hilde": 2.805,
+    "Sable": 5.365
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.2385,
+   "own": 0.856,
+   "walkover": 0.045,
+   "dmg_share": {
+    "Browndog": 0.17741092065218528,
+    "Carrick": 0.3377851218925505,
+    "Hanforth": 0.059152661137663806,
+    "Hilde": 0.4256512963176004
+   },
+   "hits_share": {
+    "Browndog": 0.25904378309838144,
+    "Carrick": 0.27276795703736856,
+    "Hanforth": 0.259864250018647,
+    "Hilde": 0.20832400984560304
+   },
+   "downs_per_10": {
+    "Browndog": 3.155,
+    "Carrick": 4.935,
+    "Hanforth": 5.235,
+    "Hilde": 2.995
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Hanforth",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.237,
+   "own": 0.9085,
+   "walkover": 0.0875,
+   "dmg_share": {
+    "Carrick": 0.3133641961161785,
+    "Hanforth": 0.03556350043034739,
+    "Hilde": 0.34061104235738693,
+    "Sable": 0.3104612610960871
+   },
+   "hits_share": {
+    "Carrick": 0.18112505811250582,
+    "Hanforth": 0.31269177126917713,
+    "Hilde": 0.22687122268712226,
+    "Sable": 0.2793119479311948
+   },
+   "downs_per_10": {
+    "Carrick": 2.58,
+    "Hanforth": 4.86,
+    "Hilde": 2.49,
+    "Sable": 4.37
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.2365,
+   "own": 0.824,
+   "walkover": 0.0985,
+   "dmg_share": {
+    "Beornhard": 0.31606562302170627,
+    "Carrick": 0.30946147490852904,
+    "Hanforth": 0.03007006512945418,
+    "Hilde": 0.34440283694031054
+   },
+   "hits_share": {
+    "Beornhard": 0.23849536673472593,
+    "Carrick": 0.2655881891000471,
+    "Hanforth": 0.26849379613632796,
+    "Hilde": 0.227422648028899
+   },
+   "downs_per_10": {
+    "Beornhard": 3.575,
+    "Carrick": 5.035,
+    "Hanforth": 5.895,
+    "Hilde": 3.515
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Felix",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.212,
+   "own": 0.878,
+   "walkover": 0.075,
+   "dmg_share": {
+    "Carrick": 0.33818002587640933,
+    "Felix": 0.24621608855482308,
+    "Hanforth": 0.04905222516583493,
+    "Hilde": 0.36655166040293263
+   },
+   "hits_share": {
+    "Carrick": 0.19983221476510066,
+    "Felix": 0.31468120805369126,
+    "Hanforth": 0.2588926174496644,
+    "Hilde": 0.22659395973154361
+   },
+   "downs_per_10": {
+    "Carrick": 3.365,
+    "Felix": 4.28,
+    "Hanforth": 5.08,
+    "Hilde": 3.155
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Felix",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.211,
+   "own": 0.8135,
+   "walkover": 0.0255,
+   "dmg_share": {
+    "Browndog": 0.1862491432943189,
+    "Felix": 0.2904298670180267,
+    "Hanforth": 0.07238299658380308,
+    "Hilde": 0.4509379931038513
+   },
+   "hits_share": {
+    "Browndog": 0.26482862420469316,
+    "Felix": 0.28774714373674487,
+    "Hanforth": 0.25100909899432167,
+    "Hilde": 0.19641513306424027
+   },
+   "downs_per_10": {
+    "Browndog": 3.92,
+    "Felix": 5.13,
+    "Hanforth": 5.96,
+    "Hilde": 3.505
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Enith",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.204,
+   "own": 0.722,
+   "walkover": 0.0005,
+   "dmg_share": {
+    "Browndog": 0.22696538327893317,
+    "Enith": 0.15961743311060603,
+    "Hanforth": 0.07994258078848882,
+    "Hilde": 0.533474602821972
+   },
+   "hits_share": {
+    "Browndog": 0.2637070993425418,
+    "Enith": 0.3061704566017251,
+    "Hanforth": 0.23155799505398394,
+    "Hilde": 0.1985644490017492
+   },
+   "downs_per_10": {
+    "Browndog": 4.365,
+    "Enith": 8.515,
+    "Hanforth": 6.555,
+    "Hilde": 4.085
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.187,
+   "own": 0.847,
+   "walkover": 0.164,
+   "dmg_share": {
+    "Beornhard": 0.264699610853457,
+    "Browndog": 0.13842422303960766,
+    "Hilde": 0.3271176501945733,
+    "Sable": 0.26975851591236205
+   },
+   "hits_share": {
+    "Beornhard": 0.263354967548677,
+    "Browndog": 0.30662339823597934,
+    "Hilde": 0.18297553669495756,
+    "Sable": 0.2470460975203861
+   },
+   "downs_per_10": {
+    "Beornhard": 5.05,
+    "Browndog": 4.38,
+    "Hilde": 2.84,
+    "Sable": 7.185
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Hanforth",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.1855,
+   "own": 0.7575,
+   "walkover": 0.0805,
+   "dmg_share": {
+    "Beornhard": 0.30446658544590754,
+    "Hanforth": 0.028488459420217292,
+    "Hilde": 0.34484331625472164,
+    "Jackal": 0.32220163887915354
+   },
+   "hits_share": {
+    "Beornhard": 0.2554021825540218,
+    "Hanforth": 0.30519621305196215,
+    "Hilde": 0.23834646238346463,
+    "Jackal": 0.2010551420105514
+   },
+   "downs_per_10": {
+    "Beornhard": 5.1,
+    "Hanforth": 7.68,
+    "Hilde": 4.025,
+    "Jackal": 6.225
+   }
+  },
+  {
+   "party": [
+    "Felix",
+    "Hanforth",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.1855,
+   "own": 0.8045,
+   "walkover": 0.06,
+   "dmg_share": {
+    "Felix": 0.2500450178482528,
+    "Hanforth": 0.03988051733451969,
+    "Hilde": 0.36307159426737423,
+    "Jackal": 0.3470028705498533
+   },
+   "hits_share": {
+    "Felix": 0.2808783165599268,
+    "Hanforth": 0.2994053064958829,
+    "Hilde": 0.2249161329673681,
+    "Jackal": 0.1948002439768222
+   },
+   "downs_per_10": {
+    "Felix": 4.465,
+    "Hanforth": 7.0,
+    "Hilde": 3.54,
+    "Jackal": 5.785
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Enith",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.1815,
+   "own": 0.713,
+   "walkover": 0.0125,
+   "dmg_share": {
+    "Beornhard": 0.36702605310267716,
+    "Enith": 0.14626699650655528,
+    "Hanforth": 0.04869386880174267,
+    "Hilde": 0.4380130815890249
+   },
+   "hits_share": {
+    "Beornhard": 0.24954686690833766,
+    "Enith": 0.29563697566027963,
+    "Hanforth": 0.2295442775763853,
+    "Hilde": 0.22527187985499741
+   },
+   "downs_per_10": {
+    "Beornhard": 5.42,
+    "Enith": 7.94,
+    "Hanforth": 6.28,
+    "Hilde": 4.095
+   }
+  },
+  {
+   "party": [
+    "Enith",
+    "Felix",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.1775,
+   "own": 0.79,
+   "walkover": 0.009,
+   "dmg_share": {
+    "Enith": 0.1836528868851297,
+    "Felix": 0.29874122976781714,
+    "Hanforth": 0.06294396319091984,
+    "Hilde": 0.4546619201561333
+   },
+   "hits_share": {
+    "Enith": 0.2776158756591729,
+    "Felix": 0.27095475992228696,
+    "Hanforth": 0.23563696919233973,
+    "Hilde": 0.2157923952262004
+   },
+   "downs_per_10": {
+    "Enith": 6.65,
+    "Felix": 4.735,
+    "Hanforth": 5.69,
+    "Hilde": 3.63
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.1765,
+   "own": 0.875,
+   "walkover": 0.2955,
+   "dmg_share": {
+    "Beornhard": 0.24436088270323966,
+    "Carrick": 0.23408902966095083,
+    "Hilde": 0.2609778804096259,
+    "Sable": 0.2605722072261836
+   },
+   "hits_share": {
+    "Beornhard": 0.2322210636079249,
+    "Carrick": 0.27424400417101147,
+    "Hilde": 0.23868613138686132,
+    "Sable": 0.2548488008342023
+   },
+   "downs_per_10": {
+    "Beornhard": 2.985,
+    "Carrick": 5.575,
+    "Hilde": 2.74,
+    "Sable": 5.135
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Carrick",
+    "Hilde"
+   ],
+   "up": 0.1745,
+   "own": 0.8035,
+   "walkover": 0.1705,
+   "dmg_share": {
+    "Beornhard": 0.25649886333711325,
+    "Browndog": 0.13749590210188584,
+    "Carrick": 0.28088202890294567,
+    "Hilde": 0.32512320565805525
+   },
+   "hits_share": {
+    "Beornhard": 0.25609756097560976,
+    "Browndog": 0.32195121951219513,
+    "Carrick": 0.2051927616050354,
+    "Hilde": 0.21675845790715972
+   },
+   "downs_per_10": {
+    "Beornhard": 5.92,
+    "Browndog": 4.795,
+    "Carrick": 5.645,
+    "Hilde": 4.07
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Hanforth",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.174,
+   "own": 0.77,
+   "walkover": 0.03,
+   "dmg_share": {
+    "Browndog": 0.17710718790772711,
+    "Hanforth": 0.048897478791422366,
+    "Hilde": 0.4265049021996286,
+    "Jackal": 0.3474904311012219
+   },
+   "hits_share": {
+    "Browndog": 0.29268785348774573,
+    "Hanforth": 0.2906005925127929,
+    "Hilde": 0.20953406948559117,
+    "Jackal": 0.2071774845138702
+   },
+   "downs_per_10": {
+    "Browndog": 4.13,
+    "Hanforth": 7.285,
+    "Hilde": 3.635,
+    "Jackal": 6.82
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.168,
+   "own": 0.618,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.04206034564618745,
+    "Browndog": 0.2620418288861457,
+    "Hanforth": 0.10154543728041021,
+    "Hilde": 0.5943523881872567
+   },
+   "hits_share": {
+    "Ashleigh": 0.2656987105566621,
+    "Browndog": 0.3124017192577838,
+    "Hanforth": 0.2312087220882692,
+    "Hilde": 0.19069084809728484
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.705,
+    "Browndog": 6.125,
+    "Hanforth": 8.025,
+    "Hilde": 4.705
+   }
+  },
+  {
+   "party": [
+    "Felix",
+    "Hilde",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.166,
+   "own": 0.851,
+   "walkover": 0.255,
+   "dmg_share": {
+    "Felix": 0.1879401363333504,
+    "Hilde": 0.280826200604787,
+    "Jackal": 0.2641791809748347,
+    "Sable": 0.2670544820870278
+   },
+   "hits_share": {
+    "Felix": 0.2808532249873032,
+    "Hilde": 0.2943626206196039,
+    "Jackal": 0.1691213814118842,
+    "Sable": 0.2556627729812087
+   },
+   "downs_per_10": {
+    "Felix": 4.005,
+    "Hilde": 4.065,
+    "Jackal": 4.63,
+    "Sable": 5.745
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Felix",
+    "Hilde"
+   ],
+   "up": 0.1645,
+   "own": 0.74,
+   "walkover": 0.1,
+   "dmg_share": {
+    "Beornhard": 0.24874937123083982,
+    "Browndog": 0.1488925371319282,
+    "Felix": 0.23516242972986418,
+    "Hilde": 0.3671956619073678
+   },
+   "hits_share": {
+    "Beornhard": 0.25447597480716155,
+    "Browndog": 0.3137074517019319,
+    "Felix": 0.2381289363810063,
+    "Hilde": 0.19368763710990022
+   },
+   "downs_per_10": {
+    "Beornhard": 7.53,
+    "Browndog": 6.005,
+    "Felix": 5.995,
+    "Hilde": 4.4
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Felix",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.1635,
+   "own": 0.8495,
+   "walkover": 0.233,
+   "dmg_share": {
+    "Beornhard": 0.26177938935309264,
+    "Felix": 0.1816805927794419,
+    "Hilde": 0.28960008408219035,
+    "Sable": 0.2669399337852751
+   },
+   "hits_share": {
+    "Beornhard": 0.24380203947983908,
+    "Felix": 0.2985312002993732,
+    "Hilde": 0.21059032650388249,
+    "Sable": 0.24707643371690524
+   },
+   "downs_per_10": {
+    "Beornhard": 3.96,
+    "Felix": 5.79,
+    "Hilde": 2.905,
+    "Sable": 6.34
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Enith",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.1635,
+   "own": 0.816,
+   "walkover": 0.0135,
+   "dmg_share": {
+    "Carrick": 0.3866539174470222,
+    "Enith": 0.14074176954182938,
+    "Hanforth": 0.04225404778820626,
+    "Hilde": 0.4303502652229422
+   },
+   "hits_share": {
+    "Carrick": 0.17770971838350638,
+    "Enith": 0.3277806827519235,
+    "Hanforth": 0.25920669306043176,
+    "Hilde": 0.23530290580413835
+   },
+   "downs_per_10": {
+    "Carrick": 3.475,
+    "Enith": 7.015,
+    "Hanforth": 5.615,
+    "Hilde": 3.55
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Hanforth",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.1635,
+   "own": 0.814,
+   "walkover": 0.103,
+   "dmg_share": {
+    "Carrick": 0.31341877417826786,
+    "Hanforth": 0.027048080212637174,
+    "Hilde": 0.33875628306008054,
+    "Jackal": 0.32077686254901444
+   },
+   "hits_share": {
+    "Carrick": 0.22096090814613478,
+    "Hanforth": 0.3216084419218163,
+    "Hilde": 0.24982012950675514,
+    "Jackal": 0.2076105204252938
+   },
+   "downs_per_10": {
+    "Carrick": 4.27,
+    "Hanforth": 6.935,
+    "Hilde": 3.635,
+    "Jackal": 5.505
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Felix",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.1625,
+   "own": 0.7925,
+   "walkover": 0.1025,
+   "dmg_share": {
+    "Browndog": 0.16054968554784202,
+    "Felix": 0.20105449450630483,
+    "Hilde": 0.3716540078165327,
+    "Sable": 0.2667418121293204
+   },
+   "hits_share": {
+    "Browndog": 0.27043241137514606,
+    "Felix": 0.2858589793533307,
+    "Hilde": 0.19104012465913517,
+    "Sable": 0.252668484612388
+   },
+   "downs_per_10": {
+    "Browndog": 3.905,
+    "Felix": 7.08,
+    "Hilde": 3.24,
+    "Sable": 8.52
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Hilde",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.158,
+   "own": 0.8475,
+   "walkover": 0.275,
+   "dmg_share": {
+    "Beornhard": 0.241941645950543,
+    "Hilde": 0.25035195603820487,
+    "Jackal": 0.24733219939814208,
+    "Sable": 0.26037419861311
+   },
+   "hits_share": {
+    "Beornhard": 0.25165091943513157,
+    "Hilde": 0.3187036472620136,
+    "Jackal": 0.1646855633445088,
+    "Sable": 0.26495986995834603
+   },
+   "downs_per_10": {
+    "Beornhard": 3.43,
+    "Hilde": 4.465,
+    "Jackal": 4.12,
+    "Sable": 5.665
+   }
+  },
+  {
+   "party": [
+    "Enith",
+    "Hanforth",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.1555,
+   "own": 0.7285,
+   "walkover": 0.0175,
+   "dmg_share": {
+    "Enith": 0.16727390224064356,
+    "Hanforth": 0.03742576684382347,
+    "Hilde": 0.4015832692671948,
+    "Jackal": 0.3937170616483382
+   },
+   "hits_share": {
+    "Enith": 0.28586264192744393,
+    "Hanforth": 0.28087787316532814,
+    "Hilde": 0.249584602603157,
+    "Jackal": 0.1836748823040709
+   },
+   "downs_per_10": {
+    "Enith": 7.14,
+    "Hanforth": 7.08,
+    "Hilde": 4.31,
+    "Jackal": 6.045
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.151,
+   "own": 0.8325,
+   "walkover": 0.177,
+   "dmg_share": {
+    "Browndog": 0.1488402530357013,
+    "Carrick": 0.2445492412045164,
+    "Hilde": 0.34586220149370006,
+    "Sable": 0.2607483042660822
+   },
+   "hits_share": {
+    "Browndog": 0.2706958740212897,
+    "Carrick": 0.2668250197941409,
+    "Hilde": 0.19468637283364124,
+    "Sable": 0.2677927333509281
+   },
+   "downs_per_10": {
+    "Browndog": 3.185,
+    "Carrick": 6.86,
+    "Hilde": 2.83,
+    "Sable": 7.085
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Felix",
+    "Hilde"
+   ],
+   "up": 0.1505,
+   "own": 0.7725,
+   "walkover": 0.1335,
+   "dmg_share": {
+    "Browndog": 0.15620361848929934,
+    "Carrick": 0.24712334888471585,
+    "Felix": 0.22714771330840147,
+    "Hilde": 0.36952531931758337
+   },
+   "hits_share": {
+    "Browndog": 0.26732141486994554,
+    "Carrick": 0.2532801350418169,
+    "Felix": 0.2639453694467889,
+    "Hilde": 0.21545308064144864
+   },
+   "downs_per_10": {
+    "Browndog": 4.26,
+    "Carrick": 8.26,
+    "Felix": 5.7,
+    "Hilde": 3.99
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Hilde",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.148,
+   "own": 0.89,
+   "walkover": 0.329,
+   "dmg_share": {
+    "Carrick": 0.24688734601554932,
+    "Hilde": 0.2623200239376404,
+    "Jackal": 0.2375557234796809,
+    "Sable": 0.2532369065671294
+   },
+   "hits_share": {
+    "Carrick": 0.1946669718471046,
+    "Hilde": 0.3612954909590295,
+    "Jackal": 0.1645685511558709,
+    "Sable": 0.27946898603799497
+   },
+   "downs_per_10": {
+    "Carrick": 2.785,
+    "Hilde": 3.88,
+    "Jackal": 3.6,
+    "Sable": 5.12
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Felix",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.1445,
+   "own": 0.893,
+   "walkover": 0.2545,
+   "dmg_share": {
+    "Carrick": 0.2675610958876253,
+    "Felix": 0.1798128104362503,
+    "Hilde": 0.2916334094225187,
+    "Sable": 0.2609926842536058
+   },
+   "hits_share": {
+    "Carrick": 0.19313259376650818,
+    "Felix": 0.3265715795034337,
+    "Hilde": 0.21257263602746962,
+    "Sable": 0.2677231907025885
+   },
+   "downs_per_10": {
+    "Carrick": 3.355,
+    "Felix": 5.095,
+    "Hilde": 2.285,
+    "Sable": 5.615
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Felix",
+    "Hilde"
+   ],
+   "up": 0.1435,
+   "own": 0.795,
+   "walkover": 0.2025,
+   "dmg_share": {
+    "Beornhard": 0.256903242359129,
+    "Carrick": 0.23846252525576472,
+    "Felix": 0.19790898303454027,
+    "Hilde": 0.30672524935056605
+   },
+   "hits_share": {
+    "Beornhard": 0.2519565766220651,
+    "Carrick": 0.2538921147858285,
+    "Felix": 0.2632331902718169,
+    "Hilde": 0.2309181183202895
+   },
+   "downs_per_10": {
+    "Beornhard": 5.165,
+    "Carrick": 7.59,
+    "Felix": 5.345,
+    "Hilde": 4.035
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Hanforth",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.1395,
+   "own": 0.829,
+   "walkover": 0.0275,
+   "dmg_share": {
+    "Browndog": 0.17901915188252815,
+    "Hanforth": 0.05962427821179422,
+    "Jackal": 0.4169728006688788,
+    "Sable": 0.3443837692367988
+   },
+   "hits_share": {
+    "Browndog": 0.3065972504677459,
+    "Hanforth": 0.27487187830472626,
+    "Jackal": 0.15187505084194258,
+    "Sable": 0.2666558203855853
+   },
+   "downs_per_10": {
+    "Browndog": 3.285,
+    "Hanforth": 5.205,
+    "Jackal": 3.475,
+    "Sable": 5.055
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Hilde",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.1355,
+   "own": 0.775,
+   "walkover": 0.175,
+   "dmg_share": {
+    "Browndog": 0.14829668848976746,
+    "Hilde": 0.31951555886688965,
+    "Jackal": 0.2720912660040476,
+    "Sable": 0.2600964866392953
+   },
+   "hits_share": {
+    "Browndog": 0.2725603138826279,
+    "Hilde": 0.26922113698973205,
+    "Jackal": 0.1853243175557225,
+    "Sable": 0.2728942315719175
+   },
+   "downs_per_10": {
+    "Browndog": 3.88,
+    "Hilde": 4.625,
+    "Jackal": 6.33,
+    "Sable": 7.945
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.13,
+   "own": 0.7335,
+   "walkover": 0.1465,
+   "dmg_share": {
+    "Beornhard": 0.24603196741889594,
+    "Browndog": 0.1416552762978047,
+    "Hilde": 0.34589528299255207,
+    "Jackal": 0.2664174732907473
+   },
+   "hits_share": {
+    "Beornhard": 0.2658721713839824,
+    "Browndog": 0.34496701425835286,
+    "Hilde": 0.20763282968007377,
+    "Jackal": 0.181527984677591
+   },
+   "downs_per_10": {
+    "Beornhard": 7.31,
+    "Browndog": 5.87,
+    "Hilde": 4.2,
+    "Jackal": 8.365
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Enith",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.1285,
+   "own": 0.8395,
+   "walkover": 0.1245,
+   "dmg_share": {
+    "Carrick": 0.29160142533877803,
+    "Enith": 0.09987775379093297,
+    "Hilde": 0.3157021354071839,
+    "Sable": 0.2928186854631051
+   },
+   "hits_share": {
+    "Carrick": 0.18994624162972742,
+    "Enith": 0.30736583985664434,
+    "Hilde": 0.2525700273507498,
+    "Sable": 0.2501178911628784
+   },
+   "downs_per_10": {
+    "Carrick": 3.655,
+    "Enith": 7.565,
+    "Hilde": 3.125,
+    "Sable": 5.72
+   }
+  },
+  {
+   "party": [
+    "Enith",
+    "Hilde",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.126,
+   "own": 0.8135,
+   "walkover": 0.1555,
+   "dmg_share": {
+    "Enith": 0.12398955877399798,
+    "Hilde": 0.29712234759178174,
+    "Jackal": 0.28724423206466826,
+    "Sable": 0.291643861569552
+   },
+   "hits_share": {
+    "Enith": 0.275299031706854,
+    "Hilde": 0.3072906778052022,
+    "Jackal": 0.16014809189291818,
+    "Sable": 0.25726219859502564
+   },
+   "downs_per_10": {
+    "Enith": 6.34,
+    "Hilde": 4.41,
+    "Jackal": 4.435,
+    "Sable": 5.785
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Enith",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.1245,
+   "own": 0.774,
+   "walkover": 0.144,
+   "dmg_share": {
+    "Beornhard": 0.29307451240243976,
+    "Enith": 0.09849171993895187,
+    "Hilde": 0.3129368825257852,
+    "Sable": 0.29549688513282313
+   },
+   "hits_share": {
+    "Beornhard": 0.24368351063829788,
+    "Enith": 0.28382646276595747,
+    "Hilde": 0.2244847074468085,
+    "Sable": 0.24800531914893617
+   },
+   "downs_per_10": {
+    "Beornhard": 4.435,
+    "Enith": 8.37,
+    "Hilde": 3.735,
+    "Sable": 6.805
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Felix",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.122,
+   "own": 0.6605,
+   "walkover": 0.0025,
+   "dmg_share": {
+    "Ashleigh": 0.043926805822576215,
+    "Felix": 0.3553167627941042,
+    "Hanforth": 0.08204591229515701,
+    "Hilde": 0.5187105190881626
+   },
+   "hits_share": {
+    "Ashleigh": 0.28565723413966226,
+    "Felix": 0.26859881332724783,
+    "Hanforth": 0.23237106344135097,
+    "Hilde": 0.21337288909173893
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.02,
+    "Felix": 6.475,
+    "Hanforth": 7.66,
+    "Hilde": 4.8
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Enith",
+    "Hilde"
+   ],
+   "up": 0.121,
+   "own": 0.6565,
+   "walkover": 0.0455,
+   "dmg_share": {
+    "Beornhard": 0.27728782968948684,
+    "Browndog": 0.16907994585503916,
+    "Enith": 0.14263446877581995,
+    "Hilde": 0.410997755679654
+   },
+   "hits_share": {
+    "Beornhard": 0.252952064849684,
+    "Browndog": 0.31244016084764153,
+    "Enith": 0.22537818344290547,
+    "Hilde": 0.20922959085976894
+   },
+   "downs_per_10": {
+    "Beornhard": 8.215,
+    "Browndog": 6.27,
+    "Enith": 9.12,
+    "Hilde": 5.145
+   }
+  },
+  {
+   "party": [
+    "Enith",
+    "Hanforth",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.12,
+   "own": 0.818,
+   "walkover": 0.0225,
+   "dmg_share": {
+    "Enith": 0.18120597321247234,
+    "Hanforth": 0.027471646481598274,
+    "Jackal": 0.42984040790584815,
+    "Sable": 0.36148197240008123
+   },
+   "hits_share": {
+    "Enith": 0.29913356781333106,
+    "Hanforth": 0.29973406536844815,
+    "Jackal": 0.14317577421291927,
+    "Sable": 0.2579565926053015
+   },
+   "downs_per_10": {
+    "Enith": 4.97,
+    "Hanforth": 5.23,
+    "Jackal": 3.025,
+    "Sable": 4.815
+   }
+  },
+  {
+   "party": [
+    "Enith",
+    "Felix",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.1175,
+   "own": 0.811,
+   "walkover": 0.1085,
+   "dmg_share": {
+    "Enith": 0.13981693847568516,
+    "Felix": 0.2059494995402323,
+    "Hilde": 0.35071818883240147,
+    "Sable": 0.30351537315168103
+   },
+   "hits_share": {
+    "Enith": 0.2513225218974937,
+    "Felix": 0.2890469170063308,
+    "Hilde": 0.2183678778943717,
+    "Sable": 0.24126268320180383
+   },
+   "downs_per_10": {
+    "Enith": 6.325,
+    "Felix": 5.93,
+    "Hilde": 3.095,
+    "Sable": 6.43
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Enith",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.117,
+   "own": 0.7155,
+   "walkover": 0.0375,
+   "dmg_share": {
+    "Browndog": 0.17781627600679853,
+    "Enith": 0.1126182499822386,
+    "Hilde": 0.412698586192009,
+    "Sable": 0.2968668878189539
+   },
+   "hits_share": {
+    "Browndog": 0.2785487847833744,
+    "Enith": 0.2591053187742163,
+    "Hilde": 0.20958083832335328,
+    "Sable": 0.25276505811905603
+   },
+   "downs_per_10": {
+    "Browndog": 4.85,
+    "Enith": 9.625,
+    "Hilde": 4.0,
+    "Sable": 9.045
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.1165,
+   "own": 0.544,
+   "walkover": 0.0115,
+   "dmg_share": {
+    "Ashleigh": 0.06022568371760268,
+    "Beornhard": 0.34553673051282885,
+    "Hanforth": 0.06823192741699458,
+    "Hilde": 0.5260056583525738
+   },
+   "hits_share": {
+    "Ashleigh": 0.2609724723437098,
+    "Beornhard": 0.2929251350656033,
+    "Hanforth": 0.2355544121430409,
+    "Hilde": 0.210547980447646
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.98,
+    "Beornhard": 9.25,
+    "Hanforth": 8.565,
+    "Hilde": 5.315
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.1165,
+   "own": 0.8805,
+   "walkover": 0.021,
+   "dmg_share": {
+    "Browndog": 0.18660924843637855,
+    "Carrick": 0.36598482518199527,
+    "Hanforth": 0.0805957141392392,
+    "Sable": 0.36681021224238697
+   },
+   "hits_share": {
+    "Browndog": 0.31420017108639864,
+    "Carrick": 0.21573994867408042,
+    "Hanforth": 0.2386655260906758,
+    "Sable": 0.23139435414884515
+   },
+   "downs_per_10": {
+    "Browndog": 2.625,
+    "Carrick": 3.185,
+    "Hanforth": 3.79,
+    "Sable": 3.72
+   }
+  },
+  {
+   "party": [
+    "Felix",
+    "Hanforth",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.114,
+   "own": 0.854,
+   "walkover": 0.0555,
+   "dmg_share": {
+    "Felix": 0.25180763843111403,
+    "Hanforth": 0.042322429136453524,
+    "Jackal": 0.3809379119973632,
+    "Sable": 0.3249320204350692
+   },
+   "hits_share": {
+    "Felix": 0.27105404920093373,
+    "Hanforth": 0.29709103968396483,
+    "Jackal": 0.14724367031783084,
+    "Sable": 0.2846112407972706
+   },
+   "downs_per_10": {
+    "Felix": 3.19,
+    "Hanforth": 5.275,
+    "Jackal": 3.055,
+    "Sable": 5.03
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Enith",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.1135,
+   "own": 0.7715,
+   "walkover": 0.0005,
+   "dmg_share": {
+    "Browndog": 0.23357347833482395,
+    "Enith": 0.21754613143412108,
+    "Hanforth": 0.10333550981887617,
+    "Sable": 0.4455448804121788
+   },
+   "hits_share": {
+    "Browndog": 0.2946092770580861,
+    "Enith": 0.25971583786042624,
+    "Hanforth": 0.21430561359520825,
+    "Sable": 0.23136927148627942
+   },
+   "downs_per_10": {
+    "Browndog": 3.845,
+    "Enith": 5.36,
+    "Hanforth": 4.77,
+    "Sable": 5.23
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Felix",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.111,
+   "own": 0.718,
+   "walkover": 0.186,
+   "dmg_share": {
+    "Beornhard": 0.252286425214266,
+    "Felix": 0.18128836051976777,
+    "Hilde": 0.30274813381255183,
+    "Jackal": 0.2636770804534144
+   },
+   "hits_share": {
+    "Beornhard": 0.26652651249708015,
+    "Felix": 0.30016351319785095,
+    "Hilde": 0.2395857665654442,
+    "Jackal": 0.1937242077396247
+   },
+   "downs_per_10": {
+    "Beornhard": 6.095,
+    "Felix": 7.92,
+    "Hilde": 4.53,
+    "Jackal": 7.82
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Hanforth",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.1105,
+   "own": 0.853,
+   "walkover": 0.076,
+   "dmg_share": {
+    "Carrick": 0.3108964793298274,
+    "Hanforth": 0.021025224094104088,
+    "Jackal": 0.35722812831252765,
+    "Sable": 0.31085016826354084
+   },
+   "hits_share": {
+    "Carrick": 0.2034090909090909,
+    "Hanforth": 0.3569128787878788,
+    "Jackal": 0.15179924242424242,
+    "Sable": 0.2878787878787879
+   },
+   "downs_per_10": {
+    "Carrick": 2.93,
+    "Hanforth": 5.725,
+    "Jackal": 2.955,
+    "Sable": 4.715
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.11,
+   "own": 0.7475,
+   "walkover": 0.228,
+   "dmg_share": {
+    "Beornhard": 0.2513584441322836,
+    "Carrick": 0.22283928435311925,
+    "Hilde": 0.2845600165517842,
+    "Jackal": 0.24124225496281293
+   },
+   "hits_share": {
+    "Beornhard": 0.26601682912605185,
+    "Carrick": 0.27501457968841125,
+    "Hilde": 0.25660251603765727,
+    "Jackal": 0.2023660751478797
+   },
+   "downs_per_10": {
+    "Beornhard": 5.075,
+    "Carrick": 7.985,
+    "Hilde": 4.3,
+    "Jackal": 7.195
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Felix",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.1085,
+   "own": 0.704,
+   "walkover": 0.129,
+   "dmg_share": {
+    "Browndog": 0.16100376796354715,
+    "Felix": 0.1977304591657904,
+    "Hilde": 0.3786529530318962,
+    "Jackal": 0.2626128198387662
+   },
+   "hits_share": {
+    "Browndog": 0.2933826608962725,
+    "Felix": 0.28765880217785844,
+    "Hilde": 0.22274186793243056,
+    "Jackal": 0.1962166689934385
+   },
+   "downs_per_10": {
+    "Browndog": 4.875,
+    "Felix": 8.725,
+    "Hilde": 4.26,
+    "Jackal": 8.865
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.108,
+   "own": 0.729,
+   "walkover": 0.1955,
+   "dmg_share": {
+    "Browndog": 0.15251887062225844,
+    "Carrick": 0.2256003798404023,
+    "Hilde": 0.3594455625037094,
+    "Jackal": 0.2624351870336299
+   },
+   "hits_share": {
+    "Browndog": 0.30714828897338403,
+    "Carrick": 0.26692015209125475,
+    "Hilde": 0.22889733840304183,
+    "Jackal": 0.1970342205323194
+   },
+   "downs_per_10": {
+    "Browndog": 4.34,
+    "Carrick": 8.53,
+    "Hilde": 4.07,
+    "Jackal": 7.795
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Hanforth",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.106,
+   "own": 0.833,
+   "walkover": 0.095,
+   "dmg_share": {
+    "Beornhard": 0.3201789533458226,
+    "Hanforth": 0.01629791592589251,
+    "Jackal": 0.3504396881584045,
+    "Sable": 0.3130834425698804
+   },
+   "hits_share": {
+    "Beornhard": 0.22276579016336157,
+    "Hanforth": 0.3442823447191404,
+    "Jackal": 0.1535773565126234,
+    "Sable": 0.2793745086048746
+   },
+   "downs_per_10": {
+    "Beornhard": 2.945,
+    "Hanforth": 6.335,
+    "Jackal": 3.155,
+    "Sable": 5.17
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Felix",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.1045,
+   "own": 0.856,
+   "walkover": 0.007,
+   "dmg_share": {
+    "Browndog": 0.20287672225500245,
+    "Felix": 0.3167603490574827,
+    "Hanforth": 0.10145130068424377,
+    "Sable": 0.3789116280032711
+   },
+   "hits_share": {
+    "Browndog": 0.30749014454664914,
+    "Felix": 0.2378449408672799,
+    "Hanforth": 0.20460694133106594,
+    "Sable": 0.250057973255005
+   },
+   "downs_per_10": {
+    "Browndog": 3.17,
+    "Felix": 3.195,
+    "Hanforth": 4.17,
+    "Sable": 5.04
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Enith",
+    "Hilde"
+   ],
+   "up": 0.104,
+   "own": 0.723,
+   "walkover": 0.15,
+   "dmg_share": {
+    "Beornhard": 0.28568332370070687,
+    "Carrick": 0.2592139776819455,
+    "Enith": 0.1283232561241275,
+    "Hilde": 0.3267794424932201
+   },
+   "hits_share": {
+    "Beornhard": 0.2507718431614696,
+    "Carrick": 0.24614078419265206,
+    "Enith": 0.25385921580734794,
+    "Hilde": 0.24922815683853042
+   },
+   "downs_per_10": {
+    "Beornhard": 5.28,
+    "Carrick": 7.76,
+    "Enith": 7.815,
+    "Hilde": 4.84
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Enith",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.1035,
+   "own": 0.511,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.06188096201276246,
+    "Enith": 0.2082381803708682,
+    "Hanforth": 0.08467199958241443,
+    "Hilde": 0.6452088580339549
+   },
+   "hits_share": {
+    "Ashleigh": 0.26396327467482783,
+    "Enith": 0.2717163988778373,
+    "Hanforth": 0.23662331038000511,
+    "Hilde": 0.22769701606732975
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.115,
+    "Enith": 9.65,
+    "Hanforth": 8.53,
+    "Hilde": 5.66
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Hanforth",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.1025,
+   "own": 0.651,
+   "walkover": 0.0035,
+   "dmg_share": {
+    "Ashleigh": 0.04150997395609742,
+    "Hanforth": 0.0653959531782147,
+    "Hilde": 0.49736985203628975,
+    "Sable": 0.3957242208293981
+   },
+   "hits_share": {
+    "Ashleigh": 0.26324562447910466,
+    "Hanforth": 0.2690796523395642,
+    "Hilde": 0.21764495773306347,
+    "Sable": 0.25002976544826766
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.61,
+    "Hanforth": 8.095,
+    "Hilde": 4.675,
+    "Sable": 7.705
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.1025,
+   "own": 0.8065,
+   "walkover": 0.026,
+   "dmg_share": {
+    "Beornhard": 0.3762012724241986,
+    "Browndog": 0.18176263446479393,
+    "Hanforth": 0.0731456320046309,
+    "Sable": 0.3688904611063766
+   },
+   "hits_share": {
+    "Beornhard": 0.20571913056882996,
+    "Browndog": 0.320795437027902,
+    "Hanforth": 0.23732079543702791,
+    "Sable": 0.23616463696624018
+   },
+   "downs_per_10": {
+    "Beornhard": 3.2,
+    "Browndog": 3.615,
+    "Hanforth": 4.665,
+    "Sable": 4.48
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Enith",
+    "Felix",
+    "Hilde"
+   ],
+   "up": 0.1015,
+   "own": 0.6515,
+   "walkover": 0.0645,
+   "dmg_share": {
+    "Beornhard": 0.2818162159701357,
+    "Enith": 0.09369024856596558,
+    "Felix": 0.2533916052080488,
+    "Hilde": 0.37110193025585
+   },
+   "hits_share": {
+    "Beornhard": 0.2540203928009307,
+    "Enith": 0.2637377677410525,
+    "Felix": 0.2518305618285089,
+    "Hilde": 0.23041127762950797
+   },
+   "downs_per_10": {
+    "Beornhard": 7.2,
+    "Enith": 10.885,
+    "Felix": 6.34,
+    "Hilde": 5.405
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Felix",
+    "Hilde"
+   ],
+   "up": 0.1005,
+   "own": 0.6075,
+   "walkover": 0.012,
+   "dmg_share": {
+    "Ashleigh": 0.03468314837577835,
+    "Browndog": 0.18967238563505942,
+    "Felix": 0.3030072194040962,
+    "Hilde": 0.47263724658506606
+   },
+   "hits_share": {
+    "Ashleigh": 0.25727447664586856,
+    "Browndog": 0.3109219196454604,
+    "Felix": 0.23109219196454603,
+    "Hilde": 0.20071141174412502
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.125,
+    "Browndog": 7.72,
+    "Felix": 7.45,
+    "Hilde": 5.385
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Enith",
+    "Hilde"
+   ],
+   "up": 0.1005,
+   "own": 0.706,
+   "walkover": 0.0475,
+   "dmg_share": {
+    "Browndog": 0.17782518842016723,
+    "Carrick": 0.2796974136442382,
+    "Enith": 0.12912839309488133,
+    "Hilde": 0.41334900484071324
+   },
+   "hits_share": {
+    "Browndog": 0.289013689013689,
+    "Carrick": 0.23875043875043875,
+    "Enith": 0.2454896454896455,
+    "Hilde": 0.22674622674622674
+   },
+   "downs_per_10": {
+    "Browndog": 4.745,
+    "Carrick": 8.21,
+    "Enith": 8.585,
+    "Hilde": 4.71
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.0995,
+   "own": 0.6365,
+   "walkover": 0.03,
+   "dmg_share": {
+    "Ashleigh": 0.02966900463631269,
+    "Browndog": 0.18649978205367707,
+    "Hilde": 0.4608857112126307,
+    "Sable": 0.32294550209737954
+   },
+   "hits_share": {
+    "Ashleigh": 0.26359163591635915,
+    "Browndog": 0.3185116851168512,
+    "Hilde": 0.2043050430504305,
+    "Sable": 0.21359163591635916
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.87,
+    "Browndog": 6.725,
+    "Hilde": 4.945,
+    "Sable": 8.96
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Enith",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.0995,
+   "own": 0.8315,
+   "walkover": 0.0125,
+   "dmg_share": {
+    "Carrick": 0.3954655278384164,
+    "Enith": 0.17760634126698174,
+    "Hanforth": 0.036316046033529024,
+    "Sable": 0.39061208486107285
+   },
+   "hits_share": {
+    "Carrick": 0.15911699779249447,
+    "Enith": 0.3392494481236203,
+    "Hanforth": 0.2640176600441501,
+    "Sable": 0.2376158940397351
+   },
+   "downs_per_10": {
+    "Carrick": 2.545,
+    "Enith": 5.385,
+    "Hanforth": 4.755,
+    "Sable": 4.155
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Felix",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.0975,
+   "own": 0.7555,
+   "walkover": 0.217,
+   "dmg_share": {
+    "Carrick": 0.2685924430800446,
+    "Felix": 0.17510052468336706,
+    "Hilde": 0.30191221460764994,
+    "Jackal": 0.25439481762893845
+   },
+   "hits_share": {
+    "Carrick": 0.2289731358272659,
+    "Felix": 0.32036153653025357,
+    "Hilde": 0.2454598711189221,
+    "Jackal": 0.20520545652355845
+   },
+   "downs_per_10": {
+    "Carrick": 5.665,
+    "Felix": 7.55,
+    "Hilde": 4.1,
+    "Jackal": 7.38
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Felix",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.0935,
+   "own": 0.837,
+   "walkover": 0.065,
+   "dmg_share": {
+    "Beornhard": 0.3412921867654128,
+    "Felix": 0.26449101195412744,
+    "Hanforth": 0.052010755016983,
+    "Sable": 0.3422060462634768
+   },
+   "hits_share": {
+    "Beornhard": 0.21786983274113875,
+    "Felix": 0.28026692087702576,
+    "Hanforth": 0.24378195684201404,
+    "Sable": 0.25808128953982146
+   },
+   "downs_per_10": {
+    "Beornhard": 2.935,
+    "Felix": 3.3,
+    "Hanforth": 4.385,
+    "Sable": 4.635
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.093,
+   "own": 0.857,
+   "walkover": 0.0935,
+   "dmg_share": {
+    "Beornhard": 0.3359123315226217,
+    "Carrick": 0.3169758146892892,
+    "Hanforth": 0.01870603087464183,
+    "Sable": 0.3284058229134473
+   },
+   "hits_share": {
+    "Beornhard": 0.19765094512754633,
+    "Carrick": 0.2457331620480822,
+    "Hanforth": 0.31693888786933383,
+    "Sable": 0.23967700495503763
+   },
+   "downs_per_10": {
+    "Beornhard": 2.19,
+    "Carrick": 3.38,
+    "Hanforth": 5.02,
+    "Sable": 3.68
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Enith",
+    "Felix",
+    "Hilde"
+   ],
+   "up": 0.092,
+   "own": 0.6375,
+   "walkover": 0.0165,
+   "dmg_share": {
+    "Browndog": 0.1900378346087105,
+    "Enith": 0.09705572781839387,
+    "Felix": 0.26707251159218276,
+    "Hilde": 0.44583392598071286
+   },
+   "hits_share": {
+    "Browndog": 0.27782321484743633,
+    "Enith": 0.2512110726643599,
+    "Felix": 0.2538534130229632,
+    "Hilde": 0.21711229946524063
+   },
+   "downs_per_10": {
+    "Browndog": 5.83,
+    "Enith": 11.515,
+    "Felix": 7.27,
+    "Hilde": 5.11
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Carrick",
+    "Hilde"
+   ],
+   "up": 0.0875,
+   "own": 0.624,
+   "walkover": 0.0435,
+   "dmg_share": {
+    "Ashleigh": 0.03255482381695974,
+    "Browndog": 0.17721841265530586,
+    "Carrick": 0.35466879398918233,
+    "Hilde": 0.4355579695385521
+   },
+   "hits_share": {
+    "Ashleigh": 0.25933095396527733,
+    "Browndog": 0.32599358780473053,
+    "Carrick": 0.2005323331921844,
+    "Hilde": 0.21414312503780775
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.39,
+    "Browndog": 7.325,
+    "Carrick": 7.735,
+    "Hilde": 5.815
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Felix",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.0865,
+   "own": 0.8995,
+   "walkover": 0.069,
+   "dmg_share": {
+    "Carrick": 0.3446499969556128,
+    "Felix": 0.2602494367883745,
+    "Hanforth": 0.053606583994641875,
+    "Sable": 0.3414939822613708
+   },
+   "hits_share": {
+    "Carrick": 0.1636706723607111,
+    "Felix": 0.3175091866123746,
+    "Hanforth": 0.2697388022643758,
+    "Sable": 0.2490813387625385
+   },
+   "downs_per_10": {
+    "Carrick": 2.15,
+    "Felix": 2.995,
+    "Hanforth": 3.78,
+    "Sable": 3.455
+   }
+  },
+  {
+   "party": [
+    "Enith",
+    "Felix",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.086,
+   "own": 0.8175,
+   "walkover": 0.0085,
+   "dmg_share": {
+    "Enith": 0.21136846635999246,
+    "Felix": 0.3129798509670998,
+    "Hanforth": 0.07145508837059156,
+    "Sable": 0.4041965943023162
+   },
+   "hits_share": {
+    "Enith": 0.2767453135100194,
+    "Felix": 0.2675339366515837,
+    "Hanforth": 0.22939560439560439,
+    "Sable": 0.2263251454427925
+   },
+   "downs_per_10": {
+    "Enith": 4.985,
+    "Felix": 3.5,
+    "Hanforth": 4.315,
+    "Sable": 4.47
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Hanforth",
+    "Hilde"
+   ],
+   "up": 0.085,
+   "own": 0.647,
+   "walkover": 0.005,
+   "dmg_share": {
+    "Ashleigh": 0.041035149951628505,
+    "Carrick": 0.4004756530151564,
+    "Hanforth": 0.05942783433915327,
+    "Hilde": 0.4990613626940618
+   },
+   "hits_share": {
+    "Ashleigh": 0.2621023513139696,
+    "Carrick": 0.25345781466113415,
+    "Hanforth": 0.2528815122176118,
+    "Hilde": 0.23155832180728447
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.63,
+    "Carrick": 7.385,
+    "Hanforth": 8.195,
+    "Hilde": 5.265
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Enith",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.0835,
+   "own": 0.727,
+   "walkover": 0.018,
+   "dmg_share": {
+    "Beornhard": 0.39996502174857407,
+    "Enith": 0.16758531590438525,
+    "Hanforth": 0.033911978922782686,
+    "Sable": 0.398537683424258
+   },
+   "hits_share": {
+    "Beornhard": 0.21037247995203479,
+    "Enith": 0.3006820055459792,
+    "Hanforth": 0.26126058607509556,
+    "Sable": 0.2276849284268905
+   },
+   "downs_per_10": {
+    "Beornhard": 3.73,
+    "Enith": 6.07,
+    "Hanforth": 5.65,
+    "Sable": 4.83
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Enith",
+    "Hilde"
+   ],
+   "up": 0.0815,
+   "own": 0.481,
+   "walkover": 0.003,
+   "dmg_share": {
+    "Ashleigh": 0.042210965396973436,
+    "Browndog": 0.22644956466748006,
+    "Enith": 0.1816515167968725,
+    "Hilde": 0.549687953138674
+   },
+   "hits_share": {
+    "Ashleigh": 0.2592711339104414,
+    "Browndog": 0.3111039863204018,
+    "Enith": 0.21417120872074383,
+    "Hilde": 0.21545367104841295
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.96,
+    "Browndog": 7.925,
+    "Enith": 10.33,
+    "Hilde": 6.42
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Enith",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.08,
+   "own": 0.602,
+   "walkover": 0.0385,
+   "dmg_share": {
+    "Browndog": 0.18683055210775526,
+    "Enith": 0.08805681974900013,
+    "Hilde": 0.42734335493954856,
+    "Jackal": 0.29776927320369606
+   },
+   "hits_share": {
+    "Browndog": 0.30959339263024144,
+    "Enith": 0.25984752223634056,
+    "Hilde": 0.23621346886912326,
+    "Jackal": 0.19434561626429478
+   },
+   "downs_per_10": {
+    "Browndog": 5.815,
+    "Enith": 11.625,
+    "Hilde": 5.25,
+    "Jackal": 9.46
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.0795,
+   "own": 0.5545,
+   "walkover": 0.0325,
+   "dmg_share": {
+    "Ashleigh": 0.034490902006163726,
+    "Browndog": 0.17585518780479165,
+    "Hilde": 0.4468880255995466,
+    "Jackal": 0.342765884589498
+   },
+   "hits_share": {
+    "Ashleigh": 0.2644613785936959,
+    "Browndog": 0.34095370049647844,
+    "Hilde": 0.2262440826694377,
+    "Jackal": 0.16834083824038795
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.375,
+    "Browndog": 7.89,
+    "Hilde": 5.82,
+    "Jackal": 9.15
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Enith",
+    "Felix",
+    "Hilde"
+   ],
+   "up": 0.077,
+   "own": 0.738,
+   "walkover": 0.0795,
+   "dmg_share": {
+    "Carrick": 0.31186865307302347,
+    "Enith": 0.0920381364324984,
+    "Felix": 0.23210548010470924,
+    "Hilde": 0.3639877303897689
+   },
+   "hits_share": {
+    "Carrick": 0.2060340183175556,
+    "Enith": 0.28838605402909256,
+    "Felix": 0.2614484722542908,
+    "Hilde": 0.24413145539906103
+   },
+   "downs_per_10": {
+    "Carrick": 5.665,
+    "Enith": 10.2,
+    "Felix": 5.67,
+    "Hilde": 4.635
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.076,
+   "own": 0.788,
+   "walkover": 0.1855,
+   "dmg_share": {
+    "Beornhard": 0.27888175332919013,
+    "Browndog": 0.13363504533647794,
+    "Jackal": 0.3038632947163217,
+    "Sable": 0.2836199066180103
+   },
+   "hits_share": {
+    "Beornhard": 0.24598183088749126,
+    "Browndog": 0.3668763102725367,
+    "Jackal": 0.148235499650594,
+    "Sable": 0.23890635918937805
+   },
+   "downs_per_10": {
+    "Beornhard": 4.43,
+    "Browndog": 4.88,
+    "Jackal": 4.59,
+    "Sable": 6.035
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.076,
+   "own": 0.795,
+   "walkover": 0.0515,
+   "dmg_share": {
+    "Browndog": 0.17856667146183314,
+    "Carrick": 0.34293965016596606,
+    "Hanforth": 0.058788740949123286,
+    "Jackal": 0.4197049374230775
+   },
+   "hits_share": {
+    "Browndog": 0.34222755209114075,
+    "Carrick": 0.25273572178084247,
+    "Hanforth": 0.24606505771248688,
+    "Jackal": 0.1589716684155299
+   },
+   "downs_per_10": {
+    "Browndog": 3.49,
+    "Carrick": 4.465,
+    "Hanforth": 5.025,
+    "Jackal": 4.015
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Felix",
+    "Hilde"
+   ],
+   "up": 0.074,
+   "own": 0.5505,
+   "walkover": 0.0415,
+   "dmg_share": {
+    "Ashleigh": 0.04576822156538625,
+    "Beornhard": 0.23405209760773782,
+    "Felix": 0.29083222210614934,
+    "Hilde": 0.4293474587207266
+   },
+   "hits_share": {
+    "Ashleigh": 0.2566760365425158,
+    "Beornhard": 0.27740688685874915,
+    "Felix": 0.24162567345982666,
+    "Hilde": 0.2242914031389084
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.65,
+    "Beornhard": 11.1,
+    "Felix": 7.665,
+    "Hilde": 6.205
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Felix",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.0705,
+   "own": 0.6525,
+   "walkover": 0.0685,
+   "dmg_share": {
+    "Ashleigh": 0.03183919331884426,
+    "Felix": 0.250946018997606,
+    "Hilde": 0.40311993204108426,
+    "Sable": 0.3140948556424655
+   },
+   "hits_share": {
+    "Ashleigh": 0.2684087148372863,
+    "Felix": 0.28047435190292336,
+    "Hilde": 0.22380033094318807,
+    "Sable": 0.2273166023166023
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.005,
+    "Felix": 7.595,
+    "Hilde": 4.985,
+    "Sable": 8.535
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.0705,
+   "own": 0.8195,
+   "walkover": 0.343,
+   "dmg_share": {
+    "Beornhard": 0.252410111477469,
+    "Carrick": 0.2298791018998273,
+    "Jackal": 0.25495891558067724,
+    "Sable": 0.26275187104202646
+   },
+   "hits_share": {
+    "Beornhard": 0.24390243902439024,
+    "Carrick": 0.2987274655355249,
+    "Jackal": 0.19289501590668082,
+    "Sable": 0.26447507953340404
+   },
+   "downs_per_10": {
+    "Beornhard": 3.115,
+    "Carrick": 5.9,
+    "Jackal": 4.285,
+    "Sable": 5.27
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Hanforth",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.07,
+   "own": 0.5425,
+   "walkover": 0.0085,
+   "dmg_share": {
+    "Ashleigh": 0.04506357063133887,
+    "Hanforth": 0.052852186150337266,
+    "Hilde": 0.4777624108312709,
+    "Jackal": 0.42432183238705296
+   },
+   "hits_share": {
+    "Ashleigh": 0.2807600686942552,
+    "Hanforth": 0.2790427123151072,
+    "Hilde": 0.24918287075508283,
+    "Jackal": 0.19101434823555483
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.065,
+    "Hanforth": 9.435,
+    "Hilde": 6.06,
+    "Jackal": 8.26
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Enith",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.07,
+   "own": 0.6075,
+   "walkover": 0.099,
+   "dmg_share": {
+    "Beornhard": 0.2845057647694964,
+    "Enith": 0.08482903373974522,
+    "Hilde": 0.34264766589337936,
+    "Jackal": 0.28801753559737897
+   },
+   "hits_share": {
+    "Beornhard": 0.2768231349538977,
+    "Enith": 0.2731908354288908,
+    "Hilde": 0.25384185526683434,
+    "Jackal": 0.1961441743503772
+   },
+   "downs_per_10": {
+    "Beornhard": 7.16,
+    "Enith": 10.72,
+    "Hilde": 5.605,
+    "Jackal": 8.59
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Felix",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.07,
+   "own": 0.829,
+   "walkover": 0.281,
+   "dmg_share": {
+    "Carrick": 0.26783684420731396,
+    "Felix": 0.18360147057317536,
+    "Jackal": 0.2821687882108368,
+    "Sable": 0.2663928970086739
+   },
+   "hits_share": {
+    "Carrick": 0.21014570966001078,
+    "Felix": 0.3600647598488937,
+    "Jackal": 0.15995682676740422,
+    "Sable": 0.26983270372369134
+   },
+   "downs_per_10": {
+    "Carrick": 3.46,
+    "Felix": 5.6,
+    "Jackal": 3.68,
+    "Sable": 5.49
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Felix",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.069,
+   "own": 0.7415,
+   "walkover": 0.016,
+   "dmg_share": {
+    "Browndog": 0.19491921884349672,
+    "Felix": 0.30375346787793067,
+    "Hanforth": 0.0779905347331774,
+    "Jackal": 0.4233367785453952
+   },
+   "hits_share": {
+    "Browndog": 0.3334664536741214,
+    "Felix": 0.2748269435569755,
+    "Hanforth": 0.2301650692225772,
+    "Jackal": 0.1615415335463259
+   },
+   "downs_per_10": {
+    "Browndog": 4.525,
+    "Felix": 5.165,
+    "Hanforth": 5.79,
+    "Jackal": 5.265
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Enith",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.0685,
+   "own": 0.6885,
+   "walkover": 0.1055,
+   "dmg_share": {
+    "Carrick": 0.2989980309699518,
+    "Enith": 0.08276471454518679,
+    "Hilde": 0.34013494128363303,
+    "Jackal": 0.2781023132012283
+   },
+   "hits_share": {
+    "Carrick": 0.2285626393909098,
+    "Enith": 0.29893101591940324,
+    "Hilde": 0.267399830808275,
+    "Jackal": 0.205106513881412
+   },
+   "downs_per_10": {
+    "Carrick": 6.06,
+    "Enith": 10.305,
+    "Hilde": 4.755,
+    "Jackal": 7.96
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Felix",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.0685,
+   "own": 0.775,
+   "walkover": 0.085,
+   "dmg_share": {
+    "Carrick": 0.3427574635809209,
+    "Felix": 0.25078697169032466,
+    "Hanforth": 0.03891981144637673,
+    "Jackal": 0.3675357532823777
+   },
+   "hits_share": {
+    "Carrick": 0.1961332587680754,
+    "Felix": 0.3338659423184469,
+    "Hanforth": 0.2806583047056004,
+    "Jackal": 0.1893424942078773
+   },
+   "downs_per_10": {
+    "Carrick": 3.81,
+    "Felix": 5.095,
+    "Hanforth": 6.1,
+    "Jackal": 4.975
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.068,
+   "own": 0.7115,
+   "walkover": 0.0335,
+   "dmg_share": {
+    "Beornhard": 0.36019705429666,
+    "Browndog": 0.17934861983350373,
+    "Hanforth": 0.05518980800125827,
+    "Jackal": 0.40526451786857803
+   },
+   "hits_share": {
+    "Beornhard": 0.23469732837335136,
+    "Browndog": 0.36110923233006426,
+    "Hanforth": 0.24179912073047008,
+    "Jackal": 0.1623943185661143
+   },
+   "downs_per_10": {
+    "Beornhard": 4.69,
+    "Browndog": 4.51,
+    "Hanforth": 6.29,
+    "Jackal": 5.065
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Carrick",
+    "Sable"
+   ],
+   "up": 0.0675,
+   "own": 0.8355,
+   "walkover": 0.223,
+   "dmg_share": {
+    "Beornhard": 0.2844276054903306,
+    "Browndog": 0.1327159050158255,
+    "Carrick": 0.29973858043459056,
+    "Sable": 0.2831179090592534
+   },
+   "hits_share": {
+    "Beornhard": 0.22455648926237162,
+    "Browndog": 0.3633053221288515,
+    "Carrick": 0.1858076563958917,
+    "Sable": 0.22633053221288515
+   },
+   "downs_per_10": {
+    "Beornhard": 3.62,
+    "Browndog": 4.215,
+    "Carrick": 3.68,
+    "Sable": 5.365
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Enith",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.067,
+   "own": 0.742,
+   "walkover": 0.166,
+   "dmg_share": {
+    "Beornhard": 0.2988360269141732,
+    "Enith": 0.09176023885246966,
+    "Jackal": 0.31351550161182146,
+    "Sable": 0.2958882326215357
+   },
+   "hits_share": {
+    "Beornhard": 0.2492525142701821,
+    "Enith": 0.32445410890640575,
+    "Jackal": 0.1674368034792063,
+    "Sable": 0.25885657334420586
+   },
+   "downs_per_10": {
+    "Beornhard": 4.05,
+    "Enith": 8.695,
+    "Jackal": 4.535,
+    "Sable": 6.385
+   }
+  },
+  {
+   "party": [
+    "Enith",
+    "Felix",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.067,
+   "own": 0.6265,
+   "walkover": 0.089,
+   "dmg_share": {
+    "Enith": 0.1282813526307445,
+    "Felix": 0.20958755181083102,
+    "Hilde": 0.35982197458721205,
+    "Jackal": 0.30230912097121243
+   },
+   "hits_share": {
+    "Enith": 0.26098022105875507,
+    "Felix": 0.29588423502036065,
+    "Hilde": 0.252108784176847,
+    "Jackal": 0.19102675974403724
+   },
+   "downs_per_10": {
+    "Enith": 9.03,
+    "Felix": 8.105,
+    "Hilde": 5.325,
+    "Jackal": 8.195
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Carrick",
+    "Jackal"
+   ],
+   "up": 0.0655,
+   "own": 0.7015,
+   "walkover": 0.1765,
+   "dmg_share": {
+    "Beornhard": 0.27876050888262116,
+    "Browndog": 0.13426914695317127,
+    "Carrick": 0.30282972213617665,
+    "Jackal": 0.2841406220280309
+   },
+   "hits_share": {
+    "Beornhard": 0.2496616032486088,
+    "Browndog": 0.38840427131899535,
+    "Carrick": 0.19446533313280193,
+    "Jackal": 0.1674687922995939
+   },
+   "downs_per_10": {
+    "Beornhard": 5.685,
+    "Browndog": 5.995,
+    "Carrick": 5.49,
+    "Jackal": 6.885
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Browndog",
+    "Hilde"
+   ],
+   "up": 0.0645,
+   "own": 0.4835,
+   "walkover": 0.0185,
+   "dmg_share": {
+    "Ashleigh": 0.04397527578770737,
+    "Beornhard": 0.2286792996991407,
+    "Browndog": 0.24030072822375018,
+    "Hilde": 0.4870446962894018
+   },
+   "hits_share": {
+    "Ashleigh": 0.2506589351607802,
+    "Beornhard": 0.2602530311017396,
+    "Browndog": 0.2701107011070111,
+    "Hilde": 0.21897733263046917
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.865,
+    "Beornhard": 12.035,
+    "Browndog": 6.915,
+    "Hilde": 6.35
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Carrick",
+    "Hilde"
+   ],
+   "up": 0.064,
+   "own": 0.618,
+   "walkover": 0.085,
+   "dmg_share": {
+    "Ashleigh": 0.03889080795206842,
+    "Beornhard": 0.22293426083642037,
+    "Carrick": 0.3648231748716544,
+    "Hilde": 0.37335175633985684
+   },
+   "hits_share": {
+    "Ashleigh": 0.26295609943127357,
+    "Beornhard": 0.2935011821841651,
+    "Carrick": 0.20186593392549046,
+    "Hilde": 0.24167678445907087
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.3,
+    "Beornhard": 10.195,
+    "Carrick": 6.705,
+    "Hilde": 6.12
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Hilde",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.0635,
+   "own": 0.647,
+   "walkover": 0.123,
+   "dmg_share": {
+    "Ashleigh": 0.02816839077280522,
+    "Hilde": 0.32434032195607676,
+    "Jackal": 0.34531725396913204,
+    "Sable": 0.30217403330198594
+   },
+   "hits_share": {
+    "Ashleigh": 0.28886133197169744,
+    "Hilde": 0.3052739076519075,
+    "Jackal": 0.16521992851411482,
+    "Sable": 0.24064483186228025
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.715,
+    "Hilde": 6.835,
+    "Jackal": 6.025,
+    "Sable": 7.86
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Enith",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.063,
+   "own": 0.7085,
+   "walkover": 0.007,
+   "dmg_share": {
+    "Carrick": 0.39345520048035226,
+    "Enith": 0.14338848488891853,
+    "Hanforth": 0.02635821824893811,
+    "Jackal": 0.43679809638179107
+   },
+   "hits_share": {
+    "Carrick": 0.19493763756419663,
+    "Enith": 0.3441672780630961,
+    "Hanforth": 0.2822450476889215,
+    "Jackal": 0.17865003668378576
+   },
+   "downs_per_10": {
+    "Carrick": 4.17,
+    "Enith": 8.035,
+    "Hanforth": 6.745,
+    "Jackal": 5.205
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Felix",
+    "Sable"
+   ],
+   "up": 0.0615,
+   "own": 0.818,
+   "walkover": 0.299,
+   "dmg_share": {
+    "Beornhard": 0.27423753642838217,
+    "Carrick": 0.247640271998587,
+    "Felix": 0.19877818816525628,
+    "Sable": 0.2793440034077745
+   },
+   "hits_share": {
+    "Beornhard": 0.23477652234776522,
+    "Carrick": 0.2595740425957404,
+    "Felix": 0.26987301269873015,
+    "Sable": 0.23577642235776422
+   },
+   "downs_per_10": {
+    "Beornhard": 3.125,
+    "Carrick": 5.73,
+    "Felix": 3.825,
+    "Sable": 5.045
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Felix",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.0605,
+   "own": 0.7175,
+   "walkover": 0.0575,
+   "dmg_share": {
+    "Beornhard": 0.33385929502548034,
+    "Felix": 0.26412569555181376,
+    "Hanforth": 0.03897320383152871,
+    "Jackal": 0.3630418055911772
+   },
+   "hits_share": {
+    "Beornhard": 0.24768317405154938,
+    "Felix": 0.305676223573704,
+    "Hanforth": 0.2592673037938025,
+    "Jackal": 0.18737329858094412
+   },
+   "downs_per_10": {
+    "Beornhard": 4.78,
+    "Felix": 5.28,
+    "Hanforth": 6.525,
+    "Jackal": 5.58
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.0605,
+   "own": 0.7745,
+   "walkover": 0.193,
+   "dmg_share": {
+    "Browndog": 0.15014336879916815,
+    "Carrick": 0.2582581478641725,
+    "Jackal": 0.3087995882742178,
+    "Sable": 0.2827988950624416
+   },
+   "hits_share": {
+    "Browndog": 0.34024821088866747,
+    "Carrick": 0.2537367515173476,
+    "Jackal": 0.1602500226469789,
+    "Sable": 0.24576501494700606
+   },
+   "downs_per_10": {
+    "Browndog": 3.735,
+    "Carrick": 6.14,
+    "Jackal": 4.755,
+    "Sable": 6.13
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.0595,
+   "own": 0.634,
+   "walkover": 0.1035,
+   "dmg_share": {
+    "Ashleigh": 0.038454060741744484,
+    "Beornhard": 0.26054143223259785,
+    "Hilde": 0.3735352166612661,
+    "Sable": 0.32746929036439154
+   },
+   "hits_share": {
+    "Ashleigh": 0.2612888512412849,
+    "Beornhard": 0.2803153710822962,
+    "Hilde": 0.23509480680263245,
+    "Sable": 0.22330097087378642
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.82,
+    "Beornhard": 8.85,
+    "Hilde": 5.565,
+    "Sable": 8.285
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Felix",
+    "Hanforth"
+   ],
+   "up": 0.059,
+   "own": 0.7195,
+   "walkover": 0.0005,
+   "dmg_share": {
+    "Beornhard": 0.3545308776696435,
+    "Browndog": 0.20552635681357592,
+    "Felix": 0.34713159477095074,
+    "Hanforth": 0.0928111707458299
+   },
+   "hits_share": {
+    "Beornhard": 0.2332703213610586,
+    "Browndog": 0.33597983616887206,
+    "Felix": 0.20693131695022055,
+    "Hanforth": 0.22381852551984877
+   },
+   "downs_per_10": {
+    "Beornhard": 5.71,
+    "Browndog": 5.205,
+    "Felix": 4.035,
+    "Hanforth": 6.69
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Felix",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.059,
+   "own": 0.7215,
+   "walkover": 0.12,
+   "dmg_share": {
+    "Browndog": 0.16045637898187468,
+    "Felix": 0.21576359398448228,
+    "Jackal": 0.3318858626818651,
+    "Sable": 0.29189416435177795
+   },
+   "hits_share": {
+    "Browndog": 0.32270980140935296,
+    "Felix": 0.28098975016015376,
+    "Jackal": 0.156390134529148,
+    "Sable": 0.2399103139013453
+   },
+   "downs_per_10": {
+    "Browndog": 4.52,
+    "Felix": 6.455,
+    "Jackal": 5.48,
+    "Sable": 7.215
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Enith",
+    "Sable"
+   ],
+   "up": 0.057,
+   "own": 0.7335,
+   "walkover": 0.0675,
+   "dmg_share": {
+    "Browndog": 0.17984321664315633,
+    "Carrick": 0.31043320016798215,
+    "Enith": 0.16925818643867035,
+    "Sable": 0.3404653967501911
+   },
+   "hits_share": {
+    "Browndog": 0.3278981098401882,
+    "Carrick": 0.2249533544252454,
+    "Enith": 0.2314431735215381,
+    "Sable": 0.2157053622130283
+   },
+   "downs_per_10": {
+    "Browndog": 4.2,
+    "Carrick": 5.905,
+    "Enith": 6.205,
+    "Sable": 5.92
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Felix",
+    "Sable"
+   ],
+   "up": 0.057,
+   "own": 0.7705,
+   "walkover": 0.1195,
+   "dmg_share": {
+    "Browndog": 0.16543358029844515,
+    "Carrick": 0.2789888343942398,
+    "Felix": 0.25388709172492957,
+    "Sable": 0.3016904935823855
+   },
+   "hits_share": {
+    "Browndog": 0.32225063938618925,
+    "Carrick": 0.22844649781371174,
+    "Felix": 0.2290240079201386,
+    "Sable": 0.2202788548799604
+   },
+   "downs_per_10": {
+    "Browndog": 4.065,
+    "Carrick": 6.41,
+    "Felix": 4.25,
+    "Sable": 6.295
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Felix",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.0565,
+   "own": 0.789,
+   "walkover": 0.2655,
+   "dmg_share": {
+    "Beornhard": 0.26388793879151123,
+    "Felix": 0.17910007945737455,
+    "Jackal": 0.2849099395387263,
+    "Sable": 0.272102042212388
+   },
+   "hits_share": {
+    "Beornhard": 0.254835260958305,
+    "Felix": 0.3294780833900282,
+    "Jackal": 0.16036543881815532,
+    "Sable": 0.2553212168335115
+   },
+   "downs_per_10": {
+    "Beornhard": 3.825,
+    "Felix": 6.025,
+    "Jackal": 4.23,
+    "Sable": 5.955
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Enith",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.056,
+   "own": 0.793,
+   "walkover": 0.1515,
+   "dmg_share": {
+    "Carrick": 0.29370012117160404,
+    "Enith": 0.09764759954874024,
+    "Jackal": 0.31206388668365853,
+    "Sable": 0.2965883925959972
+   },
+   "hits_share": {
+    "Carrick": 0.20770468718567692,
+    "Enith": 0.3564675115670891,
+    "Jackal": 0.17069000201166767,
+    "Sable": 0.2651377992355663
+   },
+   "downs_per_10": {
+    "Carrick": 3.465,
+    "Enith": 8.32,
+    "Jackal": 4.17,
+    "Sable": 5.73
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Enith",
+    "Hanforth"
+   ],
+   "up": 0.055,
+   "own": 0.713,
+   "walkover": 0.0005,
+   "dmg_share": {
+    "Browndog": 0.23710692529477098,
+    "Carrick": 0.43837014932070856,
+    "Enith": 0.22555167887633643,
+    "Hanforth": 0.09897124650818404
+   },
+   "hits_share": {
+    "Browndog": 0.3354014145675642,
+    "Carrick": 0.21429457749100383,
+    "Enith": 0.23520287876907806,
+    "Hanforth": 0.21510112917235388
+   },
+   "downs_per_10": {
+    "Browndog": 4.775,
+    "Carrick": 5.185,
+    "Enith": 6.28,
+    "Hanforth": 5.735
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Enith",
+    "Sable"
+   ],
+   "up": 0.0545,
+   "own": 0.7815,
+   "walkover": 0.216,
+   "dmg_share": {
+    "Beornhard": 0.2974011937151589,
+    "Carrick": 0.2683463158287056,
+    "Enith": 0.13069104500657555,
+    "Sable": 0.30356144544955993
+   },
+   "hits_share": {
+    "Beornhard": 0.23846823324630112,
+    "Carrick": 0.24649453631176868,
+    "Enith": 0.2780195338942075,
+    "Sable": 0.23701769654772264
+   },
+   "downs_per_10": {
+    "Beornhard": 3.285,
+    "Carrick": 5.265,
+    "Enith": 6.06,
+    "Sable": 5.02
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Enith",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.054,
+   "own": 0.6485,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Browndog": 0.23163874726875455,
+    "Enith": 0.1773226511289148,
+    "Hanforth": 0.08030298616168972,
+    "Jackal": 0.5107356154406409
+   },
+   "hits_share": {
+    "Browndog": 0.31736897469216013,
+    "Enith": 0.28463585174184763,
+    "Hanforth": 0.24002227584926675,
+    "Jackal": 0.15797289771672546
+   },
+   "downs_per_10": {
+    "Browndog": 4.945,
+    "Enith": 7.81,
+    "Hanforth": 6.63,
+    "Jackal": 5.5
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.0535,
+   "own": 0.682,
+   "walkover": 0.11,
+   "dmg_share": {
+    "Ashleigh": 0.02767549784304327,
+    "Carrick": 0.2869188199921565,
+    "Hilde": 0.3759477537147588,
+    "Sable": 0.3094579284500414
+   },
+   "hits_share": {
+    "Ashleigh": 0.2725747629467542,
+    "Carrick": 0.24668125455871626,
+    "Hilde": 0.2510576221735959,
+    "Sable": 0.22968636032093362
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.07,
+    "Carrick": 7.76,
+    "Hilde": 5.14,
+    "Sable": 7.365
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Felix",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.0535,
+   "own": 0.5385,
+   "walkover": 0.065,
+   "dmg_share": {
+    "Ashleigh": 0.037036387651810034,
+    "Felix": 0.23559046650535936,
+    "Hilde": 0.40147981905530034,
+    "Jackal": 0.32589332678753025
+   },
+   "hits_share": {
+    "Ashleigh": 0.2792143212332173,
+    "Felix": 0.2864246643460965,
+    "Hilde": 0.2487568373943312,
+    "Jackal": 0.18560417702635504
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.83,
+    "Felix": 9.48,
+    "Hilde": 6.35,
+    "Jackal": 9.165
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Carrick",
+    "Hanforth"
+   ],
+   "up": 0.0535,
+   "own": 0.771,
+   "walkover": 0.021,
+   "dmg_share": {
+    "Beornhard": 0.36607070450404666,
+    "Browndog": 0.1803024323257662,
+    "Carrick": 0.39330258911049,
+    "Hanforth": 0.06032427405969713
+   },
+   "hits_share": {
+    "Beornhard": 0.2207265984479088,
+    "Browndog": 0.35279170386649267,
+    "Carrick": 0.1758807774191333,
+    "Hanforth": 0.2506009202664652
+   },
+   "downs_per_10": {
+    "Beornhard": 4.38,
+    "Browndog": 4.675,
+    "Carrick": 3.92,
+    "Hanforth": 6.96
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Felix",
+    "Hilde"
+   ],
+   "up": 0.0505,
+   "own": 0.6255,
+   "walkover": 0.068,
+   "dmg_share": {
+    "Ashleigh": 0.032667237126893844,
+    "Carrick": 0.2915107688349748,
+    "Felix": 0.2702079942730267,
+    "Hilde": 0.4056139997651046
+   },
+   "hits_share": {
+    "Ashleigh": 0.2714182392004734,
+    "Carrick": 0.2346636859754093,
+    "Felix": 0.26096390295219934,
+    "Hilde": 0.23295417187191794
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.875,
+    "Carrick": 9.04,
+    "Felix": 7.11,
+    "Hilde": 5.68
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.0495,
+   "own": 0.73,
+   "walkover": 0.0875,
+   "dmg_share": {
+    "Beornhard": 0.33011307863373945,
+    "Carrick": 0.30866196753495234,
+    "Hanforth": 0.014535512458614551,
+    "Jackal": 0.34668944137269364
+   },
+   "hits_share": {
+    "Beornhard": 0.23137816646562123,
+    "Carrick": 0.2714867310012063,
+    "Hanforth": 0.30051266586248493,
+    "Jackal": 0.19662243667068757
+   },
+   "downs_per_10": {
+    "Beornhard": 3.955,
+    "Carrick": 5.3,
+    "Hanforth": 7.03,
+    "Jackal": 5.24
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Enith",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.0485,
+   "own": 0.633,
+   "walkover": 0.0425,
+   "dmg_share": {
+    "Browndog": 0.1824347312001874,
+    "Enith": 0.122918955699203,
+    "Jackal": 0.37168496963139375,
+    "Sable": 0.3229613434692159
+   },
+   "hits_share": {
+    "Browndog": 0.33157032181168056,
+    "Enith": 0.2624404052443385,
+    "Jackal": 0.16217222884386173,
+    "Sable": 0.2438170441001192
+   },
+   "downs_per_10": {
+    "Browndog": 5.27,
+    "Enith": 9.02,
+    "Jackal": 6.045,
+    "Sable": 7.83
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Enith",
+    "Sable"
+   ],
+   "up": 0.046,
+   "own": 0.6995,
+   "walkover": 0.0675,
+   "dmg_share": {
+    "Beornhard": 0.336064308398024,
+    "Browndog": 0.16565036167960479,
+    "Enith": 0.16308111326746647,
+    "Sable": 0.33520421665490474
+   },
+   "hits_share": {
+    "Beornhard": 0.22713930909911945,
+    "Browndog": 0.33950477910739824,
+    "Enith": 0.22623617069315874,
+    "Sable": 0.20711974110032363
+   },
+   "downs_per_10": {
+    "Beornhard": 4.965,
+    "Browndog": 5.395,
+    "Enith": 6.895,
+    "Sable": 6.52
+   }
+  },
+  {
+   "party": [
+    "Enith",
+    "Felix",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.046,
+   "own": 0.743,
+   "walkover": 0.1185,
+   "dmg_share": {
+    "Enith": 0.1375232690245945,
+    "Felix": 0.2110293843109435,
+    "Jackal": 0.33755953936665584,
+    "Sable": 0.3138878072978062
+   },
+   "hits_share": {
+    "Enith": 0.283376241265171,
+    "Felix": 0.3109599117322545,
+    "Jackal": 0.15731886723059949,
+    "Sable": 0.24834497977197498
+   },
+   "downs_per_10": {
+    "Enith": 6.765,
+    "Felix": 6.13,
+    "Jackal": 4.605,
+    "Sable": 5.855
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Enith",
+    "Hilde"
+   ],
+   "up": 0.045,
+   "own": 0.5065,
+   "walkover": 0.017,
+   "dmg_share": {
+    "Ashleigh": 0.04141492351682386,
+    "Carrick": 0.34467727087054867,
+    "Enith": 0.15789858739323143,
+    "Hilde": 0.45600921821939605
+   },
+   "hits_share": {
+    "Ashleigh": 0.2736600676001931,
+    "Carrick": 0.23195316272332206,
+    "Enith": 0.23871318203766295,
+    "Hilde": 0.2556735876388218
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.405,
+    "Carrick": 9.23,
+    "Enith": 10.205,
+    "Hilde": 6.77
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.044,
+   "own": 0.542,
+   "walkover": 0.1135,
+   "dmg_share": {
+    "Ashleigh": 0.033730574776915725,
+    "Carrick": 0.2697572283963561,
+    "Hilde": 0.38022762750168915,
+    "Jackal": 0.316284569325039
+   },
+   "hits_share": {
+    "Ashleigh": 0.28900537112534785,
+    "Carrick": 0.25321943959101795,
+    "Hilde": 0.2656442114799715,
+    "Jackal": 0.19213097780366273
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.155,
+    "Carrick": 9.675,
+    "Hilde": 6.48,
+    "Jackal": 8.735
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Enith",
+    "Felix",
+    "Hilde"
+   ],
+   "up": 0.044,
+   "own": 0.469,
+   "walkover": 0.001,
+   "dmg_share": {
+    "Ashleigh": 0.045804890157626905,
+    "Enith": 0.12031153034628274,
+    "Felix": 0.3331823259277647,
+    "Hilde": 0.5007012535683257
+   },
+   "hits_share": {
+    "Ashleigh": 0.2655370412069354,
+    "Enith": 0.24020490880432335,
+    "Felix": 0.25078811078585905,
+    "Hilde": 0.24346993920288224
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.675,
+    "Enith": 12.285,
+    "Felix": 8.21,
+    "Hilde": 6.775
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Felix",
+    "Sable"
+   ],
+   "up": 0.0435,
+   "own": 0.759,
+   "walkover": 0.117,
+   "dmg_share": {
+    "Beornhard": 0.29820147137833997,
+    "Browndog": 0.15450536473266768,
+    "Felix": 0.2470702761361158,
+    "Sable": 0.30022288775287653
+   },
+   "hits_share": {
+    "Beornhard": 0.2320214951793899,
+    "Browndog": 0.3305674095147779,
+    "Felix": 0.22293345977556503,
+    "Sable": 0.2144776355302671
+   },
+   "downs_per_10": {
+    "Beornhard": 4.805,
+    "Browndog": 5.09,
+    "Felix": 4.385,
+    "Sable": 6.66
+   }
+  },
+  {
+   "party": [
+    "Enith",
+    "Felix",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.043,
+   "own": 0.6775,
+   "walkover": 0.006,
+   "dmg_share": {
+    "Enith": 0.188572146462916,
+    "Felix": 0.3035130998880742,
+    "Hanforth": 0.054358253957376826,
+    "Jackal": 0.453556499691633
+   },
+   "hits_share": {
+    "Enith": 0.2845962044604516,
+    "Felix": 0.29276908159024795,
+    "Hanforth": 0.25543704114143234,
+    "Jackal": 0.16719767280786813
+   },
+   "downs_per_10": {
+    "Enith": 7.085,
+    "Felix": 5.445,
+    "Hanforth": 6.355,
+    "Jackal": 5.46
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.0425,
+   "own": 0.496,
+   "walkover": 0.08,
+   "dmg_share": {
+    "Ashleigh": 0.045860616212375006,
+    "Beornhard": 0.22974087609766003,
+    "Hilde": 0.39187731587229074,
+    "Jackal": 0.33252119181767426
+   },
+   "hits_share": {
+    "Ashleigh": 0.27659074900211317,
+    "Beornhard": 0.284280347499413,
+    "Hilde": 0.2552242310401503,
+    "Jackal": 0.18390467245832354
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.67,
+    "Beornhard": 10.865,
+    "Hilde": 6.895,
+    "Jackal": 9.145
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Enith",
+    "Hanforth"
+   ],
+   "up": 0.0425,
+   "own": 0.6095,
+   "walkover": 0.001,
+   "dmg_share": {
+    "Beornhard": 0.4029555694352643,
+    "Browndog": 0.2412118198521609,
+    "Enith": 0.2593369676609524,
+    "Hanforth": 0.0964956430516224
+   },
+   "hits_share": {
+    "Beornhard": 0.22820109976433622,
+    "Browndog": 0.33699921445404557,
+    "Enith": 0.21602513747054203,
+    "Hanforth": 0.2187745483110762
+   },
+   "downs_per_10": {
+    "Beornhard": 6.33,
+    "Browndog": 5.82,
+    "Enith": 6.575,
+    "Hanforth": 6.95
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Felix",
+    "Hanforth"
+   ],
+   "up": 0.0425,
+   "own": 0.779,
+   "walkover": 0.0085,
+   "dmg_share": {
+    "Browndog": 0.20382557418082123,
+    "Carrick": 0.3743908194704438,
+    "Felix": 0.3319669305786088,
+    "Hanforth": 0.08981667577012616
+   },
+   "hits_share": {
+    "Browndog": 0.3245833052162764,
+    "Carrick": 0.2307173223564343,
+    "Felix": 0.21094540792226196,
+    "Hanforth": 0.23375396450502733
+   },
+   "downs_per_10": {
+    "Browndog": 4.37,
+    "Carrick": 5.23,
+    "Felix": 3.68,
+    "Hanforth": 5.86
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Enith",
+    "Hilde",
+    "Sable"
+   ],
+   "up": 0.041,
+   "own": 0.523,
+   "walkover": 0.0125,
+   "dmg_share": {
+    "Ashleigh": 0.04013222582143482,
+    "Enith": 0.12752673772598128,
+    "Hilde": 0.45762077972215687,
+    "Sable": 0.374720256730427
+   },
+   "hits_share": {
+    "Ashleigh": 0.2746248378929167,
+    "Enith": 0.2523312542456617,
+    "Hilde": 0.24763786821466066,
+    "Sable": 0.22540603964676095
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.865,
+    "Enith": 10.565,
+    "Hilde": 6.12,
+    "Sable": 9.075
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Enith",
+    "Felix",
+    "Hanforth"
+   ],
+   "up": 0.038,
+   "own": 0.598,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Browndog": 0.25625590387176644,
+    "Enith": 0.20037667435270096,
+    "Felix": 0.4219046110338596,
+    "Hanforth": 0.12146281074167298
+   },
+   "hits_share": {
+    "Browndog": 0.31879123217705896,
+    "Enith": 0.26005533092147265,
+    "Felix": 0.21355607576080016,
+    "Hanforth": 0.20759736114066824
+   },
+   "downs_per_10": {
+    "Browndog": 6.415,
+    "Enith": 8.865,
+    "Felix": 5.57,
+    "Hanforth": 7.04
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Enith",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.0375,
+   "own": 0.614,
+   "walkover": 0.006,
+   "dmg_share": {
+    "Beornhard": 0.38355484013811014,
+    "Enith": 0.14358547808967584,
+    "Hanforth": 0.02772375578201576,
+    "Jackal": 0.44513592599019824
+   },
+   "hits_share": {
+    "Beornhard": 0.2443827650013217,
+    "Enith": 0.31370605339677504,
+    "Hanforth": 0.26665344964314036,
+    "Jackal": 0.17525773195876287
+   },
+   "downs_per_10": {
+    "Beornhard": 5.34,
+    "Enith": 8.28,
+    "Hanforth": 7.185,
+    "Jackal": 5.435
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Enith",
+    "Hilde"
+   ],
+   "up": 0.037,
+   "own": 0.427,
+   "walkover": 0.0205,
+   "dmg_share": {
+    "Ashleigh": 0.05650072796123008,
+    "Beornhard": 0.2705623415060937,
+    "Enith": 0.18209967258832938,
+    "Hilde": 0.49083725794434685
+   },
+   "hits_share": {
+    "Ashleigh": 0.26508655999126207,
+    "Beornhard": 0.2637212604445415,
+    "Enith": 0.22363606575282616,
+    "Hilde": 0.24755611381137022
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.395,
+    "Beornhard": 11.245,
+    "Enith": 10.34,
+    "Hilde": 6.95
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Enith",
+    "Felix",
+    "Sable"
+   ],
+   "up": 0.0365,
+   "own": 0.608,
+   "walkover": 0.0185,
+   "dmg_share": {
+    "Browndog": 0.2012312684398562,
+    "Enith": 0.1429682681675992,
+    "Felix": 0.3069114386838318,
+    "Sable": 0.3488890247087128
+   },
+   "hits_share": {
+    "Browndog": 0.31829974057074434,
+    "Enith": 0.23415153329342114,
+    "Felix": 0.23415153329342114,
+    "Sable": 0.21339719284241335
+   },
+   "downs_per_10": {
+    "Browndog": 5.765,
+    "Enith": 9.17,
+    "Felix": 5.865,
+    "Sable": 7.97
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Felix",
+    "Hanforth"
+   ],
+   "up": 0.0355,
+   "own": 0.765,
+   "walkover": 0.04,
+   "dmg_share": {
+    "Beornhard": 0.3398316613281737,
+    "Carrick": 0.3356259044274263,
+    "Felix": 0.27645263916665314,
+    "Hanforth": 0.04808979507774688
+   },
+   "hits_share": {
+    "Beornhard": 0.23340807174887893,
+    "Carrick": 0.26532137518684606,
+    "Felix": 0.24028400597907323,
+    "Hanforth": 0.2609865470852018
+   },
+   "downs_per_10": {
+    "Beornhard": 4.14,
+    "Carrick": 5.215,
+    "Felix": 3.895,
+    "Hanforth": 6.35
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Enith",
+    "Hilde",
+    "Jackal"
+   ],
+   "up": 0.035,
+   "own": 0.3975,
+   "walkover": 0.0095,
+   "dmg_share": {
+    "Ashleigh": 0.04507189779134123,
+    "Enith": 0.10928852221590027,
+    "Hilde": 0.46073423679718617,
+    "Jackal": 0.38490534319557235
+   },
+   "hits_share": {
+    "Ashleigh": 0.29070499971364755,
+    "Enith": 0.2505011167745261,
+    "Hilde": 0.2732947712043984,
+    "Jackal": 0.185499112307428
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.585,
+    "Enith": 12.19,
+    "Hilde": 7.405,
+    "Jackal": 9.635
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Carrick",
+    "Felix"
+   ],
+   "up": 0.035,
+   "own": 0.7445,
+   "walkover": 0.1095,
+   "dmg_share": {
+    "Beornhard": 0.29200343938091144,
+    "Browndog": 0.14998387790197765,
+    "Carrick": 0.32106620808254516,
+    "Felix": 0.23694647463456578
+   },
+   "hits_share": {
+    "Beornhard": 0.23116463504185636,
+    "Browndog": 0.3500514025554413,
+    "Carrick": 0.18262593626083126,
+    "Felix": 0.23615802614187106
+   },
+   "downs_per_10": {
+    "Beornhard": 5.735,
+    "Browndog": 5.695,
+    "Carrick": 5.42,
+    "Felix": 5.925
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Enith",
+    "Felix",
+    "Sable"
+   ],
+   "up": 0.035,
+   "own": 0.772,
+   "walkover": 0.0895,
+   "dmg_share": {
+    "Carrick": 0.3222197266084086,
+    "Enith": 0.11618881465888732,
+    "Felix": 0.2426311198399557,
+    "Sable": 0.3189603388927484
+   },
+   "hits_share": {
+    "Carrick": 0.18506111362607514,
+    "Enith": 0.31154368492530554,
+    "Felix": 0.27080126754187417,
+    "Sable": 0.23259393390674513
+   },
+   "downs_per_10": {
+    "Carrick": 3.725,
+    "Enith": 8.1,
+    "Felix": 4.295,
+    "Sable": 5.72
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Felix",
+    "Jackal"
+   ],
+   "up": 0.0335,
+   "own": 0.6735,
+   "walkover": 0.232,
+   "dmg_share": {
+    "Beornhard": 0.27349764245010355,
+    "Carrick": 0.23979806478754734,
+    "Felix": 0.20926192024214743,
+    "Jackal": 0.2774423725202017
+   },
+   "hits_share": {
+    "Beornhard": 0.2569365568716534,
+    "Carrick": 0.26553626480610093,
+    "Felix": 0.29141651792957973,
+    "Jackal": 0.1861106603926659
+   },
+   "downs_per_10": {
+    "Beornhard": 5.16,
+    "Carrick": 7.78,
+    "Felix": 5.895,
+    "Jackal": 6.605
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Felix",
+    "Jackal"
+   ],
+   "up": 0.0325,
+   "own": 0.661,
+   "walkover": 0.1195,
+   "dmg_share": {
+    "Beornhard": 0.28778263474382587,
+    "Browndog": 0.14787982337408748,
+    "Felix": 0.24694343976745733,
+    "Jackal": 0.3173941021146293
+   },
+   "hits_share": {
+    "Beornhard": 0.23657039207478722,
+    "Browndog": 0.3623552392911958,
+    "Felix": 0.2404771871075764,
+    "Jackal": 0.16059718152644062
+   },
+   "downs_per_10": {
+    "Beornhard": 6.475,
+    "Browndog": 6.515,
+    "Felix": 5.945,
+    "Jackal": 7.055
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Enith",
+    "Jackal"
+   ],
+   "up": 0.0325,
+   "own": 0.601,
+   "walkover": 0.1545,
+   "dmg_share": {
+    "Beornhard": 0.30297478396858557,
+    "Carrick": 0.26602399461205667,
+    "Enith": 0.1264625640674406,
+    "Jackal": 0.30453865735191715
+   },
+   "hits_share": {
+    "Beornhard": 0.2731174404994147,
+    "Carrick": 0.25860319937573156,
+    "Enith": 0.27826765509168944,
+    "Jackal": 0.19001170503316425
+   },
+   "downs_per_10": {
+    "Beornhard": 5.59,
+    "Carrick": 7.68,
+    "Enith": 8.155,
+    "Jackal": 6.745
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Enith",
+    "Jackal"
+   ],
+   "up": 0.032,
+   "own": 0.529,
+   "walkover": 0.061,
+   "dmg_share": {
+    "Beornhard": 0.32218884526231134,
+    "Browndog": 0.1705851743223426,
+    "Enith": 0.14968778087894413,
+    "Jackal": 0.3575381995364019
+   },
+   "hits_share": {
+    "Beornhard": 0.24612845899974614,
+    "Browndog": 0.36836760599136836,
+    "Enith": 0.22473978167047473,
+    "Jackal": 0.16076415333841076
+   },
+   "downs_per_10": {
+    "Beornhard": 7.115,
+    "Browndog": 7.095,
+    "Enith": 8.92,
+    "Jackal": 7.47
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Enith",
+    "Felix",
+    "Sable"
+   ],
+   "up": 0.0305,
+   "own": 0.688,
+   "walkover": 0.0955,
+   "dmg_share": {
+    "Beornhard": 0.3224134378693733,
+    "Enith": 0.11514145981760412,
+    "Felix": 0.2464350390925751,
+    "Sable": 0.31601006322044745
+   },
+   "hits_share": {
+    "Beornhard": 0.24540861336113562,
+    "Enith": 0.272836634854439,
+    "Felix": 0.2564760606303633,
+    "Sable": 0.22527869115406207
+   },
+   "downs_per_10": {
+    "Beornhard": 4.655,
+    "Enith": 8.42,
+    "Felix": 4.985,
+    "Sable": 6.585
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Enith",
+    "Jackal"
+   ],
+   "up": 0.0295,
+   "own": 0.593,
+   "walkover": 0.065,
+   "dmg_share": {
+    "Browndog": 0.1859592342652527,
+    "Carrick": 0.2916150208878483,
+    "Enith": 0.15017444796400864,
+    "Jackal": 0.3722512968828903
+   },
+   "hits_share": {
+    "Browndog": 0.35107428731919677,
+    "Carrick": 0.23760707765763237,
+    "Enith": 0.2425221176801011,
+    "Jackal": 0.1687965173430698
+   },
+   "downs_per_10": {
+    "Browndog": 5.655,
+    "Carrick": 8.175,
+    "Enith": 7.88,
+    "Jackal": 6.78
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Enith",
+    "Felix",
+    "Hanforth"
+   ],
+   "up": 0.0295,
+   "own": 0.681,
+   "walkover": 0.0045,
+   "dmg_share": {
+    "Carrick": 0.42936435988276056,
+    "Enith": 0.16607064398258092,
+    "Felix": 0.33709114975834664,
+    "Hanforth": 0.06747384637631185
+   },
+   "hits_share": {
+    "Carrick": 0.187373901724699,
+    "Enith": 0.31259355678490075,
+    "Felix": 0.2576635209892613,
+    "Hanforth": 0.24236902050113895
+   },
+   "downs_per_10": {
+    "Carrick": 4.915,
+    "Enith": 8.67,
+    "Felix": 5.09,
+    "Hanforth": 7.06
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Felix",
+    "Jackal"
+   ],
+   "up": 0.0275,
+   "own": 0.6635,
+   "walkover": 0.152,
+   "dmg_share": {
+    "Browndog": 0.16523845109066215,
+    "Carrick": 0.2578588221176137,
+    "Felix": 0.2566424297301573,
+    "Jackal": 0.3202602970615669
+   },
+   "hits_share": {
+    "Browndog": 0.33747079439252337,
+    "Carrick": 0.2410192757009346,
+    "Felix": 0.2508031542056075,
+    "Jackal": 0.1707067757009346
+   },
+   "downs_per_10": {
+    "Browndog": 5.01,
+    "Carrick": 8.295,
+    "Felix": 5.65,
+    "Jackal": 6.73
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.0265,
+   "own": 0.548,
+   "walkover": 0.0355,
+   "dmg_share": {
+    "Ashleigh": 0.02942090005521811,
+    "Browndog": 0.1882765046935395,
+    "Jackal": 0.43628060003681207,
+    "Sable": 0.34602199521443033
+   },
+   "hits_share": {
+    "Ashleigh": 0.26642567224759006,
+    "Browndog": 0.3666286149162861,
+    "Jackal": 0.15169964485032977,
+    "Sable": 0.21524606798579402
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.235,
+    "Browndog": 7.455,
+    "Jackal": 6.49,
+    "Sable": 8.375
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Carrick",
+    "Enith"
+   ],
+   "up": 0.025,
+   "own": 0.6095,
+   "walkover": 0.0365,
+   "dmg_share": {
+    "Beornhard": 0.328700612288783,
+    "Browndog": 0.17548694500718676,
+    "Carrick": 0.36079767307627014,
+    "Enith": 0.1350147696277601
+   },
+   "hits_share": {
+    "Beornhard": 0.23802991704226273,
+    "Browndog": 0.355803775556862,
+    "Carrick": 0.18420536939055457,
+    "Enith": 0.2219609380103207
+   },
+   "downs_per_10": {
+    "Beornhard": 6.625,
+    "Browndog": 6.645,
+    "Carrick": 6.205,
+    "Enith": 8.935
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Hanforth",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.0245,
+   "own": 0.562,
+   "walkover": 0.0055,
+   "dmg_share": {
+    "Ashleigh": 0.03796067501258915,
+    "Hanforth": 0.040296986801887785,
+    "Jackal": 0.5230937686641449,
+    "Sable": 0.3986485695213781
+   },
+   "hits_share": {
+    "Ashleigh": 0.28597907324364724,
+    "Hanforth": 0.30212257100149476,
+    "Jackal": 0.1595814648729447,
+    "Sable": 0.2523168908819133
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.76,
+    "Hanforth": 9.1,
+    "Jackal": 5.68,
+    "Sable": 8.075
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.0235,
+   "own": 0.5405,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.04601026088854929,
+    "Browndog": 0.309269972952977,
+    "Hanforth": 0.12762434959793326,
+    "Sable": 0.5170954165605405
+   },
+   "hits_share": {
+    "Ashleigh": 0.22257378494735205,
+    "Browndog": 0.3524560402510504,
+    "Hanforth": 0.2203952487162197,
+    "Sable": 0.20457492608537786
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.375,
+    "Browndog": 6.665,
+    "Hanforth": 7.555,
+    "Sable": 6.87
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Enith",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.0235,
+   "own": 0.4205,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.06490209059946898,
+    "Enith": 0.2677851112187997,
+    "Hanforth": 0.08139209489942872,
+    "Sable": 0.5859207032823026
+   },
+   "hits_share": {
+    "Ashleigh": 0.26272322625623423,
+    "Enith": 0.26910494985788597,
+    "Hanforth": 0.24776103394647933,
+    "Sable": 0.22041078993940044
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.22,
+    "Enith": 8.445,
+    "Hanforth": 8.21,
+    "Sable": 7.375
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Enith",
+    "Hanforth"
+   ],
+   "up": 0.0235,
+   "own": 0.6645,
+   "walkover": 0.019,
+   "dmg_share": {
+    "Beornhard": 0.3897068989354348,
+    "Carrick": 0.38231024471173786,
+    "Enith": 0.19515876307663949,
+    "Hanforth": 0.03282409327618784
+   },
+   "hits_share": {
+    "Beornhard": 0.23452080920918195,
+    "Carrick": 0.23561065322525712,
+    "Enith": 0.2679653974524896,
+    "Hanforth": 0.2619031401130713
+   },
+   "downs_per_10": {
+    "Beornhard": 4.715,
+    "Carrick": 5.27,
+    "Enith": 6.96,
+    "Hanforth": 7.065
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Carrick",
+    "Jackal"
+   ],
+   "up": 0.0205,
+   "own": 0.4915,
+   "walkover": 0.0435,
+   "dmg_share": {
+    "Ashleigh": 0.03374370585252533,
+    "Browndog": 0.18177262060588908,
+    "Carrick": 0.39280786783174726,
+    "Jackal": 0.39167580570983834
+   },
+   "hits_share": {
+    "Ashleigh": 0.2640392321033431,
+    "Browndog": 0.3776089946773518,
+    "Carrick": 0.19735661742718738,
+    "Jackal": 0.1609951557921177
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.135,
+    "Browndog": 8.45,
+    "Carrick": 7.32,
+    "Jackal": 7.93
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.0195,
+   "own": 0.4925,
+   "walkover": 0.0005,
+   "dmg_share": {
+    "Ashleigh": 0.047318772731036504,
+    "Browndog": 0.268383875056529,
+    "Hanforth": 0.09822355556404817,
+    "Jackal": 0.5860737966483863
+   },
+   "hits_share": {
+    "Ashleigh": 0.24360597619650545,
+    "Browndog": 0.3797417067612054,
+    "Hanforth": 0.22729805013927576,
+    "Jackal": 0.14935426690301343
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.255,
+    "Browndog": 7.26,
+    "Hanforth": 8.17,
+    "Jackal": 6.39
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Enith",
+    "Felix",
+    "Jackal"
+   ],
+   "up": 0.0195,
+   "own": 0.6035,
+   "walkover": 0.0795,
+   "dmg_share": {
+    "Carrick": 0.32687442215812523,
+    "Enith": 0.09527263064070554,
+    "Felix": 0.24544785167387298,
+    "Jackal": 0.3324050955272963
+   },
+   "hits_share": {
+    "Carrick": 0.2159297395517868,
+    "Enith": 0.30087825560266507,
+    "Felix": 0.2973198061780739,
+    "Jackal": 0.18587219866747426
+   },
+   "downs_per_10": {
+    "Carrick": 5.945,
+    "Enith": 10.655,
+    "Felix": 6.67,
+    "Jackal": 7.155
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Enith",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.0175,
+   "own": 0.46,
+   "walkover": 0.0185,
+   "dmg_share": {
+    "Ashleigh": 0.037580355695875825,
+    "Enith": 0.12498574455441978,
+    "Jackal": 0.4604118773371428,
+    "Sable": 0.3770220224125616
+   },
+   "hits_share": {
+    "Ashleigh": 0.30368806492049877,
+    "Enith": 0.27512040641287855,
+    "Jackal": 0.17859734776011085,
+    "Sable": 0.24259418090651183
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.65,
+    "Enith": 10.905,
+    "Jackal": 7.025,
+    "Sable": 8.84
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Enith",
+    "Sable"
+   ],
+   "up": 0.016,
+   "own": 0.3935,
+   "walkover": 0.002,
+   "dmg_share": {
+    "Ashleigh": 0.04358632590904115,
+    "Browndog": 0.25079040057694413,
+    "Enith": 0.23414530492398633,
+    "Sable": 0.4714779685900284
+   },
+   "hits_share": {
+    "Ashleigh": 0.2533581884971764,
+    "Browndog": 0.33713471133285816,
+    "Enith": 0.20883820384889523,
+    "Sable": 0.20066889632107024
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.47,
+    "Browndog": 8.5,
+    "Enith": 9.13,
+    "Sable": 8.76
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Felix",
+    "Sable"
+   ],
+   "up": 0.016,
+   "own": 0.5175,
+   "walkover": 0.003,
+   "dmg_share": {
+    "Ashleigh": 0.03224475528482772,
+    "Browndog": 0.22110034439484497,
+    "Felix": 0.3653164020193801,
+    "Sable": 0.38133849830094724
+   },
+   "hits_share": {
+    "Ashleigh": 0.24121331632061246,
+    "Browndog": 0.33482194640992924,
+    "Felix": 0.22607586126899432,
+    "Sable": 0.19788887600046398
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.655,
+    "Browndog": 8.005,
+    "Felix": 6.67,
+    "Sable": 8.58
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Enith",
+    "Felix",
+    "Jackal"
+   ],
+   "up": 0.016,
+   "own": 0.512,
+   "walkover": 0.087,
+   "dmg_share": {
+    "Beornhard": 0.3158980852884965,
+    "Enith": 0.09632183099417262,
+    "Felix": 0.2603268962444452,
+    "Jackal": 0.32745318747288565
+   },
+   "hits_share": {
+    "Beornhard": 0.2632942459776384,
+    "Enith": 0.27236160349059174,
+    "Felix": 0.28415598581947094,
+    "Jackal": 0.18018816471229887
+   },
+   "downs_per_10": {
+    "Beornhard": 6.88,
+    "Enith": 10.835,
+    "Felix": 7.255,
+    "Jackal": 7.805
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.015,
+   "own": 0.545,
+   "walkover": 0.1085,
+   "dmg_share": {
+    "Ashleigh": 0.03459436863635006,
+    "Beornhard": 0.25162580991908273,
+    "Jackal": 0.3797856140455645,
+    "Sable": 0.3339942073990027
+   },
+   "hits_share": {
+    "Ashleigh": 0.2852496016994158,
+    "Beornhard": 0.3118693574083909,
+    "Jackal": 0.17080456718003187,
+    "Sable": 0.23207647371216145
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.945,
+    "Beornhard": 9.355,
+    "Jackal": 6.665,
+    "Sable": 8.235
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Enith",
+    "Felix",
+    "Hanforth"
+   ],
+   "up": 0.0145,
+   "own": 0.586,
+   "walkover": 0.002,
+   "dmg_share": {
+    "Beornhard": 0.38472722486148836,
+    "Enith": 0.17308865939904508,
+    "Felix": 0.36943410676463195,
+    "Hanforth": 0.07275000897483457
+   },
+   "hits_share": {
+    "Beornhard": 0.24843694703314853,
+    "Enith": 0.2815264834257402,
+    "Felix": 0.23404506311194997,
+    "Hanforth": 0.23599150642916125
+   },
+   "downs_per_10": {
+    "Beornhard": 6.435,
+    "Enith": 8.5,
+    "Felix": 5.365,
+    "Hanforth": 7.315
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Carrick",
+    "Enith",
+    "Felix"
+   ],
+   "up": 0.0145,
+   "own": 0.593,
+   "walkover": 0.0305,
+   "dmg_share": {
+    "Browndog": 0.20662991622725924,
+    "Carrick": 0.32363213038416766,
+    "Enith": 0.16849848204706797,
+    "Felix": 0.3012394713415052
+   },
+   "hits_share": {
+    "Browndog": 0.33752742289327653,
+    "Carrick": 0.20796231771841528,
+    "Enith": 0.21847980384565752,
+    "Felix": 0.23603045554265067
+   },
+   "downs_per_10": {
+    "Browndog": 5.795,
+    "Carrick": 7.875,
+    "Enith": 8.475,
+    "Felix": 6.485
+   }
+  },
+  {
+   "party": [
+    "Browndog",
+    "Enith",
+    "Felix",
+    "Jackal"
+   ],
+   "up": 0.0145,
+   "own": 0.492,
+   "walkover": 0.015,
+   "dmg_share": {
+    "Browndog": 0.2011759566454538,
+    "Enith": 0.11603716778634426,
+    "Felix": 0.30864729565391924,
+    "Jackal": 0.3741395799142827
+   },
+   "hits_share": {
+    "Browndog": 0.3380281690140845,
+    "Enith": 0.24474117431863912,
+    "Felix": 0.25193585756966036,
+    "Jackal": 0.165294799097616
+   },
+   "downs_per_10": {
+    "Browndog": 6.75,
+    "Enith": 11.185,
+    "Felix": 7.475,
+    "Jackal": 8.195
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Carrick",
+    "Sable"
+   ],
+   "up": 0.014,
+   "own": 0.589,
+   "walkover": 0.021,
+   "dmg_share": {
+    "Ashleigh": 0.027296432909502212,
+    "Browndog": 0.2035280876338634,
+    "Carrick": 0.4126893031859768,
+    "Sable": 0.3564861762706576
+   },
+   "hits_share": {
+    "Ashleigh": 0.24788176084602154,
+    "Browndog": 0.36401860228069055,
+    "Carrick": 0.1885073580939033,
+    "Sable": 0.1995922787793846
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.455,
+    "Browndog": 7.385,
+    "Carrick": 6.12,
+    "Sable": 7.87
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Enith",
+    "Felix"
+   ],
+   "up": 0.014,
+   "own": 0.5225,
+   "walkover": 0.021,
+   "dmg_share": {
+    "Beornhard": 0.32558763390541823,
+    "Browndog": 0.18817995934401993,
+    "Enith": 0.17696677774532188,
+    "Felix": 0.30926562900523996
+   },
+   "hits_share": {
+    "Beornhard": 0.22585034013605443,
+    "Browndog": 0.33954451345755693,
+    "Enith": 0.20928719313812483,
+    "Felix": 0.22531795326826382
+   },
+   "downs_per_10": {
+    "Beornhard": 7.56,
+    "Browndog": 7.545,
+    "Enith": 8.92,
+    "Felix": 7.11
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.0135,
+   "own": 0.5885,
+   "walkover": 0.1255,
+   "dmg_share": {
+    "Ashleigh": 0.025191437035380917,
+    "Carrick": 0.2880498574702364,
+    "Jackal": 0.3632943938292996,
+    "Sable": 0.323464311665083
+   },
+   "hits_share": {
+    "Ashleigh": 0.3125277654375833,
+    "Carrick": 0.26003257811343106,
+    "Jackal": 0.18332592921664445,
+    "Sable": 0.24411372723234118
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.475,
+    "Carrick": 7.79,
+    "Jackal": 6.335,
+    "Sable": 7.475
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Carrick",
+    "Sable"
+   ],
+   "up": 0.0125,
+   "own": 0.5945,
+   "walkover": 0.1165,
+   "dmg_share": {
+    "Ashleigh": 0.03172933292259763,
+    "Beornhard": 0.25980970537463166,
+    "Carrick": 0.3709873350034002,
+    "Sable": 0.33747362669937053
+   },
+   "hits_share": {
+    "Ashleigh": 0.2633442447725299,
+    "Beornhard": 0.3060324670986706,
+    "Carrick": 0.21036809406105952,
+    "Sable": 0.22025519406774
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.165,
+    "Beornhard": 8.455,
+    "Carrick": 5.965,
+    "Sable": 7.57
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Enith",
+    "Sable"
+   ],
+   "up": 0.0125,
+   "own": 0.493,
+   "walkover": 0.023,
+   "dmg_share": {
+    "Ashleigh": 0.03653561821971249,
+    "Carrick": 0.36711972495858347,
+    "Enith": 0.18450101240417788,
+    "Sable": 0.4118436444175262
+   },
+   "hits_share": {
+    "Ashleigh": 0.287201106646466,
+    "Carrick": 0.23753375930439366,
+    "Enith": 0.2514985837560108,
+    "Sable": 0.22376655029312956
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.005,
+    "Carrick": 7.81,
+    "Enith": 9.125,
+    "Sable": 7.755
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Enith",
+    "Hanforth"
+   ],
+   "up": 0.012,
+   "own": 0.309,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.07019710030754314,
+    "Browndog": 0.38757253018619237,
+    "Enith": 0.3732710167103489,
+    "Hanforth": 0.1689593527959156
+   },
+   "hits_share": {
+    "Ashleigh": 0.23940042826552463,
+    "Browndog": 0.34021413276231266,
+    "Enith": 0.20539614561027839,
+    "Hanforth": 0.21498929336188438
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.02,
+    "Browndog": 8.655,
+    "Enith": 8.81,
+    "Hanforth": 9.19
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Enith",
+    "Jackal"
+   ],
+   "up": 0.012,
+   "own": 0.3245,
+   "walkover": 0.0005,
+   "dmg_share": {
+    "Ashleigh": 0.04932508973781545,
+    "Browndog": 0.22959914834377432,
+    "Enith": 0.2001323888684164,
+    "Jackal": 0.5209433730499938
+   },
+   "hits_share": {
+    "Ashleigh": 0.26334970686103626,
+    "Browndog": 0.36243595837954895,
+    "Enith": 0.21449321290867798,
+    "Jackal": 0.1597211218507368
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.53,
+    "Browndog": 9.17,
+    "Enith": 10.24,
+    "Jackal": 8.41
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Felix",
+    "Jackal",
+    "Sable"
+   ],
+   "up": 0.012,
+   "own": 0.57,
+   "walkover": 0.0885,
+   "dmg_share": {
+    "Ashleigh": 0.027789795425302986,
+    "Felix": 0.24504014518566797,
+    "Jackal": 0.39454654762640534,
+    "Sable": 0.33262351176262367
+   },
+   "hits_share": {
+    "Ashleigh": 0.2897703254896435,
+    "Felix": 0.3042835000704523,
+    "Jackal": 0.1656333662110751,
+    "Sable": 0.24031280822882908
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.04,
+    "Felix": 8.195,
+    "Jackal": 6.155,
+    "Sable": 8.165
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.0115,
+   "own": 0.469,
+   "walkover": 0.005,
+   "dmg_share": {
+    "Ashleigh": 0.05855428776931376,
+    "Beornhard": 0.4080557099421323,
+    "Hanforth": 0.04562068852780593,
+    "Sable": 0.48776931376074806
+   },
+   "hits_share": {
+    "Ashleigh": 0.2497353377090832,
+    "Beornhard": 0.2838238407791658,
+    "Hanforth": 0.2574105441456701,
+    "Sable": 0.20903027736608087
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.83,
+    "Beornhard": 7.74,
+    "Hanforth": 8.815,
+    "Sable": 6.925
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Enith",
+    "Felix",
+    "Sable"
+   ],
+   "up": 0.0115,
+   "own": 0.403,
+   "walkover": 0.005,
+   "dmg_share": {
+    "Ashleigh": 0.04313982071445169,
+    "Enith": 0.15502818916704375,
+    "Felix": 0.37483642945370493,
+    "Sable": 0.4269955606647996
+   },
+   "hits_share": {
+    "Ashleigh": 0.275049115913556,
+    "Enith": 0.2447460856105257,
+    "Felix": 0.2636185033041615,
+    "Sable": 0.21658629517175687
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.075,
+    "Enith": 10.81,
+    "Felix": 7.71,
+    "Sable": 8.8
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Felix",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.011,
+   "own": 0.4455,
+   "walkover": 0.0005,
+   "dmg_share": {
+    "Ashleigh": 0.05043044915319378,
+    "Felix": 0.36887955110302595,
+    "Hanforth": 0.06689897255886648,
+    "Jackal": 0.5137910271849138
+   },
+   "hits_share": {
+    "Ashleigh": 0.2795895341965293,
+    "Felix": 0.29527749422446675,
+    "Hanforth": 0.2467092892064686,
+    "Jackal": 0.17842368237253534
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.18,
+    "Felix": 7.76,
+    "Hanforth": 8.72,
+    "Jackal": 7.405
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Felix",
+    "Hanforth"
+   ],
+   "up": 0.0105,
+   "own": 0.4905,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.04968024815456625,
+    "Browndog": 0.3003755619553889,
+    "Felix": 0.5004039295250898,
+    "Hanforth": 0.14954026036495496
+   },
+   "hits_share": {
+    "Ashleigh": 0.23082064257411564,
+    "Browndog": 0.35217453573304053,
+    "Felix": 0.2055664295603189,
+    "Hanforth": 0.21143839213252494
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.02,
+    "Browndog": 8.055,
+    "Felix": 6.2,
+    "Hanforth": 8.26
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Felix",
+    "Sable"
+   ],
+   "up": 0.0105,
+   "own": 0.596,
+   "walkover": 0.0705,
+   "dmg_share": {
+    "Ashleigh": 0.02747210507819364,
+    "Carrick": 0.32085200316288875,
+    "Felix": 0.2975256984712704,
+    "Sable": 0.3541501932876472
+   },
+   "hits_share": {
+    "Ashleigh": 0.26686175148097924,
+    "Carrick": 0.23759902933409463,
+    "Felix": 0.2722146884590679,
+    "Sable": 0.22332453072585826
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.315,
+    "Carrick": 7.7,
+    "Felix": 6.285,
+    "Sable": 7.245
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Felix",
+    "Jackal"
+   ],
+   "up": 0.01,
+   "own": 0.4415,
+   "walkover": 0.0175,
+   "dmg_share": {
+    "Ashleigh": 0.039013740384150175,
+    "Browndog": 0.1929217668972858,
+    "Felix": 0.3435337945715806,
+    "Jackal": 0.4245306981469834
+   },
+   "hits_share": {
+    "Ashleigh": 0.24811780336581046,
+    "Browndog": 0.36232285208148807,
+    "Felix": 0.23488706820194863,
+    "Jackal": 0.15467227635075287
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.84,
+    "Browndog": 9.005,
+    "Felix": 7.69,
+    "Jackal": 8.16
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Enith",
+    "Jackal"
+   ],
+   "up": 0.01,
+   "own": 0.345,
+   "walkover": 0.032,
+   "dmg_share": {
+    "Ashleigh": 0.04403249814755313,
+    "Carrick": 0.35180752913095653,
+    "Enith": 0.16721201828184734,
+    "Jackal": 0.436947954439643
+   },
+   "hits_share": {
+    "Ashleigh": 0.30535888671875,
+    "Carrick": 0.24658203125,
+    "Enith": 0.255859375,
+    "Jackal": 0.19219970703125
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.725,
+    "Carrick": 9.455,
+    "Enith": 10.555,
+    "Jackal": 8.645
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Enith",
+    "Felix"
+   ],
+   "up": 0.01,
+   "own": 0.5905,
+   "walkover": 0.098,
+   "dmg_share": {
+    "Beornhard": 0.3200930875158543,
+    "Carrick": 0.2886052726943287,
+    "Enith": 0.14620515491936945,
+    "Felix": 0.24509648487044755
+   },
+   "hits_share": {
+    "Beornhard": 0.2599728823235567,
+    "Carrick": 0.2272175836723043,
+    "Enith": 0.24791265253692998,
+    "Felix": 0.264896881467209
+   },
+   "downs_per_10": {
+    "Beornhard": 5.95,
+    "Carrick": 7.7,
+    "Enith": 8.46,
+    "Felix": 6.745
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Browndog",
+    "Jackal"
+   ],
+   "up": 0.0095,
+   "own": 0.3145,
+   "walkover": 0.0305,
+   "dmg_share": {
+    "Ashleigh": 0.04957588503329828,
+    "Beornhard": 0.2695198037153873,
+    "Browndog": 0.2532001402032948,
+    "Jackal": 0.4277041710480196
+   },
+   "hits_share": {
+    "Ashleigh": 0.2545715310147006,
+    "Beornhard": 0.2585155969881678,
+    "Browndog": 0.32459150745274806,
+    "Jackal": 0.16232136454438353
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.44,
+    "Beornhard": 11.545,
+    "Browndog": 8.575,
+    "Jackal": 9.105
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Carrick",
+    "Jackal"
+   ],
+   "up": 0.0095,
+   "own": 0.4185,
+   "walkover": 0.107,
+   "dmg_share": {
+    "Ashleigh": 0.04261678669300873,
+    "Beornhard": 0.22756994455420304,
+    "Carrick": 0.38335351475368046,
+    "Jackal": 0.3464597539991078
+   },
+   "hits_share": {
+    "Ashleigh": 0.28551740667505543,
+    "Beornhard": 0.3039726766133381,
+    "Carrick": 0.2234405896099227,
+    "Jackal": 0.18706932710168375
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.195,
+    "Beornhard": 10.92,
+    "Carrick": 7.555,
+    "Jackal": 8.625
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Carrick",
+    "Felix"
+   ],
+   "up": 0.0095,
+   "own": 0.518,
+   "walkover": 0.017,
+   "dmg_share": {
+    "Ashleigh": 0.035454614032135456,
+    "Browndog": 0.20257872839212454,
+    "Carrick": 0.4263721980119884,
+    "Felix": 0.33559445956375156
+   },
+   "hits_share": {
+    "Ashleigh": 0.2460416195430898,
+    "Browndog": 0.34714996607102466,
+    "Carrick": 0.18185930784890297,
+    "Felix": 0.22494910653698258
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.34,
+    "Browndog": 8.365,
+    "Carrick": 7.085,
+    "Felix": 7.495
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.0095,
+   "own": 0.596,
+   "walkover": 0.001,
+   "dmg_share": {
+    "Ashleigh": 0.037579772475027744,
+    "Carrick": 0.45534475582685907,
+    "Hanforth": 0.04996184794672586,
+    "Sable": 0.45711362375138737
+   },
+   "hits_share": {
+    "Ashleigh": 0.2576137585094948,
+    "Carrick": 0.23575779290576854,
+    "Hanforth": 0.2881882240535053,
+    "Sable": 0.21844022453123133
+   },
+   "downs_per_10": {
+    "Ashleigh": 5.78,
+    "Carrick": 5.91,
+    "Hanforth": 8.285,
+    "Sable": 6.56
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Felix",
+    "Hanforth",
+    "Sable"
+   ],
+   "up": 0.009,
+   "own": 0.599,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.040882035573810434,
+    "Felix": 0.40867532226437864,
+    "Hanforth": 0.09456762620812884,
+    "Sable": 0.45587501595368213
+   },
+   "hits_share": {
+    "Ashleigh": 0.24994117647058822,
+    "Felix": 0.2771764705882353,
+    "Hanforth": 0.2401764705882353,
+    "Sable": 0.23270588235294118
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.27,
+    "Felix": 5.615,
+    "Hanforth": 7.21,
+    "Sable": 7.045
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Browndog",
+    "Hanforth"
+   ],
+   "up": 0.008,
+   "own": 0.342,
+   "walkover": 0.0005,
+   "dmg_share": {
+    "Ashleigh": 0.07266207624788261,
+    "Beornhard": 0.40729333949300073,
+    "Browndog": 0.3790028671785057,
+    "Hanforth": 0.14104171708061097
+   },
+   "hits_share": {
+    "Ashleigh": 0.23108854051667035,
+    "Beornhard": 0.2653124310002208,
+    "Browndog": 0.28699492161625084,
+    "Hanforth": 0.21660410686685802
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.895,
+    "Beornhard": 9.93,
+    "Browndog": 7.25,
+    "Hanforth": 9.355
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Browndog",
+    "Sable"
+   ],
+   "up": 0.008,
+   "own": 0.4305,
+   "walkover": 0.0315,
+   "dmg_share": {
+    "Ashleigh": 0.04253430953060125,
+    "Beornhard": 0.30546733859465625,
+    "Browndog": 0.25587778517321164,
+    "Sable": 0.39612056670153084
+   },
+   "hits_share": {
+    "Ashleigh": 0.24291873601484473,
+    "Beornhard": 0.2585821099164984,
+    "Browndog": 0.30398952136658847,
+    "Sable": 0.19450963270206845
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.94,
+    "Beornhard": 9.825,
+    "Browndog": 7.42,
+    "Sable": 8.815
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Felix",
+    "Sable"
+   ],
+   "up": 0.008,
+   "own": 0.5195,
+   "walkover": 0.074,
+   "dmg_share": {
+    "Ashleigh": 0.03810272196061518,
+    "Beornhard": 0.28302009417853746,
+    "Felix": 0.3065529119129351,
+    "Sable": 0.3723242719479123
+   },
+   "hits_share": {
+    "Ashleigh": 0.251734266608337,
+    "Beornhard": 0.283669770639335,
+    "Felix": 0.2552965439660021,
+    "Sable": 0.20929941878632585
+   },
+   "downs_per_10": {
+    "Ashleigh": 6.755,
+    "Beornhard": 9.085,
+    "Felix": 6.95,
+    "Sable": 7.975
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Felix",
+    "Jackal"
+   ],
+   "up": 0.008,
+   "own": 0.434,
+   "walkover": 0.0845,
+   "dmg_share": {
+    "Ashleigh": 0.03621565292384352,
+    "Carrick": 0.29624727499221426,
+    "Felix": 0.2978104113264499,
+    "Jackal": 0.3697266607574923
+   },
+   "hits_share": {
+    "Ashleigh": 0.287442793555263,
+    "Carrick": 0.24362108958685977,
+    "Felix": 0.28186320606858506,
+    "Jackal": 0.1870729107892922
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.335,
+    "Carrick": 9.54,
+    "Felix": 7.95,
+    "Jackal": 8.31
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Carrick",
+    "Hanforth"
+   ],
+   "up": 0.0075,
+   "own": 0.503,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.043863171728971966,
+    "Browndog": 0.28758396612149534,
+    "Carrick": 0.5596402842679128,
+    "Hanforth": 0.10891257788161994
+   },
+   "hits_share": {
+    "Ashleigh": 0.2294880613147293,
+    "Browndog": 0.3622383806622777,
+    "Carrick": 0.1812911467033507,
+    "Hanforth": 0.22698241131964234
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.415,
+    "Browndog": 7.79,
+    "Carrick": 6.42,
+    "Hanforth": 8.875
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Carrick",
+    "Felix"
+   ],
+   "up": 0.006,
+   "own": 0.458,
+   "walkover": 0.052,
+   "dmg_share": {
+    "Ashleigh": 0.042546404779722984,
+    "Beornhard": 0.2563948424139073,
+    "Carrick": 0.4100918894382353,
+    "Felix": 0.2909668633681344
+   },
+   "hits_share": {
+    "Ashleigh": 0.2632564672831558,
+    "Beornhard": 0.2770104178859885,
+    "Carrick": 0.20402668851691444,
+    "Felix": 0.25570642631394125
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.15,
+    "Beornhard": 10.61,
+    "Carrick": 7.28,
+    "Felix": 8.22
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Enith",
+    "Sable"
+   ],
+   "up": 0.006,
+   "own": 0.3955,
+   "walkover": 0.0425,
+   "dmg_share": {
+    "Ashleigh": 0.04774054838166535,
+    "Beornhard": 0.3291326140734888,
+    "Enith": 0.19226385525003561,
+    "Sable": 0.4308629822948102
+   },
+   "hits_share": {
+    "Ashleigh": 0.2768653214453308,
+    "Beornhard": 0.2756335053965275,
+    "Enith": 0.23545283904270295,
+    "Sable": 0.21204833411543877
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.795,
+    "Beornhard": 9.17,
+    "Enith": 9.455,
+    "Sable": 8.26
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Enith",
+    "Jackal"
+   ],
+   "up": 0.0055,
+   "own": 0.267,
+   "walkover": 0.0275,
+   "dmg_share": {
+    "Ashleigh": 0.059153317238190985,
+    "Beornhard": 0.3010574361759116,
+    "Enith": 0.1787881678689102,
+    "Jackal": 0.4610010787169872
+   },
+   "hits_share": {
+    "Ashleigh": 0.2889816360601002,
+    "Beornhard": 0.28469671675013913,
+    "Enith": 0.2409571508069004,
+    "Jackal": 0.18536449638286032
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.295,
+    "Beornhard": 11.055,
+    "Enith": 10.89,
+    "Jackal": 8.98
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Felix",
+    "Hanforth"
+   ],
+   "up": 0.0055,
+   "own": 0.3955,
+   "walkover": 0.002,
+   "dmg_share": {
+    "Ashleigh": 0.0672822673938192,
+    "Beornhard": 0.37227317798710957,
+    "Felix": 0.463222332396849,
+    "Hanforth": 0.09722222222222222
+   },
+   "hits_share": {
+    "Ashleigh": 0.254001358036667,
+    "Beornhard": 0.28572121447279075,
+    "Felix": 0.23338830148414008,
+    "Hanforth": 0.22688912600640218
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.73,
+    "Beornhard": 9.84,
+    "Felix": 6.865,
+    "Hanforth": 9.28
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.0055,
+   "own": 0.45,
+   "walkover": 0.0035,
+   "dmg_share": {
+    "Ashleigh": 0.045398208604321325,
+    "Carrick": 0.4062392190434816,
+    "Hanforth": 0.036409286636086016,
+    "Jackal": 0.5119532857161111
+   },
+   "hits_share": {
+    "Ashleigh": 0.274902584929477,
+    "Carrick": 0.26063333516272436,
+    "Hanforth": 0.27874430602052575,
+    "Jackal": 0.18571977388727293
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.38,
+    "Carrick": 7.93,
+    "Hanforth": 9.565,
+    "Jackal": 7.34
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Enith",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.0055,
+   "own": 0.32,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.07021239906733343,
+    "Enith": 0.2207210922095351,
+    "Hanforth": 0.06279754987591936,
+    "Jackal": 0.6462689588472121
+   },
+   "hits_share": {
+    "Ashleigh": 0.2776093324425716,
+    "Enith": 0.278020453260702,
+    "Hanforth": 0.26363122462613703,
+    "Jackal": 0.18073898967058943
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.59,
+    "Enith": 10.0,
+    "Hanforth": 9.585,
+    "Jackal": 7.785
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Felix",
+    "Jackal"
+   ],
+   "up": 0.005,
+   "own": 0.371,
+   "walkover": 0.063,
+   "dmg_share": {
+    "Ashleigh": 0.04730414761615091,
+    "Beornhard": 0.25444948097564807,
+    "Felix": 0.30835344675339965,
+    "Jackal": 0.3898929246548014
+   },
+   "hits_share": {
+    "Ashleigh": 0.2756208063313643,
+    "Beornhard": 0.2836497103859609,
+    "Felix": 0.2661581694098756,
+    "Jackal": 0.17457131387279923
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.86,
+    "Beornhard": 10.98,
+    "Felix": 8.565,
+    "Jackal": 8.58
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Hanforth",
+    "Jackal"
+   ],
+   "up": 0.005,
+   "own": 0.3885,
+   "walkover": 0.0085,
+   "dmg_share": {
+    "Ashleigh": 0.06362183735910977,
+    "Beornhard": 0.36926317901389377,
+    "Hanforth": 0.03393546815325418,
+    "Jackal": 0.5331795154737423
+   },
+   "hits_share": {
+    "Ashleigh": 0.2653239032390324,
+    "Beornhard": 0.3061705617056171,
+    "Hanforth": 0.2576363263632636,
+    "Jackal": 0.1708692086920869
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.0,
+    "Beornhard": 9.16,
+    "Hanforth": 9.815,
+    "Jackal": 7.2
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Felix",
+    "Hanforth"
+   ],
+   "up": 0.005,
+   "own": 0.495,
+   "walkover": 0.0005,
+   "dmg_share": {
+    "Ashleigh": 0.04687111655340895,
+    "Carrick": 0.4480338015191285,
+    "Felix": 0.42033668155889503,
+    "Hanforth": 0.0847584003685675
+   },
+   "hits_share": {
+    "Ashleigh": 0.2576368264743318,
+    "Carrick": 0.24480271531607975,
+    "Felix": 0.25344717861688587,
+    "Hanforth": 0.2441132795927026
+   },
+   "downs_per_10": {
+    "Ashleigh": 7.66,
+    "Carrick": 7.88,
+    "Felix": 6.765,
+    "Hanforth": 9.25
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Carrick",
+    "Enith"
+   ],
+   "up": 0.0045,
+   "own": 0.37,
+   "walkover": 0.001,
+   "dmg_share": {
+    "Ashleigh": 0.044031792923964266,
+    "Browndog": 0.25215011477936145,
+    "Carrick": 0.5085077404132057,
+    "Enith": 0.19531035188346857
+   },
+   "hits_share": {
+    "Ashleigh": 0.2489486527179274,
+    "Browndog": 0.35797725974767663,
+    "Carrick": 0.19131924614505996,
+    "Enith": 0.20175484138933597
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.335,
+    "Browndog": 8.895,
+    "Carrick": 7.975,
+    "Enith": 10.43
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Browndog",
+    "Enith"
+   ],
+   "up": 0.004,
+   "own": 0.204,
+   "walkover": 0.0005,
+   "dmg_share": {
+    "Ashleigh": 0.06726457399103139,
+    "Beornhard": 0.34428230774865104,
+    "Browndog": 0.3562621568611493,
+    "Enith": 0.23219096139916826
+   },
+   "hits_share": {
+    "Ashleigh": 0.24612285058332942,
+    "Beornhard": 0.23708007309188023,
+    "Browndog": 0.31949585344140935,
+    "Enith": 0.19730122288338098
+   },
+   "downs_per_10": {
+    "Ashleigh": 10.415,
+    "Beornhard": 11.415,
+    "Browndog": 8.995,
+    "Enith": 10.515
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Browndog",
+    "Felix"
+   ],
+   "up": 0.004,
+   "own": 0.3415,
+   "walkover": 0.006,
+   "dmg_share": {
+    "Ashleigh": 0.0508499982965966,
+    "Beornhard": 0.281497632269274,
+    "Browndog": 0.2828739822164685,
+    "Felix": 0.3847783872176609
+   },
+   "hits_share": {
+    "Ashleigh": 0.2364854802680566,
+    "Beornhard": 0.2372300819061802,
+    "Browndog": 0.3023579051873914,
+    "Felix": 0.2239265326383718
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.47,
+    "Beornhard": 11.31,
+    "Browndog": 8.45,
+    "Felix": 8.485
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Carrick",
+    "Enith"
+   ],
+   "up": 0.004,
+   "own": 0.3205,
+   "walkover": 0.019,
+   "dmg_share": {
+    "Ashleigh": 0.0525140572031748,
+    "Beornhard": 0.31379196015941646,
+    "Carrick": 0.48102362151445643,
+    "Enith": 0.15267036112295232
+   },
+   "hits_share": {
+    "Ashleigh": 0.27737306843267107,
+    "Beornhard": 0.27687637969094925,
+    "Carrick": 0.21363134657836644,
+    "Enith": 0.23211920529801325
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.915,
+    "Beornhard": 10.665,
+    "Carrick": 8.025,
+    "Enith": 11.14
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Browndog",
+    "Enith",
+    "Felix"
+   ],
+   "up": 0.0035,
+   "own": 0.293,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.05330963403880071,
+    "Browndog": 0.2664379409171076,
+    "Enith": 0.23402364417989419,
+    "Felix": 0.44622878086419754
+   },
+   "hits_share": {
+    "Ashleigh": 0.2393493415956623,
+    "Browndog": 0.336560805577072,
+    "Enith": 0.19834430673896206,
+    "Felix": 0.22574554608830363
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.61,
+    "Browndog": 9.665,
+    "Enith": 10.615,
+    "Felix": 8.595
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Browndog",
+    "Carrick"
+   ],
+   "up": 0.003,
+   "own": 0.386,
+   "walkover": 0.0355,
+   "dmg_share": {
+    "Ashleigh": 0.04507114086938327,
+    "Beornhard": 0.28081027357849037,
+    "Browndog": 0.2522820003138568,
+    "Carrick": 0.4218365852382696
+   },
+   "hits_share": {
+    "Ashleigh": 0.24345386533665836,
+    "Beornhard": 0.2509351620947631,
+    "Browndog": 0.3134351620947631,
+    "Carrick": 0.19217581047381546
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.735,
+    "Beornhard": 10.68,
+    "Browndog": 8.045,
+    "Carrick": 8.61
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Enith",
+    "Hanforth"
+   ],
+   "up": 0.003,
+   "own": 0.361,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.06512953258239937,
+    "Carrick": 0.5641808730489001,
+    "Enith": 0.28863230802869255,
+    "Hanforth": 0.08205728634000804
+   },
+   "hits_share": {
+    "Ashleigh": 0.25912372167635855,
+    "Carrick": 0.23621415680770003,
+    "Enith": 0.25310808101062765,
+    "Hanforth": 0.2515540405053138
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.085,
+    "Carrick": 8.04,
+    "Enith": 9.61,
+    "Hanforth": 9.575
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Carrick",
+    "Enith",
+    "Felix"
+   ],
+   "up": 0.0025,
+   "own": 0.332,
+   "walkover": 0.0095,
+   "dmg_share": {
+    "Ashleigh": 0.044709716635842785,
+    "Carrick": 0.3950026512849032,
+    "Enith": 0.19117057461750364,
+    "Felix": 0.3691170574617504
+   },
+   "hits_share": {
+    "Ashleigh": 0.2740853486667794,
+    "Carrick": 0.22295507074806922,
+    "Enith": 0.23417329048988106,
+    "Felix": 0.26878629009527033
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.025,
+    "Carrick": 9.435,
+    "Enith": 10.85,
+    "Felix": 8.77
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Enith",
+    "Felix",
+    "Hanforth"
+   ],
+   "up": 0.0025,
+   "own": 0.2745,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.07457115984652822,
+    "Enith": 0.25793111685054415,
+    "Felix": 0.5467730618216562,
+    "Hanforth": 0.12072466148127137
+   },
+   "hits_share": {
+    "Ashleigh": 0.25926785134320046,
+    "Enith": 0.2571799749454832,
+    "Felix": 0.24845729132835337,
+    "Hanforth": 0.23509488238296292
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.505,
+    "Enith": 10.465,
+    "Felix": 8.25,
+    "Hanforth": 9.87
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Enith",
+    "Felix",
+    "Jackal"
+   ],
+   "up": 0.0025,
+   "own": 0.28,
+   "walkover": 0.009,
+   "dmg_share": {
+    "Ashleigh": 0.049407730673316705,
+    "Enith": 0.1274666594383606,
+    "Felix": 0.36396102135964437,
+    "Jackal": 0.4591645885286783
+   },
+   "hits_share": {
+    "Ashleigh": 0.288026256224536,
+    "Enith": 0.2476233589859665,
+    "Felix": 0.28168854685378,
+    "Jackal": 0.18266183793571752
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.61,
+    "Enith": 12.275,
+    "Felix": 9.205,
+    "Jackal": 9.16
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Carrick",
+    "Hanforth"
+   ],
+   "up": 0.002,
+   "own": 0.424,
+   "walkover": 0.0065,
+   "dmg_share": {
+    "Ashleigh": 0.058384801288936625,
+    "Beornhard": 0.3704551557465091,
+    "Carrick": 0.5263493555316864,
+    "Hanforth": 0.04481068743286788
+   },
+   "hits_share": {
+    "Ashleigh": 0.25349667691697253,
+    "Beornhard": 0.2896042059319512,
+    "Carrick": 0.19452435274278346,
+    "Hanforth": 0.2623747644082928
+   },
+   "downs_per_10": {
+    "Ashleigh": 8.075,
+    "Beornhard": 9.12,
+    "Carrick": 6.99,
+    "Hanforth": 10.5
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Enith",
+    "Felix"
+   ],
+   "up": 0.002,
+   "own": 0.242,
+   "walkover": 0.0095,
+   "dmg_share": {
+    "Ashleigh": 0.06442613756382522,
+    "Beornhard": 0.32087785620115233,
+    "Enith": 0.2171113490519998,
+    "Felix": 0.39758465718302266
+   },
+   "hits_share": {
+    "Ashleigh": 0.26588697992134136,
+    "Beornhard": 0.25765886979921343,
+    "Enith": 0.2211757400124198,
+    "Felix": 0.25527841026702547
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.61,
+    "Beornhard": 11.045,
+    "Enith": 10.835,
+    "Felix": 9.16
+   }
+  },
+  {
+   "party": [
+    "Ashleigh",
+    "Beornhard",
+    "Enith",
+    "Hanforth"
+   ],
+   "up": 0.002,
+   "own": 0.213,
+   "walkover": 0.001,
+   "dmg_share": {
+    "Ashleigh": 0.09728557997005258,
+    "Beornhard": 0.46132952606470035,
+    "Enith": 0.3495751645366856,
+    "Hanforth": 0.09180972942856148
+   },
+   "hits_share": {
+    "Ashleigh": 0.26088735339576324,
+    "Beornhard": 0.2719338121647423,
+    "Enith": 0.23106646058732613,
+    "Hanforth": 0.23611237385216838
+   },
+   "downs_per_10": {
+    "Ashleigh": 9.555,
+    "Beornhard": 9.81,
+    "Enith": 9.16,
+    "Hanforth": 9.82
+   }
+  }
+ ],
+ "round2": [
+  {
+   "party": [
+    "Browndog",
+    "Hanforth",
+    "Hilde",
+    "Sable"
+   ],
+   "kind": "top",
+   "up": 0.2715,
+   "gain": 13.65,
+   "shapley": {
+    "Browndog": -7.720833333333332,
+    "Hanforth": 12.112499999999999,
+    "Hilde": 8.487499999999999,
+    "Sable": 0.7708333333333338
+   },
+   "pairs": {
+    "Browndog+Hanforth": -3.3249999999999993,
+    "Browndog+Hilde": -0.7249999999999984,
+    "Browndog+Sable": -10.200000000000001,
+    "Hanforth+Hilde": -1.2749999999999977,
+    "Hanforth+Sable": -3.2499999999999987,
+    "Hilde+Sable": -4.399999999999999
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Hanforth",
+    "Hilde",
+    "Sable"
+   ],
+   "kind": "top",
+   "up": 0.2685,
+   "gain": 13.350000000000001,
+   "shapley": {
+    "Beornhard": -8.916666666666666,
+    "Hanforth": 10.191666666666666,
+    "Hilde": 10.208333333333334,
+    "Sable": 1.8666666666666671
+   },
+   "pairs": {
+    "Beornhard+Hanforth": -6.7333333333333325,
+    "Beornhard+Hilde": 1.241666666666668,
+    "Beornhard+Sable": -7.658333333333333,
+    "Hanforth+Hilde": 0.666666666666668,
+    "Hanforth+Sable": -6.78333333333333,
+    "Hilde+Sable": -2.208333333333332
+   }
+  },
+  {
+   "party": [
+    "Felix",
+    "Hanforth",
+    "Hilde",
+    "Sable"
+   ],
+   "kind": "top",
+   "up": 0.2655,
+   "gain": 13.05,
+   "shapley": {
+    "Felix": -10.3875,
+    "Hanforth": 10.329166666666667,
+    "Hilde": 9.537499999999998,
+    "Sable": 3.570833333333334
+   },
+   "pairs": {
+    "Felix+Hanforth": -6.716666666666668,
+    "Felix+Hilde": 0.0833333333333343,
+    "Felix+Sable": -5.216666666666665,
+    "Hanforth+Hilde": -0.29166666666666485,
+    "Hanforth+Sable": -4.291666666666663,
+    "Hilde+Sable": -1.0416666666666656
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Browndog",
+    "Hanforth",
+    "Hilde"
+   ],
+   "kind": "top",
+   "up": 0.265,
+   "gain": 13.0,
+   "shapley": {
+    "Beornhard": -6.245833333333333,
+    "Browndog": -3.9541666666666657,
+    "Hanforth": 11.170833333333333,
+    "Hilde": 12.029166666666665
+   },
+   "pairs": {
+    "Beornhard+Browndog": -2.6416666666666657,
+    "Beornhard+Hanforth": -5.216666666666664,
+    "Beornhard+Hilde": 1.2083333333333346,
+    "Browndog+Hanforth": -5.341666666666662,
+    "Browndog+Hilde": 1.433333333333334,
+    "Hanforth+Hilde": 1.2083333333333348
+   }
+  },
+  {
+   "party": [
+    "Hanforth",
+    "Hilde",
+    "Jackal",
+    "Sable"
+   ],
+   "kind": "top",
+   "up": 0.2645,
+   "gain": 12.950000000000001,
+   "shapley": {
+    "Hanforth": 10.4625,
+    "Hilde": 7.187499999999999,
+    "Jackal": -8.737499999999999,
+    "Sable": 4.037500000000001
+   },
+   "pairs": {
+    "Hanforth+Hilde": -1.4999999999999982,
+    "Hanforth+Jackal": -6.125,
+    "Hanforth+Sable": -4.124999999999998,
+    "Hilde+Jackal": -3.8999999999999977,
+    "Hilde+Sable": -2.0499999999999985,
+    "Jackal+Sable": -4.024999999999998
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Jackal",
+    "Sable"
+   ],
+   "kind": "middle",
+   "up": 0.0705,
+   "gain": -6.450000000000002,
+   "shapley": {
+    "Beornhard": -3.8291666666666666,
+    "Carrick": -3.9875000000000003,
+    "Jackal": -2.695833333333334,
+    "Sable": 4.062499999999999
+   },
+   "pairs": {
+    "Beornhard+Carrick": 1.5749999999999993,
+    "Beornhard+Jackal": 0.8249999999999998,
+    "Beornhard+Sable": -3.1,
+    "Carrick+Jackal": 0.8000000000000007,
+    "Carrick+Sable": -2.5749999999999993,
+    "Jackal+Sable": -1.3749999999999996
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Felix",
+    "Jackal"
+   ],
+   "kind": "middle",
+   "up": 0.0335,
+   "gain": -10.15,
+   "shapley": {
+    "Beornhard": -2.595833333333333,
+    "Carrick": -2.504166666666667,
+    "Felix": -3.4041666666666663,
+    "Jackal": -1.645833333333334
+   },
+   "pairs": {
+    "Beornhard+Carrick": -0.24999999999999928,
+    "Beornhard+Felix": 0.22499999999999998,
+    "Beornhard+Jackal": 0.6749999999999998,
+    "Carrick+Felix": 1.3499999999999999,
+    "Carrick+Jackal": 0.35000000000000053,
+    "Felix+Jackal": 1.1250000000000002
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Carrick",
+    "Felix",
+    "Sable"
+   ],
+   "kind": "middle",
+   "up": 0.0615,
+   "gain": -7.350000000000001,
+   "shapley": {
+    "Beornhard": -3.0583333333333336,
+    "Carrick": -3.5249999999999995,
+    "Felix": -4.641666666666667,
+    "Sable": 3.875
+   },
+   "pairs": {
+    "Beornhard+Carrick": 1.725,
+    "Beornhard+Felix": 1.8749999999999996,
+    "Beornhard+Sable": -1.5999999999999994,
+    "Carrick+Felix": 1.7500000000000004,
+    "Carrick+Sable": -2.6249999999999996,
+    "Felix+Sable": -2.1750000000000003
+   }
+  },
+  {
+   "party": [
+    "Carrick",
+    "Felix",
+    "Jackal",
+    "Sable"
+   ],
+   "kind": "middle",
+   "up": 0.07,
+   "gain": -6.5,
+   "shapley": {
+    "Carrick": -3.4416666666666664,
+    "Felix": -4.825,
+    "Jackal": -2.1083333333333334,
+    "Sable": 3.874999999999999
+   },
+   "pairs": {
+    "Carrick+Felix": 2.583333333333333,
+    "Carrick+Jackal": 1.7833333333333337,
+    "Carrick+Sable": -3.1666666666666656,
+    "Felix+Jackal": 1.6083333333333338,
+    "Felix+Sable": -3.3416666666666663,
+    "Jackal+Sable": -1.041666666666665
+   }
+  },
+  {
+   "party": [
+    "Beornhard",
+    "Felix",
+    "Jackal",
+    "Sable"
+   ],
+   "kind": "middle",
+   "up": 0.0565,
+   "gain": -7.850000000000001,
+   "shapley": {
+    "Beornhard": -3.6458333333333335,
+    "Felix": -5.1875,
+    "Jackal": -2.779166666666667,
+    "Sable": 3.7624999999999993
+   },
+   "pairs": {
+    "Beornhard+Felix": 1.9,
+    "Beornhard+Jackal": 0.9999999999999997,
+    "Beornhard+Sable": -3.2499999999999996,
+    "Felix+Jackal": 0.800000000000001,
+    "Felix+Sable": -2.9,
+    "Jackal+Sable": -2.1499999999999986
+   }
+  }
+ ],
+ "flags": [
+  [
+   "Browndog+Enith+Hanforth+Hilde",
+   "extreme: damage",
+   "Hilde 53%"
+  ],
+  [
+   "Ashleigh+Browndog+Hanforth+Hilde",
+   "extreme: damage",
+   "Hilde 59%"
+  ],
+  [
+   "Ashleigh+Felix+Hanforth+Hilde",
+   "extreme: damage",
+   "Hilde 52%"
+  ],
+  [
+   "Ashleigh+Beornhard+Hanforth+Hilde",
+   "extreme: damage",
+   "Hilde 53%"
+  ],
+  [
+   "Ashleigh+Enith+Hanforth+Hilde",
+   "extreme: damage",
+   "Hilde 65%"
+  ],
+  [
+   "Ashleigh+Browndog+Enith+Hilde",
+   "extreme: damage",
+   "Hilde 55%"
+  ],
+  [
+   "Browndog+Enith+Hanforth+Jackal",
+   "extreme: damage",
+   "Jackal 51%"
+  ],
+  [
+   "Ashleigh+Enith+Felix+Hilde",
+   "extreme: damage",
+   "Hilde 50%"
+  ],
+  [
+   "Ashleigh+Hanforth+Jackal+Sable",
+   "extreme: damage",
+   "Jackal 52%"
+  ],
+  [
+   "Ashleigh+Browndog+Hanforth+Sable",
+   "extreme: damage",
+   "Sable 52%"
+  ],
+  [
+   "Ashleigh+Enith+Hanforth+Sable",
+   "extreme: damage",
+   "Sable 59%"
+  ],
+  [
+   "Ashleigh+Browndog+Hanforth+Jackal",
+   "extreme: damage",
+   "Jackal 59%"
+  ],
+  [
+   "Ashleigh+Browndog+Enith+Jackal",
+   "extreme: damage",
+   "Jackal 52%"
+  ],
+  [
+   "Ashleigh+Felix+Hanforth+Jackal",
+   "extreme: damage",
+   "Jackal 51%"
+  ],
+  [
+   "Ashleigh+Browndog+Felix+Hanforth",
+   "extreme: damage",
+   "Felix 50%"
+  ],
+  [
+   "Ashleigh+Browndog+Carrick+Hanforth",
+   "extreme: damage",
+   "Carrick 56%"
+  ],
+  [
+   "Ashleigh+Carrick+Hanforth+Jackal",
+   "extreme: damage",
+   "Jackal 51%"
+  ],
+  [
+   "Ashleigh+Enith+Hanforth+Jackal",
+   "extreme: damage",
+   "Jackal 65%"
+  ],
+  [
+   "Ashleigh+Beornhard+Hanforth+Jackal",
+   "extreme: damage",
+   "Jackal 53%"
+  ],
+  [
+   "Ashleigh+Browndog+Carrick+Enith",
+   "extreme: damage",
+   "Carrick 51%"
+  ],
+  [
+   "Ashleigh+Carrick+Enith+Hanforth",
+   "extreme: damage",
+   "Carrick 56%"
+  ],
+  [
+   "Ashleigh+Enith+Felix+Hanforth",
+   "extreme: damage",
+   "Felix 55%"
+  ],
+  [
+   "Ashleigh+Beornhard+Carrick+Hanforth",
+   "extreme: damage",
+   "Carrick 53%"
+  ],
+  [
+   "Browndog+Hanforth+Hilde+Sable",
+   "carries",
+   "Hanforth +12 of the party's +14"
+  ],
+  [
+   "Browndog+Hanforth+Hilde+Sable",
+   "carries",
+   "Hilde +8 of the party's +14"
+  ],
+  [
+   "Browndog+Hanforth+Hilde+Sable",
+   "eclipse",
+   "Browndog+Sable -10"
+  ],
+  [
+   "Beornhard+Hanforth+Hilde+Sable",
+   "carries",
+   "Hanforth +10 of the party's +13"
+  ],
+  [
+   "Beornhard+Hanforth+Hilde+Sable",
+   "carries",
+   "Hilde +10 of the party's +13"
+  ],
+  [
+   "Felix+Hanforth+Hilde+Sable",
+   "doesn't pull weight",
+   "Felix -10"
+  ],
+  [
+   "Felix+Hanforth+Hilde+Sable",
+   "carries",
+   "Hanforth +10 of the party's +13"
+  ],
+  [
+   "Felix+Hanforth+Hilde+Sable",
+   "carries",
+   "Hilde +10 of the party's +13"
+  ],
+  [
+   "Beornhard+Browndog+Hanforth+Hilde",
+   "carries",
+   "Hanforth +11 of the party's +13"
+  ],
+  [
+   "Beornhard+Browndog+Hanforth+Hilde",
+   "carries",
+   "Hilde +12 of the party's +13"
+  ],
+  [
+   "Hanforth+Hilde+Jackal+Sable",
+   "carries",
+   "Hanforth +10 of the party's +13"
+  ],
+  [
+   "Hanforth+Hilde+Jackal+Sable",
+   "carries",
+   "Hilde +7 of the party's +13"
+  ]
+ ]
+}

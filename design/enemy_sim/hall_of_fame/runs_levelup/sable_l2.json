@@ -1,0 +1,1484 @@
+[
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 0.936,
+  "validated": 0.9153333333333333,
+  "base_search": 0.44,
+  "base_validated": 0.49333333333333335,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 1,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 4,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T131",
+     "name": "Hand of Chaos",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 0.936,
+  "validated": 0.912,
+  "base_search": 0.44,
+  "base_validated": 0.49333333333333335,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 4,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T131",
+     "name": "Hand of Chaos",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 0.936,
+  "validated": 0.912,
+  "base_search": 0.44,
+  "base_validated": 0.49333333333333335,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 4,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T131",
+     "name": "Hand of Chaos",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 0.936,
+  "validated": 0.912,
+  "base_search": 0.44,
+  "base_validated": 0.49333333333333335,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 4,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T131",
+     "name": "Hand of Chaos",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 0.934,
+  "validated": 0.9106666666666666,
+  "base_search": 0.44,
+  "base_validated": 0.49333333333333335,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 4,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T131",
+     "name": "Hand of Chaos",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 2,
+  "name": "Sable (L2, proposed)",
+  "search": 0.934,
+  "validated": 0.9106666666666666,
+  "base_search": 0.44,
+  "base_validated": 0.49333333333333335,
+  "build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 1
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 3,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "normalized",
+  "start_build": {
+   "charName": "Sable (Level 2, proposed)",
+   "charConcept": "Big dick chaos archer, extreme violence",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 2,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 4,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-09-20T23:52:29.737Z",
+   "techniques": [
+    {
+     "id": "T131",
+     "name": "Hand of Chaos",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T078",
+     "name": "Perfect Strike",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "features": [
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+    "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 105: no change."
+   ]
+  }
+ }
+]
