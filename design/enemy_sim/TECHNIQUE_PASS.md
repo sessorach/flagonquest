@@ -468,9 +468,9 @@ as Level 3 does (rank correlation 0.88). Top and bottom, roster means:
 | Lie in Wait | 1 | 10 | -1.10 ± 0.09 | -0.37 | -2.11 |
 
 - Most things are worth less at Level 2 than at Level 3, losses
-  included: smaller parties' fights, smaller swings. Lifeline and Second
-  Wind roughly halve; Lie in Wait's cost halves too.
-- Bottomless Bottles (Jackal's) is worth four times as much at Level 2,
-  where her potions are a bigger share of what the party has.
+  included. Lifeline and Second Wind roughly halve; so does Lie in
+  Wait's cost. I haven't looked into why.
+- Bottomless Bottles (Jackal's) goes the other way: four times as much
+  at Level 2 as at Level 3. Not looked into either.
 - Lay On Hands doesn't fit anyone at Level 2 (Level 4 prereq), so it's
   missing here.
