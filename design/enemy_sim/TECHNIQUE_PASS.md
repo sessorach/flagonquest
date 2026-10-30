@@ -446,3 +446,31 @@ single-fight pass (the top three hosts only, so the host sets differ).
   Reckoning drops from about even to -0.6.
 - Hosts per Technique: median 5; a one-host reading is that character
   alone.
+
+### Level 2 (2026-10-30)
+
+The same pass on the Level 2 samples (`technique_pass_day_l2.csv`, 674
+readings, 102 Techniques that fit someone at Level 2). It ranks them much
+as Level 3 does (rank correlation 0.88). Top and bottom, roster means:
+
+| Technique | Lv | Hosts | Morning Health | Per XP | At Level 3 |
+|---|---|---|---|---|---|
+| Toughened Resolve | 3 | 1 | +4.41 ± 0.17 | +0.49 | +4.77 |
+| Bolstering Refrain | 3 | 1 | +2.63 ± 0.15 | +0.29 | +3.68 |
+| Bottomless Bottles | 4 | 1 | +3.12 ± 0.34 | +0.26 | +0.71 |
+| Brace | 1 | 9 | +0.45 ± 0.03 | +0.15 | +0.40 |
+| Lifeline | 2 | 5 | +0.88 ± 0.09 | +0.15 | +1.77 |
+| Second Wind | 2 | 7 | +0.60 ± 0.04 | +0.10 | +1.05 |
+| ... | | | | | |
+| Raise Spirits | 4 | 1 | -1.32 ± 0.19 | -0.11 | -1.45 |
+| Feint | 1 | 10 | -0.36 ± 0.05 | -0.12 | -0.59 |
+| Challenge | 1 | 9 | -0.47 ± 0.06 | -0.16 | -0.91 |
+| Lie in Wait | 1 | 10 | -1.10 ± 0.09 | -0.37 | -2.11 |
+
+- Most things are worth less at Level 2 than at Level 3, losses
+  included: smaller parties' fights, smaller swings. Lifeline and Second
+  Wind roughly halve; Lie in Wait's cost halves too.
+- Bottomless Bottles (Jackal's) is worth four times as much at Level 2,
+  where her potions are a bigger share of what the party has.
+- Lay On Hands doesn't fit anyone at Level 2 (Level 4 prereq), so it's
+  missing here.

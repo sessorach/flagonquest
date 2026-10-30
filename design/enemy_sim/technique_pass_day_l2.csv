@@ -1,0 +1,675 @@
+kind,id,name,host,party,mode,level,style,points,free,free_margin,free_wins,swap,swap_margin,swap_wins,per_point,fires,notes
+feature,T072,Battle Maneuver: Ascended Blade,Hilde (L2),H,added,3,,2,0.15,0.1,0.1,,,,0.08,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Ascended Blade,"Sable (L2, proposed)",U,added,3,,2,0.24,0.07,0.2,,,,0.12,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Backfoot,Hilde (L2),H,added,1,,1,0.24,0.09,0.3,,,,0.24,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Backfoot,"Sable (L2, proposed)",U,added,1,,1,0.15,0.06,-0.0,,,,0.15,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Backfoot x3,Hilde (L2),H,added,1,,3,0.27,0.09,0.3,,,,0.09,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Backfoot x3,"Sable (L2, proposed)",U,added,1,,3,0.18,0.06,-0.0,,,,0.06,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Bare-Handed,Hilde (L2),H,added,1,,0,0,0.0,0.0,,,,,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Bare-Handed,"Sable (L2, proposed)",U,added,1,,0,0,0.0,0.0,,,,,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Battering,Hilde (L2),H,added,1,,1,-0.0,0.01,0.0,,,,-0.0,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Battering,"Sable (L2, proposed)",U,added,1,,1,0.01,0.01,0.0,,,,0.01,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Battering x3,Hilde (L2),H,added,1,,3,-0.01,0.02,-0.0,,,,-0.0,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Battering x3,"Sable (L2, proposed)",U,added,1,,3,0.02,0.02,0.0,,,,0.01,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Blade of Four Fates,Hilde (L2),H,added,1,,1,0.04,0.21,0.1,,,,0.04,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Blade of Four Fates,"Sable (L2, proposed)",U,added,1,,1,0.02,0.17,0.1,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Blade of Four Fates x3,Hilde (L2),H,added,1,,3,0.13,0.23,0.2,,,,0.04,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Blade of Four Fates x3,"Sable (L2, proposed)",U,added,1,,3,0.26,0.2,0.0,,,,0.09,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Calculated,Hilde (L2),H,added,1,,3,-0.02,0.18,-0.1,,,,-0.01,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Calculated,"Sable (L2, proposed)",U,added,1,,3,0.37,0.17,0.3,,,,0.12,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Distracting,Hilde (L2),H,added,1,,1,0.17,0.08,0.1,,,,0.17,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Distracting,"Sable (L2, proposed)",U,added,1,,1,-0.1,0.08,-0.4,,,,-0.1,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Distracting x3,Hilde (L2),H,added,1,,3,0.17,0.08,0.1,,,,0.06,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Distracting x3,"Sable (L2, proposed)",U,added,1,,3,-0.09,0.08,-0.4,,,,-0.03,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Elemental,Hilde (L2),H,added,1,,2,0.15,0.1,0.1,,,,0.08,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Elemental,"Sable (L2, proposed)",U,added,1,,2,0.24,0.07,0.2,,,,0.12,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Fleet Step,Hilde (L2),H,added,1,,1,0.78,0.19,0.8,,,,0.78,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Fleet Step,"Sable (L2, proposed)",U,added,1,,1,0.11,0.08,0.0,,,,0.11,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Fleet Step x3,Hilde (L2),H,added,1,,3,1.1,0.21,1.2,,,,0.37,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Fleet Step x3,"Sable (L2, proposed)",U,added,1,,3,0.13,0.08,0.0,,,,0.04,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Flurry,Hilde (L2),H,added,3,,6,0.68,0.15,0.6,,,,0.11,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Flurry,"Sable (L2, proposed)",U,added,3,,6,0.59,0.1,0.2,,,,0.1,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Half Guard,Hilde (L2),H,added,1,,1,0.18,0.08,0.2,,,,0.18,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Half Guard,"Sable (L2, proposed)",U,added,1,,1,0.84,0.09,0.6,,,,0.84,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Half Guard x3,Hilde (L2),H,added,1,,3,0.36,0.12,0.7,,,,0.12,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Half Guard x3,"Sable (L2, proposed)",U,added,1,,3,1.43,0.12,0.9,,,,0.48,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Hamstring,Hilde (L2),H,added,1,,1,0.01,0.02,0.0,,,,0.01,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Hamstring,"Sable (L2, proposed)",U,added,1,,1,0.11,0.05,-0.1,,,,0.11,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Hamstring x3,Hilde (L2),H,added,1,,3,0.03,0.03,0.0,,,,0.01,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Hamstring x3,"Sable (L2, proposed)",U,added,1,,3,0.25,0.08,0.1,,,,0.08,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Harrying,Hilde (L2),H,added,1,,1,0.0,0.05,-0.1,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Harrying,"Sable (L2, proposed)",U,added,1,,1,0.02,0.05,-0.1,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Harrying x3,Hilde (L2),H,added,1,,3,0.02,0.06,-0.0,,,,0.01,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Harrying x3,"Sable (L2, proposed)",U,added,1,,3,0.06,0.06,-0.1,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Lodestone,Hilde (L2),H,added,1,,1,-0.24,0.13,-0.4,,,,-0.24,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Lodestone,"Sable (L2, proposed)",U,added,1,,1,0.02,0.08,-0.2,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Lodestone x3,Hilde (L2),H,added,1,,3,-0.23,0.15,-0.3,,,,-0.07,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Lodestone x3,"Sable (L2, proposed)",U,added,1,,3,0.05,0.09,-0.2,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Lunging,Hilde (L2),H,added,1,,1,0.54,0.16,0.6,,,,0.54,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Lunging,"Sable (L2, proposed)",U,added,1,,1,0,0.0,0.0,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Lunging x3,Hilde (L2),H,added,1,,3,1.05,0.21,1.3,,,,0.35,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Lunging x3,"Sable (L2, proposed)",U,added,1,,3,0,0.0,0.0,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Ricochet Shot,Hilde (L2),H,added,3,,5,0,0.0,0.0,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Ricochet Shot,"Sable (L2, proposed)",U,added,3,,5,-0.01,0.02,-0.1,,,,-0.0,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Turn Elements,Hilde (L2),H,added,1,,1,0.21,0.07,0.4,,,,0.21,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Turn Elements,"Sable (L2, proposed)",U,added,1,,1,0.39,0.08,0.4,,,,0.39,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Turn Elements x3,Hilde (L2),H,added,1,,3,0.39,0.1,0.7,,,,0.13,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Turn Elements x3,"Sable (L2, proposed)",U,added,1,,3,0.5,0.09,0.6,,,,0.17,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Victorious,Hilde (L2),H,added,1,,2,0.09,0.14,0.1,,,,0.04,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Victorious,"Sable (L2, proposed)",U,added,1,,2,0.22,0.13,0.3,,,,0.11,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Viper's Sting,Hilde (L2),H,added,1,,3,0.87,0.19,1.2,,,,0.29,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Viper's Sting,"Sable (L2, proposed)",U,added,1,,3,0.9,0.14,0.5,,,,0.3,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Whirlwind,Hilde (L2),H,added,3,,5,0.12,0.09,0.2,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Whirlwind,"Sable (L2, proposed)",U,added,3,,5,1.65,0.19,1.0,,,,0.33,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Wind Slash,Hilde (L2),H,added,1,,1,0.3,0.13,0.4,,,,0.3,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Wind Slash,"Sable (L2, proposed)",U,added,1,,1,0,0.0,0.0,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Wind Slash x3,Hilde (L2),H,added,1,,3,0.27,0.13,0.4,,,,0.09,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Wind Slash x3,"Sable (L2, proposed)",U,added,1,,3,0,0.0,0.0,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Wing Clip,Hilde (L2),H,added,1,,1,0.11,0.06,0.1,,,,0.11,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Wing Clip,"Sable (L2, proposed)",U,added,1,,1,0.07,0.03,0.0,,,,0.07,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Wing Clip x3,Hilde (L2),H,added,1,,3,0.17,0.07,0.2,,,,0.06,0.0,fires: log lines mentioning the Feature
+feature,T072,Battle Maneuver: Wing Clip x3,"Sable (L2, proposed)",U,added,1,,3,0.14,0.04,0.0,,,,0.05,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Alacrity,Hanforth (L2),S,for 2 point(s) of Shielding,3,,2,-0.47,0.19,-1.1,,,,-0.24,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Elemental Enhancement,Hanforth (L2),S,for 1 point(s) of Shielding,1,,1,-0.3,0.12,-0.6,,,,-0.3,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Embolden,Hanforth (L2),S,for 1 point(s) of Shielding,1,,1,-0.25,0.1,-0.5,,,,-0.25,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Guided Hand,Hanforth (L2),S,for 2 point(s) of Shielding,3,,2,-0.44,0.18,-1.0,,,,-0.22,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Mass Blessing,Hanforth (L2),S,for 2 point(s) of Shielding,3,,2,-0.25,0.11,-0.4,,,,-0.12,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Quickened,Hanforth (L2),S,for 1 point(s) of Shielding,1,,1,-0.06,0.18,-0.1,,,,-0.06,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Reach,Hanforth (L2),S,for 1 point(s) of Shielding,1,,1,-0.12,0.19,-0.4,,,,-0.12,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Retribution,Hanforth (L2),S,for 1 point(s) of Shielding,1,,1,-0.17,0.12,-0.3,,,,-0.17,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: River's Might,Hanforth (L2),S,for 1 point(s) of Shielding,1,,1,-0.4,0.15,-0.8,,,,-0.4,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Steady,Hanforth (L2),S,for 1 point(s) of Shielding,1,,1,-0.27,0.1,-0.5,,,,-0.27,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Steal Fate,Hanforth (L2),S,for 2 point(s) of Shielding,3,,2,-0.36,0.13,-0.7,,,,-0.18,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Step of Air,Hanforth (L2),S,for 1 point(s) of Shielding,1,,1,-0.26,0.12,-0.4,,,,-0.26,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Touch of Chaos,Hanforth (L2),S,for 1 point(s) of Shielding,1,,1,-0.39,0.19,-0.9,,,,-0.39,0.0,fires: log lines mentioning the Feature
+feature,T104,Spirit Blessing: Turn Elements,Hanforth (L2),S,for 1 point(s) of Shielding,1,,1,0.09,0.1,0.3,,,,0.09,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Deep Mending,Hanforth (L2),S,added,3,,2,0.03,0.07,-0.1,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Guardian Angel,Hanforth (L2),S,added,1,,1,0.92,0.15,1.8,,,,0.92,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Guardian Angel x3,Hanforth (L2),S,added,2,,3,1.11,0.14,2.5,,,,0.37,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Healing Pact,Hanforth (L2),S,added,3,,5,1.05,0.13,1.7,,,,0.21,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Purify,Hanforth (L2),S,added,1,,1,0.11,0.05,0.1,,,,0.11,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Purify x3,Hanforth (L2),S,added,2,,3,0.1,0.06,0.1,,,,0.03,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Reach,Hanforth (L2),S,added,1,,1,0.08,0.13,0.1,,,,0.08,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Reach x3,Hanforth (L2),S,added,2,,3,0.0,0.13,-0.1,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Rejuvenate,Hanforth (L2),S,added,1,,1,-0.46,0.12,-0.8,,,,-0.46,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Rejuvenate x3,Hanforth (L2),S,added,2,,3,-0.74,0.15,-1.2,,,,-0.25,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Triage,Hanforth (L2),S,added,2,,3,2.49,0.19,3.2,,,,0.83,0.0,fires: log lines mentioning the Feature
+feature,T105,Healing Magic: Vitality,Hanforth (L2),S,added,2,,2,2.33,0.17,2.6,,,,1.17,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Abjuring,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,0.01,0.08,0.1,,,,0.01,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Abjuring,"Enith (L2, proposed)",S,added,2,,1,0.41,0.09,0.8,,,,0.41,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Abjuring x3,"Enith (L2, proposed)",S,added,3,,3,0.63,0.11,1.3,,,,0.21,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Arcane Chant,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,-0.03,0.07,-0.1,,,,-0.03,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Arcane Chant,"Enith (L2, proposed)",S,added,2,,1,0,0.0,0.0,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Arcane Chant x3,"Enith (L2, proposed)",S,added,3,,3,0,0.0,0.0,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Barraging,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,-0.24,0.05,-0.2,,,,-0.24,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Barraging,"Enith (L2, proposed)",S,added,2,,1,0.06,0.05,0.1,,,,0.06,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Barraging x3,"Enith (L2, proposed)",S,added,3,,3,0.1,0.06,0.1,,,,0.03,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Channel (Shape),Beornhard (L2),U,for 3 point(s) of Destructive,4,,3,-0.33,0.07,-0.2,,,,-0.11,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Channel (Shape),"Enith (L2, proposed)",S,added,3,,3,0.07,0.06,0.1,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Corrupting,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,-0.24,0.05,-0.2,,,,-0.24,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Corrupting,"Enith (L2, proposed)",S,added,2,,1,0.02,0.04,0.1,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Corrupting x3,"Enith (L2, proposed)",S,added,3,,3,0.07,0.05,0.1,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Destructive,"Enith (L2, proposed)",S,added,2,,1,0.08,0.09,0.1,,,,0.08,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Destructive x3,"Enith (L2, proposed)",S,added,3,,3,0.6,0.18,0.8,,,,0.2,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Draw Power,Beornhard (L2),U,for 1 point(s) of Destructive,3,,1,-0.22,0.06,-0.1,,,,-0.22,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Draw Power,"Enith (L2, proposed)",S,added,3,,1,0,0.0,0.0,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Draw Power x3,"Enith (L2, proposed)",S,added,3,,3,0,0.0,0.0,,,,0.0,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Frigid,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,-0.13,0.06,-0.2,,,,-0.13,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Frigid,"Enith (L2, proposed)",S,added,2,,1,0.03,0.04,0.0,,,,0.03,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Frigid x3,"Enith (L2, proposed)",S,added,3,,3,0.03,0.06,0.1,,,,0.01,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Funnel (Shape),Beornhard (L2),U,for 3 point(s) of Destructive,4,,3,-0.32,0.1,-0.2,,,,-0.11,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Funnel (Shape),"Enith (L2, proposed)",S,added,3,,3,0.1,0.07,0.2,,,,0.03,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Furrow (Shape),Beornhard (L2),U,for 3 point(s) of Destructive,4,,3,-0.18,0.08,-0.1,,,,-0.06,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Furrow (Shape),"Enith (L2, proposed)",S,added,3,,3,0.09,0.06,0.2,,,,0.03,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Glacier,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,-0.23,0.1,-0.4,,,,-0.23,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Glacier,"Enith (L2, proposed)",S,added,2,,1,0.08,0.08,0.1,,,,0.08,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Glacier x3,"Enith (L2, proposed)",S,added,3,,3,0.07,0.08,0.1,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Kinetic,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,-0.28,0.08,-0.2,,,,-0.28,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Kinetic,"Enith (L2, proposed)",S,added,2,,1,0.03,0.03,0.1,,,,0.03,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Kinetic x3,"Enith (L2, proposed)",S,added,3,,3,0.02,0.04,0.1,,,,0.01,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Necrotic,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,-0.23,0.05,-0.2,,,,-0.23,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Necrotic,"Enith (L2, proposed)",S,added,2,,1,0.01,0.05,0.0,,,,0.01,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Necrotic x3,"Enith (L2, proposed)",S,added,3,,3,0.05,0.06,0.1,,,,0.02,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Nova (Shape),Beornhard (L2),U,for 3 point(s) of Destructive,4,,3,-0.44,0.1,-0.4,,,,-0.15,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Nova (Shape),"Enith (L2, proposed)",S,added,3,,3,0.08,0.06,0.2,,,,0.03,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Piercing Elements,Beornhard (L2),U,for 1 point(s) of Destructive,3,,1,-0.18,0.12,-0.3,,,,-0.18,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Piercing Elements,"Enith (L2, proposed)",S,added,3,,1,-0.0,0.19,0.1,,,,-0.0,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Piercing Elements x3,"Enith (L2, proposed)",S,added,3,,3,0.22,0.18,0.4,,,,0.07,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Reign of Blood,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,-0.14,0.07,-0.2,,,,-0.14,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Reign of Blood,"Enith (L2, proposed)",S,added,2,,1,0.17,0.13,0.2,,,,0.17,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Reign of Blood x3,"Enith (L2, proposed)",S,added,3,,3,0.18,0.13,0.2,,,,0.06,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Sanguine,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,-3.08,0.22,-3.4,,,,-3.08,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Sanguine,"Enith (L2, proposed)",S,added,2,,1,-2.13,0.3,-3.8,,,,-2.13,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Tormenting Curse,Beornhard (L2),U,for 0 point(s) of Destructive,2,,0,,,,,,,,,"doesn't load: War Magic (Lance, Destructive 2, Tormenting Curse): a Tormenting Curse copy needs a rider (Frigid, Kinetic, Corrupting, Necrotic or Barraging) to do anything here"
+feature,T120,War Magic: Tormenting Curse,"Enith (L2, proposed)",S,added,1,,0,,,,,,,,,"doesn't load: War Magic (Lance, Tormenting Curse): a Tormenting Curse copy needs a rider (Frigid, Kinetic, Corrupting, Necrotic or Barraging) to do anything here"
+feature,T120,War Magic: Wild Magic,Beornhard (L2),U,for 1 point(s) of Destructive,2,,1,-0.01,0.16,-0.4,,,,-0.01,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Wild Magic,"Enith (L2, proposed)",S,added,2,,1,0.03,0.23,-0.1,,,,0.03,0.0,fires: log lines mentioning the Feature
+feature,T120,War Magic: Wild Magic x3,"Enith (L2, proposed)",S,added,3,,3,0.17,0.24,0.5,,,,0.06,0.0,fires: log lines mentioning the Feature
+technique,T001,Brace,"Ashleigh (L2, proposed)",U,add,1,False,,0.31,0.04,0.1,,,,,0.0,Composure -2
+technique,T001,Brace,Beornhard (L2),U,add,1,False,,0.42,0.06,0.4,,,,,0.0,Composure -2
+technique,T001,Brace,Browndog (L2),U,take off,1,False,,0.55,0.1,1.1,,,,,0.0,Craft 0->1 to land on the XP; Awareness +1
+technique,T001,Brace,Carrick (L2),H,add,1,False,,0.37,0.09,0.4,,,,,0.0,Insight -1
+technique,T001,Brace,"Felix (L2, proposed)",S,add,1,False,,0.18,0.12,0.5,,,,,0.0,Resilience -1
+technique,T001,Brace,Hanforth (L2),S,add,1,False,,1.04,0.17,1.4,,,,,0.0,Resilience -1
+technique,T001,Brace,Hilde (L2),H,add,1,False,,0.17,0.07,0.3,,,,,0.0,Craft 0->1 to land on the XP; Composure -1; Insight -1
+technique,T001,Brace,Jackal (L2),S,add,1,False,,0.81,0.15,1.6,,,,,0.0,Resilience -1
+technique,T001,Brace,"Sable (L2, proposed)",U,add,1,False,,0.2,0.05,0.2,,,,,0.0,Craft 0->1 to land on the XP; Composure -1; Awareness -1
+technique,T003,Temper Soulblade,"Enith (L2, proposed)",S,take off,1,False,,0.02,0.04,0.0,,,,,0.0,Athletics +1; Resilience +1
+technique,T006,Blood-Powered Spirit,Browndog (L2),U,add,2,False,,0,0.0,0.0,,,,,0.0,Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T006,Blood-Powered Spirit,Carrick (L2),H,add,2,False,,0.07,0.04,0.1,,,,,0.0,Resilience 2->3 for a prereq; Insight -2; Composure -1; Awareness -1
+technique,T006,Blood-Powered Spirit,"Felix (L2, proposed)",S,add,2,False,,0.23,0.23,0.7,,,,,0.0,Insight -2; Composure -1; Athletics +1
+technique,T006,Blood-Powered Spirit,Hanforth (L2),S,add,2,False,,0,0.0,0.0,,,,,0.0,Composure -1; Insight -1; Awareness -1
+technique,T006,Blood-Powered Spirit,Hilde (L2),H,add,2,False,,0,0.0,0.0,,,,,0.0,Composure -1; Insight -1; Awareness -1
+technique,T006,Blood-Powered Spirit,Jackal (L2),S,add,2,False,,0,0.0,0.0,,,,,0.0,Composure -1; Insight -1; Awareness -1
+technique,T006,Blood-Powered Spirit,"Sable (L2, proposed)",U,add,2,False,,0.09,0.03,0.1,,,,,0.0,Resilience 2->3 for a prereq; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T010,Grim Resolve,Browndog (L2),U,add,2,False,,0.03,0.2,-0.5,,,,,0.0,Might -1; Insight -2
+technique,T010,Grim Resolve,Carrick (L2),H,add,2,False,,0.25,0.26,-0.3,,,,,0.0,Insight -2; Awareness -1; Athletics +1
+technique,T010,Grim Resolve,"Felix (L2, proposed)",S,add,2,False,,-0.39,0.38,-1.2,,,,,0.0,Resilience -1; Insight -1
+technique,T010,Grim Resolve,Hanforth (L2),S,add,2,False,,-0.34,0.4,-2.0,,,,,0.0,Craft 0->1 to land on the XP; Resilience -1; Insight -1; Awareness -1
+technique,T010,Grim Resolve,Hilde (L2),H,add,2,False,,0.18,0.25,-0.1,,,,,0.0,Insight -2; Awareness -2
+technique,T010,Grim Resolve,Jackal (L2),S,add,2,False,,0.48,0.38,0.9,,,,,0.0,Craft 0->1 to land on the XP; Resilience -1; Insight -1; Awareness -1
+technique,T010,Grim Resolve,"Sable (L2, proposed)",U,add,2,False,,-0.07,0.21,-1.1,,,,,0.0,Awareness -2; Might -1; Athletics -1
+technique,T011,One Eye Behind You,Carrick (L2),H,add,2,False,,0.46,0.23,0.8,,,,,0.0,Resilience -1; Composure -1; Awareness -1
+technique,T011,One Eye Behind You,"Felix (L2, proposed)",S,add,2,False,,0.45,0.37,0.7,,,,,0.0,Resilience -2; Composure -1; Athletics +1
+technique,T011,One Eye Behind You,Hanforth (L2),S,add,2,False,,-0.18,0.4,0.8,,,,,0.0,Insight 2->3 for a prereq; Resilience -2; Composure -1; Awareness -1
+technique,T011,One Eye Behind You,Jackal (L2),S,add,2,False,,-0.09,0.4,-0.3,,,,,0.0,Insight 2->3 for a prereq; Resilience -1; Composure -1; Awareness -1; Athletics -1
+technique,T011,One Eye Behind You,"Sable (L2, proposed)",U,take off,2,False,,1.79,0.24,2.0,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Resilience +1
+technique,T012,Second Wind,Browndog (L2),U,take off,2,False,,0.8,0.1,0.9,,,,,0.0,Craft 0->1 to land on the XP; Streetwise 0->1 to land on the XP; Awareness +1; Athletics +1
+technique,T012,Second Wind,Carrick (L2),H,add,2,False,,0.59,0.1,0.4,,,,,0.0,Resilience 2->3 for a prereq; Insight -2; Composure -1; Awareness -1
+technique,T012,Second Wind,"Felix (L2, proposed)",S,add,2,False,,0.74,0.12,1.2,,,,,0.0,Insight -2; Composure -1; Athletics +1
+technique,T012,Second Wind,Hanforth (L2),S,add,2,False,,0.1,0.05,0.1,,,,,0.0,Composure -1; Insight -1; Awareness -1
+technique,T012,Second Wind,Hilde (L2),H,take off,2,False,,0.45,0.1,0.5,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Composure +1
+technique,T012,Second Wind,Jackal (L2),S,add,2,False,,0.38,0.11,0.5,,,,,0.0,Composure -1; Insight -1; Awareness -1
+technique,T012,Second Wind,"Sable (L2, proposed)",U,add,2,False,,1.12,0.1,0.3,,,,,0.0,Resilience 2->3 for a prereq; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T013,Solemn Pact,Browndog (L2),U,add,2,False,,0.12,0.12,-0.2,,,,,0.0,Composure 2->3 for a prereq; Resilience -1; Might -1; Insight -2
+technique,T013,Solemn Pact,Carrick (L2),H,add,2,False,,0.4,0.17,0.5,,,,,0.0,Composure 2->3 for a prereq; Insight -2; Resilience -1; Awareness -1
+technique,T013,Solemn Pact,"Felix (L2, proposed)",S,add,2,False,,0.27,0.25,0.6,,,,,0.0,Composure 2->3 for a prereq; Resilience -2; Insight -2; Athletics +1
+technique,T013,Solemn Pact,Hanforth (L2),S,add,2,False,,0.05,0.16,0.1,,,,,0.0,Composure 2->3 for a prereq; Resilience -2; Insight -1; Awareness -1
+technique,T013,Solemn Pact,Jackal (L2),S,add,2,False,,0.84,0.27,1.8,,,,,0.0,Composure 2->3 for a prereq; Resilience -1; Insight -1; Awareness -1; Athletics -1
+technique,T013,Solemn Pact,"Sable (L2, proposed)",U,add,2,False,,0.38,0.17,-0.1,,,,,0.0,Composure 2->3 for a prereq; Resilience -2; Awareness -2; Might -1; Athletics -1
+technique,T016,Skin of Stone,Jackal (L2),S,add,3,False,,1.05,0.16,2.2,,,,,0.0,Resilience 3->4 for a prereq; Composure -2; Insight -2; Awareness -2; Athletics -2; Might -1
+technique,T017,Solemn Perseverance,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): Solemn Perseverance needs Solemn Pact | Felix (L2, proposed): Solemn Perseverance needs Solemn Pact | Jackal (L2): Solemn Perseverance needs Solemn Pact | Hanforth (L2): Solemn Perseverance needs Solemn Pact | Browndog (L2): Solemn Perseverance needs Solemn Pact | Ashleigh (L2, proposed): Solemn Perseverance needs Solemn Pact | Sable (L2, proposed): Solemn Perseverance needs Solemn Pact | Beornhard (L2): Solemn Perseverance needs Solemn Pact | Hilde (L2): Solemn Perseverance needs Solemn Pact | Carrick (L2): Solemn Perseverance needs Solemn Pact"
+technique,T018,Strength from the Slain,Hilde (L2),H,take off,3,False,,0.54,0.19,0.8,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Composure +1; Insight +1
+technique,T019,Toughened Resolve,Jackal (L2),S,add,3,False,,4.41,0.17,2.5,,,,,0.0,Resilience 3->4 for a prereq; Composure -2; Insight -2; Awareness -2; Athletics -2; Might -1
+technique,T020,Lay On Hands,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 9 XP | Felix (L2, proposed): prereqs cost 9 XP | Jackal (L2): prereqs cost 9 XP | Hanforth (L2): prereqs cost 9 XP | Browndog (L2): not enough donor ranks to pay 4 XP | Ashleigh (L2, proposed): not enough donor ranks to pay 9 XP | Sable (L2, proposed): prereqs cost 9 XP | Beornhard (L2): prereqs cost 9 XP | Hilde (L2): not enough donor ranks to pay 11 XP | Carrick (L2): prereqs cost 9 XP"
+technique,T021,Mind and Body Unbroken,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 12 XP | Felix (L2, proposed): Mind and Body Unbroken needs (Resilience|Composure|Meditation):5: over the rank cap 4 | Jackal (L2): prereqs cost 9 XP | Hanforth (L2): prereqs cost 9 XP | Browndog (L2): prereqs cost 9 XP | Ashleigh (L2, proposed): prereqs cost 12 XP | Sable (L2, proposed): prereqs cost 12 XP | Beornhard (L2): prereqs cost 12 XP | Hilde (L2): prereqs cost 9 XP | Carrick (L2): prereqs cost 12 XP"
+technique,T022,Solemn Covenant,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): Solemn Covenant needs Solemn Perseverance | Felix (L2, proposed): Solemn Covenant needs Solemn Perseverance | Jackal (L2): Solemn Covenant needs Solemn Perseverance | Hanforth (L2): Solemn Covenant needs Solemn Perseverance | Browndog (L2): Solemn Covenant needs Solemn Perseverance | Ashleigh (L2, proposed): Solemn Covenant needs Solemn Perseverance | Sable (L2, proposed): Solemn Covenant needs Solemn Perseverance | Beornhard (L2): Solemn Covenant needs Solemn Perseverance | Hilde (L2): Solemn Covenant needs Solemn Perseverance | Carrick (L2): Solemn Covenant needs Solemn Perseverance"
+technique,T033,Hand of the Chirurgeon,Carrick (L2),H,add,2,False,,0.0,0.0,0.0,,,,,0.0,Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T033,Hand of the Chirurgeon,"Felix (L2, proposed)",S,add,2,False,,0.01,0.02,0.0,,,,,0.0,Medicine 0->3 for a prereq; Resilience -2; Insight -2; Composure -1
+technique,T033,Hand of the Chirurgeon,Hanforth (L2),S,add,2,False,,0.01,0.07,-0.1,,,,,0.0,Medicine 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T033,Hand of the Chirurgeon,Jackal (L2),S,add,2,False,,0.05,0.04,0.1,,,,,0.0,Medicine 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T033,Hand of the Chirurgeon,"Sable (L2, proposed)",U,add,2,False,,0.05,0.02,0.1,,,,,0.0,Medicine 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T035,Mighty Mixologist,Carrick (L2),H,add,2,False,,0,0.0,0.0,,,,,0.0,Mixology 0->3 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T035,Mighty Mixologist,"Felix (L2, proposed)",S,add,2,False,,0,0.0,0.0,,,,,0.0,Mixology 0->3 for a prereq; Resilience -2; Insight -2; Composure -1
+technique,T035,Mighty Mixologist,Hanforth (L2),S,add,2,False,,0,0.0,0.0,,,,,0.0,Mixology 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T035,Mighty Mixologist,Jackal (L2),S,take off,2,False,,0.79,0.18,1.7,,,,,0.0,Craft 0->1 to land on the XP; Might +1; Composure +1
+technique,T035,Mighty Mixologist,"Sable (L2, proposed)",U,add,2,False,,0,0.0,0.0,,,,,0.0,Mixology 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T037,Placeholder's Alacritous Adaptation,Beornhard (L2),U,add,2,False,,0,0.0,0.0,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -2; Insight -1; Awareness -1; Might -1
+technique,T037,Placeholder's Alacritous Adaptation,Carrick (L2),H,add,2,False,,0,0.0,0.0,,,,,0.0,Academics 0->2 for a prereq; Meditation 0->2 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T037,Placeholder's Alacritous Adaptation,"Felix (L2, proposed)",S,add,2,False,,0,0.0,0.0,,,,,0.0,Academics 0->2 for a prereq; Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T037,Placeholder's Alacritous Adaptation,Hanforth (L2),S,add,2,False,,0,0.0,0.0,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -1; Insight -1
+technique,T037,Placeholder's Alacritous Adaptation,Jackal (L2),S,add,2,False,,0,0.0,0.0,,,,,0.0,Meditation 0->2 for a prereq; Resilience -1; Composure -1; Insight -1; Awareness -1
+technique,T037,Placeholder's Alacritous Adaptation,"Sable (L2, proposed)",U,add,2,False,,0,0.0,0.0,,,,,0.0,Academics 0->2 for a prereq; Meditation 0->2 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T045,Analyze Stance,Carrick (L2),H,add,3,False,,0.16,0.15,0.2,,,,,0.0,Academics 0->3 for a prereq; Insight -3; Resilience -2; Composure -2; Awareness -2
+technique,T045,Analyze Stance,"Felix (L2, proposed)",S,add,3,False,,0.49,0.25,1.1,,,,,0.0,Academics 0->3 for a prereq; Resilience -3; Insight -3; Composure -2
+technique,T045,Analyze Stance,Hanforth (L2),S,add,3,False,,0.54,0.21,1.3,,,,,0.0,Academics 2->3 for a prereq; Acrobatics 0->2 for a prereq; Resilience -3; Composure -2; Insight -1; Awareness -2; Athletics -1
+technique,T045,Analyze Stance,Jackal (L2),S,add,3,False,,0.95,0.26,1.8,,,,,0.0,Academics 2->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T050,Optimize Blood,Carrick (L2),H,add,3,False,,0.09,0.08,0.1,,,,,0.0,Medicine 3->4 for a prereq; Insight -2; Resilience -2; Composure -2; Awareness -1
+technique,T053,Bottomless Bottles,Jackal (L2),S,take off,4,False,,3.12,0.34,5.9,,,,,0.0,Craft 0->1 to land on the XP; Might +1; Composure +1; Insight +1; Awareness +1
+technique,T055,Pressure Point Revitalization,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 15 XP | Felix (L2, proposed): prereqs cost 15 XP | Jackal (L2): prereqs cost 15 XP | Hanforth (L2): prereqs cost 15 XP | Browndog (L2): prereqs cost 15 XP | Ashleigh (L2, proposed): prereqs cost 15 XP | Sable (L2, proposed): prereqs cost 15 XP | Beornhard (L2): prereqs cost 15 XP | Hilde (L2): prereqs cost 15 XP | Carrick (L2): prereqs cost 9 XP"
+technique,T058,Challenge,"Ashleigh (L2, proposed)",U,add,1,False,,-0.46,0.16,-1.0,,,,,0.0,Resilience -1; Composure -1; Athletics +1
+technique,T058,Challenge,Beornhard (L2),U,add,1,False,,-0.28,0.14,-0.5,,,,,0.0,Presence 0->2 for a prereq; Resilience -2; Composure -2
+technique,T058,Challenge,Browndog (L2),U,take off,1,False,,-0.23,0.11,-0.4,,,,,0.0,Craft 0->1 to land on the XP; Awareness +1
+technique,T058,Challenge,Carrick (L2),H,add,1,False,,-0.42,0.16,-0.6,,,,,0.0,Presence 0->2 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T058,Challenge,"Felix (L2, proposed)",S,add,1,False,,-0.69,0.28,-1.6,,,,,0.0,Presence 0->2 for a prereq; Resilience -1; Insight -1
+technique,T058,Challenge,Hanforth (L2),S,add,1,False,,-0.82,0.26,-0.8,,,,,0.0,Presence 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T058,Challenge,Hilde (L2),H,add,1,False,,-0.29,0.19,-0.5,,,,,0.0,Craft 0->1 to land on the XP; Composure -1; Insight -1
+technique,T058,Challenge,Jackal (L2),S,add,1,False,,-0.61,0.23,-1.1,,,,,0.0,Presence 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Insight -1
+technique,T058,Challenge,"Sable (L2, proposed)",U,add,1,False,,-0.46,0.12,-0.6,,,,,0.0,Presence 0->2 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T062,Cry of Victory,"Ashleigh (L2, proposed)",U,take off,2,False,,0.04,0.05,0.1,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Insight +1; Awareness +1
+technique,T062,Cry of Victory,Browndog (L2),U,add,2,False,,0.05,0.12,0.2,,,,,0.0,Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T062,Cry of Victory,Carrick (L2),H,add,2,False,,-0.0,0.12,0.0,,,,,0.0,Presence 0->3 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T062,Cry of Victory,"Felix (L2, proposed)",S,add,2,False,,-0.15,0.22,0.1,,,,,0.0,Presence 0->3 for a prereq; Resilience -2; Insight -2; Composure -1
+technique,T062,Cry of Victory,Hanforth (L2),S,add,2,False,,0.02,0.07,0.0,,,,,0.0,Presence 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T062,Cry of Victory,Hilde (L2),H,add,2,False,,-0.14,0.18,0.3,,,,,0.0,Presence 2->3 for a prereq; Composure -2; Insight -2; Awareness -2
+technique,T062,Cry of Victory,Jackal (L2),S,add,2,False,,0.0,0.18,0.3,,,,,0.0,Presence 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T062,Cry of Victory,"Sable (L2, proposed)",U,add,2,False,,0.0,0.05,-0.1,,,,,0.0,Presence 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T064,Heroic Inspiration,"Ashleigh (L2, proposed)",U,take off,2,False,,0.04,0.06,0.1,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Insight +1; Awareness +1
+technique,T064,Heroic Inspiration,Carrick (L2),H,add,2,False,,0.01,0.11,0.1,,,,,0.0,Performance 0->3 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T064,Heroic Inspiration,"Felix (L2, proposed)",S,add,2,False,,0.18,0.19,0.1,,,,,0.0,Performance 0->3 for a prereq; Resilience -2; Insight -2; Composure -1
+technique,T064,Heroic Inspiration,Hanforth (L2),S,add,2,False,,0.3,0.17,0.4,,,,,0.0,Performance 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T064,Heroic Inspiration,Jackal (L2),S,add,2,False,,-0.07,0.24,-0.2,,,,,0.0,Performance 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T064,Heroic Inspiration,"Sable (L2, proposed)",U,add,2,False,,0.22,0.08,0.1,,,,,0.0,Performance 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T066,Bolstering Refrain,"Ashleigh (L2, proposed)",U,add,3,False,,2.63,0.15,1.1,,,,,0.0,Resilience -2; Composure -2; Insight -1; Awareness -1; Might -1
+technique,T067,Exert Pressure,"Ashleigh (L2, proposed)",U,add,3,False,,-0.14,0.07,-0.2,,,,,0.0,Resilience -2; Composure -2; Insight -1; Awareness -1; Might -1
+technique,T069,Raise Spirits,"Ashleigh (L2, proposed)",U,take off,4,False,,-1.32,0.19,-0.5,,,,,0.0,Athletics +2; Insight +1; Awareness +1; Might +1; Resilience +1
+technique,T070,Rally to Victory,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 15 XP | Felix (L2, proposed): prereqs cost 15 XP | Jackal (L2): prereqs cost 15 XP | Hanforth (L2): prereqs cost 15 XP | Browndog (L2): prereqs cost 15 XP | Ashleigh (L2, proposed): Rally to Victory needs Performance:5: over the rank cap 4 | Sable (L2, proposed): prereqs cost 15 XP | Beornhard (L2): prereqs cost 15 XP | Hilde (L2): prereqs cost 15 XP | Carrick (L2): prereqs cost 15 XP"
+technique,T071,The Gatekeeper,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 27 XP | Felix (L2, proposed): prereqs cost 20 XP | Jackal (L2): prereqs cost 27 XP | Hanforth (L2): prereqs cost 27 XP | Browndog (L2): prereqs cost 21 XP | Ashleigh (L2, proposed): prereqs cost 17 XP | Sable (L2, proposed): prereqs cost 27 XP | Beornhard (L2): prereqs cost 27 XP | Hilde (L2): prereqs cost 24 XP | Carrick (L2): prereqs cost 27 XP"
+technique,T073,Bladeslinging,"Ashleigh (L2, proposed)",U,add,1,False,,0,0.0,0.0,,,,,0.0,Might 1->2 for a prereq; Academics 0->1 for a prereq; Resilience -2; Composure -2
+technique,T073,Bladeslinging,Beornhard (L2),U,add,1,False,,0,0.0,0.0,,,,,0.0,Might 1->2 for a prereq; Resilience -2; Composure -1
+technique,T073,Bladeslinging,Browndog (L2),U,add,1,False,,0,0.0,0.0,,,,,0.0,Academics 0->1 for a prereq; Craft 0->1 to land on the XP; Might -1; Composure -1
+technique,T073,Bladeslinging,Carrick (L2),H,add,1,False,,0,0.0,0.0,,,,,0.0,Might 1->2 for a prereq; Academics 0->1 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T073,Bladeslinging,"Felix (L2, proposed)",S,add,1,False,,0,0.0,0.0,,,,,0.0,Might 1->2 for a prereq; Academics 0->1 for a prereq; Resilience -1; Insight -1
+technique,T073,Bladeslinging,Hanforth (L2),S,add,1,False,,0,0.0,0.0,,,,,0.0,Might 1->2 for a prereq; Resilience -2
+technique,T073,Bladeslinging,Hilde (L2),H,add,1,False,,0,0.0,0.0,,,,,0.0,Academics 0->1 for a prereq; Composure -1; Insight -1
+technique,T073,Bladeslinging,Jackal (L2),S,add,1,False,,0,0.0,0.0,,,,,0.0,Might 1->2 for a prereq; Resilience -1; Composure -1
+technique,T073,Bladeslinging,"Sable (L2, proposed)",U,add,1,False,,0,0.0,0.0,,,,,0.0,Academics 0->1 for a prereq; Resilience -1; Composure -1
+technique,T074,Feint,"Ashleigh (L2, proposed)",U,add,1,False,,-0.17,0.16,-0.6,,,,,0.0,Insight 1->2 for a prereq; Resilience -2; Composure -1
+technique,T074,Feint,Beornhard (L2),U,add,1,False,,0.4,0.17,-0.2,,,,,0.0,Insight 1->2 for a prereq; Resilience -2; Composure -1
+technique,T074,Feint,Browndog (L2),U,add,1,False,,0.34,0.14,0.0,,,,,0.0,Might -1
+technique,T074,Feint,Carrick (L2),H,add,1,False,,-0.45,0.17,-0.5,,,,,0.0,Insight -1
+technique,T074,Feint,"Enith (L2, proposed)",S,add,1,False,,-0.72,0.2,-1.2,,,,,0.0,Might -1; Resilience -1
+technique,T074,Feint,"Felix (L2, proposed)",S,add,1,False,,-1.76,0.25,-3.3,,,,,0.0,Resilience -1
+technique,T074,Feint,Hanforth (L2),S,add,1,False,,-0.13,0.12,-0.3,,,,,0.0,Resilience -1
+technique,T074,Feint,Hilde (L2),H,add,1,False,,-0.1,0.16,0.1,,,,,0.0,Craft 0->1 to land on the XP; Composure -1; Awareness -1
+technique,T074,Feint,Jackal (L2),S,add,1,False,,-0.03,0.05,-0.1,,,,,0.0,Resilience -1
+technique,T074,Feint,"Sable (L2, proposed)",U,add,1,False,,-0.95,0.16,-1.3,,,,,0.0,Craft 0->1 to land on the XP; Resilience -1; Composure -1
+technique,T075,Magehunter,"Ashleigh (L2, proposed)",U,add,1,False,,0.23,0.1,-0.2,,,,,0.0,Academics 0->2 for a prereq; Sorcery 0->1 for a prereq; Resilience -2; Composure -2; Insight -1
+technique,T075,Magehunter,Beornhard (L2),U,add,1,False,,0.84,0.13,0.7,,,,,0.0,Resilience -1; Composure -1; Athletics +1
+technique,T075,Magehunter,Browndog (L2),U,add,1,False,,0.32,0.08,0.1,,,,,0.0,Academics 0->2 for a prereq; Sorcery 0->1 for a prereq; Might -1; Composure -1; Insight -1
+technique,T075,Magehunter,Carrick (L2),H,add,1,False,,0.43,0.14,0.5,,,,,0.0,Academics 0->2 for a prereq; Sorcery 0->1 for a prereq; Insight -1; Resilience -1; Composure -1
+technique,T075,Magehunter,"Enith (L2, proposed)",S,take off,1,False,,0.26,0.12,0.5,,,,,0.0,Athletics +1; Resilience +1
+technique,T075,Magehunter,"Felix (L2, proposed)",S,add,1,False,,0.16,0.1,0.4,,,,,0.0,Academics 0->2 for a prereq; Sorcery 0->1 for a prereq; Resilience -2; Insight -1; Athletics +1
+technique,T075,Magehunter,Hanforth (L2),S,add,1,False,,0.13,0.06,0.3,,,,,0.0,Resilience -1
+technique,T075,Magehunter,Hilde (L2),H,add,1,False,,0.34,0.11,0.5,,,,,0.0,Academics 0->2 for a prereq; Sorcery 0->1 for a prereq; Composure -2; Insight -1; Awareness -1
+technique,T075,Magehunter,Jackal (L2),S,add,1,False,,0.15,0.22,0.5,,,,,0.0,Sorcery 0->1 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1
+technique,T075,Magehunter,"Sable (L2, proposed)",U,add,1,False,,0.36,0.14,0.1,,,,,0.0,Academics 0->2 for a prereq; Sorcery 0->1 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Awareness -1; Might -1
+technique,T076,Parting Shot,"Ashleigh (L2, proposed)",U,add,1,False,,-0.01,0.02,0.0,,,,,0.0,Resilience -1; Composure -1; Athletics +1
+technique,T076,Parting Shot,Beornhard (L2),U,add,1,False,,0.44,0.17,-0.1,,,,,0.0,Insight 1->2 for a prereq; Resilience -2; Composure -1
+technique,T076,Parting Shot,Browndog (L2),U,add,1,False,,0.32,0.07,0.1,,,,,0.0,Might -1
+technique,T076,Parting Shot,Carrick (L2),H,add,1,False,,0.0,0.01,0.0,,,,,0.0,Insight -1
+technique,T076,Parting Shot,"Enith (L2, proposed)",S,add,1,False,,0.15,0.14,0.2,,,,,0.0,Might -1; Resilience -1
+technique,T076,Parting Shot,"Felix (L2, proposed)",S,add,1,False,,-0.09,0.18,-0.1,,,,,0.0,Resilience -1
+technique,T076,Parting Shot,Hanforth (L2),S,add,1,False,,0.36,0.17,0.8,,,,,0.0,Resilience -1
+technique,T076,Parting Shot,Hilde (L2),H,add,1,False,,0.16,0.08,0.3,,,,,0.0,Craft 0->1 to land on the XP; Composure -1; Awareness -1
+technique,T076,Parting Shot,Jackal (L2),S,add,1,False,,-0.06,0.09,-0.1,,,,,0.0,Resilience -1
+technique,T076,Parting Shot,"Sable (L2, proposed)",U,add,1,False,,0,0.0,0.0,,,,,0.0,Craft 0->1 to land on the XP; Resilience -1; Composure -1
+technique,T077,Blinkstep,"Ashleigh (L2, proposed)",U,add,2,False,,0.23,0.08,0.1,,,,,0.0,Resilience -2; Composure -2
+technique,T077,Blinkstep,Carrick (L2),H,add,2,False,,0.59,0.15,0.5,,,,,0.0,Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T077,Blinkstep,"Felix (L2, proposed)",S,add,2,False,,0.15,0.11,0.3,,,,,0.0,Acrobatics 2->3 for a prereq; Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T077,Blinkstep,Hanforth (L2),S,add,2,False,,0.01,0.06,0.1,,,,,0.0,Acrobatics 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T077,Blinkstep,Jackal (L2),S,add,2,False,,1.41,0.23,2.4,,,,,0.0,Craft 0->1 to land on the XP; Resilience -1; Composure -1; Insight -1
+technique,T077,Blinkstep,"Sable (L2, proposed)",U,add,2,False,,0.34,0.09,0.1,,,,,0.0,Resilience -1; Composure -1; Awareness -1
+technique,T078,Perfect Strike,"Ashleigh (L2, proposed)",U,add,2,False,,-0.02,0.07,-0.1,,,,,0.0,Resilience -2; Composure -2
+technique,T078,Perfect Strike,Beornhard (L2),U,add,2,False,,-0.07,0.09,-0.5,,,,,0.0,Resilience -2; Composure -2
+technique,T078,Perfect Strike,Browndog (L2),U,add,2,False,,-0.09,0.14,-0.7,,,,,0.0,Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T078,Perfect Strike,Carrick (L2),H,take off,2,False,,-0.14,0.17,-0.4,,,,,0.0,Masquerade 0->1 to land on the XP; Athletics +2; Might +1
+technique,T078,Perfect Strike,"Felix (L2, proposed)",S,add,2,False,,-0.34,0.25,-0.7,,,,,0.0,Resilience -1; Insight -1
+technique,T078,Perfect Strike,Hanforth (L2),S,add,2,False,,-0.47,0.15,-0.3,,,,,0.0,Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T078,Perfect Strike,Hilde (L2),H,add,2,False,,-0.15,0.18,-0.4,,,,,0.0,Composure -1; Insight -1; Awareness -1
+technique,T078,Perfect Strike,Jackal (L2),S,add,2,False,,-0.02,0.02,-0.1,,,,,0.0,Craft 0->1 to land on the XP; Resilience -1; Composure -1; Insight -1
+technique,T078,Perfect Strike,"Sable (L2, proposed)",U,take off,2,False,,-0.04,0.16,0.1,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Resilience +1
+technique,T079,Cloak and Dagger,Carrick (L2),H,add,3,False,,0,0.0,0.0,,,,,0.0,Stealth 3->4 for a prereq; Insight -2; Resilience -2; Composure -2; Awareness -1
+technique,T079,Cloak and Dagger,"Sable (L2, proposed)",U,add,3,False,,0,0.0,0.0,,,,,0.0,Stealth 3->4 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -2; Athletics -1
+technique,T080,Shugen School - Firefly Leaves the Hand,"Ashleigh (L2, proposed)",U,add,1,False,,0.05,0.05,-0.1,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -2
+technique,T080,Shugen School - Firefly Leaves the Hand,Beornhard (L2),U,add,1,False,,0.05,0.03,0.2,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -2
+technique,T080,Shugen School - Firefly Leaves the Hand,Browndog (L2),U,add,1,False,,-0.01,0.01,-0.1,,,,,0.0,Meditation 0->2 for a prereq; Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T080,Shugen School - Firefly Leaves the Hand,Carrick (L2),H,add,1,False,,0.09,0.08,0.1,,,,,0.0,Meditation 0->2 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T080,Shugen School - Firefly Leaves the Hand,"Enith (L2, proposed)",S,add,1,False,,-0.01,0.1,-0.1,,,,,0.0,Meditation 0->2 for a prereq; Composure -2; Might -1; Resilience -1
+technique,T080,Shugen School - Firefly Leaves the Hand,"Felix (L2, proposed)",S,take off,1,False,,-0.09,0.15,-0.2,,,,,0.0,Athletics +1; Awareness +1
+technique,T080,Shugen School - Firefly Leaves the Hand,Hanforth (L2),S,add,1,False,,0.02,0.04,-0.1,,,,,0.0,Meditation 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T080,Shugen School - Firefly Leaves the Hand,Hilde (L2),H,add,1,False,,0,0.0,0.0,,,,,0.0,Meditation 0->2 for a prereq; Composure -1; Insight -1; Awareness -1
+technique,T080,Shugen School - Firefly Leaves the Hand,Jackal (L2),S,add,1,False,,-0.01,0.09,-0.0,,,,,0.0,Meditation 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Insight -1
+technique,T080,Shugen School - Firefly Leaves the Hand,"Sable (L2, proposed)",U,add,1,False,,0.04,0.05,0.1,,,,,0.0,Meditation 0->2 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T082,Great Old Oak School - Willow Springs Back,"Felix (L2, proposed)",S,add,3,False,,0.97,0.2,2.1,,,,,0.0,Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T083,Demon School - Sickness Takes the Flock,Beornhard (L2),U,add,2,False,,0.01,0.04,0.1,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -2; Insight -1; Awareness -1; Might -1
+technique,T083,Demon School - Sickness Takes the Flock,"Felix (L2, proposed)",S,take off,2,False,,0.37,0.14,0.7,,,,,0.0,Craft 0->1 to land on the XP; Athletics +2; Awareness +1
+technique,T083,Demon School - Sickness Takes the Flock,Hanforth (L2),S,add,2,False,,0.01,0.11,-0.1,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -1; Insight -1
+technique,T086,Great Old Oak School - Bark Turns the Blade,Carrick (L2),H,add,2,False,,0.26,0.15,0.3,,,,,0.0,Meditation 0->3 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T086,Great Old Oak School - Bark Turns the Blade,"Felix (L2, proposed)",S,add,2,False,,0.15,0.22,1.1,,,,,0.0,Resilience -1; Insight -1
+technique,T086,Great Old Oak School - Bark Turns the Blade,Hanforth (L2),S,add,2,False,,2.23,0.27,3.0,,,,,0.0,Meditation 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T086,Great Old Oak School - Bark Turns the Blade,Jackal (L2),S,add,2,False,,0.59,0.22,1.3,,,,,0.0,Meditation 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T086,Great Old Oak School - Bark Turns the Blade,"Sable (L2, proposed)",U,add,2,False,,0.37,0.12,-0.1,,,,,0.0,Meditation 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T089,Snake School - Slithering Hands,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 19 XP | Felix (L2, proposed): prereqs cost 9 XP | Jackal (L2): prereqs cost 22 XP | Hanforth (L2): prereqs cost 16 XP | Browndog (L2): prereqs cost 19 XP | Ashleigh (L2, proposed): prereqs cost 24 XP | Sable (L2, proposed): prereqs cost 19 XP | Beornhard (L2): prereqs cost 18 XP | Hilde (L2): prereqs cost 19 XP | Carrick (L2): prereqs cost 19 XP"
+technique,T091,Shugen School - Dawn Wind Bends the Grass,"Felix (L2, proposed)",S,add,3,False,,0.02,0.06,0.0,,,,,0.0,Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T093,Great Old Oak School - Sap Seals the Wound,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 15 XP | Felix (L2, proposed): Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4 | Jackal (L2): prereqs cost 15 XP | Hanforth (L2): prereqs cost 15 XP | Browndog (L2): prereqs cost 15 XP | Ashleigh (L2, proposed): prereqs cost 15 XP | Sable (L2, proposed): prereqs cost 15 XP | Beornhard (L2): prereqs cost 15 XP | Hilde (L2): prereqs cost 15 XP | Carrick (L2): prereqs cost 15 XP"
+technique,T097,Shadow Jaunt,"Ashleigh (L2, proposed)",U,add,1,False,,-0.01,0.06,-0.1,,,,,0.0,Sorcery 0->2 for a prereq; Resilience -2; Composure -2
+technique,T097,Shadow Jaunt,Beornhard (L2),U,take off,1,False,,0.13,0.11,0.5,,,,,0.0,Athletics +1; Insight +1
+technique,T097,Shadow Jaunt,Browndog (L2),U,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T097,Shadow Jaunt,Carrick (L2),H,add,1,False,,-0.21,0.15,-0.3,,,,,0.0,Sorcery 0->2 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T097,Shadow Jaunt,"Enith (L2, proposed)",S,add,1,False,,0,0.0,0.0,,,,,0.0,Might -1; Resilience -1
+technique,T097,Shadow Jaunt,"Felix (L2, proposed)",S,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Resilience -1; Insight -1
+technique,T097,Shadow Jaunt,Hanforth (L2),S,add,1,False,,0,0.0,0.0,,,,,0.0,Resilience -1
+technique,T097,Shadow Jaunt,Hilde (L2),H,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Composure -1; Insight -1; Awareness -1
+technique,T097,Shadow Jaunt,Jackal (L2),S,add,1,False,,-0.23,0.15,-0.2,,,,,0.0,Sorcery 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Insight -1
+technique,T097,Shadow Jaunt,"Sable (L2, proposed)",U,add,1,False,,0.05,0.05,0.1,,,,,0.0,Sorcery 0->2 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T100,Spellblade,Carrick (L2),H,add,2,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->3 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T100,Spellblade,"Enith (L2, proposed)",S,take off,2,False,,0.05,0.13,0.2,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Resilience +1; Awareness +1
+technique,T100,Spellblade,Hanforth (L2),S,add,2,False,,0.0,0.05,0.1,,,,,0.0,Acrobatics 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T100,Spellblade,Jackal (L2),S,add,2,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T100,Spellblade,"Sable (L2, proposed)",U,add,2,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T107,Gust of Wind,"Ashleigh (L2, proposed)",U,add,1,False,,-0.02,0.08,-0.1,,,,,0.0,Theurgy 0->2 for a prereq; Survival 0->1 for a prereq; Resilience -2; Composure -2; Insight -1
+technique,T107,Gust of Wind,Beornhard (L2),U,add,1,False,,-0.03,0.04,-0.1,,,,,0.0,Theurgy 0->2 for a prereq; Survival 0->1 for a prereq; Resilience -2; Composure -2; Insight -1
+technique,T107,Gust of Wind,Browndog (L2),U,add,1,False,,-0.09,0.08,-0.4,,,,,0.0,Theurgy 0->2 for a prereq; Survival 0->1 for a prereq; Might -1; Composure -1; Insight -1
+technique,T107,Gust of Wind,Carrick (L2),H,add,1,False,,-0.09,0.13,0.1,,,,,0.0,Theurgy 0->2 for a prereq; Survival 0->1 for a prereq; Insight -1; Resilience -1; Composure -1
+technique,T107,Gust of Wind,"Felix (L2, proposed)",S,add,1,False,,-0.57,0.2,-1.3,,,,,0.0,Theurgy 0->2 for a prereq; Resilience -1; Insight -1
+technique,T107,Gust of Wind,Hanforth (L2),S,take off,1,False,,-0.2,0.14,-0.5,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T107,Gust of Wind,Hilde (L2),H,add,1,False,,-0.19,0.09,-0.5,,,,,0.0,Theurgy 0->2 for a prereq; Survival 0->1 for a prereq; Composure -2; Insight -1; Awareness -1
+technique,T107,Gust of Wind,Jackal (L2),S,add,1,False,,-0.09,0.09,-0.2,,,,,0.0,Theurgy 0->2 for a prereq; Survival 0->1 for a prereq; Resilience -1; Composure -1; Insight -1
+technique,T107,Gust of Wind,"Sable (L2, proposed)",U,add,1,False,,0.01,0.03,0.0,,,,,0.0,Theurgy 0->2 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T109,Land's Bounty,Hanforth (L2),S,add,2,False,,0.39,0.19,0.7,,,,,0.0,Survival 1->2 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1; Insight -1
+technique,T110,Lifeline,Carrick (L2),H,add,2,False,,1.06,0.14,0.9,,,,,0.0,Theurgy 0->3 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T110,Lifeline,"Felix (L2, proposed)",S,add,2,False,,2.23,0.26,3.6,,,,,0.0,Theurgy 0->3 for a prereq; Resilience -2; Insight -2; Composure -1
+technique,T110,Lifeline,Hanforth (L2),S,add,2,False,,0.1,0.22,1.1,,,,,0.0,Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T110,Lifeline,Jackal (L2),S,add,2,False,,0.88,0.26,0.9,,,,,0.0,Theurgy 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T110,Lifeline,"Sable (L2, proposed)",U,add,2,False,,0.15,0.08,0.2,,,,,0.0,Theurgy 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T111,Reckoning,Carrick (L2),H,add,2,False,,-0.64,0.2,-0.8,,,,,0.0,Theurgy 0->3 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T111,Reckoning,"Felix (L2, proposed)",S,add,2,False,,-0.38,0.33,-0.8,,,,,0.0,Theurgy 0->3 for a prereq; Resilience -2; Insight -2; Composure -1
+technique,T111,Reckoning,Hanforth (L2),S,take off,2,False,,0.9,0.31,1.5,,,,,0.0,Craft 0->1 to land on the XP; Streetwise 0->1 to land on the XP; Athletics +1; Might +1
+technique,T111,Reckoning,Jackal (L2),S,add,2,False,,-1.19,0.3,-2.5,,,,,0.0,Theurgy 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T111,Reckoning,"Sable (L2, proposed)",U,add,2,False,,-0.37,0.12,-0.7,,,,,0.0,Theurgy 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T113,Spectral Spiderwebs,Hanforth (L2),S,add,2,False,,-0.66,0.18,-1.2,,,,,0.0,Survival 1->2 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1; Insight -1
+technique,T116,Cloak of Awe,Hanforth (L2),S,add,3,False,,-0.34,0.22,-0.2,,,,,0.0,Resilience -2; Composure -1; Insight -1
+technique,T117,Cloak of Command,Hanforth (L2),S,add,3,False,,-0.11,0.22,0.2,,,,,0.0,Resilience -2; Composure -1; Insight -1
+technique,T121,Force Missiles,"Ashleigh (L2, proposed)",U,add,1,False,,0.19,0.07,0.1,,,,,0.0,Sorcery 0->2 for a prereq; Resilience -2; Composure -2
+technique,T121,Force Missiles,Beornhard (L2),U,add,1,False,,0.07,0.04,0.2,,,,,0.0,Resilience -1; Composure -1; Athletics +1
+technique,T121,Force Missiles,Browndog (L2),U,add,1,False,,0.0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T121,Force Missiles,Carrick (L2),H,add,1,False,,0.0,0.02,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T121,Force Missiles,"Enith (L2, proposed)",S,add,1,False,,0.03,0.07,0.0,,,,,0.0,Might -1; Resilience -1
+technique,T121,Force Missiles,"Felix (L2, proposed)",S,add,1,False,,0.0,0.04,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Resilience -1; Insight -1
+technique,T121,Force Missiles,Hanforth (L2),S,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T121,Force Missiles,Hilde (L2),H,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Composure -1; Insight -1; Awareness -1
+technique,T121,Force Missiles,Jackal (L2),S,add,1,False,,0.0,0.05,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Insight -1
+technique,T121,Force Missiles,"Sable (L2, proposed)",U,add,1,False,,0.01,0.02,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T122,Gainsay,"Ashleigh (L2, proposed)",U,add,1,False,,0.07,0.15,-0.2,,,,,0.0,Sorcery 0->2 for a prereq; Insight 1->2 for a prereq; Resilience -2; Composure -2; Awareness -1; Might -1
+technique,T122,Gainsay,Beornhard (L2),U,add,1,False,,0.94,0.17,0.7,,,,,0.0,Insight 1->2 for a prereq; Resilience -2; Composure -1
+technique,T122,Gainsay,Browndog (L2),U,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Might -1; Composure -2
+technique,T122,Gainsay,Carrick (L2),H,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T122,Gainsay,"Enith (L2, proposed)",S,add,1,False,,0.01,0.05,-0.1,,,,,0.0,Might -1; Resilience -1
+technique,T122,Gainsay,"Felix (L2, proposed)",S,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Resilience -1; Insight -1
+technique,T122,Gainsay,Hanforth (L2),S,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T122,Gainsay,Hilde (L2),H,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Composure -2; Awareness -2
+technique,T122,Gainsay,Jackal (L2),S,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Awareness -1
+technique,T122,Gainsay,"Sable (L2, proposed)",U,add,1,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->2 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T123,Wall of Shadows,Beornhard (L2),U,add,2,False,,0.0,0.02,0.0,,,,,0.0,Composure -2; Insight -1; Awareness -1; Might -1
+technique,T123,Wall of Shadows,Carrick (L2),H,add,2,False,,-0.01,0.04,-0.1,,,,,0.0,Sorcery 0->3 for a prereq; Insight -3; Composure -2; Awareness -2
+technique,T123,Wall of Shadows,"Felix (L2, proposed)",S,add,2,False,,-0.63,0.28,-1.3,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -1; Insight -3; Composure -2
+technique,T123,Wall of Shadows,Hanforth (L2),S,add,2,False,,0.18,0.22,0.3,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -2; Athletics -1
+technique,T123,Wall of Shadows,Jackal (L2),S,add,2,False,,-0.78,0.24,-1.9,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T124,Warmage's Reserves,Beornhard (L2),U,take off,2,False,,0.3,0.09,1.3,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Insight +1; Awareness +1
+technique,T124,Warmage's Reserves,Hanforth (L2),S,add,2,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T124,Warmage's Reserves,Jackal (L2),S,add,2,False,,0,0.0,0.0,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T128,Lawman's Hand,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,-0.18,0.08,-0.4,,,,,0.0,Medicine 0->3 for a prereq; Resilience -2; Composure -2
+technique,T128,Lawman's Hand,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,0.05,0.03,-0.1,,,,,0.0,Medicine 0->3 for a prereq; Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T128,Lawman's Hand,Carrick (L2),H,take off,2,True,,0.1,0.07,0.1,,,,,0.0,Masquerade 0->1 to land on the XP; Athletics +2; Might +1
+technique,T128,Lawman's Hand,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.33,0.28,-0.3,,,,,0.0,Medicine 0->3 for a prereq; Insight -2; Might -1; Athletics +1
+technique,T128,Lawman's Hand,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.48,0.12,-1.1,,,,,0.0,Medicine 0->3 for a prereq; Resilience -1; Insight -1
+technique,T128,Lawman's Hand,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.75,0.25,-1.0,,,,,0.0,Medicine 0->3 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T128,Lawman's Hand,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.01,0.02,0.0,,,,,0.0,Medicine 0->3 for a prereq; Composure -1; Insight -1; Awareness -1
+technique,T128,Lawman's Hand,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,-0.07,0.06,-0.2,,,,,0.0,Medicine 0->3 for a prereq; Resilience -1; Composure -1; Insight -1; Awareness -1
+technique,T128,Lawman's Hand,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.26,0.19,-0.4,,,,,0.0,Medicine 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T129,Disciple of the Flowing Hand,Beornhard (L2),U,"add, replacing Overchanneling",3,True,,0.37,0.15,0.0,,,,,0.0,Brawl 3->4 for a prereq; Resilience -2; Composure -2; Insight -1
+technique,T129,Disciple of the Flowing Hand,Carrick (L2),H,"add, replacing Lawman's Hand",3,True,,0.57,0.18,0.5,,,,,0.0,Insight -1
+technique,T129,Disciple of the Flowing Hand,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",3,True,,1.15,0.31,2.2,,,,,0.0,Acrobatics 3->4 for a prereq; Insight -2; Might -1
+technique,T129,Disciple of the Flowing Hand,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",3,True,,0.49,0.26,2.0,,,,,0.0,Resilience -1
+technique,T129,Disciple of the Flowing Hand,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",3,True,,1.72,0.33,2.2,,,,,0.0,Brawl 3->4 for a prereq; Resilience -2; Composure -1
+technique,T129,Disciple of the Flowing Hand,Jackal (L2),S,"add, replacing Eagle Eyes",3,True,,0.74,0.21,1.6,,,,,0.0,Craft 0->1 to land on the XP; Resilience -1; Composure -1; Insight -1
+technique,T129,Disciple of the Flowing Hand,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",3,True,,0.43,0.19,0.3,,,,,0.0,Acrobatics 3->4 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Awareness -1; Might -1
+technique,T130,Furious Rage,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,-0.22,0.08,-0.4,,,,,0.0,Might 1->3 for a prereq; Composure -2; Insight -1; Awareness -1
+technique,T130,Furious Rage,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,-0.01,0.03,-0.1,,,,,0.0,
+technique,T130,Furious Rage,Carrick (L2),H,"add, replacing Lawman's Hand",2,True,,-0.05,0.08,0.1,,,,,0.0,Might 1->3 for a prereq; Insight -1; Composure -1
+technique,T130,Furious Rage,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.15,0.28,-0.1,,,,,0.0,Might 2->3 for a prereq; Resilience 1->2 for a prereq; Insight -2
+technique,T130,Furious Rage,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.29,0.15,-0.4,,,,,0.0,Might 1->3 for a prereq; Resilience -1; Insight -1; Athletics +1
+technique,T130,Furious Rage,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.72,0.25,-0.9,,,,,0.0,Might 1->3 for a prereq; Resilience -1; Composure -1
+technique,T130,Furious Rage,Hilde (L2),H,take off,2,True,,-0.0,0.02,0.0,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Composure +1
+technique,T130,Furious Rage,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,0.07,0.09,0.4,,,,,0.0,Might 1->3 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Insight -1; Awareness -1
+technique,T130,Furious Rage,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.27,0.19,-0.3,,,,,0.0,Might 2->3 for a prereq; Craft 0->1 to land on the XP; Composure -1; Awareness -1
+technique,T131,Hand of Chaos,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,0.77,0.19,0.0,,,,,0.0,Insight 1->3 for a prereq; Resilience -2; Composure -1
+technique,T131,Hand of Chaos,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,0.21,0.19,-0.5,,,,,0.0,Insight 2->3 for a prereq; Might -1
+technique,T131,Hand of Chaos,Carrick (L2),H,"add, replacing Lawman's Hand",2,True,,0.14,0.21,0.5,,,,,0.0,
+technique,T131,Hand of Chaos,"Enith (L2, proposed)",S,take off,2,True,,0.33,0.28,0.3,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Resilience +1; Awareness +1
+technique,T131,Hand of Chaos,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.36,0.31,-0.1,,,,,0.0,
+technique,T131,Hand of Chaos,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.64,0.38,-1.0,,,,,0.0,Insight 2->3 for a prereq; Resilience -1
+technique,T131,Hand of Chaos,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.41,0.23,0.3,,,,,0.0,Insight 2->3 for a prereq; Craft 0->1 to land on the XP; Composure -1; Awareness -1
+technique,T131,Hand of Chaos,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,0.45,0.35,1.2,,,,,0.0,Insight 2->3 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Awareness -1
+technique,T131,Hand of Chaos,"Sable (L2, proposed)",U,take off,2,True,,0.32,0.19,0.5,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Resilience +1
+technique,T132,Indomitable Phalanx,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,-0.09,0.09,-0.3,,,,,0.0,Might 1->2 for a prereq; Resilience -1
+technique,T132,Indomitable Phalanx,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,0.15,0.05,0.1,,,,,0.0,
+technique,T132,Indomitable Phalanx,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.04,0.28,0.1,,,,,0.0,
+technique,T132,Indomitable Phalanx,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.1,0.09,-0.2,,,,,0.0,Might 1->2 for a prereq; Resilience -1; Athletics +1
+technique,T132,Indomitable Phalanx,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.19,0.26,-0.1,,,,,0.0,Might 1->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1
+technique,T132,Indomitable Phalanx,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.15,0.07,0.2,,,,,0.0,
+technique,T132,Indomitable Phalanx,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.23,0.19,-0.3,,,,,0.0,Melee 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T133,Placeholder's Lengthy Ley-weaving,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,-0.22,0.08,-0.5,,,,,0.0,
+technique,T133,Placeholder's Lengthy Ley-weaving,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,-0.02,0.02,-0.1,,,,,0.0,Sorcery 0->3 for a prereq; Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T133,Placeholder's Lengthy Ley-weaving,Carrick (L2),H,"add, replacing Lawman's Hand",2,True,,-0.1,0.07,-0.1,,,,,0.0,Sorcery 0->3 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T133,Placeholder's Lengthy Ley-weaving,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,0.18,0.33,0.3,,,,,0.0,
+technique,T133,Placeholder's Lengthy Ley-weaving,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.49,0.12,-1.1,,,,,0.0,
+technique,T133,Placeholder's Lengthy Ley-weaving,Hanforth (L2),S,take off,2,True,,0.74,0.25,1.0,,,,,0.0,Craft 0->1 to land on the XP; Streetwise 0->1 to land on the XP; Athletics +1; Might +1
+technique,T133,Placeholder's Lengthy Ley-weaving,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.0,0.02,0.0,,,,,0.0,Sorcery 0->3 for a prereq; Composure -1; Insight -1; Awareness -1
+technique,T133,Placeholder's Lengthy Ley-weaving,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,-0.07,0.06,-0.2,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -1; Composure -1; Insight -1; Awareness -1
+technique,T133,Placeholder's Lengthy Ley-weaving,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.32,0.19,-0.5,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T134,Lion School - Eternal Riposte,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,0.35,0.17,-0.1,,,,,0.0,Insight 1->2 for a prereq; Resilience -1
+technique,T134,Lion School - Eternal Riposte,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,0.13,0.07,-0.1,,,,,0.0,
+technique,T134,Lion School - Eternal Riposte,Carrick (L2),H,"add, replacing Lawman's Hand",2,True,,0.12,0.11,0.2,,,,,0.0,Brawl 0->3 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T134,Lion School - Eternal Riposte,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,0.2,0.28,1.1,,,,,0.0,
+technique,T134,Lion School - Eternal Riposte,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,0.1,0.21,0.2,,,,,0.0,
+technique,T134,Lion School - Eternal Riposte,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.5,0.27,-0.5,,,,,0.0,
+technique,T134,Lion School - Eternal Riposte,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.09,0.05,0.1,,,,,0.0,
+technique,T134,Lion School - Eternal Riposte,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,0.06,0.11,0.1,,,,,0.0,Brawl 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1; Athletics -1
+technique,T134,Lion School - Eternal Riposte,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.06,0.19,-0.3,,,,,0.0,Brawl 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T135,Shugen School - Spirit Hands,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",3,True,,-0.04,0.21,0.0,,,,,0.0,Resilience -1
+technique,T136,Tiger School - Storm of Blades,Carrick (L2),H,"add, replacing Lawman's Hand",3,True,,-0.06,0.08,-0.0,,,,,0.0,Insight -1
+technique,T136,Tiger School - Storm of Blades,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",3,True,,-0.17,0.28,0.0,,,,,0.0,Acrobatics 3->4 for a prereq; Insight -2; Might -1
+technique,T136,Tiger School - Storm of Blades,Jackal (L2),S,"add, replacing Eagle Eyes",3,True,,-0.12,0.08,-0.3,,,,,0.0,Craft 0->1 to land on the XP; Resilience -1; Composure -1; Insight -1
+technique,T137,Eagle Eyes,"Ashleigh (L2, proposed)",U,add,1,True,,0.01,0.05,0.1,,,,,0.0,Resilience -1; Composure -1; Athletics +1
+technique,T137,Eagle Eyes,Beornhard (L2),U,"add, replacing Overchanneling",1,True,,-0.18,0.09,-0.4,,,,,0.0,Acrobatics 0->2 for a prereq
+technique,T137,Eagle Eyes,Browndog (L2),U,"add, replacing Inexhaustible Guardian",1,True,,-0.02,0.02,-0.1,,,,,0.0,Acrobatics 0->2 for a prereq
+technique,T137,Eagle Eyes,Carrick (L2),H,"add, replacing Lawman's Hand",1,True,,0.26,0.15,0.4,,,,,0.0,Athletics +2
+technique,T137,Eagle Eyes,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",1,True,,-0.33,0.28,-0.3,,,,,0.0,Athletics +1; Resilience +1
+technique,T137,Eagle Eyes,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",1,True,,-0.49,0.12,-1.1,,,,,0.0,Athletics +1; Awareness +1
+technique,T137,Eagle Eyes,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",1,True,,-0.74,0.25,-1.0,,,,,0.0,Acrobatics 0->2 for a prereq
+technique,T137,Eagle Eyes,Hilde (L2),H,"add, replacing Furious Rage",1,True,,0.0,0.02,0.0,,,,,0.0,Acrobatics 1->2 for a prereq; Craft 0->1 to land on the XP
+technique,T137,Eagle Eyes,Jackal (L2),S,take off,1,True,,0.07,0.06,0.2,,,,,0.0,Craft 0->1 to land on the XP; Might +1
+technique,T137,Eagle Eyes,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",1,True,,-0.14,0.19,-0.3,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T138,Follow Through,"Ashleigh (L2, proposed)",U,add,1,True,,0,0.0,0.0,,,,,0.0,Brawl 0->2 for a prereq; Resilience -2; Composure -2
+technique,T138,Follow Through,Beornhard (L2),U,"add, replacing Overchanneling",1,True,,-0.22,0.08,-0.5,,,,,0.0,Athletics +1; Insight +1
+technique,T138,Follow Through,Browndog (L2),U,"add, replacing Inexhaustible Guardian",1,True,,0.15,0.07,0.1,,,,,0.0,Craft 0->1 to land on the XP; Awareness +1
+technique,T138,Follow Through,Carrick (L2),H,"add, replacing Lawman's Hand",1,True,,-0.1,0.07,-0.1,,,,,0.0,Brawl 0->2 for a prereq
+technique,T138,Follow Through,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",1,True,,-0.31,0.28,-0.2,,,,,0.0,Athletics +1; Resilience +1
+technique,T138,Follow Through,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",1,True,,-0.41,0.13,-0.9,,,,,0.0,Athletics +1; Awareness +1
+technique,T138,Follow Through,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",1,True,,-0.73,0.25,-0.9,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T138,Follow Through,Hilde (L2),H,"add, replacing Furious Rage",1,True,,0.18,0.09,0.4,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T138,Follow Through,Jackal (L2),S,"add, replacing Eagle Eyes",1,True,,-0.07,0.06,-0.2,,,,,0.0,Brawl 0->2 for a prereq; Resilience -1
+technique,T138,Follow Through,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",1,True,,-0.32,0.19,-0.5,,,,,0.0,Brawl 0->2 for a prereq
+technique,T139,Inexhaustible Guardian,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,-0.15,0.08,-0.5,,,,,0.0,Might 1->2 for a prereq; Resilience -1
+technique,T139,Inexhaustible Guardian,Browndog (L2),U,take off,2,True,,0.02,0.02,0.1,,,,,0.0,Craft 0->1 to land on the XP; Streetwise 0->1 to land on the XP; Awareness +1; Athletics +1
+technique,T139,Inexhaustible Guardian,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.27,0.28,-0.3,,,,,0.0,
+technique,T139,Inexhaustible Guardian,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.29,0.13,-0.7,,,,,0.0,Might 1->2 for a prereq; Resilience -1; Athletics +1
+technique,T139,Inexhaustible Guardian,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.63,0.26,-1.0,,,,,0.0,Might 1->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1
+technique,T139,Inexhaustible Guardian,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.01,0.04,0.0,,,,,0.0,
+technique,T139,Inexhaustible Guardian,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.11,0.19,-0.3,,,,,0.0,Brawl 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T140,Overchanneling,Beornhard (L2),U,take off,2,True,,0.22,0.08,0.5,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1; Insight +1; Awareness +1
+technique,T140,Overchanneling,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,-0.07,0.04,-0.3,,,,,0.0,Sorcery 0->3 for a prereq; Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T140,Overchanneling,Carrick (L2),H,"add, replacing Lawman's Hand",2,True,,-0.1,0.07,-0.1,,,,,0.0,Sorcery 0->3 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T140,Overchanneling,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-1.45,0.33,-2.5,,,,,0.0,
+technique,T140,Overchanneling,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-1.39,0.23,-3.0,,,,,0.0,
+technique,T140,Overchanneling,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-1.81,0.29,-2.7,,,,,0.0,Sorcery 0->3 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T140,Overchanneling,Hilde (L2),H,"add, replacing Furious Rage",2,True,,-0.36,0.12,-0.7,,,,,0.0,Sorcery 0->3 for a prereq; Composure -1; Insight -1; Awareness -1
+technique,T140,Overchanneling,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,-0.07,0.06,-0.2,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -1; Composure -1; Insight -1; Awareness -1
+technique,T140,Overchanneling,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.32,0.19,-0.5,,,,,0.0,Sorcery 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T145,Snake School - Striking Constrictor,"Felix (L2, proposed)",S,add,1,False,,0,0.0,0.0,,,,,0.0,Resilience -1
+technique,T146,Snake School - Chainbreaker,"Felix (L2, proposed)",S,add,2,False,,0.01,0.07,-0.0,,,,,0.0,Resilience -1; Insight -1
+technique,T147,Bear School - Shattering Slam,"Felix (L2, proposed)",S,add,2,False,,-0.44,0.15,-0.7,,,,,0.0,Might 1->2 for a prereq; Resilience -2; Insight -1
+technique,T148,Bear School - Swatting Paw,"Felix (L2, proposed)",S,add,3,False,,0.88,0.21,2.2,,,,,0.0,Might 1->3 for a prereq; Resilience -3; Insight -2; Composure -2
+technique,T149,Bear School - The Grizzly Awakens,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 22 XP | Felix (L2, proposed): prereqs cost 14 XP | Jackal (L2): prereqs cost 24 XP | Hanforth (L2): prereqs cost 18 XP | Browndog (L2): prereqs cost 16 XP | Ashleigh (L2, proposed): prereqs cost 24 XP | Sable (L2, proposed): prereqs cost 22 XP | Beornhard (L2): prereqs cost 18 XP | Hilde (L2): prereqs cost 16 XP | Carrick (L2): prereqs cost 24 XP"
+technique,T150,Demon School - Ripjaw Gambit,"Felix (L2, proposed)",S,add,3,False,,0.0,0.16,0.3,,,,,0.0,Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T151,Demon School - Shepherd Opens the Gate,"Felix (L2, proposed)",S,add,3,False,,0.15,0.1,0.3,,,,,0.0,Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T152,Demon School - Circling Vulture,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 25 XP | Felix (L2, proposed): Demon School - Circling Vulture needs Brawl:5: over the rank cap 4 | Jackal (L2): prereqs cost 25 XP | Hanforth (L2): prereqs cost 19 XP | Browndog (L2): prereqs cost 22 XP | Ashleigh (L2, proposed): prereqs cost 25 XP | Sable (L2, proposed): prereqs cost 25 XP | Beornhard (L2): prereqs cost 19 XP | Hilde (L2): prereqs cost 22 XP | Carrick (L2): prereqs cost 25 XP"
+technique,T153,Shugen School - Swallow Skims the Water,"Felix (L2, proposed)",S,add,3,False,,1.35,0.31,2.7,,,,,0.0,Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T154,Shugen School - Hand Rings the Bell,Beornhard (L2),U,add,2,False,,0.04,0.04,0.1,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -2; Insight -1; Awareness -1; Might -1
+technique,T154,Shugen School - Hand Rings the Bell,"Felix (L2, proposed)",S,add,2,False,,0.1,0.11,0.3,,,,,0.0,Resilience -1; Insight -1
+technique,T154,Shugen School - Hand Rings the Bell,Hanforth (L2),S,add,2,False,,0.02,0.1,-0.0,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -1; Insight -1
+technique,T155,Shugen School - Tide Rolls Back the Shore,"Felix (L2, proposed)",S,add,3,False,,0.09,0.1,0.2,,,,,0.0,Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T156,Shugen School - Lantern Gutters in the Wind,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 25 XP | Felix (L2, proposed): Shugen School - Lantern Gutters in the Wind needs Brawl:5: over the rank cap 4 | Jackal (L2): prereqs cost 25 XP | Hanforth (L2): prereqs cost 19 XP | Browndog (L2): prereqs cost 22 XP | Ashleigh (L2, proposed): prereqs cost 25 XP | Sable (L2, proposed): prereqs cost 25 XP | Beornhard (L2): prereqs cost 19 XP | Hilde (L2): prereqs cost 22 XP | Carrick (L2): prereqs cost 25 XP"
+technique,T157,Shugen School - Great Wind Scatters the Leaves,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 15 XP | Felix (L2, proposed): Shugen School - Great Wind Scatters the Leaves needs Meditation:5: over the rank cap 4 | Jackal (L2): prereqs cost 15 XP | Hanforth (L2): prereqs cost 15 XP | Browndog (L2): prereqs cost 15 XP | Ashleigh (L2, proposed): prereqs cost 15 XP | Sable (L2, proposed): prereqs cost 15 XP | Beornhard (L2): prereqs cost 15 XP | Hilde (L2): prereqs cost 15 XP | Carrick (L2): prereqs cost 15 XP"
+technique,T158,Demon School - Firefly Dies in the Hand,"Ashleigh (L2, proposed)",U,add,1,False,,0.03,0.03,-0.1,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -2
+technique,T158,Demon School - Firefly Dies in the Hand,Beornhard (L2),U,add,1,False,,0.02,0.02,0.1,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -2
+technique,T158,Demon School - Firefly Dies in the Hand,Browndog (L2),U,add,1,False,,-0.0,0.01,-0.0,,,,,0.0,Meditation 0->2 for a prereq; Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T158,Demon School - Firefly Dies in the Hand,Carrick (L2),H,add,1,False,,0.11,0.06,0.2,,,,,0.0,Meditation 0->2 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T158,Demon School - Firefly Dies in the Hand,"Enith (L2, proposed)",S,add,1,False,,-0.04,0.13,0.1,,,,,0.0,Meditation 0->2 for a prereq; Composure -2; Might -1; Resilience -1
+technique,T158,Demon School - Firefly Dies in the Hand,"Felix (L2, proposed)",S,add,1,False,,0.06,0.07,0.1,,,,,0.0,Resilience -1
+technique,T158,Demon School - Firefly Dies in the Hand,Hanforth (L2),S,add,1,False,,-0.01,0.1,-0.0,,,,,0.0,Meditation 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T158,Demon School - Firefly Dies in the Hand,Hilde (L2),H,add,1,False,,0,0.0,0.0,,,,,0.0,Meditation 0->2 for a prereq; Composure -1; Insight -1; Awareness -1
+technique,T158,Demon School - Firefly Dies in the Hand,Jackal (L2),S,add,1,False,,0.02,0.02,0.1,,,,,0.0,Meditation 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Insight -1
+technique,T158,Demon School - Firefly Dies in the Hand,"Sable (L2, proposed)",U,add,1,False,,0.01,0.01,0.0,,,,,0.0,Meditation 0->2 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T159,Demon School - Thief Empties the Vessel,Carrick (L2),H,add,2,False,,0.21,0.08,0.2,,,,,0.0,Meditation 0->3 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T159,Demon School - Thief Empties the Vessel,"Felix (L2, proposed)",S,take off,2,False,,0.05,0.1,0.2,,,,,0.0,Craft 0->1 to land on the XP; Athletics +2; Awareness +1
+technique,T159,Demon School - Thief Empties the Vessel,Hanforth (L2),S,add,2,False,,0.09,0.07,0.2,,,,,0.0,Meditation 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T159,Demon School - Thief Empties the Vessel,Jackal (L2),S,add,2,False,,0.08,0.1,0.1,,,,,0.0,Meditation 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T159,Demon School - Thief Empties the Vessel,"Sable (L2, proposed)",U,add,2,False,,0.11,0.05,0.1,,,,,0.0,Meditation 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T160,Demon School - Dusk Wind Withers the Grass,"Felix (L2, proposed)",S,add,3,False,,0.02,0.14,0.2,,,,,0.0,Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T161,Demon School - Bell Tolls a Dirge,Carrick (L2),H,add,2,False,,-1.01,0.2,-1.2,,,,,0.0,Meditation 0->3 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T161,Demon School - Bell Tolls a Dirge,"Felix (L2, proposed)",S,add,2,False,,-0.52,0.15,-1.2,,,,,0.0,Resilience -1; Insight -1
+technique,T161,Demon School - Bell Tolls a Dirge,Hanforth (L2),S,add,2,False,,-0.86,0.19,-1.6,,,,,0.0,Meditation 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T161,Demon School - Bell Tolls a Dirge,Jackal (L2),S,add,2,False,,-0.34,0.11,-0.9,,,,,0.0,Meditation 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T161,Demon School - Bell Tolls a Dirge,"Sable (L2, proposed)",U,add,2,False,,-0.3,0.11,-0.5,,,,,0.0,Meditation 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T162,Demon School - Fawn Left to the Wolves,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 15 XP | Felix (L2, proposed): Demon School - Fawn Left to the Wolves needs Meditation:5: over the rank cap 4 | Jackal (L2): prereqs cost 15 XP | Hanforth (L2): prereqs cost 15 XP | Browndog (L2): prereqs cost 15 XP | Ashleigh (L2, proposed): prereqs cost 15 XP | Sable (L2, proposed): prereqs cost 15 XP | Beornhard (L2): prereqs cost 15 XP | Hilde (L2): prereqs cost 15 XP | Carrick (L2): prereqs cost 15 XP"
+technique,T163,Great Old Oak School - Tree Withstands the Storm,"Felix (L2, proposed)",S,add,2,False,,0.34,0.11,0.9,,,,,0.0,Resilience -1; Insight -1
+technique,T164,Great Old Oak School - Oak Draws the Lightning,"Felix (L2, proposed)",S,add,3,False,,0.16,0.1,0.3,,,,,0.0,Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T165,Great Old Oak School - Old Growth Digs Deep,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 25 XP | Felix (L2, proposed): Great Old Oak School - Old Growth Digs Deep needs Brawl:5: over the rank cap 4 | Jackal (L2): prereqs cost 25 XP | Hanforth (L2): prereqs cost 19 XP | Browndog (L2): prereqs cost 22 XP | Ashleigh (L2, proposed): prereqs cost 25 XP | Sable (L2, proposed): prereqs cost 25 XP | Beornhard (L2): prereqs cost 19 XP | Hilde (L2): prereqs cost 22 XP | Carrick (L2): prereqs cost 25 XP"
+technique,T166,Great Old Oak School - Seasons Pass the Forest,"Felix (L2, proposed)",S,add,2,False,,0.28,0.12,0.6,,,,,0.0,Resilience -1; Insight -1
+technique,T167,Shugen School - Gaze of Pale Moonlight,Carrick (L2),H,add,2,False,,-0.72,0.19,-0.9,,,,,0.0,Meditation 0->3 for a prereq; Insight -2; Resilience -2; Composure -1; Awareness -1
+technique,T167,Shugen School - Gaze of Pale Moonlight,"Felix (L2, proposed)",S,add,2,False,,-0.11,0.15,0.1,,,,,0.0,Resilience -1; Insight -1
+technique,T167,Shugen School - Gaze of Pale Moonlight,Hanforth (L2),S,add,2,False,,-0.23,0.18,-0.4,,,,,0.0,Meditation 0->3 for a prereq; Resilience -3; Composure -1; Insight -1; Awareness -1
+technique,T167,Shugen School - Gaze of Pale Moonlight,Jackal (L2),S,add,2,False,,-0.14,0.12,-0.4,,,,,0.0,Meditation 0->3 for a prereq; Resilience -1; Composure -2; Insight -1; Awareness -1; Athletics -1
+technique,T167,Shugen School - Gaze of Pale Moonlight,"Sable (L2, proposed)",U,add,2,False,,-0.2,0.11,-0.4,,,,,0.0,Meditation 0->3 for a prereq; Resilience -2; Composure -2; Awareness -2; Might -1; Athletics -1
+technique,T168,Shugen School - Arrow Finds Only Mist,"Felix (L2, proposed)",S,add,3,False,,0.28,0.17,0.9,,,,,0.0,Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T169,Demon School - Blood Answers Blood,"Felix (L2, proposed)",S,add,3,False,,0.39,0.19,0.9,,,,,0.0,Resilience -2; Insight -1; Composure -1; Athletics +1
+technique,T171,Tiger School - Rending Claws,"Ashleigh (L2, proposed)",U,add,2,True,,0.02,0.04,0.0,,,,,0.0,Resilience -2; Composure -2
+technique,T171,Tiger School - Rending Claws,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,-0.22,0.08,-0.5,,,,,0.0,Acrobatics 0->2 for a prereq; Resilience -1; Composure -1; Athletics +1
+technique,T171,Tiger School - Rending Claws,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,-0.02,0.07,-0.2,,,,,0.0,Acrobatics 0->2 for a prereq; Might -1
+technique,T171,Tiger School - Rending Claws,Carrick (L2),H,"add, replacing Lawman's Hand",2,True,,-0.03,0.1,-0.0,,,,,0.0,
+technique,T171,Tiger School - Rending Claws,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.11,0.28,0.2,,,,,0.0,
+technique,T171,Tiger School - Rending Claws,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.31,0.15,-0.8,,,,,0.0,
+technique,T171,Tiger School - Rending Claws,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.73,0.25,-1.0,,,,,0.0,Acrobatics 0->2 for a prereq; Resilience -1
+technique,T171,Tiger School - Rending Claws,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.06,0.04,0.1,,,,,0.0,Acrobatics 1->2 for a prereq; Composure -1
+technique,T171,Tiger School - Rending Claws,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,0.04,0.08,0.2,,,,,0.0,Resilience -1
+technique,T171,Tiger School - Rending Claws,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.06,0.19,-0.3,,,,,0.0,
+technique,T172,Demon School - Hands of Defilement,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",3,True,,-0.04,0.2,0.1,,,,,0.0,Resilience -1
+technique,T173,Snake School - Infinite Coiling,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,0.35,0.17,-0.1,,,,,0.0,Insight 1->2 for a prereq; Resilience -1
+technique,T173,Snake School - Infinite Coiling,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,0.21,0.06,0.1,,,,,0.0,Brawl 2->3 for a prereq; Might -1
+technique,T173,Snake School - Infinite Coiling,Carrick (L2),H,"add, replacing Lawman's Hand",2,True,,-0.1,0.07,-0.1,,,,,0.0,Brawl 0->3 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T173,Snake School - Infinite Coiling,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.33,0.28,-0.3,,,,,0.0,Brawl 0->3 for a prereq; Insight -1; Might -1; Resilience -1
+technique,T173,Snake School - Infinite Coiling,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.49,0.12,-1.1,,,,,0.0,
+technique,T173,Snake School - Infinite Coiling,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.74,0.25,-1.0,,,,,0.0,
+technique,T173,Snake School - Infinite Coiling,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.14,0.06,0.2,,,,,0.0,Brawl 2->3 for a prereq; Craft 0->1 to land on the XP; Composure -1; Awareness -1
+technique,T173,Snake School - Infinite Coiling,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,-0.07,0.06,-0.2,,,,,0.0,Brawl 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1; Athletics -1
+technique,T173,Snake School - Infinite Coiling,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.15,0.19,-0.3,,,,,0.0,Brawl 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T174,Bear School - Furious Swipes,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",3,True,,-0.42,0.14,-0.9,,,,,0.0,Might 1->3 for a prereq; Resilience -2; Insight -1
+technique,T175,Great Old Oak School - Boughs Unbroken,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,-0.15,0.09,-0.4,,,,,0.0,Meditation 0->2 for a prereq; Resilience -1; Composure -1; Athletics +1
+technique,T175,Great Old Oak School - Boughs Unbroken,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,0.22,0.06,0.1,,,,,0.0,Brawl 2->3 for a prereq; Meditation 0->2 for a prereq; Craft 0->1 to land on the XP; Might -1; Composure -1; Insight -1
+technique,T175,Great Old Oak School - Boughs Unbroken,"Felix (L2, proposed)",S,take off,2,True,,0.49,0.12,1.1,,,,,0.0,Craft 0->1 to land on the XP; Athletics +2; Awareness +1
+technique,T175,Great Old Oak School - Boughs Unbroken,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.39,0.25,-0.5,,,,,0.0,Meditation 0->2 for a prereq; Resilience -1
+technique,T175,Great Old Oak School - Boughs Unbroken,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.17,0.07,0.3,,,,,0.0,Brawl 2->3 for a prereq; Meditation 0->2 for a prereq; Composure -1; Insight -1; Awareness -1
+technique,T176,Drunken Brawling,"Ashleigh (L2, proposed)",U,add,2,True,,0.07,0.15,-0.2,,,,,0.0,Insight 1->2 for a prereq; Resilience -2; Composure -2; Awareness -1; Might -1
+technique,T176,Drunken Brawling,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,0.64,0.11,0.3,,,,,0.0,Acrobatics 0->3 for a prereq; Craft 0->1 to land on the XP; Might -2; Composure -1
+technique,T176,Drunken Brawling,Carrick (L2),H,"add, replacing Lawman's Hand",2,True,,-0.1,0.07,-0.1,,,,,0.0,
+technique,T176,Drunken Brawling,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,0.25,0.28,0.7,,,,,0.0,
+technique,T176,Drunken Brawling,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.17,0.18,-0.5,,,,,0.0,Acrobatics 2->3 for a prereq; Resilience -1
+technique,T176,Drunken Brawling,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.63,0.26,-0.9,,,,,0.0,Acrobatics 0->3 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T176,Drunken Brawling,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.64,0.15,0.8,,,,,0.0,Acrobatics 1->3 for a prereq; Composure -2; Awareness -1
+technique,T176,Drunken Brawling,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,-0.07,0.06,-0.2,,,,,0.0,Resilience -1
+technique,T176,Drunken Brawling,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.32,0.19,-0.5,,,,,0.0,
+technique,T177,Doubleshot,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 9 XP | Felix (L2, proposed): prereqs cost 12 XP | Jackal (L2): Doubleshot needs (Acrobatics|Archery):5: over the rank cap 4 | Hanforth (L2): prereqs cost 15 XP | Browndog (L2): prereqs cost 15 XP | Ashleigh (L2, proposed): prereqs cost 9 XP | Sable (L2, proposed): prereqs cost 9 XP | Beornhard (L2): prereqs cost 15 XP | Hilde (L2): prereqs cost 14 XP | Carrick (L2): Doubleshot needs (Acrobatics|Archery):5: over the rank cap 4"
+technique,T178,Lend Bulwark,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,-0.2,0.08,-0.4,,,,,0.0,Might 1->2 for a prereq; Resilience -1
+technique,T178,Lend Bulwark,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,0.28,0.05,-0.0,,,,,0.0,
+technique,T178,Lend Bulwark,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.12,0.28,0.1,,,,,0.0,
+technique,T178,Lend Bulwark,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,0.13,0.16,-0.1,,,,,0.0,Might 1->2 for a prereq; Resilience -1; Athletics +1
+technique,T178,Lend Bulwark,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.73,0.25,-1.1,,,,,0.0,Might 1->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1
+technique,T178,Lend Bulwark,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.3,0.08,0.2,,,,,0.0,
+technique,T178,Lend Bulwark,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.16,0.19,-0.4,,,,,0.0,Brawl 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T180,Earthen Fist Posture,"Ashleigh (L2, proposed)",U,add,1,True,,0.0,0.03,0.1,,,,,0.0,Resilience -1; Composure -1; Athletics +1
+technique,T180,Earthen Fist Posture,Beornhard (L2),U,"add, replacing Overchanneling",1,True,,-0.22,0.08,-0.5,,,,,0.0,Athletics +1; Insight +1
+technique,T180,Earthen Fist Posture,Browndog (L2),U,"add, replacing Inexhaustible Guardian",1,True,,-0.02,0.04,-0.1,,,,,0.0,Craft 0->1 to land on the XP; Awareness +1
+technique,T180,Earthen Fist Posture,Carrick (L2),H,"add, replacing Lawman's Hand",1,True,,-0.34,0.14,-0.4,,,,,0.0,Athletics +2
+technique,T180,Earthen Fist Posture,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",1,True,,-0.35,0.28,-0.3,,,,,0.0,Athletics +1; Resilience +1
+technique,T180,Earthen Fist Posture,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",1,True,,-0.51,0.13,-1.2,,,,,0.0,Athletics +1; Awareness +1
+technique,T180,Earthen Fist Posture,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",1,True,,-0.74,0.25,-1.0,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T180,Earthen Fist Posture,Hilde (L2),H,"add, replacing Furious Rage",1,True,,-0.02,0.06,-0.1,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T180,Earthen Fist Posture,Jackal (L2),S,"add, replacing Eagle Eyes",1,True,,-0.1,0.08,-0.3,,,,,0.0,
+technique,T180,Earthen Fist Posture,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",1,True,,-0.13,0.19,-0.3,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T182,Earthen Mantle Approach,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 15 XP | Felix (L2, proposed): prereqs cost 10 XP | Jackal (L2): prereqs cost 7 XP | Hanforth (L2): prereqs cost 9 XP | Browndog (L2): prereqs cost 9 XP | Ashleigh (L2, proposed): prereqs cost 13 XP | Sable (L2, proposed): prereqs cost 12 XP | Beornhard (L2): prereqs cost 13 XP | Hilde (L2): prereqs cost 9 XP | Carrick (L2): prereqs cost 13 XP"
+technique,T184,Crashing Wave Approach,Hilde (L2),H,"add, replacing Furious Rage",3,True,,0.15,0.09,0.2,,,,,0.0,Athletics 1->3 for a prereq; Composure -2; Insight -2; Awareness -1
+technique,T185,Deadeye's Shadow,"Ashleigh (L2, proposed)",U,add,2,True,,0.07,0.04,0.1,,,,,0.0,Awareness 1->2 for a prereq; Resilience -2; Composure -2; Insight -1; Might -1
+technique,T185,Deadeye's Shadow,Carrick (L2),H,"add, replacing Lawman's Hand",2,True,,-0.01,0.12,-0.1,,,,,0.0,
+technique,T185,Deadeye's Shadow,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.33,0.28,-0.3,,,,,0.0,Awareness 1->2 for a prereq; Insight -1; Athletics +1
+technique,T185,Deadeye's Shadow,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.49,0.12,-1.1,,,,,0.0,Acrobatics 2->3 for a prereq; Awareness 1->2 for a prereq; Resilience -1; Insight -1; Athletics +1
+technique,T185,Deadeye's Shadow,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.74,0.25,-1.0,,,,,0.0,Acrobatics 0->3 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Composure -1
+technique,T185,Deadeye's Shadow,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.14,0.06,0.2,,,,,0.0,Acrobatics 1->3 for a prereq; Composure -2; Insight -1
+technique,T185,Deadeye's Shadow,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,-0.02,0.09,-0.1,,,,,0.0,Resilience -1
+technique,T185,Deadeye's Shadow,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.38,0.2,-0.6,,,,,0.0,
+technique,T187,Aura of Death,"Ashleigh (L2, proposed)",U,add,1,True,,0.02,0.02,0.1,,,,,0.0,Meditation 0->2 for a prereq; Resilience -2; Composure -2
+technique,T187,Aura of Death,Beornhard (L2),U,"add, replacing Overchanneling",1,True,,-0.22,0.08,-0.5,,,,,0.0,Presence 0->1 for a prereq; Craft 0->1 to land on the XP; Athletics +1
+technique,T187,Aura of Death,Browndog (L2),U,"add, replacing Inexhaustible Guardian",1,True,,-0.01,0.02,-0.1,,,,,0.0,Meditation 0->2 for a prereq
+technique,T187,Aura of Death,Carrick (L2),H,"add, replacing Lawman's Hand",1,True,,-0.11,0.07,-0.1,,,,,0.0,Meditation 0->2 for a prereq; Presence 0->1 for a prereq; Masquerade 0->1 to land on the XP; Insight -1; Athletics +1
+technique,T187,Aura of Death,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",1,True,,-0.35,0.28,-0.3,,,,,0.0,Presence 0->1 for a prereq; Craft 0->1 to land on the XP; Athletics +1
+technique,T187,Aura of Death,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",1,True,,-0.45,0.13,-0.9,,,,,0.0,Presence 0->1 for a prereq; Craft 0->1 to land on the XP; Athletics +1
+technique,T187,Aura of Death,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",1,True,,-0.7,0.25,-1.0,,,,,0.0,Presence 0->1 for a prereq; Athletics +1
+technique,T187,Aura of Death,Hilde (L2),H,"add, replacing Furious Rage",1,True,,-0.0,0.02,0.0,,,,,0.0,Meditation 0->2 for a prereq
+technique,T187,Aura of Death,Jackal (L2),S,"add, replacing Eagle Eyes",1,True,,-0.06,0.07,-0.1,,,,,0.0,Meditation 0->2 for a prereq; Presence 0->1 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1
+technique,T187,Aura of Death,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",1,True,,-0.33,0.19,-0.4,,,,,0.0,Meditation 0->2 for a prereq; Presence 0->1 for a prereq; Craft 0->1 to land on the XP; Resilience -1
+technique,T189,Field Medic,"Ashleigh (L2, proposed)",U,add,1,True,,0,0.0,0.0,,,,,0.0,Resilience -1; Composure -1; Athletics +1
+technique,T189,Field Medic,Beornhard (L2),U,"add, replacing Overchanneling",1,True,,-0.22,0.08,-0.5,,,,,0.0,Medicine 0->2 for a prereq
+technique,T189,Field Medic,Browndog (L2),U,"add, replacing Inexhaustible Guardian",1,True,,-0.02,0.02,-0.1,,,,,0.0,Medicine 0->2 for a prereq
+technique,T189,Field Medic,Carrick (L2),H,"add, replacing Lawman's Hand",1,True,,-0.1,0.07,-0.1,,,,,0.0,Athletics +2
+technique,T189,Field Medic,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",1,True,,-0.33,0.28,-0.3,,,,,0.0,Medicine 0->2 for a prereq
+technique,T189,Field Medic,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",1,True,,-0.49,0.12,-1.1,,,,,0.0,Medicine 0->2 for a prereq
+technique,T189,Field Medic,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",1,True,,-0.06,0.26,-0.4,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T189,Field Medic,Hilde (L2),H,"add, replacing Furious Rage",1,True,,0.0,0.02,0.0,,,,,0.0,Medicine 0->2 for a prereq
+technique,T189,Field Medic,Jackal (L2),S,"add, replacing Eagle Eyes",1,True,,-0.07,0.06,-0.2,,,,,0.0,Medicine 0->2 for a prereq; Resilience -1
+technique,T189,Field Medic,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",1,True,,-0.32,0.19,-0.5,,,,,0.0,Medicine 0->2 for a prereq
+technique,T190,Lifeward,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",3,True,,-0.07,0.25,0.0,,,,,0.0,Composure 2->3 for a prereq; Craft 0->1 to land on the XP; Resilience -2; Insight -1
+technique,T192,Seize the Moment,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,0.51,0.13,0.5,,,,,0.0,Awareness 1->3 for a prereq; Might -1; Composure -1
+technique,T192,Seize the Moment,Carrick (L2),H,"add, replacing Lawman's Hand",2,True,,0.06,0.12,0.1,,,,,0.0,Awareness 2->3 for a prereq; Insight -1
+technique,T192,Seize the Moment,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.18,0.3,-0.3,,,,,0.0,Awareness 1->3 for a prereq; Insight -1; Might -1
+technique,T192,Seize the Moment,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,0.23,0.26,0.3,,,,,0.0,Awareness 1->3 for a prereq; Resilience -1; Insight -1; Athletics +1
+technique,T192,Seize the Moment,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.6,0.3,-1.1,,,,,0.0,Awareness 2->3 for a prereq; Resilience -1
+technique,T192,Seize the Moment,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.38,0.15,0.4,,,,,0.0,Awareness 2->3 for a prereq; Composure -2
+technique,T192,Seize the Moment,Jackal (L2),S,"add, replacing Eagle Eyes",2,True,,0.91,0.24,1.9,,,,,0.0,Awareness 2->3 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Athletics -1
+technique,T192,Seize the Moment,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.24,0.19,-0.4,,,,,0.0,Awareness 2->3 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1
+technique,T193,Lie in Wait,"Ashleigh (L2, proposed)",U,add,1,True,,-0.56,0.16,-0.8,,,,,0.0,Awareness 1->2 for a prereq; Resilience -2; Composure -1
+technique,T193,Lie in Wait,Beornhard (L2),U,"add, replacing Overchanneling",1,True,,-2.05,0.2,-2.2,,,,,0.0,Athletics +1; Insight +1
+technique,T193,Lie in Wait,Browndog (L2),U,"add, replacing Inexhaustible Guardian",1,True,,-1.04,0.2,-1.1,,,,,0.0,Awareness 1->2 for a prereq; Craft 0->1 to land on the XP
+technique,T193,Lie in Wait,Carrick (L2),H,"add, replacing Lawman's Hand",1,True,,-0.43,0.24,-0.2,,,,,0.0,Athletics +2
+technique,T193,Lie in Wait,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",1,True,,-0.5,0.38,-0.8,,,,,0.0,Awareness 1->2 for a prereq; Athletics +1
+technique,T193,Lie in Wait,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",1,True,,-1.9,0.38,-3.3,,,,,0.0,Athletics +1; Awareness +1
+technique,T193,Lie in Wait,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",1,True,,-1.65,0.39,-2.7,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T193,Lie in Wait,Hilde (L2),H,"add, replacing Furious Rage",1,True,,-1.16,0.25,-1.0,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T193,Lie in Wait,Jackal (L2),S,"add, replacing Eagle Eyes",1,True,,-1.06,0.36,-1.0,,,,,0.0,
+technique,T193,Lie in Wait,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",1,True,,-2.91,0.27,-3.9,,,,,0.0,Craft 0->1 to land on the XP; Athletics +1
+technique,T194,Ambush Predator,Carrick (L2),H,"add, replacing Lawman's Hand",3,True,,0.04,0.16,0.2,,,,,0.0,Stealth 3->4 for a prereq; Resilience -2; Composure -1; Awareness -1
+technique,T194,Ambush Predator,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",3,True,,0.44,0.18,0.1,,,,,0.0,Stealth 3->4 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1; Awareness -1; Might -1
+technique,T195,Forward!,"Ashleigh (L2, proposed)",U,add,1,True,,0.06,0.06,0.0,,,,,0.0,Resilience -1; Composure -1; Athletics +1
+technique,T195,Forward!,Beornhard (L2),U,"add, replacing Overchanneling",1,True,,-0.19,0.09,-0.4,,,,,0.0,Performance 0->2 for a prereq; Rapport 0->1 for a prereq; Resilience -1; Athletics +1
+technique,T195,Forward!,Browndog (L2),U,"add, replacing Inexhaustible Guardian",1,True,,-0.02,0.04,-0.1,,,,,0.0,Rapport 0->1 for a prereq; Awareness +1
+technique,T195,Forward!,Carrick (L2),H,"add, replacing Lawman's Hand",1,True,,-0.01,0.11,0.1,,,,,0.0,Performance 0->2 for a prereq; Rapport 0->1 for a prereq; Masquerade 0->1 to land on the XP; Insight -1; Athletics +1
+technique,T195,Forward!,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",1,True,,0.02,0.29,0.4,,,,,0.0,Performance 0->2 for a prereq; Rapport 0->1 for a prereq; Craft 0->1 to land on the XP; Insight -1; Athletics +1
+technique,T195,Forward!,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",1,True,,0.05,0.2,0.0,,,,,0.0,Performance 0->2 for a prereq
+technique,T195,Forward!,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",1,True,,-0.34,0.27,-0.2,,,,,0.0,Performance 0->2 for a prereq
+technique,T195,Forward!,Hilde (L2),H,"add, replacing Furious Rage",1,True,,0.02,0.05,0.1,,,,,0.0,Rapport 0->1 for a prereq; Athletics +1
+technique,T195,Forward!,Jackal (L2),S,"add, replacing Eagle Eyes",1,True,,0.07,0.15,0.0,,,,,0.0,Performance 0->2 for a prereq; Resilience -1
+technique,T195,Forward!,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",1,True,,-0.14,0.19,-0.4,,,,,0.0,Performance 0->2 for a prereq; Rapport 0->1 for a prereq; Craft 0->1 to land on the XP; Resilience -1
+technique,T196,Lead by Example,Beornhard (L2),U,"add, replacing Overchanneling",2,True,,-0.23,0.1,-0.4,,,,,0.0,Presence 0->2 for a prereq; Resilience -1; Composure -1; Athletics +1
+technique,T196,Lead by Example,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,-0.04,0.07,-0.2,,,,,0.0,
+technique,T196,Lead by Example,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.11,0.28,0.1,,,,,0.0,Presence 0->2 for a prereq; Insight -1
+technique,T196,Lead by Example,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",2,True,,-0.24,0.19,-0.5,,,,,0.0,Presence 0->2 for a prereq; Resilience -1
+technique,T196,Lead by Example,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.77,0.26,-1.3,,,,,0.0,Presence 0->2 for a prereq; Resilience -1
+technique,T196,Lead by Example,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.0,0.08,0.0,,,,,0.0,
+technique,T196,Lead by Example,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.26,0.19,-0.2,,,,,0.0,Presence 0->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1; Composure -1
+technique,T197,Command the Tempo,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 10 XP | Felix (L2, proposed): prereqs cost 10 XP | Jackal (L2): prereqs cost 13 XP | Hanforth (L2): prereqs cost 13 XP | Browndog (L2): prereqs cost 7 XP | Ashleigh (L2, proposed): not enough donor ranks to pay 6 XP | Sable (L2, proposed): prereqs cost 10 XP | Beornhard (L2): prereqs cost 15 XP | Hilde (L2): prereqs cost 10 XP | Carrick (L2): prereqs cost 10 XP"
+technique,T198,Commander's Gambit,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 25 XP | Felix (L2, proposed): prereqs cost 22 XP | Jackal (L2): prereqs cost 22 XP | Hanforth (L2): prereqs cost 24 XP | Browndog (L2): prereqs cost 19 XP | Ashleigh (L2, proposed): prereqs cost 9 XP | Sable (L2, proposed): prereqs cost 25 XP | Beornhard (L2): prereqs cost 25 XP | Hilde (L2): prereqs cost 22 XP | Carrick (L2): prereqs cost 25 XP"
+technique,T199,Intimidating Presence,"Ashleigh (L2, proposed)",U,add,2,True,,-0.02,0.04,-0.1,,,,,0.0,Might 1->2 for a prereq; Resilience -2; Composure -2; Insight -1; Awareness -1
+technique,T199,Intimidating Presence,Browndog (L2),U,"add, replacing Inexhaustible Guardian",2,True,,-0.35,0.07,-0.1,,,,,0.0,
+technique,T199,Intimidating Presence,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",2,True,,-0.16,0.29,0.0,,,,,0.0,Presence 0->3 for a prereq; Insight -2; Resilience -1
+technique,T199,Intimidating Presence,Hilde (L2),H,"add, replacing Furious Rage",2,True,,0.03,0.09,0.2,,,,,0.0,Presence 2->3 for a prereq; Craft 0->1 to land on the XP; Composure -1; Insight -1
+technique,T199,Intimidating Presence,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",2,True,,-0.26,0.19,-0.5,,,,,0.0,Presence 0->3 for a prereq; Resilience -1; Composure -1; Awareness -1
+technique,T200,Dread Reputation,,,,,,,,,,,,,,,"no host: Enith (L2, proposed): prereqs cost 10 XP | Felix (L2, proposed): prereqs cost 10 XP | Jackal (L2): prereqs cost 13 XP | Hanforth (L2): prereqs cost 13 XP | Browndog (L2): prereqs cost 7 XP | Ashleigh (L2, proposed): not enough donor ranks to pay 6 XP | Sable (L2, proposed): prereqs cost 10 XP | Beornhard (L2): prereqs cost 15 XP | Hilde (L2): prereqs cost 10 XP | Carrick (L2): prereqs cost 10 XP"
+technique,T202,Grasping Earth,Hanforth (L2),S,"add, replacing Placeholder's Lengthy Ley-weaving",2,True,,-0.74,0.25,-1.0,,,,,0.0,Survival 1->2 for a prereq; Craft 0->1 to land on the XP; Resilience -1
+technique,T203,Twin Spell,Beornhard (L2),U,"add, replacing Overchanneling",3,True,,-0.13,0.09,-0.4,,,,,0.0,Resilience 2->3 for a prereq; Composure -2; Insight -1; Awareness -1; Might -1
+technique,T203,Twin Spell,"Enith (L2, proposed)",S,"add, replacing Hand of Chaos",3,True,,-0.78,0.31,-1.2,,,,,0.0,Resilience 1->3 for a prereq; Insight -3; Might -1
+technique,T204,Exploit the Opening,"Felix (L2, proposed)",S,"add, replacing Great Old Oak School - Boughs Unbroken",3,True,,-0.38,0.17,-0.9,,,,,0.0,Resilience -1
+technique,T204,Exploit the Opening,Hilde (L2),H,"add, replacing Furious Rage",3,True,,0.34,0.21,0.3,,,,,0.0,Insight 2->3 for a prereq; Composure -2; Awareness -2
+technique,T205,Suppressing Fire,Carrick (L2),H,"add, replacing Lawman's Hand",3,True,,0.14,0.1,0.2,,,,,0.0,Awareness 2->3 for a prereq; Insight -1; Resilience -1; Composure -1; Athletics +1
+technique,T205,Suppressing Fire,Jackal (L2),S,"add, replacing Eagle Eyes",3,True,,0.07,0.08,0.3,,,,,0.0,Awareness 2->3 for a prereq; Resilience -1; Composure -1; Insight -1; Athletics -1
+technique,T205,Suppressing Fire,"Sable (L2, proposed)",U,"add, replacing Hand of Chaos",3,True,,-0.08,0.19,-0.2,,,,,0.0,Awareness 2->3 for a prereq; Resilience -1; Composure -1; Might -1
