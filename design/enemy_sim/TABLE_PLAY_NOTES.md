@@ -1941,8 +1941,10 @@ Per the designer: hardly anyone builds a pure combat character. A typical
 player puts some XP into social Skills, sneaking and a couple of fun
 low-Level Techniques, and that has to matter outside fights (scouting,
 talking past an encounter instead of paying a bribe). So test builds get
-a combat budget, `combat_xp.COMBAT_BUDGET`: **130 XP of 175 at Level 3,
-95 of 125 at Level 2**, the rest assumed spent outside fights. The
+a combat budget, `combat_xp.COMBAT_BUDGET`: **145 XP of 175 at Level 3,
+105 of 125 at Level 2**, the rest assumed spent outside fights. The
+designer first said 130, then moved it to 145, the high end of the
+non-Carrick builds, as the mid-tier focal point for balance. The
 stand-in is a plain fighter at that budget, and `build_optimizer.py
 --combat-budget` searches within it.
 
@@ -1950,8 +1952,9 @@ Combat XP (`combat_xp.split`) is every Stat, the attack and Defense Skills
 (Melee, Archery, Brawl, Acrobatics, Resilience, Composure, Insight, Might,
 Sorcery, Theurgy, Meditation), any Skill in techniques.csv's Relevant
 Skills for a Technique the character uses in a fight, and every Technique
-the sim plays in a fight. Counting every Stat as combat over-counts a
-little (a Stat raised for social reasons still lands in Defenses).
+the sim plays in a fight (an `Unmodeled` one counts as outside). Counting
+every Stat as combat over-counts a little (a Stat raised for social
+reasons still lands in Defenses).
 
 The designer's own builds, by that split:
 
@@ -1968,6 +1971,47 @@ The designer's own builds, by that split:
 | Hanforth | 144 | 31 | | Sable | 105 | 20 |
 | Carrick | 133 | 42 | | Carrick | 83 | 42 |
 
-Only Carrick sits near the budget; the rest put 15-40 more XP into
-fights than the assumed typical player. Results for these characters
-show their combat XP alongside.
+**Every archetype at the same combat XP.** The point isn't that Carrick
+or Hilde play that way at the table; it's what each would look like if
+they put the same share into fights, so archetypes compare head to head
+with PCs and enemies on roughly the same footing. `combat_xp.normalize`
+brings a build to the budget (at most 2 under): over budget, the highest
+combat rank comes down one step at a time, never the attack Skill, its
+Stat or a rank a prereq needs, and a combat Technique goes only if
+nothing else can; under budget, the attack Skill and its Stat go up, then
+Essence and the Defense Skills. No Technique had to go. The results are in
+`builds/normalized/<name>_l<L>_c<budget>.json`, each with a simNotes line:
+
+| Level 3 | Before | After | Changes |
+|---|---|---|---|
+| Beornhard | 171 | 144 | Mind -2, Brawl -1, Agility -1, Resilience -1 then +1 |
+| Browndog | 169 | 145 | Body -2, Might -1, Mind -1, Essence -1, Resilience +1 |
+| Jackal | 163 | 145 | Mixology -2, Cunning -1, Mind -1, Resilience +1, Insight +1 |
+| Enith | 155 | 145 | Sorcery -1, Essence -1, Resilience +1 |
+| Hilde | 153 | 143 | Body -1 |
+| Ashleigh | 152 | 143 | Essence -1, Melee +1 |
+| Felix | 151 | 143 | Essence -1 |
+| Sable | 146 | 143 | Acrobatics -1 |
+| Hanforth | 144 | 144 | none |
+| Carrick | 133 | 144 | Acrobatics +1, Essence +1 |
+
+| Level 2 | Before | After | Changes |
+|---|---|---|---|
+| Beornhard | 121 | 104 | Mind -1, Brawl -1, Body -1 |
+| Browndog | 119 | 105 | Body -1, Might -1, Presence -1 |
+| Hilde | 115 | 105 | Body -2, Resilience +1 |
+| Jackal | 113 | 105 | Mixology -1, Mind -1, Resilience +1 |
+| Felix | 111 | 104 | Meditation -1, Resilience -1 |
+| Enith | 110 | 103 | Sorcery -1, Acrobatics -1 |
+| Hanforth | 108 | 105 | Theurgy -1 |
+| Ashleigh | 108 | 104 | Presence -1 |
+| Sable | 105 | 105 | none |
+| Carrick | 83 | 105 | Agility +1, Essence +2 |
+
+A Stat rank is worth twice a Skill rank's XP, so one Stat step does most
+of the trimming (Felix's single Essence step is 8 XP). The trims are
+mechanical, not a player's choices: Browndog losing a Mind rank and
+Beornhard an Agility rank are the rule picking the highest rank, and a
+designer would likely trim differently. Sable's Level 3 build is the
+proposed one (PROPOSED_BUILDS.md), since there's no export of the
+designer's at that Level.

@@ -1,0 +1,120 @@
+{
+ "charName": "Hilde the Barbarian",
+ "charConcept": "A powerful melee fighter who charges into battle with no fear",
+ "xpBudget": "125",
+ "statPoints": {
+  "Agility": 3,
+  "Body": 2,
+  "Cunning": 2,
+  "Mind": 2,
+  "Essence": 2
+ },
+ "skillPoints": {
+  "Acrobatics": 1,
+  "Archery": 0,
+  "Brawl": 2,
+  "Melee": 4,
+  "Stealth": 2,
+  "Athletics": 1,
+  "Awareness": 2,
+  "Might": 3,
+  "Presence": 2,
+  "Resilience": 4,
+  "Insight": 2,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 0,
+  "Academics": 0,
+  "Composure": 2,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 0,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 0
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I120",
+   "qty": 1
+  },
+  {
+   "id": "I127",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-24T15:35:15.760Z",
+ "techniques": [
+  {
+   "id": "T012",
+   "name": "Second Wind",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Lunging",
+     "count": 3
+    }
+   ]
+  },
+  {
+   "id": "T130",
+   "name": "Furious Rage",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Half Guard",
+     "count": 3
+    }
+   ]
+  },
+  {
+   "id": "T018",
+   "name": "Strength from the Slain",
+   "xp": 9,
+   "level": "Lv 3"
+  },
+  {
+   "id": "T014",
+   "name": "Toughened Body",
+   "xp": 6,
+   "level": "Lv 2"
+  }
+ ],
+ "simNotes": [
+  "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json.",
+  "Normalized to 105 combat XP (combat_xp.normalize, 2026-10-30), from 115: Body -1 x2, Resilience +1."
+ ]
+}

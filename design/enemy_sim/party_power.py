@@ -10,10 +10,10 @@ signal by itself.
 Each member's contribution is read against a stand-in: the Baseline
 Party Member for that Level (sample_pcs.csv, a plain on-level fighter
 with no Techniques), topped up with plain Stats and Skills to the combat
-budget (combat_xp.py: 95 / 130 XP, the designer's assumed share of 125 /
-175, the rest going to life outside fights), so "contribution" means what
-a character's own choices add over a plain fighter with a typical
-combat share.
+budget (combat_xp.py: 105 / 145 XP of 125 / 175, the designer's
+mid-tier focal point, the rest going to life outside fights), so
+"contribution" means what a character's own choices add over a plain
+fighter with the same combat share.
 
 - `days_won(names, swaps, level, up, n)`: days won, plus how one-sided
   the first fight of each day was.
@@ -33,7 +33,7 @@ import party, tunables as T  # noqa: E402
 import day_sim  # noqa: E402
 import build_optimizer as bo  # noqa: E402
 
-from combat_xp import COMBAT_BUDGET as BUDGET  # 95 / 130: the rest goes to life outside fights
+from combat_xp import COMBAT_BUDGET as BUDGET  # 105 / 145: the rest goes to life outside fights
 STAND_IN = {L: f"Baseline Tier {L} Party Member" for L in (1, 2, 3, 4, 5)}
 # An even rotation, the way a plain fighter would spread XP: the Stats,
 # then the Skills a melee fighter's Defenses and attack use.

@@ -1,0 +1,159 @@
+{
+ "charName": "Hilde the Barbarian",
+ "charConcept": "A powerful melee fighter who charges into battle with no fear",
+ "xpBudget": "175",
+ "statPoints": {
+  "Agility": 4,
+  "Body": 4,
+  "Cunning": 2,
+  "Mind": 2,
+  "Essence": 2
+ },
+ "skillPoints": {
+  "Acrobatics": 1,
+  "Archery": 0,
+  "Brawl": 2,
+  "Melee": 5,
+  "Stealth": 2,
+  "Athletics": 3,
+  "Awareness": 2,
+  "Might": 3,
+  "Presence": 2,
+  "Resilience": 3,
+  "Insight": 3,
+  "Masquerade": 0,
+  "Persuasion": 0,
+  "Streetwise": 0,
+  "Survival": 1,
+  "Academics": 0,
+  "Composure": 2,
+  "Craft": 0,
+  "Medicine": 0,
+  "Mixology": 0,
+  "Meditation": 0,
+  "Performance": 0,
+  "Rapport": 0,
+  "Sorcery": 0,
+  "Theurgy": 0
+ },
+ "charNotes": "",
+ "noteRows": [],
+ "customTechniques": [],
+ "backgroundType": "Settler",
+ "backgrounds": [],
+ "sheetSectionOrder": [
+  "backgrounds",
+  "techniques"
+ ],
+ "enabledSupplements": [
+  "Base Game"
+ ],
+ "gold": "",
+ "inventory": [
+  {
+   "id": "I120",
+   "qty": 1
+  },
+  {
+   "id": "I127",
+   "qty": 1
+  }
+ ],
+ "customItems": [],
+ "customMaterials": [],
+ "customAttacks": [],
+ "exportedAt": "2026-10-24T15:40:21.231Z",
+ "techniques": [
+  {
+   "id": "T012",
+   "name": "Second Wind",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Lunging",
+     "count": 3
+    }
+   ]
+  },
+  {
+   "id": "T130",
+   "name": "Furious Rage",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "xp": 9,
+   "level": 3,
+   "features": [
+    {
+     "name": "Whirlwind",
+     "count": 1
+    },
+    {
+     "name": "Victorious",
+     "count": 1
+    },
+    {
+     "name": "Ascended Blade",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "T018",
+   "name": "Strength from the Slain",
+   "xp": 9,
+   "level": "Lv 3"
+  },
+  {
+   "id": "T014",
+   "name": "Toughened Body",
+   "xp": 6,
+   "level": "Lv 2"
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Half Guard",
+     "count": 3
+    }
+   ]
+  },
+  {
+   "id": "T072",
+   "name": "Battle Maneuver",
+   "xp": 3,
+   "level": 1,
+   "features": [
+    {
+     "name": "Lunging",
+     "count": 3
+    }
+   ]
+  },
+  {
+   "id": "T007",
+   "name": "Bound Across Mountains",
+   "xp": 6,
+   "level": "Lv 2"
+  }
+ ],
+ "simNotes": [
+  "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+  "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+  "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+ ]
+}
