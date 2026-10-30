@@ -13,6 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-10-30 — Is Health left the right yardstick?
+
+Compared two kinds of measure on the same changes: how much tougher a fight the party can take, and how much Health it spends. Health left gives extra Health credit just for being there; by what the party can take, Toughened Resolve still helps, but +1 Essence and healing do more per XP.
+
+- The build optimizer finished its first run (all ten characters at Levels 2 and 3), and every build it found stacks Toughened Resolve.
+
 ### 2026-10-29 — A whole day, and a build optimizer
 
 The simulator can now play a whole day (two fights, healing afterwards, a night's rest) and score the party by how much Health it wakes up with. A build optimizer has started looking for the strongest legal build for each sample character.

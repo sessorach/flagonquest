@@ -1711,3 +1711,71 @@ between two runs; every other line is paired and much tighter.
   it costs the most per run. At ×1.0 parties last two to three days, so a
   run is around seven fights
   (the days won, plus the one lost).
+
+## Two kinds of measure (2026-10-30)
+
+Per the designer: Health left, or Health in the morning, gives a bigger
+pool credit just for being bigger. Is that the right yardstick for how
+much a change helps? `measure_compare.py` reads the same changes to
+Hilde's party (Level 3) two ways:
+
+- **What it can take:** the enemy Health multiplier at which the party
+  wins half its fights, and half its days, against the party as built.
+  Nothing is counted but winning.
+- **What it spends:** how much Health it loses on a won fight (×1.75),
+  and how much is still missing the next morning after a won day (×1.0).
+
+600 fights and 400 days per reading; each threshold is 8 halvings on
+the same fights.
+
+| Change | XP | Max Health | Fight: toughest x (vs as built) | Day: toughest x (vs as built) | Fight wins | Health lost on a win | Day wins | Missing next morning | Health left (old score) |
+|---|---|---|---|---|---|---|---|---|---|
+| as built | +0 | 43 | x2.28 (+0%) | x1.55 (+0%) | 76% | 14.5 | 88% | 4.0 | 21.7 |
+| 2 Toughened Resolve, Hilde | +22 | 51 | x2.44 (+7%) | x1.79 (+16%) | 89% | 16.5 | 92% | 4.5 | 30.7 |
+| 2 Toughened Resolve, Beornhard | +22 | 51 | x2.49 (+9%) | x1.71 (+11%) | 86% | 16.1 | 92% | 4.7 | 29.9 |
+| Toughened Body, Beornhard | +6 | 46 | x2.28 (+0%) | x1.57 (+2%) | 81% | 15.4 | 90% | 4.5 | 24.8 |
+| +1 Body, Beornhard | +8 | 43 | x2.28 (+0%) | x1.55 (+0%) | 77% | 14.6 | 88% | 3.7 | 22.0 |
+| +1 Essence, Hilde | +6 | 43 | x2.42 (+6%) | x1.67 (+8%) | 85% | 14.7 | 90% | 3.9 | 24.1 |
+| +1 Acrobatics (her attack), Carrick | +5 | 43 | x2.28 (+0%) | x1.59 (+3%) | 79% | 14.2 | 89% | 3.9 | 22.8 |
+| another Lunging Maneuver, Hilde | +3 | 43 | x2.28 (+0%) | x1.55 (+0%) | 76% | 14.4 | 88% | 4.0 | 21.8 |
+| Lifeline, Hanforth | +6 | 43 | x2.36 (+3%) | x1.64 (+6%) | 83% | 14.6 | 92% | 4.6 | 23.6 |
+| Hanforth without Healing Magic | -9 | 43 | x2.14 (-6%) | x1.22 (-21%) | 72% | 16.7 | 71% | 10.6 | 18.9 |
+
+Per XP (the change's gain in each, divided by its XP):
+
+| Change | XP | Fight: tougher per XP | Day: tougher per XP | Health left per XP (old score) |
+|---|---|---|---|---|
+| 2 Toughened Resolve, Hilde | 22 | 0.32% | 0.73% | 0.41 |
+| 2 Toughened Resolve, Beornhard | 22 | 0.41% | 0.50% | 0.37 |
+| Toughened Body, Beornhard | 6 | 0.00% | 0.33% | 0.52 |
+| +1 Body, Beornhard | 8 | 0.00% | 0.00% | 0.04 |
+| +1 Essence, Hilde | 6 | 1.00% | 1.33% | 0.40 |
+| +1 Acrobatics, Carrick | 5 | 0.00% | 0.60% | 0.22 |
+| another Lunging Maneuver, Hilde | 3 | 0.00% | 0.00% | 0.03 |
+| Lifeline, Hanforth | 6 | 0.50% | 1.00% | 0.32 |
+| Healing Magic, Hanforth (what losing it costs) | 9 | 0.67% | 2.33% | 0.31 |
+
+(The 2 Toughened Resolve rows cost 22 XP: 18 for the copies, 4 for the
+Resilience rank they need.)
+
+- **The old score flatters Health pools.** By Health left, Toughened Body
+  is the best buy per XP here (0.52). By what the party can take, it does
+  nothing in a fight and adds 2% to a day. Most of its old score was the
+  3 extra Health being there at the end.
+- **Toughened Resolve does help, just less per XP than it looked.** Two
+  copies let the party take 7-16% tougher enemies. That's real, but +1
+  Essence (6 XP of Resist) does two to three times as much per XP in a
+  fight and about twice as much in a day, without raising the pool.
+- **A bigger pool spends more.** With Toughened Resolve the party loses
+  more Health on a won fight (16.5 against 14.5) and wakes up a little
+  shorter. Health spent and Health left both move with the pool, in
+  opposite directions; neither says how much stronger the party got.
+- **Healing is the best buy per XP by the day:** losing Healing Magic
+  costs 21% of the toughest day the party can take, about 2.3% per XP.
+- **The thresholds are coarse.** Several changes land exactly on +0%
+  because eight halvings on 600 fights only see steps of about 2%. A
+  finer reading (win rates at a grid of multipliers, and a fitted curve
+  through them) would cost the same and give a smooth number.
+- Both optimizer runs search on scores that count the pool (Health
+  left; Health in the morning), which is part of why every build they
+  find stacks Toughened Resolve.
