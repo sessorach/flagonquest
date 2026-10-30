@@ -2083,6 +2083,26 @@ What it says:
   every optimized build trips them. That's the finding, not noise; but
   the thresholds need a second look once the yardstick is settled.
 
+**Correction (later 2026-10-30):** the sim let Whirlwind fire from a
+bow or thrown weapon (its text: "If your chosen weapon is a close-range
+weapon"); now fixed, and no sample character used it. The optimized
+Sable (bow) and Ashleigh (thrown) carried it. Re-measured with the fix
+(1,000 days): Sable +68 (wins 81% one up), Ashleigh +26. The other
+results above stand. The PoC files moved to
+`hall_of_fame/runs_levelup/poc_ranged_whirlwind/`.
+
+**What drives the optimized Sable** (taking one piece away at a time,
+the XP left unspent, 1,000 days one Level up; she wins 81% whole):
+Cunning 5 down to 3, 39%; without Healing Magic, 55%; without the
+Level 4 Battle Maneuver, 70%; without One Eye Behind You, 72%; without
+Exploit the Opening, 76%. Cunning pays three ways for her: hand size
+(twice Cunning plus Mind), Reflex through Insight, and damage, since the
+Light Bow's (and Light Thrown's) damage Stat is Cunning. Putting the hand
+back through Mind (Cunning 3, Mind 3) only gets her to 55%, and Reflex
+back through Insight to 42%, so damage is about half of what Cunning
+gives her. A Body weapon splits damage and hand size across two Stats;
+a Cunning weapon gets both from one.
+
 Caveats:
 
 - These are search results, not table builds. The mutations also buy

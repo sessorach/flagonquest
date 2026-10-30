@@ -2040,8 +2040,10 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # for a worked example.
                     damage_dealt += _bonus_attack(target, 'Control')
                     pc['bonus_attack_control'] = False
-                # Whirlwind on a Battle Maneuver copy (Hilde's Level 3 one).
-                if maneuver_now and mv.get('whirlwind'):
+                # Whirlwind on a Battle Maneuver copy (Hilde's Level 3 one):
+                # "If your chosen weapon is a close-range weapon" (none with
+                # an attack_range; until 2026-10-30 a bow got it too).
+                if maneuver_now and mv.get('whirlwind') and not pc.get('attack_range'):
                     extra = _find_extra_target(pc, target, enemies, movement_on, 'melee')
                     if extra:
                         damage_dealt += _bonus_attack(extra, 'Whirlwind')

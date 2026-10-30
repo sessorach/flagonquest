@@ -95,6 +95,12 @@ Across the 39 builds:
 
 ## Watch list (for the designer)
 
+**Correction (2026-10-30, later):** until today the sim let Whirlwind
+("If your chosen weapon is a close-range weapon") fire from bows and
+thrown weapons. Jackal's and Sable's Level 3 entries (#1 and #2 each)
+carry it on a ranged weapon, so their rankings are a little high. Fixed
+in combat_sim.py; no sample character was affected.
+
 None of these are decisions, just what this pass turned up. Measured
 singly on Hilde's party (TABLE_PLAY_NOTES.md, "Two kinds of measure"):
 
