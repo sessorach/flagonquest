@@ -75,18 +75,26 @@ def play(args):
 
 
 def builds(runs, level):
-    """{arch: {"normalized": build, "optimized": build}} and each one's row."""
+    """{arch: {"normalized": build, "optimized": build}} and each one's row.
+    `runs`: one or more result folders (searches from different starts or
+    seeds); the optimized build is the best validated across all of them
+    (every search validates on the same fresh days), and the normalized one
+    the start of a --start normalized search."""
     out = {}
     for arch in bo.ARCHES:
-        path = os.path.join(runs, f"{arch.lower()}_l{level}.json")
-        if not os.path.exists(path):
-            continue
-        res = json.load(open(path))
+        res = []
+        for d in runs:
+            path = os.path.join(d, f"{arch.lower()}_l{level}.json")
+            if os.path.exists(path):
+                res += [dict(r, run=d) for r in json.load(open(path))]
         if not res:
             continue
         best = max(res, key=lambda r: r["validated"])
-        out[arch] = dict(row=best["name"], normalized=best["start_build"], optimized=best["build"],
-                         search=dict(validated=best["validated"], base=best["base_validated"]))
+        norm = next((r["start_build"] for r in res if r.get("start") == "normalized"), None)
+        if norm is None:
+            continue
+        out[arch] = dict(row=best["name"], normalized=norm, optimized=best["build"],
+                         search=dict(validated=best["validated"], start=best.get("start"), run=best["run"]))
     return out
 
 
@@ -94,14 +102,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-L", type=int, default=3)
     ap.add_argument("-n", type=int, default=500, help="day_sim.run's n (it plays 4n days)")
-    ap.add_argument("--runs", required=True)
+    ap.add_argument("--runs", required=True, help="result folder(s), comma-separated")
     ap.add_argument("--parties", type=int, default=6, help="random four-archetype parties, besides the top four")
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("-o", required=True)
     a = ap.parse_args()
     bo.START = "normalized"  # choices_for clears a dropped Unmodeled Technique
     L, n = a.L, a.n
-    B = builds(a.runs, L)
+    B = builds(a.runs.split(","), L)
     archs = sorted(B)
     stand = [(None, None)] * 4
 
@@ -113,8 +121,14 @@ def main():
         for arch in archs:
             for kind in ("normalized", "optimized"):
                 jobs[("single", arch, kind, up)] = ([seat(arch, kind)] + stand[:3], L, up, n, 0)
+    # Two Levels up too: one up, the strongest builds win nearly every day
+    # alone, and a pair can't add what each adds (the 100% ceiling).
+    jobs[("base", 2)] = (stand, L, 2, n, 0)
+    for arch in archs:
+        jobs[("single", arch, "optimized", 2)] = ([seat(arch, "optimized")] + stand[:3], L, 2, n, 0)
     for x, y in itertools.combinations(archs, 2):
-        jobs[("pair", x, y, 1)] = ([seat(x, "optimized"), seat(y, "optimized")] + stand[:2], L, 1, n, 0)
+        for up in (1, 2):
+            jobs[("pair", x, y, up)] = ([seat(x, "optimized"), seat(y, "optimized")] + stand[:2], L, up, n, 0)
     part = resume.Partial(a.o + ".partial")
     todo = [k for k in jobs if list(k) not in part]
     with mp.Pool(a.j) as pool:
@@ -150,6 +164,7 @@ def main():
             seat0 = own["seats"][0]
             tot = {k: sum(s[k] for s in own["seats"]) for k in KEYS}
             c = dict(up=rate(up_k), own=rate(own_k), contribution=100 * (rate(up_k) - base_up),
+                     up2=rate(("single", arch, kind, 2)) if kind == "optimized" else None,
                      contribution_own=100 * (rate(own_k) - base_own),
                      walkover=own["trivial"] / own["fights"],
                      dmg_share=seat0["dmg_out"] / max(1, tot["dmg_out"]),
@@ -158,11 +173,11 @@ def main():
                      downs_per_10=10 * seat0["downed"] / own["days"])
             card[f"{arch}/{kind}"] = c
     med = st.median(card[f"{x}/optimized"]["contribution"] for x in archs)
-    pairs = {}
+    pairs, pairs2 = {}, {}
     for x, y in itertools.combinations(archs, 2):
-        both = rate(("pair", x, y, 1))
-        pairs[f"{x}+{y}"] = 100 * (both - rate(("single", x, "optimized", 1)) - rate(("single", y, "optimized", 1))
-                                   + base_up)
+        for up, d in ((1, pairs), (2, pairs2)):
+            d[f"{x}+{y}"] = 100 * (rate(("pair", x, y, up)) - rate(("single", x, "optimized", up))
+                                   - rate(("single", y, "optimized", up)) + rate(("base", up)))
     parties = {}
     for k in pjobs:
         if k[-1] == 1:
@@ -190,9 +205,9 @@ def main():
             flags.append((key, "extreme: damage", f"{100 * c['dmg_share']:.0f}% of the party's damage"))
         if c["hits_share"] > FLAGS["hits_share"] and c["downs_per_10"] < FLAGS["downs_per_10"]:
             flags.append((key, "extreme: soaks", f"{100 * c['hits_share']:.0f}% of hits, {c['downs_per_10']:.1f} Downs per 10 days"))
-    for k, v in pairs.items():
+    for k, v in pairs2.items():
         if v <= FLAGS["eclipse"]:
-            flags.append((k, "eclipse", f"{v:+.0f} points together"))
+            flags.append((k, "eclipse (two Levels up)", f"{v:+.0f} points together"))
     for k, p in parties.items():
         if p["up"] >= FLAGS["gm_pressure"]:
             flags.append((k, "GM pressure (party)", f"wins {100 * p['up']:.0f}% one Level up"))
@@ -205,7 +220,8 @@ def main():
                 flags.append((k, "extreme: soaks (party)", f"{x} {100 * p['hits_share'][x]:.0f}% of hits"))
     out = dict(level=L, days_per_job=R[("base", 1)]["days"], base=dict(up=base_up, own=base_own,
                walkover=R[("base", 0)]["trivial"] / R[("base", 0)]["fights"]),
-               median_contribution=med, card=card, pairs=pairs, parties=parties, flags=flags,
+               base_up2=rate(("base", 2)), median_contribution=med, card=card, pairs=pairs, pairs_two_up=pairs2,
+               parties=parties, flags=flags,
                builds={x: B[x] for x in archs})
     with open(a.o, "w") as f:
         json.dump(out, f, indent=1)

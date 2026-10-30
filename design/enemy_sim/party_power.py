@@ -105,6 +105,31 @@ def _job(args):
     return keep, days_won(_members(names, keep, level), level, up, n)
 
 
+def shapley_values(v, N):
+    """From v (frozenset of seat indexes -> share of days won), each
+    seat's Shapley value and every pair's Shapley interaction index."""
+    subsets = list(v)
+    phi = {}
+    for i in range(N):
+        tot = 0.0
+        for s in subsets:
+            if i in s:
+                continue
+            w = math.factorial(len(s)) * math.factorial(N - len(s) - 1) / math.factorial(N)
+            tot += w * (v[s | {i}] - v[s])
+        phi[i] = tot
+    inter = {}
+    for i, j in itertools.combinations(range(N), 2):
+        tot = 0.0
+        for s in subsets:
+            if i in s or j in s:
+                continue
+            w = math.factorial(len(s)) * math.factorial(N - len(s) - 2) / math.factorial(N - 1)
+            tot += w * (v[s | {i, j}] - v[s | {i}] - v[s | {j}] + v[s])
+        inter[(i, j)] = tot
+    return phi, inter
+
+
 def shapley(names, level, up, n, pool=None):
     """Each member's Shapley value and every pair's interaction, in days
     won (share of days, 0-1), against stand-ins."""
@@ -113,24 +138,7 @@ def shapley(names, level, up, n, pool=None):
     jobs = [(names, s, level, up, n) for s in subsets]
     res = dict((pool.map if pool else map)(_job, jobs))
     v = {s: res[s]["won"] / res[s]["days"] for s in subsets}
-    N = len(names)
-    phi = {}
-    for i in idx:
-        tot = 0.0
-        for s in subsets:
-            if i in s:
-                continue
-            w = math.factorial(len(s)) * math.factorial(N - len(s) - 1) / math.factorial(N)
-            tot += w * (v[s | {i}] - v[s])
-        phi[names[i]] = tot
-    # Shapley interaction index for each pair.
-    inter = {}
-    for i, j in itertools.combinations(idx, 2):
-        tot = 0.0
-        for s in subsets:
-            if i in s or j in s:
-                continue
-            w = math.factorial(len(s)) * math.factorial(N - len(s) - 2) / math.factorial(N - 1)
-            tot += w * (v[s | {i, j}] - v[s | {i}] - v[s | {j}] + v[s])
-        inter[(names[i], names[j])] = tot
+    phi, inter = shapley_values(v, len(names))
+    phi = {names[i]: x for i, x in phi.items()}
+    inter = {(names[i], names[j]): x for (i, j), x in inter.items()}
     return phi, inter, v, res

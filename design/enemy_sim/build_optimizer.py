@@ -82,6 +82,10 @@ DAYWIN_X = None
 PARTY_MODE = 'home'
 START = 'sample'
 START_COPIES = {}  # --start normalized: copies of a Technique the export itself takes (Browndog's two Challenges)
+# --start normalized/hall: the XP the start spends outside fights (only
+# what a prereq holds); the search may not add to it, so no rank goes to
+# something a fight never uses.
+START_OTHER = [float("inf")]
 DAYS = 10  # the day score's days in a row, at most
 # Archetype: the sample character (Level 3 name; Level 2 swaps "(L3" for "(L2"), and its party.
 ARCHES = {
@@ -204,6 +208,10 @@ def problems(build, level):
         out.append(f"XP {spent}")
     if party.prereq_needs(build) or feature_prereqs(build):
         out.append("prereqs")
+    if START_OTHER[0] != float("inf"):
+        import combat_xp
+        if combat_xp.split(build)[1] > START_OTHER[0]:
+            out.append("non-combat XP")
     ids = [t["id"] for t in build["techniques"]]
     if any(ids.count(i) > max(1, START_COPIES.get(i, 0)) and not stackable(i) for i in set(ids)):
         out.append("duplicate")
@@ -370,7 +378,7 @@ def choices_for(row, build):
         out["Choices"] = "; ".join(f"{k}: {', '.join(v)}" for k, v in kept.items())
     # An Unmodeled Technique the build has dropped (--start normalized).
     um = [x.strip() for x in (row.get("Unmodeled") or "").split(",") if x.strip()]
-    if START == 'normalized' and any(x not in have for x in um):
+    if START in ('normalized', 'hall') and any(x not in have for x in um):
         out["Unmodeled"] = ", ".join(x for x in um if x in have)
     return out or None
 
@@ -434,6 +442,14 @@ def start_build(arch, level):
         import combat_xp
         path = os.path.join(HERE, "builds", "normalized", f"{arch.lower()}_l{level}_c{combat_xp.COMBAT_BUDGET[level]}.json")
         return party.read_build(path)
+    if START == 'hall':
+        # The Hall of Fame's #1 (v1.2, searched at the full budget), cut to
+        # the combat budget by the same rule as the normalized builds.
+        import combat_xp
+        name = row_name(arch, level)
+        b = party.read_build(os.path.join(HERE, "hall_of_fame", "v1.2", f"{arch.lower()}_l{level}_1.json"))
+        um = {x.strip() for x in (party._rows()[name].get("Unmodeled") or "").split(",") if x.strip()}
+        return combat_xp.normalize(b, level, party.make_pc(name)["attack_skill"], um)[0]
     return party.read_build(party._rows()[row_name(arch, level)]["Build"])
 
 
@@ -463,7 +479,11 @@ def pure_combat(build, level, unmodeled, rng, keep=()):
     START_COPIES.clear()
     for t in b["techniques"]:
         START_COPIES[t["id"]] = START_COPIES.get(t["id"], 0) + 1
-    return b if repair(b, level, rng, keep=keep) else None
+    START_OTHER[0] = float("inf")
+    if not repair(b, level, rng, keep=keep):
+        return None
+    START_OTHER[0] = combat_xp.split(b)[1]
+    return b
 
 
 def _key(build):
@@ -480,7 +500,7 @@ def search(arch, level, gens, n, kids, popsize, seed, pool_, ckpt=None):
     key = PARTY_OF[arch]
     start = start_build(arch, level)
     start = {k: copy.deepcopy(v) for k, v in start.items()}
-    if START == 'normalized':
+    if START in ('normalized', 'hall'):
         unmodeled = {x.strip() for x in (party._rows()[name].get("Unmodeled") or "").split(",") if x.strip()}
         # Never trim the attack Skill or its Stat to pay for a bought prereq.
         sk = party.make_pc(name)["attack_skill"]
@@ -488,7 +508,7 @@ def search(arch, level, gens, n, kids, popsize, seed, pool_, ckpt=None):
     elif sum(party.xp_spent(start)) > BUDGET[level]:
         start = fit_budget(start, level, rng)
     # The sample (None) is the yardstick, or the normalized start itself.
-    ref = start if START == 'normalized' else None
+    ref = start if START in ('normalized', 'hall') else None
     base = pool_.apply(score, ((name, ref, level, key, n, 0),))
     seen = {}
     pop = [(base, start)]
@@ -719,8 +739,9 @@ def main():
     ap.add_argument("--hall", action="store_true", help="write hall_of_fame/v<version>/ from the runs in -o")
     ap.add_argument("--party", choices=("home", "standin"), default="home",
                     help="standin: score each build with three party_power stand-ins")
-    ap.add_argument("--start", choices=("sample", "normalized"), default="sample",
-                    help="normalized: start from builds/normalized/ (needs --combat-budget)")
+    ap.add_argument("--start", choices=("sample", "normalized", "hall"), default="sample",
+                    help="normalized: start from builds/normalized/; hall: from the Hall of Fame v1.2 #1, "
+                         "normalized the same way (both need --combat-budget)")
     ap.add_argument("--score", choices=("fight", "day", "daywin", "levelup"), default="fight",
                     help="Health left after one fight, day_sim.py's morning Health (then days in a row), "
                          "or the share of days won at --at-x")
