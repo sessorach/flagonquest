@@ -3262,6 +3262,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             _STEP[0] += 1
             if side == 'enemy':
                 unit.setdefault('turn_steps', []).append(_STEP[0])
+            if T.TRACK_SHARES:
+                e_before = {id(e): max(0, e['health']) for e in enemies}
+                p_before = {id(p): max(0, p['health']) for p in pcs}
             if side == 'party':
                 made, dealt = _take_pc_turn(unit, pcs, enemies, rnd, movement, trace, party_log, order)
                 pc_attacks += made
@@ -3278,6 +3281,18 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
             # Bleeding works the same on everyone (designer, 2026-10-09).
             for p in pcs:
                 _bleed_out(p)
+            if T.TRACK_SHARES:
+                if side == 'party':
+                    unit['dmg_out'] = unit.get('dmg_out', 0) + sum(
+                        max(0, e_before[id(e)] - max(0, e['health'])) for e in enemies if id(e) in e_before)
+                    unit['heal_out'] = unit.get('heal_out', 0) + sum(
+                        max(0, max(0, p['health']) - p_before[id(p)]) for p in pcs if id(p) in p_before)
+                else:
+                    for p in pcs:
+                        lost = p_before.get(id(p), 0) - max(0, p['health'])
+                        if lost > 0:
+                            p['dmg_in'] = p.get('dmg_in', 0) + lost
+                            p['hits_in'] = p.get('hits_in', 0) + 1
             winner = _winner()
             if winner:
                 if T.BLEED_RESOLVE_AFTER and winner == 'party':

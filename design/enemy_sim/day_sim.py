@@ -246,6 +246,13 @@ def play_day(names, swaps, level, mixes, seed, rows, start=None, log=None):
         r = cs.run_fight(1, level, movement=True, enemies=se.build_encounter(se.ENCOUNTERS[level][mix]),
                          seed=seed + 1_000_000 * f, carry=carry, day_fight=f)
         pcs = list(last)
+        if T.TRACK_SHARES:
+            # Per seat, summed over the day (party_power.py's scorecard).
+            slots = rec.setdefault('slots', [dict(dmg_out=0, heal_out=0, dmg_in=0, hits_in=0, downed=0) for _ in pcs])
+            for sl, p in zip(slots, pcs):
+                for k in ('dmg_out', 'heal_out', 'dmg_in', 'hits_in'):
+                    sl[k] += p.get(k, 0)
+                sl['downed'] += bool(p.get('was_downed'))
         if f == 1:
             # The day's first fight, fresh: how one-sided it was
             # (party_power.py's flags).

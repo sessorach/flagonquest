@@ -398,6 +398,12 @@ ENEMY_HEALTH_MULT = 1
 # designer's yardstick for a harder day (2026-10-30): the enemy Levels the
 # model already has, read as win rates, no fractional steps. 0: as written.
 ENEMY_LEVEL_UP = 0
+# Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
+# lost on each PC's own turn (dmg_out), Health it restored to the party
+# then (heal_out), Health lost and times hit on enemy
+# turns (dmg_in, hits_in). Snapshots only, no random calls, so on or off
+# the fights play the same.
+TRACK_SHARES = False
 
 # ---- Real cards (2026-10-09, cards.py) ----
 # Every PC has its own 52-card deck and a hand; the GM has one deck for
