@@ -390,3 +390,58 @@ What stands out:
   characters here.
 - Hosts picked by archetype for the ones that went to poor fits
   (Drunken Brawling on a brawler, Grasping Earth with a Glacier caster).
+
+## By the day, every host (Level 3, 2026-10-30)
+
+The deep pass: every modeled Technique added, free, to every Level 3
+sample it fits, read by day_sim.py's morning Health (two fights, healing,
+a night's rest, enemy Health ×1.0), 1,000 days per first-fight mix. A
+Style counts against the host's own Style. `technique_pass_day_l3.csv`
+has every reading (726); below, each Technique's mean over its hosts,
+best and worst per XP (XP = three times its Level), next to the 10-28
+single-fight pass (the top three hosts only, so the host sets differ).
+
+| Technique | Lv | Hosts | Morning Health, roster mean | Per XP | Range over hosts | One fight (10-28 pass) |
+|---|---|---|---|---|---|---|
+| Lay On Hands | 4 | 1 | +7.33 ± 0.29 | +0.61 | +7.3 to +7.3 | +0.03 |
+| Toughened Resolve | 3 | 3 | +4.77 ± 0.14 | +0.53 | +4.0 to +5.3 | +3.95 |
+| Bolstering Refrain | 3 | 1 | +3.68 ± 0.24 | +0.41 | +3.7 to +3.7 | -0.01 |
+| One Eye Behind You | 2 | 8 | +1.84 ± 0.16 | +0.31 | -0.8 to +3.8 | +0.50 |
+| Lifeline | 2 | 7 | +1.77 ± 0.11 | +0.29 | +0.7 to +3.8 | +1.05 |
+| Magehunter | 1 | 10 | +0.60 ± 0.07 | +0.20 | +0.2 to +1.4 | +0.03 |
+| Second Wind | 2 | 8 | +1.05 ± 0.06 | +0.17 | +0.0 to +2.2 | +0.39 |
+| Great Old Oak School - Bark Turns the Blade | 2 | 7 | +0.95 ± 0.10 | +0.16 | -0.4 to +2.2 | +0.64 |
+| Disciple of the Flowing Hand | 3 | 7 | +1.37 ± 0.13 | +0.15 | +0.8 to +2.0 | +1.58 |
+| Shugen School - Swallow Skims the Water | 3 | 1 | +1.35 ± 0.40 | +0.15 | +1.4 to +1.4 | +1.66 |
+| Mind and Body Unbroken | 4 | 1 | +1.66 ± 0.29 | +0.14 | +1.7 to +1.7 | +1.27 |
+| Brace | 1 | 10 | +0.40 ± 0.04 | +0.13 | +0.1 to +0.8 | +0.77 |
+| Bear School - Swatting Paw | 3 | 1 | +1.17 ± 0.29 | +0.13 | +1.2 to +1.2 | +1.07 |
+| Earthen Mantle Approach | 3 | 1 | +1.17 ± 0.29 | +0.13 | +1.2 to +1.2 | +2.26 |
+| Warmage's Reserves | 2 | 4 | +0.75 ± 0.08 | +0.12 | +0.0 to +3.0 | +2.04 |
+| ... | | | | | | |
+| Grim Resolve | 2 | 8 | -0.44 ± 0.15 | -0.07 | -0.9 to +0.1 | -0.25 |
+| Demon School - Bell Tolls a Dirge | 2 | 7 | -0.53 ± 0.06 | -0.09 | -1.6 to -0.0 | -0.26 |
+| Gust of Wind | 1 | 10 | -0.28 ± 0.06 | -0.09 | -0.9 to +0.2 | -0.70 |
+| Reckoning | 2 | 7 | -0.56 ± 0.12 | -0.09 | -2.3 to +2.0 | +0.11 |
+| Raise Spirits | 4 | 1 | -1.45 ± 0.34 | -0.12 | -1.4 to -1.4 | -0.80 |
+| Feint | 1 | 10 | -0.59 ± 0.08 | -0.20 | -1.8 to +0.2 | -0.93 |
+| Challenge | 1 | 10 | -0.91 ± 0.10 | -0.30 | -1.7 to -0.1 | -0.41 |
+| Lie in Wait | 1 | 9 | -2.11 ± 0.14 | -0.70 | -3.3 to -1.0 | -0.92 |
+
+- **The two passes mostly agree** (rank correlation 0.81 across 116
+  Techniques), except on healing between fights.
+- **Healing jumps.** Lay On Hands (+7.3, from about nothing in one fight)
+  and Bolstering Refrain (+3.7) are the biggest movers; Second Wind,
+  One Eye Behind You and Lifeline gain too. Lay On Hands is any kind of
+  Health, a card a cast, after every fight: the one host it fits
+  (Level 4 prereq) spends a spare hand on it every night. It's on the
+  watch list alongside healing in general (hall_of_fame/v1.2/HALL.md).
+- **Morning Health still counts a pool in full.** Toughened Resolve's
+  +4.77 is mostly its own 4 Health; the toughest-day reading puts a copy
+  at about 0.4-0.6% per XP, an ordinary buy (TABLE_PLAY_NOTES.md, "Two
+  kinds of measure").
+- **Bottom of the list:** Lie in Wait (-2.1), Challenge (-0.9), Feint and
+  Raise Spirits, as in the single-fight pass, a bit worse by the day.
+  Reckoning drops from about even to -0.6.
+- Hosts per Technique: median 5; a one-host reading is that character
+  alone.
