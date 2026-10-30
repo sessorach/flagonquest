@@ -253,6 +253,11 @@ The core files and the regular tools:
   the party spends (Health lost, Health missing in the morning);
   `build_optimizer.py --rescore` ranks the optimizer's finalists by the
   toughest day.
+- **`party_power.py`** (2026-10-30) — the designer's yardstick: days
+  won with enemies built at their own Level, one up or two up
+  (`tunables.ENEMY_LEVEL_UP`, through the same builder), and each
+  member's contribution against a plain same-XP stand-in, as Shapley
+  values over all 16 lineups, with every pair's interaction.
 - **`resume.py`** (2026-10-29) — the worker restarts now and then and
   takes every process with it. Long scripts (technique_pass.py,
   synergy_scan.py) keep each finished job in a `.partial` file next to

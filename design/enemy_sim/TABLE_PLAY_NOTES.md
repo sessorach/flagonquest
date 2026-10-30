@@ -1876,3 +1876,61 @@ the Hall (`hall_of_fame/runs_daywin/`):
   (+2 to four elemental Resists) keeps turning up: Resist is the common
   thread. These are still ranked by the more-enemy-Health yardstick,
   which favors it ("Does the yardstick favor durability?").
+
+## The enemy-Level yardstick and each member's contribution (2026-10-30)
+
+Per the designer: make the day harder with the enemy Levels the model
+already has, not fractional steps or more Health alone, and read it as
+win rates. `tunables.ENEMY_LEVEL_UP` builds every sample enemy that many
+Levels above its row's own Level through the same PC-style builder
+(a Level up at Level 3: about +22% Health, +1 to hit, +1 to every Defense,
+about +1 Resist; hit damage rises only every other Level). Off by
+default; every fixed-seed check is identical with it off.
+
+Days won (400 days a reading), and the share of each day's first fight won
+in two rounds or less with nobody Wounded, at the party's own Level:
+
+| Party | Lv | Enemies at its Level | one Level up | two up | One-sided first fights |
+|---|---|---|---|---|---|
+| Enith, Felix, Jackal, Hanforth | 2 | 88% | 8% | 0% | 3% |
+| Browndog, Ashleigh, Sable, Beornhard | 2 | 99% | 25% | 0% | 29% |
+| Hilde, Carrick, Hanforth, Beornhard | 2 | 98% | 26% | 0% | 22% |
+| Enith, Felix, Jackal, Hanforth | 3 | 85% | 21% | 0% | 0% |
+| Browndog, Ashleigh, Sable, Beornhard | 3 | 91% | 29% | 0% | 12% |
+| Hilde, Carrick, Hanforth, Beornhard | 3 | 88% | 30% | 0% | 16% |
+
+Two Levels up nobody wins, so the readings that tell parties apart are
+their own Level and one up.
+
+**Contribution** (`party_power.py`): what a member adds over a stand-in,
+the Baseline Party Member for that Level (no Techniques) topped up with
+plain Stats and Skills to the samples' XP (125 / 173 of 175). For each
+party, all 16 lineups of its members and stand-ins, one Level up; each
+member's Shapley value is their average added days won over every order
+they could join in, and each pair's interaction is how much more (or
+less) they're worth together than apart. Repeated on fresh days, values
+move about ±3 points, pairs ±2-3.
+
+| Level 3, one Level up | Contribution (points of days won) |
+|---|---|
+| Hilde | +8.7 (again: +9.1) |
+| Carrick | -20.4 (again: -18.1) |
+| Hanforth | +9.9 (again: +12.6) |
+| Beornhard | +5.5 (again: +2.6) |
+| Enith | -10.8 |
+| Felix | -5.4 |
+| Jackal | -1.4 |
+| Hanforth (Enith's party) | +12.1 |
+| Browndog | +10.1 |
+| Ashleigh | -19.5 |
+| Sable | +6.2 |
+| Beornhard (Browndog's party) | +5.7 |
+
+- **Four plain stand-ins win about as often as our sample parties** one
+  Level up: 25-26% of days against 21-30%. Plain Stats and Skills at the
+  same XP do about as well as the characters' Techniques.
+- **Carrick and Ashleigh come out about 20 points below a plain fighter in
+  their seat,** Enith about 11. Out-of-combat Techniques don't explain it:
+  the samples spend 0 to 21 XP of 175 on them (Carrick 21, Ashleigh 15).
+- **Two pairs overlap:** Carrick and Hanforth (-10, again -8), Ashleigh and
+  Sable (-10). Enith and Felix work together (+5).

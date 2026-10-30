@@ -246,6 +246,11 @@ def play_day(names, swaps, level, mixes, seed, rows, start=None, log=None):
         r = cs.run_fight(1, level, movement=True, enemies=se.build_encounter(se.ENCOUNTERS[level][mix]),
                          seed=seed + 1_000_000 * f, carry=carry, day_fight=f)
         pcs = list(last)
+        if f == 1:
+            # The day's first fight, fresh: how one-sided it was
+            # (party_power.py's flags).
+            rec['first'] = dict(won=r['winner'] == 'party', rounds=r['rounds'],
+                                wounded=any(p.get('was_wounded') for p in pcs))
         if r['winner'] != 'party':
             rec['lost'] = f
             rec['morning'] = 0

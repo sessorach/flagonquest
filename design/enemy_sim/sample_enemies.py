@@ -87,6 +87,7 @@ import csv
 import os
 
 import game_data
+import tunables as T
 from enemy_builder import build_enemy
 from enemy_builder_pcstyle import build_enemy_pcstyle
 
@@ -191,6 +192,9 @@ FIGHTING_STYLES_ENABLED = False
 def get_enemy(name):
     row = _row_named(name)
     if row is not None:
+        if T.ENEMY_LEVEL_UP:
+            # tunables.ENEMY_LEVEL_UP: the same row, built Levels higher.
+            row = dict(row, Level=str(int(row["Level"]) + T.ENEMY_LEVEL_UP))
         return _build_from_row(row)
     raise KeyError(f"no sample_enemies.csv row named {name!r}")
 

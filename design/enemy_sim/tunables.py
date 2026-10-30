@@ -393,6 +393,11 @@ ENEMY_DAMAGE_ADJ = 0
 # Every enemy's Health times this, rounded up (2026-10-09, measurement
 # only, same idea as the offense dials).
 ENEMY_HEALTH_MULT = 1
+# Every sample enemy built this many Levels above its own row's Level,
+# through the same PC-style builder (sample_enemies.get_enemy). The
+# designer's yardstick for a harder day (2026-10-30): the enemy Levels the
+# model already has, read as win rates, no fractional steps. 0: as written.
+ENEMY_LEVEL_UP = 0
 
 # ---- Real cards (2026-10-09, cards.py) ----
 # Every PC has its own 52-card deck and a hand; the GM has one deck for
