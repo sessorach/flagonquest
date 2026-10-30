@@ -440,8 +440,9 @@ single-fight pass (the top three hosts only, so the host sets differ).
   +4.77 is mostly its own 4 Health; the toughest-day reading puts a copy
   at about 0.4-0.6% per XP, an ordinary buy (TABLE_PLAY_NOTES.md, "Two
   kinds of measure").
-- **Bottom of the list:** Lie in Wait (-2.1), Challenge (-0.9), Feint and
-  Raise Spirits, as in the single-fight pass, a bit worse by the day.
+- **Bottom of the list:** Lie in Wait (-2.1), Raise Spirits (-1.5),
+  Challenge (-0.9) and Feint (-0.6), the same four as in the single-fight
+  pass. The first three read worse by the day; Feint a little better.
   Reckoning drops from about even to -0.6.
 - Hosts per Technique: median 5; a one-host reading is that character
   alone.
