@@ -104,21 +104,23 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-n", type=int, default=100, help="days per first-fight mix, per reading")
     ap.add_argument("-j", type=int, default=os.cpu_count())
+    ap.add_argument("--axes", default=",".join(AXES), help="which to read, comma-separated")
     a = ap.parse_args()
+    axes = [x for x in a.axes.split(",") if x in AXES]
     vs = variants()
-    jobs = [(lab, sw, opts, axis, a.n) for lab, sw, opts in vs for axis in AXES]
+    jobs = [(lab, sw, opts, axis, a.n) for lab, sw, opts in vs for axis in axes]
     with mp.Pool(a.j) as pool:
         res = pool.map(job, jobs, chunksize=1)
     got = {(lab, axis): x for lab, axis, x, _ in res}
-    base = {axis: got[("as built", axis)] for axis in AXES}
+    base = {axis: got.get(("as built", axis)) for axis in AXES}
     print(f"Hilde's party, Level 3, a day (day_sim.py), {4 * a.n} days a reading. The toughest day it wins half "
           f"the time, made harder three ways, and the change against the party as built.\n")
     print("| Change | XP | Enemy Health x (change) | Enemy damage +a per hit (change) |")
     print("|---|---|---|---|")
     for lab, sw, opts in vs:
         xp = mc.xp_of(sw)
-        h, d = (got[(lab, ax)] for ax in AXES)
-        hp = f"x{h:.2f} ({100 * (h / base['health'] - 1):+.0f}%)"
+        h, d = (got.get((lab, ax)) for ax in AXES)
+        hp = "-" if h is None else f"x{h:.2f} ({100 * (h / base['health'] - 1):+.0f}%)"
         dp = "-" if d is None else f"+{d:.2f} ({d - base['damage']:+.2f})"
         print(f"| {lab} | {xp:+d} | {hp} | {dp} |", flush=True)
 

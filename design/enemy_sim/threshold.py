@@ -22,36 +22,63 @@ def _sigmoid(z):
 
 def fit(points):
     """(multiplier, wins, n) points -> the multiplier at a 50% win rate,
-    or None if the points don't pin a falling curve down."""
+    or None if the points don't pin a falling curve down.
+
+    Newton's method on the binomial log-likelihood, with the x values
+    (log multipliers) centred and scaled first and every step shortened
+    until it improves the fit: plain Newton from a fixed start overshoots
+    and flies apart on a wide spread of x (whole-step stresses, 2026-10-30).
+    """
     xs = [(math.log(m), w, n) for m, w, n in points if n]
     if not xs or all(w == 0 for _, w, _ in xs) or all(w == n for _, w, n in xs):
         return None
+    total = sum(n for _, _, n in xs)
+    mu = sum(x * n for x, _, n in xs) / total
+    sd = math.sqrt(sum(n * (x - mu) ** 2 for x, _, n in xs) / total) or 1.0
+    zs = [((x - mu) / sd, w, n) for x, w, n in xs]
+
+    def loglik(a, b):
+        out = 0.0
+        for z, w, n in zs:
+            p = min(max(_sigmoid(a + b * z), 1e-300), 1 - 1e-16)
+            out += w * math.log(p) + (n - w) * math.log(1 - p)
+        return out
     a, b = 0.0, -1.0
-    for _ in range(50):
-        # Newton's method on the binomial log-likelihood (2 parameters).
+    cur = loglik(a, b)
+    for _ in range(200):
         g0 = g1 = h00 = h01 = h11 = 0.0
-        for x, w, n in xs:
-            p = _sigmoid(a + b * x)
+        for z, w, n in zs:
+            p = _sigmoid(a + b * z)
             r = w - n * p
             v = n * p * (1 - p)
             g0 += r
-            g1 += r * x
+            g1 += r * z
             h00 += v
-            h01 += v * x
-            h11 += v * x * x
+            h01 += v * z
+            h11 += v * z * z
         det = h00 * h11 - h01 * h01
         if det <= 1e-12:
             return None
         da = (h11 * g0 - h01 * g1) / det
         db = (h00 * g1 - h01 * g0) / det
-        a, b = a + da, b + db
-        if abs(da) + abs(db) < 1e-9:
+        t = 1.0
+        while True:
+            na, nb = a + t * da, b + t * db
+            new = loglik(na, nb)
+            if new >= cur - 1e-12 or t < 1e-8:
+                break
+            t /= 2
+        a, b, cur = na, nb, new
+        if abs(t * da) + abs(t * db) < 1e-10:
             break
     # A falling curve, and not a cliff: cleanly split points (every
     # reading 0% or 100%) send b toward -inf and say nothing about where.
-    if b >= 0 or b < -1e4 or abs(a / b) > 700:
+    if b >= 0 or b < -1e4:
         return None
-    return math.exp(-a / b)
+    x50 = mu + sd * (-a / b)
+    if abs(x50) > 700:
+        return None
+    return math.exp(x50)
 
 
 def grid(rate, xs):

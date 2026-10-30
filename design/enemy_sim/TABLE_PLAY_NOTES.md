@@ -1782,3 +1782,66 @@ multipliers, not the rounded percentages.)
   left; Health in the morning), which is part of why every build they
   found stacks Toughened Resolve. Their finalists are now ranked by the
   toughest day instead (hall_of_fame/).
+
+## Does the yardstick favor durability? (2026-10-30)
+
+Per the designer: Essence and max-Health Techniques rank very high (every
+Hall of Fame build maxes one or stacks the other). Is that the game, or
+the rating method? Three things checked.
+
+**How Resist works against these enemies.** At Level 3 an enemy hit
+averages about 7.5 raw damage and the party's Resist takes off 3.4 to
+4.6, so 2.8 to 4.2 gets through per hit. One more point of Resist takes a
+point off nearly every hit: 24-35% less damage taken. Essence is the only
+Stat that raises it (armor adds to Physical only), and it's also the
+casters' Stat (Sorcery, Theurgy, Meditation, Performance, Rapport). But at
+the day standard fights are short: each character takes only about one hit
+a fight (0.5 to 1.3), so a point of Resist saves about 1 to 2.5 Health a
+day. A Toughened Resolve copy adds 4.
+
+**Two yardsticks.** `axis_check.py` reads the same changes to Hilde's
+party with the day made harder two ways: enemies with more Health (the
+headline, which keeps hits their normal size, the best case for flat
+Resist), and enemies that hit harder (+damage per hit, the worst case for
+it). 400 days a reading; the toughest Health multiplier, or the toughest
++damage, at which the party wins half its days.
+
+| Change | XP | More enemy Health: tougher | per XP | rank | Harder hits: +damage per hit | per 10 XP | rank |
+|---|---|---|---|---|---|---|---|
+| Healing Magic, Hanforth (what losing it costs) | 9 | +21% | 2.34% | 1 | +1.55 | 1.72 | 1 |
+| +1 Essence, Hilde | 6 | +9% | 1.43% | 2 | +0.26 | 0.43 | 5 |
+| Lifeline, Hanforth | 6 | +7% | 1.10% | 3 | +0.54 | 0.90 | 2 |
+| +1 Essence, Beornhard | 10 | +9% | 0.92% | 4 | +0.35 | 0.35 | 7 |
+| +1 Acrobatics (her attack), Carrick | 5 | +3% | 0.66% | 5 | +0.24 | 0.48 | 4 |
+| 2 Toughened Resolve, Hilde | 22 | +14% | 0.63% | 6 | +0.77 | 0.35 | 8 |
+| +1 Agility, Hilde | 10 | +5% | 0.53% | 7 | +0.22 | 0.22 | 11 |
+| 2 Toughened Resolve, Hilde, Health as Deep only | 22 | +11% | 0.51% | 8 | +0.69 | 0.31 | 9 |
+| 2 Toughened Resolve, Beornhard | 22 | +11% | 0.51% | 9 | +0.88 | 0.40 | 6 |
+| Toughened Body, Beornhard | 6 | +3% | 0.44% | 10 | +0.33 | 0.55 | 3 |
+| +1 Agility, Carrick | 10 | +3% | 0.33% | 11 | +0.25 | 0.25 | 10 |
+| +1 Body, Beornhard | 8 | +1% | 0.08% | 12 | +0.04 | 0.05 | 12 |
+
+The party as built takes enemies at ×1.52 Health, or +3.23 damage per hit.
+Percentages are worked from the multipliers to two decimals.
+
+- **The headline yardstick roughly doubles Essence's edge.** Per XP, +1
+  Essence beats two Toughened Resolves by 2.3× (Hilde) and 1.8×
+  (Beornhard) with more enemy Health, but only 1.2× and 0.9× with harder
+  hits. More enemy Health means longer fights at the normal hit size, so
+  more hits for each point of Resist to shave.
+- **Pools go the other way.** Toughened Body climbs from 10th to 3rd with
+  harder hits. Toughened Resolve is mid-table on both (6th-9th): an
+  ordinary buy per XP either way.
+- **Healing and Lifeline lead on both.** Not a yardstick effect.
+- **Agility and Body are near the bottom on both.** Dropping them to 1
+  isn't a yardstick effect either: in a fight, +1 Body does almost
+  nothing, and +1 Agility does less than the Skill rank it would raise.
+- **Wounded is a small part of Toughened Resolve.** The same Health
+  counted as Deep only (so it can't put off Wounded) keeps 81-90% of the
+  value.
+
+**How the game's own enemies get tougher.** Across the four encounter
+mixes, Level 2 to Level 3 enemies go from 8.7 to 11.2 Health on average
+(×1.29), from 6.33 to 7.28 damage a hit (+0.95), and +1 to hit; Level 1
+to 2 is ×1.19 Health and +0.94 damage. A GM levelling a fight up does all
+of it at once. The headline yardstick does only the first.
