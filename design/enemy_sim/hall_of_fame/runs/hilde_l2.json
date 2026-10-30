@@ -139,7 +139,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.1448598874855556,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
  },
  {
   "arch": "Hilde",
@@ -281,7 +284,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.1448598874855556,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
  },
  {
   "arch": "Hilde",
@@ -423,7 +429,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.1448598874855556,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
  },
  {
   "arch": "Hilde",
@@ -565,7 +574,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.1448598874855556,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
  },
  {
   "arch": "Hilde",
@@ -707,7 +719,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.1448598874855556,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
  },
  {
   "arch": "Hilde",
@@ -849,6 +864,9 @@
    "simNotes": [
     "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.1448598874855556,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
  }
 ]

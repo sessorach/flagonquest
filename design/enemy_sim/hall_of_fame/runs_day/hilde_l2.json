@@ -3,162 +3,6 @@
   "arch": "Hilde",
   "level": 2,
   "name": "Hilde (L2)",
-  "search": 51.095,
-  "validated": 51.395,
-  "base_search": 39.655,
-  "base_validated": 39.681666666666665,
-  "build": {
-   "charName": "Hilde the Barbarian",
-   "charConcept": "A powerful melee fighter who charges into battle with no fear",
-   "xpBudget": "125",
-   "statPoints": {
-    "Agility": 3,
-    "Body": 1,
-    "Cunning": 2,
-    "Mind": 1,
-    "Essence": 3
-   },
-   "skillPoints": {
-    "Acrobatics": 0,
-    "Archery": 1,
-    "Brawl": 0,
-    "Melee": 3,
-    "Stealth": 1,
-    "Athletics": 0,
-    "Awareness": 1,
-    "Might": 1,
-    "Presence": 2,
-    "Resilience": 4,
-    "Insight": 3,
-    "Masquerade": 0,
-    "Persuasion": 0,
-    "Streetwise": 0,
-    "Survival": 0,
-    "Academics": 0,
-    "Composure": 0,
-    "Craft": 1,
-    "Medicine": 0,
-    "Mixology": 0,
-    "Meditation": 0,
-    "Performance": 1,
-    "Rapport": 2,
-    "Sorcery": 0,
-    "Theurgy": 0
-   },
-   "charNotes": "",
-   "noteRows": [],
-   "customTechniques": [],
-   "backgroundType": "Settler",
-   "backgrounds": [],
-   "sheetSectionOrder": [
-    "backgrounds",
-    "techniques"
-   ],
-   "enabledSupplements": [
-    "Base Game"
-   ],
-   "gold": "",
-   "inventory": [
-    {
-     "id": "I120",
-     "qty": 1
-    },
-    {
-     "id": "I127",
-     "qty": 1
-    }
-   ],
-   "customItems": [],
-   "customMaterials": [],
-   "customAttacks": [],
-   "exportedAt": "2026-10-24T15:35:15.760Z",
-   "techniques": [
-    {
-     "id": "T012",
-     "name": "Second Wind",
-     "xp": 6,
-     "level": "Lv 2"
-    },
-    {
-     "id": "T072",
-     "name": "Battle Maneuver",
-     "level": 2,
-     "xp": 6,
-     "features": [
-      {
-       "name": "Wind Slash",
-       "count": 1
-      },
-      {
-       "name": "Half Guard",
-       "count": 1
-      },
-      {
-       "name": "Distracting",
-       "count": 1
-      },
-      {
-       "name": "Viper's Sting",
-       "count": 1
-      }
-     ]
-    },
-    {
-     "id": "T014",
-     "name": "Toughened Body",
-     "xp": 6,
-     "level": "Lv 2"
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T011",
-     "name": "One Eye Behind You",
-     "level": "Lv 2",
-     "xp": 6
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T001",
-     "name": "Brace",
-     "level": "Lv 1",
-     "xp": 3
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T195",
-     "name": "Forward!",
-     "level": "Lv 1",
-     "xp": 3
-    }
-   ],
-   "simNotes": [
-    "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
-   ]
-  },
-  "days": 8.261666666666667,
-  "base_days": 7.133333333333334,
-  "score": "day",
-  "mult": 1.0
- },
- {
-  "arch": "Hilde",
-  "level": 2,
-  "name": "Hilde (L2)",
   "search": 51.33,
   "validated": 51.28333333333333,
   "base_search": 39.655,
@@ -321,7 +165,10 @@
   "days": 7.498333333333333,
   "base_days": 7.133333333333334,
   "score": "day",
-  "mult": 1.0
+  "mult": 1.0,
+  "day_x": 2.0151168374227786,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
  },
  {
   "arch": "Hilde",
@@ -477,7 +324,346 @@
   "days": 7.431666666666667,
   "base_days": 7.133333333333334,
   "score": "day",
-  "mult": 1.0
+  "mult": 1.0,
+  "day_x": 1.987653586855794,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Hilde",
+  "level": 2,
+  "name": "Hilde (L2)",
+  "search": 51.19,
+  "validated": 50.865,
+  "base_search": 39.655,
+  "base_validated": 39.681666666666665,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 0,
+    "Presence": 2,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:35:15.760Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Lunging",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T131",
+     "name": "Hand of Chaos",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T074",
+     "name": "Feint",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
+   ]
+  },
+  "days": 7.191666666666666,
+  "base_days": 7.133333333333334,
+  "score": "day",
+  "mult": 1.0,
+  "day_x": 1.9815502140462218,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Hilde",
+  "level": 2,
+  "name": "Hilde (L2)",
+  "search": 51.46,
+  "validated": 50.845,
+  "base_search": 39.655,
+  "base_validated": 39.681666666666665,
+  "build": {
+   "charName": "Hilde the Barbarian",
+   "charConcept": "A powerful melee fighter who charges into battle with no fear",
+   "xpBudget": "125",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 2,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:35:15.760Z",
+   "techniques": [
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Lunging",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T131",
+     "name": "Hand of Chaos",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
+   ]
+  },
+  "days": 7.223333333333334,
+  "base_days": 7.133333333333334,
+  "score": "day",
+  "mult": 1.0,
+  "day_x": 1.947117445904946,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
  },
  {
   "arch": "Hilde",
@@ -653,14 +839,17 @@
   "days": 7.285,
   "base_days": 7.133333333333334,
   "score": "day",
-  "mult": 1.0
+  "mult": 1.0,
+  "day_x": 1.9441402286478775,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
  },
  {
   "arch": "Hilde",
   "level": 2,
   "name": "Hilde (L2)",
-  "search": 51.46,
-  "validated": 50.845,
+  "search": 51.095,
+  "validated": 51.395,
   "base_search": 39.655,
   "base_validated": 39.681666666666665,
   "build": {
@@ -668,177 +857,21 @@
    "charConcept": "A powerful melee fighter who charges into battle with no fear",
    "xpBudget": "125",
    "statPoints": {
-    "Agility": 2,
+    "Agility": 3,
     "Body": 1,
-    "Cunning": 1,
+    "Cunning": 2,
     "Mind": 1,
-    "Essence": 4
+    "Essence": 3
    },
    "skillPoints": {
     "Acrobatics": 0,
     "Archery": 1,
     "Brawl": 0,
     "Melee": 3,
-    "Stealth": 0,
+    "Stealth": 1,
     "Athletics": 0,
     "Awareness": 1,
     "Might": 1,
-    "Presence": 2,
-    "Resilience": 4,
-    "Insight": 3,
-    "Masquerade": 0,
-    "Persuasion": 0,
-    "Streetwise": 1,
-    "Survival": 0,
-    "Academics": 0,
-    "Composure": 0,
-    "Craft": 0,
-    "Medicine": 2,
-    "Mixology": 0,
-    "Meditation": 0,
-    "Performance": 1,
-    "Rapport": 0,
-    "Sorcery": 0,
-    "Theurgy": 0
-   },
-   "charNotes": "",
-   "noteRows": [],
-   "customTechniques": [],
-   "backgroundType": "Settler",
-   "backgrounds": [],
-   "sheetSectionOrder": [
-    "backgrounds",
-    "techniques"
-   ],
-   "enabledSupplements": [
-    "Base Game"
-   ],
-   "gold": "",
-   "inventory": [
-    {
-     "id": "I120",
-     "qty": 1
-    },
-    {
-     "id": "I127",
-     "qty": 1
-    }
-   ],
-   "customItems": [],
-   "customMaterials": [],
-   "customAttacks": [],
-   "exportedAt": "2026-10-24T15:35:15.760Z",
-   "techniques": [
-    {
-     "id": "T012",
-     "name": "Second Wind",
-     "xp": 6,
-     "level": "Lv 2"
-    },
-    {
-     "id": "T072",
-     "name": "Battle Maneuver",
-     "level": 2,
-     "xp": 6,
-     "features": [
-      {
-       "name": "Viper's Sting",
-       "count": 1
-      },
-      {
-       "name": "Lunging",
-       "count": 1
-      },
-      {
-       "name": "Distracting",
-       "count": 1
-      },
-      {
-       "name": "Hamstring",
-       "count": 1
-      }
-     ]
-    },
-    {
-     "id": "T014",
-     "name": "Toughened Body",
-     "xp": 6,
-     "level": "Lv 2"
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T011",
-     "name": "One Eye Behind You",
-     "level": "Lv 2",
-     "xp": 6
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T001",
-     "name": "Brace",
-     "level": "Lv 1",
-     "xp": 3
-    },
-    {
-     "id": "T131",
-     "name": "Hand of Chaos",
-     "level": "Lv 2",
-     "xp": 6
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    }
-   ],
-   "simNotes": [
-    "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
-   ]
-  },
-  "days": 7.223333333333334,
-  "base_days": 7.133333333333334,
-  "score": "day",
-  "mult": 1.0
- },
- {
-  "arch": "Hilde",
-  "level": 2,
-  "name": "Hilde (L2)",
-  "search": 51.19,
-  "validated": 50.865,
-  "base_search": 39.655,
-  "base_validated": 39.681666666666665,
-  "build": {
-   "charName": "Hilde the Barbarian",
-   "charConcept": "A powerful melee fighter who charges into battle with no fear",
-   "xpBudget": "125",
-   "statPoints": {
-    "Agility": 2,
-    "Body": 1,
-    "Cunning": 1,
-    "Mind": 1,
-    "Essence": 4
-   },
-   "skillPoints": {
-    "Acrobatics": 0,
-    "Archery": 0,
-    "Brawl": 0,
-    "Melee": 3,
-    "Stealth": 0,
-    "Athletics": 0,
-    "Awareness": 1,
-    "Might": 0,
     "Presence": 2,
     "Resilience": 4,
     "Insight": 3,
@@ -848,12 +881,12 @@
     "Survival": 0,
     "Academics": 0,
     "Composure": 0,
-    "Craft": 0,
-    "Medicine": 1,
+    "Craft": 1,
+    "Medicine": 0,
     "Mixology": 0,
     "Meditation": 0,
-    "Performance": 0,
-    "Rapport": 0,
+    "Performance": 1,
+    "Rapport": 2,
     "Sorcery": 0,
     "Theurgy": 0
    },
@@ -894,27 +927,15 @@
     {
      "id": "T072",
      "name": "Battle Maneuver",
-     "level": 1,
-     "xp": 3,
-     "features": [
-      {
-       "name": "Viper's Sting",
-       "count": 1
-      }
-     ]
-    },
-    {
-     "id": "T072",
-     "name": "Battle Maneuver",
      "level": 2,
      "xp": 6,
      "features": [
       {
-       "name": "Viper's Sting",
+       "name": "Wind Slash",
        "count": 1
       },
       {
-       "name": "Lunging",
+       "name": "Half Guard",
        "count": 1
       },
       {
@@ -922,7 +943,7 @@
        "count": 1
       },
       {
-       "name": "Hamstring",
+       "name": "Viper's Sting",
        "count": 1
       }
      ]
@@ -958,20 +979,14 @@
      "xp": 3
     },
     {
-     "id": "T131",
-     "name": "Hand of Chaos",
-     "level": "Lv 2",
-     "xp": 6
-    },
-    {
      "id": "T019",
      "name": "Toughened Resolve",
      "level": "Lv 3",
      "xp": 9
     },
     {
-     "id": "T074",
-     "name": "Feint",
+     "id": "T195",
+     "name": "Forward!",
      "level": "Lv 1",
      "xp": 3
     }
@@ -980,9 +995,12 @@
     "Copied from archive/player_builds/Hilde-the-Barbarian-125XP-2026-10-24.json."
    ]
   },
-  "days": 7.191666666666666,
+  "days": 8.261666666666667,
   "base_days": 7.133333333333334,
   "score": "day",
-  "mult": 1.0
+  "mult": 1.0,
+  "day_x": 1.931062924591346,
+  "base_day_x": 2.065175643925972,
+  "day_x_n": 100
  }
 ]

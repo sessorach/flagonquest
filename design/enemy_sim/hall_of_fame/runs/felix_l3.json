@@ -3,8 +3,8 @@
   "arch": "Felix",
   "level": 3,
   "name": "Felix (L3, proposed)",
-  "search": 25.945,
-  "validated": 24.4725,
+  "search": 25.96,
+  "validated": 24.4275,
   "base_search": 20.2825,
   "base_validated": 19.073333333333334,
   "build": {
@@ -19,30 +19,30 @@
     "Essence": 5
    },
    "skillPoints": {
-    "Acrobatics": 1,
+    "Acrobatics": 0,
     "Archery": 0,
     "Brawl": 5,
-    "Melee": 1,
+    "Melee": 0,
     "Stealth": 0,
-    "Athletics": 0,
+    "Athletics": 1,
     "Awareness": 1,
-    "Might": 3,
+    "Might": 4,
     "Presence": 0,
-    "Resilience": 2,
+    "Resilience": 3,
     "Insight": 1,
     "Masquerade": 0,
     "Persuasion": 0,
     "Streetwise": 0,
     "Survival": 0,
     "Academics": 0,
-    "Composure": 0,
-    "Craft": 1,
+    "Composure": 1,
+    "Craft": 0,
     "Medicine": 0,
     "Mixology": 0,
     "Meditation": 4,
     "Performance": 0,
     "Rapport": 0,
-    "Sorcery": 1,
+    "Sorcery": 0,
     "Theurgy": 1
    },
    "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
@@ -94,9 +94,141 @@
      ]
     },
     {
-     "id": "T083",
-     "name": "Demon School - Sickness Takes the Flock",
-     "level": "Lv 2"
+     "id": "T153",
+     "name": "Shugen School - Swallow Skims the Water",
+     "level": "Lv 3"
+    },
+    {
+     "id": "T082",
+     "name": "Great Old Oak School - Willow Springs Back",
+     "level": "Lv 3"
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T151",
+     "name": "Demon School - Shepherd Opens the Gate",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T148",
+     "name": "Bear School - Swatting Paw",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "day_x": 1.9077352880214977,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Felix",
+  "level": 3,
+  "name": "Felix (L3, proposed)",
+  "search": 25.96,
+  "validated": 24.4275,
+  "base_search": 20.2825,
+  "base_validated": 19.073333333333334,
+  "build": {
+   "charName": "Felix (Level 3, proposed)",
+   "charConcept": "A practitioner of the mystic and martial arts",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 4,
+    "Cunning": 2,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 3,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 4,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:31:31.047Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Bare-Handed",
+       "count": 1
+      },
+      {
+       "name": "Lunging",
+       "count": 2
+      },
+      {
+       "name": "Half Guard",
+       "count": 3
+      }
+     ]
     },
     {
      "id": "T153",
@@ -136,7 +268,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 1.9077352880214977,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  },
  {
   "arch": "Felix",
@@ -275,7 +410,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 1.9055082841636972,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  },
  {
   "arch": "Felix",
@@ -414,7 +552,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 1.9055082841636972,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  },
  {
   "arch": "Felix",
@@ -553,14 +694,17 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 1.9055082841636972,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  },
  {
   "arch": "Felix",
   "level": 3,
   "name": "Felix (L3, proposed)",
-  "search": 25.96,
-  "validated": 24.4275,
+  "search": 25.945,
+  "validated": 24.4725,
   "base_search": 20.2825,
   "base_validated": 19.073333333333334,
   "build": {
@@ -575,30 +719,30 @@
     "Essence": 5
    },
    "skillPoints": {
-    "Acrobatics": 0,
+    "Acrobatics": 1,
     "Archery": 0,
     "Brawl": 5,
-    "Melee": 0,
+    "Melee": 1,
     "Stealth": 0,
-    "Athletics": 1,
+    "Athletics": 0,
     "Awareness": 1,
-    "Might": 4,
+    "Might": 3,
     "Presence": 0,
-    "Resilience": 3,
+    "Resilience": 2,
     "Insight": 1,
     "Masquerade": 0,
     "Persuasion": 0,
     "Streetwise": 0,
     "Survival": 0,
     "Academics": 0,
-    "Composure": 1,
-    "Craft": 0,
+    "Composure": 0,
+    "Craft": 1,
     "Medicine": 0,
     "Mixology": 0,
     "Meditation": 4,
     "Performance": 0,
     "Rapport": 0,
-    "Sorcery": 0,
+    "Sorcery": 1,
     "Theurgy": 1
    },
    "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
@@ -650,138 +794,9 @@
      ]
     },
     {
-     "id": "T153",
-     "name": "Shugen School - Swallow Skims the Water",
-     "level": "Lv 3"
-    },
-    {
-     "id": "T082",
-     "name": "Great Old Oak School - Willow Springs Back",
-     "level": "Lv 3"
-    },
-    {
-     "id": "T001",
-     "name": "Brace",
-     "level": "Lv 1",
-     "xp": 3
-    },
-    {
-     "id": "T151",
-     "name": "Demon School - Shepherd Opens the Gate",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T148",
-     "name": "Bear School - Swatting Paw",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T178",
-     "name": "Lend Bulwark",
-     "level": "Lv 2",
-     "xp": 6
-    }
-   ],
-   "simNotes": [
-    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
-   ]
-  }
- },
- {
-  "arch": "Felix",
-  "level": 3,
-  "name": "Felix (L3, proposed)",
-  "search": 25.96,
-  "validated": 24.4275,
-  "base_search": 20.2825,
-  "base_validated": 19.073333333333334,
-  "build": {
-   "charName": "Felix (Level 3, proposed)",
-   "charConcept": "A practitioner of the mystic and martial arts",
-   "xpBudget": 175,
-   "statPoints": {
-    "Agility": 3,
-    "Body": 4,
-    "Cunning": 2,
-    "Mind": 3,
-    "Essence": 5
-   },
-   "skillPoints": {
-    "Acrobatics": 1,
-    "Archery": 0,
-    "Brawl": 5,
-    "Melee": 0,
-    "Stealth": 0,
-    "Athletics": 0,
-    "Awareness": 1,
-    "Might": 3,
-    "Presence": 0,
-    "Resilience": 3,
-    "Insight": 1,
-    "Masquerade": 0,
-    "Persuasion": 1,
-    "Streetwise": 0,
-    "Survival": 0,
-    "Academics": 0,
-    "Composure": 0,
-    "Craft": 1,
-    "Medicine": 1,
-    "Mixology": 1,
-    "Meditation": 4,
-    "Performance": 0,
-    "Rapport": 0,
-    "Sorcery": 0,
-    "Theurgy": 2
-   },
-   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
-   "noteRows": [],
-   "customTechniques": [],
-   "backgroundType": "Settler",
-   "backgrounds": [],
-   "sheetSectionOrder": [
-    "backgrounds",
-    "techniques"
-   ],
-   "enabledSupplements": [
-    "Base Game"
-   ],
-   "gold": "",
-   "inventory": [
-    {
-     "id": "I125",
-     "qty": 1
-    },
-    {
-     "id": "I128",
-     "qty": 1
-    }
-   ],
-   "customItems": [],
-   "customMaterials": [],
-   "customAttacks": [],
-   "exportedAt": "2026-10-09T01:31:31.047Z",
-   "techniques": [
-    {
-     "id": "T072",
-     "name": "Battle Maneuver",
-     "xp": 3,
-     "level": 1,
-     "features": [
-      {
-       "name": "Bare-Handed",
-       "count": 1
-      },
-      {
-       "name": "Lunging",
-       "count": 2
-      },
-      {
-       "name": "Half Guard",
-       "count": 3
-      }
-     ]
+     "id": "T083",
+     "name": "Demon School - Sickness Takes the Flock",
+     "level": "Lv 2"
     },
     {
      "id": "T153",
@@ -821,6 +836,9 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 1.9030571120477107,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  }
 ]

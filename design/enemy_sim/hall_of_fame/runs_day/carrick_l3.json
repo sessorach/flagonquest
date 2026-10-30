@@ -3,6 +3,123 @@
   "arch": "Carrick",
   "level": 3,
   "name": "Carrick (L3)",
+  "search": 53.91,
+  "validated": 53.69,
+  "base_search": 33.91,
+  "base_validated": 34.946666666666665,
+  "build": {
+   "charName": "Carrick the Rogue",
+   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 5,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 2,
+    "Athletics": 1,
+    "Awareness": 1,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 1,
+    "Persuasion": 1,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 5,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 4,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T15:54:06.623Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T131",
+     "name": "Hand of Chaos",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Carrick-the-Rogue-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.365,
+  "base_days": 3.4516666666666667,
+  "score": "day",
+  "mult": 1.0,
+  "day_x": 1.985619476669791,
+  "base_day_x": 1.5245751232432523,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Carrick",
+  "level": 3,
+  "name": "Carrick (L3)",
   "search": 54.605,
   "validated": 54.25833333333333,
   "base_search": 33.91,
@@ -123,121 +240,10 @@
   "days": 9.608333333333333,
   "base_days": 3.4516666666666667,
   "score": "day",
-  "mult": 1.0
- },
- {
-  "arch": "Carrick",
-  "level": 3,
-  "name": "Carrick (L3)",
-  "search": 53.91,
-  "validated": 53.69,
-  "base_search": 33.91,
-  "base_validated": 34.946666666666665,
-  "build": {
-   "charName": "Carrick the Rogue",
-   "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
-   "xpBudget": "175",
-   "statPoints": {
-    "Agility": 1,
-    "Body": 2,
-    "Cunning": 5,
-    "Mind": 1,
-    "Essence": 4
-   },
-   "skillPoints": {
-    "Acrobatics": 5,
-    "Archery": 1,
-    "Brawl": 0,
-    "Melee": 1,
-    "Stealth": 2,
-    "Athletics": 1,
-    "Awareness": 1,
-    "Might": 0,
-    "Presence": 3,
-    "Resilience": 2,
-    "Insight": 3,
-    "Masquerade": 1,
-    "Persuasion": 1,
-    "Streetwise": 1,
-    "Survival": 0,
-    "Academics": 0,
-    "Composure": 5,
-    "Craft": 1,
-    "Medicine": 1,
-    "Mixology": 1,
-    "Meditation": 4,
-    "Performance": 0,
-    "Rapport": 0,
-    "Sorcery": 0,
-    "Theurgy": 1
-   },
-   "charNotes": "",
-   "noteRows": [],
-   "customTechniques": [],
-   "backgroundType": "Settler",
-   "backgrounds": [],
-   "sheetSectionOrder": [
-    "backgrounds",
-    "techniques"
-   ],
-   "enabledSupplements": [
-    "Base Game"
-   ],
-   "gold": "",
-   "inventory": [
-    {
-     "id": "I128",
-     "qty": 1
-    },
-    {
-     "id": "I121",
-     "qty": 1
-    }
-   ],
-   "customItems": [],
-   "customMaterials": [],
-   "customAttacks": [],
-   "exportedAt": "2026-10-24T15:54:06.623Z",
-   "techniques": [
-    {
-     "id": "T020",
-     "name": "Lay On Hands",
-     "level": "Lv 4",
-     "xp": 12
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T131",
-     "name": "Hand of Chaos",
-     "level": "Lv 2",
-     "xp": 6
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    }
-   ],
-   "simNotes": [
-    "Copied from archive/player_builds/Carrick-the-Rogue-175XP-2026-10-24.json."
-   ]
-  },
-  "days": 9.365,
-  "base_days": 3.4516666666666667,
-  "score": "day",
-  "mult": 1.0
+  "mult": 1.0,
+  "day_x": 1.9695108036413664,
+  "base_day_x": 1.5245751232432523,
+  "day_x_n": 100
  },
  {
   "arch": "Carrick",
@@ -363,7 +369,10 @@
   "days": 9.191666666666666,
   "base_days": 3.4516666666666667,
   "score": "day",
-  "mult": 1.0
+  "mult": 1.0,
+  "day_x": 1.942036583281153,
+  "base_day_x": 1.5245751232432523,
+  "day_x_n": 100
  },
  {
   "arch": "Carrick",
@@ -489,7 +498,10 @@
   "days": 9.191666666666666,
   "base_days": 3.4516666666666667,
   "score": "day",
-  "mult": 1.0
+  "mult": 1.0,
+  "day_x": 1.942036583281153,
+  "base_day_x": 1.5245751232432523,
+  "day_x_n": 100
  },
  {
   "arch": "Carrick",
@@ -609,7 +621,10 @@
   "days": 9.133333333333333,
   "base_days": 3.4516666666666667,
   "score": "day",
-  "mult": 1.0
+  "mult": 1.0,
+  "day_x": 1.9120912303413582,
+  "base_day_x": 1.5245751232432523,
+  "day_x_n": 100
  },
  {
   "arch": "Carrick",
@@ -735,6 +750,9 @@
   "days": 9.133333333333333,
   "base_days": 3.4516666666666667,
   "score": "day",
-  "mult": 1.0
+  "mult": 1.0,
+  "day_x": 1.9120912303413582,
+  "base_day_x": 1.5245751232432523,
+  "day_x_n": 100
  }
 ]

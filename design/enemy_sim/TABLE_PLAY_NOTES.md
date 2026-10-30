@@ -1721,64 +1721,64 @@ Hilde's party (Level 3) two ways:
 
 - **What it can take:** the enemy Health multiplier at which the party
   wins half its fights, and half its days, against the party as built.
-  Nothing is counted but winning.
+  Nothing is counted but winning. Eight halvings on the same fights,
+  with a curve fitted through every point tried (threshold.py).
 - **What it spends:** how much Health it loses on a won fight (×1.75),
   and how much is still missing the next morning after a won day (×1.0).
 
-600 fights and 400 days per reading; each threshold is 8 halvings on
-the same fights.
+600 fights and 400 days per reading. "Other fights" is the party as
+built on a second set of fights: the noise between two runs. Every other
+row is on the same fights as the first, so differences between rows are
+steadier than that.
 
 | Change | XP | Max Health | Fight: toughest x (vs as built) | Day: toughest x (vs as built) | Fight wins | Health lost on a win | Day wins | Missing next morning | Health left (old score) |
 |---|---|---|---|---|---|---|---|---|---|
-| as built | +0 | 43 | x2.28 (+0%) | x1.55 (+0%) | 76% | 14.5 | 88% | 4.0 | 21.7 |
-| 2 Toughened Resolve, Hilde | +22 | 51 | x2.44 (+7%) | x1.79 (+16%) | 89% | 16.5 | 92% | 4.5 | 30.7 |
-| 2 Toughened Resolve, Beornhard | +22 | 51 | x2.49 (+9%) | x1.71 (+11%) | 86% | 16.1 | 92% | 4.7 | 29.9 |
-| Toughened Body, Beornhard | +6 | 46 | x2.28 (+0%) | x1.57 (+2%) | 81% | 15.4 | 90% | 4.5 | 24.8 |
-| +1 Body, Beornhard | +8 | 43 | x2.28 (+0%) | x1.55 (+0%) | 77% | 14.6 | 88% | 3.7 | 22.0 |
-| +1 Essence, Hilde | +6 | 43 | x2.42 (+6%) | x1.67 (+8%) | 85% | 14.7 | 90% | 3.9 | 24.1 |
-| +1 Acrobatics (her attack), Carrick | +5 | 43 | x2.28 (+0%) | x1.59 (+3%) | 79% | 14.2 | 89% | 3.9 | 22.8 |
-| another Lunging Maneuver, Hilde | +3 | 43 | x2.28 (+0%) | x1.55 (+0%) | 76% | 14.4 | 88% | 4.0 | 21.8 |
-| Lifeline, Hanforth | +6 | 43 | x2.36 (+3%) | x1.64 (+6%) | 83% | 14.6 | 92% | 4.6 | 23.6 |
-| Hanforth without Healing Magic | -9 | 43 | x2.14 (-6%) | x1.22 (-21%) | 72% | 16.7 | 71% | 10.6 | 18.9 |
+| as built | +0 | 43 | x2.26 (+0%) | x1.52 (+0%) | 76% | 14.5 | 88% | 4.0 | 21.7 |
+| as built, other fights (noise) | +0 | 43 | x2.23 (-1%) | x1.47 (-4%) | 77% | 14.7 | 86% | 3.7 | 21.8 |
+| 2 Toughened Resolve, Hilde | +22 | 51 | x2.47 (+10%) | x1.73 (+13%) | 89% | 16.5 | 92% | 4.5 | 30.7 |
+| 2 Toughened Resolve, Beornhard | +22 | 51 | x2.49 (+10%) | x1.69 (+11%) | 86% | 16.1 | 92% | 4.7 | 29.9 |
+| Toughened Body, Beornhard | +6 | 46 | x2.32 (+3%) | x1.56 (+2%) | 81% | 15.4 | 90% | 4.5 | 24.8 |
+| +1 Body, Beornhard | +8 | 43 | x2.26 (+0%) | x1.53 (+0%) | 77% | 14.6 | 88% | 3.7 | 22.0 |
+| +1 Essence, Hilde | +6 | 43 | x2.42 (+7%) | x1.65 (+8%) | 85% | 14.7 | 90% | 3.9 | 24.1 |
+| +1 Acrobatics (her attack), Carrick | +5 | 43 | x2.32 (+3%) | x1.57 (+3%) | 79% | 14.2 | 89% | 3.9 | 22.8 |
+| another Lunging Maneuver, Hilde | +3 | 43 | x2.27 (+1%) | x1.53 (+0%) | 76% | 14.4 | 88% | 4.0 | 21.8 |
+| Lifeline, Hanforth | +6 | 43 | x2.41 (+7%) | x1.62 (+6%) | 83% | 14.6 | 92% | 4.6 | 23.6 |
+| Hanforth without Healing Magic | -9 | 43 | x2.14 (-5%) | x1.20 (-21%) | 72% | 16.7 | 71% | 10.6 | 18.9 |
 
 Per XP (the change's gain in each, divided by its XP):
 
 | Change | XP | Fight: tougher per XP | Day: tougher per XP | Health left per XP (old score) |
 |---|---|---|---|---|
-| 2 Toughened Resolve, Hilde | 22 | 0.32% | 0.73% | 0.41 |
-| 2 Toughened Resolve, Beornhard | 22 | 0.41% | 0.50% | 0.37 |
-| Toughened Body, Beornhard | 6 | 0.00% | 0.33% | 0.52 |
-| +1 Body, Beornhard | 8 | 0.00% | 0.00% | 0.04 |
-| +1 Essence, Hilde | 6 | 1.00% | 1.33% | 0.40 |
-| +1 Acrobatics, Carrick | 5 | 0.00% | 0.60% | 0.22 |
-| another Lunging Maneuver, Hilde | 3 | 0.00% | 0.00% | 0.03 |
-| Lifeline, Hanforth | 6 | 0.50% | 1.00% | 0.32 |
-| Healing Magic, Hanforth (what losing it costs) | 9 | 0.67% | 2.33% | 0.31 |
+| 2 Toughened Resolve, Hilde | 22 | 0.42% | 0.63% | 0.41 |
+| 2 Toughened Resolve, Beornhard | 22 | 0.46% | 0.51% | 0.37 |
+| Toughened Body, Beornhard | 6 | 0.44% | 0.44% | 0.52 |
+| +1 Body, Beornhard | 8 | 0.00% | 0.08% | 0.04 |
+| +1 Essence, Hilde | 6 | 1.18% | 1.43% | 0.40 |
+| +1 Acrobatics, Carrick | 5 | 0.53% | 0.66% | 0.22 |
+| another Lunging Maneuver, Hilde | 3 | 0.15% | 0.22% | 0.03 |
+| Lifeline, Hanforth | 6 | 1.11% | 1.10% | 0.32 |
+| Healing Magic, Hanforth (what losing it costs) | 9 | 0.59% | 2.34% | 0.31 |
 
 (The 2 Toughened Resolve rows cost 22 XP: 18 for the copies, 4 for the
-Resilience rank they need.)
+Resilience rank they need. Per-XP figures are worked from the
+multipliers, not the rounded percentages.)
 
 - **The old score flatters Health pools.** By Health left, Toughened Body
-  is the best buy per XP here (0.52). By what the party can take, it does
-  nothing in a fight and adds 2% to a day. Most of its old score was the
-  3 extra Health being there at the end.
-- **Toughened Resolve does help, just less per XP than it looked.** Two
-  copies let the party take 7-16% tougher enemies. That's real, but +1
-  Essence (6 XP of Resist) does two to three times as much per XP in a
-  fight and about twice as much in a day, without raising the pool.
+  is the best buy per XP here (0.52). By what the party can take, it's
+  middling (0.44% per XP), level with Toughened Resolve.
+- **Toughened Resolve helps, at an ordinary rate.** Two copies let the
+  party take 10-13% tougher enemies, about 0.4-0.6% per XP. +1 Essence
+  (Resist) and Lifeline do two to three times as much per XP.
 - **A bigger pool spends more.** With Toughened Resolve the party loses
   more Health on a won fight (16.5 against 14.5) and wakes up a little
   shorter. Health spent and Health left both move with the pool, in
   opposite directions; neither says how much stronger the party got.
 - **Healing is the best buy per XP by the day:** losing Healing Magic
-  costs 21% of the toughest day the party can take, about 2.3% per XP.
-- **The thresholds are coarse.** Several changes land exactly on +0%
-  because eight halvings on 600 fights only see steps of about 2%.
-  Fixed the same day: threshold.py fits a curve through every point the
-  halving tried (on made-up data with a known answer, about two to three
-  times tighter than the halving's own answer, no bias), and the table
-  is being rerun with it, with a row for the noise between two sets of
-  fights.
-- Both optimizer runs search on scores that count the pool (Health
+  costs 21% of the toughest day the party can take, 2.3% per XP. In a
+  single fight it's an ordinary 0.6%.
+- **Noise:** the same party on other fights reads 1% (fight) and 4% (day)
+  off. A change a few percent either way isn't telling us much on its own.
+- Both optimizer runs searched on scores that count the pool (Health
   left; Health in the morning), which is part of why every build they
-  find stacks Toughened Resolve.
+  found stacks Toughened Resolve. Their finalists are now ranked by the
+  toughest day instead (hall_of_fame/).

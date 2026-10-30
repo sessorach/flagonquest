@@ -131,7 +131,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.171221583561614,
+  "base_day_x": 2.052325230757549,
+  "day_x_n": 100
  },
  {
   "arch": "Sable",
@@ -265,7 +268,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.171221583561614,
+  "base_day_x": 2.052325230757549,
+  "day_x_n": 100
  },
  {
   "arch": "Sable",
@@ -399,14 +405,17 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.171221583561614,
+  "base_day_x": 2.052325230757549,
+  "day_x_n": 100
  },
  {
   "arch": "Sable",
   "level": 2,
   "name": "Sable (L2, proposed)",
-  "search": 43.21,
-  "validated": 43.471666666666664,
+  "search": 43.1375,
+  "validated": 42.638333333333335,
   "base_search": 29.295,
   "base_validated": 29.458333333333332,
   "build": {
@@ -416,9 +425,9 @@
    "statPoints": {
     "Agility": 2,
     "Body": 1,
-    "Cunning": 3,
+    "Cunning": 4,
     "Mind": 1,
-    "Essence": 2
+    "Essence": 1
    },
    "skillPoints": {
     "Acrobatics": 0,
@@ -427,24 +436,24 @@
     "Melee": 0,
     "Stealth": 0,
     "Athletics": 1,
-    "Awareness": 1,
-    "Might": 2,
+    "Awareness": 0,
+    "Might": 1,
     "Presence": 2,
     "Resilience": 4,
     "Insight": 0,
     "Masquerade": 0,
     "Persuasion": 0,
-    "Streetwise": 1,
+    "Streetwise": 0,
     "Survival": 0,
     "Academics": 0,
     "Composure": 0,
     "Craft": 0,
     "Medicine": 4,
-    "Mixology": 0,
-    "Meditation": 0,
-    "Performance": 0,
-    "Rapport": 1,
-    "Sorcery": 0,
+    "Mixology": 1,
+    "Meditation": 1,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 1,
     "Theurgy": 0
    },
    "charNotes": "",
@@ -478,23 +487,11 @@
     {
      "id": "T072",
      "name": "Battle Maneuver",
-     "level": 2,
-     "xp": 6,
+     "level": 1,
+     "xp": 3,
      "features": [
       {
-       "name": "Blade of Four Fates",
-       "count": 1
-      },
-      {
-       "name": "Half Guard",
-       "count": 1
-      },
-      {
-       "name": "Harrying",
-       "count": 1
-      },
-      {
-       "name": "Viper's Sting",
+       "name": "Calculated",
        "count": 1
       }
      ]
@@ -533,7 +530,10 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.0298259049043743,
+  "base_day_x": 2.052325230757549,
+  "day_x_n": 100
  },
  {
   "arch": "Sable",
@@ -667,14 +667,17 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 2.0009188193819365,
+  "base_day_x": 2.052325230757549,
+  "day_x_n": 100
  },
  {
   "arch": "Sable",
   "level": 2,
   "name": "Sable (L2, proposed)",
-  "search": 43.1375,
-  "validated": 42.638333333333335,
+  "search": 43.21,
+  "validated": 43.471666666666664,
   "base_search": 29.295,
   "base_validated": 29.458333333333332,
   "build": {
@@ -684,9 +687,9 @@
    "statPoints": {
     "Agility": 2,
     "Body": 1,
-    "Cunning": 4,
+    "Cunning": 3,
     "Mind": 1,
-    "Essence": 1
+    "Essence": 2
    },
    "skillPoints": {
     "Acrobatics": 0,
@@ -695,24 +698,24 @@
     "Melee": 0,
     "Stealth": 0,
     "Athletics": 1,
-    "Awareness": 0,
-    "Might": 1,
+    "Awareness": 1,
+    "Might": 2,
     "Presence": 2,
     "Resilience": 4,
     "Insight": 0,
     "Masquerade": 0,
     "Persuasion": 0,
-    "Streetwise": 0,
+    "Streetwise": 1,
     "Survival": 0,
     "Academics": 0,
     "Composure": 0,
     "Craft": 0,
     "Medicine": 4,
-    "Mixology": 1,
-    "Meditation": 1,
-    "Performance": 1,
-    "Rapport": 0,
-    "Sorcery": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 0,
     "Theurgy": 0
    },
    "charNotes": "",
@@ -746,11 +749,23 @@
     {
      "id": "T072",
      "name": "Battle Maneuver",
-     "level": 1,
-     "xp": 3,
+     "level": 2,
+     "xp": 6,
      "features": [
       {
-       "name": "Calculated",
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
        "count": 1
       }
      ]
@@ -789,6 +804,9 @@
    "simNotes": [
     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 125 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
    ]
-  }
+  },
+  "day_x": 1.987625068453825,
+  "base_day_x": 2.052325230757549,
+  "day_x_n": 100
  }
 ]

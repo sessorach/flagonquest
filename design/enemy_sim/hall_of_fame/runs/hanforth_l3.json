@@ -143,7 +143,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
    ]
-  }
+  },
+  "day_x": 2.332784416171062,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  },
  {
   "arch": "Hanforth",
@@ -289,7 +292,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
    ]
-  }
+  },
+  "day_x": 2.332784416171062,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  },
  {
   "arch": "Hanforth",
@@ -435,7 +441,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
    ]
-  }
+  },
+  "day_x": 2.332784416171062,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  },
  {
   "arch": "Hanforth",
@@ -581,7 +590,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
    ]
-  }
+  },
+  "day_x": 2.3315726019800516,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  },
  {
   "arch": "Hanforth",
@@ -735,7 +747,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
    ]
-  }
+  },
+  "day_x": 2.224939233339464,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  },
  {
   "arch": "Hanforth",
@@ -889,6 +904,9 @@
    "simNotes": [
     "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
    ]
-  }
+  },
+  "day_x": 2.224939233339464,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  }
 ]

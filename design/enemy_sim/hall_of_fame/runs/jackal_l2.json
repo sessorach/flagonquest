@@ -101,7 +101,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Jackal-the-Alchemist-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.7549051311286112,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Jackal",
@@ -199,7 +202,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Jackal-the-Alchemist-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.7549051311286112,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Jackal",
@@ -297,7 +303,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Jackal-the-Alchemist-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.7549051311286112,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Jackal",
@@ -401,7 +410,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Jackal-the-Alchemist-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.7549051311286112,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Jackal",
@@ -505,7 +517,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Jackal-the-Alchemist-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.7549051311286112,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  },
  {
   "arch": "Jackal",
@@ -603,6 +618,9 @@
    "simNotes": [
     "Copied from archive/player_builds/Jackal-the-Alchemist-125XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 1.7549051311286112,
+  "base_day_x": 1.6614611891279547,
+  "day_x_n": 100
  }
 ]

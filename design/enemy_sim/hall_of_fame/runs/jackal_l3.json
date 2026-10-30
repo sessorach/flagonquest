@@ -3,502 +3,6 @@
   "arch": "Jackal",
   "level": 3,
   "name": "Jackal (L3)",
-  "search": 33.7825,
-  "validated": 33.05833333333333,
-  "base_search": 20.2825,
-  "base_validated": 19.073333333333334,
-  "build": {
-   "charName": "Jackal the Alchemist",
-   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
-   "xpBudget": "175",
-   "statPoints": {
-    "Agility": 2,
-    "Body": 3,
-    "Cunning": 5,
-    "Mind": 2,
-    "Essence": 3
-   },
-   "skillPoints": {
-    "Acrobatics": 5,
-    "Archery": 0,
-    "Brawl": 0,
-    "Melee": 0,
-    "Stealth": 0,
-    "Athletics": 1,
-    "Awareness": 3,
-    "Might": 1,
-    "Presence": 2,
-    "Resilience": 5,
-    "Insight": 4,
-    "Masquerade": 0,
-    "Persuasion": 0,
-    "Streetwise": 1,
-    "Survival": 0,
-    "Academics": 2,
-    "Composure": 1,
-    "Craft": 1,
-    "Medicine": 1,
-    "Mixology": 2,
-    "Meditation": 0,
-    "Performance": 0,
-    "Rapport": 0,
-    "Sorcery": 2,
-    "Theurgy": 3
-   },
-   "charNotes": "",
-   "noteRows": [],
-   "customTechniques": [],
-   "backgroundType": "Settler",
-   "backgrounds": [],
-   "sheetSectionOrder": [
-    "backgrounds",
-    "techniques"
-   ],
-   "enabledSupplements": [
-    "Base Game"
-   ],
-   "gold": "",
-   "inventory": [
-    {
-     "id": "I128",
-     "qty": 1
-    },
-    {
-     "id": "I121",
-     "qty": 1
-    }
-   ],
-   "customItems": [],
-   "customMaterials": [],
-   "customAttacks": [],
-   "exportedAt": "2026-10-24T16:06:41.613Z",
-   "techniques": [
-    {
-     "id": "T072",
-     "name": "Battle Maneuver",
-     "level": 2,
-     "xp": 6,
-     "features": [
-      {
-       "name": "Backfoot",
-       "count": 2
-      },
-      {
-       "name": "Blade of Four Fates",
-       "count": 1
-      },
-      {
-       "name": "Viper's Sting",
-       "count": 1
-      }
-     ]
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T011",
-     "name": "One Eye Behind You",
-     "level": "Lv 2",
-     "xp": 6
-    },
-    {
-     "id": "T205",
-     "name": "Suppressing Fire",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    }
-   ],
-   "simNotes": [
-    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
-   ]
-  }
- },
- {
-  "arch": "Jackal",
-  "level": 3,
-  "name": "Jackal (L3)",
-  "search": 33.755,
-  "validated": 32.9825,
-  "base_search": 20.2825,
-  "base_validated": 19.073333333333334,
-  "build": {
-   "charName": "Jackal the Alchemist",
-   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
-   "xpBudget": "175",
-   "statPoints": {
-    "Agility": 2,
-    "Body": 3,
-    "Cunning": 5,
-    "Mind": 2,
-    "Essence": 3
-   },
-   "skillPoints": {
-    "Acrobatics": 5,
-    "Archery": 1,
-    "Brawl": 0,
-    "Melee": 0,
-    "Stealth": 1,
-    "Athletics": 1,
-    "Awareness": 3,
-    "Might": 1,
-    "Presence": 2,
-    "Resilience": 5,
-    "Insight": 3,
-    "Masquerade": 0,
-    "Persuasion": 0,
-    "Streetwise": 1,
-    "Survival": 0,
-    "Academics": 0,
-    "Composure": 2,
-    "Craft": 1,
-    "Medicine": 1,
-    "Mixology": 3,
-    "Meditation": 0,
-    "Performance": 0,
-    "Rapport": 0,
-    "Sorcery": 2,
-    "Theurgy": 3
-   },
-   "charNotes": "",
-   "noteRows": [],
-   "customTechniques": [],
-   "backgroundType": "Settler",
-   "backgrounds": [],
-   "sheetSectionOrder": [
-    "backgrounds",
-    "techniques"
-   ],
-   "enabledSupplements": [
-    "Base Game"
-   ],
-   "gold": "",
-   "inventory": [
-    {
-     "id": "I128",
-     "qty": 1
-    },
-    {
-     "id": "I121",
-     "qty": 1
-    }
-   ],
-   "customItems": [],
-   "customMaterials": [],
-   "customAttacks": [],
-   "exportedAt": "2026-10-24T16:06:41.613Z",
-   "techniques": [
-    {
-     "id": "T072",
-     "name": "Battle Maneuver",
-     "level": 2,
-     "xp": 6,
-     "features": [
-      {
-       "name": "Backfoot",
-       "count": 2
-      },
-      {
-       "name": "Blade of Four Fates",
-       "count": 1
-      },
-      {
-       "name": "Viper's Sting",
-       "count": 1
-      }
-     ]
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T011",
-     "name": "One Eye Behind You",
-     "level": "Lv 2",
-     "xp": 6
-    },
-    {
-     "id": "T205",
-     "name": "Suppressing Fire",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    }
-   ],
-   "simNotes": [
-    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
-   ]
-  }
- },
- {
-  "arch": "Jackal",
-  "level": 3,
-  "name": "Jackal (L3)",
-  "search": 33.755,
-  "validated": 32.9825,
-  "base_search": 20.2825,
-  "base_validated": 19.073333333333334,
-  "build": {
-   "charName": "Jackal the Alchemist",
-   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
-   "xpBudget": "175",
-   "statPoints": {
-    "Agility": 2,
-    "Body": 3,
-    "Cunning": 5,
-    "Mind": 2,
-    "Essence": 3
-   },
-   "skillPoints": {
-    "Acrobatics": 5,
-    "Archery": 1,
-    "Brawl": 0,
-    "Melee": 0,
-    "Stealth": 0,
-    "Athletics": 1,
-    "Awareness": 3,
-    "Might": 1,
-    "Presence": 3,
-    "Resilience": 5,
-    "Insight": 3,
-    "Masquerade": 0,
-    "Persuasion": 0,
-    "Streetwise": 1,
-    "Survival": 0,
-    "Academics": 0,
-    "Composure": 2,
-    "Craft": 1,
-    "Medicine": 1,
-    "Mixology": 3,
-    "Meditation": 0,
-    "Performance": 0,
-    "Rapport": 0,
-    "Sorcery": 1,
-    "Theurgy": 3
-   },
-   "charNotes": "",
-   "noteRows": [],
-   "customTechniques": [],
-   "backgroundType": "Settler",
-   "backgrounds": [],
-   "sheetSectionOrder": [
-    "backgrounds",
-    "techniques"
-   ],
-   "enabledSupplements": [
-    "Base Game"
-   ],
-   "gold": "",
-   "inventory": [
-    {
-     "id": "I128",
-     "qty": 1
-    },
-    {
-     "id": "I121",
-     "qty": 1
-    }
-   ],
-   "customItems": [],
-   "customMaterials": [],
-   "customAttacks": [],
-   "exportedAt": "2026-10-24T16:06:41.613Z",
-   "techniques": [
-    {
-     "id": "T072",
-     "name": "Battle Maneuver",
-     "level": 2,
-     "xp": 6,
-     "features": [
-      {
-       "name": "Backfoot",
-       "count": 2
-      },
-      {
-       "name": "Blade of Four Fates",
-       "count": 1
-      },
-      {
-       "name": "Viper's Sting",
-       "count": 1
-      }
-     ]
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T011",
-     "name": "One Eye Behind You",
-     "level": "Lv 2",
-     "xp": 6
-    },
-    {
-     "id": "T205",
-     "name": "Suppressing Fire",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    }
-   ],
-   "simNotes": [
-    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
-   ]
-  }
- },
- {
-  "arch": "Jackal",
-  "level": 3,
-  "name": "Jackal (L3)",
-  "search": 33.9825,
-  "validated": 32.785833333333336,
-  "base_search": 20.2825,
-  "base_validated": 19.073333333333334,
-  "build": {
-   "charName": "Jackal the Alchemist",
-   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
-   "xpBudget": "175",
-   "statPoints": {
-    "Agility": 2,
-    "Body": 3,
-    "Cunning": 5,
-    "Mind": 3,
-    "Essence": 3
-   },
-   "skillPoints": {
-    "Acrobatics": 5,
-    "Archery": 1,
-    "Brawl": 0,
-    "Melee": 0,
-    "Stealth": 1,
-    "Athletics": 1,
-    "Awareness": 3,
-    "Might": 1,
-    "Presence": 2,
-    "Resilience": 4,
-    "Insight": 3,
-    "Masquerade": 0,
-    "Persuasion": 0,
-    "Streetwise": 1,
-    "Survival": 1,
-    "Academics": 0,
-    "Composure": 1,
-    "Craft": 1,
-    "Medicine": 1,
-    "Mixology": 3,
-    "Meditation": 0,
-    "Performance": 0,
-    "Rapport": 0,
-    "Sorcery": 2,
-    "Theurgy": 3
-   },
-   "charNotes": "",
-   "noteRows": [],
-   "customTechniques": [],
-   "backgroundType": "Settler",
-   "backgrounds": [],
-   "sheetSectionOrder": [
-    "backgrounds",
-    "techniques"
-   ],
-   "enabledSupplements": [
-    "Base Game"
-   ],
-   "gold": "",
-   "inventory": [
-    {
-     "id": "I128",
-     "qty": 1
-    },
-    {
-     "id": "I121",
-     "qty": 1
-    }
-   ],
-   "customItems": [],
-   "customMaterials": [],
-   "customAttacks": [],
-   "exportedAt": "2026-10-24T16:06:41.613Z",
-   "techniques": [
-    {
-     "id": "T072",
-     "name": "Battle Maneuver",
-     "level": 2,
-     "xp": 6,
-     "features": [
-      {
-       "name": "Backfoot",
-       "count": 2
-      },
-      {
-       "name": "Blade of Four Fates",
-       "count": 1
-      },
-      {
-       "name": "Viper's Sting",
-       "count": 1
-      }
-     ]
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T011",
-     "name": "One Eye Behind You",
-     "level": "Lv 2",
-     "xp": 6
-    },
-    {
-     "id": "T205",
-     "name": "Suppressing Fire",
-     "level": "Lv 3",
-     "xp": 9
-    },
-    {
-     "id": "T019",
-     "name": "Toughened Resolve",
-     "level": "Lv 3",
-     "xp": 9
-    }
-   ],
-   "simNotes": [
-    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
-   ]
-  }
- },
- {
-  "arch": "Jackal",
-  "level": 3,
-  "name": "Jackal (L3)",
   "search": 33.9325,
   "validated": 32.58,
   "base_search": 20.2825,
@@ -639,7 +143,10 @@
    "simNotes": [
     "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.24081641954319,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  },
  {
   "arch": "Jackal",
@@ -785,6 +292,517 @@
    "simNotes": [
     "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
    ]
-  }
+  },
+  "day_x": 2.24081641954319,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Jackal",
+  "level": 3,
+  "name": "Jackal (L3)",
+  "search": 33.9825,
+  "validated": 32.785833333333336,
+  "base_search": 20.2825,
+  "base_validated": 19.073333333333334,
+  "build": {
+   "charName": "Jackal the Alchemist",
+   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 3,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 1,
+    "Athletics": 1,
+    "Awareness": 3,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 3,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:06:41.613Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 2
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T205",
+     "name": "Suppressing Fire",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
+   ]
+  },
+  "day_x": 1.968654476353425,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Jackal",
+  "level": 3,
+  "name": "Jackal (L3)",
+  "search": 33.755,
+  "validated": 32.9825,
+  "base_search": 20.2825,
+  "base_validated": 19.073333333333334,
+  "build": {
+   "charName": "Jackal the Alchemist",
+   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 1,
+    "Athletics": 1,
+    "Awareness": 3,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 5,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 3,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:06:41.613Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 2
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T205",
+     "name": "Suppressing Fire",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
+   ]
+  },
+  "day_x": 1.922239765731705,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Jackal",
+  "level": 3,
+  "name": "Jackal (L3)",
+  "search": 33.755,
+  "validated": 32.9825,
+  "base_search": 20.2825,
+  "base_validated": 19.073333333333334,
+  "build": {
+   "charName": "Jackal the Alchemist",
+   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 3,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 5,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 2,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 3,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:06:41.613Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 2
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T205",
+     "name": "Suppressing Fire",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
+   ]
+  },
+  "day_x": 1.922239765731705,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
+ },
+ {
+  "arch": "Jackal",
+  "level": 3,
+  "name": "Jackal (L3)",
+  "search": 33.7825,
+  "validated": 33.05833333333333,
+  "base_search": 20.2825,
+  "base_validated": 19.073333333333334,
+  "build": {
+   "charName": "Jackal the Alchemist",
+   "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 5,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 1,
+    "Awareness": 3,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 5,
+    "Insight": 4,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 2,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:06:41.613Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 2
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T205",
+     "name": "Suppressing Fire",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json."
+   ]
+  },
+  "day_x": 1.877908152311772,
+  "base_day_x": 1.4833488904520709,
+  "day_x_n": 100
  }
 ]
