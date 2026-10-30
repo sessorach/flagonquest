@@ -1934,3 +1934,40 @@ move about ±3 points, pairs ±2-3.
   the samples spend 0 to 21 XP of 175 on them (Carrick 21, Ashleigh 15).
 - **Two pairs overlap:** Carrick and Hanforth (-10, again -8), Ashleigh and
   Sable (-10). Enith and Felix work together (+5).
+
+### The combat budget (2026-10-30)
+
+Per the designer: hardly anyone builds a pure combat character. A typical
+player puts some XP into social Skills, sneaking and a couple of fun
+low-Level Techniques, and that has to matter outside fights (scouting,
+talking past an encounter instead of paying a bribe). So test builds get
+a combat budget, `combat_xp.COMBAT_BUDGET`: **130 XP of 175 at Level 3,
+95 of 125 at Level 2**, the rest assumed spent outside fights. The
+stand-in is a plain fighter at that budget, and `build_optimizer.py
+--combat-budget` searches within it.
+
+Combat XP (`combat_xp.split`) is every Stat, the attack and Defense Skills
+(Melee, Archery, Brawl, Acrobatics, Resilience, Composure, Insight, Might,
+Sorcery, Theurgy, Meditation), any Skill in techniques.csv's Relevant
+Skills for a Technique the character uses in a fight, and every Technique
+the sim plays in a fight. Counting every Stat as combat over-counts a
+little (a Stat raised for social reasons still lands in Defenses).
+
+The designer's own builds, by that split:
+
+| Level 3 (175) | Combat | Other | | Level 2 (125) | Combat | Other |
+|---|---|---|---|---|---|---|
+| Beornhard | 171 | 4 | | Beornhard | 121 | 4 |
+| Browndog | 169 | 6 | | Browndog | 119 | 6 |
+| Jackal | 163 | 12 | | Hilde | 115 | 10 |
+| Enith | 155 | 20 | | Jackal | 113 | 12 |
+| Hilde | 153 | 22 | | Felix | 111 | 14 |
+| Ashleigh | 152 | 23 | | Enith | 110 | 15 |
+| Felix | 151 | 24 | | Hanforth | 108 | 17 |
+| Sable | 146 | 29 | | Ashleigh | 108 | 17 |
+| Hanforth | 144 | 31 | | Sable | 105 | 20 |
+| Carrick | 133 | 42 | | Carrick | 83 | 42 |
+
+Only Carrick sits near the budget; the rest put 15-40 more XP into
+fights than the assumed typical player. Results for these characters
+show their combat XP alongside.

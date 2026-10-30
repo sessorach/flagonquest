@@ -258,6 +258,9 @@ The core files and the regular tools:
   (`tunables.ENEMY_LEVEL_UP`, through the same builder), and each
   member's contribution against a plain same-XP stand-in, as Shapley
   values over all 16 lineups, with every pair's interaction.
+- **`combat_xp.py`** (2026-10-30) — how much of a build's XP goes to
+  fights, and the combat budget test builds get (95 / 130 XP of 125 /
+  175, per the designer: the rest goes to life outside fights).
 - **`resume.py`** (2026-10-29) — the worker restarts now and then and
   takes every process with it. Long scripts (technique_pass.py,
   synergy_scan.py) keep each finished job in a `.partial` file next to

@@ -62,6 +62,7 @@ import threshold  # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 MULT = 1.75
 BUDGET = {2: 125, 3: 175}
+FULL_BUDGET = dict(BUDGET)  # what an export says; --combat-budget searches within combat_xp.COMBAT_BUDGET
 CAP = {2: 4, 3: 5}
 SLACK = 2
 VALIDATE_SEED = 50_000
@@ -238,6 +239,27 @@ def buy_prereqs(build, level):
     return False
 
 
+def fit_budget(build, level, rng):
+    """A sample build cut down to BUDGET[level] (--combat-budget): its
+    out-of-combat Techniques go first, then Techniques from the end,
+    until the ranks can be trimmed to fit."""
+    import combat_xp
+    b = copy.deepcopy(build)
+    b["techniques"] = [t for t in b["techniques"] if combat_xp.in_fight(t["id"])]
+    # Skills that don't come up in a fight are the other 45 (30 at Level 2).
+    combat_skills = combat_xp.split(b)[2]
+    for k in b["skillPoints"]:
+        if k not in combat_skills:
+            b["skillPoints"][k] = 0
+    while True:
+        trial = copy.deepcopy(b)
+        if repair(trial, level, rng):
+            return trial
+        if not b["techniques"]:
+            return None
+        b["techniques"].pop()
+
+
 def repair(build, level, rng, keep=()):
     """Back to legal: prereqs bought, then ranks trimmed or bought at
     random until the XP is spent (never trimming below a prereq or a
@@ -389,6 +411,8 @@ def search(arch, level, gens, n, kids, popsize, seed, pool_, ckpt=None):
     key = PARTY_OF[arch]
     start = party.read_build(party._rows()[name]["Build"])
     start = {k: copy.deepcopy(v) for k, v in start.items()}
+    if sum(party.xp_spent(start)) > BUDGET[level]:
+        start = fit_budget(start, level, rng)
     base = pool_.apply(score, ((name, None, level, key, n, 0),))
     seen = {}
     pop = [(base, start)]
@@ -574,7 +598,7 @@ def write_hall(runs_dir, flavor, version, sub=""):
             fl = flavor.get(f"{key}_{i}", {})
             b["charName"] = fl.get("name", f"{r['arch']} (Level {r['level']}, optimized #{i})")
             b["charConcept"] = fl.get("concept", "")
-            b["xpBudget"] = BUDGET[r["level"]]
+            b["xpBudget"] = FULL_BUDGET[r["level"]]
             b["exportedAt"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
             if "days" in r:
                 how = (f"Days won in a row (up to {DAYS}) {r['days']:.2f} against the sample's {r['base_days']:.2f}; "
@@ -620,6 +644,8 @@ def main():
     ap.add_argument("--at-x", type=float, help="--score daywin: the enemy Health multiplier to play the days at")
     ap.add_argument("--rescore", action="store_true",
                     help="add the toughest day (threshold.py) to every result in -o and rank by it; -n is days a mix")
+    ap.add_argument("--combat-budget", action="store_true",
+                    help="search within combat_xp.COMBAT_BUDGET (95 / 130 XP), the rest assumed spent outside fights")
     ap.add_argument("--hall-sub", default="", help="a subfolder of hall_of_fame/v<version>/ for --hall")
     ap.add_argument("--redo", action="store_true", help="search again even if -o already has a result")
     ap.add_argument("--flavor", help="a JSON of names and concepts, keyed <archetype>_l<Level>_<rank>")
@@ -634,6 +660,9 @@ def main():
             print(p)
         return
     global SCORE, DAYWIN_X
+    if a.combat_budget:
+        import combat_xp
+        BUDGET.update(combat_xp.COMBAT_BUDGET)
     SCORE = a.score
     DAYWIN_X = a.at_x
     if SCORE == "daywin" and not DAYWIN_X:
