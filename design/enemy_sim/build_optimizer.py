@@ -68,6 +68,10 @@ VALIDATE_SEED = 50_000
 # 'fight' (Health left after one fight) or 'day' (day_sim.py); set by
 # --score before the Pool forks.
 SCORE = 'fight'
+# --score daywin (2026-10-30): the share of days won at enemy Health
+# x DAYWIN_X (--at-x), set near where the sample party wins half its days.
+# It counts no Health at all, so a bigger pool scores only by winning.
+DAYWIN_X = None
 DAYS = 10  # the day score's days in a row, at most
 # Archetype: the sample character (Level 3 name; Level 2 swaps "(L3" for "(L2"), and its party.
 ARCHES = {
@@ -351,6 +355,10 @@ def score(args):
     if SCORE == 'day':
         recs = day_sim.run(names, {name: (edits, row)} if build else {}, level, n, seed=seed)
         return st.mean(r["morning"] for r in recs)
+    if SCORE == 'daywin':
+        day_sim.set_mult(DAYWIN_X)
+        recs = day_sim.run(names, {name: (edits, row)} if build else {}, level, n, seed=seed)
+        return st.mean(0 if r["lost"] else 1 for r in recs)
     last = []
 
     def make(tier, good_luck=0):
@@ -434,6 +442,9 @@ def search(arch, level, gens, n, kids, popsize, seed, pool_, ckpt=None):
         for r, d in zip(out, days):
             r.update(days=d, base_days=days[-1], score="day", mult=day_sim.MULT)
         return sorted(out, key=lambda r: -r["days"])
+    if SCORE == 'daywin':
+        for r in out:
+            r.update(score="daywin", at_x=DAYWIN_X)
     return sorted(out, key=lambda r: -r["validated"])
 
 
@@ -575,8 +586,9 @@ def write_hall(runs_dir, flavor, version, sub=""):
             if "day_x" in r:
                 how = (f"Toughest day it wins half the time: enemy Health x{r['day_x']:.2f}, against the sample's "
                        f"x{r['base_day_x']:.2f} ({100 * (r['day_x'] / r['base_day_x'] - 1):+.0f}%). " + how)
-            found = ("Health in the morning (day_sim.py)" if r.get("score") == "day"
-                     else "Health left after one fight")
+            found = {"day": "Health in the morning (day_sim.py)",
+                     "daywin": f"days won at enemy Health x{r.get('at_x')}"}.get(r.get("score"),
+                                                                                "Health left after one fight")
             how += f". Found by the search on {found}"
             b["simNotes"] = [f"Hall of Fame v{version}: build_optimizer.py's #{i} for {r['arch']} ({ARCHES[r['arch']]}), "
                              f"Level {r['level']}, in {name}'s place in party {PARTY_OF[r['arch']]}. {how}. "
@@ -602,8 +614,10 @@ def main():
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("-o", default=os.path.join(HERE, "hall_of_fame", "runs"))
     ap.add_argument("--hall", action="store_true", help="write hall_of_fame/v<version>/ from the runs in -o")
-    ap.add_argument("--score", choices=("fight", "day"), default="fight",
-                    help="Health left after one fight, or day_sim.py's morning Health (then days in a row)")
+    ap.add_argument("--score", choices=("fight", "day", "daywin"), default="fight",
+                    help="Health left after one fight, day_sim.py's morning Health (then days in a row), "
+                         "or the share of days won at --at-x")
+    ap.add_argument("--at-x", type=float, help="--score daywin: the enemy Health multiplier to play the days at")
     ap.add_argument("--rescore", action="store_true",
                     help="add the toughest day (threshold.py) to every result in -o and rank by it; -n is days a mix")
     ap.add_argument("--hall-sub", default="", help="a subfolder of hall_of_fame/v<version>/ for --hall")
@@ -619,8 +633,11 @@ def main():
         for p in write_hall(a.o.split(","), flavor, current_version(), a.hall_sub):
             print(p)
         return
-    global SCORE
+    global SCORE, DAYWIN_X
     SCORE = a.score
+    DAYWIN_X = a.at_x
+    if SCORE == "daywin" and not DAYWIN_X:
+        ap.error("--score daywin needs --at-x")
     POOL[:] = pool()
     archs = list(ARCHES) if a.all else a.arch
     levels = a.L or [3, 2]
