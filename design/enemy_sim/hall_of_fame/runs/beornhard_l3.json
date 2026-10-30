@@ -1,0 +1,650 @@
+[
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 37.5275,
+  "validated": 36.8025,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 1,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 1,
+    "Resilience": 4,
+    "Insight": 5,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 1,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T016",
+     "name": "Skin of Stone",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Calculated",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 37.475,
+  "validated": 36.5675,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 1,
+    "Athletics": 4,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 5,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T016",
+     "name": "Skin of Stone",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 37.4525,
+  "validated": 36.55166666666667,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 1,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 5,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T016",
+     "name": "Skin of Stone",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 37.4525,
+  "validated": 36.55166666666667,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 1,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 1,
+    "Resilience": 4,
+    "Insight": 5,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T016",
+     "name": "Skin of Stone",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 37.4525,
+  "validated": 36.55166666666667,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 1,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 5,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 2,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T016",
+     "name": "Skin of Stone",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 37.4525,
+  "validated": 36.55166666666667,
+  "base_search": 26.03,
+  "base_validated": 24.7925,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 5,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 1,
+    "Athletics": 4,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 5,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 2,
+    "Composure": 1,
+    "Craft": 2,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 4,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T182",
+     "name": "Earthen Mantle Approach",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T016",
+     "name": "Skin of Stone",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  }
+ }
+]
