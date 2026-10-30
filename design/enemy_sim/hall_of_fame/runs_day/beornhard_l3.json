@@ -1,0 +1,856 @@
+[
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 55.145,
+  "validated": 55.035,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 4,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 5,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.95,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 55.145,
+  "validated": 55.035,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 4,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 1,
+    "Resilience": 5,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.95,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 54.97,
+  "validated": 54.725,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 4,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 2,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 3,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.881666666666666,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 54.95,
+  "validated": 54.91833333333334,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 5,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 4,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.77,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 54.95,
+  "validated": 54.91833333333334,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 5,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 4,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.77,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 54.95,
+  "validated": 54.91833333333334,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Arcanist Beornhard",
+   "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 5,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 2,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 4,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-24T16:13:08.660Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json."
+   ]
+  },
+  "days": 9.77,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ }
+]

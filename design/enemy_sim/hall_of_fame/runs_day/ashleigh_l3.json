@@ -1,0 +1,902 @@
+[
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 51.78,
+  "validated": 51.80833333333333,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 2,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 0,
+    "Presence": 1,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 2,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 1,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 2
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 10,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 51.78,
+  "validated": 51.80833333333333,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 3,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 1,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 2,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 2
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 10,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 51.78,
+  "validated": 51.80833333333333,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 2,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 1,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 1,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 2,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 2
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 10,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 51.685,
+  "validated": 51.75333333333333,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 1,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 2,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 2,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 2
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 10,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 51.685,
+  "validated": 51.75333333333333,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 1,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 2,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 2,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 2
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 10,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Ashleigh",
+  "level": 3,
+  "name": "Ashleigh (L3, proposed)",
+  "search": 51.685,
+  "validated": 51.75333333333333,
+  "base_search": 31.555,
+  "base_validated": 30.535,
+  "build": {
+   "charName": "Ashleigh (Level 3, proposed)",
+   "charConcept": "A feline wanderer who delights others with her stories",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 3,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 1,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 1,
+    "Survival": 1,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 2,
+    "Medicine": 0,
+    "Mixology": 2,
+    "Meditation": 1,
+    "Performance": 1,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I121",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-09T01:47:45.474Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 2
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 2
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md)."
+   ]
+  },
+  "days": 10,
+  "base_days": 1.7583333333333333,
+  "score": "day",
+  "mult": 1.0
+ }
+]

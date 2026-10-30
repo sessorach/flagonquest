@@ -1,0 +1,764 @@
+[
+ {
+  "arch": "Hanforth",
+  "level": 3,
+  "name": "Hanforth (L3)",
+  "search": 44.845,
+  "validated": 45.973333333333336,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Hanforth of Epione",
+   "charConcept": "He's the healer, what else do you need to know?",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 1,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 2,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-26T05:32:48.116Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Vitality",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "id": "T191",
+     "name": "Minor Oracle",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T016",
+     "name": "Skin of Stone",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
+   ]
+  },
+  "days": 5.363333333333333,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Hanforth",
+  "level": 3,
+  "name": "Hanforth (L3)",
+  "search": 44.22,
+  "validated": 44.943333333333335,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Hanforth of Epione",
+   "charConcept": "He's the healer, what else do you need to know?",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 1,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 2,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-26T05:32:48.116Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Vitality",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "id": "T191",
+     "name": "Minor Oracle",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
+   ]
+  },
+  "days": 5.09,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Hanforth",
+  "level": 3,
+  "name": "Hanforth (L3)",
+  "search": 44.22,
+  "validated": 44.943333333333335,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Hanforth of Epione",
+   "charConcept": "He's the healer, what else do you need to know?",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 1,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 2,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 2,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-26T05:32:48.116Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Vitality",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "id": "T191",
+     "name": "Minor Oracle",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
+   ]
+  },
+  "days": 5.09,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Hanforth",
+  "level": 3,
+  "name": "Hanforth (L3)",
+  "search": 44.22,
+  "validated": 44.943333333333335,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Hanforth of Epione",
+   "charConcept": "He's the healer, what else do you need to know?",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 2,
+    "Might": 2,
+    "Presence": 2,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 1,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 5
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-26T05:32:48.116Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Vitality",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "id": "T191",
+     "name": "Minor Oracle",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
+   ]
+  },
+  "days": 5.09,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Hanforth",
+  "level": 3,
+  "name": "Hanforth (L3)",
+  "search": 45.385,
+  "validated": 46.416666666666664,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Hanforth of Epione",
+   "charConcept": "He's the healer, what else do you need to know?",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 5
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-26T05:32:48.116Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Vitality",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "id": "T191",
+     "name": "Minor Oracle",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
+   ]
+  },
+  "days": 3.9716666666666667,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ },
+ {
+  "arch": "Hanforth",
+  "level": 3,
+  "name": "Hanforth (L3)",
+  "search": 42.97,
+  "validated": 43.343333333333334,
+  "base_search": 29.39,
+  "base_validated": 30.29,
+  "build": {
+   "charName": "Hanforth of Epione",
+   "charConcept": "He's the healer, what else do you need to know?",
+   "xpBudget": "175",
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 1,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 2,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 4,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 1,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 2,
+    "Craft": 1,
+    "Medicine": 1,
+    "Mixology": 1,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 5
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-26T05:32:48.116Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "xp": 9,
+     "level": 3,
+     "features": [
+      {
+       "name": "Vitality",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "id": "T191",
+     "name": "Minor Oracle",
+     "xp": 3,
+     "level": "Lv 1"
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json."
+   ]
+  },
+  "days": 3.921666666666667,
+  "base_days": 2.655,
+  "score": "day",
+  "mult": 1.0
+ }
+]
