@@ -1,6 +1,6 @@
-# Latest replays (2026-10-30)
+# Latest replays (2026-10-31)
 
-Scorecard proof of concept: per-character counters (off by default), no change to fights
+First run: Whirlwind close-range only; no other change to fights
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth

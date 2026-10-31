@@ -2115,3 +2115,95 @@ Caveats:
   and gives Retribution-style damage on enemy turns to nobody.
 - One search per archetype, one seed; a second seed would show how
   stable the picks are.
+
+### The first run at 145 / 105 combat XP (2026-10-31)
+
+What the designer approved after the proof of concept: every party mix,
+searches from several starts, and the scorecard on what they found.
+Results in `hall_of_fame/runs_levelup/` (`mixes_l<L>.json`,
+`scorecard_l<L>_run1.json`), with the searches in `runs_levelup` (Level 2
+from the normalized builds), `runs_levelup_s2` (Level 3 from the
+normalized builds, a second seed) and `runs_levelup_hall` (both Levels
+from the Hall of Fame v1.2 #1 builds, normalized the same way). Searches
+from these starts can't put XP into ranks no fight uses. Whirlwind is
+close-range only from here on (see the correction above). 2,000 days a
+reading.
+
+**Every party of four normalized builds (210 a Level).** Four plain
+stand-ins win 87% of days at their own Level and 14% one up at Level 3
+(100% and 28% at Level 2). The median party of the designer's
+characters, at the same combat XP, wins 66% and 6% at Level 3 (94% and
+13% at Level 2); the best five parties win 26-27% one up at Level 3 and
+39-43% at Level 2. Each character alone among three stand-ins comes out
+about even (the scorecard's normalized column), so this is a party
+effect. Health is the likeliest cause: eight of the ten have 10 Health
+at Level 3 after the trims, the stand-in 13. Parties with more
+close-range members win a little more (59% own Level with none, 71%
+with four), not enough to explain it. Averaged over the 84 parties each
+is in, one Level up at Level 3: Hilde 13%, Hanforth 10%, Sable 9%, the
+others 6-7%, Ashleigh 3%. Within the strongest and most even parties
+(16 lineups each), Hanforth and Hilde add the most at Level 3 (+7 to
++12), Sable and Hanforth at Level 2; nobody else goes past +5 or below
+-10.
+
+**The best build per archetype, across the searches:**
+
+| | Level 3 | start | Level 2 | start |
+|---|---|---|---|---|
+| Sable | +85 | Hall | +66 | Hall |
+| Beornhard | +74 | Hall | +50 | Hall |
+| Hilde | +69 | Hall | +20 | normalized |
+| Hanforth | +68 | Hall | +40 | Hall |
+| Felix | +62 | normalized | +41 | normalized |
+| Jackal | +61 | Hall | +52 | Hall |
+| Ashleigh | +60 | Hall | +37 | Hall |
+| Browndog | +56 | Hall | +36 | normalized |
+| Enith | +42 | Hall | +38 | normalized |
+| Carrick | +40 | Hall | +44 | normalized |
+
+(Contribution in points, days won one Level up with three stand-ins,
+over four stand-ins. The normalized builds sit at -10 to +15 at Level 3,
+-20 to +20 at Level 2.)
+
+What it says:
+
+- **The Hall starts beat the normalized starts at Level 3 for nine of
+  ten**, often by 20-30 points in the search. Twenty-five generations
+  from the normalized builds stop well short of the ceiling, so these
+  are lower bounds; a deeper search would find more, not less.
+- **Toughened Resolve stacking is back, under a score that gives Health
+  no credit.** At Level 3 the best builds carry Healing Magic (8 of 10),
+  Toughened Resolve (7, up to five copies) and Lifeline (7). Three of
+  them (Ashleigh, Hanforth, Enith) are pure soaks: Essence 4-5, Body 1,
+  four or five Toughened Resolves, Lifeline and a one-Feature Healing
+  Magic, dealing 0-2% of the party's damage, taking 34-47% of its hits
+  and going down 0.1-0.7 times in ten days. That's the "survives
+  forever" shape the designer named. The earlier finding that it was
+  mostly the old score's doing (TABLE_PLAY_NOTES "The unbiased search")
+  was at 175 XP in the sample parties; at 145 with stand-ins, Lifeline
+  sharing the soak's big pool with the stand-ins makes it pay again.
+- **Soaks need someone else to kill things.** A party of four optimized
+  builds wins 72-100% one Level up when it has damage, but Ashleigh,
+  Beornhard, Browndog and Enith together win 7% (66% at their own Level)
+  and Ashleigh, Enith, Hanforth and Jackal 26%. Read with three
+  stand-ins, a soak looks as good as a damage build; in a party of
+  soaks it isn't. The stand-in yardstick rewards fitting next to a plain
+  fighter, so the next pass should also score builds in mixed optimized
+  parties.
+- **A Level 1 Healing Magic with one Feature is the common splash**
+  (Guardian Angel or Reach): on eight of ten Level 3 builds, and Healing
+  Magic is on eight of ten at Level 2 too (six of them the same Level 1
+  splash).
+- **Sable is far ahead at both Levels:** 98% of days one up at Level 3
+  (51% of the party's damage, 58% of first fights walkovers), 94% at
+  Level 2. Two Levels up she's the only build that wins at all (8%), and
+  every pair with her adds 31-53 points there. Jackal and Carrick at
+  Level 2 also win about half their first fights in two rounds.
+- **Body is the dump Stat:** 1 in seven of ten best Level 3 builds.
+- **Ashleigh and Enith, as built, don't pull their weight at Level 2**
+  (-18 and -20 against a stand-in in their seat).
+
+**Still not working:** the eclipse reading. One Level up the optimized
+builds sit near 100%; two Levels up nearly everything wins 0-8%. Pairs
+need a yardstick in between (one Level up with more enemy Health, say)
+or a reading on the odds instead of in points.

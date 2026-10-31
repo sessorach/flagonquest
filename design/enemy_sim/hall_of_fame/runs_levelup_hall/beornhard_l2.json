@@ -1,0 +1,1622 @@
+[
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 0.776,
+  "validated": 0.77,
+  "base_search": 0.166,
+  "base_validated": 0.21333333333333335,
+  "build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 4,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 1
+      },
+      {
+       "name": "Abjuring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T080",
+     "name": "Shugen School - Firefly Leaves the Hand",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 0.768,
+  "validated": 0.7653333333333333,
+  "base_search": 0.166,
+  "base_validated": 0.21333333333333335,
+  "build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 3,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 4,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 1
+      },
+      {
+       "name": "Abjuring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T080",
+     "name": "Shugen School - Firefly Leaves the Hand",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 0.758,
+  "validated": 0.742,
+  "base_search": 0.166,
+  "base_validated": 0.21333333333333335,
+  "build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 3,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 4,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 1
+      },
+      {
+       "name": "Abjuring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T080",
+     "name": "Shugen School - Firefly Leaves the Hand",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 0.74,
+  "validated": 0.7293333333333333,
+  "base_search": 0.166,
+  "base_validated": 0.21333333333333335,
+  "build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 4,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 1
+      },
+      {
+       "name": "Abjuring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T080",
+     "name": "Shugen School - Firefly Leaves the Hand",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 0.744,
+  "validated": 0.728,
+  "base_search": 0.166,
+  "base_validated": 0.21333333333333335,
+  "build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 4,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Purify",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 1
+      },
+      {
+       "name": "Abjuring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T080",
+     "name": "Shugen School - Firefly Leaves the Hand",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 2,
+  "name": "Beornhard (L2)",
+  "search": 0.738,
+  "validated": 0.724,
+  "base_search": 0.166,
+  "base_validated": 0.21333333333333335,
+  "build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 3,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 4,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Purify",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Malachai Darkfyre",
+   "charConcept": "A battlemage with four Toughened Resolves and a Lance that hits like a truck. Wears sunglasses at night, in a fantasy setting. 'Fire is the only honest element.'",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 2,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Destructive",
+       "count": 1
+      },
+      {
+       "name": "Abjuring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T080",
+     "name": "Shugen School - Firefly Leaves the Hand",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T140",
+     "name": "Overchanneling",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 2, in Beornhard (L2)'s place in party U. Toughest day it wins half the time: enemy Health x2.79, against the sample's x2.05 (+36%). Days won in a row (up to 10) 9.97 against the sample's 3.43; morning Health 54.61 against 32.77, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ }
+]

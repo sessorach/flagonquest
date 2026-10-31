@@ -1,0 +1,1272 @@
+[
+ {
+  "arch": "Enith",
+  "level": 2,
+  "name": "Enith (L2, proposed)",
+  "search": 0.6,
+  "validated": 0.622,
+  "base_search": 0.186,
+  "base_validated": 0.168,
+  "build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      },
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Tormenting Curse",
+       "count": 1
+      },
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 3
+      }
+     ],
+     "customName": "Hex of Sloth"
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Enith",
+  "level": 2,
+  "name": "Enith (L2, proposed)",
+  "search": 0.6,
+  "validated": 0.622,
+  "base_search": 0.186,
+  "base_validated": 0.168,
+  "build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 1,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      },
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Tormenting Curse",
+       "count": 1
+      },
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 3
+      }
+     ],
+     "customName": "Hex of Sloth"
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Enith",
+  "level": 2,
+  "name": "Enith (L2, proposed)",
+  "search": 0.604,
+  "validated": 0.6173333333333333,
+  "base_search": 0.186,
+  "base_validated": 0.168,
+  "build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 2,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 1,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      },
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T171",
+     "name": "Tiger School - Rending Claws",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Tormenting Curse",
+       "count": 1
+      },
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 3
+      }
+     ],
+     "customName": "Hex of Sloth"
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Enith",
+  "level": 2,
+  "name": "Enith (L2, proposed)",
+  "search": 0.578,
+  "validated": 0.6053333333333333,
+  "base_search": 0.186,
+  "base_validated": 0.168,
+  "build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      },
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T171",
+     "name": "Tiger School - Rending Claws",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Tormenting Curse",
+       "count": 1
+      },
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 3
+      }
+     ],
+     "customName": "Hex of Sloth"
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Enith",
+  "level": 2,
+  "name": "Enith (L2, proposed)",
+  "search": 0.58,
+  "validated": 0.6046666666666667,
+  "base_search": 0.186,
+  "base_validated": 0.168,
+  "build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Vitality",
+       "count": 1
+      },
+      {
+       "name": "Guardian Angel",
+       "count": 2
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Tormenting Curse",
+       "count": 1
+      },
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 3
+      }
+     ],
+     "customName": "Hex of Sloth"
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Enith",
+  "level": 2,
+  "name": "Enith (L2, proposed)",
+  "search": 0.58,
+  "validated": 0.6046666666666667,
+  "base_search": 0.186,
+  "base_validated": 0.168,
+  "build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 2,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 2
+      },
+      {
+       "name": "Vitality",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Lilith Frostbourne",
+   "charConcept": "A spellblade with Tormenting Curse, a Frigid Lance, Ley-weaving and three Toughened Resolves. 'Ice cold' is not just her damage type; it's her whole personality.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 0,
+    "Melee": 4,
+    "Stealth": 1,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T120",
+     "name": "War Magic",
+     "xp": 3,
+     "level": 1,
+     "features": [
+      {
+       "name": "Tormenting Curse",
+       "count": 1
+      },
+      {
+       "name": "Lance",
+       "count": 1
+      },
+      {
+       "name": "Frigid",
+       "count": 3
+      }
+     ],
+     "customName": "Hex of Sloth"
+    },
+    {
+     "id": "T133",
+     "name": "Placeholder's Lengthy Ley-weaving",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 2, in Enith (L2, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.39, against the sample's x1.66 (+44%). Party Health left 36.45 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ }
+]
