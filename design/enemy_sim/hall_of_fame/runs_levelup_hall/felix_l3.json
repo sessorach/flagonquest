@@ -1,0 +1,1454 @@
+[
+ {
+  "arch": "Felix",
+  "level": 3,
+  "name": "Felix (L3, proposed)",
+  "search": 0.684,
+  "validated": 0.7153333333333334,
+  "base_search": 0.168,
+  "base_validated": 0.17,
+  "build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 5,
+    "Mind": 2,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 1,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 2,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 4,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T153",
+     "name": "Shugen School - Swallow Skims the Water",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Felix",
+  "level": 3,
+  "name": "Felix (L3, proposed)",
+  "search": 0.668,
+  "validated": 0.672,
+  "base_search": 0.168,
+  "base_validated": 0.17,
+  "build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 5,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 2,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 4,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T153",
+     "name": "Shugen School - Swallow Skims the Water",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Felix",
+  "level": 3,
+  "name": "Felix (L3, proposed)",
+  "search": 0.668,
+  "validated": 0.672,
+  "base_search": 0.168,
+  "base_validated": 0.17,
+  "build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 5,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 2,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 4,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T153",
+     "name": "Shugen School - Swallow Skims the Water",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Felix",
+  "level": 3,
+  "name": "Felix (L3, proposed)",
+  "search": 0.634,
+  "validated": 0.6246666666666667,
+  "base_search": 0.168,
+  "base_validated": 0.17,
+  "build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 2,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 4,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T153",
+     "name": "Shugen School - Swallow Skims the Water",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Felix",
+  "level": 3,
+  "name": "Felix (L3, proposed)",
+  "search": 0.634,
+  "validated": 0.6246666666666667,
+  "base_search": 0.168,
+  "base_validated": 0.17,
+  "build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 2,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 4,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T153",
+     "name": "Shugen School - Swallow Skims the Water",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Felix",
+  "level": 3,
+  "name": "Felix (L3, proposed)",
+  "search": 0.634,
+  "validated": 0.6246666666666667,
+  "base_search": 0.168,
+  "base_validated": 0.17,
+  "build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 3,
+    "Resilience": 2,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Distracting",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kenji Shadowfist",
+   "charConcept": "Lay On Hands, Grim Resolve, three Toughened Resolves and a Maneuver built on Backfoot and Fleet Step. A monk who heals you, then lectures you about why you needed healing.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 2,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 3
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 4,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 3,
+    "Resilience": 3,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 4,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 3,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 1
+   },
+   "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I125",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T020",
+     "name": "Lay On Hands",
+     "level": "Lv 4",
+     "xp": 12
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T153",
+     "name": "Shugen School - Swallow Skims the Water",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T010",
+     "name": "Grim Resolve",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Backfoot",
+       "count": 2
+      },
+      {
+       "name": "Fleet Step",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Felix (unarmed monk), Level 3, in Felix (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.06, against the sample's x1.48 (+39%). Days won in a row (up to 10) 8.27 against the sample's 2.65; morning Health 49.44 against 30.29, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ }
+]

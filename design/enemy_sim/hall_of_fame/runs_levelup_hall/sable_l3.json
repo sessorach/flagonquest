@@ -1,0 +1,2070 @@
+[
+ {
+  "arch": "Sable",
+  "level": 3,
+  "name": "Sable (L3, proposed)",
+  "search": 0.988,
+  "validated": 0.9773333333333334,
+  "base_search": 0.528,
+  "base_validated": 0.522,
+  "build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 5,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 5,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 0,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Lodestone",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 5,
+    "Brawl": 1,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Lodestone",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Lunging",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 3,
+  "name": "Sable (L3, proposed)",
+  "search": 0.98,
+  "validated": 0.9746666666666667,
+  "base_search": 0.528,
+  "base_validated": 0.522,
+  "build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 5,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 5,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 0,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      },
+      {
+       "name": "Lunging",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 5,
+    "Brawl": 1,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Lodestone",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Lunging",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 3,
+  "name": "Sable (L3, proposed)",
+  "search": 0.98,
+  "validated": 0.972,
+  "base_search": 0.528,
+  "base_validated": 0.522,
+  "build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 5,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 5,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 0,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 5,
+    "Brawl": 1,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Lodestone",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Lunging",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 3,
+  "name": "Sable (L3, proposed)",
+  "search": 0.98,
+  "validated": 0.972,
+  "base_search": 0.528,
+  "base_validated": 0.522,
+  "build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 5,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 5,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 0,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 1,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 5,
+    "Brawl": 1,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Lodestone",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Lunging",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 3,
+  "name": "Sable (L3, proposed)",
+  "search": 0.984,
+  "validated": 0.9686666666666667,
+  "base_search": 0.528,
+  "base_validated": 0.522,
+  "build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 5,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 5,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 1,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 0,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 5,
+    "Brawl": 1,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Lodestone",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Lunging",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Sable",
+  "level": 3,
+  "name": "Sable (L3, proposed)",
+  "search": 0.984,
+  "validated": 0.9686666666666667,
+  "base_search": 0.528,
+  "base_validated": 0.522,
+  "build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 5,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 5,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 2,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Ascended Blade",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Guardian Angel",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T058",
+     "name": "Challenge",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 2,
+     "xp": 6,
+     "features": [
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Kite Shinobi",
+   "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 4,
+    "Body": 1,
+    "Cunning": 4,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 3,
+    "Archery": 5,
+    "Brawl": 1,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 1,
+    "Insight": 3,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 2,
+    "Composure": 3,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 1,
+    "Sorcery": 1,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I123",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T011",
+     "name": "One Eye Behind You",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 3
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wing Clip",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Hamstring",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 3,
+     "xp": 9,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Lodestone",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Lunging",
+       "count": 1
+      },
+      {
+       "name": "Whirlwind",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T013",
+     "name": "Solemn Pact",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T075",
+     "name": "Magehunter",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ }
+]

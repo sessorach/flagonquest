@@ -1,0 +1,1578 @@
+[
+ {
+  "arch": "Hilde",
+  "level": 2,
+  "name": "Hilde (L2)",
+  "search": 0.468,
+  "validated": 0.48133333333333334,
+  "base_search": 0.242,
+  "base_validated": 0.22333333333333333,
+  "build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 2,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Victorious",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Hilde",
+  "level": 2,
+  "name": "Hilde (L2)",
+  "search": 0.462,
+  "validated": 0.4673333333333333,
+  "base_search": 0.242,
+  "base_validated": 0.22333333333333333,
+  "build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 2,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Hilde",
+  "level": 2,
+  "name": "Hilde (L2)",
+  "search": 0.448,
+  "validated": 0.4633333333333333,
+  "base_search": 0.242,
+  "base_validated": 0.22333333333333333,
+  "build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 2,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Hilde",
+  "level": 2,
+  "name": "Hilde (L2)",
+  "search": 0.448,
+  "validated": 0.45866666666666667,
+  "base_search": 0.242,
+  "base_validated": 0.22333333333333333,
+  "build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 3,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 2,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Hilde",
+  "level": 2,
+  "name": "Hilde (L2)",
+  "search": 0.436,
+  "validated": 0.44466666666666665,
+  "base_search": 0.242,
+  "base_validated": 0.22333333333333333,
+  "build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 2,
+    "Rapport": 1,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T195",
+     "name": "Forward!",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Hilde",
+  "level": 2,
+  "name": "Hilde (L2)",
+  "search": 0.436,
+  "validated": 0.44333333333333336,
+  "base_search": 0.242,
+  "base_validated": 0.22333333333333333,
+  "build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 2,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 2,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 2,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T012",
+     "name": "Second Wind",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Brunhilde Doomhammer",
+   "charConcept": "Four Toughened Resolves, Toughened Body, Lend Bulwark and Brace: 29 Health and a lot of opinions about who should be standing behind her. Everyone.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 1,
+    "Mind": 1,
+    "Essence": 2
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 0,
+    "Brawl": 1,
+    "Melee": 4,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 2,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 1,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 0
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I120",
+     "qty": 1
+    },
+    {
+     "id": "I127",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T014",
+     "name": "Toughened Body",
+     "xp": 6,
+     "level": "Lv 2"
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T178",
+     "name": "Lend Bulwark",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 2, in Hilde (L2)'s place in party H. Toughest day it wins half the time: enemy Health x2.14, against the sample's x2.07 (+4%). Party Health left 43.73 against the sample's 29.32 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ }
+]

@@ -1,0 +1,1688 @@
+[
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.872,
+  "validated": 0.8733333333333333,
+  "base_search": 0.462,
+  "base_validated": 0.4513333333333333,
+  "build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.872,
+  "validated": 0.8733333333333333,
+  "base_search": 0.462,
+  "base_validated": 0.4513333333333333,
+  "build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.872,
+  "validated": 0.8733333333333333,
+  "base_search": 0.462,
+  "base_validated": 0.4513333333333333,
+  "build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.872,
+  "validated": 0.8733333333333333,
+  "base_search": 0.462,
+  "base_validated": 0.4513333333333333,
+  "build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.872,
+  "validated": 0.8733333333333333,
+  "base_search": 0.462,
+  "base_validated": 0.4513333333333333,
+  "build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 1,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Beornhard",
+  "level": 3,
+  "name": "Beornhard (L3)",
+  "search": 0.884,
+  "validated": 0.8666666666666667,
+  "base_search": 0.462,
+  "base_validated": 0.4513333333333333,
+  "build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 4,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 5,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 0,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 2,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Half Guard",
+       "count": 2
+      },
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Fleet Step",
+       "count": 1
+      },
+      {
+       "name": "Backfoot",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Wind Slash",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T121",
+     "name": "Force Missiles",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "hall",
+  "start_build": {
+   "charName": "Archmage Kaelith Shadowbane",
+   "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+   "xpBudget": 175,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 2,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 5
+   },
+   "skillPoints": {
+    "Acrobatics": 1,
+    "Archery": 1,
+    "Brawl": 5,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 3,
+    "Theurgy": 2
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I128",
+     "qty": 1
+    },
+    {
+     "id": "I119",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T072",
+     "name": "Battle Maneuver",
+     "level": 4,
+     "xp": 12,
+     "features": [
+      {
+       "name": "Flurry",
+       "count": 1
+      },
+      {
+       "name": "Viper's Sting",
+       "count": 1
+      },
+      {
+       "name": "Harrying",
+       "count": 1
+      },
+      {
+       "name": "Blade of Four Fates",
+       "count": 1
+      },
+      {
+       "name": "Half Guard",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T105",
+     "name": "Healing Magic",
+     "level": 1,
+     "xp": 3,
+     "features": [
+      {
+       "name": "Reach",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+   ]
+  }
+ }
+]
