@@ -1,0 +1,638 @@
+{
+ "level": 2,
+ "days": 2000,
+ "builds": {
+  "Ashleigh": {
+   "healing": "Lay On Hands",
+   "variants": {
+    "Sap Seals the Wound": {
+     "error": "Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4"
+    },
+    "as is": {
+     "up": 0.659,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 5.625,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.3495,
+     "points": -30.950000000000006,
+     "odds": -1.2800787934976858,
+     "downs_per_10": 8.605,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.6605,
+     "points": 0.14999999999999458,
+     "odds": 0.006682119744638504,
+     "downs_per_10": 4.94,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.662,
+     "points": 0.30000000000000027,
+     "odds": 0.013378603234998954,
+     "downs_per_10": 5.115,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.387,
+     "points": -27.200000000000003,
+     "odds": -1.11878130012542,
+     "downs_per_10": 7.69,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.447,
+     "points": -21.200000000000003,
+     "odds": -0.8716404641277564,
+     "downs_per_10": 7.74,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.659,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 5.625,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.3545,
+     "points": -30.450000000000006,
+     "odds": -1.2581579215335055,
+     "downs_per_10": 8.315,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Beornhard": {
+   "healing": "Healing Magic",
+   "variants": {
+    "Lay On Hands": {
+     "error": "not enough donor ranks to pay 3 XP"
+    },
+    "Sap Seals the Wound": {
+     "error": "Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4"
+    },
+    "as is": {
+     "up": 0.7865,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.24,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.4295,
+     "points": -35.699999999999996,
+     "odds": -1.5878473177074732,
+     "downs_per_10": 8.01,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.7865,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.24,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.7545,
+     "points": -3.200000000000003,
+     "odds": -0.18119755885632505,
+     "downs_per_10": 5.125,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.496,
+     "points": -29.049999999999997,
+     "odds": -1.3199562311760942,
+     "downs_per_10": 7.29,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.345,
+     "points": -44.15,
+     "odds": -1.9450467084335452,
+     "downs_per_10": 9.36,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.318,
+     "points": -46.849999999999994,
+     "odds": -2.0669341648929382,
+     "downs_per_10": 9.03,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Browndog": {
+   "healing": "Healing Magic",
+   "variants": {
+    "Sap Seals the Wound": {
+     "error": "Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4"
+    },
+    "as is": {
+     "up": 0.643,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 5.575,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.2965,
+     "points": -34.650000000000006,
+     "odds": -1.4524296005746442,
+     "downs_per_10": 8.835,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.643,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 5.575,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.613,
+     "points": -3.0000000000000027,
+     "odds": -0.12846869955155077,
+     "downs_per_10": 6.26,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.324,
+     "points": -31.900000000000002,
+     "odds": -1.323858502708615,
+     "downs_per_10": 8.405,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.241,
+     "points": -40.2,
+     "odds": -1.7356137863629555,
+     "downs_per_10": 10.75,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.319,
+     "points": -32.4,
+     "odds": -1.346780145822648,
+     "downs_per_10": 10.305,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.189,
+     "points": -45.4,
+     "odds": -2.044929981513751,
+     "downs_per_10": 11.04,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Carrick": {
+   "healing": "Healing Magic",
+   "variants": {
+    "Sap Seals the Wound": {
+     "error": "Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4"
+    },
+    "as is": {
+     "up": 0.728,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.325,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.386,
+     "points": -34.199999999999996,
+     "odds": -1.448656540583,
+     "downs_per_10": 8.04,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.7,
+     "points": -2.8000000000000025,
+     "odds": -0.13720112151348518,
+     "downs_per_10": 4.675,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.6885,
+     "points": -3.949999999999998,
+     "odds": -0.19138300195948688,
+     "downs_per_10": 4.975,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.4025,
+     "points": -32.55,
+     "odds": -1.379558168847736,
+     "downs_per_10": 7.29,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.2335,
+     "points": -49.449999999999996,
+     "odds": -2.173151603103605,
+     "downs_per_10": 10.28,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.2425,
+     "points": -48.55,
+     "odds": -2.123520808906675,
+     "downs_per_10": 10.22,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.353,
+     "points": -37.5,
+     "odds": -1.5903772194682926,
+     "downs_per_10": 8.325,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Enith": {
+   "healing": "Healing Magic",
+   "variants": {
+    "Sap Seals the Wound": {
+     "error": "Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4"
+    },
+    "as is": {
+     "up": 0.668,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 6.305,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.3435,
+     "points": -32.45,
+     "odds": -1.346888786700604,
+     "downs_per_10": 9.97,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.668,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 6.305,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.6155,
+     "points": -5.249999999999999,
+     "odds": -0.2286620479413476,
+     "downs_per_10": 7.305,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.399,
+     "points": -26.900000000000002,
+     "odds": -1.1087867222655012,
+     "downs_per_10": 8.315,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.459,
+     "points": -20.900000000000002,
+     "odds": -0.8635222734060934,
+     "downs_per_10": 8.665,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.3725,
+     "points": -29.550000000000004,
+     "odds": -1.220659837806482,
+     "downs_per_10": 10.185,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.312,
+     "points": -35.6,
+     "odds": -1.4899388547440187,
+     "downs_per_10": 9.65,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Felix": {
+   "healing": "Healing Magic",
+   "variants": {
+    "Sap Seals the Wound": {
+     "error": "Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4"
+    },
+    "as is": {
+     "up": 0.697,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.595,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.328,
+     "points": -36.89999999999999,
+     "odds": -1.5502973373901603,
+     "downs_per_10": 8.745,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.697,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.595,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.6475,
+     "points": -4.949999999999999,
+     "odds": -0.2249844339297853,
+     "downs_per_10": 5.48,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.339,
+     "points": -35.79999999999999,
+     "odds": -1.5008063377223906,
+     "downs_per_10": 8.33,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.4525,
+     "points": -24.449999999999996,
+     "odds": -1.0236273038018295,
+     "downs_per_10": 7.71,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.373,
+     "points": -32.4,
+     "odds": -1.3524207262402597,
+     "downs_per_10": 9.84,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.3165,
+     "points": -38.05,
+     "odds": -1.6029560198309278,
+     "downs_per_10": 9.105,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Hanforth": {
+   "healing": "Healing Magic",
+   "variants": {
+    "Sap Seals the Wound": {
+     "error": "Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4"
+    },
+    "as is": {
+     "up": 0.68,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.84,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.265,
+     "points": -41.5,
+     "odds": -1.773912475602995,
+     "downs_per_10": 9.57,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.6375,
+     "points": -4.250000000000009,
+     "odds": -0.18924199963852872,
+     "downs_per_10": 4.93,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.6255,
+     "points": -5.45000000000001,
+     "odds": -0.24081227542668893,
+     "downs_per_10": 5.375,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.3265,
+     "points": -35.35,
+     "odds": -1.477829849510313,
+     "downs_per_10": 8.375,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.265,
+     "points": -41.5,
+     "odds": -1.773912475602995,
+     "downs_per_10": 10.435,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.2995,
+     "points": -38.050000000000004,
+     "odds": -1.603451750597938,
+     "downs_per_10": 10.19,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.2555,
+     "points": -42.45,
+     "odds": -1.8232622448566849,
+     "downs_per_10": 9.26,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Hilde": {
+   "healing": "Second Wind",
+   "variants": {
+    "Sap Seals the Wound": {
+     "error": "Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4"
+    },
+    "as is": {
+     "up": 0.488,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 8.295,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.412,
+     "points": -7.600000000000001,
+     "odds": -0.3076943793627401,
+     "downs_per_10": 9.245,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.68,
+     "points": 19.200000000000006,
+     "odds": 0.8017810215627409,
+     "downs_per_10": 6.7,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.6435,
+     "points": 15.549999999999997,
+     "odds": 0.6385970063681912,
+     "downs_per_10": 7.415,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.488,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 8.295,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.516,
+     "points": 2.8000000000000025,
+     "odds": 0.11203107795129164,
+     "downs_per_10": 8.84,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.4955,
+     "points": 0.7500000000000007,
+     "odds": 0.03000873316273971,
+     "downs_per_10": 9.13,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.408,
+     "points": -8.000000000000002,
+     "odds": -0.3242302412934836,
+     "downs_per_10": 9.33,
+     "heal_share": 0.0
+    }
+   }
+  },
+  "Jackal": {
+   "healing": "Healing Magic",
+   "variants": {
+    "Sap Seals the Wound": {
+     "error": "Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4"
+    },
+    "as is": {
+     "up": 0.8025,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 3.875,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.536,
+     "points": -26.649999999999995,
+     "odds": -1.2577436618184474,
+     "downs_per_10": 6.98,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.8025,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 3.875,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.78,
+     "points": -2.2499999999999964,
+     "odds": -0.1363268973317182,
+     "downs_per_10": 4.18,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.323,
+     "points": -47.949999999999996,
+     "odds": -2.142012220352613,
+     "downs_per_10": 8.6,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.1825,
+     "points": -62.0,
+     "odds": -2.901494000411857,
+     "downs_per_10": 11.43,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.2615,
+     "points": -54.099999999999994,
+     "odds": -2.440180089129451,
+     "downs_per_10": 10.665,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.2045,
+     "points": -59.8,
+     "odds": -2.7603961429579793,
+     "downs_per_10": 10.885,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Sable": {
+   "healing": "Healing Magic",
+   "variants": {
+    "Lay On Hands": {
+     "error": "not enough donor ranks to pay 3 XP"
+    },
+    "Sap Seals the Wound": {
+     "error": "Great Old Oak School - Sap Seals the Wound needs Meditation:5: over the rank cap 4"
+    },
+    "as is": {
+     "up": 0.9415,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 1.7,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.7565,
+     "points": -18.500000000000007,
+     "odds": -1.6448620031536303,
+     "downs_per_10": 4.455,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.9415,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 1.7,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.9225,
+     "points": -1.9000000000000017,
+     "odds": -0.3016381543040154,
+     "downs_per_10": 2.305,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.626,
+     "points": -31.55,
+     "odds": -2.2633530201738297,
+     "downs_per_10": 5.61,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.2245,
+     "points": -71.7,
+     "odds": -4.018079869293681,
+     "downs_per_10": 10.165,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.368,
+     "points": -57.35,
+     "odds": -3.3192540498373226,
+     "downs_per_10": 8.7,
+     "heal_share": 1.0
+    }
+   }
+  }
+ }
+}
