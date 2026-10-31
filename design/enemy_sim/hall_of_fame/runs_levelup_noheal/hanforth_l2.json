@@ -1,0 +1,1250 @@
+[
+ {
+  "arch": "Hanforth",
+  "level": 2,
+  "name": "Hanforth (L2)",
+  "search": 0.42,
+  "validated": 0.4206666666666667,
+  "base_search": 0.244,
+  "base_validated": 0.25133333333333335,
+  "build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 2,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 0,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "best",
+  "start_build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Hanforth",
+  "level": 2,
+  "name": "Hanforth (L2)",
+  "search": 0.426,
+  "validated": 0.4186666666666667,
+  "base_search": 0.244,
+  "base_validated": 0.25133333333333335,
+  "build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 1,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "best",
+  "start_build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Hanforth",
+  "level": 2,
+  "name": "Hanforth (L2)",
+  "search": 0.426,
+  "validated": 0.4186666666666667,
+  "base_search": 0.244,
+  "base_validated": 0.25133333333333335,
+  "build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 1,
+    "Brawl": 2,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "best",
+  "start_build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Hanforth",
+  "level": 2,
+  "name": "Hanforth (L2)",
+  "search": 0.426,
+  "validated": 0.4186666666666667,
+  "base_search": 0.244,
+  "base_validated": 0.25133333333333335,
+  "build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "best",
+  "start_build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Hanforth",
+  "level": 2,
+  "name": "Hanforth (L2)",
+  "search": 0.426,
+  "validated": 0.4186666666666667,
+  "base_search": 0.244,
+  "base_validated": 0.25133333333333335,
+  "build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 0,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 1,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "best",
+  "start_build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ },
+ {
+  "arch": "Hanforth",
+  "level": 2,
+  "name": "Hanforth (L2)",
+  "search": 0.426,
+  "validated": 0.4186666666666667,
+  "base_search": 0.244,
+  "base_validated": 0.25133333333333335,
+  "build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 1,
+    "Body": 1,
+    "Cunning": 2,
+    "Mind": 1,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 2,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 1,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 0,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 4,
+    "Rapport": 0,
+    "Sorcery": 0,
+    "Theurgy": 3
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T110",
+     "name": "Lifeline",
+     "level": "Lv 2",
+     "xp": 6
+    },
+    {
+     "id": "T066",
+     "name": "Bolstering Refrain",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T064",
+     "name": "Heroic Inspiration",
+     "level": "Lv 2",
+     "xp": 6
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  },
+  "score": "levelup",
+  "party": "standin",
+  "start": "best",
+  "start_build": {
+   "charName": "Brother Requiem",
+   "charConcept": "A healer with Triage and Reach on the Healing Magic, Spirit Blessing, Minor Oracle and Field Medic. Heals you while staring into the middle distance and muttering about prophecy.",
+   "xpBudget": 125,
+   "statPoints": {
+    "Agility": 3,
+    "Body": 1,
+    "Cunning": 3,
+    "Mind": 3,
+    "Essence": 4
+   },
+   "skillPoints": {
+    "Acrobatics": 0,
+    "Archery": 0,
+    "Brawl": 3,
+    "Melee": 1,
+    "Stealth": 0,
+    "Athletics": 0,
+    "Awareness": 0,
+    "Might": 0,
+    "Presence": 0,
+    "Resilience": 4,
+    "Insight": 2,
+    "Masquerade": 0,
+    "Persuasion": 0,
+    "Streetwise": 0,
+    "Survival": 0,
+    "Academics": 0,
+    "Composure": 0,
+    "Craft": 0,
+    "Medicine": 1,
+    "Mixology": 0,
+    "Meditation": 0,
+    "Performance": 0,
+    "Rapport": 0,
+    "Sorcery": 1,
+    "Theurgy": 4
+   },
+   "charNotes": "",
+   "noteRows": [],
+   "customTechniques": [],
+   "backgroundType": "Settler",
+   "backgrounds": [],
+   "sheetSectionOrder": [
+    "backgrounds",
+    "techniques"
+   ],
+   "enabledSupplements": [
+    "Base Game"
+   ],
+   "gold": "",
+   "inventory": [
+    {
+     "id": "I119",
+     "qty": 1
+    },
+    {
+     "id": "I128",
+     "qty": 1
+    }
+   ],
+   "customItems": [],
+   "customMaterials": [],
+   "customAttacks": [],
+   "exportedAt": "2026-10-30T07:54:08Z",
+   "techniques": [
+    {
+     "id": "T019",
+     "name": "Toughened Resolve",
+     "level": "Lv 3",
+     "xp": 9
+    },
+    {
+     "id": "T189",
+     "name": "Field Medic",
+     "level": "Lv 1",
+     "xp": 3
+    },
+    {
+     "id": "T001",
+     "name": "Brace",
+     "level": "Lv 1",
+     "xp": 3
+    }
+   ],
+   "simNotes": [
+    "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 2, in Hanforth (L2)'s place in party S. Toughest day it wins half the time: enemy Health x2.21, against the sample's x1.66 (+33%). Party Health left 29.61 against the sample's 20.15 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+   ]
+  }
+ }
+]
