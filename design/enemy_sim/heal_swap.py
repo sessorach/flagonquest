@@ -42,7 +42,10 @@ OPTIONS = {
 }
 HEALING = {"T105", "T012", "T066", "T020", "T093", "T159", "T055"}
 # Where the XP comes from (the highest rank first) or goes back to: every
-# combat Skill and Stat but the build's attack Skill and its Stat.
+# combat Skill and Stat but the build's attack Skill and its Stat. Skills
+# pay first (pay()): taking a 5 Stat down to pay 3 XP costs the build far
+# more than the option it's paying for (the first try did, 2026-10-31, and
+# made every option look worse than no healing at all).
 DONORS = ("Resilience", "Composure", "Insight", "Might", "Acrobatics", "Melee", "Brawl", "Archery", "Sorcery",
           "Theurgy", "Meditation", "Agility", "Body", "Mind", "Cunning", "Essence")
 CAP = {2: 4, 3: 5}
@@ -61,14 +64,21 @@ def variants(build, level, row):
     import tunables as T
     sk = party.make_pc(row, 1, edits={"build": build}, row_changes=bo.choices_for(party._rows()[row], build))["attack_skill"]
     donors = tuple(d for d in DONORS if d not in (sk, T.PC_SKILL_STAT.get(sk)))
+    skills = tuple(d for d in donors if d not in build["statPoints"])
+
+    def pay(**kw):
+        try:
+            return party.fit(build, donors=skills, cap=CAP[level], **kw)[0]
+        except party.BuildError:
+            return party.fit(build, donors=donors, cap=CAP[level], **kw)[0]
     names = ", ".join(sorted({game_data.technique_name(t["id"]) for t in have})) or "none"
     try:
-        out["no healing"] = party.fit(build, remove=rm, donors=donors, cap=CAP[level])[0] if rm else None
+        out["no healing"] = pay(remove=rm) if rm else None
     except party.BuildError as e:
         out["no healing"] = str(e)
     for label, entry in OPTIONS.items():
         try:
-            out[label] = party.fit(build, add=[entry], remove=rm, donors=donors, cap=CAP[level])[0]
+            out[label] = pay(add=[entry], remove=rm)
         except party.BuildError as e:
             out[label] = str(e)
     # One that doesn't load (a Feature budget, say) is reported, not played.
