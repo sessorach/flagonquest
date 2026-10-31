@@ -26,6 +26,7 @@ job is seeded the same, so differences between builds aren't fight luck.
 import argparse
 import itertools
 import json
+import math
 import multiprocessing as mp
 import os
 import random
@@ -39,7 +40,7 @@ import build_optimizer as bo  # noqa: E402
 import party_power as pp  # noqa: E402
 import resume  # noqa: E402
 
-FLAGS = dict(gm_pressure=0.5, walkover=0.5, dead_weight=-10, carry=20, eclipse=-10, dmg_share=0.5,
+FLAGS = dict(gm_pressure=0.5, walkover=0.5, dead_weight=-10, carry=20, eclipse=-10, eclipse_odds=-1.0, dmg_share=0.5,
              hits_share=0.4, downs_per_10=1.0)
 KEYS = ("dmg_out", "heal_out", "dmg_in", "hits_in", "downed")
 
@@ -72,6 +73,13 @@ def play(args):
             for k in KEYS:
                 tot[k] += sl[k]
     return out
+
+
+def logit(won, days):
+    """Log-odds of winning, with half a day either way so 0% and 100%
+    stay finite."""
+    p = min(max(won / days, 0.5 / days), 1 - 0.5 / days)
+    return math.log(p / (1 - p))
 
 
 def builds(runs, level):
@@ -173,11 +181,19 @@ def main():
                      downs_per_10=10 * seat0["downed"] / own["days"])
             card[f"{arch}/{kind}"] = c
     med = st.median(card[f"{x}/optimized"]["contribution"] for x in archs)
-    pairs, pairs2 = {}, {}
+    pairs, pairs2, odds = {}, {}, {}
+
+    def lo(k):
+        return logit(R[k]["won"], R[k]["days"])
     for x, y in itertools.combinations(archs, 2):
         for up, d in ((1, pairs), (2, pairs2)):
             d[f"{x}+{y}"] = 100 * (rate(("pair", x, y, up)) - rate(("single", x, "optimized", up))
                                    - rate(("single", y, "optimized", up)) + rate(("base", up)))
+        # On the odds (2026-10-31): two builds that each win most days alone
+        # can't both add their points, but they can add their log-odds; a
+        # pair well under that is one making the other partly redundant.
+        odds[f"{x}+{y}"] = (lo(("pair", x, y, 1)) - lo(("single", x, "optimized", 1))
+                            - lo(("single", y, "optimized", 1)) + lo(("base", 1)))
     parties = {}
     for k in pjobs:
         if k[-1] == 1:
@@ -205,9 +221,13 @@ def main():
             flags.append((key, "extreme: damage", f"{100 * c['dmg_share']:.0f}% of the party's damage"))
         if c["hits_share"] > FLAGS["hits_share"] and c["downs_per_10"] < FLAGS["downs_per_10"]:
             flags.append((key, "extreme: soaks", f"{100 * c['hits_share']:.0f}% of hits, {c['downs_per_10']:.1f} Downs per 10 days"))
-    for k, v in pairs2.items():
-        if v <= FLAGS["eclipse"]:
-            flags.append((k, "eclipse (two Levels up)", f"{v:+.0f} points together"))
+    # Nearly every pair comes out a little under on the odds (the second
+    # strong build replaces a stand-in that was doing something too), so a
+    # pair flags only when it's a full log-odds under the median pair.
+    med_odds = st.median(odds.values()) if odds else 0
+    for k, v in odds.items():
+        if v <= med_odds + FLAGS["eclipse_odds"]:
+            flags.append((k, "eclipse (odds)", f"{v:+.2f} log-odds together, median pair {med_odds:+.2f}"))
     for k, p in parties.items():
         if p["up"] >= FLAGS["gm_pressure"]:
             flags.append((k, "GM pressure (party)", f"wins {100 * p['up']:.0f}% one Level up"))
@@ -221,6 +241,7 @@ def main():
     out = dict(level=L, days_per_job=R[("base", 1)]["days"], base=dict(up=base_up, own=base_own,
                walkover=R[("base", 0)]["trivial"] / R[("base", 0)]["fights"]),
                base_up2=rate(("base", 2)), median_contribution=med, card=card, pairs=pairs, pairs_two_up=pairs2,
+               pairs_odds=odds,
                parties=parties, flags=flags,
                builds={x: B[x] for x in archs})
     with open(a.o, "w") as f:

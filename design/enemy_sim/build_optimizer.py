@@ -86,6 +86,13 @@ START_COPIES = {}  # --start normalized: copies of a Technique the export itself
 # what a prereq holds); the search may not add to it, so no rank goes to
 # something a fight never uses.
 START_OTHER = [float("inf")]
+STARTS = ('normalized', 'hall', 'best')  # the starts that go through pure_combat()
+# --start best (2026-10-31): each archetype's optimized build in a
+# scorecard.py result (--start-from), to search deeper from the best so far.
+START_FROM = None
+# --ban: Technique names the search may not use, also taken off the start
+# (what would a build take instead of Healing Magic?).
+BAN = set()
 DAYS = 10  # the day score's days in a row, at most
 # Archetype: the sample character (Level 3 name; Level 2 swaps "(L3" for "(L2"), and its party.
 ARCHES = {
@@ -132,7 +139,7 @@ def stackable(tid):
 
 def pool():
     """Every modeled Technique the search may add."""
-    return sorted(t for t in tq.REGISTRY if t not in NEEDS_CHOICE)
+    return sorted(t for t in tq.REGISTRY if t not in NEEDS_CHOICE and game_data.technique_name(t) not in BAN)
 
 
 def feature_rows(tid):
@@ -378,7 +385,7 @@ def choices_for(row, build):
         out["Choices"] = "; ".join(f"{k}: {', '.join(v)}" for k, v in kept.items())
     # An Unmodeled Technique the build has dropped (--start normalized).
     um = [x.strip() for x in (row.get("Unmodeled") or "").split(",") if x.strip()]
-    if START in ('normalized', 'hall') and any(x not in have for x in um):
+    if START in STARTS and any(x not in have for x in um):
         out["Unmodeled"] = ", ".join(x for x in um if x in have)
     return out or None
 
@@ -442,6 +449,8 @@ def start_build(arch, level):
         import combat_xp
         path = os.path.join(HERE, "builds", "normalized", f"{arch.lower()}_l{level}_c{combat_xp.COMBAT_BUDGET[level]}.json")
         return party.read_build(path)
+    if START == 'best':
+        return json.load(open(START_FROM))["builds"][arch]["optimized"]
     if START == 'hall':
         # The Hall of Fame's #1 (v1.2, searched at the full budget), cut to
         # the combat budget by the same rule as the normalized builds.
@@ -464,6 +473,8 @@ def pure_combat(build, level, unmodeled, rng, keep=()):
         # An export can already miss a prereq (Hilde's Ascended Blade);
         # only a removal that adds one is kept back. repair() buys the rest.
         return len(party.prereq_needs(b) + feature_prereqs(b))
+    for t in [t for t in b["techniques"] if t["name"] in BAN or game_data.technique_name(t["id"]) in BAN]:
+        b["techniques"].remove(t)
     n0 = needs()
     for t in list(b["techniques"]):
         if not combat_xp.in_fight(t["id"], unmodeled):
@@ -500,7 +511,7 @@ def search(arch, level, gens, n, kids, popsize, seed, pool_, ckpt=None):
     key = PARTY_OF[arch]
     start = start_build(arch, level)
     start = {k: copy.deepcopy(v) for k, v in start.items()}
-    if START in ('normalized', 'hall'):
+    if START in STARTS:
         unmodeled = {x.strip() for x in (party._rows()[name].get("Unmodeled") or "").split(",") if x.strip()}
         # Never trim the attack Skill or its Stat to pay for a bought prereq.
         sk = party.make_pc(name)["attack_skill"]
@@ -508,7 +519,7 @@ def search(arch, level, gens, n, kids, popsize, seed, pool_, ckpt=None):
     elif sum(party.xp_spent(start)) > BUDGET[level]:
         start = fit_budget(start, level, rng)
     # The sample (None) is the yardstick, or the normalized start itself.
-    ref = start if START in ('normalized', 'hall') else None
+    ref = start if START in STARTS else None
     base = pool_.apply(score, ((name, ref, level, key, n, 0),))
     seen = {}
     pop = [(base, start)]
@@ -739,7 +750,9 @@ def main():
     ap.add_argument("--hall", action="store_true", help="write hall_of_fame/v<version>/ from the runs in -o")
     ap.add_argument("--party", choices=("home", "standin"), default="home",
                     help="standin: score each build with three party_power stand-ins")
-    ap.add_argument("--start", choices=("sample", "normalized", "hall"), default="sample",
+    ap.add_argument("--start-from", help="--start best: a scorecard.py result")
+    ap.add_argument("--ban", action="append", default=[], help="a Technique name the search may not use")
+    ap.add_argument("--start", choices=("sample", "normalized", "hall", "best"), default="sample",
                     help="normalized: start from builds/normalized/; hall: from the Hall of Fame v1.2 #1, "
                          "normalized the same way (both need --combat-budget)")
     ap.add_argument("--score", choices=("fight", "day", "daywin", "levelup"), default="fight",
@@ -765,6 +778,9 @@ def main():
         return
     global SCORE, DAYWIN_X, PARTY_MODE, START
     PARTY_MODE, START = a.party, a.start
+    global START_FROM
+    START_FROM = a.start_from
+    BAN.update(a.ban)
     if a.combat_budget:
         import combat_xp
         BUDGET.update(combat_xp.COMBAT_BUDGET)

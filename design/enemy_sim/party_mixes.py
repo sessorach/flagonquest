@@ -57,14 +57,24 @@ def main():
     ap.add_argument("-n", type=int, default=250, help="day_sim.run's n (it plays 4n days)")
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("-o", required=True)
+    ap.add_argument("--source", default="normalized",
+                    help="normalized, or a scorecard.py result to play its optimized builds")
+    ap.add_argument("--ups", default="0,1",
+                    help="the two enemy Levels up: the lower one reads damage shares and walkovers, "
+                         "the higher one ranks the parties and plays the lineups (optimized builds: 1,2)")
     a = ap.parse_args()
     L, n = a.L, a.n
-    B = normalized(L)
+    LO, HI = (int(x) for x in a.ups.split(","))
+    if a.source == "normalized":
+        B = normalized(L)
+    else:
+        bo.START = "best"  # choices_for clears a dropped Unmodeled Technique
+        B = {x: (v["row"], v["optimized"]) for x, v in json.load(open(a.source))["builds"].items()}
     archs = sorted(B)
     mixes = list(itertools.combinations(archs, 4))
     part = resume.Partial(a.o + ".partial")
     jobs = {}
-    for up in (0, 1):
+    for up in (LO, HI):
         jobs[("base", up)] = ([(None, None)] * 4, L, up, n, 0)
         for m in mixes:
             jobs[("mix",) + m + (up,)] = ([B[x] for x in m], L, up, n, 0)
@@ -74,10 +84,10 @@ def main():
         return R[k]["won"] / R[k]["days"]
     table = []
     for m in mixes:
-        own = R[("mix",) + m + (0,)]
+        own = R[("mix",) + m + (LO,)]
         tot = sum(s["dmg_out"] for s in own["seats"])
         shares = [s["dmg_out"] / max(1, tot) for s in own["seats"]]
-        table.append(dict(party=list(m), up=rate(("mix",) + m + (1,)), own=rate(("mix",) + m + (0,)),
+        table.append(dict(party=list(m), up=rate(("mix",) + m + (HI,)), own=rate(("mix",) + m + (LO,)),
                           walkover=own["trivial"] / own["fights"], dmg_share=dict(zip(m, shares)),
                           hits_share={x: s["hits_in"] / max(1, sum(t["hits_in"] for t in own["seats"]))
                                       for x, s in zip(m, own["seats"])},
@@ -85,6 +95,9 @@ def main():
     table.sort(key=lambda r: -r["up"])
     # Each archetype across every party it's in: its average days won one up.
     by_arch = {x: st.mean(r["up"] for r in table if x in r["party"]) for x in archs}
+    # And what having it in the party is worth: the average of the parties
+    # with it, minus the average of those without, in points.
+    marginal = {x: 100 * (by_arch[x] - st.mean(r["up"] for r in table if x not in r["party"])) for x in archs}
     # Round 2: the strongest, and the most even of the middle third.
     top = table[:TOP]
     third = len(table) // 3
@@ -96,13 +109,13 @@ def main():
         for k in range(5):
             for keep in itertools.combinations(range(4), k):
                 seats = [B[m[i]] if i in keep else (None, None) for i in range(4)]
-                key = ("lineup", tuple(sorted(m[i] for i in keep)), 1)
-                jobs[key] = (seats, L, 1, n, 0)
+                key = ("lineup", tuple(sorted(m[i] for i in keep)), HI)
+                jobs[key] = (seats, L, HI, n, 0)
     R = run_jobs(part, jobs, a.j)
     rounds2 = []
     for r in picked:
         m = tuple(r["party"])
-        v = {frozenset(keep): rate(("lineup", tuple(sorted(m[i] for i in keep)), 1))
+        v = {frozenset(keep): rate(("lineup", tuple(sorted(m[i] for i in keep)), HI))
              for k in range(5) for keep in itertools.combinations(range(4), k)}
         phi, inter = pp.shapley_values(v, 4)
         gain = v[frozenset(range(4))] - v[frozenset()]
@@ -114,7 +127,7 @@ def main():
     for r in table:
         k = "+".join(r["party"])
         if r["up"] >= F["gm_pressure"]:
-            flags.append((k, "GM pressure", f"wins {100 * r['up']:.0f}% one Level up"))
+            flags.append((k, "GM pressure", f"wins {100 * r['up']:.0f}% {HI} Level(s) up"))
         if r["walkover"] >= F["walkover"]:
             flags.append((k, "walkovers", f"{100 * r['walkover']:.0f}% of first fights"))
         for x in r["party"]:
@@ -132,15 +145,17 @@ def main():
         for p, c in r["pairs"].items():
             if c <= F["eclipse"]:
                 flags.append((k, "eclipse", f"{p} {c:+.0f}"))
-    out = dict(level=L, days_per_job=R[("base", 1)]["days"], base=dict(up=rate(("base", 1)), own=rate(("base", 0))),
-               by_arch=by_arch, mixes=table, round2=rounds2, flags=flags)
+    # "own" and "up" are the --ups pair: own Level and one up unless set.
+    out = dict(level=L, source=a.source, ups=[LO, HI], days_per_job=R[("base", HI)]["days"],
+               base=dict(up=rate(("base", HI)), own=rate(("base", LO))),
+               by_arch=by_arch, marginal=marginal, mixes=table, round2=rounds2, flags=flags)
     with open(a.o, "w") as f:
         json.dump(out, f, indent=1)
     part.finish()
-    print(f"stand-ins: {100 * out['base']['own']:.0f}% own Level, {100 * out['base']['up']:.0f}% one up")
-    print("one Level up, averaged over the 84 parties each archetype is in:")
+    print(f"stand-ins: {100 * out['base']['own']:.0f}% {LO} up, {100 * out['base']['up']:.0f}% {HI} up")
+    print(f"{HI} Level(s) up, averaged over the 84 parties each archetype is in (and with minus without):")
     for x in sorted(archs, key=lambda x: -by_arch[x]):
-        print(f"  {x:10s} {100 * by_arch[x]:.0f}%")
+        print(f"  {x:10s} {100 * by_arch[x]:.0f}%  {marginal[x]:+.0f}")
     for r in table[:5] + table[-3:]:
         print(f"{'+'.join(r['party']):40s} up {100 * r['up']:3.0f}%  own {100 * r['own']:3.0f}%  walkover {100 * r['walkover']:.0f}%")
     for r in rounds2:
