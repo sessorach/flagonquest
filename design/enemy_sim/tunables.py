@@ -381,7 +381,7 @@ RECKLESS_CHANCE = 0.05   # share of turns any PC plays like a Diver anyway
 # looking, then chance. Under 'current' everyone at full Health ties and
 # the party's list order picks, so a Technique that takes a point off a
 # PC's max Health makes every Assassin go for that PC instead (the broad
-# pass, TECHNIQUE_PASS.md).
+# pass, results/TECHNIQUE_PASS.md).
 ASSASSIN_READS = 'softest'
 
 # ---- Enemy offense dials (2026-10-08, measurement only) ----
@@ -404,6 +404,12 @@ ENEMY_LEVEL_UP = 0
 # turns (dmg_in, hits_in). Snapshots only, no random calls, so on or off
 # the fights play the same.
 TRACK_SHARES = False
+# Healing Magic as an Encounter Technique (2026-11-01, the designer's test;
+# techniques.csv doesn't have the tag). 0: as written, a cast whenever the
+# cards allow. 1: one use per copy a fight, the after-fight care as before
+# (the use is back once the encounter ends). 2: also one use per copy in
+# the care after each fight.
+HEALING_MAGIC_ENCOUNTER = 0
 
 # ---- Real cards (2026-10-09, cards.py) ----
 # Every PC has its own 52-card deck and a hand; the GM has one deck for
@@ -497,3 +503,19 @@ THREAT_READS_CRIPPLED = False
 # 2026-10-21 they counted, so about a third of a Stagger's places went
 # past the dead. Off reproduces that.
 SHIFT_SKIPS_DEAD = True
+
+
+# A run can set any of these without editing this file:
+# SIM_SET="HEALING_MAGIC_ENCOUNTER=1,TRACK_SHARES=True" python3 ...
+# (pool workers inherit the environment, so they get it too).
+def _env_overrides():
+    import ast
+    import os
+    for item in filter(None, os.environ.get("SIM_SET", "").split(",")):
+        k, v = item.split("=", 1)
+        if k.strip() not in globals():
+            raise KeyError(f"SIM_SET names {k.strip()!r}, which tunables.py doesn't have")
+        globals()[k.strip()] = ast.literal_eval(v.strip())
+
+
+_env_overrides()

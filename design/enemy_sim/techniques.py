@@ -408,6 +408,9 @@ def _healing_magic(sheet, copies, choices):
     play (tactics.strategy_support_healer) comes with it."""
     c = copies[0]
     sheet.support = True
+    import tunables
+    if tunables.HEALING_MAGIC_ENCOUNTER:
+        sheet.encounter_techs.extend(["Healing Magic"] * len(copies))
     sheet.heal_cards = c["level"]
     sheet.heal_bonus = c["features"].get("Vitality", 0)
     sheet.heal_reach = "Reach" in c["features"]

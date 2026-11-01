@@ -8,6 +8,37 @@ algebra alone. Full write-up, findings, and the validation grid this
 produced are in that document's "Analysis" section; this README is just
 usage and a map of the files.
 
+## Folder layout (2026-11-01)
+
+- **This folder**: the simulator itself, the library every script
+  imports (`combat_sim.py`, `party.py`, `tactics.py`, `techniques*.py`,
+  `day_sim.py`, `tunables.py`, `sample_enemies.py`...), its data
+  (`sample_pcs.csv`, `sample_enemies.csv`, `builds/`) and the main notes
+  (`TABLE_PLAY_NOTES.md`, `SHEETS.md`, `sample_characters.md`,
+  `PROPOSED_BUILDS.md`).
+- **`tools/`**: the runners used again and again: `calibrate.py`,
+  `compare_builds.py`, `tactics_compare.py`, `effect_check.py`,
+  `coverage.py`, `make_replays.py`, `run_grid.py`, `technique_pass.py`,
+  `synergy_scan.py`, `build_optimizer.py`, `scorecard.py`,
+  `party_mixes.py`, `party_power.py`, `heal_swap.py`.
+- **`experiments/`**: one-off studies, each dated in its docstring, by
+  topic: `bleeding/`, `enemies/` (enemy pricing, Hordes, toughness,
+  baselines), `pc_options/` (character option sweeps, Styles, turn
+  order, targeting) and `yardsticks/` (checks on the measures
+  themselves).
+- **`results/`**: result tables and their write-ups that aren't Hall of
+  Fame runs (`technique_pass*.csv` and `TECHNIQUE_PASS.md`,
+  `synergy_scan.csv` and `SYNERGY_SCAN.md`).
+- **`hall_of_fame/`**: optimizer runs, scorecards and party-mix results;
+  **`replays/`**: the HTML replays.
+
+Run everything from this folder, a script by its path (`python3
+tools/calibrate.py`). Each subfolder has a `_paths.py` that puts this
+folder, `tools/` and every `experiments/` folder on the import path, so
+a script anywhere can import the core and the others. A new script in a
+subfolder starts with `import _paths` before importing anything of the
+sim's, and reads data through `_paths.ROOT`, not its own location.
+
 ## How a fight works
 
 Turn order is a real Reflex/initiative roll now (rulebook.md's actual
@@ -73,24 +104,31 @@ are still 1.75 until the designer picks. Results are in
 
 ## Files
 
-One-off studies, each dated in its own docstring and written up in
-`balance_weights_notes.md` or `TABLE_PLAY_NOTES.md`. Most still run;
-their results describe the sim as it was that day.
+One-off studies (in `experiments/<topic>/`), each dated in its own
+docstring and written up in `balance_weights_notes.md` or
+`TABLE_PLAY_NOTES.md`. Most still run; their results describe the sim
+as it was that day.
 
-- **Bleeding (2026-10-07 to 10-20)**: `bleed_check.py`, `bleed_fate.py`,
+- **Bleeding (2026-10-07 to 10-20, `experiments/bleeding/`)**: `bleed_check.py`, `bleed_fate.py`,
   `bleed_points.py`, `bleed_reprice.py`, `bleed_strategy.py`,
   `bleed_vs_damage.py`, `bleed_builds.py`, `bleed_levers.py`,
   `bleed_cashout.py`, `bleed_protected.py`, `spend_pool.py`.
-- **Enemies and encounters**: `archetype_compare.py` and
+- **Enemies and encounters (`experiments/enemies/`)**: `archetype_compare.py` and
   `ability_compare.py` (price enemy archetypes and ability picks),
   `upgrade_configs.py` (the Upgrade model), `goblin_armor.py`,
   `horde_ratio.py` and `horde_experiments.py` (Horde tuning, 10-01),
   `enemy_toughness.py` (how long a hit enemy lasts; where ×1.75 came
-  from), `level_baseline.py`, `margin_sweep.py`, `fight_length.py`.
-- **Party behavior**: `party_targeting_compare.py` (targeting modes,
-  10-07).
+  from), `level_baseline.py`, `margin_sweep.py`, `fight_length.py`,
+  `encounter_grid.py`, `incoming_attacks.py`.
+- **Character options and party behavior (`experiments/pc_options/`)**:
+  `party_targeting_compare.py` (targeting modes, 10-07), `style_compare.py`
+  and `turnorder_single.py` (Styles), `hanforth_sweep.py`,
+  `beornhard_sweep.py`, `maneuver_sweep.py`, `mechanic_baseline.py`,
+  `card_stats.py`.
+- **The measures themselves (`experiments/yardsticks/`)**:
+  `measure_compare.py`, `axis_check.py`, `day_checks.py`.
 
-The core files and the regular tools:
+The core files (this folder) and the regular tools (`tools/`):
 
 - **`tunables.py`** — every number that's still subject to revision:
   the enemy Level curve, Role/Armor/Action modifiers, the AP economy
@@ -235,7 +273,7 @@ The core files and the regular tools:
   Technique on up to three Level 3 hosts (taken off whoever knows it,
   added to whoever needs the fewest prereq ranks), read "free" and as
   an XP-matched swap, and every Feature of the four Buildables in a copy
-  at a fixed Level. `technique_pass.csv` and `TECHNIQUE_PASS.md`.
+  at a fixed Level. `results/technique_pass.csv` and `results/TECHNIQUE_PASS.md`.
   `--score day` (2026-10-29) reads each one by day_sim.py's morning
   Health instead (synergy_scan.py takes the same switch).
 - **`build_optimizer.py`** (2026-10-28) — searches everything XP buys for
@@ -258,8 +296,20 @@ The core files and the regular tools:
   (`tunables.ENEMY_LEVEL_UP`, through the same builder), and each
   member's contribution against a plain same-XP stand-in, as Shapley
   values over all 16 lineups, with every pair's interaction.
+- **`scorecard.py`** (2026-10-30) — the designer's scorecard for builds
+  at the same combat XP: each one's contribution with three stand-ins,
+  damage and healing shares, hits taken against Downs, walkovers, GM
+  pressure, pairs (on the odds since 2026-10-31) and a few whole
+  parties, with the flags. Per-character counters come from
+  `tunables.TRACK_SHARES`.
+- **`party_mixes.py`** (2026-10-30) — every party of four from the ten
+  archetypes (the normalized builds, or a scorecard's optimized ones
+  with `--source`), then each member's Shapley value in the strongest
+  and most even parties.
+- **`heal_swap.py`** (2026-10-31) — Healing Magic against the other
+  healing on the optimized builds, at the same XP.
 - **`combat_xp.py`** (2026-10-30) — how much of a build's XP goes to
-  fights, and the combat budget test builds get (95 / 130 XP of 125 /
+  fights, and the combat budget test builds get (105 / 145 XP of 125 /
   175, per the designer: the rest goes to life outside fights).
 - **`resume.py`** (2026-10-29) — the worker restarts now and then and
   takes every process with it. Long scripts (technique_pass.py,
@@ -268,7 +318,7 @@ The core files and the regular tools:
   unbroken run.
 - **`synergy_scan.py`** (2026-10-28) — pairs of Techniques worth more, or
   less, together than apart, on one character or across the party. The
-  first full scan (by the day) is in `SYNERGY_SCAN.md`.
+  first full scan (by the day) is in `results/SYNERGY_SCAN.md`.
 - **`day_sim.py`** and **`day_checks.py`** (2026-10-29) — a whole day: two fights, the party's
   healing between and after them, and a full night's rest. Scores the
   party's Health the next morning (losses 0), what each PC is still
@@ -532,18 +582,19 @@ The core files and the regular tools:
 
 ```
 cd design/enemy_sim
-python3 run_grid.py           # full 5x5 grid, 3000 trials/cell
-python3 run_grid.py 10000     # more trials, slower but less noisy
+python3 tools/run_grid.py     # full 5x5 grid, 3000 trials/cell
+python3 tools/run_grid.py 10000   # more trials, slower but less noisy
 python3 enemy_builder.py      # cross-check against the live spreadsheet example
 python3 sample_enemies.py     # print every stat block in sample_enemies.csv
 python3 party.py              # print every stat block in sample_pcs.csv
 python3 narrate_fight.py 1 1 3 --party Hilde,Browndog,Sable,Beornhard --html out.html
                                # narrate one seeded fight, and save a graphical replay to open yourself
-python3 calibrate.py           # the sample parties against the table's calibration targets
-python3 calibrate.py -s PLAY_STYLES=False   # ...with one table-play switch turned off
-python3 compare_builds.py -L 2 -p B --swap "Beornhard (L2)=Beornhard (L2, Frost)"
+python3 tools/calibrate.py     # the sample parties against the table's calibration targets
+python3 tools/calibrate.py -s PLAY_STYLES=False   # ...with one table-play switch turned off
+SIM_SET="HEALING_MAGIC_ENCOUNTER=2" python3 tools/scorecard.py ...   # any script, with tunables overridden
+python3 tools/compare_builds.py -L 2 -p B --swap "Beornhard (L2)=Beornhard (L2, Frost)"
                                # one character swapped for a variant row
-python3 compare_builds.py -L 2 -p B --edit 'Beornhard (L2)={"replace": [{"id": "T120", "copy": 1, "features": {"Lance": 1, "Frigid": 2}}]}'
+python3 tools/compare_builds.py -L 2 -p B --edit 'Beornhard (L2)={"replace": [{"id": "T120", "copy": 1, "features": {"Lance": 1, "Frigid": 2}}]}'
                                # ...or for an edit, with no file
 ```
 

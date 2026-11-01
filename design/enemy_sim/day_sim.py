@@ -137,6 +137,10 @@ def care(pcs, reserve, log):
                 if q['health'] <= 0:
                     healed += heal(q, 1, deep_ok=True)
                     log.append(f"{p['name']}: From the Brink of Death on {q['name']}")
+    # tunables.HEALING_MAGIC_ENCOUNTER 2: one Healing Magic per copy here
+    # too (the uses are back, the encounter being over).
+    import encounter
+    hm_left = {id(p): sum(g['max'] for g in encounter.groups_of(p, 'Healing Magic')) for p in pcs}
     while True:
         before = healed
         for p in pcs:
@@ -146,12 +150,14 @@ def care(pcs, reserve, log):
             # Healing Magic (T105): "Discard [Level] cards", 1 Shallow plus
             # one per Heart, plus Vitality; Triage and Field Medic on the
             # Wounded; Healing Pact a second target.
-            if p.get('strategy') == 'support_healer' and spare >= p.get('heal_cards', 1):
+            if (p.get('strategy') == 'support_healer' and spare >= p.get('heal_cards', 1)
+                    and (T.HEALING_MAGIC_ENCOUNTER != 2 or hm_left[id(p)] > 0)):
                 feats = p.get('heal_features') or {}
                 deep_ok = bool(feats.get('Deep Mending'))
                 target = _neediest(pcs, deep_ok)
                 if target is not None:
                     hearts = _take(p, p.get('heal_cards', 1))
+                    hm_left[id(p)] -= 1
                     targets = [target]
                     if feats.get('Healing Pact'):
                         second = _neediest(pcs, deep_ok, exclude=targets)
@@ -344,6 +350,7 @@ def summary(recs):
 
 def swap_arg(text, level):
     """'Hilde (L3)=path.json' or 'path.json:0' (an optimizer run's entry)."""
+    sys.path.insert(1, os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools"))
     import build_optimizer as bo  # it imports this module
     name, _, spec = text.partition("=")
     path, _, idx = spec.partition(":")
@@ -354,6 +361,7 @@ def swap_arg(text, level):
 
 
 def main():
+    sys.path.insert(1, os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools"))
     import build_optimizer as bo  # it imports this module
     ap = argparse.ArgumentParser()
     ap.add_argument("-L", type=int, default=3)

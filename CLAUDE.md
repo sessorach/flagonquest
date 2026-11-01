@@ -134,7 +134,7 @@ which should stay a clean decision record.
   markdown section has the derivation) for quick reference without
   scanning prose. Its Weak/Average/Strong columns (2026-10-22) hold the
   sim-measured cases for each buff and debuff; `balance.md` says which
-  to use, and `effect_check.py` re-measures them (re-run them when the
+  to use, and `tools/effect_check.py` re-measures them (re-run them when the
   sim's effects or the sample party change). It's CRLF; write it with
   `csv` and `lineterminator='\r\n'`. Unlike `archive/`, this is meant
   to be read and extended, not just kept for the record.
@@ -237,7 +237,7 @@ which should stay a clean decision record.
   commit as the `items.csv`/`balance_weights_notes.md` change — not as
   a separate catch-up pass later.
 - **Every round of simulator/enemy-design work ends with fresh
-  replays.** Run `python3 design/enemy_sim/make_replays.py "<one line on
+  replays.** Run `python3 design/enemy_sim/tools/make_replays.py "<one line on
   what changed>"` before wrapping up the round and committing. It moves
   the previous `replays/latest/` into `replays/archive/<date-time>/` and
   writes 1-2 typical fights (a result closest to the matchup's own
@@ -265,7 +265,7 @@ which should stay a clean decision record.
   variant file in `design/enemy_sim/builds/` names its `"base"` export
   and lists only the edits (`party.apply_edits`), plus a
   `sample_pcs.csv` row copying the base row's Weapon/Play Style/Choices;
-  `compare_builds.py --swap "Base=Variant"` runs the paired comparison
+  `tools/compare_builds.py --swap "Base=Variant"` runs the paired comparison
   (`--edit` for a throwaway). Pick `-m` for ~5-round fights: at ×1.75
   the Level 2-3 parties finish in three and a debuff has no time to pay.
   Results go in `sample_characters.md`'s "Variants" table. Its "Health
@@ -275,7 +275,7 @@ which should stay a clean decision record.
   unit before quoting a number.
 - **Party tactics and the sheets** (2026-10-27): how the whole party
   plays is one switch, `party_tactics.py`'s presets (`-t "cautious"` on
-  calibrate/compare_builds/the sweeps, or `tactics_compare.py` for all
+  calibrate/compare_builds/the sweeps, or `tools/tactics_compare.py` for all
   of them); per-character Play Styles still live in `sample_pcs.csv`.
   `design/enemy_sim/SHEETS.md` is every sample character resolved, for
   reference; it's generated, so edit `builds/`, never the sheet.
@@ -288,7 +288,7 @@ which should stay a clean decision record.
   it, or list it as out of combat / `Unmodeled`, but never let it drop
   quietly. Since 2026-10-27 every techniques.csv ID is modeled, out of
   combat or `DEFERRED` (the rest of the catalog is in
-  `techniques_more_a.py`/`_b.py`); `coverage.py` checks that after a
+  `techniques_more_a.py`/`_b.py`); `tools/coverage.py` checks that after a
   new Technique lands in the CSV. Prefer the broad pieces over a
   Technique-specific field (designer, 2026-10-27): uses go through
   `encounter.py` (`_encounter()` plus `left`/`spend`), Skill Totals come
@@ -303,6 +303,17 @@ which should stay a clean decision record.
   comment's number. An export that disagrees still loads and plays by
   the CSVs, with a "needs a rebuild" note (`party.rebuild_list`);
   rebuilding the character in the Builder comes later.
+- **The simulator folder's layout** (2026-11-01, per the designer):
+  the core library and data stay in `design/enemy_sim/`; runners used
+  again and again go in `tools/`, one-off studies in
+  `experiments/<topic>/` (bleeding, enemies, pc_options, yardsticks),
+  loose result tables in `results/`. Run scripts from
+  `design/enemy_sim/` by path. A script in a subfolder starts with
+  `import _paths` (each subfolder has a copy; it puts the core,
+  `tools/` and every experiments folder on the import path) and reads
+  data through `_paths.ROOT`. A new one-off study goes in
+  `experiments/`, not the top level. `SIM_SET="NAME=value,..."` sets any
+  tunable for one run, workers included.
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and
@@ -325,7 +336,7 @@ which should stay a clean decision record.
   matches its own shell (exit 144).
 - **Refactoring the simulator: prove the old path didn't move.** Put
   every new behavior behind a `tunables.py` switch, save a fixed-seed
-  `calibrate.py` run first, then run it again with the new switches off
+  `tools/calibrate.py` run first, then run it again with the new switches off
   and `diff` the two: they should be identical, not just close. That's
   how the real-cards change (2026-10-09) was checked, and it keeps the
   random calls on the old path in the same order (`_suit_extra`/

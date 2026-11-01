@@ -124,7 +124,7 @@ singly on Hilde's party (TABLE_PLAY_NOTES.md, "Two kinds of measure"):
 3b. **Lifeline and self-healing.** The synergy scan's one repeated
    positive: a Lifeline holder with Second Wind keeps the shared pool
    going (+1.1 to +1.4 morning Health on top of the two alone;
-   SYNERGY_SCAN.md). Otherwise the scan found nothing outsized, on one
+   results/SYNERGY_SCAN.md). Otherwise the scan found nothing outsized, on one
    character or across the party.
 4. **Agility and Body as dump stats.** Could be a sim blind spot
    (whatever else Agility and Body do at the table) or a design point.

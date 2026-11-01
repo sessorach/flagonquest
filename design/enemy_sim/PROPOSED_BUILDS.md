@@ -228,7 +228,7 @@ What changed with this pass:
 
 Your two Level 1 test parties, at Levels 2 and 3 (200 fights a mix, the
 calibrate settings). Measured before the Assassin tactic changed later on
-2026-10-28 (TECHNIQUE_PASS.md), which made Level 1-2 fights rougher. Party S is Enith, Felix, Jackal and Hanforth; Party U is
+2026-10-28 (results/TECHNIQUE_PASS.md), which made Level 1-2 fights rougher. Party S is Enith, Felix, Jackal and Hanforth; Party U is
 Browndog, Ashleigh, Sable and Beornhard. Jackal, Hanforth, Browndog and
 Beornhard are your own builds.
 

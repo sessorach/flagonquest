@@ -562,6 +562,10 @@ def strategy_support_healer(pc, party, log):
     k = pc.get('heal_cards', 1)
     if (not cards.can_spend(pc, k)) if T.CARDS else pc.get('heal_uses_left', 0) <= 0:
         return 0
+    # tunables.HEALING_MAGIC_ENCOUNTER: one use per copy a fight.
+    import encounter
+    if T.HEALING_MAGIC_ENCOUNTER and encounter.left(pc, 'Healing Magic') <= 0:
+        return 0
     wounded = [p for p in party if needs_healing(p)]
     heal_range = pc.get('heal_range')
     if heal_range is not None and 'pos' in pc:
@@ -587,6 +591,8 @@ def strategy_support_healer(pc, party, log):
         pc['heal_uses_left'] -= 1
     for target in targets:
         _heal_one(pc, target, 1 + hearts + pc.get('heal_bonus', 0), feats, log)
+    if T.HEALING_MAGIC_ENCOUNTER:
+        encounter.spend(pc, 'Healing Magic')
     return T.HEALING_MAGIC_AP_COST
 
 
