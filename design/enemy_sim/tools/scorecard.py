@@ -46,8 +46,14 @@ KEYS = ("dmg_out", "heal_out", "dmg_in", "hits_in", "downed")
 
 
 def play(args):
-    """Days with `seats` (row name, build or None for a stand-in)."""
-    seats, level, up, n, seed = args
+    """Days with `seats` (row name, build or None for a stand-in). An
+    optional sixth item is {tunable: value} for these days only (the
+    swap test's harder-hitting enemies, ENEMY_DAMAGE_ADJ)."""
+    seats, level, up, n, seed = args[:5]
+    overrides = args[5] if len(args) > 5 else {}
+    saved = {k: getattr(T, k) for k in overrides}
+    for k, v in overrides.items():
+        setattr(T, k, v)
     rows = party._rows()
     si = pp.STAND_IN[level]
     names, swaps = [], {si: ({"build": pp.stand_in(level)}, None)}
@@ -64,6 +70,8 @@ def play(args):
         recs = day_sim.run(names, swaps, level, n, seed=seed)
     finally:
         T.ENEMY_LEVEL_UP = 0
+        for k, v in saved.items():
+            setattr(T, k, v)
     first = [r["first"] for r in recs if r.get("first")]
     out = dict(won=sum(not r["lost"] for r in recs), days=len(recs),
                trivial=sum(1 for f in first if f["won"] and f["rounds"] <= 2 and not f["wounded"]),

@@ -51,16 +51,11 @@ DONORS = ("Resilience", "Composure", "Insight", "Might", "Acrobatics", "Melee", 
 CAP = {2: 4, 3: 5}
 
 
-def variants(build, level, row):
-    """{label: build or the reason it can't be built}."""
-    have = [t for t in build["techniques"] if t["id"] in HEALING]
-    # apply_edits counts copies per ID.
-    seen, rm = {}, []
-    for t in build["techniques"]:
-        if t["id"] in HEALING:
-            seen[t["id"]] = seen.get(t["id"], 0) + 1
-            rm.append({"id": t["id"], "copy": seen[t["id"]]})
-    out = {"as is": build}
+def payer(build, level, row):
+    """A function fitting Techniques on or off `build` at the same XP: the
+    difference paid from (or put back into) the combat Skills, Stats only
+    when the Skills can't cover it, never the attack Skill or its Stat.
+    Raises party.BuildError when it can't."""
     import tunables as T
     sk = party.make_pc(row, 1, edits={"build": build}, row_changes=bo.choices_for(party._rows()[row], build))["attack_skill"]
     donors = tuple(d for d in DONORS if d not in (sk, T.PC_SKILL_STAT.get(sk)))
@@ -71,6 +66,33 @@ def variants(build, level, row):
             return party.fit(build, donors=skills, cap=CAP[level], **kw)[0]
         except party.BuildError:
             return party.fit(build, donors=donors, cap=CAP[level], **kw)[0]
+    return pay
+
+
+def check_loads(out, row):
+    """Each variant in `out` that doesn't load (a Feature budget, say)
+    becomes the reason, so it's reported, not played."""
+    rows = party._rows()
+    for label, b in out.items():
+        if isinstance(b, dict):
+            try:
+                party.make_pc(row, 1, rows=rows, edits={"build": b}, row_changes=bo.choices_for(rows[row], b))
+            except (party.BuildError, KeyError, ValueError) as e:
+                out[label] = str(e)
+    return out
+
+
+def variants(build, level, row):
+    """{label: build or the reason it can't be built}."""
+    have = [t for t in build["techniques"] if t["id"] in HEALING]
+    # apply_edits counts copies per ID.
+    seen, rm = {}, []
+    for t in build["techniques"]:
+        if t["id"] in HEALING:
+            seen[t["id"]] = seen.get(t["id"], 0) + 1
+            rm.append({"id": t["id"], "copy": seen[t["id"]]})
+    out = {"as is": build}
+    pay = payer(build, level, row)
     names = ", ".join(sorted({game_data.technique_name(t["id"]) for t in have})) or "none"
     try:
         out["no healing"] = pay(remove=rm) if rm else None
@@ -81,15 +103,7 @@ def variants(build, level, row):
             out[label] = pay(add=[entry], remove=rm)
         except party.BuildError as e:
             out[label] = str(e)
-    # One that doesn't load (a Feature budget, say) is reported, not played.
-    rows = party._rows()
-    for label, b in out.items():
-        if isinstance(b, dict):
-            try:
-                party.make_pc(row, 1, rows=rows, edits={"build": b}, row_changes=bo.choices_for(rows[row], b))
-            except (party.BuildError, KeyError, ValueError) as e:
-                out[label] = str(e)
-    return out, names
+    return check_loads(out, row), names
 
 
 def _logit(p, days):
