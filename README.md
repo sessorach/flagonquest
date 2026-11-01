@@ -15,9 +15,11 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-01 — Healing Magic against the other healing
 
-Compared Healing Magic with every other healing Technique on the optimized builds, at the same XP, and searched each build again without it. Every build wants healing; Healing Magic beats every alternative by a wide margin, and nothing the searches found without it fully makes up the difference.
+Compared Healing Magic with every other healing Technique on the optimized builds, at the same XP, and searched each build again without it; then tested it as an Encounter Technique. Every build wants healing and Healing Magic beats every alternative; as an Encounter Technique it's still the best and still on almost every build, just with a narrower lead.
 
 - Without it, builds go for Second Wind at Level 3 and Lay On Hands at Level 2; the damage-heavy builds just drop healing and lose the least.
+- As an Encounter Technique (a test, not a rules change), the healer loses the most and the strongest builds come down a little; the soak builds stay, since Toughened Resolve and Lifeline are what make them.
+- Reorganized the simulator folder: the one-off studies and the regular tools now have their own subfolders.
 - Scored in parties of other optimized builds instead of plain fighters, the soak builds drop from near the top to the bottom, and pairs of soaks overlap the most.
 
 ### 2026-10-31 — Every party mix, and what the optimizer finds

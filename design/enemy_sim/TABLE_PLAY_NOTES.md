@@ -2354,3 +2354,62 @@ them (Ashleigh, Browndog, Enith, Hanforth, Hilde) are soaks dealing
 under 10% of the party's damage. At Level 2 it's
 Healing Magic (eight) and Field Medic (five, the Style that heals a
 Wounded creature 1 extra), with Toughened Resolve on only three.
+
+### Healing Magic as an Encounter Technique: a test (2026-11-01)
+
+The designer asked to try Healing Magic as an Encounter Technique and
+rerun some sims, for testing only (techniques.csv unchanged).
+`tunables.HEALING_MAGIC_ENCOUNTER`, off by default and byte-identical
+when off: 1 gives each copy one use a fight and leaves the after-fight
+care as it was (limited by cards); 2 also allows one use per copy in the
+care after each fight, which is the closer reading of the glossary
+(a use expended in the fight is back once it ends, then spent once).
+Results in `hall_of_fame/runs_hm_encounter/`. 2,000 days a reading.
+
+**The second run's final builds, unchanged** (days won one Level up with
+three stand-ins, old rule against mode 2): at Level 3 Hanforth 91% to
+70%, Enith 83% to 58%, Carrick 54% to 36%, Hilde 86% to 69%, Felix 86%
+to 71%, Beornhard 87% to 73%, Sable 98% to 95%; at Level 2 they drop
+3-19 points. Mode 1 sits in between, most builds losing under 10.
+
+**Against the other healing, mode 2** (`heal_swap_l<L>_mode2.json`):
+Healing Magic is still the best healing for every build that has it, but
+the margin narrows. At Level 3 Second Wind comes within 5 points for
+Hilde and 8 for Beornhard, Bolstering Refrain within 10 for Carrick, and
+taking all healing off costs 10-38 points (13-54 under the old rule).
+
+**Searching again under mode 2**, from each best build (25 generations),
+then the scorecard on what it found. Contribution in points, old rule
+(second run) against mode 2:
+
+| | Level 3 old | mode 2 | Level 2 old | mode 2 |
+|---|---|---|---|---|
+| Sable | +85 | +81 | +65 | +64 |
+| Hilde | +73 | +73 | +30 | +29 |
+| Enith | +70 | +68 | +52 | +38 |
+| Browndog | +60 | +66 | +39 | +34 |
+| Felix | +72 | +66 | +49 | +38 |
+| Jackal | +65 | +65 | +53 | +45 |
+| Beornhard | +74 | +63 | +55 | +48 |
+| Hanforth | +77 | +59 | +39 | +32 |
+| Ashleigh | +60 | +51 | +41 | +41 |
+| Carrick | +40 | +38 | +54 | +51 |
+
+- **The ceiling comes down a little, not a lot:** median +71 to +65 at
+  Level 3, +51 to +39 at Level 2. Every optimized build still wins more
+  than half its days one Level up with three plain fighters.
+- **Every build that had Healing Magic keeps it** (nine of ten at Level 3,
+  eight at Level 2). None swaps it for other healing; they move ranks
+  around it instead, and several win most of the loss back that way
+  (Hilde, Enith and Browndog at Level 3 end level with or above the old
+  rule; part of that is the search finding better builds generally, the
+  earlier one not having settled). Browndog's one point above is within
+  the reading's few points.
+- **The healer takes the biggest hit:** Hanforth -18 at Level 3 and -7 at
+  Level 2. Sable and Carrick barely move.
+- **The soaks stay:** five Level 3 builds (Ashleigh, Browndog, Enith,
+  Hanforth, Hilde) still deal under 10% of the party's damage, and the
+  odds reading still flags soak pairs (Enith+Hanforth -2.95, Browndog+Hilde
+  -2.81). Making Healing Magic an Encounter Technique trims the healing
+  but doesn't touch Toughened Resolve and Lifeline, which is what makes a
+  soak.
