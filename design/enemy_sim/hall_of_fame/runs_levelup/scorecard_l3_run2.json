@@ -1,0 +1,3664 @@
+{
+ "level": 3,
+ "days_per_job": 2000,
+ "base": {
+  "up": 0.135,
+  "own": 0.866,
+  "walkover": 0.0895
+ },
+ "base_up2": 0.0,
+ "median_contribution": 70.85,
+ "card": {
+  "Ashleigh/normalized": {
+   "up": 0.033,
+   "own": 0.583,
+   "contribution": -10.200000000000001,
+   "up2": null,
+   "contribution_own": -28.300000000000004,
+   "walkover": 0.0225,
+   "dmg_share": 0.04374460982055919,
+   "heal_share": 0.0,
+   "hits_share": 0.21037998146431883,
+   "downs_per_10": 7.345
+  },
+  "Ashleigh/optimized": {
+   "up": 0.7385,
+   "own": 0.998,
+   "contribution": 60.35,
+   "up2": 0.004,
+   "contribution_own": 13.200000000000001,
+   "walkover": 0.0185,
+   "dmg_share": 0.0008964612070032936,
+   "heal_share": 1.0,
+   "hits_share": 0.3407832278481013,
+   "downs_per_10": 0.05
+  },
+  "Beornhard/normalized": {
+   "up": 0.101,
+   "own": 0.8085,
+   "contribution": -3.4000000000000004,
+   "up2": null,
+   "contribution_own": -5.75,
+   "walkover": 0.1005,
+   "dmg_share": 0.2922872005705416,
+   "heal_share": 0.0,
+   "hits_share": 0.18088874039425326,
+   "downs_per_10": 4.485
+  },
+  "Beornhard/optimized": {
+   "up": 0.8705,
+   "own": 0.999,
+   "contribution": 73.55000000000001,
+   "up2": 0.019,
+   "contribution_own": 13.3,
+   "walkover": 0.0965,
+   "dmg_share": 0.23536810621029122,
+   "heal_share": 1.0,
+   "hits_share": 0.2594850405069383,
+   "downs_per_10": 0.09
+  },
+  "Browndog/normalized": {
+   "up": 0.099,
+   "own": 0.7635,
+   "contribution": -3.6000000000000005,
+   "up2": null,
+   "contribution_own": -10.250000000000004,
+   "walkover": 0.045,
+   "dmg_share": 0.16723646126095892,
+   "heal_share": 1.0,
+   "hits_share": 0.2292933467146821,
+   "downs_per_10": 5.325
+  },
+  "Browndog/optimized": {
+   "up": 0.7325,
+   "own": 0.9945,
+   "contribution": 59.75,
+   "up2": 0.0105,
+   "contribution_own": 12.850000000000005,
+   "walkover": 0.03,
+   "dmg_share": 0.04706896808051975,
+   "heal_share": 1.0,
+   "hits_share": 0.335916955017301,
+   "downs_per_10": 0.545
+  },
+  "Carrick/normalized": {
+   "up": 0.099,
+   "own": 0.8725,
+   "contribution": -3.6000000000000005,
+   "up2": null,
+   "contribution_own": 0.6500000000000061,
+   "walkover": 0.1395,
+   "dmg_share": 0.30301386255083107,
+   "heal_share": 0.0,
+   "hits_share": 0.13582559184896614,
+   "downs_per_10": 3.39
+  },
+  "Carrick/optimized": {
+   "up": 0.5375,
+   "own": 0.969,
+   "contribution": 40.25,
+   "up2": 0.0055,
+   "contribution_own": 10.299999999999997,
+   "walkover": 0.033,
+   "dmg_share": 0.16302846916546612,
+   "heal_share": 1.0,
+   "hits_share": 0.25715629619674774,
+   "downs_per_10": 1.54
+  },
+  "Enith/normalized": {
+   "up": 0.0455,
+   "own": 0.715,
+   "contribution": -8.950000000000001,
+   "up2": null,
+   "contribution_own": -15.100000000000001,
+   "walkover": 0.0435,
+   "dmg_share": 0.1634865801424851,
+   "heal_share": 0.0,
+   "hits_share": 0.1928903373770294,
+   "downs_per_10": 7.74
+  },
+  "Enith/optimized": {
+   "up": 0.8305,
+   "own": 0.9995,
+   "contribution": 69.55,
+   "up2": 0.0105,
+   "contribution_own": 13.350000000000007,
+   "walkover": 0.0195,
+   "dmg_share": 0.02961796684688967,
+   "heal_share": 1.0,
+   "hits_share": 0.3760035122930256,
+   "downs_per_10": 0.1
+  },
+  "Felix/normalized": {
+   "up": 0.096,
+   "own": 0.8075,
+   "contribution": -3.900000000000001,
+   "up2": null,
+   "contribution_own": -5.85,
+   "walkover": 0.0715,
+   "dmg_share": 0.22610268540420203,
+   "heal_share": 1.0,
+   "hits_share": 0.19370523687495894,
+   "downs_per_10": 5.195
+  },
+  "Felix/optimized": {
+   "up": 0.8565,
+   "own": 0.9995,
+   "contribution": 72.15,
+   "up2": 0.033,
+   "contribution_own": 13.350000000000007,
+   "walkover": 0.21,
+   "dmg_share": 0.3267761565008145,
+   "heal_share": 1.0,
+   "hits_share": 0.08996102391235647,
+   "downs_per_10": 0.11
+  },
+  "Hanforth/normalized": {
+   "up": 0.289,
+   "own": 0.886,
+   "contribution": 15.399999999999997,
+   "up2": null,
+   "contribution_own": 2.0000000000000018,
+   "walkover": 0.0295,
+   "dmg_share": 0.03569610199177223,
+   "heal_share": 1.0,
+   "hits_share": 0.17903620667439762,
+   "downs_per_10": 4.97
+  },
+  "Hanforth/optimized": {
+   "up": 0.907,
+   "own": 1.0,
+   "contribution": 77.2,
+   "up2": 0.0195,
+   "contribution_own": 13.4,
+   "walkover": 0.0125,
+   "dmg_share": 0.01884158415841584,
+   "heal_share": 1.0,
+   "hits_share": 0.3893989472395642,
+   "downs_per_10": 0.005
+  },
+  "Hilde/normalized": {
+   "up": 0.2145,
+   "own": 0.8505,
+   "contribution": 7.949999999999998,
+   "up2": null,
+   "contribution_own": -1.5499999999999958,
+   "walkover": 0.133,
+   "dmg_share": 0.29837662337662335,
+   "heal_share": 1.0,
+   "hits_share": 0.17542675932798057,
+   "downs_per_10": 4.2
+  },
+  "Hilde/optimized": {
+   "up": 0.861,
+   "own": 0.999,
+   "contribution": 72.6,
+   "up2": 0.016,
+   "contribution_own": 13.3,
+   "walkover": 0.0225,
+   "dmg_share": 0.07071022178647296,
+   "heal_share": 1.0,
+   "hits_share": 0.2738481505515899,
+   "downs_per_10": 0.095
+  },
+  "Jackal/normalized": {
+   "up": 0.1065,
+   "own": 0.841,
+   "contribution": -2.850000000000001,
+   "up2": null,
+   "contribution_own": -2.500000000000002,
+   "walkover": 0.1295,
+   "dmg_share": 0.3047283485192452,
+   "heal_share": 0.0,
+   "hits_share": 0.11530249110320284,
+   "downs_per_10": 4.45
+  },
+  "Jackal/optimized": {
+   "up": 0.782,
+   "own": 0.9895,
+   "contribution": 64.7,
+   "up2": 0.017,
+   "contribution_own": 12.350000000000005,
+   "walkover": 0.3625,
+   "dmg_share": 0.391391257334742,
+   "heal_share": 1.0,
+   "hits_share": 0.10226343059721843,
+   "downs_per_10": 1.55
+  },
+  "Sable/normalized": {
+   "up": 0.2025,
+   "own": 0.952,
+   "contribution": 6.75,
+   "up2": null,
+   "contribution_own": 8.599999999999996,
+   "walkover": 0.1995,
+   "dmg_share": 0.3011525437253445,
+   "heal_share": 0.0,
+   "hits_share": 0.13529522376833397,
+   "downs_per_10": 2.815
+  },
+  "Sable/optimized": {
+   "up": 0.984,
+   "own": 1.0,
+   "contribution": 84.89999999999999,
+   "up2": 0.119,
+   "contribution_own": 13.4,
+   "walkover": 0.5885,
+   "dmg_share": 0.48148019801980196,
+   "heal_share": 1.0,
+   "hits_share": 0.04052901023890785,
+   "downs_per_10": 0.02
+  }
+ },
+ "pairs": {
+  "Ashleigh+Beornhard": -50.70000000000001,
+  "Ashleigh+Browndog": -49.60000000000001,
+  "Ashleigh+Carrick": -48.050000000000004,
+  "Ashleigh+Enith": -59.85,
+  "Ashleigh+Felix": -47.400000000000006,
+  "Ashleigh+Hanforth": -65.5,
+  "Ashleigh+Hilde": -58.95,
+  "Ashleigh+Jackal": -41.1,
+  "Ashleigh+Sable": -59.4,
+  "Beornhard+Browndog": -48.550000000000004,
+  "Beornhard+Carrick": -39.300000000000004,
+  "Beornhard+Enith": -57.70000000000001,
+  "Beornhard+Felix": -59.45,
+  "Beornhard+Hanforth": -64.8,
+  "Beornhard+Hilde": -60.050000000000004,
+  "Beornhard+Jackal": -53.800000000000004,
+  "Beornhard+Sable": -71.95,
+  "Browndog+Carrick": -32.65,
+  "Browndog+Enith": -49.150000000000006,
+  "Browndog+Felix": -46.30000000000001,
+  "Browndog+Hanforth": -55.400000000000006,
+  "Browndog+Hilde": -53.05,
+  "Browndog+Jackal": -42.400000000000006,
+  "Browndog+Sable": -58.3,
+  "Carrick+Enith": -38.14999999999999,
+  "Carrick+Felix": -30.100000000000005,
+  "Carrick+Hanforth": -43.55,
+  "Carrick+Hilde": -36.949999999999996,
+  "Carrick+Jackal": -29.049999999999997,
+  "Carrick+Sable": -39.69999999999999,
+  "Enith+Felix": -55.85,
+  "Enith+Hanforth": -67.0,
+  "Enith+Hilde": -63.14999999999999,
+  "Enith+Jackal": -49.4,
+  "Enith+Sable": -68.0,
+  "Felix+Hanforth": -62.95,
+  "Felix+Hilde": -58.650000000000006,
+  "Felix+Jackal": -51.45000000000001,
+  "Felix+Sable": -70.6,
+  "Hanforth+Hilde": -68.9,
+  "Hanforth+Jackal": -56.00000000000001,
+  "Hanforth+Sable": -75.64999999999999,
+  "Hilde+Jackal": -51.449999999999996,
+  "Hilde+Sable": -71.14999999999999,
+  "Jackal+Sable": -63.4
+ },
+ "pairs_two_up": {
+  "Ashleigh+Beornhard": 0.75,
+  "Ashleigh+Browndog": 1.6500000000000001,
+  "Ashleigh+Carrick": -0.09999999999999992,
+  "Ashleigh+Enith": -0.9500000000000002,
+  "Ashleigh+Felix": 20.099999999999998,
+  "Ashleigh+Hanforth": -1.4500000000000002,
+  "Ashleigh+Hilde": 2.1000000000000005,
+  "Ashleigh+Jackal": 9.55,
+  "Ashleigh+Sable": 14.950000000000003,
+  "Beornhard+Browndog": 10.05,
+  "Beornhard+Carrick": 2.8000000000000003,
+  "Beornhard+Enith": 4.85,
+  "Beornhard+Felix": 32.75,
+  "Beornhard+Hanforth": 7.3999999999999995,
+  "Beornhard+Hilde": 17.599999999999998,
+  "Beornhard+Jackal": 19.7,
+  "Beornhard+Sable": 51.5,
+  "Browndog+Carrick": 1.1,
+  "Browndog+Enith": 2.2999999999999994,
+  "Browndog+Felix": 20.849999999999998,
+  "Browndog+Hanforth": 4.199999999999999,
+  "Browndog+Hilde": 6.1,
+  "Browndog+Jackal": 10.65,
+  "Browndog+Sable": 34.75,
+  "Carrick+Enith": 0.35,
+  "Carrick+Felix": 13.649999999999999,
+  "Carrick+Hanforth": 1.2,
+  "Carrick+Hilde": 6.849999999999999,
+  "Carrick+Jackal": 3.25,
+  "Carrick+Sable": 12.85,
+  "Enith+Felix": 16.849999999999998,
+  "Enith+Hanforth": -1.6,
+  "Enith+Hilde": 2.4499999999999993,
+  "Enith+Jackal": 12.249999999999998,
+  "Enith+Sable": 27.0,
+  "Felix+Hanforth": 24.150000000000002,
+  "Felix+Hilde": 24.0,
+  "Felix+Jackal": 18.85,
+  "Felix+Sable": 46.0,
+  "Hanforth+Hilde": 3.599999999999999,
+  "Hanforth+Jackal": 17.4,
+  "Hanforth+Sable": 35.449999999999996,
+  "Hilde+Jackal": 16.849999999999998,
+  "Hilde+Sable": 41.800000000000004,
+  "Jackal+Sable": 42.449999999999996
+ },
+ "pairs_odds": {
+  "Ashleigh+Beornhard": -1.423337491041746,
+  "Ashleigh+Browndog": -2.2447572449115363,
+  "Ashleigh+Carrick": -2.380400573045616,
+  "Ashleigh+Enith": -2.8596967713627297,
+  "Ashleigh+Felix": -0.4275618045370304,
+  "Ashleigh+Hanforth": -3.394777918142026,
+  "Ashleigh+Hilde": -2.7733519692016326,
+  "Ashleigh+Jackal": -0.5297551579328927,
+  "Ashleigh+Sable": -1.9852468366820906,
+  "Beornhard+Browndog": -0.7422859183033124,
+  "Beornhard+Carrick": -1.9206936449212333,
+  "Beornhard+Enith": -0.8532175499706054,
+  "Beornhard+Felix": 0.4396005277632844,
+  "Beornhard+Hanforth": -0.8428925574683717,
+  "Beornhard+Hilde": -0.06900928139443407,
+  "Beornhard+Jackal": -1.173583933078089,
+  "Beornhard+Sable": 0.41192082747235514,
+  "Browndog+Carrick": -1.5747878357014882,
+  "Browndog+Enith": -1.7628638892959587,
+  "Browndog+Felix": 0.05017217138065733,
+  "Browndog+Hanforth": -2.1873259676566525,
+  "Browndog+Hilde": -2.1320534605755044,
+  "Browndog+Jackal": -1.0754126062966995,
+  "Browndog+Sable": -0.48304663311334095,
+  "Carrick+Enith": -1.8504973919156438,
+  "Carrick+Felix": -0.6670780544197956,
+  "Carrick+Hanforth": -2.3484814198006108,
+  "Carrick+Hilde": -1.6990908217783796,
+  "Carrick+Jackal": -1.1528299282375627,
+  "Carrick+Sable": -1.5809495984761124,
+  "Enith+Felix": -0.20371712820050614,
+  "Enith+Hanforth": -3.098431134048689,
+  "Enith+Hilde": -2.7579446780472185,
+  "Enith+Jackal": -0.6362321515599354,
+  "Enith+Sable": 0.0347354289617432,
+  "Felix+Hanforth": 0.9852378106287232,
+  "Felix+Hilde": 0.049858314109718416,
+  "Felix+Jackal": -0.42253462998983027,
+  "Felix+Sable": -0.16260885136991088,
+  "Hanforth+Hilde": -3.1338437813420192,
+  "Hanforth+Jackal": -0.3023796257830349,
+  "Hanforth+Sable": -0.6536325257672926,
+  "Hilde+Jackal": 0.07099690754357679,
+  "Hilde+Sable": -1.299323429855219,
+  "Jackal+Sable": -1.4477130997684167
+ },
+ "parties": {
+  "Beornhard+Hanforth+Hilde+Sable": {
+   "up": 0.986,
+   "own": 1.0,
+   "walkover": 0.2595,
+   "dmg_share": {
+    "Beornhard": 0.2920049504950495,
+    "Hanforth": 0.03804950495049505,
+    "Hilde": 0.11332673267326733,
+    "Sable": 0.5566188118811881
+   },
+   "hits_share": {
+    "Beornhard": 0.15329063905164192,
+    "Hanforth": 0.7216241994822182,
+    "Hilde": 0.05463959667529636,
+    "Sable": 0.07044556479084343
+   },
+   "downs_per_10": {
+    "Beornhard": 0.0,
+    "Hanforth": 0.0,
+    "Hilde": 0.0,
+    "Sable": 0.0
+   }
+  },
+  "Ashleigh+Beornhard+Browndog+Enith": {
+   "up": 0.2225,
+   "own": 0.8815,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.01145559804057063,
+    "Beornhard": 0.6248317235095694,
+    "Browndog": 0.16767760527837922,
+    "Enith": 0.19603507317148078
+   },
+   "hits_share": {
+    "Ashleigh": 0.2114781856828908,
+    "Beornhard": 0.2703462189717909,
+    "Browndog": 0.24123644486075585,
+    "Enith": 0.27693915048456247
+   },
+   "downs_per_10": {
+    "Ashleigh": 0.645,
+    "Beornhard": 0.5,
+    "Browndog": 0.375,
+    "Enith": 0.46
+   }
+  },
+  "Felix+Hilde+Jackal+Sable": {
+   "up": 1.0,
+   "own": 1.0,
+   "walkover": 0.923,
+   "dmg_share": {
+    "Felix": 0.18593564356435643,
+    "Hilde": 0.04794059405940594,
+    "Jackal": 0.3441188118811881,
+    "Sable": 0.4220049504950495
+   },
+   "hits_share": {
+    "Felix": 0.3122037914691943,
+    "Hilde": 0.26303317535545023,
+    "Jackal": 0.3495260663507109,
+    "Sable": 0.07523696682464455
+   },
+   "downs_per_10": {
+    "Felix": 0.0,
+    "Hilde": 0.0,
+    "Jackal": 0.005,
+    "Sable": 0.0
+   }
+  },
+  "Beornhard+Carrick+Hanforth+Jackal": {
+   "up": 0.9755,
+   "own": 1.0,
+   "walkover": 0.1565,
+   "dmg_share": {
+    "Beornhard": 0.28978712871287127,
+    "Carrick": 0.21166831683168316,
+    "Hanforth": 0.012356435643564357,
+    "Jackal": 0.4861881188118812
+   },
+   "hits_share": {
+    "Beornhard": 0.25085271317829455,
+    "Carrick": 0.16578811369509044,
+    "Hanforth": 0.4205684754521964,
+    "Jackal": 0.16279069767441862
+   },
+   "downs_per_10": {
+    "Beornhard": 0.0,
+    "Carrick": 0.105,
+    "Hanforth": 0.0,
+    "Jackal": 0.195
+   }
+  },
+  "Ashleigh+Enith+Hanforth+Jackal": {
+   "up": 0.5795,
+   "own": 0.9965,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.006042820247165724,
+    "Enith": 0.11662296073406138,
+    "Hanforth": 0.07916144095733342,
+    "Jackal": 0.7981727780614395
+   },
+   "hits_share": {
+    "Ashleigh": 0.1550901120311739,
+    "Enith": 0.4560155869459328,
+    "Hanforth": 0.31807111544081834,
+    "Jackal": 0.07082318558207501
+   },
+   "downs_per_10": {
+    "Ashleigh": 0.085,
+    "Enith": 0.04,
+    "Hanforth": 0.035,
+    "Jackal": 0.1
+   }
+  },
+  "Ashleigh+Enith+Felix+Hilde": {
+   "up": 0.686,
+   "own": 0.998,
+   "walkover": 0.0,
+   "dmg_share": {
+    "Ashleigh": 0.005694196870667459,
+    "Enith": 0.13027332144979203,
+    "Felix": 0.6749554367201426,
+    "Hilde": 0.1890770449593979
+   },
+   "hits_share": {
+    "Ashleigh": 0.2187291997337566,
+    "Enith": 0.6350417285341252,
+    "Felix": 0.09943167272541088,
+    "Hilde": 0.046797399006707284
+   },
+   "downs_per_10": {
+    "Ashleigh": 0.14,
+    "Enith": 0.25,
+    "Felix": 0.02,
+    "Hilde": 0.02
+   }
+  },
+  "Ashleigh+Beornhard+Carrick+Felix": {
+   "up": 0.98,
+   "own": 1.0,
+   "walkover": 0.049,
+   "dmg_share": {
+    "Ashleigh": 0.0038712871287128713,
+    "Beornhard": 0.325970297029703,
+    "Carrick": 0.24588613861386138,
+    "Felix": 0.42427227722772276
+   },
+   "hits_share": {
+    "Ashleigh": 0.2786723036790501,
+    "Beornhard": 0.3954304218764055,
+    "Carrick": 0.19915444814248448,
+    "Felix": 0.1267428263020599
+   },
+   "downs_per_10": {
+    "Ashleigh": 0.0,
+    "Beornhard": 0.0,
+    "Carrick": 0.235,
+    "Felix": 0.0
+   }
+  }
+ },
+ "flags": [
+  [
+   "Ashleigh/normalized",
+   "doesn't pull weight",
+   "-10 points"
+  ],
+  [
+   "Ashleigh/normalized",
+   "per-XP outlier",
+   "-10 vs median +71"
+  ],
+  [
+   "Ashleigh/optimized",
+   "GM pressure",
+   "wins 74% one Level up with three stand-ins"
+  ],
+  [
+   "Ashleigh/optimized",
+   "carries",
+   "+60 points"
+  ],
+  [
+   "Beornhard/normalized",
+   "per-XP outlier",
+   "-3 vs median +71"
+  ],
+  [
+   "Beornhard/optimized",
+   "GM pressure",
+   "wins 87% one Level up with three stand-ins"
+  ],
+  [
+   "Beornhard/optimized",
+   "carries",
+   "+74 points"
+  ],
+  [
+   "Browndog/normalized",
+   "per-XP outlier",
+   "-4 vs median +71"
+  ],
+  [
+   "Browndog/optimized",
+   "GM pressure",
+   "wins 73% one Level up with three stand-ins"
+  ],
+  [
+   "Browndog/optimized",
+   "carries",
+   "+60 points"
+  ],
+  [
+   "Carrick/normalized",
+   "per-XP outlier",
+   "-4 vs median +71"
+  ],
+  [
+   "Carrick/optimized",
+   "GM pressure",
+   "wins 54% one Level up with three stand-ins"
+  ],
+  [
+   "Carrick/optimized",
+   "carries",
+   "+40 points"
+  ],
+  [
+   "Enith/normalized",
+   "per-XP outlier",
+   "-9 vs median +71"
+  ],
+  [
+   "Enith/optimized",
+   "GM pressure",
+   "wins 83% one Level up with three stand-ins"
+  ],
+  [
+   "Enith/optimized",
+   "carries",
+   "+70 points"
+  ],
+  [
+   "Felix/normalized",
+   "per-XP outlier",
+   "-4 vs median +71"
+  ],
+  [
+   "Felix/optimized",
+   "GM pressure",
+   "wins 86% one Level up with three stand-ins"
+  ],
+  [
+   "Felix/optimized",
+   "carries",
+   "+72 points"
+  ],
+  [
+   "Hanforth/normalized",
+   "per-XP outlier",
+   "+15 vs median +71"
+  ],
+  [
+   "Hanforth/optimized",
+   "GM pressure",
+   "wins 91% one Level up with three stand-ins"
+  ],
+  [
+   "Hanforth/optimized",
+   "carries",
+   "+77 points"
+  ],
+  [
+   "Hilde/normalized",
+   "per-XP outlier",
+   "+8 vs median +71"
+  ],
+  [
+   "Hilde/optimized",
+   "GM pressure",
+   "wins 86% one Level up with three stand-ins"
+  ],
+  [
+   "Hilde/optimized",
+   "carries",
+   "+73 points"
+  ],
+  [
+   "Jackal/normalized",
+   "per-XP outlier",
+   "-3 vs median +71"
+  ],
+  [
+   "Jackal/optimized",
+   "GM pressure",
+   "wins 78% one Level up with three stand-ins"
+  ],
+  [
+   "Jackal/optimized",
+   "carries",
+   "+65 points"
+  ],
+  [
+   "Sable/normalized",
+   "per-XP outlier",
+   "+7 vs median +71"
+  ],
+  [
+   "Sable/optimized",
+   "GM pressure",
+   "wins 98% one Level up with three stand-ins"
+  ],
+  [
+   "Sable/optimized",
+   "carries",
+   "+85 points"
+  ],
+  [
+   "Sable/optimized",
+   "walkovers",
+   "59% of first fights"
+  ],
+  [
+   "Ashleigh+Browndog",
+   "eclipse (odds)",
+   "-2.24 log-odds together, median pair -1.15"
+  ],
+  [
+   "Ashleigh+Carrick",
+   "eclipse (odds)",
+   "-2.38 log-odds together, median pair -1.15"
+  ],
+  [
+   "Ashleigh+Enith",
+   "eclipse (odds)",
+   "-2.86 log-odds together, median pair -1.15"
+  ],
+  [
+   "Ashleigh+Hanforth",
+   "eclipse (odds)",
+   "-3.39 log-odds together, median pair -1.15"
+  ],
+  [
+   "Ashleigh+Hilde",
+   "eclipse (odds)",
+   "-2.77 log-odds together, median pair -1.15"
+  ],
+  [
+   "Browndog+Hanforth",
+   "eclipse (odds)",
+   "-2.19 log-odds together, median pair -1.15"
+  ],
+  [
+   "Carrick+Hanforth",
+   "eclipse (odds)",
+   "-2.35 log-odds together, median pair -1.15"
+  ],
+  [
+   "Enith+Hanforth",
+   "eclipse (odds)",
+   "-3.10 log-odds together, median pair -1.15"
+  ],
+  [
+   "Enith+Hilde",
+   "eclipse (odds)",
+   "-2.76 log-odds together, median pair -1.15"
+  ],
+  [
+   "Hanforth+Hilde",
+   "eclipse (odds)",
+   "-3.13 log-odds together, median pair -1.15"
+  ],
+  [
+   "Beornhard+Hanforth+Hilde+Sable",
+   "GM pressure (party)",
+   "wins 99% one Level up"
+  ],
+  [
+   "Beornhard+Hanforth+Hilde+Sable",
+   "extreme: soaks (party)",
+   "Hanforth 72% of hits"
+  ],
+  [
+   "Beornhard+Hanforth+Hilde+Sable",
+   "extreme: damage (party)",
+   "Sable 56%"
+  ],
+  [
+   "Ashleigh+Beornhard+Browndog+Enith",
+   "extreme: damage (party)",
+   "Beornhard 62%"
+  ],
+  [
+   "Felix+Hilde+Jackal+Sable",
+   "GM pressure (party)",
+   "wins 100% one Level up"
+  ],
+  [
+   "Felix+Hilde+Jackal+Sable",
+   "walkovers (party)",
+   "92% of first fights"
+  ],
+  [
+   "Beornhard+Carrick+Hanforth+Jackal",
+   "GM pressure (party)",
+   "wins 98% one Level up"
+  ],
+  [
+   "Beornhard+Carrick+Hanforth+Jackal",
+   "extreme: soaks (party)",
+   "Hanforth 42% of hits"
+  ],
+  [
+   "Ashleigh+Enith+Hanforth+Jackal",
+   "GM pressure (party)",
+   "wins 58% one Level up"
+  ],
+  [
+   "Ashleigh+Enith+Hanforth+Jackal",
+   "extreme: soaks (party)",
+   "Enith 46% of hits"
+  ],
+  [
+   "Ashleigh+Enith+Hanforth+Jackal",
+   "extreme: damage (party)",
+   "Jackal 80%"
+  ],
+  [
+   "Ashleigh+Enith+Felix+Hilde",
+   "GM pressure (party)",
+   "wins 69% one Level up"
+  ],
+  [
+   "Ashleigh+Enith+Felix+Hilde",
+   "extreme: soaks (party)",
+   "Enith 64% of hits"
+  ],
+  [
+   "Ashleigh+Enith+Felix+Hilde",
+   "extreme: damage (party)",
+   "Felix 67%"
+  ],
+  [
+   "Ashleigh+Beornhard+Carrick+Felix",
+   "GM pressure (party)",
+   "wins 98% one Level up"
+  ]
+ ],
+ "builds": {
+  "Ashleigh": {
+   "row": "Ashleigh (L3, proposed)",
+   "normalized": {
+    "charName": "Ashleigh (Level 3, proposed)",
+    "charConcept": "A feline wanderer who delights others with her stories",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 3,
+     "Body": 3,
+     "Cunning": 2,
+     "Mind": 2,
+     "Essence": 4
+    },
+    "skillPoints": {
+     "Acrobatics": 3,
+     "Archery": 0,
+     "Brawl": 0,
+     "Melee": 1,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 1,
+     "Presence": 4,
+     "Resilience": 3,
+     "Insight": 3,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 3,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 5,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 0
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     },
+     {
+      "id": "I121",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-09T01:47:45.474Z",
+    "techniques": [
+     {
+      "id": "T069",
+      "name": "Raise Spirits",
+      "xp": 12,
+      "level": "Lv 4"
+     },
+     {
+      "id": "T064",
+      "name": "Heroic Inspiration",
+      "level": "Lv 2"
+     },
+     {
+      "id": "T062",
+      "name": "Cry of Victory",
+      "level": "Lv 2"
+     },
+     {
+      "id": "T070",
+      "name": "Rally to Victory",
+      "level": "Lv 4"
+     }
+    ],
+    "simNotes": [
+     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/ashleigh.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 152: Essence -1, Melee +1."
+    ]
+   },
+   "optimized": {
+    "charName": "Seraph Ashenveil, the Requiem Unending",
+    "charConcept": "Five Toughened Resolves, Earthen Mantle and Lifeline: she takes your hits so you don't have to, and wants you to feel bad about it. Has written a 40-page backstory about an angel who fell to earth and became a bard. The GM has read two of the pages.",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 1,
+     "Body": 1,
+     "Cunning": 2,
+     "Mind": 1,
+     "Essence": 5
+    },
+    "skillPoints": {
+     "Acrobatics": 0,
+     "Archery": 0,
+     "Brawl": 1,
+     "Melee": 1,
+     "Stealth": 0,
+     "Athletics": 4,
+     "Awareness": 0,
+     "Might": 0,
+     "Presence": 0,
+     "Resilience": 4,
+     "Insight": 0,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 0,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 3,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 3
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     },
+     {
+      "id": "I121",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-30T07:54:08Z",
+    "techniques": [
+     {
+      "id": "T064",
+      "name": "Heroic Inspiration",
+      "level": "Lv 2"
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T182",
+      "name": "Earthen Mantle Approach",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T105",
+      "name": "Healing Magic",
+      "level": 1,
+      "xp": 3,
+      "features": [
+       {
+        "name": "Reach",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T110",
+      "name": "Lifeline",
+      "level": "Lv 2",
+      "xp": 6
+     }
+    ],
+    "simNotes": [
+     "Hall of Fame v1.2: build_optimizer.py's #1 for Ashleigh (bard), Level 3, in Ashleigh (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.98, against the sample's x1.54 (+93%). Party Health left 52.11 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+    ]
+   },
+   "search": {
+    "validated": 0.7486666666666667,
+    "start": "hall",
+    "run": "hall_of_fame/runs_levelup_hall"
+   }
+  },
+  "Beornhard": {
+   "row": "Beornhard (L3)",
+   "normalized": {
+    "charName": "Arcanist Beornhard",
+    "charConcept": "A sage of Sorcery magic, bringing wisdom and a warmage's flames",
+    "xpBudget": "175",
+    "statPoints": {
+     "Agility": 2,
+     "Body": 3,
+     "Cunning": 3,
+     "Mind": 3,
+     "Essence": 4
+    },
+    "skillPoints": {
+     "Acrobatics": 0,
+     "Archery": 0,
+     "Brawl": 2,
+     "Melee": 0,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 1,
+     "Presence": 0,
+     "Resilience": 3,
+     "Insight": 2,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 2,
+     "Composure": 2,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 5,
+     "Theurgy": 0
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     },
+     {
+      "id": "I119",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-24T16:13:08.660Z",
+    "techniques": [
+     {
+      "id": "T124",
+      "name": "Warmage's Reserves",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T120",
+      "name": "War Magic",
+      "xp": 6,
+      "level": 2,
+      "features": [
+       {
+        "name": "Lance",
+        "count": 1
+       },
+       {
+        "name": "Destructive",
+        "count": 2
+       }
+      ]
+     },
+     {
+      "id": "T097",
+      "name": "Shadow Jaunt",
+      "xp": 3,
+      "level": "Lv 1"
+     },
+     {
+      "id": "T140",
+      "name": "Overchanneling",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T123",
+      "name": "Wall of Shadows",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T120",
+      "name": "War Magic",
+      "xp": 6,
+      "level": 2,
+      "features": [
+       {
+        "name": "Lance",
+        "count": 1
+       },
+       {
+        "name": "Destructive",
+        "count": 2
+       }
+      ]
+     },
+     {
+      "id": "T120",
+      "name": "War Magic",
+      "xp": 12,
+      "level": 4,
+      "features": [
+       {
+        "name": "Destructive",
+        "count": 2
+       },
+       {
+        "name": "Draw Power",
+        "count": 1
+       },
+       {
+        "name": "Furrow (Shape)",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T122",
+      "name": "Gainsay",
+      "xp": 3,
+      "level": "Lv 1"
+     }
+    ],
+    "simNotes": [
+     "Copied from archive/player_builds/Arcanist-Beornhard-175XP-2026-10-24.json.",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 171: Mind -1 x2, Brawl -1, Resilience -1, Agility -1, Resilience +1."
+    ]
+   },
+   "optimized": {
+    "charName": "Archmage Kaelith Shadowbane",
+    "charConcept": "A wizard who punches. Brawl 5, Battle Maneuver with five Features, Healing Magic for after. Learned magic 'to understand the darkness within' and then mostly just hits people. Agility 1, because dodging is for cowards.",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 1,
+     "Body": 1,
+     "Cunning": 2,
+     "Mind": 4,
+     "Essence": 5
+    },
+    "skillPoints": {
+     "Acrobatics": 0,
+     "Archery": 1,
+     "Brawl": 5,
+     "Melee": 0,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 0,
+     "Presence": 0,
+     "Resilience": 4,
+     "Insight": 1,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 1,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 2,
+     "Theurgy": 3
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     },
+     {
+      "id": "I119",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-30T07:54:08Z",
+    "techniques": [
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 4,
+      "xp": 12,
+      "features": [
+       {
+        "name": "Half Guard",
+        "count": 2
+       },
+       {
+        "name": "Flurry",
+        "count": 1
+       },
+       {
+        "name": "Fleet Step",
+        "count": 1
+       },
+       {
+        "name": "Backfoot",
+        "count": 1
+       },
+       {
+        "name": "Blade of Four Fates",
+        "count": 1
+       },
+       {
+        "name": "Wind Slash",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T105",
+      "name": "Healing Magic",
+      "level": 1,
+      "xp": 3,
+      "features": [
+       {
+        "name": "Reach",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T110",
+      "name": "Lifeline",
+      "level": "Lv 2",
+      "xp": 6
+     }
+    ],
+    "simNotes": [
+     "Hall of Fame v1.2: build_optimizer.py's #1 for Beornhard (battlemage), Level 3, in Beornhard (L3)'s place in party U. Toughest day it wins half the time: enemy Health x2.44, against the sample's x1.54 (+59%). Days won in a row (up to 10) 9.95 against the sample's 1.76; morning Health 55.03 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+    ]
+   },
+   "search": {
+    "validated": 0.8733333333333333,
+    "start": "hall",
+    "run": "hall_of_fame/runs_levelup_hall"
+   }
+  },
+  "Browndog": {
+   "row": "Browndog (L3)",
+   "normalized": {
+    "charName": "Browndog the Fighter",
+    "charConcept": "A balanced melee fighter who loves disrupting her enemies",
+    "xpBudget": "175",
+    "statPoints": {
+     "Agility": 4,
+     "Body": 2,
+     "Cunning": 2,
+     "Mind": 2,
+     "Essence": 2
+    },
+    "skillPoints": {
+     "Acrobatics": 1,
+     "Archery": 0,
+     "Brawl": 2,
+     "Melee": 5,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 2,
+     "Presence": 4,
+     "Resilience": 5,
+     "Insight": 2,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 2,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 0
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I118",
+      "qty": 1
+     },
+     {
+      "id": "I126",
+      "qty": 1
+     },
+     {
+      "id": "I129",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-24T15:45:49.654Z",
+    "techniques": [
+     {
+      "id": "T001",
+      "name": "Brace",
+      "xp": 3,
+      "level": "Lv 1"
+     },
+     {
+      "id": "T058",
+      "name": "Challenge",
+      "xp": 3,
+      "level": "Lv 1"
+     },
+     {
+      "id": "T058",
+      "name": "Challenge",
+      "xp": 3,
+      "level": "Lv 1"
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Lunging",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Half Guard",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T139",
+      "name": "Inexhaustible Guardian",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Lunging",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T012",
+      "name": "Second Wind",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T067",
+      "name": "Exert Pressure",
+      "xp": 9,
+      "level": "Lv 3"
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "xp": 9,
+      "level": "Lv 3"
+     }
+    ],
+    "simNotes": [
+     "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json.",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 169: Body -1 x2, Might -1, Mind -1, Essence -1, Resilience +1."
+    ]
+   },
+   "optimized": {
+    "charName": "Sir Gallant Grimhelm",
+    "charConcept": "A tank who heals and sings: Second Wind, Bolstering Refrain, Heroic Inspiration and four Toughened Resolves. The war cry is in a language he made up. It has seventeen verses.",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 3,
+     "Body": 1,
+     "Cunning": 2,
+     "Mind": 1,
+     "Essence": 5
+    },
+    "skillPoints": {
+     "Acrobatics": 0,
+     "Archery": 0,
+     "Brawl": 0,
+     "Melee": 2,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 1,
+     "Presence": 0,
+     "Resilience": 4,
+     "Insight": 2,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 0,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 4,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 3
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I118",
+      "qty": 1
+     },
+     {
+      "id": "I126",
+      "qty": 1
+     },
+     {
+      "id": "I129",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-30T07:54:08Z",
+    "techniques": [
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Lunging",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 1,
+      "xp": 3,
+      "features": [
+       {
+        "name": "Backfoot",
+        "count": 1
+       },
+       {
+        "name": "Lunging",
+        "count": 1
+       },
+       {
+        "name": "Harrying",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "xp": 9,
+      "level": "Lv 3"
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T066",
+      "name": "Bolstering Refrain",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T064",
+      "name": "Heroic Inspiration",
+      "level": "Lv 2",
+      "xp": 6
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T110",
+      "name": "Lifeline",
+      "level": "Lv 2",
+      "xp": 6
+     },
+     {
+      "id": "T105",
+      "name": "Healing Magic",
+      "level": 2,
+      "xp": 6,
+      "features": [
+       {
+        "name": "Triage",
+        "count": 1
+       },
+       {
+        "name": "Reach",
+        "count": 1
+       }
+      ]
+     }
+    ],
+    "simNotes": [
+     "Hall of Fame v1.2: build_optimizer.py's #1 for Browndog (armored tank), Level 3, in Browndog (L3)'s place in party U. Toughest day it wins half the time: enemy Health x1.73, against the sample's x1.54 (+12%). Days won in a row (up to 10) 7.27 against the sample's 1.76; morning Health 48.94 against 30.54, on fresh days (day_sim.py, enemy Health x1.0). Found by the search on Health in the morning (day_sim.py). Items, background and row are the sample's."
+    ]
+   },
+   "search": {
+    "validated": 0.7493333333333333,
+    "start": "best",
+    "run": "hall_of_fame/runs_levelup_deep"
+   }
+  },
+  "Carrick": {
+   "row": "Carrick (L3)",
+   "normalized": {
+    "charName": "Carrick the Rogue",
+    "charConcept": "A sneaky, versatile rogue valued for her utility and problem solving",
+    "xpBudget": "175",
+    "statPoints": {
+     "Agility": 4,
+     "Body": 3,
+     "Cunning": 4,
+     "Mind": 3,
+     "Essence": 3
+    },
+    "skillPoints": {
+     "Acrobatics": 5,
+     "Archery": 0,
+     "Brawl": 0,
+     "Melee": 0,
+     "Stealth": 4,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 1,
+     "Presence": 0,
+     "Resilience": 3,
+     "Insight": 3,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 2,
+     "Craft": 0,
+     "Medicine": 3,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 0
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     },
+     {
+      "id": "I121",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-24T15:54:06.623Z",
+    "techniques": [
+     {
+      "id": "T078",
+      "name": "Perfect Strike",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T128",
+      "name": "Lawman's Hand",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T079",
+      "name": "Cloak and Dagger",
+      "xp": 9,
+      "level": "Lv 3"
+     }
+    ],
+    "simNotes": [
+     "Copied from archive/player_builds/Carrick-the-Rogue-175XP-2026-10-24.json.",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 133: Acrobatics +1, Essence +1."
+    ]
+   },
+   "optimized": {
+    "charName": "Zero Kurogane",
+    "charConcept": "Arrow Finds Only Mist, One Eye Behind You, Lifeline and Placeholder's Alacritous Adaptation: never where you aimed. Theurgy 5 'for spiritual reasons.' Wears a katana that's never drawn, next to the knives that are.",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 2,
+     "Body": 1,
+     "Cunning": 5,
+     "Mind": 1,
+     "Essence": 1
+    },
+    "skillPoints": {
+     "Acrobatics": 3,
+     "Archery": 0,
+     "Brawl": 0,
+     "Melee": 0,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 0,
+     "Presence": 0,
+     "Resilience": 4,
+     "Insight": 0,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 2,
+     "Academics": 2,
+     "Composure": 0,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 4,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 3
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     },
+     {
+      "id": "I121",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-30T07:54:08Z",
+    "techniques": [
+     {
+      "id": "T168",
+      "name": "Shugen School - Arrow Finds Only Mist",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T110",
+      "name": "Lifeline",
+      "level": "Lv 2",
+      "xp": 6
+     },
+     {
+      "id": "T037",
+      "name": "Placeholder's Alacritous Adaptation",
+      "level": "Lv 2",
+      "xp": 6
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 2,
+      "xp": 6,
+      "features": [
+       {
+        "name": "Fleet Step",
+        "count": 1
+       },
+       {
+        "name": "Harrying",
+        "count": 1
+       },
+       {
+        "name": "Viper's Sting",
+        "count": 1
+       },
+       {
+        "name": "Backfoot",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T202",
+      "name": "Grasping Earth",
+      "level": "Lv 2",
+      "xp": 6
+     },
+     {
+      "id": "T105",
+      "name": "Healing Magic",
+      "level": 1,
+      "xp": 3,
+      "features": [
+       {
+        "name": "Guardian Angel",
+        "count": 1
+       }
+      ]
+     }
+    ],
+    "simNotes": [
+     "Hall of Fame v1.2: build_optimizer.py's #1 for Carrick (knife-throwing rogue), Level 3, in Carrick (L3)'s place in party H. Toughest day it wins half the time: enemy Health x2.19, against the sample's x1.52 (+43%). Party Health left 35.94 against the sample's 21.64 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+    ]
+   },
+   "search": {
+    "validated": 0.5366666666666666,
+    "start": "hall",
+    "run": "hall_of_fame/runs_levelup_hall"
+   }
+  },
+  "Enith": {
+   "row": "Enith (L3, proposed)",
+   "normalized": {
+    "charName": "Enith (Level 3, proposed)",
+    "charConcept": "A ",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 4,
+     "Body": 2,
+     "Cunning": 3,
+     "Mind": 3,
+     "Essence": 3
+    },
+    "skillPoints": {
+     "Acrobatics": 3,
+     "Archery": 0,
+     "Brawl": 0,
+     "Melee": 4,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 2,
+     "Presence": 0,
+     "Resilience": 3,
+     "Insight": 3,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 3,
+     "Composure": 2,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 4,
+     "Theurgy": 0
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-09T01:41:44.469Z",
+    "techniques": [
+     {
+      "id": "T003",
+      "name": "Temper Soulblade",
+      "xp": 3,
+      "level": 1,
+      "features": [],
+      "note": "Fatestealer"
+     },
+     {
+      "id": "T131",
+      "name": "Hand of Chaos",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T120",
+      "name": "War Magic",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Tormenting Curse",
+        "count": 1
+       },
+       {
+        "name": "Lance",
+        "count": 1
+       },
+       {
+        "name": "Frigid",
+        "count": 3
+       }
+      ],
+      "customName": "Hex of Sloth"
+     },
+     {
+      "id": "T120",
+      "name": "War Magic",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Tormenting Curse",
+        "count": 1
+       },
+       {
+        "name": "Lance",
+        "count": 1
+       },
+       {
+        "name": "Kinetic",
+        "count": 3
+       }
+      ],
+      "customName": "Hex of Rebuking"
+     },
+     {
+      "id": "T100",
+      "name": "Spellblade",
+      "level": "Lv 2"
+     },
+     {
+      "id": "T075",
+      "name": "Magehunter",
+      "level": "Lv 1"
+     },
+     {
+      "id": "T120",
+      "name": "War Magic",
+      "level": 3,
+      "features": [
+       {
+        "name": "Lance",
+        "count": 1
+       },
+       {
+        "name": "Destructive",
+        "count": 3
+       }
+      ]
+     }
+    ],
+    "simNotes": [
+     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/enith.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 155: Sorcery -1, Essence -1, Resilience +1."
+    ]
+   },
+   "optimized": {
+    "charName": "Kuroi Hime, Blade of the Frozen Eclipse",
+    "charConcept": "Two War Magic copies (Frigid and Kinetic), Witchlight, Inexhaustible Guardian and four Toughened Resolves. Two swords, one of them made of ice, both named after her ex.",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 1,
+     "Body": 1,
+     "Cunning": 4,
+     "Mind": 2,
+     "Essence": 5
+    },
+    "skillPoints": {
+     "Acrobatics": 0,
+     "Archery": 0,
+     "Brawl": 0,
+     "Melee": 1,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 0,
+     "Presence": 0,
+     "Resilience": 4,
+     "Insight": 2,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 1,
+     "Academics": 0,
+     "Composure": 1,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 2,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 2,
+     "Theurgy": 3
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-30T07:54:08Z",
+    "techniques": [
+     {
+      "id": "T120",
+      "name": "War Magic",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Tormenting Curse",
+        "count": 1
+       },
+       {
+        "name": "Lance",
+        "count": 1
+       },
+       {
+        "name": "Frigid",
+        "count": 3
+       }
+      ],
+      "customName": "Hex of Sloth"
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T110",
+      "name": "Lifeline",
+      "level": "Lv 2",
+      "xp": 6
+     },
+     {
+      "id": "T107",
+      "name": "Gust of Wind",
+      "level": "Lv 1",
+      "xp": 3
+     },
+     {
+      "id": "T105",
+      "name": "Healing Magic",
+      "level": 1,
+      "xp": 3,
+      "features": [
+       {
+        "name": "Reach",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T001",
+      "name": "Brace",
+      "level": "Lv 1",
+      "xp": 3
+     },
+     {
+      "id": "T189",
+      "name": "Field Medic",
+      "level": "Lv 1",
+      "xp": 3
+     }
+    ],
+    "simNotes": [
+     "Hall of Fame v1.2: build_optimizer.py's #1 for Enith (spellblade duelist), Level 3, in Enith (L3, proposed)'s place in party S. Toughest day it wins half the time: enemy Health x2.04, against the sample's x1.48 (+38%). Party Health left 36.51 against the sample's 19.07 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+    ]
+   },
+   "search": {
+    "validated": 0.8466666666666667,
+    "start": "best",
+    "run": "hall_of_fame/runs_levelup_deep"
+   }
+  },
+  "Felix": {
+   "row": "Felix (L3, proposed)",
+   "normalized": {
+    "charName": "Felix (Level 3, proposed)",
+    "charConcept": "A practitioner of the mystic and martial arts",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 4,
+     "Body": 3,
+     "Cunning": 2,
+     "Mind": 3,
+     "Essence": 3
+    },
+    "skillPoints": {
+     "Acrobatics": 2,
+     "Archery": 0,
+     "Brawl": 4,
+     "Melee": 0,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 1,
+     "Presence": 0,
+     "Resilience": 3,
+     "Insight": 3,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 2,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 4,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 0
+    },
+    "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I125",
+      "qty": 1
+     },
+     {
+      "id": "I128",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-09T01:31:31.047Z",
+    "techniques": [
+     {
+      "id": "T080",
+      "name": "Shugen School - Firefly Leaves the Hand",
+      "xp": 3,
+      "level": "Lv 1"
+     },
+     {
+      "id": "T159",
+      "name": "Demon School - Thief Empties the Vessel",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T175",
+      "name": "Great Old Oak School - Boughs Unbroken",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Bare-Handed",
+        "count": 1
+       },
+       {
+        "name": "Lunging",
+        "count": 2
+       },
+       {
+        "name": "Half Guard",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T083",
+      "name": "Demon School - Sickness Takes the Flock",
+      "level": "Lv 2"
+     },
+     {
+      "id": "T153",
+      "name": "Shugen School - Swallow Skims the Water",
+      "level": "Lv 3"
+     },
+     {
+      "id": "T082",
+      "name": "Great Old Oak School - Willow Springs Back",
+      "level": "Lv 3"
+     }
+    ],
+    "simNotes": [
+     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 151: Essence -1."
+    ]
+   },
+   "optimized": {
+    "charName": "Felix (Level 3, proposed)",
+    "charConcept": "A practitioner of the mystic and martial arts",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 4,
+     "Body": 1,
+     "Cunning": 5,
+     "Mind": 2,
+     "Essence": 5
+    },
+    "skillPoints": {
+     "Acrobatics": 0,
+     "Archery": 1,
+     "Brawl": 5,
+     "Melee": 0,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 0,
+     "Presence": 0,
+     "Resilience": 1,
+     "Insight": 2,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 0,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 4,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 2
+    },
+    "charNotes": "Plays carefully but tries to tactically remove targets and is capable of fighting in the front lines\nHe/him",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I125",
+      "qty": 1
+     },
+     {
+      "id": "I128",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-09T01:31:31.047Z",
+    "techniques": [
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Bare-Handed",
+        "count": 1
+       },
+       {
+        "name": "Lunging",
+        "count": 2
+       },
+       {
+        "name": "Half Guard",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T153",
+      "name": "Shugen School - Swallow Skims the Water",
+      "level": "Lv 3"
+     },
+     {
+      "id": "T082",
+      "name": "Great Old Oak School - Willow Springs Back",
+      "level": "Lv 3"
+     },
+     {
+      "id": "T105",
+      "name": "Healing Magic",
+      "level": 1,
+      "xp": 3,
+      "features": [
+       {
+        "name": "Purify",
+        "count": 1
+       }
+      ]
+     }
+    ],
+    "simNotes": [
+     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/felix.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 151: Essence -1."
+    ]
+   },
+   "search": {
+    "validated": 0.8706666666666667,
+    "start": "best",
+    "run": "hall_of_fame/runs_levelup_deep"
+   }
+  },
+  "Hanforth": {
+   "row": "Hanforth (L3)",
+   "normalized": {
+    "charName": "Hanforth of Epione",
+    "charConcept": "He's the healer, what else do you need to know?",
+    "xpBudget": "175",
+    "statPoints": {
+     "Agility": 3,
+     "Body": 3,
+     "Cunning": 3,
+     "Mind": 4,
+     "Essence": 3
+    },
+    "skillPoints": {
+     "Acrobatics": 0,
+     "Archery": 0,
+     "Brawl": 4,
+     "Melee": 0,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 1,
+     "Presence": 0,
+     "Resilience": 3,
+     "Insight": 4,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 1,
+     "Academics": 0,
+     "Composure": 2,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 5
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I119",
+      "qty": 1
+     },
+     {
+      "id": "I128",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-26T05:32:48.116Z",
+    "techniques": [
+     {
+      "id": "T105",
+      "name": "Healing Magic",
+      "xp": 9,
+      "level": 3,
+      "features": [
+       {
+        "name": "Vitality",
+        "count": 4
+       }
+      ]
+     },
+     {
+      "id": "T133",
+      "name": "Placeholder's Lengthy Ley-weaving",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T107",
+      "name": "Gust of Wind",
+      "xp": 3,
+      "level": "Lv 1"
+     },
+     {
+      "id": "T104",
+      "name": "Spirit Blessing",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Shielding",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T111",
+      "name": "Reckoning",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T104",
+      "name": "Spirit Blessing",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Shielding",
+        "count": 3
+       }
+      ]
+     }
+    ],
+    "simNotes": [
+     "Copied from archive/player_builds/Hanforth-of-Epione-175XP-2026-10-25.json.",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 144: no change."
+    ]
+   },
+   "optimized": {
+    "charName": "Saint Lazarus Graves",
+    "charConcept": "Six Toughened Resolves, Lifeline and Lifeward: 34 Health and the whole party's pain is his. 'I suffer so you don't have to' is printed on the back of his trench coat.",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 1,
+     "Body": 1,
+     "Cunning": 4,
+     "Mind": 2,
+     "Essence": 5
+    },
+    "skillPoints": {
+     "Acrobatics": 0,
+     "Archery": 0,
+     "Brawl": 0,
+     "Melee": 0,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 0,
+     "Presence": 0,
+     "Resilience": 4,
+     "Insight": 0,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 0,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 3
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I119",
+      "qty": 1
+     },
+     {
+      "id": "I128",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-30T07:54:08Z",
+    "techniques": [
+     {
+      "id": "T105",
+      "name": "Healing Magic",
+      "level": 1,
+      "xp": 3,
+      "features": [
+       {
+        "name": "Reach",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T110",
+      "name": "Lifeline",
+      "level": "Lv 2",
+      "xp": 6
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T189",
+      "name": "Field Medic",
+      "level": "Lv 1",
+      "xp": 3
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T001",
+      "name": "Brace",
+      "level": "Lv 1",
+      "xp": 3
+     }
+    ],
+    "simNotes": [
+     "Hall of Fame v1.2: build_optimizer.py's #1 for Hanforth (healer), Level 3, in Hanforth (L3)'s place in party S. Toughest day it wins half the time: enemy Health x2.33, against the sample's x1.48 (+57%). Party Health left 44.47 against the sample's 19.07 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+    ]
+   },
+   "search": {
+    "validated": 0.9066666666666666,
+    "start": "best",
+    "run": "hall_of_fame/runs_levelup_deep"
+   }
+  },
+  "Hilde": {
+   "row": "Hilde (L3)",
+   "normalized": {
+    "charName": "Hilde the Barbarian",
+    "charConcept": "A powerful melee fighter who charges into battle with no fear",
+    "xpBudget": "175",
+    "statPoints": {
+     "Agility": 4,
+     "Body": 4,
+     "Cunning": 2,
+     "Mind": 2,
+     "Essence": 2
+    },
+    "skillPoints": {
+     "Acrobatics": 1,
+     "Archery": 0,
+     "Brawl": 1,
+     "Melee": 5,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 3,
+     "Presence": 0,
+     "Resilience": 3,
+     "Insight": 3,
+     "Masquerade": 1,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 3,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 0
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I120",
+      "qty": 1
+     },
+     {
+      "id": "I127",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-24T15:40:21.231Z",
+    "techniques": [
+     {
+      "id": "T012",
+      "name": "Second Wind",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Lunging",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T130",
+      "name": "Furious Rage",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 9,
+      "level": 3,
+      "features": [
+       {
+        "name": "Whirlwind",
+        "count": 1
+       },
+       {
+        "name": "Victorious",
+        "count": 1
+       },
+       {
+        "name": "Ascended Blade",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T018",
+      "name": "Strength from the Slain",
+      "xp": 9,
+      "level": "Lv 3"
+     },
+     {
+      "id": "T014",
+      "name": "Toughened Body",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Half Guard",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Lunging",
+        "count": 3
+       }
+      ]
+     }
+    ],
+    "simNotes": [
+     "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
+     "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+    ]
+   },
+   "optimized": {
+    "charName": "Valkyrie Grimsdottir, the Unbroken",
+    "charConcept": "Earthen Mantle, Lifeline, two Toughened Resolves and Toughened Body, plus Force Missiles because 'barbarians can do magic if they're angry enough.' Essence 5. The original Hall of Famer.",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 2,
+     "Body": 1,
+     "Cunning": 2,
+     "Mind": 4,
+     "Essence": 5
+    },
+    "skillPoints": {
+     "Acrobatics": 0,
+     "Archery": 0,
+     "Brawl": 0,
+     "Melee": 2,
+     "Stealth": 0,
+     "Athletics": 4,
+     "Awareness": 0,
+     "Might": 0,
+     "Presence": 0,
+     "Resilience": 4,
+     "Insight": 0,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 0,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 2,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 1,
+     "Theurgy": 3
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I120",
+      "qty": 1
+     },
+     {
+      "id": "I127",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-30T07:54:08Z",
+    "techniques": [
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 1,
+      "xp": 3,
+      "features": [
+       {
+        "name": "Backfoot",
+        "count": 1
+       },
+       {
+        "name": "Lunging",
+        "count": 1
+       },
+       {
+        "name": "Fleet Step",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T014",
+      "name": "Toughened Body",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T019",
+      "name": "Toughened Resolve",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T182",
+      "name": "Earthen Mantle Approach",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T110",
+      "name": "Lifeline",
+      "level": "Lv 2",
+      "xp": 6
+     },
+     {
+      "id": "T105",
+      "name": "Healing Magic",
+      "level": 1,
+      "xp": 3,
+      "features": [
+       {
+        "name": "Reach",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T001",
+      "name": "Brace",
+      "level": "Lv 1",
+      "xp": 3
+     }
+    ],
+    "simNotes": [
+     "Hall of Fame v1.2: build_optimizer.py's #1 for Hilde (heavy front-liner), Level 3, in Hilde (L3)'s place in party H. Toughest day it wins half the time: enemy Health x2.19, against the sample's x1.52 (+44%). Party Health left 36.04 against the sample's 21.64 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+    ]
+   },
+   "search": {
+    "validated": 0.8686666666666667,
+    "start": "best",
+    "run": "hall_of_fame/runs_levelup_deep"
+   }
+  },
+  "Jackal": {
+   "row": "Jackal (L3)",
+   "normalized": {
+    "charName": "Jackal the Alchemist",
+    "charConcept": "A complicated build, leveraging all of alchemy the solve any problem the party might have",
+    "xpBudget": "175",
+    "statPoints": {
+     "Agility": 4,
+     "Body": 3,
+     "Cunning": 3,
+     "Mind": 3,
+     "Essence": 3
+    },
+    "skillPoints": {
+     "Acrobatics": 5,
+     "Archery": 0,
+     "Brawl": 0,
+     "Melee": 0,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 1,
+     "Presence": 0,
+     "Resilience": 4,
+     "Insight": 3,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 2,
+     "Composure": 2,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 3,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 0
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     },
+     {
+      "id": "I121",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-24T16:06:41.613Z",
+    "techniques": [
+     {
+      "id": "T053",
+      "name": "Bottomless Bottles",
+      "xp": 12,
+      "level": "Lv 4"
+     },
+     {
+      "id": "T137",
+      "name": "Eagle Eyes",
+      "xp": 3,
+      "level": "Lv 1"
+     },
+     {
+      "id": "T035",
+      "name": "Mighty Mixologist",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Wind Slash",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "xp": 3,
+      "level": 1,
+      "features": [
+       {
+        "name": "Wind Slash",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T010",
+      "name": "Grim Resolve",
+      "xp": 6,
+      "level": "Lv 2"
+     }
+    ],
+    "simNotes": [
+     "Copied from archive/player_builds/Jackal-the-Alchemist-175XP-2026-10-24.json.",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 163: Mixology -1 x2, Cunning -1, Mind -1, Resilience +1, Insight +1."
+    ]
+   },
+   "optimized": {
+    "charName": "Ashen Vex",
+    "charConcept": "Two loaded Battle Maneuvers, Suppressing Fire and One Eye Behind You. Acrobatics 5, Resilience 5. Refers to every throwing knife as 'my children.'",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 3,
+     "Body": 3,
+     "Cunning": 5,
+     "Mind": 1,
+     "Essence": 1
+    },
+    "skillPoints": {
+     "Acrobatics": 5,
+     "Archery": 0,
+     "Brawl": 0,
+     "Melee": 0,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 3,
+     "Might": 0,
+     "Presence": 3,
+     "Resilience": 2,
+     "Insight": 3,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 3,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 0
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     },
+     {
+      "id": "I121",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-30T07:54:08Z",
+    "techniques": [
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 2,
+      "xp": 6,
+      "features": [
+       {
+        "name": "Distracting",
+        "count": 1
+       },
+       {
+        "name": "Lunging",
+        "count": 1
+       },
+       {
+        "name": "Viper's Sting",
+        "count": 1
+       },
+       {
+        "name": "Half Guard",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 4,
+      "xp": 12,
+      "features": [
+       {
+        "name": "Hamstring",
+        "count": 1
+       },
+       {
+        "name": "Ascended Blade",
+        "count": 1
+       },
+       {
+        "name": "Victorious",
+        "count": 1
+       },
+       {
+        "name": "Flurry",
+        "count": 1
+       },
+       {
+        "name": "Half Guard",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T011",
+      "name": "One Eye Behind You",
+      "level": "Lv 2",
+      "xp": 6
+     },
+     {
+      "id": "T205",
+      "name": "Suppressing Fire",
+      "level": "Lv 3",
+      "xp": 9
+     },
+     {
+      "id": "T020",
+      "name": "Lay On Hands",
+      "level": "Lv 4",
+      "xp": 12
+     }
+    ],
+    "simNotes": [
+     "Hall of Fame v1.2: build_optimizer.py's #1 for Jackal (thrown skirmisher), Level 3, in Jackal (L3)'s place in party S. Toughest day it wins half the time: enemy Health x2.24, against the sample's x1.48 (+51%). Party Health left 32.58 against the sample's 19.07 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+    ]
+   },
+   "search": {
+    "validated": 0.7893333333333333,
+    "start": "best",
+    "run": "hall_of_fame/runs_levelup_deep"
+   }
+  },
+  "Sable": {
+   "row": "Sable (L3, proposed)",
+   "normalized": {
+    "charName": "Sable (Level 3, proposed)",
+    "charConcept": "Big dick chaos archer, extreme violence",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 4,
+     "Body": 3,
+     "Cunning": 3,
+     "Mind": 2,
+     "Essence": 3
+    },
+    "skillPoints": {
+     "Acrobatics": 2,
+     "Archery": 5,
+     "Brawl": 0,
+     "Melee": 0,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 3,
+     "Might": 2,
+     "Presence": 0,
+     "Resilience": 3,
+     "Insight": 3,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 3,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 0
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     },
+     {
+      "id": "I123",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-09-20T23:52:29.737Z",
+    "techniques": [
+     {
+      "id": "T078",
+      "name": "Perfect Strike",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T011",
+      "name": "One Eye Behind You",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 2,
+      "features": [
+       {
+        "name": "Calculated",
+        "count": 1
+       },
+       {
+        "name": "Wing Clip",
+        "count": 3
+       }
+      ]
+     },
+     {
+      "id": "T205",
+      "name": "Suppressing Fire",
+      "level": "Lv 3"
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 3,
+      "features": [
+       {
+        "name": "Ricochet Shot",
+        "count": 1
+       },
+       {
+        "name": "Calculated",
+        "count": 1
+       },
+       {
+        "name": "Wing Clip",
+        "count": 1
+       }
+      ]
+     }
+    ],
+    "simNotes": [
+     "Proposed by Claude (2026-10-28), not the designer's: grown from builds/sable.json to 175 XP. Waiting on the designer's tweaks (PROPOSED_BUILDS.md).",
+     "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 146: Acrobatics -1."
+    ]
+   },
+   "optimized": {
+    "charName": "Kite Shinobi",
+    "charConcept": "Hand of Chaos, Solemn Pact, Magehunter and two Maneuvers built around Half Guard. 10 Health, not a single Toughened Resolve. Plans to never be hit, and mostly isn't. One of only two Hall of Famers who skipped the Resolve (the other is the next entry), and won't shut up about it.",
+    "xpBudget": 175,
+    "statPoints": {
+     "Agility": 2,
+     "Body": 1,
+     "Cunning": 5,
+     "Mind": 1,
+     "Essence": 4
+    },
+    "skillPoints": {
+     "Acrobatics": 0,
+     "Archery": 5,
+     "Brawl": 0,
+     "Melee": 1,
+     "Stealth": 0,
+     "Athletics": 0,
+     "Awareness": 0,
+     "Might": 0,
+     "Presence": 2,
+     "Resilience": 0,
+     "Insight": 3,
+     "Masquerade": 0,
+     "Persuasion": 0,
+     "Streetwise": 0,
+     "Survival": 0,
+     "Academics": 0,
+     "Composure": 3,
+     "Craft": 0,
+     "Medicine": 0,
+     "Mixology": 0,
+     "Meditation": 0,
+     "Performance": 0,
+     "Rapport": 0,
+     "Sorcery": 0,
+     "Theurgy": 3
+    },
+    "charNotes": "",
+    "noteRows": [],
+    "customTechniques": [],
+    "backgroundType": "Settler",
+    "backgrounds": [],
+    "sheetSectionOrder": [
+     "backgrounds",
+     "techniques"
+    ],
+    "enabledSupplements": [
+     "Base Game"
+    ],
+    "gold": "",
+    "inventory": [
+     {
+      "id": "I128",
+      "qty": 1
+     },
+     {
+      "id": "I123",
+      "qty": 1
+     }
+    ],
+    "customItems": [],
+    "customMaterials": [],
+    "customAttacks": [],
+    "exportedAt": "2026-10-30T07:54:08Z",
+    "techniques": [
+     {
+      "id": "T011",
+      "name": "One Eye Behind You",
+      "xp": 6,
+      "level": "Lv 2"
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 3,
+      "xp": 9,
+      "features": [
+       {
+        "name": "Half Guard",
+        "count": 3
+       },
+       {
+        "name": "Blade of Four Fates",
+        "count": 1
+       },
+       {
+        "name": "Wing Clip",
+        "count": 1
+       },
+       {
+        "name": "Viper's Sting",
+        "count": 1
+       },
+       {
+        "name": "Hamstring",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 3,
+      "xp": 9,
+      "features": [
+       {
+        "name": "Harrying",
+        "count": 1
+       },
+       {
+        "name": "Wing Clip",
+        "count": 1
+       },
+       {
+        "name": "Victorious",
+        "count": 1
+       },
+       {
+        "name": "Backfoot",
+        "count": 1
+       },
+       {
+        "name": "Ascended Blade",
+        "count": 1
+       },
+       {
+        "name": "Blade of Four Fates",
+        "count": 1
+       },
+       {
+        "name": "Half Guard",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T013",
+      "name": "Solemn Pact",
+      "level": "Lv 2",
+      "xp": 6
+     },
+     {
+      "id": "T105",
+      "name": "Healing Magic",
+      "level": 1,
+      "xp": 3,
+      "features": [
+       {
+        "name": "Guardian Angel",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T058",
+      "name": "Challenge",
+      "level": "Lv 1",
+      "xp": 3
+     },
+     {
+      "id": "T072",
+      "name": "Battle Maneuver",
+      "level": 2,
+      "xp": 6,
+      "features": [
+       {
+        "name": "Blade of Four Fates",
+        "count": 1
+       },
+       {
+        "name": "Viper's Sting",
+        "count": 1
+       },
+       {
+        "name": "Half Guard",
+        "count": 1
+       },
+       {
+        "name": "Wind Slash",
+        "count": 1
+       }
+      ]
+     },
+     {
+      "id": "T110",
+      "name": "Lifeline",
+      "level": "Lv 2",
+      "xp": 6
+     }
+    ],
+    "simNotes": [
+     "Hall of Fame v1.2: build_optimizer.py's #1 for Sable (archer), Level 3, in Sable (L3, proposed)'s place in party U. Toughest day it wins half the time: enemy Health x2.16, against the sample's x1.54 (+40%). Party Health left 32.94 against the sample's 24.79 on fresh fights (enemy Health x1.75). Found by the search on Health left after one fight. Items, background and row are the sample's."
+    ]
+   },
+   "search": {
+    "validated": 0.978,
+    "start": "best",
+    "run": "hall_of_fame/runs_levelup_deep"
+   }
+  }
+ }
+}

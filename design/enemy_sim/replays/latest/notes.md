@@ -1,12 +1,12 @@
-# Latest replays (2026-10-31)
+# Latest replays (2026-11-01)
 
-First run: Whirlwind close-range only; no other change to fights
+Second run: no change to fights
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 68% party HP left
-- Matchup average over 1000 fights: 96.3% wins, 3.5 rounds, 75% HP left on a win
+- Matchup average over 1000 fights: 97.3% wins, 3.5 rounds, 73% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

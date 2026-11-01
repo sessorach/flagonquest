@@ -2207,3 +2207,150 @@ What it says:
 builds sit near 100%; two Levels up nearly everything wins 0-8%. Pairs
 need a yardstick in between (one Level up with more enemy Health, say)
 or a reading on the odds instead of in points.
+
+### The second run: healing, optimized parties, pairs on the odds (2026-10-31 to 11-01)
+
+What the designer asked for after the first run: the measurement fixes
+first, and how Healing Magic stands up to the other healing, including
+where a build would go for some other healing if Healing Magic weren't
+there. Results in `hall_of_fame/runs_levelup/` (`heal_swap_l<L>.json`,
+`optmixes_l<L>.json`, `scorecard_l<L>_run2.json`), with the searches in
+`runs_levelup_noheal` (Healing Magic banned) and `runs_levelup_deep` (40
+more generations from each best so far). 2,000 days a reading unless
+said.
+
+**Healing swaps** (`heal_swap.py`). Each optimized build's healing
+swapped for each option at the same XP, the difference paid from combat
+Skills first and Stats only when they can't cover it (a first pass paid
+from the highest rank, often a 5 Stat, and made every option look worse
+than none; that pass is discarded). Points of days won one Level up with
+three stand-ins, against the build as it is:
+
+| Level 3 | No healing | Second Wind | Bolstering Refrain | Lay On Hands | Sap Seals the Wound | Thief Empties the Vessel |
+|---|---|---|---|---|---|---|
+| Ashleigh | -40 | -44 | -26 | -48 | -60 | -52 |
+| Beornhard | -38 | -21 | -46 | -56 | -65 | -55 |
+| Browndog | -39 | -17 | -10 | -22 | -53 | -37 |
+| Carrick | -37 | -30 | -29 | -31 | -40 | -39 |
+| Enith | -41 | -27 | -20 | -27 | -44 | -38 |
+| Felix | -32 | -42 | -53 | -51 | -59 | -34 |
+| Hanforth | -54 | -39 | -29 | -41 | -59 | -53 |
+| Hilde | -40 | -21 | -55 | -53 | -68 | -40 |
+| Jackal | -25 | -21 | -13 | 0 (has it) | -61 | -25 |
+| Sable | -13 | -12 | -49 | -37 | -60 | -33 |
+
+Browndog and Jackal had no Healing Magic; adding it (in place of their
+healing) gave Browndog +5 to +7 and Jackal about 0. At Level 2 the
+pattern holds: taking healing off costs 19-42 points (Hilde, with only
+Second Wind, -8), Healing Magic beats every other option for every
+build, and Hilde gains +19 by adding it. Sap Seals the Wound needs
+Meditation 5, over Level 2's rank cap.
+
+- **Every build wants healing, and Healing Magic is the best of it by a
+  wide margin.** No other option comes within ten points of it for any
+  build that has it.
+- **Second Wind** gets back only part of it: against no healing it's
+  10 points worse (Felix) to 22 better (Browndog) at Level 3, and
+  worse than none for Ashleigh and Felix, whose other ranks paid for it.
+  It only heals yourself, 1 Health or 2 with a Heart.
+- **The costly options cost more than their own XP.** Bolstering
+  Refrain needs Performance 4 (10 XP) and Lay On Hands Composure 3 and
+  Presence 3 on top of 9 or 12 XP; on these builds that comes out of
+  Essence. That's their real price for a build that doesn't already have
+  the Skills.
+- **Why Healing Magic is so strong for 3 XP:** a Level 1 copy isn't an
+  Encounter Technique. It's 1 AP and one card, as often as there are
+  cards, healing 1 plus a Heart's worth on yourself or an adjacent ally,
+  and the sim plays its holder as a healer, healing whoever needs it each
+  turn. Guardian Angel also stops one Down a scene. More cards means more
+  healing, so it multiplies with Cunning and Mind.
+
+**Searching without Healing Magic** (`--ban "Healing Magic"`, from each
+best build). Share of days won one Level up with three stand-ins: with
+Healing Magic (scorecard), with it simply taken off, and after the
+search (its own 1,500 validation days, different seeds, so within a few
+points):
+
+| | Level 3 | | | ended with | Level 2 | | | ended with |
+|---|---|---|---|---|---|---|---|---|
+| Ashleigh | 74% | 34% | 39% | Second Wind | (none) | | 72% | Lay On Hands |
+| Beornhard | 87% | 50% | 64% | Second Wind | 79% | 43% | 57% | Second Wind |
+| Browndog | (none) | | 71% | Second Wind, Bolstering Refrain | 64% | 31% | 44% | Second Wind |
+| Carrick | 54% | 19% | 26% | Bolstering Refrain | 73% | 41% | 70% | Lay On Hands |
+| Enith | 56% | 42% | 46% | Second Wind, Bolstering Refrain | 67% | 37% | 45% | Lay On Hands |
+| Felix | 76% | 47% | 68% | nothing | 70% | 32% | 47% | nothing |
+| Hanforth | 81% | 29% | 58% | Second Wind | 68% | 25% | 42% | Bolstering Refrain, two Lifelines |
+| Hilde | 83% | 45% | 71% | nothing | (none) | | 56% | Second Wind |
+| Jackal | (none) | | 85% | Lay On Hands | 80% | 53% | 60% | Lay On Hands |
+| Sable | 98% | 86% | 93% | nothing | 94% | 74% | 77% | nothing |
+
+(Lifeline, where a build had it, stayed.) The builds leaning hardest on
+healing go to Second Wind at Level 3 and Lay On Hands at Level 2; Lay On
+Hands is the only one that gets near Healing Magic (Carrick at Level 2,
+70% against 73%). The damage builds (Felix, Sable, and Hilde at Level 3)
+drop healing and lose least. Every build that had Healing Magic is worse
+without it, even after searching.
+
+**Optimized builds in optimized parties** (`party_mixes.py --source
+<scorecard> --ups 1,2`, the first run's builds). All 210 parties of four
+optimized builds, two Levels up (one up, they win a median 95-97%).
+Average over the 84 parties each is in, minus the average of those it
+isn't in:
+
+| Level 3 | | Level 2 | |
+|---|---|---|---|
+| Sable | +37 | Sable | +18 |
+| Felix | +17 | Hilde | +15 |
+| Jackal | +12 | Jackal | +6 |
+| Beornhard | +4 | Enith | +4 |
+| Hilde | -7 | Beornhard | -5 |
+| Browndog | -7 | Felix | -6 |
+| Carrick | -11 | Browndog | -6 |
+| Ashleigh | -14 | Carrick | -8 |
+| Hanforth | -14 | Hanforth | -8 |
+| Enith | -18 | Ashleigh | -12 |
+
+The Level 3 soaks (Ashleigh, Hanforth, Enith: +42 to +68 with stand-ins
+in the first run, whose builds these are) are the bottom three in
+optimized company: next to plain fighters they look great, next to other
+optimized builds they add the least. At Level 3 a party of Carrick,
+Enith, Hanforth and Hilde wins 3% even one Level up. Read together with
+the stand-in score, this is the role signal the designer wanted: a soak
+is only as good as the damage around it.
+
+**Pairs on the odds.** Read in points, one Level up sits at the ceiling
+and two up at the floor; read in log-odds, a pair can be compared at any
+rate. Nearly every pair comes out a little under (median -1.15 at Level
+3, -0.71 at Level 2: the second strong build replaces a stand-in that was
+doing something too), so a pair flags at a full log-odds under the
+median. At Level 3 all nine flagged pairs are soak with soak or soak
+with Carrick: Ashleigh+Hanforth -3.39, Enith+Hanforth -3.10, Ashleigh+Enith
+-2.86, then Ashleigh or Enith with Hilde (now a soak too), Browndog,
+Carrick. A second soak adds much less than the first. At Level 2 the two
+flags are Sable with Beornhard and with Hanforth, but Sable wins 94%
+alone, so that may still be the ceiling.
+
+**The deeper search** moved most builds 0-10 points, Enith most (+42 to
++70 at Level 3, +38 to +52 at Level 2), Carrick and Hilde +10 at Level
+2. Not converged for everyone, but the order mostly held. Final best per
+archetype (scorecard run 2):
+
+| | Level 3 | Level 2 |
+|---|---|---|
+| Sable | +85 | +65 |
+| Hanforth | +77 | +39 |
+| Beornhard | +74 | +55 |
+| Hilde | +73 | +30 |
+| Felix | +72 | +49 |
+| Enith | +70 | +52 |
+| Jackal | +65 | +53 |
+| Ashleigh | +60 | +41 |
+| Browndog | +60 | +39 |
+| Carrick | +40 | +54 |
+
+At Level 3 nine of ten carry Healing Magic, eight Lifeline, seven
+Toughened Resolve (Hanforth six copies) and nine have Body 1; five of
+them (Ashleigh, Browndog, Enith, Hanforth, Hilde) are soaks dealing
+under 10% of the party's damage. At Level 2 it's
+Healing Magic (eight) and Field Medic (five, the Style that heals a
+Wounded creature 1 extra), with Toughened Resolve on only three.

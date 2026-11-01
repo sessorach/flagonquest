@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-01 — Healing Magic against the other healing
+
+Compared Healing Magic with every other healing Technique on the optimized builds, at the same XP, and searched each build again without it. Every build wants healing; Healing Magic beats every alternative by a wide margin, and nothing the searches found without it fully makes up the difference.
+
+- Without it, builds go for Second Wind at Level 3 and Lay On Hands at Level 2; the damage-heavy builds just drop healing and lose the least.
+- Scored in parties of other optimized builds instead of plain fighters, the soak builds drop from near the top to the bottom, and pairs of soaks overlap the most.
+
 ### 2026-10-31 — Every party mix, and what the optimizer finds
 
 Played every party of four of the sample characters at the same combat XP, and searched for each character's strongest build from several starting points. Together, the characters as built do worse than four plain fighters; the strongest builds stack Toughened Resolve, Lifeline and a little Healing Magic, or are Sable.
