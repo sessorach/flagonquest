@@ -1,0 +1,686 @@
+{
+ "level": 3,
+ "days": 2000,
+ "builds": {
+  "Ashleigh": {
+   "healing": "Healing Magic",
+   "variants": {
+    "as is": {
+     "up": 0.618,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.77,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.3375,
+     "points": -28.049999999999997,
+     "odds": -1.1555228963989084,
+     "downs_per_10": 7.545,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.4875,
+     "points": -13.05,
+     "odds": -0.5310782694257768,
+     "downs_per_10": 5.845,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.618,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.77,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.298,
+     "points": -32.0,
+     "odds": -1.3379077663715222,
+     "downs_per_10": 8.385,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.4815,
+     "points": -13.65,
+     "odds": -0.5551016452825173,
+     "downs_per_10": 7.45,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.254,
+     "points": -36.4,
+     "odds": -1.5584591820363398,
+     "downs_per_10": 9.66,
+     "heal_share": 1.0
+    },
+    "Sap Seals the Wound": {
+     "up": 0.1335,
+     "points": -48.449999999999996,
+     "odds": -2.351428480166472,
+     "downs_per_10": 10.325,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.2225,
+     "points": -39.55,
+     "odds": -1.7322243912982098,
+     "downs_per_10": 9.16,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Beornhard": {
+   "healing": "Healing Magic",
+   "variants": {
+    "as is": {
+     "up": 0.7345,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.575,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.4865,
+     "points": -24.800000000000004,
+     "odds": -1.071588282674492,
+     "downs_per_10": 7.07,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.6695,
+     "points": -6.500000000000005,
+     "odds": -0.31165064909245266,
+     "downs_per_10": 4.79,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.7345,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.575,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.657,
+     "points": -7.750000000000002,
+     "odds": -0.367621583613268,
+     "downs_per_10": 4.895,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.4135,
+     "points": -32.10000000000001,
+     "odds": -1.367090308561723,
+     "downs_per_10": 8.66,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.3095,
+     "points": -42.50000000000001,
+     "odds": -1.8200330356566348,
+     "downs_per_10": 9.26,
+     "heal_share": 1.0
+    },
+    "Sap Seals the Wound": {
+     "up": 0.22,
+     "points": -51.45000000000001,
+     "odds": -2.283241528263215,
+     "downs_per_10": 9.635,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.3235,
+     "points": -41.1,
+     "odds": -1.7553084886018262,
+     "downs_per_10": 8.645,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Browndog": {
+   "healing": "Bolstering Refrain, Healing Magic",
+   "variants": {
+    "as is": {
+     "up": 0.7325,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 5.18,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.39,
+     "points": -34.25,
+     "odds": -1.454655992598826,
+     "downs_per_10": 8.265,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.6205,
+     "points": -11.2,
+     "odds": -0.5156727667461838,
+     "downs_per_10": 6.185,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.6495,
+     "points": -8.300000000000008,
+     "odds": -0.39050164491915185,
+     "downs_per_10": 6.135,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.531,
+     "points": -20.150000000000002,
+     "odds": -0.8831845217595016,
+     "downs_per_10": 6.85,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.587,
+     "points": -14.550000000000008,
+     "odds": -0.6557665476880977,
+     "downs_per_10": 6.96,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.467,
+     "points": -26.55,
+     "odds": -1.1395359410521082,
+     "downs_per_10": 8.5,
+     "heal_share": 1.0
+    },
+    "Sap Seals the Wound": {
+     "up": 0.1865,
+     "points": -54.6,
+     "odds": -2.4802584621303834,
+     "downs_per_10": 10.935,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.407,
+     "points": -32.550000000000004,
+     "odds": -1.3837249881102918,
+     "downs_per_10": 8.07,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Carrick": {
+   "healing": "Healing Magic",
+   "variants": {
+    "as is": {
+     "up": 0.357,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 8.795,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.1705,
+     "points": -18.65,
+     "odds": -0.9936788704489472,
+     "downs_per_10": 10.535,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.357,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 8.795,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.3905,
+     "points": 3.350000000000003,
+     "odds": 0.1431979628163949,
+     "downs_per_10": 8.99,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.2385,
+     "points": -11.85,
+     "odds": -0.5725119195488404,
+     "downs_per_10": 9.61,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.252,
+     "points": -10.499999999999998,
+     "odds": -0.49956494800507345,
+     "downs_per_10": 10.31,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.223,
+     "points": -13.399999999999999,
+     "odds": -0.6598596364495481,
+     "downs_per_10": 10.255,
+     "heal_share": 1.0
+    },
+    "Sap Seals the Wound": {
+     "up": 0.138,
+     "points": -21.9,
+     "odds": -1.243592643048508,
+     "downs_per_10": 10.74,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.147,
+     "points": -21.0,
+     "odds": -1.1699180182549624,
+     "downs_per_10": 10.64,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Enith": {
+   "healing": "Healing Magic",
+   "variants": {
+    "as is": {
+     "up": 0.5825,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 7.33,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.257,
+     "points": -32.550000000000004,
+     "odds": -1.3946646009714847,
+     "downs_per_10": 9.935,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.5495,
+     "points": -3.300000000000003,
+     "odds": -0.1343939443536621,
+     "downs_per_10": 7.205,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.5825,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 7.33,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.449,
+     "points": -13.350000000000001,
+     "odds": -0.5377565625596055,
+     "downs_per_10": 7.57,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.347,
+     "points": -23.550000000000004,
+     "odds": -0.9652969904785174,
+     "downs_per_10": 10.555,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.26,
+     "points": -32.25,
+     "odds": -1.379013196331633,
+     "downs_per_10": 11.55,
+     "heal_share": 1.0
+    },
+    "Sap Seals the Wound": {
+     "up": 0.119,
+     "points": -46.35,
+     "odds": -2.334978773973596,
+     "downs_per_10": 12.07,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.19,
+     "points": -39.25,
+     "odds": -1.7830548166549438,
+     "downs_per_10": 11.225,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Felix": {
+   "healing": "Healing Magic",
+   "variants": {
+    "as is": {
+     "up": 0.7065,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 3.72,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.538,
+     "points": -16.849999999999998,
+     "odds": -0.7261518937763852,
+     "downs_per_10": 5.72,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.732,
+     "points": 2.5499999999999967,
+     "odds": 0.1263479705940238,
+     "downs_per_10": 3.325,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.707,
+     "points": 0.04999999999999449,
+     "odds": 0.0024124940230744185,
+     "downs_per_10": 3.785,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.4515,
+     "points": -25.5,
+     "odds": -1.0730574697146757,
+     "downs_per_10": 6.29,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.4055,
+     "points": -30.099999999999998,
+     "odds": -1.2610454054317999,
+     "downs_per_10": 8.13,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.351,
+     "points": -35.550000000000004,
+     "odds": -1.4930920560946552,
+     "downs_per_10": 9.04,
+     "heal_share": 1.0
+    },
+    "Sap Seals the Wound": {
+     "up": 0.2485,
+     "points": -45.800000000000004,
+     "odds": -1.9850739265127768,
+     "downs_per_10": 9.54,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.5125,
+     "points": -19.400000000000006,
+     "odds": -0.8284351422817697,
+     "downs_per_10": 5.935,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Hanforth": {
+   "healing": "Healing Magic",
+   "variants": {
+    "as is": {
+     "up": 0.7025,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.905,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.3265,
+     "points": -37.6,
+     "odds": -1.5832892233561493,
+     "downs_per_10": 8.43,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.632,
+     "points": -7.050000000000001,
+     "odds": -0.3184247202442899,
+     "downs_per_10": 5.4,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.7025,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.905,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.465,
+     "points": -23.75,
+     "odds": -0.9994605175308664,
+     "downs_per_10": 7.465,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.531,
+     "points": -17.15,
+     "odds": -0.7350719234265568,
+     "downs_per_10": 7.63,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.402,
+     "points": -30.049999999999997,
+     "odds": -1.256369841553827,
+     "downs_per_10": 8.69,
+     "heal_share": 1.0
+    },
+    "Sap Seals the Wound": {
+     "up": 0.2055,
+     "points": -49.7,
+     "odds": -2.211498128262698,
+     "downs_per_10": 9.87,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.277,
+     "points": -42.55,
+     "odds": -1.8186228921936425,
+     "downs_per_10": 9.11,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Hilde": {
+   "healing": "Healing Magic",
+   "variants": {
+    "as is": {
+     "up": 0.6865,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.525,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.4185,
+     "points": -26.8,
+     "odds": -1.1127409471642395,
+     "downs_per_10": 7.005,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.6955,
+     "points": 0.9000000000000008,
+     "odds": 0.042153059078495536,
+     "downs_per_10": 4.18,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.6865,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.525,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.64,
+     "points": -4.649999999999999,
+     "odds": -0.20844272023148847,
+     "downs_per_10": 4.335,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.4235,
+     "points": -26.3,
+     "odds": -1.092228690752055,
+     "downs_per_10": 8.76,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.343,
+     "points": -34.349999999999994,
+     "odds": -1.433760436453721,
+     "downs_per_10": 9.865,
+     "heal_share": 1.0
+    },
+    "Sap Seals the Wound": {
+     "up": 0.15,
+     "points": -53.65,
+     "odds": -2.5184079205231567,
+     "downs_per_10": 10.855,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.292,
+     "points": -39.45,
+     "odds": -1.6694971565604884,
+     "downs_per_10": 9.2,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Jackal": {
+   "healing": "Lay On Hands",
+   "variants": {
+    "as is": {
+     "up": 0.782,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.665,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.526,
+     "points": -25.6,
+     "odds": -1.1732657867135887,
+     "downs_per_10": 7.25,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.661,
+     "points": -12.1,
+     "odds": -0.609605945284986,
+     "downs_per_10": 5.535,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.6525,
+     "points": -12.950000000000006,
+     "odds": -0.6473132035642207,
+     "downs_per_10": 5.8,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.5645,
+     "points": -21.750000000000004,
+     "odds": -1.017914090459063,
+     "downs_per_10": 6.365,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.6475,
+     "points": -13.450000000000006,
+     "odds": -0.6692915064348529,
+     "downs_per_10": 6.18,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.782,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 4.665,
+     "heal_share": 1.0
+    },
+    "Sap Seals the Wound": {
+     "up": 0.158,
+     "points": -62.4,
+     "odds": -2.950544658971582,
+     "downs_per_10": 11.11,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.526,
+     "points": -25.6,
+     "odds": -1.1732657867135887,
+     "downs_per_10": 7.175,
+     "heal_share": 1.0
+    }
+   }
+  },
+  "Sable": {
+   "healing": "Healing Magic",
+   "variants": {
+    "as is": {
+     "up": 0.9525,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 0.99,
+     "heal_share": 1.0
+    },
+    "no healing": {
+     "up": 0.856,
+     "points": -9.650000000000002,
+     "odds": -1.2159033193945197,
+     "downs_per_10": 2.595,
+     "heal_share": 0.0
+    },
+    "Healing Magic (Guardian Angel)": {
+     "up": 0.9525,
+     "points": 0.0,
+     "odds": 0.0,
+     "downs_per_10": 0.99,
+     "heal_share": 1.0
+    },
+    "Healing Magic (Reach)": {
+     "up": 0.9375,
+     "points": -1.5000000000000013,
+     "odds": -0.2903101948580509,
+     "downs_per_10": 1.42,
+     "heal_share": 1.0
+    },
+    "Second Wind": {
+     "up": 0.7125,
+     "points": -24.0,
+     "odds": -2.0908033440548603,
+     "downs_per_10": 4.055,
+     "heal_share": 1.0
+    },
+    "Bolstering Refrain": {
+     "up": 0.602,
+     "points": -35.050000000000004,
+     "odds": -2.584554955935878,
+     "downs_per_10": 6.025,
+     "heal_share": 1.0
+    },
+    "Lay On Hands": {
+     "up": 0.6765,
+     "points": -27.6,
+     "odds": -2.2606270622903737,
+     "downs_per_10": 5.215,
+     "heal_share": 1.0
+    },
+    "Sap Seals the Wound": {
+     "up": 0.3905,
+     "points": -56.2,
+     "odds": -3.4435713756018465,
+     "downs_per_10": 8.05,
+     "heal_share": 1.0
+    },
+    "Thief Empties the Vessel": {
+     "up": 0.6555,
+     "points": -29.700000000000003,
+     "odds": -2.3550561832102197,
+     "downs_per_10": 4.915,
+     "heal_share": 1.0
+    }
+   }
+  }
+ }
+}
