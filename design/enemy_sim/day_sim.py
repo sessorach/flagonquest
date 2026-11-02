@@ -252,6 +252,13 @@ def play_day(names, swaps, level, mixes, seed, rows, start=None, log=None):
         r = cs.run_fight(1, level, movement=True, enemies=se.build_encounter(se.ENCOUNTERS[level][mix]),
                          seed=seed + 1_000_000 * f, carry=carry, day_fight=f)
         pcs = list(last)
+        # Every fight's shape, against the 2026-10-08 table targets
+        # (experiments/yardsticks/baseline_check.py). Only read, so the
+        # fights themselves don't move.
+        rec.setdefault('per_fight', []).append(dict(
+            won=r['winner'] == 'party', rounds=r['rounds'],
+            downs=sum(bool(p.get('was_downed')) for p in pcs), wounded=r['pc_wounded'],
+            again=r['acts_again_any'], again_first=r['acts_again_first']))
         if T.TRACK_SHARES:
             # Per seat, summed over the day (party_power.py's scorecard).
             slots = rec.setdefault('slots', [dict(dmg_out=0, heal_out=0, dmg_in=0, hits_in=0, downed=0) for _ in pcs])

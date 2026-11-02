@@ -1,0 +1,14 @@
+stand-ins                                  days won 100.0% | F1: lose  0.0% rds 2.4 (>5  0%) Down   8% Wnd  66% again  21% | F2: lose  0.0% rds 2.8 (>5  0%) Down  56% Wnd  94% again  25%
+Ashleigh+Enith+Felix+Hanforth              days won  65.5% | F1: lose  5.2% rds 5.0 (>5 28%) Down  52% Wnd  82% again  43% | F2: lose 30.9% rds 5.5 (>5 39%) Down  78% Wnd  85% again  49%
+Ashleigh+Browndog+Carrick+Enith            days won  83.5% | F1: lose  0.2% rds 3.8 (>5  7%) Down  38% Wnd  72% again  36% | F2: lose 16.3% rds 5.0 (>5 27%) Down  82% Wnd  91% again  43%
+Ashleigh+Beornhard+Browndog+Jackal         days won  90.2% | F1: lose  0.2% rds 2.6 (>5  1%) Down  28% Wnd  62% again  19% | F2: lose  9.5% rds 3.4 (>5  9%) Down  64% Wnd  90% again  26%
+Ashleigh+Beornhard+Carrick+Jackal          days won  89.5% | F1: lose  0.5% rds 2.5 (>5  1%) Down  22% Wnd  60% again  20% | F2: lose 10.1% rds 2.9 (>5  4%) Down  64% Wnd  89% again  24%
+Ashleigh+Beornhard+Hanforth+Hilde          days won  93.0% | F1: lose  0.5% rds 3.1 (>5  1%) Down  26% Wnd  71% again  24% | F2: lose  6.5% rds 3.4 (>5  3%) Down  45% Wnd  73% again  27%
+Carrick+Enith+Hanforth+Hilde               days won  94.0% | F1: lose  0.5% rds 3.7 (>5  2%) Down  31% Wnd  73% again  31% | F2: lose  5.5% rds 4.1 (>5 10%) Down  53% Wnd  75% again  33%
+Enith+Felix+Hanforth+Sable                 days won  95.2% | F1: lose  0.0% rds 3.6 (>5  3%) Down  28% Wnd  67% again  30% | F2: lose  4.7% rds 3.7 (>5  6%) Down  42% Wnd  58% again  32%
+Carrick+Enith+Hanforth+Sable               days won  95.8% | F1: lose  0.2% rds 3.5 (>5  4%) Down  23% Wnd  62% again  28% | F2: lose  4.0% rds 3.6 (>5  5%) Down  37% Wnd  60% again  29%
+Beornhard+Felix+Hanforth+Hilde             days won  96.2% | F1: lose  0.5% rds 2.7 (>5  0%) Down  17% Wnd  57% again  20% | F2: lose  3.3% rds 2.9 (>5  1%) Down  32% Wnd  59% again  23%
+Beornhard+Browndog+Hanforth+Hilde          days won  98.5% | F1: lose  0.5% rds 2.7 (>5  0%) Down  12% Wnd  55% again  21% | F2: lose  1.0% rds 2.9 (>5  2%) Down  30% Wnd  58% again  21%
+Beornhard+Browndog+Hanforth+Sable          days won  99.2% | F1: lose  0.0% rds 2.7 (>5  0%) Down  15% Wnd  54% again  20% | F2: lose  0.7% rds 2.7 (>5  1%) Down  25% Wnd  47% again  21%
+Felix+Hanforth+Hilde+Sable                 days won 100.0% | F1: lose  0.0% rds 2.9 (>5  0%) Down  15% Wnd  60% again  23% | F2: lose  0.0% rds 2.9 (>5  1%) Down  25% Wnd  51% again  24%
+ALL NORMALIZED (pooled)                    days won  91.7% | F1: lose  0.7% rds 3.2 (>5  4%) Down  25% Wnd  65% again  26% | F2: lose  7.6% rds 3.5 (>5  8%) Down  48% Wnd  70% again  29%
