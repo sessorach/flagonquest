@@ -3395,6 +3395,18 @@ function toggleInArray(setter, value) {
 // Shared look for a toggle-able filter chip button — Items' Keyword/
 // Supplement filters, Techniques' Related skills/Tags filters, and
 // Crafting's type-group filters all use this. Active chips light up gold.
+// A header/toolbar button (Export, Advanced, Browse...) — top level so the
+// browse lists outside App() can use it too.
+function actionBtn(danger = false) {
+  return {
+    padding: "6px 14px", fontSize: 16, fontWeight: 500, borderRadius: 6,
+    background: "transparent",
+    color:  danger ? "#c0392b" : TEXT.muted,
+    border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
+    display: "flex", alignItems: "center", gap: 5,
+  };
+}
+
 function chipStyle(active) {
   return {
     padding: "3px 10px", fontSize: 14, borderRadius: 20,
@@ -5506,20 +5518,68 @@ function ChipRow({ label, options, active, setter }) {
 
 const uniqueInOrder = list => [...new Set(list.filter(Boolean))];
 
+// What an item can cost: its flat "N Gold", or for a per-Level Masterwork
+// each Level times its price per Level. Empty when it has no price.
+function itemPrices(i) {
+  if (i.value_per_level) return (i.levels || []).map(lv => lv * i.value_per_level);
+  const m = /(\d+)/.exec(i.cost || "");
+  return m ? [Number(m[1])] : [];
+}
+
+// Item stat bonuses grouped the way a player looks for them (the
+// "Grants" filter), each a list of ITEM_STAT_FIELDS keys.
+const ITEM_GRANT_GROUPS = [
+  ["Resist", ["physical_resist", "fire_resist", "frost_resist", "brilliant_resist", "shadow_resist"]],
+  ["Defense", ["parry_defense", "dodge_defense", "vital_defense", "mental_defense", "instinct_defense"]],
+  ["Health", ["shallow_health", "deep_health"]],
+  ["Speed", ["speed"]],
+];
+
+const ITEM_SORTS = {
+  "Default": null,
+  "Gold, low to high": (a, b) => (Math.min(...itemPrices(a), Infinity) - Math.min(...itemPrices(b), Infinity)),
+  "Gold, high to low": (a, b) => (Math.max(...itemPrices(b), -Infinity) - Math.max(...itemPrices(a), -Infinity)),
+  "Level": (a, b) => (Math.min(...(a.levels || []), Infinity) - Math.min(...(b.levels || []), Infinity)),
+  "Name": (a, b) => a.name.localeCompare(b.name),
+};
+
 function ItemBrowser({ items, currentPatch }) {
   const [search, setSearch] = useState("");
   const [cats, setCats] = useState([]);
   const [slots, setSlots] = useState([]);
   const [sups, setSups] = useState([]);
   const [updatedOnly, setUpdatedOnly] = useState(false);
+  // Advanced: ranges and stat bonuses. A full Level range or a blank Gold
+  // bound filters nothing; once narrowed, an item with no Level (or no
+  // price) drops out, since it can't be said to fall inside the range.
+  const [advancedOpen, setAdvancedOpen] = useState(false);
+  const [lvMin, setLvMin] = useState(1);
+  const [lvMax, setLvMax] = useState(5);
+  const [goldMin, setGoldMin] = useState("");
+  const [goldMax, setGoldMax] = useState("");
+  const [grants, setGrants] = useState([]);
+  const [sortBy, setSortBy] = useState("Default");
   const categories = useMemo(() => uniqueInOrder(items.map(i => i.category)), [items]);
   const slotList = useMemo(() => uniqueInOrder(items.map(i => i.slot)), [items]);
   const supList = useMemo(() => uniqueInOrder(items.map(i => i.supplement)), [items]);
+  const levelNarrowed = lvMin > 1 || lvMax < 5;
+  const gMin = goldMin === "" ? null : Number(goldMin);
+  const gMax = goldMax === "" ? null : Number(goldMax);
   const shown = items.filter(i => {
     if (cats.length && !cats.includes(i.category)) return false;
     if (slots.length && !slots.includes(i.slot)) return false;
     if (sups.length && !sups.includes(i.supplement)) return false;
     if (updatedOnly && (!currentPatch || i.patch !== currentPatch)) return false;
+    if (levelNarrowed && !(i.levels || []).some(lv => lv >= lvMin && lv <= lvMax)) return false;
+    if (gMin != null || gMax != null) {
+      // A per-Level price only counts at the Levels the range allows.
+      const prices = i.value_per_level
+        ? (i.levels || []).filter(lv => !levelNarrowed || (lv >= lvMin && lv <= lvMax)).map(lv => lv * i.value_per_level)
+        : itemPrices(i);
+      if (!prices.some(g => (gMin == null || g >= gMin) && (gMax == null || g <= gMax))) return false;
+    }
+    if (grants.length && !grants.every(g => ITEM_GRANT_GROUPS.find(([n]) => n === g)[1]
+      .some(k => typeof i[k] === "number" && i[k] !== 0))) return false;
     if (search) {
       const hay = [i.name, i.category, i.slot, i.tags, i.effects, i.description, i.cost, i.school, i.relevant_skills,
                    i.material_types, i.supplement].filter(Boolean).join(" ").toLowerCase();
@@ -5527,18 +5587,67 @@ function ItemBrowser({ items, currentPatch }) {
     }
     return true;
   });
+  if (ITEM_SORTS[sortBy]) shown.sort(ITEM_SORTS[sortBy]);
+  const narrowed = levelNarrowed || gMin != null || gMax != null || grants.length > 0 || updatedOnly || sortBy !== "Default";
+  const goldInput = { width: 70, fontSize: 15, textAlign: "right" };
   return (
     <div style={{ maxWidth: 1160, margin: "0 auto", padding: 16 }}>
-      <BrowseSearch value={search} onChange={setSearch} placeholder="Search items — name, effects, category, slot, cost…" />
+      <div style={{ display: "flex", gap: 10, marginBottom: 10, flexWrap: "wrap", alignItems: "center" }}>
+        <input
+          type="text" placeholder="Search items — name, effects, category, slot, cost…" value={search}
+          onChange={e => setSearch(e.target.value)} style={{ flex: "1 1 200px", minWidth: 150 }}
+        />
+        <button onClick={() => setAdvancedOpen(o => !o)} style={actionBtn()}>
+          {advancedOpen ? "▲" : "▼"} Advanced{!advancedOpen && narrowed ? " (on)" : ""}
+        </button>
+      </div>
+      {advancedOpen && (
+        <div style={{
+          display: "flex", flexDirection: "column", gap: 10, fontSize: 15, color: TEXT.muted,
+          background: "#12161f", border: "0.5px solid #2d3555", borderRadius: 8, padding: "10px 14px", marginBottom: 12,
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ color: "#d4a843", fontWeight: 500 }}>Lv {lvMin}–{lvMax}</span>
+              <input type="range" min={1} max={5} value={lvMin} aria-label="Lowest Level"
+                     onChange={e => setLvMin(Math.min(+e.target.value, lvMax))} style={{ width: 60 }} />
+              <input type="range" min={1} max={5} value={lvMax} aria-label="Highest Level"
+                     onChange={e => setLvMax(Math.max(+e.target.value, lvMin))} style={{ width: 60 }} />
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <span>Gold</span>
+              <input type="text" inputMode="numeric" placeholder="min" aria-label="Lowest price in Gold" value={goldMin}
+                     onChange={e => setGoldMin(e.target.value.replace(/[^\d]/g, ""))} style={goldInput} />
+              <span>to</span>
+              <input type="text" inputMode="numeric" placeholder="max" aria-label="Highest price in Gold" value={goldMax}
+                     onChange={e => setGoldMax(e.target.value.replace(/[^\d]/g, ""))} style={goldInput} />
+            </div>
+            <label style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              Sort
+              <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ fontSize: 15 }}>
+                {Object.keys(ITEM_SORTS).map(k => <option key={k} value={k}>{k}</option>)}
+              </select>
+            </label>
+            {currentPatch && (
+              <label style={{ display: "flex", alignItems: "center", gap: 4, cursor: "pointer" }}>
+                <input type="checkbox" checked={updatedOnly} onChange={e => setUpdatedOnly(e.target.checked)} />
+                Recently updated
+              </label>
+            )}
+          </div>
+          <ChipRow label="Grants" options={ITEM_GRANT_GROUPS.map(([n]) => n)} active={grants} setter={setGrants} />
+          {narrowed && (
+            <button onClick={() => { setLvMin(1); setLvMax(5); setGoldMin(""); setGoldMax(""); setGrants([]);
+                                     setUpdatedOnly(false); setSortBy("Default"); }}
+                    style={{ alignSelf: "flex-start", background: "transparent", border: "none", color: "#c0392b", fontSize: 14, padding: 0 }}>
+              Reset advanced filters
+            </button>
+          )}
+        </div>
+      )}
       <ChipRow label="Category" options={categories} active={cats} setter={setCats} />
       <ChipRow label="Slot" options={slotList} active={slots} setter={setSlots} />
       <ChipRow label="Supplement" options={supList} active={sups} setter={setSups} />
-      {currentPatch && (
-        <label style={{ display: "flex", alignItems: "center", gap: 4, cursor: "pointer", fontSize: 15, color: TEXT.muted, marginBottom: 10 }}>
-          <input type="checkbox" checked={updatedOnly} onChange={e => setUpdatedOnly(e.target.checked)} />
-          Recently updated
-        </label>
-      )}
       <BrowseCount count={shown.length} noun="item" />
       {shown.length === 0 ? (
         <div style={{ textAlign: "center", padding: "60px 20px", color: TEXT.faint, fontSize: 16 }}>
@@ -7638,14 +7747,6 @@ function App() {
     if (tab) tab.location.href = link;
     else window.location.assign(link); // pop-ups blocked: open it here instead
   }
-
-  const actionBtn = (danger = false) => ({
-    padding: "6px 14px", fontSize: 16, fontWeight: 500, borderRadius: 6,
-    background: "transparent",
-    color:  danger ? "#c0392b" : TEXT.muted,
-    border: `0.5px solid ${danger ? "#c0392b" : "#2d3555"}`,
-    display: "flex", alignItems: "center", gap: 5,
-  });
 
   // uids that exist only because a selected background grants that
   // technique for free — see the sync effect near toggleBackground.

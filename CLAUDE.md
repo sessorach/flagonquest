@@ -70,7 +70,9 @@ which should stay a clean decision record.
   the usual `TechCard`/`InventoryTile`/`BackgroundCard` with a `browse`
   prop (reference info shown, build controls hidden; a Buildable
   Technique lists every Feature), and `ItemBrowser`/`BackgroundBrowser`
-  are the Items/Backgrounds lists. Supplements are a filter there, not
+  are the Items/Backgrounds lists (Items has an Advanced panel: Level
+  and Gold ranges via `itemPrices()`, Grants chips off
+  `ITEM_GRANT_GROUPS`, a sort). Supplements are a filter there, not
   the character's Sources. Rulebook/Glossary nav link to it as
   "Browse". When TechCard or a tile gains a character-only control,
   check it's hidden under `browse` too.

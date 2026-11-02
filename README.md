@@ -17,7 +17,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 The site can now browse Techniques, Items and Backgrounds without a character, and the Notes tab keeps a dated history of what each character bought. In the simulator, the strong "soak" builds (stacked Toughened Resolve plus Lifeline) turn out to be mostly a product of how we were measuring.
 
-- Browse mode: a Browse button in the header (and a link from the Rulebook and Glossary) opens searchable, filterable lists of every Technique, Item and Background, with no build controls in the way.
+- Browse mode: a Browse button in the header (and a link from the Rulebook and Glossary) opens searchable, filterable lists of every Technique, Item and Background, with no build controls in the way; items can also be narrowed by Level, Gold and what stats they grant, and sorted by price.
 
 - The history covers Stats, Skills, Techniques, Backgrounds, items and gold; changes made in one sitting are grouped into one entry, and it goes along when you export or duplicate a character.
 - Scored in parties of other strong builds, or against enemies that hit harder, the soaks fall from the top to below average at Level 3, while the damage builds hold up; at Level 2 Lifeline and Toughened Resolve still look strong.
