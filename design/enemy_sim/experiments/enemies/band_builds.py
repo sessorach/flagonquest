@@ -6,8 +6,10 @@ bottom of a band should feel some friction and the top should be
 comfortable. The combat share follows combat_xp's two points (105 of
 125, 145 of 175: 20 and 30 XP outside fights), straight-line in total
 XP, so the band edges are 85/125 combat at Level 2 and 125/165 at
-Level 3. Each archetype's own export at that Level is brought to the
-budget by combat_xp.normalize, the same rule as builds/normalized/.
+Level 3 (combat_xp.combat_for: 0.8 x composite + 5). Each archetype's
+own export at that Level is brought to the budget by
+combat_xp.normalize, the same rule as builds/normalized/; Levels 4-5
+grow the Level 3 exports (GROWN_FROM).
 
     python3 experiments/enemies/band_builds.py          # writes the four sets
     python3 experiments/enemies/band_builds.py --check  # the stored mid-band set still comes out the same
@@ -22,15 +24,20 @@ import party  # noqa: E402
 import combat_xp  # noqa: E402
 import build_optimizer as bo  # noqa: E402
 
-EDGES = {2: (85, 125), 3: (125, 165)}
-
-
-def combat_budget(total_xp):
-    """Combat XP for a total: 20 outside fights at 125, 30 at 175."""
-    return total_xp - (20 + (total_xp - 125) / 5)
+# Composite XP bands per enemy Level (designer: within 25 XP of the
+# schedule), and the combat XP of each point (combat_xp.combat_for).
+BANDS = {2: (100, 125, 150), 3: (150, 175, 200), 4: (200, 225, 250), 5: (250, 275, 300)}
+EDGES = {2: (85, 125), 3: (125, 165), 4: (165, 185, 205), 5: (205, 225, 245)}
+assert all(tuple(combat_xp.combat_for(t) for t in BANDS[L])[0] == EDGES[L][0] for L in EDGES)
+# Levels 4-5 have no exports: each Level 3 character grown to the budget
+# by the same rule (more ranks in the attack Skill and Stat, Essence and
+# the Defense Skills, rank cap 5). It keeps its Level 3 Techniques, so
+# it's a floor on a real Level 4-5 character, not a stand-in for one.
+GROWN_FROM = {4: 3, 5: 3}
 
 
 def build_at(arch, level, budget):
+    level = GROWN_FROM.get(level, level)
     name = bo.row_name(arch, level)
     um = {x.strip() for x in (party._rows()[name].get("Unmodeled") or "").split(",") if x.strip()}
     b = party.read_build(party._rows()[name]["Build"])

@@ -16,6 +16,15 @@ Skills, out-of-combat Techniques) is the character's life outside fights.
 import game_data, party, techniques as tq
 
 COMBAT_BUDGET = {2: 105, 3: 145}  # of 125 / 175 (designer, 2026-10-30: 145 is the mid-tier focal point)
+
+
+def combat_for(total):
+    """Combat XP for a PC's composite (total) XP (designer, 2026-11-02:
+    XP the designer quotes is always composite, combat plus everything
+    else). The straight line through COMBAT_BUDGET's two points, 105 of
+    125 and 145 of 175: 0.8 x total + 5, about 83% in the bands that
+    matter (Level 1's 75 -> 65, Level 5's 275 -> 225)."""
+    return round(0.8 * total + 5)
 CORE_SKILLS = {"Melee", "Archery", "Brawl", "Acrobatics", "Resilience", "Composure", "Insight", "Might",
                "Sorcery", "Theurgy", "Meditation"}
 HEALTH_ONLY = {"T014", "T023"}    # in OUT_OF_COMBAT only because the loader adds their Health

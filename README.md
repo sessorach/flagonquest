@@ -22,7 +22,7 @@ The site can now browse Techniques, Items and Backgrounds without a character, a
 - The history covers Stats, Skills, Techniques, Backgrounds, items and gold; changes made in one sitting are grouped into one entry, and it goes along when you export or duplicate a character.
 - Scored in parties of other strong builds, or against enemies that hit harder, the soaks fall from the top to below average at Level 3, while the damage builds hold up; at Level 2 Lifeline and Toughened Resolve still look strong.
 - Enemy damage climbs every Level while the party's Resist and Health barely do; about 1 less enemy Damage at Level 2 and 2 less at Level 3 gives every Level the same table feel, and one Level up is still a cliff in every version tried.
-- The draft table follows the original's shape out to Level 5, where some enemies reach the player caps; with about twice the enemy Health and a little less damage, fights in the middle of each Level's XP band run 4-5 rounds and the party wins over 90% of days, while the bottom of the band is a hard day and the top is easy.
+- The draft table follows the original's shape out to Level 5, where some enemies reach the player caps; with about twice the enemy Health and a little less damage, fights in the middle of each Level's XP band run 4-5 rounds and the party wins over 90% of days, while the bottom of the band is a hard day and the top is easy; Levels 4-5 were checked with the Level 3 characters grown to those XP totals.
 
 ### 2026-11-01 — Healing Magic against the other healing
 

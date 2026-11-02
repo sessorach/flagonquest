@@ -292,7 +292,10 @@ ENEMY_TABLE_V2 = {
     2: dict(attack=6, defense=(6, 5, 4), stats=(3, 2, 1), damage=-1, health=14),
     3: dict(attack=7, defense=(7, 6, 5), stats=(3, 3, 1), damage=-1, health=15),
     4: dict(attack=8, defense=(8, 7, 6), stats=(4, 4, 2), damage=-1, health=16),
-    5: dict(attack=9, defense=(9, 8, 7), stats=(4, 4, 2), damage=-1, health=17),
+    # Level 5's Health is lower than Level 4's on purpose: its 14 Upgrades
+    # (against 10) keep the total climbing, and the party has mostly capped
+    # out by then (2026-11-02, Level 3 characters grown to 205-245 combat XP).
+    5: dict(attack=9, defense=(9, 8, 7), stats=(4, 4, 2), damage=-1, health=13),
 }
 # No separate price for attacks aimed at Vital, Mental or Vigilant
 # (designer, 2026-11-02): an attack that's harder to defend against gives

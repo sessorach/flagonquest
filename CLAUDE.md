@@ -329,6 +329,13 @@ which should stay a clean decision record.
   data through `_paths.ROOT`. A new one-off study goes in
   `experiments/`, not the top level. `SIM_SET="NAME=value,..."` sets any
   tunable for one run, workers included.
+- **XP the designer quotes is composite** (2026-11-02): everything a PC
+  has spent, combat and otherwise. A sim party plays at its combat share,
+  `combat_xp.combat_for(total)` (0.8 × composite + 5: 105 of 125, 145 of
+  175). Label XP as composite in write-ups, with the combat figure in
+  brackets if it matters. Enemy Level N is for PCs within 25 XP of that
+  Level's schedule (Level 2: 100-150), so "on-level" means the middle of
+  the band.
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and

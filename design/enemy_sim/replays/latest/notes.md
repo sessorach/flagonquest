@@ -1,12 +1,12 @@
 # Latest replays (2026-11-02)
 
-No default change: v2 enemy table revised for 4-5 round fights (behind tunables.ENEMY_TABLE)
+No default change: v2 table Level 5 Health 13; Levels 4-5 checked with grown characters
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
-- This fight (seed 2): party won in 3 rounds, 82% party HP left
-- Matchup average over 1000 fights: 95.2% wins, 3.5 rounds, 75% HP left on a win
+- This fight (seed 1): party won in 4 rounds, 68% party HP left
+- Matchup average over 1000 fights: 96.5% wins, 3.5 rounds, 74% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

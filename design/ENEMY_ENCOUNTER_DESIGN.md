@@ -1670,12 +1670,24 @@ PC terms, Defense = 8 + the Skill Total:
 | 2 | 6 | 14 / 13 / 12 | 3 / 2 / 1 | −1 | 14 | 6 |
 | 3 | 7 | 15 / 14 / 13 | 3 / 3 / 1 | −1 | 15 | 8 |
 | 4 | 8 | 16 / 15 / 14 | 4 / 4 / 2 | −1 | 16 | 10 |
-| 5 | 9 | 17 / 16 / 15 | 4 / 4 / 2 | −1 | 17 | 14 |
+| 5 | 9 | 17 / 16 / 15 | 4 / 4 / 2 | −1 | 13 | 14 |
 
 High/Mid/Low are the damage and Resist Stats by the main Action's
 category, as before (weapon: damage High, Resist Low; spell: High, Mid;
 support: Mid, High). Damage is on every damaging attack, on top of the
 weapon or spell; Health is per Slot, before HealthBonus and Upgrades.
+Level 5's base Health is under Level 4's on purpose: its 14 Upgrades
+(against 10) keep the total climbing, and by then the party has mostly
+capped out (below).
+
+XP here is always composite, what a PC has spent on everything, the
+designer's unit. A PC plays at its combat share, `combat_xp.combat_for`:
+the line through the 2026-10-30 points (105 of 125, 145 of 175),
+0.8 × composite + 5, about 83%. XP trickles in steadily (early on about
+5 XP per adventuring day, or every other day, after a handful of fights
+and other challenges), so a party spends roughly five to ten adventuring
+days in each half of a band, and a few XP either way rarely shows at
+the table.
 
 How it got here, against v1 (2026-11-02 sweeps, `stat_sweep.py` with
 `SIM_SET="ENEMY_TABLE='v2'"`):
@@ -1706,46 +1718,53 @@ price of the longer fights.
 
 **Across the band** (`experiments/enemies/table_check.py`; days won /
 F1 Down / F1 Wounded / rounds / acts again; normalized parties at the
-band's bottom, middle and top in combat XP, `band_builds.py`; Level 1
-is the sample parties at 75 XP, the bottom of its band):
+band's bottom, middle and top, `band_builds.py`; Level 1 is the sample
+parties at 75 XP, the bottom of its band; Levels 4-5 below):
 
-| Level | Combat XP | v1 | v2 |
+| Level | Composite XP (combat) | v1 | v2 |
 |---|---|---|---|
-| 1 | 75 total | 94% / 20 / 58 / 2.9 / 23 | 93% / 22 / 59 / 4.7 / 53 |
-| 2 | 85 (bottom) | 45% / 59 / 85 / 4.1 / 37 | 35% / 64 / 86 / 6.7 / 65 |
-| 2 | 105 (middle) | 91% / 24 / 59 / 3.1 / 25 | 96% / 16 / 49 / 4.5 / 53 |
-| 2 | 125 (top) | 98% / 14 / 46 / 2.8 / 24 | 100% / 5 / 30 / 3.9 / 49 |
-| 3 | 125 (bottom) | 16% / 76 / 93 / 5.4 / 47 | 45% / 54 / 83 / 6.9 / 68 |
-| 3 | 145 (middle) | 65% / 49 / 79 / 3.3 / 33 | 92% / 20 / 58 / 4.3 / 55 |
-| 3 | 165 (top) | 88% / 29 / 62 / 2.9 / 27 | 100% / 5 / 27 / 3.7 / 49 |
+| 1 | 75 | 94% / 20 / 58 / 2.9 / 23 | 93% / 22 / 59 / 4.7 / 53 |
+| 2 | 100 (85), bottom | 45% / 59 / 85 / 4.1 / 37 | 35% / 64 / 86 / 6.7 / 65 |
+| 2 | 125 (105), middle | 91% / 24 / 59 / 3.1 / 25 | 96% / 16 / 49 / 4.5 / 53 |
+| 2 | 150 (125), top | 98% / 14 / 46 / 2.8 / 24 | 100% / 5 / 30 / 3.9 / 49 |
+| 3 | 150 (125), bottom | 16% / 76 / 93 / 5.4 / 47 | 45% / 54 / 83 / 6.9 / 68 |
+| 3 | 175 (145), middle | 65% / 49 / 79 / 3.3 / 33 | 92% / 20 / 58 / 4.3 / 55 |
+| 3 | 200 (165), top | 88% / 29 / 62 / 2.9 / 27 | 100% / 5 / 27 / 3.7 / 49 |
 
 The middle of every band lands together (92-96% of days, someone Down
 in about a fifth of fresh fights, Wounded in about half, 4.3-4.7
 rounds). The bottom of the band is a hard day, and harder than with
 short fights: a party that's behind grinds through about seven rounds.
-The top is easy. Parties at 125 combat XP win nearly every day against
-Level 2 enemies and about half against Level 3: that's the tier step.
+The top is easy. Parties at 150 XP win nearly every day against Level
+2 enemies and about half against Level 3: that's the tier step.
 
 Doubling base Health changes what an Upgrade is worth: +1 Health is
 now a smaller share of an enemy's toughness, so the 1 Upgrade = 1
 Health pricing of the ability catalog wants a recheck under v2.
 
-**Levels 4-5 are penciled.** No character exists past Level 3, so they
-were checked only with four plain stand-ins (the Baseline Tier row
-topped up with Stats and combat Skills, no Techniques), against the
-Level 3 mixes built Levels higher. Stand-ins play much stronger than
-real parties (Level 3 middle under v2: 100% of days and 2% Down, against
-92% and 20%), so the useful reading is the stand-ins' own feel from
-Level to Level, middle of the band (days / F1 Down / F1 Wounded /
-rounds):
+**Levels 4-5.** No character exists past Level 3, so the same eight
+parties' Level 3 exports were grown to each point by the normalizing
+rule (more ranks in the attack Skill and Stat, Essence and the Defense
+Skills, rank cap 5; `band_builds.GROWN_FROM`), against the Level 3
+mixes built Levels higher. They keep their Level 3 Techniques, so
+they're a floor on a real Level 4-5 character. Most run out of ranks
+to buy at 220-245 combat XP (about 270-300 composite), the designer's
+"capping out by about 275". Plain stand-ins (Stats and Skills only)
+played much stronger than real parties (Level 3 middle: 100% of days
+and 2% Down, against 92% and 20%), so they're no longer the check.
 
-| Level | v2 |
-|---|---|
-| 2 (105) | 100% / 1 / 39 / 3.1 |
-| 3 (145) | 100% / 2 / 40 / 3.1 |
-| 4 (185) | 100% / 4 / 48 / 3.7 |
-| 5 (225) | 100% / 6 / 70 / 4.0 |
+| Level | Composite XP (combat) | v1 | v2 |
+|---|---|---|---|
+| 4 | 200 (165), bottom | 34% / 62 / 87 / 4.6 / 50 | 52% / 51 / 81 / 6.4 / 70 |
+| 4 | 225 (185), middle | 78% / 35 / 72 / 3.7 / 44 | 95% / 18 / 53 / 4.8 / 65 |
+| 4 | 250 (205), top | 94% / 23 / 62 / 3.5 / 42 | 100% / 13 / 42 / 4.7 / 63 |
+| 5 | 250 (205), bottom | 22% / 71 / 92 / 6.7 / 62 | 95% / 24 / 57 / 5.4 / 68 |
+| 5 | 275 (225), middle | 26% / 67 / 91 / 6.6 / 61 | 96% / 22 / 53 / 5.3 / 67 |
+| 5 | 300 (245), top | 29% / 65 / 90 / 6.4 / 61 | 97% / 21 / 51 / 5.3 / 67 |
 
-The stand-ins reach every cap at 225 combat XP (about 275 total), the
-designer's expectation. Levels 4 and 5 ratchet up a little over 2-3.
-Checking them properly needs Level 4-5 sample characters.
+Level 4's middle lands with the others. Level 5 needed less base Health
+(17 played 6.5 rounds and 90% of days; 13 is the table's), and its band
+is flat: the grown characters have capped, so the bottom and top play
+alike. A real Level 5 character would have spent on Techniques instead
+of ranks it can't buy, so Level 5 is the least certain row; checking it
+properly needs Level 4-5 sample characters.
