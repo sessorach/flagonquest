@@ -398,6 +398,10 @@ ENEMY_HEALTH_MULT = 1
 # designer's yardstick for a harder day (2026-10-30): the enemy Levels the
 # model already has, read as win rates, no fractional steps. 0: as written.
 ENEMY_LEVEL_UP = 0
+# The enemy base table (2026-11-02): 'v1' as built so far, 'v2' the draft
+# shaped like the designer's original table (enemy_builder_pcstyle.
+# ENEMY_TABLE_V2). Only the codified rows (StrongDefense) read it.
+ENEMY_TABLE = 'v1'
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

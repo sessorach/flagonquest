@@ -268,6 +268,39 @@ EFFECT_STACKS = {1: 3, 2: 3, 3: 4, 4: 4, 5: 5}
 GUARANTEED_STACKS = {1: 2, 2: 2, 3: 2, 4: 3, 5: 3}
 
 
+# ---- Draft base table v2 (2026-11-02, tunables.ENEMY_TABLE = 'v2') ----
+# Per the designer: shaped like the original table (one row per Level,
+# everything read off it), roughly following a PC's progression with some
+# abstraction, so by Level 5 some archetypes reach the PC caps (+10 to an
+# attack or Defense Skill Total, 5 in a damage or Resist Stat). Level N is
+# for PCs within 25 XP of that Level's schedule (Level 2: 100-150 total).
+# Levels 1-3 come from the 2026-11-02 sweep against the measured parties
+# (ENEMY_ENCOUNTER_DESIGN.md, "Base stats against the measured party");
+# Levels 4-5 are extended to the caps and only checked against stand-ins.
+# Only the codified rows (StrongDefense) read it.
+#   attack: the attack Skill Total (every codified enemy attacks at it)
+#   defense: Skill Totals for the Strong / Parry / every other Defense
+#            (Defense = 8 + this, no ENEMY_DEFENSE_SHIFT on top)
+#   stats: High / Mid / Low (damage and Resist by the main Action's
+#          category, CATEGORY_STATS)
+ENEMY_TABLE_V2 = {
+    1: dict(attack=6, defense=(5, 4, 3), stats=(2, 2, 1)),
+    2: dict(attack=7, defense=(6, 5, 4), stats=(3, 2, 1)),
+    3: dict(attack=8, defense=(7, 6, 5), stats=(3, 3, 1)),
+    4: dict(attack=9, defense=(8, 7, 6), stats=(4, 4, 2)),
+    5: dict(attack=10, defense=(9, 8, 7), stats=(4, 4, 2)),
+}
+# Under v2, an attack aimed at Vital or Mental Defense deals this much
+# less: the party's Vital Defense and elemental Resist are its weakest
+# numbers, so at the same Damage it hits more often and harder than a
+# weapon (the Grave Caller in the 2026-11-02 sweep).
+V2_NON_ARMOR_DAMAGE = -1
+
+
+def _v2():
+    return getattr(T, "ENEMY_TABLE", "v1") == "v2"
+
+
 def build_enemy_pcstyle(name, level, slots, action, armor="Light",
                          defense_tiers=None, attack_tier="secondary",
                          health_bonus=0, defense_adj=0, accuracy_adj=0,
@@ -297,6 +330,9 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
         spread = PC_STAT_SPREAD_BY_LEVEL[max(0, level - ENEMY_STAT_LAG)]
         dmg_col, res_col = CATEGORY_STATS[action_category(action)]
         dmg_val, res_val = spread[dmg_col], spread[res_col]
+        if _v2():
+            hml = dict(zip((0, 1, 3), ENEMY_TABLE_V2[level]["stats"]))
+            dmg_val, res_val = hml[dmg_col], hml[res_col]
         stat = {k: dmg_val for k in ("body", "cunning", "mind", "agility", "body_or_cunning")}
         stat["essence"] = res_val
     else:
@@ -314,14 +350,26 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
 
     def def_total(category):
         tier = defense_tiers.get(category, "poor")
+        if strong_defense and _v2():
+            v2 = dict(zip(("primary", "secondary", "poor"), ENEMY_TABLE_V2[level]["defense"]))
+            return 8 + v2[tier] + defense_adj + adds.get(category, 0)
         return 8 + def_tiers[tier] + defense_adj + ENEMY_DEFENSE_SHIFT + adds.get(category, 0)
+
+    def attack_total(tier):
+        if strong_defense and _v2():
+            return ENEMY_TABLE_V2[level]["attack"]
+        return tiers[tier]
+
+    def non_armor(opp_def, dmg):
+        return V2_NON_ARMOR_DAMAGE if (strong_defense and _v2() and dmg and opp_def in ("Bodily", "Mental")) else 0
 
     # Accuracy is a plain Skill Total (no +8 - that's Defense's own
     # baseline, per party.py's real attack-roll formula), plus the
     # Action's small weapon-proficiency bonus, same shape as
     # tunables.WEAPON's own `accuracy` field.
-    accuracy = tiers[attack_tier] + act["acc_mod"] + accuracy_adj + adds.get("acc", 0)
+    accuracy = attack_total(attack_tier) + act["acc_mod"] + accuracy_adj + adds.get("acc", 0)
     attack_damage = act["dmg_base"] + stat[act["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS + adds.get("dmg", 0)
+    attack_damage += non_armor(act["opp_def"], act["dmg_base"])
     dmg_type = act["dmg_type"]
     opp_def = act["opp_def"]
     attack_range = act["range"] * level + (2 if act["range"] else 0)
@@ -377,9 +425,9 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     def _profile(action_name):
         a = ACTIONS[action_name]
         return dict(action=action_name,
-                    accuracy=tiers[attack_tier] + a["acc_mod"] + accuracy_adj + adds.get("acc", 0),
+                    accuracy=attack_total(attack_tier) + a["acc_mod"] + accuracy_adj + adds.get("acc", 0),
                     attack_damage=a["dmg_base"] + stat[a["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS + adds.get("dmg", 0)
-                    if a["dmg_base"] else 0,
+                    + non_armor(a["opp_def"], a["dmg_base"]) if a["dmg_base"] else 0,
                     dmg_type=a["dmg_type"], opp_def=a["opp_def"],
                     attack_range=a["range"] * level + (2 if a["range"] else 0))
 

@@ -1,0 +1,144 @@
+"""An enemy base table against parties across each Level's XP band (2026-11-02).
+
+Per the designer: Level N enemies are for PCs within 25 XP of that Level's
+schedule, so a party at the bottom of the band should feel some friction
+and one at the top should be comfortable. Each Level plays its four
+mixes under the day standard (day_sim, two fights) against:
+
+- Level 1: the six sample parties (75 XP, the bottom of the band) and
+  four Baseline Tier 1 rows;
+- Levels 2-3: eight normalized parties (baseline_check's spread) at the
+  bottom, middle and top of the band in combat XP (band_builds.py);
+- Levels 4-5: four plain stand-ins (the Baseline Tier row topped up with
+  Stats and the combat Skills, rank cap 5) at the same three points;
+  the Level 3 mixes built Levels higher (tunables.ENEMY_LEVEL_UP).
+  No real character exists past Level 3, so these are the stand-ins
+  alone, which played a bit stronger than the normalized parties at
+  Level 3.
+
+    python3 experiments/enemies/table_check.py -t v1,v2 -n 100
+"""
+import argparse
+import copy
+import json
+import multiprocessing as mp
+import os
+
+import _paths  # noqa: E402,F401
+import day_sim as ds  # noqa: E402
+import party  # noqa: E402
+import tunables as T  # noqa: E402
+import combat_xp  # noqa: E402
+import party_power as pp  # noqa: E402
+import build_optimizer as bo  # noqa: E402
+import baseline_check as bc  # noqa: E402
+import band_builds  # noqa: E402
+import calibrate  # noqa: E402
+
+# Combat XP at the bottom / middle / top of each band (band_builds.combat_budget).
+POINTS = {1: (None,), 2: (85, 105, 125), 3: (125, 145, 165), 4: (165, 185, 205), 5: (205, 225, 245)}
+L1_PARTIES = ("A", "B", "D", "T", "S", "U")
+
+
+def stand_in_at(level, budget):
+    """party_power.stand_in's rule at any combat budget, rank cap 5."""
+    b = copy.deepcopy(party.read_build(party._rows()[pp.STAND_IN[level]]["Build"]))
+    left = budget - combat_xp.split(b)[0]
+    order = [("statPoints", s) for s in pp._STAT_ORDER] + [("skillPoints", s) for s in pp._SKILL_ORDER]
+    progress = True
+    while left > 2 and progress:
+        progress = False
+        for kind, k in order:
+            v = int(b[kind][k])
+            cost = 2 * (v + 1) if kind == "statPoints" else v + 1
+            if v < 5 and cost <= left:
+                b[kind][k] = v + 1
+                left -= cost
+                progress = True
+    return b
+
+
+STANDINS_ONLY = [False]
+
+
+def groups(level, budget):
+    rows = party._rows()
+    if STANDINS_ONLY[0] and level > 1:
+        si = pp.STAND_IN[level]
+        return [("stand-ins", [si] * 4, {si: ({"build": stand_in_at(level, budget)}, None)})]
+    if level == 1:
+        return [(k, calibrate.PARTIES[1][k], {}) for k in L1_PARTIES] + \
+               [("stand-ins", [pp.STAND_IN[1]] * 4, {})]
+    if level >= 4:
+        si = pp.STAND_IN[level]
+        return [("stand-ins", [si] * 4, {si: ({"build": stand_in_at(level, budget)}, None)})]
+    out = []
+    for trio in bc.parties(level, 8):
+        names, swaps = [], {}
+        for arch in trio:
+            row = bo.row_name(arch, level)
+            b = party.read_build(band_builds.path(arch, level, budget))
+            names.append(row)
+            swaps[row] = ({"build": b}, bo.choices_for(rows[row], b))
+        out.append(("+".join(trio), names, swaps))
+    return out
+
+
+def _job(args):
+    table, level, budget, gi, n, seed, standins = args
+    STANDINS_ONLY[0] = standins
+    T.ENEMY_TABLE = table
+    T.ENEMY_LEVEL_UP = max(0, level - 3)
+    ds.set_mult(1.0)
+    gname, names, swaps = groups(level, budget)[gi]
+    recs = ds.run(names, swaps, min(level, 3), n, seed=seed)
+    return table, level, budget, gname, [r.get("per_fight", []) for r in recs]
+
+
+def summarize(by_group):
+    every = [d for g, days in by_group.items() if g != "stand-ins" or len(by_group) == 1 for d in days]
+    s = bc.stats(every)
+    per = [bc.stats(days)["day"] for g, days in by_group.items() if g != "stand-ins" or len(by_group) == 1]
+    s["worst"], s["best"] = min(per), max(per)
+    return s
+
+
+def line(table, level, budget, s):
+    f1, f2 = s[1], s.get(2, {})
+    where = "75 XP" if budget is None else f"c{budget}"
+    return (f"{table} L{level} {where:6s} days {s['day']:5.1f}% (worst {s['worst']:3.0f} best {s['best']:3.0f})"
+            f" | F1 lose {f1['lose']:4.1f} Down {f1['down']:3.0f} Wnd {f1['wounded']:3.0f} rds {f1['rounds']:.1f}"
+            f" again {f1['again']:2.0f} | F2 lose {f2.get('lose', 0):4.1f} Down {f2.get('down', 0):3.0f}")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-t", default="v1,v2")
+    ap.add_argument("-L", default="1,2,3,4,5")
+    ap.add_argument("-n", type=int, default=100)
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("-j", type=int, default=os.cpu_count())
+    ap.add_argument("-o", help="append readings here (jsonl)")
+    ap.add_argument("--standins", action="store_true", help="four stand-ins at every Level (to read Levels 4-5 against 2-3)")
+    a = ap.parse_args()
+    tables, levels = a.t.split(","), [int(x) for x in a.L.split(",")]
+    STANDINS_ONLY[0] = a.standins
+    jobs = [(t, L, b, gi, a.n, a.seed, a.standins) for t in tables for L in levels for b in POINTS[L]
+            for gi in range(len(groups(L, b)))]
+    res = {}
+    with mp.Pool(a.j) as pool:
+        for t, L, b, g, days in pool.imap(_job, jobs):
+            res.setdefault((t, L, b), {})[g] = days
+    for t in tables:
+        for L in levels:
+            for b in POINTS[L]:
+                s = summarize(res[(t, L, b)])
+                print(line(t, L, b, s), flush=True)
+                if a.o:
+                    with open(a.o, "a") as f:
+                        f.write(json.dumps(dict(table=t, level=L, budget=b, n=a.n, standins=a.standins,
+                                                stats=s)) + "\n")
+
+
+if __name__ == "__main__":
+    main()

@@ -1643,3 +1643,83 @@ smoothed Skill step plus a smaller Damage cut); whether fights should
 run three rounds or four (acts again); how steep one enemy Level should
 be (now it's a cliff in every table); and whether spells aimed at Vital
 or Mental need a price or a damage trade.
+
+### Draft base table v2 (2026-11-02)
+
+Per the designer: land structurally on the original table (one row per
+Level, everything read off it), roughly following a PC's progression
+with some abstraction, ratcheting up where the party needs a challenge;
+by Level 5 some archetypes reach the PC caps (+10 to an attack or
+Defense Skill Total, 5 in a damage or Resist Stat), since they're
+facing PCs at about 275 XP. Level N enemies are for PCs within 25 XP of
+that Level's schedule (Level 1: 75-100, Level 2: 100-150, Level 3:
+150-200, and so on), so a party at the bottom of a band should feel
+friction and one at the top should be comfortable. A party that hits a
+rare bad fight has its consumables to fall back on (not modeled yet), so
+an occasional acute loss is fine.
+
+`tunables.ENEMY_TABLE = 'v2'` builds the codified rows from
+`enemy_builder_pcstyle.ENEMY_TABLE_V2`; `'v1'` (the default) plays
+byte-identical to before (fixed-seed calibrate and day_sim runs). In
+PC terms, Defense = 8 + the Skill Total:
+
+| Level | Attack | Defense: Strong / Parry / other | Stat: High / Mid / Low | Health | Upgrades |
+|---|---|---|---|---|---|
+| 1 | 6 | 13 / 12 / 11 | 2 / 2 / 1 | 6 | 4 |
+| 2 | 7 | 14 / 13 / 12 | 3 / 2 / 1 | 6 | 6 |
+| 3 | 8 | 15 / 14 / 13 | 3 / 3 / 1 | 7 | 8 |
+| 4 | 9 | 16 / 15 / 14 | 4 / 4 / 2 | 8 | 10 |
+| 5 | 10 | 17 / 16 / 15 | 4 / 4 / 2 | 9 | 14 |
+
+High/Mid/Low are the damage and Resist Stats by the main Action's
+category, as before (weapon: damage High, Resist Low; spell: High, Mid;
+support: Mid, High). And an attack aimed at Vital or Mental Defense
+deals 1 less (the Grave Caller finding). Against v1: Attack and every
+Defense 1 lower from Level 2 on (v1 jumped +2 from Level 1 to 2, then
++1), the High Stat 1 lower at Levels 3 and 5 (v1: 2/3/4/4/5); Health,
+Upgrades, Mid and Low unchanged. At Level 5, with archetype bonuses
+and gear, some enemies reach the caps: attack 10 (11-12 Accuracy with a
+weapon's or an archetype's +1), a Defender's Parry 19, a Striker's or
+Bruiser's damage Stat 5, a Backup's Resist Stat 5.
+
+**Across the band** (`experiments/enemies/table_check.py`, days won /
+F1 Down / F1 Wounded / rounds; normalized parties at the band's bottom,
+middle and top in combat XP, `band_builds.py`; Level 1 is the sample
+parties at 75 XP, the bottom of its band):
+
+| Level | Combat XP | v1 | v2 |
+|---|---|---|---|
+| 1 | 75 total | 94% / 20 / 58 / 2.9 | 96% / 17 / 55 / 2.9 |
+| 2 | 85 (bottom) | 45% / 59 / 85 / 4.1 | 67% / 45 / 77 / 3.6 |
+| 2 | 105 (middle) | 91% / 24 / 59 / 3.1 | 98% / 14 / 47 / 2.9 |
+| 2 | 125 (top) | 98% / 14 / 46 / 2.8 | 100% / 7 / 34 / 2.7 |
+| 3 | 125 (bottom) | 16% / 76 / 93 / 5.4 | 61% / 49 / 82 / 4.1 |
+| 3 | 145 (middle) | 65% / 49 / 79 / 3.3 | 93% / 19 / 58 / 2.9 |
+| 3 | 165 (top) | 88% / 29 / 62 / 2.9 | 100% / 7 / 36 / 2.6 |
+
+So the middle of each band now sits about where Level 1 does, the
+bottom has the friction the designer described (parties at 125 combat
+XP win nearly every day against Level 2 enemies and about 60% against
+Level 3), and the top is comfortable. Acts again stays at
+22-29% in the middle of the band and rounds at about three; the
+three-rounds-or-acts-again question is still open.
+
+**Levels 4-5 are penciled.** No character exists past Level 3, so they
+were checked only with four plain stand-ins (the Baseline Tier row
+topped up with Stats and combat Skills, no Techniques), against the
+Level 3 mixes built Levels higher. Stand-ins play much stronger than
+real parties under v2 (Level 3 middle: 100% days and 3% Down, against
+93% and 19%), so the useful reading is the stand-ins' own feel from
+Level to Level, middle of the band:
+
+| Level | v1 | v2 |
+|---|---|---|
+| 2 (105) | 100% / 8 / 66 | 100% / 2 / 51 |
+| 3 (145) | 86% / 34 / 80 | 100% / 3 / 55 |
+| 4 (185) | 99% / 17 / 80 | 100% / 6 / 64 |
+| 5 (225) | 51% / 50 / 91 | 100% / 10 / 80 |
+
+The stand-ins reach every cap at 225 combat XP (about 275 total), the
+designer's expectation. Under v2 Levels 4 and 5 ratchet up a little
+over 2-3; under v1 Level 5 is a wall. Checking them properly needs
+Level 4-5 sample characters.
