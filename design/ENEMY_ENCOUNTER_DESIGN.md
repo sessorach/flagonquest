@@ -1654,72 +1654,98 @@ Defense Skill Total, 5 in a damage or Resist Stat), since they're
 facing PCs at about 275 XP. Level N enemies are for PCs within 25 XP of
 that Level's schedule (Level 1: 75-100, Level 2: 100-150, Level 3:
 150-200, and so on), so a party at the bottom of a band should feel
-friction and one at the top should be comfortable. A party that hits a
-rare bad fight has its consumables to fall back on (not modeled yet), so
-an occasional acute loss is fine.
+friction and one at the top should be comfortable. Fights should run
+about 4-5 rounds on average. A party that hits a rare bad fight has its
+consumables to fall back on (not modeled yet), so an occasional acute
+loss is fine.
 
 `tunables.ENEMY_TABLE = 'v2'` builds the codified rows from
 `enemy_builder_pcstyle.ENEMY_TABLE_V2`; `'v1'` (the default) plays
 byte-identical to before (fixed-seed calibrate and day_sim runs). In
 PC terms, Defense = 8 + the Skill Total:
 
-| Level | Attack | Defense: Strong / Parry / other | Stat: High / Mid / Low | Health | Upgrades |
-|---|---|---|---|---|---|
-| 1 | 6 | 13 / 12 / 11 | 2 / 2 / 1 | 6 | 4 |
-| 2 | 7 | 14 / 13 / 12 | 3 / 2 / 1 | 6 | 6 |
-| 3 | 8 | 15 / 14 / 13 | 3 / 3 / 1 | 7 | 8 |
-| 4 | 9 | 16 / 15 / 14 | 4 / 4 / 2 | 8 | 10 |
-| 5 | 10 | 17 / 16 / 15 | 4 / 4 / 2 | 9 | 14 |
+| Level | Attack | Defense: Strong / Parry / other | Stat: High / Mid / Low | Damage | Health | Upgrades |
+|---|---|---|---|---|---|---|
+| 1 | 5 | 13 / 12 / 11 | 2 / 2 / 1 | −1 | 12 | 4 |
+| 2 | 6 | 14 / 13 / 12 | 3 / 2 / 1 | −1 | 14 | 6 |
+| 3 | 7 | 15 / 14 / 13 | 3 / 3 / 1 | −1 | 15 | 8 |
+| 4 | 8 | 16 / 15 / 14 | 4 / 4 / 2 | −1 | 16 | 10 |
+| 5 | 9 | 17 / 16 / 15 | 4 / 4 / 2 | −1 | 17 | 14 |
 
 High/Mid/Low are the damage and Resist Stats by the main Action's
 category, as before (weapon: damage High, Resist Low; spell: High, Mid;
-support: Mid, High). And an attack aimed at Vital or Mental Defense
-deals 1 less (the Grave Caller finding). Against v1: Attack and every
-Defense 1 lower from Level 2 on (v1 jumped +2 from Level 1 to 2, then
-+1), the High Stat 1 lower at Levels 3 and 5 (v1: 2/3/4/4/5); Health,
-Upgrades, Mid and Low unchanged. At Level 5, with archetype bonuses
-and gear, some enemies reach the caps: attack 10 (11-12 Accuracy with a
-weapon's or an archetype's +1), a Defender's Parry 19, a Striker's or
-Bruiser's damage Stat 5, a Backup's Resist Stat 5.
+support: Mid, High). Damage is on every damaging attack, on top of the
+weapon or spell; Health is per Slot, before HealthBonus and Upgrades.
 
-**Across the band** (`experiments/enemies/table_check.py`, days won /
-F1 Down / F1 Wounded / rounds; normalized parties at the band's bottom,
-middle and top in combat XP, `band_builds.py`; Level 1 is the sample
-parties at 75 XP, the bottom of its band):
+How it got here, against v1 (2026-11-02 sweeps, `stat_sweep.py` with
+`SIM_SET="ENEMY_TABLE='v2'"`):
+
+- Attack and every Defense step +1 per Level (v1 jumped +2 from Level 1
+  to 2, then +1); the High Stat is 1 lower at Levels 3 and 5 (v1:
+  2/3/4/4/5). That alone put the middle of each band where Level 1
+  already was, at about three rounds.
+- For 4-5 rounds (designer), base Health about doubles (v1: 6/6/7/8/9),
+  paid for with 1 less Damage and 1 less Attack at every Level. More
+  Health is the only thing that lengthens fights, and each +2 Health
+  per Slot cost about 4-12 points of days won at Levels 2-3 until
+  Damage and Attack came down. It also brings "a hit enemy acts again" to
+  about half, the other October target.
+- Attacks aimed at Vital, Mental or Vigilant get no separate price
+  (designer): an attack that's harder to defend against gives up about
+  1 Accuracy, priced the same as one that only targets Dodge, and the
+  spell Actions already pay it (Accuracy +0 and 2 + Stat, against a
+  light weapon's +1 and 3 + Stat, and no Parry), like a player's War
+  Magic. An earlier draft took 1 Damage off them for the Grave Caller;
+  that's gone.
+
+At Level 5, with a weapon's or archetype's +1 and gear, some enemies
+reach the caps: Accuracy 10-11, a Defender's Parry 19, a Striker's or
+Bruiser's damage Stat 5, a Backup's Resist Stat 5. Attack is one under
+the PC progression at every Level (5 to 9, not 6 to 10); that's the
+price of the longer fights.
+
+**Across the band** (`experiments/enemies/table_check.py`; days won /
+F1 Down / F1 Wounded / rounds / acts again; normalized parties at the
+band's bottom, middle and top in combat XP, `band_builds.py`; Level 1
+is the sample parties at 75 XP, the bottom of its band):
 
 | Level | Combat XP | v1 | v2 |
 |---|---|---|---|
-| 1 | 75 total | 94% / 20 / 58 / 2.9 | 96% / 17 / 55 / 2.9 |
-| 2 | 85 (bottom) | 45% / 59 / 85 / 4.1 | 67% / 45 / 77 / 3.6 |
-| 2 | 105 (middle) | 91% / 24 / 59 / 3.1 | 98% / 14 / 47 / 2.9 |
-| 2 | 125 (top) | 98% / 14 / 46 / 2.8 | 100% / 7 / 34 / 2.7 |
-| 3 | 125 (bottom) | 16% / 76 / 93 / 5.4 | 61% / 49 / 82 / 4.1 |
-| 3 | 145 (middle) | 65% / 49 / 79 / 3.3 | 93% / 19 / 58 / 2.9 |
-| 3 | 165 (top) | 88% / 29 / 62 / 2.9 | 100% / 7 / 36 / 2.6 |
+| 1 | 75 total | 94% / 20 / 58 / 2.9 / 23 | 93% / 22 / 59 / 4.7 / 53 |
+| 2 | 85 (bottom) | 45% / 59 / 85 / 4.1 / 37 | 35% / 64 / 86 / 6.7 / 65 |
+| 2 | 105 (middle) | 91% / 24 / 59 / 3.1 / 25 | 96% / 16 / 49 / 4.5 / 53 |
+| 2 | 125 (top) | 98% / 14 / 46 / 2.8 / 24 | 100% / 5 / 30 / 3.9 / 49 |
+| 3 | 125 (bottom) | 16% / 76 / 93 / 5.4 / 47 | 45% / 54 / 83 / 6.9 / 68 |
+| 3 | 145 (middle) | 65% / 49 / 79 / 3.3 / 33 | 92% / 20 / 58 / 4.3 / 55 |
+| 3 | 165 (top) | 88% / 29 / 62 / 2.9 / 27 | 100% / 5 / 27 / 3.7 / 49 |
 
-So the middle of each band now sits about where Level 1 does, the
-bottom has the friction the designer described (parties at 125 combat
-XP win nearly every day against Level 2 enemies and about 60% against
-Level 3), and the top is comfortable. Acts again stays at
-22-29% in the middle of the band and rounds at about three; the
-three-rounds-or-acts-again question is still open.
+The middle of every band lands together (92-96% of days, someone Down
+in about a fifth of fresh fights, Wounded in about half, 4.3-4.7
+rounds). The bottom of the band is a hard day, and harder than with
+short fights: a party that's behind grinds through about seven rounds.
+The top is easy. Parties at 125 combat XP win nearly every day against
+Level 2 enemies and about half against Level 3: that's the tier step.
+
+Doubling base Health changes what an Upgrade is worth: +1 Health is
+now a smaller share of an enemy's toughness, so the 1 Upgrade = 1
+Health pricing of the ability catalog wants a recheck under v2.
 
 **Levels 4-5 are penciled.** No character exists past Level 3, so they
 were checked only with four plain stand-ins (the Baseline Tier row
 topped up with Stats and combat Skills, no Techniques), against the
 Level 3 mixes built Levels higher. Stand-ins play much stronger than
-real parties under v2 (Level 3 middle: 100% days and 3% Down, against
-93% and 19%), so the useful reading is the stand-ins' own feel from
-Level to Level, middle of the band:
+real parties (Level 3 middle under v2: 100% of days and 2% Down, against
+92% and 20%), so the useful reading is the stand-ins' own feel from
+Level to Level, middle of the band (days / F1 Down / F1 Wounded /
+rounds):
 
-| Level | v1 | v2 |
-|---|---|---|
-| 2 (105) | 100% / 8 / 66 | 100% / 2 / 51 |
-| 3 (145) | 86% / 34 / 80 | 100% / 3 / 55 |
-| 4 (185) | 99% / 17 / 80 | 100% / 6 / 64 |
-| 5 (225) | 51% / 50 / 91 | 100% / 10 / 80 |
+| Level | v2 |
+|---|---|
+| 2 (105) | 100% / 1 / 39 / 3.1 |
+| 3 (145) | 100% / 2 / 40 / 3.1 |
+| 4 (185) | 100% / 4 / 48 / 3.7 |
+| 5 (225) | 100% / 6 / 70 / 4.0 |
 
 The stand-ins reach every cap at 225 combat XP (about 275 total), the
-designer's expectation. Under v2 Levels 4 and 5 ratchet up a little
-over 2-3; under v1 Level 5 is a wall. Checking them properly needs
-Level 4-5 sample characters.
+designer's expectation. Levels 4 and 5 ratchet up a little over 2-3.
+Checking them properly needs Level 4-5 sample characters.

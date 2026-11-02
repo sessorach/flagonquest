@@ -1,0 +1,4 @@
+v2 L2 c105   days 100.0% (worst 100 best 100) | F1 lose  0.0 Down   1 Wnd  39 rds 3.1 again 39 | F2 lose  0.0 Down  20
+v2 L3 c145   days 100.0% (worst 100 best 100) | F1 lose  0.0 Down   2 Wnd  40 rds 3.1 again 43 | F2 lose  0.0 Down  22
+v2 L4 c185   days 100.0% (worst 100 best 100) | F1 lose  0.0 Down   4 Wnd  48 rds 3.7 again 56 | F2 lose  0.0 Down  32
+v2 L5 c225   days 100.0% (worst 100 best 100) | F1 lose  0.0 Down   6 Wnd  70 rds 4.0 again 62 | F2 lose  0.0 Down  51

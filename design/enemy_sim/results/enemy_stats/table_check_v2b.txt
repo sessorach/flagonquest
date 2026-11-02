@@ -1,0 +1,13 @@
+v2 L1 75 XP  days  92.7% (worst  86 best  98) | F1 lose  1.0 Down  22 Wnd  59 rds 4.7 again 53 | F2 lose  6.4 Down  48
+v2 L2 c85    days  34.5% (worst  10 best  72) | F1 lose 13.7 Down  64 Wnd  86 rds 6.7 again 65 | F2 lose 60.0 Down  90
+v2 L2 c105   days  95.8% (worst  80 best 100) | F1 lose  0.6 Down  16 Wnd  49 rds 4.5 again 53 | F2 lose  3.6 Down  41
+v2 L2 c125   days  99.9% (worst 100 best 100) | F1 lose  0.0 Down   5 Wnd  30 rds 3.9 again 49 | F2 lose  0.1 Down  18
+v2 L3 c125   days  45.4% (worst  21 best  90) | F1 lose 10.7 Down  54 Wnd  83 rds 6.9 again 68 | F2 lose 49.1 Down  85
+v2 L3 c145   days  91.6% (worst  74 best 100) | F1 lose  0.8 Down  20 Wnd  58 rds 4.3 again 55 | F2 lose  7.7 Down  51
+v2 L3 c165   days  99.9% (worst 100 best 100) | F1 lose  0.0 Down   5 Wnd  27 rds 3.7 again 49 | F2 lose  0.1 Down  21
+v2 L4 c165   days  95.0% (worst  95 best  95) | F1 lose  0.0 Down  28 Wnd  82 rds 3.9 again 55 | F2 lose  5.0 Down  86
+v2 L4 c185   days 100.0% (worst 100 best 100) | F1 lose  0.0 Down   4 Wnd  48 rds 3.7 again 56 | F2 lose  0.0 Down  32
+v2 L4 c205   days 100.0% (worst 100 best 100) | F1 lose  0.0 Down   2 Wnd  44 rds 3.7 again 54 | F2 lose  0.0 Down  24
+v2 L5 c205   days 100.0% (worst 100 best 100) | F1 lose  0.0 Down  10 Wnd  71 rds 4.0 again 62 | F2 lose  0.0 Down  58
+v2 L5 c225   days 100.0% (worst 100 best 100) | F1 lose  0.0 Down   6 Wnd  70 rds 4.0 again 62 | F2 lose  0.0 Down  51
+v2 L5 c245   days 100.0% (worst 100 best 100) | F1 lose  0.0 Down   6 Wnd  70 rds 4.0 again 62 | F2 lose  0.0 Down  51

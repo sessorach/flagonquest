@@ -283,18 +283,22 @@ GUARANTEED_STACKS = {1: 2, 2: 2, 3: 2, 4: 3, 5: 3}
 #            (Defense = 8 + this, no ENEMY_DEFENSE_SHIFT on top)
 #   stats: High / Mid / Low (damage and Resist by the main Action's
 #          category, CATEGORY_STATS)
+#   damage: on every damaging attack, on top of the weapon or spell
+#   health: base Health per Slot (replaces ENEMY_HEALTH_BY_LEVEL)
+# The designer wants fights of about 4-5 rounds (2026-11-02): roughly
+# twice v1's base Health, paid for with 1 less Damage and Accuracy.
 ENEMY_TABLE_V2 = {
-    1: dict(attack=6, defense=(5, 4, 3), stats=(2, 2, 1)),
-    2: dict(attack=7, defense=(6, 5, 4), stats=(3, 2, 1)),
-    3: dict(attack=8, defense=(7, 6, 5), stats=(3, 3, 1)),
-    4: dict(attack=9, defense=(8, 7, 6), stats=(4, 4, 2)),
-    5: dict(attack=10, defense=(9, 8, 7), stats=(4, 4, 2)),
+    1: dict(attack=5, defense=(5, 4, 3), stats=(2, 2, 1), damage=-1, health=12),
+    2: dict(attack=6, defense=(6, 5, 4), stats=(3, 2, 1), damage=-1, health=14),
+    3: dict(attack=7, defense=(7, 6, 5), stats=(3, 3, 1), damage=-1, health=15),
+    4: dict(attack=8, defense=(8, 7, 6), stats=(4, 4, 2), damage=-1, health=16),
+    5: dict(attack=9, defense=(9, 8, 7), stats=(4, 4, 2), damage=-1, health=17),
 }
-# Under v2, an attack aimed at Vital or Mental Defense deals this much
-# less: the party's Vital Defense and elemental Resist are its weakest
-# numbers, so at the same Damage it hits more often and harder than a
-# weapon (the Grave Caller in the 2026-11-02 sweep).
-V2_NON_ARMOR_DAMAGE = -1
+# No separate price for attacks aimed at Vital, Mental or Vigilant
+# (designer, 2026-11-02): an attack that's harder to defend against gives
+# up about 1 Accuracy, priced the same as one that only targets Dodge, and
+# the spell Actions already pay it (Accuracy +0 and 2 + Stat, against a
+# light weapon's +1 and 3 + Stat, and no Parry), like War Magic.
 
 
 def _v2():
@@ -360,16 +364,15 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
             return ENEMY_TABLE_V2[level]["attack"]
         return tiers[tier]
 
-    def non_armor(opp_def, dmg):
-        return V2_NON_ARMOR_DAMAGE if (strong_defense and _v2() and dmg and opp_def in ("Bodily", "Mental")) else 0
+    v2_damage = ENEMY_TABLE_V2[level]["damage"] if strong_defense and _v2() else 0
+
 
     # Accuracy is a plain Skill Total (no +8 - that's Defense's own
     # baseline, per party.py's real attack-roll formula), plus the
     # Action's small weapon-proficiency bonus, same shape as
     # tunables.WEAPON's own `accuracy` field.
     accuracy = attack_total(attack_tier) + act["acc_mod"] + accuracy_adj + adds.get("acc", 0)
-    attack_damage = act["dmg_base"] + stat[act["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS + adds.get("dmg", 0)
-    attack_damage += non_armor(act["opp_def"], act["dmg_base"])
+    attack_damage = act["dmg_base"] + stat[act["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS + adds.get("dmg", 0) + v2_damage
     dmg_type = act["dmg_type"]
     opp_def = act["opp_def"]
     attack_range = act["range"] * level + (2 if act["range"] else 0)
@@ -389,6 +392,8 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     if armor == "Heavy" and level < HEAVY_ARMOR_MIN_LEVEL:
         raise ValueError(f"{name}: Heavy Armor is Level {HEAVY_ARMOR_MIN_LEVEL}+ only")
     base_health = ENEMY_HEALTH_BASE if ENEMY_HEALTH_BASE is not None else ENEMY_HEALTH_BY_LEVEL[level]
+    if strong_defense and _v2():
+        base_health = ENEMY_TABLE_V2[level]["health"]
     health = math.ceil((base_health + health_bonus) * T.SLOT_MULTIPLIER[slots])
     speed = math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"] + adds.get("speed", 0)
     reflex = 2 + level
@@ -427,7 +432,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
         return dict(action=action_name,
                     accuracy=attack_total(attack_tier) + a["acc_mod"] + accuracy_adj + adds.get("acc", 0),
                     attack_damage=a["dmg_base"] + stat[a["stat"]] + damage_adj + ENEMY_DAMAGE_BONUS + adds.get("dmg", 0)
-                    + non_armor(a["opp_def"], a["dmg_base"]) if a["dmg_base"] else 0,
+                    + v2_damage if a["dmg_base"] else 0,
                     dmg_type=a["dmg_type"], opp_def=a["opp_def"],
                     attack_range=a["range"] * level + (2 if a["range"] else 0))
 
