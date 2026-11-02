@@ -1,0 +1,8 @@
+A (L3 enemies)             L2 days  73.2% (worst  42 best  94 si 100) | F1 lose  2.7 Down  34 Wnd  73 rds 5.1 again 45 | F2 lose 24.8 Down  70
+A, L3 acc-1                L2 days  80.8% (worst  60 best  96 si 100) | F1 lose  1.8 Down  28 Wnd  67 rds 5.1 again 45 | F2 lose 17.7 Down  63
+A, L3 def-1                L2 days  82.0% (worst  52 best  96 si 100) | F1 lose  1.7 Down  29 Wnd  70 rds 4.5 again 43 | F2 lose 16.5 Down  66
+A, L3 hp-2                 L2 days  85.8% (worst  61 best  98 si 100) | F1 lose  0.9 Down  24 Wnd  65 rds 4.3 again 36 | F2 lose 13.4 Down  60
+A, L3 hp-3                 L2 days  89.4% (worst  64 best  98 si 100) | F1 lose  0.7 Down  20 Wnd  61 rds 3.9 again 32 | F2 lose  9.9 Down  55
+A, L3 res-1                L2 days  89.0% (worst  66 best  98 si 100) | F1 lose  0.6 Down  25 Wnd  66 rds 4.0 again 37 | F2 lose 10.4 Down  61
+A, L3 dmg-3                L2 days  96.0% (worst  94 best 100 si 100) | F1 lose  1.0 Down  11 Wnd  43 rds 4.7 again 44 | F2 lose  3.1 Down  34
+A, L3 as L2 enemies        L2 days  96.1% (worst  84 best 100 si 100) | F1 lose  0.3 Down  14 Wnd  53 rds 3.4 again 29 | F2 lose  3.6 Down  44

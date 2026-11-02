@@ -1,0 +1,12 @@
+as is                      L1 days   0.0% (worst   0 best   0 si   0) | F1 lose 97.6 Down 100 Wnd 100 rds 12.3 again 55 | F2 lose 100.0 Down 100
+as is                      L2 days   0.0% (worst   0 best   0 si   0) | F1 lose 95.6 Down  99 Wnd 100 rds 11.5 again 62 | F2 lose 100.0 Down 100
+as is                      L3 days   0.0% (worst   0 best   0 si   0) | F1 lose 96.1 Down 100 Wnd 100 rds 16.0 again 66 | F2 lose 100.0 Down 100
+A flat dmg                 L1 days   0.1% (worst   0 best   0 si   0) | F1 lose 88.7 Down  97 Wnd 100 rds 10.1 again 58 | F2 lose 99.3 Down 100
+A flat dmg                 L2 days   4.7% (worst   0 best  13 si  57) | F1 lose 55.4 Down  87 Wnd  96 rds 9.6 again 66 | F2 lose 89.5 Down  98
+A flat dmg                 L3 days   0.3% (worst   0 best   3 si   0) | F1 lose 83.9 Down  95 Wnd  99 rds 10.3 again 68 | F2 lose 97.9 Down 100
+B flat dmg hp+2            L1 days   0.0% (worst   0 best   0 si   0) | F1 lose 93.8 Down  99 Wnd 100 rds 13.9 again 64 | F2 lose 100.0 Down 100
+B flat dmg hp+2            L2 days   1.8% (worst   0 best   5 si  30) | F1 lose 70.6 Down  91 Wnd  98 rds 11.0 again 71 | F2 lose 94.0 Down  99
+B flat dmg hp+2            L3 days   0.1% (worst   0 best   1 si   0) | F1 lose 89.5 Down  97 Wnd 100 rds 13.0 again 71 | F2 lose 99.1 Down 100
+C flat dmg hp+4 acc-1      L1 days   0.0% (worst   0 best   0 si   0) | F1 lose 96.1 Down  99 Wnd 100 rds 14.5 again 70 | F2 lose 100.0 Down 100
+C flat dmg hp+4 acc-1      L2 days   1.4% (worst   0 best   5 si  23) | F1 lose 76.8 Down  93 Wnd  98 rds 12.4 again 74 | F2 lose 94.1 Down  99
+C flat dmg hp+4 acc-1      L3 days   0.1% (worst   0 best   0 si   0) | F1 lose 90.5 Down  98 Wnd 100 rds 14.6 again 74 | F2 lose 99.3 Down 100

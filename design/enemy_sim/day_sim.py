@@ -256,7 +256,7 @@ def play_day(names, swaps, level, mixes, seed, rows, start=None, log=None):
         # (experiments/yardsticks/baseline_check.py). Only read, so the
         # fights themselves don't move.
         rec.setdefault('per_fight', []).append(dict(
-            won=r['winner'] == 'party', rounds=r['rounds'],
+            mix=mix, won=r['winner'] == 'party', rounds=r['rounds'],
             downs=sum(bool(p.get('was_downed')) for p in pcs), wounded=r['pc_wounded'],
             again=r['acts_again_any'], again_first=r['acts_again_first']))
         if T.TRACK_SHARES:

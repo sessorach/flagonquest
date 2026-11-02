@@ -1542,3 +1542,104 @@ numbers. The exception is Shield Wall, which is now a milder counter to
 the all-weapon party (72% against 43%): the codified Hedge Knight has 1
 less Parry and Resist than the hand-picked one. A GM who wants the old
 wall can spend Upgrades on Durable or a second rider.
+
+### Base stats against the measured party (2026-11-02)
+
+Per the designer: Slots stay as they are (count the players, pick
+enemies adding up to that many Slots), so if on-level fights are off,
+the per-Level baseline is what moves. A broad first pass, nothing
+changed yet. `experiments/enemies/stat_sweep.py` nudges every built
+enemy's numbers by Level (or one enemy's, `3@Brute:`) and plays the day
+standard (two fights, care between) against the measured on-level
+parties: Level 1 the six sample parties at 75 XP, Levels 2-3 eight
+normalized parties (105 / 145 combat XP) spread over party_mixes'
+ranking, 400 days each. Readings are in `results/enemy_stats/`. The
+targets are the 2026-10-08 ones (TABLE_PLAY_NOTES.md): about three
+rounds, the party basically never loses, someone Down less than once in
+three fights, someone Wounded about every other fight, a hit enemy acts
+again about half the time. "F1" below is the day's first fight, fresh.
+
+**Where it stands.** Level 1 and 2 are close; Level 3 isn't.
+
+| Level | Days won | F1 lost | F1 Down | F1 Wounded | Rounds | Acts again |
+|---|---|---|---|---|---|---|
+| 1 | 94% | 0.3% | 20% | 58% | 2.9 | 23% |
+| 2 | 91% | 0.9% | 24% | 59% | 3.1 | 25% |
+| 3 | 65% | 5.7% | 49% | 79% | 3.3 | 33% |
+
+**Why Level 3.** The measured party barely gets tougher from Level 1 to
+3 (Level 1 is the sample builds, 2-3 the normalized ones): average
+Physical Resist 3.3 / 4.4 / 4.3, Health 10.0 / 10.5 / 10.9, the main
+Defenses up about 1 a Level. Enemies gain +1 Accuracy, +1 every
+Defense, +1 Damage (the damage Stat's step in the lagged spread), +1
+Resist on about half the roster and 2-3 Health, every Level. The
+party's offense keeps up with the enemy's defense; its defense doesn't
+keep up with the enemy's offense.
+
+**One stat at a time** (every Level, days won):
+
+| | L1 | L2 | L3 |
+|---|---|---|---|
+| as is | 94 | 91 | 65 |
+| Damage −1 / +1 | 100 / 78 | 99 / 75 | 83 / 42 |
+| Resist −1 / +1 | 98 / 83 | 95 / 82 | 74 / 48 |
+| Health −2 / +2 | 98 / 85 | 96 / 84 | 75 / 51 |
+| Accuracy −1 / +1 | 98 / 91 | 95 / 87 | 73 / 55 |
+| Defense −1 / +1 | 97 / 91 | 94 / 88 | 68 / 59 |
+| Hex / Shield stacks −1 | 95 | 92 | 65 |
+
+Damage moves the most; it also moves Down and Wounded the most. Health
+is the only knob that moves fight length and "acts again" (+2 Health:
++0.5 rounds, +10 points of acts again), and it costs survival.
+
+**Matching the feel per Level.** From a grid of Damage × Health ×
+Accuracy, the same table feel needs about 1 less enemy Damage at Level 2
+and 2 less at Level 3: enemy Damage flat from Level 1 to 3, the way the
+party's Resist and Health are. Two families:
+
+| Table | Level | Days won | F1 Down | F1 Wounded | Rounds | Acts again |
+|---|---|---|---|---|---|---|
+| A: Damage −1 at L2, −2 at L3 | 2 | 99% | 8% | 38% | 3.0 | 25% |
+| | 3 | 97% | 13% | 50% | 3.0 | 31% |
+| C: A, plus +4 Health per Slot and −1 Accuracy at every Level (L1 also −1 Damage) | 1 | 96% | 15% | 51% | 4.0 | 43% |
+| | 2 | 97% | 13% | 47% | 3.9 | 41% |
+| | 3 | 91% | 19% | 57% | 3.9 | 46% |
+| E: −1 Accuracy and Defense from L2 up, −1 Damage from L3 up, Grave Caller −1 Damage | 2 | 98% | 14% | 47% | 2.9 | 23% |
+| | 3 | 93% | 19% | 58% | 3.0 | 30% |
+
+"About three rounds" and "acts again about half the time" pull against
+each other: acts again only climbs with enemy Health, and the Health
+that gets it to 45% makes fights about four rounds.
+
+**One and two Levels up.** Every table above makes the next Level a
+cliff. Days won with enemies one Level up / two up:
+
+| Table | L1 | L2 | L3 |
+|---|---|---|---|
+| as is | 8 / 0 | 14 / 0 | 7 / 0 |
+| A | 29 / 0 | 73 / 5 | 54 / 0 |
+| C | 7 / 0 | 48 / 1 | 32 / 0 |
+| E | 27 / 0 | 62 / 4 | 44 / 0 |
+
+(For Level 3's rungs, Levels 4-5 took Level 3's nudges.) Taking parts of
+the Level 2→3 step off one at a time, under A, Level 2 parties: days
+won one up goes 73% → Resist −1 89%, Health −3 89%, Defense −1 82%,
+Accuracy −1 81%. Level 1→2 is the steepest:
+`SKILL_TOTAL_BY_LEVEL` steps +2 there (4/5/6 → 6/7/8) and +1 after.
+
+**Mixes and archetypes.** Fresh first fights at Level 3 under A:
+Frontline (two Brutes, two Grave Callers) Down 31%, Horde 14%, Shield
+Wall 7%, Warband 2%. Frontline's danger is the Grave Caller: −1 Damage
+on it alone takes Frontline to 5% Down (the Brute alone, 16%). Its
+Vital Spell goes after Vital Defense with Shadow damage, and the party's
+Vital Defense and elemental Resist (about 3, against 4.4 Physical) are
+its weakest numbers, so a spell at the same Damage hits more often and
+harder than a weapon. Horde's acts again sits at 10-19% at every Level:
+its minions drop to one hit. Warband is mild because its Warpriest
+spends turns Protecting rather than attacking.
+
+**Open for the designer.** Which damage curve (A's flat Damage, or E's
+smoothed Skill step plus a smaller Damage cut); whether fights should
+run three rounds or four (acts again); how steep one enemy Level should
+be (now it's a cliff in every table); and whether spells aimed at Vital
+or Mental need a price or a damage trade.
