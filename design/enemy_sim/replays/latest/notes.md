@@ -1,12 +1,12 @@
-# Latest replays (2026-11-01)
+# Latest replays (2026-11-02)
 
-Healing Magic Encounter test (switch off by default); folder reorganized; no change to fights
+Yardstick checks (no change to fights)
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 4 rounds, 68% party HP left
-- Matchup average over 1000 fights: 95.8% wins, 3.5 rounds, 74% HP left on a win
+- Matchup average over 1000 fights: 94.9% wins, 3.6 rounds, 74% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

@@ -2413,3 +2413,88 @@ then the scorecard on what it found. Contribution in points, old rule
   -2.81). Making Healing Magic an Encounter Technique trims the healing
   but doesn't touch Toughened Resolve and Lifeline, which is what makes a
   soak.
+
+### Does the yardstick flatter max Health and Lifeline? (2026-11-01 to 11-02)
+
+The designer's question after the second run: why are Toughened Resolve
+and Lifeline so strong, and would better measures value them less? Three
+runs, results in `hall_of_fame/runs_yardstick/`, on the second run's best
+builds.
+
+**Why they're strong, from the rules and the sim.** Lifeline (6 XP) is
+cast as an Interrupt when a hit would Down an ally, and from then on
+every point of Health that ally would lose comes off the caster for the
+rest of the encounter. Toughened Resolve adds 2 Shallow and 2 Deep
+Health a copy; behind a Lifeline, that pool covers the whole party. A
+day is lost when the party goes Down, so turning "the 10-Health
+character drops" into "the soak loses some Health" is worth a lot.
+Lifeline only moves Health ("the target still suffers other effects"),
+and our enemies mostly deal damage, so in the sim it covers nearly
+everything.
+
+**1. Harder-hitting enemies** (`scorecard_l<L>_dmg.json`: every enemy
+attack +1 damage, `ENEMY_DAMAGE_ADJ`, about the step a Level up skips
+from Level 3 to 4; the same builds). Contribution with three stand-ins,
+one Level up, Level 3: Sable +85 to +83, Jackal +65 to +50, Hanforth +77
+to +49, Beornhard +74 to +46, Felix +72 to +46, Hilde +73 to +36, Enith
++70 to +34, Ashleigh and Browndog +60 to +27, Carrick +40 to +20. The
+damage builds hold; the soaks lose about half. Level 2 the same way. +1
+is a big step: four stand-ins drop from 87% to 62% of days at their own
+Level at Level 3, so this probably overstates it.
+
+**2. Optimized builds in optimized parties** (`optmixes_l<L>.json`, all
+210 parties, two Levels up; one up they win a median 94-100%). Each
+build's parties with it, minus those without, in points, next to its
+stand-in score:
+
+| Level 3 | stand-ins | parties | parties, +1 damage |
+|---|---|---|---|
+| Sable | +85 | +34 | +26 |
+| Felix | +72 | +24 | +16 |
+| Jackal | +65 | +18 | +16 |
+| Beornhard | +74 | +5 | +3 |
+| Browndog | +60 | -9 | -9 |
+| Hilde | +73 | -11 | -9 |
+| Carrick | +40 | -12 | -8 |
+| Hanforth | +77 | -14 | -10 |
+| Enith | +70 | -15 | -10 |
+| Ashleigh | +60 | -20 | -14 |
+
+At Level 2 Hilde (+12), Enith (+11) and Sable (+11) lead and Hanforth
+(-18) and Carrick (-10) trail. Two Levels up with +1 damage, Level 3
+parties win a median 2% of days, so that column sits near the floor.
+
+**3. The swap test** (`tools/durability_swap.py`, `durability_swap_l<L>.json`):
+each best build with Lifeline off, one or all Toughened Resolve off, one
+more, or Lifeline added, at the same XP (paid from or into the combat
+Skills first), read with stand-ins (S1, one up), the same with +1 damage
+(S1+), in six fixed parties of three other optimized builds two Levels
+up (P2), and that with +1 damage (P2+). At Level 3, on the soaks:
+
+- With stand-ins, Lifeline off costs 32-55 points (-1.4 to -2.5
+  log-odds), every Toughened Resolve off 29-53; both off costs barely
+  more than either. They work as a pair: the copies make the pool,
+  Lifeline shares it.
+- In parties, the same changes cost 0-8 points (-0.02 to -0.85
+  log-odds): on the odds, three to ten times less. The parties already
+  have Lifeline or a big pool elsewhere.
+- The last copy of Toughened Resolve is worth little anywhere (1-10
+  points); the builds sit at their best count.
+- The extra damage trims Lifeline's value with stand-ins somewhat
+  (Hanforth -2.47 to -1.63 log-odds, Ashleigh -2.49 to -1.79) and leaves
+  Toughened Resolve's about where it was.
+- Adding either to a damage build (Felix, Jackal, Sable) costs it 15-40
+  points everywhere.
+
+At Level 2 they keep more of their value in parties: Beornhard without
+Lifeline loses -0.79 log-odds in parties against -1.17 with stand-ins.
+
+**What it says.** The stand-in yardstick flatters the Level 3 soaks by a
+lot: next to plain fighters, keeping them alive is all that's missing,
+and enemies that gain Health but not damage reward a big pool. Scored
+among other optimized builds, every Level 3 soak comes out below an
+average member, and the damage builds (Sable, Felix, Jackal) lead. One
+Lifeline holder with a pool still helps a party; a second adds little.
+At Level 2 Lifeline and Toughened Resolve look more honestly strong.
+The next measure should score builds in parties first, with stand-ins
+as a check, and use enemies whose damage keeps up with their Level.

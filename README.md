@@ -15,7 +15,10 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-02 — A purchase history for every character
 
-The Notes tab now keeps a dated history of what each character bought: Stats, Skills, Techniques, Backgrounds, items and gold, with what each change cost in XP. Changes made in one sitting are grouped into one entry, and the history goes along when you export or duplicate a character.
+The Notes tab now keeps a dated history of what each character bought, with what each change cost in XP. In the simulator, the strong "soak" builds (stacked Toughened Resolve plus Lifeline) turn out to be mostly a product of how we were measuring.
+
+- The history covers Stats, Skills, Techniques, Backgrounds, items and gold; changes made in one sitting are grouped into one entry, and it goes along when you export or duplicate a character.
+- Scored in parties of other strong builds, or against enemies that hit harder, the soaks fall from the top to below average at Level 3, while the damage builds hold up; at Level 2 Lifeline and Toughened Resolve still look strong.
 
 ### 2026-11-01 — Healing Magic against the other healing
 
