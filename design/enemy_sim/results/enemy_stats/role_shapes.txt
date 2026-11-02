@@ -1,0 +1,18 @@
+== Level 2: base lost 12.2 pts, 4.50 rounds, wins 99.7%; 1 Health per Slot = 0.88 pts
+   role:Striker@dmg=1/acc=-3           +1.0 Health  rounds -0.02  Down +2.3 pts
+   role:Striker@dmg=1/acc=-2/res=-1    +1.8 Health  rounds -0.47  Down +2.7 pts
+   role:Striker@dmg=1/acc=-2|hp:-3     +1.7 Health  rounds -0.54  Down +2.2 pts
+   role:Striker@dmg=1/acc=-1/res=-1|hp:-3  +2.0 Health  rounds -0.88  Down +2.2 pts
+   role:Bruiser@res=2/parry=-1/dodge=-1  +4.4 Health  rounds +1.45  Down +7.2 pts
+   role:Bruiser@res=2/acc=-1           +4.2 Health  rounds +2.01  Down +7.5 pts
+   role:Bruiser@dmg=1/res=1/acc=-3/parry=-1/dodge=-1  +2.5 Health  rounds +0.43  Down +4.5 pts
+   role:Bruiser@dmg=1/res=1/acc=-2|hp:-4  +2.9 Health  rounds -0.21  Down +4.4 pts
+== Level 3: base lost 13.2 pts, 4.11 rounds, wins 99.6%; 1 Health per Slot = 0.73 pts
+   role:Striker@dmg=1/acc=-3           +1.6 Health  rounds +0.04  Down +3.8 pts
+   role:Striker@dmg=1/acc=-2/res=-1    +2.7 Health  rounds -0.42  Down +6.1 pts
+   role:Striker@dmg=1/acc=-2|hp:-3     +2.7 Health  rounds -0.38  Down +5.3 pts
+   role:Striker@dmg=1/acc=-1/res=-1|hp:-3  +2.9 Health  rounds -0.79  Down +5.1 pts
+   role:Bruiser@res=2/parry=-1/dodge=-1  +5.3 Health  rounds +1.44  Down +6.9 pts
+   role:Bruiser@res=2/acc=-1           +4.6 Health  rounds +1.79  Down +6.6 pts
+   role:Bruiser@dmg=1/res=1/acc=-3/parry=-1/dodge=-1  +3.8 Health  rounds +0.45  Down +7.6 pts
+   role:Bruiser@dmg=1/res=1/acc=-2|hp:-4  +4.3 Health  rounds -0.10  Down +8.0 pts

@@ -1828,7 +1828,7 @@ at its measured worth:
 | Defender | Parry +2 | Parry +2, Resist +1 |
 | Backup | Resist +1, Vital +1, Mental +1 | Resist +1, Parry +1, Dodge +1, Vital +1, Mental +1 |
 | Striker | Damage +1 | Damage +1, Accuracy −2 |
-| Bruiser | Damage +1, Parry −1, Dodge −1 | Damage +1, Accuracy −2, Parry −1, Dodge −1 |
+| Bruiser | Damage +1, Parry −1, Dodge −1 | Damage +1, Resist +1, Accuracy −3 (see the next section) |
 | Skirmisher | Speed +1, Dodge +1, Accuracy +1 | Speed +1, Dodge +2, Accuracy +1 |
 | Strategist | Accuracy +1, Dodge +1, Mental +1 | Accuracy +2, Mental +1 |
 
@@ -1879,3 +1879,60 @@ hard day; Level 5's is flat because the grown characters have capped.
 Poison (Bleeding) or it wants a different shape (the Bleeding weights
 are next in the effect-weights pass anyway); and whether Retribution
 Aura's "melee attackers only" reads right in the fiction.
+
+### Archetypes and what enemy damage is worth (2026-11-02)
+
+The designer: Striker is a trade, but Bruiser (Striker plus −1 Parry and
+Dodge) looks strictly worse; why does the sim value enemy damage so
+highly? `kit_check.py` with a probe Role on every full-size enemy, one
+stat at a time (Health per Slot / change in fights where someone goes
+Down, Level 2 and 3):
+
+| Change | Level 2 | Level 3 |
+|---|---|---|
+| Damage +1 | +9.4 / +15 pts | +12.6 / +20 pts |
+| Damage −1 | −5.5 / −4 | −8.2 / −5 |
+| Resist +1 | +2.2 / +3 (+0.7 rounds) | +2.6 / +3 |
+| Accuracy +1 / −1 / −2 | +1.2 / −1.1 / −2.5 | +1.4 / −1.6 / −3.3 |
+| Parry +1, Dodge +1 (each) | +0.3, +0.7 | +0.5, +0.2 |
+| Vital or Mental +1 | 0 | 0 |
+| Speed +1 | +0.5 | +0.3 |
+
+Why damage: the margin is thin. The current mixes' attacks average 5.6
+damage against the parties' 4.4 Physical / 3.2 elemental Resist, so a
+hit nets about 1.5 before extra successes, and +1 Damage is +63% of
+everything an enemy deals. The other way round, PC weapons net about 3
+a hit past enemy Resist, so +1 enemy Resist takes about a third off the
+party's damage (worth 2-3 Health and most of a round). Parry and Dodge
+count for little because an enemy defends with the better of the two, so
+raising one moves only some attacks; Vital and Mental count for nothing
+because these parties almost never target them. So +1 Damage is worth
+about eight points of Accuracy, and an archetype carrying it has to pay
+in Accuracy: 2 points does (they compound, fewer hits means fewer extra
+points), 3 is too much (Striker at −3 read +1.0/+1.6).
+
+Bruiser was Striker plus −1 Parry/Dodge, worth about −0.5 Health, so it
+was strictly worse, as the designer saw. It's now the tough, clumsy
+hitter, the original table's shape: Damage +1, Resist +1, Accuracy −3.
+Candidates tried (Level 2 / Level 3, Health):
+
+| Bruiser | L2 | L3 | rounds |
+|---|---|---|---|
+| Damage +1, Accuracy −2, Parry −1, Dodge −1 (old) | +3.2 | +5.0 | −0.1 |
+| Resist +2, Parry −1, Dodge −1 | +4.4 | +5.3 | +1.4 |
+| Damage +1, Resist +1, Accuracy −3, Parry −1, Dodge −1 | +2.5 | +3.8 | +0.4 |
+| **Damage +1, Resist +1, Accuracy −3** (adopted) | **+3.4** | **+4.8** | **+0.7** |
+
+The six now (Health; L2 / L3): Defender +3.9 / +4.5, Backup +3.4 /
++3.9, Striker +3.9 / +5.7, Bruiser +3.4 / +4.8, Skirmisher +3.7 / +2.7,
+Strategist +2.7 / +3.1. Each is a distinct shape: Defender and Backup
+lengthen fights by a round or more, Bruiser by most of one, Striker and
+Strategist not at all. Striker sits a little high at Level 3 and
+Skirmisher a little low (Dodge is worth less there); noise is about
+±0.5.
+
+The middle of each band on the adopted set (`table_check.py`, days won /
+F1 Down / F1 Wounded / rounds): Level 1 97% / 13 / 45 / 4.7, Level 2
+99% / 8 / 37 / 4.6, Level 3 97% / 10 / 41 / 4.1, Level 4 98% / 8 / 34 /
+4.6, Level 5 99% / 8 / 32 / 5.3. The Brute, the roster's Bruiser, got a
+little easier, so this is a notch further on the easy side.

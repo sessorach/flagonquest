@@ -23,7 +23,7 @@ The site can now browse Techniques, Items and Backgrounds without a character, a
 - Scored in parties of other strong builds, or against enemies that hit harder, the soaks fall from the top to below average at Level 3, while the damage builds hold up; at Level 2 Lifeline and Toughened Resolve still look strong.
 - Enemy damage climbs every Level while the party's Resist and Health barely do; about 1 less enemy Damage at Level 2 and 2 less at Level 3 gives every Level the same table feel, and one Level up is still a cliff in every version tried.
 - The new table (now the default) follows the original's shape out to Level 5, where some enemies reach the player caps; with about twice the enemy Health and a little less damage, fights in the middle of each Level's XP band run 4-5 rounds and the party wins almost every day, while the bottom of the band is a hard day and the top is easy.
-- Repriced the enemy archetypes, Abilities and armor against it so they're worth about the same; the big ones were +1 Damage roles, Retribution Aura and Poison (Bleeding), all far stronger than their cost once fights got longer.
+- Repriced the enemy archetypes, Abilities and armor against it so they're worth about the same; +1 enemy Damage turned out worth about eight points of Accuracy (enemy hits only get about 1.5 past the party's Resist), so Striker pays 2 Accuracy for it and Bruiser is now the tough, clumsy hitter (Damage +1, Resist +1, Accuracy −3).
 
 ### 2026-11-01 — Healing Magic against the other healing
 

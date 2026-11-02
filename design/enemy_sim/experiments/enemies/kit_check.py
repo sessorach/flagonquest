@@ -171,7 +171,7 @@ def _job(args):
         for k in range(n):
             r = cs.run_fight(1, level, movement=True, enemies=se.build_encounter(se.ENCOUNTERS[level][mix]),
                              seed=1_000_000 * pi + 10_000 * mi + k)
-            out.append((100 * (1 - r["party_hp_pct"]), r["rounds"], r["winner"] == "party"))
+            out.append((100 * (1 - r["party_hp_pct"]), r["rounds"], r["winner"] == "party", r["pc_downed"]))
     return variant, level, out, sorted(skipped)
 
 
@@ -207,7 +207,10 @@ def main():
             table.setdefault(v, {})[L] = dict(health=d / slope, rounds=mean(v, 1) - mean("norole" if v.startswith("role:") else "base", 1),
                                               wins=100 * mean(v, 2), skipped=sorted(skips[(v, L)]))
             sk = f"  (can't take it: {', '.join(sorted(skips[(v, L)]))})" if skips[(v, L)] else ""
-            print(f"   {v:34s} {d / slope:+5.1f} Health  rounds {table[v][L]['rounds']:+.2f}{sk}")
+            ref_v = "norole" if v.startswith("role:") else "base"
+            table[v][L]["down"] = 100 * (mean(v, 3) - mean(ref_v, 3))
+            print(f"   {v:34s} {d / slope:+5.1f} Health  rounds {table[v][L]['rounds']:+.2f}  "
+                  f"Down {table[v][L]['down']:+4.1f} pts{sk}")
         table.setdefault("_meta", {})[L] = dict(base=base, slope=slope, rounds=mean("base", 1))
     with open(a.o, "w") as f:
         json.dump(table, f, indent=1)

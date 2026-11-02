@@ -321,9 +321,12 @@ ARMOR_PICKS_V2 = {"Unarmored": 0, "Light": 0, "Medium": 3, "Heavy": 6}
 ROLE_ADDS_V2 = {
     "Defender": {"parry": 2, "res": 1},
     "Backup": {"res": 1, "parry": 1, "dodge": 1, "bodily": 1, "mental": 1},
-    # +1 Damage was worth 7-9 enemy Health on its own; 2 Accuracy pays for it.
+    # +1 Damage is worth about 9-13 enemy Health on its own (enemy hits
+    # net about 1.5 past the party's Resist, so it's +60%): 2 Accuracy pays
+    # for it. Bruiser is the tough, clumsy hitter (the original table's
+    # shape): with -1 Parry/Dodge instead it was Striker minus 0.5 Health.
     "Striker": {"dmg": 1, "acc": -2},
-    "Bruiser": {"dmg": 1, "acc": -2, "parry": -1, "dodge": -1},
+    "Bruiser": {"dmg": 1, "res": 1, "acc": -3},
     "Skirmisher": {"speed": 1, "dodge": 2, "acc": 1},
     "Strategist": {"acc": 2, "mental": 1},
 }
