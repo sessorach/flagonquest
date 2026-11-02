@@ -95,10 +95,18 @@ def _devastating(e, c):
         c.dmg = 0
 
 
-def _rider(ability):
-    effect, stacks = STRIKE_RIDERS[ability]
+# v2 kit (2026-11-02): Poison (Bleeding) lands 1 stack, priced at 5
+# Upgrades (enemy_builder_pcstyle.PICK_COST_V2).
+STRIKE_RIDERS_V2 = {'Poison (Bleeding)': ('Bleeding', 1)}
 
+
+def _v2():
+    return getattr(cs.T, 'ENEMY_TABLE', 'v1') == 'v2'
+
+
+def _rider(ability):
     def apply(e, c):
+        effect, stacks = (STRIKE_RIDERS_V2.get(ability) if _v2() else None) or STRIKE_RIDERS[ability]
         cs._apply_to_pc(c.target, effect, stacks, e)
         c.applied.append(f"{effect} +{stacks}")
         # What Healing Magic's Purify can take off ("1 stack of each Poison
@@ -139,6 +147,10 @@ def _battering(e, c):
 @hooks.on('pc_damaged_enemy', 'Retribution Aura')
 def _retribution(e, c):
     # "Attacker who damages this NPC gains a stack of Bleeding themselves."
+    # v2 kit (2026-11-02): melee attackers only, priced at 4 Upgrades; on
+    # every attacker it was worth 20-25 enemy Health in the longer fights.
+    if _v2() and c.pc.get('attack_range'):
+        return
     if c.pc['health'] > 0:
         cs._gain(c.pc, 'bleeding', 1)
         c.pc['retribution_taken'] = c.pc.get('retribution_taken', 0) + 1

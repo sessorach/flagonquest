@@ -1,0 +1,719 @@
+{
+ "role:Defender": {
+  "2": {
+   "health": 3.6094685322319453,
+   "rounds": 1.4161458333333332,
+   "wins": 99.63541666666667,
+   "skipped": []
+  },
+  "3": {
+   "health": 3.8878231024267382,
+   "rounds": 1.1203124999999998,
+   "wins": 99.6875,
+   "skipped": []
+  }
+ },
+ "role:Backup": {
+  "2": {
+   "health": 3.1538727461290734,
+   "rounds": 1.1812499999999995,
+   "wins": 99.79166666666667,
+   "skipped": []
+  },
+  "3": {
+   "health": 3.3636730809699364,
+   "rounds": 0.9651041666666664,
+   "wins": 99.79166666666667,
+   "skipped": []
+  }
+ },
+ "role:Striker": {
+  "2": {
+   "health": 5.295427666891067,
+   "rounds": 0.028125000000000178,
+   "wins": 99.63541666666667,
+   "skipped": []
+  },
+  "3": {
+   "health": 7.448386538173155,
+   "rounds": 0.15885416666666652,
+   "wins": 99.58333333333333,
+   "skipped": []
+  }
+ },
+ "role:Bruiser": {
+  "2": {
+   "health": 4.524808500573134,
+   "rounds": -0.13802083333333348,
+   "wins": 99.73958333333334,
+   "skipped": []
+  },
+  "3": {
+   "health": 6.7313129892498,
+   "rounds": 0.020312500000000178,
+   "wins": 99.63541666666667,
+   "skipped": []
+  }
+ },
+ "role:Skirmisher": {
+  "2": {
+   "health": 3.5363985371445215,
+   "rounds": 0.3572916666666668,
+   "wins": 99.89583333333333,
+   "skipped": []
+  },
+  "3": {
+   "health": 2.6909694905552284,
+   "rounds": 0.20677083333333313,
+   "wins": 100,
+   "skipped": []
+  }
+ },
+ "role:Strategist": {
+  "2": {
+   "health": 2.4947872127508606,
+   "rounds": 0.028645833333333037,
+   "wins": 100,
+   "skipped": []
+  },
+  "3": {
+   "health": 3.1249394137625583,
+   "rounds": 0.05989583333333348,
+   "wins": 100,
+   "skipped": []
+  }
+ },
+ "ability:Strike (Crippling)": {
+  "2": {
+   "health": -0.35643456268990853,
+   "rounds": -0.11197916666666696,
+   "wins": 99.42708333333333,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.5953607951094334,
+   "rounds": -0.1343749999999999,
+   "wins": 99.47916666666666,
+   "skipped": []
+  }
+ },
+ "ability:Strike (Vulnerable)": {
+  "2": {
+   "health": -0.7841560379177962,
+   "rounds": -0.23020833333333357,
+   "wins": 99.63541666666667,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.7263762195699763,
+   "rounds": -0.19947916666666687,
+   "wins": 99.58333333333333,
+   "skipped": []
+  }
+ },
+ "ability:Strike (Slowing)": {
+  "2": {
+   "health": -0.516329761103329,
+   "rounds": -0.13750000000000018,
+   "wins": 99.6875,
+   "skipped": []
+  },
+  "3": {
+   "health": 0.08032329537093784,
+   "rounds": -0.07552083333333304,
+   "wins": 99.16666666666667,
+   "skipped": []
+  }
+ },
+ "ability:Strike (Frightening)": {
+  "2": {
+   "health": -0.5607976565200795,
+   "rounds": -0.13437500000000036,
+   "wins": 99.58333333333333,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.6936473978551646,
+   "rounds": -0.13645833333333357,
+   "wins": 99.58333333333333,
+   "skipped": []
+  }
+ },
+ "ability:Strike (Taunting)": {
+  "2": {
+   "health": -0.5520278015319958,
+   "rounds": -0.21822916666666714,
+   "wins": 99.6875,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.019002094345583784,
+   "rounds": -0.15312500000000018,
+   "wins": 99.27083333333333,
+   "skipped": []
+  }
+ },
+ "ability:Strike (Necrotic)": {
+  "2": {
+   "health": 0.2257600844235002,
+   "rounds": -0.20885416666666679,
+   "wins": 99.42708333333333,
+   "skipped": [
+    "Brute (L2)",
+    "Hedge Knight (L2)",
+    "Skulking Footpad (L2)",
+    "Warpriest (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.33839027047876197,
+   "rounds": -0.3458333333333332,
+   "wins": 99.6875,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)"
+   ]
+  }
+ },
+ "ability:Strike (Harrying)": {
+  "2": {
+   "health": 0.0864613089281486,
+   "rounds": -0.20468750000000036,
+   "wins": 99.63541666666667,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.007376428248580371,
+   "rounds": -0.1630208333333334,
+   "wins": 99.375,
+   "skipped": []
+  }
+ },
+ "ability:Strike (Battering)": {
+  "2": {
+   "health": 0.6969669401939541,
+   "rounds": -0.2197916666666666,
+   "wins": 99.53125,
+   "skipped": []
+  },
+  "3": {
+   "health": 0.75666460918119,
+   "rounds": -0.1875,
+   "wins": 99.58333333333333,
+   "skipped": []
+  }
+ },
+ "ability:Strike (Grappling)": {
+  "2": {
+   "health": 0.0,
+   "rounds": 0.0,
+   "wins": 99.6875,
+   "skipped": [
+    "Brute (L2)",
+    "Hedge Knight (L2)",
+    "Skulking Footpad (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.6130004836350776,
+   "rounds": -0.03437499999999982,
+   "wins": 99.58333333333333,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)"
+   ]
+  }
+ },
+ "ability:Strike (Devastating)": {
+  "2": {
+   "health": -1.3831262167718932,
+   "rounds": -0.32968750000000036,
+   "wins": 100,
+   "skipped": [
+    "Brute (L2)",
+    "Hedge Knight (L2)",
+    "Skulking Footpad (L2)",
+    "Warpriest (L2)"
+   ]
+  },
+  "3": {
+   "health": 1.150367824607302,
+   "rounds": -0.5020833333333332,
+   "wins": 99.94791666666667,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)"
+   ]
+  }
+ },
+ "ability:Strike (Cleaving)": {
+  "2": {
+   "health": -0.2208111206127992,
+   "rounds": -0.14270833333333321,
+   "wins": 99.53125,
+   "skipped": [
+    "Skulking Footpad (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.4963200662145808,
+   "rounds": -0.033333333333333215,
+   "wins": 99.58333333333333,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)"
+   ]
+  }
+ },
+ "ability:Poison (Bleeding)": {
+  "2": {
+   "health": 0.36010989610814864,
+   "rounds": -0.3916666666666666,
+   "wins": 99.73958333333334,
+   "skipped": [
+    "Brute (L2)",
+    "Hedge Knight (L2)",
+    "Skulking Footpad (L2)",
+    "Warpriest (L2)"
+   ]
+  },
+  "3": {
+   "health": 1.844423226930685,
+   "rounds": -0.37812500000000027,
+   "wins": 99.53125,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)",
+    "Skulking Footpad (L3)",
+    "Warpriest (L3)"
+   ]
+  }
+ },
+ "ability:Poison (Crippling)": {
+  "2": {
+   "health": -0.35272283983188063,
+   "rounds": -0.10468750000000071,
+   "wins": 99.42708333333333,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.5805598388094035,
+   "rounds": -0.1328125,
+   "wins": 99.47916666666666,
+   "skipped": []
+  }
+ },
+ "ability:Poison (Necrotic)": {
+  "2": {
+   "health": 0.2257600844235002,
+   "rounds": -0.20885416666666679,
+   "wins": 99.42708333333333,
+   "skipped": [
+    "Brute (L2)",
+    "Hedge Knight (L2)",
+    "Skulking Footpad (L2)",
+    "Warpriest (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.33839027047876197,
+   "rounds": -0.3458333333333332,
+   "wins": 99.6875,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)"
+   ]
+  }
+ },
+ "ability:Poison (Slowing)": {
+  "2": {
+   "health": -0.7846291006349967,
+   "rounds": -0.20000000000000018,
+   "wins": 99.63541666666667,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.5392917550151869,
+   "rounds": -0.1625000000000001,
+   "wins": 99.42708333333333,
+   "skipped": []
+  }
+ },
+ "ability:Poison (Vulnerable)": {
+  "2": {
+   "health": -0.6369243645494091,
+   "rounds": -0.2276041666666666,
+   "wins": 99.53125,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.26844232761556436,
+   "rounds": -0.1885416666666666,
+   "wins": 99.53125,
+   "skipped": []
+  }
+ },
+ "ability:Heavy Weapon": {
+  "2": {
+   "health": 0.11455395644184015,
+   "rounds": -0.07291666666666696,
+   "wins": 99.6875,
+   "skipped": [
+    "Brute (L2)",
+    "Hedge Knight (L2)",
+    "Skulking Footpad (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.8090471228635262,
+   "rounds": -0.11822916666666661,
+   "wins": 99.58333333333333,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)"
+   ]
+  }
+ },
+ "ability:Powerful Weapon": {
+  "2": {
+   "health": 0.11455395644184015,
+   "rounds": -0.07291666666666696,
+   "wins": 99.6875,
+   "skipped": [
+    "Brute (L2)",
+    "Hedge Knight (L2)",
+    "Skulking Footpad (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.8090471228635262,
+   "rounds": -0.11822916666666661,
+   "wins": 99.58333333333333,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)"
+   ]
+  }
+ },
+ "ability:Powerful Spell": {
+  "2": {
+   "health": -0.5141463947162549,
+   "rounds": -0.203125,
+   "wins": 99.94791666666667,
+   "skipped": []
+  },
+  "3": {
+   "health": 1.9904405861073498,
+   "rounds": -0.17708333333333348,
+   "wins": 99.16666666666667,
+   "skipped": []
+  }
+ },
+ "ability:Durable": {
+  "2": {
+   "health": 0.46265533742107984,
+   "rounds": 0.1328125,
+   "wins": 99.375,
+   "skipped": []
+  },
+  "3": {
+   "health": 0.2682707435234469,
+   "rounds": 0.15260416666666643,
+   "wins": 99.27083333333333,
+   "skipped": []
+  }
+ },
+ "ability:Omniguard": {
+  "2": {
+   "health": -0.32583104383108086,
+   "rounds": 0.21927083333333286,
+   "wins": 99.58333333333333,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.3377448611355548,
+   "rounds": 0.033333333333333215,
+   "wins": 99.47916666666666,
+   "skipped": []
+  }
+ },
+ "ability:Resilient": {
+  "2": {
+   "health": -0.5439129564600366,
+   "rounds": -0.24375000000000036,
+   "wins": 99.73958333333334,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.319464826403838,
+   "rounds": -0.20520833333333321,
+   "wins": 99.53125,
+   "skipped": []
+  }
+ },
+ "ability:Retribution Aura": {
+  "2": {
+   "health": -1.4027765142555633,
+   "rounds": -0.34375,
+   "wins": 99.89583333333333,
+   "skipped": [
+    "Brute (L2)",
+    "Hedge Knight (L2)",
+    "Skulking Footpad (L2)",
+    "Warpriest (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.5024639018538976,
+   "rounds": -0.39375000000000027,
+   "wins": 99.6875,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)",
+    "Skulking Footpad (L3)"
+   ]
+  }
+ },
+ "ability:Sturdy": {
+  "2": {
+   "health": -0.846163643310712,
+   "rounds": -0.24166666666666714,
+   "wins": 99.63541666666667,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.9041346667901993,
+   "rounds": -0.2526041666666665,
+   "wins": 99.58333333333333,
+   "skipped": []
+  }
+ },
+ "ability:Enhanced Health": {
+  "2": {
+   "health": 0.0,
+   "rounds": 0.0,
+   "wins": 99.6875,
+   "skipped": []
+  },
+  "3": {
+   "health": 0.0,
+   "rounds": 0.0,
+   "wins": 99.58333333333333,
+   "skipped": []
+  }
+ },
+ "ability:Enhanced Range": {
+  "2": {
+   "health": 1.6775531740688838,
+   "rounds": -0.07864583333333375,
+   "wins": 99.79166666666667,
+   "skipped": [
+    "Warpriest (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.1995947732250749,
+   "rounds": -0.2619791666666669,
+   "wins": 99.58333333333333,
+   "skipped": []
+  }
+ },
+ "ability:Enhanced Speed": {
+  "2": {
+   "health": -0.49045686941649697,
+   "rounds": -0.2296875000000007,
+   "wins": 99.63541666666667,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.4677119349218117,
+   "rounds": -0.2171875000000001,
+   "wins": 99.63541666666667,
+   "skipped": []
+  }
+ },
+ "ability:Enhanced Reflexes": {
+  "2": {
+   "health": -0.5087971470679227,
+   "rounds": -0.3718750000000002,
+   "wins": 99.89583333333333,
+   "skipped": [
+    "Skulking Footpad (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.6469934019236041,
+   "rounds": -0.22447916666666679,
+   "wins": 99.58333333333333,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)"
+   ]
+  }
+ },
+ "ability:Shadow Jaunt": {
+  "2": {
+   "health": -0.9065337239133213,
+   "rounds": -0.23177083333333393,
+   "wins": 99.6875,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.9495623990339263,
+   "rounds": -0.20625000000000027,
+   "wins": 99.58333333333333,
+   "skipped": []
+  }
+ },
+ "ability:Improved Support": {
+  "2": {
+   "health": 0.06855770455413775,
+   "rounds": 0.10052083333333339,
+   "wins": 99.6875,
+   "skipped": []
+  },
+  "3": {
+   "health": 0.056717402934121516,
+   "rounds": 0.04999999999999982,
+   "wins": 99.58333333333333,
+   "skipped": []
+  }
+ },
+ "ability:Action (Parting Shot)": {
+  "2": {
+   "health": 0.1704117465111611,
+   "rounds": -0.09583333333333321,
+   "wins": 99.6875,
+   "skipped": []
+  },
+  "3": {
+   "health": 0.3564226334184972,
+   "rounds": -0.08645833333333375,
+   "wins": 99.58333333333333,
+   "skipped": []
+  }
+ },
+ "ability:Action (Intimidating)": {
+  "2": {
+   "health": -0.5112716289732732,
+   "rounds": -0.015625,
+   "wins": 99.58333333333333,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.5420337250642697,
+   "rounds": -0.01927083333333357,
+   "wins": 99.47916666666666,
+   "skipped": []
+  }
+ },
+ "ability:Action (Taunting)": {
+  "2": {
+   "health": -0.4650570404468633,
+   "rounds": -0.24270833333333375,
+   "wins": 99.6875,
+   "skipped": []
+  },
+  "3": {
+   "health": -0.04620323608301037,
+   "rounds": -0.18385416666666687,
+   "wins": 99.53125,
+   "skipped": []
+  }
+ },
+ "ability:Resist (Fire)": {
+  "2": {
+   "health": -0.5748803697167099,
+   "rounds": -0.15468750000000053,
+   "wins": 99.53125,
+   "skipped": [
+    "Skulking Footpad (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.189751190760197,
+   "rounds": 0.009895833333333215,
+   "wins": 99.42708333333333,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)"
+   ]
+  }
+ },
+ "ability:Attunement (Fire)": {
+  "2": {
+   "health": -0.3723367478757672,
+   "rounds": -0.06354166666666661,
+   "wins": 99.84375,
+   "skipped": [
+    "Brute (L2)",
+    "Hedge Knight (L2)",
+    "Skulking Footpad (L2)",
+    "Warpriest (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.8924438831238071,
+   "rounds": 0.1640625,
+   "wins": 99.375,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)"
+   ]
+  }
+ },
+ "armor:Medium Armor": {
+  "2": {
+   "health": 0.8436163825257903,
+   "rounds": 0.08437499999999964,
+   "wins": 99.32291666666667,
+   "skipped": [
+    "Brute (L2)",
+    "Skulking Footpad (L2)"
+   ]
+  },
+  "3": {
+   "health": 1.0122097200630147,
+   "rounds": 0.07968750000000036,
+   "wins": 99.01041666666667,
+   "skipped": []
+  }
+ },
+ "armor:Heavy Armor": {
+  "2": {
+   "health": 0.0,
+   "rounds": 0.0,
+   "wins": 99.6875,
+   "skipped": [
+    "Brute (L2)",
+    "Ember Caster (L2)",
+    "Grave Caller (L2)",
+    "Hedge Knight (L2)",
+    "Marsh Archer (L2)",
+    "Skulking Footpad (L2)",
+    "Warpriest (L2)"
+   ]
+  },
+  "3": {
+   "health": 0.16187791756685133,
+   "rounds": 0.005729166666666785,
+   "wins": 99.11458333333333,
+   "skipped": [
+    "Brute (L3)",
+    "Skulking Footpad (L3)"
+   ]
+  }
+ },
+ "_meta": {
+  "2": {
+   "base": 11.812469718992249,
+   "slope": 0.8321372335271318,
+   "rounds": 4.486979166666667
+  },
+  "3": {
+   "base": 12.917592138159,
+   "slope": 0.7169647465341504,
+   "rounds": 4.100520833333333
+  }
+ }
+}

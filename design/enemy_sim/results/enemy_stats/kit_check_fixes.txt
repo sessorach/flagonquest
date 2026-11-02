@@ -1,0 +1,16 @@
+== Level 2: base lost 14.2 pts, 4.51 rounds, wins 99.4%; 1 Health per Slot = 0.98 pts
+   ability:Poison (Bleeding)@1         +8.5 Health  rounds -0.12
+   ability:Retribution Aura@melee      +2.5 Health  rounds -0.18
+   ability:Retribution Aura           +20.5 Health  rounds +0.05
+   role:Striker|hp:-4                  +3.4 Health  rounds -0.68
+   role:Striker|hp:-6                  +1.7 Health  rounds -1.05
+   role:Bruiser|hp:-4                  +2.9 Health  rounds -0.79
+   role:Bruiser|hp:-6                  +1.3 Health  rounds -1.15
+== Level 3: base lost 17.0 pts, 4.43 rounds, wins 99.1%; 1 Health per Slot = 0.95 pts
+   ability:Poison (Bleeding)@1        +10.4 Health  rounds -0.04
+   ability:Retribution Aura@melee      +3.9 Health  rounds -0.15
+   ability:Retribution Aura           +25.3 Health  rounds -0.02
+   role:Striker|hp:-4                  +5.3 Health  rounds -0.51
+   role:Striker|hp:-6                  +3.3 Health  rounds -0.86
+   role:Bruiser|hp:-4                  +4.8 Health  rounds -0.63
+   role:Bruiser|hp:-6                  +3.0 Health  rounds -0.95

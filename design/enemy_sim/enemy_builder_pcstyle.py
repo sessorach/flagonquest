@@ -285,17 +285,47 @@ GUARANTEED_STACKS = {1: 2, 2: 2, 3: 2, 4: 3, 5: 3}
 #          category, CATEGORY_STATS)
 #   damage: on every damaging attack, on top of the weapon or spell
 #   health: base Health per Slot (replaces ENEMY_HEALTH_BY_LEVEL)
+#   upgrades: Upgrades per Slot (replaces UPGRADES_BY_LEVEL)
 # The designer wants fights of about 4-5 rounds (2026-11-02): roughly
-# twice v1's base Health, paid for with 1 less Damage and Accuracy.
+# twice v1's Health (base plus Upgrades), paid for with 1 less Damage.
+# Attack follows the PC progression to the cap of 10 at Level 5.
 ENEMY_TABLE_V2 = {
-    1: dict(attack=5, defense=(5, 4, 3), stats=(2, 2, 1), damage=-1, health=12),
-    2: dict(attack=6, defense=(6, 5, 4), stats=(3, 2, 1), damage=-1, health=14),
-    3: dict(attack=7, defense=(7, 6, 5), stats=(3, 3, 1), damage=-1, health=15),
-    4: dict(attack=8, defense=(8, 7, 6), stats=(4, 4, 2), damage=-1, health=16),
-    # Level 5's Health is lower than Level 4's on purpose: its 14 Upgrades
-    # (against 10) keep the total climbing, and the party has mostly capped
-    # out by then (2026-11-02, Level 3 characters grown to 205-245 combat XP).
-    5: dict(attack=9, defense=(9, 8, 7), stats=(4, 4, 2), damage=-1, health=13),
+    1: dict(attack=6, defense=(5, 4, 3), stats=(2, 2, 1), damage=-1, health=8, upgrades=8),
+    2: dict(attack=7, defense=(6, 5, 4), stats=(3, 2, 1), damage=-1, health=10, upgrades=10),
+    3: dict(attack=8, defense=(7, 6, 5), stats=(3, 3, 1), damage=-1, health=11, upgrades=12),
+    4: dict(attack=9, defense=(8, 7, 6), stats=(4, 4, 2), damage=-1, health=12, upgrades=14),
+    # Level 5's Health total (base + Upgrades) sits just over Level 4's:
+    # the party has mostly capped out by then (2026-11-02, Level 3
+    # characters grown to 205-245 combat XP played 6.5-round fights at 17).
+    5: dict(attack=10, defense=(9, 8, 7), stats=(4, 4, 2), damage=-1, health=11, upgrades=16),
+}
+# The v2 kit (2026-11-02, experiments/enemies/kit_check.py): every
+# Ability and armor priced at what it's worth in enemy Health against the
+# measured parties (1 Upgrade = 1 Health, as the catalog intends), and the
+# Roles evened out to about 3-5 Health each. Health moved into Upgrades
+# above (same total for an all-Health enemy) so a Level 1 enemy can still
+# afford a fairly priced pick.
+PICK_COST_V2 = dict(PICK_COST, **{
+    "Poison (Bleeding)": 5,       # 1 stack a hit (STRIKE_RIDERS_V2); 2 stacks were worth ~10
+    "Retribution Aura": 4,        # melee attackers only (enemy_abilities); every attacker was worth ~20-25
+    "Strike (Necrotic)": 3, "Poison (Necrotic)": 3,
+    "Strike (Grappling)": 3,
+    "Strike (Devastating)": 3,
+    "Heavy Weapon": 3, "Powerful Weapon": 3, "Powerful Spell": 3,
+    "Enhanced Range": 3, "Enhanced Reflexes": 2,
+    "Attunement (Brilliant)": 3, "Attunement (Fire)": 3, "Attunement (Frost)": 3, "Attunement (Shadow)": 3,
+    "Resist (Brilliant)": 2, "Resist (Fire)": 2, "Resist (Frost)": 2, "Resist (Shadow)": 2,
+    "Durable": 1, "Omniguard": 1, "Resilient": 1,
+})
+ARMOR_PICKS_V2 = {"Unarmored": 0, "Light": 0, "Medium": 3, "Heavy": 6}
+ROLE_ADDS_V2 = {
+    "Defender": {"parry": 2, "res": 1},
+    "Backup": {"res": 1, "parry": 1, "dodge": 1, "bodily": 1, "mental": 1},
+    # +1 Damage was worth 7-9 enemy Health on its own; 2 Accuracy pays for it.
+    "Striker": {"dmg": 1, "acc": -2},
+    "Bruiser": {"dmg": 1, "acc": -2, "parry": -1, "dodge": -1},
+    "Skirmisher": {"speed": 1, "dodge": 2, "acc": 1},
+    "Strategist": {"acc": 2, "mental": 1},
 }
 # No separate price for attacks aimed at Vital, Mental or Vigilant
 # (designer, 2026-11-02): an attack that's harder to defend against gives
@@ -353,7 +383,7 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
         # Below Level 1: one less than Level 1's tiers, same step size.
         def_tiers = {k: v - 1 for k, v in SKILL_TOTAL_BY_LEVEL[1].items()}
 
-    adds = ROLE_ADDS.get(role or "", {})
+    adds = (ROLE_ADDS_V2 if strong_defense and _v2() else ROLE_ADDS).get(role or "", {})
 
     def def_total(category):
         tier = defense_tiers.get(category, "poor")
@@ -409,8 +439,11 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     # a half-slot minion, x3 for a 2-slot boss), rounded up like Health.
     # At these allotments a pair of minions still gets fewer Upgrades than
     # the one full enemy they stand in for (Level 2: 2 x 2 = 4 against 6).
-    picks = math.ceil(UPGRADES_BY_LEVEL[level] * T.SLOT_MULTIPLIER[slots])
-    picks_used = sum(PICK_COST[a] for a in abilities) + ARMOR_PICKS[armor]
+    kit_v2 = bool(strong_defense and _v2())
+    upgrades = ENEMY_TABLE_V2[level]["upgrades"] if kit_v2 else UPGRADES_BY_LEVEL[level]
+    cost, armor_cost = (PICK_COST_V2, ARMOR_PICKS_V2) if kit_v2 else (PICK_COST, ARMOR_PICKS)
+    picks = math.ceil(upgrades * T.SLOT_MULTIPLIER[slots])
+    picks_used = sum(cost[a] for a in abilities) + armor_cost[armor]
     if picks_used > picks:
         raise ValueError(f"{name}: abilities and armor cost {picks_used} Upgrades, only {picks} available")
     health_floor = math.ceil(picks * HEALTH_FLOOR_FRACTION)

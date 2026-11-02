@@ -1660,9 +1660,13 @@ consumables to fall back on (not modeled yet), so an occasional acute
 loss is fine.
 
 `tunables.ENEMY_TABLE = 'v2'` builds the codified rows from
-`enemy_builder_pcstyle.ENEMY_TABLE_V2`; `'v1'` (the default) plays
-byte-identical to before (fixed-seed calibrate and day_sim runs). In
+`enemy_builder_pcstyle.ENEMY_TABLE_V2`; `'v1'` plays byte-identical to
+before (fixed-seed calibrate and day_sim runs). v2 is the default since
+later the same day (designer: "the new one we're working off of"). In
 PC terms, Defense = 8 + the Skill Total:
+
+(As first drafted; the kit pass below set the final numbers: Attack
+6-10 and Health moved into Upgrades.)
 
 | Level | Attack | Defense: Strong / Parry / other | Stat: High / Mid / Low | Damage | Health | Upgrades |
 |---|---|---|---|---|---|---|
@@ -1768,3 +1772,110 @@ is flat: the grown characters have capped, so the bottom and top play
 alike. A real Level 5 character would have spent on Techniques instead
 of ranks it can't buy, so Level 5 is the least certain row; checking it
 properly needs Level 4-5 sample characters.
+
+### The v2 kit: archetypes, Abilities and armor (2026-11-02)
+
+Per the designer, with v2 as the new ground: a check pass over the
+pieces a GM builds an enemy from, so they're in line with each other.
+`experiments/enemies/kit_check.py` puts each one on every full-size
+enemy in the four mixes (rebuilt through the builder, so an Ability's
+Upgrades come out of the enemy's Health as on a real stat block), against
+the eight normalized parties in the middle of the band at Levels 2 and 3,
+fresh fights on paired seeds, about 1,900 fights a reading. The score is
+party Health lost (a loss counts 100), turned into enemy Health per Slot
+with the slope of "every enemy +2 Health". A Role is free, so it reads
+as what it's worth; an Ability or armor pays its Upgrades in Health, so
+it reads as worth minus cost and about 0 is fair. Enhanced Health (1
+Upgrade for 1 Health) reads exactly 0, the sanity check. Noise is about
+±0.5.
+
+**What the first pass found, on the v2 table as drafted:**
+
+- +1 Damage was worth 7-9 enemy Health on its own, so Striker (+1
+  Damage) and Bruiser (+1 Damage, −1 Parry and Dodge) read 6-9, against
+  1-2.5 for Defender, Backup, Skirmisher and Strategist. Bonuses to Vital
+  and Mental were worth almost nothing: the parties rarely attack them.
+  +1 Resist was worth about 3 Health and a round.
+- Retribution Aura read +20-25 for 1 Upgrade. Every PC hit that damages
+  the enemy gives the attacker a stack of Bleeding, and with twice the
+  enemy Health there are twice the hits. On melee attackers only it
+  read +2.5-4.
+- Poison (Bleeding) read +9-10 for 1 Upgrade: 2 stacks a hit is about
+  +2 damage past Resist, and leftover stacks tick out after the fight.
+  At 1 stack it read +3.4-4.5.
+- Necrotic riders and Grappling +2, Attunement +2-4, Enhanced Range
+  +1-3, Medium Armor +2.4 for 1 Upgrade and Heavy +3.9 for 2, Powerful
+  Spell +1-2, Heavy/Powerful Weapon +0.7-1.5. Resilient and Omniguard came out
+  about −1 for their 2 Upgrades, Sturdy and Shadow Jaunt about −1 for 1.
+  The plain riders (Crippling, Vulnerable, Slowing, Frightening,
+  Taunting, Harrying, Battering) sat within ±0.7.
+
+Repricing those left a Level 1 enemy with no room: 4 Upgrades and a
+floor of 2 for Health. So v2 moves Health into Upgrades at the same
+total (an all-Health enemy is unchanged), and the kit prices every pick
+at its measured worth:
+
+| Level | Attack | Defense: Strong / Parry / other | Stat: High / Mid / Low | Damage | Health | Upgrades |
+|---|---|---|---|---|---|---|
+| 1 | 6 | 13 / 12 / 11 | 2 / 2 / 1 | −1 | 8 | 8 |
+| 2 | 7 | 14 / 13 / 12 | 3 / 2 / 1 | −1 | 10 | 10 |
+| 3 | 8 | 15 / 14 / 13 | 3 / 3 / 1 | −1 | 11 | 12 |
+| 4 | 9 | 16 / 15 / 14 | 4 / 4 / 2 | −1 | 12 | 14 |
+| 5 | 10 | 17 / 16 / 15 | 4 / 4 / 2 | −1 | 11 | 16 |
+
+| Role | v1 | v2 |
+|---|---|---|
+| Defender | Parry +2 | Parry +2, Resist +1 |
+| Backup | Resist +1, Vital +1, Mental +1 | Resist +1, Parry +1, Dodge +1, Vital +1, Mental +1 |
+| Striker | Damage +1 | Damage +1, Accuracy −2 |
+| Bruiser | Damage +1, Parry −1, Dodge −1 | Damage +1, Accuracy −2, Parry −1, Dodge −1 |
+| Skirmisher | Speed +1, Dodge +1, Accuracy +1 | Speed +1, Dodge +2, Accuracy +1 |
+| Strategist | Accuracy +1, Dodge +1, Mental +1 | Accuracy +2, Mental +1 |
+
+| Upgrades | v1 | v2 |
+|---|---|---|
+| Poison (Bleeding) | 1 (2 stacks) | 5 (1 stack) |
+| Retribution Aura | 1 | 4 (melee attackers only) |
+| Strike/Poison (Necrotic), Strike (Grappling), Strike (Devastating) | 1, 1, 2 | 3 |
+| Heavy Weapon, Powerful Weapon, Powerful Spell | 2 | 3 |
+| Enhanced Range | 1 | 3 |
+| Attunement (any element) | 1 | 3 |
+| Resist (any element), Enhanced Reflexes | 1 | 2 |
+| Durable, Omniguard, Resilient | 2 | 1 |
+| Medium / Heavy Armor | 1 / 2 | 3 / 6 |
+| everything else | unchanged | unchanged |
+
+The roster rows keep their picks; all 50 rows in sample_enemies.csv
+still build. With Strikers giving up Accuracy, Attack went back up by 1
+to follow the PC progression (6 to 10, the cap at Level 5).
+
+**After** (`kit_check.py` on the final kit): the Roles read 2.7-3.9
+Health at Level 2 and 2.7-5.7 at Level 3 (Striker and Bruiser still at
+the top there, Defender and Backup each add about a round). Every
+Ability and armor is within ±1.1 of fair except Enhanced Range at Level 2
+(+1.6), Powerful Spell and Poison (Bleeding) at Level 3 (+1.9, +1.7),
+and Retribution Aura and Strike (Devastating) at Level 2 (−1.4, −1.3).
+Some readings now come from fewer enemies: at the new prices an enemy
+that already carries armor or two picks can't fit another 3-5 Upgrades.
+
+**The baseline on the final kit** (`table_check.py`; days won / F1 Down /
+F1 Wounded / rounds / acts again, middle of each band):
+
+| Level | Composite XP | Middle | Bottom (days won) | Top (days won) |
+|---|---|---|---|---|
+| 1 | 75 | 96% / 14 / 47 / 4.5 / 49 | — | — |
+| 2 | 125 | 98% / 11 / 41 / 4.5 / 53 | 43% | 100% |
+| 3 | 175 | 97% / 13 / 44 / 4.0 / 51 | 61% | 100% |
+| 4 | 225 | 99% / 10 / 37 / 4.5 / 61 | 67% | 100% |
+| 5 | 275 | 99% / 12 / 36 / 5.1 / 65 | 99% | 99% |
+
+Every Level now plays alike in the middle of its band, at 4-5 rounds,
+a little on the easy side of the October targets (Wounded in 36-47% of
+fights against "about every other one"). The bottom of each band is a
+hard day; Level 5's is flat because the grown characters have capped.
+
+**Left for the designer:** whether the middle should be a notch harder
+(Wounded nearer half); whether 5 Upgrades is the right home for
+Poison (Bleeding) or it wants a different shape (the Bleeding weights
+are next in the effect-weights pass anyway); and whether Retribution
+Aura's "melee attackers only" reads right in the fiction.

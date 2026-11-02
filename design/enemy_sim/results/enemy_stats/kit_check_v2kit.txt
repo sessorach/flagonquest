@@ -1,0 +1,88 @@
+== Level 2: base lost 11.8 pts, 4.49 rounds, wins 99.7%; 1 Health per Slot = 0.83 pts
+   role:Defender                       +3.6 Health  rounds +1.42
+   role:Backup                         +3.2 Health  rounds +1.18
+   role:Striker                        +5.3 Health  rounds +0.03
+   role:Bruiser                        +4.5 Health  rounds -0.14
+   role:Skirmisher                     +3.5 Health  rounds +0.36
+   role:Strategist                     +2.5 Health  rounds +0.03
+   ability:Strike (Crippling)          -0.4 Health  rounds -0.11
+   ability:Strike (Vulnerable)         -0.8 Health  rounds -0.23
+   ability:Strike (Slowing)            -0.5 Health  rounds -0.14
+   ability:Strike (Frightening)        -0.6 Health  rounds -0.13
+   ability:Strike (Taunting)           -0.6 Health  rounds -0.22
+   ability:Strike (Necrotic)           +0.2 Health  rounds -0.21  (can't take it: Brute (L2), Hedge Knight (L2), Skulking Footpad (L2), Warpriest (L2))
+   ability:Strike (Harrying)           +0.1 Health  rounds -0.20
+   ability:Strike (Battering)          +0.7 Health  rounds -0.22
+   ability:Strike (Grappling)          +0.0 Health  rounds +0.00  (can't take it: Brute (L2), Hedge Knight (L2), Skulking Footpad (L2))
+   ability:Strike (Devastating)        -1.4 Health  rounds -0.33  (can't take it: Brute (L2), Hedge Knight (L2), Skulking Footpad (L2), Warpriest (L2))
+   ability:Strike (Cleaving)           -0.2 Health  rounds -0.14  (can't take it: Skulking Footpad (L2))
+   ability:Poison (Bleeding)           +0.4 Health  rounds -0.39  (can't take it: Brute (L2), Hedge Knight (L2), Skulking Footpad (L2), Warpriest (L2))
+   ability:Poison (Crippling)          -0.4 Health  rounds -0.10
+   ability:Poison (Necrotic)           +0.2 Health  rounds -0.21  (can't take it: Brute (L2), Hedge Knight (L2), Skulking Footpad (L2), Warpriest (L2))
+   ability:Poison (Slowing)            -0.8 Health  rounds -0.20
+   ability:Poison (Vulnerable)         -0.6 Health  rounds -0.23
+   ability:Heavy Weapon                +0.1 Health  rounds -0.07  (can't take it: Brute (L2), Hedge Knight (L2), Skulking Footpad (L2))
+   ability:Powerful Weapon             +0.1 Health  rounds -0.07  (can't take it: Brute (L2), Hedge Knight (L2), Skulking Footpad (L2))
+   ability:Powerful Spell              -0.5 Health  rounds -0.20
+   ability:Durable                     +0.5 Health  rounds +0.13
+   ability:Omniguard                   -0.3 Health  rounds +0.22
+   ability:Resilient                   -0.5 Health  rounds -0.24
+   ability:Retribution Aura            -1.4 Health  rounds -0.34  (can't take it: Brute (L2), Hedge Knight (L2), Skulking Footpad (L2), Warpriest (L2))
+   ability:Sturdy                      -0.8 Health  rounds -0.24
+   ability:Enhanced Health             +0.0 Health  rounds +0.00
+   ability:Enhanced Range              +1.7 Health  rounds -0.08  (can't take it: Warpriest (L2))
+   ability:Enhanced Speed              -0.5 Health  rounds -0.23
+   ability:Enhanced Reflexes           -0.5 Health  rounds -0.37  (can't take it: Skulking Footpad (L2))
+   ability:Shadow Jaunt                -0.9 Health  rounds -0.23
+   ability:Improved Support            +0.1 Health  rounds +0.10
+   ability:Action (Parting Shot)       +0.2 Health  rounds -0.10
+   ability:Action (Intimidating)       -0.5 Health  rounds -0.02
+   ability:Action (Taunting)           -0.5 Health  rounds -0.24
+   ability:Resist (Fire)               -0.6 Health  rounds -0.15  (can't take it: Skulking Footpad (L2))
+   ability:Attunement (Fire)           -0.4 Health  rounds -0.06  (can't take it: Brute (L2), Hedge Knight (L2), Skulking Footpad (L2), Warpriest (L2))
+   armor:Medium Armor                  +0.8 Health  rounds +0.08  (can't take it: Brute (L2), Skulking Footpad (L2))
+   armor:Heavy Armor                   +0.0 Health  rounds +0.00  (can't take it: Brute (L2), Ember Caster (L2), Grave Caller (L2), Hedge Knight (L2), Marsh Archer (L2), Skulking Footpad (L2), Warpriest (L2))
+== Level 3: base lost 12.9 pts, 4.10 rounds, wins 99.6%; 1 Health per Slot = 0.72 pts
+   role:Defender                       +3.9 Health  rounds +1.12
+   role:Backup                         +3.4 Health  rounds +0.97
+   role:Striker                        +7.4 Health  rounds +0.16
+   role:Bruiser                        +6.7 Health  rounds +0.02
+   role:Skirmisher                     +2.7 Health  rounds +0.21
+   role:Strategist                     +3.1 Health  rounds +0.06
+   ability:Strike (Crippling)          -0.6 Health  rounds -0.13
+   ability:Strike (Vulnerable)         -0.7 Health  rounds -0.20
+   ability:Strike (Slowing)            +0.1 Health  rounds -0.08
+   ability:Strike (Frightening)        -0.7 Health  rounds -0.14
+   ability:Strike (Taunting)           -0.0 Health  rounds -0.15
+   ability:Strike (Necrotic)           +0.3 Health  rounds -0.35  (can't take it: Brute (L3), Hedge Knight (L3))
+   ability:Strike (Harrying)           -0.0 Health  rounds -0.16
+   ability:Strike (Battering)          +0.8 Health  rounds -0.19
+   ability:Strike (Grappling)          +0.6 Health  rounds -0.03  (can't take it: Brute (L3), Hedge Knight (L3))
+   ability:Strike (Devastating)        +1.2 Health  rounds -0.50  (can't take it: Brute (L3), Hedge Knight (L3))
+   ability:Strike (Cleaving)           +0.5 Health  rounds -0.03  (can't take it: Brute (L3), Hedge Knight (L3))
+   ability:Poison (Bleeding)           +1.8 Health  rounds -0.38  (can't take it: Brute (L3), Hedge Knight (L3), Skulking Footpad (L3), Warpriest (L3))
+   ability:Poison (Crippling)          -0.6 Health  rounds -0.13
+   ability:Poison (Necrotic)           +0.3 Health  rounds -0.35  (can't take it: Brute (L3), Hedge Knight (L3))
+   ability:Poison (Slowing)            -0.5 Health  rounds -0.16
+   ability:Poison (Vulnerable)         -0.3 Health  rounds -0.19
+   ability:Heavy Weapon                +0.8 Health  rounds -0.12  (can't take it: Brute (L3), Hedge Knight (L3))
+   ability:Powerful Weapon             +0.8 Health  rounds -0.12  (can't take it: Brute (L3), Hedge Knight (L3))
+   ability:Powerful Spell              +2.0 Health  rounds -0.18
+   ability:Durable                     +0.3 Health  rounds +0.15
+   ability:Omniguard                   -0.3 Health  rounds +0.03
+   ability:Resilient                   -0.3 Health  rounds -0.21
+   ability:Retribution Aura            +0.5 Health  rounds -0.39  (can't take it: Brute (L3), Hedge Knight (L3), Skulking Footpad (L3))
+   ability:Sturdy                      -0.9 Health  rounds -0.25
+   ability:Enhanced Health             +0.0 Health  rounds +0.00
+   ability:Enhanced Range              +0.2 Health  rounds -0.26
+   ability:Enhanced Speed              -0.5 Health  rounds -0.22
+   ability:Enhanced Reflexes           +0.6 Health  rounds -0.22  (can't take it: Brute (L3), Hedge Knight (L3))
+   ability:Shadow Jaunt                -0.9 Health  rounds -0.21
+   ability:Improved Support            +0.1 Health  rounds +0.05
+   ability:Action (Parting Shot)       +0.4 Health  rounds -0.09
+   ability:Action (Intimidating)       -0.5 Health  rounds -0.02
+   ability:Action (Taunting)           -0.0 Health  rounds -0.18
+   ability:Resist (Fire)               +0.2 Health  rounds +0.01  (can't take it: Brute (L3), Hedge Knight (L3))
+   ability:Attunement (Fire)           +0.9 Health  rounds +0.16  (can't take it: Brute (L3), Hedge Knight (L3))
+   armor:Medium Armor                  +1.0 Health  rounds +0.08
+   armor:Heavy Armor                   +0.2 Health  rounds +0.01  (can't take it: Brute (L3), Skulking Footpad (L3))
