@@ -1852,6 +1852,10 @@ function TechCard({
   renames, onRenameChange, expended, onExpendedChange,
   glossary,
   readOnly = false,
+  // Browse mode (no character): everything a reader needs about the
+  // Technique (Fluff, Prereqs as text, Builder Notes, every Feature and
+  // Choice Effect), none of the build controls.
+  browse = false,
   // The Style the character is currently in, by technique id (or null),
   // and its setter — Character Sheet only, like Expended. The rules let
   // you be in one Style at a time, so this is one id rather than a
@@ -2194,7 +2198,25 @@ function TechCard({
           the per-copy Notes below); everywhere else FeaturesSection
           handles listing/editing every copy of the technique in one
           card. */}
-      {needsLevelPicker(tech) && (readOnly ? (
+      {needsLevelPicker(tech) && (browse ? (
+        techFeatures.length > 0 && (
+          <div>
+            <div style={{ fontSize:13, color:TEXT.label, fontWeight:500, marginBottom:4 }}>Features</div>
+            <div style={{ display:"flex", flexDirection:"column", gap:3 }}>
+              {techFeatures.map(f => (
+                <div key={f.id} style={{ fontSize:14, color:TEXT.body, lineHeight:1.5 }}>
+                  <strong style={{ color:TEXT.name }}>{f.feature_name}</strong>
+                  <span style={{ color:TEXT.faint }}>
+                    {" "}({[f.tier, f.point_cost != null ? `${f.point_cost} pt${f.point_cost === 1 ? "" : "s"}` : null,
+                          f.max_copies ? `up to ${f.max_copies}` : null].filter(Boolean).join(", ")})
+                  </span>
+                  {f.effects && <>{" — "}{withGlossary(f.effects, glossary)}</>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      ) : readOnly ? (
         group && group.cfg && Object.keys(group.cfg.picks).length > 0 && (
           <div style={{ display:"flex", flexDirection:"column", gap:3 }}>
             {Object.entries(group.cfg.picks).map(([fid, n]) => {
@@ -2241,7 +2263,7 @@ function TechCard({
           technique with no Choice Effects data (Artisanal Training's
           School, Soulblade's Weapon type) still needs this block on the
           Sheet — it's the only place that records the pick at all. */}
-      {tech.free_text && (readOnly ? (
+      {tech.free_text && !browse && (readOnly ? (
         instances.length > 0 && !tech.choice_effects && (
           <div>
             <div style={{ fontSize:13, color:TEXT.label, fontWeight:500, marginBottom:4 }}>
@@ -2417,7 +2439,7 @@ function TechCard({
       {/* Add / Remove button(s) — skipped entirely on the read-only
           Character Sheet, and Features-built techniques manage this
           themselves above so it's skipped for those too */}
-      {!readOnly && !needsLevelPicker(tech) && (
+      {!readOnly && !browse && !needsLevelPicker(tech) && (
         <div style={{ marginTop:2, display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}>
           {repeatable ? (
             <>
@@ -3276,7 +3298,7 @@ function CustomTechniqueCard({ tech, onTitleChange, onTextChange, onRemove, read
 // BACKGROUND CARD — one Background tile, shared by the picker grid
 // (with a Select/Remove toggle) and the read-only Character Sheet.
 // ══════════════════════════════════════════════════════════════════
-function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
+function BackgroundCard({ bg, selected = false, onToggle, readOnly = false, browse = false, grantsName = null }) {
   return (
     <div className="tech-card" style={{
       ...cardBoxStyle,
@@ -3299,7 +3321,7 @@ function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
         </span>
       </div>
       {/* Fluff/Effects split, same treatment as a technique's or item's. */}
-      {!readOnly && bg.description && (
+      {(!readOnly || browse) && bg.description && (
         <div style={{ fontSize: 14, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.5 }}>
           {bg.description}
         </div>
@@ -3309,7 +3331,10 @@ function BackgroundCard({ bg, selected = false, onToggle, readOnly = false }) {
           {bg.effects}
         </div>
       )}
-      {!readOnly && (
+      {browse && grantsName && (
+        <div style={{ fontSize: 13, color: TEXT.faint }}>Grants the Technique {grantsName}, free.</div>
+      )}
+      {!readOnly && !browse && (
         <button
           onClick={() => onToggle(bg)}
           style={{
@@ -3489,6 +3514,9 @@ function InventoryTile({
   onDragStart, onDragEnd, onDragOver, onDrop, isDragging = false,
   statPoints = {}, skillPoints = {},
   currentPatch = "",
+  // Browse mode (no character): the item as reference, every Level and
+  // its price shown, no quantity, remove or base-item controls.
+  browse = false,
 }) {
   if (!item) return null; // stale reference to a removed/renamed data row
   const baseItemOptions = (item.base_item_options || [])
@@ -3527,7 +3555,7 @@ function InventoryTile({
   // flat Cost of its own — its price depends on which level you build it
   // at, so compute it from the picked level instead.
   const displayCost = item.value_per_level && hasLevel
-    ? `${displayLevel * item.value_per_level} Gold`
+    ? (browse && variableLevel ? `${item.value_per_level} Gold per Level` : `${displayLevel * item.value_per_level} Gold`)
     : item.cost;
 
   return (
@@ -3565,7 +3593,7 @@ function InventoryTile({
         }}>
           {item.name}
         </span>
-        {!readOnly && (
+        {!readOnly && !browse && (
           <button
             onClick={onRemove}
             aria-label={`Remove ${item.name}`}
@@ -3581,7 +3609,11 @@ function InventoryTile({
         </span>
         <UpdatedBadge patch={item.patch} currentPatch={currentPatch} />
         {hasLevel && (
-          variableLevel && !readOnly ? (
+          browse ? (
+            <span style={{ fontSize: 12, color: TEXT.name, background: "#24221a", border: "0.5px solid #5b5540", borderRadius: 3, padding: "1px 6px" }}>
+              Lv {variableLevel ? `${Math.min(...levels)}–${Math.max(...levels)}` : levels[0]}
+            </span>
+          ) : variableLevel && !readOnly ? (
             <select
               value={displayLevel}
               onChange={e => onLevelChange(Number(e.target.value))}
@@ -3595,13 +3627,13 @@ function InventoryTile({
             </span>
           )
         )}
-        {!readOnly && displayCost && (
+        {(!readOnly || browse) && displayCost && (
           <span style={{ fontSize: 13, color: TEXT.faint }}>{displayCost}</span>
         )}
       </div>
       {/* Fluff description — italic and muted, skipped on the read-only
           Character Sheet, same treatment as a technique's Description. */}
-      {!readOnly && item.description && (
+      {(!readOnly || browse) && item.description && (
         <div style={{ fontSize: 14, color: TEXT.muted, fontStyle: "italic", lineHeight: 1.5 }}>
           {item.description}
         </div>
@@ -3653,14 +3685,16 @@ function InventoryTile({
           ))}
         </div>
       )}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
-        <span style={{ fontSize: 13, color: TEXT.faint }}>Qty</span>
-        {readOnly ? (
-          <span className="print-editable" style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
-        ) : (
-          <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
-        )}
-      </div>
+      {!browse && (
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto" }}>
+          <span style={{ fontSize: 13, color: TEXT.faint }}>Qty</span>
+          {readOnly ? (
+            <span className="print-editable" style={{ fontSize: 15, fontWeight: 500, color: TEXT.name }}>{entry.qty}</span>
+          ) : (
+            <PointStepper value={entry.qty} max={99} onChange={onQtyChange} />
+          )}
+        </div>
+      )}
       {showEquip && effectiveSlot(item) && (
         <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 4, borderTop: "0.5px solid #2d3555" }}>
           <label
@@ -3677,7 +3711,12 @@ function InventoryTile({
           </label>
         </div>
       )}
-      {!readOnly && baseItemOptions.length > 0 && (
+      {browse && baseItemOptions.length > 0 && (
+        <div style={{ fontSize: 13, color: TEXT.faint, lineHeight: 1.5 }}>
+          Base item: {baseItemOptions.map(bi => bi.name).join(", ")}
+        </div>
+      )}
+      {!readOnly && !browse && baseItemOptions.length > 0 && (
         <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: TEXT.body }}>
           <span style={{ color: TEXT.faint, flexShrink: 0 }}>Base item</span>
           <select
@@ -5421,6 +5460,140 @@ function InventorySection({
 // build list. Rendered both on the standalone "My build" tab and in
 // the sticky sidebar next to the technique list on wide screens.
 // ══════════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════════
+// BROWSE MODE (2026-11-02) — the Items and Backgrounds catalogs with no
+// character attached, searchable the way the Techniques tab is. The
+// cards are the same InventoryTile/BackgroundCard as everywhere else, in
+// their `browse` mode (reference info, no build controls). Supplements
+// here are a filter, not the character's Sources: browsing shows every
+// supplement unless narrowed.
+// ══════════════════════════════════════════════════════════════════
+// Search box on top and the count under the filters, as on Techniques.
+function BrowseSearch({ value, onChange, placeholder }) {
+  return (
+    <input
+      type="text" placeholder={placeholder} value={value}
+      onChange={e => onChange(e.target.value)}
+      style={{ width: "100%", marginBottom: 10 }}
+    />
+  );
+}
+
+function BrowseCount({ count, noun }) {
+  return (
+    <div style={{ fontSize: 14, color: TEXT.faint, marginBottom: 12 }}>
+      {count} {noun}{count !== 1 ? "s" : ""}
+    </div>
+  );
+}
+
+function ChipRow({ label, options, active, setter }) {
+  if (options.length < 2) return null;
+  return (
+    <div style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center", marginBottom: 8 }}>
+      <span style={{ fontSize: 14, color: TEXT.faint, marginRight: 2 }}>{label}</span>
+      {options.map(o => (
+        <button key={o} onClick={() => toggleInArray(setter, o)} style={chipStyle(active.includes(o))}>{o}</button>
+      ))}
+      {active.length > 0 && (
+        <button onClick={() => setter([])} style={{ background: "transparent", border: "none", color: "#c0392b", fontSize: 14, padding: 0 }}>
+          Clear
+        </button>
+      )}
+    </div>
+  );
+}
+
+const uniqueInOrder = list => [...new Set(list.filter(Boolean))];
+
+function ItemBrowser({ items, currentPatch }) {
+  const [search, setSearch] = useState("");
+  const [cats, setCats] = useState([]);
+  const [slots, setSlots] = useState([]);
+  const [sups, setSups] = useState([]);
+  const [updatedOnly, setUpdatedOnly] = useState(false);
+  const categories = useMemo(() => uniqueInOrder(items.map(i => i.category)), [items]);
+  const slotList = useMemo(() => uniqueInOrder(items.map(i => i.slot)), [items]);
+  const supList = useMemo(() => uniqueInOrder(items.map(i => i.supplement)), [items]);
+  const shown = items.filter(i => {
+    if (cats.length && !cats.includes(i.category)) return false;
+    if (slots.length && !slots.includes(i.slot)) return false;
+    if (sups.length && !sups.includes(i.supplement)) return false;
+    if (updatedOnly && (!currentPatch || i.patch !== currentPatch)) return false;
+    if (search) {
+      const hay = [i.name, i.category, i.slot, i.tags, i.effects, i.description, i.cost, i.school, i.relevant_skills,
+                   i.material_types, i.supplement].filter(Boolean).join(" ").toLowerCase();
+      if (!hay.includes(search.toLowerCase())) return false;
+    }
+    return true;
+  });
+  return (
+    <div style={{ maxWidth: 1160, margin: "0 auto", padding: 16 }}>
+      <BrowseSearch value={search} onChange={setSearch} placeholder="Search items — name, effects, category, slot, cost…" />
+      <ChipRow label="Category" options={categories} active={cats} setter={setCats} />
+      <ChipRow label="Slot" options={slotList} active={slots} setter={setSlots} />
+      <ChipRow label="Supplement" options={supList} active={sups} setter={setSups} />
+      {currentPatch && (
+        <label style={{ display: "flex", alignItems: "center", gap: 4, cursor: "pointer", fontSize: 15, color: TEXT.muted, marginBottom: 10 }}>
+          <input type="checkbox" checked={updatedOnly} onChange={e => setUpdatedOnly(e.target.checked)} />
+          Recently updated
+        </label>
+      )}
+      <BrowseCount count={shown.length} noun="item" />
+      {shown.length === 0 ? (
+        <div style={{ textAlign: "center", padding: "60px 20px", color: TEXT.faint, fontSize: 16 }}>
+          No items match those filters.
+        </div>
+      ) : (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(260px, 100%), 1fr))", gap: 10 }}>
+          {shown.map(i => (
+            <InventoryTile key={i.id} browse readOnly entry={{ uid: i.id, itemId: i.id, qty: 1 }}
+                           item={i} allItems={items} currentPatch={currentPatch} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function BackgroundBrowser({ backgrounds, techniques }) {
+  const [search, setSearch] = useState("");
+  const [cats, setCats] = useState([]);
+  const [sups, setSups] = useState([]);
+  const categories = useMemo(() => uniqueInOrder(backgrounds.map(b => b.category)), [backgrounds]);
+  const supList = useMemo(() => uniqueInOrder(backgrounds.map(b => b.supplement)), [backgrounds]);
+  const techName = id => techniques.find(t => t.id === id)?.name ?? null;
+  const shown = backgrounds.filter(b => {
+    if (cats.length && !cats.includes(b.category)) return false;
+    if (sups.length && !sups.includes(b.supplement)) return false;
+    if (search) {
+      const hay = [b.name, b.category, b.effects, b.description, b.supplement, techName(b.grants_technique)]
+        .filter(Boolean).join(" ").toLowerCase();
+      if (!hay.includes(search.toLowerCase())) return false;
+    }
+    return true;
+  });
+  return (
+    <div style={{ maxWidth: 1160, margin: "0 auto", padding: 16 }}>
+      <BrowseSearch value={search} onChange={setSearch} placeholder="Search backgrounds — name, effects, type…" />
+      <ChipRow label="Type" options={categories} active={cats} setter={setCats} />
+      <ChipRow label="Supplement" options={supList} active={sups} setter={setSups} />
+      <BrowseCount count={shown.length} noun="background" />
+      {shown.length === 0 ? (
+        <div style={{ textAlign: "center", padding: "60px 20px", color: TEXT.faint, fontSize: 16 }}>
+          No backgrounds match those filters.
+        </div>
+      ) : (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(260px, 100%), 1fr))", gap: 10 }}>
+          {shown.map(b => (
+            <BackgroundCard key={b.id} bg={b} readOnly browse grantsName={techName(b.grants_technique)} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // The purchase history on the Notes tab (see historySnapshot), newest
 // entry first: when, what changed and what each change cost, and the
 // XP spent afterwards against the budget then.
@@ -5848,6 +6021,15 @@ function initialViewFromUrl() {
   const tab = new URLSearchParams(window.location.search).get("tab");
   return VALID_VIEWS.includes(tab) ? tab : "sheet";
 }
+// Browse mode (2026-11-02): ?mode=browse&tab=<techniques|items|
+// backgrounds> opens the catalogs with no character attached, so a
+// Rulebook link or a bookmark can land there. Read once, like ?tab=.
+const BROWSE_VIEWS = ["techniques", "items", "backgrounds"];
+function initialBrowseFromUrl() {
+  const p = new URLSearchParams(window.location.search);
+  if (p.get("mode") !== "browse") return null;
+  return BROWSE_VIEWS.includes(p.get("tab")) ? p.get("tab") : "techniques";
+}
 
 // ══════════════════════════════════════════════════════════════════
 // MAIN APP COMPONENT
@@ -5876,6 +6058,13 @@ function App() {
 
   // ── UI state ───────────────────────────────────────────────────
   const [view,       setView]       = useState(initialViewFromUrl); // build | techniques | items | sheet | notes
+  // Browse mode: null on the character's own tabs, else which catalog is
+  // open. Kept apart from `view`, so leaving browse returns to the tab
+  // the player was on.
+  const [browseView, setBrowseView] = useState(initialBrowseFromUrl);
+  // Browse mode's own Supplement filter for Techniques (empty = all) —
+  // the character's Sources don't apply when no character is in view.
+  const [browseSups, setBrowseSups] = useState([]);
   const [search,     setSearch]     = useState("");
   const [skillFilters, setSkillFilters] = useState([]);   // selected "related skills" chips
   const [tagFilters,  setTagFilters]  = useState([]);     // selected "tags" chips
@@ -6028,7 +6217,8 @@ function App() {
     setCharacters(cs => [...cs, { id, name: full.charName || "" }]);
     setActiveId(id);
     applyCharacterData(full);
-    if (switchView) setView(switchView);
+    // A character just opened (a share link, a new one) means leaving browse.
+    if (switchView) { setView(switchView); setBrowseView(null); }
     return id;
   };
 
@@ -6269,7 +6459,9 @@ function App() {
     // Supplement is on) still drops out if an *enabled* supplement
     // appears in its Excluded By list — see the comment on
     // TECHNIQUE_MAP's Excluded By in convert.py.
-    if (enabledSupplements) {
+    if (browseView) {
+      if (browseSups.length && !browseSups.includes(t.supplement)) return false;
+    } else if (enabledSupplements) {
       if (!enabledSupplements.includes(t.supplement)) return false;
       if (splitCSV(t.excluded_by).some(s => enabledSupplements.includes(s))) return false;
     }
@@ -6308,7 +6500,7 @@ function App() {
   }).sort((a, b) => {
     const diff = (a.level_min ?? Infinity) - (b.level_min ?? Infinity);
     return diff !== 0 ? diff : a.name.localeCompare(b.name);
-  }), [techniques, search, skillFilters, tagFilters, levelMin, levelMax, healingOnly, cardsOnly, updatedOnly, currentPatch, enabledSupplements]);
+  }), [techniques, search, skillFilters, tagFilters, levelMin, levelMax, healingOnly, cardsOnly, updatedOnly, currentPatch, enabledSupplements, browseView, browseSups]);
 
   // ── Build entries paired with their technique object ────────────
   const buildEntries = useMemo(() =>
@@ -7412,6 +7604,11 @@ function App() {
     transition: "all 0.15s",
   });
 
+  // Browse mode's tabs, the same look keyed off browseView instead.
+  const browseTabStyle = key => ({ ...tabStyle(null), ...(browseView === key ? {
+    background: "#d4a843", color: "#0a0e18", border: "0.5px solid #d4a843",
+  } : {}) });
+
   // A cooler, book-ish blue instead of the app's amber tab color, and set
   // off from the other tabs by a divider — it leaves the app for the
   // Rulebook/Glossary pages, so it reads as a different kind of link.
@@ -7490,6 +7687,15 @@ function App() {
       />
     );
   };
+
+  // Browse mode's card: no character, so no copies, picks or controls.
+  const renderBrowseTechCard = t => (
+    <TechCard
+      key={t.id} tech={t} instances={[]} techFeatures={techFeaturesById[t.id] || []}
+      notes={{}} configs={{}} renames={{}} expended={{}} glossary={glossary}
+      items={items} backgrounds={backgrounds} currentPatch={currentPatch} browse
+    />
+  );
 
   // Extra backgrounds granted via a technique's own "Background" Free
   // Text pick (Extensive Background) — not part of the normal General/
@@ -7674,9 +7880,22 @@ function App() {
             characters always land in a fresh slot, never overwrite
             whichever one is open here. */}
         <div className="site-header-left" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6 }}>
-          <button onClick={() => setShowCharManager(true)} style={actionBtn()}>
-            <i className="ti ti-users" aria-hidden="true" /> Manage Characters
-          </button>
+          {browseView ? (
+            <button onClick={() => setBrowseView(null)} style={actionBtn()}>
+              ← Back to my character
+            </button>
+          ) : (
+            <>
+              <button onClick={() => setShowCharManager(true)} style={actionBtn()}>
+                <i className="ti ti-users" aria-hidden="true" /> Manage Characters
+              </button>
+              {/* Browse mode: the catalogs with no character — see
+                  initialBrowseFromUrl. Goes back to `view` as it was. */}
+              <button onClick={() => setBrowseView("techniques")} style={actionBtn()}>
+                <i className="ti ti-books" aria-hidden="true" /> Browse
+              </button>
+            </>
+          )}
           {showCharManager && (
             <CharacterManagerOverlay
               characters={characters}
@@ -7697,21 +7916,37 @@ function App() {
 
         {/* Tab navigation */}
         <div className="site-header-nav" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:6, flexWrap:"wrap" }}>
-          <button onClick={() => setView("build")} style={tabStyle("build")}>
-            Builder
-          </button>
-          <button onClick={() => setView("techniques")} style={tabStyle("techniques")}>
-            Techniques
-          </button>
-          <button onClick={() => setView("items")} style={tabStyle("items")}>
-            Items
-          </button>
-          <button onClick={() => setView("sheet")} style={tabStyle("sheet")}>
-            Character sheet
-          </button>
-          <button onClick={() => setView("notes")} style={tabStyle("notes")}>
-            Notes
-          </button>
+          {browseView ? (
+            <>
+              <button onClick={() => setBrowseView("techniques")} style={browseTabStyle("techniques")}>
+                Techniques
+              </button>
+              <button onClick={() => setBrowseView("items")} style={browseTabStyle("items")}>
+                Items
+              </button>
+              <button onClick={() => setBrowseView("backgrounds")} style={browseTabStyle("backgrounds")}>
+                Backgrounds
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => setView("build")} style={tabStyle("build")}>
+                Builder
+              </button>
+              <button onClick={() => setView("techniques")} style={tabStyle("techniques")}>
+                Techniques
+              </button>
+              <button onClick={() => setView("items")} style={tabStyle("items")}>
+                Items
+              </button>
+              <button onClick={() => setView("sheet")} style={tabStyle("sheet")}>
+                Character sheet
+              </button>
+              <button onClick={() => setView("notes")} style={tabStyle("notes")}>
+                Notes
+              </button>
+            </>
+          )}
 
           {/* Divider + Rulebook + Glossary grouped into their own flex
               item, so the pair wraps to the next line as a unit instead
@@ -7742,7 +7977,7 @@ function App() {
 
 
       {/* ════════ BROWSE VIEW ═══════════════════════════════════ */}
-      {view === "techniques" && (
+      {(browseView ? browseView === "techniques" : view === "techniques") && (
         <div style={{ padding: 16 }}>
 
           {/* Search bar + advanced filters toggle */}
@@ -7869,6 +8104,11 @@ function App() {
             </div>
           )}
 
+          {browseView && (
+            <ChipRow label="Supplement" options={uniqueInOrder(techniques.map(t => t.supplement))}
+                     active={browseSups} setter={setBrowseSups} />
+          )}
+
           {/* Result count */}
           <div style={{ fontSize:14, color:TEXT.faint, marginBottom:12 }}>
             {visible.length} technique{visible.length !== 1 ? "s" : ""}
@@ -7876,7 +8116,8 @@ function App() {
           </div>
 
           {/* List (left) + sticky build panel (right on wide screens) */}
-          <div className="browse-layout">
+          {/* No build panel in browse mode, so no second column either. */}
+          <div className="browse-layout" style={browseView ? { display: "block" } : undefined}>
             <div className="tech-list">
               {visible.length === 0 ? (
                 <div style={{
@@ -7885,10 +8126,10 @@ function App() {
                 }}>
                   No techniques match those filters.
                 </div>
-              ) : visible.map(t => renderTechCard(t))}
+              ) : visible.map(t => (browseView ? renderBrowseTechCard(t) : renderTechCard(t)))}
             </div>
 
-            <div className="browse-build-panel">
+            {!browseView && <div className="browse-build-panel">
               <BuildPanel
                 buildRows={buildRows}
                 knownXP={knownXP} unknownCount={unknownCount} totalXP={totalXP}
@@ -7896,14 +8137,17 @@ function App() {
                 addTech={addTech} removeTech={removeTech}
                 removeInstance={removeInstance} duplicateInstance={duplicateInstance}
               />
-            </div>
+            </div>}
           </div>
         </div>
       )}
 
+      {browseView === "items" && <ItemBrowser items={items} currentPatch={currentPatch} />}
+      {browseView === "backgrounds" && <BackgroundBrowser backgrounds={backgrounds} techniques={techniques} />}
+
 
       {/* ════════ BUILDER VIEW ══════════════════════════════════ */}
-      {view === "build" && (
+      {!browseView && view === "build" && (
         <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
 
           {/* Name/Concept on the left, the whole-build action buttons in a
@@ -8105,7 +8349,7 @@ function App() {
           Equipped controls (see the Sheet view below). Parry Defense is
           computed automatically from whatever's equipped there, no
           manual picker needed. */}
-      {view === "items" && (
+      {!browseView && view === "items" && (
         <div style={{ maxWidth:1160, margin:"0 auto", padding:20 }}>
           <div style={{ fontSize:14, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Inventory
@@ -8146,7 +8390,7 @@ function App() {
           same technique tiles as everywhere else, but with every
           editable control (notes, Feature-builder, Add/Remove)
           stripped out — nothing on this page changes anything. */}
-      {view === "sheet" && (
+      {!browseView && view === "sheet" && (
         <div className="sheet-page" style={{ maxWidth:1160, margin:"0 auto", padding:16 }}>
           {/* Character name + summary header */}
           <div className="sheet-header" style={{
@@ -8338,7 +8582,7 @@ function App() {
       {/* ════════ NOTES VIEW ═══════════════════════════════════
           A freeform scratchpad that saves with the character — a
           big text box plus a short quick-note list. */}
-      {view === "notes" && (
+      {!browseView && view === "notes" && (
         <div style={{ maxWidth:900, margin:"0 auto", padding:20 }}>
           <div style={{ fontSize:14, color:TEXT.faint, marginBottom:8, textTransform:"uppercase", letterSpacing:"0.07em" }}>
             Notes

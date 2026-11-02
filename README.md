@@ -13,9 +13,11 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-02 — A purchase history for every character
+### 2026-11-02 — Browse mode and a purchase history
 
-The Notes tab now keeps a dated history of what each character bought, with what each change cost in XP. In the simulator, the strong "soak" builds (stacked Toughened Resolve plus Lifeline) turn out to be mostly a product of how we were measuring.
+The site can now browse Techniques, Items and Backgrounds without a character, and the Notes tab keeps a dated history of what each character bought. In the simulator, the strong "soak" builds (stacked Toughened Resolve plus Lifeline) turn out to be mostly a product of how we were measuring.
+
+- Browse mode: a Browse button in the header (and a link from the Rulebook and Glossary) opens searchable, filterable lists of every Technique, Item and Background, with no build controls in the way.
 
 - The history covers Stats, Skills, Techniques, Backgrounds, items and gold; changes made in one sitting are grouped into one entry, and it goes along when you export or duplicate a character.
 - Scored in parties of other strong builds, or against enemies that hit harder, the soaks fall from the top to below average at Level 3, while the damage builds hold up; at Level 2 Lifeline and Toughened Resolve still look strong.

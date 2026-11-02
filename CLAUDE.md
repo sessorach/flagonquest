@@ -61,6 +61,19 @@ which should stay a clean decision record.
   initial render consumes it, since it's a one-time landing instruction,
   not a live mirror of which tab is open (same reasoning as dropping the
   live `#build=` mirroring below).
+- **Browse mode** (2026-11-02): the header's Browse button (or
+  `index.html?mode=browse&tab=<techniques|items|backgrounds>`, read
+  once by `initialBrowseFromUrl` like `?tab=`) swaps the tab row for the
+  catalogs with no character attached. `browseView` is separate from
+  `view`, so "Back to my character" returns to the tab the player was
+  on; opening a character (share link, New) leaves browse. The cards are
+  the usual `TechCard`/`InventoryTile`/`BackgroundCard` with a `browse`
+  prop (reference info shown, build controls hidden; a Buildable
+  Technique lists every Feature), and `ItemBrowser`/`BackgroundBrowser`
+  are the Items/Backgrounds lists. Supplements are a filter there, not
+  the character's Sources. Rulebook/Glossary nav link to it as
+  "Browse". When TechCard or a tile gains a character-only control,
+  check it's hidden under `browse` too.
 - Game content lives in `scripts/*.csv` (plus `scripts/rulebook.md` and
   `scripts/glossary.md` for hand-written prose) and is compiled to
   `data/*.json` by `scripts/convert.py`. **Never hand-edit `data/*.json`**
