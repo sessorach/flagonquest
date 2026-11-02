@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-02 — A purchase history for every character
+
+The Notes tab now keeps a dated history of what each character bought: Stats, Skills, Techniques, Backgrounds, items and gold, with what each change cost in XP. Changes made in one sitting are grouped into one entry, and the history goes along when you export or duplicate a character.
+
 ### 2026-11-01 — Healing Magic against the other healing
 
 Compared Healing Magic with every other healing Technique on the optimized builds, at the same XP, and searched each build again without it; then tested it as an Encounter Technique. Every build wants healing and Healing Magic beats every alternative; as an Encounter Technique it's still the best and still on almost every build, just with a narrower lead.

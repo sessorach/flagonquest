@@ -1343,7 +1343,107 @@ function emptyCharacterData() {
     // is currently in, or null. Session-tracking like `expended`, so it's
     // left out of doExport() for the same reason.
     activeStyle: null,
+    // Purchase history, shown on the Notes tab (see historySnapshot):
+    // { id, at, changes: [{ text, xp }], spent, budget } per entry, oldest
+    // first. Travels with Export/Duplicate/Backup-all (a GM can read it),
+    // not share links. `historyBase` is the snapshot the last entry was
+    // taken against; null means "start a new baseline" (a fresh or
+    // imported character, whose Technique uids don't match any old one).
+    history: [],
+    historyBase: null,
   };
+}
+
+// ── Purchase history (2026-11-02) ──────────────────────────────────
+// Rather than hooking every place a Stat, Technique or item can change,
+// the app compares a snapshot of everything XP or gold buys against the
+// last one it recorded, once the player has stopped editing for a
+// moment, and writes the difference as one dated entry. Clicking + three
+// times and - once records the net change, and an undo inside the window
+// records nothing.
+const HISTORY_QUIET_MS = 20000;
+
+function historySnapshot(d) {
+  const techs = {};
+  d.build.forEach(e => {
+    const cfg = d.configs[e.uid];
+    techs[e.uid] = { id: e.id, level: cfg?.level ?? null, picks: cfg?.picks ?? {}, granted: !!e.granted };
+  });
+  const items = {};
+  d.inventory.forEach(e => {
+    items[e.uid] = { itemId: e.itemId, qty: e.qty ?? 1, level: typeof e.level === "number" ? e.level : null };
+  });
+  d.customItems.forEach(c => { items[`custom-${c.id}`] = { name: c.name, qty: c.qty ?? 1 }; });
+  return {
+    stats: { ...d.statPoints }, skills: { ...d.skillPoints }, budget: d.xpBudget, gold: d.gold,
+    techs, bgs: [...d.selectedBackgrounds], items,
+  };
+}
+
+// The changes from snapshot `a` to `b`, as [{ text, xp }] — xp is the XP
+// that line costs (negative for a refund), 0 for something free, null
+// when there's no XP in it (items, gold) or it can't be priced (a
+// Level-range Technique with no Level picked yet).
+function diffHistory(a, b, look) {
+  const out = [];
+  const signed = n => (n > 0 ? `+${n}` : `${n}`);
+  STATS.forEach(s => {
+    const x = a.stats[s] || 0, y = b.stats[s] || 0;
+    if (x !== y) out.push({ text: `${s} ${x} → ${y}`, xp: statTotalCost(y) - statTotalCost(x) });
+  });
+  ALL_STAT_SKILLS.forEach(s => {
+    const x = a.skills[s] || 0, y = b.skills[s] || 0;
+    if (x !== y) out.push({ text: `${s} ${x} → ${y}`, xp: skillTotalCost(y) - skillTotalCost(x) });
+  });
+  // Techniques: copies learned or dropped (several of one at once
+  // collapse into "×N"), then Level and Feature changes on a copy kept.
+  const levelOf = t => t.level ?? look.fixedLevel(t.id);
+  const costOf = t => (t.granted ? 0 : (levelOf(t) == null ? null : levelOf(t) * 3));
+  const grouped = new Map();
+  const tally = (verb, t, sign) => {
+    const lv = levelOf(t);
+    const key = `${verb} ${look.techName(t.id)}${lv != null && t.level != null ? ` (Level ${lv})` : ""}${t.granted ? " (free, from a Background)" : ""}`;
+    const g = grouped.get(key) || { n: 0, xp: 0 };
+    const c = costOf(t);
+    g.n += 1;
+    g.xp = g.xp == null || c == null ? null : g.xp + sign * c;
+    grouped.set(key, g);
+  };
+  Object.entries(b.techs).forEach(([uid, t]) => { if (!(uid in a.techs)) tally("Learned", t, 1); });
+  Object.entries(a.techs).forEach(([uid, t]) => { if (!(uid in b.techs)) tally("Dropped", t, -1); });
+  grouped.forEach((g, key) => out.push({ text: g.n > 1 ? `${key} ×${g.n}` : key, xp: g.xp }));
+  Object.entries(b.techs).forEach(([uid, t]) => {
+    const was = a.techs[uid];
+    if (!was) return;
+    const name = look.techName(t.id);
+    if (was.level !== t.level && was.level != null && t.level != null) {
+      out.push({ text: `${name}: Level ${was.level} → ${t.level}`, xp: t.granted ? 0 : (t.level - was.level) * 3 });
+    }
+    const ids = new Set([...Object.keys(was.picks), ...Object.keys(t.picks)]);
+    const bits = [];
+    ids.forEach(fid => {
+      const d = (t.picks[fid] || 0) - (was.picks[fid] || 0);
+      if (d) bits.push(`${d > 0 ? "+" : "−"}${look.featName(fid)}${Math.abs(d) > 1 ? ` ×${Math.abs(d)}` : ""}`);
+    });
+    if (bits.length) out.push({ text: `${name}: Features ${bits.join(", ")}`, xp: null });
+  });
+  b.bgs.filter(id => !a.bgs.includes(id)).forEach(id => out.push({ text: `Took Background: ${look.bgName(id)}`, xp: null }));
+  a.bgs.filter(id => !b.bgs.includes(id)).forEach(id => out.push({ text: `Dropped Background: ${look.bgName(id)}`, xp: null }));
+  if ((a.budget || "") !== (b.budget || "")) out.push({ text: `XP budget ${a.budget || "—"} → ${b.budget || "—"}`, xp: null });
+  const itemName = it => (it.itemId ? look.itemName(it.itemId) : (it.name || "Custom item"));
+  Object.entries(b.items).forEach(([k, it]) => {
+    const was = a.items[k];
+    if (!was) out.push({ text: `Added ${itemName(it)}${it.qty > 1 ? ` ×${it.qty}` : ""}`, xp: null });
+    else if (was.qty !== it.qty) out.push({ text: `${itemName(it)} ×${was.qty} → ×${it.qty}`, xp: null });
+  });
+  Object.entries(a.items).forEach(([k, it]) => {
+    if (!(k in b.items)) out.push({ text: `Removed ${itemName(it)}${it.qty > 1 ? ` ×${it.qty}` : ""}`, xp: null });
+  });
+  if ((a.gold || "") !== (b.gold || "")) {
+    const x = parseFloat(a.gold) || 0, y = parseFloat(b.gold) || 0;
+    out.push({ text: `Gold ${a.gold || "0"} → ${b.gold || "0"}${x !== y ? ` (${signed(y - x)})` : ""}`, xp: null });
+  }
+  return out;
 }
 
 function loadCharacterData(id) {
@@ -5321,6 +5421,73 @@ function InventorySection({
 // build list. Rendered both on the standalone "My build" tab and in
 // the sticky sidebar next to the technique list on wide screens.
 // ══════════════════════════════════════════════════════════════════
+// The purchase history on the Notes tab (see historySnapshot), newest
+// entry first: when, what changed and what each change cost, and the
+// XP spent afterwards against the budget then.
+function HistoryLog({ history, onClear }) {
+  const xpText = xp => (xp > 0 ? `+${xp} XP` : xp < 0 ? `−${-xp} XP` : "free");
+  const when = at => {
+    const d = new Date(at);
+    return isNaN(d) ? at : d.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+  };
+  return (
+    <div style={{ marginTop: 28 }}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginBottom: 8 }}>
+        <div style={{ fontSize: 14, color: TEXT.faint, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+          History
+        </div>
+        {history.length > 0 && (
+          <button className="no-print" onClick={onClear} style={{
+            fontSize: 13, color: TEXT.faint, background: "transparent",
+            border: "0.5px solid #2d3555", borderRadius: 4, padding: "2px 8px",
+          }}>
+            Clear history
+          </button>
+        )}
+      </div>
+      {history.length === 0 ? (
+        <div style={{ fontSize: 14, color: TEXT.faint, lineHeight: 1.5 }}>
+          Nothing recorded yet. Changes to Stats, Skills, Techniques, Backgrounds, the XP budget, items and
+          gold show up here, grouped into one entry, about 20 seconds after you stop editing.
+        </div>
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {[...history].reverse().map(h => {
+            const priced = h.changes.filter(c => typeof c.xp === "number");
+            const net = priced.reduce((sum, c) => sum + c.xp, 0);
+            return (
+              <div key={h.id} style={{ ...cardBoxStyle, padding: "10px 12px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap", marginBottom: 6 }}>
+                  <span style={{ fontSize: 14, fontWeight: 500, color: TEXT.name }}>{when(h.at)}</span>
+                  {h.spent != null && (
+                    <span style={{ fontSize: 13, color: TEXT.faint }}>
+                      {h.spent} XP spent{h.budget ? ` of ${h.budget}` : ""}
+                    </span>
+                  )}
+                </div>
+                {h.changes.map((c, i) => (
+                  <div key={i} style={{ display: "flex", justifyContent: "space-between", gap: 12, fontSize: 14, lineHeight: 1.5 }}>
+                    <span style={{ minWidth: 0 }}>{c.text}</span>
+                    {typeof c.xp === "number" && (
+                      <span style={{ flexShrink: 0, color: c.xp > 0 ? "#d4a843" : TEXT.faint }}>{xpText(c.xp)}</span>
+                    )}
+                  </div>
+                ))}
+                {priced.length > 1 && (
+                  <div style={{ display: "flex", justifyContent: "space-between", gap: 12, fontSize: 13, color: TEXT.faint,
+                                borderTop: "0.5px solid #2d3555", marginTop: 6, paddingTop: 4 }}>
+                    <span>Net</span><span>{xpText(net)}</span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function XPTiles({ knownXP, unknownCount, totalXP }) {
   return (
     <>
@@ -5789,6 +5956,9 @@ function App() {
   // Current Fullness (Goblin Game) — same session-state reasoning.
   const [currentFullness, setCurrentFullness] = useState(initialCharacter.data.currentFullness);
   const [activeStyle, setActiveStyle] = useState(initialCharacter.data.activeStyle);
+  // Purchase history — see emptyCharacterData/historySnapshot.
+  const [history, setHistory] = useState(initialCharacter.data.history);
+  const [historyBase, setHistoryBase] = useState(initialCharacter.data.historyBase);
   const importRef = useRef();
 
   // Loads one character's data into all of the state above — used by
@@ -5821,6 +5991,8 @@ function App() {
     setCurrentHealth(data.currentHealth);
     setCurrentFullness(data.currentFullness);
     setActiveStyle(data.activeStyle);
+    setHistory(data.history);
+    setHistoryBase(data.historyBase);
   };
 
   // The active character's data, in the same shape emptyCharacterData/
@@ -5833,6 +6005,7 @@ function App() {
     charName, charConcept, charNotes, noteRows, customTechniques,
     selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials,
     customAttacks, sheetSectionOrder, enabledSupplements, currentHealth, currentFullness, activeStyle,
+    history, historyBase,
   });
 
   // Switches to an existing character slot.
@@ -6025,7 +6198,7 @@ function App() {
   // ── Persist the active character, and keep the switcher list synced ─
   useEffect(() => {
     saveCharacterData(activeId, currentCharacterData());
-  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials, customAttacks, sheetSectionOrder, enabledSupplements, currentHealth, currentFullness, activeStyle]);
+  }, [activeId, build, notes, configs, renames, expended, statPoints, skillPoints, xpBudget, charName, charConcept, charNotes, noteRows, customTechniques, selectedBackgrounds, backgroundType, inventory, gold, customItems, customMaterials, customAttacks, sheetSectionOrder, enabledSupplements, currentHealth, currentFullness, activeStyle, history, historyBase]);
   useEffect(() => {
     localStorage.setItem("flagonquest-characters", JSON.stringify(characters));
   }, [characters]);
@@ -6190,6 +6363,58 @@ function App() {
   const knownXP      = chargeable.reduce((sum, e) => sum + (entryXP(e) ?? 0), 0);
   const unknownCount = chargeable.filter(e => entryXP(e) == null).length;
   const totalXP      = knownXP + statSkillXP;
+
+  // ── Purchase history ───────────────────────────────────────────
+  // See historySnapshot. Waits for the data files (names and prices),
+  // then records once the snapshot has sat unchanged for
+  // HISTORY_QUIET_MS, or right away when the tab is hidden (closed,
+  // switched away from) so a change made just before leaving isn't lost.
+  const histSnap = useMemo(() => historySnapshot({
+    build, configs, statPoints, skillPoints, xpBudget, selectedBackgrounds, inventory, gold, customItems,
+  }), [build, configs, statPoints, skillPoints, xpBudget, selectedBackgrounds, inventory, gold, customItems]);
+  const histSnapKey = JSON.stringify(histSnap);
+  const historyLook = useMemo(() => ({
+    techName: id => techniques.find(t => t.id === id)?.name ?? id,
+    fixedLevel: id => { const t = techniques.find(x => x.id === id); const xp = t ? techXP(t) : null; return xp == null ? null : xp / 3; },
+    featName: id => features.find(f => f.id === id)?.feature_name ?? id,
+    itemName: id => items.find(i => i.id === id)?.name ?? id,
+    bgName: id => backgrounds.find(b => b.id === id)?.name ?? id,
+  }), [techniques, features, items, backgrounds]);
+  const recordHistory = () => {
+    if (loading) return;
+    if (historyBase === null) {
+      // A new baseline. A character that already has things (made before
+      // history existed) gets one entry saying what it started with.
+      if (history.length === 0 && (totalXP > 0 || inventory.length > 0 || customItems.length > 0 || (gold || "") !== "")) {
+        setHistory([{
+          id: makeUid(), at: new Date().toISOString(), spent: totalXP, budget: xpBudget,
+          changes: [{ text: `Record started: ${totalXP}${unknownCount > 0 ? "+" : ""} XP already spent (Stats and Skills ${statSkillXP}, Techniques ${knownXP}), ${inventory.length + customItems.length} item rows, ${gold || "0"} gold`, xp: null }],
+        }]);
+      }
+      setHistoryBase(histSnap);
+      return;
+    }
+    if (JSON.stringify(historyBase) === histSnapKey) return;
+    const changes = diffHistory(historyBase, histSnap, historyLook);
+    if (changes.length) {
+      setHistory(h => [...h, { id: makeUid(), at: new Date().toISOString(), spent: totalXP, budget: xpBudget, changes }]);
+    }
+    setHistoryBase(histSnap);
+  };
+  const recordHistoryRef = useRef(recordHistory);
+  recordHistoryRef.current = recordHistory;
+  useEffect(() => {
+    if (loading) return;
+    if (historyBase === null) { recordHistoryRef.current(); return; }
+    if (JSON.stringify(historyBase) === histSnapKey) return;
+    const t = setTimeout(() => recordHistoryRef.current(), HISTORY_QUIET_MS);
+    return () => clearTimeout(t);
+  }, [loading, activeId, histSnapKey, historyBase]);
+  useEffect(() => {
+    const onHide = () => { if (document.visibilityState === "hidden") recordHistoryRef.current(); };
+    document.addEventListener("visibilitychange", onHide);
+    return () => document.removeEventListener("visibilitychange", onHide);
+  }, []);
 
   // ── Build mutations ────────────────────────────────────────────
   // Duplicate/Encounter techniques can be added more than once; every
@@ -6908,6 +7133,10 @@ function App() {
       sheetSectionOrder,
       enabledSupplements,
       gold,
+      // The purchase history's entries travel with the file (a GM can
+      // read them); its snapshot doesn't, since import gives every
+      // Technique copy a new uid — the importer starts a fresh baseline.
+      history,
       inventory: inventory.map(e => ({
         id: e.itemId, qty: e.qty,
         ...(typeof e.level === "number" ? { level: e.level } : {}),
@@ -7002,6 +7231,12 @@ function App() {
           statPoints:  { ...emptyCharacterData().statPoints,  ...(data.statPoints  || {}) },
           skillPoints: { ...emptyCharacterData().skillPoints, ...(data.skillPoints || {}) },
           charNotes:   typeof data.charNotes === "string" ? data.charNotes : "",
+          history: Array.isArray(data.history)
+            ? data.history.filter(h => h && Array.isArray(h.changes)).map(h => ({
+                id: makeUid(), at: String(h.at ?? ""), spent: h.spent ?? null, budget: h.budget ?? "",
+                changes: h.changes.map(c => ({ text: String(c?.text ?? ""), xp: typeof c?.xp === "number" ? c.xp : null })),
+              }))
+            : [],
           noteRows:    Array.isArray(data.noteRows) ? data.noteRows.map(r => ({ id: makeUid(), text: r.text ?? "" })) : [],
           customTechniques: Array.isArray(data.customTechniques)
             ? data.customTechniques.map(c => ({ id: makeUid(), title: c.title ?? "", text: c.text ?? "" }))
@@ -8152,6 +8387,10 @@ function App() {
               + Add row
             </button>
           </div>
+
+          <HistoryLog history={history} onClear={() => {
+            if (window.confirm("Clear this character's whole purchase history? This can't be undone.")) setHistory([]);
+          }} />
         </div>
       )}
 

@@ -695,6 +695,18 @@ which should stay a clean decision record.
   (met/good) — established by the Might Requirement badge, reused for
   Wounded. Keep using these two colors for any future met/unmet indicator
   rather than inventing new ones.
+- **Purchase history** (2026-11-02, Notes tab): `history` plus
+  `historyBase` in the character data. Nothing hooks the individual
+  setters; `historySnapshot()` covers what XP or gold buys (Stats,
+  Skills, Technique copies with Level and Feature picks, Backgrounds,
+  XP budget, inventory, gold), and once it has sat unchanged for
+  `HISTORY_QUIET_MS` (20 s), or the tab is hidden, `diffHistory()`
+  writes the difference as one dated entry and moves the base. A new
+  thing to track goes into the snapshot and the diff, not into a
+  setter. `historyBase: null` starts a fresh baseline (with a "Record
+  started" entry if the character already has things); Export carries
+  `history` but not the base, since import gives Technique copies new
+  uids. Tested with the window shortened to 1.5 s in the scratchpad copy.
 - "Session-tracking" state (Expended checkboxes, current Health, the
   active Style) persists
   to localStorage like everything else, but is deliberately excluded from
