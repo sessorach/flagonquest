@@ -1,0 +1,18 @@
+v3 big roles                   L1  75 days  80.1 (worst  70) Down  24 Wnd  59 rds 4.4 again 43
+v3 big roles                   L2 125 days  84.0 (worst  58) Down  21 Wnd  53 rds 4.4 again 45
+v3 big roles                   L3 175 days  86.9 (worst  52) Down  19 Wnd  54 rds 4.0 again 42
+v3 big roles                   L4 225 days  89.8 (worst  68) Down  19 Wnd  54 rds 4.2 again 52
+v3 big roles                   L5 275 days  93.7 (worst  82) Down  16 Wnd  53 rds 4.4 again 51
+v3 big roles                   L3 enemy: Health 13.0 Resist 4.5/3.2 Damage 6.6 Accuracy 7.6
+v3 big roles, skill-1          L1  75 days  94.2 (worst  89) Down  14 Wnd  45 rds 3.9 again 39
+v3 big roles, skill-1          L2 125 days  94.6 (worst  81) Down  13 Wnd  42 rds 3.9 again 42
+v3 big roles, skill-1          L3 175 days  94.6 (worst  78) Down  13 Wnd  44 rds 3.6 again 39
+v3 big roles, skill-1          L4 225 days  95.8 (worst  82) Down  13 Wnd  43 rds 3.8 again 49
+v3 big roles, skill-1          L5 275 days  97.9 (worst  91) Down  11 Wnd  43 rds 3.9 again 49
+v3 big roles, skill-1          L3 enemy: Health 13.0 Resist 4.5/3.2 Damage 6.6 Accuracy 6.6
+v3 big roles, skill-1 hp-1     L1  75 days  97.0 (worst  92) Down  10 Wnd  40 rds 3.4 again 33
+v3 big roles, skill-1 hp-1     L2 125 days  96.9 (worst  88) Down  10 Wnd  37 rds 3.5 again 36
+v3 big roles, skill-1 hp-1     L3 175 days  96.4 (worst  84) Down  11 Wnd  41 rds 3.3 again 35
+v3 big roles, skill-1 hp-1     L4 225 days  97.4 (worst  88) Down  12 Wnd  40 rds 3.6 again 46
+v3 big roles, skill-1 hp-1     L5 275 days  98.8 (worst  94) Down  10 Wnd  40 rds 3.6 again 45
+v3 big roles, skill-1 hp-1     L3 enemy: Health 12.0 Resist 4.5/3.2 Damage 6.6 Accuracy 6.6
