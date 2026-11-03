@@ -409,6 +409,9 @@ ENEMY_TABLE = 'v2'
 # Defense tiers. Strong = the Level's attack Skill Total, Average = that
 # minus V3_DEF_GAP, Weak = minus twice it (enemy_builder_pcstyle.build_enemy_v3).
 V3_DEF_GAP = 2
+# Which v3 archetype set: 'standard' (ROLE_ADDS_V3) or 'big' (the bigger
+# set meant to sit on a trimmed base, 2026-11-03 experiment).
+V3_ROLES = 'standard'
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

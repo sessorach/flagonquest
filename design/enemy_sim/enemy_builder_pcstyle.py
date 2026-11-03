@@ -378,6 +378,18 @@ ROLE_ADDS_V3 = {
     "Backup": {"res": 1, "dodge": 1, "bodily": 1, "mental": 1},
     "Skirmisher": {"speed": 1, "dodge": 1, "acc": 2},
 }
+# Bigger archetypes on a trimmed base (designer, 2026-11-03: "trim back
+# a slight bit of the baseline and add that power budget into the
+# archetypes", so enemies feel more distinct). tunables.V3_ROLES = 'big'
+# reads these; the base trim is a Skill -1 nudge in the experiments.
+ROLE_ADDS_V3_BIG = {
+    "Defender": {"res": 1, "parry": 2, "dodge": 2},
+    "Striker": {"dmg": 1, "acc": 2, "res": -1},
+    "Bruiser": {"dmg": 1, "res": 2, "parry": -1, "dodge": -1, "speed": -1},
+    "Strategist": {"acc": 3, "dodge": 1, "mental": 2, "vigilant": 2},
+    "Backup": {"res": 1, "parry": 1, "dodge": 2, "bodily": 2, "mental": 2},
+    "Skirmisher": {"speed": 2, "dodge": 2, "acc": 2},
+}
 STAT_CAP, SKILL_CAP = 5, 10
 # The Weak Defense when a row doesn't name one: what that kind of enemy
 # visibly neglects (a fighter's Mental, a caster's Vital, a support's
@@ -388,7 +400,8 @@ WEAK_DEFAULT = {"weapon": ("mental", "vigilant"), "spell": ("bodily", "vigilant"
 def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None, abilities=(),
                    main_effect=None, backup_action=None, weak_defense=None):
     t = ENEMY_TABLE_V3[level]
-    adds = ROLE_ADDS_V3.get(role or "", {})
+    roles = ROLE_ADDS_V3_BIG if getattr(T, "V3_ROLES", "standard") == "big" else ROLE_ADDS_V3
+    adds = roles.get(role or "", {})
     act = ACTIONS[action]
     cat = action_category(action)
     skill = min(SKILL_CAP, t["skill"])
