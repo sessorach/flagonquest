@@ -358,19 +358,25 @@ def _v2():
 # schedule sweeps, ENEMY_ENCOUNTER_DESIGN.md "v3"): damage at 2 and 4,
 # Resist at 2 and 4, Health at 2, 3 and 4 (a PC has about 10-11).
 ENEMY_TABLE_V3 = {
-    1: dict(skill=5, accuracy=4, damage=2, resist=2, health=10),
-    2: dict(skill=6, accuracy=5, damage=3, resist=3, health=11),
-    3: dict(skill=7, accuracy=6, damage=3, resist=3, health=13),
-    4: dict(skill=8, accuracy=7, damage=4, resist=4, health=15),
-    5: dict(skill=9, accuracy=8, damage=4, resist=4, health=15),
+    1: dict(skill=4, accuracy=3, damage=2, resist=2, health=10),
+    2: dict(skill=5, accuracy=4, damage=3, resist=3, health=11),
+    3: dict(skill=6, accuracy=5, damage=3, resist=3, health=13),
+    4: dict(skill=7, accuracy=6, damage=4, resist=4, health=15),
+    5: dict(skill=8, accuracy=7, damage=4, resist=4, health=15),
 }
+# The first v3 (2026-11-03 morning), one more Skill and Accuracy at every
+# Level, with the smaller archetypes (ROLE_ADDS_V3_FIRST). The designer
+# trimmed the base and moved the power into the archetypes the same day:
+# tunables.V3_VERSION = 1 plays this one, for the recorded numbers.
+ENEMY_TABLE_V3_FIRST = {L: dict(r, skill=r["skill"] + 1, accuracy=r["accuracy"] + 1)
+                        for L, r in ENEMY_TABLE_V3.items()}
 # The original spreadsheet's Roles (Design sheet) as bumps, evened out
 # against the measured parties (2026-11-03, kit_check.py under v3: each
 # worth about 2-3 enemy Health). Accuracy only ever goes up: Striker pays
 # for Damage and Accuracy by being lightly built, Bruiser by being heavy
 # and slow. Defender is the spreadsheet's Tank; Skirmisher the roster's
 # mobile one.
-ROLE_ADDS_V3 = {
+ROLE_ADDS_V3_FIRST = {
     "Defender": {"res": 1, "parry": 1, "dodge": 1},
     "Striker": {"dmg": 1, "acc": 1, "res": -1},
     "Bruiser": {"dmg": 1, "res": 1, "parry": -1, "dodge": -1, "speed": -1},
@@ -378,11 +384,12 @@ ROLE_ADDS_V3 = {
     "Backup": {"res": 1, "dodge": 1, "bodily": 1, "mental": 1},
     "Skirmisher": {"speed": 1, "dodge": 1, "acc": 2},
 }
-# Bigger archetypes on a trimmed base (designer, 2026-11-03: "trim back
-# a slight bit of the baseline and add that power budget into the
-# archetypes", so enemies feel more distinct). tunables.V3_ROLES = 'big'
-# reads these; the base trim is a Skill -1 nudge in the experiments.
-ROLE_ADDS_V3_BIG = {
+# The archetypes on the trimmed base (designer, 2026-11-03: "trim back a
+# slight bit of the baseline and add that power budget into the
+# archetypes", so enemies feel more distinct; adopted the same day). Each
+# is worth about 2.5-4.5 enemy Health against the measured parties
+# (kit_check.py, results/enemy_stats/v3_bigroles_values.txt).
+ROLE_ADDS_V3 = {
     "Defender": {"res": 1, "parry": 2, "dodge": 2},
     "Striker": {"dmg": 1, "acc": 2, "res": -1},
     # Resist +2 read 7-9 Health and over two extra rounds (2026-11-03): +1,
@@ -401,8 +408,9 @@ WEAK_DEFAULT = {"weapon": ("mental", "vigilant"), "spell": ("bodily", "vigilant"
 
 def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None, abilities=(),
                    main_effect=None, backup_action=None, weak_defense=None):
-    t = ENEMY_TABLE_V3[level]
-    roles = ROLE_ADDS_V3_BIG if getattr(T, "V3_ROLES", "standard") == "big" else ROLE_ADDS_V3
+    first = getattr(T, "V3_VERSION", 2) == 1
+    t = (ENEMY_TABLE_V3_FIRST if first else ENEMY_TABLE_V3)[level]
+    roles = ROLE_ADDS_V3_FIRST if first else ROLE_ADDS_V3
     adds = roles.get(role or "", {})
     act = ACTIONS[action]
     cat = action_category(action)

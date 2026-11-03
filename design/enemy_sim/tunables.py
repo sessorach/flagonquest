@@ -402,16 +402,18 @@ ENEMY_LEVEL_UP = 0
 # working off of"), shaped like the designer's original table
 # (enemy_builder_pcstyle.ENEMY_TABLE_V2); 'v1' the one before, kept for
 # older scripts and their recorded numbers; 'v3' (2026-11-03) built the way
-# PCs are (enemy_builder_pcstyle.build_enemy_v3), pending the designer.
-# Only the codified rows (StrongDefense) read it.
-ENEMY_TABLE = 'v2'
+# PCs are (enemy_builder_pcstyle.build_enemy_v3), the default since the
+# designer adopted it the same day. Only the codified rows (StrongDefense)
+# read it.
+ENEMY_TABLE = 'v3'
 # v3 (2026-11-03, the designer's "enemies play by the players' rules"):
 # Defense tiers. Strong = the Level's attack Skill Total, Average = that
 # minus V3_DEF_GAP, Weak = minus twice it (enemy_builder_pcstyle.build_enemy_v3).
 V3_DEF_GAP = 2
-# Which v3 archetype set: 'standard' (ROLE_ADDS_V3) or 'big' (the bigger
-# set meant to sit on a trimmed base, 2026-11-03 experiment).
-V3_ROLES = 'standard'
+# Which v3: 2, the trimmed base with the bigger archetypes (adopted
+# 2026-11-03); 1, the first one (one more Skill and Accuracy, smaller
+# archetypes), for the numbers recorded before that.
+V3_VERSION = 2
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

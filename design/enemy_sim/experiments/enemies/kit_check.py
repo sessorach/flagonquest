@@ -57,7 +57,7 @@ ABILITIES = {
     "Action (Parting Shot)": "melee", "Action (Intimidating)": "any", "Action (Taunting)": "any",
     "Resist (Fire)": "any", "Attunement (Fire)": "any",
 }
-ARMOR = {"Medium Armor": "Medium", "Heavy Armor": "Heavy"}
+ARMOR = {"Medium Armor": "Medium", "Heavy Armor": "Heavy", "Light Armor": "Light", "Unarmored": "Unarmored"}
 
 
 def fits(row, kind):
@@ -81,10 +81,14 @@ def edit_for(variant):
         parts = [edit_for(v) for v in variant.split("|")]
 
         def chain(row):
+            # A later part that doesn't fit leaves the earlier parts' row
+            # ("bare|ability:X" on an enemy X doesn't fit plays it bare).
+            orig = row
             for f in parts:
-                row = f(row)
-                if row is None:
-                    return None
+                new = f(row)
+                if new is None:
+                    return None if row is orig else row
+                row = new
             return row
         return chain
     kind, _, what = variant.partition(":")
@@ -97,6 +101,9 @@ def edit_for(variant):
             return row
         if kind == "norole":
             return dict(row, Role="")
+        if kind == "bare":
+            # No catalog Abilities (armor kept): the ground --bare prices from.
+            return dict(row, Abilities="")
         if kind == "role":
             return dict(row, Role=what)
         if kind == "hp":
@@ -181,7 +188,7 @@ def _job(args):
             r = cs.run_fight(1, level, movement=True, enemies=se.build_encounter(se.ENCOUNTERS[level][mix]),
                              seed=1_000_000 * pi + 10_000 * mi + k)
             out.append((100 * (1 - r["party_hp_pct"]), r["rounds"], r["winner"] == "party", r["pc_downed"]))
-    return variant, level, out, sorted(skipped)
+    return variant, level, pi, out, sorted(skipped)
 
 
 def main():
@@ -190,33 +197,54 @@ def main():
     ap.add_argument("-L", default="2,3")
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("--only", help="these variants (';'-separated) plus the reference ones")
+    ap.add_argument("--bare", action="store_true",
+                    help="price each Ability on enemies stripped of theirs (v3, 2026-11-03): "
+                         "every full-size enemy that fits gets just that one, read against 'bare'")
+    ap.add_argument("--cache", help="jsonl of finished jobs: appended as each ends, skipped on a rerun")
     ap.add_argument("-o", default=os.path.join(_paths.ROOT, "results", "enemy_stats", "kit_check.json"))
     a = ap.parse_args()
     levels = [int(x) for x in a.L.split(",")]
-    variants = (["base", "norole", "hp:2", "hp:-2"] + [f"role:{r}" for r in ROLES]
-                + [f"ability:{x}" for x in ABILITIES] + [f"armor:{x}" for x in ARMOR])
+    if a.bare:
+        variants = (["base", "bare", "hp:2", "hp:-2"] + [f"bare|ability:{x}" for x in ABILITIES]
+                    + [f"bare|armor:{x}" for x in ARMOR] + [f"armor:{x}" for x in ARMOR])
+    else:
+        variants = (["base", "norole", "hp:2", "hp:-2"] + [f"role:{r}" for r in ROLES]
+                    + [f"ability:{x}" for x in ABILITIES] + [f"armor:{x}" for x in ARMOR])
     if a.only:
         variants = variants[:4] + a.only.split(";")
     jobs = [(v, L, pi, a.n) for v in variants for L in levels for pi in range(8)]
     res, skips = {}, {}
+    if a.cache and os.path.exists(a.cache):
+        for line in open(a.cache):
+            if line.strip():
+                c = json.loads(line)
+                if c["n"] == a.n and (c["v"], c["L"], c["pi"]) in {j[:3] for j in jobs}:
+                    res.setdefault((c["v"], c["L"]), []).extend(map(tuple, c["out"]))
+                    skips.setdefault((c["v"], c["L"]), set()).update(c["sk"])
+                    jobs.remove((c["v"], c["L"], c["pi"], a.n))
     with mp.Pool(a.j) as pool:
-        for v, L, out, sk in pool.imap_unordered(_job, jobs):
+        for v, L, pi, out, sk in pool.imap_unordered(_job, jobs):
             res.setdefault((v, L), []).extend(out)
             skips.setdefault((v, L), set()).update(sk)
+            if a.cache:
+                with open(a.cache, "a") as f:
+                    f.write(json.dumps(dict(v=v, L=L, pi=pi, n=a.n, out=out, sk=sk)) + "\n")
     table = {}
     for L in levels:
         mean = lambda v, i=0: st.mean(x[i] for x in res[(v, L)])
         slope = (mean("hp:2") - mean("hp:-2")) / 4  # score per enemy Health per Slot
-        base, norole = mean("base"), mean("norole")
+        base = mean("base")
         print(f"== Level {L}: base lost {base:.1f} pts, {mean('base', 1):.2f} rounds, "
               f"wins {100 * mean('base', 2):.1f}%; 1 Health per Slot = {slope:.2f} pts")
+        if ("bare", L) in res:
+            print(f"   the roster's own Abilities (base over bare): {(base - mean('bare')) / slope:+5.1f} Health  "
+                  f"rounds {mean('base', 1) - mean('bare', 1):+.2f}")
         for v in variants[4:]:
-            ref = norole if v.startswith("role:") else base
-            d = mean(v) - ref
-            table.setdefault(v, {})[L] = dict(health=d / slope, rounds=mean(v, 1) - mean("norole" if v.startswith("role:") else "base", 1),
+            ref_v = "norole" if v.startswith("role:") else "bare" if v.startswith("bare|") else "base"
+            d = mean(v) - mean(ref_v)
+            table.setdefault(v, {})[L] = dict(health=d / slope, rounds=mean(v, 1) - mean(ref_v, 1),
                                               wins=100 * mean(v, 2), skipped=sorted(skips[(v, L)]))
             sk = f"  (can't take it: {', '.join(sorted(skips[(v, L)]))})" if skips[(v, L)] else ""
-            ref_v = "norole" if v.startswith("role:") else "base"
             table[v][L]["down"] = 100 * (mean(v, 3) - mean(ref_v, 3))
             print(f"   {v:34s} {d / slope:+5.1f} Health  rounds {table[v][L]['rounds']:+.2f}  "
                   f"Down {table[v][L]['down']:+4.1f} pts{sk}")

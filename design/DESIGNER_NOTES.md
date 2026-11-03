@@ -550,12 +550,13 @@ These come first. Where a balance target clashes with them, they win, and the ba
 
 ### Building an enemy (the current model: v3)
 
-v3 is the current direction (2026-11-03; the designer called it far and away the best configuration). v2 is still the simulator default (`tunables.ENEMY_TABLE`) until the designer says otherwise.
+v3 is the model (2026-11-03; the designer called it far and away the best configuration, then adopted it the same day with the base trimmed and the archetypes bigger). It's the simulator default (`tunables.ENEMY_TABLE = 'v3'`); v2 and the first v3 stay behind switches for the numbers recorded under them.
 
 - **v3 goes back to the original spreadsheet's shape.** Its Design sheet priced enemy stats in player XP and landed on the player schedule; its Roles were plain bumps. v1 and v2 drifted (big Health, low Resist, damage under the player formula, Accuracy trades) chasing fight length after the fact. (2026-11-03) (→ ENEMY_ENCOUNTER_DESIGN, "v3: enemies built the way PCs are")
 - **Skill** is the weapon Skill Total. With a melee weapon in hand, Parry = 8 + Skill + the weapon's Defense. Casters and archers can't Parry; a support with a backup mace Parries at its Weak tier. (→ ENEMY_ENCOUNTER_DESIGN, "v3")
 - **Defenses: one Strong, one Weak, the rest Average.** Strong = 8 + Skill. Weak = Strong − 4, by default what that kind of enemy visibly neglects (a fighter's Mental, a caster's Vital, a support's Dodge). Average = Strong − 2. Armor moves Dodge as for a PC. A step of 2 keeps the spread legible; 1 played about the same. (→ ENEMY_ENCOUNTER_DESIGN, "v3")
 - **Accuracy** is a Skill Total one under Skill, plus the weapon's or spell's own Accuracy (+1 light weapons, +0 heavy weapons and spells). Archetypes that attack well raise it back. (→ ENEMY_ENCOUNTER_DESIGN, "v3")
+- **The base is a little under a PC's, and the archetype makes up the rest** (designer, 2026-11-03: "trim back a slight bit of the baseline stat block and add that power budget into the archetypes" so enemies feel distinct). The trim was 1 Skill and 1 Accuracy at every Level. (→ ENEMY_ENCOUNTER_DESIGN, "v3 adopted")
 - **Damage** is the player weapon and spell table (light 3, one-handed heavy 4, two-handed heavy 5, spells 2) plus the damage Stat. **Resist** is the Resist Stat plus armor (Light +1, Medium +2, Heavy +3 Physical). (→ ENEMY_ENCOUNTER_DESIGN, "v3")
 - **Caps are the player caps:** Stats 5, Skill Totals 10. (→ ENEMY_ENCOUNTER_DESIGN, "v3")
 - **Each stat steps up at its own Levels,** so two don't jump at once. The designer's damage Stat schedule, 2 / 3 / 3 / 4 / 4, held at every Level once base Accuracy sat one under Skill. (→ ENEMY_ENCOUNTER_DESIGN, "v3", "How the schedule was found")
@@ -564,29 +565,29 @@ The v3 table (Defenses as 8 + Skill Total):
 
 | Level | Skill (Parry, Strong) | Accuracy | Defense S / A / W | Damage Stat | Resist Stat | Health per Slot (minion) | Speed | Reflex |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 5 | 4 | 13 / 11 / 9 | 2 | 2 | 10 (4) | 3 | 3 |
-| 2 | 6 | 5 | 14 / 12 / 10 | 3 | 3 | 11 (4) | 3 | 4 |
-| 3 | 7 | 6 | 15 / 13 / 11 | 3 | 3 | 13 (5) | 4 | 5 |
-| 4 | 8 | 7 | 16 / 14 / 12 | 4 | 4 | 15 (5) | 4 | 6 |
-| 5 | 9 | 8 | 17 / 15 / 13 | 4 | 4 | 15 (5) | 5 | 7 |
+| 1 | 4 | 3 | 12 / 10 / 8 | 2 | 2 | 10 (4) | 3 | 3 |
+| 2 | 5 | 4 | 13 / 11 / 9 | 3 | 3 | 11 (4) | 3 | 4 |
+| 3 | 6 | 5 | 14 / 12 / 10 | 3 | 3 | 13 (5) | 4 | 5 |
+| 4 | 7 | 6 | 15 / 13 / 11 | 4 | 4 | 15 (5) | 4 | 6 |
+| 5 | 8 | 7 | 16 / 14 / 12 | 4 | 4 | 15 (5) | 5 | 7 |
 
-Before archetype and armor: a light-weapon fighter hits at +5 for 5 with Parry 14 at Level 1, +9 for 7 with Parry 18 at Level 5. A two-handed heavy weapon hits for 2 more at 1 less Accuracy and adds no weapon Defense to Parry. A caster hits at +4 / +8 for 4 / 6, can't Parry, and has the Weak Vital Defense.
+Before archetype and armor: a light-weapon fighter hits at +4 for 5 with Parry 13 at Level 1, +8 for 7 with Parry 17 at Level 5. A two-handed heavy weapon hits for 2 more at 1 less Accuracy and adds no weapon Defense to Parry. A caster hits at +3 / +7 for 4 / 6, can't Parry, and has the Weak Vital Defense.
 
-**The six archetypes (v3), bumps capped at the player maximums:**
+**The six archetypes (v3), bumps capped at the player maximums** (worth in enemy Health per Slot at Levels 2 / 3):
 
-- **Defender:** Resist +1, Parry +1, Dodge +1. Adds about a round.
-- **Striker:** Damage +1, Accuracy +1, Resist −1. Pays by being lightly built; spikier fights.
-- **Bruiser:** Damage +1, Resist +1, Parry −1, Dodge −1, Speed −1. Pays by being heavy and slow; spikier and longer.
-- **Strategist:** Accuracy +2, Dodge +1, Mental +1.
-- **Skirmisher:** Accuracy +2, Dodge +1, Speed +1.
-- **Backup:** Resist +1, Dodge +1, Vital +1, Mental +1. Adds about a round.
+- **Defender:** Resist +1, Parry +2, Dodge +2. 3.6 / 2.8. Adds about two rounds.
+- **Striker:** Damage +1, Accuracy +2, Resist −1. 2.8 / 4.4. Pays by being lightly built; spikier fights, a quarter-round shorter.
+- **Bruiser:** Damage +1, Resist +1, Vital +2, Parry −1, Dodge −1, Speed −1. 2.9 / 3.5. Pays by being heavy and slow; a hard body to poison.
+- **Strategist:** Accuracy +3, Dodge +1, Mental +2, Vigilant +2. 2.5 / 3.6.
+- **Skirmisher:** Accuracy +2, Dodge +2, Speed +2. 2.4 / 3.3.
+- **Backup:** Resist +1, Parry +1, Dodge +2, Vital +2, Mental +2. 3.1 / 2.5. Adds one and a half to two rounds.
 
-(→ ENEMY_ENCOUNTER_DESIGN, "v3", archetype table)
+(→ ENEMY_ENCOUNTER_DESIGN, "v3 adopted"; `enemy_builder_pcstyle.ROLE_ADDS_V3`)
 
-- **No archetype pays Accuracy for Damage under v3.** Enemy hits now get well past the party's Resist, so +1 Damage is worth about two and a half Accuracy (under v2 it was worth eight, which forced Accuracy trades). Each archetype reads about 1.7-3.5 enemy Health per Slot. (2026-11-03) (→ ENEMY_ENCOUNTER_DESIGN, "v3")
+- **No archetype pays Accuracy for Damage under v3.** Enemy hits now get well past the party's Resist, so +1 Damage is worth about two and a half Accuracy (under v2 it was worth eight, which forced Accuracy trades). Each archetype reads about 2.5-4.5 enemy Health per Slot. (2026-11-03) (→ ENEMY_ENCOUNTER_DESIGN, "v3")
 - **Every archetype should be a distinct shape and a fair trade.** The designer flagged Bruiser as strictly worse than Striker on 11-02; it's been the tough, clumsy hitter since. (→ ENEMY_ENCOUNTER_DESIGN, "Archetypes and what enemy damage is worth")
 - **What a +1 is worth to an enemy (v3, roughly):** Damage 2-3 Health; Resist about 1.4 and most of a round; Accuracy about 1; Parry or Dodge 0.1-0.2 (an enemy defends with the better of the two); Vital or Mental nothing against the sample parties, who rarely target them. (→ ENEMY_ENCOUNTER_DESIGN, "v3")
-- **Bigger archetypes on a trimmed base: an experiment (designer, 2026-11-03).** The designer asked to "trim back a slight bit of the baseline and add that power budget into the archetypes" so enemies feel more distinct. `tunables.V3_ROLES = 'big'` holds a bigger set on a base trimmed by 1 Skill; Bruiser came back to Resist +1 plus Vital +2 (a hard-to-poison body) after Resist +2 read 7-9 Health and two extra rounds. That set keeps the middle of every band at 95-98% of days won. Not adopted yet. (→ enemy_sim/results/enemy_stats/v3_bigroles.txt; `enemy_builder_pcstyle.ROLE_ADDS_V3_BIG`)
+- **Bruiser is Resist +1 and Vital +2, not Resist +2.** Resist +2 read 7-9 Health and two extra rounds, twice any other archetype (2026-11-03). (→ enemy_sim/results/enemy_stats/v3_bigroles_bruiser.txt)
 
 ### Encounters and Slots
 
@@ -656,10 +657,8 @@ For an on-level fight (most fights are on level), at the middle of the band, mea
 
 ### Open enemy questions
 
-- **When v3 becomes the default.** v2 stays until the designer says so. (→ ENEMY_ENCOUNTER_DESIGN, "v3")
 - **Abilities under v3:** prices against v3's numbers, in picks or in Health. (→ ENEMY_ENCOUNTER_DESIGN, "v3", "Open")
 - **Whether 3.5-4 rounds is close enough to "4-5".** (→ ENEMY_ENCOUNTER_DESIGN, "v3", "Open")
-- **Bigger archetypes on a trimmed base:** adopt or not. (→ enemy_sim/results/enemy_stats/v3_bigroles.txt)
 - **How steep one enemy Level should be.** One Level up is a cliff in every table so far; two Levels up nobody wins. (→ ENEMY_ENCOUNTER_DESIGN, "Base stats against the measured party")
 - **Levels 4-5 are checked against grown Level 3 characters,** not sample characters built at those Levels. Level 5 is the least certain row. (→ ENEMY_ENCOUNTER_DESIGN, "v3"; "Draft base table v2")
 - **Retribution Aura:** whether "melee attackers only" reads right in the fiction, and its price (it cost a Level 2 party a fifth of its Health when all of Warband had it). (→ ENEMY_ENCOUNTER_DESIGN, "The v2 kit"; enemy_sim/TABLE_PLAY_NOTES, "Still to do")
