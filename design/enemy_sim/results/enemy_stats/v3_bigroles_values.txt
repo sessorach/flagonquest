@@ -1,0 +1,14 @@
+== Level 2: base lost 18.4 pts, 4.56 rounds, wins 97.0%; 1 Health per Slot = 2.85 pts
+   role:Defender                       +3.6 Health  rounds +2.43  Down +19.0 pts
+   role:Striker                        +2.8 Health  rounds -0.24  Down +13.7 pts
+   role:Bruiser                        +6.8 Health  rounds +2.34  Down +35.5 pts
+   role:Strategist                     +2.5 Health  rounds +0.28  Down +10.9 pts
+   role:Backup                         +3.1 Health  rounds +2.02  Down +17.4 pts
+   role:Skirmisher                     +2.4 Health  rounds +0.39  Down +11.6 pts
+== Level 3: base lost 16.6 pts, 4.08 rounds, wins 99.2%; 1 Health per Slot = 1.74 pts
+   role:Defender                       +2.8 Health  rounds +1.72  Down +9.7 pts
+   role:Striker                        +4.4 Health  rounds -0.24  Down +19.1 pts
+   role:Bruiser                        +9.1 Health  rounds +2.18  Down +32.3 pts
+   role:Strategist                     +3.6 Health  rounds +0.22  Down +12.5 pts
+   role:Backup                         +2.5 Health  rounds +1.40  Down +9.4 pts
+   role:Skirmisher                     +3.3 Health  rounds +0.28  Down +10.7 pts

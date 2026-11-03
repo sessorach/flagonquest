@@ -385,7 +385,9 @@ ROLE_ADDS_V3 = {
 ROLE_ADDS_V3_BIG = {
     "Defender": {"res": 1, "parry": 2, "dodge": 2},
     "Striker": {"dmg": 1, "acc": 2, "res": -1},
-    "Bruiser": {"dmg": 1, "res": 2, "parry": -1, "dodge": -1, "speed": -1},
+    # Resist +2 read 7-9 Health and over two extra rounds (2026-11-03): +1,
+    # and a hard-to-poison body instead.
+    "Bruiser": {"dmg": 1, "res": 1, "bodily": 2, "parry": -1, "dodge": -1, "speed": -1},
     "Strategist": {"acc": 3, "dodge": 1, "mental": 2, "vigilant": 2},
     "Backup": {"res": 1, "parry": 1, "dodge": 2, "bodily": 2, "mental": 2},
     "Skirmisher": {"speed": 2, "dodge": 2, "acc": 2},

@@ -1,0 +1,4 @@
+== Level 2: base lost 17.5 pts, 4.31 rounds, wins 97.6%; 1 Health per Slot = 2.58 pts
+   role:Bruiser                        +2.9 Health  rounds +0.74  Down +16.2 pts
+== Level 3: base lost 16.2 pts, 3.87 rounds, wins 99.2%; 1 Health per Slot = 1.62 pts
+   role:Bruiser                        +3.5 Health  rounds +0.63  Down +14.7 pts
