@@ -347,26 +347,36 @@ def _v2():
 # the players' ballpark, archetypes as plain bumps up to the player caps,
 # and a spread of Defenses players can read and exploit. Read when
 # tunables.ENEMY_TABLE = 'v3', for the codified rows.
-#   skill:  the attack Skill Total, and the Strong Defense's (a PC's focus)
-#   damage: the damage Stat (a PC's Body/Cunning/Mind for its attack)
-#   resist: the Resist Stat (a PC's Essence), plus armor
-#   health: Health per Slot
+#   skill:    the weapon Skill Total: Parry (with a melee weapon) and the
+#             Strong Defense, a PC's focus
+#   accuracy: the attack's Skill Total, one under `skill` (archetypes that
+#             attack well raise it back, designer 2026-11-03)
+#   damage:   the damage Stat (a PC's Body/Cunning/Mind for its attack)
+#   resist:   the Resist Stat (a PC's Essence), plus armor
+#   health:   Health per Slot
+# Each stat steps up at its own Levels so two don't jump at once (2026-11-03
+# schedule sweeps, ENEMY_ENCOUNTER_DESIGN.md "v3"): damage at 2 and 4,
+# Resist at 2 and 4, Health at 2, 3 and 4 (a PC has about 10-11).
 ENEMY_TABLE_V3 = {
-    1: dict(skill=5, damage=2, resist=2, health=9),
-    2: dict(skill=6, damage=3, resist=2, health=10),
-    3: dict(skill=7, damage=3, resist=3, health=11),
-    4: dict(skill=8, damage=4, resist=3, health=12),
-    5: dict(skill=9, damage=4, resist=4, health=13),
+    1: dict(skill=5, accuracy=4, damage=2, resist=2, health=10),
+    2: dict(skill=6, accuracy=5, damage=3, resist=3, health=11),
+    3: dict(skill=7, accuracy=6, damage=3, resist=3, health=13),
+    4: dict(skill=8, accuracy=7, damage=4, resist=4, health=15),
+    5: dict(skill=9, accuracy=8, damage=4, resist=4, health=15),
 }
-# The original spreadsheet's Roles (Design sheet), as plain bumps;
-# Defender is its Tank, Skirmisher the roster's mobile one.
+# The original spreadsheet's Roles (Design sheet) as bumps, evened out
+# against the measured parties (2026-11-03, kit_check.py under v3: each
+# worth about 2-3 enemy Health). Accuracy only ever goes up: Striker pays
+# for Damage and Accuracy by being lightly built, Bruiser by being heavy
+# and slow. Defender is the spreadsheet's Tank; Skirmisher the roster's
+# mobile one.
 ROLE_ADDS_V3 = {
     "Defender": {"res": 1, "parry": 1, "dodge": 1},
-    "Striker": {"dmg": 1, "acc": 1},
-    "Bruiser": {"dmg": 1, "res": 1, "parry": -1, "dodge": -1},
-    "Strategist": {"acc": 1, "parry": 1, "dodge": 1, "mental": 1},
-    "Backup": {"parry": 1, "dodge": 1, "bodily": 1, "mental": 1},
-    "Skirmisher": {"speed": 1, "dodge": 1, "acc": 1},
+    "Striker": {"dmg": 1, "acc": 1, "res": -1},
+    "Bruiser": {"dmg": 1, "res": 1, "parry": -1, "dodge": -1, "speed": -1},
+    "Strategist": {"acc": 2, "dodge": 1, "mental": 1},
+    "Backup": {"res": 1, "dodge": 1, "bodily": 1, "mental": 1},
+    "Skirmisher": {"speed": 1, "dodge": 1, "acc": 2},
 }
 STAT_CAP, SKILL_CAP = 5, 10
 # The Weak Defense when a row doesn't name one: what that kind of enemy
@@ -410,7 +420,7 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
     def profile(action_name):
         a = ACTIONS[action_name]
         main = action_name == action
-        sk = skill if main else skill - 2 * gap
+        sk = t["accuracy"] if main else t["accuracy"] - 2 * gap
         return dict(action=action_name, accuracy=min(SKILL_CAP, sk + adds.get("acc", 0)) + a["acc_mod"],
                     attack_damage=a["dmg_base"] + stat[a["stat"]] if a["dmg_base"] else 0,
                     dmg_type=a["dmg_type"], opp_def=a["opp_def"],

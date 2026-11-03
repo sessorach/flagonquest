@@ -1,12 +1,12 @@
 # Latest replays (2026-11-03)
 
-No default change: PC-like enemy progression sweeps (overnight readings)
+No default change: v3 enemy table (PC-shaped) drafted behind tunables.ENEMY_TABLE
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 4): party won in 6 rounds, 90% party HP left
-- Matchup average over 1000 fights: 97.9% wins, 5.8 rounds, 79% HP left on a win
+- Matchup average over 1000 fights: 98.3% wins, 5.7 rounds, 79% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

@@ -1,0 +1,25 @@
+v3 roles                       L1  75 days  95.0 (worst  89) Down  13 Wnd  47 rds 3.5 again 32
+v3 roles                       L2 125 days  95.2 (worst  82) Down  12 Wnd  40 rds 3.5 again 36
+v3 roles                       L3 175 days  95.7 (worst  81) Down  12 Wnd  46 rds 3.2 again 34
+v3 roles                       L4 225 days  96.2 (worst  85) Down  14 Wnd  44 rds 3.7 again 47
+v3 roles                       L5 275 days  98.4 (worst  94) Down  11 Wnd  42 rds 3.6 again 43
+v3 roles hp+1                  L1  75 days  91.3 (worst  83) Down  17 Wnd  52 rds 3.8 again 38
+v3 roles hp+1                  L2 125 days  91.1 (worst  73) Down  17 Wnd  46 rds 3.9 again 42
+v3 roles hp+1                  L3 175 days  93.1 (worst  72) Down  15 Wnd  48 rds 3.5 again 39
+v3 roles hp+1                  L4 225 days  93.2 (worst  76) Down  17 Wnd  49 rds 4.0 again 51
+v3 roles hp+1                  L5 275 days  96.7 (worst  91) Down  14 Wnd  48 rds 4.0 again 48
+v3 roles hp+2                  L1  75 days  85.7 (worst  75) Down  22 Wnd  55 rds 4.2 again 43
+v3 roles hp+2                  L2 125 days  87.7 (worst  70) Down  19 Wnd  48 rds 4.3 again 46
+v3 roles hp+2                  L3 175 days  90.3 (worst  68) Down  17 Wnd  52 rds 3.8 again 43
+v3 roles hp+2                  L4 225 days  91.0 (worst  72) Down  19 Wnd  52 rds 4.3 again 55
+v3 roles hp+2                  L5 275 days  95.2 (worst  87) Down  16 Wnd  50 rds 4.3 again 52
+v3 roles hp+3                  L1  75 days  79.1 (worst  67) Down  27 Wnd  61 rds 4.7 again 49
+v3 roles hp+3                  L2 125 days  83.4 (worst  62) Down  23 Wnd  54 rds 4.7 again 51
+v3 roles hp+3                  L3 175 days  87.4 (worst  58) Down  19 Wnd  56 rds 4.2 again 48
+v3 roles hp+3                  L4 225 days  89.0 (worst  72) Down  21 Wnd  55 rds 4.6 again 58
+v3 roles hp+3                  L5 275 days  92.7 (worst  82) Down  18 Wnd  53 rds 4.7 again 56
+v3 roles res+1                 L1  75 days  77.4 (worst  60) Down  25 Wnd  58 rds 4.6 again 44
+v3 roles res+1                 L2 125 days  82.1 (worst  60) Down  24 Wnd  54 rds 4.6 again 46
+v3 roles res+1                 L3 175 days  87.3 (worst  52) Down  19 Wnd  53 rds 4.3 again 44
+v3 roles res+1                 L4 225 days  85.5 (worst  62) Down  23 Wnd  57 rds 4.8 again 55
+v3 roles res+1                 L5 275 days  88.4 (worst  75) Down  22 Wnd  57 rds 5.2 again 53

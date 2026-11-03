@@ -13,11 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-03 — Enemy stats closer to the players'
+### 2026-11-03 — Enemies built the way PCs are
 
-Looked at why enemies ended up with about twice the PCs' Health and lower Resist, and tested stat lines closer to the PCs' that keep on-level fights at 4-5 rounds; nothing's changed yet.
+Wrote down the enemy design's first principles (enemies play by the players' rules, with numbers in the players' ballpark) and drafted a new enemy table built that way: same Stats, Skill Totals, weapons and armor as a PC, Health near a PC's, archetypes as plain bumps, and Defenses with a readable spread.
 
-- Enemy Resist can stand in for Health: with the PCs' own Resist, Damage on the player formula and about two-thirds of the Health, the middle of each XP band still plays on target, though weaker party builds fall further behind.
+- Enemy damage and Resist step up at different Levels like a PC's Stats (damage 2, 3, 3, 4, 4), and the middle of each XP band still plays on target, a bit spikier than before (fights of about 4 rounds).
+- With enemy hits on the player formula, +1 Damage isn't the giant it was, so no archetype has to trade Accuracy for it: Striker pays by being lightly built, Bruiser by being heavy and slow.
 
 ### 2026-11-02 — Browse mode, a purchase history, and enemy stats per Level
 

@@ -401,8 +401,9 @@ ENEMY_LEVEL_UP = 0
 # The enemy base table: 'v2' (designer, 2026-11-02: "our new one we're
 # working off of"), shaped like the designer's original table
 # (enemy_builder_pcstyle.ENEMY_TABLE_V2); 'v1' the one before, kept for
-# older scripts and their recorded numbers. Only the codified rows
-# (StrongDefense) read it.
+# older scripts and their recorded numbers; 'v3' (2026-11-03) built the way
+# PCs are (enemy_builder_pcstyle.build_enemy_v3), pending the designer.
+# Only the codified rows (StrongDefense) read it.
 ENEMY_TABLE = 'v2'
 # v3 (2026-11-03, the designer's "enemies play by the players' rules"):
 # Defense tiers. Strong = the Level's attack Skill Total, Average = that

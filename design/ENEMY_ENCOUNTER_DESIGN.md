@@ -2065,3 +2065,148 @@ What it costs:
   Levels 4-5 are grown characters. A table version would smooth it:
   Resist +1 throughout, enemy Damage on the player formula from Level 2,
   Health about 11 / 12 / 14 / 15 / 15 per full-size enemy.
+
+### v3: enemies built the way PCs are (2026-11-03)
+
+Per the designer's first principles (top of this document), with the
+original spreadsheet re-read: its Design sheet already priced an enemy's
+stats in player XP and landed on the player schedule (Total XP rating
+64 / 124 / 174 / 221 / 280 at Levels 1-5), and its NPC Enemy Rules sheet
+had Damage and Resist 2 / 3 / 4 / 5 / 5 and Health 5-13. Its Roles were
+plain bumps. Where v1 and v2 drifted (big Health, low Resist, damage
+below the player formula, Accuracy trades) was in chasing fight length
+after the fact. v3 goes back to the shape and finds the balance inside
+it. `tunables.ENEMY_TABLE = 'v3'`; v2 is still the default until the
+designer says otherwise.
+
+**How a v3 enemy is built** (`enemy_builder_pcstyle.build_enemy_v3`):
+
+- **Skill**: the weapon Skill Total. With a melee weapon in hand, Parry
+  = 8 + Skill + the weapon's Defense, as for a PC; casters and archers
+  can't Parry (a support with a backup mace Parries at its Weak tier).
+- **Defenses**: the Strong Defense (the row's StrongDefense) = 8 + Skill;
+  one Weak Defense = 8 + Skill − 4, by default what that kind of enemy
+  visibly neglects (a fighter's Mental, a caster's Vital, a support's
+  Dodge; a row can name its own in WeakDefense); the rest Average, 8 +
+  Skill − 2 (`tunables.V3_DEF_GAP`). Armor moves Dodge as for a PC.
+- **Accuracy**: a Skill Total one under Skill, plus the weapon's or
+  spell's own Accuracy (+1 light weapons, +0 heavy weapons and spells);
+  archetypes that attack well raise it back.
+- **Damage**: the player weapon and spell table (light 3, 1H heavy 4,
+  2H heavy 5, spells 2) + the damage Stat.
+- **Resist**: the Resist Stat + armor (Light +1, Medium +2, Heavy +3
+  Physical).
+- **Health** per Slot; minions a third (rounded up), a 2-Slot elite
+  three times.
+- **Caps**: Stats 5, Skill Totals 10, as for a PC.
+- Abilities aren't priced yet under v3 (an enemy has the ones on its
+  row; v2's repricing and its 1-stack Bleeding don't apply). That's the
+  next pass.
+
+**The table** (each stat steps up at its own Levels so two don't jump at
+once; Defenses as 8 + Skill Total):
+
+| Level | Skill (Parry, Strong) | Accuracy | Defense: Strong / Average / Weak | Damage Stat | Resist Stat | Health per Slot (minion) | Speed | Reflex |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 5 | 4 | 13 / 11 / 9 | 2 | 2 | 10 (4) | 3 | 3 |
+| 2 | 6 | 5 | 14 / 12 / 10 | 3 | 3 | 11 (4) | 3 | 4 |
+| 3 | 7 | 6 | 15 / 13 / 11 | 3 | 3 | 13 (5) | 4 | 5 |
+| 4 | 8 | 7 | 16 / 14 / 12 | 4 | 4 | 15 (5) | 4 | 6 |
+| 5 | 9 | 8 | 17 / 15 / 13 | 4 | 4 | 15 (5) | 5 | 7 |
+
+What that comes to before archetype and armor: a light-weapon fighter
+at Level 1 hits at +5 for 5 with Parry 14; at Level 5, +9 for 7 with
+Parry 18. A 2H heavy weapon hits for 2 more at 1 less Accuracy and has
+no weapon Defense on its Parry. A caster hits at +4 / +8 for 4 / 6,
+can't Parry, and has the Weak Vital Defense.
+
+**Against the PCs** (middle of each band; PC Accuracy is the attack
+Skill Total before the weapon's own +1):
+
+| Level | PC / enemy Accuracy | PC best Parry-Dodge / enemy Strong | PC / enemy Resist Stat | PC / enemy Damage | PC / enemy Health |
+|---|---|---|---|---|---|
+| 1 | 6.1 / 4 | 13.8 / 13 | 3.4 / 2 (+armor) | 5.2 / 5 | 10.0 / 10 |
+| 2 | 8.0 / 5 | 15.1 / 14 | 4.4 / 3 | 5.4 / 6 | 10.1 / 11 |
+| 3 | 9.0 / 6 | 15.7 / 15 | 4.4 / 3 | 6.0 / 6 | 10.7 / 13 |
+| 4 | 10.7 / 7 | 17.5 / 16 | 5.9 / 4 | 6.7 / 7 | 10.7 / 15 |
+| 5 | 10.7 / 8 | 17.9 / 17 | 6.3 / 4 | 6.7 / 7 | 10.7 / 15 |
+
+(PC Resist is the whole Resist, armor included; an enemy's is its Stat
+plus its armor, so a Light-armored enemy is about 1 under the party.)
+
+**The archetypes** (bumps, capped at the player maximums; values from
+`kit_check.py` under v3, enemy Health per Slot at Levels 2 / 3, and the
+change in fights where someone goes Down):
+
+| Archetype | Adds | Worth | Plays |
+|---|---|---|---|
+| Defender | Resist +1, Parry +1, Dodge +1 | 2.1 / 2.0 | +1 round |
+| Striker | Damage +1, Accuracy +1, Resist −1 | 1.7 / 3.2 | spikier (+6-12 Down) |
+| Bruiser | Damage +1, Resist +1, Parry −1, Dodge −1, Speed −1 | 2.6 / 3.5 | spikier and longer |
+| Strategist | Accuracy +2, Dodge +1, Mental +1 | 1.8 / 2.5 | |
+| Skirmisher | Accuracy +2, Dodge +1, Speed +1 | 2.4 / 3.0 | |
+| Backup | Resist +1, Dodge +1, Vital +1, Mental +1 | 1.8 / 1.7 | +1 round |
+
+With the original bumps unchanged (Striker Damage +1 and Accuracy +1;
+Bruiser Damage +1, Resist +1, Parry/Dodge −1; Strategist Accuracy +1,
+Parry/Dodge +1, Mental +1; Backup Parry/Dodge +1, Vital +1, Mental +1)
+they read 3.1-4.8 for Striker and Bruiser and 0.2-1.4 for Strategist and
+Backup: Parry and Dodge +1 are worth about 0.1-0.2 Health (an enemy
+defends with the better of the two, and the parties mostly attack one),
+Vital and Mental +1 nothing against these parties, +1 Accuracy about 1,
++1 Resist about 1.4 and most of a round, +1 Damage about 2-3. Under v3
+damage no longer dwarfs the rest (under v2 +1 Damage was worth eight
+Accuracy; now about two and a half), because enemy hits now get well
+past the party's Resist, so +1 is a smaller share of them. So no
+archetype has to pay Accuracy for Damage: Striker pays by being lightly
+built, Bruiser by being heavy and slow.
+
+**The Level 3 roster under v3:**
+
+| Enemy | Archetype | Action + Abilities | Armor | Acc | Damage | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Brute | Bruiser | Light Melee + Heavy Weapon, Strike (Crippling) | Medium | 6 | 8 Physical | 14 | 11 | 15 | 11 | 13 | 6 / 4 | 13 | 3 |
+| Hedge Knight | Defender | Light Melee + Strike (Taunting) | Heavy | 7 | 6 Physical | 17 | 13 | 15 | 11 | 13 | 7 / 4 | 13 | 3 |
+| Skulking Footpad | Skirmisher | Light Melee + Poison (Bleeding) | Light | 9 | 6 Physical | 16 | 16 | 13 | 11 | 13 | 4 / 3 | 13 | 5 |
+| Marsh Archer | Striker | Ranged Weapon + Strike (Vulnerable) | Light | 8 | 7 Physical | — | 15 | 13 | 11 | 13 | 3 / 2 | 13 | 4 |
+| Grave Caller | Striker | Vital Spell + Strike (Vulnerable) | Unarmored | 7 | 6 Shadow | — | 13 | 11 | 15 | 13 | 2 / 2 | 13 | 4 |
+| Warpriest | Backup | Shield Ally (backup mace) + Strike (Frightening) | Medium | 3 | 6 Physical | 12 | 11 | 14 | 16 | 13 | 6 / 4 | 13 | 4 |
+| Goblin Cutthroat (minion) | Striker | Light Melee + Strike (Slowing) | Light | 8 | 7 Physical | 16 | 15 | 13 | 11 | 13 | 3 / 2 | 5 | 4 |
+
+**How it plays** (`table_check.py -t v3`; days won (worst party) / F1
+Down / F1 Wounded / rounds / acts again):
+
+| Level | Composite XP | v3 | v2 (for reference) |
+|---|---|---|---|
+| 1 | 75 | 91% (83) / 17 / 52 / 3.8 / 38 | 97% (95) / 12 / 45 / 4.7 / 54 |
+| 2 | 100 | 42% (10) / 52 / 78 / 5.3 / 53 | 45% (20) / 53 / 77 / 6.8 / 68 |
+| 2 | 125 | 93% (74) / 15 / 44 / 3.9 / 41 | 99% (98) / 8 / 38 / 4.6 / 57 |
+| 2 | 150 | 99% / 6 / 29 / 3.3 / 37 | 100% / 2 / 17 / 4.0 / 51 |
+| 3 | 150 | 48% (12) / 47 / 77 / 6.0 / 56 | 63% (32) / 39 / 70 / 6.7 / 67 |
+| 3 | 175 | 93% (72) / 15 / 48 / 3.5 / 39 | 97% (88) / 9 / 41 / 4.1 / 52 |
+| 3 | 200 | 100% / 5 / 25 / 3.0 / 34 | 100% / 2 / 15 / 3.5 / 47 |
+| 4 | 200 | 63% (21) / 38 / 70 / 5.2 / 55 | 70% (38) / 35 / 67 / 6.1 / 68 |
+| 4 | 225 | 93% (75) / 16 / 48 / 3.9 / 50 | 99% (95) / 8 / 32 / 4.6 / 64 |
+| 4 | 250 | 100% / 8 / 35 / 3.8 / 49 | 100% / 3 / 19 / 4.5 / 62 |
+| 5 | 275 | 96% (87) / 14 / 48 / 4.3 / 51 | 99% (98) / 7 / 32 / 5.3 / 67 |
+
+The middle of every band lands on the October targets (Down in about
+one fight in six, Wounded about every other one), at 3.5-4.3 rounds:
+spikier and a little shorter than v2, which the designer accepted for
+PC-like numbers. Weaker parties feel it more (worst party 72-87% in the
+middle). A hit enemy acts again 38-51% of the time.
+
+**How the schedule was found** (`progression_sweep.py --table v3`,
+`results/enemy_stats/v3*.jsonl`): a 32-config grid of damage −1/0,
+Resist +0/+1, Accuracy −1/0, Health +0/+2 and Defense gap 1/2, read Level
+by Level (each Level's parties meet only its enemies), then three whole
+schedules across the bands. The designer's damage schedule (2, 3 at
+Level 2, 4 at Level 4) held at every Level once base Accuracy sat one
+under Skill; moving the damage steps later made Level 4 too easy.
+Health more than about 2 over the table made Level 1 too hard; +1 Resist
+across the board did the same. The Defense gap made little difference
+between 1 and 2; 2 keeps the spread legible.
+
+**Open:** abilities under v3 (prices against these numbers, in picks or
+Health); whether 3.5-4 rounds is close enough to "4-5"; Levels 4-5 are
+still checked against grown Level 3 characters.
