@@ -404,6 +404,10 @@ ENEMY_LEVEL_UP = 0
 # older scripts and their recorded numbers. Only the codified rows
 # (StrongDefense) read it.
 ENEMY_TABLE = 'v2'
+# v3 (2026-11-03, the designer's "enemies play by the players' rules"):
+# Defense tiers. Strong = the Level's attack Skill Total, Average = that
+# minus V3_DEF_GAP, Weak = minus twice it (enemy_builder_pcstyle.build_enemy_v3).
+V3_DEF_GAP = 2
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

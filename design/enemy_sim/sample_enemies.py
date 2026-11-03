@@ -143,6 +143,7 @@ def _build_from_row(row):
             stat_order=[x for x in (row.get("StatOrder") or "").split(",") if x.strip()] or None,
             role=(row.get("Role") or "").strip() or None,
             strong_defense=(row.get("StrongDefense") or "").strip() or None,
+            weak_defense=(row.get("WeakDefense") or "").strip() or None,
         )
     else:
         # SecondaryDef/SecondaryDef2: up to two Secondary picks now that

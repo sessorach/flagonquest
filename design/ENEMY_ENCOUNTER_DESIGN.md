@@ -14,6 +14,45 @@ sections are left in place as historical record (not deleted — see
 their own superseded-by note), but this document is what to reach for
 going forward.
 
+## First principles: enemies play by the players' rules (designer, 2026-11-03)
+
+Read this before any number below; every stat decision answers to it.
+
+- **Enemies use the same logic and mechanics as the players.** The same
+  Stats, Skill Totals and Defenses (Defense = 8 + Skill Total), the same
+  weapons and armor from the player tables, Parry from the weapon Skill
+  and the weapon's Defense, Resist from a Stat plus armor. The few things
+  sanded off are there to keep combat quick: no per-encounter abilities
+  to track, simple fixed tactics. If an enemy has a big two-hander the
+  party can guess it doesn't parry well; sword and board in heavy armor,
+  it doesn't dodge well. The mechanics should bear that out.
+- **Enemy numbers stay in the players' ballpark.** A damage Stat starts
+  around 2 and climbs to 4 by the top Levels, and an archetype can push
+  it to the player cap of 5; Accuracy and Defenses run up to the
+  players' +10; Health sits near a PC's. No stat goes past what a player
+  could have. A goblin shouldn't have more Health than the PC fighting
+  it: that breaks the sense that the world hangs together, and players
+  read stat blocks by the same yardstick as their own sheet.
+- **Legible.** Players should be able to size an enemy up from what it
+  visibly is (armor, weapon, a wizard's staff) and be rewarded for
+  acting on it: an enemy's five Defenses have a spread, so a weak
+  Mental Defense on a brute is worth finding.
+- **A canvas, not the painting.** Stat blocks and tactics are simple and
+  laid out from the start: an archetype, a main Action, a passive or a
+  tweak to that Action, at most a support enemy that spends most turns
+  healing or shielding. The party's Techniques are what make a fight
+  interesting; the enemy gives them something to work on. A tough
+  bruiser that gains Protected every turn is enough: head-on it's a
+  slog, debuffed and worn down it falls.
+- **Engaging, not a slog.** Enemies shouldn't be bags of Health. Leaning
+  a little more dangerous and a little less durable, with fights a bit
+  spikier, is fine: parties build to support each other, and carry
+  consumables for the bad fight.
+
+Where a balance target and these clash, these win, and the balance gets
+found inside them: which stats step up at which Level, how the five
+Defenses spread, what an archetype adds.
+
 ## Design goals, in the designer's own words
 
 > This was something I could bake the math into, and then use myself to

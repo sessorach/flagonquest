@@ -29,6 +29,7 @@ import tunables as T  # noqa: E402
 import stat_sweep  # noqa: E402
 import table_check as tc  # noqa: E402
 
+TABLE = ["v2"]
 MID = {1: None, 2: 105, 3: 145, 4: 185, 5: 225}
 
 
@@ -52,6 +53,7 @@ def enemy_numbers(spec, level=3):
     """Average full-size enemy in the four mixes at `level` under `spec`."""
     stat_sweep.install(stat_sweep.parse(spec))
     T.ENEMY_LEVEL_UP = 0
+    T.ENEMY_TABLE = TABLE[0]
     es = [e for m in se.CURRENT_MIXES for e in se.build_encounter(se.ENCOUNTERS[level][m]) if e.get("slots", 1) >= 1]
     dmg = [p["attack_damage"] for e in es for p in (e, e.get("backup")) if p and p.get("attack_damage")][:len(es)]
     return dict(health=st.mean(e["max_health"] for e in es), physres=st.mean(e["physres"] for e in es),
@@ -66,20 +68,23 @@ def main():
     ap.add_argument("--grid2", action="store_true", help="res 1-2 x Health 0.55-0.75 x Damage x Accuracy")
     ap.add_argument("-n", type=int, default=60, help="days per mix per party")
     ap.add_argument("--points", default="mid", choices=("mid", "all"))
+    ap.add_argument("--table", default="v2", help="tunables.ENEMY_TABLE to play (v2, v3)")
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("-o", required=True)
     a = ap.parse_args()
+    TABLE[0] = a.table
     configs = [tuple(c.split("=", 1)) for c in a.configs] + (grid() if a.grid else []) + (grid2() if a.grid2 else [])
     done = set()
     if os.path.exists(a.o):
         done = {(json.loads(l)["label"], json.loads(l)["points"]) for l in open(a.o) if l.strip()}
     with mp.Pool(a.j) as pool:
         for label, spec in configs:
+            label = label if a.table == "v2" else f"{a.table} {label}"
             if (label, a.points) in done:
                 continue
             pts = [(L, MID[L]) for L in range(1, 6)] if a.points == "mid" else \
                 [(L, b) for L in range(1, 6) for b in tc.POINTS[L]]
-            jobs = [("v2", L, b, gi, a.n, 0, False, spec) for L, b in pts for gi in range(len(tc.groups(L, b)))]
+            jobs = [(a.table, L, b, gi, a.n, 0, False, spec) for L, b in pts for gi in range(len(tc.groups(L, b)))]
             res = {}
             for t, L, b, g, days in pool.imap(tc._job, jobs):
                 res.setdefault((L, b), {})[g] = days

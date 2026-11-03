@@ -341,11 +341,120 @@ def _v2():
     return getattr(T, "ENEMY_TABLE", "v1") == "v2"
 
 
+# ---- v3: enemies built the way PCs are (2026-11-03) ----
+# Per the designer (ENEMY_ENCOUNTER_DESIGN.md, "First principles"): the
+# same Stats, Skill Totals, weapons and armor as the players, numbers in
+# the players' ballpark, archetypes as plain bumps up to the player caps,
+# and a spread of Defenses players can read and exploit. Read when
+# tunables.ENEMY_TABLE = 'v3', for the codified rows.
+#   skill:  the attack Skill Total, and the Strong Defense's (a PC's focus)
+#   damage: the damage Stat (a PC's Body/Cunning/Mind for its attack)
+#   resist: the Resist Stat (a PC's Essence), plus armor
+#   health: Health per Slot
+ENEMY_TABLE_V3 = {
+    1: dict(skill=5, damage=2, resist=2, health=9),
+    2: dict(skill=6, damage=3, resist=2, health=10),
+    3: dict(skill=7, damage=3, resist=3, health=11),
+    4: dict(skill=8, damage=4, resist=3, health=12),
+    5: dict(skill=9, damage=4, resist=4, health=13),
+}
+# The original spreadsheet's Roles (Design sheet), as plain bumps;
+# Defender is its Tank, Skirmisher the roster's mobile one.
+ROLE_ADDS_V3 = {
+    "Defender": {"res": 1, "parry": 1, "dodge": 1},
+    "Striker": {"dmg": 1, "acc": 1},
+    "Bruiser": {"dmg": 1, "res": 1, "parry": -1, "dodge": -1},
+    "Strategist": {"acc": 1, "parry": 1, "dodge": 1, "mental": 1},
+    "Backup": {"parry": 1, "dodge": 1, "bodily": 1, "mental": 1},
+    "Skirmisher": {"speed": 1, "dodge": 1, "acc": 1},
+}
+STAT_CAP, SKILL_CAP = 5, 10
+# The Weak Defense when a row doesn't name one: what that kind of enemy
+# visibly neglects (a fighter's Mental, a caster's Vital, a support's
+# Dodge), skipping its Strong Defense.
+WEAK_DEFAULT = {"weapon": ("mental", "vigilant"), "spell": ("bodily", "vigilant"), "support": ("dodge", "vigilant")}
+
+
+def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None, abilities=(),
+                   main_effect=None, backup_action=None, weak_defense=None):
+    t = ENEMY_TABLE_V3[level]
+    adds = ROLE_ADDS_V3.get(role or "", {})
+    act = ACTIONS[action]
+    cat = action_category(action)
+    skill = min(SKILL_CAP, t["skill"])
+    dmg_stat = min(STAT_CAP, t["damage"] + adds.get("dmg", 0))
+    res_stat = min(STAT_CAP, t["resist"] + adds.get("res", 0))
+    gap = T.V3_DEF_GAP
+    strong = strong_defense.lower().replace("vital", "bodily")
+    weak = (weak_defense or "").lower().replace("vital", "bodily") or next(
+        d for d in WEAK_DEFAULT[cat] if d != strong)
+    tier = {d: skill - gap for d in ("dodge", "bodily", "mental", "vigilant")}
+    tier[strong] = skill
+    if weak != strong:
+        tier[weak] = skill - 2 * gap
+
+    def defense(d):
+        return 8 + min(SKILL_CAP, tier[d] + adds.get(d, 0))
+    # Parry, as for a PC: the weapon's Skill plus the weapon's Defense, so
+    # only with a melee weapon in hand (the main Action's, or the backup's
+    # at the Weak tier, the way a caster's mace is an afterthought).
+    if act["wd"] is not None:
+        parry = 8 + min(SKILL_CAP, skill + adds.get("parry", 0)) + act["wd"]
+    elif backup_action and ACTIONS[backup_action]["wd"] is not None:
+        parry = 8 + min(SKILL_CAP, skill - 2 * gap + adds.get("parry", 0)) + ACTIONS[backup_action]["wd"]
+    else:
+        parry = -99
+    stat = {k: dmg_stat for k in ("body", "cunning", "mind", "agility", "body_or_cunning")}
+    stat["essence"] = res_stat
+
+    def profile(action_name):
+        a = ACTIONS[action_name]
+        main = action_name == action
+        sk = skill if main else skill - 2 * gap
+        return dict(action=action_name, accuracy=min(SKILL_CAP, sk + adds.get("acc", 0)) + a["acc_mod"],
+                    attack_damage=a["dmg_base"] + stat[a["stat"]] if a["dmg_base"] else 0,
+                    dmg_type=a["dmg_type"], opp_def=a["opp_def"],
+                    attack_range=a["range"] * level + (2 if a["range"] else 0))
+    main = profile(action)
+    accuracy, attack_damage = main["accuracy"], main["attack_damage"]
+    if "Powerful Weapon" in abilities or "Heavy Weapon" in abilities:
+        attack_damage += 1
+        accuracy -= 1
+        parry -= 1
+    if "Powerful Spell" in abilities:
+        attack_damage += 1
+        parry = -99
+    kind = act.get("kind", "attack")
+    effect_stacks = act["stacks"] if "stacks" in act else (
+        GUARANTEED_STACKS[level] if kind in ("support", "heal") else EFFECT_STACKS[level])
+    if kind != "attack" and not backup_action:
+        raise ValueError(f"{name}: a {action} enemy needs a BackupAction to fall back on")
+    backup = profile(backup_action) if backup_action else None
+    if kind != "attack":
+        attack_damage = 0
+    health = math.ceil(t["health"] * T.SLOT_MULTIPLIER[slots]) + abilities.count("Enhanced Health")
+    enemy = dict(name=name, level=level, slots=slots, role=role or "None", action=action,
+                 kind=kind, main_effect=main_effect or {"support": "Protected", "heal": "Health",
+                                                        "nova": "Protected"}.get(kind),
+                 effect_stacks=effect_stacks, backup=backup, stats=stat,
+                 accuracy=accuracy, attack_damage=attack_damage, dmg_type=act["dmg_type"],
+                 opp_def=act["opp_def"], attack_range=main["attack_range"],
+                 parry=parry, dodge=defense("dodge") + T.ARMOR[armor]["dodge"],
+                 bodily=defense("bodily"), mental=defense("mental"), vigilant=defense("vigilant"),
+                 physres=res_stat + T.ARMOR[armor]["physres"], elemres=res_stat,
+                 health=health, max_health=health,
+                 speed=math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"] + adds.get("speed", 0),
+                 reflex=2 + level, ability_budget=0, ability_cost=0, abilities=list(abilities),
+                 protected=0, armor=armor, weak_defense=weak)
+    _apply_catalog(enemy, abilities)
+    return enemy
+
+
 def build_enemy_pcstyle(name, level, slots, action, armor="Light",
                          defense_tiers=None, attack_tier="secondary",
                          health_bonus=0, defense_adj=0, accuracy_adj=0,
                          damage_adj=0, resist_adj=0, abilities=(), main_effect=None, backup_action=None,
-                         stat_order=None, role=None, strong_defense=None):
+                         stat_order=None, role=None, strong_defense=None, weak_defense=None):
     """`defense_adj`/`accuracy_adj`/`damage_adj`/`resist_adj`: flat,
     across-the-board sensitivity-testing knobs - NOT a per-archetype
     Ability or a per-build design choice, just a uniform nudge to
@@ -355,6 +464,10 @@ def build_enemy_pcstyle(name, level, slots, action, armor="Light",
     once a real archetype is settled on - the tiers/action/stat choices
     above are the actual build; these four are a dial for exploring
     around that build, not part of it."""
+    if strong_defense and getattr(T, "ENEMY_TABLE", "v1") == "v3":
+        return build_enemy_v3(name, level, slots, action, armor, strong_defense, role=role,
+                              abilities=abilities, main_effect=main_effect, backup_action=backup_action,
+                              weak_defense=weak_defense)
     tiers = SKILL_TOTAL_BY_LEVEL[level]
     act = ACTIONS[action]
     if strong_defense:

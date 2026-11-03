@@ -23,6 +23,7 @@ Slot with the slope of "every enemy +2 Health" (HealthBonus), so:
 """
 import argparse
 import json
+import math
 import multiprocessing as mp
 import os
 import statistics as st
@@ -99,6 +100,9 @@ def edit_for(variant):
         if kind == "role":
             return dict(row, Role=what)
         if kind == "hp":
+            if getattr(eb.T, "ENEMY_TABLE", "v1") == "v3":
+                # v3 has no HealthBonus: the Health goes on after the build.
+                return dict(row, _hp_adj=int(what))
             return dict(row, HealthBonus=str(int(row.get("HealthBonus") or 0) + int(what)))
         if kind == "armor":
             return dict(row, Armor=ARMOR[what])
@@ -117,7 +121,8 @@ _ORIG = {}
 def install(variant):
     orig = _ORIG.setdefault("get", se.get_enemy)
     # "role:X@k=v/k=v": that Role's bonuses replaced for this variant.
-    live = eb.ROLE_ADDS_V2 if getattr(eb.T, "ENEMY_TABLE", "v1") == "v2" else eb.ROLE_ADDS
+    table = getattr(eb.T, "ENEMY_TABLE", "v1")
+    live = eb.ROLE_ADDS_V3 if table == "v3" else eb.ROLE_ADDS_V2 if table == "v2" else eb.ROLE_ADDS
     roles = _ORIG.setdefault("roles", {k: dict(v) for k, v in live.items()})
     live.clear()
     live.update({k: dict(v) for k, v in roles.items()})
@@ -134,7 +139,11 @@ def install(variant):
         if new is None or new is row:
             return orig(name)
         try:
-            return se._build_from_row(new)
+            e = se._build_from_row(new)
+            if new.get("_hp_adj"):
+                adj = new["_hp_adj"] * cs.T.SLOT_MULTIPLIER[e.get("slots", 1)]
+                e["max_health"] = e["health"] = max(1, e["max_health"] + (math.ceil(adj) if adj > 0 else -math.ceil(-adj)))
+            return e
         except ValueError:
             # Over the Upgrade budget or the Health floor: the enemy can't
             # take it, so it plays as written (counted).
