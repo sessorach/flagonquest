@@ -414,6 +414,16 @@ V3_DEF_GAP = 2
 # 2026-11-03); 1, the first one (one more Skill and Accuracy, smaller
 # archetypes), for the numbers recorded before that.
 V3_VERSION = 2
+# Ability shapes under v3: 'catalog' (as written: Poison (Bleeding) lands
+# 2 stacks, Retribution Aura answers every attacker) or 'v2' (the v2 kit's
+# 1 stack and melee attackers only). 2026-11-03, pending the designer.
+V3_KIT_SHAPES = 'catalog'
+# Draft v3 Ability prices in Health (enemy_builder_pcstyle.ABILITY_HEALTH_V3):
+# on, each enemy gets V3_ABILITY_ALLOWANCE Health per Slot of Abilities and
+# armor free, and pays or keeps the difference in Health. 2026-11-03,
+# pending the designer.
+V3_ABILITY_PRICES = False
+V3_ABILITY_ALLOWANCE = 1
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

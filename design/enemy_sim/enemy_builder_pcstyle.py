@@ -400,6 +400,34 @@ ROLE_ADDS_V3 = {
     "Skirmisher": {"speed": 2, "dodge": 2, "acc": 2},
 }
 STAT_CAP, SKILL_CAP = 5, 10
+# Draft v3 Ability prices in enemy Health per Slot (2026-11-03): each
+# Ability's measured worth on enemies stripped of theirs, per enemy that
+# can take it, Levels 2-3 averaged and rounded (kit_check.py --bare,
+# results/enemy_stats/v3_abilities*.txt), with Poison (Bleeding) and
+# Retribution Aura in their v2 shapes (tunables.V3_KIT_SHAPES). A 0 is an
+# Ability the sim reads as about nothing against the sample parties
+# (situational, or a debuff the sim may undervalue): left for the
+# balance-weights review, not a verdict. Armor is priced from Light.
+ABILITY_HEALTH_V3 = {
+    "Strike (Crippling)": 0, "Strike (Vulnerable)": 0, "Strike (Slowing)": 0,
+    "Strike (Frightening)": 0, "Strike (Taunting)": 0,
+    "Strike (Necrotic)": 1, "Strike (Harrying)": 1, "Strike (Devastating)": 1,
+    "Strike (Battering)": 2, "Strike (Cleaving)": 2, "Strike (Grappling)": 3,
+    "Poison (Crippling)": 0, "Poison (Slowing)": 0, "Poison (Vulnerable)": 0,
+    "Poison (Necrotic)": 1, "Poison (Bleeding)": 3,
+    "Heavy Weapon": 1, "Powerful Weapon": 1, "Powerful Spell": 4,
+    "Durable": 1, "Omniguard": 1, "Resilient": 0, "Sturdy": 0, "Shadow Jaunt": 0,
+    "Retribution Aura": 2,
+    "Enhanced Health": 1, "Enhanced Speed": 1, "Enhanced Reflexes": 2, "Enhanced Range": 4,
+    "Improved Support": 1,
+    "Action (Parting Shot)": 1, "Action (Intimidating)": 0, "Action (Taunting)": 1,
+}
+for _el in ELEMENTS:
+    ABILITY_HEALTH_V3[f"Resist ({_el})"] = 1
+    ABILITY_HEALTH_V3[f"Attunement ({_el})"] = 4
+    ABILITY_HEALTH_V3[f"Elemental Spell ({_el})"] = 0
+    ABILITY_HEALTH_V3[f"Elemental Weapon ({_el})"] = 0
+ARMOR_HEALTH_V3 = {"Unarmored": -1, "Light": 0, "Medium": 1, "Heavy": 2}
 # The Weak Defense when a row doesn't name one: what that kind of enemy
 # visibly neglects (a fighter's Mental, a caster's Vital, a support's
 # Dodge), skipping its Strong Defense.
@@ -465,7 +493,18 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
     backup = profile(backup_action) if backup_action else None
     if kind != "attack":
         attack_damage = 0
-    health = math.ceil(t["health"] * T.SLOT_MULTIPLIER[slots]) + abilities.count("Enhanced Health")
+    base_health = t["health"]
+    if getattr(T, "V3_ABILITY_PRICES", False):
+        # Every enemy gets V3_ABILITY_ALLOWANCE Health's worth of Abilities
+        # and armor on top of the table; what it spends past that comes off
+        # its Health, what it leaves is Health. No more than a third of the
+        # table's Health can go (v2's lesson: a glass cannon drops before
+        # its effects pay).
+        cost = sum(ABILITY_HEALTH_V3[a] for a in abilities) + ARMOR_HEALTH_V3[armor]
+        base_health += T.V3_ABILITY_ALLOWANCE - cost
+        if base_health < math.ceil(t["health"] * 2 / 3):
+            raise ValueError(f"{name}: Abilities and armor cost {cost} Health, more than a third of its {t['health']}")
+    health = math.ceil(base_health * T.SLOT_MULTIPLIER[slots]) + abilities.count("Enhanced Health")
     enemy = dict(name=name, level=level, slots=slots, role=role or "None", action=action,
                  kind=kind, main_effect=main_effect or {"support": "Protected", "heal": "Health",
                                                         "nova": "Protected"}.get(kind),

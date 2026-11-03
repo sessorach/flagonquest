@@ -1,0 +1,90 @@
+== Level 2: base lost 12.6 pts, 3.77 rounds, wins 99.4%; 1 Health per Slot = 1.56 pts
+   the roster's own Abilities (base over bare):  +0.8 Health  rounds +0.02
+   bare|ability:Strike (Crippling)     +0.3 Health  rounds +0.11  Down +0.8 pts
+   bare|ability:Strike (Vulnerable)    +0.2 Health  rounds +0.01  Down +0.9 pts
+   bare|ability:Strike (Slowing)       +0.2 Health  rounds +0.05  Down +0.5 pts
+   bare|ability:Strike (Frightening)   +0.2 Health  rounds +0.08  Down +0.3 pts
+   bare|ability:Strike (Taunting)      +0.1 Health  rounds +0.03  Down +0.6 pts
+   bare|ability:Strike (Necrotic)      +1.4 Health  rounds +0.09  Down +3.4 pts
+   bare|ability:Strike (Harrying)      +0.7 Health  rounds +0.05  Down +2.0 pts
+   bare|ability:Strike (Battering)     +1.2 Health  rounds +0.05  Down +1.4 pts
+   bare|ability:Strike (Grappling)     +1.4 Health  rounds +0.10  Down +4.4 pts
+   bare|ability:Strike (Devastating)   +0.3 Health  rounds -0.13  Down -3.2 pts
+   bare|ability:Strike (Cleaving)      +0.9 Health  rounds +0.03  Down +0.7 pts
+   bare|ability:Poison (Bleeding)      +4.6 Health  rounds +0.15  Down +10.8 pts
+   bare|ability:Poison (Crippling)     +0.3 Health  rounds +0.11  Down +0.8 pts
+   bare|ability:Poison (Necrotic)      +1.4 Health  rounds +0.09  Down +3.4 pts
+   bare|ability:Poison (Slowing)       +0.1 Health  rounds +0.02  Down +0.4 pts
+   bare|ability:Poison (Vulnerable)    +0.1 Health  rounds +0.00  Down +0.4 pts
+   bare|ability:Heavy Weapon           +0.5 Health  rounds -0.11  Down +2.1 pts
+   bare|ability:Powerful Weapon        +0.5 Health  rounds -0.11  Down +2.1 pts
+   bare|ability:Powerful Spell         +0.6 Health  rounds +0.01  Down +3.3 pts
+   bare|ability:Durable                +1.2 Health  rounds +0.60  Down +2.4 pts
+   bare|ability:Omniguard              +0.6 Health  rounds +0.48  Down +1.3 pts
+   bare|ability:Resilient              +0.3 Health  rounds +0.00  Down +0.5 pts
+   bare|ability:Retribution Aura      +10.6 Health  rounds +0.16  Down +8.8 pts
+   bare|ability:Sturdy                 +0.0 Health  rounds -0.02  Down +0.1 pts
+   bare|ability:Enhanced Health        +0.8 Health  rounds +0.34  Down +1.8 pts
+   bare|ability:Enhanced Range         +2.3 Health  rounds +0.22  Down +6.8 pts
+   bare|ability:Enhanced Speed         +0.4 Health  rounds +0.01  Down +0.5 pts
+   bare|ability:Enhanced Reflexes      +1.3 Health  rounds +0.12  Down +3.0 pts
+   bare|ability:Shadow Jaunt           +0.0 Health  rounds +0.00  Down +0.0 pts
+   bare|ability:Improved Support       +0.1 Health  rounds +0.08  Down +0.1 pts
+   bare|ability:Action (Parting Shot)  +0.4 Health  rounds +0.01  Down +0.6 pts
+   bare|ability:Action (Intimidating)  +0.4 Health  rounds +0.26  Down +0.8 pts
+   bare|ability:Action (Taunting)      +0.4 Health  rounds +0.04  Down +1.1 pts
+   bare|ability:Resist (Fire)          +1.0 Health  rounds +0.47  Down +2.2 pts
+   bare|ability:Attunement (Fire)      +3.6 Health  rounds +1.27  Down +7.7 pts
+   bare|armor:Medium Armor             +1.1 Health  rounds +0.25  Down +3.0 pts
+   bare|armor:Heavy Armor              +5.1 Health  rounds +1.40  Down +13.5 pts
+   bare|armor:Light Armor              -0.1 Health  rounds -0.20  Down -0.3 pts
+   bare|armor:Unarmored                -1.0 Health  rounds -0.69  Down -2.1 pts
+   armor:Medium Armor                  +1.4 Health  rounds +0.24  Down +4.3 pts
+   armor:Heavy Armor                   +5.8 Health  rounds +1.37  Down +16.1 pts
+   armor:Light Armor                   -0.2 Health  rounds -0.22  Down -0.4 pts
+   armor:Unarmored                     -1.2 Health  rounds -0.71  Down -3.1 pts
+== Level 3: base lost 13.0 pts, 3.44 rounds, wins 99.7%; 1 Health per Slot = 0.99 pts
+   the roster's own Abilities (base over bare):  +1.2 Health  rounds -0.01
+   bare|ability:Strike (Crippling)     +0.1 Health  rounds +0.07  Down +0.2 pts
+   bare|ability:Strike (Vulnerable)    +0.3 Health  rounds +0.01  Down +1.1 pts
+   bare|ability:Strike (Slowing)       +0.3 Health  rounds +0.06  Down +0.7 pts
+   bare|ability:Strike (Frightening)   +0.1 Health  rounds +0.04  Down +0.1 pts
+   bare|ability:Strike (Taunting)      +0.3 Health  rounds +0.02  Down +1.1 pts
+   bare|ability:Strike (Necrotic)      +1.0 Health  rounds +0.04  Down +1.5 pts
+   bare|ability:Strike (Harrying)      +0.7 Health  rounds +0.04  Down +1.5 pts
+   bare|ability:Strike (Battering)     +1.8 Health  rounds +0.04  Down +0.5 pts
+   bare|ability:Strike (Grappling)     +1.8 Health  rounds +0.06  Down +4.7 pts
+   bare|ability:Strike (Devastating)   +1.4 Health  rounds -0.11  Down -2.9 pts
+   bare|ability:Strike (Cleaving)      +0.9 Health  rounds +0.03  Down +0.7 pts
+   bare|ability:Poison (Bleeding)      +6.2 Health  rounds +0.14  Down +10.9 pts
+   bare|ability:Poison (Crippling)     +0.1 Health  rounds +0.07  Down +0.2 pts
+   bare|ability:Poison (Necrotic)      +1.0 Health  rounds +0.04  Down +1.5 pts
+   bare|ability:Poison (Slowing)       +0.1 Health  rounds +0.02  Down +0.4 pts
+   bare|ability:Poison (Vulnerable)    +0.2 Health  rounds +0.01  Down +0.5 pts
+   bare|ability:Heavy Weapon           +0.8 Health  rounds -0.08  Down +2.7 pts
+   bare|ability:Powerful Weapon        +0.8 Health  rounds -0.08  Down +2.7 pts
+   bare|ability:Powerful Spell         +1.4 Health  rounds +0.05  Down +4.5 pts
+   bare|ability:Durable                +0.9 Health  rounds +0.60  Down +1.4 pts
+   bare|ability:Omniguard              +0.4 Health  rounds +0.37  Down +0.4 pts
+   bare|ability:Resilient              +0.4 Health  rounds +0.00  Down +0.5 pts
+   bare|ability:Retribution Aura      +19.2 Health  rounds +0.15  Down +8.5 pts
+   bare|ability:Sturdy                 +0.0 Health  rounds -0.05  Down +0.1 pts
+   bare|ability:Enhanced Health        +0.9 Health  rounds +0.30  Down +1.1 pts
+   bare|ability:Enhanced Range         +1.6 Health  rounds +0.10  Down +2.9 pts
+   bare|ability:Enhanced Speed         +0.7 Health  rounds +0.01  Down +0.9 pts
+   bare|ability:Enhanced Reflexes      +3.1 Health  rounds +0.16  Down +6.3 pts
+   bare|ability:Shadow Jaunt           +0.0 Health  rounds +0.00  Down +0.0 pts
+   bare|ability:Improved Support       +0.0 Health  rounds +0.05  Down +0.0 pts
+   bare|ability:Action (Parting Shot)  +0.7 Health  rounds +0.01  Down +0.9 pts
+   bare|ability:Action (Intimidating)  +0.2 Health  rounds +0.23  Down +0.2 pts
+   bare|ability:Action (Taunting)      +0.7 Health  rounds +0.02  Down +1.4 pts
+   bare|ability:Resist (Fire)          +1.4 Health  rounds +0.60  Down +2.4 pts
+   bare|ability:Attunement (Fire)      +4.0 Health  rounds +1.51  Down +5.8 pts
+   bare|armor:Medium Armor             +1.4 Health  rounds -0.00  Down +2.1 pts
+   bare|armor:Heavy Armor              +2.4 Health  rounds +0.58  Down +4.5 pts
+   bare|armor:Light Armor              +0.3 Health  rounds -0.31  Down +0.4 pts
+   bare|armor:Unarmored                -0.6 Health  rounds -0.55  Down -0.8 pts
+   armor:Medium Armor                  +1.6 Health  rounds +0.01  Down +3.1 pts
+   armor:Heavy Armor                   +3.0 Health  rounds +0.57  Down +6.3 pts
+   armor:Light Armor                   +0.5 Health  rounds -0.29  Down +0.9 pts
+   armor:Unarmored                     -0.5 Health  rounds -0.54  Down -0.8 pts

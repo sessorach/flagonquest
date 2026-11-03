@@ -1,0 +1,8 @@
+== Level 2: base lost 12.2 pts, 3.76 rounds, wins 99.4%; 1 Health per Slot = 1.51 pts
+   the roster's own Abilities (base over bare):  +0.6 Health  rounds +0.01
+   bare|ability:Poison (Bleeding)      +2.4 Health  rounds +0.09  Down +6.1 pts
+   bare|ability:Retribution Aura       +1.7 Health  rounds +0.04  Down +1.8 pts
+== Level 3: base lost 12.6 pts, 3.44 rounds, wins 99.7%; 1 Health per Slot = 0.96 pts
+   the roster's own Abilities (base over bare):  +0.8 Health  rounds -0.01
+   bare|ability:Poison (Bleeding)      +3.4 Health  rounds +0.08  Down +5.6 pts
+   bare|ability:Retribution Aura       +3.0 Health  rounds +0.04  Down +1.3 pts

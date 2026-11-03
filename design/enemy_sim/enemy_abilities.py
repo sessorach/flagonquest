@@ -101,7 +101,9 @@ STRIKE_RIDERS_V2 = {'Poison (Bleeding)': ('Bleeding', 1)}
 
 
 def _v2():
-    return getattr(cs.T, 'ENEMY_TABLE', 'v1') == 'v2'
+    # The v2 kit's shapes, also under v3 when V3_KIT_SHAPES = 'v2'.
+    t = getattr(cs.T, 'ENEMY_TABLE', 'v1')
+    return t == 'v2' or (t == 'v3' and getattr(cs.T, 'V3_KIT_SHAPES', 'catalog') == 'v2')
 
 
 def _rider(ability):
