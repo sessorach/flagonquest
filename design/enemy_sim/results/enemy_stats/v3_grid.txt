@@ -10,3 +10,184 @@ v3 gap2 dmg0 res+0 acc0 hp+2   L3 175 days  80.1 (worst  42) Down  27 Wnd  65 rd
 v3 gap2 dmg0 res+0 acc0 hp+2   L4 225 days  93.6 (worst  74) Down  18 Wnd  51 rds 3.3 again 42
 v3 gap2 dmg0 res+0 acc0 hp+2   L5 275 days  84.2 (worst  69) Down  27 Wnd  65 rds 4.8 again 58
 v3 gap2 dmg0 res+0 acc0 hp+2   L3 enemy: Health 13.0 Resist 4.6/3.4 Damage 6.6 Accuracy 8.0
+v3 gap2 dmg0 res+0 acc-1 hp+0  L1  75 days  92.2 (worst  85) Down  16 Wnd  51 rds 3.6 again 36
+v3 gap2 dmg0 res+0 acc-1 hp+0  L2 125 days  97.6 (worst  89) Down  10 Wnd  39 rds 3.0 again 29
+v3 gap2 dmg0 res+0 acc-1 hp+0  L3 175 days  93.5 (worst  72) Down  15 Wnd  47 rds 3.1 again 33
+v3 gap2 dmg0 res+0 acc-1 hp+0  L4 225 days  98.6 (worst  94) Down  11 Wnd  38 rds 2.8 again 32
+v3 gap2 dmg0 res+0 acc-1 hp+0  L5 275 days  96.5 (worst  88) Down  15 Wnd  47 rds 3.9 again 48
+v3 gap2 dmg0 res+0 acc-1 hp+0  L3 enemy: Health 11.0 Resist 4.6/3.4 Damage 6.6 Accuracy 7.0
+v3 gap2 dmg0 res+0 acc-1 hp+2  L1  75 days  77.8 (worst  67) Down  29 Wnd  63 rds 4.5 again 49
+v3 gap2 dmg0 res+0 acc-1 hp+2  L2 125 days  94.0 (worst  80) Down  15 Wnd  47 rds 3.5 again 40
+v3 gap2 dmg0 res+0 acc-1 hp+2  L3 175 days  87.4 (worst  56) Down  22 Wnd  56 rds 3.8 again 44
+v3 gap2 dmg0 res+0 acc-1 hp+2  L4 225 days  96.9 (worst  86) Down  13 Wnd  42 rds 3.2 again 41
+v3 gap2 dmg0 res+0 acc-1 hp+2  L5 275 days  91.0 (worst  79) Down  22 Wnd  55 rds 4.7 again 58
+v3 gap2 dmg0 res+0 acc-1 hp+2  L3 enemy: Health 13.0 Resist 4.6/3.4 Damage 6.6 Accuracy 7.0
+v3 gap2 dmg0 res+1 acc0 hp+0   L1  75 days  50.8 (worst  30) Down  45 Wnd  74 rds 4.8 again 50
+v3 gap2 dmg0 res+1 acc0 hp+0   L2 125 days  86.5 (worst  63) Down  23 Wnd  56 rds 3.7 again 41
+v3 gap2 dmg0 res+1 acc0 hp+0   L3 175 days  76.0 (worst  34) Down  30 Wnd  65 rds 4.3 again 45
+v3 gap2 dmg0 res+1 acc0 hp+0   L4 225 days  93.3 (worst  70) Down  18 Wnd  51 rds 3.4 again 40
+v3 gap2 dmg0 res+1 acc0 hp+0   L5 275 days  65.6 (worst  40) Down  41 Wnd  74 rds 5.6 again 59
+v3 gap2 dmg0 res+1 acc0 hp+0   L3 enemy: Health 11.0 Resist 5.6/4.4 Damage 6.6 Accuracy 8.0
+v3 gap2 dmg0 res+1 acc0 hp+2   L1  75 days  22.1 (worst   9) Down  64 Wnd  86 rds 5.6 again 63
+v3 gap2 dmg0 res+1 acc0 hp+2   L2 125 days  71.2 (worst  40) Down  35 Wnd  66 rds 4.5 again 54
+v3 gap2 dmg0 res+1 acc0 hp+2   L3 175 days  57.1 (worst  13) Down  42 Wnd  76 rds 5.1 again 57
+v3 gap2 dmg0 res+1 acc0 hp+2   L4 225 days  85.5 (worst  58) Down  25 Wnd  58 rds 4.0 again 51
+v3 gap2 dmg0 res+1 acc0 hp+2   L5 275 days  46.4 (worst  23) Down  53 Wnd  82 rds 6.5 again 68
+v3 gap2 dmg0 res+1 acc0 hp+2   L3 enemy: Health 13.0 Resist 5.6/4.4 Damage 6.6 Accuracy 8.0
+v3 gap2 dmg0 res+1 acc-1 hp+0  L1  75 days  65.0 (worst  43) Down  36 Wnd  67 rds 4.8 again 50
+v3 gap2 dmg0 res+1 acc-1 hp+0  L2 125 days  92.4 (worst  83) Down  17 Wnd  47 rds 3.6 again 40
+v3 gap2 dmg0 res+1 acc-1 hp+0  L3 175 days  84.5 (worst  48) Down  24 Wnd  57 rds 4.2 again 44
+v3 gap2 dmg0 res+1 acc-1 hp+0  L4 225 days  96.1 (worst  82) Down  14 Wnd  42 rds 3.3 again 40
+v3 gap2 dmg0 res+1 acc-1 hp+0  L5 275 days  73.9 (worst  52) Down  34 Wnd  67 rds 5.5 again 58
+v3 gap2 dmg0 res+1 acc-1 hp+0  L3 enemy: Health 11.0 Resist 5.6/4.4 Damage 6.6 Accuracy 7.0
+v3 gap2 dmg0 res+1 acc-1 hp+2  L1  75 days  35.4 (worst  20) Down  55 Wnd  80 rds 5.8 again 63
+v3 gap2 dmg0 res+1 acc-1 hp+2  L2 125 days  79.9 (worst  55) Down  27 Wnd  58 rds 4.5 again 53
+v3 gap2 dmg0 res+1 acc-1 hp+2  L3 175 days  70.5 (worst  26) Down  34 Wnd  68 rds 5.1 again 56
+v3 gap2 dmg0 res+1 acc-1 hp+2  L4 225 days  92.7 (worst  72) Down  19 Wnd  51 rds 3.9 again 50
+v3 gap2 dmg0 res+1 acc-1 hp+2  L5 275 days  56.4 (worst  29) Down  45 Wnd  76 rds 6.6 again 68
+v3 gap2 dmg0 res+1 acc-1 hp+2  L3 enemy: Health 13.0 Resist 5.6/4.4 Damage 6.6 Accuracy 7.0
+v3 gap2 dmg-1 res+0 acc0 hp+0  L1  75 days  98.1 (worst  95) Down   9 Wnd  40 rds 3.6 again 35
+v3 gap2 dmg-1 res+0 acc0 hp+0  L2 125 days  99.8 (worst  99) Down   4 Wnd  25 rds 3.0 again 29
+v3 gap2 dmg-1 res+0 acc0 hp+0  L3 175 days  98.7 (worst  93) Down   6 Wnd  33 rds 3.0 again 33
+v3 gap2 dmg-1 res+0 acc0 hp+0  L4 225 days 100.0 (worst 100) Down   2 Wnd  22 rds 2.8 again 31
+v3 gap2 dmg-1 res+0 acc0 hp+0  L5 275 days  99.8 (worst  99) Down   4 Wnd  28 rds 3.7 again 46
+v3 gap2 dmg-1 res+0 acc0 hp+0  L3 enemy: Health 11.0 Resist 4.6/3.4 Damage 5.6 Accuracy 8.0
+v3 gap2 dmg-1 res+0 acc0 hp+2  L1  75 days  92.2 (worst  86) Down  19 Wnd  52 rds 4.5 again 48
+v3 gap2 dmg-1 res+0 acc0 hp+2  L2 125 days  98.9 (worst  95) Down   7 Wnd  34 rds 3.5 again 40
+v3 gap2 dmg-1 res+0 acc0 hp+2  L3 175 days  96.5 (worst  85) Down   9 Wnd  43 rds 3.6 again 44
+v3 gap2 dmg-1 res+0 acc0 hp+2  L4 225 days  99.8 (worst  99) Down   3 Wnd  27 rds 3.1 again 40
+v3 gap2 dmg-1 res+0 acc0 hp+2  L5 275 days  99.0 (worst  95) Down   7 Wnd  37 rds 4.4 again 56
+v3 gap2 dmg-1 res+0 acc0 hp+2  L3 enemy: Health 13.0 Resist 4.6/3.4 Damage 5.6 Accuracy 8.0
+v3 gap2 dmg-1 res+0 acc-1 hp+0 L1  75 days  99.2 (worst  98) Down   6 Wnd  32 rds 3.5 again 35
+v3 gap2 dmg-1 res+0 acc-1 hp+0 L2 125 days  99.9 (worst 100) Down   2 Wnd  20 rds 2.9 again 29
+v3 gap2 dmg-1 res+0 acc-1 hp+0 L3 175 days  99.5 (worst  97) Down   4 Wnd  27 rds 3.0 again 32
+v3 gap2 dmg-1 res+0 acc-1 hp+0 L4 225 days 100.0 (worst 100) Down   1 Wnd  16 rds 2.8 again 31
+v3 gap2 dmg-1 res+0 acc-1 hp+0 L5 275 days  99.9 (worst  99) Down   2 Wnd  22 rds 3.7 again 46
+v3 gap2 dmg-1 res+0 acc-1 hp+0 L3 enemy: Health 11.0 Resist 4.6/3.4 Damage 5.6 Accuracy 7.0
+v3 gap2 dmg-1 res+0 acc-1 hp+2 L1  75 days  95.7 (worst  93) Down  13 Wnd  44 rds 4.4 again 48
+v3 gap2 dmg-1 res+0 acc-1 hp+2 L2 125 days  99.7 (worst  98) Down   4 Wnd  27 rds 3.4 again 39
+v3 gap2 dmg-1 res+0 acc-1 hp+2 L3 175 days  98.6 (worst  93) Down   6 Wnd  35 rds 3.6 again 44
+v3 gap2 dmg-1 res+0 acc-1 hp+2 L4 225 days 100.0 (worst 100) Down   2 Wnd  21 rds 3.1 again 40
+v3 gap2 dmg-1 res+0 acc-1 hp+2 L5 275 days  99.6 (worst  98) Down   5 Wnd  30 rds 4.4 again 55
+v3 gap2 dmg-1 res+0 acc-1 hp+2 L3 enemy: Health 13.0 Resist 4.6/3.4 Damage 5.6 Accuracy 7.0
+v3 gap2 dmg-1 res+1 acc0 hp+0  L1  75 days  81.6 (worst  67) Down  23 Wnd  56 rds 5.0 again 49
+v3 gap2 dmg-1 res+1 acc0 hp+0  L2 125 days  98.6 (worst  95) Down   7 Wnd  33 rds 3.6 again 40
+v3 gap2 dmg-1 res+1 acc0 hp+0  L3 175 days  94.0 (worst  72) Down  10 Wnd  45 rds 4.0 again 44
+v3 gap2 dmg-1 res+1 acc0 hp+0  L4 225 days  99.8 (worst  98) Down   4 Wnd  27 rds 3.2 again 39
+v3 gap2 dmg-1 res+1 acc0 hp+0  L5 275 days  92.2 (worst  82) Down  15 Wnd  49 rds 5.4 again 58
+v3 gap2 dmg-1 res+1 acc0 hp+0  L3 enemy: Health 11.0 Resist 5.6/4.4 Damage 5.6 Accuracy 8.0
+v3 gap2 dmg-1 res+1 acc0 hp+2  L1  75 days  60.6 (worst  36) Down  39 Wnd  72 rds 6.4 again 62
+v3 gap2 dmg-1 res+1 acc0 hp+2  L2 125 days  94.2 (worst  81) Down  15 Wnd  46 rds 4.4 again 53
+v3 gap2 dmg-1 res+1 acc0 hp+2  L3 175 days  84.9 (worst  48) Down  18 Wnd  57 rds 5.1 again 56
+v3 gap2 dmg-1 res+1 acc0 hp+2  L4 225 days  99.3 (worst  98) Down   7 Wnd  35 rds 3.7 again 49
+v3 gap2 dmg-1 res+1 acc0 hp+2  L5 275 days  81.5 (worst  59) Down  25 Wnd  61 rds 6.5 again 67
+v3 gap2 dmg-1 res+1 acc0 hp+2  L3 enemy: Health 13.0 Resist 5.6/4.4 Damage 5.6 Accuracy 8.0
+v3 gap2 dmg-1 res+1 acc-1 hp+0 L1  75 days  89.3 (worst  77) Down  18 Wnd  48 rds 5.0 again 49
+v3 gap2 dmg-1 res+1 acc-1 hp+0 L2 125 days  99.4 (worst  98) Down   4 Wnd  27 rds 3.5 again 39
+v3 gap2 dmg-1 res+1 acc-1 hp+0 L3 175 days  96.4 (worst  80) Down   7 Wnd  37 rds 4.0 again 44
+v3 gap2 dmg-1 res+1 acc-1 hp+0 L4 225 days 100.0 (worst 100) Down   2 Wnd  20 rds 3.1 again 39
+v3 gap2 dmg-1 res+1 acc-1 hp+0 L5 275 days  94.4 (worst  86) Down  10 Wnd  40 rds 5.4 again 57
+v3 gap2 dmg-1 res+1 acc-1 hp+0 L3 enemy: Health 11.0 Resist 5.6/4.4 Damage 5.6 Accuracy 7.0
+v3 gap2 dmg-1 res+1 acc-1 hp+2 L1  75 days  72.7 (worst  52) Down  32 Wnd  65 rds 6.3 again 62
+v3 gap2 dmg-1 res+1 acc-1 hp+2 L2 125 days  97.4 (worst  93) Down  10 Wnd  37 rds 4.3 again 53
+v3 gap2 dmg-1 res+1 acc-1 hp+2 L3 175 days  90.4 (worst  62) Down  13 Wnd  48 rds 5.0 again 55
+v3 gap2 dmg-1 res+1 acc-1 hp+2 L4 225 days  99.7 (worst  99) Down   4 Wnd  27 rds 3.7 again 49
+v3 gap2 dmg-1 res+1 acc-1 hp+2 L5 275 days  86.4 (worst  71) Down  19 Wnd  51 rds 6.4 again 67
+v3 gap2 dmg-1 res+1 acc-1 hp+2 L3 enemy: Health 13.0 Resist 5.6/4.4 Damage 5.6 Accuracy 7.0
+v3 gap1 dmg0 res+0 acc0 hp+0   L1  75 days  81.9 (worst  70) Down  24 Wnd  61 rds 3.8 again 38
+v3 gap1 dmg0 res+0 acc0 hp+0   L2 125 days  95.5 (worst  83) Down  14 Wnd  47 rds 3.1 again 30
+v3 gap1 dmg0 res+0 acc0 hp+0   L3 175 days  88.7 (worst  56) Down  18 Wnd  55 rds 3.2 again 34
+v3 gap1 dmg0 res+0 acc0 hp+0   L4 225 days  96.4 (worst  82) Down  15 Wnd  45 rds 2.9 again 32
+v3 gap1 dmg0 res+0 acc0 hp+0   L5 275 days  92.3 (worst  77) Down  19 Wnd  56 rds 4.1 again 49
+v3 gap1 dmg0 res+0 acc0 hp+0   L3 enemy: Health 11.0 Resist 4.6/3.4 Damage 6.6 Accuracy 8.0
+v3 gap1 dmg0 res+0 acc0 hp+2   L1  75 days  60.3 (worst  48) Down  39 Wnd  73 rds 4.7 again 51
+v3 gap1 dmg0 res+0 acc0 hp+2   L2 125 days  87.1 (worst  60) Down  21 Wnd  57 rds 3.7 again 41
+v3 gap1 dmg0 res+0 acc0 hp+2   L3 175 days  79.0 (worst  40) Down  28 Wnd  65 rds 4.0 again 45
+v3 gap1 dmg0 res+0 acc0 hp+2   L4 225 days  93.7 (worst  75) Down  18 Wnd  50 rds 3.3 again 42
+v3 gap1 dmg0 res+0 acc0 hp+2   L5 275 days  82.1 (worst  64) Down  29 Wnd  66 rds 5.0 again 59
+v3 gap1 dmg0 res+0 acc0 hp+2   L3 enemy: Health 13.0 Resist 4.6/3.4 Damage 6.6 Accuracy 8.0
+v3 gap1 dmg0 res+0 acc-1 hp+0  L1  75 days  89.9 (worst  82) Down  17 Wnd  51 rds 3.8 again 37
+v3 gap1 dmg0 res+0 acc-1 hp+0  L2 125 days  97.7 (worst  89) Down  10 Wnd  39 rds 3.1 again 29
+v3 gap1 dmg0 res+0 acc-1 hp+0  L3 175 days  93.5 (worst  71) Down  14 Wnd  48 rds 3.2 again 34
+v3 gap1 dmg0 res+0 acc-1 hp+0  L4 225 days  98.4 (worst  92) Down  10 Wnd  38 rds 2.9 again 32
+v3 gap1 dmg0 res+0 acc-1 hp+0  L5 275 days  95.5 (worst  85) Down  14 Wnd  48 rds 4.0 again 48
+v3 gap1 dmg0 res+0 acc-1 hp+0  L3 enemy: Health 11.0 Resist 4.6/3.4 Damage 6.6 Accuracy 7.0
+v3 gap1 dmg0 res+0 acc-1 hp+2  L1  75 days  74.0 (worst  64) Down  30 Wnd  65 rds 4.7 again 51
+v3 gap1 dmg0 res+0 acc-1 hp+2  L2 125 days  93.2 (worst  79) Down  16 Wnd  48 rds 3.6 again 40
+v3 gap1 dmg0 res+0 acc-1 hp+2  L3 175 days  86.5 (worst  54) Down  22 Wnd  57 rds 3.9 again 45
+v3 gap1 dmg0 res+0 acc-1 hp+2  L4 225 days  96.6 (worst  84) Down  14 Wnd  42 rds 3.3 again 41
+v3 gap1 dmg0 res+0 acc-1 hp+2  L5 275 days  90.1 (worst  77) Down  22 Wnd  56 rds 4.9 again 59
+v3 gap1 dmg0 res+0 acc-1 hp+2  L3 enemy: Health 13.0 Resist 4.6/3.4 Damage 6.6 Accuracy 7.0
+v3 gap1 dmg0 res+1 acc0 hp+0   L1  75 days  45.9 (worst  24) Down  47 Wnd  76 rds 5.1 again 51
+v3 gap1 dmg0 res+1 acc0 hp+0   L2 125 days  83.6 (worst  56) Down  23 Wnd  57 rds 3.9 again 42
+v3 gap1 dmg0 res+1 acc0 hp+0   L3 175 days  72.4 (worst  28) Down  30 Wnd  66 rds 4.4 again 46
+v3 gap1 dmg0 res+1 acc0 hp+0   L4 225 days  92.1 (worst  70) Down  18 Wnd  51 rds 3.4 again 41
+v3 gap1 dmg0 res+1 acc0 hp+0   L5 275 days  62.3 (worst  31) Down  42 Wnd  75 rds 5.9 again 59
+v3 gap1 dmg0 res+1 acc0 hp+0   L3 enemy: Health 11.0 Resist 5.6/4.4 Damage 6.6 Accuracy 8.0
+v3 gap1 dmg0 res+1 acc0 hp+2   L1  75 days  17.9 (worst   6) Down  68 Wnd  88 rds 6.2 again 65
+v3 gap1 dmg0 res+1 acc0 hp+2   L2 125 days  66.6 (worst  39) Down  38 Wnd  69 rds 4.8 again 55
+v3 gap1 dmg0 res+1 acc0 hp+2   L3 175 days  52.8 (worst  11) Down  45 Wnd  78 rds 5.5 again 59
+v3 gap1 dmg0 res+1 acc0 hp+2   L4 225 days  84.3 (worst  57) Down  25 Wnd  60 rds 4.1 again 52
+v3 gap1 dmg0 res+1 acc0 hp+2   L5 275 days  42.9 (worst  18) Down  55 Wnd  83 rds 7.0 again 69
+v3 gap1 dmg0 res+1 acc0 hp+2   L3 enemy: Health 13.0 Resist 5.6/4.4 Damage 6.6 Accuracy 8.0
+v3 gap1 dmg0 res+1 acc-1 hp+0  L1  75 days  60.3 (worst  35) Down  38 Wnd  69 rds 5.1 again 51
+v3 gap1 dmg0 res+1 acc-1 hp+0  L2 125 days  91.0 (worst  79) Down  17 Wnd  49 rds 3.8 again 41
+v3 gap1 dmg0 res+1 acc-1 hp+0  L3 175 days  81.7 (worst  42) Down  25 Wnd  58 rds 4.4 again 45
+v3 gap1 dmg0 res+1 acc-1 hp+0  L4 225 days  96.0 (worst  82) Down  13 Wnd  42 rds 3.4 again 41
+v3 gap1 dmg0 res+1 acc-1 hp+0  L5 275 days  71.9 (worst  45) Down  36 Wnd  67 rds 5.8 again 59
+v3 gap1 dmg0 res+1 acc-1 hp+0  L3 enemy: Health 11.0 Resist 5.6/4.4 Damage 6.6 Accuracy 7.0
+v3 gap1 dmg0 res+1 acc-1 hp+2  L1  75 days  29.5 (worst  15) Down  59 Wnd  82 rds 6.3 again 64
+v3 gap1 dmg0 res+1 acc-1 hp+2  L2 125 days  77.4 (worst  53) Down  29 Wnd  61 rds 4.7 again 54
+v3 gap1 dmg0 res+1 acc-1 hp+2  L3 175 days  67.0 (worst  22) Down  37 Wnd  69 rds 5.5 again 58
+v3 gap1 dmg0 res+1 acc-1 hp+2  L4 225 days  91.1 (worst  70) Down  19 Wnd  52 rds 4.0 again 51
+v3 gap1 dmg0 res+1 acc-1 hp+2  L5 275 days  54.0 (worst  28) Down  47 Wnd  77 rds 7.0 again 68
+v3 gap1 dmg0 res+1 acc-1 hp+2  L3 enemy: Health 13.0 Resist 5.6/4.4 Damage 6.6 Accuracy 7.0
+v3 gap1 dmg-1 res+0 acc0 hp+0  L1  75 days  97.3 (worst  95) Down  10 Wnd  41 rds 3.7 again 37
+v3 gap1 dmg-1 res+0 acc0 hp+0  L2 125 days  99.6 (worst  98) Down   4 Wnd  25 rds 3.0 again 29
+v3 gap1 dmg-1 res+0 acc0 hp+0  L3 175 days  98.5 (worst  93) Down   7 Wnd  34 rds 3.1 again 33
+v3 gap1 dmg-1 res+0 acc0 hp+0  L4 225 days  99.9 (worst 100) Down   2 Wnd  23 rds 2.8 again 31
+v3 gap1 dmg-1 res+0 acc0 hp+0  L5 275 days  99.8 (worst  99) Down   4 Wnd  29 rds 3.8 again 47
+v3 gap1 dmg-1 res+0 acc0 hp+0  L3 enemy: Health 11.0 Resist 4.6/3.4 Damage 5.6 Accuracy 8.0
+v3 gap1 dmg-1 res+0 acc0 hp+2  L1  75 days  89.9 (worst  82) Down  19 Wnd  53 rds 4.7 again 49
+v3 gap1 dmg-1 res+0 acc0 hp+2  L2 125 days  98.9 (worst  95) Down   7 Wnd  34 rds 3.5 again 40
+v3 gap1 dmg-1 res+0 acc0 hp+2  L3 175 days  96.2 (worst  83) Down   9 Wnd  44 rds 3.8 again 45
+v3 gap1 dmg-1 res+0 acc0 hp+2  L4 225 days  99.9 (worst  99) Down   4 Wnd  28 rds 3.2 again 41
+v3 gap1 dmg-1 res+0 acc0 hp+2  L5 275 days  98.9 (worst  95) Down   8 Wnd  38 rds 4.6 again 57
+v3 gap1 dmg-1 res+0 acc0 hp+2  L3 enemy: Health 13.0 Resist 4.6/3.4 Damage 5.6 Accuracy 8.0
+v3 gap1 dmg-1 res+0 acc-1 hp+0 L1  75 days  99.0 (worst  98) Down   7 Wnd  33 rds 3.7 again 37
+v3 gap1 dmg-1 res+0 acc-1 hp+0 L2 125 days  99.8 (worst  99) Down   3 Wnd  20 rds 3.0 again 29
+v3 gap1 dmg-1 res+0 acc-1 hp+0 L3 175 days  99.5 (worst  97) Down   4 Wnd  28 rds 3.1 again 33
+v3 gap1 dmg-1 res+0 acc-1 hp+0 L4 225 days 100.0 (worst 100) Down   1 Wnd  17 rds 2.8 again 31
+v3 gap1 dmg-1 res+0 acc-1 hp+0 L5 275 days  99.8 (worst 100) Down   3 Wnd  22 rds 3.8 again 46
+v3 gap1 dmg-1 res+0 acc-1 hp+0 L3 enemy: Health 11.0 Resist 4.6/3.4 Damage 5.6 Accuracy 7.0
+v3 gap1 dmg-1 res+0 acc-1 hp+2 L1  75 days  94.9 (worst  92) Down  14 Wnd  45 rds 4.6 again 49
+v3 gap1 dmg-1 res+0 acc-1 hp+2 L2 125 days  99.6 (worst  98) Down   4 Wnd  28 rds 3.5 again 40
+v3 gap1 dmg-1 res+0 acc-1 hp+2 L3 175 days  97.9 (worst  89) Down   6 Wnd  36 rds 3.7 again 44
+v3 gap1 dmg-1 res+0 acc-1 hp+2 L4 225 days 100.0 (worst 100) Down   2 Wnd  21 rds 3.2 again 40
+v3 gap1 dmg-1 res+0 acc-1 hp+2 L5 275 days  99.5 (worst  99) Down   5 Wnd  31 rds 4.6 again 56
+v3 gap1 dmg-1 res+0 acc-1 hp+2 L3 enemy: Health 13.0 Resist 4.6/3.4 Damage 5.6 Accuracy 7.0
+v3 gap1 dmg-1 res+1 acc0 hp+0  L1  75 days  79.1 (worst  57) Down  25 Wnd  58 rds 5.2 again 51
+v3 gap1 dmg-1 res+1 acc0 hp+0  L2 125 days  98.3 (worst  93) Down   7 Wnd  35 rds 3.7 again 40
+v3 gap1 dmg-1 res+1 acc0 hp+0  L3 175 days  92.9 (worst  67) Down  11 Wnd  46 rds 4.2 again 45
+v3 gap1 dmg-1 res+1 acc0 hp+0  L4 225 days  99.7 (worst  98) Down   4 Wnd  28 rds 3.3 again 40
+v3 gap1 dmg-1 res+1 acc0 hp+0  L5 275 days  90.4 (worst  77) Down  17 Wnd  50 rds 5.7 again 59
+v3 gap1 dmg-1 res+1 acc0 hp+0  L3 enemy: Health 11.0 Resist 5.6/4.4 Damage 5.6 Accuracy 8.0
+v3 gap1 dmg-1 res+1 acc0 hp+2  L1  75 days  56.5 (worst  33) Down  43 Wnd  74 rds 6.7 again 64
+v3 gap1 dmg-1 res+1 acc0 hp+2  L2 125 days  92.1 (worst  78) Down  17 Wnd  48 rds 4.6 again 54
+v3 gap1 dmg-1 res+1 acc0 hp+2  L3 175 days  82.2 (worst  40) Down  20 Wnd  59 rds 5.3 again 58
+v3 gap1 dmg-1 res+1 acc0 hp+2  L4 225 days  98.9 (worst  96) Down   7 Wnd  35 rds 3.8 again 50
+v3 gap1 dmg-1 res+1 acc0 hp+2  L5 275 days  78.5 (worst  50) Down  26 Wnd  61 rds 6.8 again 68
+v3 gap1 dmg-1 res+1 acc0 hp+2  L3 enemy: Health 13.0 Resist 5.6/4.4 Damage 5.6 Accuracy 8.0
+v3 gap1 dmg-1 res+1 acc-1 hp+0 L1  75 days  87.0 (worst  72) Down  20 Wnd  51 rds 5.3 again 51
+v3 gap1 dmg-1 res+1 acc-1 hp+0 L2 125 days  99.0 (worst  95) Down   5 Wnd  28 rds 3.7 again 40
+v3 gap1 dmg-1 res+1 acc-1 hp+0 L3 175 days  96.1 (worst  80) Down   7 Wnd  38 rds 4.1 again 45
+v3 gap1 dmg-1 res+1 acc-1 hp+0 L4 225 days 100.0 (worst 100) Down   2 Wnd  21 rds 3.2 again 40
+v3 gap1 dmg-1 res+1 acc-1 hp+0 L5 275 days  93.1 (worst  81) Down  11 Wnd  41 rds 5.6 again 58
+v3 gap1 dmg-1 res+1 acc-1 hp+0 L3 enemy: Health 11.0 Resist 5.6/4.4 Damage 5.6 Accuracy 7.0
+v3 gap1 dmg-1 res+1 acc-1 hp+2 L1  75 days  68.7 (worst  45) Down  35 Wnd  68 rds 6.7 again 64
+v3 gap1 dmg-1 res+1 acc-1 hp+2 L2 125 days  95.7 (worst  90) Down  12 Wnd  39 rds 4.5 again 54
+v3 gap1 dmg-1 res+1 acc-1 hp+2 L3 175 days  89.0 (worst  57) Down  13 Wnd  49 rds 5.3 again 57
+v3 gap1 dmg-1 res+1 acc-1 hp+2 L4 225 days  99.5 (worst  98) Down   4 Wnd  28 rds 3.7 again 50
+v3 gap1 dmg-1 res+1 acc-1 hp+2 L5 275 days  83.3 (worst  62) Down  20 Wnd  52 rds 6.8 again 67
+v3 gap1 dmg-1 res+1 acc-1 hp+2 L3 enemy: Health 13.0 Resist 5.6/4.4 Damage 5.6 Accuracy 7.0
+ALLDONE
