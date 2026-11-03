@@ -1,0 +1,219 @@
+# Prose review queue
+
+`rulebook.md`/`glossary.md` sections written or edited during an
+AI-assisted session, so a later full read-through can find them without
+combing the whole book looking for what changed. This is a checklist,
+not a permanent record — **delete an entry once you've reviewed it**
+(git history is the permanent record; `git log -p -- scripts/rulebook.md
+scripts/glossary.md` or the commit hash(es) noted below gets you the
+exact diff for any entry here). Backfilled once, covering every commit
+on `claude/flagonquest-rules-overhaul` since it branched from `main`
+(back through `2914efb`) — new entries append going forward per
+`CLAUDE.md`'s note.
+
+Ordered by where each section falls in the book (top to bottom), not by
+when it was touched, so a front-to-back read-through can just check
+things off in order.
+
+## rulebook.md
+
+- **`# Quick Start Guide`** (new section) — added, leading the book with
+  a one-page overview before Character Creation. Commit `e2156ca`.
+- **`## Spending Experience`** — moved next to Character Creation, fixed
+  an XP-cost ambiguity, documented the 5-rank Stat/Skill cap, then
+  simplified that cap note; later "thrice the Level" reworded to "three
+  times the Level" as part of a project-wide sweep. Commits `d01e193`,
+  `3cd85d9`, `45215d0`, `60c5cff`.
+- **`### Learning Techniques`** — moved along with the Basics/Character
+  Creation reorder. Commit `697cc2e`.
+- **`## Building a Character`** — reordered next to Spending Experience.
+  Commit `d01e193`. Its three starting-equipment mentions (the main
+  bullet plus both Quick Creation guide equipment lines) updated from
+  "an Adventurer's Kit" to "a Camping Kit, a coil of Rope, and a
+  Firestarter," following Adventurer's Kit's retirement. Commit
+  `ab2f59f`.
+- **`## Calculated Statistics`** / **`### Moving`** — movement reworked
+  into a shared Athletics budget, reach clarified, a rounding rule
+  added; the running-start rule later removed. Commits `6e038d4`,
+  `2914efb`.
+- **`# The Basics`** — promoted to lead section (after Quick Start/
+  Character Creation) as part of the reorder. Commit `697cc2e`.
+- **`### Successes`** — split out from the old combined Gambling/Extra
+  Success section; suit-matching folded in as an Extra Success source.
+  Commits `e668e91`, `e2156ca`.
+- **`### Gambling`** — reframed as a bet declared before the flip, not a
+  GM-gated option, as part of the same split; later Carrick's example
+  reworded "Gambles thrice" to "Gambles three times" as part of a
+  project-wide sweep. Then added one sentence making explicit that, for
+  damaging attacks, only weapon attacks can be Gambled on (spell
+  attacks can't). Intended all along but never written down. Commits
+  `e2156ca`, `60c5cff`, `7717cec`.
+- **`### Supporting`** — reframed away from a skill-deficit fallback.
+  Commit `038f203`.
+- **`### The Suit Pool`** — added the Skill→Suit bullet list and a
+  matching-suit example; Hearts' flat attack-damage bonus dropped in
+  favor of suit-matching generally. Commits `e668e91`, `8fe1b09`.
+- **Every `#### <Skill>` entry under Stats and Skills** (all 25 skills,
+  `Acrobatics` through `Theurgy`) — each gained a trailing sentence
+  naming its governing suit, for redundancy alongside the Suit Pool
+  list. Commit `e668e91`.
+- **`#### Persuasion`** — additionally touched by the Social Contests
+  rework (its "governed by" framing adjusted alongside Presence/Rapport
+  becoming the fixed Statement skills). Commit `78ec143`. "Social
+  contest" → "social encounter" as part of the wider rename below.
+  Commit `8e7e60d`.
+- **`#### Masquerade`** — new rule + worked example added: attempting a
+  disguise with nothing to back it up gives Bad Luck, a Disguise Kit
+  clears that penalty for an everyday disguise, and a specific prop
+  matched to exactly who you're impersonating grants Good Luck instead
+  — resolving where the Disguise Kit item itself lands relative to a
+  clever, situational prop. Commit `5838e7e`.
+- **`## Techniques`** — gained "Techniques can override the baseline
+  rules" line; Prerequisites sentence's missing subject fixed; reordered
+  alongside Spending Experience. Commits `d01e193`, `ffe0aff`, `6eb02a5`.
+- **`## A Full Night's Rest`** — clarified that "once per day" resets on
+  the next full night's rest, not a literal 24-hour clock; later the
+  three resting steps renamed to Cycles (Discard/Recovery/Draw) with a
+  default ordering rule for Cycle-hooking effects. Commits `0e23cd2`,
+  `93efdc2`.
+- **`## Food and Exhaustion`** — moved to Health and Resources,
+  generalized beyond Exploration (no longer travel-scoped). Commit
+  `14930ef`. New rule added: a character only benefits from the first
+  special-effect meal (Power Snack, Hearty Meal, and the like) they eat
+  in a day, closing a stacking gap the once/day Food Target formula
+  assumed but never actually enforced. Commit `29ff816`.
+- **`## Costs and Commitment`** — new paragraph defining "spend" as plain
+  cost wording (what you spend is paid and gone, spent Bleeding causes no
+  Health loss, "for each" counts only what you actually spend), with a
+  Beornhard example. Commit `47261bc`.
+- **`# Adventuring`** — intro sentence's stale "combat/exploration/
+  social all share turns and AP" claim fixed to correctly scope turns/AP
+  to combat only. Commit `6eb02a5`.
+- **`### Making an Attack`** — fleshed out as a check like any other;
+  Hearts' flat damage bonus removed in favor of general suit-matching.
+  Commits `8fe1b09`, `a847d86`.
+- **`## Traveling and Exploration`** / **`### Legs of a Journey`** /
+  **`### Scout`** / **`### Search`** / **`### Pushing the Pace`** —
+  reworked around one check per leg, generalized Pushing the Pace.
+  Commits `a08b24e`, `14930ef`.
+- **`## Social Challenges`** / **`### Social Contests`** /
+  **`### Pressure`** — social contests replaced with an extended check
+  plus the new Pressure mechanic (no more separate team-check subsystem,
+  Concessions, or front/back positioning). Commit `78ec143`. Renamed
+  "Social Contests"/"Contest" to "Social Encounters"/"Encounter"
+  throughout the section (headers and inline text), per the designer's
+  move away from the "Contest" framing; Pressure section gained two new
+  paragraphs — its Bad Luck explicitly applies to Support checks too,
+  and a new ignore-vs-remove-Pressure distinction (ignoring softens the
+  Bad Luck but Pressure still climbs toward the failure clock; removing
+  actually clears it). Commit `8e7e60d`.
+- **`#### Disrespect`** (Results of a Social Contest) — fixed a
+  reference to "Persuasion, Diplomacy, or Intimidate" (the latter two
+  aren't Skills in this game) to the three real social Skills. Commit
+  `6eb02a5`.
+- **`#### Materials`** / **`#### Time`** (Creating Items) — rewritten for
+  the unified crafting formula, then Time simplified into two
+  GM-adjustable baseline buckets. Commits `413f9b3`, `0799328`. New
+  rule + worked example added for the "several Main Types, no
+  alternatives" case (need one of each Type, not just any single one)
+  — Robes of the Elemental Lord's own Main Materials had exactly this
+  gap. Commit `1f012e7`.
+- **`## Material Types`** — Food bullet gained a size-based
+  harvest-yield sentence (rodent/fish/bird = 1, person-sized = 5,
+  larger beast = 10+), generalizing a number the Goblin Game chapter
+  already had for its own "adult Goblin" case into base-game guidance,
+  surfaced while pricing Preserving Larder's spoilage-prevention
+  credit. Commit `f3e854b`.
+- **`## Examples`** (Creating Items) — rewritten alongside the
+  Materials/Time changes; also touched during the Quick Start Guide add.
+  Commits `e2156ca`, `413f9b3`.
+
+## glossary.md
+
+- **`#### Burst (X)`** (new entry, `# Keywords`) — added to name "this
+  space, plus every space within X meters of it" for area effects, used
+  going forward instead of ad hoc "adjacent to"/"within X meters of"
+  phrasing. Commit `4ab9a21`.
+- **`#### Counterattack`** (new entry, `# Keywords`; since renamed
+  Opportunity Attack, see below) — a weapon attack,
+  or a Technique of up to 2 AP that makes a weapon attack against only
+  that creature. First used by Eternal Riposte. Replaced the unused
+  `#### Countered` entry, which moved to **`#### Negated`** (same text,
+  new name, so it doesn't read as related). Commit `3f37c96`.
+- **`#### Range`** (`# Keywords`) — added a sentence saying a Range
+  increase also works on effects that target something adjacent (they
+  can target something adjacent to your chosen point instead). Came up
+  pricing Placeholder's Lengthy Ley-weaving. Commit `315d5ea`.
+- **`#### Vigor`** (new entry, `# Keywords`) — added to name the
+  pay-a-Technique's-Level-to-refund-it mechanic, unifying Soul Soup's
+  "Nutrition points" and Solemn Covenant's "Covenant points" (two
+  bespoke names for the exact same thing) under one shared term. Commit
+  `304ab66`.
+- **`#### [Poison]`** (Rules Tags) — duration changed from "1 hour or
+  until it exposes a creature" to "until it exposes a creature or the
+  wielder gets a full night's rest," resolving a previously-flagged
+  open question (a poison applied too early used to risk expiring
+  unused before it mattered). Surfaced while designing Poison Needle
+  (Ring), which wants to let the wearer hold a loaded dose indefinitely.
+- **`#### [Form]`** (Rules Tags) — renamed from `[Stance]`. Commit
+  `4016fe0`.
+- **`#### Bleeding [Fleeting]`** — Coat of Knit Flesh's interaction
+  reworked into a once-per-day prevention; wording tightened to scope
+  the prevention to natural decay specifically, not removal by any
+  means. Commit `290a5d0`.
+- **`#### Protected [Fleeting]`** — wording tightened for a mandatory
+  "instead" substitution (no rules change), as part of the Ward rework
+  below. Commit `106d064`.
+- **`#### (Fire/Frost/Brilliant/Shadow) Ward [Fleeting]`** — reimagined
+  as a flat +2 Resist bonus (up from +1) plus a self-limiting typed
+  Protected-style absorption charge per stack, avoiding the immunity
+  risk a further flat-bonus raise would have created. Commits `ed66572`,
+  `106d064`.
+- **`#### [Fleeting]`** (Rules Tags) — fixed a same-turn-grant snag: a
+  Fleeting effect now skips its next decay when going from 0 stacks to
+  some, instead of losing a stack the instant it's granted. Commit
+  `5e103d2`.
+- **`#### Pressure`** (Common Terms) — added alongside the Social
+  Contests rework. Commit `78ec143`. "Social contest" → "social
+  encounter", plus condensed versions of the two new Support-inclusion
+  and ignore-vs-remove Pressure clarifications added to rulebook.md's
+  fuller Pressure section, so the two stay consistent. Commit `8e7e60d`.
+- **`#### [Social]`** (Rules Tags) — "social contest" → "social
+  encounter". Commit `8e7e60d`.
+- **`#### Repeat`** (glossary.md, Keywords) — new keyword: make an
+  attack again against the same target, applying its Technique's
+  effects; AP, Encounter use and self-effects happen once; Grenades are
+  used up per attack. Commit `ac08d16`.
+- **`#### Opportunity Attack`** (glossary.md, Keywords) — renamed from
+  Counterattack and moved to its alphabetical spot; the 2 AP cap now
+  covers the plain weapon attack too, and extra AP spent on top doesn't
+  count toward it. Commit `3fbe5d3`.
+- **`#### [Fleeting]`** (glossary.md, Rules Tags) — new sentence: in
+  social encounters, remove 1 stack after each Statement your party
+  makes. Commit `4621cd6`.
+- **`#### Frightened`, `#### Taunted`** (glossary.md, Common Effects)
+  — new paragraph each: in a social encounter they cover the checks one
+  side makes to add Pressure to the other. Commit `4621cd6`.
+- **`#### Play`** (glossary.md, Card Terms) — "Pitch a card from your
+  hand" → "Discard a card from your hand", matching every Technique's
+  card costs. Commit `5f5cb85`.
+- **`#### Play`** (glossary.md, Card Terms) — rewritten to match the
+  rulebook, per the designer: a played card either replaces one of the
+  flipped cards (its suit joins the pool too) or just adds its suit to
+  the pool; the old "+1 to that flip's card" is gone. Commit `c73f600`.
+- **`#### [Fleeting]`** (glossary.md, Rules Tags) — the skip is now just
+  "gain it during your own turn from zero, skip that turn's removal", with
+  no exceptions listed in the tag. Commit `f5468f5`.
+- **`#### Bleeding`, `#### Harried`** (glossary.md, Common Effects) — each
+  gets a sentence saying it still comes off at the end of the turn you
+  gained it (Bleeding loses a stack, Harried clears). Commit `f5468f5`.
+- **`#### Bleeding [Fleeting]`** (glossary.md, Common Effects) — per the
+  designer, Bleeding now loses half its stacks, rounded up, each time it
+  decays, and you lose that much Health; still tied to decay so cleanses
+  don't hurt, and it still decays on the turn you gained it. Commit
+  `d1c8364`.
+- **The Basics** (rulebook.md) — "The most specific rule always wins"
+  gets a second sentence: rules cover the general case, and an ability,
+  item or effect that says it works differently does. Commit `f5468f5`.
+- **Masquerade example** (rulebook.md, Skills) — Jackal's disguise
+  example used he/him; now she/her, per the designer. Commit `db616e7`.
