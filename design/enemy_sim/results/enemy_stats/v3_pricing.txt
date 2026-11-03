@@ -1,0 +1,18 @@
+v3 adopted, catalog shapes, unpriced L1  75 days  95.4 (worst  90) Down  13 Wnd  45 rds 3.6 again 36
+v3 adopted, catalog shapes, unpriced L2 125 days  95.6 (worst  85) Down  12 Wnd  41 rds 3.7 again 39
+v3 adopted, catalog shapes, unpriced L3 175 days  95.3 (worst  80) Down  13 Wnd  44 rds 3.4 again 38
+v3 adopted, catalog shapes, unpriced L4 225 days  95.8 (worst  82) Down  13 Wnd  43 rds 3.8 again 49
+v3 adopted, catalog shapes, unpriced L5 275 days  97.4 (worst  91) Down  12 Wnd  44 rds 4.1 again 50
+v3 adopted, catalog shapes, unpriced L3 enemy: Health 13.0 Resist 4.3/3.0 Damage 6.6 Accuracy 6.6
+v3 v2 shapes, unpriced         L1  75 days  95.8 (worst  90) Down  12 Wnd  42 rds 3.6 again 36
+v3 v2 shapes, unpriced         L2 125 days  96.1 (worst  85) Down  11 Wnd  39 rds 3.7 again 39
+v3 v2 shapes, unpriced         L3 175 days  95.6 (worst  82) Down  12 Wnd  42 rds 3.4 again 38
+v3 v2 shapes, unpriced         L4 225 days  96.1 (worst  83) Down  13 Wnd  41 rds 3.8 again 49
+v3 v2 shapes, unpriced         L5 275 days  97.6 (worst  91) Down  11 Wnd  42 rds 4.1 again 50
+v3 v2 shapes, unpriced         L3 enemy: Health 13.0 Resist 4.3/3.0 Damage 6.6 Accuracy 6.6
+v3 v2 shapes, priced, allowance 1 L1  75 days  95.2 (worst  90) Down  13 Wnd  42 rds 3.7 again 38
+v3 v2 shapes, priced, allowance 1 L2 125 days  94.5 (worst  83) Down  13 Wnd  40 rds 3.7 again 40
+v3 v2 shapes, priced, allowance 1 L3 175 days  94.5 (worst  78) Down  14 Wnd  43 rds 3.3 again 37
+v3 v2 shapes, priced, allowance 1 L4 225 days  95.2 (worst  82) Down  15 Wnd  44 rds 3.8 again 50
+v3 v2 shapes, priced, allowance 1 L5 275 days  97.1 (worst  88) Down  13 Wnd  44 rds 4.0 again 51
+v3 v2 shapes, priced, allowance 1 L3 enemy: Health 13.1 Resist 4.3/3.0 Damage 6.6 Accuracy 6.6
