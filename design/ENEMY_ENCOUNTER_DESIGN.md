@@ -1973,8 +1973,8 @@ days, someone Down in about a fifth of fresh fights, Wounded about half,
 4-5 rounds, acts again about half). Two grids, 48 configs: Resist +0/+1/
 +2, Health ×1.0 to ×0.5, Damage +0/+1, Accuracy +0/+1. What held:
 
-- Less Health alone shortens fights (×0.65: about 3 rounds) and makes
-  them easier; Damage +1 alone makes them harder (76-86% of days).
+- Less Health alone shortens fights (×0.65: about 3 rounds, nearly
+  every day won, someone Down in 2-3% of fights) and makes them easier; Damage +1 alone makes them harder (76-86% of days).
 - Resist +1, Health ×0.65 and Damage +1 together (enemy Damage then
   matches the player formula exactly, no −1) keep Levels 2, 4 and 5 on
   target at about two-thirds of v2's Health, with enemy Resist at the
@@ -2004,15 +2004,15 @@ Days won (worst party) / F1 Down / F1 Wounded / rounds / acts again:
 | 5 | 275 | 99% (98) / 7 / 32 / 5.3 / 67 | 96% (85) / 15 / 47 / 4.4 / 53 |
 
 Its enemies, against the PCs above: Health 10.5 / 11.7 / 14.6 / 15.0 /
-15.1 (v2: 13-23), Resist 3.7-4.4 Physical (about the PCs'), Damage 4.6 /
+15.1 (v2: 13-23), Resist 3.7 / 3.8 / 4.4 / 5.4 / 5.4 Physical (PCs: 3.4-6.3), Damage 4.6 /
 6.5 / 5.6 / 7.6 / 7.6, Accuracy 5.1 / 6.1 / 8.1 / 8.1 / 9.1.
 
 What it costs:
 
 - **A wider spread between parties.** With higher enemy Resist a
   low-damage party loses a bigger share of its damage: the worst party
-  in the middle of the band wins 75-85% of days, against 88-98% under
-  v2. That's the "weak builds stand out" the yardstick wanted, but a
+  in the middle of the band wins 75-85% of days at Levels 2-5, against
+  88-98% under v2. That's the "weak builds stand out" the yardstick wanted, but a
   harder floor too.
 - **Shorter fights,** 3.9-4.9 rounds against v2's 4.1-5.3, and acts again
   at the low end (43-53%).
