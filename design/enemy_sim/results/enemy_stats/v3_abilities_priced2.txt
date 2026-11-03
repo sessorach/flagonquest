@@ -1,0 +1,12 @@
+== Level 2: base lost 12.9 pts, 3.84 rounds, wins 99.2%; 1 Health per Slot = 1.48 pts
+   the roster's own Abilities (base over bare):  +0.1 Health  rounds -0.16
+   bare|ability:Powerful Spell         +0.2 Health  rounds -0.08  Down +2.3 pts
+   bare|ability:Enhanced Range         +0.8 Health  rounds -0.21  Down +3.0 pts
+   bare|ability:Improved Support       +0.1 Health  rounds +0.02  Down +0.1 pts
+   bare|ability:Attunement (Fire)      +0.0 Health  rounds -0.06  Down +0.1 pts
+== Level 3: base lost 13.2 pts, 3.41 rounds, wins 99.6%; 1 Health per Slot = 1.08 pts
+   the roster's own Abilities (base over bare):  +0.4 Health  rounds -0.15
+   bare|ability:Powerful Spell         +0.7 Health  rounds -0.05  Down +3.5 pts
+   bare|ability:Enhanced Range         -0.2 Health  rounds -0.25  Down -0.3 pts
+   bare|ability:Improved Support       +0.1 Health  rounds +0.01  Down +0.0 pts
+   bare|ability:Attunement (Fire)      +0.5 Health  rounds +0.34  Down +1.1 pts

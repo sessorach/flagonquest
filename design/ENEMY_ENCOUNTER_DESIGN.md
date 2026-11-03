@@ -2078,8 +2078,8 @@ had Damage and Resist 2 / 3 / 4 / 5 / 5 and Health 5-13. Its Roles were
 plain bumps. Where v1 and v2 drifted (big Health, low Resist, damage
 below the player formula, Accuracy trades) was in chasing fight length
 after the fact. v3 goes back to the shape and finds the balance inside
-it. `tunables.ENEMY_TABLE = 'v3'`; v2 is still the default until the
-designer says otherwise.
+it. `tunables.ENEMY_TABLE = 'v3'`, the default since the designer
+adopted it (with the trim and archetypes in "v3 adopted" below).
 
 **How a v3 enemy is built** (`enemy_builder_pcstyle.build_enemy_v3`):
 
@@ -2212,3 +2212,129 @@ between 1 and 2; 2 keeps the spread legible.
 **Open:** abilities under v3 (prices against these numbers, in picks or
 Health); whether 3.5-4 rounds is close enough to "4-5"; Levels 4-5 are
 still checked against grown Level 3 characters.
+
+### v3 adopted: trimmed base, bigger archetypes, Abilities priced in Health (2026-11-03)
+
+The designer adopted v3 the same day, with two changes: "trim back a
+slight bit of the baseline stat block and add that power budget into the
+archetypes" so enemies feel distinct, then "start ironing out the
+Ability budget and balancing, at least in terms of Health", with a second
+look at each price once the balance weights are reviewed. v3 is the
+simulator default; `tunables.V3_VERSION = 1` plays the first v3 (the
+table above and its archetypes) for the numbers recorded under it.
+
+**The trimmed table**: every Level loses 1 Skill (so every Defense and
+Parry) and 1 Accuracy.
+
+| Level | Skill (Parry, Strong) | Accuracy | Defense: Strong / Average / Weak | Damage Stat | Resist Stat | Health per Slot (minion) |
+|---|---|---|---|---|---|---|
+| 1 | 4 | 3 | 12 / 10 / 8 | 2 | 2 | 10 (4) |
+| 2 | 5 | 4 | 13 / 11 / 9 | 3 | 3 | 11 (4) |
+| 3 | 6 | 5 | 14 / 12 / 10 | 3 | 3 | 13 (5) |
+| 4 | 7 | 6 | 15 / 13 / 11 | 4 | 4 | 15 (5) |
+| 5 | 8 | 7 | 16 / 14 / 12 | 4 | 4 | 15 (5) |
+
+Speed and Reflex are unchanged. Built from the table, the enemies match
+the runs that played the trim as a nudge, except at Level 5, where the
+Skill 10 cap now applies as written (four Defenses 1 higher).
+
+**The archetypes** (`kit_check.py`, enemy Health per Slot at Levels
+2 / 3, and the change in rounds):
+
+| Archetype | Adds | Worth | Rounds |
+|---|---|---|---|
+| Defender | Resist +1, Parry +2, Dodge +2 | 3.6 / 2.8 | +2.4 / +1.7 |
+| Striker | Damage +1, Accuracy +2, Resist −1 | 2.8 / 4.4 | −0.2 |
+| Bruiser | Damage +1, Resist +1, Vital +2, Parry −1, Dodge −1, Speed −1 | 2.9 / 3.5 | +0.7 / +0.6 |
+| Strategist | Accuracy +3, Dodge +1, Mental +2, Vigilant +2 | 2.5 / 3.6 | +0.3 / +0.2 |
+| Skirmisher | Speed +2, Dodge +2, Accuracy +2 | 2.4 / 3.3 | +0.4 / +0.3 |
+| Backup | Resist +1, Parry +1, Dodge +2, Vital +2, Mental +2 | 3.1 / 2.5 | +2.0 / +1.4 |
+
+Bruiser first had Resist +2: 6.8 / 9.1 and over two extra rounds, so it
+took Vital +2 instead (a hard body to poison).
+
+**What each Ability is worth** (`kit_check.py --bare`: every full-size
+enemy in the four mixes stripped of its Abilities, then given just the
+one, if it can take it; eight normalized parties in the middle of the
+band, 2,000 fights a reading on paired seeds). An Ability only some
+enemies can take (Powerful Spell on the two casters, Enhanced Range on
+the ranged ones) is spread over all fourteen in the raw reading, so each
+reading is divided by the share that took it. The v2 kit's readings
+weren't, which undercounted those Abilities there. Health per Slot at
+Levels 2 / 3, for the enemy that has it:
+
+- **About nothing** (under half a Health): the one-stack riders (Strike
+  or Poison Crippling, Vulnerable, Slowing; Strike Frightening,
+  Taunting), Resilient, Action (Intimidating); Sturdy and Shadow Jaunt
+  read exactly 0 (the parties don't grapple, Push or chase).
+- **About 1:** Necrotic riders 1.4 / 1.0, Harrying 0.7, Devastating
+  0.3 / 1.4 (its damage arrives as Bleeding, which Protected stops),
+  Heavy or Powerful Weapon 0.7 / 1.2, Durable 1.2 / 0.9, Omniguard
+  0.6 / 0.4, Enhanced Speed 0.4 / 0.7, Parting Shot 0.8 / 1.4, Action
+  (Taunting) 0.4 / 0.7, Resist (Fire) 1.0 / 1.4, Medium Armor over
+  Light 1.2 / 1.0, Enhanced Health 0.8 / 0.9 (it's +1 Health: the sanity
+  check).
+- **About 2:** Battering 1.2 / 1.8, Cleaving 1.7 / 1.8, Enhanced
+  Reflexes 1.3 / 3.1, Heavy Armor over Light 2.1 at Level 3.
+- **More:** Grappling 2.7 / 3.6, Powerful Spell 2.2 / 5.1, Enhanced
+  Range 4.5 / 3.1, Attunement (Fire) 3.6 / 4.0 (against the parties
+  that use War Magic's Fire).
+- **As written, too much for one Ability:** Poison (Bleeding) 4.6 / 6.2
+  (2 stacks a hit) and Retribution Aura 10.6 / 19.2 (every attacker
+  takes Bleeding, every hit). In the v2 kit's shapes (1 stack; melee
+  attackers only) they read 2.4 / 3.4 and 1.7 / 3.0, and v3 now plays
+  them that way (`tunables.V3_KIT_SHAPES = 'v2'`). Both shapes are still
+  the designer's call.
+
+Unarmored gives back about 1 against Light. The roster's own Abilities,
+taken all together, are worth about 1 Health an enemy.
+
+**The draft prices** (`enemy_builder_pcstyle.ABILITY_HEALTH_V3`,
+`tunables.V3_ABILITY_PRICES`): every enemy gets 1 Health per Slot of
+Abilities and armor free on top of the table (`V3_ABILITY_ALLOWANCE`,
+about what the roster's come to); what it spends past that comes off
+its Health, what it leaves is Health, and at most a third of the
+table's Health can go.
+
+| Health | Abilities |
+|---|---|
+| 0 | the one-stack Strike and Poison riders (Crippling, Vulnerable, Slowing, Frightening, Taunting), Resilient, Sturdy, Shadow Jaunt, Action (Intimidating), Elemental Spell or Weapon (reflavors) |
+| 1 | Strike or Poison (Necrotic), Strike (Harrying), Strike (Devastating), Heavy or Powerful Weapon, Durable, Omniguard, Enhanced Health, Enhanced Speed, Improved Support, Action (Parting Shot), Action (Taunting), Resist (an element), Medium Armor |
+| 2 | Strike (Battering), Strike (Cleaving), Enhanced Reflexes, Retribution Aura, Heavy Armor |
+| 3 | Strike (Grappling), Poison (Bleeding), Powerful Spell, Enhanced Range, Attunement (an element) |
+| −1 | Unarmored (gives one back) |
+
+A 0 means the sim reads it as about nothing against the sample parties,
+not that it's worthless: some are situational (Sturdy, Shadow Jaunt),
+and the one-stack debuffs are the ones to check against the balance
+weights first, since the sim may undervalue them.
+
+**Checked with the prices on** (`results/enemy_stats/v3_abilities_priced*`):
+every Ability reads within about ±0.6 of fair, except Grappling and
+Enhanced Reflexes at Level 3 (+1.2, +1.1, a little cheap there) and
+Heavy Armor at Level 2 (+2.9; Heavy is for Level 3 and up). Powerful
+Spell, Attunement and Enhanced Range first went in at 4 and read −2.3,
+−1.2 and −1.1, so they came down to 3 (Powerful Spell read +0.8 / +2.3
+at 2). Improved Support can't be read here: one Warpriest in fourteen
+enemies, and moving its price by 1 didn't move the reading.
+
+**How it plays** (`progression_sweep.py --table v3`, middle of each
+band; days won (worst party) / F1 Down / F1 Wounded / rounds / acts
+again):
+
+| Level | Composite XP | Adopted, unpriced | Priced (allowance 1) |
+|---|---|---|---|
+| 1 | 75 | 95.4% (90) / 13 / 45 / 3.6 / 36 | 95.2% (90) / 13 / 42 / 3.7 / 38 |
+| 2 | 125 | 95.6% (85) / 12 / 41 / 3.7 / 39 | 94.5% (83) / 13 / 40 / 3.7 / 40 |
+| 3 | 175 | 95.3% (80) / 13 / 44 / 3.4 / 38 | 94.5% (78) / 14 / 43 / 3.3 / 37 |
+| 4 | 225 | 95.8% (82) / 13 / 43 / 3.8 / 49 | 95.2% (82) / 15 / 44 / 3.8 / 50 |
+| 5 | 275 | 97.4% (91) / 12 / 44 / 4.1 / 50 | 97.1% (88) / 13 / 44 / 4.0 / 51 |
+
+Pricing barely moves the roster: the Unarmored casters gain 2 Health,
+the Footpad pays 2 for Poison (Bleeding), and the rest are within 1 of
+where they were.
+
+**Open:** each price against the balance weights (the zeros first);
+Poison (Bleeding)'s and Retribution Aura's shapes; Improved Support
+needs a test with more supports in it; whether 1 Health is the right
+allowance; Heavy Armor's Level 3 floor isn't enforced under v3 yet.

@@ -408,6 +408,12 @@ STAT_CAP, SKILL_CAP = 5, 10
 # Ability the sim reads as about nothing against the sample parties
 # (situational, or a debuff the sim may undervalue): left for the
 # balance-weights review, not a verdict. Armor is priced from Light.
+# Checked with the prices on (results/enemy_stats/v3_abilities_priced*):
+# Powerful Spell, Attunement and Enhanced Range came down from 4 to 3
+# (Powerful Spell read -2.3 / -1.1 at 4 and +0.8 / +2.3 at 2). Improved
+# Support can't be read here: one Warpriest in fourteen enemies, and a
+# price change of 1 didn't move it. It stays at 1 until a support-heavy
+# test.
 ABILITY_HEALTH_V3 = {
     "Strike (Crippling)": 0, "Strike (Vulnerable)": 0, "Strike (Slowing)": 0,
     "Strike (Frightening)": 0, "Strike (Taunting)": 0,
@@ -415,16 +421,16 @@ ABILITY_HEALTH_V3 = {
     "Strike (Battering)": 2, "Strike (Cleaving)": 2, "Strike (Grappling)": 3,
     "Poison (Crippling)": 0, "Poison (Slowing)": 0, "Poison (Vulnerable)": 0,
     "Poison (Necrotic)": 1, "Poison (Bleeding)": 3,
-    "Heavy Weapon": 1, "Powerful Weapon": 1, "Powerful Spell": 4,
+    "Heavy Weapon": 1, "Powerful Weapon": 1, "Powerful Spell": 3,
     "Durable": 1, "Omniguard": 1, "Resilient": 0, "Sturdy": 0, "Shadow Jaunt": 0,
     "Retribution Aura": 2,
-    "Enhanced Health": 1, "Enhanced Speed": 1, "Enhanced Reflexes": 2, "Enhanced Range": 4,
+    "Enhanced Health": 1, "Enhanced Speed": 1, "Enhanced Reflexes": 2, "Enhanced Range": 3,
     "Improved Support": 1,
     "Action (Parting Shot)": 1, "Action (Intimidating)": 0, "Action (Taunting)": 1,
 }
 for _el in ELEMENTS:
     ABILITY_HEALTH_V3[f"Resist ({_el})"] = 1
-    ABILITY_HEALTH_V3[f"Attunement ({_el})"] = 4
+    ABILITY_HEALTH_V3[f"Attunement ({_el})"] = 3
     ABILITY_HEALTH_V3[f"Elemental Spell ({_el})"] = 0
     ABILITY_HEALTH_V3[f"Elemental Weapon ({_el})"] = 0
 ARMOR_HEALTH_V3 = {"Unarmored": -1, "Light": 0, "Medium": 1, "Heavy": 2}
