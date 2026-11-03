@@ -1,0 +1,12 @@
+v2                             L1  75 days  97.4 (worst  95) Down  12 Wnd  45 rds 4.7 again 54
+v2                             L2 125 days  98.8 (worst  98) Down   8 Wnd  38 rds 4.6 again 57
+v2                             L3 175 days  96.9 (worst  88) Down   9 Wnd  41 rds 4.1 again 52
+v2                             L4 225 days  98.6 (worst  95) Down   8 Wnd  32 rds 4.6 again 64
+v2                             L5 275 days  99.2 (worst  98) Down   7 Wnd  32 rds 5.3 again 67
+v2                             L3 enemy: Health 19.1 Resist 3.4/2.1 Damage 5.6 Accuracy 7.1
+res+0 hpx1.0 dmg+0             L1  75 days  97.4 (worst  95) Down  12 Wnd  45 rds 4.7 again 54
+res+0 hpx1.0 dmg+0             L2 125 days  98.8 (worst  98) Down   8 Wnd  38 rds 4.6 again 57
+res+0 hpx1.0 dmg+0             L3 175 days  96.9 (worst  88) Down   9 Wnd  41 rds 4.1 again 52
+res+0 hpx1.0 dmg+0             L4 225 days  98.6 (worst  95) Down   8 Wnd  32 rds 4.6 again 64
+res+0 hpx1.0 dmg+0             L5 275 days  99.2 (worst  98) Down   7 Wnd  32 rds 5.3 again 67
+res+0 hpx1.0 dmg+0             L3 enemy: Health 19.1 Resist 3.4/2.1 Damage 5.6 Accuracy 7.1
