@@ -40,6 +40,14 @@ def grid():
     return out
 
 
+def grid2():
+    out = []
+    for res, hpx, dmg, acc in itertools.product((1, 2), (0.55, 0.65, 0.75), (0, 1), (0, 1)):
+        out.append((f"res+{res} hpx{hpx} dmg+{dmg} acc+{acc}",
+                    f"1/2/3/4/5:res={res},hpx={hpx},dmg={dmg},acc={acc}"))
+    return out
+
+
 def enemy_numbers(spec, level=3):
     """Average full-size enemy in the four mixes at `level` under `spec`."""
     stat_sweep.install(stat_sweep.parse(spec))
@@ -55,12 +63,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("configs", nargs="*", help="label=spec")
     ap.add_argument("--grid", action="store_true")
+    ap.add_argument("--grid2", action="store_true", help="res 1-2 x Health 0.55-0.75 x Damage x Accuracy")
     ap.add_argument("-n", type=int, default=60, help="days per mix per party")
     ap.add_argument("--points", default="mid", choices=("mid", "all"))
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("-o", required=True)
     a = ap.parse_args()
-    configs = [tuple(c.split("=", 1)) for c in a.configs] + (grid() if a.grid else [])
+    configs = [tuple(c.split("=", 1)) for c in a.configs] + (grid() if a.grid else []) + (grid2() if a.grid2 else [])
     done = set()
     if os.path.exists(a.o):
         done = {(json.loads(l)["label"], json.loads(l)["points"]) for l in open(a.o) if l.strip()}

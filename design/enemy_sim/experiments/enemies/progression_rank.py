@@ -31,6 +31,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("path")
     ap.add_argument("--top", type=int, default=15)
+    ap.add_argument("--per-level", action="store_true", help="the best configs at each Level separately")
     a = ap.parse_args()
     recs = [json.loads(l) for l in open(a.path) if l.strip()]
     scored = []
@@ -39,6 +40,15 @@ def main():
         per = {k: miss(v) for k, v in mids.items()}
         scored.append((sum(m for m, _ in per.values()), r, per))
     scored.sort(key=lambda x: x[0])
+    if a.per_level:
+        for L in "12345":
+            ranked = sorted(((per[k][0], r, per[k][1]) for _, r, per in scored for k in per if k.startswith(L + ":")),
+                            key=lambda x: x[0])
+            print(f"== Level {L}")
+            for m, r, v in ranked[:a.top]:
+                print(f"   {m:4.1f}  {r['label']:34s} days {v['day']:5.1f} Down {v['down']:3.0f} Wnd {v['wounded']:3.0f} "
+                      f"rds {v['rounds']:.1f} again {v['again']:2.0f}")
+        return
     for total, r, per in scored[:a.top]:
         e = r["enemy_l3"]
         print(f"{total:6.1f}  {r['label']:34s} L3 enemy Health {e['health']:4.1f} Resist {e['physres']:.1f}/{e['elemres']:.1f} "
