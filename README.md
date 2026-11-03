@@ -13,6 +13,12 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-03 — Enemy stats closer to the players'
+
+Looked at why enemies ended up with about twice the PCs' Health and lower Resist, and tested stat lines closer to the PCs' that keep on-level fights at 4-5 rounds; nothing's changed yet.
+
+- Enemy Resist can stand in for Health: with the PCs' own Resist, Damage on the player formula and about two-thirds of the Health, the middle of each XP band still plays on target, though weaker party builds fall further behind.
+
 ### 2026-11-02 — Browse mode, a purchase history, and enemy stats per Level
 
 The site can now browse Techniques, Items and Backgrounds without a character, and the Notes tab keeps a dated history of what each character bought. In the simulator, on-level fights at Level 3 turned out much harder than at Levels 1-2, so the enemy base stats got a broad pass, a new table and a repriced kit of archetypes and abilities.

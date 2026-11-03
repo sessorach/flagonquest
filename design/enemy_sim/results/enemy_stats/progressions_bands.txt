@@ -1,0 +1,56 @@
+v2                             L1  75 days  97.4 (worst  95) Down  12 Wnd  45 rds 4.7 again 54
+v2                             L2 100 days  44.5 (worst  20) Down  53 Wnd  77 rds 6.8 again 68
+v2                             L2 125 days  98.8 (worst  98) Down   8 Wnd  38 rds 4.6 again 57
+v2                             L2 150 days 100.0 (worst 100) Down   2 Wnd  17 rds 4.0 again 51
+v2                             L3 150 days  63.2 (worst  32) Down  39 Wnd  70 rds 6.7 again 67
+v2                             L3 175 days  96.9 (worst  88) Down   9 Wnd  41 rds 4.1 again 52
+v2                             L3 200 days 100.0 (worst 100) Down   2 Wnd  15 rds 3.5 again 47
+v2                             L4 200 days  69.9 (worst  38) Down  35 Wnd  67 rds 6.1 again 68
+v2                             L4 225 days  98.6 (worst  95) Down   8 Wnd  32 rds 4.6 again 64
+v2                             L4 250 days  99.9 (worst 100) Down   3 Wnd  19 rds 4.5 again 62
+v2                             L5 250 days  98.9 (worst  96) Down   9 Wnd  35 rds 5.3 again 67
+v2                             L5 275 days  99.2 (worst  98) Down   7 Wnd  32 rds 5.3 again 67
+v2                             L5 300 days  99.5 (worst  98) Down   7 Wnd  30 rds 5.3 again 67
+v2                             L3 enemy: Health 19.1 Resist 3.4/2.1 Damage 5.6 Accuracy 7.1
+PC-like uniform                L1  75 days  85.2 (worst  75) Down  20 Wnd  54 rds 4.2 again 44
+PC-like uniform                L2 100 days  37.7 (worst  10) Down  54 Wnd  77 rds 6.1 again 57
+PC-like uniform                L2 125 days  94.2 (worst  82) Down  14 Wnd  45 rds 4.1 again 43
+PC-like uniform                L2 150 days  99.4 (worst  98) Down   6 Wnd  29 rds 3.4 again 38
+PC-like uniform                L3 150 days  48.9 (worst  16) Down  49 Wnd  74 rds 6.0 again 57
+PC-like uniform                L3 175 days  91.2 (worst  66) Down  18 Wnd  50 rds 3.4 again 40
+PC-like uniform                L3 200 days  99.7 (worst  99) Down   5 Wnd  26 rds 3.0 again 35
+PC-like uniform                L4 200 days  59.1 (worst  22) Down  42 Wnd  70 rds 5.3 again 57
+PC-like uniform                L4 225 days  93.2 (worst  75) Down  17 Wnd  45 rds 3.9 again 51
+PC-like uniform                L4 250 days  99.1 (worst  97) Down   8 Wnd  34 rds 3.8 again 49
+PC-like uniform                L5 250 days  94.2 (worst  79) Down  17 Wnd  52 rds 4.4 again 54
+PC-like uniform                L5 275 days  96.0 (worst  85) Down  15 Wnd  47 rds 4.4 again 53
+PC-like uniform                L5 300 days  97.2 (worst  90) Down  14 Wnd  44 rds 4.3 again 53
+PC-like uniform                L3 enemy: Health 13.0 Resist 4.4/3.1 Damage 6.6 Accuracy 7.1
+PC-like per Level              L1  75 days  94.7 (worst  91) Down  12 Wnd  43 rds 4.9 again 51
+PC-like per Level              L2 100 days  37.7 (worst  10) Down  54 Wnd  77 rds 6.1 again 57
+PC-like per Level              L2 125 days  94.2 (worst  82) Down  14 Wnd  45 rds 4.1 again 43
+PC-like per Level              L2 150 days  99.4 (worst  98) Down   6 Wnd  29 rds 3.4 again 38
+PC-like per Level              L3 150 days  28.1 (worst   2) Down  58 Wnd  81 rds 8.3 again 65
+PC-like per Level              L3 175 days  91.2 (worst  65) Down  13 Wnd  47 rds 4.4 again 51
+PC-like per Level              L3 200 days  99.7 (worst  99) Down   2 Wnd  17 rds 3.4 again 43
+PC-like per Level              L4 200 days  59.1 (worst  22) Down  42 Wnd  70 rds 5.3 again 57
+PC-like per Level              L4 225 days  93.2 (worst  75) Down  17 Wnd  45 rds 3.9 again 51
+PC-like per Level              L4 250 days  99.1 (worst  97) Down   8 Wnd  34 rds 3.8 again 49
+PC-like per Level              L5 250 days  94.2 (worst  79) Down  17 Wnd  52 rds 4.4 again 54
+PC-like per Level              L5 275 days  96.0 (worst  85) Down  15 Wnd  47 rds 4.4 again 53
+PC-like per Level              L5 300 days  97.2 (worst  90) Down  14 Wnd  44 rds 4.3 again 53
+PC-like per Level              L3 enemy: Health 13.0 Resist 5.4/4.1 Damage 5.6 Accuracy 8.1
+PC-like per Level, L3 alt      L1  75 days  94.7 (worst  91) Down  12 Wnd  43 rds 4.9 again 51
+PC-like per Level, L3 alt      L2 100 days  37.7 (worst  10) Down  54 Wnd  77 rds 6.1 again 57
+PC-like per Level, L3 alt      L2 125 days  94.2 (worst  82) Down  14 Wnd  45 rds 4.1 again 43
+PC-like per Level, L3 alt      L2 150 days  99.4 (worst  98) Down   6 Wnd  29 rds 3.4 again 38
+PC-like per Level, L3 alt      L3 150 days  50.6 (worst  16) Down  45 Wnd  74 rds 7.1 again 64
+PC-like per Level, L3 alt      L3 175 days  94.4 (worst  78) Down  11 Wnd  44 rds 3.9 again 46
+PC-like per Level, L3 alt      L3 200 days  99.9 (worst 100) Down   2 Wnd  16 rds 3.2 again 40
+PC-like per Level, L3 alt      L4 200 days  59.1 (worst  22) Down  42 Wnd  70 rds 5.3 again 57
+PC-like per Level, L3 alt      L4 225 days  93.2 (worst  75) Down  17 Wnd  45 rds 3.9 again 51
+PC-like per Level, L3 alt      L4 250 days  99.1 (worst  97) Down   8 Wnd  34 rds 3.8 again 49
+PC-like per Level, L3 alt      L5 250 days  94.2 (worst  79) Down  17 Wnd  52 rds 4.4 again 54
+PC-like per Level, L3 alt      L5 275 days  96.0 (worst  85) Down  15 Wnd  47 rds 4.4 again 53
+PC-like per Level, L3 alt      L5 300 days  97.2 (worst  90) Down  14 Wnd  44 rds 4.3 again 53
+PC-like per Level, L3 alt      L3 enemy: Health 14.6 Resist 4.4/3.1 Damage 5.6 Accuracy 8.1

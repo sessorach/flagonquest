@@ -1936,3 +1936,93 @@ F1 Down / F1 Wounded / rounds): Level 1 97% / 13 / 45 / 4.7, Level 2
 99% / 8 / 37 / 4.6, Level 3 97% / 10 / 41 / 4.1, Level 4 98% / 8 / 34 /
 4.6, Level 5 99% / 8 / 32 / 5.3. The Brute, the roster's Bruiser, got a
 little easier, so this is a notch further on the easy side.
+
+### Toward PC-like enemy stats (2026-11-03)
+
+The designer, overnight: can enemies get 4-5 round fights and the
+on-level challenge without so much Health, with numbers closer to what
+PCs end up with? Why did the two come out so different? Nothing changed
+in the builder; these are readings.
+
+**Where they differ** (middle of each band; PCs are the parties
+`table_check.py` plays, enemies the average full-size enemy in the four
+mixes; PC Accuracy is the attack Skill Total before a weapon's +1,
+enemy Accuracy is the whole attack, archetype included):
+
+| Level | PC Health | Enemy Health | PC Resist (P/E) | Enemy Resist | PC Damage | Enemy Damage | PC Acc | Enemy Acc | PC / enemy best Parry-Dodge |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | 10.0 | 13.4 | 3.4 / 2.1 | 2.7 / 1.8 | 5.2 | 4.6 | 6.1 | 5.1 | 13.8 / 13.1 |
+| 2 | 10.1 | 17.1 | 4.4 / 3.2 | 2.8 / 1.9 | 5.4 | 5.5 | 8.0 | 6.1 | 15.1 / 14.1 |
+| 3 | 10.7 | 19.1 | 4.4 / 3.1 | 3.4 / 2.1 | 6.0 | 5.6 | 9.0 | 7.1 | 15.7 / 15.1 |
+| 4 | 10.7 | 22.1 | 5.9 / 4.6 | 4.4 / 3.1 | 6.7 | 6.6 | 10.7 | 8.1 | 17.5 / 16.1 |
+| 5 | 10.7 | 23.1 | 6.3 / 5.0 | 4.4 / 3.1 | 6.7 | 6.6 | 10.7 | 9.1 | 17.9 / 17.1 |
+
+Enemies are built big and soft: about twice the PCs' Health, 1-2 less
+Resist, a little less Accuracy (mostly the roster's Strikers paying 2 for
+their Damage). The reason is the margins. A PC's hit nets about 3 past
+enemy Resist and an enemy's about 1.5 past the PCs', so each point of
+Resist is a large share of a hit. With the PCs' Resist and enemy
+Resist 1-2 lower, the party's damage per round was high, so fights only
+reached 4-5 rounds with lots of enemy Health. Enemy Resist can stand in
+for Health: +1 Resist cuts the party's damage by about a third.
+
+**The sweeps** (`experiments/enemies/progression_sweep.py`, nudges on
+v2 at every Level, the middle of each band, 60 days per mix per party;
+`progression_rank.py` scores them against the targets: about 95% of
+days, someone Down in about a fifth of fresh fights, Wounded about half,
+4-5 rounds, acts again about half). Two grids, 48 configs: Resist +0/+1/
++2, Health ×1.0 to ×0.5, Damage +0/+1, Accuracy +0/+1. What held:
+
+- Less Health alone shortens fights (×0.65: about 3 rounds) and makes
+  them easier; Damage +1 alone makes them harder (76-86% of days).
+- Resist +1, Health ×0.65 and Damage +1 together (enemy Damage then
+  matches the player formula exactly, no −1) keep Levels 2, 4 and 5 on
+  target at about two-thirds of v2's Health, with enemy Resist at the
+  PCs' level.
+- Level 1 (the sample parties, lower damage) wants Damage left at −1 and
+  Health ×0.75; Level 3 wants Health ×0.75 and Accuracy +1 rather than
+  Damage +1. Resist +2 anywhere made the bottom of the band much harder
+  (Level 3: 28% of days).
+
+**The best set across the bands** ("PC-like per Level": Resist +1 at
+every Level; Level 1 Health ×0.75; Level 2 Health ×0.65, Damage +1;
+Level 3 Health ×0.75, Accuracy +1; Levels 4-5 Health ×0.65, Damage +1).
+Days won (worst party) / F1 Down / F1 Wounded / rounds / acts again:
+
+| Level | Composite XP | v2 | PC-like per Level |
+|---|---|---|---|
+| 1 | 75 | 97% (95) / 12 / 45 / 4.7 / 54 | 95% (91) / 12 / 43 / 4.9 / 51 |
+| 2 | 100 | 45% (20) / 53 / 77 / 6.8 / 68 | 38% (10) / 54 / 77 / 6.1 / 57 |
+| 2 | 125 | 99% (98) / 8 / 38 / 4.6 / 57 | 94% (82) / 14 / 45 / 4.1 / 43 |
+| 2 | 150 | 100% / 2 / 17 / 4.0 / 51 | 99% / 6 / 29 / 3.4 / 38 |
+| 3 | 150 | 63% (32) / 39 / 70 / 6.7 / 67 | 51% (16) / 45 / 74 / 7.1 / 64 |
+| 3 | 175 | 97% (88) / 9 / 41 / 4.1 / 52 | 94% (78) / 11 / 44 / 3.9 / 46 |
+| 3 | 200 | 100% / 2 / 15 / 3.5 / 47 | 100% / 2 / 16 / 3.2 / 40 |
+| 4 | 200 | 70% (38) / 35 / 67 / 6.1 / 68 | 59% (22) / 42 / 70 / 5.3 / 57 |
+| 4 | 225 | 99% (95) / 8 / 32 / 4.6 / 64 | 93% (75) / 17 / 45 / 3.9 / 51 |
+| 4 | 250 | 100% / 3 / 19 / 4.5 / 62 | 99% / 8 / 34 / 3.8 / 49 |
+| 5 | 275 | 99% (98) / 7 / 32 / 5.3 / 67 | 96% (85) / 15 / 47 / 4.4 / 53 |
+
+Its enemies, against the PCs above: Health 10.5 / 11.7 / 14.6 / 15.0 /
+15.1 (v2: 13-23), Resist 3.7-4.4 Physical (about the PCs'), Damage 4.6 /
+6.5 / 5.6 / 7.6 / 7.6, Accuracy 5.1 / 6.1 / 8.1 / 8.1 / 9.1.
+
+What it costs:
+
+- **A wider spread between parties.** With higher enemy Resist a
+  low-damage party loses a bigger share of its damage: the worst party
+  in the middle of the band wins 75-85% of days, against 88-98% under
+  v2. That's the "weak builds stand out" the yardstick wanted, but a
+  harder floor too.
+- **Shorter fights,** 3.9-4.9 rounds against v2's 4.1-5.3, and acts again
+  at the low end (43-53%).
+- **A harder bottom of the band** at Levels 2-4 (38-59% of days).
+- **The kit prices assumed v2's Health.** With a third less Health an
+  Upgrade of Health is a bigger share of an enemy, and a Resist or Damage
+  bonus moves more; the archetype and Ability prices would want
+  rechecking under it.
+- **It isn't regular yet.** Damage and Health go back and forth by
+  Level, partly because Level 1 is the sample parties (less damage) and
+  Levels 4-5 are grown characters. A table version would smooth it:
+  Resist +1 throughout, enemy Damage on the player formula from Level 2,
+  Health about 11 / 12 / 14 / 15 / 15 per full-size enemy.

@@ -1,12 +1,12 @@
-# Latest replays (2026-11-02)
+# Latest replays (2026-11-03)
 
-Bruiser is now Damage +1, Resist +1, Accuracy -3; archetype values measured stat by stat
+No default change: PC-like enemy progression sweeps (overnight readings)
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 4): party won in 6 rounds, 90% party HP left
-- Matchup average over 1000 fights: 98.2% wins, 5.8 rounds, 78% HP left on a win
+- Matchup average over 1000 fights: 97.9% wins, 5.8 rounds, 79% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
