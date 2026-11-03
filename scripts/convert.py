@@ -456,7 +456,7 @@ ITEM_MAP = {
     "Dodge Defense":      "dodge_defense",
     "Vital Defense":      "vital_defense",
     "Mental Defense":     "mental_defense",
-    # "Vigilant Defense" is the renamed Instinct Defense (RULES_DESIGN.md) —
+    # "Vigilant Defense" is the renamed Instinct Defense (design/DESIGNER_NOTES.md, "Names and terms") —
     # column header and every player-facing mention updated, but the JSON
     # key stays instinct_defense on purpose, an internal identifier no
     # player ever sees, to avoid churning every other file that references it.
@@ -551,7 +551,7 @@ CRAFTING_RECIPE_MAP = {
     # varies item to item; for the open-ended fallback categories
     # (Masterwork, Potions, Poisons, Grenades, Food) it's a single flat
     # number that covers every item in that category regardless of
-    # Level, by design (see design/RULES_DESIGN.md's Crafting section for why
+    # Level, by design (see design/DESIGNER_NOTES.md's Crafting section for why
     # a flat count works — Masterwork's 20-Gold-per-Level pricing and a
     # material's Level-equals-Gold-value rule are chosen so 20 materials
     # at the item's own Level always produces the right price, so the

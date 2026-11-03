@@ -1,5 +1,7 @@
 # Enemy Encounter Design
 
+> **Note (2026-11-03):** the decisions in these notes are summarized in `design/DESIGNER_NOTES.md`. Mentions of `RULES_DESIGN.md` here point to `archive/design_docs_2026-11-03/RULES_DESIGN.md`; `GM_GUIDE_NOTES.md`, `IDEAS_BACKLOG.md` and `PROSE_REVIEW_QUEUE.md` are in `design/todo/`.
+
 A model for building mechanically distinct, intuitive enemies —
 reconstructed from `archive/flagonquest_encounter_builder.xlsx`, a
 spreadsheet the designer built and actually used at the table, uploaded

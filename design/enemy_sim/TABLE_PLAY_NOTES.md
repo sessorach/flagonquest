@@ -1,5 +1,7 @@
 # How the game plays at the table
 
+> **Note (2026-11-03):** the decisions in these notes are summarized in `design/DESIGNER_NOTES.md`. Mentions of `RULES_DESIGN.md` here point to `archive/design_docs_2026-11-03/RULES_DESIGN.md`; `GM_GUIDE_NOTES.md`, `IDEAS_BACKLOG.md` and `PROSE_REVIEW_QUEUE.md` are in `design/todo/`.
+
 Notes from the designer (2026-10-07) on how fights actually go at their
 table, as opposed to how a perfectly efficient party would play them.
 This is the reference for making the simulator play like real people.

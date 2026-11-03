@@ -13,9 +13,11 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-03 — Enemies built the way PCs are
+### 2026-11-03 — Enemies built the way PCs are, and one designer document
 
-Wrote down the enemy design's first principles (enemies play by the players' rules, with numbers in the players' ballpark) and drafted a new enemy table built that way: same Stats, Skill Totals, weapons and armor as a PC, Health near a PC's, archetypes as plain bumps, and Defenses with a readable spread.
+Drafted a new enemy table built the way PCs are (same Stats, Skill Totals, weapons and armor, Health near a PC's, archetypes as plain bumps, Defenses with a readable spread), and gathered every design decision into one designer document.
+
+- `design/DESIGNER_NOTES.md` now holds the rules design, balance basics, enemy design, how the table plays, GM notes and the designer's early notes, most important first; the old docs are kept whole in `archive/`, and the GM guide notes, idea backlog and prose review moved to `design/todo/`.
 
 - Enemy damage and Resist step up at different Levels like a PC's Stats (damage 2, 3, 3, 4, 4), and the middle of each XP band still plays on target, a bit spikier than before (fights of about 4 rounds).
 - With enemy hits on the player formula, +1 Damage isn't the giant it was, so no archetype has to trade Accuracy for it: Striker pays by being lightly built, Bruiser by being heavy and slow.

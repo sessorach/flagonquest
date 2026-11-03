@@ -1,7 +1,7 @@
 """The toughest enemies a party can still beat half the time (2026-10-30).
 
 Per the designer, strength is how much harder a fight a party can take
-for what it spent (RULES_DESIGN.md, "What the game is for"). `find`
+for what it spent (design/DESIGNER_NOTES.md, "Cross-cutting standing rules"). `find`
 halves an interval of enemy Health multipliers, reading the win rate at
 each midpoint on the same fixed fights, then fits a logistic curve,
 win rate against log(multiplier), through every point it tried and

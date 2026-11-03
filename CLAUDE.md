@@ -7,14 +7,17 @@ data-format mini-syntaxes (Prereq Check, Feature Budget, Builder Notes,
 Choice Effects, Base Item Options), see the docstring at the top of
 `scripts/convert.py` — that documentation is authoritative and
 shouldn't be duplicated here. For the *why* behind a specific rules or
-balance decision, see `design/RULES_DESIGN.md` (a human-readable log of
-design reasoning as decisions get made — rules content, not workflow
-notes) and `design/balance.md` (aggregate balance-approach notes,
-building on the value-economy model explained in
-`archive/flagonquest_balance_notes_model.md`). This file (`CLAUDE.md`) is
-where *my own* working notes belong instead — file-location facts,
-standing verification habits, session workflow — not `RULES_DESIGN.md`,
-which should stay a clean decision record.
+balance decision, see `design/DESIGNER_NOTES.md`: the one designer
+document, every decision and everything the designer has said matters,
+most important first, each point with a pointer to its detail. The
+working notes behind it (`design/balance.md`, `balance_weights_notes.md`,
+`ENEMY_ENCOUNTER_DESIGN.md`, the sim notes) can be as long as they need;
+anything they rely on gets a line in DESIGNER_NOTES. The old rules log
+(`RULES_DESIGN.md`) and the other docs as they stood on 2026-11-03 are in
+`archive/design_docs_2026-11-03/`. This file (`CLAUDE.md`) is where *my
+own* working notes belong instead — file-location facts, standing
+verification habits, session workflow — not DESIGNER_NOTES, which should
+stay a clean decision record.
 
 ## Architecture
 
@@ -125,13 +128,19 @@ which should stay a clean decision record.
   archive-doc sweep this project already did once) is worth checking
   with the designer first — scrape-and-summarize into a single doc
   might serve better than uploading every original individually.
-- `design/` holds living design documentation — `RULES_DESIGN.md` (a
-  human-readable log of rules-design reasoning, growing as decisions get
-  made), `balance.md` (aggregate balance-approach notes),
+- **Design docs, per the designer (2026-11-03): fewer, not more.**
+  `design/DESIGNER_NOTES.md` is the one document the designer reads or
+  hands to someone: rules design, balance basics, enemies, how the table
+  plays, GM notes, writing conventions, and their early notes distilled,
+  ordered by importance, mostly bullets. A new decision goes there, in
+  its section, with a pointer to where it was worked out. Don't start a
+  new designer-facing doc. `design/todo/` holds work still to do:
+  `GM_GUIDE_NOTES.md` (toward a GM guide the designer means to write;
+  overlap with DESIGNER_NOTES is fine), `IDEAS_BACKLOG.md`,
+  `PROSE_REVIEW_QUEUE.md`. The rest of `design/` is working notes for
+  me, as long as useful: `balance.md` (aggregate balance-approach notes),
   `balance_weights_notes.md` (the full derivation behind every current
-  THE TABEL weight), `GM_GUIDE_NOTES.md` (loose notes toward an eventual
-  GM-facing guide — "how should a GM actually run X," out of scope for
-  the player-facing `rulebook.md`), `ENEMY_ENCOUNTER_DESIGN.md` (the
+  THE TABEL weight), `ENEMY_ENCOUNTER_DESIGN.md` (the
   full point-buy model for building enemies — Level/Encounter Slots,
   Role archetypes, Defense tiering, Battle Tactics/Fighting Style, the
   Ability catalog, reconstructed from the designer's own
@@ -140,11 +149,10 @@ which should stay a clean decision record.
   validates the model empirically; `enemy_sim/tunables.py` holds every
   number still subject to revision, kept separate from the mechanics
   code specifically so a PC/enemy baseline retune doesn't need touching
-  anything else — see `enemy_sim/README.md`), and `IDEAS_BACKLOG.md`
-  (loose not-yet-drafted ideas for items/abilities/content — a holding
-  pen, not a commitment; move an idea out once it's actually drafted
-  into the real CSVs and given a proper writeup, don't leave it
-  duplicated in both places) — plus `balance_weights.csv`, a fast-lookup
+  anything else — see `enemy_sim/README.md`). `todo/IDEAS_BACKLOG.md`
+  is loose not-yet-drafted ideas — a holding pen, not a commitment;
+  move an idea out once it's drafted into the real CSVs, don't leave it
+  duplicated. Plus `balance_weights.csv`, a fast-lookup
   index of the same weights (current value, Locked/Pencil status, which
   markdown section has the derivation) for quick reference without
   scanning prose. Its Weak/Average/Strong columns (2026-10-22) hold the
@@ -193,7 +201,7 @@ which should stay a clean decision record.
   draft/review markers inside those files; draft in chat first, commit
   clean. Since a marker can't live inline, track "the designer still
   wants to read this over" separately instead: append an entry to
-  `design/PROSE_REVIEW_QUEUE.md` (file/section/one-line summary/commit
+  `design/todo/PROSE_REVIEW_QUEUE.md` (file/section/one-line summary/commit
   hash) whenever a `rulebook.md`/`glossary.md` prose section gets
   written or edited — a running checklist the designer deletes entries
   from as they review them, not a permanent log (git history is that).
@@ -366,7 +374,8 @@ which should stay a clean decision record.
   reason).
 - **Never rename a "Placeholder's [Alliterative Name]" item or
   Technique.** It's a deliberate in-fiction pseudonym, not a dev stub —
-  see RULES_DESIGN.md's "Naming convention — Placeholder". I suggested
+  see DESIGNER_NOTES.md's "Names and terms" (full text in the archived
+  RULES_DESIGN.md, "Naming convention — Placeholder"). I suggested
   renaming Placeholder's Lengthy Ley-weaving once during the Styles
   pass without checking that section first; the designer had to
   re-explain it.
@@ -511,11 +520,11 @@ which should stay a clean decision record.
   one works differently" in the specific effect's, item's or Technique's
   own text, leaning on the rulebook's "the most specific rule always
   wins." Don't list exceptions inside the general rule. `[Fleeting]` vs.
-  Bleeding/Harried is the worked example; see RULES_DESIGN.md's standing
+  Bleeding/Harried is the worked example; see DESIGNER_NOTES.md's standing
   rule.
 - **Whenever an idea gets binned** (cut from `items.csv`/`techniques.csv`,
   or considered and never drafted at all), log it in
-  `IDEAS_BACKLOG.md`'s "Reviewed and declined" section — a short note
+  `todo/IDEAS_BACKLOG.md`'s "Reviewed and declined" section — a short note
   on what it was and why it didn't make the cut, not a full writeup
   (that still lives in `balance_ledger.csv`'s own `-CUT` row Notes, or
   wherever else the idea got worked through). "Declined" isn't

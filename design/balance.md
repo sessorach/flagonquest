@@ -1,5 +1,7 @@
 # Balancing FlagonQuest
 
+> **Note (2026-11-03):** the decisions in these notes are summarized in `design/DESIGNER_NOTES.md`. Mentions of `RULES_DESIGN.md` here point to `archive/design_docs_2026-11-03/RULES_DESIGN.md`; `GM_GUIDE_NOTES.md`, `IDEAS_BACKLOG.md` and `PROSE_REVIEW_QUEUE.md` are in `design/todo/`.
+
 Aggregate notes on game balance in the broad sense — approaches, recurring
 judgment calls, and conclusions from specific balance passes as they
 happen. Companion to `design/RULES_DESIGN.md` (which covers rules
@@ -1825,7 +1827,7 @@ What genuinely remains, cross-cutting rather than slot-shaped:
   itself, so the XP has value from the moment it's spent rather than
   only once a character starts converting loot. Not pursued this pass.
 
-  See `design/GM_GUIDE_NOTES.md` (new) for the loot-planning notes this
+  See `design/todo/GM_GUIDE_NOTES.md` for the loot-planning notes this
   review produced, for an eventual GM-facing guide — `rulebook.md`
   stays player-facing only per its existing scoping note, so this kind
   of "how should a GM actually pace this" guidance doesn't belong

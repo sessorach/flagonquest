@@ -1,5 +1,7 @@
 # THE TABEL weights — an audit
 
+> **Note (2026-11-03):** the decisions in these notes are summarized in `design/DESIGNER_NOTES.md`. Mentions of `RULES_DESIGN.md` here point to `archive/design_docs_2026-11-03/RULES_DESIGN.md`; `GM_GUIDE_NOTES.md`, `IDEAS_BACKLOG.md` and `PROSE_REVIEW_QUEUE.md` are in `design/todo/`.
+
 Where each of THE TABEL's 19 per-mechanic values actually comes from, one
 by one. Companion to `balance.md` (aggregate balance notes and completed
 passes), `archive/flagonquest_balance_notes_model.md` (what the Baseline/THE
