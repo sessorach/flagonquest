@@ -123,21 +123,14 @@ def _build_from_row(row):
     # Defenses, not four.
     if (row.get("AttackTier") or "").strip():
         abilities = [a.strip() for a in row["Abilities"].split(";") if a.strip()]
+        action = row["Action"]
         if T.ENEMY_TABLE == "v3" and getattr(T, "V3_VERSION", 2) == 3 and (row.get("StrongDefense") or "").strip():
-            # The pruned v3 (2026-11-04): what the row spends its budget on.
-            # Blank buys back what the base table gave up, so a row nobody
-            # has redesigned plays as it did.
-            buyback = "Damage +1; Accuracy +1"
-            mode = getattr(T, "V3_PRUNED_ROSTER", "picks")
-            designed = (row.get("PrunedPicks") or "").strip()
-            picks = {"picks": designed or buyback, "buyback": buyback,
-                     "mixed": "Damage +1; Strike (Necrotic); Strike (Harrying)" if designed else buyback}[mode]
-            abilities += [a.strip() for a in picks.split(";") if a.strip()]
+            abilities, action = _pruned_picks(row, abilities)
         e = build_enemy_pcstyle(
             row["Name"],
             int(row["Level"]),
             float(row["Slots"]),
-            row["Action"],
+            action,
             row["Armor"],
             defense_tiers={
                 "parry": (row.get("ParryTier") or "poor").strip().lower(),
@@ -182,6 +175,33 @@ def _build_from_row(row):
     e["battle_tactic"] = row["BattleTactic"]
     e["fighting_style"] = row["FightingStyle"] if FIGHTING_STYLES_ENABLED else "None"
     return e
+
+
+def _split(cell):
+    return [a.strip() for a in (cell or "").split(";") if a.strip()]
+
+
+def _pruned_picks(row, abilities):
+    """The pruned v3 (2026-11-04): a redesigned row (PrunedPicks) names its
+    loadout (PrunedAction) and every Ability it buys; any other row keeps
+    its own Abilities and buys back the Damage and Accuracy the base table
+    gave up, so it plays as it did. tunables.V3_PRUNED_EXTRA gives a Level
+    more points, spent down the row's PrunedExtra list in order (a pick
+    that doesn't fit what's left is skipped; what's left is Health)."""
+    import enemy_builder_pcstyle as eb
+    buyback = ["Damage +1", "Accuracy +1"]
+    mode = getattr(T, "V3_PRUNED_ROSTER", "picks")
+    designed = _split(row.get("PrunedPicks"))
+    if mode == "buyback" or not designed:
+        return abilities + buyback, row["Action"]
+    picks = list(designed)
+    left = getattr(T, "V3_PRUNED_EXTRA", {}).get(int(row["Level"]), 0)
+    for pick in _split(row.get("PrunedExtra")):
+        price = eb.ABILITY_HEALTH_V3[pick]
+        if price <= left:
+            picks.append(pick)
+            left -= price
+    return picks, (row.get("PrunedAction") or "").strip() or row["Action"]
 
 
 def make_enemy(level):

@@ -114,10 +114,16 @@ def edit_for(variant):
                 # v3 has no HealthBonus: the Health goes on after the build.
                 return dict(row, _hp_adj=int(what))
             return dict(row, HealthBonus=str(int(row.get("HealthBonus") or 0) + int(what)))
+        if kind == "action":
+            # A melee loadout (the pruned v3) on the enemies fighting in melee.
+            act = eb.ACTIONS[row["Action"]]
+            if act["range"] or not act["dmg_base"]:
+                return None
+            return dict(row, Action=what)
         if kind == "armor":
             return dict(row, Armor=ARMOR[what])
         if kind == "ability":
-            if not fits(row, ABILITIES[what]):
+            if not fits(row, ABILITIES.get(what, "any")):
                 return None
             have = [a.strip() for a in row["Abilities"].split(";") if a.strip()]
             return dict(row, Abilities="; ".join(have + [what]))

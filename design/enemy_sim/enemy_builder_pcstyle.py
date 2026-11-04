@@ -234,6 +234,17 @@ ACTIONS = {
     "Vital Spell":     {"acc_mod": 0, "dmg_base": 2, "stat": "mind",            "wd": None, "dmg_type": "Shadow",   "opp_def": "Bodily",      "range": 2},
     "Shadow Bolt":     {"acc_mod": 0, "dmg_base": 2, "stat": "mind",            "wd": None, "dmg_type": "Shadow",   "opp_def": "Dodge",       "range": 2},
     "Vital Fire":      {"acc_mod": 0, "dmg_base": 2, "stat": "mind",            "wd": None, "dmg_type": "Fire",     "opp_def": "Bodily",      "range": 2},
+    # Loadouts for the pruned v3 (designer, 2026-11-04): an enemy in melee
+    # is presumed to carry a sword and shield; the toggles are heavy versus
+    # light and two-handed versus a shield. The numbers are the PC weapon
+    # table's (items.csv), Parry taking the better weapon Defense in hand
+    # (the shield's 2).
+    "Sword and Shield":       {"acc_mod": 1, "dmg_base": 3, "stat": "body_or_cunning", "wd": 2, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
+    "Heavy Weapon and Shield": {"acc_mod": 0, "dmg_base": 4, "stat": "body",          "wd": 2, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
+    "Light Two-Handed":       {"acc_mod": 1, "dmg_base": 4, "stat": "body_or_cunning", "wd": 1, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
+    "Two-Handed Weapon":      {"acc_mod": 0, "dmg_base": 5, "stat": "body",            "wd": 0, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
+    "Bow":                    {"acc_mod": 1, "dmg_base": 3, "stat": "cunning",         "wd": None, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 3},
+    "Heavy Bow":              {"acc_mod": 0, "dmg_base": 4, "stat": "cunning",         "wd": None, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 3},
     # Non-damaging main Actions (see ENEMY_ENCOUNTER_DESIGN.md's enemy
     # variety standard) - each enemy using one carries a BackupAction.
     "Hex":             {"acc_mod": 0, "dmg_base": 0, "stat": "mind",            "wd": None, "dmg_type": None,       "opp_def": "Mental",      "range": 2,
@@ -469,9 +480,17 @@ ARMOR_HEALTH_V3 = {"Unarmored": -1, "Light": 0, "Medium": 1, "Heavy": 2}
 # Stat Abilities (2026-11-04, for the pruned v3; any v3 can take them):
 # each is that bump, at its measured worth ("What each stat is worth"),
 # and can be taken more than once up to the player caps.
-STAT_ABILITIES = {"Damage +1": ("dmg",), "Accuracy +1": ("acc",), "Guard +1": ("parry", "dodge"),
-                  "Resist +1": ("res",)}
-ABILITY_HEALTH_V3.update({"Damage +1": 4, "Accuracy +1": 2, "Guard +1": 1, "Resist +1": 4})
+STAT_ABILITIES = {"Damage +1": ("dmg",), "Accuracy +1": ("acc",), "Parry and Dodge +1": ("parry", "dodge"),
+                  "Vital, Mental and Vigilant +1": ("bodily", "mental", "vigilant"), "Resist +1": ("res",)}
+ABILITY_HEALTH_V3.update({"Damage +1": 4, "Accuracy +1": 2, "Parry and Dodge +1": 1,
+                          "Vital, Mental and Vigilant +1": 1, "Resist +1": 4})
+# The pruned v3's pick rules (designer, 2026-11-04): a few Abilities once
+# only, the stats and the on-hit effects as often as you like up to a cap
+# (the player caps for stats; 4 stacks of one effect on a hit, "anything
+# more than that is probably egregious"). Everything else once.
+REPEATABLE_V3 = {"Accuracy +1", "Parry and Dodge +1", "Vital, Mental and Vigilant +1", "Resist +1",
+                 "Enhanced Health", "Enhanced Speed"}
+RIDER_CAP_V3 = 4
 # The Weak Defense when a row doesn't name one: what that kind of enemy
 # visibly neglects (a fighter's Mental, a caster's Vital, a support's
 # Dodge), skipping its Strong Defense.
@@ -484,6 +503,14 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
     t = {1: ENEMY_TABLE_V3_FIRST, 2: ENEMY_TABLE_V3, 3: ENEMY_TABLE_V3_PRUNED}[version][level]
     roles = {1: ROLE_ADDS_V3_FIRST, 2: ROLE_ADDS_V3, 3: ROLE_ADDS_V3_ADDITIVE}[version]
     adds = dict(roles.get(role or "", {}))
+    if version == 3:
+        for ab in set(abilities):
+            n = abilities.count(ab)
+            rider = ab.startswith("Strike (") or ab.startswith("Poison (")
+            if n > 1 and not rider and ab not in REPEATABLE_V3:
+                raise ValueError(f"{name}: {ab} can only be taken once")
+            if rider and n > RIDER_CAP_V3:
+                raise ValueError(f"{name}: {ab} taken {n} times, more than {RIDER_CAP_V3}")
     # Stat Abilities (the pruned v3's buy-backs), as archetype-style bumps.
     for ab, key in STAT_ABILITIES.items():
         for _ in range(abilities.count(ab)):
@@ -527,11 +554,17 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
                     attack_range=a["range"] * level + (2 if a["range"] else 0))
     main = profile(action)
     accuracy, attack_damage = main["accuracy"], main["attack_damage"]
-    if "Powerful Weapon" in abilities or "Heavy Weapon" in abilities:
+    if version == 3 and ("Powerful Weapon" in abilities or "Powerful Spell" in abilities):
+        # The pruned v3: plain +1 Damage on that kind of attack, no trade
+        # (the weapon itself is the loadout now); the backup's below.
+        want = "Powerful Spell" if action_category(action) == "spell" else "Powerful Weapon"
+        if want in abilities and act["dmg_base"]:
+            attack_damage += 1
+    elif "Powerful Weapon" in abilities or "Heavy Weapon" in abilities:
         attack_damage += 1
         accuracy -= 1
         parry -= 1
-    if "Powerful Spell" in abilities:
+    if "Powerful Spell" in abilities and version != 3:
         attack_damage += 1
         parry = -99
     kind = act.get("kind", "attack")
@@ -540,6 +573,10 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
     if kind != "attack" and not backup_action:
         raise ValueError(f"{name}: a {action} enemy needs a BackupAction to fall back on")
     backup = profile(backup_action) if backup_action else None
+    if version == 3 and backup and backup["attack_damage"]:
+        want = "Powerful Spell" if action_category(backup_action) == "spell" else "Powerful Weapon"
+        if want in abilities:
+            backup["attack_damage"] += 1
     if kind != "attack":
         attack_damage = 0
     base_health = t["health"]
@@ -550,7 +587,8 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
         # table's Health can go (v2's lesson: a glass cannon drops before
         # its effects pay).
         cost = sum(ABILITY_HEALTH_V3[a] for a in abilities) + ARMOR_HEALTH_V3[armor]
-        allowance = T.V3_PRUNED_ALLOWANCE if version == 3 else T.V3_ABILITY_ALLOWANCE
+        allowance = (T.V3_PRUNED_ALLOWANCE + getattr(T, "V3_PRUNED_EXTRA", {}).get(level, 0)
+                     if version == 3 else T.V3_ABILITY_ALLOWANCE)
         base_health += allowance - cost
         if base_health < max(1, math.ceil(t["health"] * getattr(T, "V3_HEALTH_FLOOR", 2 / 3))):
             raise ValueError(f"{name}: Abilities and armor cost {cost} Health, more than a third of its {t['health']}")

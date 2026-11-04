@@ -432,11 +432,14 @@ V3_ABILITY_ALLOWANCE = 1
 # The pruned v3's budget (V3_VERSION = 3): the 1 above, plus 4 for the
 # Damage Stat and 2 for the Accuracy the base table gave up.
 V3_PRUNED_ALLOWANCE = 7
-# What the pruned v3's rows spend it on: 'picks' (the row's PrunedPicks,
-# blank buying back Damage and Accuracy), 'buyback' (every row buys them
-# back: the old enemies), 'mixed' (the redesigned rows buy back Damage and
-# take Necrotic and Harrying on a hit).
+# What the pruned v3's rows spend it on: 'picks' (a redesigned row's
+# PrunedAction and PrunedPicks; any other row keeps its Abilities and buys
+# back Damage +1 and Accuracy +1) or 'buyback' (every row buys them back:
+# the old enemies with the new archetypes).
 V3_PRUNED_ROSTER = 'picks'
+# Extra budget by Level for the pruned v3 ({3: 2} gives Level 3 enemies 2
+# more points), spent down each redesigned row's PrunedExtra list.
+V3_PRUNED_EXTRA = {}
 # The least of the table's Health an enemy can keep after paying for
 # Abilities and armor (0 lets experiments spend it all).
 V3_HEALTH_FLOOR = 2 / 3

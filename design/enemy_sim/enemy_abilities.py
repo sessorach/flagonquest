@@ -106,9 +106,16 @@ def _v2():
     return t == 'v2' or (t == 'v3' and getattr(cs.T, 'V3_KIT_SHAPES', 'catalog') == 'v2')
 
 
+def _pruned():
+    return getattr(cs.T, 'ENEMY_TABLE', 'v1') == 'v3' and getattr(cs.T, 'V3_VERSION', 2) == 3
+
+
 def _rider(ability):
     def apply(e, c):
         effect, stacks = (STRIKE_RIDERS_V2.get(ability) if _v2() else None) or STRIKE_RIDERS[ability]
+        if _pruned():
+            # The pruned v3: one stack per pick, picked up to 4 times.
+            stacks = e['abilities'].count(ability)
         cs._apply_to_pc(c.target, effect, stacks, e)
         c.applied.append(f"{effect} +{stacks}")
         # What Healing Magic's Purify can take off ("1 stack of each Poison
@@ -134,16 +141,18 @@ def _grappling(e, c):
 @hooks.on('enemy_hit_or_parried', 'Strike (Harrying)', order=10)
 def _harrying(e, c):
     # "Attack hits *or* is Parried -> target Harried once either way."
-    c.target['harried'] = c.target.get('harried', 0) + 1
-    c.applied.append("Harried +1")
+    n = e['abilities'].count('Strike (Harrying)') if _pruned() else 1
+    c.target['harried'] = c.target.get('harried', 0) + n
+    c.applied.append(f"Harried +{n}")
 
 
 @hooks.on('enemy_hit_or_parried', 'Strike (Battering)', order=20)
 def _battering(e, c):
     # "Attack is Parried -> target still gains a Bleeding stack."
     if c.parried:
-        cs._apply_to_pc(c.target, 'Bleeding', 1, e)
-        c.applied.append("Bleeding +1 (Battering)")
+        n = e['abilities'].count('Strike (Battering)') if _pruned() else 1
+        cs._apply_to_pc(c.target, 'Bleeding', n, e)
+        c.applied.append(f"Bleeding +{n} (Battering)")
 
 
 @hooks.on('pc_damaged_enemy', 'Retribution Aura')
