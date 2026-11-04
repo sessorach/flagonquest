@@ -1,12 +1,12 @@
 # Latest replays (2026-11-04)
 
-No change to the default; this round tested on-hit debuff packages paid from Health or Damage (results/enemy_stats/debuff_budget.txt)
+No change to the default; tested the pruned v3 (V3_VERSION = 3): Damage and Accuracy into a 7-point budget, additive archetypes, the roster spending it on mechanics
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 4): party won in 5 rounds, 98% party HP left
-- Matchup average over 1000 fights: 98.9% wins, 4.6 rounds, 80% HP left on a win
+- Matchup average over 1000 fights: 98.8% wins, 4.5 rounds, 80% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

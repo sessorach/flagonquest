@@ -2444,3 +2444,126 @@ Mental are worth nothing against the sample parties, who rarely target
 them; they'll matter against a party that does. +1 Resist is worth
 more than −1 costs and adds over a round, so it's the one stat to hand
 out carefully.
+
+### The pruned v3: a thin baseline, archetypes and Abilities that add (2026-11-04)
+
+The designer: "prune back some of the enemy baseline power, and then put
+it in the Ability budget they can spend to further specialize." The
+baseline is thin, the archetype carries a good share of the power, and
+Abilities add the rest. Very few things take numbers away (heavier
+armor is the example). If the baseline's damage comes down, the budget
+has to be able to buy it back. Trim both Damage and Accuracy, and make
+the archetypes additive. `tunables.V3_VERSION = 3`; v3 as adopted stays
+the default until the designer picks.
+
+**The pruned table**: the Damage Stat 1 / 2 / 2 / 3 / 3 and Accuracy one
+lower (2 / 3 / 4 / 5 / 6). Health, Resist, Defenses, Speed and Reflex as
+v3, since those set a fight's length ("What each stat is worth"). The
+budget goes from 1 to 7 per Slot (`V3_PRUNED_ALLOWANCE`): the old 1,
+plus 4 for the Damage Stat and 2 for the Accuracy the table gave up.
+Unspent points are Health, as before. An enemy that buys back Damage +1
+and Accuracy +1 is the old enemy.
+
+**Additive archetypes** (`ROLE_ADDS_V3_ADDITIVE`; worth in enemy Health
+per Slot at Level 2, against enemies that bought their stats back):
+
+| Archetype | Adds | Worth |
+|---|---|---|
+| Defender | Resist +1, Parry +2, Dodge +2 | 3.1, adds about 1-1.5 rounds |
+| Striker | Damage +1, Speed +1 | 3.4 |
+| Bruiser | Damage +1, Health +1, Vital +2 | 3.3 |
+| Strategist | Accuracy +2, Dodge +1, Mental +2, Vigilant +2 | 2.7 |
+| Backup | Resist +1, Parry +1, Dodge +2, Vital +2, Mental +2 | 2.9, adds about a round |
+| Skirmisher | Speed +2, Dodge +2, Accuracy +1 | 2.4 |
+
+Striker and Bruiser lost their cuts (Striker's Resist −1; Bruiser's
+Parry, Dodge and Speed −1). Striker is now the mobile hitter, Bruiser
+the tough one. Accuracy is worth more on the pruned base, so Strategist
+(+3) and Skirmisher (+2) read 4 Health and came down 1 each. Bruiser as
+Health and Vital alone read about 1. Level 3 reads higher for the
+damage archetypes (Striker and Bruiser about 5.5, the rest 3-4.7), on a
+noisier slope (`results/enemy_stats/v3_pruned_roles*.txt`).
+
+**The catalog, grouped** (Health per Slot; any v3 can use the stat
+Abilities):
+
+*Equipment.* What the enemy carries. These are the only things that
+take a number away, the way gear does for a PC.
+
+| Ability | Price | Notes |
+|---|---|---|
+| Unarmored / Light / Medium / Heavy Armor | −1 / 0 / 1 / 2 | Dodge and Speed as for a PC; Heavy is Level 3 and up |
+| Heavy Weapon (also Powerful Weapon) | 1 | Damage +1, Accuracy −1, Parry −1. The two are the same in the sim and should be one entry: a two-handed weapon, as a PC's |
+| Powerful Spell | 3 | a caster's focus: Damage +1, can't Parry |
+| Enhanced Range | 3 | a longbow or a long reach: Range ×2 |
+| Elemental Weapon / Elemental Spell | 0 | an enchanted weapon or a spell's element (the weapon at −1 Damage) |
+
+*Stats.* Plain additions, each can be taken more than once up to the
+player caps.
+
+| Ability | Price | Notes |
+|---|---|---|
+| Damage +1 | 4 | the pruned base's buy-back |
+| Accuracy +1 | 2 | the other buy-back |
+| Guard +1 | 1 | Parry and Dodge +1; adds a quarter-round |
+| Resist +1 | 4 | adds over a round; hand it out carefully |
+| Enhanced Health | 1 | Health +1 (the catalog text says +3; the sim plays +1) |
+| Enhanced Speed / Enhanced Reflexes | 1 / 2 | Speed +1 / Reflex +3 |
+
+*On a hit.* Strike and Poison riders: one-stack Crippling, Vulnerable,
+Slowing, Frightening, Taunting 0; Necrotic, Harrying, Devastating 1;
+Battering, Cleaving 2; Grappling, Poison (Bleeding) 3.
+
+*Toughness.* Durable, Omniguard, Resist (an element) 1; Retribution Aura
+2; Attunement (an element) 3; Resilient, Sturdy 0.
+
+*Actions and movement.* Action (Parting Shot), Action (Taunting),
+Improved Support 1; Action (Intimidating), Shadow Jaunt 0.
+
+**The roster spending its budget** (`sample_enemies.csv` PrunedPicks,
+`tunables.V3_PRUNED_ROSTER`). Three ways, against v3 as adopted:
+
+- *buyback*: every enemy buys back Damage +1 and Accuracy +1, the old
+  enemies with the new archetypes.
+- *picks*: the current roster redesigned to spend the budget on
+  mechanics. Brute: Battering and Grappling. Hedge Knight: Action
+  (Taunting), Omniguard, Harrying, Accuracy +1. Footpad: Parting Shot,
+  Enhanced Reflexes, Harrying. Marsh Archer: Enhanced Range, Accuracy
+  +1, Slowing, Harrying. Grave Caller: Powerful Spell, Accuracy +1,
+  Strike and Poison (Necrotic). Ember Caster: Powerful Spell, Accuracy
+  +1, Crippling, Attunement (Fire). Warpriest: Improved Support,
+  Durable, Harrying, Action (Intimidating), Accuracy +1. All of these
+  keep their row's own Abilities; minions and the other rows buy back.
+- *mixed*: the same enemies buy back Damage +1 and take Necrotic and
+  Harrying on a hit.
+
+Middle of each band; days won (worst party) / F1 Down / F1 Wounded /
+rounds / acts again:
+
+| Level | v3 as adopted | buyback | picks | mixed |
+|---|---|---|---|---|
+| 1 | 95 (90) / 13 / 42 / 3.7 / 38 | 94 (90) / 14 / 47 / 3.9 / 41 | 91 (84) / 20 / 50 / 5.0 / 48 | 94 (88) / 15 / 41 / 3.9 / 41 |
+| 2 | 95 (83) / 13 / 40 / 3.7 / 40 | 97 (93) / 11 / 39 / 3.8 / 43 | 96 (90) / 14 / 37 / 4.6 / 48 | 97 (88) / 13 / 36 / 3.9 / 43 |
+| 3 | 95 (78) / 14 / 43 / 3.3 / 37 | 96 (85) / 12 / 39 / 3.5 / 40 | 96 (82) / 10 / 35 / 3.9 / 45 | 96 (85) / 10 / 35 / 3.4 / 41 |
+| 4 | 95 (82) / 15 / 44 / 3.8 / 50 | 97 (90) / 12 / 38 / 3.9 / 53 | 97 (86) / 10 / 31 / 4.4 / 59 | 97 (90) / 10 / 32 / 3.9 / 53 |
+| 5 | 97 (88) / 13 / 44 / 4.0 / 51 | 99 (93) / 10 / 37 / 4.2 / 55 | 97 (92) / 8 / 29 / 5.1 / 60 | 99 (95) / 8 / 33 / 4.2 / 54 |
+
+- **The prune holds.** With the stats bought back, every Level plays
+  about as v3 did, a little softer (the weakest party does better),
+  mostly from Striker giving up its 2 Accuracy.
+- **Spending the budget on mechanics lengthens fights** to 4-5 rounds
+  (3.9-5.1) and a hit enemy acts again 45-60% of the time. That's the
+  first table to land on the designer's 4-5 rounds. Toughness picks
+  (Omniguard, Durable, Grappling, Reflexes) keep enemies up; less damage
+  per hit keeps the party up longer too.
+- **It's uneven across Levels.** Level 1 gets harder (91% of days,
+  someone Down in a fifth of fights; Level 1 parties have the least to
+  answer debuffs with), Levels 3-5 softer (Down 8-10%, Wounded 29-35%).
+- **Mixed plays like buyback**, a notch softer at Levels 3-5.
+
+**Open:** whether *picks* is the shape to tune toward. If so, Levels 3-5
+want a little more offense (a budget of 8 there, or Accuracy back on
+the table from Level 3) and Level 1 a little less. Should Heavy and
+Powerful Weapon merge into one equipment entry, and should it be a PC's
+two-hander (Damage +2, Accuracy −1, no weapon Defense)? Should the
+catalog's Enhanced Health be +1 or +3?

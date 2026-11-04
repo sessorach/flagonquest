@@ -1,0 +1,18 @@
+v3 pruned, buyback             L1  75 days  94.0 (worst  90) Down  14 Wnd  47 rds 3.9 again 41
+v3 pruned, buyback             L2 125 days  96.8 (worst  93) Down  11 Wnd  39 rds 3.8 again 43
+v3 pruned, buyback             L3 175 days  96.2 (worst  85) Down  12 Wnd  39 rds 3.5 again 40
+v3 pruned, buyback             L4 225 days  97.2 (worst  90) Down  12 Wnd  38 rds 3.9 again 53
+v3 pruned, buyback             L5 275 days  98.8 (worst  93) Down  10 Wnd  37 rds 4.2 again 55
+v3 pruned, buyback             L3 enemy: Health 13.3 Resist 4.5/3.2 Damage 6.6 Accuracy 5.6
+v3 pruned, picks               L1  75 days  91.0 (worst  84) Down  20 Wnd  50 rds 5.0 again 48
+v3 pruned, picks               L2 125 days  95.5 (worst  90) Down  14 Wnd  37 rds 4.6 again 48
+v3 pruned, picks               L3 175 days  96.0 (worst  82) Down  10 Wnd  35 rds 3.9 again 45
+v3 pruned, picks               L4 225 days  96.7 (worst  86) Down  10 Wnd  31 rds 4.4 again 59
+v3 pruned, picks               L5 275 days  97.0 (worst  92) Down   8 Wnd  29 rds 5.1 again 60
+v3 pruned, picks               L3 enemy: Health 13.6 Resist 4.5/3.2 Damage 5.9 Accuracy 5.2
+v3 pruned, mixed               L1  75 days  93.5 (worst  88) Down  15 Wnd  41 rds 3.9 again 41
+v3 pruned, mixed               L2 125 days  96.6 (worst  88) Down  13 Wnd  36 rds 3.9 again 43
+v3 pruned, mixed               L3 175 days  96.3 (worst  85) Down  10 Wnd  35 rds 3.4 again 41
+v3 pruned, mixed               L4 225 days  97.2 (worst  90) Down  10 Wnd  32 rds 3.9 again 53
+v3 pruned, mixed               L5 275 days  98.6 (worst  95) Down   8 Wnd  33 rds 4.2 again 54
+v3 pruned, mixed               L3 enemy: Health 13.3 Resist 4.5/3.2 Damage 6.6 Accuracy 4.6
