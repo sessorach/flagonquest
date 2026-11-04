@@ -427,6 +427,9 @@ V3_KIT_SHAPES = 'v2'
 # weights.
 V3_ABILITY_PRICES = True
 V3_ABILITY_ALLOWANCE = 1
+# The least of the table's Health an enemy can keep after paying for
+# Abilities and armor (0 lets experiments spend it all).
+V3_HEALTH_FLOOR = 2 / 3
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

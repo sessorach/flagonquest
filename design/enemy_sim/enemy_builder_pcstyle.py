@@ -508,7 +508,7 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
         # its effects pay).
         cost = sum(ABILITY_HEALTH_V3[a] for a in abilities) + ARMOR_HEALTH_V3[armor]
         base_health += T.V3_ABILITY_ALLOWANCE - cost
-        if base_health < math.ceil(t["health"] * 2 / 3):
+        if base_health < max(1, math.ceil(t["health"] * getattr(T, "V3_HEALTH_FLOOR", 2 / 3))):
             raise ValueError(f"{name}: Abilities and armor cost {cost} Health, more than a third of its {t['health']}")
     health = math.ceil(base_health * T.SLOT_MULTIPLIER[slots]) + abilities.count("Enhanced Health")
     enemy = dict(name=name, level=level, slots=slots, role=role or "None", action=action,
