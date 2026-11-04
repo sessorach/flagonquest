@@ -53,3 +53,8 @@ heavier kit free             L2 days  89.7 (worst  78) Down  19 Wnd  46 rds 4.8 
 heavier kit free             L3 days  86.0 (worst  58) Down  22 Wnd  52 rds 4.4 again 48
 heavier kit free             L4 days  88.5 (worst  70) Down  19 Wnd  50 rds 4.8 again 60
 heavier kit free             L5 days  85.8 (worst  55) Down  21 Wnd  51 rds 5.2 again 61
+two-handers at 2             L1 days  94.2 (worst  89) Down  18 Wnd  48 rds 3.7 again 37
+two-handers at 2             L2 days  95.9 (worst  90) Down  13 Wnd  39 rds 4.0 again 45
+two-handers at 2             L3 days  90.8 (worst  66) Down  18 Wnd  50 rds 3.6 again 44
+two-handers at 2             L4 days  91.5 (worst  77) Down  17 Wnd  46 rds 4.1 again 55
+two-handers at 2             L5 days  91.7 (worst  83) Down  18 Wnd  51 rds 4.6 again 58
