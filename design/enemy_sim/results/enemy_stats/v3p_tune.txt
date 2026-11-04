@@ -43,3 +43,8 @@ prices fixed, L1 -1, L3-5 +6 offense L2 days  95.1 (worst  90) Down  13 Wnd  39 
 prices fixed, L1 -1, L3-5 +6 offense L3 days  76.0 (worst  37) Down  32 Wnd  63 rds 4.4 again 48
 prices fixed, L1 -1, L3-5 +6 offense L4 days  76.1 (worst  40) Down  32 Wnd  63 rds 4.9 again 62
 prices fixed, L1 -1, L3-5 +6 offense L5 days  73.6 (worst  46) Down  31 Wnd  62 rds 5.4 again 63
+gear cheaper, 6/7/9/9/9      L1 days  94.1 (worst  87) Down  18 Wnd  45 rds 4.6 again 43
+gear cheaper, 6/7/9/9/9      L2 days  94.7 (worst  90) Down  14 Wnd  40 rds 4.8 again 49
+gear cheaper, 6/7/9/9/9      L3 days  89.8 (worst  64) Down  16 Wnd  46 rds 4.3 again 48
+gear cheaper, 6/7/9/9/9      L4 days  92.9 (worst  79) Down  14 Wnd  42 rds 4.7 again 59
+gear cheaper, 6/7/9/9/9      L5 days  91.8 (worst  72) Down  14 Wnd  46 rds 5.2 again 60

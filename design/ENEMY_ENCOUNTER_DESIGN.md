@@ -2608,15 +2608,22 @@ the PC weapon table's):
 | Loadout | Accuracy | Damage | Parry (weapon Defense) | Price |
 |---|---|---|---|---|
 | Sword and Shield (default) | +1 | 3 | +2 (shield) | 0 |
-| Heavy Weapon and Shield | +0 | 4 | +2 | 1 (read 1.3) |
-| Light Two-Handed | +1 | 4 | +1 | 4 (read 4.5) |
-| Two-Handed Weapon | +0 | 5 | +0 | 4 (read 3.7) |
-| Bow / Heavy Bow | +1 / +0 | 3 / 4 | none | 0 / 1 |
+| Heavy Weapon and Shield | +0 | 4 | +2 | 0 (read 1.3) |
+| Light Two-Handed | +1 | 4 | +1 | 2 (read 4.5) |
+| Two-Handed Weapon | +0 | 5 | +0 | 2 (read 3.7) |
+| Bow / Heavy Bow | +1 / +0 | 3 / 4 | none | 0 / 0 |
 | Melee, Ranged or Vital Spell | +0 | 2 | none | 0 |
 | Support (Shield Ally, Mend Ally...) with a backup weapon | | | | 0 |
 
-A two-hander costs about what Damage +1 does: one more Damage, and the
-shield's Parry was worth little against these parties.
+Gear is priced under what it measured (designer, 2026-11-04). At its
+measured 4, a two-hander cost the same as Damage +1 and gave up the
+shield's Parry besides, so it only made sense alongside Damage +1. Players
+get the same kit for a nominal Might investment, so better kit should be a
+cheap upgrade for an enemy too, even if it comes out a little better on
+paper: heavy one-handers and heavy bows are free, two-handers 2. With the
+Brute's two-hander 2 points cheaper, every Level plays a point or so
+harder: 94 / 95 / 90 / 93 / 92% of days won, Down 14-18%, Wounded 40-46%,
+4.3-5.2 rounds, acts again 43-60 (`v3p_tune.txt`, "gear cheaper").
 
 **On-hit effects, a stack a pick, up to 4** (worth per enemy, Levels
 2 / 3, at 1 / 2 / 4 stacks):

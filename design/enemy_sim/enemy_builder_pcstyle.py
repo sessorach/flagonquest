@@ -506,8 +506,15 @@ ABILITY_HEALTH_V3P = dict(ABILITY_HEALTH_V3, **{
     # a stack, Bleeding 2-2.75.
     "Strike (Necrotic)": 0.5, "Poison (Necrotic)": 0.5, "Poison (Bleeding)": 2.5,
 })
-LOADOUT_HEALTH_V3P = {"Sword and Shield": 0, "Heavy Weapon and Shield": 1, "Light Two-Handed": 4,
-                      "Two-Handed Weapon": 4, "Bow": 0, "Heavy Bow": 1}
+# Gear is priced under what it measured (designer, 2026-11-04): at 4 a
+# two-hander cost the same as Damage +1 and gave up the shield's Parry
+# besides, so it only made sense alongside Damage +1. Players get the same
+# kit for a nominal Might, so better kit should be a cheap upgrade for an
+# enemy too, even if it comes out a little better on paper. Measured:
+# heavy one-hander and shield 1.3, two-handers 3.7-4.5, against Sword and
+# Shield.
+LOADOUT_HEALTH_V3P = {"Sword and Shield": 0, "Heavy Weapon and Shield": 0, "Light Two-Handed": 2,
+                      "Two-Handed Weapon": 2, "Bow": 0, "Heavy Bow": 0}
 REPEATABLE_V3 = {"Accuracy +1", "Parry and Dodge +1", "Vital, Mental and Vigilant +1", "Resist +1",
                  "Enhanced Health", "Enhanced Speed"}
 RIDER_CAP_V3 = 4
