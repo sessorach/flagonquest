@@ -488,6 +488,23 @@ ABILITY_HEALTH_V3.update({"Damage +1": 4, "Accuracy +1": 2, "Parry and Dodge +1"
 # only, the stats and the on-hit effects as often as you like up to a cap
 # (the player caps for stats; 4 stacks of one effect on a hit, "anything
 # more than that is probably egregious"). Everything else once.
+# The pruned v3's prices (2026-11-04, kit_check.py --bare on the pruned
+# base with the stats bought back; results/enemy_stats/v3p_kit*.txt). A
+# rider is one stack a pick. The light effects read small a stack (Crippled
+# about 0.3 rising to 0.5 by the fourth, Vulnerable 0.2-0.4, Slowed 0.1-
+# 0.2; Frightened and Taunted about 0.3 for the first and nothing after),
+# so they're half a point a stack ("two stacks a point"). Necrotic and
+# Harried read 0.5-0.8 a stack, Bleeding about 2.75. Powerful Weapon and
+# Spell are now plain +1 Damage (4.4 and 2.6 on the enemies that use
+# them). The loadouts are priced from Sword and Shield.
+ABILITY_HEALTH_V3P = dict(ABILITY_HEALTH_V3, **{
+    "Strike (Crippling)": 0.5, "Strike (Slowing)": 0.5, "Strike (Vulnerable)": 0.5,
+    "Strike (Frightening)": 0.5, "Strike (Taunting)": 0.5,
+    "Poison (Crippling)": 0.5, "Poison (Slowing)": 0.5, "Poison (Vulnerable)": 0.5,
+    "Powerful Weapon": 4, "Powerful Spell": 3,
+})
+LOADOUT_HEALTH_V3P = {"Sword and Shield": 0, "Heavy Weapon and Shield": 1, "Light Two-Handed": 4,
+                      "Two-Handed Weapon": 4, "Bow": 0, "Heavy Bow": 1}
 REPEATABLE_V3 = {"Accuracy +1", "Parry and Dodge +1", "Vital, Mental and Vigilant +1", "Resist +1",
                  "Enhanced Health", "Enhanced Speed"}
 RIDER_CAP_V3 = 4
@@ -586,7 +603,10 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
         # its Health, what it leaves is Health. No more than a third of the
         # table's Health can go (v2's lesson: a glass cannon drops before
         # its effects pay).
-        cost = sum(ABILITY_HEALTH_V3[a] for a in abilities) + ARMOR_HEALTH_V3[armor]
+        prices = ABILITY_HEALTH_V3P if version == 3 else ABILITY_HEALTH_V3
+        cost = sum(prices[a] for a in abilities) + ARMOR_HEALTH_V3[armor]
+        if version == 3:
+            cost += LOADOUT_HEALTH_V3P.get(action, 0)
         allowance = (T.V3_PRUNED_ALLOWANCE + getattr(T, "V3_PRUNED_EXTRA", {}).get(level, 0)
                      if version == 3 else T.V3_ABILITY_ALLOWANCE)
         base_health += allowance - cost

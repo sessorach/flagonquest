@@ -197,7 +197,7 @@ def _pruned_picks(row, abilities):
     picks = list(designed)
     left = getattr(T, "V3_PRUNED_EXTRA", {}).get(int(row["Level"]), 0)
     for pick in _split(row.get("PrunedExtra")):
-        price = eb.ABILITY_HEALTH_V3[pick]
+        price = eb.ABILITY_HEALTH_V3P[pick]
         if price <= left:
             picks.append(pick)
             left -= price
