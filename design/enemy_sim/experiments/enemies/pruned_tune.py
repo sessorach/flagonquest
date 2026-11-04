@@ -71,7 +71,9 @@ def main():
                 s = tc.summarize(by)
                 rows[f"{L}:{b}"] = s
                 f1 = s[1]
-                print(f"{label:28s} L{L} days {s['day']:5.1f} (worst {s['worst']:3.0f}) Down {f1['down']:3.0f} "
+                import baseline_check as bc
+                s["by_party"] = {g: bc.stats(d)["day"] for g, d in by.items()}
+                print(f"{label:28s} L{L} days {s['day']:5.1f} (worst {s['worst']:3.0f} best {s['best']:3.0f}) Down {f1['down']:3.0f} "
                       f"Wnd {f1['wounded']:3.0f} rds {f1['rounds']:.1f} again {f1['again']:2.0f}", flush=True)
             with open(a.o, "a") as f:
                 f.write(json.dumps(dict(label=label, extra=extra[0], order=extra[1], swap=extra[2], n=a.n, rows=rows)) + "\n")
