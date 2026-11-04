@@ -2738,3 +2738,23 @@ The designer made the pruned v3 the default on 2026-11-04
 get their review against the balance weights next, the light on-hit
 effects first. Levels 4-5 are still read against grown Level 3
 characters.
+
+**Across each band, as the default** (`table_check.py -t v3 -n 60`,
+`results/enemy_stats/v3p_table_check.txt`; days won (worst party) / F1
+Down / F1 Wounded / rounds / acts again):
+
+| Level | Bottom | Middle | Top |
+|---|---|---|---|
+| 1 | — | 94 (87) / 18 / 45 / 4.6 / 43 | — |
+| 2 | 32 (10) / 61 / 80 / 6.4 / 60 | 95 (90) / 14 / 40 / 4.8 / 49 | 100 (98) / 4 / 21 / 3.7 / 44 |
+| 3 | 36 (10) / 53 / 78 / 6.2 / 65 | 90 (64) / 16 / 46 / 4.3 / 48 | 100 (98) / 4 / 19 / 3.3 / 39 |
+| 4 | 48 (11) / 44 / 72 / 5.8 / 64 | 93 (79) / 14 / 42 / 4.7 / 59 | 99 (93) / 8 / 32 / 4.6 / 56 |
+| 5 | 89 (69) / 18 / 50 / 5.2 / 60 | 92 (72) / 14 / 46 / 5.2 / 60 | 92 (68) / 13 / 42 / 5.1 / 60 |
+
+The middle of every band is close: 90-95% of days, Down 14-18%,
+Wounded 40-46%, 4.3-5.2 rounds, acts again 43-60%. Level 3 is the
+hardest of them (90%, the weakest party 64%). The bottom of each band is
+harsher than v3 as adopted on 11-03 (a third of days at Levels 2-3
+against 42-48%), the top as comfortable. Level 5 is flat across its band
+because its parties are the Level 3 characters grown, which reach the caps;
+that's the yardstick running out, not the enemies.

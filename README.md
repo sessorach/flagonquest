@@ -19,7 +19,7 @@ Tested how to give enemies more debuffs and mechanics without making fights shor
 
 - Health, Resist and Defenses set how long a fight lasts; Damage and Accuracy barely do, so they're the ones to trim and buy back.
 - Archetypes now only add, an enemy's weapon is a loadout (sword and shield by default, two-handers, bows, spells), on-hit effects stack a pick at a time up to four, and the budget runs 6 / 7 / 9 / 9 / 9 by Level.
-- Building an enemy is meant to be a few pen-and-paper picks, so it can go in a book.
+- This is now the simulator's default: building an enemy is meant to be a few pen-and-paper picks so it can go in a book, and the middle of every Level's band wins 90-95% of days.
 
 ### 2026-11-03 — Enemies built the way PCs are, and one designer document
 
