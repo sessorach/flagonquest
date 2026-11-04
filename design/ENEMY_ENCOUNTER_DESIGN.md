@@ -2608,10 +2608,10 @@ the PC weapon table's):
 | Loadout | Accuracy | Damage | Parry (weapon Defense) | Price |
 |---|---|---|---|---|
 | Sword and Shield (default) | +1 | 3 | +2 (shield) | 0 |
-| Heavy Weapon and Shield | +0 | 4 | +2 | 0 (read 1.3) |
+| Heavy Weapon and Shield | +0 | 4 | +2 | 1 (read 1.3) |
 | Light Two-Handed | +1 | 4 | +1 | 2 (read 4.5) |
 | Two-Handed Weapon | +0 | 5 | +0 | 2 (read 3.7) |
-| Bow / Heavy Bow | +1 / +0 | 3 / 4 | none | 0 / 0 |
+| Bow / Heavy Bow | +1 / +0 | 3 / 4 | none | 0 / 1 |
 | Melee, Ranged or Vital Spell | +0 | 2 | none | 0 |
 | Support (Shield Ally, Mend Ally...) with a backup weapon | | | | 0 |
 
@@ -2620,10 +2620,26 @@ measured 4, a two-hander cost the same as Damage +1 and gave up the
 shield's Parry besides, so it only made sense alongside Damage +1. Players
 get the same kit for a nominal Might investment, so better kit should be a
 cheap upgrade for an enemy too, even if it comes out a little better on
-paper: heavy one-handers and heavy bows are free, two-handers 2. With the
+paper: two-handers 2, the heavy one-hander and heavy bow 1. With the
 Brute's two-hander 2 points cheaper, every Level plays a point or so
 harder: 94 / 95 / 90 / 93 / 92% of days won, Down 14-18%, Wounded 40-46%,
 4.3-5.2 rounds, acts again 43-60 (`v3p_tune.txt`, "gear cheaper").
+
+A quick pass on the kit itself (same budget, `v3p_tune.txt`): with heavy
+kit free, every sword-and-shield enemy on a heavy weapon and shield and
+the archer on a heavy bow cost the party 4-7 points of days won at every
+Level (86-90%, Down about a fifth), so those two went back to 1. Every
+melee enemy on a two-hander at 2 left days about where they were (91-96%)
+with Down a few points up and fights 0.7 rounds shorter (no shield, 2
+Health spent), so 2 stands.
+
+**Is Accuracy worth more to a debuff-heavy enemy?** In principle yes (an
+effect only lands on a hit), but not in the sim yet. Accuracy +1 reads
+2.1 / 3.7 Health on the bought-back roster and 1.5 / 1.9 on the
+redesigned one (`v3p_acc_*.txt`). The light effects read small a stack,
+and an enemy that didn't buy its Damage back hits for less, so each
+extra hit carries less. If the balance-weights pass values the effects
+higher, Accuracy rises with them. Damage +1 reads 3.4-5.6 on either.
 
 **On-hit effects, a stack a pick, up to 4** (worth per enemy, Levels
 2 / 3, at 1 / 2 / 4 stacks):

@@ -513,8 +513,12 @@ ABILITY_HEALTH_V3P = dict(ABILITY_HEALTH_V3, **{
 # enemy too, even if it comes out a little better on paper. Measured:
 # heavy one-hander and shield 1.3, two-handers 3.7-4.5, against Sword and
 # Shield.
-LOADOUT_HEALTH_V3P = {"Sword and Shield": 0, "Heavy Weapon and Shield": 0, "Light Two-Handed": 2,
-                      "Two-Handed Weapon": 2, "Bow": 0, "Heavy Bow": 0}
+# Quick pass (v3p_tune.txt): with heavy kit free, every Level lost 4-7
+# points of days won (it's a real +1 Damage for -1 Accuracy), so the heavy
+# one-hander and heavy bow went back to 1. Two-handers at 2 on every melee
+# enemy left days about where they were (fights 0.7 rounds shorter).
+LOADOUT_HEALTH_V3P = {"Sword and Shield": 0, "Heavy Weapon and Shield": 1, "Light Two-Handed": 2,
+                      "Two-Handed Weapon": 2, "Bow": 0, "Heavy Bow": 1}
 REPEATABLE_V3 = {"Accuracy +1", "Parry and Dodge +1", "Vital, Mental and Vigilant +1", "Resist +1",
                  "Enhanced Health", "Enhanced Speed"}
 RIDER_CAP_V3 = 4
