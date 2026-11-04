@@ -1,0 +1,62 @@
+{
+ "bare|ability:Poison (Bleeding)|ability:Poison (Bleeding)": {
+  "2": {
+   "health": -2.5225785163168033,
+   "rounds": -1.6966875000000003,
+   "wins": 99.98125,
+   "skipped": [],
+   "down": -5.38125
+  },
+  "3": {
+   "health": -0.9445907227280084,
+   "rounds": -1.2970625,
+   "wins": 99.96875,
+   "skipped": [],
+   "down": 0.40625000000000105
+  }
+ },
+ "bare|ability:Strike (Necrotic)|ability:Strike (Necrotic)|ability:Strike (Necrotic)|ability:Strike (Necrotic)": {
+  "2": {
+   "health": -2.0191769804054003,
+   "rounds": -1.1590625,
+   "wins": 99.89375,
+   "skipped": [],
+   "down": -2.9625
+  },
+  "3": {
+   "health": -2.3878987246080974,
+   "rounds": -0.955625,
+   "wins": 99.88749999999999,
+   "skipped": [],
+   "down": -2.31875
+  }
+ },
+ "bare|ability:Strike (Harrying)|ability:Strike (Harrying)|ability:Strike (Harrying)|ability:Strike (Harrying)": {
+  "2": {
+   "health": -1.6863265732264714,
+   "rounds": -1.1403125000000003,
+   "wins": 99.6625,
+   "skipped": [],
+   "down": -1.8875000000000002
+  },
+  "3": {
+   "health": -1.5726296792079428,
+   "rounds": -0.9324374999999998,
+   "wins": 99.8125,
+   "skipped": [],
+   "down": 0.18750000000000017
+  }
+ },
+ "_meta": {
+  "2": {
+   "base": 11.936039244186047,
+   "slope": 1.4095675872093025,
+   "rounds": 3.8966875
+  },
+  "3": {
+   "base": 11.899516907511094,
+   "slope": 0.8162689902152112,
+   "rounds": 3.529375
+  }
+ }
+}

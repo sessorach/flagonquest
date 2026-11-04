@@ -2567,3 +2567,150 @@ the table from Level 3) and Level 1 a little less. Should Heavy and
 Powerful Weapon merge into one equipment entry, and should it be a PC's
 two-hander (Damage +2, Accuracy −1, no weapon Defense)? Should the
 catalog's Enhanced Health be +1 or +3?
+
+### Building an enemy on paper: loadouts, stacking effects, the budget by Level (2026-11-04)
+
+The designer's direction for the pruned v3, round two:
+
+- **It has to work on paper.** The game is meant to be a book, like any
+  tabletop game. Building an enemy should be a series of "pick from this
+  list" steps, penciled in and tallied at the end. Once the numbers are
+  settled, simplify the builder back down to that. A "monster manual" of
+  varied stat blocks is the test of it.
+- **The weapon is a loadout, not an Ability.** An enemy in melee is
+  presumed to carry a sword and shield. The choices are heavy versus
+  light and two-handed versus a shield, alongside bows and spells. The
+  loadout is what the enemy does with its turn. Powerful Weapon and
+  Powerful Spell become plain extra damage, bought once.
+- **Some Abilities once, some again and again.** Damage +1 (the buy-back)
+  and Powerful Weapon or Spell once. Stats, defense bonuses and on-hit
+  effects can be bought repeatedly. On-hit stacks stop at 3-4 ("anything
+  more than that is probably egregious"); an archer that lands 3
+  Crippled should swing the fight, and the players can wait it out or
+  pack a counter.
+- **The budget is the lever.** If a Level's enemies come out weak against
+  what the players get there, give them more points to spend.
+
+**The steps** (`V3_VERSION = 3`; the sim's `sample_enemies.csv` rows
+PrunedAction / PrunedPicks / PrunedExtra):
+
+1. Level and Slots: the base table (the pruned v3 table above).
+2. Archetype: its bumps (additive, above).
+3. Loadout (the Action), and armor.
+4. Strong and Weak Defense.
+5. Spend the Ability budget: 6 / 7 / 9 / 9 / 9 points at Levels 1-5, per
+   Slot. Unspent points are Health.
+
+**Loadouts** (worth per enemy in Health against Sword and Shield,
+`kit_check.py` `action:` variants on the melee enemies; the numbers are
+the PC weapon table's):
+
+| Loadout | Accuracy | Damage | Parry (weapon Defense) | Price |
+|---|---|---|---|---|
+| Sword and Shield (default) | +1 | 3 | +2 (shield) | 0 |
+| Heavy Weapon and Shield | +0 | 4 | +2 | 1 (read 1.3) |
+| Light Two-Handed | +1 | 4 | +1 | 4 (read 4.5) |
+| Two-Handed Weapon | +0 | 5 | +0 | 4 (read 3.7) |
+| Bow / Heavy Bow | +1 / +0 | 3 / 4 | none | 0 / 1 |
+| Melee, Ranged or Vital Spell | +0 | 2 | none | 0 |
+| Support (Shield Ally, Mend Ally...) with a backup weapon | | | | 0 |
+
+A two-hander costs about what Damage +1 does: one more Damage, and the
+shield's Parry was worth little against these parties.
+
+**On-hit effects, a stack a pick, up to 4** (worth per enemy, Levels
+2 / 3, at 1 / 2 / 4 stacks):
+
+| Effect | 1 stack | 2 stacks | 4 stacks | Price a stack |
+|---|---|---|---|---|
+| Crippled | 0.3 / 0.2 | 0.9 / 0.5 | 2.5 / 1.8 | ½ |
+| Vulnerable | 0.1 / 0.3 | 0.3 / 0.7 | 0.6 / 1.5 | ½ |
+| Slowed | 0.0 / 0.1 | 0.1 / 0.4 | 0.2 / 0.8 | ½ |
+| Frightened | 0.2 / 0.2 | 0.3 / 0.2 | 0.3 / 0.2 | ½ |
+| Taunted | 0.2 / 0.4 | 0.2 / 0.4 | 0.2 / 0.4 | ½ |
+| Necrotic | 0.6 / 0.7 | 1.4 / 1.1 | 2.0 / 1.6 | ½ |
+| Harried | 0.8 / 1.0 | 1.5 / 1.6 | 2.3 / 2.4 | 1 |
+| Bleeding (Poison) | 2.3 / 3.2 | 3.5 / 5.1 | — | 2½ |
+
+Crippled grows faster than a stack at a time, which fits the designer's
+read that a big stack should swing a fight. Frightened and Taunted do
+all they do with one stack in the sim (whoever is Frightened or Taunted
+is, however many stacks), so a second stack only lasts longer. The
+light effects read small in the sim, which may undervalue them; that's
+for the balance-weights pass.
+
+**Other Abilities** (prices for the pruned v3,
+`enemy_builder_pcstyle.ABILITY_HEALTH_V3P`):
+
+- *Once:* Damage +1 (4), Powerful Weapon (4; +1 Damage on weapon
+  attacks, read 4.4), Powerful Spell (3; +1 on spells, read 2.6),
+  Enhanced Range (3), Attunement (3), Improved Support, Durable,
+  Omniguard, Resist (an element), Action (Parting Shot), Action
+  (Taunting) (1 each), Retribution Aura, Battering, Cleaving, Enhanced
+  Reflexes (2), Grappling (3).
+- *Again and again, up to the player caps:* Accuracy +1 (2), Parry and
+  Dodge +1 (1), Vital, Mental and Vigilant +1 (1), Resist +1 (4),
+  Enhanced Health (1), Enhanced Speed (1).
+- *Armor:* Unarmored −1, Light 0, Medium 1, Heavy 2.
+
+**The roster on paper**, as redesigned (the extra points at Levels 3-5
+go to Accuracy +1 first):
+
+| Enemy | Archetype | Loadout, armor | Picks |
+|---|---|---|---|
+| Brute | Bruiser | Two-Handed Weapon, Light (Medium at 3) | Accuracy +1, Crippling ×2 |
+| Hedge Knight | Defender | Sword and Shield, Medium (Heavy at 3) | Accuracy +1, Taunting ×2, Action (Taunting), Omniguard, Harrying |
+| Skulking Footpad | Skirmisher | Sword and Shield, Light | Poison (Bleeding), Accuracy +1, Parting Shot, Slowing ×2 |
+| Marsh Archer | Striker | Bow, Light | Accuracy +1, Enhanced Range, Crippling ×2, Vulnerable ×2 |
+| Grave Caller | Striker | Vital Spell, Unarmored | Powerful Spell, Accuracy +1, Necrotic ×2, Vulnerable ×2 |
+| Ember Caster | Striker | Ranged Spell, Unarmored | Powerful Spell, Accuracy +1, Attunement (Fire) |
+| Warpriest | Backup | Shield Ally (mace backup), Medium | Improved Support, Durable, Accuracy +1, Frightening ×2, Harrying |
+
+At Level 3 that comes to (Accuracy before the weapon's own +1 is in the
+Acc column already):
+
+| Enemy | Acc | Damage | Parry | Dodge | Vital | Mental | Resist (P / E) | Health | Speed |
+|---|---|---|---|---|---|---|---|---|---|
+| Brute | 6 | 8 | 14 | 11 | 16 | 10 | 5 / 3 | 13 | 4 |
+| Hedge Knight | 7 | 5 | 18 | 13 | 14 | 10 | 7 / 4 | 12 | 3 |
+| Skulking Footpad | 8 | 5 | 16 | 16 | 12 | 10 | 4 / 3 | 14 | 6 |
+| Marsh Archer | 7 | 6 | — | 14 | 12 | 10 | 4 / 3 | 13 | 5 |
+| Grave Caller | 6 | 6 Shadow | — | 12 | 10 | 14 | 3 / 3 | 14 | 5 |
+| Ember Caster | 6 | 6 Fire | — | 12 | 10 | 14 | 3 / 3 | 13 | 5 |
+| Warpriest | 6 (mace) | 5 | 12 | 11 | 14 | 16 | 6 / 4 | 13 | 4 |
+
+**Tuning the budget** (`pruned_tune.py`, middle of each band; days won
+(worst party) / F1 Down / F1 Wounded / rounds / acts again):
+
+| Level | 7 points | extra on the row's own picks | extra on offense first |
+|---|---|---|---|
+| 1 | 91 (80) / 19 / 47 / 4.9 / 44 | −1: 94 (87) / 17 / 45 / 4.5 / 41 | |
+| 2 | 95 (90) / 13 / 39 / 4.6 / 47 | | |
+| 3 | 96 (80) / 8 / 34 / 4.1 / 44 | +1: 89 (69) / 11 / 36 / 4.6 / 45 | +2: 91 (66) / 15 / 45 / 4.2 / 46 |
+| 4 | 97 (87) / 10 / 32 / 4.6 / 57 | +1: 92 (77) / 12 / 34 / 5.1 / 59 | +2: 94 (80) / 14 / 41 / 4.6 / 57 |
+| 5 | 95 (73) / 8 / 34 / 5.0 / 57 | +1: 90 (68) / 11 / 36 / 5.5 / 59 | +2: 92 (72) / 13 / 44 / 5.1 / 58 |
+
+(Level 1 and 2 columns are the price-fixed run; +4 and +6 on offense
+went too far: 74-82% of days, Down about a fifth to a third.)
+
+- **At 7 points, Levels 3-5 were soft inside a fight** (Down 8-10%,
+  Wounded about a third) while winning 95-97% of days.
+- **Extra points on the rows' own mechanics lengthen fights** (to 5-5.5
+  rounds) and cost the party days faster than they raise the stakes in
+  a fight: more Crippled and better defenses grind.
+- **Extra points on offense first** raise Down and Wounded to target
+  without lengthening fights. Two points (Accuracy +1) at Levels 3-5
+  land every reading near its target; the day rate sits a couple of
+  points under 93 at Levels 3 and 5, and the weakest party feels it.
+- **Level 1 plays best a point lighter** (6 points).
+
+So the budget runs **6 / 7 / 9 / 9 / 9** (`tunables.V3_PRUNED_EXTRA`).
+In practice the extra at Levels 3-5 is the Accuracy the base table gave
+up, which says a pruned enemy at those Levels should usually buy its
+Accuracy back.
+
+**Open:** v3 as adopted is still the sim default; whether the pruned v3
+takes its place. The prices are measured against the sample parties and
+get their review against the balance weights next, the light on-hit
+effects first. Levels 4-5 are still read against grown Level 3
+characters.

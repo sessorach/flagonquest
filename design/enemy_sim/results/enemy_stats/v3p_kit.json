@@ -1,0 +1,534 @@
+{
+ "bare|action:Sword and Shield": {
+  "2": {
+   "health": 0.42274943092909995,
+   "rounds": 0.20968749999999936,
+   "wins": 99.33125000000001,
+   "skipped": [],
+   "down": 0.7124999999999992
+  },
+  "3": {
+   "health": -0.046070106537555895,
+   "rounds": 0.1844999999999999,
+   "wins": 99.7375,
+   "skipped": [],
+   "down": -0.7062499999999999
+  }
+ },
+ "bare|action:Heavy Weapon and Shield": {
+  "2": {
+   "health": 0.8494971810689506,
+   "rounds": 0.23524999999999974,
+   "wins": 99.05625,
+   "skipped": [],
+   "down": 2.21875
+  },
+  "3": {
+   "health": 0.8026831702705048,
+   "rounds": 0.20524999999999993,
+   "wins": 99.66874999999999,
+   "skipped": [],
+   "down": 0.9500000000000008
+  }
+ },
+ "bare|action:Light Two-Handed": {
+  "2": {
+   "health": 1.968580583790695,
+   "rounds": 0.10356249999999978,
+   "wins": 98.96249999999999,
+   "skipped": [],
+   "down": 5.206250000000001
+  },
+  "3": {
+   "health": 2.880823054640107,
+   "rounds": 0.0741875000000003,
+   "wins": 99.61875,
+   "skipped": [],
+   "down": 4.525000000000001
+  }
+ },
+ "bare|action:Two-Handed Weapon": {
+  "2": {
+   "health": 1.5686739036845878,
+   "rounds": -0.04487500000000022,
+   "wins": 99.35625,
+   "skipped": [],
+   "down": 5.831249999999999
+  },
+  "3": {
+   "health": 2.576297590347283,
+   "rounds": -0.038812499999999694,
+   "wins": 99.7375,
+   "skipped": [],
+   "down": 6.3062499999999995
+  }
+ },
+ "bare|ability:Strike (Crippling)": {
+  "2": {
+   "health": 0.3081567258637883,
+   "rounds": 0.12174999999999958,
+   "wins": 99.41250000000001,
+   "skipped": [],
+   "down": 0.9249999999999994
+  },
+  "3": {
+   "health": 0.1800274298773545,
+   "rounds": 0.05906250000000002,
+   "wins": 99.71875,
+   "skipped": [],
+   "down": 0.20625000000000088
+  }
+ },
+ "bare|ability:Strike (Crippling)|ability:Strike (Crippling)": {
+  "2": {
+   "health": 0.8943551775784765,
+   "rounds": 0.3513124999999997,
+   "wins": 98.93125,
+   "skipped": [],
+   "down": 2.6999999999999997
+  },
+  "3": {
+   "health": 0.5157911096203518,
+   "rounds": 0.19481250000000028,
+   "wins": 99.51875,
+   "skipped": [],
+   "down": 0.6125000000000005
+  }
+ },
+ "bare|ability:Strike (Crippling)|ability:Strike (Crippling)|ability:Strike (Crippling)|ability:Strike (Crippling)": {
+  "2": {
+   "health": 2.5491643744860304,
+   "rounds": 0.9358124999999999,
+   "wins": 97.29375,
+   "skipped": [],
+   "down": 6.731249999999999
+  },
+  "3": {
+   "health": 1.8480775137814607,
+   "rounds": 0.6319999999999997,
+   "wins": 98.63125000000001,
+   "skipped": [],
+   "down": 2.8375000000000012
+  }
+ },
+ "bare|ability:Strike (Slowing)": {
+  "2": {
+   "health": 0.043231343110439455,
+   "rounds": 0.014749999999999375,
+   "wins": 99.6375,
+   "skipped": [],
+   "down": 0.18750000000000017
+  },
+  "3": {
+   "health": 0.1129577345404014,
+   "rounds": 0.02012500000000017,
+   "wins": 99.78125,
+   "skipped": [],
+   "down": 0.38750000000000034
+  }
+ },
+ "bare|ability:Strike (Slowing)|ability:Strike (Slowing)": {
+  "2": {
+   "health": 0.10173157383227578,
+   "rounds": 0.044562499999999616,
+   "wins": 99.6125,
+   "skipped": [],
+   "down": 0.3250000000000003
+  },
+  "3": {
+   "health": 0.3823449593697949,
+   "rounds": 0.0653125000000001,
+   "wins": 99.66874999999999,
+   "skipped": [],
+   "down": 0.7062499999999999
+  }
+ },
+ "bare|ability:Strike (Slowing)|ability:Strike (Slowing)|ability:Strike (Slowing)|ability:Strike (Slowing)": {
+  "2": {
+   "health": 0.18481463627153386,
+   "rounds": 0.1012499999999994,
+   "wins": 99.58749999999999,
+   "skipped": [],
+   "down": 0.4187499999999997
+  },
+  "3": {
+   "health": 0.7697036635484606,
+   "rounds": 0.15518750000000026,
+   "wins": 99.51875,
+   "skipped": [],
+   "down": 1.2062500000000003
+  }
+ },
+ "bare|ability:Strike (Vulnerable)": {
+  "2": {
+   "health": 0.0953229203455407,
+   "rounds": 0.003937500000000149,
+   "wins": 99.59375,
+   "skipped": [],
+   "down": 0.5437499999999997
+  },
+  "3": {
+   "health": 0.2614307696670472,
+   "rounds": 0.008375000000000021,
+   "wins": 99.80624999999999,
+   "skipped": [],
+   "down": 0.9875000000000009
+  }
+ },
+ "bare|ability:Strike (Vulnerable)|ability:Strike (Vulnerable)": {
+  "2": {
+   "health": 0.2810552881702853,
+   "rounds": 0.013749999999999929,
+   "wins": 99.58125,
+   "skipped": [],
+   "down": 1.4312500000000006
+  },
+  "3": {
+   "health": 0.731100808127252,
+   "rounds": 0.02631249999999996,
+   "wins": 99.74374999999999,
+   "skipped": [],
+   "down": 2.4875000000000007
+  }
+ },
+ "bare|ability:Strike (Vulnerable)|ability:Strike (Vulnerable)|ability:Strike (Vulnerable)|ability:Strike (Vulnerable)": {
+  "2": {
+   "health": 0.5857370080404614,
+   "rounds": 0.03074999999999939,
+   "wins": 99.49375,
+   "skipped": [],
+   "down": 2.4937500000000004
+  },
+  "3": {
+   "health": 1.5066210649415137,
+   "rounds": 0.0483125000000002,
+   "wins": 99.59375,
+   "skipped": [],
+   "down": 4.3374999999999995
+  }
+ },
+ "bare|ability:Strike (Frightening)": {
+  "2": {
+   "health": 0.22275097766767218,
+   "rounds": 0.09356249999999999,
+   "wins": 99.55625,
+   "skipped": [],
+   "down": 0.5187499999999998
+  },
+  "3": {
+   "health": 0.15899902338560148,
+   "rounds": 0.04587500000000011,
+   "wins": 99.725,
+   "skipped": [],
+   "down": 0.13750000000000012
+  }
+ },
+ "bare|ability:Strike (Frightening)|ability:Strike (Frightening)": {
+  "2": {
+   "health": 0.27340666592766844,
+   "rounds": 0.12068749999999984,
+   "wins": 99.5125,
+   "skipped": [],
+   "down": 0.6124999999999992
+  },
+  "3": {
+   "health": 0.18902301189090018,
+   "rounds": 0.07243749999999993,
+   "wins": 99.70625,
+   "skipped": [],
+   "down": 0.15625000000000083
+  }
+ },
+ "bare|ability:Strike (Frightening)|ability:Strike (Frightening)|ability:Strike (Frightening)|ability:Strike (Frightening)": {
+  "2": {
+   "health": 0.2945325369348276,
+   "rounds": 0.13306249999999942,
+   "wins": 99.46875,
+   "skipped": [],
+   "down": 0.6062499999999998
+  },
+  "3": {
+   "health": 0.20640695867814204,
+   "rounds": 0.08681250000000018,
+   "wins": 99.68125,
+   "skipped": [],
+   "down": 0.16250000000000014
+  }
+ },
+ "bare|ability:Strike (Taunting)": {
+  "2": {
+   "health": 0.18517554193852637,
+   "rounds": 0.03437499999999982,
+   "wins": 99.52499999999999,
+   "skipped": [],
+   "down": 0.4187499999999997
+  },
+  "3": {
+   "health": 0.3877415762764801,
+   "rounds": 0.011624999999999996,
+   "wins": 99.69375000000001,
+   "skipped": [],
+   "down": 1.100000000000001
+  }
+ },
+ "bare|ability:Strike (Taunting)|ability:Strike (Taunting)": {
+  "2": {
+   "health": 0.2282754122702763,
+   "rounds": 0.042625000000000135,
+   "wins": 99.5,
+   "skipped": [],
+   "down": 0.5375000000000005
+  },
+  "3": {
+   "health": 0.39887997014581855,
+   "rounds": 0.011062499999999975,
+   "wins": 99.6875,
+   "skipped": [],
+   "down": 1.1062500000000002
+  }
+ },
+ "bare|ability:Strike (Taunting)|ability:Strike (Taunting)|ability:Strike (Taunting)|ability:Strike (Taunting)": {
+  "2": {
+   "health": 0.23487225228337205,
+   "rounds": 0.04375000000000018,
+   "wins": 99.49375,
+   "skipped": [],
+   "down": 0.5625000000000004
+  },
+  "3": {
+   "health": 0.40069724881018987,
+   "rounds": 0.011375000000000135,
+   "wins": 99.69375000000001,
+   "skipped": [],
+   "down": 1.1062500000000002
+  }
+ },
+ "bare|ability:Strike (Necrotic)": {
+  "2": {
+   "health": -0.37563061820562876,
+   "rounds": -0.3155000000000001,
+   "wins": 99.7875,
+   "skipped": [],
+   "down": -0.78125
+  },
+  "3": {
+   "health": -0.3383975338103505,
+   "rounds": -0.23775000000000013,
+   "wins": 99.75,
+   "skipped": [],
+   "down": -0.26874999999999954
+  }
+ },
+ "bare|ability:Strike (Necrotic)|ability:Strike (Necrotic)": {
+  "2": {
+   "health": -0.62659926323686,
+   "rounds": -0.6075625000000002,
+   "wins": 99.775,
+   "skipped": [],
+   "down": -0.9187500000000002
+  },
+  "3": {
+   "health": -0.9419626203399939,
+   "rounds": -0.4982500000000001,
+   "wins": 99.7875,
+   "skipped": [],
+   "down": -0.8999999999999995
+  }
+ },
+ "bare|ability:Strike (Necrotic)|ability:Strike (Necrotic)|ability:Strike (Necrotic)|ability:Strike (Necrotic)": {
+  "2": {
+   "health": -1.7285241793907407,
+   "rounds": -0.7180625000000003,
+   "wins": 99.725,
+   "skipped": [
+    "Hedge Knight (L2)",
+    "Warpriest (L2)"
+   ],
+   "down": -2.5624999999999996
+  },
+  "3": {
+   "health": -2.1957304187301134,
+   "rounds": -0.7333124999999998,
+   "wins": 99.88125,
+   "skipped": [
+    "Hedge Knight (L3)"
+   ],
+   "down": -2.062499999999999
+  }
+ },
+ "bare|ability:Strike (Harrying)": {
+  "2": {
+   "health": -0.2265404871710929,
+   "rounds": -0.2993750000000004,
+   "wins": 99.6375,
+   "skipped": [],
+   "down": 0.08750000000000008
+  },
+  "3": {
+   "health": -0.04699476311078759,
+   "rounds": -0.2253750000000001,
+   "wins": 99.76875,
+   "skipped": [],
+   "down": 0.6312499999999999
+  }
+ },
+ "bare|ability:Strike (Harrying)|ability:Strike (Harrying)": {
+  "2": {
+   "health": -0.5176005960099304,
+   "rounds": -0.5849375000000001,
+   "wins": 99.55000000000001,
+   "skipped": [],
+   "down": 0.031249999999999334
+  },
+  "3": {
+   "health": -0.4106587423546962,
+   "rounds": -0.47143749999999995,
+   "wins": 99.775,
+   "skipped": [],
+   "down": 0.76875
+  }
+ },
+ "bare|ability:Strike (Harrying)|ability:Strike (Harrying)|ability:Strike (Harrying)|ability:Strike (Harrying)": {
+  "2": {
+   "health": -1.5169793226831798,
+   "rounds": -0.6931875000000001,
+   "wins": 99.51875,
+   "skipped": [
+    "Hedge Knight (L2)",
+    "Warpriest (L2)"
+   ],
+   "down": -1.8062499999999995
+  },
+  "3": {
+   "health": -1.515354426708108,
+   "rounds": -0.6932499999999999,
+   "wins": 99.7375,
+   "skipped": [
+    "Hedge Knight (L3)"
+   ],
+   "down": 0.1187500000000008
+  }
+ },
+ "bare|ability:Poison (Bleeding)": {
+  "2": {
+   "health": -0.6851819866825822,
+   "rounds": -0.9074375000000003,
+   "wins": 99.9,
+   "skipped": [],
+   "down": -1.1499999999999997
+  },
+  "3": {
+   "health": 0.2149508856244606,
+   "rounds": -0.7201249999999999,
+   "wins": 99.875,
+   "skipped": [],
+   "down": 1.4
+  }
+ },
+ "bare|ability:Poison (Bleeding)|ability:Poison (Bleeding)": {
+  "2": {
+   "health": 0.04756221111434707,
+   "rounds": -0.15600000000000014,
+   "wins": 99.60625,
+   "skipped": [
+    "Brute (L2)",
+    "Ember Caster (L2)",
+    "Grave Caller (L2)",
+    "Hedge Knight (L2)",
+    "Marsh Archer (L2)",
+    "Skulking Footpad (L2)",
+    "Warpriest (L2)"
+   ],
+   "down": 0.4500000000000004
+  },
+  "3": {
+   "health": -0.6736396933708605,
+   "rounds": -0.38824999999999976,
+   "wins": 99.90625,
+   "skipped": [
+    "Brute (L3)",
+    "Hedge Knight (L3)",
+    "Marsh Archer (L3)",
+    "Skulking Footpad (L3)",
+    "Warpriest (L3)"
+   ],
+   "down": 1.675
+  }
+ },
+ "bare|ability:Poison (Bleeding)|ability:Poison (Bleeding)|ability:Poison (Bleeding)|ability:Poison (Bleeding)": {
+  "2": {
+   "health": 0.04756221111434707,
+   "rounds": -0.15600000000000014,
+   "wins": 99.60625,
+   "skipped": [
+    "Brute (L2)",
+    "Ember Caster (L2)",
+    "Grave Caller (L2)",
+    "Hedge Knight (L2)",
+    "Marsh Archer (L2)",
+    "Skulking Footpad (L2)",
+    "Warpriest (L2)"
+   ],
+   "down": 0.4500000000000004
+  },
+  "3": {
+   "health": 0.37688809806921536,
+   "rounds": -0.14024999999999999,
+   "wins": 99.8125,
+   "skipped": [
+    "Brute (L3)",
+    "Ember Caster (L3)",
+    "Grave Caller (L3)",
+    "Hedge Knight (L3)",
+    "Marsh Archer (L3)",
+    "Skulking Footpad (L3)",
+    "Warpriest (L3)"
+   ],
+   "down": 1.3687500000000006
+  }
+ },
+ "bare|ability:Powerful Weapon": {
+  "2": {
+   "health": 1.6721120457422138,
+   "rounds": -0.09293750000000012,
+   "wins": 98.875,
+   "skipped": [],
+   "down": 4.8375
+  },
+  "3": {
+   "health": 2.691114673825154,
+   "rounds": -0.1001875000000001,
+   "wins": 99.53125,
+   "skipped": [],
+   "down": 5.256250000000001
+  }
+ },
+ "bare|ability:Powerful Spell": {
+  "2": {
+   "health": -0.2863167772155104,
+   "rounds": -0.1669375000000004,
+   "wins": 99.63125000000001,
+   "skipped": [],
+   "down": 0.8562500000000001
+  },
+  "3": {
+   "health": 0.07072287150396868,
+   "rounds": -0.10374999999999979,
+   "wins": 99.7375,
+   "skipped": [],
+   "down": 2.5312500000000018
+  }
+ },
+ "_meta": {
+  "2": {
+   "base": 11.936039244186047,
+   "slope": 1.4095675872093025,
+   "rounds": 3.8966875
+  },
+  "3": {
+   "base": 11.899516907511094,
+   "slope": 0.8162689902152112,
+   "rounds": 3.529375
+  }
+ }
+}

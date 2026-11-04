@@ -1,0 +1,45 @@
+redesigned, no extra         L1 days  90.9 (worst  80) Down  19 Wnd  47 rds 4.9 again 44
+redesigned, no extra         L2 days  95.7 (worst  91) Down  12 Wnd  37 rds 4.6 again 45
+redesigned, no extra         L3 days  96.0 (worst  83) Down   8 Wnd  33 rds 4.1 again 42
+redesigned, no extra         L4 days  97.1 (worst  89) Down   9 Wnd  29 rds 4.5 again 56
+redesigned, no extra         L5 days  94.3 (worst  72) Down   7 Wnd  30 rds 4.9 again 55
+L1 -1, L3-5 +2               L1 days  94.4 (worst  85) Down  16 Wnd  43 rds 4.4 again 39
+L1 -1, L3-5 +2               L2 days  95.7 (worst  91) Down  12 Wnd  37 rds 4.6 again 45
+L1 -1, L3-5 +2               L3 days  86.0 (worst  61) Down  14 Wnd  40 rds 4.8 again 48
+L1 -1, L3-5 +2               L4 days  90.9 (worst  73) Down  12 Wnd  33 rds 5.0 again 59
+L1 -1, L3-5 +2               L5 days  89.7 (worst  62) Down   9 Wnd  33 rds 5.5 again 59
+L1 -1, L3-5 +4               L1 days  94.4 (worst  85) Down  16 Wnd  43 rds 4.4 again 39
+L1 -1, L3-5 +4               L2 days  95.7 (worst  91) Down  12 Wnd  37 rds 4.6 again 45
+L1 -1, L3-5 +4               L3 days  80.0 (worst  49) Down  20 Wnd  50 rds 4.8 again 49
+L1 -1, L3-5 +4               L4 days  83.2 (worst  61) Down  18 Wnd  47 rds 5.2 again 61
+L1 -1, L3-5 +4               L5 days  81.7 (worst  58) Down  19 Wnd  49 rds 5.7 again 61
+L1 -1, L3 +2, L4 +3, L5 +4   L1 days  94.4 (worst  85) Down  16 Wnd  43 rds 4.4 again 39
+L1 -1, L3 +2, L4 +3, L5 +4   L2 days  95.7 (worst  91) Down  12 Wnd  37 rds 4.6 again 45
+L1 -1, L3 +2, L4 +3, L5 +4   L3 days  86.0 (worst  61) Down  14 Wnd  40 rds 4.8 again 48
+L1 -1, L3 +2, L4 +3, L5 +4   L4 days  84.5 (worst  65) Down  18 Wnd  45 rds 5.1 again 59
+L1 -1, L3 +2, L4 +3, L5 +4   L5 days  81.7 (worst  58) Down  19 Wnd  49 rds 5.7 again 61
+prices fixed, L1 -1          L1 days  94.2 (worst  87) Down  17 Wnd  45 rds 4.5 again 41
+prices fixed, L1 -1          L2 days  95.1 (worst  90) Down  13 Wnd  39 rds 4.6 again 47
+prices fixed, L1 -1          L3 days  95.7 (worst  80) Down   8 Wnd  34 rds 4.1 again 44
+prices fixed, L1 -1          L4 days  96.8 (worst  87) Down  10 Wnd  32 rds 4.6 again 57
+prices fixed, L1 -1          L5 days  94.5 (worst  73) Down   8 Wnd  34 rds 5.0 again 57
+prices fixed, L1 -1, L3-5 +1 L1 days  94.2 (worst  87) Down  17 Wnd  45 rds 4.5 again 41
+prices fixed, L1 -1, L3-5 +1 L2 days  95.1 (worst  90) Down  13 Wnd  39 rds 4.6 again 47
+prices fixed, L1 -1, L3-5 +1 L3 days  88.8 (worst  69) Down  11 Wnd  36 rds 4.6 again 45
+prices fixed, L1 -1, L3-5 +1 L4 days  91.7 (worst  77) Down  12 Wnd  34 rds 5.1 again 59
+prices fixed, L1 -1, L3-5 +1 L5 days  90.0 (worst  68) Down  11 Wnd  36 rds 5.5 again 59
+prices fixed, L1 -1, L3-5 +2 offense L1 days  94.2 (worst  87) Down  17 Wnd  45 rds 4.5 again 41
+prices fixed, L1 -1, L3-5 +2 offense L2 days  95.1 (worst  90) Down  13 Wnd  39 rds 4.6 again 47
+prices fixed, L1 -1, L3-5 +2 offense L3 days  90.8 (worst  66) Down  15 Wnd  45 rds 4.2 again 46
+prices fixed, L1 -1, L3-5 +2 offense L4 days  94.1 (worst  80) Down  14 Wnd  41 rds 4.6 again 57
+prices fixed, L1 -1, L3-5 +2 offense L5 days  92.2 (worst  72) Down  13 Wnd  44 rds 5.1 again 58
+prices fixed, L1 -1, L3-5 +4 offense L1 days  94.2 (worst  87) Down  17 Wnd  45 rds 4.5 again 41
+prices fixed, L1 -1, L3-5 +4 offense L2 days  95.1 (worst  90) Down  13 Wnd  39 rds 4.6 again 47
+prices fixed, L1 -1, L3-5 +4 offense L3 days  79.8 (worst  48) Down  22 Wnd  51 rds 4.8 again 50
+prices fixed, L1 -1, L3-5 +4 offense L4 days  81.6 (worst  58) Down  20 Wnd  46 rds 5.3 again 62
+prices fixed, L1 -1, L3-5 +4 offense L5 days  81.7 (worst  54) Down  19 Wnd  48 rds 5.7 again 62
+prices fixed, L1 -1, L3-5 +6 offense L1 days  94.2 (worst  87) Down  17 Wnd  45 rds 4.5 again 41
+prices fixed, L1 -1, L3-5 +6 offense L2 days  95.1 (worst  90) Down  13 Wnd  39 rds 4.6 again 47
+prices fixed, L1 -1, L3-5 +6 offense L3 days  76.0 (worst  37) Down  32 Wnd  63 rds 4.4 again 48
+prices fixed, L1 -1, L3-5 +6 offense L4 days  76.1 (worst  40) Down  32 Wnd  63 rds 4.9 again 62
+prices fixed, L1 -1, L3-5 +6 offense L5 days  73.6 (worst  46) Down  31 Wnd  62 rds 5.4 again 63

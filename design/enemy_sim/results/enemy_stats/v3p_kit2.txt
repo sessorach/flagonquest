@@ -1,0 +1,10 @@
+== Level 2: base lost 11.9 pts, 3.90 rounds, wins 99.6%; 1 Health per Slot = 1.41 pts
+   the roster's own Abilities (base over bare):  +0.0 Health  rounds -0.16
+   bare|ability:Poison (Bleeding)|ability:Poison (Bleeding)  -2.5 Health  rounds -1.70  Down -5.4 pts
+   bare|ability:Strike (Necrotic)|ability:Strike (Necrotic)|ability:Strike (Necrotic)|ability:Strike (Necrotic)  -2.0 Health  rounds -1.16  Down -3.0 pts
+   bare|ability:Strike (Harrying)|ability:Strike (Harrying)|ability:Strike (Harrying)|ability:Strike (Harrying)  -1.7 Health  rounds -1.14  Down -1.9 pts
+== Level 3: base lost 11.9 pts, 3.53 rounds, wins 99.8%; 1 Health per Slot = 0.82 pts
+   the roster's own Abilities (base over bare):  +0.4 Health  rounds -0.14
+   bare|ability:Poison (Bleeding)|ability:Poison (Bleeding)  -0.9 Health  rounds -1.30  Down +0.4 pts
+   bare|ability:Strike (Necrotic)|ability:Strike (Necrotic)|ability:Strike (Necrotic)|ability:Strike (Necrotic)  -2.4 Health  rounds -0.96  Down -2.3 pts
+   bare|ability:Strike (Harrying)|ability:Strike (Harrying)|ability:Strike (Harrying)|ability:Strike (Harrying)  -1.6 Health  rounds -0.93  Down +0.2 pts

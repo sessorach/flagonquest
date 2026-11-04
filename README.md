@@ -15,10 +15,11 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-04 — Enemies with debuffs as standard
 
-Tested how to give enemies more debuffs and mechanics without making fights shorter, then tried a thinner enemy baseline whose Damage and Accuracy go into an Ability budget instead: spent on mechanics, it gives fights of four to five rounds.
+Tested how to give enemies more debuffs and mechanics without making fights shorter, then built a thinner enemy baseline whose Damage and Accuracy go into an Ability budget instead: spent on loadouts and mechanics, it gives fights of four to five rounds at every Level.
 
 - Health, Resist and Defenses set how long a fight lasts; Damage and Accuracy barely do, so they're the ones to trim and buy back.
-- Archetypes now only add (no more Striker or Bruiser cuts), and the enemy Abilities are grouped into equipment, stats, on-hit effects, toughness and actions.
+- Archetypes now only add, an enemy's weapon is a loadout (sword and shield by default, two-handers, bows, spells), on-hit effects stack a pick at a time up to four, and the budget runs 6 / 7 / 9 / 9 / 9 by Level.
+- Building an enemy is meant to be a few pen-and-paper picks, so it can go in a book.
 
 ### 2026-11-03 — Enemies built the way PCs are, and one designer document
 
