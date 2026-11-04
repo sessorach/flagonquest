@@ -48,3 +48,8 @@ gear cheaper, 6/7/9/9/9      L2 days  94.7 (worst  90) Down  14 Wnd  40 rds 4.8 
 gear cheaper, 6/7/9/9/9      L3 days  89.8 (worst  64) Down  16 Wnd  46 rds 4.3 again 48
 gear cheaper, 6/7/9/9/9      L4 days  92.9 (worst  79) Down  14 Wnd  42 rds 4.7 again 59
 gear cheaper, 6/7/9/9/9      L5 days  91.8 (worst  72) Down  14 Wnd  46 rds 5.2 again 60
+heavier kit free             L1 days  88.1 (worst  80) Down  23 Wnd  49 rds 4.6 again 43
+heavier kit free             L2 days  89.7 (worst  78) Down  19 Wnd  46 rds 4.8 again 49
+heavier kit free             L3 days  86.0 (worst  58) Down  22 Wnd  52 rds 4.4 again 48
+heavier kit free             L4 days  88.5 (worst  70) Down  19 Wnd  50 rds 4.8 again 60
+heavier kit free             L5 days  85.8 (worst  55) Down  21 Wnd  51 rds 5.2 again 61
