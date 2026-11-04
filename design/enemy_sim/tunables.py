@@ -440,6 +440,9 @@ V3_PRUNED_ROSTER = 'picks'
 # Extra budget by Level for the pruned v3 ({3: 2} gives Level 3 enemies 2
 # more points), spent down each redesigned row's PrunedExtra list.
 V3_PRUNED_EXTRA = {}
+# 'row' spends extra points down the row's PrunedExtra; 'offense' on
+# Accuracy +1, then Damage +1, first.
+V3_PRUNED_EXTRA_ORDER = 'row'
 # The least of the table's Health an enemy can keep after paying for
 # Abilities and armor (0 lets experiments spend it all).
 V3_HEALTH_FLOOR = 2 / 3

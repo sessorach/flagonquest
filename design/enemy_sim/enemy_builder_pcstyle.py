@@ -494,7 +494,7 @@ ABILITY_HEALTH_V3.update({"Damage +1": 4, "Accuracy +1": 2, "Parry and Dodge +1"
 # about 0.3 rising to 0.5 by the fourth, Vulnerable 0.2-0.4, Slowed 0.1-
 # 0.2; Frightened and Taunted about 0.3 for the first and nothing after),
 # so they're half a point a stack ("two stacks a point"). Necrotic and
-# Harried read 0.5-0.8 a stack, Bleeding about 2.75. Powerful Weapon and
+# Harried read 0.6-0.9 a stack, Necrotic about 0.5, Bleeding 2-2.75. Powerful Weapon and
 # Spell are now plain +1 Damage (4.4 and 2.6 on the enemies that use
 # them). The loadouts are priced from Sword and Shield.
 ABILITY_HEALTH_V3P = dict(ABILITY_HEALTH_V3, **{
@@ -502,6 +502,9 @@ ABILITY_HEALTH_V3P = dict(ABILITY_HEALTH_V3, **{
     "Strike (Frightening)": 0.5, "Strike (Taunting)": 0.5,
     "Poison (Crippling)": 0.5, "Poison (Slowing)": 0.5, "Poison (Vulnerable)": 0.5,
     "Powerful Weapon": 4, "Powerful Spell": 3,
+    # Re-measured with the Health floor off (v3p_kit2): Necrotic about 0.5
+    # a stack, Bleeding 2-2.75.
+    "Strike (Necrotic)": 0.5, "Poison (Necrotic)": 0.5, "Poison (Bleeding)": 2.5,
 })
 LOADOUT_HEALTH_V3P = {"Sword and Shield": 0, "Heavy Weapon and Shield": 1, "Light Two-Handed": 4,
                       "Two-Handed Weapon": 4, "Bow": 0, "Heavy Bow": 1}
