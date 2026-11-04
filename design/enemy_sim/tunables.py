@@ -414,8 +414,9 @@ V3_DEF_GAP = 2
 # 2026-11-03); 1, the first one (one more Skill and Accuracy, smaller
 # archetypes), for the numbers recorded before that; 3, the pruned one
 # (2026-11-04: Damage and Accuracy into the Ability budget, additive
-# archetypes, the rows' PrunedPicks added).
-V3_VERSION = 2
+# archetypes, the rows' PrunedPicks added), the default since the designer
+# adopted it on 2026-11-04.
+V3_VERSION = 3
 # Ability shapes under v3: 'catalog' (as written: Poison (Bleeding) lands
 # 2 stacks, Retribution Aura answers every attacker) or 'v2' (the v2 kit's
 # 1 stack and melee attackers only). 'v2' since 2026-11-03: as written they

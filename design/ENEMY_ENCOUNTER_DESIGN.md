@@ -2733,8 +2733,8 @@ In practice the extra at Levels 3-5 is the Accuracy the base table gave
 up, which says a pruned enemy at those Levels should usually buy its
 Accuracy back.
 
-**Open:** v3 as adopted is still the sim default; whether the pruned v3
-takes its place. The prices are measured against the sample parties and
+The designer made the pruned v3 the default on 2026-11-04
+(`tunables.V3_VERSION = 3`). The prices are measured against the sample parties and
 get their review against the balance weights next, the light on-hit
 effects first. Levels 4-5 are still read against grown Level 3
 characters.
