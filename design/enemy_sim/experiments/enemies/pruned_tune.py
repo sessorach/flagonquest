@@ -25,11 +25,17 @@ def parse(spec):
     """'1:-1/3:2/offense' -> ({1: -1, 3: 2}, 'offense')."""
     parts = [x for x in spec.split("/") if x]
     order = "offense" if "offense" in parts else "row"
-    return {int(L): int(n) for L, n in (x.split(":") for x in parts if ":" in x)}, order
+    swap = {}
+    if "heavy" in parts:
+        swap = {"Sword and Shield": "Heavy Weapon and Shield", "Bow": "Heavy Bow"}
+    if "twohand" in parts:
+        swap = {"Sword and Shield": "Two-Handed Weapon"}
+    return {int(L): int(n) for L, n in (x.split(":") for x in parts if ":" in x)}, order, swap
 
 
 def _job(args):
-    (extra, order), rest = args
+    (extra, order, swap), rest = args
+    T.V3_PRUNED_SWAP = swap
     T.V3_VERSION = 3
     T.V3_PRUNED_EXTRA_ORDER = order
     T.V3_PRUNED_ROSTER = "picks"
@@ -68,7 +74,7 @@ def main():
                 print(f"{label:28s} L{L} days {s['day']:5.1f} (worst {s['worst']:3.0f}) Down {f1['down']:3.0f} "
                       f"Wnd {f1['wounded']:3.0f} rds {f1['rounds']:.1f} again {f1['again']:2.0f}", flush=True)
             with open(a.o, "a") as f:
-                f.write(json.dumps(dict(label=label, extra=extra[0], order=extra[1], n=a.n, rows=rows)) + "\n")
+                f.write(json.dumps(dict(label=label, extra=extra[0], order=extra[1], swap=extra[2], n=a.n, rows=rows)) + "\n")
 
 
 if __name__ == "__main__":

@@ -446,6 +446,8 @@ V3_PRUNED_EXTRA = {1: -1, 3: 2, 4: 2, 5: 2}
 # 'row' spends extra points down the row's PrunedExtra; 'offense' on
 # Accuracy +1, then Damage +1, first.
 V3_PRUNED_EXTRA_ORDER = 'offense'
+# Loadout swaps on the redesigned rows, for experiments ({"Bow": "Heavy Bow"}).
+V3_PRUNED_SWAP = {}
 # The least of the table's Health an enemy can keep after paying for
 # Abilities and armor (0 lets experiments spend it all).
 V3_HEALTH_FLOOR = 2 / 3

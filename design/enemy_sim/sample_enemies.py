@@ -205,7 +205,9 @@ def _pruned_picks(row, abilities):
         if price <= left:
             picks.append(pick)
             left -= price
-    return picks, (row.get("PrunedAction") or "").strip() or row["Action"]
+    action = (row.get("PrunedAction") or "").strip() or row["Action"]
+    # tunables.V3_PRUNED_SWAP: experiments trying other kit on the same rows.
+    return picks, getattr(T, "V3_PRUNED_SWAP", {}).get(action, action)
 
 
 def make_enemy(level):
