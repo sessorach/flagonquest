@@ -2758,3 +2758,42 @@ harsher than v3 as adopted on 11-03 (a third of days at Levels 2-3
 against 42-48%), the top as comfortable. Level 5 is flat across its band
 because its parties are the Level 3 characters grown, which reach the caps;
 that's the yardstick running out, not the enemies.
+
+### A little more dangerous: the budget against weak and strong parties (2026-11-04)
+
+The designer: project it slightly more dangerous for the party, since real
+players will build for synergy, coordinate, and have their items, and
+even a strong party in the sim shouldn't win every day. Weak against
+strong is the eight test parties in the middle of each band (`bc.parties`:
+picked across all 210 four-character mixes the optimizer ranked, weakest
+to strongest), so the best of them is the strongest mix known.
+`pruned_tune.py`, every Level's budget raised together, extra on offense
+first (`results/enemy_stats/v3p_danger.txt`):
+
+| Budget (Levels 1-5) | Days won, average | weakest party | strongest | second strongest | Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|
+| 6 / 7 / 9 / 9 / 9 | 90-95% | 30-90% | 99-100% | 96-99% | 14-18% | 40-46% | 4.3-5.2 |
+| 7 / 8 / 10 / 10 / 10 | 82-90% | 27-69% | 98-100% | 89-98% | 18-21% | 44-51% | 4.9-5.7 |
+| 8 / 9 / 11 / 11 / 11 | 79-89% | 22-77% | 95-100% | 90-99% | 19-24% | 47-53% | 4.9-5.9 |
+| 9 / 10 / 12 / 12 / 12 | 70-80% | 15-60% | 91-100% | 85-95% | 23-29% | 52-60% | 5.2-6.2 |
+| 10 / 11 / 13 / 13 / 13 | 71-75% | 11-52% | 88-100% | 80-95% | 31-33% | 56-65% | 4.6-6.0 |
+
+(Level 1's weakest is a sample party built far under the others.)
+
+- **One composition shrugs it off.** Hilde, Sable and Hanforth with Felix
+  or Carrick win 98-100% of days at every budget tried, while the next
+  best drop to 85% at Level 3 by +3. Raising the enemies can't make that
+  party lose without crushing everyone else (the average at 70-75%). It's
+  a party-side outlier for the PC balance pass, not an enemy setting.
+- **Synergy is mostly the sum of the parts.** Over all 210 mixes
+  (`hall_of_fame/runs_levelup/mixes_l*.json`, from the optimizer's runs
+  on an older enemy table), adding up each character's own worth explains
+  95% of the differences between parties; pairs add or take little
+  beyond that. Sable, Hilde, Hanforth and Carrick are the strongest
+  members, Ashleigh and Enith the weakest. The sim's characters don't
+  coordinate the way players do, which is the designer's point.
+- **+1 everywhere** (7 / 8 / 10 / 10 / 10) is the default since: the
+  average party wins 82-90% of days, someone is Down in about a fifth
+  of fights and Wounded in about half, and every strong party but the
+  outlier loses a day now and then. Fights run a little long, 4.9-5.7
+  rounds.

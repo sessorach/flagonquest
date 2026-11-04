@@ -441,9 +441,11 @@ V3_PRUNED_ROSTER = 'picks'
 # Extra budget by Level for the pruned v3 ({3: 2} gives Level 3 enemies 2
 # more points), spent down each redesigned row's PrunedExtra list.
 # Tuned 2026-11-04 (pruned_tune.py, results/enemy_stats/v3p_tune.txt):
-# Level 1 one point less, Levels 3-5 two more spent on offense first,
-# so the budget runs 6 / 7 / 9 / 9 / 9.
-V3_PRUNED_EXTRA = {1: -1, 3: 2, 4: 2, 5: 2}
+# Level 1 one point less, Levels 3-5 two more spent on offense first
+# (6 / 7 / 9 / 9 / 9); then a point more everywhere, the designer wanting
+# it a little more dangerous since real players coordinate and have items
+# (v3p_danger.txt): 7 / 8 / 10 / 10 / 10.
+V3_PRUNED_EXTRA = {1: 0, 2: 1, 3: 3, 4: 3, 5: 3}
 # 'row' spends extra points down the row's PrunedExtra; 'offense' on
 # Accuracy +1, then Damage +1, first.
 V3_PRUNED_EXTRA_ORDER = 'offense'
