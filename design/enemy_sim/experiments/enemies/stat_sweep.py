@@ -17,6 +17,7 @@ archetypes and Abilities stay as they are):
     acc  Accuracy (main and backup attack)
     dmg  Damage on every damaging attack
     def  every Defense (Parry, Dodge, Vital, Mental, Vigilant)
+    pd   Parry and Dodge; vm Vital, Mental and Vigilant
     res  every Resist (Physical and elemental)
     hp   Health per Slot (a minion gets a third, rounded up, like the builder)
     hpx  Health multiplier (applied after hp)
@@ -79,7 +80,8 @@ def nudge(e, n):
             prof["accuracy"] += int(n.get("acc", 0))
     for d in DEFS:
         if e.get(d, -99) > -50:
-            e[d] += int(n.get("def", 0))
+            # def: every Defense; pd: Parry and Dodge; vm: Vital, Mental, Vigilant.
+            e[d] += int(n.get("def", 0)) + int(n.get("pd" if d in ("parry", "dodge") else "vm", 0))
     e["physres"] += int(n.get("res", 0))
     e["elemres"] += int(n.get("res", 0))
     hp = e["max_health"] + _ceil_signed(n.get("hp", 0) * T.SLOT_MULTIPLIER[e.get("slots", 1)])

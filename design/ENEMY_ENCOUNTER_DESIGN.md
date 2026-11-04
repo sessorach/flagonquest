@@ -2414,3 +2414,33 @@ Frightened, Taunted) read small in the sim, which may undervalue them
 (the balance-weights review). Enemies stacking the same debuff from two
 sources (Strike and Poison (Necrotic)) is in the package; a GM would more
 often pick different ones. Minions were left as they are.
+
+### What each stat is worth, and which ones set fight length (2026-11-04)
+
+The designer: are cuts to "survivability" the ones that make fights
+shorter? The aim is a pruned baseline, with the power moved into the
+archetypes and an Ability budget, nearly everything additive. Each stat
+moved by 1 on every full-size enemy (`kit_check.py`, `nudge:` variants,
+v3 as adopted, paired seeds, 2,000 fights a reading; enemy Health per
+Slot, and the change in rounds), Levels 2 / 3:
+
+| Change | Worth (Health) | Rounds |
+|---|---|---|
+| Damage −1 / +1 | −3.4 / −4.1, +3.9 / +4.2 | −0.2, +0.2 |
+| Accuracy −1 / +1 | −1.9 / −2.0, +2.0 / +2.2 | −0.1, +0.1 |
+| Parry and Dodge −1 | −0.9 / −0.3 | −0.3 / −0.2 |
+| Vital, Mental, Vigilant −1 | about 0 | 0 |
+| Resist −1 / +1 | −1.7 / −1.4, +4.1 / +3.2 | −0.7 / −0.5, +1.5 / +1.3 |
+| Health −1 (from the debuff test) | −1 | about −0.25 |
+
+Yes: what keeps an enemy standing (Health, Resist, and the Defense the
+party attacks, Parry or Dodge) sets the fight's length, about a quarter
+to a half round per Health of worth. What it hits with (Damage,
+Accuracy) barely moves the length, about 0.05 rounds per Health of
+worth. So a baseline pruned in offense keeps fights at their length,
+and the budget it frees can buy offense back (+1 Damage for about 4,
++1 Accuracy for about 2) or go into debuffs and mechanics. Vital and
+Mental are worth nothing against the sample parties, who rarely target
+them; they'll matter against a party that does. +1 Resist is worth
+more than −1 costs and adds over a round, so it's the one stat to hand
+out carefully.

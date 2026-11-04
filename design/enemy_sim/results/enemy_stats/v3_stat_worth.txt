@@ -1,0 +1,20 @@
+== Level 2: base lost 12.9 pts, 3.84 rounds, wins 99.2%; 1 Health per Slot = 1.48 pts
+   nudge:dmg=-1                        -3.4 Health  rounds -0.17  Down -8.8 pts
+   nudge:dmg=1                         +3.9 Health  rounds +0.21  Down +10.8 pts
+   nudge:acc=-1                        -1.9 Health  rounds -0.10  Down -4.2 pts
+   nudge:acc=1                         +2.0 Health  rounds +0.10  Down +3.8 pts
+   nudge:pd=-1                         -0.9 Health  rounds -0.32  Down -1.9 pts
+   nudge:vm=-1                         -0.1 Health  rounds -0.03  Down -0.1 pts
+   nudge:def=-1                        -0.9 Health  rounds -0.34  Down -1.9 pts
+   nudge:res=-1                        -1.7 Health  rounds -0.73  Down -3.3 pts
+   nudge:res=1                         +4.1 Health  rounds +1.50  Down +8.2 pts
+== Level 3: base lost 13.2 pts, 3.41 rounds, wins 99.6%; 1 Health per Slot = 1.08 pts
+   nudge:dmg=-1                        -4.1 Health  rounds -0.15  Down -9.6 pts
+   nudge:dmg=1                         +4.2 Health  rounds +0.17  Down +10.2 pts
+   nudge:acc=-1                        -2.0 Health  rounds -0.06  Down -3.1 pts
+   nudge:acc=1                         +2.2 Health  rounds +0.08  Down +3.7 pts
+   nudge:pd=-1                         -0.3 Health  rounds -0.19  Down -0.3 pts
+   nudge:vm=-1                         -0.0 Health  rounds -0.01  Down +0.0 pts
+   nudge:def=-1                        -0.3 Health  rounds -0.20  Down -0.3 pts
+   nudge:res=-1                        -1.4 Health  rounds -0.52  Down -2.2 pts
+   nudge:res=1                         +3.2 Health  rounds +1.32  Down +5.4 pts

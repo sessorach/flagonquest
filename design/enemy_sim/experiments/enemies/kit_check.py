@@ -106,6 +106,9 @@ def edit_for(variant):
             return dict(row, Abilities="")
         if kind == "role":
             return dict(row, Role=what)
+        if kind == "nudge":
+            # "nudge:dmg=-1/acc=-1": stat_sweep's nudges on the built enemy.
+            return dict(row, _nudge={k: float(v) for k, v in (x.split("=") for x in what.split("/"))})
         if kind == "hp":
             if getattr(eb.T, "ENEMY_TABLE", "v1") == "v3":
                 # v3 has no HealthBonus: the Health goes on after the build.
@@ -147,6 +150,9 @@ def install(variant):
             return orig(name)
         try:
             e = se._build_from_row(new)
+            if new.get("_nudge"):
+                import stat_sweep
+                stat_sweep.nudge(e, new["_nudge"])
             if new.get("_hp_adj"):
                 adj = new["_hp_adj"] * cs.T.SLOT_MULTIPLIER[e.get("slots", 1)]
                 e["max_health"] = e["health"] = max(1, e["max_health"] + (math.ceil(adj) if adj > 0 else -math.ceil(-adj)))
