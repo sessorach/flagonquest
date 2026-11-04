@@ -2338,3 +2338,79 @@ where they were.
 Poison (Bleeding)'s and Retribution Aura's shapes; Improved Support
 needs a test with more supports in it; whether 1 Health is the right
 allowance; Heavy Armor's Level 3 floor isn't enforced under v3 yet.
+
+### How much budget can go into on-hit debuffs (2026-11-04)
+
+The designer: a bigger allowance with the option to spend it on Health
+is the same thing as v3's 1 point plus a Health trade. What matters is
+that enemies should apply debuffs and have mechanics as a standard
+thing, not be pure Health sponges. So pull some other power budget back
+to fit them in, and see how much each Level can bear before the missing
+stats distort the fights.
+
+`experiments/enemies/debuff_budget.py` gives every full-size enemy in
+the four mixes (not the minions) a package of on-hit Abilities on top of
+its own. Every package starts with two free riders (Strike (Crippling),
+Strike (Slowing)) and adds, in order, Strike (Necrotic) (1), Strike
+(Harrying) (1), Poison (Necrotic) (1), Poison (Bleeding) (3) and Strike
+(Battering) (2), at the v3 prices. The package is paid for either from
+Health, as a v3 enemy normally pays, or from a stat, with its Health put
+back. The Health floor is off so the ladder can run past what a GM
+could build. Middle of each band, day standard; days won (worst party) /
+F1 Down / F1 Wounded / rounds / acts again:
+
+| Package (paid with) | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
+|---|---|---|---|---|---|
+| as built | 95 (90) / 13 / 42 / 3.7 / 38 | 95 (83) / 13 / 40 / 3.7 / 40 | 95 (78) / 14 / 43 / 3.3 / 37 | 95 (82) / 15 / 44 / 3.8 / 50 | 97 (88) / 13 / 44 / 4.0 / 51 |
+| free riders only | 94 (88) / 14 / 43 / 3.8 / 39 | 93 (75) / 14 / 41 / 3.9 / 41 | 93 (74) / 14 / 44 / 3.4 / 38 | 94 (76) / 16 / 45 / 3.9 / 51 | 95 (81) / 13 / 45 / 4.2 / 52 |
+| 1 (Health) | 94 (88) / 14 / 40 / 3.5 / 33 | 93 (75) / 15 / 39 / 3.6 / 36 | 93 (72) / 14 / 42 / 3.2 / 33 | 93 (76) / 16 / 43 / 3.7 / 47 | 94 (80) / 14 / 44 / 3.9 / 47 |
+| 2 (Health) | 95 (87) / 14 / 39 / 3.1 / 27 | 93 (73) / 15 / 37 / 3.3 / 31 | 93 (68) / 14 / 41 / 3.0 / 29 | 92 (75) / 17 / 43 / 3.5 / 43 | 94 (80) / 14 / 44 / 3.6 / 43 |
+| 3 (Health) | 97 (92) / 12 / 35 / 2.8 / 21 | 95 (75) / 14 / 34 / 3.0 / 26 | 95 (75) / 13 / 39 / 2.8 / 25 | 93 (77) / 16 / 42 / 3.3 / 38 | 96 (88) / 13 / 42 / 3.4 / 38 |
+| 6 (Health) | 100 (99) / 6 / 25 / 2.0 / 3 | 98 (88) / 10 / 26 / 2.2 / 10 | 97 (79) / 13 / 34 / 2.2 / 13 | 95 (78) / 17 / 42 / 2.7 / 26 | 96 (85) / 16 / 42 / 2.8 / 25 |
+| 8 (Health) | 100 / 6 / 22 / 1.7 / 0 | 100 (99) / 5 / 18 / 1.8 / 0 | 99 (95) / 8 / 23 / 1.7 / 3 | 97 (89) / 14 / 36 / 2.3 / 15 | 98 (92) / 11 / 34 / 2.3 / 15 |
+| 2 (Damage −1) | 96 (92) / 10 / 32 / 3.9 / 39 | 97 (87) / 10 / 32 / 3.9 / 41 | 97 (87) / 8 / 32 / 3.4 / 39 | 98 (94) / 7 / 30 / 3.8 / 51 | 99 (95) / 4 / 26 / 4.1 / 51 |
+| 3 (Damage −1) | 96 (91) / 11 / 33 / 3.9 / 39 | 96 (79) / 12 / 33 / 3.9 / 42 | 97 (86) / 9 / 32 / 3.4 / 39 | 97 (93) / 7 / 31 / 3.8 / 51 | 99 (95) / 4 / 27 / 4.1 / 51 |
+| 6 (Damage −1) | 89 (75) / 18 / 46 / 3.9 / 40 | 89 (60) / 18 / 43 / 3.9 / 42 | 92 (68) / 17 / 44 / 3.4 / 39 | 92 (75) / 19 / 47 / 3.9 / 51 | 91 (75) / 16 / 47 / 4.2 / 51 |
+| 2 (Accuracy −1, Resist −1) | 98 (95) / 10 / 33 / 3.1 / 28 | 98 (91) / 11 / 31 / 3.1 / 31 | 96 (80) / 12 / 36 / 2.9 / 31 | 97 (87) / 12 / 34 / 3.3 / 42 | 98 (92) / 10 / 36 / 3.4 / 43 |
+| 3 (Damage −1, Accuracy −1) | 99 (96) / 7 / 28 / 3.8 / 38 | 98 (90) / 8 / 27 / 3.8 / 41 | 98 (91) / 7 / 26 / 3.3 / 38 | 99 (95) / 5 / 23 / 3.8 / 51 | 100 (98) / 3 / 21 / 4.0 / 51 |
+| 6 (3 Health, 3 for Damage −1) | 98 (94) / 9 / 32 / 2.8 / 21 | 97 (86) / 12 / 31 / 3.0 / 26 | 96 (83) / 10 / 35 / 2.7 / 26 | 96 (86) / 13 / 39 / 3.2 / 38 | 97 (88) / 11 / 37 / 3.3 / 38 |
+
+What it says:
+
+- **Paid from Health, the debuffs about earn their keep, but the fights
+  shrink.** Days won barely move through 3 Health, but each Health spent
+  takes about a quarter of a round off and 4-6 points off "acts again".
+  Past about 3 rounds and 30% acts again, the enemy drops before its
+  debuffs have time to matter, and fights get easier: at 6 Health, Level
+  1 is 2 rounds and a hit enemy almost never acts again. Before that
+  line, Levels 1-3 (10-13 Health) bear about 2 Health of debuffs (Level
+  3 starts shortest, 1-2), and Levels 4-5 (15 Health) about 3, a fifth
+  of the table's Health or a little less.
+- **Paid from Damage, the fight keeps its length.** −1 Damage Stat leaves
+  rounds and acts again where they were at every Level, because the
+  enemy keeps all its turns and puts some of what it would have dealt
+  into debuffs. It's worth more than the 1 Health per point the first
+  guess gave it: 2 or 3 points of debuffs for −1 Damage is soft (96-99%
+  of days, Down 4-12%), 6 points is a notch hard (88-92%, Down 16-19%,
+  Wounded 43-47%). The fair trade is about 4-5 points of debuffs for −1
+  Damage, the same at every Level.
+- **Accuracy and Resist are poorer currencies.** −1 each for 2 points of
+  debuffs is soft and shortens the fights (Resist is Health by another
+  name).
+- **The free riders aren't quite free.** Two of them on every enemy cost
+  the party 1-2 points of days won: together they're worth something
+  like half a Health to a Health, not 0.
+
+So the way to give every enemy debuffs as standard without making it a
+sponge, or a glass cannon that dies before they matter, is to pay for
+them with Damage: one less on the Damage Stat schedule buys a package of
+about 4-5 points (the two free riders plus Necrotic and Harrying and
+then some, or Poison (Bleeding)), keeping the 4-round shape. Health can
+still buy a point or two on top, within the limits above.
+
+Caveats: the package leans on Necrotic and Bleeding, which act like
+damage; the pure control debuffs (Crippled, Slowed, Vulnerable,
+Frightened, Taunted) read small in the sim, which may undervalue them
+(the balance-weights review). Enemies stacking the same debuff from two
+sources (Strike and Poison (Necrotic)) is in the package; a GM would more
+often pick different ones. Minions were left as they are.

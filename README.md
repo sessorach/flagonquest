@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-04 — Enemies with debuffs as standard
+
+Tested how much of an enemy's budget can go into debuffs on a hit before fights stop feeling right: paying with a point of Damage works best, since the fight keeps its length and the enemy just hurts less and hinders more.
+
 ### 2026-11-03 — Enemies built the way PCs are, and one designer document
 
 Enemies are now built the way PCs are (same Stats, Skill Totals, weapons and armor, Health near a PC's, archetypes as plain bumps) with their Abilities priced in Health, and every design decision is gathered into one designer document.
