@@ -412,7 +412,9 @@ ENEMY_TABLE = 'v3'
 V3_DEF_GAP = 2
 # Which v3: 2, the trimmed base with the bigger archetypes (adopted
 # 2026-11-03); 1, the first one (one more Skill and Accuracy, smaller
-# archetypes), for the numbers recorded before that.
+# archetypes), for the numbers recorded before that; 3, the pruned one
+# (2026-11-04: Damage and Accuracy into the Ability budget, additive
+# archetypes, the rows' PrunedPicks added).
 V3_VERSION = 2
 # Ability shapes under v3: 'catalog' (as written: Poison (Bleeding) lands
 # 2 stacks, Retribution Aura answers every attacker) or 'v2' (the v2 kit's
@@ -427,6 +429,14 @@ V3_KIT_SHAPES = 'v2'
 # weights.
 V3_ABILITY_PRICES = True
 V3_ABILITY_ALLOWANCE = 1
+# The pruned v3's budget (V3_VERSION = 3): the 1 above, plus 4 for the
+# Damage Stat and 2 for the Accuracy the base table gave up.
+V3_PRUNED_ALLOWANCE = 7
+# What the pruned v3's rows spend it on: 'picks' (the row's PrunedPicks,
+# blank buying back Damage and Accuracy), 'buyback' (every row buys them
+# back: the old enemies), 'mixed' (the redesigned rows buy back Damage and
+# take Necrotic and Harrying on a hit).
+V3_PRUNED_ROSTER = 'picks'
 # The least of the table's Health an enemy can keep after paying for
 # Abilities and armor (0 lets experiments spend it all).
 V3_HEALTH_FLOOR = 2 / 3

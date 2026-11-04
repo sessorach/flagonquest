@@ -132,7 +132,8 @@ def install(variant):
     orig = _ORIG.setdefault("get", se.get_enemy)
     # "role:X@k=v/k=v": that Role's bonuses replaced for this variant.
     table = getattr(eb.T, "ENEMY_TABLE", "v1")
-    live = eb.ROLE_ADDS_V3 if table == "v3" else eb.ROLE_ADDS_V2 if table == "v2" else eb.ROLE_ADDS
+    live = ({1: eb.ROLE_ADDS_V3_FIRST, 2: eb.ROLE_ADDS_V3, 3: eb.ROLE_ADDS_V3_ADDITIVE}[getattr(eb.T, "V3_VERSION", 2)]
+            if table == "v3" else eb.ROLE_ADDS_V2 if table == "v2" else eb.ROLE_ADDS)
     roles = _ORIG.setdefault("roles", {k: dict(v) for k, v in live.items()})
     live.clear()
     live.update({k: dict(v) for k, v in roles.items()})

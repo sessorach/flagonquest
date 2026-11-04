@@ -122,6 +122,17 @@ def _build_from_row(row):
     # "Parry/Dodge as one category" for these rows - five independent
     # Defenses, not four.
     if (row.get("AttackTier") or "").strip():
+        abilities = [a.strip() for a in row["Abilities"].split(";") if a.strip()]
+        if T.ENEMY_TABLE == "v3" and getattr(T, "V3_VERSION", 2) == 3 and (row.get("StrongDefense") or "").strip():
+            # The pruned v3 (2026-11-04): what the row spends its budget on.
+            # Blank buys back what the base table gave up, so a row nobody
+            # has redesigned plays as it did.
+            buyback = "Damage +1; Accuracy +1"
+            mode = getattr(T, "V3_PRUNED_ROSTER", "picks")
+            designed = (row.get("PrunedPicks") or "").strip()
+            picks = {"picks": designed or buyback, "buyback": buyback,
+                     "mixed": "Damage +1; Strike (Necrotic); Strike (Harrying)" if designed else buyback}[mode]
+            abilities += [a.strip() for a in picks.split(";") if a.strip()]
         e = build_enemy_pcstyle(
             row["Name"],
             int(row["Level"]),
@@ -137,7 +148,7 @@ def _build_from_row(row):
             },
             attack_tier=row["AttackTier"].strip().lower(),
             health_bonus=int(row["HealthBonus"]) if row.get("HealthBonus", "").strip() else 0,
-            abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
+            abilities=abilities,
             main_effect=(row.get("MainEffect") or "").strip() or None,
             backup_action=(row.get("BackupAction") or "").strip() or None,
             stat_order=[x for x in (row.get("StatOrder") or "").split(",") if x.strip()] or None,

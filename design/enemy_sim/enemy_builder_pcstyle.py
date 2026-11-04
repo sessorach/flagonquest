@@ -384,6 +384,38 @@ ROLE_ADDS_V3_FIRST = {
     "Backup": {"res": 1, "dodge": 1, "bodily": 1, "mental": 1},
     "Skirmisher": {"speed": 1, "dodge": 1, "acc": 2},
 }
+# The pruned v3 (designer, 2026-11-04: "prune back some of the enemy
+# baseline power, and then put it in the Ability budget they can spend to
+# further specialize"). Offense comes off, not survivability: Damage and
+# Accuracy set little of a fight's length, Health, Resist and Defenses
+# most of it (ENEMY_ENCOUNTER_DESIGN.md, "What each stat is worth"). The
+# Damage Stat and Accuracy are one lower; the budget (V3_PRUNED_ALLOWANCE)
+# buys them back (Damage +1, Accuracy +1) or goes into Abilities.
+# tunables.V3_VERSION = 3.
+ENEMY_TABLE_V3_PRUNED = {L: dict(r, damage=r["damage"] - 1, accuracy=r["accuracy"] - 1)
+                         for L, r in {
+    1: dict(skill=4, accuracy=3, damage=2, resist=2, health=10),
+    2: dict(skill=5, accuracy=4, damage=3, resist=3, health=11),
+    3: dict(skill=6, accuracy=5, damage=3, resist=3, health=13),
+    4: dict(skill=7, accuracy=6, damage=4, resist=4, health=15),
+    5: dict(skill=8, accuracy=7, damage=4, resist=4, health=15),
+}.items()}
+# Archetypes for the pruned v3: only additions (designer, 2026-11-04: "very
+# few things should reduce numbers", heavier armor the one example). Each
+# about 2.5-3.5 enemy Health at Level 2 (kit_check.py, V3_PRUNED_ROSTER =
+# 'buyback'; results/enemy_stats/v3_pruned_roles*.txt). Level 3 reads
+# higher for the damage ones (about 5.5), on a noisier slope. Striker is
+# the mobile hitter, Bruiser the tough one; Strategist and Skirmisher came
+# down 1 Accuracy each, since Accuracy is worth more on the pruned base.
+# "hp" is Health per Slot.
+ROLE_ADDS_V3_ADDITIVE = {
+    "Defender": {"res": 1, "parry": 2, "dodge": 2},
+    "Striker": {"dmg": 1, "speed": 1},
+    "Bruiser": {"dmg": 1, "hp": 1, "bodily": 2},
+    "Strategist": {"acc": 2, "dodge": 1, "mental": 2, "vigilant": 2},
+    "Backup": {"res": 1, "parry": 1, "dodge": 2, "bodily": 2, "mental": 2},
+    "Skirmisher": {"speed": 2, "dodge": 2, "acc": 1},
+}
 # The archetypes on the trimmed base (designer, 2026-11-03: "trim back a
 # slight bit of the baseline and add that power budget into the
 # archetypes", so enemies feel more distinct; adopted the same day). Each
@@ -434,6 +466,12 @@ for _el in ELEMENTS:
     ABILITY_HEALTH_V3[f"Elemental Spell ({_el})"] = 0
     ABILITY_HEALTH_V3[f"Elemental Weapon ({_el})"] = 0
 ARMOR_HEALTH_V3 = {"Unarmored": -1, "Light": 0, "Medium": 1, "Heavy": 2}
+# Stat Abilities (2026-11-04, for the pruned v3; any v3 can take them):
+# each is that bump, at its measured worth ("What each stat is worth"),
+# and can be taken more than once up to the player caps.
+STAT_ABILITIES = {"Damage +1": ("dmg",), "Accuracy +1": ("acc",), "Guard +1": ("parry", "dodge"),
+                  "Resist +1": ("res",)}
+ABILITY_HEALTH_V3.update({"Damage +1": 4, "Accuracy +1": 2, "Guard +1": 1, "Resist +1": 4})
 # The Weak Defense when a row doesn't name one: what that kind of enemy
 # visibly neglects (a fighter's Mental, a caster's Vital, a support's
 # Dodge), skipping its Strong Defense.
@@ -442,10 +480,15 @@ WEAK_DEFAULT = {"weapon": ("mental", "vigilant"), "spell": ("bodily", "vigilant"
 
 def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None, abilities=(),
                    main_effect=None, backup_action=None, weak_defense=None):
-    first = getattr(T, "V3_VERSION", 2) == 1
-    t = (ENEMY_TABLE_V3_FIRST if first else ENEMY_TABLE_V3)[level]
-    roles = ROLE_ADDS_V3_FIRST if first else ROLE_ADDS_V3
-    adds = roles.get(role or "", {})
+    version = getattr(T, "V3_VERSION", 2)
+    t = {1: ENEMY_TABLE_V3_FIRST, 2: ENEMY_TABLE_V3, 3: ENEMY_TABLE_V3_PRUNED}[version][level]
+    roles = {1: ROLE_ADDS_V3_FIRST, 2: ROLE_ADDS_V3, 3: ROLE_ADDS_V3_ADDITIVE}[version]
+    adds = dict(roles.get(role or "", {}))
+    # Stat Abilities (the pruned v3's buy-backs), as archetype-style bumps.
+    for ab, key in STAT_ABILITIES.items():
+        for _ in range(abilities.count(ab)):
+            for k in key:
+                adds[k] = adds.get(k, 0) + 1
     act = ACTIONS[action]
     cat = action_category(action)
     skill = min(SKILL_CAP, t["skill"])
@@ -507,10 +550,11 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
         # table's Health can go (v2's lesson: a glass cannon drops before
         # its effects pay).
         cost = sum(ABILITY_HEALTH_V3[a] for a in abilities) + ARMOR_HEALTH_V3[armor]
-        base_health += T.V3_ABILITY_ALLOWANCE - cost
+        allowance = T.V3_PRUNED_ALLOWANCE if version == 3 else T.V3_ABILITY_ALLOWANCE
+        base_health += allowance - cost
         if base_health < max(1, math.ceil(t["health"] * getattr(T, "V3_HEALTH_FLOOR", 2 / 3))):
             raise ValueError(f"{name}: Abilities and armor cost {cost} Health, more than a third of its {t['health']}")
-    health = math.ceil(base_health * T.SLOT_MULTIPLIER[slots]) + abilities.count("Enhanced Health")
+    health = math.ceil((base_health + adds.get("hp", 0)) * T.SLOT_MULTIPLIER[slots]) + abilities.count("Enhanced Health")
     enemy = dict(name=name, level=level, slots=slots, role=role or "None", action=action,
                  kind=kind, main_effect=main_effect or {"support": "Protected", "heal": "Health",
                                                         "nova": "Protected"}.get(kind),
