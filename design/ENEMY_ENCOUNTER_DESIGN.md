@@ -2690,8 +2690,9 @@ Acc column already):
 | 4 | 97 (87) / 10 / 32 / 4.6 / 57 | +1: 92 (77) / 12 / 34 / 5.1 / 59 | +2: 94 (80) / 14 / 41 / 4.6 / 57 |
 | 5 | 95 (73) / 8 / 34 / 5.0 / 57 | +1: 90 (68) / 11 / 36 / 5.5 / 59 | +2: 92 (72) / 13 / 44 / 5.1 / 58 |
 
-(Level 1 and 2 columns are the price-fixed run; +4 and +6 on offense
-went too far: 74-82% of days, Down about a fifth to a third.)
+(Level 1 at 7 points is from the run before Necrotic and Bleeding were
+repriced; the rest are after. +4 and +6 on offense went too far: 74-82%
+of days, Down about a fifth to a third.)
 
 - **At 7 points, Levels 3-5 were soft inside a fight** (Down 8-10%,
   Wounded about a third) while winning 95-97% of days.
