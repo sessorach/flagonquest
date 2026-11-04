@@ -55,6 +55,10 @@ CONFIGS = [("as built", None, "health")] + \
     ("debuffs 2, Damage -1", package(2), "1/2/3/4/5:dmg=-1"),
     ("debuffs 2, Accuracy -1 Resist -1", package(2), "1/2/3/4/5:acc=-1,res=-1"),
     ("debuffs 3, Damage -1 Accuracy -1", package(3), "1/2/3/4/5:dmg=-1,acc=-1"),
+    # Follow-up: Damage -1 bought more than 2 Health of debuffs.
+    ("debuffs 3, Damage -1", package(3), "1/2/3/4/5:dmg=-1"),
+    ("debuffs 6, Damage -1", package(6), "1/2/3/4/5:dmg=-1"),
+    ("debuffs 3 Health + 3 for Damage -1", package(6), "health3+1/2/3/4/5:dmg=-1"),
 ]
 
 
@@ -65,6 +69,10 @@ def install(adds, paid):
     import stat_sweep
     get_row = se.__dict__.setdefault("_orig_row_named", se._row_named)
     get_enemy = se.__dict__.setdefault("_orig_get_enemy", se.get_enemy)
+    from_health = 0
+    if paid.startswith("health") and "+" in paid:
+        h, _, paid = paid.partition("+")
+        from_health = int(h[len("health"):])
     nudges = stat_sweep.parse(paid) if paid != "health" else {}
 
     def row_named(name):
@@ -81,7 +89,8 @@ def install(adds, paid):
             # Paid for by a stat instead: the package's Health goes back on
             # (full-size enemies are all 1 Slot here), the stat comes down.
             new = row_named(name)["_added"]
-            e["health"] = e["max_health"] = e["max_health"] + sum(eb.ABILITY_HEALTH_V3[a] for a in new)
+            back = max(0, sum(eb.ABILITY_HEALTH_V3[a] for a in new) - from_health)
+            e["health"] = e["max_health"] = e["max_health"] + back
             stat_sweep.nudge(e, nudges[e["level"]])
         return e
     se._row_named = row_named
