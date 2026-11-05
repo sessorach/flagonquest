@@ -423,7 +423,10 @@ ENEMY_TABLE_V3_PRUNED = {L: dict(r, damage=r["damage"] - 1, accuracy=r["accuracy
 # down 1 Accuracy each, since Accuracy is worth more on the pruned base.
 # "hp" is Health per Slot.
 ROLE_ADDS_V3_ADDITIVE = {
-    "Defender": {"res": 1, "parry": 2, "dodge": 2},
+    # Resist +1 swapped for Health +3 (designer, 2026-11-05): on Heavy Armor
+    # it made walls that physical weapons barely hurt. Health +3 reads about
+    # the other archetypes' average (2.6 Health), Resist +1 3.3-4.5.
+    "Defender": {"parry": 2, "dodge": 2, "hp": 3},
     "Striker": {"dmg": 1, "speed": 1},
     "Bruiser": {"dmg": 1, "hp": 1, "bodily": 2},
     "Strategist": {"acc": 2, "dodge": 1, "mental": 2, "vigilant": 2},
@@ -548,10 +551,6 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
     t = {1: ENEMY_TABLE_V3_FIRST, 2: ENEMY_TABLE_V3, 3: ENEMY_TABLE_V3_PRUNED}[version][level]
     roles = {1: ROLE_ADDS_V3_FIRST, 2: ROLE_ADDS_V3, 3: ROLE_ADDS_V3_ADDITIVE}[version]
     adds = dict(roles.get(role or "", {}))
-    if version == 3 and role == "Defender" and getattr(T, "V3_DEFENDER_HP", None) is not None:
-        # Test (2026-11-05): the Defender's Resist +1 swapped for Health.
-        adds = {k: v for k, v in adds.items() if k != "res"}
-        adds["hp"] = adds.get("hp", 0) + T.V3_DEFENDER_HP
     if version == 3:
         for ab in set(abilities):
             n = abilities.count(ab)

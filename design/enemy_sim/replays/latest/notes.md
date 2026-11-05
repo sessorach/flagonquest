@@ -1,18 +1,18 @@
 # Latest replays (2026-11-05)
 
-Pruned v3 armor at -2/0/2/4
+Defender's Resist +1 swapped for Health +3; armor -2/0/2/4
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 97.1% wins, 5.2 rounds, 75% HP left on a win
+- Matchup average over 1000 fights: 97.7% wins, 5.1 rounds, 75% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
 - Enemies: Level 1 Shield Wall (Hedge Knight, Hedge Knight, Marsh Archer, Marsh Archer)
-- This fight (seed 2): party won in 6 rounds, 98% party HP left
-- Matchup average over 1000 fights: 99.5% wins, 6.2 rounds, 90% HP left on a win
+- This fight (seed 2): party won in 5 rounds, 98% party HP left
+- Matchup average over 1000 fights: 99.7% wins, 5.4 rounds, 90% HP left on a win
 
 ## partyT_L1_vs_L1_warband.html
 - Party: Browndog, Hanforth, Sable, Beornhard

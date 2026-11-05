@@ -1,0 +1,10 @@
+Defender Health +3           L1 days  91.4 (worst  83 best  98) Down  21 Wnd  50 rds 4.7 again 49
+Defender Health +3           L2 days  90.8 (worst  78 best 100) Down  17 Wnd  42 rds 5.0 again 53
+Defender Health +3           L3 days  89.3 (worst  60 best 100) Down  19 Wnd  48 rds 4.3 again 49
+Defender Health +3           L4 days  88.8 (worst  67 best 100) Down  19 Wnd  46 rds 5.0 again 62
+Defender Health +3           L5 days  89.0 (worst  71 best  99) Down  19 Wnd  49 rds 5.3 again 62
+Defender Health +2           L1 days  92.2 (worst  84 best  98) Down  20 Wnd  50 rds 4.6 again 49
+Defender Health +2           L2 days  91.4 (worst  80 best 100) Down  17 Wnd  41 rds 4.9 again 52
+Defender Health +2           L3 days  89.4 (worst  59 best 100) Down  18 Wnd  47 rds 4.2 again 48
+Defender Health +2           L4 days  89.6 (worst  70 best 100) Down  19 Wnd  46 rds 4.8 again 61
+Defender Health +2           L5 days  89.3 (worst  72 best  99) Down  19 Wnd  49 rds 5.2 again 61

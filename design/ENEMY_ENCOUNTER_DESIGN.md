@@ -2960,3 +2960,34 @@ to +42 on Downs and +56 to +40 on losses, the Iron Sentinel from +46 to
 Assassins rise a little (Grave Caller +21 to +29 on Downs). Pricing armor
 at its worth helps the walls by about a quarter; what's left is the
 Defender's own Resist +1 on top of Heavy Armor.
+
+**The Defender's Resist +1 swapped for Health** (the designer, 2026-11-05:
+"+1 Health, or maybe +2, play with those numbers"). Priced against the
+other archetypes on the pruned base (`results/enemy_stats/v3p_defender.txt`,
+worth in Health per Slot at Levels 2 / 3, extra rounds): the others read
+1.7-3.6, about 2.6 on average. The Defender with Resist +1 read 4.5 / 3.3
+and +3-4 rounds; with Health +1 1.3 / 1.2; +2 2.0 / 1.8; +3 2.7 / 2.6 and
++2-3 rounds. So Health +3 sits at the average and still makes the Defender
+the archetype that lengthens fights.
+
+In the manual's broad test (with armor at −2 / 0 / 2 / 4), the walls fall
+back among the ordinary threats (Down / lose / rounds, a whole encounter
+against the average):
+
+| | Resist +1 | Health +3 | Health +2 |
+|---|---|---|---|
+| Ironbranch Warden | +42 / +40 / +8 | +25 / +21 / +5 | +18 / +16 / +4 |
+| Iron Sentinel | +33 / +37 / +14 | +15 / +17 / +8 | +10 / +14 / +7 |
+| Hedge Knight | −3 / +7 / +4 | −6 / +2 / +2 | −7 / +1 / +1 |
+| Encounters lost, Levels 1-5 | 10 / 4 / 5 / 3 / 4% | 6 / 2 / 3 / 2 / 3% | 5 / 1 / 3 / 2 / 3% |
+
+With Health +3 the Ironbranch Warden sits next to the ranged Assassins
+(+22 to +32 on Downs) rather than above them; the solo boss is the only
+outlier left. The roster, middle of each band, wins 89-91% of days with
+Health +3 (85-90% with Resist +1), Down 17-21%, Wounded 42-50%, 4.3-5.3
+rounds (`v3p_defender_band.txt`), a few points easier than the "notch
+more dangerous" setting, since the Shield Wall's Hedge Knights were part
+of what made it so.
+
+**Health +3 is the default** (designer's call to play with the numbers;
+it's the one priced like the rest).
