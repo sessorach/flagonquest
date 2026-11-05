@@ -3237,3 +3237,28 @@ checked.
 3. **A stronger Hex:** something bigger than stacks that fade, such as
    Bad Luck on the target's attacks for a round, or the Hex as an area
    effect at full strength. New rules to write and test.
+
+**Accuracy +1 bought more than once** (2026-11-05, the designer: how
+strong is it, and does it eclipse the PCs? `kit_check.py` `nudge:acc=1-4`
+on every full-size enemy in the four mixes, pruned default, Levels 2 / 3;
+`results/enemy_stats/v3p_acc_stack.txt`; worth in Health per Slot, change
+in fights with someone Down):
+
+| Accuracy | Worth | Down |
+|---|---|---|
+| +1 | 1.7 / 2.3 | +6 / +6 |
+| +2 | 3.4 / 4.8 | +12 / +13 |
+| +3 | 5.4 / 7.4 | +18 / +19 |
+| +4 | 7.3 / 9.9 | +24 / +24 |
+| (Damage +1) | 4.1 / 4.7 | +15 / +15 |
+
+Each point is worth about the same as the last (1.7-2.0 Health at Level
+2, 2.3-2.6 at Level 3) and adds about 6 points of Downs: no runaway, a
+touch under its price of 2 at Level 2 and a touch over at Level 3. Two
+points of Accuracy are worth about one of Damage. The ceiling is the
+player's: a Skill Total of 10 plus the weapon's own Accuracy. As built the
+most accurate monster sits at about the PCs' average (Mire Witch: 9 at
+Level 3 against the PCs' 9, best 10), the average monster 2-3 under. Even
+a monster spending its whole budget on Accuracy (with the Strategist's
++2) only reaches the best PC's number (Level 1: 7 against 8; Level 3: the
+cap, against the best PC's 10).
