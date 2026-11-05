@@ -2797,3 +2797,91 @@ first (`results/enemy_stats/v3p_danger.txt`):
   of fights and Wounded in about half, and every strong party but the
   outlier loses a day now and then. Fights run a little long, 4.9-5.7
   rounds.
+
+### The monster manual in fights (2026-11-05)
+
+The designer, after reviewing the draft manual: trim the hexes and put
+their budget elsewhere (Hex stacks 2 / 2 / 3 / 3 / 4 at Levels 1-5, and
+the Hex loadout gives 2 points back), and limit the poison stackers,
+since poisons outlast the fight (a Poison effect stops at 2 picks). Then
+a broad test: `experiments/enemies/manual_check.py` draws 40 encounters
+a Level from the manual by the encounter rules (Slots equal to the
+party's four, two stat blocks usually, three sometimes, at most one
+enemy that doesn't attack, the solo boss alone from Level 3), and every
+test party in the middle of the band fights each one fresh 60 times
+(`results/enemy_stats/manual_check.txt`).
+
+| Level | Manual: lose / Down / Wounded / rounds / acts again | The four old mixes |
+|---|---|---|
+| 1 | 12% / 26% / 46% / 6.5 / 50% | 5% / 27% / 53% / 5.3 / 46% |
+| 2 | 6% / 14% / 31% / 6.8 / 57% | 4% / 18% / 42% / 6.0 / 52% |
+| 3 | 8% / 17% / 40% / 6.4 / 56% | 5% / 19% / 49% / 5.9 / 49% |
+| 4 | 5% / 13% / 31% / 6.5 / 62% | |
+| 5 | 5% / 14% / 33% / 6.2 / 62% | |
+
+(Fresh single fights, so these read harder on losses and longer than the
+day standard's numbers elsewhere.) On average the manual plays close to
+the four mixes the table was tuned on, a little longer and, at Level 1,
+a little deadlier. Hilde, Sable and Hanforth's party is still the
+strongest at every Level (lose 0.5-2%, Down 5-9%).
+
+**Each monster's share** (an encounter's reading, against its Level's
+average, fitted to the share of the encounter's Slots each monster
+fills; read as "a whole encounter of this monster", in points of fights
+lost or with someone Down, and in rounds):
+
+| Monster | Down | Lose | Rounds |
+|---|---|---|---|
+| Ironbranch Warden | +57 | +56 | +10 |
+| Brute Warlord (solo) | +54 | +59 | +10 |
+| Iron Sentinel | +46 | +49 | +17 |
+| Crossbow Sniper | +27 | +2 | −1 |
+| Grave Caller | +21 | −10 | −4 |
+| Marsh Archer | +17 | −6 | −2 |
+| Mind Lash Adept | +15 | −8 | −4 |
+| ... the middle (Goblin Cutthroat to Thornhide Brute) | +9 to −7 | | |
+| Warpriest | −20 | +9 | +8 |
+| Shade Stalker | −23 | −14 | −3 |
+| Fen Warden | −23 | −12 | −3 |
+| Mire Witch | −24 | −5 | −4 |
+| Bog Skirmisher | −24 | −13 | −1 |
+| Deadbough Priest | −27 | +11 | +6 |
+| Bog Hexer | −30 | −5 | 0 |
+| Curse Weaver | −43 | −13 | −7 |
+| Field Medic | −55 | −26 | −2 |
+
+What it says:
+
+- **Stacked defense is worth far more than its parts.** The two heavy
+  walls (Heavy Armor, a shield's Parry, Parry and Dodge bought on top,
+  Durable, Resilient, Sturdy) are the strongest monsters by a distance:
+  fights against three of them run 15 rounds or more and the party
+  loses a third to all of the time. Each +1 to Parry or Dodge read about
+  half a Health alone, but piled on one body the party's hit chance
+  falls off a cliff. That's the first effect to reprice: a Defense
+  bought on top of armor and a shield should cost more, or the stat
+  picks stop at once each.
+- **Ranged Assassins with Vulnerable spike.** Crossbow Sniper, Grave
+  Caller, Marsh Archer and the Mind Lash Adept put someone Down far more
+  often (+15 to +27) without winning more fights: they focus the
+  softest PC and open them up.
+- **Kiting makes an enemy nearly harmless.** Every Kiting monster sits
+  near the bottom. Four Bog Skirmishers put someone Down in 0% of fights
+  Kiting, 3% Hitting Whatever and 30% as Assassins; Shade Stalkers 1%,
+  17% and 30% (Level 3, 60 fights a party). As the sim plays it, a
+  kiter spends its turns moving away and spreads its damage thin. That's
+  either the sim's Kiting or the tactic itself, and worth deciding
+  before any kiter is priced.
+- **Supports and hexers trade Downs for length.** The healers and the
+  Warpriest cut Downs (they don't attack) but make fights longer and
+  lose the party more of them (+9 to +11). The trimmed hexers and the
+  Curse Weaver now do little: −30 and −43 on Downs, about even on
+  losses. The Field Medic is the weakest monster in the book (a
+  Kiting healer whose heals don't cover what its party loses).
+- **The solo boss is a boss.** The Brute Warlord alone downs someone in
+  about 70% of fights and wins a third of them at Levels 3-5.
+
+**Open, before the wide PC-against-enemy test:** price stacked defense
+(or cap the stat picks); decide Kiting; give the healers and hexers
+something back; and whether the solo boss should be as dangerous as it
+is.

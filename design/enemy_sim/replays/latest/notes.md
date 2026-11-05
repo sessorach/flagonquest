@@ -1,12 +1,12 @@
-# Latest replays (2026-11-04)
+# Latest replays (2026-11-05)
 
-Budget a point higher everywhere (7/8/10/10/10): a notch more dangerous
+Hexes a stack fewer, poisons capped at 2 picks; the monster manual's broad test
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 6): party won in 5 rounds, 75% party HP left
-- Matchup average over 1000 fights: 99.2% wins, 4.9 rounds, 77% HP left on a win
+- Matchup average over 1000 fights: 97.7% wins, 4.9 rounds, 77% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

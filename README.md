@@ -15,7 +15,10 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-05 — A draft monster manual
 
-Built 30 enemy stat blocks the new pen-and-paper way, covering every archetype, weapon loadout and main action and most of the enemy abilities, ready for review before they go into the simulator's fights.
+Built 30 enemy stat blocks the new pen-and-paper way, covering every archetype, weapon loadout and main action, then ran them through a broad test that plays close to the old fights and shows which pieces are over- and underpriced.
+
+- Hexes now land a stack fewer and poisons stop at two stacks, since they outlast the fight.
+- Piled-up defense on one enemy is much stronger than its parts, Kiting enemies barely hurt anyone, and the trimmed hexers now do little, which is where the next round of pricing starts.
 
 ### 2026-11-04 — Enemies with debuffs as standard
 
