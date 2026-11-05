@@ -521,10 +521,17 @@ ABILITY_HEALTH_V3P = dict(ABILITY_HEALTH_V3, **{
 # one-hander and heavy bow went back to 1. Two-handers at 2 on every melee
 # enemy left days about where they were (fights 0.7 rounds shorter).
 LOADOUT_HEALTH_V3P = {"Sword and Shield": 0, "Heavy Weapon and Shield": 1, "Light Two-Handed": 2,
-                      "Two-Handed Weapon": 2, "Bow": 0, "Heavy Bow": 1}
+                      "Two-Handed Weapon": 2, "Bow": 0, "Heavy Bow": 1, "Hex": -2}
 REPEATABLE_V3 = {"Accuracy +1", "Parry and Dodge +1", "Vital/Mental/Vigilant +1", "Resist +1",
                  "Enhanced Health", "Enhanced Speed"}
 RIDER_CAP_V3 = 4
+# Poisons last past the fight, so a Poison effect stops at 2 picks
+# (designer, 2026-11-05).
+POISON_CAP_V3 = 2
+# Hexes trimmed a stack at every Level for the pruned v3 (designer,
+# 2026-11-05: "trim down the hexes a bit and move their power budget
+# elsewhere"), and the Hex loadout gives 2 points back to spend.
+HEX_STACKS_V3P = {1: 2, 2: 2, 3: 3, 4: 3, 5: 4}
 # The Weak Defense when a row doesn't name one: what that kind of enemy
 # visibly neglects (a fighter's Mental, a caster's Vital, a support's
 # Dodge), skipping its Strong Defense.
@@ -543,8 +550,9 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
             rider = ab.startswith("Strike (") or ab.startswith("Poison (")
             if n > 1 and not rider and ab not in REPEATABLE_V3:
                 raise ValueError(f"{name}: {ab} can only be taken once")
-            if rider and n > RIDER_CAP_V3:
-                raise ValueError(f"{name}: {ab} taken {n} times, more than {RIDER_CAP_V3}")
+            cap = POISON_CAP_V3 if ab.startswith("Poison (") else RIDER_CAP_V3
+            if rider and n > cap:
+                raise ValueError(f"{name}: {ab} taken {n} times, more than {cap}")
     # Stat Abilities (the pruned v3's buy-backs), as archetype-style bumps.
     for ab, key in STAT_ABILITIES.items():
         for _ in range(abilities.count(ab)):
@@ -603,7 +611,8 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
         parry = -99
     kind = act.get("kind", "attack")
     effect_stacks = act["stacks"] if "stacks" in act else (
-        GUARANTEED_STACKS[level] if kind in ("support", "heal") else EFFECT_STACKS[level])
+        GUARANTEED_STACKS[level] if kind in ("support", "heal") else
+        HEX_STACKS_V3P[level] if version == 3 and kind == "hex" else EFFECT_STACKS[level])
     if kind != "attack" and not backup_action:
         raise ValueError(f"{name}: a {action} enemy needs a BackupAction to fall back on")
     backup = profile(backup_action) if backup_action else None

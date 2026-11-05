@@ -55,7 +55,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Enhanced Speed** (1): Field Medic, Bog Skirmisher, Hunting Hound
 - **Improved Support** (1): Warpriest, Field Medic, Deadbough Priest, Coven Matriarch
 - **Omniguard** (1): Hedge Knight
-- **Parry and Dodge +1** (1): Iron Sentinel, Shieldbearer, Bog Hexer, Field Medic, Bog Skirmisher
+- **Parry and Dodge +1** (1): Iron Sentinel, Shieldbearer, Bog Hexer, Mire Witch, Field Medic, Bog Skirmisher
 - **Poison (Bleeding)** (2.5): Goblin Cutthroat, Skulking Footpad
 - **Poison (Crippling)** (0.5): *nobody yet*
 - **Poison (Necrotic)** (0.5): *nobody yet*
@@ -353,15 +353,15 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *A debuffer that Cripples from range and slips away when cornered.*
 
 - **1 Slot, Strategist.** Kiting (keeps its distance).
-- **Loadout:** Hex, backup Ranged Spell, lands Crippled (0). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
-- **Picks:** Accuracy +1 (2), Enhanced Range (3), Strike (Slowing) ×2 (1), Shadow Jaunt (0), Parry and Dodge +1 ×2 (2)
+- **Loadout:** Hex, backup Ranged Spell, lands Crippled (-2). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Picks:** Accuracy +1 ×2 (4), Enhanced Range (3), Strike (Slowing) ×2 (1), Shadow Jaunt (0), Parry and Dodge +1 ×2 (2)
 - **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Hex +5 vs Mental, Crippled ×3; backup +1 vs Dodge, 3 Fire, range 4 | — | 13 | 8 | 14 | 12 | 2 / 2 | 10 | 3 |
-| 3 | Hex +8 vs Mental, Crippled ×4; backup +4 vs Dodge, 4 Fire, range 8 | — | 16 | 10 | 16 | 14 | 3 / 3 | 13 | 4 |
-| 5 | Hex +10 vs Mental, Crippled ×5; backup +6 vs Dodge, 5 Fire, range 12 | — | 18 | 12 | 18 | 16 | 4 / 4 | 15 | 5 |
+| 1 | Hex +6 vs Mental, Crippled ×2; backup +2 vs Dodge, 3 Fire, range 4 | — | 13 | 8 | 14 | 12 | 2 / 2 | 10 | 3 |
+| 3 | Hex +9 vs Mental, Crippled ×3; backup +5 vs Dodge, 4 Fire, range 8 | — | 16 | 10 | 16 | 14 | 3 / 3 | 13 | 4 |
+| 5 | Hex +10 vs Mental, Crippled ×4; backup +7 vs Dodge, 5 Fire, range 12 | — | 18 | 12 | 18 | 16 | 4 / 4 | 15 | 5 |
 
 ### Curse Weaver
 
@@ -398,15 +398,15 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *Pins the party down with Slowed and rots whoever it strikes.*
 
 - **1 Slot, Strategist.** Hit Whatever (fights whoever is near).
-- **Loadout:** Hex, backup Vital Spell, lands Slowed (0). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
-- **Picks:** Accuracy +1 ×2 (4), Strike (Necrotic) ×2 (1), Resilient (0), Enhanced Reflexes (2), Vital/Mental/Vigilant +1 (1)
+- **Loadout:** Hex, backup Vital Spell, lands Slowed (-2). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Picks:** Accuracy +1 ×2 (4), Strike (Necrotic) ×2 (1), Resilient (0), Enhanced Reflexes (2), Vital/Mental/Vigilant +1 (1), Parry and Dodge +1 ×2 (2)
 - **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Necrotic) ×2.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Hex +6 vs Mental, Slowed ×3; backup +2 vs Bodily, 3 Shadow, range 4 | — | 11 | 9 | 15 | 13 | 2 / 2 | 10 | 3 |
-| 3 | Hex +9 vs Mental, Slowed ×4; backup +5 vs Bodily, 4 Shadow, range 8 | — | 13 | 11 | 17 | 15 | 3 / 3 | 13 | 4 |
-| 5 | Hex +10 vs Mental, Slowed ×5; backup +7 vs Bodily, 5 Shadow, range 12 | — | 15 | 13 | 18 | 17 | 4 / 4 | 15 | 5 |
+| 1 | Hex +6 vs Mental, Slowed ×2; backup +2 vs Bodily, 3 Shadow, range 4 | — | 13 | 9 | 15 | 13 | 2 / 2 | 10 | 3 |
+| 3 | Hex +9 vs Mental, Slowed ×3; backup +5 vs Bodily, 4 Shadow, range 8 | — | 15 | 11 | 17 | 15 | 3 / 3 | 13 | 4 |
+| 5 | Hex +10 vs Mental, Slowed ×4; backup +7 vs Bodily, 5 Shadow, range 12 | — | 17 | 13 | 18 | 17 | 4 / 4 | 15 | 5 |
 
 ### Warleader
 
