@@ -5,6 +5,8 @@ Each monster is built in the five pen-and-paper steps: Level and Slots, archetyp
 Strong and Weak Defense, then the Ability budget (7 / 9 / 11 / 11 / 11 points at Levels 1-5; unspent points are Health). The extra points from Level 2 up go to Accuracy +1
 first, then Damage +1, then the monster's own Level picks. Numbers are the simulator's build at
 Levels 1, 3 and 5. Accuracy includes the weapon's own. Defenses are 8 + Skill Total.
+Accuracy +1 can be bought more than once, but can't raise an enemy's Accuracy before its
+weapon's own above 10, the player cap.
 
 | Monster | Slots | Archetype | Action | Armor |
 |---|---|---|---|---|

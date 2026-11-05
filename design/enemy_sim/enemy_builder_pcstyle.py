@@ -529,6 +529,9 @@ ABILITY_HEALTH_V3P = dict(ABILITY_HEALTH_V3, **{
 # enemy left days about where they were (fights 0.7 rounds shorter).
 LOADOUT_HEALTH_V3P = {"Sword and Shield": 0, "Heavy Weapon and Shield": 1, "Light Two-Handed": 2,
                       "Two-Handed Weapon": 2, "Bow": 0, "Heavy Bow": 1, "Hex": -2}
+# Accuracy +1 can be bought again and again, but can't take an enemy's
+# Accuracy before its weapon's own above 10, the player's Skill Total cap
+# (designer, 2026-11-05; profile() clamps it at SKILL_CAP).
 REPEATABLE_V3 = {"Accuracy +1", "Parry and Dodge +1", "Vital/Mental/Vigilant +1", "Resist +1",
                  "Enhanced Health", "Enhanced Speed"}
 RIDER_CAP_V3 = 4

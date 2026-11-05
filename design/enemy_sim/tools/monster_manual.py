@@ -61,7 +61,9 @@ def main():
              f"Strong and Weak Defense, then the Ability budget ({' / '.join(str(budget(L)) for L in range(1, 6))} "
              "points at Levels 1-5; unspent points are Health). The extra points from Level 2 up go to Accuracy +1",
              "first, then Damage +1, then the monster's own Level picks. Numbers are the simulator's build at",
-             "Levels 1, 3 and 5. Accuracy includes the weapon's own. Defenses are 8 + Skill Total.", ""]
+             "Levels 1, 3 and 5. Accuracy includes the weapon's own. Defenses are 8 + Skill Total.",
+             "Accuracy +1 can be bought more than once, but can't raise an enemy's Accuracy before its",
+             "weapon's own above 10, the player cap.", ""]
     lines += ["| Monster | Slots | Archetype | Action | Armor |", "|---|---|---|---|---|"]
     by_role = sorted(rows, key=lambda r: (GROUPS.index(r["Role"]), r["Name"]))
     for r in by_role:

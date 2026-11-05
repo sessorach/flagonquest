@@ -599,6 +599,8 @@ Before archetype and armor: a light-weapon fighter hits at +4 for 5 with Parry 1
 
 - **Hexers add next to nothing as built** (2026-11-05). A hexer in place of a fourth Brute takes Downs from 15% to 2-4%, whatever its effect, its stack count, or even a curse that lasts the fight and spreads to nearby PCs; the same budget as a caster whose damaging spell Cripples plays like an attacker. Options for its job: debuff casters instead of Hexes; hexers as half-Slot spice; or a stronger Hex (new rules). For the designer. (→ ENEMY_ENCOUNTER_DESIGN, "What a hexer is for")
 
+- **Accuracy +1 can be bought again and again** (designer, 2026-11-05), but can't raise an enemy's Accuracy before its weapon's own above 10, the player cap. Each point is worth about 2 Health and adds about 6 points of Downs, evenly, and even a monster spending everything on it only reaches the best PC's number. (→ ENEMY_ENCOUNTER_DESIGN, "Accuracy +1 bought more than once")
+
 ### Encounters and Slots
 
 - **Slots stay as they are: count the players, pick enemies adding to that many Slots** (designer, 2026-11-02). If on-level fights are off, the per-Level baseline moves, not the Slot rule. (→ ENEMY_ENCOUNTER_DESIGN, "Base stats against the measured party")

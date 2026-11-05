@@ -3262,3 +3262,10 @@ Level 3 against the PCs' 9, best 10), the average monster 2-3 under. Even
 a monster spending its whole budget on Accuracy (with the Strategist's
 +2) only reaches the best PC's number (Level 1: 7 against 8; Level 3: the
 cap, against the best PC's 10).
+
+**Decided** (designer, 2026-11-05): Accuracy +1 stays repeatable, with a
+note that it can't raise an enemy's Accuracy before its weapon's own above
+10, the player's cap. Buys to reach it: at Level 1 eight (six for a
+Strategist), more than any budget holds; at Level 3 four for a Strategist
+(8 of 11 points); at Level 5 two for a Strategist, three for a Skirmisher,
+four for anyone else.
