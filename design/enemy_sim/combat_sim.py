@@ -860,6 +860,8 @@ def _decay(unit, key):
         return 0
     if unit.pop('skip_' + key, False):
         return 0
+    if unit[key] <= unit.get('curse_' + key, 0):
+        return 0  # a lasting curse (tunables.HEX_PERSIST) holds its stacks
     unit[key] -= 1
     return 1
 
@@ -2826,6 +2828,17 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
         if mode == 'hex':
             _apply_to_pc(target, e['main_effect'], e['effect_stacks'], e)
             applied.append(f"{e['main_effect']} +{e['effect_stacks']}")
+            # Hexer tests (2026-11-05, off by default): a curse that lasts
+            # the fight, and a Hex that spreads to PCs near its target.
+            key = e['main_effect'].lower()
+            if T.HEX_PERSIST:
+                target['curse_' + key] = max(target.get('curse_' + key, 0), e['effect_stacks'])
+            if T.HEX_AREA and movement_on:
+                for p in pcs:
+                    if p is not target and p['health'] > 0 and _distance(p['pos'], target['pos']) <= T.HEX_AREA:
+                        _apply_to_pc(p, e['main_effect'], e['effect_stacks'], e)
+                        if T.HEX_PERSIST:
+                            p['curse_' + key] = max(p.get('curse_' + key, 0), e['effect_stacks'])
         else:
             resist = pc_resist_for_enemy_attack(prof, target)
             ward_on = target.get('ward', 0) > 0 and target.get('ward_type') == prof.get('dmg_type')
@@ -3174,6 +3187,8 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     # Hold the Line and Vanguard read who has hurt the enemy side this fight.
     for p in pcs:
         p['_aggro'] = p['_aggro_back'] = 0
+        for k in [k for k in p if k.startswith('curse_')]:
+            del p[k]
     _CTX['ps_pcs'] = any(p.get('close_profile') and hooks.has(p, 'Parting Shot') for p in pcs)
     _CTX['ps_enemies'] = any('Action (Parting Shot)' in e.get('abilities', ()) for e in enemies)
     # Real cards (cards.py): each PC's hand for this fight, and one GM deck

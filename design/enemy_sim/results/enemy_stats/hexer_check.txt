@@ -1,0 +1,28 @@
+| Fight | Lost | Down | Wounded | Rounds |
+|---|---|---|---|---|
+| Brute x4 | 1.2% | 15% | 51% | 4.4 |
+| Brute x3 + Bog Hexer (Crippled) | 0.0% | 3% | 27% | 4.5 |
+| Brute x3 + Bog Hexer, old stacks | 0.2% | 4% | 28% | 5.0 |
+| Brute x3 + Bog Hexer, Harried | 0.2% | 4% | 30% | 4.1 |
+| Brute x3 + Bog Hexer, Vulnerable | 0.0% | 2% | 26% | 4.0 |
+| Brute x3 + Bog Hexer, Frightened | 0.0% | 2% | 26% | 4.2 |
+| Brute x3 + Mire Witch (Slowed) | 0.0% | 3% | 26% | 4.2 |
+| Brute x3 + Curse Weaver (Vulnerable) | 0.2% | 4% | 30% | 3.9 |
+| Brute x3 + Ember Caster (attacker) | 0.8% | 16% | 50% | 4.0 |
+| Brute x3 + Bog Hexer, lasting | 0.6% | 4% | 29% | 4.7 |
+| Brute x3 + Bog Hexer, spreading | 0.4% | 5% | 32% | 5.4 |
+| Brute x3 + Bog Hexer, lasting and spreading | 0.4% | 6% | 35% | 5.1 |
+| Brute x3 + Bog Hexer as a Crippling caster | 3.5% | 18% | 51% | 5.0 |
+| Grave Caller x4 | 6.0% | 77% | 89% | 3.7 |
+| Grave Caller x3 + Bog Hexer (Crippled) | 1.9% | 34% | 60% | 4.0 |
+| Grave Caller x3 + Bog Hexer, old stacks | 1.9% | 34% | 60% | 4.4 |
+| Grave Caller x3 + Bog Hexer, Harried | 0.0% | 33% | 59% | 3.5 |
+| Grave Caller x3 + Bog Hexer, Vulnerable | 1.2% | 38% | 65% | 3.7 |
+| Grave Caller x3 + Bog Hexer, Frightened | 0.0% | 33% | 59% | 3.6 |
+| Grave Caller x3 + Mire Witch (Slowed) | 1.0% | 35% | 59% | 3.7 |
+| Grave Caller x3 + Curse Weaver (Vulnerable) | 1.5% | 36% | 61% | 3.5 |
+| Grave Caller x3 + Ember Caster (attacker) | 7.7% | 65% | 84% | 3.8 |
+| Grave Caller x3 + Bog Hexer, lasting | 3.5% | 34% | 60% | 4.4 |
+| Grave Caller x3 + Bog Hexer, spreading | 2.3% | 35% | 60% | 4.5 |
+| Grave Caller x3 + Bog Hexer, lasting and spreading | 3.3% | 37% | 62% | 4.7 |
+| Grave Caller x3 + Bog Hexer as a Crippling caster | 6.7% | 42% | 70% | 4.9 |

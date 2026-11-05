@@ -597,6 +597,8 @@ Before archetype and armor: a light-weapon fighter hits at +4 for 5 with Parry 1
 
 - **Battle Tactics pick a target, nothing more** (designer, 2026-11-05: none of them should conflict with good tactics like attacking twice; they're a quick reference so GMs can run the game smoothly). Hit Whatever: the closest PC. Hold the Line: whoever has hurt its side most this fight. Vanguard: whoever has hurt its back line most this fight. Kiting: the closest, stepping back first only if a PC is in melee reach (ranged enemies only). Assassin: the softest PC. Assassin is the deadliest by far (two to five times Hit Whatever's Downs alone, about double beside other attackers); Hold the Line and Vanguard play close to Hit Whatever; Kiting as first coded (stepping away every turn) made any monster nearly harmless. (→ ENEMY_ENCOUNTER_DESIGN, "Battle Tactics in the sim", GM quick reference)
 
+- **Hexers add next to nothing as built** (2026-11-05). A hexer in place of a fourth Brute takes Downs from 15% to 2-4%, whatever its effect, its stack count, or even a curse that lasts the fight and spreads to nearby PCs; the same budget as a caster whose damaging spell Cripples plays like an attacker. Options for its job: debuff casters instead of Hexes; hexers as half-Slot spice; or a stronger Hex (new rules). For the designer. (→ ENEMY_ENCOUNTER_DESIGN, "What a hexer is for")
+
 ### Encounters and Slots
 
 - **Slots stay as they are: count the players, pick enemies adding to that many Slots** (designer, 2026-11-02). If on-level fights are off, the per-Level baseline moves, not the Slot rule. (→ ENEMY_ENCOUNTER_DESIGN, "Base stats against the measured party")

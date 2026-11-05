@@ -1,12 +1,12 @@
 # Latest replays (2026-11-05)
 
-Kiting backs off only when engaged; Hold the Line and Vanguard modeled
+No change to the default; tested what hexers add (lasting and spreading curses behind switches, off)
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 98.3% wins, 5.1 rounds, 76% HP left on a win
+- Matchup average over 1000 fights: 96.8% wins, 5.2 rounds, 76% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

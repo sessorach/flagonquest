@@ -389,6 +389,11 @@ ASSASSIN_READS = 'softest'
 # PC every turn, as first coded: it halved a kiter's attacks and made any
 # monster nearly harmless).
 KITING_MOVE = 'engaged'
+# Hexer tests (2026-11-05), both off: a Hex's stacks last the fight
+# (HEX_PERSIST), and a Hex also lands on every PC within this many meters
+# of its target (HEX_AREA; 0 for none).
+HEX_PERSIST = False
+HEX_AREA = 0
 
 # ---- Enemy offense dials (2026-10-08, measurement only) ----
 # Flat changes to every enemy's Accuracy and attack damage, applied to

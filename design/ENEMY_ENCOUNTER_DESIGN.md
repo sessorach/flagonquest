@@ -3156,3 +3156,84 @@ as normal):
 | Kiting | the closest PC, stepping back first if one is in melee reach | ranged enemies only |
 | Assassin | the softest PC: the most hurt for their size, then the lightest armor | the deadliest: two to five times the Downs of Hit Whatever |
 | Triage | (supports) the ally that most needs it | |
+
+### What a hexer is for (2026-11-05)
+
+The designer: review the hexers; re-evaluate what their job in the
+ecosystem is supposed to be. How the sim plays one: its Hex is an attack
+at Mental that lands its stacks on a hit and deals nothing; it Hexes
+whoever lacks a full stack (by its tactic) and swings its backup only
+once everyone has one. The effects are all Fleeting: a Hex of 3 Crippled
+is −3 to attacks for one turn, −2 the next, −1 the one after. Vulnerable
+lowers only Vital, Mental and Vigilant, which most attacks don't target;
+Slowed costs movement, which matters little in these fights.
+
+`experiments/enemies/hexer_check.py`: a basic fight at Level 3, three of
+a working monster (Brutes, or Grave Callers aiming at Vital) and a
+fourth, against every test party in the middle of the band, 60 fresh
+fights each (`results/enemy_stats/hexer_check.txt`). The fourth is
+another of the three, a hexer as built, or a hexer changed one way: a
+different effect, the old stack counts, a curse that lasts the fight
+(`tunables.HEX_PERSIST`), one that also lands on every PC within 3 m of
+its target (`HEX_AREA`), or the Bog Hexer as a caster whose damaging
+spell carries Crippling four times instead of a Hex:
+
+| Fight | Lost | Down | Wounded | Rounds |
+|---|---|---|---|---|
+| Brute x4 | 1.2% | 15% | 51% | 4.4 |
+| Brute x3 + Bog Hexer (Crippled) | 0.0% | 3% | 27% | 4.5 |
+| Brute x3 + Bog Hexer, old stacks | 0.2% | 4% | 28% | 5.0 |
+| Brute x3 + Bog Hexer, Harried | 0.2% | 4% | 30% | 4.1 |
+| Brute x3 + Bog Hexer, Vulnerable | 0.0% | 2% | 26% | 4.0 |
+| Brute x3 + Bog Hexer, Frightened | 0.0% | 2% | 26% | 4.2 |
+| Brute x3 + Mire Witch (Slowed) | 0.0% | 3% | 26% | 4.2 |
+| Brute x3 + Curse Weaver (Vulnerable) | 0.2% | 4% | 30% | 3.9 |
+| Brute x3 + Ember Caster (attacker) | 0.8% | 16% | 50% | 4.0 |
+| Brute x3 + Bog Hexer, lasting | 0.6% | 4% | 29% | 4.7 |
+| Brute x3 + Bog Hexer, spreading | 0.4% | 5% | 32% | 5.4 |
+| Brute x3 + Bog Hexer, lasting and spreading | 0.4% | 6% | 35% | 5.1 |
+| Brute x3 + Bog Hexer as a Crippling caster | 3.5% | 18% | 51% | 5.0 |
+| Grave Caller x4 | 6.0% | 77% | 89% | 3.7 |
+| Grave Caller x3 + Bog Hexer (Crippled) | 1.9% | 34% | 60% | 4.0 |
+| Grave Caller x3 + Bog Hexer, old stacks | 1.9% | 34% | 60% | 4.4 |
+| Grave Caller x3 + Bog Hexer, Harried | 0.0% | 33% | 59% | 3.5 |
+| Grave Caller x3 + Bog Hexer, Vulnerable | 1.2% | 38% | 65% | 3.7 |
+| Grave Caller x3 + Bog Hexer, Frightened | 0.0% | 33% | 59% | 3.6 |
+| Grave Caller x3 + Mire Witch (Slowed) | 1.0% | 35% | 59% | 3.7 |
+| Grave Caller x3 + Curse Weaver (Vulnerable) | 1.5% | 36% | 61% | 3.5 |
+| Grave Caller x3 + Ember Caster (attacker) | 7.7% | 65% | 84% | 3.8 |
+| Grave Caller x3 + Bog Hexer, lasting | 3.5% | 34% | 60% | 4.4 |
+| Grave Caller x3 + Bog Hexer, spreading | 2.3% | 35% | 60% | 4.5 |
+| Grave Caller x3 + Bog Hexer, lasting and spreading | 3.3% | 37% | 62% | 4.7 |
+| Grave Caller x3 + Bog Hexer as a Crippling caster | 6.7% | 42% | 70% | 4.9 |
+
+- **A hexer adds next to nothing, whatever it hexes with.** Swapping one
+  of four Brutes for any hexer takes Downs from 15% to 2-4% and Wounded
+  from 51% to about 27%: the fight plays like three Brutes. The effect
+  doesn't matter (Crippled, Harried, Vulnerable, Frightened, Slowed all
+  land within a couple of points), nor do the old stack counts.
+- **Even lasting and spreading curses barely help** (Downs 4-6%), though
+  they make fights longer (up to 5.4 rounds).
+- **Vulnerable beside Vital attackers is the one pairing that shows**,
+  and only a little (Grave Callers 38% Down with it, 33-35% with the
+  others).
+- **Debuffs on a damaging spell work.** The same budget as a caster whose
+  hits Cripple four times plays like an attacker (18% Down, the most
+  fights lost of any fourth, and longer fights). A hexer's turn is worth
+  far less than the damage it gives up.
+
+The sim may undervalue control, since its PCs don't play around a debuff
+the way players feel one; the balance-weights pass is where that gets
+checked.
+
+**Ways to give the hexer a job** (for the designer):
+
+1. **Debuff casters instead of Hexes:** a hexer is a caster whose spells
+   carry stacked on-hit effects (the Mind Lash Adept and the Crippling
+   caster above). Simple, already in the catalog, and it plays.
+2. **Hexers as cheap spice:** keep the no-damage Hex but make a hexer a
+   half-Slot add-on (minion-sized), so it costs a fight little and the
+   table still gets the flavor.
+3. **A stronger Hex:** something bigger than stacks that fade, such as
+   Bad Luck on the target's attacks for a round, or the Hex as an area
+   effect at full strength. New rules to write and test.
