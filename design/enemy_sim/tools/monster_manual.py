@@ -89,7 +89,7 @@ def main():
             lines += [f"## {role}s", ""]
         picks = [p.strip() for p in r["PrunedPicks"].split(";") if p.strip()]
         loadout = eb.LOADOUT_HEALTH_V3P.get(r["Action"], 0)
-        armor = eb.ARMOR_HEALTH_V3[r["Armor"]]
+        armor = eb.ARMOR_HEALTH_V3P[r["Armor"]]
         spent = sum(eb.ABILITY_HEALTH_V3P[p] for p in picks) + loadout + armor
         e3 = se.get_enemy(f"{r['Name']}@3")
         extra3 = [a for a in e3["abilities"]]

@@ -480,6 +480,10 @@ for _el in ELEMENTS:
     ABILITY_HEALTH_V3[f"Elemental Spell ({_el})"] = 0
     ABILITY_HEALTH_V3[f"Elemental Weapon ({_el})"] = 0
 ARMOR_HEALTH_V3 = {"Unarmored": -1, "Light": 0, "Medium": 1, "Heavy": 2}
+# The pruned v3's armor (designer, 2026-11-05): each step measured about 2
+# Health on the pruned base (ENEMY_ENCOUNTER_DESIGN.md, "What armor is
+# worth on the pruned base"), twice the price above.
+ARMOR_HEALTH_V3P = {"Unarmored": -2, "Light": 0, "Medium": 2, "Heavy": 4}
 # Stat Abilities (2026-11-04, for the pruned v3; any v3 can take them):
 # each is that bump, at its measured worth ("What each stat is worth"),
 # and can be taken more than once up to the player caps.
@@ -630,7 +634,7 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
         # table's Health can go (v2's lesson: a glass cannon drops before
         # its effects pay).
         prices = ABILITY_HEALTH_V3P if version == 3 else ABILITY_HEALTH_V3
-        cost = sum(prices[a] for a in abilities) + ARMOR_HEALTH_V3[armor]
+        cost = sum(prices[a] for a in abilities) + (ARMOR_HEALTH_V3P if version == 3 else ARMOR_HEALTH_V3)[armor]
         if version == 3:
             cost += LOADOUT_HEALTH_V3P.get(action, 0)
         allowance = (T.V3_PRUNED_ALLOWANCE + getattr(T, "V3_PRUNED_EXTRA", {}).get(level, 0)

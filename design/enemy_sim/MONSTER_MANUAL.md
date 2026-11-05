@@ -92,60 +92,60 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *A shield-wall soldier who draws the party's attacks onto itself and harries whoever answers.*
 
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
-- **Loadout:** Sword and Shield (0). **Armor:** Medium (1). **Strong:** Vital. **Weak:** the default for its kind.
+- **Loadout:** Sword and Shield (0). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 (2), Strike (Taunting) ×2 (1), Action (Taunting) (1), Omniguard (1), Strike (Harrying) (1)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
+- **Points:** 8 of 7 at Level 1, 8 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +4 vs Parry/Dodge, 4 Physical | 16 | 11 | 12 | 8 | 10 | 5 / 3 | 10 | 3 |
-| 3 | +7 vs Parry/Dodge, 5 Physical | 19 | 14 | 14 | 10 | 12 | 6 / 4 | 13 | 4 |
-| 5 | +9 vs Parry/Dodge, 6 Physical | 20 | 16 | 16 | 12 | 14 | 7 / 5 | 15 | 5 |
+| 1 | +4 vs Parry/Dodge, 4 Physical | 16 | 11 | 12 | 8 | 10 | 5 / 3 | 9 | 3 |
+| 3 | +7 vs Parry/Dodge, 5 Physical | 19 | 14 | 14 | 10 | 12 | 6 / 4 | 12 | 4 |
+| 5 | +9 vs Parry/Dodge, 6 Physical | 20 | 16 | 16 | 12 | 14 | 7 / 5 | 14 | 5 |
 
 ### Iron Sentinel
 
 *A construct: hard to hurt, shrugs off debuffs, swings a frost-cold blade.*
 
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
-- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (2). **Strong:** Vital. **Weak:** Mental.
+- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (4). **Strong:** Vital. **Weak:** Mental.
 - **Picks:** Resist (Fire) (1), Parry and Dodge +1 ×2 (2), Enhanced Health (1), Elemental Weapon (Frost) (0), Resilient (0), Sturdy (0)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Vital/Mental/Vigilant +1.
+- **Points:** 9 of 7 at Level 1, 9 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Vital/Mental/Vigilant +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 4 Frost | 18 | 13 | 12 | 8 | 10 | 6 / 3 | 11 | 2 |
-| 3 | +5 vs Parry/Dodge, 5 Frost | 20 | 15 | 15 | 11 | 13 | 7 / 4 | 14 | 3 |
-| 5 | +7 vs Parry/Dodge, 6 Frost | 20 | 17 | 17 | 13 | 15 | 8 / 5 | 16 | 4 |
+| 1 | +2 vs Parry/Dodge, 4 Frost | 18 | 13 | 12 | 8 | 10 | 6 / 3 | 9 | 2 |
+| 3 | +5 vs Parry/Dodge, 5 Frost | 20 | 15 | 15 | 11 | 13 | 7 / 4 | 12 | 3 |
+| 5 | +7 vs Parry/Dodge, 6 Frost | 20 | 17 | 17 | 13 | 15 | 8 / 5 | 14 | 4 |
 
 ### Ironbranch Warden
 
 *An armored bulwark that holds its ground: Parrying it still bleeds you, and walking away gets you hit.*
 
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
-- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (2). **Strong:** Vital. **Weak:** the default for its kind.
+- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (4). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Durable (1), Sturdy (0), Strike (Battering) (2), Action (Parting Shot) (1)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
+- **Points:** 9 of 7 at Level 1, 9 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 5 Physical | 16 | 11 | 12 | 8 | 10 | 6 / 3 | 10 | 2 |
-| 3 | +5 vs Parry/Dodge, 6 Physical | 19 | 14 | 14 | 10 | 12 | 7 / 4 | 13 | 3 |
-| 5 | +7 vs Parry/Dodge, 7 Physical | 20 | 16 | 16 | 12 | 14 | 8 / 5 | 15 | 4 |
+| 1 | +2 vs Parry/Dodge, 5 Physical | 16 | 11 | 12 | 8 | 10 | 6 / 3 | 8 | 2 |
+| 3 | +5 vs Parry/Dodge, 6 Physical | 19 | 14 | 14 | 10 | 12 | 7 / 4 | 11 | 3 |
+| 5 | +7 vs Parry/Dodge, 7 Physical | 20 | 16 | 16 | 12 | 14 | 8 / 5 | 13 | 4 |
 
 ### Shieldbearer
 
 *A minion line-holder: two of them make a wall the party has to go through.*
 
 - **Minion (½ Slot), Defender.** Hit Whatever (fights whoever is near).
-- **Loadout:** Sword and Shield (0). **Armor:** Medium (1). **Strong:** Vital. **Weak:** the default for its kind.
+- **Loadout:** Sword and Shield (0). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Parry and Dodge +1 (1), Strike (Taunting) ×2 (1), Accuracy +1 (2), Strike (Harrying) (1)
-- **Points:** 6 of 7 at Level 1, 6 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
+- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | +4 vs Parry/Dodge, 4 Physical | 17 | 12 | 12 | 8 | 10 | 5 / 3 | 4 | 3 |
 | 3 | +7 vs Parry/Dodge, 5 Physical | 20 | 15 | 14 | 10 | 12 | 6 / 4 | 5 | 4 |
-| 5 | +9 vs Parry/Dodge, 6 Physical | 20 | 17 | 16 | 12 | 14 | 7 / 5 | 6 | 5 |
+| 5 | +9 vs Parry/Dodge, 6 Physical | 20 | 17 | 16 | 12 | 14 | 7 / 5 | 5 | 5 |
 
 ## Strikers
 
@@ -154,15 +154,15 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *Burns at Vital Defense and leaves its targets limping.*
 
 - **1 Slot, Striker.** Hit Whatever (fights whoever is near).
-- **Loadout:** Vital Fire (0). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Vital Fire (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Attunement (Fire) (3), Accuracy +1 (2), Strike (Crippling) ×2 (1), Enhanced Reflexes (2)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Crippling) ×2.
+- **Points:** 6 of 7 at Level 1, 6 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Crippling) ×2.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Bodily, 4 Fire, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 10 | 4 |
-| 3 | +6 vs Bodily, 5 Fire, range 8 | — | 12 | 10 | 14 | 12 | 3 / 3 | 13 | 5 |
-| 5 | +8 vs Bodily, 6 Fire, range 12 | — | 14 | 12 | 16 | 14 | 4 / 4 | 15 | 6 |
+| 1 | +3 vs Bodily, 4 Fire, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 11 | 4 |
+| 3 | +6 vs Bodily, 5 Fire, range 8 | — | 12 | 10 | 14 | 12 | 3 / 3 | 14 | 5 |
+| 5 | +8 vs Bodily, 6 Fire, range 12 | — | 14 | 12 | 16 | 14 | 4 / 4 | 16 | 6 |
 
 ### Crossbow Sniper
 
@@ -184,15 +184,15 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *A plain fire caster at range: hard to burn back.*
 
 - **1 Slot, Striker.** Hit Whatever (fights whoever is near).
-- **Loadout:** Ranged Spell (0). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Ranged Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Powerful Spell (3), Accuracy +1 (2), Attunement (Fire) (3)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Vulnerable) ×2.
+- **Points:** 6 of 7 at Level 1, 6 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Vulnerable) ×2.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Dodge, 5 Fire, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 10 | 4 |
-| 3 | +6 vs Dodge, 6 Fire, range 8 | — | 12 | 10 | 14 | 12 | 3 / 3 | 13 | 5 |
-| 5 | +8 vs Dodge, 7 Fire, range 12 | — | 14 | 12 | 16 | 14 | 4 / 4 | 15 | 6 |
+| 1 | +3 vs Dodge, 5 Fire, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 11 | 4 |
+| 3 | +6 vs Dodge, 6 Fire, range 8 | — | 12 | 10 | 14 | 12 | 3 / 3 | 14 | 5 |
+| 5 | +8 vs Dodge, 7 Fire, range 12 | — | 14 | 12 | 16 | 14 | 4 / 4 | 16 | 6 |
 
 ### Executioner
 
@@ -244,15 +244,15 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *A shadow caster aimed at Vital Defense; its hits stop healing and open the target up.*
 
 - **1 Slot, Striker.** Assassin (goes for the softest).
-- **Loadout:** Vital Spell (0). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Vital Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Powerful Spell (3), Accuracy +1 (2), Strike (Necrotic) ×2 (1), Strike (Vulnerable) ×2 (1)
-- **Points:** 6 of 7 at Level 1, 6 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Necrotic) ×2.
+- **Points:** 5 of 7 at Level 1, 5 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Necrotic) ×2.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Bodily, 5 Shadow, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 11 | 4 |
-| 3 | +6 vs Bodily, 6 Shadow, range 8 | — | 12 | 10 | 14 | 12 | 3 / 3 | 14 | 5 |
-| 5 | +8 vs Bodily, 7 Shadow, range 12 | — | 14 | 12 | 16 | 14 | 4 / 4 | 16 | 6 |
+| 1 | +3 vs Bodily, 5 Shadow, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 12 | 4 |
+| 3 | +6 vs Bodily, 6 Shadow, range 8 | — | 12 | 10 | 14 | 12 | 3 / 3 | 15 | 5 |
+| 5 | +8 vs Bodily, 7 Shadow, range 12 | — | 14 | 12 | 16 | 14 | 4 / 4 | 17 | 6 |
 
 ### Marsh Archer
 
@@ -274,15 +274,15 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *The one attacker at Mental Defense: a psychic lash that frightens and opens up the weak-willed. (New Action: Mind Spell.)*
 
 - **1 Slot, Striker.** Assassin (goes for the softest).
-- **Loadout:** Mind Spell (0). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** Vital.
+- **Loadout:** Mind Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** Vital.
 - **Picks:** Powerful Spell (3), Accuracy +1 (2), Strike (Frightening) ×2 (1), Strike (Vulnerable) ×2 (1)
-- **Points:** 6 of 7 at Level 1, 6 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Frightening) ×2.
+- **Points:** 5 of 7 at Level 1, 5 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Frightening) ×2.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Mental, 5 Shadow, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 11 | 4 |
-| 3 | +6 vs Mental, 6 Shadow, range 8 | — | 12 | 10 | 14 | 12 | 3 / 3 | 14 | 5 |
-| 5 | +8 vs Mental, 7 Shadow, range 12 | — | 14 | 12 | 16 | 14 | 4 / 4 | 16 | 6 |
+| 1 | +3 vs Mental, 5 Shadow, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 12 | 4 |
+| 3 | +6 vs Mental, 6 Shadow, range 8 | — | 12 | 10 | 14 | 12 | 3 / 3 | 15 | 5 |
+| 5 | +8 vs Mental, 7 Shadow, range 12 | — | 14 | 12 | 16 | 14 | 4 / 4 | 17 | 6 |
 
 ## Bruisers
 
@@ -306,30 +306,30 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *A rare solo boss: two turns a round; it cleaves through a line and Frightens from across the field.*
 
 - **Solo boss (4 Slots), Bruiser.** Hit Whatever (fights whoever is near).
-- **Loadout:** Two-Handed Weapon (2). **Armor:** Heavy (2). **Strong:** Vital. **Weak:** the default for its kind.
+- **Loadout:** Two-Handed Weapon (2). **Armor:** Heavy (4). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Strike (Cleaving) (2), Action (Parting Shot) (1), Action (Intimidating) (0)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Crippling) ×2.
+- **Points:** 9 of 7 at Level 1, 9 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Crippling) ×2.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 5 / 2 | 99 | 2 |
-| 3 | +5 vs Parry/Dodge, 8 Physical | 14 | 11 | 16 | 10 | 12 | 6 / 3 | 126 | 3 |
-| 5 | +7 vs Parry/Dodge, 9 Physical | 16 | 13 | 18 | 12 | 14 | 7 / 4 | 144 | 4 |
+| 1 | +2 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 5 / 2 | 81 | 2 |
+| 3 | +5 vs Parry/Dodge, 8 Physical | 14 | 11 | 16 | 10 | 12 | 6 / 3 | 108 | 3 |
+| 5 | +7 vs Parry/Dodge, 9 Physical | 16 | 13 | 18 | 12 | 14 | 7 / 4 | 126 | 4 |
 
 ### Gravel Ogre
 
 *An elite: grabs someone and pounds them while the rest of the party tries to pry them loose.*
 
 - **Elite (2 Slots), Bruiser.** Hit Whatever (fights whoever is near).
-- **Loadout:** Two-Handed Weapon (2). **Armor:** Medium (1). **Strong:** Vital. **Weak:** the default for its kind.
+- **Loadout:** Two-Handed Weapon (2). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Strike (Grappling) (3), Strike (Crippling) ×2 (1), Sturdy (0)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1.
+- **Points:** 8 of 7 at Level 1, 8 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 4 / 2 | 33 | 3 |
-| 3 | +5 vs Parry/Dodge, 8 Physical | 14 | 11 | 16 | 10 | 12 | 5 / 3 | 45 | 4 |
-| 5 | +7 vs Parry/Dodge, 9 Physical | 16 | 13 | 18 | 12 | 14 | 6 / 4 | 51 | 5 |
+| 1 | +2 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 4 / 2 | 30 | 3 |
+| 3 | +5 vs Parry/Dodge, 8 Physical | 14 | 11 | 16 | 10 | 12 | 5 / 3 | 42 | 4 |
+| 5 | +7 vs Parry/Dodge, 9 Physical | 16 | 13 | 18 | 12 | 14 | 6 / 4 | 48 | 5 |
 
 ### Thornhide Brute
 
@@ -353,75 +353,75 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *A debuffer that Cripples from range and slips away when cornered.*
 
 - **1 Slot, Strategist.** Kiting (keeps its distance).
-- **Loadout:** Hex, backup Ranged Spell, lands Crippled (-2). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Hex, backup Ranged Spell, lands Crippled (-2). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 ×2 (4), Enhanced Range (3), Strike (Slowing) ×2 (1), Shadow Jaunt (0), Parry and Dodge +1 ×2 (2)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
+- **Points:** 6 of 7 at Level 1, 6 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Hex +6 vs Mental, Crippled ×2; backup +2 vs Dodge, 3 Fire, range 4 | — | 13 | 8 | 14 | 12 | 2 / 2 | 10 | 3 |
-| 3 | Hex +9 vs Mental, Crippled ×3; backup +5 vs Dodge, 4 Fire, range 8 | — | 16 | 10 | 16 | 14 | 3 / 3 | 13 | 4 |
-| 5 | Hex +10 vs Mental, Crippled ×4; backup +7 vs Dodge, 5 Fire, range 12 | — | 18 | 12 | 18 | 16 | 4 / 4 | 15 | 5 |
+| 1 | Hex +6 vs Mental, Crippled ×2; backup +2 vs Dodge, 3 Fire, range 4 | — | 13 | 8 | 14 | 12 | 2 / 2 | 11 | 3 |
+| 3 | Hex +9 vs Mental, Crippled ×3; backup +5 vs Dodge, 4 Fire, range 8 | — | 16 | 10 | 16 | 14 | 3 / 3 | 14 | 4 |
+| 5 | Hex +10 vs Mental, Crippled ×4; backup +7 vs Dodge, 5 Fire, range 12 | — | 18 | 12 | 18 | 16 | 4 / 4 | 16 | 5 |
 
 ### Curse Weaver
 
 *Lays heavy curses on the weakest from far away.*
 
 - **1 Slot, Strategist.** Assassin (goes for the softest).
-- **Loadout:** Curse, backup Shadow Bolt, lands Vulnerable (0). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Curse, backup Shadow Bolt, lands Vulnerable (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 (2), Enhanced Range (3), Strike (Necrotic) ×2 (1), Enhanced Reflexes (2)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1.
+- **Points:** 6 of 7 at Level 1, 6 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Curse +5 vs Dodge, Vulnerable ×2; backup +1 vs Dodge, 3 Shadow, range 4 | — | 11 | 8 | 14 | 12 | 2 / 2 | 10 | 3 |
-| 3 | Curse +8 vs Dodge, Vulnerable ×2; backup +4 vs Dodge, 4 Shadow, range 8 | — | 13 | 10 | 16 | 14 | 3 / 3 | 14 | 4 |
-| 5 | Curse +10 vs Dodge, Vulnerable ×2; backup +6 vs Dodge, 5 Shadow, range 12 | — | 15 | 12 | 18 | 16 | 4 / 4 | 16 | 5 |
+| 1 | Curse +5 vs Dodge, Vulnerable ×2; backup +1 vs Dodge, 3 Shadow, range 4 | — | 11 | 8 | 14 | 12 | 2 / 2 | 11 | 3 |
+| 3 | Curse +8 vs Dodge, Vulnerable ×2; backup +4 vs Dodge, 4 Shadow, range 8 | — | 13 | 10 | 16 | 14 | 3 / 3 | 15 | 4 |
+| 5 | Curse +10 vs Dodge, Vulnerable ×2; backup +6 vs Dodge, 5 Shadow, range 12 | — | 15 | 12 | 18 | 16 | 4 / 4 | 17 | 5 |
 
 ### Fen Warden
 
 *A spellcaster that holds its ground in melee and bogs down whoever stands in front of it.*
 
 - **1 Slot, Strategist.** Hit Whatever (fights whoever is near).
-- **Loadout:** Melee Spell (0). **Armor:** Medium (1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Melee Spell (0). **Armor:** Medium (2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Strike (Slowing) ×4 (2), Accuracy +1 (2), Durable (1), Action (Taunting) (1)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1.
+- **Points:** 8 of 7 at Level 1, 8 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +5 vs Dodge, 3 Fire | — | 10 | 8 | 14 | 12 | 4 / 2 | 10 | 3 |
-| 3 | +8 vs Dodge, 4 Fire | — | 12 | 10 | 16 | 14 | 5 / 3 | 14 | 4 |
-| 5 | +10 vs Dodge, 5 Fire | — | 14 | 12 | 18 | 16 | 6 / 4 | 16 | 5 |
+| 1 | +5 vs Dodge, 3 Fire | — | 10 | 8 | 14 | 12 | 4 / 2 | 9 | 3 |
+| 3 | +8 vs Dodge, 4 Fire | — | 12 | 10 | 16 | 14 | 5 / 3 | 13 | 4 |
+| 5 | +10 vs Dodge, 5 Fire | — | 14 | 12 | 18 | 16 | 6 / 4 | 15 | 5 |
 
 ### Mire Witch
 
 *Pins the party down with Slowed and rots whoever it strikes.*
 
 - **1 Slot, Strategist.** Hit Whatever (fights whoever is near).
-- **Loadout:** Hex, backup Vital Spell, lands Slowed (-2). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Hex, backup Vital Spell, lands Slowed (-2). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 ×2 (4), Strike (Necrotic) ×2 (1), Resilient (0), Enhanced Reflexes (2), Vital/Mental/Vigilant +1 (1), Parry and Dodge +1 ×2 (2)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Necrotic) ×2.
+- **Points:** 6 of 7 at Level 1, 6 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Necrotic) ×2.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Hex +6 vs Mental, Slowed ×2; backup +2 vs Bodily, 3 Shadow, range 4 | — | 13 | 9 | 15 | 13 | 2 / 2 | 10 | 3 |
-| 3 | Hex +9 vs Mental, Slowed ×3; backup +5 vs Bodily, 4 Shadow, range 8 | — | 15 | 11 | 17 | 15 | 3 / 3 | 13 | 4 |
-| 5 | Hex +10 vs Mental, Slowed ×4; backup +7 vs Bodily, 5 Shadow, range 12 | — | 17 | 13 | 18 | 17 | 4 / 4 | 15 | 5 |
+| 1 | Hex +6 vs Mental, Slowed ×2; backup +2 vs Bodily, 3 Shadow, range 4 | — | 13 | 9 | 15 | 13 | 2 / 2 | 11 | 3 |
+| 3 | Hex +9 vs Mental, Slowed ×3; backup +5 vs Bodily, 4 Shadow, range 8 | — | 15 | 11 | 17 | 15 | 3 / 3 | 14 | 4 |
+| 5 | Hex +10 vs Mental, Slowed ×4; backup +7 vs Bodily, 5 Shadow, range 12 | — | 17 | 13 | 18 | 17 | 4 / 4 | 16 | 5 |
 
 ### Warleader
 
 *A commander in the line who Frightens and Harries and punishes anyone who breaks off.*
 
 - **1 Slot, Strategist.** Hit Whatever (fights whoever is near).
-- **Loadout:** Sword and Shield (0). **Armor:** Medium (1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Sword and Shield (0). **Armor:** Medium (2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Action (Intimidating) (0), Strike (Frightening) ×2 (1), Strike (Harrying) (1), Accuracy +1 (2), Action (Parting Shot) (1)
-- **Points:** 6 of 7 at Level 1, 6 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Harrying).
+- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Harrying).
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +6 vs Parry/Dodge, 4 Physical | 14 | 10 | 10 | 14 | 10 | 4 / 2 | 11 | 3 |
-| 3 | +9 vs Parry/Dodge, 5 Physical | 16 | 12 | 12 | 16 | 12 | 5 / 3 | 14 | 4 |
-| 5 | +11 vs Parry/Dodge, 6 Physical | 18 | 14 | 14 | 18 | 14 | 6 / 4 | 16 | 5 |
+| 1 | +6 vs Parry/Dodge, 4 Physical | 14 | 10 | 10 | 14 | 10 | 4 / 2 | 10 | 3 |
+| 3 | +9 vs Parry/Dodge, 5 Physical | 16 | 12 | 12 | 16 | 12 | 5 / 3 | 13 | 4 |
+| 5 | +11 vs Parry/Dodge, 6 Physical | 18 | 14 | 14 | 18 | 14 | 6 / 4 | 15 | 5 |
 
 ## Backups
 
@@ -430,30 +430,30 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *An elite that wraps every nearby ally in Protected and rots whoever it strikes.*
 
 - **Elite (2 Slots), Backup.** Hit Whatever (fights whoever is near).
-- **Loadout:** Shielding Nova, backup Ranged Spell (0). **Armor:** Unarmored (-1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Shielding Nova, backup Ranged Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Attunement (Shadow) (3), Accuracy +1 (2), Strike (Necrotic) ×2 (1)
-- **Points:** 6 of 7 at Level 1, 6 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Necrotic) ×2.
+- **Points:** 5 of 7 at Level 1, 5 of 8 at Level 2 (the rest is Health); at Levels 3-5 the extra 3 buy Accuracy +1, Strike (Necrotic) ×2.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Shielding Nova: Protected 3; backup +-1 vs Dodge, 3 Fire, range 4 | — | 10 | 12 | 14 | 10 | 3 / 3 | 33 | 3 |
-| 3 | Shielding Nova: Protected 3; backup +2 vs Dodge, 4 Fire, range 8 | — | 12 | 14 | 16 | 12 | 4 / 4 | 42 | 4 |
-| 5 | Shielding Nova: Protected 3; backup +4 vs Dodge, 5 Fire, range 12 | — | 14 | 16 | 18 | 14 | 5 / 5 | 48 | 5 |
+| 1 | Shielding Nova: Protected 3; backup +-1 vs Dodge, 3 Fire, range 4 | — | 10 | 12 | 14 | 10 | 3 / 3 | 36 | 3 |
+| 3 | Shielding Nova: Protected 3; backup +2 vs Dodge, 4 Fire, range 8 | — | 12 | 14 | 16 | 12 | 4 / 4 | 45 | 4 |
+| 5 | Shielding Nova: Protected 3; backup +4 vs Dodge, 5 Fire, range 12 | — | 14 | 16 | 18 | 14 | 5 / 5 | 51 | 5 |
 
 ### Deadbough Priest
 
 *A sturdy healer in the line: hard to burn down while it keeps the others up.*
 
 - **1 Slot, Backup.** Hit Whatever (fights whoever is near).
-- **Loadout:** Great Heal, backup Sword and Shield (0). **Armor:** Medium (1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Great Heal, backup Sword and Shield (0). **Armor:** Medium (2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Durable (1), Resist +1 (4)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
+- **Points:** 8 of 7 at Level 1, 8 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Great Heal: Health 3; backup +-1 vs Parry/Dodge, 4 Physical | 11 | 9 | 12 | 14 | 10 | 6 / 4 | 10 | 3 |
-| 3 | Great Heal: Health 3; backup +2 vs Parry/Dodge, 5 Physical | 14 | 12 | 14 | 16 | 12 | 7 / 5 | 13 | 4 |
-| 5 | Great Heal: Health 3; backup +4 vs Parry/Dodge, 6 Physical | 16 | 14 | 16 | 18 | 14 | 7 / 5 | 15 | 5 |
+| 1 | Great Heal: Health 3; backup +-1 vs Parry/Dodge, 4 Physical | 11 | 9 | 12 | 14 | 10 | 6 / 4 | 9 | 3 |
+| 3 | Great Heal: Health 3; backup +2 vs Parry/Dodge, 5 Physical | 14 | 12 | 14 | 16 | 12 | 7 / 5 | 12 | 4 |
+| 5 | Great Heal: Health 3; backup +4 vs Parry/Dodge, 6 Physical | 16 | 14 | 16 | 18 | 14 | 7 / 5 | 14 | 5 |
 
 ### Field Medic
 
@@ -475,15 +475,15 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *Shields whichever ally is in trouble and wades in with a mace when nobody is.*
 
 - **1 Slot, Backup.** Hit Whatever (fights whoever is near).
-- **Loadout:** Shield Ally, backup Sword and Shield (0). **Armor:** Medium (1). **Strong:** Mental. **Weak:** the default for its kind.
+- **Loadout:** Shield Ally, backup Sword and Shield (0). **Armor:** Medium (2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Durable (1), Accuracy +1 (2), Strike (Frightening) ×2 (1), Strike (Harrying) (1)
-- **Points:** 7 of 7 at Level 1, 7 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
+- **Points:** 8 of 7 at Level 1, 8 of 8 at Level 2; at Levels 3-5 the extra 3 buy Accuracy +1, Parry and Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Shield Ally: Protected 3; backup +0 vs Parry/Dodge, 4 Physical | 11 | 9 | 12 | 14 | 10 | 5 / 3 | 10 | 3 |
-| 3 | Shield Ally: Protected 3; backup +3 vs Parry/Dodge, 5 Physical | 14 | 12 | 14 | 16 | 12 | 6 / 4 | 13 | 4 |
-| 5 | Shield Ally: Protected 5; backup +5 vs Parry/Dodge, 6 Physical | 16 | 14 | 16 | 18 | 14 | 7 / 5 | 15 | 5 |
+| 1 | Shield Ally: Protected 3; backup +0 vs Parry/Dodge, 4 Physical | 11 | 9 | 12 | 14 | 10 | 5 / 3 | 9 | 3 |
+| 3 | Shield Ally: Protected 3; backup +3 vs Parry/Dodge, 5 Physical | 14 | 12 | 14 | 16 | 12 | 6 / 4 | 12 | 4 |
+| 5 | Shield Ally: Protected 5; backup +5 vs Parry/Dodge, 6 Physical | 16 | 14 | 16 | 18 | 14 | 7 / 5 | 14 | 5 |
 
 ## Skirmishers
 
