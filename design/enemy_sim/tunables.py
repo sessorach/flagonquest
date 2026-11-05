@@ -451,6 +451,9 @@ V3_PRUNED_EXTRA = {1: 0, 2: 1, 3: 3, 4: 3, 5: 3}
 V3_PRUNED_EXTRA_ORDER = 'offense'
 # Loadout swaps on the redesigned rows, for experiments ({"Bow": "Heavy Bow"}).
 V3_PRUNED_SWAP = {}
+# Test (2026-11-05): None keeps the Defender's Resist +1; a number swaps it
+# for that much Health per Slot.
+V3_DEFENDER_HP = None
 # The least of the table's Health an enemy can keep after paying for
 # Abilities and armor (0 lets experiments spend it all).
 V3_HEALTH_FLOOR = 2 / 3
