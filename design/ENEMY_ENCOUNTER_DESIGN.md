@@ -2885,3 +2885,36 @@ What it says:
 (or cap the stat picks); decide Kiting; give the healers and hexers
 something back; and whether the solo boss should be as dangerous as it
 is.
+
+**Monster Defenses without any Defense picks, against the PCs**
+(2026-11-05, the designer's question: with the Strong and Weak Defense and
+the weapon's Parry alone, how close do monsters get to player numbers?
+Every manual monster with Parry and Dodge +1, Vital/Mental/Vigilant +1
+and Resist picks taken out, against every distinct PC in the test parties
+in the middle of the band; average and range,
+`results/enemy_stats/v3p_defense_vs_pcs.txt`):
+
+| Level | | Better of Parry / Dodge | Vital | Mental | Physical Resist |
+|---|---|---|---|---|---|
+| 1 | PCs | 13.4 (12-16) | 11.4 (10-13) | 11.3 (10-13) | 3.3 (2-4) |
+| | monsters | 12.3 (10-16) | 10.5 (8-14) | 10.4 (8-14) | 3.4 (2-6) |
+| 2 | PCs | 14.9 (12-16) | 12.7 (11-14) | 12.3 (12-13) | 4.4 (3-6) |
+| | monsters | 13.3 (11-17) | 11.5 (9-15) | 11.4 (9-15) | 4.4 (3-7) |
+| 3 | PCs | 15.9 (12-19) | 14.2 (13-15) | 12.9 (12-14) | 4.3 (4-5) |
+| | monsters | 14.3 (12-18) | 12.5 (10-16) | 12.4 (10-16) | 4.4 (3-7) |
+| 4 | PCs | 17.8 (14-20) | 15.3 (13-17) | 13.3 (12-15) | 5.9 (5-6) |
+| | monsters | 15.3 (13-19) | 13.5 (11-17) | 13.4 (11-17) | 5.4 (4-8) |
+| 5 | PCs | 18.1 (15-20) | 16.2 (15-18) | 16.0 (15-18) | 6.3 (6-8) |
+| | monsters | 16.3 (14-20) | 14.5 (12-18) | 14.4 (12-18) | 5.4 (4-8) |
+
+Without picks the average monster sits 1-2 under the average PC on its
+best Defense and its Vital and Mental (2-2.5 at Levels 4-5, where the
+PCs are grown Level 3 characters), with about the same Physical Resist,
+and the ranges overlap: a shield-carrying Defender matches the best PC
+Parry (18 at Level 3). That corrects the walls reading above. The
+Ironbranch Warden and Iron Sentinel bought only one or two Defense picks
+between them (Parry 19-20 built, 18 without); what sets them apart is
+Physical Resist 7 at Level 3 from Heavy Armor and the Defender's +1, above
+any PC's (4-5), on top of a shield Defender's Parry. Physical weapons do
+little to them, so the fight grinds. The thing to price is heavy armor on
+a Defender, more than the Defense picks.
