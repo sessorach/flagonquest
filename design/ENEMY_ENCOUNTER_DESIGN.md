@@ -2918,3 +2918,21 @@ Physical Resist 7 at Level 3 from Heavy Armor and the Defender's +1, above
 any PC's (4-5), on top of a shield Defender's Parry. Physical weapons do
 little to them, so the fight grinds. The thing to price is heavy armor on
 a Defender, more than the Defense picks.
+
+**What armor is worth on the pruned base** (2026-11-05, the designer: how
+to price Heavy against Medium and Unarmored; `kit_check.py`, every
+full-size enemy in the four mixes put in each armor, then also made a
+Defender, Levels 2 / 3, `results/enemy_stats/v3p_armor.txt`; readings
+put back into worth by adding the price paid, and compared with Light):
+
+| Armor | Worth against Light, any enemy | Rounds | On a Defender | Rounds |
+|---|---|---|---|---|
+| Unarmored (Resist +0) | −1.7 / −1.8 | −0.8 / −0.5 | | |
+| Light (Resist +1) | 0 | 0 | 0 | 0 |
+| Medium (Resist +2, Dodge −1) | +2.4 / +1.1 | +1.5 / +0.4 | +3.7 / +2.5 | +2.6 / +1.0 |
+| Heavy (Resist +3, Dodge −1, Speed −1) | +4.9 / +3.7 | +3.6 / +1.9 | +7.8 / +6.1 | +5.9 / +3.6 |
+
+So the steps are about 2 Health each (Unarmored about −2, Medium +2,
+Heavy +4, against the current −1 / 1 / 2), and they compound on a
+Defender: its Resist +1 and Parry/Dodge +2 on top of Heavy Armor are
+worth about 7 against Light, and add 4-6 rounds. That's the walls.
