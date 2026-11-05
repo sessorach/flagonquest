@@ -2936,3 +2936,27 @@ So the steps are about 2 Health each (Unarmored about −2, Medium +2,
 Heavy +4, against the current −1 / 1 / 2), and they compound on a
 Defender: its Resist +1 and Parry/Dodge +2 on top of Heavy Armor are
 worth about 7 against Light, and add 4-6 rounds. That's the walls.
+
+**Armor at −2 / 0 / 2 / 4** (the designer's test, 2026-11-05;
+`results/enemy_stats/v3p_armor_prices.txt`, `manual_check_armor.txt`).
+The roster, middle of each band (days won (worst / best party) / Down /
+Wounded / rounds), against the same budget at the old armor prices:
+
+| Level | Armor −2 / 0 / 2 / 4 | Armor −1 / 0 / 1 / 2 |
+|---|---|---|
+| 1 | 90 (79 / 98) / 22 / 51 / 5.0 | 90 (79 / 98) / 21 / 49 / 5.1 |
+| 2 | 87 (73 / 100) / 19 / 44 / 5.4 | 86 (68 / 100) / 19 / 44 / 5.6 |
+| 3 | 85 (55 / 100) / 19 / 48 / 4.6 | 82 (53 / 100) / 19 / 49 / 4.9 |
+| 4 | 86 (65 / 100) / 19 / 46 / 5.1 | 85 (69 / 100) / 18 / 47 / 5.4 |
+| 5 | 85 (69 / 99) / 20 / 50 / 5.4 | 82 (63 / 99) / 20 / 51 / 5.7 |
+
+The roster barely moves (a point or three easier at Levels 3 and 5, fights
+a little shorter): its armored enemies lose a Health or two and the
+unarmored casters gain one. In the manual's broad test, encounters lose
+the party 1.5-2 points fewer fights at every Level (10 / 4 / 5 / 3 / 4%),
+and the walls come down but stay on top: the Ironbranch Warden from +57
+to +42 on Downs and +56 to +40 on losses, the Iron Sentinel from +46 to
++33 and +49 to +37, and from +17 to +14 rounds. The unarmored ranged
+Assassins rise a little (Grave Caller +21 to +29 on Downs). Pricing armor
+at its worth helps the walls by about a quarter; what's left is the
+Defender's own Resist +1 on top of Heavy Armor.

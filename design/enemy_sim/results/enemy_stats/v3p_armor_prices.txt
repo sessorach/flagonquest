@@ -1,0 +1,5 @@
+armor -2/0/2/4, 7/8/10/10/10 L1 days  89.9 (worst  79 best  98) Down  22 Wnd  51 rds 5.0 again 49
+armor -2/0/2/4, 7/8/10/10/10 L2 days  87.0 (worst  73 best 100) Down  19 Wnd  44 rds 5.4 again 53
+armor -2/0/2/4, 7/8/10/10/10 L3 days  85.2 (worst  55 best 100) Down  19 Wnd  48 rds 4.6 again 48
+armor -2/0/2/4, 7/8/10/10/10 L4 days  85.8 (worst  65 best 100) Down  19 Wnd  46 rds 5.1 again 61
+armor -2/0/2/4, 7/8/10/10/10 L5 days  84.9 (worst  69 best  99) Down  20 Wnd  50 rds 5.4 again 62
