@@ -3012,3 +3012,76 @@ Medium Armor). In the manual's broad test encounters lose the party
 2 / 4 / 2 / 3% at Levels 2-5 (from 1.5 / 3 / 1.7 / 2.6%), and the order of
 the monsters doesn't change. The strongest party still wins 99-100% of
 days. This is the default.
+
+### Battle Tactics in the sim (2026-11-05)
+
+The designer: look into Kiting, and all the tactics, and say which stand
+out. How the sim plays them (`tactics.py`, `combat_sim.spend_movement_ap`):
+
+- **Hit Whatever** goes for the closest PC (with movement on).
+- **Assassin** goes for the softest: the PC hurt worst for their size,
+  then the lightest armor (`tunables.ASSASSIN_READS = 'softest'`).
+- **Kiting** goes for the closest PC and, every turn, spends one move
+  action stepping straight away from them, whether anyone is near or not.
+  At 4 AP that leaves one attack a turn where everyone else makes two.
+- **Hold the Line, Vanguard and Triage aren't modeled:** they play as Hit
+  Whatever. (Supports pick whom to help by their own rule.)
+
+`experiments/enemies/tactic_check.py`: every attacking manual monster,
+four of itself (eight minions, two elites) at Level 3, under each tactic,
+against every test party in the middle of the band, 40 fresh fights each.
+Kiting is played as coded ('always') and with a test rule that backs off
+only from a PC already in melee reach, otherwise closing to range and
+attacking like anyone else (`tunables.KITING_MOVE = 'engaged'`). Fights
+lost / with someone Down (%) / rounds:
+
+| Monster | Hit Whatever | Assassin | Kiting (always) | Kiting (engaged) |
+|---|---|---|---|---|
+| Hedge Knight | 0 / 3 / 7.1 | 1 / 18 / 7.6 | 0 / 0 / 8.4 | 0 / 0 / 8.4 |
+| Ironbranch Warden | 32 / 49 / 12.8 | 29 / 59 / 12.7 | 5 / 3 / 11.7 | 6 / 6 / 12.3 |
+| Iron Sentinel | 43 / 59 / 16.1 | 40 / 73 / 16.6 | 6 / 1 / 16.8 | 7 / 2 / 16.8 |
+| Shieldbearer | 0 / 7 / 5.9 | 2 / 36 / 6.5 | 0 / 0 / 6.9 | 0 / 0 / 7.0 |
+| Marsh Archer | 0 / 11 / 4.0 | 0 / 54 / 4.3 | 0 / 0 / 4.2 | 0 / 10 / 4.3 |
+| Crossbow Sniper | 0 / 18 / 3.8 | 0 / 59 / 4.3 | 0 / 3 / 4.3 | 0 / 18 / 4.0 |
+| Glaive Dancer | 0 / 8 / 3.4 | 0 / 25 / 3.5 | 0 / 0 / 3.9 | 0 / 0 / 3.9 |
+| Executioner | 0 / 8 / 3.4 | 0 / 14 / 3.4 | 0 / 0 / 4.0 | 0 / 0 / 4.0 |
+| Grave Caller | 7 / 48 / 3.7 | 8 / 70 / 3.8 | 0 / 8 / 3.9 | 2 / 40 / 4.1 |
+| Ember Caster | 2 / 42 / 4.2 | 4 / 62 / 4.2 | 1 / 4 / 4.5 | 1 / 32 / 4.6 |
+| Cinder Adept | 3 / 21 / 4.9 | 5 / 42 / 4.7 | 0 / 2 / 4.6 | 0 / 14 / 4.8 |
+| Mind Lash Adept | 11 / 53 / 3.9 | 11 / 71 / 3.9 | 0 / 5 / 3.9 | 2 / 43 / 4.4 |
+| Goblin Cutthroat | 0 / 20 / 3.6 | 0 / 54 / 3.7 | 0 / 0 / 4.0 | 0 / 0 / 4.0 |
+| Brute | 2 / 13 / 4.5 | 1 / 36 / 4.5 | 0 / 0 / 4.4 | 0 / 0 / 4.5 |
+| Thornhide Brute | 3 / 12 / 4.4 | 1 / 30 / 4.4 | 0 / 0 / 4.6 | 0 / 0 / 4.7 |
+| Gravel Ogre | 0 / 11 / 4.3 | 0 / 17 / 4.4 | 0 / 0 / 5.1 | 0 / 0 / 5.1 |
+| Warleader | 0 / 1 / 4.0 | 0 / 13 / 4.2 | 0 / 0 / 4.7 | 0 / 0 / 4.7 |
+| Fen Warden | 0 / 7 / 3.6 | 0 / 5 / 3.6 | 0 / 0 / 4.3 | 0 / 0 / 4.3 |
+| Skulking Footpad | 0 / 5 / 3.4 | 0 / 18 / 3.5 | 0 / 0 / 4.3 | 0 / 0 / 4.3 |
+| Shade Stalker | 1 / 24 / 5.1 | 2 / 34 / 4.7 | 0 / 2 / 4.7 | 0 / 14 / 5.0 |
+| Bog Skirmisher | 1 / 4 / 6.3 | 0 / 35 / 5.8 | 0 / 0 / 5.4 | 1 / 5 / 6.9 |
+| Hunting Hound | 4 / 23 / 4.2 | 1 / 42 / 3.9 | 0 / 0 / 4.1 | 0 / 0 / 4.1 |
+
+What stands out:
+
+- **Kiting as coded makes anything nearly harmless.** Someone goes Down in
+  0-8% of fights against every monster, and even the walls' losses drop
+  from 32-43% to 5-6%. Half the attacks, all of them at the front line.
+- **Kiting backing off only when engaged** puts the ranged monsters and
+  casters back where they'd be as Hit Whatever, a little under (Grave
+  Caller Down 40% against 48, Ember Caster 32 against 42, Mind Lash Adept
+  43 against 53, Crossbow Sniper 18 against 18). It's a ranged tactic:
+  a melee monster that backs off from melee does nothing either way.
+- **Assassin is the strongest tactic by a distance, on Downs.** Against
+  Hit Whatever it puts someone Down two to five times as often with
+  almost every monster (Marsh Archer 11% to 54%, Goblin Cutthroat 20% to
+  54%, Brute 13% to 36%, Shieldbearer 7% to 36%), while losses barely
+  move. Hit Whatever spends itself on whoever stands closest, usually
+  the armored front; Assassin picks off the soft back line. As a free
+  pick it's worth more than most Abilities.
+- **The walls win on durability, not tactics:** 29-43% losses under Hit
+  Whatever or Assassin alike.
+
+**Open:** play Kiting as "back off when engaged" (what the table's
+"keeps max range" suggests); whether Assassin should cost something, or
+be the tactic the GM reaches for on purpose; and modeling Hold the Line
+(the most aggressive PC) and Vanguard (whoever is attacking the back
+line), so they stop reading as Hit Whatever.

@@ -383,6 +383,10 @@ RECKLESS_CHANCE = 0.05   # share of turns any PC plays like a Diver anyway
 # PC's max Health makes every Assassin go for that PC instead (the broad
 # pass, results/TECHNIQUE_PASS.md).
 ASSASSIN_READS = 'softest'
+# How a Kiting enemy moves: 'always' (a move action away from the closest
+# PC every turn, as first coded) or 'engaged' (2026-11-05 test: only when
+# a PC is in melee reach; otherwise it closes to range and attacks twice).
+KITING_MOVE = 'always'
 
 # ---- Enemy offense dials (2026-10-08, measurement only) ----
 # Flat changes to every enemy's Accuracy and attack damage, applied to

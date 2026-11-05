@@ -296,6 +296,10 @@ def spend_movement_ap(unit, target, ap, reach):
     taken, for Guarded's own stand-still bonus to check (see
     run_fight's Enemies' turn)."""
     kiting = unit.get('battle_tactic') == 'Kiting'
+    if kiting and getattr(T, 'KITING_MOVE', 'always') == 'engaged':
+        # Test (2026-11-05): back off only from someone already in melee
+        # reach; otherwise close to range and attack like anyone else.
+        kiting = movement.distance(unit['pos'], target['pos']) <= T.MELEE_RANGE
     moved = False
     # rulebook.md, Grapple: "You may not move normally; your Speed is
     # reduced to 0".

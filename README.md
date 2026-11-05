@@ -18,6 +18,7 @@ full log. See `git log` for the commit-by-commit detail.
 Built 30 enemy stat blocks the new pen-and-paper way, covering every archetype, weapon loadout and main action, then ran them through a broad test that plays close to the old fights and shows which pieces are over- and underpriced.
 
 - Hexes now land a stack fewer and poisons stop at two stacks, since they outlast the fight.
+- Compared the enemy Battle Tactics side by side: Kiting as the simulator played it made enemies nearly harmless, and Assassin downs characters two to five times as often as Hit Whatever.
 - The heavily armored walls were the outliers: armor now costs about what it's worth, and the Defender archetype trades its extra Resist for Health, which brings them back in line. Kiting enemies barely hurt anyone and the trimmed hexers now do little, which is where the next round of pricing starts.
 
 ### 2026-11-04 — Enemies with debuffs as standard
