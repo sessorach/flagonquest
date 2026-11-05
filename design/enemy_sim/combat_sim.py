@@ -2678,6 +2678,9 @@ def _land_damage(pc, e, raw, resist, steps=True):
 def _damaged_by_pc(pc, e, dmg):
     """A PC's attack took Health off enemy `e` (Retribution Aura answers)."""
     if dmg > 0:
+        pc['_aggro'] = pc.get('_aggro', 0) + dmg
+        if tactics.is_backline(e):
+            pc['_aggro_back'] = pc.get('_aggro_back', 0) + dmg
         hooks.run('pc_damaged_enemy', e, SimpleNamespace(pc=pc, dmg=dmg))
 
 
@@ -3168,6 +3171,9 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     _CTX['walls'] = set()
     _movement.TERRAIN.clear()  # run_fight's `movement` argument shadows the module
     _CTX['pcs'] = pcs
+    # Hold the Line and Vanguard read who has hurt the enemy side this fight.
+    for p in pcs:
+        p['_aggro'] = p['_aggro_back'] = 0
     _CTX['ps_pcs'] = any(p.get('close_profile') and hooks.has(p, 'Parting Shot') for p in pcs)
     _CTX['ps_enemies'] = any('Action (Parting Shot)' in e.get('abilities', ()) for e in enemies)
     # Real cards (cards.py): each PC's hand for this fight, and one GM deck

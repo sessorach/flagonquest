@@ -3085,3 +3085,74 @@ What stands out:
 be the tactic the GM reaches for on purpose; and modeling Hold the Line
 (the most aggressive PC) and Vanguard (whoever is attacking the back
 line), so they stop reading as Hit Whatever.
+
+**Kiting when engaged, Hold the Line and Vanguard, as the default**
+(designer, 2026-11-05: switch Kiting to engaged and model the other two;
+"none of these should conflict with good tactics like double-tapping",
+they're a quick reference so GMs can run the game smoothly). A tactic
+only picks the target: every enemy still moves and attacks twice as
+any enemy does.
+
+- **Kiting** backs off only from a PC in melee reach; otherwise it closes
+  to range and attacks like anyone else (`tunables.KITING_MOVE = 'engaged'`).
+- **Hold the Line** attacks the PC who has dealt its side the most damage
+  this fight; the closest on a tie or before anyone has.
+- **Vanguard** attacks the PC who has dealt the most damage to its side's
+  back line this fight (ranged attackers, healers, hexers); the closest
+  on a tie or before anyone has.
+
+The four mixes the table was tuned on use none of the three, and play
+byte-identically. `tactic_check.py --mixed`: each monster fills half the
+Slots beside two Ember Casters (two Hedge Knights for the Ember Caster),
+only its own tactic changing, Level 3, every test party, 40 fresh fights
+(`results/enemy_stats/tactic_check_mixed.txt`; fights lost / with someone
+Down (%) / rounds):
+
+| Monster | Hit Whatever | Assassin | Kiting | Hold the Line | Vanguard |
+|---|---|---|---|---|---|
+| Hedge Knight | 3 / 20 / 4.8 | 2 / 20 / 4.6 | 1 / 5 / 5.1 | 2 / 20 / 4.5 | 4 / 21 / 4.9 |
+| Ironbranch Warden | 5 / 22 / 5.5 | 4 / 25 / 5.5 | 3 / 4 / 6.2 | 4 / 20 / 5.4 | 6 / 23 / 5.4 |
+| Iron Sentinel | 12 / 26 / 8.1 | 8 / 29 / 7.6 | 1 / 2 / 8.4 | 9 / 33 / 8.2 | 13 / 37 / 8.5 |
+| Shieldbearer | 1 / 13 / 4.2 | 1 / 17 / 4.2 | 0 / 1 / 4.2 | 1 / 15 / 4.2 | 2 / 18 / 4.4 |
+| Marsh Archer | 0 / 18 / 3.8 | 2 / 34 / 3.8 | 0 / 17 / 3.8 | 2 / 22 / 3.7 | 2 / 22 / 3.7 |
+| Crossbow Sniper | 0 / 22 / 3.5 | 1 / 41 / 3.7 | 0 / 22 / 3.6 | 0 / 28 / 3.5 | 0 / 28 / 3.5 |
+| Glaive Dancer | 1 / 19 / 3.6 | 1 / 23 / 3.6 | 0 / 3 / 3.7 | 1 / 19 / 3.6 | 1 / 19 / 3.6 |
+| Executioner | 1 / 20 / 3.6 | 0 / 22 / 3.6 | 0 / 3 / 3.8 | 1 / 19 / 3.7 | 1 / 18 / 3.6 |
+| Grave Caller | 4 / 44 / 3.9 | 6 / 44 / 4.0 | 2 / 42 / 4.0 | 3 / 40 / 3.9 | 3 / 40 / 3.9 |
+| Ember Caster | 2 / 17 / 4.6 | 3 / 17 / 4.5 | 2 / 16 / 4.9 | 1 / 11 / 4.3 | 2 / 12 / 4.4 |
+| Cinder Adept | 5 / 30 / 4.7 | 8 / 44 / 5.1 | 3 / 26 / 4.8 | 13 / 34 / 5.8 | 14 / 35 / 5.7 |
+| Mind Lash Adept | 3 / 37 / 4.1 | 2 / 36 / 3.8 | 3 / 37 / 4.2 | 3 / 32 / 4.0 | 3 / 32 / 4.0 |
+| Goblin Cutthroat | 3 / 25 / 3.8 | 2 / 32 / 3.8 | 0 / 1 / 3.6 | 1 / 24 / 3.7 | 2 / 30 / 3.8 |
+| Brute | 1 / 23 / 3.9 | 2 / 28 / 4.0 | 0 / 2 / 3.9 | 3 / 20 / 4.0 | 3 / 22 / 4.0 |
+| Thornhide Brute | 1 / 23 / 3.9 | 3 / 27 / 4.0 | 0 / 3 / 4.1 | 1 / 22 / 3.9 | 1 / 23 / 3.9 |
+| Gravel Ogre | 2 / 19 / 3.8 | 1 / 23 / 3.8 | 0 / 1 / 4.2 | 1 / 16 / 3.8 | 2 / 17 / 3.8 |
+| Warleader | 1 / 18 / 3.8 | 0 / 15 / 3.6 | 0 / 2 / 4.0 | 2 / 17 / 3.9 | 2 / 18 / 3.9 |
+| Fen Warden | 2 / 23 / 3.7 | 2 / 17 / 3.9 | 1 / 5 / 3.8 | 2 / 22 / 3.8 | 2 / 21 / 3.9 |
+| Skulking Footpad | 1 / 18 / 3.6 | 1 / 25 / 3.6 | 0 / 2 / 3.8 | 2 / 21 / 3.7 | 2 / 23 / 3.7 |
+| Shade Stalker | 2 / 32 / 4.4 | 2 / 34 / 4.1 | 2 / 23 / 4.4 | 1 / 23 / 3.8 | 1 / 23 / 3.8 |
+| Bog Skirmisher | 1 / 12 / 4.5 | 1 / 18 / 4.5 | 1 / 10 / 4.9 | 2 / 14 / 4.4 | 2 / 14 / 4.4 |
+| Hunting Hound | 2 / 27 / 3.8 | 3 / 31 / 3.9 | 0 / 1 / 3.6 | 2 / 30 / 3.9 | 2 / 30 / 3.8 |
+
+- **Hold the Line and Vanguard play close to Hit Whatever** (a few points
+  either way): they change who gets hit, not how hard. The Iron Sentinel
+  covering the casters downs someone more (Vanguard 37%, Hit Whatever
+  26%), and the Cinder Adept loses the party more fights going after its
+  hardest hitters (13-14% against 5%).
+- **Kiting is for ranged monsters.** Played when engaged, archers and
+  casters read about as Hit Whatever (Marsh Archer 17% Down against 18%,
+  Grave Caller 42% against 44%); a melee monster that backs off from
+  melee does next to nothing (1-5% Down).
+- **Assassin's edge is smaller beside other attackers** but still the
+  largest (Marsh Archer 34% against 18%, Crossbow Sniper 41% against 22%).
+
+**GM quick reference** (whom an enemy attacks; it still moves and attacks
+as normal):
+
+| Tactic | Attacks | Note |
+|---|---|---|
+| Hit Whatever | the closest PC | the default; spends itself on the front line |
+| Hold the Line | whoever has hurt its side most this fight | closest until someone has |
+| Vanguard | whoever has hurt its back line most this fight | closest until someone has |
+| Kiting | the closest PC, stepping back first if one is in melee reach | ranged enemies only |
+| Assassin | the softest PC: the most hurt for their size, then the lightest armor | the deadliest: two to five times the Downs of Hit Whatever |
+| Triage | (supports) the ally that most needs it | |

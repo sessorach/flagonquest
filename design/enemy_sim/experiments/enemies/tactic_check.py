@@ -27,6 +27,13 @@ import table_check as tc  # noqa: E402
 import progression_sweep as ps  # noqa: E402
 
 TACTICS = [("Hit Whatever", "always"), ("Assassin", "always"), ("Kiting", "always"), ("Kiting", "engaged")]
+# --mixed (2026-11-05, once Hold the Line and Vanguard were modeled): the
+# monster fills half the Slots beside two Ember Casters (two Hedge Knights
+# when it's the Ember Caster), so Vanguard has a back line to cover; only
+# the monster's own tactic changes.
+MIXED_TACTICS = [("Hit Whatever", "engaged"), ("Assassin", "engaged"), ("Kiting", "engaged"),
+                 ("Hold the Line", "engaged"), ("Vanguard", "engaged")]
+MIXED = [False]
 
 
 def _job(args):
@@ -36,8 +43,13 @@ def _job(args):
         if r["Name"] == name:
             r["BattleTactic"] = tactic
     slots = mc.monsters()[name]["slots"]
-    out = mc._job((level, gi, f"{name}:{tactic}:{move}", [name] * int(4 / slots), n, 11))
-    out.update(monster=name, tactic=tactic if tactic != "Kiting" else f"Kiting ({move})")
+    if MIXED[0]:
+        partner = "Hedge Knight" if name == "Ember Caster" else "Ember Caster"
+        enemies = [name] * int(2 / slots) + [partner] * 2
+    else:
+        enemies = [name] * int(4 / slots)
+    out = mc._job((level, gi, f"{name}:{tactic}:{move}", enemies, n, 11))
+    out.update(monster=name, tactic=tactic if tactic != "Kiting" or MIXED[0] else f"Kiting ({move})")
     return out
 
 
@@ -47,18 +59,21 @@ def main():
     ap.add_argument("-L", type=int, default=3)
     ap.add_argument("-n", type=int, default=40)
     ap.add_argument("-j", type=int, default=os.cpu_count())
+    ap.add_argument("--mixed", action="store_true")
     a = ap.parse_args()
+    MIXED[0] = a.mixed
+    tactics = MIXED_TACTICS if a.mixed else TACTICS
     ms = mc.monsters()
-    names = [n for n, m in ms.items() if not m["passive"] and m["slots"] < 4]
+    names = [n for n, m in ms.items() if not m["passive"] and m["slots"] < 4 and not (a.mixed and m["slots"] > 2)]
     groups = len(tc.groups(a.L, ps.MID[a.L]))
-    jobs = [(n, t, mv, a.L, gi, a.n) for n in names for t, mv in TACTICS for gi in range(groups)]
+    jobs = [(n, t, mv, a.L, gi, a.n) for n in names for t, mv in tactics for gi in range(groups)]
     res = collections.defaultdict(list)
     with mp.Pool(a.j, maxtasksperchild=8) as pool:
         for r in pool.imap_unordered(_job, jobs):
             res[(r["monster"], r["tactic"])].append(r)
             with open(a.o, "a") as f:
                 f.write(json.dumps(r) + "\n")
-    cols = ["Hit Whatever", "Assassin", "Kiting (always)", "Kiting (engaged)"]
+    cols = [t for t, _ in tactics] if a.mixed else ["Hit Whatever", "Assassin", "Kiting (always)", "Kiting (engaged)"]
     print("| Monster | " + " | ".join(cols) + " |")
     print("|---|" + "---|" * len(cols))
     for n in names:

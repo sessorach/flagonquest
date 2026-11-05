@@ -350,7 +350,35 @@ def cashout_target(unit, targets):
     return max(bled, key=lambda t: (t['bleeding'], -t['health'])) if ready and bled else None
 
 
+def is_backline(e):
+    """An enemy fighting from the back: a ranged attacker, or one whose
+    main Action isn't an attack (a healer, a hexer)."""
+    return e.get('kind', 'attack') != 'attack' or bool(e.get('attack_range'))
+
+
+def target_hold_the_line(unit, targets):
+    """Hold the Line ("focuses on most aggressive characters"; modeled
+    2026-11-05): the PC who has dealt the enemy side the most damage this
+    fight, the closest on a tie or before anyone has. Only whom it attacks;
+    it moves and attacks as any enemy does."""
+    if 'pos' not in unit:
+        return max(targets, key=lambda c: c.get('_aggro', 0))
+    return min(targets, key=lambda c: (-c.get('_aggro', 0), movement.distance(unit['pos'], c['pos'])))
+
+
+def target_vanguard(unit, targets):
+    """Vanguard ("focuses on characters attacking the backline"; modeled
+    2026-11-05): the PC who has dealt the most damage to the enemy side's
+    back line this fight (its ranged attackers, healers and hexers), the
+    closest on a tie or before anyone has."""
+    if 'pos' not in unit:
+        return max(targets, key=lambda c: c.get('_aggro_back', 0))
+    return min(targets, key=lambda c: (-c.get('_aggro_back', 0), movement.distance(unit['pos'], c['pos'])))
+
+
 TARGETING = {
+    'Hold the Line': target_hold_the_line,
+    'Vanguard': target_vanguard,
     'Assassin': target_lowest_health,
     'Straggler Hunter': target_straggler,
     'Kite Hunter': target_kiter,

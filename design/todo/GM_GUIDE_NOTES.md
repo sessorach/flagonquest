@@ -521,3 +521,17 @@ rounds, while spending part of its Health. Health and Upgrades were
 priced against each other: generic ways of spending the allotment
 (heavier weapons, a stack of riders, armor and Durable) all land within
 half a Health of spending it all on Health.
+
+## Battle Tactics, a quick reference (2026-11-05)
+
+A tactic only says whom an enemy attacks; it still moves and attacks as
+normal (attacking twice when it can).
+
+- **Hit Whatever:** the closest PC. The default; it spends itself on the front line.
+- **Hold the Line:** whoever has hurt its side most this fight (the closest until someone has).
+- **Vanguard:** whoever has hurt its back line most this fight: its archers, casters, healers (the closest until someone has).
+- **Kiting:** the closest PC, stepping back first if one is in melee reach. Ranged enemies only.
+- **Assassin:** the softest PC, the most hurt for their size, then the lightest armor. The deadliest by far: reach for it on purpose.
+- **Triage:** supports help the ally that most needs it.
+
+(→ DESIGNER_NOTES, Battle Tactics; ENEMY_ENCOUNTER_DESIGN, GM quick reference)
