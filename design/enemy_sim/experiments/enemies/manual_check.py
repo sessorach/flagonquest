@@ -74,9 +74,14 @@ def reference(level):
     return {f"ref:{m}": tuple(se.ENCOUNTERS[level][m]) for m in se.CURRENT_MIXES} if level <= 3 else {}
 
 
+EXTRA = [None]
+
+
 def _job(args):
     level, gi, key, names, n, seed = args
     T.ENEMY_LEVEL_UP = 0
+    if EXTRA[0] is not None:
+        T.V3_PRUNED_EXTRA = EXTRA[0]
     gname, pnames, swaps = tc.groups(level, ps.MID[level])[gi]
     lvl = min(level, 3)
     se.ENCOUNTERS.setdefault(lvl, {})["_test"] = list(names) if key.startswith("ref") else [f"{x}@{level}" for x in names]
@@ -197,7 +202,10 @@ def main():
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("--read", action="store_true")
     ap.add_argument("--txt", help="write the --read report here")
+    ap.add_argument("--extra", help="the pruned v3's extra points by Level, '1:0/2:2/...'")
     a = ap.parse_args()
+    if a.extra:
+        EXTRA[0] = T.V3_PRUNED_EXTRA = {int(L): int(n) for L, n in (x.split(":") for x in a.extra.split("/"))}
     read(a) if a.read else run(a)
 
 
