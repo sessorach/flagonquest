@@ -591,6 +591,8 @@ Before archetype and armor: a light-weapon fighter hits at +4 for 5 with Parry 1
 - **What a +1 is worth to an enemy (v3, roughly):** Damage 2-3 Health; Resist about 1.4 and most of a round; Accuracy about 1; Parry or Dodge 0.1-0.2 (an enemy defends with the better of the two); Vital or Mental nothing against the sample parties, who rarely target them. (→ ENEMY_ENCOUNTER_DESIGN, "v3")
 - **Bruiser is Resist +1 and Vital +2, not Resist +2.** Resist +2 read 7-9 Health and two extra rounds, twice any other archetype (2026-11-03). (→ enemy_sim/results/enemy_stats/v3_bigroles_bruiser.txt)
 
+- **A monster manual draft, for the designer's review** (2026-11-05): 30 stat blocks covering every archetype, loadout, main Action and most of the catalog, built the pen-and-paper way (minions, two elites, one solo boss). Run after review. (→ enemy_sim/MONSTER_MANUAL.md)
+
 ### Encounters and Slots
 
 - **Slots stay as they are: count the players, pick enemies adding to that many Slots** (designer, 2026-11-02). If on-level fights are off, the per-Level baseline moves, not the Slot rule. (→ ENEMY_ENCOUNTER_DESIGN, "Base stats against the measured party")

@@ -2672,7 +2672,7 @@ for the balance-weights pass.
   (Taunting) (1 each), Retribution Aura, Battering, Cleaving, Enhanced
   Reflexes (2), Grappling (3).
 - *Again and again, up to the player caps:* Accuracy +1 (2), Parry and
-  Dodge +1 (1), Vital, Mental and Vigilant +1 (1), Resist +1 (4),
+  Dodge +1 (1), Vital/Mental/Vigilant +1 (1), Resist +1 (4),
   Enhanced Health (1), Enhanced Speed (1).
 - *Armor:* Unarmored −1, Light 0, Medium 1, Heavy 2.
 

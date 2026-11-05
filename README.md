@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-05 — A draft monster manual
+
+Built 30 enemy stat blocks the new pen-and-paper way, covering every archetype, weapon loadout and main action and most of the enemy abilities, ready for review before they go into the simulator's fights.
+
 ### 2026-11-04 — Enemies with debuffs as standard
 
 Tested how to give enemies more debuffs and mechanics without making fights shorter, then built a thinner enemy baseline whose Damage and Accuracy go into an Ability budget instead: spent on loadouts and mechanics, it gives fights of four to five rounds at every Level.

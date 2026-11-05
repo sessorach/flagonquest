@@ -245,6 +245,9 @@ ACTIONS = {
     "Two-Handed Weapon":      {"acc_mod": 0, "dmg_base": 5, "stat": "body",            "wd": 0, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
     "Bow":                    {"acc_mod": 1, "dmg_base": 3, "stat": "cunning",         "wd": None, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 3},
     "Heavy Bow":              {"acc_mod": 0, "dmg_base": 4, "stat": "cunning",         "wd": None, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 3},
+    # The monster manual's Mental attacker (2026-11-04, new for the
+    # designer's review): a spell like the Vital Spell, at Mental Defense.
+    "Mind Spell":             {"acc_mod": 0, "dmg_base": 2, "stat": "mind",            "wd": None, "dmg_type": "Shadow",   "opp_def": "Mental",      "range": 2},
     # Non-damaging main Actions (see ENEMY_ENCOUNTER_DESIGN.md's enemy
     # variety standard) - each enemy using one carries a BackupAction.
     "Hex":             {"acc_mod": 0, "dmg_base": 0, "stat": "mind",            "wd": None, "dmg_type": None,       "opp_def": "Mental",      "range": 2,
@@ -481,9 +484,9 @@ ARMOR_HEALTH_V3 = {"Unarmored": -1, "Light": 0, "Medium": 1, "Heavy": 2}
 # each is that bump, at its measured worth ("What each stat is worth"),
 # and can be taken more than once up to the player caps.
 STAT_ABILITIES = {"Damage +1": ("dmg",), "Accuracy +1": ("acc",), "Parry and Dodge +1": ("parry", "dodge"),
-                  "Vital, Mental and Vigilant +1": ("bodily", "mental", "vigilant"), "Resist +1": ("res",)}
+                  "Vital/Mental/Vigilant +1": ("bodily", "mental", "vigilant"), "Resist +1": ("res",)}
 ABILITY_HEALTH_V3.update({"Damage +1": 4, "Accuracy +1": 2, "Parry and Dodge +1": 1,
-                          "Vital, Mental and Vigilant +1": 1, "Resist +1": 4})
+                          "Vital/Mental/Vigilant +1": 1, "Resist +1": 4})
 # The pruned v3's pick rules (designer, 2026-11-04): a few Abilities once
 # only, the stats and the on-hit effects as often as you like up to a cap
 # (the player caps for stats; 4 stacks of one effect on a hit, "anything
@@ -519,7 +522,7 @@ ABILITY_HEALTH_V3P = dict(ABILITY_HEALTH_V3, **{
 # enemy left days about where they were (fights 0.7 rounds shorter).
 LOADOUT_HEALTH_V3P = {"Sword and Shield": 0, "Heavy Weapon and Shield": 1, "Light Two-Handed": 2,
                       "Two-Handed Weapon": 2, "Bow": 0, "Heavy Bow": 1}
-REPEATABLE_V3 = {"Accuracy +1", "Parry and Dodge +1", "Vital, Mental and Vigilant +1", "Resist +1",
+REPEATABLE_V3 = {"Accuracy +1", "Parry and Dodge +1", "Vital/Mental/Vigilant +1", "Resist +1",
                  "Enhanced Health", "Enhanced Speed"}
 RIDER_CAP_V3 = 4
 # The Weak Defense when a row doesn't name one: what that kind of enemy

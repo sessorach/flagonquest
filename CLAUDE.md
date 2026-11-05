@@ -344,6 +344,12 @@ stay a clean decision record.
   brackets if it matters. Enemy Level N is for PCs within 25 XP of that
   Level's schedule (Level 2: 100-150), so "on-level" means the middle of
   the band.
+- **The monster manual** (2026-11-05): `design/enemy_sim/monster_manual.csv`
+  is one design per monster, built at any Level as `"Name@L"` through
+  `sample_enemies.get_enemy` (the pruned v3's picks). `tools/monster_manual.py`
+  writes `MONSTER_MANUAL.md` from it (generated; edit the CSV). Ability
+  names can't hold commas (the picks are `;`-separated inside a CSV
+  cell), hence "Vital/Mental/Vigilant +1".
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and

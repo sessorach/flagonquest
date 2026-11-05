@@ -98,7 +98,27 @@ def _load_rows():
     return [dict(r) for r in game_data.csv_rows(_CSV_PATH)]
 
 
+_MANUAL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "monster_manual.csv")
+
+
+def manual_names():
+    return [r["Name"] for r in game_data.csv_rows(_MANUAL_PATH)]
+
+
+def _manual_row(name):
+    """'Gravel Ogre@3': the monster manual's design built at Level 3
+    (monster_manual.csv, 2026-11-04). Its picks are the pruned v3's."""
+    base, _, level = name.partition("@")
+    for r in game_data.csv_rows(_MANUAL_PATH):
+        if r["Name"] == base:
+            return dict(r, Name=name, Level=level, AttackTier="primary", Abilities="", HealthBonus="",
+                        FightingStyle="None", PrunedAction=r["Action"], Roster="FALSE")
+    return None
+
+
 def _row_named(name):
+    if "@" in name:
+        return _manual_row(name)
     # Read-only lookup into the cached rows (game_data.cached_file).
     rows = game_data.csv_rows(_CSV_PATH)
     index = _INDEX.get(id(rows))
