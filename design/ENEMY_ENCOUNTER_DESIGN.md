@@ -2991,3 +2991,24 @@ of what made it so.
 
 **Health +3 is the default** (designer's call to play with the numbers;
 it's the one priced like the rest).
+
+**A point more budget at Levels 2-5** (the designer's test, 2026-11-05),
+to win back the danger the Defender's Health +3 took off. Budget 7 / 9 /
+11 / 11 / 11; the roster, middle of each band (days won (worst / best
+party) / Down / Wounded / rounds / acts again):
+
+| Level | 7 / 9 / 11 / 11 / 11 | 7 / 8 / 10 / 10 / 10 |
+|---|---|---|
+| 1 | 91 (83 / 98) / 21 / 50 / 4.7 / 49 | 91 (83 / 98) / 21 / 50 / 4.7 / 49 |
+| 2 | 92 (83 / 100) / 19 / 48 / 4.5 / 52 | 91 (78 / 100) / 17 / 42 / 5.0 / 53 |
+| 3 | 87 (55 / 100) / 21 / 52 / 4.5 / 51 | 89 (60 / 100) / 19 / 48 / 4.3 / 49 |
+| 4 | 87 (60 / 100) / 20 / 47 / 5.2 / 63 | 89 (67 / 100) / 19 / 46 / 5.0 / 62 |
+| 5 | 86 (65 / 99) / 21 / 51 / 5.6 / 64 | 89 (71 / 99) / 19 / 49 / 5.3 / 62 |
+
+Levels 3-5 are back at the notch-more-dangerous setting (86-87% of days,
+Down a fifth, Wounded about half); Level 2 barely moves (its second extra
+point buys Accuracy +1, and the Shield Wall's Hedge Knights pay for their
+Medium Armor). In the manual's broad test encounters lose the party
+2 / 4 / 2 / 3% at Levels 2-5 (from 1.5 / 3 / 1.7 / 2.6%), and the order of
+the monsters doesn't change. The strongest party still wins 99-100% of
+days. This is the default.

@@ -444,8 +444,10 @@ V3_PRUNED_ROSTER = 'picks'
 # Level 1 one point less, Levels 3-5 two more spent on offense first
 # (6 / 7 / 9 / 9 / 9); then a point more everywhere, the designer wanting
 # it a little more dangerous since real players coordinate and have items
-# (v3p_danger.txt): 7 / 8 / 10 / 10 / 10.
-V3_PRUNED_EXTRA = {1: 0, 2: 1, 3: 3, 4: 3, 5: 3}
+# (v3p_danger.txt): 7 / 8 / 10 / 10 / 10. Then a point more at Levels 2-5
+# (2026-11-05) to win back what the Defender's Health +3 took off:
+# 7 / 9 / 11 / 11 / 11.
+V3_PRUNED_EXTRA = {1: 0, 2: 2, 3: 4, 4: 4, 5: 4}
 # 'row' spends extra points down the row's PrunedExtra; 'offense' on
 # Accuracy +1, then Damage +1, first.
 V3_PRUNED_EXTRA_ORDER = 'offense'
