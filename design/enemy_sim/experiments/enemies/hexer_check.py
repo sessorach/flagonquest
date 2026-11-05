@@ -54,6 +54,19 @@ for team in ("Brute", "Grave Caller"):
     ]
 
 
+# v2 (2026-11-05): the hexers rebuilt as debuff casters (monster_manual.csv),
+# against the same references.
+V2 = []
+for team in ("Brute", "Grave Caller"):
+    V2 += [(f"{team} x4", team, team, {}),
+           (f"{team} x3 + Bog Hexer (caster: Crippled 4, Slowed 2)", team, "Bog Hexer", {}),
+           (f"{team} x3 + Mire Witch (caster: Slowed 4, Necrotic 4)", team, "Mire Witch", {}),
+           (f"{team} x3 + Curse Weaver (caster: Vulnerable 4, Frightened 4)", team, "Curse Weaver", {}),
+           (f"{team} x3 + Ember Caster (attacker)", team, "Ember Caster", {})]
+if "v2" in sys.argv:
+    VARIANTS = V2
+
+
 def _job(args):
     label, team, fourth, patch, gi, n = args
     for r in game_data.csv_rows(se._MANUAL_PATH):

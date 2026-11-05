@@ -27,10 +27,10 @@ weapon's own above 10, the player cap.
 | Brute Warlord | Solo boss (4 Slots) | Bruiser | Two-Handed Weapon | Heavy |
 | Gravel Ogre | Elite (2 Slots) | Bruiser | Two-Handed Weapon | Medium |
 | Thornhide Brute | 1 Slot | Bruiser | Two-Handed Weapon | Light |
-| Bog Hexer | 1 Slot | Strategist | Hex (backup Ranged Spell) | Unarmored |
-| Curse Weaver | 1 Slot | Strategist | Curse (backup Shadow Bolt) | Unarmored |
+| Bog Hexer | 1 Slot | Strategist | Ranged Spell | Unarmored |
+| Curse Weaver | 1 Slot | Strategist | Mind Spell | Unarmored |
 | Fen Warden | 1 Slot | Strategist | Melee Spell | Medium |
-| Mire Witch | 1 Slot | Strategist | Hex (backup Vital Spell) | Unarmored |
+| Mire Witch | 1 Slot | Strategist | Vital Spell | Unarmored |
 | Warleader | 1 Slot | Strategist | Sword and Shield | Medium |
 | Coven Matriarch | Elite (2 Slots) | Backup | Shielding Nova (backup Ranged Spell) | Unarmored |
 | Deadbough Priest | 1 Slot | Backup | Great Heal (backup Sword and Shield) | Medium |
@@ -52,12 +52,12 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Damage +1** (4): Executioner
 - **Durable** (1): Ironbranch Warden, Thornhide Brute, Fen Warden, Warpriest, Deadbough Priest
 - **Enhanced Health** (1): Iron Sentinel
-- **Enhanced Range** (3): Marsh Archer, Crossbow Sniper, Bog Hexer, Curse Weaver
-- **Enhanced Reflexes** (2): Cinder Adept, Mire Witch, Curse Weaver, Shade Stalker
+- **Enhanced Range** (3): Marsh Archer, Crossbow Sniper
+- **Enhanced Reflexes** (2): Cinder Adept, Shade Stalker
 - **Enhanced Speed** (1): Field Medic, Bog Skirmisher, Hunting Hound
 - **Improved Support** (1): Warpriest, Field Medic, Deadbough Priest, Coven Matriarch
 - **Omniguard** (1): Hedge Knight
-- **Parry and Dodge +1** (1): Iron Sentinel, Shieldbearer, Bog Hexer, Mire Witch, Field Medic, Bog Skirmisher
+- **Parry and Dodge +1** (1): Iron Sentinel, Shieldbearer, Mire Witch, Curse Weaver, Field Medic, Bog Skirmisher
 - **Poison (Bleeding)** (2.5): Goblin Cutthroat, Skulking Footpad
 - **Poison (Crippling)** (0.5): *nobody yet*
 - **Poison (Necrotic)** (0.5): *nobody yet*
@@ -71,17 +71,17 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Shadow Jaunt** (0): Bog Hexer, Shade Stalker
 - **Strike (Battering)** (2): Ironbranch Warden
 - **Strike (Cleaving)** (2): Brute Warlord
-- **Strike (Crippling)** (0.5): Marsh Archer, Cinder Adept, Brute, Thornhide Brute, Gravel Ogre, Bog Skirmisher
+- **Strike (Crippling)** (0.5): Marsh Archer, Cinder Adept, Brute, Thornhide Brute, Gravel Ogre, Bog Hexer, Bog Skirmisher
 - **Strike (Devastating)** (1): Executioner
-- **Strike (Frightening)** (0.5): Mind Lash Adept, Warleader, Warpriest
+- **Strike (Frightening)** (0.5): Mind Lash Adept, Curse Weaver, Warleader, Warpriest
 - **Strike (Grappling)** (3): Gravel Ogre, Hunting Hound
 - **Strike (Harrying)** (1): Hedge Knight, Shieldbearer, Warleader, Warpriest, Shade Stalker
-- **Strike (Necrotic)** (0.5): Grave Caller, Mire Witch, Curse Weaver, Coven Matriarch, Shade Stalker
-- **Strike (Slowing)** (0.5): Glaive Dancer, Goblin Cutthroat, Bog Hexer, Fen Warden, Field Medic, Skulking Footpad
+- **Strike (Necrotic)** (0.5): Grave Caller, Mire Witch, Coven Matriarch, Shade Stalker
+- **Strike (Slowing)** (0.5): Glaive Dancer, Goblin Cutthroat, Bog Hexer, Mire Witch, Fen Warden, Field Medic, Skulking Footpad
 - **Strike (Taunting)** (0.5): Hedge Knight, Shieldbearer
-- **Strike (Vulnerable)** (0.5): Marsh Archer, Crossbow Sniper, Grave Caller, Mind Lash Adept
+- **Strike (Vulnerable)** (0.5): Marsh Archer, Crossbow Sniper, Grave Caller, Mind Lash Adept, Curse Weaver
 - **Sturdy** (0): Ironbranch Warden, Iron Sentinel, Gravel Ogre
-- **Vital/Mental/Vigilant +1** (1): Mire Witch
+- **Vital/Mental/Vigilant +1** (1): *nobody yet*
 - **Attunement (Fire)** (3): Ember Caster, Cinder Adept
 - **Attunement (Shadow)** (3): Coven Matriarch
 - **Elemental Weapon (Frost)** (0): Iron Sentinel
@@ -314,9 +314,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 5 / 2 | 81 | 2 |
-| 3 | +5 vs Parry/Dodge, 8 Physical | 14 | 11 | 16 | 10 | 12 | 6 / 3 | 117 | 3 |
-| 5 | +7 vs Parry/Dodge, 9 Physical | 16 | 13 | 18 | 12 | 14 | 7 / 4 | 135 | 4 |
+| 1 | +2 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 5 / 2 | 54 | 2 |
+| 3 | +5 vs Parry/Dodge, 8 Physical | 14 | 11 | 16 | 10 | 12 | 6 / 3 | 78 | 3 |
+| 5 | +7 vs Parry/Dodge, 9 Physical | 16 | 13 | 18 | 12 | 14 | 7 / 4 | 90 | 4 |
 
 ### Gravel Ogre
 
@@ -352,33 +352,33 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 ### Bog Hexer
 
-*A debuffer that Cripples from range and slips away when cornered.*
+*A debuffer that throws crippling curses from range and slips away when cornered.*
 
 - **1 Slot, Strategist.** Kiting (keeps its distance).
-- **Loadout:** Hex, backup Ranged Spell, lands Crippled (-2). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
-- **Picks:** Accuracy +1 ×2 (4), Enhanced Range (3), Strike (Slowing) ×2 (1), Shadow Jaunt (0), Parry and Dodge +1 ×2 (2)
-- **Points:** 6 of 7 at Level 1, 6 of 9 at Level 2 (the rest is Health); at Levels 3-5 the extra 4 buy Accuracy +1, Parry and Dodge +1.
+- **Loadout:** Ranged Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
+- **Picks:** Accuracy +1 ×3 (6), Strike (Crippling) ×4 (2), Strike (Slowing) ×2 (1), Shadow Jaunt (0)
+- **Points:** 7 of 7 at Level 1, 7 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Strike (Vulnerable) ×2.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Hex +6 vs Mental, Crippled ×2; backup +2 vs Dodge, 3 Fire, range 4 | — | 13 | 8 | 14 | 12 | 2 / 2 | 11 | 3 |
-| 3 | Hex +9 vs Mental, Crippled ×3; backup +5 vs Dodge, 4 Fire, range 8 | — | 16 | 10 | 16 | 14 | 3 / 3 | 15 | 4 |
-| 5 | Hex +10 vs Mental, Crippled ×4; backup +7 vs Dodge, 5 Fire, range 12 | — | 18 | 12 | 18 | 16 | 4 / 4 | 17 | 5 |
+| 1 | +7 vs Dodge, 3 Fire, range 4 | — | 11 | 8 | 14 | 12 | 2 / 2 | 10 | 3 |
+| 3 | +10 vs Dodge, 4 Fire, range 8 | — | 13 | 10 | 16 | 14 | 3 / 3 | 14 | 4 |
+| 5 | +10 vs Dodge, 5 Fire, range 12 | — | 15 | 12 | 18 | 16 | 4 / 4 | 16 | 5 |
 
 ### Curse Weaver
 
-*Lays heavy curses on the weakest from far away.*
+*Lays curses on the weak-willed from afar: they're left terrified of it and open to every spell.*
 
 - **1 Slot, Strategist.** Assassin (goes for the softest).
-- **Loadout:** Curse, backup Shadow Bolt, lands Vulnerable (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
-- **Picks:** Accuracy +1 (2), Enhanced Range (3), Strike (Necrotic) ×2 (1), Enhanced Reflexes (2)
-- **Points:** 6 of 7 at Level 1, 6 of 9 at Level 2 (the rest is Health); at Levels 3-5 the extra 4 buy Accuracy +1.
+- **Loadout:** Mind Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
+- **Picks:** Accuracy +1 ×2 (4), Strike (Vulnerable) ×4 (2), Strike (Frightening) ×4 (2), Parry and Dodge +1 (1)
+- **Points:** 7 of 7 at Level 1, 7 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Curse +5 vs Dodge, Vulnerable ×2; backup +1 vs Dodge, 3 Shadow, range 4 | — | 11 | 8 | 14 | 12 | 2 / 2 | 11 | 3 |
-| 3 | Curse +8 vs Dodge, Vulnerable ×2; backup +4 vs Dodge, 4 Shadow, range 8 | — | 13 | 10 | 16 | 14 | 3 / 3 | 16 | 4 |
-| 5 | Curse +10 vs Dodge, Vulnerable ×2; backup +6 vs Dodge, 5 Shadow, range 12 | — | 15 | 12 | 18 | 16 | 4 / 4 | 18 | 5 |
+| 1 | +6 vs Mental, 3 Shadow, range 4 | — | 12 | 8 | 14 | 12 | 2 / 2 | 10 | 3 |
+| 3 | +9 vs Mental, 4 Shadow, range 8 | — | 14 | 10 | 16 | 14 | 3 / 3 | 15 | 4 |
+| 5 | +10 vs Mental, 5 Shadow, range 12 | — | 16 | 12 | 18 | 16 | 4 / 4 | 17 | 5 |
 
 ### Fen Warden
 
@@ -397,18 +397,18 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 ### Mire Witch
 
-*Pins the party down with Slowed and rots whoever it strikes.*
+*Pins the party down: its curses Slow whoever they hit and stop their healing.*
 
 - **1 Slot, Strategist.** Hit Whatever (fights whoever is near).
-- **Loadout:** Hex, backup Vital Spell, lands Slowed (-2). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
-- **Picks:** Accuracy +1 ×2 (4), Strike (Necrotic) ×2 (1), Resilient (0), Enhanced Reflexes (2), Vital/Mental/Vigilant +1 (1), Parry and Dodge +1 ×2 (2)
-- **Points:** 6 of 7 at Level 1, 6 of 9 at Level 2 (the rest is Health); at Levels 3-5 the extra 4 buy Accuracy +1, Strike (Necrotic) ×2.
+- **Loadout:** Vital Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
+- **Picks:** Accuracy +1 ×2 (4), Strike (Slowing) ×4 (2), Strike (Necrotic) ×4 (2), Resilient (0), Parry and Dodge +1 (1)
+- **Points:** 7 of 7 at Level 1, 7 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Parry and Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Hex +6 vs Mental, Slowed ×2; backup +2 vs Bodily, 3 Shadow, range 4 | — | 13 | 9 | 15 | 13 | 2 / 2 | 11 | 3 |
-| 3 | Hex +9 vs Mental, Slowed ×3; backup +5 vs Bodily, 4 Shadow, range 8 | — | 15 | 11 | 17 | 15 | 3 / 3 | 15 | 4 |
-| 5 | Hex +10 vs Mental, Slowed ×4; backup +7 vs Bodily, 5 Shadow, range 12 | — | 17 | 13 | 18 | 17 | 4 / 4 | 17 | 5 |
+| 1 | +6 vs Bodily, 3 Shadow, range 4 | — | 12 | 8 | 14 | 12 | 2 / 2 | 10 | 3 |
+| 3 | +9 vs Bodily, 4 Shadow, range 8 | — | 15 | 10 | 16 | 14 | 3 / 3 | 14 | 4 |
+| 5 | +10 vs Bodily, 5 Shadow, range 12 | — | 17 | 12 | 18 | 16 | 4 / 4 | 16 | 5 |
 
 ### Warleader
 

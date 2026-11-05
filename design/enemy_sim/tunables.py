@@ -394,6 +394,11 @@ KITING_MOVE = 'engaged'
 # of its target (HEX_AREA; 0 for none).
 HEX_PERSIST = False
 HEX_AREA = 0
+# A solo boss's Health in the pruned v3, in standard enemies (designer,
+# 2026-11-05: swingier and more dangerous than usual, but it shouldn't
+# often beat the whole party). At 9 it won 56-70% of fights at Levels 3-5
+# over 13-18 rounds; at 6, 8-9% at Levels 3-4 (23% at Level 5).
+V3_SOLO_HEALTH = 6
 
 # ---- Enemy offense dials (2026-10-08, measurement only) ----
 # Flat changes to every enemy's Accuracy and attack damage, applied to

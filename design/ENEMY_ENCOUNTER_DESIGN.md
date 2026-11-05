@@ -3269,3 +3269,60 @@ note that it can't raise an enemy's Accuracy before its weapon's own above
 Strategist), more than any budget holds; at Level 3 four for a Strategist
 (8 of 11 points); at Level 5 two for a Strategist, three for a Skirmisher,
 four for anyone else.
+
+**Hexers as debuff casters** (designer, 2026-11-05: a hexer is an enemy
+that spends more of its budget on debuffing and Accuracy). The three are
+rebuilt as Strategists on a damaging spell with two stacked on-hit
+effects and Accuracy bought twice or three times: the Bog Hexer (Ranged
+Spell; Crippled 4, Slowed 2 on a hit), the Mire Witch (Vital Spell;
+Slowed 4, Necrotic 4) and the Curse Weaver (the Mind Spell at Mental;
+Vulnerable 4, Frightened 4). No cap on a hit's total stacks beyond 4 an
+effect, for now. The no-damage Hex leaves the regular manual. Same fight
+as before (`hexer_check.py v2`, `results/enemy_stats/hexer_check_v2.txt`):
+
+| Fight | Lost | Down | Wounded | Rounds |
+|---|---|---|---|---|
+| Brute x4 | 1.2% | 15% | 51% | 4.4 |
+| Brute x3 + Bog Hexer (caster: Crippled 4, Slowed 2) | 1.5% | 17% | 51% | 4.9 |
+| Brute x3 + Mire Witch (caster: Slowed 4, Necrotic 4) | 0.2% | 13% | 50% | 4.3 |
+| Brute x3 + Curse Weaver (caster: Vulnerable 4, Frightened 4) | 0.2% | 11% | 50% | 3.9 |
+| Brute x3 + Ember Caster (attacker) | 0.8% | 16% | 50% | 4.0 |
+| Grave Caller x4 | 6.0% | 77% | 89% | 3.7 |
+| Grave Caller x3 + Bog Hexer (caster: Crippled 4, Slowed 2) | 5.8% | 49% | 72% | 4.6 |
+| Grave Caller x3 + Mire Witch (caster: Slowed 4, Necrotic 4) | 2.5% | 45% | 72% | 4.1 |
+| Grave Caller x3 + Curse Weaver (caster: Vulnerable 4, Frightened 4) | 3.7% | 64% | 86% | 3.8 |
+| Grave Caller x3 + Ember Caster (attacker) | 7.7% | 65% | 84% | 3.8 |
+
+Each now plays like an attacker beside the Brutes (Downs 11-17% against
+15% for a fourth Brute), and the Curse Weaver's Vulnerable pays off beside
+the Vital-attacking Grave Callers (64% against 65% for another caster).
+
+**The solo boss's size** (designer, 2026-11-05: swingier and more
+dangerous than usual, but it shouldn't often beat the whole party). The
+Brute Warlord alone, with a 4-Slot enemy's Health at each multiple of a
+standard enemy's (`boss_check.py`, `results/enemy_stats/boss_check.txt`;
+fights lost, with the worst party's in brackets):
+
+| Health (× a standard enemy) | Level | Lost (worst party) | Down | Wounded | Rounds |
+|---|---|---|---|---|---|
+| 9 | 3 | 56% (98%) | 66% | 69% | 12.9 |
+| 9 | 4 | 57% (100%) | 67% | 69% | 15.0 |
+| 9 | 5 | 70% (100%) | 72% | 73% | 17.9 |
+| 8 | 3 | 43% (85%) | 61% | 66% | 11.3 |
+| 8 | 4 | 39% (87%) | 59% | 63% | 12.4 |
+| 8 | 5 | 64% (100%) | 69% | 70% | 16.4 |
+| 7 | 3 | 27% (58%) | 51% | 60% | 9.0 |
+| 7 | 4 | 22% (58%) | 44% | 54% | 9.2 |
+| 7 | 5 | 48% (92%) | 61% | 66% | 13.8 |
+| 6 | 3 | 9% (23%) | 35% | 50% | 6.2 |
+| 6 | 4 | 8% (33%) | 24% | 38% | 6.2 |
+| 6 | 5 | 23% (63%) | 43% | 54% | 9.3 |
+| 5 | 3 | 2% (10%) | 19% | 38% | 4.2 |
+| 5 | 4 | 1% (3%) | 12% | 28% | 4.4 |
+| 5 | 5 | 5% (17%) | 21% | 38% | 5.3 |
+
+At 9 (as first built) the boss won 56-70% of fights over 13-18 rounds.
+At 6 it loses the party 8-9% of fights at Levels 3-4 with someone Down in
+a quarter to a third, over about 6 rounds: dangerous and swingy, rarely
+a wipe. Level 5 reads harder (23%) on parties that are Level 3 characters
+grown to the caps. `tunables.V3_SOLO_HEALTH = 6` (the pruned v3 only).

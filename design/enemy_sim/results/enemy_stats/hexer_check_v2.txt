@@ -1,0 +1,12 @@
+| Fight | Lost | Down | Wounded | Rounds |
+|---|---|---|---|---|
+| Brute x4 | 1.2% | 15% | 51% | 4.4 |
+| Brute x3 + Bog Hexer (caster: Crippled 4, Slowed 2) | 1.5% | 17% | 51% | 4.9 |
+| Brute x3 + Mire Witch (caster: Slowed 4, Necrotic 4) | 0.2% | 13% | 50% | 4.3 |
+| Brute x3 + Curse Weaver (caster: Vulnerable 4, Frightened 4) | 0.2% | 11% | 50% | 3.9 |
+| Brute x3 + Ember Caster (attacker) | 0.8% | 16% | 50% | 4.0 |
+| Grave Caller x4 | 6.0% | 77% | 89% | 3.7 |
+| Grave Caller x3 + Bog Hexer (caster: Crippled 4, Slowed 2) | 5.8% | 49% | 72% | 4.6 |
+| Grave Caller x3 + Mire Witch (caster: Slowed 4, Necrotic 4) | 2.5% | 45% | 72% | 4.1 |
+| Grave Caller x3 + Curse Weaver (caster: Vulnerable 4, Frightened 4) | 3.7% | 64% | 86% | 3.8 |
+| Grave Caller x3 + Ember Caster (attacker) | 7.7% | 65% | 84% | 3.8 |
