@@ -19,6 +19,7 @@ Built 30 enemy stat blocks the new pen-and-paper way, covering every archetype, 
 
 - Hexes now land a stack fewer and poisons stop at two stacks, since they outlast the fight.
 - Compared the enemy Battle Tactics side by side, fixed Kiting (it now steps back only when someone closes in) and modeled Hold the Line and Vanguard, with a quick GM reference for whom each one attacks; Assassin is still the deadliest by far.
+- Hexers became casters whose spells carry heavy debuffs, the solo boss shrank to six regular enemies' worth of Health, and a settled baseline puts the middle of every band at 86-92% of days won.
 - The heavily armored walls were the outliers: armor now costs about what it's worth, and the Defender archetype trades its extra Resist for Health, which brings them back in line. Kiting enemies barely hurt anyone and the trimmed hexers now do little, which is where the next round of pricing starts.
 
 ### 2026-11-04 — Enemies with debuffs as standard

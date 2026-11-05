@@ -3326,3 +3326,41 @@ At 6 it loses the party 8-9% of fights at Levels 3-4 with someone Down in
 a quarter to a third, over about 6 rounds: dangerous and swingy, rarely
 a wipe. Level 5 reads harder (23%) on parties that are Level 3 characters
 grown to the caps. `tunables.V3_SOLO_HEALTH = 6` (the pruned v3 only).
+
+### The enemy pass, settled (2026-11-05 baseline)
+
+Everything in: the pruned v3, budget 7 / 9 / 11 / 11 / 11, armor −2 / 0
+/ 2 / 4, the Defender's Health +3, hexers as debuff casters, Kiting when
+engaged, Hold the Line and Vanguard modeled, the solo boss at 6 standard
+enemies' Health. `results/enemy_stats/baseline_1105_band.txt` (the four
+mixes, day standard) and `baseline_1105_manual.txt` (40 encounters a
+Level drawn from the manual, fresh fights).
+
+| Level | Band: bottom / middle / top, days won | Middle: Down / Wounded / rounds | Manual: lost / Down / Wounded / rounds |
+|---|---|---|---|
+| 1 | — / 91% / — | 21% / 50% / 4.7 | 8% / 24% / 46% / 6.0 |
+| 2 | 23% / 92% / 99% | 19% / 48% / 4.5 | 4% / 17% / 40% / 5.5 |
+| 3 | 27% / 87% / 99% | 21% / 52% / 4.5 | 2% / 15% / 42% / 5.4 |
+| 4 | 40% / 87% / 96% | 20% / 47% / 5.2 | 2% / 14% / 35% / 5.7 |
+| 5 | 82% / 86% / 88% | 21% / 51% / 5.6 | 4% / 11% / 28% / 6.3 |
+
+The middle of every band lands where the designer asked (86-92% of days,
+someone Down in about a fifth of fights, Wounded in about half, 4.5-5.6
+rounds). The bottom of a band is a hard day, the top comfortable; Level 5
+is flat on grown parties. Hilde, Sable and Hanforth's party still loses
+0.2-1.5% of manual fights. The manual's fights run about a round longer
+than the four mixes and are a little softer on Downs from Level 3.
+
+Per monster (a whole encounter of it against the average; readings move
+by up to about 10 between encounter draws): the Iron Sentinel is the one
+outlier left (+43 on Downs and losses, +13 rounds), the only monster that
+buys Parry and Dodge twice on top of Heavy Armor and a shield; the
+Ironbranch Warden next (+24 / +24). The solo boss is now an ordinary
+strong pick (+19 / +10). The ranged Assassins lead on Downs (+18 to +33)
+without winning more fights. The new hexers sit in the middle (−16 to
+−8 on Downs), the healers and the Kiting healer at the bottom (Field
+Medic −50).
+
+**Open:** trim the Iron Sentinel (its second Parry and Dodge, or the
+Resist (Fire)), and whether the healers want more; then the wide
+PC-against-enemy test to re-value the effects.
