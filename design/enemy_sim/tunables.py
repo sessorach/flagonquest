@@ -405,6 +405,14 @@ V3_SOLO_HEALTH = 6
 V3_SLOT_BUDGET = {}
 # An elite's (2 Slots) Health in the pruned v3, in standard enemies.
 V3_ELITE_HEALTH = 3
+# The Defense cap (designer, 2026-11-06): no enemy Defense above 8 + its
+# Level's Skill + this, a shield's Parry included (armor's Dodge penalty
+# after). It ended the Defender walls (experiments/enemies/defense_cap.py).
+# None = no cap.
+V3_DEFENSE_CAP = 2
+# With it, the Defender archetype's +2 Parry becomes Health +1 (Defender:
+# Dodge +2, Health +4); the cap would waste the Parry under a shield.
+V3_DEFENDER_PARRY_TO_HEALTH = True
 
 # ---- Enemy offense dials (2026-10-08, measurement only) ----
 # Flat changes to every enemy's Accuracy and attack damage, applied to

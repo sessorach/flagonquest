@@ -100,9 +100,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +4 vs Parry/Dodge, 4 Physical | 16 | 11 | 12 | 8 | 10 | 4 / 2 | 12 | 3 |
-| 3 | +7 vs Parry/Dodge, 5 Physical | 19 | 14 | 14 | 10 | 12 | 5 / 3 | 15 | 4 |
-| 5 | +9 vs Parry/Dodge, 6 Physical | 20 | 16 | 16 | 12 | 14 | 6 / 4 | 17 | 5 |
+| 1 | +4 vs Parry/Dodge, 4 Physical | 14 | 11 | 12 | 8 | 10 | 4 / 2 | 13 | 3 |
+| 3 | +7 vs Parry/Dodge, 5 Physical | 16 | 14 | 14 | 10 | 12 | 5 / 3 | 16 | 4 |
+| 5 | +9 vs Parry/Dodge, 6 Physical | 18 | 16 | 16 | 12 | 14 | 6 / 4 | 18 | 5 |
 
 ### Iron Sentinel
 
@@ -115,9 +115,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 4 Frost | 18 | 13 | 12 | 8 | 10 | 5 / 2 | 12 | 2 |
-| 3 | +5 vs Parry/Dodge, 5 Frost | 20 | 15 | 15 | 11 | 13 | 6 / 3 | 16 | 3 |
-| 5 | +7 vs Parry/Dodge, 6 Frost | 20 | 17 | 17 | 13 | 15 | 7 / 4 | 18 | 4 |
+| 1 | +2 vs Parry/Dodge, 4 Frost | 14 | 13 | 12 | 8 | 10 | 5 / 2 | 13 | 2 |
+| 3 | +5 vs Parry/Dodge, 5 Frost | 16 | 15 | 15 | 11 | 13 | 6 / 3 | 17 | 3 |
+| 5 | +7 vs Parry/Dodge, 6 Frost | 18 | 17 | 17 | 13 | 15 | 7 / 4 | 19 | 4 |
 
 ### Ironbranch Warden
 
@@ -130,9 +130,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 5 Physical | 16 | 11 | 12 | 8 | 10 | 5 / 2 | 11 | 2 |
-| 3 | +5 vs Parry/Dodge, 6 Physical | 19 | 14 | 14 | 10 | 12 | 6 / 3 | 14 | 3 |
-| 5 | +7 vs Parry/Dodge, 7 Physical | 20 | 16 | 16 | 12 | 14 | 7 / 4 | 16 | 4 |
+| 1 | +2 vs Parry/Dodge, 5 Physical | 14 | 11 | 12 | 8 | 10 | 5 / 2 | 12 | 2 |
+| 3 | +5 vs Parry/Dodge, 6 Physical | 16 | 14 | 14 | 10 | 12 | 6 / 3 | 15 | 3 |
+| 5 | +7 vs Parry/Dodge, 7 Physical | 18 | 16 | 16 | 12 | 14 | 7 / 4 | 17 | 4 |
 
 ### Shieldbearer
 
@@ -145,9 +145,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +4 vs Parry/Dodge, 4 Physical | 17 | 12 | 12 | 8 | 10 | 4 / 2 | 5 | 3 |
-| 3 | +7 vs Parry/Dodge, 5 Physical | 20 | 15 | 14 | 10 | 12 | 5 / 3 | 6 | 4 |
-| 5 | +9 vs Parry/Dodge, 6 Physical | 20 | 17 | 16 | 12 | 14 | 6 / 4 | 7 | 5 |
+| 1 | +4 vs Parry/Dodge, 4 Physical | 14 | 12 | 12 | 8 | 10 | 4 / 2 | 5 | 3 |
+| 3 | +7 vs Parry/Dodge, 5 Physical | 16 | 15 | 14 | 10 | 12 | 5 / 3 | 6 | 4 |
+| 5 | +9 vs Parry/Dodge, 6 Physical | 18 | 17 | 16 | 12 | 14 | 6 / 4 | 7 | 5 |
 
 ## Strikers
 
@@ -500,8 +500,8 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +5 vs Parry/Dodge, 4 Physical, range 5 | — | 15 | 10 | 8 | 10 | 3 / 2 | 11 | 6 |
-| 3 | +8 vs Parry/Dodge, 5 Physical, range 11 | — | 17 | 12 | 10 | 12 | 4 / 3 | 16 | 7 |
+| 1 | +5 vs Parry/Dodge, 4 Physical, range 5 | — | 14 | 10 | 8 | 10 | 3 / 2 | 11 | 6 |
+| 3 | +8 vs Parry/Dodge, 5 Physical, range 11 | — | 16 | 12 | 10 | 12 | 4 / 3 | 16 | 7 |
 | 5 | +10 vs Parry/Dodge, 6 Physical, range 17 | — | 18 | 14 | 12 | 14 | 5 / 4 | 18 | 8 |
 
 ### Hunting Hound

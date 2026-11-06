@@ -554,6 +554,12 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
     t = {1: ENEMY_TABLE_V3_FIRST, 2: ENEMY_TABLE_V3, 3: ENEMY_TABLE_V3_PRUNED}[version][level]
     roles = {1: ROLE_ADDS_V3_FIRST, 2: ROLE_ADDS_V3, 3: ROLE_ADDS_V3_ADDITIVE}[version]
     adds = dict(roles.get(role or "", {}))
+    if version == 3 and role == "Defender" and getattr(T, "V3_DEFENDER_PARRY_TO_HEALTH", False):
+        # The Defender's +2 Parry moved to Health (designer, 2026-11-06):
+        # under the Defense cap a shield already takes its Parry there, so
+        # the bump would be paid for and wasted. Priced as Parry and Dodge +1
+        # is (1 Health for both, so 1 for the Parry half of two points).
+        adds["hp"] = adds.get("hp", 0) + adds.pop("parry", 0) // 2
     if version == 3:
         for ab in set(abilities):
             n = abilities.count(ab)
@@ -652,6 +658,16 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
         base_health += (allowance * k - cost) / k
         if base_health < max(1, math.ceil(t["health"] * getattr(T, "V3_HEALTH_FLOOR", 2 / 3))):
             raise ValueError(f"{name}: Abilities and armor cost {cost} Health, more than a third of its {t['health']}")
+
+    def cap_def(value):
+        # The Defense cap (designer, 2026-11-06), like Accuracy's: no Defense
+        # above 8 + the Level's Skill + V3_DEFENSE_CAP, a shield's Parry
+        # included, armor's Dodge penalty after. Archetype bumps and Parry
+        # and Dodge +1 picks stack up to it, not past it.
+        cap = getattr(T, "V3_DEFENSE_CAP", None)
+        if version != 3 or cap is None or value <= 0:
+            return value
+        return min(value, 8 + min(SKILL_CAP, t["skill"]) + cap)
     # A solo boss (4 Slots) in the pruned v3 has V3_SOLO_HEALTH times a
     # standard enemy's Health (designer, 2026-11-05), not the older 9.
     mult = (T.V3_SOLO_HEALTH if version == 3 and slots == 4 else
@@ -663,8 +679,9 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
                  effect_stacks=effect_stacks, backup=backup, stats=stat,
                  accuracy=accuracy, attack_damage=attack_damage, dmg_type=act["dmg_type"],
                  opp_def=act["opp_def"], attack_range=main["attack_range"],
-                 parry=parry, dodge=defense("dodge") + T.ARMOR[armor]["dodge"],
-                 bodily=defense("bodily"), mental=defense("mental"), vigilant=defense("vigilant"),
+                 parry=cap_def(parry), dodge=cap_def(defense("dodge")) + T.ARMOR[armor]["dodge"],
+                 bodily=cap_def(defense("bodily")), mental=cap_def(defense("mental")),
+                 vigilant=cap_def(defense("vigilant")),
                  physres=res_stat + T.ARMOR[armor]["physres"], elemres=res_stat,
                  health=health, max_health=health,
                  speed=math.ceil(level / 2) + 2 + T.ARMOR[armor]["speed"] + adds.get("speed", 0),

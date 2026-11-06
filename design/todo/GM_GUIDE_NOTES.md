@@ -411,6 +411,11 @@ something hardy, Mental for a strong will, Vigilant for something hard
 to fool. Parry isn't on the list; it's already the highest Defense, and
 Defender raises it further.
 
+(2026-11-06, the pruned v3: no enemy Defense goes above 10 + its Level's
+Skill, a shield included, and the Defender gives Dodge +2 and Health +4
+rather than Parry. This section's numbers are from the older hand-build
+model and still need bringing up to date.)
+
 #### Step 5: Upgrades
 
 Spend the Level's allotment. At least a third of it (rounded up) has to

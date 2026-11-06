@@ -3739,3 +3739,41 @@ archetype change alone (four Iron Sentinels 13% over 13 rounds, two
 Black Knights 19% over 20, Ironbranch Wardens 17% over 10): the picks
 then stay inside +2. Only the cap that counts the shield brings a
 Defender's Parry down to an ordinary shield-bearer's.
+
+### The Defense cap, default (2026-11-06)
+
+The designer chose the cap and the Defender change. Defaults now:
+`tunables.V3_DEFENSE_CAP = 2` (no enemy Defense above 8 + its Level's
+Skill + 2, a shield's Parry included, armor's Dodge penalty after) and
+`V3_DEFENDER_PARRY_TO_HEALTH = True` (the Defender is Dodge +2, Health
++4; its +2 Parry is gone, since under the cap a shield already takes
+Parry to the top). Checked: with both switched off, the built manual and
+a fixed-seed table_check run are byte-identical to before.
+
+What changed in the manual (Parry at Levels 1-5): Hedge Knight and
+Ironbranch Warden 16/17/19/20/20 to 14/15/16/17/18, Iron Sentinel
+18/19/20/20/20 to 14/15/16/17/18, Shieldbearer 17/18/20/20/20 to
+14/15/16/17/18, each Defender a point more Health per Slot; the Bog
+Skirmisher's Dodge a point lower. The Iron Sentinel's two Parry and
+Dodge +1 picks now only raise its Dodge. Nothing else moves.
+
+Full baseline, the same seeds before and after
+(`results/enemy_stats/defcap_*`):
+
+| Level | Manual before: lost / Down / rounds | Manual after | Band middle, days won before / after | Band bottom before / after |
+|---|---|---|---|---|
+| 1 | 7.8% / 24% / 6.0 | 2.2% / 18% / 4.9 | 91% / 93% | — |
+| 2 | 3.7% / 17% / 5.5 | 0.7% / 13% / 4.5 | 92% / 93% | 23% / 25% |
+| 3 | 2.4% / 15% / 5.4 | 1.0% / 13% / 4.7 | 87% / 88% | 27% / 37% |
+| 4 | 1.8% / 14% / 5.7 | 0.8% / 13% / 5.1 | 87% / 88% | 40% / 46% |
+| 5 | 3.6% / 11% / 6.3 | 2.9% / 10% / 6.0 | 86% / 88% | 82% / 84% |
+
+The before column reproduces the 11-05 baseline exactly. Much of the
+manual's losses were the walls: by monster, the Iron Sentinel went from
++43 points of Down to +5 and from 13 extra rounds to 5, the Ironbranch
+Warden from +24 to +2. The hardest monsters now are the ranged strikers
+(Grave Caller +38, Mind Lash Adept +36, Crossbow Sniper +32 points of
+Down), and the longest fights the healers' (Warpriest +7 rounds). Fights
+run half a round to a round shorter. The game is a little easier
+overall: the middle of the band wins 1-2 points more days, and a fresh
+manual fight is lost about 1% of the time at Levels 2-4.
