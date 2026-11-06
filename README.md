@@ -15,10 +15,11 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-06 — Bigger budgets for elites and bosses
 
-Tested giving elites and the solo boss more Ability points paid for out of their Health: twice the points works if the extra can't buy Defense, playing a boss as dangerous as today's in about four rounds instead of seven.
+Tested giving elites and the solo boss more Ability points paid for out of their Health (twice the points works if the extra can't buy Defense), then found the solo boss too unpredictable and tested boss fights led by elites instead.
 
 - On a boss, Defense is worth more than its price and offense less, so a boss that spent extra points on Parry and Dodge beat the party over half the time.
 - Two problems turned up that no budget fixes: a big Defender in heavy armor can't be beaten, and a ranged boss on its own barely threatens anyone.
+- A boss fight led by one or two stronger elites inside the party's usual four Slots is harder without dragging on; every Slot past four nearly doubles the fight's length.
 
 ### 2026-11-05 — A draft monster manual
 

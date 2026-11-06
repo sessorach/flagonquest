@@ -1,0 +1,287 @@
+
+### Middle of the band, Levels 1-5 (no Black Knight)
+
+| Shape | Slots | Setting | Lost | Worst encounter | Down | 2+ Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|---|
+| standard | 4 | - | 1.0% | 4% | 13% | 2% | 40% | 4.8 |
+| elite | 4 | x1, Health x3 | 1.2% | 15% | 11% | 2% | 34% | 5.1 |
+| elite | 4 | x2, Health x2.5 | 2.1% | 20% | 19% | 5% | 43% | 5.1 |
+| elite | 4 | x2, Health x3 | 3.5% | 27% | 22% | 7% | 47% | 5.7 |
+| two elites | 4 | x1, Health x3 | 0.1% | 1% | 8% | 1% | 28% | 4.7 |
+| two elites | 4 | x2, Health x2.5 | 1.9% | 8% | 18% | 4% | 42% | 4.4 |
+| two elites | 4 | x2, Health x3 | 4.7% | 19% | 25% | 8% | 50% | 5.4 |
+| standard | 5 | - | 11.8% | 35% | 40% | 17% | 69% | 9.3 |
+| elite | 5 | x1, Health x3 | 6.8% | 47% | 31% | 11% | 60% | 7.7 |
+| elite | 5 | x2, Health x2.5 | 11.5% | 49% | 41% | 18% | 68% | 7.9 |
+| elite | 5 | x2, Health x3 | 15.0% | 64% | 44% | 23% | 71% | 8.5 |
+| two elites | 5 | x1, Health x3 | 4.1% | 32% | 26% | 8% | 52% | 7.3 |
+| two elites | 5 | x2, Health x2.5 | 10.3% | 57% | 39% | 17% | 66% | 7.0 |
+| two elites | 5 | x2, Health x3 | 18.0% | 75% | 49% | 26% | 73% | 8.5 |
+| standard | 6 | - | 30.9% | 73% | 68% | 42% | 89% | 12.2 |
+| elite | 6 | x1, Health x3 | 24.5% | 61% | 61% | 36% | 83% | 11.3 |
+| elite | 6 | x2, Health x2.5 | 35.2% | 73% | 68% | 46% | 87% | 11.1 |
+| elite | 6 | x2, Health x3 | 39.4% | 81% | 71% | 50% | 89% | 11.5 |
+| two elites | 6 | x1, Health x3 | 21.7% | 62% | 56% | 31% | 78% | 11.4 |
+| two elites | 6 | x2, Health x2.5 | 36.5% | 77% | 69% | 48% | 88% | 11.0 |
+| two elites | 6 | x2, Health x3 | 47.4% | 85% | 77% | 58% | 91% | 11.8 |
+
+### Level 1, middle of the band (no Black Knight)
+
+| Shape | Slots | Setting | Lost | Worst encounter | Down | 2+ Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|---|
+| standard | 4 | - | 0.9% | 2% | 13% | 2% | 42% | 4.5 |
+| elite | 4 | x1, Health x3 | 3.5% | 15% | 21% | 7% | 44% | 5.2 |
+| elite | 4 | x2, Health x2.5 | 4.6% | 20% | 26% | 9% | 51% | 5.1 |
+| elite | 4 | x2, Health x3 | 6.8% | 27% | 30% | 12% | 56% | 5.7 |
+| two elites | 4 | x1, Health x3 | 0.2% | 0% | 14% | 2% | 36% | 4.5 |
+| two elites | 4 | x2, Health x2.5 | 2.0% | 7% | 24% | 6% | 49% | 4.1 |
+| two elites | 4 | x2, Health x3 | 4.8% | 13% | 29% | 10% | 54% | 5.0 |
+| standard | 5 | - | 11.2% | 29% | 44% | 19% | 72% | 8.0 |
+| elite | 5 | x1, Health x3 | 10.5% | 47% | 34% | 16% | 60% | 7.6 |
+| elite | 5 | x2, Health x2.5 | 14.9% | 49% | 42% | 22% | 67% | 7.5 |
+| elite | 5 | x2, Health x3 | 17.7% | 57% | 45% | 25% | 69% | 8.0 |
+| two elites | 5 | x1, Health x3 | 3.4% | 9% | 28% | 10% | 54% | 6.0 |
+| two elites | 5 | x2, Health x2.5 | 9.3% | 20% | 42% | 18% | 70% | 5.7 |
+| two elites | 5 | x2, Health x3 | 15.0% | 30% | 49% | 26% | 75% | 6.7 |
+| standard | 6 | - | 28.1% | 36% | 73% | 45% | 91% | 8.6 |
+| elite | 6 | x1, Health x3 | 16.0% | 37% | 53% | 27% | 79% | 8.8 |
+| elite | 6 | x2, Health x2.5 | 23.0% | 43% | 60% | 35% | 83% | 8.7 |
+| elite | 6 | x2, Health x3 | 26.7% | 49% | 62% | 39% | 85% | 9.1 |
+| two elites | 6 | x1, Health x3 | 18.3% | 35% | 58% | 31% | 80% | 9.5 |
+| two elites | 6 | x2, Health x2.5 | 28.4% | 47% | 66% | 42% | 86% | 9.2 |
+| two elites | 6 | x2, Health x3 | 39.2% | 60% | 74% | 53% | 90% | 10.0 |
+
+### Level 2, middle of the band (no Black Knight)
+
+| Shape | Slots | Setting | Lost | Worst encounter | Down | 2+ Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|---|
+| standard | 4 | - | 1.7% | 4% | 13% | 3% | 39% | 5.4 |
+| elite | 4 | x1, Health x3 | 1.2% | 8% | 10% | 2% | 31% | 4.9 |
+| elite | 4 | x2, Health x2.5 | 2.2% | 13% | 16% | 4% | 40% | 4.9 |
+| elite | 4 | x2, Health x3 | 3.4% | 22% | 20% | 6% | 45% | 5.4 |
+| two elites | 4 | x1, Health x3 | 0.1% | 0% | 7% | 0% | 24% | 4.5 |
+| two elites | 4 | x2, Health x2.5 | 1.0% | 3% | 15% | 3% | 38% | 4.1 |
+| two elites | 4 | x2, Health x3 | 3.3% | 11% | 22% | 7% | 47% | 5.1 |
+| standard | 5 | - | 9.1% | 18% | 32% | 13% | 61% | 8.7 |
+| elite | 5 | x1, Health x3 | 1.6% | 6% | 23% | 5% | 53% | 6.0 |
+| elite | 5 | x2, Health x2.5 | 4.4% | 16% | 31% | 10% | 62% | 5.9 |
+| elite | 5 | x2, Health x3 | 6.6% | 23% | 35% | 13% | 65% | 6.5 |
+| two elites | 5 | x1, Health x3 | 2.9% | 8% | 23% | 7% | 47% | 6.9 |
+| two elites | 5 | x2, Health x2.5 | 7.9% | 22% | 35% | 14% | 61% | 6.7 |
+| two elites | 5 | x2, Health x3 | 15.8% | 36% | 46% | 24% | 70% | 8.0 |
+| standard | 6 | - | 32.0% | 73% | 71% | 46% | 88% | 11.0 |
+| elite | 6 | x1, Health x3 | 30.8% | 61% | 66% | 42% | 85% | 11.5 |
+| elite | 6 | x2, Health x2.5 | 40.3% | 73% | 72% | 51% | 89% | 11.0 |
+| elite | 6 | x2, Health x3 | 44.5% | 79% | 75% | 55% | 90% | 11.4 |
+| two elites | 6 | x1, Health x3 | 31.6% | 62% | 64% | 42% | 82% | 11.8 |
+| two elites | 6 | x2, Health x2.5 | 46.8% | 77% | 76% | 57% | 90% | 11.1 |
+| two elites | 6 | x2, Health x3 | 56.9% | 85% | 82% | 66% | 93% | 11.5 |
+
+### Level 3, middle of the band (no Black Knight)
+
+| Shape | Slots | Setting | Lost | Worst encounter | Down | 2+ Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|---|
+| standard | 4 | - | 1.3% | 4% | 25% | 4% | 57% | 4.6 |
+| elite | 4 | x1, Health x3 | 1.1% | 6% | 11% | 2% | 35% | 5.7 |
+| elite | 4 | x2, Health x2.5 | 1.8% | 7% | 17% | 4% | 43% | 5.4 |
+| elite | 4 | x2, Health x3 | 3.1% | 9% | 21% | 6% | 49% | 6.2 |
+| two elites | 4 | x1, Health x3 | 0.1% | 0% | 8% | 0% | 32% | 4.4 |
+| two elites | 4 | x2, Health x2.5 | 1.7% | 3% | 19% | 4% | 49% | 4.1 |
+| two elites | 4 | x2, Health x3 | 4.6% | 10% | 27% | 8% | 57% | 5.2 |
+| standard | 5 | - | 18.4% | 35% | 51% | 25% | 81% | 10.2 |
+| elite | 5 | x1, Health x3 | 10.1% | 31% | 40% | 17% | 70% | 8.3 |
+| elite | 5 | x2, Health x2.5 | 15.3% | 34% | 49% | 25% | 78% | 8.5 |
+| elite | 5 | x2, Health x3 | 19.7% | 45% | 54% | 31% | 80% | 9.2 |
+| two elites | 5 | x1, Health x3 | 3.0% | 9% | 28% | 7% | 59% | 6.3 |
+| two elites | 5 | x2, Health x2.5 | 10.4% | 25% | 46% | 20% | 74% | 6.3 |
+| two elites | 5 | x2, Health x3 | 18.4% | 38% | 57% | 30% | 81% | 7.7 |
+| standard | 6 | - | 32.2% | 49% | 70% | 44% | 93% | 11.8 |
+| elite | 6 | x1, Health x3 | 29.6% | 44% | 71% | 46% | 90% | 10.5 |
+| elite | 6 | x2, Health x2.5 | 42.4% | 65% | 78% | 57% | 93% | 10.1 |
+| elite | 6 | x2, Health x3 | 45.9% | 69% | 80% | 60% | 94% | 10.4 |
+| two elites | 6 | x1, Health x3 | 28.4% | 55% | 60% | 38% | 82% | 12.6 |
+| two elites | 6 | x2, Health x2.5 | 43.5% | 68% | 71% | 53% | 89% | 12.1 |
+| two elites | 6 | x2, Health x3 | 54.7% | 82% | 80% | 64% | 94% | 12.6 |
+
+### Level 4, middle of the band (no Black Knight)
+
+| Shape | Slots | Setting | Lost | Worst encounter | Down | 2+ Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|---|
+| standard | 4 | - | 0.4% | 1% | 8% | 1% | 35% | 4.5 |
+| elite | 4 | x1, Health x3 | 0.4% | 2% | 8% | 1% | 33% | 4.6 |
+| elite | 4 | x2, Health x2.5 | 1.0% | 6% | 18% | 3% | 45% | 4.7 |
+| elite | 4 | x2, Health x3 | 2.2% | 11% | 21% | 4% | 49% | 5.3 |
+| two elites | 4 | x1, Health x3 | 0.1% | 0% | 7% | 0% | 26% | 4.8 |
+| two elites | 4 | x2, Health x2.5 | 2.1% | 6% | 19% | 5% | 45% | 4.6 |
+| two elites | 4 | x2, Health x3 | 5.0% | 12% | 27% | 9% | 53% | 5.8 |
+| standard | 5 | - | 6.5% | 11% | 26% | 8% | 56% | 9.4 |
+| elite | 5 | x1, Health x3 | 7.9% | 32% | 34% | 12% | 61% | 8.8 |
+| elite | 5 | x2, Health x2.5 | 15.1% | 49% | 47% | 21% | 72% | 9.5 |
+| elite | 5 | x2, Health x3 | 19.3% | 64% | 50% | 26% | 74% | 10.1 |
+| two elites | 5 | x1, Health x3 | 2.8% | 10% | 25% | 6% | 53% | 7.5 |
+| two elites | 5 | x2, Health x2.5 | 9.6% | 26% | 41% | 16% | 68% | 7.5 |
+| two elites | 5 | x2, Health x3 | 17.4% | 40% | 52% | 26% | 74% | 9.3 |
+| standard | 6 | - | 33.8% | 46% | 66% | 42% | 87% | 14.6 |
+| elite | 6 | x1, Health x3 | 21.3% | 49% | 58% | 30% | 82% | 12.0 |
+| elite | 6 | x2, Health x2.5 | 34.5% | 70% | 69% | 45% | 87% | 12.2 |
+| elite | 6 | x2, Health x3 | 39.0% | 76% | 71% | 49% | 89% | 12.7 |
+| two elites | 6 | x1, Health x3 | 9.4% | 24% | 46% | 18% | 74% | 9.8 |
+| two elites | 6 | x2, Health x2.5 | 26.3% | 53% | 68% | 41% | 88% | 10.1 |
+| two elites | 6 | x2, Health x3 | 37.5% | 68% | 74% | 51% | 90% | 11.6 |
+
+### Level 5, middle of the band (no Black Knight)
+
+| Shape | Slots | Setting | Lost | Worst encounter | Down | 2+ Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|---|
+| standard | 4 | - | 0.5% | 1% | 7% | 1% | 30% | 4.9 |
+| elite | 4 | x1, Health x3 | 0.2% | 2% | 8% | 0% | 26% | 5.2 |
+| elite | 4 | x2, Health x2.5 | 1.3% | 9% | 18% | 4% | 38% | 5.2 |
+| elite | 4 | x2, Health x3 | 2.7% | 18% | 21% | 6% | 41% | 6.0 |
+| two elites | 4 | x1, Health x3 | 0.1% | 1% | 7% | 1% | 21% | 5.1 |
+| two elites | 4 | x2, Health x2.5 | 2.5% | 8% | 15% | 5% | 33% | 4.8 |
+| two elites | 4 | x2, Health x3 | 5.9% | 19% | 21% | 9% | 39% | 6.1 |
+| standard | 5 | - | 13.7% | 26% | 45% | 19% | 77% | 9.9 |
+| elite | 5 | x1, Health x3 | 4.4% | 15% | 24% | 7% | 55% | 7.9 |
+| elite | 5 | x2, Health x2.5 | 8.5% | 34% | 33% | 14% | 63% | 7.9 |
+| elite | 5 | x2, Health x3 | 12.0% | 43% | 37% | 18% | 66% | 8.8 |
+| two elites | 5 | x1, Health x3 | 8.5% | 32% | 25% | 10% | 49% | 9.6 |
+| two elites | 5 | x2, Health x2.5 | 14.3% | 57% | 33% | 17% | 56% | 8.8 |
+| two elites | 5 | x2, Health x3 | 22.9% | 75% | 42% | 25% | 64% | 10.7 |
+| standard | 6 | - | 28.2% | 44% | 59% | 32% | 86% | 14.6 |
+| elite | 6 | x1, Health x3 | 23.5% | 51% | 54% | 31% | 80% | 13.6 |
+| elite | 6 | x2, Health x2.5 | 34.5% | 73% | 61% | 42% | 83% | 13.1 |
+| elite | 6 | x2, Health x3 | 39.3% | 81% | 64% | 46% | 85% | 13.7 |
+| two elites | 6 | x1, Health x3 | 20.5% | 45% | 50% | 27% | 73% | 13.3 |
+| two elites | 6 | x2, Health x2.5 | 36.3% | 72% | 66% | 44% | 85% | 12.3 |
+| two elites | 6 | x2, Health x3 | 47.6% | 83% | 72% | 54% | 89% | 13.4 |
+
+### Low band point, Levels 2-5 (no Black Knight)
+
+| Shape | Slots | Setting | Lost | Worst encounter | Down | 2+ Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|---|
+| standard | 4 | - | 20.7% | 76% | 48% | 28% | 71% | 8.4 |
+| elite | 4 | x2, Health x2.5 | 19.5% | 78% | 45% | 25% | 68% | 8.0 |
+| standard | 5 | - | 51.0% | 94% | 77% | 59% | 92% | 12.3 |
+| elite | 5 | x2, Health x2.5 | 42.1% | 97% | 70% | 52% | 87% | 9.8 |
+| standard | 6 | - | 74.2% | 100% | 89% | 79% | 97% | 11.3 |
+| elite | 6 | x2, Health x2.5 | 74.3% | 100% | 88% | 80% | 96% | 10.2 |
+
+### High band point, Levels 2-5 (no Black Knight)
+
+| Shape | Slots | Setting | Lost | Worst encounter | Down | 2+ Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|---|
+| standard | 4 | - | 0.2% | 1% | 4% | 0% | 21% | 4.1 |
+| elite | 4 | x2, Health x2.5 | 0.5% | 9% | 9% | 1% | 26% | 4.3 |
+| standard | 5 | - | 3.9% | 23% | 18% | 5% | 43% | 7.3 |
+| elite | 5 | x2, Health x2.5 | 4.1% | 35% | 23% | 7% | 49% | 6.5 |
+| standard | 6 | - | 12.3% | 40% | 39% | 15% | 68% | 10.7 |
+| elite | 6 | x2, Health x2.5 | 16.6% | 71% | 47% | 24% | 72% | 9.9 |
+
+### Each elite leading standard monsters, middle of the band
+
+| Elite | Slots | Setting | Lost | Worst encounter | Down | 2+ Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|---|
+| Gravel Ogre | 4 | x1, Health x3 | 1.7% | 12% | 13% | 3% | 33% | 4.9 |
+| Gravel Ogre | 4 | x2, Health x2.5 | 4.6% | 20% | 27% | 8% | 50% | 5.3 |
+| Gravel Ogre | 4 | x2, Health x3 | 8.0% | 27% | 34% | 13% | 56% | 6.1 |
+| Gravel Ogre | 5 | x1, Health x3 | 9.4% | 36% | 35% | 14% | 61% | 7.7 |
+| Gravel Ogre | 5 | x2, Health x2.5 | 19.6% | 49% | 51% | 27% | 74% | 8.1 |
+| Gravel Ogre | 5 | x2, Health x3 | 26.8% | 64% | 58% | 35% | 78% | 8.9 |
+| Gravel Ogre | 6 | x1, Health x3 | 32.9% | 61% | 67% | 43% | 87% | 10.8 |
+| Gravel Ogre | 6 | x2, Health x2.5 | 51.0% | 73% | 79% | 61% | 92% | 10.3 |
+| Gravel Ogre | 6 | x2, Health x3 | 58.6% | 81% | 83% | 68% | 94% | 10.5 |
+| Elite Sharpshooter | 4 | x1, Health x3 | 1.2% | 15% | 18% | 3% | 47% | 5.0 |
+| Elite Sharpshooter | 4 | x2, Health x2.5 | 2.3% | 17% | 32% | 6% | 60% | 5.2 |
+| Elite Sharpshooter | 4 | x2, Health x3 | 3.7% | 25% | 37% | 9% | 64% | 5.9 |
+| Elite Sharpshooter | 5 | x1, Health x3 | 5.9% | 30% | 43% | 13% | 71% | 7.5 |
+| Elite Sharpshooter | 5 | x2, Health x2.5 | 13.9% | 45% | 58% | 27% | 81% | 8.2 |
+| Elite Sharpshooter | 5 | x2, Health x3 | 17.7% | 51% | 62% | 31% | 83% | 8.8 |
+| Elite Sharpshooter | 6 | x1, Health x3 | 25.5% | 59% | 77% | 45% | 92% | 11.6 |
+| Elite Sharpshooter | 6 | x2, Health x2.5 | 46.5% | 73% | 86% | 64% | 95% | 11.3 |
+| Elite Sharpshooter | 6 | x2, Health x3 | 51.2% | 79% | 88% | 68% | 96% | 11.8 |
+| Storm Magus | 4 | x1, Health x3 | 1.5% | 12% | 11% | 3% | 43% | 5.2 |
+| Storm Magus | 4 | x2, Health x2.5 | 0.8% | 10% | 11% | 2% | 45% | 4.5 |
+| Storm Magus | 4 | x2, Health x3 | 1.4% | 14% | 13% | 3% | 51% | 5.1 |
+| Storm Magus | 5 | x1, Health x3 | 8.4% | 47% | 33% | 14% | 71% | 7.8 |
+| Storm Magus | 5 | x2, Health x2.5 | 7.6% | 39% | 34% | 13% | 74% | 7.1 |
+| Storm Magus | 5 | x2, Health x3 | 9.4% | 47% | 38% | 16% | 77% | 7.7 |
+| Storm Magus | 6 | x1, Health x3 | 25.5% | 54% | 63% | 37% | 91% | 11.0 |
+| Storm Magus | 6 | x2, Health x2.5 | 27.0% | 54% | 66% | 40% | 92% | 10.4 |
+| Storm Magus | 6 | x2, Health x3 | 30.0% | 56% | 69% | 44% | 94% | 10.9 |
+| Coven Matriarch | 4 | x1, Health x3 | 0.5% | 6% | 3% | 1% | 12% | 5.3 |
+| Coven Matriarch | 4 | x2, Health x2.5 | 0.8% | 8% | 4% | 1% | 17% | 5.3 |
+| Coven Matriarch | 4 | x2, Health x3 | 1.1% | 10% | 5% | 2% | 19% | 5.7 |
+| Coven Matriarch | 5 | x1, Health x3 | 3.6% | 20% | 13% | 4% | 36% | 7.9 |
+| Coven Matriarch | 5 | x2, Health x2.5 | 5.1% | 31% | 18% | 7% | 44% | 8.1 |
+| Coven Matriarch | 5 | x2, Health x3 | 6.1% | 36% | 19% | 8% | 46% | 8.8 |
+| Coven Matriarch | 6 | x1, Health x3 | 13.9% | 50% | 36% | 17% | 64% | 11.9 |
+| Coven Matriarch | 6 | x2, Health x2.5 | 16.4% | 55% | 42% | 21% | 70% | 12.3 |
+| Coven Matriarch | 6 | x2, Health x3 | 17.6% | 59% | 43% | 22% | 71% | 12.9 |
+| Black Knight | 4 | x1, Health x3 | 17.1% | 35% | 42% | 13% | 57% | 17.1 |
+| Black Knight | 4 | x2, Health x2.5 | 29.5% | 68% | 57% | 35% | 76% | 15.4 |
+| Black Knight | 4 | x2, Health x3 | 46.2% | 82% | 71% | 48% | 87% | 19.0 |
+| Black Knight | 5 | x1, Health x3 | 39.3% | 67% | 58% | 27% | 75% | 20.7 |
+| Black Knight | 5 | x2, Health x2.5 | 57.6% | 86% | 78% | 61% | 91% | 18.6 |
+| Black Knight | 5 | x2, Health x3 | 70.1% | 94% | 86% | 70% | 95% | 20.6 |
+| Black Knight | 6 | x1, Health x3 | 64.9% | 86% | 76% | 51% | 89% | 22.9 |
+| Black Knight | 6 | x2, Health x2.5 | 83.1% | 96% | 92% | 84% | 98% | 18.5 |
+| Black Knight | 6 | x2, Health x3 | 89.5% | 98% | 95% | 88% | 98% | 19.2 |
+
+### Each pair of elites, middle of the band
+
+| Elites | Slots | Setting | Lost | Worst encounter | Down | 2+ Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|---|---|
+| Elite Sharpshooter+Coven Matriarch | 4 | x1, Health x3 | 0.0% | 0% | 1% | 0% | 13% | 4.6 |
+| Elite Sharpshooter+Coven Matriarch | 4 | x2, Health x2.5 | 0.0% | 0% | 7% | 0% | 28% | 4.0 |
+| Elite Sharpshooter+Coven Matriarch | 4 | x2, Health x3 | 0.0% | 0% | 9% | 0% | 31% | 4.8 |
+| Elite Sharpshooter+Coven Matriarch | 5 | x1, Health x3 | 1.1% | 5% | 12% | 3% | 34% | 6.9 |
+| Elite Sharpshooter+Coven Matriarch | 5 | x2, Health x2.5 | 3.0% | 7% | 24% | 7% | 51% | 6.7 |
+| Elite Sharpshooter+Coven Matriarch | 5 | x2, Health x3 | 4.9% | 10% | 30% | 9% | 56% | 8.0 |
+| Elite Sharpshooter+Coven Matriarch | 6 | x1, Health x3 | 12.5% | 46% | 44% | 20% | 68% | 11.7 |
+| Elite Sharpshooter+Coven Matriarch | 6 | x2, Health x2.5 | 21.9% | 64% | 60% | 33% | 82% | 11.8 |
+| Elite Sharpshooter+Coven Matriarch | 6 | x2, Health x3 | 29.7% | 69% | 67% | 41% | 86% | 13.1 |
+| Elite Sharpshooter+Storm Magus | 4 | x1, Health x3 | 0.1% | 0% | 11% | 1% | 44% | 4.4 |
+| Elite Sharpshooter+Storm Magus | 4 | x2, Health x2.5 | 0.5% | 2% | 19% | 3% | 57% | 4.0 |
+| Elite Sharpshooter+Storm Magus | 4 | x2, Health x3 | 1.7% | 4% | 27% | 6% | 65% | 5.0 |
+| Elite Sharpshooter+Storm Magus | 5 | x1, Health x3 | 4.4% | 8% | 35% | 11% | 70% | 7.3 |
+| Elite Sharpshooter+Storm Magus | 5 | x2, Health x2.5 | 8.8% | 14% | 44% | 18% | 78% | 6.6 |
+| Elite Sharpshooter+Storm Magus | 5 | x2, Health x3 | 16.8% | 25% | 55% | 30% | 84% | 8.2 |
+| Elite Sharpshooter+Storm Magus | 6 | x1, Health x3 | 23.6% | 54% | 67% | 38% | 89% | 11.0 |
+| Elite Sharpshooter+Storm Magus | 6 | x2, Health x2.5 | 38.0% | 68% | 78% | 54% | 94% | 10.3 |
+| Elite Sharpshooter+Storm Magus | 6 | x2, Health x3 | 51.6% | 79% | 84% | 66% | 96% | 11.0 |
+| Gravel Ogre+Coven Matriarch | 4 | x1, Health x3 | 0.0% | 0% | 4% | 0% | 14% | 5.0 |
+| Gravel Ogre+Coven Matriarch | 4 | x2, Health x2.5 | 2.0% | 3% | 16% | 4% | 34% | 4.9 |
+| Gravel Ogre+Coven Matriarch | 4 | x2, Health x3 | 5.3% | 7% | 25% | 8% | 44% | 6.2 |
+| Gravel Ogre+Coven Matriarch | 5 | x1, Health x3 | 1.6% | 10% | 14% | 3% | 34% | 7.2 |
+| Gravel Ogre+Coven Matriarch | 5 | x2, Health x2.5 | 9.5% | 25% | 38% | 13% | 60% | 7.8 |
+| Gravel Ogre+Coven Matriarch | 5 | x2, Health x3 | 17.0% | 40% | 49% | 23% | 70% | 9.6 |
+| Gravel Ogre+Coven Matriarch | 6 | x1, Health x3 | 16.9% | 50% | 41% | 22% | 65% | 11.8 |
+| Gravel Ogre+Coven Matriarch | 6 | x2, Health x2.5 | 36.2% | 66% | 66% | 44% | 83% | 12.4 |
+| Gravel Ogre+Coven Matriarch | 6 | x2, Health x3 | 46.9% | 76% | 75% | 55% | 88% | 13.4 |
+| Gravel Ogre+Elite Sharpshooter | 4 | x1, Health x3 | 0.3% | 0% | 16% | 2% | 39% | 4.6 |
+| Gravel Ogre+Elite Sharpshooter | 4 | x2, Health x2.5 | 5.4% | 8% | 37% | 12% | 60% | 4.6 |
+| Gravel Ogre+Elite Sharpshooter | 4 | x2, Health x3 | 13.0% | 19% | 46% | 21% | 68% | 6.0 |
+| Gravel Ogre+Elite Sharpshooter | 5 | x1, Health x3 | 6.6% | 32% | 39% | 13% | 66% | 7.3 |
+| Gravel Ogre+Elite Sharpshooter | 5 | x2, Health x2.5 | 24.7% | 57% | 63% | 36% | 83% | 7.7 |
+| Gravel Ogre+Elite Sharpshooter | 5 | x2, Health x3 | 38.3% | 75% | 73% | 50% | 89% | 8.9 |
+| Gravel Ogre+Elite Sharpshooter | 6 | x1, Health x3 | 26.7% | 51% | 69% | 41% | 87% | 10.6 |
+| Gravel Ogre+Elite Sharpshooter | 6 | x2, Health x2.5 | 57.7% | 77% | 87% | 71% | 96% | 9.7 |
+| Gravel Ogre+Elite Sharpshooter | 6 | x2, Health x3 | 70.8% | 85% | 92% | 81% | 98% | 9.9 |
+| Gravel Ogre+Storm Magus | 4 | x1, Health x3 | 0.3% | 1% | 15% | 2% | 40% | 4.7 |
+| Gravel Ogre+Storm Magus | 4 | x2, Health x2.5 | 3.2% | 6% | 27% | 8% | 56% | 4.4 |
+| Gravel Ogre+Storm Magus | 4 | x2, Health x3 | 8.3% | 12% | 38% | 15% | 67% | 5.7 |
+| Gravel Ogre+Storm Magus | 5 | x1, Health x3 | 9.6% | 32% | 44% | 16% | 73% | 7.8 |
+| Gravel Ogre+Storm Magus | 5 | x2, Health x2.5 | 15.1% | 37% | 54% | 24% | 81% | 7.1 |
+| Gravel Ogre+Storm Magus | 5 | x2, Health x3 | 28.3% | 57% | 67% | 41% | 88% | 8.9 |
+| Gravel Ogre+Storm Magus | 6 | x1, Health x3 | 35.5% | 62% | 71% | 46% | 91% | 11.2 |
+| Gravel Ogre+Storm Magus | 6 | x2, Health x2.5 | 48.9% | 71% | 80% | 62% | 95% | 10.2 |
+| Gravel Ogre+Storm Magus | 6 | x2, Health x3 | 63.7% | 80% | 87% | 74% | 97% | 10.6 |
+| Storm Magus+Coven Matriarch | 4 | x1, Health x3 | 0.0% | 0% | 1% | 0% | 15% | 4.7 |
+| Storm Magus+Coven Matriarch | 4 | x2, Health x2.5 | 0.0% | 0% | 2% | 0% | 19% | 4.1 |
+| Storm Magus+Coven Matriarch | 4 | x2, Health x3 | 0.0% | 0% | 5% | 0% | 26% | 4.9 |
+| Storm Magus+Coven Matriarch | 5 | x1, Health x3 | 1.6% | 7% | 11% | 2% | 36% | 7.2 |
+| Storm Magus+Coven Matriarch | 5 | x2, Health x2.5 | 0.8% | 2% | 13% | 2% | 41% | 6.3 |
+| Storm Magus+Coven Matriarch | 5 | x2, Health x3 | 2.4% | 5% | 21% | 5% | 50% | 7.6 |
+| Storm Magus+Coven Matriarch | 6 | x1, Health x3 | 15.1% | 46% | 40% | 20% | 70% | 12.3 |
+| Storm Magus+Coven Matriarch | 6 | x2, Health x2.5 | 16.1% | 50% | 46% | 23% | 76% | 11.6 |
+| Storm Magus+Coven Matriarch | 6 | x2, Health x3 | 21.6% | 58% | 53% | 30% | 81% | 13.0 |

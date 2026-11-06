@@ -3590,3 +3590,67 @@ The Matriarch, a support, barely moves at any setting.
   x4, 4.4 rounds), but that's what the rule forbids. Probably a ranged
   boss isn't solo: it gets a bodyguard, as an elite with standard
   monsters.
+
+### A boss encounter without a solo boss (2026-11-06)
+
+The designer: maybe the solo boss doesn't hold up, and the standard boss
+is an elite leading standard monsters. Across the previous section's
+designs the solo boss swung from 0% to 97% lost, while an elite beside
+standard monsters stayed in an ordinary fight's range for every design
+but the Defender. `experiments/enemies/boss_encounters.py`: an elite
+plus standard monsters, or two elites plus standard monsters, filling 4,
+5 or 6 Slots (the party is 4), against all-standard encounters of the
+same sizes. Elites at today's setting and at twice the budget under the
+offense-only rule. Five elites (the Black Knight read apart), four fixed
+companion draws per Level and size, every party in the middle of the
+band (and at the low and high points for twice the budget at Health
+x2.5), Levels 1-5, 100 fresh fights each, 15,606 matchups
+(`results/enemy_stats/boss_encounters.txt`).
+
+Middle of the band, Levels 1-5, no Black Knight:
+
+| Encounter | Slots | Elites at | Lost | Worst encounter | Down | 2+ Down | Rounds |
+|---|---|---|---|---|---|---|---|
+| All standard | 4 | - | 1.0% | 4% | 13% | 2% | 4.8 |
+| Elite + standard | 4 | today | 1.2% | 15% | 11% | 2% | 5.1 |
+| Elite + standard | 4 | x2, Health x2.5 | 2.1% | 20% | 19% | 5% | 5.1 |
+| Elite + standard | 4 | x2, Health x3 | 3.5% | 27% | 22% | 7% | 5.7 |
+| Two elites | 4 | x2, Health x2.5 | 1.9% | 8% | 18% | 4% | 4.4 |
+| Two elites | 4 | x2, Health x3 | 4.7% | 19% | 25% | 8% | 5.4 |
+| All standard | 5 | - | 11.8% | 35% | 40% | 17% | 9.3 |
+| Elite + standard | 5 | today | 6.8% | 47% | 31% | 11% | 7.7 |
+| Elite + standard | 5 | x2, Health x2.5 | 11.5% | 49% | 41% | 18% | 7.9 |
+| Two elites + standard | 5 | today | 4.1% | 32% | 26% | 8% | 7.3 |
+| All standard | 6 | - | 30.9% | 73% | 68% | 42% | 12.2 |
+| Elite + standard | 6 | today | 24.5% | 61% | 61% | 36% | 11.3 |
+| Two elites + standard | 6 | today | 21.7% | 62% | 56% | 31% | 11.4 |
+
+- **One Slot more than the party is a big step, and mostly a longer
+  fight.** All-standard at 5 Slots is lost 12% of the time against 1%,
+  with someone Down 40% against 13%, and it runs 9 rounds against 5.
+  At 6 Slots it's lost a third of the time over 12 rounds. Elite-led
+  encounters at 5 Slots run 7-8 rounds. That's the action economy:
+  a fifth enemy's worth of attacks every round for a fight that lasts
+  twice as long.
+- **Within 4 Slots, the elite's own budget makes it a boss fight**
+  without stretching it. Twice the budget at Health x3: lost 3.5%,
+  someone Down 22%, 5.7 rounds; led by the Gravel Ogre, the strongest
+  leader, 8% and 34% over 6 rounds. Two elites at the same setting:
+  4.7% and 25% over 5.4 rounds.
+- **The leader matters.** At 4 Slots, twice the budget, Health x2.5:
+  Gravel Ogre lost 4.6% (Down 27%), Elite Sharpshooter 2.3% (32%), Storm
+  Magus 0.8% (11%), Coven Matriarch 0.8% (4%). A support leading
+  standard monsters is a soft fight; a melee bruiser is the hard one.
+- **Across the band** (4 Slots, twice the budget, Health x2.5): the
+  low point loses 20% (the same as an all-standard fight there, 21%),
+  the high point 0.5%.
+- **The Black Knight is still a wall,** leading at 4 Slots: lost 17% over
+  17 rounds today, 30-46% with a bigger budget.
+- Level 1 runs harder than the rest at 4 Slots (an elite with twice the
+  budget, Health x2.5: lost 4.6%, Down 26%).
+
+So, proposed: **a boss encounter stays at the party's Slots, led by one
+or two elites at twice the budget and Health x3** (an ordinary elite
+gets twice the budget at Health x2.5). Going over the party's Slots is a
+long, dangerous fight, for when that's what the GM wants. The 4-Slot
+solo boss becomes a rare exception: melee, and run with care.

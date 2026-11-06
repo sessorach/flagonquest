@@ -1,12 +1,12 @@
 # Latest replays (2026-11-06)
 
-No default changed: tested bigger budgets for elites and the solo boss (big_enemy_options/variants)
+No default changed: tested elite-led boss encounters at 4-6 Slots (boss_encounters.py)
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 97.5% wins, 5.1 rounds, 76% HP left on a win
+- Matchup average over 1000 fights: 97.3% wins, 5.1 rounds, 76% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
