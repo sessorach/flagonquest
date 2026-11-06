@@ -358,15 +358,21 @@ gear; Step 4's gear is added last and can take a number past them:
   +3, Dodge −1, Speed −1).
 - Pick a Battle Tactic (see the quick reference below).
 
-**Big enemies.** An elite (2 Slots) gets twice the Level's points and
-2.5 times the Health; the extra points buy offense, on-hit effects and
-Actions, never Defenses, Resist or Health. An elite built to lead a boss
-fight has 3 times the Health. A boss fight is one or two such elites
-with standard monsters, inside the party's Slots, with an attacker in
-front (a healer or shield-caster makes a fine second elite, a poor
-leader). The solo boss (4 Slots, two turns a round, twice the points, 4
-times the Health) is a rare exception: melee, and run with care; a
-ranged one gets mobbed.
+**Size.** One table by Slots:
+
+| Slots | Points | Health | Turns |
+|---|---|---|---|
+| ½ (minion) | the Level's | a third | 1 |
+| 1 (standard) | the Level's | the Level's | 1 |
+| 2 (elite) | twice | 2.5 times | 1 |
+| 4 (solo boss) | twice | 4 times | 2 |
+
+The points a size adds buy offense, on-hit effects and Actions, never
+Defenses, Resist or Health. A boss fight is two attacking elites, or one
+with standard monsters, inside the party's Slots (a healer or
+shield-caster makes a fine second elite, a poor leader). The solo boss
+is a rare exception: melee, and run with care; a ranged one gets mobbed.
+A Defender elite in Heavy armor makes a very long fight.
 
 ## Enemy stat blocks by hand (draft, updated 2026-10-01)
 

@@ -684,7 +684,8 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
     # A solo boss (4 Slots) in the pruned v3 has V3_SOLO_HEALTH times a
     # standard enemy's Health (designer, 2026-11-05), not the older 9.
     mult = (T.V3_SOLO_HEALTH if version == 3 and slots == 4 else
-            getattr(T, "V3_ELITE_HEALTH", 3) if version == 3 and slots == 2 else T.SLOT_MULTIPLIER[slots])
+            getattr(T, "V3_ELITE_HEALTH", 3) if version == 3 and slots == 2 else
+            getattr(T, "V3_MINION_HEALTH", 1 / 3) if version == 3 and slots == 0.5 else T.SLOT_MULTIPLIER[slots])
     health = math.ceil((base_health + adds.get("hp", 0)) * mult - 1e-9) + abilities.count("Enhanced Health")
     enemy = dict(name=name, level=level, slots=slots, role=role or "None", action=action,
                  kind=kind, main_effect=main_effect or {"support": "Protected", "heal": "Health",

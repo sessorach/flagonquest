@@ -3864,3 +3864,66 @@ party; `results/enemy_stats/boss_check2.txt`):
   fight lost about 1% of the time at Levels 2-4, the danger now sitting
   in the elite and boss fights. Whether ordinary fights need a nudge
   back up (the 11-05 lever: a point of budget) is the designer's call.
+
+### One size table, minions included (2026-11-06)
+
+The designer: one table by Slots, the 4-Slot solo boss's two turns the
+only special case; no extra Health for an elite leading a boss fight
+(`V3_BOSS_ELITE_HEALTH` and the `:boss` tag removed; every other build
+unchanged). Minion Health is now its own tunable, `V3_MINION_HEALTH`
+(a third, as before).
+
+| Slots | Points | Health | Turns |
+|---|---|---|---|
+| 0.5 (minion) | the Level's | a third | 1 |
+| 1 (standard) | the Level's | the Level's | 1 |
+| 2 (elite) | twice, the extra on offense only | 2.5 times | 1 |
+| 4 (solo boss, rare) | twice, the extra on offense only | 4 times | 2 |
+
+`experiments/enemies/size_check.py`: minions at a third, 0.4 and half of
+the Health; the manual's elites plus three test-only ones built the
+manual's way (Elite Sharpshooter, Storm Magus, and a Black Knight, a
+Defender in Heavy armor); pairs and mixes; the solo Warlord. Fixed
+companion draws, Levels 1-5, middle of the band (low and high points on
+the defaults), 60 fights a party, 7,790 matchups
+(`results/enemy_stats/size_check.txt`). Middle of the band:
+
+| Encounter | Lost | Down | Rounds | Low / high band lost |
+|---|---|---|---|---|
+| Four standard monsters | 0.3% | 12% | 4.4 | 13% / 0% |
+| Eight minions (a third of the Health) | 0.6% | 25% | 3.9 | 15% / 0% |
+| Eight minions at 0.4 / at a half | 2.5% / 8.1% | 37% / 55% | 5.1 / 6.8 | - |
+| Four minions + two standard | 0.5% | 16% | 4.4 | 12% / 0% |
+| Two minions + three standard | 0.5% | 14% | 4.3 | 12% / 0% |
+| Gravel Ogre + two standard | 3.1% | 25% | 4.8 | 22% / 1% |
+| Two Gravel Ogres | 7.1% | 34% | 4.8 | 26% / 3% |
+| Gravel Ogre + Elite Sharpshooter | 5.2% | 39% | 4.7 | 24% / 3% |
+| Elite Sharpshooter + two standard | 1.2% | 32% | 4.7 | 15% / 0% |
+| Two Elite Sharpshooters | 1.6% | 50% | 4.4 | 18% / 0% |
+| Storm Magus + two standard | 0.3% | 10% | 4.3 | 11% / 0% |
+| Coven Matriarch + two standard | 0.1% | 3% | 4.7 | 5% / 0% |
+| Black Knight + two standard | 5.9% | 28% | 9.2 | 44% / 1% |
+| Two Black Knights | 37% | 73% | 17.1 | 79% / 15% |
+| Solo Brute Warlord (Levels 3-5) | 11% | 29% | 4.3 | 33% / 6% |
+
+- **Minions hold up at a third of the Health.** A swarm of eight puts
+  someone Down twice as often as four standard monsters (25% to 12%) but
+  loses no more fights and ends sooner. At 0.4 or a half they get much
+  harder. Mixed in, they play like standard monsters.
+- **Elites need no boss carve-out.** An attacking elite leading two
+  standard monsters is a step up (Ogre: 3.1% lost, Down 25%); two
+  attacking elites make the boss fight (two Ogres 7.1%, Ogre with
+  Sharpshooter 5.2%), all about five rounds. The extra Health for a boss
+  leader gave about the same as a second elite does. Casters and
+  supports leading stay soft (Storm Magus 0.3%, Matriarch 0.1%).
+- **The solo Warlord** plays as before (11%, 4.3 rounds).
+- **A Defender elite in Heavy armor is still a slog,** cap or no cap:
+  one leading standard monsters runs 9 rounds, two of them 17 rounds and
+  lost 37% of the time. It isn't Defense any more (Parry 16 at Level 3,
+  the same as any shield-bearer): it's Physical Resist. Heavy armor's +3
+  on the table's Resist makes 6-7 at Levels 3-5, and the sample PCs' hits
+  average 6-6.7 damage, so a physical hit does next to nothing to 45-50
+  Health. Open: the Black Knight is a test design, but GMs will build
+  one.
+- Level 1 runs harder with elites than the other Levels (Ogre + two
+  standard: 6% lost at Level 1).

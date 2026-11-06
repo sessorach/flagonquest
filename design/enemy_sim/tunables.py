@@ -409,10 +409,9 @@ V3_SLOT_BUDGET = {2: 2, 4: 2}
 # budget x1; 2.5 with twice the budget (2026-11-06), an elite beside two
 # standard monsters about an ordinary fight.
 V3_ELITE_HEALTH = 2.5
-# An elite built to lead a boss encounter ("Name@L:boss"), designer
-# 2026-11-06: one or two of them with standard monsters, inside the
-# party's Slots.
-V3_BOSS_ELITE_HEALTH = 3
+# A minion's (0.5 Slots) Health in the pruned v3, in standard enemies (the
+# old SLOT_MULTIPLIER's third until tested otherwise, 2026-11-06).
+V3_MINION_HEALTH = 1 / 3
 # The old sample roster (sample_enemies.csv) has no BigPicks, so its big
 # enemies keep the settings they were built with.
 LEGACY_BIG = {"V3_SLOT_BUDGET": {}, "V3_ELITE_HEALTH": 3, "V3_SOLO_HEALTH": 6}

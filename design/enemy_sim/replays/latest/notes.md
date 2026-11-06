@@ -1,12 +1,12 @@
 # Latest replays (2026-11-06)
 
-Elites/solo boss defaults; the old sample roster's big enemies keep their old settings (LEGACY_BIG)
+One size table: no extra Health for boss-leading elites; minion Health a tunable (a third)
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 97.8% wins, 5.1 rounds, 76% HP left on a win
+- Matchup average over 1000 fights: 98.2% wins, 5.1 rounds, 76% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

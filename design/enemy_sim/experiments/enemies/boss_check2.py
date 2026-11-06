@@ -1,4 +1,6 @@
-"""Boss encounters on the new defaults (2026-11-06).
+"""Boss encounters on the new defaults (2026-11-06). Kept for the record:
+the ":boss" tag it uses was removed the same day (one size table), so it
+no longer runs as written.
 
 The defaults the designer chose: elites at twice the budget (offense
 only, the manual's BigPicks) and Health x2.5; a boss-grade elite

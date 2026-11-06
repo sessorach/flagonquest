@@ -20,7 +20,7 @@ Tested giving elites and the solo boss more Ability points paid for out of their
 - On a boss, Defense is worth more than its price and offense less, so a boss that spent extra points on Parry and Dodge beat the party over half the time.
 - Two problems turned up that no budget fixes: a big Defender in heavy armor can't be beaten, and a ranged boss on its own barely threatens anyone. A cap on enemy Defense like the one on Accuracy, with the Defender's Parry bonus turned into Health, fixes the first; it's now the default, and fights in the monster manual run a little easier and shorter for it.
 - Wrote down how to build an enemy in order (archetype, Abilities, then gear and action), with every limit at the Abilities step; only fighters get Parry from a shield.
-- Elites now get twice the points (spent on offense) for a bit less Health, and boss fights are an elite or two leading regular enemies; the solo boss is a rare exception.
+- Enemy sizes are now one simple table (minions, regular, elites at twice the points spent on offense for a bit less Health, and the rare solo boss with two turns), and boss fights are an elite or two leading regular enemies.
 - A boss fight led by one or two stronger elites inside the party's usual four Slots is harder without dragging on; every Slot past four nearly doubles the fight's length.
 
 ### 2026-11-05 — A draft monster manual

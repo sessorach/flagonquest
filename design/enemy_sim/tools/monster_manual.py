@@ -112,8 +112,7 @@ def main():
             big_line = [f"- **Size:** {k:g} times the points; the extra {budget(1) * (k - 1):g} at Level 1 and "
                         f"{budget(3) * (k - 1):g} at Levels 3-5 buy (in order, as far as they go) "
                         + (tally(big3) or "Health") + f" at Level 3. Health ×{mult:g}"
-                        + (f" (×{T.V3_BOSS_ELITE_HEALTH:g} leading a boss fight)" if float(r["Slots"]) == 2 else
-                           ", two turns a round") + "."]
+                        + ("" if float(r["Slots"]) == 2 else ", two turns a round") + "."]
         lines += [f"### {r['Name']}", "", f"*{r['Concept']}*", "",
                   f"- **{SLOT_WORD[float(r['Slots'])]}, {r['Role']}.** {r['BattleTactic']} "
                   f"({'goes for the softest' if r['BattleTactic'] == 'Assassin' else 'keeps its distance' if r['BattleTactic'] == 'Kiting' else 'fights whoever is near'}).",

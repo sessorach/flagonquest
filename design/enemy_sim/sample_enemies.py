@@ -109,13 +109,10 @@ def _manual_row(name):
     """'Gravel Ogre@3': the monster manual's design built at Level 3
     (monster_manual.csv, 2026-11-04). Its picks are the pruned v3's."""
     base, _, level = name.partition("@")
-    # "Gravel Ogre@4:boss": an elite built to lead a boss encounter
-    # (tunables.V3_BOSS_ELITE_HEALTH instead of V3_ELITE_HEALTH).
-    level, _, tag = level.partition(":")
     for r in game_data.csv_rows(_MANUAL_PATH):
         if r["Name"] == base:
             return dict(r, Name=name, Level=level, AttackTier="primary", Abilities="", HealthBonus="",
-                        FightingStyle="None", PrunedAction=r["Action"], Roster="FALSE", _boss=tag == "boss")
+                        FightingStyle="None", PrunedAction=r["Action"], Roster="FALSE")
     return None
 
 
@@ -147,14 +144,6 @@ def _build_from_row(row):
         finally:
             for k, v in saved.items():
                 setattr(T, k, v)
-    if row.get("_boss") and float(row["Slots"]) == 2:
-        # A boss-grade elite: the same build at V3_BOSS_ELITE_HEALTH.
-        saved = T.V3_ELITE_HEALTH
-        T.V3_ELITE_HEALTH = getattr(T, "V3_BOSS_ELITE_HEALTH", saved)
-        try:
-            return _build_from_row(dict(row, _boss=False))
-        finally:
-            T.V3_ELITE_HEALTH = saved
     # AttackTier non-blank picks enemy_builder_pcstyle's real-PC-formula
     # construction (Defense = 8 + Skill Total, Damage = base + Stat,
     # Resist = Essence alone) over enemy_builder.build_enemy's synthetic

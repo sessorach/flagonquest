@@ -327,7 +327,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Loadout:** Two-Handed Weapon (2). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Strike (Grappling) (3), Strike (Crippling) ×2 (1), Sturdy (0)
 - **Points:** 8 of 7 at Level 1, 8 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Strike (Battering).
-- **Size:** 2 times the points; the extra 7 at Level 1 and 11 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Damage +1, Strike (Crippling) ×2, Enhanced Speed at Level 3. Health ×2.5 (×3 leading a boss fight).
+- **Size:** 2 times the points; the extra 7 at Level 1 and 11 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Damage +1, Strike (Crippling) ×2, Enhanced Speed at Level 3. Health ×2.5.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -437,7 +437,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Loadout:** Shielding Nova, backup Ranged Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Attunement (Shadow) (3), Accuracy +1 (2), Strike (Necrotic) ×2 (1)
 - **Points:** 5 of 7 at Level 1, 5 of 9 at Level 2 (the rest is Health); at Levels 3-5 the extra 4 buy Accuracy +1, Strike (Necrotic) ×2.
-- **Size:** 2 times the points; the extra 7 at Level 1 and 11 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Strike (Vulnerable) ×4, Enhanced Reflexes at Level 3. Health ×2.5 (×3 leading a boss fight).
+- **Size:** 2 times the points; the extra 7 at Level 1 and 11 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Strike (Vulnerable) ×4, Enhanced Reflexes at Level 3. Health ×2.5.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
