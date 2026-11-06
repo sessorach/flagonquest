@@ -3695,3 +3695,30 @@ fresh fights per party and encounter (`results/enemy_stats/defense_cap*.txt`):
   would reprice Heavy armor. Left out.
 - A Defender elite is still long even under the cap (two Black Knights,
   16 rounds; one leading standard monsters, 9).
+
+**Where the Defenders' Parry ends up, and retuning the archetype**
+(same day). Parry / Dodge at Levels 1-5 today: Hedge Knight 16-20 /
+11-16, Iron Sentinel 18-20 / 13-17, against 14-18 for any other
+sword-and-shield enemy and 12-16 for a two-hander. 20 is the most a PC
+can have (Skill 10 and a shield), reached by the Defenders at Level 3-4;
+the PCs' Accuracy (Skill Total) is 6-11 over the same Levels. Under the
+cap, a Defender's Parry is exactly a shield-bearer's, so its +2 Parry
+would be paid for and wasted.
+
+Trimming the Defender's bumps instead (Health added at Parry and Dodge
++1's price, 1 a point), lost and rounds:
+
+| Encounter | Today (+2/+2, Health 3) | +1/+1, Health 4 | +0/+2, Health 4 | +0/+1, Health 5 | Cap alone | Cap and +0/+2, Health 4 |
+|---|---|---|---|---|---|---|
+| Two Black Knights | 59%, 25 | 43%, 24 | 19%, 20 | 24%, 21 | 6.7%, 16 | 11%, 18 |
+| Black Knight + 2 standard | 15%, 17 | 7.6%, 14 | 1.9%, 12 | 2.3%, 12 | 0.2%, 9.1 | 0.6%, 9.9 |
+| Four Iron Sentinels | 31%, 15 | 23%, 15 | 13%, 13 | 17%, 14 | 0.4%, 7.1 | 1.6%, 8.1 |
+| Four Ironbranch Wardens | 36%, 14 | 28%, 13 | 17%, 10 | 20%, 12 | 5.6%, 7.4 | 9.6%, 8.5 |
+| Four Hedge Knights | 0.7%, 7.4 | 0.1%, 6.7 | 0%, 5.9 | 0%, 6.3 | 0%, 5.0 | 0%, 5.4 |
+
+The archetype is half of it: trimmed alone it still leaves the Iron
+Sentinel's two Parry and Dodge +1 picks and the shield stacking (Parry
+18-20 at Levels 3-5). Proposed: the cap, with the Defender's +2 Parry
+moved to Health (Defender: Dodge +2, Health +4), so a Defender doesn't
+pay for Parry the cap takes away. Defenders stay the slow, tough fights
+(8-10 rounds when they make up the encounter) without the draws.

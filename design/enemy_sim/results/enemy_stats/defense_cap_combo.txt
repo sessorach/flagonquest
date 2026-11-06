@@ -1,0 +1,9 @@
+| Encounter | Variant | Lost (draws) | Down | Rounds | Damage per attack |
+|---|---|---|---|---|---|
+| Two Black Knights | cap_def_p0d2 | 10.8% (9%) | 46% | 17.8 | 1.22 |
+| Black Knight + standard | cap_def_p0d2 | 0.6% (0%) | 14% | 9.9 | 1.73 |
+| Four Iron Sentinels | cap_def_p0d2 | 1.6% (0%) | 12% | 8.1 | 1.90 |
+| Four Hedge Knights | cap_def_p0d2 | 0.0% (0%) | 2% | 5.4 | 2.73 |
+| Four Ironbranch Wardens | cap_def_p0d2 | 9.6% (3%) | 24% | 8.5 | 1.76 |
+| Eight Shieldbearers | cap_def_p0d2 | 0.0% (0%) | 2% | 4.1 | 3.31 |
+| Two Gravel Ogres (control) | cap_def_p0d2 | 0.1% (0%) | 12% | 4.6 | 3.94 |

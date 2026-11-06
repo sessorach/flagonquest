@@ -11,6 +11,9 @@ walls? Variants, each applied to every enemy:
   points go to Health, as unspent points do).
 - no_defender: a Defender can't buy Parry and Dodge +1 (likewise).
 - cap_total_res: cap_total, and Physical Resist at most the Level's +2.
+- def_p1d1 / def_p0d2 / def_p0d1: the Defender archetype's Parry/Dodge
+  bumps trimmed, Health added at 1 a point.
+- cap_def_p0d2: cap_total with def_p0d2.
 
 Each is read on the walls (two Black Knights, a Black Knight leading
 standard monsters, four Iron Sentinels), the manual's other Defenders,
@@ -38,7 +41,14 @@ import progression_sweep as ps  # noqa: E402
 import big_enemy_options as b  # noqa: E402
 import boss_encounters as be  # noqa: E402
 
-VARIANTS = ["today", "cap_skill", "cap_total", "once", "no_defender", "cap_total_res"]
+VARIANTS = ["today", "cap_skill", "cap_total", "once", "no_defender", "cap_total_res",
+            "def_p1d1", "def_p0d2", "def_p0d1", "cap_def_p0d2"]
+# Archetype retunes (designer, 2026-11-06: maybe the Defender's bumps are
+# the culprit): Parry/Dodge moved off, Health on at Parry and Dodge +1's
+# price (1 a point).
+DEFENDER = {"def_p1d1": dict(parry=1, dodge=1, hp=4), "def_p0d2": dict(parry=0, dodge=2, hp=4),
+            "def_p0d1": dict(parry=0, dodge=1, hp=5), "cap_def_p0d2": dict(parry=0, dodge=2, hp=4)}
+DEFENDER_TODAY = dict(eb.ROLE_ADDS_V3_ADDITIVE["Defender"])
 MODE = ["today"]
 ORIG_BUILD, ORIG_RUN = se._build_from_row, cs.run_fight
 ORIG_PICKS = None  # big_enemy_options' wrapper, taken once it's installed
@@ -56,7 +66,7 @@ def picks(row, abilities):
 
 def build(row):
     e = ORIG_BUILD(row)
-    if MODE[0] in ("cap_skill", "cap_total", "cap_total_res") and (row.get("StrongDefense") or "").strip():
+    if MODE[0] in ("cap_skill", "cap_total", "cap_total_res", "cap_def_p0d2") and (row.get("StrongDefense") or "").strip():
         level = int(row["Level"])
         cap = 8 + min(eb.SKILL_CAP, eb.ENEMY_TABLE_V3_PRUNED[level]["skill"]) + 2
         wd = eb.ACTIONS[e["action"]]["wd"] or 0
@@ -77,6 +87,7 @@ def install(mode):
     if ORIG_PICKS is None:
         ORIG_PICKS = se._pruned_picks
     MODE[0] = mode
+    eb.ROLE_ADDS_V3_ADDITIVE["Defender"] = dict(DEFENDER.get(mode, DEFENDER_TODAY))
     se._pruned_picks, se._build_from_row = picks, build
 
 
