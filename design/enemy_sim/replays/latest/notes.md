@@ -1,12 +1,12 @@
 # Latest replays (2026-11-06)
 
-Elites and the solo boss at twice the points (BigPicks, offense only); elite Health x2.5, boss elite x3, solo x4
+Elites/solo boss defaults; the old sample roster's big enemies keep their old settings (LEGACY_BIG)
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 97.7% wins, 5.1 rounds, 76% HP left on a win
+- Matchup average over 1000 fights: 97.8% wins, 5.1 rounds, 76% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
@@ -43,8 +43,8 @@ Elites and the solo boss at twice the points (BigPicks, offense only); elite Hea
 ## partyA_L1_vs_chief_frontline.html
 - Party: Hilde, Browndog, Carrick, Sable
 - Enemies: Level 1 Chief's Frontline (Brute Chief, Brute, Brute, Grave Caller, Grave Caller)
-- This fight (seed 2): party won in 6 rounds, 98% party HP left
-- Matchup average over 1000 fights: 94.8% wins, 5.7 rounds, 73% HP left on a win
+- This fight (seed 1): party won in 5 rounds, 90% party HP left
+- Matchup average over 1000 fights: 95.6% wins, 5.5 rounds, 73% HP left on a win
 
 ## partyB_L3_vs_L3_frontline.html
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
@@ -55,8 +55,8 @@ Elites and the solo boss at twice the points (BigPicks, offense only); elite Hea
 ## partyD2_L2_vs_solo_boss.html
 - Party: Browndog (L2), Rook (L2), Sable (L2), Hanforth (L2, Lifeline)
 - Enemies: Level 2 Solo Boss (Brute Warlord (L2))
-- This fight (seed 1): party won in 5 rounds, 100% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 4.0 rounds, 100% HP left on a win
+- This fight (seed 1): party won in 6 rounds, 100% party HP left
+- Matchup average over 1000 fights: 100.0% wins, 4.6 rounds, 100% HP left on a win
 - Picked from fights with lifeline_taken above 0
 
 ## partyB_L2_frost_vs_L2_warband.html

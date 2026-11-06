@@ -413,6 +413,9 @@ V3_ELITE_HEALTH = 2.5
 # 2026-11-06: one or two of them with standard monsters, inside the
 # party's Slots.
 V3_BOSS_ELITE_HEALTH = 3
+# The old sample roster (sample_enemies.csv) has no BigPicks, so its big
+# enemies keep the settings they were built with.
+LEGACY_BIG = {"V3_SLOT_BUDGET": {}, "V3_ELITE_HEALTH": 3, "V3_SOLO_HEALTH": 6}
 # The Defense cap (designer, 2026-11-06): no enemy Defense above 8 + its
 # Level's Skill + this, before gear (armor's Dodge penalty after; Parry,
 # which nothing but its weapon raises, never reaches it). It ended the Defender walls (experiments/enemies/defense_cap.py).

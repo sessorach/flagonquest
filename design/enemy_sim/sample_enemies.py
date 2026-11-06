@@ -135,6 +135,18 @@ _INDEX = {}
 
 
 def _build_from_row(row):
+    if "BigPicks" not in row and float(row.get("Slots") or 1) > 1 and getattr(T, "LEGACY_BIG", None):
+        # The old sample roster's elites and solo boss have no BigPicks to
+        # spend a bigger budget on, so they keep the settings they were
+        # tuned with (tunables.LEGACY_BIG).
+        saved = {k: getattr(T, k) for k in T.LEGACY_BIG}
+        for k, v in T.LEGACY_BIG.items():
+            setattr(T, k, v)
+        try:
+            return _build_from_row(dict(row, BigPicks=""))
+        finally:
+            for k, v in saved.items():
+                setattr(T, k, v)
     if row.get("_boss") and float(row["Slots"]) == 2:
         # A boss-grade elite: the same build at V3_BOSS_ELITE_HEALTH.
         saved = T.V3_ELITE_HEALTH
