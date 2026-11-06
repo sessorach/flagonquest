@@ -311,12 +311,13 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Loadout:** Two-Handed Weapon (2). **Armor:** Heavy (4). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Strike (Cleaving) (2), Action (Parting Shot) (1), Action (Intimidating) (0)
 - **Points:** 9 of 7 at Level 1, 9 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Strike (Crippling) ×2.
+- **Size:** 2 times the points; the extra 7 at Level 1 and 11 at Levels 3-5 buy (in order, as far as they go) Strike (Crippling) ×2, Strike (Frightening) ×4, Accuracy +1, Damage +1, Enhanced Speed at Level 3. Health ×4, two turns a round.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 5 / 2 | 54 | 2 |
-| 3 | +5 vs Parry/Dodge, 8 Physical | 14 | 11 | 16 | 10 | 12 | 6 / 3 | 78 | 3 |
-| 5 | +7 vs Parry/Dodge, 9 Physical | 16 | 13 | 18 | 12 | 14 | 7 / 4 | 90 | 4 |
+| 1 | +3 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 5 / 2 | 42 | 3 |
+| 3 | +6 vs Parry/Dodge, 9 Physical | 14 | 11 | 16 | 10 | 12 | 6 / 3 | 56 | 4 |
+| 5 | +8 vs Parry/Dodge, 10 Physical | 16 | 13 | 18 | 12 | 14 | 7 / 4 | 64 | 5 |
 
 ### Gravel Ogre
 
@@ -326,12 +327,13 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Loadout:** Two-Handed Weapon (2). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Strike (Grappling) (3), Strike (Crippling) ×2 (1), Sturdy (0)
 - **Points:** 8 of 7 at Level 1, 8 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Strike (Battering).
+- **Size:** 2 times the points; the extra 7 at Level 1 and 11 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Damage +1, Strike (Crippling) ×2, Enhanced Speed at Level 3. Health ×2.5 (×3 leading a boss fight).
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 4 / 2 | 30 | 3 |
-| 3 | +5 vs Parry/Dodge, 8 Physical | 14 | 11 | 16 | 10 | 12 | 5 / 3 | 39 | 4 |
-| 5 | +7 vs Parry/Dodge, 9 Physical | 16 | 13 | 18 | 12 | 14 | 6 / 4 | 45 | 5 |
+| 1 | +3 vs Parry/Dodge, 8 Physical | 12 | 9 | 14 | 8 | 10 | 4 / 2 | 27 | 3 |
+| 3 | +7 vs Parry/Dodge, 9 Physical | 14 | 11 | 16 | 10 | 12 | 5 / 3 | 35 | 5 |
+| 5 | +9 vs Parry/Dodge, 10 Physical | 16 | 13 | 18 | 12 | 14 | 6 / 4 | 40 | 6 |
 
 ### Thornhide Brute
 
@@ -435,12 +437,13 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Loadout:** Shielding Nova, backup Ranged Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Attunement (Shadow) (3), Accuracy +1 (2), Strike (Necrotic) ×2 (1)
 - **Points:** 5 of 7 at Level 1, 5 of 9 at Level 2 (the rest is Health); at Levels 3-5 the extra 4 buy Accuracy +1, Strike (Necrotic) ×2.
+- **Size:** 2 times the points; the extra 7 at Level 1 and 11 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Strike (Vulnerable) ×4, Enhanced Reflexes at Level 3. Health ×2.5 (×3 leading a boss fight).
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Shielding Nova: Protected 3; backup +-1 vs Dodge, 3 Fire, range 4 | — | 10 | 12 | 14 | 10 | 3 / 3 | 36 | 3 |
-| 3 | Shielding Nova: Protected 3; backup +2 vs Dodge, 4 Fire, range 8 | — | 12 | 14 | 16 | 12 | 4 / 4 | 48 | 4 |
-| 5 | Shielding Nova: Protected 3; backup +4 vs Dodge, 5 Fire, range 12 | — | 14 | 16 | 18 | 14 | 5 / 5 | 54 | 5 |
+| 1 | Shielding Nova: Protected 3; backup +0 vs Dodge, 3 Fire, range 4 | — | 10 | 12 | 14 | 10 | 3 / 3 | 29 | 3 |
+| 3 | Shielding Nova: Protected 3; backup +4 vs Dodge, 4 Fire, range 8 | — | 12 | 14 | 16 | 12 | 4 / 4 | 40 | 4 |
+| 5 | Shielding Nova: Protected 3; backup +6 vs Dodge, 5 Fire, range 12 | — | 14 | 16 | 18 | 14 | 5 / 5 | 45 | 5 |
 
 ### Deadbough Priest
 

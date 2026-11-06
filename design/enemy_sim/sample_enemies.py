@@ -109,10 +109,13 @@ def _manual_row(name):
     """'Gravel Ogre@3': the monster manual's design built at Level 3
     (monster_manual.csv, 2026-11-04). Its picks are the pruned v3's."""
     base, _, level = name.partition("@")
+    # "Gravel Ogre@4:boss": an elite built to lead a boss encounter
+    # (tunables.V3_BOSS_ELITE_HEALTH instead of V3_ELITE_HEALTH).
+    level, _, tag = level.partition(":")
     for r in game_data.csv_rows(_MANUAL_PATH):
         if r["Name"] == base:
             return dict(r, Name=name, Level=level, AttackTier="primary", Abilities="", HealthBonus="",
-                        FightingStyle="None", PrunedAction=r["Action"], Roster="FALSE")
+                        FightingStyle="None", PrunedAction=r["Action"], Roster="FALSE", _boss=tag == "boss")
     return None
 
 
@@ -132,6 +135,14 @@ _INDEX = {}
 
 
 def _build_from_row(row):
+    if row.get("_boss") and float(row["Slots"]) == 2:
+        # A boss-grade elite: the same build at V3_BOSS_ELITE_HEALTH.
+        saved = T.V3_ELITE_HEALTH
+        T.V3_ELITE_HEALTH = getattr(T, "V3_BOSS_ELITE_HEALTH", saved)
+        try:
+            return _build_from_row(dict(row, _boss=False))
+        finally:
+            T.V3_ELITE_HEALTH = saved
     # AttackTier non-blank picks enemy_builder_pcstyle's real-PC-formula
     # construction (Defense = 8 + Skill Total, Damage = base + Stat,
     # Resist = Essence alone) over enemy_builder.build_enemy's synthetic
@@ -225,9 +236,52 @@ def _pruned_picks(row, abilities):
         if price <= left:
             picks.append(pick)
             left -= price
+    picks += _big_picks(row, picks)
     action = (row.get("PrunedAction") or "").strip() or row["Action"]
     # tunables.V3_PRUNED_SWAP: experiments trying other kit on the same rows.
     return picks, getattr(T, "V3_PRUNED_SWAP", {}).get(action, action)
+
+
+# Picks that make an enemy tougher rather than more dangerous: the points a
+# size adds can't buy them (designer, 2026-11-06; on a big enemy they're
+# far too cheap, experiments/enemies/big_enemy_options.py).
+BIG_PICKS_BARRED = {"Dodge +1", "Parry and Dodge +1", "Vital/Mental/Vigilant +1", "Resist +1", "Durable",
+                    "Omniguard", "Resilient", "Enhanced Health", "Sturdy"}
+
+
+def _big_picks(row, picks):
+    """An elite's or solo boss's extra points (tunables.V3_SLOT_BUDGET:
+    k times the budget, so k - 1 more of it), spent down the row's
+    BigPicks list in order: a pick that doesn't fit what's left, or would
+    pass a cap, is skipped; what's left is Health. Offense, on-hit effects
+    and Actions only."""
+    import enemy_builder_pcstyle as eb
+    k = getattr(T, "V3_SLOT_BUDGET", {}).get(float(row["Slots"]), 1)
+    if k <= 1:
+        return []
+    level = int(row["Level"])
+    left = (T.V3_PRUNED_ALLOWANCE + getattr(T, "V3_PRUNED_EXTRA", {}).get(level, 0)) * (k - 1)
+    t = eb.ENEMY_TABLE_V3_PRUNED[level]
+    role_acc = eb.ROLE_ADDS_V3_ADDITIVE.get((row.get("Role") or "").strip(), {}).get("acc", 0)
+    out, have = [], list(picks)
+    for p in _split(row.get("BigPicks")):
+        if p in BIG_PICKS_BARRED or p.startswith("Resist ("):
+            raise ValueError(f"{row['Name']}: {p} can't be bought with the points a size adds")
+        price = eb.ABILITY_HEALTH_V3P[p]
+        n = have.count(p)
+        rider = p.startswith("Strike (") or p.startswith("Poison (")
+        if price > left + 1e-9:
+            continue
+        if rider and n >= (eb.POISON_CAP_V3 if p.startswith("Poison (") else eb.RIDER_CAP_V3):
+            continue
+        if n and not rider and p not in eb.REPEATABLE_V3:
+            continue
+        if p == "Accuracy +1" and t["accuracy"] + role_acc + n + 1 > eb.SKILL_CAP:
+            continue
+        out.append(p)
+        have.append(p)
+        left -= price
+    return out
 
 
 def make_enemy(level):

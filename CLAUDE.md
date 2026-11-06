@@ -349,7 +349,10 @@ stay a clean decision record.
   `sample_enemies.get_enemy` (the pruned v3's picks). `tools/monster_manual.py`
   writes `MONSTER_MANUAL.md` from it (generated; edit the CSV). Ability
   names can't hold commas (the picks are `;`-separated inside a CSV
-  cell), hence "Vital/Mental/Vigilant +1".
+  cell), hence "Vital/Mental/Vigilant +1". Elites and the solo boss spend
+  their size's extra points down the `BigPicks` column (offense only;
+  `sample_enemies.BIG_PICKS_BARRED`), and `"Name@L:boss"` builds an elite
+  at the boss Health (2026-11-06).
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and

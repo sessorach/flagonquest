@@ -394,17 +394,25 @@ KITING_MOVE = 'engaged'
 # of its target (HEX_AREA; 0 for none).
 HEX_PERSIST = False
 HEX_AREA = 0
-# A solo boss's Health in the pruned v3, in standard enemies (designer,
-# 2026-11-05: swingier and more dangerous than usual, but it shouldn't
-# often beat the whole party). At 9 it won 56-70% of fights at Levels 3-5
-# over 13-18 rounds; at 6, 8-9% at Levels 3-4 (23% at Level 5).
-V3_SOLO_HEALTH = 6
+# A solo boss's Health in the pruned v3, in standard enemies. 6 on budget
+# x1 (2026-11-05); 4 since it got twice the budget (designer, 2026-11-06:
+# the solo boss is a rare, melee exception; boss fights are led by elites).
+# As dangerous as 6 was, in 4.3 rounds instead of 7.
+V3_SOLO_HEALTH = 4
 # A big enemy's Ability budget, in times a standard enemy's, by Slots
-# (pruned v3; 2026-11-06 test). Each point then costs its Health over k, so
-# an enemy that spends nothing keeps the same Health. {} = 1 for all.
-V3_SLOT_BUDGET = {}
-# An elite's (2 Slots) Health in the pruned v3, in standard enemies.
-V3_ELITE_HEALTH = 3
+# (pruned v3; designer, 2026-11-06). Each point then costs its Health over
+# k, so an enemy that spends nothing keeps the same Health. The extra goes
+# down the row's BigPicks, offense only (sample_enemies.BIG_PICKS_BARRED).
+# {} = 1 for all (the old path).
+V3_SLOT_BUDGET = {2: 2, 4: 2}
+# An elite's (2 Slots) Health in the pruned v3, in standard enemies: 3 on
+# budget x1; 2.5 with twice the budget (2026-11-06), an elite beside two
+# standard monsters about an ordinary fight.
+V3_ELITE_HEALTH = 2.5
+# An elite built to lead a boss encounter ("Name@L:boss"), designer
+# 2026-11-06: one or two of them with standard monsters, inside the
+# party's Slots.
+V3_BOSS_ELITE_HEALTH = 3
 # The Defense cap (designer, 2026-11-06): no enemy Defense above 8 + its
 # Level's Skill + this, before gear (armor's Dodge penalty after; Parry,
 # which nothing but its weapon raises, never reaches it). It ended the Defender walls (experiments/enemies/defense_cap.py).

@@ -94,10 +94,26 @@ def main():
         armor = eb.ARMOR_HEALTH_V3P[r["Armor"]]
         spent = sum(eb.ABILITY_HEALTH_V3P[p] for p in picks) + loadout + armor
         e3 = se.get_enemy(f"{r['Name']}@3")
-        extra3 = [a for a in e3["abilities"]]
+        # The size's extra points (BigPicks) apart from the Level's extra.
+        saved, T.V3_SLOT_BUDGET = T.V3_SLOT_BUDGET, {}
+        plain3 = se.get_enemy(f"{r['Name']}@3")["abilities"]
+        T.V3_SLOT_BUDGET = saved
+        big3 = list(e3["abilities"])
+        for p in plain3:
+            big3.remove(p)
+        extra3 = list(plain3)
         for p in picks:
             if p in extra3:
                 extra3.remove(p)
+        k = T.V3_SLOT_BUDGET.get(float(r["Slots"]), 1)
+        big_line = []
+        if k > 1:
+            mult = T.V3_SOLO_HEALTH if float(r["Slots"]) == 4 else T.V3_ELITE_HEALTH
+            big_line = [f"- **Size:** {k:g} times the points; the extra {budget(1) * (k - 1):g} at Level 1 and "
+                        f"{budget(3) * (k - 1):g} at Levels 3-5 buy (in order, as far as they go) "
+                        + (tally(big3) or "Health") + f" at Level 3. Health ×{mult:g}"
+                        + (f" (×{T.V3_BOSS_ELITE_HEALTH:g} leading a boss fight)" if float(r["Slots"]) == 2 else
+                           ", two turns a round") + "."]
         lines += [f"### {r['Name']}", "", f"*{r['Concept']}*", "",
                   f"- **{SLOT_WORD[float(r['Slots'])]}, {r['Role']}.** {r['BattleTactic']} "
                   f"({'goes for the softest' if r['BattleTactic'] == 'Assassin' else 'keeps its distance' if r['BattleTactic'] == 'Kiting' else 'fights whoever is near'}).",
@@ -110,6 +126,7 @@ def main():
                   f"- **Points:** {spent:g} of {budget(1)} at Level 1, {spent:g} of {budget(2)} at Level 2"
                   + (f" (the rest is Health)" if spent < budget(1) else "")
                   + f"; at Levels 3-5 the extra {budget(3) - budget(1)} buy " + (tally(extra3) or "Health") + ".",
+                  *big_line,
                   "", "| Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |",
                   "|---|---|---|---|---|---|---|---|---|---|"]
         for L in LEVELS:

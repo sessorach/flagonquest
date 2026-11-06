@@ -3818,3 +3818,49 @@ only the weapon raises it. The one thing that has to stay is Parry not
 being buyable: with Parry bought up to the limit and a shield on top
 (the cap-before-equipment variant above), the Defenders went back to
 13-19% lost over 10-20 rounds.
+
+### Elites and bosses, default (2026-11-06)
+
+The designer chose them. Defaults now: `V3_SLOT_BUDGET = {2: 2, 4: 2}`
+(twice the points for an elite and the solo boss), the size's extra
+spent down the manual's new `BigPicks` column in order, offense, on-hit
+effects and Actions only (`sample_enemies.BIG_PICKS_BARRED` refuses
+Defense, Resist and Health picks there); `V3_ELITE_HEALTH = 2.5`;
+`V3_BOSS_ELITE_HEALTH = 3` for an elite leading a boss fight (built as
+`"Name@L:boss"`); `V3_SOLO_HEALTH = 4`, the solo boss a rare, melee
+exception. The BigPicks are the lists tested above minus their Defense
+picks, and the built Ogre, Matriarch and Warlord match the tested builds
+at every Level. With the old settings the manual and a fixed-seed run
+are byte-identical to before.
+
+Full manual baseline against paper defenses (same seeds,
+`results/enemy_stats/big_manual.txt`): lost 2.4 / 0.6 / 1.1 / 1.1 / 2.8%
+at Levels 1-5 (was 2.1 / 0.6 / 1.0 / 0.8 / 2.4), someone Down 19 / 13 /
+14 / 15 / 10% (was 18 / 12 / 13 / 13 / 9), same lengths. The drawn
+encounters only meet elites now and then, so it barely moves.
+
+Boss encounters on the defaults (`experiments/enemies/boss_check2.py`,
+middle of the band, Levels 1-5, four fixed companion draws, 60 fights a
+party; `results/enemy_stats/boss_check2.txt`):
+
+| Encounter | Lost (worst draw) | Down | 2+ Down | Rounds | Low / high band lost |
+|---|---|---|---|---|---|
+| Four standard monsters | 0.3% (3%) | 12% | 1% | 4.4 | 13% / 0% |
+| Gravel Ogre (elite) + two standard | 3.1% (14%) | 25% | 7% | 4.8 | 22% / 1% |
+| Gravel Ogre (boss) + two standard | 5.7% (18%) | 31% | 10% | 5.5 | 29% / 2% |
+| Coven Matriarch (elite) + two standard | 0.1% (1%) | 3% | 0% | 4.7 | 5% / 0% |
+| Coven Matriarch (boss) + two standard | 0.1% (2%) | 3% | 0% | 5.2 | 6% / 0% |
+| Two boss elites (Ogre and Matriarch) | 5.2% (6%) | 24% | 8% | 6.2 | 28% / 1% |
+| Two Gravel Ogres (boss) | 17% (22%) | 47% | 26% | 6.4 | 44% / 8% |
+| Solo Brute Warlord (Levels 3-5) | 11% (13%) | 29% | 16% | 4.3 | 33% / 6% |
+
+- A boss fight led by an attacking elite is a step up and still about
+  five rounds; two boss Ogres is the hard end, lost one time in six.
+- A support leading is no boss fight: the Matriarch with two standard
+  monsters is the easiest encounter here, boss or not. A boss fight
+  wants an attacker in front; a support makes a good second elite.
+- The solo Warlord plays as tested (11%, 4.3 rounds).
+- Ordinary fights stay where paper defenses left them: a fresh manual
+  fight lost about 1% of the time at Levels 2-4, the danger now sitting
+  in the elite and boss fights. Whether ordinary fights need a nudge
+  back up (the 11-05 lever: a point of budget) is the designer's call.
