@@ -3808,3 +3808,13 @@ two-tenths of a round shorter; the Warpriest's fights +4.4 rounds over
 the average (was +7.0). The band's middle wins 0-1.5 points more days.
 The step-by-step build is in todo/GM_GUIDE_NOTES.md, "Enemy stat blocks,
 the pruned v3".
+
+The designer (same day): keep the build order (archetype, Abilities,
+gear and Action) and apply the caps before gear, gear going on last, so
+a GM can spend points freely without edge cases. That's how the numbers
+already work: Accuracy's cap is before the weapon's bonus, the Defense
+limit before armor's Dodge penalty, and Parry has nothing to cap since
+only the weapon raises it. The one thing that has to stay is Parry not
+being buyable: with Parry bought up to the limit and a shield on top
+(the cap-before-equipment variant above), the Defenders went back to
+13-19% lost over 10-20 rounds.

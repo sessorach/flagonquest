@@ -328,9 +328,11 @@ at 8 + Skill − 2. Parry comes in Step 4.
 **Step 3: Abilities.** Spend the Level's points (prices in
 ENEMY_ENCOUNTER_DESIGN's catalog). Points left over are Health, 1 each;
 going over comes out of Health, never more than a third of it. Leave room
-for Step 4's costs. The limits:
+for Step 4's costs. The limits are on the enemy's own numbers, before
+gear; Step 4's gear is added last and can take a number past them:
 
 - No Defense above the Level's Defense limit, archetype included.
+  Parry isn't on the list: nothing here raises it (see Step 4).
 - Accuracy no higher than 10 before the weapon's own bonus.
 - The stat picks (Accuracy +1, Damage +1 once, Dodge +1, Vital/Mental/
   Vigilant +1, Resist +1) can repeat up to those limits; an on-hit
@@ -338,8 +340,12 @@ for Step 4's costs. The limits:
 
 **Step 4: Equipment and Action.**
 
+- Gear goes on last, past the limits: the weapon's Accuracy and Parry,
+  armor's Resist, Dodge and Speed.
 - A fighter's weapon is its main Action, and its Parry is 8 + Skill +
-  the weapon's Defense, nothing else: Sword and Shield (free; +1
+  the weapon's Defense, nothing else (Parry can't be bought, so a
+  shield can't stack on a bought-up Parry; a shield-bearer's Parry
+  always lands on the Defense limit): Sword and Shield (free; +1
   Accuracy, 3 + Damage Stat, Parry +2), Heavy Weapon and Shield (1
   point; 4 + Damage Stat, Parry +2), Light Two-Handed (2; +1 Accuracy,
   4 +, Parry +1), Two-Handed Weapon (2; 5 +, no Parry bonus), Bow (free;

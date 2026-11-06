@@ -673,9 +673,10 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
 
     def cap_def(value):
         # The Defense cap (designer, 2026-11-06), like Accuracy's: no Defense
-        # above 8 + the Level's Skill + V3_DEFENSE_CAP, a shield's Parry
-        # included, armor's Dodge penalty after. Archetype bumps and Parry
-        # and Dodge +1 picks stack up to it, not past it.
+        # above 8 + the Level's Skill + V3_DEFENSE_CAP before gear; armor's
+        # Dodge penalty goes on after. Archetype bumps and stat picks stack up
+        # to it, not past it. Parry is checked with its weapon in: under
+        # V3_PAPER_DEFENSES it is Skill plus weapon and never reaches it.
         cap = getattr(T, "V3_DEFENSE_CAP", None)
         if version != 3 or cap is None or value <= 0:
             return value
