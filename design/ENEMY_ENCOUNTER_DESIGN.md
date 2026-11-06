@@ -3722,3 +3722,20 @@ Sentinel's two Parry and Dodge +1 picks and the shield stacking (Parry
 moved to Health (Defender: Dodge +2, Health +4), so a Defender doesn't
 pay for Parry the cap takes away. Defenders stay the slow, tough fights
 (8-10 rounds when they make up the encounter) without the draws.
+
+**Is it the PC cap, or the purchases?** (same day). The designer: by PC
+stats, 8 + Skill 10 + a shield's 2 is 20, and the archetype shouldn't
+push past that. It doesn't: Skill is already capped at 10, so no enemy
+Parry passes 20. The walls *reach* 20 early: at Level 3 the table's
+Skill 6, the Defender's +2 and two Parry and Dodge picks make 10. The
+best PC Parry in the sample parties is 16 / 16 / 19 / 20 / 20 at Levels
+1-5, so a Defender matches the party's own tank from Level 1. Taking the
+purchases out (Defenders can't buy Parry and Dodge +1) moves the walls
+some (four Iron Sentinels 31% to 15% lost, two Black Knights 59% to
+49%); taking the archetype's +2 Parry out moves them more (13% and 19%).
+An Accuracy-style cap on the Defense Skill (Level's Skill +2, before the
+shield) with the archetype's Parry moved to Health is the same as the
+archetype change alone (four Iron Sentinels 13% over 13 rounds, two
+Black Knights 19% over 20, Ironbranch Wardens 17% over 10): the picks
+then stay inside +2. Only the cap that counts the shield brings a
+Defender's Parry down to an ordinary shield-bearer's.
