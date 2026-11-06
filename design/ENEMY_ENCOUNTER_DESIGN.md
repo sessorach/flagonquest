@@ -3654,3 +3654,44 @@ or two elites at twice the budget and Health x3** (an ordinary elite
 gets twice the budget at Health x2.5). Going over the party's Slots is a
 long, dangerous fight, for when that's what the GM wants. The 4-Slot
 solo boss becomes a rare exception: melee, and run with care.
+
+### A Defense cap for the walls (2026-11-06)
+
+The designer: no special pricing; is there a purchase only Defenders
+make, or a cap like Accuracy's that only bites on the walls? No single
+pick is Defender-only: Parry and Dodge +1 is also bought by the Mire
+Witch, Curse Weaver, Field Medic, Warpriest, Deadbough Priest and Bog
+Skirmisher. What only a Defender has is the stack: the archetype's +2
+Parry and Dodge, a shield's +2 Parry, a Parry and Dodge +1 pick or two,
+and often Heavy armor. A Black Knight's Parry is 20 at Level 4 against a
+Gravel Ogre's 15, and the party's damage per attack falls from 4.3 to
+0.8. The curve is steep: two more Parry and Dodge on the Ogre pair cost
+the party 15% of its damage per attack, six cost 60% (12 rounds).
+
+`experiments/enemies/defense_cap.py`, Levels 2-5, middle of the band, 50
+fresh fights per party and encounter (`results/enemy_stats/defense_cap*.txt`):
+
+| Encounter | Today | Parry and Dodge +1 once | Defenders can't buy it | Cap before equipment | Cap, shield included | Cap, shield included, and Resist |
+|---|---|---|---|---|---|---|
+| Two Black Knights | 59% lost, 25 rds | 59%, 25 | 49%, 24 | 45%, 23 | 6.7%, 16 | 0.2%, 10 |
+| Black Knight + 2 standard | 15%, 17 | 14%, 17 | 10%, 15 | 8.5%, 15 | 0.2%, 9.1 | 0%, 6.6 |
+| Four Iron Sentinels | 31%, 15 | 23%, 15 | 15%, 13 | 9%, 12 | 0.4%, 7.1 | 0%, 5.3 |
+| Four Ironbranch Wardens | 36%, 14 | 36%, 14 | 31%, 14 | 28%, 13 | 5.6%, 7.4 | 0.5%, 4.9 |
+| Four Hedge Knights | 0.7%, 7.4 | same | 0.6%, 7.1 | 0.6%, 6.8 | 0%, 5.0 | 0%, 5.0 |
+| Two Gravel Ogres (control) | 0.1%, 4.6 | same | same | same | same | same |
+
+- **"Buy it once" does nothing:** the walls mostly buy it once already.
+- **The cap that works is on the whole Defense, shield included:** no
+  enemy Defense above 10 + its Level's Skill (8 + Skill + 2, the most an
+  archetype's +2 gives; armor's Dodge penalty still applies). It changes
+  only the four shield-carrying Defenders in the manual (Parry down 2-4)
+  and one point of the Bog Skirmisher's Dodge; a Bruiser's strong Vital
+  sits right at it. It ends the draws and brings four Iron Sentinels to
+  7 rounds; Defenders stay the slowest fights, as they should.
+- **Resist is the other half.** Capping Physical Resist at the Level's
+  +2 as well makes the Defenders soft (four Iron Sentinels: someone Down
+  2% of the time, 5 rounds) and also touches every Heavy-armored enemy
+  (the Brute Warlord, the Warpriest) and the Deadbough Priest, so it
+  would reprice Heavy armor. Left out.
+- A Defender elite is still long even under the cap (two Black Knights,
+  16 rounds; one leading standard monsters, 9).

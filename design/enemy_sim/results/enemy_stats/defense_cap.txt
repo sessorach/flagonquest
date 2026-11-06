@@ -1,0 +1,37 @@
+| Encounter | Variant | Lost (draws) | Down | Rounds | Damage per attack |
+|---|---|---|---|---|---|
+| Two Black Knights | today | 59.4% (54%) | 71% | 24.9 | 0.73 |
+| Two Black Knights | cap_skill | 44.9% (40%) | 65% | 23.3 | 0.82 |
+| Two Black Knights | cap_total | 6.7% (6%) | 40% | 16.2 | 1.26 |
+| Two Black Knights | once | 59.4% (54%) | 71% | 24.9 | 0.73 |
+| Two Black Knights | no_defender | 48.5% (44%) | 68% | 23.8 | 0.82 |
+| Black Knight + standard | today | 14.7% (14%) | 42% | 16.8 | 0.94 |
+| Black Knight + standard | cap_skill | 8.5% (8%) | 34% | 14.8 | 1.08 |
+| Black Knight + standard | cap_total | 0.2% (0%) | 10% | 9.1 | 1.83 |
+| Black Knight + standard | once | 14.1% (13%) | 42% | 16.8 | 0.95 |
+| Black Knight + standard | no_defender | 9.7% (9%) | 36% | 15.3 | 1.08 |
+| Four Iron Sentinels | today | 30.6% (7%) | 46% | 15.2 | 0.97 |
+| Four Iron Sentinels | cap_skill | 9.0% (4%) | 26% | 11.5 | 1.28 |
+| Four Iron Sentinels | cap_total | 0.4% (0%) | 8% | 7.1 | 2.01 |
+| Four Iron Sentinels | once | 23.4% (7%) | 42% | 15.0 | 1.05 |
+| Four Iron Sentinels | no_defender | 14.7% (5%) | 34% | 13.4 | 1.23 |
+| Four Hedge Knights | today | 0.7% (0%) | 6% | 7.4 | 1.78 |
+| Four Hedge Knights | cap_skill | 0.6% (0%) | 5% | 6.8 | 1.97 |
+| Four Hedge Knights | cap_total | 0.0% (0%) | 1% | 5.0 | 2.85 |
+| Four Hedge Knights | once | 0.7% (0%) | 6% | 7.4 | 1.78 |
+| Four Hedge Knights | no_defender | 0.6% (0%) | 5% | 7.1 | 1.96 |
+| Four Ironbranch Wardens | today | 35.7% (13%) | 52% | 14.4 | 1.00 |
+| Four Ironbranch Wardens | cap_skill | 28.1% (10%) | 43% | 12.6 | 1.14 |
+| Four Ironbranch Wardens | cap_total | 5.6% (2%) | 17% | 7.4 | 1.88 |
+| Four Ironbranch Wardens | once | 35.7% (13%) | 52% | 14.4 | 1.00 |
+| Four Ironbranch Wardens | no_defender | 31.4% (12%) | 49% | 13.6 | 1.11 |
+| Eight Shieldbearers | today | 1.0% (0%) | 6% | 5.6 | 2.23 |
+| Eight Shieldbearers | cap_skill | 0.2% (0%) | 4% | 4.9 | 2.61 |
+| Eight Shieldbearers | cap_total | 0.0% (0%) | 2% | 4.1 | 3.31 |
+| Eight Shieldbearers | once | 0.9% (0%) | 5% | 5.3 | 2.37 |
+| Eight Shieldbearers | no_defender | 0.2% (0%) | 4% | 5.0 | 2.65 |
+| Two Gravel Ogres (control) | today | 0.1% (0%) | 12% | 4.6 | 3.94 |
+| Two Gravel Ogres (control) | cap_skill | 0.1% (0%) | 12% | 4.6 | 3.94 |
+| Two Gravel Ogres (control) | cap_total | 0.1% (0%) | 12% | 4.6 | 3.94 |
+| Two Gravel Ogres (control) | once | 0.1% (0%) | 12% | 4.6 | 3.94 |
+| Two Gravel Ogres (control) | no_defender | 0.1% (0%) | 12% | 4.6 | 3.94 |
