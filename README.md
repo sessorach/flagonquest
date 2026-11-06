@@ -13,6 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-06 — Bigger budgets for elites and bosses
+
+Tested giving elites and the solo boss more Ability points paid for out of their Health: twice the points works if the extra can't buy Defense, playing a boss as dangerous as today's in about four rounds instead of seven.
+
+- On a boss, Defense is worth more than its price and offense less, so a boss that spent extra points on Parry and Dodge beat the party over half the time.
+- Two problems turned up that no budget fixes: a big Defender in heavy armor can't be beaten, and a ranged boss on its own barely threatens anyone.
+
 ### 2026-11-05 — A draft monster manual
 
 Built 30 enemy stat blocks the new pen-and-paper way, covering every archetype, weapon loadout and main action, then ran them through a broad test that plays close to the old fights and shows which pieces are over- and underpriced.

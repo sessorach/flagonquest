@@ -1,12 +1,12 @@
-# Latest replays (2026-11-05)
+# Latest replays (2026-11-06)
 
-Settled enemy pass: hexers as debuff casters, solo boss at 6x Health, Kiting engaged
+No default changed: tested bigger budgets for elites and the solo boss (big_enemy_options/variants)
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 97.2% wins, 5.1 rounds, 76% HP left on a win
+- Matchup average over 1000 fights: 97.5% wins, 5.1 rounds, 76% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

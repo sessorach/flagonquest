@@ -3469,3 +3469,124 @@ for with a smaller Health multiple (`V3_SOLO_HEALTH`, `V3_ELITE_HEALTH`;
 - **Supports don't gain much** from a bigger budget, as everywhere else.
 
 Nothing is default yet: the designer picks.
+
+**Superseded in part, same day:** the "swingier" reading above came from
+pick lists that spent only part of the bigger budget, the rest going to
+Health. Spent in full, the same settings are safer and shorter; see the
+next section.
+
+### Elites and the solo boss: every option (2026-11-06)
+
+The designer: test both settings each way, thoroughly. Three studies,
+all in `experiments/enemies/`:
+
+- `big_enemy_options.py`: five boss designs and five elite designs, each
+  spending its whole bigger budget down a priority list (the Level's
+  extra points go as they do today, so budget x1 is today's build; the
+  run reproduced elite_boss_check's x1 Warlord exactly). The manual's
+  Brute Warlord, Gravel Ogre and Coven Matriarch, plus test-only designs
+  that aren't in the manual: the Warlord as an Assassin, a Lich
+  Sovereign (Shadow Bolt caster), an Iron Colossus (Defender, Heavy
+  armor, heavy weapon and shield, Hold the Line), a Dread Huntress
+  (kiting archer), an Elite Sharpshooter (Heavy Bow, Assassin), a Black
+  Knight (Defender, Heavy armor) and a Storm Magus (Strategist caster).
+  Every party at the low, middle and high points of its band, bosses
+  alone at Levels 3-5, elites in pairs and beside two standard monsters
+  at Levels 1-5, 100 fresh fights each; with the two studies below, about 28,000 matchups in all.
+  Budget x1.5, x2 and x3 against a ladder of Health multiples.
+- `big_enemy_variants.py`: why some designs came out as walls or
+  pushovers, one change at a time, with 30-round draws counted apart.
+- `big_enemy_variants.py --prices`: what one more pick is worth on a
+  solo boss, in its own Health.
+
+Results: `results/enemy_stats/big_enemy_options*.txt`,
+`big_enemy_variants.txt`, `big_enemy_prices.jsonl`.
+
+**What a pick is worth on a boss.** The Warlord at today's setting
+(budget x1, Health x6, so a point costs it 6 Health) buying one more
+pick, against the plain Warlord at Health x4-x9, read off Downs and
+losses (middle of the band, 150 fights a party):
+
+| Pick | Price | Worth on the boss |
+|---|---|---|
+| Parry and Dodge +1 (one to three) | 1 each | 1.1-1.3 each |
+| Resist +1 | 4 | 2.6-2.9 |
+| Accuracy +1 (two) | 2 each | 1.0-1.4 each |
+| Damage +1 | 4 | 1.4-1.8 |
+| Vital/Mental/Vigilant +1 (two) | 1 each | about 0 |
+| Strike (Frightening) (four) | 0.5 each | about 0 |
+
+On a standard enemy these prices are fair (kit_check). On a boss, offense
+is worth about half its price, since the boss has six times the Health
+but nowhere near six times the attacks. A Defense point is worth a share
+of Health, so it stays about fair. A bigger budget makes every point
+cheaper against the boss's Health: twice the budget at Health x4 costs
+2 Health a point instead of 6. That makes offense about fair, and makes
+Defense about four times too cheap. In the variants, a Warlord spending its doubled budget on
+Defense first (Parry 15 to 18, Dodge 12 to 15, Resist +1) beat the party
+54% of the time over 14 rounds; offense first, 8% over 3.4 rounds; the
+same budget left as Health, 3%.
+
+**So: the points a size adds buy offense, on-hit effects and Actions,
+never Defenses, Resist or Health** (Parry and Dodge, Vital/Mental/
+Vigilant, Resist, Durable, Omniguard, Resilient, Sturdy, Enhanced
+Health; what isn't spent is Health at the size's rate). Proposed, not
+yet the designer's call. Everything below is under that rule unless it
+says "free".
+
+**The solo boss** (middle of the band, Levels 3-5 together; low and
+high band losses after; today's numbers are budget x1):
+
+| Setting | Warlord lost | Down | 2+ Down | Rounds | Low / high band lost | Warlord as Assassin lost | Rounds |
+|---|---|---|---|---|---|---|---|
+| Today: x1, Health x6 | 13% | 33% | 17% | 7.1 (L5 9.1) | 44% / 9% | 18% | 7.4 |
+| x2, Health x3.5 | 6% | 24% | 10% | 3.6 | 23% / 3% | 10% | 3.8 |
+| x2, Health x3.75 | 9% | 27% | 13% | 3.9 | 29% / 4% | 13% | 4.1 |
+| x2, Health x4 | 11% | 30% | 16% | 4.3 | 34% / 6% | 17% | 4.5 |
+| x2, Health x4.25 | 16% | 35% | 22% | 4.8 | 41% / 10% | 22% | 5.0 |
+| x2, Health x4.5 | 22% | 39% | 27% | 5.4 | 46% / 13% | 27% | 5.5 |
+| x1.5, Health x4.5 | 14% | 29% | 18% | 5.5 | 39% / 8% | 16% | 5.4 |
+| x3, Health x3 | 15% | 38% | 22% | 3.5 | 32% / 9% | 20% | 3.6 |
+
+Twice the budget at Health x4 plays like today's boss in about 60% of
+the time (4.3 rounds against 7.1), and the Level 5 boss stops dragging
+(4.8 rounds, from 9.1). x4.25-x4.5 is the swingier end: one fight in
+five or six lost at the middle of the band, still about 5 rounds. Three
+times the budget is too fast at any Health that isn't deadly.
+
+**Elites** (middle of the band, Levels 1-5; an ordinary manual fight is
+lost 2-8% of the time, someone Down 11-24%, 5.4-6.3 rounds):
+
+| Setting | An elite (not the Black Knight) beside two standard monsters: lost / Down / rounds | Ogre beside two | Two attacking elites (Ogre, Sharpshooter, Magus) | Two Ogres |
+|---|---|---|---|---|
+| Today: x1, Health x3 | 0.4% / 10% / 4.7 | 0.8% / 12% / 4.6 | 0.3% / 18% / 4.5 | 0.5% / 13% / 4.6 |
+| x2, Health x2 | 0.7% / 14% / 4.1 | 1.5% / 20% / 4.1 | 0.8% / 23% / 3.4 | 2% / 23% / 3.5 |
+| x2, Health x2.5 | 1.3% / 17% / 4.6 | 3% / 26% / 4.8 | 3% / 33% / 4.5 | 7% / 34% / 4.8 |
+| x2, Health x2.75 | 1.7% / 19% / 4.9 | 4% / 29% / 5.1 | 5% / 39% / 5.1 | 12% / 41% / 5.6 |
+| x2, Health x3 | 2.2% / 20% / 5.2 | 5.5% / 31% / 5.5 | 8% / 44% / 5.8 | 18% / 47% / 6.4 |
+
+Today an elite next to two standard monsters is easier than an ordinary
+fight (Down 10%). Twice the budget at Health x2.5 brings it level with
+one (Down 17%, 4.6 rounds); a pair of elites is then a notch harder
+(Down 33%). x3 (twice the budget, Health as today) is the spicier end.
+The Matriarch, a support, barely moves at any setting.
+
+**Two problems no setting fixes:**
+
+- **A Defender in Heavy armor can't be beaten when it's big.** The Iron
+  Colossus loses the party 97% at today's setting (22 rounds) and 57-98%
+  under the rule; two Black Knights 59% (most of it 30-round draws), and
+  a Black Knight beside two standard monsters 15% over 16 rounds. Parry
+  19-20 and Resist 7 on a body with several times the Health. In the
+  variants, Light armor (Black Knight pair 59% to 4%) or the Bruiser
+  role instead of Defender (8%) helped most; dropping Taunting or Hold
+  the Line did almost nothing. The fights still ran 15-16 rounds. Same
+  pattern as the Iron Sentinel's outlier reading, scaled up.
+- **A ranged solo boss is a pushover.** The Dread Huntress lost the party
+  0-1% in every setting and tactic, with Heavy Bow too; the Lich
+  Sovereign 7% today (Down 45%) and under 1% with a doubled budget,
+  dying in 2.5 rounds. With nothing in front of it the whole party
+  reaches it. Spending on Defense helped the Lich (10% at x2, Health
+  x4, 4.4 rounds), but that's what the rule forbids. Probably a ranged
+  boss isn't solo: it gets a bodyguard, as an elite with standard
+  monsters.
