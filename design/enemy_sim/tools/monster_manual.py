@@ -77,7 +77,7 @@ def main():
             used[p].append(r["Name"])
     catalog = sorted(k for k in eb.ABILITY_HEALTH_V3P
                      if not any(k.startswith(f"{w} (") for w in ("Resist", "Attunement", "Elemental Spell", "Elemental Weapon"))
-                     and k not in ("Heavy Weapon",))
+                     and k not in ("Heavy Weapon", "Parry and Dodge +1"))  # the latter is Dodge +1 now
     catalog += sorted(k for k in used if k not in catalog)
     lines += ["## Coverage", "", "Every Ability in the catalog and the monsters that take it "
               "(element-specific ones by the element used).", ""]

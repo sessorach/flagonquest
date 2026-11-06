@@ -58,7 +58,6 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Enhanced Speed** (1): Field Medic, Bog Skirmisher, Hunting Hound
 - **Improved Support** (1): Warpriest, Field Medic, Deadbough Priest, Coven Matriarch
 - **Omniguard** (1): Hedge Knight
-- **Parry and Dodge +1** (1): *nobody yet*
 - **Poison (Bleeding)** (2.5): Goblin Cutthroat, Skulking Footpad
 - **Poison (Crippling)** (0.5): *nobody yet*
 - **Poison (Necrotic)** (0.5): *nobody yet*
