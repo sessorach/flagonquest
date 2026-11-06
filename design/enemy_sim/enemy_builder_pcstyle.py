@@ -490,9 +490,13 @@ ARMOR_HEALTH_V3P = {"Unarmored": -2, "Light": 0, "Medium": 2, "Heavy": 4}
 # Stat Abilities (2026-11-04, for the pruned v3; any v3 can take them):
 # each is that bump, at its measured worth ("What each stat is worth"),
 # and can be taken more than once up to the player caps.
+# "Dodge +1" (2026-11-06) is the paper-defenses name for Parry and Dodge
+# +1: with tunables.V3_PAPER_DEFENSES nothing raises Parry, so both read
+# as Dodge alone.
 STAT_ABILITIES = {"Damage +1": ("dmg",), "Accuracy +1": ("acc",), "Parry and Dodge +1": ("parry", "dodge"),
+                  "Dodge +1": ("dodge",),
                   "Vital/Mental/Vigilant +1": ("bodily", "mental", "vigilant"), "Resist +1": ("res",)}
-ABILITY_HEALTH_V3.update({"Damage +1": 4, "Accuracy +1": 2, "Parry and Dodge +1": 1,
+ABILITY_HEALTH_V3.update({"Damage +1": 4, "Accuracy +1": 2, "Parry and Dodge +1": 1, "Dodge +1": 1,
                           "Vital/Mental/Vigilant +1": 1, "Resist +1": 4})
 # The pruned v3's pick rules (designer, 2026-11-04): a few Abilities once
 # only, the stats and the on-hit effects as often as you like up to a cap
@@ -532,7 +536,7 @@ LOADOUT_HEALTH_V3P = {"Sword and Shield": 0, "Heavy Weapon and Shield": 1, "Ligh
 # Accuracy +1 can be bought again and again, but can't take an enemy's
 # Accuracy before its weapon's own above 10, the player's Skill Total cap
 # (designer, 2026-11-05; profile() clamps it at SKILL_CAP).
-REPEATABLE_V3 = {"Accuracy +1", "Parry and Dodge +1", "Vital/Mental/Vigilant +1", "Resist +1",
+REPEATABLE_V3 = {"Accuracy +1", "Parry and Dodge +1", "Dodge +1", "Vital/Mental/Vigilant +1", "Resist +1",
                  "Enhanced Health", "Enhanced Speed"}
 RIDER_CAP_V3 = 4
 # Poisons last past the fight, so a Poison effect stops at 2 picks
@@ -574,6 +578,12 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
         for _ in range(abilities.count(ab)):
             for k in key:
                 adds[k] = adds.get(k, 0) + 1
+    paper = version == 3 and getattr(T, "V3_PAPER_DEFENSES", False)
+    if paper:
+        # Paper defenses (designer, 2026-11-06): Parry is the Level's Skill
+        # plus the main weapon's Defense, nothing else; archetypes and
+        # Abilities never raise it.
+        adds.pop("parry", None)
     act = ACTIONS[action]
     cat = action_category(action)
     skill = min(SKILL_CAP, t["skill"])
@@ -595,7 +605,9 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
     # at the Weak tier, the way a caster's mace is an afterthought).
     if act["wd"] is not None:
         parry = 8 + min(SKILL_CAP, skill + adds.get("parry", 0)) + act["wd"]
-    elif backup_action and ACTIONS[backup_action]["wd"] is not None:
+    elif backup_action and ACTIONS[backup_action]["wd"] is not None and not paper:
+        # (Paper defenses: a caster's or healer's fallback weapon is an
+        # afterthought and gives no Parry; it defends with Dodge.)
         parry = 8 + min(SKILL_CAP, skill - 2 * gap + adds.get("parry", 0)) + ACTIONS[backup_action]["wd"]
     else:
         parry = -99

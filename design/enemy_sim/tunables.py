@@ -413,6 +413,13 @@ V3_DEFENSE_CAP = 2
 # With it, the Defender archetype's +2 Parry becomes Health +1 (Defender:
 # Dodge +2, Health +4); the cap would waste the Parry under a shield.
 V3_DEFENDER_PARRY_TO_HEALTH = True
+# Paper defenses (designer, 2026-11-06): Parry is 8 + the Level's Skill +
+# the main Action's weapon Defense, nothing else. Archetypes and Abilities
+# never raise it (Parry and Dodge +1 reads as Dodge +1), and an enemy whose
+# main Action isn't a weapon (a caster, a healer) has no Parry even with a
+# fallback weapon. With V3_DEFENSE_CAP this puts every limit on the
+# ability step: no Defense above the Level's 8 + Skill + 2.
+V3_PAPER_DEFENSES = True
 
 # ---- Enemy offense dials (2026-10-08, measurement only) ----
 # Flat changes to every enemy's Accuracy and attack damage, applied to

@@ -3777,3 +3777,34 @@ Down), and the longest fights the healers' (Warpriest +7 rounds). Fights
 run half a round to a round shorter. The game is a little easier
 overall: the middle of the band wins 1-2 points more days, and a fresh
 manual fight is lost about 1% of the time at Levels 2-4.
+
+### Paper defenses: limits at the ability step (2026-11-06)
+
+The designer: the build order is archetype, then Abilities, then
+equipment and Action, so the limits belong at the ability step; and a
+shield's Parry belongs to frontline fighters, since a caster or healer
+takes its spell or support as its Action and carries a weapon only as an
+anemic fallback. `tunables.V3_PAPER_DEFENSES = True` (default):
+
+- Parry is 8 + the Level's Skill + the main Action's weapon Defense,
+  nothing else. No archetype or Ability raises it; "Parry and Dodge +1"
+  is now "Dodge +1" (same price; renamed in monster_manual.csv).
+- An enemy whose main Action isn't a weapon has no Parry, fallback
+  weapon or not; it defends with Dodge. (Its fallback already hit at
+  Accuracy − 4.)
+- With the Defense cap, every limit is a number known at the ability
+  step: no Defense above the Level's 8 + Skill + 2 (14 / 15 / 16 / 17 /
+  18), Accuracy no higher than 10 before the weapon. A shield's +2 lands
+  exactly on the limit, so Parry never needs checking.
+
+Checked: with the switch off, the built manual is byte-identical to the
+Defense-cap default; with it on, the only monsters that change are the
+Warpriest and the Deadbough Priest (Parry 11-16 to none; they defend
+with Dodge 9-14), and renaming the pick leaves every build identical.
+The full baseline against the Defense-cap default
+(`results/enemy_stats/paper_*`): manual fights lost 2.1 / 0.6 / 1.0 /
+0.8 / 2.4% at Levels 1-5 (was 2.2 / 0.7 / 1.0 / 0.8 / 2.9), a tenth to
+two-tenths of a round shorter; the Warpriest's fights +4.4 rounds over
+the average (was +7.0). The band's middle wins 0-1.5 points more days.
+The step-by-step build is in todo/GM_GUIDE_NOTES.md, "Enemy stat blocks,
+the pruned v3".

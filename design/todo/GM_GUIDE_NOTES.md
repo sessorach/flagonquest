@@ -291,6 +291,67 @@ and real worked examples), well beyond what a from-scratch pass could
 reconstruct. Big enough on its own to warrant a dedicated file rather
 than a GM_GUIDE_NOTES.md section — reach for it directly.
 
+## Enemy stat blocks, the pruned v3 (2026-11-06)
+
+The current way to build an enemy, in the designer's order: archetype,
+then Abilities, then equipment and Action. The older hand-build model
+further down is kept for its reasoning; its numbers are out of date.
+Worked stat blocks: `enemy_sim/MONSTER_MANUAL.md`.
+
+**Step 1: Level.** Read the row.
+
+| Level | Damage Stat | Accuracy | Skill | Health | Resist | Points | Defense limit |
+|---|---|---|---|---|---|---|---|
+| 1 | 1 | 2 | 4 | 10 | 2 | 7 | 14 |
+| 2 | 2 | 3 | 5 | 11 | 3 | 9 | 15 |
+| 3 | 2 | 4 | 6 | 13 | 3 | 11 | 16 |
+| 4 | 3 | 5 | 7 | 15 | 4 | 11 | 17 |
+| 5 | 3 | 6 | 8 | 15 | 4 | 11 | 18 |
+
+Defenses: pick a Strong Defense (Dodge, Vital, Mental or Vigilant) at 8
++ Skill, one Weak Defense at 8 + Skill − 4 (by default the one that
+suits its kind: Mental for a fighter, Vital for a caster, Dodge for a
+healer), the others
+at 8 + Skill − 2. Parry comes in Step 4.
+
+**Step 2: Archetype.**
+
+| Archetype | Adds |
+|---|---|
+| Defender | Dodge +2, Health +4 |
+| Striker | Damage +1, Speed +1 |
+| Bruiser | Damage +1, Health +1, Vital +2 |
+| Strategist | Accuracy +2, Dodge +1, Mental +2, Vigilant +2 |
+| Backup | Resist +1, Dodge +2, Vital +2, Mental +2 |
+| Skirmisher | Speed +2, Dodge +2, Accuracy +1 |
+
+**Step 3: Abilities.** Spend the Level's points (prices in
+ENEMY_ENCOUNTER_DESIGN's catalog). Points left over are Health, 1 each;
+going over comes out of Health, never more than a third of it. Leave room
+for Step 4's costs. The limits:
+
+- No Defense above the Level's Defense limit, archetype included.
+- Accuracy no higher than 10 before the weapon's own bonus.
+- The stat picks (Accuracy +1, Damage +1 once, Dodge +1, Vital/Mental/
+  Vigilant +1, Resist +1) can repeat up to those limits; an on-hit
+  effect up to 4 picks, a Poison up to 2; everything else once.
+
+**Step 4: Equipment and Action.**
+
+- A fighter's weapon is its main Action, and its Parry is 8 + Skill +
+  the weapon's Defense, nothing else: Sword and Shield (free; +1
+  Accuracy, 3 + Damage Stat, Parry +2), Heavy Weapon and Shield (1
+  point; 4 + Damage Stat, Parry +2), Light Two-Handed (2; +1 Accuracy,
+  4 +, Parry +1), Two-Handed Weapon (2; 5 +, no Parry bonus), Bow (free;
+  +1 Accuracy, 3 +, no Parry), Heavy Bow (1; 4 +, no Parry).
+- A caster, hexer or healer takes its spell or support as its main
+  Action and has no Parry; it defends with Dodge. Its fallback weapon,
+  for when there's nothing to heal or hex, hits at Accuracy − 4.
+- Armor: Unarmored (−2 points), Light (free; Physical Resist +1),
+  Medium (2; Physical Resist +2, Dodge −1), Heavy (4; Physical Resist
+  +3, Dodge −1, Speed −1).
+- Pick a Battle Tactic (see the quick reference below).
+
 ## Enemy stat blocks by hand (draft, updated 2026-10-01)
 
 **Status: penciled in, matched to the simulator at Levels 1-2.** This is

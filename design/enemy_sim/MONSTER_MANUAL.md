@@ -50,6 +50,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Action (Parting Shot)** (1): Ironbranch Warden, Brute Warlord, Warleader, Skulking Footpad
 - **Action (Taunting)** (1): Hedge Knight, Fen Warden
 - **Damage +1** (4): Executioner
+- **Dodge +1** (1): Iron Sentinel, Shieldbearer, Mire Witch, Curse Weaver, Field Medic, Bog Skirmisher
 - **Durable** (1): Ironbranch Warden, Thornhide Brute, Fen Warden, Warpriest, Deadbough Priest
 - **Enhanced Health** (1): Iron Sentinel
 - **Enhanced Range** (3): Marsh Archer, Crossbow Sniper
@@ -57,7 +58,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Enhanced Speed** (1): Field Medic, Bog Skirmisher, Hunting Hound
 - **Improved Support** (1): Warpriest, Field Medic, Deadbough Priest, Coven Matriarch
 - **Omniguard** (1): Hedge Knight
-- **Parry and Dodge +1** (1): Iron Sentinel, Shieldbearer, Mire Witch, Curse Weaver, Field Medic, Bog Skirmisher
+- **Parry and Dodge +1** (1): *nobody yet*
 - **Poison (Bleeding)** (2.5): Goblin Cutthroat, Skulking Footpad
 - **Poison (Crippling)** (0.5): *nobody yet*
 - **Poison (Necrotic)** (0.5): *nobody yet*
@@ -96,7 +97,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
 - **Loadout:** Sword and Shield (0). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 (2), Strike (Taunting) ×2 (1), Action (Taunting) (1), Omniguard (1), Strike (Harrying) (1)
-- **Points:** 8 of 7 at Level 1, 8 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Parry and Dodge +1, Strike (Harrying).
+- **Points:** 8 of 7 at Level 1, 8 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Dodge +1, Strike (Harrying).
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -110,7 +111,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
 - **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (4). **Strong:** Vital. **Weak:** Mental.
-- **Picks:** Resist (Fire) (1), Parry and Dodge +1 ×2 (2), Enhanced Health (1), Elemental Weapon (Frost) (0), Resilient (0), Sturdy (0)
+- **Picks:** Resist (Fire) (1), Dodge +1 ×2 (2), Enhanced Health (1), Elemental Weapon (Frost) (0), Resilient (0), Sturdy (0)
 - **Points:** 9 of 7 at Level 1, 9 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Vital/Mental/Vigilant +1, Enhanced Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
@@ -126,7 +127,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
 - **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (4). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Durable (1), Sturdy (0), Strike (Battering) (2), Action (Parting Shot) (1)
-- **Points:** 9 of 7 at Level 1, 9 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Parry and Dodge +1, Strike (Crippling) ×2.
+- **Points:** 9 of 7 at Level 1, 9 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Dodge +1, Strike (Crippling) ×2.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -140,8 +141,8 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 - **Minion (½ Slot), Defender.** Hit Whatever (fights whoever is near).
 - **Loadout:** Sword and Shield (0). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
-- **Picks:** Parry and Dodge +1 (1), Strike (Taunting) ×2 (1), Accuracy +1 (2), Strike (Harrying) (1)
-- **Points:** 7 of 7 at Level 1, 7 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Parry and Dodge +1.
+- **Picks:** Dodge +1 (1), Strike (Taunting) ×2 (1), Accuracy +1 (2), Strike (Harrying) (1)
+- **Points:** 7 of 7 at Level 1, 7 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -371,7 +372,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 - **1 Slot, Strategist.** Assassin (goes for the softest).
 - **Loadout:** Mind Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
-- **Picks:** Accuracy +1 ×2 (4), Strike (Vulnerable) ×4 (2), Strike (Frightening) ×4 (2), Parry and Dodge +1 (1)
+- **Picks:** Accuracy +1 ×2 (4), Strike (Vulnerable) ×4 (2), Strike (Frightening) ×4 (2), Dodge +1 (1)
 - **Points:** 7 of 7 at Level 1, 7 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
@@ -401,8 +402,8 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 - **1 Slot, Strategist.** Hit Whatever (fights whoever is near).
 - **Loadout:** Vital Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
-- **Picks:** Accuracy +1 ×2 (4), Strike (Slowing) ×4 (2), Strike (Necrotic) ×4 (2), Resilient (0), Parry and Dodge +1 (1)
-- **Points:** 7 of 7 at Level 1, 7 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Parry and Dodge +1.
+- **Picks:** Accuracy +1 ×2 (4), Strike (Slowing) ×4 (2), Strike (Necrotic) ×4 (2), Resilient (0), Dodge +1 (1)
+- **Points:** 7 of 7 at Level 1, 7 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -449,13 +450,13 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Backup.** Hit Whatever (fights whoever is near).
 - **Loadout:** Great Heal, backup Sword and Shield (0). **Armor:** Medium (2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Durable (1), Resist +1 (4)
-- **Points:** 8 of 7 at Level 1, 8 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Parry and Dodge +1.
+- **Points:** 8 of 7 at Level 1, 8 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Great Heal: Health 3; backup +-1 vs Parry/Dodge, 4 Physical | 11 | 9 | 12 | 14 | 10 | 6 / 4 | 9 | 3 |
-| 3 | Great Heal: Health 3; backup +2 vs Parry/Dodge, 5 Physical | 14 | 12 | 14 | 16 | 12 | 7 / 5 | 13 | 4 |
-| 5 | Great Heal: Health 3; backup +4 vs Parry/Dodge, 6 Physical | 16 | 14 | 16 | 18 | 14 | 7 / 5 | 15 | 5 |
+| 1 | Great Heal: Health 3; backup +-1 vs Parry/Dodge, 4 Physical | — | 9 | 12 | 14 | 10 | 6 / 4 | 9 | 3 |
+| 3 | Great Heal: Health 3; backup +2 vs Parry/Dodge, 5 Physical | — | 12 | 14 | 16 | 12 | 7 / 5 | 13 | 4 |
+| 5 | Great Heal: Health 3; backup +4 vs Parry/Dodge, 6 Physical | — | 14 | 16 | 18 | 14 | 7 / 5 | 15 | 5 |
 
 ### Field Medic
 
@@ -463,8 +464,8 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 - **1 Slot, Backup.** Kiting (keeps its distance).
 - **Loadout:** Mend Ally, backup Bow (0). **Armor:** Light (0). **Strong:** Mental. **Weak:** the default for its kind.
-- **Picks:** Improved Support (1), Accuracy +1 (2), Enhanced Speed (1), Parry and Dodge +1 (1), Strike (Slowing) ×2 (1)
-- **Points:** 6 of 7 at Level 1, 6 of 9 at Level 2 (the rest is Health); at Levels 3-5 the extra 4 buy Accuracy +1, Parry and Dodge +1.
+- **Picks:** Improved Support (1), Accuracy +1 (2), Enhanced Speed (1), Dodge +1 (1), Strike (Slowing) ×2 (1)
+- **Points:** 6 of 7 at Level 1, 6 of 9 at Level 2 (the rest is Health); at Levels 3-5 the extra 4 buy Accuracy +1, Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -479,13 +480,13 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Backup.** Hit Whatever (fights whoever is near).
 - **Loadout:** Shield Ally, backup Sword and Shield (0). **Armor:** Medium (2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Durable (1), Accuracy +1 (2), Strike (Frightening) ×2 (1), Strike (Harrying) (1)
-- **Points:** 8 of 7 at Level 1, 8 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Parry and Dodge +1.
+- **Points:** 8 of 7 at Level 1, 8 of 9 at Level 2; at Levels 3-5 the extra 4 buy Accuracy +1, Dodge +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Shield Ally: Protected 3; backup +0 vs Parry/Dodge, 4 Physical | 11 | 9 | 12 | 14 | 10 | 5 / 3 | 9 | 3 |
-| 3 | Shield Ally: Protected 3; backup +3 vs Parry/Dodge, 5 Physical | 14 | 12 | 14 | 16 | 12 | 6 / 4 | 13 | 4 |
-| 5 | Shield Ally: Protected 5; backup +5 vs Parry/Dodge, 6 Physical | 16 | 14 | 16 | 18 | 14 | 7 / 5 | 15 | 5 |
+| 1 | Shield Ally: Protected 3; backup +0 vs Parry/Dodge, 4 Physical | — | 9 | 12 | 14 | 10 | 5 / 3 | 9 | 3 |
+| 3 | Shield Ally: Protected 3; backup +3 vs Parry/Dodge, 5 Physical | — | 12 | 14 | 16 | 12 | 6 / 4 | 13 | 4 |
+| 5 | Shield Ally: Protected 5; backup +5 vs Parry/Dodge, 6 Physical | — | 14 | 16 | 18 | 14 | 7 / 5 | 15 | 5 |
 
 ## Skirmishers
 
@@ -495,7 +496,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 - **1 Slot, Skirmisher.** Kiting (keeps its distance).
 - **Loadout:** Bow (0). **Armor:** Light (0). **Strong:** Dodge. **Weak:** the default for its kind.
-- **Picks:** Poison (Slowing) ×2 (1), Accuracy +1 (2), Strike (Crippling) ×2 (1), Enhanced Speed (1), Parry and Dodge +1 (1)
+- **Picks:** Poison (Slowing) ×2 (1), Accuracy +1 (2), Strike (Crippling) ×2 (1), Enhanced Speed (1), Dodge +1 (1)
 - **Points:** 6 of 7 at Level 1, 6 of 9 at Level 2 (the rest is Health); at Levels 3-5 the extra 4 buy Accuracy +1.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
