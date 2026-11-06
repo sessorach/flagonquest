@@ -1,0 +1,26 @@
+| Fight | Level | Health of the big one | Lost (worst party) | Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|
+| Solo boss, budget x2, Health x5 | 3 | 83 | 55% (100%) | 63% | 67% | 9.2 |
+| Solo boss, budget x2, Health x5 | 4 | 93 | 53% (98%) | 60% | 65% | 10.4 |
+| Solo boss, budget x2, Health x5 | 5 | 93 | 67% (100%) | 68% | 72% | 14.2 |
+| Solo boss, budget x2, Health x4 | 3 | 66 | 28% (92%) | 43% | 53% | 6.5 |
+| Solo boss, budget x2, Health x4 | 4 | 74 | 24% (68%) | 35% | 46% | 6.7 |
+| Solo boss, budget x2, Health x4 | 5 | 74 | 46% (90%) | 54% | 59% | 10.4 |
+| Solo boss, budget x2, Health x3 | 3 | 50 | 9% (48%) | 22% | 37% | 3.9 |
+| Solo boss, budget x2, Health x3 | 4 | 56 | 5% (18%) | 15% | 29% | 3.9 |
+| Solo boss, budget x2, Health x3 | 5 | 56 | 9% (25%) | 22% | 36% | 4.9 |
+| Solo boss, budget x4, Health x4 | 3 | 69 | 90% (100%) | 98% | 98% | 5.7 |
+| Solo boss, budget x4, Health x4 | 4 | 77 | 91% (100%) | 98% | 99% | 6.4 |
+| Solo boss, budget x4, Health x4 | 5 | 77 | 96% (100%) | 99% | 99% | 6.3 |
+| Solo boss, budget x4, Health x3 | 3 | 52 | 60% (97%) | 84% | 88% | 4.8 |
+| Solo boss, budget x4, Health x3 | 4 | 58 | 58% (87%) | 81% | 89% | 5.4 |
+| Solo boss, budget x4, Health x3 | 5 | 58 | 71% (98%) | 88% | 93% | 5.5 |
+| Solo boss, budget x4, Health x2 | 3 | 35 | 15% (40%) | 50% | 68% | 3.0 |
+| Solo boss, budget x4, Health x2 | 4 | 39 | 19% (40%) | 48% | 70% | 3.4 |
+| Solo boss, budget x4, Health x2 | 5 | 39 | 24% (55%) | 58% | 73% | 3.6 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 3 | 39 | 5% (17%) | 29% | 56% | 4.9 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 4 | 44 | 3% (12%) | 25% | 50% | 5.2 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 5 | 44 | 10% (28%) | 32% | 54% | 6.2 |
+| Two Gravel Ogres, budget x2, Health x2 | 3 | 31 | 2% (5%) | 20% | 45% | 3.7 |
+| Two Gravel Ogres, budget x2, Health x2 | 4 | 35 | 1% (5%) | 16% | 38% | 3.9 |
+| Two Gravel Ogres, budget x2, Health x2 | 5 | 35 | 3% (10%) | 18% | 42% | 4.3 |

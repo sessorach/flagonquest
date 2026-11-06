@@ -645,13 +645,18 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
             cost += LOADOUT_HEALTH_V3P.get(action, 0)
         allowance = (T.V3_PRUNED_ALLOWANCE + getattr(T, "V3_PRUNED_EXTRA", {}).get(level, 0)
                      if version == 3 else T.V3_ABILITY_ALLOWANCE)
-        base_health += allowance - cost
+        # A big enemy's budget scales (V3_SLOT_BUDGET, 2026-11-06 test): k
+        # times the points, each costing 1/k of its Health per point, so an
+        # enemy that spends nothing keeps the Health it had.
+        k = T.V3_SLOT_BUDGET.get(slots, 1) if version == 3 else 1
+        base_health += (allowance * k - cost) / k
         if base_health < max(1, math.ceil(t["health"] * getattr(T, "V3_HEALTH_FLOOR", 2 / 3))):
             raise ValueError(f"{name}: Abilities and armor cost {cost} Health, more than a third of its {t['health']}")
     # A solo boss (4 Slots) in the pruned v3 has V3_SOLO_HEALTH times a
     # standard enemy's Health (designer, 2026-11-05), not the older 9.
-    mult = T.V3_SOLO_HEALTH if version == 3 and slots == 4 else T.SLOT_MULTIPLIER[slots]
-    health = math.ceil((base_health + adds.get("hp", 0)) * mult) + abilities.count("Enhanced Health")
+    mult = (T.V3_SOLO_HEALTH if version == 3 and slots == 4 else
+            getattr(T, "V3_ELITE_HEALTH", 3) if version == 3 and slots == 2 else T.SLOT_MULTIPLIER[slots])
+    health = math.ceil((base_health + adds.get("hp", 0)) * mult - 1e-9) + abilities.count("Enhanced Health")
     enemy = dict(name=name, level=level, slots=slots, role=role or "None", action=action,
                  kind=kind, main_effect=main_effect or {"support": "Protected", "heal": "Health",
                                                         "nova": "Protected"}.get(kind),

@@ -602,6 +602,8 @@ Before archetype and armor: a light-weapon fighter hits at +4 for 5 with Parry 1
 
 - **Accuracy +1 can be bought again and again** (designer, 2026-11-05), but can't raise an enemy's Accuracy before its weapon's own above 10, the player cap. Each point is worth about 2 Health and adds about 6 points of Downs, evenly, and even a monster spending everything on it only reaches the best PC's number. (→ ENEMY_ENCOUNTER_DESIGN, "Accuracy +1 bought more than once")
 
+- **Bigger budgets for big enemies (option 1, 2026-11-06, in test):** a point is worth far more on a big enemy (a boss's +1 Damage lands on four attacks a round), so a bigger budget has to come out of the Health multiple. Twice the budget with 3.5 times the Health (boss) or 2.5 times (elite) plays a notch swingier than today; 3 and 2 times play as today and as an ordinary fight. Four times the budget for a boss is a glass cannon. (→ ENEMY_ENCOUNTER_DESIGN, "Bigger budgets for elites and the solo boss")
+
 ### Encounters and Slots
 
 - **Slots stay as they are: count the players, pick enemies adding to that many Slots** (designer, 2026-11-02). If on-level fights are off, the per-Level baseline moves, not the Slot rule. (→ ENEMY_ENCOUNTER_DESIGN, "Base stats against the measured party")

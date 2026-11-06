@@ -1,0 +1,23 @@
+| Fight | Level | Health of the big one | Lost (worst party) | Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|
+| Solo boss, budget x1 | 3 | 78 | 9% (28%) | 35% | 45% | 6.1 |
+| Solo boss, budget x1 | 4 | 90 | 7% (28%) | 23% | 39% | 6.2 |
+| Solo boss, budget x1 | 5 | 90 | 23% (58%) | 42% | 54% | 9.0 |
+| Solo boss, budget x2 | 3 | 99 | 66% (100%) | 71% | 72% | 10.9 |
+| Solo boss, budget x2 | 4 | 111 | 68% (100%) | 71% | 72% | 12.8 |
+| Solo boss, budget x2 | 5 | 111 | 75% (100%) | 73% | 76% | 16.3 |
+| Solo boss, budget x4 | 3 | 104 | 100% (100%) | 100% | 100% | 6.0 |
+| Solo boss, budget x4 | 4 | 116 | 100% (100%) | 100% | 100% | 6.7 |
+| Solo boss, budget x4 | 5 | 116 | 100% (100%) | 100% | 100% | 6.4 |
+| Two Gravel Ogres, budget x1 | 3 | 39 | 0% (3%) | 11% | 32% | 4.2 |
+| Two Gravel Ogres, budget x1 | 4 | 45 | 0% (2%) | 9% | 27% | 4.6 |
+| Two Gravel Ogres, budget x1 | 5 | 45 | 0% (3%) | 13% | 34% | 4.9 |
+| Two Gravel Ogres, budget x2 | 3 | 47 | 15% (42%) | 40% | 66% | 6.8 |
+| Two Gravel Ogres, budget x2 | 4 | 53 | 14% (42%) | 37% | 61% | 7.4 |
+| Two Gravel Ogres, budget x2 | 5 | 53 | 23% (62%) | 47% | 69% | 8.9 |
+| Coven Matriarch + two Brutes, x1 | 3 | 48 | 0% (0%) | 2% | 19% | 4.7 |
+| Coven Matriarch + two Brutes, x1 | 4 | 54 | 0% (0%) | 1% | 11% | 5.0 |
+| Coven Matriarch + two Brutes, x1 | 5 | 54 | 0% (0%) | 2% | 9% | 5.2 |
+| Coven Matriarch + two Brutes, x2 | 3 | 50 | 0% (3%) | 4% | 24% | 5.1 |
+| Coven Matriarch + two Brutes, x2 | 4 | 56 | 0% (0%) | 2% | 17% | 5.5 |
+| Coven Matriarch + two Brutes, x2 | 5 | 56 | 0% (0%) | 2% | 10% | 5.9 |

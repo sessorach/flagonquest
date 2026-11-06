@@ -399,6 +399,12 @@ HEX_AREA = 0
 # often beat the whole party). At 9 it won 56-70% of fights at Levels 3-5
 # over 13-18 rounds; at 6, 8-9% at Levels 3-4 (23% at Level 5).
 V3_SOLO_HEALTH = 6
+# A big enemy's Ability budget, in times a standard enemy's, by Slots
+# (pruned v3; 2026-11-06 test). Each point then costs its Health over k, so
+# an enemy that spends nothing keeps the same Health. {} = 1 for all.
+V3_SLOT_BUDGET = {}
+# An elite's (2 Slots) Health in the pruned v3, in standard enemies.
+V3_ELITE_HEALTH = 3
 
 # ---- Enemy offense dials (2026-10-08, measurement only) ----
 # Flat changes to every enemy's Accuracy and attack damage, applied to

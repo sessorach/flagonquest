@@ -1,0 +1,11 @@
+| Fight | Level | Health of the big one | Lost (worst party) | Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|
+| Solo boss, budget x2, Health x3.5 | 3 | 58 | 18% (83%) | 31% | 47% | 5.1 |
+| Solo boss, budget x2, Health x3.5 | 4 | 65 | 11% (42%) | 23% | 35% | 4.9 |
+| Solo boss, budget x2, Health x3.5 | 5 | 65 | 27% (62%) | 38% | 48% | 7.5 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 3 | 39 | 5% (17%) | 29% | 56% | 4.9 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 4 | 44 | 3% (12%) | 25% | 50% | 5.2 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 5 | 44 | 10% (28%) | 32% | 54% | 6.2 |
+| Coven Matriarch + two Brutes, budget x2, Health x2.5 | 3 | 42 | 0% (3%) | 3% | 22% | 4.7 |
+| Coven Matriarch + two Brutes, budget x2, Health x2.5 | 4 | 47 | 0% (0%) | 1% | 15% | 5.0 |
+| Coven Matriarch + two Brutes, budget x2, Health x2.5 | 5 | 47 | 0% (0%) | 2% | 9% | 5.3 |

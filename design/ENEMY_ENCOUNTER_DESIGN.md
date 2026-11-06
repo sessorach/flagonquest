@@ -3364,3 +3364,108 @@ Medic −50).
 **Open:** trim the Iron Sentinel (its second Parry and Dodge, or the
 Resist (Fire)), and whether the healers want more; then the wide
 PC-against-enemy test to re-value the effects.
+
+### Bigger budgets for elites and the solo boss (2026-11-06)
+
+The designer: should a solo boss correct for the action economy with
+Health alone, or get more as well? Today a solo boss (4 Slots) has two
+turns a round, 6 times a standard enemy's Health and one standard
+enemy's budget, every point costing it 6 Health; an elite (2 Slots) one
+turn, 3 times the Health, one budget. Option 1, chosen: a bigger enemy
+gets a bigger budget (`tunables.V3_SLOT_BUDGET`, by Slots), each point
+costing its Health multiple over that scale, so one that spends nothing
+keeps its Health. `experiments/enemies/elite_boss_check.py`: the Brute
+Warlord alone, two Gravel Ogres, and a Coven Matriarch beside two
+Brutes, Levels 3-5, every test party in the middle of the band, 60 fresh
+fights; at each bigger budget the big one buys more mechanics (the boss:
+Crippling and Frightening twice each, Accuracy, Durable, then Damage +1,
+Powerful Weapon, Battering, Resilient, Accuracy, Enhanced Speed and
+Omniguard; the Ogre: Accuracy, Damage +1, Durable; the Matriarch:
+Accuracy, Vulnerable twice, Enhanced Reflexes, Parry and Dodge twice).
+
+At today's Health (`elite_boss_check.txt`):
+
+| Fight | Level | Health of the big one | Lost (worst party) | Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|
+| Solo boss, budget x1 | 3 | 78 | 9% (28%) | 35% | 45% | 6.1 |
+| Solo boss, budget x1 | 4 | 90 | 7% (28%) | 23% | 39% | 6.2 |
+| Solo boss, budget x1 | 5 | 90 | 23% (58%) | 42% | 54% | 9.0 |
+| Solo boss, budget x2 | 3 | 99 | 66% (100%) | 71% | 72% | 10.9 |
+| Solo boss, budget x2 | 4 | 111 | 68% (100%) | 71% | 72% | 12.8 |
+| Solo boss, budget x2 | 5 | 111 | 75% (100%) | 73% | 76% | 16.3 |
+| Solo boss, budget x4 | 3 | 104 | 100% (100%) | 100% | 100% | 6.0 |
+| Solo boss, budget x4 | 4 | 116 | 100% (100%) | 100% | 100% | 6.7 |
+| Solo boss, budget x4 | 5 | 116 | 100% (100%) | 100% | 100% | 6.4 |
+| Two Gravel Ogres, budget x1 | 3 | 39 | 0% (3%) | 11% | 32% | 4.2 |
+| Two Gravel Ogres, budget x1 | 4 | 45 | 0% (2%) | 9% | 27% | 4.6 |
+| Two Gravel Ogres, budget x1 | 5 | 45 | 0% (3%) | 13% | 34% | 4.9 |
+| Two Gravel Ogres, budget x2 | 3 | 47 | 15% (42%) | 40% | 66% | 6.8 |
+| Two Gravel Ogres, budget x2 | 4 | 53 | 14% (42%) | 37% | 61% | 7.4 |
+| Two Gravel Ogres, budget x2 | 5 | 53 | 23% (62%) | 47% | 69% | 8.9 |
+| Coven Matriarch + two Brutes, x1 | 3 | 48 | 0% (0%) | 2% | 19% | 4.7 |
+| Coven Matriarch + two Brutes, x1 | 4 | 54 | 0% (0%) | 1% | 11% | 5.0 |
+| Coven Matriarch + two Brutes, x1 | 5 | 54 | 0% (0%) | 2% | 9% | 5.2 |
+| Coven Matriarch + two Brutes, x2 | 3 | 50 | 0% (3%) | 4% | 24% | 5.1 |
+| Coven Matriarch + two Brutes, x2 | 4 | 56 | 0% (0%) | 2% | 17% | 5.5 |
+| Coven Matriarch + two Brutes, x2 | 5 | 56 | 0% (0%) | 2% | 10% | 5.9 |
+
+A point is worth far more on a big enemy than on a standard one: the
+boss's +1 Damage lands on up to four attacks a round. At its own Health
+the boss wins two-thirds of its fights on twice the budget and every
+fight on four times; the Ogres go from never winning to 14-23%. The
+Matriarch, a support, barely moves. So the bigger budget has to be paid
+for with a smaller Health multiple (`V3_SOLO_HEALTH`, `V3_ELITE_HEALTH`;
+`elite_boss_check2.txt`, `elite_boss_check3.txt`):
+
+| Fight | Level | Health of the big one | Lost (worst party) | Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|
+| Solo boss, budget x2, Health x5 | 3 | 83 | 55% (100%) | 63% | 67% | 9.2 |
+| Solo boss, budget x2, Health x5 | 4 | 93 | 53% (98%) | 60% | 65% | 10.4 |
+| Solo boss, budget x2, Health x5 | 5 | 93 | 67% (100%) | 68% | 72% | 14.2 |
+| Solo boss, budget x2, Health x4 | 3 | 66 | 28% (92%) | 43% | 53% | 6.5 |
+| Solo boss, budget x2, Health x4 | 4 | 74 | 24% (68%) | 35% | 46% | 6.7 |
+| Solo boss, budget x2, Health x4 | 5 | 74 | 46% (90%) | 54% | 59% | 10.4 |
+| Solo boss, budget x2, Health x3 | 3 | 50 | 9% (48%) | 22% | 37% | 3.9 |
+| Solo boss, budget x2, Health x3 | 4 | 56 | 5% (18%) | 15% | 29% | 3.9 |
+| Solo boss, budget x2, Health x3 | 5 | 56 | 9% (25%) | 22% | 36% | 4.9 |
+| Solo boss, budget x4, Health x4 | 3 | 69 | 90% (100%) | 98% | 98% | 5.7 |
+| Solo boss, budget x4, Health x4 | 4 | 77 | 91% (100%) | 98% | 99% | 6.4 |
+| Solo boss, budget x4, Health x4 | 5 | 77 | 96% (100%) | 99% | 99% | 6.3 |
+| Solo boss, budget x4, Health x3 | 3 | 52 | 60% (97%) | 84% | 88% | 4.8 |
+| Solo boss, budget x4, Health x3 | 4 | 58 | 58% (87%) | 81% | 89% | 5.4 |
+| Solo boss, budget x4, Health x3 | 5 | 58 | 71% (98%) | 88% | 93% | 5.5 |
+| Solo boss, budget x4, Health x2 | 3 | 35 | 15% (40%) | 50% | 68% | 3.0 |
+| Solo boss, budget x4, Health x2 | 4 | 39 | 19% (40%) | 48% | 70% | 3.4 |
+| Solo boss, budget x4, Health x2 | 5 | 39 | 24% (55%) | 58% | 73% | 3.6 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 3 | 39 | 5% (17%) | 29% | 56% | 4.9 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 4 | 44 | 3% (12%) | 25% | 50% | 5.2 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 5 | 44 | 10% (28%) | 32% | 54% | 6.2 |
+| Two Gravel Ogres, budget x2, Health x2 | 3 | 31 | 2% (5%) | 20% | 45% | 3.7 |
+| Two Gravel Ogres, budget x2, Health x2 | 4 | 35 | 1% (5%) | 16% | 38% | 3.9 |
+| Two Gravel Ogres, budget x2, Health x2 | 5 | 35 | 3% (10%) | 18% | 42% | 4.3 |
+
+| Fight | Level | Health of the big one | Lost (worst party) | Down | Wounded | Rounds |
+|---|---|---|---|---|---|---|
+| Solo boss, budget x2, Health x3.5 | 3 | 58 | 18% (83%) | 31% | 47% | 5.1 |
+| Solo boss, budget x2, Health x3.5 | 4 | 65 | 11% (42%) | 23% | 35% | 4.9 |
+| Solo boss, budget x2, Health x3.5 | 5 | 65 | 27% (62%) | 38% | 48% | 7.5 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 3 | 39 | 5% (17%) | 29% | 56% | 4.9 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 4 | 44 | 3% (12%) | 25% | 50% | 5.2 |
+| Two Gravel Ogres, budget x2, Health x2.5 | 5 | 44 | 10% (28%) | 32% | 54% | 6.2 |
+| Coven Matriarch + two Brutes, budget x2, Health x2.5 | 3 | 42 | 0% (3%) | 3% | 22% | 4.7 |
+| Coven Matriarch + two Brutes, budget x2, Health x2.5 | 4 | 47 | 0% (0%) | 1% | 15% | 5.0 |
+| Coven Matriarch + two Brutes, budget x2, Health x2.5 | 5 | 47 | 0% (0%) | 2% | 9% | 5.3 |
+
+- **The solo boss: twice the budget.** Four times plays as a glass cannon
+  that still wins 15-24% of three-round fights at twice the Health. At
+  twice the budget: 3.5 times the Health loses the party 11-18% at Levels
+  3-4 (worst party 42-83%) with Downs as before (23-31%) over about 5
+  rounds, a notch swingier than today's 7-9%; 3 times loses 5-9% with
+  Downs 15-22% over about 4 rounds.
+- **Elites: twice the budget.** At 2.5 times the Health two Ogres lose the
+  party 3-10% with someone Down in a quarter to a third of fights (an
+  ordinary fight's 15-20%), over 5-6 rounds; at 2 times, 1-3% and 16-20%,
+  on par with an ordinary fight.
+- **Supports don't gain much** from a bigger budget, as everywhere else.
+
+Nothing is default yet: the designer picks.
