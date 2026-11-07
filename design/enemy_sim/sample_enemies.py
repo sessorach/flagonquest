@@ -228,6 +228,14 @@ def _pruned_picks(row, abilities):
         return abilities + buyback, row["Action"]
     picks = list(designed)
     left = getattr(T, "V3_PRUNED_EXTRA", {}).get(int(row["Level"]), 0)
+    action = (row.get("PrunedAction") or "").strip() or row["Action"]
+    action = getattr(T, "V3_PRUNED_SWAP", {}).get(action, action)
+    if getattr(T, "V3_ONE_BUDGET", False):
+        # One budget: the extra points buy only what the design leaves room
+        # for; points the design leaves unspent stay Health.
+        cost = (sum(eb.ABILITY_HEALTH_V3P[p] for p in picks) + eb.ARMOR_HEALTH_V3P[row["Armor"].strip()]
+                + eb.LOADOUT_HEALTH_V3P.get(action, 0))
+        left = min(left, T.V3_PRUNED_ALLOWANCE + left - cost)
     order = _split(row.get("PrunedExtra"))
     if getattr(T, "V3_PRUNED_EXTRA_ORDER", "row") == "offense":
         # Extra points on offense first (Accuracy, then Damage), then the row's own.
@@ -246,9 +254,8 @@ def _pruned_picks(row, abilities):
             picks.append(pick)
             left -= price
     picks += _big_picks(row, picks)
-    action = (row.get("PrunedAction") or "").strip() or row["Action"]
     # tunables.V3_PRUNED_SWAP: experiments trying other kit on the same rows.
-    return picks, getattr(T, "V3_PRUNED_SWAP", {}).get(action, action)
+    return picks, action
 
 
 # Picks that make an enemy tougher rather than more dangerous: the points a

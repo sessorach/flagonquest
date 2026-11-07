@@ -671,7 +671,10 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
         # enemy that spends nothing keeps the Health it had.
         k = T.V3_SLOT_BUDGET.get(slots, 1) if version == 3 else 1
         base_health += (allowance * k - cost) / k
-        if base_health < max(1, math.ceil(t["health"] * getattr(T, "V3_HEALTH_FLOOR", 2 / 3))):
+        if version == 3 and getattr(T, "V3_ONE_BUDGET", False):
+            if cost > allowance * k:
+                raise ValueError(f"{name}: Abilities, loadout and armor cost {cost} of its {allowance * k} points")
+        elif base_health < max(1, math.ceil(t["health"] * getattr(T, "V3_HEALTH_FLOOR", 2 / 3))):
             raise ValueError(f"{name}: Abilities and armor cost {cost} Health, more than a third of its {t['health']}")
 
     def cap_def(value):
