@@ -4085,3 +4085,38 @@ band; `nudge_size_p1.txt`):
 - **+2 points** changes the shape: at Levels 3-5 the extra 6 buys Damage
   +1 on most monsters, so someone goes Down 21-23% of the time (from 9-14%)
   in fights no longer, or shorter.
+
+### The baseline, 2026-11-07 (a point more budget, default)
+
+The designer made +1 the default: `V3_PRUNED_EXTRA = {1: 1, 2: 3, 3: 5,
+4: 5, 5: 5}`, budgets 8 / 10 / 12 / 12 / 12. Everything in: the Defense
+cap and paper defenses, the size table, offense-only extra points for
+big enemies, no debuff-shrugging picks on them, Fire weapons on Hilde and
+Browndog from Level 3. The rerun reproduces the +1 test exactly (manual
+fights and the 3,265 shared size-test matchups identical).
+`results/enemy_stats/default_1107_*`.
+
+| Level | Band: bottom / middle / top, days won | Manual fights: lost / Down / rounds |
+|---|---|---|
+| 1 | — / 91% / — | 3.1% / 22% / 5.2 |
+| 2 | 21% / 90% / 99% | 1.1% / 15% / 4.7 |
+| 3 | 35% / 84% / 99% | 1.2% / 15% / 4.5 |
+| 4 | 47% / 89% / 97% | 1.4% / 16% / 5.1 |
+| 5 | 87% / 89% / 92% | 2.7% / 12% / 5.8 |
+
+The middle of the band wins 84-91% of days, back in the 86-92% the
+11-05 baseline was tuned to. By encounter (size_check.py, Levels 1-5,
+middle; low / high band lost after):
+
+| Encounter | Lost | Down | Rounds | Low / high |
+|---|---|---|---|---|
+| Four standard monsters | 0.6% | 15% | 4.6 | 14% / 0% |
+| Eight minions | 1.3% | 28% | 4.2 | 17% / 0% |
+| Gravel Ogre + two standard | 4.2% | 29% | 4.9 | 26% / 1% |
+| Two Gravel Ogres | 9.6% | 39% | 5.0 | 32% / 4% |
+| Gravel Ogre + Elite Sharpshooter | 6.9% | 43% | 4.7 | 26% / 3% |
+| Storm Magus + two standard | 0.7% | 14% | 4.8 | 15% / 0% |
+| Coven Matriarch + two standard | 0.1% | 3% | 4.9 | 5% / 0% |
+| Black Knight + two standard | 3.6% | 16% | 6.7 | 27% / 0% |
+| Two Black Knights | 18% | 39% | 10.5 | 54% / 6% |
+| Solo Brute Warlord (Levels 3-5) | 12% | 32% | 3.7 | 29% / 8% |

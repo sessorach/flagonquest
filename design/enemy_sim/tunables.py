@@ -504,8 +504,11 @@ V3_PRUNED_ROSTER = 'picks'
 # it a little more dangerous since real players coordinate and have items
 # (v3p_danger.txt): 7 / 8 / 10 / 10 / 10. Then a point more at Levels 2-5
 # (2026-11-05) to win back what the Defender's Health +3 took off:
-# 7 / 9 / 11 / 11 / 11.
-V3_PRUNED_EXTRA = {1: 0, 2: 2, 3: 4, 4: 4, 5: 4}
+# 7 / 9 / 11 / 11 / 11. Then a point more everywhere (designer,
+# 2026-11-07) to win back the danger the Defense cap and the elemental
+# weapons took off: 8 / 10 / 12 / 12 / 12 (experiments: manual_check.py
+# --extra; results/enemy_stats/nudge_*).
+V3_PRUNED_EXTRA = {1: 1, 2: 3, 3: 5, 4: 5, 5: 5}
 # 'row' spends extra points down the row's PrunedExtra; 'offense' on
 # Accuracy +1, then Damage +1, first.
 V3_PRUNED_EXTRA_ORDER = 'offense'

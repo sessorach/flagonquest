@@ -302,11 +302,11 @@ Worked stat blocks: `enemy_sim/MONSTER_MANUAL.md`.
 
 | Level | Damage Stat | Accuracy | Skill | Health | Resist | Points | Defense limit |
 |---|---|---|---|---|---|---|---|
-| 1 | 1 | 2 | 4 | 10 | 2 | 7 | 14 |
-| 2 | 2 | 3 | 5 | 11 | 3 | 9 | 15 |
-| 3 | 2 | 4 | 6 | 13 | 3 | 11 | 16 |
-| 4 | 3 | 5 | 7 | 15 | 4 | 11 | 17 |
-| 5 | 3 | 6 | 8 | 15 | 4 | 11 | 18 |
+| 1 | 1 | 2 | 4 | 10 | 2 | 8 | 14 |
+| 2 | 2 | 3 | 5 | 11 | 3 | 10 | 15 |
+| 3 | 2 | 4 | 6 | 13 | 3 | 12 | 16 |
+| 4 | 3 | 5 | 7 | 15 | 4 | 12 | 17 |
+| 5 | 3 | 6 | 8 | 15 | 4 | 12 | 18 |
 
 Defenses: pick a Strong Defense (Dodge, Vital, Mental or Vigilant) at 8
 + Skill, one Weak Defense at 8 + Skill − 4 (by default the one that
