@@ -3921,9 +3921,48 @@ the defaults), 60 fights a party, 7,790 matchups
   one leading standard monsters runs 9 rounds, two of them 17 rounds and
   lost 37% of the time. It isn't Defense any more (Parry 16 at Level 3,
   the same as any shield-bearer): it's Physical Resist. Heavy armor's +3
-  on the table's Resist makes 6-7 at Levels 3-5, and the sample PCs' hits
-  average 6-6.7 damage, so a physical hit does next to nothing to 45-50
-  Health. Open: the Black Knight is a test design, but GMs will build
-  one.
+  on the table's Resist makes 6-7 at Levels 3-5. (Corrected below: the
+  PCs hit harder than the 6-6.7 first quoted here, and Omniguard is the
+  bigger part.) Open: the Black Knight is a test design, but GMs will
+  build one.
 - Level 1 runs harder with elites than the other Levels (Ogre + two
   standard: 6% lost at Level 1).
+
+### Why the Black Knight is slow (2026-11-06)
+
+The designer: the sample PCs should hit harder than 6-6.7; do they
+gamble, and how many deal elemental damage, which is meant to get around
+heavy armor? The 6-6.7 was the sheets' base weapon damage, before
+gambling; it shouldn't have been quoted as the hit. Read off fight
+traces (every middle-of-band party, Levels 3-5, two Black Knights or two
+Gravel Ogres, 30 fights each):
+
+| Against | PC hit rate | Damage on a hit, before / after Resist | Attacks that gambled (average gambles) | Elemental attacks |
+|---|---|---|---|---|
+| Two Black Knights | 37-50% | 8.5-9.2 / 2.7-3.1 | 77-82% (1.4-1.6) | 8-11% |
+| Two Gravel Ogres | 82-90% | 9.1-10.0 / 4.5-4.7 | 63-68% (1.5-1.7) | 28-30% |
+
+- The PCs gamble on most attacks, and against high Resist they gamble
+  harder, which costs them hits.
+- Elemental damage comes almost only from Beornhard's War Magic (every
+  attack, hitting 94% of the time for 6.2 after Resist, the best against
+  the Knights by far), Jackal's Bottled Fire (a quarter of her attacks)
+  and a little of Hilde's. Everyone else is physical: 1.8-2.4 after
+  Resist for Browndog, Carrick, Enith, Hanforth and Sable, 0.3 for
+  Ashleigh. The sample parties carry little answer to heavy armor.
+
+The pieces, one at a time (two Black Knights, Levels 3-5):
+
+| Black Knight | Lost | Down | Rounds | PC hit rate | Damage per hit |
+|---|---|---|---|---|---|
+| As tested | 30% | 65% | 16.5 | 44% | 2.8 |
+| No Omniguard | 10% | 39% | 11.1 | 58% | 3.4 |
+| No Taunting | 32% | 72% | 16.8 | 44% | 2.8 |
+| Medium armor | 11% | 46% | 11.6 | 54% | 3.5 |
+| No Omniguard, Medium armor | 2.2% | 20% | 8.2 | 69% | 4.0 |
+
+Omniguard (ignore Harried; 1 point, priced on standard enemies) is the
+biggest single piece: every PC weapon hit Harries, and on an elite that
+lives three times as long that adds up. It's a defensive pick bought
+with the Black Knight's normal points, so the size rule doesn't catch
+it. Heavy armor is the other half. Taunting does nothing here.
