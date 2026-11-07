@@ -40,23 +40,37 @@ import table_check as tc  # noqa: E402
 import progression_sweep as ps  # noqa: E402
 
 HEAVY = ("Ironbranch Warden", "Iron Sentinel", "Brute Warlord")
+# The three Heavy designs as they were before one6 became the manual's
+# (2026-11-07), so every variant still builds as it did when this ran.
+WARLORD_BIG = ("Strike (Crippling); Strike (Crippling); Strike (Frightening); Strike (Frightening); Accuracy +1; "
+               "Damage +1; Powerful Weapon; Strike (Frightening); Strike (Frightening); Enhanced Speed; Accuracy +1")
+ORIGINAL = {
+    "Ironbranch Warden": dict(PrunedPicks="Durable; Sturdy; Strike (Battering); Action (Parting Shot)",
+                              PrunedExtra="Dodge +1; Strike (Crippling); Strike (Crippling)"),
+    "Iron Sentinel": dict(PrunedPicks="Resist (Fire); Dodge +1; Dodge +1; Enhanced Health; Elemental Weapon (Frost); "
+                                      "Resilient; Sturdy",
+                          PrunedExtra="Vital/Mental/Vigilant +1; Enhanced Health"),
+    "Brute Warlord": dict(PrunedPicks="Strike (Cleaving); Action (Parting Shot); Action (Intimidating)",
+                          PrunedExtra="Strike (Crippling); Strike (Crippling)", BigPicks=WARLORD_BIG),
+}
 VARIANTS = {
-    "today": dict(heavy=4, one=False, rows={}),
+    "today": dict(heavy=4, one=False, rows=ORIGINAL),
     "one4": dict(heavy=4, one=True, rows={
         "Ironbranch Warden": dict(PrunedPicks="Durable; Sturdy; Strike (Battering)",
                                   PrunedExtra="Dodge +1; Strike (Crippling); Strike (Crippling); Action (Parting Shot)"),
         "Iron Sentinel": dict(PrunedPicks="Resist (Fire); Dodge +1; Enhanced Health; Elemental Weapon (Frost); Resilient; Sturdy",
                               PrunedExtra="Vital/Mental/Vigilant +1; Enhanced Health; Dodge +1"),
         "Brute Warlord": dict(PrunedPicks="Strike (Cleaving); Action (Intimidating)",
-                              BigPicks="Action (Parting Shot); {big}"),
+                              PrunedExtra="Strike (Crippling); Strike (Crippling)",
+                              BigPicks="Action (Parting Shot); " + WARLORD_BIG),
     }),
-    "one6": dict(heavy=6, one=True, rows={
+    "one6": dict(heavy=6, one=True, rows={  # the manual's since 2026-11-07
         "Ironbranch Warden": dict(PrunedPicks="Sturdy; Action (Parting Shot)",
                                   PrunedExtra="Dodge +1; Strike (Crippling); Strike (Crippling); Strike (Battering); Durable"),
         "Iron Sentinel": dict(PrunedPicks="Resist (Fire); Elemental Weapon (Frost); Resilient; Sturdy",
                               PrunedExtra="Vital/Mental/Vigilant +1; Enhanced Health; Dodge +1; Dodge +1"),
-        "Brute Warlord": dict(PrunedPicks="Action (Intimidating)",
-                              BigPicks="Strike (Cleaving); Action (Parting Shot); {big}"),
+        "Brute Warlord": dict(PrunedPicks="Action (Intimidating)", PrunedExtra="Strike (Crippling); Strike (Crippling)",
+                              BigPicks="Strike (Cleaving); Action (Parting Shot); " + WARLORD_BIG),
     }),
 }
 SIZE_LABELS = ("Black Knight + two standard", "Two Black Knights", "Solo Brute Warlord",
@@ -78,7 +92,7 @@ def install(v):
             return r
         over = spec["rows"].get(name.partition("@")[0])
         if over:
-            r = dict(r, **{k: x.format(big=r.get("BigPicks", "")) for k, x in over.items()})
+            r = dict(r, **over)
         return r
     se._manual_row = manual_row
 

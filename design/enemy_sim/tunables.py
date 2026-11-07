@@ -515,14 +515,15 @@ V3_PRUNED_EXTRA_ORDER = 'offense'
 # Loadout swaps on the redesigned rows, for experiments ({"Bow": "Heavy Bow"}).
 V3_PRUNED_SWAP = {}
 # The least of the table's Health an enemy can keep after paying for
-# Abilities and armor (0 lets experiments spend it all).
+# Abilities and armor (0 lets experiments spend it all). Unused under
+# V3_ONE_BUDGET, where nothing can come out of Health.
 V3_HEALTH_FLOOR = 2 / 3
 # One budget (designer, 2026-11-07): armor, loadout and picks all come out
 # of the Level's points, the extra points buy only what the design leaves
 # room for, and a design can't spend past its budget out of Health (no
 # floor). What's left is Health, as before. False: the base design and the
 # extra points are separate pots and an overspend comes off Health.
-V3_ONE_BUDGET = False
+V3_ONE_BUDGET = True
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

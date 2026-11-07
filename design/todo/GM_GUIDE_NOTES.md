@@ -326,9 +326,9 @@ at 8 + Skill − 2. Parry comes in Step 4.
 | Skirmisher | Speed +2, Dodge +2, Accuracy +1 |
 
 **Step 3: Abilities.** Spend the Level's points (prices in
-ENEMY_ENCOUNTER_DESIGN's catalog). Points left over are Health, 1 each;
-going over comes out of Health, never more than a third of it. Leave room
-for Step 4's costs. The limits are on the enemy's own numbers, before
+ENEMY_ENCOUNTER_DESIGN's catalog). Step 4's loadout and armor come out
+of the same points, so leave room for them; an enemy can't spend more
+than it has. Points left over are Health, 1 each. The limits are on the enemy's own numbers, before
 gear; Step 4's gear is added last and can take a number past them:
 
 - No Defense above the Level's Defense limit, archetype included.
@@ -354,7 +354,7 @@ gear; Step 4's gear is added last and can take a number past them:
   Action and has no Parry; it defends with Dodge. Its fallback weapon,
   for when there's nothing to heal or hex, hits at Accuracy − 4.
 - Armor: Unarmored (−2 points), Light (free; Physical Resist +1),
-  Medium (2; Physical Resist +2, Dodge −1), Heavy (4; Physical Resist
+  Medium (2; Physical Resist +2, Dodge −1), Heavy (6; Physical Resist
   +3, Dodge −1, Speed −1).
 - Pick a Battle Tactic (see the quick reference below).
 

@@ -485,8 +485,11 @@ for _el in ELEMENTS:
 ARMOR_HEALTH_V3 = {"Unarmored": -1, "Light": 0, "Medium": 1, "Heavy": 2}
 # The pruned v3's armor (designer, 2026-11-05): each step measured about 2
 # Health on the pruned base (ENEMY_ENCOUNTER_DESIGN.md, "What armor is
-# worth on the pruned base"), twice the price above.
-ARMOR_HEALTH_V3P = {"Unarmored": -2, "Light": 0, "Medium": 2, "Heavy": 4}
+# worth on the pruned base"), twice the price above. Heavy went to 6
+# (designer, 2026-11-07): fights with a Heavy monster ran 1-3 rounds
+# longer and were lost far more often at Levels 1 and 5
+# (experiments/enemies/heavy_armor_price.py, one_budget.py).
+ARMOR_HEALTH_V3P = {"Unarmored": -2, "Light": 0, "Medium": 2, "Heavy": 6}
 # Stat Abilities (2026-11-04, for the pruned v3; any v3 can take them):
 # each is that bump, at its measured worth ("What each stat is worth"),
 # and can be taken more than once up to the player caps.

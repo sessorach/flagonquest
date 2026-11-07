@@ -47,12 +47,12 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 - **Accuracy +1** (2): Hedge Knight, Shieldbearer, Marsh Archer, Grave Caller, Ember Caster, Cinder Adept, Mind Lash Adept, Goblin Cutthroat, Brute, Bog Hexer, Mire Witch, Curse Weaver, Warleader, Fen Warden, Warpriest, Field Medic, Coven Matriarch, Skulking Footpad, Shade Stalker, Bog Skirmisher, Hunting Hound
 - **Action (Intimidating)** (0): Brute Warlord, Warleader
-- **Action (Parting Shot)** (1): Ironbranch Warden, Brute Warlord, Warleader, Skulking Footpad
+- **Action (Parting Shot)** (1): Ironbranch Warden, Warleader, Skulking Footpad
 - **Action (Taunting)** (1): Hedge Knight, Fen Warden
 - **Damage +1** (4): Executioner
-- **Dodge +1** (1): Iron Sentinel, Shieldbearer, Mire Witch, Curse Weaver, Field Medic, Bog Skirmisher
-- **Durable** (1): Ironbranch Warden, Thornhide Brute, Fen Warden, Warpriest, Deadbough Priest
-- **Enhanced Health** (1): Iron Sentinel
+- **Dodge +1** (1): Shieldbearer, Mire Witch, Curse Weaver, Field Medic, Bog Skirmisher
+- **Durable** (1): Thornhide Brute, Fen Warden, Warpriest, Deadbough Priest
+- **Enhanced Health** (1): *nobody yet*
 - **Enhanced Range** (3): Marsh Archer, Crossbow Sniper
 - **Enhanced Reflexes** (2): Cinder Adept, Shade Stalker
 - **Enhanced Speed** (1): Field Medic, Bog Skirmisher, Hunting Hound
@@ -69,8 +69,8 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Resist +1** (4): Deadbough Priest
 - **Retribution Aura** (2): Thornhide Brute
 - **Shadow Jaunt** (0): Bog Hexer, Shade Stalker
-- **Strike (Battering)** (2): Ironbranch Warden
-- **Strike (Cleaving)** (2): Brute Warlord
+- **Strike (Battering)** (2): *nobody yet*
+- **Strike (Cleaving)** (2): *nobody yet*
 - **Strike (Crippling)** (0.5): Marsh Archer, Cinder Adept, Brute, Thornhide Brute, Gravel Ogre, Bog Hexer, Bog Skirmisher
 - **Strike (Devastating)** (1): Executioner
 - **Strike (Frightening)** (0.5): Mind Lash Adept, Curse Weaver, Warleader, Warpriest
@@ -96,11 +96,11 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
 - **Loadout:** Sword and Shield (0). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 (2), Strike (Taunting) ×2 (1), Action (Taunting) (1), Omniguard (1), Strike (Harrying) (1)
-- **Points:** the picks, loadout and armor cost 8 of the base 7 (1 over, out of its Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Dodge +1, Strike (Harrying) at Level 3.
+- **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Dodge +1, Strike (Harrying) at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +4 vs Parry/Dodge, 4 Physical | 14 | 12 | 12 | 8 | 10 | 4 / 2 | 13 | 3 |
+| 1 | +4 vs Parry/Dodge, 4 Physical | 14 | 11 | 12 | 8 | 10 | 4 / 2 | 14 | 3 |
 | 3 | +7 vs Parry/Dodge, 5 Physical | 16 | 14 | 14 | 10 | 12 | 5 / 3 | 17 | 4 |
 | 5 | +9 vs Parry/Dodge, 6 Physical | 18 | 16 | 16 | 12 | 14 | 6 / 4 | 19 | 5 |
 
@@ -109,30 +109,30 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *A construct: hard to hurt, shrugs off debuffs, swings a frost-cold blade.*
 
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
-- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (4). **Strong:** Vital. **Weak:** Mental.
-- **Picks:** Resist (Fire) (1), Dodge +1 ×2 (2), Enhanced Health (1), Elemental Weapon (Frost) (0), Resilient (0), Sturdy (0)
-- **Points:** the picks, loadout and armor cost 9 of the base 7 (2 over, out of its Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Vital/Mental/Vigilant +1, Enhanced Health at Level 3.
+- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (6). **Strong:** Vital. **Weak:** Mental.
+- **Picks:** Resist (Fire) (1), Elemental Weapon (Frost) (0), Resilient (0), Sturdy (0)
+- **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Vital/Mental/Vigilant +1, Enhanced Health at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 4 Frost | 14 | 13 | 13 | 9 | 11 | 5 / 2 | 13 | 2 |
-| 3 | +5 vs Parry/Dodge, 5 Frost | 16 | 15 | 15 | 11 | 13 | 6 / 3 | 18 | 3 |
-| 5 | +7 vs Parry/Dodge, 6 Frost | 18 | 17 | 17 | 13 | 15 | 7 / 4 | 20 | 4 |
+| 1 | +2 vs Parry/Dodge, 4 Frost | 14 | 11 | 12 | 8 | 10 | 5 / 2 | 14 | 2 |
+| 3 | +5 vs Parry/Dodge, 5 Frost | 16 | 13 | 15 | 11 | 13 | 6 / 3 | 18 | 3 |
+| 5 | +7 vs Parry/Dodge, 6 Frost | 18 | 15 | 17 | 13 | 15 | 7 / 4 | 20 | 4 |
 
 ### Ironbranch Warden
 
 *An armored bulwark that holds its ground: Parrying it still bleeds you, and walking away gets you hit.*
 
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
-- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (4). **Strong:** Vital. **Weak:** the default for its kind.
-- **Picks:** Durable (1), Sturdy (0), Strike (Battering) (2), Action (Parting Shot) (1)
-- **Points:** the picks, loadout and armor cost 9 of the base 7 (2 over, out of its Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Dodge +1, Strike (Crippling) ×2 at Level 3.
+- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (6). **Strong:** Vital. **Weak:** the default for its kind.
+- **Picks:** Sturdy (0), Action (Parting Shot) (1)
+- **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Dodge +1, Strike (Crippling) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 5 Physical | 14 | 12 | 12 | 8 | 10 | 5 / 2 | 12 | 2 |
-| 3 | +5 vs Parry/Dodge, 6 Physical | 16 | 14 | 14 | 10 | 12 | 6 / 3 | 16 | 3 |
-| 5 | +7 vs Parry/Dodge, 7 Physical | 18 | 16 | 16 | 12 | 14 | 7 / 4 | 18 | 4 |
+| 1 | +2 vs Parry/Dodge, 5 Physical | 14 | 11 | 12 | 8 | 10 | 5 / 2 | 14 | 2 |
+| 3 | +5 vs Parry/Dodge, 6 Physical | 16 | 14 | 14 | 10 | 12 | 6 / 3 | 17 | 3 |
+| 5 | +7 vs Parry/Dodge, 7 Physical | 18 | 16 | 16 | 12 | 14 | 7 / 4 | 19 | 4 |
 
 ### Shieldbearer
 
@@ -141,7 +141,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Minion (½ Slot), Defender.** Hit Whatever (fights whoever is near).
 - **Loadout:** Sword and Shield (0). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Dodge +1 (1), Strike (Taunting) ×2 (1), Accuracy +1 (2), Strike (Harrying) (1)
-- **Points:** the picks, loadout and armor cost 7 of the base 7; the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Dodge +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 7 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Dodge +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -158,7 +158,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Striker.** Hit Whatever (fights whoever is near).
 - **Loadout:** Vital Fire (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Attunement (Fire) (3), Accuracy +1 (2), Strike (Crippling) ×2 (1), Enhanced Reflexes (2)
-- **Points:** the picks, loadout and armor cost 6 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Crippling) ×2 at Level 3.
+- **Points:** the picks, loadout and armor cost 6 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Crippling) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -173,7 +173,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Striker.** Assassin (goes for the softest).
 - **Loadout:** Heavy Bow (1). **Armor:** Light (0). **Strong:** Dodge. **Weak:** the default for its kind.
 - **Picks:** Enhanced Range (3), Strike (Vulnerable) ×4 (2)
-- **Points:** the picks, loadout and armor cost 6 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 6 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -188,7 +188,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Striker.** Hit Whatever (fights whoever is near).
 - **Loadout:** Ranged Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Powerful Spell (3), Accuracy +1 (2), Attunement (Fire) (3)
-- **Points:** the picks, loadout and armor cost 6 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Vulnerable) ×2 at Level 3.
+- **Points:** the picks, loadout and armor cost 6 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Vulnerable) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -203,7 +203,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Striker.** Assassin (goes for the softest).
 - **Loadout:** Two-Handed Weapon (2). **Armor:** Light (0). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Damage +1 (4), Strike (Devastating) (1)
-- **Points:** the picks, loadout and armor cost 7 of the base 7; the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 7 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -218,7 +218,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Striker.** Hit Whatever (fights whoever is near).
 - **Loadout:** Light Two-Handed (2). **Armor:** Light (0). **Strong:** Dodge. **Weak:** the default for its kind.
 - **Picks:** Powerful Weapon (4), Strike (Slowing) ×2 (1)
-- **Points:** the picks, loadout and armor cost 7 of the base 7; the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Slowing) ×2 at Level 3.
+- **Points:** the picks, loadout and armor cost 7 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Slowing) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -233,7 +233,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Minion (½ Slot), Striker.** Assassin (goes for the softest).
 - **Loadout:** Sword and Shield (0). **Armor:** Light (0). **Strong:** Dodge. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 (2), Poison (Bleeding) (2.5), Strike (Slowing) ×2 (1)
-- **Points:** the picks, loadout and armor cost 5.5 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 5.5 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -248,7 +248,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Striker.** Assassin (goes for the softest).
 - **Loadout:** Vital Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Powerful Spell (3), Accuracy +1 (2), Strike (Necrotic) ×2 (1), Strike (Vulnerable) ×2 (1)
-- **Points:** the picks, loadout and armor cost 5 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Necrotic) ×2 at Level 3.
+- **Points:** the picks, loadout and armor cost 5 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Necrotic) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -263,7 +263,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Striker.** Assassin (goes for the softest).
 - **Loadout:** Bow (0). **Armor:** Light (0). **Strong:** Dodge. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 (2), Enhanced Range (3), Strike (Crippling) ×2 (1), Strike (Vulnerable) ×2 (1)
-- **Points:** the picks, loadout and armor cost 7 of the base 7; the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Crippling) ×2 at Level 3.
+- **Points:** the picks, loadout and armor cost 7 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Crippling) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -278,7 +278,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Striker.** Assassin (goes for the softest).
 - **Loadout:** Mind Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** Vital.
 - **Picks:** Powerful Spell (3), Accuracy +1 (2), Strike (Frightening) ×2 (1), Strike (Vulnerable) ×2 (1)
-- **Points:** the picks, loadout and armor cost 5 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Frightening) ×2 at Level 3.
+- **Points:** the picks, loadout and armor cost 5 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Frightening) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -295,7 +295,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Bruiser.** Hit Whatever (fights whoever is near).
 - **Loadout:** Two-Handed Weapon (2). **Armor:** Light (0). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 (2), Strike (Crippling) ×2 (1)
-- **Points:** the picks, loadout and armor cost 5 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Crippling) ×2 at Level 3.
+- **Points:** the picks, loadout and armor cost 5 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Crippling) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -308,16 +308,16 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *A rare solo boss: two turns a round; it cleaves through a line and Frightens from across the field.*
 
 - **Solo boss (4 Slots), Bruiser.** Hit Whatever (fights whoever is near).
-- **Loadout:** Two-Handed Weapon (2). **Armor:** Heavy (4). **Strong:** Vital. **Weak:** the default for its kind.
-- **Picks:** Strike (Cleaving) (2), Action (Parting Shot) (1), Action (Intimidating) (0)
-- **Points:** the picks, loadout and armor cost 9 of the base 7 (2 over, out of its Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Crippling) ×2 at Level 3.
-- **Size:** 2 times the points; the extra 8 at Level 1 and 12 at Levels 3-5 buy (in order, as far as they go) Strike (Crippling) ×2, Strike (Frightening) ×2, Accuracy +1, Damage +1, Powerful Weapon at Level 3. Health ×4, two turns a round.
+- **Loadout:** Two-Handed Weapon (2). **Armor:** Heavy (6). **Strong:** Vital. **Weak:** the default for its kind.
+- **Picks:** Action (Intimidating) (0)
+- **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Crippling) ×2 at Level 3, the rest is Health.
+- **Size:** 2 times the points; the extra 8 at Level 1 and 12 at Levels 3-5 buy (in order, as far as they go) Strike (Cleaving), Action (Parting Shot), Strike (Crippling) ×2, Strike (Frightening) ×4, Accuracy +1, Damage +1 at Level 3. Health ×4, two turns a round.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Parry/Dodge, 8 Physical | 12 | 9 | 14 | 8 | 10 | 5 / 2 | 40 | 2 |
-| 3 | +6 vs Parry/Dodge, 10 Physical | 14 | 11 | 16 | 10 | 12 | 6 / 3 | 56 | 3 |
-| 5 | +8 vs Parry/Dodge, 11 Physical | 16 | 13 | 18 | 12 | 14 | 7 / 4 | 64 | 4 |
+| 1 | +3 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 5 / 2 | 44 | 2 |
+| 3 | +6 vs Parry/Dodge, 9 Physical | 14 | 11 | 16 | 10 | 12 | 6 / 3 | 58 | 3 |
+| 5 | +8 vs Parry/Dodge, 10 Physical | 16 | 13 | 18 | 12 | 14 | 7 / 4 | 66 | 4 |
 
 ### Gravel Ogre
 
@@ -326,7 +326,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Elite (2 Slots), Bruiser.** Hit Whatever (fights whoever is near).
 - **Loadout:** Two-Handed Weapon (2). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Strike (Grappling) (3), Strike (Crippling) ×2 (1), Sturdy (0)
-- **Points:** the picks, loadout and armor cost 8 of the base 7 (1 over, out of its Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Battering) at Level 3.
+- **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Battering) at Level 3, the rest is Health.
 - **Size:** 2 times the points; the extra 8 at Level 1 and 12 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Damage +1, Strike (Crippling) ×2, Enhanced Speed at Level 3. Health ×2.5.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
@@ -342,7 +342,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Bruiser.** Hit Whatever (fights whoever is near).
 - **Loadout:** Two-Handed Weapon (2). **Armor:** Light (0). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Retribution Aura (2), Resilient (0), Strike (Crippling) ×2 (1), Durable (1)
-- **Points:** the picks, loadout and armor cost 6 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Crippling) ×2 at Level 3.
+- **Points:** the picks, loadout and armor cost 6 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Crippling) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -359,7 +359,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Strategist.** Kiting (keeps its distance).
 - **Loadout:** Ranged Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 ×3 (6), Strike (Crippling) ×4 (2), Strike (Slowing) ×2 (1), Shadow Jaunt (0)
-- **Points:** the picks, loadout and armor cost 7 of the base 7; the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Vulnerable) ×2 at Level 3.
+- **Points:** the picks, loadout and armor cost 7 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Vulnerable) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -374,7 +374,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Strategist.** Assassin (goes for the softest).
 - **Loadout:** Mind Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 ×2 (4), Strike (Vulnerable) ×4 (2), Strike (Frightening) ×4 (2), Dodge +1 (1)
-- **Points:** the picks, loadout and armor cost 7 of the base 7; the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Enhanced Range at Level 3.
+- **Points:** the picks, loadout and armor cost 7 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Enhanced Range at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -389,7 +389,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Strategist.** Hit Whatever (fights whoever is near).
 - **Loadout:** Melee Spell (0). **Armor:** Medium (2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Strike (Slowing) ×4 (2), Accuracy +1 (2), Durable (1), Action (Taunting) (1)
-- **Points:** the picks, loadout and armor cost 8 of the base 7 (1 over, out of its Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -404,7 +404,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Strategist.** Hit Whatever (fights whoever is near).
 - **Loadout:** Vital Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Accuracy +1 ×2 (4), Strike (Slowing) ×4 (2), Strike (Necrotic) ×4 (2), Resilient (0), Dodge +1 (1)
-- **Points:** the picks, loadout and armor cost 7 of the base 7; the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Dodge +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 7 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Dodge +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -419,7 +419,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Strategist.** Hit Whatever (fights whoever is near).
 - **Loadout:** Sword and Shield (0). **Armor:** Medium (2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Action (Intimidating) (0), Strike (Frightening) ×2 (1), Strike (Harrying) (1), Accuracy +1 (2), Action (Parting Shot) (1)
-- **Points:** the picks, loadout and armor cost 7 of the base 7; the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Harrying) at Level 3.
+- **Points:** the picks, loadout and armor cost 7 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Harrying) at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -436,7 +436,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Elite (2 Slots), Backup.** Hit Whatever (fights whoever is near).
 - **Loadout:** Shielding Nova, backup Ranged Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Attunement (Shadow) (3), Accuracy +1 (2), Strike (Necrotic) ×2 (1)
-- **Points:** the picks, loadout and armor cost 5 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Necrotic) ×2 at Level 3.
+- **Points:** the picks, loadout and armor cost 5 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Necrotic) ×2 at Level 3, the rest is Health.
 - **Size:** 2 times the points; the extra 8 at Level 1 and 12 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Strike (Vulnerable) ×4, Enhanced Reflexes at Level 3. Health ×2.5.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
@@ -452,11 +452,11 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Backup.** Hit Whatever (fights whoever is near).
 - **Loadout:** Great Heal, backup Sword and Shield (0). **Armor:** Medium (2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Durable (1), Resist +1 (4)
-- **Points:** the picks, loadout and armor cost 8 of the base 7 (1 over, out of its Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Dodge +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Dodge +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Great Heal: Health 3; backup +-1 vs Parry/Dodge, 4 Physical | — | 10 | 12 | 14 | 10 | 6 / 4 | 9 | 3 |
+| 1 | Great Heal: Health 3; backup +-1 vs Parry/Dodge, 4 Physical | — | 9 | 12 | 14 | 10 | 6 / 4 | 10 | 3 |
 | 3 | Great Heal: Health 3; backup +2 vs Parry/Dodge, 5 Physical | — | 12 | 14 | 16 | 12 | 7 / 5 | 14 | 4 |
 | 5 | Great Heal: Health 3; backup +4 vs Parry/Dodge, 6 Physical | — | 14 | 16 | 18 | 14 | 7 / 5 | 16 | 5 |
 
@@ -467,7 +467,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Backup.** Kiting (keeps its distance).
 - **Loadout:** Mend Ally, backup Bow (0). **Armor:** Light (0). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Accuracy +1 (2), Enhanced Speed (1), Dodge +1 (1), Strike (Slowing) ×2 (1)
-- **Points:** the picks, loadout and armor cost 6 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Dodge +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 6 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Dodge +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -482,11 +482,11 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Backup.** Hit Whatever (fights whoever is near).
 - **Loadout:** Shield Ally, backup Sword and Shield (0). **Armor:** Medium (2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Durable (1), Accuracy +1 (2), Strike (Frightening) ×2 (1), Strike (Harrying) (1)
-- **Points:** the picks, loadout and armor cost 8 of the base 7 (1 over, out of its Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Dodge +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Dodge +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Shield Ally: Protected 3; backup +0 vs Parry/Dodge, 4 Physical | — | 10 | 12 | 14 | 10 | 5 / 3 | 9 | 3 |
+| 1 | Shield Ally: Protected 3; backup +0 vs Parry/Dodge, 4 Physical | — | 9 | 12 | 14 | 10 | 5 / 3 | 10 | 3 |
 | 3 | Shield Ally: Protected 3; backup +3 vs Parry/Dodge, 5 Physical | — | 12 | 14 | 16 | 12 | 6 / 4 | 14 | 4 |
 | 5 | Shield Ally: Protected 5; backup +5 vs Parry/Dodge, 6 Physical | — | 14 | 16 | 18 | 14 | 7 / 5 | 16 | 5 |
 
@@ -499,7 +499,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Skirmisher.** Kiting (keeps its distance).
 - **Loadout:** Bow (0). **Armor:** Light (0). **Strong:** Dodge. **Weak:** the default for its kind.
 - **Picks:** Poison (Slowing) ×2 (1), Accuracy +1 (2), Strike (Crippling) ×2 (1), Enhanced Speed (1), Dodge +1 (1)
-- **Points:** the picks, loadout and armor cost 6 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 6 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -514,7 +514,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Minion (½ Slot), Skirmisher.** Assassin (goes for the softest).
 - **Loadout:** Light Weapon (no shield) (0). **Armor:** Light (0). **Strong:** Dodge. **Weak:** the default for its kind.
 - **Picks:** Strike (Grappling) (3), Enhanced Speed (1), Accuracy +1 (2)
-- **Points:** the picks, loadout and armor cost 6 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1 at Level 3.
+- **Points:** the picks, loadout and armor cost 6 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -529,7 +529,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Skirmisher.** Kiting (keeps its distance).
 - **Loadout:** Shadow Bolt (0). **Armor:** Light (0). **Strong:** Dodge. **Weak:** the default for its kind.
 - **Picks:** Shadow Jaunt (0), Strike (Necrotic) ×2 (1), Strike (Harrying) (1), Accuracy +1 (2), Enhanced Reflexes (2)
-- **Points:** the picks, loadout and armor cost 6 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Strike (Harrying) at Level 3.
+- **Points:** the picks, loadout and armor cost 6 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Harrying) at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
@@ -544,7 +544,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **1 Slot, Skirmisher.** Assassin (goes for the softest).
 - **Loadout:** Sword and Shield (0). **Armor:** Light (0). **Strong:** Dodge. **Weak:** the default for its kind.
 - **Picks:** Poison (Bleeding) (2.5), Accuracy +1 (2), Action (Parting Shot) (1), Strike (Slowing) ×2 (1)
-- **Points:** the picks, loadout and armor cost 6.5 of the base 7 (the rest is Health); the Level's extra points (1 / 3 / 5 at Levels 1 / 2 / 3-5) buy Accuracy +1, Poison (Bleeding) at Level 3.
+- **Points:** the picks, loadout and armor cost 6.5 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Poison (Bleeding) at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|

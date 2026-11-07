@@ -122,11 +122,9 @@ def main():
                   f"**Strong:** {r['StrongDefense']}. **Weak:** {r['WeakDefense'] or 'the default for its kind'}.",
                   "- **Picks:** " + ", ".join(f"{k}{' ×' + str(n) if n > 1 else ''} ({eb.ABILITY_HEALTH_V3P[k] * n:g})"
                                               for k, n in collections.Counter(picks).items()),
-                  f"- **Points:** the picks, loadout and armor cost {spent:g} of the base {T.V3_PRUNED_ALLOWANCE}"
-                  + (" (the rest is Health)" if spent < T.V3_PRUNED_ALLOWANCE else
-                     f" ({spent - T.V3_PRUNED_ALLOWANCE:g} over, out of its Health)" if spent > T.V3_PRUNED_ALLOWANCE else "")
-                  + f"; the Level's extra points ({T.V3_PRUNED_EXTRA[1]} / {T.V3_PRUNED_EXTRA[2]} / "
-                  f"{T.V3_PRUNED_EXTRA[3]} at Levels 1 / 2 / 3-5) buy " + (tally(extra3) or "Health") + " at Level 3.",
+                  f"- **Points:** the picks, loadout and armor cost {spent:g} of the Level's {budget(1):g} / {budget(2):g} / "
+                  f"{budget(3):g} (Levels 1 / 2 / 3-5); what's left buys " + (tally(extra3) or "Health")
+                  + " at Level 3, the rest is Health.",
                   *big_line,
                   "", "| Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |",
                   "|---|---|---|---|---|---|---|---|---|---|"]
