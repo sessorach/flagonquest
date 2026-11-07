@@ -355,7 +355,12 @@ stay a clean decision record.
 - **Test items in the simulator once the sample roster reaches about
   Level 3** (per the designer, 2026-10-09; it's in TABLE_PLAY_NOTES.md's
   "Still to do"). Until then the sim models only weapons, armor and
-  Jackal's Bottomless Bottles.
+  Jackal's Bottomless Bottles, plus (2026-11-07) Elemental-Forged
+  Weaponry, which Hilde's and Browndog's Level 3 builds carry for the
+  sim (`simNotes`; `tunables.PC_ELEMENTAL_WEAPON` turns it off). The
+  normalized Level 3-5 builds come from those exports: after editing an
+  export, rerun `experiments/enemies/band_builds.py` (it doesn't write the
+  middle `_l3_c145` set; edit those the same way) and `--check`.
 - **Long runs have to survive a worker restart** (2026-10-29). A restart
   kills every process in the container (files stay); it took the
   optimizer four times in one day. So: every long script resumes from

@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-07 — Elites and debuffs
 
-Elites and solo bosses can no longer ignore Harried, which was most of what made a heavily armored elite knight such a slog, and the other ways an elite can shrug off debuffs got measured as the start of a rule for them.
+Elites and solo bosses can no longer buy their way out of debuffs, which was most of what made a heavily armored elite knight such a slog, and two of the sample characters now carry Fire weapons, the game's answer to heavy armor.
 
 ### 2026-11-06 — Bigger budgets for elites and bosses
 

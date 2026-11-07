@@ -61,6 +61,11 @@
   {
    "id": "I129",
    "qty": 1
+  },
+  {
+   "id": "I101",
+   "qty": 1,
+   "element": "Fire"
   }
  ],
  "customItems": [],
@@ -154,6 +159,7 @@
   }
  ],
  "simNotes": [
-  "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json."
+  "Copied from archive/player_builds/Browndog-the-Fighter-175XP-2026-10-24.json.",
+  "Elemental-Forged Weaponry (Fire, Level 3) added 2026-11-07 for the sim, not in the export: the designer asked for elemental attacks on some sample characters, the game's answer to heavy armor. Hilde and Browndog carry it so every sample party has an elemental source. Switch it off with tunables.PC_ELEMENTAL_WEAPON = False."
  ]
 }

@@ -350,10 +350,10 @@ Techniques:
 - Battle Maneuver (T072), Lv 1: Lunging 3
 - Bound Across Mountains (T007), Lv 2
 
-Items: Heavy Two-Handed Melee Weapon, Medium Armor.
+Items: Heavy Two-Handed Melee Weapon, Medium Armor, Elemental-Forged Weaponry.
 Row: Weapon 2H Heavy Melee; Play Style Diver.
 
-In a fight: Health 13, Speed 5, Reflex 5; Parry 17, Dodge 13, Vital 16, Mental 12, Vigilant 13; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 9, 10 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
+In a fight: Health 13, Speed 5, Reflex 5; Parry 17, Dodge 13, Vital 16, Mental 12, Vigilant 13; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 9, 10 Fire damage vs Parry/Dodge, reach 1. Play Style Diver.
 
 - Battle Maneuver copies in order: Level 1: lunges 3; Level 3: whirlwind, victorious, ascended; Level 1: guard 3; Level 1: lunges 3
 - Passives: Furious Rage
@@ -406,10 +406,10 @@ Techniques:
 - Exert Pressure (T067), Lv 3
 - Toughened Resolve (T019), Lv 3
 
-Items: Heavy One-Handed Melee Weapon, Shield, Heavy Armor.
+Items: Heavy One-Handed Melee Weapon, Shield, Heavy Armor, Elemental-Forged Weaponry.
 Row: Play Style Diver.
 
-In a fight: Health 14, Speed 4, Reflex 4; Parry 19, Dodge 13, Vital 16, Mental 13, Vigilant 12; Resist 6 Physical, 3 elemental. Attacks with Melee: Melee 9, 8 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
+In a fight: Health 14, Speed 4, Reflex 4; Parry 19, Dodge 13, Vital 16, Mental 13, Vigilant 12; Resist 6 Physical, 3 elemental. Attacks with Melee: Melee 9, 8 Fire damage vs Parry/Dodge, reach 1. Play Style Diver.
 
 - Battle Maneuver copies in order: Level 1: lunges 3; Level 1: guard 3; Level 1: lunges 3
 - Passives: Inexhaustible Guardian, Toughened Resolve
@@ -1100,10 +1100,10 @@ Techniques:
 - Battle Maneuver (T072), Lv 1: Lunging 3
 - Bound Across Mountains (T007), Lv 2
 
-Items: Heavy Two-Handed Melee Weapon, Medium Armor.
+Items: Heavy Two-Handed Melee Weapon, Medium Armor, Elemental-Forged Weaponry.
 Row: Weapon 2H Heavy Melee; Play Style Diver.
 
-In a fight: Health 13, Speed 5, Reflex 5; Parry 17, Dodge 13, Vital 16, Mental 12, Vigilant 13; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 9, 10 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
+In a fight: Health 13, Speed 5, Reflex 5; Parry 17, Dodge 13, Vital 16, Mental 12, Vigilant 13; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 9, 10 Fire damage vs Parry/Dodge, reach 1. Play Style Diver.
 
 - Battle Maneuver copies in order: Level 1: lunges 3; Level 3: calculated 1, flurry; Level 1: guard 3; Level 1: lunges 3
 - Passives: Furious Rage
@@ -1127,10 +1127,10 @@ Techniques:
 - Battle Maneuver (T072), Lv 1: Lunging 3
 - Bound Across Mountains (T007), Lv 2
 
-Items: Heavy Two-Handed Melee Weapon, Medium Armor.
+Items: Heavy Two-Handed Melee Weapon, Medium Armor, Elemental-Forged Weaponry.
 Row: Weapon 2H Heavy Melee; Play Style Diver.
 
-In a fight: Health 13, Speed 5, Reflex 5; Parry 17, Dodge 13, Vital 16, Mental 12, Vigilant 13; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 9, 10 Physical damage vs Parry/Dodge, reach 1. Play Style Diver.
+In a fight: Health 13, Speed 5, Reflex 5; Parry 17, Dodge 13, Vital 16, Mental 12, Vigilant 13; Resist 4 Physical, 2 elemental. Attacks with 2H Heavy Melee: Melee 9, 10 Fire damage vs Parry/Dodge, reach 1. Play Style Diver.
 
 - Battle Maneuver copies in order: Level 1: viper; Level 3: whirlwind, victorious, ascended; Level 1: guard 3; Level 1: lunges 3
 - Passives: Furious Rage

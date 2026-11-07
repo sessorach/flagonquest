@@ -30,6 +30,9 @@ ARMOR_ITEMS = {"I127": "Medium", "I128": "Light", "I129": "Heavy"}
 # (TABLE_PLAY_NOTES.md: items get tested once the roster reaches about
 # Level 3). Empty so far: no export carries one.
 NOT_MODELED_ITEMS = set()
+# Elemental-Forged Weaponry (party.py: the attacking weapon deals that
+# element's damage).
+ELEMENTAL_FORGED = "I101"
 
 
 _FILES = {}

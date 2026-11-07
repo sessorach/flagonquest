@@ -409,12 +409,17 @@ V3_SLOT_BUDGET = {2: 2, 4: 2}
 # budget x1; 2.5 with twice the budget (2026-11-06), an elite beside two
 # standard monsters about an ordinary fight.
 V3_ELITE_HEALTH = 2.5
-# Abilities an elite or solo boss can't take at all (designer, 2026-11-06):
-# Omniguard ignores the Harried every PC weapon hit stacks, priced on
-# standard enemies; on one that lives two or three times as long it was
-# the biggest piece of the Black Knight's slog
-# (experiments/enemies/black_knight_pieces.py). () = none.
-V3_BIG_BARRED = ("Omniguard",)
+# Abilities an elite or solo boss can't take at all (designer, 2026-11-07):
+# the ones that ignore, shed or block what the party does to it. Priced on
+# standard enemies; on one that lives two or three times as long each
+# adds about 2 points of losses for 0-1 points, all three 10
+# (experiments/enemies/elite_debuff_picks.py); Omniguard alone was most of
+# the Black Knight's slog (black_knight_pieces.py). () = none.
+V3_BIG_BARRED = ("Omniguard", "Resilient", "Durable")
+# Elemental-Forged Weaponry on a sample character's sheet (2026-11-07,
+# designer: give some sample characters an elemental attack, the game's
+# answer to heavy armor). False ignores the item (the old party).
+PC_ELEMENTAL_WEAPON = True
 # A minion's (0.5 Slots) Health in the pruned v3, in standard enemies (the
 # old SLOT_MULTIPLIER's third until tested otherwise, 2026-11-06).
 V3_MINION_HEALTH = 1 / 3

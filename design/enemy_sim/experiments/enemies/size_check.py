@@ -118,9 +118,12 @@ def encounters(L):
     return out
 
 
+LEVELS = [1, 2, 3, 4, 5]
+
+
 def cases():
     out = []
-    for L in (1, 2, 3, 4, 5):
+    for L in LEVELS:
         for kind, label, enc in encounters(L):
             hps = MINION_HP if "minion" in kind else [MINION_HP[0]]
             for h in hps:
@@ -213,8 +216,10 @@ def main():
     ap.add_argument("-o", default="results/enemy_stats/size_check.jsonl")
     ap.add_argument("--txt")
     ap.add_argument("-n", type=int, default=60)
+    ap.add_argument("-L", default="1,2,3,4,5", help="Levels to run")
     ap.add_argument("-j", type=int, default=os.cpu_count())
     a = ap.parse_args()
+    LEVELS[:] = [int(x) for x in a.L.split(",")]
     {"run": run, "read": read}[a.cmd](a)
 
 

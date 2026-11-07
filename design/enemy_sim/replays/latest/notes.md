@@ -1,12 +1,12 @@
 # Latest replays (2026-11-07)
 
-Omniguard barred on elites and solo bosses (V3_BIG_BARRED); no manual monster changes
+Big enemies can't take Omniguard/Resilient/Durable; Hilde and Browndog (L3) carry Fire Elemental-Forged Weaponry
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 97.9% wins, 5.1 rounds, 76% HP left on a win
+- Matchup average over 1000 fights: 97.2% wins, 5.2 rounds, 76% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
@@ -50,7 +50,7 @@ Omniguard barred on elites and solo bosses (V3_BIG_BARRED); no manual monster ch
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
 - Enemies: Level 3 Frontline (Brute (L3), Brute (L3), Grave Caller (L3), Grave Caller (L3))
 - This fight (seed 1): party won in 2 rounds, 93% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.2 rounds, 90% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.1 rounds, 91% HP left on a win
 
 ## partyD2_L2_vs_solo_boss.html
 - Party: Browndog (L2), Rook (L2), Sable (L2), Hanforth (L2, Lifeline)
@@ -69,10 +69,10 @@ Omniguard barred on elites and solo bosses (V3_BIG_BARRED); no manual monster ch
 - Party: Hilde (L3, Flurry), Browndog (L3), Jackal (L3), Beornhard (L3, Piercing)
 - Enemies: Level 3 Frontline (Brute (L3), Brute (L3), Grave Caller (L3), Grave Caller (L3))
 - This fight (seed 1): party won in 2 rounds, 93% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.2 rounds, 90% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.1 rounds, 91% HP left on a win
 
 ## partyD_L3_vs_L3_frontline.html
 - Party: Browndog (L3), Hanforth (L3), Hilde (L3), Beornhard (L3)
 - Enemies: Level 3 Frontline (Brute (L3), Brute (L3), Grave Caller (L3), Grave Caller (L3))
 - This fight (seed 1): party won in 3 rounds, 91% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.8 rounds, 89% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.7 rounds, 88% HP left on a win

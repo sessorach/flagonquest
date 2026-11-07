@@ -377,7 +377,7 @@ def load_sheet(row, build=None, strict=False):
         support=False, heal_cards=1, heal_bonus=0, heal_reach=None, heal_range=None, heal_features={},
         battle_tactic=(row.get("Battle Tactic") or "").strip() or None,
         play_style=(row.get("Play Style") or "").strip(),
-        bottles_item=(row.get("Bottles Item") or "").strip())
+        bottles_item=(row.get("Bottles Item") or "").strip(), weapon_element=None)
     if set(sheet.skills) != set(T.PC_SKILL_STAT):
         raise BuildError(f"{row['Name']}: the export's Skills don't match the sim's 25")
 
@@ -390,6 +390,12 @@ def load_sheet(row, build=None, strict=False):
             sheet.armor = game_data.ARMOR_ITEMS[iid]
         elif iid in game_data.WEAPON_ITEMS:
             sheet.parry_weapons.append(game_data.WEAPON_ITEMS[iid])
+        elif iid == game_data.ELEMENTAL_FORGED:
+            # Elemental-Forged Weaponry: "Attacks with this weapon deal their
+            # damage as that type" (Fire; Frost, Brilliant or Shadow at
+            # Level 4, the export's "element"). On the attacking weapon.
+            if getattr(T, "PC_ELEMENTAL_WEAPON", True):
+                sheet.weapon_element = it.get("element", "Fire")
         elif iid not in game_data.NOT_MODELED_ITEMS:
             raise BuildError(f"{row['Name']}: item {iid} {game_data.items().get(iid, {}).get('Name', '?')} "
                              "isn't modeled (game_data.py)")
@@ -582,6 +588,8 @@ def _pc_dict(sheet, index, good_luck):
         damage = 4 + int(stats["Body"])
         dmg_type = "Physical"
         opp_def = "Parry/Dodge"
+    if sheet.weapon_element and dmg_type == "Physical":
+        dmg_type = sheet.weapon_element
 
     # Parry uses whichever held weapon gives the best result (rulebook.md:
     # 8 + that weapon's Skill Total + its Defense). `Parry Weapons` lists

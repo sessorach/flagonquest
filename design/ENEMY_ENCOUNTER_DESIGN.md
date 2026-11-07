@@ -4001,3 +4001,44 @@ band; `results/enemy_stats/elite_debuff_picks.txt`):
 
 Each adds about 2 points of losses on an elite for 0-1 points, and
 together they more than add up. Sturdy does nothing here.
+
+### Big enemies can't buy their way out of debuffs; elemental weapons for the sample parties (2026-11-07)
+
+The designer chose option 1: `V3_BIG_BARRED = ("Omniguard", "Resilient",
+"Durable")`, so an elite or solo boss can't take anything that ignores,
+sheds or blocks what the party does to it. No manual monster, test elite
+or old-roster enemy takes any of them, so no build changes (checked: the
+manual's and a fixed-seed run's hashes are the same); the measured cost
+of each is in the previous section.
+
+Then elemental attacks for the sample parties, the game's answer to heavy
+armor. Elemental-Forged Weaponry (I101, a Level 3-4 Masterwork: "Attacks
+with this weapon deal their damage as that type"; Fire at Level 3) is
+modeled now (`party.py`, `game_data.ELEMENTAL_FORGED`, switch
+`tunables.PC_ELEMENTAL_WEAPON`), and Hilde's and Browndog's Level 3
+builds carry a Fire one (a `simNotes` line on each; the export didn't
+have it). With Beornhard's War Magic and Jackal's Bottled Fire, every
+middle-of-band party at Levels 3-5 now has an elemental attacker but one
+(Carrick, Enith, Hanforth, Jackal, which has Jackal's bottles). Their
+Battle Maneuvers deal Fire too, being attacks with the weapon. Switched
+off, a fixed-seed run is identical to before.
+
+Against the same seeds (Levels 3-5, middle of the band;
+`results/enemy_stats/elem_*`, `size_check_elemental.txt`):
+
+| | Before: lost / Down / rounds | With the elemental weapons |
+|---|---|---|
+| Manual fights, Level 3 / 4 / 5 | 1.1 / 1.1 / 2.8% lost, 4.5 / 5.1 / 5.7 rounds | 0.8 / 0.9 / 1.9% lost, 4.2 / 4.8 / 5.4 rounds |
+| Four standard monsters | 0.3% / 13% / 4.4 | 0.3% / 12% / 4.3 |
+| Two Gravel Ogres | 6.0% / 34% / 4.8 | 4.9% / 32% / 4.4 |
+| Gravel Ogre + Elite Sharpshooter | 5.3% / 39% / 4.9 | 4.5% / 37% / 4.5 |
+| Two Black Knights | 10.3% / 40% / 11.1 | 4.7% / 21% / 8.0 |
+| Black Knight + two standard | 0.8% / 12% / 6.6 | 0.3% / 7% / 5.4 |
+| Two Storm Magi (Fire-attuned) | 0.4% / 14% / 4.6 | 1.7% / 31% / 5.9 |
+| Solo Brute Warlord (Heavy armor) | 10.8% / 29% / 4.3 | 6.5% / 25% / 3.6 |
+
+The band's middle wins 1-3 points more days at Levels 3-5, its bottom
+5-8 more. The armored enemies come down most (the Black Knights, the
+Warlord); a Fire-attuned caster goes up, since a Level 3 forged weapon
+can only be Fire. Two Black Knights are still the longest fight at 8
+rounds.

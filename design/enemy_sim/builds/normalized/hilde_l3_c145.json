@@ -57,6 +57,11 @@
   {
    "id": "I127",
    "qty": 1
+  },
+  {
+   "id": "I101",
+   "qty": 1,
+   "element": "Fire"
   }
  ],
  "customItems": [],
@@ -154,6 +159,7 @@
  "simNotes": [
   "Copied from archive/player_builds/Hilde-the-Barbarian-175XP-2026-10-24.json.",
   "Battle Maneuver copies reordered to the order the sim uses them (Lunging, the Level 3 copy, Half Guard, Lunging); the Builder's own order carries no meaning.",
-  "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1."
+  "Normalized to 145 combat XP (combat_xp.normalize, 2026-10-30), from 153: Body -1.",
+  "Elemental-Forged Weaponry (Fire, Level 3) added 2026-11-07 for the sim, not in the export: the designer asked for elemental attacks on some sample characters, the game's answer to heavy armor. Hilde and Browndog carry it so every sample party has an elemental source. Switch it off with tunables.PC_ELEMENTAL_WEAPON = False."
  ]
 }
