@@ -1,0 +1,20 @@
+| Manual fights | Heavy 4 (today) | 5 | 6 |
+|---|---|---|---|
+| Level 1, with a Heavy-armored monster | 11.0% / 30% / 7.7 | 8.4% / 26% / 7.1 | 5.2% / 22% / 6.4 |
+| Level 1, without a Heavy-armored monster | 1.5% / 22% / 4.7 | 1.5% / 22% / 4.7 | 1.5% / 22% / 4.7 |
+| Level 2, with a Heavy-armored monster | 0.8% / 17% / 6.0 | 0.7% / 16% / 5.6 | 0.6% / 15% / 5.3 |
+| Level 2, without a Heavy-armored monster | 1.1% / 16% / 4.5 | 1.1% / 16% / 4.5 | 1.1% / 16% / 4.5 |
+| Level 3, with a Heavy-armored monster | 1.8% / 15% / 4.9 | 1.5% / 14% / 4.6 | 1.2% / 13% / 4.4 |
+| Level 3, without a Heavy-armored monster | 1.2% / 16% / 4.4 | 1.2% / 16% / 4.4 | 1.2% / 16% / 4.4 |
+| Level 4, with a Heavy-armored monster | 3.0% / 13% / 6.0 | 2.7% / 12% / 5.7 | 2.2% / 11% / 5.5 |
+| Level 4, without a Heavy-armored monster | 1.2% / 18% / 4.9 | 1.2% / 18% / 4.9 | 1.2% / 18% / 4.9 |
+| Level 5, with a Heavy-armored monster | 9.2% / 15% / 7.5 | 7.1% / 14% / 7.0 | 6.5% / 13% / 6.8 |
+| Level 5, without a Heavy-armored monster | 1.7% / 12% / 5.5 | 1.7% / 12% / 5.5 | 1.7% / 12% / 5.5 |
+
+| Encounter (Levels 1-5) | Heavy 4 (today) | 5 | 6 |
+|---|---|---|---|
+| Black Knight + two standard | 3.6% / 16% / 6.7 | 3.1% / 15% / 6.4 | 2.6% / 14% / 6.1 |
+| Two Black Knights | 18.1% / 39% / 10.5 | 15.3% / 35% / 9.7 | 13.5% / 32% / 9.3 |
+| Solo Brute Warlord | 12.3% / 32% / 3.7 | 10.7% / 30% / 3.6 | 9.0% / 29% / 3.4 |
+| Gravel Ogre + two standard | 4.2% / 29% / 4.9 | 4.0% / 29% / 4.9 | 3.9% / 29% / 4.8 |
+| Two Gravel Ogres | 9.6% / 39% / 5.0 | 9.6% / 39% / 5.0 | 9.6% / 39% / 5.0 |

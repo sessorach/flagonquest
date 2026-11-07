@@ -4120,3 +4120,31 @@ middle; low / high band lost after):
 | Black Knight + two standard | 3.6% | 16% | 6.7 | 27% / 0% |
 | Two Black Knights | 18% | 39% | 10.5 | 54% / 6% |
 | Solo Brute Warlord (Levels 3-5) | 12% | 32% | 3.7 | 29% / 8% |
+
+### Heavy armor at a higher price (2026-11-07, test)
+
+The designer: should Heavy armor cost a bit more? It's 4 points today
+(Physical Resist +3, Dodge −1, Speed −1; Medium 2 for +2 and Dodge −1).
+`experiments/enemies/heavy_armor_price.py`, the manual's drawn fights
+split by whether a Heavy-armored monster is in them (the Ironbranch
+Warden, the Iron Sentinel, the Brute Warlord), plus the Heavy elite and
+boss fights; middle of the band, 30-60 fights a party
+(`results/enemy_stats/heavy_armor_price.txt`). Lost / Down / rounds:
+
+| | Heavy 4 (today) | 5 | 6 |
+|---|---|---|---|
+| Level 1, with a Heavy monster | 11.0% / 30% / 7.7 | 8.4% / 26% / 7.1 | 5.2% / 22% / 6.4 |
+| Level 1, without | 1.5% / 22% / 4.7 | same | same |
+| Levels 2-4, with (range) | 0.8-3.0% / 13-17% / 4.9-6.0 | 0.7-2.7% / 12-16% / 4.6-5.7 | 0.6-2.2% / 11-15% / 4.4-5.5 |
+| Levels 2-4, without (range) | 1.1-1.2% / 16-18% / 4.4-4.9 | same | same |
+| Level 5, with | 9.2% / 15% / 7.5 | 7.1% / 14% / 7.0 | 6.5% / 13% / 6.8 |
+| Level 5, without | 1.7% / 12% / 5.5 | same | same |
+| Two Black Knights | 18% / 39% / 10.5 | 15% / 35% / 9.7 | 13.5% / 32% / 9.3 |
+| Solo Brute Warlord | 12.3% / 32% / 3.7 | 10.7% / 30% / 3.6 | 9.0% / 29% / 3.4 |
+
+Fights with a Heavy-armored monster run 1-3 rounds longer than the rest
+at every Level, and at Levels 1 and 5 they're lost five or six times as
+often. Each point on the price brings them about a third of the way
+back; at 6 they're still a round or two longer. At 6, the Ironbranch
+Warden and the Iron Sentinel go under the Health floor at Level 1 (the
+test turns the floor off; as designs they'd need a pick less).
