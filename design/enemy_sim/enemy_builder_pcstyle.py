@@ -565,6 +565,9 @@ def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None,
         # is (1 Health for both, so 1 for the Parry half of two points).
         adds["hp"] = adds.get("hp", 0) + adds.pop("parry", 0) // 2
     if version == 3:
+        barred = set(getattr(T, "V3_BIG_BARRED", ())) & set(abilities) if slots >= 2 else set()
+        if barred:
+            raise ValueError(f"{name}: {', '.join(sorted(barred))} can't be taken by an elite or solo boss")
         for ab in set(abilities):
             n = abilities.count(ab)
             rider = ab.startswith("Strike (") or ab.startswith("Poison (")

@@ -3966,3 +3966,38 @@ biggest single piece: every PC weapon hit Harries, and on an elite that
 lives three times as long that adds up. It's a defensive pick bought
 with the Black Knight's normal points, so the size rule doesn't catch
 it. Heavy armor is the other half. Taunting does nothing here.
+
+### Omniguard barred on elites, and the other debuff-shrugging picks (2026-11-07)
+
+The designer: bar Omniguard on elites and test. `tunables.V3_BIG_BARRED
+= ("Omniguard",)`: an elite or solo boss can't take it at all (the
+builder refuses it). No manual monster changes (only the Hedge Knight, a
+standard enemy, takes it); the test-only Black Knight drops it, the point
+going to Health. size_check.py's Black Knight fights, rerun
+(`results/enemy_stats/size_check.txt`; the Omniguard runs kept in
+`size_check_bk_omniguard.jsonl`):
+
+| Encounter | With Omniguard: lost / Down / rounds | Without |
+|---|---|---|
+| Black Knight + two standard | 5.9% / 28% / 9.2 | 2.5% / 16% / 7.0 |
+| Two Black Knights | 37% / 73% / 17.1 | 16% / 44% / 11.8 |
+| Black Knight + two minions + one standard | 6.0% / 25% / 9.0 | 2.0% / 13% / 6.8 |
+
+Still the slowest fights: two Black Knights run 12 rounds, the rest of
+it Heavy armor's Resist on an elite's Health.
+
+The other picks that shrug off what the party does, on two Gravel Ogres
+(`experiments/enemies/elite_debuff_picks.py`, Levels 3-5, middle of the
+band; `results/enemy_stats/elite_debuff_picks.txt`):
+
+| Two Gravel Ogres | Lost | Down | Rounds | PC hit rate |
+|---|---|---|---|---|
+| As in the manual (has Sturdy) | 3.9% | 27% | 4.6 | 86% |
+| Without Sturdy | 4.0% | 27% | 4.6 | 86% |
+| + Resilient (shed one of each debuff a turn, 0 points) | 5.8% | 32% | 4.7 | 86% |
+| + Durable (+1 Protected a turn, 1 point) | 6.0% | 30% | 4.9 | 85% |
+| + Omniguard (1 point) | 5.8% | 33% | 5.2 | 81% |
+| + all three | 14% | 43% | 6.0 | 79% |
+
+Each adds about 2 points of losses on an elite for 0-1 points, and
+together they more than add up. Sturdy does nothing here.

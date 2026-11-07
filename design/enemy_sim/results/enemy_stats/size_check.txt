@@ -29,12 +29,12 @@
 | Storm Magus + two minions + one standard | 0.33 | 0.2% (1%) | 7% | 1% | 4.1 | L1 0/10 L2 0/7 L3 1/12 L4 0/3 L5 0/2 | 8% / 0% |
 | Storm Magus + two minions + one standard | 0.40 | 0.4% (1%) | 9% | 1% | 4.4 | L1 1/12 L2 0/8 L3 1/15 L4 0/6 L5 0/3 | - |
 | Storm Magus + two minions + one standard | 0.50 | 0.7% (2%) | 11% | 2% | 4.7 | L1 1/15 L2 1/10 L3 2/19 L4 0/9 L5 0/5 | - |
-| Black Knight + two standard | - | 5.9% (26%) | 28% | 10% | 9.2 | L1 17/38 L2 7/42 L3 2/15 L4 1/15 L5 4/29 | 44% / 1% |
-| Two Black Knights | - | 37.0% (59%) | 73% | 46% | 17.1 | L1 44/66 L2 59/93 L3 16/55 L4 20/66 L5 46/84 | 79% / 15% |
-| Black Knight + two minions + one standard | 0.33 | 6.0% (15%) | 25% | 9% | 9.0 | L1 14/33 L2 9/42 L3 3/15 L4 0/9 L5 5/26 | 42% / 1% |
-| Black Knight + two minions + one standard | 0.40 | 6.7% (15%) | 29% | 11% | 9.6 | L1 15/35 L2 9/43 L3 4/20 L4 0/14 L5 7/34 | - |
-| Black Knight + two minions + one standard | 0.50 | 9.1% (18%) | 35% | 14% | 10.3 | L1 17/40 L2 12/55 L3 6/23 L4 0/17 L5 11/39 | - |
 | Gravel Ogre + Coven Matriarch | - | 1.9% (2%) | 16% | 4% | 4.9 | L1 2/22 L2 2/14 L3 2/13 L4 3/20 L5 1/9 | 15% / 0% |
 | Gravel Ogre + Elite Sharpshooter | - | 5.2% (8%) | 39% | 12% | 4.7 | L1 7/50 L2 3/28 L3 3/42 L4 5/36 L5 8/39 | 24% / 3% |
 | Elite Sharpshooter + Storm Magus | - | 0.5% (1%) | 19% | 3% | 4.0 | L1 1/29 L2 0/20 L3 1/21 L4 0/18 L5 0/10 | 13% / 0% |
+| Black Knight + two standard | - | 2.5% (20%) | 16% | 4% | 7.0 | L1 9/23 L2 2/21 L3 1/10 L4 0/11 L5 1/15 | 27% / 0% |
+| Two Black Knights | - | 16.0% (29%) | 44% | 21% | 11.8 | L1 21/41 L2 29/59 L3 7/30 L4 5/33 L5 18/56 | 58% / 5% |
+| Black Knight + two minions + one standard | 0.33 | 2.0% (4%) | 13% | 4% | 6.8 | L1 4/17 L2 2/20 L3 2/12 L4 0/5 L5 2/12 | 25% / 0% |
+| Black Knight + two minions + one standard | 0.40 | 2.5% (6%) | 16% | 5% | 7.3 | L1 5/19 L2 3/22 L3 2/15 L4 0/9 L5 3/18 | - |
+| Black Knight + two minions + one standard | 0.50 | 3.7% (8%) | 20% | 7% | 7.8 | L1 7/24 L2 4/28 L3 4/19 L4 0/11 L5 4/21 | - |
 | Solo Brute Warlord | - | 10.8% (13%) | 29% | 16% | 4.3 | L3 12/31 L4 7/23 L5 13/33 | 33% / 6% |

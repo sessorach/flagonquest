@@ -368,7 +368,8 @@ gear; Step 4's gear is added last and can take a number past them:
 | 4 (solo boss) | twice | 4 times | 2 |
 
 The points a size adds buy offense, on-hit effects and Actions, never
-Defenses, Resist or Health. A boss fight is two attacking elites, or one
+Defenses, Resist or Health, and an elite or solo boss can't take
+Omniguard at all. A boss fight is two attacking elites, or one
 with standard monsters, inside the party's Slots (a healer or
 shield-caster makes a fine second elite, a poor leader). The solo boss
 is a rare exception: melee, and run with care; a ranged one gets mobbed.

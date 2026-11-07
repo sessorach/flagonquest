@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-07 — Elites and debuffs
+
+Elites and solo bosses can no longer ignore Harried, which was most of what made a heavily armored elite knight such a slog, and the other ways an elite can shrug off debuffs got measured as the start of a rule for them.
+
 ### 2026-11-06 — Bigger budgets for elites and bosses
 
 Tested giving elites and the solo boss more Ability points paid for out of their Health (twice the points works if the extra can't buy Defense), then found the solo boss too unpredictable and tested boss fights led by elites instead.

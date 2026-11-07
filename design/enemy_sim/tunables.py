@@ -409,6 +409,12 @@ V3_SLOT_BUDGET = {2: 2, 4: 2}
 # budget x1; 2.5 with twice the budget (2026-11-06), an elite beside two
 # standard monsters about an ordinary fight.
 V3_ELITE_HEALTH = 2.5
+# Abilities an elite or solo boss can't take at all (designer, 2026-11-06):
+# Omniguard ignores the Harried every PC weapon hit stacks, priced on
+# standard enemies; on one that lives two or three times as long it was
+# the biggest piece of the Black Knight's slog
+# (experiments/enemies/black_knight_pieces.py). () = none.
+V3_BIG_BARRED = ("Omniguard",)
 # A minion's (0.5 Slots) Health in the pruned v3, in standard enemies (the
 # old SLOT_MULTIPLIER's third until tested otherwise, 2026-11-06).
 V3_MINION_HEALTH = 1 / 3

@@ -51,7 +51,8 @@ TEST_ELITES = {
                                  "Strike (Vulnerable); Enhanced Range; Attunement (Fire); Enhanced Reflexes; Accuracy +1"),
     "Black Knight": dict(BASE, Slots="2", Role="Defender", Action="Heavy Weapon and Shield", Armor="Heavy",
                          StrongDefense="Vital", BattleTactic="Hold the Line",
-                         PrunedPicks="Strike (Taunting); Strike (Taunting); Omniguard; Sturdy",
+                         # Omniguard dropped 2026-11-06: elites can't take it.
+                         PrunedPicks="Strike (Taunting); Strike (Taunting); Sturdy",
                          PrunedExtra="Dodge +1",
                          BigPicks="Accuracy +1; Damage +1; Strike (Crippling); Strike (Crippling); Action (Taunting); "
                                   "Strike (Battering); Accuracy +1"),
