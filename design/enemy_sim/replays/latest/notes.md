@@ -1,12 +1,12 @@
 # Latest replays (2026-11-07)
 
-A point more enemy budget everywhere (8 / 10 / 12 / 12 / 12), now the default
+Test only: one enemy budget and Heavy armor at 6 (defaults unchanged)
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 97.2% wins, 5.3 rounds, 74% HP left on a win
+- Matchup average over 1000 fights: 96.4% wins, 5.3 rounds, 74% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

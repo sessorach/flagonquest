@@ -4148,3 +4148,58 @@ often. Each point on the price brings them about a third of the way
 back; at 6 they're still a round or two longer. At 6, the Ironbranch
 Warden and the Iron Sentinel go under the Health floor at Level 1 (the
 test turns the floor off; as designs they'd need a pick less).
+
+### One budget, and Heavy armor at 6 (2026-11-07, test)
+
+Per the designer: armor, loadout and picks all come out of the Ability
+budget, never out of Health; whatever is left over buys Health. Two
+things broke that. A design could cost more than its points and pay the
+difference out of Health (down to two thirds of the table's). And the
+Level's extra points bought picks even when the design had already spent
+past its points, so the overspend carried up every Level.
+`tunables.V3_ONE_BUDGET` stops both: the extra points buy only what the
+design leaves room for, and a design that costs more than its Level's
+points doesn't build. Points the design leaves unspent are still Health,
+so every monster that fit already builds the same.
+
+Under it the Hedge Knight and both priests fit as designed (each costs 8,
+the Level 1 budget) and just stop buying an extra pick at Levels 1-2,
+with a point more Health. The three Heavy designs cost 9 with Heavy at 4
+(11 at 6) and were trimmed to fit, the trimmed picks moved to the end of
+PrunedExtra so the extra points can buy them back after Accuracy and
+Damage:
+
+- Heavy 4: the Warden drops Action (Parting Shot), the Sentinel a Dodge
+  +1, the Warlord Action (Parting Shot), which goes first on its BigPicks.
+- Heavy 6: the Warden keeps Sturdy and Parting Shot (Battering and Durable
+  go), the Sentinel keeps Resist (Fire), Elemental Weapon (Frost),
+  Resilient and Sturdy (both Dodge +1 and Enhanced Health go), the Warlord
+  keeps Intimidating, with Cleaving and Parting Shot first on its BigPicks.
+
+`experiments/enemies/one_budget.py`; the manual's fights and the Heavy
+big-enemy fights, middle of the band, 30-60 fights a party
+(`results/enemy_stats/one_budget.txt`). Lost / Down / rounds:
+
+| | Today (Heavy 4, overspend) | One budget, Heavy 4 | One budget, Heavy 6 |
+|---|---|---|---|
+| Level 1, with a Heavy monster | 11.0% / 30% / 7.7 | 15.5% / 37% / 8.9 | 6.3% / 26% / 7.4 |
+| Level 2, with | 0.8% / 17% / 6.0 | 1.8% / 22% / 6.7 | 1.0% / 18% / 6.1 |
+| Level 3, with | 1.8% / 15% / 4.9 | 1.9% / 15% / 5.1 | 0.9% / 13% / 4.6 |
+| Level 4, with | 3.0% / 13% / 6.0 | 2.7% / 12% / 6.1 | 1.4% / 10% / 5.6 |
+| Level 5, with | 9.2% / 15% / 7.5 | 8.8% / 14% / 7.8 | 6.8% / 12% / 7.2 |
+| Hedge Knight or priest fights, Levels 1-5 | 0.6-3.0% | within 0.1 points lost | same |
+| Fights with none of them | 1.0-1.8% / 4.3-5.5 rounds | same | same |
+| Black Knight + two standard | 3.6% / 16% / 6.7 | 3.8% / 17% / 6.7 | 2.4% / 14% / 6.2 |
+| Two Black Knights | 18.1% / 39% / 10.5 | 18.1% / 39% / 10.5 | 13.8% / 33% / 9.4 |
+| Solo Brute Warlord | 12.3% / 32% / 3.7 | 9.9% / 29% / 4.0 | 8.0% / 26% / 3.8 |
+
+One budget at Heavy 4 makes the Heavy fights harder at Levels 1-2, not
+easier: the overspend came out of Health, so a design that stops
+overspending keeps 1-2 more Health (the Warden 12 to 14 at Level 1, the
+Sentinel 13 to 15), and a point of picks doesn't make up for it. Heavy at
+6 is what tones them down: lost about as often as Heavy 6 without the
+redesign (5.2% and 6.5% at Levels 1 and 5, the test above), now with
+every design inside its budget. They're still a round or two longer than
+other fights and lost three to six times as often at Levels 1 and 5 (6.3% against 1.8%, 6.8% against 1.2%). The
+cost: at Level 1, a Heavy monster with a shield has 1 point left for
+picks.

@@ -1,0 +1,63 @@
+Lost / Down / Rounds, middle of the band.
+
+| Manual fights | Today (Heavy 4, overspend) | One budget, Heavy 4 | One budget, Heavy 6 |
+|---|---|---|---|
+| Level 1, all | 3.2% / 23% / 5.2 | 4.0% / 25% / 5.4 | 2.4% / 23% / 5.2 |
+| Level 1, with a Heavy monster | 11.0% / 30% / 7.7 | 15.5% / 37% / 8.9 | 6.3% / 26% / 7.4 |
+| Level 1, with a Hedge Knight or priest (no Heavy) | 0.6% / 12% / 5.9 | 0.6% / 12% / 5.9 | 0.6% / 12% / 5.9 |
+| Level 1, with none of them | 1.8% / 25% / 4.3 | 1.8% / 25% / 4.3 | 1.8% / 25% / 4.3 |
+| Level 2, all | 1.1% / 16% / 4.7 | 1.2% / 17% / 4.8 | 1.1% / 16% / 4.7 |
+| Level 2, with a Heavy monster | 0.8% / 17% / 6.0 | 1.8% / 22% / 6.7 | 1.0% / 18% / 6.1 |
+| Level 2, with a Hedge Knight or priest (no Heavy) | 1.5% / 12% / 5.0 | 1.4% / 11% / 5.0 | 1.4% / 11% / 5.0 |
+| Level 2, with none of them | 1.0% / 17% / 4.3 | 1.0% / 17% / 4.3 | 1.0% / 17% / 4.3 |
+| Level 3, all | 1.3% / 16% / 4.5 | 1.3% / 16% / 4.6 | 1.1% / 16% / 4.5 |
+| Level 3, with a Heavy monster | 1.8% / 15% / 4.9 | 1.9% / 15% / 5.1 | 0.9% / 13% / 4.6 |
+| Level 3, with a Hedge Knight or priest (no Heavy) | 0.6% / 10% / 4.6 | 0.6% / 10% / 4.6 | 0.6% / 10% / 4.6 |
+| Level 3, with none of them | 1.5% / 19% / 4.4 | 1.5% / 19% / 4.4 | 1.5% / 19% / 4.4 |
+| Level 4, all | 1.6% / 17% / 5.1 | 1.5% / 17% / 5.2 | 1.3% / 16% / 5.1 |
+| Level 4, with a Heavy monster | 3.0% / 13% / 6.0 | 2.7% / 12% / 6.1 | 1.4% / 10% / 5.6 |
+| Level 4, with a Hedge Knight or priest (no Heavy) | 1.2% / 13% / 4.9 | 1.2% / 13% / 4.9 | 1.2% / 13% / 4.9 |
+| Level 4, with none of them | 1.2% / 19% / 4.9 | 1.2% / 19% / 4.9 | 1.2% / 19% / 4.9 |
+| Level 5, all | 2.8% / 13% / 5.8 | 2.8% / 13% / 5.8 | 2.5% / 12% / 5.7 |
+| Level 5, with a Heavy monster | 9.2% / 15% / 7.5 | 8.8% / 14% / 7.8 | 6.8% / 12% / 7.2 |
+| Level 5, with a Hedge Knight or priest (no Heavy) | 3.0% / 6% / 5.5 | 3.0% / 6% / 5.5 | 3.0% / 6% / 5.5 |
+| Level 5, with none of them | 1.2% / 15% / 5.5 | 1.2% / 15% / 5.5 | 1.2% / 15% / 5.5 |
+
+| Encounter (Levels 1-5) | Today | One budget, Heavy 4 | One budget, Heavy 6 |
+|---|---|---|---|
+| Black Knight + two standard | 3.6% / 16% / 6.7 | 3.8% / 17% / 6.7 | 2.4% / 14% / 6.2 |
+| Two Black Knights | 18.1% / 39% / 10.5 | 18.1% / 39% / 10.5 | 13.8% / 33% / 9.4 |
+| Solo Brute Warlord | 12.3% / 32% / 3.7 | 9.9% / 29% / 4.0 | 8.0% / 26% / 3.8 |
+| Gravel Ogre + two standard | 4.2% / 29% / 4.9 | 4.4% / 30% / 5.0 | 3.8% / 29% / 4.9 |
+| Two Gravel Ogres | 9.6% / 39% / 5.0 | 9.6% / 39% / 5.0 | 9.6% / 39% / 5.0 |
+
+```
+Hedge Knight       today  L1 13  L2 14  L3 17  L4 19  L5 19
+Hedge Knight       one4   L1 14  L2 15  L3 17  L4 19  L5 19
+Hedge Knight       one6   L1 14  L2 15  L3 17  L4 19  L5 19
+                   one6 picks at L3: Accuracy +1; Strike (Taunting); Strike (Taunting); Action (Taunting); Omniguard; Strike (Harrying); Accuracy +1; Dodge +1; Strike (Harrying)
+Warpriest          today  L1 9  L2 10  L3 14  L4 16  L5 16
+Warpriest          one4   L1 10  L2 11  L3 14  L4 16  L5 16
+Warpriest          one6   L1 10  L2 11  L3 14  L4 16  L5 16
+                   one6 picks at L3: Improved Support; Durable; Accuracy +1; Strike (Frightening); Strike (Frightening); Strike (Harrying); Accuracy +1; Dodge +1
+Deadbough Priest   today  L1 9  L2 10  L3 14  L4 16  L5 16
+Deadbough Priest   one4   L1 10  L2 11  L3 14  L4 16  L5 16
+Deadbough Priest   one6   L1 10  L2 11  L3 14  L4 16  L5 16
+                   one6 picks at L3: Improved Support; Durable; Resist +1; Accuracy +1; Dodge +1
+Ironbranch Warden  today  L1 12  L2 13  L3 16  L4 18  L5 18
+Ironbranch Warden  one4   L1 14  L2 15  L3 17  L4 19  L5 19
+Ironbranch Warden  one6   L1 14  L2 15  L3 17  L4 19  L5 19
+                   one6 picks at L3: Sturdy; Action (Parting Shot); Accuracy +1; Dodge +1; Strike (Crippling); Strike (Crippling)
+Iron Sentinel      today  L1 13  L2 14  L3 18  L4 20  L5 20
+Iron Sentinel      one4   L1 15  L2 16  L3 19  L4 21  L5 21
+Iron Sentinel      one6   L1 14  L2 15  L3 18  L4 20  L5 20
+                   one6 picks at L3: Resist (Fire); Elemental Weapon (Frost); Resilient; Sturdy; Accuracy +1; Vital/Mental/Vigilant +1; Enhanced Health
+Brute Warlord      today  L1 40  L2 44  L3 56  L4 64  L5 64
+Brute Warlord      one4   L1 46  L2 48  L3 60  L4 68  L5 68
+Brute Warlord      one6   L1 44  L2 50  L3 58  L4 66  L5 66
+                   one6 picks at L3: Action (Intimidating); Accuracy +1; Strike (Crippling); Strike (Crippling); Strike (Cleaving); Action (Parting Shot); Strike (Crippling); Strike (Crippling); Strike (Frightening); Strike (Frightening); Accuracy +1; Damage +1; Strike (Frightening); Strike (Frightening)
+Black Knight       today  L1 37  L2 39  L3 47  L4 52  L5 52
+Black Knight       one4   L1 37  L2 39  L3 47  L4 52  L5 52
+Black Knight       one6   L1 35  L2 38  L3 44  L4 49  L5 49
+                   one6 picks at L3: Strike (Taunting); Strike (Taunting); Sturdy; Accuracy +1; Dodge +1; Accuracy +1; Damage +1; Strike (Crippling); Strike (Crippling); Action (Taunting); Strike (Battering); Accuracy +1
+```
