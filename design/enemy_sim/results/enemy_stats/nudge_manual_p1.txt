@@ -1,0 +1,150 @@
+== Level 1: manual lose  3.1% Down  22% Wnd  46% rds 5.2 again  53%
+             old four mixes lose  2.9% Down  28% Wnd  56% rds 4.8 again  48%
+   stand-ins                                  lose 10.8% Down  50% Wnd  74% rds 5.4 again  51%
+   D                                          lose  3.4% Down  17% Wnd  44% rds 5.9 again  63%
+   S                                          lose  3.0% Down  30% Wnd  61% rds 6.4 again  55%
+   U                                          lose  2.1% Down  16% Wnd  33% rds 5.3 again  57%
+   T                                          lose  1.7% Down  15% Wnd  40% rds 5.1 again  54%
+   B                                          lose  0.4% Down  11% Wnd  30% rds 3.9 again  43%
+   A                                          lose  0.3% Down  18% Wnd  37% rds 4.1 again  47%
+   easiest: Fen Warden|Fen Warden|Fen Warden|Shade Stalker (Down 0%); Bog Hexer|Bog Hexer|Bog Hexer|Warpriest (Down 2%); Coven Matriarch|Skulking Footpad|Warleader (Down 2%)
+   hardest: Goblin Cutthroat|Goblin Cutthroat|Goblin Cutthroat|Goblin Cutthroat|Skulking Footpad|Skulking Footpad (Down 57%); Grave Caller|Grave Caller|Marsh Archer|Marsh Archer (Down 60%); Hunting Hound|Hunting Hound|Hunting Hound|Hunting Hound|Marsh Archer|Marsh Archer (Down 61%)
+== Level 2: manual lose  1.1% Down  15% Wnd  38% rds 4.7 again  53%
+             old four mixes lose  0.9% Down  21% Wnd  47% rds 4.5 again  54%
+   Ashleigh+Enith+Felix+Hanforth              lose  4.5% Down  34% Wnd  70% rds 7.3 again  76%
+   Ashleigh+Beornhard+Carrick+Felix           lose  1.6% Down  19% Wnd  41% rds 4.9 again  57%
+   Ashleigh+Carrick+Hanforth+Jackal           lose  1.5% Down  19% Wnd  54% rds 5.6 again  57%
+   Beornhard+Carrick+Felix+Jackal             lose  0.4% Down  12% Wnd  32% rds 3.7 again  43%
+   Browndog+Carrick+Felix+Jackal              lose  0.3% Down  10% Wnd  29% rds 4.3 again  50%
+   Felix+Hanforth+Hilde+Sable                 lose  0.1% Down   9% Wnd  34% rds 3.9 again  48%
+   Ashleigh+Browndog+Jackal+Sable             lose  0.0% Down  10% Wnd  29% rds 3.8 again  42%
+   Browndog+Carrick+Felix+Sable               lose  0.0% Down   7% Wnd  20% rds 4.1 again  50%
+   easiest: Fen Warden|Fen Warden|Iron Sentinel|Shieldbearer|Shieldbearer (Down 2%); Warleader|Warleader|Warleader|Warpriest (Down 3%); Thornhide Brute|Warleader|Warleader|Warleader (Down 4%)
+   hardest: Mind Lash Adept|Mind Lash Adept|Mind Lash Adept|Warleader (Down 43%); Crossbow Sniper|Crossbow Sniper|Crossbow Sniper|Executioner (Down 48%); Crossbow Sniper|Crossbow Sniper|Crossbow Sniper|Grave Caller (Down 50%)
+== Level 3: manual lose  1.2% Down  15% Wnd  42% rds 4.5 again  57%
+             old four mixes lose  2.1% Down  23% Wnd  56% rds 4.2 again  53%
+   Ashleigh+Beornhard+Browndog+Enith          lose  5.9% Down  25% Wnd  53% rds 6.7 again  73%
+   Ashleigh+Beornhard+Carrick+Hilde           lose  1.6% Down  18% Wnd  48% rds 3.7 again  48%
+   Ashleigh+Carrick+Hilde+Jackal              lose  0.8% Down  19% Wnd  48% rds 3.4 again  45%
+   Ashleigh+Beornhard+Browndog+Sable          lose  0.6% Down  14% Wnd  37% rds 5.1 again  67%
+   Carrick+Enith+Hanforth+Jackal              lose  0.4% Down  14% Wnd  48% rds 5.0 again  60%
+   Beornhard+Browndog+Carrick+Hanforth        lose  0.3% Down  10% Wnd  36% rds 5.3 again  66%
+   Beornhard+Carrick+Jackal+Sable             lose  0.2% Down  12% Wnd  37% rds 3.4 again  47%
+   Carrick+Hanforth+Hilde+Sable               lose  0.0% Down   7% Wnd  32% rds 3.5 again  49%
+   easiest: Shieldbearer|Shieldbearer|Shieldbearer|Shieldbearer|Shieldbearer|Shieldbearer|Warpriest (Down 0%); Field Medic|Glaive Dancer|Iron Sentinel|Iron Sentinel (Down 0%); Thornhide Brute|Warleader|Warleader|Warleader (Down 1%)
+   hardest: Ember Caster|Ember Caster|Thornhide Brute|Thornhide Brute (Down 32%); Iron Sentinel|Marsh Archer|Marsh Archer|Marsh Archer (Down 36%); Crossbow Sniper|Crossbow Sniper|Grave Caller|Mind Lash Adept (Down 61%)
+== Level 4: manual lose  1.4% Down  16% Wnd  37% rds 5.1 again  60%
+   Ashleigh+Beornhard+Browndog+Enith          lose  3.3% Down  21% Wnd  45% rds 6.2 again  69%
+   Ashleigh+Beornhard+Carrick+Hilde           lose  2.0% Down  21% Wnd  47% rds 4.4 again  51%
+   Beornhard+Browndog+Carrick+Hanforth        lose  1.6% Down  11% Wnd  32% rds 6.1 again  63%
+   Ashleigh+Carrick+Hilde+Jackal              lose  1.5% Down  23% Wnd  47% rds 4.2 again  53%
+   Carrick+Enith+Hanforth+Jackal              lose  1.0% Down  11% Wnd  31% rds 6.2 again  68%
+   Ashleigh+Beornhard+Browndog+Sable          lose  0.7% Down  15% Wnd  38% rds 5.4 again  66%
+   Beornhard+Carrick+Jackal+Sable             lose  0.7% Down  18% Wnd  36% rds 4.1 again  53%
+   Carrick+Hanforth+Hilde+Sable               lose  0.2% Down   7% Wnd  22% rds 4.4 again  60%
+   easiest: Field Medic|Hedge Knight|Hedge Knight|Hedge Knight (Down 0%); Bog Skirmisher|Fen Warden|Fen Warden|Hedge Knight (Down 0%); Bog Skirmisher|Bog Skirmisher|Bog Skirmisher|Ironbranch Warden (Down 0%)
+   hardest: Executioner|Goblin Cutthroat|Goblin Cutthroat|Goblin Cutthroat|Goblin Cutthroat|Goblin Cutthroat|Goblin Cutthroat (Down 42%); Crossbow Sniper|Crossbow Sniper|Crossbow Sniper|Glaive Dancer (Down 42%); Grave Caller|Grave Caller|Grave Caller|Hedge Knight (Down 74%)
+== Level 5: manual lose  2.7% Down  12% Wnd  30% rds 5.8 again  67%
+   Ashleigh+Beornhard+Browndog+Enith          lose  4.3% Down  15% Wnd  35% rds 6.9 again  77%
+   Beornhard+Browndog+Carrick+Hanforth        lose  3.4% Down   7% Wnd  23% rds 7.4 again  73%
+   Carrick+Enith+Hanforth+Jackal              lose  3.3% Down  12% Wnd  33% rds 6.9 again  76%
+   Ashleigh+Beornhard+Carrick+Hilde           lose  3.1% Down  17% Wnd  38% rds 4.8 again  57%
+   Ashleigh+Carrick+Hilde+Jackal              lose  3.0% Down  18% Wnd  38% rds 4.6 again  58%
+   Ashleigh+Beornhard+Browndog+Sable          lose  2.6% Down   9% Wnd  25% rds 6.4 again  71%
+   Beornhard+Carrick+Jackal+Sable             lose  2.0% Down  12% Wnd  29% rds 4.5 again  55%
+   Carrick+Hanforth+Hilde+Sable               lose  0.3% Down   4% Wnd  18% rds 4.9 again  66%
+   easiest: Deadbough Priest|Mind Lash Adept|Shade Stalker|Shade Stalker (Down 0%); Deadbough Priest|Goblin Cutthroat|Goblin Cutthroat|Shade Stalker|Shade Stalker (Down 0%); Coven Matriarch|Curse Weaver|Hedge Knight (Down 0%)
+   hardest: Gravel Ogre|Thornhide Brute|Warpriest (Down 40%); Brute|Crossbow Sniper|Crossbow Sniper|Crossbow Sniper (Down 50%); Bog Skirmisher|Mind Lash Adept|Mind Lash Adept|Mind Lash Adept (Down 51%)
+== A whole encounter of each monster against the average, down (points):
+   Grave Caller          +38.0  (16 encounters)
+   Mind Lash Adept       +35.6  (13 encounters)
+   Crossbow Sniper       +31.5  (21 encounters)
+   Gravel Ogre           +28.7  (14 encounters)
+   Marsh Archer          +22.9  (18 encounters)
+   Brute Warlord         +16.7  (3 encounters)
+   Goblin Cutthroat      +16.0  (19 encounters)
+   Ember Caster          +13.1  (12 encounters)
+   Skulking Footpad      +11.4  (15 encounters)
+   Hunting Hound         +11.1  (10 encounters)
+   Cinder Adept           +5.4  (12 encounters)
+   Executioner            +3.9  (12 encounters)
+   Iron Sentinel          +2.3  (18 encounters)
+   Thornhide Brute        -0.4  (22 encounters)
+   Ironbranch Warden      -0.9  (15 encounters)
+   Brute                  -1.3  (18 encounters)
+   Curse Weaver           -6.0  (16 encounters)
+   Glaive Dancer          -9.0  (22 encounters)
+   Hedge Knight           -9.9  (19 encounters)
+   Shade Stalker         -10.6  (26 encounters)
+   Bog Hexer             -10.8  (18 encounters)
+   Mire Witch            -14.9  (13 encounters)
+   Shieldbearer          -16.4  (15 encounters)
+   Coven Matriarch       -16.6  (13 encounters)
+   Warleader             -16.8  (20 encounters)
+   Fen Warden            -17.9  (16 encounters)
+   Warpriest             -18.4  (21 encounters)
+   Bog Skirmisher        -24.9  (20 encounters)
+   Deadbough Priest      -34.6  (10 encounters)
+   Field Medic           -36.4  (16 encounters)
+== A whole encounter of each monster against the average, lose (points):
+   Brute Warlord         +10.4  (3 encounters)
+   Gravel Ogre            +7.1  (14 encounters)
+   Iron Sentinel          +6.2  (18 encounters)
+   Ironbranch Warden      +6.0  (15 encounters)
+   Warpriest              +5.6  (21 encounters)
+   Bog Hexer              +1.9  (18 encounters)
+   Cinder Adept           +1.7  (12 encounters)
+   Thornhide Brute        +1.4  (22 encounters)
+   Grave Caller           +0.9  (16 encounters)
+   Marsh Archer           +0.6  (18 encounters)
+   Ember Caster           +0.4  (12 encounters)
+   Shieldbearer           -0.4  (15 encounters)
+   Mind Lash Adept        -0.6  (13 encounters)
+   Brute                  -0.9  (18 encounters)
+   Field Medic            -1.0  (16 encounters)
+   Goblin Cutthroat       -1.5  (19 encounters)
+   Crossbow Sniper        -1.5  (21 encounters)
+   Hedge Knight           -1.7  (19 encounters)
+   Shade Stalker          -1.9  (26 encounters)
+   Hunting Hound          -2.0  (10 encounters)
+   Warleader              -2.1  (20 encounters)
+   Glaive Dancer          -2.1  (22 encounters)
+   Fen Warden             -2.2  (16 encounters)
+   Curse Weaver           -2.5  (16 encounters)
+   Deadbough Priest       -2.5  (10 encounters)
+   Executioner            -2.7  (12 encounters)
+   Mire Witch             -2.8  (13 encounters)
+   Coven Matriarch        -2.9  (13 encounters)
+   Skulking Footpad       -3.1  (15 encounters)
+   Bog Skirmisher         -3.6  (20 encounters)
+== A whole encounter of each monster against the average, rounds (rounds):
+   Warpriest              +4.4  (21 encounters)
+   Iron Sentinel          +4.4  (18 encounters)
+   Field Medic            +3.9  (16 encounters)
+   Bog Skirmisher         +1.8  (20 encounters)
+   Ironbranch Warden      +1.6  (15 encounters)
+   Bog Hexer              +1.2  (18 encounters)
+   Gravel Ogre            +0.3  (14 encounters)
+   Deadbough Priest       +0.3  (10 encounters)
+   Cinder Adept           +0.2  (12 encounters)
+   Coven Matriarch        +0.1  (13 encounters)
+   Shade Stalker          +0.1  (26 encounters)
+   Hedge Knight           -0.3  (19 encounters)
+   Mire Witch             -0.4  (13 encounters)
+   Brute                  -0.4  (18 encounters)
+   Marsh Archer           -0.4  (18 encounters)
+   Crossbow Sniper        -0.5  (21 encounters)
+   Thornhide Brute        -0.5  (22 encounters)
+   Warleader              -0.6  (20 encounters)
+   Shieldbearer           -0.7  (15 encounters)
+   Goblin Cutthroat       -0.7  (19 encounters)
+   Hunting Hound          -1.0  (10 encounters)
+   Fen Warden             -1.0  (16 encounters)
+   Grave Caller           -1.1  (16 encounters)
+   Ember Caster           -1.2  (12 encounters)
+   Skulking Footpad       -1.2  (15 encounters)
+   Brute Warlord          -1.4  (3 encounters)
+   Mind Lash Adept        -1.6  (13 encounters)
+   Executioner            -1.7  (12 encounters)
+   Glaive Dancer          -1.8  (22 encounters)
+   Curse Weaver           -2.1  (16 encounters)

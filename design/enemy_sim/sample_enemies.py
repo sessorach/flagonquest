@@ -234,6 +234,14 @@ def _pruned_picks(row, abilities):
         order = ["Accuracy +1", "Damage +1"] + [p for p in order if p not in ("Accuracy +1", "Damage +1")]
     for pick in order:
         price = eb.ABILITY_HEALTH_V3P[pick]
+        n = picks.count(pick)
+        rider = pick.startswith("Strike (") or pick.startswith("Poison (")
+        # A pick the row already has that can't be taken again (Damage +1
+        # once; a rider at its cap) is skipped, as BigPicks' are.
+        if n and not rider and pick not in eb.REPEATABLE_V3:
+            continue
+        if rider and n >= (eb.POISON_CAP_V3 if pick.startswith("Poison (") else eb.RIDER_CAP_V3):
+            continue
         if price <= left:
             picks.append(pick)
             left -= price

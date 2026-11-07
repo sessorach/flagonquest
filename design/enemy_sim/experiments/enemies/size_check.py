@@ -121,19 +121,29 @@ def encounters(L):
 LEVELS = [1, 2, 3, 4, 5]
 
 
+KINDS = []  # empty: every kind
+
+
 def cases():
     out = []
     for L in LEVELS:
         for kind, label, enc in encounters(L):
+            if KINDS and kind not in KINDS:
+                continue
             hps = MINION_HP if "minion" in kind else [MINION_HP[0]]
             for h in hps:
                 out.append(dict(level=L, kind=kind, label=label, enc=enc, minion_hp=round(h, 3)))
     return out
 
 
+EXTRA = [None]
+
+
 def _job(args):
     c, budget, gi, n = args
     install()
+    if EXTRA[0] is not None:
+        T.V3_PRUNED_EXTRA = EXTRA[0]
     T.ENEMY_LEVEL_UP = 0
     T.V3_MINION_HEALTH = c["minion_hp"]
     L = c["level"]
@@ -217,9 +227,14 @@ def main():
     ap.add_argument("--txt")
     ap.add_argument("-n", type=int, default=60)
     ap.add_argument("-L", default="1,2,3,4,5", help="Levels to run")
+    ap.add_argument("--kinds", default="", help="encounter kinds to run (standard, minion, elite, elite+minion, solo)")
+    ap.add_argument("--extra", help="the Level extra points, '1:0/2:2/3:4/4:4/5:4'")
     ap.add_argument("-j", type=int, default=os.cpu_count())
     a = ap.parse_args()
     LEVELS[:] = [int(x) for x in a.L.split(",")]
+    KINDS[:] = [k for k in a.kinds.split(",") if k]
+    if a.extra:
+        EXTRA[0] = {int(L): int(n) for L, n in (x.split(":") for x in a.extra.split("/"))}
     {"run": run, "read": read}[a.cmd](a)
 
 

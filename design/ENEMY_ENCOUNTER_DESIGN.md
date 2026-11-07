@@ -4042,3 +4042,46 @@ The band's middle wins 1-3 points more days at Levels 3-5, its bottom
 Warlord); a Fire-attuned caster goes up, since a Level 3 forged weapon
 can only be Fire. Two Black Knights are still the longest fight at 8
 rounds.
+
+### A point more budget (2026-11-07)
+
+The designer: test the one-point nudge. The Level's extra points today
+are 0 / 2 / 4 / 4 / 4 (budgets 7 / 9 / 11 / 11 / 11); +1 point at every
+Level, and +2 for scale, spent the usual way (Accuracy +1 first, then
+Damage +1, then the row's PrunedExtra list). Elites get twice the point.
+Fixed on the way: the Level's extra points now skip a pick the row can't
+take again (a second Damage +1, a rider at its cap), as BigPicks already
+did; at today's budget it changes nothing (the manual's hash is the
+same), at +2 the Executioner would otherwise break.
+
+Manual fights, same seeds, middle of the band
+(`results/enemy_stats/nudge_manual_p1.txt`, `_p2.txt`; today is
+`elem_manual.txt`):
+
+| Level | Today: lost / Down / rounds | +1 point | +2 points |
+|---|---|---|---|
+| 1 | 2.4% / 19% / 4.9 | 3.1% / 22% / 5.2 | 4.6% / 26% / 5.1 |
+| 2 | 0.6% / 13% / 4.4 | 1.1% / 15% / 4.7 | 1.8% / 18% / 5.2 |
+| 3 | 0.8% / 13% / 4.2 | 1.2% / 15% / 4.5 | 1.6% / 22% / 4.0 |
+| 4 | 0.9% / 14% / 4.8 | 1.4% / 16% / 5.1 | 1.8% / 23% / 5.1 |
+| 5 | 1.9% / 9% / 5.4 | 2.7% / 12% / 5.8 | 2.5% / 21% / 4.9 |
+
+Elite and boss fights at +1 (size_check.py, Levels 1-5, middle of the
+band; `nudge_size_p1.txt`):
+
+| Encounter | Today | +1 point | Low / high band at +1 |
+|---|---|---|---|
+| Four standard monsters | 0.3% / 11% / 4.3 | 0.6% / 15% / 4.6 | 14% / 0.2% |
+| Gravel Ogre + two standard | 2.7% / 24% / 4.5 | 4.2% / 29% / 4.9 | 26% / 1.5% |
+| Two Gravel Ogres | 6.5% / 33% / 4.6 | 9.6% / 39% / 5.0 | 32% / 3.6% |
+| Gravel Ogre + Elite Sharpshooter | 4.7% / 38% / 4.5 | 6.9% / 43% / 4.7 | 26% / 3.2% |
+| Two Black Knights | 12.6% / 32% / 9.9 | 18.1% / 39% / 10.5 | 54% / 5.5% |
+| Solo Brute Warlord (Levels 3-5) | 6.5% / 25% / 3.6 | 12.3% / 32% / 3.7 | 29% / 8.3% |
+
+- **+1 point** makes everything a notch harder without changing the
+  fights' shape: losses up by about half, Downs 2-3 points, a third of a
+  round longer. The solo Warlord goes back to the 11-12% it was tuned to
+  before the elemental weapons came in.
+- **+2 points** changes the shape: at Levels 3-5 the extra 6 buys Damage
+  +1 on most monsters, so someone goes Down 21-23% of the time (from 9-14%)
+  in fights no longer, or shorter.

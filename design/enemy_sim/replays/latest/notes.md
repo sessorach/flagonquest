@@ -1,12 +1,12 @@
 # Latest replays (2026-11-07)
 
-Big enemies can't take Omniguard/Resilient/Durable; Hilde and Browndog (L3) carry Fire Elemental-Forged Weaponry
+No default changed: tested +1 and +2 enemy budget points; extra points now skip picks a row can't take again
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 97.2% wins, 5.2 rounds, 76% HP left on a win
+- Matchup average over 1000 fights: 97.4% wins, 5.2 rounds, 76% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
