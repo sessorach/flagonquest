@@ -4203,3 +4203,28 @@ every design inside its budget. They're still a round or two longer than
 other fights and lost three to six times as often at Levels 1 and 5 (6.3% against 1.8%, 6.8% against 1.2%). The
 cost: at Level 1, a Heavy monster with a shield has 1 point left for
 picks.
+
+### The baseline, one budget (2026-11-07, default)
+
+The designer made one budget with Heavy armor at 6 the default
+(`V3_ONE_BUDGET`, `ARMOR_HEALTH_V3P["Heavy"] = 6`, the Heavy 6 trims in
+the manual). The manual builds identically to one_budget.py's one6.
+`results/enemy_stats/default_1107h_*`; the old baseline is
+`default_1107_*`.
+
+| Level | Band: bottom / middle / top, days won | Middle: Down / Wounded / rounds / again (fresh fight) | Manual fights: lost / Down / rounds |
+|---|---|---|---|
+| 1 | — / 91% / — | 22% / 53% / 4.8 / 51% | 2.3% / 21% / 5.1 (3.1%) |
+| 2 | 21% / 88% / 98% | 22% / 49% / 4.6 / 54% | 1.1% / 15% / 4.7 (1.1%) |
+| 3 | 35% / 85% / 99% | 24% / 55% / 4.2 / 54% | 1.0% / 15% / 4.5 (1.2%) |
+| 4 | 47% / 89% / 97% | 22% / 49% / 4.7 / 64% | 1.1% / 15% / 5.1 (1.4%) |
+| 5 | 87% / 89% / 92% | 21% / 50% / 5.0 / 63% | 2.4% / 11% / 5.8 (2.7%) |
+
+(Old baseline's manual lost in brackets.) Days won moved a point at most:
+the sample roster's only changes are the Hedge Knight and Warpriest. The
+manual's fights lost come down a little at Levels 1, 4 and 5, all from
+the Heavy monsters. Big fights (size_check, Levels 1-5, middle): Two
+Black Knights 13.8% lost over 9.4 rounds (18% / 10.5), Black Knight + two
+standard 2.4% (3.6%), solo Brute Warlord 8.0% (12%); the rest move half a point or
+less (their standard companions sometimes draw a Heavy monster or the
+Hedge Knight).

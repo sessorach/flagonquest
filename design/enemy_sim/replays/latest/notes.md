@@ -1,24 +1,24 @@
 # Latest replays (2026-11-07)
 
-Test only: one enemy budget and Heavy armor at 6 (defaults unchanged)
+One enemy budget (no overspending into Health), Heavy armor at 6
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 96.4% wins, 5.3 rounds, 74% HP left on a win
+- Matchup average over 1000 fights: 96.5% wins, 5.3 rounds, 74% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
 - Enemies: Level 1 Shield Wall (Hedge Knight, Hedge Knight, Marsh Archer, Marsh Archer)
-- This fight (seed 3): party won in 5 rounds, 100% party HP left
-- Matchup average over 1000 fights: 99.6% wins, 5.3 rounds, 90% HP left on a win
+- This fight (seed 15): party won in 6 rounds, 100% party HP left
+- Matchup average over 1000 fights: 99.4% wins, 5.6 rounds, 90% HP left on a win
 
 ## partyT_L1_vs_L1_warband.html
 - Party: Browndog, Hanforth, Sable, Beornhard
 - Enemies: Level 1 Warband (Brute, Skulking Footpad, Skulking Footpad, Warpriest)
 - This fight (seed 5): party won in 6 rounds, 82% party HP left
-- Matchup average over 1000 fights: 99.6% wins, 6.1 rounds, 83% HP left on a win
+- Matchup average over 1000 fights: 99.8% wins, 5.9 rounds, 84% HP left on a win
 
 ## bleed_party_L1_vs_L1_frontline.html
 - Party: Hilde (Bleed), Felix (Bleed), Jackal (Bleed), Beornhard (Bleed)
@@ -37,14 +37,14 @@ Test only: one enemy budget and Heavy armor at 6 (defaults unchanged)
 - Party: Hilde (Bleed), Felix (Bleed), Jackal (Bleed), Beornhard (Bleed)
 - Enemies: Level 1 Warband (Brute, Skulking Footpad, Skulking Footpad, Warpriest)
 - This fight (seed 4): party won in 6 rounds, 88% party HP left
-- Matchup average over 1000 fights: 98.2% wins, 5.9 rounds, 79% HP left on a win
+- Matchup average over 1000 fights: 98.8% wins, 5.9 rounds, 78% HP left on a win
 - Picked from fights with pc_bleed_taken above 0
 
 ## partyA_L1_vs_chief_frontline.html
 - Party: Hilde, Browndog, Carrick, Sable
 - Enemies: Level 1 Chief's Frontline (Brute Chief, Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 2): party won in 6 rounds, 98% party HP left
-- Matchup average over 1000 fights: 93.6% wins, 5.9 rounds, 72% HP left on a win
+- Matchup average over 1000 fights: 93.9% wins, 5.9 rounds, 72% HP left on a win
 
 ## partyB_L3_vs_L3_frontline.html
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)

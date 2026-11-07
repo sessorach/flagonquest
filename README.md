@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-07 — Elites and debuffs
 
-Elites and solo bosses can no longer buy their way out of debuffs, which was most of what made a heavily armored elite knight such a slog, and two of the sample characters now carry Fire weapons, the game's answer to heavy armor; a point more enemy budget, now the default, wins back the notch of danger those took off. Tested putting every enemy's armor and gear on its Ability budget, with no overspending into Health, alongside dearer Heavy armor.
+Elites and solo bosses can no longer buy their way out of debuffs, which was most of what made a heavily armored elite knight such a slog, and two of the sample characters now carry Fire weapons, the game's answer to heavy armor; a point more enemy budget, now the default, wins back the notch of danger those took off. Every enemy's armor and gear now comes out of its Ability budget with nothing paid out of Health, and Heavy armor costs more, which trims the slowest armored fights.
 
 ### 2026-11-06 — Bigger budgets for elites and bosses
 
