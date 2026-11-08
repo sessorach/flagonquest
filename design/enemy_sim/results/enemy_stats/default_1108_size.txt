@@ -1,0 +1,40 @@
+| Encounter | Minion Health | Lost (worst draw) | Down | 2+ Down | Rounds | By Level: lost / Down | Low / high band lost |
+|---|---|---|---|---|---|---|---|
+| Four standard | - | 0.2% (2%) | 12% | 1% | 4.2 | L1 0/16 L2 0/10 L3 0/23 L4 0/5 L5 0/8 | 6% / 0% |
+| Eight minions | 0.33 | 0.9% (9%) | 25% | 5% | 3.8 | L1 4/43 L2 1/32 L3 0/23 L4 0/12 L5 0/15 | 8% / 0% |
+| Eight minions | 0.40 | 2.0% (12%) | 37% | 9% | 4.7 | L1 6/51 L2 4/46 L3 0/35 L4 0/22 L5 1/30 | - |
+| Eight minions | 0.50 | 7.3% (41%) | 53% | 22% | 6.1 | L1 21/70 L2 10/62 L3 3/53 L4 1/37 L5 3/47 | - |
+| Four minions + two standard | 0.33 | 0.4% (2%) | 17% | 2% | 4.2 | L1 1/25 L2 1/20 L3 0/7 L4 0/12 L5 0/21 | 6% / 0% |
+| Four minions + two standard | 0.40 | 0.7% (3%) | 22% | 3% | 4.7 | L1 2/28 L2 1/28 L3 0/9 L4 0/16 L5 0/30 | - |
+| Four minions + two standard | 0.50 | 1.9% (11%) | 30% | 7% | 5.3 | L1 5/38 L2 3/35 L3 1/14 L4 1/21 L5 1/41 | - |
+| Two minions + three standard | 0.33 | 0.4% (2%) | 15% | 2% | 4.1 | L1 1/20 L2 0/15 L3 0/17 L4 0/10 L5 0/14 | 6% / 0% |
+| Two minions + three standard | 0.40 | 0.5% (2%) | 18% | 2% | 4.4 | L1 1/21 L2 0/18 L3 0/20 L4 0/13 L5 0/17 | - |
+| Two minions + three standard | 0.50 | 0.8% (4%) | 21% | 3% | 4.7 | L1 2/25 L2 1/21 L3 1/24 L4 0/17 L5 0/20 | - |
+| Gravel Ogre + two standard | - | 2.1% (9%) | 22% | 5% | 4.3 | L1 6/33 L2 1/20 L3 0/14 L4 0/16 L5 4/29 | 9% / 1% |
+| Two Gravel Ogres | - | 5.2% (15%) | 31% | 10% | 4.3 | L1 15/42 L2 3/30 L3 2/30 L4 1/22 L5 5/32 | 14% / 2% |
+| Gravel Ogre + two minions + one standard | 0.33 | 1.5% (6%) | 21% | 4% | 4.2 | L1 5/35 L2 1/16 L3 1/20 L4 0/13 L5 2/21 | 7% / 0% |
+| Gravel Ogre + two minions + one standard | 0.40 | 2.4% (8%) | 23% | 5% | 4.5 | L1 8/38 L2 1/18 L3 1/23 L4 0/16 L5 3/24 | - |
+| Gravel Ogre + two minions + one standard | 0.50 | 2.7% (8%) | 26% | 7% | 4.8 | L1 8/40 L2 2/20 L3 1/29 L4 0/19 L5 3/26 | - |
+| Coven Matriarch + two standard | - | 0.0% (0%) | 2% | 0% | 4.3 | L1 0/5 L2 0/1 L3 0/1 L4 0/2 L5 0/1 | 0% / 0% |
+| Coven Matriarch + two minions + one standard | 0.33 | 0.0% (0%) | 1% | 0% | 4.3 | L1 0/4 L2 0/1 L3 0/1 L4 0/1 L5 0/0 | 0% / 0% |
+| Coven Matriarch + two minions + one standard | 0.40 | 0.0% (0%) | 2% | 0% | 4.5 | L1 0/4 L2 0/2 L3 0/2 L4 0/1 L5 0/0 | - |
+| Coven Matriarch + two minions + one standard | 0.50 | 0.1% (0%) | 3% | 0% | 4.7 | L1 0/5 L2 0/2 L3 0/3 L4 0/2 L5 0/0 | - |
+| Elite Sharpshooter + two standard | - | 0.7% (4%) | 32% | 5% | 4.3 | L1 3/43 L2 0/32 L3 0/22 L4 0/25 L5 0/37 | 8% / 0% |
+| Two Elite Sharpshooters | - | 1.2% (4%) | 48% | 10% | 4.1 | L1 4/55 L2 2/50 L3 0/51 L4 0/39 L5 1/47 | 11% / 0% |
+| Elite Sharpshooter + two minions + one standard | 0.33 | 1.0% (5%) | 35% | 6% | 4.3 | L1 4/56 L2 1/41 L3 0/39 L4 0/23 L5 0/19 | 8% / 0% |
+| Elite Sharpshooter + two minions + one standard | 0.40 | 1.3% (6%) | 39% | 7% | 4.6 | L1 5/60 L2 1/43 L3 1/44 L4 0/26 L5 0/25 | - |
+| Elite Sharpshooter + two minions + one standard | 0.50 | 1.8% (6%) | 43% | 9% | 5.0 | L1 6/65 L2 2/46 L3 1/51 L4 0/30 L5 1/29 | - |
+| Storm Magus + two standard | - | 0.3% (2%) | 10% | 1% | 4.3 | L1 1/16 L2 0/6 L3 0/11 L4 0/9 L5 0/8 | 4% / 0% |
+| Two Storm Maguss | - | 0.2% (1%) | 16% | 2% | 4.5 | L1 0/18 L2 0/10 L3 1/34 L4 0/19 L5 0/1 | 6% / 0% |
+| Storm Magus + two minions + one standard | 0.33 | 0.2% (1%) | 6% | 1% | 4.3 | L1 0/10 L2 0/5 L3 0/11 L4 0/4 L5 0/1 | 3% / 0% |
+| Storm Magus + two minions + one standard | 0.40 | 0.3% (1%) | 8% | 1% | 4.5 | L1 1/13 L2 0/6 L3 1/14 L4 0/7 L5 0/3 | - |
+| Storm Magus + two minions + one standard | 0.50 | 0.5% (2%) | 11% | 2% | 4.7 | L1 1/16 L2 0/9 L3 1/16 L4 0/10 L5 0/5 | - |
+| Black Knight + two standard | - | 1.0% (8%) | 9% | 2% | 5.1 | L1 5/20 L2 0/9 L3 0/3 L4 0/5 L5 0/8 | 5% / 0% |
+| Two Black Knights | - | 3.8% (15%) | 17% | 6% | 6.7 | L1 15/33 L2 3/30 L3 0/2 L4 0/3 L5 3/17 | 10% / 1% |
+| Black Knight + two minions + one standard | 0.33 | 0.7% (4%) | 7% | 1% | 5.0 | L1 3/16 L2 1/9 L3 0/5 L4 0/1 L5 0/2 | 4% / 0% |
+| Black Knight + two minions + one standard | 0.40 | 0.8% (4%) | 8% | 2% | 5.2 | L1 4/18 L2 1/10 L3 0/7 L4 0/3 L5 0/3 | - |
+| Black Knight + two minions + one standard | 0.50 | 1.2% (5%) | 10% | 3% | 5.5 | L1 5/22 L2 1/14 L3 0/10 L4 0/4 L5 0/3 | - |
+| Gravel Ogre + Coven Matriarch | - | 0.6% (2%) | 11% | 2% | 4.4 | L1 2/24 L2 0/10 L3 0/10 L4 0/5 L5 1/7 | 3% / 0% |
+| Gravel Ogre + Elite Sharpshooter | - | 3.8% (10%) | 36% | 9% | 4.3 | L1 10/52 L2 2/25 L3 1/38 L4 1/31 L5 7/39 | 15% / 2% |
+| Elite Sharpshooter + Storm Magus | - | 0.3% (1%) | 17% | 2% | 4.0 | L1 1/31 L2 0/14 L3 0/19 L4 0/11 L5 0/10 | 7% / 0% |
+| Solo Brute Warlord | - | 3.4% (9%) | 17% | 6% | 3.6 | L3 1/17 L4 0/10 L5 9/24 | 12% / 3% |

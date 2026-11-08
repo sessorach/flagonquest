@@ -4395,3 +4395,31 @@ simpler budgets (`flat_table.py 4`, `results/enemy_stats/flat_table_4.txt`):
 Level 2's two points and Health +3 play the same; Levels 4-5 without the
 Damage +1 are a notch easier (Level 4 at the 10-08 target of 95% days and
 Downs one fight in six; Level 5 back where it is today).
+
+### The baseline, 2026-11-08 (the flatter table, in pencil)
+
+The designer put the flatter table in pencil: round four's "budget as
+today" (the cut paid as Health) with the Accuracy +1 every enemy bought
+from Level 2 moved into the table and its 2 points off the budget
+(`enemy_builder_pcstyle.V3_FLAT_TABLE`; Points 8 / 8 / 10 / 10 / 10).
+Every standard monster and minion builds the same as "budget as today"
+(checked on all 300 builds; the legacy Hedge Knight (L3) row dropped a
+listed Accuracy +1 to match); elites and the solo boss double a budget 2
+points smaller, so they lose 2-3 Health or a pick.
+`results/enemy_stats/default_1108_*`.
+
+| Level | Band days won: bottom / middle / top (worst middle party) | Middle, first fight: Down / Wounded / rounds / again | Manual fights: lost / Down / rounds |
+|---|---|---|---|
+| 1 | — / 91 / — (82) | 22 / 53 / 4.8 / 51 | 1.8% / 21% / 5.0 |
+| 2 | 36 / 93 / 99 (86) | 20 / 50 / 4.2 / 54 | 0.5% / 13% / 4.3 |
+| 3 | 58 / 90 / 100 (65) | 18 / 51 / 3.7 / 49 | 0.3% / 12% / 3.9 |
+| 4 | 68 / 95 / 99 (85) | 16 / 44 / 3.9 / 56 | 0.2% / 10% / 4.0 |
+| 5 | 87 / 90 / 92 (77) | 22 / 52 / 5.0 / 65 | 1.5% / 11% / 5.5 |
+
+The bottom of the band wins 15-23 points more days at Levels 2-4 than on
+11-07 (21 / 35 / 47%), the middle 90-95%. Big fights (size_check,
+middle, Levels 1-5) got much safer: two Gravel Ogres 5.2% lost (9.6% on
+11-07), two Black Knights 3.8% (18%), the solo Warlord 3.4% (12%);
+at Levels 2-4 almost no big fight is lost (0-3%), most of what's left is
+Level 1 and 5. The manual's fights put someone Down in 10-13% of fights
+at Levels 2-5, under one in five or six.
