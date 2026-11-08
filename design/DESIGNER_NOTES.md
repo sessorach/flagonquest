@@ -681,6 +681,8 @@ Before archetype and armor: a light-weapon fighter hits at +4 for 5 with Parry 1
 
 For an on-level fight (most fights are on level), at the middle of the band, measured by the day standard:
 
+- **Hit chances and hit sizes are firm (designer, 2026-11-08): don't land far outside them.** PCs hit 50-75% of the time; enemies hit PCs 25-50% of the time. A hit lands 2-3 Health on average on both sides (after Resist and Protected), with a few going higher when they're built for it. Zero-damage noodle fights are boring. These win over the other targets below when they conflict (fight length especially); it doesn't have to align perfectly, but nothing should sit far outside. Measured with `enemy_sim/tools/combat_stats.py`. (→ ENEMY_ENCOUNTER_DESIGN, "Combat stats, 2026-11-08"; "Hit chances and hit sizes")
+
 - **The party basically never loses a fight.** About 95% of days won; the worst party in the middle of a band still wins most days. (designer, 2026-10-08; day figure from the 11-03 ranking) (→ enemy_sim/TABLE_PLAY_NOTES, "Calibration targets"; ENEMY_ENCOUNTER_DESIGN, "Toward PC-like enemy stats")
 - **Someone goes Down now and then:** a bit uncommon, about one fresh fight in five or six. (designer, 2026-10-08) (→ enemy_sim/TABLE_PLAY_NOTES, "Calibration targets"; "Second round")
 - **Someone ends up Wounded about every other fight,** often near the end. Something the party keeps in mind, not usually a problem. (→ enemy_sim/TABLE_PLAY_NOTES, "Calibration targets")
