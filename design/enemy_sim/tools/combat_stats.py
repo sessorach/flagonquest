@@ -15,6 +15,7 @@ lost. Spread: the standard deviation and the 10th-90th percentile range.
 
     python3 tools/combat_stats.py                 # today's table
     python3 tools/combat_stats.py --prev          # without the harder hits
+    python3 tools/combat_stats.py --table "skill=+3,health=*0.5" --name try1
 """
 import argparse
 import collections
@@ -36,14 +37,21 @@ import progression_sweep as ps  # noqa: E402
 LEVELS = (1, 2, 3, 4, 5)
 K_ENC = 24
 PREV = [False]
+TABLE = [""]
 
 
 def install():
-    if PREV[0] and not getattr(eb, "_prev_installed", False):
-        eb._prev_installed = True
-        for t in eb.ENEMY_TABLE_V3_PRUNED.values():
+    if getattr(eb, "_stats_installed", False):
+        return
+    eb._stats_installed = True
+    for t in eb.ENEMY_TABLE_V3_PRUNED.values():
+        if PREV[0]:
             for k, d in eb.V3_HARD_HITS.items():
                 t[k] -= d
+        # --table "skill=+3,resist=+2,health=*0.5": every Level's row changed.
+        for part in filter(None, TABLE[0].split(",")):
+            k, _, v = part.partition("=")
+            t[k] = max(1, round(t[k] * float(v[1:]))) if v.startswith("*") else t[k] + int(v)
 
 
 def _job(args):
@@ -135,16 +143,18 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-n", type=int, default=10, help="fights per encounter per party")
     ap.add_argument("--prev", action="store_true", help="the table without the harder hits")
+    ap.add_argument("--table", default="", help='changes to every Level\'s row: "skill=+3,resist=+2,health=*0.5"')
+    ap.add_argument("--name", help="results file name (results/enemy_stats/<name>.txt)")
     ap.add_argument("-j", type=int, default=os.cpu_count())
     a = ap.parse_args()
-    PREV[0] = a.prev
+    PREV[0], TABLE[0] = a.prev, a.table
     jobs = [(L, gi, a.n) for L in LEVELS
             for gi in range(len([g for g in tc.groups(L, ps.MID[L]) if g[0] != "stand-ins"]))]
     with mp.Pool(a.j) as pool:
         res = list(pool.imap_unordered(_job, jobs))
     text = report(res)
     print(text)
-    name = "combat_stats_prev" if a.prev else "combat_stats"
+    name = a.name or ("combat_stats_prev" if a.prev else "combat_stats")
     open(os.path.join(_paths.ROOT, "results", "enemy_stats", name + ".txt"), "w").write(text + "\n")
 
 

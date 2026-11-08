@@ -535,6 +535,9 @@ V3_ONE_BUDGET = True
 # wears Medium and keeps the points as Health (designer, 2026-11-08:
 # shorter, safer Heavy fights at Levels 1-2; heavy_level3.py). None: any Level.
 V3_HEAVY_MIN_LEVEL = 3
+# The enemy Resist Stat's cap (None: STAT_CAP, 5, as a PC's), for the
+# hit-size targets' tests (2026-11-08, experiments/enemies/hit_fit.py).
+V3_RESIST_CAP = None
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

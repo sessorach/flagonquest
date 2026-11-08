@@ -4575,3 +4575,45 @@ lost / Down / rounds: four standard 1.0% / 25% / 3.5; two Gravel Ogres
 solo Warlord 1.5% / 14% / 2.8 (3.4% / 17%). Elites and the solo boss lose
 3 Health times their size's multiple (7.5 and 12) and now drop fast:
 boss fights are no harder than four standard monsters.
+
+### Hit chances and hit sizes (2026-11-08)
+
+The designer set firm targets (DESIGNER_NOTES, "Targets for how a fight
+should feel"): PCs hit 50-75%, enemies 25-50%, a hit lands 2-3 on both
+sides; these win over fight length. Today (harder hits in pencil) PCs hit
+72% at Level 1 and 86-93% after, for 3.6-5.8; enemies hit 23-38% for
+2.2-3.4. `experiments/enemies/hit_fit.py`: a grid on the enemy table at
+every Level (Skill +0 to +4, Resist +0 to +3, Health ×1 to ×0.4), then
+for Levels 3-5 with the enemy Resist cap lifted (`tunables.V3_RESIST_CAP`,
+off by default; the Resist Stat otherwise stops at 5, as a PC's) and
+Health down to ×0.25. tools/combat_stats.py's fights, 4 a pairing;
+`results/enemy_stats/hit_fit.txt`.
+
+Closest fits, Level by Level (PC hit / lands; enemy hit / lands; rounds;
+Down / fight lost):
+
+| Level | Change to the table | PC | Enemy | Rounds | Down / lost |
+|---|---|---|---|---|---|
+| 1 | Resist +1, Health ×0.75 | 65% / 2.8 | 22% / 3.2 | 4.4 | 22% / 1.7% |
+| 2 | Skill +4, Resist +2, Health ×0.4 | 62% / 2.9 | 31% / 3.0 | 3.6 | 17% / 2.9% |
+| 3 | Skill +4, Resist +3, Health ×0.3 (cap lifted) | 60% / 2.9 | 26% / 3.5 | 4.4 | 22% / 5.9% |
+| 4 | Skill +2, Resist +4, Health ×0.25 (cap lifted) | 62% / 2.5 | 25% / 2.5 | 4.2 | 15% / 3.8% |
+| 5 | Skill +2, Resist +3, Health ×0.25 (cap lifted) | 63% / 2.5 | 32% / 2.3 | 3.8 | 19% / 3.5% |
+| (today) | | 72-93% / 3.6-5.8 | 23-39% / 2.2-3.4 | 3.3-4.2 | 16-32% / 0.8-2.0% |
+
+What it takes:
+
+- **Much less enemy Health.** Smaller, rarer PC hits make fights far
+  longer unless enemy Health comes down with them: to a quarter or a
+  third of today's at Levels 3-5. A standard Level 3 monster would have
+  about 4-6 Health and go down in two hits.
+- **Enemy Resist past the PC cap from Level 3.** PC damage grows faster
+  than the Resist Stat can (it stops at 5); without lifting it Levels 4-5
+  can't get a PC hit under 3.5.
+- **Enemy Defense up 2-4,** at the Skill cap at Levels 4-5 (undoing the
+  flatter table's Defense cut and more).
+- **A bit more lethal a fight.** Losses run 3-6% of fresh fights against
+  1-2% today: a fight lasts about as long, but the party's hits miss more
+  and enemies get their turns.
+- Enemy hits are already close: 22-32% for 2.3-3.5 in every fit. Level
+  1's enemies hit a little under 25%, Level 3's a little over 3.
