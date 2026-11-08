@@ -15,7 +15,8 @@ Read on the band (table_check: bottom, middle and top of each Level's
 band, days won) and the manual's fights (manual_check's draws, middle of
 the band).
 
-    python3 experiments/enemies/flat_table.py
+    python3 experiments/enemies/flat_table.py      # round one
+    python3 experiments/enemies/flat_table.py 2    # round two
 """
 import collections
 import json
@@ -38,7 +39,14 @@ VARIANTS = {
     "Resist -1, +4 points": ({"resist": -1}, 4),
     "both -1, +5 points": ({"skill": -1, "resist": -1}, 5),
     "both -1, +7 points": ({"skill": -1, "resist": -1}, 7),
+    # Round two: the first round's points (at the picks' prices) bought
+    # offense worth more than the Defense and Resist they replaced.
+    "both -1, +3 points": ({"skill": -1, "resist": -1}, 3),
+    "both -1, +2 points": ({"skill": -1, "resist": -1}, 2),
+    "both -1, Health +5": ({"skill": -1, "resist": -1, "health": 5}, 0),
+    "both -1, Health +3": ({"skill": -1, "resist": -1, "health": 3}, 0),
 }
+ROUND = {1: list(VARIANTS)[:5], 2: ["today", *list(VARIANTS)[5:]]}
 _BASE = {L: dict(t) for L, t in eb.ENEMY_TABLE_V3_PRUNED.items()}
 _EXTRA = dict(T.V3_PRUNED_EXTRA)
 
@@ -66,6 +74,9 @@ def _manual(args):
 
 
 if __name__ == "__main__":
+    import sys
+    rnd = int(sys.argv[1]) if len(sys.argv) > 1 else 1
+    VARIANTS = {v: VARIANTS[v] for v in ROUND[rnd]}
     bjobs, mjobs = [], []
     for v in VARIANTS:
         for L in LEVELS:
@@ -101,7 +112,7 @@ if __name__ == "__main__":
         out.append("")
     text = "\n".join(out)
     print(text)
-    base = os.path.join(_paths.ROOT, "results/enemy_stats/flat_table")
+    base = os.path.join(_paths.ROOT, "results/enemy_stats/flat_table" + ("" if rnd == 1 else f"_{rnd}"))
     open(base + ".txt", "w").write(text + "\n")
     with open(base + ".jsonl", "w") as f:
         for r in recs:

@@ -1,0 +1,32 @@
+Band: days won at the bottom / middle / top (worst middle party); middle, first fight: Down / Wounded / rounds / again. Manual fights (middle): lost / Down / rounds.
+
+### Level 2
+
+| Variant | Days won (bottom / middle / top) | Worst middle party | First fight, middle: Down / Wnd / rounds / again | Manual: lost / Down / rounds |
+|---|---|---|---|---|
+| today | 21% / 88% / 98% | 76% | 22% / 49% / 4.6 / 54% | 1.0% / 16% / 4.7 |
+| both -1, +3 points | 43% / 93% / 99% | 82% | 20% / 51% / 3.6 / 41% | 0.7% / 18% / 3.6 |
+| both -1, +2 points | 45% / 94% / 99% | 86% | 17% / 46% / 3.8 / 47% | 0.4% / 13% / 3.9 |
+| both -1, Health +5 | 24% / 84% / 98% | 66% | 28% / 57% / 4.8 / 63% | 1.0% / 19% / 4.8 |
+| both -1, Health +3 | 36% / 93% / 99% | 86% | 20% / 50% / 4.2 / 54% | 0.5% / 14% / 4.2 |
+
+### Level 3
+
+| Variant | Days won (bottom / middle / top) | Worst middle party | First fight, middle: Down / Wnd / rounds / again | Manual: lost / Down / rounds |
+|---|---|---|---|---|
+| today | 35% / 85% / 99% | 52% | 24% / 55% / 4.2 / 54% | 1.1% / 16% / 4.5 |
+| both -1, +3 points | 51% / 86% / 98% | 55% | 27% / 58% / 3.4 / 42% | 1.0% / 21% / 3.5 |
+| both -1, +2 points | 58% / 90% / 98% | 63% | 22% / 53% / 3.2 / 38% | 0.7% / 19% / 3.3 |
+| both -1, Health +5 | 39% / 83% / 99% | 52% | 27% / 60% / 4.4 / 59% | 1.2% / 18% / 4.6 |
+| both -1, Health +3 | 48% / 88% / 99% | 60% | 22% / 55% / 4.0 / 54% | 0.7% / 15% / 4.1 |
+
+### Level 4
+
+| Variant | Days won (bottom / middle / top) | Worst middle party | First fight, middle: Down / Wnd / rounds / again | Manual: lost / Down / rounds |
+|---|---|---|---|---|
+| today | 47% / 89% / 97% | 71% | 22% / 49% / 4.7 / 64% | 1.3% / 16% / 5.1 |
+| both -1, +3 points | 60% / 88% / 97% | 59% | 25% / 54% / 3.7 / 52% | 0.9% / 21% / 3.9 |
+| both -1, +2 points | 64% / 90% / 98% | 63% | 24% / 52% / 3.6 / 50% | 0.6% / 19% / 3.7 |
+| both -1, Health +5 | 49% / 88% / 98% | 68% | 24% / 53% / 4.7 / 66% | 0.8% / 16% / 5.0 |
+| both -1, Health +3 | 59% / 92% / 99% | 78% | 19% / 48% / 4.3 / 61% | 0.5% / 14% / 4.5 |
+

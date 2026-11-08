@@ -4292,3 +4292,48 @@ weaker than a player's would be. Ways to soften it, if wanted: a smaller
 enemy step per Level (spread it between Defense and Health so the fight
 gets longer, not deadlier), a narrower band, or Health that grows with XP
 inside a Level.
+
+### A flatter table at Levels 2-4 (2026-11-08, test)
+
+Per the designer: weigh the enemy stats a bit flatter at Levels 2-4 and
+give back some Ability budget, so enemies challenge the party without
+overwhelming the bottom of the band. `experiments/enemies/flat_table.py`
+takes the table's Skill (every Defense) and/or Resist down 1 at Levels
+2-4 and adds points or Health; Levels 1 and 5 unchanged. Band days
+(table_check, 60 days a party) and the manual's fights (middle, 30 a
+party); `results/enemy_stats/flat_table.txt`, `flat_table_2.txt`.
+
+Round one paid the points back at the picks' prices (Defense −1 about 3,
+Resist −1 4). Every variant made the middle harder (75-86% of days at
+Level 2, 72-81% at Level 3) and someone went Down in 27-40% of fresh
+fights: the extra points buy Accuracy and Damage first, and offense
+bought that way is worth more to an enemy than the Defense and Resist it
+replaced. Round two, Defense and Resist both −1:
+
+| Days won, bottom / middle / top | Level 2 | Level 3 | Level 4 |
+|---|---|---|---|
+| Today | 21 / 88 / 98 | 35 / 85 / 99 | 47 / 89 / 97 |
+| +3 points | 43 / 93 / 99 | 51 / 86 / 98 | 60 / 88 / 97 |
+| +2 points | 45 / 94 / 99 | 58 / 90 / 98 | 64 / 90 / 98 |
+| Health +3 (no points) | 36 / 93 / 99 | 48 / 88 / 99 | 59 / 92 / 99 |
+| Health +5 (no points) | 24 / 84 / 98 | 39 / 83 / 99 | 49 / 88 / 98 |
+
+| Middle, first fight: Down / Wounded / rounds / again | Level 2 | Level 3 | Level 4 |
+|---|---|---|---|
+| Today | 22 / 49 / 4.6 / 54 | 24 / 55 / 4.2 / 54 | 22 / 49 / 4.7 / 64 |
+| +3 points | 20 / 51 / 3.6 / 41 | 27 / 58 / 3.4 / 42 | 25 / 54 / 3.7 / 52 |
+| +2 points | 17 / 46 / 3.8 / 47 | 22 / 53 / 3.2 / 38 | 24 / 52 / 3.6 / 50 |
+| Health +3 | 20 / 50 / 4.2 / 54 | 22 / 55 / 4.0 / 54 | 19 / 48 / 4.3 / 61 |
+
+- Both flatten the band: the gap from bottom to middle goes from 67 / 50
+  / 42 points of days won to 49 / 32 / 26 (+2 points) or 57 / 40 / 33
+  (Health +3), with the middle the same or a little easier.
+- Points make fights shorter and spikier: 3.2-3.8 rounds, and a hit
+  enemy acts again only 38-50% of the time. Health +3 keeps the length
+  (4.0-4.3 rounds) and "again" (54-61%) where they are, and its Downs are
+  the closest to one fight in five or six.
+- More Health isn't always safer for the party: Health +5 is harder than
+  +3 at every Level (longer fights, more enemy turns).
+- Lowering Levels 2-4 makes the step to Level 5 bigger (Defense +2,
+  Resist +1 instead of +1 and 0); the grown Level 5 builds can't show
+  what that does.
