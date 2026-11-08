@@ -4617,3 +4617,45 @@ What it takes:
   and enemies get their turns.
 - Enemy hits are already close: 22-32% for 2.3-3.5 in every fit. Level
   1's enemies hit a little under 25%, Level 3's a little over 3.
+
+### The hit-target candidate, checked (2026-11-08)
+
+The designer: monsters of about 8 Health ("two solid hits or three more
+standard ones"), a few lost fights are fine, and PC damage shouldn't need
+enemy Resist past the PC cap. Measured, a PC hit is weapon + Damage Stat
+(4.9 / 6.1 / 6.8 at Levels 1 / 3 / 5) plus about 1.3 from Gambling (they
+hit 90% and bet the surplus) and 1-1.4 from suits, raw 7-10; enemies had
+Physical Resist 3.2 at Levels 1-3 against the PCs' 4-5. PC-like enemy
+Resist (the Stat's cap of 5 plus armor) is enough at Levels 1-3. Levels
+4-5's grown builds put every rank into the attack Stat (Hilde's weapon
+10, Beornhard's 8) and land about 4 even with enemies at the caps; real
+Level 4-5 characters spread their XP, so the cap stays.
+
+The candidate is `enemy_builder_pcstyle.V3_HIT_FIT_TABLE` behind
+`tunables.V3_HIT_FIT` (off): Skill 4 / 7 / 8 / 10 / 10, Accuracy 1 / 3 /
+4 / 5 / 6, Damage 2 / 4 / 3 / 5 / 5, Resist 3 / 4 / 5 / 5 / 5, Health 6 /
+6 / 5 / 7 / 7 (standard monsters average 7.6 / 7.6 / 7.8 / 9.8 / 9.8).
+`results/enemy_stats/hitfit_stats.txt`, `hitfit_band.txt`,
+`hitfit_size.txt`.
+
+| Level | PC hit / lands | Enemy hit / lands | Rounds (sd) | Down / lost (fresh fight) | Days won: bottom / middle / top |
+|---|---|---|---|---|---|
+| 1 | 62% / 2.8 | 22% / 2.3 | 5.1 (3.3) | 18% / 1.0% | — / 89 / — |
+| 2 | 60% / 2.8 | 33% / 2.9 | 4.9 (3.9) | 27% / 6.8% | 6 / 62 / 91 |
+| 3 | 69% / 3.2 | 31% / 2.5 | 3.9 (3.0) | 16% / 2.2% | 16 / 82 / 98 |
+| 4 | 66% / 3.8 | 28% / 2.5 | 4.5 (3.9) | 21% / 3.6% | 47 / 84 / 94 |
+| 5 | 75% / 4.0 | 36% / 2.3 | 3.6 (2.5) | 22% / 1.8% | 85 / 87 / 89 |
+
+- Inside the hit targets at Levels 1-3 (Level 1's enemies hit a point
+  under 25%); PC hits land 3.8-4.0 at Levels 4-5, the grown builds.
+- Level 2 is overtuned: 62% of days in the middle, 6% at the bottom.
+- The bands are steep again (the bottom wins 6 / 16 / 47% at Levels 2-4):
+  with PCs hitting in the 60s, a point of Attack moves a fight more than
+  it did at 90%.
+- Fights swing more: the standard deviation of rounds is 2.5-3.9 (1.4-2.1
+  before).
+- Big fights: two Gravel Ogres 2.4% lost, the solo Warlord 2.0%, two
+  Elite Sharpshooters 1.5%; but a Black Knight + two standard 7.7% over
+  6.8 rounds and two Black Knights 23% over 9.9 (62% at Level 2): a
+  Defender elite at the Defense cap is hard to hit at all. Eight minions
+  9.3% (27% at Level 2).
