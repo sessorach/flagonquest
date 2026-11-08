@@ -4504,3 +4504,36 @@ Attack, Powerful Spell and Accuracy). The Ram Brute puts someone Down
 more often than the Thornhide Brute and loses less often. Both monsters
 join the manual, so the manual's encounter draws and size_check's
 companions change from here on.
+
+### Harder enemy hits (2026-11-08, test)
+
+Per the designer: hits should be more threatening; much of an offense
+pick's measured worth comes from enemy attacks being soft (a hit of 3-5
+against PC Resist 4-6). `experiments/enemies/hard_hits.py` raises the
+table's Damage Stat at every Level and pays for it in Health (and in one
+variant a point of Accuracy); band days (60 a party), the manual's fights
+(30), and what an enemy hit lands after Resist and Protected (traced
+fights; hits that land 0 count). `results/enemy_stats/hard_hits.txt`.
+
+| Middle of the band: days won / Down / rounds / again; a hit lands | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
+|---|---|---|---|---|---|
+| Today | 91 / 22 / 4.8 / 51; 1.6 | 93 / 20 / 4.2 / 54; 1.0 | 90 / 18 / 3.7 / 49; 1.5 | 95 / 16 / 3.9 / 56; 0.8 | 90 / 22 / 5.0 / 65; 0.7 |
+| Damage +1, Health −2 | 84 / 30 / 4.1 / 40; 2.5 | 85 / 29 / 3.8 / 46; 1.9 | 83 / 30 / 3.5 / 43; 2.4 | 89 / 25 / 3.6 / 48; 1.8 | 80 / 30 / 4.5 / 61; 1.4 |
+| Damage +1, Health −4 | 95 / 19 / 3.2 / 27; 2.6 | 93 / 21 / 3.3 / 35; 1.9 | 90 / 22 / 3.0 / 34; 2.4 | 93 / 20 / 3.3 / 41; 1.8 | 91 / 23 / 3.8 / 51; 1.5 |
+| Damage +2, Health −3 | 74 / 39 / 3.8 / 35; 3.5 | 77 / 36 / 3.6 / 40; 2.8 | 77 / 39 / 3.3 / 39; 3.4 | 90 / 23 / 3.4 / 46; 2.3 | 82 / 30 / 4.2 / 57; 2.1 |
+| Damage +2, Health −5 | 89 / 26 / 2.9 / 19; 3.6 | 86 / 30 / 3.2 / 32; 2.8 | 84 / 31 / 2.9 / 31; 3.4 | 93 / 18 / 3.1 / 37; 2.3 | 91 / 22 / 3.6 / 46; 2.1 |
+| Damage +2, Accuracy −1, Health −3 | 86 / 30 / 3.7 / 34; 3.4 | 88 / 26 / 3.5 / 40; 2.7 | 86 / 29 / 3.2 / 39; 3.3 | 96 / 15 / 3.4 / 45; 2.2 | 91 / 22 / 4.1 / 56; 2.1 |
+
+Bottom of the band (Levels 2-5), days won: today 36 / 58 / 68 / 87;
+Damage +2, Accuracy −1, Health −3: 41 / 54 / 77 / 87. The manual's
+fights put someone Down in 20-30% of fights under it (9-23% today).
+
+- Today an average enemy hit lands 0.7-1.6 Health, 6-16% of a PC's;
+  +2 Damage takes it to 2.1-3.6 (19-36%).
+- Paying for it only in Health shortens fights (2.9-3.3 rounds with
+  Health −5) and a hit enemy rarely acts again (19-37%). Paying partly in
+  Accuracy keeps more of the length: fewer hits, each bigger.
+- Damage +2, Accuracy −1, Health −3 lands the middle at 86-96% of days,
+  hits at about a third of a PC's Health at Levels 1-3, Downs at 22-30%,
+  3.2-4.1 rounds. Fights are about half a round shorter than today and
+  "again" is under half at Levels 1-3; Level 4 is the easy one (96%).
