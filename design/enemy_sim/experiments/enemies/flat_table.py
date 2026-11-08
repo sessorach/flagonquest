@@ -17,6 +17,7 @@ the band).
 
     python3 experiments/enemies/flat_table.py      # round one
     python3 experiments/enemies/flat_table.py 2    # round two
+    python3 experiments/enemies/flat_table.py 3    # round three, Levels 2-5
 """
 import collections
 import json
@@ -46,19 +47,31 @@ VARIANTS = {
     "both -1, Health +5": ({"skill": -1, "resist": -1, "health": 5}, 0),
     "both -1, Health +3": ({"skill": -1, "resist": -1, "health": 3}, 0),
 }
-ROUND = {1: list(VARIANTS)[:5], 2: ["today", *list(VARIANTS)[5:]]}
+# Round three (designer, 2026-11-08): split the difference on the step
+# from Level 4 to 5 (Level 5 Defense -1 too, Resist as it was), and pay
+# the cut back in Ability points, moving some to Health if the points
+# make it too dangerous. A grid of points and Health, the same at Levels
+# 2-5; each Level's enemies only meet that Level's band, so the best can
+# be picked Level by Level.
+CUT = {2: {"skill": -1, "resist": -1}, 3: {"skill": -1, "resist": -1}, 4: {"skill": -1, "resist": -1},
+       5: {"skill": -1}}
+GRID = [(3, 0), (2, 1), (2, 0), (1, 2), (1, 1), (1, 0), (0, 3), (0, 2)]
+for _p, _h in GRID:
+    VARIANTS[f"+{_p} points, Health +{_h}"] = {L: (dict(c, health=_h), _p) for L, c in CUT.items()}
+ROUND = {1: list(VARIANTS)[:5], 2: ["today", *list(VARIANTS)[5:9]], 3: ["today", *list(VARIANTS)[9:]]}
 _BASE = {L: dict(t) for L, t in eb.ENEMY_TABLE_V3_PRUNED.items()}
 _EXTRA = dict(T.V3_PRUNED_EXTRA)
 
 
 def install(v):
-    changes, pts = VARIANTS[v]
+    spec = VARIANTS[v]
+    # (changes, points) at Levels 2-4, or {Level: (changes, points)}.
+    per = spec if isinstance(spec, dict) else {L: spec for L in (2, 3, 4)}
     for L in _BASE:
         eb.ENEMY_TABLE_V3_PRUNED[L] = dict(_BASE[L])
-        if L in LEVELS:
-            for k, d in changes.items():
-                eb.ENEMY_TABLE_V3_PRUNED[L][k] += d
-    T.V3_PRUNED_EXTRA = {L: n + (pts if L in LEVELS else 0) for L, n in _EXTRA.items()}
+        for k, d in per.get(L, ({}, 0))[0].items():
+            eb.ENEMY_TABLE_V3_PRUNED[L][k] += d
+    T.V3_PRUNED_EXTRA = {L: n + per.get(L, ({}, 0))[1] for L, n in _EXTRA.items()}
 
 
 def _band(args):
@@ -77,6 +90,7 @@ if __name__ == "__main__":
     import sys
     rnd = int(sys.argv[1]) if len(sys.argv) > 1 else 1
     VARIANTS = {v: VARIANTS[v] for v in ROUND[rnd]}
+    LEVELS = (2, 3, 4, 5) if rnd >= 3 else LEVELS
     bjobs, mjobs = [], []
     for v in VARIANTS:
         for L in LEVELS:
