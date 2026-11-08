@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-08 — Heavy armor from Level 3, a flatter enemy curve
 
-Enemies only wear Heavy armor from Level 3, which made the slow armored fights at Levels 1-2 shorter and safer; then tested a flatter enemy table at Levels 2-5, a little less Defense and Resist paid back in Ability points and Health, which lets a party at the bottom of its XP band win far more days.
+Enemies only wear Heavy armor from Level 3, which made the slow armored fights at Levels 1-2 shorter and safer; then pencilled in a flatter enemy table from Level 2, a little less Defense and Resist paid back in Health, which lets a party at the bottom of its XP band win far more days.
 
 ### 2026-11-07 — Elites and debuffs
 
