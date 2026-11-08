@@ -4423,3 +4423,84 @@ middle, Levels 1-5) got much safer: two Gravel Ogres 5.2% lost (9.6% on
 at Levels 2-4 almost no big fight is lost (0-3%), most of what's left is
 Level 1 and 5. The manual's fights put someone Down in 10-13% of fights
 at Levels 2-5, under one in five or six.
+
+### Every Ability re-priced on the current table (2026-11-08)
+
+`experiments/enemies/reprice.py` gives one Ability free to every
+standard monster that can take it, in the manual's own encounters
+(manual_check's draws, 16 a Level, no solo boss), Levels 1-4, every
+party in the middle of its band, 20 fights each on the same seeds, and
+reads the change in party Health lost against every standard monster at
+±2 Health. Worth is in Health a monster (= points); full table in
+`results/enemy_stats/reprice.txt`. Enhanced Health reads 1.0 at every
+Level, as it should.
+
+Underpriced (worth − price):
+
+| Ability | Price | Worth (Levels 1-4) | By Level |
+|---|---|---|---|
+| Powerful Spell | 3 | 13.2 | 4.0 / 11.3 / 13.5 / 24.0 |
+| Damage +1 | 4 | 8.4 | 4.3 / 8.0 / 9.0 / 12.3 |
+| Poison (Bleeding) | 2.5 | 7.9 | 4.4 / 6.7 / 8.1 / 12.3 |
+| Powerful Weapon | 4 | 7.2 | 4.9 / 6.8 / 7.8 / 9.2 |
+| Accuracy +1 | 2 | 6.5 | 8.6 / 5.0 / 6.6 / 6.0 |
+| Attunement (Fire) | 3 | 5.8 | (the Fire weapons and War Magic the parties use) |
+| Retribution Aura | 2 | 5.4 | |
+| Strike (Devastating) | 1 | 5.1 | |
+| Strike (Battering) | 2 | 5.0 | |
+| Enhanced Range | 3 | 4.8 | |
+| Area Attack | 3 → 5 | 4.6 | 4.9 / 4.5 / 4.3 / 4.6 |
+| Strike (Grappling) | 3 | 4.3 | |
+
+About right (within a point): every one-stack rider (Crippling, Slowing,
+Vulnerable, Frightening, Taunting, Necrotic at 0.5: 0.1-1.1), Harrying,
+Cleaving, Parting Shot, Durable, Omniguard, Taunting and Intimidating as
+Actions, Enhanced Reflexes, Resist +1 (4.0 at 4), Dodge +1 (0.7),
+Enhanced Speed (0.5), the zero-priced Resilient (0.5) and Sturdy (0).
+
+Overpriced against these parties: Vital/Mental/Vigilant +1 (0.1 at 1:
+the parties rarely aim there), the Resists and Attunements for elements
+the parties don't use (Frost, Shadow, Brilliant: 0 at 1 and 3), and
+Strike (Shoving) (−0.4 to −0.7; below). Shadow Jaunt and the Elemental
+Spell picks read 0 (a spell is already elemental, and the sample PCs
+have one Resist for every element).
+
+What it says: offense is worth two to four times its price on this
+table. The pruned table took offense off the base and enemy Damage
+Stats are 1-3, so +1 Damage is a big share of a hit; a caster's base
+spell barely gets through PC Resist, which is most of Powerful Spell's
+13 (a Blast Mage without it put someone Down in 2% of fights). Health and
+the Defenses are priced about right. Nothing is changed yet beyond the
+two new Abilities: raising offense prices changes every build the
+difficulty was tuned on, so it's the designer's call (the worths by
+Level also grow, since a point of Health matters less as Health grows).
+
+### Area Attack and Strike (Shoving) (2026-11-08)
+
+- **Area Attack** (any damaging attack): its main attack also targets
+  each other PC within 1 meter of its target (Burst 1,
+  `tunables.AREA_BURST`). Measured 4.5-4.9 Health at every Level; priced 5.
+- **Strike (Shoving)** (melee): a hit Pushes the target 2 meters a pick,
+  on the turn's last attack only ("may Push", like the Shove maneuver).
+  Measured −0.4 to −0.7 Health as a melee rider and −0.4 on ranged
+  monsters: the monster has to walk after its target next turn, and the
+  sim has no ledges, hazards or allies-to-protect for a Push to matter.
+  Priced 0 for now; it needs one of those to be worth anything.
+
+Two test-bench monsters (`experiments/enemies/new_mechanics.py`,
+`results/enemy_stats/new_mechanics.txt`, Levels 1-5, middle of the band,
+lost / Down / Wounded / rounds):
+
+| Encounter | New | Nearest in the manual |
+|---|---|---|
+| Four Blast Mages / Ember Casters | 0.7% / 14% / 61% / 3.1 | 1.7% / 34% / 77% / 4.3 |
+| Two of them + two standard | 0.2% / 7% / 42% / 3.0 | 0.1% / 13% / 53% / 3.3 |
+| Four Ram Brutes / Thornhide Brutes | 0.6% / 23% / 53% / 4.5 | 1.5% / 15% / 44% / 4.3 |
+| Two of them + two standard | 0.0% / 9% / 36% / 3.6 | 0.2% / 7% / 33% / 3.5 |
+
+The Blast Mage spreads its damage: about as many PCs Wounded, half the
+Downs, and it drops fast (Unarmored, 10 Health at Level 1 after Area
+Attack, Powerful Spell and Accuracy). The Ram Brute puts someone Down
+more often than the Thornhide Brute and loses less often. Both monsters
+join the manual, so the manual's encounter draws and size_check's
+companions change from here on.

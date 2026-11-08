@@ -478,8 +478,10 @@ ABILITY_HEALTH_V3 = {
     "Strike (Frightening)": 0, "Strike (Taunting)": 0,
     "Strike (Necrotic)": 1, "Strike (Harrying)": 1, "Strike (Devastating)": 1,
     "Strike (Battering)": 2, "Strike (Cleaving)": 2, "Strike (Grappling)": 3,
-    # New 2026-11-08, first prices to be measured (experiments/enemies/reprice.py).
-    "Area Attack": 3, "Strike (Shoving)": 1,
+    # New 2026-11-08, priced at what reprice.py measured: Area Attack about
+    # 4.6 Health at every Level; a Push about nothing (-0.4 to -0.7, as a
+    # melee or a ranged rider): the sim has no ledges or hazards to push into.
+    "Area Attack": 5, "Strike (Shoving)": 0,
     "Poison (Crippling)": 0, "Poison (Slowing)": 0, "Poison (Vulnerable)": 0,
     "Poison (Necrotic)": 1, "Poison (Bleeding)": 3,
     "Heavy Weapon": 1, "Powerful Weapon": 1, "Powerful Spell": 3,

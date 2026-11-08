@@ -142,8 +142,10 @@ def _grappling(e, c):
 def _shoving(e, c):
     # "A hit Pushes the target 2 meters away from you" a pick (2026-11-08),
     # like the Shove maneuver (rulebook.md: "Push them up to 2 meters").
+    # It "may" Push (the Shove maneuver's wording), so it does on its
+    # turn's last attack: earlier, it would have to walk after its target.
     t = c.target
-    if t['health'] > 0 and 'pos' in t and 'pos' in e:
+    if t['health'] > 0 and 'pos' in t and 'pos' in e and e.get('_last_swing', True):
         n = 2 * (e['abilities'].count('Strike (Shoving)') if _pruned() else 1)
         start = t['pos']
         cs._push(t, e['pos'], n)

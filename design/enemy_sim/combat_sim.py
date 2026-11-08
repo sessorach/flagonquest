@@ -2971,6 +2971,9 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             and target is not None:
         ap -= T.ATTACK_AP_COST
         actions_made += 1
+        # Strike (Shoving) pushes only on the turn's last attack (it would
+        # walk back otherwise): no AP left for another, or at its cap.
+        e['_last_swing'] = ap < T.ATTACK_AP_COST or (cap is not None and actions_made >= cap)
         if mode == 'heal':
             amount = min(e['effect_stacks'], target['max_health'] - target['health'])
             blocked = min(amount, target.get('necrotic', 0))

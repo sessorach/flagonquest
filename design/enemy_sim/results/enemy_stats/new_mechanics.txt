@@ -1,0 +1,12 @@
+Lost / Down / Wounded / rounds, middle of the band.
+
+| Encounter | Levels 1-5 | By Level: lost / Down |
+|---|---|---|
+| Four Blast Mages | 0.7% / 14% / 61% / 3.1 | L1 3/19 L2 1/14 L3 0/20 L4 0/14 L5 0/4 |
+| Two Blast Mages + two standard | 0.2% / 7% / 42% / 3.0 | L1 1/10 L2 0/5 L3 0/10 L4 0/5 L5 0/5 |
+| Four Ember Casters | 1.7% / 34% / 77% / 4.3 | L1 1/25 L2 0/26 L3 4/50 L4 2/38 L5 1/31 |
+| Two Ember Casters + two standard | 0.1% / 13% / 53% / 3.3 | L1 0/12 L2 0/10 L3 0/17 L4 0/12 L5 0/12 |
+| Four Ram Brutes | 0.6% / 23% / 53% / 4.5 | L1 2/37 L2 0/38 L3 0/14 L4 0/9 L5 1/21 |
+| Two Ram Brutes + two standard | 0.0% / 9% / 36% / 3.6 | L1 0/17 L2 0/11 L3 0/5 L4 0/2 L5 0/9 |
+| Four Thornhide Brutes | 1.5% / 15% / 44% / 4.3 | L1 5/30 L2 1/14 L3 1/12 L4 1/7 L5 1/14 |
+| Two Thornhide Brutes + two standard | 0.2% / 7% / 33% / 3.5 | L1 1/14 L2 0/8 L3 0/5 L4 0/3 L5 0/8 |

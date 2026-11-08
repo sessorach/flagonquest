@@ -1,12 +1,12 @@
 # Latest replays (2026-11-08)
 
-Flatter enemy table in pencil: less Defense and Resist from Level 2, more Health, Accuracy +1 in the table
+Area Attack and Strike (Shoving); Blast Mage and Ram Brute in the manual; Abilities re-measured
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 1): party won in 5 rounds, 68% party HP left
-- Matchup average over 1000 fights: 96.2% wins, 5.3 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 96.1% wins, 5.3 rounds, 74% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

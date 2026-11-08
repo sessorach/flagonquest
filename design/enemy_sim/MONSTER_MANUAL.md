@@ -26,7 +26,9 @@ weapon's own above 10, the player cap.
 | Brute | 1 Slot | Bruiser | Two-Handed Weapon | Light |
 | Brute Warlord | Solo boss (4 Slots) | Bruiser | Two-Handed Weapon | Heavy |
 | Gravel Ogre | Elite (2 Slots) | Bruiser | Two-Handed Weapon | Medium |
+| Ram Brute | 1 Slot | Bruiser | Two-Handed Weapon | Medium |
 | Thornhide Brute | 1 Slot | Bruiser | Two-Handed Weapon | Light |
+| Blast Mage | 1 Slot | Strategist | Ranged Spell | Unarmored |
 | Bog Hexer | 1 Slot | Strategist | Ranged Spell | Unarmored |
 | Curse Weaver | 1 Slot | Strategist | Mind Spell | Unarmored |
 | Fen Warden | 1 Slot | Strategist | Melee Spell | Medium |
@@ -45,10 +47,11 @@ weapon's own above 10, the player cap.
 
 Every Ability in the catalog and the monsters that take it (element-specific ones by the element used).
 
-- **Accuracy +1** (2): Hedge Knight, Shieldbearer, Marsh Archer, Grave Caller, Ember Caster, Cinder Adept, Mind Lash Adept, Goblin Cutthroat, Brute, Bog Hexer, Mire Witch, Curse Weaver, Warleader, Fen Warden, Warpriest, Field Medic, Coven Matriarch, Skulking Footpad, Shade Stalker, Bog Skirmisher, Hunting Hound
+- **Accuracy +1** (2): Hedge Knight, Shieldbearer, Marsh Archer, Grave Caller, Ember Caster, Cinder Adept, Mind Lash Adept, Goblin Cutthroat, Brute, Bog Hexer, Mire Witch, Curse Weaver, Warleader, Fen Warden, Warpriest, Field Medic, Coven Matriarch, Skulking Footpad, Shade Stalker, Bog Skirmisher, Hunting Hound, Blast Mage
 - **Action (Intimidating)** (0): Brute Warlord, Warleader
-- **Action (Parting Shot)** (1): Ironbranch Warden, Warleader, Skulking Footpad
+- **Action (Parting Shot)** (1): Ironbranch Warden, Warleader, Skulking Footpad, Ram Brute
 - **Action (Taunting)** (1): Hedge Knight, Fen Warden
+- **Area Attack** (5): Blast Mage
 - **Damage +1** (4): Executioner
 - **Dodge +1** (1): Shieldbearer, Mire Witch, Curse Weaver, Field Medic, Bog Skirmisher
 - **Durable** (1): Thornhide Brute, Fen Warden, Warpriest, Deadbough Priest
@@ -63,7 +66,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Poison (Necrotic)** (0.5): *nobody yet*
 - **Poison (Slowing)** (0.5): Bog Skirmisher
 - **Poison (Vulnerable)** (0.5): *nobody yet*
-- **Powerful Spell** (3): Grave Caller, Ember Caster, Mind Lash Adept
+- **Powerful Spell** (3): Grave Caller, Ember Caster, Mind Lash Adept, Blast Mage
 - **Powerful Weapon** (4): Glaive Dancer
 - **Resilient** (0): Iron Sentinel, Thornhide Brute, Mire Witch
 - **Resist +1** (4): Deadbough Priest
@@ -77,6 +80,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Strike (Grappling)** (3): Gravel Ogre, Hunting Hound
 - **Strike (Harrying)** (1): Hedge Knight, Shieldbearer, Warleader, Warpriest, Shade Stalker
 - **Strike (Necrotic)** (0.5): Grave Caller, Mire Witch, Coven Matriarch, Shade Stalker
+- **Strike (Shoving)** (0): Ram Brute
 - **Strike (Slowing)** (0.5): Glaive Dancer, Goblin Cutthroat, Bog Hexer, Mire Witch, Fen Warden, Field Medic, Skulking Footpad
 - **Strike (Taunting)** (0.5): Hedge Knight, Shieldbearer
 - **Strike (Vulnerable)** (0.5): Marsh Archer, Crossbow Sniper, Grave Caller, Mind Lash Adept, Curse Weaver
@@ -335,6 +339,21 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 | 3 | +7 vs Parry/Dodge, 9 Physical | 13 | 10 | 15 | 9 | 11 | 4 / 2 | 40 | 5 |
 | 5 | +9 vs Parry/Dodge, 10 Physical | 15 | 12 | 17 | 11 | 13 | 6 / 4 | 43 | 6 |
 
+### Ram Brute
+
+*Batters whoever reaches it back out of reach, and hits anyone who walks away.*
+
+- **1 Slot, Bruiser.** Hold the Line (fights whoever is near).
+- **Loadout:** Two-Handed Weapon (2). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
+- **Picks:** Strike (Shoving) ×2 (0), Action (Parting Shot) (1)
+- **Points:** the picks, loadout and armor cost 5 of the Level's 8 / 8 / 10 (Levels 1 / 2 / 3-5); what's left buys Strike (Crippling) ×2 at Level 3, the rest is Health.
+
+| Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | +2 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 4 / 2 | 13 | 3 |
+| 3 | +5 vs Parry/Dodge, 8 Physical | 13 | 10 | 15 | 9 | 11 | 4 / 2 | 20 | 4 |
+| 5 | +7 vs Parry/Dodge, 9 Physical | 15 | 12 | 17 | 11 | 13 | 6 / 4 | 21 | 5 |
+
 ### Thornhide Brute
 
 *Hitting it in melee hurts you back; it shakes off debuffs and toughens up each turn.*
@@ -351,6 +370,21 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 | 5 | +7 vs Parry/Dodge, 9 Physical | 15 | 13 | 17 | 11 | 13 | 5 / 4 | 20 | 5 |
 
 ## Strategists
+
+### Blast Mage
+
+*Lobs fire into the thick of a melee: everyone next to its target is hit too.*
+
+- **1 Slot, Strategist.** Hit Whatever (fights whoever is near).
+- **Loadout:** Ranged Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
+- **Picks:** Area Attack (5), Powerful Spell (3), Accuracy +1 (2)
+- **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 8 / 10 (Levels 1 / 2 / 3-5); what's left buys Strike (Frightening) ×2 at Level 3, the rest is Health.
+
+| Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | +5 vs Dodge, 4 Fire, range 4 | — | 11 | 8 | 14 | 12 | 2 / 2 | 10 | 3 |
+| 3 | +8 vs Dodge, 5 Fire, range 8 | — | 12 | 9 | 15 | 13 | 2 / 2 | 16 | 4 |
+| 5 | +10 vs Dodge, 6 Fire, range 12 | — | 14 | 11 | 17 | 15 | 4 / 4 | 17 | 5 |
 
 ### Bog Hexer
 
