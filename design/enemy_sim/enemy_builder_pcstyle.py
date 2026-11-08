@@ -414,6 +414,16 @@ ENEMY_TABLE_V3_PRUNED = {L: dict(r, damage=r["damage"] - 1, accuracy=r["accuracy
     4: dict(skill=7, accuracy=6, damage=4, resist=4, health=15),
     5: dict(skill=8, accuracy=7, damage=4, resist=4, health=15),
 }.items()}
+# In pencil (designer, 2026-11-08): a flatter curve at Levels 2-5. Skill
+# (every Defense) -1 at Levels 2-5 and Resist -1 at 2-4, splitting the
+# step from 4 to 5; the cut paid back as Health (as Ability points it
+# bought offense first and cut fights short); and the Accuracy +1 every
+# monster bought from Level 2 is in the table, its 2 points off the
+# budget (V3_PRUNED_EXTRA). experiments/enemies/flat_table.py.
+V3_FLAT_TABLE = {2: dict(skill=-1, resist=-1, health=3, accuracy=1), 3: dict(skill=-1, resist=-1, health=2, accuracy=1),
+                 4: dict(skill=-1, resist=-1, health=1, accuracy=1), 5: dict(skill=-1, health=1, accuracy=1)}
+ENEMY_TABLE_V3_PRUNED = {L: {k: v + V3_FLAT_TABLE.get(L, {}).get(k, 0) for k, v in r.items()}
+                         for L, r in ENEMY_TABLE_V3_PRUNED.items()}
 # Archetypes for the pruned v3: only additions (designer, 2026-11-04: "very
 # few things should reduce numbers", heavier armor the one example). Each
 # about 2.5-3.5 enemy Health at Level 2 (kit_check.py, V3_PRUNED_ROSTER =

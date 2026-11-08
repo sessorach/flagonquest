@@ -508,7 +508,11 @@ V3_PRUNED_ROSTER = 'picks'
 # 2026-11-07) to win back the danger the Defense cap and the elemental
 # weapons took off: 8 / 10 / 12 / 12 / 12 (experiments: manual_check.py
 # --extra; results/enemy_stats/nudge_*).
-V3_PRUNED_EXTRA = {1: 1, 2: 3, 3: 5, 4: 5, 5: 5}
+# Then (2026-11-08, in pencil) the Accuracy +1 everyone bought from Level 2
+# went into the table: 8 / 8 / 10 / 10 / 10, and the extra points no longer
+# start with Accuracy from Level 2 (V3_ACCURACY_IN_TABLE).
+V3_PRUNED_EXTRA = {1: 1, 2: 1, 3: 3, 4: 3, 5: 3}
+V3_ACCURACY_IN_TABLE = 2
 # 'row' spends extra points down the row's PrunedExtra; 'offense' on
 # Accuracy +1, then Damage +1, first.
 V3_PRUNED_EXTRA_ORDER = 'offense'

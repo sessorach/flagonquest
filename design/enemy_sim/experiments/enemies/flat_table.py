@@ -1,5 +1,10 @@
 """A flatter enemy table at Levels 2-4, paid back in budget (2026-11-08).
 
+Kept for the record: its variants are changes to the table and budget as
+they stood before 2026-11-08; with "budget as today" plus the Accuracy
+fold in the default (enemy_builder_pcstyle.V3_FLAT_TABLE) it no longer
+reproduces as written.
+
 Per the designer: weigh enemy stats a bit flatter at Levels 2-4 and give
 back some Ability budget, so the enemies challenge the party without
 overwhelming the bottom of the band. A band is about one enemy Level of

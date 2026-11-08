@@ -229,6 +229,10 @@ def _pruned_picks(row, abilities):
     buyback = ["Damage +1", "Accuracy +1"]
     mode = getattr(T, "V3_PRUNED_ROSTER", "picks")
     designed = _split(row.get("PrunedPicks"))
+    in_table = int(row["Level"]) >= getattr(T, "V3_ACCURACY_IN_TABLE", 99)
+    if in_table:
+        # The table carries this Accuracy +1 from that Level (2026-11-08).
+        buyback = ["Damage +1"]
     if mode == "buyback" or not designed:
         return abilities + buyback, row["Action"]
     picks = list(designed)
@@ -244,7 +248,7 @@ def _pruned_picks(row, abilities):
     order = _split(row.get("PrunedExtra"))
     if getattr(T, "V3_PRUNED_EXTRA_ORDER", "row") == "offense":
         # Extra points on offense first (Accuracy, then Damage), then the row's own.
-        order = ["Accuracy +1", "Damage +1"] + [p for p in order if p not in ("Accuracy +1", "Damage +1")]
+        order = ([] if in_table else ["Accuracy +1"]) + ["Damage +1"] + [p for p in order if p not in ("Accuracy +1", "Damage +1")]
     for pick in order:
         price = eb.ABILITY_HEALTH_V3P[pick]
         n = picks.count(pick)
