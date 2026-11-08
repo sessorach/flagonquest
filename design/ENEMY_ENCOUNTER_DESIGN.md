@@ -4337,3 +4337,42 @@ replaced. Round two, Defense and Resist both −1:
 - Lowering Levels 2-4 makes the step to Level 5 bigger (Defense +2,
   Resist +1 instead of +1 and 0); the grown Level 5 builds can't show
   what that does.
+
+Round three (designer: split the difference on the step from Level 4 to
+5, pay the cut back in Ability points, and move some to Health if the
+points make it too dangerous). Level 5 takes Defense −1 (Resist as it
+was), so the step from 4 to 5 is Defense +1 and Resist +1. A grid of
+points and Health at Levels 2-5 (`flat_table.py 3`,
+`results/enemy_stats/flat_table_3.txt`). Points cut fights short at
+Level 3 (3.2-3.6 rounds, a hit enemy acting again 38-47%), so it takes
+Health there; elsewhere points hold the length. Picked Level by Level
+(middle near 90% of days, Downs near one in five, about 4 rounds):
+
+| Level | Today: Skill / Resist / Health / points | Picked |
+|---|---|---|
+| 1 | 4 / 2 / 10 / 8 | same |
+| 2 | 5 / 3 / 11 / 10 | 4 / 2 / 12 / 12 |
+| 3 | 6 / 3 / 13 / 12 | 5 / 2 / 15 / 12 |
+| 4 | 7 / 4 / 15 / 12 | 6 / 3 / 15 / 13 |
+| 5 | 8 / 4 / 15 / 12 | 7 / 4 / 15 / 13 |
+
+| Level | Days won, bottom / middle / top: today → picked | Middle, first fight: Down / rounds / again, picked |
+|---|---|---|
+| 2 | 21 / 88 / 98 → 39 / 92 / 99 | 20% / 4.1 / 52% |
+| 3 | 35 / 85 / 99 → 58 / 90 / 99 | 18% / 3.7 / 49% |
+| 4 | 47 / 89 / 97 → 67 / 91 / 98 | 22% / 3.6 / 50% |
+| 5 | 87 / 89 / 92 → 84 / 88 / 90 | 25% / 4.4 / 60% |
+
+Every size, middle of the band, Levels 1-5 (`flat_table.py size`,
+`results/enemy_stats/flat_table_size.txt`), lost / Down / rounds, today
+→ picked: four standard 0.4% / 14% / 4.6 → 0.3% / 15% / 3.9; eight
+minions 1.3% / 28% → 1.2% / 33%; Ogre + two standard 3.8% → 2.4%; two
+Ogres 9.6% / 5.0 → 6.4% / 4.5; two Black Knights 10.8% / 8.7 → 5.1% /
+6.9; solo Warlord 8.0% → 4.7%. Big fights get safer and about half a
+round shorter; at Level 5 the minion fights put someone Down more often
+(eight minions 17% → 42%).
+
+The band gap from bottom to middle goes from 67 / 50 / 42 / 2 points of
+days won to 53 / 32 / 24 / 4. Level 2 is still the steepest. Fights run
+about half a round shorter everywhere (3.6-4.4 rounds in the middle),
+and Downs sit at 18-25%, a little above one fight in five.

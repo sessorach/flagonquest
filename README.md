@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-08 — Heavy armor from Level 3, a flatter enemy curve
+
+Enemies only wear Heavy armor from Level 3, which made the slow armored fights at Levels 1-2 shorter and safer; then tested a flatter enemy table at Levels 2-5, a little less Defense and Resist paid back in Ability points and Health, which lets a party at the bottom of its XP band win far more days.
+
 ### 2026-11-07 — Elites and debuffs
 
 Elites and solo bosses can no longer buy their way out of debuffs, which was most of what made a heavily armored elite knight such a slog, and two of the sample characters now carry Fire weapons, the game's answer to heavy armor; a point more enemy budget, now the default, wins back the notch of danger those took off. Every enemy's armor and gear now comes out of its Ability budget with nothing paid out of Health, and Heavy armor costs more, which trims the slowest armored fights.

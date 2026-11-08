@@ -1,0 +1,26 @@
+Lost / Down / Rounds, middle of the band, Levels 1-5 (Level 5 alone after).
+
+| Encounter | Today | Picked | Level 5: today | Level 5: picked |
+|---|---|---|---|---|
+| Four standard | 0.4% / 14% / 4.6 | 0.3% / 15% / 3.9 | 0.3% / 8% / 5.1 | 0.3% / 14% / 3.9 |
+| Eight minions | 1.3% / 28% / 4.2 | 1.2% / 33% / 3.7 | 0.3% / 17% / 4.0 | 1.2% / 42% / 3.6 |
+| Four minions + two standard | 0.8% / 19% / 4.6 | 0.4% / 21% / 4.0 | 0.3% / 22% / 4.7 | 0.0% / 31% / 3.9 |
+| Two minions + three standard | 0.7% / 17% / 4.5 | 0.7% / 20% / 4.0 | 0.2% / 13% / 4.3 | 1.5% / 31% / 4.1 |
+| Gravel Ogre + two standard | 3.8% / 29% / 4.9 | 2.4% / 25% / 4.3 | 5.1% / 30% / 5.4 | 4.0% / 28% / 4.8 |
+| Two Gravel Ogres | 9.6% / 39% / 5.0 | 6.4% / 35% / 4.5 | 9.8% / 39% / 5.5 | 7.9% / 36% / 5.3 |
+| Gravel Ogre + two minions + one standard | 3.0% / 28% / 4.7 | 2.1% / 25% / 4.2 | 2.9% / 23% / 5.5 | 2.6% / 24% / 4.8 |
+| Coven Matriarch + two standard | 0.0% / 2% / 4.8 | 0.0% / 2% / 4.3 | 0.0% / 1% / 5.2 | 0.0% / 1% / 4.7 |
+| Coven Matriarch + two minions + one standard | 0.1% / 2% / 4.7 | 0.0% / 2% / 4.2 | 0.0% / 0% / 5.2 | 0.1% / 0% / 4.9 |
+| Elite Sharpshooter + two standard | 1.5% / 37% / 4.8 | 0.9% / 36% / 4.2 | 0.9% / 40% / 5.2 | 0.3% / 38% / 4.5 |
+| Two Elite Sharpshooters | 3.9% / 56% / 4.6 | 2.7% / 56% / 4.2 | 4.8% / 55% / 5.2 | 1.7% / 56% / 4.7 |
+| Elite Sharpshooter + two minions + one standard | 1.8% / 41% / 4.8 | 1.5% / 44% / 4.3 | 1.2% / 26% / 5.1 | 0.3% / 34% / 4.4 |
+| Storm Magus + two standard | 0.5% / 14% / 4.8 | 0.4% / 15% / 4.2 | 0.1% / 9% / 5.3 | 0.1% / 17% / 4.8 |
+| Two Storm Maguss | 1.0% / 28% / 5.2 | 0.8% / 31% / 4.6 | 0.0% / 2% / 6.2 | 1.2% / 33% / 5.9 |
+| Storm Magus + two minions + one standard | 0.5% / 10% / 4.6 | 0.2% / 11% / 4.1 | 0.0% / 2% / 5.2 | 0.1% / 8% / 4.8 |
+| Black Knight + two standard | 1.7% / 13% / 5.9 | 1.1% / 10% / 5.1 | 0.9% / 12% / 6.0 | 0.4% / 10% / 5.3 |
+| Two Black Knights | 10.8% / 30% / 8.7 | 5.1% / 20% / 6.9 | 10.4% / 28% / 9.2 | 5.2% / 22% / 8.0 |
+| Black Knight + two minions + one standard | 1.1% / 11% / 5.6 | 0.8% / 8% / 4.9 | 0.2% / 5% / 5.9 | 0.2% / 4% / 5.2 |
+| Gravel Ogre + Coven Matriarch | 2.6% / 18% / 5.1 | 1.3% / 16% / 4.6 | 1.7% / 10% / 5.3 | 3.7% / 24% / 5.5 |
+| Gravel Ogre + Elite Sharpshooter | 6.9% / 43% / 4.7 | 5.0% / 42% / 4.3 | 7.9% / 39% / 5.3 | 6.5% / 39% / 5.0 |
+| Elite Sharpshooter + Storm Magus | 1.1% / 24% / 4.6 | 0.9% / 28% / 4.1 | 0.0% / 10% / 5.4 | 1.2% / 29% / 4.8 |
+| Solo Brute Warlord | 8.0% / 26% / 3.8 | 4.7% / 22% / 3.3 | 11.7% / 30% / 4.3 | 9.8% / 27% / 4.0 |
