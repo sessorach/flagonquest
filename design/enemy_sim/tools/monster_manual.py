@@ -118,7 +118,9 @@ def main():
                   f"({'goes for the softest' if r['BattleTactic'] == 'Assassin' else 'keeps its distance' if r['BattleTactic'] == 'Kiting' else 'fights whoever is near'}).",
                   f"- **Loadout:** {SHOW.get(r['Action'], r['Action'])}" + (f", backup {r['BackupAction']}" if r["BackupAction"] else "")
                   + (f", lands {r['MainEffect']}" if r["MainEffect"] else "")
-                  + f" ({loadout:g}). **Armor:** {r['Armor']} ({armor:g}). "
+                  + f" ({loadout:g}). **Armor:** {r['Armor']} ({armor:g})"
+                  + (f", Medium ({eb.ARMOR_HEALTH_V3P['Medium']:g}) below Level {T.V3_HEAVY_MIN_LEVEL}"
+                     if r["Armor"] == "Heavy" and getattr(T, "V3_HEAVY_MIN_LEVEL", None) else "") + ". "
                   f"**Strong:** {r['StrongDefense']}. **Weak:** {r['WeakDefense'] or 'the default for its kind'}.",
                   "- **Picks:** " + ", ".join(f"{k}{' ×' + str(n) if n > 1 else ''} ({eb.ABILITY_HEALTH_V3P[k] * n:g})"
                                               for k, n in collections.Counter(picks).items()),

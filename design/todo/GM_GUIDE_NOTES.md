@@ -354,8 +354,9 @@ gear; Step 4's gear is added last and can take a number past them:
   Action and has no Parry; it defends with Dodge. Its fallback weapon,
   for when there's nothing to heal or hex, hits at Accuracy − 4.
 - Armor: Unarmored (−2 points), Light (free; Physical Resist +1),
-  Medium (2; Physical Resist +2, Dodge −1), Heavy (6; Physical Resist
-  +3, Dodge −1, Speed −1).
+  Medium (2; Physical Resist +2, Dodge −1), Heavy (6, Level 3 and up;
+  Physical Resist +3, Dodge −1, Speed −1). Below Level 3 a design in
+  Heavy armor wears Medium.
 - Pick a Battle Tactic (see the quick reference below).
 
 **Size.** One table by Slots:

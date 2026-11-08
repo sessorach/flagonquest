@@ -109,13 +109,13 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *A construct: hard to hurt, shrugs off debuffs, swings a frost-cold blade.*
 
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
-- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (6). **Strong:** Vital. **Weak:** Mental.
+- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (6), Medium (2) below Level 3. **Strong:** Vital. **Weak:** Mental.
 - **Picks:** Resist (Fire) (1), Elemental Weapon (Frost) (0), Resilient (0), Sturdy (0)
 - **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Vital/Mental/Vigilant +1, Enhanced Health at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 4 Frost | 14 | 11 | 12 | 8 | 10 | 5 / 2 | 14 | 2 |
+| 1 | +2 vs Parry/Dodge, 4 Frost | 14 | 11 | 13 | 9 | 11 | 4 / 2 | 17 | 3 |
 | 3 | +5 vs Parry/Dodge, 5 Frost | 16 | 13 | 15 | 11 | 13 | 6 / 3 | 18 | 3 |
 | 5 | +7 vs Parry/Dodge, 6 Frost | 18 | 15 | 17 | 13 | 15 | 7 / 4 | 20 | 4 |
 
@@ -124,13 +124,13 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *An armored bulwark that holds its ground: Parrying it still bleeds you, and walking away gets you hit.*
 
 - **1 Slot, Defender.** Hit Whatever (fights whoever is near).
-- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (6). **Strong:** Vital. **Weak:** the default for its kind.
+- **Loadout:** Heavy Weapon and Shield (1). **Armor:** Heavy (6), Medium (2) below Level 3. **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Sturdy (0), Action (Parting Shot) (1)
 - **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Dodge +1, Strike (Crippling) ×2 at Level 3, the rest is Health.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 5 Physical | 14 | 11 | 12 | 8 | 10 | 5 / 2 | 14 | 2 |
+| 1 | +2 vs Parry/Dodge, 5 Physical | 14 | 12 | 12 | 8 | 10 | 4 / 2 | 17 | 3 |
 | 3 | +5 vs Parry/Dodge, 6 Physical | 16 | 14 | 14 | 10 | 12 | 6 / 3 | 17 | 3 |
 | 5 | +7 vs Parry/Dodge, 7 Physical | 18 | 16 | 16 | 12 | 14 | 7 / 4 | 19 | 4 |
 
@@ -308,14 +308,14 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 *A rare solo boss: two turns a round; it cleaves through a line and Frightens from across the field.*
 
 - **Solo boss (4 Slots), Bruiser.** Hit Whatever (fights whoever is near).
-- **Loadout:** Two-Handed Weapon (2). **Armor:** Heavy (6). **Strong:** Vital. **Weak:** the default for its kind.
+- **Loadout:** Two-Handed Weapon (2). **Armor:** Heavy (6), Medium (2) below Level 3. **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Action (Intimidating) (0)
 - **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 10 / 12 (Levels 1 / 2 / 3-5); what's left buys Accuracy +1, Strike (Crippling) ×2 at Level 3, the rest is Health.
 - **Size:** 2 times the points; the extra 8 at Level 1 and 12 at Levels 3-5 buy (in order, as far as they go) Strike (Cleaving), Action (Parting Shot), Strike (Crippling) ×2, Strike (Frightening) ×4, Accuracy +1, Damage +1 at Level 3. Health ×4, two turns a round.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 5 / 2 | 44 | 2 |
+| 1 | +3 vs Parry/Dodge, 7 Physical | 12 | 9 | 14 | 8 | 10 | 4 / 2 | 50 | 3 |
 | 3 | +6 vs Parry/Dodge, 9 Physical | 14 | 11 | 16 | 10 | 12 | 6 / 3 | 58 | 3 |
 | 5 | +8 vs Parry/Dodge, 10 Physical | 16 | 13 | 18 | 12 | 14 | 7 / 4 | 66 | 4 |
 
