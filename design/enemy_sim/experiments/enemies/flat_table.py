@@ -18,6 +18,7 @@ the band).
     python3 experiments/enemies/flat_table.py      # round one
     python3 experiments/enemies/flat_table.py 2    # round two
     python3 experiments/enemies/flat_table.py 3    # round three, Levels 2-5
+    python3 experiments/enemies/flat_table.py size # every size, today against picked
 """
 import collections
 import json
@@ -29,6 +30,7 @@ import _paths  # noqa: E402,F401
 import tunables as T  # noqa: E402
 import enemy_builder_pcstyle as eb  # noqa: E402
 import manual_check as mc  # noqa: E402
+import size_check as sc  # noqa: E402
 import table_check as tc  # noqa: E402
 import progression_sweep as ps  # noqa: E402
 
@@ -58,7 +60,12 @@ CUT = {2: {"skill": -1, "resist": -1}, 3: {"skill": -1, "resist": -1}, 4: {"skil
 GRID = [(3, 0), (2, 1), (2, 0), (1, 2), (1, 1), (1, 0), (0, 3), (0, 2)]
 for _p, _h in GRID:
     VARIANTS[f"+{_p} points, Health +{_h}"] = {L: (dict(c, health=_h), _p) for L, c in CUT.items()}
-ROUND = {1: list(VARIANTS)[:5], 2: ["today", *list(VARIANTS)[5:9]], 3: ["today", *list(VARIANTS)[9:]]}
+# Picked from round three, Level by Level (middle of the band near 90% of
+# days, Downs near one fight in five, about 4 rounds): points where they
+# keep the fight's length, Health where points cut it short (Level 3).
+VARIANTS["picked"] = {2: (dict(CUT[2], health=1), 2), 3: (dict(CUT[3], health=2), 0),
+                      4: (dict(CUT[4], health=0), 1), 5: (dict(CUT[5], health=0), 1)}
+ROUND = {1: list(VARIANTS)[:5], 2: ["today", *list(VARIANTS)[5:9]], 3: ["today", *list(VARIANTS)[9:-1]]}
 _BASE = {L: dict(t) for L, t in eb.ENEMY_TABLE_V3_PRUNED.items()}
 _EXTRA = dict(T.V3_PRUNED_EXTRA)
 
@@ -86,8 +93,43 @@ def _manual(args):
     return v, mc._job(job)
 
 
+def _size(args):
+    v, job = args
+    install(v)
+    return v, sc._job(job)
+
+
+def size_compare():
+    """Every size_check encounter, middle of the band, today against picked."""
+    jobs = []
+    for L in (1, 2, 3, 4, 5):
+        for kind, label, enc in sc.encounters(L):
+            c = dict(level=L, kind=kind, label=label, enc=enc, minion_hp=round(1 / 3, 3))
+            for v in ("today", "picked"):
+                for gi in range(len(tc.groups(L, ps.MID[L]))):
+                    jobs.append((v, (c, ps.MID[L], gi, 60)))
+    res = collections.defaultdict(list)
+    with mp.Pool(os.cpu_count(), maxtasksperchild=50) as pool:
+        for v, r in pool.imap_unordered(_size, jobs, chunksize=2):
+            res[(v, r["label"])].append(r)
+            res[(v, r["label"], r["level"])].append(r)
+    f = lambda rs: (f"{100 * (1 - st.mean(r['won'] for r in rs)):.1f}% / {100 * st.mean(r['down'] for r in rs):.0f}% / "
+                    f"{st.mean(r['rounds'] for r in rs):.1f}" if rs else "-")
+    out = ["Lost / Down / Rounds, middle of the band, Levels 1-5 (Level 5 alone after).", "",
+           "| Encounter | Today | Picked | Level 5: today | Level 5: picked |", "|---|---|---|---|---|"]
+    for label in dict.fromkeys(k[1] for k in res if len(k) == 2):
+        out.append(f"| {label} | {f(res[('today', label)])} | {f(res[('picked', label)])} | "
+                   f"{f(res[('today', label, 5)])} | {f(res[('picked', label, 5)])} |")
+    text = "\n".join(out)
+    print(text)
+    open(os.path.join(_paths.ROOT, "results/enemy_stats/flat_table_size.txt"), "w").write(text + "\n")
+
+
 if __name__ == "__main__":
     import sys
+    if sys.argv[1:] == ["size"]:
+        size_compare()
+        sys.exit()
     rnd = int(sys.argv[1]) if len(sys.argv) > 1 else 1
     VARIANTS = {v: VARIANTS[v] for v in ROUND[rnd]}
     LEVELS = (2, 3, 4, 5) if rnd >= 3 else LEVELS
