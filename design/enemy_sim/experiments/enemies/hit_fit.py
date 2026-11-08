@@ -11,6 +11,7 @@ best per Level is read off afterwards.
 
     python3 experiments/enemies/hit_fit.py run
     python3 experiments/enemies/hit_fit.py run --wide
+    python3 experiments/enemies/hit_fit.py run --set
     python3 experiments/enemies/hit_fit.py read
 """
 import argparse
@@ -32,6 +33,11 @@ HEALTH = (1.0, 0.75, 0.6, 0.5, 0.4)
 # Round two (`run --wide`): Levels 3-5, the Resist cap lifted
 # (tunables.V3_RESIST_CAP), more Resist and less Health.
 WIDE = dict(levels=(3, 4, 5), skill=(2, 3, 4), resist=(3, 4, 5, 6), health=(0.5, 0.4, 0.3, 0.25))
+# Round three (`run --set`, designer: monsters of about 8 Health, "two solid
+# hits or three more standard ones"; keep the Resist cap): the table's
+# Health set to 5-7 (standard monsters then average about 7.5-10 with
+# their archetype and leftover points), Skill and Resist as in round one.
+SET = dict(skill=(0, 1, 2, 3, 4), resist=(0, 1, 2, 3), health=(5, 6, 7))
 OUT = os.path.join(_paths.ROOT, "results", "enemy_stats", "hit_fit.jsonl")
 
 
@@ -59,9 +65,11 @@ def run(a):
     if os.path.exists(OUT):
         done = {(r["spec"], r["level"], r["gi"]) for r in map(json.loads, open(OUT))}
     jobs = []
-    grid = (WIDE["skill"], WIDE["resist"], WIDE["health"]) if a.wide else (SKILL, RESIST, HEALTH)
+    grid = ((WIDE["skill"], WIDE["resist"], WIDE["health"]) if a.wide else
+            (SET["skill"], SET["resist"], SET["health"]) if a.set else (SKILL, RESIST, HEALTH))
     for s, r, h in itertools.product(*grid):
-        spec = f"skill=+{s},resist=+{r},health=*{h}" + (",wide" if a.wide else "")
+        spec = (f"skill=+{s},resist=+{r},health==" + str(h) if a.set else
+                f"skill=+{s},resist=+{r},health=*{h}" + (",wide" if a.wide else ""))
         for L in (WIDE["levels"] if a.wide else cst.LEVELS):
             for gi in range(len([g for g in tc.groups(L, ps.MID[L]) if g[0] != "stand-ins"])):
                 if (spec, L, gi) not in done:
@@ -101,6 +109,8 @@ def miss(m):
 
 def read(a):
     s = summary()
+    if a.set:
+        s = {k: m for k, m in s.items() if "health==" in k[0] or k[0] == "skill=+0,resist=+0,health=*1.0"}
     lines = []
     for L in cst.LEVELS:
         rows = sorted(((miss(m), abs(m["down"] - 0.2) + max(0, m["lost"] - 0.03) * 5, spec, m)
@@ -115,7 +125,7 @@ def read(a):
         lines.append("")
     text = "\n".join(lines)
     print(text)
-    open(OUT.replace(".jsonl", ".txt"), "w").write(text + "\n")
+    open(OUT.replace(".jsonl", "_set.txt" if a.set else ".txt"), "w").write(text + "\n")
 
 
 if __name__ == "__main__":
@@ -123,5 +133,6 @@ if __name__ == "__main__":
     ap.add_argument("cmd", choices=("run", "read"))
     ap.add_argument("-n", type=int, default=4)
     ap.add_argument("--wide", action="store_true", help="round two: Levels 3-5, the Resist cap lifted")
+    ap.add_argument("--set", action="store_true", help="round three: the table's Health set to 5-7")
     a = ap.parse_args()
     {"run": run, "read": read}[a.cmd](a)

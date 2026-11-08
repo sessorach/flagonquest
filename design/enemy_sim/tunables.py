@@ -538,6 +538,11 @@ V3_HEAVY_MIN_LEVEL = 3
 # The enemy Resist Stat's cap (None: STAT_CAP, 5, as a PC's), for the
 # hit-size targets' tests (2026-11-08, experiments/enemies/hit_fit.py).
 V3_RESIST_CAP = None
+# The hit-target table (2026-11-08 candidate, off by default): enemy
+# Defense and Resist up to PC-like numbers, Health down so a standard
+# monster has about 8, so PCs hit 50-75% for 2-3 and enemies 25-50% for
+# 2-3 (experiments/enemies/hit_fit.py). False: the table as pencilled.
+V3_HIT_FIT = False
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

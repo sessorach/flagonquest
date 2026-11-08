@@ -1,0 +1,70 @@
+### Level 1
+
+| Change | Outside targets | PC hit / lands | Enemy hit / lands | Rounds | Down / lost | Health lost |
+|---|---|---|---|---|---|---|
+| skill=+0,resist=+0,health=*1.0 | 0.85 | 72% / 3.6 | 23% / 3.2 | 4.1 | 22% / 1.0% | 14% |
+| skill=+0,resist=+1,health==5 | 0.28 | 65% / 2.8 | 22% / 3.2 | 4.4 | 22% / 1.7% | 15% |
+| skill=+0,resist=+1,health==7 | 0.33 | 59% / 2.7 | 22% / 3.2 | 6.3 | 34% / 5.9% | 23% |
+| skill=+0,resist=+1,health==6 | 0.35 | 62% / 2.7 | 22% / 3.2 | 5.3 | 28% / 3.1% | 18% |
+| skill=+1,resist=+1,health==5 | 0.36 | 56% / 2.7 | 21% / 3.2 | 5.3 | 26% / 3.8% | 18% |
+| skill=+0,resist=+2,health==5 | 0.36 | 50% / 2.1 | 21% / 3.2 | 7.4 | 38% / 12.2% | 28% |
+| skill=+1,resist=+1,health==7 | 0.38 | 51% / 2.5 | 22% / 3.3 | 7.5 | 40% / 10.9% | 29% |
+| skill=+3,resist=+0,health==6 | 0.39 | 52% / 3.0 | 23% / 3.3 | 5.7 | 30% / 6.2% | 21% |
+| skill=+3,resist=+0,health==7 | 0.40 | 49% / 2.9 | 23% / 3.3 | 7.0 | 37% / 10.8% | 27% |
+
+### Level 2
+
+| Change | Outside targets | PC hit / lands | Enemy hit / lands | Rounds | Down / lost | Health lost |
+|---|---|---|---|---|---|---|
+| skill=+0,resist=+0,health=*1.0 | 2.39 | 89% / 4.8 | 36% / 2.8 | 3.5 | 19% / 1.4% | 16% |
+| skill=+1,resist=+3,health==5 | 0.00 | 68% / 2.7 | 32% / 3.0 | 3.9 | 20% / 3.8% | 16% |
+| skill=+3,resist=+2,health==5 | 0.00 | 66% / 3.0 | 32% / 2.9 | 3.9 | 17% / 3.3% | 15% |
+| skill=+0,resist=+3,health==6 | 0.00 | 71% / 2.8 | 33% / 2.9 | 4.2 | 25% / 4.6% | 18% |
+| skill=+4,resist=+2,health==5 | 0.00 | 58% / 2.8 | 33% / 2.9 | 4.6 | 24% / 6.0% | 19% |
+| skill=+3,resist=+2,health==6 | 0.00 | 60% / 2.8 | 33% / 2.9 | 4.8 | 25% / 6.2% | 20% |
+| skill=+2,resist=+3,health==5 | 0.00 | 58% / 2.5 | 33% / 3.0 | 4.8 | 29% / 7.0% | 22% |
+| skill=+1,resist=+3,health==6 | 0.00 | 63% / 2.6 | 33% / 2.9 | 4.9 | 29% / 7.6% | 22% |
+| skill=+0,resist=+3,health==7 | 0.00 | 69% / 2.8 | 34% / 2.9 | 5.0 | 31% / 7.6% | 23% |
+
+### Level 3
+
+| Change | Outside targets | PC hit / lands | Enemy hit / lands | Rounds | Down / lost | Health lost |
+|---|---|---|---|---|---|---|
+| skill=+0,resist=+0,health=*1.0 | 3.95 | 93% / 5.8 | 36% / 3.4 | 3.3 | 27% / 1.6% | 18% |
+| skill=+4,resist=+3,health==5 | 0.44 | 59% / 3.0 | 28% / 3.4 | 5.0 | 30% / 8.2% | 23% |
+| skill=+4,resist=+3,health==6 | 0.47 | 54% / 2.9 | 29% / 3.5 | 6.4 | 38% / 15.5% | 31% |
+| skill=+4,resist=+3,health==7 | 0.48 | 54% / 2.9 | 29% / 3.5 | 7.1 | 47% / 20.4% | 37% |
+| skill=+3,resist=+3,health==7 | 0.57 | 61% / 3.1 | 30% / 3.5 | 6.0 | 42% / 14.2% | 32% |
+| skill=+3,resist=+3,health==6 | 0.64 | 64% / 3.2 | 30% / 3.5 | 5.1 | 35% / 9.8% | 26% |
+| skill=+3,resist=+3,health==5 | 0.67 | 67% / 3.2 | 30% / 3.5 | 4.2 | 27% / 5.6% | 20% |
+| skill=+2,resist=+3,health==7 | 0.73 | 69% / 3.3 | 31% / 3.4 | 4.9 | 35% / 7.6% | 26% |
+| skill=+2,resist=+3,health==6 | 0.79 | 74% / 3.4 | 32% / 3.4 | 4.1 | 28% / 4.6% | 21% |
+
+### Level 4
+
+| Change | Outside targets | PC hit / lands | Enemy hit / lands | Rounds | Down / lost | Health lost |
+|---|---|---|---|---|---|---|
+| skill=+0,resist=+0,health=*1.0 | 3.39 | 92% / 5.7 | 28% / 2.5 | 3.5 | 16% / 0.8% | 14% |
+| skill=+4,resist=+2,health==7 | 0.82 | 66% / 3.8 | 27% / 2.5 | 4.4 | 20% / 2.3% | 17% |
+| skill=+4,resist=+3,health==7 | 0.82 | 66% / 3.8 | 27% / 2.5 | 4.4 | 20% / 2.3% | 17% |
+| skill=+4,resist=+2,health==6 | 0.89 | 70% / 3.9 | 27% / 2.4 | 3.7 | 15% / 1.4% | 14% |
+| skill=+4,resist=+3,health==6 | 0.89 | 70% / 3.9 | 27% / 2.4 | 3.7 | 15% / 1.4% | 14% |
+| skill=+3,resist=+2,health==7 | 0.95 | 74% / 3.9 | 28% / 2.4 | 3.8 | 17% / 1.6% | 15% |
+| skill=+3,resist=+3,health==7 | 0.95 | 74% / 3.9 | 28% / 2.4 | 3.8 | 17% / 1.6% | 15% |
+| skill=+4,resist=+2,health==5 | 0.95 | 73% / 4.0 | 28% / 2.5 | 3.2 | 13% / 1.0% | 12% |
+| skill=+4,resist=+3,health==5 | 0.95 | 73% / 4.0 | 28% / 2.5 | 3.2 | 13% / 1.0% | 12% |
+
+### Level 5
+
+| Change | Outside targets | PC hit / lands | Enemy hit / lands | Rounds | Down / lost | Health lost |
+|---|---|---|---|---|---|---|
+| skill=+0,resist=+0,health=*1.0 | 2.31 | 85% / 4.9 | 39% / 2.2 | 4.2 | 32% / 2.0% | 21% |
+| skill=+3,resist=+1,health==7 | 0.96 | 74% / 4.0 | 36% / 2.3 | 3.7 | 24% / 1.7% | 16% |
+| skill=+3,resist=+2,health==7 | 0.96 | 74% / 4.0 | 36% / 2.3 | 3.7 | 24% / 1.7% | 16% |
+| skill=+3,resist=+3,health==7 | 0.96 | 74% / 4.0 | 36% / 2.3 | 3.7 | 24% / 1.7% | 16% |
+| skill=+4,resist=+1,health==7 | 0.96 | 74% / 4.0 | 36% / 2.3 | 3.7 | 24% / 1.7% | 16% |
+| skill=+4,resist=+2,health==7 | 0.96 | 74% / 4.0 | 36% / 2.3 | 3.7 | 24% / 1.7% | 16% |
+| skill=+4,resist=+3,health==7 | 0.96 | 74% / 4.0 | 36% / 2.3 | 3.7 | 24% / 1.7% | 16% |
+| skill=+3,resist=+1,health==6 | 1.06 | 77% / 4.0 | 36% / 2.3 | 3.3 | 18% / 1.0% | 14% |
+| skill=+3,resist=+2,health==6 | 1.06 | 77% / 4.0 | 36% / 2.3 | 3.3 | 18% / 1.0% | 14% |
+

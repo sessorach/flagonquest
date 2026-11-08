@@ -51,7 +51,8 @@ def install():
         # --table "skill=+3,resist=+2,health=*0.5": every Level's row changed.
         for part in filter(None, TABLE[0].split(",")):
             k, _, v = part.partition("=")
-            t[k] = max(1, round(t[k] * float(v[1:]))) if v.startswith("*") else t[k] + int(v)
+            t[k] = (max(1, round(t[k] * float(v[1:]))) if v.startswith("*") else int(v[1:]) if v.startswith("=")
+                    else t[k] + int(v))
 
 
 def _job(args):

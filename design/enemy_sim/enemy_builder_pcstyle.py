@@ -429,6 +429,17 @@ V3_FLAT_TABLE = {2: dict(skill=-1, resist=-1, health=3, accuracy=1), 3: dict(ski
 V3_HARD_HITS = dict(damage=2, accuracy=-1, health=-3)
 ENEMY_TABLE_V3_PRUNED = {L: {k: v + V3_FLAT_TABLE.get(L, {}).get(k, 0) + V3_HARD_HITS.get(k, 0) for k, v in r.items()}
                          for L, r in ENEMY_TABLE_V3_PRUNED.items()}
+# The hit-target candidate (tunables.V3_HIT_FIT; hit_fit.py's closest fits
+# Level by Level, the Resist cap kept): Skill and Resist up, Health set so
+# a standard monster averages about 8, and a point less enemy Damage at
+# Levels 1 and 3 (their hits landed 3.2-3.5).
+V3_HIT_FIT_TABLE = {1: dict(resist=1, health=6, damage=-1), 2: dict(skill=3, resist=2, health=6),
+                    3: dict(skill=3, resist=3, health=5, damage=-1), 4: dict(skill=4, resist=2, health=7),
+                    5: dict(skill=3, resist=1, health=7)}
+if getattr(T, "V3_HIT_FIT", False):
+    for _L, _c in V3_HIT_FIT_TABLE.items():
+        for _k, _d in _c.items():
+            ENEMY_TABLE_V3_PRUNED[_L][_k] = _d if _k == "health" else ENEMY_TABLE_V3_PRUNED[_L][_k] + _d
 # Archetypes for the pruned v3: only additions (designer, 2026-11-04: "very
 # few things should reduce numbers", heavier armor the one example). Each
 # about 2.5-3.5 enemy Health at Level 2 (kit_check.py, V3_PRUNED_ROSTER =
