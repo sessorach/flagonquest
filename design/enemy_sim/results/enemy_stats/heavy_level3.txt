@@ -1,0 +1,16 @@
+Lost / Down / Rounds, middle of the band.
+
+| | Heavy at any Level (default) | Heavy from Level 3 |
+|---|---|---|
+| Level 1, manual fights, all | 2.3% / 21% / 5.1 | 1.8% / 21% / 5.0 |
+| Level 1, manual, with a Warden or Sentinel | 6.1% / 25% / 7.3 | 3.3% / 21% / 6.5 |
+| Level 1, manual, without | 1.5% / 21% / 4.7 | 1.5% / 21% / 4.7 |
+| Level 1, Black Knight + two standard | 7.1% / 22% / 7.7 | 4.7% / 20% / 6.8 |
+| Level 1, Two Black Knights | 22.4% / 42% / 10.9 | 15.0% / 33% / 9.2 |
+| Level 1, Black Knight + two minions + one standard | 4.9% / 18% / 6.7 | 2.7% / 16% / 5.9 |
+| Level 2, manual fights, all | 1.1% / 15% / 4.7 | 1.0% / 15% / 4.7 |
+| Level 2, manual, with a Warden or Sentinel | 1.2% / 18% / 6.2 | 0.8% / 18% / 6.0 |
+| Level 2, manual, without | 1.1% / 15% / 4.4 | 1.1% / 15% / 4.4 |
+| Level 2, Black Knight + two standard | 3.7% / 23% / 7.4 | 2.7% / 20% / 6.7 |
+| Level 2, Two Black Knights | 32.7% / 65% / 13.5 | 24.2% / 57% / 11.4 |
+| Level 2, Black Knight + two minions + one standard | 3.1% / 23% / 7.8 | 1.9% / 19% / 6.9 |

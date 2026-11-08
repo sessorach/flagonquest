@@ -4228,3 +4228,67 @@ Black Knights 13.8% lost over 9.4 rounds (18% / 10.5), Black Knight + two
 standard 2.4% (3.6%), solo Brute Warlord 8.0% (12%); the rest move half a point or
 less (their standard companions sometimes draw a Heavy monster or the
 Hedge Knight).
+
+### Heavy armor from Level 3 (2026-11-08, test)
+
+Per the designer: maybe Heavy armor is for Level 3+ enemies (the 10-01
+hand-build draft had it that way). `tunables.V3_HEAVY_MIN_LEVEL = 3`:
+below it a Heavy design wears Medium (2 points, Physical Resist +2, Dodge
+−1, no Speed −1) and keeps the 4 points as Health (the Warden goes from 14
+Health to 17 at Level 1, Physical Resist 5 to 4). Levels 1-2, middle of
+the band, 60 fights a party (`experiments/enemies/heavy_level3.py`,
+`results/enemy_stats/heavy_level3.txt`). Lost / Down / rounds:
+
+| | Heavy at any Level | Heavy from Level 3 |
+|---|---|---|
+| Level 1, manual fights with a Warden or Sentinel | 6.1% / 25% / 7.3 | 3.3% / 21% / 6.5 |
+| Level 1, Black Knight + two standard | 7.1% / 22% / 7.7 | 4.7% / 20% / 6.8 |
+| Level 1, Two Black Knights | 22.4% / 42% / 10.9 | 15.0% / 33% / 9.2 |
+| Level 2, manual fights with a Warden or Sentinel | 1.2% / 18% / 6.2 | 0.8% / 18% / 6.0 |
+| Level 2, Black Knight + two standard | 3.7% / 23% / 7.4 | 2.7% / 20% / 6.7 |
+| Level 2, Two Black Knights | 32.7% / 65% / 13.5 | 24.2% / 57% / 11.4 |
+| Manual fights without them, Levels 1-2 | 1.1-1.5% / 4.4-4.7 rounds | same |
+
+A point of Resist costs the party more than three Health does: every
+Heavy fight at Levels 1-2 gets shorter and safer. Two Black Knights are
+still the worst fight at Levels 1-2 with Medium armor.
+
+### Why the bands are steep (2026-11-08)
+
+The designer asked why the bottom of the band loses so many days at
+Levels 2-4 (21 / 35 / 47% won, the middle 85-89%). Two things, both
+measured on the band parties (`table_check.groups`, the average PC):
+
+| Combat XP (Level's builds) | Attack | Damage | Best Defense | Physical Resist | Health |
+|---|---|---|---|---|---|
+| 85 / 105 / 125 (Level 2) | 7.6 / 7.7 / 8.7 | 4.9 / 5.7 / 6.1 | 14.4 / 14.9 / 16.0 | 3.5 / 4.4 / 4.6 | 10.3 |
+| 125 / 145 / 165 (Level 3) | 8.9 / 9.0 / 9.9 | 5.1 / 6.1 / 6.6 | 15.8 / 15.9 / 17.1 | 4.1 / 4.3 / 5.0 | 10.8 |
+| 165 / 185 / 205 (Level 4, grown) | 9.9 / 10.7 / 10.7 | 6.6 / 6.8 / 6.8 | 17.1 / 17.8 / 17.9 | 5.0 / 5.9 / 6.3 | 10.8 |
+| 205 / 225 / 245 (Level 5, grown) | 10.7 / 10.7 / 10.7 | 6.8 / 6.8 / 6.8 | 17.9 / 18.1 / 18.2 | 6.3 / 6.3 / 6.3 | 10.8 |
+
+- **A band is about one enemy Level wide.** Across Levels 2-4, 40 combat
+  XP buys about +1 Attack, +1 Damage, +1.5 Defense and +1 Resist; one
+  enemy Level adds about +1 Defense and Accuracy, +1 Damage or Resist
+  (alternating) and 2-4 Health. So the bottom of a band is about half an
+  enemy Level behind the middle. The same XP against two Levels of
+  enemy shows the step: 125 combat XP wins 98% of days against Level 2
+  and 35% against Level 3; 165, 99% and 47%; 205, 97% and 87%.
+- **A day is lost on a small shortfall.** Attack, Damage, Defense and
+  Resist compound: each a point down is a few percent on both sides of
+  every exchange, together most of a round of extra enemy turns, and a
+  day is two fights without a full rest. A Level 2 party at the bottom
+  loses the first fight 33% of the time against the middle's 1%.
+- **Level 5 is flat because the grown builds stop growing.** Levels 4-5
+  grow the Level 3 exports with Skill and Stat ranks up to the cap of 5:
+  by 205 combat XP they're capped, so the bottom and top of Level 5 are
+  nearly the same characters (only Defense moves). The enemy step from 4
+  to 5 is also small (Skill and Accuracy +1, the same budget, Damage,
+  Resist and Health). Real Level 5 characters would make it steeper.
+- Health doesn't move across a band at all: it comes with Level, not XP.
+
+The bottom of a band is also an export with XP taken off
+(`combat_xp.normalize`), not a character built at that XP, so it may be
+weaker than a player's would be. Ways to soften it, if wanted: a smaller
+enemy step per Level (spread it between Defense and Health so the fight
+gets longer, not deadlier), a narrower band, or Health that grows with XP
+inside a Level.

@@ -524,6 +524,9 @@ V3_HEALTH_FLOOR = 2 / 3
 # floor). What's left is Health, as before. False: the base design and the
 # extra points are separate pots and an overspend comes off Health.
 V3_ONE_BUDGET = True
+# The lowest Level an enemy can wear Heavy armor; below it a Heavy design
+# wears Medium (2026-11-08 test). None: any Level.
+V3_HEAVY_MIN_LEVEL = None
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

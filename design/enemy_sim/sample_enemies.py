@@ -153,6 +153,11 @@ def _build_from_row(row):
     # blank Ability cell) replace PrimaryDef/SecondaryDef's bundled
     # "Parry/Dodge as one category" for these rows - five independent
     # Defenses, not four.
+    heavy_min = getattr(T, "V3_HEAVY_MIN_LEVEL", None)
+    if heavy_min and row["Armor"].strip() == "Heavy" and int(row["Level"]) < heavy_min:
+        # Heavy armor only from this Level (designer, 2026-11-08 test): below
+        # it a Heavy design wears Medium, and the points it saves are Health.
+        row = dict(row, Armor="Medium")
     if (row.get("AttackTier") or "").strip():
         abilities = [a.strip() for a in row["Abilities"].split(";") if a.strip()]
         action = row["Action"]
