@@ -19,6 +19,7 @@ the band).
     python3 experiments/enemies/flat_table.py 2    # round two
     python3 experiments/enemies/flat_table.py 3    # round three, Levels 2-5
     python3 experiments/enemies/flat_table.py size # every size, today against picked
+    python3 experiments/enemies/flat_table.py 4    # round four, simpler budgets
 """
 import collections
 import json
@@ -65,7 +66,17 @@ for _p, _h in GRID:
 # keep the fight's length, Health where points cut it short (Level 3).
 VARIANTS["picked"] = {2: (dict(CUT[2], health=1), 2), 3: (dict(CUT[3], health=2), 0),
                       4: (dict(CUT[4], health=0), 1), 5: (dict(CUT[5], health=0), 1)}
-ROUND = {1: list(VARIANTS)[:5], 2: ["today", *list(VARIANTS)[5:9]], 3: ["today", *list(VARIANTS)[9:-1]]}
+# Round four (designer, 2026-11-08: is the budget a bit much?). At 13
+# points (Levels 4-5) every standard monster can afford Accuracy +1 and
+# then Damage +1; at 12 most can't. Two simpler budgets: 12 from Level 2
+# on (Levels 4-5's point as Health +1), and today's 8 / 10 / 12 / 12 / 12
+# (Level 2's two points as Health too).
+VARIANTS["budget 8/12/12/12/12"] = {2: (dict(CUT[2], health=1), 2), 3: (dict(CUT[3], health=2), 0),
+                                    4: (dict(CUT[4], health=1), 0), 5: (dict(CUT[5], health=1), 0)}
+VARIANTS["budget as today"] = {2: (dict(CUT[2], health=3), 0), 3: (dict(CUT[3], health=2), 0),
+                               4: (dict(CUT[4], health=1), 0), 5: (dict(CUT[5], health=1), 0)}
+ROUND = {1: list(VARIANTS)[:5], 2: ["today", *list(VARIANTS)[5:9]], 3: ["today", *list(VARIANTS)[9:-3]],
+         4: ["today", "picked", "budget 8/12/12/12/12", "budget as today"]}
 _BASE = {L: dict(t) for L, t in eb.ENEMY_TABLE_V3_PRUNED.items()}
 _EXTRA = dict(T.V3_PRUNED_EXTRA)
 

@@ -4376,3 +4376,22 @@ The band gap from bottom to middle goes from 67 / 50 / 42 / 2 points of
 days won to 53 / 32 / 24 / 4. Level 2 is still the steepest. Fights run
 about half a round shorter everywhere (3.6-4.4 rounds in the middle),
 and Downs sit at 18-25%, a little above one fight in five.
+
+Round four (designer: is the budget a bit much; put some back in the
+base, or leave it to go to Health?). Under the picked set, standard
+monsters already leave 1-2.5 points on average as Health; the rest buys
+Accuracy +1 first, then the row's picks. At 13 points (Levels 4-5) 17 of
+the 24 standard monsters can afford Damage +1 after Accuracy; at 12
+almost none can, so Levels 4-5's 13th point is really Damage +1. Two
+simpler budgets (`flat_table.py 4`, `results/enemy_stats/flat_table_4.txt`):
+12 from Level 2 on, with Levels 4-5's point as Health +1; and today's
+8 / 10 / 12 / 12 / 12, Level 2's two points as Health too (Health +3).
+
+| Middle: days won / Down / rounds / again (bottom days) | Level 2 | Level 3 | Level 4 | Level 5 |
+|---|---|---|---|---|
+| Picked (8 / 12 / 12 / 13 / 13) | 92 / 20 / 4.1 / 52 (39) | 90 / 18 / 3.7 / 49 (58) | 91 / 22 / 3.6 / 50 (67) | 88 / 25 / 4.4 / 60 (84) |
+| Budget as today, the rest as Health | 93 / 20 / 4.2 / 54 (36) | same | 95 / 16 / 3.9 / 56 (68) | 90 / 22 / 5.0 / 65 (87) |
+
+Level 2's two points and Health +3 play the same; Levels 4-5 without the
+Damage +1 are a notch easier (Level 4 at the 10-08 target of 95% days and
+Downs one fight in six; Level 5 back where it is today).
