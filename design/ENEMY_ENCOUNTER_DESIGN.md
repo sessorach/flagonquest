@@ -4274,9 +4274,9 @@ measured on the band parties (`table_check.groups`, the average PC):
   enemy shows the step: 125 combat XP wins 98% of days against Level 2
   and 35% against Level 3; 165, 99% and 47%; 205, 97% and 87%.
 - **A day is lost on a small shortfall.** Attack, Damage, Defense and
-  Resist compound: each a point down is a few percent on both sides of
-  every exchange, together most of a round of extra enemy turns, and a
-  day is two fights without a full rest. A Level 2 party at the bottom
+  Resist compound: a point down in each moves both sides of every exchange
+  at once (a point of Resist alone was worth about a round, "What each
+  stat is worth"), and a day is two fights without a full rest. A Level 2 party at the bottom
   loses the first fight 33% of the time against the middle's 1%.
 - **Level 5 is flat because the grown builds stop growing.** Levels 4-5
   grow the Level 3 exports with Skill and Stat ranks up to the cap of 5:
