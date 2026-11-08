@@ -138,6 +138,19 @@ def _grappling(e, c):
         c.applied.append("grappled")
 
 
+@hooks.on('enemy_hit_riders', 'Strike (Shoving)', order=30)
+def _shoving(e, c):
+    # "A hit Pushes the target 2 meters away from you" a pick (2026-11-08),
+    # like the Shove maneuver (rulebook.md: "Push them up to 2 meters").
+    t = c.target
+    if t['health'] > 0 and 'pos' in t and 'pos' in e:
+        n = 2 * (e['abilities'].count('Strike (Shoving)') if _pruned() else 1)
+        start = t['pos']
+        cs._push(t, e['pos'], n)
+        if t['pos'] != start:
+            c.applied.append(f"Pushed {cs._distance(start, t['pos'])} m")
+
+
 @hooks.on('enemy_hit_or_parried', 'Strike (Harrying)', order=10)
 def _harrying(e, c):
     # "Attack hits *or* is Parried -> target Harried once either way."

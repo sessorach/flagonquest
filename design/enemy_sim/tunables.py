@@ -52,6 +52,9 @@ ARENA_SIZE = 20
 # real number existed yet - see movement.py's own docstring for the
 # grid/Chebyshev-distance rule this now assumes throughout.
 MELEE_RANGE = 1
+# Area Attack's Burst (2026-11-08): other PCs within this many meters of the
+# target are attacked too.
+AREA_BURST = 1
 
 # ---- Armor tiers (armor_categories.csv, the real player-facing table) ----
 # One shared table for both sides now - enemies and PCs alike wear real

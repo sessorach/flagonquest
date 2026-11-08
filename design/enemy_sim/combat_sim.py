@@ -3011,6 +3011,17 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         interrupt_dmg += _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_log, party_log)
         if e['health'] <= 0:
             break
+        # Area Attack (2026-11-08): "Your main attack also targets each other
+        # PC within 1 meter of its target (Burst 1)", rolled for each.
+        if 'Area Attack' in abilities and mode == 'attack' and movement_on and target['health'] > 0:
+            for p in [p for p in pcs if p['health'] > 0 and p is not target
+                      and _distance(target['pos'], p['pos']) <= T.AREA_BURST]:
+                interrupt_dmg += _enemy_attack(e, prof, p, mode, rnd, pcs, enemies, movement_on, enemy_log,
+                                               party_log, via_suffix=' (Area)')
+                if e['health'] <= 0:
+                    break
+            if e['health'] <= 0:
+                break
         # Strike (Cleaving): "Attack can also hit one extra adjacent enemy."
         if 'Strike (Cleaving)' in abilities and mode == 'attack' and movement_on:
             extra = [p for p in pcs if p['health'] > 0 and p is not target
