@@ -302,15 +302,17 @@ Worked stat blocks: `enemy_sim/MONSTER_MANUAL.md`.
 
 | Level | Damage Stat | Accuracy | Skill | Health | Resist | Points | Defense limit |
 |---|---|---|---|---|---|---|---|
-| 1 | 1 | 2 | 4 | 10 | 2 | 8 | 14 |
-| 2 | 2 | 4 | 4 | 14 | 2 | 8 | 14 |
-| 3 | 2 | 5 | 5 | 15 | 2 | 10 | 15 |
-| 4 | 3 | 6 | 6 | 16 | 3 | 10 | 16 |
-| 5 | 3 | 7 | 7 | 16 | 4 | 10 | 17 |
+| 1 | 3 | 1 | 4 | 7 | 2 | 8 | 14 |
+| 2 | 4 | 3 | 4 | 11 | 2 | 8 | 14 |
+| 3 | 4 | 4 | 5 | 12 | 2 | 10 | 15 |
+| 4 | 5 | 5 | 6 | 13 | 3 | 10 | 16 |
+| 5 | 5 | 6 | 7 | 13 | 4 | 10 | 17 |
 
 In pencil (2026-11-08): a flatter curve from Level 2 (less Defense and
-Resist, more Health), and the Accuracy +1 every enemy bought from Level 2
-is in the Accuracy column, so the Points are all free choice.
+Resist, more Health); the Accuracy +1 every enemy bought from Level 2 is
+in the Accuracy column, so the Points are all free choice; and harder
+hits (Damage +2, Accuracy −1, Health −3 at every Level): an enemy hits
+less often, for about a third of a PC's Health instead of a tenth.
 
 Defenses: pick a Strong Defense (Dodge, Vital, Mental or Vigilant) at 8
 + Skill, one Weak Defense at 8 + Skill − 4 (by default the one that

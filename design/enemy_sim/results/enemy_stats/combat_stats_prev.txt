@@ -1,0 +1,77 @@
+Every party in the middle of its band, the manual's encounters; mean (standard deviation; 10th-90th percentile).
+
+### Level 1 (1440 fights; an average PC has 10.0 Health)
+
+| | Value |
+|---|---|
+| PC hit chance | 67% |
+| Chance an enemy attack hits a PC | 32% |
+| A PC hit lands | 3.5 (sd 1.6; 2.0-6.0) |
+| An enemy hit lands | 1.4 (sd 1.4; 0.0-3.0); 14% of a PC; 30% land 0 |
+| Party deals a round (attacks) | 11.2 (sd 4.4; 6.4-17.0) |
+| Party takes a round (attacks) | 1.0 (sd 1.1; 0.0-2.5) |
+| Rounds | 5.4 (sd 2.7; 3.0-8.0) |
+| Party Health lost (% of max) | 15 (sd 17; 0-32) |
+| PCs dropped to 0 a fight | 0.22 (sd 0.60; 0.00-1.00) |
+| Someone Down / Wounded / fight lost | 18% / 41% / 1.4% |
+
+### Level 2 (1920 fights; an average PC has 10.1 Health)
+
+| | Value |
+|---|---|
+| PC hit chance | 85% |
+| Chance an enemy attack hits a PC | 46% |
+| A PC hit lands | 4.7 (sd 1.9; 2.0-7.0) |
+| An enemy hit lands | 1.1 (sd 1.3; 0.0-3.0); 11% of a PC; 40% land 0 |
+| Party deals a round (attacks) | 16.8 (sd 5.2; 10.5-22.7) |
+| Party takes a round (attacks) | 1.1 (sd 1.1; 0.0-2.7) |
+| Rounds | 4.4 (sd 1.9; 3.0-6.0) |
+| Party Health lost (% of max) | 11 (sd 13; 0-26) |
+| PCs dropped to 0 a fight | 0.13 (sd 0.43; 0.00-1.00) |
+| Someone Down / Wounded / fight lost | 12% / 33% / 0.4% |
+
+### Level 3 (1920 fights; an average PC has 10.7 Health)
+
+| | Value |
+|---|---|
+| PC hit chance | 91% |
+| Chance an enemy attack hits a PC | 46% |
+| A PC hit lands | 5.8 (sd 1.8; 4.0-8.0) |
+| An enemy hit lands | 1.5 (sd 1.3; 0.0-3.0); 14% of a PC; 25% land 0 |
+| Party deals a round (attacks) | 22.3 (sd 6.4; 14.8-28.7) |
+| Party takes a round (attacks) | 1.7 (sd 1.6; 0.0-4.0) |
+| Rounds | 3.8 (sd 1.8; 3.0-5.0) |
+| Party Health lost (% of max) | 14 (sd 14; 0-30) |
+| PCs dropped to 0 a fight | 0.18 (sd 0.51; 0.00-1.00) |
+| Someone Down / Wounded / fight lost | 14% / 42% / 0.7% |
+
+### Level 4 (1920 fights; an average PC has 10.7 Health)
+
+| | Value |
+|---|---|
+| PC hit chance | 89% |
+| Chance an enemy attack hits a PC | 39% |
+| A PC hit lands | 5.7 (sd 2.0; 3.0-8.0) |
+| An enemy hit lands | 1.0 (sd 1.1; 0.0-3.0); 9% of a PC; 45% land 0 |
+| Party deals a round (attacks) | 21.8 (sd 5.7; 15.4-28.3) |
+| Party takes a round (attacks) | 1.1 (sd 1.2; 0.0-2.7) |
+| Rounds | 4.1 (sd 1.8; 3.0-5.0) |
+| Party Health lost (% of max) | 10 (sd 11; 0-25) |
+| PCs dropped to 0 a fight | 0.10 (sd 0.36; 0.00-0.00) |
+| Someone Down / Wounded / fight lost | 10% / 29% / 0.4% |
+
+### Level 5 (1920 fights; an average PC has 10.7 Health)
+
+| | Value |
+|---|---|
+| PC hit chance | 83% |
+| Chance an enemy attack hits a PC | 48% |
+| A PC hit lands | 4.9 (sd 1.9; 3.0-7.0) |
+| An enemy hit lands | 0.7 (sd 1.1; 0.0-2.0); 7% of a PC; 60% land 0 |
+| Party deals a round (attacks) | 18.5 (sd 5.5; 11.6-26.3) |
+| Party takes a round (attacks) | 1.0 (sd 1.1; 0.0-2.8) |
+| Rounds | 4.9 (sd 2.6; 3.0-7.0) |
+| Party Health lost (% of max) | 11 (sd 14; 0-26) |
+| PCs dropped to 0 a fight | 0.13 (sd 0.45; 0.00-0.00) |
+| Someone Down / Wounded / fight lost | 11% / 32% / 0.7% |
+

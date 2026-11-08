@@ -422,7 +422,12 @@ ENEMY_TABLE_V3_PRUNED = {L: dict(r, damage=r["damage"] - 1, accuracy=r["accuracy
 # budget (V3_PRUNED_EXTRA). experiments/enemies/flat_table.py.
 V3_FLAT_TABLE = {2: dict(skill=-1, resist=-1, health=3, accuracy=1), 3: dict(skill=-1, resist=-1, health=2, accuracy=1),
                  4: dict(skill=-1, resist=-1, health=1, accuracy=1), 5: dict(skill=-1, health=1, accuracy=1)}
-ENEMY_TABLE_V3_PRUNED = {L: {k: v + V3_FLAT_TABLE.get(L, {}).get(k, 0) for k, v in r.items()}
+# Then harder hits (designer, 2026-11-08, in pencil): enemy hits landed
+# 0.7-1.6 Health after PC Resist, so Damage +2 at every Level, paid in
+# Accuracy -1 and Health -3: fewer hits, each two to three times as big
+# (experiments/enemies/hard_hits.py).
+V3_HARD_HITS = dict(damage=2, accuracy=-1, health=-3)
+ENEMY_TABLE_V3_PRUNED = {L: {k: v + V3_FLAT_TABLE.get(L, {}).get(k, 0) + V3_HARD_HITS.get(k, 0) for k, v in r.items()}
                          for L, r in ENEMY_TABLE_V3_PRUNED.items()}
 # Archetypes for the pruned v3: only additions (designer, 2026-11-04: "very
 # few things should reduce numbers", heavier armor the one example). Each

@@ -4537,3 +4537,41 @@ fights put someone Down in 20-30% of fights under it (9-23% today).
   hits at about a third of a PC's Health at Levels 1-3, Downs at 22-30%,
   3.2-4.1 rounds. Fights are about half a round shorter than today and
   "again" is under half at Levels 1-3; Level 4 is the easy one (96%).
+
+### Combat stats, 2026-11-08 (harder hits in pencil)
+
+The designer pencilled in the harder hits (`V3_HARD_HITS`: Damage +2,
+Accuracy −1, Health −3 at every Level). `tools/combat_stats.py`: every
+party in the middle of its band against the manual's encounters (24
+draws a Level, no solo boss), 10 fights each, traced; `--prev` is the
+table without the harder hits on the same seeds.
+`results/enemy_stats/combat_stats.txt`, `combat_stats_prev.txt`. Mean,
+with the standard deviation and 10th-90th percentile in the files:
+
+| Level | PC hit chance | Enemy hit chance | A PC hit lands | An enemy hit lands (% of a PC; land 0) | Party deals / takes a round | Rounds (sd) | Party Health lost (sd) | Down / Wounded / lost |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 72% (67) | 23% (32) | 3.6 | 3.3 (33%; 10%) — was 1.4 (14%; 30%) | 11.4 / 1.5 | 4.1 (1.9) — 5.4 | 14% (17) | 22 / 44 / 0.8% |
+| 2 | 89% (85) | 36% (46) | 4.8 | 2.9 (28%; 14%) — was 1.1 (11%; 40%) | 16.8 / 1.9 | 3.6 (1.4) — 4.4 | 16% (18) | 19 / 48 / 1.4% |
+| 3 | 93% (91) | 36% (46) | 5.8 | 3.4 (32%; 6%) — was 1.5 (14%; 25%) | 21.6 / 2.6 | 3.3 (1.6) — 3.8 | 19% (20) | 28 / 58 / 1.6% |
+| 4 | 91% (89) | 29% (39) | 5.7 | 2.5 (23%; 11%) — was 1.0 (9%; 45%) | 21.7 / 1.7 | 3.6 (1.8) — 4.1 | 14% (14) | 16 / 43 / 0.8% |
+| 5 | 86% (83) | 38% (48) | 4.9 | 2.2 (21%; 15%) — was 0.7 (7%; 60%) | 18.2 / 2.2 | 4.2 (2.1) — 4.9 | 20% (19) | 31 / 58 / 1.7% |
+
+(Brackets and "was": without the harder hits.) Damage counted is
+attacks only (not Bleeding ticks or Hex effects).
+
+- PCs hit nearly everything from Level 2 (86-93%); enemies' Health,
+  not their Defense, is what keeps them standing.
+- An enemy hit now lands a fifth to a third of a PC's Health, and only
+  6-15% of hits land nothing (25-60% before).
+- The party deals 8-11 times what it takes a round. Fights are short and
+  spread: 3.3-4.2 rounds, standard deviation 1.4-2.1.
+- Lethality is spread too: party Health lost averages 14-20% of max with
+  a standard deviation about as big as the mean (the 90th percentile is
+  30-44%); a PC drops to 0 in 0.2-0.4 of fights.
+
+Big fights (size_check, middle, Levels 1-5; `default_1108h_size.txt`),
+lost / Down / rounds: four standard 1.0% / 25% / 3.5; two Gravel Ogres
+1.0% / 16% / 3.2 (5.2% / 31% before); two Black Knights 2.6% / 14% / 5.3;
+solo Warlord 1.5% / 14% / 2.8 (3.4% / 17%). Elites and the solo boss lose
+3 Health times their size's multiple (7.5 and 12) and now drop fast:
+boss fights are no harder than four standard monsters.
