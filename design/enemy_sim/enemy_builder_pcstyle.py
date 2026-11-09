@@ -433,9 +433,17 @@ ENEMY_TABLE_V3_PRUNED = {L: {k: v + V3_FLAT_TABLE.get(L, {}).get(k, 0) + V3_HARD
 # Level by Level, the Resist cap kept): Skill and Resist up, Health set so
 # a standard monster averages about 8, and a point less enemy Damage at
 # Levels 1 and 3 (their hits landed 3.2-3.5).
-V3_HIT_FIT_TABLE = {1: dict(resist=1, health=6, damage=-1), 2: dict(skill=3, resist=2, health=6),
+# Level 2 eased 2026-11-09 (Skill +3 / Health 6 won 62-79% of days in the
+# middle of the band; +2 / 5 wins 95% with potions).
+V3_HIT_FIT_TABLE = {1: dict(resist=1, health=6, damage=-1), 2: dict(skill=2, resist=2, health=5),
                     3: dict(skill=3, resist=3, health=5, damage=-1), 4: dict(skill=4, resist=2, health=7),
                     5: dict(skill=3, resist=1, health=7)}
+_ov = getattr(T, "V3_HIT_FIT_OVERRIDE", {})
+if isinstance(_ov, str):
+    # SIM_SET's form (it splits on commas): "2:skill=1/resist=3/health=5;4:skill=3".
+    _ov = {int(L): {k: int(v) for k, v in (x.split("=") for x in c.split("/"))}
+           for L, c in (part.split(":") for part in _ov.split(";") if part)}
+V3_HIT_FIT_TABLE.update(_ov)
 if getattr(T, "V3_HIT_FIT", False):
     for _L, _c in V3_HIT_FIT_TABLE.items():
         for _k, _d in _c.items():

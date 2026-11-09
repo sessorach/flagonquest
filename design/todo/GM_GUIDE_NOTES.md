@@ -302,17 +302,18 @@ Worked stat blocks: `enemy_sim/MONSTER_MANUAL.md`.
 
 | Level | Damage Stat | Accuracy | Skill | Health | Resist | Points | Defense limit |
 |---|---|---|---|---|---|---|---|
-| 1 | 3 | 1 | 4 | 7 | 2 | 8 | 14 |
-| 2 | 4 | 3 | 4 | 11 | 2 | 8 | 14 |
-| 3 | 4 | 4 | 5 | 12 | 2 | 10 | 15 |
-| 4 | 5 | 5 | 6 | 13 | 3 | 10 | 16 |
-| 5 | 5 | 6 | 7 | 13 | 4 | 10 | 17 |
+| 1 | 2 | 1 | 4 | 6 | 3 | 8 | 13 |
+| 2 | 4 | 3 | 6 | 5 | 4 | 8 | 15 |
+| 3 | 3 | 4 | 8 | 5 | 5 | 10 | 17 |
+| 4 | 5 | 5 | 10 | 7 | 5 | 10 | 19 |
+| 5 | 5 | 6 | 10 | 7 | 5 | 10 | 19 |
 
-In pencil (2026-11-08): a flatter curve from Level 2 (less Defense and
-Resist, more Health); the Accuracy +1 every enemy bought from Level 2 is
-in the Accuracy column, so the Points are all free choice; and harder
-hits (Damage +2, Accuracy −1, Health −3 at every Level): an enemy hits
-less often, for about a third of a PC's Health instead of a tenth.
+In pencil (2026-11-09), built for the designer's firm hit targets (PCs
+hit 50-75% for 2-3 a hit, enemies 25-50% for 2-3): Defenses and Resist
+about a PC's, little Health (a standard monster has about 8 with its
+archetype and leftover points: two solid hits or three ordinary ones),
+and the Defense limit is 8 + Skill + 1. Assumes the party carries a
+couple of Healing Potions each.
 
 Defenses: pick a Strong Defense (Dodge, Vital, Mental or Vigilant) at 8
 + Skill, one Weak Defense at 8 + Skill − 4 (by default the one that

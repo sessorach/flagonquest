@@ -104,9 +104,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Parry/Dodge, 6 Physical | 14 | 11 | 12 | 8 | 10 | 4 / 2 | 11 | 3 |
-| 3 | +6 vs Parry/Dodge, 7 Physical | 15 | 13 | 13 | 9 | 11 | 4 / 2 | 16 | 4 |
-| 5 | +8 vs Parry/Dodge, 8 Physical | 17 | 15 | 15 | 11 | 13 | 6 / 4 | 17 | 5 |
+| 1 | +3 vs Parry/Dodge, 5 Physical | 13 | 11 | 12 | 8 | 10 | 5 / 3 | 10 | 3 |
+| 3 | +6 vs Parry/Dodge, 6 Physical | 17 | 16 | 16 | 12 | 14 | 7 / 5 | 9 | 4 |
+| 5 | +8 vs Parry/Dodge, 8 Physical | 19 | 17 | 18 | 14 | 16 | 7 / 5 | 11 | 5 |
 
 ### Iron Sentinel
 
@@ -119,9 +119,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +1 vs Parry/Dodge, 6 Frost | 14 | 11 | 13 | 9 | 11 | 4 / 2 | 14 | 3 |
-| 3 | +4 vs Parry/Dodge, 7 Frost | 15 | 12 | 14 | 10 | 12 | 5 / 2 | 17 | 3 |
-| 5 | +6 vs Parry/Dodge, 8 Frost | 17 | 14 | 16 | 12 | 14 | 7 / 4 | 18 | 4 |
+| 1 | +1 vs Parry/Dodge, 5 Frost | 13 | 11 | 13 | 9 | 11 | 5 / 3 | 13 | 3 |
+| 3 | +4 vs Parry/Dodge, 6 Frost | 17 | 15 | 17 | 13 | 15 | 8 / 5 | 10 | 3 |
+| 5 | +6 vs Parry/Dodge, 8 Frost | 19 | 17 | 18 | 15 | 17 | 8 / 5 | 12 | 4 |
 
 ### Ironbranch Warden
 
@@ -134,9 +134,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +1 vs Parry/Dodge, 7 Physical | 14 | 12 | 12 | 8 | 10 | 4 / 2 | 14 | 3 |
-| 3 | +4 vs Parry/Dodge, 8 Physical | 15 | 13 | 13 | 9 | 11 | 5 / 2 | 16 | 3 |
-| 5 | +6 vs Parry/Dodge, 9 Physical | 17 | 15 | 15 | 11 | 13 | 7 / 4 | 17 | 4 |
+| 1 | +1 vs Parry/Dodge, 6 Physical | 13 | 12 | 12 | 8 | 10 | 5 / 3 | 13 | 3 |
+| 3 | +4 vs Parry/Dodge, 7 Physical | 17 | 16 | 16 | 12 | 14 | 8 / 5 | 9 | 3 |
+| 5 | +6 vs Parry/Dodge, 9 Physical | 19 | 17 | 18 | 14 | 16 | 8 / 5 | 11 | 4 |
 
 ### Shieldbearer
 
@@ -149,9 +149,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Parry/Dodge, 6 Physical | 14 | 13 | 12 | 8 | 10 | 4 / 2 | 4 | 3 |
-| 3 | +6 vs Parry/Dodge, 7 Physical | 15 | 14 | 13 | 9 | 11 | 4 / 2 | 6 | 4 |
-| 5 | +8 vs Parry/Dodge, 8 Physical | 17 | 16 | 15 | 11 | 13 | 6 / 4 | 7 | 5 |
+| 1 | +3 vs Parry/Dodge, 5 Physical | 13 | 12 | 12 | 8 | 10 | 5 / 3 | 4 | 3 |
+| 3 | +6 vs Parry/Dodge, 6 Physical | 17 | 16 | 16 | 12 | 14 | 7 / 5 | 4 | 4 |
+| 5 | +8 vs Parry/Dodge, 8 Physical | 19 | 17 | 18 | 14 | 16 | 7 / 5 | 5 | 5 |
 
 ## Strikers
 
@@ -166,9 +166,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Bodily, 6 Fire, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 8 | 4 |
-| 3 | +5 vs Bodily, 7 Fire, range 8 | — | 11 | 9 | 13 | 11 | 2 / 2 | 15 | 5 |
-| 5 | +7 vs Bodily, 7 Fire, range 12 | — | 13 | 11 | 15 | 13 | 4 / 4 | 16 | 6 |
+| 1 | +2 vs Bodily, 5 Fire, range 4 | — | 10 | 8 | 12 | 10 | 3 / 3 | 7 | 4 |
+| 3 | +5 vs Bodily, 6 Fire, range 8 | — | 14 | 12 | 16 | 14 | 5 / 5 | 8 | 5 |
+| 5 | +7 vs Bodily, 7 Fire, range 12 | — | 16 | 14 | 18 | 16 | 5 / 5 | 10 | 6 |
 
 ### Crossbow Sniper
 
@@ -181,9 +181,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +1 vs Parry/Dodge, 8 Physical, range 10 | — | 12 | 10 | 8 | 10 | 3 / 2 | 9 | 4 |
-| 3 | +4 vs Parry/Dodge, 9 Physical, range 22 | — | 13 | 11 | 9 | 11 | 3 / 2 | 16 | 5 |
-| 5 | +6 vs Parry/Dodge, 9 Physical, range 34 | — | 15 | 13 | 11 | 13 | 5 / 4 | 17 | 6 |
+| 1 | +1 vs Parry/Dodge, 7 Physical, range 10 | — | 12 | 10 | 8 | 10 | 4 / 3 | 8 | 4 |
+| 3 | +4 vs Parry/Dodge, 8 Physical, range 22 | — | 16 | 14 | 12 | 14 | 6 / 5 | 9 | 5 |
+| 5 | +6 vs Parry/Dodge, 9 Physical, range 34 | — | 18 | 16 | 14 | 16 | 6 / 5 | 11 | 6 |
 
 ### Ember Caster
 
@@ -196,9 +196,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Dodge, 7 Fire, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 8 | 4 |
-| 3 | +5 vs Dodge, 8 Fire, range 8 | — | 11 | 9 | 13 | 11 | 2 / 2 | 15 | 5 |
-| 5 | +7 vs Dodge, 8 Fire, range 12 | — | 13 | 11 | 15 | 13 | 4 / 4 | 16 | 6 |
+| 1 | +2 vs Dodge, 6 Fire, range 4 | — | 10 | 8 | 12 | 10 | 3 / 3 | 7 | 4 |
+| 3 | +5 vs Dodge, 7 Fire, range 8 | — | 14 | 12 | 16 | 14 | 5 / 5 | 8 | 5 |
+| 5 | +7 vs Dodge, 8 Fire, range 12 | — | 16 | 14 | 18 | 16 | 5 / 5 | 10 | 6 |
 
 ### Executioner
 
@@ -211,9 +211,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +1 vs Parry/Dodge, 11 Physical | 12 | 10 | 12 | 8 | 10 | 3 / 2 | 8 | 4 |
-| 3 | +4 vs Parry/Dodge, 11 Physical | 13 | 11 | 13 | 9 | 11 | 3 / 2 | 15 | 5 |
-| 5 | +6 vs Parry/Dodge, 11 Physical | 15 | 13 | 15 | 11 | 13 | 5 / 4 | 16 | 6 |
+| 1 | +1 vs Parry/Dodge, 10 Physical | 12 | 10 | 12 | 8 | 10 | 4 / 3 | 7 | 4 |
+| 3 | +4 vs Parry/Dodge, 11 Physical | 16 | 14 | 16 | 12 | 14 | 6 / 5 | 8 | 5 |
+| 5 | +6 vs Parry/Dodge, 11 Physical | 18 | 16 | 18 | 14 | 16 | 6 / 5 | 10 | 6 |
 
 ### Glaive Dancer
 
@@ -226,9 +226,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 9 Physical | 13 | 12 | 10 | 8 | 10 | 3 / 2 | 7 | 4 |
-| 3 | +5 vs Parry/Dodge, 10 Physical | 14 | 13 | 11 | 9 | 11 | 3 / 2 | 14 | 5 |
-| 5 | +7 vs Parry/Dodge, 10 Physical | 16 | 15 | 13 | 11 | 13 | 5 / 4 | 15 | 6 |
+| 1 | +2 vs Parry/Dodge, 8 Physical | 13 | 12 | 10 | 8 | 10 | 4 / 3 | 6 | 4 |
+| 3 | +5 vs Parry/Dodge, 9 Physical | 17 | 16 | 14 | 12 | 14 | 6 / 5 | 7 | 5 |
+| 5 | +7 vs Parry/Dodge, 10 Physical | 19 | 18 | 16 | 14 | 16 | 6 / 5 | 9 | 6 |
 
 ### Goblin Cutthroat
 
@@ -241,9 +241,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Parry/Dodge, 7 Physical | 14 | 12 | 10 | 8 | 10 | 3 / 2 | 4 | 4 |
-| 3 | +6 vs Parry/Dodge, 8 Physical | 15 | 13 | 11 | 9 | 11 | 3 / 2 | 6 | 5 |
-| 5 | +8 vs Parry/Dodge, 8 Physical | 17 | 15 | 13 | 11 | 13 | 5 / 4 | 6 | 6 |
+| 1 | +3 vs Parry/Dodge, 6 Physical | 13 | 12 | 10 | 8 | 10 | 4 / 3 | 3 | 4 |
+| 3 | +6 vs Parry/Dodge, 7 Physical | 17 | 16 | 14 | 12 | 14 | 6 / 5 | 4 | 5 |
+| 5 | +8 vs Parry/Dodge, 8 Physical | 19 | 18 | 16 | 14 | 16 | 6 / 5 | 4 | 6 |
 
 ### Grave Caller
 
@@ -256,9 +256,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Bodily, 7 Shadow, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 9 | 4 |
-| 3 | +5 vs Bodily, 8 Shadow, range 8 | — | 11 | 9 | 13 | 11 | 2 / 2 | 16 | 5 |
-| 5 | +7 vs Bodily, 8 Shadow, range 12 | — | 13 | 11 | 15 | 13 | 4 / 4 | 17 | 6 |
+| 1 | +2 vs Bodily, 6 Shadow, range 4 | — | 10 | 8 | 12 | 10 | 3 / 3 | 8 | 4 |
+| 3 | +5 vs Bodily, 7 Shadow, range 8 | — | 14 | 12 | 16 | 14 | 5 / 5 | 9 | 5 |
+| 5 | +7 vs Bodily, 8 Shadow, range 12 | — | 16 | 14 | 18 | 16 | 5 / 5 | 11 | 6 |
 
 ### Marsh Archer
 
@@ -271,9 +271,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Parry/Dodge, 7 Physical, range 10 | — | 12 | 10 | 8 | 10 | 3 / 2 | 7 | 4 |
-| 3 | +6 vs Parry/Dodge, 8 Physical, range 22 | — | 13 | 11 | 9 | 11 | 3 / 2 | 14 | 5 |
-| 5 | +8 vs Parry/Dodge, 8 Physical, range 34 | — | 15 | 13 | 11 | 13 | 5 / 4 | 15 | 6 |
+| 1 | +3 vs Parry/Dodge, 6 Physical, range 10 | — | 12 | 10 | 8 | 10 | 4 / 3 | 6 | 4 |
+| 3 | +6 vs Parry/Dodge, 7 Physical, range 22 | — | 16 | 14 | 12 | 14 | 6 / 5 | 7 | 5 |
+| 5 | +8 vs Parry/Dodge, 8 Physical, range 34 | — | 18 | 16 | 14 | 16 | 6 / 5 | 9 | 6 |
 
 ### Mind Lash Adept
 
@@ -286,9 +286,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Mental, 7 Shadow, range 4 | — | 10 | 8 | 12 | 10 | 2 / 2 | 9 | 4 |
-| 3 | +5 vs Mental, 8 Shadow, range 8 | — | 11 | 9 | 13 | 11 | 2 / 2 | 16 | 5 |
-| 5 | +7 vs Mental, 8 Shadow, range 12 | — | 13 | 11 | 15 | 13 | 4 / 4 | 17 | 6 |
+| 1 | +2 vs Mental, 6 Shadow, range 4 | — | 10 | 8 | 12 | 10 | 3 / 3 | 8 | 4 |
+| 3 | +5 vs Mental, 7 Shadow, range 8 | — | 14 | 12 | 16 | 14 | 5 / 5 | 9 | 5 |
+| 5 | +7 vs Mental, 8 Shadow, range 12 | — | 16 | 14 | 18 | 16 | 5 / 5 | 11 | 6 |
 
 ## Bruisers
 
@@ -303,9 +303,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 9 Physical | 12 | 10 | 14 | 8 | 10 | 3 / 2 | 10 | 3 |
-| 3 | +5 vs Parry/Dodge, 10 Physical | 13 | 11 | 15 | 9 | 11 | 3 / 2 | 17 | 4 |
-| 5 | +7 vs Parry/Dodge, 10 Physical | 15 | 13 | 17 | 11 | 13 | 5 / 4 | 18 | 5 |
+| 1 | +2 vs Parry/Dodge, 8 Physical | 12 | 10 | 13 | 8 | 10 | 4 / 3 | 9 | 3 |
+| 3 | +5 vs Parry/Dodge, 9 Physical | 16 | 14 | 17 | 12 | 14 | 6 / 5 | 10 | 4 |
+| 5 | +7 vs Parry/Dodge, 10 Physical | 18 | 16 | 18 | 14 | 16 | 6 / 5 | 12 | 5 |
 
 ### Brute Warlord
 
@@ -319,9 +319,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 9 Physical | 12 | 9 | 14 | 8 | 10 | 4 / 2 | 38 | 3 |
-| 3 | +5 vs Parry/Dodge, 10 Physical | 13 | 10 | 15 | 9 | 11 | 5 / 2 | 56 | 4 |
-| 5 | +7 vs Parry/Dodge, 10 Physical | 15 | 12 | 17 | 11 | 13 | 7 / 4 | 60 | 5 |
+| 1 | +2 vs Parry/Dodge, 8 Physical | 12 | 9 | 13 | 8 | 10 | 5 / 3 | 34 | 3 |
+| 3 | +5 vs Parry/Dodge, 9 Physical | 16 | 13 | 17 | 12 | 14 | 8 / 5 | 28 | 4 |
+| 5 | +7 vs Parry/Dodge, 10 Physical | 18 | 15 | 18 | 14 | 16 | 8 / 5 | 36 | 5 |
 
 ### Gravel Ogre
 
@@ -335,9 +335,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 10 Physical | 12 | 9 | 14 | 8 | 10 | 4 / 2 | 20 | 4 |
-| 3 | +6 vs Parry/Dodge, 10 Physical | 13 | 10 | 15 | 9 | 11 | 4 / 2 | 33 | 5 |
-| 5 | +8 vs Parry/Dodge, 10 Physical | 15 | 12 | 17 | 11 | 13 | 6 / 4 | 35 | 6 |
+| 1 | +2 vs Parry/Dodge, 9 Physical | 12 | 9 | 13 | 8 | 10 | 5 / 3 | 18 | 4 |
+| 3 | +6 vs Parry/Dodge, 10 Physical | 16 | 13 | 17 | 12 | 14 | 7 / 5 | 15 | 5 |
+| 5 | +8 vs Parry/Dodge, 10 Physical | 18 | 15 | 18 | 14 | 16 | 7 / 5 | 20 | 6 |
 
 ### Ram Brute
 
@@ -350,9 +350,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +1 vs Parry/Dodge, 9 Physical | 12 | 9 | 14 | 8 | 10 | 4 / 2 | 10 | 3 |
-| 3 | +4 vs Parry/Dodge, 10 Physical | 13 | 10 | 15 | 9 | 11 | 4 / 2 | 17 | 4 |
-| 5 | +6 vs Parry/Dodge, 10 Physical | 15 | 12 | 17 | 11 | 13 | 6 / 4 | 18 | 5 |
+| 1 | +1 vs Parry/Dodge, 8 Physical | 12 | 9 | 13 | 8 | 10 | 5 / 3 | 9 | 3 |
+| 3 | +4 vs Parry/Dodge, 9 Physical | 16 | 13 | 17 | 12 | 14 | 7 / 5 | 10 | 4 |
+| 5 | +6 vs Parry/Dodge, 10 Physical | 18 | 15 | 18 | 14 | 16 | 7 / 5 | 12 | 5 |
 
 ### Thornhide Brute
 
@@ -365,9 +365,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +1 vs Parry/Dodge, 9 Physical | 12 | 10 | 14 | 8 | 10 | 3 / 2 | 9 | 3 |
-| 3 | +4 vs Parry/Dodge, 10 Physical | 13 | 11 | 15 | 9 | 11 | 3 / 2 | 16 | 4 |
-| 5 | +6 vs Parry/Dodge, 10 Physical | 15 | 13 | 17 | 11 | 13 | 5 / 4 | 17 | 5 |
+| 1 | +1 vs Parry/Dodge, 8 Physical | 12 | 10 | 13 | 8 | 10 | 4 / 3 | 8 | 3 |
+| 3 | +4 vs Parry/Dodge, 9 Physical | 16 | 14 | 17 | 12 | 14 | 6 / 5 | 9 | 4 |
+| 5 | +6 vs Parry/Dodge, 10 Physical | 18 | 16 | 18 | 14 | 16 | 6 / 5 | 11 | 5 |
 
 ## Strategists
 
@@ -382,9 +382,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +4 vs Dodge, 6 Fire, range 4 | — | 11 | 8 | 14 | 12 | 2 / 2 | 7 | 3 |
-| 3 | +7 vs Dodge, 7 Fire, range 8 | — | 12 | 9 | 15 | 13 | 2 / 2 | 13 | 4 |
-| 5 | +9 vs Dodge, 8 Fire, range 12 | — | 14 | 11 | 17 | 15 | 4 / 4 | 14 | 5 |
+| 1 | +4 vs Dodge, 5 Fire, range 4 | — | 11 | 8 | 13 | 12 | 3 / 3 | 6 | 3 |
+| 3 | +7 vs Dodge, 6 Fire, range 8 | — | 15 | 12 | 17 | 16 | 5 / 5 | 6 | 4 |
+| 5 | +9 vs Dodge, 8 Fire, range 12 | — | 17 | 14 | 18 | 18 | 5 / 5 | 8 | 5 |
 
 ### Bog Hexer
 
@@ -397,9 +397,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +6 vs Dodge, 5 Fire, range 4 | — | 11 | 8 | 14 | 12 | 2 / 2 | 7 | 3 |
-| 3 | +9 vs Dodge, 6 Fire, range 8 | — | 12 | 9 | 15 | 13 | 2 / 2 | 14 | 4 |
-| 5 | +10 vs Dodge, 7 Fire, range 12 | — | 14 | 11 | 17 | 15 | 4 / 4 | 15 | 5 |
+| 1 | +6 vs Dodge, 4 Fire, range 4 | — | 11 | 8 | 13 | 12 | 3 / 3 | 6 | 3 |
+| 3 | +9 vs Dodge, 5 Fire, range 8 | — | 15 | 12 | 17 | 16 | 5 / 5 | 7 | 4 |
+| 5 | +10 vs Dodge, 7 Fire, range 12 | — | 17 | 14 | 18 | 18 | 5 / 5 | 9 | 5 |
 
 ### Curse Weaver
 
@@ -412,9 +412,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +5 vs Mental, 5 Shadow, range 4 | — | 12 | 8 | 14 | 12 | 2 / 2 | 8 | 3 |
-| 3 | +8 vs Mental, 6 Shadow, range 16 | — | 13 | 9 | 15 | 13 | 2 / 2 | 12 | 4 |
-| 5 | +10 vs Mental, 7 Shadow, range 24 | — | 15 | 11 | 17 | 15 | 4 / 4 | 13 | 5 |
+| 1 | +5 vs Mental, 4 Shadow, range 4 | — | 12 | 8 | 13 | 12 | 3 / 3 | 7 | 3 |
+| 3 | +8 vs Mental, 5 Shadow, range 16 | — | 16 | 12 | 17 | 16 | 5 / 5 | 5 | 4 |
+| 5 | +10 vs Mental, 7 Shadow, range 24 | — | 18 | 14 | 18 | 18 | 5 / 5 | 7 | 5 |
 
 ### Fen Warden
 
@@ -427,9 +427,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +4 vs Dodge, 5 Fire | — | 10 | 8 | 14 | 12 | 4 / 2 | 7 | 3 |
-| 3 | +7 vs Dodge, 6 Fire | — | 11 | 9 | 15 | 13 | 4 / 2 | 14 | 4 |
-| 5 | +9 vs Dodge, 7 Fire | — | 13 | 11 | 17 | 15 | 6 / 4 | 15 | 5 |
+| 1 | +4 vs Dodge, 4 Fire | — | 10 | 8 | 13 | 12 | 5 / 3 | 6 | 3 |
+| 3 | +7 vs Dodge, 5 Fire | — | 14 | 12 | 17 | 16 | 7 / 5 | 7 | 4 |
+| 5 | +9 vs Dodge, 7 Fire | — | 16 | 14 | 18 | 18 | 7 / 5 | 9 | 5 |
 
 ### Mire Witch
 
@@ -442,9 +442,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +5 vs Bodily, 5 Shadow, range 4 | — | 13 | 8 | 14 | 12 | 2 / 2 | 7 | 3 |
-| 3 | +8 vs Bodily, 6 Shadow, range 8 | — | 14 | 9 | 15 | 13 | 2 / 2 | 14 | 4 |
-| 5 | +10 vs Bodily, 7 Shadow, range 12 | — | 16 | 11 | 17 | 15 | 4 / 4 | 15 | 5 |
+| 1 | +5 vs Bodily, 4 Shadow, range 4 | — | 13 | 8 | 13 | 12 | 3 / 3 | 6 | 3 |
+| 3 | +8 vs Bodily, 5 Shadow, range 8 | — | 17 | 12 | 17 | 16 | 5 / 5 | 7 | 4 |
+| 5 | +10 vs Bodily, 7 Shadow, range 12 | — | 18 | 14 | 18 | 18 | 5 / 5 | 9 | 5 |
 
 ### Warleader
 
@@ -457,9 +457,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +5 vs Parry/Dodge, 6 Physical | 14 | 10 | 10 | 14 | 10 | 4 / 2 | 7 | 3 |
-| 3 | +8 vs Parry/Dodge, 7 Physical | 15 | 11 | 11 | 15 | 11 | 4 / 2 | 14 | 4 |
-| 5 | +10 vs Parry/Dodge, 8 Physical | 17 | 13 | 13 | 17 | 13 | 6 / 4 | 15 | 5 |
+| 1 | +5 vs Parry/Dodge, 5 Physical | 13 | 10 | 10 | 13 | 10 | 5 / 3 | 6 | 3 |
+| 3 | +8 vs Parry/Dodge, 6 Physical | 17 | 14 | 14 | 17 | 14 | 7 / 5 | 7 | 4 |
+| 5 | +10 vs Parry/Dodge, 8 Physical | 19 | 16 | 16 | 18 | 16 | 7 / 5 | 9 | 5 |
 
 ## Backups
 
@@ -475,9 +475,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Shielding Nova: Protected 3; backup +0 vs Dodge, 5 Fire, range 4 | — | 10 | 12 | 14 | 10 | 3 / 3 | 20 | 3 |
-| 3 | Shielding Nova: Protected 3; backup +3 vs Dodge, 6 Fire, range 8 | — | 11 | 13 | 15 | 11 | 3 / 3 | 38 | 4 |
-| 5 | Shielding Nova: Protected 3; backup +5 vs Dodge, 7 Fire, range 12 | — | 13 | 15 | 17 | 13 | 5 / 5 | 40 | 5 |
+| 1 | Shielding Nova: Protected 3; backup +0 vs Dodge, 4 Fire, range 4 | — | 10 | 12 | 13 | 10 | 4 / 4 | 18 | 3 |
+| 3 | Shielding Nova: Protected 3; backup +3 vs Dodge, 5 Fire, range 8 | — | 14 | 16 | 17 | 14 | 5 / 5 | 20 | 4 |
+| 5 | Shielding Nova: Protected 3; backup +5 vs Dodge, 7 Fire, range 12 | — | 16 | 18 | 18 | 16 | 5 / 5 | 25 | 5 |
 
 ### Deadbough Priest
 
@@ -490,9 +490,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Great Heal: Health 3; backup +-2 vs Parry/Dodge, 6 Physical | — | 9 | 12 | 14 | 10 | 6 / 4 | 7 | 3 |
-| 3 | Great Heal: Health 3; backup +1 vs Parry/Dodge, 7 Physical | — | 11 | 13 | 15 | 11 | 6 / 4 | 13 | 4 |
-| 5 | Great Heal: Health 3; backup +3 vs Parry/Dodge, 8 Physical | — | 13 | 15 | 17 | 13 | 7 / 5 | 14 | 5 |
+| 1 | Great Heal: Health 3; backup +-2 vs Parry/Dodge, 5 Physical | — | 9 | 12 | 13 | 10 | 7 / 5 | 6 | 3 |
+| 3 | Great Heal: Health 3; backup +1 vs Parry/Dodge, 6 Physical | — | 14 | 16 | 17 | 14 | 7 / 5 | 6 | 4 |
+| 5 | Great Heal: Health 3; backup +3 vs Parry/Dodge, 8 Physical | — | 16 | 18 | 18 | 16 | 7 / 5 | 8 | 5 |
 
 ### Field Medic
 
@@ -505,9 +505,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Mend Ally: Health 3; backup +-1 vs Parry/Dodge, 6 Physical, range 5 | — | 12 | 12 | 14 | 10 | 4 / 3 | 8 | 4 |
-| 3 | Mend Ally: Health 3; backup +2 vs Parry/Dodge, 7 Physical, range 11 | — | 13 | 13 | 15 | 11 | 4 / 3 | 15 | 5 |
-| 5 | Mend Ally: Health 5; backup +4 vs Parry/Dodge, 8 Physical, range 17 | — | 15 | 15 | 17 | 13 | 6 / 5 | 16 | 6 |
+| 1 | Mend Ally: Health 3; backup +-1 vs Parry/Dodge, 5 Physical, range 5 | — | 12 | 12 | 13 | 10 | 5 / 4 | 7 | 4 |
+| 3 | Mend Ally: Health 3; backup +2 vs Parry/Dodge, 6 Physical, range 11 | — | 16 | 16 | 17 | 14 | 6 / 5 | 8 | 5 |
+| 5 | Mend Ally: Health 5; backup +4 vs Parry/Dodge, 8 Physical, range 17 | — | 18 | 18 | 18 | 16 | 6 / 5 | 10 | 6 |
 
 ### Warpriest
 
@@ -520,9 +520,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Shield Ally: Protected 3; backup +-1 vs Parry/Dodge, 6 Physical | — | 9 | 12 | 14 | 10 | 5 / 3 | 7 | 3 |
-| 3 | Shield Ally: Protected 3; backup +2 vs Parry/Dodge, 7 Physical | — | 11 | 13 | 15 | 11 | 5 / 3 | 13 | 4 |
-| 5 | Shield Ally: Protected 5; backup +4 vs Parry/Dodge, 8 Physical | — | 13 | 15 | 17 | 13 | 7 / 5 | 14 | 5 |
+| 1 | Shield Ally: Protected 3; backup +-1 vs Parry/Dodge, 5 Physical | — | 9 | 12 | 13 | 10 | 6 / 4 | 6 | 3 |
+| 3 | Shield Ally: Protected 3; backup +2 vs Parry/Dodge, 6 Physical | — | 14 | 16 | 17 | 14 | 7 / 5 | 6 | 4 |
+| 5 | Shield Ally: Protected 5; backup +4 vs Parry/Dodge, 8 Physical | — | 16 | 18 | 18 | 16 | 7 / 5 | 8 | 5 |
 
 ## Skirmishers
 
@@ -537,9 +537,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +4 vs Parry/Dodge, 6 Physical, range 5 | — | 14 | 10 | 8 | 10 | 3 / 2 | 9 | 6 |
-| 3 | +7 vs Parry/Dodge, 7 Physical, range 11 | — | 15 | 11 | 9 | 11 | 3 / 2 | 16 | 7 |
-| 5 | +9 vs Parry/Dodge, 8 Physical, range 17 | — | 17 | 13 | 11 | 13 | 5 / 4 | 17 | 8 |
+| 1 | +4 vs Parry/Dodge, 5 Physical, range 5 | — | 13 | 10 | 8 | 10 | 4 / 3 | 8 | 6 |
+| 3 | +7 vs Parry/Dodge, 6 Physical, range 11 | — | 17 | 14 | 12 | 14 | 6 / 5 | 9 | 7 |
+| 5 | +9 vs Parry/Dodge, 8 Physical, range 17 | — | 18 | 16 | 14 | 16 | 6 / 5 | 11 | 8 |
 
 ### Hunting Hound
 
@@ -552,9 +552,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +4 vs Parry/Dodge, 6 Physical | 13 | 14 | 10 | 8 | 10 | 3 / 2 | 3 | 6 |
-| 3 | +7 vs Parry/Dodge, 7 Physical | 14 | 15 | 11 | 9 | 11 | 3 / 2 | 6 | 7 |
-| 5 | +9 vs Parry/Dodge, 8 Physical | 16 | 17 | 13 | 11 | 13 | 5 / 4 | 6 | 8 |
+| 1 | +4 vs Parry/Dodge, 5 Physical | 13 | 13 | 10 | 8 | 10 | 4 / 3 | 3 | 6 |
+| 3 | +7 vs Parry/Dodge, 6 Physical | 17 | 17 | 14 | 12 | 14 | 6 / 5 | 3 | 7 |
+| 5 | +9 vs Parry/Dodge, 8 Physical | 19 | 18 | 16 | 14 | 16 | 6 / 5 | 4 | 8 |
 
 ### Shade Stalker
 
@@ -567,9 +567,9 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +3 vs Dodge, 5 Shadow, range 4 | — | 14 | 8 | 10 | 10 | 3 / 2 | 8 | 5 |
-| 3 | +6 vs Dodge, 6 Shadow, range 8 | — | 15 | 9 | 11 | 11 | 3 / 2 | 15 | 6 |
-| 5 | +8 vs Dodge, 7 Shadow, range 12 | — | 17 | 11 | 13 | 13 | 5 / 4 | 16 | 7 |
+| 1 | +3 vs Dodge, 4 Shadow, range 4 | — | 13 | 8 | 10 | 10 | 4 / 3 | 7 | 5 |
+| 3 | +6 vs Dodge, 5 Shadow, range 8 | — | 17 | 12 | 14 | 14 | 6 / 5 | 8 | 6 |
+| 5 | +8 vs Dodge, 7 Shadow, range 12 | — | 18 | 14 | 16 | 16 | 6 / 5 | 10 | 7 |
 
 ### Skulking Footpad
 
@@ -582,7 +582,7 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +4 vs Parry/Dodge, 6 Physical | 14 | 14 | 10 | 8 | 10 | 3 / 2 | 9 | 5 |
-| 3 | +7 vs Parry/Dodge, 7 Physical | 15 | 15 | 11 | 9 | 11 | 3 / 2 | 13 | 6 |
-| 5 | +9 vs Parry/Dodge, 8 Physical | 17 | 17 | 13 | 11 | 13 | 5 / 4 | 14 | 7 |
+| 1 | +4 vs Parry/Dodge, 5 Physical | 13 | 13 | 10 | 8 | 10 | 4 / 3 | 8 | 5 |
+| 3 | +7 vs Parry/Dodge, 6 Physical | 17 | 17 | 14 | 12 | 14 | 6 / 5 | 6 | 6 |
+| 5 | +9 vs Parry/Dodge, 8 Physical | 19 | 18 | 16 | 14 | 16 | 6 / 5 | 8 | 7 |
 

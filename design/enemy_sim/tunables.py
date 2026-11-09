@@ -90,19 +90,20 @@ AP_PER_TURN = 4
 # this many Healing Potions (I043, its heal read from items.csv); they
 # don't come back between fights. A PC at POTION_DRINK_AT of its max
 # Health or less drinks one at the start of its turn for POTION_AP. 0: off.
-PC_POTIONS = 0
-# glossary.md [Potion]: "It takes 1 AP to use a Potion" (the designer kept
-# 1 AP on 2026-11-09, after a first test at 2).
-POTION_AP = 1
+PC_POTIONS = 2  # on since 2026-11-09 (designer: tune with the party carrying them)
+# 2 AP (designer, 2026-11-09): glossary.md [Potion] says "It takes 1 AP
+# to use a Potion, and it must be in your hand to use", and getting it into
+# hand from your gear is another 1 AP. The same to feed one to an ally.
+POTION_AP = 2
 POTION_DRINK_AT = 0.5
 # Feeding a potion (designer, 2026-11-09 test: a Potion can go to a
 # willing or Downed creature adjacent to you): a PC with one feeds it to a
 # Downed ally next to it at the start of its turn, before drinking its own.
-POTION_FEED = False
+POTION_FEED = True
 # Drinking between fights (2026-11-09 test): after the first fight's care,
 # each PC drinks while it's missing at least a potion's heal, keeping
 # POTION_KEEP for the second fight; a Downed PC is fed one by an ally.
-POTION_BETWEEN = False
+POTION_BETWEEN = True
 POTION_KEEP = 1
 # "A move action takes 1 AP to make... this moves you up to your Speed
 # in meters. You can always end a move action early." - can be taken
@@ -451,7 +452,11 @@ LEGACY_BIG = {"V3_SLOT_BUDGET": {}, "V3_ELITE_HEALTH": 3, "V3_SOLO_HEALTH": 6}
 # Level's Skill + this, before gear (armor's Dodge penalty after; Parry,
 # which nothing but its weapon raises, never reaches it). It ended the Defender walls (experiments/enemies/defense_cap.py).
 # None = no cap.
-V3_DEFENSE_CAP = 2
+# 1 since 2026-11-09: on the hit-target table, Defenders at Skill +2 were
+# walls (two Black Knights 9.6% lost over 9 rounds, four Iron Sentinels
+# 14% over 12); at +1, 4.1% and 4.4%, ordinary fights unchanged
+# (experiments/enemies/wall_fix.py).
+V3_DEFENSE_CAP = 1
 # With it, the Defender archetype's +2 Parry becomes Health +1 (Defender:
 # Dodge +2, Health +4); the cap would waste the Parry under a shield.
 V3_DEFENDER_PARRY_TO_HEALTH = True
@@ -559,8 +564,13 @@ V3_RESIST_CAP = None
 # The hit-target table (2026-11-08 candidate, off by default): enemy
 # Defense and Resist up to PC-like numbers, Health down so a standard
 # monster has about 8, so PCs hit 50-75% for 2-3 and enemies 25-50% for
-# 2-3 (experiments/enemies/hit_fit.py). False: the table as pencilled.
-V3_HIT_FIT = False
+# 2-3 (experiments/enemies/hit_fit.py). In pencil since 2026-11-09 (the
+# designer's firm hit targets); False: the 11-08 table.
+V3_HIT_FIT = True
+# Experiments: {Level: changes} replacing that Level's row of the candidate
+# (enemy_builder_pcstyle.V3_HIT_FIT_TABLE), or as SIM_SET can carry it,
+# "2:skill=1/resist=3/health=5;4:skill=3".
+V3_HIT_FIT_OVERRIDE = {}
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy
