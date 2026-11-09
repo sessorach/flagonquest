@@ -74,7 +74,21 @@ MATCHUPS = [
     # Hanforth's own 175 XP build (2026-10-26).
     ("partyD_L3_vs_L3_frontline", ["Browndog (L3)", "Hanforth (L3)", "Hilde (L3)", "Beornhard (L3)"], 3,
      "Frontline"),
+    # The monster manual on the 2026-11-09 defaults (one attack a turn:
+    # ranged Aimed Shot, melee Skirmisher; potions; the squared table).
+    ("manual_L1_brutes_archers", ["Enith", "Felix", "Jackal", "Hanforth"], 1, "Manual: brutes and archers"),
+    ("manual_L3_ogre_leads", ["Hilde (L3)", "Browndog (L3)", "Jackal (L3)", "Beornhard (L3)"], 3,
+     "Manual: Gravel Ogre leads"),
+    ("manual_L3_new_tricks", ["Browndog (L3)", "Hanforth (L3)", "Hilde (L3)", "Beornhard (L3)"], 3,
+     "Manual: Blast Mage, Ram Brute, Warpriest"),
+    ("manual_L3_warlord", ["Hilde (L3)", "Browndog (L3)", "Jackal (L3)", "Beornhard (L3)"], 3,
+     "Manual: solo Warlord"),
 ]
+se.ENCOUNTERS.setdefault(1, {})["Manual: brutes and archers"] = ["Brute@1", "Brute@1", "Marsh Archer@1",
+                                                                  "Hunting Hound@1"]
+se.ENCOUNTERS.setdefault(3, {})["Manual: Gravel Ogre leads"] = ["Gravel Ogre@3", "Goblin Cutthroat@3", "Marsh Archer@3"]
+se.ENCOUNTERS[3]["Manual: Blast Mage, Ram Brute, Warpriest"] = ["Blast Mage@3", "Ram Brute@3", "Warpriest@3", "Brute@3"]
+se.ENCOUNTERS[3]["Manual: solo Warlord"] = ["Brute Warlord@3"]
 
 
 def _use_party(names):

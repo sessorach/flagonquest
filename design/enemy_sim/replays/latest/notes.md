@@ -1,18 +1,18 @@
 # Latest replays (2026-11-09)
 
-Default: one attack a turn (ranged Aimed Shot, melee Skirmisher), enemy Health +2
+Default: one attack a turn (mixed Fighting Styles), enemy Health +2; manual matchups added
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
-- This fight (seed 8): party won in 7 rounds, 70% party HP left
-- Matchup average over 1000 fights: 81.0% wins, 6.5 rounds, 68% HP left on a win
+- This fight (seed 2): party won in 6 rounds, 82% party HP left
+- Matchup average over 1000 fights: 81.8% wins, 6.4 rounds, 69% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
 - Enemies: Level 1 Shield Wall (Hedge Knight, Hedge Knight, Marsh Archer, Marsh Archer)
 - This fight (seed 2): party won in 5 rounds, 90% party HP left
-- Matchup average over 1000 fights: 98.4% wins, 5.3 rounds, 88% HP left on a win
+- Matchup average over 1000 fights: 98.1% wins, 5.3 rounds, 88% HP left on a win
 
 ## partyT_L1_vs_L1_warband.html
 - Party: Browndog, Hanforth, Sable, Beornhard
@@ -76,3 +76,27 @@ Default: one attack a turn (ranged Aimed Shot, melee Skirmisher), enemy Health +
 - Enemies: Level 3 Frontline (Brute (L3), Brute (L3), Grave Caller (L3), Grave Caller (L3))
 - This fight (seed 2): party won in 3 rounds, 91% party HP left
 - Matchup average over 1000 fights: 99.8% wins, 2.9 rounds, 82% HP left on a win
+
+## manual_L1_brutes_archers.html
+- Party: Enith, Felix, Jackal, Hanforth
+- Enemies: Level 1 Manual: brutes and archers (Brute@1, Brute@1, Marsh Archer@1, Hunting Hound@1)
+- This fight (seed 4): party won in 5 rounds, 88% party HP left
+- Matchup average over 1000 fights: 99.3% wins, 4.7 rounds, 84% HP left on a win
+
+## manual_L3_ogre_leads.html
+- Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
+- Enemies: Level 3 Manual: Gravel Ogre leads (Gravel Ogre@3, Goblin Cutthroat@3, Marsh Archer@3)
+- This fight (seed 1): party won in 2 rounds, 91% party HP left
+- Matchup average over 1000 fights: 100.0% wins, 2.0 rounds, 92% HP left on a win
+
+## manual_L3_new_tricks.html
+- Party: Browndog (L3), Hanforth (L3), Hilde (L3), Beornhard (L3)
+- Enemies: Level 3 Manual: Blast Mage, Ram Brute, Warpriest (Blast Mage@3, Ram Brute@3, Warpriest@3, Brute@3)
+- This fight (seed 3): party won in 3 rounds, 87% party HP left
+- Matchup average over 1000 fights: 100.0% wins, 2.5 rounds, 94% HP left on a win
+
+## manual_L3_warlord.html
+- Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
+- Enemies: Level 3 Manual: solo Warlord (Brute Warlord@3)
+- This fight (seed 1): party won in 2 rounds, 100% party HP left
+- Matchup average over 1000 fights: 100.0% wins, 2.1 rounds, 91% HP left on a win
