@@ -595,6 +595,17 @@ CARDS = True
 # (a quarter to a third) of the day's hand to a fight.
 CARDS_FIGHT_SHARE = 1 / 3
 CARDS_SECOND_FIGHT_SHARE = 0.5
+# The whole day's hand as one pool (designer, 2026-11-09: track the
+# party's resources across the day's two fights and let them use
+# everything in the first if they need it). In a day's first fight a PC
+# holds back CARDS_FIGHT_SHARE of the morning's hand for the second and
+# can spend the rest; the hold comes free for the whole party once the
+# fight turns (someone Down, or the party under DAY_TROUBLE of its
+# Health), and for a PC's own big or killing flip. The second fight has
+# the whole hand left. False: a fight's budget is CARDS_FIGHT_SHARE of
+# the morning's hand, as before.
+DAY_CARDS = False
+DAY_TROUBLE = 0.5
 # Cards a player keeps back after a rescue, by how much the flip matters
 # (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when
 # there are plenty left; a kill shot or an Encounter attack gets one

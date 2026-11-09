@@ -141,7 +141,10 @@ def start_fight(pc, day_fight=None):
     morning's hand with no second-fight guess; 2 keeps the hand left from
     the first fight and sets a fresh budget off the morning's hand size."""
     if day_fight == 2:
-        pc['budget'] = min(len(pc['hand']), _stochastic_round(pc['hand_size'] * T.CARDS_FIGHT_SHARE))
+        if getattr(T, "DAY_CARDS", False):
+            pc['budget'], pc['day_hold'] = len(pc['hand']), 0
+        else:
+            pc['budget'] = min(len(pc['hand']), _stochastic_round(pc['hand_size'] * T.CARDS_FIGHT_SHARE))
         pc['cards_spent'] = 0
         return
     deck = Deck()
@@ -152,6 +155,12 @@ def start_fight(pc, day_fight=None):
         low = min(hand, key=rank)
         hand.remove(low)
         deck.discard.append(low)
+    if day_fight == 1 and getattr(T, "DAY_CARDS", False):
+        # tunables.DAY_CARDS: everything but the second fight's share.
+        hold = min(len(hand), _stochastic_round(pc['hand_size'] * T.CARDS_FIGHT_SHARE))
+        pc['deck'], pc['hand'], pc['budget'], pc['day_hold'] = deck, hand, len(hand) - hold, hold
+        pc['cards_spent'] = 0
+        return
     budget = min(len(hand), _stochastic_round(len(hand) * T.CARDS_FIGHT_SHARE))
     if day_fight is None and random.random() < T.CARDS_SECOND_FIGHT_SHARE:
         for _ in range(min(budget, len(hand))):
@@ -160,6 +169,12 @@ def start_fight(pc, day_fight=None):
         budget = min(budget, len(hand))
     pc['deck'], pc['hand'], pc['budget'] = deck, hand, budget
     pc['cards_spent'] = 0
+
+
+def release_hold(pc):
+    """tunables.DAY_CARDS: the cards held back for the day's second fight
+    join this fight's budget."""
+    pc['budget'] = pc.get('budget', 0) + pc.pop('day_hold', 0)
 
 
 def can_spend(pc, k=1):

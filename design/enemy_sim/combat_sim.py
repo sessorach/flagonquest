@@ -942,6 +942,9 @@ def _rescue(pc, need, k, importance, allies):
     if importance == KILL and T.CARDS_ALLY_RESCUE:
         holders += [a for a in allies if a is not pc and a['health'] > 0 and a.get('hand')]
     reserve = T.RESCUE_RESERVE[importance]
+    if importance >= BIG and pc.get('day_hold'):
+        # tunables.DAY_CARDS: a big or killing flip is what the day's cards are for.
+        cards.release_hold(pc)
     for h in holders:
         if not cards.can_spend(h, k + reserve + _held_back(h)):
             continue

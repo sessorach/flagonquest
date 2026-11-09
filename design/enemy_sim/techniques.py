@@ -516,6 +516,19 @@ def _blessing_setup(name, pc, s):
     pc["blessing"] = pc["blessings"][0]
 
 
+@hooks.on('pc_turn_start', order=-30)
+def _day_trouble(pc, c):
+    # tunables.DAY_CARDS: once the fight turns, nobody holds cards back for
+    # the second one.
+    if not any(p.get('day_hold') for p in c.pcs):
+        return 0
+    if any(p['health'] <= 0 for p in c.pcs) or \
+            sum(max(0, p['health']) for p in c.pcs) < cs.T.DAY_TROUBLE * sum(p['max_health'] for p in c.pcs):
+        for p in c.pcs:
+            cs.cards.release_hold(p)
+    return 0
+
+
 @hooks.on('pc_turn_start', order=-3)
 def _feed_potion(pc, c):
     # tunables.POTION_FEED: a Healing Potion fed to a Downed ally next to
