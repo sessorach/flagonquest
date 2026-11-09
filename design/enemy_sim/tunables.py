@@ -86,6 +86,13 @@ ARMOR = game_data.armor_table()
 # gets, spent on move actions and attacks (see combat_sim.py's
 # spend_movement_ap and the Party's/Enemies' turn loops in run_fight).
 AP_PER_TURN = 4
+# Healing Potions (designer, 2026-11-09 test): each PC starts the day with
+# this many Healing Potions (I043, its heal read from items.csv); they
+# don't come back between fights. A PC at POTION_DRINK_AT of its max
+# Health or less drinks one at the start of its turn for POTION_AP. 0: off.
+PC_POTIONS = 0
+POTION_AP = 2
+POTION_DRINK_AT = 0.5
 # "A move action takes 1 AP to make... this moves you up to your Speed
 # in meters. You can always end a move action early." - can be taken
 # more than once in a turn, AP allowing, which is exactly how closing a

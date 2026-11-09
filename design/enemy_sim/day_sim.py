@@ -57,7 +57,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MULT = 1.0
 # Off: nobody heals between fights or before bed (what care is worth).
 CARE = True
-CARRY_KEYS = ("health", "max_health", "shallow_lost", "_last_health")
+CARRY_KEYS = ("health", "max_health", "shallow_lost", "_last_health", "potions")
 
 
 # ---- Health, Shallow and Deep ----

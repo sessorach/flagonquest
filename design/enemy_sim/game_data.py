@@ -33,6 +33,7 @@ NOT_MODELED_ITEMS = set()
 # Elemental-Forged Weaponry (party.py: the attacking weapon deals that
 # element's damage).
 ELEMENTAL_FORGED = "I101"
+HEALING_POTION = "I043"
 
 
 _FILES = {}
@@ -130,6 +131,14 @@ def item_gold(iid):
     """An item's Cost in Gold ("4 Gold")."""
     m = re.match(r"\s*(\d+)", items()[iid].get("Cost") or "")
     return int(m.group(1)) if m else 0
+
+
+def potion_heal(iid=HEALING_POTION):
+    """What a healing potion heals ("When consumed, you heal 2 Health.")."""
+    m = re.search(r"heal (\d+) Health", items()[iid].get("Effects") or "")
+    if not m:
+        raise ValueError(f"{iid}: no 'heal N Health' in its Effects")
+    return int(m.group(1))
 
 
 def _choices(cell):

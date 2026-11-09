@@ -516,6 +516,24 @@ def _blessing_setup(name, pc, s):
     pc["blessing"] = pc["blessings"][0]
 
 
+@hooks.on('pc_turn_start', order=-2)
+def _healing_potion(pc, c):
+    # A Healing Potion (I043, tunables.PC_POTIONS), first thing in a turn
+    # when hurt: "When consumed, you heal 2 Health", for POTION_AP.
+    if pc.get('potions', 0) <= 0 or c.ap < cs.T.POTION_AP or pc['health'] <= 0 \
+            or pc['health'] > cs.T.POTION_DRINK_AT * pc['max_health']:
+        return 0
+    pc['potions'] -= 1
+    n = cs.tactics.necrotic_cut(pc, game_data.potion_heal())
+    n = max(0, min(n, pc['max_health'] - pc['health']))
+    pc['health'] += n
+    pc['potion_healed'] = pc.get('potion_healed', 0) + n
+    if c.log:
+        c.log(unit=pc['name'], action='heal', target=pc['name'], amount=n, target_hp_after=pc['health'],
+              via='Healing Potion')
+    return cs.T.POTION_AP
+
+
 @hooks.on('pc_turn_start', 'Second Wind', order=-1)
 def _second_wind(pc, c):
     # T012, 0 AP (tactics.try_second_wind): first thing in the turn, before

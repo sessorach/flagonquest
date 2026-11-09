@@ -3160,6 +3160,10 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     if seed is not None:
         random.seed(seed)
     pcs = make_party(tier, good_luck=good_luck)
+    for p in pcs:
+        # A fresh fight starts with the day's Healing Potions (tunables.PC_POTIONS);
+        # a day's later fight carries what's left (day_sim.CARRY_KEYS).
+        p['potions'] = T.PC_POTIONS
     if carry is not None:
         for p, c in zip(pcs, carry):
             p.update(c)
