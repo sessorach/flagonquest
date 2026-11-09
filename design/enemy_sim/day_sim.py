@@ -50,6 +50,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import combat_sim as cs, sample_enemies as se, party, tunables as T, tactics, cards  # noqa: E402
+import game_data  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 # The day standard (designer, 2026-10-29): two fights at ×1.75, the
@@ -198,6 +199,28 @@ def care(pcs, reserve, log):
             return healed
 
 
+def potions_between(pcs, log):
+    """tunables.POTION_BETWEEN: after a fight, Healing Potions on whoever is
+    hurt. A Downed PC is fed one by whoever has a spare; then each PC
+    drinks while it's missing at least a potion's heal, keeping POTION_KEEP
+    for the next fight. Returns the Health it restored."""
+    n = game_data.potion_heal()
+    healed = 0
+    for q in pcs:
+        if q['health'] <= 0:
+            giver = max((p for p in pcs if p.get('potions', 0) > 0), key=lambda p: p['potions'], default=None)
+            if giver is not None:
+                giver['potions'] -= 1
+                healed += heal(q, n, deep_ok=True)
+                log.append(f"{giver['name']}: a Healing Potion to {q['name']}")
+    for p in pcs:
+        while p.get('potions', 0) > T.POTION_KEEP and p['max_health'] - p['health'] >= n:
+            p['potions'] -= 1
+            healed += heal(p, n, deep_ok=True)
+            log.append(f"{p['name']}: drinks a Healing Potion")
+    return healed
+
+
 def patch_up(pcs, log):
     """Patch Up (T036), before bed: a card, and up to [half Medicine] of
     the most hurt heal an extra Health tonight."""
@@ -286,6 +309,8 @@ def play_day(names, swaps, level, mixes, seed, rows, start=None, log=None):
                                 (lambda p: math.ceil(p['hand_size'] * T.CARDS_FIGHT_SHARE)), log)
             if final:
                 patch_up(pcs, log)
+        if T.POTION_BETWEEN and not final:
+            rec['potion_care'] = rec.get('potion_care', 0) + potions_between(pcs, log)
         carry = [dict({k: p[k] for k in CARRY_KEYS}, deck=p.get('deck'), hand=p.get('hand')) for p in pcs]
     night(pcs, full)
     rec['morning'] = sum(p['health'] for p in pcs)

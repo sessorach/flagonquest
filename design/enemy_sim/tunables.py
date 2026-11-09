@@ -93,6 +93,15 @@ AP_PER_TURN = 4
 PC_POTIONS = 0
 POTION_AP = 2
 POTION_DRINK_AT = 0.5
+# Feeding a potion (designer, 2026-11-09 test: a Potion can go to a
+# willing or Downed creature adjacent to you): a PC with one feeds it to a
+# Downed ally next to it at the start of its turn, before drinking its own.
+POTION_FEED = False
+# Drinking between fights (2026-11-09 test): after the first fight's care,
+# each PC drinks while it's missing at least a potion's heal, keeping
+# POTION_KEEP for the second fight; a Downed PC is fed one by an ally.
+POTION_BETWEEN = False
+POTION_KEEP = 1
 # "A move action takes 1 AP to make... this moves you up to your Speed
 # in meters. You can always end a move action early." - can be taken
 # more than once in a turn, AP allowing, which is exactly how closing a

@@ -516,6 +516,26 @@ def _blessing_setup(name, pc, s):
     pc["blessing"] = pc["blessings"][0]
 
 
+@hooks.on('pc_turn_start', order=-3)
+def _feed_potion(pc, c):
+    # tunables.POTION_FEED: a Healing Potion fed to a Downed ally next to
+    # this PC, back on its feet at the potion's heal.
+    if not cs.T.POTION_FEED or pc.get('potions', 0) <= 0 or c.ap < cs.T.POTION_AP or pc['health'] <= 0:
+        return 0
+    down = [p for p in c.pcs if p is not pc and p['health'] <= 0
+            and (not c.movement_on or cs._distance(p['pos'], pc['pos']) <= cs.T.MELEE_RANGE)]
+    if not down:
+        return 0
+    q = min(down, key=lambda p: p['health'])
+    pc['potions'] -= 1
+    q['health'] = min(q['max_health'], max(0, q['health']) + cs.tactics.necrotic_cut(q, game_data.potion_heal()))
+    pc['potion_fed'] = pc.get('potion_fed', 0) + 1
+    if c.log:
+        c.log(unit=pc['name'], action='heal', target=q['name'], amount=q['health'], target_hp_after=q['health'],
+              via='Healing Potion (fed)')
+    return cs.T.POTION_AP
+
+
 @hooks.on('pc_turn_start', order=-2)
 def _healing_potion(pc, c):
     # A Healing Potion (I043, tunables.PC_POTIONS), first thing in a turn
