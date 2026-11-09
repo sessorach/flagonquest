@@ -598,7 +598,9 @@ WEAK_DEFAULT = {"weapon": ("mental", "vigilant"), "spell": ("bodily", "vigilant"
 # Then Health +2 at every Level (designer, 2026-11-09) with one attack a
 # turn (tunables.V3_FIGHTING_STYLE 'mixed'): fights a round or two longer.
 V3_SQUARE_TABLE = {1: dict(accuracy=3, health=0), 2: dict(accuracy=2, damage=-1, health=2),
-                   3: dict(accuracy=3, skill=1, health=0), 4: dict(accuracy=3, damage=-1, health=0),
+                   # Level 3 Health +2 (designer, 2026-11-09): the baseline shouldn't
+                   # drop from Level 2 (it was 6 / 7 / 5 / 7 / 9).
+                   3: dict(accuracy=3, skill=1, health=2), 4: dict(accuracy=3, damage=-1, health=0),
                    5: dict(accuracy=2, damage=-1, health=2)}
 if getattr(T, "V3_HIT_FIT", False) and getattr(T, "V3_SQUARE", False):
     for _L, _c in V3_SQUARE_TABLE.items():
