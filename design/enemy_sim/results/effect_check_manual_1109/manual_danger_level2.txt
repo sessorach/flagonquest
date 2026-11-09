@@ -1,0 +1,113 @@
+210 cells, 250 fights per mix each
+  0/1680 chunks
+  500/1680 chunks
+  1000/1680 chunks
+  1500/1680 chunks
+
+== Party A, level2 fights, enemy Health x1.0: base 8.4 expected Health left, 11.13 rounds, losses 66.6%; one PC's +1 Health = 0.491
+| Test | Applied a fight | THE TABEL | TABEL rates x sim counts | Measured | Measured / TABEL | Hilde | Browndog | Carrick | Sable |
+|---|---|---|---|---|---|---|---|---|---|
+| crippled 1, first hit | 0.88 | 1.32 | 0.39 | +0.30 ± 0.08 | 23% | +0.24 | +0.22 | +0.72 | +0.02 |
+| crippled 4, first hit | 0.88 | 13.17 | 2.93 | +2.04 ± 0.22 | 15% | +1.03 | +3.12 | +2.72 | +1.28 |
+| crippled 1, every hit | 2.98 | 4.46 | 1.40 | +1.05 ± 0.16 | 23% | +0.07 | +0.98 | +1.32 | +1.82 |
+| crippled 1 on the boss, first turn | 0.99 | 1.48 | 0.56 | +0.15 ± 0.10 | 10% | +0.15 | +0.10 | +0.22 | +0.13 |
+| crippled 4 on the boss, first turn | 0.99 | 14.81 | 4.58 | +3.58 ± 0.32 | 24% | +3.26 | +3.96 | +4.40 | +2.71 |
+| crippled 1 on the boss, every turn | 7.72 | 11.58 | 5.20 | +4.06 ± 0.29 | 35% | +3.81 | +4.26 | +4.27 | +3.89 |
+| slowed 1, first hit | 0.88 | 0.97 | 0.45 | +0.87 ± 0.24 | 90% | +0.26 | +0.48 | +1.91 | +0.83 |
+| slowed 4, first hit | 0.88 | 9.66 | 3.30 | +4.85 ± 0.47 | 50% | +0.88 | +5.48 | +4.55 | +8.51 |
+| slowed 1, every hit | 2.99 | 3.29 | 2.09 | +1.90 ± 0.34 | 58% | +0.67 | +0.77 | +2.28 | +3.89 |
+| slowed 1 on the boss, first turn | 0.99 | 1.09 | 0.72 | +1.44 ± 0.35 | 132% | +0.92 | +1.63 | +1.61 | +1.59 |
+| slowed 4 on the boss, first turn | 0.99 | 10.86 | 5.60 | +10.13 ± 0.65 | 93% | +7.54 | +9.73 | +10.25 | +12.98 |
+| slowed 1 on the boss, every turn | 7.64 | 8.40 | 6.53 | +4.99 ± 0.49 | 59% | +4.81 | +4.49 | +4.59 | +6.06 |
+| badluck 1, first hit | 0.88 | 1.93 | 0.91 | +1.88 ± 0.34 | 98% | +1.15 | +2.07 | +2.58 | +1.74 |
+| badluck 4, first hit | 0.88 | 7.73 | 2.38 | +2.53 ± 0.35 | 33% | +1.74 | +3.38 | +3.29 | +1.69 |
+| badluck 1, every hit | 3.01 | 6.62 | 3.32 | +4.84 ± 0.42 | 73% | +3.65 | +4.87 | +3.03 | +7.81 |
+| badluck 1 on the boss, first turn | 0.99 | 2.17 | 1.40 | +3.29 ± 0.46 | 151% | +3.12 | +3.35 | +3.74 | +2.95 |
+| badluck 4 on the boss, first turn | 0.99 | 8.69 | 3.82 | +4.15 ± 0.46 | 48% | +3.67 | +4.28 | +4.89 | +3.76 |
+| badluck 1 on the boss, every turn | 8.07 | 17.75 | 13.41 | +16.26 ± 0.63 | 92% | +16.50 | +18.97 | +15.45 | +14.13 |
+| fright 1, first hit | 0.88 | 1.93 | 0.91 | +0.64 ± 0.27 | 33% | +1.01 | -0.01 | +0.52 | +1.03 |
+| fright 4, first hit | 0.88 | 7.73 | 6.89 | +1.05 ± 0.29 | 14% | +1.58 | +0.75 | +0.57 | +1.29 |
+| fright 1, every hit | 3.07 | 6.75 | 4.27 | +1.02 ± 0.36 | 15% | +2.68 | -1.56 | +0.77 | +2.18 |
+| fright 1 on the boss, first turn | 0.99 | 2.17 | 1.45 | +1.99 ± 0.39 | 91% | +3.37 | +1.91 | +1.78 | +0.89 |
+| fright 4 on the boss, first turn | 0.99 | 8.69 | 11.13 | +2.71 ± 0.42 | 31% | +4.91 | +2.42 | +1.96 | +1.54 |
+| fright 1 on the boss, every turn | 8.95 | 19.68 | 15.60 | +6.29 ± 0.57 | 32% | +18.99 | -1.07 | +2.40 | +4.83 |
+| taunt 1, first hit | 0.88 | 1.93 | 0.69 | +2.89 ± 0.44 | 150% | +2.53 | +3.65 | +3.27 | +2.10 |
+| taunt 4, first hit | 0.88 | 7.73 | 7.08 | +3.73 ± 0.46 | 48% | +2.86 | +5.65 | +3.57 | +2.86 |
+| taunt 1, every hit | 2.45 | 5.39 | 1.94 | +4.98 ± 0.58 | 92% | +1.94 | +7.85 | +4.35 | +5.79 |
+| taunt 1 on the boss, first turn | 0.99 | 2.17 | 0.76 | +4.95 ± 0.58 | 228% | +3.35 | +8.36 | +4.44 | +3.67 |
+| taunt 4 on the boss, first turn | 0.99 | 8.69 | 9.76 | +6.01 ± 0.63 | 69% | +3.48 | +11.64 | +5.81 | +3.08 |
+| taunt 1 on the boss, every turn | 5.24 | 11.52 | 4.30 | +10.64 ± 0.81 | 92% | +2.19 | +26.95 | +9.12 | +4.28 |
+| harried 1, first hit | 0.88 | 0.88 | 1.18 | +2.10 ± 0.32 | 239% | +2.15 | +1.05 | +2.15 | +3.05 |
+| harried 4, first hit | 0.88 | 3.51 | 3.48 | +7.67 ± 0.49 | 218% | +8.33 | +6.78 | +7.97 | +7.61 |
+| harried 1, every hit | 2.94 | 2.94 | 2.18 | +5.07 ± 0.40 | 172% | +4.73 | +3.96 | +4.20 | +7.39 |
+| harried 1 on the boss, first turn | 0.99 | 0.99 | 1.82 | +4.47 ± 0.53 | 452% | +3.25 | +4.42 | +3.90 | +6.29 |
+| harried 4 on the boss, first turn | 0.99 | 3.95 | 6.02 | +14.02 ± 0.70 | 355% | +11.31 | +13.04 | +13.33 | +18.39 |
+| harried 1 on the boss, every turn | 7.33 | 7.33 | 9.71 | +13.21 ± 0.67 | 180% | +11.50 | +13.10 | +9.48 | +18.77 |
+| bleeding 1, first hit | 0.88 | 3.51 | 11.30 | +1.46 ± 0.24 | 41% | +0.94 | +1.37 | +1.06 | +2.46 |
+| bleeding 4, first hit | 0.88 | 9.66 | 13.73 | +6.05 ± 0.43 | 63% | +2.81 | +6.70 | +6.25 | +8.42 |
+| bleeding 1, every hit | 2.87 | 11.46 | 13.56 | +6.12 ± 0.40 | 53% | +3.13 | +5.29 | +4.34 | +11.71 |
+| bleeding 1 on the boss, first turn | 0.99 | 3.95 | 12.36 | +3.40 ± 0.37 | 86% | +2.72 | +3.86 | +3.27 | +3.74 |
+| bleeding 4 on the boss, first turn | 0.99 | 10.86 | 16.76 | +10.76 ± 0.55 | 99% | +9.60 | +10.95 | +11.95 | +10.54 |
+| bleeding 1 on the boss, every turn | 7.14 | 28.56 | 22.80 | +24.29 ± 0.68 | 85% | +22.56 | +25.62 | +23.93 | +25.03 |
+| stagger 1, every hit | 2.32 | 3.13 | - | +7.81 ± 0.56 | 249% | +5.11 | +7.37 | +7.44 | +11.30 |
+| stagger 2 on the boss, first turn | 0.99 | 2.67 | - | +5.86 ± 0.61 | 220% | +4.95 | +5.86 | +6.99 | +5.64 |
+| stagger 1 on the boss, every turn | 7.58 | 10.24 | - | +12.93 ± 0.71 | 126% | +12.39 | +14.36 | +12.59 | +12.37 |
+| tauntguard 1, every turn | 5.07 | 11.15 | -0.09 | +12.76 ± 0.84 | 114% | +5.87 | +32.73 | +10.00 | +2.44 |
+| protected 1, first turn | 0.99 | 2.96 | 1.48 | +1.76 ± 0.28 | 59% | +2.45 | +0.99 | +1.14 | +2.44 |
+| protected 1, every turn | 8.50 | 25.51 | 9.46 | +8.71 ± 0.41 | 34% | +18.19 | +5.69 | +4.99 | +5.95 |
+| Health +2 | - | 8.00 | - | +7.50 ± 0.36 | 94% | +7.78 | +7.49 | +7.89 | +6.83 |
+| Parry/Dodge +1 | - | 4.45 | - | +3.27 ± 0.25 | 74% | +4.49 | +4.19 | +1.83 | +2.59 |
+| Autoswing | - | 5.50 | - | +7.08 ± 0.74 | 129% | +9.78 | +5.99 | +1.21 | +11.36 |
+
+What happened, per carrier (Hilde / Browndog / Carrick / Sable):
+  crippled 1, first hit: 0.28 enemy attack points, 0.27 stack-turns / 0.41 enemy attack points, 0.43 stack-turns / 0.43 enemy attack points, 0.44 stack-turns / 0.45 enemy attack points, 0.50 stack-turns
+  crippled 4, first hit: 1.99 enemy attack points, 2.10 stack-turns / 3.17 enemy attack points, 3.46 stack-turns / 3.38 enemy attack points, 3.65 stack-turns / 3.19 enemy attack points, 3.37 stack-turns
+  crippled 1, every hit: 0.97 enemy attack points, 1.27 stack-turns / 1.10 enemy attack points, 1.42 stack-turns / 1.15 enemy attack points, 1.41 stack-turns / 2.37 enemy attack points, 3.42 stack-turns
+  crippled 1 on the boss, first turn: 0.51 enemy attack points, 0.58 stack-turns / 0.58 enemy attack points, 0.65 stack-turns / 0.61 enemy attack points, 0.69 stack-turns / 0.53 enemy attack points, 0.71 stack-turns
+  crippled 4 on the boss, first turn: 4.29 enemy attack points, 4.66 stack-turns / 4.76 enemy attack points, 5.14 stack-turns / 4.90 enemy attack points, 5.32 stack-turns / 4.38 enemy attack points, 5.12 stack-turns
+  crippled 1 on the boss, every turn: 4.86 enemy attack points, 5.38 stack-turns / 5.68 enemy attack points, 6.34 stack-turns / 4.98 enemy attack points, 5.93 stack-turns / 5.28 enemy attack points, 6.57 stack-turns
+  slowed 1, first hit: 0.27 stack-turns; enemy attacks -0.06, carrier attacked -0.01 / 0.43 stack-turns; enemy attacks +0.01, carrier attacked +0.02 / 0.44 stack-turns; enemy attacks -0.10, carrier attacked -0.04 / 0.50 stack-turns; enemy attacks -0.03, carrier attacked -0.01
+  slowed 4, first hit: 1.81 stack-turns; enemy attacks -0.03, carrier attacked +0.05 / 3.17 stack-turns; enemy attacks -0.19, carrier attacked -0.06 / 3.47 stack-turns; enemy attacks -0.23, carrier attacked -0.08 / 3.56 stack-turns; enemy attacks -0.29, carrier attacked -0.06
+  slowed 1, every hit: 1.27 stack-turns; enemy attacks -0.10, carrier attacked -0.03 / 1.42 stack-turns; enemy attacks +0.00, carrier attacked +0.01 / 1.43 stack-turns; enemy attacks -0.14, carrier attacked -0.06 / 3.47 stack-turns; enemy attacks -0.20, carrier attacked -0.03
+  slowed 1 on the boss, first turn: 0.58 stack-turns; enemy attacks -0.05, carrier attacked +0.01 / 0.65 stack-turns; enemy attacks -0.08, carrier attacked -0.05 / 0.69 stack-turns; enemy attacks -0.05, carrier attacked -0.01 / 0.71 stack-turns; enemy attacks -0.01, carrier attacked +0.00
+  slowed 4 on the boss, first turn: 4.52 stack-turns; enemy attacks -0.28, carrier attacked -0.01 / 5.01 stack-turns; enemy attacks -0.34, carrier attacked -0.12 / 5.26 stack-turns; enemy attacks -0.35, carrier attacked -0.14 / 5.57 stack-turns; enemy attacks -0.49, carrier attacked -0.07
+  slowed 1 on the boss, every turn: 5.13 stack-turns; enemy attacks -0.23, carrier attacked +0.05 / 6.17 stack-turns; enemy attacks -0.25, carrier attacked -0.19 / 5.90 stack-turns; enemy attacks -0.22, carrier attacked -0.04 / 6.56 stack-turns; enemy attacks -0.27, carrier attacked -0.07
+  badluck 1, first hit: 0.29 Bad Luck flips / 0.44 Bad Luck flips / 0.45 Bad Luck flips / 0.48 Bad Luck flips
+  badluck 4, first hit: 0.74 Bad Luck flips / 1.22 Bad Luck flips / 1.30 Bad Luck flips / 1.08 Bad Luck flips
+  badluck 1, every hit: 1.02 Bad Luck flips / 1.30 Bad Luck flips / 1.28 Bad Luck flips / 2.44 Bad Luck flips
+  badluck 1 on the boss, first turn: 0.57 Bad Luck flips / 0.65 Bad Luck flips / 0.68 Bad Luck flips / 0.66 Bad Luck flips
+  badluck 4 on the boss, first turn: 1.62 Bad Luck flips / 1.79 Bad Luck flips / 1.84 Bad Luck flips / 1.69 Bad Luck flips
+  badluck 1 on the boss, every turn: 5.84 Bad Luck flips / 7.14 Bad Luck flips / 5.63 Bad Luck flips / 5.77 Bad Luck flips
+  fright 1, first hit: 0.27 stack-turns, 0.00 Bad Luck flips; enemy attacks -0.04, carrier attacked -0.05 / 0.43 stack-turns, 0.01 Bad Luck flips; enemy attacks -0.02, carrier attacked -0.14 / 0.44 stack-turns, 0.01 Bad Luck flips; enemy attacks -0.03, carrier attacked -0.03 / 0.50 stack-turns, 0.01 Bad Luck flips; enemy attacks -0.03, carrier attacked -0.04
+  fright 4, first hit: 2.07 stack-turns, 0.02 Bad Luck flips; enemy attacks -0.03, carrier attacked -0.06 / 3.44 stack-turns, 0.10 Bad Luck flips; enemy attacks +0.02, carrier attacked -0.14 / 3.66 stack-turns, 0.03 Bad Luck flips; enemy attacks -0.04, carrier attacked -0.07 / 3.35 stack-turns, 0.03 Bad Luck flips; enemy attacks -0.06, carrier attacked -0.04
+  fright 1, every hit: 1.35 stack-turns, 0.04 Bad Luck flips; enemy attacks -0.08, carrier attacked -0.16 / 1.48 stack-turns, 0.11 Bad Luck flips; enemy attacks +0.06, carrier attacked -0.20 / 1.44 stack-turns, 0.05 Bad Luck flips; enemy attacks +0.04, carrier attacked -0.10 / 3.50 stack-turns, 0.16 Bad Luck flips; enemy attacks -0.13, carrier attacked -0.08
+  fright 1 on the boss, first turn: 0.58 stack-turns, 0.00 Bad Luck flips; enemy attacks -0.17, carrier attacked -0.05 / 0.65 stack-turns, 0.11 Bad Luck flips; enemy attacks -0.01, carrier attacked +0.01 / 0.69 stack-turns, 0.00 Bad Luck flips; enemy attacks -0.05, carrier attacked -0.08 / 0.71 stack-turns, 0.00 Bad Luck flips; enemy attacks -0.04, carrier attacked -0.06
+  fright 4 on the boss, first turn: 4.63 stack-turns, 0.02 Bad Luck flips; enemy attacks -0.13, carrier attacked -0.06 / 5.12 stack-turns, 0.54 Bad Luck flips; enemy attacks +0.11, carrier attacked +0.10 / 5.46 stack-turns, 0.02 Bad Luck flips; enemy attacks -0.03, carrier attacked -0.11 / 5.03 stack-turns, 0.03 Bad Luck flips; enemy attacks -0.10, carrier attacked -0.05
+  fright 1 on the boss, every turn: 6.29 stack-turns, 0.46 Bad Luck flips; enemy attacks -0.96, carrier attacked -0.80 / 7.87 stack-turns, 1.84 Bad Luck flips; enemy attacks +0.69, carrier attacked +0.17 / 7.20 stack-turns, 0.59 Bad Luck flips; enemy attacks +0.10, carrier attacked -0.15 / 7.00 stack-turns, 0.57 Bad Luck flips; enemy attacks -0.16, carrier attacked -0.07
+  taunt 1, first hit: +0.23 Taunted stack-turns; enemy attacks -0.10, carrier attacked +0.05 / +0.63 Taunted stack-turns; enemy attacks -0.12, carrier attacked +0.08 / +0.04 Taunted stack-turns; enemy attacks -0.13, carrier attacked +0.10 / +0.36 Taunted stack-turns; enemy attacks +0.04, carrier attacked +0.10
+  taunt 4, first hit: +1.97 Taunted stack-turns; enemy attacks -0.10, carrier attacked +0.12 / +4.19 Taunted stack-turns; enemy attacks -0.19, carrier attacked +0.13 / +3.19 Taunted stack-turns; enemy attacks -0.12, carrier attacked +0.28 / +3.53 Taunted stack-turns; enemy attacks -0.08, carrier attacked +0.11
+  taunt 1, every hit: +0.38 Taunted stack-turns; enemy attacks +0.10, carrier attacked +0.31 / +1.68 Taunted stack-turns; enemy attacks -0.25, carrier attacked +0.20 / +0.36 Taunted stack-turns; enemy attacks -0.13, carrier attacked +0.32 / +1.12 Taunted stack-turns; enemy attacks -0.20, carrier attacked +0.40
+  taunt 1 on the boss, first turn: +0.02 Taunted stack-turns; enemy attacks -0.17, carrier attacked +0.07 / +0.68 Taunted stack-turns; enemy attacks -0.31, carrier attacked +0.06 / +0.20 Taunted stack-turns; enemy attacks -0.16, carrier attacked +0.03 / +0.48 Taunted stack-turns; enemy attacks +0.00, carrier attacked +0.10
+  taunt 4 on the boss, first turn: +3.75 Taunted stack-turns; enemy attacks -0.17, carrier attacked +0.07 / +4.64 Taunted stack-turns; enemy attacks -0.48, carrier attacked +0.14 / +4.47 Taunted stack-turns; enemy attacks -0.35, carrier attacked +0.10 / +4.90 Taunted stack-turns; enemy attacks +0.05, carrier attacked +0.20
+  taunt 1 on the boss, every turn: +1.56 Taunted stack-turns; enemy attacks +0.00, carrier attacked +0.67 / +4.49 Taunted stack-turns; enemy attacks -1.13, carrier attacked +0.67 / +0.81 Taunted stack-turns; enemy attacks -0.75, carrier attacked +0.56 / +0.96 Taunted stack-turns; enemy attacks -0.18, carrier attacked +0.57
+  harried 1, first hit: 1.38 party attack points / 1.29 party attack points / 1.14 party attack points / 0.91 party attack points
+  harried 4, first hit: 4.38 party attack points / 3.05 party attack points / 3.88 party attack points / 2.61 party attack points
+  harried 1, every hit: 2.66 party attack points / 1.38 party attack points / 2.37 party attack points / 2.32 party attack points
+  harried 1 on the boss, first turn: 1.94 party attack points / 1.60 party attack points / 1.66 party attack points / 2.09 party attack points
+  harried 4 on the boss, first turn: 6.10 party attack points / 5.59 party attack points / 6.20 party attack points / 6.19 party attack points
+  harried 1 on the boss, every turn: 7.76 party attack points / 9.31 party attack points / 10.22 party attack points / 11.55 party attack points
+  bleeding 1, first hit: 2.69 Health loss landed / 2.83 Health loss landed / 2.82 Health loss landed / 2.96 Health loss landed
+  bleeding 4, first hit: 3.09 Health loss landed / 3.49 Health loss landed / 3.52 Health loss landed / 3.62 Health loss landed
+  bleeding 1, every hit: 3.08 Health loss landed / 3.29 Health loss landed / 3.27 Health loss landed / 3.93 Health loss landed
+  bleeding 1 on the boss, first turn: 3.00 Health loss landed / 3.09 Health loss landed / 3.12 Health loss landed / 3.14 Health loss landed
+  bleeding 4 on the boss, first turn: 4.05 Health loss landed / 4.21 Health loss landed / 4.27 Health loss landed / 4.23 Health loss landed
+  bleeding 1 on the boss, every turn: 5.62 Health loss landed / 6.08 Health loss landed / 5.47 Health loss landed / 5.62 Health loss landed
+  stagger 1, every hit: enemy attacks -0.39, carrier attacked -0.07 / enemy attacks -0.50, carrier attacked -0.24 / enemy attacks -0.49, carrier attacked -0.15 / enemy attacks -0.62, carrier attacked -0.13
+  stagger 2 on the boss, first turn: enemy attacks -0.25, carrier attacked -0.03 / enemy attacks -0.19, carrier attacked -0.11 / enemy attacks -0.25, carrier attacked -0.13 / enemy attacks -0.15, carrier attacked +0.02
+  stagger 1 on the boss, every turn: enemy attacks -0.77, carrier attacked -0.18 / enemy attacks -0.85, carrier attacked -0.37 / enemy attacks -0.67, carrier attacked -0.23 / enemy attacks -0.60, carrier attacked -0.12
+  tauntguard 1, every turn: -1.31 Taunted stack-turns; enemy attacks -0.52, carrier attacked +0.84 / +2.78 Taunted stack-turns; enemy attacks -1.39, carrier attacked +0.84 / -1.06 Taunted stack-turns; enemy attacks -0.87, carrier attacked +0.80 / -0.58 Taunted stack-turns; enemy attacks -0.13, carrier attacked +0.90
+  protected 1, first turn: 0.53 absorbed / 0.22 absorbed / 0.34 absorbed / 0.40 absorbed
+  protected 1, every turn: 4.05 absorbed / 1.94 absorbed / 1.89 absorbed / 1.57 absorbed
+  Health +2: carrier attacks 7.33, attacked 5.77, hit 4.30; enemy attacks +0.44, carrier attacked +0.45 / carrier attacks 8.50, attacked 7.33, hit 3.89; enemy attacks +0.61, carrier attacked +0.65 / carrier attacks 9.31, attacked 3.82, hit 2.91; enemy attacks +0.24, carrier attacked +0.41 / carrier attacks 12.22, attacked 2.83, hit 2.18; enemy attacks +0.18, carrier attacked +0.33
+  Parry/Dodge +1: carrier attacks 7.33, attacked 5.77, hit 4.30; enemy attacks +0.07, carrier attacked +0.30 / carrier attacks 8.50, attacked 7.33, hit 3.89; enemy attacks +0.73, carrier attacked +0.76 / carrier attacks 9.31, attacked 3.82, hit 2.91; enemy attacks +0.25, carrier attacked +0.27 / carrier attacks 12.22, attacked 2.83, hit 2.18; enemy attacks +0.10, carrier attacked +0.22
+  Autoswing: carrier attacks 7.33, attacked 5.77, hit 4.30; enemy attacks -0.46, carrier attacked -0.03 / carrier attacks 8.50, attacked 7.33, hit 3.89; enemy attacks -0.32, carrier attacked -0.13 / carrier attacks 9.31, attacked 3.82, hit 2.91; enemy attacks +0.05, carrier attacked -0.09 / carrier attacks 12.22, attacked 2.83, hit 2.18; enemy attacks -0.55, carrier attacked -0.06

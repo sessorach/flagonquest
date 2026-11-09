@@ -5115,3 +5115,19 @@ to fit. Level 3 (`default_1109g_*`): days won 20 / 88 / 100 (bottom /
 middle / top); a day's first fight in the middle lost 1.1%, 4.0 rounds;
 single fights PC hit 58%, lost 7.8%, 6.6 rounds. Back to within a
 couple of points of where Level 3 was before the Health change.
+
+**effect_check on the manual** (`results/effect_check_manual_1109/`,
+same recipe as 10-29: Party A at Level 1, the same sets, half the fights
+per mix over eight mixes; ordinary fights at built Health, not ×1.75).
+Not yet in `balance_weights.csv`. The ordinary fights are much safer
+for Party A than the 10-29 ones: 0.2% lost against 3.8%, 5.1 rounds
+against 4.5. So control has little to save there, and most Weak and
+Average cells fall to a third to a half of 10-29's (Crippled Average
+1.1 → 0.31, Slowed 1.1 → 0.36, Bad Luck 2.3 → 1.0, Taunted 6.5 → 2.2,
+Protected 1.1 → 0.40); Strong, from the dangerous sets, moves less
+(Crippled 2.4 → 1.8, Slowed 3.7 → 2.3, Bad Luck 5.7 → 6.7, Taunted 7.6
+→ 8.4). +1 Accuracy measures 1.1 Value and +1 Damage 2.3 (2.45 and 5.36
+on 10-29), so the scaling for Harried, Vulnerable, Bleeding and
+Necrotic onto THE TABEL's footing is ×4.8, not ×2.1-2.2, and blows
+those cells up (Bleeding Strong 16, Harried 22). Ward (Shadow) can't be
+read in its own mix: no Level 1 draw has a Shadow attacker.

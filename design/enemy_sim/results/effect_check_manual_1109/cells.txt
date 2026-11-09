@@ -1,0 +1,24 @@
+anchors measured: +1 Accuracy 1.145, +1 Damage 2.3405
+offense factors: Accuracy-like x4.795, Damage-like x4.687
+Crippled     x1: weak   0.10  avg   0.31  strong   1.81 (Ogre)   L2 0.15  Chief 1.08  Ogre 1.81
+Crippled     x4: weak   1.02  avg   2.99  strong  15.28 (Ogre)   L2 3.63  Chief 7.96  Ogre 15.28
+Slowed       x1: weak   0.08  avg   0.36  strong   2.28 (Ogre)   L2 1.45  Chief 1.56  Ogre 2.28
+Slowed       x4: weak   1.01  avg   3.99  strong  13.40 (Ogre)   L2 10.25  Chief 7.17  Ogre 13.40
+Bad Luck     x1: weak   0.58  avg   1.02  strong   6.69 (Ogre)   L2 3.33  Chief 3.44  Ogre 6.69
+Bad Luck     x4: weak   1.20  avg   2.84  strong  16.98 (Ogre)   L2 4.20  Chief 9.99  Ogre 16.98
+Frightened   x1: weak  -0.20  avg   0.26  strong   2.01 (L2)   L2 2.01  Chief 0.08  Ogre 0.58
+Frightened   x4: weak  -0.18  avg   0.65  strong   2.74 (L2)   L2 2.74  Chief 1.26  Ogre 2.64
+Taunted(BD)  x1: weak  -0.24  avg   2.24  strong   8.40 (L2)   L2 8.40  Chief 2.12  Ogre 1.81
+Taunted(BD)  x4: weak  -0.44  avg   4.21  strong  11.70 (L2)   L2 11.70  Chief 6.38  Ogre 8.91
+Bleeding     x1: weak   0.74  avg   1.77  strong  16.13 (L2)   L2 16.13  Chief 6.17  Ogre 9.23
+Bleeding     x4: weak   2.88  avg   6.35  strong  51.07 (L2)   L2 51.07  Chief 19.11  Ogre 29.87
+Harried(raw) x1: weak   0.98  avg   3.10  strong  21.69 (L2)   L2 21.69  Chief 3.23  Ogre 5.29
+Harried(raw) x4: weak   3.99  avg   7.62  strong  68.06 (L2)   L2 68.06  Chief 7.33  Ogre 16.37
+Vulnerable   x1: weak   1.90  avg   3.66  strong   8.41 (Ogre)   Ogre 8.41
+Vulnerable   x4: weak  11.64  avg  25.15  strong  89.01 (Ogre)   Ogre 89.01
+Necrotic     x1: weak   0.71  avg      -  strong   9.72 (Durable Ogre)   Durable Ogre 9.72
+Necrotic     x4: weak   0.87  avg      -  strong  18.83 (Durable Ogre)   Durable Ogre 18.83
+Taunt 1 on Browndog's hits: full2 0.29 dstd 0.30; all carriers full2 -0.24 dstd -0.24
+Taunt 4 on Browndog's hits: full2 0.77 dstd 0.79; all carriers full2 -0.46 dstd -0.41
+Fright 1 aimed, Hilde+Browndog: ord 0.35  L2 2.65  Chief 0.02  Ogre 1.08
+Fright 4 aimed, Hilde+Browndog: ord 0.84  L2 3.68  Chief 1.99  Ogre 5.12

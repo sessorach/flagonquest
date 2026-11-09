@@ -1,0 +1,20 @@
+30 cells, 250 fights per mix each
+  0/240 chunks
+
+== Party A, ogre_durable fights, enemy Health x1.0: base 19.9 expected Health left, 9.46 rounds, losses 21.3%; one PC's +1 Health = 0.793
+| Test | Applied a fight | THE TABEL | TABEL rates x sim counts | Measured | Measured / TABEL | Hilde | Browndog | Carrick | Sable |
+|---|---|---|---|---|---|---|---|---|---|
+| necrotic 1, first hit | 0.98 | 2.94 | 1.24 | +1.04 ± 0.19 | 35% | +0.96 | +1.39 | +1.03 | +0.78 |
+| necrotic 4, first hit | 0.98 | 11.77 | 2.59 | +1.97 ± 0.21 | 17% | +2.34 | +2.25 | +1.83 | +1.44 |
+| necrotic 1, every hit | 4.67 | 14.00 | 5.03 | +3.94 ± 0.25 | 28% | +3.63 | +3.18 | +2.93 | +6.04 |
+| necrotic 1 on the boss, first turn | 1.00 | 2.99 | 2.96 | +2.07 ± 0.20 | 69% | +1.96 | +2.11 | +2.08 | +2.14 |
+| necrotic 4 on the boss, first turn | 1.00 | 11.98 | 6.58 | +4.01 ± 0.25 | 33% | +4.04 | +4.12 | +4.10 | +3.78 |
+| necrotic 1 on the boss, every turn | 7.24 | 21.72 | 12.66 | +7.43 ± 0.28 | 34% | +6.86 | +7.22 | +7.54 | +8.10 |
+
+What happened, per carrier (Hilde / Browndog / Carrick / Sable):
+  necrotic 1, first hit: 0.49 Protected cancelled, 0.00 healing blocked / 0.46 Protected cancelled, 0.00 healing blocked / 0.34 Protected cancelled, 0.00 healing blocked / 0.37 Protected cancelled, 0.00 healing blocked
+  necrotic 4, first hit: 1.09 Protected cancelled, 0.00 healing blocked / 1.03 Protected cancelled, 0.00 healing blocked / 0.68 Protected cancelled, 0.00 healing blocked / 0.66 Protected cancelled, 0.00 healing blocked
+  necrotic 1, every hit: 1.64 Protected cancelled, 0.00 healing blocked / 1.45 Protected cancelled, 0.00 healing blocked / 1.21 Protected cancelled, 0.00 healing blocked / 2.41 Protected cancelled, 0.00 healing blocked
+  necrotic 1 on the boss, first turn: 0.99 Protected cancelled, 0.00 healing blocked / 0.98 Protected cancelled, 0.00 healing blocked / 0.99 Protected cancelled, 0.00 healing blocked / 0.99 Protected cancelled, 0.00 healing blocked
+  necrotic 4 on the boss, first turn: 2.32 Protected cancelled, 0.00 healing blocked / 2.24 Protected cancelled, 0.00 healing blocked / 2.20 Protected cancelled, 0.00 healing blocked / 2.02 Protected cancelled, 0.00 healing blocked
+  necrotic 1 on the boss, every turn: 3.89 Protected cancelled, 0.00 healing blocked / 4.10 Protected cancelled, 0.00 healing blocked / 4.36 Protected cancelled, 0.00 healing blocked / 4.54 Protected cancelled, 0.00 healing blocked

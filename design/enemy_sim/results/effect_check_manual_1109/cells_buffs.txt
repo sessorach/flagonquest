@@ -1,0 +1,17 @@
+anchors measured: +1 Accuracy 1.145, +1 Damage 2.3405
+offense factors: Accuracy-like x4.795, Damage-like x4.687
+Protected 1 first turn: weak (Car+Sab), avg (all), strong (Hilde) ord / L2 / Chief / Ogre
+protected 1                                            0.48    0.40    1.24    2.45    2.40    2.94
+protected 4                                            2.20    2.83    5.14    9.46    6.59
+hasted 1: Sable / all / Hilde ord / all Ogre / Hilde Ogre   0.00    0.06   -0.13   -0.23   -1.78
+hasted 4: same                                        -0.36    0.27    0.37    0.37   -1.18
+goodluck: every turn / first / Ogre first / Ogre every   0.64    1.02    2.56    1.66
+push every time 1m/3m (per push), ord                 -0.16   -0.22
+pushmay 1m/3m every hit, ord                          -0.09   -0.04
+pushmay 1m/3m, push 3 every time, Ogre                -0.90   -1.21   -1.78
+stagger per place ord: on hit / aimed 2 first (per place) / aimed every turn   0.64    0.36    0.50
+stagger per place L2: on hit / aimed 2 first (per place) / aimed every turn   3.36    2.97    1.71
+stagger per place Chief: on hit / aimed 2 first (per place) / aimed every turn   1.03    0.87    0.49
+stagger per place Ogre: on hit / aimed 2 first (per place) / aimed every turn   1.40    1.07    0.75
+ward_fire 1: all mixes / its mix ; 4: all / its        0.09  -    0.13
+ward_shadow 1: all mixes / its mix ; 4: all / its      0.00  -    0.00
