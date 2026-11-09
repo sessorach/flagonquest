@@ -431,6 +431,20 @@ def mechanism(eff, pf, bpf):
 
 
 OWN_MIX = {"ward_fire": "Horde", "ward_shadow": "Frontline", "necrotic": "Warband"}
+# On the manual's mixes (2026-11-09) the named roster mixes aren't there:
+# the mixes with an enemy dealing that damage type, or with a healer
+# (a support) for Necrotic.
+OWN_MIX_WHEN = {"ward_fire": lambda e: e.get("dmg_type") == "Fire",
+                "ward_shadow": lambda e: e.get("dmg_type") == "Shadow",
+                "necrotic": lambda e: e["kind"] == "support"}
+
+
+def own_mixes(eff):
+    names = [m for m, _ in MIXES]
+    if OWN_MIX[eff] in names:
+        return [names.index(OWN_MIX[eff])]
+    return [i for i, (m, enc) in enumerate(MIXES)
+            if any(OWN_MIX_WHEN[eff](e) for e in se.build_encounter(enc))]
 
 
 def report(res, pname, mult, vlist, carriers, rows_out, own_mix=False):
@@ -441,8 +455,10 @@ def report(res, pname, mult, vlist, carriers, rows_out, own_mix=False):
         vlist = [v for v in vlist if v[1] in OWN_MIX and SET_NAME[0] == "standard"]
         if not vlist:
             return
-        print(f"\n== Party {pname}, enemy Health x{mult}, Ward and Necrotic in the one mix where they come up "
-              f"(Ward (Fire): Horde; Ward (Shadow): Frontline; Necrotic: Warband)")
+        vlist = [v for v in vlist if own_mixes(v[1])]
+        print(f"\n== Party {pname}, enemy Health x{mult}, Ward and Necrotic in the mixes where they come up ("
+              + "; ".join(f"{e}: " + ", ".join(MIXES[i][0] for i in own_mixes(e)) for e in OWN_MIX if own_mixes(e))
+              + ")")
     else:
         bpf = per_fight(res, base_key)
         bscores = [x for s in res[base_key]["by_mix"] for x in s]
@@ -453,7 +469,7 @@ def report(res, pname, mult, vlist, carriers, rows_out, own_mix=False):
           + " | ".join(carriers) + " |")
     print("|---|---|---|---|---|---|" + "---|" * len(carriers))
     for label, eff, spec in vlist:
-        mixes = [[m for m, _ in MIXES].index(OWN_MIX[eff])] if own_mix else None
+        mixes = own_mixes(eff) if own_mix else None
         vals, ses, ests, exps, apps = [], [], [], [], []
         for c in carriers:
             key = (pname, c, label, mult)
