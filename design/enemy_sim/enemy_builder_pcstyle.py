@@ -434,8 +434,9 @@ ENEMY_TABLE_V3_PRUNED = {L: {k: v + V3_FLAT_TABLE.get(L, {}).get(k, 0) + V3_HARD
 # a standard monster averages about 8, and a point less enemy Damage at
 # Levels 1 and 3 (their hits landed 3.2-3.5).
 # Level 2 eased 2026-11-09 (Skill +3 / Health 6 won 62-79% of days in the
-# middle of the band; +2 / 5 wins 95% with potions).
-V3_HIT_FIT_TABLE = {1: dict(resist=1, health=6, damage=-1), 2: dict(skill=2, resist=2, health=5),
+# middle of the band; +2 / 5 wins 95% with potions, but PCs hit 79%), then
+# +3 / 5 (the designer: PCs hit 50-75%; with the whole day's cards, 94%).
+V3_HIT_FIT_TABLE = {1: dict(resist=1, health=6, damage=-1), 2: dict(skill=3, resist=2, health=5),
                     3: dict(skill=3, resist=3, health=5, damage=-1), 4: dict(skill=4, resist=2, health=7),
                     5: dict(skill=3, resist=1, health=7)}
 _ov = getattr(T, "V3_HIT_FIT_OVERRIDE", {})

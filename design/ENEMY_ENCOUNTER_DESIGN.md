@@ -4782,3 +4782,56 @@ two Gravel Ogres 0.5% / 15% / 3.0; two Elite Sharpshooters 0.1% / 29% /
 - Boss fights are no harder than four standard monsters: elites and the
   solo boss have little Health on this table (their multiple of a small
   number).
+
+### A whole adventuring day, and the 11-09 fixes (2026-11-09)
+
+Per the designer: PCs hit too often at Levels 2 and 5, boss fights were
+no harder than four standard monsters, and the day should be one pool of
+resources across its two fights, used up front if the party needs it.
+
+- **Level 2:** Skill +3 (Health 5): PCs hit 71% for 3.1, enemies 31% for
+  3.0. Level 5 can't take more: its Skill is at the enemy cap (10), and
+  its 77% comes from the grown builds (attack 10-11).
+- **Boss Health:** an elite 3.5 times a standard monster's (was 2.5), the
+  solo boss 5 times (was 4).
+- **The day's cards** (`tunables.DAY_CARDS`, default): in the day's first
+  fight a PC holds back a third of the morning's hand
+  (CARDS_FIGHT_SHARE) and can spend the rest; the hold comes free for the
+  whole party when someone is Down or the party is under half its Health
+  (DAY_TROUBLE), and for a PC's own big or killing flip. The second
+  fight has the whole hand. Before, each fight had a third of the
+  morning's hand, and the last third went unused. Health, potions and
+  the hand already carried across the day; Encounter uses come back each
+  fight ([Encounter]); everything comes back with the night. The single
+  fights in tools/combat_stats.py and reprice.py aren't days and don't
+  change.
+
+`results/enemy_stats/day1109_fix_*` (Level 2 and boss Health, the old
+card budget) and `day1109_fixday_*` (all three, the new defaults).
+
+| Days won: bottom / middle / top | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
+|---|---|---|---|---|---|
+| 11-09 baseline | — / 98 / — | 53 / 96 / 100 | 31 / 94 / 99 | 66 / 93 / 99 | 95 / 96 / 97 |
+| Level 2 and boss Health | — / 98 / — | 35 / 92 / 99 | same | same | same |
+| All three (default) | — / 99 / — | 49 / 94 / 100 | 40 / 96 / 100 | 77 / 96 / 99 | 97 / 98 / 99 |
+
+| Big fights: lost / Down / rounds | 11-09 baseline | Boss Health, old cards | Boss Health, the day's cards |
+|---|---|---|---|
+| Four standard | 1.0% / 16% / 3.5 | 1.2% / 16% / 3.6 | 0.4% / 13% / 3.0 |
+| Two Gravel Ogres | 0.5% / 15% / 3.0 | 3.2% / 28% / 4.7 | 0.9% / 23% / 3.8 |
+| Two Elite Sharpshooters | 0.1% / 29% / 2.9 | 0.7% / 39% / 4.3 | 0.2% / 36% / 3.5 |
+| Two Black Knights | 4.1% / 20% / 7.2 | 26.3% / 50% / 13.9 | 8.0% / 25% / 8.6 |
+| Solo Brute Warlord | 2.8% / 15% / 3.0 | 11.9% / 25% / 4.5 | 2.8% / 17% / 3.3 |
+
+The manual's fights on the new defaults: lost 0.1-0.8%, Down 12-15%,
+2.9-3.4 rounds, a hit enemy acts again 24-40%.
+
+- Spending the day's hand where it's needed is worth a lot: the middle
+  of every band wins 94-99% of days, the bottom of Levels 3-4 9-11
+  points more; a party spends more in its first fight and loses more
+  second fights at the bottom (Level 2: 44%).
+- Bosses now put someone Down more often than four standard monsters
+  (23-36% against 13%) and are rarely lost; two Black Knights are long
+  again (8.6 rounds, 8% lost) with the bigger Health.
+- Fights got shorter (about 3 rounds in the manual): cards spent on the
+  party's rescues and Gambles end fights sooner.

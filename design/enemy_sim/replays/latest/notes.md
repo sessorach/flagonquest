@@ -1,12 +1,12 @@
 # Latest replays (2026-11-09)
 
-Hit-target table in pencil (Defense limit Skill +1), two potions each
+Whole-day card pool, boss Health up, Level 2 Defense +1
 
 ## partyS_L1_vs_L1_frontline.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 7): party won in 5 rounds, 100% party HP left
-- Matchup average over 1000 fights: 96.8% wins, 4.6 rounds, 83% HP left on a win
+- Matchup average over 1000 fights: 98.2% wins, 4.5 rounds, 83% HP left on a win
 
 ## partyU_L1_vs_L1_shield_wall.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
@@ -55,15 +55,15 @@ Hit-target table in pencil (Defense limit Skill +1), two potions each
 ## partyD2_L2_vs_solo_boss.html
 - Party: Browndog (L2), Rook (L2), Sable (L2), Hanforth (L2, Lifeline)
 - Enemies: Level 2 Solo Boss (Brute Warlord (L2))
-- This fight (seed 1): party won in 5 rounds, 100% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 4.1 rounds, 100% HP left on a win
+- This fight (seed 284): party won in 8 rounds, 83% party HP left
+- Matchup average over 1000 fights: 100.0% wins, 4.6 rounds, 99% HP left on a win
 - Picked from fights with lifeline_taken above 0
 
 ## partyB_L2_frost_vs_L2_warband.html
 - Party: Hilde (L2), Browndog (L2), Jackal (L2), Beornhard (L2, Frost)
 - Enemies: Level 2 Warband (Brute (L2), Skulking Footpad (L2), Skulking Footpad (L2), Warpriest (L2))
 - This fight (seed 1): party won in 2 rounds, 93% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.4 rounds, 93% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.5 rounds, 92% HP left on a win
 
 ## partyB_L3_flurry_piercing_vs_L3_frontline.html
 - Party: Hilde (L3, Flurry), Browndog (L3), Jackal (L3), Beornhard (L3, Piercing)

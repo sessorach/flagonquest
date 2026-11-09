@@ -315,13 +315,13 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Loadout:** Two-Handed Weapon (2). **Armor:** Heavy (6), Medium (2) below Level 3. **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Action (Intimidating) (0)
 - **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 8 / 10 (Levels 1 / 2 / 3-5); what's left buys Strike (Crippling) ×2 at Level 3, the rest is Health.
-- **Size:** 2 times the points; the extra 8 at Level 1 and 10 at Levels 3-5 buy (in order, as far as they go) Strike (Cleaving), Action (Parting Shot), Strike (Crippling) ×2, Strike (Frightening) ×4, Accuracy +1, Enhanced Speed at Level 3. Health ×4, two turns a round.
+- **Size:** 2 times the points; the extra 8 at Level 1 and 10 at Levels 3-5 buy (in order, as far as they go) Strike (Cleaving), Action (Parting Shot), Strike (Crippling) ×2, Strike (Frightening) ×4, Accuracy +1, Enhanced Speed at Level 3. Health ×5, two turns a round.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 8 Physical | 12 | 9 | 13 | 8 | 10 | 5 / 3 | 34 | 3 |
-| 3 | +5 vs Parry/Dodge, 9 Physical | 16 | 13 | 17 | 12 | 14 | 8 / 5 | 28 | 4 |
-| 5 | +7 vs Parry/Dodge, 10 Physical | 18 | 15 | 18 | 14 | 16 | 8 / 5 | 36 | 5 |
+| 1 | +2 vs Parry/Dodge, 8 Physical | 12 | 9 | 13 | 8 | 10 | 5 / 3 | 43 | 3 |
+| 3 | +5 vs Parry/Dodge, 9 Physical | 16 | 13 | 17 | 12 | 14 | 8 / 5 | 35 | 4 |
+| 5 | +7 vs Parry/Dodge, 10 Physical | 18 | 15 | 18 | 14 | 16 | 8 / 5 | 45 | 5 |
 
 ### Gravel Ogre
 
@@ -331,13 +331,13 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Loadout:** Two-Handed Weapon (2). **Armor:** Medium (2). **Strong:** Vital. **Weak:** the default for its kind.
 - **Picks:** Strike (Grappling) (3), Strike (Crippling) ×2 (1), Sturdy (0)
 - **Points:** the picks, loadout and armor cost 8 of the Level's 8 / 8 / 10 (Levels 1 / 2 / 3-5); what's left buys Strike (Battering) at Level 3, the rest is Health.
-- **Size:** 2 times the points; the extra 8 at Level 1 and 10 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Damage +1, Strike (Crippling) ×2, Enhanced Speed at Level 3. Health ×2.5.
+- **Size:** 2 times the points; the extra 8 at Level 1 and 10 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Damage +1, Strike (Crippling) ×2, Enhanced Speed at Level 3. Health ×3.5.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | +2 vs Parry/Dodge, 9 Physical | 12 | 9 | 13 | 8 | 10 | 5 / 3 | 18 | 4 |
-| 3 | +6 vs Parry/Dodge, 10 Physical | 16 | 13 | 17 | 12 | 14 | 7 / 5 | 15 | 5 |
-| 5 | +8 vs Parry/Dodge, 10 Physical | 18 | 15 | 18 | 14 | 16 | 7 / 5 | 20 | 6 |
+| 1 | +2 vs Parry/Dodge, 9 Physical | 12 | 9 | 13 | 8 | 10 | 5 / 3 | 25 | 4 |
+| 3 | +6 vs Parry/Dodge, 10 Physical | 16 | 13 | 17 | 12 | 14 | 7 / 5 | 21 | 5 |
+| 5 | +8 vs Parry/Dodge, 10 Physical | 18 | 15 | 18 | 14 | 16 | 7 / 5 | 28 | 6 |
 
 ### Ram Brute
 
@@ -471,13 +471,13 @@ Every Ability in the catalog and the monsters that take it (element-specific one
 - **Loadout:** Shielding Nova, backup Ranged Spell (0). **Armor:** Unarmored (-2). **Strong:** Mental. **Weak:** the default for its kind.
 - **Picks:** Improved Support (1), Attunement (Shadow) (3), Accuracy +1 (2), Strike (Necrotic) ×2 (1)
 - **Points:** the picks, loadout and armor cost 5 of the Level's 8 / 8 / 10 (Levels 1 / 2 / 3-5); what's left buys Strike (Necrotic) ×2 at Level 3, the rest is Health.
-- **Size:** 2 times the points; the extra 8 at Level 1 and 10 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Strike (Vulnerable) ×4, Enhanced Reflexes at Level 3. Health ×2.5.
+- **Size:** 2 times the points; the extra 8 at Level 1 and 10 at Levels 3-5 buy (in order, as far as they go) Accuracy +1 ×2, Strike (Vulnerable) ×4, Enhanced Reflexes at Level 3. Health ×3.5.
 
 | Level | Attack | Parry | Dodge | Vital | Mental | Vigilant | Resist (P / E) | Health | Speed |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Shielding Nova: Protected 3; backup +0 vs Dodge, 4 Fire, range 4 | — | 10 | 12 | 13 | 10 | 4 / 4 | 18 | 3 |
-| 3 | Shielding Nova: Protected 3; backup +3 vs Dodge, 5 Fire, range 8 | — | 14 | 16 | 17 | 14 | 5 / 5 | 20 | 4 |
-| 5 | Shielding Nova: Protected 3; backup +5 vs Dodge, 7 Fire, range 12 | — | 16 | 18 | 18 | 16 | 5 / 5 | 25 | 5 |
+| 1 | Shielding Nova: Protected 3; backup +0 vs Dodge, 4 Fire, range 4 | — | 10 | 12 | 13 | 10 | 4 / 4 | 25 | 3 |
+| 3 | Shielding Nova: Protected 3; backup +3 vs Dodge, 5 Fire, range 8 | — | 14 | 16 | 17 | 14 | 5 / 5 | 28 | 4 |
+| 5 | Shielding Nova: Protected 3; backup +5 vs Dodge, 7 Fire, range 12 | — | 16 | 18 | 18 | 16 | 5 / 5 | 35 | 5 |
 
 ### Deadbough Priest
 

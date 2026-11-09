@@ -303,7 +303,7 @@ Worked stat blocks: `enemy_sim/MONSTER_MANUAL.md`.
 | Level | Damage Stat | Accuracy | Skill | Health | Resist | Points | Defense limit |
 |---|---|---|---|---|---|---|---|
 | 1 | 2 | 1 | 4 | 6 | 3 | 8 | 13 |
-| 2 | 4 | 3 | 6 | 5 | 4 | 8 | 15 |
+| 2 | 4 | 3 | 7 | 5 | 4 | 8 | 16 |
 | 3 | 3 | 4 | 8 | 5 | 5 | 10 | 17 |
 | 4 | 5 | 5 | 10 | 7 | 5 | 10 | 19 |
 | 5 | 5 | 6 | 10 | 7 | 5 | 10 | 19 |
@@ -372,8 +372,8 @@ gear; Step 4's gear is added last and can take a number past them:
 |---|---|---|---|
 | ½ (minion) | the Level's | a third | 1 |
 | 1 (standard) | the Level's | the Level's | 1 |
-| 2 (elite) | twice | 2.5 times | 1 |
-| 4 (solo boss) | twice | 4 times | 2 |
+| 2 (elite) | twice | 3.5 times | 1 |
+| 4 (solo boss) | twice | 5 times | 2 |
 
 The points a size adds buy offense, on-hit effects and Actions, never
 Defenses, Resist or Health, and an elite or solo boss can't take

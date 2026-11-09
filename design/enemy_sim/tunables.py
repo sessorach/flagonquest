@@ -420,7 +420,9 @@ HEX_AREA = 0
 # x1 (2026-11-05); 4 since it got twice the budget (designer, 2026-11-06:
 # the solo boss is a rare, melee exception; boss fights are led by elites).
 # As dangerous as 6 was, in 4.3 rounds instead of 7.
-V3_SOLO_HEALTH = 4
+# 5 since 2026-11-09: on the hit-target table (small Health) a boss fight
+# was no harder than four standard monsters (experiments: day1109_*).
+V3_SOLO_HEALTH = 5
 # A big enemy's Ability budget, in times a standard enemy's, by Slots
 # (pruned v3; designer, 2026-11-06). Each point then costs its Health over
 # k, so an enemy that spends nothing keeps the same Health. The extra goes
@@ -430,7 +432,8 @@ V3_SLOT_BUDGET = {2: 2, 4: 2}
 # An elite's (2 Slots) Health in the pruned v3, in standard enemies: 3 on
 # budget x1; 2.5 with twice the budget (2026-11-06), an elite beside two
 # standard monsters about an ordinary fight.
-V3_ELITE_HEALTH = 2.5
+# 3.5 since 2026-11-09, as the solo boss's 5.
+V3_ELITE_HEALTH = 3.5
 # Abilities an elite or solo boss can't take at all (designer, 2026-11-07):
 # the ones that ignore, shed or block what the party does to it. Priced on
 # standard enemies; on one that lives two or three times as long each
@@ -604,7 +607,7 @@ CARDS_SECOND_FIGHT_SHARE = 0.5
 # Health), and for a PC's own big or killing flip. The second fight has
 # the whole hand left. False: a fight's budget is CARDS_FIGHT_SHARE of
 # the morning's hand, as before.
-DAY_CARDS = False
+DAY_CARDS = True  # default since 2026-11-09
 DAY_TROUBLE = 0.5
 # Cards a player keeps back after a rescue, by how much the flip matters
 # (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when
