@@ -14,6 +14,10 @@ mixes under the day standard (day_sim, two fights) against:
   the Level 3 mixes built Levels higher (tunables.ENEMY_LEVEL_UP);
   `--standins` plays four plain stand-ins at every Level instead.
 
+Since 2026-11-09 a day's fights are the monster manual's own encounters
+at the Level (DAY_SOURCE 'manual', `--days roster` for the old four
+mixes; Levels 4-5 then build the Level 3 mixes Levels higher).
+
 Every point is a composite (total) XP, the designer's unit, played at
 its combat share (combat_xp.combat_for).
 
@@ -84,6 +88,34 @@ def groups(level, budget):
     return out
 
 
+# Where a day's fights come from (designer, 2026-11-09: one set of monsters
+# decides difficulty). 'manual': MANUAL_MIXES of the monster manual's own
+# encounters at the Level (manual_check's draws, 4 Slots, no solo boss),
+# built at that Level; the same number of days in all (n per mix times 4,
+# spread over them). 'roster': the old sample roster's four mixes
+# (Frontline, Shield Wall, Warband, Horde), Levels 4-5 built up from 3.
+DAY_SOURCE = ["manual"]
+MANUAL_MIXES = 8
+
+
+def _manual_mixes(level, n):
+    """Registers the manual's encounters as this Level's day mixes and
+    returns days per mix that keep the total the same as four mixes."""
+    import sample_enemies as se
+    import manual_check as mc
+    T.ENEMY_LEVEL_UP = 0
+    encs = [e for e in mc.encounters(level, MANUAL_MIXES, 1)
+            if not any(se.get_enemy(f"{x}@{level}").get("slots", 1) == 4 for x in e)][:MANUAL_MIXES]
+    lvl = min(level, 3)
+    keys = []
+    for i, e in enumerate(encs):
+        key = f"Manual {i + 1}"
+        se.ENCOUNTERS.setdefault(lvl, {})[key] = [f"{x}@{level}" for x in e]
+        keys.append(key)
+    se.CURRENT_MIXES = tuple(keys)
+    return max(1, round(n * 4 / len(keys)))
+
+
 def _job(args):
     table, level, budget, gi, n, seed, standins, nudge = args
     STANDINS_ONLY[0] = standins
@@ -93,6 +125,8 @@ def _job(args):
     T.ENEMY_LEVEL_UP = max(0, level - 3)
     ds.set_mult(1.0)
     gname, names, swaps = groups(level, budget)[gi]
+    if DAY_SOURCE[0] == "manual":
+        n = _manual_mixes(level, n)
     recs = ds.run(names, swaps, min(level, 3), n, seed=seed)
     return table, level, budget, gname, [r.get("per_fight", []) for r in recs]
 
@@ -122,9 +156,12 @@ def main():
     ap.add_argument("-j", type=int, default=os.cpu_count())
     ap.add_argument("-o", help="append readings here (jsonl)")
     ap.add_argument("--nudge", default="", help="stat_sweep.py's per-Level nudges on top of the table")
+    ap.add_argument("--days", default="manual", choices=("manual", "roster"),
+                    help="the day's fights: the monster manual's encounters, or the old roster's four mixes")
     ap.add_argument("--standins", action="store_true", help="four stand-ins at every Level (to read Levels 4-5 against 2-3)")
     a = ap.parse_args()
     tables, levels = a.t.split(","), [int(x) for x in a.L.split(",")]
+    DAY_SOURCE[0] = a.days
     STANDINS_ONLY[0] = a.standins
     jobs = [(t, L, b, gi, a.n, a.seed, a.standins, a.nudge) for t in tables for L in levels for b in POINTS[L]
             for gi in range(len(groups(L, b)))]
