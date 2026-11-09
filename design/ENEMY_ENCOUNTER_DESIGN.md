@@ -4749,7 +4749,7 @@ band. With all three the bands run 70-89% at the bottom of Levels 2-4
 ### The baseline, 2026-11-09 (hit-target table, potions on)
 
 In pencil: the hit-target table (`V3_HIT_FIT`) with Level 2 eased (Skill
-+2, Resist +2, Health 5: tried five, `results/enemy_stats/` scratch; +3 /
++2, Resist +2, Health 5, the best of five tried with `V3_HIT_FIT_OVERRIDE`; +3 /
 6 won 79% of days in the middle with potions, +2 / 5 wins 95%), the
 Defense limit at 8 + Skill + 1 (`experiments/enemies/wall_fix.py`: two
 Black Knights 9.6% lost over 9.0 rounds at +2, 4.1% over 7.2 at +1; four
