@@ -217,3 +217,6 @@ things off in order.
   item or effect that says it works differently does. Commit `f5468f5`.
 - **Masquerade example** (rulebook.md, Skills) — Jackal's disguise
   example used he/him; now she/her, per the designer. Commit `db616e7`.
+- **`#### [Potion]`** (glossary.md) — new sentence: instead of drinking
+  it yourself, you may feed a Potion to a willing or Downed creature
+  adjacent to you, and it gets the effect. Commit `27244b1`.
