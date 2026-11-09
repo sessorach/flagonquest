@@ -4835,3 +4835,56 @@ The manual's fights on the new defaults: lost 0.1-0.8%, Down 12-15%,
   again (8.6 rounds, 8% lost) with the bigger Health.
 - Fights got shorter (about 3 rounds in the manual): cards spent on the
   party's rescues and Gambles end fights sooner.
+
+### Squaring the hit targets (2026-11-09)
+
+The designer sharpened the targets (DESIGNER_NOTES): with their
+resources PCs hit about two thirds of the time, enemies about half; hits
+land 2-3 both ways; fight length comes from how long things live and
+comes last; no sacks of enemy Health, and survival from base stats or
+defensive picks before Health. On the 11-09 defaults PCs hit 68-77% for
+2.9-4.0 and enemies only 22-36% for 2.3-3.0.
+`experiments/enemies/hit_fit2.py`: a grid from today's table (Accuracy +1
+to +4, Damage −1 or +0, Skill −1 to +1, Health −2 to +2), single fights
+on the manual's encounters; `results/enemy_stats/hit_fit2.txt`. The
+closest per Level, applied with `tunables.V3_TABLE_NUDGE` (off by
+default):
+
+| Level | Change | Table after (Skill / Accuracy / Damage / Resist / Health) | Standard monster's Health |
+|---|---|---|---|
+| 1 | Accuracy +3, Health −2 | 4 / 4 / 2 / 3 / 4 | 5.6 |
+| 2 | Accuracy +2, Damage −1 | 7 / 5 / 3 / 4 / 5 | 6.6 |
+| 3 | Accuracy +3, Skill +1, Health −2 | 9 / 7 / 3 / 5 / 3 | 5.8 |
+| 4 | Accuracy +3, Damage −1, Health −2 | 10 / 8 / 4 / 5 / 5 | 7.8 |
+| 5 | Accuracy +2, Damage −1 | 10 / 8 / 4 / 5 / 7 | 9.8 |
+
+Checked (`results/enemy_stats/square_*`; days are whole days with the
+day's cards and potions):
+
+| Level | PC hit / lands | Enemy hit / lands | Rounds | A hit enemy acts again | Down / lost (fresh fight) | Days won: bottom / middle / top |
+|---|---|---|---|---|---|---|
+| 1 | 70% / 3.0 | 44% / 2.5 | 3.7 | 27% | 21% / 1.8% | — / 97 / — |
+| 2 | 69% / 3.1 | 48% / 2.3 | 3.7 | 25% | 16% / 3.1% | 36 / 92 / 99 |
+| 3 | 68% / 3.3 | 51% / 2.7 | 3.4 | 24% | 22% / 4.5% | 25 / 87 / 97 |
+| 4 | 72% / 3.9 | 49% / 2.0 | 3.6 | 25% | 21% / 4.0% | 64 / 89 / 97 |
+| 5 | 74% / 4.0 | 49% / 1.7 | 4.0 | 32% | 20% / 3.1% | 89 / 91 / 93 |
+
+Big fights (lost / Down / rounds): four standard 0.7% / 14% / 2.8; two
+Gravel Ogres 3.4% / 41% / 3.6; two Elite Sharpshooters 2.1% / 51% / 3.3;
+two Black Knights 19.1% / 40% / 8.8; the solo Warlord 9.1% / 33% / 3.2.
+
+- The hit targets land at every Level (PC hits a bit big at Levels 4-5,
+  the grown builds; enemy hits a bit small at Level 5), with standard
+  monsters at 5.6-9.8 Health: no sacks.
+- Fights are short (2.5-4 rounds) and a hit enemy rarely acts again
+  (24-32%). Survival layers lengthen them but kill the party: Durable on
+  every enemy (tunables.TEST_DURABLE) takes fights to 4.3-4.7 rounds with
+  5-11% of fresh fights lost; Resist +1 at Levels 1-2 to 5.8-6.0 rounds
+  with 11-12% lost (`results/enemy_stats/sq_*.txt`).
+- The arithmetic behind it: four enemies attacking twice a turn, hitting
+  half the time for 2.5, take about 10 Health a round off a party of
+  about 40. Longer fights at the same lethality need fewer enemy attacks
+  a round (or enemies that spend turns on something besides attacking),
+  not tougher enemies.
+- Bosses have too much on this table: their Health multiples (3.5, 5)
+  were raised for the softer-hitting table.

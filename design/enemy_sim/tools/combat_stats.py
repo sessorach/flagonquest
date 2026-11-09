@@ -98,7 +98,8 @@ def _job(args):
             rounds = max(1, r["rounds"])
             fights.append(dict(rounds=r["rounds"], lost=r["winner"] != "party", down=bool(r["pc_downed"]),
                                wounded=bool(r.get("pc_wounded")), hp_lost=100 * (1 - r["party_hp_pct"]),
-                               taken=taken / rounds, dealt=dealt / rounds, dropped=len(dropped)))
+                               taken=taken / rounds, dealt=dealt / rounds, dropped=len(dropped),
+                               again=r["acts_again_any"]))
     return dict(level=level, gi=gi, pc_max=pc_max, att=dict(att), pc_hit_dmg=pc_hit_dmg, en_hit_dmg=en_hit_dmg,
                 fights=fights)
 
@@ -134,6 +135,7 @@ def report(res):
                 f"| Rounds | {spread([f['rounds'] for f in fs])} |",
                 f"| Party Health lost (% of max) | {spread([f['hp_lost'] for f in fs], '{:.0f}')} |",
                 f"| PCs dropped to 0 a fight | {spread([f['dropped'] for f in fs], '{:.2f}')} |",
+                f"| A hit enemy acts again | {100 * sum(f['again'][0] for f in fs) / max(1, sum(f['again'][1] for f in fs)):.0f}% |",
                 f"| Someone Down / Wounded / fight lost | {100 * st.mean(f['down'] for f in fs):.0f}% / "
                 f"{100 * st.mean(f['wounded'] for f in fs):.0f}% / {100 * st.mean(f['lost'] for f in fs):.1f}% |",
                 ""]
