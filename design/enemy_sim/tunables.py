@@ -542,8 +542,9 @@ V3_PRUNED_ROSTER = 'picks'
 # start with Accuracy from Level 2 (V3_ACCURACY_IN_TABLE).
 # Level 3 a point fewer (designer, 2026-11-09): its baseline Health went
 # 5 -> 7 so Health never steps down between Levels, and the point pays for
-# it so Level 3 isn't harder, just steadier: 8 / 8 / 9 / 10 / 10.
-V3_PRUNED_EXTRA = {1: 1, 2: 1, 3: 2, 4: 3, 5: 3}
+# it so Level 3 isn't harder, just steadier. Then a second point, so
+# Levels 1-3 all get 8 (designer, same day): 8 / 8 / 8 / 10 / 10.
+V3_PRUNED_EXTRA = {1: 1, 2: 1, 3: 1, 4: 3, 5: 3}
 V3_ACCURACY_IN_TABLE = 2
 # 'row' spends extra points down the row's PrunedExtra; 'offense' on
 # Accuracy +1, then Damage +1, first.

@@ -304,7 +304,7 @@ Worked stat blocks: `enemy_sim/MONSTER_MANUAL.md`.
 |---|---|---|---|---|---|---|---|
 | 1 | 2 | 4 | 4 | 6 | 3 | 8 | 13 |
 | 2 | 3 | 5 | 7 | 7 | 4 | 8 | 16 |
-| 3 | 3 | 7 | 9 | 7 | 5 | 9 | 18 |
+| 3 | 3 | 7 | 9 | 7 | 5 | 8 | 18 |
 | 4 | 4 | 8 | 10 | 7 | 5 | 10 | 19 |
 | 5 | 4 | 8 | 10 | 9 | 5 | 10 | 19 |
 
@@ -316,10 +316,11 @@ and the Defense limit is 8 + Skill + 1. Assumes the party carries a
 couple of Healing Potions each. Enemy Accuracy went up 2-3 the same day
 so enemies hit about half the time. Health went up 2 at every Level
 when enemies moved to one attack a turn (2026-11-09): a standard
-monster in the manual now averages about 8-12 Health (7.6, 8.6, 9.1,
-9.8, 11.8 at Levels 1-5). Level 3 got 2 more on top so Health never
-drops from one Level to the next, paid for with a point off its budget
-(10 to 9), so Level 3 isn't harder, only steadier (designer, 2026-11-09).
+monster in the manual now averages about 8-12 Health (7.6, 8.6, 8.4,
+9.8, 11.8 at Levels 1-5; every monster's own Health is a whole number).
+Level 3 got 2 more baseline Health so it never drops from one Level to
+the next, paid for with two points off its budget (10 to 8, the same as
+Levels 1-2), so Level 3 isn't harder, only steadier (designer, 2026-11-09).
 
 Defenses: pick a Strong Defense (Dodge, Vital, Mental or Vigilant) at 8
 + Skill, one Weak Defense at 8 + Skill − 4 (by default the one that
