@@ -4933,3 +4933,72 @@ bottom / middle / top:
 In whole days the first fight runs 2.8-3.8 rounds with Durable and
 3.4-4.4 with Health +2 (2.5-3.5 on the pencil), and a hit enemy acts
 again 19-42% and 32-48%.
+
+### One attack a turn, Health +2, and an audit of the sim (2026-11-09)
+
+The designer made one attack a turn the default (`V3_FIGHTING_STYLE`
+'mixed': ranged Aimed Shot, melee Skirmisher; a two-attack style may come
+back per monster) with enemy Health +2 at every Level (in
+`V3_SQUARE_TABLE`), then asked for a careful check that the sim plays
+the way a table would. The first baseline (`default_1109b_*`) reproduced
+the test exactly.
+
+The audit: an agent read the rules, the code and about 1,500 traced
+fights; each finding was checked before fixing. All the fixes sit behind
+`tunables.AUDIT_FIXES` (on); off, the fixed-seed table check matches the
+old fights exactly. Fixed:
+
+- PCs' Bad Luck didn't stack (`_pc_status_bad_luck` was yes/no, and the
+  flip took at most one): Wounded and Frightened, or behind cover, was
+  one Bad Luck, cancelled by any Good Luck. rulebook.md: "Bad Luck works
+  the same". About 9% of PC attacks had two or more sources.
+- A Downed PC's Health went below 0, and a heal back up counted all of it
+  as Shallow, so a revived PC skipped Wounded. Now Health stops at 0 and
+  the first point back is Deep (rulebook.md: "Numbers don't go
+  negative"; "the first point of that healing may instead restore one
+  Deep Health").
+- The fight's healer never healed a Downed ally; a table's would first.
+- An enemy grappling kept swinging a two-handed weapon (rulebook.md,
+  Grapple: no "weapon attacks" that need two hands); it now lets go to
+  swing. (The Gravel Ogre's Strike (Grappling) with a two-hander grabs
+  again on the hit: a design question.)
+- Area Attack's splash was skipped when the main target dropped.
+- Between fights a Downed PC could hand out potions (to itself too).
+- Supports and healers took Aimed Shot's Good Luck on their backup
+  attacks; they now take one plain action ('Single').
+- A Skirmisher pinned at the arena's edge stood still (21% of its steps);
+  it now slides along the edge.
+- Parting Shot damage on a Skirmisher's retreat wasn't counted (tally only).
+
+Checked and fine: one main action per enemy turn (the solo boss two),
+potions never past two a PC a day, the day's card hold, every enemy's
+Defense under the limit, no Heavy armor below Level 3, the table and
+size multiples as written, damage order (Resist, Ward, Protected),
+Bleeding, Necrotic against Protected, Harried, Wounded, turn order,
+grapples, no Downed PC acting; and in 684 traced fights at Levels 1, 3
+and 5, nothing past those limits.
+
+Left as simplifications: units can share a square; a PC feeds a potion
+only to an ally already next to it at the start of its turn; elites get
+one turn, so one attack; Aimed Shot's Good Luck also rides its Area or
+Cleaving extra targets.
+
+The baseline with the fixes (`results/enemy_stats/default_1109c_*`):
+
+| Level | PC hit / lands | Enemy hit / lands | Rounds | A hit enemy acts again | Down / lost (fresh fight) | Days won: bottom / middle / top |
+|---|---|---|---|---|---|---|
+| 1 | 64% / 2.9 | 45% / 2.6 | 6.4 | 43% | 24% / 2.9% | — / 91 / — |
+| 2 | 60% / 2.8 | 50% / 2.4 | 6.5 | 40% | 20% / 4.2% | 17 / 84 / 98 |
+| 3 | 59% / 3.0 | 51% / 2.9 | 5.9 | 38% | 26% / 7.2% | 10 / 79 / 97 |
+| 4 | 66% / 3.8 | 52% / 2.1 | 4.9 | 35% | 19% / 2.3% | 61 / 92 / 98 |
+| 5 | 69% / 3.9 | 55% / 1.8 | 5.2 | 41% | 16% / 2.0% | 92 / 93 / 95 |
+
+(Single fights on the manual's encounters; days are whole days on the
+band's encounters.) The manual's own fights: lost 0.4-1.9%, Down 10-20%,
+3.5-4.5 rounds, a hit enemy acts again 36-52%. Big fights: two Gravel
+Ogres 2.0% / 29% Down / 5.9 rounds; the solo Warlord 3.3% / 12% / 4.3; two
+Elite Sharpshooters 1.6% / 48% / 4.1; two Black Knights 21% / 40% / 14.1
+rounds, a wall again.
+
+The audit fixes cost the party about a point of fights lost at Levels
+1-3 and add a little length; Bad Luck stacking is most of it.

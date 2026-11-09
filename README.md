@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-09 — Potions in the simulator
 
-Gave the sample parties two Healing Potions each (worth a lot, mostly drunk between fights or fed to a Downed friend, which the [Potion] tag now allows) and rebuilt the enemy table around firm targets for how often each side hits and how hard. The simulator now plays a whole adventuring day as one pool of cards, and bosses got more Health.
+Gave the sample parties two Healing Potions each (worth a lot, mostly drunk between fights or fed to a Downed friend, which the [Potion] tag now allows) and rebuilt the enemy table around firm targets for how often each side hits and how hard. The simulator now plays a whole adventuring day as one pool of cards, enemies attack once a turn, and an audit fixed a handful of places where the simulator didn't follow the rules.
 
 ### 2026-11-08 — Heavy armor from Level 3, a flatter enemy curve
 
