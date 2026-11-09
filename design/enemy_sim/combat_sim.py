@@ -732,18 +732,26 @@ def _los_blocked(unit, reach, moved):
 _STEP = [0]
 
 
+def _bad_sum(a, b):
+    """Two Bad Luck sources on one flip: stacks (tunables.AUDIT_FIXES), or
+    the old either-or."""
+    return int(a) + int(b) if T.AUDIT_FIXES else (a or b)
+
+
 def _pc_status_bad_luck(pc, target):
     """Frightened (glossary.md): Bad Luck on actions targeting the
     creature who Frightened you. Taunted: Bad Luck on hostile actions
     that don't target the creature who Taunted you. Both only while
     that creature's still up. Wounded: Bad Luck on all flips."""
-    if tactics.pc_wounded(pc):
-        return True
     fr = pc.get('frightened_by') if pc.get('frightened', 0) > 0 else None
-    if fr is not None and fr is target:
-        return True
     ta = pc.get('taunted_by') if pc.get('taunted', 0) > 0 else None
-    return ta is not None and ta['health'] > 0 and ta is not target
+    srcs = [tactics.pc_wounded(pc), fr is not None and fr is target,
+            ta is not None and ta['health'] > 0 and ta is not target]
+    if not T.AUDIT_FIXES:
+        return any(srcs)
+    # rulebook.md: "For each time you have Good Luck on a flip... Bad Luck
+    # works the same": each source is a stack.
+    return sum(bool(x) for x in srcs)
 
 
 # ---- Fleeting effects (glossary.md [Fleeting]) ----
@@ -966,7 +974,7 @@ def _pc_flip(pc, mod, defense, good, bad, importance=0, allies=(), pool_extra=()
     `importance`; with Bad Luck every low card needs replacing."""
     if not T.CARDS:
         return resolve_card(good, bad), []
-    flipped, net = cards.flip_for(pc['deck'], good, 1 if bad else 0)
+    flipped, net = cards.flip_for(pc['deck'], good, int(bad) if T.AUDIT_FIXES else (1 if bad else 0))
     ranks = [cards.rank(c) for c in flipped]
     value = max(ranks) if net >= 0 else min(ranks)
     pool = [cards.suit(c) for c in flipped]
@@ -1312,7 +1320,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         defense = enemy_defense_for_pc_attack(pc, bonus_target)
         resist = enemy_resist_for_pc_attack(pc, bonus_target)
         crippled = pc.get('crippled', 0)
-        bad_luck = tactics.defense_has_bad_luck(bonus_target, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, bonus_target)
+        bad_luck = _bad_sum(tactics.defense_has_bad_luck(bonus_target, pc.get('opp_def', 'Parry/Dodge')), _pc_status_bad_luck(pc, bonus_target))
         cover = _cover_bad_luck(pc, bonus_target, pc.get('opp_def'))
         if cover:
             bad_luck = int(bad_luck) + cover
@@ -1721,7 +1729,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 spell = T.NO_SPELL_GAMBLES and pc.get('weapon_is_spell') and not substitute
                 skill = (substitute or {}).get('skill') or pc['attack_skill']
                 crippled = pc.get('crippled', 0)
-                bad_luck = tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, target)
+                bad_luck = _bad_sum(tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge')), _pc_status_bad_luck(pc, target))
                 cover = _cover_bad_luck(pc, target, pc.get('opp_def'))
                 if cover:
                     bad_luck = int(bad_luck) + cover
@@ -2239,7 +2247,7 @@ def _weapon_interrupt(e, pcs, movement_on, party_log, tech, cost, close_only=Fal
         resist = enemy_resist_for_pc_attack(pc, e)
         gambles = pc_gamble_count(pc, e)
         crippled = pc.get('crippled', 0)
-        bad_luck = tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge')) or _pc_status_bad_luck(pc, e)
+        bad_luck = _bad_sum(tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge')), _pc_status_bad_luck(pc, e))
         luck_bonus = tactics.perfect_strike_bonus(pc) if not T.CARDS else 0
         imp = _importance(e, pc['damage'] + gambles - resist - e.get('protected', 0))
         card, pool = _pc_flip(pc, pc['skill_total'] - crippled - 2 * gambles, defense,
@@ -2546,6 +2554,9 @@ def _lose_health(unit, loss, notes=None, attack=False):
             'pc_would_drop', unit, SimpleNamespace(loss=loss, notes=notes)):
         return
     unit['health'] -= loss
+    if T.AUDIT_FIXES and 'shallow_max' in unit and unit['health'] < 0:
+        # rulebook.md: "Numbers don't go negative"; a Downed PC is at 0.
+        unit['health'] = 0
 
 
 def _push(unit, origin, n):
@@ -2593,7 +2604,7 @@ def _reaction_attack(pc, e, pcs, via, prof=None, log=None):
     resist = enemy_resist_for_pc_attack(pc, e)
     gambles = 0 if spell else pc_gamble_count(pc, e)
     crippled = pc.get('crippled', 0)
-    bad = tactics.defense_has_bad_luck(e, pc['opp_def']) or _pc_status_bad_luck(pc, e)
+    bad = _bad_sum(tactics.defense_has_bad_luck(e, pc['opp_def']), _pc_status_bad_luck(pc, e))
     cover = _cover_bad_luck(pc, e, pc['opp_def'])
     if cover:
         bad = int(bad) + cover
@@ -2970,6 +2981,12 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
 
     cap = tactics.attack_cap(e)
     actions_made = 0
+    # rulebook.md, Grapple: no "actions that require two hands, including
+    # weapon attacks" - a grappling enemy with a two-handed weapon lets go
+    # to swing it (tunables.AUDIT_FIXES).
+    if (T.AUDIT_FIXES and mode == 'attack' and _grappled(e) is not None
+            and prof.get('action') in ('Two-Handed Weapon', 'Light Two-Handed')):
+        _end_grapple(e)
     while (not movement_on or in_range) and ap >= T.ATTACK_AP_COST and (cap is None or actions_made < cap) \
             and target is not None:
         ap -= T.ATTACK_AP_COST
@@ -3019,7 +3036,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             break
         # Area Attack (2026-11-08): "Your main attack also targets each other
         # PC within 1 meter of its target (Burst 1)", rolled for each.
-        if 'Area Attack' in abilities and mode == 'attack' and movement_on and target['health'] > 0:
+        if 'Area Attack' in abilities and mode == 'attack' and movement_on and (T.AUDIT_FIXES or target['health'] > 0):
             for p in [p for p in pcs if p['health'] > 0 and p is not target
                       and _distance(target['pos'], p['pos']) <= T.AREA_BURST]:
                 interrupt_dmg += _enemy_attack(e, prof, p, mode, rnd, pcs, enemies, movement_on, enemy_log,
@@ -3053,13 +3070,21 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         start = e['pos']
         while living and ap >= T.MOVE_AP_COST:
             near = min(living, key=lambda p: _distance(e['pos'], p['pos']))
+            before = e['pos']
             tactics.move_kite(e, near, None)
+            if T.AUDIT_FIXES:
+                # Pinned at the edge: the step (of its Speed) that leaves it
+                # farthest from every PC instead.
+                sp = tactics._speed(e)
+                cands = [movement.clamp((before[0] + dx * sp, before[1] + dy * sp))
+                         for dx in (-1, 0, 1) for dy in (-1, 0, 1) if dx or dy] + [e['pos']]
+                e['pos'] = max(cands, key=lambda c: min(_distance(c, p['pos']) for p in living))
             ap -= T.MOVE_AP_COST
         if e['pos'] != start:
             _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
                  spaces=_distance(start, e['pos']), in_range=False, via='Skirmisher')
             if _CTX.get('ps_pcs'):
-                _parting_shots_on(e, start, pcs, party_log)
+                interrupt_dmg += _parting_shots_on(e, start, pcs, party_log) or 0
     # End of this enemy's own turn: Harried clears entirely, Taunted
     # decays by 1 (both Fleeting-style, glossary.md).
     if e.get('harried', 0) > 0:

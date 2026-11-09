@@ -621,6 +621,16 @@ CARDS_SECOND_FIGHT_SHARE = 0.5
 # the morning's hand, as before.
 DAY_CARDS = True  # default since 2026-11-09
 DAY_TROUBLE = 0.5
+# Fixes from the 2026-11-09 audit of the sim against the rules (an agent's
+# read, each checked): PCs' Bad Luck stacks (rulebook.md "Bad Luck works
+# the same"); a PC's Health stops at 0 when Downed ("Numbers don't go
+# negative") and a heal back up restores a Deep point first; an enemy
+# grappling can't swing a two-handed weapon (it lets go to attack); Area
+# Attack's splash still lands when the main target drops; a Downed PC
+# doesn't hand out potions between fights; a support's one action isn't
+# Aimed Shot; a Skirmisher pinned at the edge slides along it. False: the
+# old behavior, for comparison.
+AUDIT_FIXES = True
 # Cards a player keeps back after a rescue, by how much the flip matters
 # (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when
 # there are plenty left; a kill shot or an Encounter attack gets one

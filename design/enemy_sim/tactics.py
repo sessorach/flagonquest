@@ -200,7 +200,12 @@ def sync_wounded(unit):
     if cur < last:
         lost = min(smax, lost + (last - cur))
     elif cur > last:
-        lost = max(0, lost - (cur - last))
+        gain = cur - last
+        if T.AUDIT_FIXES and last <= 0:
+            # Back up from Downed: the first point restores a Deep
+            # (rulebook.md, Health; day_sim.heal does the same).
+            gain = cur - max(0, last) - 1
+        lost = max(0, lost - gain)
     unit['shallow_lost'], unit['_last_health'] = lost, cur
     if cur <= 0:
         unit['was_downed'] = True
@@ -502,6 +507,8 @@ ATTACK_CAP = {
     'Guarded': 1,
     'Aimed Shot': 1,
     'Skirmisher': 1,
+    # A support's or healer's one action (2026-11-09, tunables.V3_FIGHTING_STYLE).
+    'Single': 1,
     # Flurry, and no Fighting Style at all (every PC) -> absent -> uncapped.
 }
 
