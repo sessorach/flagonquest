@@ -5091,3 +5091,18 @@ byte-identical). Level 3, before → after:
 Two Health on every Level 3 monster costs the party a lot: a sixth of
 the middle's days. PC hit chance falls too, since longer fights run
 the party's cards out and stack its Bad Luck.
+
+**Paid for with a point** (designer, 2026-11-09: steadier, not harder):
+Level 3's points 10 → 9 (`V3_PRUNED_EXTRA`; 8 / 8 / 9 / 10 / 10). A
+standard monster has 9.1 Health at Level 3 (7.6 / 8.6 / 9.1 / 9.8 /
+11.8). Every manual design fits; the old roster's Hedge Knight (L3)
+dropped Strike (Harrying). Level 3 (`default_1109f_*`), with 5 Health
+and 10 points / 7 and 10 / 7 and 9:
+
+| | Baseline 5, 10 points | 7, 10 | 7, 9 |
+|---|---|---|---|
+| Days won, bottom / middle / top | 22 / 90 / 100 | 8.5 / 73 / 99 | 15 / 84 / 99 |
+| Day, fight 1 (middle): lost / rounds | 1.1% / 3.7 | 3.3% / 4.8 | 2.0% / 4.4 |
+| Single fights: PC hit / lost / rounds | 59% / 7.2% / 5.9 | 52% / 17% / 8.8 | 55% / 12% / 7.8 |
+
+The point takes back a little over half of what the Health added.
