@@ -5106,3 +5106,12 @@ and 10 points / 7 and 10 / 7 and 9:
 | Single fights: PC hit / lost / rounds | 59% / 7.2% / 5.9 | 52% / 17% / 8.8 | 55% / 12% / 7.8 |
 
 The point takes back a little over half of what the Health added.
+
+**Then 8 points** (designer, same day: Levels 1-3 all at 8; 8 / 8 / 8 /
+10 / 10). Standard monsters at Level 3 have 7-11 Health, 8.4 on
+average (Level 2: 7-14, 8.6); every Health and stat is a whole number.
+The old roster's Hedge Knight (L3) dropped both Strike (Taunting) picks
+to fit. Level 3 (`default_1109g_*`): days won 20 / 88 / 100 (bottom /
+middle / top); a day's first fight in the middle lost 1.1%, 4.0 rounds;
+single fights PC hit 58%, lost 7.8%, 6.6 rounds. Back to within a
+couple of points of where Level 3 was before the Health change.
