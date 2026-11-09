@@ -540,7 +540,10 @@ V3_PRUNED_ROSTER = 'picks'
 # Then (2026-11-08, in pencil) the Accuracy +1 everyone bought from Level 2
 # went into the table: 8 / 8 / 10 / 10 / 10, and the extra points no longer
 # start with Accuracy from Level 2 (V3_ACCURACY_IN_TABLE).
-V3_PRUNED_EXTRA = {1: 1, 2: 1, 3: 3, 4: 3, 5: 3}
+# Level 3 a point fewer (designer, 2026-11-09): its baseline Health went
+# 5 -> 7 so Health never steps down between Levels, and the point pays for
+# it so Level 3 isn't harder, just steadier: 8 / 8 / 9 / 10 / 10.
+V3_PRUNED_EXTRA = {1: 1, 2: 1, 3: 2, 4: 3, 5: 3}
 V3_ACCURACY_IN_TABLE = 2
 # 'row' spends extra points down the row's PrunedExtra; 'offense' on
 # Accuracy +1, then Damage +1, first.
