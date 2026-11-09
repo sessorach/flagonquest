@@ -574,6 +574,8 @@ V3_HIT_FIT = True
 # (enemy_builder_pcstyle.V3_HIT_FIT_TABLE), or as SIM_SET can carry it,
 # "2:skill=1/resist=3/health=5;4:skill=3".
 V3_HIT_FIT_OVERRIDE = {}
+# Experiments: deltas on the final table, "1:accuracy=3/health=-2;2:...".
+V3_TABLE_NUDGE = ""
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

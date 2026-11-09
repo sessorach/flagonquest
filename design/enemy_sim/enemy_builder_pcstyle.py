@@ -592,6 +592,14 @@ HEX_STACKS_V3P = {1: 2, 2: 2, 3: 3, 4: 3, 5: 4}
 # visibly neglects (a fighter's Mental, a caster's Vital, a support's
 # Dodge), skipping its Strong Defense.
 WEAK_DEFAULT = {"weapon": ("mental", "vigilant"), "spell": ("bodily", "vigilant"), "support": ("dodge", "vigilant")}
+# Experiments: deltas on top of the table (tunables.V3_TABLE_NUDGE, as
+# SIM_SET carries it: "1:accuracy=3/health=-2;2:accuracy=2/damage=-1").
+_nudge = getattr(T, "V3_TABLE_NUDGE", "")
+for _part in filter(None, _nudge.split(";")):
+    _L, _c = _part.split(":")
+    for _x in _c.split("/"):
+        _k, _v = _x.split("=")
+        ENEMY_TABLE_V3_PRUNED[int(_L)][_k] += int(_v)
 
 
 def build_enemy_v3(name, level, slots, action, armor, strong_defense, role=None, abilities=(),
