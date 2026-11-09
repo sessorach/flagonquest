@@ -4881,10 +4881,14 @@ two Black Knights 19.1% / 40% / 8.8; the solo Warlord 9.1% / 33% / 3.2.
   every enemy (tunables.TEST_DURABLE) takes fights to 4.3-4.7 rounds with
   5-11% of fresh fights lost; Resist +1 at Levels 1-2 to 5.8-6.0 rounds
   with 11-12% lost (`results/enemy_stats/sq_*.txt`).
-- The arithmetic behind it: four enemies attacking twice a turn, hitting
-  half the time for 2.5, take about 10 Health a round off a party of
-  about 40. Longer fights at the same lethality need fewer enemy attacks
-  a round (or enemies that spend turns on something besides attacking),
-  not tougher enemies.
+- Why: averaged over a fight the party takes 1.9-2.7 Health a round
+  from attacks and deals 9-13, because most enemies are dead by the
+  second or third round. Every round an enemy lives is more of its
+  attacks at half for 2.5, so keeping enemies up longer costs the party
+  Health round for round. Longer fights at the same lethality need fewer
+  enemy attacks a round (or enemies that spend turns on something besides
+  attacking), not only tougher enemies. (An earlier draft of this note
+  said "about 10 Health a round"; that wasn't measured, and it's wrong as
+  an average.)
 - Bosses have too much on this table: their Health multiples (3.5, 5)
   were raised for the softer-hitting table.
