@@ -583,7 +583,9 @@ V3_SQUARE = True
 # (all 'None' today: up to two attacks); 'Aimed Shot' (one attack with
 # Good Luck); 'Skirmisher' (one attack, then falls back with the AP left);
 # 'mixed' (ranged: Aimed Shot; melee: Skirmisher).
-V3_FIGHTING_STYLE = ''
+# Default 'mixed' since 2026-11-09 (designer: two attacks a round caused
+# most of the spikes; a two-attack style may come back per monster).
+V3_FIGHTING_STYLE = 'mixed'
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

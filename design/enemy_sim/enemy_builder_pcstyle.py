@@ -595,9 +595,11 @@ WEAK_DEFAULT = {"weapon": ("mental", "vigilant"), "spell": ("bodily", "vigilant"
 # Squaring the sharpened hit targets (designer, 2026-11-09, in pencil):
 # enemies hit about half the time, PCs about two thirds, standard monsters
 # 5.6-9.8 Health (experiments/enemies/hit_fit2.py). tunables.V3_SQUARE.
-V3_SQUARE_TABLE = {1: dict(accuracy=3, health=-2), 2: dict(accuracy=2, damage=-1),
-                   3: dict(accuracy=3, skill=1, health=-2), 4: dict(accuracy=3, damage=-1, health=-2),
-                   5: dict(accuracy=2, damage=-1)}
+# Then Health +2 at every Level (designer, 2026-11-09) with one attack a
+# turn (tunables.V3_FIGHTING_STYLE 'mixed'): fights a round or two longer.
+V3_SQUARE_TABLE = {1: dict(accuracy=3, health=0), 2: dict(accuracy=2, damage=-1, health=2),
+                   3: dict(accuracy=3, skill=1, health=0), 4: dict(accuracy=3, damage=-1, health=0),
+                   5: dict(accuracy=2, damage=-1, health=2)}
 if getattr(T, "V3_HIT_FIT", False) and getattr(T, "V3_SQUARE", False):
     for _L, _c in V3_SQUARE_TABLE.items():
         for _k, _d in _c.items():
