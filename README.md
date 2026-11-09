@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-09 — Potions in the simulator
+
+Gave the sample parties two Healing Potions each and found they're worth a lot, mostly drunk between fights or fed to a Downed friend, which the [Potion] tag now allows; set firm targets for how often each side hits and how hard.
+
 ### 2026-11-08 — Heavy armor from Level 3, a flatter enemy curve
 
 Enemies only wear Heavy armor from Level 3, which made the slow armored fights at Levels 1-2 shorter and safer; then pencilled in a flatter enemy table from Level 2, a little less Defense and Resist paid back in Health, which lets a party at the bottom of its XP band win far more days. Re-measured every enemy Ability, gave monsters area attacks and pushes, and pencilled in harder enemy hits (fewer, two to three times as big).

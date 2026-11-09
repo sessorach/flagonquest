@@ -4726,3 +4726,22 @@ fixed-seed table check is unchanged.
 - On the hit-target table they lift Level 2's middle from 62% to 79% and
   the bottom of Levels 2-3 from 6 / 16% to 15 / 29%: Level 2 there is
   still overtuned.
+
+Round three: the designer kept 1 AP to drink or feed (glossary.md
+[Potion]: "It takes 1 AP to use a Potion"), and the tag now says you may
+feed a Potion to a willing or Downed creature adjacent to you.
+`tunables.POTION_AP` is 1. Rerun (`results/enemy_stats/potions1ap_*.txt`),
+days won bottom / middle / top:
+
+| | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
+|---|---|---|---|---|---|
+| No potions | — / 87 / — | 41 / 88 / 98 | 54 / 86 / 98 | 77 / 96 / 99 | 87 / 91 / 93 |
+| Drink in a fight | — / 91 / — | 50 / 92 / 99 | 59 / 89 / 98 | 81 / 97 / 100 | 92 / 94 / 95 |
+| + feed a Downed ally | — / 94 / — | 59 / 93 / 99 | 65 / 92 / 99 | 84 / 98 / 100 | 94 / 95 / 97 |
+| Drink in a fight + between fights | — / 97 / — | 65 / 96 / 100 | 73 / 96 / 100 | 88 / 99 / 100 | 96 / 97 / 98 |
+| All three (keep 1) | — / 97 / — | 70 / 96 / 100 | 75 / 96 / 100 | 89 / 99 / 100 | 97 / 98 / 98 |
+| Hit-target table, all three | — / 97 / — | 17 / 82 / 97 | 31 / 91 / 100 | 64 / 93 / 98 | 94 / 95 / 96 |
+
+At 1 AP every variant gains 1-4 points over 2 AP, most at the bottom of a
+band. With all three the bands run 70-89% at the bottom of Levels 2-4
+(41-77% with none) and the middle wins 96-99% of days.
