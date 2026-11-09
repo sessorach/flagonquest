@@ -91,7 +91,9 @@ AP_PER_TURN = 4
 # don't come back between fights. A PC at POTION_DRINK_AT of its max
 # Health or less drinks one at the start of its turn for POTION_AP. 0: off.
 PC_POTIONS = 0
-POTION_AP = 2
+# glossary.md [Potion]: "It takes 1 AP to use a Potion" (the designer kept
+# 1 AP on 2026-11-09, after a first test at 2).
+POTION_AP = 1
 POTION_DRINK_AT = 0.5
 # Feeding a potion (designer, 2026-11-09 test: a Potion can go to a
 # willing or Downed creature adjacent to you): a PC with one feeds it to a

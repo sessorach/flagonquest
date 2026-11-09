@@ -128,7 +128,7 @@ Effects applied by Poisons do not expire normally. Instead, every hour 1 stack o
 
 #### [Potion]
 
-A Potion can be consumed to provide the imbiber with an effect. It takes 1 AP to use a Potion, and it must be in your hand to use.
+A Potion can be consumed to provide the imbiber with an effect. It takes 1 AP to use a Potion, and it must be in your hand to use. Instead of drinking it yourself, you may feed it to a willing or Downed creature adjacent to you - it gets the Potion’s effect instead of you.
 
 #### [Duplicate]
 
