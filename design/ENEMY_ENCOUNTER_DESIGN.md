@@ -4745,3 +4745,40 @@ days won bottom / middle / top:
 At 1 AP every variant gains 1-4 points over 2 AP, most at the bottom of a
 band. With all three the bands run 70-89% at the bottom of Levels 2-4
 (41-77% with none) and the middle wins 96-99% of days.
+
+### The baseline, 2026-11-09 (hit-target table, potions on)
+
+In pencil: the hit-target table (`V3_HIT_FIT`) with Level 2 eased (Skill
++2, Resist +2, Health 5: tried five, `results/enemy_stats/` scratch; +3 /
+6 won 79% of days in the middle with potions, +2 / 5 wins 95%), the
+Defense limit at 8 + Skill + 1 (`experiments/enemies/wall_fix.py`: two
+Black Knights 9.6% lost over 9.0 rounds at +2, 4.1% over 7.2 at +1; four
+Iron Sentinels 13.8% / 11.7 to 4.4% / 9.1; four standard monsters 1.5% to
+1.2%), and two Healing Potions each at 2 AP (designer: 1 AP to get it in
+hand, the tag's 1 to use it), drunk between fights and fed to a Downed
+ally. `results/enemy_stats/default_1109_*`.
+
+| Level | PC hit / lands | Enemy hit / lands | Rounds (sd) | Down / lost (fresh fight) | Band days: bottom / middle / top (worst middle party) |
+|---|---|---|---|---|---|
+| 1 | 68% / 2.9 | 22% / 2.3 | 4.4 (2.3) | 13% / 0.2% | — / 98 / — (95) |
+| 2 | 79% / 3.3 | 32% / 3.0 | 3.1 (1.7) | 13% / 0.8% | 53 / 96 / 100 (85) |
+| 3 | 74% / 3.3 | 32% / 2.5 | 3.6 (2.4) | 15% / 1.5% | 31 / 94 / 99 (74) |
+| 4 | 70% / 3.8 | 28% / 2.5 | 4.3 (3.5) | 20% / 2.7% | 66 / 93 / 99 (78) |
+| 5 | 77% / 4.0 | 36% / 2.3 | 3.7 (2.8) | 20% / 1.8% | 95 / 96 / 97 (86) |
+
+The manual's fights: lost 0.4-2.6%, Down 13-18%, 3.1-4.3 rounds. Big
+fights (size_check, middle, Levels 1-5): four standard 1.0% / 16% / 3.5;
+two Gravel Ogres 0.5% / 15% / 3.0; two Elite Sharpshooters 0.1% / 29% /
+2.9; two Black Knights 4.1% / 20% / 7.2; the solo Warlord 2.8% / 15% /
+3.0; eight minions 2.7% / 40% / 3.7.
+
+- The middle of every band wins 93-98% of days, the "basically never
+  loses" of the 10-08 targets, with Downs at 13-20% of fresh fights.
+- Off the hit targets: PCs hit 77-79% at Levels 2 and 5 (target 50-75%),
+  and their hits land 3.3 at Levels 2-3 and 3.8-4.0 at Levels 4-5 (the
+  grown builds).
+- The bottom of the Level 3 band wins 31% of days; Level 2's 53, Level
+  4's 66.
+- Boss fights are no harder than four standard monsters: elites and the
+  solo boss have little Health on this table (their multiple of a small
+  number).
