@@ -1,30 +1,36 @@
 # Latest replays (2026-11-09)
 
-Audit fixes on (Bad Luck stacks, Downed at 0 and revived Deep first, healer revives, grapple, Area splash)
+Every shared test fights the monster manual's encounters (ENCOUNTER_SOURCE 'manual'); the generic replays moved to Manual 1-3 at Level 1 and Manual 1 at Level 3
 
-## partyS_L1_vs_L1_frontline.html
+## partyS_L1_vs_L1_manual1.html
 - Party: Enith, Felix, Jackal, Hanforth
-- Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
-- This fight (seed 26): party won in 7 rounds, 65% party HP left
-- Matchup average over 1000 fights: 83.5% wins, 6.7 rounds, 70% HP left on a win
+- Enemies: Level 1 Manual 1 (Blast Mage@1, Glaive Dancer@1, Glaive Dancer@1, Glaive Dancer@1)
+- This fight (seed 11): party won in 5 rounds, 85% party HP left
+- Matchup average over 1000 fights: 98.2% wins, 5.0 rounds, 81% HP left on a win
 
-## partyU_L1_vs_L1_shield_wall.html
+## partyU_L1_vs_L1_manual2.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
-- Enemies: Level 1 Shield Wall (Hedge Knight, Hedge Knight, Marsh Archer, Marsh Archer)
-- This fight (seed 2): party won in 6 rounds, 90% party HP left
-- Matchup average over 1000 fights: 96.8% wins, 5.8 rounds, 88% HP left on a win
+- Enemies: Level 1 Manual 2 (Ironbranch Warden@1, Ironbranch Warden@1, Thornhide Brute@1, Warpriest@1)
+- This fight (seed 1): party won in 7 rounds, 100% party HP left
+- Matchup average over 1000 fights: 100.0% wins, 7.3 rounds, 92% HP left on a win
 
-## partyT_L1_vs_L1_warband.html
+## partyT_L1_vs_L1_manual3.html
 - Party: Browndog, Hanforth, Sable, Beornhard
-- Enemies: Level 1 Warband (Brute, Skulking Footpad, Skulking Footpad, Warpriest)
-- This fight (seed 3): party won in 7 rounds, 92% party HP left
-- Matchup average over 1000 fights: 95.9% wins, 6.7 rounds, 82% HP left on a win
+- Enemies: Level 1 Manual 3 (Blast Mage@1, Ember Caster@1, Gravel Ogre@1)
+- This fight (seed 3): party won in 4 rounds, 78% party HP left
+- Matchup average over 1000 fights: 99.6% wins, 4.4 rounds, 89% HP left on a win
+
+## partyB_L3_vs_L3_manual1.html
+- Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
+- Enemies: Level 3 Manual 1 (Blast Mage@3, Blast Mage@3, Deadbough Priest@3, Thornhide Brute@3)
+- This fight (seed 1): party won in 2 rounds, 98% party HP left
+- Matchup average over 1000 fights: 100.0% wins, 1.9 rounds, 92% HP left on a win
 
 ## bleed_party_L1_vs_L1_frontline.html
 - Party: Hilde (Bleed), Felix (Bleed), Jackal (Bleed), Beornhard (Bleed)
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 2): party won in 5 rounds, 55% party HP left
-- Matchup average over 1000 fights: 83.9% wins, 5.4 rounds, 57% HP left on a win
+- Matchup average over 1000 fights: 85.2% wins, 5.4 rounds, 55% HP left on a win
 
 ## cash_party_L1_vs_L1_frontline.html
 - Party: Hilde (Bleed), Felix (Cash), Jackal (Bleed), Beornhard (Cash)

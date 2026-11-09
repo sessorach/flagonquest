@@ -5060,3 +5060,18 @@ combat_stats reads 5.9-6.5 rounds at Levels 1-3 while the manual's fights
 in a day read 3.5-4.5. The squared hit targets were measured on single
 fights; a day's first fight hits more often. Not changed: which one the
 yardstick fights should match is the designer's call.
+
+The solo Warlord at Level 3 shows the same gap, 150 fights each, rounds
+and fights lost:
+
+| Party | On its own | Day, fight 1 |
+|---|---|---|
+| Ashleigh, Beornhard, Browndog, Enith (middle of the band) | 9.2 / 39% | 4.5 / 4.7% |
+| Ashleigh, Beornhard, Browndog, Sable | 5.8 / 4.7% | 3.5 / 0% |
+| Ashleigh, Carrick, Hilde, Jackal | 4.0 / 11% | 3.1 / 2.7% |
+| Ashleigh, Beornhard, Carrick, Hilde | 3.7 / 13% | 2.7 / 1.3% |
+| Hilde, Browndog, Jackal, Beornhard (L3), the replays' party | 2.2 / 0% | — |
+
+The replays' Level 3 party is the designer's own 175 XP exports, not
+the band's normalized builds, and is much the strongest of these; its
+Warlord replay (2.1 rounds) isn't a typical boss fight.
