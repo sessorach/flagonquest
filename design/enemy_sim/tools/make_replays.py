@@ -36,9 +36,12 @@ ARCHIVE = os.path.join(HERE, "replays", "archive")
 # plus optionally a run_fight result key that must be above 0 in the
 # picked fight, to show something that doesn't happen every fight.
 MATCHUPS = [
-    ("partyS_L1_vs_L1_frontline", ["Enith", "Felix", "Jackal", "Hanforth"], 1, "Frontline"),
-    ("partyU_L1_vs_L1_shield_wall", ["Browndog", "Ashleigh", "Sable", "Beornhard"], 1, "Shield Wall"),
-    ("partyT_L1_vs_L1_warband", ["Browndog", "Hanforth", "Sable", "Beornhard"], 1, "Warband"),
+    # The shared test fights are the manual's since 2026-11-09
+    # (tunables.ENCOUNTER_SOURCE): "Manual N" is a different draw per Level.
+    ("partyS_L1_vs_L1_manual1", ["Enith", "Felix", "Jackal", "Hanforth"], 1, "Manual 1"),
+    ("partyU_L1_vs_L1_manual2", ["Browndog", "Ashleigh", "Sable", "Beornhard"], 1, "Manual 2"),
+    ("partyT_L1_vs_L1_manual3", ["Browndog", "Hanforth", "Sable", "Beornhard"], 1, "Manual 3"),
+    ("partyB_L3_vs_L3_manual1", ["Hilde (L3)", "Browndog (L3)", "Jackal (L3)", "Beornhard (L3)"], 3, "Manual 1"),
     # The Bleeding builds together (sample_pcs.csv's "(Bleed)" rows).
     ("bleed_party_L1_vs_L1_frontline", ["Hilde (Bleed)", "Felix (Bleed)", "Jackal (Bleed)", "Beornhard (Bleed)"], 1,
      "Frontline"),

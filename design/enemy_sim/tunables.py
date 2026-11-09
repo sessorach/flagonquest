@@ -632,6 +632,16 @@ DAY_TROUBLE = 0.5
 # healer heals a Downed ally back up. False: the
 # old behavior, for comparison.
 AUDIT_FIXES = True
+# Which enemies the shared test fights use (sample_enemies.CURRENT_MIXES,
+# so day_sim, calibrate, effect_check, compare_builds and the rest).
+# 'manual' (designer, 2026-11-09: the manual is the one set of enemies for
+# every test): MANUAL_MIXES encounters drawn from monster_manual.csv by the
+# variety rules (sample_enemies.manual_encounters: 4 Slots, two or three
+# stat blocks, at most one non-attacker, no solo boss), named "Manual 1"..,
+# a separate draw at each Level. 'roster': the old four mixes (Frontline,
+# Shield Wall, Warband, Horde), for comparison with older numbers.
+ENCOUNTER_SOURCE = "manual"
+MANUAL_MIXES = 8
 # Cards a player keeps back after a rescue, by how much the flip matters
 # (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when
 # there are plenty left; a kill shot or an Encounter attack gets one

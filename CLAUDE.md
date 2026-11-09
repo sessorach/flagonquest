@@ -349,7 +349,14 @@ stay a clean decision record.
   `sample_enemies.get_enemy` (the pruned v3's picks). `tools/monster_manual.py`
   writes `MONSTER_MANUAL.md` from it (generated; edit the CSV). Ability
   names can't hold commas (the picks are `;`-separated inside a CSV
-  cell), hence "Vital/Mental/Vigilant +1". Elites and the solo boss spend
+  cell), hence "Vital/Mental/Vigilant +1".
+  Since 2026-11-09 the manual is also every shared tool's enemies:
+  `tunables.ENCOUNTER_SOURCE='manual'` makes `se.CURRENT_MIXES`
+  "Manual 1".."Manual 8" (a separate draw per Level, `ENCOUNTERS[1..5]`);
+  `SIM_SET="ENCOUNTER_SOURCE='roster'"` reproduces older numbers exactly.
+  Eight mixes, so `-n` per mix means twice the fights it used to. A
+  fight run without `day_fight` gets fewer cards than a day's first
+  fight; check which one a number came from before comparing. Elites and the solo boss spend
   their size's extra points down the `BigPicks` column (offense only;
   `sample_enemies.BIG_PICKS_BARRED`) (2026-11-06).
 - **Test items in the simulator once the sample roster reaches about

@@ -302,11 +302,11 @@ Worked stat blocks: `enemy_sim/MONSTER_MANUAL.md`.
 
 | Level | Damage Stat | Accuracy | Skill | Health | Resist | Points | Defense limit |
 |---|---|---|---|---|---|---|---|
-| 1 | 2 | 4 | 4 | 4 | 3 | 8 | 13 |
-| 2 | 3 | 5 | 7 | 5 | 4 | 8 | 16 |
-| 3 | 3 | 7 | 9 | 3 | 5 | 10 | 18 |
-| 4 | 4 | 8 | 10 | 5 | 5 | 10 | 19 |
-| 5 | 4 | 8 | 10 | 7 | 5 | 10 | 19 |
+| 1 | 2 | 4 | 4 | 6 | 3 | 8 | 13 |
+| 2 | 3 | 5 | 7 | 7 | 4 | 8 | 16 |
+| 3 | 3 | 7 | 9 | 5 | 5 | 10 | 18 |
+| 4 | 4 | 8 | 10 | 7 | 5 | 10 | 19 |
+| 5 | 4 | 8 | 10 | 9 | 5 | 10 | 19 |
 
 In pencil (2026-11-09), built for the designer's firm hit targets (PCs
 hit 50-75% for 2-3 a hit, enemies 25-50% for 2-3): Defenses and Resist
@@ -314,7 +314,10 @@ about a PC's, little Health (a standard monster has about 8 with its
 archetype and leftover points: two solid hits or three ordinary ones),
 and the Defense limit is 8 + Skill + 1. Assumes the party carries a
 couple of Healing Potions each. Enemy Accuracy went up 2-3 the same day
-so enemies hit about half the time (standard monsters 6-10 Health).
+so enemies hit about half the time. Health went up 2 at every Level
+when enemies moved to one attack a turn (2026-11-09): a standard
+monster in the manual now averages about 8-12 Health (7.6 at Level 1,
+11.8 at Level 5).
 
 Defenses: pick a Strong Defense (Dodge, Vital, Mental or Vigilant) at 8
 + Skill, one Weak Defense at 8 + Skill − 4 (by default the one that

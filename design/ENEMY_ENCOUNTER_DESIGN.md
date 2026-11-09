@@ -5002,3 +5002,61 @@ rounds, a wall again.
 
 The audit fixes cost the party about a point of fights lost at Levels
 1-3 and add a little length; Bad Luck stacking is most of it.
+
+### The manual as every test's enemies (2026-11-09)
+
+Per the designer: the monster manual is the one set of enemies for every
+test. `tunables.ENCOUNTER_SOURCE` ('manual', the default) makes
+`sample_enemies.CURRENT_MIXES` eight of the manual's encounters at each
+Level ("Manual 1".."Manual 8", drawn by the variety rules:
+`sample_enemies.manual_encounters`, moved there from manual_check
+unchanged and checked identical), so day_sim, calibrate, effect_check,
+compare_builds, the optimizer and the rest all play them. 'roster' puts
+back the old four mixes (Frontline, Shield Wall, Warband, Horde); with it,
+fixed-seed calibrate runs and day_sim hashes match the commit before
+exactly. combat_stats, manual_check and size_check already drew their own
+manual encounters, so their 11-09 numbers stand. A tool at Level 4-5 that
+raises Level 3's fights (`ENEMY_LEVEL_UP`) gets Level 3's draw built
+higher; table_check files each Level's own draw instead. Eight mixes
+where there were four: a tool's "fights per mix" now means twice the
+fights, so halve `-n` for the old run length.
+
+The band on the manual (`results/enemy_stats/default_1109d_band.txt`,
+days won, bottom / middle / top of each XP band; the roster's in
+brackets, `default_1109c`):
+
+| Level | Bottom | Middle | Top | Fight 1 rounds (middle) |
+|---|---|---|---|---|
+| 1 | — | 94 (91) | — | 4.8 |
+| 2 | 40 (17) | 94 (84) | 99 (98) | 3.8 |
+| 3 | 22 (10) | 90 (79) | 100 (97) | 3.7 |
+| 4 | 80 (61) | 98 (92) | 100 (98) | 3.4 |
+| 5 | 94 (92) | 97 (93) | 97 (95) | 3.8 |
+
+The manual's days are easier than the roster's everywhere, most at the
+bottom of Levels 2-3, which are still the steep spots. Most days lost
+are lost in the second fight (bottom of Level 3: 24% of first fights,
+71% of second).
+
+**Single fights and a day's first fight don't get the same cards.** A
+fight played on its own (combat_stats, effect_check, calibrate,
+compare_builds: `run_fight` without `day_fight`) spends a third of the
+hand (`CARDS_FIGHT_SHARE`), and half the time a third of the hand is
+already gone (`CARDS_SECOND_FIGHT_SHARE`). A day's first fight under
+`DAY_CARDS` may spend everything but a third. Same encounters, same
+seeds, Level 1 middle parties, rounds:
+
+| Party | On its own | Day, fight 1 | Day, fight 2 |
+|---|---|---|---|
+| A | 5.0 | 3.2 | 4.8 |
+| B | 5.4 | 3.9 | 5.3 |
+| D | 10.7 | 5.4 | 10.9 |
+| S | 11.1 | 6.8 | 9.2 |
+| T | 6.4 | 4.2 | 6.3 |
+| U | 5.5 | 4.5 | 5.9 |
+
+So a single fight plays like a day's second fight, and that's why
+combat_stats reads 5.9-6.5 rounds at Levels 1-3 while the manual's fights
+in a day read 3.5-4.5. The squared hit targets were measured on single
+fights; a day's first fight hits more often. Not changed: which one the
+yardstick fights should match is the designer's call.

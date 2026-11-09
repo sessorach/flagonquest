@@ -399,8 +399,69 @@ ENCOUNTERS = {
     }
     for level in (1, 2, 3)
 }
-# The mixes current scripts should run.
-CURRENT_MIXES = ("Frontline", "Shield Wall", "Warband", "Horde")
+# The old roster's mixes, everything up to 2026-11-09 was tuned on.
+ROSTER_MIXES = ("Frontline", "Shield Wall", "Warband", "Horde")
+
+
+def manual_encounters(level, k, seed=1):
+    """`k` encounters from the monster manual by the variety standard
+    (ENEMY_ENCOUNTER_DESIGN.md): 4 Slots, two stat blocks usually and three
+    sometimes, at most one enemy that doesn't attack; the solo boss alone,
+    added from Level 3 (the k draws never include it). Moved here from
+    manual_check.encounters, unchanged."""
+    import itertools
+    import random
+    rng = random.Random(seed * 100 + level)
+    ms = {}
+    for n in manual_names():
+        e = get_enemy(f"{n}@3")
+        ms[n] = dict(slots=float(e.get("slots", 1)), passive=e["kind"] != "attack")
+    pool = [n for n, m in ms.items() if m["slots"] != 4.0]
+    out, seen = [], set()
+    while len(out) < k:
+        picks = rng.sample(pool, 2 if rng.random() < 0.6 else 3)
+        options = []
+        for counts in itertools.product(range(1, 9), repeat=len(picks)):
+            if abs(sum(c * ms[p]["slots"] for c, p in zip(counts, picks)) - 4) > 1e-9:
+                continue
+            if sum(c for c, p in zip(counts, picks) if ms[p]["passive"]) > 1:
+                continue
+            options.append(counts)
+        if not options:
+            continue
+        counts = rng.choice(options)
+        enc = tuple(sorted(n for c, p in zip(counts, picks) for n in [p] * c))
+        if enc not in seen:
+            seen.add(enc)
+            out.append(enc)
+    if level >= 3:
+        out += [tuple(n for n, m in ms.items() if m["slots"] == 4.0)]
+    return out
+
+
+def install_manual_mixes(level_into=None, build_level=None):
+    """Registers tunables.MANUAL_MIXES manual encounters as "Manual 1".. and
+    returns their keys. By default at each Level 1-5, built at that Level
+    (a tool at Level 4-5 that raises Level 3's fights with ENEMY_LEVEL_UP
+    gets Level 3's draw built higher). `level_into`/`build_level`: one
+    Level's draw, built at `build_level`, filed under ENCOUNTERS[level_into]
+    (table_check's days at Levels 4-5, with ENEMY_LEVEL_UP 0)."""
+    up, T.ENEMY_LEVEL_UP = T.ENEMY_LEVEL_UP, 0
+    try:
+        levels = [build_level] if build_level else [1, 2, 3, 4, 5]
+        for L in levels:
+            encs = manual_encounters(L, T.MANUAL_MIXES)[:T.MANUAL_MIXES]
+            keys = []
+            for i, e in enumerate(encs):
+                keys.append(f"Manual {i + 1}")
+                ENCOUNTERS.setdefault(level_into or L, {})[keys[-1]] = [f"{x}@{L}" for x in e]
+    finally:
+        T.ENEMY_LEVEL_UP = up
+    return tuple(keys)
+
+
+# The mixes current scripts should run (tunables.ENCOUNTER_SOURCE).
+CURRENT_MIXES = ROSTER_MIXES
 
 # Boss fights (2026-10-07), Level 2 only: a long-lived target, which is
 # where Bleeding should pay off most. Solo Boss is one 4-slot boss with
@@ -461,3 +522,9 @@ if __name__ == "__main__":
         print(e["level"], e["name"], "|", e["role"], "|", e["battle_tactic"], "|", e["fighting_style"],
               "| Acc", e["accuracy"], "| Dmg", e["attack_damage"], e["dmg_type"],
               "| Parry", e["parry"], "Mental", e["mental"], "| PhysRes", e["physres"], "| HP", e["health"])
+
+
+if T.ENCOUNTER_SOURCE == "manual":
+    # Done last so every helper above exists; the manual's encounters
+    # replace the roster's four as what the shared tools play.
+    CURRENT_MIXES = install_manual_mixes()

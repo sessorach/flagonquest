@@ -345,7 +345,7 @@ def _job(args):
         if days:
             start, won = None, 0
             for d in range(days):
-                rec, start = play_day(names, swaps, level, day_mixes((mi + d) % 4, k + d), seed + 100_000 * mi + k
+                rec, start = play_day(names, swaps, level, day_mixes((mi + d) % len(se.CURRENT_MIXES), k + d), seed + 100_000 * mi + k
                                       + 10_000_000 * d, rows, start)
                 if rec['lost']:
                     break

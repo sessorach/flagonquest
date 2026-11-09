@@ -16,11 +16,9 @@ an encounter's difficulty.
 """
 import argparse
 import collections
-import itertools
 import json
 import multiprocessing as mp
 import os
-import random
 import statistics as st
 
 import _paths  # noqa: E402,F401
@@ -44,34 +42,13 @@ def monsters(level=3):
 
 
 def encounters(level, k, seed):
-    rng = random.Random(seed * 100 + level)
-    ms = monsters()
-    pool = [n for n, m in ms.items() if m["slots"] != SOLO]
-    out, seen = [], set()
-    while len(out) < k:
-        picks = rng.sample(pool, 2 if rng.random() < 0.6 else 3)
-        options = []
-        for counts in itertools.product(range(1, 9), repeat=len(picks)):
-            if abs(sum(c * ms[p]["slots"] for c, p in zip(counts, picks)) - PARTY_SLOTS) > 1e-9:
-                continue
-            if sum(c for c, p in zip(counts, picks) if ms[p]["passive"]) > 1:
-                continue
-            options.append(counts)
-        if not options:
-            continue
-        counts = rng.choice(options)
-        enc = tuple(sorted(n for c, p in zip(counts, picks) for n in [p] * c))
-        if enc not in seen:
-            seen.add(enc)
-            out.append(enc)
-    if level >= 3:
-        out += [tuple(n for n, m in ms.items() if m["slots"] == SOLO)]
-    return out
+    """Now sample_enemies.manual_encounters (2026-11-09), unchanged."""
+    return se.manual_encounters(level, k, seed)
 
 
 def reference(level):
     """The four mixes everything was tuned on (Levels 1-3 rows)."""
-    return {f"ref:{m}": tuple(se.ENCOUNTERS[level][m]) for m in se.CURRENT_MIXES} if level <= 3 else {}
+    return {f"ref:{m}": tuple(se.ENCOUNTERS[level][m]) for m in se.ROSTER_MIXES} if level <= 3 else {}
 
 
 EXTRA = [None]

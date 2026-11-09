@@ -102,18 +102,10 @@ def _manual_mixes(level, n):
     """Registers the manual's encounters as this Level's day mixes and
     returns days per mix that keep the total the same as four mixes."""
     import sample_enemies as se
-    import manual_check as mc
     T.ENEMY_LEVEL_UP = 0
-    encs = [e for e in mc.encounters(level, MANUAL_MIXES, 1)
-            if not any(se.get_enemy(f"{x}@{level}").get("slots", 1) == 4 for x in e)][:MANUAL_MIXES]
-    lvl = min(level, 3)
-    keys = []
-    for i, e in enumerate(encs):
-        key = f"Manual {i + 1}"
-        se.ENCOUNTERS.setdefault(lvl, {})[key] = [f"{x}@{level}" for x in e]
-        keys.append(key)
-    se.CURRENT_MIXES = tuple(keys)
-    return max(1, round(n * 4 / len(keys)))
+    T.MANUAL_MIXES = MANUAL_MIXES
+    se.CURRENT_MIXES = se.install_manual_mixes(level_into=min(level, 3), build_level=level)
+    return max(1, round(n * 4 / len(se.CURRENT_MIXES)))
 
 
 def _job(args):
@@ -127,6 +119,9 @@ def _job(args):
     gname, names, swaps = groups(level, budget)[gi]
     if DAY_SOURCE[0] == "manual":
         n = _manual_mixes(level, n)
+    else:
+        import sample_enemies as se
+        se.CURRENT_MIXES = se.ROSTER_MIXES
     recs = ds.run(names, swaps, min(level, 3), n, seed=seed)
     return table, level, budget, gname, [r.get("per_fight", []) for r in recs]
 
