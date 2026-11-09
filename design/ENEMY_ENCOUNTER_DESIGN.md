@@ -5075,3 +5075,19 @@ and fights lost:
 The replays' Level 3 party is the designer's own 175 XP exports, not
 the band's normalized builds, and is much the strongest of these; its
 Warlord replay (2.1 rounds) isn't a typical boss fight.
+
+**Level 3 baseline Health 5 → 7** (designer, 2026-11-09: it shouldn't
+drop from Level 2; now 6 / 7 / 7 / 7 / 9, a standard monster 9.8 at
+Level 3). Only Level 3 moved (Levels 1-2 and 4-5 of combat_stats are
+byte-identical). Level 3, before → after:
+
+| | Before | After |
+|---|---|---|
+| Days won, bottom / middle / top (`default_1109e_band_l3`) | 22 / 90 / 100 | 8.5 / 73 / 99 |
+| Day, fight 1 (middle): lost / Down / rounds | 1.1% / 17% / 3.7 | 3.3% / 24% / 4.8 |
+| Day, fight 2 (middle): lost | 9.2% | 24% |
+| Single fights (`default_1109e_stats`): PC hit / lost / Down / rounds | 59% / 7.2% / 26% / 5.9 | 52% / 17% / 41% / 8.8 |
+
+Two Health on every Level 3 monster costs the party a lot: a sixth of
+the middle's days. PC hit chance falls too, since longer fights run
+the party's cards out and stack its Bad Luck.
