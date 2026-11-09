@@ -628,7 +628,8 @@ DAY_TROUBLE = 0.5
 # grappling can't swing a two-handed weapon (it lets go to attack); Area
 # Attack's splash still lands when the main target drops; a Downed PC
 # doesn't hand out potions between fights; a support's one action isn't
-# Aimed Shot; a Skirmisher pinned at the edge slides along it. False: the
+# Aimed Shot; a Skirmisher pinned at the edge slides along it; the fight's
+# healer heals a Downed ally back up. False: the
 # old behavior, for comparison.
 AUDIT_FIXES = True
 # Cards a player keeps back after a rescue, by how much the flip matters

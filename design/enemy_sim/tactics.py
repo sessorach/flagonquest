@@ -601,7 +601,11 @@ def strategy_support_healer(pc, party, log):
     import encounter
     if T.HEALING_MAGIC_ENCOUNTER and encounter.left(pc, 'Healing Magic') <= 0:
         return 0
-    wounded = [p for p in party if needs_healing(p)]
+    wounded = [p for p in party if needs_healing(p)
+               # rulebook.md: a Downed character can be healed back up (the
+               # first point restores a Deep) - a table's healer does that
+               # first (tunables.AUDIT_FIXES, 2026-11-09).
+               or (T.AUDIT_FIXES and p is not pc and p['health'] <= 0 and 'shallow_max' in p)]
     heal_range = pc.get('heal_range')
     if heal_range is not None and 'pos' in pc:
         wounded = [p for p in wounded if 'pos' in p and movement.distance(pc['pos'], p['pos']) <= heal_range]
