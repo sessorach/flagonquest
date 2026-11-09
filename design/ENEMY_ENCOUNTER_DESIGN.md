@@ -4659,3 +4659,38 @@ The candidate is `enemy_builder_pcstyle.V3_HIT_FIT_TABLE` behind
   6.8 rounds and two Black Knights 23% over 9.9 (62% at Level 2): a
   Defender elite at the Defense cap is hard to hit at all. Eight minions
   9.3% (27% at Level 2).
+
+### Two Healing Potions each (2026-11-09, test)
+
+Per the designer: give the party consumables and see whether they stop a
+downward spiral at the bottom of a band, and whether a Healing Potion
+helps in a fight. `tunables.PC_POTIONS` (off by default): each PC starts
+the day with that many Healing Potions (I043, "When consumed, you heal 2
+Health", read from items.csv), carried from the first fight to the
+second, never refreshed; a PC at half its Health or less drinks one at
+the start of its turn for 2 AP (`POTION_AP`, `POTION_DRINK_AT`). Off, the
+fixed-seed table check is unchanged. Band days (table_check, 60 a party)
+with none and with two each, on the pencilled table and on the
+hit-target candidate (`results/enemy_stats/potions_*.txt`); what gets
+drunk (`experiments/enemies/potion_use.py`, `potion_use.txt`).
+
+| Days won: bottom / middle / top | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
+|---|---|---|---|---|---|
+| Pencilled, no potions | — / 87 / — | 41 / 88 / 98 | 54 / 86 / 98 | 77 / 96 / 99 | 87 / 91 / 93 |
+| Pencilled, two each | — / 90 / — | 47 / 91 / 99 | 57 / 88 / 98 | 79 / 96 / 99 | 90 / 92 / 94 |
+| Hit-target, no potions | — / 89 / — | 6 / 62 / 91 | 16 / 82 / 98 | 47 / 84 / 94 | 85 / 87 / 89 |
+| Hit-target, two each | — / 93 / — | 9 / 70 / 95 | 19 / 84 / 98 | 51 / 87 / 95 | 88 / 90 / 92 |
+
+Potions drunk a day (of 8), pencilled table: 0.8-2.3 (1.2-1.5 in the
+middle of a band); in days the party loses, 2.3-3.9. Half the days or
+more see at least one.
+
+- Two potions each are worth 2-8 points of days won, most at the bottom
+  of a band (Level 2: 41 to 47%) and on the hit-target table's harder
+  Level 2 (62 to 70%). They help; they don't stop a spiral.
+- Most of them never get drunk, even in a lost day: a PC drops from over
+  half its Health to Down in a hit or two (hits land 2-3.5 against about
+  10 Health), and a Downed PC can't drink. Two Health for an attack's AP
+  is a small trade while standing.
+- Not modeled: drinking between fights, or an ally pouring one into a
+  Downed PC.
