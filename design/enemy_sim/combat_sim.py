@@ -3044,6 +3044,22 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             mode, prof, target = _enemy_plan(e, enemies, [p for p in pcs if p['health'] > 0], movement_on)
             if movement_on and target is not None and _distance(e['pos'], target['pos']) > (prof.get('attack_range') or T.MELEE_RANGE):
                 break
+    # Skirmisher (2026-11-09 test, ENEMY_ENCOUNTER_DESIGN's "only attacks
+    # once, but can move up to 3 times"): after its one attack it spends
+    # the AP left falling back from the nearest PC, so the party has to
+    # come to it again.
+    if fighting_style == 'Skirmisher' and movement_on and e['health'] > 0 and actions_made:
+        living = [p for p in pcs if p['health'] > 0]
+        start = e['pos']
+        while living and ap >= T.MOVE_AP_COST:
+            near = min(living, key=lambda p: _distance(e['pos'], p['pos']))
+            tactics.move_kite(e, near, None)
+            ap -= T.MOVE_AP_COST
+        if e['pos'] != start:
+            _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],
+                 spaces=_distance(start, e['pos']), in_range=False, via='Skirmisher')
+            if _CTX.get('ps_pcs'):
+                _parting_shots_on(e, start, pcs, party_log)
     # End of this enemy's own turn: Harried clears entirely, Taunted
     # decays by 1 (both Fleeting-style, glossary.md).
     if e.get('harried', 0) > 0:

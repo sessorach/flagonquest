@@ -592,6 +592,16 @@ HEX_STACKS_V3P = {1: 2, 2: 2, 3: 3, 4: 3, 5: 4}
 # visibly neglects (a fighter's Mental, a caster's Vital, a support's
 # Dodge), skipping its Strong Defense.
 WEAK_DEFAULT = {"weapon": ("mental", "vigilant"), "spell": ("bodily", "vigilant"), "support": ("dodge", "vigilant")}
+# Squaring the sharpened hit targets (designer, 2026-11-09, in pencil):
+# enemies hit about half the time, PCs about two thirds, standard monsters
+# 5.6-9.8 Health (experiments/enemies/hit_fit2.py). tunables.V3_SQUARE.
+V3_SQUARE_TABLE = {1: dict(accuracy=3, health=-2), 2: dict(accuracy=2, damage=-1),
+                   3: dict(accuracy=3, skill=1, health=-2), 4: dict(accuracy=3, damage=-1, health=-2),
+                   5: dict(accuracy=2, damage=-1)}
+if getattr(T, "V3_HIT_FIT", False) and getattr(T, "V3_SQUARE", False):
+    for _L, _c in V3_SQUARE_TABLE.items():
+        for _k, _d in _c.items():
+            ENEMY_TABLE_V3_PRUNED[_L][_k] += _d
 # Experiments: deltas on top of the table (tunables.V3_TABLE_NUDGE, as
 # SIM_SET carries it: "1:accuracy=3/health=-2;2:accuracy=2/damage=-1").
 _nudge = getattr(T, "V3_TABLE_NUDGE", "")

@@ -576,6 +576,14 @@ V3_HIT_FIT = True
 V3_HIT_FIT_OVERRIDE = {}
 # Experiments: deltas on the final table, "1:accuracy=3/health=-2;2:...".
 V3_TABLE_NUDGE = ""
+# The squared table (enemy_builder_pcstyle.V3_SQUARE_TABLE), in pencil
+# since 2026-11-09: enemy Accuracy +2/+3 so enemies hit about half the time.
+V3_SQUARE = True
+# Every enemy's Fighting Style, for tests (2026-11-09): '' each row's own
+# (all 'None' today: up to two attacks); 'Aimed Shot' (one attack with
+# Good Luck); 'Skirmisher' (one attack, then falls back with the AP left);
+# 'mixed' (ranged: Aimed Shot; melee: Skirmisher).
+V3_FIGHTING_STYLE = ''
 # Per-PC counters for party_power's scorecard (2026-10-30): enemy Health
 # lost on each PC's own turn (dmg_out), Health it restored to the party
 # then (heal_out), Health lost and times hit on enemy

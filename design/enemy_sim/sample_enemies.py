@@ -211,6 +211,10 @@ def _build_from_row(row):
         )
     e["battle_tactic"] = row["BattleTactic"]
     e["fighting_style"] = row["FightingStyle"] if FIGHTING_STYLES_ENABLED else "None"
+    style = getattr(T, "V3_FIGHTING_STYLE", "")
+    if style:
+        e["fighting_style"] = (("Aimed Shot" if e.get("attack_range") else "Skirmisher") if style == "mixed"
+                               else style)
     return e
 
 
