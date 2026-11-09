@@ -4694,3 +4694,35 @@ more see at least one.
   is a small trade while standing.
 - Not modeled: drinking between fights, or an ally pouring one into a
   Downed PC.
+
+Round two (designer: test drinking between fights, and feeding a potion
+to a willing or Downed creature next to you, which the [Potion] tag might
+allow). `tunables.POTION_FEED`: a PC feeds a Downed ally next to it at the
+start of its turn (2 AP), before drinking its own. `POTION_BETWEEN`: after
+the first fight's care, a Downed PC is fed one by whoever has a spare,
+then each PC drinks while it's missing at least a potion's heal, keeping
+`POTION_KEEP` (1, or 0) for the second fight. Both off by default; the
+fixed-seed table check is unchanged.
+
+| Days won: bottom / middle / top | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
+|---|---|---|---|---|---|
+| No potions | — / 87 / — | 41 / 88 / 98 | 54 / 86 / 98 | 77 / 96 / 99 | 87 / 91 / 93 |
+| Drink in a fight | — / 90 / — | 47 / 91 / 99 | 57 / 88 / 98 | 79 / 96 / 99 | 90 / 92 / 94 |
+| + feed a Downed ally | — / 94 / — | 55 / 92 / 99 | 62 / 91 / 98 | 81 / 96 / 99 | 92 / 94 / 95 |
+| Drink in a fight + between fights | — / 96 / — | 61 / 96 / 100 | 69 / 94 / 99 | 86 / 98 / 100 | 95 / 97 / 97 |
+| All three, keep 1 | — / 96 / — | 65 / 96 / 100 | 73 / 95 / 99 | 87 / 98 / 100 | 95 / 97 / 97 |
+| All three, keep 0 | — / 97 / — | 69 / 97 / 100 | 75 / 96 / 100 | 89 / 99 / 100 | 96 / 98 / 98 |
+| Hit-target table, none | — / 89 / — | 6 / 62 / 91 | 16 / 82 / 98 | 47 / 84 / 94 | 85 / 87 / 89 |
+| Hit-target table, all three, keep 1 | — / 97 / — | 15 / 79 / 97 | 29 / 91 / 99 | 62 / 92 / 97 | 93 / 95 / 96 |
+
+- Drinking between fights is most of it: the party goes into the second
+  fight whole, and the second fight is where most days are lost. Feeding
+  a Downed ally adds 3-8 points at the bottom of a band.
+- All three together flatten the bands: the gap from bottom to middle
+  goes from 47 / 32 / 19 points at Levels 2-4 to 31 / 22 / 11, and the
+  middle wins 95-98% of days, the 95% the 10-08 targets asked for.
+- In-fight drinking stays rare (1-2.5 a day, `potion_use.txt`, which
+  counts only those); the rest go between fights or to a Downed ally.
+- On the hit-target table they lift Level 2's middle from 62% to 79% and
+  the bottom of Levels 2-3 from 6 / 16% to 15 / 29%: Level 2 there is
+  still overtuned.
