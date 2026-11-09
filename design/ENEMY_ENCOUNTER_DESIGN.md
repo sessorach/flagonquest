@@ -4892,3 +4892,44 @@ two Black Knights 19.1% / 40% / 8.8; the solo Warlord 9.1% / 33% / 3.2.
   an average.)
 - Bosses have too much on this table: their Health multiples (3.5, 5)
   were raised for the softer-hitting table.
+
+### Trading attacks for something else: Fighting Styles again (2026-11-09, test)
+
+The designer pencilled in the squared table (`V3_SQUARE`) and asked for
+slightly longer fights, a few lost fights being fine, maybe by enemies
+trading AP for something besides a second attack (the old Fighting
+Styles), not by making them harder to kill. `tunables.V3_FIGHTING_STYLE`
+(off) gives every enemy one: Aimed Shot (one attack, with Good Luck),
+Skirmisher (one attack, then the AP left falling back from the nearest
+PC; new 2026-11-09, combat_sim), or mixed (ranged: Aimed Shot; melee:
+Skirmisher). Single fights on the manual (`tools/combat_stats.py`,
+`results/enemy_stats/fs_*.txt`):
+
+| Levels 1-5 | Enemy hit | Rounds | A hit enemy acts again | Down / lost |
+|---|---|---|---|---|
+| Two attacks (the pencil) | 44-52% | 3.3-4.0 | 24-32% | 16-21% / 1.4-4.3% |
+| Aimed Shot | 64-67% | 3.2-3.8 | 23-31% | 15-21% / 1.2-2.9% |
+| Skirmisher | 43-48% | 3.3-4.3 | 24-33% | 7-11% / 0.1-1.3% |
+| Mixed | 46-57% | 3.2-4.0 | 24-31% | 10-13% / 0.1-1.5% |
+| Mixed + Durable on every enemy | 46-57% | 4.1-4.9 | 27-34% | 12-17% / 0.9-4.2% |
+| Mixed + Health +2 | 48-58% | 4.6-6.0 | 33-41% | 15-25% / 1.0-6.4% |
+| Mixed + Health +4 | 49-57% | 6.2-8.4 | 44-50% | 22-41% / 3.3-14.7% |
+| Mixed + Health +2 + Durable | 49-57% | 5.9-7.7 | 38-44% | 19-32% / 3.1-13.7% |
+
+One attack a turn halves the danger without making fights longer (the
+party kills just as fast), which leaves room to keep enemies up longer.
+Aimed Shot's Good Luck takes enemy hits to two thirds, off the target.
+Durable on everyone also brings PC hits down (2.6-3.5 instead of 3.0-4.0,
+Protected soaking a point). Whole days (table_check, the legacy roster's
+encounters, whole-day cards and potions; `fs_*_band.txt`), days won
+bottom / middle / top:
+
+| | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
+|---|---|---|---|---|---|
+| The pencil | — / 97 / — | 36 / 92 / 99 | 25 / 87 / 97 | 64 / 89 / 97 | 89 / 91 / 93 |
+| Mixed + Durable | — / 94 / — | 27 / 90 / 98 | 19 / 85 / 97 | 66 / 92 / 98 | 90 / 93 / 93 |
+| Mixed + Health +2 | — / 91 / — | 19 / 86 / 97 | 11 / 79 / 97 | 60 / 92 / 98 | 92 / 94 / 95 |
+
+In whole days the first fight runs 2.8-3.8 rounds with Durable and
+3.4-4.4 with Health +2 (2.5-3.5 on the pencil), and a hit enemy acts
+again 19-42% and 32-48%.
