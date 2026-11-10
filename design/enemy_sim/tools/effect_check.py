@@ -94,6 +94,23 @@ def build_mix(enemies, mult):
             e["abilities"] = list(e.get("abilities", [])) + x[1].get("abilities", [])
         e["health"] = e["max_health"] = math.ceil(e["health"] * mult)
     return en
+
+
+# A whole adventuring day and extra Slots (designer, 2026-11-10: test
+# effects over a full day, with extra Slots as the lever that makes it
+# threatening enough to see effects on the margins). --extra N adds N
+# standard attackers from each encounter's own list (cycling through
+# them); --day plays each sample as day_sim's day, the mix's encounter
+# first and day_sim.day_mixes' second, care between, scored on the
+# party's Health left after the second fight (0 if either is lost).
+DAY = [False]
+EXTRA = [0]
+
+
+def plus_slots(enemies, n):
+    names = [x if isinstance(x, str) else x[0] for x in enemies]
+    ones = [x for x in names if se.get_enemy(x).get("slots", 1) == 1 and se.get_enemy(x)["kind"] == "attack"]
+    return list(enemies) + [ones[i % len(ones)] for i in range(n)]
 HEALTH_VALUE = 4
 CHUNK = 250
 
@@ -258,6 +275,8 @@ def job(args):
     mix = MIXES[mi][1]
     scores, counts = [], dict.fromkeys(COUNT_KEYS + ("c_attacks", "c_received", "c_received_pd", "c_hits",
                                                      "c_dmg_once", "received", "losses"), 0.0)
+    if DAY[0]:
+        return _day_job(cell, mi, k0, k1, scores, counts)
     for k in range(k0, k1):
         r = cs.run_fight(1, 1, movement=True, enemies=build_mix(mix, mult), seed=100_000 * mi + k)
         won = r["winner"] == "party"
@@ -277,6 +296,50 @@ def job(args):
             counts["c_received_pd"] += c.get("attacks_vs_parry_dodge", 0)
             counts["c_hits"] += c.get("hits_received", 0)
             counts["c_dmg_once"] += bool(c.get("dmg_test_used"))
+    return (cell[:4], mi, k0), scores, counts
+
+
+def _day_job(cell, mi, k0, k1, scores, counts):
+    """--day: each sample is a whole day (day_sim.play_day) with the test
+    party; counts add up both fights."""
+    import day_sim as ds
+    pname, carrier, label, mult, spec, health_all = cell
+    mk = make(pname, carrier, spec, health_all)
+
+    def maker(names, swaps, rows, full):
+        last = []
+
+        def made(tier, good_luck=0):
+            last[:] = mk(tier, good_luck)
+            full[:] = [p["max_health"] for p in last]
+            return last
+        return made, last
+    real_run = cs.run_fight
+
+    def counted(*args, **kw):
+        r = real_run(*args, **kw)
+        for key in COUNT_KEYS:
+            counts[key] += float(r.get(key, 0))
+        pcs = _LAST[0]
+        counts["received"] += sum(p.get("attacks_received", 0) for p in pcs)
+        c = next((p for p in pcs if p["name"].startswith(carrier)), None) if carrier else None
+        if c:
+            counts["c_attacks"] += c.get("attacks_made", 0)
+            counts["c_received"] += c.get("attacks_received", 0)
+            counts["c_received_pd"] += c.get("attacks_vs_parry_dodge", 0)
+            counts["c_hits"] += c.get("hits_received", 0)
+            counts["c_dmg_once"] += bool(c.get("dmg_test_used"))
+        return r
+    ds._maker, cs.run_fight = maker, counted
+    rows = party._rows()
+    try:
+        for k in range(k0, k1):
+            rec, _ = ds.play_day(PARTIES[pname], {}, 1, ds.day_mixes(mi, k), 100_000 * mi + k, rows)
+            won = not rec["lost"]
+            scores.append(float(rec["fights"][-1]) if won else 0.0)
+            counts["losses"] += not won
+    finally:
+        cs.run_fight = real_run
     return (cell[:4], mi, k0), scores, counts
 
 
@@ -511,14 +574,33 @@ if __name__ == "__main__":
     ap.add_argument("--variants", default="all", choices=("all", "danger", "fill"), help="which tests")
     ap.add_argument("--csv", help="write every cell here")
     ap.add_argument("--pct", action="store_true", help="score Health left as a share of max Health (before 2026-10-21)")
+    ap.add_argument("--day", action="store_true", help="each sample is a whole day (two fights, day_sim)")
+    ap.add_argument("--extra", type=int, default=0, help="extra standard attackers in every encounter")
     a = ap.parse_args()
     PCT[0] = a.pct
     MIXES[:] = SETS[a.set]  # the Pool's workers fork after this
     SET_NAME[0] = a.set
+    DAY[0], EXTRA[0] = a.day, a.extra
+    if a.extra:
+        MIXES[:] = [(m, plus_slots(enc, a.extra)) for m, enc in MIXES]
+        SET_NAME[0] += f" +{a.extra} Slots"
+    if a.day:
+        # day_sim plays named encounters: register these under their own
+        # names and make them the day's mixes.
+        if any(not isinstance(x, str) for _, enc in MIXES for x in enc):
+            sys.exit("--day takes named encounters only (not chief/ogre)")
+        keys = []
+        for m, enc in MIXES:
+            se.ENCOUNTERS[1][f"{m} (test)"] = list(enc)
+            keys.append(f"{m} (test)")
+        se.CURRENT_MIXES = tuple(keys)
+        SET_NAME[0] += ", whole days"
+        if any(mult != 1 for mult in (a.m or [])):
+            sys.exit("--day plays enemies as built (-m 1)")
     for kv in a.s:
         k, v = kv.split("=", 1)
         setattr(T, k, ast.literal_eval(v))  # the Pool's workers fork after this
-    mults = a.m or [1.75, 1.0]
+    mults = a.m or ([1.0] if a.day else [1.75, 1.0])
     want = lambda v: (not a.e or v[1] in a.e) and (not a.t or any(t in v[0] for t in a.t))
     vlist = [v for v in {"all": variants, "danger": danger_variants, "fill": fill_variants}[a.variants]()
              if want(v)]

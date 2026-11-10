@@ -5150,3 +5150,23 @@ same encounter, 250 fights a cell:
 
 Each Slot adds about half the fight again in length and roughly doubles
 how often someone goes Down.
+
+**effect_check over whole days** (designer, 2026-11-10: test effects
+against a full adventuring day, with extra Slots as the lever).
+`tools/effect_check.py --day --extra N`: every sample is day_sim's day
+(the mix's encounter, then `day_mixes`' second, care between), each
+encounter with N more standard attackers from its own list, scored on
+the party's Health left after the second fight (0 if either is lost);
+counts add up both fights. Off, the tool is byte-identical. The test
+party's days (60 a mix, the base cell):
+
+| Extra Slots | Days lost | Health left after fight 2 | Rounds a day | One PC's +1 Health |
+|---|---|---|---|---|
+| 0 | 0.4% | 31.7 | 8.0 | 0.97 |
+| 1 | 13% | 21.9 | 12.2 | 0.89 |
+| 2 | 49% | 9.7 | 15.5 | 0.63 |
+| 3 | 87% | 2.3 | 14.4 | 0.14 |
+
++1 Slot is the margin: one day in eight lost, and the Health ladder
+still reads cleanly. +2 loses half the days; past that the party mostly
+just loses.
