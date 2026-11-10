@@ -1,0 +1,329 @@
+party,mult,mix,test,carrier,applied,tabel,exposure,value,se,mechanism
+A,1.0,all,"crippled 1, first hit",Hilde,1.964,2.946,0.272,0.331,0.113,"0.27 enemy attack points, 0.26 stack-turns"
+A,1.0,all,"crippled 1, first hit",Browndog,1.899,2.849,0.413,0.227,0.107,"0.41 enemy attack points, 0.40 stack-turns"
+A,1.0,all,"crippled 1, first hit",Carrick,1.92,2.881,0.372,0.492,0.139,"0.37 enemy attack points, 0.37 stack-turns"
+A,1.0,all,"crippled 1, first hit",Sable,1.978,2.967,0.255,0.138,0.12,"0.25 enemy attack points, 0.28 stack-turns"
+A,1.0,all,"crippled 2, first hit",Hilde,1.964,8.838,0.878,0.866,0.176,"0.88 enemy attack points, 0.86 stack-turns"
+A,1.0,all,"crippled 2, first hit",Browndog,1.899,8.548,1.336,0.581,0.184,"1.34 enemy attack points, 1.33 stack-turns"
+A,1.0,all,"crippled 2, first hit",Carrick,1.921,8.647,1.199,1.406,0.226,"1.20 enemy attack points, 1.22 stack-turns"
+A,1.0,all,"crippled 2, first hit",Sable,1.98,8.908,0.746,0.923,0.225,"0.75 enemy attack points, 0.86 stack-turns"
+A,1.0,all,"crippled 4, first hit",Hilde,1.965,29.475,2.424,2.112,0.28,"2.42 enemy attack points, 2.42 stack-turns"
+A,1.0,all,"crippled 4, first hit",Browndog,1.901,28.508,3.775,2.123,0.309,"3.77 enemy attack points, 3.82 stack-turns"
+A,1.0,all,"crippled 4, first hit",Carrick,1.921,28.822,3.284,2.874,0.336,"3.28 enemy attack points, 3.39 stack-turns"
+A,1.0,all,"crippled 4, first hit",Sable,1.979,29.685,1.782,2.034,0.336,"1.78 enemy attack points, 2.08 stack-turns"
+A,1.0,all,"crippled 1, every hit",Hilde,6.695,10.043,1.434,1.086,0.21,"1.43 enemy attack points, 1.43 stack-turns"
+A,1.0,all,"crippled 1, every hit",Browndog,5.909,8.863,1.718,0.857,0.221,"1.72 enemy attack points, 1.71 stack-turns"
+A,1.0,all,"crippled 1, every hit",Carrick,6.627,9.941,1.941,1.483,0.245,"1.94 enemy attack points, 2.03 stack-turns"
+A,1.0,all,"crippled 1, every hit",Sable,10.531,15.797,2.635,2.134,0.314,"2.63 enemy attack points, 2.80 stack-turns"
+A,1.0,all,"slowed 1, first hit",Hilde,1.964,2.16,0.282,0.127,0.235,"0.26 stack-turns; enemy attacks +0.01, carrier attacked +0.02"
+A,1.0,all,"slowed 1, first hit",Browndog,1.901,2.091,0.432,-0.299,0.318,"0.39 stack-turns; enemy attacks +0.09, carrier attacked +0.06"
+A,1.0,all,"slowed 1, first hit",Carrick,1.924,2.116,0.404,0.007,0.317,"0.37 stack-turns; enemy attacks +0.06, carrier attacked +0.00"
+A,1.0,all,"slowed 1, first hit",Sable,1.98,2.177,0.302,0.572,0.288,"0.27 stack-turns; enemy attacks -0.08, carrier attacked -0.02"
+A,1.0,all,"slowed 2, first hit",Hilde,1.964,6.48,0.917,0.054,0.39,"0.83 stack-turns; enemy attacks +0.01, carrier attacked -0.03"
+A,1.0,all,"slowed 2, first hit",Browndog,1.901,6.273,1.403,-0.336,0.484,"1.28 stack-turns; enemy attacks -0.01, carrier attacked +0.03"
+A,1.0,all,"slowed 2, first hit",Carrick,1.928,6.362,1.301,0.585,0.459,"1.18 stack-turns; enemy attacks -0.12, carrier attacked -0.05"
+A,1.0,all,"slowed 2, first hit",Sable,1.981,6.537,0.942,2.726,0.495,"0.86 stack-turns; enemy attacks -0.43, carrier attacked -0.07"
+A,1.0,all,"slowed 4, first hit",Hilde,1.963,21.593,2.19,1.089,0.459,"1.99 stack-turns; enemy attacks -0.26, carrier attacked -0.07"
+A,1.0,all,"slowed 4, first hit",Browndog,1.902,20.922,3.579,1.37,0.537,"3.25 stack-turns; enemy attacks -0.34, carrier attacked -0.11"
+A,1.0,all,"slowed 4, first hit",Carrick,1.924,21.169,3.638,3.019,0.638,"3.31 stack-turns; enemy attacks -0.68, carrier attacked -0.15"
+A,1.0,all,"slowed 4, first hit",Sable,1.982,21.797,3.008,4.774,0.627,"2.73 stack-turns; enemy attacks -0.86, carrier attacked -0.11"
+A,1.0,all,"slowed 1, every hit",Hilde,6.747,7.421,1.591,0.32,0.458,"1.45 stack-turns; enemy attacks -0.07, carrier attacked -0.09"
+A,1.0,all,"slowed 1, every hit",Browndog,5.812,6.394,1.782,0.197,0.48,"1.62 stack-turns; enemy attacks -0.05, carrier attacked -0.03"
+A,1.0,all,"slowed 1, every hit",Carrick,6.672,7.339,2.225,0.327,0.567,"2.02 stack-turns; enemy attacks +0.01, carrier attacked -0.04"
+A,1.0,all,"slowed 1, every hit",Sable,10.313,11.345,2.863,2.143,0.536,"2.60 stack-turns; enemy attacks -0.48, carrier attacked -0.06"
+A,1.0,all,"harried 1, first hit",Hilde,1.966,1.966,1.186,0.86,0.379,1.19 party attack points
+A,1.0,all,"harried 1, first hit",Browndog,1.897,1.897,1.275,0.68,0.378,1.28 party attack points
+A,1.0,all,"harried 1, first hit",Carrick,1.923,1.923,1.605,0.925,0.422,1.61 party attack points
+A,1.0,all,"harried 1, first hit",Sable,1.979,1.979,0.866,0.601,0.336,0.87 party attack points
+A,1.0,all,"harried 2, first hit",Hilde,1.963,3.926,2.153,1.588,0.446,2.15 party attack points
+A,1.0,all,"harried 2, first hit",Browndog,1.898,3.796,2.306,1.442,0.46,2.31 party attack points
+A,1.0,all,"harried 2, first hit",Carrick,1.928,3.856,3.088,1.665,0.472,3.09 party attack points
+A,1.0,all,"harried 2, first hit",Sable,1.98,3.959,1.626,0.975,0.384,1.63 party attack points
+A,1.0,all,"harried 4, first hit",Hilde,1.962,7.85,4.07,2.935,0.537,4.07 party attack points
+A,1.0,all,"harried 4, first hit",Browndog,1.902,7.608,4.328,2.735,0.566,4.33 party attack points
+A,1.0,all,"harried 4, first hit",Carrick,1.931,7.724,5.814,3.121,0.572,5.81 party attack points
+A,1.0,all,"harried 4, first hit",Sable,1.98,7.92,3.266,2.427,0.478,3.27 party attack points
+A,1.0,all,"harried 1, every hit",Hilde,6.688,6.688,4.154,2.338,0.512,4.15 party attack points
+A,1.0,all,"harried 1, every hit",Browndog,5.814,5.814,3.501,1.152,0.522,3.50 party attack points
+A,1.0,all,"harried 1, every hit",Carrick,6.578,6.578,4.657,1.327,0.588,4.66 party attack points
+A,1.0,all,"harried 1, every hit",Sable,10.441,10.441,5.152,2.529,0.545,5.15 party attack points
+A,1.0,all,"taunt 1, first hit",Hilde,1.962,4.317,-0.111,0.027,0.339,"-0.05 Taunted stack-turns; enemy attacks +0.01, carrier attacked +0.04"
+A,1.0,all,"taunt 1, first hit",Browndog,1.899,4.178,1.918,0.429,0.222,"+0.87 Taunted stack-turns; enemy attacks -0.01, carrier attacked +0.10"
+A,1.0,all,"taunt 1, first hit",Carrick,1.921,4.226,-0.579,-0.222,0.547,"-0.26 Taunted stack-turns; enemy attacks -0.03, carrier attacked +0.27"
+A,1.0,all,"taunt 1, first hit",Sable,1.98,4.355,0.822,-0.488,0.47,"+0.37 Taunted stack-turns; enemy attacks +0.18, carrier attacked +0.13"
+A,1.0,all,"taunt 2, first hit",Hilde,1.963,8.637,1.004,-0.12,0.363,"+0.46 Taunted stack-turns; enemy attacks +0.02, carrier attacked +0.06"
+A,1.0,all,"taunt 2, first hit",Browndog,1.897,8.345,4.382,0.841,0.256,"+1.99 Taunted stack-turns; enemy attacks -0.04, carrier attacked +0.20"
+A,1.0,all,"taunt 2, first hit",Carrick,1.925,8.47,0.727,-0.365,0.625,"+0.33 Taunted stack-turns; enemy attacks -0.11, carrier attacked +0.49"
+A,1.0,all,"taunt 2, first hit",Sable,1.978,8.705,2.43,-0.544,0.595,"+1.10 Taunted stack-turns; enemy attacks +0.23, carrier attacked +0.22"
+A,1.0,all,"taunt 4, first hit",Hilde,1.962,17.27,4.176,0.181,0.396,"+1.90 Taunted stack-turns; enemy attacks -0.05, carrier attacked +0.07"
+A,1.0,all,"taunt 4, first hit",Browndog,1.899,16.716,9.914,0.894,0.318,"+4.51 Taunted stack-turns; enemy attacks -0.06, carrier attacked +0.29"
+A,1.0,all,"taunt 4, first hit",Carrick,1.921,16.905,5.341,-0.823,0.639,"+2.43 Taunted stack-turns; enemy attacks -0.19, carrier attacked +0.58"
+A,1.0,all,"taunt 4, first hit",Sable,1.978,17.402,5.936,-0.411,0.612,"+2.70 Taunted stack-turns; enemy attacks +0.21, carrier attacked +0.25"
+A,1.0,all,"taunt 1, every hit",Hilde,6.526,14.356,-2.633,-0.186,0.548,"-1.20 Taunted stack-turns; enemy attacks +0.00, carrier attacked +0.59"
+A,1.0,all,"taunt 1, every hit",Browndog,5.792,12.741,6.506,1.517,0.383,"+2.96 Taunted stack-turns; enemy attacks -0.09, carrier attacked +0.44"
+A,1.0,all,"taunt 1, every hit",Carrick,6.314,13.891,-2.067,-3.733,0.755,"-0.94 Taunted stack-turns; enemy attacks +0.00, carrier attacked +1.13"
+A,1.0,all,"taunt 1, every hit",Sable,9.662,21.255,0.932,-6.734,0.791,"+0.42 Taunted stack-turns; enemy attacks +0.56, carrier attacked +1.09"
+A,1.0,all,"fright 1, first hit",Hilde,1.965,4.323,0.568,-0.513,0.314,"0.26 stack-turns, 0.00 Bad Luck flips; enemy attacks +0.06, carrier attacked -0.14"
+A,1.0,all,"fright 1, first hit",Browndog,1.906,4.193,0.879,-2.028,0.45,"0.40 stack-turns, 0.01 Bad Luck flips; enemy attacks +0.23, carrier attacked -0.31"
+A,1.0,all,"fright 1, first hit",Carrick,1.922,4.228,0.812,-0.102,0.258,"0.37 stack-turns, 0.02 Bad Luck flips; enemy attacks +0.02, carrier attacked -0.03"
+A,1.0,all,"fright 1, first hit",Sable,1.98,4.357,0.608,0.34,0.279,"0.28 stack-turns, 0.01 Bad Luck flips; enemy attacks -0.06, carrier attacked -0.04"
+A,1.0,all,"fright 2, first hit",Hilde,1.964,8.644,1.859,0.075,0.415,"0.84 stack-turns, 0.00 Bad Luck flips; enemy attacks -0.03, carrier attacked -0.25"
+A,1.0,all,"fright 2, first hit",Browndog,1.904,8.38,2.895,-3.057,0.554,"1.32 stack-turns, 0.04 Bad Luck flips; enemy attacks +0.22, carrier attacked -0.48"
+A,1.0,all,"fright 2, first hit",Carrick,1.923,8.461,2.684,-0.281,0.286,"1.22 stack-turns, 0.02 Bad Luck flips; enemy attacks -0.00, carrier attacked -0.07"
+A,1.0,all,"fright 2, first hit",Sable,1.98,8.714,1.89,0.374,0.279,"0.86 stack-turns, 0.01 Bad Luck flips; enemy attacks -0.07, carrier attacked -0.04"
+A,1.0,all,"fright 4, first hit",Hilde,1.964,17.288,5.127,0.175,0.411,"2.33 stack-turns, 0.00 Bad Luck flips; enemy attacks -0.05, carrier attacked -0.31"
+A,1.0,all,"fright 4, first hit",Browndog,1.906,16.773,8.037,-2.785,0.564,"3.65 stack-turns, 0.13 Bad Luck flips; enemy attacks +0.19, carrier attacked -0.48"
+A,1.0,all,"fright 4, first hit",Carrick,1.922,16.918,7.421,-0.56,0.31,"3.37 stack-turns, 0.02 Bad Luck flips; enemy attacks +0.04, carrier attacked -0.07"
+A,1.0,all,"fright 4, first hit",Sable,1.98,17.428,4.632,0.388,0.277,"2.11 stack-turns, 0.01 Bad Luck flips; enemy attacks -0.08, carrier attacked -0.04"
+A,1.0,all,"fright 1, every hit",Hilde,6.79,14.938,3.192,0.252,0.44,"1.45 stack-turns, 0.01 Bad Luck flips; enemy attacks -0.09, carrier attacked -0.58"
+A,1.0,all,"fright 1, every hit",Browndog,6.069,13.353,3.929,-4.847,0.645,"1.79 stack-turns, 0.13 Bad Luck flips; enemy attacks +0.45, carrier attacked -1.04"
+A,1.0,all,"fright 1, every hit",Carrick,6.721,14.786,4.591,0.054,0.366,"2.09 stack-turns, 0.04 Bad Luck flips; enemy attacks +0.03, carrier attacked -0.18"
+A,1.0,all,"fright 1, every hit",Sable,10.655,23.441,6.326,1.497,0.359,"2.88 stack-turns, 0.09 Bad Luck flips; enemy attacks -0.20, carrier attacked -0.14"
+A,1.0,all,"badluck 1, first hit",Hilde,1.964,4.321,0.945,1.207,0.485,0.43 Bad Luck flips
+A,1.0,all,"badluck 1, first hit",Browndog,1.905,4.192,1.459,0.578,0.566,0.66 Bad Luck flips
+A,1.0,all,"badluck 1, first hit",Carrick,1.925,4.236,1.349,2.007,0.523,0.61 Bad Luck flips
+A,1.0,all,"badluck 1, first hit",Sable,1.98,4.356,0.982,2.112,0.524,0.45 Bad Luck flips
+A,1.0,all,"badluck 2, first hit",Hilde,1.964,8.639,1.491,1.311,0.468,0.68 Bad Luck flips
+A,1.0,all,"badluck 2, first hit",Browndog,1.903,8.375,2.411,0.88,0.569,1.10 Bad Luck flips
+A,1.0,all,"badluck 2, first hit",Carrick,1.925,8.472,2.14,2.438,0.522,0.97 Bad Luck flips
+A,1.0,all,"badluck 2, first hit",Sable,1.98,8.71,1.177,2.0,0.531,0.54 Bad Luck flips
+A,1.0,all,"badluck 4, first hit",Hilde,1.965,17.292,1.956,1.848,0.449,0.89 Bad Luck flips
+A,1.0,all,"badluck 4, first hit",Browndog,1.903,16.746,3.312,1.524,0.567,1.51 Bad Luck flips
+A,1.0,all,"badluck 4, first hit",Carrick,1.924,16.931,2.82,2.93,0.537,1.28 Bad Luck flips
+A,1.0,all,"badluck 4, first hit",Sable,1.98,17.424,1.276,2.118,0.529,0.58 Bad Luck flips
+A,1.0,all,"badluck 1, every hit",Hilde,6.787,14.931,4.602,3.649,0.64,2.09 Bad Luck flips
+A,1.0,all,"badluck 1, every hit",Browndog,5.988,13.174,5.858,3.003,0.652,2.66 Bad Luck flips
+A,1.0,all,"badluck 1, every hit",Carrick,6.654,14.639,5.972,5.06,0.686,2.71 Bad Luck flips
+A,1.0,all,"badluck 1, every hit",Sable,10.567,23.248,7.567,8.462,0.732,3.44 Bad Luck flips
+A,1.0,all,"push 1, first hit",Hilde,1.136,1.015,,-3.874,0.559,"enemy attacks +0.73, carrier attacked +0.16"
+A,1.0,all,"push 1, first hit",Browndog,1.252,1.119,,-1.325,0.415,"enemy attacks +0.28, carrier attacked +0.17"
+A,1.0,all,"push 1, first hit",Carrick,1.46,1.305,,-0.297,0.466,"enemy attacks +0.09, carrier attacked +0.05"
+A,1.0,all,"push 1, first hit",Sable,1.317,1.177,,-0.129,0.497,"enemy attacks +0.05, carrier attacked +0.05"
+A,1.0,all,"push 2, first hit",Hilde,1.138,2.034,,-5.691,0.828,"enemy attacks +1.37, carrier attacked +0.27"
+A,1.0,all,"push 2, first hit",Browndog,1.244,2.224,,-0.993,0.692,"enemy attacks +0.44, carrier attacked +0.36"
+A,1.0,all,"push 2, first hit",Carrick,1.466,2.62,,0.12,0.701,"enemy attacks +0.11, carrier attacked +0.02"
+A,1.0,all,"push 2, first hit",Sable,1.318,2.355,,0.052,0.602,"enemy attacks -0.04, carrier attacked +0.02"
+A,1.0,all,"push 4, first hit",Hilde,1.137,4.063,,-6.056,0.866,"enemy attacks +1.46, carrier attacked +0.30"
+A,1.0,all,"push 4, first hit",Browndog,1.246,4.456,,-1.436,0.738,"enemy attacks +0.57, carrier attacked +0.45"
+A,1.0,all,"push 4, first hit",Carrick,1.469,5.252,,-1.032,0.846,"enemy attacks +0.36, carrier attacked +0.06"
+A,1.0,all,"push 4, first hit",Sable,1.319,4.714,,1.202,0.671,"enemy attacks -0.17, carrier attacked -0.01"
+A,1.0,all,"push 1, every hit",Hilde,4.067,3.635,,-4.094,0.63,"enemy attacks +0.84, carrier attacked +0.21"
+A,1.0,all,"push 1, every hit",Browndog,4.152,3.711,,-1.27,0.497,"enemy attacks +0.30, carrier attacked +0.15"
+A,1.0,all,"push 1, every hit",Carrick,5.156,4.608,,-0.907,0.585,"enemy attacks +0.25, carrier attacked +0.06"
+A,1.0,all,"push 1, every hit",Sable,6.692,5.981,,-0.132,0.628,"enemy attacks +0.09, carrier attacked -0.03"
+A,1.0,all,"pushmay 1, first hit",Hilde,0.515,0.461,,-2.461,0.437,"enemy attacks +0.46, carrier attacked +0.05"
+A,1.0,all,"pushmay 1, first hit",Browndog,0.555,0.496,,-0.737,0.335,"enemy attacks +0.18, carrier attacked +0.10"
+A,1.0,all,"pushmay 1, first hit",Carrick,0.635,0.567,,-0.091,0.286,"enemy attacks +0.03, carrier attacked +0.02"
+A,1.0,all,"pushmay 1, first hit",Sable,1.014,0.906,,-0.465,0.465,"enemy attacks +0.05, carrier attacked +0.06"
+A,1.0,all,"pushmay 2, first hit",Hilde,0.515,0.921,,-3.202,0.591,"enemy attacks +0.65, carrier attacked +0.10"
+A,1.0,all,"pushmay 2, first hit",Browndog,0.558,0.998,,-0.22,0.482,"enemy attacks +0.18, carrier attacked +0.17"
+A,1.0,all,"pushmay 2, first hit",Carrick,0.631,1.128,,0.023,0.452,"enemy attacks -0.04, carrier attacked +0.02"
+A,1.0,all,"pushmay 2, first hit",Sable,1.011,1.807,,-0.184,0.554,"enemy attacks -0.05, carrier attacked +0.03"
+A,1.0,all,"pushmay 4, first hit",Hilde,0.515,1.843,,-3.105,0.614,"enemy attacks +0.67, carrier attacked +0.12"
+A,1.0,all,"pushmay 4, first hit",Browndog,0.557,1.993,,-0.143,0.503,"enemy attacks +0.19, carrier attacked +0.16"
+A,1.0,all,"pushmay 4, first hit",Carrick,0.629,2.25,,-0.066,0.556,"enemy attacks -0.00, carrier attacked -0.02"
+A,1.0,all,"pushmay 4, first hit",Sable,1.012,3.618,,0.705,0.602,"enemy attacks -0.18, carrier attacked +0.00"
+A,1.0,all,"pushmay 1, every hit",Hilde,2.254,2.015,,-2.565,0.518,"enemy attacks +0.55, carrier attacked +0.10"
+A,1.0,all,"pushmay 1, every hit",Browndog,2.275,2.033,,-0.68,0.384,"enemy attacks +0.20, carrier attacked +0.08"
+A,1.0,all,"pushmay 1, every hit",Carrick,2.982,2.665,,-0.365,0.434,"enemy attacks +0.13, carrier attacked +0.02"
+A,1.0,all,"pushmay 1, every hit",Sable,5.766,5.153,,0.136,0.559,"enemy attacks +0.04, carrier attacked -0.01"
+A,1.0,all,"stagger 1, first hit",Hilde,1.145,1.545,,0.445,0.384,"enemy attacks -0.15, carrier attacked -0.05"
+A,1.0,all,"stagger 1, first hit",Browndog,1.258,1.699,,0.168,0.466,"enemy attacks -0.18, carrier attacked -0.18"
+A,1.0,all,"stagger 1, first hit",Carrick,1.453,1.962,,0.261,0.5,"enemy attacks -0.17, carrier attacked -0.03"
+A,1.0,all,"stagger 1, first hit",Sable,1.317,1.778,,0.27,0.464,"enemy attacks -0.04, carrier attacked -0.00"
+A,1.0,all,"stagger 2, first hit",Hilde,1.146,3.094,,1.046,0.436,"enemy attacks -0.34, carrier attacked -0.11"
+A,1.0,all,"stagger 2, first hit",Browndog,1.252,3.379,,1.148,0.522,"enemy attacks -0.34, carrier attacked -0.27"
+A,1.0,all,"stagger 2, first hit",Carrick,1.457,3.933,,1.395,0.548,"enemy attacks -0.50, carrier attacked -0.10"
+A,1.0,all,"stagger 2, first hit",Sable,1.32,3.564,,1.34,0.532,"enemy attacks -0.23, carrier attacked -0.01"
+A,1.0,all,"stagger 4, first hit",Hilde,1.149,6.202,,2.137,0.467,"enemy attacks -0.53, carrier attacked -0.13"
+A,1.0,all,"stagger 4, first hit",Browndog,1.249,6.745,,1.608,0.56,"enemy attacks -0.57, carrier attacked -0.42"
+A,1.0,all,"stagger 4, first hit",Carrick,1.458,7.876,,2.195,0.588,"enemy attacks -0.58, carrier attacked -0.12"
+A,1.0,all,"stagger 4, first hit",Sable,1.321,7.131,,2.009,0.573,"enemy attacks -0.38, carrier attacked -0.04"
+A,1.0,all,"stagger 1, every hit",Hilde,4.147,5.598,,2.211,0.635,"enemy attacks -0.83, carrier attacked -0.37"
+A,1.0,all,"stagger 1, every hit",Browndog,4.151,5.604,,2.254,0.654,"enemy attacks -0.87, carrier attacked -0.57"
+A,1.0,all,"stagger 1, every hit",Carrick,5.099,6.883,,4.43,0.733,"enemy attacks -1.03, carrier attacked -0.17"
+A,1.0,all,"stagger 1, every hit",Sable,6.446,8.702,,5.019,0.756,"enemy attacks -1.27, carrier attacked -0.12"
+A,1.0,all,"necrotic 1, first hit",Hilde,1.966,5.898,0.648,0.497,0.209,"0.22 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, first hit",Browndog,1.9,5.7,0.634,0.088,0.279,"0.21 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, first hit",Carrick,1.92,5.761,1.069,1.17,0.327,"0.36 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, first hit",Sable,1.978,5.934,0.919,0.978,0.294,"0.31 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 2, first hit",Hilde,1.966,11.793,0.904,0.499,0.213,"0.30 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 2, first hit",Browndog,1.899,11.397,0.879,0.156,0.3,"0.29 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 2, first hit",Carrick,1.919,11.514,1.443,1.152,0.325,"0.48 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 2, first hit",Sable,1.978,11.868,1.123,1.177,0.317,"0.37 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4, first hit",Hilde,1.966,23.592,1.278,0.542,0.224,"0.43 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4, first hit",Browndog,1.899,22.788,1.199,0.259,0.303,"0.40 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4, first hit",Carrick,1.919,23.034,1.918,1.238,0.347,"0.64 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4, first hit",Sable,1.978,23.736,1.456,1.408,0.315,"0.49 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, every hit",Hilde,6.702,20.105,1.778,1.173,0.324,"0.59 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, every hit",Browndog,5.824,17.473,1.468,0.284,0.335,"0.49 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, every hit",Carrick,6.58,19.741,2.325,1.635,0.41,"0.78 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, every hit",Sable,10.395,31.184,2.679,1.973,0.398,"0.89 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"bleeding 1, first hit",Hilde,1.966,7.862,9.658,0.633,0.251,2.41 Health loss landed
+A,1.0,all,"bleeding 1, first hit",Browndog,1.901,7.604,10.232,-0.177,0.264,2.56 Health loss landed
+A,1.0,all,"bleeding 1, first hit",Carrick,1.921,7.686,9.9,0.687,0.283,2.48 Health loss landed
+A,1.0,all,"bleeding 1, first hit",Sable,1.978,7.914,9.794,0.127,0.228,2.45 Health loss landed
+A,1.0,all,"bleeding 2, first hit",Hilde,1.965,15.72,10.622,0.9,0.33,2.66 Health loss landed
+A,1.0,all,"bleeding 2, first hit",Browndog,1.898,15.188,11.676,0.88,0.402,2.92 Health loss landed
+A,1.0,all,"bleeding 2, first hit",Carrick,1.923,15.388,11.138,1.551,0.419,2.78 Health loss landed
+A,1.0,all,"bleeding 2, first hit",Sable,1.978,15.828,9.946,1.071,0.349,2.49 Health loss landed
+A,1.0,all,"bleeding 4, first hit",Hilde,1.964,21.604,12.624,1.744,0.382,3.16 Health loss landed
+A,1.0,all,"bleeding 4, first hit",Browndog,1.899,20.889,14.596,1.819,0.502,3.65 Health loss landed
+A,1.0,all,"bleeding 4, first hit",Carrick,1.925,21.175,13.846,2.309,0.497,3.46 Health loss landed
+A,1.0,all,"bleeding 4, first hit",Sable,1.978,21.758,11.868,2.279,0.443,2.97 Health loss landed
+A,1.0,all,"bleeding 1, every hit",Hilde,6.624,26.496,13.594,1.542,0.468,3.40 Health loss landed
+A,1.0,all,"bleeding 1, every hit",Browndog,5.759,23.036,14.272,1.209,0.48,3.57 Health loss landed
+A,1.0,all,"bleeding 1, every hit",Carrick,6.579,26.314,14.702,2.397,0.526,3.68 Health loss landed
+A,1.0,all,"bleeding 1, every hit",Sable,10.212,40.846,16.776,1.452,0.51,4.19 Health loss landed
+A,1.0,all,"push 3, every hit",Hilde,3.74,10.029,,-6.688,0.926,"enemy attacks +2.03, carrier attacked +0.16"
+A,1.0,all,"push 3, every hit",Browndog,4.053,10.867,,-2.45,0.826,"enemy attacks +0.85, carrier attacked +0.54"
+A,1.0,all,"push 3, every hit",Carrick,5.067,13.586,,-0.501,0.844,"enemy attacks +0.40, carrier attacked +0.10"
+A,1.0,all,"push 3, every hit",Sable,6.732,18.05,,0.669,0.854,"enemy attacks -0.04, carrier attacked -0.06"
+A,1.0,all,"pushmay 3, every hit",Hilde,2.084,5.589,,-4.164,0.768,"enemy attacks +1.13, carrier attacked +0.12"
+A,1.0,all,"pushmay 3, every hit",Browndog,2.209,5.924,,-0.885,0.667,"enemy attacks +0.43, carrier attacked +0.29"
+A,1.0,all,"pushmay 3, every hit",Carrick,2.853,7.651,,-0.44,0.698,"enemy attacks +0.22, carrier attacked +0.06"
+A,1.0,all,"pushmay 3, every hit",Sable,5.792,15.528,,0.93,0.816,"enemy attacks -0.06, carrier attacked -0.04"
+A,1.0,all,"protected 1, first turn",Hilde,1.994,5.983,3.13,3.012,0.465,0.78 absorbed
+A,1.0,all,"protected 1, first turn",Browndog,1.972,5.916,-1.24,-1.336,0.522,-0.31 absorbed
+A,1.0,all,"protected 1, first turn",Carrick,1.992,5.976,1.482,1.604,0.325,0.37 absorbed
+A,1.0,all,"protected 1, first turn",Sable,1.994,5.981,2.214,2.735,0.324,0.55 absorbed
+A,1.0,all,"protected 2, first turn",Hilde,1.995,11.97,6.902,6.512,0.544,1.73 absorbed
+A,1.0,all,"protected 2, first turn",Browndog,1.976,11.853,0.898,1.173,0.458,0.22 absorbed
+A,1.0,all,"protected 2, first turn",Carrick,1.992,11.955,3.652,3.525,0.435,0.91 absorbed
+A,1.0,all,"protected 2, first turn",Sable,1.995,11.97,4.728,5.266,0.473,1.18 absorbed
+A,1.0,all,"protected 4, first turn",Hilde,1.996,23.952,13.814,11.426,0.639,3.45 absorbed
+A,1.0,all,"protected 4, first turn",Browndog,1.978,23.742,5.64,5.378,0.476,1.41 absorbed
+A,1.0,all,"protected 4, first turn",Carrick,1.994,23.934,7.996,6.688,0.507,2.00 absorbed
+A,1.0,all,"protected 4, first turn",Sable,1.998,23.97,9.452,9.714,0.59,2.36 absorbed
+A,1.0,all,"protected 1, every turn",Hilde,10.248,30.744,11.254,9.939,0.598,2.81 absorbed
+A,1.0,all,"protected 1, every turn",Browndog,10.559,31.675,0.618,1.472,0.458,0.15 absorbed
+A,1.0,all,"protected 1, every turn",Carrick,10.322,30.968,4.366,5.237,0.425,1.09 absorbed
+A,1.0,all,"protected 1, every turn",Sable,10.983,32.95,4.012,5.185,0.436,1.00 absorbed
+A,1.0,all,"hasted 1, first turn",Hilde,1.99,1.095,,-1.288,0.612,"enemy attacks +0.34, carrier attacked +0.03"
+A,1.0,all,"hasted 1, first turn",Browndog,1.976,1.087,,0.025,0.377,"enemy attacks +0.02, carrier attacked -0.00"
+A,1.0,all,"hasted 1, first turn",Carrick,1.992,1.095,,0.95,0.422,"enemy attacks -0.18, carrier attacked -0.05"
+A,1.0,all,"hasted 1, first turn",Sable,1.992,1.096,,-0.225,0.431,"enemy attacks +0.04, carrier attacked +0.01"
+A,1.0,all,"hasted 2, first turn",Hilde,1.992,3.287,,-1.379,0.77,"enemy attacks +0.52, carrier attacked +0.04"
+A,1.0,all,"hasted 2, first turn",Browndog,1.974,3.257,,0.472,0.529,"enemy attacks -0.07, carrier attacked -0.05"
+A,1.0,all,"hasted 2, first turn",Carrick,1.99,3.283,,1.805,0.561,"enemy attacks -0.31, carrier attacked -0.11"
+A,1.0,all,"hasted 2, first turn",Sable,1.99,3.283,,-0.265,0.458,"enemy attacks -0.00, carrier attacked +0.01"
+A,1.0,all,"hasted 4, first turn",Hilde,1.99,10.945,,0.379,0.865,"enemy attacks +0.02, carrier attacked +0.04"
+A,1.0,all,"hasted 4, first turn",Browndog,1.972,10.846,,1.32,0.59,"enemy attacks -0.30, carrier attacked -0.12"
+A,1.0,all,"hasted 4, first turn",Carrick,1.99,10.942,,1.687,0.667,"enemy attacks -0.32, carrier attacked -0.10"
+A,1.0,all,"hasted 4, first turn",Sable,1.992,10.953,,0.077,0.548,"enemy attacks -0.05, carrier attacked -0.07"
+A,1.0,all,"hasted 1, every turn",Hilde,9.205,5.063,,2.327,0.787,"enemy attacks -0.57, carrier attacked -0.09"
+A,1.0,all,"hasted 1, every turn",Browndog,10.133,5.573,,1.39,0.574,"enemy attacks -0.36, carrier attacked -0.24"
+A,1.0,all,"hasted 1, every turn",Carrick,9.965,5.481,,1.204,0.571,"enemy attacks -0.26, carrier attacked -0.06"
+A,1.0,all,"hasted 1, every turn",Sable,10.725,5.899,,-0.29,0.454,"enemy attacks +0.04, carrier attacked +0.02"
+A,1.0,all,"ward_fire 1, first turn",Hilde,1.991,5.416,1.578,1.109,0.195,"0.13 absorbed, 0.26 stopped by its Resist"
+A,1.0,all,"ward_fire 1, first turn",Browndog,1.975,5.372,1.302,0.923,0.165,"0.11 absorbed, 0.22 stopped by its Resist"
+A,1.0,all,"ward_fire 1, first turn",Carrick,1.99,5.413,0.63,0.708,0.138,"0.05 absorbed, 0.10 stopped by its Resist"
+A,1.0,all,"ward_fire 1, first turn",Sable,1.991,5.416,1.416,1.576,0.179,"0.12 absorbed, 0.24 stopped by its Resist"
+A,1.0,all,"ward_fire 2, first turn",Hilde,1.992,10.515,2.09,1.538,0.203,"0.24 absorbed, 0.28 stopped by its Resist"
+A,1.0,all,"ward_fire 2, first turn",Browndog,1.974,10.425,1.672,1.107,0.194,"0.19 absorbed, 0.23 stopped by its Resist"
+A,1.0,all,"ward_fire 2, first turn",Carrick,1.99,10.507,0.792,0.739,0.137,"0.08 absorbed, 0.11 stopped by its Resist"
+A,1.0,all,"ward_fire 2, first turn",Sable,1.991,10.512,1.93,1.989,0.212,"0.24 absorbed, 0.24 stopped by its Resist"
+A,1.0,all,"ward_fire 4, first turn",Hilde,1.992,19.761,2.498,1.853,0.214,"0.31 absorbed, 0.32 stopped by its Resist"
+A,1.0,all,"ward_fire 4, first turn",Browndog,1.975,19.592,2.034,1.413,0.214,"0.24 absorbed, 0.27 stopped by its Resist"
+A,1.0,all,"ward_fire 4, first turn",Carrick,1.99,19.741,0.948,0.853,0.154,"0.11 absorbed, 0.13 stopped by its Resist"
+A,1.0,all,"ward_fire 4, first turn",Sable,1.991,19.751,2.234,2.304,0.218,"0.31 absorbed, 0.25 stopped by its Resist"
+A,1.0,all,"ward_fire 1, every turn",Hilde,9.732,21.464,1.752,1.322,0.201,"0.15 absorbed, 0.29 stopped by its Resist"
+A,1.0,all,"ward_fire 1, every turn",Browndog,10.393,22.787,1.518,1.116,0.183,"0.13 absorbed, 0.25 stopped by its Resist"
+A,1.0,all,"ward_fire 1, every turn",Carrick,9.989,21.979,0.732,0.742,0.139,"0.06 absorbed, 0.12 stopped by its Resist"
+A,1.0,all,"ward_fire 1, every turn",Sable,10.716,23.431,1.506,1.626,0.183,"0.13 absorbed, 0.25 stopped by its Resist"
+A,1.0,all,"ward_shadow 1, first turn",Hilde,1.991,4.699,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 1, first turn",Browndog,1.974,4.66,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 1, first turn",Carrick,1.99,4.696,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 1, first turn",Sable,1.991,4.699,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 2, first turn",Hilde,1.991,9.238,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 2, first turn",Browndog,1.974,9.162,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 2, first turn",Carrick,1.99,9.234,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 2, first turn",Sable,1.991,9.238,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 4, first turn",Hilde,1.991,17.839,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 4, first turn",Browndog,1.974,17.692,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 4, first turn",Carrick,1.99,17.83,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 4, first turn",Sable,1.991,17.839,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 1, every turn",Hilde,9.677,20.354,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 1, every turn",Browndog,10.35,21.7,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 1, every turn",Carrick,9.973,20.945,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"ward_shadow 1, every turn",Sable,10.67,22.34,0.0,0.0,0.0,"0.00 absorbed, 0.00 stopped by its Resist"
+A,1.0,all,"tauntguard 1, first turn",Hilde,1.988,4.373,-1.841,-0.039,0.578,"-0.84 Taunted stack-turns; enemy attacks +0.03, carrier attacked +0.32"
+A,1.0,all,"tauntguard 1, first turn",Browndog,1.976,4.348,2.352,3.445,0.788,"+1.07 Taunted stack-turns; enemy attacks -0.46, carrier attacked +0.32"
+A,1.0,all,"tauntguard 1, first turn",Carrick,1.991,4.38,0.759,-2.769,0.705,"+0.35 Taunted stack-turns; enemy attacks +0.16, carrier attacked +0.63"
+A,1.0,all,"tauntguard 1, first turn",Sable,1.99,4.379,2.81,-5.55,0.775,"+1.28 Taunted stack-turns; enemy attacks +0.88, carrier attacked +0.64"
+A,1.0,all,"tauntguard 2, first turn",Hilde,1.988,8.745,0.381,1.141,0.694,"+0.17 Taunted stack-turns; enemy attacks -0.30, carrier attacked +0.49"
+A,1.0,all,"tauntguard 2, first turn",Browndog,1.976,8.697,4.235,5.822,0.805,"+1.93 Taunted stack-turns; enemy attacks -0.77, carrier attacked +0.57"
+A,1.0,all,"tauntguard 2, first turn",Carrick,1.989,8.752,2.875,-3.035,0.837,"+1.31 Taunted stack-turns; enemy attacks -0.08, carrier attacked +1.02"
+A,1.0,all,"tauntguard 2, first turn",Sable,1.988,8.749,6.614,-6.899,0.981,"+3.01 Taunted stack-turns; enemy attacks +0.87, carrier attacked +0.96"
+A,1.0,all,"tauntguard 4, first turn",Hilde,1.986,17.477,8.012,0.844,0.74,"+3.64 Taunted stack-turns; enemy attacks -0.39, carrier attacked +0.55"
+A,1.0,all,"tauntguard 4, first turn",Browndog,1.978,17.402,11.844,7.051,0.819,"+5.38 Taunted stack-turns; enemy attacks -1.03, carrier attacked +0.77"
+A,1.0,all,"tauntguard 4, first turn",Carrick,1.985,17.468,11.712,-4.928,0.832,"+5.32 Taunted stack-turns; enemy attacks +0.08, carrier attacked +1.38"
+A,1.0,all,"tauntguard 4, first turn",Sable,1.991,17.521,17.595,-11.762,1.038,"+8.00 Taunted stack-turns; enemy attacks +1.58, carrier attacked +1.61"
+A,1.0,all,"tauntguard 1, every turn",Hilde,8.806,19.374,-10.824,-2.626,0.849,"-4.92 Taunted stack-turns; enemy attacks -0.08, carrier attacked +1.69"
+A,1.0,all,"tauntguard 1, every turn",Browndog,9.085,19.988,-1.773,8.8,0.908,"-0.81 Taunted stack-turns; enemy attacks -1.16, carrier attacked +1.02"
+A,1.0,all,"tauntguard 1, every turn",Carrick,8.644,19.017,-8.089,-9.644,0.892,"-3.68 Taunted stack-turns; enemy attacks +0.41, carrier attacked +2.25"
+A,1.0,all,"tauntguard 1, every turn",Sable,9.211,20.264,-4.32,-22.052,1.034,"-1.96 Taunted stack-turns; enemy attacks +3.32, carrier attacked +2.42"
+A,1.0,all,"goodluck 1, first attack",Hilde,1.985,4.764,4.764,3.166,0.905,1.98 Good Luck used
+A,1.0,all,"goodluck 1, first attack",Browndog,1.958,4.699,4.699,3.08,0.879,1.96 Good Luck used
+A,1.0,all,"goodluck 1, first attack",Carrick,1.962,4.71,4.71,2.52,0.86,1.96 Good Luck used
+A,1.0,all,"goodluck 1, first attack",Sable,1.988,4.77,4.77,4.729,0.933,1.99 Good Luck used
+A,1.0,all,"goodluck 2, first attack",Hilde,1.988,7.155,7.155,5.271,0.908,3.98 Good Luck used
+A,1.0,all,"goodluck 2, first attack",Browndog,1.956,7.043,7.043,4.434,0.87,3.91 Good Luck used
+A,1.0,all,"goodluck 2, first attack",Carrick,1.962,7.061,7.061,3.37,0.889,3.92 Good Luck used
+A,1.0,all,"goodluck 2, first attack",Sable,1.99,7.164,7.164,7.197,0.927,3.98 Good Luck used
+A,1.0,all,"goodluck 1, every turn",Hilde,7.751,18.602,18.602,9.628,0.893,7.75 Good Luck used
+A,1.0,all,"goodluck 1, every turn",Browndog,8.905,21.371,21.371,9.809,0.912,8.90 Good Luck used
+A,1.0,all,"goodluck 1, every turn",Carrick,8.92,21.408,21.408,6.087,0.879,8.92 Good Luck used
+A,1.0,all,"goodluck 1, every turn",Sable,9.692,23.262,23.262,11.413,0.913,9.69 Good Luck used
+A,1.0,all,Health +2,Hilde,,8.0,,9.478,0.55,"carrier attacks 9.24, attacked 6.87, hit 3.22; enemy attacks -0.23, carrier attacked +0.19"
+A,1.0,all,Health +2,Browndog,,8.0,,7.505,0.403,"carrier attacks 9.88, attacked 9.49, hit 2.55; enemy attacks +0.04, carrier attacked +0.17"
+A,1.0,all,Health +2,Carrick,,8.0,,7.541,0.434,"carrier attacks 12.04, attacked 3.30, hit 1.76; enemy attacks -0.06, carrier attacked +0.22"
+A,1.0,all,Health +2,Sable,,8.0,,7.891,0.454,"carrier attacks 16.31, attacked 2.49, hit 1.44; enemy attacks -0.14, carrier attacked +0.15"
+A,1.0,all,Shallow Health +1,Hilde,,5.0,,5.219,0.533,"carrier attacks 9.24, attacked 6.87, hit 3.22; enemy attacks -0.33, carrier attacked +0.08"
+A,1.0,all,Shallow Health +1,Browndog,,5.0,,4.359,0.396,"carrier attacks 9.88, attacked 9.49, hit 2.55; enemy attacks -0.09, carrier attacked +0.10"
+A,1.0,all,Shallow Health +1,Carrick,,5.0,,3.747,0.408,"carrier attacks 12.04, attacked 3.30, hit 1.76; enemy attacks -0.09, carrier attacked +0.13"
+A,1.0,all,Shallow Health +1,Sable,,5.0,,3.992,0.372,"carrier attacks 16.31, attacked 2.49, hit 1.44; enemy attacks -0.12, carrier attacked +0.08"
+A,1.0,all,Damage +1,Hilde,,18.473,,6.26,0.765,"carrier attacks 9.24, attacked 6.87, hit 3.22; enemy attacks -1.82, carrier attacked -0.65"
+A,1.0,all,Damage +1,Browndog,,19.763,,7.038,0.793,"carrier attacks 9.88, attacked 9.49, hit 2.55; enemy attacks -1.97, carrier attacked -0.94"
+A,1.0,all,Damage +1,Carrick,,24.082,,6.673,0.821,"carrier attacks 12.04, attacked 3.30, hit 1.76; enemy attacks -1.99, carrier attacked -0.36"
+A,1.0,all,Damage +1,Sable,,32.614,,12.896,0.883,"carrier attacks 16.31, attacked 2.49, hit 1.44; enemy attacks -3.28, carrier attacked -0.32"
+A,1.0,all,Accuracy +1,Hilde,,9.236,,4.833,0.626,"carrier attacks 9.24, attacked 6.87, hit 3.22; enemy attacks -1.14, carrier attacked -0.36"
+A,1.0,all,Accuracy +1,Browndog,,9.882,,3.046,0.607,"carrier attacks 9.88, attacked 9.49, hit 2.55; enemy attacks -0.87, carrier attacked -0.44"
+A,1.0,all,Accuracy +1,Carrick,,12.041,,4.443,0.667,"carrier attacks 12.04, attacked 3.30, hit 1.76; enemy attacks -1.01, carrier attacked -0.20"
+A,1.0,all,Accuracy +1,Sable,,16.307,,6.081,0.744,"carrier attacks 16.31, attacked 2.49, hit 1.44; enemy attacks -1.50, carrier attacked -0.19"
+A,1.0,all,Parry/Dodge +1,Hilde,,6.869,,6.178,0.503,"carrier attacks 9.24, attacked 6.87, hit 3.22; enemy attacks -0.36, carrier attacked +0.12"
+A,1.0,all,Parry/Dodge +1,Browndog,,9.493,,7.212,0.491,"carrier attacks 9.88, attacked 9.49, hit 2.55; enemy attacks -0.03, carrier attacked +0.18"
+A,1.0,all,Parry/Dodge +1,Carrick,,3.298,,3.162,0.326,"carrier attacks 12.04, attacked 3.30, hit 1.76; enemy attacks -0.11, carrier attacked +0.15"
+A,1.0,all,Parry/Dodge +1,Sable,,2.492,,2.67,0.317,"carrier attacks 16.31, attacked 2.49, hit 1.44; enemy attacks -0.13, carrier attacked +0.07"
+A,1.0,all,Physical Resist +1,Hilde,,12.874,,5.348,0.499,"carrier attacks 9.24, attacked 6.87, hit 3.22; enemy attacks -0.12, carrier attacked +0.30"
+A,1.0,all,Physical Resist +1,Browndog,,10.206,,4.956,0.443,"carrier attacks 9.88, attacked 9.49, hit 2.55; enemy attacks +0.07, carrier attacked +0.28"
+A,1.0,all,Physical Resist +1,Carrick,,7.03,,4.3,0.452,"carrier attacks 12.04, attacked 3.30, hit 1.76; enemy attacks -0.21, carrier attacked +0.28"
+A,1.0,all,Physical Resist +1,Sable,,5.758,,3.568,0.445,"carrier attacks 16.31, attacked 2.49, hit 1.44; enemy attacks -0.34, carrier attacked +0.21"
+A,1.0,all,Speed +1,Hilde,,2.54,,0.696,0.72,"carrier attacks 9.24, attacked 6.87, hit 3.22; enemy attacks -0.21, carrier attacked -0.07"
+A,1.0,all,Speed +1,Browndog,,2.54,,1.123,0.484,"carrier attacks 9.88, attacked 9.49, hit 2.55; enemy attacks -0.24, carrier attacked -0.14"
+A,1.0,all,Speed +1,Carrick,,2.54,,1.182,0.51,"carrier attacks 12.04, attacked 3.30, hit 1.76; enemy attacks -0.21, carrier attacked -0.04"
+A,1.0,all,Speed +1,Sable,,2.54,,-0.347,0.451,"carrier attacks 16.31, attacked 2.49, hit 1.44; enemy attacks +0.05, carrier attacked -0.00"
+A,1.0,all,Autoswing,Hilde,,5.5,,1.662,0.937,"carrier attacks 9.24, attacked 6.87, hit 3.22; enemy attacks -0.85, carrier attacked -0.23"
+A,1.0,all,Autoswing,Browndog,,5.5,,4.053,0.869,"carrier attacks 9.88, attacked 9.49, hit 2.55; enemy attacks -0.99, carrier attacked -0.50"
+A,1.0,all,Autoswing,Carrick,,5.5,,1.642,0.851,"carrier attacks 12.04, attacked 3.30, hit 1.76; enemy attacks -0.38, carrier attacked -0.06"
+A,1.0,all,Autoswing,Sable,,5.5,,6.625,0.968,"carrier attacks 16.31, attacked 2.49, hit 1.44; enemy attacks -1.37, carrier attacked -0.21"
+A,1.0,all,"Damage +1, first hit",Hilde,,7.862,,1.674,0.497,"carrier attacks 9.24, attacked 6.87, hit 3.22; enemy attacks -0.45, carrier attacked -0.13"
+A,1.0,all,"Damage +1, first hit",Browndog,,7.588,,1.349,0.558,"carrier attacks 9.88, attacked 9.49, hit 2.55; enemy attacks -0.51, carrier attacked -0.25"
+A,1.0,all,"Damage +1, first hit",Carrick,,7.706,,2.71,0.594,"carrier attacks 12.04, attacked 3.30, hit 1.76; enemy attacks -0.68, carrier attacked -0.15"
+A,1.0,all,"Damage +1, first hit",Sable,,7.916,,2.837,0.54,"carrier attacks 16.31, attacked 2.49, hit 1.44; enemy attacks -0.67, carrier attacked -0.08"
+AV,1.0,all,"vulnerable 1, first hit",Hilde,1.928,1.928,1.488,2.235,0.545,"1.49 party attack points, 0.24 stack-turns"
+AV,1.0,all,"vulnerable 1, first hit",Browndog,1.887,1.887,1.564,1.42,0.504,"1.56 party attack points, 0.41 stack-turns"
+AV,1.0,all,"vulnerable 1, first hit",Carrick,1.913,1.913,1.923,1.185,0.58,"1.92 party attack points, 0.41 stack-turns"
+AV,1.0,all,"vulnerable 1, first hit",Sable,1.982,1.982,1.014,1.333,0.473,"1.01 party attack points, 0.24 stack-turns"
+AV,1.0,all,"vulnerable 2, first hit",Hilde,1.93,5.791,3.276,3.059,0.668,"3.28 party attack points, 0.81 stack-turns"
+AV,1.0,all,"vulnerable 2, first hit",Browndog,1.883,5.651,3.702,2.688,0.618,"3.70 party attack points, 1.35 stack-turns"
+AV,1.0,all,"vulnerable 2, first hit",Carrick,1.913,5.739,4.47,3.287,0.699,"4.47 party attack points, 1.27 stack-turns"
+AV,1.0,all,"vulnerable 2, first hit",Sable,1.981,5.943,2.359,2.052,0.554,"2.36 party attack points, 0.86 stack-turns"
+AV,1.0,all,"vulnerable 4, first hit",Hilde,1.938,19.38,7.618,6.523,0.812,"7.62 party attack points, 1.99 stack-turns"
+AV,1.0,all,"vulnerable 4, first hit",Browndog,1.887,18.875,9.791,6.2,0.815,"9.79 party attack points, 3.59 stack-turns"
+AV,1.0,all,"vulnerable 4, first hit",Carrick,1.925,19.25,11.165,7.047,0.888,"11.17 party attack points, 3.31 stack-turns"
+AV,1.0,all,"vulnerable 4, first hit",Sable,1.982,19.815,6.162,6.353,0.74,"6.16 party attack points, 2.05 stack-turns"
+AV,1.0,all,"vulnerable 1, every hit",Hilde,6.851,6.851,5.814,4.261,0.723,"5.81 party attack points, 1.67 stack-turns"
+AV,1.0,all,"vulnerable 1, every hit",Browndog,6.558,6.558,6.203,3.996,0.696,"6.20 party attack points, 2.29 stack-turns"
+AV,1.0,all,"vulnerable 1, every hit",Carrick,6.767,6.767,7.841,5.221,0.799,"7.84 party attack points, 2.44 stack-turns"
+AV,1.0,all,"vulnerable 1, every hit",Sable,12.169,12.169,10.375,6.443,0.792,"10.37 party attack points, 3.95 stack-turns"

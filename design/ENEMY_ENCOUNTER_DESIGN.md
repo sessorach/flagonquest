@@ -5170,3 +5170,24 @@ party's days (60 a mix, the base cell):
 +1 Slot is the margin: one day in eight lost, and the Health ladder
 still reads cleanly. +2 loses half the days; past that the party mostly
 just loses.
+
+**The whole-day effect check** (2026-11-10,
+`results/effect_check_day_1110/`, `cells.txt` from `cells_day.py`):
+every test over 250 days a mix, ordinary days (+0 Slots: 0.3% lost) and
+threatening ones (+1 Slot: 10.5% lost). Cells, per application:
+debuffs Weak on the first hit on ordinary days, Average aimed at the
+biggest threat on ordinary days, Strong aimed on threatening days; buffs
+and stats the least-helped carrier, the mean, and the most-helped carrier
+on threatening days. Not yet in `balance_weights.csv`.
+
+- A raw stat on threatening days comes close to THE TABEL: +1 Accuracy
+  4.6 a day against THE TABEL's 5.5, +1 Damage 8.2 against 11.0,
+  Autoswing up to 6.6 against 5.5. On ordinary days they read a third
+  of that (1.7, 3.3, 1.1): ordinary days have little to lose.
+- Control per application is small everywhere: Crippled, Slowed,
+  Harried and Bleeding 0.1-0.6 a stack, Bad Luck 0.5-1.6, Taunted from
+  the tank 0.1-2.5, four stacks at once about 2-4. THE TABEL prices
+  them at 1-4 a stack.
+- Frightened, Push and Ward (Shadow) read about nothing (no Level 1
+  draw has a Shadow attacker). Protected on the tank reads below zero
+  at one stack, as before.

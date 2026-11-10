@@ -1,0 +1,93 @@
+party,mult,mix,test,carrier,applied,tabel,exposure,value,se,mechanism
+A,1.0,all,"pushmay 1, every hit",Hilde,1.737,1.552,,-0.812,0.221,"enemy attacks +0.24, carrier attacked +0.08"
+A,1.0,all,"pushmay 1, every hit",Browndog,1.752,1.565,,-0.03,0.174,"enemy attacks +0.11, carrier attacked +0.08"
+A,1.0,all,"pushmay 1, every hit",Carrick,2.301,2.057,,0.402,0.193,"enemy attacks -0.01, carrier attacked -0.03"
+A,1.0,all,"pushmay 1, every hit",Sable,4.348,3.886,,0.794,0.267,"enemy attacks -0.10, carrier attacked -0.02"
+A,1.0,all,"pushmay 3, every hit",Hilde,1.608,4.311,,-1.052,0.324,"enemy attacks +0.49, carrier attacked +0.00"
+A,1.0,all,"pushmay 3, every hit",Browndog,1.638,4.392,,-0.292,0.306,"enemy attacks +0.21, carrier attacked +0.15"
+A,1.0,all,"pushmay 3, every hit",Carrick,2.28,6.113,,-0.075,0.335,"enemy attacks +0.15, carrier attacked -0.04"
+A,1.0,all,"pushmay 3, every hit",Sable,4.353,11.673,,1.595,0.38,"enemy attacks -0.20, carrier attacked -0.03"
+A,1.0,all,"push 3, every hit",Hilde,2.975,7.977,,-2.364,0.442,"enemy attacks +1.18, carrier attacked +0.09"
+A,1.0,all,"push 3, every hit",Browndog,3.079,8.257,,-0.442,0.403,"enemy attacks +0.39, carrier attacked +0.34"
+A,1.0,all,"push 3, every hit",Carrick,4.078,10.934,,0.148,0.416,"enemy attacks +0.24, carrier attacked -0.07"
+A,1.0,all,"push 3, every hit",Sable,5.037,13.504,,1.144,0.405,"enemy attacks -0.13, carrier attacked -0.03"
+A,1.0,all,"hasted 1, first turn",Hilde,1.998,1.099,,0.176,0.289,"enemy attacks -0.01, carrier attacked +0.02"
+A,1.0,all,"hasted 1, first turn",Browndog,1.992,1.096,,0.256,0.16,"enemy attacks -0.08, carrier attacked -0.03"
+A,1.0,all,"hasted 1, first turn",Carrick,1.998,1.099,,0.698,0.208,"enemy attacks -0.16, carrier attacked -0.06"
+A,1.0,all,"hasted 1, first turn",Sable,2.0,1.1,,0.172,0.097,"enemy attacks -0.03, carrier attacked -0.01"
+A,1.0,all,"hasted 4, first turn",Hilde,1.998,10.989,,0.256,0.401,"enemy attacks -0.17, carrier attacked +0.04"
+A,1.0,all,"hasted 4, first turn",Browndog,1.992,10.953,,0.913,0.257,"enemy attacks -0.25, carrier attacked -0.15"
+A,1.0,all,"hasted 4, first turn",Carrick,1.998,10.986,,1.705,0.317,"enemy attacks -0.34, carrier attacked -0.09"
+A,1.0,all,"hasted 4, first turn",Sable,1.998,10.992,,0.079,0.233,"enemy attacks +0.02, carrier attacked -0.01"
+A,1.0,all,"hasted 1, every turn",Hilde,6.638,3.651,,0.99,0.361,"enemy attacks -0.30, carrier attacked -0.05"
+A,1.0,all,"hasted 1, every turn",Browndog,6.801,3.741,,0.601,0.239,"enemy attacks -0.21, carrier attacked -0.11"
+A,1.0,all,"hasted 1, every turn",Carrick,6.838,3.761,,1.026,0.261,"enemy attacks -0.27, carrier attacked -0.06"
+A,1.0,all,"hasted 1, every turn",Sable,7.659,4.212,,0.062,0.13,"enemy attacks -0.04, carrier attacked -0.01"
+A,1.0,all,"protected 1, first turn",Hilde,1.998,5.994,2.26,1.808,0.217,0.56 absorbed
+A,1.0,all,"protected 1, first turn",Browndog,1.99,5.969,-1.38,-1.224,0.214,-0.35 absorbed
+A,1.0,all,"protected 1, first turn",Carrick,1.997,5.991,0.998,0.859,0.126,0.25 absorbed
+A,1.0,all,"protected 1, first turn",Sable,1.999,5.997,1.2,1.039,0.154,0.30 absorbed
+A,1.0,all,"protected 4, first turn",Hilde,2.0,24.0,9.908,7.126,0.278,2.48 absorbed
+A,1.0,all,"protected 4, first turn",Browndog,1.994,23.922,2.972,2.443,0.21,0.74 absorbed
+A,1.0,all,"protected 4, first turn",Carrick,1.999,23.988,4.186,3.165,0.218,1.05 absorbed
+A,1.0,all,"protected 4, first turn",Sable,2.0,24.0,4.536,3.88,0.267,1.13 absorbed
+A,1.0,all,"protected 1, every turn",Hilde,6.835,20.504,5.634,4.636,0.241,1.41 absorbed
+A,1.0,all,"protected 1, every turn",Browndog,6.875,20.625,-0.7,-0.298,0.182,-0.18 absorbed
+A,1.0,all,"protected 1, every turn",Carrick,7.014,21.044,1.48,1.6,0.153,0.37 absorbed
+A,1.0,all,"protected 1, every turn",Sable,7.713,23.14,1.57,2.347,0.196,0.39 absorbed
+A,1.0,all,"goodluck 1, first attack",Hilde,1.998,4.795,4.795,1.434,0.462,2.00 Good Luck used
+A,1.0,all,"goodluck 1, first attack",Browndog,1.972,4.732,4.732,0.706,0.447,1.97 Good Luck used
+A,1.0,all,"goodluck 1, first attack",Carrick,1.962,4.71,4.71,1.194,0.434,1.96 Good Luck used
+A,1.0,all,"goodluck 1, first attack",Sable,1.997,4.793,4.793,2.428,0.462,2.00 Good Luck used
+A,1.0,all,"goodluck 1, every turn",Hilde,5.53,13.272,13.272,3.034,0.445,5.53 Good Luck used
+A,1.0,all,"goodluck 1, every turn",Browndog,6.04,14.497,14.497,3.244,0.424,6.04 Good Luck used
+A,1.0,all,"goodluck 1, every turn",Carrick,6.158,14.779,14.779,2.048,0.433,6.16 Good Luck used
+A,1.0,all,"goodluck 1, every turn",Sable,7.001,16.801,16.801,4.084,0.472,7.00 Good Luck used
+A,1.0,all,"necrotic 1, first hit",Hilde,1.972,5.916,0.666,0.099,0.102,"0.22 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, first hit",Browndog,1.919,5.757,0.628,0.129,0.096,"0.21 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, first hit",Carrick,1.943,5.829,1.139,0.505,0.167,"0.38 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, first hit",Sable,1.992,5.978,0.801,0.223,0.14,"0.27 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4, first hit",Hilde,1.972,23.664,1.163,0.324,0.101,"0.39 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4, first hit",Browndog,1.918,23.016,1.146,0.225,0.108,"0.38 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4, first hit",Carrick,1.944,23.322,1.93,0.754,0.176,"0.64 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4, first hit",Sable,1.992,23.91,1.251,0.294,0.157,"0.42 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, every hit",Hilde,5.324,15.972,1.467,0.341,0.129,"0.49 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, every hit",Browndog,4.579,13.738,1.268,0.279,0.131,"0.42 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, every hit",Carrick,5.247,15.739,2.178,0.747,0.192,"0.73 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1, every hit",Sable,8.016,24.048,2.205,0.365,0.185,"0.73 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1 on the boss, first turn",Hilde,1.998,5.995,1.018,0.204,0.133,"0.34 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1 on the boss, first turn",Browndog,1.992,5.976,1.035,0.286,0.156,"0.34 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1 on the boss, first turn",Carrick,1.998,5.994,1.131,0.449,0.159,"0.38 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1 on the boss, first turn",Sable,2.0,5.998,0.879,0.29,0.138,"0.29 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4 on the boss, first turn",Hilde,1.998,23.982,1.563,0.21,0.148,"0.52 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4 on the boss, first turn",Browndog,1.992,23.904,1.635,0.21,0.169,"0.55 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4 on the boss, first turn",Carrick,1.998,23.976,1.7,0.509,0.177,"0.57 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 4 on the boss, first turn",Sable,2.0,23.994,1.268,0.318,0.155,"0.42 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1 on the boss, every turn",Hilde,6.718,20.152,2.159,0.517,0.156,"0.72 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1 on the boss, every turn",Browndog,6.8,20.401,2.262,0.515,0.167,"0.75 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1 on the boss, every turn",Carrick,6.899,20.697,2.359,0.661,0.172,"0.79 Protected cancelled, 0.00 healing blocked"
+A,1.0,all,"necrotic 1 on the boss, every turn",Sable,7.582,22.745,2.277,0.513,0.188,"0.76 Protected cancelled, 0.00 healing blocked"
+AV,1.0,all,"vulnerable 1, first hit",Hilde,1.962,1.962,1.663,1.449,0.292,"1.66 party attack points, 0.33 stack-turns"
+AV,1.0,all,"vulnerable 1, first hit",Browndog,1.915,1.915,1.835,0.442,0.313,"1.83 party attack points, 0.48 stack-turns"
+AV,1.0,all,"vulnerable 1, first hit",Carrick,1.926,1.926,2.118,1.182,0.323,"2.12 party attack points, 0.47 stack-turns"
+AV,1.0,all,"vulnerable 1, first hit",Sable,1.994,1.994,1.103,1.012,0.284,"1.10 party attack points, 0.24 stack-turns"
+AV,1.0,all,"vulnerable 4, first hit",Hilde,1.963,19.63,9.727,4.229,0.463,"9.73 party attack points, 2.36 stack-turns"
+AV,1.0,all,"vulnerable 4, first hit",Browndog,1.914,19.145,12.275,4.432,0.486,"12.28 party attack points, 3.71 stack-turns"
+AV,1.0,all,"vulnerable 4, first hit",Carrick,1.93,19.305,13.677,4.843,0.512,"13.68 party attack points, 3.47 stack-turns"
+AV,1.0,all,"vulnerable 4, first hit",Sable,1.994,19.935,6.659,3.86,0.439,"6.66 party attack points, 1.89 stack-turns"
+AV,1.0,all,"vulnerable 1, every hit",Hilde,5.841,5.841,5.537,2.34,0.417,"5.54 party attack points, 1.44 stack-turns"
+AV,1.0,all,"vulnerable 1, every hit",Browndog,5.251,5.251,5.652,1.52,0.42,"5.65 party attack points, 1.72 stack-turns"
+AV,1.0,all,"vulnerable 1, every hit",Carrick,5.562,5.562,7.41,2.885,0.461,"7.41 party attack points, 1.97 stack-turns"
+AV,1.0,all,"vulnerable 1, every hit",Sable,9.468,9.468,8.53,3.208,0.44,"8.53 party attack points, 2.90 stack-turns"
+AV,1.0,all,"vulnerable 1 on the boss, first turn",Hilde,1.995,1.995,2.883,1.173,0.394,"2.88 party attack points, 0.87 stack-turns"
+AV,1.0,all,"vulnerable 1 on the boss, first turn",Browndog,1.982,1.982,2.947,1.202,0.38,"2.95 party attack points, 0.92 stack-turns"
+AV,1.0,all,"vulnerable 1 on the boss, first turn",Carrick,1.995,1.995,2.567,1.343,0.371,"2.57 party attack points, 0.99 stack-turns"
+AV,1.0,all,"vulnerable 1 on the boss, first turn",Sable,2.0,2.0,2.463,1.73,0.469,"2.46 party attack points, 0.90 stack-turns"
+AV,1.0,all,"vulnerable 4 on the boss, first turn",Hilde,1.996,19.955,21.971,9.458,0.589,"21.97 party attack points, 6.31 stack-turns"
+AV,1.0,all,"vulnerable 4 on the boss, first turn",Browndog,1.984,19.835,22.723,9.027,0.607,"22.72 party attack points, 6.52 stack-turns"
+AV,1.0,all,"vulnerable 4 on the boss, first turn",Carrick,1.995,19.95,22.474,9.379,0.597,"22.47 party attack points, 7.16 stack-turns"
+AV,1.0,all,"vulnerable 4 on the boss, first turn",Sable,2.0,19.995,21.765,9.854,0.617,"21.77 party attack points, 6.56 stack-turns"
+AV,1.0,all,"vulnerable 1 on the boss, every turn",Hilde,8.302,8.302,14.064,4.578,0.517,"14.06 party attack points, 3.56 stack-turns"
+AV,1.0,all,"vulnerable 1 on the boss, every turn",Browndog,8.512,8.512,15.352,4.781,0.555,"15.35 party attack points, 3.69 stack-turns"
+AV,1.0,all,"vulnerable 1 on the boss, every turn",Carrick,8.806,8.806,15.737,5.415,0.517,"15.74 party attack points, 3.97 stack-turns"
+AV,1.0,all,"vulnerable 1 on the boss, every turn",Sable,9.427,9.427,17.427,6.182,0.592,"17.43 party attack points, 3.98 stack-turns"

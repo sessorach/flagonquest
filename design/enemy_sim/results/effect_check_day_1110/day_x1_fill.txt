@@ -1,0 +1,61 @@
+104 cells, 250 fights per mix each
+  0/832 chunks
+  500/832 chunks
+
+== Party A, standard +1 Slots, whole days fights, enemy Health x1.0: base 22.3 expected Health left, 12.16 rounds, losses 10.5%; one PC's +1 Health = 0.882
+| Test | Applied a fight | THE TABEL | TABEL rates x sim counts | Measured | Measured / TABEL | Hilde | Browndog | Carrick | Sable |
+|---|---|---|---|---|---|---|---|---|---|
+| pushmay 1, every hit | 3.32 | 2.97 | - | -0.87 ± 0.24 | -29% | -2.57 | -0.68 | -0.37 | +0.14 |
+| pushmay 3, every hit | 3.23 | 8.67 | - | -1.14 ± 0.37 | -13% | -4.16 | -0.88 | -0.44 | +0.93 |
+| push 3, every hit | 4.90 | 13.13 | - | -2.24 ± 0.43 | -17% | -6.69 | -2.45 | -0.50 | +0.67 |
+| hasted 1, first turn | 1.99 | 1.09 | - | -0.13 ± 0.23 | -12% | -1.29 | +0.02 | +0.95 | -0.22 |
+| hasted 4, first turn | 1.99 | 10.92 | - | +0.87 ± 0.34 | 8% | +0.38 | +1.32 | +1.69 | +0.08 |
+| hasted 1, every turn | 10.01 | 5.50 | - | +1.16 ± 0.30 | 21% | +2.33 | +1.39 | +1.20 | -0.29 |
+| protected 1, first turn | 1.99 | 5.96 | 1.40 | +1.50 ± 0.21 | 25% | +3.01 | -1.34 | +1.60 | +2.74 |
+| protected 4, first turn | 1.99 | 23.90 | 9.23 | +8.30 ± 0.28 | 35% | +11.43 | +5.38 | +6.69 | +9.71 |
+| protected 1, every turn | 10.53 | 31.58 | 5.06 | +5.46 ± 0.24 | 17% | +9.94 | +1.47 | +5.24 | +5.18 |
+| goodluck 1, first attack | 1.97 | 4.74 | 4.74 | +3.37 ± 0.45 | 71% | +3.17 | +3.08 | +2.52 | +4.73 |
+| goodluck 1, every turn | 8.82 | 21.16 | 21.16 | +9.23 ± 0.45 | 44% | +9.63 | +9.81 | +6.09 | +11.41 |
+| necrotic 1, first hit | 1.94 | 5.82 | 0.82 | +0.68 ± 0.14 | 12% | +0.50 | +0.09 | +1.17 | +0.98 |
+| necrotic 4, first hit | 1.94 | 23.29 | 1.46 | +0.86 ± 0.15 | 4% | +0.54 | +0.26 | +1.24 | +1.41 |
+| necrotic 1, every hit | 7.38 | 22.13 | 2.06 | +1.27 ± 0.18 | 6% | +1.17 | +0.28 | +1.64 | +1.97 |
+| necrotic 1 on the boss, first turn | 1.99 | 5.96 | 1.11 | +0.74 ± 0.16 | 12% | +0.66 | +0.60 | +0.87 | +0.81 |
+| necrotic 4 on the boss, first turn | 1.99 | 23.84 | 1.75 | +1.11 ± 0.17 | 5% | +1.07 | +0.95 | +1.20 | +1.22 |
+| necrotic 1 on the boss, every turn | 10.06 | 30.19 | 2.63 | +1.40 ± 0.19 | 5% | +1.41 | +1.37 | +1.40 | +1.40 |
+
+What happened, per carrier (Hilde / Browndog / Carrick / Sable):
+  pushmay 1, every hit: enemy attacks +0.55, carrier attacked +0.10 / enemy attacks +0.20, carrier attacked +0.08 / enemy attacks +0.13, carrier attacked +0.02 / enemy attacks +0.04, carrier attacked -0.01
+  pushmay 3, every hit: enemy attacks +1.13, carrier attacked +0.12 / enemy attacks +0.43, carrier attacked +0.29 / enemy attacks +0.22, carrier attacked +0.06 / enemy attacks -0.06, carrier attacked -0.04
+  push 3, every hit: enemy attacks +2.03, carrier attacked +0.16 / enemy attacks +0.85, carrier attacked +0.54 / enemy attacks +0.40, carrier attacked +0.10 / enemy attacks -0.04, carrier attacked -0.06
+  hasted 1, first turn: enemy attacks +0.34, carrier attacked +0.03 / enemy attacks +0.02, carrier attacked -0.00 / enemy attacks -0.18, carrier attacked -0.05 / enemy attacks +0.04, carrier attacked +0.01
+  hasted 4, first turn: enemy attacks +0.02, carrier attacked +0.04 / enemy attacks -0.30, carrier attacked -0.12 / enemy attacks -0.32, carrier attacked -0.10 / enemy attacks -0.05, carrier attacked -0.07
+  hasted 1, every turn: enemy attacks -0.57, carrier attacked -0.09 / enemy attacks -0.36, carrier attacked -0.24 / enemy attacks -0.26, carrier attacked -0.06 / enemy attacks +0.04, carrier attacked +0.02
+  protected 1, first turn: 0.78 absorbed / -0.31 absorbed / 0.37 absorbed / 0.55 absorbed
+  protected 4, first turn: 3.45 absorbed / 1.41 absorbed / 2.00 absorbed / 2.36 absorbed
+  protected 1, every turn: 2.81 absorbed / 0.15 absorbed / 1.09 absorbed / 1.00 absorbed
+  goodluck 1, first attack: 1.98 Good Luck used / 1.96 Good Luck used / 1.96 Good Luck used / 1.99 Good Luck used
+  goodluck 1, every turn: 7.75 Good Luck used / 8.90 Good Luck used / 8.92 Good Luck used / 9.69 Good Luck used
+  necrotic 1, first hit: 0.22 Protected cancelled, 0.00 healing blocked / 0.21 Protected cancelled, 0.00 healing blocked / 0.36 Protected cancelled, 0.00 healing blocked / 0.31 Protected cancelled, 0.00 healing blocked
+  necrotic 4, first hit: 0.43 Protected cancelled, 0.00 healing blocked / 0.40 Protected cancelled, 0.00 healing blocked / 0.64 Protected cancelled, 0.00 healing blocked / 0.49 Protected cancelled, 0.00 healing blocked
+  necrotic 1, every hit: 0.59 Protected cancelled, 0.00 healing blocked / 0.49 Protected cancelled, 0.00 healing blocked / 0.78 Protected cancelled, 0.00 healing blocked / 0.89 Protected cancelled, 0.00 healing blocked
+  necrotic 1 on the boss, first turn: 0.37 Protected cancelled, 0.00 healing blocked / 0.37 Protected cancelled, 0.00 healing blocked / 0.40 Protected cancelled, 0.00 healing blocked / 0.34 Protected cancelled, 0.00 healing blocked
+  necrotic 4 on the boss, first turn: 0.61 Protected cancelled, 0.00 healing blocked / 0.60 Protected cancelled, 0.00 healing blocked / 0.64 Protected cancelled, 0.00 healing blocked / 0.49 Protected cancelled, 0.00 healing blocked
+  necrotic 1 on the boss, every turn: 0.86 Protected cancelled, 0.00 healing blocked / 0.88 Protected cancelled, 0.00 healing blocked / 0.89 Protected cancelled, 0.00 healing blocked / 0.88 Protected cancelled, 0.00 healing blocked
+
+== Party AV, standard +1 Slots, whole days fights, enemy Health x1.0: base 18.0 expected Health left, 15.30 rounds, losses 23.8%; one PC's +1 Health = 0.798
+| Test | Applied a fight | THE TABEL | TABEL rates x sim counts | Measured | Measured / TABEL | Hilde | Browndog | Carrick | Sable |
+|---|---|---|---|---|---|---|---|---|---|
+| vulnerable 1, first hit | 1.93 | 1.93 | 1.50 | +1.54 ± 0.26 | 80% | +2.23 | +1.42 | +1.18 | +1.33 |
+| vulnerable 4, first hit | 1.93 | 19.33 | 8.68 | +6.53 ± 0.41 | 34% | +6.52 | +6.20 | +7.05 | +6.35 |
+| vulnerable 1, every hit | 8.09 | 8.09 | 7.56 | +4.98 ± 0.38 | 62% | +4.26 | +4.00 | +5.22 | +6.44 |
+| vulnerable 1 on the boss, first turn | 1.98 | 1.98 | 2.19 | +3.02 ± 0.33 | 153% | +3.06 | +3.07 | +1.92 | +4.04 |
+| vulnerable 4 on the boss, first turn | 1.99 | 19.86 | 19.82 | +14.66 ± 0.53 | 74% | +13.52 | +15.50 | +14.12 | +15.51 |
+| vulnerable 1 on the boss, every turn | 11.79 | 11.79 | 18.62 | +10.43 ± 0.49 | 88% | +8.98 | +10.64 | +9.41 | +12.68 |
+
+What happened, per carrier (Hilde / Browndog / Carrick / Sable):
+  vulnerable 1, first hit: 1.49 party attack points, 0.24 stack-turns / 1.56 party attack points, 0.41 stack-turns / 1.92 party attack points, 0.41 stack-turns / 1.01 party attack points, 0.24 stack-turns
+  vulnerable 4, first hit: 7.62 party attack points, 1.99 stack-turns / 9.79 party attack points, 3.59 stack-turns / 11.17 party attack points, 3.31 stack-turns / 6.16 party attack points, 2.05 stack-turns
+  vulnerable 1, every hit: 5.81 party attack points, 1.67 stack-turns / 6.20 party attack points, 2.29 stack-turns / 7.84 party attack points, 2.44 stack-turns / 10.37 party attack points, 3.95 stack-turns
+  vulnerable 1 on the boss, first turn: 2.25 party attack points, 0.91 stack-turns / 2.28 party attack points, 0.96 stack-turns / 2.04 party attack points, 1.01 stack-turns / 2.18 party attack points, 0.90 stack-turns
+  vulnerable 4 on the boss, first turn: 19.66 party attack points, 7.44 stack-turns / 20.29 party attack points, 7.67 stack-turns / 19.90 party attack points, 8.22 stack-turns / 19.44 party attack points, 7.42 stack-turns
+  vulnerable 1 on the boss, every turn: 15.69 party attack points, 5.12 stack-turns / 18.40 party attack points, 5.47 stack-turns / 18.84 party attack points, 5.73 stack-turns / 21.56 party attack points, 5.56 stack-turns
