@@ -5191,3 +5191,31 @@ on threatening days. Not yet in `balance_weights.csv`.
 - Frightened, Push and Ward (Shadow) read about nothing (no Level 1
   draw has a Shadow attacker). Protected on the tank reads below zero
   at one stack, as before.
+
+**What a few more XP buy at high stakes** (designer, 2026-11-10: the
+benchmark is how much an investment keeps the party from losing;
+`experiments/pc_options/xp_investments.py`,
+`results/xp_investments_L2_x1.txt`). The Level 2 middle parties (32
+characters) on whole days at +1 Slot, 26% of days lost. One character at
+a time gets one investment and plays the same 800 days. Points of days
+lost saved, per XP (averaged over every character who can take it; the
+error on most rows is ±0.3 points):
+
+| Investment | XP | Saved | Per XP |
+|---|---|---|---|
+| Attack skill +1 (Melee / Acrobatics / Brawl attackers) | 4-5 | +4.5 to +5.2 | 1.0-1.25 |
+| Essence +1 (casters) | 10 | +7.7 | 0.77 |
+| Agility +1 | 8.5 | +4.8 | 0.56 |
+| Battle Maneuver, Half Guard (Protected on self) | 3 / 6 | +1.7 / +3.0 | 0.56 / 0.50 |
+| Battle Maneuver, Battering (Bleeding) | 3 / 6 | +1.6 / +2.8 | 0.54 / 0.47 |
+| Battle Maneuver, Distracting (Taunt) | 3 / 6 | +1.4 / +1.4 | 0.46 / 0.24 |
+| Battle Maneuver, Harrying | 3 / 6 | +1.0 / +1.5 | 0.34 / 0.25 |
+| Battle Maneuver, Calculated (Good Luck) | 3 / 6 | +0.9 / +1.7 | 0.29 |
+| Battle Maneuver, Hamstring (Slowed) | 3 / 6 | +0.8 / +1.2 | 0.25 / 0.20 |
+| Battle Maneuver, Wing Clip (Crippled) | 3 / 6 | +0.3 / +1.1 | 0.09 / 0.18 |
+| Dodge or Parry +1 for someone the enemies don't attack that way | 1-3 | 0 | 0 |
+
+A rank in the attack skill saves two to ten times as many days per XP
+as a Battle Maneuver built on a debuff; Crippled is the least. A
+Battle Maneuver is one attack a fight, so its riders land once, and a
+Level 2 copy's six stacks save little more than a Level 1 copy's three.

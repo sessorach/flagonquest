@@ -1,0 +1,28 @@
+Level 2, +1 Slots, 100 days a mix (800 a carrier); base days lost 26.4%. Saved: points of days lost the investment takes off (higher is better), averaged over every carrier who can take it; per XP divides by its cost.
+
+| Investment | XP | Carriers | Days-lost points saved | Per XP | Health left after fight 2 | Best carrier |
+|---|---|---|---|---|---|---|
+| Melee +1 (Accuracy) | 4.2 | 5 | +5.2 | +1.25 | +1.7 | Enith (L2, proposed) +9.5 |
+| Acrobatics +1 (Accuracy) | 4.7 | 13 | +4.8 | +1.03 | +1.7 | Carrick (L2) +11.0 |
+| Brawl +1 (Accuracy) | 4.7 | 9 | +4.5 | +0.96 | +1.5 | Felix (L2, proposed) +9.3 |
+| Essence +1 (Stat) | 10.0 | 2 | +7.7 | +0.77 | +2.8 | Beornhard (L2) +10.9 |
+| Sorcery +1 (Accuracy) | 5.0 | 2 | +3.2 | +0.65 | +1.0 | Beornhard (L2) +3.6 |
+| Battle Maneuver L1: Half Guard x3 (Protected on self) | 3.0 | 32 | +1.7 | +0.56 | +0.8 | Carrick (L2) +5.0 |
+| Agility +1 (Stat) | 8.5 | 30 | +4.8 | +0.56 | +1.8 | Carrick (L2) +11.9 |
+| Battle Maneuver L1: Battering x3 (Bleeding) | 3.0 | 8 | +1.6 | +0.54 | +0.6 | Browndog (L2) +3.0 |
+| Battle Maneuver L2: Half Guard x6 (Protected on self) | 6.0 | 30 | +3.0 | +0.50 | +1.4 | Enith (L2, proposed) +8.3 |
+| Battle Maneuver L2: Battering x6 (Bleeding) | 6.0 | 8 | +2.8 | +0.47 | +0.9 | Enith (L2, proposed) +6.8 |
+| Battle Maneuver L1: Distracting x3 (Taunted) | 3.0 | 8 | +1.4 | +0.46 | +0.4 | Ashleigh (L2, proposed) +5.1 |
+| Archery +1 (Accuracy) | 5.0 | 3 | +2.1 | +0.42 | +1.1 | Sable (L2, proposed) +2.5 |
+| Acrobatics +1 (Dodge) | 3.8 | 4 | +1.4 | +0.37 | +0.7 | Sable (L2, proposed) +1.8 |
+| Battle Maneuver L1: Harrying x3 (Harried) | 3.0 | 32 | +1.0 | +0.34 | +0.3 | Carrick (L2) +3.8 |
+| Battle Maneuver L1: Calculated x1 (Good Luck) | 3.0 | 32 | +0.9 | +0.29 | +0.3 | Hanforth (L2) +4.0 |
+| Battle Maneuver L2: Calculated x2 (Good Luck) | 6.0 | 30 | +1.7 | +0.29 | +0.7 | Carrick (L2) +4.9 |
+| Battle Maneuver L1: Hamstring x3 (Slowed) | 3.0 | 32 | +0.8 | +0.25 | +0.2 | Enith (L2, proposed) +3.6 |
+| Battle Maneuver L2: Harrying x6 (Harried) | 6.0 | 30 | +1.5 | +0.25 | +0.6 | Carrick (L2) +6.2 |
+| Battle Maneuver L2: Distracting x6 (Taunted) | 6.0 | 8 | +1.4 | +0.24 | +0.4 | Ashleigh (L2, proposed) +5.2 |
+| Battle Maneuver L2: Hamstring x6 (Slowed) | 6.0 | 30 | +1.2 | +0.20 | +0.3 | Enith (L2, proposed) +4.4 |
+| Battle Maneuver L2: Wing Clip x6 (Crippled) | 6.0 | 30 | +1.1 | +0.18 | +0.4 | Carrick (L2) +4.7 |
+| Battle Maneuver L1: Wing Clip x3 (Crippled) | 3.0 | 32 | +0.3 | +0.09 | +0.1 | Carrick (L2) +2.8 |
+| Brawl +1 (Dodge) | 3.0 | 6 | +0.0 | +0.01 | +0.1 | Beornhard (L2) +0.6 |
+| Melee +1 (Parry) | 1.0 | 27 | +0.0 | +0.00 | +0.0 | Ashleigh (L2, proposed) +0.0 |

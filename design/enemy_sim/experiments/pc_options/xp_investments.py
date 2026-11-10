@@ -166,7 +166,7 @@ def report(a, res, cl):
         b, t = base[c[0]], res[c]
         dl = 100 * (st.mean(d for d, _ in b) - st.mean(d for d, _ in t))  # points of days lost saved
         dh = st.mean(h for _, h in t) - st.mean(h for _, h in b)
-        rows[(c[2].split(" (")[0] if "Battle" not in c[2] else c[2])].append((dl, dh, c[3], c))
+        rows[c[2]].append((dl, dh, c[3], c))
     base_lost = 100 * st.mean(d for v in base.values() for d, _ in v)
     lines = [f"Level {a.L}, +{a.extra} Slots, {a.n} days a mix ({8 * a.n} a carrier); base days lost "
              f"{base_lost:.1f}%. Saved: points of days lost the investment takes off (higher is better), "
