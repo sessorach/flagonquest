@@ -5215,7 +5215,7 @@ error on most rows is ±0.3 points):
 | Battle Maneuver, Wing Clip (Crippled) | 3 / 6 | +0.3 / +1.1 | 0.09 / 0.18 |
 | Dodge or Parry +1 for someone the enemies don't attack that way | 1-3 | 0 | 0 |
 
-A rank in the attack skill saves two to ten times as many days per XP
+A rank in the attack skill saves two to more than ten times as many days per XP
 as a Battle Maneuver built on a debuff; Crippled is the least. A
 Battle Maneuver is one attack a fight, so its riders land once, and a
 Level 2 copy's six stacks save little more than a Level 1 copy's three.
