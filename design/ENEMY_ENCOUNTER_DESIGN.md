@@ -5186,7 +5186,7 @@ on threatening days. Not yet in `balance_weights.csv`.
   of that (1.7, 3.3, 1.1): ordinary days have little to lose.
 - Control per application is small everywhere: Crippled, Slowed,
   Harried and Bleeding 0.1-0.6 a stack, Bad Luck 0.5-1.6, Taunted from
-  the tank 0.1-2.5, four stacks at once about 2-4. THE TABEL prices
+  the tank 0.1-2.5, four stacks at once about 1-4.5. THE TABEL prices
   them at 1-4 a stack.
 - Frightened, Push and Ward (Shadow) read about nothing (no Level 1
   draw has a Shadow attacker). Protected on the tank reads below zero
