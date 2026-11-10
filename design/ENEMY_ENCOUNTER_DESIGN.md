@@ -5219,3 +5219,15 @@ A rank in the attack skill saves two to more than ten times as many days per XP
 as a Battle Maneuver built on a debuff; Crippled is the least. A
 Battle Maneuver is one attack a fight, so its riders land once, and a
 Level 2 copy's six stacks save little more than a Level 1 copy's three.
+
+Level 3 (`results/xp_investments_L3_x1.txt`): the middle parties lose 11%
+of ordinary days and 54% at +1 Slot (no whole-Slot setting in between).
+Per XP: attack skill +1 0.74-1.64, Essence or Agility +1 about 0.83,
+Battering (Bleeding) 0.62-0.64, everything else on a Battle Maneuver
+0.0-0.32; Wing Clip, Hamstring and Calculated at Level 1 save nothing
+measurable. The order matches Level 2; Half Guard drops (0.20-0.32) and
+the gap between a rank and a rider grows. One character's paired
+result moves by about ±2.5 points by chance alone (the extra Technique
+changes the random draws after it), so a single best-carrier number
+under about 5 is noise; Carrick's +11.5 and +15.8 with Half Guard are
+not.
