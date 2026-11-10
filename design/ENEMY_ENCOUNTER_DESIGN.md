@@ -5131,3 +5131,22 @@ on 10-29), so the scaling for Harried, Vulnerable, Bleeding and
 Necrotic onto THE TABEL's footing is ×4.8, not ×2.1-2.2, and blows
 those cells up (Bleeding Strong 16, Harried 22). Ward (Shadow) can't be
 read in its own mix: no Level 1 draw has a Shadow attacker.
+
+**A threatening fight for the effect check: a Level up, or more Slots?**
+(2026-11-10, `experiments/enemies/extra_slots.py`). The effect_check
+party against the manual's Level 2 encounters loses 67% of single
+fights (11 rounds, 8 Health left of about 40): too far. The same eight
+Level 1 encounters with one or two more standard attackers from the
+same encounter, 250 fights a cell:
+
+| Slots | Fight | Lost | Someone Down | Rounds | Party Health left |
+|---|---|---|---|---|---|
+| 4 | single | 0.1% | 18% | 5.1 | 84% |
+| 4 | day, fight 1 | 0.0% | 9% | 3.3 | 90% |
+| 5 | single | 3.3% | 40% | 7.6 | 68% |
+| 5 | day, fight 1 | 0.1% | 19% | 4.8 | 82% |
+| 6 | single | 21% | 67% | 10.2 | 46% |
+| 6 | day, fight 1 | 2.0% | 38% | 6.6 | 71% |
+
+Each Slot adds about half the fight again in length and roughly doubles
+how often someone goes Down.
