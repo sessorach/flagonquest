@@ -1,0 +1,15 @@
+22 cells, 1000 fights per mix each
+
+== Party A, standard +1 Slots, whole days fights, enemy Health x1.0: base 21.5 expected Health left, 12.62 rounds, losses 13.5%; one PC's +1 Health = 0.865
+| Test | Applied a fight | THE TABEL | TABEL rates x sim counts | Measured | Measured / TABEL | Hilde | Browndog | Carrick | Sable |
+|---|---|---|---|---|---|---|---|---|---|
+| slowed 1, first hit | 1.92 | 2.11 | 0.36 | +0.71 ± 0.10 | 34% | +0.09 | +0.28 | +0.54 | +1.93 |
+| slowed 2, first hit | 1.92 | 6.35 | 1.16 | +1.32 ± 0.14 | 21% | +0.31 | +0.63 | +1.39 | +2.94 |
+| slowed 4, first hit | 1.92 | 21.16 | 3.13 | +2.27 ± 0.16 | 11% | +0.80 | +1.32 | +2.83 | +4.12 |
+| slowed 1, every hit | 7.34 | 8.07 | 2.11 | +2.40 ± 0.16 | 30% | +0.87 | +1.02 | +2.39 | +5.34 |
+
+What happened, per carrier (Hilde / Browndog / Carrick / Sable):
+  slowed 1, first hit: 0.26 stack-turns; enemy attacks +0.03, carrier attacked -0.01 / 0.40 stack-turns; enemy attacks -0.01, carrier attacked +0.03 / 0.38 stack-turns; enemy attacks -0.09, carrier attacked -0.03 / 0.27 stack-turns; enemy attacks -0.30, carrier attacked -0.05
+  slowed 2, first hit: 0.83 stack-turns; enemy attacks -0.09, carrier attacked -0.02 / 1.30 stack-turns; enemy attacks -0.13, carrier attacked -0.04 / 1.21 stack-turns; enemy attacks -0.37, carrier attacked -0.10 / 0.86 stack-turns; enemy attacks -0.50, carrier attacked -0.09
+  slowed 4, first hit: 2.01 stack-turns; enemy attacks -0.25, carrier attacked -0.04 / 3.32 stack-turns; enemy attacks -0.32, carrier attacked -0.15 / 3.32 stack-turns; enemy attacks -0.65, carrier attacked -0.15 / 2.73 stack-turns; enemy attacks -0.73, carrier attacked -0.09
+  slowed 1, every hit: 1.47 stack-turns; enemy attacks -0.19, carrier attacked -0.06 / 1.68 stack-turns; enemy attacks -0.16, carrier attacked -0.00 / 2.01 stack-turns; enemy attacks -0.53, carrier attacked -0.13 / 2.53 stack-turns; enemy attacks -1.04, carrier attacked -0.11

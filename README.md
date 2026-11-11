@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-11 — Debuffs pushed to the limit, and a tidier simulator
 
-Tested a party that plays debuffs for all they're worth (stack Crippled or Slowed on the biggest threat, then ignore it), and Crippled still doesn't disable an enemy at the stacks a Battle Maneuver gives. Then cleared out the simulator: one enemy builder instead of four, finished studies archived, and the live tools in one folder, checked against fixed-seed runs so no result moved.
+Tried every rule change for Crippled and Slowed we could think of, and none makes one Wing Clip or Hamstring worth a skill rank; the two best (Crippled stops an enemy attacking at 3 stacks, Slowed also lowers Dodge) get to about half. Also cleared out the simulator: one enemy builder instead of four, finished studies archived, every result checked unchanged against fixed-seed runs.
 
 ### 2026-11-10 — What a few more XP buy
 

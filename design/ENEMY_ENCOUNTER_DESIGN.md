@@ -5320,3 +5320,71 @@ Abused, Crippled and Slowed do worse than played plainly. The traces
 - Aiming the Maneuver at a fresh enemy takes the debuffer's attack off
   the party's focus target: never ignoring, the aimed version still
   loses to the plain one.
+
+**Crippled and Slowed rule variants** (designer, 2026-11-11: "test every
+variation you can think might adhere to our design goals but push the
+boundaries of what make these debuffs valuable"). Each variant is a
+switch for everyone who bears the debuff, PCs and enemies alike
+(`tunables.CRIPPLED_RULE`, `SLOWED_RULE`; `RIDER_STACKS_MULT` multiplies
+Wing Clip's and Hamstring's stacks). Level 2 middle parties, +1 Slot,
+1600 days a carrier, `tools/xp_investments.py`; abused play ignores a
+Crippled enemy at 5 stacks (at the disabling count for the disable rules).
+Results in `results/debuff_rules/`. Points of days lost saved per XP,
+Battle Maneuver L1 x3 / L2 x6 (about ±0.1 a XP; an attack-skill rank is
+1.1-1.2 at Level 2 and 1.4-1.5 at Level 3):
+
+| Rule | Plain | Abused | Days lost, no investment |
+|---|---|---|---|
+| Crippled: −1 to attacks a stack (now) | 0.06 / 0.12 | −0.24 / 0.05 | 26.5% |
+| −2 a stack | 0.19 / 0.18 | 0.00 / 0.42 | 28.3% |
+| Bad Luck while any stacks, no penalty | −0.01 / 0.01 | −0.13 / −0.01 | 25.0% |
+| −1 a stack, Bad Luck at 3+ | 0.20 / 0.20 | −0.32 / 0.13 | 27.1% |
+| −1 a stack, Bad Luck while any | 0.23 / 0.19 | −0.24 / 0.11 | 27.3% |
+| −1 a stack, 1 less damage while any | 0.17 / 0.17 | −0.04 / 0.19 | 26.1% |
+| −1 a stack, no attacks at 3+ | 0.36 / 0.23 | 0.49 / 0.63 | 28.4% |
+| −1 a stack, no attacks at 5+ | 0.09 / 0.25 | −0.12 / 0.52 | 25.9% |
+| −1 a stack, never wears off | 0.13 / 0.17 | −0.09 / 0.31 | 28.7% |
+| Slowed: −1 Speed a stack (now) | 0.20 / 0.15 | 0.01 / 0.14 | 26.5% |
+| −2 Speed a stack | 0.19 / 0.10 | 0.07 / 0.09 | 26.3% |
+| −1 Speed, and 1 less AP on a Slowed turn | 0.06 / 0.08 | −0.25 / 0.01 | 28.3% |
+| −1 Speed and −1 Dodge a stack | 0.43 / 0.32 | 0.11 / 0.25 | 27.7% |
+| −1 Speed a stack, never wears off | 0.20 / 0.13 | 0.25 / 0.17 | 26.9% |
+
+Doubled stacks (Wing Clip and Hamstring give 2X): current Crippled
+0.25 / 0.23, Crippled with no attacks at 3+ 0.48 / 0.25, −2 a stack
+0.39 / 0.24; current Slowed 0.31 / 0.16, Slowed with −1 Dodge
+0.64 / 0.37. Level 3 (+1 Slot days, lost 52-59%, so a stress test):
+current Crippled 0.01 / 0.19, no attacks at 3+ 0.30 / 0.24; current
+Slowed −0.05 / 0.05, Slowed with −1 Dodge 0.38 / 0.40.
+
+What it says:
+
+- No rule makes one Wing Clip or Hamstring worth an attack-skill rank.
+  The best combinations reach about half (0.6 a XP). Even Crippled that
+  never wears off is 0.13-0.17: one landing a fight on one of five or
+  six enemies is the limit, not what a stack does.
+- **Crippled that shuts an enemy down at 3 stacks** is the one rule
+  that rewards playing it hard: aimed at the worst attacker and left
+  alone, Wing Clip x6 saves 0.63 a XP, the best abused result. It also
+  makes enemies' Crippling riders worse for the party (days lost 26.5%
+  → 28.4%), so enemy Crippling would need repricing.
+- **Slowed with −1 Dodge a stack** is the best plain rule and the only
+  Slowed one that still pays at Level 3, since it helps every PC's
+  attacks on the slowed enemy, not just the debuffer's. effect_check
+  (Level 1 Party A, the carrier's first target) doesn't see it (Slowed
+  4 on the first hit: 2.37 ± 0.15 against 2.34 now), so how much it
+  gives depends on the party attacking Dodge.
+- −2 a stack, never wearing off, Bad Luck at 3+ and 1 less damage each
+  roughly double Crippled's plain value (0.06 → 0.13-0.23), still small.
+  Bad Luck alone is worth about −2 a turn while it lasts: level with
+  the current rule at 3 stacks, worse at 6 (12 points against 21).
+- Taking an AP away from a Slowed enemy did nothing for the party here
+  (not traced why) and cost it on the enemy side (days lost 28.3%).
+
+Per stack (`tools/effect_check.py --day --extra 1 -n 1000`, Value a
+fight; `effect1000_*.csv`): Crippled 4 on the first hit 2.11 now, 3.68 at
+−2 a stack, 4.34 disabling at 3, 2.83 never wearing off; Crippled 1 on
+every hit 1.52 now, 3.19 as Bad Luck, 4.10 as −1 plus Bad Luck. Slowed
+4 on the first hit 2.34 now, 2.27-2.67 under every variant; Slowed 1 on
+every hit 1.02 now, 2.40 with the AP loss, 1.75-1.77 at −2 or never
+wearing off.

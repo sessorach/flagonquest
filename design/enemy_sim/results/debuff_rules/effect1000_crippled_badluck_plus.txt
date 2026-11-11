@@ -1,0 +1,15 @@
+22 cells, 1000 fights per mix each
+
+== Party A, standard +1 Slots, whole days fights, enemy Health x1.0: base 22.2 expected Health left, 12.37 rounds, losses 11.1%; one PC's +1 Health = 0.867
+| Test | Applied a fight | THE TABEL | TABEL rates x sim counts | Measured | Measured / TABEL | Hilde | Browndog | Carrick | Sable |
+|---|---|---|---|---|---|---|---|---|---|
+| crippled 1, first hit | 1.93 | 2.90 | 0.33 | +0.87 ± 0.10 | 30% | +0.62 | +0.37 | +1.06 | +1.42 |
+| crippled 2, first hit | 1.94 | 8.71 | 1.03 | +2.21 ± 0.14 | 25% | +1.77 | +1.47 | +2.81 | +2.80 |
+| crippled 4, first hit | 1.94 | 29.03 | 2.81 | +3.30 ± 0.14 | 11% | +2.73 | +2.84 | +3.86 | +3.78 |
+| crippled 1, every hit | 7.46 | 11.19 | 1.96 | +4.10 ± 0.15 | 37% | +2.61 | +2.68 | +4.39 | +6.73 |
+
+What happened, per carrier (Hilde / Browndog / Carrick / Sable):
+  crippled 1, first hit: 0.26 enemy attack points, 0.25 stack-turns / 0.41 enemy attack points, 0.40 stack-turns / 0.38 enemy attack points, 0.37 stack-turns / 0.24 enemy attack points, 0.27 stack-turns
+  crippled 2, first hit: 0.84 enemy attack points, 0.83 stack-turns / 1.32 enemy attack points, 1.32 stack-turns / 1.23 enemy attack points, 1.25 stack-turns / 0.75 enemy attack points, 0.87 stack-turns
+  crippled 4, first hit: 2.34 enemy attack points, 2.35 stack-turns / 3.73 enemy attack points, 3.79 stack-turns / 3.36 enemy attack points, 3.47 stack-turns / 1.82 enemy attack points, 2.16 stack-turns
+  crippled 1, every hit: 1.38 enemy attack points, 1.38 stack-turns / 1.73 enemy attack points, 1.72 stack-turns / 1.97 enemy attack points, 2.04 stack-turns / 2.77 enemy attack points, 2.93 stack-turns

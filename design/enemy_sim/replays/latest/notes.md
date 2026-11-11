@@ -1,12 +1,12 @@
 # Latest replays (2026-11-11)
 
-Simulator tidy-up: one enemy builder, always-on fix switches folded into the code, finished studies archived. Fixed-seed runs match before and after, so these fights play as the last round's did.
+Crippled/Slowed rule-variant switches added (off by default); nothing in a default fight changed
 
 ## partyS_L1_vs_L1_manual1.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Manual 1 (Blast Mage@1, Glaive Dancer@1, Glaive Dancer@1, Glaive Dancer@1)
 - This fight (seed 11): party won in 5 rounds, 85% party HP left
-- Matchup average over 1000 fights: 98.2% wins, 5.2 rounds, 79% HP left on a win
+- Matchup average over 1000 fights: 99.1% wins, 5.0 rounds, 80% HP left on a win
 
 ## partyU_L1_vs_L1_manual2.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
