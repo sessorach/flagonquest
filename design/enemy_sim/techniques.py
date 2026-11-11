@@ -1229,11 +1229,11 @@ def _maneuver_riders(pc, c):
         cs._gain(target, 'bleeding', n)
         c.notes.append(f"Bleeding +{n} (Battering)")
     if mv.get('wing_clip') and c.hit:
-        n = mv['wing_clip'] + cs._suit_count(pool, 'Clubs')
+        n = cs.T.RIDER_STACKS_MULT * mv['wing_clip'] + cs._suit_count(pool, 'Clubs')
         cs._gain(target, 'crippled', n)
         c.notes.append(f"Crippled +{n}")
     if mv.get('hamstring') and c.hit:
-        n = mv['hamstring'] + cs._suit_count(pool, 'Spades')
+        n = cs.T.RIDER_STACKS_MULT * mv['hamstring'] + cs._suit_count(pool, 'Spades')
         cs._gain(target, 'slowed', n)
         c.notes.append(f"Slowed +{n}")
     if mv.get('harrying') and either:

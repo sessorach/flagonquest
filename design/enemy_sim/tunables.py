@@ -523,6 +523,9 @@ DEBUFF_IGNORE_CRIPPLED = 3  # Crippled stacks at which the party leaves an enemy
 # never decaying.
 CRIPPLED_RULE = 'base'
 SLOWED_RULE = 'base'
+# Wing Clip and Hamstring give this many times their stacks (2026-11-11 test of
+# a cheaper price per stack; 1 is the rules).
+RIDER_STACKS_MULT = 1
 MANUAL_MIXES = 8
 # Cards a player keeps back after a rescue, by how much the flip matters
 # (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when
