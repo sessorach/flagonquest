@@ -5286,3 +5286,37 @@ almost never held: suits and Gambles add about four.) Level 2, +1 Slot
   0.65 a XP), Bleeding (0.50-0.57), Protected on self (0.48-0.52),
   Taunt (0.48 for three stacks) and Harrying (0.43) come close.
   Crippled, Slowed and Calculated don't (0.10-0.32).
+
+**Debuffs played for all they're worth** (designer, 2026-11-11:
+"find the cases where they'd be abused the most"; `tunables.DEBUFF_ABUSE`,
+off by default). The debuffer opens on the most dangerous enemy that
+survives a good hit (Hamstring: a melee enemy still crossing the room),
+and the party leaves an enemy alone while it's Crippled at least
+`DEBUFF_IGNORE_CRIPPLED` stacks or Slowed out of reach, mopping up the
+rest. Level 2 middle parties, +1 Slot days (26-28% lost), 480 days a
+character (`results/xp_investments_L2_x1_abuse_ignore{3,5,99}*`; 99 =
+aimed but never ignored). Points of days lost saved per XP (about ±0.3):
+
+| Investment | Ignore at 3 | at 5 | never | Not abused (smart hold) |
+|---|---|---|---|---|
+| Attack skill +1 (Melee / Acrobatics / Brawl) | 0.81-1.36 | 0.83-1.14 | 1.01-1.23 | 0.97-1.26 |
+| Sorcery / Archery +1 (Accuracy only) | 0.81 / 0.49 | 0.81 / 0.32 | 0.81 / 0.19 | 0.65 / 0.37 |
+| Battering x3 / x6 (Bleeding) | 0.80 / 0.62 | 0.27 / 0.25 | 0.17 / 0.34 | 0.57 / 0.50 |
+| Wing Clip x3 / x6 (Crippled) | −0.72 / −0.09 | −0.49 / −0.08 | −0.39 / 0.05 | 0.10 / 0.17 |
+| Two Wing Clip x3 copies | −0.63 | −0.42 | −0.24 | — |
+| Hamstring x3 / x6 (Slowed) | −0.22 / 0.06 | −0.27 / −0.02 | −0.17 / 0.06 | 0.26 / 0.19 |
+
+Abused, Crippled and Slowed do worse than played plainly. The traces
+(`--trace`, Wing Clip x6) say why:
+
+- A Crippled stack takes about 4-5 points off an enemy's hit chance, not
+  the 7.7 a card point is worth: enemies hit 57% unhindered, 41-44% at 3
+  stacks, 26-29% at 5-6, 12-14% at 8 (ranged enemies flip twice under
+  Aimed Shot's Good Luck, which blunts a penalty). Six stacks halve an
+  enemy's attacks for a turn or two; they don't disable it.
+- Left alone, a Crippled enemy lives 3.4-4.0 rounds after the landing
+  (1.1 when the party keeps hitting it), attacking at a reduced rate the
+  whole time, so it lands more hits in all, not fewer.
+- Aiming the Maneuver at a fresh enemy takes the debuffer's attack off
+  the party's focus target: never ignoring, the aimed version still
+  loses to the plain one.

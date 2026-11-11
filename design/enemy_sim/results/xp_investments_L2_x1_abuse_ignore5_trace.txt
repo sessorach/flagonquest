@@ -1,0 +1,4 @@
+Battle Maneuver L2: Wing Clip x6 (Crippled): 30 carriers, 2346 fights
+  landings a fight 0.74; on a target the same hit drops 6%
+  a Crippled target lives 3.40 rounds after; the party attacks it 2.55 times while it's Crippled
+  enemy hit rate by Crippled stacks on the attack: 0: 57%, 1: 48%, 2: 42%, 3: 33%, 4: 33%, 5: 30%, 6: 28%, 7: 21%, 8: 14%
