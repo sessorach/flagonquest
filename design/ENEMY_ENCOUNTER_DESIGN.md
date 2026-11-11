@@ -5231,3 +5231,37 @@ result moves by about ±2.5 points by chance alone (the extra Technique
 changes the random draws after it), so a single best-carrier number
 under about 5 is noise; Carrick's +11.5 and +15.8 with Half Guard are
 not.
+
+**What drives those numbers** (designer, 2026-11-11: hard to believe;
+is it betting the stacks on a hit?). `experiments/pc_options/
+maneuver_trace.py` and `maneuver_counts.py`, Level 2 middle parties,
++1 Slot days, the 30 characters who can take a Battle Maneuver:
+
+- The bet mostly wins already. The sim plays an Encounter attack as a
+  big flip: a card goes on it whenever one turns the miss into a hit
+  (66-70% of Maneuver attacks have a card on them), and Maneuvers hit
+  79-84% of the time.
+- Where Wing Clip's six stacks go: 31% land on an enemy the same hit
+  drops. The rest land on the enemy the party is already focusing,
+  which makes 0.9 attacks before it dies, at about −5. That turns
+  0.17 enemy hits a fight into misses (0.34 a day). The sim spends a
+  Maneuver on the character's first attack of the fight, on whatever
+  it would attack anyway.
+- A rank in Melee, Acrobatics or Brawl for someone who attacks with it
+  is also +1 Parry or Dodge (Parry is the weapon's skill, Dodge the
+  better of Acrobatics and Brawl), so it's two stats for one rank. Per
+  fight, against the base: the carrier's hits +0.16, enemy hits −0.72,
+  enemy damage −1.3. Most of its value is the defense. Where the
+  attack skill gives no defense (Archery, Sorcery) a rank is worth
+  0.4-0.9 a XP, close to Battering's 0.5-0.6.
+
+| Per fight (30 characters, 60 days each) | Days lost | Rounds | Its Maneuver: attacks / hit | Enemy hits | Enemy damage |
+|---|---|---|---|---|---|
+| base | 29.3% | 7.52 | 0.64 / 79% | 7.99 | 16.8 |
+| attack skill +1 | 24.4% | 7.09 | 0.64 / 84% | 7.27 | 15.6 |
+| Wing Clip x6 | 28.3% | 7.40 | 1.51 / 79% | 7.72 | 16.4 |
+| Calculated + Wing Clip x3 | 26.3% | 7.23 | 1.50 / 82% | 7.56 | 16.1 |
+| Battering x6 | 25.3% | 7.02 | 1.50 / 80% | 7.36 | 15.9 |
+
+Trading three Crippled stacks for Good Luck on the attack does better
+than six stacks: the hit matters more than the stacks.
