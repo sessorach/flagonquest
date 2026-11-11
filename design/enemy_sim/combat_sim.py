@@ -1589,7 +1589,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # Harried, Taunt, Bleeding) is held while the hit would
                 # probably drop the target, or (Crippled, Taunt) while the
                 # target isn't one that attacks.
-                if maneuver_now and T.MANEUVER_SMART and _rider_maneuver(pc['maneuver']) \
+                if maneuver_now and (T.MANEUVER_SMART or T.DEBUFF_ABUSE) and _rider_maneuver(pc['maneuver']) \
                         and not _rider_target_ok(pc, pc['maneuver'], target):
                     maneuver_now = False
                 # Only a Viper's Sting Maneuver fits in 1 AP.
@@ -2135,7 +2135,9 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     here = [e for e in enemies if e['health'] > 0
                             and _distance(pc['pos'], e['pos']) <= effective_range(pc)]
                     target = play_styles._best(pc, here, allies) if here else None
-                elif target['health'] <= 0:
+                elif target['health'] <= 0 or (T.DEBUFF_ABUSE and tactics.disabled(target, [p for p in pcs if p['health'] > 0])
+                                               and any(e is not target and e['health'] > 0 for e in enemies)):
+                    # DEBUFF_ABUSE: a target just disabled is left for later too.
                     target = _retarget(pc, [e for e in enemies if e['health'] > 0], movement_on)
                     # The new target may be out of reach (2026-10-08 fix:
                     # this used to attack whatever got picked, in range or

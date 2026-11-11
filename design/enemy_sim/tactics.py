@@ -266,7 +266,7 @@ def enemy_threat(e, allies):
         opp, dtype = b.get('opp_def', opp), b.get('dmg_type', dtype)
     if not allies or not dmg:
         return 0.0
-    if T.THREAT_READS_CRIPPLED:
+    if T.THREAT_READS_CRIPPLED or T.DEBUFF_ABUSE:
         acc -= e.get('crippled', 0)
     defense = sum(_party_defense(p, opp) for p in allies) / len(allies)
     resist = sum(p['physres'] if dtype == 'Physical' else p['elemres'] for p in allies) / len(allies)
@@ -280,7 +280,46 @@ def enemy_threat(e, allies):
             and e['speed'] + e.get('hasted', 0) - e.get('slowed', 0) <= 0
             and not any('pos' in p and movement.distance(p['pos'], e['pos']) <= T.MELEE_RANGE for p in allies)):
         threat *= STUCK_DISCOUNT
+    elif T.DEBUFF_ABUSE and _cant_reach_party(e, allies):
+        threat *= STUCK_DISCOUNT
     return threat
+
+
+def _cant_reach_party(e, allies):
+    """DEBUFF_ABUSE: a melee enemy Slowed so far that two moves this turn
+    won't bring anyone into reach."""
+    if 'pos' not in e or (e.get('attack_range') or 0) > T.MELEE_RANGE or not e.get('slowed'):
+        return False
+    gap = min((movement.distance(p['pos'], e['pos']) for p in allies if 'pos' in p), default=0) - T.MELEE_RANGE
+    return gap > 2 * max(0, e['speed'] + e.get('hasted', 0) - e['slowed'])
+
+
+def disabled(e, allies):
+    """DEBUFF_ABUSE: an enemy the party leaves alone for now - Crippled
+    DEBUFF_IGNORE_CRIPPLED or more, or Slowed out of reach."""
+    return e.get('crippled', 0) >= T.DEBUFF_IGNORE_CRIPPLED or _cant_reach_party(e, allies)
+
+
+def debuff_target(unit, targets, allies):
+    """DEBUFF_ABUSE: a PC with a debuff Battle Maneuver ready spends it
+    on the most dangerous enemy it can reach that survives a good hit
+    (sheet damage + MANEUVER_SMART_MARGIN), not already disabled: Wing
+    Clip/Distracting on an attacker, Hamstring on a melee enemy."""
+    mv = unit.get('maneuver')
+    if not mv or mv['uses'] <= 0 or not any(mv.get(k) for k in ('wing_clip', 'hamstring', 'distracting', 'harrying', 'battering')):
+        return None
+
+    def ok(t):
+        resist = t.get('physres', 0) if unit.get('dmg_type', 'Physical') == 'Physical' else t.get('elemres', 0)
+        if t['health'] <= unit['damage'] + T.MANEUVER_SMART_MARGIN - resist:
+            return False
+        if (mv.get('wing_clip') or mv.get('distracting')) and (t.get('kind', 'attack') != 'attack' or t.get('crippled', 0) >= 3):
+            return False
+        if mv.get('hamstring') and ((t.get('attack_range') or 0) > T.MELEE_RANGE or t.get('slowed', 0) >= t['speed']):
+            return False
+        return _attacks_this_turn(unit, t) > 0
+    picks = [t for t in targets if ok(t)]
+    return max(picks, key=lambda t: enemy_threat(t, allies)) if picks else None
 
 
 # How much the party discounts an enemy that's stuck (see enemy_threat).
@@ -411,6 +450,11 @@ def select_target(unit, targets, movement_on, allies=None):
     fn = TARGETING.get(unit.get('battle_tactic'))
     if fn:
         return fn(unit, targets)
+    if allies is not None and T.DEBUFF_ABUSE:
+        targets = [t for t in targets if not disabled(t, allies)] or targets
+        pick = debuff_target(unit, targets, allies)
+        if pick is not None:
+            return pick
     if allies is not None:
         cash = cashout_target(unit, targets)
         if cash is not None:

@@ -653,6 +653,13 @@ ENCOUNTER_SOURCE = "manual"
 # of the fight, whatever the target, as before.
 MANEUVER_SMART = False
 MANEUVER_SMART_MARGIN = 4  # damage over the sheet's a good hit lands
+# A party playing debuffs for all they're worth (designer, 2026-11-11):
+# a debuff Maneuver goes on the most dangerous enemy that survives the
+# hit (tactics.debuff_target), and the party then leaves a Crippled enemy
+# (its stacks off its hit chance) or a melee enemy Slowed out of reach
+# for later and mops up the rest. Implies MANEUVER_SMART.
+DEBUFF_ABUSE = False
+DEBUFF_IGNORE_CRIPPLED = 3  # Crippled stacks at which the party leaves an enemy alone
 MANUAL_MIXES = 8
 # Cards a player keeps back after a rescue, by how much the flip matters
 # (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when

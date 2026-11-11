@@ -47,6 +47,8 @@ def job(args):
                 else:
                     crip[t['target']] = crip.get(t['target'], 0) + n
                     c['landed_alive'] += 1
+            elif t.get('side') == 'party' and crip.get(t.get('target'), 0) > 0:
+                c['party_attacks_on_crippled'] += 1
             elif t.get('side') == 'enemy' and crip.get(u, 0) > 0:
                 cc = crip[u]
                 c['enemy_attacks_crippled'] += 1
@@ -70,4 +72,5 @@ if __name__ == '__main__':
     print(f"  ...landed on a target the same hit dropped: {100 * tot['killed_same_hit'] / max(1, tot['hits_with_stacks']):.0f}%")
     print(f"  enemy attacks made while Crippled, per landing on a survivor: {tot['enemy_attacks_crippled'] / max(1, tot['landed_alive']):.2f}")
     print(f"  penalty points used on those attacks, per landing: {tot['penalty_points'] / max(1, tot['landed_alive']):.2f}")
+    print(f"  party attacks on it while it's still Crippled, per landing on a survivor: {tot['party_attacks_on_crippled'] / max(1, tot['landed_alive']):.2f}")
     print(f"  enemy hits turned into misses, per fight: {tot['hits_prevented'] / f:.3f}  (per day {2 * tot['hits_prevented'] / f:.3f})")

@@ -88,6 +88,13 @@ def options(build, pc):
             out.append((f"Battle Maneuver L{lvl}: {feat} x{n} ({what})", 3 * lvl,
                         lambda b, lvl=lvl, feat=feat, n=n: (b["techniques"].append(
                             party._entry({"id": "T072", "level": lvl, "features": {feat: n}})), b)[1]))
+        if lvl == 1:
+            # Two Level 1 copies (6 XP): a second application later in the
+            # fight, to keep a target topped off.
+            for feat, what in RIDERS[:2]:
+                out.append((f"2x Battle Maneuver L1: {feat} x3 ({what})", 6,
+                            lambda b, feat=feat: (b["techniques"].extend(
+                                [party._entry({"id": "T072", "level": 1, "features": {feat: 3}})] * 2), b)[1]))
         out.append((f"Battle Maneuver L{lvl}: Calculated x{lvl} (Good Luck)", 3 * lvl,
                     lambda b, lvl=lvl: (b["techniques"].append(
                         party._entry({"id": "T072", "level": lvl, "features": {"Calculated": lvl}})), b)[1]))
@@ -181,7 +188,7 @@ def report(a, res, cl):
         lines.append(f"| {label} | {xp:.1f} | {len(xs)} | {dl:+.1f} | {dl / xp:+.2f} | {dh:+.1f} | {gname} {best[0]:+.1f} |")
     text = "\n".join(lines)
     print(text)
-    tag = "_smart" if T.MANEUVER_SMART else ""
+    tag = "_abuse" if T.DEBUFF_ABUSE else "_smart" if T.MANEUVER_SMART else ""
     out = os.path.join(_paths.ROOT, "results", f"xp_investments_L{a.L}_x{a.extra}{tag}.txt")
     open(out, "w").write(text + "\n")
     json.dump([[list(c), res[c]] for c in cl], open(out.replace(".txt", ".json"), "w"))

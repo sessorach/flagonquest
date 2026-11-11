@@ -138,6 +138,12 @@ def plan_turn(pc, targets, allies, ap):
     turn. `targets` are the living enemies; `ap` is what's left after
     healing/Challenge."""
     style = pc.get('play_style') or "Diver"
+    if T.DEBUFF_ABUSE and targets:
+        # Leave disabled enemies for later; a debuff Maneuver ready to go
+        # plays the turn like a Diver, so it goes for tactics.debuff_target.
+        targets = [t for t in targets if not tactics.disabled(t, allies)] or targets
+        if tactics.debuff_target(pc, targets, allies) is not None:
+            return None
     if T.SHAPE_SETUP and 'pos' in pc and targets:
         shaped = plan_shape(pc, targets, ap)
         if shaped:
