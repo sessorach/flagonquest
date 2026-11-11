@@ -5265,3 +5265,24 @@ maneuver_trace.py` and `maneuver_counts.py`, Level 2 middle parties,
 
 Trading three Crippled stacks for Good Luck on the attack does better
 than six stacks: the hit matters more than the stacks.
+
+**Smart Maneuvers** (designer, 2026-11-11; `tunables.MANEUVER_SMART`,
+off by default, `MANEUVER_SMART_MARGIN` 4): a Maneuver built on riders
+that need the target alive is held unless the target survives a good
+hit (the sheet's damage + 4, less its Resist), and Crippled or Taunt
+unless it attacks. (A first version used the sheet's damage alone and
+almost never held: suits and Gambles add about four.) Level 2, +1 Slot
+(`results/xp_investments_L2_x1_smart.txt`, `maneuver_*_smart.txt`):
+
+- Wing Clip's stacks landing on a target the same hit drops: 31% → 8%.
+  Hits it turns into misses: 0.17 → 0.21 a fight. Days saved per XP
+  barely move (0.18 → 0.17 for six stacks; 0.09 → 0.10 for three);
+  Harrying gains a little (0.34 → 0.43).
+- A target that survives still makes about one attack while Crippled
+  (0.99 a landing, at about −5): the party is already focusing it, and
+  Fleeting loses a stack each of its turns. Of six stacks, the first
+  turn's five or six do the work, and the rest fall off a dead enemy.
+- Against a rank that buys Accuracy alone (Archery 0.37-0.42, Sorcery
+  0.65 a XP), Bleeding (0.50-0.57), Protected on self (0.48-0.52),
+  Taunt (0.48 for three stacks) and Harrying (0.43) come close.
+  Crippled, Slowed and Calculated don't (0.10-0.32).
