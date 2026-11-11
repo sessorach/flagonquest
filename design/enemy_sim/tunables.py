@@ -526,6 +526,7 @@ SLOWED_RULE = 'base'
 # Wing Clip and Hamstring give this many times their stacks (2026-11-11 test of
 # a cheaper price per stack; 1 is the rules).
 RIDER_STACKS_MULT = 1
+RIDER_STACKS_ADD = 0  # and this many more ("Crippled X + 2")
 MANUAL_MIXES = 8
 # Cards a player keeps back after a rescue, by how much the flip matters
 # (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when

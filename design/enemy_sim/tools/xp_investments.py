@@ -36,11 +36,16 @@ import day_sim as ds  # noqa: E402
 import party  # noqa: E402
 import combat_sim as cs  # noqa: E402
 import bands  # noqa: E402
+import party_tactics  # noqa: E402
 
 WEAPON_SKILLS = ("Acrobatics", "Archery", "Brawl", "Melee")
 RIDERS = [("Wing Clip", "Crippled"), ("Hamstring", "Slowed"), ("Harrying", "Harried"),
           ("Battering", "Bleeding"), ("Distracting", "Taunted"), ("Half Guard", "Protected on self")]
 FEATURE_PREREQ = {"Battering": ("Might", 2), "Distracting": ("Presence", 2)}
+# Set from the environment so the pool's workers see them too: XPINV_ELITE
+# names a 2-Slot monster to swap in, XPINV_TACTIC a party_tactics preset.
+ELITE = os.environ.get("XPINV_ELITE")
+TACTIC = os.environ.get("XPINV_TACTIC")
 
 
 def register(level, extra):
@@ -51,9 +56,12 @@ def register(level, extra):
     for i, m in enumerate(se.install_manual_mixes(level_into=level, build_level=level)):
         enc = list(se.ENCOUNTERS[level][m])
         ones = [x for x in enc if se.get_enemy(x).get("slots", 1) == 1 and se.get_enemy(x)["kind"] == "attack"]
+        if ELITE:  # a 2-Slot enemy in place of one standard attacker (a net +1 Slot)
+            enc[enc.index(ones[0])] = f"{ELITE}@{level}"
         se.ENCOUNTERS[level][f"{m} +{extra}"] = enc + [ones[j % len(ones)] for j in range(extra)]
         keys.append(f"{m} +{extra}")
     se.CURRENT_MIXES = tuple(keys)
+    party_tactics.use(TACTIC)
 
 
 def raw(build, name):
