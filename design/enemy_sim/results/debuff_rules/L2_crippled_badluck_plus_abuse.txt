@@ -1,0 +1,12 @@
+Level 2, +1 Slots, 200 days a mix (1600 a carrier); base days lost 27.2%. Saved: points of days lost the investment takes off (higher is better), averaged over every carrier who can take it; per XP divides by its cost.
+
+| Investment | XP | Carriers | Days-lost points saved | Per XP | Health left after fight 2 | Best carrier |
+|---|---|---|---|---|---|---|
+| Melee +1 (Accuracy) | 4.2 | 5 | +5.1 | +1.21 | +1.6 | Enith (L2, proposed) +10.6 |
+| Sorcery +1 (Accuracy) | 5.0 | 2 | +4.6 | +0.93 | +1.4 | Beornhard (L2) +5.3 |
+| Brawl +1 (Accuracy) | 4.7 | 9 | +4.0 | +0.85 | +1.4 | Felix (L2, proposed) +8.8 |
+| Acrobatics +1 (Accuracy) | 4.7 | 13 | +4.0 | +0.85 | +1.5 | Carrick (L2) +8.4 |
+| Archery +1 (Accuracy) | 5.0 | 3 | +1.8 | +0.37 | +1.2 | Sable (L2, proposed) +2.3 |
+| Battle Maneuver L2: Wing Clip x6 (Crippled) | 6.0 | 30 | +0.7 | +0.11 | +0.6 | Sable (L2, proposed) +5.8 |
+| 2x Battle Maneuver L1: Wing Clip x3 (Crippled) | 6.0 | 32 | -1.4 | -0.24 | -0.2 | Sable (L2, proposed) +4.4 |
+| Battle Maneuver L1: Wing Clip x3 (Crippled) | 3.0 | 32 | -0.7 | -0.24 | -0.1 | Sable (L2, proposed) +3.8 |
