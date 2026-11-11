@@ -1,12 +1,12 @@
-# Latest replays (2026-11-09)
+# Latest replays (2026-11-11)
 
-Every shared test fights the monster manual's encounters (ENCOUNTER_SOURCE 'manual'); the generic replays moved to Manual 1-3 at Level 1 and Manual 1 at Level 3
+Simulator tidy-up: one enemy builder, always-on fix switches folded into the code, finished studies archived. Fixed-seed runs match before and after, so these fights play as the last round's did.
 
 ## partyS_L1_vs_L1_manual1.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Manual 1 (Blast Mage@1, Glaive Dancer@1, Glaive Dancer@1, Glaive Dancer@1)
 - This fight (seed 11): party won in 5 rounds, 85% party HP left
-- Matchup average over 1000 fights: 98.2% wins, 5.0 rounds, 81% HP left on a win
+- Matchup average over 1000 fights: 98.2% wins, 5.2 rounds, 79% HP left on a win
 
 ## partyU_L1_vs_L1_manual2.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
@@ -24,7 +24,7 @@ Every shared test fights the monster manual's encounters (ENCOUNTER_SOURCE 'manu
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
 - Enemies: Level 3 Manual 1 (Blast Mage@3, Blast Mage@3, Deadbough Priest@3, Thornhide Brute@3)
 - This fight (seed 1): party won in 2 rounds, 98% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 1.9 rounds, 92% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.0 rounds, 91% HP left on a win
 
 ## bleed_party_L1_vs_L1_frontline.html
 - Party: Hilde (Bleed), Felix (Bleed), Jackal (Bleed), Beornhard (Bleed)
@@ -92,17 +92,17 @@ Every shared test fights the monster manual's encounters (ENCOUNTER_SOURCE 'manu
 ## manual_L3_ogre_leads.html
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
 - Enemies: Level 3 Manual: Gravel Ogre leads (Gravel Ogre@3, Goblin Cutthroat@3, Marsh Archer@3)
-- This fight (seed 1): party won in 2 rounds, 91% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.0 rounds, 92% HP left on a win
+- This fight (seed 1): party won in 2 rounds, 100% party HP left
+- Matchup average over 1000 fights: 100.0% wins, 2.2 rounds, 93% HP left on a win
 
 ## manual_L3_new_tricks.html
 - Party: Browndog (L3), Hanforth (L3), Hilde (L3), Beornhard (L3)
 - Enemies: Level 3 Manual: Blast Mage, Ram Brute, Warpriest (Blast Mage@3, Ram Brute@3, Warpriest@3, Brute@3)
-- This fight (seed 1): party won in 3 rounds, 100% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.5 rounds, 94% HP left on a win
+- This fight (seed 1): party won in 3 rounds, 91% party HP left
+- Matchup average over 1000 fights: 100.0% wins, 2.6 rounds, 95% HP left on a win
 
 ## manual_L3_warlord.html
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
 - Enemies: Level 3 Manual: solo Warlord (Brute Warlord@3)
 - This fight (seed 1): party won in 2 rounds, 100% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.1 rounds, 92% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.1 rounds, 93% HP left on a win
