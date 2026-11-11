@@ -1,0 +1,15 @@
+Level 2, +0 Slots, 200 days a mix (1600 a carrier); base days lost 40.3%. Saved: points of days lost the investment takes off (higher is better), averaged over every carrier who can take it; per XP divides by its cost.
+
+| Investment | XP | Carriers | Days-lost points saved | Per XP | Health left after fight 2 | Best carrier |
+|---|---|---|---|---|---|---|
+| Acrobatics +1 (Accuracy) | 4.7 | 13 | +9.4 | +2.00 | +2.6 | Carrick (L2) +23.1 |
+| Melee +1 (Accuracy) | 4.2 | 5 | +8.3 | +1.98 | +3.2 | Browndog (L2) +14.7 |
+| Brawl +1 (Accuracy) | 4.7 | 9 | +7.6 | +1.62 | +2.5 | Hanforth (L2) +11.8 |
+| Battle Maneuver L2: Wing Clip x6 (Crippled) | 6.0 | 30 | +7.5 | +1.24 | +3.1 | Carrick (L2) +34.6 |
+| Sorcery +1 (Accuracy) | 5.0 | 2 | +5.3 | +1.07 | +1.6 | Beornhard (L2) +6.2 |
+| Battle Maneuver L2: Hamstring x6 (Slowed) | 6.0 | 30 | +6.0 | +1.00 | +2.3 | Carrick (L2) +32.3 |
+| 2x Battle Maneuver L1: Wing Clip x3 (Crippled) | 6.0 | 32 | +4.9 | +0.82 | +2.2 | Hanforth (L2) +23.3 |
+| Battle Maneuver L1: Wing Clip x3 (Crippled) | 3.0 | 32 | +2.4 | +0.81 | +1.1 | Hanforth (L2) +14.4 |
+| Battle Maneuver L1: Hamstring x3 (Slowed) | 3.0 | 32 | +2.2 | +0.74 | +0.8 | Carrick (L2) +17.8 |
+| 2x Battle Maneuver L1: Hamstring x3 (Slowed) | 6.0 | 32 | +4.0 | +0.67 | +1.5 | Carrick (L2) +24.6 |
+| Archery +1 (Accuracy) | 5.0 | 3 | +3.2 | +0.65 | +1.7 | Sable (L2, proposed) +4.1 |
