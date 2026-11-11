@@ -26,8 +26,7 @@ import tunables as T  # noqa: E402
 import sample_enemies as se  # noqa: E402
 import day_sim as ds  # noqa: E402
 import party  # noqa: E402
-import table_check as tc  # noqa: E402
-import progression_sweep as ps  # noqa: E402
+import bands  # noqa: E402
 
 PARTY_SLOTS = 4
 SOLO = 4.0
@@ -59,7 +58,7 @@ def _job(args):
     T.ENEMY_LEVEL_UP = 0
     if EXTRA[0] is not None:
         T.V3_PRUNED_EXTRA = EXTRA[0]
-    gname, pnames, swaps = tc.groups(level, ps.MID[level])[gi]
+    gname, pnames, swaps = bands.groups(level, bands.MID[level])[gi]
     lvl = min(level, 3)
     se.ENCOUNTERS.setdefault(lvl, {})["_test"] = list(names) if key.startswith("ref") else [f"{x}@{level}" for x in names]
     rows = party._rows()
@@ -86,7 +85,7 @@ def run(a):
     for L in [int(x) for x in a.L.split(",")]:
         encs = {"|".join(e): e for e in encounters(L, a.k, a.seed)}
         encs.update(reference(L))
-        groups = tc.groups(L, ps.MID[L])
+        groups = bands.groups(L, bands.MID[L])
         for gi, (gname, _, _) in enumerate(groups):
             for key, names in encs.items():
                 if (L, gname, key) not in done:

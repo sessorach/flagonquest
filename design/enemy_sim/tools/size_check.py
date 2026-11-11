@@ -31,9 +31,32 @@ import game_data  # noqa: E402
 import day_sim as ds  # noqa: E402
 import party  # noqa: E402
 import sample_enemies as se  # noqa: E402
-import table_check as tc  # noqa: E402
-import progression_sweep as ps  # noqa: E402
-import boss_encounters as be  # noqa: E402
+import bands  # noqa: E402
+
+K = 4  # companion draws per Level and size
+
+
+def pool():
+    out = []
+    for n in se.manual_names():
+        e = se.get_enemy(f"{n}@3")
+        if e.get("slots", 1) == 1 and e["kind"] == "attack":
+            out.append(n)
+    return out
+
+
+def draws(level, n, k=K, seed=11):
+    """k fixed sets of n standard attackers (distinct monsters)."""
+    if n == 0:
+        return [()]
+    rng = random.Random(seed * 1000 + level * 10 + n)
+    p, out = pool(), []
+    while len(out) < k:
+        d = tuple(sorted(rng.sample(p, n)))
+        if d not in out:
+            out.append(d)
+    return out
+
 
 BASE = dict(BackupAction="", MainEffect="", WeakDefense="", Concept="test only")
 TEST_ELITES = {
@@ -95,20 +118,20 @@ def minion_draws(level, n, k=4, seed=13):
 
 def encounters(L):
     out = []
-    for comp in be.draws(L, 4):
+    for comp in draws(L, 4):
         out.append(("standard", "Four standard", [*comp]))
     for d in minion_draws(L, 8):
         out.append(("minion", "Eight minions", [*d]))
-    for d, comp in zip(minion_draws(L, 4), be.draws(L, 2)):
+    for d, comp in zip(minion_draws(L, 4), draws(L, 2)):
         out.append(("minion", "Four minions + two standard", [*d, *comp]))
-    for d, comp in zip(minion_draws(L, 2), be.draws(L, 3)):
+    for d, comp in zip(minion_draws(L, 2), draws(L, 3)):
         out.append(("minion", "Two minions + three standard", [*d, *comp]))
     for e in ELITES:
-        for comp in be.draws(L, 2):
+        for comp in draws(L, 2):
             out.append(("elite", f"{e} + two standard", [e, *comp]))
         if e != "Coven Matriarch":  # two supports: no attacker at all
             out.append(("elite", f"Two {e}s", [e, e]))
-        for d, comp in zip(minion_draws(L, 2, k=2), be.draws(L, 1, k=2)):
+        for d, comp in zip(minion_draws(L, 2, k=2), draws(L, 1, k=2)):
             out.append(("elite+minion", f"{e} + two minions + one standard", [e, *d, *comp]))
     for pair in (("Gravel Ogre", "Coven Matriarch"), ("Gravel Ogre", "Elite Sharpshooter"),
                  ("Elite Sharpshooter", "Storm Magus")):
@@ -147,7 +170,7 @@ def _job(args):
     T.ENEMY_LEVEL_UP = 0
     T.V3_MINION_HEALTH = c["minion_hp"]
     L = c["level"]
-    gname, pn, sw = tc.groups(L, budget)[gi]
+    gname, pn, sw = bands.groups(L, budget)[gi]
     se.ENCOUNTERS.setdefault(min(L, 3), {})["_t"] = [f"{x}@{L}" for x in c["enc"]]
     rows = party._rows()
     out = collections.Counter()
@@ -158,7 +181,7 @@ def _job(args):
         out["down"] += f["downs"] > 0
         out["down2"] += f["downs"] > 1
         out["rounds"] += f["rounds"]
-    pos = 1 if L == 1 else tc.POINTS[L].index(budget)
+    pos = 1 if L == 1 else bands.POINTS[L].index(budget)
     return dict(c, pos=pos, party=gname, **{k: out[k] / n for k in ("won", "down", "down2", "rounds")})
 
 
@@ -173,10 +196,10 @@ def run(a):
     jobs = []
     for c in cases():
         L = c["level"]
-        pts = [ps.MID[L]] if L == 1 or c["minion_hp"] != round(MINION_HP[0], 3) else list(tc.POINTS[L])
+        pts = [bands.MID[L]] if L == 1 or c["minion_hp"] != round(MINION_HP[0], 3) else list(bands.POINTS[L])
         for b in pts:
-            pos = 1 if L == 1 else tc.POINTS[L].index(b)
-            for gi, (gname, _, _) in enumerate(tc.groups(L, b)):
+            pos = 1 if L == 1 else bands.POINTS[L].index(b)
+            for gi, (gname, _, _) in enumerate(bands.groups(L, b)):
                 if (L, c["label"], "|".join(c["enc"]), c["minion_hp"], pos, gname) not in done:
                     jobs.append((c, b, gi, a.n))
     print(len(jobs), "jobs", flush=True)

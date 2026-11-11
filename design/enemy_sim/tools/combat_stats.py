@@ -31,8 +31,7 @@ import party  # noqa: E402
 import sample_enemies as se  # noqa: E402
 import enemy_builder_pcstyle as eb  # noqa: E402
 import manual_check as mc  # noqa: E402
-import table_check as tc  # noqa: E402
-import progression_sweep as ps  # noqa: E402
+import bands  # noqa: E402
 
 LEVELS = (1, 2, 3, 4, 5)
 K_ENC = 24
@@ -59,7 +58,7 @@ def _job(args):
     level, gi, n = args
     install()
     T.ENEMY_LEVEL_UP = 0
-    gname, names, swaps = [g for g in tc.groups(level, ps.MID[level]) if g[0] != "stand-ins"][gi]
+    gname, names, swaps = [g for g in bands.groups(level, bands.MID[level]) if g[0] != "stand-ins"][gi]
     encs = [e for e in mc.encounters(level, K_ENC, 1)
             if not any(se.get_enemy(f"{x}@{level}").get("slots", 1) == 4 for x in e)]
     rows = party._rows()
@@ -152,7 +151,7 @@ def main():
     a = ap.parse_args()
     PREV[0], TABLE[0] = a.prev, a.table
     jobs = [(L, gi, a.n) for L in LEVELS
-            for gi in range(len([g for g in tc.groups(L, ps.MID[L]) if g[0] != "stand-ins"]))]
+            for gi in range(len([g for g in bands.groups(L, bands.MID[L]) if g[0] != "stand-ins"]))]
     with mp.Pool(a.j) as pool:
         res = list(pool.imap_unordered(_job, jobs))
     text = report(res)

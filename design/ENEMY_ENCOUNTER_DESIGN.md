@@ -1589,7 +1589,7 @@ wall can spend Upgrades on Durable or a second rider.
 Per the designer: Slots stay as they are (count the players, pick
 enemies adding up to that many Slots), so if on-level fights are off,
 the per-Level baseline is what moves. A broad first pass, nothing
-changed yet. `experiments/enemies/stat_sweep.py` nudges every built
+changed yet. `archive/enemy_sim_experiments/enemies/stat_sweep.py` nudges every built
 enemy's numbers by Level (or one enemy's, `3@Brute:`) and plays the day
 standard (two fights, care between) against the measured on-level
 parties: Level 1 the six sample parties at 75 XP, Levels 2-3 eight
@@ -1761,7 +1761,7 @@ Bruiser's damage Stat 5, a Backup's Resist Stat 5. Attack is one under
 the PC progression at every Level (5 to 9, not 6 to 10); that's the
 price of the longer fights.
 
-**Across the band** (`experiments/enemies/table_check.py`; days won /
+**Across the band** (`tools/table_check.py`; days won /
 F1 Down / F1 Wounded / rounds / acts again; normalized parties at the
 band's bottom, middle and top, `band_builds.py`; Level 1 is the sample
 parties at 75 XP, the bottom of its band; Levels 4-5 below):
@@ -1818,7 +1818,7 @@ properly needs Level 4-5 sample characters.
 
 Per the designer, with v2 as the new ground: a check pass over the
 pieces a GM builds an enemy from, so they're in line with each other.
-`experiments/enemies/kit_check.py` puts each one on every full-size
+`archive/enemy_sim_experiments/enemies/kit_check.py` puts each one on every full-size
 enemy in the four mixes (rebuilt through the builder, so an Ability's
 Upgrades come out of the enemy's Health as on a real stat block), against
 the eight normalized parties in the middle of the band at Levels 2 and 3,
@@ -2007,7 +2007,7 @@ Resist 1-2 lower, the party's damage per round was high, so fights only
 reached 4-5 rounds with lots of enemy Health. Enemy Resist can stand in
 for Health: +1 Resist cuts the party's damage by about a third.
 
-**The sweeps** (`experiments/enemies/progression_sweep.py`, nudges on
+**The sweeps** (`archive/enemy_sim_experiments/enemies/progression_sweep.py`, nudges on
 v2 at every Level, the middle of each band, 60 days per mix per party;
 `progression_rank.py` scores them against the targets: about 95% of
 days, someone Down in about a fifth of fresh fights, Wounded about half,
@@ -2348,7 +2348,7 @@ thing, not be pure Health sponges. So pull some other power budget back
 to fit them in, and see how much each Level can bear before the missing
 stats distort the fights.
 
-`experiments/enemies/debuff_budget.py` gives every full-size enemy in
+`archive/enemy_sim_experiments/enemies/debuff_budget.py` gives every full-size enemy in
 the four mixes (not the minions) a package of on-hit Abilities on top of
 its own. Every package starts with two free riders (Strike (Crippling),
 Strike (Slowing)) and adds, in order, Strike (Necrotic) (1), Strike
@@ -2804,7 +2804,7 @@ The designer, after reviewing the draft manual: trim the hexes and put
 their budget elsewhere (Hex stacks 2 / 2 / 3 / 3 / 4 at Levels 1-5, and
 the Hex loadout gives 2 points back), and limit the poison stackers,
 since poisons outlast the fight (a Poison effect stops at 2 picks). Then
-a broad test: `experiments/enemies/manual_check.py` draws 40 encounters
+a broad test: `tools/manual_check.py` draws 40 encounters
 a Level from the manual by the encounter rules (Slots equal to the
 party's four, two stat blocks usually, three sometimes, at most one
 enemy that doesn't attack, the solo boss alone from Level 3), and every
@@ -3027,7 +3027,7 @@ out. How the sim plays them (`tactics.py`, `combat_sim.spend_movement_ap`):
 - **Hold the Line, Vanguard and Triage aren't modeled:** they play as Hit
   Whatever. (Supports pick whom to help by their own rule.)
 
-`experiments/enemies/tactic_check.py`: every attacking manual monster,
+`archive/enemy_sim_experiments/enemies/tactic_check.py`: every attacking manual monster,
 four of itself (eight minions, two elites) at Level 3, under each tactic,
 against every test party in the middle of the band, 40 fresh fights each.
 Kiting is played as coded ('always') and with a test rule that backs off
@@ -3168,7 +3168,7 @@ is −3 to attacks for one turn, −2 the next, −1 the one after. Vulnerable
 lowers only Vital, Mental and Vigilant, which most attacks don't target;
 Slowed costs movement, which matters little in these fights.
 
-`experiments/enemies/hexer_check.py`: a basic fight at Level 3, three of
+`archive/enemy_sim_experiments/enemies/hexer_check.py`: a basic fight at Level 3, three of
 a working monster (Brutes, or Grave Callers aiming at Vital) and a
 fourth, against every test party in the middle of the band, 60 fresh
 fights each (`results/enemy_stats/hexer_check.txt`). The fourth is
@@ -3374,7 +3374,7 @@ enemy's budget, every point costing it 6 Health; an elite (2 Slots) one
 turn, 3 times the Health, one budget. Option 1, chosen: a bigger enemy
 gets a bigger budget (`tunables.V3_SLOT_BUDGET`, by Slots), each point
 costing its Health multiple over that scale, so one that spends nothing
-keeps its Health. `experiments/enemies/elite_boss_check.py`: the Brute
+keeps its Health. `archive/enemy_sim_experiments/enemies/elite_boss_check.py`: the Brute
 Warlord alone, two Gravel Ogres, and a Coven Matriarch beside two
 Brutes, Levels 3-5, every test party in the middle of the band, 60 fresh
 fights; at each bigger budget the big one buys more mechanics (the boss:
@@ -3597,7 +3597,7 @@ The designer: maybe the solo boss doesn't hold up, and the standard boss
 is an elite leading standard monsters. Across the previous section's
 designs the solo boss swung from 0% to 97% lost, while an elite beside
 standard monsters stayed in an ordinary fight's range for every design
-but the Defender. `experiments/enemies/boss_encounters.py`: an elite
+but the Defender. `archive/enemy_sim_experiments/enemies/boss_encounters.py`: an elite
 plus standard monsters, or two elites plus standard monsters, filling 4,
 5 or 6 Slots (the party is 4), against all-standard encounters of the
 same sizes. Elites at today's setting and at twice the budget under the
@@ -3668,7 +3668,7 @@ Gravel Ogre's 15, and the party's damage per attack falls from 4.3 to
 0.8. The curve is steep: two more Parry and Dodge on the Ogre pair cost
 the party 15% of its damage per attack, six cost 60% (12 rounds).
 
-`experiments/enemies/defense_cap.py`, Levels 2-5, middle of the band, 50
+`archive/enemy_sim_experiments/enemies/defense_cap.py`, Levels 2-5, middle of the band, 50
 fresh fights per party and encounter (`results/enemy_stats/defense_cap*.txt`):
 
 | Encounter | Today | Parry and Dodge +1 once | Defenders can't buy it | Cap before equipment | Cap, shield included | Cap, shield included, and Resist |
@@ -3839,7 +3839,7 @@ at Levels 1-5 (was 2.1 / 0.6 / 1.0 / 0.8 / 2.4), someone Down 19 / 13 /
 14 / 15 / 10% (was 18 / 12 / 13 / 13 / 9), same lengths. The drawn
 encounters only meet elites now and then, so it barely moves.
 
-Boss encounters on the defaults (`experiments/enemies/boss_check2.py`,
+Boss encounters on the defaults (`archive/enemy_sim_experiments/enemies/boss_check2.py`,
 middle of the band, Levels 1-5, four fixed companion draws, 60 fights a
 party; `results/enemy_stats/boss_check2.txt`):
 
@@ -3880,7 +3880,7 @@ unchanged). Minion Health is now its own tunable, `V3_MINION_HEALTH`
 | 2 (elite) | twice, the extra on offense only | 2.5 times | 1 |
 | 4 (solo boss, rare) | twice, the extra on offense only | 4 times | 2 |
 
-`experiments/enemies/size_check.py`: minions at a third, 0.4 and half of
+`tools/size_check.py`: minions at a third, 0.4 and half of
 the Health; the manual's elites plus three test-only ones built the
 manual's way (Elite Sharpshooter, Storm Magus, and a Black Knight, a
 Defender in Heavy armor); pairs and mixes; the solo Warlord. Fixed
@@ -3987,7 +3987,7 @@ Still the slowest fights: two Black Knights run 12 rounds, the rest of
 it Heavy armor's Resist on an elite's Health.
 
 The other picks that shrug off what the party does, on two Gravel Ogres
-(`experiments/enemies/elite_debuff_picks.py`, Levels 3-5, middle of the
+(`archive/enemy_sim_experiments/enemies/elite_debuff_picks.py`, Levels 3-5, middle of the
 band; `results/enemy_stats/elite_debuff_picks.txt`):
 
 | Two Gravel Ogres | Lost | Down | Rounds | PC hit rate |
@@ -4125,7 +4125,7 @@ middle; low / high band lost after):
 
 The designer: should Heavy armor cost a bit more? It's 4 points today
 (Physical Resist +3, Dodge −1, Speed −1; Medium 2 for +2 and Dodge −1).
-`experiments/enemies/heavy_armor_price.py`, the manual's drawn fights
+`archive/enemy_sim_experiments/enemies/heavy_armor_price.py`, the manual's drawn fights
 split by whether a Heavy-armored monster is in them (the Ironbranch
 Warden, the Iron Sentinel, the Brute Warlord), plus the Heavy elite and
 boss fights; middle of the band, 30-60 fights a party
@@ -4176,7 +4176,7 @@ Damage:
   Resilient and Sturdy (both Dodge +1 and Enhanced Health go), the Warlord
   keeps Intimidating, with Cleaving and Parting Shot first on its BigPicks.
 
-`experiments/enemies/one_budget.py`; the manual's fights and the Heavy
+`archive/enemy_sim_experiments/enemies/one_budget.py`; the manual's fights and the Heavy
 big-enemy fights, middle of the band, 30-60 fights a party
 (`results/enemy_stats/one_budget.txt`). Lost / Down / rounds:
 
@@ -4236,7 +4236,7 @@ hand-build draft had it that way). `tunables.V3_HEAVY_MIN_LEVEL = 3`:
 below it a Heavy design wears Medium (2 points, Physical Resist +2, Dodge
 −1, no Speed −1) and keeps the 4 points as Health (the Warden goes from 14
 Health to 17 at Level 1, Physical Resist 5 to 4). Levels 1-2, middle of
-the band, 60 fights a party (`experiments/enemies/heavy_level3.py`,
+the band, 60 fights a party (`archive/enemy_sim_experiments/enemies/heavy_level3.py`,
 `results/enemy_stats/heavy_level3.txt`). Lost / Down / rounds:
 
 | | Heavy at any Level | Heavy from Level 3 |
@@ -4297,7 +4297,7 @@ inside a Level.
 
 Per the designer: weigh the enemy stats a bit flatter at Levels 2-4 and
 give back some Ability budget, so enemies challenge the party without
-overwhelming the bottom of the band. `experiments/enemies/flat_table.py`
+overwhelming the bottom of the band. `archive/enemy_sim_experiments/enemies/flat_table.py`
 takes the table's Skill (every Defense) and/or Resist down 1 at Levels
 2-4 and adds points or Health; Levels 1 and 5 unchanged. Band days
 (table_check, 60 days a party) and the manual's fights (middle, 30 a
@@ -4426,7 +4426,7 @@ at Levels 2-5, under one in five or six.
 
 ### Every Ability re-priced on the current table (2026-11-08)
 
-`experiments/enemies/reprice.py` gives one Ability free to every
+`tools/reprice.py` gives one Ability free to every
 standard monster that can take it, in the manual's own encounters
 (manual_check's draws, 16 a Level, no solo boss), Levels 1-4, every
 party in the middle of its band, 20 fights each on the same seeds, and
@@ -4487,7 +4487,7 @@ Level also grow, since a point of Health matters less as Health grows).
   sim has no ledges, hazards or allies-to-protect for a Push to matter.
   Priced 0 for now; it needs one of those to be worth anything.
 
-Two test-bench monsters (`experiments/enemies/new_mechanics.py`,
+Two test-bench monsters (`archive/enemy_sim_experiments/enemies/new_mechanics.py`,
 `results/enemy_stats/new_mechanics.txt`, Levels 1-5, middle of the band,
 lost / Down / Wounded / rounds):
 
@@ -4509,7 +4509,7 @@ companions change from here on.
 
 Per the designer: hits should be more threatening; much of an offense
 pick's measured worth comes from enemy attacks being soft (a hit of 3-5
-against PC Resist 4-6). `experiments/enemies/hard_hits.py` raises the
+against PC Resist 4-6). `archive/enemy_sim_experiments/enemies/hard_hits.py` raises the
 table's Damage Stat at every Level and pays for it in Health (and in one
 variant a point of Accuracy); band days (60 a party), the manual's fights
 (30), and what an enemy hit lands after Resist and Protected (traced
@@ -4582,7 +4582,7 @@ The designer set firm targets (DESIGNER_NOTES, "Targets for how a fight
 should feel"): PCs hit 50-75%, enemies 25-50%, a hit lands 2-3 on both
 sides; these win over fight length. Today (harder hits in pencil) PCs hit
 72% at Level 1 and 86-93% after, for 3.6-5.8; enemies hit 23-38% for
-2.2-3.4. `experiments/enemies/hit_fit.py`: a grid on the enemy table at
+2.2-3.4. `archive/enemy_sim_experiments/enemies/hit_fit.py`: a grid on the enemy table at
 every Level (Skill +0 to +4, Resist +0 to +3, Health ×1 to ×0.4), then
 for Levels 3-5 with the enemy Resist cap lifted (`tunables.V3_RESIST_CAP`,
 off by default; the Resist Stat otherwise stops at 5, as a PC's) and
@@ -4672,7 +4672,7 @@ the start of its turn for 2 AP (`POTION_AP`, `POTION_DRINK_AT`). Off, the
 fixed-seed table check is unchanged. Band days (table_check, 60 a party)
 with none and with two each, on the pencilled table and on the
 hit-target candidate (`results/enemy_stats/potions_*.txt`); what gets
-drunk (`experiments/enemies/potion_use.py`, `potion_use.txt`).
+drunk (`archive/enemy_sim_experiments/enemies/potion_use.py`, `potion_use.txt`).
 
 | Days won: bottom / middle / top | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
 |---|---|---|---|---|---|
@@ -4751,7 +4751,7 @@ band. With all three the bands run 70-89% at the bottom of Levels 2-4
 In pencil: the hit-target table (`V3_HIT_FIT`) with Level 2 eased (Skill
 +2, Resist +2, Health 5, the best of five tried with `V3_HIT_FIT_OVERRIDE`; +3 /
 6 won 79% of days in the middle with potions, +2 / 5 wins 95%), the
-Defense limit at 8 + Skill + 1 (`experiments/enemies/wall_fix.py`: two
+Defense limit at 8 + Skill + 1 (`archive/enemy_sim_experiments/enemies/wall_fix.py`: two
 Black Knights 9.6% lost over 9.0 rounds at +2, 4.1% over 7.2 at +1; four
 Iron Sentinels 13.8% / 11.7 to 4.4% / 9.1; four standard monsters 1.5% to
 1.2%), and two Healing Potions each at 2 AP (designer: 1 AP to get it in
@@ -4844,7 +4844,7 @@ land 2-3 both ways; fight length comes from how long things live and
 comes last; no sacks of enemy Health, and survival from base stats or
 defensive picks before Health. On the 11-09 defaults PCs hit 68-77% for
 2.9-4.0 and enemies only 22-36% for 2.3-3.0.
-`experiments/enemies/hit_fit2.py`: a grid from today's table (Accuracy +1
+`archive/enemy_sim_experiments/enemies/hit_fit2.py`: a grid from today's table (Accuracy +1
 to +4, Damage −1 or +0, Skill −1 to +1, Health −2 to +2), single fights
 on the manual's encounters; `results/enemy_stats/hit_fit2.txt`. The
 closest per Level, applied with `tunables.V3_TABLE_NUDGE` (off by
@@ -5133,7 +5133,7 @@ those cells up (Bleeding Strong 16, Harried 22). Ward (Shadow) can't be
 read in its own mix: no Level 1 draw has a Shadow attacker.
 
 **A threatening fight for the effect check: a Level up, or more Slots?**
-(2026-11-10, `experiments/enemies/extra_slots.py`). The effect_check
+(2026-11-10, `archive/enemy_sim_experiments/enemies/extra_slots.py`). The effect_check
 party against the manual's Level 2 encounters loses 67% of single
 fights (11 rounds, 8 Health left of about 40): too far. The same eight
 Level 1 encounters with one or two more standard attackers from the
@@ -5194,7 +5194,7 @@ on threatening days. Not yet in `balance_weights.csv`.
 
 **What a few more XP buy at high stakes** (designer, 2026-11-10: the
 benchmark is how much an investment keeps the party from losing;
-`experiments/pc_options/xp_investments.py`,
+`tools/xp_investments.py`,
 `results/xp_investments_L2_x1.txt`). The Level 2 middle parties (32
 characters) on whole days at +1 Slot, 26% of days lost. One character at
 a time gets one investment and plays the same 800 days. Points of days
@@ -5233,8 +5233,8 @@ under about 5 is noise; Carrick's +11.5 and +15.8 with Half Guard are
 not.
 
 **What drives those numbers** (designer, 2026-11-11: hard to believe;
-is it betting the stacks on a hit?). `experiments/pc_options/
-maneuver_trace.py` and `maneuver_counts.py`, Level 2 middle parties,
+is it betting the stacks on a hit?). `tools/maneuver_trace.py`
+and `maneuver_counts.py`, Level 2 middle parties,
 +1 Slot days, the 30 characters who can take a Battle Maneuver:
 
 - The bet mostly wins already. The sim plays an Encounter attack as a

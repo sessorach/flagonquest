@@ -39,8 +39,7 @@ import party  # noqa: E402
 import sample_enemies as se  # noqa: E402
 import enemy_builder_pcstyle as eb  # noqa: E402
 import manual_check as mc  # noqa: E402
-import table_check as tc  # noqa: E402
-import progression_sweep as ps  # noqa: E402
+import bands  # noqa: E402
 
 LEVELS = (1, 2, 3, 4)
 K_ENC = 16
@@ -131,7 +130,7 @@ def _job(args):
     install("base")
     encs = encounters(level)
     seen = install(variant)
-    groups = [g for g in tc.groups(level, ps.MID[level]) if g[0] != "stand-ins"]
+    groups = [g for g in bands.groups(level, bands.MID[level]) if g[0] != "stand-ins"]
     gname, names, swaps = groups[gi]
     rows = party._rows()
     cs.make_party = lambda tier, good_luck=0: [
@@ -154,7 +153,7 @@ def run(a):
         done = {(r["v"], r["L"], r["gi"]) for r in map(json.loads, open(a.o)) if r["n"] == a.n}
     jobs = []
     for L in LEVELS:
-        ng = len([g for g in tc.groups(L, ps.MID[L]) if g[0] != "stand-ins"])
+        ng = len([g for g in bands.groups(L, bands.MID[L]) if g[0] != "stand-ins"])
         for v in REFS + [f"pick:{p}" for p in (a.only.split(";") if a.only else PICKS)]:
             for gi in range(ng):
                 if (v, L, gi) not in done:

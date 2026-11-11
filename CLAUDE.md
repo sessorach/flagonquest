@@ -373,7 +373,7 @@ stay a clean decision record.
   Weaponry, which Hilde's and Browndog's Level 3 builds carry for the
   sim (`simNotes`; `tunables.PC_ELEMENTAL_WEAPON` turns it off). The
   normalized Level 3-5 builds come from those exports: after editing an
-  export, rerun `experiments/enemies/band_builds.py` (it doesn't write the
+  export, rerun `tools/bands.py` (it doesn't write the
   middle `_l3_c145` set; edit those the same way) and `--check`.
 - **Long runs have to survive a worker restart** (2026-10-29). A restart
   kills every process in the container (files stay); it took the

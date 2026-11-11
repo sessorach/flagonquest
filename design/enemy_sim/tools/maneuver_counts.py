@@ -3,7 +3,7 @@ import sys, json, collections
 from multiprocessing import Pool
 
 import _paths, xp_investments as xi, combat_sim as cs, sample_enemies as se, party, day_sim as ds
-import table_check as tc, progression_sweep as ps
+import bands
 DAYS = 60
 
 def bm(features, lvl=2):
@@ -20,7 +20,7 @@ def variant(build, pc, name):
 def job(args):
     gi, seat, name = args
     xi.register(2, 1)
-    gname, names, swaps = [g for g in tc.groups(2, ps.MID[2]) if g[0] != "stand-ins"][gi]
+    gname, names, swaps = [g for g in bands.groups(2, bands.MID[2]) if g[0] != "stand-ins"][gi]
     swaps = dict(swaps); m = names[seat]; rows = party._rows()
     pc = party.make_pc(m, 1, rows=rows, edits=swaps[m][0], row_changes=swaps[m][1])
     b = variant(json.loads(json.dumps(swaps[m][0]["build"])), pc, name)

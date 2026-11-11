@@ -28,8 +28,7 @@ import tunables as T  # noqa: E402
 import sample_enemies as se  # noqa: E402
 import day_sim as ds  # noqa: E402
 import party  # noqa: E402
-import table_check as tc  # noqa: E402
-import progression_sweep as ps  # noqa: E402
+import bands  # noqa: E402
 
 WEAPON_SKILLS = ("Acrobatics", "Archery", "Brawl", "Melee")
 RIDERS = [("Wing Clip", "Crippled"), ("Hamstring", "Slowed"), ("Harrying", "Harried"),
@@ -105,7 +104,7 @@ def cells(level):
     """(party index, seat, label, XP) for every legal option, plus the base."""
     rows = party._rows()
     out = []
-    for gi, (gname, names, swaps) in enumerate(g for g in tc.groups(level, ps.MID[level]) if g[0] != "stand-ins"):
+    for gi, (gname, names, swaps) in enumerate(g for g in bands.groups(level, bands.MID[level]) if g[0] != "stand-ins"):
         out.append((gi, None, "base", 0))
         for seat, m in enumerate(names):
             build = swaps[m][0]["build"]
@@ -116,7 +115,7 @@ def cells(level):
 
 
 def edited(level, gi, seat, label):
-    gname, names, swaps = [g for g in tc.groups(level, ps.MID[level]) if g[0] != "stand-ins"][gi]
+    gname, names, swaps = [g for g in bands.groups(level, bands.MID[level]) if g[0] != "stand-ins"][gi]
     swaps = dict(swaps)
     if seat is not None:
         m = names[seat]
@@ -184,7 +183,7 @@ def report(a, res, cl):
     for label, xs in order:
         dl, dh, xp = st.mean(x[0] for x in xs), st.mean(x[1] for x in xs), st.mean(x[2] for x in xs)
         best = max(xs, key=lambda x: x[0])
-        gname = [g for g in tc.groups(a.L, ps.MID[a.L]) if g[0] != "stand-ins"][best[3][0]][1][best[3][1]]
+        gname = [g for g in bands.groups(a.L, bands.MID[a.L]) if g[0] != "stand-ins"][best[3][0]][1][best[3][1]]
         lines.append(f"| {label} | {xp:.1f} | {len(xs)} | {dl:+.1f} | {dl / xp:+.2f} | {dh:+.1f} | {gname} {best[0]:+.1f} |")
     text = "\n".join(lines)
     print(text)
