@@ -1224,6 +1224,25 @@ def _line_targets(pc, target, enemies, length):
     return [e for e in enemies if e is not target and e['health'] > 0 and tuple(e['pos']) in cells]
 
 
+RIDER_KEYS = ('wing_clip', 'hamstring', 'harrying', 'distracting', 'battering')
+
+
+def _rider_maneuver(mv):
+    return any(mv.get(k) for k in RIDER_KEYS)
+
+
+def _rider_target_ok(pc, mv, target):
+    """MANEUVER_SMART: worth spending this Maneuver's riders on `target`?
+    Not if an ordinary hit would drop it (the riders die with it), and
+    for Crippled or Taunt not on an enemy that doesn't attack."""
+    net = pc['damage'] - enemy_resist_for_pc_attack(pc, target) - target.get('protected', 0)
+    if target['health'] <= max(1, net):
+        return False
+    if (mv.get('wing_clip') or mv.get('distracting')) and target.get('kind', 'attack') != 'attack':
+        return False
+    return True
+
+
 def _next_maneuver(pc):
     """A spent Battle Maneuver copy makes way for the next one, for a PC
     who built each copy differently (party.py's `maneuvers`, in the
@@ -1561,6 +1580,14 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # A cash-out Maneuver waits for stacks, or until round 3.
                 if (maneuver_now and pc['maneuver'].get('cashout')
                         and target.get('bleeding', 0) < T.CASHOUT_MIN and rnd < 3):
+                    maneuver_now = False
+                # tunables.MANEUVER_SMART (2026-11-11): a Maneuver built on
+                # riders that need the target alive (Crippled, Slowed,
+                # Harried, Taunt, Bleeding) is held while the hit would
+                # probably drop the target, or (Crippled, Taunt) while the
+                # target isn't one that attacks.
+                if maneuver_now and T.MANEUVER_SMART and _rider_maneuver(pc['maneuver']) \
+                        and not _rider_target_ok(pc, pc['maneuver'], target):
                     maneuver_now = False
                 # Only a Viper's Sting Maneuver fits in 1 AP.
                 if maneuver_now and ap < T.ATTACK_AP_COST and not pc['maneuver'].get('viper'):

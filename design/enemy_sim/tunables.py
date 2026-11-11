@@ -645,6 +645,13 @@ AUDIT_FIXES = True
 # a separate draw at each Level. 'roster': the old four mixes (Frontline,
 # Shield Wall, Warband, Horde), for comparison with older numbers.
 ENCOUNTER_SOURCE = "manual"
+# A Battle Maneuver built on riders that need the target alive (Crippled,
+# Slowed, Harried, Taunt, Bleeding) is held while an ordinary hit would
+# probably drop the target, and Crippled/Taunt while the target doesn't
+# attack (designer, 2026-11-11: how a player would save Wing Clip for the
+# enemy that keeps hitting the party). False: used on the first attack
+# of the fight, whatever the target, as before.
+MANEUVER_SMART = False
 MANUAL_MIXES = 8
 # Cards a player keeps back after a rescue, by how much the flip matters
 # (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when

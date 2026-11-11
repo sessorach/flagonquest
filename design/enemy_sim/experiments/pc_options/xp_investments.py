@@ -181,7 +181,8 @@ def report(a, res, cl):
         lines.append(f"| {label} | {xp:.1f} | {len(xs)} | {dl:+.1f} | {dl / xp:+.2f} | {dh:+.1f} | {gname} {best[0]:+.1f} |")
     text = "\n".join(lines)
     print(text)
-    out = os.path.join(_paths.ROOT, "results", f"xp_investments_L{a.L}_x{a.extra}.txt")
+    tag = "_smart" if T.MANEUVER_SMART else ""
+    out = os.path.join(_paths.ROOT, "results", f"xp_investments_L{a.L}_x{a.extra}{tag}.txt")
     open(out, "w").write(text + "\n")
     json.dump([[list(c), res[c]] for c in cl], open(out.replace(".txt", ".json"), "w"))
 
