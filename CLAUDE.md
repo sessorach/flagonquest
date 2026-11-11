@@ -183,6 +183,13 @@ stay a clean decision record.
 
 ## Quick reference
 
+- **Keep code as simple as it can be** (designer, 2026-11-11). Write the
+  shortest clear version: a short file is easier for me and for a person
+  to read, check and trust, and usually runs cleaner too. Add lines only
+  when there's a reason; some sprawl happens, but don't reach for it.
+  When a study is done, fold its runner into an existing tool or remove
+  it rather than leaving another near-copy in `experiments/`.
+
 - The full 25-skill list with its governing Stat lives in `index.html`'s
   `STAT_SKILLS` constant (~line 488), not as a single table anywhere in
   the rulebook prose — cross-check there, not from memory, if the skill
