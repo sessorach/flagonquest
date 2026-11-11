@@ -294,6 +294,10 @@ def _cant_reach_party(e, allies):
     return gap > 2 * max(0, e['speed'] + e.get('hasted', 0) - e['slowed'])
 
 
+def _next_to_party(e, allies):
+    return 'pos' in e and any('pos' in p and movement.distance(p['pos'], e['pos']) <= T.MELEE_RANGE for p in allies)
+
+
 def disabled(e, allies):
     """DEBUFF_ABUSE: an enemy the party leaves alone for now - Crippled
     DEBUFF_IGNORE_CRIPPLED or more, or Slowed out of reach."""
@@ -304,7 +308,8 @@ def debuff_target(unit, targets, allies):
     """DEBUFF_ABUSE: a PC with a debuff Battle Maneuver ready spends it
     on the most dangerous enemy it can reach that survives a good hit
     (sheet damage + MANEUVER_SMART_MARGIN), not already disabled: Wing
-    Clip/Distracting on an attacker, Hamstring on a melee enemy."""
+    Clip/Distracting on an attacker, Hamstring on a melee enemy that still
+    has to cross the room (Slowed does nothing to one already in reach)."""
     mv = unit.get('maneuver')
     if not mv or mv['uses'] <= 0 or not any(mv.get(k) for k in ('wing_clip', 'hamstring', 'distracting', 'harrying', 'battering')):
         return None
@@ -315,7 +320,8 @@ def debuff_target(unit, targets, allies):
             return False
         if (mv.get('wing_clip') or mv.get('distracting')) and (t.get('kind', 'attack') != 'attack' or t.get('crippled', 0) >= 3):
             return False
-        if mv.get('hamstring') and ((t.get('attack_range') or 0) > T.MELEE_RANGE or t.get('slowed', 0) >= t['speed']):
+        if mv.get('hamstring') and ((t.get('attack_range') or 0) > T.MELEE_RANGE or t.get('slowed', 0) >= t['speed']
+                                    or _next_to_party(t, allies)):
             return False
         return _attacks_this_turn(unit, t) > 0
     picks = [t for t in targets if ok(t)]

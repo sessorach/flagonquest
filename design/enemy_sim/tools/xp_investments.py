@@ -13,14 +13,20 @@ standard attackers each. Every option plays the same days as the base
 carrier; an option the character can't legally take (a prereq it misses)
 is skipped for that character.
 
-    python3 experiments/pc_options/xp_investments.py --calibrate -L 2   # days lost at +0..+3 Slots
-    python3 experiments/pc_options/xp_investments.py -L 2 --extra 2 -n 50
+    python3 tools/xp_investments.py --calibrate -L 2   # days lost at +0..+3 Slots
+    python3 tools/xp_investments.py -L 2 --extra 1 -n 100 --only "Wing Clip,Accuracy"
+    python3 tools/xp_investments.py -L 2 --extra 1 --trace "Battle Maneuver L2: Wing Clip x6 (Crippled)"
+
+`--trace` follows one option's Crippled stacks through traced days: how
+often they land, on a target the same hit drops, enemy hit rate by stacks
+on the attack, how long the target lives after, and who attacks it then.
 """
 import argparse
 import collections
 import json
 import multiprocessing as mp
 import os
+import re
 import statistics as st
 
 import _paths  # noqa: E402,F401
@@ -28,6 +34,7 @@ import tunables as T  # noqa: E402
 import sample_enemies as se  # noqa: E402
 import day_sim as ds  # noqa: E402
 import party  # noqa: E402
+import combat_sim as cs  # noqa: E402
 import bands  # noqa: E402
 
 WEAPON_SKILLS = ("Acrobatics", "Archery", "Brawl", "Melee")
@@ -154,6 +161,67 @@ def run(level, extra, n, cell_list, seed=0):
     return res
 
 
+def _trace_job(args):
+    level, extra, gi, seat, label, days = args
+    register(level, extra)
+    gname, names, swaps = edited(level, gi, seat, label)
+    carrier, rows, c, real = names[seat], party._rows(), collections.Counter(), cs.run_fight
+    life = []
+
+    def traced(*a, **k):
+        t = []
+        r = real(*a, trace=t, **k)
+        crip, landed, last = {}, {}, None
+        for e in t:
+            u = e.get("unit")
+            if u != last and crip.get(last, 0) > 0 and not str(last).startswith(tuple(names)):
+                crip[last] -= 1  # an enemy's turn ended: Fleeting loses a stack
+            last = u
+            if e.get("action") != "attack":
+                continue
+            m = re.search(r"Crippled \+(\d+)", str(e.get("effects") or ""))
+            if e.get("side") == "party" and m and str(u).startswith(carrier):
+                c["landed"] += 1
+                if e.get("target_hp_after", 1) <= 0:
+                    c["same_hit"] += 1
+                else:
+                    crip[e["target"]] = crip.get(e["target"], 0) + int(m.group(1))
+                    landed[e["target"]] = e["round"]
+            elif e.get("side") == "party" and crip.get(e.get("target"), 0) > 0:
+                c["party_on_it"] += 1
+            elif e.get("side") == "enemy":
+                n = min(crip.get(u, 0), 8)
+                c[f"att{n}"] += 1
+                c[f"hit{n}"] += bool(e.get("hit"))
+            if e.get("side") == "party" and e.get("target") in landed and e.get("target_hp_after", 1) <= 0:
+                life.append(e["round"] - landed.pop(e["target"]))
+        life.extend(r["rounds"] + 1 - v for v in landed.values())
+        c["fights"] += 1
+        return r
+    cs.run_fight = traced
+    for k in range(days):
+        ds.play_day(names, swaps, level, ds.day_mixes(k % T.MANUAL_MIXES, k), 100_000 * (k % T.MANUAL_MIXES) + k, rows)
+    cs.run_fight = real
+    return c, life
+
+
+def trace(a):
+    seats = sorted({(c[0], c[1]) for c in cells(a.L) if c[2] == a.trace})
+    tot, life = collections.Counter(), []
+    with mp.Pool(os.cpu_count()) as pool:
+        for c, lf in pool.imap_unordered(_trace_job, [(a.L, a.extra, g, s, a.trace, a.n) for g, s in seats]):
+            tot.update(c)
+            life += lf
+    alive = tot["landed"] - tot["same_hit"]
+    print(f"{a.trace}: {len(seats)} carriers, {tot['fights']} fights")
+    print(f"  landings a fight {tot['landed'] / tot['fights']:.2f}; on a target the same hit drops "
+          f"{100 * tot['same_hit'] / max(1, tot['landed']):.0f}%")
+    print(f"  a Crippled target lives {st.mean(life) if life else 0:.2f} rounds after; the party attacks it "
+          f"{tot['party_on_it'] / max(1, alive):.2f} times while it's Crippled")
+    print("  enemy hit rate by Crippled stacks on the attack: " + ", ".join(
+        f"{n}: {100 * tot[f'hit{n}'] / tot[f'att{n}']:.0f}%" for n in range(9) if tot[f"att{n}"]))
+
+
 def calibrate(a):
     base = [c for c in cells(a.L) if c[2] == "base"]
     for x in range(0, 4):
@@ -201,13 +269,17 @@ if __name__ == "__main__":
     ap.add_argument("--calibrate", action="store_true")
     ap.add_argument("--list", action="store_true", help="just list the cells")
     ap.add_argument("-o", "--out", help="results file (default results/xp_investments_L<L>_x<extra>[_tag].txt)")
+    ap.add_argument("--only", help="only investments whose label contains one of these (comma-separated)")
+    ap.add_argument("--trace", help="trace this investment's Crippled stacks instead (its exact label)")
     a = ap.parse_args()
     if a.calibrate:
         calibrate(a)
+    elif a.trace:
+        trace(a)
     elif a.list:
         for c in cells(a.L):
             print(c)
     else:
-        cl = cells(a.L)
+        cl = [c for c in cells(a.L) if c[2] == "base" or not a.only or any(x in c[2] for x in a.only.split(","))]
         print(len(cl), "cells", flush=True)
         report(a, run(a.L, a.extra, a.n, cl), cl)
