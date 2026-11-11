@@ -678,10 +678,6 @@ def _pc_dict(sheet, index, good_luck):
     # (Furious Rage had one until 2026-10-07).
     if "No Parry" in passives:
         parry = -99
-    # 'Plus One Damage' is a test-only passive: +1 damage on every hit,
-    # to check the sim's read of THE TABEL's Damage weight (2 a point).
-    if "Plus One Damage" in passives:
-        damage += 1
 
     # `Battle Tactic` - the same tactics.TARGETING registry enemies'
     # own sample_enemies.csv BattleTactic column already dispatches

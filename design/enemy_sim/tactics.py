@@ -129,14 +129,6 @@ def target_kiter(unit, targets):
     return target_closest(unit, pool)
 
 
-# Test toggle (2026-10-07): when True, the party's default targeting skips
-# an enemy whose Bleeding stacks already cover its remaining Health. Off
-# by default, so every recorded number keeps the plain focus-fire rule.
-# Measured as a bad idea: Bleeding deals 1 a turn, so an enemy left to
-# "bleed out" keeps acting for as many turns as it has Health left.
-LET_BLEED_OUT = False
-
-
 def target_focus_wounded(unit, targets, allies):
     """The base party strategy (the designer's own priority order, "in
     order: attack twice if possible, focus fire on the most wounded
@@ -155,30 +147,12 @@ def target_focus_wounded(unit, targets, allies):
     go for that one" without any real multi-turn coordination. Falls
     back to Health alone (list order breaks any remaining tie) when
     there's no `pos` to measure with (movement=False)."""
-    if LET_BLEED_OUT:
-        # Leave an enemy that its Bleeding will finish on its own, as
-        # long as something else is still worth hitting.
-        alive = [t for t in targets if t.get('bleeding', 0) < t['health']]
-        targets = alive or targets
     if 'pos' not in unit:
         return min(targets, key=lambda t: t['health'])
 
     def party_reach(t):
         return sum(movement.distance(a['pos'], t['pos']) for a in allies if 'pos' in a)
     return min(targets, key=lambda t: (t['health'], party_reach(t)))
-
-
-def target_bleed_spreader(unit, targets):
-    """A Bleeding carrier playing to its strength (2026-10-07 test): put
-    stacks where they'll have time to tick. Prefer an enemy with no
-    Bleeding yet, then the one with the most Health left after its
-    Bleeding, then the closest. Costs the carrier its share of focus
-    fire, which is the tradeoff being measured."""
-    if 'pos' in unit:
-        dist = lambda c: movement.distance(unit['pos'], c['pos'])
-    else:
-        dist = lambda c: 0
-    return min(targets, key=lambda c: (c.get('bleeding', 0) > 0, -(c['health'] - c.get('bleeding', 0)), dist(c)))
 
 
 # ---- Wounded (2026-10-08) ----
@@ -266,7 +240,7 @@ def enemy_threat(e, allies):
         opp, dtype = b.get('opp_def', opp), b.get('dmg_type', dtype)
     if not allies or not dmg:
         return 0.0
-    if T.THREAT_READS_CRIPPLED or T.DEBUFF_ABUSE:
+    if T.DEBUFF_ABUSE:
         acc -= e.get('crippled', 0)
     defense = sum(_party_defense(p, opp) for p in allies) / len(allies)
     resist = sum(p['physres'] if dtype == 'Physical' else p['elemres'] for p in allies) / len(allies)
@@ -432,7 +406,6 @@ TARGETING = {
     'Assassin': target_lowest_health,
     'Straggler Hunter': target_straggler,
     'Kite Hunter': target_kiter,
-    'Bleed Spreader': target_bleed_spreader,
 }
 
 

@@ -279,15 +279,6 @@ BLEED_PROTECTED = 'ticks'
 # coming. It counts toward Health left, and a PC it drops counts as Down
 # after the fight (pc_downed_after), apart from Down during it.
 BLEED_RESOLVE_AFTER = True
-# Test riders: stacks of Bleeding every PC hit / every enemy hit adds.
-PC_TEST_BLEED = 0
-ENEMY_TEST_BLEED = 0
-# Test: Durable (1 Protected at the start of each of its turns, up to 4) on
-# every 'enemies', 'pcs' or 'both'. None is off.
-TEST_DURABLE = None
-# Stacks the 'Bleeding Dump' test passive adds (and the +N damage of its
-# 'Damage Dump' twin).
-TEST_DUMP_STACKS = 5
 # Acidic Flask's numbers (I028: 5 + [Clubs] Bleeding, no damage), as dials
 # for testing stronger versions.
 ACID_FLASK_STACKS = 5
@@ -545,11 +536,6 @@ MANUAL_MIXES = 8
 # there are plenty left; a kill shot or an Encounter attack gets one
 # whenever there's one to give.
 RESCUE_RESERVE = {1: 2, 2: 1, 3: 0, 4: 0, 5: 0}
-# A healer keeps one Healing Magic cast's worth of cards (its Level) out
-# of attack rescues and kill top-ups, its own or an ally's (2026-10-26).
-# Off, Hanforth spent about 2.4 cards a Level 1 fight on attacks and under
-# 1 on healing.
-HEALER_KEEPS_CARDS = False
 # A caster with a shaped War Magic copy (Furrow, Funnel, Nova) steps in to
 # catch two or more enemies with it (play_styles.plan_shape, 2026-10-26).
 # Off, Beornhard (L3) cast his Furrow copy 0.2 times a fight.
@@ -607,13 +593,6 @@ PROTECTED_DECAYS = True
 # 2026-10-09; off reproduces that.
 NO_SPELL_GAMBLES = True
 
-# ---- The effect check (2026-10-21, effect_check.py) ----
-# Whether the party's threat rating (tactics.enemy_threat) takes an
-# enemy's Crippled stacks off its hit chance, so a Crippled enemy gets
-# left for later. THE TABEL's Crippled weight assumes that ("a creature
-# Crippled hard enough stops being a threat and gets left alive on
-# purpose"); off is how the party has always picked targets.
-THREAT_READS_CRIPPLED = False
 
 # Whether Stagger / Outflank count only living creatures as places
 # (glossary.md: "its position in turn order moves down that many

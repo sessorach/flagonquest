@@ -936,10 +936,6 @@ def _importance(target, net_on_hit, big=False):
     return NORMAL
 
 
-def _held_back(h):
-    """Cards `h` won't spend on an attack: a healer's next cast
-    (tunables.HEALER_KEEPS_CARDS)."""
-    return h.get('heal_cards', 1) if T.HEALER_KEEPS_CARDS and h.get('strategy') == 'support_healer' else 0
 
 
 def _rescue(pc, need, k, importance, allies):
@@ -954,7 +950,7 @@ def _rescue(pc, need, k, importance, allies):
         # tunables.DAY_CARDS: a big or killing flip is what the day's cards are for.
         cards.release_hold(pc)
     for h in holders:
-        if not cards.can_spend(h, k + reserve + _held_back(h)):
+        if not cards.can_spend(h, k + reserve):
             continue
         play = cards.cheapest_at_least(h['hand'], need, k)
         if play:
@@ -1126,7 +1122,7 @@ def _kill_topup(pc, target, raw, resist, skill, allies):
     if x is None:
         return 0
     for h in [pc] + [a for a in allies if a is not pc and a['health'] > 0 and a.get('hand')]:
-        if not cards.can_spend(h, x + _held_back(h)):
+        if not cards.can_spend(h, x):
             continue
         matching = sorted((c for c in h['hand'] if cards.suit(c) == s), key=cards.rank)
         if len(matching) >= x:
@@ -1378,9 +1374,6 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         return dmg
 
     if pc['health'] > 0:
-        # Test (tunables.TEST_DURABLE): Durable on PCs, as enemies have it.
-        if T.TEST_DURABLE in ('pcs', 'both') and pc.get('protected', 0) < 4:
-            _gain(pc, 'protected', 1)
         for eff, n, mode in _test_effects(pc):
             if (eff not in TEST_ON_SELF and not eff.startswith('aim_')) or mode not in ('turn', 'first'):
                 continue
@@ -1857,33 +1850,6 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 atk.pool, atk.hit, atk.parried = pool, hit, parried
                 if hit or parried:
                     hooks.run('hit_riders', pc, atk)
-                # 'Bleeding Strikes' is a test-only passive: Furious Rage's
-                # trigger without the can't-Parry cost, to price the two
-                # halves apart.
-                if 'Bleeding Strikes' in passives and (hit or parried):
-                    _gain(target, 'bleeding', T.FURIOUS_RAGE_STACKS)
-                # 'Bleeding Strikes 2' (test-only): the same trigger, 2 stacks.
-                if 'Bleeding Strikes 2' in passives and (hit or parried):
-                    _gain(target, 'bleeding', 2)
-                # 'Bleeding Dump' is a test-only passive: the first hit each
-                # fight adds 5 Bleeding (Acidic Flask's stack count, as a
-                # rider so it doesn't replace an attack), to check how a big
-                # single dose prices against the tapered Bleeding curve.
-                if 'Bleeding Dump' in passives and hit and not pc.get('dump_used'):
-                    _gain(target, 'bleeding', T.TEST_DUMP_STACKS)
-                    pc['dump_used'] = True
-                # 'Bleeding Once' (test-only): a single stack on the first
-                # hit each fight, the "one extra point" case on its own.
-                if 'Bleeding Once' in passives and hit and not pc.get('once_used'):
-                    _gain(target, 'bleeding', 1)
-                    pc['once_used'] = True
-                    pc['once_target'] = target  # for tracing the stack's fate
-                    pc['once_applied'] = True
-                    target['acted_at_apply'] = target.get('acted_round') == rnd
-                # Test rider (tunables.PC_TEST_BLEED): every hit adds this
-                # many stacks; ENEMY_TEST_BLEED is the enemies' twin.
-                if T.PC_TEST_BLEED and hit:
-                    _gain(target, 'bleeding', T.PC_TEST_BLEED)
                 # The effect check's test riders (_test_effects). Push and
                 # stagger wait until after the damage.
                 for eff, n, mode in _test_effects(pc):
@@ -1926,21 +1892,13 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         protected_absorbed = min(dmg, protected)
                         target['protected'] -= protected_absorbed
                         dmg -= protected_absorbed
-                    # Counts the +1 only when it lands on live Health (not
-                    # overkill), to compare with Bleeding ticks (bleed_dealt).
-                    if 'Plus One Damage' in passives and dmg > 0:
-                        pc['p1_hits'] = pc.get('p1_hits', 0) + 1
-                        if target['health'] >= dmg:
-                            pc['extra_dmg'] = pc.get('extra_dmg', 0) + 1
-                    # 'Damage Once' / 'Damage Dump' (test-only): +1 / +5
-                    # damage on the first hit each fight, after Resist - the
-                    # straight-damage twins of Bleeding Once / Bleeding Dump,
-                    # counted on live Health the same way.
-                    for test_name, bonus in (('Damage Once', 1), ('Damage Dump', T.TEST_DUMP_STACKS)):
-                        if test_name in passives and not pc.get('dmg_test_used'):
-                            pc['dmg_test_used'] = True
-                            pc['extra_dmg'] = pc.get('extra_dmg', 0) + min(bonus, max(0, target['health'] - dmg))
-                            dmg += bonus
+                    # 'Damage Once' (effect_check's "Damage +1, first hit"): +1
+                    # damage on the first hit each fight, after Resist, counted
+                    # on live Health.
+                    if 'Damage Once' in passives and not pc.get('dmg_test_used'):
+                        pc['dmg_test_used'] = True
+                        pc['extra_dmg'] = pc.get('extra_dmg', 0) + min(1, max(0, target['health'] - dmg))
+                        dmg += 1
                     # Test variant (tunables.BLEED_MODE 'on_damage'): a hit
                     # that deals damage to a Bleeding target also takes 1
                     # stack off it for 1 more Health loss. Stacks this same
@@ -2440,8 +2398,6 @@ def _resolve_leftover_bleeding(pcs):
         lost = 0
         _ACTOR[0] = p  # each extra turn is its own
         while p['health'] > 0 and p.get('bleeding', 0) > 0:
-            if T.TEST_DURABLE in ('pcs', 'both') and p.get('protected', 0) < 4:
-                _gain(p, 'protected', 1)
             if _decay(p, 'bleeding'):
                 h0 = p['health']
                 lost += min(_bleed_loss(p, 1 + _bleed_extra(p)), h0)
@@ -2930,9 +2886,6 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
             # The PC side of a damaging hit (Spirit Blessing's Retribution).
             if prof.get('attack_damage'):
                 hooks.run('pc_hit', target, SimpleNamespace(attacker=e, dmg=dmg, prof=prof, applied=applied))
-            if T.ENEMY_TEST_BLEED:
-                _apply_to_pc(target, 'Bleeding', T.ENEMY_TEST_BLEED, e)
-                applied.append(f"Bleeding +{T.ENEMY_TEST_BLEED}")
             if T.BLEED_PROTECTED == 'apply':
                 stopped = _protected_blocks_gain(target, pre_bleed)
                 if stopped:
@@ -2963,7 +2916,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         if e['health'] <= 0:
             return 0
     abilities = e.get('abilities', [])
-    if ('Durable' in abilities or T.TEST_DURABLE in ('enemies', 'both')) and e.get('protected', 0) < 4:
+    if 'Durable' in abilities and e.get('protected', 0) < 4:
         _gain(e, 'protected', 1)
     hooks.run('enemy_turn_start', e, SimpleNamespace(pcs=pcs, enemies=enemies, movement_on=movement_on,
                                                      log=enemy_log))
