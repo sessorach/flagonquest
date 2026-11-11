@@ -1,0 +1,9 @@
+30 carriers, 60 days each
+
+| | Days lost | Rounds a fight | Carrier attacks / hits a fight | its Maneuver attacks / hit% / with a card | Party hits a fight | Enemy attacks / hits / damage a fight |
+|---|---|---|---|---|---|---|
+| base | 29.3% | 7.52 | 5.91 / 3.49 | 0.64 / 79% / 66% | 14.18 | 13.86 / 7.99 / 16.84 |
+| attack skill +1 | 24.4% | 7.09 | 5.60 / 3.65 | 0.64 / 84% / 68% | 14.03 | 12.92 / 7.27 / 15.57 |
+| wing6 | 28.3% | 7.42 | 5.84 / 3.53 | 1.46 / 79% / 69% | 14.22 | 13.71 / 7.71 / 16.39 |
+| calc_wing3 | 26.4% | 7.26 | 5.74 / 3.56 | 1.45 / 83% / 68% | 14.14 | 13.32 / 7.58 / 16.11 |
+| battering6 | 25.3% | 7.02 | 5.35 / 3.37 | 1.50 / 80% / 70% | 13.76 | 12.80 / 7.36 / 15.84 |

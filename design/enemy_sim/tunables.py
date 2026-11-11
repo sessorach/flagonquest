@@ -652,6 +652,7 @@ ENCOUNTER_SOURCE = "manual"
 # enemy that keeps hitting the party). False: used on the first attack
 # of the fight, whatever the target, as before.
 MANEUVER_SMART = False
+MANEUVER_SMART_MARGIN = 4  # damage over the sheet's a good hit lands
 MANUAL_MIXES = 8
 # Cards a player keeps back after a rescue, by how much the flip matters
 # (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when

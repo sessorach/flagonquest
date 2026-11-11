@@ -1,0 +1,7 @@
+Battle Maneuver L2: Wing Clip x6 (Crippled) - 30 carriers, 2350 fights
+  Maneuver hits that landed stacks, per fight: 0.76
+  stacks per landing: 6.4
+  ...landed on a target the same hit dropped: 31%
+  enemy attacks made while Crippled, per landing on a survivor: 0.95
+  penalty points used on those attacks, per landing: 5.04
+  enemy hits turned into misses, per fight: 0.170  (per day 0.340)

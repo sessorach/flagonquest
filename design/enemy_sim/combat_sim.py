@@ -1235,7 +1235,10 @@ def _rider_target_ok(pc, mv, target):
     """MANEUVER_SMART: worth spending this Maneuver's riders on `target`?
     Not if an ordinary hit would drop it (the riders die with it), and
     for Crippled or Taunt not on an enemy that doesn't attack."""
-    net = pc['damage'] - enemy_resist_for_pc_attack(pc, target) - target.get('protected', 0)
+    # A good hit lands the sheet's damage plus about four from suits and
+    # Gambles (Carrick's 5 hit for 9 raw in the traces), so the riders are
+    # only worth it on a target that survives that.
+    net = pc['damage'] + T.MANEUVER_SMART_MARGIN - enemy_resist_for_pc_attack(pc, target) - target.get('protected', 0)
     if target['health'] <= max(1, net):
         return False
     if (mv.get('wing_clip') or mv.get('distracting')) and target.get('kind', 'attack') != 'attack':
