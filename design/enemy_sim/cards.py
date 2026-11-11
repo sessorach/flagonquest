@@ -116,12 +116,6 @@ def used_value(flipped, net):
     return max(ranks) if net >= 0 else min(ranks)
 
 
-def plain_flip(deck):
-    """A flip nobody plays cards on (Reflex, an enemy's attack): just
-    the value."""
-    return rank(deck.flip())
-
-
 def _stochastic_round(x):
     whole = int(x)
     return whole + (1 if random.random() < x - whole else 0)

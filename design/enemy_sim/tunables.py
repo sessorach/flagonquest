@@ -297,11 +297,6 @@ FURIOUS_RAGE_STACKS = 1
 BASE_SHALLOW_HEALTH = 5
 WOUNDED_RULES = True
 
-# ---- Retargeting after a kill (2026-10-08) ----
-# A PC that kills its target mid-turn has to walk to the next one before
-# attacking it. Off reproduces the old behavior (it attacked the new
-# target from wherever it stood, ~2% of PC attacks out of range).
-RETARGET_RANGE_FIX = True
 
 # ---- Line of sight (2026-10-08) ----
 # Per the designer: there are some line-of-sight issues, not many, and
@@ -323,9 +318,6 @@ BACKLINE_KEEP_AWAY = 3   # spaces a ranged Back-liner keeps from every enemy
 # Brace (T001) with AP left at the end of a turn: only when an enemy is
 # this close, near enough to reach this PC next round (2026-10-24).
 BRACE_THREAT_RANGE = 6
-# Warmage's Reserves regains the best spent War Magic copy instead of a
-# plain cast (2026-10-24). Off reproduces the older runs exactly.
-RESERVES_REGAIN_BEST = True
 # Warmage's Reserves by its own text and encounter.py's rule (2026-10-27):
 # regains the best spent Sorcery use of Level [X + 1] or less, a Club
 # counting double, instead of the hand-picked copy above.
@@ -495,17 +487,6 @@ CARDS_SECOND_FIGHT_SHARE = 0.5
 # the morning's hand, as before.
 DAY_CARDS = True  # default since 2026-11-09
 DAY_TROUBLE = 0.5
-# Fixes from the 2026-11-09 audit of the sim against the rules (an agent's
-# read, each checked): PCs' Bad Luck stacks (rulebook.md "Bad Luck works
-# the same"); a PC's Health stops at 0 when Downed ("Numbers don't go
-# negative") and a heal back up restores a Deep point first; an enemy
-# grappling can't swing a two-handed weapon (it lets go to attack); Area
-# Attack's splash still lands when the main target drops; a Downed PC
-# doesn't hand out potions between fights; a support's one action isn't
-# Aimed Shot; a Skirmisher pinned at the edge slides along it; the fight's
-# healer heals a Downed ally back up. False: the
-# old behavior, for comparison.
-AUDIT_FIXES = True
 # Which enemies the shared test fights use (sample_enemies.CURRENT_MIXES,
 # so day_sim, calibrate, effect_check, compare_builds and the rest).
 # 'manual' (designer, 2026-11-09: the manual is the one set of enemies for
@@ -540,10 +521,6 @@ RESCUE_RESERVE = {1: 2, 2: 1, 3: 0, 4: 0, 5: 0}
 # catch two or more enemies with it (play_styles.plan_shape, 2026-10-26).
 # Off, Beornhard (L3) cast his Furrow copy 0.2 times a fight.
 SHAPE_SETUP = False
-# Range checked before every attack in a PC's turn, not just the first
-# (2026-10-27): a Wind Slash attack or a Push mid-turn used to leave the
-# next attack going off from out of reach.
-RECHECK_RANGE = True
 # Party tactics (party_tactics.py, 2026-10-27): None plays every PC by its
 # own Play Style column; a preset name ("cautious", "max range+focus fire")
 # hands out styles by role and sets its own switches.
@@ -552,9 +529,6 @@ KITE_KEEP_AWAY = 6     # a Kiter keeps this far from every enemy (or reach - 1)
 HOLD_RANGE = 8         # a Holder waits while a melee enemy this close is on its way
 GUARD_RADIUS = 2       # a Guardian fights what's within this of its ward
 GUARD_LEASH = 6        # ...and stays by the ward while a melee enemy within this is coming
-# Wind Slash ("the chosen weapon's range is increased by [twice X]")
-# gives a melee weapon reach too, per the designer (2026-10-27).
-WIND_SLASH_MELEE = True
 # An ally can throw a card onto someone else's kill shot ("the party
 # talks"); the rulebook lets you play cards on an ally's flip.
 CARDS_ALLY_RESCUE = True
@@ -588,18 +562,7 @@ FLEETING_SKIP = 'own_turn'
 FLEETING_SKIP_EXEMPT = ('bleeding',)  # 'own_turn' only; Harried never goes through the skip at all
 PROTECTED_DECAYS = True
 
-# rulebook.md: "For attacks that deal damage, only weapon attacks can be
-# Gambled on - spell attacks can't." The sim let War Magic Gamble until
-# 2026-10-09; off reproduces that.
-NO_SPELL_GAMBLES = True
 
-
-# Whether Stagger / Outflank count only living creatures as places
-# (glossary.md: "its position in turn order moves down that many
-# places"). The dead stay in run_fight's order list, and until
-# 2026-10-21 they counted, so about a third of a Stagger's places went
-# past the dead. Off reproduces that.
-SHIFT_SKIPS_DEAD = True
 
 
 # A run can set any of these without editing this file:

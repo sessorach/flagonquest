@@ -85,7 +85,7 @@ def _build_from_row(row):
     e["fighting_style"] = "None"
     style = T.V3_FIGHTING_STYLE
     if style:
-        e["fighting_style"] = (("Single" if T.AUDIT_FIXES and e.get("kind", "attack") != "attack" else
+        e["fighting_style"] = (("Single" if e.get("kind", "attack") != "attack" else
                                 "Aimed Shot" if e.get("attack_range") else "Skirmisher") if style == "mixed"
                                else style)
     return e

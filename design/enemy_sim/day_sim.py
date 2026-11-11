@@ -209,7 +209,7 @@ def potions_between(pcs, log):
     for q in pcs:
         if q['health'] <= 0:
             giver = max((p for p in pcs if p.get('potions', 0) > 0
-                         and (not T.AUDIT_FIXES or (p is not q and p['health'] > 0))),
+                         and p is not q and p['health'] > 0),
                         key=lambda p: p['potions'], default=None)
             if giver is not None:
                 giver['potions'] -= 1

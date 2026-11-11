@@ -175,7 +175,7 @@ def sync_wounded(unit):
         lost = min(smax, lost + (last - cur))
     elif cur > last:
         gain = cur - last
-        if T.AUDIT_FIXES and last <= 0:
+        if last <= 0:
             # Back up from Downed: the first point restores a Deep
             # (rulebook.md, Health; day_sim.heal does the same).
             gain = cur - max(0, last) - 1
@@ -627,8 +627,8 @@ def strategy_support_healer(pc, party, log):
     wounded = [p for p in party if needs_healing(p)
                # rulebook.md: a Downed character can be healed back up (the
                # first point restores a Deep) - a table's healer does that
-               # first (tunables.AUDIT_FIXES, 2026-11-09).
-               or (T.AUDIT_FIXES and p is not pc and p['health'] <= 0 and 'shallow_max' in p)]
+               # first (2026-11-09).
+               or (p is not pc and p['health'] <= 0 and 'shallow_max' in p)]
     heal_range = pc.get('heal_range')
     if heal_range is not None and 'pos' in pc:
         wounded = [p for p in wounded if 'pos' in p and movement.distance(pc['pos'], p['pos']) <= heal_range]

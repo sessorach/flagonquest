@@ -13,6 +13,14 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-11 — Debuffs pushed to the limit, and a tidier simulator
+
+Tested a party that plays debuffs for all they're worth (stack Crippled or Slowed on the biggest threat, then ignore it), and Crippled still doesn't disable an enemy at the stacks a Battle Maneuver gives. Then cleared out the simulator: one enemy builder instead of four, finished studies archived, and the live tools in one folder, checked against fixed-seed runs so no result moved.
+
+### 2026-11-10 — What a few more XP buy
+
+Measured every effect over whole adventuring days made threatening with an extra enemy or two, and what 3 or 6 more XP buy when the party loses a quarter of its days: a skill rank or a Stat saves more days than a debuff Battle Maneuver, at Level 2 and Level 3.
+
 ### 2026-11-09 — Potions in the simulator
 
 Gave the sample parties two Healing Potions each (worth a lot, mostly drunk between fights or fed to a Downed friend, which the [Potion] tag now allows) and rebuilt the enemy table around firm targets for how often each side hits and how hard. The simulator now plays a whole adventuring day as one pool of cards, enemies attack once a turn, an audit fixed a handful of places where it didn't follow the rules, and every test now fights the monster manual's enemies.

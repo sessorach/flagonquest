@@ -252,7 +252,7 @@ def effective_range(unit):
     # X]" - while that copy's still unused.
     # A melee weapon gets the reach too (designer, 2026-10-27).
     m = unit.get('maneuver')
-    if m and m['uses'] > 0 and m.get('wind') and (unit.get('attack_range') or T.WIND_SLASH_MELEE):
+    if m and m['uses'] > 0 and m.get('wind'):
         r += 2 * m['wind']
     return r
 
@@ -657,28 +657,23 @@ def _shift_in_order(order, unit, places):
     for the rest of the fight same as any other initiative result.
     Returns the actual signed distance moved (0 if `unit` wasn't found,
     or already at the clamped bound), for `_take_pc_turn`'s own log
-    annotation. With tunables.SHIFT_SKIPS_DEAD, only living creatures
-    count as places (the dead stay in the list but no longer hold a spot
-    in the order), and it returns living places passed."""
+    annotation. Only living creatures count as places (the dead stay in
+    the list but no longer hold a spot in the order), and it returns
+    living places passed."""
     for i, (side, u) in enumerate(order):
-        if u is unit:
-            if T.SHIFT_SKIPS_DEAD and places:
-                step, left, j = (1 if places > 0 else -1), abs(places), i
-                while left and 0 <= j + step < len(order):
-                    j += step
-                    if order[j][1]['health'] > 0:
-                        left -= 1
-                entry = order.pop(i)
-                # Delaying lands just after the last creature passed (it
-                # moves up one when the entry comes out); advancing lands
-                # just before it. Either way that's index j.
-                order.insert(j, entry)
-                passed = abs(places) - left
-                return passed if places > 0 else -passed
+        if u is unit and places:
+            step, left, j = (1 if places > 0 else -1), abs(places), i
+            while left and 0 <= j + step < len(order):
+                j += step
+                if order[j][1]['health'] > 0:
+                    left -= 1
             entry = order.pop(i)
-            new_i = max(0, min(i + places, len(order)))
-            order.insert(new_i, entry)
-            return new_i - i
+            # Delaying lands just after the last creature passed (it
+            # moves up one when the entry comes out); advancing lands
+            # just before it. Either way that's index j.
+            order.insert(j, entry)
+            passed = abs(places) - left
+            return passed if places > 0 else -passed
     return 0
 
 
@@ -733,9 +728,8 @@ _STEP = [0]
 
 
 def _bad_sum(a, b):
-    """Two Bad Luck sources on one flip: stacks (tunables.AUDIT_FIXES), or
-    the old either-or."""
-    return int(a) + int(b) if T.AUDIT_FIXES else (a or b)
+    """Two Bad Luck sources on one flip stack."""
+    return int(a) + int(b)
 
 
 def _pc_status_bad_luck(pc, target):
@@ -747,8 +741,6 @@ def _pc_status_bad_luck(pc, target):
     ta = pc.get('taunted_by') if pc.get('taunted', 0) > 0 else None
     srcs = [tactics.pc_wounded(pc), fr is not None and fr is target,
             ta is not None and ta['health'] > 0 and ta is not target]
-    if not T.AUDIT_FIXES:
-        return any(srcs)
     # rulebook.md: "For each time you have Good Luck on a flip... Bad Luck
     # works the same": each source is a stack.
     return sum(bool(x) for x in srcs)
@@ -970,7 +962,7 @@ def _pc_flip(pc, mod, defense, good, bad, importance=0, allies=(), pool_extra=()
     `importance`; with Bad Luck every low card needs replacing."""
     if not T.CARDS:
         return resolve_card(good, bad), []
-    flipped, net = cards.flip_for(pc['deck'], good, int(bad) if T.AUDIT_FIXES else (1 if bad else 0))
+    flipped, net = cards.flip_for(pc['deck'], good, int(bad))
     ranks = [cards.rank(c) for c in flipped]
     value = max(ranks) if net >= 0 else min(ranks)
     pool = [cards.suit(c) for c in flipped]
@@ -1157,11 +1149,11 @@ def _warmage_reserves(pc, log=None):
                 return True
         return False
     cards.spend(pc, cards.lowest(pc['hand']))
-    # tunables.RESERVES_REGAIN_BEST: a player takes back the best spent
+    # A player takes back the best spent
     # copy (Beornhard's Destructive War Magic), not a plain one. Leaves
     # out the special-purpose spells (Sanguine, a cash-out) and any copy
     # with its own shorter reach.
-    best = [t for t in pc.get('tech_attacks', ()) if T.RESERVES_REGAIN_BEST and t.get('skill') == 'Sorcery'
+    best = [t for t in pc.get('tech_attacks', ()) if t.get('skill') == 'Sorcery'
             and t['damage'] > 0 and not (t.get('sanguine') or t.get('cashout') or t.get('range'))]
     if best:
         max(best, key=lambda t: t['damage'])['uses'] += 1
@@ -1557,7 +1549,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # Range is checked again before each attack (2026-10-27):
                 # after a Wind Slash attack, or once the target's been
                 # pushed off, the next one has to close in first or stop.
-                if T.RECHECK_RANGE and movement_on and 'pos' in pc and not pc.get('_repeat') \
+                if movement_on and 'pos' in pc and not pc.get('_repeat') \
                         and _distance(pc['pos'], target['pos']) > effective_range(pc):
                     start = pc['pos']
                     spare, in_reach, stepped = spend_movement_ap(pc, target, ap - T.ATTACK_AP_COST,
@@ -1749,7 +1741,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # own upcoming stack doesn't get counted a turn early.
                 # rulebook.md: "only weapon attacks can be Gambled on - spell
                 # attacks can't" (Beornhard's War Magic used to Gamble).
-                spell = T.NO_SPELL_GAMBLES and pc.get('weapon_is_spell') and not substitute
+                spell = pc.get('weapon_is_spell') and not substitute
                 skill = (substitute or {}).get('skill') or pc['attack_skill']
                 crippled = pc.get('crippled', 0)
                 bad_luck = _bad_sum(tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge')), _pc_status_bad_luck(pc, target))
@@ -2101,7 +2093,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # this used to attack whatever got picked, in range or
                     # not, ~2% of all PC attacks). Walk toward it with the
                     # AP that's left; keep attacking only if that gets there.
-                    if target is not None and movement_on and T.RETARGET_RANGE_FIX:
+                    if target is not None and movement_on:
                         ap_start = pc['pos']
                         ap, in_range, moved = spend_movement_ap(pc, target, ap, effective_range(pc))
                         if moved:
@@ -2542,7 +2534,7 @@ def _lose_health(unit, loss, notes=None, attack=False):
             'pc_would_drop', unit, SimpleNamespace(loss=loss, notes=notes)):
         return
     unit['health'] -= loss
-    if T.AUDIT_FIXES and 'shallow_max' in unit and unit['health'] < 0:
+    if 'shallow_max' in unit and unit['health'] < 0:
         # rulebook.md: "Numbers don't go negative"; a Downed PC is at 0.
         unit['health'] = 0
 
@@ -2968,8 +2960,8 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     actions_made = 0
     # rulebook.md, Grapple: no "actions that require two hands, including
     # weapon attacks" - a grappling enemy with a two-handed weapon lets go
-    # to swing it (tunables.AUDIT_FIXES).
-    if (T.AUDIT_FIXES and mode == 'attack' and _grappled(e) is not None
+    # to swing it.
+    if (mode == 'attack' and _grappled(e) is not None
             and prof.get('action') in ('Two-Handed Weapon', 'Light Two-Handed')):
         _end_grapple(e)
     while (not movement_on or in_range) and ap >= T.ATTACK_AP_COST and (cap is None or actions_made < cap) \
@@ -3021,7 +3013,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             break
         # Area Attack (2026-11-08): "Your main attack also targets each other
         # PC within 1 meter of its target (Burst 1)", rolled for each.
-        if 'Area Attack' in abilities and mode == 'attack' and movement_on and (T.AUDIT_FIXES or target['health'] > 0):
+        if 'Area Attack' in abilities and mode == 'attack' and movement_on:
             for p in [p for p in pcs if p['health'] > 0 and p is not target
                       and _distance(target['pos'], p['pos']) <= T.AREA_BURST]:
                 interrupt_dmg += _enemy_attack(e, prof, p, mode, rnd, pcs, enemies, movement_on, enemy_log,
@@ -3057,13 +3049,12 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             near = min(living, key=lambda p: _distance(e['pos'], p['pos']))
             before = e['pos']
             tactics.move_kite(e, near, None)
-            if T.AUDIT_FIXES:
-                # Pinned at the edge: the step (of its Speed) that leaves it
-                # farthest from every PC instead.
-                sp = tactics._speed(e)
-                cands = [movement.clamp((before[0] + dx * sp, before[1] + dy * sp))
-                         for dx in (-1, 0, 1) for dy in (-1, 0, 1) if dx or dy] + [e['pos']]
-                e['pos'] = max(cands, key=lambda c: min(_distance(c, p['pos']) for p in living))
+            # Pinned at the edge: the step (of its Speed) that leaves it
+            # farthest from every PC instead.
+            sp = tactics._speed(e)
+            cands = [movement.clamp((before[0] + dx * sp, before[1] + dy * sp))
+                     for dx in (-1, 0, 1) for dy in (-1, 0, 1) if dx or dy] + [e['pos']]
+            e['pos'] = max(cands, key=lambda c: min(_distance(c, p['pos']) for p in living))
             ap -= T.MOVE_AP_COST
         if e['pos'] != start:
             _log(trace, round=rnd, side='enemy', unit=e['name'], action='move', pos=e['pos'],

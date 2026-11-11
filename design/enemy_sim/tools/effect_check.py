@@ -5,9 +5,9 @@ most of THE TABEL's weights for them are model-based (Pencil) and some
 were never measured, and flag anything that lands well outside its
 estimate.
 
-The method is turnorder_single.py's, at Level 1 (the table-matched
+The method (from the archived turnorder_single.py), at Level 1 (the table-matched
 setup): one PC of Party A carries the test, and the score is the party's
-expected Health left over the four mixes (Health left on a win, losses
+expected Health left over the current mixes (Health left on a win, losses
 count 0), paired seeds against the same party without it. A Health
 ladder (+2 Health on every PC) turns the difference into Value: one PC's
 +1 Health is a quarter of the ladder's slope per point, worth 4 Value

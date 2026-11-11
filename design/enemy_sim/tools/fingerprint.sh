@@ -5,8 +5,7 @@
 # Run from design/enemy_sim. Small runs (minutes), fixed seeds.
 if [ "$1" = compare ]; then
   A=$2; B=$3
-  diff -rq -x _status -x manual_read.md -x opt "$A" "$B"
-  diff <(sort "$A/manual_read.md") <(sort "$B/manual_read.md") > /dev/null || echo "manual_read differs"
+  diff -rq -x _status -x opt "$A" "$B"
   diff -r "$A/opt" "$B/opt" > /dev/null || echo "optimizer output differs"
   exit
 fi
@@ -38,7 +37,8 @@ r coverage python3 tools/coverage.py
 # Strip timings and progress counters; sort what parallel workers wrote in any order.
 sed -i -E 's/[0-9]+(\.[0-9]+)?s\b/Xs/g; s/[0-9]+\/[0-9]+ (chunks|jobs)?//g' "$OUT"/*.txt
 sed -i "s#$OUT#OUT#g" "$OUT"/*.txt
-for f in "$OUT"/*.jsonl; do sort -o "$f" "$f"; done
+# manual_check ranks monsters, so tied rows come out in any order too.
+for f in "$OUT"/*.jsonl "$OUT"/manual_read.*; do sort -o "$f" "$f"; done
 python3 - "$OUT" <<'PY'
 import json, sys, glob
 for p in glob.glob(sys.argv[1] + "/*.json"):

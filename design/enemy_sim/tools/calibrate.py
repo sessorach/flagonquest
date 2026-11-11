@@ -1,6 +1,6 @@
 """The sim against the designer's table (2026-10-08).
 
-Prints, for each sample party on the standard four Level 2 mixes, the
+Prints, for each sample party on the current mixes at its Level, the
 checks from TABLE_PLAY_NOTES.md's calibration targets: fight length,
 how often the party loses, how often someone goes Down or is Wounded,
 and how often an enemy that's been hit gets another turn (after its
