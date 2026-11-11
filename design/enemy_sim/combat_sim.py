@@ -399,8 +399,9 @@ def enemy_defense_for_pc_attack(pc, target):
     if 'Omniguard' in target.get('abilities', ()):
         harried = 0  # "Ignore all Harried."
     vulnerable = target.get('vulnerable', 0)
+    dodge = target['dodge'] - tactics.slow_dodge(target)
     if pc.get('opp_def') == 'Dodge':
-        return target['dodge'] - harried
+        return dodge - harried
     if pc.get('opp_def') == 'Vigilant':
         return target['vigilant'] - vulnerable
     # Vital and Mental (Shugen/Demon School strikes, Reckoning, War Magic
@@ -409,7 +410,7 @@ def enemy_defense_for_pc_attack(pc, target):
         return target['bodily'] - vulnerable
     if pc.get('opp_def') == 'Mental':
         return target['mental'] - vulnerable
-    return max(target['parry'], target['dodge']) - harried
+    return max(target['parry'], dodge) - harried
 
 
 def enemy_resist_for_pc_attack(pc, target):
@@ -478,7 +479,7 @@ def pc_gamble_count(pc, target, defense_override=None):
     Defense would rationally re-optimize how hard to Gamble, same as
     any other Defense-lowering effect already feeds into this search.
     """
-    effective_skill = pc['skill_total'] - pc.get('crippled', 0)
+    effective_skill = pc['skill_total'] - tactics.crip(pc)
     defense = defense_override if defense_override is not None else enemy_defense_for_pc_attack(pc, target)
     resist = enemy_resist_for_pc_attack(pc, target)
     if T.CARDS:
@@ -539,17 +540,18 @@ def pc_defense_for(target, opp_def):
     if 'Indomitable Phalanx' in target.get('passives', ()):
         harried = max(0, harried - 2)  # T132: "Ignore up to 2 of your stacks of Harried."
     wounded = 2 if tactics.pc_wounded(target) else 0  # Wounded: -2 to all Defenses
+    dodge = target['dodge'] - tactics.slow_dodge(target)
     if opp_def == 'Parry/Dodge':
-        return max(target['parry'], target['dodge']) - harried - wounded
+        return max(target['parry'], dodge) - harried - wounded
     if opp_def == 'Dodge':
-        return target['dodge'] - harried - wounded
+        return dodge - harried - wounded
     if opp_def == 'Parry':  # an attack moved onto a PC's Parry alone (Lend Bulwark, Seasons Pass the Forest)
         return target['parry'] - harried - wounded
     if opp_def == 'Bodily':
         return target['bodily'] - vulnerable - wounded
     if opp_def == 'Mental':
         return target['mental'] - vulnerable - wounded
-    return target['dodge'] - wounded
+    return dodge - wounded
 
 
 def _log(trace, **event):
@@ -740,7 +742,7 @@ def _pc_status_bad_luck(pc, target):
     fr = pc.get('frightened_by') if pc.get('frightened', 0) > 0 else None
     ta = pc.get('taunted_by') if pc.get('taunted', 0) > 0 else None
     srcs = [tactics.pc_wounded(pc), fr is not None and fr is target,
-            ta is not None and ta['health'] > 0 and ta is not target]
+            ta is not None and ta['health'] > 0 and ta is not target, tactics.crip_bad_luck(pc)]
     # rulebook.md: "For each time you have Good Luck on a flip... Bad Luck
     # works the same": each source is a stack.
     return sum(bool(x) for x in srcs)
@@ -858,6 +860,8 @@ def _decay(unit, key):
     """One end-of-turn removal; returns the stacks removed (0 or 1)."""
     if unit.get(key, 0) <= 0:
         return 0
+    if (key, 'encounter') in (('crippled', T.CRIPPLED_RULE), ('slowed', T.SLOWED_RULE)):
+        return 0  # a rule variant: lasts the encounter
     if unit.pop('skip_' + key, False):
         return 0
     if unit[key] <= unit.get('curse_' + key, 0):
@@ -1253,7 +1257,7 @@ def _tech_attack_choice(pc, target):
     against a high Mental Defense). Spends the use and returns an overlay
     profile for the attack loop."""
     def expected(prof):
-        need = enemy_defense_for_pc_attack(prof, target) - (prof['skill_total'] - pc.get('crippled', 0))
+        need = enemy_defense_for_pc_attack(prof, target) - (prof['skill_total'] - tactics.crip(pc))
         return _p_flip_at_least(need) * max(0, prof['damage'] - enemy_resist_for_pc_attack(prof, target))
     # Channel: last turn's hit buys this cast, no use spent, if its target
     # is this attack's.
@@ -1329,7 +1333,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         that well-tested path. Returns the damage dealt."""
         defense = enemy_defense_for_pc_attack(pc, bonus_target)
         resist = enemy_resist_for_pc_attack(pc, bonus_target)
-        crippled = pc.get('crippled', 0)
+        crippled = tactics.crip(pc)
         bad_luck = _bad_sum(tactics.defense_has_bad_luck(bonus_target, pc.get('opp_def', 'Parry/Dodge')), _pc_status_bad_luck(pc, bonus_target))
         cover = _cover_bad_luck(pc, bonus_target, pc.get('opp_def'))
         if cover:
@@ -1408,7 +1412,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         # and again at the end of each of your turns" - so every PC holds
         # its pool between turns, free for Interrupts (designer,
         # 2026-10-27), and its own turn spends what's left of it.
-        ap = pc['ap_bank'] - tactics.resolve_pc_strategy(pc, pcs, log=party_log)
+        ap = pc['ap_bank'] - tactics.resolve_pc_strategy(pc, pcs, log=party_log) - tactics.slow_ap(pc)
         # Techniques taken at the start of the turn (hooks.py's
         # pc_turn_start, in their ORDER).
         turn = SimpleNamespace(pcs=pcs, enemies=enemies, rnd=rnd, movement_on=movement_on, trace=trace,
@@ -1704,7 +1708,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                     # best `n`, reusing that search rather than a second
                     # copy, and the same flip-2-take-best formula this
                     # project's own Good-Luck-stacking math already uses.
-                    eff_skill = pc['skill_total'] - pc.get('crippled', 0)
+                    eff_skill = pc['skill_total'] - tactics.crip(pc)
                     real_defense = enemy_defense_for_pc_attack(pc, target)
                     resist_for_ev = enemy_resist_for_pc_attack(pc, target)
                     sift_for_ev = _expected_suit(pc, 0) if T.CARDS else (1 if tactics.sift_bonus(pc) else 0)
@@ -1722,7 +1726,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         pc['card_uses_left'] -= 1
                         stealth_card = resolve_card(1, False)  # guaranteed Good Luck, per the Spade assumption above
                     if worth_it:
-                        stealth_roll = pc['skill_totals']['Stealth'] - pc.get('crippled', 0) + stealth_card
+                        stealth_roll = pc['skill_totals']['Stealth'] - tactics.crip(pc) + stealth_card
                         cloak_dagger_hit = stealth_roll >= target['vigilant']
                         if party_log:
                             party_log(unit=pc['name'], action='stealth_check', target=target['name'],
@@ -1743,7 +1747,7 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                 # attacks can't" (Beornhard's War Magic used to Gamble).
                 spell = pc.get('weapon_is_spell') and not substitute
                 skill = (substitute or {}).get('skill') or pc['attack_skill']
-                crippled = pc.get('crippled', 0)
+                crippled = tactics.crip(pc)
                 bad_luck = _bad_sum(tactics.defense_has_bad_luck(target, pc.get('opp_def', 'Parry/Dodge')), _pc_status_bad_luck(pc, target))
                 cover = _cover_bad_luck(pc, target, pc.get('opp_def'))
                 if cover:
@@ -2228,7 +2232,7 @@ def _weapon_interrupt(e, pcs, movement_on, party_log, tech, cost, close_only=Fal
         defense = enemy_defense_for_pc_attack(pc, e)
         resist = enemy_resist_for_pc_attack(pc, e)
         gambles = pc_gamble_count(pc, e)
-        crippled = pc.get('crippled', 0)
+        crippled = tactics.crip(pc)
         bad_luck = _bad_sum(tactics.defense_has_bad_luck(e, pc.get('opp_def', 'Parry/Dodge')), _pc_status_bad_luck(pc, e))
         luck_bonus = tactics.perfect_strike_bonus(pc) if not T.CARDS else 0
         imp = _importance(e, pc['damage'] + gambles - resist - e.get('protected', 0))
@@ -2583,7 +2587,7 @@ def _reaction_attack(pc, e, pcs, via, prof=None, log=None):
     defense = enemy_defense_for_pc_attack(pc, e)
     resist = enemy_resist_for_pc_attack(pc, e)
     gambles = 0 if spell else pc_gamble_count(pc, e)
-    crippled = pc.get('crippled', 0)
+    crippled = tactics.crip(pc)
     bad = _bad_sum(tactics.defense_has_bad_luck(e, pc['opp_def']), _pc_status_bad_luck(pc, e))
     cover = _cover_bad_luck(pc, e, pc['opp_def'])
     if cover:
@@ -2718,7 +2722,7 @@ def _try_break_grapple(pc, enemies, ap, log=None):
             or pc.get('play_style') in ('Back-liner', 'Skirmisher')):
         return 0
     card = _unit_flip(g)
-    held = g['accuracy'] - g.get('crippled', 0) + card >= pc_defense_for(pc, 'Parry/Dodge')
+    held = g['accuracy'] - tactics.crip(g) + card >= pc_defense_for(pc, 'Parry/Dodge')
     if not held:
         _end_grapple(pc)
     if log:
@@ -2772,6 +2776,7 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
         e['badluck_used'] = e.get('badluck_used', 0) + 1
     if e.get('crippled', 0) > 0:
         e['crip_points'] = e.get('crip_points', 0) + e['crippled']
+        bad += tactics.crip_bad_luck(e)
     # rulebook.md, Grapple: "Creatures have Good Luck on any attacks
     # against your Dodge or Parry Defense."
     if target.get('grapple') is not None and opp_def in ('Parry/Dodge', 'Dodge', 'Parry'):
@@ -2789,7 +2794,7 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
         e['_bled_turn'] = True
         if e['health'] <= 0:
             return interrupt_dmg
-    roll = prof['accuracy'] - e.get('crippled', 0) + card
+    roll = prof['accuracy'] - tactics.crip(e) + card
     opp_def_val = pc_defense_for(target, opp_def)
     # Parried = a miss where Parry was the Defense actually used
     # (rulebook.md: "a target who used Parry Defense is considered to
@@ -2841,7 +2846,7 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
             extra = target.get('wards', {}).get(prof.get('dmg_type'), 0) if not ward_on else 0
             if ward_on or extra:
                 resist += 2
-            raw_dmg = prof['attack_damage']
+            raw_dmg = prof['attack_damage'] - (T.CRIPPLED_RULE == 'dmg' and e.get('crippled', 0) > 0)
             if T.CARDS and T.ENEMY_SUIT_EXTRA:
                 # +1 damage per Heart flipped (tunables.ENEMY_SUIT_EXTRA).
                 raw_dmg += sum(1 for c in flipped if cards.suit(c) == cards.HEARTS)
@@ -2921,7 +2926,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
         return 0
     interrupt_dmg = 0
     fighting_style = e.get('fighting_style', 'Guarded')
-    ap = T.AP_PER_TURN
+    ap = T.AP_PER_TURN - tactics.slow_ap(e)
     mode, prof, target = _enemy_plan(e, enemies, living_pcs, movement_on)
     # A grappling enemy keeps at whoever it holds.
     if mode == 'attack' and e.get('grapple') is not None and _grappled(e) is not None:
@@ -2965,7 +2970,7 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
             and prof.get('action') in ('Two-Handed Weapon', 'Light Two-Handed')):
         _end_grapple(e)
     while (not movement_on or in_range) and ap >= T.ATTACK_AP_COST and (cap is None or actions_made < cap) \
-            and target is not None:
+            and target is not None and (mode == 'heal' or tactics.crip(e) < 99):
         ap -= T.ATTACK_AP_COST
         actions_made += 1
         # Strike (Shoving) pushes only on the turn's last attack (it would

@@ -511,6 +511,18 @@ MANEUVER_SMART_MARGIN = 4  # damage over the sheet's a good hit lands
 # for later and mops up the rest. Implies MANEUVER_SMART.
 DEBUFF_ABUSE = False
 DEBUFF_IGNORE_CRIPPLED = 3  # Crippled stacks at which the party leaves an enemy alone
+# Crippled and Slowed rule variants (2026-11-11), for everyone who bears
+# them. Crippled: 'base' -1 to attacks a stack; 'x2' -2 a stack; 'badluck'
+# Bad Luck on attacks while any stacks (no penalty); 'badluck3' -1 a stack
+# plus Bad Luck at 3 or more; 'badluck_plus' -1 a stack plus Bad Luck while
+# any; 'dmg' -1 a stack plus 1 less damage while any (enemies' attacks
+# only); 'disable3' / 'disable5' -1 a stack, and no attacks at all at 3 / 5
+# or more; 'encounter' -1 a stack, never decaying. Slowed: 'base' -1 Speed
+# a stack; 'x2' -2 a stack; 'ap' -1 Speed a stack and 1 less AP on a turn
+# that starts Slowed; 'dodge' -1 Speed and -1 Dodge a stack; 'encounter'
+# never decaying.
+CRIPPLED_RULE = 'base'
+SLOWED_RULE = 'base'
 MANUAL_MIXES = 8
 # Cards a player keeps back after a rescue, by how much the flip matters
 # (combat_sim's NORMAL/FOCUS/BIG/KILL): a plain hit only gets a card when

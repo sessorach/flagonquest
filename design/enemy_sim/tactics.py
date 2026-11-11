@@ -241,7 +241,7 @@ def enemy_threat(e, allies):
     if not allies or not dmg:
         return 0.0
     if T.DEBUFF_ABUSE:
-        acc -= e.get('crippled', 0)
+        acc -= crip(e) + 3 * crip_bad_luck(e)  # Bad Luck is worth about -3 on one flip
     defense = sum(_party_defense(p, opp) for p in allies) / len(allies)
     resist = sum(p['physres'] if dtype == 'Physical' else p['elemres'] for p in allies) / len(allies)
     p_hit = sum(1 for f in range(1, 14) if acc + f >= defense) / 13
@@ -251,7 +251,7 @@ def enemy_threat(e, allies):
     # for last rather than walking over to it, which is the point of
     # isolating it. Still above zero, so it gets cleaned up at the end.
     if (STUCK_DISCOUNT < 1 and 'pos' in e and (e.get('attack_range') or 0) <= T.MELEE_RANGE
-            and e['speed'] + e.get('hasted', 0) - e.get('slowed', 0) <= 0
+            and e['speed'] + e.get('hasted', 0) - slow(e) <= 0
             and not any('pos' in p and movement.distance(p['pos'], e['pos']) <= T.MELEE_RANGE for p in allies)):
         threat *= STUCK_DISCOUNT
     elif T.DEBUFF_ABUSE and _cant_reach_party(e, allies):
@@ -265,7 +265,7 @@ def _cant_reach_party(e, allies):
     if 'pos' not in e or (e.get('attack_range') or 0) > T.MELEE_RANGE or not e.get('slowed'):
         return False
     gap = min((movement.distance(p['pos'], e['pos']) for p in allies if 'pos' in p), default=0) - T.MELEE_RANGE
-    return gap > 2 * max(0, e['speed'] + e.get('hasted', 0) - e['slowed'])
+    return gap > 2 * max(0, e['speed'] + e.get('hasted', 0) - slow(e))
 
 
 def _next_to_party(e, allies):
@@ -275,7 +275,7 @@ def _next_to_party(e, allies):
 def disabled(e, allies):
     """DEBUFF_ABUSE: an enemy the party leaves alone for now - Crippled
     DEBUFF_IGNORE_CRIPPLED or more, or Slowed out of reach."""
-    return e.get('crippled', 0) >= T.DEBUFF_IGNORE_CRIPPLED or _cant_reach_party(e, allies)
+    return crip(e) + 3 * crip_bad_luck(e) >= T.DEBUFF_IGNORE_CRIPPLED or _cant_reach_party(e, allies)
 
 
 def debuff_target(unit, targets, allies):
@@ -294,7 +294,7 @@ def debuff_target(unit, targets, allies):
             return False
         if (mv.get('wing_clip') or mv.get('distracting')) and (t.get('kind', 'attack') != 'attack' or t.get('crippled', 0) >= 3):
             return False
-        if mv.get('hamstring') and ((t.get('attack_range') or 0) > T.MELEE_RANGE or t.get('slowed', 0) >= t['speed']
+        if mv.get('hamstring') and ((t.get('attack_range') or 0) > T.MELEE_RANGE or slow(t) >= t['speed']
                                     or _next_to_party(t, allies)):
             return False
         return _attacks_this_turn(unit, t) > 0
@@ -314,7 +314,7 @@ def _attacks_this_turn(unit, target):
         return T.AP_PER_TURN // T.ATTACK_AP_COST
     reach = unit.get('attack_range') or T.MELEE_RANGE
     gap = max(0, movement.distance(unit['pos'], target['pos']) - reach)
-    speed = max(1, unit['speed'] + unit.get('hasted', 0) - unit.get('slowed', 0))
+    speed = max(1, unit['speed'] + unit.get('hasted', 0) - slow(unit))
     moves = -(-gap // speed)
     return max(0, (T.AP_PER_TURN - moves * T.MOVE_AP_COST) // T.ATTACK_AP_COST)
 
@@ -466,13 +466,40 @@ def necrotic_cut(unit, heal):
     return heal - n
 
 
+def crip(u):
+    """Crippled's penalty to `u`'s attacks (tunables.CRIPPLED_RULE); 99
+    when the rule says it can't attack at all."""
+    n, rule = u.get('crippled', 0), T.CRIPPLED_RULE
+    if rule in ('disable3', 'disable5') and n >= int(rule[-1]):
+        return 99
+    return 2 * n if rule == 'x2' else 0 if rule == 'badluck' else n
+
+
+def crip_bad_luck(u):
+    n, rule = u.get('crippled', 0), T.CRIPPLED_RULE
+    return int(n >= 3 if rule == 'badluck3' else n > 0 and rule in ('badluck', 'badluck_plus'))
+
+
+def slow(u):
+    """Slowed's penalty to Speed (tunables.SLOWED_RULE)."""
+    return u.get('slowed', 0) * (2 if T.SLOWED_RULE == 'x2' else 1)
+
+
+def slow_dodge(u):
+    return u.get('slowed', 0) if T.SLOWED_RULE == 'dodge' else 0
+
+
+def slow_ap(u):
+    return 1 if T.SLOWED_RULE == 'ap' and u.get('slowed', 0) > 0 else 0
+
+
 def _speed(unit):
     """Speed after Hasted and Slowed (glossary.md: +1 / -1 Speed per stack)
     and Wounded (-2), floored at 0. A grapple (rulebook.md) holds it at 0."""
     g = unit.get('grapple')
     if g is not None and g['health'] > 0 and unit['health'] > 0:
         return 0
-    return max(0, unit['speed'] + unit.get('hasted', 0) - unit.get('slowed', 0) - (2 if pc_wounded(unit) else 0))
+    return max(0, unit['speed'] + unit.get('hasted', 0) - slow(unit) - (2 if pc_wounded(unit) else 0))
 
 
 def move_approach(unit, target, reach):
