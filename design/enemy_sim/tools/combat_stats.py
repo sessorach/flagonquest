@@ -4,8 +4,7 @@ Per the designer: hit chance, chance to be hit, damage dealt and taken,
 round length, overall lethality, and how much they vary. Every party in
 the middle of its band against the manual's own encounters
 (manual_check's draws, no solo boss), Levels 1-5, fresh single fights,
-traced. `--prev` plays the table without the 2026-11-08 harder hits
-(enemy_builder_pcstyle.V3_HARD_HITS) for comparison, on the same seeds.
+traced. `--table` changes every Level's row of the table for a test.
 
 Per attack: hit chance (a hit is a hit even when Resist takes it all), and
 what a hit lands after Resist and Protected. Per fight: rounds, party
@@ -14,7 +13,6 @@ round, PCs dropped to 0, and whether someone went Down or the fight was
 lost. Spread: the standard deviation and the 10th-90th percentile range.
 
     python3 tools/combat_stats.py                 # today's table
-    python3 tools/combat_stats.py --prev          # without the harder hits
     python3 tools/combat_stats.py --table "skill=+3,health=*0.5" --name try1
 """
 import argparse
@@ -29,13 +27,12 @@ import tunables as T  # noqa: E402
 import combat_sim as cs  # noqa: E402
 import party  # noqa: E402
 import sample_enemies as se  # noqa: E402
-import enemy_builder_pcstyle as eb  # noqa: E402
+import enemy_builder as eb  # noqa: E402
 import manual_check as mc  # noqa: E402
 import bands  # noqa: E402
 
 LEVELS = (1, 2, 3, 4, 5)
 K_ENC = 24
-PREV = [False]
 TABLE = [""]
 
 
@@ -43,10 +40,7 @@ def install():
     if getattr(eb, "_stats_installed", False):
         return
     eb._stats_installed = True
-    for t in eb.ENEMY_TABLE_V3_PRUNED.values():
-        if PREV[0]:
-            for k, d in eb.V3_HARD_HITS.items():
-                t[k] -= d
+    for t in eb.ENEMY_TABLE.values():
         # --table "skill=+3,resist=+2,health=*0.5": every Level's row changed.
         for part in filter(None, TABLE[0].split(",")):
             k, _, v = part.partition("=")
@@ -144,19 +138,18 @@ def report(res):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-n", type=int, default=10, help="fights per encounter per party")
-    ap.add_argument("--prev", action="store_true", help="the table without the harder hits")
     ap.add_argument("--table", default="", help='changes to every Level\'s row: "skill=+3,resist=+2,health=*0.5"')
     ap.add_argument("--name", help="results file name (results/enemy_stats/<name>.txt)")
     ap.add_argument("-j", type=int, default=os.cpu_count())
     a = ap.parse_args()
-    PREV[0], TABLE[0] = a.prev, a.table
+    TABLE[0] = a.table
     jobs = [(L, gi, a.n) for L in LEVELS
             for gi in range(len([g for g in bands.groups(L, bands.MID[L]) if g[0] != "stand-ins"]))]
     with mp.Pool(a.j) as pool:
         res = list(pool.imap_unordered(_job, jobs))
     text = report(res)
     print(text)
-    name = a.name or ("combat_stats_prev" if a.prev else "combat_stats")
+    name = a.name or "combat_stats"
     open(os.path.join(_paths.ROOT, "results", "enemy_stats", name + ".txt"), "w").write(text + "\n")
 
 

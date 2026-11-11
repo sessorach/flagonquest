@@ -37,7 +37,7 @@ import tunables as T  # noqa: E402
 import combat_sim as cs  # noqa: E402
 import party  # noqa: E402
 import sample_enemies as se  # noqa: E402
-import enemy_builder_pcstyle as eb  # noqa: E402
+import enemy_builder as eb  # noqa: E402
 import manual_check as mc  # noqa: E402
 import bands  # noqa: E402
 
@@ -101,18 +101,18 @@ def install(variant):
         row = se._row_named(name)
         have = list(e.get("abilities", ()))
         rider = what.startswith("Strike (") or what.startswith("Poison (")
-        cap = eb.POISON_CAP_V3 if what.startswith("Poison (") else eb.RIDER_CAP_V3
-        if not fits(row, what) or (what in have and not rider and what not in eb.REPEATABLE_V3) \
+        cap = eb.POISON_CAP if what.startswith("Poison (") else eb.RIDER_CAP
+        if not fits(row, what) or (what in have and not rider and what not in eb.REPEATABLE) \
                 or (rider and have.count(what) >= cap):
             return e
-        price = eb.ABILITY_HEALTH_V3P[what]
-        eb.ABILITY_HEALTH_V3P[what] = 0
+        price = eb.ABILITY_PRICES[what]
+        eb.ABILITY_PRICES[what] = 0
         try:
             new = se._build_from_row(dict(row, PrunedPicks=f"{row['PrunedPicks']}; {what}"))
         except ValueError:
             return e  # past a cap: plays as written
         finally:
-            eb.ABILITY_HEALTH_V3P[what] = price
+            eb.ABILITY_PRICES[what] = price
         seen["took"] += 1
         return new
     se.get_enemy = get_enemy
@@ -202,7 +202,7 @@ def read(a):
         if not got:
             continue
         w = st.mean(got)
-        price = eb.ABILITY_HEALTH_V3P[p]
+        price = eb.ABILITY_PRICES[p]
         rows.append((w - price, f"| {p} | {price:g} | " + " / ".join("-" if x is None else f"{x:+.1f}" for x in worths)
                      + f" | {w:+.1f} | {w - price:+.1f} | {st.mean(rnds):+.2f} | {st.mean(downs):+.1f} | "
                        f"{100 * st.mean(shares):.0f}% |"))

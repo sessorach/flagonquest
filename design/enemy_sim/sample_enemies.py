@@ -1,87 +1,14 @@
 """
-Loads enemy stat blocks from sample_enemies.csv - a growing collection of
-"sample dudes" built with enemy_builder.py, rather than one Python
-function per enemy. Two kinds of rows share the file:
+Enemy stat blocks by name: the monster manual (monster_manual.csv, one
+design per monster, built at any Level as "Name@L") and the older sample
+roster (sample_enemies.csv, one row per enemy at its Level). Both build
+through enemy_builder.build_enemy; this file decides what a row buys
+(`_pruned_picks`, `_big_picks`) and holds the encounters the tools play
+(ENCOUNTERS, CURRENT_MIXES: the manual's draws by default,
+tunables.ENCOUNTER_SOURCE).
 
-- **Roster** (`Roster` column TRUE) - exactly one per Level 1-5, tuned
-  (via the per-Level search in combat_sim.py's tuning runs) to land
-  close to a genuine ~50% on-level win rate against a same-Tier party.
-  `make_enemy(level)` pulls these - see design/ENEMY_ENCOUNTER_DESIGN.md's
-  "Analysis" section for the validation grid they produced. All five use
-  Light Armor specifically - see that CSV's own Notes column and
-  tunables.py's ARMOR comment for why (Light is where the Armor table is
-  anchored to the real player-facing armor_categories.csv; testing found
-  Unarmored too easy and Medium/Heavy a real wall even with Gambling, so
-  they read as a deliberately tougher "elite" pick, not on-level).
-- **Reference builds** (`Roster` FALSE) - one-off stat blocks built for a
-  specific question (an item-balancing check, a "what does a generic
-  fighter look like" ask) that aren't part of the validated roster and
-  don't need to be unique per Level. `get_enemy(name)` pulls these by
-  name. Includes a Minion archetype at every Level (0.5 Slots, same
-  Neutral shape as the Generic Fighter archetype) specifically so
-  `build_encounter`/`total_slots` below have a real sub-1-slot enemy to
-  compose with - every other row in this file is 1 Slot.
-
-`build_encounter(names)` assembles a custom encounter from any mix of
-named rows (Roster or reference, any Level/Slots combination) instead
-of `make_enemy(level)`'s single Roster pull - pass its result as
-`combat_sim.run_fight`'s own `enemies=` param. `total_slots(enemies)`
-sums an encounter's own Slots, for checking a mix against "one slot per
-PC" - the default encounter budget (the designer's own framing; not
-yet written into ENEMY_ENCOUNTER_DESIGN.md itself).
-
-These are simulator fixtures, not a finished in-game roster - expect an
-"Example Enemies" design doc to supersede the Roster rows once the
-PC/enemy baselines in tunables.py are locked down further.
-
-**`DamageBonus`/`AccuracyBonus`/`DefenseBonus`** (blank = 0) map straight
-to enemy_builder.build_enemy's own `ability_dmg_bonus`/`ability_acc_
-bonus`/`ability_def_bonus` params - flat retune knobs for this row's own
-attack damage, to-hit Accuracy, and all four defenses (Parry/Dodge/
-Bodily/Mental together) respectively, none of which also inflate this
-row's own Resist (unlike bumping tunables.DMG_RESIST or ACCURACY
-directly, which feed multiple derived stats off the same Level-keyed
-number and turned out to be much sharper, less controllable levers
-during the Level 1 "mixed Fighting Style" retune - see the 5 Mixed-
-Style archetypes' own Notes). Of the three, `DefenseBonus` turned out to
-be the cleanest lever for moving win rate and "HP% remaining on a win"
-*together* rather than pulling them apart - it changes how fast the
-party can kill the enemy, not how hard the enemy hits back, so unlike
-Damage/Accuracy it doesn't force the same tradeoff between "wins more"
-and "wins by more." Kept distinct from the real `Abilities` catalog
-(Powerful Weapon, etc.) since those carry their own in-fiction identity
-and tradeoffs (Powerful Weapon costs Accuracy/Parry); these are plain
-numeric retune knobs, not a named ability a GM would narrate.
-
-**`ParryTier`/`DodgeTier`/`BodilyTier`/`MentalTier`/`VigilantTier`/
-`AttackTier`/`HealthBonus`** are a second, alternative construction
-method - enemy_builder_pcstyle.py's build_enemy_pcstyle, wired into
-`_build_from_row` whenever `AttackTier` isn't blank (a row with a blank
-`AttackTier` still builds the old way, off `Role`/`PrimaryDef`/
-`SecondaryDef`/`SecondaryDef2`/`DamageBonus`/`AccuracyBonus`/
-`DefenseBonus`, which stay blank/unused on a pcstyle row and vice versa
-- the two methods are mutually exclusive per row, not layered). Builds
-an enemy the way a PC actually gets built - Defense = 8 + Skill Total,
-Damage = a weapon-style base + Stat, Resist = Essence alone - instead
-of enemy_builder.py's synthetic Level curve; see build_enemy_pcstyle's
-own module docstring for the full formula and why. Each Tier column is
-"poor"/"secondary"/"primary" (blank = poor, same "never invested here"
-reading as a blank Ability cell) - five independent Defenses instead of
-PrimaryDef/SecondaryDef's bundled "Parry/Dodge as one category" (plus
-Vigilant, which PrimaryDef/SecondaryDef's own three-category shape
-doesn't cover at all - see ENEMY_ENCOUNTER_DESIGN.md's Defense tiering
-section). `SecondaryDef2` is the classic-method equivalent - a second
-Secondary pick, needed once Vigilant made four categories out of three;
-existing rows predating this change leave it blank, which reads as an
-extra, currently-unintended weak category until reviewed. `HealthBonus`
-(blank = 0) is a small uniform nudge on top of the real Baseline-party
-Health for that Level, not part of the formula itself. The 4 default
-Level 1 archetypes (Hedge Knight/Marsh Archer/Skulking Footpad/Fen
-Warden) use this method now - see their own Notes for the numbers this
-landed on, and why (short version: once Harried - glossary.md, -1
-Dodge/Parry per stack, previously unmodeled entirely - got wired into
-combat_sim.py, the plain ungrounded Skill Total numbers already landed
-close to the target win rate/Health-cost shape on their own).
+`get_enemy(name)` builds one enemy; `build_encounter(names)` a list, for
+`combat_sim.run_fight(..., enemies=)`.
 """
 import csv
 import os
@@ -89,7 +16,7 @@ import os
 import game_data
 import tunables as T
 from enemy_builder import build_enemy
-from enemy_builder_pcstyle import build_enemy_pcstyle
+import enemy_builder as eb
 
 _CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sample_enemies.csv")
 
@@ -132,7 +59,7 @@ _INDEX = {}
 
 
 def _build_from_row(row):
-    if "BigPicks" not in row and float(row.get("Slots") or 1) > 1 and getattr(T, "LEGACY_BIG", None):
+    if "BigPicks" not in row and float(row.get("Slots") or 1) > 1 and T.LEGACY_BIG:
         # The old sample roster's elites and solo boss have no BigPicks to
         # spend a bigger budget on, so they keep the settings they were
         # tuned with (tunables.LEGACY_BIG).
@@ -144,74 +71,19 @@ def _build_from_row(row):
         finally:
             for k, v in saved.items():
                 setattr(T, k, v)
-    # AttackTier non-blank picks enemy_builder_pcstyle's real-PC-formula
-    # construction (Defense = 8 + Skill Total, Damage = base + Stat,
-    # Resist = Essence alone) over enemy_builder.build_enemy's synthetic
-    # Level curve - see enemy_builder_pcstyle.py's own module docstring
-    # for why. ParryTier/DodgeTier/BodilyTier/MentalTier/VigilantTier
-    # (blank = "poor", same "a Skill you never invested in" reading as a
-    # blank Ability cell) replace PrimaryDef/SecondaryDef's bundled
-    # "Parry/Dodge as one category" for these rows - five independent
-    # Defenses, not four.
-    heavy_min = getattr(T, "V3_HEAVY_MIN_LEVEL", None)
-    if heavy_min and row["Armor"].strip() == "Heavy" and int(row["Level"]) < heavy_min:
-        # Heavy armor only from this Level (designer, 2026-11-08 test): below
-        # it a Heavy design wears Medium, and the points it saves are Health.
+    if T.V3_HEAVY_MIN_LEVEL and row["Armor"].strip() == "Heavy" and int(row["Level"]) < T.V3_HEAVY_MIN_LEVEL:
+        # Heavy armor only from this Level (designer, 2026-11-08): below it a
+        # Heavy design wears Medium, and the points it saves are Health.
         row = dict(row, Armor="Medium")
-    if (row.get("AttackTier") or "").strip():
-        abilities = [a.strip() for a in row["Abilities"].split(";") if a.strip()]
-        action = row["Action"]
-        if T.ENEMY_TABLE == "v3" and getattr(T, "V3_VERSION", 2) == 3 and (row.get("StrongDefense") or "").strip():
-            abilities, action = _pruned_picks(row, abilities)
-        e = build_enemy_pcstyle(
-            row["Name"],
-            int(row["Level"]),
-            float(row["Slots"]),
-            action,
-            row["Armor"],
-            defense_tiers={
-                "parry": (row.get("ParryTier") or "poor").strip().lower(),
-                "dodge": (row.get("DodgeTier") or "poor").strip().lower(),
-                "bodily": (row.get("BodilyTier") or "poor").strip().lower(),
-                "mental": (row.get("MentalTier") or "poor").strip().lower(),
-                "vigilant": (row.get("VigilantTier") or "poor").strip().lower(),
-            },
-            attack_tier=row["AttackTier"].strip().lower(),
-            health_bonus=int(row["HealthBonus"]) if row.get("HealthBonus", "").strip() else 0,
-            abilities=abilities,
-            main_effect=(row.get("MainEffect") or "").strip() or None,
-            backup_action=(row.get("BackupAction") or "").strip() or None,
-            stat_order=[x for x in (row.get("StatOrder") or "").split(",") if x.strip()] or None,
-            role=(row.get("Role") or "").strip() or None,
-            strong_defense=(row.get("StrongDefense") or "").strip() or None,
-            weak_defense=(row.get("WeakDefense") or "").strip() or None,
-        )
-    else:
-        # SecondaryDef/SecondaryDef2: up to two Secondary picks now that
-        # Vigilant makes four categories (see ENEMY_ENCOUNTER_DESIGN.md's
-        # Defense tiering section) - blank entries filtered out, so a row
-        # with only SecondaryDef set (every pre-Vigilant row) still works
-        # exactly as before, just with Vigilant itself reading as a
-        # second, currently-unintended weak category until a real design
-        # pass assigns it a proper pick.
-        secondary_defs = tuple(v for v in (row["SecondaryDef"], row.get("SecondaryDef2", "")) if v)
-        e = build_enemy(
-            row["Name"],
-            int(row["Level"]),
-            float(row["Slots"]),
-            row["Role"],
-            row["PrimaryDef"] or None,
-            secondary_defs,
-            row["Action"],
-            row["Armor"],
-            ability_dmg_bonus=int(row["DamageBonus"]) if row.get("DamageBonus", "").strip() else 0,
-            ability_acc_bonus=int(row["AccuracyBonus"]) if row.get("AccuracyBonus", "").strip() else 0,
-            ability_def_bonus=int(row["DefenseBonus"]) if row.get("DefenseBonus", "").strip() else 0,
-            abilities=[a.strip() for a in row["Abilities"].split(";") if a.strip()],
-        )
+    abilities, action = _pruned_picks(row, _split(row["Abilities"]))
+    e = build_enemy(row["Name"], int(row["Level"]), float(row["Slots"]), action, row["Armor"],
+                    row["StrongDefense"].strip(), role=(row.get("Role") or "").strip() or None,
+                    abilities=abilities, main_effect=(row.get("MainEffect") or "").strip() or None,
+                    backup_action=(row.get("BackupAction") or "").strip() or None,
+                    weak_defense=(row.get("WeakDefense") or "").strip() or None)
     e["battle_tactic"] = row["BattleTactic"]
-    e["fighting_style"] = row["FightingStyle"] if FIGHTING_STYLES_ENABLED else "None"
-    style = getattr(T, "V3_FIGHTING_STYLE", "")
+    e["fighting_style"] = "None"
+    style = T.V3_FIGHTING_STYLE
     if style:
         e["fighting_style"] = (("Single" if T.AUDIT_FIXES and e.get("kind", "attack") != "attack" else
                                 "Aimed Shot" if e.get("attack_range") else "Skirmisher") if style == "mixed"
@@ -230,45 +102,39 @@ def _pruned_picks(row, abilities):
     gave up, so it plays as it did. tunables.V3_PRUNED_EXTRA gives a Level
     more points, spent down the row's PrunedExtra list in order (a pick
     that doesn't fit what's left is skipped; what's left is Health)."""
-    import enemy_builder_pcstyle as eb
     buyback = ["Damage +1", "Accuracy +1"]
-    mode = getattr(T, "V3_PRUNED_ROSTER", "picks")
     designed = _split(row.get("PrunedPicks"))
-    in_table = int(row["Level"]) >= getattr(T, "V3_ACCURACY_IN_TABLE", 99)
+    in_table = int(row["Level"]) >= T.V3_ACCURACY_IN_TABLE
     if in_table:
         # The table carries this Accuracy +1 from that Level (2026-11-08).
         buyback = ["Damage +1"]
-    if mode == "buyback" or not designed:
+    if not designed:
         return abilities + buyback, row["Action"]
     picks = list(designed)
-    left = getattr(T, "V3_PRUNED_EXTRA", {}).get(int(row["Level"]), 0)
+    left = T.V3_PRUNED_EXTRA.get(int(row["Level"]), 0)
     action = (row.get("PrunedAction") or "").strip() or row["Action"]
-    action = getattr(T, "V3_PRUNED_SWAP", {}).get(action, action)
-    if getattr(T, "V3_ONE_BUDGET", False):
-        # One budget: the extra points buy only what the design leaves room
-        # for; points the design leaves unspent stay Health.
-        cost = (sum(eb.ABILITY_HEALTH_V3P[p] for p in picks) + eb.ARMOR_HEALTH_V3P[row["Armor"].strip()]
-                + eb.LOADOUT_HEALTH_V3P.get(action, 0))
-        left = min(left, T.V3_PRUNED_ALLOWANCE + left - cost)
-    order = _split(row.get("PrunedExtra"))
-    if getattr(T, "V3_PRUNED_EXTRA_ORDER", "row") == "offense":
-        # Extra points on offense first (Accuracy, then Damage), then the row's own.
-        order = ([] if in_table else ["Accuracy +1"]) + ["Damage +1"] + [p for p in order if p not in ("Accuracy +1", "Damage +1")]
+    # One budget: the extra points buy only what the design leaves room
+    # for; points the design leaves unspent stay Health.
+    cost = (sum(eb.ABILITY_PRICES[p] for p in picks) + eb.ARMOR_PRICES[row["Armor"].strip()]
+            + eb.LOADOUT_PRICES.get(action, 0))
+    left = min(left, T.V3_PRUNED_ALLOWANCE + left - cost)
+    # Extra points on offense first (Accuracy, then Damage), then the row's own.
+    order = (([] if in_table else ["Accuracy +1"]) + ["Damage +1"]
+             + [p for p in _split(row.get("PrunedExtra")) if p not in ("Accuracy +1", "Damage +1")])
     for pick in order:
-        price = eb.ABILITY_HEALTH_V3P[pick]
+        price = eb.ABILITY_PRICES[pick]
         n = picks.count(pick)
         rider = pick.startswith("Strike (") or pick.startswith("Poison (")
         # A pick the row already has that can't be taken again (Damage +1
         # once; a rider at its cap) is skipped, as BigPicks' are.
-        if n and not rider and pick not in eb.REPEATABLE_V3:
+        if n and not rider and pick not in eb.REPEATABLE:
             continue
-        if rider and n >= (eb.POISON_CAP_V3 if pick.startswith("Poison (") else eb.RIDER_CAP_V3):
+        if rider and n >= (eb.POISON_CAP if pick.startswith("Poison (") else eb.RIDER_CAP):
             continue
         if price <= left:
             picks.append(pick)
             left -= price
     picks += _big_picks(row, picks)
-    # tunables.V3_PRUNED_SWAP: experiments trying other kit on the same rows.
     return picks, action
 
 
@@ -285,26 +151,25 @@ def _big_picks(row, picks):
     BigPicks list in order: a pick that doesn't fit what's left, or would
     pass a cap, is skipped; what's left is Health. Offense, on-hit effects
     and Actions only."""
-    import enemy_builder_pcstyle as eb
-    k = getattr(T, "V3_SLOT_BUDGET", {}).get(float(row["Slots"]), 1)
+    k = T.V3_SLOT_BUDGET.get(float(row["Slots"]), 1)
     if k <= 1:
         return []
     level = int(row["Level"])
-    left = (T.V3_PRUNED_ALLOWANCE + getattr(T, "V3_PRUNED_EXTRA", {}).get(level, 0)) * (k - 1)
-    t = eb.ENEMY_TABLE_V3_PRUNED[level]
-    role_acc = eb.ROLE_ADDS_V3_ADDITIVE.get((row.get("Role") or "").strip(), {}).get("acc", 0)
+    left = (T.V3_PRUNED_ALLOWANCE + T.V3_PRUNED_EXTRA.get(level, 0)) * (k - 1)
+    t = eb.ENEMY_TABLE[level]
+    role_acc = eb.ROLE_ADDS.get((row.get("Role") or "").strip(), {}).get("acc", 0)
     out, have = [], list(picks)
     for p in _split(row.get("BigPicks")):
         if p in BIG_PICKS_BARRED or p.startswith("Resist ("):
             raise ValueError(f"{row['Name']}: {p} can't be bought with the points a size adds")
-        price = eb.ABILITY_HEALTH_V3P[p]
+        price = eb.ABILITY_PRICES[p]
         n = have.count(p)
         rider = p.startswith("Strike (") or p.startswith("Poison (")
         if price > left + 1e-9:
             continue
-        if rider and n >= (eb.POISON_CAP_V3 if p.startswith("Poison (") else eb.RIDER_CAP_V3):
+        if rider and n >= (eb.POISON_CAP if p.startswith("Poison (") else eb.RIDER_CAP):
             continue
-        if n and not rider and p not in eb.REPEATABLE_V3:
+        if n and not rider and p not in eb.REPEATABLE:
             continue
         if p == "Accuracy +1" and t["accuracy"] + role_acc + n + 1 > eb.SKILL_CAP:
             continue
@@ -312,23 +177,6 @@ def _big_picks(row, picks):
         have.append(p)
         left -= price
     return out
-
-
-def make_enemy(level):
-    for row in _load_rows():
-        if row["Roster"].strip().upper() == "TRUE" and int(row["Level"]) == level:
-            return _build_from_row(row)
-    raise ValueError(f"no Roster row for Level {level}")
-
-
-# 2026-09-30, per the designer: Fighting Styles are off for now. They
-# were meant to stop fights being piles of double attacks, but the
-# baseline turned out to need more enemy offense, not less, and Guarded
-# on a stand-still tank was the uncosted combination behind Shield
-# Wall's difficulty. With this off, every enemy just spends its AP
-# moving and attacking (up to two attacks). The FightingStyle column
-# stays in the CSV for when they come back.
-FIGHTING_STYLES_ENABLED = False
 
 
 def get_enemy(name):
@@ -345,30 +193,10 @@ def all_enemies():
     return [_build_from_row(row) for row in _load_rows()]
 
 
-# The new Level 1 baseline (replacing 4x Marsh Viper Scout - now a
-# reference build only, Roster=FALSE, still available via get_enemy):
-# one of each of 4 of the 5 Mixed-Style archetypes (Hedge Knight, Marsh
-# Archer, Skulking Footpad, Fen Warden), retuned against a real drafted
-# party - see those 4 rows' own Notes for the calibration numbers. Bog
-# Caster (the deliberate double-attacker) is left out of the default
-# mix on purpose, kept as a separate flavor pick for a GM who wants that
-# harsher read. Only Level 1 has an entry so far ("we'll check out the
-# rest at a later point," per the designer) - every other Level still
-# falls back to make_level_encounter's own old behavior below.
-MIXED_ROSTER = {
-    1: ["Hedge Knight", "Marsh Archer", "Skulking Footpad", "Fen Warden"],
-    # Levels 2-3: the same four archetypes and the same HealthBonus=2
-    # balance point, built at the higher Level (2026-09-30).
-    2: ["Hedge Knight (L2)", "Marsh Archer (L2)", "Skulking Footpad (L2)", "Fen Warden (L2)"],
-    3: ["Hedge Knight (L3)", "Marsh Archer (L3)", "Skulking Footpad (L3)", "Fen Warden (L3)"],
-}
-
-
-# 2026-09-30 enemy-variety pass: named encounter mixes per Level, every
-# enemy in each putting a debuff on the party or a buff on its allies.
-# "Classic" is the MIXED_ROSTER four (now with Hedge Knight Taunting and
-# Fen Warden Slowing on hit); "Warband" is melee-heavy with a Protecting
-# support; "Coven" is casters and debuffers.
+# The old sample roster's encounter mixes (2026-09-30 enemy-variety pass):
+# most fights two stat blocks, a complicated one three, never more than one
+# enemy that doesn't attack. Kept for ENCOUNTER_SOURCE 'roster' and the
+# replays; the manual's draws (below) are what the tools play.
 def _lv(name, level):
     return name if level == 1 else f"{name} (L{level})"
 
@@ -388,14 +216,6 @@ ENCOUNTERS = {
         # (2026-10-01 horde_experiments.py).
         "Horde": [_lv(n, level) for n in ("Goblin Cutthroat", "Goblin Cutthroat", "Goblin Cutthroat",
                                           "Goblin Cutthroat", "Ember Caster", "Ember Caster")],
-        # Retired mixes (four different stat blocks, or two non-attackers),
-        # kept so older scripts and their recorded numbers still run.
-        "Classic": [_lv(n, level) for n in ("Hedge Knight", "Marsh Archer", "Skulking Footpad", "Fen Warden")],
-        "Coven": [_lv(n, level) for n in ("Skulking Footpad", "Grave Caller", "Cinder Adept", "Bog Hexer")],
-        "Chapel": [_lv(n, level) for n in ("Brute", "Shade Stalker", "Mire Witch", "Field Medic")],
-        "Warband (old)": [_lv(n, level) for n in ("Hedge Knight", "Brute", "Marsh Archer", "Warpriest")],
-        "Horde (old)": [_lv(n, level) for n in ("Hedge Knight", "Ember Caster",
-                                                "Goblin Cutthroat", "Goblin Cutthroat", "Goblin Cutthroat", "Goblin Cutthroat")],
     }
     for level in (1, 2, 3)
 }
@@ -466,11 +286,8 @@ CURRENT_MIXES = ROSTER_MIXES
 # Boss fights (2026-10-07), Level 2 only: a long-lived target, which is
 # where Bleeding should pay off most. Solo Boss is one 4-slot boss with
 # two turns a round (tunables.TURNS_BY_SLOTS); Boss and Guards is a
-# 2-slot boss plus two standard Brutes. Both are 4 Slots. Lone Elite (the
-# 2-slot boss alone, 2 Slots) is kept for the record: it died in two
-# rounds. Not in CURRENT_MIXES.
+# 2-slot boss plus two standard Brutes. Both are 4 Slots. Not in CURRENT_MIXES.
 ENCOUNTERS[2]["Solo Boss"] = ["Brute Warlord (L2)"]
-ENCOUNTERS[2]["Lone Elite"] = ["Brute Boss (L2)"]
 ENCOUNTERS[2]["Boss and Guards"] = ["Brute Boss (L2)", "Brute (L2)", "Brute (L2)"]
 BOSS_MIXES = ("Solo Boss", "Boss and Guards")
 
@@ -480,41 +297,9 @@ BOSS_MIXES = ("Solo Boss", "Boss and Guards")
 ENCOUNTERS[1]["Chief's Frontline"] = ["Brute Chief"] + ENCOUNTERS[1]["Frontline"]
 
 
-def make_level_encounter(level, n_enemies=4):
-    """What combat_sim.run_fight builds by default when no explicit
-    `enemies=` is given - MIXED_ROSTER's own mix for this Level, if
-    it's got one sized to match `n_enemies` (a real varied encounter,
-    not clones of one archetype); otherwise the original behavior,
-    `n_enemies` copies of make_enemy(level). A caller asking for some
-    other `n_enemies` at a MIXED_ROSTER Level (a smaller test fight,
-    say) still gets the old single-archetype-clone behavior, since the
-    mix itself is a fixed-size set, not something to trim or repeat."""
-    names = MIXED_ROSTER.get(level)
-    if names and len(names) == n_enemies:
-        return build_encounter(names)
-    return [make_enemy(level) for _ in range(n_enemies)]
-
-
 def build_encounter(names):
-    """A custom encounter assembled from named reference rows in
-    whatever Level/Slots mix is asked for - e.g. build_encounter(
-    ["Brute Boss (L2)", "Brute (L2)", "Brute (L2)"]) for a 2-slot boss
-    plus two standard Brutes (a 4-slot encounter). Pass the result as combat_sim.run_fight's own
-    `enemies=` param (it takes any list of already-built enemy dicts,
-    not just N copies of one make_enemy(level) call) - see total_slots
-    to check the mix against "one slot per PC," the default encounter
-    budget (the designer's own framing - see this file's own module
-    docstring; ENEMY_ENCOUNTER_DESIGN.md doesn't spell this rule out
-    yet)."""
+    """The named enemies, in order, for run_fight's `enemies=`."""
     return [get_enemy(name) for name in names]
-
-
-def total_slots(enemies):
-    """Sum of an encounter's own Slots values, for checking a
-    build_encounter mix against "one slot per PC" (4 for a 4-PC party,
-    made up however - four 1-slot enemies, two 1-slot plus four
-    0.5-slot, one 2-slot plus two 1-slot, ...)."""
-    return sum(e.get("slots", 1) for e in enemies)
 
 
 if __name__ == "__main__":

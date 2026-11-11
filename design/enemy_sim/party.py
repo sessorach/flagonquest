@@ -394,7 +394,7 @@ def load_sheet(row, build=None, strict=False):
             # Elemental-Forged Weaponry: "Attacks with this weapon deal their
             # damage as that type" (Fire; Frost, Brilliant or Shadow at
             # Level 4, the export's "element"). On the attacking weapon.
-            if getattr(T, "PC_ELEMENTAL_WEAPON", True):
+            if T.PC_ELEMENTAL_WEAPON:
                 sheet.weapon_element = it.get("element", "Fire")
         elif iid not in game_data.NOT_MODELED_ITEMS:
             raise BuildError(f"{row['Name']}: item {iid} {game_data.items().get(iid, {}).get('Name', '?')} "
@@ -1007,21 +1007,11 @@ def make_party(tier, good_luck=0):
     raise ValueError(f"no Roster row for Tier {tier}")
 
 
-def make_party_of(name, good_luck=0):
-    """4 copies of a single named reference PC (Roster or not) - same
-    duplication pattern as make_party(tier), just keyed by name instead
-    of Tier. For testing one build's own attack profile (a ranged PC's
-    Weapon, say) against the validated Roster without hand-assembling a
-    mixed party - monkeypatch combat_sim.make_party to this the same way
-    the README's item-balancing checks monkeypatch combat_sim.make_enemy."""
-    return make_party_from([name] * 4, good_luck)
-
-
 def make_party_from(names, good_luck=0):
     """A custom party assembled from named reference rows in whatever mix
     is asked for (e.g. ["Hilde", "Browndog", "Sable", "Beornhard"]) -
-    for testing party composition itself, not just one build cloned x4.
-    Same monkeypatch-combat_sim.make_party usage as make_party_of."""
+    for testing party composition itself (monkeypatch combat_sim.make_party
+    to it)."""
     rows = _rows()
     return [make_pc(name, i + 1, good_luck, rows=rows) for i, name in enumerate(names)]
 

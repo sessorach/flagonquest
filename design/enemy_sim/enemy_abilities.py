@@ -2,8 +2,8 @@
 The enemy Ability catalog in the fight (ENEMY_ENCOUNTER_DESIGN.md, "The
 Ability catalog"): each Ability's hooks (hooks.py) and the functions they
 call. What an Ability changes at build time (Resist by element, Enhanced
-Range, Devastating's +1 Damage...) is enemy_builder_pcstyle._apply_catalog;
-what it costs is enemy_builder_pcstyle.PICK_COST. Adding an Ability means
+Range, Devastating's +1 Damage...) is enemy_builder._apply_catalog; what
+it costs is enemy_builder.ABILITY_PRICES. Adding an Ability means
 its cost there, and its build-time numbers or its hooks here.
 
 `cs` is combat_sim, set when it finishes loading.
@@ -95,27 +95,10 @@ def _devastating(e, c):
         c.dmg = 0
 
 
-# v2 kit (2026-11-02): Poison (Bleeding) lands 1 stack, priced at 5
-# Upgrades (enemy_builder_pcstyle.PICK_COST_V2).
-STRIKE_RIDERS_V2 = {'Poison (Bleeding)': ('Bleeding', 1)}
-
-
-def _v2():
-    # The v2 kit's shapes, also under v3 when V3_KIT_SHAPES = 'v2'.
-    t = getattr(cs.T, 'ENEMY_TABLE', 'v1')
-    return t == 'v2' or (t == 'v3' and getattr(cs.T, 'V3_KIT_SHAPES', 'catalog') == 'v2')
-
-
-def _pruned():
-    return getattr(cs.T, 'ENEMY_TABLE', 'v1') == 'v3' and getattr(cs.T, 'V3_VERSION', 2) == 3
-
-
 def _rider(ability):
     def apply(e, c):
-        effect, stacks = (STRIKE_RIDERS_V2.get(ability) if _v2() else None) or STRIKE_RIDERS[ability]
-        if _pruned():
-            # The pruned v3: one stack per pick, picked up to 4 times.
-            stacks = e['abilities'].count(ability)
+        # One stack per pick, picked up to 4 times (the pruned v3, 2026-11-04).
+        effect, stacks = STRIKE_RIDERS[ability][0], e['abilities'].count(ability)
         cs._apply_to_pc(c.target, effect, stacks, e)
         c.applied.append(f"{effect} +{stacks}")
         # What Healing Magic's Purify can take off ("1 stack of each Poison
@@ -146,7 +129,7 @@ def _shoving(e, c):
     # turn's last attack: earlier, it would have to walk after its target.
     t = c.target
     if t['health'] > 0 and 'pos' in t and 'pos' in e and e.get('_last_swing', True):
-        n = 2 * (e['abilities'].count('Strike (Shoving)') if _pruned() else 1)
+        n = 2 * e['abilities'].count('Strike (Shoving)')
         start = t['pos']
         cs._push(t, e['pos'], n)
         if t['pos'] != start:
@@ -156,7 +139,7 @@ def _shoving(e, c):
 @hooks.on('enemy_hit_or_parried', 'Strike (Harrying)', order=10)
 def _harrying(e, c):
     # "Attack hits *or* is Parried -> target Harried once either way."
-    n = e['abilities'].count('Strike (Harrying)') if _pruned() else 1
+    n = e['abilities'].count('Strike (Harrying)')
     c.target['harried'] = c.target.get('harried', 0) + n
     c.applied.append(f"Harried +{n}")
 
@@ -165,7 +148,7 @@ def _harrying(e, c):
 def _battering(e, c):
     # "Attack is Parried -> target still gains a Bleeding stack."
     if c.parried:
-        n = e['abilities'].count('Strike (Battering)') if _pruned() else 1
+        n = e['abilities'].count('Strike (Battering)')
         cs._apply_to_pc(c.target, 'Bleeding', n, e)
         c.applied.append(f"Bleeding +{n} (Battering)")
 
@@ -173,9 +156,9 @@ def _battering(e, c):
 @hooks.on('pc_damaged_enemy', 'Retribution Aura')
 def _retribution(e, c):
     # "Attacker who damages this NPC gains a stack of Bleeding themselves."
-    # v2 kit (2026-11-02): melee attackers only, priced at 4 Upgrades; on
-    # every attacker it was worth 20-25 enemy Health in the longer fights.
-    if _v2() and c.pc.get('attack_range'):
+    # Melee attackers only (2026-11-02): on every attacker it was worth
+    # 20-25 enemy Health in the longer fights.
+    if c.pc.get('attack_range'):
         return
     if c.pc['health'] > 0:
         cs._gain(c.pc, 'bleeding', 1)

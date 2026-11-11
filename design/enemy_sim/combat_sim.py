@@ -203,7 +203,7 @@ import movement
 import movement as _movement
 from movement import distance as _distance  # run_fight's own `movement` param (bool) shadows the module name
 import tactics
-from sample_enemies import make_level_encounter
+import sample_enemies
 from party import make_party
 import cards
 import play_styles
@@ -296,7 +296,7 @@ def spend_movement_ap(unit, target, ap, reach):
     taken, for Guarded's own stand-still bonus to check (see
     run_fight's Enemies' turn)."""
     kiting = unit.get('battle_tactic') == 'Kiting'
-    if kiting and getattr(T, 'KITING_MOVE', 'always') == 'engaged':
+    if kiting and T.KITING_MOVE == 'engaged':
         # Test (2026-11-05): back off only from someone already in melee
         # reach; otherwise close to range and attack like anyone else.
         kiting = movement.distance(unit['pos'], target['pos']) <= T.MELEE_RANGE
@@ -3154,16 +3154,11 @@ def _take_enemy_turn(e, enemies, pcs, rnd, movement_on, trace, enemy_log, party_
     return interrupt_dmg
 
 
-def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luck=0, movement=False, start_gap=None,
+def run_fight(tier, enemy_level, max_rounds=30, seed=None, good_luck=0, movement=False, start_gap=None,
               trace=None, enemies=None, carry=None, day_fight=None):
-    """`enemies`: pass a pre-built list of enemy dicts (e.g. from
-    sample_enemies.build_encounter([...])) to fight that exact mix
-    instead of `n_enemies` identical copies of `make_enemy(enemy_level)`
-    - `enemy_level`/`n_enemies` are ignored when this is given. Lets a
-    single fight mix Levels/Slots/Archetypes freely (a 2-slot Tank plus
-    a handful of 0.5-slot Minions, say) rather than always facing one
-    enemy type - see sample_enemies.total_slots to check the mix
-    against "one slot per PC."
+    """`enemies`: the enemy dicts to fight (sample_enemies.build_encounter);
+    without it, the first of the Level's current mixes (sample_enemies.
+    CURRENT_MIXES).
 
     `movement=True` turns on the optional 2D-arena mode (movement.py):
     the party starts in a compact 2x2 block (_party_formation), enemies
@@ -3251,14 +3246,10 @@ def run_fight(tier, enemy_level, n_enemies=4, max_rounds=30, seed=None, good_luc
     if enemies is not None:
         enemies = [copy.deepcopy(e) for e in enemies]
     else:
-        enemies = [copy.deepcopy(e) for e in make_level_encounter(enemy_level, n_enemies)]
-    # Unlike PCs (party.py already suffixes each copy - "Hilde1",
-    # "Hilde2"), every enemy copy comes back from make_enemy with the
-    # exact same 'name' - fine when nothing ever needs to tell two
-    # copies apart, but a real problem for a trace/log that does (see
-    # `trace` below) - four identical "Marsh Viper Scout" entries are
-    # indistinguishable. `name` is cosmetic only (nothing dispatches
-    # game logic on it), so it's safe to suffix here unconditionally.
+        enemies = sample_enemies.build_encounter(
+            sample_enemies.ENCOUNTERS[enemy_level][sample_enemies.CURRENT_MIXES[0]])
+    # Number the copies (party.py already numbers PCs) so a trace can tell
+    # two of the same enemy apart; nothing dispatches on the name.
     for i, e in enumerate(enemies, 1):
         e['name'] = f"{e['name']} {i}"
         if T.ENEMY_HEALTH_MULT != 1:
@@ -3515,14 +3506,14 @@ def _calibration_counts(pcs, enemies):
                 **({'lifeline_taken': lifeline} if lifeline else {}))
 
 
-def simulate(tier, enemy_level, n_enemies=4, trials=4000, good_luck=0, movement=False, start_gap=None, enemies=None):
+def simulate(tier, enemy_level, trials=4000, good_luck=0, movement=False, start_gap=None, enemies=None):
     results = {'party': 0, 'enemies': 0, 'draw': 0}
     rounds_list = []
     hp_list = []
     total_attacks = 0
     total_damage = 0
     for _ in range(trials):
-        r = run_fight(tier, enemy_level, n_enemies=n_enemies, good_luck=good_luck, movement=movement,
+        r = run_fight(tier, enemy_level, good_luck=good_luck, movement=movement,
                        start_gap=start_gap, enemies=enemies)
         results[r['winner']] += 1
         rounds_list.append(r['rounds'])

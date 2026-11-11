@@ -15,12 +15,6 @@ are the piece most likely to move as the PC/enemy models get revisited.
 """
 import game_data  # items.csv's weapons and armor (WEAPON, ARMOR below)
 
-# ---- Enemy Level curve (Design sheet) ----
-ACCURACY = {1: 4, 2: 6, 3: 7, 4: 8, 5: 9}
-DMG_RESIST = {1: 1, 2: 2, 3: 3, 4: 4, 5: 4}
-HEALTH_BASE = {1: 7, 2: 8, 3: 10, 4: 11, 5: 13}
-ABILITY_RATE = {1: 2, 2: 3, 3: 4, 4: 5, 5: 8}
-
 # ---- Encounter Slots -> Health multiplier (non-linear, action-economy tax) ----
 # Half-slot minions: 1/3 of a full enemy's Health. 1/2 was tried
 # (2026-10-01) and was far too generous: split into minions, real
@@ -129,52 +123,8 @@ INTERRUPT_SAVE_MIN = 1.5
 # combat_sim._parting_shot_interrupt.
 PARTING_SHOT_AP_COST = 1
 
-# ---- Role archetypes (Combat Role catalog, richer/authoritative version) ----
-# Tank/Bruiser's Resist +1 is the NPC equivalent of a character raising
-# Essence, so it already reaches every Resist (enemy_builder feeds
-# `resist` into both physres and elemres). They used to carry an extra
-# "elem_all": 1 on top, which double-counted elemental Resist and put a
-# Level 3 Bruiser at 5 elemental - past the "no 5s in base stats below
-# Level 4" line the designer holds enemies to.
-ROLE_MODS = {
-    "None":       {},
-    "Tank":       {"resist": 1, "parry": 1, "dodge": 1},
-    "Striker":    {"accuracy": 1, "damage": 1},
-    "Bruiser":    {"damage": 1, "resist": 1, "parry": -1, "dodge": -1},
-    "Strategist": {"accuracy": 1, "bodily": 1, "mental": 1},
-    "Defensive":  {"parry": 1, "dodge": 1, "bodily": 1, "mental": 1},
-}
 
-# ---- Combat Actions (own direct Accuracy/Damage/Parry contributions) ----
-ACTIONS = {
-    "Defensive Melee": {"accuracy": 1, "damage": 3, "parry": 2, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
-    "Offensive Melee":  {"accuracy": 0, "damage": 4, "parry": 1, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 0},
-    "Ranged Weapon":    {"accuracy": 1, "damage": 3, "dmg_type": "Physical", "opp_def": "Parry/Dodge", "range": 3},
-    "Melee Spell":      {"accuracy": 0, "damage": 3, "dmg_type": "Fire", "opp_def": "Dodge", "range": 0},
-    "Ranged Spell":     {"accuracy": 0, "damage": 2, "dmg_type": "Fire", "opp_def": "Dodge", "range": 2},
-}
 
-# ---- Ability catalog: the old builder's subset ----
-# The original enemy_builder.build_enemy (rows with no AttackTier) only
-# knows these, at the spreadsheet's 5-point costs. Every row built since
-# 2026-10-01 goes through enemy_builder_pcstyle instead, whose PICK_COST
-# has the whole catalog (since 2026-10-25; combat_sim plays each one).
-ABILITY_COST = {
-    "Enhanced Health": 5,
-    "Powerful Weapon": 5,
-    "Powerful Spell": 5,
-    "Strike (Crippling)": 5,
-    "Strike (Vulnerable)": 5,
-    "Poison (Bleeding)": 5,
-    "Durable": 5,
-    # 2026-09-30: more on-hit debuffs, so every enemy puts something on
-    # the party (the designer's standard: each enemy either debuffs or
-    # buffs an ally). Same 5-point cost as the existing Strike riders -
-    # one stack per hit.
-    "Strike (Slowing)": 5,
-    "Strike (Frightening)": 5,
-    "Strike (Taunting)": 5,
-}
 
 # ---- PC power per Tier (1-5) ----
 # PC stat blocks moved to sample_pcs.csv (real named Stat/Skill builds -
@@ -460,16 +410,6 @@ LEGACY_BIG = {"V3_SLOT_BUDGET": {}, "V3_ELITE_HEALTH": 3, "V3_SOLO_HEALTH": 6}
 # 14% over 12); at +1, 4.1% and 4.4%, ordinary fights unchanged
 # (experiments/enemies/wall_fix.py).
 V3_DEFENSE_CAP = 1
-# With it, the Defender archetype's +2 Parry becomes Health +1 (Defender:
-# Dodge +2, Health +4); the cap would waste the Parry under a shield.
-V3_DEFENDER_PARRY_TO_HEALTH = True
-# Paper defenses (designer, 2026-11-06): Parry is 8 + the Level's Skill +
-# the main Action's weapon Defense, nothing else. Archetypes and Abilities
-# never raise it (Parry and Dodge +1 reads as Dodge +1), and an enemy whose
-# main Action isn't a weapon (a caster, a healer) has no Parry even with a
-# fallback weapon. With V3_DEFENSE_CAP this puts every limit on the
-# ability step: no Defense above the Level's 8 + Skill + 2.
-V3_PAPER_DEFENSES = True
 
 # ---- Enemy offense dials (2026-10-08, measurement only) ----
 # Flat changes to every enemy's Accuracy and attack damage, applied to
@@ -485,46 +425,13 @@ ENEMY_HEALTH_MULT = 1
 # designer's yardstick for a harder day (2026-10-30): the enemy Levels the
 # model already has, read as win rates, no fractional steps. 0: as written.
 ENEMY_LEVEL_UP = 0
-# The enemy base table: 'v2' (designer, 2026-11-02: "our new one we're
-# working off of"), shaped like the designer's original table
-# (enemy_builder_pcstyle.ENEMY_TABLE_V2); 'v1' the one before, kept for
-# older scripts and their recorded numbers; 'v3' (2026-11-03) built the way
-# PCs are (enemy_builder_pcstyle.build_enemy_v3), the default since the
-# designer adopted it the same day. Only the codified rows (StrongDefense)
-# read it.
-ENEMY_TABLE = 'v3'
-# v3 (2026-11-03, the designer's "enemies play by the players' rules"):
-# Defense tiers. Strong = the Level's attack Skill Total, Average = that
-# minus V3_DEF_GAP, Weak = minus twice it (enemy_builder_pcstyle.build_enemy_v3).
+# Defense tiers (2026-11-03, "enemies play by the players' rules"): Strong =
+# the Level's Skill Total, Average = that minus V3_DEF_GAP, Weak = minus twice it.
 V3_DEF_GAP = 2
-# Which v3: 2, the trimmed base with the bigger archetypes (adopted
-# 2026-11-03); 1, the first one (one more Skill and Accuracy, smaller
-# archetypes), for the numbers recorded before that; 3, the pruned one
-# (2026-11-04: Damage and Accuracy into the Ability budget, additive
-# archetypes, the rows' PrunedPicks added), the default since the designer
-# adopted it on 2026-11-04.
-V3_VERSION = 3
-# Ability shapes under v3: 'catalog' (as written: Poison (Bleeding) lands
-# 2 stacks, Retribution Aura answers every attacker) or 'v2' (the v2 kit's
-# 1 stack and melee attackers only). 'v2' since 2026-11-03: as written they
-# read about 5 and 15 enemy Health, too much to price as one Ability.
-V3_KIT_SHAPES = 'v2'
-# Draft v3 Ability prices in Health (enemy_builder_pcstyle.ABILITY_HEALTH_V3):
-# on, each enemy gets V3_ABILITY_ALLOWANCE Health per Slot of Abilities and
-# armor free, and pays or keeps the difference in Health. On since
-# 2026-11-03 (designer: "start ironing out the Ability budget... at least
-# in terms of Health"); the prices get a second look against the balance
-# weights.
-V3_ABILITY_PRICES = True
-V3_ABILITY_ALLOWANCE = 1
-# The pruned v3's budget (V3_VERSION = 3): the 1 above, plus 4 for the
-# Damage Stat and 2 for the Accuracy the base table gave up.
+# Every enemy's points for Abilities, loadout and armor (enemy_builder.py,
+# "one budget"): 1, plus 4 for the Damage Stat and 2 for the Accuracy the
+# base table gave up in the pruned v3 (2026-11-04).
 V3_PRUNED_ALLOWANCE = 7
-# What the pruned v3's rows spend it on: 'picks' (a redesigned row's
-# PrunedAction and PrunedPicks; any other row keeps its Abilities and buys
-# back Damage +1 and Accuracy +1) or 'buyback' (every row buys them back:
-# the old enemies with the new archetypes).
-V3_PRUNED_ROSTER = 'picks'
 # Extra budget by Level for the pruned v3 ({3: 2} gives Level 3 enemies 2
 # more points), spent down each redesigned row's PrunedExtra list.
 # Tuned 2026-11-04 (pruned_tune.py, results/enemy_stats/v3p_tune.txt):
@@ -546,21 +453,6 @@ V3_PRUNED_ROSTER = 'picks'
 # Levels 1-3 all get 8 (designer, same day): 8 / 8 / 8 / 10 / 10.
 V3_PRUNED_EXTRA = {1: 1, 2: 1, 3: 1, 4: 3, 5: 3}
 V3_ACCURACY_IN_TABLE = 2
-# 'row' spends extra points down the row's PrunedExtra; 'offense' on
-# Accuracy +1, then Damage +1, first.
-V3_PRUNED_EXTRA_ORDER = 'offense'
-# Loadout swaps on the redesigned rows, for experiments ({"Bow": "Heavy Bow"}).
-V3_PRUNED_SWAP = {}
-# The least of the table's Health an enemy can keep after paying for
-# Abilities and armor (0 lets experiments spend it all). Unused under
-# V3_ONE_BUDGET, where nothing can come out of Health.
-V3_HEALTH_FLOOR = 2 / 3
-# One budget (designer, 2026-11-07): armor, loadout and picks all come out
-# of the Level's points, the extra points buy only what the design leaves
-# room for, and a design can't spend past its budget out of Health (no
-# floor). What's left is Health, as before. False: the base design and the
-# extra points are separate pots and an overspend comes off Health.
-V3_ONE_BUDGET = True
 # The lowest Level an enemy can wear Heavy armor; below it a Heavy design
 # wears Medium and keeps the points as Health (designer, 2026-11-08:
 # shorter, safer Heavy fights at Levels 1-2; heavy_level3.py). None: any Level.
@@ -568,21 +460,8 @@ V3_HEAVY_MIN_LEVEL = 3
 # The enemy Resist Stat's cap (None: STAT_CAP, 5, as a PC's), for the
 # hit-size targets' tests (2026-11-08, experiments/enemies/hit_fit.py).
 V3_RESIST_CAP = None
-# The hit-target table (2026-11-08 candidate, off by default): enemy
-# Defense and Resist up to PC-like numbers, Health down so a standard
-# monster has about 8, so PCs hit 50-75% for 2-3 and enemies 25-50% for
-# 2-3 (experiments/enemies/hit_fit.py). In pencil since 2026-11-09 (the
-# designer's firm hit targets); False: the 11-08 table.
-V3_HIT_FIT = True
-# Experiments: {Level: changes} replacing that Level's row of the candidate
-# (enemy_builder_pcstyle.V3_HIT_FIT_TABLE), or as SIM_SET can carry it,
-# "2:skill=1/resist=3/health=5;4:skill=3".
-V3_HIT_FIT_OVERRIDE = {}
-# Experiments: deltas on the final table, "1:accuracy=3/health=-2;2:...".
+# Experiments: deltas on enemy_builder.ENEMY_TABLE, "1:accuracy=3/health=-2;2:...".
 V3_TABLE_NUDGE = ""
-# The squared table (enemy_builder_pcstyle.V3_SQUARE_TABLE), in pencil
-# since 2026-11-09: enemy Accuracy +2/+3 so enemies hit about half the time.
-V3_SQUARE = True
 # Every enemy's Fighting Style, for tests (2026-11-09): '' each row's own
 # (all 'None' today: up to two attacks); 'Aimed Shot' (one attack with
 # Good Luck); 'Skirmisher' (one attack, then falls back with the AP left);
