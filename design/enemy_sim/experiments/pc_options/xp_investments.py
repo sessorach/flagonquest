@@ -189,7 +189,7 @@ def report(a, res, cl):
     text = "\n".join(lines)
     print(text)
     tag = "_abuse" if T.DEBUFF_ABUSE else "_smart" if T.MANEUVER_SMART else ""
-    out = os.path.join(_paths.ROOT, "results", f"xp_investments_L{a.L}_x{a.extra}{tag}.txt")
+    out = a.out or os.path.join(_paths.ROOT, "results", f"xp_investments_L{a.L}_x{a.extra}{tag}.txt")
     open(out, "w").write(text + "\n")
     json.dump([[list(c), res[c]] for c in cl], open(out.replace(".txt", ".json"), "w"))
 
@@ -201,6 +201,7 @@ if __name__ == "__main__":
     ap.add_argument("-n", type=int, default=50, help="days a mix")
     ap.add_argument("--calibrate", action="store_true")
     ap.add_argument("--list", action="store_true", help="just list the cells")
+    ap.add_argument("-o", "--out", help="results file (default results/xp_investments_L<L>_x<extra>[_tag].txt)")
     a = ap.parse_args()
     if a.calibrate:
         calibrate(a)
