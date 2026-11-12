@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-12 — Where Crippled and Slowed pay
+
+Tested Crippled and Slowed against mixed enemy groups and different party targeting: they do little against a crowd of small enemies and as much as a skill rank against one big enemy when the party plays around them. Wrote up two proposals for the designer: two stacks a Feature point, and Techniques at 2 XP a Level.
+
 ### 2026-11-11 — Debuffs pushed to the limit, and a tidier simulator
 
 Tried every rule change for Crippled and Slowed we could think of, and none makes one Wing Clip or Hamstring worth a skill rank; the two best (Crippled stops an enemy attacking at 3 stacks, Slowed also lowers Dodge) get to about half. Also cleared out the simulator: one enemy builder instead of four, finished studies archived, every result checked unchanged against fixed-seed runs.

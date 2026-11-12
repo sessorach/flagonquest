@@ -1,12 +1,12 @@
-# Latest replays (2026-11-11)
+# Latest replays (2026-11-12)
 
-Crippled/Slowed rule-variant switches added (off by default); nothing in a default fight changed
+Debuff repricing tests: big-enemy mix, targeting, extra stacks (test switches only; defaults unchanged)
 
 ## partyS_L1_vs_L1_manual1.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Manual 1 (Blast Mage@1, Glaive Dancer@1, Glaive Dancer@1, Glaive Dancer@1)
 - This fight (seed 11): party won in 5 rounds, 85% party HP left
-- Matchup average over 1000 fights: 99.1% wins, 5.0 rounds, 80% HP left on a win
+- Matchup average over 1000 fights: 99.4% wins, 4.9 rounds, 81% HP left on a win
 
 ## partyU_L1_vs_L1_manual2.html
 - Party: Browndog, Ashleigh, Sable, Beornhard

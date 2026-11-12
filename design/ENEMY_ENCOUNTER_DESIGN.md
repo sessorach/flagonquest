@@ -5388,3 +5388,92 @@ every hit 1.52 now, 3.19 as Bad Luck, 4.10 as −1 plus Bad Luck. Slowed
 4 on the first hit 2.34 now, 2.27-2.67 under every variant; Slowed 1 on
 every hit 1.02 now, 2.40 with the AP loss, 1.75-1.77 at −2 or never
 wearing off.
+
+**Crippled and Slowed: where they pay, and repricing** (designer,
+2026-11-11: the effects feel stronger than measured; reprice, don't
+redesign; maybe Techniques at 2 XP a Level). Same benchmark as above
+(`tools/xp_investments.py -L 2 -n 200`, points of days lost saved a XP,
+each ±0.1), now across enemy mixes, targeting and stack counts. Files:
+`results/debuff_rules/q_*`. Level 1 maneuver (3 XP, 3 points in the
+Feature) / Level 2 (6 XP, 6 points).
+
+| Test | Wing Clip | Hamstring | Battering | Half Guard | Acrobatics +1 |
+|---|---|---|---|---|---|
+| Six 1-Slot enemies (+1 Slot), as built | 0.06 / 0.12 | 0.20 / 0.15 | 0.54 / 0.45 | 0.57 / 0.46 | 1.15 |
+| ... party focuses the biggest threat | 0.06 / 0.12 | 0.12 / 0.09 | | | 1.17 |
+| ... party attacks whoever is nearest | 0.03 / 0.12 | 0.11 / 0.09 | 0.54 / 0.44 | 0.52 / 0.48 | 1.07 |
+| ... X + 2 stacks | 0.19 / 0.17 | 0.29 / 0.16 | | | |
+| ... X + 3 stacks | 0.25 / 0.19 | 0.31 / 0.16 | | | |
+| ... X + 3, aimed at the worst attacker | 0.31 / 0.21 | 0.33 / 0.16 | | | |
+| ... 3X stacks | 0.38 / 0.24 | 0.31 / 0.16 | | | |
+| A Gravel Ogre (2 Slots) and four 1-Slot | 0.35 / 0.43 | 0.28 / 0.29 | 0.60 / 0.46 | 0.44 / 0.40 | 2.42 |
+| ... party plays around the debuff | 0.81 / 1.24 | 0.74 / 1.00 | | | 2.54 |
+| ... X + 3 stacks | 0.88 / 0.57 | 0.57 / 0.36 | | | 2.40 |
+| ... X + 3, party plays around it | 2.68 / 1.70 | 2.19 / 1.26 | | | 2.44 |
+
+"Plays around the debuff": the maneuver goes on the worst attacker,
+and the party leaves an enemy at 5 Crippled, or a melee enemy Slowed
+out of reach, for later. The Ogre mix loses 38% of days (26% for the
+six 1-Slot enemies).
+
+- **How the party picks targets doesn't matter.** Focus fire, nearest
+  first and the as-built play give the same numbers within noise.
+- **What matters is whether there is one enemy worth debuffing and
+  whether the party uses the opening.** Against a crowd of 1-Slot
+  enemies a debuff on one of six is worth almost nothing. Against the
+  Ogre, Wing Clip is already level with Battering and Half Guard at
+  today's stacks, and worth an attack-skill rank in a crowd fight
+  (0.8-1.2 a XP) once the party plays around it. So the designer's read
+  and the sim's are both right: the sim's average is mostly crowd
+  fights played straight.
+- **More stacks lift the floor.** X + 3 (or 2X; the same six stacks at
+  Level 1) takes Wing Clip from 0.06 to 0.25-0.3 in a crowd, about half
+  of Battering, and to 0.9 against the Ogre, above Battering. Played
+  around, it matches the skill rank there (2.7 against 2.4).
+- Slowed gains less from stacks at Level 2 (0.15-0.16 whatever the
+  count in a crowd): six or nine stacks on one enemy is more than the
+  fight uses.
+- A skill rank is worth twice as much against the Ogre mix (2.4 a XP)
+  as against the crowd, so Techniques as a whole fall further behind
+  skills there.
+
+**Why the old price was high** (`scratchpad` accounting probe, Level 2,
++1 Slot): the 1.5 a stack assumed 1.5 enemy attacks a turn (now 1), 0.25
+Health saved by −1 on an attack (measured 0.16: a stack takes 7 points
+off a 45% hit chance, a hit is 2.3 Health) and every stack-turn landing
+on an attack (measured 21-27%: the enemy dies, moves, or the stacks tick
+off first). Crippled 3 fully used saves about 1 Health against 3 for
+Bleeding 3 or Protected 3; Crippled 6 is 21 stack-turns, about 3.4.
+
+**Proposals** (nothing changed in the CSVs; all need the designer):
+
+1. *Two stacks a point for Crippled and Slowed.* Wing Clip "Crippled
+   2X + [Clubs]", Hamstring "Slowed 2X + [Spades]"; the weights become
+   Crippled 0.75 a stack flat (from 1.5 compounding) and Slowed 0.55
+   (from 1.1). It keeps "duration and strength both grow with stacks",
+   touches two Feature lines plus every other Technique, item and enemy
+   Ability that gives either effect (each roughly doubles its stacks or
+   gets cheaper), and makes neither a trap: half of Battering in a
+   crowd, better than it against a big enemy, a skill rank when the
+   party plays to it. Three a point (0.5 a stack, the 10-21 proposal)
+   is the stronger version: 0.38 in a crowd, not tested against the
+   Ogre. "X + 2" or "X + 3" also works but makes a single point the
+   best buy, which pushes everyone to dip one point.
+2. *Techniques at 2 XP a Level.* Every Technique's per-XP number goes
+   up by half: Battering and Half Guard 0.5 → 0.8 against a skill
+   rank's 1.15, and with proposal 1 Wing Clip reaches 0.4-0.5 in a
+   crowd and 1.3 against the Ogre. It frees 10 XP on a Level 2 middle
+   build (30 → 20 on Techniques) and 15 at Level 3 (46 → 31). It
+   involves `techXP` in index.html, the rulebook's XP text, the
+   combat-share formula (`combat_xp`), the enemy Level bands if PCs
+   reach the same power sooner, and rebuilding the sample characters;
+   saved characters would show XP to spare. Not simulated: it needs
+   rebuilt parties, and where the freed XP goes decides the answer.
+3. *Leave Hasted's price.* Its odd cells come from how the party plays,
+   not the effect. As built, a Hasted front-liner arrives ahead of the
+   others and draws more attacks (Hilde, one stack on turn one: −0.9
+   Value; the party average −0.19 ± 0.14 against a price of 0.55).
+   Under "hold the line" the same test is +0.43 ± 0.22, and four stacks
+   +2.84 against 5.5 (`effect_check.py -e hasted -n 300 -m 1.75 -s
+   "PARTY_TACTIC='hold the line'"`). So about half its price when the
+   party stays together, nothing when the fast one runs ahead.
